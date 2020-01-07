@@ -5,6 +5,8 @@ import java.util.List;
 
 import br.com.mind5.business.storeLeaveDate.info.StolateInfo;
 import br.com.mind5.business.storeLeaveDate.model.action.LazyStolateEnforceLChanged;
+import br.com.mind5.business.storeLeaveDate.model.action.LazyStolateEnforceValidFrom;
+import br.com.mind5.business.storeLeaveDate.model.action.LazyStolateEnforceValidTo;
 import br.com.mind5.business.storeLeaveDate.model.action.LazyStolateMergeUsername;
 import br.com.mind5.business.storeLeaveDate.model.action.LazyStolateRootSelect;
 import br.com.mind5.business.storeLeaveDate.model.action.LazyStolateUpdate;
@@ -105,12 +107,16 @@ public final class RootStolateUpdate extends DeciTreeWriteTemplate<StolateInfo> 
 		ActionStd<StolateInfo> mergeToUpdate = new StdStolateMergeToUpdate(option);
 		ActionLazy<StolateInfo> enforceLChanged = new LazyStolateEnforceLChanged(option.conn, option.schemaName);
 		ActionLazy<StolateInfo> enforceLChangedBy = new LazyStolateMergeUsername(option.conn, option.schemaName);
+		ActionLazy<StolateInfo> enforceValidFrom = new LazyStolateEnforceValidFrom(option.conn, option.schemaName);
+		ActionLazy<StolateInfo> enforceValidTo = new LazyStolateEnforceValidTo(option.conn, option.schemaName);	
 		ActionLazy<StolateInfo> update = new LazyStolateUpdate(option.conn, option.schemaName);
 		ActionLazy<StolateInfo> select = new LazyStolateRootSelect(option.conn, option.schemaName);
 		
 		mergeToUpdate.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceLChangedBy);
-		enforceLChangedBy.addPostAction(update);
+		enforceLChangedBy.addPostAction(enforceValidFrom);
+		enforceValidFrom.addPostAction(enforceValidTo);
+		enforceValidTo.addPostAction(update);
 		update.addPostAction(select);
 		
 		actions.add(mergeToUpdate);				

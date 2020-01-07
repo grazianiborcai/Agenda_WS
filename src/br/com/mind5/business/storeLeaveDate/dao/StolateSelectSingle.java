@@ -75,6 +75,8 @@ public final class StolateSelectSingle extends DaoStmtTemplate<StolateInfo> {
 					dataInfo.yearValidFrom = DaoFormatter.sqlToInt(stmtResult, StolateDbTableColumn.COL_YEAR_VALID_FROM);	
 					dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, StolateDbTableColumn.COL_CREATED_ON);	
 					dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, StolateDbTableColumn.COL_CREATED_BY);	
+					dataInfo.validFrom = DaoFormatter.sqlToLocalDateTime(stmtResult, StolateDbTableColumn.COL_DATE_TIME_VALID_FROM);
+					dataInfo.validTo = DaoFormatter.sqlToLocalDateTime(stmtResult, StolateDbTableColumn.COL_DATE_TIME_VALID_TO);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

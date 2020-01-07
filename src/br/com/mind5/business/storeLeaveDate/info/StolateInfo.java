@@ -6,7 +6,6 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-import br.com.mind5.business.cartItem.info.CartemInfo;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
 
@@ -16,7 +15,9 @@ public final class StolateInfo extends InfoRecord implements Cloneable {
 	public int yearValidFrom;
 	public int monthValidFrom;
 	public String txtMonthValidFrom;
+	public LocalDateTime validFrom;
 	public LocalDate dateValidFrom;
+	public LocalDateTime validTo;
 	public LocalDate dateValidTo;
 	public LocalTime timeValidFrom;
 	public LocalTime timeValidTo;
@@ -44,88 +45,21 @@ public final class StolateInfo extends InfoRecord implements Cloneable {
 	}
 	
 	
-	//TODO: Mover para Copier
+
 	public static StolateInfo copyFrom(Object sourceObj) {
-		if (isCart(sourceObj))
-			return copyFromCart(sourceObj);
-		
 		return copyFrom(sourceObj, StolateInfo.class);
 	}
 	
 	
 	
 	public static List<StolateInfo> copyFrom(List<?> sourceObjs) {
-		if (isCart(sourceObjs))
-			return copyFromCart(sourceObjs);
-			
 		return copyFrom(sourceObjs, StolateInfo.class);
 	}
 	
 	
 	
-	private static boolean isCart(List<?> sourceObjs) {
-		if (sourceObjs == null || sourceObjs.isEmpty())
-			return false;
-		
-		return isCart(sourceObjs.get(0));
-	}
-	
-	
-	
-	private static boolean isCart(Object sourceObj) {
-		if (sourceObj == null)
-			return false;
-		
-		if (sourceObj instanceof CartemInfo)
-			return true;
-		
-		return false;
-	}
-	
-	
-	
-	@SuppressWarnings("unchecked")
-	private static List<StolateInfo> copyFromCart(List<?> sourceObjs) {
-		return new StolateCopyCart().makeCopy( (List<CartemInfo>)sourceObjs);
-	}
-	
-	
-	
-	private static StolateInfo copyFromCart(Object sourceObj) {
-		return new StolateCopyCart().makeCopy( (CartemInfo)sourceObj);
-	}
-	
-	
-	
 	@Override public Object clone()throws CloneNotSupportedException{  
-		StolateInfo deepCopy = (StolateInfo) super.clone();  		
-		
-		LocalTime cloneTimeValidFrom = null;		
-		if (timeValidFrom != null) 
-			cloneTimeValidFrom = LocalTime.of(timeValidFrom.getHour(), timeValidFrom.getMinute(), timeValidFrom.getSecond());
-		
-		
-		LocalTime cloneTimeValidTo = null;		
-		if (timeValidTo != null) 
-			cloneTimeValidTo = LocalTime.of(timeValidTo.getHour(), timeValidTo.getMinute(), timeValidTo.getSecond());
-		
-		
-		LocalDate cloneDateValidFrom = null;	
-		if (dateValidFrom != null) 
-			cloneDateValidFrom = LocalDate.of(dateValidFrom.getYear(), dateValidFrom.getMonth(), dateValidFrom.getDayOfMonth());
-		
-		
-		LocalDate cloneDateValidTo = null;	
-		if (dateValidTo != null) 
-			cloneDateValidTo = LocalDate.of(dateValidTo.getYear(), dateValidTo.getMonth(), dateValidTo.getDayOfMonth());
-				
-		
-		deepCopy.timeValidFrom = cloneTimeValidFrom;
-		deepCopy.timeValidTo = cloneTimeValidTo;
-		deepCopy.dateValidFrom = cloneDateValidFrom;
-		deepCopy.dateValidTo = cloneDateValidTo;
-				
-		return deepCopy;	
+		return super.clone();  	
 	}  
 	
 	

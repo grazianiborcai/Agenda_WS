@@ -15,6 +15,8 @@ public final class StolateDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_CREATED_BY = DaoDbField.COL_CREATED_BY;
 	public static final String COL_CREATED_ON = DaoDbField.COL_CREATED_ON;
 	public static final String COL_DESCRIPTION = DaoDbField.COL_DESCRIPTION;
+	public static final String COL_DATE_TIME_VALID_FROM = DaoDbField.COL_DATE_TIME_VALID_FROM; 		
+	public static final String COL_DATE_TIME_VALID_TO = DaoDbField.COL_DATE_TIME_VALID_TO; 	
 	public static final String COL_DT_VALID_FROM = DaoDbField.COL_DT_VALID_FROM;
 	public static final String COL_DT_VALID_TO = DaoDbField.COL_DT_VALID_TO;
 	public static final String COL_LAST_CHANGED = DaoDbField.COL_LAST_CHANGED;
@@ -157,6 +159,22 @@ public final class StolateDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_CREATED_ON;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_DATE_TIME_VALID_FROM;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_DATE_TIME_VALID_TO;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
