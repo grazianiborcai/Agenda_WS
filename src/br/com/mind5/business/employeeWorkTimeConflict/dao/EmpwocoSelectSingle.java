@@ -68,6 +68,7 @@ public final class EmpwocoSelectSingle extends DaoStmtTemplate<EmpwocoInfo> {
 			
 				do {				
 					EmpwocoInfo dataInfo = new EmpwocoInfo();
+					
 					dataInfo.codOwner = stmtResult.getLong(EmpwocoDbTableColumn.COL_COD_OWNER);
 					dataInfo.codStore = stmtResult.getLong(EmpwocoDbTableColumn.COL_COD_STORE);
 					dataInfo.codEmployee = stmtResult.getLong(EmpwocoDbTableColumn.COL_COD_EMPLOYEE);

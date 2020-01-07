@@ -13,11 +13,7 @@ import br.com.mind5.dao.DaoWhereOperator;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 
 final class EmpwocoWhere implements DaoStmtWhere {
-	private String whereClause;	
-	private DaoWhereBuilder builderKey;
-	private DaoWhereBuilder builderBeginTime;
-	private DaoWhereBuilder builderEndTime;
-	private DaoWhereBuilder builderBeginEndTime;
+	private String whereClause;
 	
 	
 	public EmpwocoWhere(DaoWhereBuilderOption whereOption, String tableName, EmpwocoInfo recordInfo) {
@@ -27,18 +23,18 @@ final class EmpwocoWhere implements DaoStmtWhere {
 	
 	
 	private void generateWhereClause(DaoWhereBuilderOption whereOption, String tableName, EmpwocoInfo recordInfo) {
-		builderKey = DaoWhereBuilder.factory(whereOption);		
-		builderBeginTime = DaoWhereBuilder.factory(whereOption);
-		builderEndTime = DaoWhereBuilder.factory(whereOption);		
-		builderBeginEndTime = DaoWhereBuilder.factory(whereOption);	
+		DaoWhereBuilder builderKey = DaoWhereBuilder.factory(whereOption);		
+		DaoWhereBuilder builderBeginTime = DaoWhereBuilder.factory(whereOption);
+		DaoWhereBuilder builderEndTime = DaoWhereBuilder.factory(whereOption);		
+		DaoWhereBuilder builderBeginEndTime = DaoWhereBuilder.factory(whereOption);	
 		
 		List<DaoColumn> columns = DaoDbTableColumnAll.getTableColumnsAsList(tableName);
 		
 		for (DaoColumn eachColumn : columns) {
-			generateKey(eachColumn, recordInfo);
-			generateBeginTime(eachColumn, recordInfo);
-			generateEndTime(eachColumn, recordInfo);
-			generateBeginEndTime(eachColumn, recordInfo);
+			builderKey = generateKey(eachColumn, recordInfo, builderKey);
+			builderBeginTime = generateBeginTime(eachColumn, recordInfo, builderBeginTime);
+			builderEndTime = generateEndTime(eachColumn, recordInfo, builderEndTime);
+			builderBeginEndTime = generateBeginEndTime(eachColumn, recordInfo, builderBeginEndTime);
 		}
 		
 		
@@ -51,70 +47,78 @@ final class EmpwocoWhere implements DaoStmtWhere {
 	
 	
 	
-	private void generateKey(DaoColumn column, EmpwocoInfo recordInfo) {
+	private DaoWhereBuilder generateKey(DaoColumn column, EmpwocoInfo recordInfo, DaoWhereBuilder builder) {
 		switch(column.columnName) {
 		case EmpwocoDbTableColumn.COL_COD_OWNER :
-			builderKey.addClauseEqualAnd(column, DaoFormatter.numberToString(recordInfo.codOwner));
+			builder.addClauseEqualAnd(column, DaoFormatter.numberToString(recordInfo.codOwner));
 			break;
 			
 		case EmpwocoDbTableColumn.COL_COD_STORE :
-			builderKey.addClauseAnd(column, DaoFormatter.numberToString(recordInfo.codStore), DaoWhereCondition.NOT_EQUAL);
+			builder.addClauseAnd(column, DaoFormatter.numberToString(recordInfo.codStore), DaoWhereCondition.NOT_EQUAL);
 			break;			
 
 		case EmpwocoDbTableColumn.COL_COD_EMPLOYEE :
-			builderKey.addClauseEqualAnd(column, DaoFormatter.numberToString(recordInfo.codEmployee));
+			builder.addClauseEqualAnd(column, DaoFormatter.numberToString(recordInfo.codEmployee));
 			break;
 			
 		case EmpwocoDbTableColumn.COL_COD_WEEKDAY :
-			builderKey.addClauseEqualAnd(column, DaoFormatter.numberToString(recordInfo.codWeekday));
+			builder.addClauseEqualAnd(column, DaoFormatter.numberToString(recordInfo.codWeekday));
 			break;
 			
 		case EmpwocoDbTableColumn.COL_RECORD_MODE :
-			builderKey.addClauseEqualAnd(column, recordInfo.recordMode);
+			builder.addClauseEqualAnd(column, recordInfo.recordMode);
 			break;
 		}
+		
+		return builder;
 	}
 	
 	
 	
-	private void generateBeginTime(DaoColumn column, EmpwocoInfo recordInfo) {
+	private DaoWhereBuilder generateBeginTime(DaoColumn column, EmpwocoInfo recordInfo, DaoWhereBuilder builder) {
 		switch(column.columnName) {
 		case EmpwocoDbTableColumn.COL_BEGIN_TIME :
-			builderBeginTime.addClauseAnd(column, DaoFormatter.timeToString(recordInfo.beginTime), DaoWhereCondition.LESS_OR_EQUAL);
+			builder.addClauseAnd(column, DaoFormatter.timeToString(recordInfo.beginTime), DaoWhereCondition.LESS_OR_EQUAL);
 			break;
 			
 		case EmpwocoDbTableColumn.COL_END_TIME :
-			builderBeginTime.addClauseAnd(column, DaoFormatter.timeToString(recordInfo.beginTime), DaoWhereCondition.GREATER_OR_EQUAL);
+			builder.addClauseAnd(column, DaoFormatter.timeToString(recordInfo.beginTime), DaoWhereCondition.GREATER_OR_EQUAL);
 			break;
 		}
+		
+		return builder;
 	}	
 	
 	
 	
-	private void generateEndTime(DaoColumn column, EmpwocoInfo recordInfo) {
+	private DaoWhereBuilder generateEndTime(DaoColumn column, EmpwocoInfo recordInfo, DaoWhereBuilder builder) {
 		switch(column.columnName) {
 		case EmpwocoDbTableColumn.COL_BEGIN_TIME :
-			builderEndTime.addClauseAnd(column, DaoFormatter.timeToString(recordInfo.endTime), DaoWhereCondition.LESS_OR_EQUAL);
+			builder.addClauseAnd(column, DaoFormatter.timeToString(recordInfo.endTime), DaoWhereCondition.LESS_OR_EQUAL);
 			break;
 			
 		case EmpwocoDbTableColumn.COL_END_TIME :
-			builderEndTime.addClauseAnd(column, DaoFormatter.timeToString(recordInfo.endTime), DaoWhereCondition.GREATER_OR_EQUAL);
+			builder.addClauseAnd(column, DaoFormatter.timeToString(recordInfo.endTime), DaoWhereCondition.GREATER_OR_EQUAL);
 			break;
 		}
+		
+		return builder;
 	}	
 	
 	
 	
-	private void generateBeginEndTime(DaoColumn column, EmpwocoInfo recordInfo) {
+	private DaoWhereBuilder generateBeginEndTime(DaoColumn column, EmpwocoInfo recordInfo, DaoWhereBuilder builder) {
 		switch(column.columnName) {
 		case EmpwocoDbTableColumn.COL_BEGIN_TIME :
-			builderBeginEndTime.addClauseAnd(column, DaoFormatter.timeToString(recordInfo.beginTime), DaoWhereCondition.GREATER_OR_EQUAL);
+			builder.addClauseAnd(column, DaoFormatter.timeToString(recordInfo.beginTime), DaoWhereCondition.GREATER_OR_EQUAL);
 			break;
 			
 		case EmpwocoDbTableColumn.COL_END_TIME :
-			builderBeginEndTime.addClauseAnd(column, DaoFormatter.timeToString(recordInfo.endTime), DaoWhereCondition.LESS_OR_EQUAL);
+			builder.addClauseAnd(column, DaoFormatter.timeToString(recordInfo.endTime), DaoWhereCondition.LESS_OR_EQUAL);
 			break;
 		}
+		
+		return builder;
 	}	
 	
 	
