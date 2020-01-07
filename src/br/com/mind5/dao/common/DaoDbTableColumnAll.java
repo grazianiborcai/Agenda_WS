@@ -83,6 +83,7 @@ import br.com.mind5.business.scheduleWeekData.dao.SchedeekdatDbTableColumn;
 import br.com.mind5.business.scheduleYearData.dao.SchedyeratDbTableColumn;
 import br.com.mind5.business.store.dao.StoreDbTableColumn;
 import br.com.mind5.business.storeLeaveDate.dao.StolateDbTableColumn;
+import br.com.mind5.business.storeLeaveDateRange.dao.StolargDbTableColumn;
 import br.com.mind5.business.storeLeaveDateSearch.dao.StolarchDbTableColumn;
 import br.com.mind5.business.storeList.dao.StolisDbTableColumn;
 import br.com.mind5.business.storeSearch.dao.SotarchDbTableColumn;
@@ -254,6 +255,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new CartemarchDbTableColumn());
 		addTable(new EmpworgDbTableColumn());
 		addTable(new EmplargDbTableColumn());
+		addTable(new StolargDbTableColumn());
 	}
 	
 	

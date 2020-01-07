@@ -983,4 +983,9 @@ public final class SystemCode {
 	public static final int EMP_LDATE_RANGE_MANDATORY_FIELD_EMPTY		= 9550;
 	public static final int EMP_LDATE_RANGE_ALREADY_EXIST 				= 9551;
 	public static final int EMP_LDATE_RANGE_NOT_FOUND 					= 9552;
+	
+	// Store Leave Date Range
+	public static final int STORE_LDATE_RANGE_MANDATORY_FIELD_EMPTY		= 10000;
+	public static final int STORE_LDATE_RANGE_ALREADY_EXIST 			= 10001;
+	public static final int STORE_LDATE_RANGE_NOT_FOUND 				= 10002;
 }
