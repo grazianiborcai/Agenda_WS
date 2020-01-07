@@ -36,6 +36,7 @@ public final class EmplateInsertSingle extends DaoStmtTemplate<EmplateInfo> {
 		return new DaoStmtParamTranslator<EmplateInfo>() {		
 			@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, EmplateInfo recordInfo) throws SQLException {				
 				int i = 1;
+				
 				stmt.setLong(i++, recordInfo.codOwner);
 				stmt.setLong(i++, recordInfo.codStore);
 				stmt.setLong(i++, recordInfo.codEmployee);

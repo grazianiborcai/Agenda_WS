@@ -41,6 +41,7 @@ public final class EmplateSelectSingle extends DaoStmtTemplate<EmplateInfo> {
 	
 	@Override protected String buildWhereClauseHook(String tableName, EmplateInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
+		
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
@@ -60,6 +61,7 @@ public final class EmplateSelectSingle extends DaoStmtTemplate<EmplateInfo> {
 				
 				do {
 					EmplateInfo dataInfo = new EmplateInfo();
+					
 					dataInfo.codOwner = stmtResult.getLong(EmplateDbTableColumn.COL_COD_OWNER);
 					dataInfo.codStore = stmtResult.getLong(EmplateDbTableColumn.COL_COD_STORE);
 					dataInfo.codEmployee = stmtResult.getLong(EmplateDbTableColumn.COL_COD_EMPLOYEE);

@@ -6,7 +6,6 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-import br.com.mind5.business.cartItem.info.CartemInfo;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
 
@@ -41,55 +40,15 @@ public final class EmplateInfo extends InfoRecord implements Cloneable {
 	}
 	
 	
-	//TODO: mover para Copier
+
 	public static EmplateInfo copyFrom(Object sourceObj) {
-		if (isCart(sourceObj))
-			return copyFromCart(sourceObj);
-		
 		return copyFrom(sourceObj, EmplateInfo.class);
 	}
 	
 	
 	
 	public static List<EmplateInfo> copyFrom(List<?> sourceObjs) {
-		if (isCart(sourceObjs))
-			return copyFromCart(sourceObjs);
-		
 		return copyFrom(sourceObjs, EmplateInfo.class);
-	}
-	
-	
-	
-	private static boolean isCart(List<?> sourceObjs) {
-		if (sourceObjs == null || sourceObjs.isEmpty())
-			return false;
-		
-		return isCart(sourceObjs.get(0));
-	}
-	
-	
-	
-	private static boolean isCart(Object sourceObj) {
-		if (sourceObj == null)
-			return false;
-		
-		if (sourceObj instanceof CartemInfo)
-			return true;
-		
-		return false;
-	}
-	
-	
-	
-	@SuppressWarnings("unchecked")
-	private static List<EmplateInfo> copyFromCart(List<?> sourceObjs) {
-		return new EmplateCopyCart().makeCopy( (List<CartemInfo>)sourceObjs);
-	}
-	
-	
-	
-	private static EmplateInfo copyFromCart(Object sourceObj) {
-		return new EmplateCopyCart().makeCopy( (CartemInfo)sourceObj);
 	}
 	
 	
