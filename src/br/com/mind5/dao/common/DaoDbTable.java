@@ -132,6 +132,7 @@ public final class DaoDbTable {
 	public static final String COMP_SEARCH_VIEW = "view_company_search";	
 	public static final String CUS_LIST_VIEW = "view_customer_list";	
 	public static final String CUS_SEARCH_VIEW = "view_customer_search";
+	public static final String EMP_LD_RANGE_VIEW = "employee_leave_time_range_view";
 	public static final String EMP_LD_SEARCH_VIEW = "employee_leave_time_search_view";
 	public static final String EMP_LIST_VIEW = "view_employee_list";	
 	public static final String EMP_MAT_SEARCH_VIEW = "view_employee_material_search";

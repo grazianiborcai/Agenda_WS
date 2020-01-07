@@ -979,4 +979,8 @@ public final class SystemCode {
 	public static final int EMP_WTIME_RANGE_NOT_FOUND 					= 9501; 
 	public static final int EMP_WTIME_RANGE_ALREADY_EXIST				= 9502; 
 	
+	// Employee Leave Date Range
+	public static final int EMP_LDATE_RANGE_MANDATORY_FIELD_EMPTY		= 9550;
+	public static final int EMP_LDATE_RANGE_ALREADY_EXIST 				= 9551;
+	public static final int EMP_LDATE_RANGE_NOT_FOUND 					= 9552;
 }
