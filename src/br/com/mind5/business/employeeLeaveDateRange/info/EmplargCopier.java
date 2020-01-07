@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.cartItem.info.CartemInfo;
 import br.com.mind5.info.InfoCopier;
 
-public final class EmplateCopier {
+public final class EmplargCopier {
 	public static EmplargInfo copyFromCartem(CartemInfo source) {
 		InfoCopier<EmplargInfo, CartemInfo> copier = new EmplargCopyCartem();
 		return copier.makeCopy(source);

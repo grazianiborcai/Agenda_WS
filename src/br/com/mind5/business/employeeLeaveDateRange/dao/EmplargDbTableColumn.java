@@ -13,6 +13,8 @@ public final class EmplargDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_EMPLOYEE = DaoDbField.COL_COD_EMPLOYEE; 
 	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER; 	
 	public static final String COL_COD_STORE = DaoDbField.COL_COD_STORE;  
+	public static final String COL_DATE_TIME_VALID_FROM = DaoDbField.COL_DATE_TIME_VALID_FROM; 		
+	public static final String COL_DATE_TIME_VALID_TO = DaoDbField.COL_DATE_TIME_VALID_TO; 	
 	public static final String COL_DT_VALID_FROM = DaoDbField.COL_DT_VALID_FROM; 		
 	public static final String COL_DT_VALID_TO = DaoDbField.COL_DT_VALID_TO; 
 	public static final String COL_RECORD_MODE = DaoDbField.COL_RECORD_MODE; 	
@@ -100,6 +102,22 @@ public final class EmplargDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_RECORD_MODE;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_DATE_TIME_VALID_FROM;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_DATE_TIME_VALID_TO;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;

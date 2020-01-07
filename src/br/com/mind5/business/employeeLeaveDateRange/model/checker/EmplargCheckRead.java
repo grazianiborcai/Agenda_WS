@@ -16,15 +16,13 @@ public final class EmplargCheckRead extends ModelCheckerTemplateSimpleV2<Emplarg
 	
 	
 	@Override protected boolean checkHook(EmplargInfo recordInfo, Connection conn, String schemaName) {	
-		if (recordInfo.codOwner 		<= 0 	||
-			recordInfo.codStore    		<= 0 	||
-			recordInfo.codEmployee 		<= 0 	||
-			recordInfo.timeValidFrom	== null	||
-			recordInfo.timeValidTo		== null	||
-			recordInfo.dateValidFrom	== null	||
-			recordInfo.dateValidTo		== null	||
-			recordInfo.username			== null	||
-			recordInfo.codLanguage		== null		)
+		if (recordInfo.codOwner 	<= 0 	||
+			recordInfo.codStore    	<= 0 	||
+			recordInfo.codEmployee 	<= 0 	||
+			recordInfo.validFrom	== null	||
+			recordInfo.validTo		== null	||
+			recordInfo.username		== null	||
+			recordInfo.codLanguage	== null		)
 			
 			return super.FAILED;
 		

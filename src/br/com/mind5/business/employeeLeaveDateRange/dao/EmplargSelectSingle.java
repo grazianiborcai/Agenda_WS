@@ -76,6 +76,8 @@ public final class EmplargSelectSingle extends DaoStmtTemplate<EmplargInfo> {
 					dataInfo.timeValidTo = DaoFormatter.sqlToLocalTime(stmtResult, EmplargDbTableColumn.COL_TM_VALID_TO);
 					dataInfo.dateValidFrom = DaoFormatter.sqlToLocalDate(stmtResult, EmplargDbTableColumn.COL_DT_VALID_FROM);
 					dataInfo.dateValidTo = DaoFormatter.sqlToLocalDate(stmtResult, EmplargDbTableColumn.COL_DT_VALID_TO);
+					dataInfo.validFrom = DaoFormatter.sqlToLocalDateTime(stmtResult, EmplargDbTableColumn.COL_DATE_TIME_VALID_FROM);
+					dataInfo.validTo = DaoFormatter.sqlToLocalDateTime(stmtResult, EmplargDbTableColumn.COL_DATE_TIME_VALID_TO);
 					
 					finalResult.add(dataInfo);		
 				} while (stmtResult.next());
