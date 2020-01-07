@@ -6,6 +6,8 @@ import java.util.List;
 import br.com.mind5.business.employeeLeaveDate.info.EmplateInfo;
 import br.com.mind5.business.employeeLeaveDate.model.action.LazyEmplateEnforceCreatedBy;
 import br.com.mind5.business.employeeLeaveDate.model.action.LazyEmplateEnforceCreatedOn;
+import br.com.mind5.business.employeeLeaveDate.model.action.LazyEmplateEnforceValidFrom;
+import br.com.mind5.business.employeeLeaveDate.model.action.LazyEmplateEnforceValidTo;
 import br.com.mind5.business.employeeLeaveDate.model.action.LazyEmplateMergeUsername;
 import br.com.mind5.business.employeeLeaveDate.model.action.LazyEmplateNodeInsert;
 import br.com.mind5.business.employeeLeaveDate.model.action.LazyEmplateRootSelect;
@@ -123,13 +125,17 @@ public final class RootEmplateInsert extends DeciTreeWriteTemplate<EmplateInfo> 
 		ActionLazy<EmplateInfo> enforceLChangedBy = new LazyEmplateMergeUsername(option.conn, option.schemaName);
 		ActionLazy<EmplateInfo> enforceCreatedBy = new LazyEmplateEnforceCreatedBy(option.conn, option.schemaName);
 		ActionLazy<EmplateInfo> enforceCreatedOn = new LazyEmplateEnforceCreatedOn(option.conn, option.schemaName);
+		ActionLazy<EmplateInfo> enforceValidFrom = new LazyEmplateEnforceValidFrom(option.conn, option.schemaName);
+		ActionLazy<EmplateInfo> enforceValidTo = new LazyEmplateEnforceValidTo(option.conn, option.schemaName);
 		ActionLazy<EmplateInfo> nodeInsert = new LazyEmplateNodeInsert(option.conn, option.schemaName);
 		ActionLazy<EmplateInfo> select = new LazyEmplateRootSelect(option.conn, option.schemaName);
 		
 		enforceLChanged.addPostAction(enforceLChangedBy);
 		enforceLChangedBy.addPostAction(enforceCreatedBy);
 		enforceCreatedBy.addPostAction(enforceCreatedOn);
-		enforceCreatedOn.addPostAction(nodeInsert);
+		enforceCreatedOn.addPostAction(enforceValidFrom);
+		enforceValidFrom.addPostAction(enforceValidTo);		
+		enforceValidTo.addPostAction(nodeInsert);
 		nodeInsert.addPostAction(select);
 		
 		actions.add(enforceLChanged);

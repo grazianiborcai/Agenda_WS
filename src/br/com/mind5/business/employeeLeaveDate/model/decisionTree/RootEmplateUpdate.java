@@ -5,6 +5,8 @@ import java.util.List;
 
 import br.com.mind5.business.employeeLeaveDate.info.EmplateInfo;
 import br.com.mind5.business.employeeLeaveDate.model.action.LazyEmplateEnforceLChanged;
+import br.com.mind5.business.employeeLeaveDate.model.action.LazyEmplateEnforceValidFrom;
+import br.com.mind5.business.employeeLeaveDate.model.action.LazyEmplateEnforceValidTo;
 import br.com.mind5.business.employeeLeaveDate.model.action.LazyEmplateMergeUsername;
 import br.com.mind5.business.employeeLeaveDate.model.action.LazyEmplateUpdate;
 import br.com.mind5.business.employeeLeaveDate.model.action.StdEmplateMergeToUpdate;
@@ -120,12 +122,16 @@ public final class RootEmplateUpdate extends DeciTreeWriteTemplate<EmplateInfo> 
 		ActionStd<EmplateInfo> mergeToUpdate = new StdEmplateMergeToUpdate(option);
 		ActionLazy<EmplateInfo> enforceLChanged = new LazyEmplateEnforceLChanged(option.conn, option.schemaName);
 		ActionLazy<EmplateInfo> enforceLChangedBy = new LazyEmplateMergeUsername(option.conn, option.schemaName);
+		ActionLazy<EmplateInfo> enforceValidFrom = new LazyEmplateEnforceValidFrom(option.conn, option.schemaName);
+		ActionLazy<EmplateInfo> enforceValidTo = new LazyEmplateEnforceValidTo(option.conn, option.schemaName);
 		ActionLazy<EmplateInfo> update = new LazyEmplateUpdate(option.conn, option.schemaName);
 		ActionStd<EmplateInfo> select = new RootEmplateSelect(option).toAction();
 		
 		mergeToUpdate.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceLChangedBy);
-		enforceLChangedBy.addPostAction(update);
+		enforceLChangedBy.addPostAction(enforceValidFrom);
+		enforceValidFrom.addPostAction(enforceValidTo);
+		enforceValidTo.addPostAction(update);
 		
 		actions.add(mergeToUpdate);
 		actions.add(select);

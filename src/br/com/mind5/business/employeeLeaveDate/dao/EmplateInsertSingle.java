@@ -50,6 +50,8 @@ public final class EmplateInsertSingle extends DaoStmtTemplate<EmplateInfo> {
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.lastChangedBy);	
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.createdBy);
 				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.createdOn);
+				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.validFrom);
+				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.validTo);
 				
 				return stmt;
 			}	
