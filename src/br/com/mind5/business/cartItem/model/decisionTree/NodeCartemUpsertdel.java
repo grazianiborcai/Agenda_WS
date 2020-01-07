@@ -51,7 +51,7 @@ public final class NodeCartemUpsertdel extends DeciTreeWriteTemplate<CartemInfo>
 	@Override protected List<ActionStd<CartemInfo>> buildActionsOnFailedHook(DeciTreeOption<CartemInfo> option) {
 		List<ActionStd<CartemInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CartemInfo> upsert = new NodeCartemUpsert(option).toAction();			
+		ActionStd<CartemInfo> upsert = new NodeCartemUpsertL1(option).toAction();			
 		actions.add(upsert);
 		
 		return actions;

@@ -6,6 +6,7 @@ import java.util.List;
 import br.com.mind5.business.cartItem.info.CartemInfo;
 import br.com.mind5.business.cartItem.model.action.StdCartemSuccess;
 import br.com.mind5.business.cartItem.model.checker.CartemCheckEmp;
+import br.com.mind5.business.cartItem.model.checker.CartemCheckEmplarg;
 import br.com.mind5.business.cartItem.model.checker.CartemCheckEmpmat;
 import br.com.mind5.business.cartItem.model.checker.CartemCheckEmposarch;
 import br.com.mind5.business.cartItem.model.checker.CartemCheckEmpworg;
@@ -103,6 +104,13 @@ public final class NodeCartemMatService extends DeciTreeWriteTemplate<CartemInfo
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
 		checker = new CartemCheckEmpworg(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.NOT_FOUND;	
+		checker = new CartemCheckEmplarg(checkerOption);
 		queue.add(checker);
 		
 		//TODO: check store leave time

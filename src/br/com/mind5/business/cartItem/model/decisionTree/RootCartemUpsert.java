@@ -4,13 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.cartItem.info.CartemInfo;
-import br.com.mind5.business.cartItem.model.action.LazyCartemNodeUpsertdel;
 import br.com.mind5.business.cartItem.model.checker.CartemCheckCart;
 import br.com.mind5.business.cartItem.model.checker.CartemCheckLangu;
 import br.com.mind5.business.cartItem.model.checker.CartemCheckMat;
 import br.com.mind5.business.cartItem.model.checker.CartemCheckOwner;
 import br.com.mind5.business.cartItem.model.checker.CartemCheckUpsert;
-import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -79,12 +77,9 @@ public final class RootCartemUpsert extends DeciTreeWriteTemplate<CartemInfo> {
 	@Override protected List<ActionStd<CartemInfo>> buildActionsOnPassedHook(DeciTreeOption<CartemInfo> option) {
 		List<ActionStd<CartemInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CartemInfo> nodeMat = new NodeCartemMat(option).toAction();
-		ActionLazy<CartemInfo> nodeUpsertdel = new LazyCartemNodeUpsertdel(option.conn, option.schemaName);
+		ActionStd<CartemInfo> upsertdel = new NodeCartemUpsertdel(option).toAction();
 		
-		nodeMat.addPostAction(nodeUpsertdel);
-		
-		actions.add(nodeMat);
+		actions.add(upsertdel);
 		return actions;
 	}
 }

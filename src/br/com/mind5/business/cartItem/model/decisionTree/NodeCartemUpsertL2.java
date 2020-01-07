@@ -17,9 +17,9 @@ import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
 
-public final class NodeCartemUpsert extends DeciTreeWriteTemplate<CartemInfo> {
+public final class NodeCartemUpsertL2 extends DeciTreeWriteTemplate<CartemInfo> {
 	
-	public NodeCartemUpsert(DeciTreeOption<CartemInfo> option) {
+	public NodeCartemUpsertL2(DeciTreeOption<CartemInfo> option) {
 		super(option);
 	}
 	
