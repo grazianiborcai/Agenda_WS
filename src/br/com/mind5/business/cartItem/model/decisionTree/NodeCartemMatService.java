@@ -13,6 +13,7 @@ import br.com.mind5.business.cartItem.model.checker.CartemCheckEmpworg;
 import br.com.mind5.business.cartItem.model.checker.CartemCheckIsTimeAged;
 import br.com.mind5.business.cartItem.model.checker.CartemCheckMatore;
 import br.com.mind5.business.cartItem.model.checker.CartemCheckService;
+import br.com.mind5.business.cartItem.model.checker.CartemCheckStolarg;
 import br.com.mind5.business.cartItem.model.checker.CartemCheckQuantity;
 import br.com.mind5.business.cartItem.model.checker.CartemCheckStore;
 import br.com.mind5.business.cartItem.model.checker.CartemCheckStoworg;
@@ -113,8 +114,13 @@ public final class NodeCartemMatService extends DeciTreeWriteTemplate<CartemInfo
 		checker = new CartemCheckEmplarg(checkerOption);
 		queue.add(checker);
 		
-		//TODO: check store leave time
-		//TODO: check emp leave time
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.NOT_FOUND;	
+		checker = new CartemCheckStolarg(checkerOption);
+		queue.add(checker);
+		
 		//TODO: is valid? Pode ter mudado apos ser inserido no carrinho
 		//TODO: tempo pode ser maior 
 		
