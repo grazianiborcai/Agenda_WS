@@ -4,11 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.cartItem.info.CartemInfo;
-import br.com.mind5.business.cartItem.model.action.LazyCartemNodeAged;
-import br.com.mind5.business.cartItem.model.action.LazyCartemNodeSelect;
-import br.com.mind5.business.cartItem.model.action.StdCartemMergeToSelect;
-import br.com.mind5.business.cartItem.model.checker.CartemCheckRead;
-import br.com.mind5.model.action.ActionLazy;
+import br.com.mind5.business.cartItem.model.checker.CartemCheckMatarchService;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -16,9 +12,9 @@ import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
 
-public final class RootCartemSelect extends DeciTreeWriteTemplate<CartemInfo> {
+public final class NodeCartemAged extends DeciTreeWriteTemplate<CartemInfo> {
 	
-	public RootCartemSelect(DeciTreeOption<CartemInfo> option) {
+	public NodeCartemAged(DeciTreeOption<CartemInfo> option) {
 		super(option);
 	}
 	
@@ -26,14 +22,14 @@ public final class RootCartemSelect extends DeciTreeWriteTemplate<CartemInfo> {
 	
 	@Override protected ModelChecker<CartemInfo> buildDecisionCheckerHook(DeciTreeOption<CartemInfo> option) {
 		List<ModelChecker<CartemInfo>> queue = new ArrayList<>();		
-		ModelChecker<CartemInfo> checker;
+		ModelChecker<CartemInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new CartemCheckRead(checkerOption);
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
+		checker = new CartemCheckMatarchService(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
@@ -44,14 +40,9 @@ public final class RootCartemSelect extends DeciTreeWriteTemplate<CartemInfo> {
 	@Override protected List<ActionStd<CartemInfo>> buildActionsOnPassedHook(DeciTreeOption<CartemInfo> option) {
 		List<ActionStd<CartemInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CartemInfo> select = new StdCartemMergeToSelect(option);
-		ActionLazy<CartemInfo> nodeSelect = new LazyCartemNodeSelect(option.conn, option.schemaName);		
-		ActionLazy<CartemInfo> nodeAged = new LazyCartemNodeAged(option.conn, option.schemaName);	
+		ActionStd<CartemInfo> service = new NodeCartemAgedServiceL01(option).toAction();
 		
-		select.addPostAction(nodeSelect);
-		nodeSelect.addPostAction(nodeAged);
-		
-		actions.add(select);
+		actions.add(service);
 		return actions;
 	}
 }

@@ -9,9 +9,24 @@ import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.business.materialStore.info.MatoreInfo;
 import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.info.InfoMerger;
+import br.com.mind5.message.sysMessage.info.SymsgInfo;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class CartemMerger {
+	public static CartemInfo mergeWithSymsg(SymsgInfo sourceOne, CartemInfo sourceTwo) {
+		InfoMerger<CartemInfo, SymsgInfo> merger = new CartemMergerSymsg();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<CartemInfo> mergeWithSymsg(List<SymsgInfo> sourceOnes, List<CartemInfo> sourceTwos) {
+		InfoMerger<CartemInfo, SymsgInfo> merger = new CartemMergerSymsg();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}		
+	
+	
+	
 	public static CartemInfo mergeWithCartemarch(CartemarchInfo sourceOne, CartemInfo sourceTwo) {
 		InfoMerger<CartemInfo, CartemarchInfo> merger = new CartemMergerCartemarch();		
 		return merger.merge(sourceOne, sourceTwo);
@@ -22,7 +37,7 @@ public final class CartemMerger {
 	public static List<CartemInfo> mergeWithCartemarch(List<CartemarchInfo> sourceOnes, List<CartemInfo> sourceTwos) {
 		InfoMerger<CartemInfo, CartemarchInfo> merger = new CartemMergerCartemarch();		
 		return merger.merge(sourceOnes, sourceTwos);
-	}		
+	}	
 	
 	
 	

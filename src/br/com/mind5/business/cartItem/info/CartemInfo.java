@@ -11,12 +11,14 @@ import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.InfoRecord;
+import br.com.mind5.message.sysMessage.info.SymsgInfo;
 
 public final class CartemInfo extends InfoRecord implements Cloneable, Comparable<CartemInfo> {
 	public long codOwner;	
 	public long codCustomer;
 	public long codUser;
 	public boolean isDeleted;
+	public boolean isAged;
 	public long codStore;
 	public long codEmployee;
 	public long codMat;
@@ -27,12 +29,13 @@ public final class CartemInfo extends InfoRecord implements Cloneable, Comparabl
 	public int codWeekday;
 	public String txtWeekday;
 	public LocalTime beginTime;
-	public LocalTime endTime;
+	public LocalTime endTime;	
 	public LocalDateTime createdOn;
 	public String username;
 	public StolisInfo stolisData;
 	public EmplisInfo emplisData;
 	public MatlisInfo matlisData;
+	public SymsgInfo symsgData;
 	
 	
 	public CartemInfo() {
@@ -41,6 +44,7 @@ public final class CartemInfo extends InfoRecord implements Cloneable, Comparabl
 		codOwner = DefaultValue.number();	
 		codCustomer = DefaultValue.number();
 		isDeleted = DefaultValue.boole();
+		isAged = DefaultValue.boole();
 		codUser = DefaultValue.number();
 		codStore = DefaultValue.number();
 		codEmployee = DefaultValue.number();
@@ -48,7 +52,7 @@ public final class CartemInfo extends InfoRecord implements Cloneable, Comparabl
 		price = DefaultValue.number();
 		quantity = DefaultValue.number();
 		totitem = DefaultValue.number();
-		codWeekday = DefaultValue.number();
+		codWeekday = DefaultValue.number();		
 		stolisData = DefaultValue.object();
 		emplisData = DefaultValue.object();
 		matlisData = DefaultValue.object();
@@ -78,6 +82,7 @@ public final class CartemInfo extends InfoRecord implements Cloneable, Comparabl
 		deepCopy.stolisData = cloneStolis(stolisData);
 		deepCopy.emplisData = cloneEmplis(emplisData);
 		deepCopy.matlisData = cloneMatlis(matlisData);
+		deepCopy.symsgData = cloneSymsg(symsgData);
 		
 		return deepCopy;
 	}
@@ -111,6 +116,17 @@ public final class CartemInfo extends InfoRecord implements Cloneable, Comparabl
 		
 		if (recordInfo != null)
 			result = (EmplisInfo) recordInfo.clone();
+		
+		return result;
+	}	
+	
+	
+	
+	private SymsgInfo cloneSymsg(SymsgInfo recordInfo) throws CloneNotSupportedException {
+		SymsgInfo result = null;
+		
+		if (recordInfo != null)
+			result = (SymsgInfo) recordInfo.clone();
 		
 		return result;
 	}	
