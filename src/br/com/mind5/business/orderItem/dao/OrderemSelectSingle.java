@@ -9,130 +9,80 @@ import java.util.List;
 import br.com.mind5.business.orderItem.info.OrderemInfo;
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoStmt;
-import br.com.mind5.dao.DaoStmtHelper_;
+import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
-import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.dao.common.DaoOptionValue;
-import br.com.mind5.dao.obsolete.DaoResultParser_;
-import br.com.mind5.dao.obsolete.DaoStmtOption_;
 
-public final class OrderemSelectSingle implements DaoStmt<OrderemInfo> {	
-	private final String LT_ITM = DaoDbTable.ORDER_ITM_TABLE;
-	
-	private DaoStmt<OrderemInfo> stmtSql;
-	private DaoStmtOption_<OrderemInfo> stmtOption;
-	
+public final class OrderemSelectSingle extends DaoStmtTemplate<OrderemInfo> {	
+	private final String MAIN_TABLE = DaoDbTable.ORDER_ITM_TABLE;
 	
 	
 	public OrderemSelectSingle(Connection conn, OrderemInfo recordInfo, String schemaName) {
-		buildStmtOption(conn, recordInfo, schemaName);
-		buildStmt();
+		super(conn, recordInfo, schemaName);
 	}
 	
 	
 	
-	private void buildStmtOption(Connection conn, OrderemInfo recordInfo, String schemaName) {
-		this.stmtOption = new DaoStmtOption_<>();
-		this.stmtOption.conn = conn;
-		this.stmtOption.recordInfo = recordInfo;
-		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = LT_ITM;
-		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(LT_ITM);
-		this.stmtOption.stmtParamTranslator = null;
-		this.stmtOption.resultParser = new ResultParser();
-		this.stmtOption.whereClause = buildWhereClause();
-		this.stmtOption.joins = null;
+	@Override protected String getTableNameHook() {
+		return MAIN_TABLE;
 	}
 	
 	
 	
-	private String buildWhereClause() {
+	@Override protected DaoOperation getOperationHook() {
+		return DaoOperation.SELECT;
+	}
+	
+	
+	
+	@Override protected String buildWhereClauseHook(String tableName, OrderemInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
-		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
+		
+		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new OrderemWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
+		DaoStmtWhere whereClause = new OrderemWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
-	}
+	}	
 	
 	
 	
-	private void buildStmt() {
-		stmtSql = new DaoStmtHelper_<>(DaoOperation.SELECT, this.stmtOption, this.getClass());
-	}
-	
-	
-
-	@Override public void generateStmt() throws SQLException {
-		stmtSql.generateStmt();		
-	}
-
-	
-	
-	@Override public boolean checkStmtGeneration() {
-		return stmtSql.checkStmtGeneration();
-	}
-
-	
-	
-	@Override public void executeStmt() throws SQLException {
-		stmtSql.executeStmt();
-	}
-
-	
-	
-	@Override public List<OrderemInfo> getResultset() {
-		return stmtSql.getResultset();
-	}
-	
-	
-	
-	@Override public DaoStmt<OrderemInfo> getNewInstance() {
-		return new OrderemSelectSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
-	}
-	
-	
-	
-	
-	
-	
-	private static class ResultParser implements DaoResultParser_<OrderemInfo> {
-		private final boolean EMPTY_RESULT_SET = false;
-		
-		@Override public List<OrderemInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
-			
-			List<OrderemInfo> finalResult = new ArrayList<>();
-			
-			if (stmtResult.next() == EMPTY_RESULT_SET)				
+	@Override protected DaoResultParserV2<OrderemInfo> getResultParserHook() {
+		return new DaoResultParserV2<OrderemInfo>() {
+			@Override public List<OrderemInfo> parseResult(OrderemInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {			
+				List<OrderemInfo> finalResult = new ArrayList<>();
+				
+				if (stmtResult.next() == false)				
+					return finalResult;
+				
+				do {
+					OrderemInfo dataInfo = new OrderemInfo();
+					
+					dataInfo.codOwner = stmtResult.getLong(OrderemDbTableColumn.COL_COD_OWNER);	
+					dataInfo.codOrder = stmtResult.getLong(OrderemDbTableColumn.COL_COD_ORDER);
+					dataInfo.codOrderItem = DaoFormatter.sqlToInt(stmtResult, OrderemDbTableColumn.COL_COD_ORDER_ITEM);
+					dataInfo.quantity = stmtResult.getInt(OrderemDbTableColumn.COL_QUANTITY);
+					dataInfo.codCurr = stmtResult.getString(OrderemDbTableColumn.COL_COD_CURRENCY);
+					dataInfo.codStore = DaoFormatter.sqlToLong(stmtResult, OrderemDbTableColumn.COL_COD_STORE);
+					dataInfo.codEmployee = DaoFormatter.sqlToLong(stmtResult, OrderemDbTableColumn.COL_COD_EMPLOYEE);
+					dataInfo.codMat = DaoFormatter.sqlToLong(stmtResult, OrderemDbTableColumn.COL_COD_MATERIAL);
+					dataInfo.date = DaoFormatter.sqlToLocalDate(stmtResult, OrderemDbTableColumn.COL_DATE);
+					dataInfo.beginTime = DaoFormatter.sqlToLocalTime(stmtResult, OrderemDbTableColumn.COL_BEGIN_TIME);
+					dataInfo.endTime = DaoFormatter.sqlToLocalTime(stmtResult, OrderemDbTableColumn.COL_END_TIME);
+					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, OrderemDbTableColumn.COL_LAST_CHANGED);
+					dataInfo.lastChangedBy = stmtResult.getLong(OrderemDbTableColumn.COL_LAST_CHANGED_BY);
+					dataInfo.price = DaoFormatter.sqlToDouble(stmtResult, OrderemDbTableColumn.COL_PRICE);
+					dataInfo.totitem = DaoFormatter.sqlToDouble(stmtResult, OrderemDbTableColumn.COL_TOTAL_ITEM);
+					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, OrderemDbTableColumn.COL_COD_SNAPSHOT);					
+					
+					finalResult.add(dataInfo);
+				} while (stmtResult.next());
+				
 				return finalResult;
-			
-			do {
-				OrderemInfo dataInfo = new OrderemInfo();
-				dataInfo.codOwner = stmtResult.getLong(OrderemDbTableColumn.COL_COD_OWNER);	
-				dataInfo.codOrder = stmtResult.getLong(OrderemDbTableColumn.COL_COD_ORDER);
-				dataInfo.codOrderItem = DaoFormatter.sqlToInt(stmtResult, OrderemDbTableColumn.COL_COD_ORDER_ITEM);
-				dataInfo.quantity = stmtResult.getInt(OrderemDbTableColumn.COL_QUANTITY);
-				dataInfo.codCurr = stmtResult.getString(OrderemDbTableColumn.COL_COD_CURRENCY);
-				dataInfo.codStore = DaoFormatter.sqlToLong(stmtResult, OrderemDbTableColumn.COL_COD_STORE);
-				dataInfo.codEmployee = DaoFormatter.sqlToLong(stmtResult, OrderemDbTableColumn.COL_COD_EMPLOYEE);
-				dataInfo.codMat = DaoFormatter.sqlToLong(stmtResult, OrderemDbTableColumn.COL_COD_MATERIAL);
-				dataInfo.date = DaoFormatter.sqlToLocalDate(stmtResult, OrderemDbTableColumn.COL_DATE);
-				dataInfo.beginTime = DaoFormatter.sqlToLocalTime(stmtResult, OrderemDbTableColumn.COL_BEGIN_TIME);
-				dataInfo.endTime = DaoFormatter.sqlToLocalTime(stmtResult, OrderemDbTableColumn.COL_END_TIME);
-				dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, OrderemDbTableColumn.COL_LAST_CHANGED);
-				dataInfo.lastChangedBy = stmtResult.getLong(OrderemDbTableColumn.COL_LAST_CHANGED_BY);
-				dataInfo.price = DaoFormatter.sqlToDouble(stmtResult, OrderemDbTableColumn.COL_PRICE);
-				dataInfo.totitem = DaoFormatter.sqlToDouble(stmtResult, OrderemDbTableColumn.COL_TOTAL_ITEM);
-				dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, OrderemDbTableColumn.COL_COD_SNAPSHOT);
-				
-				
-				finalResult.add(dataInfo);
-			} while (stmtResult.next());
-			
-			return finalResult;
-		}
+			}
+		};
 	}
 }
