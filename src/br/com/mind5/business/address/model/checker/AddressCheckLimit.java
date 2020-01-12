@@ -1,26 +1,36 @@
 package br.com.mind5.business.address.model.checker;
 
+import java.util.List;
+
 import br.com.mind5.business.address.info.AddressInfo;
-import br.com.mind5.business.address.model.action.StdAddressSelect;
+import br.com.mind5.business.addressSearch.info.AddarchCopier;
+import br.com.mind5.business.addressSearch.info.AddarchInfo;
+import br.com.mind5.business.addressSearch.model.decisionTree.RootAddarchSelect;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-//TODO: isso esta funcionando ?
-public final class AddressCheckLimit extends ModelCheckerTemplateActionV2<AddressInfo, AddressInfo> {
+
+public final class AddressCheckLimit extends ModelCheckerTemplateActionV2<AddressInfo, AddarchInfo> {
 	private final int MAX_RECORD_COUNT = 10;
 	
 	
 	public AddressCheckLimit(ModelCheckerOption option) {
-		super(option, AddressInfo.class);
+		super(option, AddarchInfo.class);
 	}
 	
 	
 	
-	@Override protected ActionStd<AddressInfo> buildActionHook(DeciTreeOption<AddressInfo> option) {
-		ActionStd<AddressInfo> select = new StdAddressSelect(option);
+	@Override protected ActionStd<AddarchInfo> buildActionHook(DeciTreeOption<AddarchInfo> option) {
+		ActionStd<AddarchInfo> select = new RootAddarchSelect(option).toAction();
 		return select;
+	}
+	
+	
+	
+	@Override protected List<AddarchInfo> toActionClassHook(List<AddressInfo> recordInfos) {
+		return AddarchCopier.copyFromAdddressRef(recordInfos);
 	}
 	
 	
