@@ -10,129 +10,79 @@ import java.util.List;
 import br.com.mind5.business.orderSnapshot.info.OrdnapInfo;
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoStmt;
-import br.com.mind5.dao.DaoStmtHelper_;
+import br.com.mind5.dao.DaoResultParserV2;
 import br.com.mind5.dao.DaoStmtParamTranslator;
+import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.common.DaoDbTable;
-import br.com.mind5.dao.common.DaoDbTableColumnAll;
-import br.com.mind5.dao.obsolete.DaoResultParser_;
-import br.com.mind5.dao.obsolete.DaoStmtOption_;
 
-public final class OrdnapInsertSingle implements DaoStmt<OrdnapInfo> {
-	private DaoStmt<OrdnapInfo> stmtSql;
-	private DaoStmtOption_<OrdnapInfo> stmtOption;
-	
+public final class OrdnapInsertSingle extends DaoStmtTemplate<OrdnapInfo> {
+	private final String MAIN_TABLE = DaoDbTable.ORDER_HDR_SNAPSHOT_TABLE;	
 	
 	
 	public OrdnapInsertSingle(Connection conn, OrdnapInfo recordInfo, String schemaName) {
-		buildStmtOption(conn, recordInfo, schemaName);
-		buildStmt();		
+		super(conn, recordInfo, schemaName);
 	}
 	
 	
 	
-	private void buildStmtOption(Connection conn, OrdnapInfo recordInfo, String schemaName) {
-		this.stmtOption = new DaoStmtOption_<>();
-		this.stmtOption.conn = conn;
-		this.stmtOption.recordInfo = recordInfo;
-		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = DaoDbTable.ORDER_HDR_SNAPSHOT_TABLE;
-		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(this.stmtOption.tableName);
-		this.stmtOption.stmtParamTranslator = new ParamTranslator();
-		this.stmtOption.resultParser = new ResultParser(recordInfo);
-		this.stmtOption.whereClause = null;
+	@Override protected String getTableNameHook() {
+		return MAIN_TABLE;
 	}
 	
 	
 	
-	private void buildStmt() {
-		this.stmtSql = new DaoStmtHelper_<>(DaoOperation.INSERT, this.stmtOption, this.getClass());
-	}
-		
-	
-	
-	@Override public void generateStmt() throws SQLException {
-		stmtSql.generateStmt();		
-	}
-
-	
-	
-	@Override public boolean checkStmtGeneration() {
-		return stmtSql.checkStmtGeneration();
-	}
-
-	
-	
-	@Override public void executeStmt() throws SQLException {
-		stmtSql.executeStmt();
-	}
-
-	
-	
-	@Override public List<OrdnapInfo> getResultset() {
-		return stmtSql.getResultset();
+	@Override protected DaoOperation getOperationHook() {
+		return DaoOperation.INSERT;
 	}
 	
 	
 	
-	private class ParamTranslator implements DaoStmtParamTranslator<OrdnapInfo> {		
-		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, OrdnapInfo recordInfo) throws SQLException {
-			
-			int i = 1;
-			stmt.setLong(i++, recordInfo.codOwner);
-			stmt.setLong(i++, recordInfo.codOrder);
-			stmt.setLong(i++, recordInfo.codUser);
-			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codUserSnapshot);
-			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codCustomer);
-			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codCustomerSnapshot);
-			stmt.setString(i++, recordInfo.codOrderExt);
-			stmt.setString(i++, recordInfo.codOrderStatus);
-			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.itemTotal);
-			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.feeService);
-			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.grandTotal);
-			stmt.setString(i++, recordInfo.codCurr);
-			stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.lastChanged);
-			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codAddressShip);
-			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codAddressShipSnapshot);
-			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codAddressInvoice);
-			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codAddressInvoiceSnapshot);
-			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPhoneShip);
-			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPhoneShipSnapshot);
-			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPhoneInvoice);
-			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPhoneInvoiceSnapshot);
-			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPayOrder);
-			stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.createdOn);
-			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.createdBy);
-			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.lastChangedBy);
-
-			return stmt;
-		}		
+	@Override protected DaoStmtParamTranslator<OrdnapInfo> getParamTranslatorHook() {
+		return new DaoStmtParamTranslator<OrdnapInfo>() {			
+			@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, OrdnapInfo recordInfo) throws SQLException {	
+				int i = 1;
+				
+				stmt.setLong(i++, recordInfo.codOwner);
+				stmt.setLong(i++, recordInfo.codOrder);
+				stmt.setLong(i++, recordInfo.codUser);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codUserSnapshot);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codCustomer);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codCustomerSnapshot);
+				stmt.setString(i++, recordInfo.codOrderExt);
+				stmt.setString(i++, recordInfo.codOrderStatus);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.itemTotal);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.feeService);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.grandTotal);
+				stmt.setString(i++, recordInfo.codCurr);
+				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.lastChanged);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codAddressShip);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codAddressShipSnapshot);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codAddressInvoice);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codAddressInvoiceSnapshot);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPhoneShip);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPhoneShipSnapshot);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPhoneInvoice);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPhoneInvoiceSnapshot);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPayOrder);
+				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.createdOn);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.createdBy);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.lastChangedBy);
+	
+				return stmt;
+			}		
+		};
 	}
 	
 	
 	
-	@Override public DaoStmt<OrdnapInfo> getNewInstance() {
-		return new OrdnapInsertSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
-	}
-	
-	
-	
-	
-	
-	private static class ResultParser implements DaoResultParser_<OrdnapInfo> {
-		private OrdnapInfo recordInfo;
-		
-		public ResultParser(OrdnapInfo recordToParse) {
-			recordInfo = recordToParse;
-		}
-		
-		
-		
-		@Override public List<OrdnapInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
-			List<OrdnapInfo> finalResult = new ArrayList<>();
-			recordInfo.codSnapshot= lastId;
-			finalResult.add(recordInfo);			
-			return finalResult;
-		}
+	@Override protected DaoResultParserV2<OrdnapInfo> getResultParserHook() {
+		return new DaoResultParserV2<OrdnapInfo>() {		
+			@Override public List<OrdnapInfo> parseResult(OrdnapInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
+				List<OrdnapInfo> finalResult = new ArrayList<>();
+				recordInfo.codSnapshot= lastId;
+				finalResult.add(recordInfo);			
+				return finalResult;
+			}
+		};
 	}
 }
