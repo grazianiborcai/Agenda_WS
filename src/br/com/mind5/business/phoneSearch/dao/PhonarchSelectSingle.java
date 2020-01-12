@@ -66,6 +66,7 @@ public final class PhonarchSelectSingle extends DaoStmtTemplate<PhonarchInfo> {
 				
 				do {
 					PhonarchInfo dataInfo = new PhonarchInfo();
+					
 					dataInfo.codPhone = stmtResult.getLong(PhonarchDbTableColumn.COL_COD_PHONE);
 					dataInfo.codOwner = stmtResult.getLong(PhonarchDbTableColumn.COL_COD_OWNER);
 					dataInfo.codCountryPhone = stmtResult.getInt(PhonarchDbTableColumn.COL_COUNTRY_PHONE);
