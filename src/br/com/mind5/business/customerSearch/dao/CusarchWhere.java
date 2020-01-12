@@ -89,16 +89,8 @@ final class CusarchWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {
 			switch(eachColumn.columnName) {
-				case CusarchDbTableColumn.COL_COD_PERSON :
-					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.personData.codPerson));
-					break;
-					
 				case CusarchDbTableColumn.COL_CPF :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.personData.cpf);
-					break;
-					
-				case CusarchDbTableColumn.COL_COD_GENDER :
-					builder.addClauseEqualAnd(eachColumn,  DaoFormatter.numberToString(recordInfo.personData.codGender));
 					break;
 					
 				case CusarchDbTableColumn.COL_EMAIL :
