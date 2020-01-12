@@ -9,9 +9,9 @@ import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyCartEnforceObfuscate extends ActionLazyTemplate<CartInfo, CartInfo> {
+public final class LazyCartEnforceObfuscate_ extends ActionLazyTemplate<CartInfo, CartInfo> {
 
-	public LazyCartEnforceObfuscate(Connection conn, String schemaName) {
+	public LazyCartEnforceObfuscate_(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyCartEnforceObfuscate extends ActionLazyTemplate<CartInfo,
 	
 	
 	@Override protected ActionStd<CartInfo> getInstanceOfActionHook(DeciTreeOption<CartInfo> option) {
-		return new StdCartEnforceObfuscate(option);
+		return new StdCartEnforceObfuscate_(option);
 	}
 	
 	

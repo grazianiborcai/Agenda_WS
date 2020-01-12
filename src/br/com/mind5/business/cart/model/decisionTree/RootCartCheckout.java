@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.cart.info.CartInfo;
-import br.com.mind5.business.cart.model.action.LazyCartNodeCheckout;
+import br.com.mind5.business.cart.model.action.LazyCartNodeCheckoutL1;
 import br.com.mind5.business.cart.model.action.StdCartMergeUsername;
 import br.com.mind5.business.cart.model.checker.CartCheckCheckout;
 import br.com.mind5.business.cart.model.checker.CartCheckLangu;
@@ -58,9 +58,9 @@ public final class RootCartCheckout extends DeciTreeWriteTemplate<CartInfo> {
 	
 	@Override protected List<ActionStd<CartInfo>> buildActionsOnPassedHook(DeciTreeOption<CartInfo> option) {
 		List<ActionStd<CartInfo>> actions = new ArrayList<>();
-		//TODO: Validate - verif. se item envelheceu, ou ja foi incluido por outro usuario, ou continua disponivel
+
 		ActionStd<CartInfo> mergeUsername = new StdCartMergeUsername(option);
-		ActionLazy<CartInfo> checkout = new LazyCartNodeCheckout(option.conn, option.schemaName);
+		ActionLazy<CartInfo> checkout = new LazyCartNodeCheckoutL1(option.conn, option.schemaName);
 		
 		mergeUsername.addPostAction(checkout);
 		

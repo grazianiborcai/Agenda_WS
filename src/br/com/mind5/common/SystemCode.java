@@ -232,6 +232,8 @@ public final class SystemCode {
 	public static final int CART_HEADER_NOT_FOUND						= 1401;
 	public static final int CART_IS_EMPTY 								= 1405;
 	public static final int CART_HEADER_MANDATORY_FIELD_EMPTY			= 1411;
+	public static final int CART_HEADER_IS_AGED							= 1413;
+	public static final int CART_HEADER_IS_OK							= 1414;
 	
 	//Cart Item
 	public static final int CART_ITEM_MANDATORY_FIELD_EMPTY				= 9400;	//1412;

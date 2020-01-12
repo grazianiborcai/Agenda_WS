@@ -4,10 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.cart.info.CartInfo;
-import br.com.mind5.business.cart.model.action.LazyCartEnforceObfuscate;
-import br.com.mind5.business.cart.model.action.LazyCartInsertOrder;
-import br.com.mind5.business.cart.model.action.LazyCartRootDelete;
-import br.com.mind5.business.cart.model.checker.CartCheckExist;
+import br.com.mind5.business.cart.model.action.LazyCartNodeCheckoutL2;
+import br.com.mind5.business.cart.model.checker.CartCheckCartemarch;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
@@ -16,9 +14,9 @@ import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
 
-public final class NodeCartCheckout extends DeciTreeWriteTemplate<CartInfo> {
+public final class NodeCartCheckoutL1 extends DeciTreeWriteTemplate<CartInfo> {
 	
-	public NodeCartCheckout(DeciTreeOption<CartInfo> option) {
+	public NodeCartCheckoutL1(DeciTreeOption<CartInfo> option) {
 		super(option);
 	}
 	
@@ -33,9 +31,9 @@ public final class NodeCartCheckout extends DeciTreeWriteTemplate<CartInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
-		checker = new CartCheckExist(checkerOption);
+		checker = new CartCheckCartemarch(checkerOption);
 		queue.add(checker);
-		//TODO: has item ?
+
 		return new ModelCheckerQueue<>(queue);
 	}
 	
@@ -45,13 +43,9 @@ public final class NodeCartCheckout extends DeciTreeWriteTemplate<CartInfo> {
 		List<ActionStd<CartInfo>> actions = new ArrayList<>();
 		
 		ActionStd<CartInfo> select = new RootCartSelect(option).toAction();
-		ActionLazy<CartInfo> insertOrder = new LazyCartInsertOrder(option.conn, option.schemaName);	
-		ActionLazy<CartInfo> delete = new LazyCartRootDelete(option.conn, option.schemaName);	
-		ActionLazy<CartInfo> obfuscate = new LazyCartEnforceObfuscate(option.conn, option.schemaName);	
+		ActionLazy<CartInfo> nodeL2 = new LazyCartNodeCheckoutL2(option.conn, option.schemaName);	
 		
-		select.addPostAction(insertOrder);
-		insertOrder.addPostAction(delete);
-		insertOrder.addPostAction(obfuscate);
+		select.addPostAction(nodeL2);
 		
 		actions.add(select);
 		return actions;
