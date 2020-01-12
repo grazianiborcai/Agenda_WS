@@ -9,126 +9,82 @@ import java.util.List;
 import br.com.mind5.business.orderList.info.OrdistInfo;
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoStmt;
-import br.com.mind5.dao.DaoStmtHelper_;
+import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
-import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.dao.common.DaoOptionValue;
-import br.com.mind5.dao.obsolete.DaoResultParser_;
-import br.com.mind5.dao.obsolete.DaoStmtOption_;
 
-public final class OrdistSelectSingle implements DaoStmt<OrdistInfo> {
-	private final String LT_HDR = DaoDbTable.ORDER_HDR_TABLE;
-	
-	private DaoStmt<OrdistInfo> stmtSql;
-	private DaoStmtOption_<OrdistInfo> stmtOption;
-	
+public final class OrdistSelectSingle extends DaoStmtTemplate<OrdistInfo> {
+	private final String MAIN_TABLE = DaoDbTable.ORDER_HDR_TABLE;
 	
 	
 	public OrdistSelectSingle(Connection conn, OrdistInfo recordInfo, String schemaName) {
-		buildStmtOption(conn, recordInfo, schemaName);
-		buildStmt();
+		super(conn, recordInfo, schemaName);
 	}
 	
 	
 	
-	private void buildStmtOption(Connection conn, OrdistInfo recordInfo, String schemaName) {
-		this.stmtOption = new DaoStmtOption_<>();
-		this.stmtOption.conn = conn;
-		this.stmtOption.recordInfo = recordInfo;
-		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = LT_HDR;
-		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(DaoDbTable.ORDER_LIST_VIEW);
-		this.stmtOption.stmtParamTranslator = null;
-		this.stmtOption.resultParser = new ResultParser();
-		this.stmtOption.whereClause = buildWhereClause();
-		this.stmtOption.joins = null;
+	@Override protected String getTableNameHook() {
+		return MAIN_TABLE;
 	}
 	
 	
 	
-	private String buildWhereClause() {
+	@Override protected DaoOperation getOperationHook() {
+		return DaoOperation.SELECT;
+	}	
+	
+	
+	
+	@Override protected String getLookupTableHook() {
+		return DaoDbTable.ORDER_LIST_VIEW;
+	}
+	
+	
+	
+	@Override protected String buildWhereClauseHook(String tableName, OrdistInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
+		
 		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new OrdistWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
+		DaoStmtWhere whereClause = new OrdistWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
-	
-	
-	
-	private void buildStmt() {
-		stmtSql = new DaoStmtHelper_<>(DaoOperation.SELECT, this.stmtOption, this.getClass());
-	}
-	
-	
-
-	@Override public void generateStmt() throws SQLException {
-		stmtSql.generateStmt();		
-	}
-
-	
-	
-	@Override public boolean checkStmtGeneration() {
-		return stmtSql.checkStmtGeneration();
-	}
-
-	
-	
-	@Override public void executeStmt() throws SQLException {
-		stmtSql.executeStmt();
-	}
-
-	
-	
-	@Override public List<OrdistInfo> getResultset() {
-		return stmtSql.getResultset();
-	}
-	
-	
-	
-	@Override public DaoStmt<OrdistInfo> getNewInstance() {
-		return new OrdistSelectSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
-	}
-	
-	
-	
-	
-	
-	
-	private static class ResultParser implements DaoResultParser_<OrdistInfo> {
-		private final boolean EMPTY_RESULT_SET = false;
 		
-		@Override public List<OrdistInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
-			
-			List<OrdistInfo> finalResult = new ArrayList<>();
-			
-			if (stmtResult.next() == EMPTY_RESULT_SET)				
+	
+	
+	@Override protected DaoResultParserV2<OrdistInfo> getResultParserHook() {
+		return new DaoResultParserV2<OrdistInfo>() {
+			@Override public List<OrdistInfo> parseResult(OrdistInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
+				List<OrdistInfo> finalResult = new ArrayList<>();
+				
+				if (stmtResult.next() == false)				
+					return finalResult;
+				
+				do {
+					OrdistInfo dataInfo = new OrdistInfo();
+					
+					dataInfo.codOwner = stmtResult.getLong(OrdistDbTableColumn.COL_COD_OWNER);	
+					dataInfo.codOrder = stmtResult.getLong(OrdistDbTableColumn.COL_COD_ORDER);
+					dataInfo.codUser = stmtResult.getLong(OrdistDbTableColumn.COL_COD_USER);	
+					dataInfo.codOrderExt = stmtResult.getString(OrdistDbTableColumn.COL_COD_ORDER_EXTERNAL);	
+					dataInfo.codOrderStatus = stmtResult.getString(OrdistDbTableColumn.COL_COD_ORDER_STATUS);
+					dataInfo.codCurr = stmtResult.getString(OrdistDbTableColumn.COL_COD_CURRENCY);
+					dataInfo.codCustomer = DaoFormatter.sqlToLong(stmtResult, OrdistDbTableColumn.COL_COD_CUSTOMER);
+					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, OrdistDbTableColumn.COL_LAST_CHANGED);
+					dataInfo.itemTotal = DaoFormatter.sqlToDouble(stmtResult, OrdistDbTableColumn.COL_ITEM_TOTAL);
+					dataInfo.feeService = DaoFormatter.sqlToDouble(stmtResult, OrdistDbTableColumn.COL_FEE_SERVICE);
+					dataInfo.grandTotal = DaoFormatter.sqlToDouble(stmtResult, OrdistDbTableColumn.COL_GRAND_TOTAL);
+					dataInfo.codPayOrder = DaoFormatter.sqlToLong(stmtResult, OrdistDbTableColumn.COL_COD_PAY_ORDER);				
+					
+					finalResult.add(dataInfo);
+				} while (stmtResult.next());
+				
 				return finalResult;
-			
-			do {
-				OrdistInfo dataInfo = new OrdistInfo();
-				dataInfo.codOwner = stmtResult.getLong(OrdistDbTableColumn.COL_COD_OWNER);	
-				dataInfo.codOrder = stmtResult.getLong(OrdistDbTableColumn.COL_COD_ORDER);
-				dataInfo.codUser = stmtResult.getLong(OrdistDbTableColumn.COL_COD_USER);	
-				dataInfo.codOrderExt = stmtResult.getString(OrdistDbTableColumn.COL_COD_ORDER_EXTERNAL);	
-				dataInfo.codOrderStatus = stmtResult.getString(OrdistDbTableColumn.COL_COD_ORDER_STATUS);
-				dataInfo.codCurr = stmtResult.getString(OrdistDbTableColumn.COL_COD_CURRENCY);
-				dataInfo.codCustomer = DaoFormatter.sqlToLong(stmtResult, OrdistDbTableColumn.COL_COD_CUSTOMER);
-				dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, OrdistDbTableColumn.COL_LAST_CHANGED);
-				dataInfo.itemTotal = DaoFormatter.sqlToDouble(stmtResult, OrdistDbTableColumn.COL_ITEM_TOTAL);
-				dataInfo.feeService = DaoFormatter.sqlToDouble(stmtResult, OrdistDbTableColumn.COL_FEE_SERVICE);
-				dataInfo.grandTotal = DaoFormatter.sqlToDouble(stmtResult, OrdistDbTableColumn.COL_GRAND_TOTAL);
-				dataInfo.codPayOrder = DaoFormatter.sqlToLong(stmtResult, OrdistDbTableColumn.COL_COD_PAY_ORDER);
-				
-				
-				finalResult.add(dataInfo);
-			} while (stmtResult.next());
-			
-			return finalResult;
-		}
+			}
+		};
 	}
 }
