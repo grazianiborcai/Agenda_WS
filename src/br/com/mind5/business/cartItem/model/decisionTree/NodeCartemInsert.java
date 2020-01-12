@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.cartItem.info.CartemInfo;
-import br.com.mind5.business.cartItem.model.action.LazyCartemUpdate;
-import br.com.mind5.business.cartItem.model.action.StdCartemMergeToUpdate;
-import br.com.mind5.business.cartItem.model.checker.CartemCheckExist;
+import br.com.mind5.business.cartItem.model.action.LazyCartemInsert;
+import br.com.mind5.business.cartItem.model.action.StdCartemEnforceCreatedOn;
+import br.com.mind5.business.cartItem.model.checker.CartemCheckLimit;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
@@ -15,9 +15,9 @@ import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
 
-public final class NodeCartemUpsertL2 extends DeciTreeWriteTemplate<CartemInfo> {
+public final class NodeCartemInsert extends DeciTreeWriteTemplate<CartemInfo> {
 	
-	public NodeCartemUpsertL2(DeciTreeOption<CartemInfo> option) {
+	public NodeCartemInsert(DeciTreeOption<CartemInfo> option) {
 		super(option);
 	}
 	
@@ -31,8 +31,8 @@ public final class NodeCartemUpsertL2 extends DeciTreeWriteTemplate<CartemInfo> 
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
-		checker = new CartemCheckExist(checkerOption);
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new CartemCheckLimit(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
@@ -43,23 +43,12 @@ public final class NodeCartemUpsertL2 extends DeciTreeWriteTemplate<CartemInfo> 
 	@Override protected List<ActionStd<CartemInfo>> buildActionsOnPassedHook(DeciTreeOption<CartemInfo> option) {
 		List<ActionStd<CartemInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CartemInfo> mergeToUpdate = new StdCartemMergeToUpdate(option);	
-		ActionLazy<CartemInfo> update = new LazyCartemUpdate(option.conn, option.schemaName);			
+		ActionStd<CartemInfo> enforceCreatedOn = new StdCartemEnforceCreatedOn(option);	
+		ActionLazy<CartemInfo> insert = new LazyCartemInsert(option.conn, option.schemaName);	
 		
-		mergeToUpdate.addPostAction(update);
+		enforceCreatedOn.addPostAction(insert);
 		
-		actions.add(mergeToUpdate);		
-		return actions;
-	}
-	
-	
-	
-	@Override protected List<ActionStd<CartemInfo>> buildActionsOnFailedHook(DeciTreeOption<CartemInfo> option) {
-		List<ActionStd<CartemInfo>> actions = new ArrayList<>();
-		
-		ActionStd<CartemInfo> insert = new NodeCartemInsert(option).toAction();	
-		
-		actions.add(insert);		
+		actions.add(enforceCreatedOn);		
 		return actions;
 	}
 }

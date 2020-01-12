@@ -243,6 +243,8 @@ public final class SystemCode {
 	public static final int CART_ITEM_FLAG_DELETE_TRUE 					= 9404;
 	public static final int CART_ITEM_ALREADY_EXIST 					= 9405;	//1402;
 	public static final int CART_ITEM_NOT_FOUND 						= 9406;	//1403;
+	public static final int CART_ITEM_LIMIT_NOT_REACHED					= 9407;
+	public static final int CART_ITEM_LIMIT_EXCEEDED					= 9408;
 	
 	// Total Amount
 	public static final int AMOUNT_DONT_HAVE_TWO_DECIMAL_PLACES			= 1500;
