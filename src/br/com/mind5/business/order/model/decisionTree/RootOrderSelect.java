@@ -10,9 +10,8 @@ import br.com.mind5.business.order.model.action.LazyOrderMergeCurrency;
 import br.com.mind5.business.order.model.action.LazyOrderMergeFeeCateg;
 import br.com.mind5.business.order.model.action.LazyOrderMergeOrderStatus;
 import br.com.mind5.business.order.model.action.LazyOrderMergeOrderem;
-import br.com.mind5.business.order.model.action.LazyOrderMergeToSelect;
 import br.com.mind5.business.order.model.action.LazyOrderNodePayord;
-import br.com.mind5.business.order.model.action.StdOrderMergeUsername;
+import br.com.mind5.business.order.model.action.StdOrderMergeToSelect;
 import br.com.mind5.business.order.model.checker.OrderCheckLangu;
 import br.com.mind5.business.order.model.checker.OrderCheckRead;
 import br.com.mind5.model.action.ActionLazy;
@@ -58,8 +57,7 @@ public final class RootOrderSelect extends DeciTreeReadTemplate<OrderInfo> {
 	@Override protected List<ActionStd<OrderInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderInfo> option) {
 		List<ActionStd<OrderInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<OrderInfo> mergeUser = new StdOrderMergeUsername(option);
-		ActionLazy<OrderInfo> select = new LazyOrderMergeToSelect(option.conn, option.schemaName);
+		ActionStd<OrderInfo> select = new StdOrderMergeToSelect(option);
 		ActionLazy<OrderInfo> mergeItem = new LazyOrderMergeOrderem(option.conn, option.schemaName);
 		ActionLazy<OrderInfo> enforceCurrency = new LazyOrderEnforceCurrency(option.conn, option.schemaName);
 		ActionLazy<OrderInfo> mergeCurrency = new LazyOrderMergeCurrency(option.conn, option.schemaName);
@@ -68,7 +66,6 @@ public final class RootOrderSelect extends DeciTreeReadTemplate<OrderInfo> {
 		ActionLazy<OrderInfo> mergeFeeCateg = new LazyOrderMergeFeeCateg(option.conn, option.schemaName);
 		ActionLazy<OrderInfo> nodePayord = new LazyOrderNodePayord(option.conn, option.schemaName);
 		
-		mergeUser.addPostAction(select);
 		select.addPostAction(mergeItem);
 		mergeItem.addPostAction(enforceCurrency);
 		enforceCurrency.addPostAction(mergeCurrency);
@@ -77,7 +74,7 @@ public final class RootOrderSelect extends DeciTreeReadTemplate<OrderInfo> {
 		enforceFeeCateg.addPostAction(mergeFeeCateg);
 		mergeFeeCateg.addPostAction(nodePayord);
 		
-		actions.add(mergeUser);			
+		actions.add(select);			
 		return actions;
 	}
 }

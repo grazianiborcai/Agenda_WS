@@ -3,16 +3,16 @@ package br.com.mind5.business.order.model.action;
 import br.com.mind5.business.order.info.OrderInfo;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
-import br.com.mind5.model.action.ActionStdHelperEnforce;
+import br.com.mind5.model.action.ActionStdHelperAction;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdOrderEnforceKey_ implements ActionStd<OrderInfo> {
+public final class StdOrderInsertCus implements ActionStd<OrderInfo> {
 	private ActionStd<OrderInfo> actionHelper;	
 	
 	
-	public StdOrderEnforceKey_(DeciTreeOption<OrderInfo> option) {			
-		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiOrderEnforceKey());
+	public StdOrderInsertCus(DeciTreeOption<OrderInfo> option) {			
+		actionHelper = new ActionStdHelperAction<>(option.recordInfos, new VisiOrderInsertCus(option.conn, option.schemaName));
 	}
 	
 	

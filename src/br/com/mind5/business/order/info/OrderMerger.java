@@ -2,6 +2,7 @@ package br.com.mind5.business.order.info;
 
 import java.util.List;
 
+import br.com.mind5.business.customer.info.CusInfo;
 import br.com.mind5.business.customerSearch.info.CusarchInfo;
 import br.com.mind5.business.masterData.info.CurrencyInfo;
 import br.com.mind5.business.masterData.info.FeeCategInfo;
@@ -13,6 +14,20 @@ import br.com.mind5.payment.payOrder.info.PayordInfo;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class OrderMerger {		
+	public static OrderInfo mergeWithCus(CusInfo sourceOne, OrderInfo sourceTwo) {
+		InfoMerger<OrderInfo, CusInfo> merger = new OrderMergerCus();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<OrderInfo> mergeWithCus(List<CusInfo> sourceOnes, List<OrderInfo> sourceTwos) {
+		InfoMerger<OrderInfo, CusInfo> merger = new OrderMergerCus();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}	
+	
+	
+	
 	public static OrderInfo mergeWithOrdnap(OrdnapInfo sourceOne, OrderInfo sourceTwo) {
 		InfoMerger<OrderInfo, OrdnapInfo> merger = new OrderMergerOrdnap();		
 		return merger.merge(sourceOne, sourceTwo);

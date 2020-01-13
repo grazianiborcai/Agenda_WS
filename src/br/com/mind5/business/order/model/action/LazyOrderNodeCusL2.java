@@ -4,14 +4,15 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.order.info.OrderInfo;
+import br.com.mind5.business.order.model.decisionTree.NodeOrderCusL2;
 import br.com.mind5.model.action.ActionLazyTemplate;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyOrderMergeToSelect extends ActionLazyTemplate<OrderInfo, OrderInfo> {
-
-	public LazyOrderMergeToSelect(Connection conn, String schemaName) {
+public final class LazyOrderNodeCusL2 extends ActionLazyTemplate<OrderInfo, OrderInfo> {
+	
+	public LazyOrderNodeCusL2(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +25,7 @@ public final class LazyOrderMergeToSelect extends ActionLazyTemplate<OrderInfo, 
 	
 	
 	@Override protected ActionStd<OrderInfo> getInstanceOfActionHook(DeciTreeOption<OrderInfo> option) {
-		return new StdOrderMergeToSelect(option);
+		return new NodeOrderCusL2(option).toAction();
 	}
 	
 	
