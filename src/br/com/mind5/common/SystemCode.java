@@ -698,6 +698,8 @@ public final class SystemCode {
 	
 	// Customer Search
 	public static final int CUSTOMER_SEARCH_MANDATORY_FIELD_EMPTY 		= 5250;
+	public static final int CUSTOMER_SEARCH_ALREADY_EXIST 				= 5251;
+	public static final int CUSTOMER_SEARCH_NOT_FOUND 					= 5252;
 	
 	// Order Search
 	public static final int ORDER_SEARCH_MANDATORY_FIELD_EMPTY 			= 5351;
