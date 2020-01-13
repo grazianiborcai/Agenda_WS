@@ -3,16 +3,16 @@ package br.com.mind5.business.customer.model.action;
 import br.com.mind5.business.customer.info.CusInfo;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
-import br.com.mind5.model.action.ActionStdHelperMerge;
+import br.com.mind5.model.action.ActionStdHelperEnforce;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdCusMergeUser implements ActionStd<CusInfo> {
+public final class StdCusEnforceAddressCode implements ActionStd<CusInfo> {
 	private ActionStd<CusInfo> actionHelper;	
 	
 	
-	public StdCusMergeUser(DeciTreeOption<CusInfo> option) {			
-		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiCusMergeUser(option.conn, option.schemaName));
+	public StdCusEnforceAddressCode(DeciTreeOption<CusInfo> option) {			
+		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiCusEnforceAddressCode());
 	}
 	
 	

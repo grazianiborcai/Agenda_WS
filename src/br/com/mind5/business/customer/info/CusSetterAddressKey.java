@@ -30,7 +30,6 @@ public final class CusSetterAddressKey implements InfoSetter<CusInfo> {
 			eachAddress.codOwner = recordInfo.codOwner;
 			eachAddress.codCustomer = recordInfo.codCustomer;
 			eachAddress.codLanguage = recordInfo.codLanguage;
-			eachAddress.lastChangedBy = recordInfo.lastChangedBy;	//TODO: remover
 			eachAddress.username = recordInfo.username;
 		}
 		

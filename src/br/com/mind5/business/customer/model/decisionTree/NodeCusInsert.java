@@ -6,9 +6,10 @@ import java.util.List;
 import br.com.mind5.business.customer.info.CusInfo;
 import br.com.mind5.business.customer.model.action.LazyCusEnforceCreatedBy;
 import br.com.mind5.business.customer.model.action.LazyCusEnforceCreatedOn;
+import br.com.mind5.business.customer.model.action.LazyCusEnforceLChanged;
 import br.com.mind5.business.customer.model.action.LazyCusInsert;
 import br.com.mind5.business.customer.model.action.LazyCusMergeUsername;
-import br.com.mind5.business.customer.model.action.StdCusEnforceLChanged;
+import br.com.mind5.business.customer.model.action.StdCusEnforceReference;
 import br.com.mind5.business.customer.model.checker.CusCheckDummy;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
@@ -40,18 +41,20 @@ public final class NodeCusInsert extends DeciTreeWriteTemplate<CusInfo> {
 	@Override protected List<ActionStd<CusInfo>> buildActionsOnPassedHook(DeciTreeOption<CusInfo> option) {
 		List<ActionStd<CusInfo>> actions = new ArrayList<>();
 
-		ActionStd<CusInfo> enforceLChanged = new StdCusEnforceLChanged(option);
+		ActionStd<CusInfo> enforceReference = new StdCusEnforceReference(option);
+		ActionLazy<CusInfo> enforceLChanged = new LazyCusEnforceLChanged(option.conn, option.schemaName);
 		ActionLazy<CusInfo> mergeLChangedBy = new LazyCusMergeUsername(option.conn, option.schemaName);	
 		ActionLazy<CusInfo> enforceCreatedBy = new LazyCusEnforceCreatedBy(option.conn, option.schemaName);
 		ActionLazy<CusInfo> enforceCreatedOn = new LazyCusEnforceCreatedOn(option.conn, option.schemaName);
 		ActionLazy<CusInfo> insertCustomer = new LazyCusInsert(option.conn, option.schemaName);
 		
+		enforceReference.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(mergeLChangedBy);
 		mergeLChangedBy.addPostAction(enforceCreatedBy);
 		enforceCreatedBy.addPostAction(enforceCreatedOn);
 		enforceCreatedOn.addPostAction(insertCustomer);
 		
-		actions.add(enforceLChanged);	
+		actions.add(enforceReference);	
 		return actions;
 	}
 }
