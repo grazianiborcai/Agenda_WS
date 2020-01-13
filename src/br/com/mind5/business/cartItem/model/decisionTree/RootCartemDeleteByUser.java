@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.cartItem.info.CartemInfo;
 import br.com.mind5.business.cartItem.model.action.LazyCartemMergeCartemarch;
+import br.com.mind5.business.cartItem.model.action.LazyCartemMergeToSelect;
 import br.com.mind5.business.cartItem.model.action.LazyCartemRootDelete;
 import br.com.mind5.business.cartItem.model.action.StdCartemEnforceUserKey;
 import br.com.mind5.business.cartItem.model.checker.CartemCheckDeleteByUser;
@@ -46,10 +47,12 @@ public final class RootCartemDeleteByUser extends DeciTreeWriteTemplate<CartemIn
 		
 		ActionStd<CartemInfo> enforceUserKey = new StdCartemEnforceUserKey(option);
 		ActionLazy<CartemInfo> mergeCartemarch = new LazyCartemMergeCartemarch(option.conn, option.schemaName);
+		ActionLazy<CartemInfo> select = new LazyCartemMergeToSelect(option.conn, option.schemaName);
 		ActionLazy<CartemInfo> delete = new LazyCartemRootDelete(option.conn, option.schemaName);
 		
 		enforceUserKey.addPostAction(mergeCartemarch);
-		mergeCartemarch.addPostAction(delete);
+		mergeCartemarch.addPostAction(select);
+		select.addPostAction(delete);
 		
 		actions.add(enforceUserKey);
 		return actions;

@@ -5,11 +5,9 @@ import java.util.List;
 
 import br.com.mind5.business.cartItem.info.CartemInfo;
 import br.com.mind5.business.cartItem.model.action.StdCartemDelete;
-import br.com.mind5.business.cartItem.model.checker.CartemCheckExist;
-import br.com.mind5.business.cartItem.model.checker.CartemCheckService;
+import br.com.mind5.business.cartItem.model.checker.CartemCheckDummy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
@@ -25,20 +23,8 @@ public final class NodeCartemDeleteService extends DeciTreeWriteTemplate<CartemI
 	@Override protected ModelChecker<CartemInfo> buildDecisionCheckerHook(DeciTreeOption<CartemInfo> option) {
 		List<ModelChecker<CartemInfo>> queue = new ArrayList<>();		
 		ModelChecker<CartemInfo> checker;	
-		ModelCheckerOption checkerOption;
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new CartemCheckService(checkerOption);
-		queue.add(checker);
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
-		checker = new CartemCheckExist(checkerOption);
+
+		checker = new CartemCheckDummy();
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
