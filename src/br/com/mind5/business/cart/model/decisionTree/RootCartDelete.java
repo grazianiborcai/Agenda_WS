@@ -6,8 +6,8 @@ import java.util.List;
 import br.com.mind5.business.cart.info.CartInfo;
 import br.com.mind5.business.cart.model.action.StdCartDelete;
 import br.com.mind5.business.cart.model.action.StdCartDeleteCartem;
+import br.com.mind5.business.cart.model.checker.CartCheckCartemarch;
 import br.com.mind5.business.cart.model.checker.CartCheckDelete;
-import br.com.mind5.business.cart.model.checker.CartCheckExist;
 import br.com.mind5.business.cart.model.checker.CartCheckLangu;
 import br.com.mind5.business.cart.model.checker.CartCheckOwner;
 import br.com.mind5.model.action.ActionStd;
@@ -55,7 +55,7 @@ public final class RootCartDelete extends DeciTreeWriteTemplate<CartInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
-		checker = new CartCheckExist(checkerOption);
+		checker = new CartCheckCartemarch(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
@@ -66,7 +66,7 @@ public final class RootCartDelete extends DeciTreeWriteTemplate<CartInfo> {
 	@Override protected List<ActionStd<CartInfo>> buildActionsOnPassedHook(DeciTreeOption<CartInfo> option) {
 		List<ActionStd<CartInfo>> actions = new ArrayList<>();		
 
-		ActionStd<CartInfo> deleteCartem = new StdCartDeleteCartem(option);	//TODO: verificar se existe Cartem antes de eliminar ?
+		ActionStd<CartInfo> deleteCartem = new StdCartDeleteCartem(option);
 		ActionStd<CartInfo> delete = new StdCartDelete(option);
 		
 		actions.add(deleteCartem);
