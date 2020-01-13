@@ -5,13 +5,13 @@ import java.sql.Connection;
 import br.com.mind5.business.masterData.info.common.OrderStatus;
 import br.com.mind5.business.order.info.OrderInfo;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple_;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class OrderCheckPlaceStatus extends ModelCheckerTemplateSimple_<OrderInfo> {
+public final class OrderCheckPlaceStatus extends ModelCheckerTemplateSimpleV2<OrderInfo> {
 
-	public OrderCheckPlaceStatus() {
-		super();
+	public OrderCheckPlaceStatus(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
@@ -39,13 +39,7 @@ public final class OrderCheckPlaceStatus extends ModelCheckerTemplateSimple_<Ord
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.ORDER_STATUS_CHANGE_NOT_ALLOWED;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.ORDER_STATUS_CHANGE_NOT_ALLOWED;
+	@Override protected int getCodMsgOnResultFalseHook() {
+		return SystemCode.ORDER_HEADER_STATUS_CHANGE_NOT_ALLOWED;
 	}
 }

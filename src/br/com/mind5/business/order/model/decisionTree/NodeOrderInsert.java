@@ -12,7 +12,7 @@ import br.com.mind5.business.order.model.action.LazyOrderEnforceUser;
 import br.com.mind5.business.order.model.action.LazyOrderInsert;
 import br.com.mind5.business.order.model.action.LazyOrderMergeCusarch;
 import br.com.mind5.business.order.model.action.StdOrderMergeUsername;
-import br.com.mind5.business.order.model.checker.OrderCheckInsert;
+import br.com.mind5.business.order.model.checker.OrderCheckDummy;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
@@ -30,9 +30,9 @@ public final class NodeOrderInsert extends DeciTreeWriteTemplate<OrderInfo> {
 	
 	@Override protected ModelChecker<OrderInfo> buildDecisionCheckerHook(DeciTreeOption<OrderInfo> option) {
 		List<ModelChecker<OrderInfo>> queue = new ArrayList<>();		
-		ModelChecker<OrderInfo> checker;	
+		ModelChecker<OrderInfo> checker;
 		
-		checker = new OrderCheckInsert();
+		checker = new OrderCheckDummy();
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);

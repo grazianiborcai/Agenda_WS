@@ -80,9 +80,7 @@ public final class OrderInfo extends InfoRecord implements Cloneable {
 	@Override public Object clone() throws CloneNotSupportedException {
 		OrderInfo deepCopy = (OrderInfo) super.clone();
 		
-		deepCopy.lastChanged = lastChanged;
-		deepCopy.orderms = cloneOrderems(orderms);
-		
+		deepCopy.orderms = cloneOrderems(orderms);		
 		return deepCopy;
 	}
 	

@@ -4,19 +4,19 @@ import java.sql.Connection;
 
 import br.com.mind5.business.order.info.OrderInfo;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple_;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class OrderCheckHasPayord extends ModelCheckerTemplateSimple_<OrderInfo> {
+public final class OrderCheckHasPayord extends ModelCheckerTemplateSimpleV2<OrderInfo> {
 
-	public OrderCheckHasPayord() {
-		super();
+	public OrderCheckHasPayord(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
 	
 	@Override protected boolean checkHook(OrderInfo recordInfo, Connection conn, String schemaName) {	
-		if ( recordInfo.codPayOrder <= 0)			
+		if ( recordInfo.codPayOrder <= 0 )			
 			return super.FAILED;
 		
 		
@@ -25,13 +25,7 @@ public final class OrderCheckHasPayord extends ModelCheckerTemplateSimple_<Order
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.ORDER_DONT_HAVE_PAYMENT;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
+	@Override protected int getCodMsgOnResultFalseHook() {
 		return SystemCode.ORDER_DONT_HAVE_PAYMENT;
 	}
 }

@@ -7,11 +7,11 @@ import br.com.mind5.model.action.ActionStdHelperEnforce;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdOrderEnforceKey implements ActionStd<OrderInfo> {
+public final class StdOrderEnforceKey_ implements ActionStd<OrderInfo> {
 	private ActionStd<OrderInfo> actionHelper;	
 	
 	
-	public StdOrderEnforceKey(DeciTreeOption<OrderInfo> option) {			
+	public StdOrderEnforceKey_(DeciTreeOption<OrderInfo> option) {			
 		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiOrderEnforceKey());
 	}
 	

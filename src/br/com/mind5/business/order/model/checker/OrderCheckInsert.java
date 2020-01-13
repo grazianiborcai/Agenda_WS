@@ -4,13 +4,13 @@ import java.sql.Connection;
 
 import br.com.mind5.business.order.info.OrderInfo;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple_;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class OrderCheckInsert extends ModelCheckerTemplateSimple_<OrderInfo> {
+public final class OrderCheckInsert extends ModelCheckerTemplateSimpleV2<OrderInfo> {
 
-	public OrderCheckInsert() {
-		super();
+	public OrderCheckInsert(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
@@ -21,7 +21,6 @@ public final class OrderCheckInsert extends ModelCheckerTemplateSimple_<OrderInf
 			|| recordInfo.codCurr		== null 
 			|| recordInfo.orderms		== null 
 			|| recordInfo.username		== null 
-			|| recordInfo.orderms		== null
 			|| recordInfo.codLanguage 	== null )
 			
 			return super.FAILED;
@@ -36,13 +35,7 @@ public final class OrderCheckInsert extends ModelCheckerTemplateSimple_<OrderInf
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.ORDER_HEADER_MANDATORY_FIELD_EMPTY;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
+	@Override protected int getCodMsgOnResultFalseHook() {
 		return SystemCode.ORDER_HEADER_MANDATORY_FIELD_EMPTY;
 	}
 }

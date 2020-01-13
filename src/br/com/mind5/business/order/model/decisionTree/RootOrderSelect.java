@@ -32,19 +32,21 @@ public final class RootOrderSelect extends DeciTreeReadTemplate<OrderInfo> {
 	
 	
 	@Override protected ModelChecker<OrderInfo> buildDecisionCheckerHook(DeciTreeOption<OrderInfo> option) {
-		final boolean EXIST_ON_DB = true;
-		
 		List<ModelChecker<OrderInfo>> queue = new ArrayList<>();		
 		ModelChecker<OrderInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
-		checker = new OrderCheckRead();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new OrderCheckRead(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;	
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
 		checker = new OrderCheckLangu(checkerOption);
 		queue.add(checker);
 		
