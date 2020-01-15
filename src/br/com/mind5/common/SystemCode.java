@@ -998,4 +998,9 @@ public final class SystemCode {
 	public static final int ORDER_ITEM_ALREADY_EXIST 					= 10050; //4002;
 	public static final int ORDER_ITEM_NOT_FOUND 						= 10051; //4003;
 	public static final int ORDER_ITEM_MANDATORY_FIELD_EMPTY			= 10052; //4010;
+	
+	//Order Item Search
+	public static final int ORDER_ITEM_SEARCH_ALREADY_EXIST 			= 10100; 
+	public static final int ORDER_ITEM_SEARCH_NOT_FOUND 				= 10101; 
+	public static final int ORDER_ITEM_SEARCH_MANDATORY_FIELD_EMPTY		= 10102; 
 }
