@@ -6,12 +6,27 @@ import br.com.mind5.business.employeeList.info.EmplisInfo;
 import br.com.mind5.business.masterData.info.WeekdayInfo;
 import br.com.mind5.business.material.info.MatInfo;
 import br.com.mind5.business.materialStore.info.MatoreInfo;
+import br.com.mind5.business.orderItemSearch.info.OrdemarchInfo;
 import br.com.mind5.business.orderItemSnapshot.info.OrdemrapInfo;
 import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.info.InfoMerger;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class OrderemMerger {
+	public static OrderemInfo mergeWithOrdemarch(OrdemarchInfo sourceOne, OrderemInfo sourceTwo) {
+		InfoMerger<OrderemInfo, OrdemarchInfo> merger = new OrderemMergerOrdemarch();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<OrderemInfo> mergeWithOrdemarch(List<OrdemarchInfo> sourceOnes, List<OrderemInfo> sourceTwos) {
+		InfoMerger<OrderemInfo, OrdemarchInfo> merger = new OrderemMergerOrdemarch();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}		
+	
+	
+	
 	public static OrderemInfo mergeWithOrdemrap(OrdemrapInfo sourceOne, OrderemInfo sourceTwo) {
 		InfoMerger<OrderemInfo, OrdemrapInfo> merger = new OrderemMergerOrdemrap();		
 		return merger.merge(sourceOne, sourceTwo);
@@ -22,7 +37,7 @@ public final class OrderemMerger {
 	public static List<OrderemInfo> mergeWithOrdemrap(List<OrdemrapInfo> sourceOnes, List<OrderemInfo> sourceTwos) {
 		InfoMerger<OrderemInfo, OrdemrapInfo> merger = new OrderemMergerOrdemrap();		
 		return merger.merge(sourceOnes, sourceTwos);
-	}		
+	}	
 	
 	
 	
