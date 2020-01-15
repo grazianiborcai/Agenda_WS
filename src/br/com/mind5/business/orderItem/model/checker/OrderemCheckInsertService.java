@@ -4,13 +4,13 @@ import java.sql.Connection;
 
 import br.com.mind5.business.orderItem.info.OrderemInfo;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple_;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class OrderemCheckWrite extends ModelCheckerTemplateSimple_<OrderemInfo> {
+public final class OrderemCheckInsertService extends ModelCheckerTemplateSimpleV2<OrderemInfo> {
 
-	public OrderemCheckWrite() {
-		super();
+	public OrderemCheckInsertService(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
@@ -20,6 +20,7 @@ public final class OrderemCheckWrite extends ModelCheckerTemplateSimple_<Orderem
 			|| recordInfo.codOrder		<= 0 	
 			|| recordInfo.codOrderItem	<= 0 
 			|| recordInfo.codStore 		<= 0
+			|| recordInfo.codEmployee 	<= 0
 			|| recordInfo.codMat		<= 0
 			|| recordInfo.quantity		<= 0
 			|| recordInfo.username		== null 
@@ -33,13 +34,7 @@ public final class OrderemCheckWrite extends ModelCheckerTemplateSimple_<Orderem
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.ORDER_ITEM_MANDATORY_FIELD_EMPTY;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
+	@Override protected int getCodMsgOnResultFalseHook() {
 		return SystemCode.ORDER_ITEM_MANDATORY_FIELD_EMPTY;
 	}
 }

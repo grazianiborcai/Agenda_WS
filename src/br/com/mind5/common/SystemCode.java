@@ -548,18 +548,15 @@ public final class SystemCode {
 	public static final int MAT_STORE_IS_PRODUCT						= 3059;
 	public static final int MAT_STORE_IS_NOT_PRODUCT					= 3040;
 	
-	//Order
+	//Order Header
 	public static final int ORDER_HAVE_ITEM 							= 4000;
 	public static final int ORDER_IS_EMPTY 								= 4001;	
-	public static final int ORDER_ITEM_ALREADY_EXIST 					= 4002;
-	public static final int ORDER_ITEM_NOT_FOUND 						= 4003;
 	public static final int ORDER_HEADER_STATUS_CHANGE_NOT_ALLOWED		= 4004;
 	public static final int ORDER_HEADER_ALREADY_EXIST					= 4005;
 	public static final int ORDER_HEADER_NOT_FOUND						= 4006;
 	public static final int ORDER_HEADER_MANDATORY_FIELD_EMPTY			= 4007;
 	public static final int ORDER_DONT_HAVE_PAYMENT						= 4008;
 	public static final int ORDER_ITEM_IS_NOT_SERVICE 					= 4009;
-	public static final int ORDER_ITEM_MANDATORY_FIELD_EMPTY			= 4010;
 	
 	//Pay-Order
 	public static final int PAY_ORDER_PAYMENT_ALREADY_EXIST				= 4050;
@@ -996,4 +993,9 @@ public final class SystemCode {
 	public static final int STORE_LDATE_RANGE_MANDATORY_FIELD_EMPTY		= 10000;
 	public static final int STORE_LDATE_RANGE_ALREADY_EXIST 			= 10001;
 	public static final int STORE_LDATE_RANGE_NOT_FOUND 				= 10002;
+	
+	//Order Item
+	public static final int ORDER_ITEM_ALREADY_EXIST 					= 10050; //4002;
+	public static final int ORDER_ITEM_NOT_FOUND 						= 10051; //4003;
+	public static final int ORDER_ITEM_MANDATORY_FIELD_EMPTY			= 10052; //4010;
 }

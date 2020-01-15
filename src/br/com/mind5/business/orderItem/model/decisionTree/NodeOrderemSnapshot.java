@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.orderItem.info.OrderemInfo;
 import br.com.mind5.business.orderItem.model.action.LazyOrderemUpdate;
 import br.com.mind5.business.orderItem.model.action.StdOrderemInsertOrdemrap;
-import br.com.mind5.business.orderItem.model.checker.OrderemCheckWrite;
+import br.com.mind5.business.orderItem.model.checker.OrderemCheckDummy;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
@@ -25,8 +25,8 @@ public final class NodeOrderemSnapshot extends DeciTreeWriteTemplate<OrderemInfo
 	@Override protected ModelChecker<OrderemInfo> buildDecisionCheckerHook(DeciTreeOption<OrderemInfo> option) {
 		List<ModelChecker<OrderemInfo>> queue = new ArrayList<>();		
 		ModelChecker<OrderemInfo> checker;	
-		
-		checker = new OrderemCheckWrite();
+
+		checker = new OrderemCheckDummy();
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);

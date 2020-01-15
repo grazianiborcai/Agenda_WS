@@ -11,6 +11,7 @@ import br.com.mind5.business.orderItem.model.checker.OrderemCheckRead;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
@@ -25,9 +26,14 @@ public final class RootOrderemSelect extends DeciTreeWriteTemplate<OrderemInfo> 
 	
 	@Override protected ModelChecker<OrderemInfo> buildDecisionCheckerHook(DeciTreeOption<OrderemInfo> option) {
 		List<ModelChecker<OrderemInfo>> queue = new ArrayList<>();		
-		ModelChecker<OrderemInfo> checker;
+		ModelChecker<OrderemInfo> checker;	
+		ModelCheckerOption checkerOption;
 		
-		checker = new OrderemCheckRead();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;
+		checker = new OrderemCheckRead(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);

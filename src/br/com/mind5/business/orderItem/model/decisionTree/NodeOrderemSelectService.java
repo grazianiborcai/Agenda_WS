@@ -9,7 +9,7 @@ import br.com.mind5.business.orderItem.model.action.LazyOrderemMergeEmplis;
 import br.com.mind5.business.orderItem.model.action.LazyOrderemMergeMatore;
 import br.com.mind5.business.orderItem.model.action.LazyOrderemMergeWeekday;
 import br.com.mind5.business.orderItem.model.action.StdOrderemMergeStolis;
-import br.com.mind5.business.orderItem.model.checker.OrderemCheckIsService;
+import br.com.mind5.business.orderItem.model.checker.OrderemCheckDummy;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
@@ -29,7 +29,7 @@ public final class NodeOrderemSelectService extends DeciTreeWriteTemplate<Ordere
 		List<ModelChecker<OrderemInfo>> queue = new ArrayList<>();		
 		ModelChecker<OrderemInfo> checker;
 		
-		checker = new OrderemCheckIsService();
+		checker = new OrderemCheckDummy();
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
