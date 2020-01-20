@@ -1,5 +1,6 @@
 package br.com.mind5.business.orderSnapshot.info;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,6 +39,9 @@ public final class OrdnapInfo extends InfoRecord implements Cloneable {
 	public int codPayPartner;
 	public String statusOrderPartner;
 	public String statusPaymentPartner;
+	public int postingYear;
+	public int postingYearMonth;
+	public LocalDate postingDate;
 	public LocalDateTime lastChanged;
 	public LocalDateTime createdOn;
 	public long lastChangedBy;
@@ -70,6 +74,8 @@ public final class OrdnapInfo extends InfoRecord implements Cloneable {
 		grandTotal = DefaultValue.number();
 		codPayOrder = DefaultValue.number();
 		codPayPartner = DefaultValue.number();
+		postingYear = DefaultValue.number();
+		postingYearMonth = DefaultValue.number();
 		lastChangedBy = DefaultValue.number();
 		createdBy = DefaultValue.number();	
 		orderms = DefaultValue.list();

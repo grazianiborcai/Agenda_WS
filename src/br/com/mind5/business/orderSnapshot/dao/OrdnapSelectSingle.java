@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.business.order.dao.OrderDbTableColumn;
 import br.com.mind5.business.orderSnapshot.info.OrdnapInfo;
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
@@ -73,7 +72,7 @@ public final class OrdnapSelectSingle extends DaoStmtTemplate<OrdnapInfo> {
 					dataInfo.codCustomer = DaoFormatter.sqlToLong(stmtResult, OrdnapDbTableColumn.COL_COD_CUSTOMER);
 					dataInfo.codCustomerSnapshot = DaoFormatter.sqlToLong(stmtResult, OrdnapDbTableColumn.COL_COD_CUSTOMER_SNAPSHOT);
 					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, OrdnapDbTableColumn.COL_LAST_CHANGED);
-					dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, OrderDbTableColumn.COL_CREATED_ON);
+					dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, OrdnapDbTableColumn.COL_CREATED_ON);
 					dataInfo.itemTotal = DaoFormatter.sqlToDouble(stmtResult, OrdnapDbTableColumn.COL_ITEM_TOTAL);
 					dataInfo.feeService = DaoFormatter.sqlToDouble(stmtResult, OrdnapDbTableColumn.COL_FEE_SERVICE);
 					dataInfo.grandTotal = DaoFormatter.sqlToDouble(stmtResult, OrdnapDbTableColumn.COL_GRAND_TOTAL);
@@ -87,7 +86,10 @@ public final class OrdnapSelectSingle extends DaoStmtTemplate<OrdnapInfo> {
 					dataInfo.codPhoneInvoiceSnapshot = DaoFormatter.sqlToLong(stmtResult, OrdnapDbTableColumn.COL_COD_PHONE_INVOICE_SNAPSHOT);
 					dataInfo.codPayOrder = DaoFormatter.sqlToLong(stmtResult, OrdnapDbTableColumn.COL_COD_PAY_ORDER);
 					dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, OrdnapDbTableColumn.COL_LAST_CHANGED_BY);
-					dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, OrdnapDbTableColumn.COL_CREATED_BY);				
+					dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, OrdnapDbTableColumn.COL_CREATED_BY);			
+					dataInfo.postingDate = DaoFormatter.sqlToLocalDate(stmtResult, OrdnapDbTableColumn.COL_POSTING_DATE);
+					dataInfo.postingYear = DaoFormatter.sqlToInt(stmtResult, OrdnapDbTableColumn.COL_POSTING_YEAR);
+					dataInfo.postingYearMonth = DaoFormatter.sqlToInt(stmtResult, OrdnapDbTableColumn.COL_POSTING_YEAR_MONTH);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());
