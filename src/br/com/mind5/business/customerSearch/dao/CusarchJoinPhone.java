@@ -23,7 +23,7 @@ public final class CusarchJoinPhone implements DaoJoinBuilder {
 	@Override public DaoJoin build() {
 		DaoJoin join = new DaoJoin();
 		join.rightTableName = DaoDbTable.PHONE_TABLE;
-		join.joinType = DaoJoinType.INNER_JOIN;
+		join.joinType = DaoJoinType.LEFT_OUTER_JOIN;
 		join.joinColumns = getJoinColumns(leftTable);
 		join.constraintClause = null;
 		
