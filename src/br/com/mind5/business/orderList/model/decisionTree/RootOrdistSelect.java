@@ -8,6 +8,7 @@ import br.com.mind5.business.orderList.model.action.LazyOrdistMergeCurrency;
 import br.com.mind5.business.orderList.model.action.LazyOrdistMergeOrderStatus;
 import br.com.mind5.business.orderList.model.action.StdOrdistMergeToSelect;
 import br.com.mind5.business.orderList.model.checker.OrdistCheckLangu;
+import br.com.mind5.business.orderList.model.checker.OrdistCheckOwner;
 import br.com.mind5.business.orderList.model.checker.OrdistCheckRead;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
@@ -26,20 +27,29 @@ public final class RootOrdistSelect extends DeciTreeReadTemplate<OrdistInfo> {
 	
 	
 	@Override protected ModelChecker<OrdistInfo> buildDecisionCheckerHook(DeciTreeOption<OrdistInfo> option) {
-		final boolean EXIST_ON_DB = true;
-		
 		List<ModelChecker<OrdistInfo>> queue = new ArrayList<>();		
 		ModelChecker<OrdistInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
-		checker = new OrdistCheckRead();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new OrdistCheckRead(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;	
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
 		checker = new OrdistCheckLangu(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
+		checker = new OrdistCheckOwner(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);

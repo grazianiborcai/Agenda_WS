@@ -4,9 +4,24 @@ import java.util.List;
 
 import br.com.mind5.business.masterData.info.CurrencyInfo;
 import br.com.mind5.business.masterData.info.OrderStatusInfo;
+import br.com.mind5.business.orderSearch.info.OrdarchInfo;
 import br.com.mind5.info.InfoMerger;
 
 public final class OrdistMerger {	
+	public static OrdistInfo mergeWithOrdarch(OrdarchInfo sourceOne, OrdistInfo sourceTwo) {
+		InfoMerger<OrdistInfo, OrdarchInfo> merger = new OrdistMergerOrdarch();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<OrdistInfo> mergeWithOrdarch(List<OrdarchInfo> sourceOnes, List<OrdistInfo> sourceTwos) {
+		InfoMerger<OrdistInfo, OrdarchInfo> merger = new OrdistMergerOrdarch();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}	
+	
+	
+	
 	public static OrdistInfo mergeWithCurrency(CurrencyInfo sourceOne, OrdistInfo sourceTwo) {
 		InfoMerger<OrdistInfo, CurrencyInfo> merger = new OrdistMergerCurrency();		
 		return merger.merge(sourceOne, sourceTwo);

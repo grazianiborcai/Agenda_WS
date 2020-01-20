@@ -13,7 +13,7 @@ import br.com.mind5.business.order.model.OrderModelCancel;
 import br.com.mind5.business.order.model.OrderModelPlace;
 import br.com.mind5.business.order.model.OrderModelSelect;
 import br.com.mind5.business.orderList.info.OrdistInfo;
-import br.com.mind5.business.orderList.model.OrdistModelSelect;
+import br.com.mind5.business.orderList.model.OrdistModelSearch;
 import br.com.mind5.model.Model;
 
 @Path("/Order")
@@ -112,7 +112,7 @@ public final class OrderResource {
 		recordInfo.codLanguage = codLanguage;
 		
 		
-		Model model = new OrdistModelSelect(recordInfo);
+		Model model = new OrdistModelSearch(recordInfo);
 		model.executeRequest();
 		return model.getResponse();	
 	} 

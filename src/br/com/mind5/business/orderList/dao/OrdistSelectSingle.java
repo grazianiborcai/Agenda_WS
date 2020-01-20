@@ -47,7 +47,7 @@ public final class OrdistSelectSingle extends DaoStmtTemplate<OrdistInfo> {
 	@Override protected String buildWhereClauseHook(String tableName, OrdistInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
 		
-		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
+		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;		
 		
 		DaoStmtWhere whereClause = new OrdistWhere(whereOption, tableName, recordInfo);
