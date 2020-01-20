@@ -4,13 +4,13 @@ import java.sql.Connection;
 
 import br.com.mind5.business.orderSnapshot.info.OrdnapInfo;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple_;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class OrdnapCheckRead extends ModelCheckerTemplateSimple_<OrdnapInfo> {
+public final class OrdnapCheckRead extends ModelCheckerTemplateSimpleV2<OrdnapInfo> {
 
-	public OrdnapCheckRead() {
-		super();
+	public OrdnapCheckRead(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
@@ -30,13 +30,7 @@ public final class OrdnapCheckRead extends ModelCheckerTemplateSimple_<OrdnapInf
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.ORDER_HEADER_SNAP_MANDATORY_FIELD_EMPTY;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
+	@Override protected int getCodMsgOnResultFalseHook() {
 		return SystemCode.ORDER_HEADER_SNAP_MANDATORY_FIELD_EMPTY;
 	}
 }

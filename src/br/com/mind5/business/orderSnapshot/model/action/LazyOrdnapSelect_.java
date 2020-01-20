@@ -9,9 +9,9 @@ import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyOrdnapSelect extends ActionLazyTemplate<OrdnapInfo, OrdnapInfo> {
+public final class LazyOrdnapSelect_ extends ActionLazyTemplate<OrdnapInfo, OrdnapInfo> {
 
-	public LazyOrdnapSelect(Connection conn, String schemaName) {
+	public LazyOrdnapSelect_(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	

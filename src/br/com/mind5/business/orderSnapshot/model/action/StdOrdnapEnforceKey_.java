@@ -7,11 +7,11 @@ import br.com.mind5.model.action.ActionStdHelperEnforce;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdOrdnapEnforceKey implements ActionStd<OrdnapInfo> {
+public final class StdOrdnapEnforceKey_ implements ActionStd<OrdnapInfo> {
 	private ActionStd<OrdnapInfo> actionHelper;	
 	
 	
-	public StdOrdnapEnforceKey(DeciTreeOption<OrdnapInfo> option) {			
+	public StdOrdnapEnforceKey_(DeciTreeOption<OrdnapInfo> option) {			
 		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiOrdnapEnforceKey());
 	}
 	
