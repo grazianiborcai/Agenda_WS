@@ -6,10 +6,10 @@ import java.util.List;
 import br.com.mind5.business.customer.info.CusInfo;
 import br.com.mind5.business.customer.model.action.LazyCusEnforceUserData;
 import br.com.mind5.business.customer.model.action.LazyCusNodeInsert;
+import br.com.mind5.business.customer.model.action.LazyCusNodeInsertAddress;
 import br.com.mind5.business.customer.model.action.LazyCusNodeInsertPerson;
+import br.com.mind5.business.customer.model.action.LazyCusNodeInsertPhone;
 import br.com.mind5.business.customer.model.action.LazyCusNodeSnapshot;
-import br.com.mind5.business.customer.model.action.LazyCusNodeUpsertAddress;
-import br.com.mind5.business.customer.model.action.LazyCusNodeUpsertPhone;
 import br.com.mind5.business.customer.model.action.LazyCusRootSelect;
 import br.com.mind5.business.customer.model.action.StdCusMergeUser;
 import br.com.mind5.business.customer.model.checker.CusCheckInsertFromUser;
@@ -78,17 +78,17 @@ public final class RootCusInsertFromUser extends DeciTreeWriteTemplate<CusInfo> 
 		ActionLazy<CusInfo> enforceUserData = new LazyCusEnforceUserData(option.conn, option.schemaName);		
 		ActionLazy<CusInfo> insertPerson = new LazyCusNodeInsertPerson(option.conn, option.schemaName);
 		ActionLazy<CusInfo> snapshot = new LazyCusNodeSnapshot(option.conn, option.schemaName);
-		ActionLazy<CusInfo> upsertAddress = new LazyCusNodeUpsertAddress(option.conn, option.schemaName);
-		ActionLazy<CusInfo> upsertPhone = new LazyCusNodeUpsertPhone(option.conn, option.schemaName);		
+		ActionLazy<CusInfo> insertAddress = new LazyCusNodeInsertAddress(option.conn, option.schemaName);
+		ActionLazy<CusInfo> insertPhone = new LazyCusNodeInsertPhone(option.conn, option.schemaName);		
 		ActionLazy<CusInfo> select = new LazyCusRootSelect(option.conn, option.schemaName);	
 		
 		mergeUser.addPostAction(insertCustomer);
 		insertCustomer.addPostAction(enforceUserData);
 		enforceUserData.addPostAction(insertPerson);
 		insertPerson.addPostAction(snapshot);
-		snapshot.addPostAction(upsertAddress);
-		upsertAddress.addPostAction(upsertPhone);
-		upsertPhone.addPostAction(select);
+		snapshot.addPostAction(insertAddress);
+		insertAddress.addPostAction(insertPhone);
+		insertPhone.addPostAction(select);
 		
 		actions.add(mergeUser);	
 		return actions;
