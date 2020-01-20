@@ -4,13 +4,13 @@ import java.sql.Connection;
 
 import br.com.mind5.business.orderSearch.info.OrdarchInfo;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple_;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class OrdarchCheckRead extends ModelCheckerTemplateSimple_<OrdarchInfo> {
+public final class OrdarchCheckRead extends ModelCheckerTemplateSimpleV2<OrdarchInfo> {
 
-	public OrdarchCheckRead() {
-		super();
+	public OrdarchCheckRead(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
@@ -23,18 +23,18 @@ public final class OrdarchCheckRead extends ModelCheckerTemplateSimple_<OrdarchI
 			return super.FAILED;
 		
 		
+		if ( recordInfo.codUser 	<= 0 	&& 
+			 recordInfo.codCustomer	<= 0		)
+				
+			return super.FAILED;
+		
+		
 		return super.SUCCESS;
 	}
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.ORDER_SEARCH_MANDATORY_FIELD_EMPTY;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
+	@Override protected int getCodMsgOnResultFalseHook() {
 		return SystemCode.ORDER_SEARCH_MANDATORY_FIELD_EMPTY;
 	}
 }

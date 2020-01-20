@@ -6,6 +6,7 @@ import java.util.List;
 import br.com.mind5.business.orderSearch.info.OrdarchInfo;
 import br.com.mind5.business.orderSearch.model.action.StdOrdarchMergeToSelect;
 import br.com.mind5.business.orderSearch.model.checker.OrdarchCheckLangu;
+import br.com.mind5.business.orderSearch.model.checker.OrdarchCheckOwner;
 import br.com.mind5.business.orderSearch.model.checker.OrdarchCheckRead;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
@@ -23,20 +24,29 @@ public final class RootOrdarchSelect extends DeciTreeReadTemplate<OrdarchInfo> {
 	
 	
 	@Override protected ModelChecker<OrdarchInfo> buildDecisionCheckerHook(DeciTreeOption<OrdarchInfo> option) {
-		final boolean EXIST_ON_DB = true;
-		
 		List<ModelChecker<OrdarchInfo>> queue = new ArrayList<>();		
 		ModelChecker<OrdarchInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
-		checker = new OrdarchCheckRead();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new OrdarchCheckRead(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;	
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
 		checker = new OrdarchCheckLangu(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
+		checker = new OrdarchCheckOwner(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
