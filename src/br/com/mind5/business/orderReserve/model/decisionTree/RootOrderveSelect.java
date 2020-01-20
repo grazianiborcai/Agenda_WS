@@ -10,6 +10,7 @@ import br.com.mind5.business.orderReserve.model.checker.OrderveCheckRead;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
@@ -25,8 +26,13 @@ public final class RootOrderveSelect extends DeciTreeReadTemplate<OrderveInfo> {
 	@Override protected ModelChecker<OrderveInfo> buildDecisionCheckerHook(DeciTreeOption<OrderveInfo> option) {
 		List<ModelChecker<OrderveInfo>> queue = new ArrayList<>();		
 		ModelChecker<OrderveInfo> checker;	
+		ModelCheckerOption checkerOption;
 		
-		checker = new OrderveCheckRead();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new OrderveCheckRead(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);

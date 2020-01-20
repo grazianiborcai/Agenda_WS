@@ -1005,4 +1005,7 @@ public final class SystemCode {
 	
 	//Order Item Snapshot
 	public static final int ORDER_ITEM_SNAP_MANDATORY_FIELD_EMPTY		= 10150; //5501;
+	
+	//Order Reserve
+	public static final int ORDER_RESERVE_MANDATORY_FIELD_EMPTY			= 10200;
 }
