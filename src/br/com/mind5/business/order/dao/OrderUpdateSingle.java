@@ -71,6 +71,9 @@ public final class OrderUpdateSingle extends DaoStmtTemplate<OrderInfo> {
 				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.createdOn);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.createdBy);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.lastChangedBy);
+				stmt = DaoFormatter.localDateToStmt(stmt, i++, recordInfo.postingDate);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.postingYear);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.postingYearMonth);
 				
 				return stmt;
 			}		

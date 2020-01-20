@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.order.info.OrderInfo;
-import br.com.mind5.business.orderSnapshot.dao.OrdnapDbTableColumn;
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
 import br.com.mind5.dao.DaoResultParserV2;
@@ -64,7 +63,7 @@ public final class OrderSelectSingle extends DaoStmtTemplate<OrderInfo> {
 					
 					dataInfo.codOwner = stmtResult.getLong(OrderDbTableColumn.COL_COD_OWNER);	
 					dataInfo.codOrder = stmtResult.getLong(OrderDbTableColumn.COL_COD_ORDER);
-					dataInfo.codSnapshot = stmtResult.getLong(OrdnapDbTableColumn.COL_COD_SNAPSHOT);	
+					dataInfo.codSnapshot = stmtResult.getLong(OrderDbTableColumn.COL_COD_SNAPSHOT);	
 					dataInfo.codUser = stmtResult.getLong(OrderDbTableColumn.COL_COD_USER);	
 					dataInfo.codOrderExt = stmtResult.getString(OrderDbTableColumn.COL_COD_ORDER_EXTERNAL);	
 					dataInfo.codOrderStatus = stmtResult.getString(OrderDbTableColumn.COL_COD_ORDER_STATUS);
@@ -80,8 +79,11 @@ public final class OrderSelectSingle extends DaoStmtTemplate<OrderInfo> {
 					dataInfo.codPhoneShip = DaoFormatter.sqlToLong(stmtResult, OrderDbTableColumn.COL_COD_PHONE_SHIP);
 					dataInfo.codPhoneInvoice = DaoFormatter.sqlToLong(stmtResult, OrderDbTableColumn.COL_COD_PHONE_INVOICE);
 					dataInfo.codPayOrder = DaoFormatter.sqlToLong(stmtResult, OrderDbTableColumn.COL_COD_PAY_ORDER);
-					dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, OrdnapDbTableColumn.COL_LAST_CHANGED_BY);
-					dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, OrdnapDbTableColumn.COL_CREATED_BY);				
+					dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, OrderDbTableColumn.COL_LAST_CHANGED_BY);
+					dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, OrderDbTableColumn.COL_CREATED_BY);	
+					dataInfo.postingDate = DaoFormatter.sqlToLocalDate(stmtResult, OrderDbTableColumn.COL_POSTING_DATE);
+					dataInfo.postingYear = DaoFormatter.sqlToInt(stmtResult, OrderDbTableColumn.COL_POSTING_YEAR);
+					dataInfo.postingYearMonth = DaoFormatter.sqlToInt(stmtResult, OrderDbTableColumn.COL_POSTING_YEAR_MONTH);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

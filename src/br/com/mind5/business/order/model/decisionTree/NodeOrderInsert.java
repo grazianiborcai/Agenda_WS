@@ -7,6 +7,7 @@ import br.com.mind5.business.order.info.OrderInfo;
 import br.com.mind5.business.order.model.action.LazyOrderEnforceCreatedBy;
 import br.com.mind5.business.order.model.action.LazyOrderEnforceCreatedOn;
 import br.com.mind5.business.order.model.action.LazyOrderEnforceExtid;
+import br.com.mind5.business.order.model.action.LazyOrderEnforcePostingDate;
 import br.com.mind5.business.order.model.action.LazyOrderEnforceStatusCreated;
 import br.com.mind5.business.order.model.action.LazyOrderInsert;
 import br.com.mind5.business.order.model.action.LazyOrderNodeCusL1;
@@ -46,6 +47,7 @@ public final class NodeOrderInsert extends DeciTreeWriteTemplate<OrderInfo> {
 		ActionLazy<OrderInfo> nodeCus = new LazyOrderNodeCusL1(option.conn, option.schemaName);
 		ActionLazy<OrderInfo> enforceCreatedOn = new LazyOrderEnforceCreatedOn(option.conn, option.schemaName);			
 		ActionLazy<OrderInfo> enforceCreatedBy = new LazyOrderEnforceCreatedBy(option.conn, option.schemaName);	
+		ActionLazy<OrderInfo> enforcePostingDate = new LazyOrderEnforcePostingDate(option.conn, option.schemaName);	
 		ActionLazy<OrderInfo> enforceExtid = new LazyOrderEnforceExtid(option.conn, option.schemaName);
 		ActionLazy<OrderInfo> enforceStatus = new LazyOrderEnforceStatusCreated(option.conn, option.schemaName);
 		ActionLazy<OrderInfo> insert = new LazyOrderInsert(option.conn, option.schemaName);
@@ -53,7 +55,8 @@ public final class NodeOrderInsert extends DeciTreeWriteTemplate<OrderInfo> {
 		mergeUsername.addPostAction(nodeCus);
 		nodeCus.addPostAction(enforceCreatedOn);
 		enforceCreatedOn.addPostAction(enforceCreatedBy);		
-		enforceCreatedBy.addPostAction(enforceExtid);
+		enforceCreatedBy.addPostAction(enforcePostingDate);
+		enforcePostingDate.addPostAction(enforceExtid);
 		enforceExtid.addPostAction(enforceStatus);		
 		enforceStatus.addPostAction(insert);
 		

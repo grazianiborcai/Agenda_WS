@@ -9,9 +9,9 @@ import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyOrderMergeToSelect_ extends ActionLazyTemplate<OrderInfo, OrderInfo> {
+public final class LazyOrderEnforcePostingDate extends ActionLazyTemplate<OrderInfo, OrderInfo> {
 
-	public LazyOrderMergeToSelect_(Connection conn, String schemaName) {
+	public LazyOrderEnforcePostingDate(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyOrderMergeToSelect_ extends ActionLazyTemplate<OrderInfo,
 	
 	
 	@Override protected ActionStd<OrderInfo> getInstanceOfActionHook(DeciTreeOption<OrderInfo> option) {
-		return new StdOrderMergeToSelect(option);
+		return new StdOrderEnforcePostingDate(option);
 	}
 	
 	

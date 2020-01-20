@@ -976,8 +976,8 @@ public final class SystemCode {
 	
 	// Cart Item Search
 	public static final int CART_ITEM_SEARCH_MANDATORY_FIELD_EMPTY		= 9450;
-	public static final int CART_ITEM_SEARCH_ALREADY_EXIST 				= 9451;
-	public static final int CART_ITEM_SEARCH_NOT_FOUND 					= 9452;
+	public static final int CART_ITEM_SEARCH_NOT_FOUND 					= 9451;
+	public static final int CART_ITEM_SEARCH_ALREADY_EXIST 				= 9452;	
 	
 	// Employee Worktime Range
 	public static final int EMP_WTIME_RANGE_MANDATORY_FIELD_EMPTY 		= 9500;
