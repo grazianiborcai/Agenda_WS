@@ -709,7 +709,6 @@ public final class SystemCode {
 	
 	// Order Snapshot
 	public static final int ORDER_HEADER_SNAP_MANDATORY_FIELD_EMPTY		= 5500;
-	public static final int ORDER_ITEM_SNAP_MANDATORY_FIELD_EMPTY		= 5501;
 	public static final int ORDER_HEADER_SNAP_ALREADY_EXIST				= 5502;
 	public static final int ORDER_HEADER_SNAP_NOT_FOUND					= 5503;
 	
@@ -1003,4 +1002,7 @@ public final class SystemCode {
 	public static final int ORDER_ITEM_SEARCH_ALREADY_EXIST 			= 10100; 
 	public static final int ORDER_ITEM_SEARCH_NOT_FOUND 				= 10101; 
 	public static final int ORDER_ITEM_SEARCH_MANDATORY_FIELD_EMPTY		= 10102; 
+	
+	//Order Item Snapshot
+	public static final int ORDER_ITEM_SNAP_MANDATORY_FIELD_EMPTY		= 10150; //5501;
 }

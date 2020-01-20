@@ -9,6 +9,7 @@ import br.com.mind5.business.orderItemSnapshot.model.action.StdOrdemrapSuccess;
 import br.com.mind5.business.orderItemSnapshot.model.checker.OrdemrapCheckHasEmp;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
@@ -24,8 +25,13 @@ public final class NodeOrdemrapEmp extends DeciTreeWriteTemplate<OrdemrapInfo> {
 	@Override protected ModelChecker<OrdemrapInfo> buildDecisionCheckerHook(DeciTreeOption<OrdemrapInfo> option) {
 		List<ModelChecker<OrdemrapInfo>> queue = new ArrayList<>();		
 		ModelChecker<OrdemrapInfo> checker;	
+		ModelCheckerOption checkerOption;
 		
-		checker = new OrdemrapCheckHasEmp();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new OrdemrapCheckHasEmp(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
