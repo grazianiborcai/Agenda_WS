@@ -5,13 +5,13 @@ import java.sql.Connection;
 import br.com.mind5.business.masterData.info.common.ScheduleStatus;
 import br.com.mind5.business.scheduleLine.info.SchedineInfo;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple_;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class SchedineCheckIsCancelled extends ModelCheckerTemplateSimple_<SchedineInfo> {
+public final class SchedineCheckIsCancelled extends ModelCheckerTemplateSimpleV2<SchedineInfo> {
 
-	public SchedineCheckIsCancelled() {
-		super();
+	public SchedineCheckIsCancelled(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
@@ -31,13 +31,7 @@ public final class SchedineCheckIsCancelled extends ModelCheckerTemplateSimple_<
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.SCHEDULE_NOT_CANCELLED;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.SCHEDULE_MATERIAL_IS_NOT_SERVICE;
+	@Override protected int getCodMsgOnResultFalseHook() {
+		return SystemCode.SCHEDULE_NOT_CANCELLED;
 	}
 }

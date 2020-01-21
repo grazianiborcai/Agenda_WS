@@ -4,13 +4,13 @@ import java.sql.Connection;
 
 import br.com.mind5.business.scheduleLine.info.SchedineInfo;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple_;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class SchedineCheckHasOrderItem extends ModelCheckerTemplateSimple_<SchedineInfo> {
+public final class SchedineCheckHasOrderItem extends ModelCheckerTemplateSimpleV2<SchedineInfo> {
 
-	public SchedineCheckHasOrderItem() {
-		super();
+	public SchedineCheckHasOrderItem(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
@@ -27,13 +27,7 @@ public final class SchedineCheckHasOrderItem extends ModelCheckerTemplateSimple_
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.SCHEDULE_HAS_NO_ORDER;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
+	@Override protected int getCodMsgOnResultFalseHook() {
 		return SystemCode.SCHEDULE_HAS_NO_ORDER;
 	}
 }

@@ -8,9 +8,9 @@ import br.com.mind5.common.SystemCode;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimple_;
 
-public final class SchedineCheckIsService extends ModelCheckerTemplateSimple_<SchedineInfo> {
+public final class SchedineCheckIsService_ extends ModelCheckerTemplateSimple_<SchedineInfo> {
 
-	public SchedineCheckIsService() {
+	public SchedineCheckIsService_() {
 		super();
 	}
 	

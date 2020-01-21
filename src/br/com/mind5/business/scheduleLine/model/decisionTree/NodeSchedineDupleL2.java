@@ -22,8 +22,6 @@ public final class NodeSchedineDupleL2 extends DeciTreeWriteTemplate<SchedineInf
 	
 	
 	@Override protected ModelChecker<SchedineInfo> buildDecisionCheckerHook(DeciTreeOption<SchedineInfo> option) {
-		final boolean NO_DUPLE = false;
-		
 		List<ModelChecker<SchedineInfo>> queue = new ArrayList<>();		
 		ModelChecker<SchedineInfo> checker;
 		ModelCheckerOption checkerOption;
@@ -31,7 +29,7 @@ public final class NodeSchedineDupleL2 extends DeciTreeWriteTemplate<SchedineInf
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = NO_DUPLE;	
+		checkerOption.expectedResult = ModelCheckerOption.FAILED;	
 		checker = new SchedineCheckHasDuple(checkerOption);
 		queue.add(checker);
 		

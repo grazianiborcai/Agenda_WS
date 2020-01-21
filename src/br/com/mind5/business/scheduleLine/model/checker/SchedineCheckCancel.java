@@ -4,13 +4,13 @@ import java.sql.Connection;
 
 import br.com.mind5.business.scheduleLine.info.SchedineInfo;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple_;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class SchedineCheckCancel extends ModelCheckerTemplateSimple_<SchedineInfo> {
+public final class SchedineCheckCancel extends ModelCheckerTemplateSimpleV2<SchedineInfo> {
 
-	public SchedineCheckCancel() {
-		super();
+	public SchedineCheckCancel(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
@@ -29,13 +29,7 @@ public final class SchedineCheckCancel extends ModelCheckerTemplateSimple_<Sched
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.SCHEDULE_MANDATORY_FIELD_EMPTY;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
+	@Override protected int getCodMsgOnResultFalseHook() {
 		return SystemCode.SCHEDULE_MANDATORY_FIELD_EMPTY;
 	}
 }

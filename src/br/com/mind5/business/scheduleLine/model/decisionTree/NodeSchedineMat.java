@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.scheduleLine.info.SchedineInfo;
 import br.com.mind5.business.scheduleLine.model.action.StdSchedineSuccess;
-import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckIsService;
+import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckIsService_;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -24,7 +24,7 @@ public final class NodeSchedineMat extends DeciTreeWriteTemplate<SchedineInfo> {
 		List<ModelChecker<SchedineInfo>> queue = new ArrayList<>();		
 		ModelChecker<SchedineInfo> checker;	
 		
-		checker = new SchedineCheckIsService();
+		checker = new SchedineCheckIsService_();
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
