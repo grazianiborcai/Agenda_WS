@@ -4,24 +4,23 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 
-import br.com.mind5.business.order.dao.OrderDbTableColumn;
-import br.com.mind5.business.orderItem.dao.OrderemDbTableColumn;
 import br.com.mind5.dao.DaoColumn;
 import br.com.mind5.dao.DaoDbTableColumnTemplate;
+import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
 public final class OrderveDbTableColumn extends DaoDbTableColumnTemplate {	
-	public static final String COL_BEGIN_TIME = OrderemDbTableColumn.COL_BEGIN_TIME;
-	public static final String COL_COD_CUSTOMER = OrderDbTableColumn.COL_COD_CUSTOMER;
-	public static final String COL_COD_EMPLOYEE = OrderemDbTableColumn.COL_COD_EMPLOYEE;
-	public static final String COL_COD_MATERIAL = OrderemDbTableColumn.COL_COD_MATERIAL;
-	public static final String COL_COD_ORDER_STATUS = OrderDbTableColumn.COL_COD_ORDER_STATUS;
-	public static final String COL_COD_OWNER = OrderemDbTableColumn.COL_COD_OWNER;
-	public static final String COL_COD_ORDER = OrderDbTableColumn.COL_COD_ORDER;
-	public static final String COL_COD_STORE = OrderemDbTableColumn.COL_COD_STORE;
-	public static final String COL_COD_USER = OrderDbTableColumn.COL_COD_USER;
-	public static final String COL_DATE = OrderemDbTableColumn.COL_DATE;
-	public static final String COL_END_TIME = OrderemDbTableColumn.COL_END_TIME;	
+	public static final String COL_BEGIN_TIME = DaoDbField.COL_BEGIN_TIME;
+	public static final String COL_COD_CUSTOMER = DaoDbField.COL_COD_CUSTOMER;
+	public static final String COL_COD_EMPLOYEE = DaoDbField.COL_COD_EMPLOYEE;
+	public static final String COL_COD_MATERIAL = DaoDbField.COL_COD_MATERIAL;
+	public static final String COL_COD_ORDER_STATUS = DaoDbField.COL_COD_ORDER_STATUS;
+	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;
+	public static final String COL_COD_ORDER = DaoDbField.COL_COD_ORDER;
+	public static final String COL_COD_STORE = DaoDbField.COL_COD_STORE;
+	public static final String COL_COD_USER = DaoDbField.COL_COD_USER;
+	public static final String COL_DATE = DaoDbField.COL_DATE;
+	public static final String COL_END_TIME = DaoDbField.COL_END_TIME;	
 	
 	
 	private Hashtable<String, List<DaoColumn>> tableColumns;
