@@ -50,9 +50,9 @@ public final class PhoneUpdateSingle extends DaoStmtTemplate<PhoneInfo> {
 	
 	@Override protected DaoStmtParamTranslator<PhoneInfo> getParamTranslatorHook() {
 		return new DaoStmtParamTranslator<PhoneInfo>() {		
-			@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, PhoneInfo recordInfo) throws SQLException {		
-			
+			@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, PhoneInfo recordInfo) throws SQLException {	
 				int i = 1;					
+				
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codStore);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codCustomer);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codEmployee);
