@@ -10,129 +10,80 @@ import java.util.List;
 import br.com.mind5.business.scheduleLine.info.SchedineInfo;
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoStmt;
-import br.com.mind5.dao.DaoStmtHelper_;
+import br.com.mind5.dao.DaoResultParserV2;
 import br.com.mind5.dao.DaoStmtParamTranslator;
+import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.common.DaoDbTable;
-import br.com.mind5.dao.common.DaoDbTableColumnAll;
-import br.com.mind5.dao.obsolete.DaoResultParser_;
-import br.com.mind5.dao.obsolete.DaoStmtOption_;
 
-public class SchedineInsertSingle implements DaoStmt<SchedineInfo> {
-	private DaoStmt<SchedineInfo> stmtSql;
-	private DaoStmtOption_<SchedineInfo> stmtOption;
-	
+public class SchedineInsertSingle extends DaoStmtTemplate<SchedineInfo> {
+	private final String MAIN_TABLE = DaoDbTable.SCHEDULE_TABLE;
 	
 	
 	public SchedineInsertSingle(Connection conn, SchedineInfo recordInfo, String schemaName) {
-		buildStmtOption(conn, recordInfo, schemaName);
-		buildStmt();		
+		super(conn, recordInfo, schemaName);
 	}
 	
 	
 	
-	private void buildStmtOption(Connection conn, SchedineInfo recordInfo, String schemaName) {
-		stmtOption = new DaoStmtOption_<>();
-		stmtOption.conn = conn;
-		stmtOption.recordInfo = recordInfo;
-		stmtOption.schemaName = schemaName;
-		stmtOption.tableName = DaoDbTable.SCHEDULE_TABLE;
-		stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(stmtOption.tableName);
-		stmtOption.stmtParamTranslator = new ParamTranslator();
-		stmtOption.resultParser = new ResultParser(recordInfo);
-		stmtOption.whereClause = null;
+	@Override protected String getTableNameHook() {
+		return MAIN_TABLE;
 	}
 	
 	
 	
-	private void buildStmt() {
-		stmtSql = new DaoStmtHelper_<>(DaoOperation.INSERT, stmtOption, this.getClass());
-	}
-		
-	
-	
-	@Override public void generateStmt() throws SQLException {
-		stmtSql.generateStmt();		
+	@Override protected DaoOperation getOperationHook() {
+		return DaoOperation.INSERT;
 	}
 
 	
 	
-	@Override public boolean checkStmtGeneration() {
-		return stmtSql.checkStmtGeneration();
-	}
-
-	
-	
-	@Override public void executeStmt() throws SQLException {
-		stmtSql.executeStmt();
-	}
-
-	
-	
-	@Override public List<SchedineInfo> getResultset() {
-		return stmtSql.getResultset();
-	}
-	
-	
-	
-	private class ParamTranslator implements DaoStmtParamTranslator<SchedineInfo> {		
-		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, SchedineInfo recordInfo) throws SQLException {			
-			
-			int i = 1;
-			stmt.setLong(i++, recordInfo.codOwner);
-			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codOrder);
-			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codOrderItem);
-			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codStore);
-			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codMat);
-			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codEmployee);
-			stmt.setDate(i++, DaoFormatter.localToSqlDate(recordInfo.date));
-			stmt.setTime(i++, DaoFormatter.localToSqlTime(recordInfo.beginTime));
-			stmt.setTime(i++, DaoFormatter.localToSqlTime(recordInfo.endTime));
-			stmt.setTimestamp(i++, DaoFormatter.localToSqlTimestamp(recordInfo.lastChanged));	
-			stmt.setString(i++, recordInfo.recordMode);
-			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codUser);
-			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codCustomer);
-			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.lastChangedBy);			
-			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.day);
-			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.weekMonth);
-			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.weekYear);
-			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.month);
-			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.quarter);
-			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.year);
-			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codSnapshot);
-			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codWeekday);
-			stmt.setTimestamp(i++, DaoFormatter.localToSqlTimestamp(recordInfo.createdOn));
-			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.createdBy);
-			stmt.setString(i++, recordInfo.codScheduleStatus);
-			
-			return stmt;
-		}		
-	}
-	
-	
-	
-	@Override public DaoStmt<SchedineInfo> getNewInstance() {
-		return new SchedineInsertSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
+	@Override protected DaoStmtParamTranslator<SchedineInfo> getParamTranslatorHook() {
+		return new DaoStmtParamTranslator<SchedineInfo>() {			
+			@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, SchedineInfo recordInfo) throws SQLException {				
+				int i = 1;
+				
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codOwner);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codOrder);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codOrderItem);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codStore);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codMat);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codEmployee);
+				stmt = DaoFormatter.localDateToStmt(stmt, i++, recordInfo.date);
+				stmt = DaoFormatter.localTimeToStmt(stmt, i++, recordInfo.beginTime);
+				stmt = DaoFormatter.localTimeToStmt(stmt, i++, recordInfo.endTime);
+				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.lastChanged);
+				stmt.setString(i++, recordInfo.recordMode);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codUser);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codCustomer);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.lastChangedBy);			
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.day);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.weekMonth);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.weekYear);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.month);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.quarter);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.year);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codSnapshot);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codWeekday);
+				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.createdOn);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.createdBy);
+				stmt.setString(i++, recordInfo.codScheduleStatus);
+				
+				return stmt;
+			}		
+		};
 	}
 	
 	
 	
 	
-	
-	private static class ResultParser implements DaoResultParser_<SchedineInfo> {
-		private SchedineInfo recordInfo;
-		
-		public ResultParser(SchedineInfo recordToParse) {
-			recordInfo = recordToParse;
-		}
-		
-		
-		
-		@Override public List<SchedineInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
-			List<SchedineInfo> finalResult = new ArrayList<>();
-			recordInfo.codSchedule = lastId;
-			finalResult.add(recordInfo);			
-			return finalResult;
-		}
+	@Override protected DaoResultParserV2<SchedineInfo> getResultParserHook() {
+		return new DaoResultParserV2<SchedineInfo>() {		
+			@Override public List<SchedineInfo> parseResult(SchedineInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
+				List<SchedineInfo> finalResult = new ArrayList<>();
+				recordInfo.codSchedule = lastId;
+				finalResult.add(recordInfo);			
+				return finalResult;
+			}
+		};
 	}
 }
