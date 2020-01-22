@@ -6,6 +6,7 @@ import java.util.List;
 import br.com.mind5.business.scheduleSearch.info.SchedarchInfo;
 import br.com.mind5.business.scheduleSearch.model.action.StdSchedarchMergeToSelect;
 import br.com.mind5.business.scheduleSearch.model.checker.SchedarchCheckLangu;
+import br.com.mind5.business.scheduleSearch.model.checker.SchedarchCheckOwner;
 import br.com.mind5.business.scheduleSearch.model.checker.SchedarchCheckRead;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
@@ -23,20 +24,29 @@ public final class RootSchedarchSelect extends DeciTreeWriteTemplate<SchedarchIn
 	
 	
 	@Override protected ModelChecker<SchedarchInfo> buildDecisionCheckerHook(DeciTreeOption<SchedarchInfo> option) {
-		final boolean EXIST_ON_DB = true;
-		
 		List<ModelChecker<SchedarchInfo>> queue = new ArrayList<>();		
 		ModelChecker<SchedarchInfo> checker;
 		ModelCheckerOption checkerOption;
 		
-		checker = new SchedarchCheckRead();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new SchedarchCheckRead(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;	
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
 		checker = new SchedarchCheckLangu(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
+		checker = new SchedarchCheckOwner(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
