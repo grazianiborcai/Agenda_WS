@@ -1,14 +1,14 @@
 package br.com.mind5.business.scheduleLine.info;
 
-import br.com.mind5.business.material.info.MatInfo;
+import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.info.InfoMergerTemplate;
 import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 
-final class SchedineMergerMat extends InfoMergerTemplate<SchedineInfo, MatInfo> {
+final class SchedineMergerMatlis extends InfoMergerTemplate<SchedineInfo, MatlisInfo> {
 
-	@Override protected InfoMergerVisitor<SchedineInfo, MatInfo> getVisitorHook() {
-		return new SchedineVisiMergeMat();
+	@Override protected InfoMergerVisitor<SchedineInfo, MatlisInfo> getVisitorHook() {
+		return new SchedineVisiMergeMatlis();
 	}
 	
 	

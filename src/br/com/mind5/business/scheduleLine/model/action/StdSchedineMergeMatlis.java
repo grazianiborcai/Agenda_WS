@@ -7,12 +7,12 @@ import br.com.mind5.model.action.ActionStdHelperMerge;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdSchedineMergeDuple implements ActionStd<SchedineInfo> {
+public final class StdSchedineMergeMatlis implements ActionStd<SchedineInfo> {
 	private ActionStd<SchedineInfo> actionHelper;	
 	
 	
-	public StdSchedineMergeDuple(DeciTreeOption<SchedineInfo> option) {			
-		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiSchedineMergeDuple(option.conn, option.schemaName));
+	public StdSchedineMergeMatlis(DeciTreeOption<SchedineInfo> option) {			
+		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiSchedineMergeMatlis(option.conn, option.schemaName));
 	}
 	
 	

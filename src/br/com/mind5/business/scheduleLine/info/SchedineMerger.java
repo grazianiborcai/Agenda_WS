@@ -6,31 +6,16 @@ import br.com.mind5.business.customerList.info.CuslisInfo;
 import br.com.mind5.business.employeeList.info.EmplisInfo;
 import br.com.mind5.business.masterData.info.ScheduleStatusInfo;
 import br.com.mind5.business.masterData.info.WeekdayInfo;
-import br.com.mind5.business.material.info.MatInfo;
+import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.business.order.info.OrderInfo;
 import br.com.mind5.business.orderList.info.OrdistInfo;
 import br.com.mind5.business.scheduleLineSnapshot.info.SchedinapInfo;
-import br.com.mind5.business.scheduleSearch.info.SchedarchInfo;
 import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.info.InfoMerger;
 import br.com.mind5.info.InfoMergerOneToMany;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class SchedineMerger {
-	public static SchedineInfo mergeWithDuple(SchedarchInfo sourceOne, SchedineInfo sourceTwo) {
-		InfoMerger<SchedineInfo, SchedarchInfo> merger = new SchedineMergerDuple();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
-	
-	
-	
-	public static List<SchedineInfo> mergeWithDuple(List<SchedarchInfo> sourceOnes, List<SchedineInfo> sourceTwos) {
-		InfoMerger<SchedineInfo, SchedarchInfo> merger = new SchedineMergerDuple();		
-		return merger.merge(sourceOnes, sourceTwos);
-	}
-	
-	
-	
 	public static SchedineInfo mergeWithWeekday(WeekdayInfo sourceOne, SchedineInfo sourceTwo) {
 		InfoMerger<SchedineInfo, WeekdayInfo> merger = new SchedineMergerWeekday();		
 		return merger.merge(sourceOne, sourceTwo);
@@ -157,15 +142,15 @@ public final class SchedineMerger {
 	
 	
 	
-	public static SchedineInfo mergeWithMat(MatInfo sourceOne, SchedineInfo sourceTwo) {
-		InfoMerger<SchedineInfo, MatInfo> merger = new SchedineMergerMat();		
+	public static SchedineInfo mergeWithMatlis(MatlisInfo sourceOne, SchedineInfo sourceTwo) {
+		InfoMerger<SchedineInfo, MatlisInfo> merger = new SchedineMergerMatlis();		
 		return merger.merge(sourceOne, sourceTwo);
 	}
 	
 	
 	
-	public static List<SchedineInfo> mergeWithMat(List<MatInfo> sourceOnes, List<SchedineInfo> sourceTwos) {
-		InfoMerger<SchedineInfo, MatInfo> merger = new SchedineMergerMat();		
+	public static List<SchedineInfo> mergeWithMatlis(List<MatlisInfo> sourceOnes, List<SchedineInfo> sourceTwos) {
+		InfoMerger<SchedineInfo, MatlisInfo> merger = new SchedineMergerMatlis();		
 		return merger.merge(sourceOnes, sourceTwos);
 	}
 	

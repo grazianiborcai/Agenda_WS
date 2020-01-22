@@ -8,9 +8,9 @@ import br.com.mind5.common.SystemMessage;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimple_;
 
-public final class SchedineCheckHasDuple extends ModelCheckerTemplateSimple_<SchedineInfo> {
+public final class SchedineCheckHasDuple_ extends ModelCheckerTemplateSimple_<SchedineInfo> {
 
-	public SchedineCheckHasDuple(ModelCheckerOption option) {
+	public SchedineCheckHasDuple_(ModelCheckerOption option) {
 		super(option);
 	}
 	

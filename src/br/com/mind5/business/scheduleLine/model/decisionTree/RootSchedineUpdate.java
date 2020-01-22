@@ -13,6 +13,7 @@ import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckEmposarch;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckExist;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckLangu;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckMat;
+import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckMatarchService;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckMatore;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckOwner;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckStore;
@@ -64,6 +65,13 @@ public final class RootSchedineUpdate extends DeciTreeWriteTemplate<SchedineInfo
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
 		checker = new SchedineCheckMat(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
+		checker = new SchedineCheckMatarchService(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();

@@ -41,9 +41,9 @@ public final class NodeSchedineOrderL1 extends DeciTreeWriteTemplate<SchedineInf
 	@Override protected List<ActionStd<SchedineInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedineInfo> option) {
 		List<ActionStd<SchedineInfo>> actions = new ArrayList<>();
 		
-		ActionStd<SchedineInfo> nodeOrderL2 = new NodeSchedineOrderL2(option).toAction();
+		ActionStd<SchedineInfo> nodeL2 = new NodeSchedineOrderL2(option).toAction();
 		
-		actions.add(nodeOrderL2);
+		actions.add(nodeL2);
 		return actions;
 	}
 	

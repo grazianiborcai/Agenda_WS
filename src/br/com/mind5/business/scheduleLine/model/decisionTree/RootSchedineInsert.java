@@ -14,8 +14,10 @@ import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckEmposarch;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckInsert;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckLangu;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckMat;
+import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckMatarchService;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckMatore;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckOwner;
+import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckSchedarch;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckStore;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
@@ -70,6 +72,13 @@ public final class RootSchedineInsert extends DeciTreeWriteTemplate<SchedineInfo
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
+		checker = new SchedineCheckMatarchService(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
 		checker = new SchedineCheckStore(checkerOption);
 		queue.add(checker);
 		
@@ -108,6 +117,13 @@ public final class RootSchedineInsert extends DeciTreeWriteTemplate<SchedineInfo
 		checker = new SchedineCheckEmpmat(checkerOption);
 		queue.add(checker);
 		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
+		checker = new SchedineCheckSchedarch(checkerOption);
+		queue.add(checker);		
+		
 		return new ModelCheckerQueue<>(queue);
 	}
 	
@@ -116,7 +132,6 @@ public final class RootSchedineInsert extends DeciTreeWriteTemplate<SchedineInfo
 	@Override protected List<ActionStd<SchedineInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedineInfo> option) {
 		List<ActionStd<SchedineInfo>> actions = new ArrayList<>();
 		
-		ActionStd<SchedineInfo> nodeDuple = new NodeSchedineDupleL1(option).toAction();
 		ActionStd<SchedineInfo> nodeOrder = new NodeSchedineOrderL1(option).toAction();
 		ActionLazy<SchedineInfo> nodeInsert = new LazySchedineNodeInsert(option.conn, option.schemaName);
 		ActionLazy<SchedineInfo> nodeSnapshot = new LazySchedineNodeSnapshot(option.conn, option.schemaName);
@@ -126,7 +141,6 @@ public final class RootSchedineInsert extends DeciTreeWriteTemplate<SchedineInfo
 		nodeInsert.addPostAction(nodeSnapshot);
 		nodeSnapshot.addPostAction(insertSchedovm);
 		
-		actions.add(nodeDuple);
 		actions.add(nodeOrder);
 		return actions;
 	}

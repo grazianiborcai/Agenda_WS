@@ -7,9 +7,9 @@ import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class SchedineCheckDuple extends ModelCheckerTemplateSimpleV2<SchedineInfo> {
+public final class SchedineCheckDuple_ extends ModelCheckerTemplateSimpleV2<SchedineInfo> {
 
-	public SchedineCheckDuple(ModelCheckerOption option) {
+	public SchedineCheckDuple_(ModelCheckerOption option) {
 		super(option);
 	}
 	

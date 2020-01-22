@@ -6,7 +6,7 @@ import java.time.LocalTime;
 import java.util.List;
 
 import br.com.mind5.business.employeeList.info.EmplisInfo;
-import br.com.mind5.business.material.info.MatInfo;
+import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.business.scheduleSearch.info.SchedarchInfo;
 import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.common.DefaultValue;
@@ -39,10 +39,10 @@ public final class SchedineInfo extends InfoRecord implements Cloneable, Compara
 	public LocalTime endTime;
 	public long codUser;
 	public long codCustomer;
-	public MatInfo matData;
+	public MatlisInfo matData;
 	public StolisInfo storeData;
 	public EmplisInfo empData;
-	public SchedarchInfo dupleData;
+	public SchedarchInfo dupleData;	//TODO: REMOVER
 	public LocalDateTime createdOn;
 	public long createdBy;
 	public LocalDateTime lastChanged;
@@ -111,11 +111,11 @@ public final class SchedineInfo extends InfoRecord implements Cloneable, Compara
 	
 	
 	
-	private MatInfo cloneMat(MatInfo recordInfo) throws CloneNotSupportedException {
-		MatInfo result = null;
+	private MatlisInfo cloneMat(MatlisInfo recordInfo) throws CloneNotSupportedException {
+		MatlisInfo result = null;
 		
 		if (recordInfo != null)
-			result = (MatInfo) recordInfo.clone();
+			result = (MatlisInfo) recordInfo.clone();
 		
 		return result;
 	}
