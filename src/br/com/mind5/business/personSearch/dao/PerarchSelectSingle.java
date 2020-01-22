@@ -66,6 +66,7 @@ public final class PerarchSelectSingle extends DaoStmtTemplate<PerarchInfo> {
 				
 				do {
 					PerarchInfo dataInfo = new PerarchInfo();
+					
 					dataInfo.codOwner = stmtResult.getLong(PerarchDbTableColumn.COL_COD_OWNER);
 					dataInfo.codPerson = stmtResult.getLong(PerarchDbTableColumn.COL_COD_PERSON);
 					dataInfo.cpf = stmtResult.getString(PerarchDbTableColumn.COL_CPF);
