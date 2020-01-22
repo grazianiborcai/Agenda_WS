@@ -7,7 +7,6 @@ import java.util.List;
 
 import br.com.mind5.business.employeeList.info.EmplisInfo;
 import br.com.mind5.business.materialList.info.MatlisInfo;
-import br.com.mind5.business.scheduleSearch.info.SchedarchInfo;
 import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.common.SystemMessage;
@@ -42,7 +41,6 @@ public final class SchedineInfo extends InfoRecord implements Cloneable, Compara
 	public MatlisInfo matData;
 	public StolisInfo storeData;
 	public EmplisInfo empData;
-	public SchedarchInfo dupleData;	//TODO: REMOVER
 	public LocalDateTime createdOn;
 	public long createdBy;
 	public LocalDateTime lastChanged;
@@ -77,7 +75,6 @@ public final class SchedineInfo extends InfoRecord implements Cloneable, Compara
 		matData = DefaultValue.object();
 		storeData = DefaultValue.object();
 		empData = DefaultValue.object();
-		dupleData = DefaultValue.object();
 	}
 	
 	
@@ -104,7 +101,6 @@ public final class SchedineInfo extends InfoRecord implements Cloneable, Compara
 		deepCopy.matData = cloneMat(matData);
 		deepCopy.storeData = cloneStore(storeData);
 		deepCopy.empData = cloneEmp(empData);
-		deepCopy.dupleData = cloneSchedarch(dupleData);
 		
 		return deepCopy;
 	}	
@@ -140,18 +136,7 @@ public final class SchedineInfo extends InfoRecord implements Cloneable, Compara
 			result = (EmplisInfo) recordInfo.clone();
 		
 		return result;
-	}	
-	
-	
-	
-	private SchedarchInfo cloneSchedarch(SchedarchInfo recordInfo) throws CloneNotSupportedException {
-		SchedarchInfo result = null;
-		
-		if (recordInfo != null)
-			result = (SchedarchInfo) recordInfo.clone();
-		
-		return result;
-	}	
+	}
 	
 	
 	
