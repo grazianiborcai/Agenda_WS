@@ -61,6 +61,7 @@ public final class SchedineSelectSingle extends DaoStmtTemplate<SchedineInfo> {
 				
 				do {
 					SchedineInfo dataInfo = new SchedineInfo();
+					
 					dataInfo.codOwner = DaoFormatter.sqlToLong(stmtResult, SchedineDbTableColumn.COL_COD_OWNER);	
 					dataInfo.codSchedule = DaoFormatter.sqlToLong(stmtResult, SchedineDbTableColumn.COL_COD_SCHEDULE);	
 					dataInfo.codOrder = DaoFormatter.sqlToLong(stmtResult, SchedineDbTableColumn.COL_COD_ORDER);
