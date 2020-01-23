@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.scheduleLine.info.SchedineInfo;
-import br.com.mind5.business.scheduleLine.model.action.LazySchedineNodeFromOrder;
+import br.com.mind5.business.scheduleLine.model.action.LazySchedineRootInsert;
 import br.com.mind5.business.scheduleLine.model.action.StdSchedineMergeOrder;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckFromOrder;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckLangu;
@@ -68,9 +68,9 @@ public final class RootSchedineFromOrder extends DeciTreeWriteTemplate<SchedineI
 		List<ActionStd<SchedineInfo>> actions = new ArrayList<>();
 		
 		ActionStd<SchedineInfo> mergeOrder = new StdSchedineMergeOrder(option);
-		ActionLazy<SchedineInfo> nodeFromOrder = new LazySchedineNodeFromOrder(option.conn, option.schemaName);
+		ActionLazy<SchedineInfo> insert = new LazySchedineRootInsert(option.conn, option.schemaName);
 		
-		mergeOrder.addPostAction(nodeFromOrder);
+		mergeOrder.addPostAction(insert);
 		
 		actions.add(mergeOrder);
 		return actions;

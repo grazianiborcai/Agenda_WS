@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.scheduleLine.info.SchedineInfo;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckLangu;
+import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckOwner;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckRefresh;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
@@ -38,6 +39,13 @@ public final class RootSchedineRefresh extends DeciTreeWriteTemplate<SchedineInf
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
 		checker = new SchedineCheckLangu(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
+		checker = new SchedineCheckOwner(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);

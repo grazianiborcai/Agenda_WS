@@ -11,6 +11,7 @@ import br.com.mind5.business.scheduleLine.model.action.LazySchedineMergeStolis;
 import br.com.mind5.business.scheduleLine.model.action.LazySchedineMergeWeekday;
 import br.com.mind5.business.scheduleLine.model.action.StdSchedineMergeToSelect;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckLangu;
+import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckOwner;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckRead;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
@@ -45,6 +46,13 @@ public final class RootSchedineSelect extends DeciTreeWriteTemplate<SchedineInfo
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
 		checker = new SchedineCheckLangu(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
+		checker = new SchedineCheckOwner(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
