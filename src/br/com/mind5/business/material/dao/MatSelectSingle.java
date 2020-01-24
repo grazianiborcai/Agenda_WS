@@ -60,6 +60,7 @@ public final class MatSelectSingle extends DaoStmtTemplate<MatInfo> {
 				
 				do {
 					MatInfo dataInfo = new MatInfo();
+					
 					dataInfo.codOwner = stmtResult.getLong(MatDbTableColumn.COL_COD_OWNER);
 					dataInfo.codMat = stmtResult.getLong(MatDbTableColumn.COL_COD_MATERIAL);
 					dataInfo.codType = stmtResult.getInt(MatDbTableColumn.COL_COD_TYPE);
