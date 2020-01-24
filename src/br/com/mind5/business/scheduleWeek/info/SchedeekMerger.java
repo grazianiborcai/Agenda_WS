@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.com.mind5.business.customerList.info.CuslisInfo;
 import br.com.mind5.business.employeeList.info.EmplisInfo;
-import br.com.mind5.business.material.info.MatInfo;
+import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.business.scheduleWeekData.info.SchedeekdatInfo;
 import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.info.InfoMerger;
@@ -38,15 +38,15 @@ public final class SchedeekMerger {
 	
 	
 	
-	public static SchedeekInfo mergeWithMat(MatInfo sourceOne, SchedeekInfo sourceTwo) {
-		InfoMerger<SchedeekInfo, MatInfo> merger = new SchedeekMergerMat();		
+	public static SchedeekInfo mergeWithMatlis(MatlisInfo sourceOne, SchedeekInfo sourceTwo) {
+		InfoMerger<SchedeekInfo, MatlisInfo> merger = new SchedeekMergerMatlis();		
 		return merger.merge(sourceOne, sourceTwo);
 	}
 	
 	
 	
-	public static List<SchedeekInfo> mergeWithMat(List<MatInfo> sourceOnes, List<SchedeekInfo> sourceTwos) {
-		InfoMerger<SchedeekInfo, MatInfo> merger = new SchedeekMergerMat();		
+	public static List<SchedeekInfo> mergeWithMatlis(List<MatlisInfo> sourceOnes, List<SchedeekInfo> sourceTwos) {
+		InfoMerger<SchedeekInfo, MatlisInfo> merger = new SchedeekMergerMatlis();		
 		return merger.merge(sourceOnes, sourceTwos);
 	}	
 	

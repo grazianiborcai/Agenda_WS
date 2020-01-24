@@ -7,12 +7,12 @@ import br.com.mind5.model.action.ActionStdHelperMerge;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class StdSchedeekMergeMat implements ActionStd<SchedeekInfo> {
+final class StdSchedeekMergeMatlis implements ActionStd<SchedeekInfo> {
 	private ActionStd<SchedeekInfo> actionHelper;	
 	
 	
-	public StdSchedeekMergeMat(DeciTreeOption<SchedeekInfo> option) {			
-		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiSchedeekMergeMat(option.conn, option.schemaName));
+	public StdSchedeekMergeMatlis(DeciTreeOption<SchedeekInfo> option) {			
+		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiSchedeekMergeMatlis(option.conn, option.schemaName));
 	}
 	
 	

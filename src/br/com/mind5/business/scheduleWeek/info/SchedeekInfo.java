@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.customerList.info.CuslisInfo;
 import br.com.mind5.business.employeeList.info.EmplisInfo;
-import br.com.mind5.business.material.info.MatInfo;
+import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.business.scheduleWeekData.info.SchedeekdatInfo;
 import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.common.DefaultValue;
@@ -23,7 +23,7 @@ public final class SchedeekInfo extends InfoRecord implements Cloneable {
 	public List<SchedeekdatInfo> schedeekdats;
 	public List<StolisInfo> stolises;
 	public List<CuslisInfo> cuslises;
-	public List<MatInfo> mats;
+	public List<MatlisInfo> mats;
 	public List<EmplisInfo> emplises;
 	public String username;
 	
@@ -108,15 +108,15 @@ public final class SchedeekInfo extends InfoRecord implements Cloneable {
 	
 	
 	
-	private List<MatInfo> cloneMat(List<MatInfo> recordInfos) throws CloneNotSupportedException {
+	private List<MatlisInfo> cloneMat(List<MatlisInfo> recordInfos) throws CloneNotSupportedException {
 		if (recordInfos == null)
 			return null;
 		
 		
-		List<MatInfo> results = new ArrayList<>();
+		List<MatlisInfo> results = new ArrayList<>();
 		
-		for (MatInfo eachRecord : recordInfos) {
-			MatInfo copy = (MatInfo) eachRecord.clone();
+		for (MatlisInfo eachRecord : recordInfos) {
+			MatlisInfo copy = (MatlisInfo) eachRecord.clone();
 			results.add(copy);
 		}
 		

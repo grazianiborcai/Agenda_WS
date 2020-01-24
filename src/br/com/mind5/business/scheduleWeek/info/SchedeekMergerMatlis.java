@@ -1,14 +1,14 @@
 package br.com.mind5.business.scheduleWeek.info;
 
-import br.com.mind5.business.material.info.MatInfo;
+import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.info.InfoMergerTemplate;
 import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 
-final class SchedeekMergerMat extends InfoMergerTemplate<SchedeekInfo, MatInfo> {
+final class SchedeekMergerMatlis extends InfoMergerTemplate<SchedeekInfo, MatlisInfo> {
 
-	@Override protected InfoMergerVisitor<SchedeekInfo, MatInfo> getVisitorHook() {
-		return new SchedeekVisiMergeMat();
+	@Override protected InfoMergerVisitor<SchedeekInfo, MatlisInfo> getVisitorHook() {
+		return new SchedeekVisiMergeMatlis();
 	}
 	
 	

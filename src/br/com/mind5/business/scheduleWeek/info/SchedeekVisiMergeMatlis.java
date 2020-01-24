@@ -1,12 +1,12 @@
 package br.com.mind5.business.scheduleWeek.info;
 
-import br.com.mind5.business.material.info.MatInfo;
+import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.InfoMergerVisitor;
 
-final class SchedeekVisiMergeMat implements InfoMergerVisitor<SchedeekInfo, MatInfo> {
+final class SchedeekVisiMergeMatlis implements InfoMergerVisitor<SchedeekInfo, MatlisInfo> {
 
-	@Override public SchedeekInfo writeRecord(MatInfo sourceOne, SchedeekInfo sourceTwo) {
+	@Override public SchedeekInfo writeRecord(MatlisInfo sourceOne, SchedeekInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);
 		sourceTwo.mats.add(sourceOne);
 
@@ -15,14 +15,14 @@ final class SchedeekVisiMergeMat implements InfoMergerVisitor<SchedeekInfo, MatI
 	
 	
 	
-	private void checkArgument(MatInfo sourceOne, SchedeekInfo sourceTwo) {
+	private void checkArgument(MatlisInfo sourceOne, SchedeekInfo sourceTwo) {
 		if (shouldWrite(sourceOne, sourceTwo) == false)
 			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}	
 
 
 	
-	@Override public boolean shouldWrite(MatInfo sourceOne, SchedeekInfo sourceTwo) {		
+	@Override public boolean shouldWrite(MatlisInfo sourceOne, SchedeekInfo sourceTwo) {		
 		return (sourceOne.codOwner == sourceTwo.codOwner);
 	}
 }
