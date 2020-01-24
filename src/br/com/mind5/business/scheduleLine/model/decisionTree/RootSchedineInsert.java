@@ -120,7 +120,7 @@ public final class RootSchedineInsert extends DeciTreeWriteTemplate<SchedineInfo
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
+		checkerOption.expectedResult = ModelCheckerOption.NOT_FOUND;	
 		checker = new SchedineCheckSchedarch(checkerOption);
 		queue.add(checker);		
 		
