@@ -60,6 +60,7 @@ public final class UserSelectSingle extends DaoStmtTemplate<UserInfo> {
 				
 				do {
 					UserInfo dataInfo = new UserInfo();
+					
 					dataInfo.codOwner = stmtResult.getLong(UserDbTableColumn.COL_COD_OWNER);
 					dataInfo.codUser = stmtResult.getLong(UserDbTableColumn.COL_COD_USER);									
 					dataInfo.recordMode = stmtResult.getString(UserDbTableColumn.COL_RECORD_MODE);
