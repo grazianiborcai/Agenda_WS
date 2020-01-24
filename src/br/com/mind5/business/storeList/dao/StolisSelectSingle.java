@@ -47,7 +47,7 @@ public final class StolisSelectSingle extends DaoStmtTemplate<StolisInfo> {
 	@Override protected String buildWhereClauseHook(String tableName, StolisInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
 		
-		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
+		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
 		DaoStmtWhere whereClause = new StolisWhere(whereOption, tableName, recordInfo);

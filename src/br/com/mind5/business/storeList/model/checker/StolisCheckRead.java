@@ -17,6 +17,7 @@ public final class StolisCheckRead extends ModelCheckerTemplateSimpleV2<StolisIn
 	
 	@Override protected boolean checkHook(StolisInfo recordInfo, Connection conn, String schemaName) {	
 		if (recordInfo.codOwner 	<= 0 	|| 
+			recordInfo.codStore 	<= 0 	|| 	
 			recordInfo.username 	== null ||
 			recordInfo.codLanguage 	== null		)	
 			
