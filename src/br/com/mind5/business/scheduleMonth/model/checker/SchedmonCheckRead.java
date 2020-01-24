@@ -4,13 +4,13 @@ import java.sql.Connection;
 
 import br.com.mind5.business.scheduleMonth.info.SchedmonInfo;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple_;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class SchedmonCheckRead extends ModelCheckerTemplateSimple_<SchedmonInfo> {
+public final class SchedmonCheckRead extends ModelCheckerTemplateSimpleV2<SchedmonInfo> {
 
-	public SchedmonCheckRead() {
-		super();
+	public SchedmonCheckRead(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
@@ -30,13 +30,7 @@ public final class SchedmonCheckRead extends ModelCheckerTemplateSimple_<Schedmo
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.SCHEDULE_MONTH_FIELD_EMPTY;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
+	@Override protected int getCodMsgOnResultFalseHook() {
 		return SystemCode.SCHEDULE_MONTH_FIELD_EMPTY;
 	}
 }

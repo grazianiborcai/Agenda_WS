@@ -7,12 +7,12 @@ import br.com.mind5.model.action.ActionStdHelperMerge;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class StdSchedmonMergeMat implements ActionStd<SchedmonInfo> {
+final class StdSchedmonMergeMatlis implements ActionStd<SchedmonInfo> {
 	private ActionStd<SchedmonInfo> actionHelper;	
 	
 	
-	public StdSchedmonMergeMat(DeciTreeOption<SchedmonInfo> option) {			
-		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiSchedmonMergeMat(option.conn, option.schemaName));
+	public StdSchedmonMergeMatlis(DeciTreeOption<SchedmonInfo> option) {			
+		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiSchedmonMergeMatlis(option.conn, option.schemaName));
 	}
 	
 	

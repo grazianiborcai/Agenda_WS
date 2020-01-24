@@ -3,7 +3,7 @@ package br.com.mind5.business.scheduleMonth.info;
 import java.util.List;
 
 import br.com.mind5.business.employeeList.info.EmplisInfo;
-import br.com.mind5.business.material.info.MatInfo;
+import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.business.scheduleMonthData.info.SchedonthatInfo;
 import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.info.InfoMerger;
@@ -23,15 +23,15 @@ public final class SchedmonMerger {
 	
 	
 	
-	public static SchedmonInfo mergeWithMat(MatInfo sourceOne, SchedmonInfo sourceTwo) {
-		InfoMerger<SchedmonInfo, MatInfo> merger = new SchedmonMergerMat();		
+	public static SchedmonInfo mergeWithMatlis(MatlisInfo sourceOne, SchedmonInfo sourceTwo) {
+		InfoMerger<SchedmonInfo, MatlisInfo> merger = new SchedmonMergerMatlis();		
 		return merger.merge(sourceOne, sourceTwo);
 	}
 	
 	
 	
-	public static List<SchedmonInfo> mergeWithMat(List<MatInfo> sourceOnes, List<SchedmonInfo> sourceTwos) {
-		InfoMerger<SchedmonInfo, MatInfo> merger = new SchedmonMergerMat();		
+	public static List<SchedmonInfo> mergeWithMatlis(List<MatlisInfo> sourceOnes, List<SchedmonInfo> sourceTwos) {
+		InfoMerger<SchedmonInfo, MatlisInfo> merger = new SchedmonMergerMatlis();		
 		return merger.merge(sourceOnes, sourceTwos);
 	}	
 	

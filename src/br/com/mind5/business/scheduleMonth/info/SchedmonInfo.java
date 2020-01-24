@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.employeeList.info.EmplisInfo;
-import br.com.mind5.business.material.info.MatInfo;
+import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.business.scheduleMonthData.info.SchedonthatInfo;
 import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.common.DefaultValue;
@@ -19,7 +19,7 @@ public final class SchedmonInfo extends InfoRecord implements Cloneable {
 	public int month;
 	public List<SchedonthatInfo> schedonthats;
 	public List<StolisInfo> stolises;
-	public List<MatInfo> mats;
+	public List<MatlisInfo> matlises;
 	public List<EmplisInfo> emplises;
 	public String username;	
 	
@@ -35,7 +35,7 @@ public final class SchedmonInfo extends InfoRecord implements Cloneable {
 		month = DefaultValue.number();
 		schedonthats = DefaultValue.list();
 		stolises = DefaultValue.list();
-		mats = DefaultValue.list();
+		matlises = DefaultValue.list();
 		emplises = DefaultValue.list();
 	}
 	
@@ -58,7 +58,7 @@ public final class SchedmonInfo extends InfoRecord implements Cloneable {
 		
 		deepCopy.schedonthats = cloneSchedonthat(schedonthats);
 		deepCopy.stolises = cloneStolis(stolises);
-		deepCopy.mats = cloneMat(mats);
+		deepCopy.matlises = cloneMat(matlises);
 		deepCopy.emplises = cloneEmplis(emplises);
 		
 		return deepCopy;
@@ -100,15 +100,15 @@ public final class SchedmonInfo extends InfoRecord implements Cloneable {
 	
 	
 	
-	private List<MatInfo> cloneMat(List<MatInfo> recordInfos) throws CloneNotSupportedException {
+	private List<MatlisInfo> cloneMat(List<MatlisInfo> recordInfos) throws CloneNotSupportedException {
 		if (recordInfos == null)
 			return null;
 		
 		
-		List<MatInfo> results = new ArrayList<>();
+		List<MatlisInfo> results = new ArrayList<>();
 		
-		for (MatInfo eachRecord : recordInfos) {
-			MatInfo copy = (MatInfo) eachRecord.clone();
+		for (MatlisInfo eachRecord : recordInfos) {
+			MatlisInfo copy = (MatlisInfo) eachRecord.clone();
 			results.add(copy);
 		}
 		

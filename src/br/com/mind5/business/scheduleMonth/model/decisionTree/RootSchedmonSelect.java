@@ -5,13 +5,14 @@ import java.util.List;
 
 import br.com.mind5.business.scheduleMonth.info.SchedmonInfo;
 import br.com.mind5.business.scheduleMonth.model.action.LazySchedmonMergeEmplis;
-import br.com.mind5.business.scheduleMonth.model.action.LazySchedmonMergeMat;
+import br.com.mind5.business.scheduleMonth.model.action.LazySchedmonMergeMatlis;
 import br.com.mind5.business.scheduleMonth.model.action.LazySchedmonMergeStolis;
 import br.com.mind5.business.scheduleMonth.model.action.StdSchedyearMergeSchedonthat;
 import br.com.mind5.business.scheduleMonth.model.checker.SchedmonCheckRead;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
@@ -27,8 +28,13 @@ public final class RootSchedmonSelect extends DeciTreeWriteTemplate<SchedmonInfo
 	@Override protected ModelChecker<SchedmonInfo> buildDecisionCheckerHook(DeciTreeOption<SchedmonInfo> option) {
 		List<ModelChecker<SchedmonInfo>> queue = new ArrayList<>();		
 		ModelChecker<SchedmonInfo> checker;	
+		ModelCheckerOption checkerOption;
 		
-		checker = new SchedmonCheckRead();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new SchedmonCheckRead(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
@@ -41,12 +47,12 @@ public final class RootSchedmonSelect extends DeciTreeWriteTemplate<SchedmonInfo
 		
 		ActionStd<SchedmonInfo> mergeSchedonthat = new StdSchedyearMergeSchedonthat(option);
 		ActionLazy<SchedmonInfo> mergeStolis = new LazySchedmonMergeStolis(option.conn, option.schemaName);
-		ActionLazy<SchedmonInfo> mergeMat = new LazySchedmonMergeMat(option.conn, option.schemaName);
+		ActionLazy<SchedmonInfo> mergeMatlis = new LazySchedmonMergeMatlis(option.conn, option.schemaName);
 		ActionLazy<SchedmonInfo> mergeEmplis = new LazySchedmonMergeEmplis(option.conn, option.schemaName);
 		
 		mergeSchedonthat.addPostAction(mergeStolis);
-		mergeStolis.addPostAction(mergeMat);
-		mergeMat.addPostAction(mergeEmplis);
+		mergeStolis.addPostAction(mergeMatlis);
+		mergeMatlis.addPostAction(mergeEmplis);
 		
 		actions.add(mergeSchedonthat);
 		return actions;
