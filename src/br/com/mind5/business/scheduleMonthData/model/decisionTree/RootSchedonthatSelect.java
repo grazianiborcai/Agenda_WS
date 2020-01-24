@@ -12,6 +12,7 @@ import br.com.mind5.business.scheduleMonthData.model.checker.SchedonthatCheckRea
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
@@ -27,8 +28,13 @@ public final class RootSchedonthatSelect extends DeciTreeWriteTemplate<Schedonth
 	@Override protected ModelChecker<SchedonthatInfo> buildDecisionCheckerHook(DeciTreeOption<SchedonthatInfo> option) {
 		List<ModelChecker<SchedonthatInfo>> queue = new ArrayList<>();		
 		ModelChecker<SchedonthatInfo> checker;	
+		ModelCheckerOption checkerOption;
 		
-		checker = new SchedonthatCheckRead();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new SchedonthatCheckRead(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
