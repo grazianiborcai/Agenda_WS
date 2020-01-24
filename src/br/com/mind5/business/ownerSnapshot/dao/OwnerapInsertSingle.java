@@ -10,118 +10,66 @@ import java.util.List;
 import br.com.mind5.business.ownerSnapshot.info.OwnerapInfo;
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoStmt;
-import br.com.mind5.dao.DaoStmtHelper_;
+import br.com.mind5.dao.DaoResultParserV2;
 import br.com.mind5.dao.DaoStmtParamTranslator;
+import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.common.DaoDbTable;
-import br.com.mind5.dao.common.DaoDbTableColumnAll;
-import br.com.mind5.dao.obsolete.DaoResultParser_;
-import br.com.mind5.dao.obsolete.DaoStmtOption_;
 
-public final class OwnerapInsertSingle implements DaoStmt<OwnerapInfo> {	
-	private DaoStmt<OwnerapInfo> stmtSql;
-	private DaoStmtOption_<OwnerapInfo> stmtOption;
-	
+public final class OwnerapInsertSingle extends DaoStmtTemplate<OwnerapInfo> {	
+	private final String MAIN_TABLE = DaoDbTable.OWNER_SNAPSHOT_TABLE;	
 	
 	
 	public OwnerapInsertSingle(Connection conn, OwnerapInfo recordInfo, String schemaName) {
-		buildStmtOption(conn, recordInfo, schemaName);
-		buildStmt();
-		
+		super(conn, recordInfo, schemaName);
 	}
 	
 	
 	
-	private void buildStmtOption(Connection conn, OwnerapInfo recordInfo, String schemaName) {
-		this.stmtOption = new DaoStmtOption_<>();
-		this.stmtOption.conn = conn;
-		this.stmtOption.recordInfo = recordInfo;
-		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = DaoDbTable.OWNER_SNAPSHOT_TABLE;
-		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(this.stmtOption.tableName);
-		this.stmtOption.stmtParamTranslator = new ParamTranslator();
-		this.stmtOption.resultParser = new ResultParser(recordInfo);
-		this.stmtOption.whereClause = null;
+	@Override protected String getTableNameHook() {
+		return MAIN_TABLE;
 	}
 	
 	
 	
-	private void buildStmt() {
-		this.stmtSql = new DaoStmtHelper_<>(DaoOperation.INSERT, this.stmtOption, this.getClass());
-	}
-		
-	
-	
-	@Override public void generateStmt() throws SQLException {
-		stmtSql.generateStmt();
-		
-	}
-
-	
-	
-	@Override public boolean checkStmtGeneration() {
-		return stmtSql.checkStmtGeneration();
-	}
-
-	
-	
-	@Override public void executeStmt() throws SQLException {
-		stmtSql.executeStmt();
-	}
-
-	
-	
-	@Override public List<OwnerapInfo> getResultset() {
-		return stmtSql.getResultset();
+	@Override protected DaoOperation getOperationHook() {
+		return DaoOperation.INSERT;
 	}
 	
 	
 	
-	private class ParamTranslator implements DaoStmtParamTranslator<OwnerapInfo> {		
-		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, OwnerapInfo recordInfo) throws SQLException {
-			
-			int i = 1;
-			DaoFormatter.numberToStmt(stmt, i++, recordInfo.codOwner);
-			DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.lastChanged);
-			stmt.setString(i++, recordInfo.recordMode);
-			DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPerson);
-			DaoFormatter.numberToStmt(stmt, i++, recordInfo.codCompany);
-			DaoFormatter.numberToStmt(stmt, i++, recordInfo.codUser);
-			DaoFormatter.numberToStmt(stmt, i++, recordInfo.lastChangedBy);
-			DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.createdOn);
-			DaoFormatter.numberToStmt(stmt, i++, recordInfo.createdBy);
-			DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPersonSnapshot);
-			DaoFormatter.numberToStmt(stmt, i++, recordInfo.codUserSnapshot);
-			DaoFormatter.numberToStmt(stmt, i++, recordInfo.codCompanySnapshot);
-			
-			return stmt;
-		}		
-	}
+	@Override protected DaoStmtParamTranslator<OwnerapInfo> getParamTranslatorHook() {
+		return new DaoStmtParamTranslator<OwnerapInfo>() {		
+			@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, OwnerapInfo recordInfo) throws SQLException {					
+				int i = 1;
+				
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codOwner);
+				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.lastChanged);
+				stmt.setString(i++, recordInfo.recordMode);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPerson);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codCompany);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codUser);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.lastChangedBy);
+				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.createdOn);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.createdBy);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPersonSnapshot);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codUserSnapshot);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codCompanySnapshot);
+				
+				return stmt;
+			}		
+		};
+	}	
 	
 	
 	
-	@Override public DaoStmt<OwnerapInfo> getNewInstance() {
-		return new OwnerapInsertSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
-	}
-	
-	
-	
-	
-	
-	private static class ResultParser implements DaoResultParser_<OwnerapInfo> {
-		private OwnerapInfo recordInfo;
-		
-		public ResultParser(OwnerapInfo recordToParse) {
-			recordInfo = recordToParse;
-		}
-		
-		
-		
-		@Override public List<OwnerapInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
-			List<OwnerapInfo> finalResult = new ArrayList<>();
-			recordInfo.codSnapshot = lastId;
-			finalResult.add(recordInfo);			
-			return finalResult;
-		}
+	@Override protected DaoResultParserV2<OwnerapInfo> getResultParserHook() {
+		return new DaoResultParserV2<OwnerapInfo>() {		
+			@Override public List<OwnerapInfo> parseResult(OwnerapInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
+				List<OwnerapInfo> finalResult = new ArrayList<>();
+				recordInfo.codSnapshot = lastId;
+				finalResult.add(recordInfo);			
+				return finalResult;
+			}
+		};
 	}
 }
