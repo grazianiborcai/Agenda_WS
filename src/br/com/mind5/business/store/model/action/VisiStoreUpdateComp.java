@@ -1,7 +1,6 @@
 package br.com.mind5.business.store.model.action;
 
 import java.sql.Connection;
-import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.company.info.CompCopier;
@@ -21,13 +20,7 @@ final class VisiStoreUpdateComp extends ActionVisitorTemplateAction<StoreInfo, C
 	
 	
 	@Override protected List<CompInfo> toActionClassHook(List<StoreInfo> recordInfos) {
-		List<CompInfo> results = new ArrayList<>();
-		
-		for (StoreInfo eachRecord : recordInfos) {
-			results.add(CompCopier.copyFromStore(eachRecord));
-		}		
-		
-		return results;
+		return CompCopier.copyFromStore(recordInfos);
 	}
 	
 	
