@@ -10,6 +10,7 @@ import br.com.mind5.business.scheduleYearData.model.checker.SchedyeratCheckRead;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
@@ -25,8 +26,13 @@ public final class RootSchedyeratSelect extends DeciTreeWriteTemplate<Schedyerat
 	@Override protected ModelChecker<SchedyeratInfo> buildDecisionCheckerHook(DeciTreeOption<SchedyeratInfo> option) {
 		List<ModelChecker<SchedyeratInfo>> queue = new ArrayList<>();		
 		ModelChecker<SchedyeratInfo> checker;	
+		ModelCheckerOption checkerOption;
 		
-		checker = new SchedyeratCheckRead();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new SchedyeratCheckRead(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);

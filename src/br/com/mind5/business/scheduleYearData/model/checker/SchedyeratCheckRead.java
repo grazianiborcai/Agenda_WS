@@ -4,13 +4,13 @@ import java.sql.Connection;
 
 import br.com.mind5.business.scheduleYearData.info.SchedyeratInfo;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple_;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class SchedyeratCheckRead extends ModelCheckerTemplateSimple_<SchedyeratInfo> {
+public final class SchedyeratCheckRead extends ModelCheckerTemplateSimpleV2<SchedyeratInfo> {
 
-	public SchedyeratCheckRead() {
-		super();
+	public SchedyeratCheckRead(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
@@ -29,13 +29,7 @@ public final class SchedyeratCheckRead extends ModelCheckerTemplateSimple_<Sched
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.SCHEDULE_YEAR_DATA_FIELD_EMPTY;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
+	@Override protected int getCodMsgOnResultFalseHook() {
 		return SystemCode.SCHEDULE_YEAR_DATA_FIELD_EMPTY;
 	}
 }
