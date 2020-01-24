@@ -7,7 +7,7 @@ import br.com.mind5.info.InfoUniquifier;
 final class CompMergerToUpdate extends InfoMergerTemplate<CompInfo, CompInfo> {
 
 	@Override protected InfoMergerVisitor<CompInfo, CompInfo> getVisitorHook() {
-		return new OwnerVisiMergeToUpdate();
+		return new CompVisiMergeToUpdate();
 	}
 	
 	

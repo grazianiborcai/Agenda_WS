@@ -6,7 +6,7 @@ import org.apache.logging.log4j.Logger;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.InfoMergerVisitor;
 
-final class OwnerVisiMergeToUpdate implements InfoMergerVisitor<CompInfo, CompInfo> {
+final class CompVisiMergeToUpdate implements InfoMergerVisitor<CompInfo, CompInfo> {
 
 	@Override public CompInfo writeRecord(CompInfo sourceOne, CompInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);		
@@ -24,6 +24,7 @@ final class OwnerVisiMergeToUpdate implements InfoMergerVisitor<CompInfo, CompIn
 	
 	private CompInfo merge(CompInfo sourceOne, CompInfo sourceTwo) {
 		CompInfo result = makeClone(sourceTwo);		
+		
 		result.codEntityCateg = sourceOne.codEntityCateg;
 		result.createdBy = sourceOne.createdBy;
 		result.createdOn = sourceOne.createdOn;

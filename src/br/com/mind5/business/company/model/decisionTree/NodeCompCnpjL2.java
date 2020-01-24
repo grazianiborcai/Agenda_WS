@@ -9,7 +9,7 @@ import br.com.mind5.business.company.model.checker.CompCheckCnpjLength;
 import br.com.mind5.business.company.model.checker.CompCheckCnpjNumber;
 import br.com.mind5.business.company.model.checker.CompCheckCnpjOnlyNumber;
 import br.com.mind5.business.company.model.checker.CompCheckCnpjSequence;
-import br.com.mind5.business.company.model.checker.CompCheckExistCnpj;
+import br.com.mind5.business.company.model.checker.CompCheckCnpjExist;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -62,7 +62,7 @@ public final class NodeCompCnpjL2 extends DeciTreeWriteTemplate<CompInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.NOT_FOUND;		
-		checker = new CompCheckExistCnpj(checkerOption);
+		checker = new CompCheckCnpjExist(checkerOption);
 		queue.add(checker);	
 		
 		return new ModelCheckerQueue<>(queue);
