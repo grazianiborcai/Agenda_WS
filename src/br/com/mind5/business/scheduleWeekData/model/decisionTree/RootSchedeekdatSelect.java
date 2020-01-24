@@ -12,6 +12,7 @@ import br.com.mind5.business.scheduleWeekData.model.checker.SchedeekdatCheckRead
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
@@ -27,8 +28,13 @@ public final class RootSchedeekdatSelect extends DeciTreeWriteTemplate<Schedeekd
 	@Override protected ModelChecker<SchedeekdatInfo> buildDecisionCheckerHook(DeciTreeOption<SchedeekdatInfo> option) {
 		List<ModelChecker<SchedeekdatInfo>> queue = new ArrayList<>();		
 		ModelChecker<SchedeekdatInfo> checker;	
+		ModelCheckerOption checkerOption;
 		
-		checker = new SchedeekdatCheckRead();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
+		checker = new SchedeekdatCheckRead(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);

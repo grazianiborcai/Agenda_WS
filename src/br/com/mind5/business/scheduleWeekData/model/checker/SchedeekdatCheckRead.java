@@ -4,13 +4,13 @@ import java.sql.Connection;
 
 import br.com.mind5.business.scheduleWeekData.info.SchedeekdatInfo;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple_;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class SchedeekdatCheckRead extends ModelCheckerTemplateSimple_<SchedeekdatInfo> {
+public final class SchedeekdatCheckRead extends ModelCheckerTemplateSimpleV2<SchedeekdatInfo> {
 
-	public SchedeekdatCheckRead() {
-		super();
+	public SchedeekdatCheckRead(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
@@ -31,13 +31,7 @@ public final class SchedeekdatCheckRead extends ModelCheckerTemplateSimple_<Sche
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.SCHEDULE_WEEK_DATA_FIELD_EMPTY;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
+	@Override protected int getCodMsgOnResultFalseHook() {
 		return SystemCode.SCHEDULE_WEEK_DATA_FIELD_EMPTY;
 	}
 }
