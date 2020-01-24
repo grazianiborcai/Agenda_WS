@@ -8,7 +8,7 @@ final class SchedeekVisiMergeMatlis implements InfoMergerVisitor<SchedeekInfo, M
 
 	@Override public SchedeekInfo writeRecord(MatlisInfo sourceOne, SchedeekInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);
-		sourceTwo.mats.add(sourceOne);
+		sourceTwo.matlises.add(sourceOne);
 
 		return sourceTwo;
 	}

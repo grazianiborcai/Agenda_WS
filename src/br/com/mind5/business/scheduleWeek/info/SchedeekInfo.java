@@ -23,7 +23,7 @@ public final class SchedeekInfo extends InfoRecord implements Cloneable {
 	public List<SchedeekdatInfo> schedeekdats;
 	public List<StolisInfo> stolises;
 	public List<CuslisInfo> cuslises;
-	public List<MatlisInfo> mats;
+	public List<MatlisInfo> matlises;
 	public List<EmplisInfo> emplises;
 	public String username;
 	
@@ -41,7 +41,7 @@ public final class SchedeekInfo extends InfoRecord implements Cloneable {
 		weekMonth = DefaultValue.number();
 		schedeekdats = DefaultValue.list();
 		stolises = DefaultValue.list();
-		mats = DefaultValue.list();
+		matlises = DefaultValue.list();
 		emplises = DefaultValue.list();
 		cuslises = DefaultValue.list();
 	}
@@ -65,7 +65,7 @@ public final class SchedeekInfo extends InfoRecord implements Cloneable {
 		
 		deepCopy.schedeekdats = cloneSchedeekdat(schedeekdats);
 		deepCopy.stolises = cloneStolis(stolises);
-		deepCopy.mats = cloneMat(mats);
+		deepCopy.matlises = cloneMat(matlises);
 		deepCopy.emplises = cloneEmplis(emplises);
 		deepCopy.cuslises = cloneCuslis(cuslises);
 		
