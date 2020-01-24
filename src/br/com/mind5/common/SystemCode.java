@@ -806,7 +806,7 @@ public final class SystemCode {
 	// Store Search
 	public static final int STORE_SEARCH_MANDATORY_FIELD_EMPTY 			= 6600;
 	
-	//Comapny Search
+	//Company Search
 	public static final int COMPANY_SEARCH_MANDATORY_FIELD_EMPTY 		= 6650;
 	
 	//Person Search
@@ -1010,4 +1010,7 @@ public final class SystemCode {
 	
 	//Order Reserve
 	public static final int ORDER_RESERVE_MANDATORY_FIELD_EMPTY			= 10200;
+	
+	//Company Conflict
+	public static final int COMPANY_CONFLICT_MANDATORY_FIELD_EMPTY 		= 10250;
 }
