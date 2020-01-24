@@ -3,13 +3,13 @@ package br.com.mind5.business.scheduleLineSnapshot.info;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import br.com.mind5.business.material.info.MatInfo;
+import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.InfoMergerVisitor;
 
-final class SchedinapVisiMergeMat implements InfoMergerVisitor<SchedinapInfo, MatInfo> {
+final class SchedinapVisiMergeMatlis implements InfoMergerVisitor<SchedinapInfo, MatlisInfo> {
 
-	@Override public SchedinapInfo writeRecord(MatInfo sourceOne, SchedinapInfo sourceTwo) {
+	@Override public SchedinapInfo writeRecord(MatlisInfo sourceOne, SchedinapInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);
 		
 		SchedinapInfo resultInfo = makeClone(sourceTwo);
@@ -20,7 +20,7 @@ final class SchedinapVisiMergeMat implements InfoMergerVisitor<SchedinapInfo, Ma
 	
 	
 	
-	private void checkArgument(MatInfo sourceOne, SchedinapInfo sourceTwo) {
+	private void checkArgument(MatlisInfo sourceOne, SchedinapInfo sourceTwo) {
 		if (shouldWrite(sourceOne, sourceTwo) == false)
 			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}	
@@ -39,7 +39,7 @@ final class SchedinapVisiMergeMat implements InfoMergerVisitor<SchedinapInfo, Ma
 
 
 	
-	@Override public boolean shouldWrite(MatInfo sourceOne, SchedinapInfo sourceTwo) {
+	@Override public boolean shouldWrite(MatlisInfo sourceOne, SchedinapInfo sourceTwo) {
 		return (sourceOne.codOwner == sourceTwo.codOwner && 
 				sourceOne.codMat   == sourceTwo.codMat		);
 	}

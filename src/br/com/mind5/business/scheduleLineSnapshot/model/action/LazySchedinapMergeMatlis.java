@@ -9,9 +9,9 @@ import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazySchedinapMergeMat extends ActionLazyTemplate<SchedinapInfo, SchedinapInfo> {
+public final class LazySchedinapMergeMatlis extends ActionLazyTemplate<SchedinapInfo, SchedinapInfo> {
 	
-	public LazySchedinapMergeMat(Connection conn, String schemaName) {
+	public LazySchedinapMergeMatlis(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazySchedinapMergeMat extends ActionLazyTemplate<SchedinapInf
 	
 	
 	@Override protected ActionStd<SchedinapInfo> getInstanceOfActionHook(DeciTreeOption<SchedinapInfo> option) {
-		return new StdSchedinapMergeMat(option);
+		return new StdSchedinapMergeMatlis(option);
 	}
 	
 	

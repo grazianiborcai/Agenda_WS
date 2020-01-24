@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.com.mind5.business.customerList.info.CuslisInfo;
 import br.com.mind5.business.employeeList.info.EmplisInfo;
-import br.com.mind5.business.material.info.MatInfo;
+import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.business.materialSnapshot.info.MatsnapInfo;
 import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.info.InfoMerger;
@@ -81,15 +81,15 @@ public final class SchedinapMerger {
 	
 	
 	
-	public static SchedinapInfo mergeWithMat(MatInfo sourceOne, SchedinapInfo sourceTwo) {
-		InfoMerger<SchedinapInfo, MatInfo> merger = new SchedinapMergerMat();		
+	public static SchedinapInfo mergeWithMatlis(MatlisInfo sourceOne, SchedinapInfo sourceTwo) {
+		InfoMerger<SchedinapInfo, MatlisInfo> merger = new SchedinapMergerMatlis();		
 		return merger.merge(sourceOne, sourceTwo);
 	}
 	
 	
 	
-	public static List<SchedinapInfo> mergeWithMat(List<MatInfo> sourceOnes, List<SchedinapInfo> sourceTwos) {
-		InfoMerger<SchedinapInfo, MatInfo> merger = new SchedinapMergerMat();		
+	public static List<SchedinapInfo> mergeWithMatlis(List<MatlisInfo> sourceOnes, List<SchedinapInfo> sourceTwos) {
+		InfoMerger<SchedinapInfo, MatlisInfo> merger = new SchedinapMergerMatlis();		
 		return merger.merge(sourceOnes, sourceTwos);
 	}
 	
