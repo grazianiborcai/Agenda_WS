@@ -4,13 +4,13 @@ import java.sql.Connection;
 
 import br.com.mind5.business.scheduleMoviment.info.SchedovmInfo;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple_;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class SchedovmCheckHasCounter extends ModelCheckerTemplateSimple_<SchedovmInfo> {
+public final class SchedovmCheckHasCounter extends ModelCheckerTemplateSimpleV2<SchedovmInfo> {
 
-	public SchedovmCheckHasCounter() {
-		super();
+	public SchedovmCheckHasCounter(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
@@ -28,13 +28,7 @@ public final class SchedovmCheckHasCounter extends ModelCheckerTemplateSimple_<S
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.SCHEDULE_MOV_MANDATORY_FIELD_EMPTY;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
+	@Override protected int getCodMsgOnResultFalseHook() {
 		return SystemCode.SCHEDULE_MOV_MANDATORY_FIELD_EMPTY;
 	}
 }

@@ -9,6 +9,7 @@ import br.com.mind5.business.scheduleMoviment.model.action.StdSchedovmSuccess;
 import br.com.mind5.business.scheduleMoviment.model.checker.SchedovmCheckHasCounter;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
@@ -24,8 +25,13 @@ public final class NodeSchedovmInsert extends DeciTreeWriteTemplate<SchedovmInfo
 	@Override protected ModelChecker<SchedovmInfo> buildDecisionCheckerHook(DeciTreeOption<SchedovmInfo> option) {
 		List<ModelChecker<SchedovmInfo>> queue = new ArrayList<>();		
 		ModelChecker<SchedovmInfo> checker;	
+		ModelCheckerOption checkerOption;
 		
-		checker = new SchedovmCheckHasCounter();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new SchedovmCheckHasCounter(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
