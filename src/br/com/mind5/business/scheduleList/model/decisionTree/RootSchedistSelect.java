@@ -6,6 +6,7 @@ import java.util.List;
 import br.com.mind5.business.scheduleList.info.SchedistInfo;
 import br.com.mind5.business.scheduleList.model.action.StdSchedistMergeToSelect;
 import br.com.mind5.business.scheduleList.model.checker.SchedistCheckLangu;
+import br.com.mind5.business.scheduleList.model.checker.SchedistCheckOwner;
 import br.com.mind5.business.scheduleList.model.checker.SchedistCheckRead;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
@@ -23,20 +24,29 @@ public final class RootSchedistSelect extends DeciTreeWriteTemplate<SchedistInfo
 	
 	
 	@Override protected ModelChecker<SchedistInfo> buildDecisionCheckerHook(DeciTreeOption<SchedistInfo> option) {
-		final boolean EXIST_ON_DB = true;
-		
 		List<ModelChecker<SchedistInfo>> queue = new ArrayList<>();		
 		ModelChecker<SchedistInfo> checker;
 		ModelCheckerOption checkerOption;
 		
-		checker = new SchedistCheckRead();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new SchedistCheckRead(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;	
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
 		checker = new SchedistCheckLangu(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
+		checker = new SchedistCheckOwner(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);

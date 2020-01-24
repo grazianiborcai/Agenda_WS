@@ -4,13 +4,13 @@ import java.sql.Connection;
 
 import br.com.mind5.business.scheduleList.info.SchedistInfo;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple_;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class SchedistCheckRead extends ModelCheckerTemplateSimple_<SchedistInfo> {
+public final class SchedistCheckRead extends ModelCheckerTemplateSimpleV2<SchedistInfo> {
 
-	public SchedistCheckRead() {
-		super();
+	public SchedistCheckRead(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
@@ -29,13 +29,7 @@ public final class SchedistCheckRead extends ModelCheckerTemplateSimple_<Schedis
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.SCHEDULE_LIST_MANDATORY_FIELD_EMPTY;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
+	@Override protected int getCodMsgOnResultFalseHook() {
 		return SystemCode.SCHEDULE_LIST_MANDATORY_FIELD_EMPTY;
 	}
 }
