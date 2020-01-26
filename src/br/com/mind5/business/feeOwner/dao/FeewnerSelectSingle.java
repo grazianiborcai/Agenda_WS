@@ -7,125 +7,70 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.feeOwner.info.FeewnerInfo;
-import br.com.mind5.dao.DaoJoin;
+import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoStmt;
-import br.com.mind5.dao.DaoStmtHelper_;
+import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
-import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.dao.common.DaoOptionValue;
-import br.com.mind5.dao.obsolete.DaoResultParser_;
-import br.com.mind5.dao.obsolete.DaoStmtOption_;
 
-public final class FeewnerSelectSingle implements DaoStmt<FeewnerInfo> {
-	private final static String LT_ATTR = DaoDbTable.FEE_OWNER_TABLE;
-	
-	private DaoStmt<FeewnerInfo> stmtSql;
-	private DaoStmtOption_<FeewnerInfo> stmtOption;
-	
+public final class FeewnerSelectSingle extends DaoStmtTemplate<FeewnerInfo> {
+	private final String MAIN_TABLE = DaoDbTable.FEE_OWNER_TABLE;
 	
 	
 	public FeewnerSelectSingle(Connection conn, FeewnerInfo recordInfo, String schemaName) {
-		buildStmtOption(conn, recordInfo, schemaName);
-		buildStmt();
+		super(conn, recordInfo, schemaName);
 	}
 	
 	
 	
-	private void buildStmtOption(Connection conn, FeewnerInfo recordInfo, String schemaName) {
-		this.stmtOption = new DaoStmtOption_<>();
-		this.stmtOption.conn = conn;
-		this.stmtOption.recordInfo = recordInfo;
-		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = LT_ATTR;
-		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(LT_ATTR);
-		this.stmtOption.stmtParamTranslator = null;
-		this.stmtOption.resultParser = new ResultParser();
-		this.stmtOption.whereClause = buildWhereClause();
-		this.stmtOption.joins = buildJoins();
+	@Override protected String getTableNameHook() {
+		return MAIN_TABLE;
 	}
 	
 	
 	
-	private String buildWhereClause() {
+	@Override protected DaoOperation getOperationHook() {
+		return DaoOperation.SELECT;
+	}
+	
+	
+	
+	@Override protected String buildWhereClauseHook(String tableName, FeewnerInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
-		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
+		
+		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new FeewnerWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
+		DaoStmtWhere whereClause = new FeewnerWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
 	
 	
-	private List<DaoJoin> buildJoins() {
-		List<DaoJoin> joins = new ArrayList<>();	
-		return joins;
-	}
-	
-	
-	
-	private void buildStmt() {
-		this.stmtSql = new DaoStmtHelper_<>(DaoOperation.SELECT, this.stmtOption, this.getClass());
-	}
-	
-	
-
-	@Override public void generateStmt() throws SQLException {
-		stmtSql.generateStmt();		
-	}
-
-	
-	
-	@Override public boolean checkStmtGeneration() {
-		return stmtSql.checkStmtGeneration();
-	}
-
-	
-	
-	@Override public void executeStmt() throws SQLException {
-		stmtSql.executeStmt();
-	}
-
-	
-	
-	@Override public List<FeewnerInfo> getResultset() {
-		return stmtSql.getResultset();
-	}
-	
-	
-	
-	@Override public DaoStmt<FeewnerInfo> getNewInstance() {
-		return new FeewnerSelectSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
-	}
-	
-	
-	
-	
-	
-	
-	private static class ResultParser implements DaoResultParser_<FeewnerInfo> {
-		private final boolean EMPTY_RESULT_SET = false;
-		
-		@Override public List<FeewnerInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
-			List<FeewnerInfo> finalResult = new ArrayList<>();
-			
-			if (stmtResult.next() == EMPTY_RESULT_SET)				
-				return finalResult;
-			
-			do {
-				FeewnerInfo dataInfo = new FeewnerInfo();
-				dataInfo.codOwner = stmtResult.getLong(FeewnerDbTableColumn.COL_COD_OWNER);
-				dataInfo.codCurr = stmtResult.getString(FeewnerDbTableColumn.COL_COD_CURR);
-				dataInfo.codFeeCateg = stmtResult.getString(FeewnerDbTableColumn.COL_COD_FEE_CATEG).charAt(0);
-				dataInfo.price = stmtResult.getDouble(FeewnerDbTableColumn.COL_VALUE);
+	@Override protected DaoResultParserV2<FeewnerInfo> getResultParserHook() {
+		return new DaoResultParserV2<FeewnerInfo>() {
+			@Override public List<FeewnerInfo> parseResult(FeewnerInfo redcordInfo, ResultSet stmtResult, long lastId) throws SQLException {
+				List<FeewnerInfo> finalResult = new ArrayList<>();
 				
-				finalResult.add(dataInfo);
-			} while (stmtResult.next());
-			
-			return finalResult;
-		}
+				if (stmtResult.next() == false)				
+					return finalResult;
+				
+				do {
+					FeewnerInfo dataInfo = new FeewnerInfo();
+					
+					dataInfo.codOwner = stmtResult.getLong(FeewnerDbTableColumn.COL_COD_OWNER);
+					dataInfo.codCurr = stmtResult.getString(FeewnerDbTableColumn.COL_COD_CURRENCY);
+					dataInfo.codFeeCateg = DaoFormatter.sqlToChar(stmtResult, FeewnerDbTableColumn.COL_COD_FEE_CATEG);
+					dataInfo.price = DaoFormatter.sqlToDouble(stmtResult, FeewnerDbTableColumn.COL_VALUE);
+					
+					finalResult.add(dataInfo);
+				} while (stmtResult.next());
+				
+				return finalResult;
+			}
+		};
 	}
 }

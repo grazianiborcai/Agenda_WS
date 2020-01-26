@@ -31,7 +31,7 @@ final class FeewnerWhere implements DaoStmtWhere {
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;
 					
-				case FeewnerDbTableColumn.COL_COD_CURR :
+				case FeewnerDbTableColumn.COL_COD_CURRENCY :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codCurr);
 					break;
 					

@@ -23,26 +23,28 @@ public final class RootFeewnerSelect extends DeciTreeReadTemplate<FeewnerInfo> {
 	
 	
 	@Override protected ModelChecker<FeewnerInfo> buildDecisionCheckerHook(DeciTreeOption<FeewnerInfo> option) {
-		final boolean EXIST_ON_DB = true;
-		
 		List<ModelChecker<FeewnerInfo>> queue = new ArrayList<>();		
 		ModelChecker<FeewnerInfo> checker;
 		ModelCheckerOption checkerOption;
-		
-		checker = new FeewnerCheckRead();
+
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new FeewnerCheckRead(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new FeewnerCheckOwner(checkerOption);
 		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new FeewnerCheckFeeCateg(checkerOption);
 		queue.add(checker);	
 		

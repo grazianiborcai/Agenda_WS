@@ -5,13 +5,13 @@ import java.sql.Connection;
 import br.com.mind5.business.feeOwner.info.FeewnerInfo;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple_;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class FeewnerCheckRead extends ModelCheckerTemplateSimple_<FeewnerInfo> {
+public final class FeewnerCheckRead extends ModelCheckerTemplateSimpleV2<FeewnerInfo> {
 
-	public FeewnerCheckRead() {
-		super();
+	public FeewnerCheckRead(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
@@ -29,13 +29,7 @@ public final class FeewnerCheckRead extends ModelCheckerTemplateSimple_<FeewnerI
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.MANDATORY_FIELD_EMPTY;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.MANDATORY_FIELD_EMPTY;
+	@Override protected int getCodMsgOnResultFalseHook() {
+		return SystemCode.STORE_FEE_MANDATORY_FIELD_EMPTY;
 	}
 }

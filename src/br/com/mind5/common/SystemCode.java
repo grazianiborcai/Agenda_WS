@@ -57,8 +57,6 @@ public final class SystemCode {
 	public static final int STORE_CNPJ_NOT_FOUND						= 1101;
 	public static final int STORE_ALREADY_EXIST 						= 1102;
 	public static final int STORE_NOT_FOUND 							= 1103;
-	public static final int STORE_FEE_ALREADY_EXIST 					= 1123;
-	public static final int STORE_FEE_NOT_FOUND 						= 1124;
 	public static final int STORE_TECH_FIELD_SHOULD_BE_EMPTY			= 1125;
 	public static final int STORE_HAS_ITEM 								= 1132;	
 	public static final int STORE_NO_ITEM_FOUND 						= 1133;	
@@ -1016,4 +1014,9 @@ public final class SystemCode {
 	
 	//Fee Default
 	public static final int FEE_DEFAULT_MANDATORY_FIELD_EMPTY 			= 10300;
+	
+	//Store Fee
+	public static final int STORE_FEE_ALREADY_EXIST 					= 10350; //1123;
+	public static final int STORE_FEE_NOT_FOUND 						= 10351; //1124;
+	public static final int STORE_FEE_MANDATORY_FIELD_EMPTY 			= 10352;
 }
