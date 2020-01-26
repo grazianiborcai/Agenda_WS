@@ -15,9 +15,9 @@ import br.com.mind5.security.user.model.action.LazyUserNodeSnapshot;
 import br.com.mind5.security.user.model.action.LazyUserNodeUpdatePerson;
 import br.com.mind5.security.user.model.action.LazyUserNodeUpsertAddress;
 import br.com.mind5.security.user.model.action.LazyUserNodeUpsertPhone;
-import br.com.mind5.security.user.model.checker.UserCheckExist;
 import br.com.mind5.security.user.model.checker.UserCheckOwner;
 import br.com.mind5.security.user.model.checker.UserCheckUpdate;
+import br.com.mind5.security.user.model.checker.UserCheckUsername;
 
 public final class RootUserUpdate extends DeciTreeWriteTemplate<UserInfo> {
 	
@@ -50,7 +50,7 @@ public final class RootUserUpdate extends DeciTreeWriteTemplate<UserInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
-		checker = new UserCheckExist(checkerOption);
+		checker = new UserCheckUsername(checkerOption);
 		queue.add(checker);	
 		
 		return new ModelCheckerQueue<>(queue);
