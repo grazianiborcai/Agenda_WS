@@ -4,34 +4,28 @@ import java.sql.Connection;
 
 import br.com.mind5.business.form.formPhone.info.FormPhoneInfo;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple_;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class FormPhoneCheckRead extends ModelCheckerTemplateSimple_<FormPhoneInfo> {
+public final class FormPhoneCheckRead extends ModelCheckerTemplateSimpleV2<FormPhoneInfo> {
 
-	public FormPhoneCheckRead() {
-		super();
+	public FormPhoneCheckRead(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
 	
 	@Override protected boolean checkHook(FormPhoneInfo recordInfo, Connection conn, String schemaName) {	
-		if (recordInfo.codCountry == null )			
-			return FAILED;
+		if ( recordInfo.codCountry == null )			
+			return super.FAILED;
 		
 		
-		return SUCCESS;
+		return super.SUCCESS;
 	}
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.MANDATORY_FIELD_EMPTY;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.MANDATORY_FIELD_EMPTY;
+	@Override protected int getCodMsgOnResultFalseHook() {
+		return SystemCode.FORM_PHONE_MANDATORY_FIELD_EMPTY;
 	}
 }

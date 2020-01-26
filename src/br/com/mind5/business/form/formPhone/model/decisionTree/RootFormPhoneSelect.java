@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.form.formPhone.info.FormPhoneInfo;
+import br.com.mind5.business.form.formPhone.model.action.StdFormPhoneSelect;
 import br.com.mind5.business.form.formPhone.model.checker.FormPhoneCheckCountry;
+import br.com.mind5.business.form.formPhone.model.checker.FormPhoneCheckExist;
 import br.com.mind5.business.form.formPhone.model.checker.FormPhoneCheckRead;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
@@ -22,20 +24,29 @@ public final class RootFormPhoneSelect extends DeciTreeReadTemplate<FormPhoneInf
 	
 	
 	@Override protected ModelChecker<FormPhoneInfo> buildDecisionCheckerHook(DeciTreeOption<FormPhoneInfo> option) {
-		final boolean EXIST = true;
-		
 		List<ModelChecker<FormPhoneInfo>> queue = new ArrayList<>();		
 		ModelChecker<FormPhoneInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
-		checker = new FormPhoneCheckRead();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new FormPhoneCheckRead(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST;	
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
 		checker = new FormPhoneCheckCountry(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
+		checker = new FormPhoneCheckExist(checkerOption);
 		queue.add(checker);
 		
 		
@@ -47,7 +58,9 @@ public final class RootFormPhoneSelect extends DeciTreeReadTemplate<FormPhoneInf
 	@Override protected List<ActionStd<FormPhoneInfo>> buildActionsOnPassedHook(DeciTreeOption<FormPhoneInfo> option) {
 		List<ActionStd<FormPhoneInfo>> actions = new ArrayList<>();
 		
-		actions.add(new NodeFormPhoneSelect(option).toAction());
+		ActionStd<FormPhoneInfo> select = new StdFormPhoneSelect(option);
+		
+		actions.add(select);
 		return actions;
 	}
 }

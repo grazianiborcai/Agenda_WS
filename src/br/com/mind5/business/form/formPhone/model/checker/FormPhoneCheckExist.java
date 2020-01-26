@@ -1,59 +1,35 @@
 package br.com.mind5.business.form.formPhone.model.checker;
 
-import java.sql.Connection;
-import java.util.ArrayList;
-
 import br.com.mind5.business.form.formPhone.info.FormPhoneInfo;
 import br.com.mind5.business.form.formPhone.model.action.StdFormPhoneSelect;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.common.SystemMessage;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateAction_;
+import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class FormPhoneCheckExist extends ModelCheckerTemplateAction_<FormPhoneInfo> {
+public final class FormPhoneCheckExist extends ModelCheckerTemplateActionV2<FormPhoneInfo, FormPhoneInfo> {
 	
 	public FormPhoneCheckExist(ModelCheckerOption option) {
-		super(option);
+		super(option, FormPhoneInfo.class);
 	}
 	
 	
 	
-	@Override protected ActionStd<FormPhoneInfo> buildActionHook(FormPhoneInfo recordInfo, Connection conn, String schemaName) {
-		DeciTreeOption<FormPhoneInfo> option = buildActionOption(recordInfo, conn, schemaName);
-		
-		ActionStd<FormPhoneInfo> actionSelect = new StdFormPhoneSelect(option);
-		return actionSelect;
+	@Override protected ActionStd<FormPhoneInfo> buildActionHook(DeciTreeOption<FormPhoneInfo> option) {
+		ActionStd<FormPhoneInfo> Select = new StdFormPhoneSelect(option);
+		return Select;
 	}
 	
 	
 	
-	private DeciTreeOption<FormPhoneInfo> buildActionOption(FormPhoneInfo recordInfo, Connection conn, String schemaName) {
-		DeciTreeOption<FormPhoneInfo> option = new DeciTreeOption<>();
-		option.recordInfos = new ArrayList<>();
-		option.recordInfos.add(recordInfo);
-		option.conn = conn;
-		option.schemaName = schemaName;
-		
-		return option;
-	}
+	@Override protected int getCodMsgOnResultTrueHook() {
+		return SystemCode.FORM_PHONE_ALREADY_EXIST;
+	}	
 	
 	
 	
-	@Override protected String makeFailExplanationHook(boolean checkerResult) {		
-		if (makeFailCodeHook(checkerResult) == SystemCode.FORM_ADDRESS_ALREADY_EXIST)
-			return SystemMessage.FORM_ADDRESS_ALREADY_EXIST;
-		
-		return SystemMessage.FORM_ADDRESS_NOT_FOUND;
-	}
-	
-	
-	
-	@Override protected int makeFailCodeHook(boolean checkerResult) {
-		if (checkerResult == ALREADY_EXIST)
-			return SystemCode.FORM_ADDRESS_ALREADY_EXIST;	
-			
-		return SystemCode.FORM_ADDRESS_NOT_FOUND;
+	@Override protected int getCodMsgOnResultFalseHook() {
+		return SystemCode.FORM_PHONE_NOT_FOUND;
 	}
 }

@@ -302,7 +302,6 @@ public final class SystemCode {
 	public static final int FORM_ADDRESS_ALREADY_EXIST					= 1700;
 	public static final int FORM_ADDRESS_NOT_FOUND						= 1701;
 	public static final int FORM_ADDRESS_INVALID						= 1702;
-	public static final int FORM_PHONE_INVALID							= 1703;
 	public static final int FORM_ADDRESS_OK								= 1704;
 	public static final int FORM_ADDRESS_MANDATORY_FIELD_EMPTY			= 1705;
 	
@@ -1020,4 +1019,11 @@ public final class SystemCode {
 	public static final int STORE_FEE_ALREADY_EXIST 					= 10350; //1123;
 	public static final int STORE_FEE_NOT_FOUND 						= 10351; //1124;
 	public static final int STORE_FEE_MANDATORY_FIELD_EMPTY 			= 10352;
+	
+	// Form Phone
+	public static final int FORM_PHONE_ALREADY_EXIST					= 10400;
+	public static final int FORM_PHONE_NOT_FOUND						= 10401;
+	public static final int FORM_PHONE_INVALID							= 10402;
+	public static final int FORM_PHONE_OK								= 10404;
+	public static final int FORM_PHONE_MANDATORY_FIELD_EMPTY			= 10405;
 }
