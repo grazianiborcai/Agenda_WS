@@ -39,10 +39,10 @@ public final class EmpmatDeleteSingle extends DaoStmtTemplate<EmpmatInfo> {
 	
 	@Override protected String buildWhereClauseHook(String tableName, EmpmatInfo recordInfo) {		
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
+		
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;	
-		whereOption.ignoreNonPrimaryKey = DaoOptionValue.IGNORE_NON_PK;
-		
+		whereOption.ignoreNonPrimaryKey = DaoOptionValue.IGNORE_NON_PK;		
 		
 		DaoStmtWhere whereClause = new EmpmatWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();

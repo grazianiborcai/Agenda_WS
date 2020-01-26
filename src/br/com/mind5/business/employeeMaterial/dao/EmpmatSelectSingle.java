@@ -40,6 +40,7 @@ public final class EmpmatSelectSingle extends DaoStmtTemplate<EmpmatInfo> {
 	
 	@Override protected String buildWhereClauseHook(String tableName, EmpmatInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
+		
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		

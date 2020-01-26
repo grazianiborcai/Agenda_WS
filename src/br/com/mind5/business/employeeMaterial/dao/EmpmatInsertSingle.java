@@ -36,6 +36,7 @@ public final class EmpmatInsertSingle extends DaoStmtTemplate<EmpmatInfo> {
 		return new DaoStmtParamTranslator<EmpmatInfo>() {			
 			@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, EmpmatInfo recordInfo) throws SQLException {				
 				int i = 1;
+				
 				stmt.setLong(i++, recordInfo.codOwner);
 				stmt.setLong(i++, recordInfo.codEmployee);
 				stmt.setLong(i++, recordInfo.codMat);

@@ -37,6 +37,7 @@ public final class EmpmatUpdateSingle extends DaoStmtTemplate<EmpmatInfo> {
 	
 	@Override protected String buildWhereClauseHook(String tableName, EmpmatInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
+		
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;
 		whereOption.ignoreNonPrimaryKey = DaoOptionValue.IGNORE_NON_PK;
@@ -51,6 +52,7 @@ public final class EmpmatUpdateSingle extends DaoStmtTemplate<EmpmatInfo> {
 		return new DaoStmtParamTranslator<EmpmatInfo>() {				
 			@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, EmpmatInfo recordInfo) throws SQLException {				
 				int i = 1;
+				
 				stmt.setString(i++, recordInfo.recordMode);
 				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.lastChanged);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.lastChangedBy);
