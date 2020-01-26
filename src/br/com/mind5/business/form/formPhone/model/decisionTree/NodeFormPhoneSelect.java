@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.form.formPhone.info.FormPhoneInfo;
-import br.com.mind5.business.form.formPhone.model.checker.FormPhoneCheckCountry;
+import br.com.mind5.business.form.formPhone.model.action.StdFormPhoneEnforceDefault;
+import br.com.mind5.business.form.formPhone.model.action.StdFormPhoneSelect;
 import br.com.mind5.business.form.formPhone.model.checker.FormPhoneCheckExist;
-import br.com.mind5.business.form.formPhone.model.checker.FormPhoneCheckRead;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -14,9 +14,9 @@ import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
 
-public final class RootFormPhoneSelect extends DeciTreeReadTemplate<FormPhoneInfo> {
+public final class NodeFormPhoneSelect extends DeciTreeReadTemplate<FormPhoneInfo> {
 	
-	public RootFormPhoneSelect(DeciTreeOption<FormPhoneInfo> option) {
+	public NodeFormPhoneSelect(DeciTreeOption<FormPhoneInfo> option) {
 		super(option);
 	}
 	
@@ -30,24 +30,9 @@ public final class RootFormPhoneSelect extends DeciTreeReadTemplate<FormPhoneInf
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new FormPhoneCheckRead(checkerOption);
-		queue.add(checker);
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
-		checker = new FormPhoneCheckCountry(checkerOption);
-		queue.add(checker);
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
 		checker = new FormPhoneCheckExist(checkerOption);
 		queue.add(checker);
-		
 		
 		return new ModelCheckerQueue<>(queue);
 	}
@@ -57,9 +42,18 @@ public final class RootFormPhoneSelect extends DeciTreeReadTemplate<FormPhoneInf
 	@Override protected List<ActionStd<FormPhoneInfo>> buildActionsOnPassedHook(DeciTreeOption<FormPhoneInfo> option) {
 		List<ActionStd<FormPhoneInfo>> actions = new ArrayList<>();
 		
-		ActionStd<FormPhoneInfo> nodeSelect = new NodeFormPhoneSelect(option).toAction();
+		ActionStd<FormPhoneInfo> select = new StdFormPhoneSelect(option);
 		
-		actions.add(nodeSelect);
+		actions.add(select);
+		return actions;
+	}
+	
+	
+	
+	@Override protected List<ActionStd<FormPhoneInfo>> buildActionsOnFailedHook(DeciTreeOption<FormPhoneInfo> option) {
+		List<ActionStd<FormPhoneInfo>> actions = new ArrayList<>();
+		
+		actions.add(new StdFormPhoneEnforceDefault(option));
 		return actions;
 	}
 }

@@ -37,6 +37,7 @@ public final class DaoDbField {
 	public static final String COL_COD_FEE_CATEG = "cod_fee_categ";
 	public static final String COL_COD_FILE_IMG = "cod_file_img";
 	public static final String COL_COD_FILE_PATH = "cod_file_path";
+	public static final String COL_COD_FORM = "cod_form";
 	public static final String COL_COD_GENDER = "cod_gender";
 	public static final String COL_COD_GROUP = "cod_group";
 	public static final String COL_COD_ITEM_CATEG = "cod_shop_categ";
