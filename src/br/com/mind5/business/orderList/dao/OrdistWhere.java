@@ -34,14 +34,6 @@ public final class OrdistWhere implements DaoStmtWhere {
 				case OrdistDbTableColumn.COL_COD_ORDER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOrder));
 					break;
-					
-				case OrdistDbTableColumn.COL_COD_CUSTOMER :
-					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codCustomer));
-					break;
-					
-				case OrdistDbTableColumn.COL_COD_ORDER_STATUS :
-					builder.addClauseEqualAnd(eachColumn, recordInfo.codOrderStatus);
-					break;
 			}
 		}		
 		
