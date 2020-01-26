@@ -23,8 +23,6 @@ public final class NodeFormAddressSelect extends DeciTreeReadTemplate<FormAddres
 	
 	
 	@Override protected ModelChecker<FormAddressInfo> buildDecisionCheckerHook(DeciTreeOption<FormAddressInfo> option) {
-		final boolean EXIST = true;
-		
 		List<ModelChecker<FormAddressInfo>> queue = new ArrayList<>();		
 		ModelChecker<FormAddressInfo> checker;	
 		ModelCheckerOption checkerOption;
@@ -32,7 +30,7 @@ public final class NodeFormAddressSelect extends DeciTreeReadTemplate<FormAddres
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST;	
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
 		checker = new FormAddressCheckExist(checkerOption);
 		queue.add(checker);
 		
@@ -44,7 +42,9 @@ public final class NodeFormAddressSelect extends DeciTreeReadTemplate<FormAddres
 	@Override protected List<ActionStd<FormAddressInfo>> buildActionsOnPassedHook(DeciTreeOption<FormAddressInfo> option) {
 		List<ActionStd<FormAddressInfo>> actions = new ArrayList<>();
 		
-		actions.add(new StdFormAddressSelect(option));
+		ActionStd<FormAddressInfo> select = new StdFormAddressSelect(option);
+		
+		actions.add(select);
 		return actions;
 	}
 	
@@ -53,7 +53,9 @@ public final class NodeFormAddressSelect extends DeciTreeReadTemplate<FormAddres
 	@Override protected List<ActionStd<FormAddressInfo>> buildActionsOnFailedHook(DeciTreeOption<FormAddressInfo> option) {
 		List<ActionStd<FormAddressInfo>> actions = new ArrayList<>();
 		
-		actions.add(new StdFormAddressEnforceDefault(option));
+		ActionStd<FormAddressInfo> enforceDefault = new StdFormAddressEnforceDefault(option);
+		
+		actions.add(enforceDefault);
 		return actions;
 	}
 }
