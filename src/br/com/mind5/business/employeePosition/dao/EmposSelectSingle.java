@@ -41,6 +41,7 @@ public final class EmposSelectSingle extends DaoStmtTemplate<EmposInfo> {
 	
 	@Override protected String buildWhereClauseHook(String tableName, EmposInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
+		
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
@@ -60,6 +61,7 @@ public final class EmposSelectSingle extends DaoStmtTemplate<EmposInfo> {
 				
 				do {
 					EmposInfo dataInfo = new EmposInfo();
+					
 					dataInfo.codOwner = stmtResult.getLong(EmposDbTableColumn.COL_COD_OWNER);
 					dataInfo.codStore = stmtResult.getLong(EmposDbTableColumn.COL_COD_STORE);
 					dataInfo.codEmployee = stmtResult.getLong(EmposDbTableColumn.COL_COD_EMPLOYEE);

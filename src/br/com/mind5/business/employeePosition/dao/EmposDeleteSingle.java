@@ -39,6 +39,7 @@ public final class EmposDeleteSingle extends DaoStmtTemplate<EmposInfo> {
 	
 	@Override protected String buildWhereClauseHook(String tableName, EmposInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
+		
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;	
 		whereOption.ignoreNonPrimaryKey = DaoOptionValue.IGNORE_NON_PK;		

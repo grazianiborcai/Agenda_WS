@@ -35,8 +35,8 @@ public final class EmposInsertSingle extends DaoStmtTemplate<EmposInfo> {
 	@Override protected DaoStmtParamTranslator<EmposInfo> getParamTranslatorHook() {
 		return new DaoStmtParamTranslator<EmposInfo>() {		
 			@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, EmposInfo recordInfo) throws SQLException {
-				
 				int i = 1;
+				
 				stmt.setLong(i++, recordInfo.codOwner);
 				stmt.setLong(i++, recordInfo.codStore);
 				stmt.setLong(i++, recordInfo.codEmployee);

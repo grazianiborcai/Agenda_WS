@@ -37,6 +37,7 @@ public final class EmposUpdateSingle extends DaoStmtTemplate<EmposInfo> {
 	
 	@Override protected String buildWhereClauseHook(String tableName, EmposInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
+		
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;
 		whereOption.ignoreNonPrimaryKey = DaoOptionValue.IGNORE_NON_PK;
@@ -50,8 +51,8 @@ public final class EmposUpdateSingle extends DaoStmtTemplate<EmposInfo> {
 	@Override protected DaoStmtParamTranslator<EmposInfo> getParamTranslatorHook() {
 		return new DaoStmtParamTranslator<EmposInfo>() {		
 			@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, EmposInfo recordInfo) throws SQLException {
-				
 				int i = 1;			
+				
 				stmt.setString(i++, recordInfo.recordMode);
 				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.lastChanged);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.lastChangedBy);				
