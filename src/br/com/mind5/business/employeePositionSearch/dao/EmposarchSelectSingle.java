@@ -49,6 +49,7 @@ public final class EmposarchSelectSingle extends DaoStmtTemplate<EmposarchInfo> 
 	
 	@Override protected String buildWhereClauseHook(String tableName, EmposarchInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
+		
 		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
@@ -74,16 +75,15 @@ public final class EmposarchSelectSingle extends DaoStmtTemplate<EmposarchInfo> 
 	
 	@Override protected DaoResultParserV2<EmposarchInfo> getResultParserHook() {
 		return new DaoResultParserV2<EmposarchInfo>() {
-			private final boolean EMPTY_RESULT_SET = false;
-			
 			@Override public List<EmposarchInfo> parseResult(EmposarchInfo redcordInfo, ResultSet stmtResult, long lastId) throws SQLException {
 				List<EmposarchInfo> finalResult = new ArrayList<>();
 				
-				if (stmtResult.next() == EMPTY_RESULT_SET)				
+				if (stmtResult.next() == false)				
 					return finalResult;
 				
 				do {
 					EmposarchInfo dataInfo = new EmposarchInfo();
+					
 					dataInfo.codOwner = stmtResult.getLong(EmposarchDbTableColumn.COL_COD_OWNER);
 					dataInfo.codStore = stmtResult.getLong(EmposarchDbTableColumn.COL_COD_STORE);
 					dataInfo.codEmployee = stmtResult.getLong(EmposarchDbTableColumn.COL_COD_EMPLOYEE);
