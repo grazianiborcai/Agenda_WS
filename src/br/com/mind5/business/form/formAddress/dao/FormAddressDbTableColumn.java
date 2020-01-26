@@ -6,12 +6,12 @@ import java.util.List;
 
 import br.com.mind5.dao.DaoColumn;
 import br.com.mind5.dao.DaoDbTableColumnTemplate;
+import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
 public final class FormAddressDbTableColumn extends DaoDbTableColumnTemplate {
-	public static final String COL_COD_COUNTRY = "country";
-	public static final String COL_COD_FORM = "cod_form";
-	
+	public static final String COL_COD_COUNTRY = DaoDbField.COL_COD_COUNTRY;
+	public static final String COL_COD_FORM = DaoDbField.COL_COD_FORM;
 	
 	
 	private Hashtable<String, List<DaoColumn>> tableColumns;	

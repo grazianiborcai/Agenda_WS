@@ -16,7 +16,7 @@ public final class FormAddressCheckRead extends ModelCheckerTemplateSimpleV2<For
 	
 	
 	@Override protected boolean checkHook(FormAddressInfo recordInfo, Connection conn, String schemaName) {	
-		if (recordInfo.codCountry == null )			
+		if ( recordInfo.codCountry == null )			
 			return super.FAILED;
 		
 		
