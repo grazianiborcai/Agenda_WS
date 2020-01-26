@@ -8,6 +8,7 @@ import br.com.mind5.business.feeDefault.model.action.StdFeedefSelect;
 import br.com.mind5.business.feeDefault.model.checker.FeedefCheckRead;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
@@ -23,8 +24,13 @@ public final class RootFeedefSelect extends DeciTreeReadTemplate<FeedefInfo> {
 	@Override protected ModelChecker<FeedefInfo> buildDecisionCheckerHook(DeciTreeOption<FeedefInfo> option) {
 		List<ModelChecker<FeedefInfo>> queue = new ArrayList<>();		
 		ModelChecker<FeedefInfo> checker;
+		ModelCheckerOption checkerOption;	
 		
-		checker = new FeedefCheckRead();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new FeedefCheckRead(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);

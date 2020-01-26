@@ -6,12 +6,13 @@ import java.util.List;
 
 import br.com.mind5.dao.DaoColumn;
 import br.com.mind5.dao.DaoDbTableColumnTemplate;
+import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
 public final class FeedefDbTableColumn extends DaoDbTableColumnTemplate {
-	public static final String COL_COD_FEE_CATEG = "cod_fee_categ";
-	public static final String COL_COD_CURRENCY = "cod_curr";
-	public static final String COL_VALUE = "value";
+	public static final String COL_COD_FEE_CATEG = DaoDbField.COL_COD_FEE_CATEG;
+	public static final String COL_COD_CURRENCY = DaoDbField.COL_COD_CURRENCY;
+	public static final String COL_VALUE = DaoDbField.COL_VALUE;
 	
 	
 	private Hashtable<String, List<DaoColumn>> tableColumns;

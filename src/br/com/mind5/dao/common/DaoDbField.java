@@ -182,6 +182,7 @@ public final class DaoDbField {
 	public static final String COL_TOKEN_EXPIRES_IN = "token_expires_in";
 	public static final String COL_TOTAL_ITEM = "total_item";
 	public static final String COL_USERNAME = "username";
+	public static final String COL_VALUE = "value";
 	public static final String COL_WAITING = "waiting";
 	public static final String COL_WEEK_MONTH = "week_month";
 	public static final String COL_WEEK_YEAR = "week_year";

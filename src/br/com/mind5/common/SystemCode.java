@@ -1013,4 +1013,7 @@ public final class SystemCode {
 	
 	//Company Conflict
 	public static final int COMPANY_CONFLICT_MANDATORY_FIELD_EMPTY 		= 10250;
+	
+	//Fee Default
+	public static final int FEE_DEFAULT_MANDATORY_FIELD_EMPTY 			= 10300;
 }
