@@ -83,6 +83,7 @@ public final class EmparchSelectSingle extends DaoStmtTemplate<EmparchInfo> {
 				
 				do {
 					EmparchInfo dataInfo = new EmparchInfo();
+					
 					dataInfo.codOwner = stmtResult.getLong(EmparchDbTableColumn.COL_COD_OWNER);
 					dataInfo.codEmployee = stmtResult.getLong(EmparchDbTableColumn.COL_COD_EMPLOYEE);
 					dataInfo.recordMode = stmtResult.getString(EmparchDbTableColumn.COL_RECORD_MODE);
