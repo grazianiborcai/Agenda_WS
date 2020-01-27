@@ -59,7 +59,7 @@ public final class StowotarchSelectSingle extends DaoStmtTemplate<StowotarchInfo
 	
 	
 	
-	@Override protected List<DaoJoin> getJoinsHook() {
+	@Override protected List<DaoJoin> getJoinsHook(StowotarchInfo recordInfo) {
 		List<DaoJoin> joins = new ArrayList<>();
 		
 		DaoJoinBuilder joinStore = new DaoJoinStore(MAIN_TABLE);		

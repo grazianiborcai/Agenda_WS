@@ -28,7 +28,7 @@ public abstract class DaoStmtTemplate<T extends InfoRecord> implements DaoStmt<T
 	
 	private DaoStmtOptionV2<T> buildStmtOption(Connection conn, T recordInfo, String schemaName) {
 		DaoStmtOptionV2<T> option = new DaoStmtOptionV2<>();
-		
+		//TODO: DEFENSIVE COPY
 		option.conn = conn;
 		option.recordInfo = recordInfo;
 		option.schemaName = schemaName;
@@ -37,7 +37,7 @@ public abstract class DaoStmtTemplate<T extends InfoRecord> implements DaoStmt<T
 		option.whereClause = getWhereClause(getLookupTableHook(), option.recordInfo);
 		option.resultParser = getResultParserHook();
 		option.stmtParamTranslator = getParamTranslatorHook();
-		option.joins = getJoinsHook();
+		option.joins = getJoinsHook(option.recordInfo);
 		
 		return option;
 	}
@@ -109,9 +109,9 @@ public abstract class DaoStmtTemplate<T extends InfoRecord> implements DaoStmt<T
 	
 	
 	
-	protected List<DaoJoin> getJoinsHook() {
+	protected List<DaoJoin> getJoinsHook(T recordInfo) {
 		//Template method: default behavior
-		DaoJoin singleJoin = getJoinHook();
+		DaoJoin singleJoin = getJoinHook(recordInfo);
 		
 		if (singleJoin == null)
 			return null;		
@@ -124,7 +124,7 @@ public abstract class DaoStmtTemplate<T extends InfoRecord> implements DaoStmt<T
 	
 	
 	
-	protected DaoJoin getJoinHook() {
+	protected DaoJoin getJoinHook(T recordInfo) {
 		//Template method: default behavior
 		return null;
 	}	

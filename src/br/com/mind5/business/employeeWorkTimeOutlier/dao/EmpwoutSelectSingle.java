@@ -50,6 +50,7 @@ public final class EmpwoutSelectSingle extends DaoStmtTemplate<EmpwoutInfo> {
 	
 	@Override protected String buildWhereClauseHook(String tableName, EmpwoutInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
+		
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
@@ -59,7 +60,7 @@ public final class EmpwoutSelectSingle extends DaoStmtTemplate<EmpwoutInfo> {
 	
 	
 	
-	@Override protected List<DaoJoin> getJoinsHook() {
+	@Override protected List<DaoJoin> getJoinsHook(EmpwoutInfo recordInfo) {
 		List<DaoJoin> joins = new ArrayList<>();
 		
 		DaoJoinBuilder joinStore = new DaoJoinStore(MAIN_TABLE);		
@@ -83,6 +84,7 @@ public final class EmpwoutSelectSingle extends DaoStmtTemplate<EmpwoutInfo> {
 			
 				do {				
 					EmpwoutInfo dataInfo = new EmpwoutInfo();
+					
 					dataInfo.codOwner = stmtResult.getLong(EmpwoutDbTableColumn.COL_COD_OWNER);
 					dataInfo.codStore = stmtResult.getLong(EmpwoutDbTableColumn.COL_COD_STORE);
 					dataInfo.codEmployee = stmtResult.getLong(EmpwoutDbTableColumn.COL_COD_EMPLOYEE);

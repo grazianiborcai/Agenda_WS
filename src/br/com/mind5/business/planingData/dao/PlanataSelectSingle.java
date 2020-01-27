@@ -51,7 +51,19 @@ public final class PlanataSelectSingle extends DaoStmtTemplate<PlanataInfo> {
 	
 	
 	
-	@Override protected List<DaoJoin> getJoinsHook() {
+	@Override protected String buildWhereClauseHook(String tableName, PlanataInfo recordInfo) {
+		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
+		
+		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
+		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
+		
+		DaoStmtWhere whereClause = new PlanataWhere(whereOption, tableName, recordInfo);
+		return whereClause.getWhereClause();
+	}
+	
+	
+	
+	@Override protected List<DaoJoin> getJoinsHook(PlanataInfo recordInfo) {
 		List<DaoJoin> joins = new ArrayList<>();
 		
 		DaoJoinBuilder joinStowotm = new PlanataJoinStowotm(MAIN_TABLE);		
@@ -73,18 +85,6 @@ public final class PlanataSelectSingle extends DaoStmtTemplate<PlanataInfo> {
 		joins.add(joinMatore.build());
 		
 		return joins;
-	}
-	
-	
-	
-	@Override protected String buildWhereClauseHook(String tableName, PlanataInfo recordInfo) {
-		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
-		
-		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
-		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
-		
-		DaoStmtWhere whereClause = new PlanataWhere(whereOption, tableName, recordInfo);
-		return whereClause.getWhereClause();
 	}
 	
 	

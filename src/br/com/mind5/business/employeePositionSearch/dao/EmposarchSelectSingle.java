@@ -59,7 +59,7 @@ public final class EmposarchSelectSingle extends DaoStmtTemplate<EmposarchInfo> 
 	
 	
 	
-	@Override protected List<DaoJoin> getJoinsHook() {
+	@Override protected List<DaoJoin> getJoinsHook(EmposarchInfo recordInfo) {
 		List<DaoJoin> joins = new ArrayList<>();
 		
 		DaoJoinBuilder joinStore = new DaoJoinStore(MAIN_TABLE);		

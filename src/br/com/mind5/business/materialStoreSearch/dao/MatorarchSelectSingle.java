@@ -49,6 +49,7 @@ public final class MatorarchSelectSingle extends DaoStmtTemplate<MatorarchInfo> 
 	
 	@Override protected String buildWhereClauseHook(String tableName, MatorarchInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
+		
 		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
@@ -58,7 +59,7 @@ public final class MatorarchSelectSingle extends DaoStmtTemplate<MatorarchInfo> 
 	
 	
 	
-	@Override protected List<DaoJoin> getJoinsHook() {		
+	@Override protected List<DaoJoin> getJoinsHook(MatorarchInfo recordInfo) {		
 		List<DaoJoin> joins = new ArrayList<>();	
 		
 		DaoJoinBuilder joinStore = new DaoJoinStore(MAIN_TABLE);		
@@ -82,6 +83,7 @@ public final class MatorarchSelectSingle extends DaoStmtTemplate<MatorarchInfo> 
 				
 				do {
 					MatorarchInfo dataInfo = new MatorarchInfo();
+					
 					dataInfo.codOwner = stmtResult.getLong(MatorarchDbTableColumn.COL_COD_OWNER);
 					dataInfo.codStore = stmtResult.getLong(MatorarchDbTableColumn.COL_COD_STORE);
 					dataInfo.codMat = stmtResult.getLong(MatorarchDbTableColumn.COL_COD_MATERIAL);

@@ -49,6 +49,7 @@ public final class MatarchSelectSingle extends DaoStmtTemplate<MatarchInfo> {
 	
 	@Override protected String buildWhereClauseHook(String tableName, MatarchInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
+		
 		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
@@ -58,7 +59,7 @@ public final class MatarchSelectSingle extends DaoStmtTemplate<MatarchInfo> {
 	
 	
 	
-	@Override protected DaoJoin getJoinHook() {
+	@Override protected DaoJoin getJoinHook(MatarchInfo recordInfo) {
 		DaoJoinBuilder joinMatext = new DaoJoinMatext(MAIN_TABLE);		
 		return joinMatext.build();
 	}

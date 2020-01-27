@@ -46,13 +46,6 @@ public final class OrderveSelectSingle extends DaoStmtTemplate<OrderveInfo> {
 	
 	
 	
-	@Override protected DaoJoin getJoinHook() {
-		DaoJoinBuilder joinOrder = new OrderveJoinOrder(MAIN_TABLE);		
-		return joinOrder.build();
-	}
-	
-	
-	
 	@Override protected String buildWhereClauseHook(String tableName, OrderveInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
 		
@@ -61,6 +54,13 @@ public final class OrderveSelectSingle extends DaoStmtTemplate<OrderveInfo> {
 		
 		DaoStmtWhere whereClause = new OrderveWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
+	}
+	
+	
+	
+	@Override protected DaoJoin getJoinHook(OrderveInfo recordInfo) {
+		DaoJoinBuilder joinOrder = new OrderveJoinOrder(MAIN_TABLE);		
+		return joinOrder.build();
 	}
 	
 	

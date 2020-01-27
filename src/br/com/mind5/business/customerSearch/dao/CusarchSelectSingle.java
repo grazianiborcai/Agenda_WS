@@ -59,7 +59,7 @@ public final class CusarchSelectSingle extends DaoStmtTemplate<CusarchInfo> {
 	
 	
 	
-	@Override protected List<DaoJoin> getJoinsHook() {
+	@Override protected List<DaoJoin> getJoinsHook(CusarchInfo recordInfo) {
 		List<DaoJoin> joins = new ArrayList<>();
 		
 		DaoJoinBuilder joinPerson = new DaoJoinPerson(MAIN_TABLE);		
