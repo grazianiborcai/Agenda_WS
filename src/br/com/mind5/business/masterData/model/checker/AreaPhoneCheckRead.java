@@ -4,19 +4,19 @@ import java.sql.Connection;
 
 import br.com.mind5.business.masterData.info.AreaPhoneInfo;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple_;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class AreaPhoneCheckRead extends ModelCheckerTemplateSimple_<AreaPhoneInfo> {
+public final class AreaPhoneCheckRead extends ModelCheckerTemplateSimpleV2<AreaPhoneInfo> {
 	
-	public AreaPhoneCheckRead() {
-		super();
+	public AreaPhoneCheckRead(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
 	
 	@Override protected boolean checkHook(AreaPhoneInfo recordInfo, Connection conn, String schemaName) {	
-		if (recordInfo.codLanguage == null )			
+		if ( recordInfo.codLanguage == null )			
 			return super.FAILED;
 		
 		
@@ -25,13 +25,7 @@ public final class AreaPhoneCheckRead extends ModelCheckerTemplateSimple_<AreaPh
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.AREA_PHONE_MANDATORY_FIELD_EMPTY;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
+	@Override protected int getCodMsgOnResultFalseHook() {
 		return SystemCode.AREA_PHONE_MANDATORY_FIELD_EMPTY;
 	}
 }

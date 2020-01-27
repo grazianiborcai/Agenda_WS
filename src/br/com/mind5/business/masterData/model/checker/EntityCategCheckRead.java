@@ -4,19 +4,19 @@ import java.sql.Connection;
 
 import br.com.mind5.business.masterData.info.EntityCategInfo;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple_;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class EntityCategCheckRead extends ModelCheckerTemplateSimple_<EntityCategInfo> {
+public final class EntityCategCheckRead extends ModelCheckerTemplateSimpleV2<EntityCategInfo> {
 	
-	public EntityCategCheckRead() {
-		super();
+	public EntityCategCheckRead(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
 	
 	@Override protected boolean checkHook(EntityCategInfo recordInfo, Connection conn, String schemaName) {	
-		if (recordInfo.codLanguage == null )			
+		if ( recordInfo.codLanguage == null )			
 			return super.FAILED;
 		
 		
@@ -25,13 +25,7 @@ public final class EntityCategCheckRead extends ModelCheckerTemplateSimple_<Enti
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.ENTITY_CATEG_MANDATORY_FIELD_EMPTY;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
+	@Override protected int getCodMsgOnResultFalseHook() {
 		return SystemCode.ENTITY_CATEG_MANDATORY_FIELD_EMPTY;
 	}
 }

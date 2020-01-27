@@ -4,19 +4,19 @@ import java.sql.Connection;
 
 import br.com.mind5.business.masterData.info.MonthInfo;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple_;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class MonthCheckRead extends ModelCheckerTemplateSimple_<MonthInfo> {
+public final class MonthCheckRead extends ModelCheckerTemplateSimpleV2<MonthInfo> {
 
-	public MonthCheckRead() {
-		super();
+	public MonthCheckRead(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
 	
 	@Override protected boolean checkHook(MonthInfo recordInfo, Connection conn, String schemaName) {	
-		if (recordInfo.codLanguage == null )			
+		if ( recordInfo.codLanguage == null )			
 			return super.FAILED;
 		
 		
@@ -25,13 +25,7 @@ public final class MonthCheckRead extends ModelCheckerTemplateSimple_<MonthInfo>
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.MANDATORY_FIELD_EMPTY;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.MANDATORY_FIELD_EMPTY;
+	@Override protected int getCodMsgOnResultFalseHook() {
+		return SystemCode.MONTH_MANDATORY_FIELD_EMPTY;
 	}
 }

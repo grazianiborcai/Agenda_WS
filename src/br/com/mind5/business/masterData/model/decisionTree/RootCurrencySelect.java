@@ -8,6 +8,7 @@ import br.com.mind5.business.masterData.model.action.StdCurrencySelect;
 import br.com.mind5.business.masterData.model.checker.CurrencyCheckRead;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
@@ -23,8 +24,13 @@ public final class RootCurrencySelect extends DeciTreeReadTemplate<CurrencyInfo>
 	@Override protected ModelChecker<CurrencyInfo> buildDecisionCheckerHook(DeciTreeOption<CurrencyInfo> option) {
 		List<ModelChecker<CurrencyInfo>> queue = new ArrayList<>();		
 		ModelChecker<CurrencyInfo> checker;
+		ModelCheckerOption checkerOption;	
 		
-		checker = new CurrencyCheckRead();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new CurrencyCheckRead(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
@@ -35,7 +41,9 @@ public final class RootCurrencySelect extends DeciTreeReadTemplate<CurrencyInfo>
 	@Override protected List<ActionStd<CurrencyInfo>> buildActionsOnPassedHook(DeciTreeOption<CurrencyInfo> option) {
 		List<ActionStd<CurrencyInfo>> actions = new ArrayList<>();
 		
-		actions.add(new StdCurrencySelect(option));
+		ActionStd<CurrencyInfo> select = new StdCurrencySelect(option);
+		
+		actions.add(select);
 		return actions;
 	}
 }

@@ -4,13 +4,13 @@ import java.sql.Connection;
 
 import br.com.mind5.business.masterData.info.AuthGrRoleInfo;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple_;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class AuthGrRoleCheckRead extends ModelCheckerTemplateSimple_<AuthGrRoleInfo> {
+public final class AuthGrRoleCheckRead extends ModelCheckerTemplateSimpleV2<AuthGrRoleInfo> {
 
-	public AuthGrRoleCheckRead() {
-		super();
+	public AuthGrRoleCheckRead(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
@@ -26,13 +26,7 @@ public final class AuthGrRoleCheckRead extends ModelCheckerTemplateSimple_<AuthG
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.AUTH_ROLE_MANDATORY_FIELD_EMPTY;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
+	@Override protected int getCodMsgOnResultFalseHook() {
 		return SystemCode.AUTH_ROLE_MANDATORY_FIELD_EMPTY;
 	}
 }

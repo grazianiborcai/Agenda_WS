@@ -4,19 +4,19 @@ import java.sql.Connection;
 
 import br.com.mind5.business.masterData.info.PaymentStatusInfo;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple_;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class PaymentStatusCheckRead extends ModelCheckerTemplateSimple_<PaymentStatusInfo> {
+public final class PaymentStatusCheckRead extends ModelCheckerTemplateSimpleV2<PaymentStatusInfo> {
 	
-	public PaymentStatusCheckRead() {
-		super();
+	public PaymentStatusCheckRead(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
 	
 	@Override protected boolean checkHook(PaymentStatusInfo recordInfo, Connection conn, String schemaName) {	
-		if (recordInfo.codLanguage == null )			
+		if ( recordInfo.codLanguage == null )			
 			return super.FAILED;
 		
 		
@@ -25,13 +25,7 @@ public final class PaymentStatusCheckRead extends ModelCheckerTemplateSimple_<Pa
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.PAYMENT_STATUS_MANDATORY_FIELD_EMPTY;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
+	@Override protected int getCodMsgOnResultFalseHook() {
 		return SystemCode.PAYMENT_STATUS_MANDATORY_FIELD_EMPTY;
 	}
 }

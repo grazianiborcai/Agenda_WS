@@ -8,6 +8,7 @@ import br.com.mind5.business.masterData.model.action.StdPayparSelect;
 import br.com.mind5.business.masterData.model.checker.PayparCheckRead;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
@@ -23,8 +24,13 @@ public final class RootPayparSelect extends DeciTreeReadTemplate<PayparInfo> {
 	@Override protected ModelChecker<PayparInfo> buildDecisionCheckerHook(DeciTreeOption<PayparInfo> option) {
 		List<ModelChecker<PayparInfo>> queue = new ArrayList<>();		
 		ModelChecker<PayparInfo> checker;
+		ModelCheckerOption checkerOption;	
 		
-		checker = new PayparCheckRead();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new PayparCheckRead(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
@@ -35,7 +41,9 @@ public final class RootPayparSelect extends DeciTreeReadTemplate<PayparInfo> {
 	@Override protected List<ActionStd<PayparInfo>> buildActionsOnPassedHook(DeciTreeOption<PayparInfo> option) {
 		List<ActionStd<PayparInfo>> actions = new ArrayList<>();
 		
-		actions.add(new StdPayparSelect(option));
+		ActionStd<PayparInfo> select = new StdPayparSelect(option);
+		
+		actions.add(select);
 		return actions;
 	}
 }

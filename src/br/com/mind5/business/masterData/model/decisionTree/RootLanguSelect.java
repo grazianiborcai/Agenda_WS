@@ -35,7 +35,9 @@ public final class RootLanguSelect extends DeciTreeReadTemplate<LanguInfo> {
 	@Override protected List<ActionStd<LanguInfo>> buildActionsOnPassedHook(DeciTreeOption<LanguInfo> option) {
 		List<ActionStd<LanguInfo>> actions = new ArrayList<>();
 		
-		actions.add(new StdLanguSelect(option));
+		ActionStd<LanguInfo> select = new StdLanguSelect(option);
+		
+		actions.add(select);
 		return actions;
 	}
 }

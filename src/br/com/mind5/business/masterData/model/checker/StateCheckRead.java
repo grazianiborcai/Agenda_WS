@@ -4,19 +4,19 @@ import java.sql.Connection;
 
 import br.com.mind5.business.masterData.info.StateInfo;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple_;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class StateCheckRead extends ModelCheckerTemplateSimple_<StateInfo> {
+public final class StateCheckRead extends ModelCheckerTemplateSimpleV2<StateInfo> {
 
-	public StateCheckRead() {
-		super();
+	public StateCheckRead(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
 	
 	@Override protected boolean checkHook(StateInfo recordInfo, Connection conn, String schemaName) {	
-		if (recordInfo.codLanguage == null )			
+		if ( recordInfo.codLanguage == null )			
 			return super.FAILED;
 		
 		
@@ -25,13 +25,7 @@ public final class StateCheckRead extends ModelCheckerTemplateSimple_<StateInfo>
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.STATE_MANDATORY_FIELD_EMPTY;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
+	@Override protected int getCodMsgOnResultFalseHook() {
 		return SystemCode.STATE_MANDATORY_FIELD_EMPTY;
 	}
 }

@@ -8,6 +8,7 @@ import br.com.mind5.business.masterData.model.action.StdScheduleStatusSelect;
 import br.com.mind5.business.masterData.model.checker.ScheduleStatusCheckRead;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
@@ -23,8 +24,13 @@ public final class RootScheduleStatusSelect extends DeciTreeReadTemplate<Schedul
 	@Override protected ModelChecker<ScheduleStatusInfo> buildDecisionCheckerHook(DeciTreeOption<ScheduleStatusInfo> option) {
 		List<ModelChecker<ScheduleStatusInfo>> queue = new ArrayList<>();		
 		ModelChecker<ScheduleStatusInfo> checker;
+		ModelCheckerOption checkerOption;	
 		
-		checker = new ScheduleStatusCheckRead();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new ScheduleStatusCheckRead(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
@@ -35,7 +41,9 @@ public final class RootScheduleStatusSelect extends DeciTreeReadTemplate<Schedul
 	@Override protected List<ActionStd<ScheduleStatusInfo>> buildActionsOnPassedHook(DeciTreeOption<ScheduleStatusInfo> option) {
 		List<ActionStd<ScheduleStatusInfo>> actions = new ArrayList<>();
 		
-		actions.add(new StdScheduleStatusSelect(option));
+		ActionStd<ScheduleStatusInfo> select = new StdScheduleStatusSelect(option);
+		
+		actions.add(select);
 		return actions;
 	}
 }

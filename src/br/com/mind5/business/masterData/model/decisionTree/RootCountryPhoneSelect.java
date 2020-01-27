@@ -8,6 +8,7 @@ import br.com.mind5.business.masterData.model.action.StdCountryPhoneSelect;
 import br.com.mind5.business.masterData.model.checker.CountryPhoneCheckRead;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
@@ -23,8 +24,13 @@ public final class RootCountryPhoneSelect extends DeciTreeReadTemplate<CountryPh
 	@Override protected ModelChecker<CountryPhoneInfo> buildDecisionCheckerHook(DeciTreeOption<CountryPhoneInfo> option) {
 		List<ModelChecker<CountryPhoneInfo>> queue = new ArrayList<>();		
 		ModelChecker<CountryPhoneInfo> checker;
+		ModelCheckerOption checkerOption;	
 		
-		checker = new CountryPhoneCheckRead();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new CountryPhoneCheckRead(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
@@ -33,9 +39,11 @@ public final class RootCountryPhoneSelect extends DeciTreeReadTemplate<CountryPh
 	
 	
 	@Override protected List<ActionStd<CountryPhoneInfo>> buildActionsOnPassedHook(DeciTreeOption<CountryPhoneInfo> option) {
-		List<ActionStd<CountryPhoneInfo>> actions = new ArrayList<>();
+		List<ActionStd<CountryPhoneInfo>> actions = new ArrayList<>(); 
 		
-		actions.add(new StdCountryPhoneSelect(option));
+		ActionStd<CountryPhoneInfo> select = new StdCountryPhoneSelect(option);
+		
+		actions.add(select);
 		return actions;
 	}
 }

@@ -4,19 +4,19 @@ import java.sql.Connection;
 
 import br.com.mind5.business.masterData.info.AuthGroupInfo;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple_;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class AuthGroupCheckRead extends ModelCheckerTemplateSimple_<AuthGroupInfo> {
+public final class AuthGroupCheckRead extends ModelCheckerTemplateSimpleV2<AuthGroupInfo> {
 
-	public AuthGroupCheckRead() {
-		super();
+	public AuthGroupCheckRead(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
 	
 	@Override protected boolean checkHook(AuthGroupInfo recordInfo, Connection conn, String schemaName) {	
-		if (recordInfo.codAuthGroup == null)			
+		if ( recordInfo.codAuthGroup == null )			
 			return super.FAILED;
 		
 		
@@ -25,13 +25,7 @@ public final class AuthGroupCheckRead extends ModelCheckerTemplateSimple_<AuthGr
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.AUTH_GROUP_MANDATORY_FIELD_EMPTY;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
+	@Override protected int getCodMsgOnResultFalseHook() {
 		return SystemCode.AUTH_GROUP_MANDATORY_FIELD_EMPTY;
 	}
 }

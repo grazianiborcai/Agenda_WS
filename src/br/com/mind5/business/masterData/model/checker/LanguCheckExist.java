@@ -17,8 +17,8 @@ public final class LanguCheckExist extends ModelCheckerTemplateActionV2<LanguInf
 	
 	
 	@Override protected ActionStd<LanguInfo> buildActionHook(DeciTreeOption<LanguInfo> option) {
-		ActionStd<LanguInfo> actionSelect = new StdLanguSelect(option);
-		return actionSelect;
+		ActionStd<LanguInfo> select = new StdLanguSelect(option);
+		return select;
 	}
 	
 	

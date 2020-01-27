@@ -151,6 +151,8 @@ public final class SystemCode {
 	public static final int MONTH_NOT_FOUND								= 5325;
 	public static final int POSITION_ALREADY_EXIST						= 5326;
 	public static final int POSITION_NOT_FOUND							= 5327;
+	public static final int MAT_UNIT_MANDATORY_FIELD_EMPTY 				= 5328;
+	public static final int MONTH_MANDATORY_FIELD_EMPTY 				= 5329;
 	
 	// Material
 	public static final int MAT_ALREADY_EXIST							= 1200;

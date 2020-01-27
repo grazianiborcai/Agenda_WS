@@ -8,6 +8,7 @@ import br.com.mind5.business.masterData.model.action.StdCartCategSelect;
 import br.com.mind5.business.masterData.model.checker.CartCategCheckRead;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
@@ -23,8 +24,13 @@ public final class RootCartCategSelect extends DeciTreeReadTemplate<CartCategInf
 	@Override protected ModelChecker<CartCategInfo> buildDecisionCheckerHook(DeciTreeOption<CartCategInfo> option) {
 		List<ModelChecker<CartCategInfo>> queue = new ArrayList<>();		
 		ModelChecker<CartCategInfo> checker;
+		ModelCheckerOption checkerOption;	
 		
-		checker = new CartCategCheckRead();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new CartCategCheckRead(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
@@ -35,7 +41,9 @@ public final class RootCartCategSelect extends DeciTreeReadTemplate<CartCategInf
 	@Override protected List<ActionStd<CartCategInfo>> buildActionsOnPassedHook(DeciTreeOption<CartCategInfo> option) {
 		List<ActionStd<CartCategInfo>> actions = new ArrayList<>();
 		
-		actions.add(new StdCartCategSelect(option));
+		ActionStd<CartCategInfo> select = new StdCartCategSelect(option);
+		
+		actions.add(select);
 		return actions;
 	}
 }

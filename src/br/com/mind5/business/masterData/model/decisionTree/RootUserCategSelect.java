@@ -8,6 +8,7 @@ import br.com.mind5.business.masterData.model.action.StdUserCategSelect;
 import br.com.mind5.business.masterData.model.checker.UserCategCheckRead;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
@@ -23,8 +24,13 @@ public final class RootUserCategSelect extends DeciTreeReadTemplate<UserCategInf
 	@Override protected ModelChecker<UserCategInfo> buildDecisionCheckerHook(DeciTreeOption<UserCategInfo> option) {
 		List<ModelChecker<UserCategInfo>> queue = new ArrayList<>();		
 		ModelChecker<UserCategInfo> checker;
+		ModelCheckerOption checkerOption;	
 		
-		checker = new UserCategCheckRead();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new UserCategCheckRead(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
@@ -35,7 +41,9 @@ public final class RootUserCategSelect extends DeciTreeReadTemplate<UserCategInf
 	@Override protected List<ActionStd<UserCategInfo>> buildActionsOnPassedHook(DeciTreeOption<UserCategInfo> option) {
 		List<ActionStd<UserCategInfo>> actions = new ArrayList<>();
 		
-		actions.add(new StdUserCategSelect(option));
+		ActionStd<UserCategInfo> select = new StdUserCategSelect(option);
+		
+		actions.add(select);
 		return actions;
 	}
 }

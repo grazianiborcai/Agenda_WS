@@ -8,6 +8,7 @@ import br.com.mind5.business.masterData.model.action.StdMatmovTypeSelect;
 import br.com.mind5.business.masterData.model.checker.MatmovTypeCheckRead;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
@@ -23,8 +24,13 @@ public final class RootMatmovTypeSelect extends DeciTreeReadTemplate<MatmovTypeI
 	@Override protected ModelChecker<MatmovTypeInfo> buildDecisionCheckerHook(DeciTreeOption<MatmovTypeInfo> option) {
 		List<ModelChecker<MatmovTypeInfo>> queue = new ArrayList<>();		
 		ModelChecker<MatmovTypeInfo> checker;
+		ModelCheckerOption checkerOption;	
 		
-		checker = new MatmovTypeCheckRead();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new MatmovTypeCheckRead(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
@@ -35,7 +41,9 @@ public final class RootMatmovTypeSelect extends DeciTreeReadTemplate<MatmovTypeI
 	@Override protected List<ActionStd<MatmovTypeInfo>> buildActionsOnPassedHook(DeciTreeOption<MatmovTypeInfo> option) {
 		List<ActionStd<MatmovTypeInfo>> actions = new ArrayList<>();
 		
-		actions.add(new StdMatmovTypeSelect(option));
+		ActionStd<MatmovTypeInfo> select = new StdMatmovTypeSelect(option);
+		
+		actions.add(select);
 		return actions;
 	}
 }

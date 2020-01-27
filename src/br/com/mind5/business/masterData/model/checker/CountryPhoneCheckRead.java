@@ -4,19 +4,19 @@ import java.sql.Connection;
 
 import br.com.mind5.business.masterData.info.CountryPhoneInfo;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple_;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class CountryPhoneCheckRead extends ModelCheckerTemplateSimple_<CountryPhoneInfo> {
+public final class CountryPhoneCheckRead extends ModelCheckerTemplateSimpleV2<CountryPhoneInfo> {
 
-	public CountryPhoneCheckRead() {
-		super();
+	public CountryPhoneCheckRead(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
 	
 	@Override protected boolean checkHook(CountryPhoneInfo recordInfo, Connection conn, String schemaName) {	
-		if (recordInfo.codLanguage == null )			
+		if ( recordInfo.codLanguage == null )			
 			return super.FAILED;
 		
 		
@@ -25,13 +25,7 @@ public final class CountryPhoneCheckRead extends ModelCheckerTemplateSimple_<Cou
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.COUNTRY_PHONE_MANDATORY_FIELD_EMPTY;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
+	@Override protected int getCodMsgOnResultFalseHook() {
 		return SystemCode.COUNTRY_PHONE_MANDATORY_FIELD_EMPTY;
 	}
 }

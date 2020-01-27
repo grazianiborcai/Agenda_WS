@@ -8,6 +8,7 @@ import br.com.mind5.business.masterData.model.action.StdPositionSelect;
 import br.com.mind5.business.masterData.model.checker.PositionCheckRead;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
@@ -23,8 +24,13 @@ public final class RootPositionSelect extends DeciTreeReadTemplate<PositionInfo>
 	@Override protected ModelChecker<PositionInfo> buildDecisionCheckerHook(DeciTreeOption<PositionInfo> option) {
 		List<ModelChecker<PositionInfo>> queue = new ArrayList<>();		
 		ModelChecker<PositionInfo> checker;
+		ModelCheckerOption checkerOption;	
 		
-		checker = new PositionCheckRead();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new PositionCheckRead(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
@@ -35,7 +41,9 @@ public final class RootPositionSelect extends DeciTreeReadTemplate<PositionInfo>
 	@Override protected List<ActionStd<PositionInfo>> buildActionsOnPassedHook(DeciTreeOption<PositionInfo> option) {
 		List<ActionStd<PositionInfo>> actions = new ArrayList<>();
 		
-		actions.add(new StdPositionSelect(option));
+		ActionStd<PositionInfo> select = new StdPositionSelect(option);
+		
+		actions.add(select);
 		return actions;
 	}
 }

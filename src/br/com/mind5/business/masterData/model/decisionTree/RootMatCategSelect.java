@@ -8,6 +8,7 @@ import br.com.mind5.business.masterData.model.action.StdMatCategSelect;
 import br.com.mind5.business.masterData.model.checker.MatCategCheckRead;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
@@ -23,8 +24,13 @@ public final class RootMatCategSelect extends DeciTreeReadTemplate<MatCategInfo>
 	@Override protected ModelChecker<MatCategInfo> buildDecisionCheckerHook(DeciTreeOption<MatCategInfo> option) {
 		List<ModelChecker<MatCategInfo>> queue = new ArrayList<>();		
 		ModelChecker<MatCategInfo> checker;
+		ModelCheckerOption checkerOption;	
 		
-		checker = new MatCategCheckRead();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new MatCategCheckRead(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
@@ -35,7 +41,9 @@ public final class RootMatCategSelect extends DeciTreeReadTemplate<MatCategInfo>
 	@Override protected List<ActionStd<MatCategInfo>> buildActionsOnPassedHook(DeciTreeOption<MatCategInfo> option) {
 		List<ActionStd<MatCategInfo>> actions = new ArrayList<>();
 		
-		actions.add(new StdMatCategSelect(option));
+		ActionStd<MatCategInfo> select = new StdMatCategSelect(option);
+		
+		actions.add(select);
 		return actions;
 	}
 }

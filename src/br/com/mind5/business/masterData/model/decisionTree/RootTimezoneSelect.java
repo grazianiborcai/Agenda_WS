@@ -8,6 +8,7 @@ import br.com.mind5.business.masterData.model.action.StdTimezoneSelect;
 import br.com.mind5.business.masterData.model.checker.TimezoneCheckRead;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
@@ -23,8 +24,13 @@ public final class RootTimezoneSelect extends DeciTreeReadTemplate<TimezoneInfo>
 	@Override protected ModelChecker<TimezoneInfo> buildDecisionCheckerHook(DeciTreeOption<TimezoneInfo> option) {
 		List<ModelChecker<TimezoneInfo>> queue = new ArrayList<>();		
 		ModelChecker<TimezoneInfo> checker;
+		ModelCheckerOption checkerOption;	
 		
-		checker = new TimezoneCheckRead();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new TimezoneCheckRead(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
@@ -35,7 +41,9 @@ public final class RootTimezoneSelect extends DeciTreeReadTemplate<TimezoneInfo>
 	@Override protected List<ActionStd<TimezoneInfo>> buildActionsOnPassedHook(DeciTreeOption<TimezoneInfo> option) {
 		List<ActionStd<TimezoneInfo>> actions = new ArrayList<>();
 		
-		actions.add(new StdTimezoneSelect(option));
+		ActionStd<TimezoneInfo> select = new StdTimezoneSelect(option);
+		
+		actions.add(select);
 		return actions;
 	}
 }

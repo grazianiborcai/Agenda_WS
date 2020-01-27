@@ -9,113 +9,68 @@ import java.util.List;
 import br.com.mind5.business.masterData.info.MonthInfo;
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoStmt;
-import br.com.mind5.dao.DaoStmtHelper_;
+import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
-import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.dao.common.DaoOptionValue;
-import br.com.mind5.dao.obsolete.DaoResultParser_;
-import br.com.mind5.dao.obsolete.DaoStmtOption_;
 
-public final class MonthSelectSingle implements DaoStmt<MonthInfo> {
-	private final String LT_TEXT = DaoDbTable.MONTH_TEXT_TABLE;
-	
-	private DaoStmt<MonthInfo> stmtSql;
-	private DaoStmtOption_<MonthInfo> stmtOption;
-	
+public final class MonthSelectSingle extends DaoStmtTemplate<MonthInfo> {
+	private final String MAIN_TABLE = DaoDbTable.MONTH_TEXT_TABLE;
 	
 	
 	public MonthSelectSingle(Connection conn, MonthInfo recordInfo, String schemaName) {
-		buildStmtOption(conn, recordInfo, schemaName);
-		buildStmt();		
+		super(conn, recordInfo, schemaName);
 	}
 	
 	
 	
-	private void buildStmtOption(Connection conn, MonthInfo recordInfo, String schemaName) {
-		this.stmtOption = new DaoStmtOption_<>();
-		this.stmtOption.conn = conn;
-		this.stmtOption.recordInfo = recordInfo;
-		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = LT_TEXT;
-		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(this.stmtOption.tableName);
-		this.stmtOption.stmtParamTranslator = null;
-		this.stmtOption.resultParser = new ResultParser();
-		this.stmtOption.whereClause = buildWhereClause();
-		this.stmtOption.joins = null;
+	@Override protected String getTableNameHook() {
+		return MAIN_TABLE;
 	}
 	
 	
 	
-	private String buildWhereClause() {
+	@Override protected DaoOperation getOperationHook() {
+		return DaoOperation.SELECT;
+	}
+	
+	
+	
+	@Override protected String buildWhereClauseHook(String tableName, MonthInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
+		
 		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;	
 		whereOption.dummyClauseWhenEmpty = DaoOptionValue.DUMMY_CLAUSE_ALLOWED;
 		
-		DaoStmtWhere whereClause = new MonthWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
+		DaoStmtWhere whereClause = new MonthWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
 	
 	
-	private void buildStmt() {
-		this.stmtSql = new DaoStmtHelper_<>(DaoOperation.SELECT, this.stmtOption, this.getClass());
-	}
-	
-	
-
-	@Override public void generateStmt() throws SQLException {
-		stmtSql.generateStmt();		
-	}
-
-	
-	
-	@Override public boolean checkStmtGeneration() {
-		return stmtSql.checkStmtGeneration();
-	}
-
-	
-	
-	@Override public void executeStmt() throws SQLException {
-		stmtSql.executeStmt();
-	}
-
-	
-	
-	@Override public List<MonthInfo> getResultset() {
-		return stmtSql.getResultset();
-	}
-	
-	
-	
-	@Override public DaoStmt<MonthInfo> getNewInstance() {
-		return new MonthSelectSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
-	}
-	
-	
-	
-	private class ResultParser implements DaoResultParser_<MonthInfo> {
-		private final boolean EMPTY_RESULT_SET = false;
-		
-		@Override public List<MonthInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
-			List<MonthInfo> finalResult = new ArrayList<>();
-			
-			if (stmtResult.next() == EMPTY_RESULT_SET)				
-				return finalResult;
-		
-			do {				
-				MonthInfo dataInfo = new MonthInfo();
-				dataInfo.month = DaoFormatter.sqlToInt(stmtResult, MasterDataDbTableColumn.COL_MONTH);
-				dataInfo.txtMonth = stmtResult.getString(MasterDataDbTableColumn.COL_NAME);
-				dataInfo.codLanguage = stmtResult.getString(MasterDataDbTableColumn.COL_COD_LANGUAGE);		
+	@Override protected DaoResultParserV2<MonthInfo> getResultParserHook() {
+		return new DaoResultParserV2<MonthInfo>() {
+			@Override public List<MonthInfo> parseResult(MonthInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
+				List<MonthInfo> finalResult = new ArrayList<>();
 				
-				finalResult.add(dataInfo);				
-			} while (stmtResult.next());
+				if (stmtResult.next() == false)				
+					return finalResult;
 			
-			return finalResult;
-		}
+				do {				
+					MonthInfo dataInfo = new MonthInfo();
+					
+					dataInfo.month = DaoFormatter.sqlToInt(stmtResult, MasterDataDbTableColumn.COL_MONTH);
+					dataInfo.txtMonth = stmtResult.getString(MasterDataDbTableColumn.COL_NAME);
+					dataInfo.codLanguage = stmtResult.getString(MasterDataDbTableColumn.COL_COD_LANGUAGE);		
+					
+					finalResult.add(dataInfo);				
+				} while (stmtResult.next());
+				
+				return finalResult;
+			}
+		};
 	}
 }

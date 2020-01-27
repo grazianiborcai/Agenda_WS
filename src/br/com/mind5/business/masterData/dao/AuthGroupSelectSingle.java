@@ -8,113 +8,64 @@ import java.util.List;
 
 import br.com.mind5.business.masterData.info.AuthGroupInfo;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoStmt;
-import br.com.mind5.dao.DaoStmtHelper_;
+import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
-import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.dao.common.DaoOptionValue;
-import br.com.mind5.dao.obsolete.DaoResultParser_;
-import br.com.mind5.dao.obsolete.DaoStmtOption_;
 
-public final class AuthGroupSelectSingle implements DaoStmt<AuthGroupInfo> {	
-	private final String LT_AUTH_GROUP = DaoDbTable.AUTH_GROUP_TABLE;
-	
-	private DaoStmt<AuthGroupInfo> stmtSql;
-	private DaoStmtOption_<AuthGroupInfo> stmtOption;
-	
+public final class AuthGroupSelectSingle extends DaoStmtTemplate<AuthGroupInfo> {	
+	private final String MAIN_TABLE = DaoDbTable.AUTH_GROUP_TABLE;
 	
 	
 	public AuthGroupSelectSingle(Connection conn, AuthGroupInfo recordInfo, String schemaName) {
-		buildStmtOption(conn, recordInfo, schemaName);
-		buildStmt();
+		super(conn, recordInfo, schemaName);
 	}
 	
 	
 	
-	private void buildStmtOption(Connection conn, AuthGroupInfo recordInfo, String schemaName) {
-		this.stmtOption = new DaoStmtOption_<>();
-		this.stmtOption.conn = conn;
-		this.stmtOption.recordInfo = recordInfo;
-		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = LT_AUTH_GROUP;
-		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(LT_AUTH_GROUP);
-		this.stmtOption.stmtParamTranslator = null;
-		this.stmtOption.resultParser = new ResultParser();
-		this.stmtOption.whereClause = buildWhereClause();
-		this.stmtOption.joins = null;
+	@Override protected String getTableNameHook() {
+		return MAIN_TABLE;
 	}
 	
 	
 	
-	private String buildWhereClause() {
+	@Override protected DaoOperation getOperationHook() {
+		return DaoOperation.SELECT;
+	}
+	
+	
+	
+	@Override protected String buildWhereClauseHook(String tableName, AuthGroupInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
+		
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new AuthGroupWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
+		DaoStmtWhere whereClause = new AuthGroupWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
-	}
+	}	
 	
 	
 	
-	private void buildStmt() {
-		this.stmtSql = new DaoStmtHelper_<>(DaoOperation.SELECT, this.stmtOption, this.getClass());
-	}
-	
-	
-
-	@Override public void generateStmt() throws SQLException {
-		stmtSql.generateStmt();		
-	}
-
-	
-	
-	@Override public boolean checkStmtGeneration() {
-		return stmtSql.checkStmtGeneration();
-	}
-
-	
-	
-	@Override public void executeStmt() throws SQLException {
-		stmtSql.executeStmt();
-	}
-
-	
-	
-	@Override public List<AuthGroupInfo> getResultset() {
-		return stmtSql.getResultset();
-	}
-	
-	
-	
-	@Override public DaoStmt<AuthGroupInfo> getNewInstance() {
-		return new AuthGroupSelectSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
-	}
-	
-	
-	
-	
-	
-	
-	private static class ResultParser implements DaoResultParser_<AuthGroupInfo> {
-		private final boolean EMPTY_RESULT_SET = false;
-		
-		@Override public List<AuthGroupInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
-			List<AuthGroupInfo> finalResult = new ArrayList<>();
-			
-			if (stmtResult.next() == EMPTY_RESULT_SET)				
-				return finalResult;
-			
-			do {
-				AuthGroupInfo dataInfo = new AuthGroupInfo();
-				dataInfo.codAuthGroup = stmtResult.getString(MasterDataDbTableColumn.COL_COD_AUTH_GROUP);
+	@Override protected DaoResultParserV2<AuthGroupInfo> getResultParserHook() {
+		return new DaoResultParserV2<AuthGroupInfo>() {
+			@Override public List<AuthGroupInfo> parseResult(AuthGroupInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
+				List<AuthGroupInfo> finalResult = new ArrayList<>();
 				
-				finalResult.add(dataInfo);
-			} while (stmtResult.next());
-			
-			return finalResult;
-		}
+				if (stmtResult.next() == false)				
+					return finalResult;
+				
+				do {
+					AuthGroupInfo dataInfo = new AuthGroupInfo();					
+					dataInfo.codAuthGroup = stmtResult.getString(MasterDataDbTableColumn.COL_COD_AUTH_GROUP);
+					
+					finalResult.add(dataInfo);
+				} while (stmtResult.next());
+				
+				return finalResult;
+			}
+		};
 	}
 }

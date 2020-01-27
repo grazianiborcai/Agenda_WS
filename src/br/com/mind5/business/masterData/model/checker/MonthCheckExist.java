@@ -1,59 +1,35 @@
 package br.com.mind5.business.masterData.model.checker;
 
-import java.sql.Connection;
-import java.util.ArrayList;
-
 import br.com.mind5.business.masterData.info.MonthInfo;
 import br.com.mind5.business.masterData.model.action.StdMonthSelect;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.common.SystemMessage;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateAction_;
+import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class MonthCheckExist extends ModelCheckerTemplateAction_<MonthInfo> {
+public final class MonthCheckExist extends ModelCheckerTemplateActionV2<MonthInfo, MonthInfo> {
 	
 	public MonthCheckExist(ModelCheckerOption option) {
-		super(option);
+		super(option, MonthInfo.class);
 	}
 	
 	
 	
-	@Override protected ActionStd<MonthInfo> buildActionHook(MonthInfo recordInfo, Connection conn, String schemaName) {
-		DeciTreeOption<MonthInfo> option = buildActionOption(recordInfo, conn, schemaName);
-		
-		ActionStd<MonthInfo> actionSelect = new StdMonthSelect(option);
-		return actionSelect;
+	@Override protected ActionStd<MonthInfo> buildActionHook(DeciTreeOption<MonthInfo> option) {
+		ActionStd<MonthInfo> select = new StdMonthSelect(option);
+		return select;
 	}
 	
 	
 	
-	private DeciTreeOption<MonthInfo> buildActionOption(MonthInfo recordInfo, Connection conn, String schemaName) {
-		DeciTreeOption<MonthInfo> option = new DeciTreeOption<>();
-		option.recordInfos = new ArrayList<>();
-		option.recordInfos.add(recordInfo);
-		option.conn = conn;
-		option.schemaName = schemaName;
-		
-		return option;
-	}
+	@Override protected int getCodMsgOnResultTrueHook() {
+		return SystemCode.MONTH_ALREADY_EXIST;
+	}	
 	
 	
 	
-	@Override protected String makeFailExplanationHook(boolean checkerResult) {		
-		if (makeFailCodeHook(checkerResult) == SystemCode.MONTH_ALREADY_EXIST)
-			return SystemMessage.MONTH_ALREADY_EXIST;
-		
-		return SystemMessage.MONTH_NOT_FOUND;
-	}
-	
-	
-	
-	@Override protected int makeFailCodeHook(boolean checkerResult) {
-		if (checkerResult == super.ALREADY_EXIST)
-			return SystemCode.MONTH_ALREADY_EXIST;	
-			
+	@Override protected int getCodMsgOnResultFalseHook() {
 		return SystemCode.MONTH_NOT_FOUND;
 	}
 }
