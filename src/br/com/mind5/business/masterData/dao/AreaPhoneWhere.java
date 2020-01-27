@@ -33,6 +33,10 @@ final class AreaPhoneWhere implements DaoStmtWhere {
 				case MasterDataDbTableColumn.COL_COD_AREA_PHONE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codArea);
 					break;
+					
+				case MasterDataDbTableColumn.COL_COD_LANGUAGE :
+					builder.addClauseEqualAnd(eachColumn, recordInfo.codLanguage);
+					break;
 			}
 		}		
 			
