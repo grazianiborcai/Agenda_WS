@@ -20,6 +20,7 @@ public final class DaoDbField {
 	public static final String COL_COD_AREA_PHONE = "cod_area_phone";	
 	public static final String COL_COD_AUTH_GROUP = "cod_auth_group";
 	public static final String COL_COD_AUTH_ROLE = "cod_auth_role";
+	public static final String COL_COD_BODY = "cod_email_body";
 	public static final String COL_COD_BUSINESS = "cod_business";
 	public static final String COL_COD_CATEGORY = "cod_category";
 	public static final String COL_COD_COMPANY = "cod_company";
@@ -108,6 +109,7 @@ public final class DaoDbField {
 	public static final String COL_DESCRIPTION = "description";
 	public static final String COL_DISTRICT = "district";
 	public static final String COL_EMAIL = "email";
+	public static final String COL_EMAIL_SENDER = "email_sender";
 	public static final String COL_END_TIME = "end_time";
 	public static final String COL_FEE_SERVICE = "feeService";
 	public static final String COL_FILE_IMG_EXTENSION = "file_img_extension";
@@ -172,16 +174,21 @@ public final class DaoDbField {
 	public static final String COL_REFRESH_TOKEN = "refresh_token";	
 	public static final String COL_SALT = "hash2";
 	public static final String COL_SCOPE = "scope";
+	public static final String COL_SENDER_PASSWORD = "sender_password";
+	public static final String COL_SMTP_HOST_NAME = "smtp_host_name";
+	public static final String COL_SMTP_PORT = "smtp_port";
 	public static final String COL_STATE_PROVINCE = "state_province";
 	public static final String COL_STATUS_ORDER_PARTNER = "status_order_partner";	
 	public static final String COL_STATUS_PAYMENT_PARTNER = "status_payment_partner";
 	public static final String COL_STATUS_REFUND_PARTNER = "status_refund_partner";
 	public static final String COL_STREET = "street";
 	public static final String COL_STREET_NUMBER = "street_number";	
+	public static final String COL_SUBJECT = "subject";	
 	public static final String COL_TM_VALID_FROM = "time_valid_from";
 	public static final String COL_TM_VALID_TO = "time_valid_to";
 	public static final String COL_TOKEN_EXPIRES_IN = "token_expires_in";
 	public static final String COL_TOTAL_ITEM = "total_item";
+	public static final String COL_TXT_BODY = "body";
 	public static final String COL_USERNAME = "username";
 	public static final String COL_VALUE = "value";
 	public static final String COL_WAITING = "waiting";

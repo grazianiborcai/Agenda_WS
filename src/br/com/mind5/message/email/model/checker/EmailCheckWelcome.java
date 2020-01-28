@@ -3,14 +3,14 @@ package br.com.mind5.message.email.model.checker;
 import java.sql.Connection;
 
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.common.SystemMessage;
 import br.com.mind5.message.email.info.EmailInfo;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple_;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class EmailCheckWelcome extends ModelCheckerTemplateSimple_<EmailInfo> {
+public final class EmailCheckWelcome extends ModelCheckerTemplateSimpleV2<EmailInfo> {
 
-	public EmailCheckWelcome() {
-		super();
+	public EmailCheckWelcome(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
@@ -31,13 +31,7 @@ public final class EmailCheckWelcome extends ModelCheckerTemplateSimple_<EmailIn
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.MANDATORY_FIELD_EMPTY;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.MANDATORY_FIELD_EMPTY;
+	@Override protected int getCodMsgOnResultFalseHook() {
+		return SystemCode.EMAIL_MANDATORY_FIELD_EMPTY;
 	}
 }

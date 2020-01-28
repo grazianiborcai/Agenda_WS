@@ -1028,4 +1028,10 @@ public final class SystemCode {
 	public static final int FORM_PHONE_INVALID							= 10402;
 	public static final int FORM_PHONE_OK								= 10404;
 	public static final int FORM_PHONE_MANDATORY_FIELD_EMPTY			= 10405;
+	
+	// Email
+	public static final int EMAIL_MANDATORY_FIELD_EMPTY					= 10450;
+	
+	// Email Body
+	public static final int EMAIL_BODY_MANDATORY_FIELD_EMPTY			= 10500;
 }

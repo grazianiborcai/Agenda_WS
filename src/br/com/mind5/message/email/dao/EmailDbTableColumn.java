@@ -6,13 +6,14 @@ import java.util.List;
 
 import br.com.mind5.dao.DaoColumn;
 import br.com.mind5.dao.DaoDbTableColumnTemplate;
+import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
 public final class EmailDbTableColumn extends DaoDbTableColumnTemplate {
-	public static final String COL_SMTP_HOST_NAME = "smtp_host_name";
-	public static final String COL_SMTP_PORT = "smtp_port";
-	public static final String COL_EMAIL_SENDER = "email_sender";
-	public static final String COL_SENDER_PASSWORD = "sender_password";
+	public static final String COL_EMAIL_SENDER = DaoDbField.COL_EMAIL_SENDER;
+	public static final String COL_SENDER_PASSWORD = DaoDbField.COL_SENDER_PASSWORD;
+	public static final String COL_SMTP_HOST_NAME = DaoDbField.COL_SMTP_HOST_NAME;
+	public static final String COL_SMTP_PORT = DaoDbField.COL_SMTP_PORT;	
 	
 	private Hashtable<String, List<DaoColumn>> tableColumns;
 	

@@ -12,6 +12,7 @@ import br.com.mind5.message.email.model.checker.EmailCheckWelcome;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
@@ -27,8 +28,13 @@ public final class RootEmailWelcome extends DeciTreeWriteTemplate<EmailInfo> {
 	@Override protected ModelChecker<EmailInfo> buildDecisionCheckerHook(DeciTreeOption<EmailInfo> option) {		
 		List<ModelChecker<EmailInfo>> queue = new ArrayList<>();		
 		ModelChecker<EmailInfo> checker;	
+		ModelCheckerOption checkerOption;		
 		
-		checker = new EmailCheckWelcome();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new EmailCheckWelcome(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
