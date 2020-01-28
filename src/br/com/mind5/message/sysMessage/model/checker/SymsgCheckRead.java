@@ -3,14 +3,14 @@ package br.com.mind5.message.sysMessage.model.checker;
 import java.sql.Connection;
 
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.common.SystemMessage;
 import br.com.mind5.message.sysMessage.info.SymsgInfo;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple_;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class SymsgCheckRead extends ModelCheckerTemplateSimple_<SymsgInfo> {
+public final class SymsgCheckRead extends ModelCheckerTemplateSimpleV2<SymsgInfo> {
 
-	public SymsgCheckRead() {
-		super();
+	public SymsgCheckRead(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
@@ -27,13 +27,7 @@ public final class SymsgCheckRead extends ModelCheckerTemplateSimple_<SymsgInfo>
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.SYS_MESSAGE_MANDATORY_FIELD_EMPTY;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
+	@Override protected int getCodMsgOnResultFalseHook() {
 		return SystemCode.SYS_MESSAGE_MANDATORY_FIELD_EMPTY;
 	}
 }

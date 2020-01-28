@@ -59,6 +59,7 @@ public final class SymsgSelectSingle extends DaoStmtTemplate<SymsgInfo> {
 				
 				do {
 					SymsgInfo dataInfo = new SymsgInfo();
+					
 					dataInfo.codMsg = DaoFormatter.sqlToInt(stmtResult, SymsgDbTableColumn.COL_COD_MESSAGE);
 					dataInfo.txtMsg = stmtResult.getString(SymsgDbTableColumn.COL_MESSAGE);
 					dataInfo.codLanguage = stmtResult.getString(SymsgDbTableColumn.COL_COD_LANGUAGE);

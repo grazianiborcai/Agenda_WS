@@ -4,12 +4,11 @@ import java.sql.Connection;
 
 import br.com.mind5.business.masterData.info.common.Langu;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.common.SystemMessage;
 import br.com.mind5.message.sysMessage.info.SymsgInfo;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple_;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class SymsgCheckIsEnglish extends ModelCheckerTemplateSimple_<SymsgInfo> {
+public final class SymsgCheckIsEnglish extends ModelCheckerTemplateSimpleV2<SymsgInfo> {
 
 	public SymsgCheckIsEnglish(ModelCheckerOption option) {
 		super(option);
@@ -31,19 +30,13 @@ public final class SymsgCheckIsEnglish extends ModelCheckerTemplateSimple_<Symsg
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {		
-		if (makeFailureCodeHook(checkerResult) == SystemCode.SYS_MESSAGE_IS_ENGLISH)
-			return SystemMessage.SYS_MESSAGE_IS_ENGLISH;
-		
-		return SystemMessage.SYS_MESSAGE_IS_NOT_ENGLISH;
+	@Override protected int getCodMsgOnResultTrueHook() {
+		return SystemCode.SYS_MESSAGE_IS_ENGLISH;
 	}
 	
 	
 	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		if (checkerResult == SUCCESS)
-			return SystemCode.SYS_MESSAGE_IS_ENGLISH;	
-			
+	@Override protected int getCodMsgOnResultFalseHook() {
 		return SystemCode.SYS_MESSAGE_IS_NOT_ENGLISH;
 	}
 }

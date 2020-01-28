@@ -10,6 +10,7 @@ import br.com.mind5.message.sysMessage.model.checker.SymsgCheckRead;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
@@ -25,8 +26,13 @@ public final class RootSymsgSelect extends DeciTreeWriteTemplate<SymsgInfo> {
 	@Override protected ModelChecker<SymsgInfo> buildDecisionCheckerHook(DeciTreeOption<SymsgInfo> option) {		
 		List<ModelChecker<SymsgInfo>> queue = new ArrayList<>();		
 		ModelChecker<SymsgInfo> checker;	
+		ModelCheckerOption checkerOption;	
 		
-		checker = new SymsgCheckRead();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;
+		checker = new SymsgCheckRead(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
