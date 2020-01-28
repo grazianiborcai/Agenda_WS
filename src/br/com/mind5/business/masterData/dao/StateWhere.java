@@ -34,7 +34,7 @@ final class StateWhere implements DaoStmtWhere {
 					break;
 					
 				case MasterDataDbTableColumn.COL_COD_LANGUAGE :
-					builder.addClauseEqualAnd(eachColumn, recordInfo.codState);
+					builder.addClauseEqualAnd(eachColumn, recordInfo.codLanguage);
 					break;	
 			}
 		}		

@@ -53,7 +53,7 @@ public final class EntityCategSelectSingle extends DaoStmtTemplate<EntityCategIn
 	
 	
 	@Override protected DaoJoin getJoinHook(EntityCategInfo recordInfo) {
-		DaoJoinBuilder joinText = new AreaPhoneJoinTxt(MAIN_TABLE);		
+		DaoJoinBuilder joinText = new EntityCategJoinTxt(MAIN_TABLE);		
 		return joinText.build();
 	}
 	
