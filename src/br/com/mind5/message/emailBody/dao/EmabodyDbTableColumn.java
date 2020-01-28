@@ -6,13 +6,14 @@ import java.util.List;
 
 import br.com.mind5.dao.DaoColumn;
 import br.com.mind5.dao.DaoDbTableColumnTemplate;
+import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
 public final class EmabodyDbTableColumn extends DaoDbTableColumnTemplate {
-	public static final String COL_COD_BODY = "cod_email_body";
-	public static final String COL_COD_LANGUAGE = "language";
-	public static final String COL_SUBJECT = "subject";	
-	public static final String COL_TXT_BODY = "body";	
+	public static final String COL_COD_BODY = DaoDbField.COL_COD_BODY;
+	public static final String COL_COD_LANGUAGE = DaoDbField.COL_COD_LANGUAGE;
+	public static final String COL_SUBJECT = DaoDbField.COL_SUBJECT;	
+	public static final String COL_TXT_BODY = DaoDbField.COL_TXT_BODY;	
 	
 	private Hashtable<String, List<DaoColumn>> tableColumns;
 	
