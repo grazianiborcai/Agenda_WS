@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.orderItem.info.OrderemInfo;
-import br.com.mind5.business.orderItem.model.action.LazyOrderemMergeMat;
+import br.com.mind5.business.orderItem.model.action.LazyOrderemMergeMatlis;
 import br.com.mind5.business.orderItem.model.action.LazyOrderemNodeSelect;
 import br.com.mind5.business.orderItem.model.action.StdOrderemMergeToSelect;
 import br.com.mind5.business.orderItem.model.checker.OrderemCheckRead;
@@ -45,11 +45,11 @@ public final class RootOrderemSelect extends DeciTreeWriteTemplate<OrderemInfo> 
 		List<ActionStd<OrderemInfo>> actions = new ArrayList<>();
 		
 		ActionStd<OrderemInfo> select = new StdOrderemMergeToSelect(option);
-		ActionLazy<OrderemInfo> mergeMat = new LazyOrderemMergeMat(option.conn, option.schemaName);
+		ActionLazy<OrderemInfo> mergeMatlis = new LazyOrderemMergeMatlis(option.conn, option.schemaName);
 		ActionLazy<OrderemInfo> nodeSelect = new LazyOrderemNodeSelect(option.conn, option.schemaName);		
 		
-		select.addPostAction(mergeMat);
-		mergeMat.addPostAction(nodeSelect);
+		select.addPostAction(mergeMatlis);
+		mergeMatlis.addPostAction(nodeSelect);
 		
 		actions.add(select);
 		return actions;

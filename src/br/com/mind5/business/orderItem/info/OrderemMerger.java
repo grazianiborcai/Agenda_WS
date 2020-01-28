@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.com.mind5.business.employeeList.info.EmplisInfo;
 import br.com.mind5.business.masterData.info.WeekdayInfo;
-import br.com.mind5.business.material.info.MatInfo;
+import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.business.materialStore.info.MatoreInfo;
 import br.com.mind5.business.orderItemSearch.info.OrdemarchInfo;
 import br.com.mind5.business.orderItemSnapshot.info.OrdemrapInfo;
@@ -55,15 +55,15 @@ public final class OrderemMerger {
 	
 	
 	
-	public static OrderemInfo mergeWithMat(MatInfo sourceOne, OrderemInfo sourceTwo) {
-		InfoMerger<OrderemInfo, MatInfo> merger = new OrderemMergerMat();		
+	public static OrderemInfo mergeWithMatlis(MatlisInfo sourceOne, OrderemInfo sourceTwo) {
+		InfoMerger<OrderemInfo, MatlisInfo> merger = new OrderemMergerMatlis();		
 		return merger.merge(sourceOne, sourceTwo);
 	}
 	
 	
 	
-	public static List<OrderemInfo> mergeWithMat(List<MatInfo> sourceOnes, List<OrderemInfo> sourceTwos) {
-		InfoMerger<OrderemInfo, MatInfo> merger = new OrderemMergerMat();		
+	public static List<OrderemInfo> mergeWithMatlis(List<MatlisInfo> sourceOnes, List<OrderemInfo> sourceTwos) {
+		InfoMerger<OrderemInfo, MatlisInfo> merger = new OrderemMergerMatlis();		
 		return merger.merge(sourceOnes, sourceTwos);
 	}		
 	
