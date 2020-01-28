@@ -28,6 +28,10 @@ final class CurrencyWhere implements DaoStmtWhere {
 				case MasterDataDbTableColumn.COL_COD_CURRENCY :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codCurr);
 					break;
+					
+				case MasterDataDbTableColumn.COL_COD_LANGUAGE :
+					builder.addClauseEqualAnd(eachColumn, recordInfo.codLanguage);
+					break;
 			}
 		}		
 			

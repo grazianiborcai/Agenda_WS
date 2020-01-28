@@ -29,6 +29,10 @@ final class MatCategWhere implements DaoStmtWhere {
 				case MasterDataDbTableColumn.COL_COD_MAT_CATEG :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codMatCateg));
 					break;
+					
+				case MasterDataDbTableColumn.COL_COD_LANGUAGE :
+					builder.addClauseEqualAnd(eachColumn, recordInfo.codLanguage);
+					break;
 			}
 		}		
 			

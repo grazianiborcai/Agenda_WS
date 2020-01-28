@@ -28,6 +28,10 @@ final class OrderStatusWhere implements DaoStmtWhere {
 				case MasterDataDbTableColumn.COL_COD_ORDER_STATUS :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codOrderStatus);
 					break;
+					
+				case MasterDataDbTableColumn.COL_COD_LANGUAGE :
+					builder.addClauseEqualAnd(eachColumn, recordInfo.codLanguage);
+					break;
 			}
 		}		
 			

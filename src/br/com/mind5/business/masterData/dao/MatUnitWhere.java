@@ -28,6 +28,10 @@ final class MatUnitWhere implements DaoStmtWhere {
 				case MasterDataDbTableColumn.COL_COD_UNIT :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codUnit);
 					break;
+					
+				case MasterDataDbTableColumn.COL_COD_LANGUAGE :
+					builder.addClauseEqualAnd(eachColumn, recordInfo.codLanguage);
+					break;
 			}
 		}		
 			

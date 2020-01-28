@@ -29,6 +29,10 @@ final class GenderWhere implements DaoStmtWhere {
 				case MasterDataDbTableColumn.COL_COD_GENDER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codGender));
 					break;
+					
+				case MasterDataDbTableColumn.COL_COD_LANGUAGE :
+					builder.addClauseEqualAnd(eachColumn, recordInfo.codLanguage);
+					break;
 			}
 		}		
 			

@@ -33,6 +33,10 @@ final class MatGroupWhere implements DaoStmtWhere {
 				case MasterDataDbTableColumn.COL_COD_BUSINESS :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codBusiness));
 					break;
+					
+				case MasterDataDbTableColumn.COL_COD_LANGUAGE :
+					builder.addClauseEqualAnd(eachColumn, recordInfo.codLanguage);
+					break;
 			}
 		}		
 			

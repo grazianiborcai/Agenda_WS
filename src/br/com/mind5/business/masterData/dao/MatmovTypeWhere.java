@@ -29,6 +29,10 @@ final class MatmovTypeWhere implements DaoStmtWhere {
 				case MasterDataDbTableColumn.COL_COD_MAT_MOV_TYPE :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.charToString(recordInfo.codMatmovType));
 					break;
+					
+				case MasterDataDbTableColumn.COL_COD_LANGUAGE :
+					builder.addClauseEqualAnd(eachColumn, recordInfo.codLanguage);
+					break;
 			}
 		}		
 			

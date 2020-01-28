@@ -29,6 +29,10 @@ final class PositionWhere implements DaoStmtWhere {
 				case MasterDataDbTableColumn.COL_COD_POSITION :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codPosition));
 					break;
+					
+				case MasterDataDbTableColumn.COL_COD_LANGUAGE :
+					builder.addClauseEqualAnd(eachColumn, recordInfo.codLanguage);
+					break;
 			}
 		}		
 			

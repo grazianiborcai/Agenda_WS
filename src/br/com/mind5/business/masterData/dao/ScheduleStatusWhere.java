@@ -28,6 +28,10 @@ final class ScheduleStatusWhere implements DaoStmtWhere {
 				case MasterDataDbTableColumn.COL_COD_SCHEDULE_STATUS :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codScheduleStatus);
 					break;
+					
+				case MasterDataDbTableColumn.COL_COD_LANGUAGE :
+					builder.addClauseEqualAnd(eachColumn, recordInfo.codLanguage);
+					break;
 			}
 		}		
 			

@@ -28,6 +28,10 @@ final class PaymentStatusWhere implements DaoStmtWhere {
 				case MasterDataDbTableColumn.COL_COD_PAYMENT_STATUS :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codPaymentStatus);
 					break;
+					
+				case MasterDataDbTableColumn.COL_COD_LANGUAGE :
+					builder.addClauseEqualAnd(eachColumn, recordInfo.codLanguage);
+					break;
 			}
 		}		
 			
