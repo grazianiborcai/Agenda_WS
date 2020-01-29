@@ -1034,4 +1034,7 @@ public final class SystemCode {
 	
 	// Email Body
 	public static final int EMAIL_BODY_MANDATORY_FIELD_EMPTY			= 10500;
+	
+	// Order List
+	public static final int OWNER_LIST_MANDATORY_FIELD_EMPTY 			= 10550;
 }

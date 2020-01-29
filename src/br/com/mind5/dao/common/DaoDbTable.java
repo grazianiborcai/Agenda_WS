@@ -153,6 +153,7 @@ public final class DaoDbTable {
 	public static final String MAT_TEXT_SEARCH_VIEW = "view_material_text_search";
 	public static final String MAT_TEXT_DEFAULT_VIEW = "view_material_text_default";
 	public static final String MAT_SEARCH_VIEW = "view_material_search";
+	public static final String OWNER_LIST_VIEW = "view_owner_list";
 	public static final String ORDER_LIST_VIEW = "view_order_list";
 	public static final String ORDER_ITM_SEARCH_VIEW = "view_order_item_search";
 	public static final String ORDER_RESERVE_VIEW = "view_order_reserve";	
