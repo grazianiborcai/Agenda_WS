@@ -39,7 +39,6 @@ final class OwnerVisiMergeComp implements InfoMergerVisitor<OwnerInfo, CompInfo>
 	
 	private OwnerInfo merge(CompInfo sourceOne, OwnerInfo sourceTwo) {
 		sourceTwo.companyData = makeClone(sourceOne);
-		sourceTwo.codCompany = sourceOne.codCompany;
 		return sourceTwo;
 	}
 	
@@ -58,7 +57,8 @@ final class OwnerVisiMergeComp implements InfoMergerVisitor<OwnerInfo, CompInfo>
 	
 	
 	@Override public boolean shouldWrite(CompInfo sourceOne, OwnerInfo sourceTwo) {
-		return (sourceOne.codOwner == sourceTwo.codOwner);
+		return (sourceOne.codOwner   == sourceTwo.codOwner &&
+				sourceOne.codCompany == sourceTwo.codCompany	);
 	}
 	
 	
