@@ -21,6 +21,7 @@ final class EmailCopyUpswd extends InfoCopierTemplate<EmailInfo, UpswdInfo>{
 		result.recipientAddr = source.personData.email;
 		result.bodyData.param01 = source.personData.name;
 		result.bodyData.param02 = source.password;
+		result.bodyData.param03 = source.username;
 		
 		return result;
 	}

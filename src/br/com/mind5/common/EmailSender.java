@@ -137,7 +137,7 @@ public final class EmailSender {
 		message.setSubject(msgSubject);
 		 
 		MimeBodyPart mimeBodyPart = new MimeBodyPart();
-		mimeBodyPart.setContent(msg, "text/html");
+		mimeBodyPart.setText(msg, "utf-8", "html");
 		 
 		Multipart multipart = new MimeMultipart();
 		multipart.addBodyPart(mimeBodyPart);
