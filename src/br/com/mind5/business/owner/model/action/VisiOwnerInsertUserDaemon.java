@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.owner.info.OwnerInfo;
+import br.com.mind5.business.owner.info.OwnerMerger;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -18,19 +19,19 @@ final class VisiOwnerInsertUserDaemon extends ActionVisitorTemplateAction<OwnerI
 	
 	
 	
-	@Override protected List<UserInfo> toActionClassHook(List<OwnerInfo> recordInfos) {
-		return UserCopier.copyFromOwner(recordInfos);
-	}
-	
-	
-	
 	@Override protected ActionStd<UserInfo> getActionHook(DeciTreeOption<UserInfo> option) {
 		return new RootUserInsertDaemon(option).toAction();
 	}
 	
 	
 	
+	@Override protected List<UserInfo> toActionClassHook(List<OwnerInfo> recordInfos) {
+		return UserCopier.copyFromOwner(recordInfos);
+	}
+	
+	
+	
 	@Override protected List<OwnerInfo> toBaseClassHook(List<OwnerInfo> baseInfos, List<UserInfo> results) {
-		return baseInfos;
+		return OwnerMerger.mergeWithDaemon(results, baseInfos);
 	}
 }

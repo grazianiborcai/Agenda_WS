@@ -13,6 +13,20 @@ import br.com.mind5.security.user.info.UserInfo;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class OwnerMerger {
+	public static OwnerInfo mergeWithDaemon(UserInfo sourceOne, OwnerInfo sourceTwo) {
+		InfoMerger<OwnerInfo, UserInfo> merger = new OwnerMergerDaemon();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<OwnerInfo> mergeWithDaemon(List<UserInfo> sourceOnes, List<OwnerInfo> sourceTwos) {
+		InfoMerger<OwnerInfo, UserInfo> merger = new OwnerMergerDaemon();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}	
+	
+	
+	
 	public static OwnerInfo mergeWithFimist(FimistInfo sourceOne, OwnerInfo sourceTwo) {
 		InfoMerger<OwnerInfo, FimistInfo> merger = new OwnerMergerFimist();		
 		return merger.merge(sourceOne, sourceTwo);

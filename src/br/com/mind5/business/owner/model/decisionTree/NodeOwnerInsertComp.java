@@ -5,12 +5,12 @@ import java.util.List;
 
 import br.com.mind5.business.owner.info.OwnerInfo;
 import br.com.mind5.business.owner.model.action.LazyOwnerInsertComp;
+import br.com.mind5.business.owner.model.action.LazyOwnerUpdate;
 import br.com.mind5.business.owner.model.action.StdOwnerEnforceCompKey;
-import br.com.mind5.business.owner.model.checker.OwnerCheckHasComp;
+import br.com.mind5.business.owner.model.checker.OwnerCheckDummy;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
@@ -24,17 +24,10 @@ public final class NodeOwnerInsertComp extends DeciTreeWriteTemplate<OwnerInfo> 
 	
 	
 	@Override protected ModelChecker<OwnerInfo> buildDecisionCheckerHook(DeciTreeOption<OwnerInfo> option) {
-		final boolean HAS_COMPANY = true;
-		
 		List<ModelChecker<OwnerInfo>> queue = new ArrayList<>();		
 		ModelChecker<OwnerInfo> checker;
-		ModelCheckerOption checkerOption;
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = HAS_COMPANY;		
-		checker = new OwnerCheckHasComp(checkerOption);
+
+		checker = new OwnerCheckDummy();
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
@@ -47,8 +40,10 @@ public final class NodeOwnerInsertComp extends DeciTreeWriteTemplate<OwnerInfo> 
 		
 		ActionStd<OwnerInfo> enforceCompKey = new StdOwnerEnforceCompKey(option);
 		ActionLazy<OwnerInfo> insertComp = new LazyOwnerInsertComp(option.conn, option.schemaName);
+		ActionLazy<OwnerInfo> updateOwner = new LazyOwnerUpdate(option.conn, option.schemaName);
 		
 		enforceCompKey.addPostAction(insertComp);
+		insertComp.addPostAction(updateOwner);
 		
 		actions.add(enforceCompKey);	
 		return actions;

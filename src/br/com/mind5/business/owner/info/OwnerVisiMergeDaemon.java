@@ -3,13 +3,13 @@ package br.com.mind5.business.owner.info;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import br.com.mind5.business.company.info.CompInfo;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.security.user.info.UserInfo;
 
-final class OwnerVisiMergeComp implements InfoMergerVisitor<OwnerInfo, CompInfo> {
+final class OwnerVisiMergeDaemon implements InfoMergerVisitor<OwnerInfo, UserInfo> {
 
-	@Override public OwnerInfo writeRecord(CompInfo sourceOne, OwnerInfo sourceTwo) {
+	@Override public OwnerInfo writeRecord(UserInfo sourceOne, OwnerInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);
 		
 		OwnerInfo clonedInfo = makeClone(sourceTwo);
@@ -18,7 +18,7 @@ final class OwnerVisiMergeComp implements InfoMergerVisitor<OwnerInfo, CompInfo>
 	
 	
 	
-	private void checkArgument(CompInfo sourceOne, OwnerInfo sourceTwo) {
+	private void checkArgument(UserInfo sourceOne, OwnerInfo sourceTwo) {
 		if (shouldWrite(sourceOne, sourceTwo) == false)
 			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}
@@ -37,27 +37,15 @@ final class OwnerVisiMergeComp implements InfoMergerVisitor<OwnerInfo, CompInfo>
 	
 	
 	
-	private OwnerInfo merge(CompInfo sourceOne, OwnerInfo sourceTwo) {
-		sourceTwo.companyData = makeClone(sourceOne);
-		sourceTwo.codCompany = sourceOne.codCompany;
+	private OwnerInfo merge(UserInfo sourceOne, OwnerInfo sourceTwo) {
+		sourceTwo.codUser = sourceOne.codUser;
+		sourceTwo.username = sourceOne.username;
 		return sourceTwo;
 	}
 	
 	
 	
-	private CompInfo makeClone(CompInfo recordInfo) {
-		try {
-			return (CompInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}	
-	
-	
-	
-	@Override public boolean shouldWrite(CompInfo sourceOne, OwnerInfo sourceTwo) {
+	@Override public boolean shouldWrite(UserInfo sourceOne, OwnerInfo sourceTwo) {
 		return (sourceOne.codOwner == sourceTwo.codOwner);
 	}
 	

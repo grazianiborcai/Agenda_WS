@@ -46,7 +46,19 @@ public final class UpswdInfo extends InfoRecord implements Cloneable {
 	
 	
 	@Override public Object clone() throws CloneNotSupportedException {
-		return super.clone();
+		UpswdInfo deepCopy = (UpswdInfo) super.clone();
+		
+		deepCopy.personData = clonePerson(deepCopy.personData);
+		return deepCopy;
+	}
+	
+	
+	
+	private PersonInfo clonePerson(PersonInfo recordInfo) throws CloneNotSupportedException {
+		if (recordInfo == null)
+			return null;
+		
+		return (PersonInfo) recordInfo.clone();
 	}
 	
 	
