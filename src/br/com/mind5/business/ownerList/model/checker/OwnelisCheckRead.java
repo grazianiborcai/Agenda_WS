@@ -16,7 +16,8 @@ public final class OwnelisCheckRead extends ModelCheckerTemplateSimpleV2<Ownelis
 	
 	
 	@Override protected boolean checkHook(OwnelisInfo recordInfo, Connection conn, String schemaName) {	
-		if ( recordInfo.username 	== null	||
+		if ( recordInfo.codOwner 	<= 0	||
+			 recordInfo.username 	== null	||
 			 recordInfo.codLanguage == null		)
 			
 			return super.FAILED;		
