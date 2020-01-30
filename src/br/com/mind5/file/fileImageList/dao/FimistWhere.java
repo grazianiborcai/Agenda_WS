@@ -35,30 +35,6 @@ public final class FimistWhere implements DaoStmtWhere {
 				builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codFileImg));
 				break;
 				
-			case FimistDbTableColumn.COL_COD_PERSON :
-				builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codPerson));
-				break;
-				
-			case FimistDbTableColumn.COL_COD_EMPLOYEE :
-				builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codEmployee));
-				break;
-				
-			case FimistDbTableColumn.COL_COD_CUSTOMER :
-				builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codCustomer));
-				break;
-				
-			case FimistDbTableColumn.COL_COD_STORE :
-				builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codStore));
-				break;
-				
-			case FimistDbTableColumn.COL_COD_OWNER_REF :
-				builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwnerRef));
-				break;
-				
-			case FimistDbTableColumn.COL_COD_MATERIAL :
-				builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codMat));
-				break;
-				
 			case FimistDbTableColumn.COL_RECORD_MODE :
 				builder.addClauseEqualAnd(eachColumn, recordInfo.recordMode);
 				break;

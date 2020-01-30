@@ -7,7 +7,7 @@ import br.com.mind5.business.employeeList.info.EmplisInfo;
 import br.com.mind5.business.employeeList.info.EmplisMerger;
 import br.com.mind5.file.fileImageList.info.FimistCopier;
 import br.com.mind5.file.fileImageList.info.FimistInfo;
-import br.com.mind5.file.fileImageList.model.decisionTree.RootFimistSelect;
+import br.com.mind5.file.fileImageList.model.decisionTree.RootFimistSearch;
 import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
 
@@ -20,7 +20,7 @@ final class VisiEmplisMergeFimist extends ActionVisitorTemplateMergeV2<EmplisInf
 	
 	
 	@Override protected Class<? extends DeciTree<FimistInfo>> getTreeClassHook() {
-		return RootFimistSelect.class;
+		return RootFimistSearch.class;
 	}
 	
 	

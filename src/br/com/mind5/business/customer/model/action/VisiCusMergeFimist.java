@@ -7,7 +7,7 @@ import br.com.mind5.business.customer.info.CusInfo;
 import br.com.mind5.business.customer.info.CusMerger;
 import br.com.mind5.file.fileImageList.info.FimistCopier;
 import br.com.mind5.file.fileImageList.info.FimistInfo;
-import br.com.mind5.file.fileImageList.model.decisionTree.RootFimistSelect;
+import br.com.mind5.file.fileImageList.model.decisionTree.RootFimistSearch;
 import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
 
@@ -20,7 +20,7 @@ final class VisiCusMergeFimist extends ActionVisitorTemplateMergeV2<CusInfo, Fim
 	
 	
 	@Override protected Class<? extends DeciTree<FimistInfo>> getTreeClassHook() {
-		return RootFimistSelect.class;
+		return RootFimistSearch.class;
 	}
 	
 	

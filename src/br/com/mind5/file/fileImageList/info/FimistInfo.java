@@ -16,6 +16,7 @@ public final class FimistInfo extends InfoRecord implements Cloneable {
 	public long codStore;
 	public long codEmployee;
 	public long codCustomer;
+	public long codUser;
 	public long codOwnerRef;
 	public String recordMode;
 	public String username;

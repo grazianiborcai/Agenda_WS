@@ -47,7 +47,7 @@ public final class FimistSelectSingle extends DaoStmtTemplate<FimistInfo> {
 	@Override protected String buildWhereClauseHook(String tableName, FimistInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
 		
-		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
+		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
 		DaoStmtWhere whereClause = new FimistWhere(whereOption, tableName, recordInfo);
@@ -75,6 +75,7 @@ public final class FimistSelectSingle extends DaoStmtTemplate<FimistInfo> {
 					dataInfo.codStore = DaoFormatter.sqlToLong(stmtResult, FimistDbTableColumn.COL_COD_STORE);
 					dataInfo.codEmployee = DaoFormatter.sqlToLong(stmtResult, FimistDbTableColumn.COL_COD_EMPLOYEE);
 					dataInfo.codCustomer = DaoFormatter.sqlToLong(stmtResult, FimistDbTableColumn.COL_COD_CUSTOMER);
+					dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, FimistDbTableColumn.COL_COD_USER);
 					dataInfo.recordMode = stmtResult.getString(FimistDbTableColumn.COL_RECORD_MODE);	
 					dataInfo.fileImgExtension = stmtResult.getString(FimistDbTableColumn.COL_FILE_IMG_EXTENSION);
 					dataInfo.fileImgUri = stmtResult.getString(FimistDbTableColumn.COL_FILE_URI);
