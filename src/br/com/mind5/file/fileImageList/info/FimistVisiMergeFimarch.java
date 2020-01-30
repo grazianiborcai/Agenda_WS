@@ -38,8 +38,7 @@ final class FimistVisiMergeFimarch implements InfoMergerVisitor<FimistInfo, Fima
 	
 	
 	private FimistInfo merge(FimarchInfo sourceOne, FimistInfo sourceTwo) {
-		sourceTwo.codFileImg = sourceOne.codFileImg;
-		return sourceTwo;
+		return FimistInfo.copyFrom(sourceOne);
 	}
 	
 	

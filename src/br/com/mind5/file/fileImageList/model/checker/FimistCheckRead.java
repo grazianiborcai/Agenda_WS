@@ -17,18 +17,9 @@ public final class FimistCheckRead extends ModelCheckerTemplateSimpleV2<FimistIn
 	
 	@Override protected boolean checkHook(FimistInfo recordInfo, Connection conn, String schemaName) {	
 		if (recordInfo.codOwner 	<= 0 	||
+			recordInfo.codFileImg	<= 0	||
 			recordInfo.codLanguage 	== null		)
 			
-			return super.FAILED;
-		
-		
-		if ( recordInfo.codPerson 	<= 0 &&
-			 recordInfo.codStore	<= 0 &&
-			 recordInfo.codCustomer	<= 0 &&
-			 recordInfo.codEmployee	<= 0 &&
-		     recordInfo.codOwnerRef	<= 0 &&
-			 recordInfo.codMat		<= 0	)
-				
 			return super.FAILED;
 		
 		
