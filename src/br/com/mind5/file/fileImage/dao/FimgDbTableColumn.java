@@ -18,6 +18,7 @@ public final class FimgDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_OWNER_REF = DaoDbField.COL_COD_OWNER_REF;
 	public static final String COL_COD_PERSON = DaoDbField.COL_COD_PERSON;
 	public static final String COL_COD_STORE = DaoDbField.COL_COD_STORE;
+	public static final String COL_COD_USER = DaoDbField.COL_COD_USER;
 	public static final String COL_CREATED_ON = DaoDbField.COL_CREATED_ON;
 	public static final String COL_CREATED_BY = DaoDbField.COL_CREATED_BY;
 	public static final String COL_FILE_IMG_EXTENSION = DaoDbField.COL_FILE_IMG_EXTENSION;
@@ -194,6 +195,14 @@ public final class FimgDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_COD_CUSTOMER;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_COD_USER;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;

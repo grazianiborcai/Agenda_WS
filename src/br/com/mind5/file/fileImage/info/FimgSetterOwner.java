@@ -18,6 +18,7 @@ public final class FimgSetterOwner implements InfoSetter<FimgInfo> {
 		recordInfo.codMat = DefaultValue.number();
 		recordInfo.codStore = DefaultValue.number();
 		recordInfo.codCustomer = DefaultValue.number();
+		recordInfo.codUser = DefaultValue.number();
 		
 		return recordInfo;
 	}

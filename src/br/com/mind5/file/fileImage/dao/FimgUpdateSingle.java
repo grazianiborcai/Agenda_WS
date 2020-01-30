@@ -69,6 +69,7 @@ public final class FimgUpdateSingle extends DaoStmtTemplate<FimgInfo> {
 				stmt.setBoolean(i++, recordInfo.isCover);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codEmployee);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codCustomer);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codUser);
 				
 				return stmt;
 			}		

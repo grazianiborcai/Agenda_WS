@@ -17,6 +17,7 @@ public final class FimgSetterCus implements InfoSetter<FimgInfo> {
 		recordInfo.codMat = DefaultValue.number();
 		recordInfo.codStore = DefaultValue.number();
 		recordInfo.codEmployee = DefaultValue.number();
+		recordInfo.codUser = DefaultValue.number();
 		
 		return recordInfo;
 	}

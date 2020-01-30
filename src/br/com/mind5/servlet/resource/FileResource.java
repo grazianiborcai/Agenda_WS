@@ -24,11 +24,13 @@ import br.com.mind5.file.fileImage.model.FimgModelDeleteEmp;
 import br.com.mind5.file.fileImage.model.FimgModelDeleteMat;
 import br.com.mind5.file.fileImage.model.FimgModelDeleteOwner;
 import br.com.mind5.file.fileImage.model.FimgModelDeleteStore;
+import br.com.mind5.file.fileImage.model.FimgModelDeleteUser;
 import br.com.mind5.file.fileImage.model.FimgModelInsertCus;
 import br.com.mind5.file.fileImage.model.FimgModelInsertEmp;
 import br.com.mind5.file.fileImage.model.FimgModelInsertMat;
 import br.com.mind5.file.fileImage.model.FimgModelInsertOwner;
 import br.com.mind5.file.fileImage.model.FimgModelInsertStore;
+import br.com.mind5.file.fileImage.model.FimgModelInsertUser;
 import br.com.mind5.file.fileImage.model.FimgModelUpdateMat;
 import br.com.mind5.file.fileImage.model.FimgModelUpdateStore;
 import br.com.mind5.model.Model;
@@ -39,12 +41,14 @@ public class FileResource {
 	private static final String INSERT_FILE_IMG_OWNER = "/insertFileImgOwner";
 	private static final String INSERT_FILE_IMG_EMPLOYEE = "/insertFileImgEmployee";
 	private static final String INSERT_FILE_IMG_CUSTOMER = "/insertFileImgCustomer";
+	private static final String INSERT_FILE_IMG_USER = "/insertFileImgUser";
 	private static final String INSERT_FILE_IMG_STORE = "/insertFileImgStore";
 	private static final String UPDATE_FILE_IMG_STORE = "/updateFileImgStore";
 	private static final String DELETE_FILE_IMG_STORE = "/deleteFileImgStore";
 	private static final String DELETE_FILE_IMG_OWNER = "/deleteFileImgOwner";
 	private static final String DELETE_FILE_IMG_EMPLOYEE = "/deleteFileImgEmployee";
 	private static final String DELETE_FILE_IMG_CUSTOMER = "/deleteFileImgCustomer";
+	private static final String DELETE_FILE_IMG_USER = "/deleteFileImgUser";
 	private static final String INSERT_FILE_IMG_MAT = "/insertFileImgMaterial";
 	private static final String UPDATE_FILE_IMG_MAT = "/updateFileImgMaterial";
 	private static final String DELETE_FILE_IMG_MAT = "/deleteFileImgMaterial";
@@ -124,6 +128,31 @@ public class FileResource {
 		recordInfo.fileImgExtension = FilenameUtils.getExtension(fileDetails.getFileName());
 		
 		Model model = new FimgModelInsertCus(recordInfo);
+		model.executeRequest();
+		return model.getResponse();
+	} 
+	
+	
+	
+	@POST
+	@Path(INSERT_FILE_IMG_USER)
+	@Consumes(MediaType.MULTIPART_FORM_DATA)
+	@Produces(MediaType.APPLICATION_JSON)	
+	public Response insertFileImgUser(@HeaderParam("TOKEN_OWNER")    	@DefaultValue("-1") long codOwner, 
+					                  @HeaderParam("TOKEN_USERNAME") 	String username,
+					                  @FormDataParam("codLanguage")     @DefaultValue("EN") String codLanguage,
+					                  @FormDataParam("file") 			InputStream fileData,
+					                  @FormDataParam("file") 			FormDataContentDisposition fileDetails) {		
+		
+		FimgInfo recordInfo = new FimgInfo();		
+		
+		recordInfo.codOwner = codOwner;	
+		recordInfo.fileImgData = fileData;
+		recordInfo.codLanguage = codLanguage;		
+		recordInfo.username = username;	
+		recordInfo.fileImgExtension = FilenameUtils.getExtension(fileDetails.getFileName());
+		
+		Model model = new FimgModelInsertUser(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	} 
@@ -232,6 +261,28 @@ public class FileResource {
 		recordInfo.username = username;	
 		
 		Model model = new FimgModelDeleteCus(recordInfo);
+		model.executeRequest();
+		return model.getResponse();
+	} 
+	
+	
+	
+	@DELETE
+	@Path(DELETE_FILE_IMG_USER)
+	@Produces(MediaType.APPLICATION_JSON)	
+	public Response deleteFileImgempUser(@HeaderParam("TOKEN_OWNER")    	@DefaultValue("-1") long codOwner, 
+					                     @HeaderParam("TOKEN_USERNAME") 	String username,
+					                     @HeaderParam("codLanguage")    	@DefaultValue("EN") String codLanguage,
+					                     @HeaderParam("codFileImg") 		@DefaultValue("-1") long  codFileImg) {		
+		
+		FimgInfo recordInfo = new FimgInfo();		
+		
+		recordInfo.codOwner = codOwner;	
+		recordInfo.codFileImg = codFileImg;
+		recordInfo.codLanguage = codLanguage;		
+		recordInfo.username = username;	
+		
+		Model model = new FimgModelDeleteUser(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	} 

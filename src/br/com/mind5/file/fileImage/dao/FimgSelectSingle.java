@@ -60,6 +60,7 @@ public final class FimgSelectSingle extends DaoStmtTemplate<FimgInfo> {
 				
 				do {
 					FimgInfo dataInfo = new FimgInfo();
+					
 					dataInfo.codOwner = DaoFormatter.sqlToLong(stmtResult, FimgDbTableColumn.COL_COD_OWNER);
 					dataInfo.codOwnerRef = DaoFormatter.sqlToLong(stmtResult, FimgDbTableColumn.COL_COD_OWNER_REF);
 					dataInfo.codFileImg = DaoFormatter.sqlToLong(stmtResult, FimgDbTableColumn.COL_COD_FILE_IMG);
@@ -67,6 +68,7 @@ public final class FimgSelectSingle extends DaoStmtTemplate<FimgInfo> {
 					dataInfo.codPerson = DaoFormatter.sqlToLong(stmtResult, FimgDbTableColumn.COL_COD_PERSON);
 					dataInfo.codEmployee = DaoFormatter.sqlToLong(stmtResult, FimgDbTableColumn.COL_COD_EMPLOYEE);
 					dataInfo.codCustomer = DaoFormatter.sqlToLong(stmtResult, FimgDbTableColumn.COL_COD_CUSTOMER);
+					dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, FimgDbTableColumn.COL_COD_USER);
 					dataInfo.codStore = DaoFormatter.sqlToLong(stmtResult, FimgDbTableColumn.COL_COD_STORE);
 					dataInfo.recordMode = stmtResult.getString(FimgDbTableColumn.COL_RECORD_MODE);
 					dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, FimgDbTableColumn.COL_CREATED_ON);		
