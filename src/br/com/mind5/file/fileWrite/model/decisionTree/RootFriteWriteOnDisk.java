@@ -8,6 +8,7 @@ import br.com.mind5.file.fileWrite.model.action.StdFriteWriteOnDisk;
 import br.com.mind5.file.fileWrite.model.checker.FriteCheckWrite;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
@@ -23,8 +24,13 @@ public final class RootFriteWriteOnDisk extends DeciTreeWriteTemplate<FriteInfo>
 	@Override protected ModelChecker<FriteInfo> buildDecisionCheckerHook(DeciTreeOption<FriteInfo> option) {
 		List<ModelChecker<FriteInfo>> queue = new ArrayList<>();		
 		ModelChecker<FriteInfo> checker;
+		ModelCheckerOption checkerOption;
 		
-		checker = new FriteCheckWrite();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new FriteCheckWrite(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
