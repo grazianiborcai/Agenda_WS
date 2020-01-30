@@ -3,21 +3,20 @@ package br.com.mind5.file.filePath.model.checker;
 import java.sql.Connection;
 
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.common.SystemMessage;
 import br.com.mind5.file.filePath.info.FathInfo;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple_;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class FathCheckRead extends ModelCheckerTemplateSimple_<FathInfo> {
+public final class FathCheckRead extends ModelCheckerTemplateSimpleV2<FathInfo> {
 
-	public FathCheckRead() {
-		super();
+	public FathCheckRead(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
 	
 	@Override protected boolean checkHook(FathInfo recordInfo, Connection conn, String schemaName) {	
-		if (recordInfo.codFilePath == null		)
-			
+		if ( recordInfo.codFilePath == null )			
 			return super.FAILED;
 		
 		
@@ -26,13 +25,7 @@ public final class FathCheckRead extends ModelCheckerTemplateSimple_<FathInfo> {
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.FILE_PATH_MANDATORY_FIELD_EMPTY;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
+	@Override protected int getCodMsgOnResultFalseHook() {
 		return SystemCode.FILE_PATH_MANDATORY_FIELD_EMPTY;
 	}
 }

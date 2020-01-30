@@ -7,115 +7,67 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoStmt;
-import br.com.mind5.dao.DaoStmtHelper_;
+import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
-import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.dao.common.DaoOptionValue;
-import br.com.mind5.dao.obsolete.DaoResultParser_;
-import br.com.mind5.dao.obsolete.DaoStmtOption_;
 import br.com.mind5.file.filePath.info.FathInfo;
 
-public final class FathSelectSingle implements DaoStmt<FathInfo> {
-	private final String LT_FILE = DaoDbTable.FILE_PATH_TABLE;	
-	
-	private DaoStmt<FathInfo> stmtSql;
-	private DaoStmtOption_<FathInfo> stmtOption;
-	
+public final class FathSelectSingle extends DaoStmtTemplate<FathInfo> {
+	private final String MAIN_TABLE = DaoDbTable.FILE_PATH_TABLE;	
 	
 	
 	public FathSelectSingle(Connection conn, FathInfo recordInfo, String schemaName) {
-		buildStmtOption(conn, recordInfo, schemaName);
-		buildStmt();
+		super(conn, recordInfo, schemaName);
 	}
 	
 	
 	
-	private void buildStmtOption(Connection conn, FathInfo recordInfo, String schemaName) {
-		stmtOption = new DaoStmtOption_<>();
-		stmtOption.conn = conn;
-		stmtOption.recordInfo = recordInfo;
-		stmtOption.schemaName = schemaName;
-		stmtOption.tableName = LT_FILE;
-		stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(LT_FILE);
-		stmtOption.stmtParamTranslator = null;
-		stmtOption.resultParser = new ResultParser();
-		stmtOption.whereClause = buildWhereClause();
-		stmtOption.joins = null;
+	@Override protected String getTableNameHook() {
+		return MAIN_TABLE;
 	}
 	
 	
 	
-	private String buildWhereClause() {
+	@Override protected DaoOperation getOperationHook() {
+		return DaoOperation.SELECT;
+	}
+	
+	
+	
+	@Override protected String buildWhereClauseHook(String tableName, FathInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
+		
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new FathWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
+		DaoStmtWhere whereClause = new FathWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
 	
 	
-	private void buildStmt() {
-		this.stmtSql = new DaoStmtHelper_<>(DaoOperation.SELECT, this.stmtOption, this.getClass());
-	}
-	
-	
-
-	@Override public void generateStmt() throws SQLException {
-		stmtSql.generateStmt();		
-	}
-
-	
-	
-	@Override public boolean checkStmtGeneration() {
-		return stmtSql.checkStmtGeneration();
-	}
-
-	
-	
-	@Override public void executeStmt() throws SQLException {
-		stmtSql.executeStmt();
-	}
-
-	
-	
-	@Override public List<FathInfo> getResultset() {
-		return stmtSql.getResultset();
-	}
-	
-	
-	
-	@Override public DaoStmt<FathInfo> getNewInstance() {
-		return new FathSelectSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
-	}
-	
-	
-	
-	
-	
-	
-	private static class ResultParser implements DaoResultParser_<FathInfo> {
-		private final boolean EMPTY_RESULT_SET = false;
-		
-		@Override public List<FathInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
-			List<FathInfo> finalResult = new ArrayList<>();
-			
-			if (stmtResult.next() == EMPTY_RESULT_SET)				
-				return finalResult;
-			
-			do {
-				FathInfo dataInfo = new FathInfo();
-				dataInfo.codFilePath = stmtResult.getString(FathDbTableColumn.COL_COD_FILE_PATH);
-				dataInfo.filePath = stmtResult.getString(FathDbTableColumn.COL_FILE_PATH);
+	@Override protected DaoResultParserV2<FathInfo> getResultParserHook() {
+		return new DaoResultParserV2<FathInfo>() {
+			@Override public List<FathInfo> parseResult(FathInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
+				List<FathInfo> finalResult = new ArrayList<>();
 				
-				finalResult.add(dataInfo);
-			} while (stmtResult.next());
-			
-			return finalResult;
-		}
+				if (stmtResult.next() == false)				
+					return finalResult;
+				
+				do {
+					FathInfo dataInfo = new FathInfo();
+					
+					dataInfo.codFilePath = stmtResult.getString(FathDbTableColumn.COL_COD_FILE_PATH);
+					dataInfo.filePath = stmtResult.getString(FathDbTableColumn.COL_FILE_PATH);
+					
+					finalResult.add(dataInfo);
+				} while (stmtResult.next());
+				
+				return finalResult;
+			}
+		};
 	}
 }

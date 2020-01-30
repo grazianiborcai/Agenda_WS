@@ -8,6 +8,7 @@ import br.com.mind5.file.filePath.model.action.StdFathSelect;
 import br.com.mind5.file.filePath.model.checker.FathCheckRead;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
@@ -23,8 +24,13 @@ public final class RootFathSelect extends DeciTreeReadTemplate<FathInfo> {
 	@Override protected ModelChecker<FathInfo> buildDecisionCheckerHook(DeciTreeOption<FathInfo> option) {
 		List<ModelChecker<FathInfo>> queue = new ArrayList<>();		
 		ModelChecker<FathInfo> checker;
+		ModelCheckerOption checkerOption;
 		
-		checker = new FathCheckRead();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new FathCheckRead(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
