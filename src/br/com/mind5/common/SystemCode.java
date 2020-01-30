@@ -753,6 +753,7 @@ public final class SystemCode {
 	public static final int FILE_IMG_IS_NOT_EMPLOYEE					= 6009;
 	public static final int FILE_IMG_IS_NOT_MAT							= 6010;
 	public static final int FILE_IMG_IS_NOT_CUSTOMER					= 6011;
+	public static final int FILE_IMG_IS_NOT_USER						= 6012;
 	
 	// File Path
 	public static final int FILE_PATH_MANDATORY_FIELD_EMPTY 			= 6051;
@@ -814,6 +815,8 @@ public final class SystemCode {
 	
 	// File Image Search
 	public static final int FILE_IMG_SEARCH_MANDATORY_FIELD_EMPTY 		= 6750;
+	public static final int FILE_IMG_SEARCH_ALREADY_EXIST				= 6751;
+	public static final int FILE_IMG_SEARCH_NOT_FOUND					= 6752;
 	
 	// File Image List
 	public static final int FILE_IMG_LIST_MANDATORY_FIELD_EMPTY 		= 6800;
