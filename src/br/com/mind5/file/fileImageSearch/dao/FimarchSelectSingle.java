@@ -60,6 +60,7 @@ public final class FimarchSelectSingle extends DaoStmtTemplate<FimarchInfo> {
 				
 				do {
 					FimarchInfo dataInfo = new FimarchInfo();
+					
 					dataInfo.codOwner = DaoFormatter.sqlToLong(stmtResult, FimarchDbTableColumn.COL_COD_OWNER);
 					dataInfo.codFileImg = DaoFormatter.sqlToLong(stmtResult, FimarchDbTableColumn.COL_COD_FILE_IMG);
 					dataInfo.codMat = DaoFormatter.sqlToLong(stmtResult, FimarchDbTableColumn.COL_COD_MATERIAL);

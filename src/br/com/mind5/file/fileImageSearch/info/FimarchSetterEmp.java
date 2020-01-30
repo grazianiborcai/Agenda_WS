@@ -26,6 +26,7 @@ public final class FimarchSetterEmp implements InfoSetter<FimarchInfo> {
 	
 	private FimarchInfo setCodEntityCateg(FimarchInfo recordInfo) {
 		FimarchInfo result = new FimarchInfo();
+		
 		result.codOwner = recordInfo.codOwner;
 		result.codEmployee = recordInfo.codEmployee; 
 		result.codLanguage = recordInfo.codLanguage; 
