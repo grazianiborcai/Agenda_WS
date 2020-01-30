@@ -67,6 +67,7 @@ public final class FimarchSelectSingle extends DaoStmtTemplate<FimarchInfo> {
 					dataInfo.codPerson = DaoFormatter.sqlToLong(stmtResult, FimarchDbTableColumn.COL_COD_PERSON);
 					dataInfo.codEmployee = DaoFormatter.sqlToLong(stmtResult, FimarchDbTableColumn.COL_COD_EMPLOYEE);
 					dataInfo.codCustomer = DaoFormatter.sqlToLong(stmtResult, FimarchDbTableColumn.COL_COD_CUSTOMER);
+					dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, FimarchDbTableColumn.COL_COD_USER);
 					dataInfo.codStore = DaoFormatter.sqlToLong(stmtResult, FimarchDbTableColumn.COL_COD_STORE);
 					dataInfo.recordMode = stmtResult.getString(FimarchDbTableColumn.COL_RECORD_MODE);
 					
