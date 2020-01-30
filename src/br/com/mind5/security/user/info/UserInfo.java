@@ -9,6 +9,7 @@ import br.com.mind5.business.masterData.info.AuthGrRoleInfo;
 import br.com.mind5.business.person.info.PersonInfo;
 import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.common.DefaultValue;
+import br.com.mind5.file.fileImageList.info.FimistInfo;
 import br.com.mind5.info.InfoRecord;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
 
@@ -26,6 +27,7 @@ public final class UserInfo extends InfoRecord implements Cloneable {
 	public List<PhoneInfo> phones;
 	public List<AuthGrRoleInfo> authGrRoles;
 	public List<CusparInfo> cuspars;
+	public FimistInfo fimistData;
 	public String recordMode;
 	public LocalDateTime lastChanged;
 	public long lastChangedBy;
@@ -45,6 +47,7 @@ public final class UserInfo extends InfoRecord implements Cloneable {
 		cuspars = DefaultValue.list();
 		addresses = DefaultValue.list();
 		phones = DefaultValue.list();	
+		fimistData = DefaultValue.object();
 		recordMode = DefaultValue.recordMode();		
 		lastChangedBy = DefaultValue.number();
 	}
@@ -70,6 +73,7 @@ public final class UserInfo extends InfoRecord implements Cloneable {
 		deepCopy.phones = clonePhones(deepCopy.phones);
 		deepCopy.personData = clonePerson(deepCopy.personData);
 		deepCopy.authGrRoles = cloneAuthGrRoles(deepCopy.authGrRoles);
+		deepCopy.fimistData = cloneFimist(deepCopy.fimistData);
 		
 		return deepCopy;
 	}
@@ -130,6 +134,15 @@ public final class UserInfo extends InfoRecord implements Cloneable {
 		
 		return deepAuthGrRoles;
 	}
+	
+	
+	
+	private FimistInfo cloneFimist(FimistInfo recordInfo) throws CloneNotSupportedException {
+		if (recordInfo == null)
+			return null;
+		
+		return (FimistInfo) recordInfo.clone();
+	}	
 	
 	
 	

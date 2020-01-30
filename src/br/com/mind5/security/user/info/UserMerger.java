@@ -6,6 +6,7 @@ import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.masterData.info.AuthGrRoleInfo;
 import br.com.mind5.business.person.info.PersonInfo;
 import br.com.mind5.business.phone.info.PhoneInfo;
+import br.com.mind5.file.fileImageList.info.FimistInfo;
 import br.com.mind5.info.InfoMerger;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
 import br.com.mind5.security.userSearch.info.UserarchInfo;
@@ -13,6 +14,20 @@ import br.com.mind5.security.userSnapshot.info.UserapInfo;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class UserMerger {
+	public static UserInfo mergeWithFimist(FimistInfo sourceOne, UserInfo sourceTwo) {
+		InfoMerger<UserInfo, FimistInfo> merger = new UserMergerFimist();		
+		return merger.merge(sourceOne, sourceTwo);
+	}
+	
+	
+	
+	public static List<UserInfo> mergeWithFimist(List<FimistInfo> sourceOnes, List<UserInfo> sourceTwos) {
+		InfoMerger<UserInfo, FimistInfo> merger = new UserMergerFimist();		
+		return merger.merge(sourceOnes, sourceTwos);
+	}
+	
+	
+	
 	public static UserInfo mergeWithUserarch(UserarchInfo sourceOne, UserInfo sourceTwo) {
 		InfoMerger<UserInfo, UserarchInfo> merger = new UserMergerUserarch();		
 		return merger.merge(sourceOne, sourceTwo);

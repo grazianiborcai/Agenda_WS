@@ -14,6 +14,7 @@ import br.com.mind5.security.user.info.UserInfo;
 import br.com.mind5.security.user.model.action.LazyUserMergeAddress;
 import br.com.mind5.security.user.model.action.LazyUserMergeAuthGrRole;
 import br.com.mind5.security.user.model.action.LazyUserMergeCuspar;
+import br.com.mind5.security.user.model.action.LazyUserMergeFimist;
 import br.com.mind5.security.user.model.action.LazyUserMergePerson;
 import br.com.mind5.security.user.model.action.LazyUserMergePhone;
 import br.com.mind5.security.user.model.action.LazyUserMergeToSelect;
@@ -70,6 +71,7 @@ public final class RootUserSelect extends DeciTreeReadTemplate<UserInfo> {
 		ActionLazy<UserInfo> mergePhone = new LazyUserMergePhone(option.conn, option.schemaName);
 		ActionLazy<UserInfo> mergeAuthGrRole = new LazyUserMergeAuthGrRole(option.conn, option.schemaName);
 		ActionLazy<UserInfo> mergeCuspar = new LazyUserMergeCuspar(option.conn, option.schemaName);
+		ActionLazy<UserInfo> mergeFimist = new LazyUserMergeFimist(option.conn, option.schemaName);
 		
 		nodeUsername.addPostAction(select);
 		select.addPostAction(mergePerson);
@@ -77,6 +79,7 @@ public final class RootUserSelect extends DeciTreeReadTemplate<UserInfo> {
 		mergeAddress.addPostAction(mergePhone);
 		mergePhone.addPostAction(mergeAuthGrRole);
 		mergeAuthGrRole.addPostAction(mergeCuspar);
+		mergeCuspar.addPostAction(mergeFimist);
 		
 		actions.add(nodeUsername);
 		return actions;
