@@ -11,8 +11,6 @@ final class PlanimeVisiMergeMatlis implements InfoMergerVisitor<PlanimeInfo, Mat
 
 	@Override public PlanimeInfo writeRecord(MatlisInfo sourceOne, PlanimeInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);
-				
-		checkArgument(sourceOne, sourceTwo);
 		
 		MatlisInfo clonedMat = makeClone(sourceOne);
 		sourceTwo.materials.add(clonedMat);
