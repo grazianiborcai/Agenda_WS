@@ -1,83 +1,135 @@
 package br.com.mind5.business.planningTime.info;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import br.com.mind5.business.employeeList.info.EmplisInfo;
 import br.com.mind5.business.masterData.info.WeekdayInfo;
 import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.business.planingData.info.PlanataInfo;
 import br.com.mind5.business.storeList.info.StolisInfo;
-import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoUniquifier;
 
-final class PlanimeUniquifier implements InfoUniquifier<PlanimeInfo> {
-	private List<StolisInfo> allStores;
-	private List<LocalDate> allDates;
-	private List<MatlisInfo> allMaterials;
-	private List<EmplisInfo> allEmployees;
-	private List<WeekdayInfo> allWeekdays;
-	private List<PlanataInfo> allPlanatas;	
-	private List<PlanimeInfo> results; 
-	
+final class PlanimeUniquifier implements InfoUniquifier<PlanimeInfo> {	
 	
 	@Override public List<PlanimeInfo> uniquify(List<PlanimeInfo> infoRecords) {
-		init();
-		collect(infoRecords);
-		removeDuplicate();
-		makeResult();
+		List<PlanimeInfo> results = new ArrayList<>();
+		
+		for (PlanimeInfo eachRecord : infoRecords) {
+			PlanimeInfo result = makeClone(eachRecord);
+			
+			result = uniquifyStore(result);
+			result = uniquifyDate(result);
+			result = uniquifyMaterial(result);
+			result = uniquifyEmployee(result);
+			result = uniquifyWeekday(result);
+			result = uniquifyPlanata(result);
+			
+			results.add(result);
+		}
 		
 		return results;
 	}
 	
 	
 	
-	private void init() {
-		allStores = DefaultValue.list();
-		allDates = DefaultValue.list();
-		allMaterials = DefaultValue.list();
-		allEmployees = DefaultValue.list();
-		allWeekdays = DefaultValue.list();
-		allPlanatas = DefaultValue.list();
-		results = DefaultValue.list();
-	}
-	
-	
-	
-	private void collect(List<PlanimeInfo> recordInfos) {		
-		for (PlanimeInfo eachRecord : recordInfos) {
-			allStores.addAll(eachRecord.stores);
-			allDates.addAll(eachRecord.dates);
-			allMaterials.addAll(eachRecord.materials);
-			allEmployees.addAll(eachRecord.employees);
-			allWeekdays.addAll(eachRecord.weekdays);
-			allPlanatas.addAll(eachRecord.planatas);
-		}		
-	}
-	
-	
-	
-	private void removeDuplicate() {
-		allStores = allStores.stream().distinct().collect(Collectors.toList());		
-		allDates = allDates.stream().distinct().collect(Collectors.toList());	
-		allMaterials = allMaterials.stream().distinct().collect(Collectors.toList());
-		allEmployees = allEmployees.stream().distinct().collect(Collectors.toList());
-		allWeekdays = allWeekdays.stream().distinct().collect(Collectors.toList());
-		allPlanatas = allPlanatas.stream().distinct().collect(Collectors.toList());
-	}
-	
-	
-	
-	private void makeResult() {
-		PlanimeInfo tempResult = new PlanimeInfo();
-		tempResult.stores = allStores;
-		tempResult.dates = allDates;
-		tempResult.materials = allMaterials;
-		tempResult.employees = allEmployees;
-		tempResult.weekdays = allWeekdays;
-		tempResult.planatas = allPlanatas;
+	private PlanimeInfo uniquifyStore(PlanimeInfo result) {
+		if (result.stores == null)
+			return result;
 		
-		results.add(tempResult);
+		List<StolisInfo> allStores = new ArrayList<>(result.stores);
+		allStores = allStores.stream().distinct().collect(Collectors.toList());			
+		
+		result.stores = allStores;
+		return result;
+	}
+	
+	
+	
+	private PlanimeInfo uniquifyDate(PlanimeInfo result) {
+		if (result.dates == null)
+			return result;
+		
+		List<LocalDate> allDates = new ArrayList<>(result.dates);
+		allDates = allDates.stream().distinct().collect(Collectors.toList());			
+		
+		result.dates = allDates;
+		return result;
+	}
+	
+	
+	
+	private PlanimeInfo uniquifyMaterial(PlanimeInfo result) {
+		if (result.materials == null)
+			return result;
+		
+		List<MatlisInfo> allMaterials = new ArrayList<>(result.materials);
+		allMaterials = allMaterials.stream().distinct().collect(Collectors.toList());			
+		
+		result.materials = allMaterials;
+		return result;
+	}
+	
+	
+	
+	private PlanimeInfo uniquifyEmployee(PlanimeInfo result) {
+		if (result.employees == null)
+			return result;
+		
+		List<EmplisInfo> allEmployees = new ArrayList<>(result.employees);
+		allEmployees = allEmployees.stream().distinct().collect(Collectors.toList());			
+		
+		result.employees = allEmployees;
+		return result;
+	}
+	
+	
+	
+	private PlanimeInfo uniquifyWeekday(PlanimeInfo result) {
+		if (result.weekdays == null)
+			return result;
+		
+		List<WeekdayInfo> allWeekdays = new ArrayList<>(result.weekdays);
+		allWeekdays = allWeekdays.stream().distinct().collect(Collectors.toList());			
+		
+		result.weekdays = allWeekdays;
+		return result;
+	}
+	
+	
+	
+	private PlanimeInfo uniquifyPlanata(PlanimeInfo result) {
+		if (result.planatas == null)
+			return result;
+		
+		List<PlanataInfo> allplanatas = new ArrayList<>(result.planatas);
+		allplanatas = allplanatas.stream().distinct().collect(Collectors.toList());			
+		
+		result.planatas = allplanatas;
+		return result;
+	}
+	
+	
+	
+	private PlanimeInfo makeClone(PlanimeInfo infoRecord) {
+		try {
+			return (PlanimeInfo) infoRecord.clone();
+			
+		} catch (CloneNotSupportedException e) {
+			logException(e);
+			throw new IllegalStateException(e);
+		}
+	}
+	
+	
+	
+	private void logException(Exception e) {
+		Logger logger = LogManager.getLogger(this.getClass());
+		logger.error(e.getMessage(), e);
 	}
 }

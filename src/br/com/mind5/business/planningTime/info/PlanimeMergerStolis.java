@@ -1,19 +1,39 @@
 package br.com.mind5.business.planningTime.info;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import br.com.mind5.business.storeList.info.StolisInfo;
+import br.com.mind5.info.InfoMergerTemplateV2;
 import br.com.mind5.info.InfoUniquifier;
-import br.com.mind5.info.obsolete.InfoMergerTemplate_;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class PlanimeMergerStolis extends InfoMergerTemplate_<PlanimeInfo, StolisInfo> {
+final class PlanimeMergerStolis extends InfoMergerTemplateV2<PlanimeInfo, StolisInfo> {
 
-	@Override protected InfoMergerVisitor_<PlanimeInfo, StolisInfo> getVisitorHook() {
-		return new PlanimeVisiMergeStolis();
+	@Override protected PlanimeInfo writeHook(StolisInfo selectedInfo, PlanimeInfo baseInfo) {
+		baseInfo.stores.add(selectedInfo);
+		return baseInfo;
 	}
 	
 	
 	
-	@Override protected InfoUniquifier<PlanimeInfo> getUniquifierHook() {
-		return new PlanimeUniquifier();
+	@Override protected boolean shouldWriteHook(StolisInfo selectedInfo, PlanimeInfo baseInfo) {
+		return (selectedInfo.codOwner == baseInfo.codOwner);
+	}
+	
+	
+	
+	@Override protected List<PlanimeInfo> uniquifyHook(List<PlanimeInfo> results) {
+		InfoUniquifier<PlanimeInfo> uniquifier = new PlanimeUniquifier();
+		return uniquifier.uniquify(results);
+	}
+	
+	
+	
+	@Override protected List<PlanimeInfo> beforeWriteHook(List<PlanimeInfo> baseInfos) {
+		for (PlanimeInfo eachBase : baseInfos) {
+			eachBase.stores = new ArrayList<>();
+		}
+		
+		return baseInfos;
 	}
 }
