@@ -3,7 +3,7 @@ package br.com.mind5.business.employeeList.info;
 import java.util.List;
 
 import br.com.mind5.business.employeeSearch.info.EmparchInfo;
-import br.com.mind5.business.personList.info.PersolisInfo;
+import br.com.mind5.business.personListRestricted.info.PersoresInfo;
 import br.com.mind5.business.personSearch.info.PerarchInfo;
 import br.com.mind5.file.fileImageList.info.FimistInfo;
 import br.com.mind5.info.InfoMerger;
@@ -51,15 +51,15 @@ public final class EmplisMerger {
 	
 	
 	
-	public static EmplisInfo mergeWithPersolis(PersolisInfo sourceOne, EmplisInfo sourceTwo) {
-		InfoMerger<EmplisInfo, PersolisInfo> merger = new EmplisMergerPersolis();		
+	public static EmplisInfo mergeWithPersores(PersoresInfo sourceOne, EmplisInfo sourceTwo) {
+		InfoMerger<EmplisInfo, PersoresInfo> merger = new EmplisMergerPersores();		
 		return merger.merge(sourceOne, sourceTwo);
 	}
 	
 	
 	
-	public static List<EmplisInfo> mergeWithPersolis(List<PersolisInfo> sourceOnes, List<EmplisInfo> sourceTwos) {
-		InfoMerger<EmplisInfo, PersolisInfo> merger = new EmplisMergerPersolis();		
+	public static List<EmplisInfo> mergeWithPersores(List<PersoresInfo> sourceOnes, List<EmplisInfo> sourceTwos) {
+		InfoMerger<EmplisInfo, PersoresInfo> merger = new EmplisMergerPersores();		
 		return merger.merge(sourceOnes, sourceTwos);
 	}
 	

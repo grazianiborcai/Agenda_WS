@@ -17,7 +17,7 @@ public final class EmplisCheckSearch extends ModelCheckerTemplateSimpleV2<Emplis
 	
 	@Override protected boolean checkHook(EmplisInfo recordInfo, Connection conn, String schemaName) {	
 		if (recordInfo.codOwner 	<= 0 	||
-			recordInfo.persolisData	== null	||
+			recordInfo.persoresData	== null	||
 			recordInfo.codLanguage 	== null	||
 			recordInfo.username		== null		)					
 			

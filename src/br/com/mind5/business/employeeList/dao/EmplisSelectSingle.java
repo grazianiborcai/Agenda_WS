@@ -46,7 +46,8 @@ public final class EmplisSelectSingle extends DaoStmtTemplate<EmplisInfo> {
 	
 	@Override protected String buildWhereClauseHook(String tableName, EmplisInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
-		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
+		
+		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
 		DaoStmtWhere whereClause = new EmplisWhere(whereOption, tableName, recordInfo);
@@ -68,6 +69,7 @@ public final class EmplisSelectSingle extends DaoStmtTemplate<EmplisInfo> {
 				
 				do {
 					EmplisInfo dataInfo = new EmplisInfo();
+					
 					dataInfo.codOwner = stmtResult.getLong(EmplisDbTableColumn.COL_COD_OWNER);
 					dataInfo.codEmployee = stmtResult.getLong(EmplisDbTableColumn.COL_COD_EMPLOYEE);
 					dataInfo.recordMode = stmtResult.getString(EmplisDbTableColumn.COL_RECORD_MODE);

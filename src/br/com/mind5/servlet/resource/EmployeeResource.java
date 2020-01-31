@@ -29,9 +29,7 @@ import br.com.mind5.business.employeeLeaveDate.model.EmplateModelInsert;
 import br.com.mind5.business.employeeLeaveDate.model.EmplateModelSearch;
 import br.com.mind5.business.employeeLeaveDate.model.EmplateModelSelect;
 import br.com.mind5.business.employeeLeaveDate.model.EmplateModelUpdate;
-import br.com.mind5.business.employeeList.info.EmplisInfo;
 import br.com.mind5.business.employeeList.model.EmplisModelSearch;
-import br.com.mind5.business.employeeList.model.EmplisModelSelect;
 import br.com.mind5.business.employeeMaterial.info.EmpmatInfo;
 import br.com.mind5.business.employeeMaterial.model.EmpmatModelDelete;
 import br.com.mind5.business.employeeMaterial.model.EmpmatModelInsert;
@@ -61,7 +59,6 @@ public class EmployeeResource {
 	private static final String SELECT_EMP = "/selectEmployee";
 	private static final String SEARCH_EMP = "/searchEmployee";
 	private static final String SELECT_EMP_LIST = "/selectEmployeeList";
-	private static final String SEARCH_EMP_LIST = "/searchEmployeeList";
 	private static final String INSERT_WORK_TIME = "/insertWorkTime";
 	private static final String INSERT_WORK_TIME_FROM_STORE = "/insertWorkTimeFromStore";
 	private static final String UPDATE_WORK_TIME = "/updateWorkTime";
@@ -413,32 +410,11 @@ public class EmployeeResource {
 	
 	
 	
-	@GET
-	@Path(SELECT_EMP_LIST)
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response selectEmplis(@HeaderParam("TOKEN_OWNER") 	@DefaultValue("-1") long codOwner,
-								 @HeaderParam("codEmployee") 	@DefaultValue("-1") int codEmployee,
-								 @HeaderParam("codLanguage")	@DefaultValue("EN") String codLanguage,
-				                 @HeaderParam("TOKEN_USERNAME") String username) {
-		
-		EmplisInfo recordInfo = new EmplisInfo();
-		recordInfo.codOwner = codOwner;
-		recordInfo.codEmployee = codEmployee;
-		recordInfo.codLanguage = codLanguage;
-		recordInfo.username = username;
-		
-		Model model = new EmplisModelSelect(recordInfo);
-		model.executeRequest();
-		return model.getResponse();
-	}
-	
-	
-	
 	@POST
-	@Path(SEARCH_EMP_LIST)
+	@Path(SELECT_EMP_LIST)
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response searchEmplis(@Context HttpServletRequest request, String incomingData) {
+	public Response searchSelect(@Context HttpServletRequest request, String incomingData) {
 		
 		Model model = new EmplisModelSearch(incomingData, request);
 		model.executeRequest();

@@ -2,7 +2,7 @@ package br.com.mind5.business.employeeList.info;
 
 import java.util.List;
 
-import br.com.mind5.business.personList.info.PersolisInfo;
+import br.com.mind5.business.personListRestricted.info.PersoresInfo;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.file.fileImageList.info.FimistInfo;
 import br.com.mind5.info.InfoRecord;
@@ -12,7 +12,7 @@ public final class EmplisInfo extends InfoRecord implements Cloneable {
 	public long codEmployee;
 	public long codSnapshot;
 	public long codPerson;
-	public PersolisInfo persolisData;
+	public PersoresInfo persoresData;
 	public FimistInfo fimistData;
 	public String recordMode;
 	public String username;
@@ -26,7 +26,7 @@ public final class EmplisInfo extends InfoRecord implements Cloneable {
 		codSnapshot = DefaultValue.number();
 		codPerson = DefaultValue.number();
 		recordMode = DefaultValue.recordMode();
-		persolisData = DefaultValue.object();
+		persoresData = DefaultValue.object();
 		fimistData = DefaultValue.object();
 	}
 	
@@ -47,7 +47,7 @@ public final class EmplisInfo extends InfoRecord implements Cloneable {
 	@Override public Object clone() throws CloneNotSupportedException {  
 		EmplisInfo deepCopy = (EmplisInfo) super.clone(); 
 
-		deepCopy.persolisData = clonePerson(deepCopy.persolisData);
+		deepCopy.persoresData = clonePerson(deepCopy.persoresData);
 		deepCopy.fimistData = cloneFimist(deepCopy.fimistData);
 		
 		return deepCopy;	
@@ -55,11 +55,11 @@ public final class EmplisInfo extends InfoRecord implements Cloneable {
 	
 	
 	
-	private PersolisInfo clonePerson(PersolisInfo personToClone) throws CloneNotSupportedException {
-		if (personToClone == null)
+	private PersoresInfo clonePerson(PersoresInfo recordInfo) throws CloneNotSupportedException {
+		if (recordInfo == null)
 			return null;
 		
-		return (PersolisInfo) personToClone.clone();
+		return (PersoresInfo) recordInfo.clone();
 	}
 	
 	
