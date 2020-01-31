@@ -1,13 +1,13 @@
 package br.com.mind5.business.addressSnapshot.info;
 
-import br.com.mind5.info.InfoMergerTemplate;
-import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.info.obsolete.InfoMergerTemplate_;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 import br.com.mind5.security.userList.info.UselisInfo;
 
-public final class AddresnapMergerUselis extends InfoMergerTemplate<AddresnapInfo, UselisInfo>{
+public final class AddresnapMergerUselis extends InfoMergerTemplate_<AddresnapInfo, UselisInfo>{
 
-	@Override protected InfoMergerVisitor<AddresnapInfo, UselisInfo> getVisitorHook() {
+	@Override protected InfoMergerVisitor_<AddresnapInfo, UselisInfo> getVisitorHook() {
 		return new AddresnapVisiMergeUselis();
 	}
 	

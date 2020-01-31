@@ -1,13 +1,13 @@
 package br.com.mind5.payment.customerPartner.info;
 
-import br.com.mind5.info.InfoMergerTemplate;
-import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.info.obsolete.InfoMergerTemplate_;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 import br.com.mind5.payment.partnerMoip.customerMoip.info.CusmoipInfo;
 
-final class CusparMergerCusmoip extends InfoMergerTemplate<CusparInfo, CusmoipInfo> {
+final class CusparMergerCusmoip extends InfoMergerTemplate_<CusparInfo, CusmoipInfo> {
 
-	@Override protected InfoMergerVisitor<CusparInfo, CusmoipInfo> getVisitorHook() {
+	@Override protected InfoMergerVisitor_<CusparInfo, CusmoipInfo> getVisitorHook() {
 		return new CusparVisiMergeCusmoip();
 	}
 	

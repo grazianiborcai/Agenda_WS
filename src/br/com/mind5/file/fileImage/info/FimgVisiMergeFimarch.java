@@ -5,9 +5,9 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.file.fileImageSearch.info.FimarchInfo;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class FimgVisiMergeFimarch implements InfoMergerVisitor<FimgInfo, FimarchInfo> {
+final class FimgVisiMergeFimarch implements InfoMergerVisitor_<FimgInfo, FimarchInfo> {
 
 	@Override public FimgInfo writeRecord(FimarchInfo sourceOne, FimgInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

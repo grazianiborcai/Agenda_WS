@@ -1,12 +1,12 @@
 package br.com.mind5.business.masterData.info;
 
-import br.com.mind5.info.InfoMergerTemplate;
-import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.info.obsolete.InfoMergerTemplate_;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class StateMergerCountry extends InfoMergerTemplate<StateInfo, CountryInfo> {
+final class StateMergerCountry extends InfoMergerTemplate_<StateInfo, CountryInfo> {
 
-	@Override protected InfoMergerVisitor<StateInfo, CountryInfo> getVisitorHook() {
+	@Override protected InfoMergerVisitor_<StateInfo, CountryInfo> getVisitorHook() {
 		return new StateVisiMergeCountry();
 	}
 	

@@ -5,9 +5,9 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.mind5.business.masterData.info.TimezoneInfo;
 import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class EmpwotmVisiMergeTimezone implements InfoMergerVisitor<EmpwotmInfo, TimezoneInfo> {
+final class EmpwotmVisiMergeTimezone implements InfoMergerVisitor_<EmpwotmInfo, TimezoneInfo> {
 
 	@Override public EmpwotmInfo writeRecord(TimezoneInfo sourceOne, EmpwotmInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

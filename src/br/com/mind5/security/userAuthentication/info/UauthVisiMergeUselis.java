@@ -4,10 +4,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 import br.com.mind5.security.userList.info.UselisInfo;
 
-final class UauthVisiMergeUselis implements InfoMergerVisitor<UauthInfo, UselisInfo> {
+final class UauthVisiMergeUselis implements InfoMergerVisitor_<UauthInfo, UselisInfo> {
 
 	@Override public UauthInfo writeRecord(UselisInfo sourceOne, UauthInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

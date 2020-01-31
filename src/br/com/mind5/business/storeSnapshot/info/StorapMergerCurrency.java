@@ -1,13 +1,13 @@
 package br.com.mind5.business.storeSnapshot.info;
 
 import br.com.mind5.business.masterData.info.CurrencyInfo;
-import br.com.mind5.info.InfoMergerTemplate;
-import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.info.obsolete.InfoMergerTemplate_;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class StorapMergerCurrency extends InfoMergerTemplate<StorapInfo, CurrencyInfo> {
+final class StorapMergerCurrency extends InfoMergerTemplate_<StorapInfo, CurrencyInfo> {
 
-	@Override protected InfoMergerVisitor<StorapInfo, CurrencyInfo> getVisitorHook() {
+	@Override protected InfoMergerVisitor_<StorapInfo, CurrencyInfo> getVisitorHook() {
 		return new StorapVisiMergeCurrency();
 	}
 	

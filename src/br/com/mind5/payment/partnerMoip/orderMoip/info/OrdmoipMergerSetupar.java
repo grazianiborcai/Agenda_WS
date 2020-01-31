@@ -1,12 +1,12 @@
 package br.com.mind5.payment.partnerMoip.orderMoip.info;
 
-import br.com.mind5.info.InfoMergerTemplate;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.obsolete.InfoMergerTemplate_;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 import br.com.mind5.payment.setupPartner.info.SetuparInfo;
 
-final class OrdmoipMergerSetupar extends InfoMergerTemplate<OrdmoipInfo, SetuparInfo> {
+final class OrdmoipMergerSetupar extends InfoMergerTemplate_<OrdmoipInfo, SetuparInfo> {
 
-	@Override protected InfoMergerVisitor<OrdmoipInfo, SetuparInfo> getVisitorHook() {
+	@Override protected InfoMergerVisitor_<OrdmoipInfo, SetuparInfo> getVisitorHook() {
 		return new OrdmoipVisiMergeSetupar();
 	}
 }

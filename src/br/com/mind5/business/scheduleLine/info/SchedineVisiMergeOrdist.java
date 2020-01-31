@@ -2,9 +2,9 @@ package br.com.mind5.business.scheduleLine.info;
 
 import br.com.mind5.business.orderList.info.OrdistInfo;
 import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class SchedineVisiMergeOrdist implements InfoMergerVisitor<SchedineInfo, OrdistInfo> {
+final class SchedineVisiMergeOrdist implements InfoMergerVisitor_<SchedineInfo, OrdistInfo> {
 
 	@Override public SchedineInfo writeRecord(OrdistInfo sourceOne, SchedineInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

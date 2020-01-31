@@ -5,9 +5,9 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.mind5.business.masterData.info.WeekdayInfo;
 import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class SchedineVisiMergeWeekday implements InfoMergerVisitor<SchedineInfo, WeekdayInfo> {
+final class SchedineVisiMergeWeekday implements InfoMergerVisitor_<SchedineInfo, WeekdayInfo> {
 
 	@Override public SchedineInfo writeRecord(WeekdayInfo sourceOne, SchedineInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

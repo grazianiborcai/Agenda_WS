@@ -5,9 +5,9 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class SchedineVisiMergeStolis implements InfoMergerVisitor<SchedineInfo, StolisInfo> {
+final class SchedineVisiMergeStolis implements InfoMergerVisitor_<SchedineInfo, StolisInfo> {
 
 	@Override public SchedineInfo writeRecord(StolisInfo sourceOne, SchedineInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

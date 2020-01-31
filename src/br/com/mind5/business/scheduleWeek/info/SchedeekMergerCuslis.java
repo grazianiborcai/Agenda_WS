@@ -1,13 +1,13 @@
 package br.com.mind5.business.scheduleWeek.info;
 
 import br.com.mind5.business.customerList.info.CuslisInfo;
-import br.com.mind5.info.InfoMergerTemplate;
-import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.info.obsolete.InfoMergerTemplate_;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class SchedeekMergerCuslis extends InfoMergerTemplate<SchedeekInfo, CuslisInfo> {
+final class SchedeekMergerCuslis extends InfoMergerTemplate_<SchedeekInfo, CuslisInfo> {
 
-	@Override protected InfoMergerVisitor<SchedeekInfo, CuslisInfo> getVisitorHook() {
+	@Override protected InfoMergerVisitor_<SchedeekInfo, CuslisInfo> getVisitorHook() {
 		return new SchedeekVisiMergeCuslis();
 	}
 	

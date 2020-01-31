@@ -1,10 +1,10 @@
 package br.com.mind5.payment.storePartner.info;
 
 import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 import br.com.mind5.payment.storePartnerSearch.info.StoparchInfo;
 
-final class StoparVisiMergeStoparch implements InfoMergerVisitor<StoparInfo, StoparchInfo> {
+final class StoparVisiMergeStoparch implements InfoMergerVisitor_<StoparInfo, StoparchInfo> {
 
 	@Override public StoparInfo writeRecord(StoparchInfo sourceOne, StoparInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

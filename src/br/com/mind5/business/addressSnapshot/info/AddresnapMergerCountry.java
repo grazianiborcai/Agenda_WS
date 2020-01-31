@@ -1,13 +1,13 @@
 package br.com.mind5.business.addressSnapshot.info;
 
 import br.com.mind5.business.masterData.info.CountryInfo;
-import br.com.mind5.info.InfoMergerTemplate;
-import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.info.obsolete.InfoMergerTemplate_;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class AddresnapMergerCountry extends InfoMergerTemplate<AddresnapInfo, CountryInfo> {
+final class AddresnapMergerCountry extends InfoMergerTemplate_<AddresnapInfo, CountryInfo> {
 
-	@Override protected InfoMergerVisitor<AddresnapInfo, CountryInfo> getVisitorHook() {
+	@Override protected InfoMergerVisitor_<AddresnapInfo, CountryInfo> getVisitorHook() {
 		return new AddresnapVisiMergeCountry();
 	}
 	

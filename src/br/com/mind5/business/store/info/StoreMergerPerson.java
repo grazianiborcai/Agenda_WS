@@ -1,13 +1,13 @@
 package br.com.mind5.business.store.info;
 
 import br.com.mind5.business.person.info.PersonInfo;
-import br.com.mind5.info.InfoMergerTemplate;
-import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.info.obsolete.InfoMergerTemplate_;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class StoreMergerPerson extends InfoMergerTemplate<StoreInfo, PersonInfo> {
+final class StoreMergerPerson extends InfoMergerTemplate_<StoreInfo, PersonInfo> {
 
-	@Override protected InfoMergerVisitor<StoreInfo, PersonInfo> getVisitorHook() {
+	@Override protected InfoMergerVisitor_<StoreInfo, PersonInfo> getVisitorHook() {
 		return new StoreVisiMergePerson();
 	}
 	

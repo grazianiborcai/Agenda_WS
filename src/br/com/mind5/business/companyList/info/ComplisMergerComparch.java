@@ -1,13 +1,13 @@
 package br.com.mind5.business.companyList.info;
 
 import br.com.mind5.business.companySearch.info.ComparchInfo;
-import br.com.mind5.info.InfoMergerTemplate;
-import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.info.obsolete.InfoMergerTemplate_;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class ComplisMergerComparch extends InfoMergerTemplate<ComplisInfo, ComparchInfo> {
+final class ComplisMergerComparch extends InfoMergerTemplate_<ComplisInfo, ComparchInfo> {
 
-	@Override protected InfoMergerVisitor<ComplisInfo, ComparchInfo> getVisitorHook() {
+	@Override protected InfoMergerVisitor_<ComplisInfo, ComparchInfo> getVisitorHook() {
 		return new ComplisVisiMergeComparch();
 	}
 	

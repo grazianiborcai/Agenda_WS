@@ -1,12 +1,12 @@
 package br.com.mind5.business.addressSearch.info;
 
-import br.com.mind5.info.InfoMergerTemplate;
-import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.info.obsolete.InfoMergerTemplate_;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class AddarchMergerToSelect extends InfoMergerTemplate<AddarchInfo, AddarchInfo> {
+final class AddarchMergerToSelect extends InfoMergerTemplate_<AddarchInfo, AddarchInfo> {
 
-	@Override protected InfoMergerVisitor<AddarchInfo, AddarchInfo> getVisitorHook() {
+	@Override protected InfoMergerVisitor_<AddarchInfo, AddarchInfo> getVisitorHook() {
 		return new AddarchVisiMergeToSelect();
 	}
 	

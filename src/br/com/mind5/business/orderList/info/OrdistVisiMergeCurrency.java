@@ -5,9 +5,9 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.mind5.business.masterData.info.CurrencyInfo;
 import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class OrdistVisiMergeCurrency implements InfoMergerVisitor<OrdistInfo, CurrencyInfo> {
+final class OrdistVisiMergeCurrency implements InfoMergerVisitor_<OrdistInfo, CurrencyInfo> {
 
 	@Override public OrdistInfo writeRecord(CurrencyInfo sourceOne, OrdistInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

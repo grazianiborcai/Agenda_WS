@@ -4,9 +4,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class MatorapVisiMergeToSelect implements InfoMergerVisitor<MatorapInfo, MatorapInfo> {
+final class MatorapVisiMergeToSelect implements InfoMergerVisitor_<MatorapInfo, MatorapInfo> {
 
 	@Override public MatorapInfo writeRecord(MatorapInfo sourceOne, MatorapInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);		

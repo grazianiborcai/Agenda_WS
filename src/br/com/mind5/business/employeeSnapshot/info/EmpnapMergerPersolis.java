@@ -1,13 +1,13 @@
 package br.com.mind5.business.employeeSnapshot.info;
 
 import br.com.mind5.business.personList.info.PersolisInfo;
-import br.com.mind5.info.InfoMergerTemplate;
-import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.info.obsolete.InfoMergerTemplate_;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class EmpnapMergerPersolis extends InfoMergerTemplate<EmpnapInfo, PersolisInfo> {
+final class EmpnapMergerPersolis extends InfoMergerTemplate_<EmpnapInfo, PersolisInfo> {
 
-	@Override protected InfoMergerVisitor<EmpnapInfo, PersolisInfo> getVisitorHook() {
+	@Override protected InfoMergerVisitor_<EmpnapInfo, PersolisInfo> getVisitorHook() {
 		return new EmpnapVisiMergePersolis();
 	}
 	

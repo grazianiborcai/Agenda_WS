@@ -1,12 +1,12 @@
 package br.com.mind5.business.scheduleList.info;
 
-import br.com.mind5.info.InfoMergerTemplate;
-import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.info.obsolete.InfoMergerTemplate_;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class SchedistMergerToSelect extends InfoMergerTemplate<SchedistInfo, SchedistInfo> {
+final class SchedistMergerToSelect extends InfoMergerTemplate_<SchedistInfo, SchedistInfo> {
 
-	@Override protected InfoMergerVisitor<SchedistInfo, SchedistInfo> getVisitorHook() {
+	@Override protected InfoMergerVisitor_<SchedistInfo, SchedistInfo> getVisitorHook() {
 		return new SchedistVisiMergeToSelect();
 	}
 	

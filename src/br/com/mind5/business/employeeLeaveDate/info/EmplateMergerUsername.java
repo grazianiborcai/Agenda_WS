@@ -1,13 +1,13 @@
 package br.com.mind5.business.employeeLeaveDate.info;
 
-import br.com.mind5.info.InfoMergerTemplate;
-import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.info.obsolete.InfoMergerTemplate_;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 import br.com.mind5.security.username.info.UsernameInfo;
 
-final class EmplateMergerUsername extends InfoMergerTemplate<EmplateInfo, UsernameInfo> {
+final class EmplateMergerUsername extends InfoMergerTemplate_<EmplateInfo, UsernameInfo> {
 
-	@Override protected InfoMergerVisitor<EmplateInfo, UsernameInfo> getVisitorHook() {
+	@Override protected InfoMergerVisitor_<EmplateInfo, UsernameInfo> getVisitorHook() {
 		return new EmplateVisiMergeUsername();
 	}
 	

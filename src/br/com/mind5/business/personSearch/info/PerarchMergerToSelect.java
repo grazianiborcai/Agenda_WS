@@ -1,12 +1,12 @@
 package br.com.mind5.business.personSearch.info;
 
-import br.com.mind5.info.InfoMergerTemplate;
-import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.info.obsolete.InfoMergerTemplate_;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class PerarchMergerToSelect extends InfoMergerTemplate<PerarchInfo, PerarchInfo> {
+final class PerarchMergerToSelect extends InfoMergerTemplate_<PerarchInfo, PerarchInfo> {
 
-	@Override protected InfoMergerVisitor<PerarchInfo, PerarchInfo> getVisitorHook() {
+	@Override protected InfoMergerVisitor_<PerarchInfo, PerarchInfo> getVisitorHook() {
 		return new PerarchVisiMergeToSelect();
 	}
 	

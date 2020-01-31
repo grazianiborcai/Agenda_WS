@@ -1,12 +1,12 @@
 package br.com.mind5.business.materialText.info;
 
-import br.com.mind5.info.InfoMergerTemplate;
-import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.info.obsolete.InfoMergerTemplate_;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class MatextMergerToUpdate extends InfoMergerTemplate<MatextInfo, MatextInfo> {
+final class MatextMergerToUpdate extends InfoMergerTemplate_<MatextInfo, MatextInfo> {
 
-	@Override protected InfoMergerVisitor<MatextInfo, MatextInfo> getVisitorHook() {
+	@Override protected InfoMergerVisitor_<MatextInfo, MatextInfo> getVisitorHook() {
 		return new MatextVisiMergeToUpdate();
 	}
 	

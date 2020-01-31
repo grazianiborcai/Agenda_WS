@@ -1,13 +1,13 @@
 package br.com.mind5.security.user.info;
 
 import br.com.mind5.business.masterData.info.AuthGrRoleInfo;
-import br.com.mind5.info.InfoMergerTemplate;
-import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.info.obsolete.InfoMergerTemplate_;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class UserMergerAuthGrRole extends InfoMergerTemplate<UserInfo, AuthGrRoleInfo> {
+final class UserMergerAuthGrRole extends InfoMergerTemplate_<UserInfo, AuthGrRoleInfo> {
 
-	@Override protected InfoMergerVisitor<UserInfo, AuthGrRoleInfo> getVisitorHook() {
+	@Override protected InfoMergerVisitor_<UserInfo, AuthGrRoleInfo> getVisitorHook() {
 		return new UserVisiMergeAuthGrRole();
 	}
 	

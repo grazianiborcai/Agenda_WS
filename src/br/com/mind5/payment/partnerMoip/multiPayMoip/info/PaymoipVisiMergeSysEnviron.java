@@ -5,9 +5,9 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.mind5.business.masterData.info.SysEnvironInfo;
 import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class PaymoipVisiMergeSysEnviron implements InfoMergerVisitor<PaymoipInfo, SysEnvironInfo> {
+final class PaymoipVisiMergeSysEnviron implements InfoMergerVisitor_<PaymoipInfo, SysEnvironInfo> {
 
 	@Override public PaymoipInfo writeRecord(SysEnvironInfo sourceOne, PaymoipInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

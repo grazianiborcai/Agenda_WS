@@ -2,9 +2,9 @@ package br.com.mind5.business.companyList.info;
 
 import br.com.mind5.business.companySearch.info.ComparchInfo;
 import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class ComplisVisiMergeComparch implements InfoMergerVisitor<ComplisInfo, ComparchInfo> {
+final class ComplisVisiMergeComparch implements InfoMergerVisitor_<ComplisInfo, ComparchInfo> {
 
 	@Override public ComplisInfo writeRecord(ComparchInfo sourceOne, ComplisInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

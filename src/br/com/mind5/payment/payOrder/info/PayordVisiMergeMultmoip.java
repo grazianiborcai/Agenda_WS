@@ -4,10 +4,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 import br.com.mind5.payment.partnerMoip.multiOrderMoip.info.MultmoipInfo;
 
-final class PayordVisiMergeMultmoip implements InfoMergerVisitor<PayordInfo, MultmoipInfo> {
+final class PayordVisiMergeMultmoip implements InfoMergerVisitor_<PayordInfo, MultmoipInfo> {
 
 	@Override public PayordInfo writeRecord(MultmoipInfo sourceOne, PayordInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

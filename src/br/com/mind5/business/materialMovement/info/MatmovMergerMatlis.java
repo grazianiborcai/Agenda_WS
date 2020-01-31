@@ -1,13 +1,13 @@
 package br.com.mind5.business.materialMovement.info;
 
 import br.com.mind5.business.materialList.info.MatlisInfo;
-import br.com.mind5.info.InfoMergerTemplate;
-import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.info.obsolete.InfoMergerTemplate_;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class MatmovMergerMatlis extends InfoMergerTemplate<MatmovInfo, MatlisInfo> {
+final class MatmovMergerMatlis extends InfoMergerTemplate_<MatmovInfo, MatlisInfo> {
 
-	@Override protected InfoMergerVisitor<MatmovInfo, MatlisInfo> getVisitorHook() {
+	@Override protected InfoMergerVisitor_<MatmovInfo, MatlisInfo> getVisitorHook() {
 		return new MatmovVisiMergeMatlis();
 	}
 	

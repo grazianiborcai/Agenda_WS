@@ -1,13 +1,13 @@
 package br.com.mind5.business.cart.info;
 
 import br.com.mind5.business.feeOwner.info.FeewnerInfo;
-import br.com.mind5.info.InfoMergerTemplate;
-import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.info.obsolete.InfoMergerTemplate_;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class CartMergerFeewner extends InfoMergerTemplate<CartInfo, FeewnerInfo> {
+final class CartMergerFeewner extends InfoMergerTemplate_<CartInfo, FeewnerInfo> {
 
-	@Override protected InfoMergerVisitor<CartInfo, FeewnerInfo> getVisitorHook() {
+	@Override protected InfoMergerVisitor_<CartInfo, FeewnerInfo> getVisitorHook() {
 		return new CartVisiMergeFeewner();
 	}
 	

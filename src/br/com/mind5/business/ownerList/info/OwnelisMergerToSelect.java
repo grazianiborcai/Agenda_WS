@@ -1,12 +1,12 @@
 package br.com.mind5.business.ownerList.info;
 
-import br.com.mind5.info.InfoMergerTemplate;
-import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.info.obsolete.InfoMergerTemplate_;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class OwnelisMergerToSelect extends InfoMergerTemplate<OwnelisInfo, OwnelisInfo> {
+final class OwnelisMergerToSelect extends InfoMergerTemplate_<OwnelisInfo, OwnelisInfo> {
 
-	@Override protected InfoMergerVisitor<OwnelisInfo, OwnelisInfo> getVisitorHook() {
+	@Override protected InfoMergerVisitor_<OwnelisInfo, OwnelisInfo> getVisitorHook() {
 		return new OwnelisVisiMergeToSelect();
 	}
 	

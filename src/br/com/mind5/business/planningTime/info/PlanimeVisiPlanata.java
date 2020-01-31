@@ -5,9 +5,9 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.mind5.business.planingData.info.PlanataInfo;
 import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class PlanimeVisiPlanata implements InfoMergerVisitor<PlanimeInfo, PlanataInfo> {
+final class PlanimeVisiPlanata implements InfoMergerVisitor_<PlanimeInfo, PlanataInfo> {
 
 	@Override public PlanimeInfo writeRecord(PlanataInfo sourceOne, PlanimeInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

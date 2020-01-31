@@ -1,13 +1,13 @@
 package br.com.mind5.business.scheduleLine.info;
 
 import br.com.mind5.business.employeeList.info.EmplisInfo;
-import br.com.mind5.info.InfoMergerTemplate;
-import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.info.obsolete.InfoMergerTemplate_;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class SchedineMergerEmplis extends InfoMergerTemplate<SchedineInfo, EmplisInfo> {
+final class SchedineMergerEmplis extends InfoMergerTemplate_<SchedineInfo, EmplisInfo> {
 
-	@Override protected InfoMergerVisitor<SchedineInfo, EmplisInfo> getVisitorHook() {
+	@Override protected InfoMergerVisitor_<SchedineInfo, EmplisInfo> getVisitorHook() {
 		return new SchedineVisiMergeEmplis();
 	}
 	

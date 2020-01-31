@@ -6,9 +6,9 @@ import org.apache.logging.log4j.Logger;
 import br.com.mind5.business.material.info.MatInfo;
 import br.com.mind5.business.materialSnapshot.info.MatsnapInfo;
 import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class OrdemrapVisiMergeMatsnap implements InfoMergerVisitor<OrdemrapInfo, MatsnapInfo> {
+final class OrdemrapVisiMergeMatsnap implements InfoMergerVisitor_<OrdemrapInfo, MatsnapInfo> {
 
 	@Override public OrdemrapInfo writeRecord(MatsnapInfo sourceOne, OrdemrapInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

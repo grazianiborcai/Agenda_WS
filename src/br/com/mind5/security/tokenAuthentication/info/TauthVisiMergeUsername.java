@@ -8,10 +8,10 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.mind5.business.masterData.info.AuthGrRoleInfo;
 import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 import br.com.mind5.security.username.info.UsernameInfo;
 
-final class TauthVisiMergeUsername implements InfoMergerVisitor<TauthInfo, UsernameInfo> {
+final class TauthVisiMergeUsername implements InfoMergerVisitor_<TauthInfo, UsernameInfo> {
 
 	@Override public TauthInfo writeRecord(UsernameInfo sourceOne, TauthInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

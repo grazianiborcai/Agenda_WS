@@ -2,9 +2,9 @@ package br.com.mind5.business.scheduleMonth.info;
 
 import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class SchedmonVisiMergeMatlis implements InfoMergerVisitor<SchedmonInfo, MatlisInfo> {
+final class SchedmonVisiMergeMatlis implements InfoMergerVisitor_<SchedmonInfo, MatlisInfo> {
 
 	@Override public SchedmonInfo writeRecord(MatlisInfo sourceOne, SchedmonInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

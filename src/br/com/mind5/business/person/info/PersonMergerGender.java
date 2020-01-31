@@ -1,13 +1,13 @@
 package br.com.mind5.business.person.info;
 
 import br.com.mind5.business.masterData.info.GenderInfo;
-import br.com.mind5.info.InfoMergerTemplate;
-import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.info.obsolete.InfoMergerTemplate_;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class PersonMergerGender extends InfoMergerTemplate<PersonInfo, GenderInfo> {
+final class PersonMergerGender extends InfoMergerTemplate_<PersonInfo, GenderInfo> {
 
-	@Override protected InfoMergerVisitor<PersonInfo, GenderInfo> getVisitorHook() {
+	@Override protected InfoMergerVisitor_<PersonInfo, GenderInfo> getVisitorHook() {
 		return new PersonVisiMergeGender();
 	}
 	

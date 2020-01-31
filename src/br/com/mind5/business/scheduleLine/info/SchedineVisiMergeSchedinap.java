@@ -5,9 +5,9 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.mind5.business.scheduleLineSnapshot.info.SchedinapInfo;
 import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class SchedineVisiMergeSchedinap implements InfoMergerVisitor<SchedineInfo, SchedinapInfo> {
+final class SchedineVisiMergeSchedinap implements InfoMergerVisitor_<SchedineInfo, SchedinapInfo> {
 
 	@Override public SchedineInfo writeRecord(SchedinapInfo sourceOne, SchedineInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

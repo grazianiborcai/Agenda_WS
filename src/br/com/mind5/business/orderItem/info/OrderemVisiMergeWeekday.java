@@ -5,9 +5,9 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.mind5.business.masterData.info.WeekdayInfo;
 import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class OrderemVisiMergeWeekday implements InfoMergerVisitor<OrderemInfo, WeekdayInfo> {
+final class OrderemVisiMergeWeekday implements InfoMergerVisitor_<OrderemInfo, WeekdayInfo> {
 
 	@Override public OrderemInfo writeRecord(WeekdayInfo sourceOne, OrderemInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

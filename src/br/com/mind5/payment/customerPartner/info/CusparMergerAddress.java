@@ -1,13 +1,13 @@
 package br.com.mind5.payment.customerPartner.info;
 
 import br.com.mind5.business.address.info.AddressInfo;
-import br.com.mind5.info.InfoMergerTemplate;
-import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.info.obsolete.InfoMergerTemplate_;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class CusparMergerAddress extends InfoMergerTemplate<CusparInfo, AddressInfo> {
+final class CusparMergerAddress extends InfoMergerTemplate_<CusparInfo, AddressInfo> {
 
-	@Override protected InfoMergerVisitor<CusparInfo, AddressInfo> getVisitorHook() {
+	@Override protected InfoMergerVisitor_<CusparInfo, AddressInfo> getVisitorHook() {
 		return new CusparVisiMergeAddress();
 	}
 	

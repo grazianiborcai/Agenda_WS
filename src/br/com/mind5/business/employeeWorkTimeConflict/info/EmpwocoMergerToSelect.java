@@ -1,12 +1,12 @@
 package br.com.mind5.business.employeeWorkTimeConflict.info;
 
-import br.com.mind5.info.InfoMergerTemplate;
-import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.info.obsolete.InfoMergerTemplate_;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class EmpwocoMergerToSelect extends InfoMergerTemplate<EmpwocoInfo, EmpwocoInfo> {
+final class EmpwocoMergerToSelect extends InfoMergerTemplate_<EmpwocoInfo, EmpwocoInfo> {
 
-	@Override protected InfoMergerVisitor<EmpwocoInfo, EmpwocoInfo> getVisitorHook() {
+	@Override protected InfoMergerVisitor_<EmpwocoInfo, EmpwocoInfo> getVisitorHook() {
 		return new EmpwocoVisiMergeToSelect();
 	}
 	

@@ -4,10 +4,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 import br.com.mind5.security.username.info.UsernameInfo;
 
-final class EmposVisiMergeUsername implements InfoMergerVisitor<EmposInfo, UsernameInfo> {
+final class EmposVisiMergeUsername implements InfoMergerVisitor_<EmposInfo, UsernameInfo> {
 
 	@Override public EmposInfo writeRecord(UsernameInfo sourceOne, EmposInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

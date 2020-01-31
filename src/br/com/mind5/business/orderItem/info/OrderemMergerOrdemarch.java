@@ -1,13 +1,13 @@
 package br.com.mind5.business.orderItem.info;
 
 import br.com.mind5.business.orderItemSearch.info.OrdemarchInfo;
-import br.com.mind5.info.InfoMergerTemplate;
-import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.info.obsolete.InfoMergerTemplate_;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class OrderemMergerOrdemarch extends InfoMergerTemplate<OrderemInfo, OrdemarchInfo> {
+final class OrderemMergerOrdemarch extends InfoMergerTemplate_<OrderemInfo, OrdemarchInfo> {
 
-	@Override protected InfoMergerVisitor<OrderemInfo, OrdemarchInfo> getVisitorHook() {
+	@Override protected InfoMergerVisitor_<OrderemInfo, OrdemarchInfo> getVisitorHook() {
 		return new OrderemVisiMergeOrdemarch();
 	}
 	

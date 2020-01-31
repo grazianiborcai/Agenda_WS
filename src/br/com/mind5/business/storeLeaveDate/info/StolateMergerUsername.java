@@ -1,13 +1,13 @@
 package br.com.mind5.business.storeLeaveDate.info;
 
-import br.com.mind5.info.InfoMergerTemplate;
-import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.info.obsolete.InfoMergerTemplate_;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 import br.com.mind5.security.username.info.UsernameInfo;
 
-final class StolateMergerUsername extends InfoMergerTemplate<StolateInfo, UsernameInfo> {
+final class StolateMergerUsername extends InfoMergerTemplate_<StolateInfo, UsernameInfo> {
 
-	@Override protected InfoMergerVisitor<StolateInfo, UsernameInfo> getVisitorHook() {
+	@Override protected InfoMergerVisitor_<StolateInfo, UsernameInfo> getVisitorHook() {
 		return new StolateVisiMergeUsername();
 	}
 	

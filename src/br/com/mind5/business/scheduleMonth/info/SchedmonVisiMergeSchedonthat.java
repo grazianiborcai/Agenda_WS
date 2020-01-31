@@ -2,9 +2,9 @@ package br.com.mind5.business.scheduleMonth.info;
 
 import br.com.mind5.business.scheduleMonthData.info.SchedonthatInfo;
 import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class SchedmonVisiMergeSchedonthat implements InfoMergerVisitor<SchedmonInfo, SchedonthatInfo> {
+final class SchedmonVisiMergeSchedonthat implements InfoMergerVisitor_<SchedmonInfo, SchedonthatInfo> {
 
 	@Override public SchedmonInfo writeRecord(SchedonthatInfo sourceOne, SchedmonInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

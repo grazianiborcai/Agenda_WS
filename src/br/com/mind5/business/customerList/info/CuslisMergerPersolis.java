@@ -1,13 +1,13 @@
 package br.com.mind5.business.customerList.info;
 
 import br.com.mind5.business.personList.info.PersolisInfo;
-import br.com.mind5.info.InfoMergerTemplate;
-import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.info.obsolete.InfoMergerTemplate_;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-public final class CuslisMergerPersolis extends InfoMergerTemplate<CuslisInfo, PersolisInfo>{
+public final class CuslisMergerPersolis extends InfoMergerTemplate_<CuslisInfo, PersolisInfo>{
 
-	@Override protected InfoMergerVisitor<CuslisInfo, PersolisInfo> getVisitorHook() {
+	@Override protected InfoMergerVisitor_<CuslisInfo, PersolisInfo> getVisitorHook() {
 		return new CuslisVisiMergePersolis();
 	}
 	

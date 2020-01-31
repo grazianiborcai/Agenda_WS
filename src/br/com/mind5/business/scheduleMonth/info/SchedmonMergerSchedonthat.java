@@ -1,13 +1,13 @@
 package br.com.mind5.business.scheduleMonth.info;
 
 import br.com.mind5.business.scheduleMonthData.info.SchedonthatInfo;
-import br.com.mind5.info.InfoMergerTemplate;
-import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.info.obsolete.InfoMergerTemplate_;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class SchedmonMergerSchedonthat extends InfoMergerTemplate<SchedmonInfo, SchedonthatInfo> {
+final class SchedmonMergerSchedonthat extends InfoMergerTemplate_<SchedmonInfo, SchedonthatInfo> {
 
-	@Override protected InfoMergerVisitor<SchedmonInfo, SchedonthatInfo> getVisitorHook() {
+	@Override protected InfoMergerVisitor_<SchedmonInfo, SchedonthatInfo> getVisitorHook() {
 		return new SchedmonVisiMergeSchedonthat();
 	}
 	

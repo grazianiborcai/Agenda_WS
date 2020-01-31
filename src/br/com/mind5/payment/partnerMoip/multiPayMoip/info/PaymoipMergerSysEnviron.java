@@ -1,13 +1,13 @@
 package br.com.mind5.payment.partnerMoip.multiPayMoip.info;
 
 import br.com.mind5.business.masterData.info.SysEnvironInfo;
-import br.com.mind5.info.InfoMergerTemplate;
-import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.info.obsolete.InfoMergerTemplate_;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class PaymoipMergerSysEnviron extends InfoMergerTemplate<PaymoipInfo, SysEnvironInfo> {
+final class PaymoipMergerSysEnviron extends InfoMergerTemplate_<PaymoipInfo, SysEnvironInfo> {
 
-	@Override protected InfoMergerVisitor<PaymoipInfo, SysEnvironInfo> getVisitorHook() {
+	@Override protected InfoMergerVisitor_<PaymoipInfo, SysEnvironInfo> getVisitorHook() {
 		return new PaymoipVisiMergeSysEnviron();
 	}
 	

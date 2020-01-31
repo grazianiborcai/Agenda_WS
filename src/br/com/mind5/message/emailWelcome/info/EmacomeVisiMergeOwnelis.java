@@ -5,9 +5,9 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.mind5.business.ownerList.info.OwnelisInfo;
 import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class EmacomeVisiMergeOwnelis implements InfoMergerVisitor<EmacomeInfo, OwnelisInfo> {
+final class EmacomeVisiMergeOwnelis implements InfoMergerVisitor_<EmacomeInfo, OwnelisInfo> {
 
 	@Override public EmacomeInfo writeRecord(OwnelisInfo sourceOne, EmacomeInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

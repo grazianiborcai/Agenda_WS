@@ -1,12 +1,12 @@
 package br.com.mind5.business.person.info;
 
-import br.com.mind5.info.InfoMergerTemplate;
-import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.info.obsolete.InfoMergerTemplate_;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class PersonMergerToDelete extends InfoMergerTemplate<PersonInfo, PersonInfo> {
+final class PersonMergerToDelete extends InfoMergerTemplate_<PersonInfo, PersonInfo> {
 
-	@Override protected InfoMergerVisitor<PersonInfo, PersonInfo> getVisitorHook() {
+	@Override protected InfoMergerVisitor_<PersonInfo, PersonInfo> getVisitorHook() {
 		return new PersonVisiMergeToDelete();
 	}
 	

@@ -1,12 +1,12 @@
 package br.com.mind5.business.planingData.info;
 
-import br.com.mind5.info.InfoMergerTemplate;
-import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.info.obsolete.InfoMergerTemplate_;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class PlanataMergerToSelect extends InfoMergerTemplate<PlanataInfo, PlanataInfo> {
+final class PlanataMergerToSelect extends InfoMergerTemplate_<PlanataInfo, PlanataInfo> {
 
-	@Override protected InfoMergerVisitor<PlanataInfo, PlanataInfo> getVisitorHook() {
+	@Override protected InfoMergerVisitor_<PlanataInfo, PlanataInfo> getVisitorHook() {
 		return new PlanataVisiMergeToSelect();
 	}
 	

@@ -5,9 +5,9 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.mind5.business.storeSearch.info.SotarchInfo;
 import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class StoreVisiMergeSotarch implements InfoMergerVisitor<StoreInfo, SotarchInfo> {
+final class StoreVisiMergeSotarch implements InfoMergerVisitor_<StoreInfo, SotarchInfo> {
 
 	@Override public StoreInfo writeRecord(SotarchInfo sourceOne, StoreInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

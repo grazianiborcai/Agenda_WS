@@ -1,13 +1,13 @@
 package br.com.mind5.business.storeWorkTime.info;
 
 import br.com.mind5.business.storeList.info.StolisInfo;
-import br.com.mind5.info.InfoMergerTemplate;
-import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.info.obsolete.InfoMergerTemplate_;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class StowotmMergerStolis extends InfoMergerTemplate<StowotmInfo, StolisInfo> {
+final class StowotmMergerStolis extends InfoMergerTemplate_<StowotmInfo, StolisInfo> {
 
-	@Override protected InfoMergerVisitor<StowotmInfo, StolisInfo> getVisitorHook() {
+	@Override protected InfoMergerVisitor_<StowotmInfo, StolisInfo> getVisitorHook() {
 		return new StowotmVisiMergeStolis();
 	}
 	

@@ -1,13 +1,13 @@
 package br.com.mind5.business.scheduleWeekData.info;
 
 import br.com.mind5.business.masterData.info.MonthInfo;
-import br.com.mind5.info.InfoMergerTemplate;
-import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.info.obsolete.InfoMergerTemplate_;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class SchedeekdatMergerMonth extends InfoMergerTemplate<SchedeekdatInfo, MonthInfo> {
+final class SchedeekdatMergerMonth extends InfoMergerTemplate_<SchedeekdatInfo, MonthInfo> {
 
-	@Override protected InfoMergerVisitor<SchedeekdatInfo, MonthInfo> getVisitorHook() {
+	@Override protected InfoMergerVisitor_<SchedeekdatInfo, MonthInfo> getVisitorHook() {
 		return new SchedeekdatVisiMergeMonth();
 	}
 	

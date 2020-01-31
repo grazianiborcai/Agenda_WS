@@ -5,9 +5,9 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.mind5.business.masterData.info.SysEnvironInfo;
 import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class AccemoipVisiMergeSysEnviron implements InfoMergerVisitor<AccemoipInfo, SysEnvironInfo> {
+final class AccemoipVisiMergeSysEnviron implements InfoMergerVisitor_<AccemoipInfo, SysEnvironInfo> {
 
 	@Override public AccemoipInfo writeRecord(SysEnvironInfo sourceOne, AccemoipInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

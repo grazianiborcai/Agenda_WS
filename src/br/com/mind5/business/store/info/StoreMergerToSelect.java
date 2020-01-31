@@ -1,12 +1,12 @@
 package br.com.mind5.business.store.info;
 
-import br.com.mind5.info.InfoMergerTemplate;
-import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.info.obsolete.InfoMergerTemplate_;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class StoreMergerToSelect extends InfoMergerTemplate<StoreInfo, StoreInfo> {
+final class StoreMergerToSelect extends InfoMergerTemplate_<StoreInfo, StoreInfo> {
 
-	@Override protected InfoMergerVisitor<StoreInfo, StoreInfo> getVisitorHook() {
+	@Override protected InfoMergerVisitor_<StoreInfo, StoreInfo> getVisitorHook() {
 		return new StoreVisiMergeToSelect();
 	}
 	

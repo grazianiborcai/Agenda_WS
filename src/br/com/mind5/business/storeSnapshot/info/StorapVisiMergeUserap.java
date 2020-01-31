@@ -1,11 +1,11 @@
 package br.com.mind5.business.storeSnapshot.info;
 
 import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 import br.com.mind5.security.user.info.UserInfo;
 import br.com.mind5.security.userSnapshot.info.UserapInfo;
 
-final class StorapVisiMergeUserap implements InfoMergerVisitor<StorapInfo, UserapInfo> {
+final class StorapVisiMergeUserap implements InfoMergerVisitor_<StorapInfo, UserapInfo> {
 
 	@Override public StorapInfo writeRecord(UserapInfo sourceOne, StorapInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

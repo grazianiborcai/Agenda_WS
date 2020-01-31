@@ -1,13 +1,13 @@
 package br.com.mind5.payment.partnerMoip.tokenMoip.info;
 
-import br.com.mind5.info.InfoMergerTemplate;
-import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.info.obsolete.InfoMergerTemplate_;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 import br.com.mind5.payment.systemPartner.info.SysparInfo;
 
-final class TokemoipMergerSyspar extends InfoMergerTemplate<TokemoipInfo, SysparInfo> {
+final class TokemoipMergerSyspar extends InfoMergerTemplate_<TokemoipInfo, SysparInfo> {
 
-	@Override protected InfoMergerVisitor<TokemoipInfo, SysparInfo> getVisitorHook() {
+	@Override protected InfoMergerVisitor_<TokemoipInfo, SysparInfo> getVisitorHook() {
 		return new TokemoipVisiMergeSyspar();
 	}
 	

@@ -5,9 +5,9 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.mind5.business.addressSnapshot.info.AddresnapInfo;
 import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class UserapVisiMergeAddresnap implements InfoMergerVisitor<UserapInfo, AddresnapInfo> {
+final class UserapVisiMergeAddresnap implements InfoMergerVisitor_<UserapInfo, AddresnapInfo> {
 
 	@Override public UserapInfo writeRecord(AddresnapInfo sourceOne, UserapInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

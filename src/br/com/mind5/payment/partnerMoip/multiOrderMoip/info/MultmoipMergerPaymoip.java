@@ -1,13 +1,13 @@
 package br.com.mind5.payment.partnerMoip.multiOrderMoip.info;
 
-import br.com.mind5.info.InfoMergerTemplate;
-import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.info.obsolete.InfoMergerTemplate_;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 import br.com.mind5.payment.partnerMoip.multiPayMoip.info.PaymoipInfo;
 
-final class MultmoipMergerPaymoip extends InfoMergerTemplate<MultmoipInfo, PaymoipInfo> {
+final class MultmoipMergerPaymoip extends InfoMergerTemplate_<MultmoipInfo, PaymoipInfo> {
 
-	@Override protected InfoMergerVisitor<MultmoipInfo, PaymoipInfo> getVisitorHook() {
+	@Override protected InfoMergerVisitor_<MultmoipInfo, PaymoipInfo> getVisitorHook() {
 		return new MultmoipVisiMergePaymoip();
 	}
 	

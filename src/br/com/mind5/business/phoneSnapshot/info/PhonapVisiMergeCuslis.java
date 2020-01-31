@@ -5,9 +5,9 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.mind5.business.customerList.info.CuslisInfo;
 import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class PhonapVisiMergeCuslis implements InfoMergerVisitor<PhonapInfo, CuslisInfo> {
+final class PhonapVisiMergeCuslis implements InfoMergerVisitor_<PhonapInfo, CuslisInfo> {
 
 	@Override public PhonapInfo writeRecord(CuslisInfo sourceOne, PhonapInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

@@ -5,9 +5,9 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.mind5.business.feeOwner.info.FeewnerInfo;
 import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class CartVisiMergeFeewner implements InfoMergerVisitor<CartInfo, FeewnerInfo> {
+final class CartVisiMergeFeewner implements InfoMergerVisitor_<CartInfo, FeewnerInfo> {
 
 	@Override public CartInfo writeRecord(FeewnerInfo sourceOne, CartInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

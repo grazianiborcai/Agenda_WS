@@ -1,12 +1,12 @@
 package br.com.mind5.business.customerSearch.info;
 
-import br.com.mind5.info.InfoMergerTemplate;
-import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.info.obsolete.InfoMergerTemplate_;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class CusarchMergerToSelect extends InfoMergerTemplate<CusarchInfo, CusarchInfo> {
+final class CusarchMergerToSelect extends InfoMergerTemplate_<CusarchInfo, CusarchInfo> {
 
-	@Override protected InfoMergerVisitor<CusarchInfo, CusarchInfo> getVisitorHook() {
+	@Override protected InfoMergerVisitor_<CusarchInfo, CusarchInfo> getVisitorHook() {
 		return new CusarchVisiMergeToSelect();
 	}
 	

@@ -5,9 +5,9 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.mind5.business.orderSnapshot.info.OrdnapInfo;
 import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class OrderVisiMergeOrdnap implements InfoMergerVisitor<OrderInfo, OrdnapInfo> {
+final class OrderVisiMergeOrdnap implements InfoMergerVisitor_<OrderInfo, OrdnapInfo> {
 
 	@Override public OrderInfo writeRecord(OrdnapInfo sourceOne, OrderInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

@@ -1,12 +1,12 @@
 package br.com.mind5.payment.storePartnerSearch.info;
 
-import br.com.mind5.info.InfoMergerTemplate;
-import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.info.obsolete.InfoMergerTemplate_;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class StoparchMergerToSelect extends InfoMergerTemplate<StoparchInfo, StoparchInfo> {
+final class StoparchMergerToSelect extends InfoMergerTemplate_<StoparchInfo, StoparchInfo> {
 
-	@Override protected InfoMergerVisitor<StoparchInfo, StoparchInfo> getVisitorHook() {
+	@Override protected InfoMergerVisitor_<StoparchInfo, StoparchInfo> getVisitorHook() {
 		return new StoparchVisiMergeToSelect();
 	}
 	

@@ -4,9 +4,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class OrdemrapVisiMergeToSelect implements InfoMergerVisitor<OrdemrapInfo, OrdemrapInfo> {
+final class OrdemrapVisiMergeToSelect implements InfoMergerVisitor_<OrdemrapInfo, OrdemrapInfo> {
 
 	@Override public OrdemrapInfo writeRecord(OrdemrapInfo sourceOne, OrdemrapInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);		

@@ -1,12 +1,12 @@
 package br.com.mind5.file.fileImageList.info;
 
-import br.com.mind5.info.InfoMergerTemplate;
-import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.info.obsolete.InfoMergerTemplate_;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class FimistMergerToSelect extends InfoMergerTemplate<FimistInfo, FimistInfo> {
+final class FimistMergerToSelect extends InfoMergerTemplate_<FimistInfo, FimistInfo> {
 
-	@Override protected InfoMergerVisitor<FimistInfo, FimistInfo> getVisitorHook() {
+	@Override protected InfoMergerVisitor_<FimistInfo, FimistInfo> getVisitorHook() {
 		return new FimistVisiMergeToSelect();
 	}
 	

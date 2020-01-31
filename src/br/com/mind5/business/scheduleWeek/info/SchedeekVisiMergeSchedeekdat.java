@@ -2,9 +2,9 @@ package br.com.mind5.business.scheduleWeek.info;
 
 import br.com.mind5.business.scheduleWeekData.info.SchedeekdatInfo;
 import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class SchedeekVisiMergeSchedeekdat implements InfoMergerVisitor<SchedeekInfo, SchedeekdatInfo> {
+final class SchedeekVisiMergeSchedeekdat implements InfoMergerVisitor_<SchedeekInfo, SchedeekdatInfo> {
 
 	@Override public SchedeekInfo writeRecord(SchedeekdatInfo sourceOne, SchedeekInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

@@ -1,13 +1,13 @@
 package br.com.mind5.business.storeList.info;
 
 import br.com.mind5.business.address.info.AddressInfo;
-import br.com.mind5.info.InfoMergerTemplate;
-import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.info.obsolete.InfoMergerTemplate_;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class StolisMergerAddress extends InfoMergerTemplate<StolisInfo, AddressInfo> {
+final class StolisMergerAddress extends InfoMergerTemplate_<StolisInfo, AddressInfo> {
 
-	@Override protected InfoMergerVisitor<StolisInfo, AddressInfo> getVisitorHook() {
+	@Override protected InfoMergerVisitor_<StolisInfo, AddressInfo> getVisitorHook() {
 		return new StolisVisiMergeAddress();
 	}
 	

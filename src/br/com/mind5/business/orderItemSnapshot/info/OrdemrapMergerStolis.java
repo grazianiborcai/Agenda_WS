@@ -1,13 +1,13 @@
 package br.com.mind5.business.orderItemSnapshot.info;
 
 import br.com.mind5.business.storeList.info.StolisInfo;
-import br.com.mind5.info.InfoMergerTemplate;
-import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.info.obsolete.InfoMergerTemplate_;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class OrdemrapMergerStolis extends InfoMergerTemplate<OrdemrapInfo, StolisInfo> {
+final class OrdemrapMergerStolis extends InfoMergerTemplate_<OrdemrapInfo, StolisInfo> {
 
-	@Override protected InfoMergerVisitor<OrdemrapInfo, StolisInfo> getVisitorHook() {
+	@Override protected InfoMergerVisitor_<OrdemrapInfo, StolisInfo> getVisitorHook() {
 		return new OrdemrapVisiMergeStolis();
 	}
 	

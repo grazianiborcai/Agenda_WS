@@ -1,13 +1,13 @@
 package br.com.mind5.payment.storePartnerList.info;
 
 import br.com.mind5.business.masterData.info.PayparInfo;
-import br.com.mind5.info.InfoMergerTemplate;
-import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.info.obsolete.InfoMergerTemplate_;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class StoplisMergerPaypar extends InfoMergerTemplate<StoplisInfo, PayparInfo> {
+final class StoplisMergerPaypar extends InfoMergerTemplate_<StoplisInfo, PayparInfo> {
 
-	@Override protected InfoMergerVisitor<StoplisInfo, PayparInfo> getVisitorHook() {
+	@Override protected InfoMergerVisitor_<StoplisInfo, PayparInfo> getVisitorHook() {
 		return new StoplisVisiMergePaypar();
 	}
 	

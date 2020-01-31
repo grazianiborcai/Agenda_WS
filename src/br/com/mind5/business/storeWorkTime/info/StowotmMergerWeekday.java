@@ -1,13 +1,13 @@
 package br.com.mind5.business.storeWorkTime.info;
 
 import br.com.mind5.business.masterData.info.WeekdayInfo;
-import br.com.mind5.info.InfoMergerTemplate;
-import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.info.obsolete.InfoMergerTemplate_;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class StowotmMergerWeekday extends InfoMergerTemplate<StowotmInfo, WeekdayInfo> {
+final class StowotmMergerWeekday extends InfoMergerTemplate_<StowotmInfo, WeekdayInfo> {
 
-	@Override protected InfoMergerVisitor<StowotmInfo, WeekdayInfo> getVisitorHook() {
+	@Override protected InfoMergerVisitor_<StowotmInfo, WeekdayInfo> getVisitorHook() {
 		return new StowotmVisiMergeWeekday();
 	}
 	

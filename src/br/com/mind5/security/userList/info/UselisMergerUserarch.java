@@ -1,13 +1,13 @@
 package br.com.mind5.security.userList.info;
 
-import br.com.mind5.info.InfoMergerTemplate;
-import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.info.obsolete.InfoMergerTemplate_;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 import br.com.mind5.security.userSearch.info.UserarchInfo;
 
-final class UselisMergerUserarch extends InfoMergerTemplate<UselisInfo, UserarchInfo> {
+final class UselisMergerUserarch extends InfoMergerTemplate_<UselisInfo, UserarchInfo> {
 
-	@Override protected InfoMergerVisitor<UselisInfo, UserarchInfo> getVisitorHook() {
+	@Override protected InfoMergerVisitor_<UselisInfo, UserarchInfo> getVisitorHook() {
 		return new UselisVisiMergeUserarch();
 	}
 	

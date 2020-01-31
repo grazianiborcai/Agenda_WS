@@ -5,9 +5,9 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.mind5.business.customerList.info.CuslisInfo;
 import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class CartVisiMergeCuslis implements InfoMergerVisitor<CartInfo, CuslisInfo> {
+final class CartVisiMergeCuslis implements InfoMergerVisitor_<CartInfo, CuslisInfo> {
 
 	@Override public CartInfo writeRecord(CuslisInfo sourceOne, CartInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

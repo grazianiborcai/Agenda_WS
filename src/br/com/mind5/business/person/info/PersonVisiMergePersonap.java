@@ -5,9 +5,9 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.mind5.business.personSnapshot.info.PersonapInfo;
 import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class PersonVisiMergePersonap implements InfoMergerVisitor<PersonInfo, PersonapInfo> {
+final class PersonVisiMergePersonap implements InfoMergerVisitor_<PersonInfo, PersonapInfo> {
 
 	@Override public PersonInfo writeRecord(PersonapInfo sourceOne, PersonInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

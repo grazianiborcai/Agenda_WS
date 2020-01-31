@@ -5,9 +5,9 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.mind5.business.materialSearch.info.MatarchInfo;
 import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class MatlisVisiMergeMatarch implements InfoMergerVisitor<MatlisInfo, MatarchInfo> {
+final class MatlisVisiMergeMatarch implements InfoMergerVisitor_<MatlisInfo, MatarchInfo> {
 
 	@Override public MatlisInfo writeRecord(MatarchInfo sourceOne, MatlisInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

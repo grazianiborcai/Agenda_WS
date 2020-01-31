@@ -1,13 +1,13 @@
 package br.com.mind5.business.address.info;
 
 import br.com.mind5.business.form.formAddress.info.FormAddressInfo;
-import br.com.mind5.info.InfoMergerTemplate;
-import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.info.obsolete.InfoMergerTemplate_;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class AddressMergerForm extends InfoMergerTemplate<AddressInfo, FormAddressInfo> {
+final class AddressMergerForm extends InfoMergerTemplate_<AddressInfo, FormAddressInfo> {
 
-	@Override protected InfoMergerVisitor<AddressInfo, FormAddressInfo> getVisitorHook() {
+	@Override protected InfoMergerVisitor_<AddressInfo, FormAddressInfo> getVisitorHook() {
 		return new AddressVisiMergeForm();
 	}
 	

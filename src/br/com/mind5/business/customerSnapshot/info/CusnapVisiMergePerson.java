@@ -5,9 +5,9 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.mind5.business.person.info.PersonInfo;
 import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class CusnapVisiMergePerson implements InfoMergerVisitor<CusnapInfo, PersonInfo> {
+final class CusnapVisiMergePerson implements InfoMergerVisitor_<CusnapInfo, PersonInfo> {
 
 	@Override public CusnapInfo writeRecord(PersonInfo sourceOne, CusnapInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

@@ -4,9 +4,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class MatextVisiMergeToDelete implements InfoMergerVisitor<MatextInfo, MatextInfo> {
+final class MatextVisiMergeToDelete implements InfoMergerVisitor_<MatextInfo, MatextInfo> {
 
 	@Override public MatextInfo writeRecord(MatextInfo sourceOne, MatextInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);		

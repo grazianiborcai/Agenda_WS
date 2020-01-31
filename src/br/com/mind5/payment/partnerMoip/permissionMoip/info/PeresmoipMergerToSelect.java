@@ -1,12 +1,12 @@
 package br.com.mind5.payment.partnerMoip.permissionMoip.info;
 
-import br.com.mind5.info.InfoMergerTemplate;
-import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.info.obsolete.InfoMergerTemplate_;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class PeresmoipMergerToSelect extends InfoMergerTemplate<PeresmoipInfo, PeresmoipInfo> {
+final class PeresmoipMergerToSelect extends InfoMergerTemplate_<PeresmoipInfo, PeresmoipInfo> {
 
-	@Override protected InfoMergerVisitor<PeresmoipInfo, PeresmoipInfo> getVisitorHook() {
+	@Override protected InfoMergerVisitor_<PeresmoipInfo, PeresmoipInfo> getVisitorHook() {
 		return new PeresmoipVisiMergeToSelect();
 	}
 	

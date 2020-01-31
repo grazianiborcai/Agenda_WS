@@ -5,9 +5,9 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.mind5.business.masterData.info.CurrencyInfo;
 import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class StolisVisiMergeCurrency implements InfoMergerVisitor<StolisInfo, CurrencyInfo> {
+final class StolisVisiMergeCurrency implements InfoMergerVisitor_<StolisInfo, CurrencyInfo> {
 
 	@Override public StolisInfo writeRecord(CurrencyInfo sourceOne, StolisInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

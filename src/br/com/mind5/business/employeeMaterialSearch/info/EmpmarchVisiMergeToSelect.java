@@ -4,9 +4,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class EmpmarchVisiMergeToSelect implements InfoMergerVisitor<EmpmarchInfo, EmpmarchInfo> {
+final class EmpmarchVisiMergeToSelect implements InfoMergerVisitor_<EmpmarchInfo, EmpmarchInfo> {
 
 	@Override public EmpmarchInfo writeRecord(EmpmarchInfo sourceOne, EmpmarchInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);		

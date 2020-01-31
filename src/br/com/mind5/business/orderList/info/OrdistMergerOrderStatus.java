@@ -1,13 +1,13 @@
 package br.com.mind5.business.orderList.info;
 
 import br.com.mind5.business.masterData.info.OrderStatusInfo;
-import br.com.mind5.info.InfoMergerTemplate;
-import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.info.obsolete.InfoMergerTemplate_;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class OrdistMergerOrderStatus extends InfoMergerTemplate<OrdistInfo, OrderStatusInfo> {
+final class OrdistMergerOrderStatus extends InfoMergerTemplate_<OrdistInfo, OrderStatusInfo> {
 
-	@Override protected InfoMergerVisitor<OrdistInfo, OrderStatusInfo> getVisitorHook() {
+	@Override protected InfoMergerVisitor_<OrdistInfo, OrderStatusInfo> getVisitorHook() {
 		return new OrdistVisiMergeOrderStatus();
 	}
 	

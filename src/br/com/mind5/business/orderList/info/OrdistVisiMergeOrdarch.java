@@ -2,9 +2,9 @@ package br.com.mind5.business.orderList.info;
 
 import br.com.mind5.business.orderSearch.info.OrdarchInfo;
 import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class OrdistVisiMergeOrdarch implements InfoMergerVisitor<OrdistInfo, OrdarchInfo> {
+final class OrdistVisiMergeOrdarch implements InfoMergerVisitor_<OrdistInfo, OrdarchInfo> {
 
 	@Override public OrdistInfo writeRecord(OrdarchInfo sourceOne, OrdistInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

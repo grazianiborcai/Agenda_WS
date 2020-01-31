@@ -4,9 +4,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class StowotarchVisiMergeToSelect implements InfoMergerVisitor<StowotarchInfo, StowotarchInfo> {
+final class StowotarchVisiMergeToSelect implements InfoMergerVisitor_<StowotarchInfo, StowotarchInfo> {
 
 	@Override public StowotarchInfo writeRecord(StowotarchInfo sourceOne, StowotarchInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);		

@@ -5,9 +5,9 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class CusparVisiMergePhone implements InfoMergerVisitor<CusparInfo, PhoneInfo> {
+final class CusparVisiMergePhone implements InfoMergerVisitor_<CusparInfo, PhoneInfo> {
 
 	@Override public CusparInfo writeRecord(PhoneInfo sourceOne, CusparInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

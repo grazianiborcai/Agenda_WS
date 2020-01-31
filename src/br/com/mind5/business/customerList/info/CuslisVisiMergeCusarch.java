@@ -5,9 +5,9 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.mind5.business.customerSearch.info.CusarchInfo;
 import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class CuslisVisiMergeCusarch implements InfoMergerVisitor<CuslisInfo, CusarchInfo> {
+final class CuslisVisiMergeCusarch implements InfoMergerVisitor_<CuslisInfo, CusarchInfo> {
 
 	@Override public CuslisInfo writeRecord(CusarchInfo sourceOne, CuslisInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

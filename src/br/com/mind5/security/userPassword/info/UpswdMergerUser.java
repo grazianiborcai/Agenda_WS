@@ -1,13 +1,13 @@
 package br.com.mind5.security.userPassword.info;
 
-import br.com.mind5.info.InfoMergerTemplate;
-import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.info.obsolete.InfoMergerTemplate_;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 import br.com.mind5.security.user.info.UserInfo;
 
-final class UpswdMergerUser extends InfoMergerTemplate<UpswdInfo, UserInfo> {
+final class UpswdMergerUser extends InfoMergerTemplate_<UpswdInfo, UserInfo> {
 
-	@Override protected InfoMergerVisitor<UpswdInfo, UserInfo> getVisitorHook() {
+	@Override protected InfoMergerVisitor_<UpswdInfo, UserInfo> getVisitorHook() {
 		return new UpswdVisiMergeUser();
 	}
 	

@@ -5,9 +5,9 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.mind5.business.form.formPhone.info.FormPhoneInfo;
 import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class PhonapVisiMergeForm implements InfoMergerVisitor<PhonapInfo, FormPhoneInfo> {
+final class PhonapVisiMergeForm implements InfoMergerVisitor_<PhonapInfo, FormPhoneInfo> {
 
 	@Override public PhonapInfo writeRecord(FormPhoneInfo sourceOne, PhonapInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

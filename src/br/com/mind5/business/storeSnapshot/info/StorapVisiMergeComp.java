@@ -5,9 +5,9 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.mind5.business.company.info.CompInfo;
 import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class StorapVisiMergeComp implements InfoMergerVisitor<StorapInfo, CompInfo> {
+final class StorapVisiMergeComp implements InfoMergerVisitor_<StorapInfo, CompInfo> {
 
 	@Override public StorapInfo writeRecord(CompInfo sourceOne, StorapInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

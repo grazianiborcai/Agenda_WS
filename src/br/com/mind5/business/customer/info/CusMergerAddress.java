@@ -1,13 +1,13 @@
 package br.com.mind5.business.customer.info;
 
 import br.com.mind5.business.address.info.AddressInfo;
-import br.com.mind5.info.InfoMergerTemplate;
-import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.info.obsolete.InfoMergerTemplate_;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-public final class CusMergerAddress extends InfoMergerTemplate<CusInfo, AddressInfo> {
+public final class CusMergerAddress extends InfoMergerTemplate_<CusInfo, AddressInfo> {
 
-	@Override protected InfoMergerVisitor<CusInfo, AddressInfo> getVisitorHook() {
+	@Override protected InfoMergerVisitor_<CusInfo, AddressInfo> getVisitorHook() {
 		return new CusVisiMergeAddress();
 	}
 	

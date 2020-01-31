@@ -1,13 +1,13 @@
 package br.com.mind5.business.storeSnapshot.info;
 
-import br.com.mind5.info.InfoMergerTemplate;
-import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.info.obsolete.InfoMergerTemplate_;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 import br.com.mind5.security.user.info.UserInfo;
 
-final class StorapMergerUser extends InfoMergerTemplate<StorapInfo, UserInfo> {
+final class StorapMergerUser extends InfoMergerTemplate_<StorapInfo, UserInfo> {
 
-	@Override protected InfoMergerVisitor<StorapInfo, UserInfo> getVisitorHook() {
+	@Override protected InfoMergerVisitor_<StorapInfo, UserInfo> getVisitorHook() {
 		return new StorapVisiMergeUser();
 	}
 	

@@ -2,9 +2,9 @@ package br.com.mind5.business.employeeMaterial.info;
 
 import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class EmpmatVisiMergeMatlis implements InfoMergerVisitor<EmpmatInfo, MatlisInfo> {
+final class EmpmatVisiMergeMatlis implements InfoMergerVisitor_<EmpmatInfo, MatlisInfo> {
 
 	@Override public EmpmatInfo writeRecord(MatlisInfo sourceOne, EmpmatInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

@@ -5,9 +5,9 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.mind5.business.masterData.info.TimezoneInfo;
 import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class StorapVisiMergeTimezone implements InfoMergerVisitor<StorapInfo, TimezoneInfo> {
+final class StorapVisiMergeTimezone implements InfoMergerVisitor_<StorapInfo, TimezoneInfo> {
 
 	@Override public StorapInfo writeRecord(TimezoneInfo sourceOne, StorapInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

@@ -5,9 +5,9 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.file.fileImageList.info.FimistInfo;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class CuslisVisiMergeFimist implements InfoMergerVisitor<CuslisInfo, FimistInfo> {
+final class CuslisVisiMergeFimist implements InfoMergerVisitor_<CuslisInfo, FimistInfo> {
 
 	@Override public CuslisInfo writeRecord(FimistInfo sourceOne, CuslisInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

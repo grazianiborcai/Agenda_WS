@@ -2,9 +2,9 @@ package br.com.mind5.business.materialStore.info;
 
 import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class MatoreVisiMergeStolis implements InfoMergerVisitor<MatoreInfo, StolisInfo> {
+final class MatoreVisiMergeStolis implements InfoMergerVisitor_<MatoreInfo, StolisInfo> {
 
 	@Override public MatoreInfo writeRecord(StolisInfo sourceOne, MatoreInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

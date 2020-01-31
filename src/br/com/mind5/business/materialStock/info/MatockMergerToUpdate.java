@@ -1,12 +1,12 @@
 package br.com.mind5.business.materialStock.info;
 
-import br.com.mind5.info.InfoMergerTemplate;
-import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.info.obsolete.InfoMergerTemplate_;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class MatockMergerToUpdate extends InfoMergerTemplate<MatockInfo, MatockInfo> {
+final class MatockMergerToUpdate extends InfoMergerTemplate_<MatockInfo, MatockInfo> {
 
-	@Override protected InfoMergerVisitor<MatockInfo, MatockInfo> getVisitorHook() {
+	@Override protected InfoMergerVisitor_<MatockInfo, MatockInfo> getVisitorHook() {
 		return new MatockVisiMergeToUpdate();
 	}
 	

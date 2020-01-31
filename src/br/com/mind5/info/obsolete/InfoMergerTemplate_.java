@@ -1,4 +1,4 @@
-package br.com.mind5.info;
+package br.com.mind5.info.obsolete;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,24 +7,27 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import br.com.mind5.common.SystemMessage;
+import br.com.mind5.info.InfoMerger;
+import br.com.mind5.info.InfoRecord;
+import br.com.mind5.info.InfoUniquifier;
 
-public abstract class InfoMergerTemplate<T extends InfoRecord, K extends InfoRecord> implements InfoMerger<T, K> {	
+public abstract class InfoMergerTemplate_<T extends InfoRecord, K extends InfoRecord> implements InfoMerger<T, K> {	
 	
 	@Override public List<T> merge(List<K> sourceOnes, List<T> sourceTwos) {
-		InfoMergerVisitor<T,K> visitor = getVisitorHook();
+		InfoMergerVisitor_<T,K> visitor = getVisitorHook();
 		return write(sourceOnes, sourceTwos, visitor);
 	}
 	
 	
 	
 	@Override public T merge(K sourceOne, T sourceTwo) {
-		InfoMergerVisitor<T,K> visitor = getVisitorHook();
+		InfoMergerVisitor_<T,K> visitor = getVisitorHook();
 		return write(sourceOne, sourceTwo, visitor);
 	}
 	
 	
 	
-	protected InfoMergerVisitor<T,K> getVisitorHook() {
+	protected InfoMergerVisitor_<T,K> getVisitorHook() {
 		//Template method to be overridden by subclasses
 		logException(new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION));
 		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);
@@ -32,7 +35,7 @@ public abstract class InfoMergerTemplate<T extends InfoRecord, K extends InfoRec
 	
 	
 	
-	private List<T> write(List<K> sourceOnes, List<T> sourceTwos, InfoMergerVisitor<T,K> visitor) {
+	private List<T> write(List<K> sourceOnes, List<T> sourceTwos, InfoMergerVisitor_<T,K> visitor) {
 		checkArgument(sourceOnes, sourceTwos);		
 		
 		if (isEmpty(sourceOnes, sourceTwos))
@@ -72,7 +75,7 @@ public abstract class InfoMergerTemplate<T extends InfoRecord, K extends InfoRec
 
 	
 	
-	private T write(K sourceOne, T sourceTwo, InfoMergerVisitor<T,K> visitor) {
+	private T write(K sourceOne, T sourceTwo, InfoMergerVisitor_<T,K> visitor) {
 		try {
 			return tryTowrite(sourceOne, sourceTwo, visitor);
 			
@@ -85,7 +88,7 @@ public abstract class InfoMergerTemplate<T extends InfoRecord, K extends InfoRec
 	
 	
 	@SuppressWarnings("unchecked")
-	private T tryTowrite(K sourceOne, T sourceTwo, InfoMergerVisitor<T,K> visitor) {
+	private T tryTowrite(K sourceOne, T sourceTwo, InfoMergerVisitor_<T,K> visitor) {
 		checkArgument(sourceOne, sourceTwo, visitor);
 		
 		K clonedSourceOne = (K) makeClone(sourceOne);
@@ -128,7 +131,7 @@ public abstract class InfoMergerTemplate<T extends InfoRecord, K extends InfoRec
 	
 	
 	
-	private void checkArgument(K sourceOne, T sourceTwo, InfoMergerVisitor<T,K> visitor) {
+	private void checkArgument(K sourceOne, T sourceTwo, InfoMergerVisitor_<T,K> visitor) {
 		if (sourceOne == null) {
 			logException(new NullPointerException("sourceOne" + SystemMessage.NULL_ARGUMENT));
 			throw new NullPointerException("sourceOne" + SystemMessage.NULL_ARGUMENT);

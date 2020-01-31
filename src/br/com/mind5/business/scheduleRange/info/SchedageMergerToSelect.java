@@ -1,12 +1,12 @@
 package br.com.mind5.business.scheduleRange.info;
 
-import br.com.mind5.info.InfoMergerTemplate;
-import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.info.obsolete.InfoMergerTemplate_;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class SchedageMergerToSelect extends InfoMergerTemplate<SchedageInfo, SchedageInfo> {
+final class SchedageMergerToSelect extends InfoMergerTemplate_<SchedageInfo, SchedageInfo> {
 
-	@Override protected InfoMergerVisitor<SchedageInfo, SchedageInfo> getVisitorHook() {
+	@Override protected InfoMergerVisitor_<SchedageInfo, SchedageInfo> getVisitorHook() {
 		return new SchedageVisiMergeToSelect();
 	}
 	

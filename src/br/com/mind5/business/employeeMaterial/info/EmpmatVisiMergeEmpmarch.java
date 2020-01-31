@@ -3,9 +3,9 @@ package br.com.mind5.business.employeeMaterial.info;
 
 import br.com.mind5.business.employeeMaterialSearch.info.EmpmarchInfo;
 import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class EmpmatVisiMergeEmpmarch implements InfoMergerVisitor<EmpmatInfo, EmpmarchInfo> {
+final class EmpmatVisiMergeEmpmarch implements InfoMergerVisitor_<EmpmatInfo, EmpmarchInfo> {
 
 	@Override public EmpmatInfo writeRecord(EmpmarchInfo sourceOne, EmpmatInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

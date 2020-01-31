@@ -1,13 +1,13 @@
 package br.com.mind5.business.company.info;
 
 import br.com.mind5.business.companySnapshot.info.CompnapInfo;
-import br.com.mind5.info.InfoMergerTemplate;
-import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.info.obsolete.InfoMergerTemplate_;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class CompMergerCompnap extends InfoMergerTemplate<CompInfo, CompnapInfo> {
+final class CompMergerCompnap extends InfoMergerTemplate_<CompInfo, CompnapInfo> {
 
-	@Override protected InfoMergerVisitor<CompInfo, CompnapInfo> getVisitorHook() {
+	@Override protected InfoMergerVisitor_<CompInfo, CompnapInfo> getVisitorHook() {
 		return new CompVisiMergeCompnap();
 	}
 	

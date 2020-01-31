@@ -5,9 +5,9 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.mind5.business.phoneSnapshot.info.PhonapInfo;
 import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class UserapVisiMergePhonap implements InfoMergerVisitor<UserapInfo, PhonapInfo> {
+final class UserapVisiMergePhonap implements InfoMergerVisitor_<UserapInfo, PhonapInfo> {
 
 	@Override public UserapInfo writeRecord(PhonapInfo sourceOne, UserapInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

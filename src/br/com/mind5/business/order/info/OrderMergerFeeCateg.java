@@ -1,13 +1,13 @@
 package br.com.mind5.business.order.info;
 
 import br.com.mind5.business.masterData.info.FeeCategInfo;
-import br.com.mind5.info.InfoMergerTemplate;
-import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.info.obsolete.InfoMergerTemplate_;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class OrderMergerFeeCateg extends InfoMergerTemplate<OrderInfo, FeeCategInfo> {
+final class OrderMergerFeeCateg extends InfoMergerTemplate_<OrderInfo, FeeCategInfo> {
 
-	@Override protected InfoMergerVisitor<OrderInfo, FeeCategInfo> getVisitorHook() {
+	@Override protected InfoMergerVisitor_<OrderInfo, FeeCategInfo> getVisitorHook() {
 		return new OrderVisiMergeFeeCateg();
 	}
 	

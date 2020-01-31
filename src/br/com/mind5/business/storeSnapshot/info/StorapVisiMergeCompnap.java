@@ -3,9 +3,9 @@ package br.com.mind5.business.storeSnapshot.info;
 import br.com.mind5.business.company.info.CompInfo;
 import br.com.mind5.business.companySnapshot.info.CompnapInfo;
 import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class StorapVisiMergeCompnap implements InfoMergerVisitor<StorapInfo, CompnapInfo> {
+final class StorapVisiMergeCompnap implements InfoMergerVisitor_<StorapInfo, CompnapInfo> {
 
 	@Override public StorapInfo writeRecord(CompnapInfo sourceOne, StorapInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

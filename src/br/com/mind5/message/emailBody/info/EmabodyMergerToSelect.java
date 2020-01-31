@@ -1,12 +1,12 @@
 package br.com.mind5.message.emailBody.info;
 
-import br.com.mind5.info.InfoMergerTemplate;
-import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.info.obsolete.InfoMergerTemplate_;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class EmabodyMergerToSelect extends InfoMergerTemplate<EmabodyInfo, EmabodyInfo> {
+final class EmabodyMergerToSelect extends InfoMergerTemplate_<EmabodyInfo, EmabodyInfo> {
 
-	@Override protected InfoMergerVisitor<EmabodyInfo, EmabodyInfo> getVisitorHook() {
+	@Override protected InfoMergerVisitor_<EmabodyInfo, EmabodyInfo> getVisitorHook() {
 		return new EmabodyVisiMergeToSelect();
 	}
 	

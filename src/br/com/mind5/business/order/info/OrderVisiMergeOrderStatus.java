@@ -5,9 +5,9 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.mind5.business.masterData.info.OrderStatusInfo;
 import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class OrderVisiMergeOrderStatus implements InfoMergerVisitor<OrderInfo, OrderStatusInfo> {
+final class OrderVisiMergeOrderStatus implements InfoMergerVisitor_<OrderInfo, OrderStatusInfo> {
 
 	@Override public OrderInfo writeRecord(OrderStatusInfo sourceOne, OrderInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

@@ -1,13 +1,13 @@
 package br.com.mind5.business.employeeMaterial.info;
 
 import br.com.mind5.business.employeeList.info.EmplisInfo;
-import br.com.mind5.info.InfoMergerTemplate;
-import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.info.obsolete.InfoMergerTemplate_;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class EmpmatMergerEmplis extends InfoMergerTemplate<EmpmatInfo, EmplisInfo> {
+final class EmpmatMergerEmplis extends InfoMergerTemplate_<EmpmatInfo, EmplisInfo> {
 
-	@Override protected InfoMergerVisitor<EmpmatInfo, EmplisInfo> getVisitorHook() {
+	@Override protected InfoMergerVisitor_<EmpmatInfo, EmplisInfo> getVisitorHook() {
 		return new EmpmatVisiMergeEmplis();
 	}
 	

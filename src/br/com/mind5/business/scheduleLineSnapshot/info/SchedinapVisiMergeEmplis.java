@@ -5,9 +5,9 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.mind5.business.employeeList.info.EmplisInfo;
 import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class SchedinapVisiMergeEmplis implements InfoMergerVisitor<SchedinapInfo, EmplisInfo> {
+final class SchedinapVisiMergeEmplis implements InfoMergerVisitor_<SchedinapInfo, EmplisInfo> {
 
 	@Override public SchedinapInfo writeRecord(EmplisInfo sourceOne, SchedinapInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

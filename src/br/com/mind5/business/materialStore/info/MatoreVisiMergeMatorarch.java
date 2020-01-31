@@ -2,9 +2,9 @@ package br.com.mind5.business.materialStore.info;
 
 import br.com.mind5.business.materialStoreSearch.info.MatorarchInfo;
 import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class MatoreVisiMergeMatorarch implements InfoMergerVisitor<MatoreInfo, MatorarchInfo> {
+final class MatoreVisiMergeMatorarch implements InfoMergerVisitor_<MatoreInfo, MatorarchInfo> {
 
 	@Override public MatoreInfo writeRecord(MatorarchInfo sourceOne, MatoreInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

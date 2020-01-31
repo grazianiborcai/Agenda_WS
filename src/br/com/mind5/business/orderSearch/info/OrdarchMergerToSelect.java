@@ -1,12 +1,12 @@
 package br.com.mind5.business.orderSearch.info;
 
-import br.com.mind5.info.InfoMergerTemplate;
-import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.info.obsolete.InfoMergerTemplate_;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class OrdarchMergerToSelect extends InfoMergerTemplate<OrdarchInfo, OrdarchInfo> {
+final class OrdarchMergerToSelect extends InfoMergerTemplate_<OrdarchInfo, OrdarchInfo> {
 
-	@Override protected InfoMergerVisitor<OrdarchInfo, OrdarchInfo> getVisitorHook() {
+	@Override protected InfoMergerVisitor_<OrdarchInfo, OrdarchInfo> getVisitorHook() {
 		return new OrdarchVisiMergeToSelect();
 	}
 	

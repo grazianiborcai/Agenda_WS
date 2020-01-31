@@ -1,13 +1,13 @@
 package br.com.mind5.security.user.info;
 
-import br.com.mind5.info.InfoMergerTemplate;
-import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.info.obsolete.InfoMergerTemplate_;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
 
-final class UserMergerCuspar extends InfoMergerTemplate<UserInfo, CusparInfo> {
+final class UserMergerCuspar extends InfoMergerTemplate_<UserInfo, CusparInfo> {
 
-	@Override protected InfoMergerVisitor<UserInfo, CusparInfo> getVisitorHook() {
+	@Override protected InfoMergerVisitor_<UserInfo, CusparInfo> getVisitorHook() {
 		return new UserVisiMergeCuspar();
 	}
 	

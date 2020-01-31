@@ -5,9 +5,9 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.mind5.business.masterData.info.GenderInfo;
 import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class PersonapVisiMergeGender implements InfoMergerVisitor<PersonapInfo, GenderInfo> {
+final class PersonapVisiMergeGender implements InfoMergerVisitor_<PersonapInfo, GenderInfo> {
 
 	@Override public PersonapInfo writeRecord(GenderInfo sourceOne, PersonapInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

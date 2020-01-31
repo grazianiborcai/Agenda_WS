@@ -1,12 +1,12 @@
 package br.com.mind5.business.storeWorkTime.info;
 
-import br.com.mind5.info.InfoMergerTemplate;
-import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.info.obsolete.InfoMergerTemplate_;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class StowotmMergerToDelete extends InfoMergerTemplate<StowotmInfo, StowotmInfo> {
+final class StowotmMergerToDelete extends InfoMergerTemplate_<StowotmInfo, StowotmInfo> {
 
-	@Override protected InfoMergerVisitor<StowotmInfo, StowotmInfo> getVisitorHook() {
+	@Override protected InfoMergerVisitor_<StowotmInfo, StowotmInfo> getVisitorHook() {
 		return new StowotmVisiMergeToDelete();
 	}
 	

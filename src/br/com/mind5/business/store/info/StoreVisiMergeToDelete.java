@@ -4,9 +4,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class StoreVisiMergeToDelete implements InfoMergerVisitor<StoreInfo, StoreInfo> {
+final class StoreVisiMergeToDelete implements InfoMergerVisitor_<StoreInfo, StoreInfo> {
 
 	@Override public StoreInfo writeRecord(StoreInfo sourceOne, StoreInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);		

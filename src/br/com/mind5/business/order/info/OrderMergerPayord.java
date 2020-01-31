@@ -1,13 +1,13 @@
 package br.com.mind5.business.order.info;
 
-import br.com.mind5.info.InfoMergerTemplate;
-import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.info.obsolete.InfoMergerTemplate_;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
 
-final class OrderMergerPayord extends InfoMergerTemplate<OrderInfo, PayordInfo> {
+final class OrderMergerPayord extends InfoMergerTemplate_<OrderInfo, PayordInfo> {
 
-	@Override protected InfoMergerVisitor<OrderInfo, PayordInfo> getVisitorHook() {
+	@Override protected InfoMergerVisitor_<OrderInfo, PayordInfo> getVisitorHook() {
 		return new OrderVisiMergePayord();
 	}
 	

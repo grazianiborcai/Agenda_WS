@@ -5,9 +5,9 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class CrecardVisiMergeAddress implements InfoMergerVisitor<CrecardInfo, AddressInfo> {
+final class CrecardVisiMergeAddress implements InfoMergerVisitor_<CrecardInfo, AddressInfo> {
 
 	@Override public CrecardInfo writeRecord(AddressInfo sourceOne, CrecardInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

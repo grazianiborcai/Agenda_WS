@@ -1,12 +1,12 @@
 package br.com.mind5.business.cartItem.info;
 
-import br.com.mind5.info.InfoMergerTemplate;
-import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.info.obsolete.InfoMergerTemplate_;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class CartemMergerToSelect extends InfoMergerTemplate<CartemInfo, CartemInfo> {
+final class CartemMergerToSelect extends InfoMergerTemplate_<CartemInfo, CartemInfo> {
 
-	@Override protected InfoMergerVisitor<CartemInfo, CartemInfo> getVisitorHook() {
+	@Override protected InfoMergerVisitor_<CartemInfo, CartemInfo> getVisitorHook() {
 		return new CartemVisiMergeToSelect();
 	}
 	

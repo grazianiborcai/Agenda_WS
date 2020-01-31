@@ -2,9 +2,9 @@ package br.com.mind5.business.store.info;
 
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.file.fileImageList.info.FimistInfo;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class StoreVisiMergeFimist implements InfoMergerVisitor<StoreInfo, FimistInfo> {
+final class StoreVisiMergeFimist implements InfoMergerVisitor_<StoreInfo, FimistInfo> {
 
 	@Override public StoreInfo writeRecord(FimistInfo sourceOne, StoreInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

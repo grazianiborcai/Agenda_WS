@@ -4,9 +4,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class SchedistVisiMergeToSelect implements InfoMergerVisitor<SchedistInfo, SchedistInfo> {
+final class SchedistVisiMergeToSelect implements InfoMergerVisitor_<SchedistInfo, SchedistInfo> {
 
 	@Override public SchedistInfo writeRecord(SchedistInfo sourceOne, SchedistInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);		

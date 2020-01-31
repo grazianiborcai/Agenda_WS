@@ -1,12 +1,12 @@
 package br.com.mind5.payment.ownerPartner.info;
 
-import br.com.mind5.info.InfoMergerTemplate;
-import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.info.obsolete.InfoMergerTemplate_;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class OwnparMergerToSelect extends InfoMergerTemplate<OwnparInfo, OwnparInfo> {
+final class OwnparMergerToSelect extends InfoMergerTemplate_<OwnparInfo, OwnparInfo> {
 
-	@Override protected InfoMergerVisitor<OwnparInfo, OwnparInfo> getVisitorHook() {
+	@Override protected InfoMergerVisitor_<OwnparInfo, OwnparInfo> getVisitorHook() {
 		return new OwnparVisiMergeToSelect();
 	}
 	

@@ -3,9 +3,9 @@ package br.com.mind5.business.storeSnapshot.info;
 import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.business.phoneSnapshot.info.PhonapInfo;
 import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class StorapVisiMergePhonap implements InfoMergerVisitor<StorapInfo, PhonapInfo> {
+final class StorapVisiMergePhonap implements InfoMergerVisitor_<StorapInfo, PhonapInfo> {
 
 	@Override public StorapInfo writeRecord(PhonapInfo sourceOne, StorapInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

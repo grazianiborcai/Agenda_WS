@@ -2,9 +2,9 @@ package br.com.mind5.business.materialTextSnapshot.info;
 
 import br.com.mind5.business.materialText.info.MatextInfo;
 import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class MatextsnapVisiMergeMatext implements InfoMergerVisitor<MatextsnapInfo, MatextInfo> {
+final class MatextsnapVisiMergeMatext implements InfoMergerVisitor_<MatextsnapInfo, MatextInfo> {
 
 	@Override public MatextsnapInfo writeRecord(MatextInfo sourceOne, MatextsnapInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

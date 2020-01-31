@@ -1,13 +1,13 @@
 package br.com.mind5.business.phoneSnapshot.info;
 
 import br.com.mind5.business.storeList.info.StolisInfo;
-import br.com.mind5.info.InfoMergerTemplate;
-import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.info.obsolete.InfoMergerTemplate_;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-public final class PhonapMergerStolis extends InfoMergerTemplate<PhonapInfo, StolisInfo>{
+public final class PhonapMergerStolis extends InfoMergerTemplate_<PhonapInfo, StolisInfo>{
 
-	@Override protected InfoMergerVisitor<PhonapInfo, StolisInfo> getVisitorHook() {
+	@Override protected InfoMergerVisitor_<PhonapInfo, StolisInfo> getVisitorHook() {
 		return new PhonapVisiMergeStolis();
 	}
 	

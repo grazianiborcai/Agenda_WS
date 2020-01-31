@@ -2,9 +2,9 @@ package br.com.mind5.business.scheduleYear.info;
 
 import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class SchedyearVisiMergeStolis implements InfoMergerVisitor<SchedyearInfo, StolisInfo> {
+final class SchedyearVisiMergeStolis implements InfoMergerVisitor_<SchedyearInfo, StolisInfo> {
 
 	@Override public SchedyearInfo writeRecord(StolisInfo sourceOne, SchedyearInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

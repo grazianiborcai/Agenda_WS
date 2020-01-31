@@ -4,9 +4,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class OrderVisiMergeToUpdate implements InfoMergerVisitor<OrderInfo, OrderInfo> {
+final class OrderVisiMergeToUpdate implements InfoMergerVisitor_<OrderInfo, OrderInfo> {
 
 	@Override public OrderInfo writeRecord(OrderInfo sourceOne, OrderInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);		

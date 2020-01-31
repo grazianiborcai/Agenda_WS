@@ -5,9 +5,9 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.mind5.business.form.formAddress.info.FormAddressInfo;
 import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class AddressVisiMergeForm implements InfoMergerVisitor<AddressInfo, FormAddressInfo> {
+final class AddressVisiMergeForm implements InfoMergerVisitor_<AddressInfo, FormAddressInfo> {
 
 	@Override public AddressInfo writeRecord(FormAddressInfo sourceOne, AddressInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

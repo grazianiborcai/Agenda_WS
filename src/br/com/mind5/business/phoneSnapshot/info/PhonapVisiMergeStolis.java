@@ -5,9 +5,9 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class PhonapVisiMergeStolis implements InfoMergerVisitor<PhonapInfo, StolisInfo> {
+final class PhonapVisiMergeStolis implements InfoMergerVisitor_<PhonapInfo, StolisInfo> {
 
 	@Override public PhonapInfo writeRecord(StolisInfo sourceOne, PhonapInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

@@ -2,9 +2,9 @@ package br.com.mind5.business.cart.info;
 
 import br.com.mind5.business.cartItem.info.CartemInfo;
 import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class CartVisiMergeCartem implements InfoMergerVisitor<CartInfo, CartemInfo> {
+final class CartVisiMergeCartem implements InfoMergerVisitor_<CartInfo, CartemInfo> {
 
 	@Override public CartInfo writeRecord(CartemInfo sourceOne, CartInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

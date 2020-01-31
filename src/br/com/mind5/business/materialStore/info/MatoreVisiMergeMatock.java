@@ -5,9 +5,9 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.mind5.business.materialStock.info.MatockInfo;
 import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class MatoreVisiMergeMatock implements InfoMergerVisitor<MatoreInfo, MatockInfo> {
+final class MatoreVisiMergeMatock implements InfoMergerVisitor_<MatoreInfo, MatockInfo> {
 
 	@Override public MatoreInfo writeRecord(MatockInfo sourceOne, MatoreInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

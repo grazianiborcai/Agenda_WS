@@ -1,10 +1,10 @@
 package br.com.mind5.business.employeeSnapshot.info;
 
 import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 import br.com.mind5.security.userList.info.UselisInfo;
 
-final class EmpnapVisiMergeUselis implements InfoMergerVisitor<EmpnapInfo, UselisInfo> {
+final class EmpnapVisiMergeUselis implements InfoMergerVisitor_<EmpnapInfo, UselisInfo> {
 
 	@Override public EmpnapInfo writeRecord(UselisInfo sourceOne, EmpnapInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

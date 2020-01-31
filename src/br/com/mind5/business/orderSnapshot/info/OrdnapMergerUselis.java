@@ -1,13 +1,13 @@
 package br.com.mind5.business.orderSnapshot.info;
 
-import br.com.mind5.info.InfoMergerTemplate;
-import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.info.obsolete.InfoMergerTemplate_;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 import br.com.mind5.security.userList.info.UselisInfo;
 
-final class OrdnapMergerUselis extends InfoMergerTemplate<OrdnapInfo, UselisInfo> {
+final class OrdnapMergerUselis extends InfoMergerTemplate_<OrdnapInfo, UselisInfo> {
 
-	@Override protected InfoMergerVisitor<OrdnapInfo, UselisInfo> getVisitorHook() {
+	@Override protected InfoMergerVisitor_<OrdnapInfo, UselisInfo> getVisitorHook() {
 		return new OrdnapVisiMergeUselis();
 	}
 	

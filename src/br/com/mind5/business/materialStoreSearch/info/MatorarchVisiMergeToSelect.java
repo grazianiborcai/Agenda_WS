@@ -4,9 +4,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class MatorarchVisiMergeToSelect implements InfoMergerVisitor<MatorarchInfo, MatorarchInfo> {
+final class MatorarchVisiMergeToSelect implements InfoMergerVisitor_<MatorarchInfo, MatorarchInfo> {
 
 	@Override public MatorarchInfo writeRecord(MatorarchInfo sourceOne, MatorarchInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);		

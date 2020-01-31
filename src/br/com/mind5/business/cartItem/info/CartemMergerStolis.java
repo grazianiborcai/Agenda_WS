@@ -1,13 +1,13 @@
 package br.com.mind5.business.cartItem.info;
 
 import br.com.mind5.business.storeList.info.StolisInfo;
-import br.com.mind5.info.InfoMergerTemplate;
-import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.info.obsolete.InfoMergerTemplate_;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class CartemMergerStolis extends InfoMergerTemplate<CartemInfo, StolisInfo> {
+final class CartemMergerStolis extends InfoMergerTemplate_<CartemInfo, StolisInfo> {
 
-	@Override protected InfoMergerVisitor<CartemInfo, StolisInfo> getVisitorHook() {
+	@Override protected InfoMergerVisitor_<CartemInfo, StolisInfo> getVisitorHook() {
 		return new CartemVisiMergeStolis();
 	}
 	

@@ -1,9 +1,9 @@
 package br.com.mind5.business.masterData.info;
 
 import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class CountryLegalVisiMergeCountry implements InfoMergerVisitor<CountryLegalInfo, CountryInfo> {
+final class CountryLegalVisiMergeCountry implements InfoMergerVisitor_<CountryLegalInfo, CountryInfo> {
 
 	@Override public CountryLegalInfo writeRecord(CountryInfo sourceOne, CountryLegalInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

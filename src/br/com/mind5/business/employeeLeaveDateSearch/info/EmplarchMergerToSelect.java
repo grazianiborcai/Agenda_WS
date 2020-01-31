@@ -1,12 +1,12 @@
 package br.com.mind5.business.employeeLeaveDateSearch.info;
 
-import br.com.mind5.info.InfoMergerTemplate;
-import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.info.obsolete.InfoMergerTemplate_;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class EmplarchMergerToSelect extends InfoMergerTemplate<EmplarchInfo, EmplarchInfo> {
+final class EmplarchMergerToSelect extends InfoMergerTemplate_<EmplarchInfo, EmplarchInfo> {
 
-	@Override protected InfoMergerVisitor<EmplarchInfo, EmplarchInfo> getVisitorHook() {
+	@Override protected InfoMergerVisitor_<EmplarchInfo, EmplarchInfo> getVisitorHook() {
 		return new EmplarchVisiMergeToSelect();
 	}
 	

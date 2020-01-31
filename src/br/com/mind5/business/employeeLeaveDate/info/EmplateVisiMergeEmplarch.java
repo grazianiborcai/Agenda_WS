@@ -5,9 +5,9 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.mind5.business.employeeLeaveDateSearch.info.EmplarchInfo;
 import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class EmplateVisiMergeEmplarch implements InfoMergerVisitor<EmplateInfo, EmplarchInfo> {
+final class EmplateVisiMergeEmplarch implements InfoMergerVisitor_<EmplateInfo, EmplarchInfo> {
 
 	@Override public EmplateInfo writeRecord(EmplarchInfo sourceOne, EmplateInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

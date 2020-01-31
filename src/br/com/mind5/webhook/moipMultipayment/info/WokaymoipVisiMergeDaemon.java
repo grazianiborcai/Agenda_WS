@@ -4,10 +4,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 import br.com.mind5.security.user.info.UserInfo;
 
-final class WokaymoipVisiMergeDaemon implements InfoMergerVisitor<WokaymoipInfo, UserInfo> {
+final class WokaymoipVisiMergeDaemon implements InfoMergerVisitor_<WokaymoipInfo, UserInfo> {
 
 	@Override public WokaymoipInfo writeRecord(UserInfo sourceOne, WokaymoipInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

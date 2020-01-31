@@ -1,12 +1,12 @@
 package br.com.mind5.business.storeSearch.info;
 
-import br.com.mind5.info.InfoMergerTemplate;
-import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.info.obsolete.InfoMergerTemplate_;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class SotarchMergerToSelect extends InfoMergerTemplate<SotarchInfo, SotarchInfo> {
+final class SotarchMergerToSelect extends InfoMergerTemplate_<SotarchInfo, SotarchInfo> {
 
-	@Override protected InfoMergerVisitor<SotarchInfo, SotarchInfo> getVisitorHook() {
+	@Override protected InfoMergerVisitor_<SotarchInfo, SotarchInfo> getVisitorHook() {
 		return new SotarchVisiMergeToSelect();
 	}
 	

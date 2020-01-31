@@ -4,10 +4,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 import br.com.mind5.security.username.info.UsernameInfo;
 
-final class CusVisiMergeUsername implements InfoMergerVisitor<CusInfo, UsernameInfo> {
+final class CusVisiMergeUsername implements InfoMergerVisitor_<CusInfo, UsernameInfo> {
 
 	@Override public CusInfo writeRecord(UsernameInfo sourceOne, CusInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

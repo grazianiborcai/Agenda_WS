@@ -1,13 +1,13 @@
 package br.com.mind5.business.order.info;
 
 import br.com.mind5.business.customerSearch.info.CusarchInfo;
-import br.com.mind5.info.InfoMergerTemplate;
-import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.info.obsolete.InfoMergerTemplate_;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class OrderMergerCusarch extends InfoMergerTemplate<OrderInfo, CusarchInfo> {
+final class OrderMergerCusarch extends InfoMergerTemplate_<OrderInfo, CusarchInfo> {
 
-	@Override protected InfoMergerVisitor<OrderInfo, CusarchInfo> getVisitorHook() {
+	@Override protected InfoMergerVisitor_<OrderInfo, CusarchInfo> getVisitorHook() {
 		return new OrderVisiMergeCusarch();
 	}
 	

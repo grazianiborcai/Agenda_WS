@@ -4,10 +4,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 import br.com.mind5.security.userList.info.UselisInfo;
 
-final class AddresnapVisiMergeUselis implements InfoMergerVisitor<AddresnapInfo, UselisInfo> {
+final class AddresnapVisiMergeUselis implements InfoMergerVisitor_<AddresnapInfo, UselisInfo> {
 
 	@Override public AddresnapInfo writeRecord(UselisInfo sourceOne, AddresnapInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

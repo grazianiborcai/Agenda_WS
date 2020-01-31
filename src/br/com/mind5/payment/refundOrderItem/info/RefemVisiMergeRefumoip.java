@@ -4,10 +4,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 import br.com.mind5.payment.partnerMoip.refundMoip.info.RefumoipInfo;
 
-final class RefemVisiMergeRefumoip implements InfoMergerVisitor<RefemInfo, RefumoipInfo> {
+final class RefemVisiMergeRefumoip implements InfoMergerVisitor_<RefemInfo, RefumoipInfo> {
 
 	@Override public RefemInfo writeRecord(RefumoipInfo sourceOne, RefemInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

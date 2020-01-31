@@ -1,12 +1,12 @@
 package br.com.mind5.business.phoneSearch.info;
 
-import br.com.mind5.info.InfoMergerTemplate;
-import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.info.obsolete.InfoMergerTemplate_;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class PhonarchMergerToSelect extends InfoMergerTemplate<PhonarchInfo, PhonarchInfo> {
+final class PhonarchMergerToSelect extends InfoMergerTemplate_<PhonarchInfo, PhonarchInfo> {
 
-	@Override protected InfoMergerVisitor<PhonarchInfo, PhonarchInfo> getVisitorHook() {
+	@Override protected InfoMergerVisitor_<PhonarchInfo, PhonarchInfo> getVisitorHook() {
 		return new PhonarchVisiMergeToSelect();
 	}
 	

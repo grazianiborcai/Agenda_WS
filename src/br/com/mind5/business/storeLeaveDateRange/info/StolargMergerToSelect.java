@@ -1,12 +1,12 @@
 package br.com.mind5.business.storeLeaveDateRange.info;
 
-import br.com.mind5.info.InfoMergerTemplate;
-import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.info.obsolete.InfoMergerTemplate_;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class StolargMergerToSelect extends InfoMergerTemplate<StolargInfo, StolargInfo> {
+final class StolargMergerToSelect extends InfoMergerTemplate_<StolargInfo, StolargInfo> {
 
-	@Override protected InfoMergerVisitor<StolargInfo, StolargInfo> getVisitorHook() {
+	@Override protected InfoMergerVisitor_<StolargInfo, StolargInfo> getVisitorHook() {
 		return new StolargVisiMergeToSelect();
 	}
 	

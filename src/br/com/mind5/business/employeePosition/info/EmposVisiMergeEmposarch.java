@@ -5,9 +5,9 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.mind5.business.employeePositionSearch.info.EmposarchInfo;
 import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class EmposVisiMergeEmposarch implements InfoMergerVisitor<EmposInfo, EmposarchInfo> {
+final class EmposVisiMergeEmposarch implements InfoMergerVisitor_<EmposInfo, EmposarchInfo> {
 
 	@Override public EmposInfo writeRecord(EmposarchInfo sourceOne, EmposInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

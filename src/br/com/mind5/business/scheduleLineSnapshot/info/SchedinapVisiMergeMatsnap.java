@@ -5,9 +5,9 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.mind5.business.materialSnapshot.info.MatsnapInfo;
 import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class SchedinapVisiMergeMatsnap implements InfoMergerVisitor<SchedinapInfo, MatsnapInfo> {
+final class SchedinapVisiMergeMatsnap implements InfoMergerVisitor_<SchedinapInfo, MatsnapInfo> {
 
 	@Override public SchedinapInfo writeRecord(MatsnapInfo sourceOne, SchedinapInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

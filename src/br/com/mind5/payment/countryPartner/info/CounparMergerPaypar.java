@@ -1,13 +1,13 @@
 package br.com.mind5.payment.countryPartner.info;
 
 import br.com.mind5.business.masterData.info.PayparInfo;
-import br.com.mind5.info.InfoMergerTemplate;
-import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.info.obsolete.InfoMergerTemplate_;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class CounparMergerPaypar extends InfoMergerTemplate<CounparInfo, PayparInfo> {
+final class CounparMergerPaypar extends InfoMergerTemplate_<CounparInfo, PayparInfo> {
 
-	@Override protected InfoMergerVisitor<CounparInfo,  PayparInfo> getVisitorHook() {
+	@Override protected InfoMergerVisitor_<CounparInfo,  PayparInfo> getVisitorHook() {
 		return new CounparVisiMergePaypar();
 	}
 	

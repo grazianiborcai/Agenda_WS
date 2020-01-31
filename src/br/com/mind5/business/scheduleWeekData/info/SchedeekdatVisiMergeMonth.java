@@ -5,9 +5,9 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.mind5.business.masterData.info.MonthInfo;
 import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class SchedeekdatVisiMergeMonth implements InfoMergerVisitor<SchedeekdatInfo, MonthInfo> {
+final class SchedeekdatVisiMergeMonth implements InfoMergerVisitor_<SchedeekdatInfo, MonthInfo> {
 
 	@Override public SchedeekdatInfo writeRecord(MonthInfo sourceOne, SchedeekdatInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

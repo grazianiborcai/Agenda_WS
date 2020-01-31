@@ -1,13 +1,13 @@
 package br.com.mind5.security.user.info;
 
 import br.com.mind5.file.fileImageList.info.FimistInfo;
-import br.com.mind5.info.InfoMergerTemplate;
-import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.info.obsolete.InfoMergerTemplate_;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class UserMergerFimist extends InfoMergerTemplate<UserInfo, FimistInfo> {
+final class UserMergerFimist extends InfoMergerTemplate_<UserInfo, FimistInfo> {
 
-	@Override protected InfoMergerVisitor<UserInfo, FimistInfo> getVisitorHook() {
+	@Override protected InfoMergerVisitor_<UserInfo, FimistInfo> getVisitorHook() {
 		return new UserVisiMergeFimist();
 	}
 	

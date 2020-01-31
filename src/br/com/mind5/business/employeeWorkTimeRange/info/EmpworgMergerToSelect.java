@@ -1,12 +1,12 @@
 package br.com.mind5.business.employeeWorkTimeRange.info;
 
-import br.com.mind5.info.InfoMergerTemplate;
-import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.info.obsolete.InfoMergerTemplate_;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class EmpworgMergerToSelect extends InfoMergerTemplate<EmpworgInfo, EmpworgInfo> {
+final class EmpworgMergerToSelect extends InfoMergerTemplate_<EmpworgInfo, EmpworgInfo> {
 
-	@Override protected InfoMergerVisitor<EmpworgInfo, EmpworgInfo> getVisitorHook() {
+	@Override protected InfoMergerVisitor_<EmpworgInfo, EmpworgInfo> getVisitorHook() {
 		return new EmpworgVisiMergeToSelect();
 	}
 	

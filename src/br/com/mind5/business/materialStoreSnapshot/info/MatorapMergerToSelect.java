@@ -1,12 +1,12 @@
 package br.com.mind5.business.materialStoreSnapshot.info;
 
-import br.com.mind5.info.InfoMergerTemplate;
-import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.info.obsolete.InfoMergerTemplate_;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class MatorapMergerToSelect extends InfoMergerTemplate<MatorapInfo, MatorapInfo> {
+final class MatorapMergerToSelect extends InfoMergerTemplate_<MatorapInfo, MatorapInfo> {
 
-	@Override protected InfoMergerVisitor<MatorapInfo, MatorapInfo> getVisitorHook() {
+	@Override protected InfoMergerVisitor_<MatorapInfo, MatorapInfo> getVisitorHook() {
 		return new MatorapVisiMergeToSelect();
 	}
 	

@@ -4,10 +4,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 import br.com.mind5.security.username.info.UsernameInfo;
 
-final class SchedineVisiMergeUsername implements InfoMergerVisitor<SchedineInfo, UsernameInfo> {
+final class SchedineVisiMergeUsername implements InfoMergerVisitor_<SchedineInfo, UsernameInfo> {
 
 	@Override public SchedineInfo writeRecord(UsernameInfo sourceOne, SchedineInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

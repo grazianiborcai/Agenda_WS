@@ -4,10 +4,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 import br.com.mind5.message.emailBody.info.EmabodyInfo;
 
-final class EmailVisiMergeEmabody implements InfoMergerVisitor<EmailInfo, EmabodyInfo> {
+final class EmailVisiMergeEmabody implements InfoMergerVisitor_<EmailInfo, EmabodyInfo> {
 
 	@Override public EmailInfo writeRecord(EmabodyInfo sourceOne, EmailInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

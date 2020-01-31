@@ -1,12 +1,12 @@
 package br.com.mind5.business.materialList.info;
 
-import br.com.mind5.info.InfoMergerTemplate;
-import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.info.obsolete.InfoMergerTemplate_;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class MatlisMergerToSelect extends InfoMergerTemplate<MatlisInfo, MatlisInfo> {
+final class MatlisMergerToSelect extends InfoMergerTemplate_<MatlisInfo, MatlisInfo> {
 
-	@Override protected InfoMergerVisitor<MatlisInfo, MatlisInfo> getVisitorHook() {
+	@Override protected InfoMergerVisitor_<MatlisInfo, MatlisInfo> getVisitorHook() {
 		return new MatlisVisiMergeToSelect();
 	}
 	

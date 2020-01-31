@@ -1,12 +1,12 @@
 package br.com.mind5.business.address.info;
 
-import br.com.mind5.info.InfoMergerTemplate;
-import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.info.obsolete.InfoMergerTemplate_;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class AddressMergerToDelete extends InfoMergerTemplate<AddressInfo, AddressInfo> {
+final class AddressMergerToDelete extends InfoMergerTemplate_<AddressInfo, AddressInfo> {
 
-	@Override protected InfoMergerVisitor<AddressInfo, AddressInfo> getVisitorHook() {
+	@Override protected InfoMergerVisitor_<AddressInfo, AddressInfo> getVisitorHook() {
 		return new AddressVisiMergeToDelete();
 	}
 	

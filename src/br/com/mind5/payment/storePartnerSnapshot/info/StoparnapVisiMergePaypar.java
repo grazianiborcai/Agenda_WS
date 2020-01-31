@@ -5,9 +5,9 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.mind5.business.masterData.info.PayparInfo;
 import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class StoparnapVisiMergePaypar implements InfoMergerVisitor<StoparnapInfo, PayparInfo> {
+final class StoparnapVisiMergePaypar implements InfoMergerVisitor_<StoparnapInfo, PayparInfo> {
 	private final boolean SUCCESS = true;
 	private final boolean FAILED = false;
 

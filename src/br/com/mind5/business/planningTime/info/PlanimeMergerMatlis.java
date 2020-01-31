@@ -1,13 +1,13 @@
 package br.com.mind5.business.planningTime.info;
 
 import br.com.mind5.business.materialList.info.MatlisInfo;
-import br.com.mind5.info.InfoMergerTemplate;
-import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.info.obsolete.InfoMergerTemplate_;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class PlanimeMergerMatlis extends InfoMergerTemplate<PlanimeInfo, MatlisInfo> {
+final class PlanimeMergerMatlis extends InfoMergerTemplate_<PlanimeInfo, MatlisInfo> {
 
-	@Override protected InfoMergerVisitor<PlanimeInfo, MatlisInfo> getVisitorHook() {
+	@Override protected InfoMergerVisitor_<PlanimeInfo, MatlisInfo> getVisitorHook() {
 		return new PlanimeVisiMergeMatlis();
 	}
 	

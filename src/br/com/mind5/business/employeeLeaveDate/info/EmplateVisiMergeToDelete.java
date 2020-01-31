@@ -4,9 +4,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoMergerVisitor;
+import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class EmplateVisiMergeToDelete implements InfoMergerVisitor<EmplateInfo, EmplateInfo> {
+final class EmplateVisiMergeToDelete implements InfoMergerVisitor_<EmplateInfo, EmplateInfo> {
 
 	@Override public EmplateInfo writeRecord(EmplateInfo sourceOne, EmplateInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);		
