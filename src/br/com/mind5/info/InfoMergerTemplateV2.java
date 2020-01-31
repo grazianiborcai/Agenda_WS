@@ -37,7 +37,7 @@ public abstract class InfoMergerTemplateV2<T extends InfoRecord, K extends InfoR
 		if (isEmpty(selectedInfos, baseInfos))
 			return baseInfos;		
 		
-		
+		baseInfos = beforeWriteHook(baseInfos);		
 		List<T> results = new ArrayList<>();
 		
 		for (T eachBase : baseInfos) {
@@ -47,13 +47,13 @@ public abstract class InfoMergerTemplateV2<T extends InfoRecord, K extends InfoR
 				if (shouldWriteHook(eachSelected, eachBase)) {
 					T oneResult = write(eachSelected, eachBase);
 					
-					results = replaceOrAdd(results, oneResult);
+					results.add(oneResult);
 					flagMerge = true;
 				}
 			}
 			
 			if (flagMerge == false)
-				results = replaceOrAdd(results, eachBase);
+				results.add(eachBase);
 		}
 		
 		
@@ -74,27 +74,14 @@ public abstract class InfoMergerTemplateV2<T extends InfoRecord, K extends InfoR
 	
 	
 	
-	private List<T> replaceOrAdd(List<T> results, T eachResult) {
-		if (shouldReplaceHook())
-			return replace(results, eachResult);
-		
-		results.add(eachResult);
-		return results;
+	protected List<T> beforeWriteHook(List<T> baseInfos) {
+		//Template method: default behavior
+		return baseInfos;
 	}
 	
 	
 	
-	private List<T> replace(List<T> results, T eachResult) {
-		if(results.contains(eachResult))
-			results.remove(eachResult);
-		
-		results.add(eachResult);
-		return results;
-	}
-	
-	
-	
-	private T writeHook(K selectedInfo, T baseInfo) {
+	protected T writeHook(K selectedInfo, T baseInfo) {
 		//Template method to be overridden by subclasses
 		logException(new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION));
 		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);
@@ -103,14 +90,6 @@ public abstract class InfoMergerTemplateV2<T extends InfoRecord, K extends InfoR
 	
 	
 	protected boolean shouldWriteHook(K selectedInfo, T baseInfo) {
-		//Template method to be overridden by subclasses
-		logException(new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION));
-		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);
-	}
-	
-	
-	
-	protected boolean shouldReplaceHook() {
 		//Template method to be overridden by subclasses
 		logException(new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION));
 		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);
