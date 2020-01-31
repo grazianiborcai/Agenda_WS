@@ -45,7 +45,8 @@ public final class PersolisSelectSingle extends DaoStmtTemplate<PersolisInfo> {
 	
 	
 	@Override protected String buildWhereClauseHook(String tableName, PersolisInfo recordInfo) {
-		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();		
+		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();	
+		
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
@@ -65,6 +66,7 @@ public final class PersolisSelectSingle extends DaoStmtTemplate<PersolisInfo> {
 				
 				do {
 					PersolisInfo dataInfo = new PersolisInfo();
+					
 					dataInfo.codOwner = stmtResult.getLong(PersolisDbTableColumn.COL_COD_OWNER);
 					dataInfo.codPerson = stmtResult.getLong(PersolisDbTableColumn.COL_COD_PERSON);
 					dataInfo.name = stmtResult.getString(PersolisDbTableColumn.COL_NAME);							
