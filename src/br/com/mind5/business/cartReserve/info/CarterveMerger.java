@@ -5,15 +5,15 @@ import java.util.List;
 import br.com.mind5.info.InfoMerger;
 
 public final class CarterveMerger {	
-	public static CarterveInfo mergeToSelect(CarterveInfo sourceOne, CarterveInfo sourceTwo) {
+	public static CarterveInfo mergeToSelect(CarterveInfo selectedInfo, CarterveInfo baseInfo) {
 		InfoMerger<CarterveInfo, CarterveInfo> merger = new CarterveMergerToSelect();		
-		return merger.merge(sourceOne, sourceTwo);
+		return merger.merge(selectedInfo, baseInfo);
 	}
 	
 	
 	
-	public static List<CarterveInfo> mergeToSelect(List<CarterveInfo> sourceOnes, List<CarterveInfo> sourceTwos) {
+	public static List<CarterveInfo> mergeToSelect(List<CarterveInfo> selectedInfos, List<CarterveInfo> baseInfos) {
 		InfoMerger<CarterveInfo, CarterveInfo> merger = new CarterveMergerToSelect();		
-		return merger.merge(sourceOnes, sourceTwos);
+		return merger.merge(selectedInfos, baseInfos);
 	}	
 }

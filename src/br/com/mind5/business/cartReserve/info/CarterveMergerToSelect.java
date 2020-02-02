@@ -1,18 +1,19 @@
 package br.com.mind5.business.cartReserve.info;
 
-import br.com.mind5.info.InfoUniquifier;
-import br.com.mind5.info.obsolete.InfoMergerTemplate_;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerTemplateV2;
 
-final class CarterveMergerToSelect extends InfoMergerTemplate_<CarterveInfo, CarterveInfo> {
+final class CarterveMergerToSelect extends InfoMergerTemplateV2<CarterveInfo, CarterveInfo> {
 
-	@Override protected InfoMergerVisitor_<CarterveInfo, CarterveInfo> getVisitorHook() {
-		return new CarterveVisiMergeToSelect();
+	@Override protected CarterveInfo writeHook(CarterveInfo selectedInfo, CarterveInfo baseInfo) {
+		selectedInfo.codLanguage = baseInfo.codLanguage;
+		selectedInfo.username = baseInfo.username;
+
+		return selectedInfo;
 	}
 	
 	
 	
-	@Override protected InfoUniquifier<CarterveInfo> getUniquifierHook() {
-		return new CarterveUniquifier();
+	@Override protected boolean shouldWriteHook(CarterveInfo selectedInfo, CarterveInfo baseInfo) {
+		return (selectedInfo.codOwner == baseInfo.codOwner);
 	}
 }

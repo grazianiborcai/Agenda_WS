@@ -22,8 +22,8 @@ final class VisiCarterveMergeToSelect extends ActionVisitorTemplateMergeV2<Carte
 	
 	
 	
-	@Override protected List<CarterveInfo> mergeHook(List<CarterveInfo> recordInfos, List<CarterveInfo> selectedInfos) {	
-		return CarterveMerger.mergeToSelect(selectedInfos, recordInfos);
+	@Override protected List<CarterveInfo> mergeHook(List<CarterveInfo> baseInfos, List<CarterveInfo> selectedInfos) {	
+		return CarterveMerger.mergeToSelect(selectedInfos, baseInfos);
 	}
 	
 	

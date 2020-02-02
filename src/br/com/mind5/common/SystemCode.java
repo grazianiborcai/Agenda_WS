@@ -1042,6 +1042,8 @@ public final class SystemCode {
 	public static final int OWNER_LIST_MANDATORY_FIELD_EMPTY 			= 10550;
 	
 	// Email Welcome
-	// Email
 	public static final int EMAIL_WELCOME_MANDATORY_FIELD_EMPTY			= 10600;
+	
+	// Cart Reserve
+	public static final int CART_RESERVE_MANDATORY_FIELD_EMPTY			= 10650;
 }
