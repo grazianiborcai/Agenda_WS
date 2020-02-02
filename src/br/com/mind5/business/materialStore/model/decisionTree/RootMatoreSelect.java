@@ -11,7 +11,6 @@ import br.com.mind5.business.materialStore.model.checker.MatoreCheckLangu;
 import br.com.mind5.business.materialStore.model.checker.MatoreCheckMat;
 import br.com.mind5.business.materialStore.model.checker.MatoreCheckOwner;
 import br.com.mind5.business.materialStore.model.checker.MatoreCheckRead;
-import br.com.mind5.business.materialStore.model.checker.MatoreCheckStorauth;
 import br.com.mind5.business.materialStore.model.checker.MatoreCheckStore;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
@@ -68,13 +67,7 @@ public final class RootMatoreSelect extends DeciTreeReadTemplate<MatoreInfo> {
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new MatoreCheckMat(checkerOption);
 		queue.add(checker);	
-		
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
-		checker = new MatoreCheckStorauth(checkerOption);
-		queue.add(checker);	
-		
+
 		return new ModelCheckerQueue<>(queue);
 	}
 	
