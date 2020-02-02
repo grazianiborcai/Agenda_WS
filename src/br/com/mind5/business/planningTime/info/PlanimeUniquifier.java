@@ -33,7 +33,7 @@ final class PlanimeUniquifier implements InfoUniquifier<PlanimeInfo> {
 			results.add(result);
 		}
 		
-		return results;
+		return results.stream().distinct().collect(Collectors.toList());
 	}
 	
 	
