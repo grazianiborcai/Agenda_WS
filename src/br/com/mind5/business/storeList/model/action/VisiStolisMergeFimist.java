@@ -25,14 +25,14 @@ final class VisiStolisMergeFimist extends ActionVisitorTemplateMergeV2<StolisInf
 	
 	
 	
-	@Override protected List<FimistInfo> toActionClassHook(List<StolisInfo> recordInfos) {
-		return FimistCopier.copyFromStolis(recordInfos);	
+	@Override protected List<FimistInfo> toActionClassHook(List<StolisInfo> baseInfos) {
+		return FimistCopier.copyFromStolis(baseInfos);	
 	}
 	
 	
 	
-	@Override protected List<StolisInfo> mergeHook(List<StolisInfo> recordInfos, List<FimistInfo> selectedInfos) {	
-		return StolisMerger.mergeWithFimist(selectedInfos, recordInfos);
+	@Override protected List<StolisInfo> mergeHook(List<StolisInfo> baseInfos, List<FimistInfo> selectedInfos) {	
+		return StolisMerger.mergeWithFimist(selectedInfos, baseInfos);
 	}
 	
 	

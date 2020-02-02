@@ -1,19 +1,29 @@
 package br.com.mind5.business.storeList.info;
 
+import java.util.List;
+
 import br.com.mind5.business.masterData.info.CurrencyInfo;
+import br.com.mind5.info.InfoMergerTemplateV2;
 import br.com.mind5.info.InfoUniquifier;
-import br.com.mind5.info.obsolete.InfoMergerTemplate_;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class StolisMergerCurrency extends InfoMergerTemplate_<StolisInfo, CurrencyInfo> {
+final class StolisMergerCurrency extends InfoMergerTemplateV2<StolisInfo, CurrencyInfo> {
 
-	@Override protected InfoMergerVisitor_<StolisInfo, CurrencyInfo> getVisitorHook() {
-		return new StolisVisiMergeCurrency();
+	@Override protected StolisInfo writeHook(CurrencyInfo selectedInfo, StolisInfo baseInfo) {
+		baseInfo.txtCurr = selectedInfo.txtCurr;
+
+		return baseInfo;
 	}
 	
 	
 	
-	@Override protected InfoUniquifier<StolisInfo> getUniquifierHook() {
-		return new StolisUniquifier();
+	@Override protected boolean shouldWriteHook(CurrencyInfo selectedInfo, StolisInfo baseInfo) {
+		return (selectedInfo.codCurr.equals(baseInfo.codCurr));
+	}
+	
+	
+	
+	@Override protected List<StolisInfo> uniquifyHook(List<StolisInfo> results) {
+		InfoUniquifier<StolisInfo> uniquifier = new StolisUniquifier();
+		return uniquifier.uniquify(results);
 	}
 }

@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.info.InfoUniquifier;
@@ -11,44 +14,62 @@ import br.com.mind5.info.InfoUniquifier;
 final class StolisUniquifier implements InfoUniquifier<StolisInfo> {
 	
 	@Override public List<StolisInfo> uniquify(List<StolisInfo> infoRecords) {
-		List<StolisInfo> uniques = new ArrayList<>();		
+		List<StolisInfo> results = new ArrayList<>();
 		
 		for (StolisInfo eachRecord : infoRecords) {
-			if (uniques.contains(eachRecord)) {
-				int dupleIndex = uniques.indexOf(eachRecord);
-				StolisInfo duple = uniques.get(dupleIndex);
-				
-				uniquifyAddress(duple, eachRecord);
-				uniquifyPhone(duple, eachRecord);
-				
-			} else {
-				uniques.add(eachRecord);
-			}
-		}
+			StolisInfo result = makeClone(eachRecord);
 			
+			result = uniquifyAddress(result);
+			result = uniquifyPhone(result);
+			
+			results.add(result);
+		}
 		
-			return uniques;
+		return results.stream().distinct().collect(Collectors.toList());
 	}
 	
 	
 	
-	private void uniquifyAddress(StolisInfo duple, StolisInfo eachRecord) {
-		List<AddressInfo> allAddresses = new ArrayList<>();
+	private StolisInfo uniquifyAddress(StolisInfo result) {
+		if (result.addresses == null)
+			return result;
 		
-		allAddresses.addAll(duple.addresses);
-		allAddresses.addAll(eachRecord.addresses);
+		List<AddressInfo> allAddresses = new ArrayList<>(result.addresses);
+		allAddresses = allAddresses.stream().distinct().collect(Collectors.toList());			
 		
-		duple.addresses = allAddresses.stream().distinct().collect(Collectors.toList());
+		result.addresses = allAddresses;
+		return result;
 	}
 	
 	
 	
-	private void uniquifyPhone(StolisInfo duple, StolisInfo eachRecord) {
-		List<PhoneInfo> allPhones = new ArrayList<>();
+	private StolisInfo uniquifyPhone(StolisInfo result) {
+		if (result.phones == null)
+			return result;
 		
-		allPhones.addAll(duple.phones);
-		allPhones.addAll(eachRecord.phones);
+		List<PhoneInfo> allPhones = new ArrayList<>(result.phones);
+		allPhones = allPhones.stream().distinct().collect(Collectors.toList());			
 		
-		duple.phones = allPhones.stream().distinct().collect(Collectors.toList());
+		result.phones = allPhones;
+		return result;
+	}
+	
+	
+	
+	private StolisInfo makeClone(StolisInfo infoRecord) {
+		try {
+			return (StolisInfo) infoRecord.clone();
+			
+		} catch (CloneNotSupportedException e) {
+			logException(e);
+			throw new IllegalStateException(e);
+		}
+	}
+	
+	
+	
+	private void logException(Exception e) {
+		Logger logger = LogManager.getLogger(this.getClass());
+		logger.error(e.getMessage(), e);
 	}
 }

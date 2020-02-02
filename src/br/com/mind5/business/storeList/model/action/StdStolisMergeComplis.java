@@ -7,12 +7,12 @@ import br.com.mind5.model.action.ActionStdHelperMerge;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class StdStolisMergeComp implements ActionStd<StolisInfo> {
+final class StdStolisMergeComplis implements ActionStd<StolisInfo> {
 	private ActionStd<StolisInfo> actionHelper;	
 	
 	
-	public StdStolisMergeComp(DeciTreeOption<StolisInfo> option) {			
-		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiStolisMergeComp(option.conn, option.schemaName));
+	public StdStolisMergeComplis(DeciTreeOption<StolisInfo> option) {			
+		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiStolisMergeComplis(option.conn, option.schemaName));
 	}
 	
 	

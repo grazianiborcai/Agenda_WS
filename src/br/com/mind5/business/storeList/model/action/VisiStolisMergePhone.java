@@ -25,14 +25,14 @@ final class VisiStolisMergePhone extends ActionVisitorTemplateMergeV2<StolisInfo
 	
 	
 	
-	@Override protected List<PhoneInfo> toActionClassHook(List<StolisInfo> recordInfos) {
-		return PhoneCopier.copyFromStolis(recordInfos);	
+	@Override protected List<PhoneInfo> toActionClassHook(List<StolisInfo> baseInfos) {
+		return PhoneCopier.copyFromStolis(baseInfos);	
 	}
 	
 	
 	
-	@Override protected List<StolisInfo> mergeHook(List<StolisInfo> recordInfos, List<PhoneInfo> selectedInfos) {	
-		return StolisMerger.mergeWithPhone(selectedInfos, recordInfos);
+	@Override protected List<StolisInfo> mergeHook(List<StolisInfo> baseInfos, List<PhoneInfo> selectedInfos) {	
+		return StolisMerger.mergeWithPhone(selectedInfos, baseInfos);
 	}
 	
 	

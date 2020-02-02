@@ -9,9 +9,9 @@ import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyStolisMergeComp extends ActionLazyTemplate<StolisInfo, StolisInfo> {
+public final class LazyStolisMergeComplis extends ActionLazyTemplate<StolisInfo, StolisInfo> {
 	
-	public LazyStolisMergeComp(Connection conn, String schemaName) {
+	public LazyStolisMergeComplis(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyStolisMergeComp extends ActionLazyTemplate<StolisInfo, St
 	
 	
 	@Override protected ActionStd<StolisInfo> getInstanceOfActionHook(DeciTreeOption<StolisInfo> option) {
-		return new StdStolisMergeComp(option);
+		return new StdStolisMergeComplis(option);
 	}
 	
 	

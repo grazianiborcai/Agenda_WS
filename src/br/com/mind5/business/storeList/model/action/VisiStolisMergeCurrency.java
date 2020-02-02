@@ -24,8 +24,8 @@ final class VisiStolisMergeCurrency extends ActionVisitorTemplateMergeV2<StolisI
 	
 	
 	
-	@Override protected List<StolisInfo> mergeHook(List<StolisInfo> recordInfos, List<CurrencyInfo> selectedInfos) {	
-		return StolisMerger.mergeWithCurrency(selectedInfos, recordInfos);
+	@Override protected List<StolisInfo> mergeHook(List<StolisInfo> baseInfos, List<CurrencyInfo> selectedInfos) {	
+		return StolisMerger.mergeWithCurrency(selectedInfos, baseInfos);
 	}
 	
 	

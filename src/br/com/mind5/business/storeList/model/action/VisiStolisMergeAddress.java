@@ -25,14 +25,14 @@ final class VisiStolisMergeAddress extends ActionVisitorTemplateMergeV2<StolisIn
 	
 	
 	
-	@Override protected List<AddressInfo> toActionClassHook(List<StolisInfo> recordInfos) {
-		return AddressCopier.copyFromStolis(recordInfos);	
+	@Override protected List<AddressInfo> toActionClassHook(List<StolisInfo> baseInfos) {
+		return AddressCopier.copyFromStolis(baseInfos);	
 	}
 	
 	
 	
-	@Override protected List<StolisInfo> mergeHook(List<StolisInfo> recordInfos, List<AddressInfo> selectedInfos) {	
-		return StolisMerger.mergeWithAddress(selectedInfos, recordInfos);
+	@Override protected List<StolisInfo> mergeHook(List<StolisInfo> baseInfos, List<AddressInfo> selectedInfos) {	
+		return StolisMerger.mergeWithAddress(selectedInfos, baseInfos);
 	}
 	
 	

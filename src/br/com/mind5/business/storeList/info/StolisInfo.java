@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.address.info.AddressInfo;
-import br.com.mind5.business.company.info.CompInfo;
+import br.com.mind5.business.companyList.info.ComplisInfo;
 import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.file.fileImageList.info.FimistInfo;
@@ -22,7 +22,7 @@ public final class StolisInfo extends InfoRecord implements Cloneable {
 	public String txtTimezone;
 	public List<AddressInfo> addresses;
 	public List<PhoneInfo> phones;
-	public CompInfo companyData;
+	public ComplisInfo complisData;
 	public List<FimistInfo> fimistes;
 	public LocalDateTime lastChanged;
 	public long lastChangedBy;
@@ -38,7 +38,7 @@ public final class StolisInfo extends InfoRecord implements Cloneable {
 		codSnapshot = DefaultValue.number();
 		codCompany = DefaultValue.number();
 		recordMode = DefaultValue.recordMode();
-		companyData = DefaultValue.object();
+		complisData = DefaultValue.object();
 		addresses = DefaultValue.list();
 		phones = DefaultValue.list();
 		fimistes = DefaultValue.list();
@@ -65,7 +65,7 @@ public final class StolisInfo extends InfoRecord implements Cloneable {
 		deepCopy.fimistes = cloneFimistes(deepCopy.fimistes);
 		deepCopy.addresses = cloneAddresses(deepCopy.addresses);
 		deepCopy.phones = clonePhones(deepCopy.phones);
-		deepCopy.companyData = cloneCompany(deepCopy.companyData);
+		deepCopy.complisData = cloneCompany(deepCopy.complisData);
 		
 		return deepCopy;
 	}
@@ -88,13 +88,13 @@ public final class StolisInfo extends InfoRecord implements Cloneable {
 	
 	
 	
-	private List<AddressInfo> cloneAddresses(List<AddressInfo> addressesToClone) throws CloneNotSupportedException {
-		if (addressesToClone == null)
+	private List<AddressInfo> cloneAddresses(List<AddressInfo> recordInfos) throws CloneNotSupportedException {
+		if (recordInfos == null)
 			return null;
 		
 		List<AddressInfo> deepAddresses = new ArrayList<>();
 		
-		for (AddressInfo eachAddress : addressesToClone) {
+		for (AddressInfo eachAddress : recordInfos) {
 			AddressInfo clonedAddress = (AddressInfo) eachAddress.clone();
 			deepAddresses.add(clonedAddress);
 		}
@@ -104,13 +104,13 @@ public final class StolisInfo extends InfoRecord implements Cloneable {
 	
 	
 	
-	private List<PhoneInfo> clonePhones(List<PhoneInfo> phonesToClone) throws CloneNotSupportedException {
-		if (phonesToClone == null)
+	private List<PhoneInfo> clonePhones(List<PhoneInfo> recordInfos) throws CloneNotSupportedException {
+		if (recordInfos == null)
 			return null;
 		
 		List<PhoneInfo> deepPhones = new ArrayList<>();
 		
-		for (PhoneInfo eachPhone : phonesToClone) {
+		for (PhoneInfo eachPhone : recordInfos) {
 			PhoneInfo clonedPhone = (PhoneInfo) eachPhone.clone();
 			deepPhones.add(clonedPhone);
 		}
@@ -120,11 +120,11 @@ public final class StolisInfo extends InfoRecord implements Cloneable {
 	
 	
 	
-	private CompInfo cloneCompany(CompInfo companyToClone) throws CloneNotSupportedException {
-		if (companyToClone == null)
+	private ComplisInfo cloneCompany(ComplisInfo recordInfos) throws CloneNotSupportedException {
+		if (recordInfos == null)
 			return null;
 		
-		return (CompInfo) companyToClone.clone();
+		return (ComplisInfo) recordInfos.clone();
 	}
 	
 	
@@ -150,6 +150,7 @@ public final class StolisInfo extends InfoRecord implements Cloneable {
 		
 		
 		StolisInfo obj = (StolisInfo) o;		
-		return (codOwner == obj.codOwner && codStore == obj.codStore);
+		return (codOwner == obj.codOwner && 
+				codStore == obj.codStore	);
 	}
 }

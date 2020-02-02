@@ -2,21 +2,21 @@ package br.com.mind5.business.storeList.info;
 
 import java.util.List;
 
+import br.com.mind5.business.companyList.info.ComplisInfo;
 import br.com.mind5.info.InfoMergerTemplateV2;
 import br.com.mind5.info.InfoUniquifier;
 
-final class StolisMergerToSelect extends InfoMergerTemplateV2<StolisInfo, StolisInfo> {
-	
-	@Override protected StolisInfo writeHook(StolisInfo selectedInfo, StolisInfo baseInfo) {
-		selectedInfo.codLanguage = baseInfo.codLanguage;
-		selectedInfo.username = baseInfo.username;
+final class StolisMergerComplis extends InfoMergerTemplateV2<StolisInfo, ComplisInfo> {
 
-		return selectedInfo;
+	@Override protected StolisInfo writeHook(ComplisInfo selectedInfo, StolisInfo baseInfo) {
+		baseInfo.complisData = selectedInfo;
+		
+		return baseInfo;
 	}
 	
 	
 	
-	@Override protected boolean shouldWriteHook(StolisInfo selectedInfo, StolisInfo baseInfo) {
+	@Override protected boolean shouldWriteHook(ComplisInfo selectedInfo, StolisInfo baseInfo) {
 		return (selectedInfo.codOwner == baseInfo.codOwner);
 	}
 	
