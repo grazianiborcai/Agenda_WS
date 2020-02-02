@@ -25,14 +25,14 @@ final class VisiPlanimeMergePlanata extends ActionVisitorTemplateMergeV2<Planime
 	
 	
 	
-	@Override protected List<PlanataInfo> toActionClassHook(List<PlanimeInfo> recordInfos) {
-		return PlanataCopier.copyFromPlanime(recordInfos);	
+	@Override protected List<PlanataInfo> toActionClassHook(List<PlanimeInfo> baseInfos) {
+		return PlanataCopier.copyFromPlanime(baseInfos);	
 	}
 	
 	
 	
-	@Override protected List<PlanimeInfo> mergeHook(List<PlanimeInfo> recordInfos, List<PlanataInfo> selectedInfos) {	
-		return PlanimeMerger.mergeWithPlanata(selectedInfos, recordInfos);
+	@Override protected List<PlanimeInfo> mergeHook(List<PlanimeInfo> baseInfos, List<PlanataInfo> selectedInfos) {	
+		return PlanimeMerger.mergeWithPlanata(selectedInfos, baseInfos);
 	}
 	
 	

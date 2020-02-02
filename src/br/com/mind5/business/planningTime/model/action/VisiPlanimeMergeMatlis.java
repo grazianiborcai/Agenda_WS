@@ -25,14 +25,14 @@ final class VisiPlanimeMergeMatlis extends ActionVisitorTemplateMergeV2<PlanimeI
 	
 	
 	
-	@Override protected List<MatlisInfo> toActionClassHook(List<PlanimeInfo> recordInfos) {
-		return MatlisCopier.copyFromPlanime(recordInfos);	
+	@Override protected List<MatlisInfo> toActionClassHook(List<PlanimeInfo> baseInfos) {
+		return MatlisCopier.copyFromPlanime(baseInfos);	
 	}
 	
 	
 	
-	@Override protected List<PlanimeInfo> mergeHook(List<PlanimeInfo> recordInfos, List<MatlisInfo> selectedInfos) {	
-		return PlanimeMerger.mergeWithMatlis(selectedInfos, recordInfos);
+	@Override protected List<PlanimeInfo> mergeHook(List<PlanimeInfo> baseInfos, List<MatlisInfo> selectedInfos) {	
+		return PlanimeMerger.mergeWithMatlis(selectedInfos, baseInfos);
 	}
 	
 	

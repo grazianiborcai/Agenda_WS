@@ -39,13 +39,13 @@ final class PlanimeUniquifier implements InfoUniquifier<PlanimeInfo> {
 	
 	
 	private PlanimeInfo uniquifyStore(PlanimeInfo result) {
-		if (result.stores == null)
+		if (result.stolises == null)
 			return result;
 		
-		List<StolisInfo> allStores = new ArrayList<>(result.stores);
+		List<StolisInfo> allStores = new ArrayList<>(result.stolises);
 		allStores = allStores.stream().distinct().collect(Collectors.toList());			
 		
-		result.stores = allStores;
+		result.stolises = allStores;
 		return result;
 	}
 	
@@ -65,26 +65,26 @@ final class PlanimeUniquifier implements InfoUniquifier<PlanimeInfo> {
 	
 	
 	private PlanimeInfo uniquifyMaterial(PlanimeInfo result) {
-		if (result.materials == null)
+		if (result.matlises == null)
 			return result;
 		
-		List<MatlisInfo> allMaterials = new ArrayList<>(result.materials);
+		List<MatlisInfo> allMaterials = new ArrayList<>(result.matlises);
 		allMaterials = allMaterials.stream().distinct().collect(Collectors.toList());			
 		
-		result.materials = allMaterials;
+		result.matlises = allMaterials;
 		return result;
 	}
 	
 	
 	
 	private PlanimeInfo uniquifyEmployee(PlanimeInfo result) {
-		if (result.employees == null)
+		if (result.emplises == null)
 			return result;
 		
-		List<EmplisInfo> allEmployees = new ArrayList<>(result.employees);
+		List<EmplisInfo> allEmployees = new ArrayList<>(result.emplises);
 		allEmployees = allEmployees.stream().distinct().collect(Collectors.toList());			
 		
-		result.employees = allEmployees;
+		result.emplises = allEmployees;
 		return result;
 	}
 	

@@ -9,7 +9,7 @@ import br.com.mind5.info.InfoUniquifier;
 final class PlanimeMergerEmplis extends InfoMergerTemplateV2<PlanimeInfo, EmplisInfo> {
 	
 	@Override protected PlanimeInfo writeHook(EmplisInfo selectedInfo, PlanimeInfo baseInfo) {
-		baseInfo.employees.add(selectedInfo);
+		baseInfo.emplises.add(selectedInfo);
 		return baseInfo;
 	}
 	
@@ -30,7 +30,7 @@ final class PlanimeMergerEmplis extends InfoMergerTemplateV2<PlanimeInfo, Emplis
 	
 	@Override protected List<PlanimeInfo> beforeWriteHook(List<PlanimeInfo> baseInfos) {
 		for (PlanimeInfo eachBase : baseInfos) {
-			eachBase.employees = new ArrayList<>();
+			eachBase.emplises = new ArrayList<>();
 		}
 		
 		return baseInfos;

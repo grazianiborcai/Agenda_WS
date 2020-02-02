@@ -25,14 +25,14 @@ final class VisiPlanimeMergeEmplis extends ActionVisitorTemplateMergeV2<PlanimeI
 	
 	
 	
-	@Override protected List<EmplisInfo> toActionClassHook(List<PlanimeInfo> recordInfos) {
-		return EmplisCopier.copyFromPlanime(recordInfos);	
+	@Override protected List<EmplisInfo> toActionClassHook(List<PlanimeInfo> baseInfos) {
+		return EmplisCopier.copyFromPlanime(baseInfos);	
 	}
 	
 	
 	
-	@Override protected List<PlanimeInfo> mergeHook(List<PlanimeInfo> recordInfos, List<EmplisInfo> selectedInfos) {	
-		return PlanimeMerger.mergeWithEmplis(selectedInfos, recordInfos);
+	@Override protected List<PlanimeInfo> mergeHook(List<PlanimeInfo> baseInfos, List<EmplisInfo> selectedInfos) {	
+		return PlanimeMerger.mergeWithEmplis(selectedInfos, baseInfos);
 	}
 	
 	

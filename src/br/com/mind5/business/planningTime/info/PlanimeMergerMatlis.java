@@ -9,7 +9,7 @@ import br.com.mind5.info.InfoUniquifier;
 
 final class PlanimeMergerMatlis extends InfoMergerTemplateV2<PlanimeInfo, MatlisInfo> {
 	@Override protected PlanimeInfo writeHook(MatlisInfo selectedInfo, PlanimeInfo baseInfo) {
-		baseInfo.materials.add(selectedInfo);
+		baseInfo.matlises.add(selectedInfo);
 		return baseInfo;
 	}
 	
@@ -30,7 +30,7 @@ final class PlanimeMergerMatlis extends InfoMergerTemplateV2<PlanimeInfo, Matlis
 	
 	@Override protected List<PlanimeInfo> beforeWriteHook(List<PlanimeInfo> baseInfos) {
 		for (PlanimeInfo eachBase : baseInfos) {
-			eachBase.materials = new ArrayList<>();
+			eachBase.matlises = new ArrayList<>();
 		}
 		
 		return baseInfos;

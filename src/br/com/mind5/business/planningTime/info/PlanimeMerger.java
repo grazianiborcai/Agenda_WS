@@ -10,71 +10,71 @@ import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.info.InfoMerger;
 
 public final class PlanimeMerger {
-	public static PlanimeInfo mergeWithEmplis(EmplisInfo sourceOne, PlanimeInfo sourceTwo) {
+	public static PlanimeInfo mergeWithEmplis(EmplisInfo selectedInfo, PlanimeInfo baseInfo) {
 		InfoMerger<PlanimeInfo, EmplisInfo> merger = new PlanimeMergerEmplis();		
-		return merger.merge(sourceOne, sourceTwo);
+		return merger.merge(selectedInfo, baseInfo);
 	}
 	
 	
 	
-	public static List<PlanimeInfo> mergeWithEmplis(List<EmplisInfo> sourceOnes, List<PlanimeInfo> sourceTwos) {
+	public static List<PlanimeInfo> mergeWithEmplis(List<EmplisInfo> selectedInfos, List<PlanimeInfo> baseInfos) {
 		InfoMerger<PlanimeInfo, EmplisInfo> merger = new PlanimeMergerEmplis();		
-		return merger.merge(sourceOnes, sourceTwos);
+		return merger.merge(selectedInfos, baseInfos);
 	}
 	
 	
 	
-	public static PlanimeInfo mergeWithMatlis(MatlisInfo sourceOne, PlanimeInfo sourceTwo) {
+	public static PlanimeInfo mergeWithMatlis(MatlisInfo selectedInfo, PlanimeInfo baseInfo) {
 		InfoMerger<PlanimeInfo, MatlisInfo> merger = new PlanimeMergerMatlis();		
-		return merger.merge(sourceOne, sourceTwo);
+		return merger.merge(selectedInfo, baseInfo);
 	}
 	
 	
 	
-	public static List<PlanimeInfo> mergeWithMatlis(List<MatlisInfo> sourceOnes, List<PlanimeInfo> sourceTwos) {
+	public static List<PlanimeInfo> mergeWithMatlis(List<MatlisInfo> selectedInfos, List<PlanimeInfo> baseInfos) {
 		InfoMerger<PlanimeInfo, MatlisInfo> merger = new PlanimeMergerMatlis();		
-		return merger.merge(sourceOnes, sourceTwos);
+		return merger.merge(selectedInfos, baseInfos);
 	}
 	
 	
 	
-	public static PlanimeInfo mergeWithStolis(StolisInfo sourceOne, PlanimeInfo sourceTwo) {
+	public static PlanimeInfo mergeWithStolis(StolisInfo selectedInfo, PlanimeInfo baseInfo) {
 		InfoMerger<PlanimeInfo, StolisInfo> merger = new PlanimeMergerStolis();		
-		return merger.merge(sourceOne, sourceTwo);
+		return merger.merge(selectedInfo, baseInfo);
 	}
 	
 	
 	
-	public static List<PlanimeInfo> mergeWithStolis(List<StolisInfo> sourceOnes, List<PlanimeInfo> sourceTwos) {
+	public static List<PlanimeInfo> mergeWithStolis(List<StolisInfo> selectedInfos, List<PlanimeInfo> baseInfos) {
 		InfoMerger<PlanimeInfo, StolisInfo> merger = new PlanimeMergerStolis();		
-		return merger.merge(sourceOnes, sourceTwos);
+		return merger.merge(selectedInfos, baseInfos);
 	}
 	
 	
 	
-	public static PlanimeInfo mergeWithWeekday(WeekdayInfo sourceOne, PlanimeInfo sourceTwo) {
+	public static PlanimeInfo mergeWithWeekday(WeekdayInfo selectedInfo, PlanimeInfo baseInfo) {
 		InfoMerger<PlanimeInfo, WeekdayInfo> merger = new PlanimeMergerWeekday();		
-		return merger.merge(sourceOne, sourceTwo);
+		return merger.merge(selectedInfo, baseInfo);
 	}
 	
 	
 	
-	public static List<PlanimeInfo> mergeWithWeekday(List<WeekdayInfo> sourceOnes, List<PlanimeInfo> sourceTwos) {
+	public static List<PlanimeInfo> mergeWithWeekday(List<WeekdayInfo> selectedInfos, List<PlanimeInfo> baseInfos) {
 		InfoMerger<PlanimeInfo, WeekdayInfo> merger = new PlanimeMergerWeekday();		
-		return merger.merge(sourceOnes, sourceTwos);
+		return merger.merge(selectedInfos, baseInfos);
 	}
 	
 	
 	
-	public static PlanimeInfo mergeWithPlanata(PlanataInfo sourceOne, PlanimeInfo sourceTwo) {
+	public static PlanimeInfo mergeWithPlanata(PlanataInfo selectedInfo, PlanimeInfo baseInfo) {
 		InfoMerger<PlanimeInfo, PlanataInfo> merger = new PlanimeMergerPlanata();		
-		return merger.merge(sourceOne, sourceTwo);
+		return merger.merge(selectedInfo, baseInfo);
 	}
 	
 	
 	
-	public static List<PlanimeInfo> mergeWithPlanata(List<PlanataInfo> sourceOnes, List<PlanimeInfo> sourceTwos) {
+	public static List<PlanimeInfo> mergeWithPlanata(List<PlanataInfo> selectedInfos, List<PlanimeInfo> baseInfos) {
 		InfoMerger<PlanimeInfo, PlanataInfo> merger = new PlanimeMergerPlanata();		
-		return merger.merge(sourceOnes, sourceTwos);
+		return merger.merge(selectedInfos, baseInfos);
 	}
 }

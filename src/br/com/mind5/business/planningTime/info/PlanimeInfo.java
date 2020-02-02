@@ -16,9 +16,9 @@ public final class PlanimeInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public String username;
 	public List<LocalDate> dates;
-	public List<StolisInfo> stores;
-	public List<MatlisInfo> materials;
-	public List<EmplisInfo> employees;
+	public List<StolisInfo> stolises;
+	public List<MatlisInfo> matlises;
+	public List<EmplisInfo> emplises;
 	public List<WeekdayInfo> weekdays;
 	public List<PlanataInfo> planatas;	
 	
@@ -28,9 +28,9 @@ public final class PlanimeInfo extends InfoRecord implements Cloneable {
 		
 		codOwner = DefaultValue.number();
 		dates = DefaultValue.list();
-		stores = DefaultValue.list();
-		materials = DefaultValue.list();
-		employees = DefaultValue.list();
+		stolises = DefaultValue.list();
+		matlises = DefaultValue.list();
+		emplises = DefaultValue.list();
 		weekdays = DefaultValue.list();
 		planatas = DefaultValue.list();
 	}
@@ -53,9 +53,9 @@ public final class PlanimeInfo extends InfoRecord implements Cloneable {
 		PlanimeInfo deepCopy = (PlanimeInfo) super.clone();
 		
 		deepCopy.dates = cloneDates(deepCopy.dates);
-		deepCopy.stores = cloneStores(deepCopy.stores);
-		deepCopy.materials = cloneMaterials(deepCopy.materials);
-		deepCopy.employees = cloneEmployees(deepCopy.employees);
+		deepCopy.stolises = cloneStores(deepCopy.stolises);
+		deepCopy.matlises = cloneMaterials(deepCopy.matlises);
+		deepCopy.emplises = cloneEmployees(deepCopy.emplises);
 		deepCopy.weekdays = cloneWeekdays(deepCopy.weekdays);
 		deepCopy.planatas = clonePlanatas(deepCopy.planatas);		
 		
@@ -158,14 +158,14 @@ public final class PlanimeInfo extends InfoRecord implements Cloneable {
 		
 		result = result * 31 + (int) (codOwner ^ (codOwner >>> 32));
 
-		if (stores != null)
-			result = result * 31 + stores.hashCode();
+		if (stolises != null)
+			result = result * 31 + stolises.hashCode();
 		
-		if (materials != null)
-			result = result * 31 + materials.hashCode();
+		if (matlises != null)
+			result = result * 31 + matlises.hashCode();
 		
-		if (employees != null)
-			result = result * 31 + employees.hashCode();
+		if (emplises != null)
+			result = result * 31 + emplises.hashCode();
 		
 		if (weekdays != null)
 			result = result * 31 + weekdays.hashCode();
@@ -190,9 +190,9 @@ public final class PlanimeInfo extends InfoRecord implements Cloneable {
 		PlanimeInfo obj = (PlanimeInfo) o;
 		
 		return (codOwner == obj.codOwner					&&
-				super.isListEqual(stores   , obj.stores)	&&
-				super.isListEqual(materials, obj.materials) &&
-				super.isListEqual(employees, obj.employees) &&
+				super.isListEqual(stolises   , obj.stolises)	&&
+				super.isListEqual(matlises, obj.matlises) &&
+				super.isListEqual(emplises, obj.emplises) &&
 				super.isListEqual(weekdays , obj.weekdays) 	&&
 				super.isListEqual(planatas , obj.planatas));
 	}

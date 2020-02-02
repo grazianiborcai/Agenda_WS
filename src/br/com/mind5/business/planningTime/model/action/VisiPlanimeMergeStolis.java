@@ -25,14 +25,14 @@ final class VisiPlanimeMergeStolis extends ActionVisitorTemplateMergeV2<PlanimeI
 	
 	
 	
-	@Override protected List<StolisInfo> toActionClassHook(List<PlanimeInfo> recordInfos) {
-		return StolisCopier.copyFromPlanime(recordInfos);	
+	@Override protected List<StolisInfo> toActionClassHook(List<PlanimeInfo> baseInfos) {
+		return StolisCopier.copyFromPlanime(baseInfos);	
 	}
 	
 	
 	
-	@Override protected List<PlanimeInfo> mergeHook(List<PlanimeInfo> recordInfos, List<StolisInfo> selectedInfos) {	
-		return PlanimeMerger.mergeWithStolis(selectedInfos, recordInfos);
+	@Override protected List<PlanimeInfo> mergeHook(List<PlanimeInfo> baseInfos, List<StolisInfo> selectedInfos) {	
+		return PlanimeMerger.mergeWithStolis(selectedInfos, baseInfos);
 	}
 	
 	

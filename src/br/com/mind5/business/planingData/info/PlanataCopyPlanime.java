@@ -55,10 +55,10 @@ final class PlanataCopyPlanime extends InfoCopierOneToManyTemplate<PlanataInfo, 
 	
 	
 	private List<PlanataInfo> storeResult(PlanimeInfo recordInfo, List<PlanataInfo> results) {
-		if (recordInfo.stores == null)
+		if (recordInfo.stolises == null)
 			return results;
 		
-		if (recordInfo.stores.isEmpty())
+		if (recordInfo.stolises.isEmpty())
 			return results;
 		
 		
@@ -66,7 +66,7 @@ final class PlanataCopyPlanime extends InfoCopierOneToManyTemplate<PlanataInfo, 
 		
 		
 		for (PlanataInfo eachResult : results) {			
-			for (StolisInfo eachStore : recordInfo.stores) {
+			for (StolisInfo eachStore : recordInfo.stolises) {
 				PlanataInfo oneStoreResult = tryToClone(eachResult);
 				oneStoreResult.codStore = eachStore.codStore;
 				
@@ -80,10 +80,10 @@ final class PlanataCopyPlanime extends InfoCopierOneToManyTemplate<PlanataInfo, 
 	
 	
 	private List<PlanataInfo> employeeResult(PlanimeInfo recordInfo, List<PlanataInfo> results) {
-		if (recordInfo.employees == null)
+		if (recordInfo.emplises == null)
 			return results;
 		
-		if (recordInfo.employees.isEmpty())
+		if (recordInfo.emplises.isEmpty())
 			return results;
 		
 		
@@ -91,7 +91,7 @@ final class PlanataCopyPlanime extends InfoCopierOneToManyTemplate<PlanataInfo, 
 		
 		
 		for (PlanataInfo eachResult : results) {			
-			for (EmplisInfo eachEmployee : recordInfo.employees) {
+			for (EmplisInfo eachEmployee : recordInfo.emplises) {
 				PlanataInfo oneEmployeeResult = tryToClone(eachResult);
 				oneEmployeeResult.codEmployee = eachEmployee.codEmployee;
 				
@@ -105,10 +105,10 @@ final class PlanataCopyPlanime extends InfoCopierOneToManyTemplate<PlanataInfo, 
 	
 	
 	private List<PlanataInfo> materialResult(PlanimeInfo recordInfo, List<PlanataInfo> results) {
-		if (recordInfo.materials == null)
+		if (recordInfo.matlises == null)
 			return results;
 		
-		if (recordInfo.materials.isEmpty())
+		if (recordInfo.matlises.isEmpty())
 			return results;
 		
 		
@@ -116,7 +116,7 @@ final class PlanataCopyPlanime extends InfoCopierOneToManyTemplate<PlanataInfo, 
 		
 		
 		for (PlanataInfo eachResult : results) {			
-			for (MatlisInfo eachMaterial : recordInfo.materials) {
+			for (MatlisInfo eachMaterial : recordInfo.matlises) {
 				PlanataInfo oneMaterialResult = tryToClone(eachResult);
 				oneMaterialResult.codMat = eachMaterial.codMat;
 				

@@ -10,7 +10,7 @@ import br.com.mind5.info.InfoUniquifier;
 final class PlanimeMergerStolis extends InfoMergerTemplateV2<PlanimeInfo, StolisInfo> {
 
 	@Override protected PlanimeInfo writeHook(StolisInfo selectedInfo, PlanimeInfo baseInfo) {
-		baseInfo.stores.add(selectedInfo);
+		baseInfo.stolises.add(selectedInfo);
 		return baseInfo;
 	}
 	
@@ -31,7 +31,7 @@ final class PlanimeMergerStolis extends InfoMergerTemplateV2<PlanimeInfo, Stolis
 	
 	@Override protected List<PlanimeInfo> beforeWriteHook(List<PlanimeInfo> baseInfos) {
 		for (PlanimeInfo eachBase : baseInfos) {
-			eachBase.stores = new ArrayList<>();
+			eachBase.stolises = new ArrayList<>();
 		}
 		
 		return baseInfos;
