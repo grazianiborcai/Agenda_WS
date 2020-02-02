@@ -10,7 +10,6 @@ import br.com.mind5.info.InfoRecord;
 
 public final class CartInfo extends InfoRecord implements Cloneable {
 	public long codOwner;	
-	public long codCustomer;
 	public long codUser;
 	public long codOrder;
 	public double itemTotal;
@@ -27,7 +26,6 @@ public final class CartInfo extends InfoRecord implements Cloneable {
 		super(CartInfo.class);
 		
 		codOwner = DefaultValue.number();	
-		codCustomer = DefaultValue.number();
 		codUser = DefaultValue.number();
 		codOrder = DefaultValue.number();
 		itemTotal = DefaultValue.number();
@@ -82,7 +80,6 @@ public final class CartInfo extends InfoRecord implements Cloneable {
 		int result = 17;
 		
 		result = result * 31 + (int) (codOwner    ^ (codOwner    >>> 32));
-		result = result * 31 + (int) (codCustomer ^ (codCustomer >>> 32));
 		result = result * 31 + (int) (codUser 	  ^ (codUser 	 >>> 32));
 		
 		return result;
@@ -101,7 +98,6 @@ public final class CartInfo extends InfoRecord implements Cloneable {
 		
 		CartInfo obj = (CartInfo) o;		
 		return (codOwner    == obj.codOwner    && 
-				codCustomer == obj.codCustomer &&
 				codUser     == obj.codUser			);
 	}
 }

@@ -24,8 +24,8 @@ final class VisiCartMergeCurrency extends ActionVisitorTemplateMergeV2<CartInfo,
 	
 	
 	
-	@Override protected List<CartInfo> mergeHook(List<CartInfo> recordInfos, List<CurrencyInfo> selectedInfos) {	
-		return CartMerger.mergeWithCurrency(selectedInfos, recordInfos);
+	@Override protected List<CartInfo> mergeHook(List<CartInfo> baseInfos, List<CurrencyInfo> selectedInfos) {	
+		return CartMerger.mergeWithCurrency(selectedInfos, baseInfos);
 	}
 	
 	

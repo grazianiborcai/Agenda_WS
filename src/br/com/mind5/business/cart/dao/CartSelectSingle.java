@@ -62,8 +62,7 @@ public final class CartSelectSingle extends DaoStmtTemplate<CartInfo> {
 					CartInfo dataInfo = new CartInfo();
 					
 					dataInfo.codOwner = stmtResult.getLong(CartDbTableColumn.COL_COD_OWNER);	
-					dataInfo.codUser = stmtResult.getLong(CartDbTableColumn.COL_COD_USER);		
-					dataInfo.codCustomer = DaoFormatter.sqlToLong(stmtResult, CartDbTableColumn.COL_COD_CUSTOMER);
+					dataInfo.codUser = stmtResult.getLong(CartDbTableColumn.COL_COD_USER);	
 					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, CartDbTableColumn.COL_LAST_CHANGED);				
 					
 					finalResult.add(dataInfo);

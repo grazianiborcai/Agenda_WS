@@ -22,8 +22,8 @@ final class VisiCartMergeToSelect extends ActionVisitorTemplateMergeV2<CartInfo,
 	
 	
 	
-	@Override protected List<CartInfo> mergeHook(List<CartInfo> recordInfos, List<CartInfo> selectedInfos) {	
-		return CartMerger.mergeToSelect(selectedInfos, recordInfos);
+	@Override protected List<CartInfo> mergeHook(List<CartInfo> baseInfos, List<CartInfo> selectedInfos) {	
+		return CartMerger.mergeToSelect(selectedInfos, baseInfos);
 	}
 	
 	

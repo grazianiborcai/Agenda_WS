@@ -24,8 +24,8 @@ final class VisiCartMergeFeewner extends ActionVisitorTemplateMergeV2<CartInfo, 
 	
 	
 	
-	@Override protected List<CartInfo> mergeHook(List<CartInfo> recordInfos, List<FeewnerInfo> selectedInfos) {	
-		return CartMerger.mergeWithFeewner(selectedInfos, recordInfos);
+	@Override protected List<CartInfo> mergeHook(List<CartInfo> baseInfos, List<FeewnerInfo> selectedInfos) {	
+		return CartMerger.mergeWithFeewner(selectedInfos, baseInfos);
 	}
 	
 	

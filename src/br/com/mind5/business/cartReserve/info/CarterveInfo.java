@@ -11,7 +11,6 @@ import br.com.mind5.info.InfoRecord;
 public final class CarterveInfo extends InfoRecord implements Cloneable {	
 	public long codOwner;	
 	public long codUser;
-	public long codCustomer;
 	public long codStore;
 	public long codEmployee;
 	public long codMat;
@@ -27,7 +26,6 @@ public final class CarterveInfo extends InfoRecord implements Cloneable {
 		
 		codOwner = DefaultValue.number();	
 		codUser = DefaultValue.number();
-		codCustomer = DefaultValue.number();
 		codStore = DefaultValue.number();
 		codEmployee = DefaultValue.number();
 		codMat = DefaultValue.number();

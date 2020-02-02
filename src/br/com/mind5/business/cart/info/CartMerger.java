@@ -3,7 +3,6 @@ package br.com.mind5.business.cart.info;
 import java.util.List;
 
 import br.com.mind5.business.cartItem.info.CartemInfo;
-import br.com.mind5.business.customerList.info.CuslisInfo;
 import br.com.mind5.business.feeOwner.info.FeewnerInfo;
 import br.com.mind5.business.masterData.info.CurrencyInfo;
 import br.com.mind5.business.order.info.OrderInfo;
@@ -11,113 +10,99 @@ import br.com.mind5.info.InfoMerger;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class CartMerger {	
-	public static CartInfo mergeWithCuslis(CuslisInfo sourceOne, CartInfo sourceTwo) {
-		InfoMerger<CartInfo, CuslisInfo> merger = new CartMergerCuslis();		
-		return merger.merge(sourceOne, sourceTwo);
+	public static CartInfo mergeWithOrder(OrderInfo selectedInfo, CartInfo baseInfo) {
+		InfoMerger<CartInfo, OrderInfo> merger = new CartMergerOrder();		
+		return merger.merge(selectedInfo, baseInfo);
 	}
 	
 	
 	
-	public static List<CartInfo> mergeWithCuslis(List<CuslisInfo> sourceOnes, List<CartInfo> sourceTwos) {
-		InfoMerger<CartInfo, CuslisInfo> merger = new CartMergerCuslis();		
-		return merger.merge(sourceOnes, sourceTwos);
-	}		
-	
-	
-	
-	public static CartInfo mergeWithOrder(OrderInfo sourceOne, CartInfo sourceTwo) {
+	public static List<CartInfo> mergeWithOrder(List<OrderInfo> selectedInfos, List<CartInfo> baseInfos) {
 		InfoMerger<CartInfo, OrderInfo> merger = new CartMergerOrder();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
-	
-	
-	
-	public static List<CartInfo> mergeWithOrder(List<OrderInfo> sourceOnes, List<CartInfo> sourceTwos) {
-		InfoMerger<CartInfo, OrderInfo> merger = new CartMergerOrder();		
-		return merger.merge(sourceOnes, sourceTwos);
+		return merger.merge(selectedInfos, baseInfos);
 	}	
 	
 	
 	
-	public static CartInfo mergeWithFeewner(FeewnerInfo sourceOne, CartInfo sourceTwo) {
+	public static CartInfo mergeWithFeewner(FeewnerInfo selectedInfo, CartInfo baseInfo) {
 		InfoMerger<CartInfo, FeewnerInfo> merger = new CartMergerFeewner();		
-		return merger.merge(sourceOne, sourceTwo);
+		return merger.merge(selectedInfo, baseInfo);
 	}
 	
 	
 	
-	public static List<CartInfo> mergeWithFeewner(List<FeewnerInfo> sourceOnes, List<CartInfo> sourceTwos) {
+	public static List<CartInfo> mergeWithFeewner(List<FeewnerInfo> selectedInfos, List<CartInfo> baseInfos) {
 		InfoMerger<CartInfo, FeewnerInfo> merger = new CartMergerFeewner();		
-		return merger.merge(sourceOnes, sourceTwos);
+		return merger.merge(selectedInfos, baseInfos);
 	}	
 	
 	
 	
-	public static CartInfo mergeWithCurrency(CurrencyInfo sourceOne, CartInfo sourceTwo) {
+	public static CartInfo mergeWithCurrency(CurrencyInfo selectedInfo, CartInfo baseInfo) {
 		InfoMerger<CartInfo, CurrencyInfo> merger = new CartMergerCurrency();		
-		return merger.merge(sourceOne, sourceTwo);
+		return merger.merge(selectedInfo, baseInfo);
 	}
 	
 	
 	
-	public static List<CartInfo> mergeWithCurrency(List<CurrencyInfo> sourceOnes, List<CartInfo> sourceTwos) {
+	public static List<CartInfo> mergeWithCurrency(List<CurrencyInfo> selectedInfos, List<CartInfo> baseInfos) {
 		InfoMerger<CartInfo, CurrencyInfo> merger = new CartMergerCurrency();		
-		return merger.merge(sourceOnes, sourceTwos);
+		return merger.merge(selectedInfos, baseInfos);
 	}		
 	
 	
 	
-	public static CartInfo mergeWithCartem(CartemInfo sourceOne, CartInfo sourceTwo) {
+	public static CartInfo mergeWithCartem(CartemInfo selectedInfo, CartInfo baseInfo) {
 		InfoMerger<CartInfo, CartemInfo> merger = new CartMergerCartem();		
-		return merger.merge(sourceOne, sourceTwo);
+		return merger.merge(selectedInfo, baseInfo);
 	}
 	
 	
 	
-	public static List<CartInfo> mergeWithCartem(List<CartemInfo> sourceOnes, List<CartInfo> sourceTwos) {
+	public static List<CartInfo> mergeWithCartem(List<CartemInfo> selectedInfos, List<CartInfo> baseInfos) {
 		InfoMerger<CartInfo, CartemInfo> merger = new CartMergerCartem();		
-		return merger.merge(sourceOnes, sourceTwos);
+		return merger.merge(selectedInfos, baseInfos);
 	}		
 	
 	
 	
-	public static CartInfo mergeWithUsername(UsernameInfo sourceOne, CartInfo sourceTwo) {
+	public static CartInfo mergeWithUsername(UsernameInfo selectedInfo, CartInfo baseInfo) {
 		InfoMerger<CartInfo, UsernameInfo> merger = new CartMergerUsername();		
-		return merger.merge(sourceOne, sourceTwo);
+		return merger.merge(selectedInfo, baseInfo);
 	}
 	
 	
 	
-	public static List<CartInfo> mergeWithUsername(List<UsernameInfo> sourceOnes, List<CartInfo> sourceTwos) {
+	public static List<CartInfo> mergeWithUsername(List<UsernameInfo> selectedInfos, List<CartInfo> baseInfos) {
 		InfoMerger<CartInfo, UsernameInfo> merger = new CartMergerUsername();		
-		return merger.merge(sourceOnes, sourceTwos);
+		return merger.merge(selectedInfos, baseInfos);
 	}		
 	
 	
 	
-	public static CartInfo mergeToSelect(CartInfo sourceOne, CartInfo sourceTwo) {
+	public static CartInfo mergeToSelect(CartInfo selectedInfo, CartInfo baseInfo) {
 		InfoMerger<CartInfo, CartInfo> merger = new CartMergerToSelect();		
-		return merger.merge(sourceOne, sourceTwo);
+		return merger.merge(selectedInfo, baseInfo);
 	}
 	
 	
 	
-	public static List<CartInfo> mergeToSelect(List<CartInfo> sourceOnes, List<CartInfo> sourceTwos) {
+	public static List<CartInfo> mergeToSelect(List<CartInfo> selectedInfos, List<CartInfo> baseInfos) {
 		InfoMerger<CartInfo, CartInfo> merger = new CartMergerToSelect();		
-		return merger.merge(sourceOnes, sourceTwos);
+		return merger.merge(selectedInfos, baseInfos);
 	}		
 	
 	
 	
-	public static CartInfo mergeToUpdate(CartInfo sourceOne, CartInfo sourceTwo) {
+	public static CartInfo mergeToUpdate(CartInfo selectedInfo, CartInfo baseInfo) {
 		InfoMerger<CartInfo, CartInfo> merger = new CartMergerToUpdate();		
-		return merger.merge(sourceOne, sourceTwo);
+		return merger.merge(selectedInfo, baseInfo);
 	}
 	
 	
 	
-	public static List<CartInfo> mergeToUpdate(List<CartInfo> sourceOnes, List<CartInfo> sourceTwos) {
+	public static List<CartInfo> mergeToUpdate(List<CartInfo> selectedInfos, List<CartInfo> baseInfos) {
 		InfoMerger<CartInfo, CartInfo> merger = new CartMergerToUpdate();		
-		return merger.merge(sourceOnes, sourceTwos);
+		return merger.merge(selectedInfos, baseInfos);
 	}	
 }

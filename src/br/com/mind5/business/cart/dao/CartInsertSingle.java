@@ -39,7 +39,6 @@ public final class CartInsertSingle extends DaoStmtTemplate<CartInfo> {
 				
 				stmt.setLong(i++, recordInfo.codOwner);
 				stmt.setLong(i++, recordInfo.codUser);
-				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codCustomer);
 				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.lastChanged);
 	
 				return stmt;

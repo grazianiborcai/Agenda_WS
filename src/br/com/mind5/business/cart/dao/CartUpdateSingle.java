@@ -53,7 +53,6 @@ public final class CartUpdateSingle extends DaoStmtTemplate<CartInfo> {
 			@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, CartInfo recordInfo) throws SQLException {		
 				int i = 1;
 				
-				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codCustomer);
 				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.lastChanged);
 				
 				return stmt;

@@ -152,7 +152,6 @@ public final class CarterveSelectSingle implements DaoStmt<CarterveInfo> {
 			do {
 				CarterveInfo dataInfo = new CarterveInfo();
 				dataInfo.codOwner = stmtResult.getLong(CarterveDbTableColumn.COL_COD_OWNER);
-				dataInfo.codCustomer = stmtResult.getLong(CarterveDbTableColumn.COL_COD_CUSTOMER);
 				dataInfo.codUser = stmtResult.getLong(CarterveDbTableColumn.COL_COD_USER);
 				dataInfo.codStore = stmtResult.getLong(CarterveDbTableColumn.COL_COD_STORE);
 				dataInfo.codEmployee = stmtResult.getLong(CarterveDbTableColumn.COL_COD_EMPLOYEE);

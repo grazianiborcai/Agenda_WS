@@ -4,10 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.cart.info.CartInfo;
-import br.com.mind5.business.cart.model.action.LazyCartInsert;
-import br.com.mind5.business.cart.model.action.StdCartMergeCuslis;
+import br.com.mind5.business.cart.model.action.StdCartInsert;
 import br.com.mind5.business.cart.model.checker.CartCheckDummy;
-import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -37,12 +35,9 @@ public final class NodeCartInsert extends DeciTreeWriteTemplate<CartInfo> {
 	@Override protected List<ActionStd<CartInfo>> buildActionsOnPassedHook(DeciTreeOption<CartInfo> option) {
 		List<ActionStd<CartInfo>> actions = new ArrayList<>();		
 
-		ActionStd<CartInfo> mergeCuslis = new StdCartMergeCuslis(option);
-		ActionLazy<CartInfo> insert = new LazyCartInsert(option.conn, option.schemaName);
+		ActionStd<CartInfo> insert = new StdCartInsert(option);
 		
-		mergeCuslis.addPostAction(insert);
-		
-		actions.add(mergeCuslis);
+		actions.add(insert);
 		return actions;
 	}
 }

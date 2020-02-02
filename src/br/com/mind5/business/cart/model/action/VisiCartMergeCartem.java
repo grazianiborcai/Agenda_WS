@@ -25,14 +25,14 @@ final class VisiCartMergeCartem extends ActionVisitorTemplateMergeV2<CartInfo, C
 	
 	
 	
-	@Override protected List<CartemInfo> toActionClassHook(List<CartInfo> recordInfos) {
-		return CartemCopier.copyFromCartKey(recordInfos);	
+	@Override protected List<CartemInfo> toActionClassHook(List<CartInfo> baseInfos) {
+		return CartemCopier.copyFromCartKey(baseInfos);	
 	}
 	
 	
 	
-	@Override protected List<CartInfo> mergeHook(List<CartInfo> recordInfos, List<CartemInfo> selectedInfos) {	
-		return CartMerger.mergeWithCartem(selectedInfos, recordInfos);
+	@Override protected List<CartInfo> mergeHook(List<CartInfo> baseInfos, List<CartemInfo> selectedInfos) {	
+		return CartMerger.mergeWithCartem(selectedInfos, baseInfos);
 	}
 	
 	

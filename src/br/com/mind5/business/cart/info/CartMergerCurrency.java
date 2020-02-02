@@ -1,19 +1,19 @@
 package br.com.mind5.business.cart.info;
 
 import br.com.mind5.business.masterData.info.CurrencyInfo;
-import br.com.mind5.info.InfoUniquifier;
-import br.com.mind5.info.obsolete.InfoMergerTemplate_;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerTemplateV2;
 
-final class CartMergerCurrency extends InfoMergerTemplate_<CartInfo, CurrencyInfo> {
+final class CartMergerCurrency extends InfoMergerTemplateV2<CartInfo, CurrencyInfo> {
 
-	@Override protected InfoMergerVisitor_<CartInfo, CurrencyInfo> getVisitorHook() {
-		return new CartVisiMergeCurrency();
+	@Override protected CartInfo writeHook(CurrencyInfo selectedInfo, CartInfo baseInfo) {
+		baseInfo.txtCurr = selectedInfo.txtCurr;
+
+		return baseInfo;
 	}
 	
 	
 	
-	@Override protected InfoUniquifier<CartInfo> getUniquifierHook() {
-		return new CartUniquifier();
+	@Override protected boolean shouldWriteHook(CurrencyInfo selectedInfo, CartInfo baseInfo) {
+		return (selectedInfo.codCurr.equals(baseInfo.codCurr));
 	}
 }

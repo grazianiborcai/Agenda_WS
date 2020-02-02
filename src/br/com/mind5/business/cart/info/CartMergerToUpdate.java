@@ -1,18 +1,18 @@
 package br.com.mind5.business.cart.info;
 
-import br.com.mind5.info.InfoUniquifier;
-import br.com.mind5.info.obsolete.InfoMergerTemplate_;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerTemplateV2;
 
-final class CartMergerToUpdate extends InfoMergerTemplate_<CartInfo, CartInfo> {
+final class CartMergerToUpdate extends InfoMergerTemplateV2<CartInfo, CartInfo> {
 
-	@Override protected InfoMergerVisitor_<CartInfo, CartInfo> getVisitorHook() {
-		return new CartVisiMergeToUpdate();
+	@Override protected CartInfo writeHook(CartInfo selectedInfo, CartInfo baseInfo) {
+		baseInfo.codUser = selectedInfo.codUser;
+
+		return baseInfo;
 	}
 	
 	
 	
-	@Override protected InfoUniquifier<CartInfo> getUniquifierHook() {
-		return new CartUniquifier();
+	@Override protected boolean shouldWriteHook(CartInfo selectedInfo, CartInfo baseInfo) {
+		return (selectedInfo.codOwner == baseInfo.codOwner);
 	}
 }
