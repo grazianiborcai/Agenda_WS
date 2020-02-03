@@ -9,117 +9,67 @@ import java.util.List;
 
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoStmt;
-import br.com.mind5.dao.DaoStmtHelper_;
+import br.com.mind5.dao.DaoResultParserV2;
 import br.com.mind5.dao.DaoStmtParamTranslator;
+import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.common.DaoDbTable;
-import br.com.mind5.dao.common.DaoDbTableColumnAll;
-import br.com.mind5.dao.obsolete.DaoResultParser_;
-import br.com.mind5.dao.obsolete.DaoStmtOption_;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
 
-public final class CrecardInsertSingle implements DaoStmt<CrecardInfo> {
-	private DaoStmt<CrecardInfo> stmtSql;
-	private DaoStmtOption_<CrecardInfo> stmtOption;
-	
+public final class CrecardInsertSingle extends DaoStmtTemplate<CrecardInfo> {
+	private final String MAIN_TABLE = DaoDbTable.CREDIT_CARD_TABLE;
 	
 	
 	public CrecardInsertSingle(Connection conn, CrecardInfo recordInfo, String schemaName) {
-		buildStmtOption(conn, recordInfo, schemaName);
-		buildStmt();		
+		super(conn, recordInfo, schemaName);
 	}
 	
 	
 	
-	private void buildStmtOption(Connection conn, CrecardInfo recordInfo, String schemaName) {
-		this.stmtOption = new DaoStmtOption_<>();
-		this.stmtOption.conn = conn;
-		this.stmtOption.recordInfo = recordInfo;
-		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = DaoDbTable.CREDIT_CARD_TABLE;
-		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(this.stmtOption.tableName);
-		this.stmtOption.stmtParamTranslator = new ParamTranslator();
-		this.stmtOption.resultParser = new ResultParser(recordInfo);
-		this.stmtOption.whereClause = null;
+	@Override protected String getTableNameHook() {
+		return MAIN_TABLE;
 	}
 	
 	
 	
-	private void buildStmt() {
-		this.stmtSql = new DaoStmtHelper_<>(DaoOperation.INSERT, this.stmtOption, this.getClass());
-	}
-		
-	
-	
-	@Override public void generateStmt() throws SQLException {
-		stmtSql.generateStmt();		
-	}
-
-	
-	
-	@Override public boolean checkStmtGeneration() {
-		return stmtSql.checkStmtGeneration();
-	}
-
-	
-	
-	@Override public void executeStmt() throws SQLException {
-		stmtSql.executeStmt();
-	}
-
-	
-	
-	@Override public List<CrecardInfo> getResultset() {
-		return stmtSql.getResultset();
+	@Override protected DaoOperation getOperationHook() {
+		return DaoOperation.INSERT;
 	}
 	
 	
 	
-	private class ParamTranslator implements DaoStmtParamTranslator<CrecardInfo> {		
-		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, CrecardInfo recordInfo) throws SQLException {
-			
-			int i = 1;
-			stmt.setLong(i++, recordInfo.codOwner);
-			stmt.setLong(i++, recordInfo.codPayCustomer);
-			stmt.setString(i++, recordInfo.creditCardId);
-			stmt.setString(i++, recordInfo.creditCardBrand);
-			stmt.setString(i++, recordInfo.creditCardLast4);
-			stmt.setString(i++, recordInfo.recordMode);
-			stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.lastChanged);
-			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.lastChangedBy);
-			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codAddressHolder);
-			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codAddressSnapshotHolder);
-			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPhoneHolder);
-			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPhoneSnapshotHolder);			
-			
-			return stmt;
-		}		
+	@Override protected DaoStmtParamTranslator<CrecardInfo> getParamTranslatorHook() {
+		return new DaoStmtParamTranslator<CrecardInfo>() {			
+			@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, CrecardInfo recordInfo) throws SQLException {					
+				int i = 1;
+				
+				stmt.setLong(i++, recordInfo.codOwner);
+				stmt.setLong(i++, recordInfo.codPayCustomer);
+				stmt.setString(i++, recordInfo.creditCardId);
+				stmt.setString(i++, recordInfo.creditCardBrand);
+				stmt.setString(i++, recordInfo.creditCardLast4);
+				stmt.setString(i++, recordInfo.recordMode);
+				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.lastChanged);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.lastChangedBy);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codAddressHolder);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codAddressSnapshotHolder);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPhoneHolder);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPhoneSnapshotHolder);			
+				
+				return stmt;
+			}		
+		};
 	}
 	
 	
 	
-	@Override public DaoStmt<CrecardInfo> getNewInstance() {
-		return new CrecardInsertSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
-	}
-	
-	
-	
-	
-	
-	private static class ResultParser implements DaoResultParser_<CrecardInfo> {
-		private CrecardInfo recordInfo;
-		
-		public ResultParser(CrecardInfo recordToParse) {
-			recordInfo = recordToParse;
-		}
-		
-		
-		
-		@Override public List<CrecardInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
-			List<CrecardInfo> finalResult = new ArrayList<>();
-			recordInfo.codCreditCard = lastId;
-			finalResult.add(recordInfo);			
-			return finalResult;
-		}
+	@Override protected DaoResultParserV2<CrecardInfo> getResultParserHook() {
+		return new DaoResultParserV2<CrecardInfo>() {	
+			@Override public List<CrecardInfo> parseResult(CrecardInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
+				List<CrecardInfo> finalResult = new ArrayList<>();
+				recordInfo.codCreditCard = lastId;
+				finalResult.add(recordInfo);			
+				return finalResult;
+			}
+		};
 	}	
 }
