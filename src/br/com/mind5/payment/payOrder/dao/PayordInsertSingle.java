@@ -9,116 +9,67 @@ import java.util.List;
 
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoStmt;
-import br.com.mind5.dao.DaoStmtHelper_;
+import br.com.mind5.dao.DaoResultParserV2;
 import br.com.mind5.dao.DaoStmtParamTranslator;
+import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.common.DaoDbTable;
-import br.com.mind5.dao.common.DaoDbTableColumnAll;
-import br.com.mind5.dao.obsolete.DaoResultParser_;
-import br.com.mind5.dao.obsolete.DaoStmtOption_;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
 
-public final class PayordInsertSingle implements DaoStmt<PayordInfo> {
-	private DaoStmt<PayordInfo> stmtSql;
-	private DaoStmtOption_<PayordInfo> stmtOption;
-	
+public final class PayordInsertSingle extends DaoStmtTemplate<PayordInfo> {
+	private final String MAIN_TABLE = DaoDbTable.PAY_ORDER_HDR_TABLE;
 	
 	
 	public PayordInsertSingle(Connection conn, PayordInfo recordInfo, String schemaName) {
-		buildStmtOption(conn, recordInfo, schemaName);
-		buildStmt();		
+		super(conn, recordInfo, schemaName);
 	}
 	
 	
 	
-	private void buildStmtOption(Connection conn, PayordInfo recordInfo, String schemaName) {
-		this.stmtOption = new DaoStmtOption_<>();
-		this.stmtOption.conn = conn;
-		this.stmtOption.recordInfo = recordInfo;
-		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = DaoDbTable.PAY_ORDER_HDR_TABLE;
-		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(this.stmtOption.tableName);
-		this.stmtOption.stmtParamTranslator = new ParamTranslator();
-		this.stmtOption.resultParser = new ResultParser(recordInfo);
-		this.stmtOption.whereClause = null;
+	@Override protected String getTableNameHook() {
+		return MAIN_TABLE;
 	}
 	
 	
 	
-	private void buildStmt() {
-		this.stmtSql = new DaoStmtHelper_<>(DaoOperation.INSERT, this.stmtOption, this.getClass());
-	}
-		
-	
-	
-	@Override public void generateStmt() throws SQLException {
-		stmtSql.generateStmt();		
-	}
-
-	
-	
-	@Override public boolean checkStmtGeneration() {
-		return stmtSql.checkStmtGeneration();
-	}
-
-	
-	
-	@Override public void executeStmt() throws SQLException {
-		stmtSql.executeStmt();
-	}
-
-	
-	
-	@Override public List<PayordInfo> getResultset() {
-		return stmtSql.getResultset();
+	@Override protected DaoOperation getOperationHook() {
+		return DaoOperation.INSERT;
 	}
 	
 	
 	
-	private class ParamTranslator implements DaoStmtParamTranslator<PayordInfo> {		
-		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, PayordInfo recordInfo) throws SQLException {			
-			int i = 1;			
-			stmt.setLong(i++, recordInfo.codOwner);
-			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codOrder);
-			stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.lastChanged);
-			stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.createdOn);
-			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPayCustomer);
-			stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codCreditCard);
-			stmt.setString(i++, recordInfo.idOrderPartner);
-			stmt.setString(i++, recordInfo.statusOrderPartner);
-			stmt.setString(i++, recordInfo.amountTotalPartner);
-			stmt.setString(i++, recordInfo.amountCurrencyPartner);
-			stmt.setString(i++, recordInfo.idPaymentPartner);
-			stmt.setString(i++, recordInfo.statusPaymentPartner);			
-			
-			return stmt;
-		}		
+	@Override protected DaoStmtParamTranslator<PayordInfo> getParamTranslatorHook() {
+		return new DaoStmtParamTranslator<PayordInfo>() {			
+			@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, PayordInfo recordInfo) throws SQLException {		
+				int i = 1;		
+				
+				stmt.setLong(i++, recordInfo.codOwner);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codOrder);
+				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.lastChanged);
+				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.createdOn);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPayCustomer);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codCreditCard);
+				stmt.setString(i++, recordInfo.idOrderPartner);
+				stmt.setString(i++, recordInfo.statusOrderPartner);
+				stmt.setString(i++, recordInfo.amountTotalPartner);
+				stmt.setString(i++, recordInfo.amountCurrencyPartner);
+				stmt.setString(i++, recordInfo.idPaymentPartner);
+				stmt.setString(i++, recordInfo.statusPaymentPartner);			
+				
+				return stmt;
+			}		
+		};
 	}
 	
 	
 	
-	@Override public DaoStmt<PayordInfo> getNewInstance() {
-		return new PayordInsertSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
-	}
-	
-	
-	
-	
-	
-	private static class ResultParser implements DaoResultParser_<PayordInfo> {
-		private PayordInfo recordInfo;
-		
-		public ResultParser(PayordInfo recordToParse) {
-			recordInfo = recordToParse;
-		}
-		
-		
-		
-		@Override public List<PayordInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
-			List<PayordInfo> finalResult = new ArrayList<>();
-			recordInfo.codPayOrder = lastId;
-			finalResult.add(recordInfo);			
-			return finalResult;
-		}
+	@Override protected DaoResultParserV2<PayordInfo> getResultParserHook() {
+		return new DaoResultParserV2<PayordInfo>() {	
+			@Override public List<PayordInfo> parseResult(PayordInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
+				List<PayordInfo> finalResult = new ArrayList<>();
+				recordInfo.codPayOrder = lastId;
+				finalResult.add(recordInfo);			
+				return finalResult;
+			}
+		};
 	}
 }
