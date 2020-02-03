@@ -6,22 +6,23 @@ import java.util.List;
 
 import br.com.mind5.dao.DaoColumn;
 import br.com.mind5.dao.DaoDbTableColumnTemplate;
+import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
 public final class CusparDbTableColumn extends DaoDbTableColumnTemplate {
-	public static final String COL_ACCOUNT_LINK = "account_link";
-	public static final String COL_COD_CUSTOMER = "cod_customer";
-	public static final String COL_COD_CUSTOMER_SNAPSHOT = "cod_customer_snapshot";
-	public static final String COL_COD_PAYCUS = "cod_pay_customer";
-	public static final String COL_COD_PAY_PARTNER = "cod_pay_partner";
-	public static final String COL_COD_OWNER = "cod_owner";
-	public static final String COL_COD_USER = "cod_user";
-	public static final String COL_COD_USER_SNAPSHOT = "cod_user_snapshot";
-	public static final String COL_COMPOUND_ID = "compound_id";
-	public static final String COL_CUSTOMER_ID = "customer_id";
-	public static final String COL_CUSTOMER_LINK = "customer_link";
-	public static final String COL_LAST_CHANGED = "last_changed";
-	public static final String COL_RECORD_MODE = "record_mode";
+	public static final String COL_ACCOUNT_LINK = DaoDbField.COL_ACCOUNT_LINK;
+	public static final String COL_COD_CUSTOMER = DaoDbField.COL_COD_CUSTOMER;
+	public static final String COL_COD_CUSTOMER_SNAPSHOT = DaoDbField.COL_COD_CUSTOMER_SNAPSHOT;
+	public static final String COL_COD_PAYCUS = DaoDbField.COL_COD_PAYCUS; 
+	public static final String COL_COD_PAY_PARTNER = DaoDbField.COL_COD_PAY_PARTNER; 
+	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;
+	public static final String COL_COD_USER = DaoDbField.COL_COD_USER; 
+	public static final String COL_COD_USER_SNAPSHOT = DaoDbField.COL_COD_USER_SNAPSHOT; 
+	public static final String COL_COMPOUND_ID = DaoDbField.COL_COMPOUND_ID; 
+	public static final String COL_CUSTOMER_ID = DaoDbField.COL_CUSTOMER_ID; 
+	public static final String COL_CUSTOMER_LINK = DaoDbField.COL_CUSTOMER_LINK; 
+	public static final String COL_LAST_CHANGED = DaoDbField.COL_LAST_CHANGED; 
+	public static final String COL_RECORD_MODE = DaoDbField.COL_RECORD_MODE;
 	
 	
 	private Hashtable<String, List<DaoColumn>> tableColumns;

@@ -3,138 +3,71 @@ package br.com.mind5.payment.customerPartner.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.sql.Types;
-import java.util.List;
-
+import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoStmt;
-import br.com.mind5.dao.DaoStmtHelper_;
 import br.com.mind5.dao.DaoStmtParamTranslator;
+import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
-import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.dao.common.DaoOptionValue;
-import br.com.mind5.dao.obsolete.DaoStmtOption_;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
 
-public final class CusparUpdateSingle implements DaoStmt<CusparInfo> {
-	private DaoStmt<CusparInfo> stmtSql;
-	private DaoStmtOption_<CusparInfo> stmtOption;
+public final class CusparUpdateSingle extends DaoStmtTemplate<CusparInfo> {
+	private final String MAIN_TABLE = DaoDbTable.PAY_CUS_TABLE;
 	
 	
 	public CusparUpdateSingle(Connection conn, CusparInfo recordInfo, String schemaName) {
-		buildStmtOption(conn, recordInfo, schemaName);
-		buildStmt();		
+		super(conn, recordInfo, schemaName);
 	}
 	
 	
 	
-	private void buildStmtOption(Connection conn, CusparInfo recordInfo, String schemaName) {
-		this.stmtOption = new DaoStmtOption_<>();
-		this.stmtOption.conn = conn;
-		this.stmtOption.recordInfo = recordInfo;
-		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = DaoDbTable.PAY_CUS_TABLE;
-		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(this.stmtOption.tableName);
-		this.stmtOption.stmtParamTranslator = new ParamTranslator();
-		this.stmtOption.resultParser = null;
-		this.stmtOption.whereClause = buildWhereClause();
+	@Override protected String getTableNameHook() {
+		return MAIN_TABLE;
 	}
 	
 	
 	
-	private String buildWhereClause() {		
+	@Override protected DaoOperation getOperationHook() {
+		return DaoOperation.UPDATE;
+	}
+	
+	
+	
+	@Override protected String buildWhereClauseHook(String tableName, CusparInfo recordInfo) {	
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
+		
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;
 		whereOption.ignoreNonPrimaryKey = DaoOptionValue.IGNORE_NON_PK;
 		
-		DaoStmtWhere whereClause = new CusparWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
+		DaoStmtWhere whereClause = new CusparWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
 	
 	
-	private void buildStmt() {
-		this.stmtSql = new DaoStmtHelper_<>(DaoOperation.UPDATE, this.stmtOption, this.getClass());
-	}
+	@Override protected DaoStmtParamTranslator<CusparInfo> getParamTranslatorHook() {
+		return new DaoStmtParamTranslator<CusparInfo>() {	
+			@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, CusparInfo recordInfo) throws SQLException {					
+				int i = 1;
+				
+				stmt.setLong(i++, recordInfo.codUser);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codUserSnapshot);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codCustomer);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codCustomerSnapshot);
+				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.lastChanged);
+				stmt.setString(i++, recordInfo.recordMode);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPayPartner);
+				stmt.setString(i++, recordInfo.compoundId);
+				stmt.setString(i++, recordInfo.customerId);
+				stmt.setNull(i++, Types.VARCHAR);
+				stmt.setNull(i++, Types.VARCHAR);
 	
-	
-
-	@Override public void generateStmt() throws SQLException {
-		stmtSql.generateStmt();		
-	}
-
-	
-	
-	@Override public boolean checkStmtGeneration() {
-		return stmtSql.checkStmtGeneration();
-	}
-
-	
-	
-	@Override public void executeStmt() throws SQLException {
-		stmtSql.executeStmt();
-	}
-
-	
-	
-	@Override public List<CusparInfo> getResultset() {
-		return stmtSql.getResultset();
-	}
-	
-	
-	
-	@Override public DaoStmt<CusparInfo> getNewInstance() {
-		return new CusparUpdateSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
-	}
-	
-	
-	
-	private class ParamTranslator implements DaoStmtParamTranslator<CusparInfo> {		
-		@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, CusparInfo recordInfo) throws SQLException {
-			
-			Timestamp lastChanged = null;
-			if(recordInfo.lastChanged != null)
-				lastChanged = Timestamp.valueOf((recordInfo.lastChanged));
-			
-			
-			int i = 1;
-			stmt.setLong(i++, recordInfo.codUser);
-			
-			
-			if (recordInfo.codUserSnapshot >= 0) {
-				stmt.setLong(i++, recordInfo.codUserSnapshot);
-			} else {
-				stmt.setNull(i++, Types.INTEGER);
-			}	
-			
-			
-			if (recordInfo.codCustomer >= 0) {
-				stmt.setLong(i++, recordInfo.codCustomer);
-			} else {
-				stmt.setNull(i++, Types.INTEGER);
-			}	
-			
-			
-			if (recordInfo.codCustomerSnapshot >= 0) {
-				stmt.setLong(i++, recordInfo.codCustomerSnapshot);
-			} else {
-				stmt.setNull(i++, Types.INTEGER);
-			}	
-			
-			
-			stmt.setTimestamp(i++, lastChanged);	
-			stmt.setString(i++, recordInfo.recordMode);
-			stmt.setLong(i++, recordInfo.codPayPartner);
-			stmt.setString(i++, recordInfo.compoundId);
-			stmt.setString(i++, recordInfo.customerId);
-			stmt.setNull(i++, Types.VARCHAR);
-			stmt.setNull(i++, Types.VARCHAR);
-
-			return stmt;
-		}		
+				return stmt;
+			}		
+		};
 	}
 }
