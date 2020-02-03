@@ -6,123 +6,70 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoStmt;
-import br.com.mind5.dao.DaoStmtHelper_;
+import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
-import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.dao.common.DaoOptionValue;
-import br.com.mind5.dao.obsolete.DaoResultParser_;
-import br.com.mind5.dao.obsolete.DaoStmtOption_;
 import br.com.mind5.payment.countryPartner.info.CounparInfo;
 
-public final class CounparSelectSingle implements DaoStmt<CounparInfo> {
-	private final static String LT_ATTR = DaoDbTable.PAY_PARTNER_COUNTRY_TABLE;
-	
-	private DaoStmt<CounparInfo> stmtSql;
-	private DaoStmtOption_<CounparInfo> stmtOption;
-	
+public final class CounparSelectSingle extends DaoStmtTemplate<CounparInfo> {
+	private final String MAIN_TABLE = DaoDbTable.PAY_PARTNER_COUNTRY_TABLE;
 	
 	
 	public CounparSelectSingle(Connection conn, CounparInfo recordInfo, String schemaName) {
-		buildStmtOption(conn, recordInfo, schemaName);
-		buildStmt();
+		super(conn, recordInfo, schemaName);
 	}
 	
 	
 	
-	private void buildStmtOption(Connection conn, CounparInfo recordInfo, String schemaName) {
-		this.stmtOption = new DaoStmtOption_<>();
-		this.stmtOption.conn = conn;
-		this.stmtOption.recordInfo = recordInfo;
-		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = LT_ATTR;
-		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(LT_ATTR);
-		this.stmtOption.stmtParamTranslator = null;
-		this.stmtOption.resultParser = new ResultParser();
-		this.stmtOption.whereClause = buildWhereClause();
-		this.stmtOption.joins = null;
+	@Override protected String getTableNameHook() {
+		return MAIN_TABLE;
 	}
 	
 	
 	
-	private String buildWhereClause() {
+	@Override protected DaoOperation getOperationHook() {
+		return DaoOperation.SELECT;
+	}
+	
+	
+	
+	@Override protected String buildWhereClauseHook(String tableName, CounparInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
-		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
+		
+		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;				//TODO: DONT_IGNORE_NULL
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new CounparWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
+		DaoStmtWhere whereClause = new CounparWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
-	}
+	}	
 	
 	
 	
-	private void buildStmt() {
-		this.stmtSql = new DaoStmtHelper_<>(DaoOperation.SELECT, this.stmtOption, this.getClass());
-	}
-	
-	
-
-	@Override public void generateStmt() throws SQLException {
-		stmtSql.generateStmt();		
-	}
-
-	
-	
-	@Override public boolean checkStmtGeneration() {
-		return stmtSql.checkStmtGeneration();
-	}
-
-	
-	
-	@Override public void executeStmt() throws SQLException {
-		stmtSql.executeStmt();
-	}
-
-	
-	
-	@Override public List<CounparInfo> getResultset() {
-		return stmtSql.getResultset();
-	}
-	
-	
-	
-	@Override public DaoStmt<CounparInfo> getNewInstance() {
-		return new CounparSelectSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
-	}
-	
-	
-	
-	
-	
-	
-	private static class ResultParser implements DaoResultParser_<CounparInfo> {
-		private final boolean EMPTY_RESULT_SET = false;
-		private final boolean NOT_NULL = false;
-		
-		@Override public List<CounparInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
-			List<CounparInfo> finalResult = new ArrayList<>();
-			
-			if (stmtResult.next() == EMPTY_RESULT_SET)				
+	@Override protected DaoResultParserV2<CounparInfo> getResultParserHook() {
+		return new DaoResultParserV2<CounparInfo>() {
+			@Override public List<CounparInfo> parseResult(CounparInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
+				List<CounparInfo> finalResult = new ArrayList<>();
+				
+				if (stmtResult.next() == false)				
+					return finalResult;
+				
+				do {
+					CounparInfo dataInfo = new CounparInfo();
+					
+					dataInfo.codCountry = stmtResult.getString(CounparDbTableColumn.COL_COD_COUNTRY);
+					dataInfo.codPayPartner = stmtResult.getInt(CounparDbTableColumn.COL_COD_PAY_PARTNER);
+					dataInfo.isDefault = DaoFormatter.sqlToBoole(stmtResult, CounparDbTableColumn.COL_IS_DEFAULT);					
+					
+					finalResult.add(dataInfo);
+				} while (stmtResult.next());
+				
 				return finalResult;
-			
-			do {
-				CounparInfo dataInfo = new CounparInfo();
-				dataInfo.codCountry = stmtResult.getString(CounparDbTableColumn.COL_COD_COUNTRY);
-				dataInfo.codPayPartner = stmtResult.getInt(CounparDbTableColumn.COL_COD_PAY_PARTNER);
-				
-				
-				stmtResult.getBoolean(CounparDbTableColumn.COL_IS_DEFAULT);
-				if (stmtResult.wasNull() == NOT_NULL)
-					dataInfo.isDefault = stmtResult.getBoolean(CounparDbTableColumn.COL_IS_DEFAULT);
-				
-				
-				finalResult.add(dataInfo);
-			} while (stmtResult.next());
-			
-			return finalResult;
-		}
+			}
+		};
 	}
 }
