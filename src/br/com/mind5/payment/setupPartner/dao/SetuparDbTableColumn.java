@@ -6,14 +6,15 @@ import java.util.List;
 
 import br.com.mind5.dao.DaoColumn;
 import br.com.mind5.dao.DaoDbTableColumnTemplate;
+import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
 public final class SetuparDbTableColumn extends DaoDbTableColumnTemplate {
-	public static final String COL_BASIC_KEY = "basic_key";
-	public static final String COL_BASIC_TOKEN = "basic_token";	
-	public static final String COL_COD_PAY_PARTNER = "cod_pay_partner";	
-	public static final String COL_OAUTH_TOKEN = "oauth_token";
-	public static final String COL_SECRET = "secret";		
+	public static final String COL_BASIC_KEY = DaoDbField.COL_BASIC_KEY;
+	public static final String COL_BASIC_TOKEN = DaoDbField.COL_BASIC_TOKEN;	
+	public static final String COL_COD_PAY_PARTNER = DaoDbField.COL_COD_PAY_PARTNER;	
+	public static final String COL_OAUTH_TOKEN = DaoDbField.COL_OAUTH_TOKEN;
+	public static final String COL_SECRET = DaoDbField.COL_SECRET;		
 	
 	
 	private Hashtable<String, List<DaoColumn>> tableColumns;
