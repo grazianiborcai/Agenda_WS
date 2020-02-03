@@ -1,9 +1,12 @@
 package br.com.mind5.dao.common;
 
 public final class DaoDbField {	
-	public static final String COL_ACCESS_TOKEN = "access_token";	
+	public static final String COL_ACCESS_TOKEN = "access_token";
+	public static final String COL_ACCOUNT_LINK = "account_link";
 	public static final String COL_AMOUNT_CURRENCY_PARTNER = "amount_currency_partner";
 	public static final String COL_AMOUNT_TOTAL_PARTNER = "amount_total_partner";
+	public static final String COL_BASIC_KEY = "basic_key";
+	public static final String COL_BASIC_TOKEN = "basic_token";	
 	public static final String COL_BEGIN_TIME = "begin_time";
 	public static final String COL_BIRTH_DATE = "birth_date";
 	public static final String COL_BIRTH_DAY = "birth_day";
@@ -64,6 +67,7 @@ public final class DaoDbField {
 	public static final String COL_COD_OWNER = "cod_owner";
 	public static final String COL_COD_OWNER_REF = "cod_owner_ref";
 	public static final String COL_COD_OWNER_REF_SNAPSHOT = "cod_owner_ref_snapshot";
+	public static final String COL_COD_PAYCUS = "cod_pay_customer";
 	public static final String COL_COD_PERSON = "cod_person";
 	public static final String COL_COD_PERSON_SNAPSHOT = "cod_person_snapshot";
 	public static final String COL_COD_PHONE = "cod_phone";
@@ -85,9 +89,12 @@ public final class DaoDbField {
 	public static final String COL_COD_USER_CATEG = "cod_user_categ";
 	public static final String COL_COD_USER_SNAPSHOT = "cod_user_snapshot";
 	public static final String COL_COD_WEEKDAY = "weekday";	
-	public static final String COL_CODE_PAY_PARTNER_STORE = "code_pay_partner_store";
+	public static final String COL_CODE_PAY_PARTNER_STORE = "code_pay_partner_store";	
 	public static final String COL_COMPLEMENT = "complement";
+	public static final String COL_COMPOUND_ID = "compound_id";
 	public static final String COL_CONFIRMED = "confirmed";
+	public static final String COL_CUSTOMER_ID = "customer_id";
+	public static final String COL_CUSTOMER_LINK = "customer_link";
 	public static final String COL_COUNTER = "counter";
 	public static final String COL_COUNTRY = "country";
 	public static final String COL_COUNTRY_LEGAL = "country_legal";
@@ -119,7 +126,9 @@ public final class DaoDbField {
 	public static final String COL_FULL_NUMBER = "full_number";
 	public static final String COL_GRAND_TOTAL = "grandTotal";
 	public static final String COL_ID_ORDER_PARTNER = "id_order_partner";
+	public static final String COL_ID_PAY_PARTNER_APP = "id_pay_partner_app";	
 	public static final String COL_ID_PAY_PARTNER_STORE = "id_pay_partner_store";
+	public static final String COL_ID_PAY_PARTNER_SYSTEM = "id_pay_partner_system";	
 	public static final String COL_ID_PAYMENT_PARTNER = "id_payment_partner";
 	public static final String COL_ID_REFUND_PARTNER = "id_refund_partner";
 	public static final String COL_IMG_FILE_PATH = "file_img_path";
@@ -149,8 +158,10 @@ public final class DaoDbField {
 	public static final String COL_NAME = "name";
 	public static final String COL_NAME_SEARCH = "name_search";
 	public static final String COL_NUMBER = "number";
+	public static final String COL_OAUTH_TOKEN = "oauth_token";
 	public static final String COL_OWN_ID = "own_id";
 	public static final String COL_PASSWORD = "hash1";
+	public static final String COL_PAY_PARTNER_NAME = "pay_partner_name";
 	public static final String COL_POSTING_DATE = "posting_date";
 	public static final String COL_POSTING_MONTH = "posting_month";
 	public static final String COL_POSTING_YEAR = "posting_year";
@@ -174,6 +185,7 @@ public final class DaoDbField {
 	public static final String COL_REFRESH_TOKEN = "refresh_token";	
 	public static final String COL_SALT = "hash2";
 	public static final String COL_SCOPE = "scope";
+	public static final String COL_SECRET = "secret";
 	public static final String COL_SENDER_PASSWORD = "sender_password";
 	public static final String COL_SMTP_HOST_NAME = "smtp_host_name";
 	public static final String COL_SMTP_PORT = "smtp_port";
@@ -189,6 +201,7 @@ public final class DaoDbField {
 	public static final String COL_TOKEN_EXPIRES_IN = "token_expires_in";
 	public static final String COL_TOTAL_ITEM = "total_item";
 	public static final String COL_TXT_BODY = "body";
+	public static final String COL_URL_RETURN = "url_return";
 	public static final String COL_USERNAME = "username";
 	public static final String COL_VALUE = "value";
 	public static final String COL_WAITING = "waiting";

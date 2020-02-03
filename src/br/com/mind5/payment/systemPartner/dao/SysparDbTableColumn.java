@@ -6,14 +6,15 @@ import java.util.List;
 
 import br.com.mind5.dao.DaoColumn;
 import br.com.mind5.dao.DaoDbTableColumnTemplate;
+import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
 public final class SysparDbTableColumn extends DaoDbTableColumnTemplate {
-	public static final String COL_ID_PAY_PARTNER_APP = "id_pay_partner_app";	
-	public static final String COL_ID_PAY_PARTNER_SYSTEM = "id_pay_partner_system";	
-	public static final String COL_COD_PAY_PARTNER = "cod_pay_partner";
-	public static final String COL_PAY_PARTNER_NAME = "pay_partner_name";
-	public static final String COL_URL_RETURN = "url_return";
+	public static final String COL_ID_PAY_PARTNER_APP = DaoDbField.COL_ID_PAY_PARTNER_APP;	
+	public static final String COL_ID_PAY_PARTNER_SYSTEM = DaoDbField.COL_ID_PAY_PARTNER_SYSTEM;	
+	public static final String COL_COD_PAY_PARTNER = DaoDbField.COL_COD_PAY_PARTNER;
+	public static final String COL_PAY_PARTNER_NAME = DaoDbField.COL_PAY_PARTNER_NAME;
+	public static final String COL_URL_RETURN = DaoDbField.COL_URL_RETURN;
 	
 	
 	private Hashtable<String, List<DaoColumn>> tableColumns;
