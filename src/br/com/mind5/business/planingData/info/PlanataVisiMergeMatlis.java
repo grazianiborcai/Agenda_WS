@@ -28,7 +28,6 @@ final class PlanataVisiMergeMatlis implements InfoMergerVisitorV3<PlanataInfo, M
 	
 
 	@Override public List<PlanataInfo> merge(PlanataInfo baseInfo, MatlisInfo selectedInfo) {
-		
 		List<PlanataInfo> results = new ArrayList<>();
 		LocalTime maxEndTime = baseInfo.endTime;
 		

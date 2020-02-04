@@ -144,6 +144,5 @@ final class PlanataCopyPlanime extends InfoCopierOneToManyTemplate<PlanataInfo, 
 	private void logException(Exception e) {
 		Logger logger = LogManager.getLogger(this.getClass());
 		logger.error(e.getMessage(), e);
-	}
-		
+	}		
 }
