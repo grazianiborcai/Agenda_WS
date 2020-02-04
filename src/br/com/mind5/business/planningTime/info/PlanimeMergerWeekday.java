@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.masterData.info.WeekdayInfo;
-import br.com.mind5.info.InfoMergerTemplateV2;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.info.obsolete.InfoMergerTemplateV2_;
 
-final class PlanimeMergerWeekday extends InfoMergerTemplateV2<PlanimeInfo, WeekdayInfo> {
+final class PlanimeMergerWeekday extends InfoMergerTemplateV2_<PlanimeInfo, WeekdayInfo> {
 
 	@Override protected PlanimeInfo writeHook(WeekdayInfo selectedInfo, PlanimeInfo baseInfo) {
 		baseInfo.weekdays.add(selectedInfo);

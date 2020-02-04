@@ -1,9 +1,6 @@
-package br.com.mind5.info.temp;
+package br.com.mind5.info;
 
 import java.util.List;
-
-import br.com.mind5.info.InfoRecord;
-import br.com.mind5.info.InfoUniquifier;
 
 public interface InfoMergerVisitorV3<T extends InfoRecord, K extends InfoRecord> {
 	

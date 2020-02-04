@@ -3,10 +3,10 @@ package br.com.mind5.business.storeList.info;
 import java.util.List;
 
 import br.com.mind5.business.address.info.AddressInfo;
-import br.com.mind5.info.InfoMergerTemplateV2;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.info.obsolete.InfoMergerTemplateV2_;
 
-final class StolisMergerAddress extends InfoMergerTemplateV2<StolisInfo, AddressInfo> {
+final class StolisMergerAddress extends InfoMergerTemplateV2_<StolisInfo, AddressInfo> {
 
 	@Override protected StolisInfo writeHook(AddressInfo selectedInfo, StolisInfo baseInfo) {
 		baseInfo.addresses.add(selectedInfo);

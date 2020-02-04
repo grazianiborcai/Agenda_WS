@@ -3,10 +3,10 @@ package br.com.mind5.business.storeList.info;
 import java.util.List;
 
 import br.com.mind5.business.masterData.info.TimezoneInfo;
-import br.com.mind5.info.InfoMergerTemplateV2;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.info.obsolete.InfoMergerTemplateV2_;
 
-final class StolisMergerTimezone extends InfoMergerTemplateV2<StolisInfo, TimezoneInfo> {
+final class StolisMergerTimezone extends InfoMergerTemplateV2_<StolisInfo, TimezoneInfo> {
 
 	@Override protected StolisInfo writeHook(TimezoneInfo selectedInfo, StolisInfo baseInfo) {
 		baseInfo.txtTimezone = selectedInfo.txtTimezone;

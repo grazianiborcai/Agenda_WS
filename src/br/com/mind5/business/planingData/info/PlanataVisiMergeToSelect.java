@@ -3,8 +3,8 @@ package br.com.mind5.business.planingData.info;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.mind5.info.InfoMergerVisitorV3;
 import br.com.mind5.info.InfoUniquifier;
-import br.com.mind5.info.temp.InfoMergerVisitorV3;
 
 final class PlanataVisiMergeToSelect implements InfoMergerVisitorV3<PlanataInfo, PlanataInfo> {
 	

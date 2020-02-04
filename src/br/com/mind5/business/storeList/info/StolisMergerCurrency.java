@@ -3,10 +3,10 @@ package br.com.mind5.business.storeList.info;
 import java.util.List;
 
 import br.com.mind5.business.masterData.info.CurrencyInfo;
-import br.com.mind5.info.InfoMergerTemplateV2;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.info.obsolete.InfoMergerTemplateV2_;
 
-final class StolisMergerCurrency extends InfoMergerTemplateV2<StolisInfo, CurrencyInfo> {
+final class StolisMergerCurrency extends InfoMergerTemplateV2_<StolisInfo, CurrencyInfo> {
 
 	@Override protected StolisInfo writeHook(CurrencyInfo selectedInfo, StolisInfo baseInfo) {
 		baseInfo.txtCurr = selectedInfo.txtCurr;

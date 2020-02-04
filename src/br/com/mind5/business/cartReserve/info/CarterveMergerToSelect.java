@@ -1,8 +1,8 @@
 package br.com.mind5.business.cartReserve.info;
 
-import br.com.mind5.info.InfoMergerTemplateV2;
+import br.com.mind5.info.obsolete.InfoMergerTemplateV2_;
 
-final class CarterveMergerToSelect extends InfoMergerTemplateV2<CarterveInfo, CarterveInfo> {
+final class CarterveMergerToSelect extends InfoMergerTemplateV2_<CarterveInfo, CarterveInfo> {
 
 	@Override protected CarterveInfo writeHook(CarterveInfo selectedInfo, CarterveInfo baseInfo) {
 		selectedInfo.codLanguage = baseInfo.codLanguage;

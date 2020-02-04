@@ -1,4 +1,4 @@
-package br.com.mind5.info;
+package br.com.mind5.info.obsolete;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,8 +8,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import br.com.mind5.common.SystemMessage;
+import br.com.mind5.info.InfoRecord;
 
-public abstract class InfoMergerTemplateV2<T extends InfoRecord, K extends InfoRecord> implements InfoMerger<T, K> {	
+public abstract class InfoMergerTemplateV2_<T extends InfoRecord, K extends InfoRecord> implements InfoMerger_<T, K> {	
 	
 	@Override public List<T> merge(List<K> selectedInfos, List<T> baseInfos) {
 		checkArgument(selectedInfos, baseInfos);

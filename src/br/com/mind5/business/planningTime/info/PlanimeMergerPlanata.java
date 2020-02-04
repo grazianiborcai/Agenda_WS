@@ -3,10 +3,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.planingData.info.PlanataInfo;
-import br.com.mind5.info.InfoMergerTemplateV2;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.info.obsolete.InfoMergerTemplateV2_;
 
-final class PlanimeMergerPlanata extends InfoMergerTemplateV2<PlanimeInfo, PlanataInfo> {
+final class PlanimeMergerPlanata extends InfoMergerTemplateV2_<PlanimeInfo, PlanataInfo> {
 
 	@Override protected PlanimeInfo writeHook(PlanataInfo selectedInfo, PlanimeInfo baseInfo) {
 		baseInfo.planatas.add(selectedInfo);

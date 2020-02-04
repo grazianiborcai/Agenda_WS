@@ -1,9 +1,9 @@
 package br.com.mind5.business.cart.info;
 
 import br.com.mind5.business.masterData.info.CurrencyInfo;
-import br.com.mind5.info.InfoMergerTemplateV2;
+import br.com.mind5.info.obsolete.InfoMergerTemplateV2_;
 
-final class CartMergerCurrency extends InfoMergerTemplateV2<CartInfo, CurrencyInfo> {
+final class CartMergerCurrency extends InfoMergerTemplateV2_<CartInfo, CurrencyInfo> {
 
 	@Override protected CartInfo writeHook(CurrencyInfo selectedInfo, CartInfo baseInfo) {
 		baseInfo.txtCurr = selectedInfo.txtCurr;

@@ -1,13 +1,13 @@
 package br.com.mind5.business.scheduleLine.info;
 
 import br.com.mind5.business.order.info.OrderInfo;
-import br.com.mind5.info.InfoMergerOneToManyTemplate;
-import br.com.mind5.info.InfoMergerOneToManyVisitor;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.info.obsolete.InfoMergerOneToManyTemplate_;
+import br.com.mind5.info.obsolete.InfoMergerOneToManyVisitor_;
 
-final class SchedineMergerOrder extends InfoMergerOneToManyTemplate<SchedineInfo, OrderInfo> {
+final class SchedineMergerOrder extends InfoMergerOneToManyTemplate_<SchedineInfo, OrderInfo> {
 
-	@Override protected InfoMergerOneToManyVisitor<SchedineInfo, OrderInfo> getVisitorHook() {
+	@Override protected InfoMergerOneToManyVisitor_<SchedineInfo, OrderInfo> getVisitorHook() {
 		return new SchedineVisiMergeOrder();
 	}
 	

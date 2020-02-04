@@ -1,9 +1,9 @@
 package br.com.mind5.business.cart.info;
 
 import br.com.mind5.business.cartItem.info.CartemInfo;
-import br.com.mind5.info.InfoMergerTemplateV2;
+import br.com.mind5.info.obsolete.InfoMergerTemplateV2_;
 
-final class CartMergerCartem extends InfoMergerTemplateV2<CartInfo, CartemInfo> {
+final class CartMergerCartem extends InfoMergerTemplateV2_<CartInfo, CartemInfo> {
 
 	@Override protected CartInfo writeHook(CartemInfo selectedInfo, CartInfo baseInfo) {
 		baseInfo.cartems.add(selectedInfo);

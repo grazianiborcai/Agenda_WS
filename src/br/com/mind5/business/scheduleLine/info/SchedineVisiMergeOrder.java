@@ -6,9 +6,9 @@ import java.util.List;
 import br.com.mind5.business.order.info.OrderInfo;
 import br.com.mind5.business.orderItem.info.OrderemInfo;
 import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoMergerOneToManyVisitor;
+import br.com.mind5.info.obsolete.InfoMergerOneToManyVisitor_;
 
-final class SchedineVisiMergeOrder implements InfoMergerOneToManyVisitor<SchedineInfo, OrderInfo> {
+final class SchedineVisiMergeOrder implements InfoMergerOneToManyVisitor_<SchedineInfo, OrderInfo> {
 
 	@Override public List<SchedineInfo> writeRecord(OrderInfo sourceOne, SchedineInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);

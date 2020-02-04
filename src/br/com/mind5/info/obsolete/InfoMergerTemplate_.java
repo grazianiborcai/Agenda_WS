@@ -7,11 +7,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoMerger;
 import br.com.mind5.info.InfoRecord;
 import br.com.mind5.info.InfoUniquifier;
 
-public abstract class InfoMergerTemplate_<T extends InfoRecord, K extends InfoRecord> implements InfoMerger<T, K> {	
+public abstract class InfoMergerTemplate_<T extends InfoRecord, K extends InfoRecord> implements InfoMerger_<T, K> {	
 	
 	@Override public List<T> merge(List<K> sourceOnes, List<T> sourceTwos) {
 		InfoMergerVisitor_<T,K> visitor = getVisitorHook();

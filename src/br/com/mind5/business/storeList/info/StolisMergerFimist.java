@@ -3,10 +3,10 @@ package br.com.mind5.business.storeList.info;
 import java.util.List;
 
 import br.com.mind5.file.fileImageList.info.FimistInfo;
-import br.com.mind5.info.InfoMergerTemplateV2;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.info.obsolete.InfoMergerTemplateV2_;
 
-final class StolisMergerFimist extends InfoMergerTemplateV2<StolisInfo, FimistInfo> {
+final class StolisMergerFimist extends InfoMergerTemplateV2_<StolisInfo, FimistInfo> {
 
 	@Override protected StolisInfo writeHook(FimistInfo selectedInfo, StolisInfo baseInfo) {
 		baseInfo.fimistes.add(selectedInfo);

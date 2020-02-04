@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.materialList.info.MatlisInfo;
-import br.com.mind5.info.InfoMergerTemplateV2;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.info.obsolete.InfoMergerTemplateV2_;
 
-final class PlanimeMergerMatlis extends InfoMergerTemplateV2<PlanimeInfo, MatlisInfo> {
+final class PlanimeMergerMatlis extends InfoMergerTemplateV2_<PlanimeInfo, MatlisInfo> {
 	@Override protected PlanimeInfo writeHook(MatlisInfo selectedInfo, PlanimeInfo baseInfo) {
 		baseInfo.matlises.add(selectedInfo);
 		return baseInfo;

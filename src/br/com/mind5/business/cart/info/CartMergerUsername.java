@@ -1,9 +1,9 @@
 package br.com.mind5.business.cart.info;
 
-import br.com.mind5.info.InfoMergerTemplateV2;
+import br.com.mind5.info.obsolete.InfoMergerTemplateV2_;
 import br.com.mind5.security.username.info.UsernameInfo;
 
-final class CartMergerUsername extends InfoMergerTemplateV2<CartInfo, UsernameInfo> {
+final class CartMergerUsername extends InfoMergerTemplateV2_<CartInfo, UsernameInfo> {
 
 	@Override protected CartInfo writeHook(UsernameInfo selectedInfo, CartInfo baseInfo) {
 		baseInfo.codUser = selectedInfo.codUser;

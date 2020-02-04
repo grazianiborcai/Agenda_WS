@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.storeList.info.StolisInfo;
-import br.com.mind5.info.InfoMergerTemplateV2;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.info.obsolete.InfoMergerTemplateV2_;
 
-final class PlanimeMergerStolis extends InfoMergerTemplateV2<PlanimeInfo, StolisInfo> {
+final class PlanimeMergerStolis extends InfoMergerTemplateV2_<PlanimeInfo, StolisInfo> {
 
 	@Override protected PlanimeInfo writeHook(StolisInfo selectedInfo, PlanimeInfo baseInfo) {
 		baseInfo.stolises.add(selectedInfo);

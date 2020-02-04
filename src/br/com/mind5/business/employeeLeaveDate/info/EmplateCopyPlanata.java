@@ -2,12 +2,12 @@ package br.com.mind5.business.employeeLeaveDate.info;
 
 import br.com.mind5.business.planingData.info.PlanataInfo;
 import br.com.mind5.info.InfoCopierTemplate;
-import br.com.mind5.info.InfoUniquifyHelper;
+import br.com.mind5.info.obsolete.InfoUniquifyHelper_;
 
 final class EmplateCopyPlanata extends InfoCopierTemplate<EmplateInfo, PlanataInfo>{
 	
 	public EmplateCopyPlanata() {
-		super(new InfoUniquifyHelper<EmplateInfo>());
+		super(new InfoUniquifyHelper_<EmplateInfo>());
 	}
 	
 	

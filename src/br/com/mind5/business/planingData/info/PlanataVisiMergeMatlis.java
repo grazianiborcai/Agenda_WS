@@ -9,8 +9,8 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.mind5.business.masterData.info.common.MatUnit;
 import br.com.mind5.business.materialList.info.MatlisInfo;
+import br.com.mind5.info.InfoMergerVisitorV3;
 import br.com.mind5.info.InfoUniquifier;
-import br.com.mind5.info.temp.InfoMergerVisitorV3;
 
 final class PlanataVisiMergeMatlis implements InfoMergerVisitorV3<PlanataInfo, MatlisInfo> {
 	

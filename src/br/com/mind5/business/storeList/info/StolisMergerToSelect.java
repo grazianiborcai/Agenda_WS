@@ -2,10 +2,10 @@ package br.com.mind5.business.storeList.info;
 
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerTemplateV2;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.info.obsolete.InfoMergerTemplateV2_;
 
-final class StolisMergerToSelect extends InfoMergerTemplateV2<StolisInfo, StolisInfo> {
+final class StolisMergerToSelect extends InfoMergerTemplateV2_<StolisInfo, StolisInfo> {
 	
 	@Override protected StolisInfo writeHook(StolisInfo selectedInfo, StolisInfo baseInfo) {
 		selectedInfo.codLanguage = baseInfo.codLanguage;
