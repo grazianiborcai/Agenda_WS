@@ -46,14 +46,7 @@ public final class CartercoInfo extends InfoRecord implements Cloneable {
 	
 	
 	@Override public Object clone() throws CloneNotSupportedException {
-		CartercoInfo deepCopy = (CartercoInfo) super.clone();
-		
-		deepCopy.date = date;
-		deepCopy.beginTime = beginTime;
-		deepCopy.endTime = endTime;
-		deepCopy.lastChanged = lastChanged;
-		
-		return deepCopy;
+		return super.clone();
 	}
 	
 	
@@ -62,6 +55,7 @@ public final class CartercoInfo extends InfoRecord implements Cloneable {
 		int result = 17;
 		
 		result = result * 31 + (int) (codOwner    ^ (codOwner    >>> 32));
+		result = result * 31 + (int) (codUser     ^ (codUser     >>> 32));
 		result = result * 31 + (int) (codStore 	  ^ (codStore 	 >>> 32));
 		result = result * 31 + (int) (codMat  	  ^ (codMat  	 >>> 32));
 		result = result * 31 + (int) (codEmployee ^ (codEmployee >>> 32));
@@ -91,6 +85,7 @@ public final class CartercoInfo extends InfoRecord implements Cloneable {
 		
 		CartercoInfo obj = (CartercoInfo) o;		
 		return (codOwner    == obj.codOwner    			&&
+				codUser     == obj.codUser    			&&
 				codStore 	== obj.codStore 			&&
 				codMat  	== obj.codMat	   			&&
 				codEmployee == obj.codEmployee	   		&&

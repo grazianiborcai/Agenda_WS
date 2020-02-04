@@ -2,19 +2,19 @@ package br.com.mind5.business.cartReserveConflict.info;
 
 import java.util.List;
 
-import br.com.mind5.business.cartReserve.info.CarterveInfo;
 import br.com.mind5.info.InfoPruner;
 import br.com.mind5.info.InfoPrunerBuilder;
+import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class CartercoPruner {	
 	
-	public static List<CartercoInfo> pruneWithCarterve(List<CartercoInfo> baseInfos, List<CarterveInfo> selectedInfos) {
-		InfoPrunerBuilder<CartercoInfo, CarterveInfo> builder = new InfoPrunerBuilder<>();
+	public static List<CartercoInfo> pruneWithUsername(List<CartercoInfo> baseInfos, List<UsernameInfo> selectedInfos) {
+		InfoPrunerBuilder<CartercoInfo, UsernameInfo> builder = new InfoPrunerBuilder<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CartercoVisiPruneCarterve());
-		InfoPruner<CartercoInfo, CarterveInfo> pruner = builder.build();		
+		builder.addVisitor(new CartercoVisiPruneUsername());
+		InfoPruner<CartercoInfo, UsernameInfo> pruner = builder.build();		
 	
 		return pruner.prune();
 	}

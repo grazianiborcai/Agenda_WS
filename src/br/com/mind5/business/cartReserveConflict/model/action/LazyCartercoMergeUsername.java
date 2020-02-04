@@ -9,9 +9,9 @@ import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyCartercoPruneCarterve extends ActionLazyTemplate<CartercoInfo, CartercoInfo> {
+public final class LazyCartercoMergeUsername extends ActionLazyTemplate<CartercoInfo, CartercoInfo> {
 
-	public LazyCartercoPruneCarterve(Connection conn, String schemaName) {
+	public LazyCartercoMergeUsername(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyCartercoPruneCarterve extends ActionLazyTemplate<Carterco
 	
 	
 	@Override protected ActionStd<CartercoInfo> getInstanceOfActionHook(DeciTreeOption<CartercoInfo> option) {
-		return new StdCartercoPruneCarterve(option);
+		return new StdCartercoMergeUsername(option);
 	}
 	
 	

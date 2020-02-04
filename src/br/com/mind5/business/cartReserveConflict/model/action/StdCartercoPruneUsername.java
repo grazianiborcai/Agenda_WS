@@ -7,12 +7,12 @@ import br.com.mind5.model.action.ActionStdHelperPrune;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdCartercoPruneCarterve implements ActionStd<CartercoInfo> {
+public final class StdCartercoPruneUsername implements ActionStd<CartercoInfo> {
 	private ActionStd<CartercoInfo> actionHelper;	
 	
 	
-	public StdCartercoPruneCarterve(DeciTreeOption<CartercoInfo> option) {			
-		actionHelper = new ActionStdHelperPrune<>(option.recordInfos, new VisiCartercoPruneCarterve(option.conn, option.schemaName));
+	public StdCartercoPruneUsername(DeciTreeOption<CartercoInfo> option) {			
+		actionHelper = new ActionStdHelperPrune<>(option.recordInfos, new VisiCartercoPruneUsername(option.conn, option.schemaName));
 	}
 	
 	

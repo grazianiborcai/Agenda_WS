@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.cartReserveConflict.info.CartercoInfo;
-import br.com.mind5.business.cartReserveConflict.model.action.LazyCartercoPruneCarterve;
-import br.com.mind5.business.cartReserveConflict.model.action.StdCartercoMergeUsername;
+import br.com.mind5.business.cartReserveConflict.model.action.LazyCartercoPruneUsername;
+import br.com.mind5.business.cartReserveConflict.model.action.StdCartercoMergeCarterve;
 import br.com.mind5.business.cartReserveConflict.model.checker.CartercoCheckRead;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
@@ -43,12 +43,12 @@ public final class RootCartercoSelect extends DeciTreeReadTemplate<CartercoInfo>
 	@Override protected List<ActionStd<CartercoInfo>> buildActionsOnPassedHook(DeciTreeOption<CartercoInfo> option) {
 		List<ActionStd<CartercoInfo>> actions = new ArrayList<>();	
 		
-		ActionStd<CartercoInfo> mergeUsername = new StdCartercoMergeUsername(option);
-		ActionLazy<CartercoInfo> pruneCarterve = new LazyCartercoPruneCarterve(option.conn, option.schemaName);
+		ActionStd<CartercoInfo> mergeCarterve = new StdCartercoMergeCarterve(option);
+		ActionLazy<CartercoInfo> pruneUsername = new LazyCartercoPruneUsername(option.conn, option.schemaName);
 		
-		mergeUsername.addPostAction(pruneCarterve);
+		mergeCarterve.addPostAction(pruneUsername);
 		
-		actions.add(mergeUsername);			
+		actions.add(mergeCarterve);			
 		return actions;
 	}
 }
