@@ -6,8 +6,9 @@ import java.util.List;
 import br.com.mind5.business.cartItem.info.CartemInfo;
 import br.com.mind5.business.cartItem.model.action.LazyCartemEnforceAged;
 import br.com.mind5.business.cartItem.model.action.LazyCartemMergeSymsg;
-import br.com.mind5.business.cartItem.model.action.StdCartemEnforceSymsgL12;
-import br.com.mind5.business.cartItem.model.checker.CartemCheckCarterco;
+import br.com.mind5.business.cartItem.model.action.StdCartemEnforceSymsgL13;
+import br.com.mind5.business.cartItem.model.action.StdCartemSuccess;
+import br.com.mind5.business.cartItem.model.checker.CartemCheckPlanata;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
@@ -16,9 +17,9 @@ import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
 
-public final class NodeCartemAgedServiceL12 extends DeciTreeWriteTemplate<CartemInfo> {
+public final class NodeCartemAgedServiceL13 extends DeciTreeWriteTemplate<CartemInfo> {
 	
-	public NodeCartemAgedServiceL12(DeciTreeOption<CartemInfo> option) {
+	public NodeCartemAgedServiceL13(DeciTreeOption<CartemInfo> option) {
 		super(option);
 	}
 	
@@ -32,8 +33,8 @@ public final class NodeCartemAgedServiceL12 extends DeciTreeWriteTemplate<Cartem
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.NOT_FOUND;	
-		checker = new CartemCheckCarterco(checkerOption);
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
+		checker = new CartemCheckPlanata(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
@@ -44,9 +45,9 @@ public final class NodeCartemAgedServiceL12 extends DeciTreeWriteTemplate<Cartem
 	@Override protected List<ActionStd<CartemInfo>> buildActionsOnPassedHook(DeciTreeOption<CartemInfo> option) {
 		List<ActionStd<CartemInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CartemInfo> nodeL13 = new NodeCartemAgedServiceL13(option).toAction();	
+		ActionStd<CartemInfo> success = new StdCartemSuccess(option);	
 		
-		actions.add(nodeL13);		
+		actions.add(success);		
 		return actions;
 	}
 	
@@ -55,7 +56,7 @@ public final class NodeCartemAgedServiceL12 extends DeciTreeWriteTemplate<Cartem
 	@Override protected List<ActionStd<CartemInfo>> buildActionsOnFailedHook(DeciTreeOption<CartemInfo> option) {
 		List<ActionStd<CartemInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CartemInfo> enforceSymsg = new StdCartemEnforceSymsgL12(option);	
+		ActionStd<CartemInfo> enforceSymsg = new StdCartemEnforceSymsgL13(option);	
 		ActionLazy<CartemInfo> mergeSymsg = new LazyCartemMergeSymsg(option.conn, option.schemaName);
 		ActionLazy<CartemInfo> enforceAged = new LazyCartemEnforceAged(option.conn, option.schemaName);
 		
