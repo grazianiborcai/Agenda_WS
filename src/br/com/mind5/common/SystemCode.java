@@ -971,6 +971,8 @@ public final class SystemCode {
 	// Planing Data
 	public static final int PLAN_DATA_MANDATORY_FIELD_EMPTY				= 9250;	
 	public static final int PLAN_DATA_AGED_DATE							= 9251;	
+	public static final int PLAN_DATA_NOT_FOUND 						= 9252; 
+	public static final int PLAN_DATA_ALREADY_EXIST						= 9253; 
 	
 	// Pay Partner-Store Search
 	public static final int PAYPAR_STORE_SEARCH_MANDATORY_FIELD_EMPTY 	= 9300;

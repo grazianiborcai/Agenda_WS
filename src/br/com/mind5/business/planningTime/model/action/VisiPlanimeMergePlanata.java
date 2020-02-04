@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.planingData.info.PlanataCopier;
 import br.com.mind5.business.planingData.info.PlanataInfo;
-import br.com.mind5.business.planingData.model.decisionTree.RootPlanataSelect;
+import br.com.mind5.business.planingData.model.decisionTree.RootPlanataSelectReserve;
 import br.com.mind5.business.planningTime.info.PlanimeInfo;
 import br.com.mind5.business.planningTime.info.PlanimeMerger;
 import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
@@ -20,7 +20,7 @@ final class VisiPlanimeMergePlanata extends ActionVisitorTemplateMergeV2<Planime
 	
 	
 	@Override protected Class<? extends DeciTree<PlanataInfo>> getTreeClassHook() {
-		return RootPlanataSelect.class;
+		return RootPlanataSelectReserve.class;
 	}
 	
 	
