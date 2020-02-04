@@ -9,25 +9,37 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.mind5.business.masterData.info.common.MatUnit;
 import br.com.mind5.business.materialList.info.MatlisInfo;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoMergerOneToManyVisitor;
+import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.info.temp.InfoMergerVisitorV3;
 
-final class PlanataVisiMergeMatlis implements InfoMergerOneToManyVisitor<PlanataInfo, MatlisInfo> {
+final class PlanataVisiMergeMatlis implements InfoMergerVisitorV3<PlanataInfo, MatlisInfo> {
+	
+	@Override public List<PlanataInfo> beforeMerge(List<PlanataInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(PlanataInfo baseInfo, MatlisInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner && 
+				baseInfo.codMat   == selectedInfo.codMat		);
+	}
+	
+	
 
-	@Override public List<PlanataInfo> writeRecord(MatlisInfo sourceOne, PlanataInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);	
+	@Override public List<PlanataInfo> merge(PlanataInfo baseInfo, MatlisInfo selectedInfo) {
 		
 		List<PlanataInfo> results = new ArrayList<>();
-		LocalTime maxEndTime = sourceTwo.endTime;
+		LocalTime maxEndTime = baseInfo.endTime;
 		
-		PlanataInfo eachResult = setEndTime(sourceOne, sourceTwo);
+		PlanataInfo eachResult = setEndTime(selectedInfo, baseInfo);
 		
 		if (shouldAdd(eachResult, maxEndTime))
 			results.add(eachResult);
 		
 		
 		while(shouldAdd(eachResult, maxEndTime)) {
-			eachResult = shiftTime(sourceOne, eachResult);
+			eachResult = shiftTime(selectedInfo, eachResult);
 			
 			if (shouldAdd(eachResult, maxEndTime))
 				results.add(eachResult);
@@ -37,6 +49,12 @@ final class PlanataVisiMergeMatlis implements InfoMergerOneToManyVisitor<Planata
 		return results;
 	}
 	
+	
+	
+	@Override public InfoUniquifier<PlanataInfo> getUniquifier() {
+		return null;
+	}
+
 	
 	
 	private PlanataInfo setEndTime(MatlisInfo mat, PlanataInfo planata) {
@@ -51,13 +69,13 @@ final class PlanataVisiMergeMatlis implements InfoMergerOneToManyVisitor<Planata
 	
 	
 	
-	private PlanataInfo shiftTime(MatlisInfo sourceOne, PlanataInfo sourceTwo) {
-		MatUnit matUnit = MatUnit.getMatUnit(sourceOne.codUnit);		
-		PlanataInfo resultInfo = makeClone(sourceTwo);
+	private PlanataInfo shiftTime(MatlisInfo selectedInfo, PlanataInfo baseInfo) {
+		MatUnit matUnit = MatUnit.getMatUnit(selectedInfo.codUnit);		
+		PlanataInfo resultInfo = makeClone(baseInfo);
 		
 		if (MatUnit.MINUTE == matUnit) {
-			resultInfo.beginTime = resultInfo.beginTime.plusMinutes(sourceOne.priceUnit);
-			resultInfo.endTime = resultInfo.endTime.plusMinutes(sourceOne.priceUnit);
+			resultInfo.beginTime = resultInfo.beginTime.plusMinutes(selectedInfo.priceUnit);
+			resultInfo.endTime = resultInfo.endTime.plusMinutes(selectedInfo.priceUnit);
 		}
 		
 		return resultInfo;
@@ -67,20 +85,6 @@ final class PlanataVisiMergeMatlis implements InfoMergerOneToManyVisitor<Planata
 	
 	private boolean shouldAdd(PlanataInfo eachResult, LocalTime maxEndTime) {
 		return eachResult.endTime.isBefore(maxEndTime) || eachResult.endTime.equals(maxEndTime);
-	}
-	
-	
-	
-	private void checkArgument(MatlisInfo sourceOne, PlanataInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-
-
-
-	@Override public boolean shouldWrite(MatlisInfo sourceOne, PlanataInfo sourceTwo) {
-		return (sourceOne.codOwner 	== sourceTwo.codOwner && 
-				sourceOne.codMat 	== sourceTwo.codMat			);
 	}
 	
 	

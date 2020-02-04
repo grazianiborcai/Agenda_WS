@@ -24,8 +24,8 @@ final class VisiPlanataMergeMatlis extends ActionVisitorTemplateMergeV2<PlanataI
 	
 	
 	
-	@Override protected List<PlanataInfo> mergeHook(List<PlanataInfo> recordInfos, List<MatlisInfo> selectedInfos) {	
-		return PlanataMerger.mergeWithMatlis(selectedInfos, recordInfos);
+	@Override protected List<PlanataInfo> mergeHook(List<PlanataInfo> baseInfos, List<MatlisInfo> selectedInfos) {	
+		return PlanataMerger.mergeWithMatlis(baseInfos, selectedInfos);
 	}
 	
 	

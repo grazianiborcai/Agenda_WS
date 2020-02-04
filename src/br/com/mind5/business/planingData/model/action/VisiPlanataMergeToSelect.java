@@ -22,8 +22,8 @@ final class VisiPlanataMergeToSelect extends ActionVisitorTemplateMergeV2<Planat
 	
 	
 	
-	@Override protected List<PlanataInfo> mergeHook(List<PlanataInfo> recordInfos, List<PlanataInfo> selectedInfos) {	
-		return PlanataMerger.mergeToSelect(selectedInfos, recordInfos);
+	@Override protected List<PlanataInfo> mergeHook(List<PlanataInfo> baseInfos, List<PlanataInfo> selectedInfos) {	
+		return PlanataMerger.mergeToSelect(baseInfos, selectedInfos);
 	}
 	
 	

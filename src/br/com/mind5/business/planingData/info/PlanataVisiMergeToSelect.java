@@ -1,57 +1,39 @@
 package br.com.mind5.business.planingData.info;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.ArrayList;
+import java.util.List;
 
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.info.temp.InfoMergerVisitorV3;
 
-final class PlanataVisiMergeToSelect implements InfoMergerVisitor_<PlanataInfo, PlanataInfo> {
+final class PlanataVisiMergeToSelect implements InfoMergerVisitorV3<PlanataInfo, PlanataInfo> {
+	
+	@Override public List<PlanataInfo> beforeMerge(List<PlanataInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(PlanataInfo baseInfo, PlanataInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner);
+	}
+	
+	
 
-	@Override public PlanataInfo writeRecord(PlanataInfo sourceOne, PlanataInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);		
-		return merge(sourceOne, sourceTwo);
+	@Override public List<PlanataInfo> merge(PlanataInfo baseInfo, PlanataInfo selectedInfo) {
+		List<PlanataInfo> results = new ArrayList<>();
+		
+		selectedInfo.date = baseInfo.date;
+		selectedInfo.username = baseInfo.username;
+		selectedInfo.codLanguage = baseInfo.codLanguage;
+		
+		results.add(selectedInfo);
+		return results;
 	}
 	
 	
 	
-	private void checkArgument(PlanataInfo sourceOne, PlanataInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private PlanataInfo merge(PlanataInfo sourceOne, PlanataInfo sourceTwo) {
-		PlanataInfo result = makeClone(sourceOne);		
-		result.date = sourceTwo.date;
-		result.username = sourceTwo.username;
-		result.codLanguage = sourceTwo.codLanguage;
-		return result;
-	}
-	
-	
-	
-	private PlanataInfo makeClone(PlanataInfo recordInfo) {
-		try {
-			return (PlanataInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(PlanataInfo sourceOne, PlanataInfo sourceTwo) {		
-		return (sourceOne.codOwner == sourceTwo.codOwner);
-	}
-	
-	
-	
-	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
+	@Override public InfoUniquifier<PlanataInfo> getUniquifier() {
+		return null;
 	}
 }
