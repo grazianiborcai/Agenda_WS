@@ -1053,4 +1053,10 @@ public final class SystemCode {
 	public static final int CART_RESERVE_CONFLICT_MANDATORY_FIELD_EMPTY	= 10700;
 	public static final int CART_RESERVE_CONFLICT_ALREADY_EXIST			= 10701;
 	public static final int CART_RESERVE_CONFLICT_NOT_FOUND				= 10702;
+	
+	
+	// Planing Data Search
+	public static final int PLAN_DATA_SEARCH_MANDATORY_FIELD_EMPTY		= 10750;	
+	public static final int PLAN_DATA_SEARCH_NOT_FOUND 					= 10751; 
+	public static final int PLAN_DATA_SEARCH_ALREADY_EXIST				= 10752; 
 }
