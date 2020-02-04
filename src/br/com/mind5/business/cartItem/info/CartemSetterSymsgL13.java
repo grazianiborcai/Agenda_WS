@@ -15,7 +15,7 @@ public final class CartemSetterSymsgL13 implements InfoSetter<CartemInfo> {
 		
 		recordInfo.symsgData = new SymsgInfo();
 		recordInfo.symsgData.codLanguage = recordInfo.codLanguage;
-		recordInfo.symsgData.codMsg = SystemCode.PLAN_DATA_NOT_FOUND;
+		recordInfo.symsgData.codMsg = SystemCode.PLAN_DATA_SEARCH_NOT_FOUND;
 		
 		return recordInfo;
 	}

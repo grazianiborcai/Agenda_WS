@@ -8,7 +8,7 @@ import br.com.mind5.business.cartItem.model.action.LazyCartemEnforceAged;
 import br.com.mind5.business.cartItem.model.action.LazyCartemMergeSymsg;
 import br.com.mind5.business.cartItem.model.action.StdCartemEnforceSymsgL13;
 import br.com.mind5.business.cartItem.model.action.StdCartemSuccess;
-import br.com.mind5.business.cartItem.model.checker.CartemCheckPlanata;
+import br.com.mind5.business.cartItem.model.checker.CartemCheckPlanarch;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
@@ -34,7 +34,7 @@ public final class NodeCartemAgedServiceL13 extends DeciTreeWriteTemplate<Cartem
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
-		checker = new CartemCheckPlanata(checkerOption);
+		checker = new CartemCheckPlanarch(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
