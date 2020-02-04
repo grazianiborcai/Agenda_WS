@@ -64,7 +64,6 @@ public final class RootCartemUpsert extends DeciTreeWriteTemplate<CartemInfo> {
 		checker = new CartemCheckMat(checkerOption);
 		queue.add(checker);
 		
-		//TODO: verificar limite de itens no carrinho
 		//TODO: verificar quantidade. Somente 1 para servico. Nao pode ser negativa para todos os casos
 		//TODO: verificar valores negativos
 		//TODO: verificar Ordem em aberto
