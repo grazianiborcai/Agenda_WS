@@ -7,116 +7,68 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoStmt;
-import br.com.mind5.dao.DaoStmtHelper_;
+import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
-import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.dao.common.DaoOptionValue;
-import br.com.mind5.dao.obsolete.DaoResultParser_;
-import br.com.mind5.dao.obsolete.DaoStmtOption_;
 import br.com.mind5.webhook.moipRefund.info.WokefumoipInfo;
 
-public final class WokefumoipSelectSingle implements DaoStmt<WokefumoipInfo> {
-	private final static String LT_PAY_ORDER = DaoDbTable.PAY_ORDER_ITM_TABLE;
-	
-	private DaoStmt<WokefumoipInfo> stmtSql;
-	private DaoStmtOption_<WokefumoipInfo> stmtOption;
-	
+public final class WokefumoipSelectSingle extends DaoStmtTemplate<WokefumoipInfo> {
+	private final String MAIN_TABLE = DaoDbTable.PAY_ORDER_ITM_TABLE;
 	
 	
 	public WokefumoipSelectSingle(Connection conn, WokefumoipInfo recordInfo, String schemaName) {
-		buildStmtOption(conn, recordInfo, schemaName);
-		buildStmt();
+		super(conn, recordInfo, schemaName);
 	}
 	
 	
 	
-	private void buildStmtOption(Connection conn, WokefumoipInfo recordInfo, String schemaName) {
-		this.stmtOption = new DaoStmtOption_<>();
-		this.stmtOption.conn = conn;
-		this.stmtOption.recordInfo = recordInfo;
-		this.stmtOption.schemaName = schemaName;
-		this.stmtOption.tableName = LT_PAY_ORDER;
-		this.stmtOption.columns = DaoDbTableColumnAll.getTableColumnsAsList(DaoDbTable.REFUND_VIEW);
-		this.stmtOption.stmtParamTranslator = null;
-		this.stmtOption.resultParser = new ResultParser();
-		this.stmtOption.whereClause = buildWhereClause();
-		this.stmtOption.joins = null;
+	@Override protected String getTableNameHook() {
+		return MAIN_TABLE;
 	}
 	
 	
 	
-	private String buildWhereClause() {		
+	@Override protected DaoOperation getOperationHook() {
+		return DaoOperation.SELECT;
+	}
+	
+	
+	
+	@Override protected String buildWhereClauseHook(String tableName, WokefumoipInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
+		
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new WokefumoipWhere(whereOption, stmtOption.tableName, stmtOption.recordInfo);
+		DaoStmtWhere whereClause = new WokefumoipWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
 	
 	
-	private void buildStmt() {
-		this.stmtSql = new DaoStmtHelper_<>(DaoOperation.SELECT, this.stmtOption, this.getClass());
-	}
-	
-	
-
-	@Override public void generateStmt() throws SQLException {
-		stmtSql.generateStmt();		
-	}
-
-	
-	
-	@Override public boolean checkStmtGeneration() {
-		return stmtSql.checkStmtGeneration();
-	}
-
-	
-	
-	@Override public void executeStmt() throws SQLException {
-		stmtSql.executeStmt();
-	}
-
-	
-	
-	@Override public List<WokefumoipInfo> getResultset() {
-		return stmtSql.getResultset();
-	}
-	
-	
-	
-	@Override public DaoStmt<WokefumoipInfo> getNewInstance() {
-		return new WokefumoipSelectSingle(stmtOption.conn, stmtOption.recordInfo, stmtOption.schemaName);
-	}
-	
-	
-	
-	
-	
-	
-	private static class ResultParser implements DaoResultParser_<WokefumoipInfo> {
-		private final boolean EMPTY_RESULT_SET = false;
-		
-		@Override public List<WokefumoipInfo> parseResult(ResultSet stmtResult, long lastId) throws SQLException {
-			List<WokefumoipInfo> finalResult = new ArrayList<>();
-			
-			if (stmtResult.next() == EMPTY_RESULT_SET)				
-				return finalResult;
-			
-			do {
-				WokefumoipInfo dataInfo = new WokefumoipInfo();
-				dataInfo.codOwner = stmtResult.getLong(WokefumoipDbTableColumn.COL_COD_OWNER);
-				dataInfo.codPayOrder = stmtResult.getLong(WokefumoipDbTableColumn.COL_COD_PAY_ORDER);	
-				dataInfo.idPaymentPartner = stmtResult.getString(WokefumoipDbTableColumn.COL_ID_PAYMENT_PARTNER);				
+	@Override protected DaoResultParserV2<WokefumoipInfo> getResultParserHook() {
+		return new DaoResultParserV2<WokefumoipInfo>() {
+			@Override public List<WokefumoipInfo> parseResult(WokefumoipInfo redcordInfo, ResultSet stmtResult, long lastId) throws SQLException {
+				List<WokefumoipInfo> finalResult = new ArrayList<>();
 				
-				finalResult.add(dataInfo);
-			} while (stmtResult.next());
-			
-			return finalResult;
-		}
+				if (stmtResult.next() == false)				
+					return finalResult;
+				
+				do {
+					WokefumoipInfo dataInfo = new WokefumoipInfo();
+					
+					dataInfo.codOwner = stmtResult.getLong(WokefumoipDbTableColumn.COL_COD_OWNER);
+					dataInfo.codPayOrder = stmtResult.getLong(WokefumoipDbTableColumn.COL_COD_PAY_ORDER);	
+					dataInfo.idPaymentPartner = stmtResult.getString(WokefumoipDbTableColumn.COL_ID_PAYMENT_PARTNER);				
+					
+					finalResult.add(dataInfo);
+				} while (stmtResult.next());
+				
+				return finalResult;
+			}
+		};
 	}
 }

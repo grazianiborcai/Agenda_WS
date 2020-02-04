@@ -6,12 +6,13 @@ import java.util.List;
 
 import br.com.mind5.dao.DaoColumn;
 import br.com.mind5.dao.DaoDbTableColumnTemplate;
+import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
 public final class WokefumoipDbTableColumn extends DaoDbTableColumnTemplate {
-	public static final String COL_COD_OWNER = "cod_owner";	
-	public static final String COL_COD_PAY_ORDER = "cod_pay_order";
-	public static final String COL_ID_PAYMENT_PARTNER = "id_payment_partner";
+	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;
+	public static final String COL_COD_PAY_ORDER = DaoDbField.COL_COD_PAY_ORDER; 
+	public static final String COL_ID_PAYMENT_PARTNER = DaoDbField.COL_ID_PAYMENT_PARTNER; 
 	
 	
 	private Hashtable<String, List<DaoColumn>> tableColumns;
