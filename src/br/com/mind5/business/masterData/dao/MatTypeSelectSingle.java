@@ -10,7 +10,7 @@ import br.com.mind5.business.masterData.info.MatTypeInfo;
 import br.com.mind5.dao.DaoJoin;
 import br.com.mind5.dao.DaoJoinBuilder;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
@@ -59,8 +59,8 @@ public final class MatTypeSelectSingle extends DaoStmtTemplate<MatTypeInfo> {
 	
 	
 	
-	@Override protected DaoResultParserV2<MatTypeInfo> getResultParserHook() {
-		return new DaoResultParserV2<MatTypeInfo>() {
+	@Override protected DaoResultParser<MatTypeInfo> getResultParserHook() {
+		return new DaoResultParser<MatTypeInfo>() {
 			@Override public List<MatTypeInfo> parseResult(MatTypeInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
 				List<MatTypeInfo> finalResult = new ArrayList<>();
 				

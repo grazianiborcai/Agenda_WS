@@ -9,7 +9,7 @@ import java.util.List;
 import br.com.mind5.business.materialSnapshot.info.MatsnapInfo;
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
@@ -49,8 +49,8 @@ public final class MatsnapSelectSingle extends DaoStmtTemplate<MatsnapInfo> {
 	
 	
 	
-	@Override protected DaoResultParserV2<MatsnapInfo> getResultParserHook() {
-		return new DaoResultParserV2<MatsnapInfo>() {
+	@Override protected DaoResultParser<MatsnapInfo> getResultParserHook() {
+		return new DaoResultParser<MatsnapInfo>() {
 			@Override public List<MatsnapInfo> parseResult(MatsnapInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
 				List<MatsnapInfo> finalResult = new ArrayList<>();
 				

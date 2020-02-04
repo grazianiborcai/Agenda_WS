@@ -8,7 +8,7 @@ import java.util.List;
 
 import br.com.mind5.business.masterData.info.AuthGrRoleInfo;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
@@ -49,8 +49,8 @@ public final class AuthGrRoleSelectSingle extends DaoStmtTemplate<AuthGrRoleInfo
 		
 	
 	
-	@Override protected DaoResultParserV2<AuthGrRoleInfo> getResultParserHook() {
-		return new DaoResultParserV2<AuthGrRoleInfo>() {
+	@Override protected DaoResultParser<AuthGrRoleInfo> getResultParserHook() {
+		return new DaoResultParser<AuthGrRoleInfo>() {
 			@Override public List<AuthGrRoleInfo> parseResult(AuthGrRoleInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
 				List<AuthGrRoleInfo> finalResult = new ArrayList<>();
 				

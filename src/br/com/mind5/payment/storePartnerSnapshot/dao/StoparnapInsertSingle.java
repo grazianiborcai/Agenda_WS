@@ -9,7 +9,7 @@ import java.util.List;
 
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtParamTranslator;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.common.DaoDbTable;
@@ -62,8 +62,8 @@ public final class StoparnapInsertSingle extends DaoStmtTemplate<StoparnapInfo> 
 	
 	
 	
-	@Override protected DaoResultParserV2<StoparnapInfo> getResultParserHook() {
-		return new DaoResultParserV2<StoparnapInfo>() {	
+	@Override protected DaoResultParser<StoparnapInfo> getResultParserHook() {
+		return new DaoResultParser<StoparnapInfo>() {	
 			@Override public List<StoparnapInfo> parseResult(StoparnapInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
 				List<StoparnapInfo> finalResult = new ArrayList<>();
 				recordInfo.codSnapshot = lastId;

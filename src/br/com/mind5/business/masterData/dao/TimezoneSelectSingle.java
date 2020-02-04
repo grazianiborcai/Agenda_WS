@@ -10,7 +10,7 @@ import br.com.mind5.business.masterData.info.TimezoneInfo;
 import br.com.mind5.dao.DaoJoin;
 import br.com.mind5.dao.DaoJoinBuilder;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
@@ -59,8 +59,8 @@ public final class TimezoneSelectSingle extends DaoStmtTemplate<TimezoneInfo> {
 	
 	
 	
-	@Override protected DaoResultParserV2<TimezoneInfo> getResultParserHook() {
-		return new DaoResultParserV2<TimezoneInfo>() {
+	@Override protected DaoResultParser<TimezoneInfo> getResultParserHook() {
+		return new DaoResultParser<TimezoneInfo>() {
 			@Override public List<TimezoneInfo> parseResult(TimezoneInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
 				List<TimezoneInfo> finalResult = new ArrayList<>();
 				

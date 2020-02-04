@@ -9,7 +9,7 @@ import java.util.List;
 import br.com.mind5.business.personSearch.info.PerarchInfo;
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
@@ -56,8 +56,8 @@ public final class PerarchSelectSingle extends DaoStmtTemplate<PerarchInfo> {
 	
 	
 	
-	@Override protected DaoResultParserV2<PerarchInfo> getResultParserHook() {
-		return new DaoResultParserV2<PerarchInfo>() {		
+	@Override protected DaoResultParser<PerarchInfo> getResultParserHook() {
+		return new DaoResultParser<PerarchInfo>() {		
 			@Override public List<PerarchInfo> parseResult(PerarchInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
 				List<PerarchInfo> finalResult = new ArrayList<>();
 				

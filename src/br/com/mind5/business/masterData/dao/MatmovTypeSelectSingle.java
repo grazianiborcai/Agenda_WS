@@ -11,7 +11,7 @@ import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoJoin;
 import br.com.mind5.dao.DaoJoinBuilder;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
@@ -60,8 +60,8 @@ public final class MatmovTypeSelectSingle extends DaoStmtTemplate<MatmovTypeInfo
 	
 	
 	
-	@Override protected DaoResultParserV2<MatmovTypeInfo> getResultParserHook() {
-		return new DaoResultParserV2<MatmovTypeInfo>() {
+	@Override protected DaoResultParser<MatmovTypeInfo> getResultParserHook() {
+		return new DaoResultParser<MatmovTypeInfo>() {
 			@Override public List<MatmovTypeInfo> parseResult(MatmovTypeInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
 				List<MatmovTypeInfo> finalResult = new ArrayList<>();
 				

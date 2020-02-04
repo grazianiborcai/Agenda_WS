@@ -9,7 +9,7 @@ import java.util.List;
 
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtParamTranslator;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.common.DaoDbTable;
@@ -62,8 +62,8 @@ public final class CrecardInsertSingle extends DaoStmtTemplate<CrecardInfo> {
 	
 	
 	
-	@Override protected DaoResultParserV2<CrecardInfo> getResultParserHook() {
-		return new DaoResultParserV2<CrecardInfo>() {	
+	@Override protected DaoResultParser<CrecardInfo> getResultParserHook() {
+		return new DaoResultParser<CrecardInfo>() {	
 			@Override public List<CrecardInfo> parseResult(CrecardInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
 				List<CrecardInfo> finalResult = new ArrayList<>();
 				recordInfo.codCreditCard = lastId;

@@ -9,7 +9,7 @@ import java.util.List;
 import br.com.mind5.business.personList.info.PersolisInfo;
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
@@ -56,8 +56,8 @@ public final class PersolisSelectSingle extends DaoStmtTemplate<PersolisInfo> {
 	
 	
 	
-	@Override protected DaoResultParserV2<PersolisInfo> getResultParserHook() {
-		return new DaoResultParserV2<PersolisInfo>() {				
+	@Override protected DaoResultParser<PersolisInfo> getResultParserHook() {
+		return new DaoResultParser<PersolisInfo>() {				
 			@Override public List<PersolisInfo> parseResult(PersolisInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
 				List<PersolisInfo> finalResult = new ArrayList<>();
 				

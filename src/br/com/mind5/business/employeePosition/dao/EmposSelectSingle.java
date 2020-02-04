@@ -9,7 +9,7 @@ import java.util.List;
 import br.com.mind5.business.employeePosition.info.EmposInfo;
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
@@ -51,8 +51,8 @@ public final class EmposSelectSingle extends DaoStmtTemplate<EmposInfo> {
 	
 	
 	
-	@Override protected DaoResultParserV2<EmposInfo> getResultParserHook() {
-		return new DaoResultParserV2<EmposInfo>() {
+	@Override protected DaoResultParser<EmposInfo> getResultParserHook() {
+		return new DaoResultParser<EmposInfo>() {
 			@Override public List<EmposInfo> parseResult(EmposInfo redcordInfo, ResultSet stmtResult, long lastId) throws SQLException {
 				List<EmposInfo> finalResult = new ArrayList<>();
 				

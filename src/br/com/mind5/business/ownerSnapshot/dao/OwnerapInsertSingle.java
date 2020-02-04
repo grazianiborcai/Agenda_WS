@@ -10,7 +10,7 @@ import java.util.List;
 import br.com.mind5.business.ownerSnapshot.info.OwnerapInfo;
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtParamTranslator;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.common.DaoDbTable;
@@ -62,8 +62,8 @@ public final class OwnerapInsertSingle extends DaoStmtTemplate<OwnerapInfo> {
 	
 	
 	
-	@Override protected DaoResultParserV2<OwnerapInfo> getResultParserHook() {
-		return new DaoResultParserV2<OwnerapInfo>() {		
+	@Override protected DaoResultParser<OwnerapInfo> getResultParserHook() {
+		return new DaoResultParser<OwnerapInfo>() {		
 			@Override public List<OwnerapInfo> parseResult(OwnerapInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
 				List<OwnerapInfo> finalResult = new ArrayList<>();
 				recordInfo.codSnapshot = lastId;

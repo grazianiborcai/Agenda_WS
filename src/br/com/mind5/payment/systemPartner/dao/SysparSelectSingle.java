@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
@@ -49,8 +49,8 @@ public final class SysparSelectSingle extends DaoStmtTemplate<SysparInfo> {
 	
 	
 	
-	@Override protected DaoResultParserV2<SysparInfo> getResultParserHook() {
-		return new DaoResultParserV2<SysparInfo>() {
+	@Override protected DaoResultParser<SysparInfo> getResultParserHook() {
+		return new DaoResultParser<SysparInfo>() {
 			@Override public List<SysparInfo> parseResult(SysparInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
 				List<SysparInfo> finalResult = new ArrayList<>();
 				

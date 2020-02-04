@@ -9,7 +9,7 @@ import java.util.List;
 import br.com.mind5.business.materialMovement.info.MatmovInfo;
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
@@ -50,8 +50,8 @@ public final class MatmovSelectSingle extends DaoStmtTemplate<MatmovInfo> {
 	
 	
 	
-	@Override protected DaoResultParserV2<MatmovInfo> getResultParserHook() {
-		return new DaoResultParserV2<MatmovInfo>() {
+	@Override protected DaoResultParser<MatmovInfo> getResultParserHook() {
+		return new DaoResultParser<MatmovInfo>() {
 			@Override public List<MatmovInfo> parseResult(MatmovInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
 				List<MatmovInfo> finalResult = new ArrayList<>();
 				

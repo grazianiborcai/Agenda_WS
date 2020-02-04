@@ -9,7 +9,7 @@ import java.util.List;
 import br.com.mind5.business.storeLeaveDateRange.info.StolargInfo;
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
@@ -57,8 +57,8 @@ public final class StolargSelectSingle extends DaoStmtTemplate<StolargInfo> {
 	
 	
 	
-	@Override protected DaoResultParserV2<StolargInfo> getResultParserHook() {
-		return new DaoResultParserV2<StolargInfo>() {
+	@Override protected DaoResultParser<StolargInfo> getResultParserHook() {
+		return new DaoResultParser<StolargInfo>() {
 			@Override public List<StolargInfo> parseResult(StolargInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
 				List<StolargInfo> finalResult = new ArrayList<>();
 				

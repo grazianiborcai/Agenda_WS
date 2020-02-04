@@ -10,7 +10,7 @@ import br.com.mind5.business.masterData.info.PositionInfo;
 import br.com.mind5.dao.DaoJoin;
 import br.com.mind5.dao.DaoJoinBuilder;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
@@ -59,8 +59,8 @@ public final class PositionSelectSingle extends DaoStmtTemplate<PositionInfo> {
 	
 	
 	
-	@Override protected DaoResultParserV2<PositionInfo> getResultParserHook() {
-		return new DaoResultParserV2<PositionInfo>() {
+	@Override protected DaoResultParser<PositionInfo> getResultParserHook() {
+		return new DaoResultParser<PositionInfo>() {
 			@Override public List<PositionInfo> parseResult(PositionInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
 				List<PositionInfo> finalResult = new ArrayList<>();
 				

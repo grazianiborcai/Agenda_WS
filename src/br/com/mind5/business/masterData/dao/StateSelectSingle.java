@@ -10,7 +10,7 @@ import br.com.mind5.business.masterData.info.StateInfo;
 import br.com.mind5.dao.DaoJoin;
 import br.com.mind5.dao.DaoJoinBuilder;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
@@ -59,8 +59,8 @@ public final class StateSelectSingle extends DaoStmtTemplate<StateInfo> {
 	
 	
 	
-	@Override protected DaoResultParserV2<StateInfo> getResultParserHook() {
-		return new DaoResultParserV2<StateInfo>() {
+	@Override protected DaoResultParser<StateInfo> getResultParserHook() {
+		return new DaoResultParser<StateInfo>() {
 			@Override public List<StateInfo> parseResult(StateInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
 				List<StateInfo> finalResult = new ArrayList<>();
 				

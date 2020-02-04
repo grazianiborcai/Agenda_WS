@@ -9,7 +9,7 @@ import java.util.List;
 import br.com.mind5.business.scheduleSearch.info.SchedarchInfo;
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
@@ -56,8 +56,8 @@ public final class SchedarchSelectSingle extends DaoStmtTemplate<SchedarchInfo> 
 	
 	
 	
-	@Override protected DaoResultParserV2<SchedarchInfo> getResultParserHook() {
-		return new DaoResultParserV2<SchedarchInfo>() {
+	@Override protected DaoResultParser<SchedarchInfo> getResultParserHook() {
+		return new DaoResultParser<SchedarchInfo>() {
 			@Override public List<SchedarchInfo> parseResult(SchedarchInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {	
 				List<SchedarchInfo> finalResult = new ArrayList<>();
 				

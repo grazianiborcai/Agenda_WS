@@ -8,7 +8,7 @@ import java.util.List;
 
 import br.com.mind5.business.employeeMaterial.info.EmpmatInfo;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
@@ -50,8 +50,8 @@ public final class EmpmatDeleteSingle extends DaoStmtTemplate<EmpmatInfo> {
 	
 	
 	
-	@Override protected DaoResultParserV2<EmpmatInfo> getResultParserHook() {
-		return new DaoResultParserV2<EmpmatInfo>() {
+	@Override protected DaoResultParser<EmpmatInfo> getResultParserHook() {
+		return new DaoResultParser<EmpmatInfo>() {
 			@Override public List<EmpmatInfo> parseResult(EmpmatInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
 				List<EmpmatInfo> finalResult = new ArrayList<>();
 				EmpmatInfo emptyInfo = new EmpmatInfo();

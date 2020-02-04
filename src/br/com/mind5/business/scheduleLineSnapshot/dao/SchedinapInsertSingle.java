@@ -10,7 +10,7 @@ import java.util.List;
 import br.com.mind5.business.scheduleLineSnapshot.info.SchedinapInfo;
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtParamTranslator;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.common.DaoDbTable;
@@ -80,8 +80,8 @@ public class SchedinapInsertSingle extends DaoStmtTemplate<SchedinapInfo> {
 	
 	
 	
-	@Override protected DaoResultParserV2<SchedinapInfo> getResultParserHook() {
-		return new DaoResultParserV2<SchedinapInfo>() {		
+	@Override protected DaoResultParser<SchedinapInfo> getResultParserHook() {
+		return new DaoResultParser<SchedinapInfo>() {		
 			@Override public List<SchedinapInfo> parseResult(SchedinapInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
 				List<SchedinapInfo> finalResult = new ArrayList<>();
 				recordInfo.codSnapshot = lastId;

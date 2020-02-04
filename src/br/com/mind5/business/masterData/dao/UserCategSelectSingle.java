@@ -11,7 +11,7 @@ import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoJoin;
 import br.com.mind5.dao.DaoJoinBuilder;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
@@ -60,8 +60,8 @@ public final class UserCategSelectSingle extends DaoStmtTemplate<UserCategInfo> 
 	
 	
 	
-	@Override protected DaoResultParserV2<UserCategInfo> getResultParserHook() {
-		return new DaoResultParserV2<UserCategInfo>() {
+	@Override protected DaoResultParser<UserCategInfo> getResultParserHook() {
+		return new DaoResultParser<UserCategInfo>() {
 			@Override public List<UserCategInfo> parseResult(UserCategInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
 				List<UserCategInfo> finalResult = new ArrayList<>();
 				

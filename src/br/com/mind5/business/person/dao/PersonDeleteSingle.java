@@ -8,7 +8,7 @@ import java.util.List;
 
 import br.com.mind5.business.person.info.PersonInfo;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
@@ -50,8 +50,8 @@ public final class PersonDeleteSingle extends DaoStmtTemplate<PersonInfo> {
 	
 	
 	
-	@Override protected DaoResultParserV2<PersonInfo> getResultParserHook() {
-		return new DaoResultParserV2<PersonInfo>() {
+	@Override protected DaoResultParser<PersonInfo> getResultParserHook() {
+		return new DaoResultParser<PersonInfo>() {
 			@Override public List<PersonInfo> parseResult(PersonInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
 				List<PersonInfo> finalResult = new ArrayList<>();
 				PersonInfo emptyInfo = new PersonInfo();

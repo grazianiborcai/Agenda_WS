@@ -8,7 +8,7 @@ import java.util.List;
 
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
@@ -50,8 +50,8 @@ public final class CounparSelectSingle extends DaoStmtTemplate<CounparInfo> {
 	
 	
 	
-	@Override protected DaoResultParserV2<CounparInfo> getResultParserHook() {
-		return new DaoResultParserV2<CounparInfo>() {
+	@Override protected DaoResultParser<CounparInfo> getResultParserHook() {
+		return new DaoResultParser<CounparInfo>() {
 			@Override public List<CounparInfo> parseResult(CounparInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
 				List<CounparInfo> finalResult = new ArrayList<>();
 				

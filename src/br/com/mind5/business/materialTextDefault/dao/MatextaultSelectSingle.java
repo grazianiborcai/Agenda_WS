@@ -8,7 +8,7 @@ import java.util.List;
 
 import br.com.mind5.business.materialTextDefault.info.MatextaultInfo;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
@@ -53,8 +53,8 @@ public final class MatextaultSelectSingle extends DaoStmtTemplate<MatextaultInfo
 	
 	
 	
-	@Override protected DaoResultParserV2<MatextaultInfo> getResultParserHook() {
-		return new DaoResultParserV2<MatextaultInfo>() {
+	@Override protected DaoResultParser<MatextaultInfo> getResultParserHook() {
+		return new DaoResultParser<MatextaultInfo>() {
 			@Override public List<MatextaultInfo> parseResult(MatextaultInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
 				List<MatextaultInfo> finalResult = new ArrayList<>();
 				

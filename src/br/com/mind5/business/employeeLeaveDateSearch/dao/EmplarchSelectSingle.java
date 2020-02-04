@@ -11,7 +11,7 @@ import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoJoin;
 import br.com.mind5.dao.DaoJoinBuilder;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
@@ -74,8 +74,8 @@ public final class EmplarchSelectSingle extends DaoStmtTemplate<EmplarchInfo> {
 	
 	
 	
-	@Override protected DaoResultParserV2<EmplarchInfo> getResultParserHook() {
-		return new DaoResultParserV2<EmplarchInfo>() {
+	@Override protected DaoResultParser<EmplarchInfo> getResultParserHook() {
+		return new DaoResultParser<EmplarchInfo>() {
 			@Override public List<EmplarchInfo> parseResult(EmplarchInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
 				List<EmplarchInfo> finalResult = new ArrayList<>();
 				

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
@@ -49,8 +49,8 @@ public final class WokefumoipSelectSingle extends DaoStmtTemplate<WokefumoipInfo
 	
 	
 	
-	@Override protected DaoResultParserV2<WokefumoipInfo> getResultParserHook() {
-		return new DaoResultParserV2<WokefumoipInfo>() {
+	@Override protected DaoResultParser<WokefumoipInfo> getResultParserHook() {
+		return new DaoResultParser<WokefumoipInfo>() {
 			@Override public List<WokefumoipInfo> parseResult(WokefumoipInfo redcordInfo, ResultSet stmtResult, long lastId) throws SQLException {
 				List<WokefumoipInfo> finalResult = new ArrayList<>();
 				

@@ -9,7 +9,7 @@ import java.util.List;
 import br.com.mind5.business.scheduleYearData.info.SchedyeratInfo;
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
@@ -50,8 +50,8 @@ public class SchedyeratSelectSingle extends DaoStmtTemplate<SchedyeratInfo> {
 	
 	
 		
-	@Override protected DaoResultParserV2<SchedyeratInfo> getResultParserHook() {
-		return new DaoResultParserV2<SchedyeratInfo>() {
+	@Override protected DaoResultParser<SchedyeratInfo> getResultParserHook() {
+		return new DaoResultParser<SchedyeratInfo>() {
 			@Override public List<SchedyeratInfo> parseResult(SchedyeratInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
 				List<SchedyeratInfo> finalResult = new ArrayList<>();
 				

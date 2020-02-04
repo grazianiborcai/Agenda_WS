@@ -10,7 +10,7 @@ import br.com.mind5.business.employeeMaterialSearch.info.EmpmarchInfo;
 import br.com.mind5.dao.DaoJoin;
 import br.com.mind5.dao.DaoJoinBuilder;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
@@ -73,8 +73,8 @@ public final class EmpmarchSelectSingle extends DaoStmtTemplate<EmpmarchInfo> {
 	
 	
 	
-	@Override protected DaoResultParserV2<EmpmarchInfo> getResultParserHook() {
-		return new DaoResultParserV2<EmpmarchInfo>() {
+	@Override protected DaoResultParser<EmpmarchInfo> getResultParserHook() {
+		return new DaoResultParser<EmpmarchInfo>() {
 			@Override public List<EmpmarchInfo> parseResult(EmpmarchInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
 				List<EmpmarchInfo> finalResult = new ArrayList<>();
 				

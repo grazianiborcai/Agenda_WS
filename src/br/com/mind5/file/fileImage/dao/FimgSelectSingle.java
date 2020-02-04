@@ -8,7 +8,7 @@ import java.util.List;
 
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
@@ -50,8 +50,8 @@ public final class FimgSelectSingle extends DaoStmtTemplate<FimgInfo> {
 	
 	
 	
-	@Override protected DaoResultParserV2<FimgInfo> getResultParserHook() {
-		return new DaoResultParserV2<FimgInfo>() {
+	@Override protected DaoResultParser<FimgInfo> getResultParserHook() {
+		return new DaoResultParser<FimgInfo>() {
 			@Override public List<FimgInfo> parseResult(FimgInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
 				List<FimgInfo> finalResult = new ArrayList<>();
 				

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
@@ -50,8 +50,8 @@ public final class StoparDeleteSingle extends DaoStmtTemplate<StoparInfo> {
 	
 	
 	
-	@Override protected DaoResultParserV2<StoparInfo> getResultParserHook() {
-		return new DaoResultParserV2<StoparInfo>() {
+	@Override protected DaoResultParser<StoparInfo> getResultParserHook() {
+		return new DaoResultParser<StoparInfo>() {
 			@Override public List<StoparInfo> parseResult(StoparInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
 				List<StoparInfo> finalResult = new ArrayList<>();
 				StoparInfo emptyInfo = new StoparInfo();

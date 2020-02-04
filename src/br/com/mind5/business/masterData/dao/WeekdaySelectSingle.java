@@ -10,7 +10,7 @@ import br.com.mind5.business.masterData.info.WeekdayInfo;
 import br.com.mind5.dao.DaoJoin;
 import br.com.mind5.dao.DaoJoinBuilder;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
@@ -59,8 +59,8 @@ public final class WeekdaySelectSingle extends DaoStmtTemplate<WeekdayInfo> {
 	
 	
 	
-	@Override protected DaoResultParserV2<WeekdayInfo> getResultParserHook() {
-		return new DaoResultParserV2<WeekdayInfo>() {
+	@Override protected DaoResultParser<WeekdayInfo> getResultParserHook() {
+		return new DaoResultParser<WeekdayInfo>() {
 			@Override public List<WeekdayInfo> parseResult(WeekdayInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
 				List<WeekdayInfo> finalResult = new ArrayList<>();
 				

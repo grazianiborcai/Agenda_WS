@@ -8,7 +8,7 @@ import java.util.List;
 
 import br.com.mind5.business.materialTextSearch.info.MatextarchInfo;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
@@ -53,8 +53,8 @@ public final class MatextarchSelectSingle extends DaoStmtTemplate<MatextarchInfo
 	
 	
 		
-	@Override protected DaoResultParserV2<MatextarchInfo> getResultParserHook() {
-		return new DaoResultParserV2<MatextarchInfo>() {
+	@Override protected DaoResultParser<MatextarchInfo> getResultParserHook() {
+		return new DaoResultParser<MatextarchInfo>() {
 			@Override public List<MatextarchInfo> parseResult(MatextarchInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
 				List<MatextarchInfo> finalResult = new ArrayList<>();
 				

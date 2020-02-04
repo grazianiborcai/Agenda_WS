@@ -9,7 +9,7 @@ import java.util.List;
 import br.com.mind5.business.storeSnapshot.info.StorapInfo;
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
@@ -50,8 +50,8 @@ public final class StorapSelectSingle extends DaoStmtTemplate<StorapInfo> {
 	
 	
 	
-	@Override protected DaoResultParserV2<StorapInfo> getResultParserHook() {
-		return new DaoResultParserV2<StorapInfo>() {
+	@Override protected DaoResultParser<StorapInfo> getResultParserHook() {
+		return new DaoResultParser<StorapInfo>() {
 			@Override public List<StorapInfo> parseResult(StorapInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
 				List<StorapInfo> finalResult = new ArrayList<>();
 				

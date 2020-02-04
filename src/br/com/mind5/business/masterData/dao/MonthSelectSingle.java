@@ -9,7 +9,7 @@ import java.util.List;
 import br.com.mind5.business.masterData.info.MonthInfo;
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
@@ -51,8 +51,8 @@ public final class MonthSelectSingle extends DaoStmtTemplate<MonthInfo> {
 	
 	
 	
-	@Override protected DaoResultParserV2<MonthInfo> getResultParserHook() {
-		return new DaoResultParserV2<MonthInfo>() {
+	@Override protected DaoResultParser<MonthInfo> getResultParserHook() {
+		return new DaoResultParser<MonthInfo>() {
 			@Override public List<MonthInfo> parseResult(MonthInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
 				List<MonthInfo> finalResult = new ArrayList<>();
 				

@@ -9,7 +9,7 @@ import java.util.List;
 import br.com.mind5.business.feeOwner.info.FeewnerInfo;
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
@@ -50,8 +50,8 @@ public final class FeewnerSelectSingle extends DaoStmtTemplate<FeewnerInfo> {
 	
 	
 	
-	@Override protected DaoResultParserV2<FeewnerInfo> getResultParserHook() {
-		return new DaoResultParserV2<FeewnerInfo>() {
+	@Override protected DaoResultParser<FeewnerInfo> getResultParserHook() {
+		return new DaoResultParser<FeewnerInfo>() {
 			@Override public List<FeewnerInfo> parseResult(FeewnerInfo redcordInfo, ResultSet stmtResult, long lastId) throws SQLException {
 				List<FeewnerInfo> finalResult = new ArrayList<>();
 				

@@ -11,12 +11,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import br.com.mind5.common.SystemMessage;
-import br.com.mind5.dao.obsolete.DaoResultParser_;
-import br.com.mind5.dao.obsolete.DaoStmtOption_;
 //TODO: trocar por Template ?
-public final class DaoStmtHelper_<T> implements DaoStmt<T> {
+public final class DaoStmtHelper<T> implements DaoStmt<T> {
 	private DaoOperation operation;
-	private DaoStmtOption_<T> option;
+	private DaoStmtOption<T> option;
 	private String skeleton;
 	private PreparedStatement stmt;
 	private ResultSet stmtResultSet;
@@ -24,7 +22,7 @@ public final class DaoStmtHelper_<T> implements DaoStmt<T> {
 	private Class<?> childClass;
 	
 	
-	public DaoStmtHelper_(DaoOperation stmtOperation, DaoStmtOption_<T> stmtOption, Class<?> clazz) {
+	public DaoStmtHelper(DaoOperation stmtOperation, DaoStmtOption<T> stmtOption, Class<?> clazz) {
 		checkArgument(stmtOperation, stmtOption, clazz);		
 		
 		operation = stmtOperation;
@@ -44,7 +42,7 @@ public final class DaoStmtHelper_<T> implements DaoStmt<T> {
 	
 	
 	
-	private String buildStmtSkeleton(DaoStmtOption_<T> stmtOption, DaoOperation stmtOperation) {
+	private String buildStmtSkeleton(DaoStmtOption<T> stmtOption, DaoOperation stmtOperation) {
 		DaoStmtBuilderOption builderOption = new DaoStmtBuilderOption();
 		builderOption.columns = stmtOption.columns;
 		builderOption.schemaName = stmtOption.schemaName;
@@ -121,14 +119,14 @@ public final class DaoStmtHelper_<T> implements DaoStmt<T> {
 	
 	
 	
-	private List<T> parseResultSet(ResultSet sqlResult, DaoResultParser_<T> parser, T recordInfo) throws SQLException {
+	private List<T> parseResultSet(ResultSet sqlResult, DaoResultParser<T> parser, T recordInfo) throws SQLException {
 		List<T> results = new ArrayList<>();
 		
 		if (parser == null) {
 			results.add(recordInfo);
 		} else {
 			long lastId = getLastInsertId();
-			results = parser.parseResult(sqlResult, lastId);
+			results = parser.parseResult(recordInfo, sqlResult, lastId);
 		}
 		
 		return results;
@@ -153,7 +151,7 @@ public final class DaoStmtHelper_<T> implements DaoStmt<T> {
 	
 	
 	@Override public DaoStmt<T> getNewInstance() {
-		return new DaoStmtHelper_<T>(operation, option, childClass);
+		return new DaoStmtHelper<T>(operation, option, childClass);
 	}
 	
 	
@@ -168,9 +166,9 @@ public final class DaoStmtHelper_<T> implements DaoStmt<T> {
 	
 	
 	@SuppressWarnings("unchecked")
-	private DaoStmtOption_<T> makeDefensiveCopy(DaoStmtOption_<T> option) {
+	private DaoStmtOption<T> makeDefensiveCopy(DaoStmtOption<T> option) {
 		try {
-			return (DaoStmtOption_<T>) option.clone();
+			return (DaoStmtOption<T>) option.clone();
 			
 		} catch (CloneNotSupportedException e) {
 			logException(e);
@@ -207,7 +205,7 @@ public final class DaoStmtHelper_<T> implements DaoStmt<T> {
 	
 	
 	
-	private void checkArgument(DaoOperation operation, DaoStmtOption_<T> option, Class<?> clazz) {
+	private void checkArgument(DaoOperation operation, DaoStmtOption<T> option, Class<?> clazz) {
 		if (operation == null) {
 			logException(new NullPointerException("operation" + SystemMessage.NULL_ARGUMENT));
 			throw new NullPointerException("operation" + SystemMessage.NULL_ARGUMENT);

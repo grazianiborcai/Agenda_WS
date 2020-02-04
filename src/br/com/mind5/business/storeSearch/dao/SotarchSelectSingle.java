@@ -9,7 +9,7 @@ import java.util.List;
 import br.com.mind5.business.storeSearch.info.SotarchInfo;
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
@@ -56,8 +56,8 @@ public final class SotarchSelectSingle extends DaoStmtTemplate<SotarchInfo> {
 	
 	
 	
-	@Override protected DaoResultParserV2<SotarchInfo> getResultParserHook() {
-		return new DaoResultParserV2<SotarchInfo>() {
+	@Override protected DaoResultParser<SotarchInfo> getResultParserHook() {
+		return new DaoResultParser<SotarchInfo>() {
 			@Override public List<SotarchInfo> parseResult(SotarchInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
 				List<SotarchInfo> finalResult = new ArrayList<>();
 				

@@ -10,7 +10,7 @@ import java.util.List;
 import br.com.mind5.business.materialStoreSnapshot.info.MatorapInfo;
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtParamTranslator;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.common.DaoDbTable;
@@ -65,8 +65,8 @@ public final class MatorapInsertSingle extends DaoStmtTemplate<MatorapInfo> {
 	
 	
 	
-	@Override protected DaoResultParserV2<MatorapInfo> getResultParserHook() {
-		return new DaoResultParserV2<MatorapInfo>() {		
+	@Override protected DaoResultParser<MatorapInfo> getResultParserHook() {
+		return new DaoResultParser<MatorapInfo>() {		
 			@Override public List<MatorapInfo> parseResult(MatorapInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
 				List<MatorapInfo> finalResult = new ArrayList<>();
 				recordInfo.codSnapshot = lastId;

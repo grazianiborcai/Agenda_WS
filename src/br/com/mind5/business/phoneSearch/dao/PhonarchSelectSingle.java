@@ -9,7 +9,7 @@ import java.util.List;
 import br.com.mind5.business.phoneSearch.info.PhonarchInfo;
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
@@ -56,8 +56,8 @@ public final class PhonarchSelectSingle extends DaoStmtTemplate<PhonarchInfo> {
 	
 	
 	
-	@Override protected DaoResultParserV2<PhonarchInfo> getResultParserHook() {
-		return new DaoResultParserV2<PhonarchInfo>() {
+	@Override protected DaoResultParser<PhonarchInfo> getResultParserHook() {
+		return new DaoResultParser<PhonarchInfo>() {
 			@Override public List<PhonarchInfo> parseResult(PhonarchInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
 				List<PhonarchInfo> finalResult = new ArrayList<>();
 				

@@ -8,7 +8,7 @@ import java.util.List;
 
 import br.com.mind5.business.form.formAddress.info.FormAddressInfo;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
@@ -50,8 +50,8 @@ public final class FormAddressSelectSingle extends DaoStmtTemplate<FormAddressIn
 	
 	
 	
-	@Override protected DaoResultParserV2<FormAddressInfo> getResultParserHook() {
-		return new DaoResultParserV2<FormAddressInfo>() {
+	@Override protected DaoResultParser<FormAddressInfo> getResultParserHook() {
+		return new DaoResultParser<FormAddressInfo>() {
 			@Override public List<FormAddressInfo> parseResult(FormAddressInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
 				List<FormAddressInfo> finalResult = new ArrayList<>();
 				

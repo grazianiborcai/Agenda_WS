@@ -10,7 +10,7 @@ import br.com.mind5.business.employeeWorkTimeSearch.info.EmpwotarchInfo;
 import br.com.mind5.dao.DaoJoin;
 import br.com.mind5.dao.DaoJoinBuilder;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
@@ -73,8 +73,8 @@ public final class EmpwotarchSelectSingle extends DaoStmtTemplate<EmpwotarchInfo
 	
 	
 	
-	@Override protected DaoResultParserV2<EmpwotarchInfo> getResultParserHook() {
-		return new DaoResultParserV2<EmpwotarchInfo>() {
+	@Override protected DaoResultParser<EmpwotarchInfo> getResultParserHook() {
+		return new DaoResultParser<EmpwotarchInfo>() {
 			@Override public List<EmpwotarchInfo> parseResult(EmpwotarchInfo redcordInfo, ResultSet stmtResult, long lastId) throws SQLException {
 				List<EmpwotarchInfo> finalResult = new ArrayList<>();
 				

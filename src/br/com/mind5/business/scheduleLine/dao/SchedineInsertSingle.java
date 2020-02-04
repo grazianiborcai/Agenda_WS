@@ -10,7 +10,7 @@ import java.util.List;
 import br.com.mind5.business.scheduleLine.info.SchedineInfo;
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtParamTranslator;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.common.DaoDbTable;
@@ -76,8 +76,8 @@ public class SchedineInsertSingle extends DaoStmtTemplate<SchedineInfo> {
 	
 	
 	
-	@Override protected DaoResultParserV2<SchedineInfo> getResultParserHook() {
-		return new DaoResultParserV2<SchedineInfo>() {		
+	@Override protected DaoResultParser<SchedineInfo> getResultParserHook() {
+		return new DaoResultParser<SchedineInfo>() {		
 			@Override public List<SchedineInfo> parseResult(SchedineInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
 				List<SchedineInfo> finalResult = new ArrayList<>();
 				recordInfo.codSchedule = lastId;

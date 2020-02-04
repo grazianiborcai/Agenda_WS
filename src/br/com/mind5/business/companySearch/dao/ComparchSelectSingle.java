@@ -9,7 +9,7 @@ import java.util.List;
 import br.com.mind5.business.companySearch.info.ComparchInfo;
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
@@ -56,8 +56,8 @@ public final class ComparchSelectSingle extends DaoStmtTemplate<ComparchInfo> {
 	
 	
 		
-	@Override protected DaoResultParserV2<ComparchInfo> getResultParserHook() {
-		return new DaoResultParserV2<ComparchInfo>() {
+	@Override protected DaoResultParser<ComparchInfo> getResultParserHook() {
+		return new DaoResultParser<ComparchInfo>() {
 			@Override public List<ComparchInfo> parseResult(ComparchInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {				
 				List<ComparchInfo> finalResult = new ArrayList<>();
 				

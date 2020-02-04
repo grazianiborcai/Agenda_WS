@@ -10,7 +10,7 @@ import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoJoin;
 import br.com.mind5.dao.DaoJoinBuilder;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
@@ -66,8 +66,8 @@ public final class StorauthSelectSingle extends DaoStmtTemplate<StorauthInfo> {
 	
 	
 	
-	@Override protected DaoResultParserV2<StorauthInfo> getResultParserHook() {
-		return new DaoResultParserV2<StorauthInfo>() {
+	@Override protected DaoResultParser<StorauthInfo> getResultParserHook() {
+		return new DaoResultParser<StorauthInfo>() {
 			@Override public List<StorauthInfo> parseResult(StorauthInfo redcordInfo, ResultSet stmtResult, long lastId) throws SQLException {
 				List<StorauthInfo> finalResult = new ArrayList<>();
 				

@@ -9,7 +9,7 @@ import java.util.List;
 import br.com.mind5.business.ownerList.info.OwnelisInfo;
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
@@ -56,8 +56,8 @@ public final class OwnelisSelectSingle extends DaoStmtTemplate<OwnelisInfo> {
 	
 	
 	
-	@Override protected DaoResultParserV2<OwnelisInfo> getResultParserHook() {
-		return new DaoResultParserV2<OwnelisInfo>() {
+	@Override protected DaoResultParser<OwnelisInfo> getResultParserHook() {
+		return new DaoResultParser<OwnelisInfo>() {
 			@Override public List<OwnelisInfo> parseResult(OwnelisInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
 				List<OwnelisInfo> finalResult = new ArrayList<>();
 				

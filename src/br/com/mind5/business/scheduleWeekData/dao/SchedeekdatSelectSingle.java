@@ -9,7 +9,7 @@ import java.util.List;
 import br.com.mind5.business.scheduleWeekData.info.SchedeekdatInfo;
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
@@ -50,8 +50,8 @@ public class SchedeekdatSelectSingle extends DaoStmtTemplate<SchedeekdatInfo> {
 	
 	
 	
-	@Override protected DaoResultParserV2<SchedeekdatInfo> getResultParserHook() {
-		return new DaoResultParserV2<SchedeekdatInfo>() {
+	@Override protected DaoResultParser<SchedeekdatInfo> getResultParserHook() {
+		return new DaoResultParser<SchedeekdatInfo>() {
 			@Override public List<SchedeekdatInfo> parseResult(SchedeekdatInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {	
 				List<SchedeekdatInfo> finalResult = new ArrayList<>();
 				

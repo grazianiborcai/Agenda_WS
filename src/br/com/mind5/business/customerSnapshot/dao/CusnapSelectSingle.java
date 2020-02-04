@@ -9,7 +9,7 @@ import java.util.List;
 import br.com.mind5.business.customerSnapshot.info.CusnapInfo;
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
@@ -50,8 +50,8 @@ public final class CusnapSelectSingle extends DaoStmtTemplate<CusnapInfo> {
 	
 	
 	
-	@Override protected DaoResultParserV2<CusnapInfo> getResultParserHook() {
-		return new DaoResultParserV2<CusnapInfo>() {
+	@Override protected DaoResultParser<CusnapInfo> getResultParserHook() {
+		return new DaoResultParser<CusnapInfo>() {
 			@Override public List<CusnapInfo> parseResult(CusnapInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
 				List<CusnapInfo> finalResult = new ArrayList<>();
 				

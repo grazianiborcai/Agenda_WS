@@ -10,7 +10,7 @@ import java.util.List;
 import br.com.mind5.business.order.info.OrderInfo;
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtParamTranslator;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.common.DaoDbTable;
@@ -72,8 +72,8 @@ public final class OrderInsertSingle extends DaoStmtTemplate<OrderInfo> {
 	
 	
 	
-	@Override protected DaoResultParserV2<OrderInfo> getResultParserHook() {
-		return new DaoResultParserV2<OrderInfo>() {		
+	@Override protected DaoResultParser<OrderInfo> getResultParserHook() {
+		return new DaoResultParser<OrderInfo>() {		
 			@Override public List<OrderInfo> parseResult(OrderInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
 				List<OrderInfo> finalResult = new ArrayList<>();
 				recordInfo.codOrder = lastId;

@@ -9,7 +9,7 @@ import java.util.List;
 import br.com.mind5.business.masterData.info.CartCategInfo;
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
@@ -51,8 +51,8 @@ public final class CartCategSelectSingle extends DaoStmtTemplate<CartCategInfo> 
 	
 	
 	
-	@Override protected DaoResultParserV2<CartCategInfo> getResultParserHook() {
-		return new DaoResultParserV2<CartCategInfo>() {
+	@Override protected DaoResultParser<CartCategInfo> getResultParserHook() {
+		return new DaoResultParser<CartCategInfo>() {
 			@Override public List<CartCategInfo> parseResult(CartCategInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
 				List<CartCategInfo> finalResult = new ArrayList<>();
 				

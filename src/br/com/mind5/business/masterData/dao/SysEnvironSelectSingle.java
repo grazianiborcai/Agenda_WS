@@ -8,7 +8,7 @@ import java.util.List;
 
 import br.com.mind5.business.masterData.info.SysEnvironInfo;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
@@ -50,8 +50,8 @@ public final class SysEnvironSelectSingle extends DaoStmtTemplate<SysEnvironInfo
 	
 	
 	
-	@Override protected DaoResultParserV2<SysEnvironInfo> getResultParserHook() {
-		return new DaoResultParserV2<SysEnvironInfo>() {
+	@Override protected DaoResultParser<SysEnvironInfo> getResultParserHook() {
+		return new DaoResultParser<SysEnvironInfo>() {
 			@Override public List<SysEnvironInfo> parseResult(SysEnvironInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
 				List<SysEnvironInfo> finalResult = new ArrayList<>();
 				

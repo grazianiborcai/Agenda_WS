@@ -8,7 +8,7 @@ import java.util.List;
 
 import br.com.mind5.business.materialMovementSearch.info.MatmarchInfo;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
@@ -55,8 +55,8 @@ public final class MatmarchSelectSingle extends DaoStmtTemplate<MatmarchInfo> {
 	
 	
 	
-	@Override protected DaoResultParserV2<MatmarchInfo> getResultParserHook() {
-		return new DaoResultParserV2<MatmarchInfo>() {
+	@Override protected DaoResultParser<MatmarchInfo> getResultParserHook() {
+		return new DaoResultParser<MatmarchInfo>() {
 			@Override public List<MatmarchInfo> parseResult(MatmarchInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
 				List<MatmarchInfo> finalResult = new ArrayList<>();
 				

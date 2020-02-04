@@ -10,7 +10,7 @@ import br.com.mind5.business.masterData.info.CountryLegalInfo;
 import br.com.mind5.dao.DaoJoin;
 import br.com.mind5.dao.DaoJoinBuilder;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
@@ -59,8 +59,8 @@ public final class CountryLegalSelectSingle extends DaoStmtTemplate<CountryLegal
 	
 	
 	
-	@Override protected DaoResultParserV2<CountryLegalInfo> getResultParserHook() {
-		return new DaoResultParserV2<CountryLegalInfo>() {
+	@Override protected DaoResultParser<CountryLegalInfo> getResultParserHook() {
+		return new DaoResultParser<CountryLegalInfo>() {
 			@Override public List<CountryLegalInfo> parseResult(CountryLegalInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
 				List<CountryLegalInfo> finalResult = new ArrayList<>();
 				

@@ -11,7 +11,7 @@ import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoJoin;
 import br.com.mind5.dao.DaoJoinBuilder;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
@@ -65,8 +65,8 @@ public final class OrderveSelectSingle extends DaoStmtTemplate<OrderveInfo> {
 	
 	
 		
-	@Override protected DaoResultParserV2<OrderveInfo> getResultParserHook() {
-		return new DaoResultParserV2<OrderveInfo>() {		
+	@Override protected DaoResultParser<OrderveInfo> getResultParserHook() {
+		return new DaoResultParser<OrderveInfo>() {		
 			@Override public List<OrderveInfo> parseResult(OrderveInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
 				List<OrderveInfo> finalResult = new ArrayList<>();
 				

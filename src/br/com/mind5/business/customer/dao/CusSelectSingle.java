@@ -9,7 +9,7 @@ import java.util.List;
 import br.com.mind5.business.customer.info.CusInfo;
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
@@ -49,8 +49,8 @@ public final class CusSelectSingle extends DaoStmtTemplate<CusInfo> {
 	
 	
 	
-	@Override protected DaoResultParserV2<CusInfo> getResultParserHook() {
-		return new DaoResultParserV2<CusInfo>() {
+	@Override protected DaoResultParser<CusInfo> getResultParserHook() {
+		return new DaoResultParser<CusInfo>() {
 			@Override public List<CusInfo> parseResult(CusInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
 				List<CusInfo> finalResult = new ArrayList<>();
 				

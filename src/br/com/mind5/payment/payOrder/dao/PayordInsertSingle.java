@@ -9,7 +9,7 @@ import java.util.List;
 
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtParamTranslator;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.common.DaoDbTable;
@@ -62,8 +62,8 @@ public final class PayordInsertSingle extends DaoStmtTemplate<PayordInfo> {
 	
 	
 	
-	@Override protected DaoResultParserV2<PayordInfo> getResultParserHook() {
-		return new DaoResultParserV2<PayordInfo>() {	
+	@Override protected DaoResultParser<PayordInfo> getResultParserHook() {
+		return new DaoResultParser<PayordInfo>() {	
 			@Override public List<PayordInfo> parseResult(PayordInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
 				List<PayordInfo> finalResult = new ArrayList<>();
 				recordInfo.codPayOrder = lastId;

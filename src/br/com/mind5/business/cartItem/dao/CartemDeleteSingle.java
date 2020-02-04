@@ -8,7 +8,7 @@ import java.util.List;
 
 import br.com.mind5.business.cartItem.info.CartemInfo;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
@@ -50,8 +50,8 @@ public final class CartemDeleteSingle extends DaoStmtTemplate<CartemInfo> {
 	
 	
 	
-	@Override protected DaoResultParserV2<CartemInfo> getResultParserHook() {
-		return new DaoResultParserV2<CartemInfo>() {
+	@Override protected DaoResultParser<CartemInfo> getResultParserHook() {
+		return new DaoResultParser<CartemInfo>() {
 			@Override public List<CartemInfo> parseResult(CartemInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
 				List<CartemInfo> finalResult = new ArrayList<>();
 				CartemInfo emptyInfo = new CartemInfo();

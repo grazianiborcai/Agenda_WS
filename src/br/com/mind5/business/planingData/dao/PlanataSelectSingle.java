@@ -11,7 +11,7 @@ import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoJoin;
 import br.com.mind5.dao.DaoJoinBuilder;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
@@ -89,8 +89,8 @@ public final class PlanataSelectSingle extends DaoStmtTemplate<PlanataInfo> {
 	
 	
 	
-	@Override protected DaoResultParserV2<PlanataInfo> getResultParserHook() {
-		return new DaoResultParserV2<PlanataInfo>() {		
+	@Override protected DaoResultParser<PlanataInfo> getResultParserHook() {
+		return new DaoResultParser<PlanataInfo>() {		
 			@Override public List<PlanataInfo> parseResult(PlanataInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
 				List<PlanataInfo> finalResult = new ArrayList<>();
 				

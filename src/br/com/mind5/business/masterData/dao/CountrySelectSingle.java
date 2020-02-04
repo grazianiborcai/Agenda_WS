@@ -10,7 +10,7 @@ import br.com.mind5.business.masterData.info.CountryInfo;
 import br.com.mind5.dao.DaoJoin;
 import br.com.mind5.dao.DaoJoinBuilder;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
@@ -59,8 +59,8 @@ public final class CountrySelectSingle extends DaoStmtTemplate<CountryInfo> {
 	
 	
 	
-	@Override protected DaoResultParserV2<CountryInfo> getResultParserHook() {
-		return new DaoResultParserV2<CountryInfo>() {
+	@Override protected DaoResultParser<CountryInfo> getResultParserHook() {
+		return new DaoResultParser<CountryInfo>() {
 			@Override public List<CountryInfo> parseResult(CountryInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
 				List<CountryInfo> finalResult = new ArrayList<>();
 				

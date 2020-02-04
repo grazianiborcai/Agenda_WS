@@ -11,7 +11,7 @@ import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoJoin;
 import br.com.mind5.dao.DaoJoinBuilder;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
@@ -70,8 +70,8 @@ public final class StowotarchSelectSingle extends DaoStmtTemplate<StowotarchInfo
 	
 	
 	
-	@Override protected DaoResultParserV2<StowotarchInfo> getResultParserHook() {
-		return new DaoResultParserV2<StowotarchInfo>() {		
+	@Override protected DaoResultParser<StowotarchInfo> getResultParserHook() {
+		return new DaoResultParser<StowotarchInfo>() {		
 			@Override public List<StowotarchInfo> parseResult(StowotarchInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
 				List<StowotarchInfo> finalResult = new ArrayList<>();
 				

@@ -10,7 +10,7 @@ import java.util.List;
 import br.com.mind5.business.company.info.CompInfo;
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtParamTranslator;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.common.DaoDbTable;
@@ -65,8 +65,8 @@ public final class CompInsertSingle extends DaoStmtTemplate<CompInfo> {
 	
 	
 	
-	@Override protected DaoResultParserV2<CompInfo> getResultParserHook() {
-		return new DaoResultParserV2<CompInfo>() {		
+	@Override protected DaoResultParser<CompInfo> getResultParserHook() {
+		return new DaoResultParser<CompInfo>() {		
 			@Override public List<CompInfo> parseResult(CompInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
 				List<CompInfo> finalResult = new ArrayList<>();
 				recordInfo.codCompany = lastId;

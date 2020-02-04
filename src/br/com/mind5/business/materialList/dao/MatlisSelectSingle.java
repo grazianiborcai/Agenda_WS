@@ -9,7 +9,7 @@ import java.util.List;
 import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
@@ -55,8 +55,8 @@ public final class MatlisSelectSingle extends DaoStmtTemplate<MatlisInfo> {
 	
 	
 	
-	@Override protected DaoResultParserV2<MatlisInfo> getResultParserHook() {
-		return new DaoResultParserV2<MatlisInfo>() {
+	@Override protected DaoResultParser<MatlisInfo> getResultParserHook() {
+		return new DaoResultParser<MatlisInfo>() {
 			@Override public List<MatlisInfo> parseResult(MatlisInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
 				List<MatlisInfo> finalResult = new ArrayList<>();
 				

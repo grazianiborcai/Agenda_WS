@@ -8,7 +8,7 @@ import java.util.List;
 
 import br.com.mind5.business.company.info.CompInfo;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
@@ -50,8 +50,8 @@ public final class CompDeleteSingle extends DaoStmtTemplate<CompInfo> {
 	
 	
 	
-	@Override protected DaoResultParserV2<CompInfo> getResultParserHook() {
-		return new DaoResultParserV2<CompInfo>() {
+	@Override protected DaoResultParser<CompInfo> getResultParserHook() {
+		return new DaoResultParser<CompInfo>() {
 			@Override public List<CompInfo> parseResult(CompInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
 				List<CompInfo> finalResult = new ArrayList<>();
 				CompInfo emptyInfo = new CompInfo();

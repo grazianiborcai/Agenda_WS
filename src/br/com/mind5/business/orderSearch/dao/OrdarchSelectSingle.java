@@ -8,7 +8,7 @@ import java.util.List;
 
 import br.com.mind5.business.orderSearch.info.OrdarchInfo;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
@@ -55,8 +55,8 @@ public final class OrdarchSelectSingle extends DaoStmtTemplate<OrdarchInfo> {
 	
 	
 	
-	@Override protected DaoResultParserV2<OrdarchInfo> getResultParserHook() {
-		return new DaoResultParserV2<OrdarchInfo>() {
+	@Override protected DaoResultParser<OrdarchInfo> getResultParserHook() {
+		return new DaoResultParser<OrdarchInfo>() {
 			@Override public List<OrdarchInfo> parseResult(OrdarchInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
 				List<OrdarchInfo> finalResult = new ArrayList<>();
 				

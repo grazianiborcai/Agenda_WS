@@ -11,7 +11,7 @@ import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoJoin;
 import br.com.mind5.dao.DaoJoinBuilder;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
@@ -65,8 +65,8 @@ public final class CarterveSelectSingle extends DaoStmtTemplate<CarterveInfo> {
 	
 	
 	
-	@Override protected DaoResultParserV2<CarterveInfo> getResultParserHook() {
-		return new DaoResultParserV2<CarterveInfo>() {		
+	@Override protected DaoResultParser<CarterveInfo> getResultParserHook() {
+		return new DaoResultParser<CarterveInfo>() {		
 			@Override public List<CarterveInfo> parseResult(CarterveInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
 				List<CarterveInfo> finalResult = new ArrayList<>();
 				

@@ -10,7 +10,7 @@ import br.com.mind5.business.masterData.info.MatGroupInfo;
 import br.com.mind5.dao.DaoJoin;
 import br.com.mind5.dao.DaoJoinBuilder;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
@@ -68,8 +68,8 @@ public final class MatGroupSelectSingle extends DaoStmtTemplate<MatGroupInfo> {
 	
 	
 	
-	@Override protected DaoResultParserV2<MatGroupInfo> getResultParserHook() {
-		return new DaoResultParserV2<MatGroupInfo>() {
+	@Override protected DaoResultParser<MatGroupInfo> getResultParserHook() {
+		return new DaoResultParser<MatGroupInfo>() {
 			private final String GROUP_TEXT_COL = RT_TEXT + "." + MasterDataDbTableColumn.COL_NAME;
 			private final String BUSINESS_TEXT_COL = RT_BUSINESS_TEXT + "." + MasterDataDbTableColumn.COL_NAME;
 			

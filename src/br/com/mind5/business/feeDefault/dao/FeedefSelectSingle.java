@@ -9,7 +9,7 @@ import java.util.List;
 import br.com.mind5.business.feeDefault.info.FeedefInfo;
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
@@ -50,8 +50,8 @@ public final class FeedefSelectSingle extends DaoStmtTemplate<FeedefInfo> {
 	
 	
 	
-	@Override protected DaoResultParserV2<FeedefInfo> getResultParserHook() {
-		return new DaoResultParserV2<FeedefInfo>() {
+	@Override protected DaoResultParser<FeedefInfo> getResultParserHook() {
+		return new DaoResultParser<FeedefInfo>() {
 			@Override public List<FeedefInfo> parseResult(FeedefInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
 				List<FeedefInfo> finalResult = new ArrayList<>();
 				

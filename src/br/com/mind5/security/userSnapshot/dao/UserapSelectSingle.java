@@ -8,7 +8,7 @@ import java.util.List;
 
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
@@ -50,8 +50,8 @@ public final class UserapSelectSingle extends DaoStmtTemplate<UserapInfo> {
 	
 	
 	
-	@Override protected DaoResultParserV2<UserapInfo> getResultParserHook() {
-		return new DaoResultParserV2<UserapInfo>() {
+	@Override protected DaoResultParser<UserapInfo> getResultParserHook() {
+		return new DaoResultParser<UserapInfo>() {
 			@Override public List<UserapInfo> parseResult(UserapInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
 				List<UserapInfo> finalResult = new ArrayList<>();
 				

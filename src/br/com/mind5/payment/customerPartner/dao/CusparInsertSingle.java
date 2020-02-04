@@ -10,7 +10,7 @@ import java.util.List;
 
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtParamTranslator;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.common.DaoDbTable;
@@ -63,8 +63,8 @@ public final class CusparInsertSingle extends DaoStmtTemplate<CusparInfo> {
 	
 	
 	
-	@Override protected DaoResultParserV2<CusparInfo> getResultParserHook() {
-		return new DaoResultParserV2<CusparInfo>() {	
+	@Override protected DaoResultParser<CusparInfo> getResultParserHook() {
+		return new DaoResultParser<CusparInfo>() {	
 			@Override public List<CusparInfo> parseResult(CusparInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
 				List<CusparInfo> finalResult = new ArrayList<>();
 				recordInfo.codPayCustomer = lastId;

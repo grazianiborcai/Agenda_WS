@@ -9,7 +9,7 @@ import java.util.List;
 import br.com.mind5.business.materialStock.info.MatockInfo;
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
@@ -50,8 +50,8 @@ public final class MatockSelectSingle extends DaoStmtTemplate<MatockInfo> {
 	
 	
 	
-	@Override protected DaoResultParserV2<MatockInfo> getResultParserHook() {
-		return new DaoResultParserV2<MatockInfo>() {
+	@Override protected DaoResultParser<MatockInfo> getResultParserHook() {
+		return new DaoResultParser<MatockInfo>() {
 			@Override public List<MatockInfo> parseResult(MatockInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
 				List<MatockInfo> finalResult = new ArrayList<>();
 				

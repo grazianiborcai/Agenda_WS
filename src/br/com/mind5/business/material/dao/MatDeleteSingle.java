@@ -8,7 +8,7 @@ import java.util.List;
 
 import br.com.mind5.business.material.info.MatInfo;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
@@ -49,8 +49,8 @@ public final class MatDeleteSingle extends DaoStmtTemplate<MatInfo> {
 	
 	
 	
-	@Override protected DaoResultParserV2<MatInfo> getResultParserHook() {
-		return new DaoResultParserV2<MatInfo>() {
+	@Override protected DaoResultParser<MatInfo> getResultParserHook() {
+		return new DaoResultParser<MatInfo>() {
 			@Override public List<MatInfo> parseResult(MatInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
 				List<MatInfo> finalResult = new ArrayList<>();
 				MatInfo emptyInfo = new MatInfo();

@@ -8,7 +8,7 @@ import java.util.List;
 
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
@@ -50,8 +50,8 @@ public final class PayordarchSelectSingle extends DaoStmtTemplate<PayordarchInfo
 	
 	
 	
-	@Override protected DaoResultParserV2<PayordarchInfo> getResultParserHook() {
-		return new DaoResultParserV2<PayordarchInfo>() {
+	@Override protected DaoResultParser<PayordarchInfo> getResultParserHook() {
+		return new DaoResultParser<PayordarchInfo>() {
 			@Override public List<PayordarchInfo> parseResult(PayordarchInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
 				List<PayordarchInfo> finalResult = new ArrayList<>();
 				

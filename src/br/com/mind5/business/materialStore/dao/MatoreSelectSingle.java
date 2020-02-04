@@ -9,7 +9,7 @@ import java.util.List;
 import br.com.mind5.business.materialStore.info.MatoreInfo;
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
@@ -50,8 +50,8 @@ public final class MatoreSelectSingle extends DaoStmtTemplate<MatoreInfo> {
 		
 	
 	
-	@Override protected DaoResultParserV2<MatoreInfo> getResultParserHook() {
-		return new DaoResultParserV2<MatoreInfo>() {
+	@Override protected DaoResultParser<MatoreInfo> getResultParserHook() {
+		return new DaoResultParser<MatoreInfo>() {
 			@Override public List<MatoreInfo> parseResult(MatoreInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
 				List<MatoreInfo> finalResult = new ArrayList<>();
 				

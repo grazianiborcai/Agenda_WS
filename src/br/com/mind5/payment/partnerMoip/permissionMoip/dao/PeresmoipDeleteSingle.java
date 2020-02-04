@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
@@ -50,8 +50,8 @@ public final class PeresmoipDeleteSingle extends DaoStmtTemplate<PeresmoipInfo> 
 	
 	
 	
-	@Override protected DaoResultParserV2<PeresmoipInfo> getResultParserHook() {
-		return new DaoResultParserV2<PeresmoipInfo>() {
+	@Override protected DaoResultParser<PeresmoipInfo> getResultParserHook() {
+		return new DaoResultParser<PeresmoipInfo>() {
 			@Override public List<PeresmoipInfo> parseResult(PeresmoipInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
 				List<PeresmoipInfo> finalResult = new ArrayList<>();
 				PeresmoipInfo emptyInfo = new PeresmoipInfo();

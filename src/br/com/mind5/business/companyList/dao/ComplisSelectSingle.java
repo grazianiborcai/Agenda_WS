@@ -9,7 +9,7 @@ import java.util.List;
 import br.com.mind5.business.companyList.info.ComplisInfo;
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
@@ -56,8 +56,8 @@ public final class ComplisSelectSingle extends DaoStmtTemplate<ComplisInfo> {
 	
 	
 	
-	@Override protected DaoResultParserV2<ComplisInfo> getResultParserHook() {
-		return new DaoResultParserV2<ComplisInfo>() {
+	@Override protected DaoResultParser<ComplisInfo> getResultParserHook() {
+		return new DaoResultParser<ComplisInfo>() {
 			@Override public List<ComplisInfo> parseResult(ComplisInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {			
 				List<ComplisInfo> finalResult = new ArrayList<>();
 				

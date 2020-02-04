@@ -9,7 +9,7 @@ import java.util.List;
 import br.com.mind5.business.addressSearch.info.AddarchInfo;
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
@@ -50,8 +50,8 @@ public final class AddarchSelectSingle extends DaoStmtTemplate<AddarchInfo> {
 	
 	
 	
-	@Override protected DaoResultParserV2<AddarchInfo> getResultParserHook() {
-		return new DaoResultParserV2<AddarchInfo>() {
+	@Override protected DaoResultParser<AddarchInfo> getResultParserHook() {
+		return new DaoResultParser<AddarchInfo>() {
 			@Override public List<AddarchInfo> parseResult(AddarchInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
 				List<AddarchInfo> finalResult = new ArrayList<>();
 				

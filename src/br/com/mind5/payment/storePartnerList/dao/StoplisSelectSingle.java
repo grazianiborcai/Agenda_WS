@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
@@ -55,8 +55,8 @@ public final class StoplisSelectSingle extends DaoStmtTemplate<StoplisInfo> {
 	
 	
 		
-	@Override protected DaoResultParserV2<StoplisInfo> getResultParserHook() {
-		return new DaoResultParserV2<StoplisInfo>() {
+	@Override protected DaoResultParser<StoplisInfo> getResultParserHook() {
+		return new DaoResultParser<StoplisInfo>() {
 			@Override public List<StoplisInfo> parseResult(StoplisInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
 				List<StoplisInfo> finalResult = new ArrayList<>();
 				

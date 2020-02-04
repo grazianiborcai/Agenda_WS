@@ -8,7 +8,7 @@ import java.util.List;
 
 import br.com.mind5.business.masterData.info.LanguInfo;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
@@ -50,8 +50,8 @@ public final class LanguSelectSingle extends DaoStmtTemplate<LanguInfo> {
 	
 	
 	
-	@Override protected DaoResultParserV2<LanguInfo> getResultParserHook() {
-		return new DaoResultParserV2<LanguInfo>() {
+	@Override protected DaoResultParser<LanguInfo> getResultParserHook() {
+		return new DaoResultParser<LanguInfo>() {
 			@Override public List<LanguInfo> parseResult(LanguInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
 				List<LanguInfo> finalResult = new ArrayList<>();
 				

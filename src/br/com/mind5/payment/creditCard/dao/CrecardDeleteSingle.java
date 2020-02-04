@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
@@ -50,8 +50,8 @@ public final class CrecardDeleteSingle extends DaoStmtTemplate<CrecardInfo> {
 	
 	
 	
-	@Override protected DaoResultParserV2<CrecardInfo> getResultParserHook() {
-		return new DaoResultParserV2<CrecardInfo>() {
+	@Override protected DaoResultParser<CrecardInfo> getResultParserHook() {
+		return new DaoResultParser<CrecardInfo>() {
 			@Override public List<CrecardInfo> parseResult(CrecardInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
 				List<CrecardInfo> finalResult = new ArrayList<>();
 				CrecardInfo emptyInfo = new CrecardInfo();

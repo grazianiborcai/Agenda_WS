@@ -10,7 +10,7 @@ import br.com.mind5.business.phone.dao.PhoneDbTableColumn;
 import br.com.mind5.business.phoneSnapshot.info.PhonapInfo;
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
@@ -51,8 +51,8 @@ public final class PhonapSelectSingle extends DaoStmtTemplate<PhonapInfo> {
 	
 	
 	
-	@Override protected DaoResultParserV2<PhonapInfo> getResultParserHook() {
-		return new DaoResultParserV2<PhonapInfo>() {
+	@Override protected DaoResultParser<PhonapInfo> getResultParserHook() {
+		return new DaoResultParser<PhonapInfo>() {
 			@Override public List<PhonapInfo> parseResult(PhonapInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
 				List<PhonapInfo> finalResult = new ArrayList<>();
 				

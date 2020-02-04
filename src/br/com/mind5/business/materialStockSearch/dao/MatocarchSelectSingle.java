@@ -8,7 +8,7 @@ import java.util.List;
 
 import br.com.mind5.business.materialStockSearch.info.MatocarchInfo;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
@@ -55,8 +55,8 @@ public final class MatocarchSelectSingle extends DaoStmtTemplate<MatocarchInfo> 
 	
 	
 	
-	@Override protected DaoResultParserV2<MatocarchInfo> getResultParserHook() {
-		return new DaoResultParserV2<MatocarchInfo>() {
+	@Override protected DaoResultParser<MatocarchInfo> getResultParserHook() {
+		return new DaoResultParser<MatocarchInfo>() {
 			@Override public List<MatocarchInfo> parseResult(MatocarchInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
 				List<MatocarchInfo> finalResult = new ArrayList<>();
 				

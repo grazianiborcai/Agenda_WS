@@ -8,7 +8,7 @@ import java.util.List;
 
 import br.com.mind5.business.storeLeaveDate.info.StolateInfo;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
@@ -50,8 +50,8 @@ public final class StolateDeleteSingle extends DaoStmtTemplate<StolateInfo> {
 	
 	
 	
-	@Override protected DaoResultParserV2<StolateInfo> getResultParserHook() {
-		return new DaoResultParserV2<StolateInfo>() {
+	@Override protected DaoResultParser<StolateInfo> getResultParserHook() {
+		return new DaoResultParser<StolateInfo>() {
 			@Override public List<StolateInfo> parseResult(StolateInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
 				List<StolateInfo> finalResult = new ArrayList<>();
 				StolateInfo emptyInfo = new StolateInfo();

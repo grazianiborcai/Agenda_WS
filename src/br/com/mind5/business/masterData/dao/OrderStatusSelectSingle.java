@@ -10,7 +10,7 @@ import br.com.mind5.business.masterData.info.OrderStatusInfo;
 import br.com.mind5.dao.DaoJoin;
 import br.com.mind5.dao.DaoJoinBuilder;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
@@ -59,8 +59,8 @@ public final class OrderStatusSelectSingle extends DaoStmtTemplate<OrderStatusIn
 	
 	
 	
-	@Override protected DaoResultParserV2<OrderStatusInfo> getResultParserHook() {
-		return new DaoResultParserV2<OrderStatusInfo>() {
+	@Override protected DaoResultParser<OrderStatusInfo> getResultParserHook() {
+		return new DaoResultParser<OrderStatusInfo>() {
 			@Override public List<OrderStatusInfo> parseResult(OrderStatusInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
 				List<OrderStatusInfo> finalResult = new ArrayList<>();
 				

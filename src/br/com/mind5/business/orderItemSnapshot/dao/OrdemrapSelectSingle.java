@@ -9,7 +9,7 @@ import java.util.List;
 import br.com.mind5.business.orderItemSnapshot.info.OrdemrapInfo;
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
@@ -50,8 +50,8 @@ public final class OrdemrapSelectSingle extends DaoStmtTemplate<OrdemrapInfo> {
 	
 	
 	
-	@Override protected DaoResultParserV2<OrdemrapInfo> getResultParserHook() {
-		return new DaoResultParserV2<OrdemrapInfo>() {
+	@Override protected DaoResultParser<OrdemrapInfo> getResultParserHook() {
+		return new DaoResultParser<OrdemrapInfo>() {
 			@Override public List<OrdemrapInfo> parseResult(OrdemrapInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
 				List<OrdemrapInfo> finalResult = new ArrayList<>();
 				

@@ -9,7 +9,7 @@ import java.util.List;
 import br.com.mind5.business.employeeWorkTimeConflict.info.EmpwocoInfo;
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParserV2;
+import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
@@ -58,8 +58,8 @@ public final class EmpwocoSelectSingle extends DaoStmtTemplate<EmpwocoInfo> {
 	
 	
 	
-	@Override protected DaoResultParserV2<EmpwocoInfo> getResultParserHook() {
-		return new DaoResultParserV2<EmpwocoInfo>() {
+	@Override protected DaoResultParser<EmpwocoInfo> getResultParserHook() {
+		return new DaoResultParser<EmpwocoInfo>() {
 			@Override public List<EmpwocoInfo> parseResult(EmpwocoInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
 				List<EmpwocoInfo> finalResult = new ArrayList<>();
 				
