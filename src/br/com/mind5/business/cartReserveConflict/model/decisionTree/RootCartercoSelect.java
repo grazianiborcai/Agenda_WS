@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.cartReserveConflict.info.CartercoInfo;
-import br.com.mind5.business.cartReserveConflict.model.action.StdCartercoPruneCarterve;
+import br.com.mind5.business.cartReserveConflict.model.action.LazyCartercoPruneCarterve;
+import br.com.mind5.business.cartReserveConflict.model.action.StdCartercoMergeUsername;
 import br.com.mind5.business.cartReserveConflict.model.checker.CartercoCheckRead;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -41,9 +43,12 @@ public final class RootCartercoSelect extends DeciTreeReadTemplate<CartercoInfo>
 	@Override protected List<ActionStd<CartercoInfo>> buildActionsOnPassedHook(DeciTreeOption<CartercoInfo> option) {
 		List<ActionStd<CartercoInfo>> actions = new ArrayList<>();	
 		
-		ActionStd<CartercoInfo> pruneCarterve = new StdCartercoPruneCarterve(option);
+		ActionStd<CartercoInfo> mergeUsername = new StdCartercoMergeUsername(option);
+		ActionLazy<CartercoInfo> pruneCarterve = new LazyCartercoPruneCarterve(option.conn, option.schemaName);
 		
-		actions.add(pruneCarterve);			
+		mergeUsername.addPostAction(pruneCarterve);
+		
+		actions.add(mergeUsername);			
 		return actions;
 	}
 }

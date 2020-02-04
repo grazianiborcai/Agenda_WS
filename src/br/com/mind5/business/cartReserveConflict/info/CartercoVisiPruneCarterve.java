@@ -7,7 +7,7 @@ final class CartercoVisiPruneCarterve implements InfoPrunerVisitor<CartercoInfo,
 	
 	@Override public boolean pruneRecord(CartercoInfo baseInfo, CarterveInfo selectedInfo) {
 		if (baseInfo.codOwner == selectedInfo.codOwner &&
-			baseInfo.username.equals(selectedInfo.username) )
+			baseInfo.codUser  == selectedInfo.codUser 		)
 			
 			return true;
 		

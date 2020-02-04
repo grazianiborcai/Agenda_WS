@@ -7,12 +7,12 @@ import br.com.mind5.model.action.ActionStdHelperMerge;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdCartercoMergeCarterve implements ActionStd<CartercoInfo> {
+public final class StdCartercoMergeUsername implements ActionStd<CartercoInfo> {
 	private ActionStd<CartercoInfo> actionHelper;	
 	
 	
-	public StdCartercoMergeCarterve(DeciTreeOption<CartercoInfo> option) {			
-		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiCartercoMergeCarterve(option.conn, option.schemaName));
+	public StdCartercoMergeUsername(DeciTreeOption<CartercoInfo> option) {			
+		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiCartercoMergeUsername(option.conn, option.schemaName));
 	}
 	
 	

@@ -1049,4 +1049,6 @@ public final class SystemCode {
 	
 	// Cart Reserve Conflict
 	public static final int CART_RESERVE_CONFLICT_MANDATORY_FIELD_EMPTY	= 10700;
+	public static final int CART_RESERVE_CONFLICT_ALREADY_EXIST			= 10701;
+	public static final int CART_RESERVE_CONFLICT_NOT_FOUND				= 10702;
 }
