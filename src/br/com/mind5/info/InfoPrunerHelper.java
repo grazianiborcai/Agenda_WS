@@ -16,7 +16,6 @@ public final class InfoPrunerHelper<T extends InfoRecord, S extends InfoRecord> 
 	
 	
 	public InfoPrunerHelper(List<T> baseInfos, List<S> selectedInfos, InfoPrunerVisitor<T, S> visitor) {
-		super();
 		checkArgument(baseInfos, selectedInfos, visitor);
 		
 		bases = InfoUtil.copy(baseInfos);
@@ -96,7 +95,12 @@ public final class InfoPrunerHelper<T extends InfoRecord, S extends InfoRecord> 
 	
 	
 	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(prunerClazz);
+		Class<?> clazz = prunerClazz;
+		
+		if (clazz == null)
+			clazz = this.getClass();
+		
+		Logger logger = LogManager.getLogger(clazz);
 		logger.error(e.getMessage(), e);
 	}
 }
