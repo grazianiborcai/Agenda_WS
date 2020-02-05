@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.planingData.info.PlanataInfo;
-import br.com.mind5.business.planingData.model.decisionTree.RootPlanataSelect;
+import br.com.mind5.business.planingData.model.decisionTree.RootPlanataSelectNoReserve;
 import br.com.mind5.business.planingDataSearch.info.PlanarchInfo;
 import br.com.mind5.business.planingDataSearch.info.PlanarchMerger;
 import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
@@ -19,7 +19,7 @@ final class VisiPlanarchMergePlanata extends ActionVisitorTemplateMergeV2<Planar
 	
 	
 	@Override protected Class<? extends DeciTree<PlanataInfo>> getTreeClassHook() {
-		return RootPlanataSelect.class;
+		return RootPlanataSelectNoReserve.class;
 	}
 	
 	
