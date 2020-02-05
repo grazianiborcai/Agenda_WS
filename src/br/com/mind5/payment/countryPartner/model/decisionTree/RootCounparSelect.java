@@ -25,19 +25,21 @@ public final class RootCounparSelect extends DeciTreeReadTemplate<CounparInfo> {
 	
 	
 	@Override protected ModelChecker<CounparInfo> buildDecisionCheckerHook(DeciTreeOption<CounparInfo> option) {
-		final boolean EXIST_ON_DB = true;
-		
 		List<ModelChecker<CounparInfo>> queue = new ArrayList<>();		
 		ModelChecker<CounparInfo> checker;
 		ModelCheckerOption checkerOption;
 		
-		checker = new CounparCheckRead();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new CounparCheckRead(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new CounparCheckCountry(checkerOption);
 		queue.add(checker);	
 		

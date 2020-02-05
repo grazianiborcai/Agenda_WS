@@ -3,20 +3,20 @@ package br.com.mind5.payment.countryPartner.model.checker;
 import java.sql.Connection;
 
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple_;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 import br.com.mind5.payment.countryPartner.info.CounparInfo;
 
-public final class CounparCheckRead extends ModelCheckerTemplateSimple_<CounparInfo> {
+public final class CounparCheckRead extends ModelCheckerTemplateSimpleV2<CounparInfo> {
 
-	public CounparCheckRead() {
-		super();
+	public CounparCheckRead(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
 	
 	@Override protected boolean checkHook(CounparInfo recordInfo, Connection conn, String schemaName) {	
-		if (   recordInfo.codCountry == null 	)			
+		if ( recordInfo.codCountry == null )			
 			return super.FAILED;
 		
 		
@@ -25,13 +25,7 @@ public final class CounparCheckRead extends ModelCheckerTemplateSimple_<CounparI
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.MANDATORY_FIELD_EMPTY;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.MANDATORY_FIELD_EMPTY;
+	@Override protected int getCodMsgOnResultFalseHook() {
+		return SystemCode.PAY_PARTNER_COUNTRY_MANDATORY_FIELD_EMPTY;
 	}
 }

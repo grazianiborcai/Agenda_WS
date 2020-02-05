@@ -431,6 +431,7 @@ public final class SystemCode {
 	// Pay Partner-Country
 	public static final int PAY_PARTNER_COUNTRY_ALREADY_EXIST 			= 2350;
 	public static final int PAY_PARTNER_COUNTRY_NOT_FOUND 				= 2351;
+	public static final int PAY_PARTNER_COUNTRY_MANDATORY_FIELD_EMPTY 	= 2352;
 	
 	// Pay-Customer
 	public static final int PAY_CUS_ALREADY_EXIST 						= 2400;
