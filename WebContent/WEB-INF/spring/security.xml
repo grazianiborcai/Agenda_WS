@@ -106,7 +106,8 @@
         <security:intercept-url pattern="/**/PlanningTime**"					access="isAuthenticated()" 							/>  
         <security:intercept-url pattern="/**/Cart/**"							access="isAuthenticated()" 							/>  
         <security:intercept-url pattern="/**/User/**"							access="isAuthenticated()" 							/>  
-        <security:intercept-url pattern="/**/Order/**"							access="isAuthenticated()" 							/> 
+        <security:intercept-url pattern="/**/Order/searchOrderList"				access="isAuthenticated()" 							/>         
+        <security:intercept-url pattern="/**/Order/**"							access="isAuthenticated()" 							/>   <!-- TODO: rever -->
         <security:intercept-url pattern="/**/Payment/payOrder"					access="isAuthenticated()" 							/>     
         <security:intercept-url pattern="/**/Payment/refundOrder"				access="isAuthenticated()" 							/>   <!-- TODO: Rever Role -->
         <security:intercept-url pattern="/**/Payment/refreshStatus"				access="isAuthenticated()" 							/>     

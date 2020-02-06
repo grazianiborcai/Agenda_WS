@@ -1061,4 +1061,7 @@ public final class SystemCode {
 	public static final int PLAN_DATA_SEARCH_MANDATORY_FIELD_EMPTY		= 10750;	
 	public static final int PLAN_DATA_SEARCH_NOT_FOUND 					= 10751; 
 	public static final int PLAN_DATA_SEARCH_ALREADY_EXIST				= 10752; 
+	
+	// Order List Auth
+	public static final int ORDER_LIST_AUTH_MANDATORY_FIELD_EMPTY 		= 10800;
 }

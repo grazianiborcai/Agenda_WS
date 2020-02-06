@@ -12,8 +12,8 @@ import br.com.mind5.business.order.info.OrderInfo;
 import br.com.mind5.business.order.model.OrderModelCancel;
 import br.com.mind5.business.order.model.OrderModelPlace;
 import br.com.mind5.business.order.model.OrderModelSelect;
-import br.com.mind5.business.orderList.info.OrdistInfo;
-import br.com.mind5.business.orderList.model.OrdistModelSearch;
+import br.com.mind5.business.orderListAuth.OrdistauModelSearch;
+import br.com.mind5.business.orderListAuth.info.OrdistauInfo;
 import br.com.mind5.model.Model;
 
 @Path("/Order")
@@ -21,7 +21,7 @@ public final class OrderResource {
 	private static final String SELECT_ORDER = "/selectOrder";
 	private static final String PLACE_ORDER = "/placeOrder";
 	private static final String CANCEL_ORDER = "/cancelOrder";
-	private static final String SELECT_ORDER_LIST = "/selectOrderList";
+	private static final String SEARCH_ORDER_LIST = "/searchOrderList";
 	
 	
 	
@@ -94,25 +94,28 @@ public final class OrderResource {
 	
 	
 	@GET
-	@Path(SELECT_ORDER_LIST)
+	@Path(SEARCH_ORDER_LIST)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response selectOrdist(@HeaderParam("TOKEN_OWNER") 	@DefaultValue("-1") long codOwner, 
-								 @HeaderParam("TOKEN_USERNAME") String username,
-							     @HeaderParam("codOrder")    	@DefaultValue("-1") long codOrder,
-							     @HeaderParam("codCustomer")    @DefaultValue("-1") long codCustomer,
-							     @HeaderParam("codOrderStatus") String codOrderStatus,
-							     @HeaderParam("codLanguage") 	@DefaultValue("EN") String codLanguage) {
+	public Response selectOrdistau(@HeaderParam("TOKEN_OWNER") 		@DefaultValue("-1") long codOwner, 
+								   @HeaderParam("TOKEN_USERNAME") 	String username,
+							       @HeaderParam("codOrder")    		@DefaultValue("-1") long codOrder,
+							       @HeaderParam("postingYear")    	@DefaultValue("-1") int postingYear,
+							       @HeaderParam("postingYearMonth") @DefaultValue("-1") int postingYearMonth,
+							       @HeaderParam("codOrderStatus") 	String codOrderStatus,
+							       @HeaderParam("codLanguage") 		@DefaultValue("EN") String codLanguage) {
 		
-		OrdistInfo recordInfo = new OrdistInfo();
+		OrdistauInfo recordInfo = new OrdistauInfo();
+		
 		recordInfo.codOwner = codOwner;
 		recordInfo.username = username;
 		recordInfo.codOrder = codOrder;
-		recordInfo.codCustomer = codCustomer;
+		recordInfo.postingYear = postingYear;
+		recordInfo.postingYearMonth = postingYearMonth;
 		recordInfo.codOrderStatus = codOrderStatus;
 		recordInfo.codLanguage = codLanguage;
 		
 		
-		Model model = new OrdistModelSearch(recordInfo);
+		Model model = new OrdistauModelSearch(recordInfo);
 		model.executeRequest();
 		return model.getResponse();	
 	} 
