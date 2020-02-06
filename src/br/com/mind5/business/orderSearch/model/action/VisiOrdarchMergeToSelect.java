@@ -22,8 +22,8 @@ final class VisiOrdarchMergeToSelect extends ActionVisitorTemplateMergeV2<Ordarc
 	
 	
 	
-	@Override protected List<OrdarchInfo> mergeHook(List<OrdarchInfo> recordInfos, List<OrdarchInfo> selectedInfos) {	
-		return OrdarchMerger.mergeToSelect(selectedInfos, recordInfos);
+	@Override protected List<OrdarchInfo> mergeHook(List<OrdarchInfo> baseInfos, List<OrdarchInfo> selectedInfos) {	
+		return OrdarchMerger.mergeToSelect(baseInfos, selectedInfos);
 	}
 	
 	

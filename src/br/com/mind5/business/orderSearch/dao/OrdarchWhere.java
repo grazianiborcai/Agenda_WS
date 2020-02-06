@@ -46,6 +46,14 @@ public final class OrdarchWhere implements DaoStmtWhere {
 				case OrdarchDbTableColumn.COL_COD_ORDER_STATUS :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codOrderStatus);
 					break;
+					
+				case OrdarchDbTableColumn.COL_POSTING_YEAR :
+					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.postingYear));
+					break;
+					
+				case OrdarchDbTableColumn.COL_POSTING_YEAR_MONTH :
+					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.postingYearMonth));
+					break;
 			}
 		}		
 		

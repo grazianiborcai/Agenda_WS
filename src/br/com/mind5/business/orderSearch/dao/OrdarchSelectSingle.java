@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.orderSearch.info.OrdarchInfo;
+import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
 import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtTemplate;
@@ -65,13 +66,16 @@ public final class OrdarchSelectSingle extends DaoStmtTemplate<OrdarchInfo> {
 				
 				do {
 					OrdarchInfo dataInfo = new OrdarchInfo();
+					
 					dataInfo.codOwner = stmtResult.getLong(OrdarchDbTableColumn.COL_COD_OWNER);	
 					dataInfo.codOrder = stmtResult.getLong(OrdarchDbTableColumn.COL_COD_ORDER);
 					dataInfo.codUser = stmtResult.getLong(OrdarchDbTableColumn.COL_COD_USER);	
 					dataInfo.codOrderExt = stmtResult.getString(OrdarchDbTableColumn.COL_COD_ORDER_EXTERNAL);	
 					dataInfo.codOrderStatus = stmtResult.getString(OrdarchDbTableColumn.COL_COD_ORDER_STATUS);
 					dataInfo.codCustomer = stmtResult.getLong(OrdarchDbTableColumn.COL_COD_CUSTOMER);
-					dataInfo.codPayOrder = stmtResult.getLong(OrdarchDbTableColumn.COL_COD_PAY_ORDER);				
+					dataInfo.codPayOrder = stmtResult.getLong(OrdarchDbTableColumn.COL_COD_PAY_ORDER);	
+					dataInfo.postingYear = DaoFormatter.sqlToInt(stmtResult, OrdarchDbTableColumn.COL_POSTING_YEAR);
+					dataInfo.postingYearMonth = DaoFormatter.sqlToInt(stmtResult, OrdarchDbTableColumn.COL_POSTING_YEAR_MONTH);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());
