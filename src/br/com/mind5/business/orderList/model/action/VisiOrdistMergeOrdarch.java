@@ -24,8 +24,8 @@ final class VisiOrdistMergeOrdarch extends ActionVisitorTemplateMergeV2<OrdistIn
 	
 	
 	
-	@Override protected List<OrdistInfo> mergeHook(List<OrdistInfo> recordInfos, List<OrdarchInfo> selectedInfos) {	
-		return OrdistMerger.mergeWithOrdarch(selectedInfos, recordInfos);
+	@Override protected List<OrdistInfo> mergeHook(List<OrdistInfo> baseInfos, List<OrdarchInfo> selectedInfos) {	
+		return OrdistMerger.mergeWithOrdarch(baseInfos, selectedInfos);
 	}
 	
 	

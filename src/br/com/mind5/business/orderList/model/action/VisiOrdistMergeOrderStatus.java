@@ -24,8 +24,8 @@ final class VisiOrdistMergeOrderStatus extends ActionVisitorTemplateMergeV2<Ordi
 	
 	
 	
-	@Override protected List<OrdistInfo> mergeHook(List<OrdistInfo> recordInfos, List<OrderStatusInfo> selectedInfos) {	
-		return OrdistMerger.mergeWithOrderStatus(selectedInfos, recordInfos);
+	@Override protected List<OrdistInfo> mergeHook(List<OrdistInfo> baseInfos, List<OrderStatusInfo> selectedInfos) {	
+		return OrdistMerger.mergeWithOrderStatus(baseInfos, selectedInfos);
 	}
 	
 	

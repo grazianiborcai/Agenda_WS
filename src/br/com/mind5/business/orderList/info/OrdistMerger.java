@@ -5,60 +5,57 @@ import java.util.List;
 import br.com.mind5.business.masterData.info.CurrencyInfo;
 import br.com.mind5.business.masterData.info.OrderStatusInfo;
 import br.com.mind5.business.orderSearch.info.OrdarchInfo;
-import br.com.mind5.info.obsolete.InfoMerger_;
+import br.com.mind5.info.InfoMergerBuilderV3;
+import br.com.mind5.info.InfoMergerV3;
 
 public final class OrdistMerger {	
-	public static OrdistInfo mergeWithOrdarch(OrdarchInfo sourceOne, OrdistInfo sourceTwo) {
-		InfoMerger_<OrdistInfo, OrdarchInfo> merger = new OrdistMergerOrdarch();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
+	public static List<OrdistInfo> mergeWithOrdarch(List<OrdistInfo> baseInfos, List<OrdarchInfo> selectedInfos) {
+		InfoMergerBuilderV3<OrdistInfo, OrdarchInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new OrdistVisiMergeOrdarch());
+		InfoMergerV3<OrdistInfo, OrdarchInfo> merger = builder.build();		
 	
-	
-	
-	public static List<OrdistInfo> mergeWithOrdarch(List<OrdarchInfo> sourceOnes, List<OrdistInfo> sourceTwos) {
-		InfoMerger_<OrdistInfo, OrdarchInfo> merger = new OrdistMergerOrdarch();		
-		return merger.merge(sourceOnes, sourceTwos);
+		return merger.merge();
 	}	
 	
 	
 	
-	public static OrdistInfo mergeWithCurrency(CurrencyInfo sourceOne, OrdistInfo sourceTwo) {
-		InfoMerger_<OrdistInfo, CurrencyInfo> merger = new OrdistMergerCurrency();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
+	public static List<OrdistInfo> mergeWithCurrency(List<OrdistInfo> baseInfos, List<CurrencyInfo> selectedInfos) {
+		InfoMergerBuilderV3<OrdistInfo, CurrencyInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new OrdistVisiMergeCurrency());
+		InfoMergerV3<OrdistInfo, CurrencyInfo> merger = builder.build();		
 	
-	
-	
-	public static List<OrdistInfo> mergeWithCurrency(List<CurrencyInfo> sourceOnes, List<OrdistInfo> sourceTwos) {
-		InfoMerger_<OrdistInfo, CurrencyInfo> merger = new OrdistMergerCurrency();		
-		return merger.merge(sourceOnes, sourceTwos);
+		return merger.merge();
 	}	
 	
 	
 	
-	public static OrdistInfo mergeWithOrderStatus(OrderStatusInfo sourceOne, OrdistInfo sourceTwo) {
-		InfoMerger_<OrdistInfo, OrderStatusInfo> merger = new OrdistMergerOrderStatus();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
+	public static List<OrdistInfo> mergeWithOrderStatus(List<OrdistInfo> baseInfos, List<OrderStatusInfo> selectedInfos) {
+		InfoMergerBuilderV3<OrdistInfo, OrderStatusInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new OrdistVisiMergeOrderStatus());
+		InfoMergerV3<OrdistInfo, OrderStatusInfo> merger = builder.build();		
 	
-	
-	
-	public static List<OrdistInfo> mergeWithOrderStatus(List<OrderStatusInfo> sourceOnes, List<OrdistInfo> sourceTwos) {
-		InfoMerger_<OrdistInfo, OrderStatusInfo> merger = new OrdistMergerOrderStatus();		
-		return merger.merge(sourceOnes, sourceTwos);
+		return merger.merge();
 	}	
 	
 	
 	
-	public static OrdistInfo mergeToSelect(OrdistInfo sourceOne, OrdistInfo sourceTwo) {
-		InfoMerger_<OrdistInfo, OrdistInfo> merger = new OrdistMergerToSelect();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
+	public static List<OrdistInfo> mergeToSelect(List<OrdistInfo> baseInfos, List<OrdistInfo> selectedInfos) {
+		InfoMergerBuilderV3<OrdistInfo, OrdistInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new OrdistVisiMergeToSelect());
+		InfoMergerV3<OrdistInfo, OrdistInfo> merger = builder.build();		
 	
-	
-	
-	public static List<OrdistInfo> mergeToSelect(List<OrdistInfo> sourceOnes, List<OrdistInfo> sourceTwos) {
-		InfoMerger_<OrdistInfo, OrdistInfo> merger = new OrdistMergerToSelect();		
-		return merger.merge(sourceOnes, sourceTwos);
+		return merger.merge();
 	}	
 }

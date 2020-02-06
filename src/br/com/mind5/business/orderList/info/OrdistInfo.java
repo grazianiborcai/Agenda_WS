@@ -1,5 +1,6 @@
 package br.com.mind5.business.orderList.info;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -20,6 +21,9 @@ public final class OrdistInfo extends InfoRecord implements Cloneable {
 	public String codOrderStatus;
 	public String txtOrderStatus;
 	public long codPayOrder;
+	public int postingYear;
+	public int postingYearMonth;
+	public LocalDate postingDate;
 	public LocalDateTime lastChanged;
 	public String username;
 	
@@ -35,6 +39,8 @@ public final class OrdistInfo extends InfoRecord implements Cloneable {
 		feeService = DefaultValue.number();
 		grandTotal = DefaultValue.number();
 		codPayOrder = DefaultValue.number();
+		postingYear = DefaultValue.number();
+		postingYearMonth = DefaultValue.number();
 	}
 	
 	

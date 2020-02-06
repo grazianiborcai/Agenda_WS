@@ -78,7 +78,10 @@ public final class OrdistSelectSingle extends DaoStmtTemplate<OrdistInfo> {
 					dataInfo.itemTotal = DaoFormatter.sqlToDouble(stmtResult, OrdistDbTableColumn.COL_ITEM_TOTAL);
 					dataInfo.feeService = DaoFormatter.sqlToDouble(stmtResult, OrdistDbTableColumn.COL_FEE_SERVICE);
 					dataInfo.grandTotal = DaoFormatter.sqlToDouble(stmtResult, OrdistDbTableColumn.COL_GRAND_TOTAL);
-					dataInfo.codPayOrder = DaoFormatter.sqlToLong(stmtResult, OrdistDbTableColumn.COL_COD_PAY_ORDER);				
+					dataInfo.codPayOrder = DaoFormatter.sqlToLong(stmtResult, OrdistDbTableColumn.COL_COD_PAY_ORDER);	
+					dataInfo.postingDate = DaoFormatter.sqlToLocalDate(stmtResult, OrdistDbTableColumn.COL_POSTING_DATE);
+					dataInfo.postingYear = DaoFormatter.sqlToInt(stmtResult, OrdistDbTableColumn.COL_POSTING_YEAR);
+					dataInfo.postingYearMonth = DaoFormatter.sqlToInt(stmtResult, OrdistDbTableColumn.COL_POSTING_YEAR_MONTH);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

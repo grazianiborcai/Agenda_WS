@@ -24,8 +24,8 @@ final class VisiOrdistMergeCurrency extends ActionVisitorTemplateMergeV2<OrdistI
 	
 	
 	
-	@Override protected List<OrdistInfo> mergeHook(List<OrdistInfo> recordInfos, List<CurrencyInfo> selectedInfos) {	
-		return OrdistMerger.mergeWithCurrency(selectedInfos, recordInfos);
+	@Override protected List<OrdistInfo> mergeHook(List<OrdistInfo> baseInfos, List<CurrencyInfo> selectedInfos) {	
+		return OrdistMerger.mergeWithCurrency(baseInfos, selectedInfos);
 	}
 	
 	

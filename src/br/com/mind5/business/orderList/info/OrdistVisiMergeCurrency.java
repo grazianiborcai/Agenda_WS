@@ -1,58 +1,39 @@
 package br.com.mind5.business.orderList.info;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.ArrayList;
+import java.util.List;
 
 import br.com.mind5.business.masterData.info.CurrencyInfo;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-final class OrdistVisiMergeCurrency implements InfoMergerVisitor_<OrdistInfo, CurrencyInfo> {
+final class OrdistVisiMergeCurrency implements InfoMergerVisitorV3<OrdistInfo, CurrencyInfo> {
 
-	@Override public OrdistInfo writeRecord(CurrencyInfo sourceOne, OrdistInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+	@Override public List<OrdistInfo> beforeMerge(List<OrdistInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(OrdistInfo baseInfo, CurrencyInfo selectedInfo) {
+		return (baseInfo.codCurr.equals(selectedInfo.codCurr));
+	}
+	
+	
+	
+
+	@Override public List<OrdistInfo> merge(OrdistInfo baseInfo, CurrencyInfo selectedInfo) {
+		List<OrdistInfo> results = new ArrayList<>();
 		
-		OrdistInfo clonedInfo = makeClone(sourceTwo);
-		return merge(sourceOne, clonedInfo);
+		baseInfo.txtCurr = selectedInfo.txtCurr;
+		
+		results.add(baseInfo);
+		return results;
 	}
 	
 	
 	
-	private void checkArgument(CurrencyInfo sourceOne, OrdistInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private OrdistInfo makeClone(OrdistInfo recordInfo) {
-		try {
-			return (OrdistInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	private OrdistInfo merge(CurrencyInfo sourceOne, OrdistInfo sourceTwo) {
-		sourceTwo.txtCurr = sourceOne.txtCurr;
-
-		return sourceTwo;
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(CurrencyInfo sourceOne, OrdistInfo sourceTwo) {
-		return (sourceOne.codCurr.equals(sourceTwo.codCurr));
-	}	
-	
-	
-	
-	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
+	@Override public InfoUniquifier<OrdistInfo> getUniquifier() {
+		return null;
 	}
 }

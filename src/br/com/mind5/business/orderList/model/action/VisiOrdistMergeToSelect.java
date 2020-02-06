@@ -22,8 +22,8 @@ final class VisiOrdistMergeToSelect extends ActionVisitorTemplateMergeV2<OrdistI
 	
 	
 	
-	@Override protected List<OrdistInfo> mergeHook(List<OrdistInfo> recordInfos, List<OrdistInfo> selectedInfos) {	
-		return OrdistMerger.mergeToSelect(selectedInfos, recordInfos);
+	@Override protected List<OrdistInfo> mergeHook(List<OrdistInfo> baseInfos, List<OrdistInfo> selectedInfos) {	
+		return OrdistMerger.mergeToSelect(baseInfos, selectedInfos);
 	}
 	
 	
