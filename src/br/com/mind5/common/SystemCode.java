@@ -245,6 +245,7 @@ public final class SystemCode {
 	public static final int CART_ITEM_NOT_FOUND 						= 9406;	//1403;
 	public static final int CART_ITEM_LIMIT_NOT_REACHED					= 9407;
 	public static final int CART_ITEM_LIMIT_EXCEEDED					= 9408;
+	public static final int CART_ITEM_BAD_TIME_RANGE 					= 9409;
 	
 	// Total Amount
 	public static final int AMOUNT_DONT_HAVE_TWO_DECIMAL_PLACES			= 1500;

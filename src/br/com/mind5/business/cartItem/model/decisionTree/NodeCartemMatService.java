@@ -121,9 +121,6 @@ public final class NodeCartemMatService extends DeciTreeWriteTemplate<CartemInfo
 		checker = new CartemCheckStolarg(checkerOption);
 		queue.add(checker);
 		
-		//TODO: is valid? Pode ter mudado apos ser inserido no carrinho
-		//TODO: tempo pode ser maior 
-		
 		return new ModelCheckerQueue<>(queue);
 	}
 	
