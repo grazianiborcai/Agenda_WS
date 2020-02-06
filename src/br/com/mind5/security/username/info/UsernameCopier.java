@@ -14,6 +14,7 @@ import br.com.mind5.business.material.info.MatInfo;
 import br.com.mind5.business.materialMovement.info.MatmovInfo;
 import br.com.mind5.business.materialStore.info.MatoreInfo;
 import br.com.mind5.business.materialText.info.MatextInfo;
+import br.com.mind5.business.orderListAuth.info.OrdistauInfo;
 import br.com.mind5.business.owner.info.OwnerInfo;
 import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.business.storeLeaveDate.info.StolateInfo;
@@ -31,6 +32,20 @@ import br.com.mind5.payment.storePartner.info.StoparInfo;
 import br.com.mind5.security.userPassword.info.UpswdInfo;
 
 public final class UsernameCopier {
+	public static UsernameInfo copyFromOrdistau(OrdistauInfo source) {
+		InfoCopier<UsernameInfo, OrdistauInfo> copier = new UsernameCopyOrdistau();
+		return copier.makeCopy(source);
+	}
+	
+	
+	
+	public static List<UsernameInfo> copyFromOrdistau(List<OrdistauInfo> sources) {
+		InfoCopier<UsernameInfo, OrdistauInfo> copier = new UsernameCopyOrdistau();
+		return copier.makeCopy(sources);
+	}
+	
+	
+	
 	public static UsernameInfo copyFromCarterco(CartercoInfo source) {
 		InfoCopier<UsernameInfo, CartercoInfo> copier = new UsernameCopyCarterco();
 		return copier.makeCopy(source);
