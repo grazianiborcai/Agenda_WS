@@ -4,17 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.order.info.OrderInfo;
-import br.com.mind5.business.order.model.checker.OrderCheckRead;
+import br.com.mind5.business.order.model.action.StdOrderSuccess;
+import br.com.mind5.business.order.model.checker.OrderCheckOrdarch;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
 
-public final class RootOrderSelectAuth extends DeciTreeReadTemplate<OrderInfo> {
+public final class NodeOrderAuthL2 extends DeciTreeWriteTemplate<OrderInfo> {
 	
-	public RootOrderSelectAuth(DeciTreeOption<OrderInfo> option) {
+	public NodeOrderAuthL2(DeciTreeOption<OrderInfo> option) {
 		super(option);
 	}
 	
@@ -28,8 +29,8 @@ public final class RootOrderSelectAuth extends DeciTreeReadTemplate<OrderInfo> {
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new OrderCheckRead(checkerOption);
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
+		checker = new OrderCheckOrdarch(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
@@ -38,13 +39,11 @@ public final class RootOrderSelectAuth extends DeciTreeReadTemplate<OrderInfo> {
 	
 	
 	@Override protected List<ActionStd<OrderInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderInfo> option) {
-		List<ActionStd<OrderInfo>> actions = new ArrayList<>();		
+		List<ActionStd<OrderInfo>> actions = new ArrayList<>();
 		
-		ActionStd<OrderInfo> auth = new NodeOrderAuthL1(option).toAction();
-		ActionStd<OrderInfo> select = new RootOrderSelect(option).toAction();
+		ActionStd<OrderInfo> success = new StdOrderSuccess(option);
 		
-		actions.add(auth);		
-		actions.add(select);
+		actions.add(success);
 		return actions;
 	}
 }

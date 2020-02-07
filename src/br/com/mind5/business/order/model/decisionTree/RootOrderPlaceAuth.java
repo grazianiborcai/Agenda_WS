@@ -4,13 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.order.info.OrderInfo;
-import br.com.mind5.business.order.model.action.LazyOrderMergeOrdarch;
-import br.com.mind5.business.order.model.action.LazyOrderRootPlace;
 import br.com.mind5.business.order.model.checker.OrderCheckExist;
 import br.com.mind5.business.order.model.checker.OrderCheckLangu;
 import br.com.mind5.business.order.model.checker.OrderCheckOwner;
 import br.com.mind5.business.order.model.checker.OrderCheckWrite;
-import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -67,14 +64,11 @@ public final class RootOrderPlaceAuth extends DeciTreeReadTemplate<OrderInfo> {
 	@Override protected List<ActionStd<OrderInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderInfo> option) {
 		List<ActionStd<OrderInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<OrderInfo> username = new NodeOrderUsername(option).toAction();
-		ActionLazy<OrderInfo> mergeOrdarch = new LazyOrderMergeOrdarch(option.conn, option.schemaName);
-		ActionLazy<OrderInfo> place = new LazyOrderRootPlace(option.conn, option.schemaName);
+		ActionStd<OrderInfo> auth = new NodeOrderAuthL1(option).toAction();
+		ActionStd<OrderInfo> place = new RootOrderPlace(option).toAction();
 		
-		username.addPostAction(mergeOrdarch);
-		mergeOrdarch.addPostAction(place);
-		
-		actions.add(username);			
+		actions.add(auth);		
+		actions.add(place);
 		return actions;
 	}
 }
