@@ -24,8 +24,8 @@ final class VisiOrderMergePayord extends ActionVisitorTemplateMergeV2<OrderInfo,
 	
 	
 	
-	@Override protected List<OrderInfo> mergeHook(List<OrderInfo> recordInfos, List<PayordInfo> selectedInfos) {	
-		return OrderMerger.mergeWithPayord(selectedInfos, recordInfos);
+	@Override protected List<OrderInfo> mergeHook(List<OrderInfo> baseInfos, List<PayordInfo> selectedInfos) {	
+		return OrderMerger.mergeWithPayord(baseInfos, selectedInfos);
 	}
 	
 	

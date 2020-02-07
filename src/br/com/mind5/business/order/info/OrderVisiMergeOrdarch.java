@@ -3,11 +3,11 @@ package br.com.mind5.business.order.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.business.customer.info.CusInfo;
+import br.com.mind5.business.orderSearch.info.OrdarchInfo;
 import br.com.mind5.info.InfoMergerVisitorV3;
 import br.com.mind5.info.InfoUniquifier;
 
-final class OrderVisiMergeCus implements InfoMergerVisitorV3<OrderInfo, CusInfo> {
+final class OrderVisiMergeOrdarch implements InfoMergerVisitorV3<OrderInfo, OrdarchInfo> {
 
 	@Override public List<OrderInfo> beforeMerge(List<OrderInfo> baseInfos) {
 		return baseInfos;
@@ -15,19 +15,19 @@ final class OrderVisiMergeCus implements InfoMergerVisitorV3<OrderInfo, CusInfo>
 	
 	
 	
-	@Override public boolean shouldMerge(OrderInfo baseInfo, CusInfo selectedInfo) {
-		return (baseInfo.codOwner == selectedInfo.codOwner &&
-				baseInfo.codUser  == selectedInfo.codUser);
+	@Override public boolean shouldMerge(OrderInfo baseInfo, OrdarchInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner); 
 	}
 	
 	
 
-	@Override public List<OrderInfo> merge(OrderInfo baseInfo, CusInfo selectedInfo) {
+	@Override public List<OrderInfo> merge(OrderInfo baseInfo, OrdarchInfo selectedInfo) {
 		List<OrderInfo> results = new ArrayList<>();
+		OrderInfo result;
 		
-		baseInfo.codCustomer = selectedInfo.codCustomer;
+		result = OrderInfo.copyFrom(selectedInfo);
 		
-		results.add(baseInfo);
+		results.add(result);
 		return results;
 	}
 	

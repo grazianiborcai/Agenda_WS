@@ -9,9 +9,9 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import br.com.mind5.business.order.info.OrderInfo;
-import br.com.mind5.business.order.model.OrderModelCancel;
-import br.com.mind5.business.order.model.OrderModelPlace;
-import br.com.mind5.business.order.model.OrderModelSelect;
+import br.com.mind5.business.order.model.OrderModelCancelAuth;
+import br.com.mind5.business.order.model.OrderModelPlaceAuth;
+import br.com.mind5.business.order.model.OrderModelSelectAuth;
 import br.com.mind5.business.orderListAuth.OrdistauModelSearch;
 import br.com.mind5.business.orderListAuth.info.OrdistauInfo;
 import br.com.mind5.model.Model;
@@ -42,7 +42,7 @@ public final class OrderResource {
 		recordInfo.codLanguage = codLanguage;
 		
 		
-		Model model = new OrderModelSelect(recordInfo);
+		Model model = new OrderModelSelectAuth(recordInfo);
 		model.executeRequest();
 		return model.getResponse();	
 	} 
@@ -64,7 +64,7 @@ public final class OrderResource {
 		recordInfo.codLanguage = codLanguage;
 		
 		
-		Model model = new OrderModelPlace(recordInfo);
+		Model model = new OrderModelPlaceAuth(recordInfo);
 		model.executeRequest();
 		return model.getResponse();	
 	} 
@@ -86,7 +86,7 @@ public final class OrderResource {
 		recordInfo.codLanguage = codLanguage;
 		
 		
-		Model model = new OrderModelCancel(recordInfo);
+		Model model = new OrderModelCancelAuth(recordInfo);
 		model.executeRequest();
 		return model.getResponse();	
 	} 

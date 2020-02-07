@@ -1,58 +1,38 @@
 package br.com.mind5.business.order.info;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.ArrayList;
+import java.util.List;
 
 import br.com.mind5.business.masterData.info.CurrencyInfo;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-final class OrderVisiMergeCurrency implements InfoMergerVisitor_<OrderInfo, CurrencyInfo> {
+final class OrderVisiMergeCurrency implements InfoMergerVisitorV3<OrderInfo, CurrencyInfo> {
 
-	@Override public OrderInfo writeRecord(CurrencyInfo sourceOne, OrderInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+	@Override public List<OrderInfo> beforeMerge(List<OrderInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(OrderInfo baseInfo, CurrencyInfo selectedInfo) {
+		return (baseInfo.codCurr.equals(selectedInfo.codCurr));
+	}
+	
+	
+
+	@Override public List<OrderInfo> merge(OrderInfo baseInfo, CurrencyInfo selectedInfo) {
+		List<OrderInfo> results = new ArrayList<>();
 		
-		OrderInfo clonedInfo = makeClone(sourceTwo);
-		return merge(sourceOne, clonedInfo);
+		baseInfo.txtCurr = selectedInfo.txtCurr;
+		
+		results.add(baseInfo);
+		return results;
 	}
 	
 	
 	
-	private void checkArgument(CurrencyInfo sourceOne, OrderInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private OrderInfo makeClone(OrderInfo recordInfo) {
-		try {
-			return (OrderInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	private OrderInfo merge(CurrencyInfo sourceOne, OrderInfo sourceTwo) {
-		sourceTwo.txtCurr = sourceOne.txtCurr;
-
-		return sourceTwo;
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(CurrencyInfo sourceOne, OrderInfo sourceTwo) {
-		return (sourceOne.codCurr.equals(sourceTwo.codCurr));
-	}	
-	
-	
-	
-	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
+	@Override public InfoUniquifier<OrderInfo> getUniquifier() {
+		return null;
 	}
 }

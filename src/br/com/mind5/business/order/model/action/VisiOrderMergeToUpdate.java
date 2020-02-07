@@ -23,14 +23,14 @@ final class VisiOrderMergeToUpdate extends ActionVisitorTemplateMergeV2<OrderInf
 	
 	
 	
-	@Override protected List<OrderInfo> toActionClassHook(List<OrderInfo> recordInfos) {
-		return OrderCopier.copyToSelect(recordInfos);	
+	@Override protected List<OrderInfo> toActionClassHook(List<OrderInfo> baseInfos) {
+		return OrderCopier.copyToSelect(baseInfos);	
 	}
 	
 	
 	
-	@Override protected List<OrderInfo> mergeHook(List<OrderInfo> recordInfos, List<OrderInfo> selectedInfos) {	
-		return OrderMerger.mergeToUpdate(selectedInfos, recordInfos);
+	@Override protected List<OrderInfo> mergeHook(List<OrderInfo> baseInfos, List<OrderInfo> selectedInfos) {	
+		return OrderMerger.mergeToUpdate(baseInfos, selectedInfos);
 	}
 	
 	

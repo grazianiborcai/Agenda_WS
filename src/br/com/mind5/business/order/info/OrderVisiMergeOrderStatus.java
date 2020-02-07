@@ -1,57 +1,38 @@
 package br.com.mind5.business.order.info;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.ArrayList;
+import java.util.List;
 
 import br.com.mind5.business.masterData.info.OrderStatusInfo;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-final class OrderVisiMergeOrderStatus implements InfoMergerVisitor_<OrderInfo, OrderStatusInfo> {
+final class OrderVisiMergeOrderStatus implements InfoMergerVisitorV3<OrderInfo, OrderStatusInfo> {
 
-	@Override public OrderInfo writeRecord(OrderStatusInfo sourceOne, OrderInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+	@Override public List<OrderInfo> beforeMerge(List<OrderInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(OrderInfo baseInfo, OrderStatusInfo selectedInfo) {
+		return (baseInfo.codOrderStatus.equals(selectedInfo.codOrderStatus));
+	}
+	
+	
+
+	@Override public List<OrderInfo> merge(OrderInfo baseInfo, OrderStatusInfo selectedInfo) {
+		List<OrderInfo> results = new ArrayList<>();
 		
-		OrderInfo clonedInfo = makeClone(sourceTwo);
-		return merge(sourceOne, clonedInfo);
+		baseInfo.txtOrderStatus = selectedInfo.txtOrderStatus;
+		
+		results.add(baseInfo);
+		return results;
 	}
 	
 	
 	
-	private void checkArgument(OrderStatusInfo sourceOne, OrderInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private OrderInfo makeClone(OrderInfo recordInfo) {
-		try {
-			return (OrderInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	private OrderInfo merge(OrderStatusInfo sourceOne, OrderInfo sourceTwo) {
-		sourceTwo.txtOrderStatus = sourceOne.txtOrderStatus;
-		return sourceTwo;
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(OrderStatusInfo sourceOne, OrderInfo sourceTwo) {		
-		return (sourceOne.codOrderStatus.equals(sourceTwo.codOrderStatus));
-	}
-	
-	
-	
-	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
+	@Override public InfoUniquifier<OrderInfo> getUniquifier() {
+		return null;
 	}
 }

@@ -1,34 +1,39 @@
 package br.com.mind5.business.order.info;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import br.com.mind5.business.orderItem.info.OrderemInfo;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-final class OrderVisiMergeOrderem implements InfoMergerVisitor_<OrderInfo, OrderemInfo> {
+final class OrderVisiMergeOrderem implements InfoMergerVisitorV3<OrderInfo, OrderemInfo> {
 
-	@Override public OrderInfo writeRecord(OrderemInfo sourceOne, OrderInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
-		return merge(sourceOne, sourceTwo);
+	@Override public List<OrderInfo> beforeMerge(List<OrderInfo> baseInfos) {
+		return baseInfos;
 	}
 	
 	
 	
-	private void checkArgument(OrderemInfo sourceOne, OrderInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
+	@Override public boolean shouldMerge(OrderInfo baseInfo, OrderemInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner &&
+				baseInfo.codOrder == selectedInfo.codOrder	);
+	}
+	
+	
+
+	@Override public List<OrderInfo> merge(OrderInfo baseInfo, OrderemInfo selectedInfo) {
+		List<OrderInfo> results = new ArrayList<>();
+		
+		baseInfo.orderms.add(selectedInfo);
+		
+		results.add(baseInfo);
+		return results;
 	}
 	
 	
 	
-	private OrderInfo merge(OrderemInfo sourceOne, OrderInfo sourceTwo) {
-		sourceTwo.orderms.add(sourceOne);
-		return sourceTwo;
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(OrderemInfo sourceOne, OrderInfo sourceTwo) {
-		return (sourceOne.codOwner == sourceTwo.codOwner &&
-				sourceOne.codOrder == sourceTwo.codOrder	);
+	@Override public InfoUniquifier<OrderInfo> getUniquifier() {
+		return null;
 	}
 }

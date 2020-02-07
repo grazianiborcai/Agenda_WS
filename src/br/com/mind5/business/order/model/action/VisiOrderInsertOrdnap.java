@@ -26,6 +26,6 @@ final class VisiOrderInsertOrdnap extends ActionVisitorTemplateAction<OrderInfo,
 	
 	
 	protected List<OrderInfo> toBaseClassHook(List<OrderInfo> baseInfos, List<OrdnapInfo> results) {
-		return OrderMerger.mergeWithOrdnap(results, baseInfos);
+		return OrderMerger.mergeWithOrdnap(baseInfos, results);
 	}
 }

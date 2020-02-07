@@ -24,8 +24,8 @@ final class VisiOrderMergeUsername extends ActionVisitorTemplateMergeV2<OrderInf
 	
 	
 	
-	@Override protected List<OrderInfo> mergeHook(List<OrderInfo> recordInfos, List<UsernameInfo> selectedInfos) {	
-		return OrderMerger.mergeWithUsername(selectedInfos, recordInfos);
+	@Override protected List<OrderInfo> mergeHook(List<OrderInfo> baseInfos, List<UsernameInfo> selectedInfos) {	
+		return OrderMerger.mergeWithUsername(baseInfos, selectedInfos);
 	}
 	
 	

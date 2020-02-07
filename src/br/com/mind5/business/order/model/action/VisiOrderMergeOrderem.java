@@ -24,8 +24,8 @@ final class VisiOrderMergeOrderem extends ActionVisitorTemplateMergeV2<OrderInfo
 	
 	
 	
-	@Override protected List<OrderInfo> mergeHook(List<OrderInfo> recordInfos, List<OrderemInfo> selectedInfos) {	
-		return OrderMerger.mergeWithOrderem(selectedInfos, recordInfos);
+	@Override protected List<OrderInfo> mergeHook(List<OrderInfo> baseInfos, List<OrderemInfo> selectedInfos) {	
+		return OrderMerger.mergeWithOrderem(baseInfos, selectedInfos);
 	}
 	
 	

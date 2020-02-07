@@ -1,57 +1,38 @@
 package br.com.mind5.business.order.info;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.ArrayList;
+import java.util.List;
 
 import br.com.mind5.business.masterData.info.FeeCategInfo;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-final class OrderVisiMergeFeeCateg implements InfoMergerVisitor_<OrderInfo, FeeCategInfo> {
+final class OrderVisiMergeFeeCateg implements InfoMergerVisitorV3<OrderInfo, FeeCategInfo> {
 
-	@Override public OrderInfo writeRecord(FeeCategInfo sourceOne, OrderInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+	@Override public List<OrderInfo> beforeMerge(List<OrderInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(OrderInfo baseInfo, FeeCategInfo selectedInfo) {
+		return (baseInfo.codFeeCateg == selectedInfo.codFeeCateg);
+	}
+	
+	
+
+	@Override public List<OrderInfo> merge(OrderInfo baseInfo, FeeCategInfo selectedInfo) {
+		List<OrderInfo> results = new ArrayList<>();
 		
-		OrderInfo clonedInfo = makeClone(sourceTwo);
-		return merge(sourceOne, clonedInfo);
+		baseInfo.txtFeeCateg = selectedInfo.txtFeeCateg;
+		
+		results.add(baseInfo);
+		return results;
 	}
 	
 	
 	
-	private void checkArgument(FeeCategInfo sourceOne, OrderInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private OrderInfo makeClone(OrderInfo recordInfo) {
-		try {
-			return (OrderInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	private OrderInfo merge(FeeCategInfo sourceOne, OrderInfo sourceTwo) {
-		sourceTwo.txtFeeCateg = sourceOne.txtFeeCateg;
-		return sourceTwo;
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(FeeCategInfo sourceOne, OrderInfo sourceTwo) {
-		return (sourceOne.codFeeCateg == sourceTwo.codFeeCateg);
-	}	
-	
-	
-	
-	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
+	@Override public InfoUniquifier<OrderInfo> getUniquifier() {
+		return null;
 	}
 }

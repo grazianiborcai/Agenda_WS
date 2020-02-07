@@ -24,8 +24,8 @@ final class VisiOrderMergeCurrency extends ActionVisitorTemplateMergeV2<OrderInf
 	
 	
 	
-	@Override protected List<OrderInfo> mergeHook(List<OrderInfo> recordInfos, List<CurrencyInfo> selectedInfos) {	
-		return OrderMerger.mergeWithCurrency(selectedInfos, recordInfos);
+	@Override protected List<OrderInfo> mergeHook(List<OrderInfo> baseInfos, List<CurrencyInfo> selectedInfos) {	
+		return OrderMerger.mergeWithCurrency(baseInfos, selectedInfos);
 	}
 	
 	

@@ -1,62 +1,39 @@
 package br.com.mind5.business.order.info;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.ArrayList;
+import java.util.List;
 
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.security.username.info.UsernameInfo;
 
-final class OrderVisiMergeUsername implements InfoMergerVisitor_<OrderInfo, UsernameInfo> {
+final class OrderVisiMergeUsername implements InfoMergerVisitorV3<OrderInfo, UsernameInfo> {
 
-	@Override public OrderInfo writeRecord(UsernameInfo sourceOne, OrderInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+	@Override public List<OrderInfo> beforeMerge(List<OrderInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(OrderInfo baseInfo, UsernameInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner		&&
+				baseInfo.username.equals(selectedInfo.username)		);
+	}
+	
+	
+
+	@Override public List<OrderInfo> merge(OrderInfo baseInfo, UsernameInfo selectedInfo) {
+		List<OrderInfo> results = new ArrayList<>();
 		
-		OrderInfo clonedInfo = makeClone(sourceTwo);
-		return merge(sourceOne, clonedInfo);
-	}
-	
-	
-	
-	private void checkArgument(UsernameInfo sourceOne, OrderInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private OrderInfo makeClone(OrderInfo recordInfo) {
-		try {
-			return (OrderInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	private OrderInfo merge(UsernameInfo sourceOne, OrderInfo sourceTwo) {
-		sourceTwo.lastChangedBy = sourceOne.codUser;
-		return sourceTwo;
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(UsernameInfo sourceOne, OrderInfo sourceTwo) {
-		if (sourceOne.username == null ||
-			sourceTwo.username == null		)
-			return false;
+		baseInfo.lastChangedBy = selectedInfo.codUser;
 		
-		return (sourceOne.codOwner == sourceTwo.codOwner		&&
-				sourceOne.username.equals(sourceTwo.username)		);
+		results.add(baseInfo);
+		return results;
 	}
 	
 	
 	
-	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
+	@Override public InfoUniquifier<OrderInfo> getUniquifier() {
+		return null;
 	}
 }

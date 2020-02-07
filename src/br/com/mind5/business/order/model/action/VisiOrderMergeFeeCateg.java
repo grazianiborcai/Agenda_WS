@@ -24,8 +24,8 @@ final class VisiOrderMergeFeeCateg extends ActionVisitorTemplateMergeV2<OrderInf
 	
 	
 	
-	@Override protected List<OrderInfo> mergeHook(List<OrderInfo> recordInfos, List<FeeCategInfo> selectedInfos) {	
-		return OrderMerger.mergeWithFeeCateg(selectedInfos, recordInfos);
+	@Override protected List<OrderInfo> mergeHook(List<OrderInfo> baseInfos, List<FeeCategInfo> selectedInfos) {	
+		return OrderMerger.mergeWithFeeCateg(baseInfos, selectedInfos);
 	}
 	
 	

@@ -26,6 +26,6 @@ final class VisiOrderInsertCus extends ActionVisitorTemplateAction<OrderInfo, Cu
 	
 	
 	protected List<OrderInfo> toBaseClassHook(List<OrderInfo> baseInfos, List<CusInfo> results) {
-		return OrderMerger.mergeWithCus(results, baseInfos);
+		return OrderMerger.mergeWithCus(baseInfos, results);
 	}
 }

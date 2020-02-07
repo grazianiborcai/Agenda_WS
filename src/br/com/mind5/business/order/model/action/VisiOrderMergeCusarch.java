@@ -25,14 +25,14 @@ final class VisiOrderMergeCusarch extends ActionVisitorTemplateMergeV2<OrderInfo
 	
 	
 	
-	protected List<CusarchInfo> toActionClassHook(List<OrderInfo> recordInfos) {
-		return CusarchCopier.copyFromOrder(recordInfos);	
+	protected List<CusarchInfo> toActionClassHook(List<OrderInfo> baseInfos) {
+		return CusarchCopier.copyFromOrder(baseInfos);	
 	}
 	
 	
 	
-	@Override protected List<OrderInfo> mergeHook(List<OrderInfo> recordInfos, List<CusarchInfo> selectedInfos) {	
-		return OrderMerger.mergeWithCusarch(selectedInfos, recordInfos);
+	@Override protected List<OrderInfo> mergeHook(List<OrderInfo> baseInfos, List<CusarchInfo> selectedInfos) {	
+		return OrderMerger.mergeWithCusarch(baseInfos, selectedInfos);
 	}
 	
 	
