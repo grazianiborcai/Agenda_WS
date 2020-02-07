@@ -7,8 +7,22 @@ import br.com.mind5.business.masterData.info.OrderStatusInfo;
 import br.com.mind5.business.orderSearch.info.OrdarchInfo;
 import br.com.mind5.info.InfoMergerBuilderV3;
 import br.com.mind5.info.InfoMergerV3;
+import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class OrdistMerger {	
+	public static List<OrdistInfo> mergeWithUsername(List<OrdistInfo> baseInfos, List<UsernameInfo> selectedInfos) {
+		InfoMergerBuilderV3<OrdistInfo, UsernameInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new OrdistVisiMergeUsername());
+		InfoMergerV3<OrdistInfo, UsernameInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}	
+	
+	
+	
 	public static List<OrdistInfo> mergeWithOrdarch(List<OrdistInfo> baseInfos, List<OrdarchInfo> selectedInfos) {
 		InfoMergerBuilderV3<OrdistInfo, OrdarchInfo> builder = new InfoMergerBuilderV3<>();
 		

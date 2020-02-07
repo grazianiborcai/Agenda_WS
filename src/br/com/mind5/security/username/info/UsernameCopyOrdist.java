@@ -1,17 +1,17 @@
 package br.com.mind5.security.username.info;
 
-import br.com.mind5.business.orderListAuth.info.OrdistauInfo;
+import br.com.mind5.business.orderList.info.OrdistInfo;
 import br.com.mind5.info.InfoCopierTemplate;
 
-final class UsernameCopyOrdistau extends InfoCopierTemplate<UsernameInfo, OrdistauInfo>{
+final class UsernameCopyOrdist extends InfoCopierTemplate<UsernameInfo, OrdistInfo>{
 	
-	public UsernameCopyOrdistau() {
+	public UsernameCopyOrdist() {
 		super();
 	}
 	
 	
 	
-	@Override protected UsernameInfo makeCopyHook(OrdistauInfo source) {
+	@Override protected UsernameInfo makeCopyHook(OrdistInfo source) {
 		UsernameInfo result = new UsernameInfo();
 		
 		result.codOwner = source.codOwner;	

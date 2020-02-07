@@ -1,19 +1,19 @@
-package br.com.mind5.business.orderListAuth.model.action;
+package br.com.mind5.business.orderList.model.action;
 
 import java.sql.Connection;
 import java.util.List;
 
-import br.com.mind5.business.orderListAuth.info.OrdistauInfo;
-import br.com.mind5.business.orderListAuth.info.OrdistauMerger;
+import br.com.mind5.business.orderList.info.OrdistInfo;
+import br.com.mind5.business.orderList.info.OrdistMerger;
 import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.security.username.info.UsernameCopier;
 import br.com.mind5.security.username.info.UsernameInfo;
 import br.com.mind5.security.username.model.decisionTree.RootUsernameSelect;
 
-final class VisiOrdistauMergeUsername extends ActionVisitorTemplateMergeV2<OrdistauInfo, UsernameInfo> {
+final class VisiOrdistMergeUsername extends ActionVisitorTemplateMergeV2<OrdistInfo, UsernameInfo> {
 	
-	public VisiOrdistauMergeUsername(Connection conn, String schemaName) {
+	public VisiOrdistMergeUsername(Connection conn, String schemaName) {
 		super(conn, schemaName, UsernameInfo.class);
 	}
 	
@@ -25,14 +25,14 @@ final class VisiOrdistauMergeUsername extends ActionVisitorTemplateMergeV2<Ordis
 	
 	
 	
-	@Override protected List<OrdistauInfo> mergeHook(List<OrdistauInfo> baseInfos, List<UsernameInfo> selectedInfos) {	
-		return OrdistauMerger.mergeWithUsername(baseInfos, selectedInfos);
+	@Override protected List<OrdistInfo> mergeHook(List<OrdistInfo> baseInfos, List<UsernameInfo> selectedInfos) {	
+		return OrdistMerger.mergeWithUsername(baseInfos, selectedInfos);
 	}
 	
 	
 	
-	@Override protected List<UsernameInfo> toActionClassHook(List<OrdistauInfo> baseInfos) {
-		return UsernameCopier.copyFromOrdistau(baseInfos);
+	@Override protected List<UsernameInfo> toActionClassHook(List<OrdistInfo> recordInfos) {
+		return UsernameCopier.copyFromOrdist(recordInfos);	
 	}
 	
 	

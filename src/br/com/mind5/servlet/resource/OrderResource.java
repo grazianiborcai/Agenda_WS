@@ -12,8 +12,8 @@ import br.com.mind5.business.order.info.OrderInfo;
 import br.com.mind5.business.order.model.OrderModelCancelAuth;
 import br.com.mind5.business.order.model.OrderModelPlaceAuth;
 import br.com.mind5.business.order.model.OrderModelSelectAuth;
-import br.com.mind5.business.orderListAuth.OrdistauModelSearch;
-import br.com.mind5.business.orderListAuth.info.OrdistauInfo;
+import br.com.mind5.business.orderList.info.OrdistInfo;
+import br.com.mind5.business.orderList.model.OrdistModelSearchAuth;
 import br.com.mind5.model.Model;
 
 @Path("/Order")
@@ -104,7 +104,7 @@ public final class OrderResource {
 							       @HeaderParam("codOrderStatus") 	String codOrderStatus,
 							       @HeaderParam("codLanguage") 		@DefaultValue("EN") String codLanguage) {
 		
-		OrdistauInfo recordInfo = new OrdistauInfo();
+		OrdistInfo recordInfo = new OrdistInfo();
 		
 		recordInfo.codOwner = codOwner;
 		recordInfo.username = username;
@@ -115,7 +115,7 @@ public final class OrderResource {
 		recordInfo.codLanguage = codLanguage;
 		
 		
-		Model model = new OrdistauModelSearch(recordInfo);
+		Model model = new OrdistModelSearchAuth(recordInfo);
 		model.executeRequest();
 		return model.getResponse();	
 	} 

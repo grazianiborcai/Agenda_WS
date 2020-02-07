@@ -1,29 +1,28 @@
-package br.com.mind5.business.orderListAuth.model.checker;
+package br.com.mind5.business.orderList.model.checker;
 
 import java.util.List;
 
-import br.com.mind5.business.orderListAuth.info.OrdistauInfo;
+import br.com.mind5.business.orderList.info.OrdistInfo;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.security.username.info.UsernameCopier;
 import br.com.mind5.security.username.info.UsernameInfo;
 import br.com.mind5.security.username.model.checker.UsernameCheckExist;
 
-public final class OrdistauCheckUsername implements ModelChecker<OrdistauInfo> {
+public final class OrdistCheckUsername implements ModelChecker<OrdistInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
 	private ModelChecker<UsernameInfo> checker;
 	
 	
-	public OrdistauCheckUsername(ModelCheckerOption option) {
+	public OrdistCheckUsername(ModelCheckerOption option) {
 		checker = new UsernameCheckExist(option);
 	}
 	
 	
 	
-	@Override public boolean check(List<OrdistauInfo> recordInfos) {
-		for (OrdistauInfo eachInfo : recordInfos) {
+	@Override public boolean check(List<OrdistInfo> recordInfos) {
+		for (OrdistInfo eachInfo : recordInfos) {
 			if (check(eachInfo) == FAILED)
 				return FAILED;
 		}
@@ -33,8 +32,8 @@ public final class OrdistauCheckUsername implements ModelChecker<OrdistauInfo> {
 
 	
 	
-	@Override public boolean check(OrdistauInfo recordInfo) {
-		return checker.check(UsernameCopier.copyFromOrdistau(recordInfo));
+	@Override public boolean check(OrdistInfo recordInfo) {
+		return checker.check(UsernameInfo.copyFrom(recordInfo));
 	}
 
 	
