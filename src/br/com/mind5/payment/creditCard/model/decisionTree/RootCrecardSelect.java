@@ -28,26 +28,28 @@ public final class RootCrecardSelect extends DeciTreeReadTemplate<CrecardInfo> {
 	
 	
 	@Override protected ModelChecker<CrecardInfo> buildDecisionCheckerHook(DeciTreeOption<CrecardInfo> option) {
-		final boolean EXIST_ON_DB = true;
-		
 		List<ModelChecker<CrecardInfo>> queue = new ArrayList<>();		
 		ModelChecker<CrecardInfo> checker;
 		ModelCheckerOption checkerOption;
-		
-		checker = new CrecardCheckRead();
+
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new CrecardCheckRead(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new CrecardCheckUsername(checkerOption);
 		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new CrecardCheckCuspar(checkerOption);
 		queue.add(checker);	
 		

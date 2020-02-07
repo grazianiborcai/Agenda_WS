@@ -1,61 +1,40 @@
 package br.com.mind5.payment.creditCard.model.checker;
 
-import java.sql.Connection;
-import java.util.ArrayList;
-
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.common.SystemMessage;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateAction_;
+import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
 import br.com.mind5.payment.creditCard.model.action.LazyCrecardSelect;
 import br.com.mind5.payment.creditCard.model.action.StdCrecardEnforceKeyId;
 
-public final class CrecardCheckExistById extends ModelCheckerTemplateAction_<CrecardInfo> {	
+public final class CrecardCheckExistById extends ModelCheckerTemplateActionV2<CrecardInfo, CrecardInfo> {	
 	
 	public CrecardCheckExistById(ModelCheckerOption option) {
-		super(option);
+		super(option, CrecardInfo.class);
 	}
 	
 	
 	
-	@Override protected ActionStd<CrecardInfo> buildActionHook(CrecardInfo recordInfo, Connection conn, String schemaName) {
-		DeciTreeOption<CrecardInfo> option = buildOption(recordInfo, conn, schemaName);
+	@Override protected ActionStd<CrecardInfo> buildActionHook(DeciTreeOption<CrecardInfo> option) {
+		ActionStd<CrecardInfo> enforceKeyID = new StdCrecardEnforceKeyId(option);
+		ActionLazy<CrecardInfo> select = new LazyCrecardSelect(option.conn, option.schemaName);
 		
-		ActionStd<CrecardInfo> actionSelect = new StdCrecardEnforceKeyId(option);
-		actionSelect.addPostAction(new LazyCrecardSelect(conn, schemaName));
-		return actionSelect;
+		enforceKeyID.addPostAction(select);
+		return enforceKeyID;
 	}
 	
 	
 	
-	private DeciTreeOption<CrecardInfo> buildOption(CrecardInfo recordInfo, Connection conn, String schemaName) {
-		DeciTreeOption<CrecardInfo> option = new DeciTreeOption<>();
-		option.recordInfos = new ArrayList<>();
-		option.recordInfos.add(recordInfo);
-		option.conn = conn;
-		option.schemaName = schemaName;
-		
-		return option;
-	}
+	@Override protected int getCodMsgOnResultTrueHook() {
+		return SystemCode.CREDIT_CARD_ALREADY_EXIST;
+	}	
 	
 	
 	
-	@Override protected String makeFailExplanationHook(boolean checkerResult) {		
-		if (makeFailCodeHook(checkerResult) == SystemCode.MAT_ALREADY_EXIST)
-			return SystemMessage.MAT_ALREADY_EXIST;
-		
-		return SystemMessage.MAT_NOT_FOUND;
-	}
-	
-	
-	
-	@Override protected int makeFailCodeHook(boolean checkerResult) {
-		if (checkerResult == super.ALREADY_EXIST)
-			return SystemCode.MAT_ALREADY_EXIST;	
-			
-		return SystemCode.MAT_NOT_FOUND;
+	@Override protected int getCodMsgOnResultFalseHook() {
+		return SystemCode.CREDIT_CARD_NOT_FOUND;
 	}
 }

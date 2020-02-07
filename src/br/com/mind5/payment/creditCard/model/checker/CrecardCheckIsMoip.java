@@ -4,14 +4,14 @@ import java.sql.Connection;
 
 import br.com.mind5.business.masterData.info.common.Paypar;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple_;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
 
-public final class CrecardCheckIsMoip extends ModelCheckerTemplateSimple_<CrecardInfo> {
+public final class CrecardCheckIsMoip extends ModelCheckerTemplateSimpleV2<CrecardInfo> {
 
-	public CrecardCheckIsMoip() {
-		super();
+	public CrecardCheckIsMoip(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
@@ -27,13 +27,7 @@ public final class CrecardCheckIsMoip extends ModelCheckerTemplateSimple_<Crecar
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.CREDIT_CARD_PAYPAR_NOT_MOIP;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
+	@Override protected int getCodMsgOnResultFalseHook() {
 		return SystemCode.CREDIT_CARD_PAYPAR_NOT_MOIP;
 	}
 }

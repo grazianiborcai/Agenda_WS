@@ -3,21 +3,20 @@ package br.com.mind5.payment.creditCard.model.checker;
 import java.sql.Connection;
 
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple_;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
 
-public final class CrecardCheckCusparRef extends ModelCheckerTemplateSimple_<CrecardInfo> {
+public final class CrecardCheckCusparRef extends ModelCheckerTemplateSimpleV2<CrecardInfo> {
 
-	public CrecardCheckCusparRef() {
-		super();
+	public CrecardCheckCusparRef(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
 	
 	@Override protected boolean checkHook(CrecardInfo recordInfo, Connection conn, String schemaName) {	
-		if (recordInfo.cusparData	== null		)
-		
+		if (recordInfo.cusparData == null)		
 			return super.FAILED;
 		
 		
@@ -31,13 +30,7 @@ public final class CrecardCheckCusparRef extends ModelCheckerTemplateSimple_<Cre
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.CREDIT_CARD_INVALID_USER_REF;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
+	@Override protected int getCodMsgOnResultFalseHook() {
 		return SystemCode.CREDIT_CARD_INVALID_USER_REF;
 	}
 }

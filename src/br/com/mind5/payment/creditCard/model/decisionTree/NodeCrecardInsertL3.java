@@ -26,22 +26,28 @@ public final class NodeCrecardInsertL3 extends DeciTreeWriteTemplate<CrecardInfo
 	
 	
 	@Override protected ModelChecker<CrecardInfo> buildDecisionCheckerHook(DeciTreeOption<CrecardInfo> option) {
-		final boolean EXIST_ON_DB = true;
-		
 		List<ModelChecker<CrecardInfo>> queue = new ArrayList<>();		
 		ModelChecker<CrecardInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
-		checker = new CrecardCheckUserAddress();
-		queue.add(checker);
-		
-		checker = new CrecardCheckUserPhone();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new CrecardCheckUserAddress(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;	
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new CrecardCheckUserPhone(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
 		checker = new CrecardCheckCuspar(checkerOption);
 		queue.add(checker);
 		
