@@ -3,14 +3,14 @@ package br.com.mind5.payment.customerPartner.model.checker;
 import java.sql.Connection;
 
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple_;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
 
-public final class CusparCheckWrite extends ModelCheckerTemplateSimple_<CusparInfo> {
+public final class CusparCheckWrite extends ModelCheckerTemplateSimpleV2<CusparInfo> {
 
-	public CusparCheckWrite() {
-		super();
+	public CusparCheckWrite(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
@@ -33,13 +33,7 @@ public final class CusparCheckWrite extends ModelCheckerTemplateSimple_<CusparIn
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.PAY_CUS_MANDATORY_FIELD_EMPTY;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
+	@Override protected int getCodMsgOnResultFalseHook() {
 		return SystemCode.PAY_CUS_MANDATORY_FIELD_EMPTY;
 	}
 }

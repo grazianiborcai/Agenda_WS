@@ -24,8 +24,8 @@ final class VisiCusparMergePhonap extends ActionVisitorTemplateMergeV2<CusparInf
 	
 	
 	
-	@Override protected List<CusparInfo> mergeHook(List<CusparInfo> recordInfos, List<PhonapInfo> selectedInfos) {	
-		return CusparMerger.mergeWithPhonap(selectedInfos, recordInfos);
+	@Override protected List<CusparInfo> mergeHook(List<CusparInfo> baseInfos, List<PhonapInfo> selectedInfos) {	
+		return CusparMerger.mergeWithPhonap(baseInfos, selectedInfos);
 	}
 	
 	

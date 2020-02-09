@@ -1,60 +1,41 @@
 package br.com.mind5.payment.customerPartner.info;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.ArrayList;
+import java.util.List;
 
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.payment.partnerMoip.customerMoip.info.CusmoipInfo;
 
-final class CusparVisiMergeCusmoip implements InfoMergerVisitor_<CusparInfo, CusmoipInfo> {
-
-	@Override public CusparInfo writeRecord(CusmoipInfo sourceOne, CusparInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+final class CusparVisiMergeCusmoip implements InfoMergerVisitorV3<CusparInfo, CusmoipInfo> {
+	
+	@Override public List<CusparInfo> beforeMerge(List<CusparInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(CusparInfo baseInfo, CusmoipInfo selectedInfo) {
+		return (baseInfo.codOwner 		== selectedInfo.codOwner	&&
+				baseInfo.codPayCustomer == selectedInfo.codPayCustomer	);
+	}
+	
+	
+	
+	@Override public List<CusparInfo> merge(CusparInfo baseInfo, CusmoipInfo selectedInfo) {
+		List<CusparInfo> results = new ArrayList<>();
 		
-		CusparInfo clonedInfo = makeClone(sourceTwo);
-		return merge(sourceOne, clonedInfo);
+		baseInfo.customerId = selectedInfo.customerId;
+		baseInfo.customerLink = selectedInfo.customerLink;
+		baseInfo.accountLink = selectedInfo.accountLink;	
+		
+		results.add(baseInfo);
+		return results;
 	}
 	
 	
 	
-	private void checkArgument(CusmoipInfo sourceOne, CusparInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private CusparInfo makeClone(CusparInfo recordInfo) {
-		try {
-			return (CusparInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	private CusparInfo merge(CusmoipInfo sourceOne, CusparInfo sourceTwo) {
-		sourceTwo.customerId = sourceOne.customerId;
-		sourceTwo.customerLink = sourceOne.customerLink;
-		sourceTwo.accountLink = sourceOne.accountLink;	
-		return sourceTwo;
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(CusmoipInfo sourceOne, CusparInfo sourceTwo) {
-		return (sourceOne.codOwner 		 == sourceTwo.codOwner			&&
-				sourceOne.codPayCustomer == sourceTwo.codPayCustomer		);
-	}
-	
-	
-	
-	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
+	@Override public InfoUniquifier<CusparInfo> getUniquifier() {
+		return null;
 	}
 }

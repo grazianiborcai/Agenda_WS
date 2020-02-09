@@ -6,149 +6,140 @@ import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.addressSnapshot.info.AddresnapInfo;
 import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.business.phoneSnapshot.info.PhonapInfo;
-import br.com.mind5.info.obsolete.InfoMerger_;
+import br.com.mind5.info.InfoMergerBuilderV3;
+import br.com.mind5.info.InfoMergerV3;
 import br.com.mind5.payment.partnerMoip.customerMoip.info.CusmoipInfo;
 import br.com.mind5.payment.setupPartner.info.SetuparInfo;
 import br.com.mind5.security.user.info.UserInfo;
 import br.com.mind5.security.userSnapshot.info.UserapInfo;
 import br.com.mind5.security.username.info.UsernameInfo;
 
-public final class CusparMerger {		
-	public static CusparInfo mergeWithPhone(PhoneInfo sourceOne, CusparInfo sourceTwo) {
-		InfoMerger_<CusparInfo, PhoneInfo> merger = new CusparMergerPhone();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
+public final class CusparMerger {	
+	public static List<CusparInfo> mergeWithPhone(List<CusparInfo> baseInfos, List<PhoneInfo> selectedInfos) {
+		InfoMergerBuilderV3<CusparInfo, PhoneInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new CusparVisiMergePhone());
+		InfoMergerV3<CusparInfo, PhoneInfo> merger = builder.build();		
 	
-	
-	
-	public static List<CusparInfo> mergeWithPhone(List<PhoneInfo> sourceOnes, List<CusparInfo> sourceTwos) {
-		InfoMerger_<CusparInfo, PhoneInfo> merger = new CusparMergerPhone();		
-		return merger.merge(sourceOnes, sourceTwos);
-	}		
-	
-	
-	
-	public static CusparInfo mergeWithAddress(AddressInfo sourceOne, CusparInfo sourceTwo) {
-		InfoMerger_<CusparInfo, AddressInfo> merger = new CusparMergerAddress();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
-	
-	
-	
-	public static List<CusparInfo> mergeWithAddress(List<AddressInfo> sourceOnes, List<CusparInfo> sourceTwos) {
-		InfoMerger_<CusparInfo, AddressInfo> merger = new CusparMergerAddress();		
-		return merger.merge(sourceOnes, sourceTwos);
+		return merger.merge();
 	}	
 	
 	
 	
-	public static CusparInfo mergeWithCusmoip(CusmoipInfo sourceOne, CusparInfo sourceTwo) {
-		InfoMerger_<CusparInfo, CusmoipInfo> merger = new CusparMergerCusmoip();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
+	public static List<CusparInfo> mergeWithAddress(List<CusparInfo> baseInfos, List<AddressInfo> selectedInfos) {
+		InfoMergerBuilderV3<CusparInfo, AddressInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new CusparVisiMergeAddress());
+		InfoMergerV3<CusparInfo, AddressInfo> merger = builder.build();		
 	
-	
-	
-	public static List<CusparInfo> mergeWithCusmoip(List<CusmoipInfo> sourceOnes, List<CusparInfo> sourceTwos) {
-		InfoMerger_<CusparInfo, CusmoipInfo> merger = new CusparMergerCusmoip();		
-		return merger.merge(sourceOnes, sourceTwos);
+		return merger.merge();
 	}	
 	
 	
 	
-	public static CusparInfo mergeWithAddresnap(AddresnapInfo sourceOne, CusparInfo sourceTwo) {
-		InfoMerger_<CusparInfo, AddresnapInfo> merger = new CusparMergerAddresnap();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
+	public static List<CusparInfo> mergeWithCusmoip(List<CusparInfo> baseInfos, List<CusmoipInfo> selectedInfos) {
+		InfoMergerBuilderV3<CusparInfo, CusmoipInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new CusparVisiMergeCusmoip());
+		InfoMergerV3<CusparInfo, CusmoipInfo> merger = builder.build();		
 	
-	
-	
-	public static List<CusparInfo> mergeWithAddresnap(List<AddresnapInfo> sourceOnes, List<CusparInfo> sourceTwos) {
-		InfoMerger_<CusparInfo, AddresnapInfo> merger = new CusparMergerAddresnap();		
-		return merger.merge(sourceOnes, sourceTwos);
-	}		
-	
-	
-	
-	public static CusparInfo mergeWithPhonap(PhonapInfo sourceOne, CusparInfo sourceTwo) {
-		InfoMerger_<CusparInfo, PhonapInfo> merger = new CusparMergerPhonap();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
-	
-	
-	
-	public static List<CusparInfo> mergeWithPhonap(List<PhonapInfo> sourceOnes, List<CusparInfo> sourceTwos) {
-		InfoMerger_<CusparInfo, PhonapInfo> merger = new CusparMergerPhonap();		
-		return merger.merge(sourceOnes, sourceTwos);
+		return merger.merge();
 	}	
 	
 	
 	
-	public static CusparInfo mergeWithSetupar(SetuparInfo sourceOne, CusparInfo sourceTwo) {
-		InfoMerger_<CusparInfo, SetuparInfo> merger = new CusparMergerSetupar();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
+	public static List<CusparInfo> mergeWithAddresnap(List<CusparInfo> baseInfos, List<AddresnapInfo> selectedInfos) {
+		InfoMergerBuilderV3<CusparInfo, AddresnapInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new CusparVisiMergeAddresnap());
+		InfoMergerV3<CusparInfo, AddresnapInfo> merger = builder.build();		
 	
-	
-	
-	public static List<CusparInfo> mergeWithSetupar(List<SetuparInfo> sourceOnes, List<CusparInfo> sourceTwos) {
-		InfoMerger_<CusparInfo, SetuparInfo> merger = new CusparMergerSetupar();		
-		return merger.merge(sourceOnes, sourceTwos);
+		return merger.merge();
 	}	
 	
 	
 	
-	public static CusparInfo mergeWithUserap(UserapInfo sourceOne, CusparInfo sourceTwo) {
-		InfoMerger_<CusparInfo, UserapInfo> merger = new CusparMergerUserap();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
+	public static List<CusparInfo> mergeWithPhonap(List<CusparInfo> baseInfos, List<PhonapInfo> selectedInfos) {
+		InfoMergerBuilderV3<CusparInfo, PhonapInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new CusparVisiMergePhonap());
+		InfoMergerV3<CusparInfo, PhonapInfo> merger = builder.build();		
 	
-	
-	
-	public static List<CusparInfo> mergeWithUserap(List<UserapInfo> sourceOnes, List<CusparInfo> sourceTwos) {
-		InfoMerger_<CusparInfo, UserapInfo> merger = new CusparMergerUserap();		
-		return merger.merge(sourceOnes, sourceTwos);
+		return merger.merge();
 	}	
 	
 	
 	
-	public static CusparInfo mergeWithUsername(UsernameInfo sourceOne, CusparInfo sourceTwo) {
-		InfoMerger_<CusparInfo, UsernameInfo> merger = new CusparMergerUsername();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
+	public static List<CusparInfo> mergeWithSetupar(List<CusparInfo> baseInfos, List<SetuparInfo> selectedInfos) {
+		InfoMergerBuilderV3<CusparInfo, SetuparInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new CusparVisiMergeSetupar());
+		InfoMergerV3<CusparInfo, SetuparInfo> merger = builder.build();		
 	
-	
-	
-	public static List<CusparInfo> mergeWithUsername(List<UsernameInfo> sourceOnes, List<CusparInfo> sourceTwos) {
-		InfoMerger_<CusparInfo, UsernameInfo> merger = new CusparMergerUsername();		
-		return merger.merge(sourceOnes, sourceTwos);
-	}		
-	
-	
-	
-	public static CusparInfo mergeWithUser(UserInfo sourceOne, CusparInfo sourceTwo) {
-		InfoMerger_<CusparInfo, UserInfo> merger = new CusparMergerUser();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
-	
-	
-	
-	public static List<CusparInfo> mergeWithUser(List<UserInfo> sourceOnes, List<CusparInfo> sourceTwos) {
-		InfoMerger_<CusparInfo, UserInfo> merger = new CusparMergerUser();		
-		return merger.merge(sourceOnes, sourceTwos);
+		return merger.merge();
 	}	
 	
 	
 	
-	public static CusparInfo mergeToSelect(CusparInfo sourceOne, CusparInfo sourceTwo) {
-		InfoMerger_<CusparInfo, CusparInfo> merger = new CusparMergerToSelect();		
-		return merger.merge(sourceOne, sourceTwo);
+	public static List<CusparInfo> mergeWithUserap(List<CusparInfo> baseInfos, List<UserapInfo> selectedInfos) {
+		InfoMergerBuilderV3<CusparInfo, UserapInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new CusparVisiMergeUserap());
+		InfoMergerV3<CusparInfo, UserapInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static List<CusparInfo> mergeToSelect(List<CusparInfo> sourceOnes, List<CusparInfo> sourceTwos) {
-		InfoMerger_<CusparInfo, CusparInfo> merger = new CusparMergerToSelect();		
-		return merger.merge(sourceOnes, sourceTwos);
+	public static List<CusparInfo> mergeWithUsername(List<CusparInfo> baseInfos, List<UsernameInfo> selectedInfos) {
+		InfoMergerBuilderV3<CusparInfo, UsernameInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new CusparVisiMergeUsername());
+		InfoMergerV3<CusparInfo, UsernameInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}	
+	
+	
+	
+	public static List<CusparInfo> mergeWithUser(List<CusparInfo> baseInfos, List<UserInfo> selectedInfos) {
+		InfoMergerBuilderV3<CusparInfo, UserInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new CusparVisiMergeUser());
+		InfoMergerV3<CusparInfo, UserInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}	
+	
+	
+	
+	public static List<CusparInfo> mergeToSelect(List<CusparInfo> baseInfos, List<CusparInfo> selectedInfos) {
+		InfoMergerBuilderV3<CusparInfo, CusparInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new CusparVisiMergeToSelect());
+		InfoMergerV3<CusparInfo, CusparInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}		
 }

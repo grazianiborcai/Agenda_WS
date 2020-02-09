@@ -24,8 +24,8 @@ final class VisiCusparMergeAddresnap extends ActionVisitorTemplateMergeV2<Cuspar
 	
 	
 	
-	@Override protected List<CusparInfo> mergeHook(List<CusparInfo> recordInfos, List<AddresnapInfo> selectedInfos) {	
-		return CusparMerger.mergeWithAddresnap(selectedInfos, recordInfos);
+	@Override protected List<CusparInfo> mergeHook(List<CusparInfo> baseInfos, List<AddresnapInfo> selectedInfos) {	
+		return CusparMerger.mergeWithAddresnap(baseInfos, selectedInfos);
 	}
 	
 	

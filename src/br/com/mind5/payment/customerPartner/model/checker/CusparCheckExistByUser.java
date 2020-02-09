@@ -1,61 +1,40 @@
 package br.com.mind5.payment.customerPartner.model.checker;
 
-import java.sql.Connection;
-import java.util.ArrayList;
-
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.common.SystemMessage;
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateAction_;
+import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
 import br.com.mind5.payment.customerPartner.model.action.LazyCusparSelect;
 import br.com.mind5.payment.customerPartner.model.action.StdCusparEnforceUserKey;
 
-public final class CusparCheckExistByUser extends ModelCheckerTemplateAction_<CusparInfo> {
+public final class CusparCheckExistByUser extends ModelCheckerTemplateActionV2<CusparInfo, CusparInfo> {
 	
 	public CusparCheckExistByUser(ModelCheckerOption option) {
-		super(option);
+		super(option, CusparInfo.class);
 	}
 	
 
 	
-	@Override protected ActionStd<CusparInfo> buildActionHook(CusparInfo recordInfo, Connection conn, String schemaName) {
-		DeciTreeOption<CusparInfo> option = buildActionOption(recordInfo, conn, schemaName);
+	@Override protected ActionStd<CusparInfo> buildActionHook(DeciTreeOption<CusparInfo> option) {
+		ActionStd<CusparInfo> enforceUserKey = new StdCusparEnforceUserKey(option);
+		ActionLazy<CusparInfo> select = new LazyCusparSelect(option.conn, option.schemaName);
 		
-		ActionStd<CusparInfo> actionSelect = new StdCusparEnforceUserKey(option);
-		actionSelect.addPostAction(new LazyCusparSelect(conn, schemaName));
-		return actionSelect;
+		enforceUserKey.addPostAction(select);
+		return enforceUserKey;
 	}
 	
 	
 	
-	private DeciTreeOption<CusparInfo> buildActionOption(CusparInfo recordInfo, Connection conn, String schemaName) {
-		DeciTreeOption<CusparInfo> option = new DeciTreeOption<>();
-		option.recordInfos = new ArrayList<>();
-		option.recordInfos.add(recordInfo);
-		option.conn = conn;
-		option.schemaName = schemaName;
-		
-		return option;
-	}
+	@Override protected int getCodMsgOnResultTrueHook() {
+		return SystemCode.PAY_CUS_USER_ALREADY_EXIST;
+	}	
 	
 	
 	
-	@Override protected String makeFailExplanationHook(boolean checkerResult) {		
-		if (makeFailCodeHook(checkerResult) == SystemCode.PAY_CUS_USER_ALREADY_EXIST)
-			return SystemMessage.PAY_CUS_USER_ALREADY_EXIST;
-		
-		return SystemMessage.PAY_CUS_USER_NOT_FOUND;
-	}
-	
-	
-	
-	@Override protected int makeFailCodeHook(boolean checkerResult) {
-		if (checkerResult == super.ALREADY_EXIST)
-			return SystemCode.PAY_CUS_USER_ALREADY_EXIST;	
-		
+	@Override protected int getCodMsgOnResultFalseHook() {
 		return SystemCode.PAY_CUS_USER_NOT_FOUND;
 	}
 }

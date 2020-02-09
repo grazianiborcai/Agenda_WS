@@ -25,14 +25,14 @@ final class VisiCusparMergePhone extends ActionVisitorTemplateMergeV2<CusparInfo
 	
 	
 	
-	@Override protected List<PhoneInfo> toActionClassHook(List<CusparInfo> recordInfos) {
-		return PhoneCopier.copyFromCuspar(recordInfos);	
+	@Override protected List<PhoneInfo> toActionClassHook(List<CusparInfo> baseInfos) {
+		return PhoneCopier.copyFromCuspar(baseInfos);	
 	}
 	
 	
 	
-	@Override protected List<CusparInfo> mergeHook(List<CusparInfo> recordInfos, List<PhoneInfo> selectedInfos) {	
-		return CusparMerger.mergeWithPhone(selectedInfos, recordInfos);
+	@Override protected List<CusparInfo> mergeHook(List<CusparInfo> baseInfos, List<PhoneInfo> selectedInfos) {	
+		return CusparMerger.mergeWithPhone(baseInfos, selectedInfos);
 	}
 	
 	

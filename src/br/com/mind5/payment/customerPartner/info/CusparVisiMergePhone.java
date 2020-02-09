@@ -1,58 +1,39 @@
 package br.com.mind5.payment.customerPartner.info;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.ArrayList;
+import java.util.List;
 
 import br.com.mind5.business.phone.info.PhoneInfo;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-final class CusparVisiMergePhone implements InfoMergerVisitor_<CusparInfo, PhoneInfo> {
-
-	@Override public CusparInfo writeRecord(PhoneInfo sourceOne, CusparInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+final class CusparVisiMergePhone implements InfoMergerVisitorV3<CusparInfo, PhoneInfo> {
+	
+	@Override public List<CusparInfo> beforeMerge(List<CusparInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(CusparInfo baseInfo, PhoneInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner &&
+				baseInfo.codPhone == selectedInfo.codPhone	);
+	}
+	
+	
+	
+	@Override public List<CusparInfo> merge(CusparInfo baseInfo, PhoneInfo selectedInfo) {
+		List<CusparInfo> results = new ArrayList<>();
 		
-		CusparInfo clonedInfo = makeClone(sourceTwo);
-		return merge(sourceOne, clonedInfo);
+		baseInfo.codPhoneSnapshot = selectedInfo.codSnapshot;
+		
+		results.add(baseInfo);
+		return results;
 	}
 	
 	
 	
-	private void checkArgument(PhoneInfo sourceOne, CusparInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private CusparInfo makeClone(CusparInfo recordInfo) {
-		try {
-			return (CusparInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	private CusparInfo merge(PhoneInfo sourceOne, CusparInfo sourceTwo) {
-		sourceTwo.codPhoneSnapshot = sourceOne.codSnapshot;
-		return sourceTwo;
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(PhoneInfo sourceOne, CusparInfo sourceTwo) {		
-		return (sourceOne.codOwner    == sourceTwo.codOwner		&&
-				sourceOne.codPhone    == sourceTwo.codPhone);
-	}
-	
-	
-	
-	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
+	@Override public InfoUniquifier<CusparInfo> getUniquifier() {
+		return null;
 	}
 }

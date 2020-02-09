@@ -1,56 +1,38 @@
 package br.com.mind5.payment.customerPartner.info;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.ArrayList;
+import java.util.List;
 
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-final class CusparVisiMergeToSelect implements InfoMergerVisitor_<CusparInfo, CusparInfo> {
-
-	@Override public CusparInfo writeRecord(CusparInfo sourceOne, CusparInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);		
-		return merge(sourceOne, sourceTwo);
+final class CusparVisiMergeToSelect implements InfoMergerVisitorV3<CusparInfo, CusparInfo> {
+	
+	@Override public List<CusparInfo> beforeMerge(List<CusparInfo> baseInfos) {
+		return baseInfos;
 	}
 	
 	
 	
-	private void checkArgument(CusparInfo sourceOne, CusparInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
+	@Override public boolean shouldMerge(CusparInfo baseInfo, CusparInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner);
 	}
 	
 	
 	
-	private CusparInfo merge(CusparInfo sourceOne, CusparInfo sourceTwo) {
-		CusparInfo result = makeClone(sourceOne);		
-		result.username = sourceTwo.username;
-		result.codLanguage = sourceTwo.codLanguage;
-		return result;
+	@Override public List<CusparInfo> merge(CusparInfo baseInfo, CusparInfo selectedInfo) {
+		List<CusparInfo> results = new ArrayList<>();
+		
+		selectedInfo.username = baseInfo.username;
+		selectedInfo.codLanguage = baseInfo.codLanguage;
+		
+		results.add(selectedInfo);
+		return results;
 	}
 	
 	
 	
-	private CusparInfo makeClone(CusparInfo recordInfo) {
-		try {
-			return (CusparInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(CusparInfo sourceOne, CusparInfo sourceTwo) {		
-		return (sourceOne.codOwner == sourceTwo.codOwner);
-	}
-	
-	
-	
-	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
+	@Override public InfoUniquifier<CusparInfo> getUniquifier() {
+		return null;
 	}
 }

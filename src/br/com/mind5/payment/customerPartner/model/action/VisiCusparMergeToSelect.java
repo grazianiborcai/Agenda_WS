@@ -22,8 +22,8 @@ final class VisiCusparMergeToSelect extends ActionVisitorTemplateMergeV2<CusparI
 	
 	
 	
-	@Override protected List<CusparInfo> mergeHook(List<CusparInfo> recordInfos, List<CusparInfo> selectedInfos) {	
-		return CusparMerger.mergeToSelect(selectedInfos, recordInfos);
+	@Override protected List<CusparInfo> mergeHook(List<CusparInfo> baseInfos, List<CusparInfo> selectedInfos) {	
+		return CusparMerger.mergeToSelect(baseInfos, selectedInfos);
 	}
 	
 	

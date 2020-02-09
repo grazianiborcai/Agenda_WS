@@ -27,8 +27,6 @@ public final class NodeCusparInsert extends DeciTreeWriteTemplate<CusparInfo> {
 	
 	
 	@Override protected ModelChecker<CusparInfo> buildDecisionCheckerHook(DeciTreeOption<CusparInfo> option) {
-		final boolean DONT_EXIST_ON_DB = false;
-		
 		List<ModelChecker<CusparInfo>> queue = new ArrayList<>();		
 		ModelChecker<CusparInfo> checker;	
 		ModelCheckerOption checkerOption;
@@ -36,14 +34,22 @@ public final class NodeCusparInsert extends DeciTreeWriteTemplate<CusparInfo> {
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = DONT_EXIST_ON_DB;	
+		checkerOption.expectedResult = ModelCheckerOption.NOT_FOUND;	
 		checker = new CusparCheckExistByUser(checkerOption);
 		queue.add(checker);
 		
-		checker = new CusparCheckAddresnapUser();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new CusparCheckAddresnapUser(checkerOption);
 		queue.add(checker);
 		
-		checker = new CusparCheckPhonapUser();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new CusparCheckPhonapUser(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);

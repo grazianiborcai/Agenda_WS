@@ -27,6 +27,6 @@ final class VisiCusparCreateCusmoip extends ActionVisitorTemplateAction<CusparIn
 	
 	
 	@Override protected List<CusparInfo> toBaseClassHook(List<CusparInfo> baseInfos, List<CusmoipInfo> results) {
-		return CusparMerger.mergeWithCusmoip(results, baseInfos);
+		return CusparMerger.mergeWithCusmoip(baseInfos, results);
 	}
 }

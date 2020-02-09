@@ -25,14 +25,14 @@ final class VisiCusparMergeUsername extends ActionVisitorTemplateMergeV2<CusparI
 	
 	
 	
-	@Override protected List<UsernameInfo> toActionClassHook(List<CusparInfo> recordInfos) {
-		return UsernameCopier.copyFromCuspar(recordInfos);	
+	@Override protected List<UsernameInfo> toActionClassHook(List<CusparInfo> baseInfos) {
+		return UsernameCopier.copyFromCuspar(baseInfos);	
 	}
 	
 	
 	
-	@Override protected List<CusparInfo> mergeHook(List<CusparInfo> recordInfos, List<UsernameInfo> selectedInfos) {	
-		return CusparMerger.mergeWithUsername(selectedInfos, recordInfos);
+	@Override protected List<CusparInfo> mergeHook(List<CusparInfo> baseInfos, List<UsernameInfo> selectedInfos) {	
+		return CusparMerger.mergeWithUsername(baseInfos, selectedInfos);
 	}
 	
 	

@@ -1,71 +1,40 @@
 package br.com.mind5.payment.customerPartner.info;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.ArrayList;
+import java.util.List;
 
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.security.userSnapshot.info.UserapInfo;
 
-final class CusparVisiMergeUserap implements InfoMergerVisitor_<CusparInfo, UserapInfo> {
-
-	@Override public CusparInfo writeRecord(UserapInfo sourceOne, CusparInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+final class CusparVisiMergeUserap implements InfoMergerVisitorV3<CusparInfo, UserapInfo> {
+	
+	@Override public List<CusparInfo> beforeMerge(List<CusparInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(CusparInfo baseInfo, UserapInfo selectedInfo) {
+		return (baseInfo.codOwner 			== selectedInfo.codOwner		&&
+				baseInfo.codUser 			== selectedInfo.codUser			&&
+				baseInfo.codUserSnapshot	== selectedInfo.codSnapshot			);
+	}
+	
+	
+	
+	@Override public List<CusparInfo> merge(CusparInfo baseInfo, UserapInfo selectedInfo) {
+		List<CusparInfo> results = new ArrayList<>();
 		
-		CusparInfo clonedInfo = makeClone(sourceTwo);
-		return merge(sourceOne, clonedInfo);
+		baseInfo.userapData = selectedInfo;
+		
+		results.add(baseInfo);
+		return results;
 	}
 	
 	
 	
-	private void checkArgument(UserapInfo sourceOne, CusparInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private CusparInfo makeClone(CusparInfo recordInfo) {
-		try {
-			return (CusparInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	private CusparInfo merge(UserapInfo sourceOne, CusparInfo sourceTwo) {
-		sourceTwo.userapData = makeClone(sourceOne);
-		return sourceTwo;
-	}
-	
-	
-	
-	private UserapInfo makeClone(UserapInfo recordInfo) {
-		try {
-			return (UserapInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(UserapInfo sourceOne, CusparInfo sourceTwo) {		
-		return (sourceOne.codOwner 		== sourceTwo.codOwner			&&
-				sourceOne.codUser 		== sourceTwo.codUser			&&
-				sourceOne.codSnapshot 	== sourceTwo.codUserSnapshot);
-	}
-	
-	
-	
-	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
+	@Override public InfoUniquifier<CusparInfo> getUniquifier() {
+		return null;
 	}
 }
