@@ -7,6 +7,7 @@ import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.customer.info.CusInfo;
 import br.com.mind5.info.InfoCopier;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
+import br.com.mind5.payment.customerPartner.info.CusparInfo;
 
 public final class AddarchCopier {	
 	public static AddarchInfo copyFromAdddressRef(AddressInfo source) {
@@ -48,4 +49,18 @@ public final class AddarchCopier {
 		InfoCopier<AddarchInfo, CrecardInfo> copier = new AddarchCopyCrecard();
 		return copier.makeCopy(sources);
 	}
+	
+	
+	
+	public static AddarchInfo copyFromCuspar(CusparInfo source) {
+		InfoCopier<AddarchInfo, CusparInfo> copier = new AddarchCopyCuspar();
+		return copier.makeCopy(source);
+	}
+	
+	
+	
+	public static List<AddarchInfo> copyFromCuspar(List<CusparInfo> sources) {
+		InfoCopier<AddarchInfo, CusparInfo> copier = new AddarchCopyCuspar();
+		return copier.makeCopy(sources);
+	}	
 }
