@@ -1066,4 +1066,9 @@ public final class SystemCode {
 	
 	// Order List Auth
 	public static final int ORDER_LIST_AUTH_MANDATORY_FIELD_EMPTY 		= 10800;
+	
+	// Pay-Customer Search
+	public static final int PAY_CUS_SEARCH_ALREADY_EXIST 				= 10850;
+	public static final int PAY_CUS_SEARCH_NOT_FOUND 					= 10851;
+	public static final int PAY_CUS_SEARCH_MANDATORY_FIELD_EMPTY 		= 10852;
 }
