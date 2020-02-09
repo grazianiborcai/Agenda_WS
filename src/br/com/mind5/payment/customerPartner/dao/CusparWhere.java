@@ -35,14 +35,6 @@ public final class CusparWhere implements DaoStmtWhere {
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codPayCustomer));
 					break;
 					
-				case CusparDbTableColumn.COL_COD_USER :
-					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codUser));
-					break;
-					
-				case CusparDbTableColumn.COL_COD_PAY_PARTNER :
-					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codPayPartner));
-					break;
-					
 				case CusparDbTableColumn.COL_RECORD_MODE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.recordMode);
 					break;

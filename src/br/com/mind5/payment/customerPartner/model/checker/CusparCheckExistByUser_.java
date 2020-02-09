@@ -10,9 +10,9 @@ import br.com.mind5.payment.customerPartner.info.CusparInfo;
 import br.com.mind5.payment.customerPartner.model.action.LazyCusparSelect;
 import br.com.mind5.payment.customerPartner.model.action.StdCusparEnforceUserKey;
 
-public final class CusparCheckExistByUser extends ModelCheckerTemplateActionV2<CusparInfo, CusparInfo> {
+public final class CusparCheckExistByUser_ extends ModelCheckerTemplateActionV2<CusparInfo, CusparInfo> {
 	
-	public CusparCheckExistByUser(ModelCheckerOption option) {
+	public CusparCheckExistByUser_(ModelCheckerOption option) {
 		super(option, CusparInfo.class);
 	}
 	

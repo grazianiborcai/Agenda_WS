@@ -452,6 +452,8 @@ public final class SystemCode {
 	public static final int PAY_CUS_ADDRESS_DIF_USER					= 2414;
 	public static final int PAY_CUS_PHONE_DIF_USER						= 2415;
 	public static final int PAY_CUS_MANDATORY_FIELD_EMPTY 				= 2416;
+	public static final int PAY_CUS_INVALID_ADDRESS						= 2417;
+	public static final int PAY_CUS_INVALID_PHONE						= 2418;
 	
 	// Company
 	public static final int COMPANY_TECH_FIELD_SHOULD_BE_EMPTY			= 2500;
@@ -595,6 +597,8 @@ public final class SystemCode {
 	public static final int CREDIT_CARD_EMPTY_PAYPAR					= 4153;
 	public static final int CREDIT_CARD_ALREADY_EXIST					= 4154;
 	public static final int CREDIT_CARD_NOT_FOUND						= 4155;
+	public static final int CREDIT_CARD_INVALID_ADDRESS					= 4156;
+	public static final int CREDIT_CARD_INVALID_PHONE					= 4157;
 	
 	// Credit Card-Moip
 	public static final int CREDIT_CARD_MOIP_ADDRESS_BR					= 4200;

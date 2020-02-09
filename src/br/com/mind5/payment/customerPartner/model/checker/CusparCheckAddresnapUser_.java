@@ -7,9 +7,9 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
 
-public final class CusparCheckAddresnapUser extends ModelCheckerTemplateSimpleV2<CusparInfo> {
+public final class CusparCheckAddresnapUser_ extends ModelCheckerTemplateSimpleV2<CusparInfo> {
 
-	public CusparCheckAddresnapUser(ModelCheckerOption option) {
+	public CusparCheckAddresnapUser_(ModelCheckerOption option) {
 		super(option);
 	}
 	

@@ -6,7 +6,6 @@ import java.util.List;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
@@ -14,9 +13,7 @@ import br.com.mind5.payment.customerPartner.info.CusparInfo;
 import br.com.mind5.payment.customerPartner.model.action.LazyCusparEnforceCompoundId;
 import br.com.mind5.payment.customerPartner.model.action.LazyCusparNodeCreateMoip;
 import br.com.mind5.payment.customerPartner.model.action.StdCusparInsert;
-import br.com.mind5.payment.customerPartner.model.checker.CusparCheckAddresnapUser;
-import br.com.mind5.payment.customerPartner.model.checker.CusparCheckExistByUser;
-import br.com.mind5.payment.customerPartner.model.checker.CusparCheckPhonapUser;
+import br.com.mind5.payment.customerPartner.model.checker.CusparCheckDummy;
 
 public final class NodeCusparInsert extends DeciTreeWriteTemplate<CusparInfo> {
 	
@@ -29,27 +26,8 @@ public final class NodeCusparInsert extends DeciTreeWriteTemplate<CusparInfo> {
 	@Override protected ModelChecker<CusparInfo> buildDecisionCheckerHook(DeciTreeOption<CusparInfo> option) {
 		List<ModelChecker<CusparInfo>> queue = new ArrayList<>();		
 		ModelChecker<CusparInfo> checker;	
-		ModelCheckerOption checkerOption;
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.NOT_FOUND;	
-		checker = new CusparCheckExistByUser(checkerOption);
-		queue.add(checker);
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new CusparCheckAddresnapUser(checkerOption);
-		queue.add(checker);
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new CusparCheckPhonapUser(checkerOption);
+
+		checker = new CusparCheckDummy();
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);

@@ -16,22 +16,22 @@ import br.com.mind5.payment.customerPartner.model.action.LazyCusparMergeAddresna
 import br.com.mind5.payment.customerPartner.model.action.LazyCusparMergeAddress;
 import br.com.mind5.payment.customerPartner.model.action.LazyCusparMergePhonap;
 import br.com.mind5.payment.customerPartner.model.action.LazyCusparMergePhone;
-import br.com.mind5.payment.customerPartner.model.action.LazyCusparMergeUselis_;
 import br.com.mind5.payment.customerPartner.model.action.LazyCusparMergeUserap;
 import br.com.mind5.payment.customerPartner.model.action.LazyCusparNodeInsert;
 import br.com.mind5.payment.customerPartner.model.action.LazyCusparRootSelect;
-import br.com.mind5.payment.customerPartner.model.action.StdCusparMergeUsername;
+import br.com.mind5.payment.customerPartner.model.action.StdCusparMergeUselis;
 import br.com.mind5.payment.customerPartner.model.checker.CusparCheckAddress;
+import br.com.mind5.payment.customerPartner.model.checker.CusparCheckCusparch;
 import br.com.mind5.payment.customerPartner.model.checker.CusparCheckInsert;
 import br.com.mind5.payment.customerPartner.model.checker.CusparCheckLangu;
 import br.com.mind5.payment.customerPartner.model.checker.CusparCheckOwner;
 import br.com.mind5.payment.customerPartner.model.checker.CusparCheckPaypar;
 import br.com.mind5.payment.customerPartner.model.checker.CusparCheckPhone;
-import br.com.mind5.payment.customerPartner.model.checker.CusparCheckUsername;
+import br.com.mind5.payment.customerPartner.model.checker.CusparCheckUser;
 
-public final class RootCusparInsertAuth extends DeciTreeWriteTemplate<CusparInfo> {
+public final class RootCusparInsert_ extends DeciTreeWriteTemplate<CusparInfo> {
 	
-	public RootCusparInsertAuth(DeciTreeOption<CusparInfo> option) {
+	public RootCusparInsert_(DeciTreeOption<CusparInfo> option) {
 		super(option);
 	}
 	
@@ -74,7 +74,14 @@ public final class RootCusparInsertAuth extends DeciTreeWriteTemplate<CusparInfo
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
-		checker = new CusparCheckUsername(checkerOption);
+		checker = new CusparCheckUser(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.NOT_FOUND;	
+		checker = new CusparCheckCusparch(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
@@ -99,8 +106,7 @@ public final class RootCusparInsertAuth extends DeciTreeWriteTemplate<CusparInfo
 	@Override protected List<ActionStd<CusparInfo>> buildActionsOnPassedHook(DeciTreeOption<CusparInfo> option) {
 		List<ActionStd<CusparInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CusparInfo> mergeUsername = new StdCusparMergeUsername(option);
-		ActionLazy<CusparInfo> mergeUser = new LazyCusparMergeUselis_(option.conn, option.schemaName);		
+		ActionStd<CusparInfo> mergeUselis = new StdCusparMergeUselis(option);	
 		ActionLazy<CusparInfo> mergeUserSnapshot = new LazyCusparMergeUserap(option.conn, option.schemaName);	
 		ActionLazy<CusparInfo> mergeAddress = new LazyCusparMergeAddress(option.conn, option.schemaName);
 		ActionLazy<CusparInfo> mergeAddressSnapshot = new LazyCusparMergeAddresnap(option.conn, option.schemaName);
@@ -110,8 +116,7 @@ public final class RootCusparInsertAuth extends DeciTreeWriteTemplate<CusparInfo
 		ActionLazy<CusparInfo> insert = new LazyCusparNodeInsert(option.conn, option.schemaName);
 		ActionLazy<CusparInfo> select = new LazyCusparRootSelect(option.conn, option.schemaName);
 		
-		mergeUsername.addPostAction(mergeUser);
-		mergeUser.addPostAction(mergeUserSnapshot);
+		mergeUselis.addPostAction(mergeUserSnapshot);
 		mergeUserSnapshot.addPostAction(mergeAddress);		
 		mergeAddress.addPostAction(mergeAddressSnapshot);		
 		mergeAddressSnapshot.addPostAction(mergePhone);	
@@ -120,7 +125,7 @@ public final class RootCusparInsertAuth extends DeciTreeWriteTemplate<CusparInfo
 		enforceLChanged.addPostAction(insert);
 		insert.addPostAction(select);
 		
-		actions.add(mergeUsername);
+		actions.add(mergeUselis);
 		return actions;
 	}
 }
