@@ -5,9 +5,9 @@ import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorV3;
 import br.com.mind5.info.InfoUniquifier;
-import br.com.mind5.security.user.info.UserInfo;
+import br.com.mind5.security.userList.info.UselisInfo;
 
-final class CusparVisiMergeUser implements InfoMergerVisitorV3<CusparInfo, UserInfo> {
+final class CusparVisiMergeUselis implements InfoMergerVisitorV3<CusparInfo, UselisInfo> {
 	
 	@Override public List<CusparInfo> beforeMerge(List<CusparInfo> baseInfos) {
 		return baseInfos;
@@ -15,14 +15,14 @@ final class CusparVisiMergeUser implements InfoMergerVisitorV3<CusparInfo, UserI
 	
 	
 	
-	@Override public boolean shouldMerge(CusparInfo baseInfo, UserInfo selectedInfo) {
+	@Override public boolean shouldMerge(CusparInfo baseInfo, UselisInfo selectedInfo) {
 		return (baseInfo.codOwner 	== selectedInfo.codOwner &&
 				baseInfo.codUser 	== selectedInfo.codUser		);
 	}
 	
 	
 	
-	@Override public List<CusparInfo> merge(CusparInfo baseInfo, UserInfo selectedInfo) {
+	@Override public List<CusparInfo> merge(CusparInfo baseInfo, UselisInfo selectedInfo) {
 		List<CusparInfo> results = new ArrayList<>();
 		
 		baseInfo.codUserSnapshot = selectedInfo.codSnapshot;

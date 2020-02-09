@@ -7,12 +7,12 @@ import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
 
-public final class StdCusparMergeUser implements ActionStd<CusparInfo> {
+public final class StdCusparMergeUselis implements ActionStd<CusparInfo> {
 	private ActionStd<CusparInfo> actionHelper;	
 	
 	
-	public StdCusparMergeUser(DeciTreeOption<CusparInfo> option) {			
-		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiCusparMergeUser(option.conn, option.schemaName));
+	public StdCusparMergeUselis(DeciTreeOption<CusparInfo> option) {			
+		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiCusparMergeUselis(option.conn, option.schemaName));
 	}
 	
 	

@@ -83,38 +83,38 @@ public final class CusparInfo extends InfoRecord implements Cloneable {
 	
 	
 	
-	private SetuparInfo cloneSetup(SetuparInfo setupar) throws CloneNotSupportedException {
-		if (setupar == null)
+	private SetuparInfo cloneSetup(SetuparInfo recorInfo) throws CloneNotSupportedException {
+		if (recorInfo == null)
 			return null;
 		
-		return (SetuparInfo) setupar.clone();
+		return (SetuparInfo) recorInfo.clone();
 	}
 	
 	
 	
-	private UserapInfo cloneUserap(UserapInfo userap) throws CloneNotSupportedException {
-		if (userap == null)
+	private UserapInfo cloneUserap(UserapInfo recordInfo) throws CloneNotSupportedException {
+		if (recordInfo == null)
 			return null;
 		
-		return (UserapInfo) userap.clone();
+		return (UserapInfo) recordInfo.clone();
 	}
 	
 	
 	
-	private AddresnapInfo cloneAddresnap(AddresnapInfo addresnap) throws CloneNotSupportedException {
-		if (addresnap == null)
+	private AddresnapInfo cloneAddresnap(AddresnapInfo recordInfo) throws CloneNotSupportedException {
+		if (recordInfo == null)
 			return null;
 		
-		return (AddresnapInfo) addresnap.clone();
+		return (AddresnapInfo) recordInfo.clone();
 	}	
 	
 	
 	
-	private PhonapInfo clonePhonap(PhonapInfo phonap) throws CloneNotSupportedException {
-		if (phonap == null)
+	private PhonapInfo clonePhonap(PhonapInfo recorInfo) throws CloneNotSupportedException {
+		if (recorInfo == null)
 			return null;
 		
-		return (PhonapInfo) phonap.clone();
+		return (PhonapInfo) recorInfo.clone();
 	}	
 	
 	

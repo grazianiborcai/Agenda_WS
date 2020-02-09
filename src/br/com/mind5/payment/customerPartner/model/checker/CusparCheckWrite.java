@@ -19,9 +19,9 @@ public final class CusparCheckWrite extends ModelCheckerTemplateSimpleV2<CusparI
 		if ( recordInfo.codOwner 			<= 0 	|| 
 			 recordInfo.codPayCustomer 		<= 0 	||			 
 			 recordInfo.codAddress 			<= 0 	||
-			 recordInfo.codAddressSnapshot 	<= 0 	||
+			 recordInfo.codAddressSnapshot 	<= 0 	||	// ???
 			 recordInfo.codPhone 			<= 0 	||
-			 recordInfo.codPhoneSnapshot 	<= 0 	|| 
+			 recordInfo.codPhoneSnapshot 	<= 0 	||	// ??? 
 			 recordInfo.username			== null	||
 			 recordInfo.codLanguage			== null		)
 			

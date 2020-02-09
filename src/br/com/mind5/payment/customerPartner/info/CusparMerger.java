@@ -10,7 +10,7 @@ import br.com.mind5.info.InfoMergerBuilderV3;
 import br.com.mind5.info.InfoMergerV3;
 import br.com.mind5.payment.partnerMoip.customerMoip.info.CusmoipInfo;
 import br.com.mind5.payment.setupPartner.info.SetuparInfo;
-import br.com.mind5.security.user.info.UserInfo;
+import br.com.mind5.security.userList.info.UselisInfo;
 import br.com.mind5.security.userSnapshot.info.UserapInfo;
 import br.com.mind5.security.username.info.UsernameInfo;
 
@@ -119,13 +119,13 @@ public final class CusparMerger {
 	
 	
 	
-	public static List<CusparInfo> mergeWithUser(List<CusparInfo> baseInfos, List<UserInfo> selectedInfos) {
-		InfoMergerBuilderV3<CusparInfo, UserInfo> builder = new InfoMergerBuilderV3<>();
+	public static List<CusparInfo> mergeWithUselis(List<CusparInfo> baseInfos, List<UselisInfo> selectedInfos) {
+		InfoMergerBuilderV3<CusparInfo, UselisInfo> builder = new InfoMergerBuilderV3<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CusparVisiMergeUser());
-		InfoMergerV3<CusparInfo, UserInfo> merger = builder.build();		
+		builder.addVisitor(new CusparVisiMergeUselis());
+		InfoMergerV3<CusparInfo, UselisInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}	

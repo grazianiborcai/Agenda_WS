@@ -9,9 +9,9 @@ import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
 
-public final class LazyCusparMergeUser extends ActionLazyTemplate<CusparInfo, CusparInfo> {
+public final class LazyCusparMergeUselis_ extends ActionLazyTemplate<CusparInfo, CusparInfo> {
 
-	public LazyCusparMergeUser(Connection conn, String schemaName) {
+	public LazyCusparMergeUselis_(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyCusparMergeUser extends ActionLazyTemplate<CusparInfo, Cu
 	
 	
 	@Override protected ActionStd<CusparInfo> getInstanceOfActionHook(DeciTreeOption<CusparInfo> option) {
-		return new StdCusparMergeUser(option);
+		return new StdCusparMergeUselis(option);
 	}
 	
 	
