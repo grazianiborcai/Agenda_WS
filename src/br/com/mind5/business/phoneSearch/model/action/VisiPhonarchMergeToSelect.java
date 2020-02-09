@@ -22,8 +22,8 @@ final class VisiPhonarchMergeToSelect extends ActionVisitorTemplateMergeV2<Phona
 	
 	
 	
-	@Override protected List<PhonarchInfo> mergeHook(List<PhonarchInfo> recordInfos, List<PhonarchInfo> selectedInfos) {	
-		return PhonarchMerger.mergeToSelect(selectedInfos, recordInfos);
+	@Override protected List<PhonarchInfo> mergeHook(List<PhonarchInfo> baseInfos, List<PhonarchInfo> selectedInfos) {	
+		return PhonarchMerger.mergeToSelect(baseInfos, selectedInfos);
 	}
 	
 	
