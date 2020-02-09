@@ -22,8 +22,8 @@ final class VisiAddarchMergeToSelect extends ActionVisitorTemplateMergeV2<Addarc
 	
 	
 	
-	@Override protected List<AddarchInfo> mergeHook(List<AddarchInfo> recordInfos, List<AddarchInfo> selectedInfos) {	
-		return AddarchMerger.mergeToSelect(selectedInfos, recordInfos);
+	@Override protected List<AddarchInfo> mergeHook(List<AddarchInfo> baseInfos, List<AddarchInfo> selectedInfos) {	
+		return AddarchMerger.mergeToSelect(baseInfos, selectedInfos);
 	}
 	
 	

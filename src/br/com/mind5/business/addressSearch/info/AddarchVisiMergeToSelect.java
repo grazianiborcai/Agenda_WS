@@ -1,56 +1,38 @@
 package br.com.mind5.business.addressSearch.info;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.ArrayList;
+import java.util.List;
 
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-final class AddarchVisiMergeToSelect implements InfoMergerVisitor_<AddarchInfo, AddarchInfo> {
+final class AddarchVisiMergeToSelect implements InfoMergerVisitorV3<AddarchInfo, AddarchInfo> {
+	
+	@Override public List<AddarchInfo> beforeMerge(List<AddarchInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(AddarchInfo baseInfo, AddarchInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner);
+	}
+	
+	
 
-	@Override public AddarchInfo writeRecord(AddarchInfo sourceOne, AddarchInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);		
-		return merge(sourceOne, sourceTwo);
+	@Override public List<AddarchInfo> merge(AddarchInfo baseInfo, AddarchInfo selectedInfo) {
+		List<AddarchInfo> results = new ArrayList<>();
+		
+		selectedInfo.username = baseInfo.username;
+		selectedInfo.codLanguage = baseInfo.codLanguage;
+		
+		results.add(selectedInfo);
+		return results;
 	}
 	
 	
 	
-	private void checkArgument(AddarchInfo sourceOne, AddarchInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private AddarchInfo merge(AddarchInfo sourceOne, AddarchInfo sourceTwo) {
-		AddarchInfo result = makeClone(sourceOne);		
-		result.username = sourceTwo.username;
-		result.codLanguage = sourceTwo.codLanguage;
-		return result;
-	}
-	
-	
-	
-	private AddarchInfo makeClone(AddarchInfo recordInfo) {
-		try {
-			return (AddarchInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(AddarchInfo sourceOne, AddarchInfo sourceTwo) {		
-		return (sourceOne.codOwner == sourceTwo.codOwner);
-	}
-	
-	
-	
-	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
+	@Override public InfoUniquifier<AddarchInfo> getUniquifier() {
+		return null;
 	}
 }
