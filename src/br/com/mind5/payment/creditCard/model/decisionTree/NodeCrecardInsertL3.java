@@ -14,8 +14,8 @@ import br.com.mind5.payment.creditCard.info.CrecardInfo;
 import br.com.mind5.payment.creditCard.model.action.LazyCrecardNodeInsertL4;
 import br.com.mind5.payment.creditCard.model.action.StdCrecardMergeCuspar;
 import br.com.mind5.payment.creditCard.model.checker.CrecardCheckCuspar;
-import br.com.mind5.payment.creditCard.model.checker.CrecardCheckUserAddress;
-import br.com.mind5.payment.creditCard.model.checker.CrecardCheckUserPhone;
+import br.com.mind5.payment.creditCard.model.checker.CrecardCheckUserAddress_;
+import br.com.mind5.payment.creditCard.model.checker.CrecardCheckUserPhone_;
 
 public final class NodeCrecardInsertL3 extends DeciTreeWriteTemplate<CrecardInfo> {
 	
@@ -34,14 +34,14 @@ public final class NodeCrecardInsertL3 extends DeciTreeWriteTemplate<CrecardInfo
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new CrecardCheckUserAddress(checkerOption);
+		checker = new CrecardCheckUserAddress_(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new CrecardCheckUserPhone(checkerOption);
+		checker = new CrecardCheckUserPhone_(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();

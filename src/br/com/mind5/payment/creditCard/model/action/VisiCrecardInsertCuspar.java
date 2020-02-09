@@ -10,7 +10,7 @@ import br.com.mind5.payment.creditCard.info.CrecardInfo;
 import br.com.mind5.payment.creditCard.info.CrecardMerger;
 import br.com.mind5.payment.customerPartner.info.CusparCopier;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
-import br.com.mind5.payment.customerPartner.model.decisionTree.RootCusparInsertAuth;
+import br.com.mind5.payment.customerPartner.model.decisionTree.RootCusparInsert;
 
 final class VisiCrecardInsertCuspar extends ActionVisitorTemplateAction<CrecardInfo, CusparInfo> {
 	public VisiCrecardInsertCuspar(Connection conn, String schemaName) {
@@ -20,7 +20,7 @@ final class VisiCrecardInsertCuspar extends ActionVisitorTemplateAction<CrecardI
 	
 	
 	@Override protected ActionStd<CusparInfo> getActionHook(DeciTreeOption<CusparInfo> option) {
-		return new RootCusparInsertAuth(option).toAction();
+		return new RootCusparInsert(option).toAction();
 	}
 	
 	

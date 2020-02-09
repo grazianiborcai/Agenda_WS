@@ -16,7 +16,7 @@ public final class CrecardCheckHasCuspar extends ModelCheckerTemplateSimpleV2<Cr
 	
 	
 	@Override protected boolean checkHook(CrecardInfo recordInfo, Connection conn, String schemaName) {	
-		if (recordInfo.codPayCustomer 	<= 0)			
+		if (recordInfo.codPayCustomer <= 0)			
 			return super.FAILED;
 		
 		

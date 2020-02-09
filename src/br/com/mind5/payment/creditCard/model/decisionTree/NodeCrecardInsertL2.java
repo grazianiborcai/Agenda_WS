@@ -14,9 +14,10 @@ import br.com.mind5.payment.creditCard.info.CrecardInfo;
 import br.com.mind5.payment.creditCard.model.action.LazyCrecardNodeInsertCremoip;
 import br.com.mind5.payment.creditCard.model.action.LazyCrecardNodeUpsert;
 import br.com.mind5.payment.creditCard.model.action.StdCrecardInsertCuspar;
+import br.com.mind5.payment.creditCard.model.checker.CrecardCheckAddarch;
+import br.com.mind5.payment.creditCard.model.checker.CrecardCheckCusparch;
 import br.com.mind5.payment.creditCard.model.checker.CrecardCheckHasPaypar;
-import br.com.mind5.payment.creditCard.model.checker.CrecardCheckUserAddress;
-import br.com.mind5.payment.creditCard.model.checker.CrecardCheckUserPhone;
+import br.com.mind5.payment.creditCard.model.checker.CrecardCheckPhonarch;
 
 public final class NodeCrecardInsertL2 extends DeciTreeWriteTemplate<CrecardInfo> {
 	
@@ -41,15 +42,22 @@ public final class NodeCrecardInsertL2 extends DeciTreeWriteTemplate<CrecardInfo
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new CrecardCheckUserAddress(checkerOption);
+		checkerOption.expectedResult = ModelCheckerOption.NOT_FOUND;	
+		checker = new CrecardCheckCusparch(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new CrecardCheckUserPhone(checkerOption);
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
+		checker = new CrecardCheckAddarch(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
+		checker = new CrecardCheckPhonarch(checkerOption);
 		queue.add(checker);
 
 		return new ModelCheckerQueue<>(queue);
