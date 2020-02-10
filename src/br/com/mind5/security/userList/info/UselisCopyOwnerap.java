@@ -13,10 +13,12 @@ final class UselisCopyOwnerap extends InfoCopierTemplate<UselisInfo, OwnerapInfo
 	
 	@Override protected UselisInfo makeCopyHook(OwnerapInfo source) {
 		UselisInfo result = new UselisInfo();
+		
 		result.codOwner = source.codOwner;
 		result.codUser = source.codUser;
 		result.username = source.username;
 		result.codLanguage = source.codLanguage;
+		
 		return result;
 	}
 }

@@ -13,10 +13,12 @@ final class UselisCopyAddresnap extends InfoCopierTemplate<UselisInfo, Addresnap
 	
 	@Override protected UselisInfo makeCopyHook(AddresnapInfo source) {
 		UselisInfo result = new UselisInfo();
+		
 		result.codOwner = source.codOwner;
 		result.codUser = source.codUser;
 		result.username = source.username;
 		result.codLanguage = source.codLanguage;
+		
 		return result;
 	}
 }

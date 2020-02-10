@@ -13,10 +13,12 @@ final class UselisCopyEmpnap extends InfoCopierTemplate<UselisInfo, EmpnapInfo>{
 	
 	@Override protected UselisInfo makeCopyHook(EmpnapInfo source) {
 		UselisInfo result = new UselisInfo();
+		
 		result.codOwner = source.codOwner;
 		result.codUser = source.codUser;
 		result.username = source.username;
 		result.codLanguage = source.codLanguage;
+		
 		return result;
 	}
 }

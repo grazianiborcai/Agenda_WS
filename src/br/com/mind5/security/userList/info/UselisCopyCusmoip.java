@@ -1,17 +1,17 @@
 package br.com.mind5.security.userList.info;
 
-import br.com.mind5.business.phoneSnapshot.info.PhonapInfo;
 import br.com.mind5.info.InfoCopierTemplate;
+import br.com.mind5.payment.partnerMoip.customerMoip.info.CusmoipInfo;
 
-final class UselisCopyPhonap extends InfoCopierTemplate<UselisInfo, PhonapInfo>{
+final class UselisCopyCusmoip extends InfoCopierTemplate<UselisInfo, CusmoipInfo>{
 	
-	public UselisCopyPhonap() {
+	public UselisCopyCusmoip() {
 		super();
 	}
 	
 	
 	
-	@Override protected UselisInfo makeCopyHook(PhonapInfo source) {
+	@Override protected UselisInfo makeCopyHook(CusmoipInfo source) {
 		UselisInfo result = new UselisInfo();
 		
 		result.codOwner = source.codOwner;
