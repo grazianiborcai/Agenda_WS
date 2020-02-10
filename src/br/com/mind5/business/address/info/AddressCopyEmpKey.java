@@ -13,10 +13,12 @@ final class AddressCopyEmpKey extends InfoCopierTemplate<AddressInfo, EmpInfo>{
 	
 	@Override protected AddressInfo makeCopyHook(EmpInfo source) {
 		AddressInfo result = new AddressInfo();
+		
 		result.codOwner = source.codOwner;
 		result.codEmployee = source.codEmployee;
 		result.codLanguage = source.codLanguage;
 		result.username = source.username;
+		
 		return result;
 	}
 }

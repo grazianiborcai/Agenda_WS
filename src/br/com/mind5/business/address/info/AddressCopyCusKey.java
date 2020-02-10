@@ -13,10 +13,12 @@ final class AddressCopyCusKey extends InfoCopierTemplate<AddressInfo, CusInfo>{
 	
 	@Override protected AddressInfo makeCopyHook(CusInfo source) {
 		AddressInfo result = new AddressInfo();
+		
 		result.codOwner = source.codOwner;
 		result.codCustomer = source.codCustomer;
 		result.codLanguage = source.codLanguage;
 		result.username = source.username;
+		
 		return result;
 	}
 }

@@ -13,10 +13,12 @@ final class AddressCopyStolis extends InfoCopierTemplate<AddressInfo, StolisInfo
 	
 	@Override protected AddressInfo makeCopyHook(StolisInfo source) {
 		AddressInfo result = new AddressInfo();
+		
 		result.codOwner = source.codOwner;
 		result.codStore = source.codStore;
 		result.codLanguage = source.codLanguage;
 		result.username = source.username;
+		
 		return result;
 	}
 }

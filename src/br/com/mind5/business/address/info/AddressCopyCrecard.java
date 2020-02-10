@@ -13,10 +13,12 @@ final class AddressCopyCrecard extends InfoCopierTemplate<AddressInfo, CrecardIn
 	
 	@Override protected AddressInfo makeCopyHook(CrecardInfo source) {
 		AddressInfo result = new AddressInfo();
+		
 		result.codOwner = source.codOwner;
 		result.codAddress = source.codAddressHolder;
 		result.codLanguage = source.codLanguage;
 		result.username = source.username;
+		
 		return result;
 	}
 }

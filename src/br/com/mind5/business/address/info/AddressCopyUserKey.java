@@ -13,10 +13,12 @@ final class AddressCopyUserKey extends InfoCopierTemplate<AddressInfo, UserInfo>
 	
 	@Override protected AddressInfo makeCopyHook(UserInfo source) {
 		AddressInfo result = new AddressInfo();
+		
 		result.codOwner = source.codOwner;
 		result.codUser = source.codUser;
 		result.codLanguage = source.codLanguage;
 		result.username = source.username;
+		
 		return result;
 	}
 }
