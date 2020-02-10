@@ -16,7 +16,12 @@ public final class CusmoipCheckWrite extends ModelCheckerTemplateSimpleV2<Cusmoi
 	
 	
 	@Override protected boolean checkHook(CusmoipInfo recordInfo, Connection conn, String schemaName) {	
-		if (recordInfo.compoundId == null)
+		if (recordInfo.codOwner 	<= 0 	||
+			recordInfo.codAddress 	<= 0 	||
+			recordInfo.codPhone 	<= 0 	||
+			recordInfo.codUser 		<= 0 	||
+			recordInfo.compoundId 	== null		)
+			
 			return super.FAILED;
 
 		

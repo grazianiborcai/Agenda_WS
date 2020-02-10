@@ -7,26 +7,27 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 import br.com.mind5.payment.partnerMoip.customerMoip.info.CusmoipInfo;
 
-public final class CusmoipCheckAddresnapData extends ModelCheckerTemplateSimpleV2<CusmoipInfo> {
+public final class CusmoipCheckUserData extends ModelCheckerTemplateSimpleV2<CusmoipInfo> {
 
-	public CusmoipCheckAddresnapData(ModelCheckerOption option) {
+	public CusmoipCheckUserData(ModelCheckerOption option) {
 		super(option);
 	}
 	
 	
 	
 	@Override protected boolean checkHook(CusmoipInfo recordInfo, Connection conn, String schemaName) {	
-		if (recordInfo.addresnapData == null)
+		if (recordInfo.uselisData == null)
 			return super.FAILED;
 		
 		
-		if (recordInfo.addresnapData.city			== null ||
-			recordInfo.addresnapData.district 		== null	||
-			recordInfo.addresnapData.street			== null ||
-			recordInfo.addresnapData.streetNumber 	== null	||
-			recordInfo.addresnapData.txtState 		== null	||
-		  //recordInfo.addresnapData.txtCountry 	== null	||
-			recordInfo.addresnapData.postalCode 	== null)	
+		if (recordInfo.uselisData.persolisData == null)
+			return super.FAILED;
+		
+		
+		if (recordInfo.uselisData.persolisData.name   		== null ||
+			recordInfo.uselisData.persolisData.email 		== null	||
+			recordInfo.uselisData.persolisData.birthDate	== null	||
+			recordInfo.uselisData.persolisData.cpf			== null		)	
 		
 			return super.FAILED;
 			
@@ -37,6 +38,6 @@ public final class CusmoipCheckAddresnapData extends ModelCheckerTemplateSimpleV
 	
 	
 	@Override protected int getCodMsgOnResultFalseHook() {
-		return SystemCode.PAY_CUS_MOIP_ADDRESNAP_MISSING;
+		return SystemCode.PAY_CUS_MOIP_USERAP_MISSING;
 	}
 }

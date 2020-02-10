@@ -4,25 +4,29 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 
-import br.com.mind5.business.addressSnapshot.info.AddresnapInfo;
-import br.com.mind5.business.phoneSnapshot.info.PhonapInfo;
+import br.com.mind5.business.address.info.AddressInfo;
+import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
 import br.com.mind5.payment.setupPartner.info.SetuparInfo;
-import br.com.mind5.security.userSnapshot.info.UserapInfo;
+import br.com.mind5.security.userList.info.UselisInfo;
 import br.com.moip.models.Setup;
 
 public final class CusmoipInfo extends InfoRecord implements Cloneable {
 	public long codOwner;	
+	public int codPayPartner;
 	public long codPayCustomer;	
+	public long codUser;	
+	public long codAddress;	
+	public long codPhone;	
 	public String compoundId;
 	public String customerId;
 	public String customerLink;
 	public String accountLink;	
 	public SetuparInfo setuparData;
-	public UserapInfo userapData;
-	public AddresnapInfo addresnapData;
-	public PhonapInfo phonapData;
+	public UselisInfo uselisData;
+	public AddressInfo addressData;
+	public PhoneInfo phoneData;
 	public Setup setup;
 	public Map<String, Object> taxDocument;
 	public Map<String, Object> phone;
@@ -37,11 +41,15 @@ public final class CusmoipInfo extends InfoRecord implements Cloneable {
 		super(CusmoipInfo.class);
 		
 		codOwner = DefaultValue.number();	
+		codPayPartner = DefaultValue.number();	
 		codPayCustomer = DefaultValue.number();	
+		codUser = DefaultValue.number();	
+		codAddress = DefaultValue.number();	
+		codPhone = DefaultValue.number();	
 		setuparData = DefaultValue.object();
-		userapData = DefaultValue.object();
-		addresnapData = DefaultValue.object();
-		phonapData = DefaultValue.object();
+		uselisData = DefaultValue.object();
+		addressData = DefaultValue.object();
+		phoneData = DefaultValue.object();
 		codSysEnviron = DefaultValue.getCodEnvironment();
 	}
 	
@@ -61,49 +69,49 @@ public final class CusmoipInfo extends InfoRecord implements Cloneable {
 	
 	@Override public Object clone() throws CloneNotSupportedException {
 		CusmoipInfo deepCopy = (CusmoipInfo) super.clone();		
-		deepCopy.lastChanged = lastChanged;		
 		
 		deepCopy.setuparData = cloneSetup(deepCopy.setuparData);
-		deepCopy.userapData = cloneUserap(deepCopy.userapData);
-		deepCopy.addresnapData = cloneAddresnap(deepCopy.addresnapData);
-		deepCopy.phonapData = clonePhonap(deepCopy.phonapData);
+		deepCopy.uselisData = cloneUselis(deepCopy.uselisData);
+		deepCopy.addressData = cloneAddress(deepCopy.addressData);
+		deepCopy.phoneData = clonePhone(deepCopy.phoneData);
+		
 		return deepCopy;
 	}
 	
 	
 	
-	private SetuparInfo cloneSetup(SetuparInfo setupar) throws CloneNotSupportedException {
-		if (setupar == null)
+	private SetuparInfo cloneSetup(SetuparInfo recordInfo) throws CloneNotSupportedException {
+		if (recordInfo == null)
 			return null;
 		
-		return (SetuparInfo) setupar.clone();
+		return (SetuparInfo) recordInfo.clone();
 	}
 	
 	
 	
-	private UserapInfo cloneUserap(UserapInfo userap) throws CloneNotSupportedException {
-		if (userap == null)
+	private UselisInfo cloneUselis(UselisInfo recordInfo) throws CloneNotSupportedException {
+		if (recordInfo == null)
 			return null;
 		
-		return (UserapInfo) userap.clone();
+		return (UselisInfo) recordInfo.clone();
 	}
 	
 	
 	
-	private AddresnapInfo cloneAddresnap(AddresnapInfo addresnap) throws CloneNotSupportedException {
-		if (addresnap == null)
+	private AddressInfo cloneAddress(AddressInfo recordInfo) throws CloneNotSupportedException {
+		if (recordInfo == null)
 			return null;
 		
-		return (AddresnapInfo) addresnap.clone();
+		return (AddressInfo) recordInfo.clone();
 	}	
 	
 	
 	
-	private PhonapInfo clonePhonap(PhonapInfo phonap) throws CloneNotSupportedException {
-		if (phonap == null)
+	private PhoneInfo clonePhone(PhoneInfo recordInfo) throws CloneNotSupportedException {
+		if (recordInfo == null)
 			return null;
 		
-		return (PhonapInfo) phonap.clone();
+		return (PhoneInfo) recordInfo.clone();
 	}	
 	
 	
@@ -114,8 +122,8 @@ public final class CusmoipInfo extends InfoRecord implements Cloneable {
 		result = result * 31 + (int) (codOwner 			^ (codOwner 		>>> 32));
 		result = result * 31 + (int) (codPayCustomer 	^ (codPayCustomer 	>>> 32));
 		
-		if (userapData != null)
-			result = result * 31 + userapData.hashCode();
+		if (uselisData != null)
+			result = result * 31 + uselisData.hashCode();
 		
 		return result;
 	}
@@ -134,6 +142,6 @@ public final class CusmoipInfo extends InfoRecord implements Cloneable {
 		CusmoipInfo obj = (CusmoipInfo) o;		
 		return (codOwner    	== obj.codOwner 		&& 
 				codPayCustomer 	== obj.codPayCustomer	&&
-				super.isRecordEqual(userapData, obj.userapData));
+				super.isRecordEqual(uselisData, obj.uselisData));
 	}
 }

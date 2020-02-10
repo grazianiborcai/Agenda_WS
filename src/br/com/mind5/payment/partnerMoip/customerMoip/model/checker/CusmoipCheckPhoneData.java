@@ -7,27 +7,21 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 import br.com.mind5.payment.partnerMoip.customerMoip.info.CusmoipInfo;
 
-public final class CusmoipCheckUserapData extends ModelCheckerTemplateSimpleV2<CusmoipInfo> {
+public final class CusmoipCheckPhoneData extends ModelCheckerTemplateSimpleV2<CusmoipInfo> {
 
-	public CusmoipCheckUserapData(ModelCheckerOption option) {
+	public CusmoipCheckPhoneData(ModelCheckerOption option) {
 		super(option);
 	}
 	
 	
 	
 	@Override protected boolean checkHook(CusmoipInfo recordInfo, Connection conn, String schemaName) {	
-		if (recordInfo.userapData == null)
+		if (recordInfo.phoneData == null)
 			return super.FAILED;
 		
 		
-		if (recordInfo.userapData.personData == null)
-			return super.FAILED;
-		
-		
-		if (recordInfo.userapData.personData.name   	== null ||
-			recordInfo.userapData.personData.email 		== null	||
-			recordInfo.userapData.personData.birthDate	== null	||
-			recordInfo.userapData.personData.cpf		== null		)	
+		if (recordInfo.phoneData.codCountryPhone	<= 0 	||
+			recordInfo.phoneData.fullNumber			== null		)	
 		
 			return super.FAILED;
 			
@@ -38,6 +32,6 @@ public final class CusmoipCheckUserapData extends ModelCheckerTemplateSimpleV2<C
 	
 	
 	@Override protected int getCodMsgOnResultFalseHook() {
-		return SystemCode.PAY_CUS_MOIP_USERAP_MISSING;
+		return SystemCode.PAY_CUS_MOIP_PHONAP_MISSING;
 	}
 }

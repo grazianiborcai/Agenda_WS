@@ -31,7 +31,7 @@ public final class CusmoipSetterDocument implements InfoSetter<CusmoipInfo> {
 	private CusmoipInfo setAddress(CusmoipInfo recordInfo) {
 		recordInfo.taxDocument = payloadFactory(
 		        value("type"	, "CPF"),
-		        value("number"	, recordInfo.userapData.personData.cpf)
+		        value("number"	, recordInfo.uselisData.persolisData.cpf)
 		);
 
 

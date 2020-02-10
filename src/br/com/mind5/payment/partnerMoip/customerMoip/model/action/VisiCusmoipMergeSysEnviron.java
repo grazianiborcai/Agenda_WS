@@ -24,8 +24,8 @@ final class VisiCusmoipMergeSysEnviron extends ActionVisitorTemplateMergeV2<Cusm
 	
 	
 	
-	@Override protected List<CusmoipInfo> mergeHook(List<CusmoipInfo> recordInfos, List<SysEnvironInfo> selectedInfos) {	
-		return CusmoipMerger.mergeWithSysEnviron(selectedInfos, recordInfos);
+	@Override protected List<CusmoipInfo> mergeHook(List<CusmoipInfo> baseInfos, List<SysEnvironInfo> selectedInfos) {	
+		return CusmoipMerger.mergeWithSysEnviron(baseInfos, selectedInfos);
 	}
 	
 	
