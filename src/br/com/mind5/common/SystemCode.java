@@ -801,6 +801,8 @@ public final class SystemCode {
 	public static final int ADDRESS_SNAP_CUSTOMER_IS_EMPTY				= 6456;
 	public static final int ADDRESS_SNAP_STORE_IS_FILLED				= 6457;
 	public static final int ADDRESS_SNAP_STORE_IS_EMPTY					= 6458;
+	public static final int ADDRESS_SNAP_NOT_FOUND						= 6459;
+	public static final int ADDRESS_SNAP_ALREADY_EXIST					= 6460;
 	
 	//Address Search
 	public static final int ADDRESS_SEARCH_MANDATORY_FIELD_EMPTY		= 6500;
