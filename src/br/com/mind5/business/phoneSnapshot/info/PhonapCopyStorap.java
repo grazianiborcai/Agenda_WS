@@ -13,11 +13,13 @@ final class PhonapCopyStorap extends InfoCopierTemplate<PhonapInfo, StorapInfo>{
 	
 	@Override protected PhonapInfo makeCopyHook(StorapInfo source) {
 		PhonapInfo result = new PhonapInfo();
+		
 		result.codOwner = source.codOwner;
 		result.codStore = source.codStore;
 		result.codStoreSnapshot = source.codSnapshot;
 		result.codLanguage = source.codLanguage;
 		result.username = source.username;
+		
 		return result;
 	}
 }

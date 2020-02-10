@@ -13,11 +13,13 @@ final class PhonapCopyUserapKey extends InfoCopierTemplate<PhonapInfo, UserapInf
 	
 	@Override protected PhonapInfo makeCopyHook(UserapInfo source) {
 		PhonapInfo result = new PhonapInfo();
+		
 		result.codOwner = source.codOwner;
 		result.codUser = source.codUser;
 		result.codUserSnapshot = source.codSnapshot;
 		result.codLanguage = source.codLanguage;
 		result.username = source.username;
+		
 		return result;
 	}
 }
