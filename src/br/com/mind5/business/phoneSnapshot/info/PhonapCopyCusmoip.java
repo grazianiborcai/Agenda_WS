@@ -15,7 +15,6 @@ final class PhonapCopyCusmoip extends InfoCopierTemplate<PhonapInfo, CusmoipInfo
 		
 		PhonapInfo result = new PhonapInfo();
 		result.codOwner = source.codOwner;
-		result.codPhone = source.codPhone;
 		result.codSnapshot = source.codPhoneSnapshot;
 		result.codLanguage = source.codLanguage;
 		result.username = source.username;
