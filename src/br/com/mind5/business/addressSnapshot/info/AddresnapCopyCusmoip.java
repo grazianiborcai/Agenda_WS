@@ -1,17 +1,17 @@
 package br.com.mind5.business.addressSnapshot.info;
 
 import br.com.mind5.info.InfoCopierTemplate;
-import br.com.mind5.payment.customerPartner.info.CusparInfo;
+import br.com.mind5.paymentPartner.partnerMoip.customerMoip.info.CusmoipInfo;
 
-final class AddresnapCopyCuspar extends InfoCopierTemplate<AddresnapInfo, CusparInfo>{
+final class AddresnapCopyCusmoip extends InfoCopierTemplate<AddresnapInfo, CusmoipInfo>{
 	
-	public AddresnapCopyCuspar() {
+	public AddresnapCopyCusmoip() {
 		super();
 	}
 	
 	
 	
-	@Override protected AddresnapInfo makeCopyHook(CusparInfo source) {
+	@Override protected AddresnapInfo makeCopyHook(CusmoipInfo source) {
 		AddresnapInfo result = new AddresnapInfo();
 		
 		result.codOwner = source.codOwner;

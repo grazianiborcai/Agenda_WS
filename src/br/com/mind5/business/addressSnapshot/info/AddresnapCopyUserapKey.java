@@ -13,10 +13,13 @@ final class AddresnapCopyUserapKey extends InfoCopierTemplate<AddresnapInfo, Use
 	
 	@Override protected AddresnapInfo makeCopyHook(UserapInfo source) {
 		AddresnapInfo result = new AddresnapInfo();
+		
 		result.codOwner = source.codOwner;
 		result.codUser = source.codUser;
 		result.codUserSnapshot = source.codSnapshot;
 		result.codLanguage = source.codLanguage;
+		result.username = source.username;
+		
 		return result;
 	}
 }

@@ -8,6 +8,7 @@ import br.com.mind5.business.storeSnapshot.info.StorapInfo;
 import br.com.mind5.info.InfoCopier;
 import br.com.mind5.info.InfoCopierOneToMany;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
+import br.com.mind5.paymentPartner.partnerMoip.customerMoip.info.CusmoipInfo;
 import br.com.mind5.security.userSnapshot.info.UserapInfo;
 
 public final class AddresnapCopier {	
@@ -20,6 +21,20 @@ public final class AddresnapCopier {
 	
 	public static List<AddresnapInfo> copyFromStorap(List<StorapInfo> sources) {
 		InfoCopier<AddresnapInfo, StorapInfo> copier = new AddresnapCopyStorap();
+		return copier.makeCopy(sources);
+	}	
+	
+	
+	
+	public static AddresnapInfo copyFromCusmoip(CusmoipInfo source) {
+		InfoCopier<AddresnapInfo, CusmoipInfo> copier = new AddresnapCopyCusmoip();
+		return copier.makeCopy(source);
+	}
+	
+	
+	
+	public static List<AddresnapInfo> copyFromCusmoip(List<CusmoipInfo> sources) {
+		InfoCopier<AddresnapInfo, CusmoipInfo> copier = new AddresnapCopyCusmoip();
 		return copier.makeCopy(sources);
 	}	
 	

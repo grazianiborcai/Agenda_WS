@@ -13,10 +13,13 @@ final class AddresnapCopyEmpnapKey extends InfoCopierTemplate<AddresnapInfo, Emp
 	
 	@Override protected AddresnapInfo makeCopyHook(EmpnapInfo source) {
 		AddresnapInfo result = new AddresnapInfo();
+		
 		result.codOwner = source.codOwner;
 		result.codEmployee = source.codEmployee;
 		result.codEmployeeSnapshot = source.codSnapshot;
 		result.codLanguage = source.codLanguage;
+		result.username = source.username;
+		
 		return result;
 	}
 }
