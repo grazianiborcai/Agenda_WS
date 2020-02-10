@@ -1,17 +1,17 @@
 package br.com.mind5.security.userSnapshot.info;
 
 import br.com.mind5.info.InfoCopierTemplate;
-import br.com.mind5.payment.customerPartner.info.CusparInfo;
+import br.com.mind5.paymentPartner.partnerMoip.customerMoip.info.CusmoipInfo;
 
-final class UserapCopyCuspar extends InfoCopierTemplate<UserapInfo, CusparInfo>{
+final class UserapCopyCusmoip extends InfoCopierTemplate<UserapInfo, CusmoipInfo>{
 	
-	public UserapCopyCuspar() {
+	public UserapCopyCusmoip() {
 		super();
 	}
 	
 	
 	
-	@Override protected UserapInfo makeCopyHook(CusparInfo source) {
+	@Override protected UserapInfo makeCopyHook(CusmoipInfo source) {
 		UserapInfo result = new UserapInfo();
 		
 		result.codOwner = source.codOwner;

@@ -20,7 +20,6 @@ public final class UserapInfo extends InfoRecord implements Cloneable {
 	public String codAuthGroup;
 	public long codPerson;
 	public long codPersonSnapshot;
-	public long codCustomer;				//TODO: remover ?
 	public PersonapInfo personData;
 	public List<AddresnapInfo> addresses;
 	public List<PhonapInfo> phones;
@@ -39,7 +38,6 @@ public final class UserapInfo extends InfoRecord implements Cloneable {
 		codUserCategory = DefaultValue.character();
 		codPerson = DefaultValue.number();
 		codPersonSnapshot = DefaultValue.number();
-		codCustomer = DefaultValue.number();
 		personData = DefaultValue.object();
 		authGrRoles = DefaultValue.list();
 		addresses = DefaultValue.list();
@@ -75,13 +73,13 @@ public final class UserapInfo extends InfoRecord implements Cloneable {
 	
 	
 	
-	private List<AddresnapInfo> cloneAddresses(List<AddresnapInfo> addressesToClone) throws CloneNotSupportedException {
-		if (addressesToClone == null)
+	private List<AddresnapInfo> cloneAddresses(List<AddresnapInfo> recordInfos) throws CloneNotSupportedException {
+		if (recordInfos == null)
 			return null;
 		
 		List<AddresnapInfo> deepAddresses = new ArrayList<>();
 		
-		for (AddresnapInfo eachAddress : addressesToClone) {
+		for (AddresnapInfo eachAddress : recordInfos) {
 			AddresnapInfo clonedAddress = (AddresnapInfo) eachAddress.clone();
 			deepAddresses.add(clonedAddress);
 		}
@@ -91,13 +89,13 @@ public final class UserapInfo extends InfoRecord implements Cloneable {
 	
 	
 	
-	private List<PhonapInfo> clonePhones(List<PhonapInfo> phonesToClone) throws CloneNotSupportedException {
-		if (phonesToClone == null)
+	private List<PhonapInfo> clonePhones(List<PhonapInfo> recordInfos) throws CloneNotSupportedException {
+		if (recordInfos == null)
 			return null;
 		
 		List<PhonapInfo> deepPhones = new ArrayList<>();
 		
-		for (PhonapInfo eachPhone : phonesToClone) {
+		for (PhonapInfo eachPhone : recordInfos) {
 			PhonapInfo clonedPhone = (PhonapInfo) eachPhone.clone();
 			deepPhones.add(clonedPhone);
 		}
@@ -107,22 +105,22 @@ public final class UserapInfo extends InfoRecord implements Cloneable {
 	
 	
 	
-	private PersonapInfo clonePerson(PersonapInfo personToClone) throws CloneNotSupportedException {
-		if (personToClone == null)
+	private PersonapInfo clonePerson(PersonapInfo recordInfos) throws CloneNotSupportedException {
+		if (recordInfos == null)
 			return null;
 		
-		return (PersonapInfo) personToClone.clone();
+		return (PersonapInfo) recordInfos.clone();
 	}
 	
 	
 	
-	private List<AuthGrRoleInfo> cloneAuthGrRoles(List<AuthGrRoleInfo> authGrRolesToClone) throws CloneNotSupportedException {
-		if (authGrRolesToClone == null)
+	private List<AuthGrRoleInfo> cloneAuthGrRoles(List<AuthGrRoleInfo> recordInfos) throws CloneNotSupportedException {
+		if (recordInfos == null)
 			return null;
 		
 		List<AuthGrRoleInfo> deepAuthGrRoles = new ArrayList<>();
 		
-		for (AuthGrRoleInfo eachAuthGrRole : authGrRolesToClone) {
+		for (AuthGrRoleInfo eachAuthGrRole : recordInfos) {
 			AuthGrRoleInfo clonedAuthGrRole = (AuthGrRoleInfo) eachAuthGrRole.clone();
 			deepAuthGrRoles.add(clonedAuthGrRole);
 		}

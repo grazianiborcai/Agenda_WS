@@ -13,11 +13,13 @@ final class UserapCopyStorap extends InfoCopierTemplate<UserapInfo, StorapInfo>{
 	
 	@Override protected UserapInfo makeCopyHook(StorapInfo source) {
 		UserapInfo result = new UserapInfo();
+		
 		result.codOwner = source.codOwner;
 		result.codUser = source.codUser;
 		result.codSnapshot = source.codUserSnapshot;
 		result.codLanguage = source.codLanguage;
 		result.username = source.username;
+		
 		return result;
 	}
 }
