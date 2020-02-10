@@ -9,7 +9,7 @@ import br.com.mind5.business.owner.info.OwnerInfo;
 import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.business.storeSnapshot.info.StorapInfo;
 import br.com.mind5.info.InfoCopier;
-import br.com.mind5.payment.partnerMoip.customerMoip.info.CusmoipInfo;
+import br.com.mind5.paymentPartner.partnerMoip.customerMoip.info.CusmoipInfo;
 import br.com.mind5.security.user.info.UserInfo;
 import br.com.mind5.security.userAuthentication.info.UauthInfo;
 

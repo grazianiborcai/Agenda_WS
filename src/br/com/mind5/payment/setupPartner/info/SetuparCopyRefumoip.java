@@ -1,7 +1,7 @@
 package br.com.mind5.payment.setupPartner.info;
 
 import br.com.mind5.info.InfoCopierTemplate;
-import br.com.mind5.payment.partnerMoip.refundMoip.info.RefumoipInfo;
+import br.com.mind5.paymentPartner.partnerMoip.refundMoip.info.RefumoipInfo;
 
 final class SetuparCopyRefumoip extends InfoCopierTemplate<SetuparInfo, RefumoipInfo>{
 	

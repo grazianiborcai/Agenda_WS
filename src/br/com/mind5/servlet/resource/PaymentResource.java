@@ -18,13 +18,13 @@ import br.com.mind5.payment.creditCard.info.CrecardInfo;
 import br.com.mind5.payment.creditCard.model.CrecardModelDelete;
 import br.com.mind5.payment.creditCard.model.CrecardModelInsert;
 import br.com.mind5.payment.creditCard.model.CrecardModelSelect;
-import br.com.mind5.payment.partnerMoip.permissionMoip.info.PeresmoipInfo;
-import br.com.mind5.payment.partnerMoip.permissionMoip.model.PeresmoipModelCode;
 import br.com.mind5.payment.payOrder.model.PayordModelPay;
 import br.com.mind5.payment.refundOrder.info.RefuInfo;
 import br.com.mind5.payment.refundOrder.model.RefuModelRefund;
 import br.com.mind5.payment.statusPayOrder.info.PaytusInfo;
 import br.com.mind5.payment.statusPayOrder.model.PaytusModelRefresh;
+import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.info.PeresmoipInfo;
+import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.model.PeresmoipModelCode;
 
 @Path("/Payment")
 public final class PaymentResource {

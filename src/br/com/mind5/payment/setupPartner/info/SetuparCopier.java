@@ -4,11 +4,11 @@ package br.com.mind5.payment.setupPartner.info;
 import java.util.List;
 
 import br.com.mind5.info.InfoCopier;
-import br.com.mind5.payment.partnerMoip.creditCardMoip.info.CremoipInfo;
-import br.com.mind5.payment.partnerMoip.multiOrderMoip.info.MultmoipInfo;
-import br.com.mind5.payment.partnerMoip.multiPayMoip.info.PaymoipInfo;
-import br.com.mind5.payment.partnerMoip.orderMoip.info.OrdmoipInfo;
-import br.com.mind5.payment.partnerMoip.refundMoip.info.RefumoipInfo;
+import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.info.CremoipInfo;
+import br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.info.MultmoipInfo;
+import br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.info.PaymoipInfo;
+import br.com.mind5.paymentPartner.partnerMoip.orderMoip.info.OrdmoipInfo;
+import br.com.mind5.paymentPartner.partnerMoip.refundMoip.info.RefumoipInfo;
 
 public final class SetuparCopier {	
 	public static SetuparInfo copyFromPaymoip(PaymoipInfo source) {

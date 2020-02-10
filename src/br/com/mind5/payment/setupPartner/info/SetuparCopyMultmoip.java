@@ -1,7 +1,7 @@
 package br.com.mind5.payment.setupPartner.info;
 
 import br.com.mind5.info.InfoCopierTemplate;
-import br.com.mind5.payment.partnerMoip.multiOrderMoip.info.MultmoipInfo;
+import br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.info.MultmoipInfo;
 
 final class SetuparCopyMultmoip extends InfoCopierTemplate<SetuparInfo, MultmoipInfo>{
 	

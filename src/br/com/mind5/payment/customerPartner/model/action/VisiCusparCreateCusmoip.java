@@ -8,8 +8,8 @@ import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
 import br.com.mind5.payment.customerPartner.info.CusparMerger;
-import br.com.mind5.payment.partnerMoip.customerMoip.info.CusmoipInfo;
-import br.com.mind5.payment.partnerMoip.customerMoip.model.decisionTree.RootCusmoipCreate;
+import br.com.mind5.paymentPartner.partnerMoip.customerMoip.info.CusmoipInfo;
+import br.com.mind5.paymentPartner.partnerMoip.customerMoip.model.decisionTree.RootCusmoipCreate;
 
 
 final class VisiCusparCreateCusmoip extends ActionVisitorTemplateAction<CusparInfo, CusmoipInfo> {

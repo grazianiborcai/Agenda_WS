@@ -1,7 +1,7 @@
 package br.com.mind5.security.username.info;
 
 import br.com.mind5.info.InfoCopierTemplate;
-import br.com.mind5.payment.partnerMoip.accessMoip.info.AccemoipInfo;
+import br.com.mind5.paymentPartner.partnerMoip.accessMoip.info.AccemoipInfo;
 
 final class UsernameCopyAccemoip extends InfoCopierTemplate<UsernameInfo, AccemoipInfo>{
 	

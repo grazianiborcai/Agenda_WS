@@ -1,7 +1,7 @@
 package br.com.mind5.business.phone.info;
 
 import br.com.mind5.info.InfoCopierTemplate;
-import br.com.mind5.payment.partnerMoip.customerMoip.info.CusmoipInfo;
+import br.com.mind5.paymentPartner.partnerMoip.customerMoip.info.CusmoipInfo;
 final class PhoneCopyCusmoip extends InfoCopierTemplate<PhoneInfo, CusmoipInfo>{
 	
 	public PhoneCopyCusmoip() {

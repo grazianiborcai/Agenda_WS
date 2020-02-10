@@ -8,8 +8,8 @@ import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
 import br.com.mind5.payment.creditCard.info.CrecardMerger;
-import br.com.mind5.payment.partnerMoip.creditCardMoip.info.CremoipInfo;
-import br.com.mind5.payment.partnerMoip.creditCardMoip.model.decisionTree.RootCremoipAdd;
+import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.info.CremoipInfo;
+import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.model.decisionTree.RootCremoipAdd;
 
 
 final class VisiCrecardAddCremoip extends ActionVisitorTemplateAction<CrecardInfo, CremoipInfo> {

@@ -7,10 +7,10 @@ import br.com.mind5.business.order.info.OrderInfo;
 import br.com.mind5.info.obsolete.InfoMerger_;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
-import br.com.mind5.payment.partnerMoip.multiOrderMoip.info.MultmoipInfo;
 import br.com.mind5.payment.payOrderItem.info.PayordemInfo;
 import br.com.mind5.payment.payOrderSearch.info.PayordarchInfo;
 import br.com.mind5.payment.systemPartner.info.SysparInfo;
+import br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.info.MultmoipInfo;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class PayordMerger {	

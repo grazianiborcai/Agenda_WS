@@ -9,10 +9,10 @@ import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
-import br.com.mind5.payment.partnerMoip.orderMoip.info.OrdmoipInfo;
 import br.com.mind5.payment.payOrderItem.info.PayordemInfo;
 import br.com.mind5.payment.payOrderSearch.info.PayordarchInfo;
 import br.com.mind5.payment.systemPartner.info.SysparInfo;
+import br.com.mind5.paymentPartner.partnerMoip.orderMoip.info.OrdmoipInfo;
 
 public final class PayordInfo extends InfoRecord implements Cloneable {
 	public long codOwner;

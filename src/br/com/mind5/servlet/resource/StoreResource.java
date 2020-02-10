@@ -36,10 +36,10 @@ import br.com.mind5.business.storeWorkTime.model.StowotmModelSearch;
 import br.com.mind5.business.storeWorkTime.model.StowotmModelSelect;
 import br.com.mind5.business.storeWorkTime.model.StowotmModelUpdate;
 import br.com.mind5.model.Model;
-import br.com.mind5.payment.partnerMoip.accessMoip.info.AccemoipInfo;
-import br.com.mind5.payment.partnerMoip.accessMoip.model.AccemoipModelUrl;
 import br.com.mind5.payment.storePartnerList.info.StoplisInfo;
 import br.com.mind5.payment.storePartnerList.model.StoplisModelSearch;
+import br.com.mind5.paymentPartner.partnerMoip.accessMoip.info.AccemoipInfo;
+import br.com.mind5.paymentPartner.partnerMoip.accessMoip.model.AccemoipModelUrl;
 
 @Path("/Store")
 @Produces(MediaType.APPLICATION_JSON)

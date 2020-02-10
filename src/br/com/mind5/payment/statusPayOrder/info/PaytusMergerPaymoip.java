@@ -3,7 +3,7 @@ package br.com.mind5.payment.statusPayOrder.info;
 import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.info.obsolete.InfoMergerTemplate_;
 import br.com.mind5.info.obsolete.InfoMergerVisitor_;
-import br.com.mind5.payment.partnerMoip.multiPayMoip.info.PaymoipInfo;
+import br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.info.PaymoipInfo;
 
 final class PaytusMergerPaymoip extends InfoMergerTemplate_<PaytusInfo, PaymoipInfo> {
 

@@ -5,9 +5,9 @@ import java.util.List;
 
 import br.com.mind5.business.planingData.info.PlanataInfo;
 import br.com.mind5.info.InfoCopier;
-import br.com.mind5.payment.partnerMoip.permissionMoip.info.PeresmoipInfo;
-import br.com.mind5.payment.partnerMoip.refundMoip.info.RefumoipInfo;
 import br.com.mind5.payment.payOrderItem.info.PayordemInfo;
+import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.info.PeresmoipInfo;
+import br.com.mind5.paymentPartner.partnerMoip.refundMoip.info.RefumoipInfo;
 
 public final class StoparCopier {	
 	public static StoparInfo copyFromRefumoip(RefumoipInfo source) {

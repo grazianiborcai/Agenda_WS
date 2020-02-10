@@ -6,10 +6,10 @@ import java.util.List;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.payment.partnerMoip.refundMoip.info.RefumoipInfo;
-import br.com.mind5.payment.partnerMoip.refundMoip.model.decisionTree.RootRefumoipRefund;
 import br.com.mind5.payment.refundOrderItem.info.RefemInfo;
 import br.com.mind5.payment.refundOrderItem.info.RefemMerger;
+import br.com.mind5.paymentPartner.partnerMoip.refundMoip.info.RefumoipInfo;
+import br.com.mind5.paymentPartner.partnerMoip.refundMoip.model.decisionTree.RootRefumoipRefund;
 
 final class VisiRefemRefumoipRefund extends ActionVisitorTemplateAction<RefemInfo, RefumoipInfo> {
 	

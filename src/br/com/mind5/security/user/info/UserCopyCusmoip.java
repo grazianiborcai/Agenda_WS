@@ -1,7 +1,8 @@
 package br.com.mind5.security.user.info;
 
 import br.com.mind5.info.InfoCopierTemplate;
-import br.com.mind5.payment.partnerMoip.customerMoip.info.CusmoipInfo;
+import br.com.mind5.paymentPartner.partnerMoip.customerMoip.info.CusmoipInfo;
+import br.com.mind5.security.user.info.UserInfo;
 
 final class UserCopyCusmoip extends InfoCopierTemplate<UserInfo, CusmoipInfo>{
 	

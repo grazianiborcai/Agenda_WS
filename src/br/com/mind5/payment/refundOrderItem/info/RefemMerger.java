@@ -4,8 +4,8 @@ import java.util.List;
 
 import br.com.mind5.info.obsolete.InfoMerger_;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
-import br.com.mind5.payment.partnerMoip.refundMoip.info.RefumoipInfo;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
+import br.com.mind5.paymentPartner.partnerMoip.refundMoip.info.RefumoipInfo;
 
 public final class RefemMerger {
 	public static RefemInfo mergeWithRefumoip(RefumoipInfo sourceOne, RefemInfo sourceTwo) {

@@ -23,12 +23,12 @@ import br.com.mind5.file.fileImage.info.FimgInfo;
 import br.com.mind5.info.InfoCopier;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
-import br.com.mind5.payment.partnerMoip.accessMoip.info.AccemoipInfo;
-import br.com.mind5.payment.partnerMoip.tokenMoip.info.TokemoipInfo;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
 import br.com.mind5.payment.refundOrder.info.RefuInfo;
 import br.com.mind5.payment.refundOrderItem.info.RefemInfo;
 import br.com.mind5.payment.storePartner.info.StoparInfo;
+import br.com.mind5.paymentPartner.partnerMoip.accessMoip.info.AccemoipInfo;
+import br.com.mind5.paymentPartner.partnerMoip.tokenMoip.info.TokemoipInfo;
 import br.com.mind5.security.userPassword.info.UpswdInfo;
 
 public final class UsernameCopier {

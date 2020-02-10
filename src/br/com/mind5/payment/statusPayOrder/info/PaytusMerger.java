@@ -4,10 +4,10 @@ import java.util.List;
 
 import br.com.mind5.info.obsolete.InfoMerger_;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
-import br.com.mind5.payment.partnerMoip.multiOrderMoip.info.MultmoipInfo;
-import br.com.mind5.payment.partnerMoip.multiPayMoip.info.PaymoipInfo;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
 import br.com.mind5.payment.statusPayOrderItem.info.PaytusemInfo;
+import br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.info.MultmoipInfo;
+import br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.info.PaymoipInfo;
 
 public final class PaytusMerger {	
 	public static PaytusInfo mergeWithPaymoip(PaymoipInfo sourceOne, PaytusInfo sourceTwo) {

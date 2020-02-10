@@ -6,7 +6,7 @@ import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.info.obsolete.InfoMerger_;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
-import br.com.mind5.payment.partnerMoip.creditCardMoip.info.CremoipInfo;
+import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.info.CremoipInfo;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class CrecardMerger {

@@ -7,12 +7,12 @@ import java.util.List;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.payment.partnerMoip.orderMoip.info.OrdmoipInfo;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
 import br.com.mind5.payment.payOrder.info.PayordMerger;
 import br.com.mind5.payment.payOrderItem.info.PayordemCopier;
 import br.com.mind5.payment.payOrderItem.info.PayordemInfo;
 import br.com.mind5.payment.payOrderItem.model.decisionTree.RootPayordemUpdate;
+import br.com.mind5.paymentPartner.partnerMoip.orderMoip.info.OrdmoipInfo;
 
 final class VisiPayordUpdatePayordem extends ActionVisitorTemplateAction<PayordInfo, PayordemInfo> {
 	public VisiPayordUpdatePayordem(Connection conn, String schemaName) {

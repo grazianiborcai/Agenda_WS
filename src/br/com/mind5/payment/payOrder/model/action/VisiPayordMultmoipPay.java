@@ -6,11 +6,11 @@ import java.util.List;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.payment.partnerMoip.multiOrderMoip.info.MultmoipCopier;
-import br.com.mind5.payment.partnerMoip.multiOrderMoip.info.MultmoipInfo;
-import br.com.mind5.payment.partnerMoip.multiOrderMoip.model.decisionTree.RootMultmoipPay;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
 import br.com.mind5.payment.payOrder.info.PayordMerger;
+import br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.info.MultmoipCopier;
+import br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.info.MultmoipInfo;
+import br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.model.decisionTree.RootMultmoipPay;
 
 final class VisiPayordMultmoipPay extends ActionVisitorTemplateAction<PayordInfo, MultmoipInfo> {
 	public VisiPayordMultmoipPay(Connection conn, String schemaName) {

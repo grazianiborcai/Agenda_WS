@@ -5,10 +5,10 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
-import br.com.mind5.payment.partnerMoip.multiOrderMoip.info.MultmoipInfo;
-import br.com.mind5.payment.partnerMoip.multiOrderMoip.model.decisionTree.RootMultmoipRead;
 import br.com.mind5.payment.statusPayOrder.info.PaytusInfo;
 import br.com.mind5.payment.statusPayOrder.info.PaytusMerger;
+import br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.info.MultmoipInfo;
+import br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.model.decisionTree.RootMultmoipRead;
 
 final class VisiPaytusMergeMultmoip extends ActionVisitorTemplateMergeV2<PaytusInfo, MultmoipInfo> {
 	

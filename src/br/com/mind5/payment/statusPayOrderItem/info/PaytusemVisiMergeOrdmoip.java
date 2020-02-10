@@ -5,7 +5,7 @@ import org.apache.logging.log4j.Logger;
 
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.obsolete.InfoMergerVisitor_;
-import br.com.mind5.payment.partnerMoip.orderMoip.info.OrdmoipInfo;
+import br.com.mind5.paymentPartner.partnerMoip.orderMoip.info.OrdmoipInfo;
 
 final class PaytusemVisiMergeOrdmoip implements InfoMergerVisitor_<PaytusemInfo, OrdmoipInfo> {
 

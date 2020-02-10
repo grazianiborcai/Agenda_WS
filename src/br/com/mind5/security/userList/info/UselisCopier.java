@@ -8,7 +8,7 @@ import br.com.mind5.business.employeeSnapshot.info.EmpnapInfo;
 import br.com.mind5.business.ownerSnapshot.info.OwnerapInfo;
 import br.com.mind5.business.phoneSnapshot.info.PhonapInfo;
 import br.com.mind5.info.InfoCopier;
-import br.com.mind5.payment.partnerMoip.customerMoip.info.CusmoipInfo;
+import br.com.mind5.paymentPartner.partnerMoip.customerMoip.info.CusmoipInfo;
 import br.com.mind5.security.userAuthentication.info.UauthInfo;
 
 public final class UselisCopier {

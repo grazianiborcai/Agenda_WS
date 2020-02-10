@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorV3;
 import br.com.mind5.info.InfoUniquifier;
-import br.com.mind5.payment.partnerMoip.customerMoip.info.CusmoipInfo;
+import br.com.mind5.paymentPartner.partnerMoip.customerMoip.info.CusmoipInfo;
 
 final class CusparVisiMergeCusmoip implements InfoMergerVisitorV3<CusparInfo, CusmoipInfo> {
 	

@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.com.mind5.info.InfoCopierOneToManyTemplate;
 import br.com.mind5.info.InfoCopierTemplate;
-import br.com.mind5.payment.partnerMoip.orderMoip.info.OrdmoipInfo;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
+import br.com.mind5.paymentPartner.partnerMoip.orderMoip.info.OrdmoipInfo;
 
 public final class PayordemCopier {
 	public static PayordemInfo copyFromPayordToRead(PayordInfo source) {

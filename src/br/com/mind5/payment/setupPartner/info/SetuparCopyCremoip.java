@@ -1,7 +1,7 @@
 package br.com.mind5.payment.setupPartner.info;
 
 import br.com.mind5.info.InfoCopierTemplate;
-import br.com.mind5.payment.partnerMoip.creditCardMoip.info.CremoipInfo;
+import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.info.CremoipInfo;
 
 final class SetuparCopyCremoip extends InfoCopierTemplate<SetuparInfo, CremoipInfo>{
 	
