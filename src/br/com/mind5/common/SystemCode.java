@@ -366,13 +366,15 @@ public final class SystemCode {
 	public static final int PERSON_USER_ALREADY_EXIST					= 1905;
 	public static final int PERSON_USER_NOT_FOUND						= 1906;
 	
+	/*
 	// Address Snapshot
 	public static final int ADDRESS_SNAPSHOT_IS_NULL 					= 2000;	
 	public static final int ADDRESS_SNAPSHOT_IS_FILLED 					= 2001;	
 	public static final int ADDRESS_SNAPSHOT_NOT_FOUND					= 2002;
 	public static final int ADDRESS_SNAPSHOT_ALREADY_EXIST				= 2003;
-	public static final int ADDRESS_SNAPSHOT_HAS_STATE					= 2004;
-	public static final int ADDRESS_SNAPSHOT_HAS_NO_STATE				= 2005;
+	public static final int ADDRESS_SNAPSHOT_HAS_STATE					= 2004;	//
+	public static final int ADDRESS_SNAPSHOT_HAS_NO_STATE				= 2005;	//
+	*/
 	
 	// Phone Snapshot
 	public static final int PHONE_SNAPSHOT_IS_NULL 						= 2050;	
@@ -803,6 +805,8 @@ public final class SystemCode {
 	public static final int ADDRESS_SNAP_STORE_IS_EMPTY					= 6458;
 	public static final int ADDRESS_SNAP_NOT_FOUND						= 6459;
 	public static final int ADDRESS_SNAP_ALREADY_EXIST					= 6460;
+	public static final int ADDRESS_SNAP_HAS_STATE						= 6461;	// 2004
+	public static final int ADDRESS_SNAP_HAS_NO_STATE					= 6462;	// 2005
 	
 	//Address Search
 	public static final int ADDRESS_SEARCH_MANDATORY_FIELD_EMPTY		= 6500;

@@ -26,12 +26,12 @@ public final class AddresnapCheckHasState extends ModelCheckerTemplateSimpleV2<A
 	
 	
 	@Override protected int getCodMsgOnResultTrueHook() {
-		return SystemCode.ADDRESS_SNAPSHOT_HAS_STATE;
+		return SystemCode.ADDRESS_SNAP_HAS_STATE;
 	}
 	
 	
 	
 	@Override protected int getCodMsgOnResultFalseHook() {
-		return SystemCode.ADDRESS_SNAPSHOT_HAS_NO_STATE;
+		return SystemCode.ADDRESS_SNAP_HAS_NO_STATE;
 	}
 }
