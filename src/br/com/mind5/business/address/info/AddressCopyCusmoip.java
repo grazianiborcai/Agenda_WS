@@ -1,17 +1,17 @@
 package br.com.mind5.business.address.info;
 
 import br.com.mind5.info.InfoCopierTemplate;
-import br.com.mind5.payment.customerPartner.info.CusparInfo;
+import br.com.mind5.payment.partnerMoip.customerMoip.info.CusmoipInfo;
 
-final class AddressCopyCuspar extends InfoCopierTemplate<AddressInfo, CusparInfo>{
+final class AddressCopyCusmoip extends InfoCopierTemplate<AddressInfo, CusmoipInfo>{
 	
-	public AddressCopyCuspar() {
+	public AddressCopyCusmoip() {
 		super();
 	}
 	
 	
 	
-	@Override protected AddressInfo makeCopyHook(CusparInfo source) {
+	@Override protected AddressInfo makeCopyHook(CusmoipInfo source) {
 		AddressInfo result = new AddressInfo();
 		
 		result.codOwner = source.codOwner;
