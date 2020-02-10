@@ -11,7 +11,7 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
 import br.com.mind5.paymentPartner.partnerMoip.customerMoip.info.CusmoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.customerMoip.model.action.LazyCusmoipNodePhoneL2;
-import br.com.mind5.paymentPartner.partnerMoip.customerMoip.model.action.StdCusmoipMergePhone;
+import br.com.mind5.paymentPartner.partnerMoip.customerMoip.model.action.StdCusmoipMergePhonap;
 import br.com.mind5.paymentPartner.partnerMoip.customerMoip.model.checker.CusmoipCheckDummy;
 
 public final class NodeCusmoipPhoneL1 extends DeciTreeWriteTemplate<CusmoipInfo> {
@@ -37,12 +37,12 @@ public final class NodeCusmoipPhoneL1 extends DeciTreeWriteTemplate<CusmoipInfo>
 	@Override protected List<ActionStd<CusmoipInfo>> buildActionsOnPassedHook(DeciTreeOption<CusmoipInfo> option) {
 		List<ActionStd<CusmoipInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CusmoipInfo> mergePhone = new StdCusmoipMergePhone(option);
+		ActionStd<CusmoipInfo> mergePhonap = new StdCusmoipMergePhonap(option);
 		ActionLazy<CusmoipInfo> nodeL2 = new LazyCusmoipNodePhoneL2(option.conn, option.schemaName);
 		
-		mergePhone.addPostAction(nodeL2);
+		mergePhonap.addPostAction(nodeL2);
 		
-		actions.add(mergePhone);
+		actions.add(mergePhonap);
 		return actions;
 	}
 }

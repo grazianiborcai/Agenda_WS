@@ -7,12 +7,12 @@ import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.paymentPartner.partnerMoip.customerMoip.info.CusmoipInfo;
 
-public final class StdCusmoipMergeAddress implements ActionStd<CusmoipInfo> {
+public final class StdCusmoipMergeUserap implements ActionStd<CusmoipInfo> {
 	private ActionStd<CusmoipInfo> actionHelper;	
 	
 	
-	public StdCusmoipMergeAddress(DeciTreeOption<CusmoipInfo> option) {			
-		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiCusmoipMergeAddress(option.conn, option.schemaName));
+	public StdCusmoipMergeUserap(DeciTreeOption<CusmoipInfo> option) {			
+		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiCusmoipMergeUserap(option.conn, option.schemaName));
 	}
 	
 	

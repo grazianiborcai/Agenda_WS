@@ -5,9 +5,9 @@ import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorV3;
 import br.com.mind5.info.InfoUniquifier;
-import br.com.mind5.security.userList.info.UselisInfo;
+import br.com.mind5.security.userSnapshot.info.UserapInfo;
 
-final class CusmoipVisiMergeUselis implements InfoMergerVisitorV3<CusmoipInfo, UselisInfo> {
+final class CusmoipVisiMergeUserap implements InfoMergerVisitorV3<CusmoipInfo, UserapInfo> {
 	
 	@Override public List<CusmoipInfo> beforeMerge(List<CusmoipInfo> baseInfos) {
 		return baseInfos;
@@ -15,17 +15,17 @@ final class CusmoipVisiMergeUselis implements InfoMergerVisitorV3<CusmoipInfo, U
 	
 	
 	
-	@Override public boolean shouldMerge(CusmoipInfo baseInfo, UselisInfo selectedInfo) {
-		return (baseInfo.codOwner 	== selectedInfo.codOwner	&&
-				baseInfo.codUser	== selectedInfo.codUser		);
+	@Override public boolean shouldMerge(CusmoipInfo baseInfo, UserapInfo selectedInfo) {
+		return (baseInfo.codOwner 			== selectedInfo.codOwner	&&
+				baseInfo.codUserSnapshot	== selectedInfo.codSnapshot		);
 	}
 	
 	
 	
-	@Override public List<CusmoipInfo> merge(CusmoipInfo baseInfo, UselisInfo selectedInfo) {
+	@Override public List<CusmoipInfo> merge(CusmoipInfo baseInfo, UserapInfo selectedInfo) {
 		List<CusmoipInfo> results = new ArrayList<>();
 		
-		baseInfo.uselisData = selectedInfo;
+		baseInfo.userapData = selectedInfo;
 		
 		results.add(baseInfo);
 		return results;

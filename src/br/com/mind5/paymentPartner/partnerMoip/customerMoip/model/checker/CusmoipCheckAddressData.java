@@ -16,17 +16,17 @@ public final class CusmoipCheckAddressData extends ModelCheckerTemplateSimpleV2<
 	
 	
 	@Override protected boolean checkHook(CusmoipInfo recordInfo, Connection conn, String schemaName) {	
-		if (recordInfo.addressData == null)
+		if (recordInfo.addresnapData == null)
 			return super.FAILED;
 		
 		
-		if (recordInfo.addressData.city				== null ||
-			recordInfo.addressData.district 		== null	||
-			recordInfo.addressData.street			== null ||
-			recordInfo.addressData.streetNumber 	== null	||
-			recordInfo.addressData.txtState 		== null	||
+		if (recordInfo.addresnapData.city				== null ||
+			recordInfo.addresnapData.district 		== null	||
+			recordInfo.addresnapData.street			== null ||
+			recordInfo.addresnapData.streetNumber 	== null	||
+			recordInfo.addresnapData.txtState 		== null	||
 		  //recordInfo.addresnapData.txtCountry 	== null	||
-			recordInfo.addressData.postalCode 		== null)	
+			recordInfo.addresnapData.postalCode 		== null)	
 		
 			return super.FAILED;
 			

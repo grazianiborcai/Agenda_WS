@@ -2,22 +2,22 @@ package br.com.mind5.paymentPartner.partnerMoip.customerMoip.model.checker;
 
 import java.util.List;
 
-import br.com.mind5.business.phone.info.PhoneCopier;
-import br.com.mind5.business.phone.info.PhoneInfo;
-import br.com.mind5.business.phone.model.checker.PhoneCheckExist;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.paymentPartner.partnerMoip.customerMoip.info.CusmoipInfo;
+import br.com.mind5.security.userSnapshot.info.UserapCopier;
+import br.com.mind5.security.userSnapshot.info.UserapInfo;
+import br.com.mind5.security.userSnapshot.model.checker.UserapCheckExist;
 
-public final class CusmoipCheckPhone implements ModelChecker<CusmoipInfo> {
+public final class CusmoipCheckUserap implements ModelChecker<CusmoipInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<PhoneInfo> checker;
+	private ModelChecker<UserapInfo> checker;
 	
 	
-	public CusmoipCheckPhone(ModelCheckerOption option) {
-		checker = new PhoneCheckExist(option);
+	public CusmoipCheckUserap(ModelCheckerOption option) {
+		checker = new UserapCheckExist(option);
 	}
 	
 	
@@ -34,7 +34,7 @@ public final class CusmoipCheckPhone implements ModelChecker<CusmoipInfo> {
 	
 	
 	@Override public boolean check(CusmoipInfo recordInfo) {
-		return checker.check(PhoneCopier.copyFromCusmoip(recordInfo));
+		return checker.check(UserapCopier.copyFromCusmoip(recordInfo));
 	}
 
 	

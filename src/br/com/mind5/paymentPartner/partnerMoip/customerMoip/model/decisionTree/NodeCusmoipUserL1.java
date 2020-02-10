@@ -11,7 +11,7 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
 import br.com.mind5.paymentPartner.partnerMoip.customerMoip.info.CusmoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.customerMoip.model.action.LazyCusmoipNodeUserL2;
-import br.com.mind5.paymentPartner.partnerMoip.customerMoip.model.action.StdCusmoipMergeUselis;
+import br.com.mind5.paymentPartner.partnerMoip.customerMoip.model.action.StdCusmoipMergeUserap;
 import br.com.mind5.paymentPartner.partnerMoip.customerMoip.model.checker.CusmoipCheckDummy;
 
 public final class NodeCusmoipUserL1 extends DeciTreeWriteTemplate<CusmoipInfo> {
@@ -37,12 +37,12 @@ public final class NodeCusmoipUserL1 extends DeciTreeWriteTemplate<CusmoipInfo> 
 	@Override protected List<ActionStd<CusmoipInfo>> buildActionsOnPassedHook(DeciTreeOption<CusmoipInfo> option) {
 		List<ActionStd<CusmoipInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CusmoipInfo> mergeUselis = new StdCusmoipMergeUselis(option);
+		ActionStd<CusmoipInfo> mergeUserap = new StdCusmoipMergeUserap(option);
 		ActionLazy<CusmoipInfo> nodeL2 = new LazyCusmoipNodeUserL2(option.conn, option.schemaName);
 		
-		mergeUselis.addPostAction(nodeL2);
+		mergeUserap.addPostAction(nodeL2);
 		
-		actions.add(mergeUselis);
+		actions.add(mergeUserap);
 		return actions;
 	}
 }

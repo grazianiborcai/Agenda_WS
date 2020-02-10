@@ -17,15 +17,15 @@ public final class CusmoipCheckAddressBR extends ModelCheckerTemplateSimpleV2<Cu
 	
 	
 	@Override protected boolean checkHook(CusmoipInfo recordInfo, Connection conn, String schemaName) {	
-		if (recordInfo.addressData == null)
+		if (recordInfo.addresnapData == null)
 			return super.FAILED;
 		
 		
-		if (recordInfo.addressData.codCountry == null)
+		if (recordInfo.addresnapData.codCountry == null)
 			return super.FAILED;
 		
 		
-		if (recordInfo.addressData.codCountry.equals(Country.BRAZIL.getCodCountry())) 
+		if (recordInfo.addresnapData.codCountry.equals(Country.BRAZIL.getCodCountry())) 
 			return super.SUCCESS;
 
 		

@@ -30,9 +30,9 @@ public final class CusmoipSetterPhone implements InfoSetter<CusmoipInfo> {
 	
 	private CusmoipInfo setPhone(CusmoipInfo recordInfo) {
 		recordInfo.phone = payloadFactory(
-		        value("countryCode"	, String.valueOf(recordInfo.phoneData.codCountryPhone)),
-		        value("areaCode"	, recordInfo.phoneData.codArea),
-		        value("number"		, recordInfo.phoneData.number)
+		        value("countryCode"	, String.valueOf(recordInfo.phonapData.codCountryPhone)),
+		        value("areaCode"	, recordInfo.phonapData.codArea),
+		        value("number"		, recordInfo.phonapData.number)
 		);
 
 

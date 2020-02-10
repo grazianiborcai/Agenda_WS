@@ -35,9 +35,9 @@ public final class CusmoipSetterRequest implements InfoSetter<CusmoipInfo> {
 		
 		recordInfo.requestBody = payloadFactory(
 		        value("ownId"			, recordInfo.compoundId),
-		        value("fullname"		, recordInfo.uselisData.persolisData.name),
-		        value("email"			, recordInfo.uselisData.persolisData.email),
-		        value("birthDate"		, formatDate(recordInfo.uselisData.persolisData.birthDate)),
+		        value("fullname"		, recordInfo.userapData.personData.name),
+		        value("email"			, recordInfo.userapData.personData.email),
+		        value("birthDate"		, formatDate(recordInfo.userapData.personData.birthDate)),
 		        value("taxDocument"		, recordInfo.taxDocument),
 		        value("phone"			, recordInfo.phone),
 		        value("shippingAddress"	, recordInfo.shippingAddress)

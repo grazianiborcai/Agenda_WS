@@ -3,11 +3,11 @@ package br.com.mind5.paymentPartner.partnerMoip.customerMoip.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.business.address.info.AddressInfo;
+import br.com.mind5.business.phoneSnapshot.info.PhonapInfo;
 import br.com.mind5.info.InfoMergerVisitorV3;
 import br.com.mind5.info.InfoUniquifier;
 
-final class CusmoipVisiMergeAddress implements InfoMergerVisitorV3<CusmoipInfo, AddressInfo> {
+final class CusmoipVisiMergePhonap implements InfoMergerVisitorV3<CusmoipInfo, PhonapInfo> {
 	
 	@Override public List<CusmoipInfo> beforeMerge(List<CusmoipInfo> baseInfos) {
 		return baseInfos;
@@ -15,17 +15,17 @@ final class CusmoipVisiMergeAddress implements InfoMergerVisitorV3<CusmoipInfo, 
 	
 	
 	
-	@Override public boolean shouldMerge(CusmoipInfo baseInfo, AddressInfo selectedInfo) {
-		return (baseInfo.codOwner 	== selectedInfo.codOwner	&&
-				baseInfo.codAddress	== selectedInfo.codAddress		);
+	@Override public boolean shouldMerge(CusmoipInfo baseInfo, PhonapInfo selectedInfo) {
+		return (baseInfo.codOwner 			== selectedInfo.codOwner	&&
+				baseInfo.codPhoneSnapshot	== selectedInfo.codSnapshot		);
 	}
 	
 	
 	
-	@Override public List<CusmoipInfo> merge(CusmoipInfo baseInfo, AddressInfo selectedInfo) {
+	@Override public List<CusmoipInfo> merge(CusmoipInfo baseInfo, PhonapInfo selectedInfo) {
 		List<CusmoipInfo> results = new ArrayList<>();
 		
-		baseInfo.addressData = selectedInfo;
+		baseInfo.phonapData = selectedInfo;
 		
 		results.add(baseInfo);
 		return results;

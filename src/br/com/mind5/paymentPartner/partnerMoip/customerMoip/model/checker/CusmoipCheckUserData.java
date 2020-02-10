@@ -16,18 +16,18 @@ public final class CusmoipCheckUserData extends ModelCheckerTemplateSimpleV2<Cus
 	
 	
 	@Override protected boolean checkHook(CusmoipInfo recordInfo, Connection conn, String schemaName) {	
-		if (recordInfo.uselisData == null)
+		if (recordInfo.userapData == null)
 			return super.FAILED;
 		
 		
-		if (recordInfo.uselisData.persolisData == null)
+		if (recordInfo.userapData.personData == null)
 			return super.FAILED;
 		
 		
-		if (recordInfo.uselisData.persolisData.name   		== null ||
-			recordInfo.uselisData.persolisData.email 		== null	||
-			recordInfo.uselisData.persolisData.birthDate	== null	||
-			recordInfo.uselisData.persolisData.cpf			== null		)	
+		if (recordInfo.userapData.personData.name   	== null ||
+			recordInfo.userapData.personData.email 		== null	||
+			recordInfo.userapData.personData.birthDate	== null	||
+			recordInfo.userapData.personData.cpf		== null		)	
 		
 			return super.FAILED;
 			
