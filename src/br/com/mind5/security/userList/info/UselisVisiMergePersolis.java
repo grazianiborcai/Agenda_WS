@@ -38,7 +38,7 @@ final class UselisVisiMergePersolis implements InfoMergerVisitor_<UselisInfo, Pe
 	
 	
 	private UselisInfo merge(PersolisInfo sourceOne, UselisInfo sourceTwo) {
-		sourceTwo.personData = makeClone(sourceOne);
+		sourceTwo.persolisData = makeClone(sourceOne);
 		sourceTwo.codPerson = sourceOne.codPerson;
 		return sourceTwo;
 	}

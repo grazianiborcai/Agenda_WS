@@ -15,7 +15,7 @@ public final class UselisInfo extends InfoRecord implements Cloneable {
 	public char codUserCategory;
 	public String codAuthGroup;
 	public long codPerson;
-	public PersolisInfo personData;
+	public PersolisInfo persolisData;
 	public String recordMode;
 	public LocalDateTime lastChanged;
 	public long lastChangedBy;
@@ -29,7 +29,7 @@ public final class UselisInfo extends InfoRecord implements Cloneable {
 		codSnapshot = DefaultValue.number();
 		codUserCategory = DefaultValue.character();
 		codPerson = DefaultValue.number();
-		personData = DefaultValue.object();	
+		persolisData = DefaultValue.object();	
 		recordMode = DefaultValue.recordMode();		
 		lastChangedBy = DefaultValue.number();
 	}
@@ -51,7 +51,7 @@ public final class UselisInfo extends InfoRecord implements Cloneable {
 	@Override public Object clone() throws CloneNotSupportedException {
 		UselisInfo deepCopy = (UselisInfo) super.clone();
 		
-		deepCopy.personData = clonePersolis(deepCopy.personData);
+		deepCopy.persolisData = clonePersolis(deepCopy.persolisData);
 		
 		return deepCopy;
 	}
