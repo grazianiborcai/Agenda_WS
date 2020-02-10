@@ -11,23 +11,8 @@ import br.com.mind5.info.InfoCopier;
 import br.com.mind5.info.InfoCopierOneToMany;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
-import br.com.mind5.paymentPartner.partnerMoip.customerMoip.info.CusmoipInfo;
 
 public final class PhoneCopier {
-	public static PhoneInfo copyFromCusmoip(CusmoipInfo source) {
-		InfoCopier<PhoneInfo, CusmoipInfo> copier = new PhoneCopyCusmoip();
-		return copier.makeCopy(source);
-	}
-	
-	
-	
-	public static List<PhoneInfo> copyFromCusmoip(List<CusmoipInfo> sources) {
-		InfoCopier<PhoneInfo, CusmoipInfo> copier = new PhoneCopyCusmoip();
-		return copier.makeCopy(sources);
-	}	
-	
-	
-	
 	public static List<PhoneInfo> copyFromStore(StoreInfo source) {
 		InfoCopierOneToMany<PhoneInfo, StoreInfo> copier = new PhoneCopyStore();
 		return copier.makeCopy(source);
