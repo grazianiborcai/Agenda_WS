@@ -34,10 +34,6 @@ final class PhonapWhere implements DaoStmtWhere {
 				case PhonapDbTableColumn.COL_COD_SNAPSHOT :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codSnapshot));
 					break;
-					
-				case PhonapDbTableColumn.COL_COD_PHONE :
-					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codPhone));
-					break;
 			}
 		}		
 		

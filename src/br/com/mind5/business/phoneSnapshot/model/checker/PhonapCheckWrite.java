@@ -16,8 +16,10 @@ public final class PhonapCheckWrite extends ModelCheckerTemplateSimpleV2<PhonapI
 	
 	
 	@Override protected boolean checkHook(PhonapInfo recordInfo, Connection conn, String schemaName) {	
-		if ( recordInfo.codOwner 	<= 0 || 
-			 recordInfo.codPhone 	<= 0	)		
+		if ( recordInfo.codOwner 	<= 0 	|| 
+			 recordInfo.codPhone 	<= 0 	||
+			 recordInfo.codLanguage	== null ||
+			 recordInfo.username	== null		)		
 			
 			return super.FAILED;
 		
