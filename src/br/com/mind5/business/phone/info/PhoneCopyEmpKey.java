@@ -13,10 +13,12 @@ final class PhoneCopyEmpKey extends InfoCopierTemplate<PhoneInfo, EmpInfo>{
 	
 	@Override protected PhoneInfo makeCopyHook(EmpInfo source) {
 		PhoneInfo result = new PhoneInfo();
+		
 		result.codOwner = source.codOwner;
 		result.codEmployee = source.codEmployee;
 		result.codLanguage = source.codLanguage;
 		result.username = source.username;
+		
 		return result;
 	}
 }

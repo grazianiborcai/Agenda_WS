@@ -13,10 +13,12 @@ final class PhoneCopyCuspar extends InfoCopierTemplate<PhoneInfo, CusparInfo>{
 	
 	@Override protected PhoneInfo makeCopyHook(CusparInfo source) {
 		PhoneInfo result = new PhoneInfo();
+		
 		result.codOwner = source.codOwner;
 		result.codPhone = source.codPhone;
 		result.codLanguage = source.codLanguage;
 		result.username = source.username;
+		
 		return result;
 	}
 }

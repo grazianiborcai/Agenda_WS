@@ -13,10 +13,12 @@ final class PhoneCopyStolis extends InfoCopierTemplate<PhoneInfo, StolisInfo>{
 	
 	@Override protected PhoneInfo makeCopyHook(StolisInfo source) {
 		PhoneInfo result = new PhoneInfo();
+		
 		result.codOwner = source.codOwner;
 		result.codStore = source.codStore;
 		result.codLanguage = source.codLanguage;
 		result.username = source.username;
+		
 		return result;
 	}
 }
