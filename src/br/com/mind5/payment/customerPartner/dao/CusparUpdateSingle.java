@@ -65,6 +65,10 @@ public final class CusparUpdateSingle extends DaoStmtTemplate<CusparInfo> {
 				stmt.setString(i++, recordInfo.customerId);
 				stmt.setNull(i++, Types.VARCHAR);
 				stmt.setNull(i++, Types.VARCHAR);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codAddress);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codAddressSnapshot);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPhone);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPhoneSnapshot);
 	
 				return stmt;
 			}		

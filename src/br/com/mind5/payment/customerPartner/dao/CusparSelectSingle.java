@@ -72,7 +72,11 @@ public final class CusparSelectSingle extends DaoStmtTemplate<CusparInfo> {
 					dataInfo.codCustomer = DaoFormatter.sqlToLong(stmtResult, CusparDbTableColumn.COL_COD_CUSTOMER);
 					dataInfo.codCustomerSnapshot = DaoFormatter.sqlToLong(stmtResult, CusparDbTableColumn.COL_COD_CUSTOMER_SNAPSHOT);
 					dataInfo.codPayPartner = DaoFormatter.sqlToInt(stmtResult, CusparDbTableColumn.COL_COD_PAY_PARTNER);
-					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, CusparDbTableColumn.COL_LAST_CHANGED);					
+					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, CusparDbTableColumn.COL_LAST_CHANGED);						
+					dataInfo.codAddress = DaoFormatter.sqlToLong(stmtResult, CusparDbTableColumn.COL_COD_ADDRESS);
+					dataInfo.codAddressSnapshot = DaoFormatter.sqlToLong(stmtResult, CusparDbTableColumn.COL_COD_ADDRESS_SNAPSHOT);
+					dataInfo.codPhone = DaoFormatter.sqlToLong(stmtResult, CusparDbTableColumn.COL_COD_PHONE);
+					dataInfo.codPhoneSnapshot = DaoFormatter.sqlToLong(stmtResult, CusparDbTableColumn.COL_COD_PHONE_SNAPSHOT);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

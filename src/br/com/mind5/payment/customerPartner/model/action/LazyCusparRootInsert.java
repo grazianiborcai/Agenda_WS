@@ -8,10 +8,11 @@ import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
+import br.com.mind5.payment.customerPartner.model.decisionTree.RootCusparInsert;
 
-public final class LazyCusparMergePhonap extends ActionLazyTemplate<CusparInfo, CusparInfo> {
+public final class LazyCusparRootInsert extends ActionLazyTemplate<CusparInfo, CusparInfo> {
 
-	public LazyCusparMergePhonap(Connection conn, String schemaName) {
+	public LazyCusparRootInsert(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +25,7 @@ public final class LazyCusparMergePhonap extends ActionLazyTemplate<CusparInfo, 
 	
 	
 	@Override protected ActionStd<CusparInfo> getInstanceOfActionHook(DeciTreeOption<CusparInfo> option) {
-		return new StdCusparMergePhonap(option);
+		return new RootCusparInsert(option).toAction();
 	}
 	
 	
