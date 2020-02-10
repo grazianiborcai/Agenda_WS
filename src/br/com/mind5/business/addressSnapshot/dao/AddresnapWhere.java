@@ -34,10 +34,6 @@ final class AddresnapWhere implements DaoStmtWhere {
 				case AddresnapDbTableColumn.COL_COD_SNAPSHOT :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codSnapshot));
 					break;
-					
-				case AddresnapDbTableColumn.COL_COD_ADDRESS :
-					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codAddress));
-					break;
 			}
 		}		
 		

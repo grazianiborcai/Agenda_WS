@@ -16,8 +16,10 @@ public final class AddresnapCheckWrite extends ModelCheckerTemplateSimpleV2<Addr
 	
 	
 	@Override protected boolean checkHook(AddresnapInfo recordInfo, Connection conn, String schemaName) {	
-		if ( recordInfo.codOwner 	<= 0 || 
-			 recordInfo.codAddress 	<= 0	)		
+		if ( recordInfo.codOwner 	<= 0 	|| 
+			 recordInfo.codAddress 	<= 0 	||
+			 recordInfo.codLanguage	== null	||
+			 recordInfo.username	== null		)		
 			
 			return super.FAILED;
 		
