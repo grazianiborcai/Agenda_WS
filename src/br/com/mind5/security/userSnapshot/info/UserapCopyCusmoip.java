@@ -15,7 +15,6 @@ final class UserapCopyCusmoip extends InfoCopierTemplate<UserapInfo, CusmoipInfo
 		UserapInfo result = new UserapInfo();
 		
 		result.codOwner = source.codOwner;
-		result.codUser = source.codUser;
 		result.codSnapshot = source.codUserSnapshot;
 		result.codLanguage = source.codLanguage;
 		result.username = source.username;
