@@ -12,6 +12,7 @@ import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
 import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.info.CremoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.model.action.StdCremoipSuccess;
 import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.model.checker.CremoipCheckCusparData;
+import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.model.checker.CremoipCheckIsMoip;
 
 public final class NodeCremoipCusparL2 extends DeciTreeWriteTemplate<CremoipInfo> {
 	
@@ -31,6 +32,13 @@ public final class NodeCremoipCusparL2 extends DeciTreeWriteTemplate<CremoipInfo
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
 		checker = new CremoipCheckCusparData(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new CremoipCheckIsMoip(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
