@@ -4,8 +4,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 
-import br.com.mind5.business.address.info.AddressInfo;
-import br.com.mind5.business.phone.info.PhoneInfo;
+import br.com.mind5.business.addressSnapshot.info.AddresnapInfo;
+import br.com.mind5.business.phoneSnapshot.info.PhonapInfo;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
@@ -14,6 +14,8 @@ import br.com.moip.models.Setup;
 
 public final class CremoipInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
+	public int codPayPartner;
+	public long codPayCustomer;	
 	public String creditCardId;
 	public String creditCardBrand;
 	public String creditCardLast4;	
@@ -24,8 +26,10 @@ public final class CremoipInfo extends InfoRecord implements Cloneable {
 	public String nameHolder;
 	public String birthdateHolder;
 	public String cpfHolder;	
-	public AddressInfo addressData;
-	public PhoneInfo phoneData;
+	public long codAddressSnapshot;	
+	public long codPhoneSnapshot;	
+	public AddresnapInfo addresnapData;
+	public PhonapInfo phonapData;
 	public CusparInfo cusparData;
 	public SetuparInfo setuparData;
 	public Setup setup;
@@ -46,10 +50,14 @@ public final class CremoipInfo extends InfoRecord implements Cloneable {
 		super(CremoipInfo.class);
 		
 		codOwner = DefaultValue.number();
+		codPayPartner = DefaultValue.number();
+		codPayCustomer = DefaultValue.number();
+		codAddressSnapshot = DefaultValue.number();
+		codPhoneSnapshot = DefaultValue.number();	
 		recordMode = DefaultValue.recordMode();	
 		lastChangedBy = DefaultValue.number();
-		addressData = DefaultValue.object();
-		phoneData = DefaultValue.object();
+		addresnapData = DefaultValue.object();
+		phonapData = DefaultValue.object();
 		cusparData = DefaultValue.object();
 		setuparData = DefaultValue.object();
 		codSysEnviron = DefaultValue.getCodEnvironment();
@@ -73,8 +81,8 @@ public final class CremoipInfo extends InfoRecord implements Cloneable {
 		CremoipInfo deepCopy = (CremoipInfo) super.clone();
 		
 		deepCopy.setuparData = cloneSetup(deepCopy.setuparData);
-		deepCopy.addressData = cloneAddress(deepCopy.addressData);
-		deepCopy.phoneData = clonePhone(deepCopy.phoneData);
+		deepCopy.addresnapData = cloneAddresnap(deepCopy.addresnapData);
+		deepCopy.phonapData = clonePhonap(deepCopy.phonapData);
 		deepCopy.cusparData = cloneCuspar(deepCopy.cusparData);
 		
 		return deepCopy;
@@ -82,38 +90,38 @@ public final class CremoipInfo extends InfoRecord implements Cloneable {
 	
 	
 	
-	private SetuparInfo cloneSetup(SetuparInfo setupar) throws CloneNotSupportedException {
-		if (setupar == null)
+	private SetuparInfo cloneSetup(SetuparInfo recordInfo) throws CloneNotSupportedException {
+		if (recordInfo == null)
 			return null;
 		
-		return (SetuparInfo) setupar.clone();
+		return (SetuparInfo) recordInfo.clone();
 	}	
 	
 	
 	
-	private AddressInfo cloneAddress(AddressInfo address) throws CloneNotSupportedException {
-		if (address == null)
+	private AddresnapInfo cloneAddresnap(AddresnapInfo recordInfo) throws CloneNotSupportedException {
+		if (recordInfo == null)
 			return null;
 		
-		return (AddressInfo) address.clone();
+		return (AddresnapInfo) recordInfo.clone();
 	}
 	
 	
 	
-	private PhoneInfo clonePhone(PhoneInfo phone) throws CloneNotSupportedException {
-		if (phone == null)
+	private PhonapInfo clonePhonap(PhonapInfo recordInfo) throws CloneNotSupportedException {
+		if (recordInfo == null)
 			return null;
 		
-		return (PhoneInfo) phone.clone();
+		return (PhonapInfo) recordInfo.clone();
 	}
 	
 	
 	
-	private CusparInfo cloneCuspar(CusparInfo cuspar) throws CloneNotSupportedException {
-		if (cuspar == null)
+	private CusparInfo cloneCuspar(CusparInfo recordInfo) throws CloneNotSupportedException {
+		if (recordInfo == null)
 			return null;
 		
-		return (CusparInfo) cuspar.clone();
+		return (CusparInfo) recordInfo.clone();
 	}	
 	
 	

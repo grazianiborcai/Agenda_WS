@@ -24,13 +24,13 @@ final class VisiCremoipMergeSysEnviron extends ActionVisitorTemplateMergeV2<Crem
 	
 	
 	
-	@Override protected List<CremoipInfo> mergeHook(List<CremoipInfo> recordInfos, List<SysEnvironInfo> selectedInfos) {	
-		return CremoipMerger.mergeWithSysEnviron(selectedInfos, recordInfos);
+	@Override protected List<CremoipInfo> mergeHook(List<CremoipInfo> baseInfos, List<SysEnvironInfo> selectedInfos) {	
+		return CremoipMerger.mergeWithSysEnviron(baseInfos, selectedInfos);
 	}
 	
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV2.DONT_MERGE_WHEN_EMPTY;
 	}
 }

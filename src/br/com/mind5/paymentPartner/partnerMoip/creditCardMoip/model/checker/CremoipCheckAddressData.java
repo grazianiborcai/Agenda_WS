@@ -16,16 +16,16 @@ public final class CremoipCheckAddressData extends ModelCheckerTemplateSimpleV2<
 	
 	
 	@Override protected boolean checkHook(CremoipInfo recordInfo, Connection conn, String schemaName) {	
-		if (recordInfo.addressData == null)
+		if (recordInfo.addresnapData == null)
 			return super.FAILED;
 		
 		
-		if (recordInfo.addressData.city			== null ||
-			recordInfo.addressData.district 	== null	||
-			recordInfo.addressData.street		== null ||
-			recordInfo.addressData.streetNumber == null	||
-		    recordInfo.addressData.txtState 	== null	||
-			recordInfo.addressData.postalCode 	== null)	
+		if (recordInfo.addresnapData.city			== null ||
+			recordInfo.addresnapData.district 		== null	||
+			recordInfo.addresnapData.street			== null ||
+			recordInfo.addresnapData.streetNumber 	== null	||
+		    recordInfo.addresnapData.txtState 		== null	||
+			recordInfo.addresnapData.postalCode 	== null		)	
 		
 			return super.FAILED;
 			

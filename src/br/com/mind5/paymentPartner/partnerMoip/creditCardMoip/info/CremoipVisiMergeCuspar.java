@@ -5,9 +5,9 @@ import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorV3;
 import br.com.mind5.info.InfoUniquifier;
-import br.com.mind5.payment.setupPartner.info.SetuparInfo;
+import br.com.mind5.payment.customerPartner.info.CusparInfo;
 
-final class CremoipVisiMergeSetupar implements InfoMergerVisitorV3<CremoipInfo, SetuparInfo> {
+final class CremoipVisiMergeCuspar implements InfoMergerVisitorV3<CremoipInfo, CusparInfo> {
 	
 	@Override public List<CremoipInfo> beforeMerge(List<CremoipInfo> baseInfos) {
 		return baseInfos;
@@ -15,16 +15,17 @@ final class CremoipVisiMergeSetupar implements InfoMergerVisitorV3<CremoipInfo, 
 	
 	
 	
-	@Override public boolean shouldMerge(CremoipInfo baseInfo, SetuparInfo selectedInfo) {
-		return (baseInfo.codPayPartner == selectedInfo.codPayPartner);
+	@Override public boolean shouldMerge(CremoipInfo baseInfo, CusparInfo selectedInfo) {
+		return (baseInfo.codOwner       == selectedInfo.codOwner 		&&
+				baseInfo.codPayCustomer == selectedInfo.codPayCustomer		);
 	}
 	
 	
 	
-	@Override public List<CremoipInfo> merge(CremoipInfo baseInfo, SetuparInfo selectedInfo) {
+	@Override public List<CremoipInfo> merge(CremoipInfo baseInfo, CusparInfo selectedInfo) {
 		List<CremoipInfo> results = new ArrayList<>();
 		
-		baseInfo.setuparData = selectedInfo;
+		baseInfo.cusparData = selectedInfo;
 		
 		results.add(baseInfo);
 		return results;

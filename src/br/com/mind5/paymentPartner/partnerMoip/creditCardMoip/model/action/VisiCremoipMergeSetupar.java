@@ -25,19 +25,19 @@ final class VisiCremoipMergeSetupar extends ActionVisitorTemplateMergeV2<Cremoip
 	
 	
 	
-	@Override protected List<SetuparInfo> toActionClassHook(List<CremoipInfo> recordInfos) {
-		return SetuparCopier.copyFromCremoip(recordInfos);	
+	@Override protected List<SetuparInfo> toActionClassHook(List<CremoipInfo> baseInfos) {
+		return SetuparCopier.copyFromCremoip(baseInfos);	
 	}
 	
 	
 	
-	@Override protected List<CremoipInfo> mergeHook(List<CremoipInfo> recordInfos, List<SetuparInfo> selectedInfos) {	
-		return CremoipMerger.mergeWithSetupar(selectedInfos, recordInfos);
+	@Override protected List<CremoipInfo> mergeHook(List<CremoipInfo> baseInfos, List<SetuparInfo> selectedInfos) {	
+		return CremoipMerger.mergeWithSetupar(baseInfos, selectedInfos);
 	}
 	
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV2.MERGE_WHEN_EMPTY;
 	}
 }

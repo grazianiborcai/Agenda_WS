@@ -1,57 +1,38 @@
 package br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.info;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.ArrayList;
+import java.util.List;
 
 import br.com.mind5.business.masterData.info.SysEnvironInfo;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-final class CremoipVisiMergeSysEnviron implements InfoMergerVisitor_<CremoipInfo, SysEnvironInfo> {
+final class CremoipVisiMergeSysEnviron implements InfoMergerVisitorV3<CremoipInfo, SysEnvironInfo> {
 
-	@Override public CremoipInfo writeRecord(SysEnvironInfo sourceOne, CremoipInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
-		
-		CremoipInfo clonedInfo = makeClone(sourceTwo);
-		return merge(sourceOne, clonedInfo);
+	@Override public List<CremoipInfo> beforeMerge(List<CremoipInfo> baseInfos) {
+		return baseInfos;
 	}
 	
 	
 	
-	private void checkArgument(SysEnvironInfo sourceOne, CremoipInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private CremoipInfo makeClone(CremoipInfo recordInfo) {
-		try {
-			return (CremoipInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	private CremoipInfo merge(SysEnvironInfo sourceOne, CremoipInfo sourceTwo) {
-		sourceTwo.codSysEnviron = sourceOne.codSysEnviron;
-		return sourceTwo;
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(SysEnvironInfo sourceOne, CremoipInfo sourceTwo) {		
+	@Override public boolean shouldMerge(CremoipInfo baseInfo, SysEnvironInfo selectedInfo) {
 		return true;
 	}
 	
 	
 	
-	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
+	@Override public List<CremoipInfo> merge(CremoipInfo baseInfo, SysEnvironInfo selectedInfo) {
+		List<CremoipInfo> results = new ArrayList<>();
+		
+		baseInfo.codSysEnviron = selectedInfo.codSysEnviron;
+		
+		results.add(baseInfo);
+		return results;
+	}
+	
+	
+	
+	@Override public InfoUniquifier<CremoipInfo> getUniquifier() {
+		return null;
 	}
 }

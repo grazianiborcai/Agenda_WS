@@ -11,14 +11,14 @@ import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
 import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.info.CremoipInfo;
-import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.model.action.LazyCremoipDelete;
-import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.model.action.LazyCremoipNodeCusparL1;
-import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.model.checker.CremoipCheckCuspar;
-import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.model.checker.CremoipCheckDelete;
+import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.model.action.LazyCremoipEnforceSetup;
+import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.model.action.LazyCremoipMergeSysEnviron;
+import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.model.action.StdCremoipMergeSetupar;
+import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.model.checker.CremoipCheckSetupar;
 
-public final class RootCremoipDelete extends DeciTreeWriteTemplate<CremoipInfo> {
+public final class NodeCremoipSetuparL2 extends DeciTreeWriteTemplate<CremoipInfo> {
 	
-	public RootCremoipDelete(DeciTreeOption<CremoipInfo> option) {
+	public NodeCremoipSetuparL2(DeciTreeOption<CremoipInfo> option) {
 		super(option);
 	}
 	
@@ -32,15 +32,8 @@ public final class RootCremoipDelete extends DeciTreeWriteTemplate<CremoipInfo> 
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new CremoipCheckDelete(checkerOption);
-		queue.add(checker);
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
-		checker = new CremoipCheckCuspar(checkerOption);
+		checker = new CremoipCheckSetupar(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
@@ -51,14 +44,14 @@ public final class RootCremoipDelete extends DeciTreeWriteTemplate<CremoipInfo> 
 	@Override protected List<ActionStd<CremoipInfo>> buildActionsOnPassedHook(DeciTreeOption<CremoipInfo> option) {
 		List<ActionStd<CremoipInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CremoipInfo> nodeSetupar = new NodeCremoipSetuparL1(option).toAction();
-		ActionLazy<CremoipInfo> nodeCuspar = new LazyCremoipNodeCusparL1(option.conn, option.schemaName);
-		ActionLazy<CremoipInfo> delete = new LazyCremoipDelete(option.conn, option.schemaName);
+		ActionStd<CremoipInfo> mergeSetupar = new StdCremoipMergeSetupar(option);
+		ActionLazy<CremoipInfo> mergeSysEnviron = new LazyCremoipMergeSysEnviron(option.conn, option.schemaName);
+		ActionLazy<CremoipInfo> enforceSetup = new LazyCremoipEnforceSetup(option.conn, option.schemaName);
 		
-		nodeSetupar.addPostAction(nodeCuspar);
-		nodeCuspar.addPostAction(delete);
+		mergeSetupar.addPostAction(mergeSysEnviron);
+		mergeSysEnviron.addPostAction(enforceSetup);
 		
-		actions.add(nodeSetupar);
+		actions.add(mergeSetupar);
 		return actions;
 	}
 }

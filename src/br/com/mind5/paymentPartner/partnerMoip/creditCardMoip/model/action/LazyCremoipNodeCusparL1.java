@@ -8,10 +8,11 @@ import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.info.CremoipInfo;
+import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.model.decisionTree.NodeCremoipCusparL1;
 
-public final class LazyCremoipEnforcePhone extends ActionLazyTemplate<CremoipInfo, CremoipInfo> {
+public final class LazyCremoipNodeCusparL1 extends ActionLazyTemplate<CremoipInfo, CremoipInfo> {
 
-	public LazyCremoipEnforcePhone(Connection conn, String schemaName) {
+	public LazyCremoipNodeCusparL1(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +25,7 @@ public final class LazyCremoipEnforcePhone extends ActionLazyTemplate<CremoipInf
 	
 	
 	@Override protected ActionStd<CremoipInfo> getInstanceOfActionHook(DeciTreeOption<CremoipInfo> option) {
-		return new StdCremoipEnforcePhone(option);
+		return new NodeCremoipCusparL1(option).toAction();
 	}
 	
 	

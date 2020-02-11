@@ -11,24 +11,15 @@ import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
 import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.info.CremoipInfo;
-import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.model.action.LazyCremoipAdd;
-import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.model.action.LazyCremoipEnforceAddress;
-import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.model.action.LazyCremoipEnforceCard;
-import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.model.action.LazyCremoipEnforceDocument;
-import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.model.action.LazyCremoipEnforceFunding;
-import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.model.action.LazyCremoipEnforceHolder;
-import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.model.action.LazyCremoipEnforcePhone;
-import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.model.action.LazyCremoipEnforceSetup;
-import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.model.action.LazyCremoipMergeSysEnviron;
-import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.model.action.StdCremoipMergeSetupar;
+import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.model.action.LazyCremoipNodeAdd;
+import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.model.action.LazyCremoipNodeAddressL1;
+import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.model.action.LazyCremoipNodeCusparL1;
+import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.model.action.LazyCremoipNodePhoneL1;
 import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.model.checker.CremoipCheckAdd;
-import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.model.checker.CremoipCheckAddressBR;
-import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.model.checker.CremoipCheckAddressData;
+import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.model.checker.CremoipCheckAddresnap;
 import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.model.checker.CremoipCheckBirthdate;
-import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.model.checker.CremoipCheckCusparData;
-import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.model.checker.CremoipCheckPhoneBR;
-import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.model.checker.CremoipCheckPhoneData;
-import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.model.checker.CremoipCheckSetupar;
+import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.model.checker.CremoipCheckCuspar;
+import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.model.checker.CremoipCheckPhonap;
 
 public final class RootCremoipAdd extends DeciTreeWriteTemplate<CremoipInfo> {
 	
@@ -47,42 +38,7 @@ public final class RootCremoipAdd extends DeciTreeWriteTemplate<CremoipInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new CremoipCheckCusparData(checkerOption);
-		queue.add(checker);
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new CremoipCheckPhoneData(checkerOption);
-		queue.add(checker);
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new CremoipCheckAddressData(checkerOption);
-		queue.add(checker);
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
 		checker = new CremoipCheckAdd(checkerOption);
-		queue.add(checker);
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new CremoipCheckAddressBR(checkerOption);
-		queue.add(checker);
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new CremoipCheckPhoneBR(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
@@ -96,7 +52,21 @@ public final class RootCremoipAdd extends DeciTreeWriteTemplate<CremoipInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
-		checker = new CremoipCheckSetupar(checkerOption);
+		checker = new CremoipCheckCuspar(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
+		checker = new CremoipCheckPhonap(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
+		checker = new CremoipCheckAddresnap(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
@@ -107,26 +77,16 @@ public final class RootCremoipAdd extends DeciTreeWriteTemplate<CremoipInfo> {
 	@Override protected List<ActionStd<CremoipInfo>> buildActionsOnPassedHook(DeciTreeOption<CremoipInfo> option) {
 		List<ActionStd<CremoipInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CremoipInfo> mergeSetupar = new StdCremoipMergeSetupar(option);
-		ActionLazy<CremoipInfo> mergeSysEnviron = new LazyCremoipMergeSysEnviron(option.conn, option.schemaName);
-		ActionLazy<CremoipInfo> enforceSetup = new LazyCremoipEnforceSetup(option.conn, option.schemaName);
-		ActionLazy<CremoipInfo> enforceAddress = new LazyCremoipEnforceAddress(option.conn, option.schemaName);
-		ActionLazy<CremoipInfo> enforceDocument = new LazyCremoipEnforceDocument(option.conn, option.schemaName);
-		ActionLazy<CremoipInfo> enforcePhone = new LazyCremoipEnforcePhone(option.conn, option.schemaName);
-		ActionLazy<CremoipInfo> enforceHolder = new LazyCremoipEnforceHolder(option.conn, option.schemaName);
-		ActionLazy<CremoipInfo> enforceCard = new LazyCremoipEnforceCard(option.conn, option.schemaName);
-		ActionLazy<CremoipInfo> enforceFunding = new LazyCremoipEnforceFunding(option.conn, option.schemaName);
-		ActionLazy<CremoipInfo> addCard = new LazyCremoipAdd(option.conn, option.schemaName);
+		ActionStd<CremoipInfo> mergeSetupar = new NodeCremoipSetuparL1(option).toAction();
+		ActionLazy<CremoipInfo> nodeAddress = new LazyCremoipNodeAddressL1(option.conn, option.schemaName);
+		ActionLazy<CremoipInfo> nodePhone = new LazyCremoipNodePhoneL1(option.conn, option.schemaName);
+		ActionLazy<CremoipInfo> nodeCuspar = new LazyCremoipNodeCusparL1(option.conn, option.schemaName);		
+		ActionLazy<CremoipInfo> nodeAdd = new LazyCremoipNodeAdd(option.conn, option.schemaName);	
 		
-		mergeSetupar.addPostAction(mergeSysEnviron);
-		mergeSysEnviron.addPostAction(enforceSetup);
-		enforceSetup.addPostAction(enforceAddress);
-		enforceAddress.addPostAction(enforceDocument);
-		enforceDocument.addPostAction(enforcePhone);
-		enforcePhone.addPostAction(enforceHolder);
-		enforceHolder.addPostAction(enforceCard);
-		enforceCard.addPostAction(enforceFunding);
-		enforceFunding.addPostAction(addCard);
+		mergeSetupar.addPostAction(nodeAddress);
+		nodeAddress.addPostAction(nodePhone);
+		nodePhone.addPostAction(nodeCuspar);
+		nodeCuspar.addPostAction(nodeAdd);
 		
 		actions.add(mergeSetupar);
 		return actions;

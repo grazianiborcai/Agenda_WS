@@ -16,13 +16,19 @@ public final class CremoipCheckAdd extends ModelCheckerTemplateSimpleV2<CremoipI
 	
 	
 	@Override protected boolean checkHook(CremoipInfo recordInfo, Connection conn, String schemaName) {	
-		if (recordInfo.expirationMonth 	== null		||
-			recordInfo.expirationYear 	== null		||
-			recordInfo.cardNumber 		== null		||
-			recordInfo.cardCvc 			== null		||
-			recordInfo.nameHolder 		== null		||
-			recordInfo.birthdateHolder 	== null		||
-			recordInfo.cpfHolder 		== null			)
+		if (recordInfo.codOwner 			<= 0 	||
+			recordInfo.codPayCustomer		<= 0 	||
+			recordInfo.codAddressSnapshot 	<= 0 	||
+			recordInfo.codPhoneSnapshot 	<= 0 	||
+			recordInfo.expirationMonth 		== null	||
+			recordInfo.expirationYear 		== null	||
+			recordInfo.cardNumber 			== null	||
+			recordInfo.cardCvc 				== null	||
+			recordInfo.nameHolder 			== null	||
+			recordInfo.birthdateHolder 		== null	||
+			recordInfo.cpfHolder 			== null	||
+			recordInfo.username				== null	||
+			recordInfo.codLanguage			== null		)
 			
 			return super.FAILED;
 

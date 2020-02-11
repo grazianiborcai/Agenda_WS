@@ -16,7 +16,12 @@ public final class CremoipCheckDelete extends ModelCheckerTemplateSimpleV2<Cremo
 	
 	
 	@Override protected boolean checkHook(CremoipInfo recordInfo, Connection conn, String schemaName) {	
-		if (recordInfo.creditCardId == null)			
+		if (recordInfo.codOwner 		<= 0 	||
+			recordInfo.codPayCustomer	<= 0 	||
+			recordInfo.creditCardId 	== null ||
+			recordInfo.username			== null	||
+			recordInfo.codLanguage		== null		)		
+			
 			return super.FAILED;
 
 		

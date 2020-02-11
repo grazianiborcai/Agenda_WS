@@ -30,13 +30,13 @@ public final class CremoipSetterAddress implements InfoSetter<CremoipInfo> {
 	
 	private CremoipInfo setAddress(CremoipInfo recordInfo) {
 		recordInfo.billingAddress = payloadFactory(
-		        value("city"		, recordInfo.addressData.city),
-		        value("district"	, recordInfo.addressData.district),
-		        value("street"		, recordInfo.addressData.street),
-		        value("streetNumber", recordInfo.addressData.streetNumber),
-		        value("state"		, recordInfo.addressData.txtState),
-		        value("country"		, recordInfo.addressData.codCountryAlpha3),
-		        value("zipCode"		, recordInfo.addressData.postalCode)
+		        value("city"		, recordInfo.addresnapData.city),
+		        value("district"	, recordInfo.addresnapData.district),
+		        value("street"		, recordInfo.addresnapData.street),
+		        value("streetNumber", recordInfo.addresnapData.streetNumber),
+		        value("state"		, recordInfo.addresnapData.txtState),
+		        value("country"		, recordInfo.addresnapData.codCountryAlpha3),
+		        value("zipCode"		, recordInfo.addresnapData.postalCode)
 		);
 
 

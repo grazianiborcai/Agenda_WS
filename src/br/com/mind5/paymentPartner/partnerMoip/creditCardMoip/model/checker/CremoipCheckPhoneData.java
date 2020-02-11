@@ -16,12 +16,12 @@ public final class CremoipCheckPhoneData extends ModelCheckerTemplateSimpleV2<Cr
 	
 	
 	@Override protected boolean checkHook(CremoipInfo recordInfo, Connection conn, String schemaName) {	
-		if (recordInfo.phoneData == null)
+		if (recordInfo.phonapData == null)
 			return super.FAILED;
 		
 		
-		if (recordInfo.phoneData.codCountryPhone	<= 0 	||
-			recordInfo.phoneData.fullNumber			== null		)	
+		if (recordInfo.phonapData.codCountryPhone	<= 0 	||
+			recordInfo.phonapData.fullNumber			== null		)	
 		
 			return super.FAILED;
 			
