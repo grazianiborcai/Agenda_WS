@@ -8,10 +8,25 @@ import br.com.mind5.business.storeSnapshot.info.StorapInfo;
 import br.com.mind5.info.InfoCopier;
 import br.com.mind5.info.InfoCopierOneToMany;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
+import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.info.CremoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.customerMoip.info.CusmoipInfo;
 import br.com.mind5.security.userSnapshot.info.UserapInfo;
 
 public final class AddresnapCopier {	
+	public static AddresnapInfo copyFromCremoip(CremoipInfo source) {
+		InfoCopier<AddresnapInfo, CremoipInfo> copier = new AddresnapCopyCremoip();
+		return copier.makeCopy(source);
+	}
+	
+	
+	
+	public static List<AddresnapInfo> copyFromCremoip(List<CremoipInfo> sources) {
+		InfoCopier<AddresnapInfo, CremoipInfo> copier = new AddresnapCopyCremoip();
+		return copier.makeCopy(sources);
+	}	
+	
+	
+	
 	public static AddresnapInfo copyFromStorap(StorapInfo source) {
 		InfoCopier<AddresnapInfo, StorapInfo> copier = new AddresnapCopyStorap();
 		return copier.makeCopy(source);
