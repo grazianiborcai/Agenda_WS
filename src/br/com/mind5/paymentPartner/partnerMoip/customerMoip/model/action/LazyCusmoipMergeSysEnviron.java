@@ -8,11 +8,10 @@ import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.paymentPartner.partnerMoip.customerMoip.info.CusmoipInfo;
-import br.com.mind5.paymentPartner.partnerMoip.customerMoip.model.decisionTree.NodeCusmoipSetupar;
 
-public final class LazyCusmoipNodeSetupar extends ActionLazyTemplate<CusmoipInfo, CusmoipInfo> {
+public final class LazyCusmoipMergeSysEnviron extends ActionLazyTemplate<CusmoipInfo, CusmoipInfo> {
 
-	public LazyCusmoipNodeSetupar(Connection conn, String schemaName) {
+	public LazyCusmoipMergeSysEnviron(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -25,7 +24,7 @@ public final class LazyCusmoipNodeSetupar extends ActionLazyTemplate<CusmoipInfo
 	
 	
 	@Override protected ActionStd<CusmoipInfo> getInstanceOfActionHook(DeciTreeOption<CusmoipInfo> option) {
-		return new NodeCusmoipSetupar(option).toAction();
+		return new StdCusmoipMergeSysEnviron(option);
 	}
 	
 	

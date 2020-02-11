@@ -20,7 +20,9 @@ public final class CusmoipCheckWrite extends ModelCheckerTemplateSimpleV2<Cusmoi
 			recordInfo.codAddressSnapshot 	<= 0 	||
 			recordInfo.codPhoneSnapshot 	<= 0 	||
 			recordInfo.codUserSnapshot 		<= 0 	||
-			recordInfo.compoundId 			== null		)
+			recordInfo.compoundId 			== null	||
+			recordInfo.username				== null	||
+			recordInfo.codLanguage			== null		)
 			
 			return super.FAILED;
 

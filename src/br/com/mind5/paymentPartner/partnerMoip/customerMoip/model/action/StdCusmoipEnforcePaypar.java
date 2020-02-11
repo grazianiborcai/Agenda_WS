@@ -7,12 +7,12 @@ import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.paymentPartner.partnerMoip.customerMoip.info.CusmoipInfo;
 
-public final class StdCusmoipEnforcePayPartner implements ActionStd<CusmoipInfo> {
+public final class StdCusmoipEnforcePaypar implements ActionStd<CusmoipInfo> {
 	private ActionStd<CusmoipInfo> actionHelper;	
 	
 	
-	public StdCusmoipEnforcePayPartner(DeciTreeOption<CusmoipInfo> option) {			
-		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiCusmoipEnforcePayPartner());
+	public StdCusmoipEnforcePaypar(DeciTreeOption<CusmoipInfo> option) {			
+		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiCusmoipEnforcePaypar());
 	}
 	
 	

@@ -15,9 +15,7 @@ import br.com.mind5.paymentPartner.partnerMoip.customerMoip.model.action.LazyCus
 import br.com.mind5.paymentPartner.partnerMoip.customerMoip.model.action.LazyCusmoipEnforceRequest;
 import br.com.mind5.paymentPartner.partnerMoip.customerMoip.model.action.LazyCusmoipNodeAddressL1;
 import br.com.mind5.paymentPartner.partnerMoip.customerMoip.model.action.LazyCusmoipNodePhoneL1;
-import br.com.mind5.paymentPartner.partnerMoip.customerMoip.model.action.LazyCusmoipNodeSetupar;
 import br.com.mind5.paymentPartner.partnerMoip.customerMoip.model.action.LazyCusmoipNodeUserL1;
-import br.com.mind5.paymentPartner.partnerMoip.customerMoip.model.action.StdCusmoipMergeSysEnviron;
 import br.com.mind5.paymentPartner.partnerMoip.customerMoip.model.checker.CusmoipCheckAddresnap;
 import br.com.mind5.paymentPartner.partnerMoip.customerMoip.model.checker.CusmoipCheckPhonap;
 import br.com.mind5.paymentPartner.partnerMoip.customerMoip.model.checker.CusmoipCheckUserData;
@@ -72,22 +70,20 @@ public final class RootCusmoipCreate extends DeciTreeWriteTemplate<CusmoipInfo> 
 	@Override protected List<ActionStd<CusmoipInfo>> buildActionsOnPassedHook(DeciTreeOption<CusmoipInfo> option) {
 		List<ActionStd<CusmoipInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CusmoipInfo> mergeSysEnviron = new StdCusmoipMergeSysEnviron(option);
-		ActionLazy<CusmoipInfo> nodeSetupar = new LazyCusmoipNodeSetupar(option.conn, option.schemaName);
+		ActionStd<CusmoipInfo> nodeSetupar = new NodeCusmoipSetuparL1(option).toAction();
 		ActionLazy<CusmoipInfo> nodeAddress = new LazyCusmoipNodeAddressL1(option.conn, option.schemaName);
-		ActionLazy<CusmoipInfo> enforcePhone = new LazyCusmoipNodePhoneL1(option.conn, option.schemaName);
+		ActionLazy<CusmoipInfo> nodePhone = new LazyCusmoipNodePhoneL1(option.conn, option.schemaName);
 		ActionLazy<CusmoipInfo> nodeUser = new LazyCusmoipNodeUserL1(option.conn, option.schemaName);		
 		ActionLazy<CusmoipInfo> enforcerequest = new LazyCusmoipEnforceRequest(option.conn, option.schemaName);
 		ActionLazy<CusmoipInfo> create = new LazyCusmoipCreate(option.conn, option.schemaName);
 		
-		mergeSysEnviron.addPostAction(nodeSetupar);
 		nodeSetupar.addPostAction(nodeAddress);
 		nodeAddress.addPostAction(nodeUser);
-		nodeUser.addPostAction(enforcePhone);
-		enforcePhone.addPostAction(enforcerequest);
+		nodeUser.addPostAction(nodePhone);
+		nodePhone.addPostAction(enforcerequest);
 		enforcerequest.addPostAction(create);
 		
-		actions.add(mergeSysEnviron);
+		actions.add(nodeSetupar);
 		return actions;
 	}
 }
