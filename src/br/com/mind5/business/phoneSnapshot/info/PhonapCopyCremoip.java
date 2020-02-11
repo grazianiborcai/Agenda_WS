@@ -1,17 +1,17 @@
 package br.com.mind5.business.phoneSnapshot.info;
 
 import br.com.mind5.info.InfoCopierTemplate;
-import br.com.mind5.paymentPartner.partnerMoip.customerMoip.info.CusmoipInfo;
+import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.info.CremoipInfo;
 
-final class PhonapCopyCusmoip extends InfoCopierTemplate<PhonapInfo, CusmoipInfo>{
+final class PhonapCopyCremoip extends InfoCopierTemplate<PhonapInfo, CremoipInfo>{
 	
-	public PhonapCopyCusmoip() {
+	public PhonapCopyCremoip() {
 		super();
 	}
 	
 	
 	
-	@Override protected PhonapInfo makeCopyHook(CusmoipInfo source) {		
+	@Override protected PhonapInfo makeCopyHook(CremoipInfo source) {		
 		PhonapInfo result = new PhonapInfo();
 		
 		result.codOwner = source.codOwner;

@@ -8,10 +8,25 @@ import br.com.mind5.business.storeSnapshot.info.StorapInfo;
 import br.com.mind5.info.InfoCopier;
 import br.com.mind5.info.InfoCopierOneToMany;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
+import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.info.CremoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.customerMoip.info.CusmoipInfo;
 import br.com.mind5.security.userSnapshot.info.UserapInfo;
 
 public final class PhonapCopier {	
+	public static PhonapInfo copyFromCremoip(CremoipInfo source) {
+		InfoCopier<PhonapInfo, CremoipInfo> copier = new PhonapCopyCremoip();
+		return copier.makeCopy(source);
+	}
+	
+	
+	
+	public static List<PhonapInfo> copyFromCremoip(List<CremoipInfo> sources) {
+		InfoCopier<PhonapInfo, CremoipInfo> copier = new PhonapCopyCremoip();
+		return copier.makeCopy(sources);
+	}	
+	
+	
+	
 	public static PhonapInfo copyFromCusmoip(CusmoipInfo source) {
 		InfoCopier<PhonapInfo, CusmoipInfo> copier = new PhonapCopyCusmoip();
 		return copier.makeCopy(source);
