@@ -25,19 +25,21 @@ public final class RootSetuparSelect extends DeciTreeReadTemplate<SetuparInfo> {
 	
 	
 	@Override protected ModelChecker<SetuparInfo> buildDecisionCheckerHook(DeciTreeOption<SetuparInfo> option) {
-		final boolean EXIST_ON_DB = true;
-		
 		List<ModelChecker<SetuparInfo>> queue = new ArrayList<>();		
 		ModelChecker<SetuparInfo> checker;
 		ModelCheckerOption checkerOption;
 		
-		checker = new SetuparCheckRead();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
+		checker = new SetuparCheckRead(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new SetuparCheckCountry(checkerOption);
 		queue.add(checker);	
 		

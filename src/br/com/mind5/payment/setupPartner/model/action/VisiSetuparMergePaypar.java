@@ -24,8 +24,8 @@ final class VisiSetuparMergePaypar extends ActionVisitorTemplateMergeV2<SetuparI
 	
 	
 	
-	@Override protected List<SetuparInfo> mergeHook(List<SetuparInfo> recordInfos, List<PayparInfo> selectedInfos) {
-		return SetuparMerger.mergeWithPaypar(selectedInfos, recordInfos);
+	@Override protected List<SetuparInfo> mergeHook(List<SetuparInfo> baseInfos, List<PayparInfo> selectedInfos) {
+		return SetuparMerger.mergeWithPaypar(baseInfos, selectedInfos);
 	}
 	
 	
