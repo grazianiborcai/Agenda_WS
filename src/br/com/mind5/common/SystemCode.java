@@ -1081,4 +1081,9 @@ public final class SystemCode {
 	public static final int PAY_CUS_SEARCH_ALREADY_EXIST 				= 10850;
 	public static final int PAY_CUS_SEARCH_NOT_FOUND 					= 10851;
 	public static final int PAY_CUS_SEARCH_MANDATORY_FIELD_EMPTY 		= 10852;
+	
+	// Credit Card Search
+	public static final int CREDIT_CARD_SEARCH_MANDATORY_FIELD_EMPTY 	= 10900;
+	public static final int CREDIT_CARD_SEARCH_ALREADY_EXIST			= 10901;
+	public static final int CREDIT_CARD_SEARCH_NOT_FOUND				= 10902;
 }
