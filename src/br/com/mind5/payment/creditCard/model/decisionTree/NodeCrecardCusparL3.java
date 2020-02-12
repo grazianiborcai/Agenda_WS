@@ -3,7 +3,6 @@ package br.com.mind5.payment.creditCard.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -11,12 +10,12 @@ import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
-import br.com.mind5.payment.creditCard.model.action.LazyCrecardNodeUpsert;
-import br.com.mind5.payment.creditCard.model.checker.CrecardCheckCusparRef_;
+import br.com.mind5.payment.creditCard.model.action.StdCrecardSuccess;
+import br.com.mind5.payment.creditCard.model.checker.CrecardCheckCusparRef;
 
-public final class NodeCrecardInsertL4 extends DeciTreeWriteTemplate<CrecardInfo> {
+public final class NodeCrecardCusparL3 extends DeciTreeWriteTemplate<CrecardInfo> {
 	
-	public NodeCrecardInsertL4(DeciTreeOption<CrecardInfo> option) {
+	public NodeCrecardCusparL3(DeciTreeOption<CrecardInfo> option) {
 		super(option);
 	}
 	
@@ -31,7 +30,7 @@ public final class NodeCrecardInsertL4 extends DeciTreeWriteTemplate<CrecardInfo
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new CrecardCheckCusparRef_(checkerOption);
+		checker = new CrecardCheckCusparRef(checkerOption);
 		queue.add(checker);
 
 		return new ModelCheckerQueue<>(queue);
@@ -40,14 +39,11 @@ public final class NodeCrecardInsertL4 extends DeciTreeWriteTemplate<CrecardInfo
 	
 	
 	@Override protected List<ActionStd<CrecardInfo>> buildActionsOnPassedHook(DeciTreeOption<CrecardInfo> option) {
-		List<ActionStd<CrecardInfo>> actions = new ArrayList<>();	
+		List<ActionStd<CrecardInfo>> actions = new ArrayList<>();		
+
+		ActionStd<CrecardInfo> success = new  StdCrecardSuccess(option);
 		
-		ActionStd<CrecardInfo> nodeMoip = new NodeCrecardInsertMoip(option).toAction();	
-		ActionLazy<CrecardInfo> upsertCrecard = new LazyCrecardNodeUpsert(option.conn, option.schemaName);	
-		
-		nodeMoip.addPostAction(upsertCrecard);
-		
-		actions.add(nodeMoip);		
+		actions.add(success);		
 		return actions;
 	}
 }

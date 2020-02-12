@@ -8,11 +8,11 @@ import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
-import br.com.mind5.payment.creditCard.model.decisionTree.NodeCrecardInsertL4;
+import br.com.mind5.payment.creditCard.model.decisionTree.NodeCrecardUser;
 
-public final class LazyCrecardNodeInsertL4 extends ActionLazyTemplate<CrecardInfo, CrecardInfo> {
+public final class LazyCrecardNodeUser extends ActionLazyTemplate<CrecardInfo, CrecardInfo> {
 	
-	public LazyCrecardNodeInsertL4(Connection conn, String schemaName) {
+	public LazyCrecardNodeUser(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -25,7 +25,7 @@ public final class LazyCrecardNodeInsertL4 extends ActionLazyTemplate<CrecardInf
 	
 	
 	@Override protected ActionStd<CrecardInfo> getInstanceOfActionHook(DeciTreeOption<CrecardInfo> option) {
-		return new NodeCrecardInsertL4(option).toAction();
+		return new NodeCrecardUser(option).toAction();
 	}
 	
 	

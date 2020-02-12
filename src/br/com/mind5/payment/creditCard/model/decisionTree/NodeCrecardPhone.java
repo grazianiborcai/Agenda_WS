@@ -10,11 +10,12 @@ import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
-import br.com.mind5.payment.creditCard.model.checker.CrecardCheckHasCuspar;
+import br.com.mind5.payment.creditCard.model.action.StdCrecardMergePhone;
+import br.com.mind5.payment.creditCard.model.checker.CrecardCheckPhonarch;
 
-public final class NodeCrecardInsertL1 extends DeciTreeWriteTemplate<CrecardInfo> {
+public final class NodeCrecardPhone extends DeciTreeWriteTemplate<CrecardInfo> {
 	
-	public NodeCrecardInsertL1(DeciTreeOption<CrecardInfo> option) {
+	public NodeCrecardPhone(DeciTreeOption<CrecardInfo> option) {
 		super(option);
 	}
 	
@@ -28,8 +29,8 @@ public final class NodeCrecardInsertL1 extends DeciTreeWriteTemplate<CrecardInfo
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new CrecardCheckHasCuspar(checkerOption);
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
+		checker = new CrecardCheckPhonarch(checkerOption);
 		queue.add(checker);
 
 		return new ModelCheckerQueue<>(queue);
@@ -40,20 +41,9 @@ public final class NodeCrecardInsertL1 extends DeciTreeWriteTemplate<CrecardInfo
 	@Override protected List<ActionStd<CrecardInfo>> buildActionsOnPassedHook(DeciTreeOption<CrecardInfo> option) {
 		List<ActionStd<CrecardInfo>> actions = new ArrayList<>();		
 
-		ActionStd<CrecardInfo> nodeInsertL3 = new NodeCrecardInsertL3(option).toAction();	
+		ActionStd<CrecardInfo> nodePhone = new  StdCrecardMergePhone(option);
 		
-		actions.add(nodeInsertL3);		
-		return actions;
-	}
-	
-	
-	
-	@Override protected List<ActionStd<CrecardInfo>> buildActionsOnFailedHook(DeciTreeOption<CrecardInfo> option) {
-		List<ActionStd<CrecardInfo>> actions = new ArrayList<>();		
-
-		ActionStd<CrecardInfo> nodeInsertL2 = new NodeCrecardInsertL2(option).toAction();	
-		
-		actions.add(nodeInsertL2);		
+		actions.add(nodePhone);		
 		return actions;
 	}
 }

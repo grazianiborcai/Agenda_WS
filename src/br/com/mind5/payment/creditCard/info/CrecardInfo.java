@@ -3,8 +3,6 @@ package br.com.mind5.payment.creditCard.info;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import br.com.mind5.business.address.info.AddressInfo;
-import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
@@ -29,8 +27,6 @@ public final class CrecardInfo extends InfoRecord implements Cloneable {
 	public long codPhoneSnapshotHolder;
 	public long codAddressHolder;	
 	public long codAddressSnapshotHolder;	
-	public AddressInfo addressData;
-	public PhoneInfo phoneData;
 	public CusparInfo cusparData;
 	public String recordMode;
 	public LocalDateTime lastChanged;
@@ -51,8 +47,6 @@ public final class CrecardInfo extends InfoRecord implements Cloneable {
 		codPhoneSnapshotHolder = DefaultValue.number();
 		codAddressHolder = DefaultValue.number();
 		codAddressSnapshotHolder = DefaultValue.number();
-		addressData = DefaultValue.object();
-		phoneData = DefaultValue.object();
 		cusparData = DefaultValue.object();
 		codCreditCard = DefaultValue.number();
 	}
@@ -74,8 +68,6 @@ public final class CrecardInfo extends InfoRecord implements Cloneable {
 	@Override public Object clone() throws CloneNotSupportedException {
 		CrecardInfo deepCopy = (CrecardInfo) super.clone();
 		
-		deepCopy.addressData = cloneAddress(deepCopy.addressData);
-		deepCopy.phoneData = clonePhone(deepCopy.phoneData);
 		deepCopy.cusparData = cloneCuspar(deepCopy.cusparData);
 		
 		return deepCopy;
@@ -83,29 +75,11 @@ public final class CrecardInfo extends InfoRecord implements Cloneable {
 	
 	
 	
-	private AddressInfo cloneAddress(AddressInfo address) throws CloneNotSupportedException {
-		if (address == null)
+	private CusparInfo cloneCuspar(CusparInfo recordInfo) throws CloneNotSupportedException {
+		if (recordInfo == null)
 			return null;
 		
-		return (AddressInfo) address.clone();
-	}
-	
-	
-	
-	private PhoneInfo clonePhone(PhoneInfo phone) throws CloneNotSupportedException {
-		if (phone == null)
-			return null;
-		
-		return (PhoneInfo) phone.clone();
-	}
-	
-	
-	
-	private CusparInfo cloneCuspar(CusparInfo cuspar) throws CloneNotSupportedException {
-		if (cuspar == null)
-			return null;
-		
-		return (CusparInfo) cuspar.clone();
+		return (CusparInfo) recordInfo.clone();
 	}	
 	
 	

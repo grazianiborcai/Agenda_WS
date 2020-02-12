@@ -35,14 +35,6 @@ public final class CrecardWhere implements DaoStmtWhere {
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codCreditCard));
 					break;
 					
-				case CrecardDbTableColumn.COL_COD_PAY_CUSTOMER :
-					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codPayCustomer));
-					break;
-					
-				case CrecardDbTableColumn.COL_CREDIT_CARD_ID :
-					builder.addClauseEqualAnd(eachColumn, recordInfo.creditCardId);
-					break;
-					
 				case CrecardDbTableColumn.COL_RECORD_MODE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.recordMode);
 					break;

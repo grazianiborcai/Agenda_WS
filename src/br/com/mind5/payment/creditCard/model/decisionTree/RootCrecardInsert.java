@@ -11,12 +11,11 @@ import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
-import br.com.mind5.payment.creditCard.model.action.LazyCrecardMergeAddress;
-import br.com.mind5.payment.creditCard.model.action.LazyCrecardMergePhone;
-import br.com.mind5.payment.creditCard.model.action.LazyCrecardMergeUsername;
-import br.com.mind5.payment.creditCard.model.action.LazyCrecardNodeInsertL1;
+import br.com.mind5.payment.creditCard.model.action.LazyCrecardNodeAddress;
+import br.com.mind5.payment.creditCard.model.action.LazyCrecardNodeCusparL1;
+import br.com.mind5.payment.creditCard.model.action.LazyCrecardNodeInsert;
+import br.com.mind5.payment.creditCard.model.action.LazyCrecardNodePhone;
 import br.com.mind5.payment.creditCard.model.action.LazyCrecardRootSelect;
-import br.com.mind5.payment.creditCard.model.action.StdCrecardEnforceLChanged;
 import br.com.mind5.payment.creditCard.model.checker.CrecardCheckAddress;
 import br.com.mind5.payment.creditCard.model.checker.CrecardCheckLangu;
 import br.com.mind5.payment.creditCard.model.checker.CrecardCheckOwner;
@@ -87,20 +86,20 @@ public final class RootCrecardInsert extends DeciTreeWriteTemplate<CrecardInfo> 
 	@Override protected List<ActionStd<CrecardInfo>> buildActionsOnPassedHook(DeciTreeOption<CrecardInfo> option) {
 		List<ActionStd<CrecardInfo>> actions = new ArrayList<>();		
 
-		ActionStd<CrecardInfo> enforceLChanged = new StdCrecardEnforceLChanged(option);	
-		ActionLazy<CrecardInfo> mergeUsername = new LazyCrecardMergeUsername(option.conn, option.schemaName);
-		ActionLazy<CrecardInfo> mergeAddress = new LazyCrecardMergeAddress(option.conn, option.schemaName);
-		ActionLazy<CrecardInfo> mergePhone = new LazyCrecardMergePhone(option.conn, option.schemaName);
-		ActionLazy<CrecardInfo> nodeInsert = new LazyCrecardNodeInsertL1(option.conn, option.schemaName);
+		ActionStd<CrecardInfo> nodeUser = new NodeCrecardUser(option).toAction();
+		ActionLazy<CrecardInfo> nodeAddress = new LazyCrecardNodeAddress(option.conn, option.schemaName);
+		ActionLazy<CrecardInfo> nodePhone = new LazyCrecardNodePhone(option.conn, option.schemaName);
+		ActionLazy<CrecardInfo> nodeCuspar = new LazyCrecardNodeCusparL1(option.conn, option.schemaName);
+		ActionLazy<CrecardInfo> nodeInsert = new LazyCrecardNodeInsert(option.conn, option.schemaName);
 		ActionLazy<CrecardInfo> select = new LazyCrecardRootSelect(option.conn, option.schemaName);		
 		
-		enforceLChanged.addPostAction(mergeUsername);
-		mergeUsername.addPostAction(mergeAddress);
-		mergeAddress.addPostAction(mergePhone);
-		mergePhone.addPostAction(nodeInsert);
+		nodeUser.addPostAction(nodeAddress);
+		nodeAddress.addPostAction(nodePhone);
+		nodePhone.addPostAction(nodeCuspar);
+		nodeCuspar.addPostAction(nodeInsert);
 		nodeInsert.addPostAction(select);
 		
-		actions.add(enforceLChanged);		
+		actions.add(nodeUser);		
 		return actions;
 	}
 }

@@ -2,17 +2,17 @@ package br.com.mind5.payment.creditCard.model.action;
 
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
-import br.com.mind5.model.action.ActionStdHelperEnforce;
+import br.com.mind5.model.action.ActionStdHelperMerge;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
 
-public final class StdCrecardEnforceKey implements ActionStd<CrecardInfo> {
+public final class StdCrecardMergeCrecarch implements ActionStd<CrecardInfo> {
 	private ActionStd<CrecardInfo> actionHelper;	
 	
 	
-	public StdCrecardEnforceKey(DeciTreeOption<CrecardInfo> option) {			
-		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiCrecardEnforceKey_());
+	public StdCrecardMergeCrecarch(DeciTreeOption<CrecardInfo> option) {			
+		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiCrecardMergeCrecarch(option.conn, option.schemaName));
 	}
 	
 	

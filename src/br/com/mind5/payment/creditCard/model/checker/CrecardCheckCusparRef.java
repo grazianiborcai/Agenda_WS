@@ -7,9 +7,9 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
 
-public final class CrecardCheckUserCuspar extends ModelCheckerTemplateSimpleV2<CrecardInfo> {
+public final class CrecardCheckCusparRef extends ModelCheckerTemplateSimpleV2<CrecardInfo> {
 
-	public CrecardCheckUserCuspar(ModelCheckerOption option) {
+	public CrecardCheckCusparRef(ModelCheckerOption option) {
 		super(option);
 	}
 	

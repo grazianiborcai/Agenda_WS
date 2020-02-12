@@ -16,8 +16,7 @@ public final class CrecardCheckDelete extends ModelCheckerTemplateSimpleV2<Creca
 	
 	
 	@Override protected boolean checkHook(CrecardInfo recordInfo, Connection conn, String schemaName) {	
-		if ( recordInfo.codOwner 		<= 0 	||
-			 recordInfo.codPayCustomer	<= 0	||		 
+		if ( recordInfo.codOwner 		<= 0 	||		 
 			 recordInfo.codCreditCard	<= 0	||	
 			 recordInfo.codLanguage 	== null ||
 			 recordInfo.username 		== null 	)

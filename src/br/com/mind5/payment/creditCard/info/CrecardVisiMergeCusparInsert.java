@@ -5,8 +5,9 @@ import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorV3;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.payment.customerPartner.info.CusparInfo;
 
-final class CrecardVisiMergeToUpdate implements InfoMergerVisitorV3<CrecardInfo, CrecardInfo> {
+final class CrecardVisiMergeCusparInsert implements InfoMergerVisitorV3<CrecardInfo, CusparInfo> {
 	
 	@Override public List<CrecardInfo> beforeMerge(List<CrecardInfo> baseInfos) {
 		return baseInfos;
@@ -14,15 +15,18 @@ final class CrecardVisiMergeToUpdate implements InfoMergerVisitorV3<CrecardInfo,
 	
 	
 	
-	@Override public boolean shouldMerge(CrecardInfo baseInfo, CrecardInfo selectedInfo) {
-		return (baseInfo.codOwner == selectedInfo.codOwner);
+	@Override public boolean shouldMerge(CrecardInfo baseInfo, CusparInfo selectedInfo) {
+		return (baseInfo.codOwner 	   == selectedInfo.codOwner &&
+				baseInfo.codUser       == selectedInfo.codUser  &&
+				baseInfo.codPayPartner == selectedInfo.codPayPartner);
 	}
 	
 	
 	
-	@Override public List<CrecardInfo> merge(CrecardInfo baseInfo, CrecardInfo selectedInfo) {
+	@Override public List<CrecardInfo> merge(CrecardInfo baseInfo, CusparInfo selectedInfo) {
 		List<CrecardInfo> results = new ArrayList<>();
 		
+		baseInfo.codPayPartner = selectedInfo.codPayPartner;
 		baseInfo.codPayCustomer = selectedInfo.codPayCustomer;
 		
 		results.add(baseInfo);

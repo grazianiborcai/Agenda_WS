@@ -16,7 +16,7 @@ final class CrecardVisiMergeCremoip implements InfoMergerVisitorV3<CrecardInfo, 
 	
 	
 	@Override public boolean shouldMerge(CrecardInfo baseInfo, CremoipInfo selectedInfo) {
-		return (baseInfo.codOwner == selectedInfo.codOwner);	//TODO: REVER
+		return (baseInfo.codOwner == selectedInfo.codOwner);
 	}
 	
 	

@@ -17,9 +17,10 @@ public final class CrecardCheckRead extends ModelCheckerTemplateSimpleV2<Crecard
 	
 	@Override protected boolean checkHook(CrecardInfo recordInfo, Connection conn, String schemaName) {	
 		if (recordInfo.codOwner 		<= 0 	||
-			recordInfo.codPayCustomer 	<= 0 	||
+			recordInfo.codCreditCard 	<= 0 	||
 			recordInfo.username 		== null	||
-			recordInfo.codLanguage 		== null		)			
+			recordInfo.codLanguage 		== null		)	
+			
 			return super.FAILED;
 		
 		

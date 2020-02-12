@@ -3,7 +3,6 @@ package br.com.mind5.payment.creditCard.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -11,14 +10,11 @@ import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
-import br.com.mind5.payment.creditCard.model.action.LazyCrecardUpdate;
-import br.com.mind5.payment.creditCard.model.action.StdCrecardInsert;
-import br.com.mind5.payment.creditCard.model.action.StdCrecardMergeToUpdate;
-import br.com.mind5.payment.creditCard.model.checker.CrecardCheckExistById_;
+import br.com.mind5.payment.creditCard.model.checker.CrecardCheckHasCuspar;
 
-public final class NodeCrecardUpsert extends DeciTreeWriteTemplate<CrecardInfo> {
+public final class NodeCrecardCusparL1 extends DeciTreeWriteTemplate<CrecardInfo> {
 	
-	public NodeCrecardUpsert(DeciTreeOption<CrecardInfo> option) {
+	public NodeCrecardCusparL1(DeciTreeOption<CrecardInfo> option) {
 		super(option);
 	}
 	
@@ -32,8 +28,8 @@ public final class NodeCrecardUpsert extends DeciTreeWriteTemplate<CrecardInfo> 
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
-		checker = new CrecardCheckExistById_(checkerOption);
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new CrecardCheckHasCuspar(checkerOption);
 		queue.add(checker);
 
 		return new ModelCheckerQueue<>(queue);
@@ -44,12 +40,9 @@ public final class NodeCrecardUpsert extends DeciTreeWriteTemplate<CrecardInfo> 
 	@Override protected List<ActionStd<CrecardInfo>> buildActionsOnPassedHook(DeciTreeOption<CrecardInfo> option) {
 		List<ActionStd<CrecardInfo>> actions = new ArrayList<>();		
 
-		ActionStd<CrecardInfo> mergeToUpdate = new StdCrecardMergeToUpdate(option);	
-		ActionLazy<CrecardInfo> updateCrecard = new LazyCrecardUpdate(option.conn, option.schemaName);
+		ActionStd<CrecardInfo> nodeL2 = new  NodeCrecardCusparL2(option).toAction();
 		
-		mergeToUpdate.addPostAction(updateCrecard);
-		
-		actions.add(mergeToUpdate);		
+		actions.add(nodeL2);		
 		return actions;
 	}
 	
@@ -58,9 +51,9 @@ public final class NodeCrecardUpsert extends DeciTreeWriteTemplate<CrecardInfo> 
 	@Override protected List<ActionStd<CrecardInfo>> buildActionsOnFailedHook(DeciTreeOption<CrecardInfo> option) {
 		List<ActionStd<CrecardInfo>> actions = new ArrayList<>();		
 
-		ActionStd<CrecardInfo> insertCrecard = new StdCrecardInsert(option);	
+		ActionStd<CrecardInfo> nodeL4 = new  NodeCrecardCusparL4(option).toAction();
 		
-		actions.add(insertCrecard);		
+		actions.add(nodeL4);		
 		return actions;
 	}
 }

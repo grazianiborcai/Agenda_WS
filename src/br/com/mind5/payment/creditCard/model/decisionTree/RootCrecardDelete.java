@@ -11,10 +11,9 @@ import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
-import br.com.mind5.payment.creditCard.model.action.LazyCrecardEnforceLChanged;
 import br.com.mind5.payment.creditCard.model.action.LazyCrecardMergeCuspar;
-import br.com.mind5.payment.creditCard.model.action.LazyCrecardMergeUsername;
 import br.com.mind5.payment.creditCard.model.action.LazyCrecardNodeDelete;
+import br.com.mind5.payment.creditCard.model.action.LazyCrecardNodeUser;
 import br.com.mind5.payment.creditCard.model.action.StdCrecardMergeToDelete;
 import br.com.mind5.payment.creditCard.model.checker.CrecardCheckDelete;
 import br.com.mind5.payment.creditCard.model.checker.CrecardCheckExist;
@@ -63,14 +62,12 @@ public final class RootCrecardDelete extends DeciTreeWriteTemplate<CrecardInfo> 
 		List<ActionStd<CrecardInfo>> actions = new ArrayList<>();
 		
 		ActionStd<CrecardInfo> mergeToDelete = new StdCrecardMergeToDelete(option);
-		ActionLazy<CrecardInfo> enforceLChanged = new LazyCrecardEnforceLChanged(option.conn, option.schemaName);
-		ActionLazy<CrecardInfo> enforceLChangedBy = new LazyCrecardMergeUsername(option.conn, option.schemaName);
+		ActionLazy<CrecardInfo> nodeUser = new LazyCrecardNodeUser(option.conn, option.schemaName);
 		ActionLazy<CrecardInfo> mergeCuspar = new LazyCrecardMergeCuspar(option.conn, option.schemaName);
 		ActionLazy<CrecardInfo> delete = new LazyCrecardNodeDelete(option.conn, option.schemaName);
 		
-		mergeToDelete.addPostAction(enforceLChanged);
-		enforceLChanged.addPostAction(enforceLChangedBy);
-		enforceLChangedBy.addPostAction(mergeCuspar);		
+		mergeToDelete.addPostAction(nodeUser);
+		nodeUser.addPostAction(mergeCuspar);		
 		mergeCuspar.addPostAction(delete);
 		
 		actions.add(mergeToDelete);

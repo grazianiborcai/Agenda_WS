@@ -12,10 +12,9 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
 import br.com.mind5.payment.creditCard.model.action.LazyCrecardMergeCuspar;
-import br.com.mind5.payment.creditCard.model.action.LazyCrecardMergeUsername;
 import br.com.mind5.payment.creditCard.model.action.LazyCrecardNodeSelect;
+import br.com.mind5.payment.creditCard.model.action.LazyCrecardNodeUser;
 import br.com.mind5.payment.creditCard.model.action.StdCrecardMergeToSelect;
-import br.com.mind5.payment.creditCard.model.checker.CrecardCheckCuspar;
 import br.com.mind5.payment.creditCard.model.checker.CrecardCheckRead;
 import br.com.mind5.payment.creditCard.model.checker.CrecardCheckUsername;
 
@@ -46,13 +45,6 @@ public final class RootCrecardSelect extends DeciTreeReadTemplate<CrecardInfo> {
 		checker = new CrecardCheckUsername(checkerOption);
 		queue.add(checker);	
 		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
-		checker = new CrecardCheckCuspar(checkerOption);
-		queue.add(checker);	
-		
 		return new ModelCheckerQueue<>(queue);
 	}
 	
@@ -62,12 +54,12 @@ public final class RootCrecardSelect extends DeciTreeReadTemplate<CrecardInfo> {
 		List<ActionStd<CrecardInfo>> actions = new ArrayList<>();
 		
 		ActionStd<CrecardInfo> mergeToSelect = new StdCrecardMergeToSelect(option);
-		ActionLazy<CrecardInfo> mergeUsername = new LazyCrecardMergeUsername(option.conn, option.schemaName);
+		ActionLazy<CrecardInfo> nodeUser = new LazyCrecardNodeUser(option.conn, option.schemaName);
 		ActionLazy<CrecardInfo> mergeCuspar = new LazyCrecardMergeCuspar(option.conn, option.schemaName);
 		ActionLazy<CrecardInfo> nodeSelect = new LazyCrecardNodeSelect(option.conn, option.schemaName);
 		
-		mergeToSelect.addPostAction(mergeUsername);
-		mergeUsername.addPostAction(mergeCuspar);
+		mergeToSelect.addPostAction(nodeUser);
+		nodeUser.addPostAction(mergeCuspar);
 		mergeCuspar.addPostAction(nodeSelect);
 		
 		actions.add(mergeToSelect);

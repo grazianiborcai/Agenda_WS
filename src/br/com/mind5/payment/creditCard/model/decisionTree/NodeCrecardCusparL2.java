@@ -11,15 +11,13 @@ import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
-import br.com.mind5.payment.creditCard.model.action.LazyCrecardNodeInsertL4;
+import br.com.mind5.payment.creditCard.model.action.LazyCrecardNodeCusparL3;
 import br.com.mind5.payment.creditCard.model.action.StdCrecardMergeCuspar;
-import br.com.mind5.payment.creditCard.model.checker.CrecardCheckAddarch;
 import br.com.mind5.payment.creditCard.model.checker.CrecardCheckCuspar;
-import br.com.mind5.payment.creditCard.model.checker.CrecardCheckPhonarch;
 
-public final class NodeCrecardInsertL3 extends DeciTreeWriteTemplate<CrecardInfo> {
+public final class NodeCrecardCusparL2 extends DeciTreeWriteTemplate<CrecardInfo> {
 	
-	public NodeCrecardInsertL3(DeciTreeOption<CrecardInfo> option) {
+	public NodeCrecardCusparL2(DeciTreeOption<CrecardInfo> option) {
 		super(option);
 	}
 	
@@ -34,35 +32,21 @@ public final class NodeCrecardInsertL3 extends DeciTreeWriteTemplate<CrecardInfo
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
-		checker = new CrecardCheckAddarch(checkerOption);
-		queue.add(checker);
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
-		checker = new CrecardCheckPhonarch(checkerOption);
-		queue.add(checker);
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
 		checker = new CrecardCheckCuspar(checkerOption);
 		queue.add(checker);
-		
+
 		return new ModelCheckerQueue<>(queue);
 	}
 	
 	
 	
 	@Override protected List<ActionStd<CrecardInfo>> buildActionsOnPassedHook(DeciTreeOption<CrecardInfo> option) {
-		List<ActionStd<CrecardInfo>> actions = new ArrayList<>();	
+		List<ActionStd<CrecardInfo>> actions = new ArrayList<>();		
+
+		ActionStd<CrecardInfo> mergeCuspar = new  StdCrecardMergeCuspar(option);
+		ActionLazy<CrecardInfo> nodeL3 = new LazyCrecardNodeCusparL3(option.conn, option.schemaName);
 		
-		ActionStd<CrecardInfo> mergeCuspar = new StdCrecardMergeCuspar(option);	
-		ActionLazy<CrecardInfo> nodeInsertL4 = new LazyCrecardNodeInsertL4(option.conn, option.schemaName);	
-		
-		mergeCuspar.addPostAction(nodeInsertL4);
+		mergeCuspar.addPostAction(nodeL3);
 		
 		actions.add(mergeCuspar);		
 		return actions;

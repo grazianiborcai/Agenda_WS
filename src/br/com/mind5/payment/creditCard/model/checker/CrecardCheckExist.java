@@ -1,14 +1,12 @@
 package br.com.mind5.payment.creditCard.model.checker;
 
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
-import br.com.mind5.payment.creditCard.model.action.LazyCrecardSelect;
-import br.com.mind5.payment.creditCard.model.action.StdCrecardEnforceKey;
+import br.com.mind5.payment.creditCard.model.action.StdCrecardSelect;
 
 public final class CrecardCheckExist extends ModelCheckerTemplateActionV2<CrecardInfo, CrecardInfo> {	
 	
@@ -19,11 +17,8 @@ public final class CrecardCheckExist extends ModelCheckerTemplateActionV2<Crecar
 	
 	
 	@Override protected ActionStd<CrecardInfo> buildActionHook(DeciTreeOption<CrecardInfo> option) {
-		ActionStd<CrecardInfo> enforceKey = new StdCrecardEnforceKey(option);
-		ActionLazy<CrecardInfo> select = new LazyCrecardSelect(option.conn, option.schemaName);
-		
-		enforceKey.addPostAction(select);
-		return enforceKey;
+		ActionStd<CrecardInfo> select = new StdCrecardSelect(option);
+		return select;
 	}
 	
 	

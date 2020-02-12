@@ -3,7 +3,6 @@ package br.com.mind5.payment.creditCard.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -11,13 +10,12 @@ import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
-import br.com.mind5.payment.creditCard.model.action.LazyCrecardDelete;
-import br.com.mind5.payment.creditCard.model.action.StdCrecardUpdate;
-import br.com.mind5.payment.creditCard.model.checker.CrecardCheckCusparRef;
+import br.com.mind5.payment.creditCard.model.action.StdCrecardMergeAddress;
+import br.com.mind5.payment.creditCard.model.checker.CrecardCheckAddarch;
 
-public final class NodeCrecardDelete extends DeciTreeWriteTemplate<CrecardInfo> {
+public final class NodeCrecardAddress extends DeciTreeWriteTemplate<CrecardInfo> {
 	
-	public NodeCrecardDelete(DeciTreeOption<CrecardInfo> option) {
+	public NodeCrecardAddress(DeciTreeOption<CrecardInfo> option) {
 		super(option);
 	}
 	
@@ -25,33 +23,27 @@ public final class NodeCrecardDelete extends DeciTreeWriteTemplate<CrecardInfo> 
 	
 	@Override protected ModelChecker<CrecardInfo> buildDecisionCheckerHook(DeciTreeOption<CrecardInfo> option) {
 		List<ModelChecker<CrecardInfo>> queue = new ArrayList<>();		
-		ModelChecker<CrecardInfo> checker;
+		ModelChecker<CrecardInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new CrecardCheckCusparRef(checkerOption);
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
+		checker = new CrecardCheckAddarch(checkerOption);
 		queue.add(checker);
 
-		return new ModelCheckerQueue<CrecardInfo>(queue);
+		return new ModelCheckerQueue<>(queue);
 	}
 	
 	
 	
 	@Override protected List<ActionStd<CrecardInfo>> buildActionsOnPassedHook(DeciTreeOption<CrecardInfo> option) {
-		List<ActionStd<CrecardInfo>> actions = new ArrayList<>();
+		List<ActionStd<CrecardInfo>> actions = new ArrayList<>();		
+
+		ActionStd<CrecardInfo> mergeAddress = new  StdCrecardMergeAddress(option);
 		
-		ActionStd<CrecardInfo> deleteMoip = new NodeCrecardDeleteMoip(option).toAction();
-		ActionStd<CrecardInfo> update = new StdCrecardUpdate(option);
-		ActionLazy<CrecardInfo> delete = new LazyCrecardDelete(option.conn, option.schemaName);
-		
-		update.addPostAction(delete);
-		
-		actions.add(deleteMoip);
-		actions.add(update);		
-		
+		actions.add(mergeAddress);		
 		return actions;
 	}
 }

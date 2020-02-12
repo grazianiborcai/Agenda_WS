@@ -25,8 +25,8 @@ final class CrecardVisiMergeCuspar implements InfoMergerVisitorV3<CrecardInfo, C
 	@Override public List<CrecardInfo> merge(CrecardInfo baseInfo, CusparInfo selectedInfo) {
 		List<CrecardInfo> results = new ArrayList<>();
 		
-		baseInfo.codPayPartner = selectedInfo.codPayPartner;		//TODO: REVER
-		baseInfo.codPayCustomer = selectedInfo.codPayCustomer;
+		baseInfo.codPayPartner = selectedInfo.codPayPartner;
+		
 		
 		results.add(baseInfo);
 		return results;
