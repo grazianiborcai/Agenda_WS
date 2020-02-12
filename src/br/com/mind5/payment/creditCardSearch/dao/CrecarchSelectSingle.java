@@ -6,12 +6,15 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.mind5.dao.DaoJoin;
+import br.com.mind5.dao.DaoJoinBuilder;
 import br.com.mind5.dao.DaoOperation;
 import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
+import br.com.mind5.dao.common.DaoJoinCuspar;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.payment.creditCardSearch.info.CrecarchInfo;
 
@@ -52,6 +55,13 @@ public final class CrecarchSelectSingle extends DaoStmtTemplate<CrecarchInfo> {
 		DaoStmtWhere whereClause = new CrecarchWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
+	
+	
+	
+	@Override protected DaoJoin getJoinHook(CrecarchInfo recordInfo) {
+		DaoJoinBuilder joinCuspar = new DaoJoinCuspar(MAIN_TABLE);		
+		return joinCuspar.build();
+	}	
 	
 	
 	

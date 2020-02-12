@@ -13,6 +13,7 @@ public final class CrecarchDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_CREDIT_CARD = DaoDbField.COL_COD_CREDIT_CARD;
 	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;	
 	public static final String COL_COD_PAY_CUSTOMER = DaoDbField.COL_COD_PAY_CUSTOMER;
+	public static final String COL_COD_USER = DaoDbField.COL_COD_USER;
 	public static final String COL_CREDIT_CARD_ID = DaoDbField.COL_CREDIT_CARD_ID;	
 	public static final String COL_RECORD_MODE = DaoDbField.COL_RECORD_MODE;
 	
@@ -79,6 +80,14 @@ public final class CrecarchDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.columnName = COL_CREDIT_CARD_ID;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = DaoDbTable.PAY_CUS_TABLE;
+		oneColumn.columnName = COL_COD_USER;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 
