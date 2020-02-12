@@ -1,71 +1,40 @@
 package br.com.mind5.payment.creditCard.info;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.ArrayList;
+import java.util.List;
 
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
 
-final class CrecardVisiMergeCuspar implements InfoMergerVisitor_<CrecardInfo, CusparInfo> {
-
-	@Override public CrecardInfo writeRecord(CusparInfo sourceOne, CrecardInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+final class CrecardVisiMergeCuspar implements InfoMergerVisitorV3<CrecardInfo, CusparInfo> {
+	
+	@Override public List<CrecardInfo> beforeMerge(List<CrecardInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(CrecardInfo baseInfo, CusparInfo selectedInfo) {
+		return (baseInfo.codOwner 		== selectedInfo.codOwner &&
+				baseInfo.codPayCustomer == selectedInfo.codPayCustomer	);
+	}
+	
+	
+	
+	@Override public List<CrecardInfo> merge(CrecardInfo baseInfo, CusparInfo selectedInfo) {
+		List<CrecardInfo> results = new ArrayList<>();
 		
-		CrecardInfo clonedInfo = makeClone(sourceTwo);
-		return merge(sourceOne, clonedInfo);
+		baseInfo.codPayPartner = selectedInfo.codPayPartner;		//TODO: REVER
+		baseInfo.codPayCustomer = selectedInfo.codPayCustomer;
+		
+		results.add(baseInfo);
+		return results;
 	}
 	
 	
 	
-	private void checkArgument(CusparInfo sourceOne, CrecardInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private CrecardInfo makeClone(CrecardInfo recordInfo) {
-		try {
-			return (CrecardInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	private CrecardInfo merge(CusparInfo sourceOne, CrecardInfo sourceTwo) {
-		sourceTwo.cusparData = makeClone(sourceOne);
-		sourceTwo.codPayPartner = sourceOne.codPayPartner;
-		sourceTwo.codPayCustomer = sourceOne.codPayCustomer;
-		return sourceTwo;
-	}
-	
-	
-	
-	private CusparInfo makeClone(CusparInfo recordInfo) {
-		try {
-			return (CusparInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}	
-	
-	
-	
-	@Override public boolean shouldWrite(CusparInfo sourceOne, CrecardInfo sourceTwo) {
-		return (sourceOne.codOwner == sourceTwo.codOwner);
-	}
-	
-	
-	
-	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
+	@Override public InfoUniquifier<CrecardInfo> getUniquifier() {
+		return null;
 	}
 }

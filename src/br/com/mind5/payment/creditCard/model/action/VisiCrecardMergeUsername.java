@@ -25,14 +25,14 @@ final class VisiCrecardMergeUsername extends ActionVisitorTemplateMergeV2<Crecar
 	
 	
 	
-	@Override protected List<UsernameInfo> toActionClassHook(List<CrecardInfo> recordInfos) {
-		return UsernameCopier.copyFromCrecard(recordInfos);	
+	@Override protected List<UsernameInfo> toActionClassHook(List<CrecardInfo> baseInfos) {
+		return UsernameCopier.copyFromCrecard(baseInfos);	
 	}
 	
 	
 	
-	@Override protected List<CrecardInfo> mergeHook(List<CrecardInfo> recordInfos, List<UsernameInfo> selectedInfos) {	
-		return CrecardMerger.mergeWithUsername(selectedInfos, recordInfos);
+	@Override protected List<CrecardInfo> mergeHook(List<CrecardInfo> baseInfos, List<UsernameInfo> selectedInfos) {	
+		return CrecardMerger.mergeWithUsername(baseInfos, selectedInfos);
 	}
 	
 	

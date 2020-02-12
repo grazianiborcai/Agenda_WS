@@ -6,7 +6,7 @@ import org.apache.logging.log4j.Logger;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.InfoSetter;
 
-public final class CrecardSetterKeyId implements InfoSetter<CrecardInfo> {
+public final class CrecardSetterKey_ implements InfoSetter<CrecardInfo> {
 	
 	public CrecardInfo setAttr(CrecardInfo recordInfo) {
 		checkArgument(recordInfo);
@@ -28,7 +28,7 @@ public final class CrecardSetterKeyId implements InfoSetter<CrecardInfo> {
 		CrecardInfo enforcedRecord = new CrecardInfo();
 		enforcedRecord.codOwner = recordInfo.codOwner;
 		enforcedRecord.codPayCustomer = recordInfo.codPayCustomer;
-		enforcedRecord.creditCardId = recordInfo.creditCardId;
+		enforcedRecord.codCreditCard = recordInfo.codCreditCard;
 		enforcedRecord.codLanguage = recordInfo.codLanguage;
 		
 		return enforcedRecord;

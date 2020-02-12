@@ -26,7 +26,7 @@ final class VisiCrecardAddCremoip extends ActionVisitorTemplateAction<CrecardInf
 	
 	
 	
-	@Override protected List<CrecardInfo> toBaseClassHook(List<CrecardInfo> baseInfos, List<CremoipInfo> results) {
-		return CrecardMerger.mergeWithCremoip(results, baseInfos);
+	@Override protected List<CrecardInfo> toBaseClassHook(List<CrecardInfo> baseInfos, List<CremoipInfo> selectedInfos) {
+		return CrecardMerger.mergeWithCremoip(baseInfos, selectedInfos);
 	}
 }

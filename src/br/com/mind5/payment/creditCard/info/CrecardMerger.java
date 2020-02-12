@@ -4,119 +4,111 @@ import java.util.List;
 
 import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.phone.info.PhoneInfo;
-import br.com.mind5.info.obsolete.InfoMerger_;
+import br.com.mind5.info.InfoMergerBuilderV3;
+import br.com.mind5.info.InfoMergerV3;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
 import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.info.CremoipInfo;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class CrecardMerger {
-	public static CrecardInfo mergeWithCremoip(CremoipInfo sourceOne, CrecardInfo sourceTwo) {
-		InfoMerger_<CrecardInfo, CremoipInfo> merger = new CrecardMergerCremoip();		
-		return merger.merge(sourceOne, sourceTwo);
+	public static List<CrecardInfo> mergeWithCremoip(List<CrecardInfo> baseInfos, List<CremoipInfo> selectedInfos) {
+		InfoMergerBuilderV3<CrecardInfo, CremoipInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new CrecardVisiMergeCremoip());
+		InfoMergerV3<CrecardInfo, CremoipInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static List<CrecardInfo> mergeWithCremoip(List<CremoipInfo> sourceOnes, List<CrecardInfo> sourceTwos) {
-		InfoMerger_<CrecardInfo, CremoipInfo> merger = new CrecardMergerCremoip();		
-		return merger.merge(sourceOnes, sourceTwos);
-	}
+	public static List<CrecardInfo> mergeWithPhone(List<CrecardInfo> baseInfos, List<PhoneInfo> selectedInfos) {
+		InfoMergerBuilderV3<CrecardInfo, PhoneInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new CrecardVisiMergePhone());
+		InfoMergerV3<CrecardInfo, PhoneInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}	
 	
 	
+	public static List<CrecardInfo> mergeWithAddress(List<CrecardInfo> baseInfos, List<AddressInfo> selectedInfos) {
+		InfoMergerBuilderV3<CrecardInfo, AddressInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new CrecardVisiMergeAddress());
+		InfoMergerV3<CrecardInfo, AddressInfo> merger = builder.build();		
 	
-	public static CrecardInfo mergeWithPhone(PhoneInfo sourceOne, CrecardInfo sourceTwo) {
-		InfoMerger_<CrecardInfo, PhoneInfo> merger = new CrecardMergerPhone();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
-	
-	
-	
-	public static List<CrecardInfo> mergeWithPhone(List<PhoneInfo> sourceOnes, List<CrecardInfo> sourceTwos) {
-		InfoMerger_<CrecardInfo, PhoneInfo> merger = new CrecardMergerPhone();		
-		return merger.merge(sourceOnes, sourceTwos);
+		return merger.merge();
 	}	
 	
 	
 	
-	public static CrecardInfo mergeWithAddress(AddressInfo sourceOne, CrecardInfo sourceTwo) {
-		InfoMerger_<CrecardInfo, AddressInfo> merger = new CrecardMergerAddress();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
+	public static List<CrecardInfo> mergeWithCuspar(List<CrecardInfo> baseInfos, List<CusparInfo> selectedInfos) {
+		InfoMergerBuilderV3<CrecardInfo, CusparInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new CrecardVisiMergeCuspar());
+		InfoMergerV3<CrecardInfo, CusparInfo> merger = builder.build();		
 	
-	
-	
-	public static List<CrecardInfo> mergeWithAddress(List<AddressInfo> sourceOnes, List<CrecardInfo> sourceTwos) {
-		InfoMerger_<CrecardInfo, AddressInfo> merger = new CrecardMergerAddress();		
-		return merger.merge(sourceOnes, sourceTwos);
+		return merger.merge();
 	}	
 	
 	
 	
-	public static CrecardInfo mergeWithCuspar(CusparInfo sourceOne, CrecardInfo sourceTwo) {
-		InfoMerger_<CrecardInfo, CusparInfo> merger = new CrecardMergerCuspar();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
+	public static List<CrecardInfo> mergeWithUsername(List<CrecardInfo> baseInfos, List<UsernameInfo> selectedInfos) {
+		InfoMergerBuilderV3<CrecardInfo, UsernameInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new CrecardVisiMergeUsername());
+		InfoMergerV3<CrecardInfo, UsernameInfo> merger = builder.build();		
 	
-	
-	
-	public static List<CrecardInfo> mergeWithCuspar(List<CusparInfo> sourceOnes, List<CrecardInfo> sourceTwos) {
-		InfoMerger_<CrecardInfo, CusparInfo> merger = new CrecardMergerCuspar();		
-		return merger.merge(sourceOnes, sourceTwos);
+		return merger.merge();
 	}	
 	
 	
 	
-	public static CrecardInfo mergeWithUsername(UsernameInfo sourceOne, CrecardInfo sourceTwo) {
-		InfoMerger_<CrecardInfo, UsernameInfo> merger = new CrecardMergerUsername();		
-		return merger.merge(sourceOne, sourceTwo);
+	public static List<CrecardInfo> mergeToSelect(List<CrecardInfo> baseInfos, List<CrecardInfo> selectedInfos) {
+		InfoMergerBuilderV3<CrecardInfo, CrecardInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new CrecardVisiMergeToSelect());
+		InfoMergerV3<CrecardInfo, CrecardInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static List<CrecardInfo> mergeWithUsername(List<UsernameInfo> sourceOnes, List<CrecardInfo> sourceTwos) {
-		InfoMerger_<CrecardInfo, UsernameInfo> merger = new CrecardMergerUsername();		
-		return merger.merge(sourceOnes, sourceTwos);
-	}	
+	public static List<CrecardInfo> mergeToDelete(List<CrecardInfo> baseInfos, List<CrecardInfo> selectedInfos) {
+		InfoMergerBuilderV3<CrecardInfo, CrecardInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new CrecardVisiMergeToDelete());
+		InfoMergerV3<CrecardInfo, CrecardInfo> merger = builder.build();		
 	
-	
-	
-	public static CrecardInfo mergeToSelect(CrecardInfo sourceOne, CrecardInfo sourceTwo) {
-		InfoMerger_<CrecardInfo, CrecardInfo> merger = new CrecardMergerToSelect();		
-		return merger.merge(sourceOne, sourceTwo);
+		return merger.merge();
 	}
 	
 	
 	
-	public static List<CrecardInfo> mergeToSelect(List<CrecardInfo> sourceOnes, List<CrecardInfo> sourceTwos) {
-		InfoMerger_<CrecardInfo, CrecardInfo> merger = new CrecardMergerToSelect();		
-		return merger.merge(sourceOnes, sourceTwos);
-	}
+	public static List<CrecardInfo> mergeToUpdate(List<CrecardInfo> baseInfos, List<CrecardInfo> selectedInfos) {
+		InfoMergerBuilderV3<CrecardInfo, CrecardInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new CrecardVisiMergeToUpdate());
+		InfoMergerV3<CrecardInfo, CrecardInfo> merger = builder.build();		
 	
-	
-	
-	public static CrecardInfo mergeToDelete(CrecardInfo sourceOne, CrecardInfo sourceTwo) {
-		InfoMerger_<CrecardInfo, CrecardInfo> merger = new CrecardMergerToDelete();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
-	
-	
-	
-	public static List<CrecardInfo> mergeToDelete(List<CrecardInfo> sourceOnes, List<CrecardInfo> sourceTwos) {
-		InfoMerger_<CrecardInfo, CrecardInfo> merger = new CrecardMergerToDelete();		
-		return merger.merge(sourceOnes, sourceTwos);
-	}
-	
-	
-	
-	public static CrecardInfo mergeToUpdate(CrecardInfo sourceOne, CrecardInfo sourceTwo) {
-		InfoMerger_<CrecardInfo, CrecardInfo> merger = new CrecardMergerToUpdate();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
-	
-	
-	
-	public static List<CrecardInfo> mergeToUpdate(List<CrecardInfo> sourceOnes, List<CrecardInfo> sourceTwos) {
-		InfoMerger_<CrecardInfo, CrecardInfo> merger = new CrecardMergerToUpdate();		
-		return merger.merge(sourceOnes, sourceTwos);
+		return merger.merge();
 	}
 }

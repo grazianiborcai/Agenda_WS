@@ -22,8 +22,8 @@ final class VisiCrecardMergeToUpdate extends ActionVisitorTemplateMergeV2<Crecar
 	
 	
 	
-	@Override protected List<CrecardInfo> mergeHook(List<CrecardInfo> recordInfos, List<CrecardInfo> selectedInfos) {	
-		return CrecardMerger.mergeToUpdate(selectedInfos, recordInfos);
+	@Override protected List<CrecardInfo> mergeHook(List<CrecardInfo> baseInfos, List<CrecardInfo> selectedInfos) {	
+		return CrecardMerger.mergeToUpdate(baseInfos, selectedInfos);
 	}
 	
 	

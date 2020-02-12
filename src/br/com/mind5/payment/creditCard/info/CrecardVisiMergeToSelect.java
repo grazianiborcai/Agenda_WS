@@ -1,56 +1,38 @@
 package br.com.mind5.payment.creditCard.info;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.ArrayList;
+import java.util.List;
 
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-final class CrecardVisiMergeToSelect implements InfoMergerVisitor_<CrecardInfo, CrecardInfo> {
-
-	@Override public CrecardInfo writeRecord(CrecardInfo sourceOne, CrecardInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);		
-		return merge(sourceOne, sourceTwo);
+final class CrecardVisiMergeToSelect implements InfoMergerVisitorV3<CrecardInfo, CrecardInfo> {
+	
+	@Override public List<CrecardInfo> beforeMerge(List<CrecardInfo> baseInfos) {
+		return baseInfos;
 	}
 	
 	
 	
-	private void checkArgument(CrecardInfo sourceOne, CrecardInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
+	@Override public boolean shouldMerge(CrecardInfo baseInfo, CrecardInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner);
 	}
 	
 	
 	
-	private CrecardInfo merge(CrecardInfo sourceOne, CrecardInfo sourceTwo) {
-		CrecardInfo result = makeClone(sourceOne);		
-		result.username = sourceTwo.username;
-		result.codLanguage = sourceTwo.codLanguage;
-		return result;
+	@Override public List<CrecardInfo> merge(CrecardInfo baseInfo, CrecardInfo selectedInfo) {
+		List<CrecardInfo> results = new ArrayList<>();
+		
+		selectedInfo.username = baseInfo.username;
+		selectedInfo.codLanguage = baseInfo.codLanguage;
+		
+		results.add(selectedInfo);
+		return results;
 	}
 	
 	
 	
-	private CrecardInfo makeClone(CrecardInfo recordInfo) {
-		try {
-			return (CrecardInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(CrecardInfo sourceOne, CrecardInfo sourceTwo) {		
-		return (sourceOne.codOwner == sourceTwo.codOwner);
-	}
-	
-	
-	
-	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
+	@Override public InfoUniquifier<CrecardInfo> getUniquifier() {
+		return null;
 	}
 }

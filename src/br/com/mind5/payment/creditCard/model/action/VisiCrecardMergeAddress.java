@@ -25,14 +25,14 @@ final class VisiCrecardMergeAddress extends ActionVisitorTemplateMergeV2<Crecard
 	
 	
 	
-	@Override protected List<AddressInfo> toActionClassHook(List<CrecardInfo> recordInfos) {
-		return AddressCopier.copyFromCrecard(recordInfos);	
+	@Override protected List<AddressInfo> toActionClassHook(List<CrecardInfo> baseInfos) {
+		return AddressCopier.copyFromCrecard(baseInfos);	
 	}
 	
 	
 	
-	@Override protected List<CrecardInfo> mergeHook(List<CrecardInfo> recordInfos, List<AddressInfo> selectedInfos) {	
-		return CrecardMerger.mergeWithAddress(selectedInfos, recordInfos);
+	@Override protected List<CrecardInfo> mergeHook(List<CrecardInfo> baseInfos, List<AddressInfo> selectedInfos) {	
+		return CrecardMerger.mergeWithAddress(baseInfos, selectedInfos);
 	}
 	
 	

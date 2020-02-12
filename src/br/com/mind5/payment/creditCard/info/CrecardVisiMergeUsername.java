@@ -1,63 +1,40 @@
 package br.com.mind5.payment.creditCard.info;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.ArrayList;
+import java.util.List;
 
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.security.username.info.UsernameInfo;
 
-final class CrecardVisiMergeUsername implements InfoMergerVisitor_<CrecardInfo, UsernameInfo> {
-
-	@Override public CrecardInfo writeRecord(UsernameInfo sourceOne, CrecardInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+final class CrecardVisiMergeUsername implements InfoMergerVisitorV3<CrecardInfo, UsernameInfo> {
+	
+	@Override public List<CrecardInfo> beforeMerge(List<CrecardInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(CrecardInfo baseInfo, UsernameInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner &&
+				baseInfo.username.equals(selectedInfo.username)	);
+	}
+	
+	
+	
+	@Override public List<CrecardInfo> merge(CrecardInfo baseInfo, UsernameInfo selectedInfo) {
+		List<CrecardInfo> results = new ArrayList<>();
 		
-		CrecardInfo clonedInfo = makeClone(sourceTwo);
-		return merge(sourceOne, clonedInfo);
-	}
-	
-	
-	
-	private void checkArgument(UsernameInfo sourceOne, CrecardInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private CrecardInfo makeClone(CrecardInfo recordInfo) {
-		try {
-			return (CrecardInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	private CrecardInfo merge(UsernameInfo sourceOne, CrecardInfo sourceTwo) {
-		sourceTwo.lastChangedBy = sourceOne.codUser;
-		sourceTwo.codUser = sourceOne.codUser;
-		return sourceTwo;
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(UsernameInfo sourceOne, CrecardInfo sourceTwo) {
-		if (sourceOne.username == null ||
-			sourceTwo.username == null		)
-			return false;
+		baseInfo.codUser = selectedInfo.codUser;
+		baseInfo.lastChangedBy = selectedInfo.codUser;
 		
-		return (sourceOne.codOwner == sourceTwo.codOwner		&&
-				sourceOne.username.equals(sourceTwo.username)		);
+		results.add(baseInfo);
+		return results;
 	}
 	
 	
 	
-	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
+	@Override public InfoUniquifier<CrecardInfo> getUniquifier() {
+		return null;
 	}
 }

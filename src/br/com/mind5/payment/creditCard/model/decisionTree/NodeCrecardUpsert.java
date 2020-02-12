@@ -14,7 +14,7 @@ import br.com.mind5.payment.creditCard.info.CrecardInfo;
 import br.com.mind5.payment.creditCard.model.action.LazyCrecardUpdate;
 import br.com.mind5.payment.creditCard.model.action.StdCrecardInsert;
 import br.com.mind5.payment.creditCard.model.action.StdCrecardMergeToUpdate;
-import br.com.mind5.payment.creditCard.model.checker.CrecardCheckExistById;
+import br.com.mind5.payment.creditCard.model.checker.CrecardCheckExistById_;
 
 public final class NodeCrecardUpsert extends DeciTreeWriteTemplate<CrecardInfo> {
 	
@@ -33,7 +33,7 @@ public final class NodeCrecardUpsert extends DeciTreeWriteTemplate<CrecardInfo> 
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
-		checker = new CrecardCheckExistById(checkerOption);
+		checker = new CrecardCheckExistById_(checkerOption);
 		queue.add(checker);
 
 		return new ModelCheckerQueue<>(queue);

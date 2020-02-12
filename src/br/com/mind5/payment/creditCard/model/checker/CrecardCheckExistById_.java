@@ -10,9 +10,9 @@ import br.com.mind5.payment.creditCard.info.CrecardInfo;
 import br.com.mind5.payment.creditCard.model.action.LazyCrecardSelect;
 import br.com.mind5.payment.creditCard.model.action.StdCrecardEnforceKeyId;
 
-public final class CrecardCheckExistById extends ModelCheckerTemplateActionV2<CrecardInfo, CrecardInfo> {	
+public final class CrecardCheckExistById_ extends ModelCheckerTemplateActionV2<CrecardInfo, CrecardInfo> {	
 	
-	public CrecardCheckExistById(ModelCheckerOption option) {
+	public CrecardCheckExistById_(ModelCheckerOption option) {
 		super(option, CrecardInfo.class);
 	}
 	

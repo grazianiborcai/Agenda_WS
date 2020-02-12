@@ -31,7 +31,7 @@ final class VisiCrecardInsertCuspar extends ActionVisitorTemplateAction<CrecardI
 	
 	
 	
-	@Override protected List<CrecardInfo> toBaseClassHook(List<CrecardInfo> baseInfos, List<CusparInfo> results) {
-		return CrecardMerger.mergeWithCuspar(results, baseInfos);
+	@Override protected List<CrecardInfo> toBaseClassHook(List<CrecardInfo> baseInfos, List<CusparInfo> selectedInfos) {
+		return CrecardMerger.mergeWithCuspar(baseInfos, selectedInfos);
 	}
 }

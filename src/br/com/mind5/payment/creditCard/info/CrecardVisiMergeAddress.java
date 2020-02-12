@@ -1,71 +1,39 @@
 package br.com.mind5.payment.creditCard.info;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.ArrayList;
+import java.util.List;
 
 import br.com.mind5.business.address.info.AddressInfo;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-final class CrecardVisiMergeAddress implements InfoMergerVisitor_<CrecardInfo, AddressInfo> {
-
-	@Override public CrecardInfo writeRecord(AddressInfo sourceOne, CrecardInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+final class CrecardVisiMergeAddress implements InfoMergerVisitorV3<CrecardInfo, AddressInfo> {
+	
+	@Override public List<CrecardInfo> beforeMerge(List<CrecardInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(CrecardInfo baseInfo, AddressInfo selectedInfo) {
+		return (baseInfo.codOwner 		  == selectedInfo.codOwner &&
+				baseInfo.codAddressHolder == selectedInfo.codAddress	);
+	}
+	
+	
+	
+	@Override public List<CrecardInfo> merge(CrecardInfo baseInfo, AddressInfo selectedInfo) {
+		List<CrecardInfo> results = new ArrayList<>();
 		
-		CrecardInfo clonedInfo = makeClone(sourceTwo);
-		return merge(sourceOne, clonedInfo);
+		baseInfo.codAddressSnapshotHolder = selectedInfo.codSnapshot;
+		
+		results.add(baseInfo);
+		return results;
 	}
 	
 	
 	
-	private void checkArgument(AddressInfo sourceOne, CrecardInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private CrecardInfo makeClone(CrecardInfo recordInfo) {
-		try {
-			return (CrecardInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	private CrecardInfo merge(AddressInfo sourceOne, CrecardInfo sourceTwo) {
-		sourceTwo.addressData = makeClone(sourceOne);
-		sourceTwo.codAddressSnapshotHolder = sourceOne.codSnapshot;
-		return sourceTwo;
-	}
-	
-	
-	
-	private AddressInfo makeClone(AddressInfo recordInfo) {
-		try {
-			return (AddressInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}	
-	
-	
-	
-	@Override public boolean shouldWrite(AddressInfo sourceOne, CrecardInfo sourceTwo) {		
-		return (sourceOne.codOwner 	 == sourceTwo.codOwner			&&
-				sourceOne.codAddress == sourceTwo.codAddressHolder		);
-	}
-	
-	
-	
-	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
+	@Override public InfoUniquifier<CrecardInfo> getUniquifier() {
+		return null;
 	}
 }

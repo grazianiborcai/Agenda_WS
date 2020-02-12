@@ -24,8 +24,8 @@ final class VisiCrecardMergeCuspar extends ActionVisitorTemplateMergeV2<CrecardI
 	
 	
 	
-	@Override protected List<CrecardInfo> mergeHook(List<CrecardInfo> recordInfos, List<CusparInfo> selectedInfos) {	
-		return CrecardMerger.mergeWithCuspar(selectedInfos, recordInfos);
+	@Override protected List<CrecardInfo> mergeHook(List<CrecardInfo> baseInfos, List<CusparInfo> selectedInfos) {	
+		return CrecardMerger.mergeWithCuspar(baseInfos, selectedInfos);
 	}
 	
 	

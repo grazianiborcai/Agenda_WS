@@ -7,21 +7,21 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
 
-public final class CrecardCheckUserAddress_ extends ModelCheckerTemplateSimpleV2<CrecardInfo> {
+public final class CrecardCheckCusparRef_ extends ModelCheckerTemplateSimpleV2<CrecardInfo> {
 
-	public CrecardCheckUserAddress_(ModelCheckerOption option) {
+	public CrecardCheckCusparRef_(ModelCheckerOption option) {
 		super(option);
 	}
 	
 	
 	
 	@Override protected boolean checkHook(CrecardInfo recordInfo, Connection conn, String schemaName) {	
-		if (recordInfo.addressData == null)		
+		if (recordInfo.cusparData == null)		
 			return super.FAILED;
 		
 		
 		
-		if (recordInfo.codUser != recordInfo.addressData.codUser)			
+		if (recordInfo.codUser != recordInfo.cusparData.codUser)			
 			return super.FAILED;
 		
 		

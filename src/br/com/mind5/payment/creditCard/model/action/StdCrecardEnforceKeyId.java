@@ -12,7 +12,7 @@ public final class StdCrecardEnforceKeyId implements ActionStd<CrecardInfo> {
 	
 	
 	public StdCrecardEnforceKeyId(DeciTreeOption<CrecardInfo> option) {			
-		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiCrecardEnforceKeyId());
+		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiCrecardEnforceKeyId_());
 	}
 	
 	

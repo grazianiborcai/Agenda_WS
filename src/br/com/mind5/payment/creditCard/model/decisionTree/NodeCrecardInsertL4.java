@@ -12,7 +12,7 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
 import br.com.mind5.payment.creditCard.model.action.LazyCrecardNodeUpsert;
-import br.com.mind5.payment.creditCard.model.checker.CrecardCheckCusparRef;
+import br.com.mind5.payment.creditCard.model.checker.CrecardCheckCusparRef_;
 
 public final class NodeCrecardInsertL4 extends DeciTreeWriteTemplate<CrecardInfo> {
 	
@@ -31,7 +31,7 @@ public final class NodeCrecardInsertL4 extends DeciTreeWriteTemplate<CrecardInfo
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new CrecardCheckCusparRef(checkerOption);
+		checker = new CrecardCheckCusparRef_(checkerOption);
 		queue.add(checker);
 
 		return new ModelCheckerQueue<>(queue);

@@ -23,8 +23,8 @@ final class VisiCrecardMergeToDelete extends ActionVisitorTemplateMergeV2<Crecar
 	
 	
 	
-	@Override protected List<CrecardInfo> mergeHook(List<CrecardInfo> recordInfos, List<CrecardInfo> selectedInfos) {	
-		return CrecardMerger.mergeToDelete(selectedInfos, recordInfos);
+	@Override protected List<CrecardInfo> mergeHook(List<CrecardInfo> baseInfos, List<CrecardInfo> selectedInfos) {	
+		return CrecardMerger.mergeToDelete( baseInfos, selectedInfos);
 	}
 	
 	
