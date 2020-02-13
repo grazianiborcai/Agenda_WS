@@ -9,8 +9,6 @@ public final class CounparchInfo extends InfoRecord implements Cloneable {
 	public String codCountry;
 	public int codPayPartner;
 	public boolean isDefault;
-	public String txtPayPartner;
-	public String description;
 	
 	
 	public CounparchInfo() {
