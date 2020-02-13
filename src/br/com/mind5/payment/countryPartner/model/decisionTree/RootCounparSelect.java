@@ -13,7 +13,6 @@ import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
 import br.com.mind5.payment.countryPartner.info.CounparInfo;
 import br.com.mind5.payment.countryPartner.model.action.LazyCounparMergePaypar;
 import br.com.mind5.payment.countryPartner.model.action.StdCounparSelect;
-import br.com.mind5.payment.countryPartner.model.checker.CounparCheckCountry;
 import br.com.mind5.payment.countryPartner.model.checker.CounparCheckRead;
 
 public final class RootCounparSelect extends DeciTreeReadTemplate<CounparInfo> {
@@ -35,13 +34,6 @@ public final class RootCounparSelect extends DeciTreeReadTemplate<CounparInfo> {
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
 		checker = new CounparCheckRead(checkerOption);
 		queue.add(checker);
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
-		checker = new CounparCheckCountry(checkerOption);
-		queue.add(checker);	
 		
 		return new ModelCheckerQueue<>(queue);
 	}

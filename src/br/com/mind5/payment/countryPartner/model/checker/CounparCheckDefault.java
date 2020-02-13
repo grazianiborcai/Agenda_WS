@@ -7,16 +7,16 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 import br.com.mind5.payment.countryPartner.info.CounparInfo;
 
-public final class CounparCheckRead extends ModelCheckerTemplateSimpleV2<CounparInfo> {
+public final class CounparCheckDefault extends ModelCheckerTemplateSimpleV2<CounparInfo> {
 
-	public CounparCheckRead(ModelCheckerOption option) {
+	public CounparCheckDefault(ModelCheckerOption option) {
 		super(option);
 	}
 	
 	
 	
 	@Override protected boolean checkHook(CounparInfo recordInfo, Connection conn, String schemaName) {	
-		if ( recordInfo.codPayPartner <= 0 )
+		if ( recordInfo.codCountry == null )
 			
 			return super.FAILED;
 		

@@ -27,12 +27,8 @@ final class CounparWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-				case CounparDbTableColumn.COL_COD_COUNTRY :
-					builder.addClauseEqualAnd(eachColumn, recordInfo.codCountry);
-					break;
-					
-				case CounparDbTableColumn.COL_IS_DEFAULT :
-					builder.addClauseEqualAnd(eachColumn, DaoFormatter.booleanTrueToString(recordInfo.isDefault));
+				case CounparDbTableColumn.COL_COD_PAY_PARTNER :
+					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codPayPartner));
 					break;
 			}
 		}		

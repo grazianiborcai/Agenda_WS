@@ -6,7 +6,7 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.countryPartner.info.CounparInfo;
-import br.com.mind5.payment.countryPartner.model.decisionTree.RootCounparSelect;
+import br.com.mind5.payment.countryPartner.model.action.StdCounparSelect;
 
 public final class CounparCheckExist extends ModelCheckerTemplateActionV2<CounparInfo, CounparInfo> {
 	
@@ -17,7 +17,7 @@ public final class CounparCheckExist extends ModelCheckerTemplateActionV2<Counpa
 
 	
 	@Override protected ActionStd<CounparInfo> buildActionHook(DeciTreeOption<CounparInfo> option) {
-		ActionStd<CounparInfo> select = new RootCounparSelect(option).toAction();
+		ActionStd<CounparInfo> select = new StdCounparSelect(option);
 		return select;
 	}
 	

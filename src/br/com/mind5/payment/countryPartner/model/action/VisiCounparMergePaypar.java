@@ -24,8 +24,8 @@ final class VisiCounparMergePaypar extends ActionVisitorTemplateMergeV2<CounparI
 	
 	
 	
-	@Override protected List<CounparInfo> mergeHook(List<CounparInfo> recordInfos, List<PayparInfo> selectedInfos) {
-		return CounparMerger.mergeWithPaypar(selectedInfos, recordInfos);
+	@Override protected List<CounparInfo> mergeHook(List<CounparInfo> baseInfos, List<PayparInfo> selectedInfos) {
+		return CounparMerger.mergeWithPaypar(baseInfos, selectedInfos);
 	}
 	
 	
