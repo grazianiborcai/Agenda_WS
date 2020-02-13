@@ -1086,4 +1086,9 @@ public final class SystemCode {
 	public static final int CREDIT_CARD_SEARCH_MANDATORY_FIELD_EMPTY 	= 10900;
 	public static final int CREDIT_CARD_SEARCH_ALREADY_EXIST			= 10901;
 	public static final int CREDIT_CARD_SEARCH_NOT_FOUND				= 10902;
+	
+	// Pay Partner-Country Search
+	public static final int PAYPAR_COUNTRY_SEARCH_ALREADY_EXIST 		= 10950;
+	public static final int PAYPAR_COUNTRY_SEARCH_NOT_FOUND 			= 10951;
+	public static final int PAYPAR_COUNTRY_SEARCH_MANDATORY_FIELD_EMPTY = 10952;
 }

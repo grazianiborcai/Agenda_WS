@@ -105,6 +105,7 @@ import br.com.mind5.message.email.dao.EmailDbTableColumn;
 import br.com.mind5.message.emailBody.dao.EmabodyDbTableColumn;
 import br.com.mind5.message.sysMessage.dao.SymsgDbTableColumn;
 import br.com.mind5.payment.countryPartner.dao.CounparDbTableColumn;
+import br.com.mind5.payment.countryPartnerSearch.dao.CounparchDbTableColumn;
 import br.com.mind5.payment.creditCard.dao.CrecardDbTableColumn;
 import br.com.mind5.payment.creditCardSearch.dao.CrecarchDbTableColumn;
 import br.com.mind5.payment.customerPartner.dao.CusparDbTableColumn;
@@ -266,6 +267,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new OwnelisDbTableColumn());
 		addTable(new CusparchDbTableColumn());
 		addTable(new CrecarchDbTableColumn());
+		addTable(new CounparchDbTableColumn());
 	}
 	
 	
