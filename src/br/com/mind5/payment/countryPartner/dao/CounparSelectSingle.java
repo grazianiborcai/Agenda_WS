@@ -41,7 +41,7 @@ public final class CounparSelectSingle extends DaoStmtTemplate<CounparInfo> {
 	@Override protected String buildWhereClauseHook(String tableName, CounparInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
 		
-		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;				//TODO: DONT_IGNORE_NULL
+		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;		
 		
 		DaoStmtWhere whereClause = new CounparWhere(whereOption, tableName, recordInfo);
