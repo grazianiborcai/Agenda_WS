@@ -15,7 +15,7 @@ final class AddresnapCopyCremoip extends InfoCopierTemplate<AddresnapInfo, Cremo
 		AddresnapInfo result = new AddresnapInfo();
 		
 		result.codOwner = source.codOwner;
-		result.codUserSnapshot = source.codAddressSnapshot;
+		result.codSnapshot = source.codAddressSnapshot;
 		result.codLanguage = source.codLanguage;
 		result.username = source.username;
 		
