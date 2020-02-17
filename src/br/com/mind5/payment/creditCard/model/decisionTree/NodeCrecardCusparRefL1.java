@@ -3,19 +3,20 @@ package br.com.mind5.payment.creditCard.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
-import br.com.mind5.payment.creditCard.model.action.StdCrecardSuccess;
-import br.com.mind5.payment.creditCard.model.checker.CrecardCheckCusparRef;
+import br.com.mind5.payment.creditCard.model.action.LazyCrecardNodeCusparRefL2;
+import br.com.mind5.payment.creditCard.model.action.StdCrecardMergeCuspar;
+import br.com.mind5.payment.creditCard.model.checker.CrecardCheckDummy;
 
-public final class NodeCrecardCusparL3 extends DeciTreeWriteTemplate<CrecardInfo> {
+public final class NodeCrecardCusparRefL1 extends DeciTreeWriteTemplate<CrecardInfo> {
 	
-	public NodeCrecardCusparL3(DeciTreeOption<CrecardInfo> option) {
+	public NodeCrecardCusparRefL1(DeciTreeOption<CrecardInfo> option) {
 		super(option);
 	}
 	
@@ -23,14 +24,9 @@ public final class NodeCrecardCusparL3 extends DeciTreeWriteTemplate<CrecardInfo
 	
 	@Override protected ModelChecker<CrecardInfo> buildDecisionCheckerHook(DeciTreeOption<CrecardInfo> option) {
 		List<ModelChecker<CrecardInfo>> queue = new ArrayList<>();		
-		ModelChecker<CrecardInfo> checker;	
-		ModelCheckerOption checkerOption;
+		ModelChecker<CrecardInfo> checker;
 		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new CrecardCheckCusparRef(checkerOption);
+		checker = new CrecardCheckDummy();
 		queue.add(checker);
 
 		return new ModelCheckerQueue<>(queue);
@@ -41,9 +37,12 @@ public final class NodeCrecardCusparL3 extends DeciTreeWriteTemplate<CrecardInfo
 	@Override protected List<ActionStd<CrecardInfo>> buildActionsOnPassedHook(DeciTreeOption<CrecardInfo> option) {
 		List<ActionStd<CrecardInfo>> actions = new ArrayList<>();		
 
-		ActionStd<CrecardInfo> success = new  StdCrecardSuccess(option);
+		ActionStd<CrecardInfo> mergeCuspar = new  StdCrecardMergeCuspar(option);
+		ActionLazy<CrecardInfo> nodeL2 = new LazyCrecardNodeCusparRefL2(option.conn, option.schemaName);
 		
-		actions.add(success);		
+		mergeCuspar.addPostAction(nodeL2);
+		
+		actions.add(mergeCuspar);		
 		return actions;
 	}
 }

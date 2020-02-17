@@ -5,7 +5,6 @@ import java.util.List;
 
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
-import br.com.mind5.payment.customerPartner.info.CusparInfo;
 
 public final class CrecardInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
@@ -26,8 +25,7 @@ public final class CrecardInfo extends InfoRecord implements Cloneable {
 	public long codPhoneHolder;
 	public long codPhoneSnapshotHolder;
 	public long codAddressHolder;	
-	public long codAddressSnapshotHolder;	
-	public CusparInfo cusparData;
+	public long codAddressSnapshotHolder;
 	public String recordMode;
 	public LocalDateTime lastChanged;
 	public long lastChangedBy;
@@ -47,7 +45,6 @@ public final class CrecardInfo extends InfoRecord implements Cloneable {
 		codPhoneSnapshotHolder = DefaultValue.number();
 		codAddressHolder = DefaultValue.number();
 		codAddressSnapshotHolder = DefaultValue.number();
-		cusparData = DefaultValue.object();
 		codCreditCard = DefaultValue.number();
 	}
 	
@@ -66,21 +63,8 @@ public final class CrecardInfo extends InfoRecord implements Cloneable {
 	
 	
 	@Override public Object clone() throws CloneNotSupportedException {
-		CrecardInfo deepCopy = (CrecardInfo) super.clone();
-		
-		deepCopy.cusparData = cloneCuspar(deepCopy.cusparData);
-		
-		return deepCopy;
+		return super.clone();
 	}
-	
-	
-	
-	private CusparInfo cloneCuspar(CusparInfo recordInfo) throws CloneNotSupportedException {
-		if (recordInfo == null)
-			return null;
-		
-		return (CusparInfo) recordInfo.clone();
-	}	
 	
 	
 	

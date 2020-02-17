@@ -8,10 +8,24 @@ import br.com.mind5.info.InfoMergerBuilderV3;
 import br.com.mind5.info.InfoMergerV3;
 import br.com.mind5.payment.creditCardSearch.info.CrecarchInfo;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
+import br.com.mind5.payment.customerPartnerSearch.info.CusparchInfo;
 import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.info.CremoipInfo;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class CrecardMerger {
+	public static List<CrecardInfo> mergeWithCusparch(List<CrecardInfo> baseInfos, List<CusparchInfo> selectedInfos) {
+		InfoMergerBuilderV3<CrecardInfo, CusparchInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new CrecardVisiMergeCusparch());
+		InfoMergerV3<CrecardInfo, CusparchInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	
 	public static List<CrecardInfo> mergeWithCrecarch(List<CrecardInfo> baseInfos, List<CrecarchInfo> selectedInfos) {
 		InfoMergerBuilderV3<CrecardInfo, CrecarchInfo> builder = new InfoMergerBuilderV3<>();
 		

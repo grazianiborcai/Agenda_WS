@@ -10,11 +10,12 @@ import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
-import br.com.mind5.payment.creditCard.model.checker.CrecardCheckHasCuspar;
+import br.com.mind5.payment.creditCard.model.action.StdCrecardSuccess;
+import br.com.mind5.payment.creditCard.model.checker.CrecardCheckCusparRef;
 
-public final class NodeCrecardCusparL1 extends DeciTreeWriteTemplate<CrecardInfo> {
+public final class NodeCrecardCusparRefL2 extends DeciTreeWriteTemplate<CrecardInfo> {
 	
-	public NodeCrecardCusparL1(DeciTreeOption<CrecardInfo> option) {
+	public NodeCrecardCusparRefL2(DeciTreeOption<CrecardInfo> option) {
 		super(option);
 	}
 	
@@ -28,8 +29,8 @@ public final class NodeCrecardCusparL1 extends DeciTreeWriteTemplate<CrecardInfo
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new CrecardCheckHasCuspar(checkerOption);
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
+		checker = new CrecardCheckCusparRef(checkerOption);
 		queue.add(checker);
 
 		return new ModelCheckerQueue<>(queue);
@@ -40,20 +41,9 @@ public final class NodeCrecardCusparL1 extends DeciTreeWriteTemplate<CrecardInfo
 	@Override protected List<ActionStd<CrecardInfo>> buildActionsOnPassedHook(DeciTreeOption<CrecardInfo> option) {
 		List<ActionStd<CrecardInfo>> actions = new ArrayList<>();		
 
-		ActionStd<CrecardInfo> nodeL2 = new  NodeCrecardCusparL2(option).toAction();
+		ActionStd<CrecardInfo> success = new  StdCrecardSuccess(option);
 		
-		actions.add(nodeL2);		
-		return actions;
-	}
-	
-	
-	
-	@Override protected List<ActionStd<CrecardInfo>> buildActionsOnFailedHook(DeciTreeOption<CrecardInfo> option) {
-		List<ActionStd<CrecardInfo>> actions = new ArrayList<>();		
-
-		ActionStd<CrecardInfo> nodeL4 = new  NodeCrecardCusparL4(option).toAction();
-		
-		actions.add(nodeL4);		
+		actions.add(success);		
 		return actions;
 	}
 }

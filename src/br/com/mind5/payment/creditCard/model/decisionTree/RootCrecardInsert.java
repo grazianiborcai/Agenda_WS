@@ -12,7 +12,7 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
 import br.com.mind5.payment.creditCard.model.action.LazyCrecardNodeAddress;
-import br.com.mind5.payment.creditCard.model.action.LazyCrecardNodeCusparL1;
+import br.com.mind5.payment.creditCard.model.action.LazyCrecardNodeCuspar;
 import br.com.mind5.payment.creditCard.model.action.LazyCrecardNodeInsert;
 import br.com.mind5.payment.creditCard.model.action.LazyCrecardNodePhone;
 import br.com.mind5.payment.creditCard.model.action.LazyCrecardRootSelect;
@@ -89,7 +89,7 @@ public final class RootCrecardInsert extends DeciTreeWriteTemplate<CrecardInfo> 
 		ActionStd<CrecardInfo> nodeUser = new NodeCrecardUser(option).toAction();
 		ActionLazy<CrecardInfo> nodeAddress = new LazyCrecardNodeAddress(option.conn, option.schemaName);
 		ActionLazy<CrecardInfo> nodePhone = new LazyCrecardNodePhone(option.conn, option.schemaName);
-		ActionLazy<CrecardInfo> nodeCuspar = new LazyCrecardNodeCusparL1(option.conn, option.schemaName);
+		ActionLazy<CrecardInfo> nodeCuspar = new LazyCrecardNodeCuspar(option.conn, option.schemaName);
 		ActionLazy<CrecardInfo> nodeInsert = new LazyCrecardNodeInsert(option.conn, option.schemaName);
 		ActionLazy<CrecardInfo> select = new LazyCrecardRootSelect(option.conn, option.schemaName);		
 		

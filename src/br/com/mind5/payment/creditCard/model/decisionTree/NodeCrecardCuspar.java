@@ -11,12 +11,12 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
 import br.com.mind5.payment.creditCard.model.action.StdCrecardInsertCuspar;
+import br.com.mind5.payment.creditCard.model.action.StdCrecardMergeCusparch;
 import br.com.mind5.payment.creditCard.model.checker.CrecardCheckCusparch;
-import br.com.mind5.payment.creditCard.model.checker.CrecardCheckHasPaypar;
 
-public final class NodeCrecardCusparL4 extends DeciTreeWriteTemplate<CrecardInfo> {
+public final class NodeCrecardCuspar extends DeciTreeWriteTemplate<CrecardInfo> {
 	
-	public NodeCrecardCusparL4(DeciTreeOption<CrecardInfo> option) {
+	public NodeCrecardCuspar(DeciTreeOption<CrecardInfo> option) {
 		super(option);
 	}
 	
@@ -30,14 +30,7 @@ public final class NodeCrecardCusparL4 extends DeciTreeWriteTemplate<CrecardInfo
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new CrecardCheckHasPaypar(checkerOption);
-		queue.add(checker);
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.NOT_FOUND;	
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
 		checker = new CrecardCheckCusparch(checkerOption);
 		queue.add(checker);
 
@@ -47,6 +40,17 @@ public final class NodeCrecardCusparL4 extends DeciTreeWriteTemplate<CrecardInfo
 	
 	
 	@Override protected List<ActionStd<CrecardInfo>> buildActionsOnPassedHook(DeciTreeOption<CrecardInfo> option) {
+		List<ActionStd<CrecardInfo>> actions = new ArrayList<>();		
+
+		ActionStd<CrecardInfo> mergeCusparch = new  StdCrecardMergeCusparch(option);
+		
+		actions.add(mergeCusparch);		
+		return actions;
+	}
+	
+	
+	
+	@Override protected List<ActionStd<CrecardInfo>> buildActionsOnFailedHook(DeciTreeOption<CrecardInfo> option) {
 		List<ActionStd<CrecardInfo>> actions = new ArrayList<>();		
 
 		ActionStd<CrecardInfo> insertCuspar = new  StdCrecardInsertCuspar(option);
