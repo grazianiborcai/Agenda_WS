@@ -18,7 +18,6 @@ import br.com.mind5.paymentPartner.partnerMoip.customerMoip.model.action.LazyCus
 import br.com.mind5.paymentPartner.partnerMoip.customerMoip.model.action.LazyCusmoipNodeUserL1;
 import br.com.mind5.paymentPartner.partnerMoip.customerMoip.model.checker.CusmoipCheckAddresnap;
 import br.com.mind5.paymentPartner.partnerMoip.customerMoip.model.checker.CusmoipCheckPhonap;
-import br.com.mind5.paymentPartner.partnerMoip.customerMoip.model.checker.CusmoipCheckUserData;
 import br.com.mind5.paymentPartner.partnerMoip.customerMoip.model.checker.CusmoipCheckWrite;
 
 public final class RootCusmoipCreate extends DeciTreeWriteTemplate<CusmoipInfo> {
@@ -39,13 +38,6 @@ public final class RootCusmoipCreate extends DeciTreeWriteTemplate<CusmoipInfo> 
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
 		checker = new CusmoipCheckWrite(checkerOption);
-		queue.add(checker);
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
-		checker = new CusmoipCheckUserData(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
