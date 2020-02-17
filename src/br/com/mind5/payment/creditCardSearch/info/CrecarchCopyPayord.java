@@ -13,6 +13,7 @@ final class CrecarchCopyPayord extends InfoCopierTemplate<CrecarchInfo, PayordIn
 	
 	@Override protected CrecarchInfo makeCopyHook(PayordInfo source) {
 		CrecarchInfo result = new CrecarchInfo();
+		
 		result.codOwner = source.codOwner;
 		result.codCreditCard = source.codCreditCard;	
 		result.codPayCustomer = source.codPayCustomer;
