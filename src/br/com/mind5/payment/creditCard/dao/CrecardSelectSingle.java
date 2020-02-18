@@ -73,7 +73,9 @@ public final class CrecardSelectSingle extends DaoStmtTemplate<CrecardInfo> {
 					dataInfo.codAddressHolder = DaoFormatter.sqlToLong(stmtResult, CrecardDbTableColumn.COL_COD_ADDRESS);
 					dataInfo.codAddressSnapshotHolder = DaoFormatter.sqlToLong(stmtResult, CrecardDbTableColumn.COL_COD_ADDRESS_SNAPSHOT);
 					dataInfo.codPhoneHolder = DaoFormatter.sqlToLong(stmtResult, CrecardDbTableColumn.COL_COD_PHONE);
-					dataInfo.codPhoneSnapshotHolder = DaoFormatter.sqlToLong(stmtResult, CrecardDbTableColumn.COL_COD_PHONE_SNAPSHOT);				
+					dataInfo.codPhoneSnapshotHolder = DaoFormatter.sqlToLong(stmtResult, CrecardDbTableColumn.COL_COD_PHONE_SNAPSHOT);	
+					dataInfo.expirationMonth = stmtResult.getString(CrecardDbTableColumn.COL_EXPIRATION_MONTH);
+					dataInfo.expirationYear = stmtResult.getString(CrecardDbTableColumn.COL_EXPIRATION_YEAR);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

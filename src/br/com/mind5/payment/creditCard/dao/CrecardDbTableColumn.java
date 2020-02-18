@@ -20,6 +20,8 @@ public final class CrecardDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_CREDIT_CARD_BRAND = DaoDbField.COL_CREDIT_CARD_BRAND;
 	public static final String COL_CREDIT_CARD_ID = DaoDbField.COL_CREDIT_CARD_ID;	
 	public static final String COL_CREDIT_CARD_LAST4 = DaoDbField.COL_CREDIT_CARD_LAST4;	
+	public static final String COL_EXPIRATION_MONTH = DaoDbField.COL_EXPIRATION_MONTH;	
+	public static final String COL_EXPIRATION_YEAR = DaoDbField.COL_EXPIRATION_YEAR;	
 	public static final String COL_LAST_CHANGED = DaoDbField.COL_LAST_CHANGED;
 	public static final String COL_LAST_CHANGED_BY = DaoDbField.COL_LAST_CHANGED_BY;
 	public static final String COL_RECORD_MODE = DaoDbField.COL_RECORD_MODE;
@@ -149,6 +151,22 @@ public final class CrecardDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_COD_PHONE_SNAPSHOT;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_EXPIRATION_MONTH;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_EXPIRATION_YEAR;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;

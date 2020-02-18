@@ -53,7 +53,9 @@ public final class CrecardInsertSingle extends DaoStmtTemplate<CrecardInfo> {
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codAddressHolder);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codAddressSnapshotHolder);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPhoneHolder);
-				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPhoneSnapshotHolder);			
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPhoneSnapshotHolder);		
+				stmt.setString(i++, recordInfo.expirationMonth);
+				stmt.setString(i++, recordInfo.expirationYear);
 				
 				return stmt;
 			}		

@@ -17,6 +17,7 @@ import br.com.mind5.payment.creditCard.model.action.LazyCrecardNodeInsert;
 import br.com.mind5.payment.creditCard.model.action.LazyCrecardNodePhone;
 import br.com.mind5.payment.creditCard.model.action.LazyCrecardRootSelect;
 import br.com.mind5.payment.creditCard.model.checker.CrecardCheckAddress;
+import br.com.mind5.payment.creditCard.model.checker.CrecardCheckExpiration;
 import br.com.mind5.payment.creditCard.model.checker.CrecardCheckLangu;
 import br.com.mind5.payment.creditCard.model.checker.CrecardCheckOwner;
 import br.com.mind5.payment.creditCard.model.checker.CrecardCheckPhone;
@@ -41,6 +42,13 @@ public final class RootCrecardInsert extends DeciTreeWriteTemplate<CrecardInfo> 
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
 		checker = new CrecardCheckWrite(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new CrecardCheckExpiration(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();

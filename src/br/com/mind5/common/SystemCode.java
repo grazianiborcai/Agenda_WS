@@ -601,6 +601,7 @@ public final class SystemCode {
 	public static final int CREDIT_CARD_NOT_FOUND						= 4155;
 	public static final int CREDIT_CARD_INVALID_ADDRESS					= 4156;
 	public static final int CREDIT_CARD_INVALID_PHONE					= 4157;
+	public static final int CREDIT_CARD_INVALID_EXPIRY_DATE 			= 4158;
 	
 	// Credit Card-Moip
 	public static final int CREDIT_CARD_MOIP_ADDRESS_BR					= 4200;

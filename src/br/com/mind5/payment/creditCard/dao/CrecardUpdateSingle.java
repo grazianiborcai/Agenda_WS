@@ -63,6 +63,8 @@ public final class CrecardUpdateSingle extends DaoStmtTemplate<CrecardInfo> {
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codAddressSnapshotHolder);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPhoneHolder);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPhoneSnapshotHolder);		
+				stmt.setString(i++, recordInfo.expirationMonth);
+				stmt.setString(i++, recordInfo.expirationYear);
 				
 				return stmt;
 			}		
