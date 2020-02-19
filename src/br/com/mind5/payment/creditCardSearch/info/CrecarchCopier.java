@@ -18,7 +18,7 @@ public final class CrecarchCopier {
 	public static List<CrecarchInfo> copyFromCrecard(List<CrecardInfo> sources) {
 		InfoCopier<CrecarchInfo, CrecardInfo> copier = new CrecarchCopyCrecard();
 		return copier.makeCopy(sources);
-	}		
+	}
 	
 	
 	

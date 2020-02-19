@@ -25,6 +25,7 @@ public final class CrecarchCheckRead extends ModelCheckerTemplateSimpleV2<Crecar
 		
 		if (recordInfo.codPayCustomer 	<= 0 	&&
 			recordInfo.codCreditCard 	<= 0 	&&
+			recordInfo.codUser 			<= 0 	&&
 			recordInfo.creditCardId		== null		)		
 			
 			return super.FAILED;

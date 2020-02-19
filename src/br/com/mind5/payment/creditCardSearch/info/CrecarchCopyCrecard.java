@@ -14,13 +14,18 @@ final class CrecarchCopyCrecard extends InfoCopierTemplate<CrecarchInfo, Crecard
 	@Override protected CrecarchInfo makeCopyHook(CrecardInfo source) {
 		CrecarchInfo result = new CrecarchInfo();
 		
-		result.codOwner = source.codOwner;
-		result.creditCardBrand = source.creditCardBrand;	
-		result.creditCardLast4 = source.creditCardLast4;
+		result.codOwner = source.codOwner;	
+		result.creditCardLast4 = getLast4(source.cardNumber);
 		result.codPayCustomer = source.codPayCustomer;
 		result.codLanguage = source.codLanguage;	
 		result.username = source.username;	
 		
 		return result;
+	}
+	
+	
+	
+	private String getLast4(String cardNumber) {
+		return cardNumber.substring(cardNumber.length()-4, cardNumber.length());
 	}
 }
