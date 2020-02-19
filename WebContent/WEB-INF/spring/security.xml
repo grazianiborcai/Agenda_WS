@@ -106,12 +106,15 @@
         <security:intercept-url pattern="/**/PlanningTime**"					access="isAuthenticated()" 							/>  
         <security:intercept-url pattern="/**/Cart/**"							access="isAuthenticated()" 							/>  
         <security:intercept-url pattern="/**/User/**"							access="isAuthenticated()" 							/>  
-        <security:intercept-url pattern="/**/Order/searchOrderList"				access="isAuthenticated()" 							/>         
+        <security:intercept-url pattern="/**/Order/searchOrder"					access="isAuthenticated()" 							/>         
         <security:intercept-url pattern="/**/Order/**"							access="isAuthenticated()" 							/>   <!-- TODO: rever -->
         <security:intercept-url pattern="/**/Payment/payOrder"					access="isAuthenticated()" 							/>     
         <security:intercept-url pattern="/**/Payment/refundOrder"				access="isAuthenticated()" 							/>   <!-- TODO: Rever Role -->
         <security:intercept-url pattern="/**/Payment/refreshStatus"				access="isAuthenticated()" 							/>     
-        <security:intercept-url pattern="/**/Payment/insertCreditCard"			access="isAuthenticated()" 							/>    
+        <security:intercept-url pattern="/**/Payment/insertCreditCard"			access="isAuthenticated()" 							/>
+        <security:intercept-url pattern="/**/Payment/deleteCreditCard"			access="isAuthenticated()" 							/>    
+        <security:intercept-url pattern="/**/Payment/selectCreditCard"			access="isAuthenticated()" 							/> 
+        <security:intercept-url pattern="/**/Payment/searchCreditCard"			access="isAuthenticated()" 							/> 
         <security:intercept-url pattern="/**/Schedule/insertScheduleLine"		access="hasAuthority('SCHEDULE_INSERT')" 			/>    
         <security:intercept-url pattern="/**/Schedule/updateScheduleLine"		access="hasAuthority('SCHEDULE_UPDATE')" 			/>  
         <security:intercept-url pattern="/**/Schedule/moveScheduleLine"			access="hasAuthority('SCHEDULE_MOVE')" 				/> 
@@ -135,6 +138,7 @@
         <security:intercept-url pattern="/**/File/deleteFileImgCustomer" 		access="hasAuthority('CUSTOMER_WRITE')" 			/>        
         <security:intercept-url pattern="/**/File/insertFileImgUser" 			access="isAuthenticated()" 							/>
         <security:intercept-url pattern="/**/File/deleteFileImgUser" 			access="isAuthenticated()" 							/>
+        <security:intercept-url pattern="/**" 									access="denyAll" 									/>
         <security:http-basic />
         <csrf disabled="true"/>
         <custom-filter after="SECURITY_CONTEXT_FILTER" ref="tokenParamFilter" />
