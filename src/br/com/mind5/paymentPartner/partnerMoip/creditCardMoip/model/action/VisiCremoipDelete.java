@@ -13,7 +13,7 @@ final class VisiCremoipDelete implements ActionVisitor<CremoipInfo> {
 	@Override public List<CremoipInfo> executeTransformation(List<CremoipInfo> recordInfos) {
 		
 		for(CremoipInfo eachRecod : recordInfos) {
-			tryToAddMoip(eachRecod);
+			tryToDeleteMoip(eachRecod);
 		}		
 		
 		return recordInfos;
@@ -21,7 +21,7 @@ final class VisiCremoipDelete implements ActionVisitor<CremoipInfo> {
 	
 	
 	
-	private void tryToAddMoip(CremoipInfo recordInfo) {
+	private void tryToDeleteMoip(CremoipInfo recordInfo) {
 		try {
 			Moip.API.customers().deleteCreditCard(recordInfo.creditCardId, recordInfo.setup);			
 			
