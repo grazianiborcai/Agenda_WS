@@ -17,6 +17,7 @@ import br.com.mind5.model.Model;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
 import br.com.mind5.payment.creditCard.model.CrecardModelDelete;
 import br.com.mind5.payment.creditCard.model.CrecardModelInsert;
+import br.com.mind5.payment.creditCard.model.CrecardModelSearch;
 import br.com.mind5.payment.creditCard.model.CrecardModelSelect;
 import br.com.mind5.payment.payOrder.model.PayordModelPay;
 import br.com.mind5.payment.refundOrder.info.RefuInfo;
@@ -35,6 +36,7 @@ public final class PaymentResource {
 	private static final String INSERT_CREDIT_CARD = "/insertCreditCard";
 	private static final String DELETE_CREDIT_CARD = "/deleteCreditCard";
 	private static final String SELECT_CREDIT_CARD = "/selectCreditCard";
+	private static final String SEARCH_CREDIT_CARD = "/searchCreditCard";
 	
 	
 	@POST
@@ -129,14 +131,12 @@ public final class PaymentResource {
 	@DELETE
 	@Path(DELETE_CREDIT_CARD)
 	public Response crecardDelete(@HeaderParam("TOKEN_OWNER")    	@DefaultValue("-1") long codOwner, 
-			                      @HeaderParam("codPayCustomer")  	@DefaultValue("-1") long codPayCustomer,
 			                      @HeaderParam("codCreditCard")  	@DefaultValue("-1") long codCreditCard,
 			                      @HeaderParam("TOKEN_USERNAME") 	String username,
 			                      @HeaderParam("codLanguage")    	@DefaultValue("EN") String codLanguage) {
 		
 		CrecardInfo recordInfo = new CrecardInfo();
 		recordInfo.codOwner = codOwner;
-		recordInfo.codPayCustomer = codPayCustomer;
 		recordInfo.codCreditCard = codCreditCard;
 		recordInfo.username = username;
 		recordInfo.codLanguage = codLanguage;
@@ -153,14 +153,13 @@ public final class PaymentResource {
 	@Path(SELECT_CREDIT_CARD)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response crecardSelect(@HeaderParam("TOKEN_OWNER") 		@DefaultValue("-1") long codOwner,
-								  @HeaderParam("codPayCustomer")  	@DefaultValue("-1") long codPayCustomer,
+								  @HeaderParam("codCreditCard")  	@DefaultValue("-1") long codCreditCard,
 								  @HeaderParam("TOKEN_USERNAME") 	String username,
 								  @HeaderParam("codLanguage") 		@DefaultValue("EN") String codLanguage) {
 
-
 		CrecardInfo recordInfo = new CrecardInfo();
 		recordInfo.codOwner = codOwner;
-		recordInfo.codPayCustomer = codPayCustomer;
+		recordInfo.codCreditCard = codCreditCard;
 		recordInfo.username = username;
 		recordInfo.codLanguage = codLanguage;
 		
@@ -169,4 +168,16 @@ public final class PaymentResource {
 		model.executeRequest();
 		return model.getResponse();
 	}	
+	
+	
+	
+	@POST
+	@Path(SEARCH_CREDIT_CARD)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response crecardSearch(@Context HttpServletRequest request, String incomingData) {
+		
+		Model model = new CrecardModelSearch(incomingData, request);
+		model.executeRequest();
+		return model.getResponse();	
+	}
 }

@@ -11,6 +11,7 @@ import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
+import br.com.mind5.payment.creditCard.model.action.LazyCrecardEnforceUserKey;
 import br.com.mind5.payment.creditCard.model.action.LazyCrecardMergeCrecarch;
 import br.com.mind5.payment.creditCard.model.action.LazyCrecardRootSelect;
 import br.com.mind5.payment.creditCard.model.checker.CrecardCheckSearch;
@@ -52,10 +53,12 @@ public final class RootCrecardSearch extends DeciTreeReadTemplate<CrecardInfo> {
 		List<ActionStd<CrecardInfo>> actions = new ArrayList<>();
 		
 		ActionStd<CrecardInfo> nodeUser = new NodeCrecardUser(option).toAction();
+		ActionLazy<CrecardInfo> enforceUserKey = new LazyCrecardEnforceUserKey(option.conn, option.schemaName);
 		ActionLazy<CrecardInfo> mergeCrecarch = new LazyCrecardMergeCrecarch(option.conn, option.schemaName);
 		ActionLazy<CrecardInfo> user = new LazyCrecardRootSelect(option.conn, option.schemaName);
 		
-		nodeUser.addPostAction(mergeCrecarch);
+		nodeUser.addPostAction(enforceUserKey);
+		enforceUserKey.addPostAction(mergeCrecarch);
 		mergeCrecarch.addPostAction(user);
 		
 		actions.add(nodeUser);
