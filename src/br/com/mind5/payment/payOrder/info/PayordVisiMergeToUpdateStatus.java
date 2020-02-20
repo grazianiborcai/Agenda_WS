@@ -1,59 +1,41 @@
 package br.com.mind5.payment.payOrder.info;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.ArrayList;
+import java.util.List;
 
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-final class PayordVisiMergeToUpdateStatus implements InfoMergerVisitor_<PayordInfo, PayordInfo> {
-
-	@Override public PayordInfo writeRecord(PayordInfo sourceOne, PayordInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);		
-		return merge(sourceOne, sourceTwo);
+final class PayordVisiMergeToUpdateStatus implements InfoMergerVisitorV3<PayordInfo, PayordInfo> {
+	
+	@Override public List<PayordInfo> beforeMerge(List<PayordInfo> baseInfos) {
+		return baseInfos;
 	}
 	
 	
 	
-	private void checkArgument(PayordInfo sourceOne, PayordInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
+	@Override public boolean shouldMerge(PayordInfo baseInfo, PayordInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner);
 	}
 	
 	
 	
-	private PayordInfo merge(PayordInfo sourceOne, PayordInfo sourceTwo) {
-		PayordInfo result = makeClone(sourceOne);	
-		result.statusOrderPartner = sourceTwo.statusOrderPartner;	
-		result.idPaymentPartner = sourceTwo.idPaymentPartner;
-		result.statusPaymentPartner = sourceTwo.statusPaymentPartner;
-		result.username = sourceTwo.username;
-		result.codLanguage = sourceTwo.codLanguage;
-		return result;
+	@Override public List<PayordInfo> merge(PayordInfo baseInfo, PayordInfo selectedInfo) {
+		List<PayordInfo> results = new ArrayList<>();
+		
+		selectedInfo.statusOrderPartner = baseInfo.statusOrderPartner;	
+		selectedInfo.idPaymentPartner = baseInfo.idPaymentPartner;
+		selectedInfo.statusPaymentPartner = baseInfo.statusPaymentPartner;
+		selectedInfo.username = baseInfo.username;
+		selectedInfo.codLanguage = baseInfo.codLanguage;
+		
+		results.add(selectedInfo);
+		return results;
 	}
 	
 	
 	
-	private PayordInfo makeClone(PayordInfo recordInfo) {
-		try {
-			return (PayordInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(PayordInfo sourceOne, PayordInfo sourceTwo) {		
-		return (sourceOne.codOwner == sourceTwo.codOwner);
-	}
-	
-	
-	
-	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
+	@Override public InfoUniquifier<PayordInfo> getUniquifier() {
+		return new PayordUniquifier();
 	}
 }

@@ -1,65 +1,45 @@
 package br.com.mind5.payment.payOrder.info;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.ArrayList;
+import java.util.List;
 
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.info.MultmoipInfo;
 
-final class PayordVisiMergeMultmoip implements InfoMergerVisitor_<PayordInfo, MultmoipInfo> {
-
-	@Override public PayordInfo writeRecord(MultmoipInfo sourceOne, PayordInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+final class PayordVisiMergeMultmoip implements InfoMergerVisitorV3<PayordInfo, MultmoipInfo> {
+	
+	@Override public List<PayordInfo> beforeMerge(List<PayordInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(PayordInfo baseInfo, MultmoipInfo selectedInfo) {
+		return (baseInfo.codOwner 	 	== selectedInfo.codOwner		&&
+				baseInfo.codPayOrder  	== selectedInfo.codPayOrder	);
+	}
+	
+	
+	
+	@Override public List<PayordInfo> merge(PayordInfo baseInfo, MultmoipInfo selectedInfo) {
+		List<PayordInfo> results = new ArrayList<>();
 		
-		PayordInfo clonedInfo = makeClone(sourceTwo);
-		return merge(sourceOne, clonedInfo);
-	}
-	
-	
-	
-	private void checkArgument(MultmoipInfo sourceOne, PayordInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private PayordInfo makeClone(PayordInfo recordInfo) {
-		try {
-			return (PayordInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	private PayordInfo merge(MultmoipInfo sourceOne, PayordInfo sourceTwo) {
-		sourceTwo.ordmoips = sourceOne.ordmoips;
-		sourceTwo.idOrderPartner = sourceOne.idOrderPartner;
-		sourceTwo.statusOrderPartner = sourceOne.statusOrderPartner;
-		sourceTwo.idPaymentPartner = sourceOne.idPaymentPartner;
-		sourceTwo.statusPaymentPartner = sourceOne.statusPaymentPartner;
-		sourceTwo.amountTotalPartner = sourceOne.amountTotalPartner;
-		sourceTwo.amountCurrencyPartner = sourceOne.amountCurrencyPartner;	
+		baseInfo.ordmoips = selectedInfo.ordmoips;
+		baseInfo.idOrderPartner = selectedInfo.idOrderPartner;
+		baseInfo.statusOrderPartner = selectedInfo.statusOrderPartner;
+		baseInfo.idPaymentPartner = selectedInfo.idPaymentPartner;
+		baseInfo.statusPaymentPartner = selectedInfo.statusPaymentPartner;
+		baseInfo.amountTotalPartner = selectedInfo.amountTotalPartner;
+		baseInfo.amountCurrencyPartner = selectedInfo.amountCurrencyPartner;	
 		
-		return sourceTwo;
+		results.add(baseInfo);
+		return results;
 	}
 	
 	
 	
-	@Override public boolean shouldWrite(MultmoipInfo sourceOne, PayordInfo sourceTwo) {
-		return (sourceOne.codOwner 	 	== sourceTwo.codOwner		&&
-				sourceOne.codPayOrder  	== sourceTwo.codPayOrder	);
-	}
-	
-	
-	
-	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
+	@Override public InfoUniquifier<PayordInfo> getUniquifier() {
+		return new PayordUniquifier();
 	}
 }

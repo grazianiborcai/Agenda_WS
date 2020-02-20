@@ -25,14 +25,14 @@ final class VisiPayordMergeUsername extends ActionVisitorTemplateMergeV2<PayordI
 	
 	
 	
-	@Override protected List<UsernameInfo> toActionClassHook(List<PayordInfo> recordInfos) {
-		return UsernameCopier.copyFromPayord(recordInfos);	
+	@Override protected List<UsernameInfo> toActionClassHook(List<PayordInfo> baseInfos) {
+		return UsernameCopier.copyFromPayord(baseInfos);	
 	}
 	
 	
 	
-	@Override protected List<PayordInfo> mergeHook(List<PayordInfo> recordInfos, List<UsernameInfo> selectedInfos) {	
-		return PayordMerger.mergeWithUsername(selectedInfos, recordInfos);
+	@Override protected List<PayordInfo> mergeHook(List<PayordInfo> baseInfos, List<UsernameInfo> selectedInfos) {	
+		return PayordMerger.mergeWithUsername(baseInfos, selectedInfos);
 	}
 	
 	

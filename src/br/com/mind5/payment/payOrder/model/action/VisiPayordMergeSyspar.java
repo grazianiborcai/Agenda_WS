@@ -24,8 +24,8 @@ final class VisiPayordMergeSyspar extends ActionVisitorTemplateMergeV2<PayordInf
 	
 	
 	
-	@Override protected List<PayordInfo> mergeHook(List<PayordInfo> recordInfos, List<SysparInfo> selectedInfos) {	
-		return PayordMerger.mergeWithSyspar(selectedInfos, recordInfos);
+	@Override protected List<PayordInfo> mergeHook(List<PayordInfo> baseInfos, List<SysparInfo> selectedInfos) {	
+		return PayordMerger.mergeWithSyspar(baseInfos, selectedInfos);
 	}
 	
 	

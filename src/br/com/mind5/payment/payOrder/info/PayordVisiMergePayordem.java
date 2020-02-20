@@ -1,58 +1,39 @@
 package br.com.mind5.payment.payOrder.info;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.ArrayList;
+import java.util.List;
 
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.payment.payOrderItem.info.PayordemInfo;
 
-final class PayordVisiMergePayordem implements InfoMergerVisitor_<PayordInfo, PayordemInfo> {
-
-	@Override public PayordInfo writeRecord(PayordemInfo sourceOne, PayordInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+final class PayordVisiMergePayordem implements InfoMergerVisitorV3<PayordInfo, PayordemInfo> {
+	
+	@Override public List<PayordInfo> beforeMerge(List<PayordInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(PayordInfo baseInfo, PayordemInfo selectedInfo) {
+		return (baseInfo.codOwner 		== selectedInfo.codOwner 	&&
+				baseInfo.codPayOrder 	== selectedInfo.codPayOrder		);
+	}
+	
+	
+	
+	@Override public List<PayordInfo> merge(PayordInfo baseInfo, PayordemInfo selectedInfo) {
+		List<PayordInfo> results = new ArrayList<>();
 		
-		PayordInfo clonedInfo = makeClone(sourceTwo);
-		return merge(sourceOne, clonedInfo);
+		baseInfo.payordems.add(selectedInfo);
+		
+		results.add(baseInfo);
+		return results;
 	}
 	
 	
 	
-	private void checkArgument(PayordemInfo sourceOne, PayordInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private PayordInfo makeClone(PayordInfo recordInfo) {
-		try {
-			return (PayordInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	private PayordInfo merge(PayordemInfo sourceOne, PayordInfo sourceTwo) {
-		sourceTwo.payordems.add(sourceOne);
-		return sourceTwo;
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(PayordemInfo sourceOne, PayordInfo sourceTwo) {
-		return (sourceOne.codOwner 		== sourceTwo.codOwner 	&&
-				sourceOne.codPayOrder 	== sourceTwo.codPayOrder	);
-	}
-	
-	
-	
-	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
+	@Override public InfoUniquifier<PayordInfo> getUniquifier() {
+		return new PayordUniquifier();
 	}
 }

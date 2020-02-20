@@ -25,14 +25,14 @@ final class VisiPayordMergePayordem extends ActionVisitorTemplateMergeV2<PayordI
 	
 	
 	
-	@Override protected List<PayordemInfo> toActionClassHook(List<PayordInfo> recordInfos) {
-		return PayordemCopier.copyFromPayordToRead(recordInfos);	
+	@Override protected List<PayordemInfo> toActionClassHook(List<PayordInfo> baseInfos) {
+		return PayordemCopier.copyFromPayordToRead(baseInfos);	
 	}
 	
 	
 	
-	@Override protected List<PayordInfo> mergeHook(List<PayordInfo> recordInfos, List<PayordemInfo> selectedInfos) {	
-		return PayordMerger.mergeWithPayordem(selectedInfos, recordInfos);
+	@Override protected List<PayordInfo> mergeHook(List<PayordInfo> baseInfos, List<PayordemInfo> selectedInfos) {	
+		return PayordMerger.mergeWithPayordem(baseInfos, selectedInfos);
 	}
 	
 	

@@ -23,8 +23,8 @@ final class VisiPayordMergeLatest extends ActionVisitorTemplateMergeV2<PayordInf
 	
 	
 	
-	@Override protected List<PayordInfo> mergeHook(List<PayordInfo> recordInfos, List<PayordarchInfo> selectedInfos) {	
-		return PayordMerger.mergeWithLatest(selectedInfos, recordInfos);
+	@Override protected List<PayordInfo> mergeHook(List<PayordInfo> baseInfos, List<PayordarchInfo> selectedInfos) {	
+		return PayordMerger.mergeWithLatest(baseInfos, selectedInfos);
 	}
 	
 	

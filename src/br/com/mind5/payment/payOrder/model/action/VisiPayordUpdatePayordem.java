@@ -39,7 +39,7 @@ final class VisiPayordUpdatePayordem extends ActionVisitorTemplateAction<PayordI
 	
 	
 	
-	@Override protected List<PayordInfo> toBaseClassHook(List<PayordInfo> baseInfos, List<PayordemInfo> results) {
-		return PayordMerger.mergeWithPayordem(results, baseInfos);
+	@Override protected List<PayordInfo> toBaseClassHook(List<PayordInfo> baseInfos, List<PayordemInfo> selectedInfos) {
+		return PayordMerger.mergeWithPayordem(baseInfos, selectedInfos);
 	}
 }

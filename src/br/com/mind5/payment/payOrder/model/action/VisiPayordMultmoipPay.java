@@ -31,7 +31,7 @@ final class VisiPayordMultmoipPay extends ActionVisitorTemplateAction<PayordInfo
 	
 	
 	
-	@Override protected List<PayordInfo> toBaseClassHook(List<PayordInfo> baseInfos, List<MultmoipInfo> results) {
-		return PayordMerger.mergeWithMultmoip(results, baseInfos);
+	@Override protected List<PayordInfo> toBaseClassHook(List<PayordInfo> baseInfos, List<MultmoipInfo> selectedInfos) {
+		return PayordMerger.mergeWithMultmoip(baseInfos, selectedInfos);
 	}
 }

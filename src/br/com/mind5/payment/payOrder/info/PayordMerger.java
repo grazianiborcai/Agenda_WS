@@ -4,7 +4,8 @@ import java.util.List;
 
 import br.com.mind5.business.masterData.info.PayparInfo;
 import br.com.mind5.business.order.info.OrderInfo;
-import br.com.mind5.info.obsolete.InfoMerger_;
+import br.com.mind5.info.InfoMergerBuilderV3;
+import br.com.mind5.info.InfoMergerV3;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
 import br.com.mind5.payment.payOrderItem.info.PayordemInfo;
@@ -14,155 +15,144 @@ import br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.info.MultmoipInfo;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class PayordMerger {	
-	public static PayordInfo mergeWithLatest(PayordarchInfo sourceOne, PayordInfo sourceTwo) {
-		InfoMerger_<PayordInfo, PayordarchInfo> merger = new PayordMergerLatest();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
+	public static List<PayordInfo> mergeWithLatest(List<PayordInfo> baseInfos, List<PayordarchInfo> selectedInfos) {
+		InfoMergerBuilderV3<PayordInfo, PayordarchInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new PayordVisiMergeLatest());
+		InfoMergerV3<PayordInfo, PayordarchInfo> merger = builder.build();		
 	
-	
-	
-	public static List<PayordInfo> mergeWithLatest(List<PayordarchInfo> sourceOnes, List<PayordInfo> sourceTwos) {
-		InfoMerger_<PayordInfo, PayordarchInfo> merger = new PayordMergerLatest();		
-		return merger.merge(sourceOnes, sourceTwos);
+		return merger.merge();
 	}	
 	
 	
 	
-	public static PayordInfo mergeWithMultmoip(MultmoipInfo sourceOne, PayordInfo sourceTwo) {
-		InfoMerger_<PayordInfo, MultmoipInfo> merger = new PayordMergerMultmoip();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
+	public static List<PayordInfo> mergeWithMultmoip(List<PayordInfo> baseInfos, List<MultmoipInfo> selectedInfos) {
+		InfoMergerBuilderV3<PayordInfo, MultmoipInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new PayordVisiMergeMultmoip());
+		InfoMergerV3<PayordInfo, MultmoipInfo> merger = builder.build();		
 	
-	
-	
-	public static List<PayordInfo> mergeWithMultmoip(List<MultmoipInfo> sourceOnes, List<PayordInfo> sourceTwos) {
-		InfoMerger_<PayordInfo, MultmoipInfo> merger = new PayordMergerMultmoip();		
-		return merger.merge(sourceOnes, sourceTwos);
+		return merger.merge();
 	}	
 	
 	
 	
-	public static PayordInfo mergeWithPayordem(PayordemInfo sourceOne, PayordInfo sourceTwo) {
-		InfoMerger_<PayordInfo, PayordemInfo> merger = new PayordMergerPayordem();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
+	public static List<PayordInfo> mergeWithPayordem(List<PayordInfo> baseInfos, List<PayordemInfo> selectedInfos) {
+		InfoMergerBuilderV3<PayordInfo, PayordemInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new PayordVisiMergePayordem());
+		InfoMergerV3<PayordInfo, PayordemInfo> merger = builder.build();		
 	
-	
-	
-	public static List<PayordInfo> mergeWithPayordem(List<PayordemInfo> sourceOnes, List<PayordInfo> sourceTwos) {
-		InfoMerger_<PayordInfo, PayordemInfo> merger = new PayordMergerPayordem();		
-		return merger.merge(sourceOnes, sourceTwos);
+		return merger.merge();
 	}	
 	
 	
 	
-	public static PayordInfo mergeWithCrecard(CrecardInfo sourceOne, PayordInfo sourceTwo) {
-		InfoMerger_<PayordInfo, CrecardInfo> merger = new PayordMergerCrecard();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
+	public static List<PayordInfo> mergeWithCrecard(List<PayordInfo> baseInfos, List<CrecardInfo> selectedInfos) {
+		InfoMergerBuilderV3<PayordInfo, CrecardInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new PayordVisiMergeCrecard());
+		InfoMergerV3<PayordInfo, CrecardInfo> merger = builder.build();		
 	
-	
-	
-	public static List<PayordInfo> mergeWithCrecard(List<CrecardInfo> sourceOnes, List<PayordInfo> sourceTwos) {
-		InfoMerger_<PayordInfo, CrecardInfo> merger = new PayordMergerCrecard();		
-		return merger.merge(sourceOnes, sourceTwos);
+		return merger.merge();
 	}	
 	
 	
 	
-	public static PayordInfo mergeWithSyspar(SysparInfo sourceOne, PayordInfo sourceTwo) {
-		InfoMerger_<PayordInfo, SysparInfo> merger = new PayordMergerSyspar();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
+	public static List<PayordInfo> mergeWithSyspar(List<PayordInfo> baseInfos, List<SysparInfo> selectedInfos) {
+		InfoMergerBuilderV3<PayordInfo, SysparInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new PayordVisiMergeSyspar());
+		InfoMergerV3<PayordInfo, SysparInfo> merger = builder.build();		
 	
-	
-	
-	public static List<PayordInfo> mergeWithSyspar(List<SysparInfo> sourceOnes, List<PayordInfo> sourceTwos) {
-		InfoMerger_<PayordInfo, SysparInfo> merger = new PayordMergerSyspar();		
-		return merger.merge(sourceOnes, sourceTwos);
+		return merger.merge();
 	}	
 	
 	
 	
-	public static PayordInfo mergeWithCuspar(CusparInfo sourceOne, PayordInfo sourceTwo) {
-		InfoMerger_<PayordInfo, CusparInfo> merger = new PayordMergerCuspar();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
+	public static List<PayordInfo> mergeWithCuspar(List<PayordInfo> baseInfos, List<CusparInfo> selectedInfos) {
+		InfoMergerBuilderV3<PayordInfo, CusparInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new PayordVisiMergeCuspar());
+		InfoMergerV3<PayordInfo, CusparInfo> merger = builder.build();		
 	
-	
-	
-	public static List<PayordInfo> mergeWithCuspar(List<CusparInfo> sourceOnes, List<PayordInfo> sourceTwos) {
-		InfoMerger_<PayordInfo, CusparInfo> merger = new PayordMergerCuspar();		
-		return merger.merge(sourceOnes, sourceTwos);
+		return merger.merge();
 	}	
 	
 	
 	
-	public static PayordInfo mergeWithPaypar(PayparInfo sourceOne, PayordInfo sourceTwo) {
-		InfoMerger_<PayordInfo, PayparInfo> merger = new PayordMergerPaypar();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
+	public static List<PayordInfo> mergeWithPaypar(List<PayordInfo> baseInfos, List<PayparInfo> selectedInfos) {
+		InfoMergerBuilderV3<PayordInfo, PayparInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new PayordVisiMergePaypar());
+		InfoMergerV3<PayordInfo, PayparInfo> merger = builder.build();		
 	
-	
-	
-	public static List<PayordInfo> mergeWithPaypar(List<PayparInfo> sourceOnes, List<PayordInfo> sourceTwos) {
-		InfoMerger_<PayordInfo, PayparInfo> merger = new PayordMergerPaypar();		
-		return merger.merge(sourceOnes, sourceTwos);
+		return merger.merge();
 	}	
 	
 	
 	
-	public static PayordInfo mergeWithOrder(OrderInfo sourceOne, PayordInfo sourceTwo) {
-		InfoMerger_<PayordInfo, OrderInfo> merger = new PayordMergerOrder();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
+	public static List<PayordInfo> mergeWithOrder(List<PayordInfo> baseInfos, List<OrderInfo> selectedInfos) {
+		InfoMergerBuilderV3<PayordInfo, OrderInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new PayordVisiMergeOrder());
+		InfoMergerV3<PayordInfo, OrderInfo> merger = builder.build();		
 	
-	
-	
-	public static List<PayordInfo> mergeWithOrder(List<OrderInfo> sourceOnes, List<PayordInfo> sourceTwos) {
-		InfoMerger_<PayordInfo, OrderInfo> merger = new PayordMergerOrder();		
-		return merger.merge(sourceOnes, sourceTwos);
+		return merger.merge();
 	}	
 	
 	
 	
-	public static PayordInfo mergeWithUsername(UsernameInfo sourceOne, PayordInfo sourceTwo) {
-		InfoMerger_<PayordInfo, UsernameInfo> merger = new PayordMergerUsername();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
+	public static List<PayordInfo> mergeWithUsername(List<PayordInfo> baseInfos, List<UsernameInfo> selectedInfos) {
+		InfoMergerBuilderV3<PayordInfo, UsernameInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new PayordVisiMergeUsername());
+		InfoMergerV3<PayordInfo, UsernameInfo> merger = builder.build();		
 	
-	
-	
-	public static List<PayordInfo> mergeWithUsername(List<UsernameInfo> sourceOnes, List<PayordInfo> sourceTwos) {
-		InfoMerger_<PayordInfo, UsernameInfo> merger = new PayordMergerUsername();		
-		return merger.merge(sourceOnes, sourceTwos);
+		return merger.merge();
 	}	
 	
 	
 	
-	public static PayordInfo mergeToSelect(PayordInfo sourceOne, PayordInfo sourceTwo) {
-		InfoMerger_<PayordInfo, PayordInfo> merger = new PayordMergerToSelect();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
+	public static List<PayordInfo> mergeToSelect(List<PayordInfo> baseInfos, List<PayordInfo> selectedInfos) {
+		InfoMergerBuilderV3<PayordInfo, PayordInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new PayordVisiMergeToSelect());
+		InfoMergerV3<PayordInfo, PayordInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}	
 	
 	
 	
-	public static List<PayordInfo> mergeToSelect(List<PayordInfo> sourceOnes, List<PayordInfo> sourceTwos) {
-		InfoMerger_<PayordInfo, PayordInfo> merger = new PayordMergerToSelect();		
-		return merger.merge(sourceOnes, sourceTwos);
-	}			
+	public static List<PayordInfo> mergeToUpdate(List<PayordInfo> baseInfos, List<PayordInfo> selectedInfos) {
+		InfoMergerBuilderV3<PayordInfo, PayordInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new PayordVisiMergeToUpdateStatus());
+		InfoMergerV3<PayordInfo, PayordInfo> merger = builder.build();		
 	
-	
-	
-	public static PayordInfo mergeToUpdate(PayordInfo sourceOne, PayordInfo sourceTwo) {
-		InfoMerger_<PayordInfo, PayordInfo> merger = new PayordMergerToUpdate();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
-	
-	
-	
-	public static List<PayordInfo> mergeToUpdate(List<PayordInfo> sourceOnes, List<PayordInfo> sourceTwos) {
-		InfoMerger_<PayordInfo, PayordInfo> merger = new PayordMergerToUpdate();		
-		return merger.merge(sourceOnes, sourceTwos);
+		return merger.merge();
 	}	
 }

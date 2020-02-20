@@ -1,57 +1,39 @@
 package br.com.mind5.payment.payOrder.info;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.ArrayList;
+import java.util.List;
 
 import br.com.mind5.business.masterData.info.PayparInfo;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-final class PayordVisiMergePaypar implements InfoMergerVisitor_<PayordInfo, PayparInfo> {
-	private final boolean SUCCESS = true;
-	private final boolean FAILED = false;
-
-	@Override public PayordInfo writeRecord(PayparInfo sourceOne, PayordInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+final class PayordVisiMergePaypar implements InfoMergerVisitorV3<PayordInfo, PayparInfo> {
+	
+	@Override public List<PayordInfo> beforeMerge(List<PayordInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(PayordInfo baseInfo, PayparInfo selectedInfo) {
+		return (baseInfo.codPayPartner == selectedInfo.codPayPartner);
+	}
+	
+	
+	
+	@Override public List<PayordInfo> merge(PayordInfo baseInfo, PayparInfo selectedInfo) {
+		List<PayordInfo> results = new ArrayList<>();
 		
-		PayordInfo clonedInfo = makeClone(sourceTwo);
-		clonedInfo.txtPayPartner = sourceOne.txtPayPartner; 
-		clonedInfo.description = sourceOne.description;
-		return clonedInfo;
+		baseInfo.txtPayPartner = selectedInfo.txtPayPartner; 
+		baseInfo.description = selectedInfo.description;
+		
+		results.add(baseInfo);
+		return results;
 	}
 	
 	
 	
-	private PayordInfo makeClone(PayordInfo recordInfo) {
-		try {
-			return (PayordInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	private void checkArgument(PayparInfo sourceOne, PayordInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-
-
-	
-	@Override public boolean shouldWrite(PayparInfo sourceOne, PayordInfo sourceTwo) {
-		if (sourceOne.codPayPartner	== sourceTwo.codPayPartner) 
-			return SUCCESS;
-			
-		return FAILED;
-	}
-	
-	
-	
-	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
+	@Override public InfoUniquifier<PayordInfo> getUniquifier() {
+		return new PayordUniquifier();
 	}
 }

@@ -1,69 +1,38 @@
 package br.com.mind5.payment.payOrder.info;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.ArrayList;
+import java.util.List;
 
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.payment.systemPartner.info.SysparInfo;
 
-final class PayordVisiMergeSyspar implements InfoMergerVisitor_<PayordInfo, SysparInfo> {
-
-	@Override public PayordInfo writeRecord(SysparInfo sourceOne, PayordInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+final class PayordVisiMergeSyspar implements InfoMergerVisitorV3<PayordInfo, SysparInfo> {
+	
+	@Override public List<PayordInfo> beforeMerge(List<PayordInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(PayordInfo baseInfo, SysparInfo selectedInfo) {
+		return (baseInfo.codPayPartner == selectedInfo.codPayPartner);
+	}
+	
+	
+	
+	@Override public List<PayordInfo> merge(PayordInfo baseInfo, SysparInfo selectedInfo) {
+		List<PayordInfo> results = new ArrayList<>();
 		
-		PayordInfo clonedInfo = makeClone(sourceTwo);
-		return merge(sourceOne, clonedInfo);
+		baseInfo.sysparData = selectedInfo;
+		
+		results.add(baseInfo);
+		return results;
 	}
 	
 	
 	
-	private void checkArgument(SysparInfo sourceOne, PayordInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private PayordInfo makeClone(PayordInfo recordInfo) {
-		try {
-			return (PayordInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	private PayordInfo merge(SysparInfo sourceOne, PayordInfo sourceTwo) {
-		sourceTwo.sysparData = makeClone(sourceOne);
-		return sourceTwo;
-	}
-	
-	
-	
-	private SysparInfo makeClone(SysparInfo recordInfo) {
-		try {
-			return (SysparInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}	
-	
-	
-	
-	@Override public boolean shouldWrite(SysparInfo sourceOne, PayordInfo sourceTwo) {
-		return (sourceOne.codPayPartner == sourceTwo.codPayPartner);
-	}
-	
-	
-	
-	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
+	@Override public InfoUniquifier<PayordInfo> getUniquifier() {
+		return new PayordUniquifier();
 	}
 }

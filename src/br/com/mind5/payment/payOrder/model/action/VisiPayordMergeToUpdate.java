@@ -22,8 +22,8 @@ final class VisiPayordMergeToUpdate extends ActionVisitorTemplateMergeV2<PayordI
 	
 	
 	
-	@Override protected List<PayordInfo> mergeHook(List<PayordInfo> recordInfos, List<PayordInfo> selectedInfos) {	
-		return PayordMerger.mergeToUpdate(selectedInfos, recordInfos);
+	@Override protected List<PayordInfo> mergeHook(List<PayordInfo> baseInfos, List<PayordInfo> selectedInfos) {	
+		return PayordMerger.mergeToUpdate(baseInfos, selectedInfos);
 	}
 	
 	

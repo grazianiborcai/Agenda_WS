@@ -25,14 +25,14 @@ final class VisiPayordMergeCuspar extends ActionVisitorTemplateMergeV2<PayordInf
 	
 	
 	
-	@Override protected List<CusparInfo> toActionClassHook(List<PayordInfo> recordInfos) {
-		return CusparCopier.copyFromPayord(recordInfos);	
+	@Override protected List<CusparInfo> toActionClassHook(List<PayordInfo> baseInfos) {
+		return CusparCopier.copyFromPayord(baseInfos);	
 	}
 	
 	
 	
-	@Override protected List<PayordInfo> mergeHook(List<PayordInfo> recordInfos, List<CusparInfo> selectedInfos) {	
-		return PayordMerger.mergeWithCuspar(selectedInfos, recordInfos);
+	@Override protected List<PayordInfo> mergeHook(List<PayordInfo> baseInfos, List<CusparInfo> selectedInfos) {	
+		return PayordMerger.mergeWithCuspar(baseInfos, selectedInfos);
 	}
 	
 	

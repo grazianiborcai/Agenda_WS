@@ -1,57 +1,39 @@
 package br.com.mind5.payment.payOrder.info;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.ArrayList;
+import java.util.List;
 
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.payment.payOrderSearch.info.PayordarchInfo;
 
-final class PayordVisiMergeLatest implements InfoMergerVisitor_<PayordInfo, PayordarchInfo> {
-
-	@Override public PayordInfo writeRecord(PayordarchInfo sourceOne, PayordInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);		
-		return merge(sourceOne, sourceTwo);
+final class PayordVisiMergeLatest implements InfoMergerVisitorV3<PayordInfo, PayordarchInfo> {
+	
+	@Override public List<PayordInfo> beforeMerge(List<PayordInfo> baseInfos) {
+		return baseInfos;
 	}
 	
 	
 	
-	private void checkArgument(PayordarchInfo sourceOne, PayordInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
+	@Override public boolean shouldMerge(PayordInfo baseInfo, PayordarchInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner &&
+				baseInfo.codOrder == selectedInfo.codOrder	);
 	}
 	
 	
 	
-	private PayordInfo merge(PayordarchInfo sourceOne, PayordInfo sourceTwo) {
-		PayordInfo result = makeClone(sourceTwo);		
-		result.latestData = sourceOne;
-		return result;
+	@Override public List<PayordInfo> merge(PayordInfo baseInfo, PayordarchInfo selectedInfo) {
+		List<PayordInfo> results = new ArrayList<>();
+		
+		baseInfo.latestData = selectedInfo;
+		
+		results.add(baseInfo);
+		return results;
 	}
 	
 	
 	
-	private PayordInfo makeClone(PayordInfo recordInfo) {
-		try {
-			return (PayordInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(PayordarchInfo sourceOne, PayordInfo sourceTwo) {		
-		return (sourceOne.codOwner == sourceTwo.codOwner &&
-				sourceOne.codOrder == sourceTwo.codOrder	);
-	}
-	
-	
-	
-	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
+	@Override public InfoUniquifier<PayordInfo> getUniquifier() {
+		return new PayordUniquifier();
 	}
 }

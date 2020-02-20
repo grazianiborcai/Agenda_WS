@@ -25,14 +25,14 @@ final class VisiPayordMergeOrder extends ActionVisitorTemplateMergeV2<PayordInfo
 	
 	
 	
-	@Override protected List<OrderInfo> toActionClassHook(List<PayordInfo> recordInfos) {
-		return OrderCopier.copyFromPayord(recordInfos);	
+	@Override protected List<OrderInfo> toActionClassHook(List<PayordInfo> baseInfos) {
+		return OrderCopier.copyFromPayord(baseInfos);	
 	}
 	
 	
 	
-	@Override protected List<PayordInfo> mergeHook(List<PayordInfo> recordInfos, List<OrderInfo> selectedInfos) {	
-		return PayordMerger.mergeWithOrder(selectedInfos, recordInfos);
+	@Override protected List<PayordInfo> mergeHook(List<PayordInfo> baseInfos, List<OrderInfo> selectedInfos) {	
+		return PayordMerger.mergeWithOrder(baseInfos, selectedInfos);
 	}
 	
 	

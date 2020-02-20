@@ -25,14 +25,14 @@ final class VisiPayordMergeCrecard extends ActionVisitorTemplateMergeV2<PayordIn
 	
 	
 	
-	@Override protected List<CrecardInfo> toActionClassHook(List<PayordInfo> recordInfos) {
-		return CrecardCopier.copyFromPayord(recordInfos);	
+	@Override protected List<CrecardInfo> toActionClassHook(List<PayordInfo> baseInfos) {
+		return CrecardCopier.copyFromPayord(baseInfos);	
 	}
 	
 	
 	
-	@Override protected List<PayordInfo> mergeHook(List<PayordInfo> recordInfos, List<CrecardInfo> selectedInfos) {	
-		return PayordMerger.mergeWithCrecard(selectedInfos, recordInfos);
+	@Override protected List<PayordInfo> mergeHook(List<PayordInfo> baseInfos, List<CrecardInfo> selectedInfos) {	
+		return PayordMerger.mergeWithCrecard(baseInfos, selectedInfos);
 	}
 	
 	
