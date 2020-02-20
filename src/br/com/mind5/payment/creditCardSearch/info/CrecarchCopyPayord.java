@@ -16,7 +16,7 @@ final class CrecarchCopyPayord extends InfoCopierTemplate<CrecarchInfo, PayordIn
 		
 		result.codOwner = source.codOwner;
 		result.codCreditCard = source.codCreditCard;	
-		result.codPayCustomer = source.codPayCustomer;
+		result.codUser = source.codUser;
 		result.codLanguage = source.codLanguage;	
 		result.username = source.username;	
 		
