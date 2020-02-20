@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
@@ -22,9 +23,14 @@ public final class RootPayordemSelect extends DeciTreeWriteTemplate<PayordemInfo
 	
 	@Override protected ModelChecker<PayordemInfo> buildDecisionCheckerHook(DeciTreeOption<PayordemInfo> option) {
 		List<ModelChecker<PayordemInfo>> queue = new ArrayList<>();		
-		ModelChecker<PayordemInfo> checker;
+		ModelChecker<PayordemInfo> checker;	
+		ModelCheckerOption checkerOption;
 		
-		checker = new PayordemCheckRead();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new PayordemCheckRead(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);

@@ -24,8 +24,6 @@ public final class NodePayordemInsertFee extends DeciTreeWriteTemplate<PayordemI
 	
 	
 	@Override protected ModelChecker<PayordemInfo> buildDecisionCheckerHook(DeciTreeOption<PayordemInfo> option) {
-		final boolean EXIST_ON_DB = true;
-		
 		List<ModelChecker<PayordemInfo>> queue = new ArrayList<>();		
 		ModelChecker<PayordemInfo> checker;	
 		ModelCheckerOption checkerOption;
@@ -33,7 +31,7 @@ public final class NodePayordemInsertFee extends DeciTreeWriteTemplate<PayordemI
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;	
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
 		checker = new PayordemCheckFeeCateg(checkerOption);
 		queue.add(checker);
 		
