@@ -12,8 +12,9 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
 import br.com.mind5.payment.payOrder.model.action.LazyPayordEnforceLChanged;
-import br.com.mind5.payment.payOrder.model.action.LazyPayordNodeMerge;
+import br.com.mind5.payment.payOrder.model.action.LazyPayordNodeMerge_;
 import br.com.mind5.payment.payOrder.model.action.LazyPayordNodePay;
+import br.com.mind5.payment.payOrder.model.action.LazyPayordNodeUserL1;
 import br.com.mind5.payment.payOrder.model.action.LazyPayordOrderPay;
 import br.com.mind5.payment.payOrder.model.action.LazyPayordOrderRefresh;
 import br.com.mind5.payment.payOrder.model.action.StdPayordEnforceCreatedOn;
@@ -86,8 +87,7 @@ public final class RootPayordPay extends DeciTreeWriteTemplate<PayordInfo> {
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
 		checker = new PayordCheckCrecard(checkerOption);
 		queue.add(checker);
-		//TODO: pegar CUSPAR do USERNAME ?
-		//TODO: usuario pagador = usuario da ordem
+
 		return new ModelCheckerQueue<>(queue);
 	}
 	
@@ -98,13 +98,15 @@ public final class RootPayordPay extends DeciTreeWriteTemplate<PayordInfo> {
 		//TODO: Refresh Latest ???
 		ActionStd<PayordInfo> enforceCreatedOn = new StdPayordEnforceCreatedOn(option);	
 		ActionLazy<PayordInfo> enforceLChanged = new LazyPayordEnforceLChanged(option.conn, option.schemaName);
+		ActionLazy<PayordInfo> nodeUser = new LazyPayordNodeUserL1(option.conn, option.schemaName);
 		ActionLazy<PayordInfo> orderPay = new LazyPayordOrderPay(option.conn, option.schemaName);
-		ActionLazy<PayordInfo> nodeMerge = new LazyPayordNodeMerge(option.conn, option.schemaName);
+		ActionLazy<PayordInfo> nodeMerge = new LazyPayordNodeMerge_(option.conn, option.schemaName);
 		ActionLazy<PayordInfo> nodePay = new LazyPayordNodePay(option.conn, option.schemaName);		
 		ActionLazy<PayordInfo> orderRefresh = new LazyPayordOrderRefresh(option.conn, option.schemaName);
 		
 		enforceCreatedOn.addPostAction(enforceLChanged);
-		enforceLChanged.addPostAction(orderPay);			
+		enforceLChanged.addPostAction(nodeUser);	
+		nodeUser.addPostAction(orderPay);
 		orderPay.addPostAction(nodeMerge);
 		nodeMerge.addPostAction(nodePay);
 		nodePay.addPostAction(orderRefresh);

@@ -19,9 +19,9 @@ import br.com.mind5.payment.payOrder.model.action.LazyPayordMergeUsername;
 import br.com.mind5.payment.payOrder.model.action.StdPayordMergeCuspar;
 import br.com.mind5.payment.payOrder.model.checker.PayordCheckPay;
 
-public final class NodePayordMerge extends DeciTreeWriteTemplate<PayordInfo> {
+public final class NodePayordMerge_ extends DeciTreeWriteTemplate<PayordInfo> {
 	
-	public NodePayordMerge(DeciTreeOption<PayordInfo> option) {
+	public NodePayordMerge_(DeciTreeOption<PayordInfo> option) {
 		super(option);
 	}
 	

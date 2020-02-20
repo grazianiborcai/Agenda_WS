@@ -565,16 +565,12 @@ public final class SystemCode {
 	public static final int ORDER_ITEM_IS_NOT_SERVICE 					= 4009;
 	
 	//Pay-Order Header
-	public static final int PAY_ORDER_PAYMENT_ALREADY_EXIST				= 4050;
-	public static final int PAY_ORDER_DIF_ORDER_USER					= 4051;
-	public static final int PAY_ORDER_ADDRESS_DIF_USER					= 4052;
-	public static final int PAY_ORDER_PHONE_DIF_USER					= 4053;
-	public static final int PAY_ORDER_HAVE_ITEM 						= 4057;
-	public static final int PAY_ORDER_IS_EMPTY 							= 4058;	
+	public static final int PAY_ORDER_HEADER_DIF_ORDER_USER				= 4051;
 	public static final int PAY_ORDER_HEADER_MANDATORY_FIELD_EMPTY		= 4059;	
-	public static final int PAY_ORDER_DIF_CUSPAR_USER					= 4060;
-	public static final int PAY_ORDER_ALREADY_EXIST 					= 4061;
-	public static final int PAY_ORDER_NOT_FOUND 						= 4062;
+	public static final int PAY_ORDER_HEADER_DIF_CUSPAR_USER			= 4060;
+	public static final int PAY_ORDER_HEADER_ALREADY_EXIST 				= 4061;
+	public static final int PAY_ORDER_HEADER_NOT_FOUND 					= 4062;
+	public static final int PAY_ORDER_HEADER_CRECARD_DIF_USER			= 4065;
 	
 	// Pay-Customer-Moip
 	public static final int PAY_CUS_MOIP_CREATION_ERROR 				= 4100;
@@ -1088,11 +1084,12 @@ public final class SystemCode {
 	public static final int PAYPAR_COUNTRY_SEARCH_NOT_FOUND 			= 10951;
 	public static final int PAYPAR_COUNTRY_SEARCH_MANDATORY_FIELD_EMPTY = 10952;
 	
-	//Pay-Order Item
-	
+	//Pay-Order Item	
 	public static final int PAY_ORDER_ITEM_MANDATORY_FIELD_EMPTY		= 4054;
 	public static final int PAY_ORDER_ITEM_ALREADY_EXIST 				= 4055;
 	public static final int PAY_ORDER_ITEM_NOT_FOUND 					= 4056;
+	public static final int PAY_ORDER_HAVE_ITEM 						= 4057;
+	public static final int PAY_ORDER_IS_EMPTY 							= 4058;	
 	public static final int PAY_ORDER_ITEM_IS_FEE 						= 4063;
 	public static final int PAY_ORDER_ITEM_IS_NOT_FEE 					= 4064;
 }

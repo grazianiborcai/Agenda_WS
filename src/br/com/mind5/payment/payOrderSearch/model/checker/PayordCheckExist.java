@@ -42,7 +42,7 @@ public final class PayordCheckExist extends ModelCheckerTemplateAction_<PayordIn
 	
 	
 	@Override protected String makeFailExplanationHook(boolean checkerResult) {		
-		if (makeFailCodeHook(checkerResult) == SystemCode.PAY_ORDER_ALREADY_EXIST)
+		if (makeFailCodeHook(checkerResult) == SystemCode.PAY_ORDER_HEADER_ALREADY_EXIST)
 			return SystemMessage.PAY_ORDER_ALREADY_EXIST;
 		
 		return SystemMessage.PAY_ORDER_NOT_FOUND;
@@ -52,8 +52,8 @@ public final class PayordCheckExist extends ModelCheckerTemplateAction_<PayordIn
 	
 	@Override protected int makeFailCodeHook(boolean checkerResult) {
 		if (checkerResult == super.ALREADY_EXIST)
-			return SystemCode.PAY_ORDER_ALREADY_EXIST;	
+			return SystemCode.PAY_ORDER_HEADER_ALREADY_EXIST;	
 			
-		return SystemCode.PAY_ORDER_NOT_FOUND;
+		return SystemCode.PAY_ORDER_HEADER_NOT_FOUND;
 	}
 }

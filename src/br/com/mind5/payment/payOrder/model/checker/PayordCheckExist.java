@@ -1,59 +1,35 @@
 package br.com.mind5.payment.payOrder.model.checker;
 
-import java.sql.Connection;
-import java.util.ArrayList;
-
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.common.SystemMessage;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateAction_;
+import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
-import br.com.mind5.payment.payOrder.model.decisionTree.RootPayordSelect;
+import br.com.mind5.payment.payOrder.model.action.StdPayordSelect;
 
-public final class PayordCheckExist extends ModelCheckerTemplateAction_<PayordInfo> {
+public final class PayordCheckExist extends ModelCheckerTemplateActionV2<PayordInfo, PayordInfo> {
 	
 	public PayordCheckExist(ModelCheckerOption option) {
-		super(option);
+		super(option, PayordInfo.class);
 	}
 	
 
 	
-	@Override protected ActionStd<PayordInfo> buildActionHook(PayordInfo recordInfo, Connection conn, String schemaName) {
-		DeciTreeOption<PayordInfo> option = buildActionOption(recordInfo, conn, schemaName);
-		
-		ActionStd<PayordInfo> select = new RootPayordSelect(option).toAction();
+	@Override protected ActionStd<PayordInfo> buildActionHook(DeciTreeOption<PayordInfo> option) {
+		ActionStd<PayordInfo> select = new StdPayordSelect(option);
 		return select;
 	}
 	
 	
 	
-	private DeciTreeOption<PayordInfo> buildActionOption(PayordInfo recordInfo, Connection conn, String schemaName) {
-		DeciTreeOption<PayordInfo> option = new DeciTreeOption<>();
-		option.recordInfos = new ArrayList<>();
-		option.recordInfos.add(recordInfo);
-		option.conn = conn;
-		option.schemaName = schemaName;
-		
-		return option;
-	}
+	@Override protected int getCodMsgOnResultTrueHook() {
+		return SystemCode.PAY_ORDER_HEADER_ALREADY_EXIST;
+	}	
 	
 	
 	
-	@Override protected String makeFailExplanationHook(boolean checkerResult) {		
-		if (makeFailCodeHook(checkerResult) == SystemCode.PAY_ORDER_ALREADY_EXIST)
-			return SystemMessage.PAY_ORDER_ALREADY_EXIST;
-		
-		return SystemMessage.PAY_ORDER_NOT_FOUND;
-	}
-	
-	
-	
-	@Override protected int makeFailCodeHook(boolean checkerResult) {
-		if (checkerResult == super.ALREADY_EXIST)
-			return SystemCode.PAY_ORDER_ALREADY_EXIST;	
-			
-		return SystemCode.PAY_ORDER_NOT_FOUND;
+	@Override protected int getCodMsgOnResultFalseHook() {
+		return SystemCode.PAY_ORDER_HEADER_NOT_FOUND;
 	}
 }

@@ -19,7 +19,7 @@ public final class PayordInfo extends InfoRecord implements Cloneable {
 	public long codPayOrder;
 	public long codPayCustomer;
 	public long codCreditCard;
-	public long codUser;				//TODO: manter para check
+	public long codUser;
 	public long codOrder;
 	public int codPayPartner;
 	public String cardCvc;

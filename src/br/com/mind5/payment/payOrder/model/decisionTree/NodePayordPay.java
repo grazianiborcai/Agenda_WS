@@ -15,10 +15,7 @@ import br.com.mind5.payment.payOrder.model.action.LazyPayordMultmoipPay;
 import br.com.mind5.payment.payOrder.model.action.LazyPayordUpdate;
 import br.com.mind5.payment.payOrder.model.action.LazyPayordUpdatePayordem;
 import br.com.mind5.payment.payOrder.model.action.StdPayordInsert;
-import br.com.mind5.payment.payOrder.model.checker.PayordCheckCrecardUser;
-import br.com.mind5.payment.payOrder.model.checker.PayordCheckCusparUser;
-import br.com.mind5.payment.payOrder.model.checker.PayordCheckLatestStatus;
-import br.com.mind5.payment.payOrder.model.checker.PayordCheckOrderUser;
+import br.com.mind5.payment.payOrder.model.checker.PayordCheckDummy;
 
 public final class NodePayordPay extends DeciTreeWriteTemplate<PayordInfo> {
 	
@@ -32,16 +29,7 @@ public final class NodePayordPay extends DeciTreeWriteTemplate<PayordInfo> {
 		List<ModelChecker<PayordInfo>> queue = new ArrayList<>();		
 		ModelChecker<PayordInfo> checker;	
 		
-		checker = new PayordCheckOrderUser();
-		queue.add(checker);
-		
-		checker = new PayordCheckCusparUser();
-		queue.add(checker);
-		
-		checker = new PayordCheckCrecardUser();
-		queue.add(checker);
-		
-		checker = new PayordCheckLatestStatus();
+		checker = new PayordCheckDummy();
 		queue.add(checker);
 
 		return new ModelCheckerQueue<>(queue);
