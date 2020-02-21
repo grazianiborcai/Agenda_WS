@@ -15,9 +15,9 @@ import br.com.mind5.payment.payOrderList.model.checker.PayordistCheckLangu;
 import br.com.mind5.payment.payOrderList.model.checker.PayordistCheckOwner;
 import br.com.mind5.payment.payOrderList.model.checker.PayordistCheckRead;
 
-public final class PayordistPayordSelect extends DeciTreeReadTemplate<PayordistInfo> {
+public final class RootPayordistSelect extends DeciTreeReadTemplate<PayordistInfo> {
 	
-	public PayordistPayordSelect(DeciTreeOption<PayordistInfo> option) {
+	public RootPayordistSelect(DeciTreeOption<PayordistInfo> option) {
 		super(option);
 	}
 	
