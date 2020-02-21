@@ -152,6 +152,6 @@ public final class PayordarchDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 
-		tableColumns.put(TABLE_NAME, columns);
+		tableColumns.put(DaoDbTable.PAY_ORDER_HDR_SEARCH_VIEW, columns);
 	}
 }

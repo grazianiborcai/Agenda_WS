@@ -7,9 +7,9 @@ import br.com.mind5.payment.payOrderSearch.info.PayordarchInfo;
 import br.com.mind5.payment.payOrderSearch.model.decisionTree.RootPayordarchLatest;
 
 
-public final class PayordarchModelLatest extends ModelTemplate<PayordarchInfo> {
+public final class PayordarchModelLatest_ extends ModelTemplate<PayordarchInfo> {
 
-	public PayordarchModelLatest(PayordarchInfo recordInfo) {
+	public PayordarchModelLatest_(PayordarchInfo recordInfo) {
 		super(recordInfo);
 	}
 	

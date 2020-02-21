@@ -38,6 +38,12 @@ public final class PayordarchSelectSingle extends DaoStmtTemplate<PayordarchInfo
 	
 	
 	
+	@Override protected String getLookupTableHook() {
+		return DaoDbTable.PAY_ORDER_HDR_SEARCH_VIEW;
+	}	
+	
+	
+	
 	@Override protected String buildWhereClauseHook(String tableName, PayordarchInfo recordInfo) {	
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
 		
