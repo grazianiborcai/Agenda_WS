@@ -131,12 +131,12 @@ public final class PayordemInfo extends InfoRecord implements Cloneable, Compara
 	@Override public int hashCode() {
 		int result = 17;
 		
-		result = result * 31 + (int) (codOwner    ^ (codOwner    >>> 32));
-		result = result * 31 + (int) (codPayOrder ^ (codPayOrder >>> 32));
-		result = result * 31 + (int) (codStore 	  ^ (codStore 	 >>> 32));
-		result = result * 31 + (int) (codEmployee ^ (codEmployee >>> 32));
-		result = result * 31 + (int) (codMat 	  ^ (codMat 	 >>> 32));
-		result = result * 31 + (int) (codPayOrderItem 	  ^ (codPayOrderItem 	 >>> 32));
+		result = result * 31 + (int) (codOwner    		^ (codOwner    		>>> 32));
+		result = result * 31 + (int) (codPayOrder 		^ (codPayOrder 		>>> 32));
+		result = result * 31 + (int) (codStore 	  		^ (codStore 		>>> 32));
+		result = result * 31 + (int) (codEmployee 		^ (codEmployee 		>>> 32));
+		result = result * 31 + (int) (codMat 	  		^ (codMat 	 		>>> 32));
+		result = result * 31 + (int) (codPayOrderItem 	^ (codPayOrderItem 	>>> 32));
 		
 		if (date != null)
 			result = result * 31 + (int) date.hashCode();
@@ -159,13 +159,13 @@ public final class PayordemInfo extends InfoRecord implements Cloneable, Compara
 		
 		
 		PayordemInfo obj = (PayordemInfo) o;		
-		return (codOwner    == obj.codOwner    		&& 
-				codPayOrder == obj.codPayOrder		&&
-				codStore    == obj.codStore			&&
-				codEmployee == obj.codEmployee		&&
-				codMat    	== obj.codMat			&&
-				codPayOrderItem    	== obj.codPayOrderItem			&&
-				super.isDateEqual(date, obj.date)	&&
+		return (codOwner    	== obj.codOwner    		&& 
+				codPayOrder 	== obj.codPayOrder		&&
+				codStore    	== obj.codStore			&&
+				codEmployee 	== obj.codEmployee		&&
+				codMat    		== obj.codMat			&&
+				codPayOrderItem == obj.codPayOrderItem	&&
+				super.isDateEqual(date, obj.date)		&&
 				super.isTimeEqual(beginTime, obj.beginTime));
 	}
 
