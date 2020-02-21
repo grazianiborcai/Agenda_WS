@@ -1092,4 +1092,9 @@ public final class SystemCode {
 	public static final int PAY_ORDER_ITEM_NOT_FOUND 					= 11004; // 4056;
 	public static final int PAY_ORDER_HAVE_ITEM 						= 4057;
 	public static final int PAY_ORDER_IS_EMPTY 							= 4058;	
+	
+	//Pay-Order Item Search
+	public static final int PAY_ORDER_ITEM_SEARCH_MANDATORY_FIELD_EMPTY	= 11050;
+	public static final int PAY_ORDER_ITEM_SEARCH_ALREADY_EXIST 		= 11051;
+	public static final int PAY_ORDER_ITEM_SEARCH_NOT_FOUND 			= 11052;
 }
