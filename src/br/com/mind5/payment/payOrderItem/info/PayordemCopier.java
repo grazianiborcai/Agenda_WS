@@ -10,28 +10,28 @@ import br.com.mind5.paymentPartner.partnerMoip.orderMoip.info.OrdmoipInfo;
 
 public final class PayordemCopier {
 	public static PayordemInfo copyFromPayordToRead(PayordInfo source) {
-		InfoCopierTemplate<PayordemInfo, PayordInfo> copier = new PayordemCopyPayordToRead();
+		InfoCopierTemplate<PayordemInfo, PayordInfo> copier = new PayordemCopyPayordToRead_();
 		return copier.makeCopy(source);
 	}
 	
 	
 	
 	public static List<PayordemInfo> copyFromPayordToRead(List<PayordInfo> sources) {
-		InfoCopierTemplate<PayordemInfo, PayordInfo> copier = new PayordemCopyPayordToRead();
+		InfoCopierTemplate<PayordemInfo, PayordInfo> copier = new PayordemCopyPayordToRead_();
 		return copier.makeCopy(sources);
 	}
 	
 	
 	
 	public static List<PayordemInfo> copyFromPayordToWrite(PayordInfo source) {
-		InfoCopierOneToManyTemplate<PayordemInfo, PayordInfo> copier = new PayordemCopyPayordToWrite();
+		InfoCopierOneToManyTemplate<PayordemInfo, PayordInfo> copier = new PayordemCopyPayordToWrite_();
 		return copier.makeCopy(source);
 	}
 	
 	
 	
 	public static List<PayordemInfo> copyFromPayordToWrite(List<PayordInfo> sources) {
-		InfoCopierOneToManyTemplate<PayordemInfo, PayordInfo> copier = new PayordemCopyPayordToWrite();
+		InfoCopierOneToManyTemplate<PayordemInfo, PayordInfo> copier = new PayordemCopyPayordToWrite_();
 		return copier.makeCopy(sources);
 	}
 	

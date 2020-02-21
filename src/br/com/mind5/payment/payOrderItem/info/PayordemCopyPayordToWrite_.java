@@ -7,9 +7,9 @@ import br.com.mind5.business.orderItem.info.OrderemInfo;
 import br.com.mind5.info.InfoCopierOneToManyTemplate;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
 
-final class PayordemCopyPayordToWrite extends InfoCopierOneToManyTemplate<PayordemInfo, PayordInfo>{
+final class PayordemCopyPayordToWrite_ extends InfoCopierOneToManyTemplate<PayordemInfo, PayordInfo>{
 	
-	public PayordemCopyPayordToWrite() {
+	public PayordemCopyPayordToWrite_() {
 		super();
 	}
 	
