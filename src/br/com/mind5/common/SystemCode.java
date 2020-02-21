@@ -1088,8 +1088,8 @@ public final class SystemCode {
 	public static final int PAY_ORDER_ITEM_MANDATORY_FIELD_EMPTY		= 11000; // 4054;
 	public static final int PAY_ORDER_ITEM_IS_FEE 						= 11001; // 4063;
 	public static final int PAY_ORDER_ITEM_IS_NOT_FEE 					= 11002; // 4064;
-	public static final int PAY_ORDER_ITEM_ALREADY_EXIST 				= 4055;
-	public static final int PAY_ORDER_ITEM_NOT_FOUND 					= 4056;
+	public static final int PAY_ORDER_ITEM_ALREADY_EXIST 				= 11003; // 4055;
+	public static final int PAY_ORDER_ITEM_NOT_FOUND 					= 11004; // 4056;
 	public static final int PAY_ORDER_HAVE_ITEM 						= 4057;
 	public static final int PAY_ORDER_IS_EMPTY 							= 4058;	
 }

@@ -13,9 +13,9 @@ import br.com.mind5.payment.payOrderItem.info.PayordemInfo;
 import br.com.mind5.payment.payOrderItem.model.action.LazyPayordemSelect;
 import br.com.mind5.payment.payOrderItem.model.action.StdPayordemEnforceKey;
 
-public final class PayordemCheckHasItem extends ModelCheckerTemplateAction_<PayordemInfo> {
+public final class PayordemCheckHasItem_ extends ModelCheckerTemplateAction_<PayordemInfo> {
 	
-	public PayordemCheckHasItem(ModelCheckerOption option) {
+	public PayordemCheckHasItem_(ModelCheckerOption option) {
 		super(option);
 	}
 	

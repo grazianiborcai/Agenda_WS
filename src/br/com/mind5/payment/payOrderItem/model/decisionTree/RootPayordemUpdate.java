@@ -26,19 +26,21 @@ public final class RootPayordemUpdate extends DeciTreeWriteTemplate<PayordemInfo
 	
 	
 	@Override protected ModelChecker<PayordemInfo> buildDecisionCheckerHook(DeciTreeOption<PayordemInfo> option) {
-		final boolean EXIST_ON_DB = true;
-		
 		List<ModelChecker<PayordemInfo>> queue = new ArrayList<>();		
 		ModelChecker<PayordemInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
-		checker = new PayordemCheckUpdate();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new PayordemCheckUpdate(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;	
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
 		checker = new PayordemCheckExist(checkerOption);
 		queue.add(checker);
 		
