@@ -160,6 +160,7 @@ public final class DaoDbTable {
 	public static final String ORDER_RESERVE_VIEW = "view_order_reserve";	
 	public static final String ORDER_SEARCH_VIEW = "view_order_search";	
 	public static final String PAY_CUS_SEARCH_VIEW = "view_pay_customer_search";
+	public static final String PAY_ORDER_HDR_LIST_VIEW = "view_pay_order_header_list";
 	public static final String PAY_ORDER_HDR_SEARCH_VIEW = "view_pay_order_header_search";
 	public static final String PAY_ORDER_ITM_SEARCH_VIEW = "view_pay_order_item_search";
 	public static final String PAY_PARTNER_COUNTRY_SEARCH_VIEW = "view_pay_partner_country_search";	
