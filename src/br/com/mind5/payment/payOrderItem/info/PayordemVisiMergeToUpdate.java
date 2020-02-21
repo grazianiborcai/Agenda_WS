@@ -1,64 +1,46 @@
 package br.com.mind5.payment.payOrderItem.info;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.ArrayList;
+import java.util.List;
 
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-final class PayordemVisiMergeToUpdate implements InfoMergerVisitor_<PayordemInfo, PayordemInfo> {
+final class PayordemVisiMergeToUpdate implements InfoMergerVisitorV3<PayordemInfo, PayordemInfo> {
 
-	@Override public PayordemInfo writeRecord(PayordemInfo sourceOne, PayordemInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);		
-		return merge(sourceOne, sourceTwo);
+	@Override public List<PayordemInfo> beforeMerge(List<PayordemInfo> baseInfos) {
+		return baseInfos;
 	}
 	
 	
 	
-	private void checkArgument(PayordemInfo sourceOne, PayordemInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
+	@Override public boolean shouldMerge(PayordemInfo baseInfo, PayordemInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner);
 	}
 	
 	
 	
-	private PayordemInfo merge(PayordemInfo sourceOne, PayordemInfo sourceTwo) {
-		PayordemInfo result = makeClone(sourceOne);		
-		result.idOrderPartner = sourceTwo.idOrderPartner;
-		result.statusOrderPartner = sourceTwo.statusOrderPartner;	
-		result.idPaymentPartner = sourceTwo.idPaymentPartner;
-		result.statusPaymentPartner = sourceTwo.statusPaymentPartner;	
-		result.codPayPartner = sourceTwo.codPayPartner;
-		result.codOrder = sourceTwo.codOrder;
-		result.codOrderItem = sourceTwo.codOrderItem;
-		result.ownId = sourceTwo.ownId;
-		result.username = sourceTwo.username;
-		result.codLanguage = sourceTwo.codLanguage;
-		return result;
+	@Override public List<PayordemInfo> merge(PayordemInfo baseInfo, PayordemInfo selectedInfo) {
+		List<PayordemInfo> results = new ArrayList<>();
+		
+		selectedInfo.idOrderPartner = baseInfo.idOrderPartner;
+		selectedInfo.statusOrderPartner = baseInfo.statusOrderPartner;	
+		selectedInfo.idPaymentPartner = baseInfo.idPaymentPartner;
+		selectedInfo.statusPaymentPartner = baseInfo.statusPaymentPartner;	
+		selectedInfo.codPayPartner = baseInfo.codPayPartner;
+		selectedInfo.codOrder = baseInfo.codOrder;
+		selectedInfo.codOrderItem = baseInfo.codOrderItem;
+		selectedInfo.ownId = baseInfo.ownId;
+		selectedInfo.username = baseInfo.username;
+		selectedInfo.codLanguage = baseInfo.codLanguage;
+		
+		results.add(selectedInfo);
+		return results;
 	}
 	
 	
 	
-	private PayordemInfo makeClone(PayordemInfo recordInfo) {
-		try {
-			return (PayordemInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(PayordemInfo sourceOne, PayordemInfo sourceTwo) {		
-		return (sourceOne.codOwner == sourceTwo.codOwner);
-	}
-	
-	
-	
-	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
+	@Override public InfoUniquifier<PayordemInfo> getUniquifier() {
+		return null;
 	}
 }

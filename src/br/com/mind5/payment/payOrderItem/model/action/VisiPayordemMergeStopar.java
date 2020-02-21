@@ -24,8 +24,8 @@ final class VisiPayordemMergeStopar extends ActionVisitorTemplateMergeV2<Payorde
 	
 	
 	
-	@Override protected List<PayordemInfo> mergeHook(List<PayordemInfo> recordInfos, List<StoparInfo> selectedInfos) {	
-		return PayordemMerger.mergeWithStopar(selectedInfos, recordInfos);
+	@Override protected List<PayordemInfo> mergeHook(List<PayordemInfo> baseInfos, List<StoparInfo> selectedInfos) {	
+		return PayordemMerger.mergeWithStopar(baseInfos, selectedInfos);
 	}
 	
 	

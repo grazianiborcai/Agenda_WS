@@ -1,58 +1,40 @@
 package br.com.mind5.payment.payOrderItem.info;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.ArrayList;
+import java.util.List;
 
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.payment.storePartner.info.StoparInfo;
 
-final class PayordemVisiMergeStopar implements InfoMergerVisitor_<PayordemInfo, StoparInfo> {
-	private final boolean SUCCESS = true;
-	private final boolean FAILED = false;
-
-	@Override public PayordemInfo writeRecord(StoparInfo sourceOne, PayordemInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+final class PayordemVisiMergeStopar implements InfoMergerVisitorV3<PayordemInfo, StoparInfo> {
+	
+	@Override public List<PayordemInfo> beforeMerge(List<PayordemInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(PayordemInfo baseInfo, StoparInfo selectedInfo) {
+		return (baseInfo.codOwner		== selectedInfo.codOwner	&&
+				baseInfo.codStore  	 	== selectedInfo.codStore	&&
+				baseInfo.codPayPartner  == selectedInfo.codPayPartner);
+	}
+	
+	
+	
+	@Override public List<PayordemInfo> merge(PayordemInfo baseInfo, StoparInfo selectedInfo) {
+		List<PayordemInfo> results = new ArrayList<>();
 		
-		PayordemInfo clonedInfo = makeClone(sourceTwo);
-		clonedInfo.itemReceiver = sourceOne.idPayPartnerStore; 
-		return clonedInfo;
+		baseInfo.itemReceiver = selectedInfo.idPayPartnerStore; 
+		
+		results.add(baseInfo);
+		return results;
 	}
 	
 	
 	
-	private PayordemInfo makeClone(PayordemInfo recordInfo) {
-		try {
-			return (PayordemInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	private void checkArgument(StoparInfo sourceOne, PayordemInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-
-
-	
-	@Override public boolean shouldWrite(StoparInfo sourceOne, PayordemInfo sourceTwo) {
-		if (sourceOne.codOwner		 == sourceTwo.codOwner	&&
-			sourceOne.codStore  	 == sourceTwo.codStore	&&
-			sourceOne.codPayPartner  == sourceTwo.codPayPartner) 
-			return SUCCESS;
-			
-		return FAILED;
-	}
-	
-	
-	
-	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
+	@Override public InfoUniquifier<PayordemInfo> getUniquifier() {
+		return null;
 	}
 }

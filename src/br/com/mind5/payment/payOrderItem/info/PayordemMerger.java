@@ -2,61 +2,58 @@ package br.com.mind5.payment.payOrderItem.info;
 
 import java.util.List;
 
-import br.com.mind5.info.obsolete.InfoMerger_;
+import br.com.mind5.info.InfoMergerBuilderV3;
+import br.com.mind5.info.InfoMergerV3;
 import br.com.mind5.payment.storePartner.info.StoparInfo;
 
 public final class PayordemMerger {
-	public static PayordemInfo mergeWithStopar(StoparInfo sourceOne, PayordemInfo sourceTwo) {
-		InfoMerger_<PayordemInfo, StoparInfo> merger = new PayordemMergerStopar();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
+	public static List<PayordemInfo> mergeWithStopar(List<PayordemInfo> baseInfos, List<StoparInfo> selectedInfos) {
+		InfoMergerBuilderV3<PayordemInfo, StoparInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new PayordemVisiMergeStopar());
+		InfoMergerV3<PayordemInfo, StoparInfo> merger = builder.build();		
 	
-	
-	
-	public static List<PayordemInfo> mergeWithStopar(List<StoparInfo> sourceOnes, List<PayordemInfo> sourceTwos) {
-		InfoMerger_<PayordemInfo, StoparInfo> merger = new PayordemMergerStopar();		
-		return merger.merge(sourceOnes, sourceTwos);
-	}
-	
-	
-	
-	public static PayordemInfo mergeToSelect(PayordemInfo sourceOne, PayordemInfo sourceTwo) {
-		InfoMerger_<PayordemInfo, PayordemInfo> merger = new PayordemMergerToSelect();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
-	
-	
-	
-	public static List<PayordemInfo> mergeToSelect(List<PayordemInfo> sourceOnes, List<PayordemInfo> sourceTwos) {
-		InfoMerger_<PayordemInfo, PayordemInfo> merger = new PayordemMergerToSelect();		
-		return merger.merge(sourceOnes, sourceTwos);
+		return merger.merge();
 	}	
 	
 	
 	
-	public static PayordemInfo mergeToUpdate(PayordemInfo sourceOne, PayordemInfo sourceTwo) {
-		InfoMerger_<PayordemInfo, PayordemInfo> merger = new PayordemMergerToUpdate();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
+	public static List<PayordemInfo> mergeToSelect(List<PayordemInfo> baseInfos, List<PayordemInfo> selectedInfos) {
+		InfoMergerBuilderV3<PayordemInfo, PayordemInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new PayordemVisiMergeToSelect());
+		InfoMergerV3<PayordemInfo, PayordemInfo> merger = builder.build();		
 	
-	
-	
-	public static List<PayordemInfo> mergeToUpdate(List<PayordemInfo> sourceOnes, List<PayordemInfo> sourceTwos) {
-		InfoMerger_<PayordemInfo, PayordemInfo> merger = new PayordemMergerToUpdate();		
-		return merger.merge(sourceOnes, sourceTwos);
+		return merger.merge();
 	}	
 	
 	
 	
-	public static PayordemInfo mergeToUpdateStatus(PayordemInfo sourceOne, PayordemInfo sourceTwo) {
-		InfoMerger_<PayordemInfo, PayordemInfo> merger = new PayordemMergerToUpdateStatus();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
+	public static List<PayordemInfo> mergeToUpdate(List<PayordemInfo> baseInfos, List<PayordemInfo> selectedInfos) {
+		InfoMergerBuilderV3<PayordemInfo, PayordemInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new PayordemVisiMergeToUpdate());
+		InfoMergerV3<PayordemInfo, PayordemInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}	
 	
 	
 	
-	public static List<PayordemInfo> mergeToUpdateStatus(List<PayordemInfo> sourceOnes, List<PayordemInfo> sourceTwos) {
-		InfoMerger_<PayordemInfo, PayordemInfo> merger = new PayordemMergerToUpdateStatus();		
-		return merger.merge(sourceOnes, sourceTwos);
+	public static List<PayordemInfo> mergeToUpdateStatus(List<PayordemInfo> baseInfos, List<PayordemInfo> selectedInfos) {
+		InfoMergerBuilderV3<PayordemInfo, PayordemInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new PayordemVisiMergeToUpdateStatus());
+		InfoMergerV3<PayordemInfo, PayordemInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}	
 }

@@ -22,8 +22,8 @@ final class VisiPayordemMergeToUpdateStatus extends ActionVisitorTemplateMergeV2
 	
 	
 	
-	@Override protected List<PayordemInfo> mergeHook(List<PayordemInfo> recordInfos, List<PayordemInfo> selectedInfos) {	
-		return PayordemMerger.mergeToUpdateStatus(selectedInfos, recordInfos);
+	@Override protected List<PayordemInfo> mergeHook(List<PayordemInfo> baseInfos, List<PayordemInfo> selectedInfos) {	
+		return PayordemMerger.mergeToUpdateStatus(baseInfos, selectedInfos);
 	}
 	
 	
