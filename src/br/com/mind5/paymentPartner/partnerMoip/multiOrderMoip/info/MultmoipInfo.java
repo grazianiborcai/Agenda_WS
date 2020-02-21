@@ -8,6 +8,7 @@ import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
+import br.com.mind5.payment.payOrder.info.PayordInfo;
 import br.com.mind5.payment.payOrderItem.info.PayordemInfo;
 import br.com.mind5.payment.setupPartner.info.SetuparInfo;
 import br.com.mind5.payment.systemPartner.info.SysparInfo;
@@ -17,8 +18,8 @@ import br.com.moip.models.Setup;
 public final class MultmoipInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codPayOrder;
-	public char codFeeCateg;
-	public String txtFeeCateg;	
+	public char codFeeCateg;				//TODO: Remover
+	public String txtFeeCateg;				//TODO: Remover
 	public String idOrderPartner;
 	public String statusOrderPartner;
 	public String idPaymentPartner;
@@ -29,7 +30,8 @@ public final class MultmoipInfo extends InfoRecord implements Cloneable {
 	public String amountTotalPartner;
 	public String amountCurrencyPartner;
 	public String cardCvc;
-	public List<PayordemInfo> payordems;
+	public List<PayordemInfo> payordems;	//TODO: Remover
+	public PayordInfo payordData;
 	public CrecardInfo crecardData;
 	public CusparInfo cusparData;
 	public SysparInfo sysparData;
@@ -53,6 +55,7 @@ public final class MultmoipInfo extends InfoRecord implements Cloneable {
 		cusparData = DefaultValue.object();
 		sysparData = DefaultValue.object();
 		setuparData = DefaultValue.object();
+		payordData = DefaultValue.object();
 		ordmoips = DefaultValue.list();
 		codSysEnviron = DefaultValue.getCodEnvironment();
 	}
@@ -75,6 +78,7 @@ public final class MultmoipInfo extends InfoRecord implements Cloneable {
 		MultmoipInfo deepCopy = (MultmoipInfo) super.clone();
 		
 		deepCopy.payordems = clonePayordems(deepCopy.payordems);
+		deepCopy.payordData = clonePayord(deepCopy.payordData);
 		deepCopy.cusparData = cloneCuspar(deepCopy.cusparData);
 		deepCopy.sysparData = cloneSyspar(deepCopy.sysparData);
 		deepCopy.setuparData = cloneSetupar(deepCopy.setuparData);
@@ -99,6 +103,15 @@ public final class MultmoipInfo extends InfoRecord implements Cloneable {
 		
 		
 		return results;
+	}
+	
+	
+	
+	private PayordInfo clonePayord(PayordInfo recordInfo) throws CloneNotSupportedException {
+		if (recordInfo == null)
+			return null;
+		
+		return (PayordInfo) recordInfo.clone();
 	}
 	
 	

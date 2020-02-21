@@ -1,67 +1,50 @@
 package br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.info;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.ArrayList;
+import java.util.List;
 
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.info.OrdmoipInfo;
 
-final class MultmoipVisiMergeOrdmoip implements InfoMergerVisitor_<MultmoipInfo, OrdmoipInfo> {
-
-	@Override public MultmoipInfo writeRecord(OrdmoipInfo sourceOne, MultmoipInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
-		return merge(sourceOne, sourceTwo);
+final class MultmoipVisiMergeOrdmoip implements InfoMergerVisitorV3<MultmoipInfo, OrdmoipInfo> {
+	
+	@Override public List<MultmoipInfo> beforeMerge(List<MultmoipInfo> baseInfos) {
+		return baseInfos;
 	}
 	
 	
 	
-	private void checkArgument(OrdmoipInfo sourceOne, MultmoipInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private MultmoipInfo merge(OrdmoipInfo sourceOne, MultmoipInfo sourceTwo) {
-		if(sourceTwo.ordmoips.contains(sourceOne)) 
-			removeElement(sourceOne, sourceTwo);		
-		
-		sourceTwo.ordmoips.add(makeClone(sourceOne));
-		return sourceTwo;
-	}
-	
-	
-	
-	private MultmoipInfo removeElement(OrdmoipInfo sourceOne, MultmoipInfo sourceTwo) {
-		int idx = sourceTwo.ordmoips.indexOf(sourceOne);
-		sourceTwo.ordmoips.remove(idx);
-		
-		return sourceTwo;
-	}
-	
-	
-	
-	private OrdmoipInfo makeClone(OrdmoipInfo recordInfo) {
-		try {
-			return (OrdmoipInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}	
-	
-	
-	
-	@Override public boolean shouldWrite(OrdmoipInfo sourceOne, MultmoipInfo sourceTwo) {		
+	@Override public boolean shouldMerge(MultmoipInfo baseInfo, OrdmoipInfo selectedInfo) {
 		return true;
 	}
 	
 	
 	
-	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
+	@Override public List<MultmoipInfo> merge(MultmoipInfo baseInfo, OrdmoipInfo selectedInfo) {
+		List<MultmoipInfo> results = new ArrayList<>();
+		
+		if(baseInfo.ordmoips.contains(selectedInfo)) 
+			removeElement(baseInfo, selectedInfo);		
+		
+		baseInfo.ordmoips.add(selectedInfo);
+		
+		results.add(baseInfo);
+		return results;
+	}
+	
+	
+	
+	private MultmoipInfo removeElement(MultmoipInfo baseInfo, OrdmoipInfo selectedInfo) {
+		int idx = baseInfo.ordmoips.indexOf(selectedInfo);
+		baseInfo.ordmoips.remove(idx);
+		
+		return baseInfo;
+	}
+	
+	
+	
+	@Override public InfoUniquifier<MultmoipInfo> getUniquifier() {
+		return new MultmoipUniquifier();
 	}
 }

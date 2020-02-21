@@ -25,14 +25,14 @@ final class VisiMultmoipMergeSetupar extends ActionVisitorTemplateMergeV2<Multmo
 	
 	
 	
-	@Override protected List<SetuparInfo> toActionClassHook(List<MultmoipInfo> recordInfos) {
-		return SetuparCopier.copyFromMultmoip(recordInfos);	
+	@Override protected List<SetuparInfo> toActionClassHook(List<MultmoipInfo> baseInfos) {
+		return SetuparCopier.copyFromMultmoip(baseInfos);	
 	}
 	
 	
 	
-	@Override protected List<MultmoipInfo> mergeHook(List<MultmoipInfo> recordInfos, List<SetuparInfo> selectedInfos) {	
-		return MultmoipMerger.mergeWithSetupar(selectedInfos, recordInfos);
+	@Override protected List<MultmoipInfo> mergeHook(List<MultmoipInfo> baseInfos, List<SetuparInfo> selectedInfos) {	
+		return MultmoipMerger.mergeWithSetupar(baseInfos, selectedInfos);
 	}
 	
 	

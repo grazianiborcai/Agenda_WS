@@ -24,8 +24,8 @@ final class VisiMultmoipMergeSysEnviron extends ActionVisitorTemplateMergeV2<Mul
 	
 	
 	
-	@Override protected List<MultmoipInfo> mergeHook(List<MultmoipInfo> recordInfos, List<SysEnvironInfo> selectedInfos) {	
-		return MultmoipMerger.mergeWithSysEnviron(selectedInfos, recordInfos);
+	@Override protected List<MultmoipInfo> mergeHook(List<MultmoipInfo> baseInfos, List<SysEnvironInfo> selectedInfos) {	
+		return MultmoipMerger.mergeWithSysEnviron(baseInfos, selectedInfos);
 	}
 	
 	

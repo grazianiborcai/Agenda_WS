@@ -32,6 +32,6 @@ final class VisiMultmoipPaymoipPay extends ActionVisitorTemplateAction<MultmoipI
 	
 	
 	@Override protected List<MultmoipInfo> toBaseClassHook(List<MultmoipInfo> baseInfos, List<PaymoipInfo> results) {
-		return MultmoipMerger.mergeWithPaymoip(results, baseInfos);
+		return MultmoipMerger.mergeWithPaymoip(baseInfos, results);
 	}
 }

@@ -32,6 +32,6 @@ final class VisiMultmoipOrdmoipPlace extends ActionVisitorTemplateAction<Multmoi
 	
 	
 	@Override protected List<MultmoipInfo> toBaseClassHook(List<MultmoipInfo> baseInfos, List<OrdmoipInfo> results) {
-		return MultmoipMerger.mergeWithOrdmoip(results, baseInfos);
+		return MultmoipMerger.mergeWithOrdmoip(baseInfos, results);
 	}
 }
