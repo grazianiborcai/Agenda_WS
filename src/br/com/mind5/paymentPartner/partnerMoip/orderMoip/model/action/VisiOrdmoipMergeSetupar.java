@@ -25,14 +25,14 @@ final class VisiOrdmoipMergeSetupar extends ActionVisitorTemplateMergeV2<Ordmoip
 	
 	
 	
-	@Override protected List<SetuparInfo> toActionClassHook(List<OrdmoipInfo> recordInfos) {
-		return SetuparCopier.copyFromOrdmoip(recordInfos);	
+	@Override protected List<SetuparInfo> toActionClassHook(List<OrdmoipInfo> baseInfos) {
+		return SetuparCopier.copyFromOrdmoip(baseInfos);	
 	}
 	
 	
 	
-	@Override protected List<OrdmoipInfo> mergeHook(List<OrdmoipInfo> recordInfos, List<SetuparInfo> selectedInfos) {	
-		return OrdmoipMerger.mergeWithSetupar(selectedInfos, recordInfos);
+	@Override protected List<OrdmoipInfo> mergeHook(List<OrdmoipInfo> baseInfos, List<SetuparInfo> selectedInfos) {	
+		return OrdmoipMerger.mergeWithSetupar(baseInfos, selectedInfos);
 	}
 	
 	

@@ -6,16 +6,13 @@ import java.util.List;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.info.OrdmoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.action.LazyOrdmoipNodePlaceL2;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.action.StdOrdmoipEnforceFeeTxt;
-import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.checker.OrdmoipCheckSyspar;
-import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.checker.OrdmoipCheckSysparData;
-import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.checker.OrdmoipCheckWriteFee;
+import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.checker.OrdmoipCheckDummy;
 
 public final class NodeOrdmoipPlaceFee extends DeciTreeWriteTemplate<OrdmoipInfo> {
 	
@@ -28,27 +25,8 @@ public final class NodeOrdmoipPlaceFee extends DeciTreeWriteTemplate<OrdmoipInfo
 	@Override protected ModelChecker<OrdmoipInfo> buildDecisionCheckerHook(DeciTreeOption<OrdmoipInfo> option) {
 		List<ModelChecker<OrdmoipInfo>> queue = new ArrayList<>();		
 		ModelChecker<OrdmoipInfo> checker;	
-		ModelCheckerOption checkerOption;
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
-		checker = new OrdmoipCheckWriteFee(checkerOption);
-		queue.add(checker);
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new OrdmoipCheckSysparData(checkerOption);
-		queue.add(checker);
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
-		checker = new OrdmoipCheckSyspar(checkerOption);
+	
+		checker = new OrdmoipCheckDummy();
 		queue.add(checker);
 
 		return new ModelCheckerQueue<>(queue);

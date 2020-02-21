@@ -4,19 +4,19 @@ import java.util.List;
 
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.payment.customerPartner.info.CusparInfo;
-import br.com.mind5.payment.customerPartner.model.checker.CusparCheckExist;
+import br.com.mind5.payment.payOrder.info.PayordInfo;
+import br.com.mind5.payment.payOrder.model.checker.PayordCheckExist;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.info.OrdmoipInfo;
 
-public final class OrdmoipCheckCuspar implements ModelChecker<OrdmoipInfo> {
+public final class OrdmoipCheckPayord implements ModelChecker<OrdmoipInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<CusparInfo> checker;
+	private ModelChecker<PayordInfo> checker;
 	
 	
-	public OrdmoipCheckCuspar(ModelCheckerOption option) {
-		checker = new CusparCheckExist(option);
+	public OrdmoipCheckPayord(ModelCheckerOption option) {
+		checker = new PayordCheckExist(option);
 	}
 	
 	
@@ -33,7 +33,7 @@ public final class OrdmoipCheckCuspar implements ModelChecker<OrdmoipInfo> {
 	
 	
 	@Override public boolean check(OrdmoipInfo recordInfo) {
-		return checker.check(recordInfo.cusparData);
+		return checker.check(PayordInfo.copyFrom(recordInfo));
 	}
 
 	

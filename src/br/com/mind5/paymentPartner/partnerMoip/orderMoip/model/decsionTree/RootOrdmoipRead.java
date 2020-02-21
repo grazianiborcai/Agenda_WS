@@ -16,8 +16,8 @@ import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.action.LazyOrdmoi
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.action.LazyOrdmoipMergeSysEnviron;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.action.LazyOrdmoipRead;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.action.StdOrdmoipMergeSetupar;
-import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.checker.OrdmoipCheckCuspar;
-import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.checker.OrdmoipCheckCusparData;
+import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.checker.OrdmoipCheckPayord;
+import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.checker.OrdmoipCheckCusparData_;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.checker.OrdmoipCheckRead;
 
 public final class RootOrdmoipRead extends DeciTreeWriteTemplate<OrdmoipInfo> {
@@ -44,14 +44,14 @@ public final class RootOrdmoipRead extends DeciTreeWriteTemplate<OrdmoipInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new OrdmoipCheckCusparData(checkerOption);
+		checker = new OrdmoipCheckCusparData_(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
-		checker = new OrdmoipCheckCuspar(checkerOption);
+		checker = new OrdmoipCheckPayord(checkerOption);
 		queue.add(checker);
 		//TODO: verificar partner = MOIP
 		return new ModelCheckerQueue<>(queue);

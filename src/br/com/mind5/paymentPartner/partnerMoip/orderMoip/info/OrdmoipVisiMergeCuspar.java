@@ -3,11 +3,11 @@ package br.com.mind5.paymentPartner.partnerMoip.orderMoip.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.business.masterData.info.SysEnvironInfo;
 import br.com.mind5.info.InfoMergerVisitorV3;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.payment.customerPartner.info.CusparInfo;
 
-final class OrdmoipVisiMergeSysEnviron implements InfoMergerVisitorV3<OrdmoipInfo, SysEnvironInfo> {
+final class OrdmoipVisiMergeCuspar implements InfoMergerVisitorV3<OrdmoipInfo, CusparInfo> {
 	
 	@Override public List<OrdmoipInfo> beforeMerge(List<OrdmoipInfo> baseInfos) {
 		return baseInfos;
@@ -15,16 +15,17 @@ final class OrdmoipVisiMergeSysEnviron implements InfoMergerVisitorV3<OrdmoipInf
 	
 	
 	
-	@Override public boolean shouldMerge(OrdmoipInfo baseInfo, SysEnvironInfo selectedInfo) {
-		return true;
+	@Override public boolean shouldMerge(OrdmoipInfo baseInfo, CusparInfo selectedInfo) {
+		return (baseInfo.codOwner    	== selectedInfo.codOwner &&
+				baseInfo.codPayCustomer == selectedInfo.codPayCustomer);
 	}
 	
 	
 	
-	@Override public List<OrdmoipInfo> merge(OrdmoipInfo baseInfo, SysEnvironInfo selectedInfo) {
+	@Override public List<OrdmoipInfo> merge(OrdmoipInfo baseInfo, CusparInfo selectedInfo) {
 		List<OrdmoipInfo> results = new ArrayList<>();
 		
-		baseInfo.codSysEnviron = selectedInfo.codSysEnviron;
+		baseInfo.cusparData = selectedInfo;
 		
 		results.add(baseInfo);
 		return results;

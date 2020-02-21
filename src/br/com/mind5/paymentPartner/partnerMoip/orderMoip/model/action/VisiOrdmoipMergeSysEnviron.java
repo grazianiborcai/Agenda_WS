@@ -24,8 +24,8 @@ final class VisiOrdmoipMergeSysEnviron extends ActionVisitorTemplateMergeV2<Ordm
 	
 	
 	
-	@Override protected List<OrdmoipInfo> mergeHook(List<OrdmoipInfo> recordInfos, List<SysEnvironInfo> selectedInfos) {	
-		return OrdmoipMerger.mergeWithSysEnviron(selectedInfos, recordInfos);
+	@Override protected List<OrdmoipInfo> mergeHook(List<OrdmoipInfo> baseInfos, List<SysEnvironInfo> selectedInfos) {	
+		return OrdmoipMerger.mergeWithSysEnviron(baseInfos, selectedInfos);
 	}
 	
 	

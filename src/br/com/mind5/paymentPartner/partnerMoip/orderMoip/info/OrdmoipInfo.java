@@ -13,8 +13,12 @@ import br.com.moip.models.Setup;
 
 public final class OrdmoipInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
+	public long codPayOrder;
+	public int codPayOrderItem;	
+	public long codPayCustomer;	
 	public int itemNum;
 	public String ownId;
+	
 	public String idOrderPartner;
 	public String statusOrderPartner;
 	public String idPaymentPartner;
@@ -26,7 +30,7 @@ public final class OrdmoipInfo extends InfoRecord implements Cloneable {
 	public String productTxt;
 	public String detailTxt;
 	public PayordemInfo payordemData;
-	public CusparInfo cusparData;
+	public CusparInfo cusparData;		
 	public SysparInfo sysparData;
 	public SetuparInfo setuparData;
 	public Map<String, Object> subtotal;
@@ -46,6 +50,9 @@ public final class OrdmoipInfo extends InfoRecord implements Cloneable {
 		super(OrdmoipInfo.class);
 		
 		codOwner = DefaultValue.character();
+		codPayOrder = DefaultValue.character();
+		codPayOrderItem = DefaultValue.character();
+		codPayCustomer = DefaultValue.character();	
 		itemNum = DefaultValue.character();
 		codFeeCateg = DefaultValue.character();
 		payordemData = DefaultValue.object();
@@ -122,8 +129,9 @@ public final class OrdmoipInfo extends InfoRecord implements Cloneable {
 	@Override public int hashCode() {
 		int result = 17;
 		
-		if (payordemData != null)
-			result = result * 31 * (payordemData.hashCode() ^ (payordemData.hashCode() >>> 32));
+		result = result * 31 + (int) (codOwner    		^ (codOwner    		>>> 32));
+		result = result * 31 + (int) (codPayOrder 		^ (codPayOrder 		>>> 32));
+		result = result * 31 + (int) (codPayOrderItem 	^ (codPayOrderItem 	>>> 32));
 		
 		return result;
 	}
@@ -140,6 +148,8 @@ public final class OrdmoipInfo extends InfoRecord implements Cloneable {
 		
 		
 		OrdmoipInfo obj = (OrdmoipInfo) o;		
-		return (super.isRecordEqual(payordemData, obj.payordemData));
+		return (codOwner    	== obj.codOwner    		&& 
+				codPayOrder 	== obj.codPayOrder		&&
+				codPayOrderItem == obj.codPayOrderItem);
 	}
 }

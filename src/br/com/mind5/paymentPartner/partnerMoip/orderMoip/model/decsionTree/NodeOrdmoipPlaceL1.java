@@ -10,7 +10,6 @@ import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.info.OrdmoipInfo;
-import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.checker.OrdmoipCheckCusparData;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.checker.OrdmoipCheckIsFee;
 
 public final class NodeOrdmoipPlaceL1 extends DeciTreeWriteTemplate<OrdmoipInfo> {
@@ -25,13 +24,6 @@ public final class NodeOrdmoipPlaceL1 extends DeciTreeWriteTemplate<OrdmoipInfo>
 		List<ModelChecker<OrdmoipInfo>> queue = new ArrayList<>();		
 		ModelChecker<OrdmoipInfo> checker;	
 		ModelCheckerOption checkerOption;
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new OrdmoipCheckCusparData(checkerOption);
-		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;

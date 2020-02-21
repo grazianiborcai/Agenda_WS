@@ -8,14 +8,14 @@ import br.com.mind5.payment.systemPartner.info.SysparInfo;
 import br.com.mind5.payment.systemPartner.model.checker.SysparCheckExist;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.info.OrdmoipInfo;
 
-public final class OrdmoipCheckSyspar implements ModelChecker<OrdmoipInfo> {
+public final class OrdmoipCheckSyspar_ implements ModelChecker<OrdmoipInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
 	private ModelChecker<SysparInfo> checker;
 	
 	
-	public OrdmoipCheckSyspar(ModelCheckerOption option) {
+	public OrdmoipCheckSyspar_(ModelCheckerOption option) {
 		checker = new SysparCheckExist(option);
 	}
 	

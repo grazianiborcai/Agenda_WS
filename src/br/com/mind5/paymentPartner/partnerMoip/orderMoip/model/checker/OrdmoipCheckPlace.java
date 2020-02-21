@@ -16,18 +16,13 @@ public final class OrdmoipCheckPlace extends ModelCheckerTemplateSimpleV2<Ordmoi
 	
 	
 	@Override protected boolean checkHook(OrdmoipInfo recordInfo, Connection conn, String schemaName) {	
-		if ( recordInfo.payordemData == null )	
-			return super.FAILED;
 		
-		if ( recordInfo.payordemData.codOwner 	 		<= 0 	|| 
-			 recordInfo.payordemData.codPayPartner 		<= 0 	|| 
-			 recordInfo.payordemData.codPayOrder 		<= 0 	|| 
-			 recordInfo.payordemData.codPayOrderItem 	<= 0 	|| 
-			 recordInfo.payordemData.quantity 	 		<= 0 	|| 
-			 recordInfo.payordemData.price 	  	 		<= 0 	||
-			 recordInfo.payordemData.itemReceiver 		== null ||
-			 recordInfo.payordemData.codLanguage 		== null ||
-			 recordInfo.payordemData.username 			== null		)	
+		if ( recordInfo.codOwner 	 	<= 0 	|| 
+			 recordInfo.codPayOrder 	<= 0 	|| 
+			 recordInfo.codPayOrderItem <= 0 	||
+			 recordInfo.codLanguage 	== null ||
+			 recordInfo.username 		== null		)	
+			
 			return super.FAILED;
 		
 		

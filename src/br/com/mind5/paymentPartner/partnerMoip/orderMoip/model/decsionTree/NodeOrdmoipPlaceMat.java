@@ -14,7 +14,7 @@ import br.com.mind5.paymentPartner.partnerMoip.orderMoip.info.OrdmoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.action.LazyOrdmoipNodePlaceL2;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.action.StdOrdmoipEnforceMatTxt;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.checker.OrdmoipCheckMatData;
-import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.checker.OrdmoipCheckPayordemData;
+import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.checker.OrdmoipCheckPayordemData_;
 
 public final class NodeOrdmoipPlaceMat extends DeciTreeWriteTemplate<OrdmoipInfo> {
 	
@@ -33,7 +33,7 @@ public final class NodeOrdmoipPlaceMat extends DeciTreeWriteTemplate<OrdmoipInfo
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new OrdmoipCheckPayordemData(checkerOption);
+		checker = new OrdmoipCheckPayordemData_(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
