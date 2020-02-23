@@ -10,25 +10,25 @@ import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.info.OrdmoipInfo;
-import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.action.LazyOrdmoipNodePlaceL2;
-import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.action.StdOrdmoipEnforceMatTxt;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.checker.OrdmoipCheckDummy;
+import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.action.LazyOrdmoipNodeCusparL2;
+import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.action.StdOrdmoipMergeCuspar;
 
-public final class NodeOrdmoipPlaceMat extends DeciTreeWriteTemplate<OrdmoipInfo> {
+public final class NodeOrdmoipCusparL1 extends DeciTreeWriteTemplate<OrdmoipInfo> {
 	
-	public NodeOrdmoipPlaceMat(DeciTreeOption<OrdmoipInfo> option) {
+	public NodeOrdmoipCusparL1(DeciTreeOption<OrdmoipInfo> option) {
 		super(option);
 	}
 	
 	
 	
-	@Override protected ModelChecker<OrdmoipInfo> buildDecisionCheckerHook(DeciTreeOption<OrdmoipInfo> option) {			
+	@Override protected ModelChecker<OrdmoipInfo> buildDecisionCheckerHook(DeciTreeOption<OrdmoipInfo> option) {
 		List<ModelChecker<OrdmoipInfo>> queue = new ArrayList<>();		
-		ModelChecker<OrdmoipInfo> checker;
-
+		ModelChecker<OrdmoipInfo> checker;	
+	
 		checker = new OrdmoipCheckDummy();
 		queue.add(checker);
-
+		
 		return new ModelCheckerQueue<>(queue);
 	}
 	
@@ -37,13 +37,12 @@ public final class NodeOrdmoipPlaceMat extends DeciTreeWriteTemplate<OrdmoipInfo
 	@Override protected List<ActionStd<OrdmoipInfo>> buildActionsOnPassedHook(DeciTreeOption<OrdmoipInfo> option) {
 		List<ActionStd<OrdmoipInfo>> actions = new ArrayList<>();	
 		
-		ActionStd<OrdmoipInfo> enforceMatTxt = new StdOrdmoipEnforceMatTxt(option);	
-		ActionLazy<OrdmoipInfo> nodePlaceL2 = new LazyOrdmoipNodePlaceL2(option.conn, option.schemaName);
+		ActionStd<OrdmoipInfo> mergeCuspar = new StdOrdmoipMergeCuspar(option);	
+		ActionLazy<OrdmoipInfo> nodeL2 = new LazyOrdmoipNodeCusparL2(option.conn, option.schemaName);
 		
+		mergeCuspar.addPostAction(nodeL2);
 		
-		enforceMatTxt.addPostAction(nodePlaceL2);
-		
-		actions.add(enforceMatTxt);		
+		actions.add(mergeCuspar);		
 		return actions;
 	}
 }

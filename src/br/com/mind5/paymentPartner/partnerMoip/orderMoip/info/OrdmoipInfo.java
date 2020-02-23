@@ -7,6 +7,7 @@ import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
 import br.com.mind5.payment.payOrderItem.info.PayordemInfo;
+import br.com.mind5.payment.payOrderList.info.PayordistInfo;
 import br.com.mind5.payment.setupPartner.info.SetuparInfo;
 import br.com.mind5.payment.systemPartner.info.SysparInfo;
 import br.com.moip.models.Setup;
@@ -15,20 +16,17 @@ public final class OrdmoipInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codPayOrder;
 	public int codPayOrderItem;	
-	public long codPayCustomer;	
 	public int itemNum;
-	public String ownId;
-	
+	public String ownId;	
 	public String idOrderPartner;
 	public String statusOrderPartner;
 	public String idPaymentPartner;
 	public String statusPaymentPartner;
 	public String idRefundPartner;
 	public String statusRefundPartner;
-	public char codFeeCateg;
-	public String txtFeeCateg;
 	public String productTxt;
 	public String detailTxt;
+	public PayordistInfo payordistData;
 	public PayordemInfo payordemData;
 	public CusparInfo cusparData;		
 	public SysparInfo sysparData;
@@ -52,9 +50,8 @@ public final class OrdmoipInfo extends InfoRecord implements Cloneable {
 		codOwner = DefaultValue.character();
 		codPayOrder = DefaultValue.character();
 		codPayOrderItem = DefaultValue.character();
-		codPayCustomer = DefaultValue.character();	
 		itemNum = DefaultValue.character();
-		codFeeCateg = DefaultValue.character();
+		payordistData = DefaultValue.object();
 		payordemData = DefaultValue.object();
 		cusparData = DefaultValue.object();
 		sysparData = DefaultValue.object();
@@ -80,12 +77,23 @@ public final class OrdmoipInfo extends InfoRecord implements Cloneable {
 	
 	@Override public Object clone() throws CloneNotSupportedException {
 		OrdmoipInfo deepCopy = (OrdmoipInfo) super.clone();		
+		
+		deepCopy.payordistData = clonePayordist(deepCopy.payordistData);
 		deepCopy.payordemData = clonePayordem(deepCopy.payordemData);
 		deepCopy.cusparData = cloneCuspar(deepCopy.cusparData);
 		deepCopy.sysparData = cloneSyspar(deepCopy.sysparData);
 		deepCopy.setuparData = cloneSetupar(deepCopy.setuparData);
 		
 		return deepCopy;
+	}
+	
+	
+	
+	private PayordistInfo clonePayordist(PayordistInfo recordInfo) throws CloneNotSupportedException {
+		if (recordInfo == null)
+			return null;
+		
+		return (PayordistInfo) recordInfo.clone();
 	}
 	
 	

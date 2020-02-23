@@ -16,8 +16,8 @@ final class OrdmoipVisiMergeCuspar implements InfoMergerVisitorV3<OrdmoipInfo, C
 	
 	
 	@Override public boolean shouldMerge(OrdmoipInfo baseInfo, CusparInfo selectedInfo) {
-		return (baseInfo.codOwner    	== selectedInfo.codOwner &&
-				baseInfo.codPayCustomer == selectedInfo.codPayCustomer);
+		return (baseInfo.codOwner    				  == selectedInfo.codOwner &&
+				baseInfo.payordistData.codPayCustomer == selectedInfo.codPayCustomer);
 	}
 	
 	

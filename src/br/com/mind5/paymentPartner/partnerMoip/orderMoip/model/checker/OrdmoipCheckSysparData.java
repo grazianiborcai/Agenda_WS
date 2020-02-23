@@ -7,19 +7,19 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.info.OrdmoipInfo;
 
-public final class OrdmoipCheckPayordemData_ extends ModelCheckerTemplateSimpleV2<OrdmoipInfo> {
+public final class OrdmoipCheckSysparData extends ModelCheckerTemplateSimpleV2<OrdmoipInfo> {
 
-	public OrdmoipCheckPayordemData_(ModelCheckerOption option) {
+	public OrdmoipCheckSysparData(ModelCheckerOption option) {
 		super(option);
 	}
 	
 	
 	
-	@Override protected boolean checkHook(OrdmoipInfo recordInfo, Connection conn, String schemaName) {	
-		if ( recordInfo.payordemData == null )	
+	@Override protected boolean checkHook(OrdmoipInfo recordInfo, Connection conn, String schemaName) {			
+		if ( recordInfo.sysparData == null )	
 			return super.FAILED;
 		
-		if ( recordInfo.payordemData.codStore <= 0 )	
+		if ( recordInfo.sysparData.idPayPartnerSystem == null )	
 			return super.FAILED;
 		
 		

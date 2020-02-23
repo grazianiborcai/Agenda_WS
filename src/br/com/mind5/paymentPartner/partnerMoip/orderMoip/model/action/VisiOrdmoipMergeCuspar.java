@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.payment.customerPartner.info.CusparCopier;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
 import br.com.mind5.payment.customerPartner.model.decisionTree.RootCusparSelect;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.info.OrdmoipInfo;
@@ -24,6 +25,12 @@ final class VisiOrdmoipMergeCuspar extends ActionVisitorTemplateMergeV2<OrdmoipI
 	
 	
 	
+	@Override protected List<CusparInfo> toActionClassHook(List<OrdmoipInfo> recordInfos) {
+		return CusparCopier.copyFromOrdmoip(recordInfos);
+	}
+	
+	
+	
 	@Override protected List<OrdmoipInfo> mergeHook(List<OrdmoipInfo> baseInfos, List<CusparInfo> selectedInfos) {	
 		return OrdmoipMerger.mergeWithCuspar(baseInfos, selectedInfos);
 	}
@@ -31,6 +38,6 @@ final class VisiOrdmoipMergeCuspar extends ActionVisitorTemplateMergeV2<OrdmoipI
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV2.MERGE_WHEN_EMPTY;
 	}
 }

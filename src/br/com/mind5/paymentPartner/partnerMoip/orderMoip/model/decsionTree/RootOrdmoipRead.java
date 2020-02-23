@@ -17,7 +17,7 @@ import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.action.LazyOrdmoi
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.action.LazyOrdmoipRead;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.action.StdOrdmoipMergeSetupar;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.checker.OrdmoipCheckPayord;
-import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.checker.OrdmoipCheckCusparData_;
+import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.checker.OrdmoipCheckCusparData;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.checker.OrdmoipCheckRead;
 
 public final class RootOrdmoipRead extends DeciTreeWriteTemplate<OrdmoipInfo> {
@@ -44,7 +44,7 @@ public final class RootOrdmoipRead extends DeciTreeWriteTemplate<OrdmoipInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new OrdmoipCheckCusparData_(checkerOption);
+		checker = new OrdmoipCheckCusparData(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();

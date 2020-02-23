@@ -8,8 +8,8 @@ public final class OrdmoipSetterFeeTxt implements InfoSetter<OrdmoipInfo> {
 	public OrdmoipInfo setAttr(OrdmoipInfo recordInfo) {
 		checkArgument(recordInfo);
 		
-		recordInfo.productTxt = recordInfo.txtFeeCateg;
-		recordInfo.detailTxt = recordInfo.txtFeeCateg;
+		recordInfo.productTxt = recordInfo.payordemData.txtFeeCateg;
+		recordInfo.detailTxt = recordInfo.payordemData.txtFeeCateg;
 
 		return recordInfo;
 	}

@@ -17,7 +17,7 @@ public final class OrdmoipCheckIsFee extends ModelCheckerTemplateSimpleV2<Ordmoi
 	
 	
 	@Override protected boolean checkHook(OrdmoipInfo recordInfo, Connection conn, String schemaName) {	
-		if ( recordInfo.payordemData.codFeeCateg == DefaultValue.character())			
+		if ( recordInfo.payordemData.codFeeCateg == DefaultValue.character() )			
 			return super.FAILED;
 		
 		

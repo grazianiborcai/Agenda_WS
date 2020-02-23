@@ -25,7 +25,7 @@ final class OrdmoipVisiMergePayordist implements InfoMergerVisitorV3<OrdmoipInfo
 	@Override public List<OrdmoipInfo> merge(OrdmoipInfo baseInfo, PayordistInfo selectedInfo) {
 		List<OrdmoipInfo> results = new ArrayList<>();
 		
-		baseInfo.codPayCustomer = selectedInfo.codPayCustomer;
+		baseInfo.payordistData = selectedInfo;
 		
 		results.add(baseInfo);
 		return results;

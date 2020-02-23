@@ -13,12 +13,11 @@ import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.info.OrdmoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.checker.OrdmoipCheckPayord;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.checker.OrdmoipCheckPayordem;
-import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.action.LazyOrdmoipMergeCuspar;
-import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.action.LazyOrdmoipMergePayordem;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.action.LazyOrdmoipMergeSetupar;
-import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.action.LazyOrdmoipMergeSyspar;
+import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.action.LazyOrdmoipNodeCusparL1;
+import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.action.LazyOrdmoipNodePayordemL1;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.action.LazyOrdmoipNodePlaceL1;
-import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.action.StdOrdmoipMergePayordist;
+import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.action.LazyOrdmoipNodeSysparL1;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.checker.OrdmoipCheckPlace;
 
 public final class RootOrdmoipPlace extends DeciTreeWriteTemplate<OrdmoipInfo> {
@@ -63,20 +62,20 @@ public final class RootOrdmoipPlace extends DeciTreeWriteTemplate<OrdmoipInfo> {
 	@Override protected List<ActionStd<OrdmoipInfo>> buildActionsOnPassedHook(DeciTreeOption<OrdmoipInfo> option) {
 		List<ActionStd<OrdmoipInfo>> actions = new ArrayList<>();	
 		
-		ActionStd<OrdmoipInfo> mergePayordist = new StdOrdmoipMergePayordist(option);	
-		ActionLazy<OrdmoipInfo> mergePayordem = new LazyOrdmoipMergePayordem(option.conn, option.schemaName);
-		ActionLazy<OrdmoipInfo> mergeCuspar = new LazyOrdmoipMergeCuspar(option.conn, option.schemaName);
-		ActionLazy<OrdmoipInfo> mergeSyspar = new LazyOrdmoipMergeSyspar(option.conn, option.schemaName);
+		ActionStd<OrdmoipInfo> nodePayordist = new NodeOrdmoipPayordistL1(option).toAction();	
+		ActionLazy<OrdmoipInfo> nodePayordem = new LazyOrdmoipNodePayordemL1(option.conn, option.schemaName);
+		ActionLazy<OrdmoipInfo> nodeCuspar = new LazyOrdmoipNodeCusparL1(option.conn, option.schemaName);
+		ActionLazy<OrdmoipInfo> nodeSyspar = new LazyOrdmoipNodeSysparL1(option.conn, option.schemaName);
 		ActionLazy<OrdmoipInfo> mergeSetupar = new LazyOrdmoipMergeSetupar(option.conn, option.schemaName);		
 		ActionLazy<OrdmoipInfo> nodePlaceL1 = new LazyOrdmoipNodePlaceL1(option.conn, option.schemaName);	
 		
-		mergePayordist.addPostAction(mergePayordem);
-		mergePayordem.addPostAction(mergeCuspar);
-		mergeCuspar.addPostAction(mergeSyspar);
-		mergeSyspar.addPostAction(mergeSetupar);
+		nodePayordist.addPostAction(nodePayordem);
+		nodePayordem.addPostAction(nodeCuspar);
+		nodeCuspar.addPostAction(nodeSyspar);
+		nodeSyspar.addPostAction(mergeSetupar);
 		mergeSetupar.addPostAction(nodePlaceL1);
 		
-		actions.add(mergePayordist);		
+		actions.add(nodePayordist);		
 		return actions;
 	}
 }

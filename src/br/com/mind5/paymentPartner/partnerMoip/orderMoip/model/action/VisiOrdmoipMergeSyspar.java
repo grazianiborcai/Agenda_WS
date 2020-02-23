@@ -31,6 +31,6 @@ final class VisiOrdmoipMergeSyspar extends ActionVisitorTemplateMergeV2<OrdmoipI
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV2.MERGE_WHEN_EMPTY;
 	}
 }
