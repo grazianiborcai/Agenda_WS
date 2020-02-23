@@ -65,6 +65,7 @@ public final class MatlisSelectSingle extends DaoStmtTemplate<MatlisInfo> {
 				
 				do {
 					MatlisInfo dataInfo = new MatlisInfo();
+					
 					dataInfo.codOwner = stmtResult.getLong(MatlisDbTableColumn.COL_COD_OWNER);
 					dataInfo.codMat = stmtResult.getLong(MatlisDbTableColumn.COL_COD_MATERIAL);
 					dataInfo.codType = stmtResult.getInt(MatlisDbTableColumn.COL_COD_TYPE);
