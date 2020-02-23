@@ -17,6 +17,7 @@ public final class PayordemInfo extends InfoRecord implements Cloneable, Compara
 	public long codPayOrder;
 	public int codPayOrderItem;
 	public char codFeeCateg;
+	public String txtFeeCateg;
 	public long codOrder;
 	public int codOrderItem;
 	public long codStore;

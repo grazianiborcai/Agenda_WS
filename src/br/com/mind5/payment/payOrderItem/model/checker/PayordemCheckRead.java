@@ -16,10 +16,11 @@ public final class PayordemCheckRead extends ModelCheckerTemplateSimpleV2<Payord
 	
 	
 	@Override protected boolean checkHook(PayordemInfo recordInfo, Connection conn, String schemaName) {	
-		if ( recordInfo.codOwner 	<= 0 	|| 
-			 recordInfo.codPayOrder	<= 0 	||
-			 recordInfo.username	== null ||
-			 recordInfo.codLanguage	== null		)
+		if ( recordInfo.codOwner 		<= 0 	|| 
+			 recordInfo.codPayOrder		<= 0 	||
+			 recordInfo.codPayOrderItem	<= 0 	||
+			 recordInfo.username		== null ||
+			 recordInfo.codLanguage		== null		)
 			
 			return super.FAILED;
 		
