@@ -13,6 +13,7 @@ final class CusparCopyPayord extends InfoCopierTemplate<CusparInfo, PayordInfo>{
 	
 	@Override protected CusparInfo makeCopyHook(PayordInfo source) {
 		CusparInfo result = new CusparInfo();
+		
 		result.codOwner = source.codOwner;
 		result.codPayCustomer = source.codPayCustomer;	
 		result.codLanguage = source.codLanguage;	

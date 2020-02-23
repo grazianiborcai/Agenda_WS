@@ -1,21 +1,21 @@
 package br.com.mind5.payment.customerPartner.info;
 
 import br.com.mind5.info.InfoCopierTemplate;
-import br.com.mind5.payment.statusPayOrder.info.PaytusInfo;
+import br.com.mind5.paymentPartner.partnerMoip.orderMoip.info.OrdmoipInfo;
 
-final class CusparCopyPaytus extends InfoCopierTemplate<CusparInfo, PaytusInfo>{
+final class CusparCopyOrdmoip extends InfoCopierTemplate<CusparInfo, OrdmoipInfo>{
 	
-	public CusparCopyPaytus() {
+	public CusparCopyOrdmoip() {
 		super();
 	}
 	
 	
 	
-	@Override protected CusparInfo makeCopyHook(PaytusInfo source) {
+	@Override protected CusparInfo makeCopyHook(OrdmoipInfo source) {
 		CusparInfo result = new CusparInfo();
 		
 		result.codOwner = source.codOwner;
-		result.codPayCustomer = source.codPayCustomer;	
+		result.codPayCustomer = source.payordistData.codPayCustomer;	
 		result.codLanguage = source.codLanguage;	
 		result.username = source.username;	
 		

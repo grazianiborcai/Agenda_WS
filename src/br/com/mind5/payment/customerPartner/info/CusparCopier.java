@@ -8,8 +8,23 @@ import br.com.mind5.payment.creditCard.info.CrecardInfo;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
 import br.com.mind5.payment.statusPayOrder.info.PaytusInfo;
+import br.com.mind5.paymentPartner.partnerMoip.orderMoip.info.OrdmoipInfo;
 
 public final class CusparCopier {	
+	public static CusparInfo copyFromOrdmoip(OrdmoipInfo source) {
+		InfoCopier<CusparInfo, OrdmoipInfo> copier = new CusparCopyOrdmoip();
+		return copier.makeCopy(source);
+	}
+	
+	
+	
+	public static List<CusparInfo> copyFromOrdmoip(List<OrdmoipInfo> sources) {
+		InfoCopier<CusparInfo, OrdmoipInfo> copier = new CusparCopyOrdmoip();
+		return copier.makeCopy(sources);
+	}	
+	
+	
+	
 	public static CusparInfo copyFromCrecard(CrecardInfo source) {
 		InfoCopier<CusparInfo, CrecardInfo> copier = new CusparCopyCrecard();
 		return copier.makeCopy(source);
@@ -20,7 +35,7 @@ public final class CusparCopier {
 	public static List<CusparInfo> copyFromCrecard(List<CrecardInfo> sources) {
 		InfoCopier<CusparInfo, CrecardInfo> copier = new CusparCopyCrecard();
 		return copier.makeCopy(sources);
-	}	
+	}
 	
 	
 	
