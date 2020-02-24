@@ -1,19 +1,14 @@
 package br.com.mind5.paymentPartner.partnerMoip.orderMoip.info;
 
-import static br.com.moip.helpers.PayloadFactory.payloadFactory;
-import static br.com.moip.helpers.PayloadFactory.value;
-
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.InfoSetter;
 
-public final class OrdmoipSetterAccount implements InfoSetter<OrdmoipInfo> {
+public final class OrdmoipSetterReceiverSys implements InfoSetter<OrdmoipInfo> {
 	
 	public OrdmoipInfo setAttr(OrdmoipInfo recordInfo) {
 		checkArgument(recordInfo);
 		
-		recordInfo.account = payloadFactory(
-			    value("id", recordInfo.itemReceiver)
-				);	
+		recordInfo.itemReceiver = recordInfo.sysparData.idPayPartnerSystem;
 
 		return recordInfo;
 	}

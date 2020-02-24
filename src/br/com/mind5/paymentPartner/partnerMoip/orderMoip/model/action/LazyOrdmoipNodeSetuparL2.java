@@ -8,10 +8,11 @@ import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.info.OrdmoipInfo;
+import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.decsionTree.NodeOrdmoipSetuparL2;
 
-public final class LazyOrdmoipMergeSetupar extends ActionLazyTemplate<OrdmoipInfo, OrdmoipInfo> {
-
-	public LazyOrdmoipMergeSetupar(Connection conn, String schemaName) {
+public final class LazyOrdmoipNodeSetuparL2 extends ActionLazyTemplate<OrdmoipInfo, OrdmoipInfo> {
+	
+	public LazyOrdmoipNodeSetuparL2(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +25,7 @@ public final class LazyOrdmoipMergeSetupar extends ActionLazyTemplate<OrdmoipInf
 	
 	
 	@Override protected ActionStd<OrdmoipInfo> getInstanceOfActionHook(DeciTreeOption<OrdmoipInfo> option) {
-		return new StdOrdmoipMergeSetupar(option);
+		return new NodeOrdmoipSetuparL2(option).toAction();
 	}
 	
 	

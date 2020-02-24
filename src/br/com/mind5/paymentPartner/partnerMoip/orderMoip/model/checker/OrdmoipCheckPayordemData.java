@@ -42,10 +42,9 @@ public final class OrdmoipCheckPayordemData extends ModelCheckerTemplateSimpleV2
 			 recordInfo.payordemData.codFeeCateg == DefaultValue.character() )				
 			return super.FAILED;
 		
-		if ( recordInfo.payordemData.quantity 		<= 0		||
-			 recordInfo.payordemData.price 	  		<= 0		||
-			 recordInfo.payordemData.codCurr 	 	== null		||
-			 recordInfo.payordemData.itemReceiver  	== null			)	//TODO: trazer regras pra ordmoip				
+		if ( recordInfo.payordemData.quantity 	<= 0	||
+			 recordInfo.payordemData.price 	  	<= 0	||
+			 recordInfo.payordemData.codCurr 	== null		)			
 			return super.FAILED;
 		
 		return super.SUCCESS;
@@ -76,6 +75,10 @@ public final class OrdmoipCheckPayordemData extends ModelCheckerTemplateSimpleV2
 		
 		if ( recordInfo.payordemData.matlisData.txtMat 	 	== null || 
 			 recordInfo.payordemData.matlisData.txtMatCateg == null 	)	
+			return super.FAILED;
+		
+		
+		if ( recordInfo.payordemData.codStore <= 0 )
 			return super.FAILED;
 		
 		

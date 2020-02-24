@@ -10,7 +10,9 @@ import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.info.OrdmoipInfo;
+import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.action.LazyOrdmoipEnforceReceiverStore;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.action.LazyOrdmoipNodePlaceL2;
+import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.action.LazyOrdmoipNodeStoparL1;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.action.StdOrdmoipEnforceMatTxt;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.checker.OrdmoipCheckDummy;
 
@@ -38,10 +40,13 @@ public final class NodeOrdmoipPlaceMat extends DeciTreeWriteTemplate<OrdmoipInfo
 		List<ActionStd<OrdmoipInfo>> actions = new ArrayList<>();	
 		
 		ActionStd<OrdmoipInfo> enforceMatTxt = new StdOrdmoipEnforceMatTxt(option);	
-		ActionLazy<OrdmoipInfo> nodePlaceL2 = new LazyOrdmoipNodePlaceL2(option.conn, option.schemaName);
+		ActionLazy<OrdmoipInfo> nodeStopar = new LazyOrdmoipNodeStoparL1(option.conn, option.schemaName);
+		ActionLazy<OrdmoipInfo> enforceReceiverStore = new LazyOrdmoipEnforceReceiverStore(option.conn, option.schemaName);
+		ActionLazy<OrdmoipInfo> nodeL2 = new LazyOrdmoipNodePlaceL2(option.conn, option.schemaName);		
 		
-		
-		enforceMatTxt.addPostAction(nodePlaceL2);
+		enforceMatTxt.addPostAction(nodeStopar);
+		nodeStopar.addPostAction(enforceReceiverStore);
+		enforceReceiverStore.addPostAction(nodeL2);
 		
 		actions.add(enforceMatTxt);		
 		return actions;

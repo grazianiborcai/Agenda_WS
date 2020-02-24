@@ -9,6 +9,7 @@ import br.com.mind5.payment.customerPartner.info.CusparInfo;
 import br.com.mind5.payment.payOrderItem.info.PayordemInfo;
 import br.com.mind5.payment.payOrderList.info.PayordistInfo;
 import br.com.mind5.payment.setupPartner.info.SetuparInfo;
+import br.com.mind5.payment.storePartner.info.StoparInfo;
 import br.com.mind5.payment.systemPartner.info.SysparInfo;
 import br.com.moip.models.Setup;
 
@@ -17,7 +18,8 @@ public final class OrdmoipInfo extends InfoRecord implements Cloneable {
 	public long codPayOrder;
 	public int codPayOrderItem;	
 	public int itemNum;
-	public String ownId;	
+	public String ownId;
+	public String itemReceiver;
 	public String idOrderPartner;
 	public String statusOrderPartner;
 	public String idPaymentPartner;
@@ -31,6 +33,7 @@ public final class OrdmoipInfo extends InfoRecord implements Cloneable {
 	public CusparInfo cusparData;		
 	public SysparInfo sysparData;
 	public SetuparInfo setuparData;
+	public StoparInfo stoparData;
 	public Map<String, Object> subtotal;
 	public Map<String, Object> amount;
 	public List<Map<String, Object>> products;
@@ -56,6 +59,7 @@ public final class OrdmoipInfo extends InfoRecord implements Cloneable {
 		cusparData = DefaultValue.object();
 		sysparData = DefaultValue.object();
 		setuparData = DefaultValue.object();
+		stoparData = DefaultValue.object();
 		products = DefaultValue.list();
 		receivers = DefaultValue.list();
 		codSysEnviron = DefaultValue.getCodEnvironment();
@@ -83,6 +87,7 @@ public final class OrdmoipInfo extends InfoRecord implements Cloneable {
 		deepCopy.cusparData = cloneCuspar(deepCopy.cusparData);
 		deepCopy.sysparData = cloneSyspar(deepCopy.sysparData);
 		deepCopy.setuparData = cloneSetupar(deepCopy.setuparData);
+		deepCopy.stoparData = cloneStopar(deepCopy.stoparData);
 		
 		return deepCopy;
 	}
@@ -131,6 +136,15 @@ public final class OrdmoipInfo extends InfoRecord implements Cloneable {
 		
 		return (SetuparInfo) recordInfo.clone();
 	}		
+	
+	
+	
+	private StoparInfo cloneStopar(StoparInfo recordInfo) throws CloneNotSupportedException {
+		if (recordInfo == null)
+			return null;
+		
+		return (StoparInfo) recordInfo.clone();
+	}	
 	
 	
 	

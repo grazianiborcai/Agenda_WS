@@ -9,10 +9,24 @@ import br.com.mind5.payment.customerPartner.info.CusparInfo;
 import br.com.mind5.payment.payOrderItem.info.PayordemInfo;
 import br.com.mind5.payment.payOrderList.info.PayordistInfo;
 import br.com.mind5.payment.setupPartner.info.SetuparInfo;
+import br.com.mind5.payment.storePartner.info.StoparInfo;
 import br.com.mind5.payment.systemPartner.info.SysparInfo;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.info.OrdmoipInfo;
 
 public final class OrdmoipMerger {
+	public static List<OrdmoipInfo> mergeWithStopar(List<OrdmoipInfo> baseInfos, List<StoparInfo> selectedInfos) {
+		InfoMergerBuilderV3<OrdmoipInfo, StoparInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new OrdmoipVisiMergeStopar());
+		InfoMergerV3<OrdmoipInfo, StoparInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	
 	public static List<OrdmoipInfo> mergeWithSyspar(List<OrdmoipInfo> baseInfos, List<SysparInfo> selectedInfos) {
 		InfoMergerBuilderV3<OrdmoipInfo, SysparInfo> builder = new InfoMergerBuilderV3<>();
 		

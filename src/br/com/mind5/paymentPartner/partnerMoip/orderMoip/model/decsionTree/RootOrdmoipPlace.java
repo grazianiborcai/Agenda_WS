@@ -13,11 +13,10 @@ import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.info.OrdmoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.checker.OrdmoipCheckPayord;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.checker.OrdmoipCheckPayordem;
-import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.action.LazyOrdmoipMergeSetupar;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.action.LazyOrdmoipNodeCusparL1;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.action.LazyOrdmoipNodePayordemL1;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.action.LazyOrdmoipNodePlaceL1;
-import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.action.LazyOrdmoipNodeSysparL1;
+import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.action.LazyOrdmoipNodeSetuparL1;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.checker.OrdmoipCheckPlace;
 
 public final class RootOrdmoipPlace extends DeciTreeWriteTemplate<OrdmoipInfo> {
@@ -65,15 +64,13 @@ public final class RootOrdmoipPlace extends DeciTreeWriteTemplate<OrdmoipInfo> {
 		ActionStd<OrdmoipInfo> nodePayordist = new NodeOrdmoipPayordistL1(option).toAction();	
 		ActionLazy<OrdmoipInfo> nodePayordem = new LazyOrdmoipNodePayordemL1(option.conn, option.schemaName);
 		ActionLazy<OrdmoipInfo> nodeCuspar = new LazyOrdmoipNodeCusparL1(option.conn, option.schemaName);
-		ActionLazy<OrdmoipInfo> nodeSyspar = new LazyOrdmoipNodeSysparL1(option.conn, option.schemaName);
-		ActionLazy<OrdmoipInfo> mergeSetupar = new LazyOrdmoipMergeSetupar(option.conn, option.schemaName);		
+		ActionLazy<OrdmoipInfo> nodeSetupar = new LazyOrdmoipNodeSetuparL1(option.conn, option.schemaName);		
 		ActionLazy<OrdmoipInfo> nodeL1 = new LazyOrdmoipNodePlaceL1(option.conn, option.schemaName);	
 		
 		nodePayordist.addPostAction(nodePayordem);
 		nodePayordem.addPostAction(nodeCuspar);
-		nodeCuspar.addPostAction(nodeSyspar);
-		nodeSyspar.addPostAction(mergeSetupar);
-		mergeSetupar.addPostAction(nodeL1);
+		nodeCuspar.addPostAction(nodeSetupar);
+		nodeSetupar.addPostAction(nodeL1);
 		
 		actions.add(nodePayordist);		
 		return actions;
