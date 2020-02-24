@@ -67,13 +67,13 @@ public final class RootOrdmoipPlace extends DeciTreeWriteTemplate<OrdmoipInfo> {
 		ActionLazy<OrdmoipInfo> nodeCuspar = new LazyOrdmoipNodeCusparL1(option.conn, option.schemaName);
 		ActionLazy<OrdmoipInfo> nodeSyspar = new LazyOrdmoipNodeSysparL1(option.conn, option.schemaName);
 		ActionLazy<OrdmoipInfo> mergeSetupar = new LazyOrdmoipMergeSetupar(option.conn, option.schemaName);		
-		ActionLazy<OrdmoipInfo> nodePlaceL1 = new LazyOrdmoipNodePlaceL1(option.conn, option.schemaName);	
+		ActionLazy<OrdmoipInfo> nodeL1 = new LazyOrdmoipNodePlaceL1(option.conn, option.schemaName);	
 		
 		nodePayordist.addPostAction(nodePayordem);
 		nodePayordem.addPostAction(nodeCuspar);
 		nodeCuspar.addPostAction(nodeSyspar);
 		nodeSyspar.addPostAction(mergeSetupar);
-		mergeSetupar.addPostAction(nodePlaceL1);
+		mergeSetupar.addPostAction(nodeL1);
 		
 		actions.add(nodePayordist);		
 		return actions;

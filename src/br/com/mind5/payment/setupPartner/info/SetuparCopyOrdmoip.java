@@ -12,8 +12,10 @@ final class SetuparCopyOrdmoip extends InfoCopierTemplate<SetuparInfo, OrdmoipIn
 	
 	
 	@Override protected SetuparInfo makeCopyHook(OrdmoipInfo source) {
-		SetuparInfo result = SetuparInfo.copyFrom(source);
+		SetuparInfo result = new SetuparInfo();
+		
 		result.codPayPartner = source.cusparData.codPayPartner;
+		result.codLanguage = source.codLanguage;
 		
 		return result;
 	}

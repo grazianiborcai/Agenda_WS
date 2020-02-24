@@ -42,6 +42,12 @@ public final class OrdmoipCheckPayordemData extends ModelCheckerTemplateSimpleV2
 			 recordInfo.payordemData.codFeeCateg == DefaultValue.character() )				
 			return super.FAILED;
 		
+		if ( recordInfo.payordemData.quantity 		<= 0		||
+			 recordInfo.payordemData.price 	  		<= 0		||
+			 recordInfo.payordemData.codCurr 	 	== null		||
+			 recordInfo.payordemData.itemReceiver  	== null			)	//TODO: trazer regras pra ordmoip				
+			return super.FAILED;
+		
 		return super.SUCCESS;
 	}
 	

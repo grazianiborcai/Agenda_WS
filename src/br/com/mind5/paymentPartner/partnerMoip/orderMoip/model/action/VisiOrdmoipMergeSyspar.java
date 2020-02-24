@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.payment.systemPartner.info.SysparCopier;
 import br.com.mind5.payment.systemPartner.info.SysparInfo;
 import br.com.mind5.payment.systemPartner.model.decisionTree.RootSysparSelect;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.info.OrdmoipInfo;
@@ -20,6 +21,12 @@ final class VisiOrdmoipMergeSyspar extends ActionVisitorTemplateMergeV2<OrdmoipI
 	
 	@Override protected Class<? extends DeciTree<SysparInfo>> getTreeClassHook() {
 		return RootSysparSelect.class;
+	}
+	
+	
+	
+	@Override protected List<SysparInfo> toActionClassHook(List<OrdmoipInfo> recordInfos) {
+		return SysparCopier.copyFromOrdmoip(recordInfos);	
 	}
 	
 	
