@@ -7,7 +7,7 @@ import br.com.mind5.info.InfoMergerVisitorV3;
 import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.payment.storePartner.info.StoparInfo;
 
-final class PayordemVisiMergeStopar implements InfoMergerVisitorV3<PayordemInfo, StoparInfo> {
+final class PayordemVisiMergeStopar_ implements InfoMergerVisitorV3<PayordemInfo, StoparInfo> {
 	
 	@Override public List<PayordemInfo> beforeMerge(List<PayordemInfo> baseInfos) {
 		return baseInfos;

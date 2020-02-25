@@ -6,7 +6,7 @@ import org.apache.logging.log4j.Logger;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.InfoSetter;
 
-public final class PayordemSetterSysReceiver implements InfoSetter<PayordemInfo> {
+public final class PayordemSetterSysReceiver_ implements InfoSetter<PayordemInfo> {
 	
 	public PayordemInfo setAttr(PayordemInfo recordInfo) {
 		checkArgument(recordInfo);

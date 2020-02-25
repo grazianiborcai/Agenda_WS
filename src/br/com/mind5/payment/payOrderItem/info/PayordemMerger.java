@@ -40,7 +40,7 @@ public final class PayordemMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PayordemVisiMergeStopar());
+		builder.addVisitor(new PayordemVisiMergeStopar_());
 		InfoMergerV3<PayordemInfo, StoparInfo> merger = builder.build();		
 	
 		return merger.merge();
