@@ -3,7 +3,6 @@ package br.com.mind5.payment.creditCard.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -11,9 +10,6 @@ import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
-import br.com.mind5.payment.creditCard.model.action.LazyCrecardNodeCusparRefL1;
-import br.com.mind5.payment.creditCard.model.action.LazyCrecardNodeSelect;
-import br.com.mind5.payment.creditCard.model.action.LazyCrecardNodeUser;
 import br.com.mind5.payment.creditCard.model.action.StdCrecardMergeToSelect;
 import br.com.mind5.payment.creditCard.model.checker.CrecardCheckOwner;
 import br.com.mind5.payment.creditCard.model.checker.CrecardCheckRead;
@@ -62,13 +58,6 @@ public final class RootCrecardSelect extends DeciTreeReadTemplate<CrecardInfo> {
 		List<ActionStd<CrecardInfo>> actions = new ArrayList<>();
 		
 		ActionStd<CrecardInfo> mergeToSelect = new StdCrecardMergeToSelect(option);
-		ActionLazy<CrecardInfo> user = new LazyCrecardNodeUser(option.conn, option.schemaName);
-		ActionLazy<CrecardInfo> cusparRef = new LazyCrecardNodeCusparRefL1(option.conn, option.schemaName);
-		ActionLazy<CrecardInfo> select = new LazyCrecardNodeSelect(option.conn, option.schemaName);
-		
-		mergeToSelect.addPostAction(user);
-		user.addPostAction(cusparRef);
-		cusparRef.addPostAction(select);
 		
 		actions.add(mergeToSelect);
 		return actions;

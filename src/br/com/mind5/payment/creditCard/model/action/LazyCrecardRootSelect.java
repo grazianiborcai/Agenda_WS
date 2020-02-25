@@ -8,7 +8,7 @@ import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
-import br.com.mind5.payment.creditCard.model.decisionTree.RootCrecardSelect;
+import br.com.mind5.payment.creditCard.model.decisionTree.RootCrecardSelectAuth;
 
 public final class LazyCrecardRootSelect extends ActionLazyTemplate<CrecardInfo, CrecardInfo> {
 	
@@ -25,7 +25,7 @@ public final class LazyCrecardRootSelect extends ActionLazyTemplate<CrecardInfo,
 	
 	
 	@Override protected ActionStd<CrecardInfo> getInstanceOfActionHook(DeciTreeOption<CrecardInfo> option) {
-		return new RootCrecardSelect(option).toAction();
+		return new RootCrecardSelectAuth(option).toAction();
 	}
 	
 	

@@ -29,7 +29,7 @@ public final class NodeCrecardCusparRefL2 extends DeciTreeWriteTemplate<CrecardI
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
 		checker = new CrecardCheckCusparRef(checkerOption);
 		queue.add(checker);
 
@@ -41,7 +41,7 @@ public final class NodeCrecardCusparRefL2 extends DeciTreeWriteTemplate<CrecardI
 	@Override protected List<ActionStd<CrecardInfo>> buildActionsOnPassedHook(DeciTreeOption<CrecardInfo> option) {
 		List<ActionStd<CrecardInfo>> actions = new ArrayList<>();		
 
-		ActionStd<CrecardInfo> success = new  StdCrecardSuccess(option);
+		ActionStd<CrecardInfo> success = new StdCrecardSuccess(option);
 		
 		actions.add(success);		
 		return actions;
