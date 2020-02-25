@@ -17,7 +17,8 @@ import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.action.LazyOrdmoi
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.action.LazyOrdmoipEnforceOwnId;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.action.LazyOrdmoipEnforceProducts;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.action.LazyOrdmoipEnforceReceivers;
-import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.action.StdOrdmoipEnforceSubtotal;
+import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.action.LazyOrdmoipEnforceSubtotal;
+import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.action.StdOrdmoipEnforceItemNum;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.checker.OrdmoipCheckDummy;
 
 public final class NodeOrdmoipPlaceL2 extends DeciTreeWriteTemplate<OrdmoipInfo> {
@@ -43,7 +44,8 @@ public final class NodeOrdmoipPlaceL2 extends DeciTreeWriteTemplate<OrdmoipInfo>
 	@Override protected List<ActionStd<OrdmoipInfo>> buildActionsOnPassedHook(DeciTreeOption<OrdmoipInfo> option) {
 		List<ActionStd<OrdmoipInfo>> actions = new ArrayList<>();		
 
-		ActionStd<OrdmoipInfo> enforceSubtotal = new StdOrdmoipEnforceSubtotal(option);	
+		ActionStd<OrdmoipInfo> enforceItemNum = new StdOrdmoipEnforceItemNum(option);	
+		ActionLazy<OrdmoipInfo> enforceSubtotal = new LazyOrdmoipEnforceSubtotal(option.conn, option.schemaName);	
 		ActionLazy<OrdmoipInfo> enforceAmount = new LazyOrdmoipEnforceAmount(option.conn, option.schemaName);
 		ActionLazy<OrdmoipInfo> enforceProducts = new LazyOrdmoipEnforceProducts(option.conn, option.schemaName);
 		ActionLazy<OrdmoipInfo> enforceAccount = new LazyOrdmoipEnforceAccount(option.conn, option.schemaName);
@@ -52,6 +54,7 @@ public final class NodeOrdmoipPlaceL2 extends DeciTreeWriteTemplate<OrdmoipInfo>
 		ActionLazy<OrdmoipInfo> enforceOwnId = new LazyOrdmoipEnforceOwnId(option.conn, option.schemaName);
 		ActionLazy<OrdmoipInfo> enforceOrder = new LazyOrdmoipEnforceOrder(option.conn, option.schemaName);
 		
+		enforceItemNum.addPostAction(enforceSubtotal);
 		enforceSubtotal.addPostAction(enforceAmount);
 		enforceAmount.addPostAction(enforceProducts);
 		enforceProducts.addPostAction(enforceAccount);
@@ -60,7 +63,7 @@ public final class NodeOrdmoipPlaceL2 extends DeciTreeWriteTemplate<OrdmoipInfo>
 		enforceCustomer.addPostAction(enforceOwnId);
 		enforceOwnId.addPostAction(enforceOrder);
 		
-		actions.add(enforceSubtotal);		
+		actions.add(enforceItemNum);		
 		return actions;
 	}
 }

@@ -7,9 +7,9 @@ import br.com.mind5.info.InfoCopierOneToManyTemplate;
 import br.com.mind5.payment.payOrderItem.info.PayordemInfo;
 import br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.info.MultmoipInfo;
 
-final class OrdmoipCopyMultmoipToPlace_ extends InfoCopierOneToManyTemplate<OrdmoipInfo, MultmoipInfo>{
+final class OrdmoipCopyMultmoipToPlace extends InfoCopierOneToManyTemplate<OrdmoipInfo, MultmoipInfo>{
 	
-	public OrdmoipCopyMultmoipToPlace_() {
+	public OrdmoipCopyMultmoipToPlace() {
 		super();
 	}
 	
@@ -22,12 +22,10 @@ final class OrdmoipCopyMultmoipToPlace_ extends InfoCopierOneToManyTemplate<Ordm
 			OrdmoipInfo oneResult = new OrdmoipInfo();
 			
 			oneResult.codOwner = eachPayordem.codOwner;
-			oneResult.itemNum = eachPayordem.codPayOrderItem;
-			oneResult.codFeeCateg = source.codFeeCateg;
-			oneResult.txtFeeCateg = source.txtFeeCateg;
-			oneResult.payordemData = eachPayordem;
-			oneResult.cusparData = source.cusparData;
-			oneResult.sysparData = source.sysparData;		
+			oneResult.codPayOrder = eachPayordem.codPayOrder;
+			oneResult.codPayOrderItem = eachPayordem.codPayOrderItem;
+			oneResult.codLanguage = eachPayordem.codLanguage;
+			oneResult.username = eachPayordem.username;	
 			
 			results.add(oneResult);
 		}

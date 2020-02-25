@@ -8,14 +8,14 @@ import br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.info.MultmoipInfo;
 
 public final class OrdmoipCopier {	
 	public static List<OrdmoipInfo> copyFromMultmoipToPlace(MultmoipInfo source) {
-		InfoCopierOneToMany<OrdmoipInfo, MultmoipInfo> copier = new OrdmoipCopyMultmoipToPlace_();
+		InfoCopierOneToMany<OrdmoipInfo, MultmoipInfo> copier = new OrdmoipCopyMultmoipToPlace();
 		return copier.makeCopy(source);
 	}
 	
 	
 	
 	public static List<OrdmoipInfo> copyFromMultmoipToPlace(List<MultmoipInfo> sources) {
-		InfoCopierOneToMany<OrdmoipInfo, MultmoipInfo> copier = new OrdmoipCopyMultmoipToPlace_();
+		InfoCopierOneToMany<OrdmoipInfo, MultmoipInfo> copier = new OrdmoipCopyMultmoipToPlace();
 		return copier.makeCopy(sources);
 	}
 	
