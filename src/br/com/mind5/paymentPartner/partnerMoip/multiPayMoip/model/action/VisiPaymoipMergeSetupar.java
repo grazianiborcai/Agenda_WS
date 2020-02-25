@@ -25,14 +25,14 @@ final class VisiPaymoipMergeSetupar extends ActionVisitorTemplateMergeV2<Paymoip
 	
 	
 	
-	@Override protected List<SetuparInfo> toActionClassHook(List<PaymoipInfo> recordInfos) {
-		return SetuparCopier.copyFromPaymoip(recordInfos);	
+	@Override protected List<SetuparInfo> toActionClassHook(List<PaymoipInfo> baseInfos) {
+		return SetuparCopier.copyFromPaymoip(baseInfos);	
 	}
 	
 	
 	
-	@Override protected List<PaymoipInfo> mergeHook(List<PaymoipInfo> recordInfos, List<SetuparInfo> selectedInfos) {	
-		return PaymoipMerger.mergeWithSetupar(selectedInfos, recordInfos);
+	@Override protected List<PaymoipInfo> mergeHook(List<PaymoipInfo> baseInfos, List<SetuparInfo> selectedInfos) {	
+		return PaymoipMerger.mergeWithSetupar(baseInfos, selectedInfos);
 	}
 	
 	

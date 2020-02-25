@@ -24,8 +24,8 @@ final class VisiPaymoipMergeSysEnviron extends ActionVisitorTemplateMergeV2<Paym
 	
 	
 	
-	@Override protected List<PaymoipInfo> mergeHook(List<PaymoipInfo> recordInfos, List<SysEnvironInfo> selectedInfos) {	
-		return PaymoipMerger.mergeWithSysEnviron(selectedInfos, recordInfos);
+	@Override protected List<PaymoipInfo> mergeHook(List<PaymoipInfo> baseInfos, List<SysEnvironInfo> selectedInfos) {	
+		return PaymoipMerger.mergeWithSysEnviron(baseInfos, selectedInfos);
 	}
 	
 	

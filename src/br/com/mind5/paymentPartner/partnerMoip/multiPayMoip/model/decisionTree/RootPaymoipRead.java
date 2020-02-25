@@ -16,8 +16,6 @@ import br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.model.action.LazyPay
 import br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.model.action.LazyPaymoipMergeSetupar;
 import br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.model.action.LazyPaymoipRead;
 import br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.model.action.StdPaymoipMergeSysEnviron;
-import br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.model.checker.PaymoipCheckCuspar;
-import br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.model.checker.PaymoipCheckCusparData;
 import br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.model.checker.PaymoipCheckRead;
 
 public final class RootPaymoipRead extends DeciTreeWriteTemplate<PaymoipInfo> {
@@ -38,20 +36,6 @@ public final class RootPaymoipRead extends DeciTreeWriteTemplate<PaymoipInfo> {
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
 		checker = new PaymoipCheckRead(checkerOption);
-		queue.add(checker);
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new PaymoipCheckCusparData(checkerOption);
-		queue.add(checker);
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
-		checker = new PaymoipCheckCuspar(checkerOption);
 		queue.add(checker);
 
 		return new ModelCheckerQueue<>(queue);

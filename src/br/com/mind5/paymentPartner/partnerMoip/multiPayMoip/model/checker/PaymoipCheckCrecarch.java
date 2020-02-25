@@ -4,19 +4,20 @@ import java.util.List;
 
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.payment.customerPartner.info.CusparInfo;
-import br.com.mind5.payment.customerPartner.model.checker.CusparCheckExist;
+import br.com.mind5.payment.creditCardSearch.info.CrecarchCopier;
+import br.com.mind5.payment.creditCardSearch.info.CrecarchInfo;
+import br.com.mind5.payment.creditCardSearch.model.checker.CrecarchCheckExist;
 import br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.info.PaymoipInfo;
 
-public final class PaymoipCheckCuspar implements ModelChecker<PaymoipInfo> {
+public final class PaymoipCheckCrecarch implements ModelChecker<PaymoipInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<CusparInfo> checker;
+	private ModelChecker<CrecarchInfo> checker;
 	
 	
-	public PaymoipCheckCuspar(ModelCheckerOption option) {
-		checker = new CusparCheckExist(option);
+	public PaymoipCheckCrecarch(ModelCheckerOption option) {
+		checker = new CrecarchCheckExist(option);
 	}
 	
 	
@@ -33,7 +34,7 @@ public final class PaymoipCheckCuspar implements ModelChecker<PaymoipInfo> {
 	
 	
 	@Override public boolean check(PaymoipInfo recordInfo) {
-		return checker.check(recordInfo.cusparData);
+		return checker.check(CrecarchCopier.copyFromPaymoip(recordInfo));
 	}
 
 	

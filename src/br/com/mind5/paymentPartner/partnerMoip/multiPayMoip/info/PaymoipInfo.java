@@ -6,17 +6,18 @@ import java.util.Map;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
-import br.com.mind5.payment.customerPartner.info.CusparInfo;
 import br.com.mind5.payment.setupPartner.info.SetuparInfo;
 import br.com.mind5.payment.systemPartner.info.SysparInfo;
 import br.com.moip.models.Setup;
 
 public final class PaymoipInfo extends InfoRecord implements Cloneable {
+	public long codOwner;
 	public String idOrderPartner;
+	public long codCreditCard;
 	public String cardCvc;
+	public int codPayPartner;
 	public String idPaymentPartner;
 	public String statusPaymentPartner;
-	public CusparInfo cusparData;
 	public CrecardInfo crecardData;
 	public SysparInfo sysparData;
 	public SetuparInfo setuparData;
@@ -32,7 +33,9 @@ public final class PaymoipInfo extends InfoRecord implements Cloneable {
 	public PaymoipInfo() {
 		super(PaymoipInfo.class);
 		
-		cusparData = DefaultValue.object();
+		codOwner = DefaultValue.number();
+		codCreditCard = DefaultValue.number();
+		codPayPartner = DefaultValue.number();
 		crecardData = DefaultValue.object();
 		sysparData = DefaultValue.object();
 		setuparData = DefaultValue.object();
@@ -56,21 +59,11 @@ public final class PaymoipInfo extends InfoRecord implements Cloneable {
 	@Override public Object clone() throws CloneNotSupportedException {
 		PaymoipInfo deepCopy = (PaymoipInfo) super.clone();
 		
-		deepCopy.cusparData = cloneCuspar(deepCopy.cusparData);
 		deepCopy.crecardData = cloneCrecard(deepCopy.crecardData);
 		deepCopy.sysparData = cloneSyspar(deepCopy.sysparData);
 		deepCopy.setuparData = cloneSetupar(deepCopy.setuparData);
 		
 		return deepCopy;
-	}
-	
-	
-	
-	private CusparInfo cloneCuspar(CusparInfo recordInfo) throws CloneNotSupportedException {
-		if (recordInfo == null)
-			return null;
-		
-		return (CusparInfo) recordInfo.clone();
 	}
 	
 	
