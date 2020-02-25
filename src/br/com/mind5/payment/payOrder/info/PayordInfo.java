@@ -17,7 +17,7 @@ import br.com.mind5.paymentPartner.partnerMoip.orderMoip.info.OrdmoipInfo;
 public final class PayordInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codPayOrder;
-	public long codPayCustomer;
+	public long codPayCustomer;				//TODO: Remover
 	public long codCreditCard;
 	public long codUser;
 	public long codOrder;
@@ -31,12 +31,12 @@ public final class PayordInfo extends InfoRecord implements Cloneable {
 	public String statusPaymentPartner;
 	public String amountTotalPartner;
 	public String amountCurrencyPartner;
-	public SysparInfo sysparData;
-	public OrderInfo orderData;
-	public CusparInfo cusparData;
-	public CrecardInfo crecardData;
-	public List<PayordemInfo> payordems;
-	public List<OrdmoipInfo> ordmoips;
+	public SysparInfo sysparData;			//TODO: Remover
+	public OrderInfo orderData;				//TODO: Remover
+	public CusparInfo cusparData;			//TODO: Remover
+	public CrecardInfo crecardData;			//TODO: Remover
+	public List<PayordemInfo> payordems;	//TODO: Remover
+	public List<OrdmoipInfo> ordmoips;		//TODO: Remover
 	public PayordarchInfo latestData;
 	public LocalDateTime createdOn;
 	public LocalDateTime lastChanged;

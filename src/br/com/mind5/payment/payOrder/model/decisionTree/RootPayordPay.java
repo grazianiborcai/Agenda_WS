@@ -71,7 +71,7 @@ public final class RootPayordPay extends DeciTreeWriteTemplate<PayordInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
-		checker = new PayordCheckCuspar(checkerOption);
+		checker = new PayordCheckCuspar(checkerOption);					//TODO: Remover
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
@@ -96,6 +96,7 @@ public final class RootPayordPay extends DeciTreeWriteTemplate<PayordInfo> {
 	@Override protected List<ActionStd<PayordInfo>> buildActionsOnPassedHook(DeciTreeOption<PayordInfo> option) {
 		List<ActionStd<PayordInfo>> actions = new ArrayList<>();		
 		//TODO: Refresh Latest ???
+		//TODO: Obter o paypartner do cartao de credito
 		ActionStd<PayordInfo> enforceCreatedOn = new StdPayordEnforceCreatedOn(option);	
 		ActionLazy<PayordInfo> enforceLChanged = new LazyPayordEnforceLChanged(option.conn, option.schemaName);
 		ActionLazy<PayordInfo> nodeUser = new LazyPayordNodeUserL1(option.conn, option.schemaName);
