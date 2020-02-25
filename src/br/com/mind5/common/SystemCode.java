@@ -1099,5 +1099,10 @@ public final class SystemCode {
 	public static final int PAY_ORDER_ITEM_SEARCH_NOT_FOUND 			= 11052;
 	
 	//Pay-Order List
-	public static final int PAY_ORDER_LIST_MANDATORY_FIELD_EMPTY		= 11100;		
+	public static final int PAY_ORDER_LIST_MANDATORY_FIELD_EMPTY		= 11100;	
+	
+	//Pay-Order Item List
+	public static final int PAY_ORDER_ITEM_LIST_MANDATORY_FIELD_EMPTY	= 11150;
+	public static final int PAY_ORDER_ITEM_LIST_ALREADY_EXIST 			= 11151;
+	public static final int PAY_ORDER_ITEM_LIST_NOT_FOUND 				= 11152;
 }
