@@ -11,14 +11,12 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
 import br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.info.MultmoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.model.action.LazyMultmoipCreate;
-import br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.model.action.LazyMultmoipEnforceMultiorder;
 import br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.model.action.LazyMultmoipEnforceResponseAttr;
 import br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.model.action.LazyMultmoipEnforceResponseOrdmoip;
 import br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.model.action.LazyMultmoipEnforceSetup;
 import br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.model.action.LazyMultmoipMergeSetupar;
 import br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.model.action.LazyMultmoipMergeSysEnviron;
-import br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.model.action.LazyMultmoipOrdmoipPlace;
-import br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.model.action.StdMultmoipMergePayord;
+import br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.model.action.StdMultmoipEnforceMultiorder;
 import br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.model.checker.MultmoipCheckDummy;
 
 public final class NodeMultmoipPlace extends DeciTreeReadTemplate<MultmoipInfo> {
@@ -42,20 +40,16 @@ public final class NodeMultmoipPlace extends DeciTreeReadTemplate<MultmoipInfo> 
 	
 	
 	@Override protected List<ActionStd<MultmoipInfo>> buildActionsOnPassedHook(DeciTreeOption<MultmoipInfo> option) {
-		List<ActionStd<MultmoipInfo>> actions = new ArrayList<>();	
+		List<ActionStd<MultmoipInfo>> actions = new ArrayList<>();			
 		
-		ActionStd<MultmoipInfo> mergePayord = new StdMultmoipMergePayord(option);
-		ActionLazy<MultmoipInfo> placeOrdmoip = new LazyMultmoipOrdmoipPlace(option.conn, option.schemaName);
-		ActionLazy<MultmoipInfo> enforceMultiorder = new LazyMultmoipEnforceMultiorder(option.conn, option.schemaName);		
+		ActionStd<MultmoipInfo> enforceMultiorder = new StdMultmoipEnforceMultiorder(option);		
 		ActionLazy<MultmoipInfo> mergeSetupar = new LazyMultmoipMergeSetupar(option.conn, option.schemaName);
 		ActionLazy<MultmoipInfo> mergeSysEnviron = new LazyMultmoipMergeSysEnviron(option.conn, option.schemaName);	
 		ActionLazy<MultmoipInfo> enforceSetup = new LazyMultmoipEnforceSetup(option.conn, option.schemaName);		
 		ActionLazy<MultmoipInfo> create = new LazyMultmoipCreate(option.conn, option.schemaName);
 		ActionLazy<MultmoipInfo> enforceResponseAttr = new LazyMultmoipEnforceResponseAttr(option.conn, option.schemaName);
 		ActionLazy<MultmoipInfo> enforceResponseOrdmoip = new LazyMultmoipEnforceResponseOrdmoip(option.conn, option.schemaName);
-		
-		mergePayord.addPostAction(placeOrdmoip);
-		placeOrdmoip.addPostAction(enforceMultiorder);		
+			
 		enforceMultiorder.addPostAction(mergeSetupar);
 		mergeSetupar.addPostAction(mergeSysEnviron);
 		mergeSysEnviron.addPostAction(enforceSetup);
@@ -63,7 +57,7 @@ public final class NodeMultmoipPlace extends DeciTreeReadTemplate<MultmoipInfo> 
 		create.addPostAction(enforceResponseAttr);
 		enforceResponseAttr.addPostAction(enforceResponseOrdmoip);
 		
-		actions.add(mergePayord);		
+		actions.add(enforceMultiorder);		
 		return actions;
 	}
 }

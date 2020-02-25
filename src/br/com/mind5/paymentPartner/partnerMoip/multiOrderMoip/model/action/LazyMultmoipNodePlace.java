@@ -8,10 +8,11 @@ import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.info.MultmoipInfo;
+import br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.model.decisionTree.NodeMultmoipPlace;
 
-public final class LazyMultmoipEnforceMultiorder extends ActionLazyTemplate<MultmoipInfo, MultmoipInfo> {
+public final class LazyMultmoipNodePlace extends ActionLazyTemplate<MultmoipInfo, MultmoipInfo> {
 
-	public LazyMultmoipEnforceMultiorder(Connection conn, String schemaName) {
+	public LazyMultmoipNodePlace(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +25,7 @@ public final class LazyMultmoipEnforceMultiorder extends ActionLazyTemplate<Mult
 	
 	
 	@Override protected ActionStd<MultmoipInfo> getInstanceOfActionHook(DeciTreeOption<MultmoipInfo> option) {
-		return new StdMultmoipEnforceMultiorder(option);
+		return new NodeMultmoipPlace(option).toAction();
 	}
 	
 	

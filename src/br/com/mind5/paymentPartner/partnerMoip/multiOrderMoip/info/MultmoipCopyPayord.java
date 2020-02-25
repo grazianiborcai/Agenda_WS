@@ -23,7 +23,7 @@ final class MultmoipCopyPayord extends InfoCopierTemplate<MultmoipInfo, PayordIn
 		result.codLanguage = source.codLanguage;
 		result.cardCvc = source.cardCvc;
 		result.username = source.username;		
-		result.payordems = source.payordems;
+		result.payordemists = source.payordems;
 		result.cusparData = source.cusparData;
 		result.sysparData = source.sysparData;
 		result.crecardData = source.crecardData;

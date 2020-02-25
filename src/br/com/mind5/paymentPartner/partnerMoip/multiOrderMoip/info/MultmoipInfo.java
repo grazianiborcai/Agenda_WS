@@ -8,8 +8,7 @@ import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
-import br.com.mind5.payment.payOrder.info.PayordInfo;
-import br.com.mind5.payment.payOrderItem.info.PayordemInfo;
+import br.com.mind5.payment.payOrderItemList.info.PayordemistInfo;
 import br.com.mind5.payment.setupPartner.info.SetuparInfo;
 import br.com.mind5.payment.systemPartner.info.SysparInfo;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.info.OrdmoipInfo;
@@ -18,8 +17,6 @@ import br.com.moip.models.Setup;
 public final class MultmoipInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codPayOrder;
-	public char codFeeCateg;				//TODO: Remover
-	public String txtFeeCateg;				//TODO: Remover
 	public String idOrderPartner;
 	public String statusOrderPartner;
 	public String idPaymentPartner;
@@ -30,11 +27,10 @@ public final class MultmoipInfo extends InfoRecord implements Cloneable {
 	public String amountTotalPartner;
 	public String amountCurrencyPartner;
 	public String cardCvc;
-	public List<PayordemInfo> payordems;	
-	public PayordInfo payordData;		//TODO: Remover
+	public List<PayordemistInfo> payordemists;	
 	public CrecardInfo crecardData;
-	public CusparInfo cusparData;
-	public SysparInfo sysparData;
+	public CusparInfo cusparData;	//
+	public SysparInfo sysparData;	//
 	public SetuparInfo setuparData;
 	public List<OrdmoipInfo> ordmoips;
 	public Map<String, Object> multiorder;
@@ -49,13 +45,11 @@ public final class MultmoipInfo extends InfoRecord implements Cloneable {
 		
 		codOwner = DefaultValue.number();
 		codPayOrder = DefaultValue.number();
-		codFeeCateg = DefaultValue.character();
-		payordems = DefaultValue.list();
+		payordemists = DefaultValue.list();
 		crecardData = DefaultValue.object();
 		cusparData = DefaultValue.object();
 		sysparData = DefaultValue.object();
 		setuparData = DefaultValue.object();
-		payordData = DefaultValue.object();
 		ordmoips = DefaultValue.list();
 		codSysEnviron = DefaultValue.getCodEnvironment();
 	}
@@ -77,8 +71,7 @@ public final class MultmoipInfo extends InfoRecord implements Cloneable {
 	@Override public Object clone() throws CloneNotSupportedException {
 		MultmoipInfo deepCopy = (MultmoipInfo) super.clone();
 		
-		deepCopy.payordems = clonePayordems(deepCopy.payordems);
-		deepCopy.payordData = clonePayord(deepCopy.payordData);
+		deepCopy.payordemists = clonePayordemists(deepCopy.payordemists);
 		deepCopy.cusparData = cloneCuspar(deepCopy.cusparData);
 		deepCopy.sysparData = cloneSyspar(deepCopy.sysparData);
 		deepCopy.setuparData = cloneSetupar(deepCopy.setuparData);
@@ -90,28 +83,19 @@ public final class MultmoipInfo extends InfoRecord implements Cloneable {
 	
 	
 	
-	private List<PayordemInfo> clonePayordems(List<PayordemInfo> recordInfos) throws CloneNotSupportedException {
+	private List<PayordemistInfo> clonePayordemists(List<PayordemistInfo> recordInfos) throws CloneNotSupportedException {
 		if (recordInfos == null)
 			return null;
 		
-		List<PayordemInfo> results = new ArrayList<>();
+		List<PayordemistInfo> results = new ArrayList<>();
 		
-		for (PayordemInfo eachRecord : recordInfos) {
-			PayordemInfo clonedOrdmoip = (PayordemInfo) eachRecord.clone();
+		for (PayordemistInfo eachRecord : recordInfos) {
+			PayordemistInfo clonedOrdmoip = (PayordemistInfo) eachRecord.clone();
 			results.add(clonedOrdmoip);
 		}
 		
 		
 		return results;
-	}
-	
-	
-	
-	private PayordInfo clonePayord(PayordInfo recordInfo) throws CloneNotSupportedException {
-		if (recordInfo == null)
-			return null;
-		
-		return (PayordInfo) recordInfo.clone();
 	}
 	
 	

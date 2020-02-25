@@ -5,19 +5,19 @@ import java.util.List;
 import br.com.mind5.business.masterData.info.SysEnvironInfo;
 import br.com.mind5.info.InfoMergerBuilderV3;
 import br.com.mind5.info.InfoMergerV3;
-import br.com.mind5.payment.payOrder.info.PayordInfo;
+import br.com.mind5.payment.payOrderItemList.info.PayordemistInfo;
 import br.com.mind5.payment.setupPartner.info.SetuparInfo;
 import br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.info.PaymoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.info.OrdmoipInfo;
 
 public final class MultmoipMerger {
-	public static List<MultmoipInfo> mergeWithPayord(List<MultmoipInfo> baseInfos, List<PayordInfo> selectedInfos) {
-		InfoMergerBuilderV3<MultmoipInfo, PayordInfo> builder = new InfoMergerBuilderV3<>();
+	public static List<MultmoipInfo> mergeWithPayordemist(List<MultmoipInfo> baseInfos, List<PayordemistInfo> selectedInfos) {
+		InfoMergerBuilderV3<MultmoipInfo, PayordemistInfo> builder = new InfoMergerBuilderV3<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new MultmoipVisiMergePayord());
-		InfoMergerV3<MultmoipInfo, PayordInfo> merger = builder.build();		
+		builder.addVisitor(new MultmoipVisiMergePayordemist());
+		InfoMergerV3<MultmoipInfo, PayordemistInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}	

@@ -7,12 +7,12 @@ import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.info.MultmoipInfo;
 
-public final class StdMultmoipMergePayord implements ActionStd<MultmoipInfo> {
+public final class StdMultmoipMergePayordemist implements ActionStd<MultmoipInfo> {
 	private ActionStd<MultmoipInfo> actionHelper;	
 	
 	
-	public StdMultmoipMergePayord(DeciTreeOption<MultmoipInfo> option) {			
-		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiMultmoipMergePayord(option.conn, option.schemaName));
+	public StdMultmoipMergePayordemist(DeciTreeOption<MultmoipInfo> option) {			
+		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiMultmoipMergePayordemist(option.conn, option.schemaName));
 	}
 	
 	

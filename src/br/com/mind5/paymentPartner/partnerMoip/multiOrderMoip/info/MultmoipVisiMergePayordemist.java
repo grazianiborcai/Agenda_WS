@@ -5,9 +5,9 @@ import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorV3;
 import br.com.mind5.info.InfoUniquifier;
-import br.com.mind5.payment.payOrder.info.PayordInfo;
+import br.com.mind5.payment.payOrderItemList.info.PayordemistInfo;
 
-final class MultmoipVisiMergePayord implements InfoMergerVisitorV3<MultmoipInfo, PayordInfo> {
+final class MultmoipVisiMergePayordemist implements InfoMergerVisitorV3<MultmoipInfo, PayordemistInfo> {
 	
 	@Override public List<MultmoipInfo> beforeMerge(List<MultmoipInfo> baseInfos) {
 		return baseInfos;
@@ -15,17 +15,17 @@ final class MultmoipVisiMergePayord implements InfoMergerVisitorV3<MultmoipInfo,
 	
 	
 	
-	@Override public boolean shouldMerge(MultmoipInfo baseInfo, PayordInfo selectedInfo) {
+	@Override public boolean shouldMerge(MultmoipInfo baseInfo, PayordemistInfo selectedInfo) {
 		return (baseInfo.codOwner    == selectedInfo.codOwner 	&&
 				baseInfo.codPayOrder == selectedInfo.codPayOrder	);
 	}
 	
 	
 	
-	@Override public List<MultmoipInfo> merge(MultmoipInfo baseInfo, PayordInfo selectedInfo) {
+	@Override public List<MultmoipInfo> merge(MultmoipInfo baseInfo, PayordemistInfo selectedInfo) {
 		List<MultmoipInfo> results = new ArrayList<>();
 		
-		baseInfo.payordData = selectedInfo;
+		baseInfo.payordemists.add(selectedInfo);
 		
 		results.add(baseInfo);
 		return results;
