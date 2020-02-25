@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.info.InfoCopierOneToManyTemplate;
-import br.com.mind5.payment.payOrderItem.info.PayordemInfo;
+import br.com.mind5.payment.payOrderItemList.info.PayordemistInfo;
 import br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.info.MultmoipInfo;
 
 final class OrdmoipCopyMultmoipToPlace extends InfoCopierOneToManyTemplate<OrdmoipInfo, MultmoipInfo>{
@@ -18,14 +18,14 @@ final class OrdmoipCopyMultmoipToPlace extends InfoCopierOneToManyTemplate<Ordmo
 	@Override protected List<OrdmoipInfo> makeCopyHook(MultmoipInfo source) {
 		List<OrdmoipInfo> results = new ArrayList<>();
 		
-		for(PayordemInfo eachPayordem : source.payordems) {
+		for(PayordemistInfo eachPayordemist : source.payordemists) {
 			OrdmoipInfo oneResult = new OrdmoipInfo();
 			
-			oneResult.codOwner = eachPayordem.codOwner;
-			oneResult.codPayOrder = eachPayordem.codPayOrder;
-			oneResult.codPayOrderItem = eachPayordem.codPayOrderItem;
-			oneResult.codLanguage = eachPayordem.codLanguage;
-			oneResult.username = eachPayordem.username;	
+			oneResult.codOwner = eachPayordemist.codOwner;
+			oneResult.codPayOrder = eachPayordemist.codPayOrder;
+			oneResult.codPayOrderItem = eachPayordemist.codPayOrderItem;
+			oneResult.codLanguage = eachPayordemist.codLanguage;
+			oneResult.username = eachPayordemist.username;	
 			
 			results.add(oneResult);
 		}
