@@ -30,8 +30,8 @@ public final class MultmoipInfo extends InfoRecord implements Cloneable {
 	public String amountTotalPartner;
 	public String amountCurrencyPartner;
 	public String cardCvc;
-	public List<PayordemInfo> payordems;	//TODO: Remover
-	public PayordInfo payordData;
+	public List<PayordemInfo> payordems;	
+	public PayordInfo payordData;		//TODO: Remover
 	public CrecardInfo crecardData;
 	public CusparInfo cusparData;
 	public SysparInfo sysparData;
