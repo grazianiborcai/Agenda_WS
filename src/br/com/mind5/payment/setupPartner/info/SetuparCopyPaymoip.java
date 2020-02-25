@@ -13,7 +13,7 @@ final class SetuparCopyPaymoip extends InfoCopierTemplate<SetuparInfo, PaymoipIn
 	
 	@Override protected SetuparInfo makeCopyHook(PaymoipInfo source) {
 		SetuparInfo result = SetuparInfo.copyFrom(source);
-		result.codPayPartner = source.cusparData.codPayPartner;
+		result.codPayPartner = source.codPayPartner;
 		
 		return result;
 	}
