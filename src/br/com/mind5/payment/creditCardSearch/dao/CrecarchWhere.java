@@ -35,6 +35,10 @@ public final class CrecarchWhere implements DaoStmtWhere {
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codCreditCard));
 					break;
 					
+				case CrecarchDbTableColumn.COL_COD_PAY_PARTNER :
+					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codPayPartner));
+					break;
+					
 				case CrecarchDbTableColumn.COL_COD_PAY_CUSTOMER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codPayCustomer));
 					break;

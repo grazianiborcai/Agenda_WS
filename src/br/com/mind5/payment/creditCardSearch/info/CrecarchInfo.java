@@ -9,6 +9,7 @@ public final class CrecarchInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codCreditCard;
 	public long codPayCustomer;
+	public int codPayPartner;	
 	public String creditCardId;
 	public String creditCardBrand;
 	public String creditCardLast4;
@@ -22,6 +23,7 @@ public final class CrecarchInfo extends InfoRecord implements Cloneable {
 		
 		codOwner = DefaultValue.number();
 		codPayCustomer = DefaultValue.number();
+		codPayPartner = DefaultValue.number();
 		codUser = DefaultValue.number();
 		recordMode = DefaultValue.recordMode();	
 		codCreditCard = DefaultValue.number();

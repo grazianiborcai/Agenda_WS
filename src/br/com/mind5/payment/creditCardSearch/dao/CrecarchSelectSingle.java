@@ -79,6 +79,7 @@ public final class CrecarchSelectSingle extends DaoStmtTemplate<CrecarchInfo> {
 					dataInfo.codOwner = stmtResult.getLong(CrecarchDbTableColumn.COL_COD_OWNER);
 					dataInfo.codCreditCard = stmtResult.getLong(CrecarchDbTableColumn.COL_COD_CREDIT_CARD);
 					dataInfo.codPayCustomer = stmtResult.getLong(CrecarchDbTableColumn.COL_COD_PAY_CUSTOMER);
+					dataInfo.codPayPartner = stmtResult.getInt(CrecarchDbTableColumn.COL_COD_PAY_PARTNER);
 					dataInfo.creditCardId = stmtResult.getString(CrecarchDbTableColumn.COL_CREDIT_CARD_ID);
 					dataInfo.recordMode = stmtResult.getString(CrecarchDbTableColumn.COL_RECORD_MODE);			
 					
