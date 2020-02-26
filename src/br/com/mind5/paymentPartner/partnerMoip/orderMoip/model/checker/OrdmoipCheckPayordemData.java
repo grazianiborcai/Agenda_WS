@@ -27,11 +27,6 @@ public final class OrdmoipCheckPayordemData extends ModelCheckerTemplateSimpleV2
 			return super.FAILED;
 		
 		
-		
-		if ( recordInfo.payordemData.codStore <= 0 )	
-			return super.FAILED;
-		
-		
 		return super.SUCCESS;
 	}
 	
