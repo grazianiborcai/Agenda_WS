@@ -16,7 +16,7 @@ final class StoparCopyOrdmoip extends InfoCopierTemplate<StoparInfo, OrdmoipInfo
 		
 		result.codOwner = source.payordemData.codOwner;
 		result.codStore = source.payordemData.codStore;	
-		result.codPayPartner = source.payordemData.codPayPartner;
+		result.codPayPartner = source.codPayPartner;
 		result.codLanguage = source.codLanguage;
 		result.username = source.username;
 		
