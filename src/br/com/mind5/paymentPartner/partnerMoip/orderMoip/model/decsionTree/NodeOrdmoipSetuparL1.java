@@ -11,8 +11,9 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.info.OrdmoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.checker.OrdmoipCheckDummy;
+import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.action.LazyOrdmoipMergeSetupar;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.action.LazyOrdmoipNodeSetuparL2;
-import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.action.StdOrdmoipMergeSetupar;
+import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.action.StdOrdmoipEnforcePaypar;
 
 public final class NodeOrdmoipSetuparL1 extends DeciTreeWriteTemplate<OrdmoipInfo> {
 	
@@ -37,12 +38,14 @@ public final class NodeOrdmoipSetuparL1 extends DeciTreeWriteTemplate<OrdmoipInf
 	@Override protected List<ActionStd<OrdmoipInfo>> buildActionsOnPassedHook(DeciTreeOption<OrdmoipInfo> option) {
 		List<ActionStd<OrdmoipInfo>> actions = new ArrayList<>();	
 		
-		ActionStd<OrdmoipInfo> mergeSetupar = new StdOrdmoipMergeSetupar(option);	
+		ActionStd<OrdmoipInfo> enforcePaypar = new StdOrdmoipEnforcePaypar(option);
+		ActionLazy<OrdmoipInfo> mergeSetupar = new LazyOrdmoipMergeSetupar(option.conn, option.schemaName);	
 		ActionLazy<OrdmoipInfo> nodeL2 = new LazyOrdmoipNodeSetuparL2(option.conn, option.schemaName);
 		
+		enforcePaypar.addPostAction(mergeSetupar);
 		mergeSetupar.addPostAction(nodeL2);
 		
-		actions.add(mergeSetupar);		
+		actions.add(enforcePaypar);		
 		return actions;
 	}
 }

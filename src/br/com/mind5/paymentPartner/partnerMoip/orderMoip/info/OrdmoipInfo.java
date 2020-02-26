@@ -16,7 +16,8 @@ import br.com.moip.models.Setup;
 public final class OrdmoipInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codPayOrder;
-	public int codPayOrderItem;	
+	public int codPayOrderItem;
+	public int codPayPartner;
 	public int itemNum;
 	public String ownId;
 	public String itemReceiver;
@@ -53,6 +54,7 @@ public final class OrdmoipInfo extends InfoRecord implements Cloneable {
 		codOwner = DefaultValue.character();
 		codPayOrder = DefaultValue.character();
 		codPayOrderItem = DefaultValue.character();
+		codPayPartner = DefaultValue.character();
 		itemNum = DefaultValue.character();
 		payordistData = DefaultValue.object();
 		payordemData = DefaultValue.object();

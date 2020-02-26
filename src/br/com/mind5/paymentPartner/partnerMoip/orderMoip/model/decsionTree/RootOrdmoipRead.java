@@ -13,11 +13,10 @@ import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.info.OrdmoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.action.LazyOrdmoipEnforceResponseAttr;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.action.LazyOrdmoipEnforceSetup;
+import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.action.LazyOrdmoipMergeSetupar;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.action.LazyOrdmoipMergeSysEnviron;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.action.LazyOrdmoipRead;
-import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.action.StdOrdmoipMergeSetupar;
-import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.checker.OrdmoipCheckPayord;
-import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.checker.OrdmoipCheckCusparData;
+import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.action.StdOrdmoipEnforcePaypar;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.checker.OrdmoipCheckRead;
 
 public final class RootOrdmoipRead extends DeciTreeWriteTemplate<OrdmoipInfo> {
@@ -39,21 +38,7 @@ public final class RootOrdmoipRead extends DeciTreeWriteTemplate<OrdmoipInfo> {
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
 		checker = new OrdmoipCheckRead(checkerOption);
 		queue.add(checker);
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new OrdmoipCheckCusparData(checkerOption);
-		queue.add(checker);
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
-		checker = new OrdmoipCheckPayord(checkerOption);
-		queue.add(checker);
-		//TODO: verificar partner = MOIP
+
 		return new ModelCheckerQueue<>(queue);
 	}
 	
@@ -62,18 +47,20 @@ public final class RootOrdmoipRead extends DeciTreeWriteTemplate<OrdmoipInfo> {
 	@Override protected List<ActionStd<OrdmoipInfo>> buildActionsOnPassedHook(DeciTreeOption<OrdmoipInfo> option) {
 		List<ActionStd<OrdmoipInfo>> actions = new ArrayList<>();	
 		
-		ActionStd<OrdmoipInfo> mergeSetupar = new StdOrdmoipMergeSetupar(option);	
+		ActionStd<OrdmoipInfo> enforcePaypar = new StdOrdmoipEnforcePaypar(option);	
+		ActionLazy<OrdmoipInfo> mergeSetupar = new LazyOrdmoipMergeSetupar(option.conn, option.schemaName);	
 		ActionLazy<OrdmoipInfo> mergeSysEnviron = new LazyOrdmoipMergeSysEnviron(option.conn, option.schemaName);	
 		ActionLazy<OrdmoipInfo> enforceSetup = new LazyOrdmoipEnforceSetup(option.conn, option.schemaName);		
 		ActionLazy<OrdmoipInfo> read = new LazyOrdmoipRead(option.conn, option.schemaName);
 		ActionLazy<OrdmoipInfo> enforceResponseAttr = new LazyOrdmoipEnforceResponseAttr(option.conn, option.schemaName);
 		
+		enforcePaypar.addPostAction(mergeSetupar);
 		mergeSetupar.addPostAction(mergeSysEnviron);
 		mergeSysEnviron.addPostAction(enforceSetup);
 		enforceSetup.addPostAction(read);
 		read.addPostAction(enforceResponseAttr);
 		
-		actions.add(mergeSetupar);		
+		actions.add(enforcePaypar);		
 		return actions;
 	}
 }
