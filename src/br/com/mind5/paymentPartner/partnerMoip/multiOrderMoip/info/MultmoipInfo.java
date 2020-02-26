@@ -7,10 +7,8 @@ import java.util.Map;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
-import br.com.mind5.payment.customerPartner.info.CusparInfo;
 import br.com.mind5.payment.payOrderItemList.info.PayordemistInfo;
 import br.com.mind5.payment.setupPartner.info.SetuparInfo;
-import br.com.mind5.payment.systemPartner.info.SysparInfo;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.info.OrdmoipInfo;
 import br.com.moip.models.Setup;
 
@@ -18,6 +16,7 @@ public final class MultmoipInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codPayOrder;
 	public String idOrderPartner;
+	public int codPayPartner;
 	public String statusOrderPartner;
 	public String idPaymentPartner;
 	public String statusPaymentPartner;
@@ -29,8 +28,6 @@ public final class MultmoipInfo extends InfoRecord implements Cloneable {
 	public String cardCvc;
 	public List<PayordemistInfo> payordemists;	
 	public CrecardInfo crecardData;
-	public CusparInfo cusparData;	//
-	public SysparInfo sysparData;	//
 	public SetuparInfo setuparData;
 	public List<OrdmoipInfo> ordmoips;
 	public Map<String, Object> multiorder;
@@ -45,10 +42,9 @@ public final class MultmoipInfo extends InfoRecord implements Cloneable {
 		
 		codOwner = DefaultValue.number();
 		codPayOrder = DefaultValue.number();
+		codPayPartner = DefaultValue.number();
 		payordemists = DefaultValue.list();
 		crecardData = DefaultValue.object();
-		cusparData = DefaultValue.object();
-		sysparData = DefaultValue.object();
 		setuparData = DefaultValue.object();
 		ordmoips = DefaultValue.list();
 		codSysEnviron = DefaultValue.getCodEnvironment();
@@ -72,8 +68,6 @@ public final class MultmoipInfo extends InfoRecord implements Cloneable {
 		MultmoipInfo deepCopy = (MultmoipInfo) super.clone();
 		
 		deepCopy.payordemists = clonePayordemists(deepCopy.payordemists);
-		deepCopy.cusparData = cloneCuspar(deepCopy.cusparData);
-		deepCopy.sysparData = cloneSyspar(deepCopy.sysparData);
 		deepCopy.setuparData = cloneSetupar(deepCopy.setuparData);
 		deepCopy.crecardData = cloneCrecard(deepCopy.crecardData);
 		deepCopy.ordmoips = cloneOrdmoips(deepCopy.ordmoips);
@@ -97,24 +91,6 @@ public final class MultmoipInfo extends InfoRecord implements Cloneable {
 		
 		return results;
 	}
-	
-	
-	
-	private CusparInfo cloneCuspar(CusparInfo recordInfo) throws CloneNotSupportedException {
-		if (recordInfo == null)
-			return null;
-		
-		return (CusparInfo) recordInfo.clone();
-	}
-	
-	
-	
-	private SysparInfo cloneSyspar(SysparInfo recordInfo) throws CloneNotSupportedException {
-		if (recordInfo == null)
-			return null;
-		
-		return (SysparInfo) recordInfo.clone();
-	}	
 	
 	
 	

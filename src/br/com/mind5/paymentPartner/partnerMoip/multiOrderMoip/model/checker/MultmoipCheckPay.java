@@ -16,12 +16,10 @@ public final class MultmoipCheckPay extends ModelCheckerTemplateSimpleV2<Multmoi
 	
 	
 	@Override protected boolean checkHook(MultmoipInfo recordInfo, Connection conn, String schemaName) {			
-		if ( recordInfo.codOwner 		<= 0	||		
-			 recordInfo.codPayOrder 	<= 0	||	
-			 recordInfo.codLanguage 	== null	||
-			 recordInfo.username 		== null	||
-		     recordInfo.cusparData		== null	||			//TODO: Remover
-		     recordInfo.sysparData		== null		)		//TODO: Remover
+		if ( recordInfo.codOwner 	<= 0	||		
+			 recordInfo.codPayOrder <= 0	||	
+			 recordInfo.codLanguage == null	||
+			 recordInfo.username 	== null		)
 			
 			return super.FAILED;
 		

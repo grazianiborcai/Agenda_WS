@@ -11,6 +11,7 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
 import br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.info.MultmoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.model.action.LazyMultmoipCreate;
+import br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.model.action.LazyMultmoipEnforcePaypar;
 import br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.model.action.LazyMultmoipEnforceResponseAttr;
 import br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.model.action.LazyMultmoipEnforceResponseOrdmoip;
 import br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.model.action.LazyMultmoipEnforceSetup;
@@ -43,6 +44,7 @@ public final class NodeMultmoipPlace extends DeciTreeReadTemplate<MultmoipInfo> 
 		List<ActionStd<MultmoipInfo>> actions = new ArrayList<>();			
 		
 		ActionStd<MultmoipInfo> enforceMultiorder = new StdMultmoipEnforceMultiorder(option);		
+		ActionLazy<MultmoipInfo> enforcePaypar = new LazyMultmoipEnforcePaypar(option.conn, option.schemaName);
 		ActionLazy<MultmoipInfo> mergeSetupar = new LazyMultmoipMergeSetupar(option.conn, option.schemaName);
 		ActionLazy<MultmoipInfo> mergeSysEnviron = new LazyMultmoipMergeSysEnviron(option.conn, option.schemaName);	
 		ActionLazy<MultmoipInfo> enforceSetup = new LazyMultmoipEnforceSetup(option.conn, option.schemaName);		
@@ -50,7 +52,8 @@ public final class NodeMultmoipPlace extends DeciTreeReadTemplate<MultmoipInfo> 
 		ActionLazy<MultmoipInfo> enforceResponseAttr = new LazyMultmoipEnforceResponseAttr(option.conn, option.schemaName);
 		ActionLazy<MultmoipInfo> enforceResponseOrdmoip = new LazyMultmoipEnforceResponseOrdmoip(option.conn, option.schemaName);
 			
-		enforceMultiorder.addPostAction(mergeSetupar);
+		enforceMultiorder.addPostAction(enforcePaypar);
+		enforcePaypar.addPostAction(mergeSetupar);
 		mergeSetupar.addPostAction(mergeSysEnviron);
 		mergeSysEnviron.addPostAction(enforceSetup);
 		enforceSetup.addPostAction(create);

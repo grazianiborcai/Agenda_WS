@@ -16,7 +16,7 @@ final class MultmoipVisiMergeSetupar implements InfoMergerVisitorV3<MultmoipInfo
 	
 	
 	@Override public boolean shouldMerge(MultmoipInfo baseInfo, SetuparInfo selectedInfo) {
-		return baseInfo.cusparData.codPayPartner == selectedInfo.codPayPartner;
+		return baseInfo.codPayPartner == selectedInfo.codPayPartner;
 	}
 	
 	
