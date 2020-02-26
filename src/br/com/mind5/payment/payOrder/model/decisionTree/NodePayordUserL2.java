@@ -12,7 +12,6 @@ import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
 import br.com.mind5.payment.payOrder.model.action.StdPayordSuccess;
 import br.com.mind5.payment.payOrder.model.checker.PayordCheckCrecarch;
-import br.com.mind5.payment.payOrder.model.checker.PayordCheckCusparch;
 import br.com.mind5.payment.payOrder.model.checker.PayordCheckOrdarch;
 
 public final class NodePayordUserL2 extends DeciTreeWriteTemplate<PayordInfo> {
@@ -40,13 +39,6 @@ public final class NodePayordUserL2 extends DeciTreeWriteTemplate<PayordInfo> {
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
 		checker = new PayordCheckCrecarch(checkerOption);
-		queue.add(checker);
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
-		checker = new PayordCheckCusparch(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);

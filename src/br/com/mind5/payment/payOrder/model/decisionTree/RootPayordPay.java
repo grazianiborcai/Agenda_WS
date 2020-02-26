@@ -11,15 +11,10 @@ import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
-import br.com.mind5.payment.payOrder.model.action.LazyPayordEnforceLChanged;
-import br.com.mind5.payment.payOrder.model.action.LazyPayordNodeMerge_;
+import br.com.mind5.payment.payOrder.model.action.LazyPayordNodeInsert;
+import br.com.mind5.payment.payOrder.model.action.LazyPayordNodeOrder;
 import br.com.mind5.payment.payOrder.model.action.LazyPayordNodePay;
-import br.com.mind5.payment.payOrder.model.action.LazyPayordNodeUserL1;
-import br.com.mind5.payment.payOrder.model.action.LazyPayordOrderPay;
-import br.com.mind5.payment.payOrder.model.action.LazyPayordOrderRefresh;
-import br.com.mind5.payment.payOrder.model.action.StdPayordEnforceCreatedOn;
 import br.com.mind5.payment.payOrder.model.checker.PayordCheckCrecard;
-import br.com.mind5.payment.payOrder.model.checker.PayordCheckCuspar;
 import br.com.mind5.payment.payOrder.model.checker.PayordCheckLangu;
 import br.com.mind5.payment.payOrder.model.checker.PayordCheckOrder;
 import br.com.mind5.payment.payOrder.model.checker.PayordCheckOwner;
@@ -71,13 +66,6 @@ public final class RootPayordPay extends DeciTreeWriteTemplate<PayordInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
-		checker = new PayordCheckCuspar(checkerOption);					//TODO: Remover
-		queue.add(checker);
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
 		checker = new PayordCheckOrder(checkerOption);
 		queue.add(checker);
 		
@@ -96,23 +84,16 @@ public final class RootPayordPay extends DeciTreeWriteTemplate<PayordInfo> {
 	@Override protected List<ActionStd<PayordInfo>> buildActionsOnPassedHook(DeciTreeOption<PayordInfo> option) {
 		List<ActionStd<PayordInfo>> actions = new ArrayList<>();		
 		//TODO: Refresh Latest ???
-		//TODO: Obter o paypartner do cartao de credito
-		ActionStd<PayordInfo> enforceCreatedOn = new StdPayordEnforceCreatedOn(option);	
-		ActionLazy<PayordInfo> enforceLChanged = new LazyPayordEnforceLChanged(option.conn, option.schemaName);
-		ActionLazy<PayordInfo> nodeUser = new LazyPayordNodeUserL1(option.conn, option.schemaName);
-		ActionLazy<PayordInfo> orderPay = new LazyPayordOrderPay(option.conn, option.schemaName);
-		ActionLazy<PayordInfo> nodeMerge = new LazyPayordNodeMerge_(option.conn, option.schemaName);
+		ActionStd<PayordInfo> nodeUser = new NodePayordUserL1(option).toAction();
+		ActionLazy<PayordInfo> nodeOrder = new LazyPayordNodeOrder(option.conn, option.schemaName);
+		ActionLazy<PayordInfo> nodeInsert = new LazyPayordNodeInsert(option.conn, option.schemaName);
 		ActionLazy<PayordInfo> nodePay = new LazyPayordNodePay(option.conn, option.schemaName);		
-		ActionLazy<PayordInfo> orderRefresh = new LazyPayordOrderRefresh(option.conn, option.schemaName);
 		
-		enforceCreatedOn.addPostAction(enforceLChanged);
-		enforceLChanged.addPostAction(nodeUser);	
-		nodeUser.addPostAction(orderPay);
-		orderPay.addPostAction(nodeMerge);
-		nodeMerge.addPostAction(nodePay);
-		nodePay.addPostAction(orderRefresh);
+		nodeUser.addPostAction(nodeOrder);
+		nodeOrder.addPostAction(nodeInsert);
+		nodeInsert.addPostAction(nodePay);
 		
-		actions.add(enforceCreatedOn);		
+		actions.add(nodeUser);		
 		return actions;
 	}
 }

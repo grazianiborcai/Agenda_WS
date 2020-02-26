@@ -7,27 +7,11 @@ import br.com.mind5.business.order.info.OrderInfo;
 import br.com.mind5.info.InfoMergerBuilderV3;
 import br.com.mind5.info.InfoMergerV3;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
-import br.com.mind5.payment.customerPartner.info.CusparInfo;
 import br.com.mind5.payment.payOrderItem.info.PayordemInfo;
-import br.com.mind5.payment.payOrderSearch.info.PayordarchInfo;
-import br.com.mind5.payment.systemPartner.info.SysparInfo;
 import br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.info.MultmoipInfo;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class PayordMerger {	
-	public static List<PayordInfo> mergeWithLatest(List<PayordInfo> baseInfos, List<PayordarchInfo> selectedInfos) {
-		InfoMergerBuilderV3<PayordInfo, PayordarchInfo> builder = new InfoMergerBuilderV3<>();
-		
-		builder.addBaseInfos(baseInfos);
-		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PayordVisiMergeLatest());
-		InfoMergerV3<PayordInfo, PayordarchInfo> merger = builder.build();		
-	
-		return merger.merge();
-	}	
-	
-	
-	
 	public static List<PayordInfo> mergeWithMultmoip(List<PayordInfo> baseInfos, List<MultmoipInfo> selectedInfos) {
 		InfoMergerBuilderV3<PayordInfo, MultmoipInfo> builder = new InfoMergerBuilderV3<>();
 		
@@ -61,32 +45,6 @@ public final class PayordMerger {
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new PayordVisiMergeCrecard());
 		InfoMergerV3<PayordInfo, CrecardInfo> merger = builder.build();		
-	
-		return merger.merge();
-	}	
-	
-	
-	
-	public static List<PayordInfo> mergeWithSyspar(List<PayordInfo> baseInfos, List<SysparInfo> selectedInfos) {
-		InfoMergerBuilderV3<PayordInfo, SysparInfo> builder = new InfoMergerBuilderV3<>();
-		
-		builder.addBaseInfos(baseInfos);
-		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PayordVisiMergeSyspar());
-		InfoMergerV3<PayordInfo, SysparInfo> merger = builder.build();		
-	
-		return merger.merge();
-	}	
-	
-	
-	
-	public static List<PayordInfo> mergeWithCuspar(List<PayordInfo> baseInfos, List<CusparInfo> selectedInfos) {
-		InfoMergerBuilderV3<PayordInfo, CusparInfo> builder = new InfoMergerBuilderV3<>();
-		
-		builder.addBaseInfos(baseInfos);
-		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PayordVisiMergeCuspar());
-		InfoMergerV3<PayordInfo, CusparInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}	

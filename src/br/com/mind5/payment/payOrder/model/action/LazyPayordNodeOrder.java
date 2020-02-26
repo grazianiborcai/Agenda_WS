@@ -8,10 +8,11 @@ import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
+import br.com.mind5.payment.payOrder.model.decisionTree.NodePayordOrder;
 
-public final class LazyPayordSelect extends ActionLazyTemplate<PayordInfo, PayordInfo> {
+public final class LazyPayordNodeOrder extends ActionLazyTemplate<PayordInfo, PayordInfo> {
 	
-	public LazyPayordSelect(Connection conn, String schemaName) {
+	public LazyPayordNodeOrder(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +25,7 @@ public final class LazyPayordSelect extends ActionLazyTemplate<PayordInfo, Payor
 	
 	
 	@Override protected ActionStd<PayordInfo> getInstanceOfActionHook(DeciTreeOption<PayordInfo> option) {
-		return new StdPayordSelect(option);
+		return new NodePayordOrder(option).toAction();
 	}
 	
 	

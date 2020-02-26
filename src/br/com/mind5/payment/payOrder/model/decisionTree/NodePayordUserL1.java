@@ -10,8 +10,10 @@ import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
+import br.com.mind5.payment.payOrder.model.action.LazyPayordEnforceLChanged;
+import br.com.mind5.payment.payOrder.model.action.LazyPayordMergeUsername;
 import br.com.mind5.payment.payOrder.model.action.LazyPayordNodeUserL2;
-import br.com.mind5.payment.payOrder.model.action.StdPayordMergeUsername;
+import br.com.mind5.payment.payOrder.model.action.StdPayordEnforceCreatedOn;
 import br.com.mind5.payment.payOrder.model.checker.PayordCheckDummy;
 
 public final class NodePayordUserL1 extends DeciTreeWriteTemplate<PayordInfo> {
@@ -37,12 +39,16 @@ public final class NodePayordUserL1 extends DeciTreeWriteTemplate<PayordInfo> {
 	@Override protected List<ActionStd<PayordInfo>> buildActionsOnPassedHook(DeciTreeOption<PayordInfo> option) {
 		List<ActionStd<PayordInfo>> actions = new ArrayList<>();		
 
-		ActionStd<PayordInfo> mergeUsername = new StdPayordMergeUsername(option);
+		ActionStd<PayordInfo> enforceCreatedOn = new StdPayordEnforceCreatedOn(option);	
+		ActionLazy<PayordInfo> enforceLChanged = new LazyPayordEnforceLChanged(option.conn, option.schemaName);
+		ActionLazy<PayordInfo> mergeUsername = new LazyPayordMergeUsername(option.conn, option.schemaName);
 		ActionLazy<PayordInfo> nodeL2 = new LazyPayordNodeUserL2(option.conn, option.schemaName);
 		
+		enforceCreatedOn.addPostAction(enforceLChanged);
+		enforceLChanged.addPostAction(mergeUsername);
 		mergeUsername.addPostAction(nodeL2);
 		
-		actions.add(mergeUsername);		
+		actions.add(enforceCreatedOn);		
 		return actions;
 	}
 }

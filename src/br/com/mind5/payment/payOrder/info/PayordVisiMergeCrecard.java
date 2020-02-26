@@ -17,8 +17,7 @@ final class PayordVisiMergeCrecard implements InfoMergerVisitorV3<PayordInfo, Cr
 	
 	@Override public boolean shouldMerge(PayordInfo baseInfo, CrecardInfo selectedInfo) {
 		return (baseInfo.codOwner 	 	== selectedInfo.codOwner		&&
-				baseInfo.codPayPartner  == selectedInfo.codPayPartner	&&
-				baseInfo.codPayCustomer == selectedInfo.codPayCustomer		);
+				baseInfo.codCreditCard  == selectedInfo.codCreditCard		);
 	}
 	
 	
@@ -26,7 +25,8 @@ final class PayordVisiMergeCrecard implements InfoMergerVisitorV3<PayordInfo, Cr
 	@Override public List<PayordInfo> merge(PayordInfo baseInfo, CrecardInfo selectedInfo) {
 		List<PayordInfo> results = new ArrayList<>();
 		
-		baseInfo.crecardData = selectedInfo;
+		baseInfo.codPayCustomer = selectedInfo.codPayCustomer;
+		baseInfo.codPayPartner = selectedInfo.codPayPartner;
 		
 		results.add(baseInfo);
 		return results;

@@ -18,7 +18,6 @@ public final class PayordCheckPay extends ModelCheckerTemplateSimpleV2<PayordInf
 	@Override protected boolean checkHook(PayordInfo recordInfo, Connection conn, String schemaName) {	
 		if (   recordInfo.codOwner    	 <= 0		||
 			   recordInfo.codOrder    	 <= 0 		||
-			   recordInfo.codPayCustomer <= 0 		||		//TODO: Remover	   
 			   recordInfo.codCreditCard  <= 0 		||	
 			   recordInfo.cardCvc		 == null	||
 			   recordInfo.codLanguage 	 == null	||

@@ -25,7 +25,6 @@ final class PayordVisiMergeMultmoip implements InfoMergerVisitorV3<PayordInfo, M
 	@Override public List<PayordInfo> merge(PayordInfo baseInfo, MultmoipInfo selectedInfo) {
 		List<PayordInfo> results = new ArrayList<>();
 		
-		baseInfo.ordmoips = selectedInfo.ordmoips;
 		baseInfo.idOrderPartner = selectedInfo.idOrderPartner;
 		baseInfo.statusOrderPartner = selectedInfo.statusOrderPartner;
 		baseInfo.idPaymentPartner = selectedInfo.idPaymentPartner;

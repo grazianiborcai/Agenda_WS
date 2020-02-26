@@ -2,17 +2,17 @@ package br.com.mind5.payment.payOrder.model.action;
 
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
-import br.com.mind5.model.action.ActionStdHelperAction;
+import br.com.mind5.model.action.ActionStdHelperEnforce;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
 
-public final class StdPayordUpdatePayordem implements ActionStd<PayordInfo> {
+public final class StdPayordEnforceItem implements ActionStd<PayordInfo> {
 	private ActionStd<PayordInfo> actionHelper;	
 	
 	
-	public StdPayordUpdatePayordem(DeciTreeOption<PayordInfo> option) {			
-		actionHelper = new ActionStdHelperAction<>(option.recordInfos, new VisiPayordUpdatePayordem(option.conn, option.schemaName));
+	public StdPayordEnforceItem(DeciTreeOption<PayordInfo> option) {			
+		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiPayordEnforceItem());
 	}
 	
 	

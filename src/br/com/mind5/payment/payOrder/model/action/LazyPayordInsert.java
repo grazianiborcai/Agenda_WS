@@ -9,9 +9,9 @@ import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
 
-public final class LazyPayordMultmoipPay extends ActionLazyTemplate<PayordInfo, PayordInfo> {
+public final class LazyPayordInsert extends ActionLazyTemplate<PayordInfo, PayordInfo> {
 	
-	public LazyPayordMultmoipPay(Connection conn, String schemaName) {
+	public LazyPayordInsert(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyPayordMultmoipPay extends ActionLazyTemplate<PayordInfo, 
 	
 	
 	@Override protected ActionStd<PayordInfo> getInstanceOfActionHook(DeciTreeOption<PayordInfo> option) {
-		return new StdPayordMultmoipPay(option);
+		return new StdPayordInsert(option);
 	}
 	
 	

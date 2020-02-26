@@ -10,13 +10,13 @@ import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
-import br.com.mind5.payment.payOrder.model.action.LazyPayordOrderRefresh;
-import br.com.mind5.payment.payOrder.model.action.StdPayordMultmoipPay;
+import br.com.mind5.payment.payOrder.model.action.LazyPayordMergeOrder;
+import br.com.mind5.payment.payOrder.model.action.StdPayordOrderPay;
 import br.com.mind5.payment.payOrder.model.checker.PayordCheckDummy;
 
-public final class NodePayordPay extends DeciTreeWriteTemplate<PayordInfo> {
+public final class NodePayordOrder extends DeciTreeWriteTemplate<PayordInfo> {
 	
-	public NodePayordPay(DeciTreeOption<PayordInfo> option) {
+	public NodePayordOrder(DeciTreeOption<PayordInfo> option) {
 		super(option);
 	}
 	
@@ -28,21 +28,21 @@ public final class NodePayordPay extends DeciTreeWriteTemplate<PayordInfo> {
 		
 		checker = new PayordCheckDummy();
 		queue.add(checker);
-
+		
 		return new ModelCheckerQueue<>(queue);
 	}
 	
 	
-	//TODO: Ciclo de pagamento dever ser: 1) pre-autorizacao; 2) pagamento
+	
 	@Override protected List<ActionStd<PayordInfo>> buildActionsOnPassedHook(DeciTreeOption<PayordInfo> option) {
 		List<ActionStd<PayordInfo>> actions = new ArrayList<>();		
-	
-		ActionStd<PayordInfo> multmoipPay = new StdPayordMultmoipPay(option);
-		ActionLazy<PayordInfo> orderRefresh = new LazyPayordOrderRefresh(option.conn, option.schemaName);
+
+		ActionStd<PayordInfo> orderPay = new StdPayordOrderPay(option);
+		ActionLazy<PayordInfo> mergeOrder = new LazyPayordMergeOrder(option.conn, option.schemaName);
+			
+		orderPay.addPostAction(mergeOrder);
 		
-		multmoipPay.addPostAction(orderRefresh);
-		
-		actions.add(multmoipPay);		
+		actions.add(orderPay);		
 		return actions;
 	}
 }

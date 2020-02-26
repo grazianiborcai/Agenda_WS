@@ -7,17 +7,12 @@ import java.util.List;
 import br.com.mind5.business.order.info.OrderInfo;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
-import br.com.mind5.payment.creditCard.info.CrecardInfo;
-import br.com.mind5.payment.customerPartner.info.CusparInfo;
 import br.com.mind5.payment.payOrderItem.info.PayordemInfo;
-import br.com.mind5.payment.payOrderSearch.info.PayordarchInfo;
-import br.com.mind5.payment.systemPartner.info.SysparInfo;
-import br.com.mind5.paymentPartner.partnerMoip.orderMoip.info.OrdmoipInfo;
 
 public final class PayordInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codPayOrder;
-	public long codPayCustomer;				//TODO: Remover
+	public long codPayCustomer;
 	public long codCreditCard;
 	public long codUser;
 	public long codOrder;
@@ -31,13 +26,8 @@ public final class PayordInfo extends InfoRecord implements Cloneable {
 	public String statusPaymentPartner;
 	public String amountTotalPartner;
 	public String amountCurrencyPartner;
-	public SysparInfo sysparData;			//TODO: Remover
-	public OrderInfo orderData;				//TODO: Remover
-	public CusparInfo cusparData;			//TODO: Remover
-	public CrecardInfo crecardData;			//TODO: Remover
-	public List<PayordemInfo> payordems;	//TODO: Remover
-	public List<OrdmoipInfo> ordmoips;		//TODO: Remover
-	public PayordarchInfo latestData;
+	public OrderInfo orderData;
+	public List<PayordemInfo> payordems;
 	public LocalDateTime createdOn;
 	public LocalDateTime lastChanged;
 	public String username;
@@ -53,13 +43,8 @@ public final class PayordInfo extends InfoRecord implements Cloneable {
 		codPayPartner = DefaultValue.number();
 		codUser = DefaultValue.number();
 		codOrder = DefaultValue.number();
-		sysparData = DefaultValue.object();
 		orderData = DefaultValue.object();
-		cusparData = DefaultValue.object();
-		crecardData = DefaultValue.object();
 		payordems = DefaultValue.list();
-		ordmoips = DefaultValue.list();
-		latestData = DefaultValue.object();
 	}
 	
 	
@@ -80,12 +65,7 @@ public final class PayordInfo extends InfoRecord implements Cloneable {
 		PayordInfo deepCopy = (PayordInfo) super.clone();
 		
 		deepCopy.orderData = cloneOrder(deepCopy.orderData);
-		deepCopy.sysparData = cloneSyspar(deepCopy.sysparData);
-		deepCopy.cusparData = cloneCuspar(deepCopy.cusparData);
-		deepCopy.crecardData = cloneCrecard(deepCopy.crecardData);
 		deepCopy.payordems = clonePayordems(deepCopy.payordems);
-		deepCopy.ordmoips = cloneOrdmoips(deepCopy.ordmoips);
-		deepCopy.latestData = cloneLatest(deepCopy.latestData);
 		
 		return deepCopy;
 	}
@@ -97,33 +77,6 @@ public final class PayordInfo extends InfoRecord implements Cloneable {
 			return null;
 		
 		return (OrderInfo) recordInfo.clone();
-	}
-	
-	
-	
-	private SysparInfo cloneSyspar(SysparInfo recordInfo) throws CloneNotSupportedException {
-		if (recordInfo == null)
-			return null;
-		
-		return (SysparInfo) recordInfo.clone();
-	}
-	
-	
-	
-	private CusparInfo cloneCuspar(CusparInfo recordInfo) throws CloneNotSupportedException {
-		if (recordInfo == null)
-			return null;
-		
-		return (CusparInfo) recordInfo.clone();
-	}
-	
-	
-	
-	private CrecardInfo cloneCrecard(CrecardInfo recordInfo) throws CloneNotSupportedException {
-		if (recordInfo == null)
-			return null;
-		
-		return (CrecardInfo) recordInfo.clone();
 	}	
 	
 	
@@ -140,32 +93,6 @@ public final class PayordInfo extends InfoRecord implements Cloneable {
 		}
 		
 		return results;
-	}
-	
-	
-	
-	private List<OrdmoipInfo> cloneOrdmoips(List<OrdmoipInfo> recordInfos) throws CloneNotSupportedException {
-		if (recordInfos == null)
-			return null;
-		
-		List<OrdmoipInfo> results = new ArrayList<>();
-		
-		for (OrdmoipInfo eachRecord : recordInfos) {
-			OrdmoipInfo clonedOrdmoip = (OrdmoipInfo) eachRecord.clone();
-			results.add(clonedOrdmoip);
-		}
-		
-		
-		return results;
-	}
-	
-	
-	
-	private PayordarchInfo cloneLatest(PayordarchInfo recordInfo) throws CloneNotSupportedException {
-		if (recordInfo == null)
-			return null;
-		
-		return (PayordarchInfo) recordInfo.clone();
 	}	
 	
 	

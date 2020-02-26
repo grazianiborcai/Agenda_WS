@@ -9,9 +9,9 @@ import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
 
-public final class LazyPayordMergeCrecard extends ActionLazyTemplate<PayordInfo, PayordInfo> {
+public final class LazyPayordEnforceItem extends ActionLazyTemplate<PayordInfo, PayordInfo> {
 	
-	public LazyPayordMergeCrecard(Connection conn, String schemaName) {
+	public LazyPayordEnforceItem(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyPayordMergeCrecard extends ActionLazyTemplate<PayordInfo,
 	
 	
 	@Override protected ActionStd<PayordInfo> getInstanceOfActionHook(DeciTreeOption<PayordInfo> option) {
-		return new StdPayordMergeCrecard(option);
+		return new StdPayordEnforceItem(option);
 	}
 	
 	
