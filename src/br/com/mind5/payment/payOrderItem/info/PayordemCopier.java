@@ -24,14 +24,14 @@ public final class PayordemCopier {
 	
 	
 	public static List<PayordemInfo> copyFromPayordToWrite(PayordInfo source) {
-		InfoCopierOneToManyTemplate<PayordemInfo, PayordInfo> copier = new PayordemCopyPayordToWrite_();
+		InfoCopierOneToManyTemplate<PayordemInfo, PayordInfo> copier = new PayordemCopyPayordToWrite();
 		return copier.makeCopy(source);
 	}
 	
 	
 	
 	public static List<PayordemInfo> copyFromPayordToWrite(List<PayordInfo> sources) {
-		InfoCopierOneToManyTemplate<PayordemInfo, PayordInfo> copier = new PayordemCopyPayordToWrite_();
+		InfoCopierOneToManyTemplate<PayordemInfo, PayordInfo> copier = new PayordemCopyPayordToWrite();
 		return copier.makeCopy(sources);
 	}
 	

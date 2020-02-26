@@ -11,7 +11,7 @@ import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
 import br.com.mind5.payment.payOrderItem.info.PayordemInfo;
-import br.com.mind5.payment.payOrderItem.model.action.LazyPayordemNodeInsert;
+import br.com.mind5.payment.payOrderItem.model.action.LazyPayordemInsert;
 import br.com.mind5.payment.payOrderItem.model.action.StdPayordemEnforceLChanged;
 import br.com.mind5.payment.payOrderItem.model.checker.PayordemCheckInsert;
 import br.com.mind5.payment.payOrderItem.model.checker.PayordemCheckLangu;
@@ -68,9 +68,9 @@ public final class RootPayordemInsert extends DeciTreeWriteTemplate<PayordemInfo
 		List<ActionStd<PayordemInfo>> actions = new ArrayList<>();
 		
 		ActionStd<PayordemInfo> enforceLChanged = new StdPayordemEnforceLChanged(option);
-		ActionLazy<PayordemInfo> nodeInsert = new LazyPayordemNodeInsert(option.conn, option.schemaName);
+		ActionLazy<PayordemInfo> insert = new LazyPayordemInsert(option.conn, option.schemaName);
 		
-		enforceLChanged.addPostAction(nodeInsert);
+		enforceLChanged.addPostAction(insert);
 		
 		actions.add(enforceLChanged);
 		return actions;

@@ -18,8 +18,7 @@ public final class PayordemCheckInsert extends ModelCheckerTemplateSimpleV2<Payo
 	@Override protected boolean checkHook(PayordemInfo recordInfo, Connection conn, String schemaName) {	
 		if (   recordInfo.codOwner 			<= 0 	
 			|| recordInfo.codPayOrder		<= 0 
-			|| recordInfo.codPayOrderItem	<= 0 
-			|| recordInfo.codPayPartner 	<= 0
+			|| recordInfo.codPayOrderItem	<= 0
 			|| recordInfo.quantity			<= 0
 			|| recordInfo.price				<= 0
 			|| recordInfo.totitem			<= 0

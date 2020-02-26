@@ -36,9 +36,8 @@ public final class PayordemInfo extends InfoRecord implements Cloneable, Compara
 	public String statusPaymentPartner;
 	public String idRefundPartner;
 	public String statusRefundPartner;
-	public int codPayPartner;
 	public String itemReceiver;
-	public boolean isSystemReceiver;
+	public boolean isSystemReceiver;		//TODO: Remover
 	public LocalDateTime lastChanged;
 	public String username;
 	public StolisInfo stolisData;
@@ -55,7 +54,6 @@ public final class PayordemInfo extends InfoRecord implements Cloneable, Compara
 		codOrderItem = DefaultValue.number();
 		codFeeCateg = DefaultValue.character();
 		codPayOrder = DefaultValue.number();
-		codPayPartner = DefaultValue.number();
 		codStore = DefaultValue.number();
 		codEmployee = DefaultValue.number();
 		codMat = DefaultValue.number();
@@ -85,8 +83,6 @@ public final class PayordemInfo extends InfoRecord implements Cloneable, Compara
 	@Override public Object clone() throws CloneNotSupportedException {
 		PayordemInfo deepCopy = (PayordemInfo) super.clone();
 		
-		deepCopy.date = date;
-		deepCopy.beginTime = beginTime;
 		deepCopy.stolisData = cloneStolis(stolisData);
 		deepCopy.emplisData = cloneEmplis(emplisData);
 		deepCopy.matlisData = cloneMatlis(matlisData);
