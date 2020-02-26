@@ -13,7 +13,7 @@ final class SetuparCopyMultmoip extends InfoCopierTemplate<SetuparInfo, Multmoip
 	
 	@Override protected SetuparInfo makeCopyHook(MultmoipInfo source) {
 		SetuparInfo result = SetuparInfo.copyFrom(source);
-		result.codPayPartner = source.cusparData.codPayPartner;
+		result.codPayPartner = source.codPayPartner;
 		
 		return result;
 	}

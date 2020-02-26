@@ -6,7 +6,6 @@ import java.util.List;
 import br.com.mind5.info.InfoCopier;
 import br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.info.MultmoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.info.PaymoipInfo;
-import br.com.mind5.paymentPartner.partnerMoip.orderMoip.info.OrdmoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.refundMoip.info.RefumoipInfo;
 
 public final class SetuparCopier {	
@@ -34,21 +33,7 @@ public final class SetuparCopier {
 	public static List<SetuparInfo> copyFromMultmoip(List<MultmoipInfo> sources) {
 		InfoCopier<SetuparInfo, MultmoipInfo> copier = new SetuparCopyMultmoip();
 		return copier.makeCopy(sources);
-	}	
-	
-	
-	
-	public static SetuparInfo copyFromOrdmoip(OrdmoipInfo source) {
-		InfoCopier<SetuparInfo, OrdmoipInfo> copier = new SetuparCopyOrdmoip();
-		return copier.makeCopy(source);
 	}
-	
-	
-	
-	public static List<SetuparInfo> copyFromOrdmoip(List<OrdmoipInfo> sources) {
-		InfoCopier<SetuparInfo, OrdmoipInfo> copier = new SetuparCopyOrdmoip();
-		return copier.makeCopy(sources);
-	}		
 	
 	
 	
