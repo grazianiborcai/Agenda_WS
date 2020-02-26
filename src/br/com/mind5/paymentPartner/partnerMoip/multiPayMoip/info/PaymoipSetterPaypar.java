@@ -7,9 +7,6 @@ import br.com.mind5.business.masterData.info.common.Paypar;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.InfoSetter;
 
-import static br.com.moip.helpers.PayloadFactory.payloadFactory;
-import static br.com.moip.helpers.PayloadFactory.value;
-
 public final class PaymoipSetterPaypar implements InfoSetter<PaymoipInfo> {
 	
 	public PaymoipInfo setAttr(PaymoipInfo recordInfo) {
@@ -17,7 +14,7 @@ public final class PaymoipSetterPaypar implements InfoSetter<PaymoipInfo> {
 		
 		recordInfo.codPayPartner = Paypar.MOIP.getCodPayPartner();
 		
-		return setCard(recordInfo);
+		return recordInfo;
 	}
 	
 	
@@ -27,17 +24,6 @@ public final class PaymoipSetterPaypar implements InfoSetter<PaymoipInfo> {
 			logException(new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT));
 			throw new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT);
 		}
-	}
-	
-	
-	
-	private PaymoipInfo setCard(PaymoipInfo recordInfo) {		
-		recordInfo.creditCard = payloadFactory(
-			    value("id" , recordInfo.crecardData.creditCardId),
-			    value("cvc", recordInfo.cardCvc)
-			);
-		
-		return recordInfo;
 	}
 	
 	
