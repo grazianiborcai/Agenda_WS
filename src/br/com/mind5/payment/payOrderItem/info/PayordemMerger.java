@@ -6,8 +6,22 @@ import br.com.mind5.business.masterData.info.FeeCategInfo;
 import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.info.InfoMergerBuilderV3;
 import br.com.mind5.info.InfoMergerV3;
+import br.com.mind5.payment.payOrderItemSearch.info.PayormarchInfo;
 
 public final class PayordemMerger {
+	public static List<PayordemInfo> mergeWithPayormarch(List<PayordemInfo> baseInfos, List<PayormarchInfo> selectedInfos) {
+		InfoMergerBuilderV3<PayordemInfo, PayormarchInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new PayordemVisiMergePayormarch());
+		InfoMergerV3<PayordemInfo, PayormarchInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}	
+	
+	
+	
 	public static List<PayordemInfo> mergeWithMatlis(List<PayordemInfo> baseInfos, List<MatlisInfo> selectedInfos) {
 		InfoMergerBuilderV3<PayordemInfo, MatlisInfo> builder = new InfoMergerBuilderV3<>();
 		

@@ -9,29 +9,29 @@ import br.com.mind5.payment.payOrder.info.PayordInfo;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.info.OrdmoipInfo;
 
 public final class PayordemCopier {
-	public static PayordemInfo copyFromPayordToRead(PayordInfo source) {
-		InfoCopierTemplate<PayordemInfo, PayordInfo> copier = new PayordemCopyPayordToRead_();
+	public static PayordemInfo copyFromPayordKey(PayordInfo source) {
+		InfoCopierTemplate<PayordemInfo, PayordInfo> copier = new PayordemCopyPayordKey();
 		return copier.makeCopy(source);
 	}
 	
 	
 	
-	public static List<PayordemInfo> copyFromPayordToRead(List<PayordInfo> sources) {
-		InfoCopierTemplate<PayordemInfo, PayordInfo> copier = new PayordemCopyPayordToRead_();
+	public static List<PayordemInfo> copyFromPayordKey(List<PayordInfo> sources) {
+		InfoCopierTemplate<PayordemInfo, PayordInfo> copier = new PayordemCopyPayordKey();
 		return copier.makeCopy(sources);
 	}
 	
 	
 	
-	public static List<PayordemInfo> copyFromPayordToWrite(PayordInfo source) {
-		InfoCopierOneToManyTemplate<PayordemInfo, PayordInfo> copier = new PayordemCopyPayordToWrite();
+	public static List<PayordemInfo> copyFromPayord(PayordInfo source) {
+		InfoCopierOneToManyTemplate<PayordemInfo, PayordInfo> copier = new PayordemCopyPayord();
 		return copier.makeCopy(source);
 	}
 	
 	
 	
-	public static List<PayordemInfo> copyFromPayordToWrite(List<PayordInfo> sources) {
-		InfoCopierOneToManyTemplate<PayordemInfo, PayordInfo> copier = new PayordemCopyPayordToWrite();
+	public static List<PayordemInfo> copyFromPayord(List<PayordInfo> sources) {
+		InfoCopierOneToManyTemplate<PayordemInfo, PayordInfo> copier = new PayordemCopyPayord();
 		return copier.makeCopy(sources);
 	}
 	
