@@ -19,8 +19,7 @@ public final class PaymoipCheckPay extends ModelCheckerTemplateSimpleV2<PaymoipI
 		if ( recordInfo.codOwner  		<= 0    ||
 			 recordInfo.codCreditCard   <= 0    ||
 			 recordInfo.idOrderPartner 	== null	||			 
-			 recordInfo.cardCvc 		== null ||
-			 recordInfo.setuparData		== null		)		//	
+			 recordInfo.cardCvc 		== null		)
 			
 			return super.FAILED;
 		

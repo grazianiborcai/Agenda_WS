@@ -14,14 +14,12 @@ final class PaymoipCopyMultmoip extends InfoCopierTemplate<PaymoipInfo, Multmoip
 	@Override protected PaymoipInfo makeCopyHook(MultmoipInfo source) {
 		PaymoipInfo result = new PaymoipInfo();
 		
+		result.codOwner = source.codOwner;
 		result.idOrderPartner = source.idOrderPartner;
+		result.codCreditCard = source.codCreditCard;
 		result.cardCvc = source.cardCvc;
 		result.codLanguage = source.codLanguage;
-		result.username = source.username;
-		result.cusparData = source.cusparData;
-		result.crecardData = source.crecardData;
-		result.sysparData = source.sysparData;
-		result.setuparData = source.setuparData;		
+		result.username = source.username;		
 		
 		return result;
 	}
