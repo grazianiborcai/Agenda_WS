@@ -15,6 +15,8 @@ import br.com.moip.models.Setup;
 public final class MultmoipInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codPayOrder;
+	public long codCreditCard;
+	public String cardCvc;
 	public String idOrderPartner;
 	public int codPayPartner;
 	public String statusOrderPartner;
@@ -24,8 +26,7 @@ public final class MultmoipInfo extends InfoRecord implements Cloneable {
 	public String urlPayCard;
 	public String urlPayBoleto;
 	public String amountTotalPartner;
-	public String amountCurrencyPartner;
-	public String cardCvc;
+	public String amountCurrencyPartner;	
 	public List<PayordemistInfo> payordemists;	
 	public CrecardInfo crecardData;
 	public SetuparInfo setuparData;
@@ -42,6 +43,7 @@ public final class MultmoipInfo extends InfoRecord implements Cloneable {
 		
 		codOwner = DefaultValue.number();
 		codPayOrder = DefaultValue.number();
+		codCreditCard = DefaultValue.number();
 		codPayPartner = DefaultValue.number();
 		payordemists = DefaultValue.list();
 		crecardData = DefaultValue.object();

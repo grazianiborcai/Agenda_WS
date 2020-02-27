@@ -16,12 +16,13 @@ final class MultmoipCopyPayord extends InfoCopierTemplate<MultmoipInfo, PayordIn
 		
 		result.codOwner = source.codOwner;
 		result.codPayOrder = source.codPayOrder;	
-		result.idOrderPartner = source.idOrderPartner;
-		result.statusOrderPartner = source.statusOrderPartner;
-		result.amountTotalPartner = source.amountTotalPartner;
-		result.amountCurrencyPartner = source.amountCurrencyPartner;		
-		result.codLanguage = source.codLanguage;
-		result.cardCvc = source.cardCvc;
+		result.codCreditCard = source.codCreditCard;
+		result.cardCvc = source.cardCvc;		
+		//result.idOrderPartner = source.idOrderPartner;
+		//result.statusOrderPartner = source.statusOrderPartner;
+		//result.amountTotalPartner = source.amountTotalPartner;
+		//result.amountCurrencyPartner = source.amountCurrencyPartner;			
+		result.codLanguage = source.codLanguage;		
 		result.username = source.username;		
 		
 		return result;
