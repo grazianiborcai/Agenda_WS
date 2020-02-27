@@ -51,14 +51,14 @@ public final class OrderCopier {
 	
 	
 	public static OrderInfo copyToSelect(OrderInfo source) {
-		InfoCopier<OrderInfo, OrderInfo> copier = new OrderCopyToSelect();
+		InfoCopier<OrderInfo, OrderInfo> copier = new OrderCopyToSelect_();
 		return copier.makeCopy(source);
 	}
 	
 	
 	
 	public static List<OrderInfo> copyToSelect(List<OrderInfo> sources) {
-		InfoCopier<OrderInfo, OrderInfo> copier = new OrderCopyToSelect();
+		InfoCopier<OrderInfo, OrderInfo> copier = new OrderCopyToSelect_();
 		return copier.makeCopy(sources);
 	}
 }

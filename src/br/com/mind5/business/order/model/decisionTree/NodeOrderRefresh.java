@@ -6,11 +6,10 @@ import java.util.List;
 import br.com.mind5.business.order.info.OrderInfo;
 import br.com.mind5.business.order.model.action.LazyOrderNodeUpdate;
 import br.com.mind5.business.order.model.action.LazyOrderRefreshSchedine;
-import br.com.mind5.business.order.model.checker.OrderCheckRefresh;
+import br.com.mind5.business.order.model.checker.OrderCheckDummy;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
@@ -25,14 +24,9 @@ public final class NodeOrderRefresh extends DeciTreeWriteTemplate<OrderInfo> {
 	
 	@Override protected ModelChecker<OrderInfo> buildDecisionCheckerHook(DeciTreeOption<OrderInfo> option) {
 		List<ModelChecker<OrderInfo>> queue = new ArrayList<>();		
-		ModelChecker<OrderInfo> checker;	
-		ModelCheckerOption checkerOption;
+		ModelChecker<OrderInfo> checker;
 		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new OrderCheckRefresh(checkerOption);
+		checker = new OrderCheckDummy();
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);

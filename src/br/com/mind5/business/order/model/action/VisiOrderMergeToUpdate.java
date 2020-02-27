@@ -3,7 +3,6 @@ package br.com.mind5.business.order.model.action;
 import java.sql.Connection;
 import java.util.List;
 
-import br.com.mind5.business.order.info.OrderCopier;
 import br.com.mind5.business.order.info.OrderInfo;
 import br.com.mind5.business.order.info.OrderMerger;
 import br.com.mind5.model.action.ActionStd;
@@ -19,12 +18,6 @@ final class VisiOrderMergeToUpdate extends ActionVisitorTemplateMergeV2<OrderInf
 	
 	@Override protected Class<? extends ActionStd<OrderInfo>> getActionClassHook() {
 		return StdOrderSelect.class;
-	}
-	
-	
-	
-	@Override protected List<OrderInfo> toActionClassHook(List<OrderInfo> baseInfos) {
-		return OrderCopier.copyToSelect(baseInfos);	
 	}
 	
 	

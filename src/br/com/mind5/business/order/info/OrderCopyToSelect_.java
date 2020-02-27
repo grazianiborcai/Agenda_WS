@@ -2,9 +2,9 @@ package br.com.mind5.business.order.info;
 
 import br.com.mind5.info.InfoCopierTemplate;
 
-final class OrderCopyToSelect extends InfoCopierTemplate<OrderInfo, OrderInfo>{
+final class OrderCopyToSelect_ extends InfoCopierTemplate<OrderInfo, OrderInfo>{
 	
-	public OrderCopyToSelect() {
+	public OrderCopyToSelect_() {
 		super();
 	}
 	
