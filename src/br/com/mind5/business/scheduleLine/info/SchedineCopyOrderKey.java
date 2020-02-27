@@ -13,6 +13,7 @@ final class SchedineCopyOrderKey extends InfoCopierTemplate<SchedineInfo, OrderI
 	
 	@Override protected SchedineInfo makeCopyHook(OrderInfo source) {
 		SchedineInfo result = new SchedineInfo();
+		
 		result.codOwner = source.codOwner;
 		result.codOrder = source.codOrder;
 		result.codLanguage = source.codLanguage;
