@@ -11,6 +11,8 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
 import br.com.mind5.payment.payOrder.model.action.LazyPayordOrderRefresh;
+import br.com.mind5.payment.payOrder.model.action.LazyPayordUpdate;
+import br.com.mind5.payment.payOrder.model.action.LazyPayordUpdatePayordem;
 import br.com.mind5.payment.payOrder.model.action.StdPayordMultmoipPay;
 import br.com.mind5.payment.payOrder.model.checker.PayordCheckDummy;
 
@@ -38,9 +40,13 @@ public final class NodePayordPay extends DeciTreeWriteTemplate<PayordInfo> {
 		List<ActionStd<PayordInfo>> actions = new ArrayList<>();		
 	
 		ActionStd<PayordInfo> multmoipPay = new StdPayordMultmoipPay(option);
+		ActionLazy<PayordInfo> updatePayord = new LazyPayordUpdate(option.conn, option.schemaName);
+		ActionLazy<PayordInfo> updatePayordem = new LazyPayordUpdatePayordem(option.conn, option.schemaName);
 		ActionLazy<PayordInfo> orderRefresh = new LazyPayordOrderRefresh(option.conn, option.schemaName);
 		
-		multmoipPay.addPostAction(orderRefresh);
+		multmoipPay.addPostAction(updatePayord);
+		updatePayord.addPostAction(updatePayordem);
+		updatePayordem.addPostAction(orderRefresh);
 		
 		actions.add(multmoipPay);		
 		return actions;

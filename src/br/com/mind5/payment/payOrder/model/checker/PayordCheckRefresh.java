@@ -7,22 +7,19 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
 
-public final class PayordCheckUpdate extends ModelCheckerTemplateSimpleV2<PayordInfo> {
+public final class PayordCheckRefresh extends ModelCheckerTemplateSimpleV2<PayordInfo> {
 
-	public PayordCheckUpdate(ModelCheckerOption option) {
+	public PayordCheckRefresh(ModelCheckerOption option) {
 		super(option);
 	}
 	
 	
 	
 	@Override protected boolean checkHook(PayordInfo recordInfo, Connection conn, String schemaName) {	
-		if (   recordInfo.codOwner 				<= 0 	
-			|| recordInfo.codPayOrder			<= 0 
-			|| recordInfo.statusOrderPartner 	== null	
-			|| recordInfo.idPaymentPartner 		== null
-			|| recordInfo.statusPaymentPartner 	== null
-			|| recordInfo.username				== null 
-			|| recordInfo.codLanguage			== null	)
+		if (   recordInfo.codOwner 		<= 0 	
+			|| recordInfo.codPayOrder	<= 0 
+			|| recordInfo.username		== null 
+			|| recordInfo.codLanguage	== null	)
 			
 			return super.FAILED;
 		

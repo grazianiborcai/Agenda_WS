@@ -108,7 +108,7 @@ public final class PayordMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PayordVisiMergeToUpdateStatus());
+		builder.addVisitor(new PayordVisiMergeToUpdate());
 		InfoMergerV3<PayordInfo, PayordInfo> merger = builder.build();		
 	
 		return merger.merge();

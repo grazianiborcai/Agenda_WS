@@ -9,7 +9,7 @@ import br.com.mind5.payment.payOrder.info.PayordInfo;
 import br.com.mind5.payment.payOrder.info.PayordMerger;
 import br.com.mind5.payment.payOrderItem.info.PayordemCopier;
 import br.com.mind5.payment.payOrderItem.info.PayordemInfo;
-import br.com.mind5.payment.payOrderItem.model.decisionTree.RootPayordemSelect;
+import br.com.mind5.payment.payOrderItem.model.decisionTree.RootPayordemSearch;
 
 final class VisiPayordMergePayordem extends ActionVisitorTemplateMergeV2<PayordInfo, PayordemInfo> {
 	
@@ -20,13 +20,13 @@ final class VisiPayordMergePayordem extends ActionVisitorTemplateMergeV2<PayordI
 	
 	
 	@Override protected Class<? extends DeciTree<PayordemInfo>> getTreeClassHook() {
-		return RootPayordemSelect.class;
+		return RootPayordemSearch.class;
 	}
 	
 	
 	
 	@Override protected List<PayordemInfo> toActionClassHook(List<PayordInfo> baseInfos) {
-		return PayordemCopier.copyFromPayordToRead(baseInfos);	
+		return PayordemCopier.copyFromPayordKey(baseInfos);	
 	}
 	
 	

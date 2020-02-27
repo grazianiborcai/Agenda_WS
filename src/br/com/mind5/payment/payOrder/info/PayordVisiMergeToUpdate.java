@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.info.InfoMergerVisitorV3;
 import br.com.mind5.info.InfoUniquifier;
 
-final class PayordVisiMergeToUpdateStatus implements InfoMergerVisitorV3<PayordInfo, PayordInfo> {
+final class PayordVisiMergeToUpdate implements InfoMergerVisitorV3<PayordInfo, PayordInfo> {
 	
 	@Override public List<PayordInfo> beforeMerge(List<PayordInfo> baseInfos) {
 		return baseInfos;
@@ -15,7 +15,8 @@ final class PayordVisiMergeToUpdateStatus implements InfoMergerVisitorV3<PayordI
 	
 	
 	@Override public boolean shouldMerge(PayordInfo baseInfo, PayordInfo selectedInfo) {
-		return (baseInfo.codOwner == selectedInfo.codOwner);
+		return (baseInfo.codOwner    == selectedInfo.codOwner &&
+				baseInfo.codPayOrder == selectedInfo.codPayOrder);
 	}
 	
 	
