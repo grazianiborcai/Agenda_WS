@@ -3,7 +3,6 @@ package br.com.mind5.payment.storePartner.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -11,15 +10,14 @@ import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
 import br.com.mind5.payment.storePartner.info.StoparInfo;
-import br.com.mind5.payment.storePartner.model.action.LazyStoparMergePaypar;
-import br.com.mind5.payment.storePartner.model.action.StdStoparMergeToSelect;
 import br.com.mind5.payment.storePartner.model.checker.StoparCheckOwner;
 import br.com.mind5.payment.storePartner.model.checker.StoparCheckRead;
+import br.com.mind5.payment.storePartner.model.checker.StoparCheckStorauth;
 import br.com.mind5.payment.storePartner.model.checker.StoparCheckStore;
 
-public final class RootStoparSelect extends DeciTreeReadTemplate<StoparInfo> {
+public final class RootStoparSelectAuth extends DeciTreeReadTemplate<StoparInfo> {
 	
-	public RootStoparSelect(DeciTreeOption<StoparInfo> option) {
+	public RootStoparSelectAuth(DeciTreeOption<StoparInfo> option) {
 		super(option);
 	}
 	
@@ -51,6 +49,13 @@ public final class RootStoparSelect extends DeciTreeReadTemplate<StoparInfo> {
 		checker = new StoparCheckStore(checkerOption);
 		queue.add(checker);	
 		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
+		checker = new StoparCheckStorauth(checkerOption);
+		queue.add(checker);	
+		
 		return new ModelCheckerQueue<>(queue);
 	}
 	
@@ -59,10 +64,7 @@ public final class RootStoparSelect extends DeciTreeReadTemplate<StoparInfo> {
 	@Override protected List<ActionStd<StoparInfo>> buildActionsOnPassedHook(DeciTreeOption<StoparInfo> option) {
 		List<ActionStd<StoparInfo>> actions = new ArrayList<>();
 		
-		ActionStd<StoparInfo> select = new StdStoparMergeToSelect(option);
-		ActionLazy<StoparInfo> mergePayPartner = new LazyStoparMergePaypar(option.conn, option.schemaName);
-		
-		select.addPostAction(mergePayPartner);
+		ActionStd<StoparInfo> select = new RootStoparSelect(option).toAction();
 		
 		actions.add(select);
 		return actions;
