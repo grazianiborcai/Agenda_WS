@@ -16,7 +16,7 @@ final class OrdmoipVisiMergeSetupar implements InfoMergerVisitorV3<OrdmoipInfo, 
 	
 	
 	@Override public boolean shouldMerge(OrdmoipInfo baseInfo, SetuparInfo selectedInfo) {
-		return (baseInfo.cusparData.codPayPartner == selectedInfo.codPayPartner);
+		return (baseInfo.codPayPartner == selectedInfo.codPayPartner);
 	}
 	
 	
