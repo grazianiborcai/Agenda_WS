@@ -1,15 +1,17 @@
 package br.com.mind5.payment.refundOrder.info;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import br.com.mind5.business.orderItemSearch.info.OrdemarchInfo;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
-import br.com.mind5.payment.payOrder.info.PayordInfo;
 
 public final class RefuInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
+	public long codOrder;
 	public long codPayOrder;
-	public PayordInfo payordData;
+	public List<OrdemarchInfo> ordemarches;
 	public String username;	
 	
 	
@@ -17,8 +19,9 @@ public final class RefuInfo extends InfoRecord implements Cloneable {
 		super(RefuInfo.class);
 		
 		codOwner = DefaultValue.number();
-		payordData = DefaultValue.object();
 		codPayOrder = DefaultValue.number();
+		codOrder = DefaultValue.number();
+		ordemarches = DefaultValue.list();
 	}
 	
 	
@@ -38,18 +41,29 @@ public final class RefuInfo extends InfoRecord implements Cloneable {
 	@Override public Object clone() throws CloneNotSupportedException {
 		RefuInfo deepCopy = (RefuInfo) super.clone();
 		
-		deepCopy.payordData = clonePayord(deepCopy.payordData);
+		deepCopy.ordemarches = cloneOrdemarches(deepCopy.ordemarches);
 		
 		return deepCopy;
 	}
 	
 	
 	
-	private PayordInfo clonePayord(PayordInfo recordInfo) throws CloneNotSupportedException {
-		if (recordInfo == null)
+	private List<OrdemarchInfo> cloneOrdemarches(List<OrdemarchInfo> recordInfos) throws CloneNotSupportedException {
+		if (recordInfos == null)
 			return null;
 		
-		return (PayordInfo) recordInfo.clone();
+		if (recordInfos.isEmpty())
+			return recordInfos;
+		
+		
+		List<OrdemarchInfo> results = new ArrayList<>();
+		
+		for (OrdemarchInfo eachRecord : recordInfos) {
+			OrdemarchInfo eachResult = (OrdemarchInfo) eachRecord.clone();
+			results.add(eachResult);
+		}
+		
+		return recordInfos;
 	}
 	
 	

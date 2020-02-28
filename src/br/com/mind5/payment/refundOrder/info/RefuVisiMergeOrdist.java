@@ -3,11 +3,11 @@ package br.com.mind5.payment.refundOrder.info;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.mind5.business.orderList.info.OrdistInfo;
 import br.com.mind5.info.InfoMergerVisitorV3;
 import br.com.mind5.info.InfoUniquifier;
-import br.com.mind5.payment.payOrder.info.PayordInfo;
 
-final class RefuVisiMergePayord implements InfoMergerVisitorV3<RefuInfo, PayordInfo> {
+final class RefuVisiMergeOrdist implements InfoMergerVisitorV3<RefuInfo, OrdistInfo> {
 	
 	@Override public List<RefuInfo> beforeMerge(List<RefuInfo> baseInfos) {
 		return baseInfos;
@@ -15,17 +15,17 @@ final class RefuVisiMergePayord implements InfoMergerVisitorV3<RefuInfo, PayordI
 	
 	
 	
-	@Override public boolean shouldMerge(RefuInfo baseInfo, PayordInfo selectedInfo) {
-		return (baseInfo.codOwner 	 == selectedInfo.codOwner	&&
-				baseInfo.codPayOrder == selectedInfo.codPayOrder);
+	@Override public boolean shouldMerge(RefuInfo baseInfo, OrdistInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner	&&
+				baseInfo.codOrder == selectedInfo.codOrder		);
 	}
 	
 	
 	
-	@Override public List<RefuInfo> merge(RefuInfo baseInfo, PayordInfo selectedInfo) {
+	@Override public List<RefuInfo> merge(RefuInfo baseInfo, OrdistInfo selectedInfo) {
 		List<RefuInfo> results = new ArrayList<>();
 		
-		baseInfo.payordData = selectedInfo; 
+		baseInfo.codPayOrder = selectedInfo.codPayOrder; 
 		
 		results.add(baseInfo);
 		return results;

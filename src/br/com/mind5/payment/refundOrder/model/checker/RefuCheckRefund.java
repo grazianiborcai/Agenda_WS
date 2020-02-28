@@ -17,7 +17,7 @@ public final class RefuCheckRefund extends ModelCheckerTemplateSimpleV2<RefuInfo
 	
 	@Override protected boolean checkHook(RefuInfo recordInfo, Connection conn, String schemaName) {	
 		if ( recordInfo.codOwner 	<= 0 	|| 
-			 recordInfo.codPayOrder	<= 0 	||
+			 recordInfo.codOrder	<= 0 	||
 			 recordInfo.username	== null ||
 			 recordInfo.codLanguage	== null		)
 			

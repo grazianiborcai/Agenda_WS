@@ -11,12 +11,10 @@ import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
 import br.com.mind5.payment.refundOrder.info.RefuInfo;
-import br.com.mind5.payment.refundOrder.model.action.LazyRefuOrderRefunding;
 import br.com.mind5.payment.refundOrder.model.action.LazyRefuRefund;
-import br.com.mind5.payment.refundOrder.model.action.StdRefuMergePayord;
 import br.com.mind5.payment.refundOrder.model.checker.RefuCheckLangu;
+import br.com.mind5.payment.refundOrder.model.checker.RefuCheckOrder;
 import br.com.mind5.payment.refundOrder.model.checker.RefuCheckOwner;
-import br.com.mind5.payment.refundOrder.model.checker.RefuCheckPayord;
 import br.com.mind5.payment.refundOrder.model.checker.RefuCheckRefund;
 import br.com.mind5.payment.refundOrder.model.checker.RefuCheckUsername;
 
@@ -65,7 +63,7 @@ public final class RootRefuRefund extends DeciTreeWriteTemplate<RefuInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
-		checker = new RefuCheckPayord(checkerOption);
+		checker = new RefuCheckOrder(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
@@ -76,14 +74,12 @@ public final class RootRefuRefund extends DeciTreeWriteTemplate<RefuInfo> {
 	@Override protected List<ActionStd<RefuInfo>> buildActionsOnPassedHook(DeciTreeOption<RefuInfo> option) {
 		List<ActionStd<RefuInfo>> actions = new ArrayList<>();		
 
-		ActionStd<RefuInfo> mergePayord = new StdRefuMergePayord(option);
-		ActionLazy<RefuInfo> orderRefunding = new LazyRefuOrderRefunding(option.conn, option.schemaName);
+		ActionStd<RefuInfo> nodeOrder = new NodeRefuOrder(option).toAction();
 		ActionLazy<RefuInfo> refund = new LazyRefuRefund(option.conn, option.schemaName);
 		
-		mergePayord.addPostAction(orderRefunding);
-		orderRefunding.addPostAction(refund);
+		nodeOrder.addPostAction(refund);
 		
-		actions.add(mergePayord);		
+		actions.add(nodeOrder);		
 		return actions;
 	}
 }
