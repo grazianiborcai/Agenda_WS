@@ -16,6 +16,7 @@ final class UsernameCopyCus extends InfoCopierTemplate<UsernameInfo, CusInfo>{
 		
 		result.codOwner = source.codOwner;	
 		result.username = source.username;
+		result.codLanguage = source.codLanguage;
 		
 		return result;
 	}

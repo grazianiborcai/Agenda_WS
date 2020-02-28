@@ -16,6 +16,7 @@ final class UsernameCopyStopar extends InfoCopierTemplate<UsernameInfo, StoparIn
 		
 		result.codOwner = source.codOwner;	
 		result.username = source.username;
+		result.codLanguage = source.codLanguage;
 		
 		return result;
 	}

@@ -16,6 +16,7 @@ final class UsernameCopyMat extends InfoCopierTemplate<UsernameInfo, MatInfo>{
 		
 		result.codOwner = source.codOwner;	
 		result.username = source.username;
+		result.codLanguage = source.codLanguage;
 		
 		return result;
 	}

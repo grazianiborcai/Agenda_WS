@@ -16,6 +16,7 @@ final class UsernameCopyEmpos extends InfoCopierTemplate<UsernameInfo, EmposInfo
 		
 		result.codOwner = source.codOwner;	
 		result.username = source.username;
+		result.codLanguage = source.codLanguage;
 		
 		return result;
 	}

@@ -16,6 +16,7 @@ final class UsernameCopyMatmov extends InfoCopierTemplate<UsernameInfo, MatmovIn
 		
 		result.codOwner = source.codOwner;	
 		result.username = source.username;
+		result.codLanguage = source.codLanguage;
 		
 		return result;
 	}

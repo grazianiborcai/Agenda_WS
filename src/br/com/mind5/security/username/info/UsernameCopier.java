@@ -26,12 +26,27 @@ import br.com.mind5.payment.customerPartner.info.CusparInfo;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
 import br.com.mind5.payment.refundOrder.info.RefuInfo;
 import br.com.mind5.payment.refundOrderItem.info.RefemInfo;
+import br.com.mind5.payment.statusPayOrder.info.PaytusInfo;
 import br.com.mind5.payment.storePartner.info.StoparInfo;
 import br.com.mind5.paymentPartner.partnerMoip.accessMoip.info.AccemoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.tokenMoip.info.TokemoipInfo;
 import br.com.mind5.security.userPassword.info.UpswdInfo;
 
 public final class UsernameCopier {
+	public static UsernameInfo copyFromPaytus(PaytusInfo source) {
+		InfoCopier<UsernameInfo, PaytusInfo> copier = new UsernameCopyPaytus();
+		return copier.makeCopy(source);
+	}
+	
+	
+	
+	public static List<UsernameInfo> copyFromPaytus(List<PaytusInfo> sources) {
+		InfoCopier<UsernameInfo, PaytusInfo> copier = new UsernameCopyPaytus();
+		return copier.makeCopy(sources);
+	}
+	
+	
+	
 	public static UsernameInfo copyFromOrdist(OrdistInfo source) {
 		InfoCopier<UsernameInfo, OrdistInfo> copier = new UsernameCopyOrdist();
 		return copier.makeCopy(source);

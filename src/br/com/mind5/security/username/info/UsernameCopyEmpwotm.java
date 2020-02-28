@@ -16,6 +16,7 @@ final class UsernameCopyEmpwotm extends InfoCopierTemplate<UsernameInfo, Empwotm
 		
 		result.codOwner = source.codOwner;	
 		result.username = source.username;
+		result.codLanguage = source.codLanguage;
 		
 		return result;
 	}

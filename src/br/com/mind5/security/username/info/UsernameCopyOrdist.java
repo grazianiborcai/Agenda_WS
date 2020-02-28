@@ -16,6 +16,7 @@ final class UsernameCopyOrdist extends InfoCopierTemplate<UsernameInfo, OrdistIn
 		
 		result.codOwner = source.codOwner;	
 		result.username = source.username;
+		result.codLanguage = source.codLanguage;
 		
 		return result;
 	}

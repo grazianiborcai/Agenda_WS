@@ -16,6 +16,7 @@ final class UsernameCopyStore extends InfoCopierTemplate<UsernameInfo, StoreInfo
 		
 		result.codOwner = source.codOwner;	
 		result.username = source.username;
+		result.codLanguage = source.codLanguage;
 		
 		return result;
 	}

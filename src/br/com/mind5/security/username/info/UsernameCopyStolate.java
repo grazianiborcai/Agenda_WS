@@ -16,6 +16,7 @@ final class UsernameCopyStolate extends InfoCopierTemplate<UsernameInfo, Stolate
 		
 		result.codOwner = source.codOwner;	
 		result.username = source.username;
+		result.codLanguage = source.codLanguage;
 		
 		return result;
 	}

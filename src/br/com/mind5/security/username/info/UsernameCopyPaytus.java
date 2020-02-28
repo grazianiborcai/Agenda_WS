@@ -1,17 +1,17 @@
 package br.com.mind5.security.username.info;
 
-import br.com.mind5.business.owner.info.OwnerInfo;
 import br.com.mind5.info.InfoCopierTemplate;
+import br.com.mind5.payment.statusPayOrder.info.PaytusInfo;
 
-final class UsernameCopyOwner extends InfoCopierTemplate<UsernameInfo, OwnerInfo>{
+final class UsernameCopyPaytus extends InfoCopierTemplate<UsernameInfo, PaytusInfo>{
 	
-	public UsernameCopyOwner() {
+	public UsernameCopyPaytus() {
 		super();
 	}
 	
 	
 	
-	@Override protected UsernameInfo makeCopyHook(OwnerInfo source) {
+	@Override protected UsernameInfo makeCopyHook(PaytusInfo source) {
 		UsernameInfo result = new UsernameInfo();
 		
 		result.codOwner = source.codOwner;	

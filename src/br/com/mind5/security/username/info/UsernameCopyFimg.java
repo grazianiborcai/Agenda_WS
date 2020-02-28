@@ -16,6 +16,7 @@ final class UsernameCopyFimg extends InfoCopierTemplate<UsernameInfo, FimgInfo>{
 		
 		result.codOwner = source.codOwner;	
 		result.username = source.username;
+		result.codLanguage = source.codLanguage;
 		
 		return result;
 	}

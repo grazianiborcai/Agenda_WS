@@ -16,6 +16,7 @@ final class UsernameCopyMatore extends InfoCopierTemplate<UsernameInfo, MatoreIn
 		
 		result.codOwner = source.codOwner;	
 		result.username = source.username;
+		result.codLanguage = source.codLanguage;
 		
 		return result;
 	}

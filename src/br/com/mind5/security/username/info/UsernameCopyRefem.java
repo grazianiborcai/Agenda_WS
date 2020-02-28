@@ -16,6 +16,7 @@ final class UsernameCopyRefem extends InfoCopierTemplate<UsernameInfo, RefemInfo
 		
 		result.codOwner = source.codOwner;	
 		result.username = source.username;
+		result.codLanguage = source.codLanguage;
 		
 		return result;
 	}

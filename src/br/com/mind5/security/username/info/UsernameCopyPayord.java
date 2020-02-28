@@ -16,6 +16,7 @@ final class UsernameCopyPayord extends InfoCopierTemplate<UsernameInfo, PayordIn
 		
 		result.codOwner = source.codOwner;	
 		result.username = source.username;
+		result.codLanguage = source.codLanguage;
 		
 		return result;
 	}

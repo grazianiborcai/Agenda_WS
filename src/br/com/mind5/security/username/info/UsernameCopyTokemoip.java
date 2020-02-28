@@ -16,6 +16,7 @@ final class UsernameCopyTokemoip extends InfoCopierTemplate<UsernameInfo, Tokemo
 		
 		result.codOwner = source.codOwner;	
 		result.username = source.username;
+		result.codLanguage = source.codLanguage;
 		
 		return result;
 	}

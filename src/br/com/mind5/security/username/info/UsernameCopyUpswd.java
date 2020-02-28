@@ -16,6 +16,7 @@ final class UsernameCopyUpswd extends InfoCopierTemplate<UsernameInfo, UpswdInfo
 		
 		result.codOwner = source.codOwner;	
 		result.username = source.username;
+		result.codLanguage = source.codLanguage;
 		
 		return result;
 	}

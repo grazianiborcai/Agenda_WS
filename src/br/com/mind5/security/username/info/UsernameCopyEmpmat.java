@@ -16,6 +16,7 @@ final class UsernameCopyEmpmat extends InfoCopierTemplate<UsernameInfo, EmpmatIn
 		
 		result.codOwner = source.codOwner;	
 		result.username = source.username;
+		result.codLanguage = source.codLanguage;
 		
 		return result;
 	}

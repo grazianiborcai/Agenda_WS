@@ -16,6 +16,7 @@ final class UsernameCopyAccemoip extends InfoCopierTemplate<UsernameInfo, Accemo
 		
 		result.codOwner = source.codOwner;	
 		result.username = source.username;
+		result.codLanguage = source.codLanguage;
 		
 		return result;
 	}

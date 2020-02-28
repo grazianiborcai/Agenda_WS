@@ -16,6 +16,7 @@ final class UsernameCopyCrecard extends InfoCopierTemplate<UsernameInfo, Crecard
 		
 		result.codOwner = source.codOwner;	
 		result.username = source.username;
+		result.codLanguage = source.codLanguage;
 		
 		return result;
 	}

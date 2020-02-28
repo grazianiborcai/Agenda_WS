@@ -16,6 +16,7 @@ final class UsernameCopyEmp extends InfoCopierTemplate<UsernameInfo, EmpInfo>{
 		
 		result.codOwner = source.codOwner;	
 		result.username = source.username;
+		result.codLanguage = source.codLanguage;
 		
 		return result;
 	}

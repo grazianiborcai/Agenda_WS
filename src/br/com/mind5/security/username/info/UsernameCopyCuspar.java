@@ -16,6 +16,7 @@ final class UsernameCopyCuspar extends InfoCopierTemplate<UsernameInfo, CusparIn
 		
 		result.codOwner = source.codOwner;	
 		result.username = source.username;
+		result.codLanguage = source.codLanguage;
 		
 		return result;
 	}
