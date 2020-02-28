@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.dao.DaoFormatter;
+import br.com.mind5.dao.DaoJoin;
+import br.com.mind5.dao.DaoJoinBuilder;
 import br.com.mind5.dao.DaoOperation;
 import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtTemplate;
@@ -56,6 +58,13 @@ public final class PayordarchSelectSingle extends DaoStmtTemplate<PayordarchInfo
 	
 	
 	
+	@Override protected DaoJoin getJoinHook(PayordarchInfo recordInfo) {
+		DaoJoinBuilder joinCuspar = new PayordarchJoinCuspar(MAIN_TABLE);		
+		return joinCuspar.build();
+	}	
+	
+	
+	
 	@Override protected DaoResultParser<PayordarchInfo> getResultParserHook() {
 		return new DaoResultParser<PayordarchInfo>() {
 			@Override public List<PayordarchInfo> parseResult(PayordarchInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
@@ -80,6 +89,7 @@ public final class PayordarchSelectSingle extends DaoStmtTemplate<PayordarchInfo
 					dataInfo.codPayCustomer = DaoFormatter.sqlToLong(stmtResult, PayordarchDbTableColumn.COL_COD_PAY_CUSTOMER);
 					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, PayordarchDbTableColumn.COL_LAST_CHANGED);
 					dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, PayordarchDbTableColumn.COL_CREATED_ON);
+					dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, PayordarchDbTableColumn.COL_COD_USER);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());
@@ -87,5 +97,11 @@ public final class PayordarchSelectSingle extends DaoStmtTemplate<PayordarchInfo
 				return finalResult;
 			}
 		};
+	}
+	
+	
+	
+	@Override public void executeStmt() throws SQLException {
+		super.executeStmt();
 	}
 }

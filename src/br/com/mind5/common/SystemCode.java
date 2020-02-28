@@ -718,6 +718,8 @@ public final class SystemCode {
 	
 	// Pay Order Search
 	public static final int PAY_ORDER_SEARCH_MANDATORY_FIELD_EMPTY		= 5550;	
+	public static final int PAY_ORDER_SEARCH_ALREADY_EXIST				= 5551;
+	public static final int PAY_ORDER_SEARCH_NOT_FOUND					= 5552;
 	
 	// Schedule List
 	public static final int SCHEDULE_LIST_MANDATORY_FIELD_EMPTY			= 5600;

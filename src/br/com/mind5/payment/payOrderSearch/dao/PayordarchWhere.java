@@ -38,6 +38,10 @@ final class PayordarchWhere implements DaoStmtWhere {
 				case PayordarchDbTableColumn.COL_COD_ORDER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOrder));
 					break;	
+					
+				case PayordarchDbTableColumn.COL_COD_USER :
+					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codUser));
+					break;	
 			}
 		}		
 		
