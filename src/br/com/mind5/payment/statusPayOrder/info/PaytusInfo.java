@@ -5,7 +5,6 @@ import java.util.List;
 
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
-import br.com.mind5.payment.customerPartner.info.CusparInfo;
 import br.com.mind5.payment.statusPayOrderItem.info.PaytusemInfo;
 
 public final class PaytusInfo extends InfoRecord implements Cloneable {
@@ -19,7 +18,6 @@ public final class PaytusInfo extends InfoRecord implements Cloneable {
 	public String statusOrderPartner;
 	public String idPaymentPartner;
 	public String statusPaymentPartner;
-	public CusparInfo cusparData;
 	public List<PaytusemInfo> paytusems;
 	public String username;
 	
@@ -32,7 +30,6 @@ public final class PaytusInfo extends InfoRecord implements Cloneable {
 		codOrder = DefaultValue.number();
 		totitem = DefaultValue.number();	
 		codPayCustomer = DefaultValue.number();	
-		cusparData = DefaultValue.object();
 		paytusems = DefaultValue.list();
 	}
 	
@@ -53,19 +50,9 @@ public final class PaytusInfo extends InfoRecord implements Cloneable {
 	@Override public Object clone() throws CloneNotSupportedException {
 		PaytusInfo deepCopy = (PaytusInfo) super.clone();
 		
-		deepCopy.cusparData = cloneCuspar(deepCopy.cusparData);
 		deepCopy.paytusems = clonePaytusems(deepCopy.paytusems);
 		
 		return deepCopy;
-	}
-	
-	
-	
-	private CusparInfo cloneCuspar(CusparInfo recordInfo) throws CloneNotSupportedException {
-		if (recordInfo == null)
-			return null;
-		
-		return (CusparInfo) recordInfo.clone();
 	}
 	
 	

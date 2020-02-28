@@ -14,7 +14,7 @@ import br.com.mind5.payment.statusPayOrder.info.PaytusInfo;
 import br.com.mind5.payment.statusPayOrder.model.action.LazyPaytusMergePaytusem;
 import br.com.mind5.payment.statusPayOrder.model.action.StdPaytusMergePayord;
 import br.com.mind5.payment.statusPayOrder.model.checker.PaytusCheckLangu;
-import br.com.mind5.payment.statusPayOrder.model.checker.PaytusCheckSelect;
+import br.com.mind5.payment.statusPayOrder.model.checker.PaytusCheckRead;
 
 public final class RootPaytusSelect extends DeciTreeReadTemplate<PaytusInfo> {
 	
@@ -25,19 +25,21 @@ public final class RootPaytusSelect extends DeciTreeReadTemplate<PaytusInfo> {
 	
 	
 	@Override protected ModelChecker<PaytusInfo> buildDecisionCheckerHook(DeciTreeOption<PaytusInfo> option) {
-		final boolean EXIST_ON_DB = true;
-		
 		List<ModelChecker<PaytusInfo>> queue = new ArrayList<>();		
 		ModelChecker<PaytusInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
-		checker = new PaytusCheckSelect();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new PaytusCheckRead(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;	
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
 		checker = new PaytusCheckLangu(checkerOption);
 		queue.add(checker);
 		

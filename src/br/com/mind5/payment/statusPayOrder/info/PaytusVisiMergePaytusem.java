@@ -1,59 +1,43 @@
 package br.com.mind5.payment.statusPayOrder.info;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.ArrayList;
+import java.util.List;
 
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.payment.statusPayOrderItem.info.PaytusemInfo;
 
-final class PaytusVisiMergePaytusem implements InfoMergerVisitor_<PaytusInfo, PaytusemInfo> {
-
-	@Override public PaytusInfo writeRecord(PaytusemInfo sourceOne, PaytusInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+final class PaytusVisiMergePaytusem implements InfoMergerVisitorV3<PaytusInfo, PaytusemInfo> {
+	
+	@Override public List<PaytusInfo> beforeMerge(List<PaytusInfo> baseInfos) {
+		for (PaytusInfo eachBase : baseInfos) {
+			eachBase.paytusems = new ArrayList<>();
+		}		
 		
-		PaytusInfo clonedInfo = makeClone(sourceTwo);
-		return merge(sourceOne, clonedInfo);
+		return baseInfos;
 	}
 	
 	
 	
-	private void checkArgument(PaytusemInfo sourceOne, PaytusInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
+	@Override public boolean shouldMerge(PaytusInfo baseInfo, PaytusemInfo selectedInfo) {
+		return (baseInfo.codOwner 	 == selectedInfo.codOwner 	&&
+				baseInfo.codPayOrder == selectedInfo.codPayOrder	);
 	}
 	
 	
 	
-	private PaytusInfo makeClone(PaytusInfo recordInfo) {
-		try {
-			return (PaytusInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	private PaytusInfo merge(PaytusemInfo sourceOne, PaytusInfo sourceTwo) {
-		sourceTwo.paytusems.add(sourceOne);
+	@Override public List<PaytusInfo> merge(PaytusInfo baseInfo, PaytusemInfo selectedInfo) {
+		List<PaytusInfo> results = new ArrayList<>();
 		
-		return sourceTwo;
+		baseInfo.paytusems.add(selectedInfo); 
+		
+		results.add(baseInfo);
+		return results;
 	}
 	
 	
 	
-	@Override public boolean shouldWrite(PaytusemInfo sourceOne, PaytusInfo sourceTwo) {
-		return (sourceOne.codOwner 		== sourceTwo.codOwner 	&&
-				sourceOne.codPayOrder 	== sourceTwo.codPayOrder	);
-	}
-	
-	
-	
-	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
+	@Override public InfoUniquifier<PaytusInfo> getUniquifier() {
+		return new PaytusUniquifier();
 	}
 }

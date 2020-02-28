@@ -1,62 +1,39 @@
 package br.com.mind5.payment.statusPayOrder.info;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.ArrayList;
+import java.util.List;
 
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.info.PaymoipInfo;
 
-final class PaytusVisiMergePaymoip implements InfoMergerVisitor_<PaytusInfo, PaymoipInfo> {
-
-	@Override public PaytusInfo writeRecord(PaymoipInfo sourceOne, PaytusInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+final class PaytusVisiMergePaymoip implements InfoMergerVisitorV3<PaytusInfo, PaymoipInfo> {
+	
+	@Override public List<PaytusInfo> beforeMerge(List<PaytusInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(PaytusInfo baseInfo, PaymoipInfo selectedInfo) {
+		return (baseInfo.idOrderPartner.equals(selectedInfo.idOrderPartner));
+	}
+	
+	
+	
+	@Override public List<PaytusInfo> merge(PaytusInfo baseInfo, PaymoipInfo selectedInfo) {
+		List<PaytusInfo> results = new ArrayList<>();
 		
-		PaytusInfo clonedInfo = makeClone(sourceTwo);
-		return merge(sourceOne, clonedInfo);
-	}
-	
-	
-	
-	private void checkArgument(PaymoipInfo sourceOne, PaytusInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private PaytusInfo makeClone(PaytusInfo recordInfo) {
-		try {
-			return (PaytusInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	private PaytusInfo merge(PaymoipInfo sourceOne, PaytusInfo sourceTwo) {
-		sourceTwo.idPaymentPartner = sourceOne.idPaymentPartner;
-		sourceTwo.statusPaymentPartner = sourceOne.statusPaymentPartner;
-		return sourceTwo;
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(PaymoipInfo sourceOne, PaytusInfo sourceTwo) {
-		if (sourceOne.idOrderPartner == null ||
-			sourceTwo.idOrderPartner == null	)
-			return false;
+		baseInfo.idPaymentPartner = selectedInfo.idPaymentPartner;
+		baseInfo.statusPaymentPartner = selectedInfo.statusPaymentPartner;
 		
-		return (sourceOne.idOrderPartner.equals(sourceTwo.idOrderPartner));
+		results.add(baseInfo);
+		return results;
 	}
 	
 	
 	
-	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
+	@Override public InfoUniquifier<PaytusInfo> getUniquifier() {
+		return new PaytusUniquifier();
 	}
 }

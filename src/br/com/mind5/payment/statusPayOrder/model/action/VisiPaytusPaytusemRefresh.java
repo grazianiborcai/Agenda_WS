@@ -26,6 +26,6 @@ final class VisiPaytusPaytusemRefresh extends ActionVisitorTemplateAction<Paytus
 	
 
 	@Override protected List<PaytusInfo> toBaseClassHook(List<PaytusInfo> baseInfos, List<PaytusemInfo> results) {	
-		return PaytusMerger.mergeWithPaytusem(results, baseInfos);
+		return PaytusMerger.mergeWithPaytusem(baseInfos, results);
 	}
 }

@@ -24,8 +24,8 @@ final class VisiPaytusMergeMultmoip extends ActionVisitorTemplateMergeV2<PaytusI
 	
 	
 	
-	@Override protected List<PaytusInfo> mergeHook(List<PaytusInfo> recordInfos, List<MultmoipInfo> selectedInfos) {	
-		return PaytusMerger.mergeWithMultmoip(selectedInfos, recordInfos);
+	@Override protected List<PaytusInfo> mergeHook(List<PaytusInfo> baseInfos, List<MultmoipInfo> selectedInfos) {	
+		return PaytusMerger.mergeWithMultmoip(baseInfos, selectedInfos);
 	}
 	
 	

@@ -5,14 +5,14 @@ import java.sql.Connection;
 import br.com.mind5.business.masterData.info.common.OrderStatusMoip;
 import br.com.mind5.business.masterData.info.common.PaymentStatusMoip;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple_;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 import br.com.mind5.payment.statusPayOrder.info.PaytusInfo;
 
-public final class PaytusCheckIsFinished extends ModelCheckerTemplateSimple_<PaytusInfo> {
+public final class PaytusCheckIsFinished extends ModelCheckerTemplateSimpleV2<PaytusInfo> {
 
-	public PaytusCheckIsFinished() {
-		super();
+	public PaytusCheckIsFinished(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
@@ -57,13 +57,7 @@ public final class PaytusCheckIsFinished extends ModelCheckerTemplateSimple_<Pay
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.PAY_STATUS_NOT_CHANGEABLE;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.PAY_STATUS_NOT_CHANGEABLE;
+	@Override protected int getCodMsgOnResultFalseHook() {
+		return SystemCode.PAY_STATUS_HEADER_NOT_CHANGEABLE;
 	}
 }

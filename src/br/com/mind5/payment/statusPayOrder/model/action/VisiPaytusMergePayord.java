@@ -24,8 +24,8 @@ final class VisiPaytusMergePayord extends ActionVisitorTemplateMergeV2<PaytusInf
 	
 	
 	
-	@Override protected List<PaytusInfo> mergeHook(List<PaytusInfo> recordInfos, List<PayordInfo> selectedInfos) {	
-		return PaytusMerger.mergeWithPayord(selectedInfos, recordInfos);
+	@Override protected List<PaytusInfo> mergeHook(List<PaytusInfo> baseInfos, List<PayordInfo> selectedInfos) {	
+		return PaytusMerger.mergeWithPayord(baseInfos, selectedInfos);
 	}
 	
 	
