@@ -20,6 +20,7 @@ public final class PayordSetterFee implements InfoSetter<PayordInfo> {
 		feeItem.codOwner = recordInfo.orderData.codOwner;
 		feeItem.codPayOrder = recordInfo.codPayOrder; 
 		feeItem.codPayOrderItem = 1;
+		feeItem.codOrder = recordInfo.codOrder; 
 		feeItem.codFeeCateg = recordInfo.orderData.codFeeCateg;
 		feeItem.quantity = 1;		
 		feeItem.price = recordInfo.orderData.feeService;

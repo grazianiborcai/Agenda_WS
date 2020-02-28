@@ -74,6 +74,7 @@ public final class PayordSelectSingle extends DaoStmtTemplate<PayordInfo> {
 					dataInfo.codPayCustomer = DaoFormatter.sqlToLong(stmtResult, PayordDbTableColumn.COL_COD_PAY_CUSTOMER);
 					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, PayordDbTableColumn.COL_LAST_CHANGED);
 					dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, PayordDbTableColumn.COL_CREATED_ON);
+					dataInfo.ownId = stmtResult.getString(PayordDbTableColumn.COL_OWN_ID);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

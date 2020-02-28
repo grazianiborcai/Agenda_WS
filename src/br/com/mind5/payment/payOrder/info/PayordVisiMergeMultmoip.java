@@ -32,7 +32,8 @@ final class PayordVisiMergeMultmoip implements InfoMergerVisitorV3<PayordInfo, M
 		baseInfo.idPaymentPartner = selectedInfo.idPaymentPartner;
 		baseInfo.statusPaymentPartner = selectedInfo.statusPaymentPartner;
 		baseInfo.amountTotalPartner = selectedInfo.amountTotalPartner;
-		baseInfo.amountCurrencyPartner = selectedInfo.amountCurrencyPartner;	
+		baseInfo.amountCurrencyPartner = selectedInfo.amountCurrencyPartner;
+		baseInfo.ownId = selectedInfo.ownId;
 		
 		baseInfo = mergePayordem(baseInfo, selectedInfo.ordmoips);
 		
@@ -53,6 +54,7 @@ final class PayordVisiMergeMultmoip implements InfoMergerVisitorV3<PayordInfo, M
 					eachPayordem.statusOrderPartner = eachMoip.statusOrderPartner;	
 					eachPayordem.idPaymentPartner = eachMoip.idPaymentPartner;
 					eachPayordem.statusPaymentPartner = eachMoip.statusPaymentPartner;	
+					eachPayordem.itemReceiver = eachMoip.itemReceiver;
 					eachPayordem.ownId = eachMoip.ownId;					
 				}
 			}
