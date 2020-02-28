@@ -3,14 +3,14 @@ package br.com.mind5.payment.statusPayOrderItem.model.checker;
 import java.sql.Connection;
 
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple_;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 import br.com.mind5.payment.statusPayOrderItem.info.PaytusemInfo;
 
-public final class PaytusemCheckRead extends ModelCheckerTemplateSimple_<PaytusemInfo> {
+public final class PaytusemCheckRead extends ModelCheckerTemplateSimpleV2<PaytusemInfo> {
 
-	public PaytusemCheckRead() {
-		super();
+	public PaytusemCheckRead(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
@@ -18,7 +18,6 @@ public final class PaytusemCheckRead extends ModelCheckerTemplateSimple_<Paytuse
 	@Override protected boolean checkHook(PaytusemInfo recordInfo, Connection conn, String schemaName) {	
 		if ( recordInfo.codOwner    	<= 0	||
 			 recordInfo.codPayOrder    	<= 0	||
-			// recordInfo.idOrderPartner	== null	||		//TODO: remover ?
 			 recordInfo.codLanguage		== null	||
 			 recordInfo.username    	== null		)			
 			
@@ -30,13 +29,7 @@ public final class PaytusemCheckRead extends ModelCheckerTemplateSimple_<Paytuse
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.PAY_STATUS_ITEM_MANDATORY_FIELD_EMPTY;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
+	@Override protected int getCodMsgOnResultFalseHook() {
 		return SystemCode.PAY_STATUS_ITEM_MANDATORY_FIELD_EMPTY;
 	}
 }

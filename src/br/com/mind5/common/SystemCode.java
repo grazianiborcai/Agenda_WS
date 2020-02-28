@@ -642,9 +642,8 @@ public final class SystemCode {
 	public static final int PAY_MOIP_CREATION_ERROR						= 4551;
 	public static final int PAY_MOIP_READ_ERROR							= 4552;
 	
-	// Pay-Order Status
-	public static final int PAY_STATUS_ITEM_MANDATORY_FIELD_EMPTY		= 4600;
-	public static final int PAY_STATUS_NOT_CHANGEABLE					= 4601;
+	// Pay-Order Status Header
+	public static final int PAY_STATUS_HEADER_NOT_CHANGEABLE			= 4601;
 	public static final int PAY_STATUS_HEADER_MANDATORY_FIELD_EMPTY		= 4602;
 	
 	// Refund Moip
@@ -1106,4 +1105,8 @@ public final class SystemCode {
 	public static final int PAY_ORDER_ITEM_LIST_MANDATORY_FIELD_EMPTY	= 11150;
 	public static final int PAY_ORDER_ITEM_LIST_ALREADY_EXIST 			= 11151;
 	public static final int PAY_ORDER_ITEM_LIST_NOT_FOUND 				= 11152;
+	
+	// Pay-Order Status Item
+	public static final int PAY_STATUS_ITEM_MANDATORY_FIELD_EMPTY		= 11200; //4600;
+	public static final int PAY_STATUS_ITEM_NOT_CHANGEABLE				= 11201;
 }

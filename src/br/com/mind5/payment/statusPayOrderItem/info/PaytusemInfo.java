@@ -5,7 +5,6 @@ import java.util.List;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.InfoRecord;
-import br.com.mind5.payment.customerPartner.info.CusparInfo;
 
 public final class PaytusemInfo extends InfoRecord implements Cloneable, Comparable<PaytusemInfo> {
 	public long codOwner;
@@ -19,7 +18,6 @@ public final class PaytusemInfo extends InfoRecord implements Cloneable, Compara
 	public String statusPaymentPartner;
 	public String idRefundPartner;
 	public String statusRefundPartner;
-	public CusparInfo cusparData;
 	public String username;
 	
 	
@@ -29,7 +27,6 @@ public final class PaytusemInfo extends InfoRecord implements Cloneable, Compara
 		codOwner = DefaultValue.number();	
 		codPayOrderItem = DefaultValue.number();	
 		totitem = DefaultValue.number();	
-		cusparData = DefaultValue.object();
 	}
 	
 	
@@ -47,20 +44,7 @@ public final class PaytusemInfo extends InfoRecord implements Cloneable, Compara
 	
 	
 	@Override public Object clone() throws CloneNotSupportedException {
-		PaytusemInfo deepCopy = (PaytusemInfo) super.clone();
-		
-		deepCopy.cusparData = cloneCuspar(deepCopy.cusparData);
-		
-		return deepCopy;
-	}
-	
-	
-	
-	private CusparInfo cloneCuspar(CusparInfo recordInfo) throws CloneNotSupportedException {
-		if (recordInfo == null)
-			return null;
-		
-		return (CusparInfo) recordInfo.clone();
+		return super.clone();
 	}
 	
 	
@@ -68,9 +52,9 @@ public final class PaytusemInfo extends InfoRecord implements Cloneable, Compara
 	@Override public int hashCode() {
 		int result = 17;
 		
-		result = result * 31 + (int) (codOwner    ^ (codOwner    >>> 32));
-		result = result * 31 + (int) (codPayOrder ^ (codPayOrder >>> 32));
-		result = result * 31 + (int) (codPayOrderItem 	  ^ (codPayOrderItem 	 >>> 32));
+		result = result * 31 + (int) (codOwner    		^ (codOwner    		>>> 32));
+		result = result * 31 + (int) (codPayOrder 		^ (codPayOrder 		>>> 32));
+		result = result * 31 + (int) (codPayOrderItem 	^ (codPayOrderItem 	>>> 32));
 		
 		if (idOrderPartner != null)
 			result = result * 31 + (int) (idOrderPartner.hashCode() ^ (idOrderPartner.hashCode() >>> 32));
@@ -90,9 +74,9 @@ public final class PaytusemInfo extends InfoRecord implements Cloneable, Compara
 		
 		
 		PaytusemInfo obj = (PaytusemInfo) o;		
-		return (codOwner    == obj.codOwner    	&& 
-				codPayOrder == obj.codPayOrder	&&
-				codPayOrderItem    	== obj.codPayOrderItem		&&
+		return (codOwner    	== obj.codOwner    		&& 
+				codPayOrder 	== obj.codPayOrder		&&
+				codPayOrderItem == obj.codPayOrderItem	&&
 				super.isStringEqual(idOrderPartner, obj.idOrderPartner));
 	}
 	

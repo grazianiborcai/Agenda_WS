@@ -1,65 +1,42 @@
 package br.com.mind5.payment.statusPayOrderItem.info;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.ArrayList;
+import java.util.List;
 
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.info.OrdmoipInfo;
 
-final class PaytusemVisiMergeOrdmoip implements InfoMergerVisitor_<PaytusemInfo, OrdmoipInfo> {
-
-	@Override public PaytusemInfo writeRecord(OrdmoipInfo sourceOne, PaytusemInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+final class PaytusemVisiMergeOrdmoip implements InfoMergerVisitorV3<PaytusemInfo, OrdmoipInfo> {
+	
+	@Override public List<PaytusemInfo> beforeMerge(List<PaytusemInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(PaytusemInfo baseInfo, OrdmoipInfo selectedInfo) {
+		return (baseInfo.idOrderPartner.equals(selectedInfo.idOrderPartner));
+	}
+	
+	
+	
+	@Override public List<PaytusemInfo> merge(PaytusemInfo baseInfo, OrdmoipInfo selectedInfo) {
+		List<PaytusemInfo> results = new ArrayList<>();
 		
-		PaytusemInfo clonedInfo = makeClone(sourceTwo);
-		return merge(sourceOne, clonedInfo);
-	}
-	
-	
-	
-	private void checkArgument(OrdmoipInfo sourceOne, PaytusemInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private PaytusemInfo makeClone(PaytusemInfo recordInfo) {
-		try {
-			return (PaytusemInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	private PaytusemInfo merge(OrdmoipInfo sourceOne, PaytusemInfo sourceTwo) {
-		sourceTwo.statusOrderPartner = sourceOne.statusOrderPartner;	
-		sourceTwo.idPaymentPartner = sourceOne.idPaymentPartner;
-		sourceTwo.statusPaymentPartner = sourceOne.statusPaymentPartner;
-		sourceTwo.idRefundPartner = sourceOne.idRefundPartner;
-		sourceTwo.statusRefundPartner = sourceOne.statusRefundPartner;
-		return sourceTwo;
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(OrdmoipInfo sourceOne, PaytusemInfo sourceTwo) {
-		if (sourceOne.idOrderPartner == null ||
-			sourceTwo.idOrderPartner == null	)
-			return false;
+		baseInfo.statusOrderPartner = selectedInfo.statusOrderPartner;	
+		baseInfo.idPaymentPartner = selectedInfo.idPaymentPartner;
+		baseInfo.statusPaymentPartner = selectedInfo.statusPaymentPartner;
+		baseInfo.idRefundPartner = selectedInfo.idRefundPartner;
+		baseInfo.statusRefundPartner = selectedInfo.statusRefundPartner;
 		
-		return (sourceOne.idOrderPartner.equals(sourceTwo.idOrderPartner));
+		results.add(baseInfo);
+		return results;
 	}
 	
 	
 	
-	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
+	@Override public InfoUniquifier<PaytusemInfo> getUniquifier() {
+		return null;
 	}
 }

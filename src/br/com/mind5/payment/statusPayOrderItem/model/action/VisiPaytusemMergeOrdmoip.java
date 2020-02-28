@@ -24,8 +24,8 @@ final class VisiPaytusemMergeOrdmoip extends ActionVisitorTemplateMergeV2<Paytus
 	
 	
 	
-	@Override protected List<PaytusemInfo> mergeHook(List<PaytusemInfo> recordInfos, List<OrdmoipInfo> selectedInfos) {	
-		return PaytusemMerger.mergeWithOrdmoip(selectedInfos, recordInfos);
+	@Override protected List<PaytusemInfo> mergeHook(List<PaytusemInfo> baseInfos, List<OrdmoipInfo> selectedInfos) {	
+		return PaytusemMerger.mergeWithOrdmoip(baseInfos, selectedInfos);
 	}
 	
 	

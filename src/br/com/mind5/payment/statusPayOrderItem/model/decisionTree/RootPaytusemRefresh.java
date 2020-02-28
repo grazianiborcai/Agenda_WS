@@ -24,19 +24,21 @@ public final class RootPaytusemRefresh extends DeciTreeWriteTemplate<PaytusemInf
 	
 	
 	@Override protected ModelChecker<PaytusemInfo> buildDecisionCheckerHook(DeciTreeOption<PaytusemInfo> option) {
-		final boolean EXIST_ON_DB = true;
-		
 		List<ModelChecker<PaytusemInfo>> queue = new ArrayList<>();		
 		ModelChecker<PaytusemInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
-		checker = new PaytusemCheckRefresh();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new PaytusemCheckRefresh(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;	
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
 		checker = new PaytusemCheckOwner(checkerOption);
 		queue.add(checker);
 		

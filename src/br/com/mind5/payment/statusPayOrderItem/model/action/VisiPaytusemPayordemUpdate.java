@@ -24,8 +24,8 @@ final class VisiPaytusemPayordemUpdate extends ActionVisitorTemplateMergeV2<Payt
 	
 	
 	
-	@Override protected List<PaytusemInfo> mergeHook(List<PaytusemInfo> recordInfos, List<PayordemInfo> selectedInfos) {	
-		return PaytusemMerger.mergeWithPayordem(selectedInfos, recordInfos);
+	@Override protected List<PaytusemInfo> mergeHook(List<PaytusemInfo> baseInfos, List<PayordemInfo> selectedInfos) {	
+		return PaytusemMerger.mergeWithPayordem(baseInfos, selectedInfos);
 	}
 	
 	
