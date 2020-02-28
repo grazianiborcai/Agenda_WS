@@ -15,6 +15,7 @@ import br.com.moip.models.Setup;
 public final class MultmoipInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codPayOrder;
+	public String ownId;
 	public long codCreditCard;
 	public String cardCvc;
 	public String idOrderPartner;

@@ -38,7 +38,7 @@ public final class MultmoipSetterMultiorder implements InfoSetter<MultmoipInfo> 
 		
 		
 		recordInfo.multiorder = payloadFactory(
-			    value("ownId", String.valueOf(recordInfo.codPayOrder)),		//TODO: melhorar o ID
+			    value("ownId", String.valueOf(recordInfo.ownId)),
 			    value("orders", allOrders)
 			);
 
