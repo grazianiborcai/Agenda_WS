@@ -106,7 +106,7 @@ public final class CrecarchDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.tableName = DaoDbTable.PAY_CUS_TABLE;
 		oneColumn.columnName = COL_COD_USER;
 		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
@@ -114,7 +114,7 @@ public final class CrecarchDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.tableName = DaoDbTable.PAY_CUS_TABLE;
 		oneColumn.columnName = COL_COD_PAY_PARTNER;
 		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 
