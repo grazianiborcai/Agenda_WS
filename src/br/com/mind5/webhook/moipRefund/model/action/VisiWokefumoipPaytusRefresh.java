@@ -7,7 +7,7 @@ import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.statusPayOrder.info.PaytusInfo;
-import br.com.mind5.payment.statusPayOrder.model.decisionTree.RootPaytusRefresh;
+import br.com.mind5.payment.statusPayOrder.model.decisionTree.RootPaytusRefreshAuth;
 import br.com.mind5.webhook.moipRefund.info.WokefumoipInfo;
 
 final class VisiWokefumoipPaytusRefresh extends ActionVisitorTemplateAction<WokefumoipInfo, PaytusInfo> {
@@ -18,7 +18,7 @@ final class VisiWokefumoipPaytusRefresh extends ActionVisitorTemplateAction<Woke
 	
 	
 	@Override protected ActionStd<PaytusInfo> getActionHook(DeciTreeOption<PaytusInfo> option) {
-		return new RootPaytusRefresh(option).toAction();
+		return new RootPaytusRefreshAuth(option).toAction();
 	}
 	
 	

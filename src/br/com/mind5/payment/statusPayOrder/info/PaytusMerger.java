@@ -8,8 +8,22 @@ import br.com.mind5.payment.payOrder.info.PayordInfo;
 import br.com.mind5.payment.statusPayOrderItem.info.PaytusemInfo;
 import br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.info.MultmoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.info.PaymoipInfo;
+import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class PaytusMerger {	
+	public static List<PaytusInfo> mergeWithUsername(List<PaytusInfo> baseInfos, List<UsernameInfo> selectedInfos) {
+		InfoMergerBuilderV3<PaytusInfo, UsernameInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new PaytusVisiMergeUsername());
+		InfoMergerV3<PaytusInfo, UsernameInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	
 	public static List<PaytusInfo> mergeWithPaymoip(List<PaytusInfo> baseInfos, List<PaymoipInfo> selectedInfos) {
 		InfoMergerBuilderV3<PaytusInfo, PaymoipInfo> builder = new InfoMergerBuilderV3<>();
 		
