@@ -1,70 +1,39 @@
 package br.com.mind5.payment.refundOrder.info;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.ArrayList;
+import java.util.List;
 
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
 
-final class RefuVisiMergePayord implements InfoMergerVisitor_<RefuInfo, PayordInfo> {
-
-	@Override public RefuInfo writeRecord(PayordInfo sourceOne, RefuInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+final class RefuVisiMergePayord implements InfoMergerVisitorV3<RefuInfo, PayordInfo> {
+	
+	@Override public List<RefuInfo> beforeMerge(List<RefuInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(RefuInfo baseInfo, PayordInfo selectedInfo) {
+		return (baseInfo.codOwner 	 == selectedInfo.codOwner	&&
+				baseInfo.codPayOrder == selectedInfo.codPayOrder);
+	}
+	
+	
+	
+	@Override public List<RefuInfo> merge(RefuInfo baseInfo, PayordInfo selectedInfo) {
+		List<RefuInfo> results = new ArrayList<>();
 		
-		RefuInfo clonedInfo = makeClone(sourceTwo);
-		return merge(sourceOne, clonedInfo);
+		baseInfo.payordData = selectedInfo; 
+		
+		results.add(baseInfo);
+		return results;
 	}
 	
 	
 	
-	private void checkArgument(PayordInfo sourceOne, RefuInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private RefuInfo makeClone(RefuInfo recordInfo) {
-		try {
-			return (RefuInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	private RefuInfo merge(PayordInfo sourceOne, RefuInfo sourceTwo) {
-		sourceTwo.payordData =  makeClone(sourceOne);
-		return sourceTwo;
-	}
-	
-	
-	
-	private PayordInfo makeClone(PayordInfo recordInfo) {
-		try {
-			return (PayordInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(PayordInfo sourceOne, RefuInfo sourceTwo) {		
-		return (sourceOne.codOwner 	  == sourceTwo.codOwner	&&
-				sourceOne.codPayOrder == sourceTwo.codPayOrder);
-	}
-	
-	
-	
-	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
+	@Override public InfoUniquifier<RefuInfo> getUniquifier() {
+		return null;
 	}
 }

@@ -651,9 +651,8 @@ public final class SystemCode {
 	public static final int REFUND_MOIP_MANDATORY_FIELD_EMPTY			= 4651;
 	public static final int REFUND_MOIP_IS_NOT_SYSTEM_RECEIVER			= 4652;
 	
-	// Refund
+	// Refund Item
 	public static final int REFUND_ITEM_MANDATORY_FIELD_EMPTY			= 4700;
-	public static final int REFUND_HEADER_MANDATORY_FIELD_EMPTY			= 4701;
 	
 	// Webhook - Pay-Moip
 	public static final int WHOOK_MOIP_PAY_MANDATORY_FIELD_EMPTY 		= 4750;
@@ -1111,4 +1110,7 @@ public final class SystemCode {
 	// Pay-Order Status Item
 	public static final int PAY_STATUS_ITEM_MANDATORY_FIELD_EMPTY		= 11200; //4600;
 	public static final int PAY_STATUS_ITEM_NOT_CHANGEABLE				= 11201;
+	
+	// Refund Header
+	public static final int REFUND_HEADER_MANDATORY_FIELD_EMPTY			= 11250; //4701;
 }

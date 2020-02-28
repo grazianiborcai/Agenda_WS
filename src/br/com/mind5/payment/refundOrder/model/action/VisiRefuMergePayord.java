@@ -24,8 +24,8 @@ final class VisiRefuMergePayord extends ActionVisitorTemplateMergeV2<RefuInfo, P
 	
 	
 	
-	@Override protected List<RefuInfo> mergeHook(List<RefuInfo> recordInfos, List<PayordInfo> selectedInfos) {	
-		return RefuMerger.mergeWithPayord(selectedInfos, recordInfos);
+	@Override protected List<RefuInfo> mergeHook(List<RefuInfo> baseInfos, List<PayordInfo> selectedInfos) {	
+		return RefuMerger.mergeWithPayord(baseInfos, selectedInfos);
 	}
 	
 	
