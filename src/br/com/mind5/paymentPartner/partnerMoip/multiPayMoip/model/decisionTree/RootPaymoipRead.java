@@ -14,8 +14,9 @@ import br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.info.PaymoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.model.action.LazyPaymoipEnforceResponseAttr;
 import br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.model.action.LazyPaymoipEnforceSetup;
 import br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.model.action.LazyPaymoipMergeSetupar;
+import br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.model.action.LazyPaymoipMergeSysEnviron;
 import br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.model.action.LazyPaymoipRead;
-import br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.model.action.StdPaymoipMergeSysEnviron;
+import br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.model.action.StdPaymoipEnforcePaypar;
 import br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.model.checker.PaymoipCheckRead;
 
 public final class RootPaymoipRead extends DeciTreeWriteTemplate<PaymoipInfo> {
@@ -46,18 +47,20 @@ public final class RootPaymoipRead extends DeciTreeWriteTemplate<PaymoipInfo> {
 	@Override protected List<ActionStd<PaymoipInfo>> buildActionsOnPassedHook(DeciTreeOption<PaymoipInfo> option) {
 		List<ActionStd<PaymoipInfo>> actions = new ArrayList<>();	
 		
-		ActionStd<PaymoipInfo> mergeSysEnviron = new StdPaymoipMergeSysEnviron(option);
+		ActionStd<PaymoipInfo> enforcePaypar = new StdPaymoipEnforcePaypar(option);
+		ActionLazy<PaymoipInfo> mergeSysEnviron = new LazyPaymoipMergeSysEnviron(option.conn, option.schemaName);
 		ActionLazy<PaymoipInfo> mergeSetupar = new LazyPaymoipMergeSetupar(option.conn, option.schemaName);
 		ActionLazy<PaymoipInfo> enforceSetup = new LazyPaymoipEnforceSetup(option.conn, option.schemaName);
 		ActionLazy<PaymoipInfo> read = new LazyPaymoipRead(option.conn, option.schemaName);
 		ActionLazy<PaymoipInfo> enforceReponseAttr = new LazyPaymoipEnforceResponseAttr(option.conn, option.schemaName);
 		
+		enforcePaypar.addPostAction(mergeSysEnviron);
 		mergeSysEnviron.addPostAction(mergeSetupar);
 		mergeSetupar.addPostAction(enforceSetup);
 		enforceSetup.addPostAction(read);
 		read.addPostAction(enforceReponseAttr);
 		
-		actions.add(mergeSysEnviron);		
+		actions.add(enforcePaypar);		
 		return actions;
 	}
 }
