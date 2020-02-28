@@ -47,18 +47,4 @@ public final class OrderCopier {
 		InfoCopier<OrderInfo, PayordInfo> copier = new OrderCopyPayord();
 		return copier.makeCopy(sources);
 	}	
-	
-	
-	
-	public static OrderInfo copyToSelect(OrderInfo source) {
-		InfoCopier<OrderInfo, OrderInfo> copier = new OrderCopyToSelect_();
-		return copier.makeCopy(source);
-	}
-	
-	
-	
-	public static List<OrderInfo> copyToSelect(List<OrderInfo> sources) {
-		InfoCopier<OrderInfo, OrderInfo> copier = new OrderCopyToSelect_();
-		return copier.makeCopy(sources);
-	}
 }

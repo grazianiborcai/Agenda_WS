@@ -13,11 +13,12 @@ final class OrderCopyRefu extends InfoCopierTemplate<OrderInfo, RefuInfo>{
 	
 	@Override protected OrderInfo makeCopyHook(RefuInfo source) {		
 		OrderInfo result = new OrderInfo();
-		result.codOwner = source.payordData.codOwner;
-		result.codOrder = source.payordData.codOrder;
-		result.codPayOrder = source.payordData.codPayOrder;
-		result.codLanguage = source.payordData.codLanguage;
-		result.username = source.payordData.username;
+		
+		result.codOwner = source.codOwner;
+		result.codOrder = source.codOrder;
+		result.codPayOrder = source.codPayOrder;
+		result.codLanguage = source.codLanguage;
+		result.username = source.username;
 		
 		return result;
 	}
