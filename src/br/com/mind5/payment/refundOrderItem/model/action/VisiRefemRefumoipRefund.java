@@ -26,6 +26,6 @@ final class VisiRefemRefumoipRefund extends ActionVisitorTemplateAction<RefemInf
 	
 	
 	@Override protected List<RefemInfo> toBaseClassHook(List<RefemInfo> baseInfos, List<RefumoipInfo> results) {	
-		return RefemMerger.mergeWithRefumoip(results, baseInfos);
+		return RefemMerger.mergeWithRefumoip(baseInfos, results);
 	}
 }

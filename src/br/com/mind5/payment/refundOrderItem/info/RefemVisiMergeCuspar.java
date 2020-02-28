@@ -1,70 +1,39 @@
 package br.com.mind5.payment.refundOrderItem.info;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.ArrayList;
+import java.util.List;
 
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
 
-final class RefemVisiMergeCuspar implements InfoMergerVisitor_<RefemInfo, CusparInfo> {
-
-	@Override public RefemInfo writeRecord(CusparInfo sourceOne, RefemInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+final class RefemVisiMergeCuspar implements InfoMergerVisitorV3<RefemInfo, CusparInfo> {
+	
+	@Override public List<RefemInfo> beforeMerge(List<RefemInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(RefemInfo baseInfo, CusparInfo selectedInfo) {
+		return (baseInfo.codOwner 		== selectedInfo.codOwner	&&
+				baseInfo.codPayCustomer == selectedInfo.codPayCustomer);
+	}
+	
+	
+	
+	@Override public List<RefemInfo> merge(RefemInfo baseInfo, CusparInfo selectedInfo) {
+		List<RefemInfo> results = new ArrayList<>();
 		
-		RefemInfo clonedInfo = makeClone(sourceTwo);
-		return merge(sourceOne, clonedInfo);
+		baseInfo.cusparData = selectedInfo;
+		
+		results.add(baseInfo);
+		return results;
 	}
 	
 	
 	
-	private void checkArgument(CusparInfo sourceOne, RefemInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private RefemInfo makeClone(RefemInfo recordInfo) {
-		try {
-			return (RefemInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	private RefemInfo merge(CusparInfo sourceOne, RefemInfo sourceTwo) {
-		sourceTwo.cusparData = makeClone(sourceOne);
-		return sourceTwo;
-	}
-	
-	
-	
-	private CusparInfo makeClone(CusparInfo recordInfo) {
-		try {
-			return (CusparInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(CusparInfo sourceOne, RefemInfo sourceTwo) {		
-		return (sourceOne.codOwner 		 == sourceTwo.codOwner	&&
-				sourceOne.codPayCustomer == sourceTwo.codPayCustomer);
-	}
-	
-	
-	
-	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
+	@Override public InfoUniquifier<RefemInfo> getUniquifier() {
+		return null;
 	}
 }

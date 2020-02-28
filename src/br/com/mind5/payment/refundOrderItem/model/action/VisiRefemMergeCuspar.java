@@ -24,8 +24,8 @@ final class VisiRefemMergeCuspar extends ActionVisitorTemplateMergeV2<RefemInfo,
 	
 	
 	
-	@Override protected List<RefemInfo> mergeHook(List<RefemInfo> recordInfos, List<CusparInfo> selectedInfos) {	
-		return RefemMerger.mergeWithCuspar(selectedInfos, recordInfos);
+	@Override protected List<RefemInfo> mergeHook(List<RefemInfo> baseInfos, List<CusparInfo> selectedInfos) {	
+		return RefemMerger.mergeWithCuspar(baseInfos, selectedInfos);
 	}
 	
 	

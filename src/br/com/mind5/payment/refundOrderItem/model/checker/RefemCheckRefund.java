@@ -3,14 +3,14 @@ package br.com.mind5.payment.refundOrderItem.model.checker;
 import java.sql.Connection;
 
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple_;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 import br.com.mind5.payment.refundOrderItem.info.RefemInfo;
 
-public final class RefemCheckRefund extends ModelCheckerTemplateSimple_<RefemInfo> {
+public final class RefemCheckRefund extends ModelCheckerTemplateSimpleV2<RefemInfo> {
 
-	public RefemCheckRefund() {
-		super();
+	public RefemCheckRefund(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
@@ -30,13 +30,7 @@ public final class RefemCheckRefund extends ModelCheckerTemplateSimple_<RefemInf
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.REFUND_ITEM_MANDATORY_FIELD_EMPTY;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
+	@Override protected int getCodMsgOnResultFalseHook() {
 		return SystemCode.REFUND_ITEM_MANDATORY_FIELD_EMPTY;
 	}
 }

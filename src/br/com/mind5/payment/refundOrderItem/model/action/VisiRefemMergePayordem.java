@@ -23,7 +23,7 @@ final class VisiRefemMergePayordem extends ActionVisitorTemplateMergeV2<RefemInf
 	
 	
 	
-	@Override protected List<RefemInfo> mergeHook(List<RefemInfo> recordInfos, List<PayordemInfo> selectedInfos) {
+	@Override protected List<RefemInfo> mergeHook(List<RefemInfo> baseInfos, List<PayordemInfo> selectedInfos) {
 		return RefemInfo.copyFrom(selectedInfos);
 	}
 	
