@@ -24,6 +24,7 @@ public final class PayordarchCheckRead extends ModelCheckerTemplateSimple_<Payor
 		
 		
 		if ( recordInfo.codOrder    <= 0 &&
+			 recordInfo.codUser     <= 0 &&
 			 recordInfo.codPayOrder <= 0	)			
 				
 			return super.FAILED;

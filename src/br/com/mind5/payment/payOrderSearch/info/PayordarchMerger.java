@@ -2,18 +2,18 @@ package br.com.mind5.payment.payOrderSearch.info;
 
 import java.util.List;
 
-import br.com.mind5.info.obsolete.InfoMerger_;
+import br.com.mind5.info.InfoMergerBuilderV3;
+import br.com.mind5.info.InfoMergerV3;
 
-public final class PayordarchMerger {	
-	public static PayordarchInfo mergeToSelect(PayordarchInfo sourceOne, PayordarchInfo sourceTwo) {
-		InfoMerger_<PayordarchInfo, PayordarchInfo> merger = new PayordarchMergerToSelect();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
+public final class PayordarchMerger {		
+	public static List<PayordarchInfo> mergeToSelect(List<PayordarchInfo> baseInfos, List<PayordarchInfo> selectedInfos) {
+		InfoMergerBuilderV3<PayordarchInfo, PayordarchInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new PayordarchVisiMergeToSelect());
+		InfoMergerV3<PayordarchInfo, PayordarchInfo> merger = builder.build();		
 	
-	
-	
-	public static List<PayordarchInfo> mergeToSelect(List<PayordarchInfo> sourceOnes, List<PayordarchInfo> sourceTwos) {
-		InfoMerger_<PayordarchInfo, PayordarchInfo> merger = new PayordarchMergerToSelect();		
-		return merger.merge(sourceOnes, sourceTwos);
+		return merger.merge();
 	}		
 }

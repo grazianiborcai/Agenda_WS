@@ -22,8 +22,8 @@ final class VisiPayordarchMergeToSelect extends ActionVisitorTemplateMergeV2<Pay
 	
 	
 	
-	@Override protected List<PayordarchInfo> mergeHook(List<PayordarchInfo> recordInfos, List<PayordarchInfo> selectedInfos) {	
-		return PayordarchMerger.mergeToSelect(selectedInfos, recordInfos);
+	@Override protected List<PayordarchInfo> mergeHook(List<PayordarchInfo> baseInfos, List<PayordarchInfo> selectedInfos) {	
+		return PayordarchMerger.mergeToSelect(baseInfos, selectedInfos);
 	}
 	
 	
