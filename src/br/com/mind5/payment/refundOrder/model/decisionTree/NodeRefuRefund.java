@@ -10,13 +10,13 @@ import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
 import br.com.mind5.payment.refundOrder.info.RefuInfo;
-import br.com.mind5.payment.refundOrder.model.action.LazyRefuMergeOrdist;
-import br.com.mind5.payment.refundOrder.model.action.StdRefuOrderRefunding;
+import br.com.mind5.payment.refundOrder.model.action.LazyRefuRefundRefem;
+import br.com.mind5.payment.refundOrder.model.action.StdRefuMergePayormarch;
 import br.com.mind5.payment.refundOrder.model.checker.RefuCheckDummy;
 
-public final class NodeRefuOrder extends DeciTreeWriteTemplate<RefuInfo> {
+public final class NodeRefuRefund extends DeciTreeWriteTemplate<RefuInfo> {
 	
-	public NodeRefuOrder(DeciTreeOption<RefuInfo> option) {
+	public NodeRefuRefund(DeciTreeOption<RefuInfo> option) {
 		super(option);
 	}
 	
@@ -37,12 +37,12 @@ public final class NodeRefuOrder extends DeciTreeWriteTemplate<RefuInfo> {
 	@Override protected List<ActionStd<RefuInfo>> buildActionsOnPassedHook(DeciTreeOption<RefuInfo> option) {
 		List<ActionStd<RefuInfo>> actions = new ArrayList<>();		
 
-		ActionStd<RefuInfo> orderRefund = new StdRefuOrderRefunding(option);
-		ActionLazy<RefuInfo> mergeOrdist = new LazyRefuMergeOrdist(option.conn, option.schemaName);
+		ActionStd<RefuInfo> mergePayormarch = new StdRefuMergePayormarch(option);
+		ActionLazy<RefuInfo> refundRefem = new LazyRefuRefundRefem(option.conn, option.schemaName);
 		
-		orderRefund.addPostAction(mergeOrdist);
+		mergePayormarch.addPostAction(refundRefem);
 		
-		actions.add(orderRefund);		
+		actions.add(mergePayormarch);		
 		return actions;
 	}
 }

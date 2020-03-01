@@ -3,15 +3,15 @@ package br.com.mind5.payment.refundOrder.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.business.orderItemSearch.info.OrdemarchInfo;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
+import br.com.mind5.payment.payOrderItemSearch.info.PayormarchInfo;
 
 public final class RefuInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codOrder;
 	public long codPayOrder;
-	public List<OrdemarchInfo> ordemarches;
+	public List<PayormarchInfo> payormarches;
 	public String username;	
 	
 	
@@ -21,7 +21,7 @@ public final class RefuInfo extends InfoRecord implements Cloneable {
 		codOwner = DefaultValue.number();
 		codPayOrder = DefaultValue.number();
 		codOrder = DefaultValue.number();
-		ordemarches = DefaultValue.list();
+		payormarches = DefaultValue.list();
 	}
 	
 	
@@ -41,14 +41,14 @@ public final class RefuInfo extends InfoRecord implements Cloneable {
 	@Override public Object clone() throws CloneNotSupportedException {
 		RefuInfo deepCopy = (RefuInfo) super.clone();
 		
-		deepCopy.ordemarches = cloneOrdemarches(deepCopy.ordemarches);
+		deepCopy.payormarches = clonePayormarches(deepCopy.payormarches);
 		
 		return deepCopy;
 	}
 	
 	
 	
-	private List<OrdemarchInfo> cloneOrdemarches(List<OrdemarchInfo> recordInfos) throws CloneNotSupportedException {
+	private List<PayormarchInfo> clonePayormarches(List<PayormarchInfo> recordInfos) throws CloneNotSupportedException {
 		if (recordInfos == null)
 			return null;
 		
@@ -56,10 +56,10 @@ public final class RefuInfo extends InfoRecord implements Cloneable {
 			return recordInfos;
 		
 		
-		List<OrdemarchInfo> results = new ArrayList<>();
+		List<PayormarchInfo> results = new ArrayList<>();
 		
-		for (OrdemarchInfo eachRecord : recordInfos) {
-			OrdemarchInfo eachResult = (OrdemarchInfo) eachRecord.clone();
+		for (PayormarchInfo eachRecord : recordInfos) {
+			PayormarchInfo eachResult = (PayormarchInfo) eachRecord.clone();
 			results.add(eachResult);
 		}
 		

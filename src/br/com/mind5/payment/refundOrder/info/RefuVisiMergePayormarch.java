@@ -3,15 +3,15 @@ package br.com.mind5.payment.refundOrder.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.business.orderItemSearch.info.OrdemarchInfo;
 import br.com.mind5.info.InfoMergerVisitorV3;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.payment.payOrderItemSearch.info.PayormarchInfo;
 
-final class RefuVisiMergeOrdemarch implements InfoMergerVisitorV3<RefuInfo, OrdemarchInfo> {
+final class RefuVisiMergePayormarch implements InfoMergerVisitorV3<RefuInfo, PayormarchInfo> {
 	
 	@Override public List<RefuInfo> beforeMerge(List<RefuInfo> baseInfos) {
 		for (RefuInfo eachBase : baseInfos) {
-			eachBase.ordemarches = new ArrayList<>();
+			eachBase.payormarches = new ArrayList<>();
 		}
 		
 		return baseInfos;
@@ -19,17 +19,17 @@ final class RefuVisiMergeOrdemarch implements InfoMergerVisitorV3<RefuInfo, Orde
 	
 	
 	
-	@Override public boolean shouldMerge(RefuInfo baseInfo, OrdemarchInfo selectedInfo) {
-		return (baseInfo.codOwner == selectedInfo.codOwner	&&
-				baseInfo.codOrder == selectedInfo.codOrder);
+	@Override public boolean shouldMerge(RefuInfo baseInfo, PayormarchInfo selectedInfo) {
+		return (baseInfo.codOwner    == selectedInfo.codOwner	&&
+				baseInfo.codPayOrder == selectedInfo.codPayOrder);
 	}
 	
 	
 	
-	@Override public List<RefuInfo> merge(RefuInfo baseInfo, OrdemarchInfo selectedInfo) {
+	@Override public List<RefuInfo> merge(RefuInfo baseInfo, PayormarchInfo selectedInfo) {
 		List<RefuInfo> results = new ArrayList<>();
 		
-		baseInfo.ordemarches.add(selectedInfo); 
+		baseInfo.payormarches.add(selectedInfo); 
 		
 		results.add(baseInfo);
 		return results;

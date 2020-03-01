@@ -9,9 +9,9 @@ import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.refundOrder.info.RefuInfo;
 
-public final class LazyRefuMergeOrdemarch extends ActionLazyTemplate<RefuInfo, RefuInfo> {
+public final class LazyRefuRefundRefem extends ActionLazyTemplate<RefuInfo, RefuInfo> {
 	
-	public LazyRefuMergeOrdemarch(Connection conn, String schemaName) {
+	public LazyRefuRefundRefem(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyRefuMergeOrdemarch extends ActionLazyTemplate<RefuInfo, R
 	
 	
 	@Override protected ActionStd<RefuInfo> getInstanceOfActionHook(DeciTreeOption<RefuInfo> option) {
-		return new StdRefuMergeOrdemarch(option);
+		return new StdRefuRefundRefem(option);
 	}
 	
 	

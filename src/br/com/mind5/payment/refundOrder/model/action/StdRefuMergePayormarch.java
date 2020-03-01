@@ -7,12 +7,12 @@ import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.refundOrder.info.RefuInfo;
 
-public final class StdRefuMergeOrdemarch implements ActionStd<RefuInfo> {
+public final class StdRefuMergePayormarch implements ActionStd<RefuInfo> {
 	private ActionStd<RefuInfo> actionHelper;	
 	
 	
-	public StdRefuMergeOrdemarch(DeciTreeOption<RefuInfo> option) {			
-		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiRefuMergeOrdemarch(option.conn, option.schemaName));
+	public StdRefuMergePayormarch(DeciTreeOption<RefuInfo> option) {			
+		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiRefuMergePayormarch(option.conn, option.schemaName));
 	}
 	
 	

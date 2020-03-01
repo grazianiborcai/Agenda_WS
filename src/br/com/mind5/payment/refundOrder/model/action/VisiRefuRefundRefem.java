@@ -11,9 +11,9 @@ import br.com.mind5.payment.refundOrderItem.info.RefemCopier;
 import br.com.mind5.payment.refundOrderItem.info.RefemInfo;
 import br.com.mind5.payment.refundOrderItem.model.decisionTree.RootRefemRefund;
 
-final class VisiRefuRefund extends ActionVisitorTemplateAction<RefuInfo, RefemInfo> {
+final class VisiRefuRefundRefem extends ActionVisitorTemplateAction<RefuInfo, RefemInfo> {
 	
-	public VisiRefuRefund(Connection conn, String schemaName) {
+	public VisiRefuRefundRefem(Connection conn, String schemaName) {
 		super(conn, schemaName, RefuInfo.class, RefemInfo.class);
 	}
 	

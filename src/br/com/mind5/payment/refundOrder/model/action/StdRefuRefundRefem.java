@@ -7,12 +7,12 @@ import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.refundOrder.info.RefuInfo;
 
-public final class StdRefuRefund implements ActionStd<RefuInfo> {
+public final class StdRefuRefundRefem implements ActionStd<RefuInfo> {
 	private ActionStd<RefuInfo> actionHelper;	
 	
 	
-	public StdRefuRefund(DeciTreeOption<RefuInfo> option) {			
-		actionHelper = new ActionStdHelperAction<>(option.recordInfos, new VisiRefuRefund(option.conn, option.schemaName));
+	public StdRefuRefundRefem(DeciTreeOption<RefuInfo> option) {			
+		actionHelper = new ActionStdHelperAction<>(option.recordInfos, new VisiRefuRefundRefem(option.conn, option.schemaName));
 	}
 	
 	
