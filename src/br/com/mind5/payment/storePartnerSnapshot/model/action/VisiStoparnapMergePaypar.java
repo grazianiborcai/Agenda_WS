@@ -24,8 +24,8 @@ final class VisiStoparnapMergePaypar extends ActionVisitorTemplateMergeV2<Stopar
 	
 	
 	
-	@Override protected List<StoparnapInfo> mergeHook(List<StoparnapInfo> recordInfos, List<PayparInfo> selectedInfos) {	
-		return StoparnapMerger.mergeWithPaypar(selectedInfos, recordInfos);
+	@Override protected List<StoparnapInfo> mergeHook(List<StoparnapInfo> baseInfos, List<PayparInfo> selectedInfos) {	
+		return StoparnapMerger.mergeWithPaypar(baseInfos, selectedInfos);
 	}
 	
 	

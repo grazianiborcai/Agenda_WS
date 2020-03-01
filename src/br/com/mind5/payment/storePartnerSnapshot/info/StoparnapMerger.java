@@ -3,32 +3,31 @@ package br.com.mind5.payment.storePartnerSnapshot.info;
 import java.util.List;
 
 import br.com.mind5.business.masterData.info.PayparInfo;
-import br.com.mind5.info.obsolete.InfoMerger_;
+import br.com.mind5.info.InfoMergerBuilderV3;
+import br.com.mind5.info.InfoMergerV3;
 
-public final class StoparnapMerger {	
-	public static StoparnapInfo mergeWithPaypar(PayparInfo sourceOne, StoparnapInfo sourceTwo) {
-		InfoMerger_<StoparnapInfo, PayparInfo> merger = new StoparnapMergerPaypar();		
-		return merger.merge(sourceOne, sourceTwo);
+public final class StoparnapMerger {
+	public static List<StoparnapInfo> mergeWithPaypar(List<StoparnapInfo> baseInfos, List<PayparInfo> selectedInfos) {
+		InfoMergerBuilderV3<StoparnapInfo, PayparInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new StoparnapVisiMergePaypar());
+		InfoMergerV3<StoparnapInfo, PayparInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static List<StoparnapInfo> mergeWithPaypar(List<PayparInfo> sourceOnes, List<StoparnapInfo> sourceTwos) {
-		InfoMerger_<StoparnapInfo, PayparInfo> merger = new StoparnapMergerPaypar();		
-		return merger.merge(sourceOnes, sourceTwos);
-	}
+	public static List<StoparnapInfo> mergeToSelect(List<StoparnapInfo> baseInfos, List<StoparnapInfo> selectedInfos) {
+		InfoMergerBuilderV3<StoparnapInfo, StoparnapInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new StoparnapVisiMergeToSelect());
+		InfoMergerV3<StoparnapInfo, StoparnapInfo> merger = builder.build();		
 	
-	
-	
-	public static StoparnapInfo mergeToSelect(StoparnapInfo sourceOne, StoparnapInfo sourceTwo) {
-		InfoMerger_<StoparnapInfo, StoparnapInfo> merger = new StoparnapMergerToSelect();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
-	
-	
-	
-	public static List<StoparnapInfo> mergeToSelect(List<StoparnapInfo> sourceOnes, List<StoparnapInfo> sourceTwos) {
-		InfoMerger_<StoparnapInfo, StoparnapInfo> merger = new StoparnapMergerToSelect();		
-		return merger.merge(sourceOnes, sourceTwos);
+		return merger.merge();
 	}			
 }

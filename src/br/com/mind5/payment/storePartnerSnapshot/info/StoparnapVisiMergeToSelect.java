@@ -1,56 +1,38 @@
 package br.com.mind5.payment.storePartnerSnapshot.info;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.ArrayList;
+import java.util.List;
 
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-final class StoparnapVisiMergeToSelect implements InfoMergerVisitor_<StoparnapInfo, StoparnapInfo> {
-
-	@Override public StoparnapInfo writeRecord(StoparnapInfo sourceOne, StoparnapInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);		
-		return merge(sourceOne, sourceTwo);
+final class StoparnapVisiMergeToSelect implements InfoMergerVisitorV3<StoparnapInfo, StoparnapInfo> {
+	
+	@Override public List<StoparnapInfo> beforeMerge(List<StoparnapInfo> baseInfos) {
+		return baseInfos;
 	}
 	
 	
 	
-	private void checkArgument(StoparnapInfo sourceOne, StoparnapInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
+	@Override public boolean shouldMerge(StoparnapInfo baseInfo, StoparnapInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner);
 	}
 	
 	
 	
-	private StoparnapInfo merge(StoparnapInfo sourceOne, StoparnapInfo sourceTwo) {
-		StoparnapInfo result = makeClone(sourceOne);		
-		result.username = sourceTwo.username;
-		result.codLanguage = sourceTwo.codLanguage;
-		return result;
+	@Override public List<StoparnapInfo> merge(StoparnapInfo baseInfo, StoparnapInfo selectedInfo) {
+		List<StoparnapInfo> results = new ArrayList<>();
+		
+		selectedInfo.username = baseInfo.username;
+		selectedInfo.codLanguage = baseInfo.codLanguage;
+		
+		results.add(selectedInfo);
+		return results;
 	}
 	
 	
 	
-	private StoparnapInfo makeClone(StoparnapInfo recordInfo) {
-		try {
-			return (StoparnapInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(StoparnapInfo sourceOne, StoparnapInfo sourceTwo) {		
-		return (sourceOne.codOwner == sourceTwo.codOwner);
-	}
-	
-	
-	
-	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
+	@Override public InfoUniquifier<StoparnapInfo> getUniquifier() {
+		return null;
 	}
 }

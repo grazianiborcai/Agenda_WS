@@ -22,8 +22,8 @@ final class VisiStoparnapMergeToSelect extends ActionVisitorTemplateMergeV2<Stop
 	
 	
 	
-	@Override protected List<StoparnapInfo> mergeHook(List<StoparnapInfo> recordInfos, List<StoparnapInfo> selectedInfos) {	
-		return StoparnapMerger.mergeToSelect(selectedInfos, recordInfos);
+	@Override protected List<StoparnapInfo> mergeHook(List<StoparnapInfo> baseInfos, List<StoparnapInfo> selectedInfos) {	
+		return StoparnapMerger.mergeToSelect(baseInfos, selectedInfos);
 	}
 	
 	

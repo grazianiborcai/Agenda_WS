@@ -1120,4 +1120,7 @@ public final class SystemCode {
 	public static final int SYS_PAYPAR_SEARCH_MANDATORY_FIELD_EMPTY		= 11300;
 	public static final int SYS_PAYPAR_SEARCH_ALREADY_EXIST 			= 11301;
 	public static final int SYS_PAYPAR_SEARCH_NOT_FOUND 				= 11302;
+	
+	// Pay Partner-Store Snapshot
+	public static final int PAYPAR_STORE_SNAP_MANDATORY_FIELD_EMPTY 	= 11350;
 }

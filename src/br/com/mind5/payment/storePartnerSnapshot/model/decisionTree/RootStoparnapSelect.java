@@ -25,19 +25,21 @@ public final class RootStoparnapSelect extends DeciTreeReadTemplate<StoparnapInf
 	
 	
 	@Override protected ModelChecker<StoparnapInfo> buildDecisionCheckerHook(DeciTreeOption<StoparnapInfo> option) {
-		final boolean EXIST_ON_DB = true;
-		
 		List<ModelChecker<StoparnapInfo>> queue = new ArrayList<>();		
 		ModelChecker<StoparnapInfo> checker;
 		ModelCheckerOption checkerOption;
 		
-		checker = new StoparnapCheckRead();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new StoparnapCheckRead(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new StoparnapCheckOwner(checkerOption);
 		queue.add(checker);	
 		
