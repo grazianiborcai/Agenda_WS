@@ -15,8 +15,8 @@ final class StoparCopyRefumoip extends InfoCopierTemplate<StoparInfo, RefumoipIn
 		StoparInfo result = new StoparInfo();
 		
 		result.codOwner = source.codOwner;
-		result.codStore = source.codStore;	
-		result.codPayPartner = source.cusparData.codPayPartner;
+		result.idPayPartnerStore = source.itemReceiver;	
+		result.codPayPartner = source.codPayPartner;
 		result.codLanguage = source.codLanguage;
 		result.username = source.username;
 		
