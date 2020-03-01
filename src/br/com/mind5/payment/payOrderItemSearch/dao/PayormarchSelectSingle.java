@@ -76,6 +76,7 @@ public final class PayormarchSelectSingle extends DaoStmtTemplate<PayormarchInfo
 					dataInfo.statusPaymentPartner = stmtResult.getString(PayormarchDbTableColumn.COL_STATUS_PAYMENT_PARTNER);
 					dataInfo.idRefundPartner = stmtResult.getString(PayormarchDbTableColumn.COL_ID_REFUND_PARTNER);
 					dataInfo.statusRefundPartner = stmtResult.getString(PayormarchDbTableColumn.COL_STATUS_REFUND_PARTNER);	
+					dataInfo.itemReceiver = stmtResult.getString(PayormarchDbTableColumn.COL_ITEM_RECEIVER);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

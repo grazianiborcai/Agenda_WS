@@ -17,6 +17,7 @@ public final class PayormarchInfo extends InfoRecord implements Cloneable, Compa
 	public String statusPaymentPartner;
 	public String idRefundPartner;
 	public String statusRefundPartner;
+	public String itemReceiver;
 	public int codPayPartner;
 	public String username;	
 	

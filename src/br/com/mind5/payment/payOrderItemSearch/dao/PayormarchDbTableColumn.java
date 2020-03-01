@@ -16,6 +16,7 @@ public final class PayormarchDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_ID_ORDER_PARTNER = DaoDbField.COL_ID_ORDER_PARTNER;
 	public static final String COL_ID_PAYMENT_PARTNER = DaoDbField.COL_ID_PAYMENT_PARTNER;
 	public static final String COL_ID_REFUND_PARTNER = DaoDbField.COL_ID_REFUND_PARTNER;
+	public static final String COL_ITEM_RECEIVER = DaoDbField.COL_ITEM_RECEIVER;
 	public static final String COL_OWN_ID = DaoDbField.COL_OWN_ID;	
 	public static final String COL_STATUS_ORDER_PARTNER = DaoDbField.COL_STATUS_ORDER_PARTNER;
 	public static final String COL_STATUS_PAYMENT_PARTNER = DaoDbField.COL_STATUS_PAYMENT_PARTNER;
@@ -124,6 +125,14 @@ public final class PayormarchDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_ITEM_RECEIVER;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);	
 		
 		tableColumns.put(DaoDbTable.PAY_ORDER_ITM_SEARCH_VIEW, columns);
 	}
