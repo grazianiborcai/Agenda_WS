@@ -16,10 +16,13 @@ public final class SysparchCheckRead extends ModelCheckerTemplateSimpleV2<Syspar
 	
 	
 	@Override protected boolean checkHook(SysparchInfo recordInfo, Connection conn, String schemaName) {	
-		if ( recordInfo.codPayPartner 		<= 0    ||
-			 recordInfo.idPayPartnerSystem	== null ||
-			 recordInfo.username			== null ||
+		if ( recordInfo.username			== null ||
 			 recordInfo.codLanguage 		== null		)			
+			return super.FAILED;
+		
+		
+		if ( recordInfo.codPayPartner 		<= 0    &&
+			 recordInfo.idPayPartnerSystem	== null		)			
 			return super.FAILED;
 		
 		
