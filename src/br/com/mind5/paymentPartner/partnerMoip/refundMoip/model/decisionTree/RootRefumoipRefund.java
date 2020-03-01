@@ -12,9 +12,9 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
 import br.com.mind5.paymentPartner.partnerMoip.refundMoip.info.RefumoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.refundMoip.model.action.LazyRefumoipEnforceResponseAttr;
+import br.com.mind5.paymentPartner.partnerMoip.refundMoip.model.action.LazyRefumoipNodeRefund;
 import br.com.mind5.paymentPartner.partnerMoip.refundMoip.model.action.LazyRefumoipRefund;
-import br.com.mind5.paymentPartner.partnerMoip.refundMoip.model.checker.RefumoipCheckCuspar;
-import br.com.mind5.paymentPartner.partnerMoip.refundMoip.model.checker.RefumoipCheckCusparData;
+import br.com.mind5.paymentPartner.partnerMoip.refundMoip.model.action.StdRefumoipEnforcePaypar;
 import br.com.mind5.paymentPartner.partnerMoip.refundMoip.model.checker.RefumoipCheckRefund;
 
 public final class RootRefumoipRefund extends DeciTreeWriteTemplate<RefumoipInfo> {
@@ -36,20 +36,6 @@ public final class RootRefumoipRefund extends DeciTreeWriteTemplate<RefumoipInfo
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
 		checker = new RefumoipCheckRefund(checkerOption);
 		queue.add(checker);
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new RefumoipCheckCusparData(checkerOption);
-		queue.add(checker);
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
-		checker = new RefumoipCheckCuspar(checkerOption);
-		queue.add(checker);
 		//TODO: verificar partner = MOIP
 		return new ModelCheckerQueue<>(queue);
 	}
@@ -59,14 +45,16 @@ public final class RootRefumoipRefund extends DeciTreeWriteTemplate<RefumoipInfo
 	@Override protected List<ActionStd<RefumoipInfo>> buildActionsOnPassedHook(DeciTreeOption<RefumoipInfo> option) {
 		List<ActionStd<RefumoipInfo>> actions = new ArrayList<>();	
 		
-		ActionStd<RefumoipInfo> nodeRefund = new NodeRefumoipRefund(option).toAction();		
+		ActionStd<RefumoipInfo> enforcePaypar = new StdRefumoipEnforcePaypar(option);	
+		ActionLazy<RefumoipInfo> nodeRefund = new LazyRefumoipNodeRefund(option.conn, option.schemaName);		
 		ActionLazy<RefumoipInfo> refund = new LazyRefumoipRefund(option.conn, option.schemaName);
 		ActionLazy<RefumoipInfo> enforceResponseAttr = new LazyRefumoipEnforceResponseAttr(option.conn, option.schemaName);
 		
+		enforcePaypar.addPostAction(nodeRefund);
 		nodeRefund.addPostAction(refund);
 		refund.addPostAction(enforceResponseAttr);
 		
-		actions.add(nodeRefund);		
+		actions.add(enforcePaypar);		
 		return actions;
 	}
 }

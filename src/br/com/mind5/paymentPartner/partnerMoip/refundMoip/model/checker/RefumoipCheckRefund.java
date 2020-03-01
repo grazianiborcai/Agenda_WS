@@ -16,7 +16,9 @@ public final class RefumoipCheckRefund extends ModelCheckerTemplateSimpleV2<Refu
 	
 	
 	@Override protected boolean checkHook(RefumoipInfo recordInfo, Connection conn, String schemaName) {	
-		if ( recordInfo.idOrderPartner == null )	
+		if ( recordInfo.codOwner 		<= 0	||
+			 recordInfo.itemReceiver	== null ||
+			 recordInfo.idOrderPartner 	== null 	)	
 			return super.FAILED;
 		
 		

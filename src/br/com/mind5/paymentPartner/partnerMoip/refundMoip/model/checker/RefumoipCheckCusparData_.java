@@ -7,9 +7,9 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 import br.com.mind5.paymentPartner.partnerMoip.refundMoip.info.RefumoipInfo;
 
-public final class RefumoipCheckCusparData extends ModelCheckerTemplateSimpleV2<RefumoipInfo> {
+public final class RefumoipCheckCusparData_ extends ModelCheckerTemplateSimpleV2<RefumoipInfo> {
 
-	public RefumoipCheckCusparData(ModelCheckerOption option) {
+	public RefumoipCheckCusparData_(ModelCheckerOption option) {
 		super(option);
 	}
 	

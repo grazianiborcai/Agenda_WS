@@ -12,11 +12,13 @@ import br.com.moip.models.Setup;
 
 public final class RefumoipInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
+	public int codPayPartner;		//TODO: Enforce
 	public String idOrderPartner;
+	public String itemReceiver;
 	public String idRefundPartner;
 	public String statusRefundPartner;
 	public long codStore;
-	public boolean isSystemReceiver;
+	public boolean isSystemReceiver;		//TODO: Remover
 	public CusparInfo cusparData;
 	public SetuparInfo setuparData;
 	public StoparInfo stoparData;

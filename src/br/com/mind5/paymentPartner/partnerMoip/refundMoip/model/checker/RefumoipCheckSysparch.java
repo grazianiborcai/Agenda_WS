@@ -4,19 +4,20 @@ import java.util.List;
 
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.payment.customerPartner.info.CusparInfo;
-import br.com.mind5.payment.customerPartner.model.checker.CusparCheckExist;
+import br.com.mind5.payment.systemPartnerSearch.info.SysparchCopier;
+import br.com.mind5.payment.systemPartnerSearch.info.SysparchInfo;
+import br.com.mind5.payment.systemPartnerSearch.model.checker.SysparchCheckExist;
 import br.com.mind5.paymentPartner.partnerMoip.refundMoip.info.RefumoipInfo;
 
-public final class RefumoipCheckCuspar implements ModelChecker<RefumoipInfo> {
+public final class RefumoipCheckSysparch implements ModelChecker<RefumoipInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<CusparInfo> checker;
+	private ModelChecker<SysparchInfo> checker;
 	
 	
-	public RefumoipCheckCuspar(ModelCheckerOption option) {
-		checker = new CusparCheckExist(option);
+	public RefumoipCheckSysparch(ModelCheckerOption option) {
+		checker = new SysparchCheckExist(option);
 	}
 	
 	
@@ -33,7 +34,7 @@ public final class RefumoipCheckCuspar implements ModelChecker<RefumoipInfo> {
 	
 	
 	@Override public boolean check(RefumoipInfo recordInfo) {
-		return checker.check(recordInfo.cusparData);
+		return checker.check(SysparchCopier.copyFromRefumoip(recordInfo));
 	}
 
 	

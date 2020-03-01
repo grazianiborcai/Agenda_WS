@@ -10,7 +10,7 @@ import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
 import br.com.mind5.paymentPartner.partnerMoip.refundMoip.info.RefumoipInfo;
-import br.com.mind5.paymentPartner.partnerMoip.refundMoip.model.checker.RefumoipCheckSystemReceiver;
+import br.com.mind5.paymentPartner.partnerMoip.refundMoip.model.checker.RefumoipCheckSysparch;
 
 public final class NodeRefumoipRefund extends DeciTreeWriteTemplate<RefumoipInfo> {
 	
@@ -28,8 +28,8 @@ public final class NodeRefumoipRefund extends DeciTreeWriteTemplate<RefumoipInfo
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new RefumoipCheckSystemReceiver(checkerOption);
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
+		checker = new RefumoipCheckSysparch(checkerOption);
 		queue.add(checker);
 
 		return new ModelCheckerQueue<>(queue);
