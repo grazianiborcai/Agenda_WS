@@ -1113,4 +1113,9 @@ public final class SystemCode {
 	
 	// Refund Header
 	public static final int REFUND_HEADER_MANDATORY_FIELD_EMPTY			= 11250; //4701;
+	
+	// System Pay Partner Search
+	public static final int SYS_PAYPAR_SEARCH_MANDATORY_FIELD_EMPTY		= 11300;
+	public static final int SYS_PAYPAR_SEARCH_ALREADY_EXIST 			= 11301;
+	public static final int SYS_PAYPAR_SEARCH_NOT_FOUND 				= 11302;
 }

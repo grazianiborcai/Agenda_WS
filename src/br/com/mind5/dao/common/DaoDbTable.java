@@ -183,7 +183,8 @@ public final class DaoDbTable {
 	public static final String STORE_SEARCH_VIEW = "view_store_search";	
 	public static final String STORE_WTIME_RANGE_VIEW = "view_store_wtime_range";
 	public static final String STORE_WTIME_SEARCH_VIEW = "view_store_wtime_search";
+	public static final String SYS_PAY_PARTNER_SEARCH_VIEW = "view_sys_pay_partner_search";
 	public static final String USER_LIST_VIEW = "view_user_list";
 	public static final String USER_SEARCH_VIEW = "view_user_search";
-	public static final String USERNAME_VIEW = "view_username";	
+	public static final String USERNAME_VIEW = "view_username";		
 }
