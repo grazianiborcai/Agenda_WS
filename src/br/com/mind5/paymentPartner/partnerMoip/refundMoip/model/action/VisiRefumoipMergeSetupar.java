@@ -24,8 +24,8 @@ final class VisiRefumoipMergeSetupar extends ActionVisitorTemplateMergeV2<Refumo
 	
 	
 	
-	@Override protected List<RefumoipInfo> mergeHook(List<RefumoipInfo> recordInfos, List<SetuparInfo> selectedInfos) {	
-		return RefumoipMerger.mergeWithSetupar(selectedInfos, recordInfos);
+	@Override protected List<RefumoipInfo> mergeHook(List<RefumoipInfo> baseInfos, List<SetuparInfo> selectedInfos) {	
+		return RefumoipMerger.mergeWithSetupar(baseInfos, selectedInfos);
 	}
 	
 	

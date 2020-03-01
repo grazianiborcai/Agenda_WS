@@ -19,6 +19,7 @@ public final class RefumoipCheckRefund extends ModelCheckerTemplateSimpleV2<Refu
 		if ( recordInfo.codOwner 		<= 0	||
 			 recordInfo.itemReceiver	== null ||
 			 recordInfo.idOrderPartner 	== null 	)	
+			
 			return super.FAILED;
 		
 		

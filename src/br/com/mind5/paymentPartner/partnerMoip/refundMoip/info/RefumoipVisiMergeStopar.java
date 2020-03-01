@@ -1,74 +1,40 @@
 package br.com.mind5.paymentPartner.partnerMoip.refundMoip.info;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.ArrayList;
+import java.util.List;
 
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.payment.storePartner.info.StoparInfo;
 
-final class RefumoipVisiMergeStopar implements InfoMergerVisitor_<RefumoipInfo, StoparInfo> {
-
-	@Override public RefumoipInfo writeRecord(StoparInfo sourceOne, RefumoipInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+final class RefumoipVisiMergeStopar implements InfoMergerVisitorV3<RefumoipInfo, StoparInfo> {
+	
+	@Override public List<RefumoipInfo> beforeMerge(List<RefumoipInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(RefumoipInfo baseInfo, StoparInfo selectedInfo) {
+		return (baseInfo.codOwner 	   == selectedInfo.codOwner	&&
+				baseInfo.codStore 	   == selectedInfo.codStore	&&
+				baseInfo.codPayPartner == selectedInfo.codPayPartner);
+	}
+	
+	
+	
+	@Override public List<RefumoipInfo> merge(RefumoipInfo baseInfo, StoparInfo selectedInfo) {
+		List<RefumoipInfo> results = new ArrayList<>();
 		
-		RefumoipInfo clonedInfo = makeClone(sourceTwo);
-		return merge(sourceOne, clonedInfo);
-	}
-	
-	
-	
-	private void checkArgument(StoparInfo sourceOne, RefumoipInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private RefumoipInfo makeClone(RefumoipInfo recordInfo) {
-		try {
-			return (RefumoipInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	private RefumoipInfo merge(StoparInfo sourceOne, RefumoipInfo sourceTwo) {
-		sourceTwo.stoparData = makeClone(sourceOne);
-		return sourceTwo;
-	}
-	
-	
-	
-	private StoparInfo makeClone(StoparInfo recordInfo) {
-		try {
-			return (StoparInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}	
-	
-	
-	
-	@Override public boolean shouldWrite(StoparInfo sourceOne, RefumoipInfo sourceTwo) {
-		if (sourceTwo.cusparData == null)
-			return false;
+		baseInfo.stoparData = selectedInfo;
 		
-		return (sourceOne.codOwner 		== sourceTwo.codOwner	&&
-				sourceOne.codStore 		== sourceTwo.codStore	&&
-				sourceOne.codPayPartner == sourceTwo.cusparData.codPayPartner);
+		results.add(baseInfo);
+		return results;
 	}
 	
 	
 	
-	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
+	@Override public InfoUniquifier<RefumoipInfo> getUniquifier() {
+		return null;
 	}
 }

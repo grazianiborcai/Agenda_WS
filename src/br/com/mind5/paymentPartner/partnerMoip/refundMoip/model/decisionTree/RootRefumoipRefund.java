@@ -36,7 +36,7 @@ public final class RootRefumoipRefund extends DeciTreeWriteTemplate<RefumoipInfo
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
 		checker = new RefumoipCheckRefund(checkerOption);
 		queue.add(checker);
-		//TODO: verificar partner = MOIP
+
 		return new ModelCheckerQueue<>(queue);
 	}
 	

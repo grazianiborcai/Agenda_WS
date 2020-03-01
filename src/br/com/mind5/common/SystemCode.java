@@ -983,6 +983,8 @@ public final class SystemCode {
 	
 	// Pay Partner-Store Search
 	public static final int PAYPAR_STORE_SEARCH_MANDATORY_FIELD_EMPTY 	= 9300;
+	public static final int PAYPAR_STORE_SEARCH_ALREADY_EXIST			= 9301;
+	public static final int PAYPAR_STORE_SEARCH_NOT_FOUND				= 9302;
 	
 	// Planing Time
 	public static final int PLAN_TIME_MANDATORY_FIELD_EMPTY				= 9350;	

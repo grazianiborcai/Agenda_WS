@@ -7,26 +7,26 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 import br.com.mind5.paymentPartner.partnerMoip.refundMoip.info.RefumoipInfo;
 
-public final class RefumoipCheckNonSystem extends ModelCheckerTemplateSimpleV2<RefumoipInfo> {
+public final class RefumoipCheckSystemReceiver_ extends ModelCheckerTemplateSimpleV2<RefumoipInfo> {
 
-	public RefumoipCheckNonSystem(ModelCheckerOption option) {
+	public RefumoipCheckSystemReceiver_(ModelCheckerOption option) {
 		super(option);
 	}
 	
 	
 	
 	@Override protected boolean checkHook(RefumoipInfo recordInfo, Connection conn, String schemaName) {	
-		if ( recordInfo.codOwner <= 0	||
-			 recordInfo.codStore <= 0)	
-			return super.FAILED;
+		if ( recordInfo.isSystemReceiver == true )	
+			return super.SUCCESS;
 		
 		
-		return super.SUCCESS;
+		return super.FAILED;
 	}
 	
 	
 	
+	
 	@Override protected int getCodMsgOnResultFalseHook() {
-		return SystemCode.REFUND_MOIP_MANDATORY_FIELD_EMPTY;
+		return SystemCode.REFUND_MOIP_IS_NOT_SYSTEM_RECEIVER;
 	}
 }

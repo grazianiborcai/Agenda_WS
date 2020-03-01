@@ -8,14 +8,14 @@ import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.paymentPartner.partnerMoip.refundMoip.info.RefumoipInfo;
 
-public final class RefumoipCheckStore implements ModelChecker<RefumoipInfo> {
+public final class RefumoipCheckStore_ implements ModelChecker<RefumoipInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
 	private ModelChecker<StoreInfo> checker;
 	
 	
-	public RefumoipCheckStore(ModelCheckerOption option) {
+	public RefumoipCheckStore_(ModelCheckerOption option) {
 		checker = new StoreCheckExist(option);
 	}
 	

@@ -55,13 +55,13 @@ public final class PaymentResource {
 	@Path(REFUND_ORDER)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response refundOrder(@HeaderParam("TOKEN_OWNER") 	@DefaultValue("-1") long codOwner,
-								@HeaderParam("codPayOrder")  	@DefaultValue("-1") long codPayOrder,
+								@HeaderParam("codOrder")  		@DefaultValue("-1") long codOrder,
 								@HeaderParam("TOKEN_USERNAME") 	String username,
 								@HeaderParam("codLanguage") 	@DefaultValue("EN") String codLanguage) {
 
 		RefuInfo recordInfo = new RefuInfo();
 		recordInfo.codOwner = codOwner;
-		recordInfo.codPayOrder = codPayOrder;
+		recordInfo.codOrder = codOrder;
 		recordInfo.username = username;
 		recordInfo.codLanguage = codLanguage;
 		

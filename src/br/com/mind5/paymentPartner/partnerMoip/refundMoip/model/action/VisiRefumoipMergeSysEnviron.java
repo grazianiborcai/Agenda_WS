@@ -24,8 +24,8 @@ final class VisiRefumoipMergeSysEnviron extends ActionVisitorTemplateMergeV2<Ref
 	
 	
 	
-	@Override protected List<RefumoipInfo> mergeHook(List<RefumoipInfo> recordInfos, List<SysEnvironInfo> selectedInfos) {	
-		return RefumoipMerger.mergeWithSysEnviron(selectedInfos, recordInfos);
+	@Override protected List<RefumoipInfo> mergeHook(List<RefumoipInfo> baseInfos, List<SysEnvironInfo> selectedInfos) {	
+		return RefumoipMerger.mergeWithSysEnviron(baseInfos, selectedInfos);
 	}
 	
 	
