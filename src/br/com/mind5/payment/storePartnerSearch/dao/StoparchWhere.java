@@ -39,6 +39,10 @@ final class StoparchWhere implements DaoStmtWhere {
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codPayPartner));
 					break;
 					
+				case StoparchDbTableColumn.COL_ID_PAY_PARTNER_STORE :
+					builder.addClauseEqualAnd(eachColumn, recordInfo.idPayPartnerStore);
+					break;	
+					
 				case StoparchDbTableColumn.COL_RECORD_MODE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.recordMode);
 					break;

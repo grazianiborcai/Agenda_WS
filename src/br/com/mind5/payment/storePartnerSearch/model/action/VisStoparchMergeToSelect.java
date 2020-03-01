@@ -22,8 +22,8 @@ final class VisStoparchMergeToSelect extends ActionVisitorTemplateMergeV2<Stopar
 	
 	
 	
-	@Override protected List<StoparchInfo> mergeHook(List<StoparchInfo> recordInfos, List<StoparchInfo> selectedInfos) {	
-		return StoparchMerger.mergeToSelect(selectedInfos, recordInfos);
+	@Override protected List<StoparchInfo> mergeHook(List<StoparchInfo> baseInfos, List<StoparchInfo> selectedInfos) {	
+		return StoparchMerger.mergeToSelect(baseInfos, selectedInfos);
 	}
 	
 	
