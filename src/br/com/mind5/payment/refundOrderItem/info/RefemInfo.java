@@ -15,6 +15,7 @@ public final class RefemInfo extends InfoRecord implements Cloneable {
 	public String idOrderPartner;
 	public String idRefundPartner;
 	public String statusRefundPartner;	
+	public String itemReceiver;
 	public String username;	
 	
 	
