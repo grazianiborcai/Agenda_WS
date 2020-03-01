@@ -4,7 +4,6 @@ import java.util.List;
 
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
-import br.com.mind5.payment.customerPartner.info.CusparInfo;
 
 public final class RefemInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
@@ -12,11 +11,10 @@ public final class RefemInfo extends InfoRecord implements Cloneable {
 	public int codPayOrderItem;
 	public long codStore;
 	public long codPayCustomer;
-	public boolean isSystemReceiver;
+	public int codPayPartner;
 	public String idOrderPartner;
 	public String idRefundPartner;
-	public String statusRefundPartner;
-	public CusparInfo cusparData;
+	public String statusRefundPartner;	
 	public String username;	
 	
 	
@@ -28,8 +26,7 @@ public final class RefemInfo extends InfoRecord implements Cloneable {
 		codPayOrderItem = DefaultValue.number();
 		codStore = DefaultValue.number();
 		codPayCustomer = DefaultValue.number();
-		cusparData = DefaultValue.object();
-		isSystemReceiver = DefaultValue.boole();
+		codPayPartner = DefaultValue.number();
 	} 
 	
 	
@@ -47,20 +44,7 @@ public final class RefemInfo extends InfoRecord implements Cloneable {
 	
 	
 	@Override public Object clone() throws CloneNotSupportedException {
-		RefemInfo deepCopy = (RefemInfo) super.clone();
-		
-		deepCopy.cusparData = cloneCuspar(deepCopy.cusparData);
-		
-		return deepCopy;
-	}
-	
-	
-	
-	private CusparInfo cloneCuspar(CusparInfo recordInfo) throws CloneNotSupportedException {
-		if (recordInfo == null)
-			return null;
-		
-		return (CusparInfo) recordInfo.clone();
+		return super.clone();
 	}
 	
 	
@@ -68,8 +52,8 @@ public final class RefemInfo extends InfoRecord implements Cloneable {
 	@Override public int hashCode() {
 		int result = 17;
 		
-		result = result * 31 + (int) (codOwner    	^ (codOwner    	>>> 32));
-		result = result * 31 + (int) (codPayOrder 	^ (codPayOrder 	>>> 32));
+		result = result * 31 + (int) (codOwner    		^ (codOwner    		>>> 32));
+		result = result * 31 + (int) (codPayOrder 		^ (codPayOrder 		>>> 32));
 		result = result * 31 + (int) (codPayOrderItem 	^ (codPayOrderItem	>>> 32));
 		
 		return result;

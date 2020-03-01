@@ -18,6 +18,7 @@ import br.com.mind5.payment.refundOrderItem.model.action.StdRefemMergePayordem;
 import br.com.mind5.payment.refundOrderItem.model.checker.RefemCheckLangu;
 import br.com.mind5.payment.refundOrderItem.model.checker.RefemCheckOwner;
 import br.com.mind5.payment.refundOrderItem.model.checker.RefemCheckPayord;
+import br.com.mind5.payment.refundOrderItem.model.checker.RefemCheckPayordem;
 import br.com.mind5.payment.refundOrderItem.model.checker.RefemCheckRefund;
 import br.com.mind5.payment.refundOrderItem.model.checker.RefemCheckUsername;
 
@@ -67,6 +68,13 @@ public final class RootRefemRefund extends DeciTreeWriteTemplate<RefemInfo> {
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
 		checker = new RefemCheckPayord(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
+		checker = new RefemCheckPayordem(checkerOption);
 		queue.add(checker);
 		
 		//TODO: somente Manager pode estornar ?

@@ -25,7 +25,7 @@ final class RefemVisiMergeCuspar implements InfoMergerVisitorV3<RefemInfo, Cuspa
 	@Override public List<RefemInfo> merge(RefemInfo baseInfo, CusparInfo selectedInfo) {
 		List<RefemInfo> results = new ArrayList<>();
 		
-		baseInfo.cusparData = selectedInfo;
+		baseInfo.codPayPartner = selectedInfo.codPayPartner;
 		
 		results.add(baseInfo);
 		return results;

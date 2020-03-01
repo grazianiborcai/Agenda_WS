@@ -8,6 +8,7 @@ import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.payment.payOrderItem.info.PayordemInfo;
 import br.com.mind5.payment.payOrderItem.model.decisionTree.RootPayordemSelect;
 import br.com.mind5.payment.refundOrderItem.info.RefemInfo;
+import br.com.mind5.payment.refundOrderItem.info.RefemMerger;
 
 final class VisiRefemMergePayordem extends ActionVisitorTemplateMergeV2<RefemInfo, PayordemInfo> {
 	
@@ -24,7 +25,7 @@ final class VisiRefemMergePayordem extends ActionVisitorTemplateMergeV2<RefemInf
 	
 	
 	@Override protected List<RefemInfo> mergeHook(List<RefemInfo> baseInfos, List<PayordemInfo> selectedInfos) {
-		return RefemInfo.copyFrom(selectedInfos);
+		return RefemMerger.mergeWithPayordem(baseInfos, selectedInfos);
 	}
 	
 	

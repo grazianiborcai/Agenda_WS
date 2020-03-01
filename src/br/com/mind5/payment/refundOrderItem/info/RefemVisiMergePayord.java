@@ -25,7 +25,7 @@ final class RefemVisiMergePayord implements InfoMergerVisitorV3<RefemInfo, Payor
 	@Override public List<RefemInfo> merge(RefemInfo baseInfo, PayordInfo selectedInfo) {
 		List<RefemInfo> results = new ArrayList<>();
 		
-		baseInfo.codPayCustomer = selectedInfo.codPayCustomer;;
+		baseInfo.codPayCustomer = selectedInfo.codPayCustomer;
 		
 		results.add(baseInfo);
 		return results;
