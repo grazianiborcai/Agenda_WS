@@ -90,6 +90,7 @@ public final class PayordarchSelectSingle extends DaoStmtTemplate<PayordarchInfo
 					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, PayordarchDbTableColumn.COL_LAST_CHANGED);
 					dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, PayordarchDbTableColumn.COL_CREATED_ON);
 					dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, PayordarchDbTableColumn.COL_COD_USER);
+					dataInfo.codPayPartner = DaoFormatter.sqlToInt(stmtResult, PayordarchDbTableColumn.COL_COD_PAY_PARTNER);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

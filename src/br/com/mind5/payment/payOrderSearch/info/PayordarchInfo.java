@@ -13,6 +13,7 @@ public final class PayordarchInfo extends InfoRecord implements Cloneable {
 	public long codCreditCard;
 	public long codOrder;
 	public long codUser;
+	public int codPayPartner;
 	public String description;
 	public String idOrderPartner;
 	public String statusOrderPartner;
@@ -34,6 +35,7 @@ public final class PayordarchInfo extends InfoRecord implements Cloneable {
 		codPayCustomer = DefaultValue.number();
 		codOrder = DefaultValue.number();
 		codUser = DefaultValue.number();
+		codPayPartner = DefaultValue.number();
 	}
 	
 	
