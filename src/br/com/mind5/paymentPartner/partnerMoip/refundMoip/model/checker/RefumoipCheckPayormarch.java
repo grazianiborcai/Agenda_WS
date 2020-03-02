@@ -2,21 +2,22 @@ package br.com.mind5.paymentPartner.partnerMoip.refundMoip.model.checker;
 
 import java.util.List;
 
-import br.com.mind5.business.store.info.StoreInfo;
-import br.com.mind5.business.store.model.checker.StoreCheckExist;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.payment.payOrderSearch.info.PayordarchCopier;
+import br.com.mind5.payment.payOrderSearch.info.PayordarchInfo;
+import br.com.mind5.payment.payOrderSearch.model.checker.PayordarchCheckExist;
 import br.com.mind5.paymentPartner.partnerMoip.refundMoip.info.RefumoipInfo;
 
-public final class RefumoipCheckStore_ implements ModelChecker<RefumoipInfo> {
+public final class RefumoipCheckPayormarch implements ModelChecker<RefumoipInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<StoreInfo> checker;
+	private ModelChecker<PayordarchInfo> checker;
 	
 	
-	public RefumoipCheckStore_(ModelCheckerOption option) {
-		checker = new StoreCheckExist(option);
+	public RefumoipCheckPayormarch(ModelCheckerOption option) {
+		checker = new PayordarchCheckExist(option);
 	}
 	
 	
@@ -33,7 +34,7 @@ public final class RefumoipCheckStore_ implements ModelChecker<RefumoipInfo> {
 	
 	
 	@Override public boolean check(RefumoipInfo recordInfo) {
-		return checker.check(StoreInfo.copyFrom(recordInfo));
+		return checker.check(PayordarchCopier.copyFromRefumoip(recordInfo));
 	}
 
 	

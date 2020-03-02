@@ -8,11 +8,10 @@ import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.paymentPartner.partnerMoip.refundMoip.info.RefumoipInfo;
-import br.com.mind5.paymentPartner.partnerMoip.refundMoip.model.decisionTree.NodeRefumoipRefund;
 
-public final class LazyRefumoipNodeRefund extends ActionLazyTemplate<RefumoipInfo, RefumoipInfo> {
+public final class LazyRefumoipMergePayordemist extends ActionLazyTemplate<RefumoipInfo, RefumoipInfo> {
 
-	public LazyRefumoipNodeRefund(Connection conn, String schemaName) {
+	public LazyRefumoipMergePayordemist(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -25,7 +24,7 @@ public final class LazyRefumoipNodeRefund extends ActionLazyTemplate<RefumoipInf
 	
 	
 	@Override protected ActionStd<RefumoipInfo> getInstanceOfActionHook(DeciTreeOption<RefumoipInfo> option) {
-		return new NodeRefumoipRefund(option).toAction();
+		return new StdRefumoipMergePayordemist(option);
 	}
 	
 	

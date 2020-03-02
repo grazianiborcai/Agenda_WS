@@ -14,7 +14,7 @@ import br.com.mind5.paymentPartner.partnerMoip.refundMoip.info.RefumoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.refundMoip.model.action.LazyRefumoipEnforceSetupNonsys;
 import br.com.mind5.paymentPartner.partnerMoip.refundMoip.model.action.LazyRefumoipMergeSysEnviron;
 import br.com.mind5.paymentPartner.partnerMoip.refundMoip.model.action.StdRefumoipMergeStopar;
-import br.com.mind5.paymentPartner.partnerMoip.refundMoip.model.checker.RefumoipCheckStoparch;
+import br.com.mind5.paymentPartner.partnerMoip.refundMoip.model.checker.RefumoipCheckStopar;
 
 public final class NodeRefumoipNonSystem extends DeciTreeWriteTemplate<RefumoipInfo> {
 	
@@ -33,7 +33,7 @@ public final class NodeRefumoipNonSystem extends DeciTreeWriteTemplate<RefumoipI
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new RefumoipCheckStoparch(checkerOption);
+		checker = new RefumoipCheckStopar(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);

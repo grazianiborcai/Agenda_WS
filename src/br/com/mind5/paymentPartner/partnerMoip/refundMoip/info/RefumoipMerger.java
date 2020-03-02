@@ -5,10 +5,24 @@ import java.util.List;
 import br.com.mind5.business.masterData.info.SysEnvironInfo;
 import br.com.mind5.info.InfoMergerBuilderV3;
 import br.com.mind5.info.InfoMergerV3;
+import br.com.mind5.payment.payOrderItemList.info.PayordemistInfo;
 import br.com.mind5.payment.setupPartner.info.SetuparInfo;
 import br.com.mind5.payment.storePartner.info.StoparInfo;
 
 public final class RefumoipMerger {
+	public static List<RefumoipInfo> mergeWithPayordemist(List<RefumoipInfo> baseInfos, List<PayordemistInfo> selectedInfos) {
+		InfoMergerBuilderV3<RefumoipInfo, PayordemistInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new RefumoipVisiMergePayordemist());
+		InfoMergerV3<RefumoipInfo, PayordemistInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	
 	public static List<RefumoipInfo> mergeWithSysEnviron(List<RefumoipInfo> baseInfos, List<SysEnvironInfo> selectedInfos) {
 		InfoMergerBuilderV3<RefumoipInfo, SysEnvironInfo> builder = new InfoMergerBuilderV3<>();
 		
