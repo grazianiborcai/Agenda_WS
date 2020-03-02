@@ -10,6 +10,7 @@ public final class PayordemistInfo extends InfoRecord implements Cloneable, Comp
 	public long codOwner;
 	public long codPayOrder;
 	public int codPayOrderItem;
+	public long codStore;
 	public String ownId;
 	public String idOrderPartner;
 	public String statusOrderPartner;	
@@ -17,6 +18,7 @@ public final class PayordemistInfo extends InfoRecord implements Cloneable, Comp
 	public String statusPaymentPartner;
 	public String idRefundPartner;
 	public String statusRefundPartner;
+	public String itemReceiver;
 	public int codPayPartner;
 	public String username;	
 	
@@ -28,6 +30,7 @@ public final class PayordemistInfo extends InfoRecord implements Cloneable, Comp
 		codPayOrderItem = DefaultValue.number();	
 		codPayOrder = DefaultValue.number();
 		codPayPartner = DefaultValue.number();
+		codStore = DefaultValue.number();
 	}
 	
 	

@@ -76,6 +76,8 @@ public final class PayordemistSelectSingle extends DaoStmtTemplate<PayordemistIn
 					dataInfo.statusPaymentPartner = stmtResult.getString(PayordemistDbTableColumn.COL_STATUS_PAYMENT_PARTNER);
 					dataInfo.idRefundPartner = stmtResult.getString(PayordemistDbTableColumn.COL_ID_REFUND_PARTNER);
 					dataInfo.statusRefundPartner = stmtResult.getString(PayordemistDbTableColumn.COL_STATUS_REFUND_PARTNER);	
+					dataInfo.itemReceiver = stmtResult.getString(PayordemistDbTableColumn.COL_ITEM_RECEIVER);	
+					dataInfo.codStore = stmtResult.getLong(PayordemistDbTableColumn.COL_COD_STORE);	
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());
