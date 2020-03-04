@@ -5,11 +5,26 @@ import java.util.List;
 
 import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.customer.info.CusInfo;
+import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.info.InfoCopier;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
 
 public final class AddarchCopier {	
+	public static AddarchInfo copyFromStoreKey(StoreInfo source) {
+		InfoCopier<AddarchInfo, StoreInfo> copier = new AddarchCopyStoreKey();
+		return copier.makeCopy(source);
+	}
+	
+	
+	
+	public static List<AddarchInfo> copyFromStoreKey(List<StoreInfo> sources) {
+		InfoCopier<AddarchInfo, StoreInfo> copier = new AddarchCopyStoreKey();
+		return copier.makeCopy(sources);
+	}
+	
+	
+	
 	public static AddarchInfo copyFromAdddressRef(AddressInfo source) {
 		InfoCopier<AddarchInfo, AddressInfo> copier = new AddarchCopyAddressRef();
 		return copier.makeCopy(source);
