@@ -4,11 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.store.info.StoreInfo;
-import br.com.mind5.business.store.model.action.LazyStoreDeleteComp;
-import br.com.mind5.business.store.model.action.StdStoreEnforceCompKey;
+import br.com.mind5.business.store.model.action.StdStoreDeleteComp;
 import br.com.mind5.business.store.model.action.StdStoreSuccess;
-import br.com.mind5.business.store.model.checker.StoreCheckHasComp;
-import br.com.mind5.model.action.ActionLazy;
+import br.com.mind5.business.store.model.checker.StoreCheckComp;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -32,8 +30,8 @@ public final class NodeStoreDeleteComp extends DeciTreeWriteTemplate<StoreInfo> 
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
-		checker = new StoreCheckHasComp(checkerOption);
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
+		checker = new StoreCheckComp(checkerOption);
 		queue.add(checker);	
 		
 		return new ModelCheckerQueue<>(queue);
@@ -44,12 +42,9 @@ public final class NodeStoreDeleteComp extends DeciTreeWriteTemplate<StoreInfo> 
 	@Override protected List<ActionStd<StoreInfo>> buildActionsOnPassedHook(DeciTreeOption<StoreInfo> option) {
 		List<ActionStd<StoreInfo>> actions = new ArrayList<>();
 		
-		ActionStd<StoreInfo> enforceCompanyKey = new StdStoreEnforceCompKey(option);
-		ActionLazy<StoreInfo> deleteCompany = new LazyStoreDeleteComp(option.conn, option.schemaName);
+		ActionStd<StoreInfo> deleteCompany = new StdStoreDeleteComp(option);
 		
-		enforceCompanyKey.addPostAction(deleteCompany);
-		
-		actions.add(enforceCompanyKey);		
+		actions.add(deleteCompany);		
 		return actions;
 	}
 	

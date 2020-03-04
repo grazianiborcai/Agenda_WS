@@ -7,9 +7,9 @@ import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class StoreCheckHasAddress extends ModelCheckerTemplateSimpleV2<StoreInfo> {
+public final class StoreCheckHasAddress_ extends ModelCheckerTemplateSimpleV2<StoreInfo> {
 	
-	public StoreCheckHasAddress(ModelCheckerOption option) {
+	public StoreCheckHasAddress_(ModelCheckerOption option) {
 		super(option);
 	}
 	

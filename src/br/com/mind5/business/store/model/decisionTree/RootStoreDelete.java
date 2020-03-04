@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.store.info.StoreInfo;
-import br.com.mind5.business.store.model.action.LazyStoreDelete;
+import br.com.mind5.business.store.model.action.LazyStoreNodeDeleteCascade;
 import br.com.mind5.business.store.model.action.LazyStoreEnforceLChanged;
 import br.com.mind5.business.store.model.action.LazyStoreMergeUsername;
 import br.com.mind5.business.store.model.action.LazyStoreUpdate;
@@ -66,12 +66,12 @@ public final class RootStoreDelete extends DeciTreeWriteTemplate<StoreInfo> {
 		ActionLazy<StoreInfo> enforceLChanged = new LazyStoreEnforceLChanged(option.conn, option.schemaName);
 		ActionLazy<StoreInfo> enforceLChangedBy = new LazyStoreMergeUsername(option.conn, option.schemaName);
 		ActionLazy<StoreInfo> update = new LazyStoreUpdate(option.conn, option.schemaName);
-		ActionLazy<StoreInfo> deleteStore = new LazyStoreDelete(option.conn, option.schemaName);			
+		ActionLazy<StoreInfo> deleteCascade = new LazyStoreNodeDeleteCascade(option.conn, option.schemaName);			
 		
 		mergeToDelete.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceLChangedBy);
 		enforceLChangedBy.addPostAction(update);
-		update.addPostAction(deleteStore);
+		update.addPostAction(deleteCascade);
 		
 		actions.add(mergeToDelete);		
 		return actions;

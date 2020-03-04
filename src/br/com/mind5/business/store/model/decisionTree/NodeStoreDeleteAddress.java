@@ -5,9 +5,9 @@ import java.util.List;
 
 import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.business.store.model.action.LazyStoreDeleteAddress;
-import br.com.mind5.business.store.model.action.StdStoreEnforceAddressKey;
+import br.com.mind5.business.store.model.action.StdStoreMergeAddress;
 import br.com.mind5.business.store.model.action.StdStoreSuccess;
-import br.com.mind5.business.store.model.checker.StoreCheckHasAddress;
+import br.com.mind5.business.store.model.checker.StoreCheckAddarch;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
@@ -32,8 +32,8 @@ public final class NodeStoreDeleteAddress extends DeciTreeWriteTemplate<StoreInf
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
-		checker = new StoreCheckHasAddress(checkerOption);
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
+		checker = new StoreCheckAddarch(checkerOption);
 		queue.add(checker);	
 		
 		return new ModelCheckerQueue<>(queue);
@@ -44,12 +44,12 @@ public final class NodeStoreDeleteAddress extends DeciTreeWriteTemplate<StoreInf
 	@Override protected List<ActionStd<StoreInfo>> buildActionsOnPassedHook(DeciTreeOption<StoreInfo> option) {
 		List<ActionStd<StoreInfo>> actions = new ArrayList<>();
 		
-		ActionStd<StoreInfo> enforceAddressKey = new StdStoreEnforceAddressKey(option);
+		ActionStd<StoreInfo> mergeAddress = new StdStoreMergeAddress(option);
 		ActionLazy<StoreInfo> deleteAddress = new LazyStoreDeleteAddress(option.conn, option.schemaName);
 		
-		enforceAddressKey.addPostAction(deleteAddress);
+		mergeAddress.addPostAction(deleteAddress);
 		
-		actions.add(enforceAddressKey);		
+		actions.add(mergeAddress);		
 		return actions;
 	}
 	
