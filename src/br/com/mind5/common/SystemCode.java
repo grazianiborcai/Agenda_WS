@@ -956,6 +956,8 @@ public final class SystemCode {
 	
 	// Material Store Search
 	public static final int MAT_STORE_SEARCH_MANDATORY_FIELD_EMPTY		= 8000;
+	public static final int MAT_STORE_SEARCH_ALREADY_EXIST 				= 8001;
+	public static final int MAT_STORE_SEARCH_NOT_FOUND 					= 8002;
 	
 	// Material Store Snapshot
 	public static final int MAT_STORE_SNAPSHOT_MANDATORY_FIELD_EMPTY	= 8050;
