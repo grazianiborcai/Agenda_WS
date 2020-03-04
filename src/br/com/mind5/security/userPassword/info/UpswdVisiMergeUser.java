@@ -1,76 +1,44 @@
 package br.com.mind5.security.userPassword.info;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.ArrayList;
+import java.util.List;
 
-import br.com.mind5.business.person.info.PersonInfo;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.security.user.info.UserInfo;
 
-final class UpswdVisiMergeUser implements InfoMergerVisitor_<UpswdInfo, UserInfo> {
+final class UpswdVisiMergeUser implements InfoMergerVisitorV3<UpswdInfo, UserInfo> {
+	
+	@Override public List<UpswdInfo> beforeMerge(List<UpswdInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(UpswdInfo baseInfo, UserInfo selectedInfo) {
+		return (baseInfo.codOwner 		== selectedInfo.codOwner &&
+			  //baseInfo.codUser  		== selectedInfo.codUser	 &&
+				selectedInfo.personData != null						);
+	}
+	
+	
+	
+	@Override public List<UpswdInfo> merge(UpswdInfo baseInfo, UserInfo selectedInfo) {
+		List<UpswdInfo> results = new ArrayList<>();
 
-	@Override public UpswdInfo writeRecord(UserInfo sourceOne, UpswdInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+		baseInfo.username = selectedInfo.username;
+		baseInfo.codOwner = selectedInfo.codOwner;
+		baseInfo.codUser = selectedInfo.codUser;		
+		baseInfo.codUserCategory = selectedInfo.codUserCategory;
+		baseInfo.personData = selectedInfo.personData;
 		
-		UpswdInfo clonedInfo = makeClone(sourceTwo);
-		return merge(sourceOne, clonedInfo);
+		results.add(baseInfo);
+		return results;
 	}
 	
 	
 	
-	private void checkArgument(UserInfo sourceOne, UpswdInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private UpswdInfo makeClone(UpswdInfo recordInfo) {
-		try {
-			return (UpswdInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	private UpswdInfo merge(UserInfo sourceOne, UpswdInfo sourceTwo) {
-		sourceTwo.username = sourceOne.username;
-		sourceTwo.codOwner = sourceOne.codOwner;
-		sourceTwo.codUser = sourceOne.codUser;		
-		sourceTwo.codUserCategory = sourceOne.codUserCategory;
-		sourceTwo.personData = makeClone(sourceOne.personData);
-		return sourceTwo;
-	}
-	
-	
-	
-	private PersonInfo makeClone(PersonInfo recordInfo) {
-		try {
-			return (PersonInfo) recordInfo.clone();
-			
-		} catch (CloneNotSupportedException e) {
-			logException(e);
-			throw new IllegalStateException(e);
-		}
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(UserInfo sourceOne, UpswdInfo sourceTwo) {
-		return (sourceOne.codOwner 		== sourceTwo.codOwner 	&&
-				//sourceOne.codUser  		== sourceTwo.codUser	&&
-				sourceOne.personData 	!= null						);
-	}
-	
-	
-	
-	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
+	@Override public InfoUniquifier<UpswdInfo> getUniquifier() {
+		return null;
 	}
 }

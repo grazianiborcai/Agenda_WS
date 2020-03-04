@@ -24,8 +24,8 @@ final class VisiUpswdMergeUser extends ActionVisitorTemplateMergeV2<UpswdInfo, U
 	
 	
 	
-	@Override protected List<UpswdInfo> mergeHook(List<UpswdInfo> recordInfos, List<UserInfo> selectedInfos) {	
-		return UpswdMerger.mergeWithUser(selectedInfos, recordInfos);
+	@Override protected List<UpswdInfo> mergeHook(List<UpswdInfo> baseInfos, List<UserInfo> selectedInfos) {	
+		return UpswdMerger.mergeWithUser(baseInfos, selectedInfos);
 	}
 	
 	

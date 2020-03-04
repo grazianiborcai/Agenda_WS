@@ -1,56 +1,38 @@
 package br.com.mind5.security.userPassword.info;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.ArrayList;
+import java.util.List;
 
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-final class UpswdVisiMergeToAuth implements InfoMergerVisitor_<UpswdInfo, UpswdInfo> {
-
-	@Override public UpswdInfo writeRecord(UpswdInfo sourceOne, UpswdInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);		
-		return merge(sourceOne, sourceTwo);
+final class UpswdVisiMergeToAuth implements InfoMergerVisitorV3<UpswdInfo, UpswdInfo> {
+	
+	@Override public List<UpswdInfo> beforeMerge(List<UpswdInfo> baseInfos) {
+		return baseInfos;
 	}
 	
 	
 	
-	private void checkArgument(UpswdInfo sourceOne, UpswdInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
+	@Override public boolean shouldMerge(UpswdInfo baseInfo, UpswdInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner);
 	}
 	
 	
 	
-	private UpswdInfo merge(UpswdInfo sourceOne, UpswdInfo sourceTwo) {
-		UpswdInfo result = makeClone(sourceOne);		
-		result.codLanguage = sourceTwo.codLanguage;
-		result.password = sourceTwo.password;
-		return result;
+	@Override public List<UpswdInfo> merge(UpswdInfo baseInfo, UpswdInfo selectedInfo) {
+		List<UpswdInfo> results = new ArrayList<>();
+		
+		selectedInfo.codLanguage = baseInfo.codLanguage;
+		selectedInfo.password = baseInfo.password;
+		
+		results.add(selectedInfo);
+		return results;
 	}
 	
 	
 	
-	private UpswdInfo makeClone(UpswdInfo recordInfo) {
-		try {
-			return (UpswdInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(UpswdInfo sourceOne, UpswdInfo sourceTwo) {		
-		return (sourceOne.codOwner == sourceTwo.codOwner);
-	}
-	
-	
-	
-	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
+	@Override public InfoUniquifier<UpswdInfo> getUniquifier() {
+		return null;
 	}
 }

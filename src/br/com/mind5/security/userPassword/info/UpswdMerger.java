@@ -2,48 +2,46 @@ package br.com.mind5.security.userPassword.info;
 
 import java.util.List;
 
-import br.com.mind5.info.obsolete.InfoMerger_;
+import br.com.mind5.info.InfoMergerBuilderV3;
+import br.com.mind5.info.InfoMergerV3;
 import br.com.mind5.security.user.info.UserInfo;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class UpswdMerger {
-	public static UpswdInfo mergeWithUsername(UsernameInfo sourceOne, UpswdInfo sourceTwo) {
-		InfoMerger_<UpswdInfo, UsernameInfo> merger = new UpswdMergerUsername();		
-		return merger.merge(sourceOne, sourceTwo);
+	public static List<UpswdInfo> mergeWithUsername(List<UpswdInfo> baseInfos, List<UsernameInfo> selectedInfos) {
+		InfoMergerBuilderV3<UpswdInfo, UsernameInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new UpswdVisiMergeUsername());
+		InfoMergerV3<UpswdInfo, UsernameInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static List<UpswdInfo> mergeWithUsername(List<UsernameInfo> sourceOnes, List<UpswdInfo> sourceTwos) {
-		InfoMerger_<UpswdInfo, UsernameInfo> merger = new UpswdMergerUsername();		
-		return merger.merge(sourceOnes, sourceTwos);
+	public static List<UpswdInfo> mergeWithUser(List<UpswdInfo> baseInfos, List<UserInfo> selectedInfos) {
+		InfoMergerBuilderV3<UpswdInfo, UserInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new UpswdVisiMergeUser());
+		InfoMergerV3<UpswdInfo, UserInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static UpswdInfo mergeWithUser(UserInfo sourceOne, UpswdInfo sourceTwo) {
-		InfoMerger_<UpswdInfo, UserInfo> merger = new UpswdMergerUser();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
+	public static List<UpswdInfo> mergeToAuth(List<UpswdInfo> baseInfos, List<UpswdInfo> selectedInfos) {
+		InfoMergerBuilderV3<UpswdInfo, UpswdInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new UpswdVisiMergeToAuth());
+		InfoMergerV3<UpswdInfo, UpswdInfo> merger = builder.build();		
 	
-	
-	
-	public static List<UpswdInfo> mergeWithUser(List<UserInfo> sourceOnes, List<UpswdInfo> sourceTwos) {
-		InfoMerger_<UpswdInfo, UserInfo> merger = new UpswdMergerUser();		
-		return merger.merge(sourceOnes, sourceTwos);
-	}
-	
-	
-	
-	public static UpswdInfo mergeToAuth(UpswdInfo sourceOne, UpswdInfo sourceTwo) {
-		InfoMerger_<UpswdInfo, UpswdInfo> merger = new UpswdMergerToAuth();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
-	
-	
-	
-	public static List<UpswdInfo> mergeToAuth(List<UpswdInfo> sourceOnes, List<UpswdInfo> sourceTwos) {
-		InfoMerger_<UpswdInfo, UpswdInfo> merger = new UpswdMergerToAuth();		
-		return merger.merge(sourceOnes, sourceTwos);
+		return merger.merge();
 	}
 }

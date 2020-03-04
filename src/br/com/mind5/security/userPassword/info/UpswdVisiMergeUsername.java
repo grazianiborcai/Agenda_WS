@@ -1,62 +1,39 @@
 package br.com.mind5.security.userPassword.info;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.ArrayList;
+import java.util.List;
 
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.security.username.info.UsernameInfo;
 
-final class UpswdVisiMergeUsername implements InfoMergerVisitor_<UpswdInfo, UsernameInfo> {
-
-	@Override public UpswdInfo writeRecord(UsernameInfo sourceOne, UpswdInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+final class UpswdVisiMergeUsername implements InfoMergerVisitorV3<UpswdInfo, UsernameInfo> {
+	
+	@Override public List<UpswdInfo> beforeMerge(List<UpswdInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(UpswdInfo baseInfo, UsernameInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner		&&
+				baseInfo.username.equals(selectedInfo.username)		);
+	}
+	
+	
+	
+	@Override public List<UpswdInfo> merge(UpswdInfo baseInfo, UsernameInfo selectedInfo) {
+		List<UpswdInfo> results = new ArrayList<>();
 		
-		UpswdInfo clonedInfo = makeClone(sourceTwo);
-		return merge(sourceOne, clonedInfo);
-	}
-	
-	
-	
-	private void checkArgument(UsernameInfo sourceOne, UpswdInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private UpswdInfo makeClone(UpswdInfo recordInfo) {
-		try {
-			return (UpswdInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	private UpswdInfo merge(UsernameInfo sourceOne, UpswdInfo sourceTwo) {
-		sourceTwo.codUser = sourceOne.codUser;
-		return sourceTwo;
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(UsernameInfo sourceOne, UpswdInfo sourceTwo) {
-		if (sourceOne.username == null ||
-			sourceTwo.username == null		)
-			return false;
+		baseInfo.codUser = selectedInfo.codUser;
 		
-		return (sourceOne.codOwner == sourceTwo.codOwner		&&
-				sourceOne.username.equals(sourceTwo.username)		);
+		results.add(baseInfo);
+		return results;
 	}
 	
 	
 	
-	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
+	@Override public InfoUniquifier<UpswdInfo> getUniquifier() {
+		return null;
 	}
 }

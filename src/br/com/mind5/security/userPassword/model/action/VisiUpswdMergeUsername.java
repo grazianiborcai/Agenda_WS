@@ -24,8 +24,8 @@ final class VisiUpswdMergeUsername extends ActionVisitorTemplateMergeV2<UpswdInf
 	
 	
 	
-	@Override protected List<UpswdInfo> mergeHook(List<UpswdInfo> recordInfos, List<UsernameInfo> selectedInfos) {	
-		return UpswdMerger.mergeWithUsername(selectedInfos, recordInfos);
+	@Override protected List<UpswdInfo> mergeHook(List<UpswdInfo> baseInfos, List<UsernameInfo> selectedInfos) {	
+		return UpswdMerger.mergeWithUsername(baseInfos, selectedInfos);
 	}
 	
 	

@@ -22,8 +22,8 @@ final class VisiUpswdMergeToAuth extends ActionVisitorTemplateMergeV2<UpswdInfo,
 	
 	
 	
-	@Override protected List<UpswdInfo> mergeHook(List<UpswdInfo> recordInfos, List<UpswdInfo> selectedInfos) {	
-		return UpswdMerger.mergeToAuth(selectedInfos, recordInfos);
+	@Override protected List<UpswdInfo> mergeHook(List<UpswdInfo> baseInfos, List<UpswdInfo> selectedInfos) {	
+		return UpswdMerger.mergeToAuth(baseInfos, selectedInfos);
 	}
 	
 	
