@@ -22,8 +22,8 @@ final class VisiStolarchMergeToSelect extends ActionVisitorTemplateMergeV2<Stola
 	
 	
 	
-	@Override protected List<StolarchInfo> mergeHook(List<StolarchInfo> recordInfos, List<StolarchInfo> selectedInfos) {	
-		return StolarchMerger.mergeToSelect(selectedInfos, recordInfos);
+	@Override protected List<StolarchInfo> mergeHook(List<StolarchInfo> baseInfos, List<StolarchInfo> selectedInfos) {	
+		return StolarchMerger.mergeToSelect(baseInfos, selectedInfos);
 	}
 	
 	
