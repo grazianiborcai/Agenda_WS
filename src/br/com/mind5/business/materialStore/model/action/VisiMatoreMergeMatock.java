@@ -24,8 +24,8 @@ final class VisiMatoreMergeMatock extends ActionVisitorTemplateMergeV2<MatoreInf
 	
 	
 	
-	@Override protected List<MatoreInfo> mergeHook(List<MatoreInfo> recordInfos, List<MatockInfo> selectedInfos) {	
-		return MatoreMerger.mergeWithMatock(selectedInfos, recordInfos);
+	@Override protected List<MatoreInfo> mergeHook(List<MatoreInfo> baseInfos, List<MatockInfo> selectedInfos) {	
+		return MatoreMerger.mergeWithMatock(baseInfos, selectedInfos);
 	}
 	
 	

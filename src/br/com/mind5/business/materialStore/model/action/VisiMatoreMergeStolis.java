@@ -24,14 +24,14 @@ final class VisiMatoreMergeStolis extends ActionVisitorTemplateMergeV2<MatoreInf
 	
 	
 	
-	@Override protected List<StolisInfo> toActionClassHook(List<MatoreInfo> recordInfos) {
-		return StolisInfo.copyFrom(recordInfos);	
+	@Override protected List<StolisInfo> toActionClassHook(List<MatoreInfo> baseInfos) {
+		return StolisInfo.copyFrom(baseInfos);	
 	}
 	
 	
 	
-	@Override protected List<MatoreInfo> mergeHook(List<MatoreInfo> recordInfos, List<StolisInfo> selectedInfos) {	
-		return MatoreMerger.mergeWithStolis(selectedInfos, recordInfos);
+	@Override protected List<MatoreInfo> mergeHook(List<MatoreInfo> baseInfos, List<StolisInfo> selectedInfos) {	
+		return MatoreMerger.mergeWithStolis(baseInfos, selectedInfos);
 	}
 	
 	

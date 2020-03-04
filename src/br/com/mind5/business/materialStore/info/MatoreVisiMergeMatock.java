@@ -1,59 +1,41 @@
 package br.com.mind5.business.materialStore.info;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.ArrayList;
+import java.util.List;
 
 import br.com.mind5.business.materialStock.info.MatockInfo;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-final class MatoreVisiMergeMatock implements InfoMergerVisitor_<MatoreInfo, MatockInfo> {
 
-	@Override public MatoreInfo writeRecord(MatockInfo sourceOne, MatoreInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+final class MatoreVisiMergeMatock implements InfoMergerVisitorV3<MatoreInfo, MatockInfo> {
+	
+	@Override public List<MatoreInfo> beforeMerge(List<MatoreInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(MatoreInfo baseInfo, MatockInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner &&
+				baseInfo.codStore == selectedInfo.codStore &&
+				baseInfo.codMat   == selectedInfo.codMat		);
+	}
+	
+	
+	
+	@Override public List<MatoreInfo> merge(MatoreInfo baseInfo, MatockInfo selectedInfo) {
+		List<MatoreInfo> results = new ArrayList<>();
 		
-		MatoreInfo clonedInfo = makeClone(sourceTwo);
-		return merge(sourceOne, clonedInfo);
+		baseInfo.quantityStock = selectedInfo.quantityStock;
+		
+		results.add(baseInfo);
+		return results;
 	}
 	
 	
 	
-	private void checkArgument(MatockInfo sourceOne, MatoreInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private MatoreInfo makeClone(MatoreInfo recordInfo) {
-		try {
-			return (MatoreInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	private MatoreInfo merge(MatockInfo sourceOne, MatoreInfo sourceTwo) {
-		sourceTwo.quantityStock = sourceOne.quantityStock;
-		return sourceTwo;
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(MatockInfo sourceOne, MatoreInfo sourceTwo) {		
-		return (sourceOne.codOwner == sourceTwo.codOwner &&
-				sourceOne.codStore == sourceTwo.codStore &&
-				sourceOne.codMat   == sourceTwo.codMat		);
-	}
-	
-	
-	
-	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
+	@Override public InfoUniquifier<MatoreInfo> getUniquifier() {
+		return null;
 	}
 }

@@ -1,29 +1,39 @@
 package br.com.mind5.business.materialStore.info;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import br.com.mind5.business.materialList.info.MatlisInfo;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-final class MatoreVisiMergeMatlis implements InfoMergerVisitor_<MatoreInfo, MatlisInfo> {
-
-	@Override public MatoreInfo writeRecord(MatlisInfo sourceOne, MatoreInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+final class MatoreVisiMergeMatlis implements InfoMergerVisitorV3<MatoreInfo, MatlisInfo> {
+	
+	@Override public List<MatoreInfo> beforeMerge(List<MatoreInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(MatoreInfo baseInfo, MatlisInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner	&&
+				baseInfo.codMat   == selectedInfo.codMat		);
+	}
+	
+	
+	
+	@Override public List<MatoreInfo> merge(MatoreInfo baseInfo, MatlisInfo selectedInfo) {
+		List<MatoreInfo> results = new ArrayList<>();
 		
-		sourceTwo.matlisData = sourceOne;
-		return sourceTwo;
+		baseInfo.matlisData = selectedInfo;
+		
+		results.add(baseInfo);
+		return results;
 	}
 	
 	
 	
-	private void checkArgument(MatlisInfo sourceOne, MatoreInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-
-
-
-	@Override public boolean shouldWrite(MatlisInfo sourceOne, MatoreInfo sourceTwo) {
-		return (sourceOne.codOwner == sourceTwo.codOwner && 
-				sourceOne.codMat   == sourceTwo.codMat);
+	@Override public InfoUniquifier<MatoreInfo> getUniquifier() {
+		return null;
 	}
 }

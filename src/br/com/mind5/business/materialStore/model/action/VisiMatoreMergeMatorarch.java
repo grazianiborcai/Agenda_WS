@@ -24,14 +24,14 @@ final class VisiMatoreMergeMatorarch extends ActionVisitorTemplateMergeV2<Matore
 	
 	
 	
-	@Override protected List<MatorarchInfo> toActionClassHook(List<MatoreInfo> recordInfos) {
-		return MatorarchInfo.copyFrom(recordInfos);	
+	@Override protected List<MatorarchInfo> toActionClassHook(List<MatoreInfo> baseInfos) {
+		return MatorarchInfo.copyFrom(baseInfos);	
 	}
 	
 	
 	
-	@Override protected List<MatoreInfo> mergeHook(List<MatoreInfo> recordInfos, List<MatorarchInfo> selectedInfos) {	
-		return MatoreMerger.mergeWithMatorarch(selectedInfos, recordInfos);
+	@Override protected List<MatoreInfo> mergeHook(List<MatoreInfo> baseInfos, List<MatorarchInfo> selectedInfos) {	
+		return MatoreMerger.mergeWithMatorarch(baseInfos, selectedInfos);
 	}
 	
 	

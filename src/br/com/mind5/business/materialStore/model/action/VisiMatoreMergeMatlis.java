@@ -24,14 +24,14 @@ final class VisiMatoreMergeMatlis extends ActionVisitorTemplateMergeV2<MatoreInf
 	
 	
 	
-	@Override protected List<MatlisInfo> toActionClassHook(List<MatoreInfo> recordInfos) {
-		return MatlisInfo.copyFrom(recordInfos);	
+	@Override protected List<MatlisInfo> toActionClassHook(List<MatoreInfo> baseInfos) {
+		return MatlisInfo.copyFrom(baseInfos);	
 	}
 	
 	
 	
-	@Override protected List<MatoreInfo> mergeHook(List<MatoreInfo> recordInfos, List<MatlisInfo> selectedInfos) {	
-		return MatoreMerger.mergeWithMatlis(selectedInfos, recordInfos);
+	@Override protected List<MatoreInfo> mergeHook(List<MatoreInfo> baseInfos, List<MatlisInfo> selectedInfos) {	
+		return MatoreMerger.mergeWithMatlis(baseInfos, selectedInfos);
 	}
 	
 	

@@ -23,8 +23,8 @@ final class VisiMatoreMergeToDelete extends ActionVisitorTemplateMergeV2<MatoreI
 	
 	
 	
-	@Override protected List<MatoreInfo> mergeHook(List<MatoreInfo> recordInfos, List<MatoreInfo> selectedInfos) {	
-		return MatoreMerger.mergeToDelete(selectedInfos, recordInfos);
+	@Override protected List<MatoreInfo> mergeHook(List<MatoreInfo> baseInfos, List<MatoreInfo> selectedInfos) {	
+		return MatoreMerger.mergeToDelete(baseInfos, selectedInfos);
 	}
 	
 	

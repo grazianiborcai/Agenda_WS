@@ -1,29 +1,39 @@
 package br.com.mind5.business.materialStore.info;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import br.com.mind5.business.storeList.info.StolisInfo;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-final class MatoreVisiMergeStolis implements InfoMergerVisitor_<MatoreInfo, StolisInfo> {
-
-	@Override public MatoreInfo writeRecord(StolisInfo sourceOne, MatoreInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+final class MatoreVisiMergeStolis implements InfoMergerVisitorV3<MatoreInfo, StolisInfo> {
+	
+	@Override public List<MatoreInfo> beforeMerge(List<MatoreInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(MatoreInfo baseInfo, StolisInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner	&&
+				baseInfo.codStore == selectedInfo.codStore		);
+	}
+	
+	
+	
+	@Override public List<MatoreInfo> merge(MatoreInfo baseInfo, StolisInfo selectedInfo) {
+		List<MatoreInfo> results = new ArrayList<>();
 		
-		sourceTwo.stolisData = sourceOne;
-		return sourceTwo;
+		baseInfo.stolisData = selectedInfo;
+		
+		results.add(baseInfo);
+		return results;
 	}
 	
 	
 	
-	private void checkArgument(StolisInfo sourceOne, MatoreInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-
-
-
-	@Override public boolean shouldWrite(StolisInfo sourceOne, MatoreInfo sourceTwo) {
-		return (sourceOne.codOwner == sourceTwo.codOwner && 
-				sourceOne.codStore == sourceTwo.codStore);
+	@Override public InfoUniquifier<MatoreInfo> getUniquifier() {
+		return null;
 	}
 }

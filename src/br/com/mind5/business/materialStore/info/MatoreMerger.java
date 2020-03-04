@@ -7,131 +7,123 @@ import br.com.mind5.business.materialStock.info.MatockInfo;
 import br.com.mind5.business.materialStoreSearch.info.MatorarchInfo;
 import br.com.mind5.business.materialStoreSnapshot.info.MatorapInfo;
 import br.com.mind5.business.storeList.info.StolisInfo;
-import br.com.mind5.info.obsolete.InfoMerger_;
+import br.com.mind5.info.InfoMergerBuilderV3;
+import br.com.mind5.info.InfoMergerV3;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class MatoreMerger {
-	public static MatoreInfo mergeWithMatorap(MatorapInfo sourceOne, MatoreInfo sourceTwo) {
-		InfoMerger_<MatoreInfo, MatorapInfo> merger = new MatoreMergerMatorap();		
-		return merger.merge(sourceOne, sourceTwo);
+	public static List<MatoreInfo> mergeWithMatorap(List<MatoreInfo> baseInfos, List<MatorapInfo> selectedInfos) {
+		InfoMergerBuilderV3<MatoreInfo, MatorapInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new MatoreVisiMergeMatorap());
+		InfoMergerV3<MatoreInfo, MatorapInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static List<MatoreInfo> mergeWithMatorap(List<MatorapInfo> sourceOnes, List<MatoreInfo> sourceTwos) {
-		InfoMerger_<MatoreInfo, MatorapInfo> merger = new MatoreMergerMatorap();		
-		return merger.merge(sourceOnes, sourceTwos);
+	public static List<MatoreInfo> mergeWithMatorarch(List<MatoreInfo> baseInfos, List<MatorarchInfo> selectedInfos) {
+		InfoMergerBuilderV3<MatoreInfo, MatorarchInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new MatoreVisiMergeMatorarch());
+		InfoMergerV3<MatoreInfo, MatorarchInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static MatoreInfo mergeWithMatorarch(MatorarchInfo sourceOne, MatoreInfo sourceTwo) {
-		InfoMerger_<MatoreInfo, MatorarchInfo> merger = new MatoreMergerMatorarch();		
-		return merger.merge(sourceOne, sourceTwo);
+	public static List<MatoreInfo> mergeWithMatlis(List<MatoreInfo> baseInfos, List<MatlisInfo> selectedInfos) {
+		InfoMergerBuilderV3<MatoreInfo, MatlisInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new MatoreVisiMergeMatlis());
+		InfoMergerV3<MatoreInfo, MatlisInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static List<MatoreInfo> mergeWithMatorarch(List<MatorarchInfo> sourceOnes, List<MatoreInfo> sourceTwos) {
-		InfoMerger_<MatoreInfo, MatorarchInfo> merger = new MatoreMergerMatorarch();		
-		return merger.merge(sourceOnes, sourceTwos);
-	}	
+	public static List<MatoreInfo> mergeWithStolis(List<MatoreInfo> baseInfos, List<StolisInfo> selectedInfos) {
+		InfoMergerBuilderV3<MatoreInfo, StolisInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new MatoreVisiMergeStolis());
+		InfoMergerV3<MatoreInfo, StolisInfo> merger = builder.build();		
 	
-	
-	
-	public static MatoreInfo mergeWithMatlis(MatlisInfo sourceOne, MatoreInfo sourceTwo) {
-		InfoMerger_<MatoreInfo, MatlisInfo> merger = new MatoreMergerMatlis();		
-		return merger.merge(sourceOne, sourceTwo);
+		return merger.merge();
 	}
 	
 	
 	
-	public static List<MatoreInfo> mergeWithMatlis(List<MatlisInfo> sourceOnes, List<MatoreInfo> sourceTwos) {
-		InfoMerger_<MatoreInfo, MatlisInfo> merger = new MatoreMergerMatlis();		
-		return merger.merge(sourceOnes, sourceTwos);
+	public static List<MatoreInfo> mergeWithMatock(List<MatoreInfo> baseInfos, List<MatockInfo> selectedInfos) {
+		InfoMergerBuilderV3<MatoreInfo, MatockInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new MatoreVisiMergeMatock());
+		InfoMergerV3<MatoreInfo, MatockInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static MatoreInfo mergeWithStolis(StolisInfo sourceOne, MatoreInfo sourceTwo) {
-		InfoMerger_<MatoreInfo, StolisInfo> merger = new MatoreMergerStolis();		
-		return merger.merge(sourceOne, sourceTwo);
+	public static List<MatoreInfo> mergeWithUsername(List<MatoreInfo> baseInfos, List<UsernameInfo> selectedInfos) {
+		InfoMergerBuilderV3<MatoreInfo, UsernameInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new MatoreVisiMergeUsername());
+		InfoMergerV3<MatoreInfo, UsernameInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static List<MatoreInfo> mergeWithStolis(List<StolisInfo> sourceOnes, List<MatoreInfo> sourceTwos) {
-		InfoMerger_<MatoreInfo, StolisInfo> merger = new MatoreMergerStolis();		
-		return merger.merge(sourceOnes, sourceTwos);
+	public static List<MatoreInfo> mergeToSelect(List<MatoreInfo> baseInfos, List<MatoreInfo> selectedInfos) {
+		InfoMergerBuilderV3<MatoreInfo, MatoreInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new MatoreVisiMergeToSelect());
+		InfoMergerV3<MatoreInfo, MatoreInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static MatoreInfo mergeWithMatock(MatockInfo sourceOne, MatoreInfo sourceTwo) {
-		InfoMerger_<MatoreInfo, MatockInfo> merger = new MatoreMergerMatock();		
-		return merger.merge(sourceOne, sourceTwo);
+	public static List<MatoreInfo> mergeToDelete(List<MatoreInfo> baseInfos, List<MatoreInfo> selectedInfos) {
+		InfoMergerBuilderV3<MatoreInfo, MatoreInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new MatoreVisiMergeToDelete());
+		InfoMergerV3<MatoreInfo, MatoreInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static List<MatoreInfo> mergeWithMatock(List<MatockInfo> sourceOnes, List<MatoreInfo> sourceTwos) {
-		InfoMerger_<MatoreInfo, MatockInfo> merger = new MatoreMergerMatock();		
-		return merger.merge(sourceOnes, sourceTwos);
+	public static List<MatoreInfo> mergeToUpdate(List<MatoreInfo> baseInfos, List<MatoreInfo> selectedInfos) {
+		InfoMergerBuilderV3<MatoreInfo, MatoreInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new MatoreVisiMergeToUpdate());
+		InfoMergerV3<MatoreInfo, MatoreInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
-	
-	
-	
-	public static MatoreInfo mergeWithUsername(UsernameInfo sourceOne, MatoreInfo sourceTwo) {
-		InfoMerger_<MatoreInfo, UsernameInfo> merger = new MatoreMergerUsername();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
-	
-	
-	
-	public static List<MatoreInfo> mergeWithUsername(List<UsernameInfo> sourceOnes, List<MatoreInfo> sourceTwos) {
-		InfoMerger_<MatoreInfo, UsernameInfo> merger = new MatoreMergerUsername();		
-		return merger.merge(sourceOnes, sourceTwos);
-	}
-	
-	
-	
-	public static MatoreInfo mergeToSelect(MatoreInfo sourceOne, MatoreInfo sourceTwo) {
-		InfoMerger_<MatoreInfo, MatoreInfo> merger = new MatoreMergerToSelect();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
-	
-	
-	
-	public static List<MatoreInfo> mergeToSelect(List<MatoreInfo> sourceOnes, List<MatoreInfo> sourceTwos) {
-		InfoMerger_<MatoreInfo, MatoreInfo> merger = new MatoreMergerToSelect();		
-		return merger.merge(sourceOnes, sourceTwos);
-	}
-	
-	
-	
-	public static MatoreInfo mergeToDelete(MatoreInfo sourceOne, MatoreInfo sourceTwo) {
-		InfoMerger_<MatoreInfo, MatoreInfo> merger = new MatoreMergerToDelete();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
-	
-	
-	
-	public static List<MatoreInfo> mergeToDelete(List<MatoreInfo> sourceOnes, List<MatoreInfo> sourceTwos) {
-		InfoMerger_<MatoreInfo, MatoreInfo> merger = new MatoreMergerToDelete();		
-		return merger.merge(sourceOnes, sourceTwos);
-	}
-	
-	
-	
-	public static MatoreInfo mergeToUpdate(MatoreInfo sourceOne, MatoreInfo sourceTwo) {
-		InfoMerger_<MatoreInfo, MatoreInfo> merger = new MatoreMergerToUpdate();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
-	
-	
-	
-	public static List<MatoreInfo> mergeToUpdate(List<MatoreInfo> sourceOnes, List<MatoreInfo> sourceTwos) {
-		InfoMerger_<MatoreInfo, MatoreInfo> merger = new MatoreMergerToUpdate();		
-		return merger.merge(sourceOnes, sourceTwos);
-	}	
 }

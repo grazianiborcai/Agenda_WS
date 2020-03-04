@@ -1,62 +1,39 @@
 package br.com.mind5.business.materialStore.info;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.ArrayList;
+import java.util.List;
 
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.security.username.info.UsernameInfo;
 
-final class MatoreVisiMergeUsername implements InfoMergerVisitor_<MatoreInfo, UsernameInfo> {
-
-	@Override public MatoreInfo writeRecord(UsernameInfo sourceOne, MatoreInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+final class MatoreVisiMergeUsername implements InfoMergerVisitorV3<MatoreInfo, UsernameInfo> {
+	
+	@Override public List<MatoreInfo> beforeMerge(List<MatoreInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(MatoreInfo baseInfo, UsernameInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner		&&
+				baseInfo.username.equals(selectedInfo.username)		);
+	}
+	
+	
+	
+	@Override public List<MatoreInfo> merge(MatoreInfo baseInfo, UsernameInfo selectedInfo) {
+		List<MatoreInfo> results = new ArrayList<>();
 		
-		MatoreInfo clonedInfo = makeClone(sourceTwo);
-		return merge(sourceOne, clonedInfo);
-	}
-	
-	
-	
-	private void checkArgument(UsernameInfo sourceOne, MatoreInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private MatoreInfo makeClone(MatoreInfo recordInfo) {
-		try {
-			return (MatoreInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	private MatoreInfo merge(UsernameInfo sourceOne, MatoreInfo sourceTwo) {
-		sourceTwo.lastChangedBy = sourceOne.codUser;
-		return sourceTwo;
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(UsernameInfo sourceOne, MatoreInfo sourceTwo) {
-		if (sourceOne.username == null ||
-			sourceTwo.username == null		)
-			return false;
+		baseInfo.lastChangedBy = selectedInfo.codUser;
 		
-		return (sourceOne.codOwner == sourceTwo.codOwner		&&
-				sourceOne.username.equals(sourceTwo.username)		);
+		results.add(baseInfo);
+		return results;
 	}
 	
 	
 	
-	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
+	@Override public InfoUniquifier<MatoreInfo> getUniquifier() {
+		return null;
 	}
 }

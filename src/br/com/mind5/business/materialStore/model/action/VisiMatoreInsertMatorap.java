@@ -26,6 +26,6 @@ final class VisiMatoreInsertMatorap extends ActionVisitorTemplateAction<MatoreIn
 	
 	
 	protected List<MatoreInfo> toBaseClassHook(List<MatoreInfo> baseInfos, List<MatorapInfo> results) {
-		return MatoreMerger.mergeWithMatorap(results, baseInfos);
+		return MatoreMerger.mergeWithMatorap(baseInfos, results);
 	}
 }

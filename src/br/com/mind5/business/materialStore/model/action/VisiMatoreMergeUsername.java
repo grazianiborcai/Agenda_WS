@@ -25,14 +25,14 @@ final class VisiMatoreMergeUsername extends ActionVisitorTemplateMergeV2<MatoreI
 	
 	
 	
-	@Override protected List<UsernameInfo> toActionClassHook(List<MatoreInfo> recordInfos) {
-		return UsernameCopier.copyFromMatore(recordInfos);	
+	@Override protected List<UsernameInfo> toActionClassHook(List<MatoreInfo> baseInfos) {
+		return UsernameCopier.copyFromMatore(baseInfos);	
 	}
 	
 	
 	
-	@Override protected List<MatoreInfo> mergeHook(List<MatoreInfo> recordInfos, List<UsernameInfo> selectedInfos) {	
-		return MatoreMerger.mergeWithUsername(selectedInfos, recordInfos);
+	@Override protected List<MatoreInfo> mergeHook(List<MatoreInfo> baseInfos, List<UsernameInfo> selectedInfos) {	
+		return MatoreMerger.mergeWithUsername(baseInfos, selectedInfos);
 	}
 	
 	

@@ -1,27 +1,38 @@
 package br.com.mind5.business.materialStore.info;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import br.com.mind5.business.materialStoreSearch.info.MatorarchInfo;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-final class MatoreVisiMergeMatorarch implements InfoMergerVisitor_<MatoreInfo, MatorarchInfo> {
-
-	@Override public MatoreInfo writeRecord(MatorarchInfo sourceOne, MatoreInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+final class MatoreVisiMergeMatorarch implements InfoMergerVisitorV3<MatoreInfo, MatorarchInfo> {
+	
+	@Override public List<MatoreInfo> beforeMerge(List<MatoreInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(MatoreInfo baseInfo, MatorarchInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner);
+	}
+	
+	
+	
+	@Override public List<MatoreInfo> merge(MatoreInfo baseInfo, MatorarchInfo selectedInfo) {
+		List<MatoreInfo> results = new ArrayList<>();
 		
-		return MatoreInfo.copyFrom(sourceOne);
+		MatoreInfo result = MatoreInfo.copyFrom(selectedInfo);
+		
+		results.add(result);
+		return results;
 	}
 	
 	
 	
-	private void checkArgument(MatorarchInfo sourceOne, MatoreInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-
-
-
-	@Override public boolean shouldWrite(MatorarchInfo sourceOne, MatoreInfo sourceTwo) {
-		return (sourceOne.codOwner == sourceTwo.codOwner);
+	@Override public InfoUniquifier<MatoreInfo> getUniquifier() {
+		return null;
 	}
 }
