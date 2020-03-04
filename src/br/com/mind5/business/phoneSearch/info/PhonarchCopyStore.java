@@ -1,21 +1,21 @@
 package br.com.mind5.business.phoneSearch.info;
 
-import br.com.mind5.business.customer.info.CusInfo;
+import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.info.InfoCopierTemplate;
 
-final class PhonarchCopyCusKey extends InfoCopierTemplate<PhonarchInfo, CusInfo>{
+final class PhonarchCopyStore extends InfoCopierTemplate<PhonarchInfo, StoreInfo>{
 	
-	public PhonarchCopyCusKey() {
+	public PhonarchCopyStore() {
 		super();
 	}
 	
 	
 	
-	@Override protected PhonarchInfo makeCopyHook(CusInfo source) {
+	@Override protected PhonarchInfo makeCopyHook(StoreInfo source) {
 		PhonarchInfo result = new PhonarchInfo();
 		
 		result.codOwner = source.codOwner;
-		result.codCustomer = source.codCustomer;
+		result.codStore = source.codStore;
 		result.codLanguage = source.codLanguage;
 		result.username = source.username;
 		
