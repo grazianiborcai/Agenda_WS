@@ -1,56 +1,38 @@
 package br.com.mind5.business.materialStoreSearch.info;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.ArrayList;
+import java.util.List;
 
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-final class MatorarchVisiMergeToSelect implements InfoMergerVisitor_<MatorarchInfo, MatorarchInfo> {
+final class MatorarchVisiMergeToSelect implements InfoMergerVisitorV3<MatorarchInfo, MatorarchInfo> {
+	
+	@Override public List<MatorarchInfo> beforeMerge(List<MatorarchInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(MatorarchInfo baseInfo, MatorarchInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner);
+	}
+	
+	
 
-	@Override public MatorarchInfo writeRecord(MatorarchInfo sourceOne, MatorarchInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);		
-		return merge(sourceOne, sourceTwo);
+	@Override public List<MatorarchInfo> merge(MatorarchInfo baseInfo, MatorarchInfo selectedInfo) {
+		List<MatorarchInfo> results = new ArrayList<>();
+		
+		selectedInfo.username = baseInfo.username;
+		selectedInfo.codLanguage = baseInfo.codLanguage;
+		
+		results.add(selectedInfo);
+		return results;
 	}
 	
 	
 	
-	private void checkArgument(MatorarchInfo sourceOne, MatorarchInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private MatorarchInfo merge(MatorarchInfo sourceOne, MatorarchInfo sourceTwo) {
-		MatorarchInfo result = makeClone(sourceOne);		
-		result.username = sourceTwo.username;
-		result.codLanguage = sourceTwo.codLanguage;
-		return result;
-	}
-	
-	
-	
-	private MatorarchInfo makeClone(MatorarchInfo recordInfo) {
-		try {
-			return (MatorarchInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(MatorarchInfo sourceOne, MatorarchInfo sourceTwo) {		
-		return (sourceOne.codOwner == sourceTwo.codOwner);
-	}
-	
-	
-	
-	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
+	@Override public InfoUniquifier<MatorarchInfo> getUniquifier() {
+		return null;
 	}
 }
