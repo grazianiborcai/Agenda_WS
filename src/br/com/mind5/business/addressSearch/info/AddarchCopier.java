@@ -9,8 +9,23 @@ import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.info.InfoCopier;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
+import br.com.mind5.security.user.info.UserInfo;
 
 public final class AddarchCopier {	
+	public static AddarchInfo copyFromUser(UserInfo source) {
+		InfoCopier<AddarchInfo, UserInfo> copier = new AddarchCopyUser();
+		return copier.makeCopy(source);
+	}
+	
+	
+	
+	public static List<AddarchInfo> copyFromUser(List<UserInfo> sources) {
+		InfoCopier<AddarchInfo, UserInfo> copier = new AddarchCopyUser();
+		return copier.makeCopy(sources);
+	}
+	
+	
+	
 	public static AddarchInfo copyFromStoreKey(StoreInfo source) {
 		InfoCopier<AddarchInfo, StoreInfo> copier = new AddarchCopyStoreKey();
 		return copier.makeCopy(source);
