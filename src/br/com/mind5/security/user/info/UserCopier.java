@@ -124,20 +124,6 @@ public final class UserCopier {
 	
 	
 	
-	public static UserInfo copyToDelete(UserInfo source) {
-		InfoCopier<UserInfo, UserInfo> copier = new UserCopyToDelete();
-		return copier.makeCopy(source);
-	}
-	
-	
-	
-	public static List<UserInfo> copyToDelete(List<UserInfo> sources) {
-		InfoCopier<UserInfo, UserInfo> copier = new UserCopyToDelete();
-		return copier.makeCopy(sources);
-	}
-	
-	
-	
 	public static UserInfo copyFromCusKey(CusInfo source) {
 		InfoCopier<UserInfo, CusInfo> copier = new UserCopyCusKey();
 		return copier.makeCopy(source);

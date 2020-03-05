@@ -12,10 +12,9 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
 import br.com.mind5.security.user.info.UserInfo;
 import br.com.mind5.security.user.model.action.LazyUserDeleteAddress;
-import br.com.mind5.security.user.model.action.LazyUserEnforceAddressKey;
 import br.com.mind5.security.user.model.action.StdUserMergeAddress;
 import br.com.mind5.security.user.model.action.StdUserSuccess;
-import br.com.mind5.security.user.model.checker.UserCheckAddressExist;
+import br.com.mind5.security.user.model.checker.UserCheckAddarch;
 
 public final class NodeUserDeleteAddress extends DeciTreeWriteTemplate<UserInfo> {
 	
@@ -26,8 +25,6 @@ public final class NodeUserDeleteAddress extends DeciTreeWriteTemplate<UserInfo>
 	
 	
 	@Override protected ModelChecker<UserInfo> buildDecisionCheckerHook(DeciTreeOption<UserInfo> option) {
-		final boolean EXIST = true;
-		
 		List<ModelChecker<UserInfo>> queue = new ArrayList<>();		
 		ModelChecker<UserInfo> checker;
 		ModelCheckerOption checkerOption;	
@@ -35,8 +32,8 @@ public final class NodeUserDeleteAddress extends DeciTreeWriteTemplate<UserInfo>
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST;		
-		checker = new UserCheckAddressExist(checkerOption);
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
+		checker = new UserCheckAddarch(checkerOption);
 		queue.add(checker);	
 		
 		return new ModelCheckerQueue<>(queue);
@@ -48,11 +45,9 @@ public final class NodeUserDeleteAddress extends DeciTreeWriteTemplate<UserInfo>
 		List<ActionStd<UserInfo>> actions = new ArrayList<>();
 		
 		ActionStd<UserInfo> mergeAddress = new StdUserMergeAddress(option);
-		ActionLazy<UserInfo> enforceAddressKey = new LazyUserEnforceAddressKey(option.conn, option.schemaName);
 		ActionLazy<UserInfo> deleteAddress = new LazyUserDeleteAddress(option.conn, option.schemaName);
 		
-		mergeAddress.addPostAction(enforceAddressKey);
-		enforceAddressKey.addPostAction(deleteAddress);
+		mergeAddress.addPostAction(deleteAddress);
 		
 		actions.add(mergeAddress);		
 		return actions;

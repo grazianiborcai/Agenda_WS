@@ -2,21 +2,22 @@ package br.com.mind5.security.user.model.checker;
 
 import java.util.List;
 
-import br.com.mind5.business.phone.info.PhoneInfo;
-import br.com.mind5.business.phone.model.checker.PhoneCheckExist;
+import br.com.mind5.business.phoneSearch.info.PhonarchCopier;
+import br.com.mind5.business.phoneSearch.info.PhonarchInfo;
+import br.com.mind5.business.phoneSearch.model.checker.PhonarchCheckExist;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.security.user.info.UserInfo;
 
-public final class UserCheckPhoneExist implements ModelChecker<UserInfo> {
+public final class UserCheckPhonarch implements ModelChecker<UserInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<PhoneInfo> checker;
+	private ModelChecker<PhonarchInfo> checker;
 	
 	
-	public UserCheckPhoneExist(ModelCheckerOption option) {
-		checker = new PhoneCheckExist(option);
+	public UserCheckPhonarch(ModelCheckerOption option) {
+		checker = new PhonarchCheckExist(option);
 	}
 	
 	
@@ -33,7 +34,7 @@ public final class UserCheckPhoneExist implements ModelChecker<UserInfo> {
 	
 	
 	@Override public boolean check(UserInfo recordInfo) {
-		return checker.check(PhoneInfo.copyFrom(recordInfo));
+		return checker.check(PhonarchCopier.copyFromUser(recordInfo));
 	}
 
 	

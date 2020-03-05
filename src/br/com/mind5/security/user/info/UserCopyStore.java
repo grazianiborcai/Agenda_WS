@@ -28,6 +28,7 @@ final class UserCopyStore extends InfoCopierTemplate<UserInfo, StoreInfo>{
 		result.codPerson = source.codPerson;	
 		result.codUser = source.codUser;
 		result.codLanguage = source.codLanguage;
+		result.username = source.username;
 		
 		result.personData = clonePerson(source.personData);
 		result.addresses = cloneAddresses(source.addresses);

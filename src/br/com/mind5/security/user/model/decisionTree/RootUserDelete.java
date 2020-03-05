@@ -15,13 +15,13 @@ import br.com.mind5.security.user.model.action.LazyUserDelete;
 import br.com.mind5.security.user.model.action.LazyUserDeletePerson;
 import br.com.mind5.security.user.model.action.LazyUserDeleteUpswd;
 import br.com.mind5.security.user.model.action.LazyUserEnforceLChanged;
-import br.com.mind5.security.user.model.action.LazyUserMergeToDelete;
 import br.com.mind5.security.user.model.action.LazyUserNodeDeleteAddress;
 import br.com.mind5.security.user.model.action.LazyUserNodeDeletePhone;
 import br.com.mind5.security.user.model.action.LazyUserUpdate;
+import br.com.mind5.security.user.model.action.StdUserMergeToDelete;
 import br.com.mind5.security.user.model.checker.UserCheckDelete;
+import br.com.mind5.security.user.model.checker.UserCheckExist;
 import br.com.mind5.security.user.model.checker.UserCheckOwner;
-import br.com.mind5.security.user.model.checker.UserCheckUsername;
 
 public final class RootUserDelete extends DeciTreeWriteTemplate<UserInfo> {
 	
@@ -54,7 +54,7 @@ public final class RootUserDelete extends DeciTreeWriteTemplate<UserInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
-		checker = new UserCheckUsername(checkerOption);
+		checker = new UserCheckExist(checkerOption);
 		queue.add(checker);
 
 		return new ModelCheckerQueue<UserInfo>(queue);
@@ -65,8 +65,7 @@ public final class RootUserDelete extends DeciTreeWriteTemplate<UserInfo> {
 	@Override protected List<ActionStd<UserInfo>> buildActionsOnPassedHook(DeciTreeOption<UserInfo> option) {
 		List<ActionStd<UserInfo>> actions = new ArrayList<>();
 		
-		ActionStd<UserInfo> nodeUsername = new NodeUserUsername(option).toAction();
-		ActionLazy<UserInfo> mergeToDelete = new LazyUserMergeToDelete(option.conn, option.schemaName);	
+		ActionStd<UserInfo> mergeToDelete = new StdUserMergeToDelete(option);	
 		ActionLazy<UserInfo> enforceLChanged = new LazyUserEnforceLChanged(option.conn, option.schemaName);		
 		ActionLazy<UserInfo> updateUser = new LazyUserUpdate(option.conn, option.schemaName);
 		ActionLazy<UserInfo> deleteAddress = new LazyUserNodeDeleteAddress(option.conn, option.schemaName);
@@ -75,7 +74,6 @@ public final class RootUserDelete extends DeciTreeWriteTemplate<UserInfo> {
 		ActionLazy<UserInfo> deletePassword = new LazyUserDeleteUpswd(option.conn, option.schemaName);	
 		ActionLazy<UserInfo> deletePerson = new LazyUserDeletePerson(option.conn, option.schemaName);
 		
-		nodeUsername.addPostAction(mergeToDelete);
 		mergeToDelete.addPostAction(enforceLChanged);		
 		enforceLChanged.addPostAction(updateUser);
 		updateUser.addPostAction(deleteAddress);		
@@ -85,7 +83,7 @@ public final class RootUserDelete extends DeciTreeWriteTemplate<UserInfo> {
 		updateUser.addPostAction(deletePerson);
 		//TODO: delete token ? Ou colocar dentro de password ? 
 		//TODO: enviar email ao usuario informando que sua conta foi eliminada
-		actions.add(nodeUsername);
+		actions.add(mergeToDelete);
 		
 		return actions;
 	}

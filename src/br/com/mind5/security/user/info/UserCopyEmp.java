@@ -28,6 +28,7 @@ final class UserCopyEmp extends InfoCopierTemplate<UserInfo, EmpInfo>{
 		result.codPerson = source.codPerson;	
 		result.codUser = source.codUser;
 		result.codLanguage = source.codLanguage;
+		result.username = source.username;
 		
 		result.personData = clonePerson(source.personData);
 		result.addresses = cloneAddresses(source.addresses);

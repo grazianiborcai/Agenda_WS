@@ -2,21 +2,22 @@ package br.com.mind5.security.user.model.checker;
 
 import java.util.List;
 
-import br.com.mind5.business.address.info.AddressInfo;
-import br.com.mind5.business.address.model.checker.AddressCheckExist;
+import br.com.mind5.business.addressSearch.info.AddarchCopier;
+import br.com.mind5.business.addressSearch.info.AddarchInfo;
+import br.com.mind5.business.addressSearch.model.checker.AddarchCheckExist;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.security.user.info.UserInfo;
 
-public final class UserCheckAddressExist implements ModelChecker<UserInfo> {
+public final class UserCheckAddarch implements ModelChecker<UserInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<AddressInfo> checker;
+	private ModelChecker<AddarchInfo> checker;
 	
 	
-	public UserCheckAddressExist(ModelCheckerOption option) {
-		checker = new AddressCheckExist(option);
+	public UserCheckAddarch(ModelCheckerOption option) {
+		checker = new AddarchCheckExist(option);
 	}
 	
 	
@@ -33,7 +34,7 @@ public final class UserCheckAddressExist implements ModelChecker<UserInfo> {
 	
 	
 	@Override public boolean check(UserInfo recordInfo) {
-		return checker.check(AddressInfo.copyFrom(recordInfo));
+		return checker.check(AddarchCopier.copyFromUser(recordInfo));
 	}
 
 	

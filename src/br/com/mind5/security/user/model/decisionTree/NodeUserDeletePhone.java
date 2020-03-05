@@ -12,10 +12,9 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
 import br.com.mind5.security.user.info.UserInfo;
 import br.com.mind5.security.user.model.action.LazyUserDeletePhone;
-import br.com.mind5.security.user.model.action.LazyUserEnforcePhoneKey;
 import br.com.mind5.security.user.model.action.StdUserMergePhone;
 import br.com.mind5.security.user.model.action.StdUserSuccess;
-import br.com.mind5.security.user.model.checker.UserCheckPhoneExist;
+import br.com.mind5.security.user.model.checker.UserCheckPhonarch;
 
 public final class NodeUserDeletePhone extends DeciTreeWriteTemplate<UserInfo> {
 	
@@ -25,8 +24,6 @@ public final class NodeUserDeletePhone extends DeciTreeWriteTemplate<UserInfo> {
 	
 	
 	@Override protected ModelChecker<UserInfo> buildDecisionCheckerHook(DeciTreeOption<UserInfo> option) {
-		final boolean EXIST = true;
-		
 		List<ModelChecker<UserInfo>> queue = new ArrayList<>();		
 		ModelChecker<UserInfo> checker;
 		ModelCheckerOption checkerOption;	
@@ -34,8 +31,8 @@ public final class NodeUserDeletePhone extends DeciTreeWriteTemplate<UserInfo> {
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST;		
-		checker = new UserCheckPhoneExist(checkerOption);
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
+		checker = new UserCheckPhonarch(checkerOption);
 		queue.add(checker);	
 		
 		return new ModelCheckerQueue<>(queue);
@@ -47,11 +44,9 @@ public final class NodeUserDeletePhone extends DeciTreeWriteTemplate<UserInfo> {
 		List<ActionStd<UserInfo>> actions = new ArrayList<>();
 		
 		ActionStd<UserInfo> mergePhone = new StdUserMergePhone(option);
-		ActionLazy<UserInfo> enforcePhoneKey = new LazyUserEnforcePhoneKey(option.conn, option.schemaName);
 		ActionLazy<UserInfo> deletePhone = new LazyUserDeletePhone(option.conn, option.schemaName);
 		
-		mergePhone.addPostAction(enforcePhoneKey);
-		enforcePhoneKey.addPostAction(deletePhone);
+		mergePhone.addPostAction(deletePhone);
 		
 		actions.add(mergePhone);		
 		return actions;

@@ -15,7 +15,7 @@ import javax.ws.rs.core.Response;
 
 import br.com.mind5.model.Model;
 import br.com.mind5.security.user.info.UserInfo;
-import br.com.mind5.security.user.model.UserModelDelete;
+import br.com.mind5.security.user.model.UserModelDeleteAuth;
 import br.com.mind5.security.user.model.UserModelInsert;
 import br.com.mind5.security.user.model.UserModelSelect;
 import br.com.mind5.security.user.model.UserModelUpdate;
@@ -65,7 +65,7 @@ public class UserResource {
 		recordInfo.username = username;
 		recordInfo.codLanguage = codLanguage;
 		
-		Model model = new UserModelDelete(recordInfo);
+		Model model = new UserModelDeleteAuth(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	}
