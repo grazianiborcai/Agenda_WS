@@ -18,18 +18,4 @@ public final class MatoreCopier {
 		InfoCopier<MatoreInfo, StoreInfo> copier = new MatoreCopyStore();
 		return copier.makeCopy(sources);
 	}
-	
-	
-	
-	public static MatoreInfo copyFromStoreKey(StoreInfo source) {
-		InfoCopier<MatoreInfo, StoreInfo> copier = new MatoreCopyStoreKey();
-		return copier.makeCopy(source);
-	}
-	
-	
-	
-	public static List<MatoreInfo> copyFromStoreKey(List<StoreInfo> sources) {
-		InfoCopier<MatoreInfo, StoreInfo> copier = new MatoreCopyStoreKey();
-		return copier.makeCopy(sources);
-	}
 }
