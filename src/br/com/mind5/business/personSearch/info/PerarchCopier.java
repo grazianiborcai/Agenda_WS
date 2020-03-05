@@ -7,8 +7,23 @@ import br.com.mind5.business.employee.info.EmpInfo;
 import br.com.mind5.business.employeeList.info.EmplisInfo;
 import br.com.mind5.business.person.info.PersonInfo;
 import br.com.mind5.info.InfoCopier;
+import br.com.mind5.security.user.info.UserInfo;
 
 public final class PerarchCopier {
+	public static PerarchInfo copyFromUser(UserInfo source) {
+		InfoCopier<PerarchInfo, UserInfo> copier = new PerarchCopyUser();
+		return copier.makeCopy(source);
+	}
+	
+	
+	
+	public static List<PerarchInfo> copyFromUser(List<UserInfo> sources) {
+		InfoCopier<PerarchInfo, UserInfo> copier = new PerarchCopyUser();
+		return copier.makeCopy(sources);
+	}
+	
+	
+	
 	public static PerarchInfo copyFromEmplis(EmplisInfo source) {
 		InfoCopier<PerarchInfo, EmplisInfo> copier = new PerarchCopyEmplis();
 		return copier.makeCopy(source);
