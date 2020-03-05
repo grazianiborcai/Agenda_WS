@@ -25,7 +25,7 @@ final class VisiPersonInsertPersonap extends ActionVisitorTemplateAction<PersonI
 	
 	
 	
-	protected List<PersonInfo> toBaseClassHook(List<PersonInfo> baseInfos, List<PersonapInfo> results) {
-		return PersonMerger.mergeWithPersonap(results, baseInfos);
+	protected List<PersonInfo> toBaseClassHook(List<PersonInfo> baseInfos, List<PersonapInfo> selectedInfos) {
+		return PersonMerger.mergeWithPersonap(baseInfos, selectedInfos);
 	}
 }

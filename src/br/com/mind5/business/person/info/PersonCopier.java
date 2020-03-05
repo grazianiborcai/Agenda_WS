@@ -60,6 +60,20 @@ public final class PersonCopier {
 	
 	
 	
+	public static List<PersonInfo> copyFromUserKey(List<UserInfo> sources) {
+		InfoCopier<PersonInfo, UserInfo> copier = new PersonCopyUserKey();
+		return copier.makeCopy(sources);
+	}
+	
+	
+	
+	public static PersonInfo copyFromUserKey(UserInfo source) {
+		InfoCopier<PersonInfo, UserInfo> copier = new PersonCopyUserKey();
+		return copier.makeCopy(source);
+	}
+	
+	
+	
 	public static List<PersonInfo> copyFromUser(List<UserInfo> sources) {
 		InfoCopier<PersonInfo, UserInfo> copier = new PersonCopyUser();
 		return copier.makeCopy(sources);

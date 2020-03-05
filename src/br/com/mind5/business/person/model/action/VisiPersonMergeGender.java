@@ -25,7 +25,7 @@ final class VisiPersonMergeGender extends ActionVisitorTemplateMergeV2<PersonInf
 	
 	
 	@Override protected List<PersonInfo> mergeHook(List<PersonInfo> recordInfos, List<GenderInfo> selectedInfos) {	
-		return PersonMerger.mergeWithGender(selectedInfos, recordInfos);
+		return PersonMerger.mergeWithGender(recordInfos, selectedInfos);
 	}
 	
 	

@@ -22,8 +22,8 @@ final class VisiPersonMergeToUpdate extends ActionVisitorTemplateMergeV2<PersonI
 	
 	
 	
-	@Override protected List<PersonInfo> mergeHook(List<PersonInfo> recordInfos, List<PersonInfo> selectedInfos) {	
-		return PersonMerger.mergeToUpdate(selectedInfos, recordInfos);
+	@Override protected List<PersonInfo> mergeHook(List<PersonInfo> baseInfos, List<PersonInfo> selectedInfos) {	
+		return PersonMerger.mergeToUpdate(baseInfos, selectedInfos);
 	}
 	
 	

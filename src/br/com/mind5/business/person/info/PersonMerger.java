@@ -4,89 +4,84 @@ import java.util.List;
 
 import br.com.mind5.business.masterData.info.GenderInfo;
 import br.com.mind5.business.personSnapshot.info.PersonapInfo;
-import br.com.mind5.info.obsolete.InfoMerger_;
+import br.com.mind5.info.InfoMergerBuilderV3;
+import br.com.mind5.info.InfoMergerV3;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class PersonMerger {
-	public static PersonInfo mergeWithPersonap(PersonapInfo sourceOne, PersonInfo sourceTwo) {
-		InfoMerger_<PersonInfo, PersonapInfo> merger = new PersonMergerPersonap();		
-		return merger.merge(sourceOne, sourceTwo);
+	public static List<PersonInfo> mergeWithPersonap(List<PersonInfo> baseInfos, List<PersonapInfo> selectedInfos) {
+		InfoMergerBuilderV3<PersonInfo, PersonapInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new PersonVisiMergePersonap());
+		InfoMergerV3<PersonInfo, PersonapInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static List<PersonInfo> mergeWithPersonap(List<PersonapInfo> sourceOnes, List<PersonInfo> sourceTwos) {
-		InfoMerger_<PersonInfo, PersonapInfo> merger = new PersonMergerPersonap();		
-		return merger.merge(sourceOnes, sourceTwos);
+	public static List<PersonInfo> mergeWithGender(List<PersonInfo> baseInfos, List<GenderInfo> selectedInfos) {
+		InfoMergerBuilderV3<PersonInfo, GenderInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new PersonVisiMergeGender());
+		InfoMergerV3<PersonInfo, GenderInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static PersonInfo mergeWithGender(GenderInfo sourceOne, PersonInfo sourceTwo) {
-		InfoMerger_<PersonInfo, GenderInfo> merger = new PersonMergerGender();		
-		return merger.merge(sourceOne, sourceTwo);
+	public static List<PersonInfo> mergeWithUsername(List<PersonInfo> baseInfos, List<UsernameInfo> selectedInfos) {
+		InfoMergerBuilderV3<PersonInfo, UsernameInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new PersonVisiMergeUsername());
+		InfoMergerV3<PersonInfo, UsernameInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static List<PersonInfo> mergeWithGender(List<GenderInfo> sourceOnes, List<PersonInfo> sourceTwos) {
-		InfoMerger_<PersonInfo, GenderInfo> merger = new PersonMergerGender();		
-		return merger.merge(sourceOnes, sourceTwos);
+	public static List<PersonInfo> mergeToDelete(List<PersonInfo> baseInfos, List<PersonInfo> selectedInfos) {
+		InfoMergerBuilderV3<PersonInfo, PersonInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new PersonVisiMergeToDelete());
+		InfoMergerV3<PersonInfo, PersonInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static PersonInfo mergeWithUsername(UsernameInfo sourceOne, PersonInfo sourceTwo) {
-		InfoMerger_<PersonInfo, UsernameInfo> merger = new PersonMergerUsername();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
+	public static List<PersonInfo> mergeToSelect(List<PersonInfo> baseInfos, List<PersonInfo> selectedInfos) {
+		InfoMergerBuilderV3<PersonInfo, PersonInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new PersonVisiMergeToSelect());
+		InfoMergerV3<PersonInfo, PersonInfo> merger = builder.build();		
+	
+		return merger.merge();
+	} 
 	
 	
 	
-	public static List<PersonInfo> mergeWithUsername(List<UsernameInfo> sourceOnes, List<PersonInfo> sourceTwos) {
-		InfoMerger_<PersonInfo, UsernameInfo> merger = new PersonMergerUsername();		
-		return merger.merge(sourceOnes, sourceTwos);
-	}
+	public static List<PersonInfo> mergeToUpdate(List<PersonInfo> baseInfos, List<PersonInfo> selectedInfos) {
+		InfoMergerBuilderV3<PersonInfo, PersonInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new PersonVisiMergeToUpdate());
+		InfoMergerV3<PersonInfo, PersonInfo> merger = builder.build();		
 	
-	
-	
-	public static PersonInfo mergeToDelete(PersonInfo sourceOne, PersonInfo sourceTwo) {
-		InfoMerger_<PersonInfo, PersonInfo> merger = new PersonMergerToDelete();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
-	
-	
-	
-	public static List<PersonInfo> mergeToDelete(List<PersonInfo> sourceOnes, List<PersonInfo> sourceTwos) {
-		InfoMerger_<PersonInfo, PersonInfo> merger = new PersonMergerToDelete();		
-		return merger.merge(sourceOnes, sourceTwos);
-	}
-	
-	
-	
-	public static PersonInfo mergeToSelect(PersonInfo sourceOne, PersonInfo sourceTwo) {
-		InfoMerger_<PersonInfo, PersonInfo> merger = new PersonMergerToSelect();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
-	
-	
-	
-	public static List<PersonInfo> mergeToSelect(List<PersonInfo> sourceOnes, List<PersonInfo> sourceTwos) {
-		InfoMerger_<PersonInfo, PersonInfo> merger = new PersonMergerToSelect();		
-		return merger.merge(sourceOnes, sourceTwos);
-	}
-	
-	
-	
-	public static PersonInfo mergeToUpdate(PersonInfo sourceOne, PersonInfo sourceTwo) {
-		InfoMerger_<PersonInfo, PersonInfo> merger = new PersonMergerToUpdate();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
-	
-	
-	
-	public static List<PersonInfo> mergeToUpdate(List<PersonInfo> sourceOnes, List<PersonInfo> sourceTwos) {
-		InfoMerger_<PersonInfo, PersonInfo> merger = new PersonMergerToUpdate();		
-		return merger.merge(sourceOnes, sourceTwos);
+		return merger.merge();
 	}	
 }

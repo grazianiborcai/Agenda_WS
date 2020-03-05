@@ -1,57 +1,39 @@
 package br.com.mind5.business.person.info;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.ArrayList;
+import java.util.List;
 
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-final class PersonVisiMergeToDelete implements InfoMergerVisitor_<PersonInfo, PersonInfo> {
+final class PersonVisiMergeToDelete implements InfoMergerVisitorV3<PersonInfo, PersonInfo> {
+	
+	@Override public List<PersonInfo> beforeMerge(List<PersonInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(PersonInfo baseInfo, PersonInfo selectedInfo) {
+		return (baseInfo.codOwner  == selectedInfo.codOwner &&
+				baseInfo.codPerson == selectedInfo.codPerson	);
+	}	
+	
+	
 
-	@Override public PersonInfo writeRecord(PersonInfo sourceOne, PersonInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);		
-		return merge(sourceOne, sourceTwo);
+	@Override public List<PersonInfo> merge(PersonInfo baseInfo, PersonInfo selectedInfo) {
+		List<PersonInfo> results = new ArrayList<>();
+		
+		selectedInfo.username = baseInfo.username;
+		selectedInfo.codLanguage = baseInfo.codLanguage;
+		
+		results.add(selectedInfo);
+		return results;
 	}
 	
 	
 	
-	private void checkArgument(PersonInfo sourceOne, PersonInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private PersonInfo merge(PersonInfo sourceOne, PersonInfo sourceTwo) {
-		PersonInfo result = makeClone(sourceOne);		
-		result.username = sourceTwo.username;
-		result.codLanguage = sourceTwo.codLanguage;
-		return result;
-	}
-	
-	
-	
-	private PersonInfo makeClone(PersonInfo recordInfo) {
-		try {
-			return (PersonInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(PersonInfo sourceOne, PersonInfo sourceTwo) {		
-		return (sourceOne.codOwner  == sourceTwo.codOwner 	&&
-				sourceOne.codPerson == sourceTwo.codPerson		);
-	}
-	
-	
-	
-	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
+	@Override public InfoUniquifier<PersonInfo> getUniquifier() {
+		return null;
 	}
 }
