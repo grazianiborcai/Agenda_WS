@@ -24,8 +24,8 @@ final class VisiStoreMergeTimezone extends ActionVisitorTemplateMergeV2<StoreInf
 	
 	
 	
-	@Override protected List<StoreInfo> mergeHook(List<StoreInfo> recordInfos, List<TimezoneInfo> selectedInfos) {	
-		return StoreMerger.mergeWithTimezone(selectedInfos, recordInfos);
+	@Override protected List<StoreInfo> mergeHook(List<StoreInfo> baseInfos, List<TimezoneInfo> selectedInfos) {	
+		return StoreMerger.mergeWithTimezone(baseInfos, selectedInfos);
 	}
 	
 	

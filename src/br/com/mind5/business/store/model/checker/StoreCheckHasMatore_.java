@@ -8,14 +8,14 @@ import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 
-public final class StoreCheckHasMatore implements ModelChecker<StoreInfo> {
+public final class StoreCheckHasMatore_ implements ModelChecker<StoreInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
 	private ModelChecker<MatoreInfo> checker;
 	
 	
-	public StoreCheckHasMatore(ModelCheckerOption option) {
+	public StoreCheckHasMatore_(ModelCheckerOption option) {
 		checker = new MatoreCheckExist(option);
 	}
 	

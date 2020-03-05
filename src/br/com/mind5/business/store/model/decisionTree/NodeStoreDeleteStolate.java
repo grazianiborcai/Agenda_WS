@@ -30,7 +30,7 @@ public final class NodeStoreDeleteStolate extends DeciTreeWriteTemplate<StoreInf
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new StoreCheckStolarch(checkerOption);
 		queue.add(checker);	
 		

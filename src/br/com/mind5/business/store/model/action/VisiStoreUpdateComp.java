@@ -32,6 +32,6 @@ final class VisiStoreUpdateComp extends ActionVisitorTemplateAction<StoreInfo, C
 	
 	
 	@Override protected List<StoreInfo> toBaseClassHook(List<StoreInfo> baseInfos, List<CompInfo> results) {
-		return StoreMerger.mergeWithComp(results, baseInfos);
+		return StoreMerger.mergeWithComp(baseInfos, results);
 	}
 }

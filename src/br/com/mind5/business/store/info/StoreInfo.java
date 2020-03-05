@@ -6,6 +6,7 @@ import java.util.List;
 
 import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.company.info.CompInfo;
+import br.com.mind5.business.materialStore.info.MatoreInfo;
 import br.com.mind5.business.person.info.PersonInfo;
 import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.common.DefaultValue;
@@ -27,6 +28,7 @@ public final class StoreInfo extends InfoRecord implements Cloneable {
 	public List<AddressInfo> addresses;
 	public List<PhoneInfo> phones;
 	public List<FimistInfo> fimistes;
+	public List<MatoreInfo> matores;
 	public UserInfo userData;
 	public CompInfo companyData;
 	public PersonInfo personData;
@@ -54,6 +56,7 @@ public final class StoreInfo extends InfoRecord implements Cloneable {
 		addresses = DefaultValue.list();
 		phones = DefaultValue.list();
 		fimistes = DefaultValue.list();
+		matores = DefaultValue.list();
 		lastChangedBy = DefaultValue.number();
 		createdBy = DefaultValue.number();
 	}
@@ -77,6 +80,7 @@ public final class StoreInfo extends InfoRecord implements Cloneable {
 		
 		deepCopy.fimistes = cloneFimistes(deepCopy.fimistes);
 		deepCopy.addresses = cloneAddresses(deepCopy.addresses);
+		deepCopy.matores = cloneMatores(deepCopy.matores);
 		deepCopy.phones = clonePhones(deepCopy.phones);
 		deepCopy.personData = clonePerson(deepCopy.personData);
 		deepCopy.companyData = cloneCompany(deepCopy.companyData);
@@ -91,14 +95,14 @@ public final class StoreInfo extends InfoRecord implements Cloneable {
 		if (recordInfos == null)
 			return null;
 		
-		List<FimistInfo> deepAddresses = new ArrayList<>();
+		List<FimistInfo> results = new ArrayList<>();
 		
-		for (FimistInfo eachAddress : recordInfos) {
-			FimistInfo clonedAddress = (FimistInfo) eachAddress.clone();
-			deepAddresses.add(clonedAddress);
+		for (FimistInfo eachRecord : recordInfos) {
+			FimistInfo eachResult = (FimistInfo) eachRecord.clone();
+			results.add(eachResult);
 		}
 		
-		return deepAddresses;
+		return results;
 	}
 	
 	
@@ -107,14 +111,30 @@ public final class StoreInfo extends InfoRecord implements Cloneable {
 		if (recordInfos == null)
 			return null;
 		
-		List<AddressInfo> deepAddresses = new ArrayList<>();
+		List<AddressInfo> results = new ArrayList<>();
 		
-		for (AddressInfo eachAddress : recordInfos) {
-			AddressInfo clonedAddress = (AddressInfo) eachAddress.clone();
-			deepAddresses.add(clonedAddress);
+		for (AddressInfo eachRecord : recordInfos) {
+			AddressInfo eachResult = (AddressInfo) eachRecord.clone();
+			results.add(eachResult);
 		}
 		
-		return deepAddresses;
+		return results;
+	}
+	
+	
+	
+	private List<MatoreInfo> cloneMatores(List<MatoreInfo> recordInfos) throws CloneNotSupportedException {
+		if (recordInfos == null)
+			return null;
+		
+		List<MatoreInfo> results = new ArrayList<>();
+		
+		for (MatoreInfo eachRecord : recordInfos) {
+			MatoreInfo eachResult = (MatoreInfo) eachRecord.clone();
+			results.add(eachResult);
+		}
+		
+		return results;
 	}
 	
 	
@@ -123,14 +143,14 @@ public final class StoreInfo extends InfoRecord implements Cloneable {
 		if (recordInfos == null)
 			return null;
 		
-		List<PhoneInfo> deepPhones = new ArrayList<>();
+		List<PhoneInfo> results = new ArrayList<>();
 		
-		for (PhoneInfo eachPhone : recordInfos) {
-			PhoneInfo clonedPhone = (PhoneInfo) eachPhone.clone();
-			deepPhones.add(clonedPhone);
+		for (PhoneInfo eachRecord : recordInfos) {
+			PhoneInfo eachResult = (PhoneInfo) eachRecord.clone();
+			results.add(eachResult);
 		}
 		
-		return deepPhones;
+		return results;
 	}
 	
 	

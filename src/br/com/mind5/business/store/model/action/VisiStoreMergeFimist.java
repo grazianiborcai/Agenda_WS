@@ -25,14 +25,14 @@ final class VisiStoreMergeFimist extends ActionVisitorTemplateMergeV2<StoreInfo,
 	
 	
 	
-	@Override protected List<FimistInfo> toActionClassHook(List<StoreInfo> recordInfos) {
-		return FimistCopier.copyFromStore(recordInfos);	
+	@Override protected List<FimistInfo> toActionClassHook(List<StoreInfo> baseInfos) {
+		return FimistCopier.copyFromStore(baseInfos);	
 	}
 	
 	
 	
-	@Override protected List<StoreInfo> mergeHook(List<StoreInfo> recordInfos, List<FimistInfo> selectedInfos) {	
-		return StoreMerger.mergeWithFimist(selectedInfos, recordInfos);
+	@Override protected List<StoreInfo> mergeHook(List<StoreInfo> baseInfos, List<FimistInfo> selectedInfos) {	
+		return StoreMerger.mergeWithFimist(baseInfos, selectedInfos);
 	}
 	
 	

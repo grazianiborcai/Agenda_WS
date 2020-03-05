@@ -7,7 +7,7 @@ import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.business.store.model.action.LazyStoreInsertAddress;
 import br.com.mind5.business.store.model.action.StdStoreEnforceAddressKey;
 import br.com.mind5.business.store.model.action.StdStoreSuccess;
-import br.com.mind5.business.store.model.checker.StoreCheckHasAddress_;
+import br.com.mind5.business.store.model.checker.StoreCheckHasAddress;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
@@ -33,7 +33,7 @@ public final class NodeStoreInsertAddress extends DeciTreeWriteTemplate<StoreInf
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
-		checker = new StoreCheckHasAddress_(checkerOption);
+		checker = new StoreCheckHasAddress(checkerOption);
 		queue.add(checker);	
 		
 		return new ModelCheckerQueue<>(queue);

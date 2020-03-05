@@ -1,9 +1,9 @@
 package br.com.mind5.business.store.model.action;
 
 import java.sql.Connection;
-import java.util.ArrayList;
 import java.util.List;
 
+import br.com.mind5.business.phone.info.PhoneCopier;
 import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.business.phone.model.decisionTree.RootPhoneDelete;
 import br.com.mind5.business.store.info.StoreInfo;
@@ -18,19 +18,13 @@ final class VisiStoreDeletePhone extends ActionVisitorTemplateAction<StoreInfo, 
 	
 	
 	
-	@Override protected List<PhoneInfo> toActionClassHook(List<StoreInfo> recordInfos) {
-		List<PhoneInfo> results = new ArrayList<>();
-		
-		for (StoreInfo eachRecord : recordInfos) {
-			results.addAll(eachRecord.phones);
-		}		
-		
-		return results;
+	@Override protected ActionStd<PhoneInfo> getActionHook(DeciTreeOption<PhoneInfo> option) {
+		return new RootPhoneDelete(option).toAction();
 	}
 	
 	
 	
-	@Override protected ActionStd<PhoneInfo> getActionHook(DeciTreeOption<PhoneInfo> option) {
-		return new RootPhoneDelete(option).toAction();
+	@Override protected List<PhoneInfo> toActionClassHook(List<StoreInfo> recordInfos) {
+		return PhoneCopier.copyFromStore(recordInfos);
 	}
 }

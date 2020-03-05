@@ -1,58 +1,38 @@
 package br.com.mind5.business.store.info;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.ArrayList;
+import java.util.List;
 
 import br.com.mind5.business.masterData.info.TimezoneInfo;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-final class StoreVisiMergeTimezone implements InfoMergerVisitor_<StoreInfo, TimezoneInfo> {
-
-	@Override public StoreInfo writeRecord(TimezoneInfo sourceOne, StoreInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+final class StoreVisiMergeTimezone implements InfoMergerVisitorV3<StoreInfo, TimezoneInfo> {
+	
+	@Override public List<StoreInfo> beforeMerge(List<StoreInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(StoreInfo baseInfo, TimezoneInfo selectedInfo) {
+		return (baseInfo.codTimezone.equals(selectedInfo.codTimezone));
+	}
+	
+	
+	
+	@Override public List<StoreInfo> merge(StoreInfo baseInfo, TimezoneInfo selectedInfo) {
+		List<StoreInfo> results = new ArrayList<>();
 		
-		StoreInfo clonedInfo = makeClone(sourceTwo);
-		return merge(sourceOne, clonedInfo);
+		baseInfo.txtTimezone = selectedInfo.txtTimezone;
+		
+		results.add(baseInfo);
+		return results;
 	}
 	
 	
 	
-	private void checkArgument(TimezoneInfo sourceOne, StoreInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private StoreInfo makeClone(StoreInfo recordInfo) {
-		try {
-			return (StoreInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	private StoreInfo merge(TimezoneInfo sourceOne, StoreInfo sourceTwo) {
-		sourceTwo.txtTimezone = sourceOne.txtTimezone;
-
-		return sourceTwo;
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(TimezoneInfo sourceOne, StoreInfo sourceTwo) {
-		return (sourceOne.codTimezone.equals(sourceTwo.codTimezone));
-	}	
-	
-	
-	
-	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
+	@Override public InfoUniquifier<StoreInfo> getUniquifier() {
+		return new StoreUniquifier();
 	}
 }

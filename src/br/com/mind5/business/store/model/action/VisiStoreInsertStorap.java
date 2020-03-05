@@ -26,6 +26,6 @@ final class VisiStoreInsertStorap extends ActionVisitorTemplateAction<StoreInfo,
 	
 	
 	protected List<StoreInfo> toBaseClassHook(List<StoreInfo> baseInfos, List<StorapInfo> results) {
-		return StoreMerger.mergeWithStorap(results, baseInfos);
+		return StoreMerger.mergeWithStorap(baseInfos, results);
 	}
 }

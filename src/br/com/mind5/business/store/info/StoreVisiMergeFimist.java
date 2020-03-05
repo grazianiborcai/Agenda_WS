@@ -1,35 +1,39 @@
 package br.com.mind5.business.store.info;
 
-import br.com.mind5.common.SystemMessage;
+import java.util.ArrayList;
+import java.util.List;
+
 import br.com.mind5.file.fileImageList.info.FimistInfo;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-final class StoreVisiMergeFimist implements InfoMergerVisitor_<StoreInfo, FimistInfo> {
-
-	@Override public StoreInfo writeRecord(FimistInfo sourceOne, StoreInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
-		return merge(sourceOne, sourceTwo);
+final class StoreVisiMergeFimist implements InfoMergerVisitorV3<StoreInfo, FimistInfo> {
+	
+	@Override public List<StoreInfo> beforeMerge(List<StoreInfo> baseInfos) {
+		return baseInfos;
 	}
 	
 	
 	
-	private void checkArgument(FimistInfo sourceOne, StoreInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
+	@Override public boolean shouldMerge(StoreInfo baseInfo, FimistInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner	&&
+				baseInfo.codStore == selectedInfo.codStore		);
 	}
 	
 	
 	
-	private StoreInfo merge(FimistInfo sourceOne, StoreInfo sourceTwo) {
-		sourceTwo.fimistes.add(sourceOne);
-
-		return sourceTwo;
+	@Override public List<StoreInfo> merge(StoreInfo baseInfo, FimistInfo selectedInfo) {
+		List<StoreInfo> results = new ArrayList<>();
+		
+		baseInfo.fimistes.add(selectedInfo);
+		
+		results.add(baseInfo);
+		return results;
 	}
 	
 	
 	
-	@Override public boolean shouldWrite(FimistInfo sourceOne, StoreInfo sourceTwo) {
-		return (sourceOne.codOwner 	== sourceTwo.codOwner &&
-				sourceOne.codStore 	== sourceTwo.codStore		);
-	}	
+	@Override public InfoUniquifier<StoreInfo> getUniquifier() {
+		return new StoreUniquifier();
+	}
 }

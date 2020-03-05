@@ -9,9 +9,9 @@ import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyStoreDeletePerson extends ActionLazyTemplate<StoreInfo, StoreInfo> {
+public final class LazyStoreDeleteMatore extends ActionLazyTemplate<StoreInfo, StoreInfo> {
 
-	public LazyStoreDeletePerson(Connection conn, String schemaName) {
+	public LazyStoreDeleteMatore(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyStoreDeletePerson extends ActionLazyTemplate<StoreInfo, S
 	
 	
 	@Override protected ActionStd<StoreInfo> getInstanceOfActionHook(DeciTreeOption<StoreInfo> option) {
-		return new StdStoreDeletePerson(option);
+		return new StdStoreDeleteMatore(option);
 	}
 	
 	

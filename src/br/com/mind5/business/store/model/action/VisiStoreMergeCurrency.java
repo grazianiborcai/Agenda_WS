@@ -24,8 +24,8 @@ final class VisiStoreMergeCurrency extends ActionVisitorTemplateMergeV2<StoreInf
 	
 	
 	
-	@Override protected List<StoreInfo> mergeHook(List<StoreInfo> recordInfos, List<CurrencyInfo> selectedInfos) {	
-		return StoreMerger.mergeWithCurrency(selectedInfos, recordInfos);
+	@Override protected List<StoreInfo> mergeHook(List<StoreInfo> baseInfos, List<CurrencyInfo> selectedInfos) {	
+		return StoreMerger.mergeWithCurrency(baseInfos, selectedInfos);
 	}
 	
 	

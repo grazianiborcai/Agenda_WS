@@ -3,11 +3,11 @@ package br.com.mind5.business.store.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.business.person.info.PersonInfo;
+import br.com.mind5.business.materialStore.info.MatoreInfo;
 import br.com.mind5.info.InfoMergerVisitorV3;
 import br.com.mind5.info.InfoUniquifier;
 
-final class StoreVisiMergePerson implements InfoMergerVisitorV3<StoreInfo, PersonInfo> {
+final class StoreVisiMergeMatore implements InfoMergerVisitorV3<StoreInfo, MatoreInfo> {
 	
 	@Override public List<StoreInfo> beforeMerge(List<StoreInfo> baseInfos) {
 		return baseInfos;
@@ -15,17 +15,17 @@ final class StoreVisiMergePerson implements InfoMergerVisitorV3<StoreInfo, Perso
 	
 	
 	
-	@Override public boolean shouldMerge(StoreInfo baseInfo, PersonInfo selectedInfo) {
-		return (baseInfo.codOwner == selectedInfo.codOwner);
+	@Override public boolean shouldMerge(StoreInfo baseInfo, MatoreInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner		&&
+				baseInfo.codStore == selectedInfo.codStore	);
 	}
 	
 	
 	
-	@Override public List<StoreInfo> merge(StoreInfo baseInfo, PersonInfo selectedInfo) {
+	@Override public List<StoreInfo> merge(StoreInfo baseInfo, MatoreInfo selectedInfo) {
 		List<StoreInfo> results = new ArrayList<>();
 		
-		baseInfo.personData = selectedInfo;
-		baseInfo.codPerson = selectedInfo.codPerson;
+		baseInfo.matores.add(selectedInfo);
 		
 		results.add(baseInfo);
 		return results;

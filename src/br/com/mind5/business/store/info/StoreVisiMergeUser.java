@@ -1,70 +1,39 @@
 package br.com.mind5.business.store.info;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.ArrayList;
+import java.util.List;
 
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.security.user.info.UserInfo;
 
-final class StoreVisiMergeUser implements InfoMergerVisitor_<StoreInfo, UserInfo> {
-
-	@Override public StoreInfo writeRecord(UserInfo sourceOne, StoreInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+final class StoreVisiMergeUser implements InfoMergerVisitorV3<StoreInfo, UserInfo> {
+	
+	@Override public List<StoreInfo> beforeMerge(List<StoreInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(StoreInfo baseInfo, UserInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner);
+	}
+	
+	
+	
+	@Override public List<StoreInfo> merge(StoreInfo baseInfo, UserInfo selectedInfo) {
+		List<StoreInfo> results = new ArrayList<>();
 		
-		StoreInfo clonedInfo = makeClone(sourceTwo);
-		return merge(sourceOne, clonedInfo);
+		baseInfo.userData = selectedInfo;
+		baseInfo.codUser = selectedInfo.codUser;
+		
+		results.add(baseInfo);
+		return results;
 	}
 	
 	
 	
-	private void checkArgument(UserInfo sourceOne, StoreInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private StoreInfo makeClone(StoreInfo recordInfo) {
-		try {
-			return (StoreInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	private StoreInfo merge(UserInfo sourceOne, StoreInfo sourceTwo) {
-		sourceTwo.userData = makeClone(sourceOne);
-		sourceTwo.codUser = sourceOne.codUser;
-		return sourceTwo;
-	}
-	
-	
-	
-	private UserInfo makeClone(UserInfo recordInfo) {
-		try {
-			return (UserInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}	
-	
-	
-	
-	@Override public boolean shouldWrite(UserInfo sourceOne, StoreInfo sourceTwo) {
-		return (sourceOne.codOwner == sourceTwo.codOwner);
-	}
-	
-	
-	
-	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
+	@Override public InfoUniquifier<StoreInfo> getUniquifier() {
+		return new StoreUniquifier();
 	}
 }

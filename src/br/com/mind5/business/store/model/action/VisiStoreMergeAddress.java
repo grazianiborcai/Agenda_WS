@@ -25,14 +25,14 @@ final class VisiStoreMergeAddress extends ActionVisitorTemplateMergeV2<StoreInfo
 	
 	
 	
-	@Override protected List<AddressInfo> toActionClassHook(List<StoreInfo> recordInfos) {
-		return AddressCopier.copyFromStoreKey(recordInfos);	
+	@Override protected List<AddressInfo> toActionClassHook(List<StoreInfo> baseInfos) {
+		return AddressCopier.copyFromStoreKey(baseInfos);	
 	}
 	
 	
 	
-	@Override protected List<StoreInfo> mergeHook(List<StoreInfo> recordInfos, List<AddressInfo> selectedInfos) {	
-		return StoreMerger.mergeWithAddress(selectedInfos, recordInfos);
+	@Override protected List<StoreInfo> mergeHook(List<StoreInfo> baseInfos, List<AddressInfo> selectedInfos) {	
+		return StoreMerger.mergeWithAddress(baseInfos, selectedInfos);
 	}
 	
 	

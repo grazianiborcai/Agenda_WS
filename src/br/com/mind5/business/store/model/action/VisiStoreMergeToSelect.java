@@ -22,8 +22,8 @@ final class VisiStoreMergeToSelect extends ActionVisitorTemplateMergeV2<StoreInf
 	
 	
 	
-	@Override protected List<StoreInfo> mergeHook(List<StoreInfo> recordInfos, List<StoreInfo> selectedInfos) {	
-		return StoreMerger.mergeToSelect(selectedInfos, recordInfos);
+	@Override protected List<StoreInfo> mergeHook(List<StoreInfo> baseInfos, List<StoreInfo> selectedInfos) {	
+		return StoreMerger.mergeToSelect(baseInfos, selectedInfos);
 	}
 	
 	

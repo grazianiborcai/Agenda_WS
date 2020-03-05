@@ -4,11 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.store.info.StoreInfo;
-import br.com.mind5.business.store.model.action.LazyStoreDeletePerson;
-import br.com.mind5.business.store.model.action.StdStoreEnforcePersonKey;
+import br.com.mind5.business.store.model.action.StdStoreDeletePerson;
 import br.com.mind5.business.store.model.action.StdStoreSuccess;
-import br.com.mind5.business.store.model.checker.StoreCheckHasPerson;
-import br.com.mind5.model.action.ActionLazy;
+import br.com.mind5.business.store.model.checker.StoreCheckPerson;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -32,8 +30,8 @@ public final class NodeStoreDeletePerson extends DeciTreeWriteTemplate<StoreInfo
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
-		checker = new StoreCheckHasPerson(checkerOption);
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
+		checker = new StoreCheckPerson(checkerOption);
 		queue.add(checker);	
 		
 		return new ModelCheckerQueue<>(queue);
@@ -44,12 +42,9 @@ public final class NodeStoreDeletePerson extends DeciTreeWriteTemplate<StoreInfo
 	@Override protected List<ActionStd<StoreInfo>> buildActionsOnPassedHook(DeciTreeOption<StoreInfo> option) {
 		List<ActionStd<StoreInfo>> actions = new ArrayList<>();
 		
-		ActionStd<StoreInfo> enforcePersonKey = new StdStoreEnforcePersonKey(option);
-		ActionLazy<StoreInfo> deletePerson = new LazyStoreDeletePerson(option.conn, option.schemaName);
+		ActionStd<StoreInfo> deletePerson = new StdStoreDeletePerson(option);
 		
-		enforcePersonKey.addPostAction(deletePerson);
-		
-		actions.add(enforcePersonKey);		
+		actions.add(deletePerson);		
 		return actions;
 	}
 	

@@ -5,9 +5,9 @@ import java.util.List;
 
 import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.business.store.model.action.LazyStoreDeletePhone;
-import br.com.mind5.business.store.model.action.StdStoreEnforcePhoneKey;
+import br.com.mind5.business.store.model.action.StdStoreMergePhone;
 import br.com.mind5.business.store.model.action.StdStoreSuccess;
-import br.com.mind5.business.store.model.checker.StoreCheckHasPhone;
+import br.com.mind5.business.store.model.checker.StoreCheckPhonarch;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
@@ -32,8 +32,8 @@ public final class NodeStoreDeletePhone extends DeciTreeWriteTemplate<StoreInfo>
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
-		checker = new StoreCheckHasPhone(checkerOption);
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
+		checker = new StoreCheckPhonarch(checkerOption);
 		queue.add(checker);	
 		
 		return new ModelCheckerQueue<>(queue);
@@ -44,12 +44,12 @@ public final class NodeStoreDeletePhone extends DeciTreeWriteTemplate<StoreInfo>
 	@Override protected List<ActionStd<StoreInfo>> buildActionsOnPassedHook(DeciTreeOption<StoreInfo> option) {
 		List<ActionStd<StoreInfo>> actions = new ArrayList<>();
 		
-		ActionStd<StoreInfo> enforcePhoneKey = new StdStoreEnforcePhoneKey(option);
+		ActionStd<StoreInfo> mergePhone = new StdStoreMergePhone(option);
 		ActionLazy<StoreInfo> deletePhone = new LazyStoreDeletePhone(option.conn, option.schemaName);
 		
-		enforcePhoneKey.addPostAction(deletePhone);
+		mergePhone.addPostAction(deletePhone);
 		
-		actions.add(enforcePhoneKey);		
+		actions.add(mergePhone);		
 		return actions;
 	}
 	

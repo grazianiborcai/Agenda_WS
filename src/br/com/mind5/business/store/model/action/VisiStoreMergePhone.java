@@ -25,14 +25,14 @@ final class VisiStoreMergePhone extends ActionVisitorTemplateMergeV2<StoreInfo, 
 	
 	
 	
-	@Override protected List<PhoneInfo> toActionClassHook(List<StoreInfo> recordInfos) {
-		return PhoneCopier.copyFromStoreKey(recordInfos);	
+	@Override protected List<PhoneInfo> toActionClassHook(List<StoreInfo> baseInfos) {
+		return PhoneCopier.copyFromStoreKey(baseInfos);	
 	}
 	
 	
 	
-	@Override protected List<StoreInfo> mergeHook(List<StoreInfo> recordInfos, List<PhoneInfo> selectedInfos) {	
-		return StoreMerger.mergeWithPhone(selectedInfos, recordInfos);
+	@Override protected List<StoreInfo> mergeHook(List<StoreInfo> baseInfos, List<PhoneInfo> selectedInfos) {	
+		return StoreMerger.mergeWithPhone(baseInfos, selectedInfos);
 	}
 	
 	

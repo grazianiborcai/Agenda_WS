@@ -8,6 +8,7 @@ import br.com.mind5.business.store.model.action.LazyStoreMergeAddress;
 import br.com.mind5.business.store.model.action.LazyStoreMergeComp;
 import br.com.mind5.business.store.model.action.LazyStoreMergeCurrency;
 import br.com.mind5.business.store.model.action.LazyStoreMergeFimist;
+import br.com.mind5.business.store.model.action.LazyStoreMergeMatore;
 import br.com.mind5.business.store.model.action.LazyStoreMergePerson;
 import br.com.mind5.business.store.model.action.LazyStoreMergePhone;
 import br.com.mind5.business.store.model.action.LazyStoreMergeTimezone;
@@ -84,6 +85,7 @@ public final class RootStoreSelect extends DeciTreeReadTemplate<StoreInfo> {
 		ActionLazy<StoreInfo> mergePhone = new LazyStoreMergePhone(option.conn, option.schemaName);
 		ActionLazy<StoreInfo> mergeUser = new LazyStoreMergeUser(option.conn, option.schemaName);
 		ActionLazy<StoreInfo> mergeFimist = new LazyStoreMergeFimist(option.conn, option.schemaName);
+		ActionLazy<StoreInfo> mergeMatore= new LazyStoreMergeMatore(option.conn, option.schemaName);
 		
 		select.addPostAction(mergeCurrency);
 		mergeCurrency.addPostAction(mergeTimezone);
@@ -93,6 +95,7 @@ public final class RootStoreSelect extends DeciTreeReadTemplate<StoreInfo> {
 		mergeAddress.addPostAction(mergePhone);
 		mergePhone.addPostAction(mergeUser);
 		mergeUser.addPostAction(mergeFimist);
+		mergeFimist.addPostAction(mergeMatore);
 		
 		actions.add(select);
 		return actions;

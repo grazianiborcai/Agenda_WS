@@ -2,22 +2,22 @@ package br.com.mind5.business.store.model.checker;
 
 import java.util.List;
 
+import br.com.mind5.business.materialStoreSearch.info.MatorarchCopier;
+import br.com.mind5.business.materialStoreSearch.info.MatorarchInfo;
+import br.com.mind5.business.materialStoreSearch.model.checker.MatorarchCheckExist;
 import br.com.mind5.business.store.info.StoreInfo;
-import br.com.mind5.business.storeLeaveDateSearch.info.StolarchCopier;
-import br.com.mind5.business.storeLeaveDateSearch.info.StolarchInfo;
-import br.com.mind5.business.storeLeaveDateSearch.model.checker.StolarchCheckExist;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 
-public final class StoreCheckStolarch implements ModelChecker<StoreInfo> {
+public final class StoreCheckMatorarch implements ModelChecker<StoreInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<StolarchInfo> checker;
+	private ModelChecker<MatorarchInfo> checker;
 	
 	
-	public StoreCheckStolarch(ModelCheckerOption option) {
-		checker = new StolarchCheckExist(option);
+	public StoreCheckMatorarch(ModelCheckerOption option) {
+		checker = new MatorarchCheckExist(option);
 	}
 	
 	
@@ -34,7 +34,7 @@ public final class StoreCheckStolarch implements ModelChecker<StoreInfo> {
 	
 	
 	@Override public boolean check(StoreInfo recordInfo) {
-		return checker.check(StolarchCopier.copyFromStore(recordInfo));
+		return checker.check(MatorarchCopier.copyFromStore(recordInfo));
 	}
 
 	

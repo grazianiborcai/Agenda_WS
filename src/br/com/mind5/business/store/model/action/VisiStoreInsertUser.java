@@ -32,6 +32,6 @@ final class VisiStoreInsertUser extends ActionVisitorTemplateAction<StoreInfo, U
 	
 	
 	@Override protected List<StoreInfo> toBaseClassHook(List<StoreInfo> baseInfos, List<UserInfo> results) {
-		return StoreMerger.mergeWithUser(results, baseInfos);
+		return StoreMerger.mergeWithUser(baseInfos, results);
 	}
 }

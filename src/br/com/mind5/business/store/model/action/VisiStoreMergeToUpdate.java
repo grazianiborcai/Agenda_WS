@@ -23,14 +23,14 @@ final class VisiStoreMergeToUpdate extends ActionVisitorTemplateMergeV2<StoreInf
 	
 	
 	
-	@Override protected List<StoreInfo> toActionClassHook(List<StoreInfo> recordInfos) {
-		return StoreCopier.copyFromStoreKey(recordInfos);	
+	@Override protected List<StoreInfo> toActionClassHook(List<StoreInfo> baseInfos) {
+		return StoreCopier.copyFromStoreKey(baseInfos);	
 	}
 	
 	
 	
-	@Override protected List<StoreInfo> mergeHook(List<StoreInfo> recordInfos, List<StoreInfo> selectedInfos) {	
-		return StoreMerger.mergeToUpdate(selectedInfos, recordInfos);
+	@Override protected List<StoreInfo> mergeHook(List<StoreInfo> baseInfos, List<StoreInfo> selectedInfos) {	
+		return StoreMerger.mergeToUpdate(baseInfos, selectedInfos);
 	}
 	
 	

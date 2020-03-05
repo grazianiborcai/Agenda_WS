@@ -24,8 +24,8 @@ final class VisiStoreMergeSotarch extends ActionVisitorTemplateMergeV2<StoreInfo
 	
 	
 	
-	@Override protected List<StoreInfo> mergeHook(List<StoreInfo> recordInfos, List<SotarchInfo> selectedInfos) {	
-		return StoreMerger.mergeWithSotarch(selectedInfos, recordInfos);
+	@Override protected List<StoreInfo> mergeHook(List<StoreInfo> baseInfos, List<SotarchInfo> selectedInfos) {	
+		return StoreMerger.mergeWithSotarch(baseInfos, selectedInfos);
 	}
 	
 	

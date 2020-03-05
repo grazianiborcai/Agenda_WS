@@ -24,8 +24,8 @@ final class VisiStoreMergeComp extends ActionVisitorTemplateMergeV2<StoreInfo, C
 	
 	
 	
-	@Override protected List<StoreInfo> mergeHook(List<StoreInfo> recordInfos, List<CompInfo> selectedInfos) {	
-		return StoreMerger.mergeWithComp(selectedInfos, recordInfos);
+	@Override protected List<StoreInfo> mergeHook(List<StoreInfo> baseInfos, List<CompInfo> selectedInfos) {	
+		return StoreMerger.mergeWithComp(baseInfos, selectedInfos);
 	}
 	
 	
