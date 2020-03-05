@@ -2,18 +2,18 @@ package br.com.mind5.business.personSearch.info;
 
 import java.util.List;
 
-import br.com.mind5.info.obsolete.InfoMerger_;
+import br.com.mind5.info.InfoMergerBuilderV3;
+import br.com.mind5.info.InfoMergerV3;
 
 public final class PerarchMerger {
-	public static PerarchInfo mergeToSelect(PerarchInfo sourceOne, PerarchInfo sourceTwo) {
-		InfoMerger_<PerarchInfo, PerarchInfo> merger = new PerarchMergerToSelect();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
+	public static List<PerarchInfo> mergeToSelect(List<PerarchInfo> baseInfos, List<PerarchInfo> selectedInfos) {
+		InfoMergerBuilderV3<PerarchInfo, PerarchInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new PerarchVisiMergeToSelect());
+		InfoMergerV3<PerarchInfo, PerarchInfo> merger = builder.build();		
 	
-	
-	
-	public static List<PerarchInfo> mergeToSelect(List<PerarchInfo> sourceOnes, List<PerarchInfo> sourceTwos) {
-		InfoMerger_<PerarchInfo, PerarchInfo> merger = new PerarchMergerToSelect();		
-		return merger.merge(sourceOnes, sourceTwos);
+		return merger.merge();
 	}
 }

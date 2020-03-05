@@ -819,6 +819,8 @@ public final class SystemCode {
 	
 	//Person Search
 	public static final int PERSON_SEARCH_MANDATORY_FIELD_EMPTY			= 6700;
+	public static final int PERSON_SEARCH_ALREADY_EXIST					= 6701;
+	public static final int PERSON_SEARCH_NOT_FOUND						= 6702;
 	
 	// File Image Search
 	public static final int FILE_IMG_SEARCH_MANDATORY_FIELD_EMPTY 		= 6750;

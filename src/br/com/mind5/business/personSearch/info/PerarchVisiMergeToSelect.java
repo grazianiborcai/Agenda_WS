@@ -1,56 +1,39 @@
 package br.com.mind5.business.personSearch.info;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.ArrayList;
+import java.util.List;
 
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-final class PerarchVisiMergeToSelect implements InfoMergerVisitor_<PerarchInfo, PerarchInfo> {
+final class PerarchVisiMergeToSelect implements InfoMergerVisitorV3<PerarchInfo, PerarchInfo> {
+	
+	@Override public List<PerarchInfo> beforeMerge(List<PerarchInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(PerarchInfo baseInfo, PerarchInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner);
+	}
+	
+	
+	
 
-	@Override public PerarchInfo writeRecord(PerarchInfo sourceOne, PerarchInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);		
-		return merge(sourceOne, sourceTwo);
+	@Override public List<PerarchInfo> merge(PerarchInfo baseInfo, PerarchInfo selectedInfo) {
+		List<PerarchInfo> results = new ArrayList<>();
+		
+		selectedInfo.username = baseInfo.username;
+		selectedInfo.codLanguage = baseInfo.codLanguage;
+		
+		results.add(selectedInfo);
+		return results;
 	}
 	
 	
 	
-	private void checkArgument(PerarchInfo sourceOne, PerarchInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private PerarchInfo merge(PerarchInfo sourceOne, PerarchInfo sourceTwo) {
-		PerarchInfo result = makeClone(sourceOne);		
-		result.username = sourceTwo.username;
-		result.codLanguage = sourceTwo.codLanguage;
-		return result;
-	}
-	
-	
-	
-	private PerarchInfo makeClone(PerarchInfo recordInfo) {
-		try {
-			return (PerarchInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(PerarchInfo sourceOne, PerarchInfo sourceTwo) {		
-		return (sourceOne.codOwner  == sourceTwo.codOwner);
-	}
-	
-	
-	
-	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
+	@Override public InfoUniquifier<PerarchInfo> getUniquifier() {
+		return null;
 	}
 }

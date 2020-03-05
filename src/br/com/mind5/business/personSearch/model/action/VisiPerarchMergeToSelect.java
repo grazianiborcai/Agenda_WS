@@ -22,8 +22,8 @@ final class VisiPerarchMergeToSelect extends ActionVisitorTemplateMergeV2<Perarc
 	
 	
 	
-	@Override protected List<PerarchInfo> mergeHook(List<PerarchInfo> recordInfos, List<PerarchInfo> selectedInfos) {	
-		return PerarchMerger.mergeToSelect(selectedInfos, recordInfos);
+	@Override protected List<PerarchInfo> mergeHook(List<PerarchInfo> baseInfos, List<PerarchInfo> selectedInfos) {	
+		return PerarchMerger.mergeToSelect(baseInfos, selectedInfos);
 	}
 	
 	
