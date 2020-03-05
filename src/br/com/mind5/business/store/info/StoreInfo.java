@@ -6,7 +6,6 @@ import java.util.List;
 
 import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.company.info.CompInfo;
-import br.com.mind5.business.materialStore.info.MatoreInfo;
 import br.com.mind5.business.person.info.PersonInfo;
 import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.common.DefaultValue;
@@ -28,7 +27,6 @@ public final class StoreInfo extends InfoRecord implements Cloneable {
 	public List<AddressInfo> addresses;
 	public List<PhoneInfo> phones;
 	public List<FimistInfo> fimistes;
-	public List<MatoreInfo> matores;
 	public UserInfo userData;
 	public CompInfo companyData;
 	public PersonInfo personData;
@@ -56,7 +54,6 @@ public final class StoreInfo extends InfoRecord implements Cloneable {
 		addresses = DefaultValue.list();
 		phones = DefaultValue.list();
 		fimistes = DefaultValue.list();
-		matores = DefaultValue.list();
 		lastChangedBy = DefaultValue.number();
 		createdBy = DefaultValue.number();
 	}
@@ -80,7 +77,6 @@ public final class StoreInfo extends InfoRecord implements Cloneable {
 		
 		deepCopy.fimistes = cloneFimistes(deepCopy.fimistes);
 		deepCopy.addresses = cloneAddresses(deepCopy.addresses);
-		deepCopy.matores = cloneMatores(deepCopy.matores);
 		deepCopy.phones = clonePhones(deepCopy.phones);
 		deepCopy.personData = clonePerson(deepCopy.personData);
 		deepCopy.companyData = cloneCompany(deepCopy.companyData);
@@ -115,22 +111,6 @@ public final class StoreInfo extends InfoRecord implements Cloneable {
 		
 		for (AddressInfo eachRecord : recordInfos) {
 			AddressInfo eachResult = (AddressInfo) eachRecord.clone();
-			results.add(eachResult);
-		}
-		
-		return results;
-	}
-	
-	
-	
-	private List<MatoreInfo> cloneMatores(List<MatoreInfo> recordInfos) throws CloneNotSupportedException {
-		if (recordInfos == null)
-			return null;
-		
-		List<MatoreInfo> results = new ArrayList<>();
-		
-		for (MatoreInfo eachRecord : recordInfos) {
-			MatoreInfo eachResult = (MatoreInfo) eachRecord.clone();
 			results.add(eachResult);
 		}
 		

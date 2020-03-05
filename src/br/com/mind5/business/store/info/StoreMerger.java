@@ -6,7 +6,6 @@ import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.company.info.CompInfo;
 import br.com.mind5.business.masterData.info.CurrencyInfo;
 import br.com.mind5.business.masterData.info.TimezoneInfo;
-import br.com.mind5.business.materialStore.info.MatoreInfo;
 import br.com.mind5.business.person.info.PersonInfo;
 import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.business.storeSearch.info.SotarchInfo;
@@ -18,19 +17,6 @@ import br.com.mind5.security.user.info.UserInfo;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class StoreMerger {
-	public static List<StoreInfo> mergeWithMatore(List<StoreInfo> baseInfos, List<MatoreInfo> selectedInfos) {
-		InfoMergerBuilderV3<StoreInfo, MatoreInfo> builder = new InfoMergerBuilderV3<>();
-		
-		builder.addBaseInfos(baseInfos);
-		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StoreVisiMergeMatore());
-		InfoMergerV3<StoreInfo, MatoreInfo> merger = builder.build();		
-	
-		return merger.merge();
-	}
-	
-	
-	
 	public static List<StoreInfo> mergeWithFimist(List<StoreInfo> baseInfos, List<FimistInfo> selectedInfos) {
 		InfoMergerBuilderV3<StoreInfo, FimistInfo> builder = new InfoMergerBuilderV3<>();
 		

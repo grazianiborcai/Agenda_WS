@@ -4,11 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.store.info.StoreInfo;
-import br.com.mind5.business.store.model.action.LazyStoreDeleteMatore;
-import br.com.mind5.business.store.model.action.StdStoreMergeMatore;
+import br.com.mind5.business.store.model.action.StdStoreDeleteMatore;
 import br.com.mind5.business.store.model.action.StdStoreSuccess;
 import br.com.mind5.business.store.model.checker.StoreCheckMatorarch;
-import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -44,12 +42,9 @@ public final class NodeStoreDeleteMatore extends DeciTreeWriteTemplate<StoreInfo
 	@Override protected List<ActionStd<StoreInfo>> buildActionsOnPassedHook(DeciTreeOption<StoreInfo> option) {
 		List<ActionStd<StoreInfo>> actions = new ArrayList<>();
 		
-		ActionStd<StoreInfo> mergeMatore = new StdStoreMergeMatore(option);
-		ActionLazy<StoreInfo> deleteMatore = new LazyStoreDeleteMatore(option.conn, option.schemaName);
+		ActionStd<StoreInfo> deleteMatore = new StdStoreDeleteMatore(option);
 		
-		mergeMatore.addPostAction(deleteMatore);
-		
-		actions.add(mergeMatore);		
+		actions.add(deleteMatore);		
 		return actions;
 	}
 	
