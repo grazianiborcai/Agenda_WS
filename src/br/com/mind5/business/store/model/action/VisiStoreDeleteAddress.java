@@ -27,4 +27,10 @@ final class VisiStoreDeleteAddress extends ActionVisitorTemplateAction<StoreInfo
 	@Override protected List<AddressInfo> toActionClassHook(List<StoreInfo> recordInfos) {
 		return AddressCopier.copyFromStore(recordInfos);
 	}
+	
+	
+	
+	@Override protected List<StoreInfo> toBaseClassHook(List<StoreInfo> baseInfos, List<AddressInfo> results) {
+		return baseInfos;
+	}
 }

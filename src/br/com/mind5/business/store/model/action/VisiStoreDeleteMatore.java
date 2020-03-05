@@ -27,4 +27,10 @@ final class VisiStoreDeleteMatore extends ActionVisitorTemplateAction<StoreInfo,
 	@Override protected List<MatoreInfo> toActionClassHook(List<StoreInfo> recordInfos) {
 		return MatoreCopier.copyFromStore(recordInfos);
 	}
+	
+	
+	
+	@Override protected List<StoreInfo> toBaseClassHook(List<StoreInfo> baseInfos, List<MatoreInfo> results) {
+		return baseInfos;
+	}
 }

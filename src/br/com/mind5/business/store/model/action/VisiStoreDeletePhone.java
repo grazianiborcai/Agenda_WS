@@ -27,4 +27,10 @@ final class VisiStoreDeletePhone extends ActionVisitorTemplateAction<StoreInfo, 
 	@Override protected List<PhoneInfo> toActionClassHook(List<StoreInfo> recordInfos) {
 		return PhoneCopier.copyFromStore(recordInfos);
 	}
+	
+	
+	
+	@Override protected List<StoreInfo> toBaseClassHook(List<StoreInfo> baseInfos, List<PhoneInfo> results) {
+		return baseInfos;
+	}
 }

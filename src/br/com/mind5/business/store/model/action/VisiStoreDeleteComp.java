@@ -1,7 +1,6 @@
 package br.com.mind5.business.store.model.action;
 
 import java.sql.Connection;
-import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.company.info.CompInfo;
@@ -19,18 +18,18 @@ final class VisiStoreDeleteComp extends ActionVisitorTemplateAction<StoreInfo, C
 	
 	
 	@Override protected List<CompInfo> toActionClassHook(List<StoreInfo> recordInfos) {
-		List<CompInfo> results = new ArrayList<>();
-		
-		for (StoreInfo eachRecord : recordInfos) {
-			results.add(CompInfo.copyFrom(eachRecord));
-		}		
-		
-		return results;
+		return CompInfo.copyFrom(recordInfos);
 	}
 	
 	
 	
 	@Override protected ActionStd<CompInfo> getActionHook(DeciTreeOption<CompInfo> option) {
 		return new RootCompDelete(option).toAction();
+	}
+	
+	
+	
+	@Override protected List<StoreInfo> toBaseClassHook(List<StoreInfo> baseInfos, List<CompInfo> results) {
+		return baseInfos;
 	}
 }

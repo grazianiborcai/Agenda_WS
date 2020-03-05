@@ -27,4 +27,10 @@ final class VisiStoreDeleteUser extends ActionVisitorTemplateAction<StoreInfo, U
 	@Override protected ActionStd<UserInfo> getActionHook(DeciTreeOption<UserInfo> option) {
 		return new RootUserDelete(option).toAction();
 	}
+	
+	
+	
+	@Override protected List<StoreInfo> toBaseClassHook(List<StoreInfo> baseInfos, List<UserInfo> results) {
+		return baseInfos;
+	}
 }

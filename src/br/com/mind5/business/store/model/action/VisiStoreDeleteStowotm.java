@@ -1,6 +1,7 @@
 package br.com.mind5.business.store.model.action;
 
 import java.sql.Connection;
+import java.util.List;
 
 import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.business.storeWorkTime.info.StowotmInfo;
@@ -18,5 +19,11 @@ final class VisiStoreDeleteStowotm extends ActionVisitorTemplateAction<StoreInfo
 	
 	@Override protected ActionStd<StowotmInfo> getActionHook(DeciTreeOption<StowotmInfo> option) {
 		return new RootStowotmDeleteByStore(option).toAction();
+	}
+	
+	
+	
+	@Override protected List<StoreInfo> toBaseClassHook(List<StoreInfo> baseInfos, List<StowotmInfo> results) {
+		return baseInfos;
 	}
 }
