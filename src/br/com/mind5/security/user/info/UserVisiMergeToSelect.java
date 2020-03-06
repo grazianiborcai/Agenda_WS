@@ -1,55 +1,37 @@
 package br.com.mind5.security.user.info;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.ArrayList;
+import java.util.List;
 
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-final class UserVisiMergeToSelect implements InfoMergerVisitor_<UserInfo, UserInfo> {
+final class UserVisiMergeToSelect implements InfoMergerVisitorV3<UserInfo, UserInfo> {
+	
+	@Override public List<UserInfo> beforeMerge(List<UserInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(UserInfo baseInfo, UserInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner);
+	}	
+	
+	
 
-	@Override public UserInfo writeRecord(UserInfo sourceOne, UserInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);		
-		return merge(sourceOne, sourceTwo);
+	@Override public List<UserInfo> merge(UserInfo baseInfo, UserInfo selectedInfo) {
+		List<UserInfo> results = new ArrayList<>();
+		
+		selectedInfo.codLanguage = baseInfo.codLanguage;
+		
+		results.add(selectedInfo);
+		return results;
 	}
 	
 	
 	
-	private void checkArgument(UserInfo sourceOne, UserInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private UserInfo merge(UserInfo sourceOne, UserInfo sourceTwo) {
-		UserInfo result = makeClone(sourceOne);		
-		result.codLanguage = sourceTwo.codLanguage;
-		return result;
-	}
-	
-	
-	
-	private UserInfo makeClone(UserInfo recordInfo) {
-		try {
-			return (UserInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(UserInfo sourceOne, UserInfo sourceTwo) {		
-		return (sourceOne.codOwner == sourceTwo.codOwner);
-	}
-	
-	
-	
-	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
+	@Override public InfoUniquifier<UserInfo> getUniquifier() {
+		return new UserUniquifier();
 	}
 }

@@ -25,6 +25,6 @@ final class VisiUserInsertUserap extends ActionVisitorTemplateAction<UserInfo, U
 	
 	
 	@Override protected List<UserInfo> toBaseClassHook(List<UserInfo> baseInfos, List<UserapInfo> results) {
-		return UserMerger.mergeWithUserap(results, baseInfos);
+		return UserMerger.mergeWithUserap(baseInfos, results);
 	}
 }

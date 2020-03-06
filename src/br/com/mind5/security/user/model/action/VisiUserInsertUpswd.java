@@ -1,7 +1,6 @@
 package br.com.mind5.security.user.model.action;
 
 import java.sql.Connection;
-import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionStd;
@@ -20,13 +19,7 @@ final class VisiUserInsertUpswd extends ActionVisitorTemplateAction<UserInfo, Up
 	
 	
 	@Override protected List<UpswdInfo> toActionClassHook(List<UserInfo> recordInfos) {
-		List<UpswdInfo> results = new ArrayList<>();
-		
-		for (UserInfo eachRecord : recordInfos) {
-			results.add(UpswdCopier.copyFromUser(eachRecord));
-		}		
-		
-		return results;
+		return UpswdCopier.copyFromUser(recordInfos);
 	}
 	
 	

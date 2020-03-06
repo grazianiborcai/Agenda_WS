@@ -24,8 +24,8 @@ final class VisiUserMergeAuthGrRole extends ActionVisitorTemplateMergeV2<UserInf
 	
 	
 	
-	@Override protected List<UserInfo> mergeHook(List<UserInfo> recordInfos, List<AuthGrRoleInfo> selectedInfos) {	
-		return UserMerger.mergeWithAuthGrRole(selectedInfos, recordInfos);
+	@Override protected List<UserInfo> mergeHook(List<UserInfo> baseInfos, List<AuthGrRoleInfo> selectedInfos) {	
+		return UserMerger.mergeWithAuthGrRole(baseInfos, selectedInfos);
 	}
 	
 	

@@ -1,7 +1,6 @@
 package br.com.mind5.security.user.model.action;
 
 import java.sql.Connection;
-import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.person.info.PersonCopier;
@@ -21,13 +20,7 @@ final class VisiUserUpdatePerson extends ActionVisitorTemplateAction<UserInfo, P
 	
 	
 	@Override protected List<PersonInfo> toActionClassHook(List<UserInfo> recordInfos) {
-		List<PersonInfo> results = new ArrayList<>();
-		
-		for (UserInfo eachRecord : recordInfos) {
-			results.add(PersonCopier.copyFromUser(eachRecord));
-		}		
-		
-		return results;
+		return PersonCopier.copyFromUser(recordInfos);
 	}
 	
 	
@@ -39,6 +32,6 @@ final class VisiUserUpdatePerson extends ActionVisitorTemplateAction<UserInfo, P
 	
 	
 	@Override protected List<UserInfo> toBaseClassHook(List<UserInfo> baseInfos, List<PersonInfo> results) {
-		return UserMerger.mergeWithPerson(results, baseInfos);
+		return UserMerger.mergeWithPerson(baseInfos, results);
 	}
 }

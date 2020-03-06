@@ -22,8 +22,8 @@ final class VisiUserMergeToDelete extends ActionVisitorTemplateMergeV2<UserInfo,
 	
 	
 	
-	@Override protected List<UserInfo> mergeHook(List<UserInfo> recordInfos, List<UserInfo> selectedInfos) {	
-		return UserMerger.mergeToDelete(selectedInfos, recordInfos);
+	@Override protected List<UserInfo> mergeHook(List<UserInfo> baseInfos, List<UserInfo> selectedInfos) {	
+		return UserMerger.mergeToDelete(baseInfos, selectedInfos);
 	}
 	
 	

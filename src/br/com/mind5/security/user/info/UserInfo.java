@@ -21,7 +21,7 @@ public final class UserInfo extends InfoRecord implements Cloneable {
 	public char codUserCategory;
 	public String codAuthGroup;
 	public long codPerson;
-	public long codPersonSnapshot;
+	public long codPersonSnapshot;			//TODO: nao deveria estar no snapshot ?
 	public PersonInfo personData;
 	public List<AddressInfo> addresses;
 	public List<PhoneInfo> phones;

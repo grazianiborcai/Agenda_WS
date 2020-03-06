@@ -22,8 +22,8 @@ final class VisiUserMergeToSelect extends ActionVisitorTemplateMergeV2<UserInfo,
 	
 	
 	
-	@Override protected List<UserInfo> mergeHook(List<UserInfo> recordInfos, List<UserInfo> selectedInfos) {	
-		return UserMerger.mergeToSelect(selectedInfos, recordInfos);
+	@Override protected List<UserInfo> mergeHook(List<UserInfo> baseInfos, List<UserInfo> selectedInfos) {	
+		return UserMerger.mergeToSelect(baseInfos, selectedInfos);
 	}
 	
 	

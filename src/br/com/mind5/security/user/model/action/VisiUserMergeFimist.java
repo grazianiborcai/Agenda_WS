@@ -25,14 +25,14 @@ final class VisiUserMergeFimist extends ActionVisitorTemplateMergeV2<UserInfo, F
 	
 	
 	
-	@Override protected List<FimistInfo> toActionClassHook(List<UserInfo> recordInfos) {
-		return FimistCopier.copyFromUser(recordInfos);	
+	@Override protected List<FimistInfo> toActionClassHook(List<UserInfo> baseInfos) {
+		return FimistCopier.copyFromUser(baseInfos);	
 	}
 	
 	
 	
-	@Override protected List<UserInfo> mergeHook(List<UserInfo> recordInfos, List<FimistInfo> selectedInfos) {	
-		return UserMerger.mergeWithFimist(selectedInfos, recordInfos);
+	@Override protected List<UserInfo> mergeHook(List<UserInfo> baseInfos, List<FimistInfo> selectedInfos) {	
+		return UserMerger.mergeWithFimist(baseInfos, selectedInfos);
 	}
 	
 	

@@ -24,8 +24,8 @@ final class VisiUserMergePhone extends ActionVisitorTemplateMergeV2<UserInfo, Ph
 	
 	
 	
-	@Override protected List<UserInfo> mergeHook(List<UserInfo> recordInfos, List<PhoneInfo> selectedInfos) {	
-		return UserMerger.mergeWithPhone(selectedInfos, recordInfos);
+	@Override protected List<UserInfo> mergeHook(List<UserInfo> baseInfos, List<PhoneInfo> selectedInfos) {	
+		return UserMerger.mergeWithPhone(baseInfos, selectedInfos);
 	}
 	
 	

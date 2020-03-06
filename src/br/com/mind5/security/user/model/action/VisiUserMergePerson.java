@@ -24,8 +24,8 @@ final class VisiUserMergePerson extends ActionVisitorTemplateMergeV2<UserInfo, P
 	
 	
 	
-	@Override protected List<UserInfo> mergeHook(List<UserInfo> recordInfos, List<PersonInfo> selectedInfos) {	
-		return UserMerger.mergeWithPerson(selectedInfos, recordInfos);
+	@Override protected List<UserInfo> mergeHook(List<UserInfo> baseInfos, List<PersonInfo> selectedInfos) {	
+		return UserMerger.mergeWithPerson(baseInfos, selectedInfos);
 	}
 	
 	

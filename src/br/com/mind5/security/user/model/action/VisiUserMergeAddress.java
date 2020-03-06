@@ -25,14 +25,14 @@ final class VisiUserMergeAddress extends ActionVisitorTemplateMergeV2<UserInfo, 
 	
 	
 	
-	@Override protected List<AddressInfo> toActionClassHook(List<UserInfo> recordInfos) {
-		return AddressCopier.copyFromUserKey(recordInfos);	
+	@Override protected List<AddressInfo> toActionClassHook(List<UserInfo> baseInfos) {
+		return AddressCopier.copyFromUserKey(baseInfos);	
 	}
 	
 	
 	
-	@Override protected List<UserInfo> mergeHook(List<UserInfo> recordInfos, List<AddressInfo> selectedInfos) {	
-		return UserMerger.mergeWithAddress(selectedInfos, recordInfos);
+	@Override protected List<UserInfo> mergeHook(List<UserInfo> baseInfos, List<AddressInfo> selectedInfos) {	
+		return UserMerger.mergeWithAddress(baseInfos, selectedInfos);
 	}
 	
 	

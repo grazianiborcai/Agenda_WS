@@ -19,7 +19,7 @@ final class VisiUserDeletePerson extends ActionVisitorTemplateAction<UserInfo, P
 	
 	
 	@Override protected List<PersonInfo> toActionClassHook(List<UserInfo> recordInfos) {
-		return PersonCopier.copyFromUser(recordInfos);
+		return PersonCopier.copyFromUserKey(recordInfos);
 	}
 	
 	
