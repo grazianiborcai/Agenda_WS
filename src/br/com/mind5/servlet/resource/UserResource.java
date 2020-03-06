@@ -18,7 +18,7 @@ import br.com.mind5.security.user.info.UserInfo;
 import br.com.mind5.security.user.model.UserModelDeleteAuth;
 import br.com.mind5.security.user.model.UserModelInsert;
 import br.com.mind5.security.user.model.UserModelSelectAuth;
-import br.com.mind5.security.user.model.UserModelUpdate;
+import br.com.mind5.security.user.model.UserModelUpdateAuth;
 
 @Path("/User")
 public class UserResource {
@@ -47,7 +47,7 @@ public class UserResource {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response updateUser(@Context HttpServletRequest request, String incomingData) {
 		
-		Model model = new UserModelUpdate(incomingData, request);
+		Model model = new UserModelUpdateAuth(incomingData, request);
 		model.executeRequest();
 		return model.getResponse();
 	}

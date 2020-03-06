@@ -19,9 +19,9 @@ import br.com.mind5.security.user.model.checker.UserCheckOwner;
 import br.com.mind5.security.user.model.checker.UserCheckUpdate;
 import br.com.mind5.security.user.model.checker.UserCheckUsername;
 
-public final class RootUserUpdate extends DeciTreeWriteTemplate<UserInfo> {
+public final class RootUserUpdateAuth extends DeciTreeWriteTemplate<UserInfo> {
 	
-	public RootUserUpdate(DeciTreeOption<UserInfo> option) {
+	public RootUserUpdateAuth(DeciTreeOption<UserInfo> option) {
 		super(option);
 	}
 	
