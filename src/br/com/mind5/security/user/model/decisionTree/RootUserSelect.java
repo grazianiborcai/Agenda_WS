@@ -17,10 +17,9 @@ import br.com.mind5.security.user.model.action.LazyUserMergeCuspar;
 import br.com.mind5.security.user.model.action.LazyUserMergeFimist;
 import br.com.mind5.security.user.model.action.LazyUserMergePerson;
 import br.com.mind5.security.user.model.action.LazyUserMergePhone;
-import br.com.mind5.security.user.model.action.LazyUserMergeToSelect;
+import br.com.mind5.security.user.model.action.StdUserMergeToSelect;
 import br.com.mind5.security.user.model.checker.UserCheckOwner;
 import br.com.mind5.security.user.model.checker.UserCheckRead;
-import br.com.mind5.security.user.model.checker.UserCheckUsername;
 
 public final class RootUserSelect extends DeciTreeReadTemplate<UserInfo> {
 	
@@ -49,13 +48,6 @@ public final class RootUserSelect extends DeciTreeReadTemplate<UserInfo> {
 		checker = new UserCheckOwner(checkerOption);
 		queue.add(checker);
 		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
-		checker = new UserCheckUsername(checkerOption);
-		queue.add(checker);
-		
 		return new ModelCheckerQueue<>(queue);
 	}
 	
@@ -64,8 +56,7 @@ public final class RootUserSelect extends DeciTreeReadTemplate<UserInfo> {
 	@Override protected List<ActionStd<UserInfo>> buildActionsOnPassedHook(DeciTreeOption<UserInfo> option) {
 		List<ActionStd<UserInfo>> actions = new ArrayList<>();
 		
-		ActionStd<UserInfo> nodeUsername = new NodeUserUsername(option).toAction();
-		ActionLazy<UserInfo> select = new LazyUserMergeToSelect(option.conn, option.schemaName);
+		ActionStd<UserInfo> mergeToSelect = new StdUserMergeToSelect(option);
 		ActionLazy<UserInfo> mergePerson = new LazyUserMergePerson(option.conn, option.schemaName);
 		ActionLazy<UserInfo> mergeAddress = new LazyUserMergeAddress(option.conn, option.schemaName);
 		ActionLazy<UserInfo> mergePhone = new LazyUserMergePhone(option.conn, option.schemaName);
@@ -73,15 +64,14 @@ public final class RootUserSelect extends DeciTreeReadTemplate<UserInfo> {
 		ActionLazy<UserInfo> mergeCuspar = new LazyUserMergeCuspar(option.conn, option.schemaName);
 		ActionLazy<UserInfo> mergeFimist = new LazyUserMergeFimist(option.conn, option.schemaName);
 		
-		nodeUsername.addPostAction(select);
-		select.addPostAction(mergePerson);
+		mergeToSelect.addPostAction(mergePerson);
 		mergePerson.addPostAction(mergeAddress);
 		mergeAddress.addPostAction(mergePhone);
 		mergePhone.addPostAction(mergeAuthGrRole);
 		mergeAuthGrRole.addPostAction(mergeCuspar);
 		mergeCuspar.addPostAction(mergeFimist);
 		
-		actions.add(nodeUsername);
+		actions.add(mergeToSelect);
 		return actions;
 	}
 }

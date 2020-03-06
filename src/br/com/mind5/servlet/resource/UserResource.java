@@ -17,7 +17,7 @@ import br.com.mind5.model.Model;
 import br.com.mind5.security.user.info.UserInfo;
 import br.com.mind5.security.user.model.UserModelDeleteAuth;
 import br.com.mind5.security.user.model.UserModelInsert;
-import br.com.mind5.security.user.model.UserModelSelect;
+import br.com.mind5.security.user.model.UserModelSelectAuth;
 import br.com.mind5.security.user.model.UserModelUpdate;
 
 @Path("/User")
@@ -84,7 +84,7 @@ public class UserResource {
 		recordInfo.username = username;
 		recordInfo.codLanguage = codLanguage;
 		
-		Model model = new UserModelSelect(recordInfo);
+		Model model = new UserModelSelectAuth(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	}

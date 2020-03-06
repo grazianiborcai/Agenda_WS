@@ -7,9 +7,9 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 import br.com.mind5.security.user.info.UserInfo;
 
-public final class UserCheckRead extends ModelCheckerTemplateSimpleV2<UserInfo> {
+public final class UserCheckReadAuth extends ModelCheckerTemplateSimpleV2<UserInfo> {
 
-	public UserCheckRead(ModelCheckerOption option) {
+	public UserCheckReadAuth(ModelCheckerOption option) {
 		super(option);
 	}
 	
@@ -17,7 +17,7 @@ public final class UserCheckRead extends ModelCheckerTemplateSimpleV2<UserInfo> 
 	
 	@Override protected boolean checkHook(UserInfo recordInfo, Connection conn, String schemaName) {	
 		if (recordInfo.codOwner 	<= 0 	||
-			recordInfo.codUser		<= 0 	||
+			recordInfo.username		== null ||
 			recordInfo.codLanguage 	== null		)		
 			
 			return super.FAILED;	
