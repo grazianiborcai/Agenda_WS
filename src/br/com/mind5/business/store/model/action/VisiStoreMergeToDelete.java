@@ -5,9 +5,8 @@ import java.util.List;
 
 import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.business.store.info.StoreMerger;
-import br.com.mind5.business.store.model.decisionTree.RootStoreSelect;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
-import br.com.mind5.model.decisionTree.DeciTree;
 
 final class VisiStoreMergeToDelete extends ActionVisitorTemplateMergeV2<StoreInfo, StoreInfo> {
 	
@@ -17,8 +16,8 @@ final class VisiStoreMergeToDelete extends ActionVisitorTemplateMergeV2<StoreInf
 	
 	
 	
-	@Override protected Class<? extends DeciTree<StoreInfo>> getTreeClassHook() {
-		return RootStoreSelect.class;
+	@Override protected Class<? extends ActionStd<StoreInfo>> getActionClassHook() {
+		return StdStoreSelect.class;
 	}
 	
 	
