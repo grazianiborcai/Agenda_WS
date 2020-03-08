@@ -24,6 +24,7 @@ final class UserVisiMergeToDelete implements InfoMergerVisitorV3<UserInfo, UserI
 	@Override public List<UserInfo> merge(UserInfo baseInfo, UserInfo selectedInfo) {
 		List<UserInfo> results = new ArrayList<>();
 		
+		selectedInfo.lastChangedBy = baseInfo.lastChangedBy;
 		selectedInfo.codLanguage = baseInfo.codLanguage;
 		
 		results.add(selectedInfo);
