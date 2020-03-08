@@ -22,8 +22,8 @@ final class VisiPeresmoipMergeToSelect extends ActionVisitorTemplateMergeV2<Pere
 	
 	
 	
-	@Override protected List<PeresmoipInfo> mergeHook(List<PeresmoipInfo> recordInfos, List<PeresmoipInfo> selectedInfos) {	
-		return PeresmoipMerger.mergeToSelect(selectedInfos, recordInfos);
+	@Override protected List<PeresmoipInfo> mergeHook(List<PeresmoipInfo> baseInfos, List<PeresmoipInfo> selectedInfos) {	
+		return PeresmoipMerger.mergeToSelect(baseInfos, selectedInfos);
 	}
 	
 	

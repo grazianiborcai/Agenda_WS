@@ -11,7 +11,9 @@ public final class PeresmoipSetterPaypar implements InfoSetter<PeresmoipInfo> {
 	
 	public PeresmoipInfo setAttr(PeresmoipInfo recordInfo) {
 		checkArgument(recordInfo);
-		return setExpected(recordInfo);
+		
+		recordInfo.codPayPartner = Paypar.MOIP.getCodPayPartner();		
+		return recordInfo;
 	}
 	
 	
@@ -21,13 +23,6 @@ public final class PeresmoipSetterPaypar implements InfoSetter<PeresmoipInfo> {
 			logException(new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT));
 			throw new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT);
 		}
-	}
-	
-	
-	
-	private PeresmoipInfo setExpected(PeresmoipInfo recordInfo) {
-		recordInfo.codPayPartner = Paypar.MOIP.getCodPayPartner();
-		return recordInfo;
 	}
 	
 	

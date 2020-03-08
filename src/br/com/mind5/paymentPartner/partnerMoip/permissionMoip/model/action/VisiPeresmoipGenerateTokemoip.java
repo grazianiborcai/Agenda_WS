@@ -25,6 +25,6 @@ final class VisiPeresmoipGenerateTokemoip extends ActionVisitorTemplateAction<Pe
 	
 	
 	@Override protected List<PeresmoipInfo> toBaseClassHook(List<PeresmoipInfo> baseInfos, List<TokemoipInfo> results) {
-		return PeresmoipMerger.mergeWithTokemoip(results, baseInfos);
+		return PeresmoipMerger.mergeWithTokemoip(baseInfos, results);
 	}
 }

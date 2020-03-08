@@ -1,56 +1,39 @@
 package br.com.mind5.paymentPartner.partnerMoip.permissionMoip.info;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.ArrayList;
+import java.util.List;
 
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-final class PeresmoipVisiMergeToSelect implements InfoMergerVisitor_<PeresmoipInfo, PeresmoipInfo> {
-
-	@Override public PeresmoipInfo writeRecord(PeresmoipInfo sourceOne, PeresmoipInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);		
-		return merge(sourceOne, sourceTwo);
+final class PeresmoipVisiMergeToSelect implements InfoMergerVisitorV3<PeresmoipInfo, PeresmoipInfo> {
+	
+	@Override public List<PeresmoipInfo> beforeMerge(List<PeresmoipInfo> baseInfos) {
+		return baseInfos;
 	}
 	
 	
 	
-	private void checkArgument(PeresmoipInfo sourceOne, PeresmoipInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
+	@Override public boolean shouldMerge(PeresmoipInfo baseInfo, PeresmoipInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner);
 	}
 	
 	
 	
-	private PeresmoipInfo merge(PeresmoipInfo sourceOne, PeresmoipInfo sourceTwo) {
-		PeresmoipInfo result = makeClone(sourceOne);
-		result.code = sourceTwo.code;
-		result.codLanguage = sourceTwo.codLanguage;
-		return result;
+	@Override public List<PeresmoipInfo> merge(PeresmoipInfo baseInfo, PeresmoipInfo selectedInfo) {
+		List<PeresmoipInfo> results = new ArrayList<>();
+		
+		selectedInfo.code = baseInfo.code;
+		selectedInfo.username = baseInfo.username;
+		selectedInfo.codLanguage = baseInfo.codLanguage;		
+		
+		results.add(selectedInfo);
+		return results;
 	}
 	
 	
 	
-	private PeresmoipInfo makeClone(PeresmoipInfo recordInfo) {
-		try {
-			return (PeresmoipInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(PeresmoipInfo sourceOne, PeresmoipInfo sourceTwo) {		
-		return (sourceOne.codOwner == sourceTwo.codOwner);
-	}
-	
-	
-	
-	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
+	@Override public InfoUniquifier<PeresmoipInfo> getUniquifier() {
+		return null;
 	}
 }
