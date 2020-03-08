@@ -25,14 +25,14 @@ final class VisiUserapMergePhonap extends ActionVisitorTemplateMergeV2<UserapInf
 	
 	
 	
-	@Override protected List<PhonapInfo> toActionClassHook(List<UserapInfo> recordInfos) {
-		return PhonapCopier.copyFromUserapKey(recordInfos);
+	@Override protected List<PhonapInfo> toActionClassHook(List<UserapInfo> baseInfos) {
+		return PhonapCopier.copyFromUserapKey(baseInfos);
 	}	
 	
 	
 	
-	@Override protected List<UserapInfo> mergeHook(List<UserapInfo> recordInfos, List<PhonapInfo> selectedInfos) {	
-		return UserapMerger.mergeWithPhonap(selectedInfos, recordInfos);
+	@Override protected List<UserapInfo> mergeHook(List<UserapInfo> baseInfos, List<PhonapInfo> selectedInfos) {	
+		return UserapMerger.mergeWithPhonap(baseInfos, selectedInfos);
 	}
 	
 	

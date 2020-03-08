@@ -25,14 +25,14 @@ final class VisiUserapMergePersonap extends ActionVisitorTemplateMergeV2<UserapI
 	
 	
 	
-	@Override protected List<PersonapInfo> toActionClassHook(List<UserapInfo> recordInfos) {
-		return PersonapCopier.copyFromUserapKey(recordInfos);
+	@Override protected List<PersonapInfo> toActionClassHook(List<UserapInfo> baseInfos) {
+		return PersonapCopier.copyFromUserapKey(baseInfos);
 	}	
 	
 	
 	
-	@Override protected List<UserapInfo> mergeHook(List<UserapInfo> recordInfos, List<PersonapInfo> selectedInfos) {	
-		return UserapMerger.mergeWithPersonap(selectedInfos, recordInfos);
+	@Override protected List<UserapInfo> mergeHook(List<UserapInfo> baseInfos, List<PersonapInfo> selectedInfos) {	
+		return UserapMerger.mergeWithPersonap(baseInfos, selectedInfos);
 	}
 	
 	

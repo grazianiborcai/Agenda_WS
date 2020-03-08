@@ -25,14 +25,14 @@ final class VisiUserapMergeAddresnap extends ActionVisitorTemplateMergeV2<Userap
 	
 	
 	
-	@Override protected List<AddresnapInfo> toActionClassHook(List<UserapInfo> recordInfos) {
-		return AddresnapCopier.copyFromUserapKey(recordInfos);
+	@Override protected List<AddresnapInfo> toActionClassHook(List<UserapInfo> baseInfos) {
+		return AddresnapCopier.copyFromUserapKey(baseInfos);
 	}	
 	
 	
 	
-	@Override protected List<UserapInfo> mergeHook(List<UserapInfo> recordInfos, List<AddresnapInfo> selectedInfos) {	
-		return UserapMerger.mergeWithAddresnap(selectedInfos, recordInfos);
+	@Override protected List<UserapInfo> mergeHook(List<UserapInfo> baseInfos, List<AddresnapInfo> selectedInfos) {	
+		return UserapMerger.mergeWithAddresnap(baseInfos, selectedInfos);
 	}
 	
 	

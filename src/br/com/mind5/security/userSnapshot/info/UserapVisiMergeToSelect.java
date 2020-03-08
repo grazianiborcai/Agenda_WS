@@ -1,56 +1,38 @@
 package br.com.mind5.security.userSnapshot.info;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.ArrayList;
+import java.util.List;
 
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-final class UserapVisiMergeToSelect implements InfoMergerVisitor_<UserapInfo, UserapInfo> {
+final class UserapVisiMergeToSelect implements InfoMergerVisitorV3<UserapInfo, UserapInfo> {
+	
+	@Override public List<UserapInfo> beforeMerge(List<UserapInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(UserapInfo baseInfo, UserapInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner);
+	}
+	
+	
 
-	@Override public UserapInfo writeRecord(UserapInfo sourceOne, UserapInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);		
-		return merge(sourceOne, sourceTwo);
+	@Override public List<UserapInfo> merge(UserapInfo baseInfo, UserapInfo selectedInfo) {
+		List<UserapInfo> results = new ArrayList<>();
+		
+		selectedInfo.codLanguage = baseInfo.codLanguage;
+		selectedInfo.username = baseInfo.username;
+		
+		results.add(selectedInfo);
+		return results;
 	}
 	
 	
 	
-	private void checkArgument(UserapInfo sourceOne, UserapInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private UserapInfo merge(UserapInfo sourceOne, UserapInfo sourceTwo) {
-		UserapInfo result = makeClone(sourceOne);		
-		result.codLanguage = sourceTwo.codLanguage;
-		result.username = sourceTwo.username;
-		return result;
-	}
-	
-	
-	
-	private UserapInfo makeClone(UserapInfo recordInfo) {
-		try {
-			return (UserapInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(UserapInfo sourceOne, UserapInfo sourceTwo) {		
-		return (sourceOne.codOwner == sourceTwo.codOwner);
-	}
-	
-	
-	
-	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
+	@Override public InfoUniquifier<UserapInfo> getUniquifier() {
+		return new UserapUniquifier();
 	}
 }

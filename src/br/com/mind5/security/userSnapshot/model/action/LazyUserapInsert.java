@@ -9,9 +9,9 @@ import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.userSnapshot.info.UserapInfo;
 
-public final class LazyUserapSelect_ extends ActionLazyTemplate<UserapInfo, UserapInfo> {
+public final class LazyUserapInsert extends ActionLazyTemplate<UserapInfo, UserapInfo> {
 	
-	public LazyUserapSelect_(Connection conn, String schemaName) {
+	public LazyUserapInsert(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyUserapSelect_ extends ActionLazyTemplate<UserapInfo, User
 	
 	
 	@Override protected ActionStd<UserapInfo> getInstanceOfActionHook(DeciTreeOption<UserapInfo> option) {
-		return new StdUserapSelect(option);
+		return new StdUserapInsert(option);
 	}
 	
 	
