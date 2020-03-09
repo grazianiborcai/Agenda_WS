@@ -3,20 +3,19 @@ package br.com.mind5.security.user.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
 import br.com.mind5.security.user.info.UserInfo;
-import br.com.mind5.security.user.model.action.LazyUserEnforceCodUser;
-import br.com.mind5.security.user.model.action.StdUserMergeUsername;
-import br.com.mind5.security.user.model.checker.UserCheckDummy;
+import br.com.mind5.security.user.model.action.StdUserSuccess;
+import br.com.mind5.security.user.model.checker.UserCheckUsername;
 
-public final class NodeUserUsername extends DeciTreeReadTemplate<UserInfo> {
+public final class NodeUserUsernameL3 extends DeciTreeWriteTemplate<UserInfo> {
 	
-	public NodeUserUsername(DeciTreeOption<UserInfo> option) {
+	public NodeUserUsernameL3(DeciTreeOption<UserInfo> option) {
 		super(option);
 	}
 	
@@ -24,10 +23,15 @@ public final class NodeUserUsername extends DeciTreeReadTemplate<UserInfo> {
 	
 	@Override protected ModelChecker<UserInfo> buildDecisionCheckerHook(DeciTreeOption<UserInfo> option) {
 		List<ModelChecker<UserInfo>> queue = new ArrayList<>();		
-		ModelChecker<UserInfo> checker;		
+		ModelChecker<UserInfo> checker;
+		ModelCheckerOption checkerOption;	
 		
-		checker = new UserCheckDummy();
-		queue.add(checker);
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.NOT_FOUND;		
+		checker = new UserCheckUsername(checkerOption);
+		queue.add(checker);	
 		
 		return new ModelCheckerQueue<>(queue);
 	}
@@ -36,13 +40,10 @@ public final class NodeUserUsername extends DeciTreeReadTemplate<UserInfo> {
 	
 	@Override protected List<ActionStd<UserInfo>> buildActionsOnPassedHook(DeciTreeOption<UserInfo> option) {
 		List<ActionStd<UserInfo>> actions = new ArrayList<>();
+
+		ActionStd<UserInfo> success = new StdUserSuccess(option);
 		
-		ActionStd<UserInfo> mergeUsername = new StdUserMergeUsername(option);
-		ActionLazy<UserInfo> enforceCodUser = new LazyUserEnforceCodUser(option.conn, option.schemaName);
-		
-		mergeUsername.addPostAction(enforceCodUser);
-		
-		actions.add(mergeUsername);
+		actions.add(success);	
 		return actions;
 	}
 }

@@ -9,16 +9,15 @@ import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
 import br.com.mind5.security.user.info.UserInfo;
-import br.com.mind5.security.user.model.action.LazyUserUpsertPhone;
-import br.com.mind5.security.user.model.action.StdUserEnforcePhoneKey;
-import br.com.mind5.security.user.model.action.StdUserSuccess;
-import br.com.mind5.security.user.model.checker.UserCheckHasPhone;
+import br.com.mind5.security.user.model.action.LazyUserEnforceCodUser;
+import br.com.mind5.security.user.model.action.StdUserMergeUsername;
+import br.com.mind5.security.user.model.checker.UserCheckUserarch;
 
-public final class NodeUserUpsertPhone extends DeciTreeWriteTemplate<UserInfo> {
+public final class NodeUserAuth extends DeciTreeReadTemplate<UserInfo> {
 	
-	public NodeUserUpsertPhone(DeciTreeOption<UserInfo> option) {
+	public NodeUserAuth(DeciTreeOption<UserInfo> option) {
 		super(option);
 	}
 	
@@ -32,9 +31,9 @@ public final class NodeUserUpsertPhone extends DeciTreeWriteTemplate<UserInfo> {
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
-		checker = new UserCheckHasPhone(checkerOption);
-		queue.add(checker);	
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
+		checker = new UserCheckUserarch(checkerOption);
+		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);
 	}
@@ -44,21 +43,12 @@ public final class NodeUserUpsertPhone extends DeciTreeWriteTemplate<UserInfo> {
 	@Override protected List<ActionStd<UserInfo>> buildActionsOnPassedHook(DeciTreeOption<UserInfo> option) {
 		List<ActionStd<UserInfo>> actions = new ArrayList<>();
 		
-		ActionStd<UserInfo> enforcePhoneKey = new StdUserEnforcePhoneKey(option);
-		ActionLazy<UserInfo> upsertPhone = new LazyUserUpsertPhone(option.conn, option.schemaName);	
+		ActionStd<UserInfo> mergeUsername = new StdUserMergeUsername(option);
+		ActionLazy<UserInfo> enforceCodUser = new LazyUserEnforceCodUser(option.conn, option.schemaName);
 		
-		enforcePhoneKey.addPostAction(upsertPhone);
+		mergeUsername.addPostAction(enforceCodUser);
 		
-		actions.add(enforcePhoneKey);		
-		return actions;
-	}
-	
-	
-	
-	@Override protected List<ActionStd<UserInfo>> buildActionsOnFailedHook(DeciTreeOption<UserInfo> option) {
-		List<ActionStd<UserInfo>> actions = new ArrayList<>();
-		
-		actions.add(new StdUserSuccess(option));		
+		actions.add(mergeUsername);
 		return actions;
 	}
 }

@@ -18,8 +18,8 @@ public final class UserCheckInsert extends ModelCheckerTemplateSimpleV2<UserInfo
 	
 	@Override protected boolean checkHook(UserInfo recordInfo, Connection conn, String schemaName) {	
 		if ( recordInfo.codOwner    	<= 0 						||
+			 recordInfo.codPerson    	<= 0 						||
 			 recordInfo.codLanguage 	== null						||
-			 recordInfo.personData 		== null						||
 			 recordInfo.codAuthGroup 	== null						||
 			 recordInfo.codUserCategory	== DefaultValue.character()		)
 			

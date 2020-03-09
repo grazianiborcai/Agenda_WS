@@ -7,7 +7,7 @@ import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.user.info.UserInfo;
 
-final class StdUserMergePerson implements ActionStd<UserInfo> {
+public final class StdUserMergePerson implements ActionStd<UserInfo> {
 	private ActionStd<UserInfo> actionHelper;	
 	
 	

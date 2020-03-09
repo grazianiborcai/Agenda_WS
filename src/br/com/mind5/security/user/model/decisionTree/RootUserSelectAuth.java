@@ -58,12 +58,12 @@ public final class RootUserSelectAuth extends DeciTreeReadTemplate<UserInfo> {
 	@Override protected List<ActionStd<UserInfo>> buildActionsOnPassedHook(DeciTreeOption<UserInfo> option) {
 		List<ActionStd<UserInfo>> actions = new ArrayList<>();
 		
-		ActionStd<UserInfo> nodeUsername = new NodeUserUsername(option).toAction();
+		ActionStd<UserInfo> nodeAuth = new NodeUserAuth(option).toAction();
 		ActionLazy<UserInfo> select = new LazyUserRootSelect(option.conn, option.schemaName);
 		
-		nodeUsername.addPostAction(select);
+		nodeAuth.addPostAction(select);
 		
-		actions.add(nodeUsername);
+		actions.add(nodeAuth);
 		return actions;
 	}
 }

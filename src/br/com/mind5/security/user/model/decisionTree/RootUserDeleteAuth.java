@@ -58,12 +58,12 @@ public final class RootUserDeleteAuth extends DeciTreeWriteTemplate<UserInfo> {
 	@Override protected List<ActionStd<UserInfo>> buildActionsOnPassedHook(DeciTreeOption<UserInfo> option) {
 		List<ActionStd<UserInfo>> actions = new ArrayList<>();
 		
-		ActionStd<UserInfo> nodeUsername = new NodeUserUsername(option).toAction();
+		ActionStd<UserInfo> nodeAuth = new NodeUserAuth(option).toAction();
 		ActionLazy<UserInfo> deleteUser = new LazyUserRootDelete(option.conn, option.schemaName);
 		
-		nodeUsername.addPostAction(deleteUser);
+		nodeAuth.addPostAction(deleteUser);
 
-		actions.add(nodeUsername);
+		actions.add(nodeAuth);
 		
 		return actions;
 	}

@@ -28,7 +28,6 @@ final class UserVisiMergeToUpdate implements InfoMergerVisitorV3<UserInfo, UserI
 		baseInfo.codSnapshot = selectedInfo.codSnapshot;
 		baseInfo.codUserCategory = selectedInfo.codUserCategory;
 		baseInfo.codAuthGroup = selectedInfo.codAuthGroup;
-		baseInfo.codLanguage = selectedInfo.codLanguage;
 		
 		results.add(baseInfo);
 		return results;
