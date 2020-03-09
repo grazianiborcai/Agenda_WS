@@ -26,10 +26,6 @@ public final class UserCheckInsert extends ModelCheckerTemplateSimpleV2<UserInfo
 			return super.FAILED;
 		
 		
-		if ( recordInfo.personData.email == null )
-			return super.FAILED;
-		
-		
 		return super.SUCCESS;
 	}
 	
