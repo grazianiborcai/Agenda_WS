@@ -356,6 +356,7 @@ public final class SystemCode {
 	public static final int USER_ADDRESS_IS_FILLED						= 1814;
 	public static final int USER_PHONE_IS_NULL							= 1815;
 	public static final int USER_PHONE_IS_FILLED						= 1816;
+	public static final int USER_EMAIL_IS_NULL							= 1817;
 	
 	// PersonUser
 	public static final int PERSON_USER_WITHOUT_REFERENCE				= 1900;
@@ -972,6 +973,8 @@ public final class SystemCode {
 	
 	// User Search
 	public static final int USER_SEARCH_MANDATORY_FIELD_EMPTY			= 9100;
+	public static final int USER_SEARCH_ALREADY_EXIST 					= 9101;
+	public static final int USER_SEARCH_NOT_FOUND 						= 9102;
 	
 	// User Authentication
 	public static final int USER_AUTH_MANDATORY_FIELD_EMPTY				= 9150;	
