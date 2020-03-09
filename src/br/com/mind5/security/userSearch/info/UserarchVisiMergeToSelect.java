@@ -1,55 +1,37 @@
 package br.com.mind5.security.userSearch.info;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.ArrayList;
+import java.util.List;
 
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-final class UserarchVisiMergeToSelect implements InfoMergerVisitor_<UserarchInfo, UserarchInfo> {
+final class UserarchVisiMergeToSelect implements InfoMergerVisitorV3<UserarchInfo, UserarchInfo> {
+	
+	@Override public List<UserarchInfo> beforeMerge(List<UserarchInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(UserarchInfo baseInfo, UserarchInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner);
+	}	
+	
+	
 
-	@Override public UserarchInfo writeRecord(UserarchInfo sourceOne, UserarchInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);		
-		return merge(sourceOne, sourceTwo);
+	@Override public List<UserarchInfo> merge(UserarchInfo baseInfo, UserarchInfo selectedInfo) {
+		List<UserarchInfo> results = new ArrayList<>();
+		
+		selectedInfo.codLanguage = baseInfo.codLanguage;
+		
+		results.add(selectedInfo);
+		return results;
 	}
 	
 	
 	
-	private void checkArgument(UserarchInfo sourceOne, UserarchInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private UserarchInfo merge(UserarchInfo sourceOne, UserarchInfo sourceTwo) {
-		UserarchInfo result = makeClone(sourceOne);		
-		result.codLanguage = sourceTwo.codLanguage;
-		return result;
-	}
-	
-	
-	
-	private UserarchInfo makeClone(UserarchInfo recordInfo) {
-		try {
-			return (UserarchInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(UserarchInfo sourceOne, UserarchInfo sourceTwo) {		
-		return (sourceOne.codOwner == sourceTwo.codOwner);
-	}
-	
-	
-	
-	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
+	@Override public InfoUniquifier<UserarchInfo> getUniquifier() {
+		return null;
 	}
 }
