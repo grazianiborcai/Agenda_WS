@@ -26,7 +26,6 @@ final class UserVisiMergePerson implements InfoMergerVisitorV3<UserInfo, PersonI
 		
 		baseInfo.personData = selectedInfo;
 		baseInfo.codPerson = selectedInfo.codPerson;
-		baseInfo.codPersonSnapshot = selectedInfo.codSnapshot;
 		
 		results.add(baseInfo);
 		return results;

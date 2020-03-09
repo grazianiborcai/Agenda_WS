@@ -21,7 +21,6 @@ public final class UserInfo extends InfoRecord implements Cloneable {
 	public char codUserCategory;
 	public String codAuthGroup;
 	public long codPerson;
-	public long codPersonSnapshot;			//TODO: nao deveria estar no snapshot ?
 	public PersonInfo personData;
 	public List<AddressInfo> addresses;
 	public List<PhoneInfo> phones;
@@ -41,7 +40,6 @@ public final class UserInfo extends InfoRecord implements Cloneable {
 		codSnapshot = DefaultValue.number();
 		codUserCategory = DefaultValue.character();
 		codPerson = DefaultValue.number();
-		codPersonSnapshot = DefaultValue.number();
 		personData = DefaultValue.object();
 		authGrRoles = DefaultValue.list();
 		cuspars = DefaultValue.list();

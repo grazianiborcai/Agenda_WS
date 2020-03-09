@@ -50,7 +50,6 @@ public final class UserInsertSingle extends DaoStmtTemplate<UserInfo> {
 				stmt.setString(i++, recordInfo.username);	
 				stmt.setString(i++, recordInfo.codAuthGroup);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.lastChangedBy);
-				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPersonSnapshot);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codSnapshot);			
 				
 				return stmt;
