@@ -6,12 +6,12 @@ import org.apache.logging.log4j.Logger;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.InfoSetter;
 
-public final class FimgSetterUri implements InfoSetter<FimgInfo> {
+public final class FimgSetterUriExternal implements InfoSetter<FimgInfo> {
 	
 	public FimgInfo setAttr(FimgInfo recordInfo) {
 		checkArgument(recordInfo);
 		
-		recordInfo.fileImgUri = recordInfo.fileImgPath + recordInfo.fileImgName + "." + recordInfo.fileImgExtension;
+		recordInfo.fileImgUriExternal = recordInfo.fileImgPathExternal + recordInfo.fileImgName + "." + recordInfo.fileImgExtension;
 		return recordInfo;
 	}
 	

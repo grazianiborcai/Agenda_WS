@@ -7,6 +7,7 @@ import br.com.mind5.file.fileImage.info.FimgInfo;
 import br.com.mind5.file.fileImage.model.action.LazyFimgEnforceFilename;
 import br.com.mind5.file.fileImage.model.action.LazyFimgEnforceLChanged;
 import br.com.mind5.file.fileImage.model.action.LazyFimgEnforceUri;
+import br.com.mind5.file.fileImage.model.action.LazyFimgEnforceUriExternal;
 import br.com.mind5.file.fileImage.model.action.LazyFimgMergeFath;
 import br.com.mind5.file.fileImage.model.action.LazyFimgMergeUsername;
 import br.com.mind5.file.fileImage.model.action.LazyFimgRootSelect;
@@ -80,6 +81,7 @@ public final class RootFimgReplace extends DeciTreeWriteTemplate<FimgInfo> {
 		ActionLazy<FimgInfo> enforceFilename = new LazyFimgEnforceFilename(option.conn, option.schemaName);
 		ActionLazy<FimgInfo> mergeFath = new LazyFimgMergeFath(option.conn, option.schemaName);
 		ActionLazy<FimgInfo> enforceUri = new LazyFimgEnforceUri(option.conn, option.schemaName);
+		ActionLazy<FimgInfo> enforceUriExternal = new LazyFimgEnforceUriExternal(option.conn, option.schemaName);
 		ActionLazy<FimgInfo> update = new LazyFimgUpdate(option.conn, option.schemaName);	
 		ActionLazy<FimgInfo> writeOnDisk = new LazyFimgWriteOnDisk(option.conn, option.schemaName);
 		ActionLazy<FimgInfo> select = new LazyFimgRootSelect(option.conn, option.schemaName);
@@ -88,8 +90,9 @@ public final class RootFimgReplace extends DeciTreeWriteTemplate<FimgInfo> {
 		enforceLChanged.addPostAction(enforceLChangedBy);
 		enforceLChangedBy.addPostAction(enforceFilename);
 		enforceFilename.addPostAction(mergeFath);
-		mergeFath.addPostAction(enforceUri);		
-		enforceUri.addPostAction(update);
+		mergeFath.addPostAction(enforceUri);
+		enforceUri.addPostAction(enforceUriExternal);
+		enforceUriExternal.addPostAction(update);
 		update.addPostAction(writeOnDisk);
 		writeOnDisk.addPostAction(select);
 		

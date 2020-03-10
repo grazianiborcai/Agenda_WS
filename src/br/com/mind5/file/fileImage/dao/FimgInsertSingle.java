@@ -61,6 +61,7 @@ public final class FimgInsertSingle extends DaoStmtTemplate<FimgInfo> {
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codCustomer);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codUser);
 				stmt.setString(i++, recordInfo.fileImgPathExternal);
+				stmt.setString(i++, recordInfo.fileImgUriExternal);	
 				
 				return stmt;
 			}		

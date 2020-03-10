@@ -11,6 +11,7 @@ public final class FimgInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codFileImg;
 	public String fileImgUri;
+	public String fileImgUriExternal;
 	public String fileImgName;
 	public String fileImgExtension;
 	public String fileImgPath;
