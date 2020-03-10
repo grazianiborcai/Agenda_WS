@@ -25,6 +25,7 @@ final class FimgVisiMergeFath implements InfoMergerVisitorV3<FimgInfo, FathInfo>
 		List<FimgInfo> results = new ArrayList<>();
 		
 		baseInfo.fileImgPath = selectedInfo.filePath;
+		baseInfo.fileImgPathExternal = selectedInfo.filePathExternal;
 		
 		results.add(baseInfo);
 		return results;
