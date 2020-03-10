@@ -17,6 +17,7 @@ import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.model.checker.Pere
 import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.model.checker.PeresmoipCheckExist;
 import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.model.checker.PeresmoipCheckLangu;
 import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.model.checker.PeresmoipCheckOwner;
+import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.model.checker.PeresmoipCheckUsername;
 
 public final class RootPeresmoipCode extends DeciTreeWriteTemplate<PeresmoipInfo> {
 	
@@ -57,6 +58,13 @@ public final class RootPeresmoipCode extends DeciTreeWriteTemplate<PeresmoipInfo
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
 		checker = new PeresmoipCheckExist(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
+		checker = new PeresmoipCheckUsername(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerQueue<>(queue);

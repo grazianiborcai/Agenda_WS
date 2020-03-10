@@ -15,7 +15,6 @@ import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.model.action.LazyP
 import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.model.action.LazyPeresmoipEnforcePaypar;
 import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.model.action.LazyPeresmoipGenerateTokemoip;
 import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.model.action.LazyPeresmoipInsertStopar;
-import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.model.action.LazyPeresmoipMergeDaemon;
 import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.model.action.StdPeresmoipEnforceExpected;
 import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.model.checker.PeresmoipCheckIsExpected;
 
@@ -49,14 +48,12 @@ public final class NodePeresmoipCode extends DeciTreeWriteTemplate<PeresmoipInfo
 
 		ActionStd<PeresmoipInfo> enforceExpected = new StdPeresmoipEnforceExpected(option);
 		ActionLazy<PeresmoipInfo> enforcePaypar = new LazyPeresmoipEnforcePaypar(option.conn, option.schemaName);
-		ActionLazy<PeresmoipInfo> mergeDaemon = new LazyPeresmoipMergeDaemon(option.conn, option.schemaName);
 		ActionLazy<PeresmoipInfo> generateTokemoip = new LazyPeresmoipGenerateTokemoip(option.conn, option.schemaName);	
 		ActionLazy<PeresmoipInfo> insertStopar = new LazyPeresmoipInsertStopar(option.conn, option.schemaName);	
 		ActionLazy<PeresmoipInfo> delete = new LazyPeresmoipDelete(option.conn, option.schemaName);	
 		
 		enforceExpected.addPostAction(enforcePaypar);
-		enforcePaypar.addPostAction(mergeDaemon);
-		mergeDaemon.addPostAction(generateTokemoip);
+		enforcePaypar.addPostAction(generateTokemoip);
 		generateTokemoip.addPostAction(insertStopar);
 		insertStopar.addPostAction(delete);
 		

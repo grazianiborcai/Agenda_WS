@@ -99,6 +99,7 @@ public final class PaymentResource {
 	@Path(PERMISSION_CODE_MOIP)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response permissionCodeMoip(@QueryParam("codOwner")    	@DefaultValue("-1") long codOwner, 
+									   @QueryParam("username")  	String username,
 									   @QueryParam("codStore")  	@DefaultValue("-1") long codStore,
 									   @QueryParam("code") 			String code,
 						               @QueryParam("codLanguage")   @DefaultValue("EN") String codLanguage) {
@@ -107,6 +108,7 @@ public final class PaymentResource {
 		recordInfo.codOwner = codOwner;
 		recordInfo.codStore = codStore;
 		recordInfo.code = code;
+		recordInfo.username = username;
 		recordInfo.codLanguage = codLanguage;
 		
 		Model model = new PeresmoipModelCode(recordInfo);

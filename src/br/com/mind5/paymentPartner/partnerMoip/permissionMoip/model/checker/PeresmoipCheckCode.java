@@ -19,6 +19,7 @@ public final class PeresmoipCheckCode extends ModelCheckerTemplateSimpleV2<Peres
 		if (   recordInfo.codOwner    	<= 0	||
 			   recordInfo.codStore    	<= 0 	||
 			   recordInfo.codLanguage 	== null	||
+			   recordInfo.username 		== null	||
 			   recordInfo.code    		== null		)			
 			
 			return super.FAILED;
