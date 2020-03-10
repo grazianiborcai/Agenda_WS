@@ -9,9 +9,9 @@ import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.info.PeresmoipInfo;
 
-public final class LazyPeresmoipInsert_ extends ActionLazyTemplate<PeresmoipInfo, PeresmoipInfo> {
+public final class LazyPeresmoipMergeDaemon extends ActionLazyTemplate<PeresmoipInfo, PeresmoipInfo> {
 	
-	public LazyPeresmoipInsert_(Connection conn, String schemaName) {
+	public LazyPeresmoipMergeDaemon(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyPeresmoipInsert_ extends ActionLazyTemplate<PeresmoipInfo
 	
 	
 	@Override protected ActionStd<PeresmoipInfo> getInstanceOfActionHook(DeciTreeOption<PeresmoipInfo> option) {
-		return new StdPeresmoipInsert(option);
+		return new StdPeresmoipMergeDaemon(option);
 	}
 	
 	
