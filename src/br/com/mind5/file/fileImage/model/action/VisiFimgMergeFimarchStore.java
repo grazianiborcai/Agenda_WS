@@ -24,8 +24,8 @@ final class VisiFimgMergeFimarchStore extends ActionVisitorTemplateMergeV2<FimgI
 	
 	
 	
-	@Override protected List<FimgInfo> mergeHook(List<FimgInfo> recordInfos, List<FimarchInfo> selectedInfos) {	
-		return FimgMerger.mergeWithFimarch(selectedInfos, recordInfos);
+	@Override protected List<FimgInfo> mergeHook(List<FimgInfo> baseInfos, List<FimarchInfo> selectedInfos) {	
+		return FimgMerger.mergeWithFimarch(baseInfos, selectedInfos);
 	}
 	
 	

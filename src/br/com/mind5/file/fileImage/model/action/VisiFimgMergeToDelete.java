@@ -22,8 +22,8 @@ final class VisiFimgMergeToDelete extends ActionVisitorTemplateMergeV2<FimgInfo,
 	
 	
 	
-	@Override protected List<FimgInfo> mergeHook(List<FimgInfo> recordInfos, List<FimgInfo> selectedInfos) {	
-		return FimgMerger.mergeToDelete(selectedInfos, recordInfos);
+	@Override protected List<FimgInfo> mergeHook(List<FimgInfo> baseInfos, List<FimgInfo> selectedInfos) {	
+		return FimgMerger.mergeToDelete(baseInfos, selectedInfos);
 	}
 	
 	

@@ -70,6 +70,7 @@ public final class FimgUpdateSingle extends DaoStmtTemplate<FimgInfo> {
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codEmployee);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codCustomer);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codUser);
+				stmt.setString(i++, recordInfo.fileImgPathExternal);
 				
 				return stmt;
 			}		

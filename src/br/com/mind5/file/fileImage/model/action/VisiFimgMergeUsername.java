@@ -25,14 +25,14 @@ final class VisiFimgMergeUsername extends ActionVisitorTemplateMergeV2<FimgInfo,
 	
 	
 	
-	@Override protected List<UsernameInfo> toActionClassHook(List<FimgInfo> recordInfos) {
-		return UsernameCopier.copyFromFimg(recordInfos);	
+	@Override protected List<UsernameInfo> toActionClassHook(List<FimgInfo> baseInfos) {
+		return UsernameCopier.copyFromFimg(baseInfos);	
 	}
 	
 	
 	
-	@Override protected List<FimgInfo> mergeHook(List<FimgInfo> recordInfos, List<UsernameInfo> selectedInfos) {	
-		return FimgMerger.mergeWithUsername(selectedInfos, recordInfos);
+	@Override protected List<FimgInfo> mergeHook(List<FimgInfo> baseInfos, List<UsernameInfo> selectedInfos) {	
+		return FimgMerger.mergeWithUsername(baseInfos, selectedInfos);
 	}
 	
 	

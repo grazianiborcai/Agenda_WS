@@ -11,7 +11,7 @@ public final class FimgSetterUri implements InfoSetter<FimgInfo> {
 	public FimgInfo setAttr(FimgInfo recordInfo) {
 		checkArgument(recordInfo);
 		
-		recordInfo.fileImgUri = recordInfo.fileImgPath + recordInfo.fileImgName + "." + recordInfo.fileImgExtension;
+		recordInfo.fileImgUri = recordInfo.fileImgPathExternal + recordInfo.fileImgName + "." + recordInfo.fileImgExtension;
 		return recordInfo;
 	}
 	

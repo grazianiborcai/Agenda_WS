@@ -4,103 +4,97 @@ import java.util.List;
 
 import br.com.mind5.file.fileImageSearch.info.FimarchInfo;
 import br.com.mind5.file.filePath.info.FathInfo;
-import br.com.mind5.info.obsolete.InfoMerger_;
+import br.com.mind5.info.InfoMergerBuilderV3;
+import br.com.mind5.info.InfoMergerV3;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class FimgMerger {	
-	public static FimgInfo mergeWithFimarch(FimarchInfo sourceOne, FimgInfo sourceTwo) {
-		InfoMerger_<FimgInfo, FimarchInfo> merger = new FimgMergerFimarch();		
-		return merger.merge(sourceOne, sourceTwo);
+	public static List<FimgInfo> mergeWithFimarch(List<FimgInfo> baseInfos, List<FimarchInfo> selectedInfos) {
+		InfoMergerBuilderV3<FimgInfo, FimarchInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new FimgVisiMergeFimarch());
+		InfoMergerV3<FimgInfo, FimarchInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static List<FimgInfo> mergeWithFimarch(List<FimarchInfo> sourceOnes, List<FimgInfo> sourceTwos) {
-		InfoMerger_<FimgInfo, FimarchInfo> merger = new FimgMergerFimarch();		
-		return merger.merge(sourceOnes, sourceTwos);
+	public static List<FimgInfo> mergeWithFath(List<FimgInfo> baseInfos, List<FathInfo> selectedInfos) {
+		InfoMergerBuilderV3<FimgInfo, FathInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new FimgVisiMergeFath());
+		InfoMergerV3<FimgInfo, FathInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static FimgInfo mergeWithFath(FathInfo sourceOne, FimgInfo sourceTwo) {
-		InfoMerger_<FimgInfo, FathInfo> merger = new FimgMergerFath();		
-		return merger.merge(sourceOne, sourceTwo);
+	public static List<FimgInfo> mergeWithUsername(List<FimgInfo> baseInfos, List<UsernameInfo> selectedInfos) {
+		InfoMergerBuilderV3<FimgInfo, UsernameInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new FimgVisiMergeUsername());
+		InfoMergerV3<FimgInfo, UsernameInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static List<FimgInfo> mergeWithFath(List<FathInfo> sourceOnes, List<FimgInfo> sourceTwos) {
-		InfoMerger_<FimgInfo, FathInfo> merger = new FimgMergerFath();		
-		return merger.merge(sourceOnes, sourceTwos);
+	public static List<FimgInfo> mergeToReplace(List<FimgInfo> baseInfos, List<FimgInfo> selectedInfos) {
+		InfoMergerBuilderV3<FimgInfo, FimgInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new FimgVisiMergeToReplace());
+		InfoMergerV3<FimgInfo, FimgInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static FimgInfo mergeWithUsername(UsernameInfo sourceOne, FimgInfo sourceTwo) {
-		InfoMerger_<FimgInfo, UsernameInfo> merger = new FimgMergerUsername();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
+	public static List<FimgInfo> mergeToSelect(List<FimgInfo> baseInfos, List<FimgInfo> selectedInfos) {
+		InfoMergerBuilderV3<FimgInfo, FimgInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new FimgVisiMergeToSelect());
+		InfoMergerV3<FimgInfo, FimgInfo> merger = builder.build();		
 	
-	
-	
-	public static List<FimgInfo> mergeWithUsername(List<UsernameInfo> sourceOnes, List<FimgInfo> sourceTwos) {
-		InfoMerger_<FimgInfo, UsernameInfo> merger = new FimgMergerUsername();		
-		return merger.merge(sourceOnes, sourceTwos);
-	}
-	
-	
-	
-	public static FimgInfo mergeToReplace(FimgInfo sourceOne, FimgInfo sourceTwo) {
-		InfoMerger_<FimgInfo, FimgInfo> merger = new FimgMergerToReplace();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
-	
-	
-	
-	public static List<FimgInfo> mergeToReplace(List<FimgInfo> sourceOnes, List<FimgInfo> sourceTwos) {
-		InfoMerger_<FimgInfo, FimgInfo> merger = new FimgMergerToReplace();		
-		return merger.merge(sourceOnes, sourceTwos);
-	}
-	
-	
-	
-	public static FimgInfo mergeToSelect(FimgInfo sourceOne, FimgInfo sourceTwo) {
-		InfoMerger_<FimgInfo, FimgInfo> merger = new FimgMergerToSelect();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
-	
-	
-	
-	public static List<FimgInfo> mergeToSelect(List<FimgInfo> sourceOnes, List<FimgInfo> sourceTwos) {
-		InfoMerger_<FimgInfo, FimgInfo> merger = new FimgMergerToSelect();		
-		return merger.merge(sourceOnes, sourceTwos);
+		return merger.merge();
 	}	
 	
 	
 	
-	public static FimgInfo mergeToDelete(FimgInfo sourceOne, FimgInfo sourceTwo) {
-		InfoMerger_<FimgInfo, FimgInfo> merger = new FimgMergerToDelete();		
-		return merger.merge(sourceOne, sourceTwo);
+	public static List<FimgInfo> mergeToDelete(List<FimgInfo> baseInfos, List<FimgInfo> selectedInfos) {
+		InfoMergerBuilderV3<FimgInfo, FimgInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new FimgVisiMergeToDelete());
+		InfoMergerV3<FimgInfo, FimgInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static List<FimgInfo> mergeToDelete(List<FimgInfo> sourceOnes, List<FimgInfo> sourceTwos) {
-		InfoMerger_<FimgInfo, FimgInfo> merger = new FimgMergerToDelete();		
-		return merger.merge(sourceOnes, sourceTwos);
-	}
+	public static List<FimgInfo> mergeToUpdate(List<FimgInfo> baseInfos, List<FimgInfo> selectedInfos) {
+		InfoMergerBuilderV3<FimgInfo, FimgInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new FimgVisiMergeToUpdate());
+		InfoMergerV3<FimgInfo, FimgInfo> merger = builder.build();		
 	
-	
-	
-	public static FimgInfo mergeToUpdate(FimgInfo sourceOne, FimgInfo sourceTwo) {
-		InfoMerger_<FimgInfo, FimgInfo> merger = new FimgMergerToUpdate();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
-	
-	
-	
-	public static List<FimgInfo> mergeToUpdate(List<FimgInfo> sourceOnes, List<FimgInfo> sourceTwos) {
-		InfoMerger_<FimgInfo, FimgInfo> merger = new FimgMergerToUpdate();		
-		return merger.merge(sourceOnes, sourceTwos);
+		return merger.merge();
 	}
 }

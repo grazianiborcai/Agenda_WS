@@ -1,57 +1,39 @@
 package br.com.mind5.file.fileImage.info;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.ArrayList;
+import java.util.List;
 
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-final class FimgVisiMergeToUpdate implements InfoMergerVisitor_<FimgInfo, FimgInfo> {
-
-	@Override public FimgInfo writeRecord(FimgInfo sourceOne, FimgInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);		
-		return merge(sourceOne, sourceTwo);
+final class FimgVisiMergeToUpdate implements InfoMergerVisitorV3<FimgInfo, FimgInfo> {
+	
+	@Override public List<FimgInfo> beforeMerge(List<FimgInfo> baseInfos) {
+		return baseInfos;
 	}
 	
 	
 	
-	private void checkArgument(FimgInfo sourceOne, FimgInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
+	@Override public boolean shouldMerge(FimgInfo baseInfo, FimgInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner);
 	}
 	
 	
 	
-	private FimgInfo merge(FimgInfo sourceOne, FimgInfo sourceTwo) {
-		FimgInfo result = makeClone(sourceOne);		
-		result.isCover = sourceTwo.isCover;
-		result.codLanguage = sourceTwo.codLanguage;
-		result.username = sourceTwo.username;
-		return result;
+	@Override public List<FimgInfo> merge(FimgInfo baseInfo, FimgInfo selectedInfo) {
+		List<FimgInfo> results = new ArrayList<>();
+		
+		selectedInfo.isCover = baseInfo.isCover;
+		selectedInfo.username = baseInfo.username;
+		selectedInfo.codLanguage = baseInfo.codLanguage;
+		
+		results.add(selectedInfo);
+		return results;
 	}
 	
 	
 	
-	private FimgInfo makeClone(FimgInfo recordInfo) {
-		try {
-			return (FimgInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(FimgInfo sourceOne, FimgInfo sourceTwo) {		
-		return (sourceOne.codOwner == sourceTwo.codOwner);
-	}
-	
-	
-	
-	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
+	@Override public InfoUniquifier<FimgInfo> getUniquifier() {
+		return null;
 	}
 }

@@ -25,6 +25,7 @@ public final class FimgDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_FILE_IMG_NAME = DaoDbField.COL_FILE_IMG_NAME;	
 	public static final String COL_FILE_URI = DaoDbField.COL_FILE_URI;	
 	public static final String COL_IMG_FILE_PATH = DaoDbField.COL_IMG_FILE_PATH;
+	public static final String COL_IMG_FILE_PATH_EXTERNAL = DaoDbField.COL_IMG_FILE_PATH_EXTERNAL;
 	public static final String COL_IS_COVER = DaoDbField.COL_IS_COVER;
 	public static final String COL_LAST_CHANGED = DaoDbField.COL_LAST_CHANGED;
 	public static final String COL_LAST_CHANGED_BY = DaoDbField.COL_LAST_CHANGED_BY;
@@ -203,6 +204,14 @@ public final class FimgDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_COD_USER;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_IMG_FILE_PATH_EXTERNAL;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;

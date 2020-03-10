@@ -1,57 +1,38 @@
 package br.com.mind5.file.fileImage.info;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.ArrayList;
+import java.util.List;
 
-import br.com.mind5.common.SystemMessage;
 import br.com.mind5.file.filePath.info.FathInfo;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-final class FimgVisiMergeFath implements InfoMergerVisitor_<FimgInfo, FathInfo> {
-
-	@Override public FimgInfo writeRecord(FathInfo sourceOne, FimgInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
-		
-		FimgInfo clonedInfo = makeClone(sourceTwo);
-		return merge(sourceOne, clonedInfo);
+final class FimgVisiMergeFath implements InfoMergerVisitorV3<FimgInfo, FathInfo> {
+	
+	@Override public List<FimgInfo> beforeMerge(List<FimgInfo> baseInfos) {
+		return baseInfos;
 	}
 	
 	
 	
-	private void checkArgument(FathInfo sourceOne, FimgInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private FimgInfo makeClone(FimgInfo recordInfo) {
-		try {
-			return (FimgInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	private FimgInfo merge(FathInfo sourceOne, FimgInfo sourceTwo) {
-		sourceTwo.fileImgPath = sourceOne.filePath;
-		return sourceTwo;
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(FathInfo sourceOne, FimgInfo sourceTwo) {
+	@Override public boolean shouldMerge(FimgInfo baseInfo, FathInfo selectedInfo) {
 		return true;
 	}
 	
 	
 	
-	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
+	@Override public List<FimgInfo> merge(FimgInfo baseInfo, FathInfo selectedInfo) {
+		List<FimgInfo> results = new ArrayList<>();
+		
+		baseInfo.fileImgPath = selectedInfo.filePath;
+		
+		results.add(baseInfo);
+		return results;
+	}
+	
+	
+	
+	@Override public InfoUniquifier<FimgInfo> getUniquifier() {
+		return null;
 	}
 }

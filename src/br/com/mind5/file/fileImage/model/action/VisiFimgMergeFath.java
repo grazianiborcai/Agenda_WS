@@ -24,8 +24,8 @@ final class VisiFimgMergeFath extends ActionVisitorTemplateMergeV2<FimgInfo, Fat
 	
 	
 	
-	@Override protected List<FimgInfo> mergeHook(List<FimgInfo> recordInfos, List<FathInfo> selectedInfos) {	
-		return FimgMerger.mergeWithFath(selectedInfos, recordInfos);
+	@Override protected List<FimgInfo> mergeHook(List<FimgInfo> baseInfos, List<FathInfo> selectedInfos) {	
+		return FimgMerger.mergeWithFath(baseInfos, selectedInfos);
 	}
 	
 	

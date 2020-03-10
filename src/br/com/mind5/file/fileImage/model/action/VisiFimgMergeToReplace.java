@@ -22,14 +22,14 @@ final class VisiFimgMergeToReplace extends ActionVisitorTemplateMergeV2<FimgInfo
 	
 	
 	
-	@Override protected List<FimgInfo> toActionClassHook(List<FimgInfo> recordInfos) {
-		return recordInfos;	
+	@Override protected List<FimgInfo> toActionClassHook(List<FimgInfo> baseInfos) {
+		return baseInfos;	
 	}
 	
 	
 	
-	@Override protected List<FimgInfo> mergeHook(List<FimgInfo> recordInfos, List<FimgInfo> selectedInfos) {	
-		return FimgMerger.mergeToReplace(selectedInfos, recordInfos);
+	@Override protected List<FimgInfo> mergeHook(List<FimgInfo> baseInfos, List<FimgInfo> selectedInfos) {	
+		return FimgMerger.mergeToReplace(baseInfos, selectedInfos);
 	}
 	
 	
