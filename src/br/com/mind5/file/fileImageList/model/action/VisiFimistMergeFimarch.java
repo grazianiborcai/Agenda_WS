@@ -24,8 +24,8 @@ final class VisiFimistMergeFimarch extends ActionVisitorTemplateMergeV2<FimistIn
 	
 	
 	
-	@Override protected List<FimistInfo> mergeHook(List<FimistInfo> recordInfos, List<FimarchInfo> selectedInfos) {	
-		return FimistMerger.mergeWithFimarch(selectedInfos, recordInfos);
+	@Override protected List<FimistInfo> mergeHook(List<FimistInfo> baseInfos, List<FimarchInfo> selectedInfos) {	
+		return FimistMerger.mergeWithFimarch(baseInfos, selectedInfos);
 	}
 	
 	

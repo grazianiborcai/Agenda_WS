@@ -8,7 +8,7 @@ import br.com.mind5.info.InfoRecord;
 public final class FimistInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codFileImg;
-	public String fileImgUri;
+	public String fileImgUriExternal;
 	public String fileImgExtension;
 	public boolean isCover;
 	public long codPerson;

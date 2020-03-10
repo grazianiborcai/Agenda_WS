@@ -1,56 +1,38 @@
 package br.com.mind5.file.fileImageList.info;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.ArrayList;
+import java.util.List;
 
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-final class FimistVisiMergeToSelect implements InfoMergerVisitor_<FimistInfo, FimistInfo> {
-
-	@Override public FimistInfo writeRecord(FimistInfo sourceOne, FimistInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);		
-		return merge(sourceOne, sourceTwo);
+final class FimistVisiMergeToSelect implements InfoMergerVisitorV3<FimistInfo, FimistInfo> {
+	
+	@Override public List<FimistInfo> beforeMerge(List<FimistInfo> baseInfos) {
+		return baseInfos;
 	}
 	
 	
 	
-	private void checkArgument(FimistInfo sourceOne, FimistInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
+	@Override public boolean shouldMerge(FimistInfo baseInfo, FimistInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner);
 	}
 	
 	
 	
-	private FimistInfo merge(FimistInfo sourceOne, FimistInfo sourceTwo) {
-		FimistInfo result = makeClone(sourceOne);		
-		result.username = sourceTwo.username;
-		result.codLanguage = sourceTwo.codLanguage;
-		return result;
+	@Override public List<FimistInfo> merge(FimistInfo baseInfo, FimistInfo selectedInfo) {
+		List<FimistInfo> results = new ArrayList<>();
+		
+		selectedInfo.username = baseInfo.username;
+		selectedInfo.codLanguage = baseInfo.codLanguage;
+		
+		results.add(selectedInfo);
+		return results;
 	}
 	
 	
 	
-	private FimistInfo makeClone(FimistInfo recordInfo) {
-		try {
-			return (FimistInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(FimistInfo sourceOne, FimistInfo sourceTwo) {		
-		return (sourceOne.codOwner == sourceTwo.codOwner);
-	}
-	
-	
-	
-	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
+	@Override public InfoUniquifier<FimistInfo> getUniquifier() {
+		return null;
 	}
 }

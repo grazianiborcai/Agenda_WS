@@ -78,7 +78,7 @@ public final class FimistSelectSingle extends DaoStmtTemplate<FimistInfo> {
 					dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, FimistDbTableColumn.COL_COD_USER);
 					dataInfo.recordMode = stmtResult.getString(FimistDbTableColumn.COL_RECORD_MODE);	
 					dataInfo.fileImgExtension = stmtResult.getString(FimistDbTableColumn.COL_FILE_IMG_EXTENSION);
-					dataInfo.fileImgUri = stmtResult.getString(FimistDbTableColumn.COL_FILE_URI);
+					dataInfo.fileImgUriExternal = stmtResult.getString(FimistDbTableColumn.COL_FILE_URI_EXTERNAL);
 					dataInfo.isCover = DaoFormatter.sqlToBoole(stmtResult, FimistDbTableColumn.COL_IS_COVER);
 					
 					finalResult.add(dataInfo);

@@ -22,14 +22,14 @@ final class VisiFimistMergeToSelect extends ActionVisitorTemplateMergeV2<FimistI
 	
 	
 	
-	@Override protected List<FimistInfo> toActionClassHook(List<FimistInfo> recordInfos) {
-		return recordInfos;	
+	@Override protected List<FimistInfo> toActionClassHook(List<FimistInfo> baseInfos) {
+		return baseInfos;	
 	}
 	
 	
 	
-	@Override protected List<FimistInfo> mergeHook(List<FimistInfo> recordInfos, List<FimistInfo> selectedInfos) {	
-		return FimistMerger.mergeToSelect(selectedInfos, recordInfos);
+	@Override protected List<FimistInfo> mergeHook(List<FimistInfo> baseInfos, List<FimistInfo> selectedInfos) {	
+		return FimistMerger.mergeToSelect(baseInfos, selectedInfos);
 	}
 	
 	

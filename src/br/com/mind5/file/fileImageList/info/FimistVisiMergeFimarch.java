@@ -1,56 +1,38 @@
 package br.com.mind5.file.fileImageList.info;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.ArrayList;
+import java.util.List;
 
-import br.com.mind5.common.SystemMessage;
 import br.com.mind5.file.fileImageSearch.info.FimarchInfo;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-final class FimistVisiMergeFimarch implements InfoMergerVisitor_<FimistInfo, FimarchInfo> {
-
-	@Override public FimistInfo writeRecord(FimarchInfo sourceOne, FimistInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+final class FimistVisiMergeFimarch implements InfoMergerVisitorV3<FimistInfo, FimarchInfo> {
+	
+	@Override public List<FimistInfo> beforeMerge(List<FimistInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(FimistInfo baseInfo, FimarchInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner);
+	}
+	
+	
+	
+	@Override public List<FimistInfo> merge(FimistInfo baseInfo, FimarchInfo selectedInfo) {
+		List<FimistInfo> results = new ArrayList<>();
 		
-		FimistInfo clonedInfo = makeClone(sourceTwo);
-		return merge(sourceOne, clonedInfo);
+		FimistInfo result = FimistInfo.copyFrom(selectedInfo);
+		
+		results.add(result);
+		return results;
 	}
 	
 	
 	
-	private void checkArgument(FimarchInfo sourceOne, FimistInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private FimistInfo makeClone(FimistInfo recordInfo) {
-		try {
-			return (FimistInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	private FimistInfo merge(FimarchInfo sourceOne, FimistInfo sourceTwo) {
-		return FimistInfo.copyFrom(sourceOne);
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(FimarchInfo sourceOne, FimistInfo sourceTwo) {
-		return (sourceOne.codOwner == sourceTwo.codOwner);
-	}
-	
-	
-	
-	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
+	@Override public InfoUniquifier<FimistInfo> getUniquifier() {
+		return null;
 	}
 }
