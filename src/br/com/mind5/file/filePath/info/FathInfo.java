@@ -7,6 +7,7 @@ import br.com.mind5.info.InfoRecord;
 public final class FathInfo extends InfoRecord implements Cloneable {
 	public String codFilePath;
 	public String filePath;
+	public String filePathExternal;
 	
 	
 	public FathInfo() {

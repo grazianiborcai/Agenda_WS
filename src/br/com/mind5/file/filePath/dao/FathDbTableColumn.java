@@ -12,6 +12,7 @@ import br.com.mind5.dao.common.DaoDbTable;
 public final class FathDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_FILE_PATH = DaoDbField.COL_COD_FILE_PATH;
 	public static final String COL_FILE_PATH = DaoDbField.COL_FILE_PATH;	
+	public static final String COL_FILE_PATH_EXTERNAL = DaoDbField.COL_FILE_PATH_EXTERNAL;	
 		
 	
 	
@@ -50,6 +51,14 @@ public final class FathDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_FILE_PATH;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_FILE_PATH_EXTERNAL;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;

@@ -62,6 +62,7 @@ public final class FathSelectSingle extends DaoStmtTemplate<FathInfo> {
 					
 					dataInfo.codFilePath = stmtResult.getString(FathDbTableColumn.COL_COD_FILE_PATH);
 					dataInfo.filePath = stmtResult.getString(FathDbTableColumn.COL_FILE_PATH);
+					dataInfo.filePathExternal = stmtResult.getString(FathDbTableColumn.COL_FILE_PATH_EXTERNAL);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

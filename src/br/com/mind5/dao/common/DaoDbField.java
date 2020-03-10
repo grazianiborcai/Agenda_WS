@@ -124,6 +124,7 @@ public final class DaoDbField {
 	public static final String COL_FILE_IMG_EXTENSION = "file_img_extension";
 	public static final String COL_FILE_IMG_NAME = "file_img_name";
 	public static final String COL_FILE_PATH = "file_path";
+	public static final String COL_FILE_PATH_EXTERNAL = "file_path_external";
 	public static final String COL_FILE_URI = "file_img_uri";
 	public static final String COL_FULL_NUMBER = "full_number";
 	public static final String COL_GRAND_TOTAL = "grandTotal";
