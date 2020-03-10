@@ -1,55 +1,37 @@
 package br.com.mind5.security.userList.info;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.ArrayList;
+import java.util.List;
 
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-final class UselisVisiMergeToSelect implements InfoMergerVisitor_<UselisInfo, UselisInfo> {
+final class UselisVisiMergeToSelect implements InfoMergerVisitorV3<UselisInfo, UselisInfo> {
+	
+	@Override public List<UselisInfo> beforeMerge(List<UselisInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(UselisInfo baseInfo, UselisInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner);
+	}	
+	
+	
 
-	@Override public UselisInfo writeRecord(UselisInfo sourceOne, UselisInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);		
-		return merge(sourceOne, sourceTwo);
+	@Override public List<UselisInfo> merge(UselisInfo baseInfo, UselisInfo selectedInfo) {
+		List<UselisInfo> results = new ArrayList<>();
+		
+		selectedInfo.codLanguage = baseInfo.codLanguage;
+		
+		results.add(selectedInfo);
+		return results;
 	}
 	
 	
 	
-	private void checkArgument(UselisInfo sourceOne, UselisInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private UselisInfo merge(UselisInfo sourceOne, UselisInfo sourceTwo) {
-		UselisInfo result = makeClone(sourceOne);		
-		result.codLanguage = sourceTwo.codLanguage;
-		return result;
-	}
-	
-	
-	
-	private UselisInfo makeClone(UselisInfo recordInfo) {
-		try {
-			return (UselisInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(UselisInfo sourceOne, UselisInfo sourceTwo) {		
-		return (sourceOne.codOwner == sourceTwo.codOwner);
-	}
-	
-	
-	
-	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
+	@Override public InfoUniquifier<UselisInfo> getUniquifier() {
+		return null;
 	}
 }

@@ -1,71 +1,39 @@
 package br.com.mind5.security.userList.info;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.ArrayList;
+import java.util.List;
 
 import br.com.mind5.business.personList.info.PersolisInfo;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-final class UselisVisiMergePersolis implements InfoMergerVisitor_<UselisInfo, PersolisInfo> {
+final class UselisVisiMergePersolis implements InfoMergerVisitorV3<UselisInfo, PersolisInfo> {
+	
+	@Override public List<UselisInfo> beforeMerge(List<UselisInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(UselisInfo baseInfo, PersolisInfo selectedInfo) {
+		return (baseInfo.codOwner  == selectedInfo.codOwner &&
+				baseInfo.codPerson == selectedInfo.codPerson);
+	}
+	
+	
 
-	@Override public UselisInfo writeRecord(PersolisInfo sourceOne, UselisInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+	@Override public List<UselisInfo> merge(UselisInfo baseInfo, PersolisInfo selectedInfo) {
+		List<UselisInfo> results = new ArrayList<>();
 		
-		UselisInfo clonedInfo = makeClone(sourceTwo);
-		return merge(sourceOne, clonedInfo);
+		baseInfo.persolisData = selectedInfo;
+		
+		results.add(baseInfo);
+		return results;
 	}
 	
 	
 	
-	private void checkArgument(PersolisInfo sourceOne, UselisInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private UselisInfo makeClone(UselisInfo recordInfo) {
-		try {
-			return (UselisInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	private UselisInfo merge(PersolisInfo sourceOne, UselisInfo sourceTwo) {
-		sourceTwo.persolisData = makeClone(sourceOne);
-		sourceTwo.codPerson = sourceOne.codPerson;
-		return sourceTwo;
-	}
-	
-	
-	
-	private PersolisInfo makeClone(PersolisInfo recordInfo) {
-		try {
-			return (PersolisInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}	
-	
-	
-	
-	@Override public boolean shouldWrite(PersolisInfo sourceOne, UselisInfo sourceTwo) {
-		return (sourceOne.codOwner  == sourceTwo.codOwner &&
-				sourceOne.codPerson == sourceTwo.codPerson);
-	}
-	
-	
-	
-	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
+	@Override public InfoUniquifier<UselisInfo> getUniquifier() {
+		return null;
 	}
 }

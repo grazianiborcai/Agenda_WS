@@ -24,8 +24,8 @@ final class VisiUselisMergePersolis extends ActionVisitorTemplateMergeV2<UselisI
 	
 	
 	
-	@Override protected List<UselisInfo> mergeHook(List<UselisInfo> recordInfos, List<PersolisInfo> selectedInfos) {	
-		return UselisMerger.mergeWithPersolis(selectedInfos, recordInfos);
+	@Override protected List<UselisInfo> mergeHook(List<UselisInfo> baseInfos, List<PersolisInfo> selectedInfos) {	
+		return UselisMerger.mergeWithPersolis(baseInfos, selectedInfos);
 	}
 	
 	

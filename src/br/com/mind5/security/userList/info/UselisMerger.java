@@ -3,47 +3,45 @@ package br.com.mind5.security.userList.info;
 import java.util.List;
 
 import br.com.mind5.business.personList.info.PersolisInfo;
-import br.com.mind5.info.obsolete.InfoMerger_;
+import br.com.mind5.info.InfoMergerBuilderV3;
+import br.com.mind5.info.InfoMergerV3;
 import br.com.mind5.security.userSearch.info.UserarchInfo;
 
 public final class UselisMerger {
-	public static UselisInfo mergeWithUserarch(UserarchInfo sourceOne, UselisInfo sourceTwo) {
-		InfoMerger_<UselisInfo, UserarchInfo> merger = new UselisMergerUserarch();		
-		return merger.merge(sourceOne, sourceTwo);
+	public static List<UselisInfo> mergeWithUserarch(List<UselisInfo> baseInfos, List<UserarchInfo> selectedInfos) {
+		InfoMergerBuilderV3<UselisInfo, UserarchInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new UselisVisiMergeUserarch());
+		InfoMergerV3<UselisInfo, UserarchInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static List<UselisInfo> mergeWithUserarch(List<UserarchInfo> sourceOnes, List<UselisInfo> sourceTwos) {
-		InfoMerger_<UselisInfo, UserarchInfo> merger = new UselisMergerUserarch();		
-		return merger.merge(sourceOnes, sourceTwos);
+	public static List<UselisInfo> mergeWithPersolis(List<UselisInfo> baseInfos, List<PersolisInfo> selectedInfos) {
+		InfoMergerBuilderV3<UselisInfo, PersolisInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new UselisVisiMergePersolis());
+		InfoMergerV3<UselisInfo, PersolisInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static UselisInfo mergeWithPersolis(PersolisInfo sourceOne, UselisInfo sourceTwo) {
-		InfoMerger_<UselisInfo, PersolisInfo> merger = new UselisMergerPersolis();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
+	public static List<UselisInfo> mergeToSelect(List<UselisInfo> baseInfos, List<UselisInfo> selectedInfos) {
+		InfoMergerBuilderV3<UselisInfo, UselisInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new UselisVisiMergeToSelect());
+		InfoMergerV3<UselisInfo, UselisInfo> merger = builder.build();		
 	
-	
-	
-	public static List<UselisInfo> mergeWithPersolis(List<PersolisInfo> sourceOnes, List<UselisInfo> sourceTwos) {
-		InfoMerger_<UselisInfo, PersolisInfo> merger = new UselisMergerPersolis();		
-		return merger.merge(sourceOnes, sourceTwos);
-	}
-	
-	
-	
-	public static UselisInfo mergeToSelect(UselisInfo sourceOne, UselisInfo sourceTwo) {
-		InfoMerger_<UselisInfo, UselisInfo> merger = new UselisMergerToSelect();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
-	
-	
-	
-	public static List<UselisInfo> mergeToSelect(List<UselisInfo> sourceOnes, List<UselisInfo> sourceTwos) {
-		InfoMerger_<UselisInfo, UselisInfo> merger = new UselisMergerToSelect();		
-		return merger.merge(sourceOnes, sourceTwos);
+		return merger.merge();
 	}
 }
