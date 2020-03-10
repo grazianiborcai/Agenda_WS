@@ -24,8 +24,8 @@ final class VisiAccemoipMergeSetupar extends ActionVisitorTemplateMergeV2<Accemo
 	
 	
 	
-	@Override protected List<AccemoipInfo> mergeHook(List<AccemoipInfo> recordInfos, List<SetuparInfo> selectedInfos) {	
-		return AccemoipMerger.mergeWithSetupar(selectedInfos, recordInfos);
+	@Override protected List<AccemoipInfo> mergeHook(List<AccemoipInfo> baseInfos, List<SetuparInfo> selectedInfos) {	
+		return AccemoipMerger.mergeWithSetupar(baseInfos, selectedInfos);
 	}
 	
 	

@@ -24,8 +24,8 @@ final class VisiAccemoipMergeSyspar extends ActionVisitorTemplateMergeV2<Accemoi
 	
 	
 	
-	@Override protected List<AccemoipInfo> mergeHook(List<AccemoipInfo> recordInfos, List<SysparInfo> selectedInfos) {	
-		return AccemoipMerger.mergeWithSyspar(selectedInfos, recordInfos);
+	@Override protected List<AccemoipInfo> mergeHook(List<AccemoipInfo> baseInfos, List<SysparInfo> selectedInfos) {	
+		return AccemoipMerger.mergeWithSyspar(baseInfos, selectedInfos);
 	}
 	
 	

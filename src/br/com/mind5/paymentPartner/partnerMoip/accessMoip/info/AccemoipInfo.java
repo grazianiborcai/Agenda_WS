@@ -10,7 +10,7 @@ import br.com.moip.models.Setup;
 
 public final class AccemoipInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
-	public long codStore;	
+	public long codStore;
 	public int codPayPartner;
 	public String url;
 	public SysparInfo sysparData;
@@ -59,20 +59,20 @@ public final class AccemoipInfo extends InfoRecord implements Cloneable {
 	
 	
 	
-	private SysparInfo cloneSyspar(SysparInfo syspar) throws CloneNotSupportedException {
-		if (syspar == null)
+	private SysparInfo cloneSyspar(SysparInfo recordInfo) throws CloneNotSupportedException {
+		if (recordInfo == null)
 			return null;
 		
-		return (SysparInfo) syspar.clone();
+		return (SysparInfo) recordInfo.clone();
 	}
 	
 	
 	
-	private SetuparInfo cloneSetupar(SetuparInfo setupar) throws CloneNotSupportedException {
-		if (setupar == null)
+	private SetuparInfo cloneSetupar(SetuparInfo recordInfo) throws CloneNotSupportedException {
+		if (recordInfo == null)
 			return null;
 		
-		return (SetuparInfo) setupar.clone();
+		return (SetuparInfo) recordInfo.clone();
 	}
 	
 	

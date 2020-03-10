@@ -24,8 +24,8 @@ final class VisiAccemoipMergeSysEnviron extends ActionVisitorTemplateMergeV2<Acc
 	
 	
 	
-	@Override protected List<AccemoipInfo> mergeHook(List<AccemoipInfo> recordInfos, List<SysEnvironInfo> selectedInfos) {	
-		return AccemoipMerger.mergeWithSysEnviron(selectedInfos, recordInfos);
+	@Override protected List<AccemoipInfo> mergeHook(List<AccemoipInfo> baseInfos, List<SysEnvironInfo> selectedInfos) {	
+		return AccemoipMerger.mergeWithSysEnviron(baseInfos, selectedInfos);
 	}
 	
 	

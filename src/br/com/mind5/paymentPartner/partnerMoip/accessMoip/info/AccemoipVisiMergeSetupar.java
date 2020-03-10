@@ -1,69 +1,38 @@
 package br.com.mind5.paymentPartner.partnerMoip.accessMoip.info;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.ArrayList;
+import java.util.List;
 
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.payment.setupPartner.info.SetuparInfo;
 
-final class AccemoipVisiMergeSetupar implements InfoMergerVisitor_<AccemoipInfo, SetuparInfo> {
-
-	@Override public AccemoipInfo writeRecord(SetuparInfo sourceOne, AccemoipInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+final class AccemoipVisiMergeSetupar implements InfoMergerVisitorV3<AccemoipInfo, SetuparInfo> {
+	
+	@Override public List<AccemoipInfo> beforeMerge(List<AccemoipInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(AccemoipInfo baseInfo, SetuparInfo selectedInfo) {
+		return (baseInfo.codPayPartner == selectedInfo.codPayPartner);
+	}
+	
+	
+	
+	@Override public List<AccemoipInfo> merge(AccemoipInfo baseInfo, SetuparInfo selectedInfo) {
+		List<AccemoipInfo> results = new ArrayList<>();
 		
-		AccemoipInfo clonedInfo = makeClone(sourceTwo);
-		return merge(sourceOne, clonedInfo);
+		baseInfo.setuparData = selectedInfo;
+		
+		results.add(baseInfo);
+		return results;
 	}
 	
 	
 	
-	private void checkArgument(SetuparInfo sourceOne, AccemoipInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private AccemoipInfo makeClone(AccemoipInfo recordInfo) {
-		try {
-			return (AccemoipInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	private AccemoipInfo merge(SetuparInfo sourceOne, AccemoipInfo sourceTwo) {
-		sourceTwo.setuparData = makeClone(sourceOne);
-		return sourceTwo;
-	}
-	
-	
-	
-	private SetuparInfo makeClone(SetuparInfo recordInfo) {
-		try {
-			return (SetuparInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}	
-	
-	
-	
-	@Override public boolean shouldWrite(SetuparInfo sourceOne, AccemoipInfo sourceTwo) {		
-		return (sourceOne.codPayPartner == sourceTwo.codPayPartner);
-	}
-	
-	
-	
-	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
+	@Override public InfoUniquifier<AccemoipInfo> getUniquifier() {
+		return null;
 	}
 }
