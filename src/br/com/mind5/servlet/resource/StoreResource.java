@@ -176,7 +176,7 @@ public class StoreResource {
 	
 	
 	
-	@GET
+	@POST
 	@Path(SEARCH_STORE_WTIME)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response searchStoreWTime(@Context HttpServletRequest request, String incomingData) {
@@ -261,7 +261,7 @@ public class StoreResource {
 	
 	
 	
-	@POST
+	@GET
 	@Path(SEARCH_STORE_LDATE)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response searchStolate(@HeaderParam("TOKEN_OWNER")    @DefaultValue("-1") long codOwner, 
