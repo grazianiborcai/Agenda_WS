@@ -25,6 +25,9 @@ public final class StowotmCheckRange extends ModelCheckerTemplateSimpleV2<Stowot
 		if (recordInfo.endTime.isBefore(recordInfo.beginTime))
 			return super.FAILED;
 		
+		if (recordInfo.endTime.equals(recordInfo.beginTime))
+			return super.FAILED;
+		
 		
 		return super.SUCCESS;
 	}
