@@ -7,11 +7,11 @@ import br.com.mind5.model.action.ActionStdHelperMerge;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdAStoreMergeSotarch implements ActionStd<StoreInfo> {
+public final class StdStoreMergeSotarch implements ActionStd<StoreInfo> {
 	private ActionStd<StoreInfo> actionHelper;	
 	
 	
-	public StdAStoreMergeSotarch(DeciTreeOption<StoreInfo> option) {			
+	public StdStoreMergeSotarch(DeciTreeOption<StoreInfo> option) {			
 		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiStoreMergeSotarch(option.conn, option.schemaName));
 	}
 	

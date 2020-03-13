@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.business.store.model.action.LazyStoreRootSelect;
-import br.com.mind5.business.store.model.action.StdAStoreMergeSotarch;
+import br.com.mind5.business.store.model.action.StdStoreMergeSotarch;
 import br.com.mind5.business.store.model.checker.StoreCheckDummy;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
@@ -38,7 +38,7 @@ public final class RootStoreSearch extends DeciTreeReadTemplate<StoreInfo> {
 	@Override protected List<ActionStd<StoreInfo>> buildActionsOnPassedHook(DeciTreeOption<StoreInfo> option) {
 		List<ActionStd<StoreInfo>> actions = new ArrayList<>();
 
-		ActionStd<StoreInfo> mergeSotarch = new StdAStoreMergeSotarch(option);
+		ActionStd<StoreInfo> mergeSotarch = new StdStoreMergeSotarch(option);
 		ActionLazy<StoreInfo> select = new LazyStoreRootSelect(option.conn, option.schemaName);
 		
 		mergeSotarch.addPostAction(select);
