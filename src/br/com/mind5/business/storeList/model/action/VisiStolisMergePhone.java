@@ -32,7 +32,7 @@ final class VisiStolisMergePhone extends ActionVisitorTemplateMergeV2<StolisInfo
 	
 	
 	@Override protected List<StolisInfo> mergeHook(List<StolisInfo> baseInfos, List<PhoneInfo> selectedInfos) {	
-		return StolisMerger.mergeWithPhone(selectedInfos, baseInfos);
+		return StolisMerger.mergeWithPhone(baseInfos, selectedInfos);
 	}
 	
 	

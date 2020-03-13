@@ -7,103 +7,111 @@ import br.com.mind5.business.companyList.info.ComplisInfo;
 import br.com.mind5.business.masterData.info.CurrencyInfo;
 import br.com.mind5.business.masterData.info.TimezoneInfo;
 import br.com.mind5.business.phone.info.PhoneInfo;
+import br.com.mind5.business.storeSearch.info.SotarchInfo;
 import br.com.mind5.file.fileImageList.info.FimistInfo;
-import br.com.mind5.info.obsolete.InfoMerger_;
+import br.com.mind5.info.InfoMergerBuilderV3;
+import br.com.mind5.info.InfoMergerV3;
 
 public final class StolisMerger {
-	public static StolisInfo mergeWithFimist(FimistInfo selectedInfo, StolisInfo baseInfo) {
-		InfoMerger_<StolisInfo, FimistInfo> merger = new StolisMergerFimist();		
-		return merger.merge(selectedInfo, baseInfo);
+	public static List<StolisInfo> mergeWithSotarch(List<StolisInfo> baseInfos, List<SotarchInfo> selectedInfos) {
+		InfoMergerBuilderV3<StolisInfo, SotarchInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new StolisVisiMergeSotarch());
+		InfoMergerV3<StolisInfo, SotarchInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static List<StolisInfo> mergeWithFimist(List<FimistInfo> selectedInfos, List<StolisInfo> baseInfos) {
-		InfoMerger_<StolisInfo, FimistInfo> merger = new StolisMergerFimist();		
-		return merger.merge(selectedInfos, baseInfos);
+	public static List<StolisInfo> mergeWithFimist(List<StolisInfo> baseInfos, List<FimistInfo> selectedInfos) {
+		InfoMergerBuilderV3<StolisInfo, FimistInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new StolisVisiMergeFimist());
+		InfoMergerV3<StolisInfo, FimistInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static StolisInfo mergeWithAddress(AddressInfo selectedInfo, StolisInfo baseInfo) {
-		InfoMerger_<StolisInfo, AddressInfo> merger = new StolisMergerAddress();		
-		return merger.merge(selectedInfo, baseInfo);
+	public static List<StolisInfo> mergeWithAddress(List<StolisInfo> baseInfos, List<AddressInfo> selectedInfos) {
+		InfoMergerBuilderV3<StolisInfo, AddressInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new StolisVisiMergeAddress());
+		InfoMergerV3<StolisInfo, AddressInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static List<StolisInfo> mergeWithAddress(List<AddressInfo> selectedInfos, List<StolisInfo> baseInfos) {
-		InfoMerger_<StolisInfo, AddressInfo> merger = new StolisMergerAddress();		
-		return merger.merge(selectedInfos, baseInfos);
+	public static List<StolisInfo> mergeWithComplis(List<StolisInfo> baseInfos, List<ComplisInfo> selectedInfos) {
+		InfoMergerBuilderV3<StolisInfo, ComplisInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new StolisVisiMergeComplis());
+		InfoMergerV3<StolisInfo, ComplisInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static StolisInfo mergeWithComplis(ComplisInfo selectedInfo, StolisInfo baseInfo) {
-		InfoMerger_<StolisInfo, ComplisInfo> merger = new StolisMergerComplis();		
-		return merger.merge(selectedInfo, baseInfo);
+	public static List<StolisInfo> mergeWithCurrency(List<StolisInfo> baseInfos, List<CurrencyInfo> selectedInfos) {
+		InfoMergerBuilderV3<StolisInfo, CurrencyInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new StolisVisiMergeCurrency());
+		InfoMergerV3<StolisInfo, CurrencyInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static List<StolisInfo> mergeWithComplis(List<ComplisInfo> selectedInfos, List<StolisInfo> baseInfos) {
-		InfoMerger_<StolisInfo, ComplisInfo> merger = new StolisMergerComplis();		
-		return merger.merge(selectedInfos, baseInfos);
+	public static List<StolisInfo> mergeWithPhone(List<StolisInfo> baseInfos, List<PhoneInfo> selectedInfos) {
+		InfoMergerBuilderV3<StolisInfo, PhoneInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new StolisVisiMergePhone());
+		InfoMergerV3<StolisInfo, PhoneInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static StolisInfo mergeWithCurrency(CurrencyInfo selectedInfo, StolisInfo baseInfo) {
-		InfoMerger_<StolisInfo, CurrencyInfo> merger = new StolisMergerCurrency();		
-		return merger.merge(selectedInfo, baseInfo);
+	public static List<StolisInfo> mergeWithTimezone(List<StolisInfo> baseInfos, List<TimezoneInfo> selectedInfos) {
+		InfoMergerBuilderV3<StolisInfo, TimezoneInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new StolisVisiMergeTimezone());
+		InfoMergerV3<StolisInfo, TimezoneInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static List<StolisInfo> mergeWithCurrency(List<CurrencyInfo> selectedInfos, List<StolisInfo> baseInfos) {
-		InfoMerger_<StolisInfo, CurrencyInfo> merger = new StolisMergerCurrency();		
-		return merger.merge(selectedInfos, baseInfos);
-	}
+	public static List<StolisInfo> mergeToSelect(List<StolisInfo> baseInfos, List<StolisInfo> selectedInfos) {
+		InfoMergerBuilderV3<StolisInfo, StolisInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new StolisVisiMergeToSelect());
+		InfoMergerV3<StolisInfo, StolisInfo> merger = builder.build();		
 	
-	
-	
-	public static StolisInfo mergeWithPhone(PhoneInfo selectedInfo, StolisInfo baseInfo) {
-		InfoMerger_<StolisInfo, PhoneInfo> merger = new StolisMergerPhone();		
-		return merger.merge(selectedInfo, baseInfo);
-	}
-	
-	
-	
-	public static List<StolisInfo> mergeWithPhone(List<PhoneInfo> selectedInfos, List<StolisInfo> baseInfos) {
-		InfoMerger_<StolisInfo, PhoneInfo> merger = new StolisMergerPhone();		
-		return merger.merge(selectedInfos, baseInfos);
-	}
-	
-	
-	
-	public static StolisInfo mergeWithTimezone(TimezoneInfo selectedInfo, StolisInfo baseInfo) {
-		InfoMerger_<StolisInfo, TimezoneInfo> merger = new StolisMergerTimezone();		
-		return merger.merge(selectedInfo, baseInfo);
-	}
-	
-	
-	
-	public static List<StolisInfo> mergeWithTimezone(List<TimezoneInfo> selectedInfos, List<StolisInfo> baseInfos) {
-		InfoMerger_<StolisInfo, TimezoneInfo> merger = new StolisMergerTimezone();		
-		return merger.merge(selectedInfos, baseInfos);
-	}
-	
-	
-	
-	public static StolisInfo mergeToSelect(StolisInfo selectedInfo, StolisInfo baseInfo) {
-		InfoMerger_<StolisInfo, StolisInfo> merger = new StolisMergerToSelect();		
-		return merger.merge(selectedInfo, baseInfo);
-	}
-	
-	
-	
-	public static List<StolisInfo> mergeToSelect(List<StolisInfo> selectedInfos, List<StolisInfo> baseInfos) {
-		InfoMerger_<StolisInfo, StolisInfo> merger = new StolisMergerToSelect();		
-		return merger.merge(selectedInfos, baseInfos);
+		return merger.merge();
 	}
 }

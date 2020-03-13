@@ -25,7 +25,7 @@ final class VisiStolisMergeTimezone extends ActionVisitorTemplateMergeV2<StolisI
 	
 	
 	@Override protected List<StolisInfo> mergeHook(List<StolisInfo> baseInfos, List<TimezoneInfo> selectedInfos) {	
-		return StolisMerger.mergeWithTimezone(selectedInfos, baseInfos);
+		return StolisMerger.mergeWithTimezone(baseInfos, selectedInfos);
 	}
 	
 	

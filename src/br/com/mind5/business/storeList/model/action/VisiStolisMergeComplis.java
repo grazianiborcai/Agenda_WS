@@ -25,7 +25,7 @@ final class VisiStolisMergeComplis extends ActionVisitorTemplateMergeV2<StolisIn
 	
 	
 	@Override protected List<StolisInfo> mergeHook(List<StolisInfo> baseInfos, List<ComplisInfo> selectedInfos) {	
-		return StolisMerger.mergeWithComplis(selectedInfos, baseInfos);
+		return StolisMerger.mergeWithComplis(baseInfos, selectedInfos);
 	}
 	
 	

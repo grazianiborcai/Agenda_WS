@@ -73,8 +73,6 @@ public final class StolisSelectSingle extends DaoStmtTemplate<StolisInfo> {
 					dataInfo.codTimezone = stmtResult.getString(StolisDbTableColumn.COL_COD_TIMEZONE);
 					dataInfo.recordMode = stmtResult.getString(StolisDbTableColumn.COL_RECORD_MODE);	
 					dataInfo.codCompany = DaoFormatter.sqlToLong(stmtResult, StolisDbTableColumn.COL_COD_COMPANY);
-					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, StolisDbTableColumn.COL_LAST_CHANGED);
-					dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, StolisDbTableColumn.COL_LAST_CHANGED_BY);
 					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, StolisDbTableColumn.COL_COD_SNAPSHOT);		
 					
 					finalResult.add(dataInfo);

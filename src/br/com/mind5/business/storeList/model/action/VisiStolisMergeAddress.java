@@ -32,7 +32,7 @@ final class VisiStolisMergeAddress extends ActionVisitorTemplateMergeV2<StolisIn
 	
 	
 	@Override protected List<StolisInfo> mergeHook(List<StolisInfo> baseInfos, List<AddressInfo> selectedInfos) {	
-		return StolisMerger.mergeWithAddress(selectedInfos, baseInfos);
+		return StolisMerger.mergeWithAddress(baseInfos, selectedInfos);
 	}
 	
 	

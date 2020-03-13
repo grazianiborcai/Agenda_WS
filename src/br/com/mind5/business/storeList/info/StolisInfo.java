@@ -1,6 +1,5 @@
 package br.com.mind5.business.storeList.info;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,8 +23,6 @@ public final class StolisInfo extends InfoRecord implements Cloneable {
 	public List<PhoneInfo> phones;
 	public ComplisInfo complisData;
 	public List<FimistInfo> fimistes;
-	public LocalDateTime lastChanged;
-	public long lastChangedBy;
 	public String username;
 	public String recordMode;
 	
@@ -42,7 +39,6 @@ public final class StolisInfo extends InfoRecord implements Cloneable {
 		addresses = DefaultValue.list();
 		phones = DefaultValue.list();
 		fimistes = DefaultValue.list();
-		lastChangedBy = DefaultValue.number();
 	}
 	
 	

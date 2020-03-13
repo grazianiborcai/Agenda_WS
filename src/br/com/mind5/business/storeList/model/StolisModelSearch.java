@@ -1,21 +1,23 @@
 package br.com.mind5.business.storeList.model;
 
+import javax.servlet.http.HttpServletRequest;
+
 import br.com.mind5.business.storeList.info.StolisInfo;
-import br.com.mind5.business.storeList.model.decisionTree.RootStolisSelect;
+import br.com.mind5.business.storeList.model.decisionTree.RootStolisSearch;
 import br.com.mind5.model.ModelTemplate;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StolisModelSelect extends ModelTemplate<StolisInfo> {
+public final class StolisModelSearch extends ModelTemplate<StolisInfo> {
 
-	public StolisModelSelect(StolisInfo recordInfo) {
-		super(recordInfo);
+	public StolisModelSearch(String incomingData, HttpServletRequest request) {
+		super(incomingData, request, StolisInfo.class);
 	}
 	
 	
 	
 	@Override protected DeciTree<StolisInfo> getDecisionTreeHook(DeciTreeOption<StolisInfo> option) {
-		return new RootStolisSelect(option);
+		return new RootStolisSearch(option);
 	}
 	
 	

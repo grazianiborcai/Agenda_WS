@@ -27,8 +27,7 @@ import br.com.mind5.business.storeLeaveDate.model.StolateModelInsert;
 import br.com.mind5.business.storeLeaveDate.model.StolateModelSearch;
 import br.com.mind5.business.storeLeaveDate.model.StolateModelSelect;
 import br.com.mind5.business.storeLeaveDate.model.StolateModelUpdate;
-import br.com.mind5.business.storeList.info.StolisInfo;
-import br.com.mind5.business.storeList.model.StolisModelSelect;
+import br.com.mind5.business.storeList.model.StolisModelSearch;
 import br.com.mind5.business.storeWorkTime.info.StowotmInfo;
 import br.com.mind5.business.storeWorkTime.model.StowotmModelDelete;
 import br.com.mind5.business.storeWorkTime.model.StowotmModelInsert;
@@ -49,7 +48,7 @@ public class StoreResource {
 	private static final String UPDATE_STORE = "/updateStore";
 	private static final String DELETE_STORE = "/deleteStore";
 	private static final String SELECT_STORE = "/selectStore";
-	private static final String SELECT_STORE_LIST = "/selectStoreList";
+	private static final String SEARCH_STORE = "/searchStore";
 	private static final String SELECT_STORE_WTIME = "/selectStoreWorkTime";
 	private static final String SEARCH_STORE_WTIME = "/searchStoreWorkTime";
 	private static final String INSERT_STORE_WTIME = "/insertStoreWorkTime";
@@ -132,21 +131,13 @@ public class StoreResource {
 	
 	
 	
-	@GET
-	@Path(SELECT_STORE_LIST)
+	@POST
+	@Path(SEARCH_STORE)
+	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response selectStolis(@HeaderParam("TOKEN_OWNER")    @DefaultValue("-1") long codOwner, 
-			                     @HeaderParam("codStore")       @DefaultValue("-1") int codStore,
-			                     @HeaderParam("codLanguage")	   @DefaultValue("EN") String codLanguage,
-			                     @HeaderParam("TOKEN_USERNAME") String username) {
-
-		StolisInfo recordInfo = new StolisInfo();
-		recordInfo.codOwner = codOwner;
-		recordInfo.codStore = codStore;
-		recordInfo.codLanguage = codLanguage;
-		recordInfo.username = username;
+	public Response searchStore(@Context HttpServletRequest request, String incomingData) {
 		
-		Model model = new StolisModelSelect(recordInfo);
+		Model model = new StolisModelSearch(incomingData, request);
 		model.executeRequest();
 		return model.getResponse();
 	}
@@ -178,6 +169,7 @@ public class StoreResource {
 	
 	@POST
 	@Path(SEARCH_STORE_WTIME)
+	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response searchStoreWTime(@Context HttpServletRequest request, String incomingData) {
 		

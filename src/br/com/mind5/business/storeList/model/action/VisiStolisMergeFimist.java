@@ -32,7 +32,7 @@ final class VisiStolisMergeFimist extends ActionVisitorTemplateMergeV2<StolisInf
 	
 	
 	@Override protected List<StolisInfo> mergeHook(List<StolisInfo> baseInfos, List<FimistInfo> selectedInfos) {	
-		return StolisMerger.mergeWithFimist(selectedInfos, baseInfos);
+		return StolisMerger.mergeWithFimist(baseInfos, selectedInfos);
 	}
 	
 	
