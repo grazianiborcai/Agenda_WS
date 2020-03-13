@@ -21,10 +21,6 @@ public final class MatCheckServicePriceUnitMax extends ModelCheckerTemplateSimpl
 			return super.SUCCESS;
 		
 		
-		if (MatUnit.MINUTE.getCodUnit().equals(recordInfo.codUnit) == false)					
-			return super.SUCCESS;	
-		
-		
 		if (checkHour(recordInfo) 	== false ||
 			checkMinute(recordInfo) == false	)			
 			return super.FAILED;		
@@ -40,8 +36,7 @@ public final class MatCheckServicePriceUnitMax extends ModelCheckerTemplateSimpl
 			return super.SUCCESS;
 		
 		if (recordInfo.priceUnit > 4)			
-			return super.FAILED;		
-		
+			return super.FAILED;				
 		
 		return super.SUCCESS;
 	}
@@ -53,8 +48,7 @@ public final class MatCheckServicePriceUnitMax extends ModelCheckerTemplateSimpl
 			return super.SUCCESS;
 		
 		if (recordInfo.priceUnit > 4 * 60 )			
-			return super.FAILED;		
-		
+			return super.FAILED;				
 		
 		return super.SUCCESS;
 	}
