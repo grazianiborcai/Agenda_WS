@@ -22,8 +22,8 @@ final class VisiMatarchMergeToSelect extends ActionVisitorTemplateMergeV2<Matarc
 	
 	
 	
-	@Override protected List<MatarchInfo> mergeHook(List<MatarchInfo> recordInfos, List<MatarchInfo> selectedInfos) {	
-		return MatarchMerger.mergeToSelect(selectedInfos, recordInfos);
+	@Override protected List<MatarchInfo> mergeHook(List<MatarchInfo> baseInfos, List<MatarchInfo> selectedInfos) {	
+		return MatarchMerger.mergeToSelect(baseInfos, selectedInfos);
 	}
 	
 	

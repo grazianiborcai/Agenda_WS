@@ -23,14 +23,6 @@ public final class MatarchCheckRead extends ModelCheckerTemplateSimpleV2<Matarch
 			return super.FAILED;
 		
 		
-		if (recordInfo.codMat 		<= 0 &&
-			recordInfo.codType		<= 0 &&
-			recordInfo.codGroup 	<= 0 &&
-			recordInfo.codMatCateg	<= 0	)			
-				
-			return super.FAILED;
-		
-		
 		return super.SUCCESS;
 	}
 	
