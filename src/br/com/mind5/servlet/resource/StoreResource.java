@@ -261,7 +261,7 @@ public class StoreResource {
 	
 	
 	
-	@GET
+	@POST
 	@Path(SEARCH_STORE_LDATE)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response searchStolate(@HeaderParam("TOKEN_OWNER")    @DefaultValue("-1") long codOwner, 
