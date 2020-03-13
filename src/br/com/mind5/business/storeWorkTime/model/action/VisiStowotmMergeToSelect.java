@@ -22,8 +22,8 @@ final class VisiStowotmMergeToSelect extends ActionVisitorTemplateMergeV2<Stowot
 	
 	
 	
-	@Override protected List<StowotmInfo> mergeHook(List<StowotmInfo> recordInfos, List<StowotmInfo> selectedInfos) {	
-		return StowotmMerger.mergeToSelect(selectedInfos, recordInfos);
+	@Override protected List<StowotmInfo> mergeHook(List<StowotmInfo> baseInfos, List<StowotmInfo> selectedInfos) {	
+		return StowotmMerger.mergeToSelect(baseInfos, selectedInfos);
 	}
 	
 	

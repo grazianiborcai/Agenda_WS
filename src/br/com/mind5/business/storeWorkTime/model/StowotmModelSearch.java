@@ -1,5 +1,7 @@
 package br.com.mind5.business.storeWorkTime.model;
 
+import javax.servlet.http.HttpServletRequest;
+
 import br.com.mind5.business.storeWorkTime.info.StowotmInfo;
 import br.com.mind5.business.storeWorkTime.model.decisionTree.RootStowotmSearch;
 import br.com.mind5.model.ModelTemplate;
@@ -8,8 +10,8 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 
 public final class StowotmModelSearch extends ModelTemplate<StowotmInfo> {
 
-	public StowotmModelSearch(StowotmInfo recordInfo) {
-		super(recordInfo);
+	public StowotmModelSearch(String incomingData, HttpServletRequest request) {
+		super(incomingData, request, StowotmInfo.class);
 	}
 	
 	

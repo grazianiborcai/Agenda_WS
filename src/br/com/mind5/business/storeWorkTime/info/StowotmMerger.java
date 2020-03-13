@@ -5,103 +5,97 @@ import java.util.List;
 import br.com.mind5.business.masterData.info.WeekdayInfo;
 import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.business.storeWorkTimeSearch.info.StowotarchInfo;
-import br.com.mind5.info.obsolete.InfoMerger_;
+import br.com.mind5.info.InfoMergerBuilderV3;
+import br.com.mind5.info.InfoMergerV3;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class StowotmMerger {
-	public static StowotmInfo mergeWithStowotarch(StowotarchInfo sourceOne, StowotmInfo sourceTwo) {
-		InfoMerger_<StowotmInfo, StowotarchInfo> merger = new StowotmMergerStowotarch();		
-		return merger.merge(sourceOne, sourceTwo);
+	public static List<StowotmInfo> mergeWithStowotarch(List<StowotmInfo> baseInfos, List<StowotarchInfo> selectedInfos) {
+		InfoMergerBuilderV3<StowotmInfo, StowotarchInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new StowotmVisiMergeStowotarch());
+		InfoMergerV3<StowotmInfo, StowotarchInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static List<StowotmInfo> mergeWithStowotarch(List<StowotarchInfo> sourceOnes, List<StowotmInfo> sourceTwos) {
-		InfoMerger_<StowotmInfo, StowotarchInfo> merger = new StowotmMergerStowotarch();		
-		return merger.merge(sourceOnes, sourceTwos);
+	public static List<StowotmInfo> mergeWithWeekday(List<StowotmInfo> baseInfos, List<WeekdayInfo> selectedInfos) {
+		InfoMergerBuilderV3<StowotmInfo, WeekdayInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new StowotmVisiMergeWeekday());
+		InfoMergerV3<StowotmInfo, WeekdayInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static StowotmInfo mergeWithWeekday(WeekdayInfo sourceOne, StowotmInfo sourceTwo) {
-		InfoMerger_<StowotmInfo, WeekdayInfo> merger = new StowotmMergerWeekday();		
-		return merger.merge(sourceOne, sourceTwo);
+	public static List<StowotmInfo> mergeWithStolis(List<StowotmInfo> baseInfos, List<StolisInfo> selectedInfos) {
+		InfoMergerBuilderV3<StowotmInfo, StolisInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new StowotmVisiMergeStolis());
+		InfoMergerV3<StowotmInfo, StolisInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static List<StowotmInfo> mergeWithWeekday(List<WeekdayInfo> sourceOnes, List<StowotmInfo> sourceTwos) {
-		InfoMerger_<StowotmInfo, WeekdayInfo> merger = new StowotmMergerWeekday();		
-		return merger.merge(sourceOnes, sourceTwos);
+	public static List<StowotmInfo> mergeWithUsername(List<StowotmInfo> baseInfos, List<UsernameInfo> selectedInfos) {
+		InfoMergerBuilderV3<StowotmInfo, UsernameInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new StowotmVisiMergeUsername());
+		InfoMergerV3<StowotmInfo, UsernameInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static StowotmInfo mergeWithStolis(StolisInfo sourceOne, StowotmInfo sourceTwo) {
-		InfoMerger_<StowotmInfo, StolisInfo> merger = new StowotmMergerStolis();		
-		return merger.merge(sourceOne, sourceTwo);
+	public static List<StowotmInfo> mergeToSelect(List<StowotmInfo> baseInfos, List<StowotmInfo> selectedInfos) {
+		InfoMergerBuilderV3<StowotmInfo, StowotmInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new StowotmVisiMergeToSelect());
+		InfoMergerV3<StowotmInfo, StowotmInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static List<StowotmInfo> mergeWithStolis(List<StolisInfo> sourceOnes, List<StowotmInfo> sourceTwos) {
-		InfoMerger_<StowotmInfo, StolisInfo> merger = new StowotmMergerStolis();		
-		return merger.merge(sourceOnes, sourceTwos);
+	public static List<StowotmInfo> mergeToDelete(List<StowotmInfo> baseInfos, List<StowotmInfo> selectedInfos) {
+		InfoMergerBuilderV3<StowotmInfo, StowotmInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new StowotmVisiMergeToDelete());
+		InfoMergerV3<StowotmInfo, StowotmInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
+
+	public static List<StowotmInfo> mergeToUpdate(List<StowotmInfo> baseInfos, List<StowotmInfo> selectedInfos) {
+		InfoMergerBuilderV3<StowotmInfo, StowotmInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new StowotmVisiMergeToUpdate());
+		InfoMergerV3<StowotmInfo, StowotmInfo> merger = builder.build();		
 	
-	public static StowotmInfo mergeWithUsername(UsernameInfo sourceOne, StowotmInfo sourceTwo) {
-		InfoMerger_<StowotmInfo, UsernameInfo> merger = new StowotmMergerUsername();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
-	
-	
-	
-	public static List<StowotmInfo> mergeWithUsername(List<UsernameInfo> sourceOnes, List<StowotmInfo> sourceTwos) {
-		InfoMerger_<StowotmInfo, UsernameInfo> merger = new StowotmMergerUsername();		
-		return merger.merge(sourceOnes, sourceTwos);
-	}
-	
-	
-	
-	public static StowotmInfo mergeToSelect(StowotmInfo sourceOne, StowotmInfo sourceTwo) {
-		InfoMerger_<StowotmInfo, StowotmInfo> merger = new StowotmMergerToSelect();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
-	
-	
-	
-	public static List<StowotmInfo> mergeToSelect(List<StowotmInfo> sourceOnes, List<StowotmInfo> sourceTwos) {
-		InfoMerger_<StowotmInfo, StowotmInfo> merger = new StowotmMergerToSelect();		
-		return merger.merge(sourceOnes, sourceTwos);
-	}
-	
-	
-	
-	public static StowotmInfo mergeToDelete(StowotmInfo sourceOne, StowotmInfo sourceTwo) {
-		InfoMerger_<StowotmInfo, StowotmInfo> merger = new StowotmMergerToDelete();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
-	
-	
-	
-	public static List<StowotmInfo> mergeToDelete(List<StowotmInfo> sourceOnes, List<StowotmInfo> sourceTwos) {
-		InfoMerger_<StowotmInfo, StowotmInfo> merger = new StowotmMergerToDelete();		
-		return merger.merge(sourceOnes, sourceTwos);
-	}
-	
-	
-	
-	public static StowotmInfo mergeToUpdate(StowotmInfo sourceOne, StowotmInfo sourceTwo) {
-		InfoMerger_<StowotmInfo, StowotmInfo> merger = new StowotmMergerToUpdate();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
-	
-	
-	
-	public static List<StowotmInfo> mergeToUpdate(List<StowotmInfo> sourceOnes, List<StowotmInfo> sourceTwos) {
-		InfoMerger_<StowotmInfo, StowotmInfo> merger = new StowotmMergerToUpdate();		
-		return merger.merge(sourceOnes, sourceTwos);
+		return merger.merge();
 	}
 }

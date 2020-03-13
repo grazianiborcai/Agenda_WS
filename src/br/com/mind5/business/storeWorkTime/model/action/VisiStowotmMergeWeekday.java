@@ -24,8 +24,8 @@ final class VisiStowotmMergeWeekday extends ActionVisitorTemplateMergeV2<Stowotm
 	
 	
 	
-	@Override protected List<StowotmInfo> mergeHook(List<StowotmInfo> recordInfos, List<WeekdayInfo> selectedInfos) {	
-		return StowotmMerger.mergeWithWeekday(selectedInfos, recordInfos);
+	@Override protected List<StowotmInfo> mergeHook(List<StowotmInfo> baseInfos, List<WeekdayInfo> selectedInfos) {	
+		return StowotmMerger.mergeWithWeekday(baseInfos, selectedInfos);
 	}
 	
 	

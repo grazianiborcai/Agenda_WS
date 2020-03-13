@@ -22,8 +22,8 @@ final class VisiStowotmMergeToUpdate extends ActionVisitorTemplateMergeV2<Stowot
 	
 	
 	
-	@Override protected List<StowotmInfo> mergeHook(List<StowotmInfo> recordInfos, List<StowotmInfo> selectedInfos) {	
-		return StowotmMerger.mergeToUpdate(selectedInfos, recordInfos);
+	@Override protected List<StowotmInfo> mergeHook(List<StowotmInfo> baseInfos, List<StowotmInfo> selectedInfos) {	
+		return StowotmMerger.mergeToUpdate(baseInfos, selectedInfos);
 	}
 	
 	

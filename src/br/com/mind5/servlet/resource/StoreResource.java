@@ -179,20 +179,9 @@ public class StoreResource {
 	@GET
 	@Path(SEARCH_STORE_WTIME)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response searchStoreWTime(@HeaderParam("TOKEN_OWNER") @DefaultValue("-1") long codOwner, 
-			                         @HeaderParam("codStore")    @DefaultValue("-1") int codStore,
-			                         @HeaderParam("codWeekday")  @DefaultValue("-1") int codWeekday,			                         
-			                         @HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage,
-			                         @HeaderParam("TOKEN_USERNAME") String username) {
-
-		StowotmInfo recordInfo = new StowotmInfo();
-		recordInfo.codOwner = codOwner;
-		recordInfo.codStore = codStore;
-		recordInfo.codWeekday = codWeekday;
-		recordInfo.codLanguage = codLanguage;
-		recordInfo.username = username;
+	public Response searchStoreWTime(@Context HttpServletRequest request, String incomingData) {
 		
-		Model model = new StowotmModelSearch(recordInfo);
+		Model model = new StowotmModelSearch(incomingData, request);
 		model.executeRequest();
 		return model.getResponse();
 	}

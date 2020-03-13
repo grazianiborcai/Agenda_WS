@@ -25,14 +25,14 @@ final class VisiStowotmMergeUsername extends ActionVisitorTemplateMergeV2<Stowot
 	
 	
 	
-	protected List<UsernameInfo> toActionClassHook(List<StowotmInfo> recordInfos) {
-		return UsernameCopier.copyFromStowotm(recordInfos);	
+	protected List<UsernameInfo> toActionClassHook(List<StowotmInfo> baseInfos) {
+		return UsernameCopier.copyFromStowotm(baseInfos);	
 	}
 	
 	
 	
-	@Override protected List<StowotmInfo> mergeHook(List<StowotmInfo> recordInfos, List<UsernameInfo> selectedInfos) {	
-		return StowotmMerger.mergeWithUsername(selectedInfos, recordInfos);
+	@Override protected List<StowotmInfo> mergeHook(List<StowotmInfo> baseInfos, List<UsernameInfo> selectedInfos) {	
+		return StowotmMerger.mergeWithUsername(baseInfos, selectedInfos);
 	}
 	
 	

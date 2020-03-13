@@ -24,8 +24,8 @@ final class VisiStowotmMergeStolis extends ActionVisitorTemplateMergeV2<StowotmI
 	
 	
 	
-	@Override protected List<StowotmInfo> mergeHook(List<StowotmInfo> recordInfos, List<StolisInfo> selectedInfos) {	
-		return StowotmMerger.mergeWithStolis(selectedInfos, recordInfos);
+	@Override protected List<StowotmInfo> mergeHook(List<StowotmInfo> baseInfos, List<StolisInfo> selectedInfos) {	
+		return StowotmMerger.mergeWithStolis(baseInfos, selectedInfos);
 	}
 	
 	

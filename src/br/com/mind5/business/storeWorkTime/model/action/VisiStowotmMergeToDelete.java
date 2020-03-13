@@ -23,8 +23,8 @@ final class VisiStowotmMergeToDelete extends ActionVisitorTemplateMergeV2<Stowot
 	
 	
 	
-	@Override protected List<StowotmInfo> mergeHook(List<StowotmInfo> recordInfos, List<StowotmInfo> selectedInfos) {	
-		return StowotmMerger.mergeToDelete(selectedInfos, recordInfos);
+	@Override protected List<StowotmInfo> mergeHook(List<StowotmInfo> baseInfos, List<StowotmInfo> selectedInfos) {	
+		return StowotmMerger.mergeToDelete(baseInfos, selectedInfos);
 	}
 	
 	
