@@ -51,10 +51,10 @@
     	<security:intercept-url pattern="/**/Store/searchStore" 				access="isAuthenticated()" 							/>   
         <security:intercept-url pattern="/**/Store/selectPayPartnerList"		access="hasAuthority('STORE_PAY_READ')"				/> 	  
         <security:intercept-url pattern="/**/Store/grantMoip"					access="hasAuthority('STORE_PAY_WRITE')" 			/>    
-        <security:intercept-url pattern="/**/Store/insert**" 					access="hasAuthority('STORE_INSERT')" 				/> <!-- TODO: rever -->
-        <security:intercept-url pattern="/**/Store/update**" 					access="hasAuthority('STORE_UPDATE')" 				/>
-        <security:intercept-url pattern="/**/Store/delete**" 					access="hasAuthority('STORE_DELETE')" 				/>
-        <security:intercept-url pattern="/**/Store/select**" 					access="hasAuthority('STORE_READ')" 				/>      
+        <security:intercept-url pattern="/**/Store/insertStore" 				access="hasAuthority('STORE_INSERT')" 				/>
+        <security:intercept-url pattern="/**/Store/updateStore" 				access="hasAuthority('STORE_UPDATE')" 				/>
+        <security:intercept-url pattern="/**/Store/deleteStore" 				access="hasAuthority('STORE_DELETE')" 				/>
+        <security:intercept-url pattern="/**/Store/selectStore" 				access="hasAuthority('STORE_READ')" 				/>      
         <security:intercept-url pattern="/**/Material/insertMatmov" 			access="hasAuthority('MAT_MOV_WRITE')"				/>
         <security:intercept-url pattern="/**/Material/selectMatmov" 			access="hasAuthority('MAT_MOV_READ')"				/>     
         <security:intercept-url pattern="/**/Material/searchMatmov" 			access="hasAuthority('MAT_MOV_READ')"				/>     
@@ -63,11 +63,11 @@
         <security:intercept-url pattern="/**/Material/insertMatStore" 			access="hasAuthority('MAT_STORE_WRITE')"			/>
         <security:intercept-url pattern="/**/Material/selectMatStore" 			access="isAuthenticated()"							/>	<!-- TODO: rever -->
         <security:intercept-url pattern="/**/Material/searchMatStore" 			access="isAuthenticated()"							/>	<!-- TODO: rever -->
-        <security:intercept-url pattern="/**/Material/insert**" 				access="hasAuthority('MATERIAL_WRITE')"				/>	<!-- TODO: rever -->
-        <security:intercept-url pattern="/**/Material/update**" 				access="hasAuthority('MATERIAL_WRITE')" 			/>
-        <security:intercept-url pattern="/**/Material/upsert**" 				access="hasAuthority('MATERIAL_WRITE')" 			/>
-        <security:intercept-url pattern="/**/Material/delete**" 				access="hasAuthority('MATERIAL_WRITE')" 			/>
-        <security:intercept-url pattern="/**/Material/select**" 				access="isAuthenticated()" 							/>  <!-- TODO: rever --> 
+        <security:intercept-url pattern="/**/Material/insertMaterial" 			access="hasAuthority('MATERIAL_WRITE')"				/>	<!-- TODO: rever -->
+        <security:intercept-url pattern="/**/Material/updateMaterial" 			access="hasAuthority('MATERIAL_WRITE')" 			/>
+        <security:intercept-url pattern="/**/Material/deleteMaterial" 			access="hasAuthority('MATERIAL_WRITE')" 			/>
+        <security:intercept-url pattern="/**/Material/selectMaterial" 			access="isAuthenticated()" 							/>  <!-- TODO: rever --> 
+        <security:intercept-url pattern="/**/Material/searchMaterial" 			access="isAuthenticated()" 							/>
         <security:intercept-url pattern="/**/Employee/selectEmployee" 			access="hasAuthority('EMPLOYEE_READ')" 				/>
         <security:intercept-url pattern="/**/Employee/selectSearch" 			access="hasAuthority('EMPLOYEE_READ')" 				/>        
         <security:intercept-url pattern="/**/Employee/insertEmployee"			access="hasAuthority('EMPLOYEE_WRITE')"				/>

@@ -24,8 +24,8 @@ final class VisiMatlisMergeMatarch extends ActionVisitorTemplateMergeV2<MatlisIn
 	
 	
 	
-	@Override protected List<MatlisInfo> mergeHook(List<MatlisInfo> recordInfos, List<MatarchInfo> selectedInfos) {	
-		return MatlisMerger.mergeWithMatarch(selectedInfos, recordInfos);
+	@Override protected List<MatlisInfo> mergeHook(List<MatlisInfo> baseInfos, List<MatarchInfo> selectedInfos) {	
+		return MatlisMerger.mergeWithMatarch(baseInfos, selectedInfos);
 	}
 	
 	

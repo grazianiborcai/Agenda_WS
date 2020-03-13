@@ -1,56 +1,38 @@
 package br.com.mind5.business.materialList.info;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.ArrayList;
+import java.util.List;
 
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-final class MatlisVisiMergeToSelect implements InfoMergerVisitor_<MatlisInfo, MatlisInfo> {
-
-	@Override public MatlisInfo writeRecord(MatlisInfo sourceOne, MatlisInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);		
-		return merge(sourceOne, sourceTwo);
+final class MatlisVisiMergeToSelect implements InfoMergerVisitorV3<MatlisInfo, MatlisInfo> {
+	
+	@Override public List<MatlisInfo> beforeMerge(List<MatlisInfo> baseInfos) {
+		return baseInfos;
 	}
 	
 	
 	
-	private void checkArgument(MatlisInfo sourceOne, MatlisInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
+	@Override public boolean shouldMerge(MatlisInfo baseInfo, MatlisInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner);
 	}
 	
 	
 	
-	private MatlisInfo merge(MatlisInfo sourceOne, MatlisInfo sourceTwo) {
-		MatlisInfo result = makeClone(sourceOne);		
-		result.username = sourceTwo.username;
-		result.codLanguage = sourceTwo.codLanguage;
-		return result;
+	@Override public List<MatlisInfo> merge(MatlisInfo baseInfo, MatlisInfo selectedInfo) {
+		List<MatlisInfo> results = new ArrayList<>();
+		
+		selectedInfo.username = baseInfo.username;
+		selectedInfo.codLanguage = baseInfo.codLanguage;
+		
+		results.add(selectedInfo);
+		return results;
 	}
 	
 	
 	
-	private MatlisInfo makeClone(MatlisInfo recordInfo) {
-		try {
-			return (MatlisInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(MatlisInfo sourceOne, MatlisInfo sourceTwo) {		
-		return (sourceOne.codOwner == sourceTwo.codOwner);
-	}
-	
-	
-	
-	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
+	@Override public InfoUniquifier<MatlisInfo> getUniquifier() {
+		return null;
 	}
 }

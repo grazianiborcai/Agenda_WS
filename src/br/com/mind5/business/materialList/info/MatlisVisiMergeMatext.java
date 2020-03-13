@@ -1,60 +1,40 @@
 package br.com.mind5.business.materialList.info;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.ArrayList;
+import java.util.List;
 
 import br.com.mind5.business.materialText.info.MatextInfo;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-final class MatlisVisiMergeMatext implements InfoMergerVisitor_<MatlisInfo, MatextInfo> {
-
-	@Override public MatlisInfo writeRecord(MatextInfo sourceOne, MatlisInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+final class MatlisVisiMergeMatext implements InfoMergerVisitorV3<MatlisInfo, MatextInfo> {
+	
+	@Override public List<MatlisInfo> beforeMerge(List<MatlisInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(MatlisInfo baseInfo, MatextInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner	&&
+				baseInfo.codMat   == selectedInfo.codMat		);
+	}
+	
+	
+	
+	@Override public List<MatlisInfo> merge(MatlisInfo baseInfo, MatextInfo selectedInfo) {
+		List<MatlisInfo> results = new ArrayList<>();
 		
-		MatlisInfo clonedInfo = makeClone(sourceTwo);
-		return merge(sourceOne, clonedInfo);
-	}
-	
-	
-	
-	private void checkArgument(MatextInfo sourceOne, MatlisInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private MatlisInfo makeClone(MatlisInfo recordInfo) {
-		try {
-			return (MatlisInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	private MatlisInfo merge(MatextInfo sourceOne, MatlisInfo sourceTwo) {
-		sourceTwo.txtMat = sourceOne.txtMat;
-		sourceTwo.description = sourceOne.description;
+		baseInfo.txtMat = selectedInfo.txtMat;
+		baseInfo.description = selectedInfo.description;
 		
-		return sourceTwo;
+		results.add(baseInfo);
+		return results;
 	}
 	
 	
 	
-	@Override public boolean shouldWrite(MatextInfo sourceOne, MatlisInfo sourceTwo) {
-		return (sourceOne.codOwner == sourceTwo.codOwner	&&
-				sourceOne.codMat == sourceTwo.codMat			);
-	}
-	
-	
-	
-	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
+	@Override public InfoUniquifier<MatlisInfo> getUniquifier() {
+		return null;
 	}
 }

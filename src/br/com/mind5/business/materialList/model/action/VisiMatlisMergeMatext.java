@@ -24,8 +24,8 @@ final class VisiMatlisMergeMatext extends ActionVisitorTemplateMergeV2<MatlisInf
 	
 	
 	
-	@Override protected List<MatlisInfo> mergeHook(List<MatlisInfo> recordInfos, List<MatextInfo> selectedInfos) {	
-		return MatlisMerger.mergeWithMatext(selectedInfos, recordInfos);
+	@Override protected List<MatlisInfo> mergeHook(List<MatlisInfo> baseInfos, List<MatextInfo> selectedInfos) {	
+		return MatlisMerger.mergeWithMatext(baseInfos, selectedInfos);
 	}
 	
 	

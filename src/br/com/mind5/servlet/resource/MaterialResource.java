@@ -37,7 +37,7 @@ public class MaterialResource {
 	private static final String UPDATE_MATERIAL = "/updateMaterial";
 	private static final String DELETE_MATERIAL = "/deleteMaterial";
 	private static final String SELECT_MATERIAL = "/selectMaterial";	
-	private static final String SEARCH_MATERIAL_LIST = "/searchMaterialList";
+	private static final String SEARCH_MATERIAL = "/searchMaterial";
 	private static final String SELECT_MAT_STORE = "/selectMatStore";
 	private static final String SEARCH_MAT_STORE = "/searchMatStore";
 	private static final String INSERT_MAT_STORE = "/insertMatStore";
@@ -120,7 +120,7 @@ public class MaterialResource {
 	
 	
 	@POST
-	@Path(SEARCH_MATERIAL_LIST)
+	@Path(SEARCH_MATERIAL)
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response searchMatlis(@Context HttpServletRequest request, String incomingData) {	
