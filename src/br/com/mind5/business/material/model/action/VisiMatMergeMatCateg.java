@@ -24,8 +24,8 @@ final class VisiMatMergeMatCateg extends ActionVisitorTemplateMergeV2<MatInfo, M
 	
 	
 	
-	@Override protected List<MatInfo> mergeHook(List<MatInfo> recordInfos, List<MatCategInfo> selectedInfos) {	
-		return MatMerger.mergeWithMatCateg(selectedInfos, recordInfos);
+	@Override protected List<MatInfo> mergeHook(List<MatInfo> baseInfos, List<MatCategInfo> selectedInfos) {	
+		return MatMerger.mergeWithMatCateg(baseInfos, selectedInfos);
 	}
 	
 	

@@ -1,59 +1,39 @@
 package br.com.mind5.business.material.info;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.ArrayList;
+import java.util.List;
 
 import br.com.mind5.business.materialSnapshot.info.MatsnapInfo;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-final class MatVisiMergeMatsnap implements InfoMergerVisitor_<MatInfo, MatsnapInfo> {
-
-	@Override public MatInfo writeRecord(MatsnapInfo sourceOne, MatInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+final class MatVisiMergeMatsnap implements InfoMergerVisitorV3<MatInfo, MatsnapInfo> {
+	
+	@Override public List<MatInfo> beforeMerge(List<MatInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(MatInfo baseInfo, MatsnapInfo selectedInfo) {
+		return (baseInfo.codOwner 	== selectedInfo.codOwner	&&
+				baseInfo.codMat 	== selectedInfo.codMat			);
+	}
+	
+	
+	
+	@Override public List<MatInfo> merge(MatInfo baseInfo, MatsnapInfo selectedInfo) {
+		List<MatInfo> results = new ArrayList<>();
 		
-		return merge(sourceOne, sourceTwo);
-	}
-	
-	
-	
-	private void checkArgument(MatsnapInfo sourceOne, MatInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private MatInfo merge(MatsnapInfo sourceOne, MatInfo sourceTwo) {
-		MatInfo resultInfo = makeClone(sourceTwo);
-		resultInfo.codSnapshot = sourceOne.codSnapshot;
+		baseInfo.codSnapshot = selectedInfo.codSnapshot;
 		
-		return resultInfo;
+		results.add(baseInfo);
+		return results;
 	}
 	
 	
 	
-	private MatInfo makeClone(MatInfo recordInfo) {
-		try {
-			return (MatInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(MatsnapInfo sourceOne, MatInfo sourceTwo) {
-		return (sourceOne.codOwner 	== sourceTwo.codOwner	&&
-				sourceOne.codMat 	== sourceTwo.codMat			);
-	}
-	
-	
-	
-	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
+	@Override public InfoUniquifier<MatInfo> getUniquifier() {
+		return null;
 	}
 }

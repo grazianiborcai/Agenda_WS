@@ -5,7 +5,8 @@ import java.util.List;
 
 import br.com.mind5.business.material.info.MatInfo;
 import br.com.mind5.business.material.model.action.StdMatSuccess;
-import br.com.mind5.business.material.model.checker.MatCheckServicePriceUnit;
+import br.com.mind5.business.material.model.checker.MatCheckServicePriceUnitMax;
+import br.com.mind5.business.material.model.checker.MatCheckServicePriceUnitMin;
 import br.com.mind5.business.material.model.checker.MatCheckServiceUnit;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
@@ -38,7 +39,14 @@ public final class NodeMatServiceL2 extends DeciTreeWriteTemplate<MatInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;			
-		checker = new MatCheckServicePriceUnit(checkerOption);
+		checker = new MatCheckServicePriceUnitMin(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;			
+		checker = new MatCheckServicePriceUnitMax(checkerOption);
 		queue.add(checker);
 
 		return new ModelCheckerQueue<>(queue);

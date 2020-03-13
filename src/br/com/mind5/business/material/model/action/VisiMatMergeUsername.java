@@ -25,14 +25,14 @@ final class VisiMatMergeUsername extends ActionVisitorTemplateMergeV2<MatInfo, U
 	
 	
 	
-	@Override protected List<UsernameInfo> toActionClassHook(List<MatInfo> recordInfos) {
-		return UsernameCopier.copyFromMat(recordInfos);	
+	@Override protected List<UsernameInfo> toActionClassHook(List<MatInfo> baseInfos) {
+		return UsernameCopier.copyFromMat(baseInfos);	
 	}
 	
 	
 	
-	@Override protected List<MatInfo> mergeHook(List<MatInfo> recordInfos, List<UsernameInfo> selectedInfos) {	
-		return MatMerger.mergeWithUsername(selectedInfos, recordInfos);
+	@Override protected List<MatInfo> mergeHook(List<MatInfo> baseInfos, List<UsernameInfo> selectedInfos) {	
+		return MatMerger.mergeWithUsername(baseInfos, selectedInfos);
 	}
 	
 	

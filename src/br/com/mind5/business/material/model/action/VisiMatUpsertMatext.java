@@ -32,6 +32,6 @@ final class VisiMatUpsertMatext extends ActionVisitorTemplateAction<MatInfo, Mat
 	
 	
 	@Override protected List<MatInfo> toBaseClassHook(List<MatInfo> baseInfos, List<MatextInfo> results) {
-		return MatMerger.mergeWithMatext(results, baseInfos);
+		return MatMerger.mergeWithMatext(baseInfos, results);
 	}
 }

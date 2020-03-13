@@ -26,6 +26,6 @@ final class VisiMatInsertMatsnap extends ActionVisitorTemplateAction<MatInfo, Ma
 	
 	
 	protected List<MatInfo> toBaseClassHook(List<MatInfo> baseInfos, List<MatsnapInfo> results) {
-		return MatMerger.mergeWithMatsnap(results, baseInfos);
+		return MatMerger.mergeWithMatsnap(baseInfos, results);
 	}
 }

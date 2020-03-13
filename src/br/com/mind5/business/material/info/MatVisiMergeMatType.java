@@ -1,59 +1,38 @@
 package br.com.mind5.business.material.info;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.ArrayList;
+import java.util.List;
 
 import br.com.mind5.business.masterData.info.MatTypeInfo;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-final class MatVisiMergeMatType implements InfoMergerVisitor_<MatInfo, MatTypeInfo> {
-
-	@Override public MatInfo writeRecord(MatTypeInfo sourceOne, MatInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+final class MatVisiMergeMatType implements InfoMergerVisitorV3<MatInfo, MatTypeInfo> {
+	
+	@Override public List<MatInfo> beforeMerge(List<MatInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(MatInfo baseInfo, MatTypeInfo selectedInfo) {
+		return (baseInfo.codType == selectedInfo.codType);
+	}
+	
+	
+	
+	@Override public List<MatInfo> merge(MatInfo baseInfo, MatTypeInfo selectedInfo) {
+		List<MatInfo> results = new ArrayList<>();
 		
-		MatInfo clonedInfo = makeClone(sourceTwo);
-		return merge(sourceOne, clonedInfo);
+		baseInfo.txtType = selectedInfo.txtType;
+		
+		results.add(baseInfo);
+		return results;
 	}
 	
 	
 	
-	private void checkArgument(MatTypeInfo sourceOne, MatInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private MatInfo makeClone(MatInfo recordInfo) {
-		try {
-			return (MatInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	private MatInfo merge(MatTypeInfo sourceOne, MatInfo sourceTwo) {
-		sourceTwo.codType = sourceOne.codType;
-		sourceTwo.txtType = sourceOne.txtType;
-
-		return sourceTwo;
-	}
-
-
-	
-	@Override public boolean shouldWrite(MatTypeInfo sourceOne, MatInfo sourceTwo) {
-		return (sourceOne.codType == sourceTwo.codType);
-	}		
-	
-	
-	
-	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
+	@Override public InfoUniquifier<MatInfo> getUniquifier() {
+		return null;
 	}
 }

@@ -25,14 +25,14 @@ final class VisiMatMergeFimist extends ActionVisitorTemplateMergeV2<MatInfo, Fim
 	
 	
 	
-	@Override protected List<FimistInfo> toActionClassHook(List<MatInfo> recordInfos) {
-		return FimistCopier.copyFromMat(recordInfos);	
+	@Override protected List<FimistInfo> toActionClassHook(List<MatInfo> baseInfos) {
+		return FimistCopier.copyFromMat(baseInfos);	
 	}
 	
 	
 	
-	@Override protected List<MatInfo> mergeHook(List<MatInfo> recordInfos, List<FimistInfo> selectedInfos) {	
-		return MatMerger.mergeWithFimist(selectedInfos, recordInfos);
+	@Override protected List<MatInfo> mergeHook(List<MatInfo> baseInfos, List<FimistInfo> selectedInfos) {	
+		return MatMerger.mergeWithFimist(baseInfos, selectedInfos);
 	}
 	
 	

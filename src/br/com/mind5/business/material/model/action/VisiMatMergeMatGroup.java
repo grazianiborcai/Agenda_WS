@@ -24,8 +24,8 @@ final class VisiMatMergeMatGroup extends ActionVisitorTemplateMergeV2<MatInfo, M
 	
 	
 	
-	@Override protected List<MatInfo> mergeHook(List<MatInfo> recordInfos, List<MatGroupInfo> selectedInfos) {	
-		return MatMerger.mergeWithMatGroup(selectedInfos, recordInfos);
+	@Override protected List<MatInfo> mergeHook(List<MatInfo> baseInfos, List<MatGroupInfo> selectedInfos) {	
+		return MatMerger.mergeWithMatGroup(baseInfos, selectedInfos);
 	}
 	
 	

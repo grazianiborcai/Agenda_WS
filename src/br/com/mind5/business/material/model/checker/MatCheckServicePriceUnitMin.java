@@ -8,9 +8,9 @@ import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class MatCheckServicePriceUnit extends ModelCheckerTemplateSimpleV2<MatInfo> {
+public final class MatCheckServicePriceUnitMin extends ModelCheckerTemplateSimpleV2<MatInfo> {
 
-	public MatCheckServicePriceUnit(ModelCheckerOption option) {
+	public MatCheckServicePriceUnitMin(ModelCheckerOption option) {
 		super(option);
 	}
 	

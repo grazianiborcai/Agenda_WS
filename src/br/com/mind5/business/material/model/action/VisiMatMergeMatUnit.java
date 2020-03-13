@@ -24,8 +24,8 @@ final class VisiMatMergeMatUnit extends ActionVisitorTemplateMergeV2<MatInfo, Ma
 	
 	
 	
-	@Override protected List<MatInfo> mergeHook(List<MatInfo> recordInfos, List<MatUnitInfo> selectedInfos) {	
-		return MatMerger.mergeWithMatUnit(selectedInfos, recordInfos);
+	@Override protected List<MatInfo> mergeHook(List<MatInfo> baseInfos, List<MatUnitInfo> selectedInfos) {	
+		return MatMerger.mergeWithMatUnit(baseInfos, selectedInfos);
 	}
 	
 	

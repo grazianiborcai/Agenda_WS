@@ -1,59 +1,38 @@
 package br.com.mind5.business.material.info;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.ArrayList;
+import java.util.List;
 
 import br.com.mind5.business.masterData.info.MatCategInfo;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-final class MatVisiMergeMatCateg implements InfoMergerVisitor_<MatInfo, MatCategInfo> {
-
-	@Override public MatInfo writeRecord(MatCategInfo sourceOne, MatInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+final class MatVisiMergeMatCateg implements InfoMergerVisitorV3<MatInfo, MatCategInfo> {
+	
+	@Override public List<MatInfo> beforeMerge(List<MatInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(MatInfo baseInfo, MatCategInfo selectedInfo) {
+		return (baseInfo.codMatCateg == selectedInfo.codMatCateg);
+	}
+	
+	
+	
+	@Override public List<MatInfo> merge(MatInfo baseInfo, MatCategInfo selectedInfo) {
+		List<MatInfo> results = new ArrayList<>();
 		
-		MatInfo clonedInfo = makeClone(sourceTwo);
-		return merge(sourceOne, clonedInfo);
+		baseInfo.txtMatCateg = baseInfo.txtMatCateg;
+		
+		results.add(baseInfo);
+		return results;
 	}
 	
 	
 	
-	private void checkArgument(MatCategInfo sourceOne, MatInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private MatInfo makeClone(MatInfo recordInfo) {
-		try {
-			return (MatInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	private MatInfo merge(MatCategInfo sourceOne, MatInfo sourceTwo) {
-		sourceTwo.codMatCateg = sourceOne.codMatCateg;
-		sourceTwo.txtMatCateg = sourceOne.txtMatCateg;
-
-		return sourceTwo;
-	}
-
-
-	
-	@Override public boolean shouldWrite(MatCategInfo sourceOne, MatInfo sourceTwo) {
-		return (sourceOne.codMatCateg == sourceTwo.codMatCateg);
-	}		
-	
-	
-	
-	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
+	@Override public InfoUniquifier<MatInfo> getUniquifier() {
+		return null;
 	}
 }
