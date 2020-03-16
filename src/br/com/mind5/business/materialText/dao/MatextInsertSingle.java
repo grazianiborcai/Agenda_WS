@@ -36,6 +36,7 @@ public final class MatextInsertSingle extends DaoStmtTemplate<MatextInfo> {
 		return new DaoStmtParamTranslator<MatextInfo>() {			
 			@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, MatextInfo recordInfo) throws SQLException {
 				int i = 1;
+				
 				stmt.setLong(i++, recordInfo.codMat);
 				stmt.setLong(i++, recordInfo.codOwner);			
 				stmt.setString(i++, recordInfo.codLanguage);

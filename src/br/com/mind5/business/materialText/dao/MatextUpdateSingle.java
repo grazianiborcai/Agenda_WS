@@ -37,6 +37,7 @@ public final class MatextUpdateSingle extends DaoStmtTemplate<MatextInfo> {
 	
 	@Override protected String buildWhereClauseHook(String tableName, MatextInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
+		
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;
 		whereOption.ignoreNonPrimaryKey = DaoOptionValue.IGNORE_NON_PK;
@@ -51,6 +52,7 @@ public final class MatextUpdateSingle extends DaoStmtTemplate<MatextInfo> {
 		return new DaoStmtParamTranslator<MatextInfo>() {			
 			@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, MatextInfo recordInfo) throws SQLException {			
 				int i = 1;
+				
 				stmt.setString(i++, recordInfo.txtMat);
 				stmt.setString(i++, recordInfo.description);
 				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.lastChanged);

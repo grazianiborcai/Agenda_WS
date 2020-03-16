@@ -40,6 +40,7 @@ public final class MatextSelectSingle extends DaoStmtTemplate<MatextInfo> {
 	
 	@Override protected String buildWhereClauseHook(String tableName, MatextInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
+		
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
@@ -59,6 +60,7 @@ public final class MatextSelectSingle extends DaoStmtTemplate<MatextInfo> {
 				
 				do {
 					MatextInfo dataInfo = new MatextInfo();
+					
 					dataInfo.codOwner = stmtResult.getLong(MatextDbTableColumn.COL_COD_OWNER);
 					dataInfo.codMat = stmtResult.getLong(MatextDbTableColumn.COL_COD_MATERIAL);
 					dataInfo.txtMat = stmtResult.getString(MatextDbTableColumn.COL_NAME);
@@ -78,5 +80,11 @@ public final class MatextSelectSingle extends DaoStmtTemplate<MatextInfo> {
 				return finalResult;
 			}
 		};
+	}
+	
+	
+	
+	@Override public void executeStmt() throws SQLException {
+		super.executeStmt();
 	}
 }
