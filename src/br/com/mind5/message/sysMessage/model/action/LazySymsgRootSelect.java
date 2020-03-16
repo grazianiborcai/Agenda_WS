@@ -4,15 +4,15 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.message.sysMessage.info.SymsgInfo;
-import br.com.mind5.message.sysMessage.model.decisionTree.NodeSymsgSelect;
+import br.com.mind5.message.sysMessage.model.decisionTree.RootSymsgSelect;
 import br.com.mind5.model.action.ActionLazyTemplate;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazySymsgNodeSelect extends ActionLazyTemplate<SymsgInfo, SymsgInfo> {
+public final class LazySymsgRootSelect extends ActionLazyTemplate<SymsgInfo, SymsgInfo> {
 
-	public LazySymsgNodeSelect(Connection conn, String schemaName) {
+	public LazySymsgRootSelect(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -25,7 +25,7 @@ public final class LazySymsgNodeSelect extends ActionLazyTemplate<SymsgInfo, Sym
 	
 	
 	@Override protected ActionStd<SymsgInfo> getInstanceOfActionHook(DeciTreeOption<SymsgInfo> option) {
-		return new NodeSymsgSelect(option).toAction();
+		return new RootSymsgSelect(option).toAction();
 	}
 	
 	

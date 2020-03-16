@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.message.sysMessage.info.SymsgInfo;
-import br.com.mind5.message.sysMessage.model.action.LazySymsgNodeSelect;
+import br.com.mind5.message.sysMessage.model.action.LazySymsgNodeSelectL1;
 import br.com.mind5.message.sysMessage.model.action.StdSymsgEnforceBase;
 import br.com.mind5.message.sysMessage.model.checker.SymsgCheckRead;
 import br.com.mind5.model.action.ActionLazy;
@@ -44,9 +44,9 @@ public final class RootSymsgSelect extends DeciTreeWriteTemplate<SymsgInfo> {
 		List<ActionStd<SymsgInfo>> actions = new ArrayList<>();	
 		
 		ActionStd<SymsgInfo> enforceBase = new StdSymsgEnforceBase(option);
-		ActionLazy<SymsgInfo> nodeSelect = new LazySymsgNodeSelect(option.conn, option.schemaName);
+		ActionLazy<SymsgInfo> nodeL1 = new LazySymsgNodeSelectL1(option.conn, option.schemaName);
 		
-		enforceBase.addPostAction(nodeSelect);
+		enforceBase.addPostAction(nodeL1);
 		
 		actions.add(enforceBase);		
 		return actions;

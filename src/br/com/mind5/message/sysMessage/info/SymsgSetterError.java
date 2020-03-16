@@ -25,8 +25,7 @@ public final class SymsgSetterError implements InfoSetter<SymsgInfo> {
 	
 	
 	
-	private SymsgInfo setErrorKey(SymsgInfo recordInfo) {
-		recordInfo.codLanguage = recordInfo.codLanguageBase;		
+	private SymsgInfo setErrorKey(SymsgInfo recordInfo) {	
 		recordInfo.codMsg = SystemCode.SYS_MESSAGE_NOT_FOUND;
 		return recordInfo;
 	}

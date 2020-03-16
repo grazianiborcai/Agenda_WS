@@ -9,22 +9,21 @@ import br.com.mind5.message.sysMessage.info.SymsgInfo;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class SymsgCheckRead extends ModelCheckerTemplateSimpleV2<SymsgInfo> {
+public final class SymsgCheckNotFound extends ModelCheckerTemplateSimpleV2<SymsgInfo> {
 
-	public SymsgCheckRead(ModelCheckerOption option) {
+	public SymsgCheckNotFound(ModelCheckerOption option) {
 		super(option);
 	}
 	
 	
 	
 	@Override protected boolean checkHook(SymsgInfo recordInfo, Connection conn, String schemaName) {	
-		if ( recordInfo.codLanguage == null	||
-			 recordInfo.codMsg		<= 0		)
+		if ( recordInfo.txtMsg == null )
 			
-			return super.FAILED;
+			return super.SUCCESS;
 		
 		
-		return super.SUCCESS;
+		return super.FAILED;
 	}
 	
 	
@@ -42,6 +41,6 @@ public final class SymsgCheckRead extends ModelCheckerTemplateSimpleV2<SymsgInfo
 	
 	
 	@Override protected int getCodMsgOnResultFalseHook() {
-		return SystemCode.SYS_MESSAGE_MANDATORY_FIELD_EMPTY;
+		return SystemCode.SYS_MESSAGE_ALREADY_EXIST;
 	}
 }

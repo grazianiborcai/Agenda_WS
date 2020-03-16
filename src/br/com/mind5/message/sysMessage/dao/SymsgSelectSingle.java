@@ -40,6 +40,7 @@ public final class SymsgSelectSingle extends DaoStmtTemplate<SymsgInfo> {
 	
 	@Override protected String buildWhereClauseHook(String tableName, SymsgInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();		
+		
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;
 		
@@ -70,5 +71,11 @@ public final class SymsgSelectSingle extends DaoStmtTemplate<SymsgInfo> {
 				return finalResult;
 			}
 		};
+	}
+	
+	
+	
+	@Override public void executeStmt() throws SQLException {
+		super.executeStmt();
 	}
 }
