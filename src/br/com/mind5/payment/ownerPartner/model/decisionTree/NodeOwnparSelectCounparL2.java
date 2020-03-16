@@ -23,9 +23,6 @@ public final class NodeOwnparSelectCounparL2 extends DeciTreeReadTemplate<Ownpar
 	
 	
 	@Override protected ModelChecker<OwnparInfo> buildDecisionCheckerHook(DeciTreeOption<OwnparInfo> option) {
-		final boolean EXIST_ON_DB = true;
-		final boolean HAS_ATTRIBUTE = true;
-		
 		List<ModelChecker<OwnparInfo>> queue = new ArrayList<>();		
 		ModelChecker<OwnparInfo> checker;
 		ModelCheckerOption checkerOption;
@@ -33,14 +30,14 @@ public final class NodeOwnparSelectCounparL2 extends DeciTreeReadTemplate<Ownpar
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = HAS_ATTRIBUTE;		
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
 		checker = new OwnparCheckHasCountry(checkerOption);
 		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new OwnparCheckCounpar(checkerOption);
 		queue.add(checker);	
 		

@@ -21,8 +21,6 @@ public final class NodeOwnparSelect extends DeciTreeReadTemplate<OwnparInfo> {
 	
 	
 	@Override protected ModelChecker<OwnparInfo> buildDecisionCheckerHook(DeciTreeOption<OwnparInfo> option) {
-		final boolean EXIST_ON_DB = true;
-		
 		List<ModelChecker<OwnparInfo>> queue = new ArrayList<>();		
 		ModelChecker<OwnparInfo> checker;
 		ModelCheckerOption checkerOption;
@@ -30,7 +28,7 @@ public final class NodeOwnparSelect extends DeciTreeReadTemplate<OwnparInfo> {
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = EXIST_ON_DB;		
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new OwnparCheckExist(checkerOption);
 		queue.add(checker);	
 		

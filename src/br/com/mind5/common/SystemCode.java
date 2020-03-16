@@ -480,10 +480,11 @@ public final class SystemCode {
 	public static final int COMPANY_MANDATORY_FIELD_EMPTY 				= 2517;
 	
 	// Pay Partner-Owner
-	public static final int PAY_PARTNER_OWNER_IS_NULL					= 2550;
-	public static final int PAY_PARTNER_OWNER_IS_FILLED					= 2551;
+	public static final int PAY_PARTNER_OWNER_COUNTRY_IS_NULL			= 2550;
+	public static final int PAY_PARTNER_OWNER_COUNTRY_IS_FILLED			= 2551;
 	public static final int PAY_PARTNER_OWNER_ALREADY_EXIST 			= 2552;
 	public static final int PAY_PARTNER_OWNER_NOT_FOUND 				= 2553;
+	public static final int PAY_PARTNER_OWNER_MANDATORY_FIELD_EMPTY 	= 2554;
 	
 	//User Password
 	public static final int USER_PASSWORD_OR_USERNAME_IS_INVALID		= 2600;
