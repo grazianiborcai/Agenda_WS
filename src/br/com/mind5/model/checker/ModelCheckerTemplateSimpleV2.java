@@ -134,6 +134,24 @@ public abstract class ModelCheckerTemplateSimpleV2<T extends InfoRecord> impleme
 	
 	
 	private SymsgInfo readMsg(DeciTreeOption<SymsgInfo> option) {
+		SymsgInfo result = readMsgHook();
+		
+		if (result == null)
+			result = readSymsg(option);
+		
+		return result;
+	}
+	
+	
+	
+	protected SymsgInfo readMsgHook() {
+		//Template method: default behavior
+		return null;
+	}
+	
+	
+	
+	private SymsgInfo readSymsg(DeciTreeOption<SymsgInfo> option) {
 		ActionStd<SymsgInfo> select = new RootSymsgSelect(option).toAction();
 		select.executeAction();		
 		

@@ -200,7 +200,7 @@ public abstract class ModelCheckerTemplateActionV2<T extends InfoRecord, S exten
 		SymsgInfo msgToRead = buildMsgToRead(codMsg, codLangu);
 		DeciTreeOption<SymsgInfo> option = buildOption(msgToRead, dbConn, dbSchema);
 		
-		SymsgInfo result = readMsg(option);		
+		SymsgInfo result = readMsg(option);
 		return result;
 	}
 	
@@ -234,11 +234,29 @@ public abstract class ModelCheckerTemplateActionV2<T extends InfoRecord, S exten
 		option.recordInfos.add(symsg);		
 		
 		return option;
-	}	
+	}
 	
 	
 	
 	private SymsgInfo readMsg(DeciTreeOption<SymsgInfo> option) {
+		SymsgInfo result = readMsgHook();
+		
+		if (result == null)
+			result = readSymsg(option);
+		
+		return result;
+	}
+	
+	
+	
+	protected SymsgInfo readMsgHook() {
+		//Template method: default behavior
+		return null;
+	}
+	
+	
+	
+	private SymsgInfo readSymsg(DeciTreeOption<SymsgInfo> option) {
 		ActionStd<SymsgInfo> select = new RootSymsgSelect(option).toAction();
 		select.executeAction();		
 		
