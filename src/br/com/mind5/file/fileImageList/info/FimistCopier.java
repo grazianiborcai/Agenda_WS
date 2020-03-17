@@ -8,6 +8,7 @@ import br.com.mind5.business.customerList.info.CuslisInfo;
 import br.com.mind5.business.employee.info.EmpInfo;
 import br.com.mind5.business.employeeList.info.EmplisInfo;
 import br.com.mind5.business.material.info.MatInfo;
+import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.business.owner.info.OwnerInfo;
 import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.business.storeList.info.StolisInfo;
@@ -68,6 +69,20 @@ public final class FimistCopier {
 		InfoCopier<FimistInfo, MatInfo> copier = new FimistCopyMat();
 		return copier.makeCopy(sources);
 	}	
+	
+	
+	
+	public static FimistInfo copyFromMatlis(MatlisInfo source) {
+		InfoCopier<FimistInfo, MatlisInfo> copier = new FimistCopyMatlis();
+		return copier.makeCopy(source);
+	}
+	
+	
+	
+	public static List<FimistInfo> copyFromMatlis(List<MatlisInfo> sources) {
+		InfoCopier<FimistInfo, MatlisInfo> copier = new FimistCopyMatlis();
+		return copier.makeCopy(sources);
+	}
 	
 	
 	
