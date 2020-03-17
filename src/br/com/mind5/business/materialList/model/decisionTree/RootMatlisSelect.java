@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.materialList.info.MatlisInfo;
+import br.com.mind5.business.materialList.model.action.LazyMatlisMergeFimist;
 import br.com.mind5.business.materialList.model.action.LazyMatlisMergeMatCateg;
 import br.com.mind5.business.materialList.model.action.LazyMatlisMergeMatGroup;
 import br.com.mind5.business.materialList.model.action.LazyMatlisMergeMatType;
@@ -69,12 +70,14 @@ public final class RootMatlisSelect extends DeciTreeReadTemplate<MatlisInfo> {
 		ActionLazy<MatlisInfo> mergeMatGroup = new LazyMatlisMergeMatGroup(option.conn, option.schemaName);
 		ActionLazy<MatlisInfo> mergeMatUnit = new LazyMatlisMergeMatUnit(option.conn, option.schemaName);
 		ActionLazy<MatlisInfo> mergeMatext = new LazyMatlisMergeMatext(option.conn, option.schemaName);
+		ActionLazy<MatlisInfo> mergeFimist = new LazyMatlisMergeFimist(option.conn, option.schemaName);
 		
 		select.addPostAction(mergeMatType);
 		mergeMatType.addPostAction(mergeMatCateg);
 		mergeMatCateg.addPostAction(mergeMatGroup);
 		mergeMatGroup.addPostAction(mergeMatUnit);
 		mergeMatUnit.addPostAction(mergeMatext);
+		mergeMatext.addPostAction(mergeFimist);
 		
 		actions.add(select);
 		return actions;
