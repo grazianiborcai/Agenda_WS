@@ -13,6 +13,7 @@ public final class PersonInfo extends InfoRecord implements Cloneable {
 	public long codSnapshot;
 	public String cpf;
 	public String name;
+	public String nameDisplay;
 	public String nameSearch;
 	public int codGender;
 	public String txtGender;

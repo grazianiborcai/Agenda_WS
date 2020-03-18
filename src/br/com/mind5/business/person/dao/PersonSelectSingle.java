@@ -60,10 +60,12 @@ public final class PersonSelectSingle extends DaoStmtTemplate<PersonInfo> {
 				
 				do {
 					PersonInfo dataInfo = new PersonInfo();
+					
 					dataInfo.codOwner = stmtResult.getLong(PersonDbTableColumn.COL_COD_OWNER);
 					dataInfo.codPerson = stmtResult.getLong(PersonDbTableColumn.COL_COD_PERSON);
 					dataInfo.cpf = stmtResult.getString(PersonDbTableColumn.COL_CPF);
 					dataInfo.name = stmtResult.getString(PersonDbTableColumn.COL_NAME);			
+					dataInfo.nameDisplay = stmtResult.getString(PersonDbTableColumn.COL_NAME_DISPLAY);
 					dataInfo.nameSearch = stmtResult.getString(PersonDbTableColumn.COL_NAME_SEARCH);	
 					dataInfo.email = stmtResult.getString(PersonDbTableColumn.COL_EMAIL);						
 					dataInfo.recordMode = stmtResult.getString(PersonDbTableColumn.COL_RECORD_MODE);

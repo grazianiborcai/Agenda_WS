@@ -7,9 +7,9 @@ import br.com.mind5.business.person.info.PersonInfo;
 import br.com.mind5.business.person.model.action.LazyPersonEnforceBirthdate;
 import br.com.mind5.business.person.model.action.LazyPersonEnforceCreatedBy;
 import br.com.mind5.business.person.model.action.LazyPersonEnforceCreatedOn;
-import br.com.mind5.business.person.model.action.LazyPersonEnforceNameSearch;
 import br.com.mind5.business.person.model.action.LazyPersonInsert;
 import br.com.mind5.business.person.model.action.LazyPersonMergeUsername;
+import br.com.mind5.business.person.model.action.LazyPersonNodeName;
 import br.com.mind5.business.person.model.action.StdPersonEnforceLChanged;
 import br.com.mind5.business.person.model.checker.PersonCheckDummy;
 import br.com.mind5.model.action.ActionLazy;
@@ -45,16 +45,16 @@ public final class NodePersonInsert extends DeciTreeWriteTemplate<PersonInfo> {
 		ActionStd<PersonInfo> enforceLChanged = new StdPersonEnforceLChanged(option);
 		ActionLazy<PersonInfo> enforceLChangedBy = new LazyPersonMergeUsername(option.conn, option.schemaName);
 		ActionLazy<PersonInfo> enforceCreatedOn = new LazyPersonEnforceCreatedOn(option.conn, option.schemaName);	
-		ActionLazy<PersonInfo> enforceCreatedBy = new LazyPersonEnforceCreatedBy(option.conn, option.schemaName);	
-		ActionLazy<PersonInfo> enforceNameSearch = new LazyPersonEnforceNameSearch(option.conn, option.schemaName);	
+		ActionLazy<PersonInfo> enforceCreatedBy = new LazyPersonEnforceCreatedBy(option.conn, option.schemaName);
+		ActionLazy<PersonInfo> nodeName = new LazyPersonNodeName(option.conn, option.schemaName);	
 		ActionLazy<PersonInfo> enforceBirthdate = new LazyPersonEnforceBirthdate(option.conn, option.schemaName);	
 		ActionLazy<PersonInfo> insert = new LazyPersonInsert(option.conn, option.schemaName);
 		
 		enforceLChanged.addPostAction(enforceLChangedBy);
 		enforceLChangedBy.addPostAction(enforceCreatedOn);
 		enforceCreatedOn.addPostAction(enforceCreatedBy);
-		enforceCreatedBy.addPostAction(enforceNameSearch);
-		enforceNameSearch.addPostAction(enforceBirthdate);
+		enforceCreatedBy.addPostAction(nodeName);
+		nodeName.addPostAction(enforceBirthdate);
 		enforceBirthdate.addPostAction(insert);
 		
 		actions.add(enforceLChanged);

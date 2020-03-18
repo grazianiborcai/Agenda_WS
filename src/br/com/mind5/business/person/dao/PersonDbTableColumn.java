@@ -26,6 +26,7 @@ public final class PersonDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_LAST_CHANGED = DaoDbField.COL_LAST_CHANGED;
 	public static final String COL_LAST_CHANGED_BY = DaoDbField.COL_LAST_CHANGED_BY;
 	public static final String COL_NAME = DaoDbField.COL_NAME;
+	public static final String COL_NAME_DISPLAY = DaoDbField.COL_NAME_DISPLAY;
 	public static final String COL_NAME_SEARCH = DaoDbField.COL_NAME_SEARCH;
 	public static final String COL_RECORD_MODE = DaoDbField.COL_RECORD_MODE;	
 	
@@ -194,6 +195,14 @@ public final class PersonDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_BIRTH_DAY;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_NAME_DISPLAY;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;

@@ -59,6 +59,7 @@ public final class PersonInsertSingle extends DaoStmtTemplate<PersonInfo> {
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.birthYear);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.birthMonth);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.birthDay);
+				stmt.setString(i++, recordInfo.nameDisplay);
 				
 				return stmt;
 			}		

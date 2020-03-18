@@ -6,10 +6,10 @@ import java.util.List;
 import br.com.mind5.business.person.info.PersonInfo;
 import br.com.mind5.business.person.model.action.LazyPersonEnforceBirthdate;
 import br.com.mind5.business.person.model.action.LazyPersonEnforceLChanged;
-import br.com.mind5.business.person.model.action.LazyPersonEnforceNameSearch;
 import br.com.mind5.business.person.model.action.LazyPersonMergeUsername;
 import br.com.mind5.business.person.model.action.LazyPersonNodeCpfL1;
 import br.com.mind5.business.person.model.action.LazyPersonNodeEmailL1;
+import br.com.mind5.business.person.model.action.LazyPersonNodeName;
 import br.com.mind5.business.person.model.action.LazyPersonNodeSnapshot;
 import br.com.mind5.business.person.model.action.StdPersonMergeToUpdate;
 import br.com.mind5.business.person.model.checker.PersonCheckExist;
@@ -86,7 +86,7 @@ public final class RootPersonUpdate extends DeciTreeWriteTemplate<PersonInfo> {
 		ActionLazy<PersonInfo> email = new LazyPersonNodeEmailL1(option.conn, option.schemaName);	
 		ActionLazy<PersonInfo> enforceLChanged = new LazyPersonEnforceLChanged(option.conn, option.schemaName);
 		ActionLazy<PersonInfo> enforceLChangedBy = new LazyPersonMergeUsername(option.conn, option.schemaName);
-		ActionLazy<PersonInfo> enforceNameSearch = new LazyPersonEnforceNameSearch(option.conn, option.schemaName);	
+		ActionLazy<PersonInfo> nodeName = new LazyPersonNodeName(option.conn, option.schemaName);	
 		ActionLazy<PersonInfo> enforceBirthdate = new LazyPersonEnforceBirthdate(option.conn, option.schemaName);
 		ActionLazy<PersonInfo> snapshot = new LazyPersonNodeSnapshot(option.conn, option.schemaName);
 		
@@ -94,8 +94,8 @@ public final class RootPersonUpdate extends DeciTreeWriteTemplate<PersonInfo> {
 		cpf.addPostAction(email);
 		email.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceLChangedBy);
-		enforceLChangedBy.addPostAction(enforceNameSearch);
-		enforceNameSearch.addPostAction(enforceBirthdate);
+		enforceLChangedBy.addPostAction(nodeName);
+		nodeName.addPostAction(enforceBirthdate);
 		enforceBirthdate.addPostAction(snapshot);
 		
 		actions.add(mergeToUpdate);
