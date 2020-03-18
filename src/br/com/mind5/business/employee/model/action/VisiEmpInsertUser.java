@@ -19,8 +19,8 @@ final class VisiEmpInsertUser extends ActionVisitorTemplateAction<EmpInfo, UserI
 	
 	
 	
-	@Override protected List<UserInfo> toActionClassHook(List<EmpInfo> recordInfos) {
-		return UserCopier.copyFromEmp(recordInfos);
+	@Override protected List<UserInfo> toActionClassHook(List<EmpInfo> baseInfos) {
+		return UserCopier.copyFromEmp(baseInfos);
 	}
 	
 	
@@ -32,6 +32,6 @@ final class VisiEmpInsertUser extends ActionVisitorTemplateAction<EmpInfo, UserI
 	
 	
 	@Override protected List<EmpInfo> toBaseClassHook(List<EmpInfo> baseInfos, List<UserInfo> results) {
-		return EmpMerger.mergeWithUser(results, baseInfos);
+		return EmpMerger.mergeWithUser(baseInfos, results);
 	}
 }

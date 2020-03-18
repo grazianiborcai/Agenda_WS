@@ -32,6 +32,6 @@ final class VisiEmpUpdatePerson extends ActionVisitorTemplateAction<EmpInfo, Per
 	
 	
 	@Override protected List<EmpInfo> toBaseClassHook(List<EmpInfo> baseInfos, List<PersonInfo> results) {
-		return EmpMerger.mergeWithPerson(results, baseInfos);
+		return EmpMerger.mergeWithPerson(baseInfos, results);
 	}
 }

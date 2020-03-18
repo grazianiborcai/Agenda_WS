@@ -1,66 +1,47 @@
 package br.com.mind5.business.employee.info;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.ArrayList;
+import java.util.List;
 
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-final class EmpVisiMergeToUpdate implements InfoMergerVisitor_<EmpInfo, EmpInfo> {
-
-	@Override public EmpInfo writeRecord(EmpInfo sourceOne, EmpInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);		
-		return merge(sourceOne, sourceTwo);
+final class EmpVisiMergeToUpdate implements InfoMergerVisitorV3<EmpInfo, EmpInfo> {
+	
+	@Override public List<EmpInfo> beforeMerge(List<EmpInfo> baseInfos) {
+		return baseInfos;
 	}
 	
 	
 	
-	private void checkArgument(EmpInfo sourceOne, EmpInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
+	@Override public boolean shouldMerge(EmpInfo baseInfo, EmpInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner);
 	}
 	
 	
 	
-	private EmpInfo merge(EmpInfo sourceOne, EmpInfo sourceTwo) {
-		EmpInfo result = makeClone(sourceOne);		
-		result.username = sourceTwo.username;
-		result.codLanguage = sourceTwo.codLanguage;
+	@Override public List<EmpInfo> merge(EmpInfo baseInfo, EmpInfo selectedInfo) {
+		List<EmpInfo> results = new ArrayList<>();
 		
-		if (sourceTwo.addresses != null)
-			result.addresses = sourceTwo.addresses;
+		selectedInfo.username = baseInfo.username;
+		selectedInfo.codLanguage = baseInfo.codLanguage;
 		
-		if (sourceTwo.phones != null)
-			result.phones = sourceTwo.phones;
+		if (baseInfo.addresses != null)
+			selectedInfo.addresses = baseInfo.addresses;
 		
-		if (sourceTwo.personData != null)
-			result.personData = sourceTwo.personData;
+		if (baseInfo.phones != null)
+			selectedInfo.phones = baseInfo.phones;
 		
-		return result;
+		if (baseInfo.personData != null)
+			selectedInfo.personData = baseInfo.personData;
+		
+		results.add(selectedInfo);
+		return results;
 	}
 	
 	
 	
-	private EmpInfo makeClone(EmpInfo recordInfo) {
-		try {
-			return (EmpInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(EmpInfo sourceOne, EmpInfo sourceTwo) {		
-		return (sourceOne.codOwner == sourceTwo.codOwner);
-	}
-	
-	
-	
-	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
+	@Override public InfoUniquifier<EmpInfo> getUniquifier() {
+		return new EmpUniquifier();
 	}
 }

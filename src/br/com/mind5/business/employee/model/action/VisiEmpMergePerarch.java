@@ -25,14 +25,14 @@ final class VisiEmpMergePerarch extends ActionVisitorTemplateMergeV2<EmpInfo, Pe
 	
 	
 	
-	@Override protected List<PerarchInfo> toActionClassHook(List<EmpInfo> recordInfos) {
-		return PerarchCopier.copyFromEmp(recordInfos);	
+	@Override protected List<PerarchInfo> toActionClassHook(List<EmpInfo> baseInfos) {
+		return PerarchCopier.copyFromEmp(baseInfos);	
 	}
 	
 	
 	
-	@Override protected List<EmpInfo> mergeHook(List<EmpInfo> recordInfos, List<PerarchInfo> selectedInfos) {	
-		return EmpMerger.mergeWithPerarch(selectedInfos, recordInfos);
+	@Override protected List<EmpInfo> mergeHook(List<EmpInfo> baseInfos, List<PerarchInfo> selectedInfos) {	
+		return EmpMerger.mergeWithPerarch(baseInfos, selectedInfos);
 	}
 	
 	

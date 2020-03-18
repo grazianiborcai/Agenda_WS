@@ -9,174 +9,163 @@ import br.com.mind5.business.person.info.PersonInfo;
 import br.com.mind5.business.personSearch.info.PerarchInfo;
 import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.file.fileImageList.info.FimistInfo;
-import br.com.mind5.info.obsolete.InfoMerger_;
+import br.com.mind5.info.InfoMergerBuilderV3;
+import br.com.mind5.info.InfoMergerV3;
 import br.com.mind5.security.user.info.UserInfo;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class EmpMerger {
-	public static EmpInfo mergeWithEmparch(EmparchInfo sourceOne, EmpInfo sourceTwo) {
-		InfoMerger_<EmpInfo, EmparchInfo> merger = new EmpMergerEmparch();		
-		return merger.merge(sourceOne, sourceTwo);
+	public static List<EmpInfo> mergeWithEmparch(List<EmpInfo> baseInfos, List<EmparchInfo> selectedInfos) {
+		InfoMergerBuilderV3<EmpInfo, EmparchInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new EmpVisiMergeEmparch());
+		InfoMergerV3<EmpInfo, EmparchInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static List<EmpInfo> mergeWithEmparch(List<EmparchInfo> sourceOnes, List<EmpInfo> sourceTwos) {
-		InfoMerger_<EmpInfo, EmparchInfo> merger = new EmpMergerEmparch();		
-		return merger.merge(sourceOnes, sourceTwos);
-	}
+	public static List<EmpInfo> mergeWithPerarch(List<EmpInfo> baseInfos, List<PerarchInfo> selectedInfos) {
+		InfoMergerBuilderV3<EmpInfo, PerarchInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new EmpVisiMergePerarch());
+		InfoMergerV3<EmpInfo, PerarchInfo> merger = builder.build();		
 	
-	
-	
-	public static EmpInfo mergeWithPerarch(PerarchInfo sourceOne, EmpInfo sourceTwo) {
-		InfoMerger_<EmpInfo, PerarchInfo> merger = new EmpMergerPerarch();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
-	
-	
-	
-	public static List<EmpInfo> mergeWithPerarch(List<PerarchInfo> sourceOnes, List<EmpInfo> sourceTwos) {
-		InfoMerger_<EmpInfo, PerarchInfo> merger = new EmpMergerPerarch();		
-		return merger.merge(sourceOnes, sourceTwos);
+		return merger.merge();
 	}	
 	
 	
 	
-	public static EmpInfo mergeWithFimist(FimistInfo sourceOne, EmpInfo sourceTwo) {
-		InfoMerger_<EmpInfo, FimistInfo> merger = new EmpMergerFimist();		
-		return merger.merge(sourceOne, sourceTwo);
+	public static List<EmpInfo> mergeWithFimist(List<EmpInfo> baseInfos, List<FimistInfo> selectedInfos) {
+		InfoMergerBuilderV3<EmpInfo, FimistInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new EmpVisiMergeFimist());
+		InfoMergerV3<EmpInfo, FimistInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static List<EmpInfo> mergeWithFimist(List<FimistInfo> sourceOnes, List<EmpInfo> sourceTwos) {
-		InfoMerger_<EmpInfo, FimistInfo> merger = new EmpMergerFimist();		
-		return merger.merge(sourceOnes, sourceTwos);
+	public static List<EmpInfo> mergeWithAddress(List<EmpInfo> baseInfos, List<AddressInfo> selectedInfos) {
+		InfoMergerBuilderV3<EmpInfo, AddressInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new EmpVisiMergeAddress());
+		InfoMergerV3<EmpInfo, AddressInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static EmpInfo mergeWithAddress(AddressInfo sourceOne, EmpInfo sourceTwo) {
-		InfoMerger_<EmpInfo, AddressInfo> merger = new EmpMergerAddress();		
-		return merger.merge(sourceOne, sourceTwo);
+	public static List<EmpInfo> mergeWithEmpnap(List<EmpInfo> baseInfos, List<EmpnapInfo> selectedInfos) {
+		InfoMergerBuilderV3<EmpInfo, EmpnapInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new EmpVisiMergeEmpnap());
+		InfoMergerV3<EmpInfo, EmpnapInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static List<EmpInfo> mergeWithAddress(List<AddressInfo> sourceOnes, List<EmpInfo> sourceTwos) {
-		InfoMerger_<EmpInfo, AddressInfo> merger = new EmpMergerAddress();		
-		return merger.merge(sourceOnes, sourceTwos);
+	public static List<EmpInfo> mergeWithPerson(List<EmpInfo> baseInfos, List<PersonInfo> selectedInfos) {
+		InfoMergerBuilderV3<EmpInfo, PersonInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new EmpVisiMergePerson());
+		InfoMergerV3<EmpInfo, PersonInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static EmpInfo mergeWithEmpnap(EmpnapInfo sourceOne, EmpInfo sourceTwo) {
-		InfoMerger_<EmpInfo, EmpnapInfo> merger = new EmpMergerEmpnap();		
-		return merger.merge(sourceOne, sourceTwo);
+	public static List<EmpInfo> mergeWithPhone(List<EmpInfo> baseInfos, List<PhoneInfo> selectedInfos) {
+		InfoMergerBuilderV3<EmpInfo, PhoneInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new EmpVisiMergePhone());
+		InfoMergerV3<EmpInfo, PhoneInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static List<EmpInfo> mergeWithEmpnap(List<EmpnapInfo> sourceOnes, List<EmpInfo> sourceTwos) {
-		InfoMerger_<EmpInfo, EmpnapInfo> merger = new EmpMergerEmpnap();		
-		return merger.merge(sourceOnes, sourceTwos);
-	}	
+	public static List<EmpInfo> mergeWithUser(List<EmpInfo> baseInfos, List<UserInfo> selectedInfos) {
+		InfoMergerBuilderV3<EmpInfo, UserInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new EmpVisiMergeUser());
+		InfoMergerV3<EmpInfo, UserInfo> merger = builder.build();		
 	
-	
-	
-	public static EmpInfo mergeWithPerson(PersonInfo sourceOne, EmpInfo sourceTwo) {
-		InfoMerger_<EmpInfo, PersonInfo> merger = new EmpMergerPerson();		
-		return merger.merge(sourceOne, sourceTwo);
+		return merger.merge();
 	}
 	
 	
 	
-	public static List<EmpInfo> mergeWithPerson(List<PersonInfo> sourceOnes, List<EmpInfo> sourceTwos) {
-		InfoMerger_<EmpInfo, PersonInfo> merger = new EmpMergerPerson();		
-		return merger.merge(sourceOnes, sourceTwos);
+	public static List<EmpInfo> mergeWithUsername(List<EmpInfo> baseInfos, List<UsernameInfo> selectedInfos) {
+		InfoMergerBuilderV3<EmpInfo, UsernameInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new EmpVisiMergeUsername());
+		InfoMergerV3<EmpInfo, UsernameInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static EmpInfo mergeWithPhone(PhoneInfo sourceOne, EmpInfo sourceTwo) {
-		InfoMerger_<EmpInfo, PhoneInfo> merger = new EmpMergerPhone();		
-		return merger.merge(sourceOne, sourceTwo);
+	public static List<EmpInfo> mergeToDelete(List<EmpInfo> baseInfos, List<EmpInfo> selectedInfos) {
+		InfoMergerBuilderV3<EmpInfo, EmpInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new EmpVisiMergeToDelete());
+		InfoMergerV3<EmpInfo, EmpInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static List<EmpInfo> mergeWithPhone(List<PhoneInfo> sourceOnes, List<EmpInfo> sourceTwos) {
-		InfoMerger_<EmpInfo, PhoneInfo> merger = new EmpMergerPhone();		
-		return merger.merge(sourceOnes, sourceTwos);
+	public static List<EmpInfo> mergeToSelect(List<EmpInfo> baseInfos, List<EmpInfo> selectedInfos) {
+		InfoMergerBuilderV3<EmpInfo, EmpInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new EmpVisiMergeToSelect());
+		InfoMergerV3<EmpInfo, EmpInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static EmpInfo mergeWithUser(UserInfo sourceOne, EmpInfo sourceTwo) {
-		InfoMerger_<EmpInfo, UserInfo> merger = new EmpMergerUser();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
+	public static List<EmpInfo> mergeToUpdate(List<EmpInfo> baseInfos, List<EmpInfo> selectedInfos) {
+		InfoMergerBuilderV3<EmpInfo, EmpInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new EmpVisiMergeToUpdate());
+		InfoMergerV3<EmpInfo, EmpInfo> merger = builder.build();		
 	
-	
-	
-	public static List<EmpInfo> mergeWithUser(List<UserInfo> sourceOnes, List<EmpInfo> sourceTwos) {
-		InfoMerger_<EmpInfo, UserInfo> merger = new EmpMergerUser();		
-		return merger.merge(sourceOnes, sourceTwos);
-	}
-	
-	
-	
-	public static EmpInfo mergeWithUsername(UsernameInfo sourceOne, EmpInfo sourceTwo) {
-		InfoMerger_<EmpInfo, UsernameInfo> merger = new EmpMergerUsername();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
-	
-	
-	
-	public static List<EmpInfo> mergeWithUsername(List<UsernameInfo> sourceOnes, List<EmpInfo> sourceTwos) {
-		InfoMerger_<EmpInfo, UsernameInfo> merger = new EmpMergerUsername();		
-		return merger.merge(sourceOnes, sourceTwos);
-	}
-	
-	
-	
-	public static EmpInfo mergeToDelete(EmpInfo sourceOne, EmpInfo sourceTwo) {
-		InfoMerger_<EmpInfo, EmpInfo> merger = new EmpMergerToDelete();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
-	
-	
-	
-	public static List<EmpInfo> mergeToDelete(List<EmpInfo> sourceOnes, List<EmpInfo> sourceTwos) {
-		InfoMerger_<EmpInfo, EmpInfo> merger = new EmpMergerToDelete();		
-		return merger.merge(sourceOnes, sourceTwos);
-	}
-	
-	
-	
-	public static EmpInfo mergeToSelect(EmpInfo sourceOne, EmpInfo sourceTwo) {
-		InfoMerger_<EmpInfo, EmpInfo> merger = new EmpMergerToSelect();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
-	
-	
-	
-	public static List<EmpInfo> mergeToSelect(List<EmpInfo> sourceOnes, List<EmpInfo> sourceTwos) {
-		InfoMerger_<EmpInfo, EmpInfo> merger = new EmpMergerToSelect();		
-		return merger.merge(sourceOnes, sourceTwos);
-	}
-	
-	
-	
-	public static EmpInfo mergeToUpdate(EmpInfo sourceOne, EmpInfo sourceTwo) {
-		InfoMerger_<EmpInfo, EmpInfo> merger = new EmpMergerToUpdate();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
-	
-	
-	
-	public static List<EmpInfo> mergeToUpdate(List<EmpInfo> sourceOnes, List<EmpInfo> sourceTwos) {
-		InfoMerger_<EmpInfo, EmpInfo> merger = new EmpMergerToUpdate();		
-		return merger.merge(sourceOnes, sourceTwos);
+		return merger.merge();
 	}
 }

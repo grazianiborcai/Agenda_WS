@@ -25,14 +25,14 @@ final class VisiEmpMergeAddress extends ActionVisitorTemplateMergeV2<EmpInfo, Ad
 	
 	
 	
-	@Override protected List<AddressInfo> toActionClassHook(List<EmpInfo> recordInfos) {
-		return AddressCopier.copyFromEmpKey(recordInfos);	
+	@Override protected List<AddressInfo> toActionClassHook(List<EmpInfo> baseInfos) {
+		return AddressCopier.copyFromEmpKey(baseInfos);	
 	}
 	
 	
 	
-	@Override protected List<EmpInfo> mergeHook(List<EmpInfo> recordInfos, List<AddressInfo> selectedInfos) {	
-		return EmpMerger.mergeWithAddress(selectedInfos, recordInfos);
+	@Override protected List<EmpInfo> mergeHook(List<EmpInfo> baseInfos, List<AddressInfo> selectedInfos) {	
+		return EmpMerger.mergeWithAddress(baseInfos, selectedInfos);
 	}
 	
 	

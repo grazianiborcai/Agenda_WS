@@ -24,8 +24,8 @@ final class VisiEmpInsertEmpnap extends ActionVisitorTemplateMergeV2<EmpInfo, Em
 	
 	
 	
-	@Override protected List<EmpInfo> mergeHook(List<EmpInfo> recordInfos, List<EmpnapInfo> selectedInfos) {	
-		return EmpMerger.mergeWithEmpnap(selectedInfos, recordInfos);
+	@Override protected List<EmpInfo> mergeHook(List<EmpInfo> baseInfos, List<EmpnapInfo> selectedInfos) {	
+		return EmpMerger.mergeWithEmpnap(baseInfos, selectedInfos);
 	}
 	
 	
