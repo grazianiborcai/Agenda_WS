@@ -22,8 +22,8 @@ final class VisiStowotarchMergeToSelect extends ActionVisitorTemplateMergeV2<Sto
 	
 	
 	
-	@Override protected List<StowotarchInfo> mergeHook(List<StowotarchInfo> recordInfos, List<StowotarchInfo> selectedInfos) {	
-		return StowotarchMerger.mergeToSelect(selectedInfos, recordInfos);
+	@Override protected List<StowotarchInfo> mergeHook(List<StowotarchInfo> baseInfos, List<StowotarchInfo> selectedInfos) {	
+		return StowotarchMerger.mergeToSelect(baseInfos, selectedInfos);
 	}
 	
 	

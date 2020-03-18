@@ -1,56 +1,38 @@
 package br.com.mind5.business.storeWorkTimeSearch.info;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.ArrayList;
+import java.util.List;
 
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-final class StowotarchVisiMergeToSelect implements InfoMergerVisitor_<StowotarchInfo, StowotarchInfo> {
-
-	@Override public StowotarchInfo writeRecord(StowotarchInfo sourceOne, StowotarchInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);		
-		return merge(sourceOne, sourceTwo);
+final class StowotarchVisiMergeToSelect implements InfoMergerVisitorV3<StowotarchInfo, StowotarchInfo> {
+	
+	@Override public List<StowotarchInfo> beforeMerge(List<StowotarchInfo> baseInfos) {
+		return baseInfos;
 	}
 	
 	
 	
-	private void checkArgument(StowotarchInfo sourceOne, StowotarchInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
+	@Override public boolean shouldMerge(StowotarchInfo baseInfo, StowotarchInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner);
 	}
 	
 	
 	
-	private StowotarchInfo merge(StowotarchInfo sourceOne, StowotarchInfo sourceTwo) {
-		StowotarchInfo result = makeClone(sourceOne);		
-		result.username = sourceTwo.username;
-		result.codLanguage = sourceTwo.codLanguage;
-		return result;
+	@Override public List<StowotarchInfo> merge(StowotarchInfo baseInfo, StowotarchInfo selectedInfo) {
+		List<StowotarchInfo> results = new ArrayList<>();
+		
+		selectedInfo.username = baseInfo.username;
+		selectedInfo.codLanguage = baseInfo.codLanguage;
+		
+		results.add(selectedInfo);
+		return results;
 	}
 	
 	
 	
-	private StowotarchInfo makeClone(StowotarchInfo recordInfo) {
-		try {
-			return (StowotarchInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(StowotarchInfo sourceOne, StowotarchInfo sourceTwo) {		
-		return (sourceOne.codOwner == sourceTwo.codOwner);
-	}
-	
-	
-	
-	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
+	@Override public InfoUniquifier<StowotarchInfo> getUniquifier() {
+		return null;
 	}
 }
