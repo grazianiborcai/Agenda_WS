@@ -1,56 +1,38 @@
 package br.com.mind5.business.storeWorkTimeRange.info;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.ArrayList;
+import java.util.List;
 
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-final class StoworgVisiMergeToSelect implements InfoMergerVisitor_<StoworgInfo, StoworgInfo> {
-
-	@Override public StoworgInfo writeRecord(StoworgInfo sourceOne, StoworgInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);		
-		return merge(sourceOne, sourceTwo);
+final class StoworgVisiMergeToSelect implements InfoMergerVisitorV3<StoworgInfo, StoworgInfo> {
+	
+	@Override public List<StoworgInfo> beforeMerge(List<StoworgInfo> baseInfos) {
+		return baseInfos;
 	}
 	
 	
 	
-	private void checkArgument(StoworgInfo sourceOne, StoworgInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
+	@Override public boolean shouldMerge(StoworgInfo baseInfo, StoworgInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner);
 	}
 	
 	
 	
-	private StoworgInfo merge(StoworgInfo sourceOne, StoworgInfo sourceTwo) {
-		StoworgInfo result = makeClone(sourceOne);		
-		result.username = sourceTwo.username;
-		result.codLanguage = sourceTwo.codLanguage;
-		return result;
+	@Override public List<StoworgInfo> merge(StoworgInfo baseInfo, StoworgInfo selectedInfo) {
+		List<StoworgInfo> results = new ArrayList<>();
+		
+		selectedInfo.username = baseInfo.username;
+		selectedInfo.codLanguage = baseInfo.codLanguage;
+		
+		results.add(selectedInfo);
+		return results;
 	}
 	
 	
 	
-	private StoworgInfo makeClone(StoworgInfo recordInfo) {
-		try {
-			return (StoworgInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(StoworgInfo sourceOne, StoworgInfo sourceTwo) {		
-		return (sourceOne.codOwner == sourceTwo.codOwner);
-	}
-	
-	
-	
-	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
+	@Override public InfoUniquifier<StoworgInfo> getUniquifier() {
+		return null;
 	}
 }
