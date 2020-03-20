@@ -69,7 +69,7 @@
         <security:intercept-url pattern="/**/Material/selectMaterial" 			access="isAuthenticated()" 							/>  <!-- TODO: rever --> 
         <security:intercept-url pattern="/**/Material/searchMaterial" 			access="isAuthenticated()" 							/>
         <security:intercept-url pattern="/**/Employee/selectEmployee" 			access="hasAuthority('EMPLOYEE_READ')" 				/>
-        <security:intercept-url pattern="/**/Employee/selectSearch" 			access="hasAuthority('EMPLOYEE_READ')" 				/>        
+        <security:intercept-url pattern="/**/Employee/searchEmployee" 			access="hasAuthority('EMPLOYEE_READ')" 				/>        
         <security:intercept-url pattern="/**/Employee/insertEmployee"			access="hasAuthority('EMPLOYEE_WRITE')"				/>
         <security:intercept-url pattern="/**/Employee/updateEmployee"			access="hasAuthority('EMPLOYEE_WRITE')"				/>
         <security:intercept-url pattern="/**/Employee/deleteEmployee"			access="hasAuthority('EMPLOYEE_WRITE')"				/>        
@@ -92,8 +92,7 @@
         <security:intercept-url pattern="/**/Employee/insertMaterial"			access="hasAuthority('EMPLOYEE_MATERIAL_WRITE')"	/>
         <security:intercept-url pattern="/**/Employee/deleteMaterial"			access="hasAuthority('EMPLOYEE_MATERIAL_WRITE')"	/>
         <security:intercept-url pattern="/**/Employee/selectMaterial"			access="hasAuthority('EMPLOYEE_MATERIAL_READ')" 	/>  
-        <security:intercept-url pattern="/**/Employee/searchMaterial"			access="hasAuthority('EMPLOYEE_MATERIAL_READ')" 	/>      
-        <security:intercept-url pattern="/**/Employee/selectEmployeeList"		access="hasAuthority('EMPLOYEE_READ')" 				/>           
+        <security:intercept-url pattern="/**/Employee/searchMaterial"			access="hasAuthority('EMPLOYEE_MATERIAL_READ')" 	/>               
         <security:intercept-url pattern="/**/Employee/insert**" 				access="hasAuthority('EMPLOYEE_WRITE')"				/>
         <security:intercept-url pattern="/**/Employee/update**" 				access="hasAuthority('EMPLOYEE_WRITE')" 			/>
         <security:intercept-url pattern="/**/Employee/delete**" 				access="hasAuthority('EMPLOYEE_WRITE')" 			/>

@@ -20,7 +20,6 @@ import javax.ws.rs.core.Response;
 import br.com.mind5.business.employee.info.EmpInfo;
 import br.com.mind5.business.employee.model.EmpModelDelete;
 import br.com.mind5.business.employee.model.EmpModelInsert;
-import br.com.mind5.business.employee.model.EmpModelSearch;
 import br.com.mind5.business.employee.model.EmpModelSelect;
 import br.com.mind5.business.employee.model.EmpModelUpdate;
 import br.com.mind5.business.employeeLeaveDate.info.EmplateInfo;
@@ -58,7 +57,6 @@ public class EmployeeResource {
 	private static final String DELETE_EMP = "/deleteEmployee";
 	private static final String SELECT_EMP = "/selectEmployee";
 	private static final String SEARCH_EMP = "/searchEmployee";
-	private static final String SELECT_EMP_LIST = "/selectEmployeeList";
 	private static final String INSERT_WORK_TIME = "/insertWorkTime";
 	private static final String INSERT_WORK_TIME_FROM_STORE = "/insertWorkTimeFromStore";
 	private static final String UPDATE_WORK_TIME = "/updateWorkTime";
@@ -402,19 +400,6 @@ public class EmployeeResource {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response searchEmployee(@Context HttpServletRequest request, String incomingData) {
-		
-		Model model = new EmpModelSearch(incomingData, request);
-		model.executeRequest();
-		return model.getResponse();
-	}
-	
-	
-	
-	@POST
-	@Path(SELECT_EMP_LIST)
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response searchSelect(@Context HttpServletRequest request, String incomingData) {
 		
 		Model model = new EmplisModelSearch(incomingData, request);
 		model.executeRequest();

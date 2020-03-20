@@ -6,74 +6,70 @@ import br.com.mind5.business.employeeSearch.info.EmparchInfo;
 import br.com.mind5.business.personListRestricted.info.PersoresInfo;
 import br.com.mind5.business.personSearch.info.PerarchInfo;
 import br.com.mind5.file.fileImageList.info.FimistInfo;
-import br.com.mind5.info.obsolete.InfoMerger_;
+import br.com.mind5.info.InfoMergerBuilderV3;
+import br.com.mind5.info.InfoMergerV3;
 
 public final class EmplisMerger {
-	public static EmplisInfo mergeWithEmparch(EmparchInfo sourceOne, EmplisInfo sourceTwo) {
-		InfoMerger_<EmplisInfo, EmparchInfo> merger = new EmplisMergerEmparch();		
-		return merger.merge(sourceOne, sourceTwo);
+	public static List<EmplisInfo> mergeWithEmparch(List<EmplisInfo> baseInfos, List<EmparchInfo> selectedInfos) {
+		InfoMergerBuilderV3<EmplisInfo, EmparchInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new EmplisVisiMergeEmparch());
+		InfoMergerV3<EmplisInfo, EmparchInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static List<EmplisInfo> mergeWithEmparch(List<EmparchInfo> sourceOnes, List<EmplisInfo> sourceTwos) {
-		InfoMerger_<EmplisInfo, EmparchInfo> merger = new EmplisMergerEmparch();		
-		return merger.merge(sourceOnes, sourceTwos);
-	}
+	public static List<EmplisInfo> mergeWithPerarch(List<EmplisInfo> baseInfos, List<PerarchInfo> selectedInfos) {
+		InfoMergerBuilderV3<EmplisInfo, PerarchInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new EmplisVisiMergePerarch());
+		InfoMergerV3<EmplisInfo, PerarchInfo> merger = builder.build();		
 	
-	
-	
-	public static EmplisInfo mergeWithPerarch(PerarchInfo sourceOne, EmplisInfo sourceTwo) {
-		InfoMerger_<EmplisInfo, PerarchInfo> merger = new EmplisMergerPerarch();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
-	
-	
-	
-	public static List<EmplisInfo> mergeWithPerarch(List<PerarchInfo> sourceOnes, List<EmplisInfo> sourceTwos) {
-		InfoMerger_<EmplisInfo, PerarchInfo> merger = new EmplisMergerPerarch();		
-		return merger.merge(sourceOnes, sourceTwos);
+		return merger.merge();
 	}	
 	
 	
 	
-	public static EmplisInfo mergeWithFimist(FimistInfo sourceOne, EmplisInfo sourceTwo) {
-		InfoMerger_<EmplisInfo, FimistInfo> merger = new EmplisMergerFimist();		
-		return merger.merge(sourceOne, sourceTwo);
+	public static List<EmplisInfo> mergeWithFimist(List<EmplisInfo> baseInfos, List<FimistInfo> selectedInfos) {
+		InfoMergerBuilderV3<EmplisInfo, FimistInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new EmplisVisiMergeFimist());
+		InfoMergerV3<EmplisInfo, FimistInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static List<EmplisInfo> mergeWithFimist(List<FimistInfo> sourceOnes, List<EmplisInfo> sourceTwos) {
-		InfoMerger_<EmplisInfo, FimistInfo> merger = new EmplisMergerFimist();		
-		return merger.merge(sourceOnes, sourceTwos);
+	public static List<EmplisInfo> mergeWithPersores(List<EmplisInfo> baseInfos, List<PersoresInfo> selectedInfos) {
+		InfoMergerBuilderV3<EmplisInfo, PersoresInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new EmplisVisiMergePersores());
+		InfoMergerV3<EmplisInfo, PersoresInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static EmplisInfo mergeWithPersores(PersoresInfo sourceOne, EmplisInfo sourceTwo) {
-		InfoMerger_<EmplisInfo, PersoresInfo> merger = new EmplisMergerPersores();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
+	public static List<EmplisInfo> mergeToSelect(List<EmplisInfo> baseInfos, List<EmplisInfo> selectedInfos) {
+		InfoMergerBuilderV3<EmplisInfo, EmplisInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new EmplisVisiMergeToSelect());
+		InfoMergerV3<EmplisInfo, EmplisInfo> merger = builder.build();		
 	
-	
-	
-	public static List<EmplisInfo> mergeWithPersores(List<PersoresInfo> sourceOnes, List<EmplisInfo> sourceTwos) {
-		InfoMerger_<EmplisInfo, PersoresInfo> merger = new EmplisMergerPersores();		
-		return merger.merge(sourceOnes, sourceTwos);
-	}
-	
-	
-	
-	public static EmplisInfo mergeToSelect(EmplisInfo sourceOne, EmplisInfo sourceTwo) {
-		InfoMerger_<EmplisInfo, EmplisInfo> merger = new EmplisMergerToSelect();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
-	
-	
-	
-	public static List<EmplisInfo> mergeToSelect(List<EmplisInfo> sourceOnes, List<EmplisInfo> sourceTwos) {
-		InfoMerger_<EmplisInfo, EmplisInfo> merger = new EmplisMergerToSelect();		
-		return merger.merge(sourceOnes, sourceTwos);
+		return merger.merge();
 	}
 }

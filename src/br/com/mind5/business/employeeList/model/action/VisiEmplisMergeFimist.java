@@ -25,14 +25,14 @@ final class VisiEmplisMergeFimist extends ActionVisitorTemplateMergeV2<EmplisInf
 	
 	
 	
-	@Override protected List<FimistInfo> toActionClassHook(List<EmplisInfo> recordInfos) {
-		return FimistCopier.copyFromEmplis(recordInfos);	
+	@Override protected List<FimistInfo> toActionClassHook(List<EmplisInfo> baseInfos) {
+		return FimistCopier.copyFromEmplis(baseInfos);	
 	}
 	
 	
 	
-	@Override protected List<EmplisInfo> mergeHook(List<EmplisInfo> recordInfos, List<FimistInfo> selectedInfos) {	
-		return EmplisMerger.mergeWithFimist(selectedInfos, recordInfos);
+	@Override protected List<EmplisInfo> mergeHook(List<EmplisInfo> baseInfos, List<FimistInfo> selectedInfos) {	
+		return EmplisMerger.mergeWithFimist(baseInfos, selectedInfos);
 	}
 	
 	

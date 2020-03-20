@@ -5,9 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.employeeList.info.EmplisInfo;
 import br.com.mind5.business.employeeList.model.action.LazyEmplisMergeEmparch;
-import br.com.mind5.business.employeeList.model.action.LazyEmplisMergePerarch;
 import br.com.mind5.business.employeeList.model.action.LazyEmplisRootSelect;
-import br.com.mind5.business.employeeList.model.action.StdEmplisEnforcePersonKey;
 import br.com.mind5.business.employeeList.model.checker.EmplisCheckLangu;
 import br.com.mind5.business.employeeList.model.checker.EmplisCheckOwner;
 import br.com.mind5.business.employeeList.model.checker.EmplisCheckSearch;
@@ -61,16 +59,14 @@ public final class RootEmplisSearch extends DeciTreeReadTemplate<EmplisInfo> {
 	@Override protected List<ActionStd<EmplisInfo>> buildActionsOnPassedHook(DeciTreeOption<EmplisInfo> option) {
 		List<ActionStd<EmplisInfo>> actions = new ArrayList<>();
 
-		ActionStd<EmplisInfo> enforcePersonKey = new StdEmplisEnforcePersonKey(option);
-		ActionLazy<EmplisInfo> mergePerarch = new LazyEmplisMergePerarch(option.conn, option.schemaName);
+		ActionStd<EmplisInfo> nodePerson = new NodeEmplisPerson(option).toAction();
 		ActionLazy<EmplisInfo> mergeEmparch = new LazyEmplisMergeEmparch(option.conn, option.schemaName);
 		ActionLazy<EmplisInfo> select = new LazyEmplisRootSelect(option.conn, option.schemaName);
 		
-		enforcePersonKey.addPostAction(mergePerarch);
-		mergePerarch.addPostAction(mergeEmparch);
+		nodePerson.addPostAction(mergeEmparch);
 		mergeEmparch.addPostAction(select);
 		
-		actions.add(enforcePersonKey);
+		actions.add(nodePerson);
 		return actions;
 	}
 }
