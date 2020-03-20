@@ -16,7 +16,8 @@ final class EmplisVisiMergePersores implements InfoMergerVisitorV3<EmplisInfo, P
 	
 	
 	@Override public boolean shouldMerge(EmplisInfo baseInfo, PersoresInfo selectedInfo) {
-		return (baseInfo.codOwner == selectedInfo.codOwner);
+		return (baseInfo.codOwner  == selectedInfo.codOwner &&
+				baseInfo.codPerson == selectedInfo.codPerson	);
 	}
 	
 	

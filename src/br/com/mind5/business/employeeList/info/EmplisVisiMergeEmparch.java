@@ -16,8 +16,18 @@ final class EmplisVisiMergeEmparch implements InfoMergerVisitorV3<EmplisInfo, Em
 	
 	
 	@Override public boolean shouldMerge(EmplisInfo baseInfo, EmparchInfo selectedInfo) {
-		return (baseInfo.codOwner  == selectedInfo.codOwner &&
-				baseInfo.codPerson == selectedInfo.codPerson);
+		boolean result = (baseInfo.codOwner == selectedInfo.codOwner);
+		
+		if (result == false)
+			return result;
+		
+		if (baseInfo.codPerson > 0)
+			result = (baseInfo.codPerson == selectedInfo.codPerson);
+		
+		if (result == false)
+			return result;
+		
+		return result;
 	}
 	
 	
