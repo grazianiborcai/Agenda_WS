@@ -99,4 +99,10 @@ public final class EmparchSelectSingle extends DaoStmtTemplate<EmparchInfo> {
 			}
 		};
 	}
+	
+	
+	
+	@Override public void executeStmt() throws SQLException {
+		super.executeStmt();
+	}
 }
