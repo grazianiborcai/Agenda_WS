@@ -24,8 +24,8 @@ final class VisiAddressMergeState extends ActionVisitorTemplateMergeV2<AddressIn
 	
 	
 	
-	@Override protected List<AddressInfo> mergeHook(List<AddressInfo> recordInfos, List<StateInfo> selectedInfos) {
-		return AddressMerger.mergeWithState(selectedInfos, recordInfos);
+	@Override protected List<AddressInfo> mergeHook(List<AddressInfo> baseInfos, List<StateInfo> selectedInfos) {
+		return AddressMerger.mergeWithState(baseInfos, selectedInfos);
 	}
 	
 	

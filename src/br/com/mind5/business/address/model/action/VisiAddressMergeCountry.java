@@ -24,8 +24,8 @@ final class VisiAddressMergeCountry extends ActionVisitorTemplateMergeV2<Address
 	
 	
 	
-	@Override protected List<AddressInfo> mergeHook(List<AddressInfo> recordInfos, List<CountryInfo> selectedInfos) {
-		return AddressMerger.mergeWithCountry(selectedInfos, recordInfos);
+	@Override protected List<AddressInfo> mergeHook(List<AddressInfo> baseInfos, List<CountryInfo> selectedInfos) {
+		return AddressMerger.mergeWithCountry(baseInfos, selectedInfos);
 	}
 	
 	

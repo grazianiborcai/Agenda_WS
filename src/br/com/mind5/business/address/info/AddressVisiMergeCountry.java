@@ -1,59 +1,39 @@
 package br.com.mind5.business.address.info;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.ArrayList;
+import java.util.List;
 
 import br.com.mind5.business.masterData.info.CountryInfo;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-final class AddressVisiMergeCountry implements InfoMergerVisitor_<AddressInfo, CountryInfo> {
-
-	@Override public AddressInfo writeRecord(CountryInfo sourceOne, AddressInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+final class AddressVisiMergeCountry implements InfoMergerVisitorV3<AddressInfo, CountryInfo> {
+	
+	@Override public List<AddressInfo> beforeMerge(List<AddressInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(AddressInfo baseInfo, CountryInfo selectedInfo) {
+		return baseInfo.codCountry.equals(selectedInfo.codCountry);
+	}
+	
+	
+	
+	@Override public List<AddressInfo> merge(AddressInfo baseInfo, CountryInfo selectedInfo) {
+		List<AddressInfo> results = new ArrayList<>();
 		
-		return merge(sourceOne, sourceTwo);
-	}
-	
-	
-	
-	private void checkArgument(CountryInfo sourceOne, AddressInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private AddressInfo merge(CountryInfo sourceOne, AddressInfo sourceTwo) {
-		AddressInfo resultInfo = makeClone(sourceTwo);
-		resultInfo.txtCountry = sourceOne.txtCountry;
-		resultInfo.codCountryAlpha3 = sourceOne.codCountryAlpha3;
+		baseInfo.txtCountry = selectedInfo.txtCountry;
+		baseInfo.codCountryAlpha3 = selectedInfo.codCountryAlpha3;
 		
-		return resultInfo;
+		results.add(baseInfo);
+		return results;
 	}
 	
 	
 	
-	private AddressInfo makeClone(AddressInfo recordInfo) {
-		try {
-			return (AddressInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(CountryInfo sourceOne, AddressInfo sourceTwo) {
-		return sourceOne.codCountry.equals(sourceTwo.codCountry);
-	}
-	
-	
-	
-	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
+	@Override public InfoUniquifier<AddressInfo> getUniquifier() {
+		return null;
 	}
 }

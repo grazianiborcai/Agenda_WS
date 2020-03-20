@@ -1,65 +1,45 @@
 package br.com.mind5.business.address.info;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.ArrayList;
+import java.util.List;
 
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-final class AddressVisiMergeToUpdate implements InfoMergerVisitor_<AddressInfo, AddressInfo> {
-
-	@Override public AddressInfo writeRecord(AddressInfo sourceOne, AddressInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);		
-		return merge(sourceOne, sourceTwo);
+final class AddressVisiMergeToUpdate implements InfoMergerVisitorV3<AddressInfo, AddressInfo> {
+	
+	@Override public List<AddressInfo> beforeMerge(List<AddressInfo> baseInfos) {
+		return baseInfos;
 	}
 	
 	
 	
-	private void checkArgument(AddressInfo sourceOne, AddressInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
+	@Override public boolean shouldMerge(AddressInfo baseInfo, AddressInfo selectedInfo) {
+		return (baseInfo.codOwner   == selectedInfo.codOwner &&
+				baseInfo.codAddress == selectedInfo.codAddress);
 	}
 	
 	
 	
-	private AddressInfo merge(AddressInfo sourceOne, AddressInfo sourceTwo) {
-		AddressInfo result = makeClone(sourceTwo);	
+	@Override public List<AddressInfo> merge(AddressInfo baseInfo, AddressInfo selectedInfo) {
+		List<AddressInfo> results = new ArrayList<>();
 		
-		result.codUser = sourceOne.codUser;
-		result.codStore = sourceOne.codStore;
-		result.codSnapshot = sourceOne.codSnapshot;
-		result.codCustomer = sourceOne.codCustomer;
-		result.codEmployee = sourceOne.codEmployee;
-		result.codOwnerRef = sourceOne.codOwnerRef;
-		result.createdOn = sourceOne.createdOn;
-		result.createdBy = sourceOne.createdBy;
-
-		return result;
+		baseInfo.codUser = selectedInfo.codUser;
+		baseInfo.codStore = selectedInfo.codStore;
+		baseInfo.codSnapshot = selectedInfo.codSnapshot;
+		baseInfo.codCustomer = selectedInfo.codCustomer;
+		baseInfo.codEmployee = selectedInfo.codEmployee;
+		baseInfo.codOwnerRef = selectedInfo.codOwnerRef;
+		baseInfo.createdOn = selectedInfo.createdOn;
+		baseInfo.createdBy = selectedInfo.createdBy;
+		
+		results.add(baseInfo);
+		return results;
 	}
 	
 	
 	
-	private AddressInfo makeClone(AddressInfo recordInfo) {
-		try {
-			return (AddressInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(AddressInfo sourceOne, AddressInfo sourceTwo) {		
-		return (sourceOne.codOwner   == sourceTwo.codOwner &&
-				sourceOne.codAddress == sourceTwo.codAddress);
-	}
-	
-	
-	
-	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
+	@Override public InfoUniquifier<AddressInfo> getUniquifier() {
+		return null;
 	}
 }

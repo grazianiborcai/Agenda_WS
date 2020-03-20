@@ -24,8 +24,8 @@ final class VisiAddressMergeUsername extends ActionVisitorTemplateMergeV2<Addres
 	
 	
 	
-	@Override protected List<AddressInfo> mergeHook(List<AddressInfo> recordInfos, List<UsernameInfo> selectedInfos) {
-		return AddressMerger.mergeWithUsername(selectedInfos, recordInfos);
+	@Override protected List<AddressInfo> mergeHook(List<AddressInfo> baseInfos, List<UsernameInfo> selectedInfos) {
+		return AddressMerger.mergeWithUsername(baseInfos, selectedInfos);
 	}
 	
 	

@@ -1,59 +1,39 @@
 package br.com.mind5.business.address.info;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.ArrayList;
+import java.util.List;
 
 import br.com.mind5.business.addressSnapshot.info.AddresnapInfo;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-final class AddressVisiMergeAddresnap implements InfoMergerVisitor_<AddressInfo, AddresnapInfo> {
-
-	@Override public AddressInfo writeRecord(AddresnapInfo sourceOne, AddressInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+final class AddressVisiMergeAddresnap implements InfoMergerVisitorV3<AddressInfo, AddresnapInfo> {
+	
+	@Override public List<AddressInfo> beforeMerge(List<AddressInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(AddressInfo baseInfo, AddresnapInfo selectedInfo) {
+		return (baseInfo.codOwner 	== selectedInfo.codOwner	&&
+				baseInfo.codAddress == selectedInfo.codAddress		);
+	}
+	
+	
+	
+	@Override public List<AddressInfo> merge(AddressInfo baseInfo, AddresnapInfo selectedInfo) {
+		List<AddressInfo> results = new ArrayList<>();
 		
-		return merge(sourceOne, sourceTwo);
-	}
-	
-	
-	
-	private void checkArgument(AddresnapInfo sourceOne, AddressInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private AddressInfo merge(AddresnapInfo sourceOne, AddressInfo sourceTwo) {
-		AddressInfo resultInfo = makeClone(sourceTwo);
-		resultInfo.codSnapshot = sourceOne.codSnapshot;
+		baseInfo.codSnapshot = selectedInfo.codSnapshot;
 		
-		return resultInfo;
+		results.add(baseInfo);
+		return results;
 	}
 	
 	
 	
-	private AddressInfo makeClone(AddressInfo recordInfo) {
-		try {
-			return (AddressInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(AddresnapInfo sourceOne, AddressInfo sourceTwo) {
-		return (sourceOne.codOwner 		== sourceTwo.codOwner	&&
-				sourceOne.codAddress 	== sourceTwo.codAddress		);
-	}
-	
-	
-	
-	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
+	@Override public InfoUniquifier<AddressInfo> getUniquifier() {
+		return null;
 	}
 }

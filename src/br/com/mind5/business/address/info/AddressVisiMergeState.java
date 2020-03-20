@@ -1,58 +1,38 @@
 package br.com.mind5.business.address.info;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.ArrayList;
+import java.util.List;
 
 import br.com.mind5.business.masterData.info.StateInfo;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-final class AddressVisiMergeState implements InfoMergerVisitor_<AddressInfo, StateInfo> {
-
-	@Override public AddressInfo writeRecord(StateInfo sourceOne, AddressInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+final class AddressVisiMergeState implements InfoMergerVisitorV3<AddressInfo, StateInfo> {
+	
+	@Override public List<AddressInfo> beforeMerge(List<AddressInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(AddressInfo baseInfo, StateInfo selectedInfo) {
+		return baseInfo.codCountry.equals(selectedInfo.codCountry);
+	}
+	
+	
+	
+	@Override public List<AddressInfo> merge(AddressInfo baseInfo, StateInfo selectedInfo) {
+		List<AddressInfo> results = new ArrayList<>();
 		
-		return merge(sourceOne, sourceTwo);
-	}
-	
-	
-	
-	private void checkArgument(StateInfo sourceOne, AddressInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private AddressInfo merge(StateInfo sourceOne, AddressInfo sourceTwo) {
-		AddressInfo resultInfo = makeClone(sourceTwo);
-		resultInfo.txtState = sourceOne.txtState;
+		baseInfo.txtState = selectedInfo.txtState;
 		
-		return resultInfo;
+		results.add(baseInfo);
+		return results;
 	}
 	
 	
 	
-	private AddressInfo makeClone(AddressInfo recordInfo) {
-		try {
-			return (AddressInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(StateInfo sourceOne, AddressInfo sourceTwo) {
-		return sourceOne.codCountry.equals(sourceTwo.codCountry);
-	}
-	
-	
-	
-	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
+	@Override public InfoUniquifier<AddressInfo> getUniquifier() {
+		return null;
 	}
 }

@@ -26,6 +26,6 @@ final class VisiAddressInsertAddresnap extends ActionVisitorTemplateAction<Addre
 	
 	
 	protected List<AddressInfo> toBaseClassHook(List<AddressInfo> baseInfos, List<AddresnapInfo> results) {
-		return AddressMerger.mergeWithAddresnap(results, baseInfos);
+		return AddressMerger.mergeWithAddresnap(baseInfos, results);
 	}
 }

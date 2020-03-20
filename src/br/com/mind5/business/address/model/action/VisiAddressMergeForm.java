@@ -24,8 +24,8 @@ final class VisiAddressMergeForm extends ActionVisitorTemplateMergeV2<AddressInf
 	
 	
 	
-	@Override protected List<AddressInfo> mergeHook(List<AddressInfo> recordInfos, List<FormAddressInfo> selectedInfos) {
-		return AddressMerger.mergeWithForm(selectedInfos, recordInfos);
+	@Override protected List<AddressInfo> mergeHook(List<AddressInfo> baseInfos, List<FormAddressInfo> selectedInfos) {
+		return AddressMerger.mergeWithForm(baseInfos, selectedInfos);
 	}
 	
 	

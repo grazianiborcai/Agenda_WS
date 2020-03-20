@@ -1,62 +1,39 @@
 package br.com.mind5.business.address.info;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.ArrayList;
+import java.util.List;
 
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.security.username.info.UsernameInfo;
 
-final class AddressVisiMergeUsername implements InfoMergerVisitor_<AddressInfo, UsernameInfo> {
-
-	@Override public AddressInfo writeRecord(UsernameInfo sourceOne, AddressInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+final class AddressVisiMergeUsername implements InfoMergerVisitorV3<AddressInfo, UsernameInfo> {
+	
+	@Override public List<AddressInfo> beforeMerge(List<AddressInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(AddressInfo baseInfo, UsernameInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner		&&
+				baseInfo.username.equals(selectedInfo.username)		);
+	}
+	
+	
+	
+	@Override public List<AddressInfo> merge(AddressInfo baseInfo, UsernameInfo selectedInfo) {
+		List<AddressInfo> results = new ArrayList<>();
 		
-		AddressInfo clonedInfo = makeClone(sourceTwo);
-		return merge(sourceOne, clonedInfo);
-	}
-	
-	
-	
-	private void checkArgument(UsernameInfo sourceOne, AddressInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private AddressInfo makeClone(AddressInfo recordInfo) {
-		try {
-			return (AddressInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	private AddressInfo merge(UsernameInfo sourceOne, AddressInfo sourceTwo) {
-		sourceTwo.lastChangedBy = sourceOne.codUser;
-		return sourceTwo;
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(UsernameInfo sourceOne, AddressInfo sourceTwo) {
-		if (sourceOne.username == null ||
-			sourceTwo.username == null		)
-			return false;
+		baseInfo.lastChangedBy = selectedInfo.codUser;
 		
-		return (sourceOne.codOwner == sourceTwo.codOwner		&&
-				sourceOne.username.equals(sourceTwo.username)		);
+		results.add(baseInfo);
+		return results;
 	}
 	
 	
 	
-	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
+	@Override public InfoUniquifier<AddressInfo> getUniquifier() {
+		return null;
 	}
 }

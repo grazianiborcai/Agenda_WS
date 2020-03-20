@@ -24,8 +24,8 @@ final class VisiAddressMergeAddarch extends ActionVisitorTemplateMergeV2<Address
 	
 	
 	
-	@Override protected List<AddressInfo> mergeHook(List<AddressInfo> recordInfos, List<AddarchInfo> selectedInfos) {	
-		return AddressMerger.mergeWithAddarch(selectedInfos, recordInfos);
+	@Override protected List<AddressInfo> mergeHook(List<AddressInfo> baseInfos, List<AddarchInfo> selectedInfos) {	
+		return AddressMerger.mergeWithAddarch(baseInfos, selectedInfos);
 	}
 	
 	
