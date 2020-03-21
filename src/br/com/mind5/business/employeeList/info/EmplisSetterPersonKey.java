@@ -22,7 +22,7 @@ public final class EmplisSetterPersonKey implements InfoSetter<EmplisInfo> {
 		}
 		
 		
-		if (recordInfo.persoresData == null) {
+		if (recordInfo.persolisData == null) {
 			logException(new NullPointerException("recordInfo.personData" + SystemMessage.NULL_ARGUMENT));
 			throw new NullPointerException("recordInfo.personData" + SystemMessage.NULL_ARGUMENT);
 		}
@@ -31,10 +31,10 @@ public final class EmplisSetterPersonKey implements InfoSetter<EmplisInfo> {
 	
 	
 	private EmplisInfo setPersonKey(EmplisInfo recordInfo) {
-		recordInfo.persoresData.codOwner = recordInfo.codOwner;
-		recordInfo.persoresData.codPerson = recordInfo.codPerson;
-		recordInfo.persoresData.username = recordInfo.username;
-		recordInfo.persoresData.codLanguage = recordInfo.codLanguage;
+		recordInfo.persolisData.codOwner = recordInfo.codOwner;
+		recordInfo.persolisData.codPerson = recordInfo.codPerson;
+		recordInfo.persolisData.username = recordInfo.username;
+		recordInfo.persolisData.codLanguage = recordInfo.codLanguage;
 		
 		return recordInfo;
 	}

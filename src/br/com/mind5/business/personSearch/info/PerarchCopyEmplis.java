@@ -12,7 +12,7 @@ final class PerarchCopyEmplis extends InfoCopierTemplate<PerarchInfo, EmplisInfo
 	
 	
 	@Override protected PerarchInfo makeCopyHook(EmplisInfo source) {
-		PerarchInfo result = PerarchInfo.copyFrom(source.persoresData);
+		PerarchInfo result = PerarchInfo.copyFrom(source.persolisData);
 		return result;
 	}
 }

@@ -16,7 +16,7 @@ public final class EmplisCheckHasPerson extends ModelCheckerTemplateSimpleV2<Emp
 	
 	
 	@Override protected boolean checkHook(EmplisInfo recordInfo, Connection conn, String schemaName) {	
-		if ( recordInfo.persoresData == null )				
+		if ( recordInfo.persolisData == null )				
 			return super.FAILED;		
 		
 		
