@@ -9,9 +9,9 @@ import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyPersolisSelect extends ActionLazyTemplate<PersolisInfo, PersolisInfo> {
-	
-	public LazyPersolisSelect(Connection conn, String schemaName) {
+public final class LazyPersolisEnforceRestricted extends ActionLazyTemplate<PersolisInfo, PersolisInfo> {
+
+	public LazyPersolisEnforceRestricted(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyPersolisSelect extends ActionLazyTemplate<PersolisInfo, P
 	
 	
 	@Override protected ActionStd<PersolisInfo> getInstanceOfActionHook(DeciTreeOption<PersolisInfo> option) {
-		return new StdPersolisSelect(option);
+		return new StdPersolisEnforceRestricted(option);
 	}
 	
 	

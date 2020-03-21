@@ -1,56 +1,38 @@
 package br.com.mind5.business.personList.info;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.ArrayList;
+import java.util.List;
 
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-final class PersolisVisiMergeToSelect implements InfoMergerVisitor_<PersolisInfo, PersolisInfo> {
+final class PersolisVisiMergeToSelect implements InfoMergerVisitorV3<PersolisInfo, PersolisInfo> {
+	
+	@Override public List<PersolisInfo> beforeMerge(List<PersolisInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(PersolisInfo baseInfo, PersolisInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner);
+	}	
+	
+	
 
-	@Override public PersolisInfo writeRecord(PersolisInfo sourceOne, PersolisInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);		
-		return merge(sourceOne, sourceTwo);
+	@Override public List<PersolisInfo> merge(PersolisInfo baseInfo, PersolisInfo selectedInfo) {
+		List<PersolisInfo> results = new ArrayList<>();
+		
+		selectedInfo.username = baseInfo.username;
+		selectedInfo.codLanguage = baseInfo.codLanguage;
+		
+		results.add(selectedInfo);
+		return results;
 	}
 	
 	
 	
-	private void checkArgument(PersolisInfo sourceOne, PersolisInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private PersolisInfo merge(PersolisInfo sourceOne, PersolisInfo sourceTwo) {
-		PersolisInfo result = makeClone(sourceOne);		
-		result.username = sourceTwo.username;
-		result.codLanguage = sourceTwo.codLanguage;
-		return result;
-	}
-	
-	
-	
-	private PersolisInfo makeClone(PersolisInfo recordInfo) {
-		try {
-			return (PersolisInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(PersolisInfo sourceOne, PersolisInfo sourceTwo) {		
-		return (sourceOne.codOwner  == sourceTwo.codOwner);
-	}
-	
-	
-	
-	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
+	@Override public InfoUniquifier<PersolisInfo> getUniquifier() {
+		return null;
 	}
 }
