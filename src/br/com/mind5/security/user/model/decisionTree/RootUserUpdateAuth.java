@@ -16,6 +16,7 @@ import br.com.mind5.security.user.model.action.LazyUserNodeUpdate;
 import br.com.mind5.security.user.model.action.LazyUserNodeUpdatePerson;
 import br.com.mind5.security.user.model.action.LazyUserNodeUpsertAddress;
 import br.com.mind5.security.user.model.action.LazyUserNodeUpsertPhone;
+import br.com.mind5.security.user.model.action.LazyUserRootSelect;
 import br.com.mind5.security.user.model.checker.UserCheckOwner;
 import br.com.mind5.security.user.model.checker.UserCheckUpdate;
 import br.com.mind5.security.user.model.checker.UserCheckUsername;
@@ -68,16 +69,16 @@ public final class RootUserUpdateAuth extends DeciTreeWriteTemplate<UserInfo> {
 		ActionLazy<UserInfo> snapshot = new LazyUserNodeSnapshot(option.conn, option.schemaName);		
 		ActionLazy<UserInfo> upsertAddress = new LazyUserNodeUpsertAddress(option.conn, option.schemaName);	
 		ActionLazy<UserInfo> upsertPhone = new LazyUserNodeUpsertPhone(option.conn, option.schemaName);		
-		ActionStd<UserInfo> select = new RootUserSelect(option).toAction();		
+		ActionLazy<UserInfo> select = new LazyUserRootSelect(option.conn, option.schemaName);	
 			
 		nodeAuth.addPostAction(updateUser);
 		updateUser.addPostAction(updatePerson);
 		updatePerson.addPostAction(snapshot);
 		snapshot.addPostAction(upsertAddress);
 		snapshot.addPostAction(upsertPhone);
+		snapshot.addPostAction(select);
 		
 		actions.add(nodeAuth);
-		actions.add(select);	
 		return actions;
 	}
 }
