@@ -3,14 +3,14 @@ package br.com.mind5.payment.payOrderSearch.model.checker;
 import java.sql.Connection;
 
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple_;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 import br.com.mind5.payment.payOrderSearch.info.PayordarchInfo;
 
-public final class PayordarchCheckRead extends ModelCheckerTemplateSimple_<PayordarchInfo> {
+public final class PayordarchCheckRead extends ModelCheckerTemplateSimpleV2<PayordarchInfo> {
 
-	public PayordarchCheckRead() {
-		super();
+	public PayordarchCheckRead(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
@@ -35,13 +35,7 @@ public final class PayordarchCheckRead extends ModelCheckerTemplateSimple_<Payor
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.PAY_ORDER_SEARCH_MANDATORY_FIELD_EMPTY;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
+	@Override protected int getCodMsgOnResultFalseHook() {
 		return SystemCode.PAY_ORDER_SEARCH_MANDATORY_FIELD_EMPTY;
 	}
 }
