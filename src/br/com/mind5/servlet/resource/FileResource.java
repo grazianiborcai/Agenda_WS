@@ -30,7 +30,7 @@ import br.com.mind5.file.fileImage.model.FimgModelInsertEmp;
 import br.com.mind5.file.fileImage.model.FimgModelInsertMat;
 import br.com.mind5.file.fileImage.model.FimgModelInsertOwner;
 import br.com.mind5.file.fileImage.model.FimgModelInsertStore;
-import br.com.mind5.file.fileImage.model.FimgModelInsertUser;
+import br.com.mind5.file.fileImage.model.FimgModelInsertUserAuth;
 import br.com.mind5.file.fileImage.model.FimgModelUpdateMat;
 import br.com.mind5.file.fileImage.model.FimgModelUpdateStore;
 import br.com.mind5.model.Model;
@@ -152,7 +152,7 @@ public class FileResource {
 		recordInfo.username = username;	
 		recordInfo.fileImgExtension = FilenameUtils.getExtension(fileDetails.getFileName());
 		
-		Model model = new FimgModelInsertUser(recordInfo);
+		Model model = new FimgModelInsertUserAuth(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	} 

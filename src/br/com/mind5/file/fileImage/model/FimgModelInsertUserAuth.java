@@ -1,21 +1,21 @@
 package br.com.mind5.file.fileImage.model;
 
 import br.com.mind5.file.fileImage.info.FimgInfo;
-import br.com.mind5.file.fileImage.model.decisionTree.RootFimgInsertUser;
+import br.com.mind5.file.fileImage.model.decisionTree.RootFimgInsertUserAuth;
 import br.com.mind5.model.ModelTemplate;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class FimgModelInsertUser extends ModelTemplate<FimgInfo> {
+public final class FimgModelInsertUserAuth extends ModelTemplate<FimgInfo> {
 
-	public FimgModelInsertUser(FimgInfo recordInfo) {
+	public FimgModelInsertUserAuth(FimgInfo recordInfo) {
 		super(recordInfo);
 	}
 	
 	
 	
 	@Override protected DeciTree<FimgInfo> getDecisionTreeHook(DeciTreeOption<FimgInfo> option) {
-		return new RootFimgInsertUser(option);
+		return new RootFimgInsertUserAuth(option);
 	}
 	
 	

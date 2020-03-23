@@ -16,9 +16,9 @@ import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
 
-public final class RootFimgInsertUser extends DeciTreeWriteTemplate<FimgInfo> {
+public final class RootFimgInsertUserAuth extends DeciTreeWriteTemplate<FimgInfo> {
 	
-	public RootFimgInsertUser(DeciTreeOption<FimgInfo> option) {
+	public RootFimgInsertUserAuth(DeciTreeOption<FimgInfo> option) {
 		super(option);
 	}
 	
