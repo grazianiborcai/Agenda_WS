@@ -32,7 +32,7 @@ final class VisiPlanimeMergeStolis extends ActionVisitorTemplateMergeV2<PlanimeI
 	
 	
 	@Override protected List<PlanimeInfo> mergeHook(List<PlanimeInfo> baseInfos, List<StolisInfo> selectedInfos) {	
-		return PlanimeMerger.mergeWithStolis(selectedInfos, baseInfos);
+		return PlanimeMerger.mergeWithStolis(baseInfos, selectedInfos);
 	}
 	
 	

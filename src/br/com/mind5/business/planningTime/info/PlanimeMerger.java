@@ -7,74 +7,70 @@ import br.com.mind5.business.masterData.info.WeekdayInfo;
 import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.business.planingData.info.PlanataInfo;
 import br.com.mind5.business.storeList.info.StolisInfo;
-import br.com.mind5.info.obsolete.InfoMerger_;
+import br.com.mind5.info.InfoMergerBuilderV3;
+import br.com.mind5.info.InfoMergerV3;
 
 public final class PlanimeMerger {
-	public static PlanimeInfo mergeWithEmplis(EmplisInfo selectedInfo, PlanimeInfo baseInfo) {
-		InfoMerger_<PlanimeInfo, EmplisInfo> merger = new PlanimeMergerEmplis();		
-		return merger.merge(selectedInfo, baseInfo);
+	public static List<PlanimeInfo> mergeWithEmplis(List<PlanimeInfo> baseInfos, List<EmplisInfo> selectedInfos) {
+		InfoMergerBuilderV3<PlanimeInfo, EmplisInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new PlanimeVisiMergeEmplis());
+		InfoMergerV3<PlanimeInfo, EmplisInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static List<PlanimeInfo> mergeWithEmplis(List<EmplisInfo> selectedInfos, List<PlanimeInfo> baseInfos) {
-		InfoMerger_<PlanimeInfo, EmplisInfo> merger = new PlanimeMergerEmplis();		
-		return merger.merge(selectedInfos, baseInfos);
+	public static List<PlanimeInfo> mergeWithMatlis(List<PlanimeInfo> baseInfos, List<MatlisInfo> selectedInfos) {
+		InfoMergerBuilderV3<PlanimeInfo, MatlisInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new PlanimeVisiMergeMatlis());
+		InfoMergerV3<PlanimeInfo, MatlisInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static PlanimeInfo mergeWithMatlis(MatlisInfo selectedInfo, PlanimeInfo baseInfo) {
-		InfoMerger_<PlanimeInfo, MatlisInfo> merger = new PlanimeMergerMatlis();		
-		return merger.merge(selectedInfo, baseInfo);
+	public static List<PlanimeInfo> mergeWithStolis(List<PlanimeInfo> baseInfos, List<StolisInfo> selectedInfos) {
+		InfoMergerBuilderV3<PlanimeInfo, StolisInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new PlanimeVisiMergeStolis());
+		InfoMergerV3<PlanimeInfo, StolisInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static List<PlanimeInfo> mergeWithMatlis(List<MatlisInfo> selectedInfos, List<PlanimeInfo> baseInfos) {
-		InfoMerger_<PlanimeInfo, MatlisInfo> merger = new PlanimeMergerMatlis();		
-		return merger.merge(selectedInfos, baseInfos);
+	public static List<PlanimeInfo> mergeWithWeekday(List<PlanimeInfo> baseInfos, List<WeekdayInfo> selectedInfos) {
+		InfoMergerBuilderV3<PlanimeInfo, WeekdayInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new PlanimeVisiMergeWeekday());
+		InfoMergerV3<PlanimeInfo, WeekdayInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static PlanimeInfo mergeWithStolis(StolisInfo selectedInfo, PlanimeInfo baseInfo) {
-		InfoMerger_<PlanimeInfo, StolisInfo> merger = new PlanimeMergerStolis();		
-		return merger.merge(selectedInfo, baseInfo);
-	}
+	public static List<PlanimeInfo> mergeWithPlanata(List<PlanimeInfo> baseInfos, List<PlanataInfo> selectedInfos) {
+		InfoMergerBuilderV3<PlanimeInfo, PlanataInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new PlanimeVisiMergePlanata());
+		InfoMergerV3<PlanimeInfo, PlanataInfo> merger = builder.build();		
 	
-	
-	
-	public static List<PlanimeInfo> mergeWithStolis(List<StolisInfo> selectedInfos, List<PlanimeInfo> baseInfos) {
-		InfoMerger_<PlanimeInfo, StolisInfo> merger = new PlanimeMergerStolis();		
-		return merger.merge(selectedInfos, baseInfos);
-	}
-	
-	
-	
-	public static PlanimeInfo mergeWithWeekday(WeekdayInfo selectedInfo, PlanimeInfo baseInfo) {
-		InfoMerger_<PlanimeInfo, WeekdayInfo> merger = new PlanimeMergerWeekday();		
-		return merger.merge(selectedInfo, baseInfo);
-	}
-	
-	
-	
-	public static List<PlanimeInfo> mergeWithWeekday(List<WeekdayInfo> selectedInfos, List<PlanimeInfo> baseInfos) {
-		InfoMerger_<PlanimeInfo, WeekdayInfo> merger = new PlanimeMergerWeekday();		
-		return merger.merge(selectedInfos, baseInfos);
-	}
-	
-	
-	
-	public static PlanimeInfo mergeWithPlanata(PlanataInfo selectedInfo, PlanimeInfo baseInfo) {
-		InfoMerger_<PlanimeInfo, PlanataInfo> merger = new PlanimeMergerPlanata();		
-		return merger.merge(selectedInfo, baseInfo);
-	}
-	
-	
-	
-	public static List<PlanimeInfo> mergeWithPlanata(List<PlanataInfo> selectedInfos, List<PlanimeInfo> baseInfos) {
-		InfoMerger_<PlanimeInfo, PlanataInfo> merger = new PlanimeMergerPlanata();		
-		return merger.merge(selectedInfos, baseInfos);
+		return merger.merge();
 	}
 }

@@ -32,7 +32,7 @@ final class VisiPlanimeMergeMatlis extends ActionVisitorTemplateMergeV2<PlanimeI
 	
 	
 	@Override protected List<PlanimeInfo> mergeHook(List<PlanimeInfo> baseInfos, List<MatlisInfo> selectedInfos) {	
-		return PlanimeMerger.mergeWithMatlis(selectedInfos, baseInfos);
+		return PlanimeMerger.mergeWithMatlis(baseInfos, selectedInfos);
 	}
 	
 	

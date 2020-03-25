@@ -32,7 +32,7 @@ final class VisiPlanimeMergePlanata extends ActionVisitorTemplateMergeV2<Planime
 	
 	
 	@Override protected List<PlanimeInfo> mergeHook(List<PlanimeInfo> baseInfos, List<PlanataInfo> selectedInfos) {	
-		return PlanimeMerger.mergeWithPlanata(selectedInfos, baseInfos);
+		return PlanimeMerger.mergeWithPlanata(baseInfos, selectedInfos);
 	}
 	
 	

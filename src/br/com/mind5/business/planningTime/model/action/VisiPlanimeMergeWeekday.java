@@ -32,7 +32,7 @@ final class VisiPlanimeMergeWeekday extends ActionVisitorTemplateMergeV2<Planime
 	
 	
 	@Override protected List<PlanimeInfo> mergeHook(List<PlanimeInfo> baseInfos, List<WeekdayInfo> selectedInfos) {	
-		return PlanimeMerger.mergeWithWeekday(selectedInfos, baseInfos);
+		return PlanimeMerger.mergeWithWeekday(baseInfos, selectedInfos);
 	}
 	
 	
