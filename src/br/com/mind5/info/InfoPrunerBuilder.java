@@ -10,7 +10,8 @@ import br.com.mind5.common.SystemMessage;
 public final class InfoPrunerBuilder<T extends InfoRecord, S extends InfoRecord> {
 	private List<T> bases; 
 	private List<S> seles;
-	private InfoPrunerSingleVisitor<T, S> pruner;	
+	private InfoPrunerSingleVisitor<T, S> singlePruner;	
+	private InfoPrunerListVisitor<T, S> listPruner;	
 	
 	
 	public void addBaseInfos(List<T> baseInfos) {
@@ -26,19 +27,43 @@ public final class InfoPrunerBuilder<T extends InfoRecord, S extends InfoRecord>
 	
 	
 	public void addVisitor(InfoPrunerSingleVisitor<T, S> visitor) {
-		pruner = visitor;
+		singlePruner = visitor;
+		listPruner = null;
+	}	
+	
+	
+	
+	public void addVisitor(InfoPrunerListVisitor<T, S> visitor) {
+		listPruner = visitor;
+		singlePruner = null;
 	}	
 	
 	
 	
 	public InfoPruner<T, S> build() {
-		checkArgument(bases, seles, pruner);
-		return new InfoPrunerHelper<T, S>(bases, seles, pruner);
+		if (singlePruner != null)
+			return buildSinglePruner();
+		
+		return buildListPruner();
 	}
 	
 	
 	
-	private void checkArgument(List<T> baseInfos, List<S> selectedInfos, InfoPrunerSingleVisitor<T, S> visitor) {
+	private InfoPruner<T, S> buildSinglePruner() {
+		checkArgument(bases, seles, singlePruner);
+		return new InfoPrunerHelper<T, S>(bases, seles, singlePruner);
+	}
+	
+	
+	
+	private InfoPruner<T, S> buildListPruner() {
+		checkArgument(bases, seles, listPruner);
+		return new InfoPrunerHelper<T, S>(bases, seles, listPruner);
+	}
+	
+	
+	
+	private void checkArgument(List<T> baseInfos, List<S> selectedInfos, Object visitor) {
 		if (baseInfos == null) {
 			logException(new NullPointerException("baseInfos" + SystemMessage.NULL_ARGUMENT));
 			throw new NullPointerException("baseInfos" + SystemMessage.NULL_ARGUMENT);
