@@ -10,7 +10,7 @@ import br.com.mind5.common.SystemMessage;
 public final class InfoPrunerBuilder<T extends InfoRecord, S extends InfoRecord> {
 	private List<T> bases; 
 	private List<S> seles;
-	private InfoPrunerVisitor<T, S> pruner;	
+	private InfoPrunerSingleVisitor<T, S> pruner;	
 	
 	
 	public void addBaseInfos(List<T> baseInfos) {
@@ -25,7 +25,7 @@ public final class InfoPrunerBuilder<T extends InfoRecord, S extends InfoRecord>
 	
 	
 	
-	public void addVisitor(InfoPrunerVisitor<T, S> visitor) {
+	public void addVisitor(InfoPrunerSingleVisitor<T, S> visitor) {
 		pruner = visitor;
 	}	
 	
@@ -38,7 +38,7 @@ public final class InfoPrunerBuilder<T extends InfoRecord, S extends InfoRecord>
 	
 	
 	
-	private void checkArgument(List<T> baseInfos, List<S> selectedInfos, InfoPrunerVisitor<T, S> visitor) {
+	private void checkArgument(List<T> baseInfos, List<S> selectedInfos, InfoPrunerSingleVisitor<T, S> visitor) {
 		if (baseInfos == null) {
 			logException(new NullPointerException("baseInfos" + SystemMessage.NULL_ARGUMENT));
 			throw new NullPointerException("baseInfos" + SystemMessage.NULL_ARGUMENT);

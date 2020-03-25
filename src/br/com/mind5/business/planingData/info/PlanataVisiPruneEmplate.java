@@ -1,9 +1,9 @@
 package br.com.mind5.business.planingData.info;
 
 import br.com.mind5.business.employeeLeaveDate.info.EmplateInfo;
-import br.com.mind5.info.InfoPrunerVisitor;
+import br.com.mind5.info.InfoPrunerSingleVisitor;
 
-final class PlanataVisiPruneEmplate implements InfoPrunerVisitor<PlanataInfo, EmplateInfo> {
+final class PlanataVisiPruneEmplate implements InfoPrunerSingleVisitor<PlanataInfo, EmplateInfo> {
 	
 	@Override public boolean pruneRecord(PlanataInfo baseInfo, EmplateInfo selectedInfo) {
 		

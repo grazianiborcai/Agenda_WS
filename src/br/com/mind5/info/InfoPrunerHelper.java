@@ -11,17 +11,29 @@ import br.com.mind5.common.SystemMessage;
 public final class InfoPrunerHelper<T extends InfoRecord, S extends InfoRecord> implements InfoPruner<T, S> {
 	private final List<T> bases; 
 	private final List<S> seles;	
-	private final InfoPrunerVisitor<T,S> pruner;
+	private InfoPrunerSingleVisitor<T,S> singlePruner;
+	private InfoPrunerListVisitor<T,S> listPruner;
 	private final Class<?> prunerClazz;
 	
 	
-	public InfoPrunerHelper(List<T> baseInfos, List<S> selectedInfos, InfoPrunerVisitor<T, S> visitor) {
+	public InfoPrunerHelper(List<T> baseInfos, List<S> selectedInfos, InfoPrunerSingleVisitor<T, S> visitor) {
 		checkArgument(baseInfos, selectedInfos, visitor);
 		
 		bases = InfoUtil.copy(baseInfos);
 		seles = InfoUtil.copy(selectedInfos);		
 		prunerClazz = visitor.getClass();
-		pruner = visitor;
+		singlePruner = visitor;
+	}
+	
+	
+	
+	public InfoPrunerHelper(List<T> baseInfos, List<S> selectedInfos, InfoPrunerListVisitor<T, S> visitor) {
+		checkArgument(baseInfos, selectedInfos, visitor);
+		
+		bases = InfoUtil.copy(baseInfos);
+		seles = InfoUtil.copy(selectedInfos);		
+		prunerClazz = visitor.getClass();
+		listPruner = visitor;
 	}
 	
 	
@@ -33,12 +45,21 @@ public final class InfoPrunerHelper<T extends InfoRecord, S extends InfoRecord> 
 		List<T> baseInfos = InfoUtil.copy(bases); 
 		List<S> selectedInfos = InfoUtil.copy(seles);
 		
-		return pruneWithVisitor(baseInfos, selectedInfos, pruner);
+		return pruneWithVisitor(baseInfos, selectedInfos, singlePruner, listPruner);
 	}
 	
 	
 	
-	private List<T> pruneWithVisitor(List<T> baseInfos, List<S> selectedInfos, InfoPrunerVisitor<T,S> visitor) {
+	private List<T> pruneWithVisitor(List<T> baseInfos, List<S> selectedInfos, InfoPrunerSingleVisitor<T,S> single, InfoPrunerListVisitor<T,S> list) {
+		if (single != null)		
+			return pruneWithSingleVisitor(baseInfos, selectedInfos, single);
+		
+		return pruneWithListVisitor(baseInfos, selectedInfos, list);
+	}
+	
+	
+	
+	private List<T> pruneWithSingleVisitor(List<T> baseInfos, List<S> selectedInfos, InfoPrunerSingleVisitor<T,S> visitor) {
 		List<T> results = new ArrayList<>();				
 		
 		for (T eachBase : baseInfos) {	
@@ -59,7 +80,13 @@ public final class InfoPrunerHelper<T extends InfoRecord, S extends InfoRecord> 
 	
 	
 	
-	private boolean pruneWithVisitor(T baseInfo, S selectedInfo, InfoPrunerVisitor<T,S> visitor) {		
+	private List<T> pruneWithListVisitor(List<T> baseInfos, List<S> selectedInfos, InfoPrunerListVisitor<T,S> visitor) {
+		return visitor.pruneRecord(baseInfos, selectedInfos);
+	}
+	
+	
+	
+	private boolean pruneWithVisitor(T baseInfo, S selectedInfo, InfoPrunerSingleVisitor<T,S> visitor) {		
 		if(visitor.shouldPrune(baseInfo, selectedInfo))
 			return visitor.pruneRecord(baseInfo, selectedInfo);
 		
@@ -68,7 +95,29 @@ public final class InfoPrunerHelper<T extends InfoRecord, S extends InfoRecord> 
 	
 	
 	
-	private void checkArgument(List<T> baseInfos, List<S> selectedInfos, InfoPrunerVisitor<T, S> visitor) {
+	private void checkArgument(List<T> baseInfos, List<S> selectedInfos, InfoPrunerSingleVisitor<T, S> visitor) {
+		checkArgument(baseInfos, selectedInfos);
+		
+		if (visitor == null) {
+			logException(new NullPointerException("visitor" + SystemMessage.NULL_ARGUMENT));
+			throw new NullPointerException("visitor" + SystemMessage.NULL_ARGUMENT);
+		}
+	}
+	
+	
+	
+	private void checkArgument(List<T> baseInfos, List<S> selectedInfos, InfoPrunerListVisitor<T, S> visitor) {
+		checkArgument(baseInfos, selectedInfos);
+		
+		if (visitor == null) {
+			logException(new NullPointerException("visitor" + SystemMessage.NULL_ARGUMENT));
+			throw new NullPointerException("visitor" + SystemMessage.NULL_ARGUMENT);
+		}
+	}
+	
+	
+	
+	private void checkArgument(List<T> baseInfos, List<S> selectedInfos) {
 		if (baseInfos == null) {
 			logException(new NullPointerException("baseInfos" + SystemMessage.NULL_ARGUMENT));
 			throw new NullPointerException("baseInfos" + SystemMessage.NULL_ARGUMENT);
@@ -84,11 +133,6 @@ public final class InfoPrunerHelper<T extends InfoRecord, S extends InfoRecord> 
 		if (baseInfos.isEmpty()) {
 			logException(new IllegalArgumentException("baseInfos" + SystemMessage.EMPTY_ARGUMENT));
 			throw new IllegalArgumentException("baseInfos" + SystemMessage.EMPTY_ARGUMENT);
-		}
-		
-		if (visitor == null) {
-			logException(new NullPointerException("visitor" + SystemMessage.NULL_ARGUMENT));
-			throw new NullPointerException("visitor" + SystemMessage.NULL_ARGUMENT);
 		}
 	}
 	

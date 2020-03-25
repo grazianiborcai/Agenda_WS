@@ -1,8 +1,8 @@
 package br.com.mind5.business.planingDataSearch.info;
 
-import br.com.mind5.info.InfoPrunerVisitor;
+import br.com.mind5.info.InfoPrunerSingleVisitor;
 
-final class PlanarchVisiPruneSel implements InfoPrunerVisitor<PlanarchInfo, PlanarchInfo> {
+final class PlanarchVisiPruneSel implements InfoPrunerSingleVisitor<PlanarchInfo, PlanarchInfo> {
 	
 	@Override public boolean pruneRecord(PlanarchInfo baseInfo, PlanarchInfo selectedInfo) {		
 		if (baseInfo.beginTimeSel.equals(baseInfo.beginTime) == false)
