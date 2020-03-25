@@ -1,58 +1,38 @@
 package br.com.mind5.business.employeePosition.info;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.ArrayList;
+import java.util.List;
 
 import br.com.mind5.business.masterData.info.PositionInfo;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-final class EmposVisiMergePosition implements InfoMergerVisitor_<EmposInfo, PositionInfo> {
-
-	@Override public EmposInfo writeRecord(PositionInfo sourceOne, EmposInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+final class EmposVisiMergePosition implements InfoMergerVisitorV3<EmposInfo, PositionInfo> {
+	
+	@Override public List<EmposInfo> beforeMerge(List<EmposInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(EmposInfo baseInfo, PositionInfo selectedInfo) {
+		return (baseInfo.codPosition == selectedInfo.codPosition);
+	}
+	
+	
+	
+	@Override public List<EmposInfo> merge(EmposInfo baseInfo, PositionInfo selectedInfo) {
+		List<EmposInfo> results = new ArrayList<>();
 		
-		EmposInfo clonedInfo = makeClone(sourceTwo);
-		return merge(sourceOne, clonedInfo);
+		baseInfo.txtPosition = selectedInfo.txtPosition;
+		
+		results.add(baseInfo);
+		return results;
 	}
 	
 	
 	
-	private void checkArgument(PositionInfo sourceOne, EmposInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private EmposInfo makeClone(EmposInfo recordInfo) {
-		try {
-			return (EmposInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	private EmposInfo merge(PositionInfo sourceOne, EmposInfo sourceTwo) {
-		sourceTwo.txtPosition = sourceOne.txtPosition;
-
-		return sourceTwo;
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(PositionInfo sourceOne, EmposInfo sourceTwo) {
-		return (sourceOne.codPosition == sourceTwo.codPosition);
-	}
-	
-	
-	
-	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
+	@Override public InfoUniquifier<EmposInfo> getUniquifier() {
+		return null;
 	}
 }

@@ -433,25 +433,12 @@ public class EmployeeResource {
 	
 	
 	
-	@GET
+	@POST
 	@Path(SEARCH_EMP_POSITION)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response searchEmpos(@HeaderParam("TOKEN_OWNER") @DefaultValue("-1") long codOwner, 
-			                    @HeaderParam("codStore") 	@DefaultValue("-1") int codStore,
-			                    @HeaderParam("codEmployee") @DefaultValue("-1") int codEmployee,
-			                    @HeaderParam("codPosition") @DefaultValue("-1") int codPosition,
-			                    @HeaderParam("codLanguage")	@DefaultValue("EN") String codLanguage,
-			                    @HeaderParam("TOKEN_USERNAME") String username) {
+	public Response searchEmpos(@Context HttpServletRequest request, String incomingData) {
 		
-		EmposInfo recordInfo = new EmposInfo();
-		recordInfo.codOwner = codOwner;
-		recordInfo.codStore = codStore;
-		recordInfo.codEmployee = codEmployee;
-		recordInfo.codPosition = codPosition;
-		recordInfo.codLanguage = codLanguage;
-		recordInfo.username = username;
-		
-		Model model = new EmposModelSearch(recordInfo);
+		Model model = new EmposModelSearch(incomingData, request);
 		model.executeRequest();
 		return model.getResponse();
 	}

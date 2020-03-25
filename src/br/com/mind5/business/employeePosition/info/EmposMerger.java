@@ -4,75 +4,71 @@ import java.util.List;
 
 import br.com.mind5.business.employeePositionSearch.info.EmposarchInfo;
 import br.com.mind5.business.masterData.info.PositionInfo;
-import br.com.mind5.info.obsolete.InfoMerger_;
+import br.com.mind5.info.InfoMergerBuilderV3;
+import br.com.mind5.info.InfoMergerV3;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class EmposMerger {
-	public static EmposInfo mergeWithEmposarch(EmposarchInfo sourceOne, EmposInfo sourceTwo) {
-		InfoMerger_<EmposInfo, EmposarchInfo> merger = new EmposMergerEmposarch();		
-		return merger.merge(sourceOne, sourceTwo);
+	public static List<EmposInfo> mergeWithEmposarch(List<EmposInfo> baseInfos, List<EmposarchInfo> selectedInfos) {
+		InfoMergerBuilderV3<EmposInfo, EmposarchInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new EmposVisiMergeEmposarch());
+		InfoMergerV3<EmposInfo, EmposarchInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static List<EmposInfo> mergeWithEmposarch(List<EmposarchInfo> sourceOnes, List<EmposInfo> sourceTwos) {
-		InfoMerger_<EmposInfo, EmposarchInfo> merger = new EmposMergerEmposarch();		
-		return merger.merge(sourceOnes, sourceTwos);
+	public static List<EmposInfo> mergeWithPosition(List<EmposInfo> baseInfos, List<PositionInfo> selectedInfos) {
+		InfoMergerBuilderV3<EmposInfo, PositionInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new EmposVisiMergePosition());
+		InfoMergerV3<EmposInfo, PositionInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static EmposInfo mergeWithPosition(PositionInfo sourceOne, EmposInfo sourceTwo) {
-		InfoMerger_<EmposInfo, PositionInfo> merger = new EmposMergerPosition();		
-		return merger.merge(sourceOne, sourceTwo);
+	public static List<EmposInfo> mergeWithUsername(List<EmposInfo> baseInfos, List<UsernameInfo> selectedInfos) {
+		InfoMergerBuilderV3<EmposInfo, UsernameInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new EmposVisiMergeUsername());
+		InfoMergerV3<EmposInfo, UsernameInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static List<EmposInfo> mergeWithPosition(List<PositionInfo> sourceOnes, List<EmposInfo> sourceTwos) {
-		InfoMerger_<EmposInfo, PositionInfo> merger = new EmposMergerPosition();		
-		return merger.merge(sourceOnes, sourceTwos);
+	public static List<EmposInfo> mergeToDelete(List<EmposInfo> baseInfos, List<EmposInfo> selectedInfos) {
+		InfoMergerBuilderV3<EmposInfo, EmposInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new EmposVisiMergeToDelete());
+		InfoMergerV3<EmposInfo, EmposInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static EmposInfo mergeWithUsername(UsernameInfo sourceOne, EmposInfo sourceTwo) {
-		InfoMerger_<EmposInfo, UsernameInfo> merger = new EmposMergerUsername();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
+	public static List<EmposInfo> mergeToSelect(List<EmposInfo> baseInfos, List<EmposInfo> selectedInfos) {
+		InfoMergerBuilderV3<EmposInfo, EmposInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new EmposVisiMergeToSelect());
+		InfoMergerV3<EmposInfo, EmposInfo> merger = builder.build();		
 	
-	
-	
-	public static List<EmposInfo> mergeWithUsername(List<UsernameInfo> sourceOnes, List<EmposInfo> sourceTwos) {
-		InfoMerger_<EmposInfo, UsernameInfo> merger = new EmposMergerUsername();		
-		return merger.merge(sourceOnes, sourceTwos);
-	}
-	
-	
-	
-	public static EmposInfo mergeToDelete(EmposInfo sourceOne, EmposInfo sourceTwo) {
-		InfoMerger_<EmposInfo, EmposInfo> merger = new EmposMergerToDelete();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
-	
-	
-	
-	public static List<EmposInfo> mergeToDelete(List<EmposInfo> sourceOnes, List<EmposInfo> sourceTwos) {
-		InfoMerger_<EmposInfo, EmposInfo> merger = new EmposMergerToDelete();		
-		return merger.merge(sourceOnes, sourceTwos);
-	}
-	
-	
-	
-	public static EmposInfo mergeToSelect(EmposInfo sourceOne, EmposInfo sourceTwo) {
-		InfoMerger_<EmposInfo, EmposInfo> merger = new EmposMergerToSelect();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
-	
-	
-	
-	public static List<EmposInfo> mergeToSelect(List<EmposInfo> sourceOnes, List<EmposInfo> sourceTwos) {
-		InfoMerger_<EmposInfo, EmposInfo> merger = new EmposMergerToSelect();		
-		return merger.merge(sourceOnes, sourceTwos);
+		return merger.merge();
 	}
 }

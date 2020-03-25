@@ -23,8 +23,8 @@ final class VisiEmposMergeToDelete extends ActionVisitorTemplateMergeV2<EmposInf
 	
 	
 	
-	@Override protected List<EmposInfo> mergeHook(List<EmposInfo> recordInfos, List<EmposInfo> selectedInfos) {	
-		return EmposMerger.mergeToDelete(selectedInfos, recordInfos);
+	@Override protected List<EmposInfo> mergeHook(List<EmposInfo> baseInfos, List<EmposInfo> selectedInfos) {	
+		return EmposMerger.mergeToDelete(baseInfos, selectedInfos);
 	}
 	
 	

@@ -22,8 +22,8 @@ final class VisiEmposMergeToSelect extends ActionVisitorTemplateMergeV2<EmposInf
 	
 	
 	
-	@Override protected List<EmposInfo> mergeHook(List<EmposInfo> recordInfos, List<EmposInfo> selectedInfos) {	
-		return EmposMerger.mergeToSelect(selectedInfos, recordInfos);
+	@Override protected List<EmposInfo> mergeHook(List<EmposInfo> baseInfos, List<EmposInfo> selectedInfos) {	
+		return EmposMerger.mergeToSelect(baseInfos, selectedInfos);
 	}
 	
 	

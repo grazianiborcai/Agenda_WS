@@ -24,8 +24,8 @@ final class VisiEmposMergeEmposarch extends ActionVisitorTemplateMergeV2<EmposIn
 	
 	
 	
-	@Override protected List<EmposInfo> mergeHook(List<EmposInfo> recordInfos, List<EmposarchInfo> selectedInfos) {	
-		return EmposMerger.mergeWithEmposarch(selectedInfos, recordInfos);
+	@Override protected List<EmposInfo> mergeHook(List<EmposInfo> baseInfos, List<EmposarchInfo> selectedInfos) {	
+		return EmposMerger.mergeWithEmposarch(baseInfos, selectedInfos);
 	}
 	
 	

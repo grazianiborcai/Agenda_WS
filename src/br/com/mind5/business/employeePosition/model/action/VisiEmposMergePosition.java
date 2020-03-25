@@ -24,8 +24,8 @@ final class VisiEmposMergePosition extends ActionVisitorTemplateMergeV2<EmposInf
 	
 	
 	
-	@Override protected List<EmposInfo> mergeHook(List<EmposInfo> recordInfos, List<PositionInfo> selectedInfos) {	
-		return EmposMerger.mergeWithPosition(selectedInfos, recordInfos);
+	@Override protected List<EmposInfo> mergeHook(List<EmposInfo> baseInfos, List<PositionInfo> selectedInfos) {	
+		return EmposMerger.mergeWithPosition(baseInfos, selectedInfos);
 	}
 	
 	

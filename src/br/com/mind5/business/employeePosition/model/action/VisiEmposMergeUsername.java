@@ -25,14 +25,14 @@ final class VisiEmposMergeUsername extends ActionVisitorTemplateMergeV2<EmposInf
 	
 	
 	
-	@Override protected List<UsernameInfo> toActionClassHook(List<EmposInfo> recordInfos) {
-		return UsernameCopier.copyFromEmpos(recordInfos);	
+	@Override protected List<UsernameInfo> toActionClassHook(List<EmposInfo> baseInfos) {
+		return UsernameCopier.copyFromEmpos(baseInfos);	
 	}
 	
 	
 	
-	@Override protected List<EmposInfo> mergeHook(List<EmposInfo> recordInfos, List<UsernameInfo> selectedInfos) {	
-		return EmposMerger.mergeWithUsername(selectedInfos, recordInfos);
+	@Override protected List<EmposInfo> mergeHook(List<EmposInfo> baseInfos, List<UsernameInfo> selectedInfos) {	
+		return EmposMerger.mergeWithUsername(baseInfos, selectedInfos);
 	}
 	
 	
