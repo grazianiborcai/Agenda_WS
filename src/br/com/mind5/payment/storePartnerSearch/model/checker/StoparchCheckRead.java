@@ -23,6 +23,13 @@ public final class StoparchCheckRead extends ModelCheckerTemplateSimpleV2<Stopar
 			return super.FAILED;
 		
 		
+		if (   recordInfo.codStore    		<= 0 	&&
+			   recordInfo.codPayPartner 	<= 0	&&
+			   recordInfo.idPayPartnerStore == null		)			
+			
+			return super.FAILED;
+		
+		
 		return super.SUCCESS;
 	}
 	
