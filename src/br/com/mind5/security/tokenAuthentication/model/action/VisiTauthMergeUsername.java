@@ -24,8 +24,8 @@ final class VisiTauthMergeUsername extends ActionVisitorTemplateMergeV2<TauthInf
 	
 	
 	
-	@Override protected List<TauthInfo> mergeHook(List<TauthInfo> recordInfos, List<UsernameInfo> selectedInfos) {	
-		return TauthMerger.mergeWithUsername(selectedInfos, recordInfos);
+	@Override protected List<TauthInfo> mergeHook(List<TauthInfo> baseInfos, List<UsernameInfo> selectedInfos) {	
+		return TauthMerger.mergeWithUsername(baseInfos, selectedInfos);
 	}
 	
 	

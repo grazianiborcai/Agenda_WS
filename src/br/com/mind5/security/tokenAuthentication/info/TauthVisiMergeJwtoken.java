@@ -1,64 +1,40 @@
 package br.com.mind5.security.tokenAuthentication.info;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.ArrayList;
+import java.util.List;
 
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.security.jwtToken.info.JwtokenInfo;
 
-final class TauthVisiMergeJwtoken implements InfoMergerVisitor_<TauthInfo, JwtokenInfo> {
-
-	@Override public TauthInfo writeRecord(JwtokenInfo sourceOne, TauthInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
-		
-		TauthInfo clonedInfo = makeClone(sourceTwo);
-		return merge(sourceOne, clonedInfo);
+final class TauthVisiMergeJwtoken implements InfoMergerVisitorV3<TauthInfo, JwtokenInfo> {
+	
+	@Override public List<TauthInfo> beforeMerge(List<TauthInfo> baseInfos) {
+		return baseInfos;
 	}
 	
 	
 	
-	private void checkArgument(JwtokenInfo sourceOne, TauthInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private TauthInfo makeClone(TauthInfo recordInfo) {
-		try {
-			return (TauthInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	private TauthInfo merge(JwtokenInfo sourceOne, TauthInfo sourceTwo) {
-		sourceTwo.codOwner = sourceOne.codOwner;
-		sourceTwo.username = sourceOne.username;
-		sourceTwo.codPlatform = sourceOne.codPlatform;
-		
-		return sourceTwo;
-	}
-
-
-	
-	@Override public boolean shouldWrite(JwtokenInfo sourceOne, TauthInfo sourceTwo) {
-		if (sourceOne == null ||
-			sourceTwo == null		)
-			return false;
-		
+	@Override public boolean shouldMerge(TauthInfo baseInfo, JwtokenInfo selectedInfo) {
 		return true;
-	}		
+	}
 	
 	
 	
-	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
+	@Override public List<TauthInfo> merge(TauthInfo baseInfo, JwtokenInfo selectedInfo) {
+		List<TauthInfo> results = new ArrayList<>();
+		
+		baseInfo.codOwner = selectedInfo.codOwner;
+		baseInfo.username = selectedInfo.username;
+		baseInfo.codPlatform = selectedInfo.codPlatform;
+		
+		results.add(baseInfo);
+		return results;
+	}
+	
+	
+	
+	@Override public InfoUniquifier<TauthInfo> getUniquifier() {
+		return null;
 	}
 }

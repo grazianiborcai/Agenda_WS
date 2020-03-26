@@ -31,8 +31,8 @@ final class VisiTauthMergeJwtoken extends ActionVisitorTemplateMergeV2<TauthInfo
 	
 	
 	
-	@Override protected List<TauthInfo> mergeHook(List<TauthInfo> recordInfos, List<JwtokenInfo> selectedInfos) {	
-		return TauthMerger.mergeWithJwtoken(selectedInfos, recordInfos);
+	@Override protected List<TauthInfo> mergeHook(List<TauthInfo> baseInfos, List<JwtokenInfo> selectedInfos) {	
+		return TauthMerger.mergeWithJwtoken(baseInfos, selectedInfos);
 	}
 	
 	

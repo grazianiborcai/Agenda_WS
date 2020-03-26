@@ -1133,4 +1133,7 @@ public final class SystemCode {
 	
 	// Pay Partner-Store Snapshot
 	public static final int PAYPAR_STORE_SNAP_MANDATORY_FIELD_EMPTY 	= 11350;
+	
+	// Token Authentication
+	public static final int TOKEN_AUTH_MANDATORY_FIELD_EMPTY 			= 11400;
 }

@@ -32,6 +32,6 @@ final class VisiTauthValidateJwtoken extends ActionVisitorTemplateAction<TauthIn
 	
 	
 	@Override protected List<TauthInfo> toBaseClassHook(List<TauthInfo> baseInfos, List<JwtokenInfo> results) {
-		return TauthMerger.mergeWithJwtoken(results, baseInfos);
+		return TauthMerger.mergeWithJwtoken(baseInfos, results);
 	}
 }
