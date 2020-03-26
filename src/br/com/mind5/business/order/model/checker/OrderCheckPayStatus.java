@@ -6,9 +6,9 @@ import br.com.mind5.business.masterData.info.common.OrderStatus;
 import br.com.mind5.business.order.info.OrderInfo;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 
-public final class OrderCheckPayStatus extends ModelCheckerTemplateSimpleV2<OrderInfo> {
+public final class OrderCheckPayStatus extends ModelCheckerTemplateSimple<OrderInfo> {
 
 	public OrderCheckPayStatus(ModelCheckerOption option) {
 		super(option);

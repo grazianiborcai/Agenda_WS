@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.mind5.business.masterData.info.MatUnitInfo;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 
-public final class MatUnitCheckRead extends ModelCheckerTemplateSimpleV2<MatUnitInfo> {
+public final class MatUnitCheckRead extends ModelCheckerTemplateSimple<MatUnitInfo> {
 
 	public MatUnitCheckRead(ModelCheckerOption option) {
 		super(option);

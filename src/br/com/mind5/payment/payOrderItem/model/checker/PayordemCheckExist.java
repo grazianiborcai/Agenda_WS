@@ -3,12 +3,12 @@ package br.com.mind5.payment.payOrderItem.model.checker;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.payOrderItem.info.PayordemInfo;
 import br.com.mind5.payment.payOrderItem.model.action.StdPayordemSelect;
 
-public final class PayordemCheckExist extends ModelCheckerTemplateActionV2<PayordemInfo, PayordemInfo> {
+public final class PayordemCheckExist extends ModelCheckerTemplateAction<PayordemInfo, PayordemInfo> {
 	
 	public PayordemCheckExist(ModelCheckerOption option) {
 		super(option, PayordemInfo.class);

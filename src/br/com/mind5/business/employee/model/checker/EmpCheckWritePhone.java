@@ -6,9 +6,9 @@ import br.com.mind5.business.employee.info.EmpInfo;
 import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 
-public final class EmpCheckWritePhone extends ModelCheckerTemplateSimpleV2<EmpInfo> {
+public final class EmpCheckWritePhone extends ModelCheckerTemplateSimple<EmpInfo> {
 
 	public EmpCheckWritePhone(ModelCheckerOption option) {
 		super(option);

@@ -6,10 +6,10 @@ import br.com.mind5.business.masterData.info.common.OrderStatusMoip;
 import br.com.mind5.business.masterData.info.common.PaymentStatusMoip;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 import br.com.mind5.payment.statusPayOrder.info.PaytusInfo;
 
-public final class PaytusCheckIsFinished extends ModelCheckerTemplateSimpleV2<PaytusInfo> {
+public final class PaytusCheckIsFinished extends ModelCheckerTemplateSimple<PaytusInfo> {
 
 	public PaytusCheckIsFinished(ModelCheckerOption option) {
 		super(option);

@@ -5,10 +5,10 @@ import br.com.mind5.file.fileImage.info.FimgInfo;
 import br.com.mind5.file.fileImage.model.action.StdFimgSelect;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class FimgCheckExist extends ModelCheckerTemplateActionV2<FimgInfo, FimgInfo> {	
+public final class FimgCheckExist extends ModelCheckerTemplateAction<FimgInfo, FimgInfo> {	
 	
 	public FimgCheckExist(ModelCheckerOption option) {
 		super(option, FimgInfo.class);

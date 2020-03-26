@@ -6,10 +6,10 @@ import br.com.mind5.business.employeeWorkTimeConflict.model.decisionTree.RootEmp
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class EmpwotmCheckEmpwoco extends ModelCheckerTemplateActionV2<EmpwotmInfo, EmpwocoInfo> {
+public final class EmpwotmCheckEmpwoco extends ModelCheckerTemplateAction<EmpwotmInfo, EmpwocoInfo> {
 	
 	public EmpwotmCheckEmpwoco(ModelCheckerOption option) {
 		super(option, EmpwocoInfo.class);

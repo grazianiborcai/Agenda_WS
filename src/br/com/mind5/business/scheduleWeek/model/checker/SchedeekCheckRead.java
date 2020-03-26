@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.mind5.business.scheduleWeek.info.SchedeekInfo;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 
-public final class SchedeekCheckRead extends ModelCheckerTemplateSimpleV2<SchedeekInfo> {
+public final class SchedeekCheckRead extends ModelCheckerTemplateSimple<SchedeekInfo> {
 
 	public SchedeekCheckRead(ModelCheckerOption option) {
 		super(option);

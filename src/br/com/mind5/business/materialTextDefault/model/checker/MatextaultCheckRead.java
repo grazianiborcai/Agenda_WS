@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.mind5.business.materialTextDefault.info.MatextaultInfo;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 
-public final class MatextaultCheckRead extends ModelCheckerTemplateSimpleV2<MatextaultInfo> {
+public final class MatextaultCheckRead extends ModelCheckerTemplateSimple<MatextaultInfo> {
 
 	public MatextaultCheckRead(ModelCheckerOption option) {
 		super(option);

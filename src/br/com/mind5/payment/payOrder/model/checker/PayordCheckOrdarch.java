@@ -8,11 +8,11 @@ import br.com.mind5.business.orderSearch.model.decisionTree.RootOrdarchSelect;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
 
-public final class PayordCheckOrdarch extends ModelCheckerTemplateActionV2<PayordInfo, OrdarchInfo> {
+public final class PayordCheckOrdarch extends ModelCheckerTemplateAction<PayordInfo, OrdarchInfo> {
 	
 	public PayordCheckOrdarch(ModelCheckerOption option) {
 		super(option, OrdarchInfo.class);

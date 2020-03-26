@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.mind5.business.scheduleRange.info.SchedageInfo;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 
-public final class SchedageCheckRead extends ModelCheckerTemplateSimpleV2<SchedageInfo> {
+public final class SchedageCheckRead extends ModelCheckerTemplateSimple<SchedageInfo> {
 
 	public SchedageCheckRead(ModelCheckerOption option) {
 		super(option);

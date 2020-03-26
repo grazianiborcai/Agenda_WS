@@ -6,10 +6,10 @@ import java.time.format.DateTimeFormatter;
 
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.info.CremoipInfo;
 
-public final class CremoipCheckBirthdate extends ModelCheckerTemplateSimpleV2<CremoipInfo> {
+public final class CremoipCheckBirthdate extends ModelCheckerTemplateSimple<CremoipInfo> {
 
 	public CremoipCheckBirthdate(ModelCheckerOption option) {
 		super(option);

@@ -6,9 +6,9 @@ import br.com.mind5.business.cartItem.info.CartemInfo;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.common.TimeAge;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 
-public final class CartemCheckIsTimeAged extends ModelCheckerTemplateSimpleV2<CartemInfo> {
+public final class CartemCheckIsTimeAged extends ModelCheckerTemplateSimple<CartemInfo> {
 
 	public CartemCheckIsTimeAged(ModelCheckerOption option) {
 		super(option);

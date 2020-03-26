@@ -9,10 +9,10 @@ import br.com.mind5.business.companyConflict.model.decisionTree.RootCompcoSelect
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class CompCheckCnpjExist extends ModelCheckerTemplateActionV2<CompInfo, CompcoInfo> {
+public final class CompCheckCnpjExist extends ModelCheckerTemplateAction<CompInfo, CompcoInfo> {
 	
 	public CompCheckCnpjExist(ModelCheckerOption option) {
 		super(option, CompcoInfo.class);

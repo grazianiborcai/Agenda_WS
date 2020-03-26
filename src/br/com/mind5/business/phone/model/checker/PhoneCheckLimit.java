@@ -9,10 +9,10 @@ import br.com.mind5.business.phoneSearch.model.decisionTree.RootPhonarchSelect;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class PhoneCheckLimit extends ModelCheckerTemplateActionV2<PhoneInfo, PhonarchInfo> {
+public final class PhoneCheckLimit extends ModelCheckerTemplateAction<PhoneInfo, PhonarchInfo> {
 	private final int MAX_RECORD_COUNT = 10;
 	
 	

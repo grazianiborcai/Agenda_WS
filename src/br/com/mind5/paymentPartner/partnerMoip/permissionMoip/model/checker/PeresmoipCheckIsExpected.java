@@ -4,10 +4,10 @@ import java.sql.Connection;
 
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.info.PeresmoipInfo;
 
-public final class PeresmoipCheckIsExpected extends ModelCheckerTemplateSimpleV2<PeresmoipInfo> {
+public final class PeresmoipCheckIsExpected extends ModelCheckerTemplateSimple<PeresmoipInfo> {
 
 	public PeresmoipCheckIsExpected(ModelCheckerOption option) {
 		super(option);

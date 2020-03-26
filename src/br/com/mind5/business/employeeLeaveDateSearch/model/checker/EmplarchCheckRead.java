@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.mind5.business.employeeLeaveDateSearch.info.EmplarchInfo;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 
-public final class EmplarchCheckRead extends ModelCheckerTemplateSimpleV2<EmplarchInfo> {
+public final class EmplarchCheckRead extends ModelCheckerTemplateSimple<EmplarchInfo> {
 
 	public EmplarchCheckRead(ModelCheckerOption option) {
 		super(option);

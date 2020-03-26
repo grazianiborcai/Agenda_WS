@@ -5,10 +5,10 @@ import br.com.mind5.business.storeLeaveDateSearch.model.decisionTree.RootStolarc
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StolarchCheckExist extends ModelCheckerTemplateActionV2<StolarchInfo, StolarchInfo> {
+public final class StolarchCheckExist extends ModelCheckerTemplateAction<StolarchInfo, StolarchInfo> {
 	
 	public StolarchCheckExist(ModelCheckerOption option) {
 		super(option, StolarchInfo.class);

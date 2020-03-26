@@ -5,10 +5,10 @@ import br.com.mind5.business.masterData.model.action.StdMatGroupSelect;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class MatGroupCheckExist extends ModelCheckerTemplateActionV2<MatGroupInfo, MatGroupInfo> {
+public final class MatGroupCheckExist extends ModelCheckerTemplateAction<MatGroupInfo, MatGroupInfo> {
 	
 	public MatGroupCheckExist(ModelCheckerOption option) {
 		super(option, MatGroupInfo.class);

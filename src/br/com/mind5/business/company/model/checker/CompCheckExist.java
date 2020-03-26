@@ -5,10 +5,10 @@ import br.com.mind5.business.company.model.action.StdCompSelect;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class CompCheckExist extends ModelCheckerTemplateActionV2<CompInfo, CompInfo> {
+public final class CompCheckExist extends ModelCheckerTemplateAction<CompInfo, CompInfo> {
 	
 	public CompCheckExist(ModelCheckerOption option) {
 		super(option, CompInfo.class);

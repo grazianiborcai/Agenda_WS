@@ -5,10 +5,10 @@ import br.com.mind5.business.storeWorkTime.model.action.StdStowotmSelect;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StowotmCheckExist extends ModelCheckerTemplateActionV2<StowotmInfo, StowotmInfo> {
+public final class StowotmCheckExist extends ModelCheckerTemplateAction<StowotmInfo, StowotmInfo> {
 	
 	public StowotmCheckExist(ModelCheckerOption option) {
 		super(option, StowotmInfo.class);

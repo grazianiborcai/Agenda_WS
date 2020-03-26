@@ -5,10 +5,10 @@ import br.com.mind5.business.employeePositionSearch.model.decisionTree.RootEmpos
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class EmposarchCheckExist extends ModelCheckerTemplateActionV2<EmposarchInfo, EmposarchInfo> {
+public final class EmposarchCheckExist extends ModelCheckerTemplateAction<EmposarchInfo, EmposarchInfo> {
 	
 	public EmposarchCheckExist(ModelCheckerOption option) {
 		super(option, EmposarchInfo.class);

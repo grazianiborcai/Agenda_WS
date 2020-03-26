@@ -5,10 +5,10 @@ import java.sql.Connection;
 import br.com.mind5.business.masterData.info.common.Paypar;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
 
-public final class CrecardCheckIsMoip extends ModelCheckerTemplateSimpleV2<CrecardInfo> {
+public final class CrecardCheckIsMoip extends ModelCheckerTemplateSimple<CrecardInfo> {
 
 	public CrecardCheckIsMoip(ModelCheckerOption option) {
 		super(option);

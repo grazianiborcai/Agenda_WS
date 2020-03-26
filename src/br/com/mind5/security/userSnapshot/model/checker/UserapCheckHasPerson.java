@@ -4,10 +4,10 @@ import java.sql.Connection;
 
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 import br.com.mind5.security.userSnapshot.info.UserapInfo;
 
-public final class UserapCheckHasPerson extends ModelCheckerTemplateSimpleV2<UserapInfo> {
+public final class UserapCheckHasPerson extends ModelCheckerTemplateSimple<UserapInfo> {
 
 	public UserapCheckHasPerson(ModelCheckerOption option) {
 		super(option);

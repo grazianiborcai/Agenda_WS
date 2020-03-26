@@ -9,10 +9,10 @@ import br.com.mind5.business.scheduleRange.model.decisionTree.RootSchedageSelect
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class EmposCheckSchedage extends ModelCheckerTemplateActionV2<EmposInfo, SchedageInfo> {
+public final class EmposCheckSchedage extends ModelCheckerTemplateAction<EmposInfo, SchedageInfo> {
 	
 	public EmposCheckSchedage(ModelCheckerOption option) {
 		super(option, SchedageInfo.class);

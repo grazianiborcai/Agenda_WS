@@ -5,10 +5,10 @@ import java.sql.Connection;
 import br.com.mind5.business.masterData.info.common.UserCateg;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 import br.com.mind5.security.userPassword.info.UpswdInfo;
 
-public final class UpswdCheckIsPasswordEnabled extends ModelCheckerTemplateSimpleV2<UpswdInfo> {
+public final class UpswdCheckIsPasswordEnabled extends ModelCheckerTemplateSimple<UpswdInfo> {
 
 	public UpswdCheckIsPasswordEnabled(ModelCheckerOption option) {
 		super(option);

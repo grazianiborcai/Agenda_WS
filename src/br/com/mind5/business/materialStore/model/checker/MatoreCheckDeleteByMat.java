@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.mind5.business.materialStore.info.MatoreInfo;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 
-public final class MatoreCheckDeleteByMat extends ModelCheckerTemplateSimpleV2<MatoreInfo> {
+public final class MatoreCheckDeleteByMat extends ModelCheckerTemplateSimple<MatoreInfo> {
 
 	public MatoreCheckDeleteByMat(ModelCheckerOption option) {
 		super(option);

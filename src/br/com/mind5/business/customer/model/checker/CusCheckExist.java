@@ -5,10 +5,10 @@ import br.com.mind5.business.customer.model.action.StdCusSelect;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class CusCheckExist extends ModelCheckerTemplateActionV2<CusInfo, CusInfo> {
+public final class CusCheckExist extends ModelCheckerTemplateAction<CusInfo, CusInfo> {
 	
 	public CusCheckExist(ModelCheckerOption option) {
 		super(option, CusInfo.class);

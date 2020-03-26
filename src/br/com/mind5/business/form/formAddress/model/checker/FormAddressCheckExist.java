@@ -5,10 +5,10 @@ import br.com.mind5.business.form.formAddress.model.action.StdFormAddressSelect;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class FormAddressCheckExist extends ModelCheckerTemplateActionV2<FormAddressInfo, FormAddressInfo> {
+public final class FormAddressCheckExist extends ModelCheckerTemplateAction<FormAddressInfo, FormAddressInfo> {
 	
 	public FormAddressCheckExist(ModelCheckerOption option) {
 		super(option, FormAddressInfo.class);

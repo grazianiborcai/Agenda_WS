@@ -5,10 +5,10 @@ import br.com.mind5.business.masterData.model.action.StdMonthSelect;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class MonthCheckExist extends ModelCheckerTemplateActionV2<MonthInfo, MonthInfo> {
+public final class MonthCheckExist extends ModelCheckerTemplateAction<MonthInfo, MonthInfo> {
 	
 	public MonthCheckExist(ModelCheckerOption option) {
 		super(option, MonthInfo.class);

@@ -5,10 +5,10 @@ import br.com.mind5.business.masterData.model.action.StdAuthGroupSelect;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class AuthGroupCheckExist extends ModelCheckerTemplateActionV2<AuthGroupInfo, AuthGroupInfo> {
+public final class AuthGroupCheckExist extends ModelCheckerTemplateAction<AuthGroupInfo, AuthGroupInfo> {
 	
 	public AuthGroupCheckExist(ModelCheckerOption option) {
 		super(option, AuthGroupInfo.class);

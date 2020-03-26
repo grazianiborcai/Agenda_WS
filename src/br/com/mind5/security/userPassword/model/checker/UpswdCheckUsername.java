@@ -5,14 +5,14 @@ import java.util.List;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.userPassword.info.UpswdInfo;
 import br.com.mind5.security.username.info.UsernameCopier;
 import br.com.mind5.security.username.info.UsernameInfo;
 import br.com.mind5.security.username.model.decisionTree.RootUsernameSelect;
 
-public final class UpswdCheckUsername extends ModelCheckerTemplateActionV2<UpswdInfo, UsernameInfo> {
+public final class UpswdCheckUsername extends ModelCheckerTemplateAction<UpswdInfo, UsernameInfo> {
 	
 	public UpswdCheckUsername(ModelCheckerOption option) {
 		super(option, UsernameInfo.class);

@@ -4,10 +4,10 @@ import java.sql.Connection;
 
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 import br.com.mind5.payment.storePartnerSearch.info.StoparchInfo;
 
-public final class StoparchCheckRead extends ModelCheckerTemplateSimpleV2<StoparchInfo> {
+public final class StoparchCheckRead extends ModelCheckerTemplateSimple<StoparchInfo> {
 
 	public StoparchCheckRead(ModelCheckerOption option) {
 		super(option);

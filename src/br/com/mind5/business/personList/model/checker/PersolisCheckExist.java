@@ -5,10 +5,10 @@ import br.com.mind5.business.personList.model.decisionTree.RootPersolisSelect;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class PersolisCheckExist extends ModelCheckerTemplateActionV2<PersolisInfo, PersolisInfo> {
+public final class PersolisCheckExist extends ModelCheckerTemplateAction<PersolisInfo, PersolisInfo> {
 	
 	public PersolisCheckExist(ModelCheckerOption option) {
 		super(option, PersolisInfo.class);

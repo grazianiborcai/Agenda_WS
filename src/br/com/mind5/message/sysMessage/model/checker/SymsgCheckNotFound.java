@@ -7,9 +7,9 @@ import br.com.mind5.common.SystemCode;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.message.sysMessage.info.SymsgInfo;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 
-public final class SymsgCheckNotFound extends ModelCheckerTemplateSimpleV2<SymsgInfo> {
+public final class SymsgCheckNotFound extends ModelCheckerTemplateSimple<SymsgInfo> {
 
 	public SymsgCheckNotFound(ModelCheckerOption option) {
 		super(option);

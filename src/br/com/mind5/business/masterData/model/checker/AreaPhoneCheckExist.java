@@ -5,10 +5,10 @@ import br.com.mind5.business.masterData.model.action.StdAreaPhoneSelect;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class AreaPhoneCheckExist extends ModelCheckerTemplateActionV2<AreaPhoneInfo, AreaPhoneInfo> {
+public final class AreaPhoneCheckExist extends ModelCheckerTemplateAction<AreaPhoneInfo, AreaPhoneInfo> {
 	
 	public AreaPhoneCheckExist(ModelCheckerOption option) {
 		super(option, AreaPhoneInfo.class);

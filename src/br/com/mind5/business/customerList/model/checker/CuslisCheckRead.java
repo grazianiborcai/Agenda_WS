@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.mind5.business.customerList.info.CuslisInfo;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 
-public final class CuslisCheckRead extends ModelCheckerTemplateSimpleV2<CuslisInfo> {
+public final class CuslisCheckRead extends ModelCheckerTemplateSimple<CuslisInfo> {
 
 	public CuslisCheckRead(ModelCheckerOption option) {
 		super(option);

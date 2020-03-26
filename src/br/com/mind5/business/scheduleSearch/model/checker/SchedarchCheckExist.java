@@ -5,10 +5,10 @@ import br.com.mind5.business.scheduleSearch.model.decisionTree.RootSchedarchSele
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class SchedarchCheckExist extends ModelCheckerTemplateActionV2<SchedarchInfo, SchedarchInfo> {
+public final class SchedarchCheckExist extends ModelCheckerTemplateAction<SchedarchInfo, SchedarchInfo> {
 	
 	public SchedarchCheckExist(ModelCheckerOption option) {
 		super(option, SchedarchInfo.class);

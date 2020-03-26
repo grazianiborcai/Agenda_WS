@@ -4,13 +4,13 @@ import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.storePartner.info.StoparInfo;
 import br.com.mind5.payment.storePartner.model.action.LazyStoparSelect;
 import br.com.mind5.payment.storePartner.model.action.StdStoparEnforceDel;
 
-public final class StoparCheckSoftDelete extends ModelCheckerTemplateActionV2<StoparInfo, StoparInfo> {
+public final class StoparCheckSoftDelete extends ModelCheckerTemplateAction<StoparInfo, StoparInfo> {
 	
 	public StoparCheckSoftDelete(ModelCheckerOption option) {
 		super(option, StoparInfo.class);

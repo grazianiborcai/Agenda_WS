@@ -5,10 +5,10 @@ import br.com.mind5.business.materialStore.model.action.StdMatoreSelect;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class MatoreCheckExist extends ModelCheckerTemplateActionV2<MatoreInfo, MatoreInfo> {
+public final class MatoreCheckExist extends ModelCheckerTemplateAction<MatoreInfo, MatoreInfo> {
 	
 	public MatoreCheckExist(ModelCheckerOption option) {
 		super(option, MatoreInfo.class);

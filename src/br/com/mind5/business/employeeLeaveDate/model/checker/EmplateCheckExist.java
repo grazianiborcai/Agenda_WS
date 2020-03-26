@@ -5,10 +5,10 @@ import br.com.mind5.business.employeeLeaveDate.model.action.StdEmplateSelect;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class EmplateCheckExist extends ModelCheckerTemplateActionV2<EmplateInfo, EmplateInfo> {
+public final class EmplateCheckExist extends ModelCheckerTemplateAction<EmplateInfo, EmplateInfo> {
 	
 	public EmplateCheckExist(ModelCheckerOption option) {
 		super(option, EmplateInfo.class);

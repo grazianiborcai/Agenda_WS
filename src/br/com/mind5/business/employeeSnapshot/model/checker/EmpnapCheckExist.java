@@ -5,10 +5,10 @@ import br.com.mind5.business.employeeSnapshot.model.action.StdEmpnapSelect;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class EmpnapCheckExist extends ModelCheckerTemplateActionV2<EmpnapInfo, EmpnapInfo> {
+public final class EmpnapCheckExist extends ModelCheckerTemplateAction<EmpnapInfo, EmpnapInfo> {
 	
 	public EmpnapCheckExist(ModelCheckerOption option) {
 		super(option, EmpnapInfo.class);

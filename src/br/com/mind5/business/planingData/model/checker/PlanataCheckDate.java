@@ -7,9 +7,9 @@ import br.com.mind5.business.planingData.info.PlanataInfo;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 
-public final class PlanataCheckDate extends ModelCheckerTemplateSimpleV2<PlanataInfo> {
+public final class PlanataCheckDate extends ModelCheckerTemplateSimple<PlanataInfo> {
 
 	public PlanataCheckDate(ModelCheckerOption option) {
 		super(option);

@@ -4,10 +4,10 @@ import java.sql.Connection;
 
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 import br.com.mind5.security.storeAuthorization.info.StorauthInfo;
 
-public final class StorauthCheckReadStore extends ModelCheckerTemplateSimpleV2<StorauthInfo> {
+public final class StorauthCheckReadStore extends ModelCheckerTemplateSimple<StorauthInfo> {
 
 	public StorauthCheckReadStore(ModelCheckerOption option) {
 		super(option);

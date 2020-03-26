@@ -9,10 +9,10 @@ import br.com.mind5.business.cartItemSearch.model.decisionTree.RootCartemarchSel
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class CartemCheckLimit extends ModelCheckerTemplateActionV2<CartemInfo, CartemarchInfo> {
+public final class CartemCheckLimit extends ModelCheckerTemplateAction<CartemInfo, CartemarchInfo> {
 	private final int MAX_RECORD_COUNT = 20;
 	
 	
