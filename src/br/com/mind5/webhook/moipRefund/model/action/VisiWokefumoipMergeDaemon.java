@@ -24,8 +24,8 @@ final class VisiWokefumoipMergeDaemon extends ActionVisitorTemplateMergeV2<Wokef
 	
 	
 	
-	@Override protected List<WokefumoipInfo> mergeHook(List<WokefumoipInfo> recordInfos, List<UserInfo> selectedInfos) {	
-		return WokefumoipMerger.mergeWithDaemon(selectedInfos, recordInfos);
+	@Override protected List<WokefumoipInfo> mergeHook(List<WokefumoipInfo> baseInfos, List<UserInfo> selectedInfos) {	
+		return WokefumoipMerger.mergeWithDaemon(baseInfos, selectedInfos);
 	}
 	
 	

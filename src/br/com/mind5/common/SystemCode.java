@@ -1136,4 +1136,7 @@ public final class SystemCode {
 	
 	// Token Authentication
 	public static final int TOKEN_AUTH_MANDATORY_FIELD_EMPTY 			= 11400;
+	
+	// Webhook - Refund-Moip
+	public static final int WHOOK_MOIP_REFUND_MANDATORY_FIELD_EMPTY 	= 11450;
 }

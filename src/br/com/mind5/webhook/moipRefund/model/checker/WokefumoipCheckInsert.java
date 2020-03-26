@@ -3,20 +3,20 @@ package br.com.mind5.webhook.moipRefund.model.checker;
 import java.sql.Connection;
 
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple_;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 import br.com.mind5.webhook.moipRefund.info.WokefumoipInfo;
 
-public final class WokefumoipCheckInsert extends ModelCheckerTemplateSimple_<WokefumoipInfo> {
+public final class WokefumoipCheckInsert extends ModelCheckerTemplateSimpleV2<WokefumoipInfo> {
 
-	public WokefumoipCheckInsert() {
-		super();
+	public WokefumoipCheckInsert(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
 	
 	@Override protected boolean checkHook(WokefumoipInfo recordInfo, Connection conn, String schemaName) {			
-		if ( recordInfo.title == null)		
+		if ( recordInfo.title == null )		
 			return super.FAILED;		
 		
 		return super.SUCCESS;
@@ -24,13 +24,7 @@ public final class WokefumoipCheckInsert extends ModelCheckerTemplateSimple_<Wok
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.WHOOK_MOIP_PAY_MANDATORY_FIELD_EMPTY;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.WHOOK_MOIP_PAY_MANDATORY_FIELD_EMPTY;
+	@Override protected int getCodMsgOnResultFalseHook() {
+		return SystemCode.WHOOK_MOIP_REFUND_MANDATORY_FIELD_EMPTY;
 	}
 }

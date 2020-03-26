@@ -6,6 +6,7 @@ import java.util.List;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
@@ -27,9 +28,14 @@ public final class RootWokefumoipInsert extends DeciTreeWriteTemplate<Wokefumoip
 	
 	@Override protected ModelChecker<WokefumoipInfo> buildDecisionCheckerHook(DeciTreeOption<WokefumoipInfo> option) {	
 		List<ModelChecker<WokefumoipInfo>> queue = new ArrayList<>();		
-		ModelChecker<WokefumoipInfo> checker;
+		ModelChecker<WokefumoipInfo> checker;	
+		ModelCheckerOption checkerOption;
 		
-		checker = new WokefumoipCheckInsert();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new WokefumoipCheckInsert(checkerOption);
 		queue.add(checker);
 
 		return new ModelCheckerQueue<>(queue);
