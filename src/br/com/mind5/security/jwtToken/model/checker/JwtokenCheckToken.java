@@ -3,16 +3,16 @@ package br.com.mind5.security.jwtToken.model.checker;
 import java.sql.Connection;
 
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple_;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 import br.com.mind5.security.jwtToken.info.JwtokenInfo;
 import io.jsonwebtoken.Jwt;
 import io.jsonwebtoken.Jwts;
 
-public final class JwtokenCheckToken extends ModelCheckerTemplateSimple_<JwtokenInfo> {
+public final class JwtokenCheckToken extends ModelCheckerTemplateSimpleV2<JwtokenInfo> {
 
-	public JwtokenCheckToken() {
-		super();
+	public JwtokenCheckToken(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
@@ -20,7 +20,8 @@ public final class JwtokenCheckToken extends ModelCheckerTemplateSimple_<Jwtoken
 	@Override protected boolean checkHook(JwtokenInfo recordInfo, Connection conn, String schemaName) {	
 		if (recordInfo.tokenToVerify	== null	||
 			recordInfo.secret			== null ||
-			recordInfo.algo				== null)			
+			recordInfo.algo				== null		)		
+			
 			return super.FAILED;	
 		
 		return checkToken(recordInfo);
@@ -50,13 +51,7 @@ public final class JwtokenCheckToken extends ModelCheckerTemplateSimple_<Jwtoken
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.TOKEN_IS_INVALID;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
+	@Override protected int getCodMsgOnResultFalseHook() {
 		return SystemCode.TOKEN_IS_INVALID;
 	}
 }

@@ -3,14 +3,14 @@ package br.com.mind5.security.jwtToken.model.checker;
 import java.sql.Connection;
 
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple_;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 import br.com.mind5.security.jwtToken.info.JwtokenInfo;
 
-public final class JwtokenCheckValidate extends ModelCheckerTemplateSimple_<JwtokenInfo> {
+public final class JwtokenCheckValidate extends ModelCheckerTemplateSimpleV2<JwtokenInfo> {
 
-	public JwtokenCheckValidate() {
-		super();
+	public JwtokenCheckValidate(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
@@ -24,13 +24,7 @@ public final class JwtokenCheckValidate extends ModelCheckerTemplateSimple_<Jwto
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.MANDATORY_FIELD_EMPTY;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
-		return SystemCode.MANDATORY_FIELD_EMPTY;
+	@Override protected int getCodMsgOnResultFalseHook() {
+		return SystemCode.TOKEN_MANDATORY_FIELD_EMPTY;
 	}
 }
