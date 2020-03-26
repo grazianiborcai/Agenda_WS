@@ -1,108 +1,47 @@
 package br.com.mind5.servlet;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.sql.Connection;
-import java.util.Properties;
-import java.util.concurrent.ConcurrentHashMap;
-
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 
-import org.apache.tomcat.jdbc.pool.DataSource;
-import org.apache.tomcat.jdbc.pool.PoolProperties;
 import org.glassfish.jersey.servlet.ServletContainer;
+
+import br.com.mind5.common.DbConnection;
+import br.com.mind5.servlet.db.DbMysql;
 
 
 
 public class ServletMind5 extends ServletContainer {
 	private static final long serialVersionUID = 1L;
-	public static final String DRIVER = "com.mysql.jdbc.Driver";	
-	public static ServletContext context;
-	public static ConcurrentHashMap<String, DataSource> datasource = new ConcurrentHashMap<String, DataSource>();	
+	private DbMysql db;
 	
 	
 	@Override public void init(ServletConfig config) throws ServletException {
 		super.init(config);
-		context = config.getServletContext();
-		putDataSource(config.getServletContext(), "jdbc/gdaDB");
+		
+		db = initDataSource(config);
+		shareDataSource(db);
 	}
 	
-
 	
-	public static final DataSource putDataSource(ServletContext sContext, String key) {
-		PoolProperties p = new PoolProperties();
+	
+	private DbMysql initDataSource(ServletConfig config) {
+		ServletContext context = config.getServletContext();
+		DbMysql mysql = new DbMysql(context);
 		
-		if (sContext == null)
-			sContext = context;
-		
-		Properties prop = new Properties();
-		InputStream input = null;
-
-		try {
-
-			String path =  sContext.getInitParameter("mysqlfile");
-			input = sContext.getResourceAsStream(path);
-			// load a properties file
-			prop.load(input);
-
-		} catch (IOException ex) {
-			ex.printStackTrace();
-		} finally {
-			if (input != null) {
-				try {
-					input.close();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
-		}
-		
-		String dburl = "jdbc:mysql://"+prop.getProperty("host")+":"+prop.getProperty("port")+"/";
-		String dbUser = prop.getProperty("user");
-		String dbPassword = prop.getProperty("password");
-
-		p.setDefaultAutoCommit(false);
-		p.setDefaultTransactionIsolation(Connection.TRANSACTION_REPEATABLE_READ);
-		p.setFairQueue(true);
-		p.setUrl(dburl);
-		p.setDriverClassName(DRIVER);
-		p.setUsername(dbUser);
-		p.setPassword(dbPassword);
-		p.setJmxEnabled(true);
-		p.setTestWhileIdle(false);
-		p.setTestOnBorrow(true);
-		p.setValidationQuery("SELECT 1");
-		p.setTestOnReturn(false);
-		p.setValidationInterval(30000);
-		p.setTimeBetweenEvictionRunsMillis(30000);
-		p.setMaxActive(100);
-		p.setInitialSize(10);
-		p.setMaxWait(100);
-		p.setRemoveAbandonedTimeout(60);
-		p.setMinEvictableIdleTimeMillis(30000);
-		p.setMinIdle(10);
-		p.setMaxIdle(50);
-		p.setLogAbandoned(true);
-		p.setRemoveAbandoned(true);
-		p.setJdbcInterceptors("org.apache.tomcat.jdbc.pool.interceptor.ConnectionState;"
-				            + "org.apache.tomcat.jdbc.pool.interceptor.StatementFinalizer;"
-				            + "org.apache.tomcat.jdbc.pool.interceptor.ResetAbandonedTimer");
-		DataSource d = new DataSource();
-		d.setPoolProperties(p);
-
-		DataSource dS = datasource.putIfAbsent(key, d);
-
-		if (dS == null)
-			dS = d;
-
-		return dS;
+		return mysql;
+	}
+	
+	
+	
+	private void shareDataSource(DbMysql mysql) {
+		DbConnection.initialize(mysql.getDataSource());
 	}
 
 	
 	
 	@Override public void destroy() {
 		super.destroy();
+		db.close();
 	}
 }
