@@ -3,14 +3,14 @@ package br.com.mind5.webhook.moipMultipayment.model.checker;
 import java.sql.Connection;
 
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple_;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 import br.com.mind5.webhook.moipMultipayment.info.WokaymoipInfo;
 
-public final class WokaymoipCheckInsert extends ModelCheckerTemplateSimple_<WokaymoipInfo> {
+public final class WokaymoipCheckInsert extends ModelCheckerTemplateSimpleV2<WokaymoipInfo> {
 
-	public WokaymoipCheckInsert() {
-		super();
+	public WokaymoipCheckInsert(ModelCheckerOption option) {
+		super(option);
 	}
 	
 	
@@ -24,13 +24,7 @@ public final class WokaymoipCheckInsert extends ModelCheckerTemplateSimple_<Woka
 	
 	
 	
-	@Override protected String makeFailureExplanationHook(boolean checkerResult) {
-		return SystemMessage.WHOOK_MOIP_PAY_MANDATORY_FIELD_EMPTY;
-	}
-	
-	
-	
-	@Override protected int makeFailureCodeHook(boolean checkerResult) {
+	@Override protected int getCodMsgOnResultFalseHook() {
 		return SystemCode.WHOOK_MOIP_PAY_MANDATORY_FIELD_EMPTY;
 	}
 }

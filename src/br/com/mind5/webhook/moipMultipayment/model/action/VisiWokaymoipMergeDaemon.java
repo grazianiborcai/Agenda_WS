@@ -24,8 +24,8 @@ final class VisiWokaymoipMergeDaemon extends ActionVisitorTemplateMergeV2<Wokaym
 	
 	
 	
-	@Override protected List<WokaymoipInfo> mergeHook(List<WokaymoipInfo> recordInfos, List<UserInfo> selectedInfos) {	
-		return WokaymoipMerger.mergeWithDaemon(selectedInfos, recordInfos);
+	@Override protected List<WokaymoipInfo> mergeHook(List<WokaymoipInfo> baseInfos, List<UserInfo> selectedInfos) {	
+		return WokaymoipMerger.mergeWithDaemon(baseInfos, selectedInfos);
 	}
 	
 	
