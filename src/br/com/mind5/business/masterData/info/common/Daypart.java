@@ -14,7 +14,7 @@ public enum Daypart {
 	
 	
 	
-	public Daypart of(LocalTime time) {
+	public static Daypart of(LocalTime time) {
 		if (time == null)
 			return null;
 		
