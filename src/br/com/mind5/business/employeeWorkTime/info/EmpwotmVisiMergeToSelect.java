@@ -23,10 +23,10 @@ final class EmpwotmVisiMergeToSelect implements InfoMergerVisitorV3<EmpwotmInfo,
 	@Override public List<EmpwotmInfo> merge(EmpwotmInfo baseInfo, EmpwotmInfo selectedInfo) {
 		List<EmpwotmInfo> results = new ArrayList<>();
 		
-		selectedInfo.username = baseInfo.username;
-		selectedInfo.codLanguage = baseInfo.codLanguage;
+		baseInfo.username = selectedInfo.username;
+		baseInfo.codLanguage = selectedInfo.codLanguage;
 		
-		results.add(selectedInfo);
+		results.add(baseInfo);
 		return results;
 	}
 	
