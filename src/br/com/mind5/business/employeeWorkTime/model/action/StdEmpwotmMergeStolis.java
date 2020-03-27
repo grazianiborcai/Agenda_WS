@@ -7,12 +7,12 @@ import br.com.mind5.model.action.ActionStdHelperMerge;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdEmpwotmMergeTimezone implements ActionStd<EmpwotmInfo> {
+public final class StdEmpwotmMergeStolis implements ActionStd<EmpwotmInfo> {
 	private ActionStd<EmpwotmInfo> actionHelper;	
 	
 	
-	public StdEmpwotmMergeTimezone(DeciTreeOption<EmpwotmInfo> option) {			
-		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiEmpwotmMergeTimezone(option.conn, option.schemaName));
+	public StdEmpwotmMergeStolis(DeciTreeOption<EmpwotmInfo> option) {			
+		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiEmpwotmMergeStolis(option.conn, option.schemaName));
 	}
 	
 	

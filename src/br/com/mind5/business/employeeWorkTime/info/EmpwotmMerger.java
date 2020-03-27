@@ -5,8 +5,8 @@ import java.util.List;
 import br.com.mind5.business.employeeWorkTimeConflict.info.EmpwocoInfo;
 import br.com.mind5.business.employeeWorkTimeOutlier.info.EmpwoutInfo;
 import br.com.mind5.business.employeeWorkTimeSearch.info.EmpwotarchInfo;
-import br.com.mind5.business.masterData.info.TimezoneInfo;
 import br.com.mind5.business.masterData.info.WeekdayInfo;
+import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.business.storeWorkTimeSearch.info.StowotarchInfo;
 import br.com.mind5.info.InfoMergerBuilderV3;
 import br.com.mind5.info.InfoMergerV3;
@@ -65,13 +65,13 @@ public final class EmpwotmMerger {
 	
 	
 	
-	public static List<EmpwotmInfo> mergeWithTimezone(List<EmpwotmInfo> baseInfos, List<TimezoneInfo> selectedInfos) {
-		InfoMergerBuilderV3<EmpwotmInfo, TimezoneInfo> builder = new InfoMergerBuilderV3<>();
+	public static List<EmpwotmInfo> mergeWithStolis(List<EmpwotmInfo> baseInfos, List<StolisInfo> selectedInfos) {
+		InfoMergerBuilderV3<EmpwotmInfo, StolisInfo> builder = new InfoMergerBuilderV3<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new EmpwotmVisiMergeTimezone());
-		InfoMergerV3<EmpwotmInfo, TimezoneInfo> merger = builder.build();		
+		builder.addVisitor(new EmpwotmVisiMergeStolis());
+		InfoMergerV3<EmpwotmInfo, StolisInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}	
