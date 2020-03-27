@@ -24,14 +24,9 @@ final class EmposVisiMergeEmposarch implements InfoMergerVisitorV3<EmposInfo, Em
 	@Override public List<EmposInfo> merge(EmposInfo baseInfo, EmposarchInfo selectedInfo) {
 		List<EmposInfo> results = new ArrayList<>();
 		
-		baseInfo.codOwner = selectedInfo.codOwner;	
-		baseInfo.codStore = selectedInfo.codStore;	
-		baseInfo.codEmployee = selectedInfo.codEmployee;
-		baseInfo.codPosition = selectedInfo.codPosition;
-		baseInfo.username = selectedInfo.username;
-		baseInfo.codLanguage = selectedInfo.codLanguage;
+		EmposInfo result = EmposInfo.copyFrom(selectedInfo);
 		
-		results.add(baseInfo);
+		results.add(result);
 		return results;
 	}
 	
