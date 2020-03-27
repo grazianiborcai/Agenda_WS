@@ -25,14 +25,14 @@ final class VisiEmpwotmMergeUsername extends ActionVisitorTemplateMergeV2<Empwot
 	
 	
 	
-	@Override protected List<UsernameInfo> toActionClassHook(List<EmpwotmInfo> recordInfos) {
-		return UsernameCopier.copyFromEmpwotm(recordInfos);	
+	@Override protected List<UsernameInfo> toActionClassHook(List<EmpwotmInfo> baseInfos) {
+		return UsernameCopier.copyFromEmpwotm(baseInfos);	
 	}
 	
 	
 	
-	@Override protected List<EmpwotmInfo> mergeHook(List<EmpwotmInfo> recordInfos, List<UsernameInfo> selectedInfos) {	
-		return EmpwotmMerger.mergeWithUsername(selectedInfos, recordInfos);
+	@Override protected List<EmpwotmInfo> mergeHook(List<EmpwotmInfo> baseInfos, List<UsernameInfo> selectedInfos) {	
+		return EmpwotmMerger.mergeWithUsername(baseInfos, selectedInfos);
 	}
 	
 	

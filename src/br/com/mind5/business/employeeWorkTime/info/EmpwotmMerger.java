@@ -8,131 +8,123 @@ import br.com.mind5.business.employeeWorkTimeSearch.info.EmpwotarchInfo;
 import br.com.mind5.business.masterData.info.TimezoneInfo;
 import br.com.mind5.business.masterData.info.WeekdayInfo;
 import br.com.mind5.business.storeWorkTimeSearch.info.StowotarchInfo;
-import br.com.mind5.info.obsolete.InfoMerger_;
+import br.com.mind5.info.InfoMergerBuilderV3;
+import br.com.mind5.info.InfoMergerV3;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class EmpwotmMerger {	
-	public static EmpwotmInfo mergeWithStowotarch(StowotarchInfo sourceOne, EmpwotmInfo sourceTwo) {
-		InfoMerger_<EmpwotmInfo, StowotarchInfo> merger = new EmpwotmMergerStowotarch();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
+	public static List<EmpwotmInfo> mergeWithStowotarch(List<EmpwotmInfo> baseInfos, List<StowotarchInfo> selectedInfos) {
+		InfoMergerBuilderV3<EmpwotmInfo, StowotarchInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new EmpwotmVisiMergeStowotarch());
+		InfoMergerV3<EmpwotmInfo, StowotarchInfo> merger = builder.build();		
 	
-	
-	
-	public static List<EmpwotmInfo> mergeWithStowotarch(List<StowotarchInfo> sourceOnes, List<EmpwotmInfo> sourceTwos) {
-		InfoMerger_<EmpwotmInfo, StowotarchInfo> merger = new EmpwotmMergerStowotarch();		
-		return merger.merge(sourceOnes, sourceTwos);
+		return merger.merge();
 	}	
 	
 	
 	
-	public static EmpwotmInfo mergeWithEmpwout(EmpwoutInfo sourceOne, EmpwotmInfo sourceTwo) {
-		InfoMerger_<EmpwotmInfo, EmpwoutInfo> merger = new EmpwotmMergerEmpwout();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
+	public static List<EmpwotmInfo> mergeWithEmpwout(List<EmpwotmInfo> baseInfos, List<EmpwoutInfo> selectedInfos) {
+		InfoMergerBuilderV3<EmpwotmInfo, EmpwoutInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new EmpwotmVisiMergeEmpwout());
+		InfoMergerV3<EmpwotmInfo, EmpwoutInfo> merger = builder.build();		
 	
-	
-	
-	public static List<EmpwotmInfo> mergeWithEmpwout(List<EmpwoutInfo> sourceOnes, List<EmpwotmInfo> sourceTwos) {
-		InfoMerger_<EmpwotmInfo, EmpwoutInfo> merger = new EmpwotmMergerEmpwout();		
-		return merger.merge(sourceOnes, sourceTwos);
-	}		
-	
-	
-	
-	public static EmpwotmInfo mergeWithEmpwoco(EmpwocoInfo sourceOne, EmpwotmInfo sourceTwo) {
-		InfoMerger_<EmpwotmInfo, EmpwocoInfo> merger = new EmpwotmMergerEmpwoco();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
-	
-	
-	
-	public static List<EmpwotmInfo> mergeWithEmpwoco(List<EmpwocoInfo> sourceOnes, List<EmpwotmInfo> sourceTwos) {
-		InfoMerger_<EmpwotmInfo, EmpwocoInfo> merger = new EmpwotmMergerEmpwoco();		
-		return merger.merge(sourceOnes, sourceTwos);
+		return merger.merge();
 	}	
 	
 	
 	
-	public static EmpwotmInfo mergeWithEmpwotarch(EmpwotarchInfo sourceOne, EmpwotmInfo sourceTwo) {
-		InfoMerger_<EmpwotmInfo, EmpwotarchInfo> merger = new EmpwotmMergerEmpwotarch();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
+	public static List<EmpwotmInfo> mergeWithEmpwoco(List<EmpwotmInfo> baseInfos, List<EmpwocoInfo> selectedInfos) {
+		InfoMergerBuilderV3<EmpwotmInfo, EmpwocoInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new EmpwotmVisiMergeEmpwoco());
+		InfoMergerV3<EmpwotmInfo, EmpwocoInfo> merger = builder.build();		
 	
-	
-	
-	public static List<EmpwotmInfo> mergeWithEmpwotarch(List<EmpwotarchInfo> sourceOnes, List<EmpwotmInfo> sourceTwos) {
-		InfoMerger_<EmpwotmInfo, EmpwotarchInfo> merger = new EmpwotmMergerEmpwotarch();		
-		return merger.merge(sourceOnes, sourceTwos);
+		return merger.merge();
 	}	
 	
 	
 	
-	public static EmpwotmInfo mergeWithTimezone(TimezoneInfo sourceOne, EmpwotmInfo sourceTwo) {
-		InfoMerger_<EmpwotmInfo, TimezoneInfo> merger = new EmpwotmMergerTimezone();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
+	public static List<EmpwotmInfo> mergeWithEmpwotarch(List<EmpwotmInfo> baseInfos, List<EmpwotarchInfo> selectedInfos) {
+		InfoMergerBuilderV3<EmpwotmInfo, EmpwotarchInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new EmpwotmVisiMergeEmpwotarch());
+		InfoMergerV3<EmpwotmInfo, EmpwotarchInfo> merger = builder.build();		
 	
-	
-	
-	public static List<EmpwotmInfo> mergeWithTimezone(List<TimezoneInfo> sourceOnes, List<EmpwotmInfo> sourceTwos) {
-		InfoMerger_<EmpwotmInfo, TimezoneInfo> merger = new EmpwotmMergerTimezone();		
-		return merger.merge(sourceOnes, sourceTwos);
+		return merger.merge();
 	}	
 	
 	
 	
-	public static EmpwotmInfo mergeWithUsername(UsernameInfo sourceOne, EmpwotmInfo sourceTwo) {
-		InfoMerger_<EmpwotmInfo, UsernameInfo> merger = new EmpwotmMergerUsername();		
-		return merger.merge(sourceOne, sourceTwo);
+	public static List<EmpwotmInfo> mergeWithTimezone(List<EmpwotmInfo> baseInfos, List<TimezoneInfo> selectedInfos) {
+		InfoMergerBuilderV3<EmpwotmInfo, TimezoneInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new EmpwotmVisiMergeTimezone());
+		InfoMergerV3<EmpwotmInfo, TimezoneInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}	
+	
+	
+	
+	public static List<EmpwotmInfo> mergeWithUsername(List<EmpwotmInfo> baseInfos, List<UsernameInfo> selectedInfos) {
+		InfoMergerBuilderV3<EmpwotmInfo, UsernameInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new EmpwotmVisiMergeUsername());
+		InfoMergerV3<EmpwotmInfo, UsernameInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static List<EmpwotmInfo> mergeWithUsername(List<UsernameInfo> sourceOnes, List<EmpwotmInfo> sourceTwos) {
-		InfoMerger_<EmpwotmInfo, UsernameInfo> merger = new EmpwotmMergerUsername();		
-		return merger.merge(sourceOnes, sourceTwos);
+	public static List<EmpwotmInfo> mergeWithWeekday(List<EmpwotmInfo> baseInfos, List<WeekdayInfo> selectedInfos) {
+		InfoMergerBuilderV3<EmpwotmInfo, WeekdayInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new EmpwotmVisiMergeWeekday());
+		InfoMergerV3<EmpwotmInfo, WeekdayInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static EmpwotmInfo mergeWithWeekday(WeekdayInfo sourceOne, EmpwotmInfo sourceTwo) {
-		InfoMerger_<EmpwotmInfo, WeekdayInfo> merger = new EmpwotmMergerWeekday();		
-		return merger.merge(sourceOne, sourceTwo);
+	public static List<EmpwotmInfo> mergeToDelete(List<EmpwotmInfo> baseInfos, List<EmpwotmInfo> selectedInfos) {
+		InfoMergerBuilderV3<EmpwotmInfo, EmpwotmInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new EmpwotmVisiMergeToDelete());
+		InfoMergerV3<EmpwotmInfo, EmpwotmInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static List<EmpwotmInfo> mergeWithWeekday(List<WeekdayInfo> sourceOnes, List<EmpwotmInfo> sourceTwos) {
-		InfoMerger_<EmpwotmInfo, WeekdayInfo> merger = new EmpwotmMergerWeekday();		
-		return merger.merge(sourceOnes, sourceTwos);
-	}
+	public static List<EmpwotmInfo> mergeToSelect(List<EmpwotmInfo> baseInfos, List<EmpwotmInfo> selectedInfos) {
+		InfoMergerBuilderV3<EmpwotmInfo, EmpwotmInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new EmpwotmVisiMergeToSelect());
+		InfoMergerV3<EmpwotmInfo, EmpwotmInfo> merger = builder.build();		
 	
-	
-	
-	public static EmpwotmInfo mergeToDelete(EmpwotmInfo sourceOne, EmpwotmInfo sourceTwo) {
-		InfoMerger_<EmpwotmInfo, EmpwotmInfo> merger = new EmpwotmMergerToDelete();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
-	
-	
-	
-	public static List<EmpwotmInfo> mergeToDelete(List<EmpwotmInfo> sourceOnes, List<EmpwotmInfo> sourceTwos) {
-		InfoMerger_<EmpwotmInfo, EmpwotmInfo> merger = new EmpwotmMergerToDelete();		
-		return merger.merge(sourceOnes, sourceTwos);
-	}
-	
-	
-	
-	public static EmpwotmInfo mergeToSelect(EmpwotmInfo sourceOne, EmpwotmInfo sourceTwo) {
-		InfoMerger_<EmpwotmInfo, EmpwotmInfo> merger = new EmpwotmMergerToSelect();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
-	
-	
-	
-	public static List<EmpwotmInfo> mergeToSelect(List<EmpwotmInfo> sourceOnes, List<EmpwotmInfo> sourceTwos) {
-		InfoMerger_<EmpwotmInfo, EmpwotmInfo> merger = new EmpwotmMergerToSelect();		
-		return merger.merge(sourceOnes, sourceTwos);
+		return merger.merge();
 	}
 }

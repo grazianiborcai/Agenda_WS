@@ -1,62 +1,39 @@
 package br.com.mind5.business.employeeWorkTime.info;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.ArrayList;
+import java.util.List;
 
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.security.username.info.UsernameInfo;
 
-final class EmpwotmVisiMergeUsername implements InfoMergerVisitor_<EmpwotmInfo, UsernameInfo> {
-
-	@Override public EmpwotmInfo writeRecord(UsernameInfo sourceOne, EmpwotmInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+final class EmpwotmVisiMergeUsername implements InfoMergerVisitorV3<EmpwotmInfo, UsernameInfo> {
+	
+	@Override public List<EmpwotmInfo> beforeMerge(List<EmpwotmInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(EmpwotmInfo baseInfo, UsernameInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner		&&
+				baseInfo.username.equals(selectedInfo.username)		);
+	}
+	
+	
+	
+	@Override public List<EmpwotmInfo> merge(EmpwotmInfo baseInfo, UsernameInfo selectedInfo) {
+		List<EmpwotmInfo> results = new ArrayList<>();
 		
-		EmpwotmInfo clonedInfo = makeClone(sourceTwo);
-		return merge(sourceOne, clonedInfo);
-	}
-	
-	
-	
-	private void checkArgument(UsernameInfo sourceOne, EmpwotmInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private EmpwotmInfo makeClone(EmpwotmInfo recordInfo) {
-		try {
-			return (EmpwotmInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	private EmpwotmInfo merge(UsernameInfo sourceOne, EmpwotmInfo sourceTwo) {
-		sourceTwo.lastChangedBy = sourceOne.codUser;
-		return sourceTwo;
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(UsernameInfo sourceOne, EmpwotmInfo sourceTwo) {
-		if (sourceOne.username == null ||
-			sourceTwo.username == null		)
-			return false;
+		baseInfo.lastChangedBy = selectedInfo.codUser;
 		
-		return (sourceOne.codOwner == sourceTwo.codOwner		&&
-				sourceOne.username.equals(sourceTwo.username)		);
+		results.add(baseInfo);
+		return results;
 	}
 	
 	
 	
-	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
+	@Override public InfoUniquifier<EmpwotmInfo> getUniquifier() {
+		return null;
 	}
 }

@@ -25,14 +25,14 @@ final class VisiEmpwotmMergeStowotarch extends ActionVisitorTemplateMergeV2<Empw
 	
 	
 	
-	@Override protected List<StowotarchInfo> toActionClassHook(List<EmpwotmInfo> recordInfos) {
-		return StowotarchCopier.copyFromEmpwotm(recordInfos);
+	@Override protected List<StowotarchInfo> toActionClassHook(List<EmpwotmInfo> baseInfos) {
+		return StowotarchCopier.copyFromEmpwotm(baseInfos);
 	}
 	
 	
 	
-	@Override protected List<EmpwotmInfo> mergeHook(List<EmpwotmInfo> recordInfos, List<StowotarchInfo> selectedInfos) {	
-		return EmpwotmMerger.mergeWithStowotarch(selectedInfos, recordInfos);
+	@Override protected List<EmpwotmInfo> mergeHook(List<EmpwotmInfo> baseInfos, List<StowotarchInfo> selectedInfos) {	
+		return EmpwotmMerger.mergeWithStowotarch(baseInfos, selectedInfos);
 	}
 	
 	

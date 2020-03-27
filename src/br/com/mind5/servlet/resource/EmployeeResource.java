@@ -106,25 +106,12 @@ public class EmployeeResource {
 	
 	
 	
-	@GET
+	@POST
 	@Path(SEARCH_WORK_TIME)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response searchWorkTime(@HeaderParam("TOKEN_OWNER")    	@DefaultValue("-1") long codOwner,
-								   @HeaderParam("codStore")    		@DefaultValue("-1") long codStore,
-								   @HeaderParam("codEmployee") 		@DefaultValue("-1") int codEmployee,
-								   @HeaderParam("codWeekday") 		@DefaultValue("-1") int codWeekday,
-								   @HeaderParam("TOKEN_USERNAME") 	String username,
-								   @HeaderParam("codLanguage")    	@DefaultValue("EN") String codLanguage) {
+	public Response searchWorkTime(@Context HttpServletRequest request, String incomingData) {
 		
-		EmpwotmInfo recordInfo = new EmpwotmInfo();
-		recordInfo.codOwner = codOwner;
-		recordInfo.codStore = codStore;
-		recordInfo.codEmployee = codEmployee;
-		recordInfo.codWeekday = codWeekday;
-		recordInfo.username = username;
-		recordInfo.codLanguage = codLanguage;
-		
-		Model model = new EmpwotmModelSearch(recordInfo);
+		Model model = new EmpwotmModelSearch(incomingData, request);
 		model.executeRequest();
 		return model.getResponse();
 	}

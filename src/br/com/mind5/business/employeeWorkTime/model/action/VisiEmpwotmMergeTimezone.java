@@ -24,8 +24,8 @@ final class VisiEmpwotmMergeTimezone extends ActionVisitorTemplateMergeV2<Empwot
 	
 	
 	
-	@Override protected List<EmpwotmInfo> mergeHook(List<EmpwotmInfo> recordInfos, List<TimezoneInfo> selectedInfos) {	
-		return EmpwotmMerger.mergeWithTimezone(selectedInfos, recordInfos);
+	@Override protected List<EmpwotmInfo> mergeHook(List<EmpwotmInfo> baseInfos, List<TimezoneInfo> selectedInfos) {	
+		return EmpwotmMerger.mergeWithTimezone(baseInfos, selectedInfos);
 	}
 	
 	

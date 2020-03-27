@@ -1,58 +1,39 @@
 package br.com.mind5.business.employeeWorkTime.info;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.ArrayList;
+import java.util.List;
 
 import br.com.mind5.business.masterData.info.WeekdayInfo;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-final class EmpwotmVisiMergeWeekday implements InfoMergerVisitor_<EmpwotmInfo, WeekdayInfo> {
-
-	@Override public EmpwotmInfo writeRecord(WeekdayInfo sourceOne, EmpwotmInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+final class EmpwotmVisiMergeWeekday implements InfoMergerVisitorV3<EmpwotmInfo, WeekdayInfo> {
+	
+	@Override public List<EmpwotmInfo> beforeMerge(List<EmpwotmInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(EmpwotmInfo baseInfo, WeekdayInfo selectedInfo) {
+		return (baseInfo.codWeekday == selectedInfo.codWeekday		&&
+				baseInfo.codLanguage.equals(selectedInfo.codLanguage)		);
+	}
+	
+	
+	
+	@Override public List<EmpwotmInfo> merge(EmpwotmInfo baseInfo, WeekdayInfo selectedInfo) {
+		List<EmpwotmInfo> results = new ArrayList<>();
 		
-		EmpwotmInfo clonedInfo = makeClone(sourceTwo);
-		return merge(sourceOne, clonedInfo);
+		baseInfo.txtWeekday = selectedInfo.txtWeekday;
+		
+		results.add(baseInfo);
+		return results;
 	}
 	
 	
 	
-	private void checkArgument(WeekdayInfo sourceOne, EmpwotmInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private EmpwotmInfo makeClone(EmpwotmInfo recordInfo) {
-		try {
-			return (EmpwotmInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	private EmpwotmInfo merge(WeekdayInfo sourceOne, EmpwotmInfo sourceTwo) {
-		sourceTwo.txtWeekday = sourceOne.txtWeekday;
-		return sourceTwo;
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(WeekdayInfo sourceOne, EmpwotmInfo sourceTwo) {		
-		return (sourceOne.codWeekday == sourceTwo.codWeekday		&&
-				sourceOne.codLanguage.equals(sourceTwo.codLanguage)		);
-	}
-	
-	
-	
-	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
+	@Override public InfoUniquifier<EmpwotmInfo> getUniquifier() {
+		return null;
 	}
 }

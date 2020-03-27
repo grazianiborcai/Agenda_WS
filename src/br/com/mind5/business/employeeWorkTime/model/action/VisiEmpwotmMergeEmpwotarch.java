@@ -24,8 +24,8 @@ final class VisiEmpwotmMergeEmpwotarch extends ActionVisitorTemplateMergeV2<Empw
 	
 	
 	
-	@Override protected List<EmpwotmInfo> mergeHook(List<EmpwotmInfo> recordInfos, List<EmpwotarchInfo> selectedInfos) {	
-		return EmpwotmMerger.mergeWithEmpwotarch(selectedInfos, recordInfos);
+	@Override protected List<EmpwotmInfo> mergeHook(List<EmpwotmInfo> baseInfos, List<EmpwotarchInfo> selectedInfos) {	
+		return EmpwotmMerger.mergeWithEmpwotarch(baseInfos, selectedInfos);
 	}
 	
 	
