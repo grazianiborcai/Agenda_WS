@@ -4,10 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.planningTime.info.PlanimeInfo;
+import br.com.mind5.business.planningTime.model.action.LazyPlanimeMergeDaypart;
 import br.com.mind5.business.planningTime.model.action.LazyPlanimeMergeEmplis;
 import br.com.mind5.business.planningTime.model.action.LazyPlanimeMergeMatlis;
 import br.com.mind5.business.planningTime.model.action.LazyPlanimeMergeStolis;
 import br.com.mind5.business.planningTime.model.action.LazyPlanimeMergeWeekday;
+import br.com.mind5.business.planningTime.model.action.LazyPlanimePruneDaypart;
 import br.com.mind5.business.planningTime.model.action.StdPlanimeMergePlanata;
 import br.com.mind5.business.planningTime.model.checker.PlanimeCheckRead;
 import br.com.mind5.model.action.ActionLazy;
@@ -46,16 +48,20 @@ public class RootPlanimeSelect extends DeciTreeReadTemplate<PlanimeInfo> {
 	@Override protected List<ActionStd<PlanimeInfo>> buildActionsOnPassedHook(DeciTreeOption<PlanimeInfo> option) {
 		List<ActionStd<PlanimeInfo>> actions = new ArrayList<>();		
 
-		ActionStd<PlanimeInfo> mergePlanata = new StdPlanimeMergePlanata(option);		
+		ActionStd<PlanimeInfo> mergePlanata = new StdPlanimeMergePlanata(option);	
+		ActionLazy<PlanimeInfo> pruneDaypart = new LazyPlanimePruneDaypart(option.conn, option.schemaName);
 		ActionLazy<PlanimeInfo> mergeStolis = new LazyPlanimeMergeStolis(option.conn, option.schemaName);	
 		ActionLazy<PlanimeInfo> mergeEmplis = new LazyPlanimeMergeEmplis(option.conn, option.schemaName);
 		ActionLazy<PlanimeInfo> mergeMatlis = new LazyPlanimeMergeMatlis(option.conn, option.schemaName);			
 		ActionLazy<PlanimeInfo> mergeWeekday = new LazyPlanimeMergeWeekday(option.conn, option.schemaName);
+		ActionLazy<PlanimeInfo> mergeDaypart = new LazyPlanimeMergeDaypart(option.conn, option.schemaName);
 		
-		mergePlanata.addPostAction(mergeStolis);
+		mergePlanata.addPostAction(pruneDaypart);
+		pruneDaypart.addPostAction(mergeStolis);
 		mergeStolis.addPostAction(mergeEmplis);
 		mergeEmplis.addPostAction(mergeMatlis);
 		mergeMatlis.addPostAction(mergeWeekday);
+		mergeWeekday.addPostAction(mergeDaypart);
 		
 		actions.add(mergePlanata);
 		return actions;

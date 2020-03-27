@@ -3,6 +3,7 @@ package br.com.mind5.business.planningTime.info;
 import java.util.List;
 
 import br.com.mind5.business.employeeList.info.EmplisInfo;
+import br.com.mind5.business.masterData.info.DaypartInfo;
 import br.com.mind5.business.masterData.info.WeekdayInfo;
 import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.business.planingData.info.PlanataInfo;
@@ -18,6 +19,19 @@ public final class PlanimeMerger {
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new PlanimeVisiMergeEmplis());
 		InfoMergerV3<PlanimeInfo, EmplisInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	
+	public static List<PlanimeInfo> mergeWithDaypart(List<PlanimeInfo> baseInfos, List<DaypartInfo> selectedInfos) {
+		InfoMergerBuilderV3<PlanimeInfo, DaypartInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new PlanimeVisiMergeDaypart());
+		InfoMergerV3<PlanimeInfo, DaypartInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}

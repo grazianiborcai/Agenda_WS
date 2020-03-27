@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.employeeList.info.EmplisInfo;
+import br.com.mind5.business.masterData.info.DaypartInfo;
 import br.com.mind5.business.masterData.info.WeekdayInfo;
 import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.business.planingData.info.PlanataInfo;
@@ -20,6 +21,7 @@ public final class PlanimeInfo extends InfoRecord implements Cloneable {
 	public List<MatlisInfo> matlises;
 	public List<EmplisInfo> emplises;
 	public List<WeekdayInfo> weekdays;
+	public List<DaypartInfo> dayparts;
 	public List<PlanataInfo> planatas;	
 	
 	
@@ -32,6 +34,7 @@ public final class PlanimeInfo extends InfoRecord implements Cloneable {
 		matlises = DefaultValue.list();
 		emplises = DefaultValue.list();
 		weekdays = DefaultValue.list();
+		dayparts = DefaultValue.list();
 		planatas = DefaultValue.list();
 	}
 	
@@ -57,6 +60,7 @@ public final class PlanimeInfo extends InfoRecord implements Cloneable {
 		deepCopy.matlises = cloneMaterials(deepCopy.matlises);
 		deepCopy.emplises = cloneEmployees(deepCopy.emplises);
 		deepCopy.weekdays = cloneWeekdays(deepCopy.weekdays);
+		deepCopy.dayparts = cloneDayparts(deepCopy.dayparts);
 		deepCopy.planatas = clonePlanatas(deepCopy.planatas);		
 		
 		return deepCopy;
@@ -73,14 +77,14 @@ public final class PlanimeInfo extends InfoRecord implements Cloneable {
 	
 	
 	
-	private List<StolisInfo> cloneStores(List<StolisInfo> stores) throws CloneNotSupportedException {
-		if (stores == null)
-			return stores;		
+	private List<StolisInfo> cloneStores(List<StolisInfo> infoRecords) throws CloneNotSupportedException {
+		if (infoRecords == null)
+			return infoRecords;		
 		
 		List<StolisInfo> clones = new ArrayList<>();
 		
-		for (StolisInfo eachStore : stores) {
-			StolisInfo clonedRecord = (StolisInfo) eachStore.clone();
+		for (StolisInfo eachRecord : infoRecords) {
+			StolisInfo clonedRecord = (StolisInfo) eachRecord.clone();
 			clones.add(clonedRecord);
 		}
 		
@@ -89,14 +93,14 @@ public final class PlanimeInfo extends InfoRecord implements Cloneable {
 	
 	
 	
-	private List<MatlisInfo> cloneMaterials(List<MatlisInfo> materials) throws CloneNotSupportedException {
-		if (materials == null)
-			return materials;		
+	private List<MatlisInfo> cloneMaterials(List<MatlisInfo> infoRecords) throws CloneNotSupportedException {
+		if (infoRecords == null)
+			return infoRecords;		
 		
 		List<MatlisInfo> clones = new ArrayList<>();
 		
-		for (MatlisInfo eachMaterial : materials) {
-			MatlisInfo clonedRecord = (MatlisInfo) eachMaterial.clone();
+		for (MatlisInfo eachRecord : infoRecords) {
+			MatlisInfo clonedRecord = (MatlisInfo) eachRecord.clone();
 			clones.add(clonedRecord);
 		}
 		
@@ -105,14 +109,14 @@ public final class PlanimeInfo extends InfoRecord implements Cloneable {
 	
 	
 	
-	private List<EmplisInfo> cloneEmployees(List<EmplisInfo> employees) throws CloneNotSupportedException {
-		if (employees == null)
-			return employees;		
+	private List<EmplisInfo> cloneEmployees(List<EmplisInfo> infoRecords) throws CloneNotSupportedException {
+		if (infoRecords == null)
+			return infoRecords;		
 		
 		List<EmplisInfo> clones = new ArrayList<>();
 		
-		for (EmplisInfo eachEmployee : employees) {
-			EmplisInfo clonedRecord = (EmplisInfo) eachEmployee.clone();
+		for (EmplisInfo eachRecord : infoRecords) {
+			EmplisInfo clonedRecord = (EmplisInfo) eachRecord.clone();
 			clones.add(clonedRecord);
 		}
 		
@@ -121,14 +125,14 @@ public final class PlanimeInfo extends InfoRecord implements Cloneable {
 	
 	
 	
-	private List<WeekdayInfo> cloneWeekdays(List<WeekdayInfo> weekdays) throws CloneNotSupportedException {
-		if (weekdays == null)
-			return weekdays;		
+	private List<WeekdayInfo> cloneWeekdays(List<WeekdayInfo> infoRecords) throws CloneNotSupportedException {
+		if (infoRecords == null)
+			return infoRecords;		
 		
 		List<WeekdayInfo> clones = new ArrayList<>();
 		
-		for (WeekdayInfo eachWeekday : weekdays) {
-			WeekdayInfo clonedRecord = (WeekdayInfo) eachWeekday.clone();
+		for (WeekdayInfo eachRecord : infoRecords) {
+			WeekdayInfo clonedRecord = (WeekdayInfo) eachRecord.clone();
 			clones.add(clonedRecord);
 		}
 		
@@ -137,13 +141,29 @@ public final class PlanimeInfo extends InfoRecord implements Cloneable {
 	
 	
 	
-	private List<PlanataInfo> clonePlanatas(List<PlanataInfo> planatas) throws CloneNotSupportedException {
-		if (planatas == null)
-			return planatas;		
+	private List<DaypartInfo> cloneDayparts(List<DaypartInfo> infoRecords) throws CloneNotSupportedException {
+		if (infoRecords == null)
+			return infoRecords;		
+		
+		List<DaypartInfo> clones = new ArrayList<>();
+		
+		for (DaypartInfo eachRecord : infoRecords) {
+			DaypartInfo clonedRecord = (DaypartInfo) eachRecord.clone();
+			clones.add(clonedRecord);
+		}
+		
+		return clones;
+	}
+	
+	
+	
+	private List<PlanataInfo> clonePlanatas(List<PlanataInfo> infoRecords) throws CloneNotSupportedException {
+		if (infoRecords == null)
+			return infoRecords;		
 		
 		List<PlanataInfo> clones = new ArrayList<>();
 		
-		for (PlanataInfo eachPlanata : planatas) {
+		for (PlanataInfo eachPlanata : infoRecords) {
 			PlanataInfo clonedRecord = (PlanataInfo) eachPlanata.clone();
 			clones.add(clonedRecord);
 		}
@@ -190,9 +210,9 @@ public final class PlanimeInfo extends InfoRecord implements Cloneable {
 		PlanimeInfo obj = (PlanimeInfo) o;
 		
 		return (codOwner == obj.codOwner					&&
-				super.isListEqual(stolises   , obj.stolises)	&&
-				super.isListEqual(matlises, obj.matlises) &&
-				super.isListEqual(emplises, obj.emplises) &&
+				super.isListEqual(stolises , obj.stolises)	&&
+				super.isListEqual(matlises , obj.matlises) 	&&
+				super.isListEqual(emplises , obj.emplises) 	&&
 				super.isListEqual(weekdays , obj.weekdays) 	&&
 				super.isListEqual(planatas , obj.planatas));
 	}

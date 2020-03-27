@@ -9,6 +9,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import br.com.mind5.business.employeeList.info.EmplisInfo;
+import br.com.mind5.business.masterData.info.DaypartInfo;
 import br.com.mind5.business.masterData.info.WeekdayInfo;
 import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.business.planingData.info.PlanataInfo;
@@ -28,6 +29,7 @@ final class PlanimeUniquifier implements InfoUniquifier<PlanimeInfo> {
 			result = uniquifyMaterial(result);
 			result = uniquifyEmployee(result);
 			result = uniquifyWeekday(result);
+			result = uniquifyDaypart(result);
 			result = uniquifyPlanata(result);
 			
 			results.add(result);
@@ -98,6 +100,19 @@ final class PlanimeUniquifier implements InfoUniquifier<PlanimeInfo> {
 		allWeekdays = allWeekdays.stream().distinct().collect(Collectors.toList());			
 		
 		result.weekdays = allWeekdays;
+		return result;
+	}
+	
+	
+	
+	private PlanimeInfo uniquifyDaypart(PlanimeInfo result) {
+		if (result.dayparts == null)
+			return result;
+		
+		List<DaypartInfo> allDayparts = new ArrayList<>(result.dayparts);
+		allDayparts = allDayparts.stream().distinct().collect(Collectors.toList());			
+		
+		result.dayparts = allDayparts;
 		return result;
 	}
 	
