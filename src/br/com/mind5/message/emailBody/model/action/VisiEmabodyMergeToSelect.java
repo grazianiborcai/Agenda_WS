@@ -6,9 +6,9 @@ import java.util.List;
 import br.com.mind5.message.emailBody.info.EmabodyInfo;
 import br.com.mind5.message.emailBody.info.EmabodyMerger;
 import br.com.mind5.model.action.ActionStd;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 
-final class VisiEmabodyMergeToSelect extends ActionVisitorTemplateMergeV2<EmabodyInfo, EmabodyInfo> {
+final class VisiEmabodyMergeToSelect extends ActionVisitorTemplateMerge<EmabodyInfo, EmabodyInfo> {
 	
 	public VisiEmabodyMergeToSelect(Connection conn, String schemaName) {
 		super(conn, schemaName, EmabodyInfo.class);
@@ -29,6 +29,6 @@ final class VisiEmabodyMergeToSelect extends ActionVisitorTemplateMergeV2<Emabod
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
 	}
 }

@@ -8,10 +8,10 @@ import br.com.mind5.business.employeeList.info.EmplisMerger;
 import br.com.mind5.business.personSearch.info.PerarchCopier;
 import br.com.mind5.business.personSearch.info.PerarchInfo;
 import br.com.mind5.business.personSearch.model.decisionTree.RootPerarchSelectEmp;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 
-final class VisiEmplisMergePerarch extends ActionVisitorTemplateMergeV2<EmplisInfo, PerarchInfo> {
+final class VisiEmplisMergePerarch extends ActionVisitorTemplateMerge<EmplisInfo, PerarchInfo> {
 	
 	public VisiEmplisMergePerarch(Connection conn, String schemaName) {
 		super(conn, schemaName, PerarchInfo.class);
@@ -38,6 +38,6 @@ final class VisiEmplisMergePerarch extends ActionVisitorTemplateMergeV2<EmplisIn
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
 	}
 }

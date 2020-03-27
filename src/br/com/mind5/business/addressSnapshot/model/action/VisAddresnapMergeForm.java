@@ -7,10 +7,10 @@ import br.com.mind5.business.addressSnapshot.info.AddresnapInfo;
 import br.com.mind5.business.addressSnapshot.info.AddresnapMerger;
 import br.com.mind5.business.form.formAddress.info.FormAddressInfo;
 import br.com.mind5.business.form.formAddress.model.decisionTree.RootFormAddressSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 
-final class VisAddresnapMergeForm extends ActionVisitorTemplateMergeV2<AddresnapInfo, FormAddressInfo> {
+final class VisAddresnapMergeForm extends ActionVisitorTemplateMerge<AddresnapInfo, FormAddressInfo> {
 	
 	public VisAddresnapMergeForm(Connection conn, String schemaName) {
 		super(conn, schemaName, FormAddressInfo.class);
@@ -31,6 +31,6 @@ final class VisAddresnapMergeForm extends ActionVisitorTemplateMergeV2<Addresnap
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMerge.MERGE_WHEN_EMPTY;
 	}
 }

@@ -3,13 +3,13 @@ package br.com.mind5.payment.storePartner.model.action;
 import java.sql.Connection;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.payment.storePartner.info.StoparInfo;
 import br.com.mind5.payment.storePartner.info.StoparMerger;
 import br.com.mind5.payment.storePartner.model.decisionTree.RootStoparSelect;
 
-final class VisiStoparMergeToDelete extends ActionVisitorTemplateMergeV2<StoparInfo, StoparInfo> {
+final class VisiStoparMergeToDelete extends ActionVisitorTemplateMerge<StoparInfo, StoparInfo> {
 	
 	public VisiStoparMergeToDelete(Connection conn, String schemaName) {
 		super(conn, schemaName, StoparInfo.class);
@@ -30,6 +30,6 @@ final class VisiStoparMergeToDelete extends ActionVisitorTemplateMergeV2<StoparI
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
 	}	
 }

@@ -6,9 +6,9 @@ import java.util.List;
 import br.com.mind5.business.companyConflict.info.CompcoInfo;
 import br.com.mind5.business.companyConflict.info.CompcoMerger;
 import br.com.mind5.model.action.ActionStd;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 
-final class VisiCompcoMergeToSelect extends ActionVisitorTemplateMergeV2<CompcoInfo, CompcoInfo> {
+final class VisiCompcoMergeToSelect extends ActionVisitorTemplateMerge<CompcoInfo, CompcoInfo> {
 	
 	public VisiCompcoMergeToSelect(Connection conn, String schemaName) {
 		super(conn, schemaName, CompcoInfo.class);
@@ -29,6 +29,6 @@ final class VisiCompcoMergeToSelect extends ActionVisitorTemplateMergeV2<CompcoI
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
 	}
 }

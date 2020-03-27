@@ -7,10 +7,10 @@ import br.com.mind5.business.masterData.info.MatGroupInfo;
 import br.com.mind5.business.masterData.model.decisionTree.RootMatGroupSelect;
 import br.com.mind5.business.material.info.MatInfo;
 import br.com.mind5.business.material.info.MatMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 
-final class VisiMatMergeMatGroup extends ActionVisitorTemplateMergeV2<MatInfo, MatGroupInfo> {
+final class VisiMatMergeMatGroup extends ActionVisitorTemplateMerge<MatInfo, MatGroupInfo> {
 	
 	public VisiMatMergeMatGroup(Connection conn, String schemaName) {
 		super(conn, schemaName, MatGroupInfo.class);
@@ -31,6 +31,6 @@ final class VisiMatMergeMatGroup extends ActionVisitorTemplateMergeV2<MatInfo, M
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMerge.MERGE_WHEN_EMPTY;
 	}
 }

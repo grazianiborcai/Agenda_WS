@@ -3,7 +3,7 @@ package br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.action;
 import java.sql.Connection;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.payment.systemPartner.info.SysparCopier;
 import br.com.mind5.payment.systemPartner.info.SysparInfo;
@@ -11,7 +11,7 @@ import br.com.mind5.payment.systemPartner.model.decisionTree.RootSysparSelect;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.info.OrdmoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.info.OrdmoipMerger;
 
-final class VisiOrdmoipMergeSyspar extends ActionVisitorTemplateMergeV2<OrdmoipInfo, SysparInfo> {
+final class VisiOrdmoipMergeSyspar extends ActionVisitorTemplateMerge<OrdmoipInfo, SysparInfo> {
 	
 	public VisiOrdmoipMergeSyspar(Connection conn, String schemaName) {
 		super(conn, schemaName, SysparInfo.class);
@@ -38,6 +38,6 @@ final class VisiOrdmoipMergeSyspar extends ActionVisitorTemplateMergeV2<OrdmoipI
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMerge.MERGE_WHEN_EMPTY;
 	}
 }

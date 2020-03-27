@@ -6,9 +6,9 @@ import java.util.List;
 import br.com.mind5.business.customerSnapshot.info.CusnapInfo;
 import br.com.mind5.business.customerSnapshot.info.CusnapMerger;
 import br.com.mind5.model.action.ActionStd;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 
-final class VisiCusnapMergeToSelect extends ActionVisitorTemplateMergeV2<CusnapInfo, CusnapInfo> {
+final class VisiCusnapMergeToSelect extends ActionVisitorTemplateMerge<CusnapInfo, CusnapInfo> {
 	
 	public VisiCusnapMergeToSelect(Connection conn, String schemaName) {
 		super(conn, schemaName, CusnapInfo.class);
@@ -29,6 +29,6 @@ final class VisiCusnapMergeToSelect extends ActionVisitorTemplateMergeV2<CusnapI
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
 	}
 }

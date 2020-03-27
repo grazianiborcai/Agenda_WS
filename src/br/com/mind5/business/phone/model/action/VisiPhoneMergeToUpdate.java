@@ -6,9 +6,9 @@ import java.util.List;
 import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.business.phone.info.PhoneMerger;
 import br.com.mind5.model.action.ActionStd;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 
-final class VisiPhoneMergeToUpdate extends ActionVisitorTemplateMergeV2<PhoneInfo, PhoneInfo> {
+final class VisiPhoneMergeToUpdate extends ActionVisitorTemplateMerge<PhoneInfo, PhoneInfo> {
 	
 	public VisiPhoneMergeToUpdate(Connection conn, String schemaName) {
 		super(conn, schemaName, PhoneInfo.class);
@@ -29,6 +29,6 @@ final class VisiPhoneMergeToUpdate extends ActionVisitorTemplateMergeV2<PhoneInf
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
 	}
 }

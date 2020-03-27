@@ -3,14 +3,14 @@ package br.com.mind5.payment.storePartner.model.action;
 import java.sql.Connection;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.payment.storePartner.info.StoparInfo;
 import br.com.mind5.payment.storePartner.info.StoparMerger;
 import br.com.mind5.payment.storePartnerSearch.info.StoparchInfo;
 import br.com.mind5.payment.storePartnerSearch.model.decisionTree.RootStoparchSelect;
 
-final class VisiStoparMergeStoparch extends ActionVisitorTemplateMergeV2<StoparInfo, StoparchInfo> {
+final class VisiStoparMergeStoparch extends ActionVisitorTemplateMerge<StoparInfo, StoparchInfo> {
 	
 	public VisiStoparMergeStoparch(Connection conn, String schemaName) {
 		super(conn, schemaName, StoparchInfo.class);
@@ -31,6 +31,6 @@ final class VisiStoparMergeStoparch extends ActionVisitorTemplateMergeV2<StoparI
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
 	}
 }

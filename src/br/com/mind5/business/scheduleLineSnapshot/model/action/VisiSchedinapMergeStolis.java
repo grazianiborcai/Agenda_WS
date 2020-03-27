@@ -7,10 +7,10 @@ import br.com.mind5.business.scheduleLineSnapshot.info.SchedinapInfo;
 import br.com.mind5.business.scheduleLineSnapshot.info.SchedinapMerger;
 import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.business.storeList.model.decisionTree.RootStolisSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 
-final class VisiSchedinapMergeStolis extends ActionVisitorTemplateMergeV2<SchedinapInfo, StolisInfo> {
+final class VisiSchedinapMergeStolis extends ActionVisitorTemplateMerge<SchedinapInfo, StolisInfo> {
 	
 	public VisiSchedinapMergeStolis(Connection conn, String schemaName) {
 		super(conn, schemaName, StolisInfo.class);
@@ -31,6 +31,6 @@ final class VisiSchedinapMergeStolis extends ActionVisitorTemplateMergeV2<Schedi
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMerge.MERGE_WHEN_EMPTY;
 	}
 }

@@ -7,10 +7,10 @@ import br.com.mind5.business.employeePosition.info.EmposInfo;
 import br.com.mind5.business.employeePosition.info.EmposMerger;
 import br.com.mind5.business.masterData.info.PositionInfo;
 import br.com.mind5.business.masterData.model.decisionTree.RootPositionSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 
-final class VisiEmposMergePosition extends ActionVisitorTemplateMergeV2<EmposInfo, PositionInfo> {
+final class VisiEmposMergePosition extends ActionVisitorTemplateMerge<EmposInfo, PositionInfo> {
 	
 	public VisiEmposMergePosition(Connection conn, String schemaName) {
 		super(conn, schemaName, PositionInfo.class);
@@ -31,6 +31,6 @@ final class VisiEmposMergePosition extends ActionVisitorTemplateMergeV2<EmposInf
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMerge.MERGE_WHEN_EMPTY;
 	}
 }

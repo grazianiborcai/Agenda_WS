@@ -6,9 +6,9 @@ import java.util.List;
 import br.com.mind5.business.orderSearch.info.OrdarchInfo;
 import br.com.mind5.business.orderSearch.info.OrdarchMerger;
 import br.com.mind5.model.action.ActionStd;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 
-final class VisiOrdarchMergeToSelect extends ActionVisitorTemplateMergeV2<OrdarchInfo, OrdarchInfo> {
+final class VisiOrdarchMergeToSelect extends ActionVisitorTemplateMerge<OrdarchInfo, OrdarchInfo> {
 	
 	public VisiOrdarchMergeToSelect(Connection conn, String schemaName) {
 		super(conn, schemaName, OrdarchInfo.class);
@@ -29,6 +29,6 @@ final class VisiOrdarchMergeToSelect extends ActionVisitorTemplateMergeV2<Ordarc
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
 	}
 }

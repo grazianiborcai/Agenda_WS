@@ -7,10 +7,10 @@ import br.com.mind5.business.masterData.info.MonthInfo;
 import br.com.mind5.business.masterData.model.decisionTree.RootMonthSelect;
 import br.com.mind5.business.scheduleWeekData.info.SchedeekdatInfo;
 import br.com.mind5.business.scheduleWeekData.info.SchedeekdatMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 
-final class VisiSchedeekdatMergeMonth extends ActionVisitorTemplateMergeV2<SchedeekdatInfo, MonthInfo> {
+final class VisiSchedeekdatMergeMonth extends ActionVisitorTemplateMerge<SchedeekdatInfo, MonthInfo> {
 
 	public VisiSchedeekdatMergeMonth(Connection conn, String schemaName) {
 		super(conn, schemaName, MonthInfo.class);
@@ -31,6 +31,6 @@ final class VisiSchedeekdatMergeMonth extends ActionVisitorTemplateMergeV2<Sched
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
 	}
 }

@@ -6,9 +6,9 @@ import java.util.List;
 import br.com.mind5.business.cartReserve.info.CarterveInfo;
 import br.com.mind5.business.cartReserve.info.CarterveMerger;
 import br.com.mind5.model.action.ActionStd;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 
-final class VisiCarterveMergeToSelect extends ActionVisitorTemplateMergeV2<CarterveInfo, CarterveInfo> {
+final class VisiCarterveMergeToSelect extends ActionVisitorTemplateMerge<CarterveInfo, CarterveInfo> {
 	
 	public VisiCarterveMergeToSelect(Connection conn, String schemaName) {
 		super(conn, schemaName, CarterveInfo.class);
@@ -29,6 +29,6 @@ final class VisiCarterveMergeToSelect extends ActionVisitorTemplateMergeV2<Carte
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
 	}
 }

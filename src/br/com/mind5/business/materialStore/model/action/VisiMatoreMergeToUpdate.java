@@ -6,9 +6,9 @@ import java.util.List;
 import br.com.mind5.business.materialStore.info.MatoreInfo;
 import br.com.mind5.business.materialStore.info.MatoreMerger;
 import br.com.mind5.model.action.ActionStd;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 
-final class VisiMatoreMergeToUpdate extends ActionVisitorTemplateMergeV2<MatoreInfo, MatoreInfo> {
+final class VisiMatoreMergeToUpdate extends ActionVisitorTemplateMerge<MatoreInfo, MatoreInfo> {
 	
 	public VisiMatoreMergeToUpdate(Connection conn, String schemaName) {
 		super(conn, schemaName, MatoreInfo.class);
@@ -29,6 +29,6 @@ final class VisiMatoreMergeToUpdate extends ActionVisitorTemplateMergeV2<MatoreI
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
 	}
 }

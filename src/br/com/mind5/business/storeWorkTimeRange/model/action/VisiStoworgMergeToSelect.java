@@ -6,9 +6,9 @@ import java.util.List;
 import br.com.mind5.business.storeWorkTimeRange.info.StoworgInfo;
 import br.com.mind5.business.storeWorkTimeRange.info.StoworgMerger;
 import br.com.mind5.model.action.ActionStd;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 
-final class VisiStoworgMergeToSelect extends ActionVisitorTemplateMergeV2<StoworgInfo, StoworgInfo> {
+final class VisiStoworgMergeToSelect extends ActionVisitorTemplateMerge<StoworgInfo, StoworgInfo> {
 	
 	public VisiStoworgMergeToSelect(Connection conn, String schemaName) {
 		super(conn, schemaName, StoworgInfo.class);
@@ -29,6 +29,6 @@ final class VisiStoworgMergeToSelect extends ActionVisitorTemplateMergeV2<Stowor
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
 	}
 }

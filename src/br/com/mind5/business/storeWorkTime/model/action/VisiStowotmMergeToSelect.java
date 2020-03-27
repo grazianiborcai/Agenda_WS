@@ -6,9 +6,9 @@ import java.util.List;
 import br.com.mind5.business.storeWorkTime.info.StowotmInfo;
 import br.com.mind5.business.storeWorkTime.info.StowotmMerger;
 import br.com.mind5.model.action.ActionStd;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 
-final class VisiStowotmMergeToSelect extends ActionVisitorTemplateMergeV2<StowotmInfo, StowotmInfo> {
+final class VisiStowotmMergeToSelect extends ActionVisitorTemplateMerge<StowotmInfo, StowotmInfo> {
 	
 	public VisiStowotmMergeToSelect(Connection conn, String schemaName) {
 		super(conn, schemaName, StowotmInfo.class);
@@ -29,6 +29,6 @@ final class VisiStowotmMergeToSelect extends ActionVisitorTemplateMergeV2<Stowot
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
 	}
 }

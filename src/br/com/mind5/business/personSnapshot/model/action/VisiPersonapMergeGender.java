@@ -7,10 +7,10 @@ import br.com.mind5.business.masterData.info.GenderInfo;
 import br.com.mind5.business.masterData.model.decisionTree.RootGenderSelect;
 import br.com.mind5.business.personSnapshot.info.PersonapInfo;
 import br.com.mind5.business.personSnapshot.info.PersonapMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 
-final class VisiPersonapMergeGender extends ActionVisitorTemplateMergeV2<PersonapInfo, GenderInfo> {
+final class VisiPersonapMergeGender extends ActionVisitorTemplateMerge<PersonapInfo, GenderInfo> {
 	
 	public VisiPersonapMergeGender(Connection conn, String schemaName) {
 		super(conn, schemaName, GenderInfo.class);
@@ -31,6 +31,6 @@ final class VisiPersonapMergeGender extends ActionVisitorTemplateMergeV2<Persona
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMerge.MERGE_WHEN_EMPTY;
 	}
 }

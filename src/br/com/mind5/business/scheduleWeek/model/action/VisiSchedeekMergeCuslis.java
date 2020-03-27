@@ -8,10 +8,10 @@ import br.com.mind5.business.customerList.info.CuslisInfo;
 import br.com.mind5.business.customerList.model.decisionTree.RootCuslisSelect;
 import br.com.mind5.business.scheduleWeek.info.SchedeekInfo;
 import br.com.mind5.business.scheduleWeek.info.SchedeekMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 
-final class VisiSchedeekMergeCuslis extends ActionVisitorTemplateMergeV2<SchedeekInfo, CuslisInfo> {
+final class VisiSchedeekMergeCuslis extends ActionVisitorTemplateMerge<SchedeekInfo, CuslisInfo> {
 	
 	public VisiSchedeekMergeCuslis(Connection conn, String schemaName) {
 		super(conn, schemaName, CuslisInfo.class);
@@ -38,6 +38,6 @@ final class VisiSchedeekMergeCuslis extends ActionVisitorTemplateMergeV2<Schedee
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
 	}
 }

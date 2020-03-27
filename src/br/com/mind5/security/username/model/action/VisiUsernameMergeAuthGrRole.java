@@ -5,12 +5,12 @@ import java.util.List;
 
 import br.com.mind5.business.masterData.info.AuthGrRoleInfo;
 import br.com.mind5.business.masterData.model.decisionTree.RootAuthGrRoleSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.security.username.info.UsernameInfo;
 import br.com.mind5.security.username.info.UsernameMerger;
 
-final class VisiUsernameMergeAuthGrRole extends ActionVisitorTemplateMergeV2<UsernameInfo, AuthGrRoleInfo> {
+final class VisiUsernameMergeAuthGrRole extends ActionVisitorTemplateMerge<UsernameInfo, AuthGrRoleInfo> {
 	
 	public VisiUsernameMergeAuthGrRole(Connection conn, String schemaName) {
 		super(conn, schemaName, AuthGrRoleInfo.class);
@@ -31,6 +31,6 @@ final class VisiUsernameMergeAuthGrRole extends ActionVisitorTemplateMergeV2<Use
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMerge.MERGE_WHEN_EMPTY;
 	}
 }

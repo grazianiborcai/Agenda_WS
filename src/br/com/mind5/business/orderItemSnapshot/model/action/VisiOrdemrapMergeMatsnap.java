@@ -8,10 +8,10 @@ import br.com.mind5.business.materialSnapshot.info.MatsnapInfo;
 import br.com.mind5.business.materialSnapshot.model.decisionTree.RootMatsnapSelect;
 import br.com.mind5.business.orderItemSnapshot.info.OrdemrapInfo;
 import br.com.mind5.business.orderItemSnapshot.info.OrdemrapMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 
-final class VisiOrdemrapMergeMatsnap extends ActionVisitorTemplateMergeV2<OrdemrapInfo, MatsnapInfo> {
+final class VisiOrdemrapMergeMatsnap extends ActionVisitorTemplateMerge<OrdemrapInfo, MatsnapInfo> {
 	
 	public VisiOrdemrapMergeMatsnap(Connection conn, String schemaName) {
 		super(conn, schemaName, MatsnapInfo.class);
@@ -38,6 +38,6 @@ final class VisiOrdemrapMergeMatsnap extends ActionVisitorTemplateMergeV2<Ordemr
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMerge.MERGE_WHEN_EMPTY;
 	}
 }

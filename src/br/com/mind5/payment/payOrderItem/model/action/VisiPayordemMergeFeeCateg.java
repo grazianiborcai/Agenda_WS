@@ -5,12 +5,12 @@ import java.util.List;
 
 import br.com.mind5.business.masterData.info.FeeCategInfo;
 import br.com.mind5.business.masterData.model.decisionTree.RootFeeCategSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.payment.payOrderItem.info.PayordemInfo;
 import br.com.mind5.payment.payOrderItem.info.PayordemMerger;
 
-final class VisiPayordemMergeFeeCateg extends ActionVisitorTemplateMergeV2<PayordemInfo, FeeCategInfo> {
+final class VisiPayordemMergeFeeCateg extends ActionVisitorTemplateMerge<PayordemInfo, FeeCategInfo> {
 	
 	public VisiPayordemMergeFeeCateg(Connection conn, String schemaName) {
 		super(conn, schemaName, FeeCategInfo.class);
@@ -31,6 +31,6 @@ final class VisiPayordemMergeFeeCateg extends ActionVisitorTemplateMergeV2<Payor
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
 	}
 }

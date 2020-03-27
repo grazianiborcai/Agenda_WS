@@ -6,9 +6,9 @@ import java.util.List;
 import br.com.mind5.business.scheduleLine.info.SchedineInfo;
 import br.com.mind5.business.scheduleLine.info.SchedineMerger;
 import br.com.mind5.model.action.ActionStd;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 
-final class VisiSchedineMergeToUpdate extends ActionVisitorTemplateMergeV2<SchedineInfo, SchedineInfo> {
+final class VisiSchedineMergeToUpdate extends ActionVisitorTemplateMerge<SchedineInfo, SchedineInfo> {
 	
 	public VisiSchedineMergeToUpdate(Connection conn, String schemaName) {
 		super(conn, schemaName, SchedineInfo.class);
@@ -29,6 +29,6 @@ final class VisiSchedineMergeToUpdate extends ActionVisitorTemplateMergeV2<Sched
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
 	}
 }

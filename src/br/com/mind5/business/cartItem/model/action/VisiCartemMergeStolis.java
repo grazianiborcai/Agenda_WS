@@ -7,10 +7,10 @@ import br.com.mind5.business.cartItem.info.CartemInfo;
 import br.com.mind5.business.cartItem.info.CartemMerger;
 import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.business.storeList.model.decisionTree.RootStolisSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 
-final class VisiCartemMergeStolis extends ActionVisitorTemplateMergeV2<CartemInfo, StolisInfo> {
+final class VisiCartemMergeStolis extends ActionVisitorTemplateMerge<CartemInfo, StolisInfo> {
 	
 	public VisiCartemMergeStolis(Connection conn, String schemaName) {
 		super(conn, schemaName, StolisInfo.class);
@@ -31,6 +31,6 @@ final class VisiCartemMergeStolis extends ActionVisitorTemplateMergeV2<CartemInf
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMerge.MERGE_WHEN_EMPTY;
 	}
 }

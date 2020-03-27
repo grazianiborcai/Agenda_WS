@@ -7,10 +7,10 @@ import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.address.info.AddressMerger;
 import br.com.mind5.business.addressSearch.info.AddarchInfo;
 import br.com.mind5.business.addressSearch.model.decisionTree.RootAddarchSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 
-final class VisiAddressMergeAddarch extends ActionVisitorTemplateMergeV2<AddressInfo, AddarchInfo> {
+final class VisiAddressMergeAddarch extends ActionVisitorTemplateMerge<AddressInfo, AddarchInfo> {
 	
 	public VisiAddressMergeAddarch(Connection conn, String schemaName) {
 		super(conn, schemaName, AddarchInfo.class);
@@ -31,6 +31,6 @@ final class VisiAddressMergeAddarch extends ActionVisitorTemplateMergeV2<Address
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
 	}
 }

@@ -6,9 +6,9 @@ import java.util.List;
 import br.com.mind5.business.scheduleWeekData.info.SchedeekdatInfo;
 import br.com.mind5.business.scheduleWeekData.info.SchedeekdatMerger;
 import br.com.mind5.model.action.ActionStd;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 
-final class VisiSchedeekdatMergeToSelect extends ActionVisitorTemplateMergeV2<SchedeekdatInfo, SchedeekdatInfo> {
+final class VisiSchedeekdatMergeToSelect extends ActionVisitorTemplateMerge<SchedeekdatInfo, SchedeekdatInfo> {
 	
 	public VisiSchedeekdatMergeToSelect(Connection conn, String schemaName) {
 		super(conn, schemaName, SchedeekdatInfo.class);
@@ -29,6 +29,6 @@ final class VisiSchedeekdatMergeToSelect extends ActionVisitorTemplateMergeV2<Sc
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
 	}
 }

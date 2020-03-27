@@ -7,10 +7,10 @@ import br.com.mind5.business.masterData.info.CountryInfo;
 import br.com.mind5.business.masterData.info.CountryLegalInfo;
 import br.com.mind5.business.masterData.info.CountryLegalMerger;
 import br.com.mind5.business.masterData.model.decisionTree.RootCountrySelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 
-final class VisiCountryLegalMergeCountry extends ActionVisitorTemplateMergeV2<CountryLegalInfo, CountryInfo> {
+final class VisiCountryLegalMergeCountry extends ActionVisitorTemplateMerge<CountryLegalInfo, CountryInfo> {
 	
 	public VisiCountryLegalMergeCountry(Connection conn, String schemaName) {
 		super(conn, schemaName, CountryInfo.class);
@@ -31,6 +31,6 @@ final class VisiCountryLegalMergeCountry extends ActionVisitorTemplateMergeV2<Co
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMerge.MERGE_WHEN_EMPTY;
 	}
 }

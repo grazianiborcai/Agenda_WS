@@ -3,14 +3,14 @@ package br.com.mind5.security.storeAuthorization.model.action;
 import java.sql.Connection;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.security.storeAuthorization.info.StorauthInfo;
 import br.com.mind5.security.storeAuthorization.info.StorauthMerger;
 import br.com.mind5.security.username.info.UsernameInfo;
 import br.com.mind5.security.username.model.decisionTree.RootUsernameSelect;
 
-final class VisiStorauthMergeUsername extends ActionVisitorTemplateMergeV2<StorauthInfo, UsernameInfo> {
+final class VisiStorauthMergeUsername extends ActionVisitorTemplateMerge<StorauthInfo, UsernameInfo> {
 	
 	public VisiStorauthMergeUsername(Connection conn, String schemaName) {
 		super(conn, schemaName, UsernameInfo.class);
@@ -31,6 +31,6 @@ final class VisiStorauthMergeUsername extends ActionVisitorTemplateMergeV2<Stora
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMerge.MERGE_WHEN_EMPTY;
 	}
 }

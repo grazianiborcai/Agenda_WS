@@ -8,10 +8,10 @@ import br.com.mind5.business.materialText.info.MatextInfo;
 import br.com.mind5.business.materialText.model.decisionTree.RootMatextSearch;
 import br.com.mind5.business.materialTextSnapshot.info.MatextsnapInfo;
 import br.com.mind5.business.materialTextSnapshot.info.MatextsnapMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 
-final class VisiMatextsnapMergeMatext extends ActionVisitorTemplateMergeV2<MatextsnapInfo, MatextInfo> {
+final class VisiMatextsnapMergeMatext extends ActionVisitorTemplateMerge<MatextsnapInfo, MatextInfo> {
 	
 	public VisiMatextsnapMergeMatext(Connection conn, String schemaName) {
 		super(conn, schemaName, MatextInfo.class);
@@ -38,6 +38,6 @@ final class VisiMatextsnapMergeMatext extends ActionVisitorTemplateMergeV2<Matex
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
 	}
 }

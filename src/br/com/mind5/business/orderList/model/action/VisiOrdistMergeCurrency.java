@@ -7,10 +7,10 @@ import br.com.mind5.business.masterData.info.CurrencyInfo;
 import br.com.mind5.business.masterData.model.decisionTree.RootCurrencySelect;
 import br.com.mind5.business.orderList.info.OrdistInfo;
 import br.com.mind5.business.orderList.info.OrdistMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 
-final class VisiOrdistMergeCurrency extends ActionVisitorTemplateMergeV2<OrdistInfo, CurrencyInfo> {
+final class VisiOrdistMergeCurrency extends ActionVisitorTemplateMerge<OrdistInfo, CurrencyInfo> {
 	
 	public VisiOrdistMergeCurrency(Connection conn, String schemaName) {
 		super(conn, schemaName, CurrencyInfo.class);
@@ -31,6 +31,6 @@ final class VisiOrdistMergeCurrency extends ActionVisitorTemplateMergeV2<OrdistI
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMerge.MERGE_WHEN_EMPTY;
 	}
 }

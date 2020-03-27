@@ -6,10 +6,10 @@ import java.util.List;
 import br.com.mind5.business.person.info.PersonInfo;
 import br.com.mind5.business.person.info.PersonMerger;
 import br.com.mind5.business.person.model.decisionTree.RootPersonSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 
-final class VisiPersonMergeToDelete extends ActionVisitorTemplateMergeV2<PersonInfo, PersonInfo> {
+final class VisiPersonMergeToDelete extends ActionVisitorTemplateMerge<PersonInfo, PersonInfo> {
 	
 	public VisiPersonMergeToDelete(Connection conn, String schemaName) {
 		super(conn, schemaName, PersonInfo.class);
@@ -30,6 +30,6 @@ final class VisiPersonMergeToDelete extends ActionVisitorTemplateMergeV2<PersonI
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
 	}
 }

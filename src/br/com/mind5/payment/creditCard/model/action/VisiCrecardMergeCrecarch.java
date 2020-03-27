@@ -3,14 +3,14 @@ package br.com.mind5.payment.creditCard.model.action;
 import java.sql.Connection;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
 import br.com.mind5.payment.creditCard.info.CrecardMerger;
 import br.com.mind5.payment.creditCardSearch.info.CrecarchInfo;
 import br.com.mind5.payment.creditCardSearch.model.decisionTree.RootCrecarchSelect;
 
-final class VisiCrecardMergeCrecarch extends ActionVisitorTemplateMergeV2<CrecardInfo, CrecarchInfo> {
+final class VisiCrecardMergeCrecarch extends ActionVisitorTemplateMerge<CrecardInfo, CrecarchInfo> {
 	
 	public VisiCrecardMergeCrecarch(Connection conn, String schemaName) {
 		super(conn, schemaName, CrecarchInfo.class);
@@ -31,6 +31,6 @@ final class VisiCrecardMergeCrecarch extends ActionVisitorTemplateMergeV2<Crecar
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
 	}
 }

@@ -6,9 +6,9 @@ import java.util.List;
 import br.com.mind5.business.scheduleSearch.info.SchedarchInfo;
 import br.com.mind5.business.scheduleSearch.info.SchedarchMerger;
 import br.com.mind5.model.action.ActionStd;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 
-final class VisiSchedarchMergeToSelect extends ActionVisitorTemplateMergeV2<SchedarchInfo, SchedarchInfo> {
+final class VisiSchedarchMergeToSelect extends ActionVisitorTemplateMerge<SchedarchInfo, SchedarchInfo> {
 	
 	public VisiSchedarchMergeToSelect(Connection conn, String schemaName) {
 		super(conn, schemaName, SchedarchInfo.class);
@@ -29,6 +29,6 @@ final class VisiSchedarchMergeToSelect extends ActionVisitorTemplateMergeV2<Sche
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
 	}
 }

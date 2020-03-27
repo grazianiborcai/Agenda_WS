@@ -5,13 +5,13 @@ import java.util.List;
 
 import br.com.mind5.business.employeeWorkTime.info.EmpwotmInfo;
 import br.com.mind5.business.employeeWorkTime.info.EmpwotmMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.security.username.info.UsernameCopier;
 import br.com.mind5.security.username.info.UsernameInfo;
 import br.com.mind5.security.username.model.decisionTree.RootUsernameSelect;
 
-final class VisiEmpwotmMergeUsername extends ActionVisitorTemplateMergeV2<EmpwotmInfo, UsernameInfo> {
+final class VisiEmpwotmMergeUsername extends ActionVisitorTemplateMerge<EmpwotmInfo, UsernameInfo> {
 	
 	public VisiEmpwotmMergeUsername(Connection conn, String schemaName) {
 		super(conn, schemaName, UsernameInfo.class);
@@ -38,6 +38,6 @@ final class VisiEmpwotmMergeUsername extends ActionVisitorTemplateMergeV2<Empwot
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMerge.MERGE_WHEN_EMPTY;
 	}
 }

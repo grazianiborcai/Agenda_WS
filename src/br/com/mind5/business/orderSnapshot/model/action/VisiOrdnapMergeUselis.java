@@ -5,12 +5,12 @@ import java.util.List;
 
 import br.com.mind5.business.orderSnapshot.info.OrdnapInfo;
 import br.com.mind5.business.orderSnapshot.info.OrdnapMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.security.userList.info.UselisInfo;
 import br.com.mind5.security.userList.model.decisionTree.RootUselisSelect;
 
-final class VisiOrdnapMergeUselis extends ActionVisitorTemplateMergeV2<OrdnapInfo, UselisInfo> {
+final class VisiOrdnapMergeUselis extends ActionVisitorTemplateMerge<OrdnapInfo, UselisInfo> {
 	
 	public VisiOrdnapMergeUselis(Connection conn, String schemaName) {
 		super(conn, schemaName, UselisInfo.class);
@@ -31,6 +31,6 @@ final class VisiOrdnapMergeUselis extends ActionVisitorTemplateMergeV2<OrdnapInf
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
 	}
 }

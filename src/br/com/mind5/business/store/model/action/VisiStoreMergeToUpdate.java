@@ -7,9 +7,9 @@ import br.com.mind5.business.store.info.StoreCopier;
 import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.business.store.info.StoreMerger;
 import br.com.mind5.model.action.ActionStd;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 
-final class VisiStoreMergeToUpdate extends ActionVisitorTemplateMergeV2<StoreInfo, StoreInfo> {
+final class VisiStoreMergeToUpdate extends ActionVisitorTemplateMerge<StoreInfo, StoreInfo> {
 	
 	public VisiStoreMergeToUpdate(Connection conn, String schemaName) {
 		super(conn, schemaName, StoreInfo.class);
@@ -36,6 +36,6 @@ final class VisiStoreMergeToUpdate extends ActionVisitorTemplateMergeV2<StoreInf
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
 	}	
 }

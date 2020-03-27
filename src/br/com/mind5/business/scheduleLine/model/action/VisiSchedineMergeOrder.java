@@ -7,10 +7,10 @@ import br.com.mind5.business.order.info.OrderInfo;
 import br.com.mind5.business.order.model.decisionTree.RootOrderSelect;
 import br.com.mind5.business.scheduleLine.info.SchedineInfo;
 import br.com.mind5.business.scheduleLine.info.SchedineMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 
-final class VisiSchedineMergeOrder extends ActionVisitorTemplateMergeV2<SchedineInfo, OrderInfo> {
+final class VisiSchedineMergeOrder extends ActionVisitorTemplateMerge<SchedineInfo, OrderInfo> {
 	
 	public VisiSchedineMergeOrder(Connection conn, String schemaName) {
 		super(conn, schemaName, OrderInfo.class);
@@ -31,6 +31,6 @@ final class VisiSchedineMergeOrder extends ActionVisitorTemplateMergeV2<Schedine
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMerge.MERGE_WHEN_EMPTY;
 	}
 }

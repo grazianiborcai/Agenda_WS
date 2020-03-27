@@ -6,9 +6,9 @@ import java.util.List;
 import br.com.mind5.business.storeSearch.info.SotarchInfo;
 import br.com.mind5.business.storeSearch.info.SotarchMerger;
 import br.com.mind5.model.action.ActionStd;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 
-final class VisiSotarchMergeToSelect extends ActionVisitorTemplateMergeV2<SotarchInfo, SotarchInfo> {
+final class VisiSotarchMergeToSelect extends ActionVisitorTemplateMerge<SotarchInfo, SotarchInfo> {
 	
 	public VisiSotarchMergeToSelect(Connection conn, String schemaName) {
 		super(conn, schemaName, SotarchInfo.class);
@@ -29,6 +29,6 @@ final class VisiSotarchMergeToSelect extends ActionVisitorTemplateMergeV2<Sotarc
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
 	}
 }

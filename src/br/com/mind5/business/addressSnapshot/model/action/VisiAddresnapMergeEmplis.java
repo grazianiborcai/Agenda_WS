@@ -8,10 +8,10 @@ import br.com.mind5.business.addressSnapshot.info.AddresnapMerger;
 import br.com.mind5.business.employeeList.info.EmplisCopier;
 import br.com.mind5.business.employeeList.info.EmplisInfo;
 import br.com.mind5.business.employeeList.model.decisionTree.RootEmplisSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 
-final class VisiAddresnapMergeEmplis extends ActionVisitorTemplateMergeV2<AddresnapInfo, EmplisInfo> {
+final class VisiAddresnapMergeEmplis extends ActionVisitorTemplateMerge<AddresnapInfo, EmplisInfo> {
 	
 	public VisiAddresnapMergeEmplis(Connection conn, String schemaName) {
 		super(conn, schemaName, EmplisInfo.class);
@@ -37,6 +37,6 @@ final class VisiAddresnapMergeEmplis extends ActionVisitorTemplateMergeV2<Addres
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMerge.MERGE_WHEN_EMPTY;
 	}
 }

@@ -7,10 +7,10 @@ import br.com.mind5.business.orderList.info.OrdistInfo;
 import br.com.mind5.business.orderList.model.decisionTree.RootOrdistSelect;
 import br.com.mind5.business.scheduleLine.info.SchedineInfo;
 import br.com.mind5.business.scheduleLine.info.SchedineMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 
-final class VisiSchedineMergeOrdist extends ActionVisitorTemplateMergeV2<SchedineInfo, OrdistInfo> {
+final class VisiSchedineMergeOrdist extends ActionVisitorTemplateMerge<SchedineInfo, OrdistInfo> {
 	
 	public VisiSchedineMergeOrdist(Connection conn, String schemaName) {
 		super(conn, schemaName, OrdistInfo.class);
@@ -31,6 +31,6 @@ final class VisiSchedineMergeOrdist extends ActionVisitorTemplateMergeV2<Schedin
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
 	}
 }

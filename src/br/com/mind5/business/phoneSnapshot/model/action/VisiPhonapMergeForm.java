@@ -7,10 +7,10 @@ import br.com.mind5.business.form.formPhone.info.FormPhoneInfo;
 import br.com.mind5.business.form.formPhone.model.decisionTree.RootFormPhoneSelect;
 import br.com.mind5.business.phoneSnapshot.info.PhonapInfo;
 import br.com.mind5.business.phoneSnapshot.info.PhonapMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 
-final class VisiPhonapMergeForm extends ActionVisitorTemplateMergeV2<PhonapInfo, FormPhoneInfo> {
+final class VisiPhonapMergeForm extends ActionVisitorTemplateMerge<PhonapInfo, FormPhoneInfo> {
 	
 	public VisiPhonapMergeForm(Connection conn, String schemaName) {
 		super(conn, schemaName, FormPhoneInfo.class);
@@ -31,6 +31,6 @@ final class VisiPhonapMergeForm extends ActionVisitorTemplateMergeV2<PhonapInfo,
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMerge.MERGE_WHEN_EMPTY;
 	}
 }

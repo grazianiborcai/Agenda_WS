@@ -7,10 +7,10 @@ import br.com.mind5.business.masterData.info.TimezoneInfo;
 import br.com.mind5.business.masterData.model.decisionTree.RootTimezoneSelect;
 import br.com.mind5.business.storeSnapshot.info.StorapInfo;
 import br.com.mind5.business.storeSnapshot.info.StorapMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 
-final class VisiStorapMergeTimezone extends ActionVisitorTemplateMergeV2<StorapInfo, TimezoneInfo> {
+final class VisiStorapMergeTimezone extends ActionVisitorTemplateMerge<StorapInfo, TimezoneInfo> {
 	
 	public VisiStorapMergeTimezone(Connection conn, String schemaName) {
 		super(conn, schemaName, TimezoneInfo.class);
@@ -31,6 +31,6 @@ final class VisiStorapMergeTimezone extends ActionVisitorTemplateMergeV2<StorapI
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMerge.MERGE_WHEN_EMPTY;
 	}
 }

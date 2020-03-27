@@ -7,10 +7,10 @@ import br.com.mind5.business.cartReserve.info.CarterveInfo;
 import br.com.mind5.business.cartReserve.model.decisionTree.RootCarterveSelect;
 import br.com.mind5.business.cartReserveConflict.info.CartercoInfo;
 import br.com.mind5.business.cartReserveConflict.info.CartercoMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 
-final class VisiCartercoMergeCarterve extends ActionVisitorTemplateMergeV2<CartercoInfo, CarterveInfo> {
+final class VisiCartercoMergeCarterve extends ActionVisitorTemplateMerge<CartercoInfo, CarterveInfo> {
 	
 	public VisiCartercoMergeCarterve(Connection conn, String schemaName) {
 		super(conn, schemaName, CarterveInfo.class);
@@ -31,6 +31,6 @@ final class VisiCartercoMergeCarterve extends ActionVisitorTemplateMergeV2<Carte
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
 	}
 }

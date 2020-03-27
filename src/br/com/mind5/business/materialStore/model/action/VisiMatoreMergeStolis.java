@@ -7,10 +7,10 @@ import br.com.mind5.business.materialStore.info.MatoreInfo;
 import br.com.mind5.business.materialStore.info.MatoreMerger;
 import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.business.storeList.model.decisionTree.RootStolisSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 
-final class VisiMatoreMergeStolis extends ActionVisitorTemplateMergeV2<MatoreInfo, StolisInfo> {
+final class VisiMatoreMergeStolis extends ActionVisitorTemplateMerge<MatoreInfo, StolisInfo> {
 	
 	public VisiMatoreMergeStolis(Connection conn, String schemaName) {
 		super(conn, schemaName, StolisInfo.class);
@@ -37,6 +37,6 @@ final class VisiMatoreMergeStolis extends ActionVisitorTemplateMergeV2<MatoreInf
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMerge.MERGE_WHEN_EMPTY;
 	}
 }

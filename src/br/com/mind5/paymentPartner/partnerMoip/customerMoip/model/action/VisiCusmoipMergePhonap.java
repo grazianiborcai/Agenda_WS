@@ -6,12 +6,12 @@ import java.util.List;
 import br.com.mind5.business.phoneSnapshot.info.PhonapCopier;
 import br.com.mind5.business.phoneSnapshot.info.PhonapInfo;
 import br.com.mind5.business.phoneSnapshot.model.decisionTree.RootPhonapSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.paymentPartner.partnerMoip.customerMoip.info.CusmoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.customerMoip.info.CusmoipMerger;
 
-final class VisiCusmoipMergePhonap extends ActionVisitorTemplateMergeV2<CusmoipInfo, PhonapInfo> {
+final class VisiCusmoipMergePhonap extends ActionVisitorTemplateMerge<CusmoipInfo, PhonapInfo> {
 	
 	public VisiCusmoipMergePhonap(Connection conn, String schemaName) {
 		super(conn, schemaName, PhonapInfo.class);
@@ -38,6 +38,6 @@ final class VisiCusmoipMergePhonap extends ActionVisitorTemplateMergeV2<CusmoipI
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
 	}
 }

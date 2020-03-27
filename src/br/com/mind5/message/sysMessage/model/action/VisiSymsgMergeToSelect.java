@@ -6,9 +6,9 @@ import java.util.List;
 import br.com.mind5.message.sysMessage.info.SymsgInfo;
 import br.com.mind5.message.sysMessage.info.SymsgMerger;
 import br.com.mind5.model.action.ActionStd;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 
-final class VisiSymsgMergeToSelect extends ActionVisitorTemplateMergeV2<SymsgInfo, SymsgInfo> {
+final class VisiSymsgMergeToSelect extends ActionVisitorTemplateMerge<SymsgInfo, SymsgInfo> {
 	
 	public VisiSymsgMergeToSelect(Connection conn, String schemaName) {
 		super(conn, schemaName, SymsgInfo.class);
@@ -29,6 +29,6 @@ final class VisiSymsgMergeToSelect extends ActionVisitorTemplateMergeV2<SymsgInf
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMerge.MERGE_WHEN_EMPTY;
 	}
 }

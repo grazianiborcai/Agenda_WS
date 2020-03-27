@@ -3,14 +3,14 @@ package br.com.mind5.paymentPartner.partnerMoip.refundMoip.model.action;
 import java.sql.Connection;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.payment.payOrderItemList.info.PayordemistInfo;
 import br.com.mind5.payment.payOrderItemList.model.decisionTree.RootPayordemistSelect;
 import br.com.mind5.paymentPartner.partnerMoip.refundMoip.info.RefumoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.refundMoip.info.RefumoipMerger;
 
-final class VisiRefumoipMergePayordemist extends ActionVisitorTemplateMergeV2<RefumoipInfo, PayordemistInfo> {
+final class VisiRefumoipMergePayordemist extends ActionVisitorTemplateMerge<RefumoipInfo, PayordemistInfo> {
 	
 	public VisiRefumoipMergePayordemist(Connection conn, String schemaName) {
 		super(conn, schemaName, PayordemistInfo.class);
@@ -31,6 +31,6 @@ final class VisiRefumoipMergePayordemist extends ActionVisitorTemplateMergeV2<Re
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
 	}
 }

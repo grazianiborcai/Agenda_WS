@@ -7,10 +7,10 @@ import br.com.mind5.message.emailWelcome.info.EmacomeInfo;
 import br.com.mind5.message.emailWelcome.info.EmacomeMerger;
 import br.com.mind5.business.ownerList.info.OwnelisInfo;
 import br.com.mind5.business.ownerList.model.decisionTree.RootOwnelisSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 
-final class VisiEmacomeMergeOwnelis extends ActionVisitorTemplateMergeV2<EmacomeInfo, OwnelisInfo> {
+final class VisiEmacomeMergeOwnelis extends ActionVisitorTemplateMerge<EmacomeInfo, OwnelisInfo> {
 	
 	public VisiEmacomeMergeOwnelis(Connection conn, String schemaName) {
 		super(conn, schemaName, OwnelisInfo.class);
@@ -31,6 +31,6 @@ final class VisiEmacomeMergeOwnelis extends ActionVisitorTemplateMergeV2<Emacome
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
 	}
 }

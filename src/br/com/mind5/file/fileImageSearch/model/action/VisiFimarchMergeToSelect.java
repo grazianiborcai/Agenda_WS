@@ -6,9 +6,9 @@ import java.util.List;
 import br.com.mind5.file.fileImageSearch.info.FimarchInfo;
 import br.com.mind5.file.fileImageSearch.info.FimarchMerger;
 import br.com.mind5.model.action.ActionStd;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 
-final class VisiFimarchMergeToSelect extends ActionVisitorTemplateMergeV2<FimarchInfo, FimarchInfo> {
+final class VisiFimarchMergeToSelect extends ActionVisitorTemplateMerge<FimarchInfo, FimarchInfo> {
 	
 	public VisiFimarchMergeToSelect(Connection conn, String schemaName) {
 		super(conn, schemaName, FimarchInfo.class);
@@ -35,6 +35,6 @@ final class VisiFimarchMergeToSelect extends ActionVisitorTemplateMergeV2<Fimarc
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
 	}
 }

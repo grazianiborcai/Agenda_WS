@@ -8,10 +8,10 @@ import br.com.mind5.business.customerList.info.CuslisMerger;
 import br.com.mind5.file.fileImageList.info.FimistCopier;
 import br.com.mind5.file.fileImageList.info.FimistInfo;
 import br.com.mind5.file.fileImageList.model.decisionTree.RootFimistSearch;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 
-final class VisiCuslisMergeFimist extends ActionVisitorTemplateMergeV2<CuslisInfo, FimistInfo> {
+final class VisiCuslisMergeFimist extends ActionVisitorTemplateMerge<CuslisInfo, FimistInfo> {
 	
 	public VisiCuslisMergeFimist(Connection conn, String schemaName) {
 		super(conn, schemaName, FimistInfo.class);
@@ -38,6 +38,6 @@ final class VisiCuslisMergeFimist extends ActionVisitorTemplateMergeV2<CuslisInf
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMerge.MERGE_WHEN_EMPTY;
 	}
 }

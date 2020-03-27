@@ -7,10 +7,10 @@ import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.address.info.AddressMerger;
 import br.com.mind5.business.masterData.info.CountryInfo;
 import br.com.mind5.business.masterData.model.decisionTree.RootCountrySelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 
-final class VisiAddressMergeCountry extends ActionVisitorTemplateMergeV2<AddressInfo, CountryInfo> {
+final class VisiAddressMergeCountry extends ActionVisitorTemplateMerge<AddressInfo, CountryInfo> {
 	
 	public VisiAddressMergeCountry(Connection conn, String schemaName) {
 		super(conn, schemaName, CountryInfo.class);
@@ -31,6 +31,6 @@ final class VisiAddressMergeCountry extends ActionVisitorTemplateMergeV2<Address
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMerge.MERGE_WHEN_EMPTY;
 	}
 }

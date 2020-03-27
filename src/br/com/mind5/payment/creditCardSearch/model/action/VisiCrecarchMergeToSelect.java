@@ -4,11 +4,11 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionStd;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.payment.creditCardSearch.info.CrecarchInfo;
 import br.com.mind5.payment.creditCardSearch.info.CrecarchMerger;
 
-final class VisiCrecarchMergeToSelect extends ActionVisitorTemplateMergeV2<CrecarchInfo, CrecarchInfo> {
+final class VisiCrecarchMergeToSelect extends ActionVisitorTemplateMerge<CrecarchInfo, CrecarchInfo> {
 	
 	public VisiCrecarchMergeToSelect(Connection conn, String schemaName) {
 		super(conn, schemaName, CrecarchInfo.class);
@@ -29,6 +29,6 @@ final class VisiCrecarchMergeToSelect extends ActionVisitorTemplateMergeV2<Creca
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
 	}
 }

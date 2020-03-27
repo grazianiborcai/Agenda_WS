@@ -7,10 +7,10 @@ import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.address.info.AddressMerger;
 import br.com.mind5.business.form.formAddress.info.FormAddressInfo;
 import br.com.mind5.business.form.formAddress.model.decisionTree.RootFormAddressSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 
-final class VisiAddressMergeForm extends ActionVisitorTemplateMergeV2<AddressInfo, FormAddressInfo> {
+final class VisiAddressMergeForm extends ActionVisitorTemplateMerge<AddressInfo, FormAddressInfo> {
 	
 	public VisiAddressMergeForm(Connection conn, String schemaName) {
 		super(conn, schemaName, FormAddressInfo.class);
@@ -31,6 +31,6 @@ final class VisiAddressMergeForm extends ActionVisitorTemplateMergeV2<AddressInf
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMerge.MERGE_WHEN_EMPTY;
 	}
 }

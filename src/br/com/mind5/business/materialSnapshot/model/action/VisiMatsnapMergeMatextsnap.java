@@ -7,10 +7,10 @@ import br.com.mind5.business.materialSnapshot.info.MatsnapInfo;
 import br.com.mind5.business.materialSnapshot.info.MatsnapMerger;
 import br.com.mind5.business.materialTextSnapshot.info.MatextsnapInfo;
 import br.com.mind5.business.materialTextSnapshot.model.decisionTree.RootMatextsnapSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 
-final class VisiMatsnapMergeMatextsnap extends ActionVisitorTemplateMergeV2<MatsnapInfo, MatextsnapInfo> {
+final class VisiMatsnapMergeMatextsnap extends ActionVisitorTemplateMerge<MatsnapInfo, MatextsnapInfo> {
 	
 	public VisiMatsnapMergeMatextsnap(Connection conn, String schemaName) {
 		super(conn, schemaName, MatextsnapInfo.class);
@@ -31,6 +31,6 @@ final class VisiMatsnapMergeMatextsnap extends ActionVisitorTemplateMergeV2<Mats
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMerge.MERGE_WHEN_EMPTY;
 	}
 }

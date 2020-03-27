@@ -6,9 +6,9 @@ import java.util.List;
 import br.com.mind5.message.email.info.EmailInfo;
 import br.com.mind5.message.email.info.EmailMerger;
 import br.com.mind5.model.action.ActionStd;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 
-final class VisiEmailMergeToSelect extends ActionVisitorTemplateMergeV2<EmailInfo, EmailInfo> {
+final class VisiEmailMergeToSelect extends ActionVisitorTemplateMerge<EmailInfo, EmailInfo> {
 	
 	public VisiEmailMergeToSelect(Connection conn, String schemaName) {
 		super(conn, schemaName, EmailInfo.class);
@@ -29,6 +29,6 @@ final class VisiEmailMergeToSelect extends ActionVisitorTemplateMergeV2<EmailInf
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
 	}
 }

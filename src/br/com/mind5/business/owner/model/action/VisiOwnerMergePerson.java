@@ -7,10 +7,10 @@ import br.com.mind5.business.owner.info.OwnerInfo;
 import br.com.mind5.business.owner.info.OwnerMerger;
 import br.com.mind5.business.person.info.PersonInfo;
 import br.com.mind5.business.person.model.decisionTree.RootPersonSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 
-final class VisiOwnerMergePerson extends ActionVisitorTemplateMergeV2<OwnerInfo, PersonInfo> {
+final class VisiOwnerMergePerson extends ActionVisitorTemplateMerge<OwnerInfo, PersonInfo> {
 	
 	public VisiOwnerMergePerson(Connection conn, String schemaName) {
 		super(conn, schemaName, PersonInfo.class);
@@ -31,6 +31,6 @@ final class VisiOwnerMergePerson extends ActionVisitorTemplateMergeV2<OwnerInfo,
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMerge.MERGE_WHEN_EMPTY;
 	}	
 }

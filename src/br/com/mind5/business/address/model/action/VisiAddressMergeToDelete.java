@@ -6,10 +6,10 @@ import java.util.List;
 import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.address.info.AddressMerger;
 import br.com.mind5.business.address.model.decisionTree.RootAddressSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 
-final class VisiAddressMergeToDelete extends ActionVisitorTemplateMergeV2<AddressInfo, AddressInfo> {
+final class VisiAddressMergeToDelete extends ActionVisitorTemplateMerge<AddressInfo, AddressInfo> {
 	
 	public VisiAddressMergeToDelete(Connection conn, String schemaName) {
 		super(conn, schemaName, AddressInfo.class);
@@ -30,6 +30,6 @@ final class VisiAddressMergeToDelete extends ActionVisitorTemplateMergeV2<Addres
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
 	}
 }

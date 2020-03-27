@@ -5,13 +5,13 @@ import java.util.List;
 
 import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.business.store.info.StoreMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.security.user.info.UserCopier;
 import br.com.mind5.security.user.info.UserInfo;
 import br.com.mind5.security.user.model.decisionTree.RootUserSelect;
 
-final class VisiStoreMergeUser extends ActionVisitorTemplateMergeV2<StoreInfo, UserInfo> {
+final class VisiStoreMergeUser extends ActionVisitorTemplateMerge<StoreInfo, UserInfo> {
 	
 	public VisiStoreMergeUser(Connection conn, String schemaName) {
 		super(conn, schemaName, UserInfo.class);
@@ -38,6 +38,6 @@ final class VisiStoreMergeUser extends ActionVisitorTemplateMergeV2<StoreInfo, U
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMerge.MERGE_WHEN_EMPTY;
 	}
 }

@@ -8,10 +8,10 @@ import br.com.mind5.business.scheduleYear.info.SchedyearMerger;
 import br.com.mind5.business.storeList.info.StolisCopier;
 import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.business.storeList.model.decisionTree.RootStolisSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 
-final class VisiSchedyearMergeStolis extends ActionVisitorTemplateMergeV2<SchedyearInfo, StolisInfo> {
+final class VisiSchedyearMergeStolis extends ActionVisitorTemplateMerge<SchedyearInfo, StolisInfo> {
 	
 	public VisiSchedyearMergeStolis(Connection conn, String schemaName) {
 		super(conn, schemaName, StolisInfo.class);
@@ -38,6 +38,6 @@ final class VisiSchedyearMergeStolis extends ActionVisitorTemplateMergeV2<Schedy
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
 	}
 }

@@ -8,10 +8,10 @@ import br.com.mind5.business.customerSearch.info.CusarchInfo;
 import br.com.mind5.business.customerSearch.model.decisionTree.RootCusarchSelect;
 import br.com.mind5.business.order.info.OrderInfo;
 import br.com.mind5.business.order.info.OrderMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 
-final class VisiOrderMergeCusarch extends ActionVisitorTemplateMergeV2<OrderInfo, CusarchInfo> {
+final class VisiOrderMergeCusarch extends ActionVisitorTemplateMerge<OrderInfo, CusarchInfo> {
 	
 	public VisiOrderMergeCusarch(Connection conn, String schemaName) {
 		super(conn, schemaName, CusarchInfo.class);
@@ -38,6 +38,6 @@ final class VisiOrderMergeCusarch extends ActionVisitorTemplateMergeV2<OrderInfo
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
 	}
 }

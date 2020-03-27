@@ -6,9 +6,9 @@ import java.util.List;
 import br.com.mind5.business.scheduleYearData.info.SchedyeratInfo;
 import br.com.mind5.business.scheduleYearData.info.SchedyeratMerger;
 import br.com.mind5.model.action.ActionStd;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 
-final class VisiSchedyeratMergeToSelect extends ActionVisitorTemplateMergeV2<SchedyeratInfo, SchedyeratInfo> {
+final class VisiSchedyeratMergeToSelect extends ActionVisitorTemplateMerge<SchedyeratInfo, SchedyeratInfo> {
 	
 	public VisiSchedyeratMergeToSelect(Connection conn, String schemaName) {
 		super(conn, schemaName, SchedyeratInfo.class);
@@ -29,6 +29,6 @@ final class VisiSchedyeratMergeToSelect extends ActionVisitorTemplateMergeV2<Sch
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
 	}
 }

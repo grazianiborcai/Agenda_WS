@@ -7,10 +7,10 @@ import br.com.mind5.business.masterData.info.CountryPhoneInfo;
 import br.com.mind5.business.masterData.model.decisionTree.RootCountryPhoneSelect;
 import br.com.mind5.business.phoneSnapshot.info.PhonapInfo;
 import br.com.mind5.business.phoneSnapshot.info.PhonapMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 
-final class VisiPhonapMergeCountryPhone extends ActionVisitorTemplateMergeV2<PhonapInfo, CountryPhoneInfo> {
+final class VisiPhonapMergeCountryPhone extends ActionVisitorTemplateMerge<PhonapInfo, CountryPhoneInfo> {
 	
 	public VisiPhonapMergeCountryPhone(Connection conn, String schemaName) {
 		super(conn, schemaName, CountryPhoneInfo.class);
@@ -31,6 +31,6 @@ final class VisiPhonapMergeCountryPhone extends ActionVisitorTemplateMergeV2<Pho
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMerge.MERGE_WHEN_EMPTY;
 	}
 }

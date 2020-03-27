@@ -5,12 +5,12 @@ import java.util.List;
 
 import br.com.mind5.business.masterData.info.PayparInfo;
 import br.com.mind5.business.masterData.model.decisionTree.RootPayparSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.payment.countryPartner.info.CounparInfo;
 import br.com.mind5.payment.countryPartner.info.CounparMerger;
 
-final class VisiCounparMergePaypar extends ActionVisitorTemplateMergeV2<CounparInfo, PayparInfo> {
+final class VisiCounparMergePaypar extends ActionVisitorTemplateMerge<CounparInfo, PayparInfo> {
 	
 	public VisiCounparMergePaypar(Connection conn, String schemaName) {
 		super(conn, schemaName, PayparInfo.class);
@@ -31,6 +31,6 @@ final class VisiCounparMergePaypar extends ActionVisitorTemplateMergeV2<CounparI
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMerge.MERGE_WHEN_EMPTY;
 	}
 }

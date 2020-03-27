@@ -7,10 +7,10 @@ import br.com.mind5.business.customerList.info.CuslisInfo;
 import br.com.mind5.business.customerList.info.CuslisMerger;
 import br.com.mind5.business.personList.info.PersolisInfo;
 import br.com.mind5.business.personList.model.decisionTree.RootPersolisSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 
-final class VisiCuslisMergePersolis extends ActionVisitorTemplateMergeV2<CuslisInfo, PersolisInfo> {
+final class VisiCuslisMergePersolis extends ActionVisitorTemplateMerge<CuslisInfo, PersolisInfo> {
 	
 	public VisiCuslisMergePersolis(Connection conn, String schemaName) {
 		super(conn, schemaName, PersolisInfo.class);
@@ -31,6 +31,6 @@ final class VisiCuslisMergePersolis extends ActionVisitorTemplateMergeV2<CuslisI
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMerge.MERGE_WHEN_EMPTY;
 	}
 }

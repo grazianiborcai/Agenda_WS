@@ -7,10 +7,10 @@ import br.com.mind5.business.masterData.info.WeekdayInfo;
 import br.com.mind5.business.masterData.model.decisionTree.RootWeekdaySelect;
 import br.com.mind5.business.storeWorkTime.info.StowotmInfo;
 import br.com.mind5.business.storeWorkTime.info.StowotmMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 
-final class VisiStowotmMergeWeekday extends ActionVisitorTemplateMergeV2<StowotmInfo, WeekdayInfo> {
+final class VisiStowotmMergeWeekday extends ActionVisitorTemplateMerge<StowotmInfo, WeekdayInfo> {
 	
 	public VisiStowotmMergeWeekday(Connection conn, String schemaName) {
 		super(conn, schemaName, WeekdayInfo.class);
@@ -31,6 +31,6 @@ final class VisiStowotmMergeWeekday extends ActionVisitorTemplateMergeV2<Stowotm
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
 	}
 }

@@ -6,9 +6,9 @@ import java.util.List;
 import br.com.mind5.business.orderItem.info.OrderemInfo;
 import br.com.mind5.business.orderItem.info.OrderemMerger;
 import br.com.mind5.model.action.ActionStd;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 
-final class VisiOrderemMergeToSelect extends ActionVisitorTemplateMergeV2<OrderemInfo, OrderemInfo> {
+final class VisiOrderemMergeToSelect extends ActionVisitorTemplateMerge<OrderemInfo, OrderemInfo> {
 	
 	public VisiOrderemMergeToSelect(Connection conn, String schemaName) {
 		super(conn, schemaName, OrderemInfo.class);
@@ -29,6 +29,6 @@ final class VisiOrderemMergeToSelect extends ActionVisitorTemplateMergeV2<Ordere
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
 	}
 }

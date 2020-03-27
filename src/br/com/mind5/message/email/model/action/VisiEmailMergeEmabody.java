@@ -8,10 +8,10 @@ import br.com.mind5.message.email.info.EmailMerger;
 import br.com.mind5.message.emailBody.info.EmabodyCopier;
 import br.com.mind5.message.emailBody.info.EmabodyInfo;
 import br.com.mind5.message.emailBody.model.decisionTree.RootEmabodySelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 
-final class VisiEmailMergeEmabody extends ActionVisitorTemplateMergeV2<EmailInfo, EmabodyInfo> {
+final class VisiEmailMergeEmabody extends ActionVisitorTemplateMerge<EmailInfo, EmabodyInfo> {
 	
 	public VisiEmailMergeEmabody(Connection conn, String schemaName) {
 		super(conn, schemaName, EmabodyInfo.class);
@@ -38,6 +38,6 @@ final class VisiEmailMergeEmabody extends ActionVisitorTemplateMergeV2<EmailInfo
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
 	}
 }

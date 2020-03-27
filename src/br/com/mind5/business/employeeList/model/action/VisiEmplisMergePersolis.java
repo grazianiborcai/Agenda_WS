@@ -7,10 +7,10 @@ import br.com.mind5.business.employeeList.info.EmplisInfo;
 import br.com.mind5.business.employeeList.info.EmplisMerger;
 import br.com.mind5.business.personList.info.PersolisInfo;
 import br.com.mind5.business.personList.model.decisionTree.RootPersolisSelectRestricted;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 
-final class VisiEmplisMergePersolis extends ActionVisitorTemplateMergeV2<EmplisInfo, PersolisInfo> {
+final class VisiEmplisMergePersolis extends ActionVisitorTemplateMerge<EmplisInfo, PersolisInfo> {
 	
 	public VisiEmplisMergePersolis(Connection conn, String schemaName) {
 		super(conn, schemaName, PersolisInfo.class);
@@ -31,6 +31,6 @@ final class VisiEmplisMergePersolis extends ActionVisitorTemplateMergeV2<EmplisI
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMerge.MERGE_WHEN_EMPTY;
 	}
 }

@@ -7,10 +7,10 @@ import br.com.mind5.business.employeeWorkTime.info.EmpwotmInfo;
 import br.com.mind5.business.employeeWorkTime.info.EmpwotmMerger;
 import br.com.mind5.business.masterData.info.TimezoneInfo;
 import br.com.mind5.business.masterData.model.decisionTree.RootTimezoneSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 
-final class VisiEmpwotmMergeTimezone extends ActionVisitorTemplateMergeV2<EmpwotmInfo, TimezoneInfo> {
+final class VisiEmpwotmMergeTimezone extends ActionVisitorTemplateMerge<EmpwotmInfo, TimezoneInfo> {
 	
 	public VisiEmpwotmMergeTimezone(Connection conn, String schemaName) {
 		super(conn, schemaName, TimezoneInfo.class);
@@ -31,6 +31,6 @@ final class VisiEmpwotmMergeTimezone extends ActionVisitorTemplateMergeV2<Empwot
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMerge.MERGE_WHEN_EMPTY;
 	}
 }

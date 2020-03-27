@@ -8,10 +8,10 @@ import br.com.mind5.business.addressSnapshot.info.AddresnapMerger;
 import br.com.mind5.business.customerList.info.CuslisCopier;
 import br.com.mind5.business.customerList.info.CuslisInfo;
 import br.com.mind5.business.customerList.model.decisionTree.RootCuslisSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 
-final class VisiAddresnapMergeCuslis extends ActionVisitorTemplateMergeV2<AddresnapInfo, CuslisInfo> {
+final class VisiAddresnapMergeCuslis extends ActionVisitorTemplateMerge<AddresnapInfo, CuslisInfo> {
 	
 	public VisiAddresnapMergeCuslis(Connection conn, String schemaName) {
 		super(conn, schemaName, CuslisInfo.class);
@@ -37,6 +37,6 @@ final class VisiAddresnapMergeCuslis extends ActionVisitorTemplateMergeV2<Addres
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMerge.MERGE_WHEN_EMPTY;
 	}
 }

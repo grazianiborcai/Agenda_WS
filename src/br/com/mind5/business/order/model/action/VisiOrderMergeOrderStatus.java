@@ -7,10 +7,10 @@ import br.com.mind5.business.masterData.info.OrderStatusInfo;
 import br.com.mind5.business.masterData.model.decisionTree.RootOrderStatusSelect;
 import br.com.mind5.business.order.info.OrderInfo;
 import br.com.mind5.business.order.info.OrderMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 
-final class VisiOrderMergeOrderStatus extends ActionVisitorTemplateMergeV2<OrderInfo, OrderStatusInfo> {
+final class VisiOrderMergeOrderStatus extends ActionVisitorTemplateMerge<OrderInfo, OrderStatusInfo> {
 	
 	public VisiOrderMergeOrderStatus(Connection conn, String schemaName) {
 		super(conn, schemaName, OrderStatusInfo.class);
@@ -31,6 +31,6 @@ final class VisiOrderMergeOrderStatus extends ActionVisitorTemplateMergeV2<Order
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMerge.MERGE_WHEN_EMPTY;
 	}
 }

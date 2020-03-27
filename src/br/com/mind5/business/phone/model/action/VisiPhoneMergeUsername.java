@@ -5,12 +5,12 @@ import java.util.List;
 
 import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.business.phone.info.PhoneMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.security.username.info.UsernameInfo;
 import br.com.mind5.security.username.model.decisionTree.RootUsernameSelect;
 
-final class VisiPhoneMergeUsername extends ActionVisitorTemplateMergeV2<PhoneInfo, UsernameInfo> {
+final class VisiPhoneMergeUsername extends ActionVisitorTemplateMerge<PhoneInfo, UsernameInfo> {
 	
 	public VisiPhoneMergeUsername(Connection conn, String schemaName) {
 		super(conn, schemaName, UsernameInfo.class);
@@ -31,6 +31,6 @@ final class VisiPhoneMergeUsername extends ActionVisitorTemplateMergeV2<PhoneInf
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
 	}
 }

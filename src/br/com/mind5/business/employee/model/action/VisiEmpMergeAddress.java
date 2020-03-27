@@ -8,10 +8,10 @@ import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.address.model.decisionTree.RootAddressSearch;
 import br.com.mind5.business.employee.info.EmpInfo;
 import br.com.mind5.business.employee.info.EmpMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 
-final class VisiEmpMergeAddress extends ActionVisitorTemplateMergeV2<EmpInfo, AddressInfo> {
+final class VisiEmpMergeAddress extends ActionVisitorTemplateMerge<EmpInfo, AddressInfo> {
 	
 	public VisiEmpMergeAddress(Connection conn, String schemaName) {
 		super(conn, schemaName, AddressInfo.class);
@@ -38,6 +38,6 @@ final class VisiEmpMergeAddress extends ActionVisitorTemplateMergeV2<EmpInfo, Ad
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMerge.MERGE_WHEN_EMPTY;
 	}
 }

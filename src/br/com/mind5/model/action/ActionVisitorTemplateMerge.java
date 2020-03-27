@@ -15,7 +15,7 @@ import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public abstract class ActionVisitorTemplateMergeV2<T extends InfoRecord, S extends InfoRecord> implements ActionVisitorMerge<T> {
+public abstract class ActionVisitorTemplateMerge<T extends InfoRecord, S extends InfoRecord> implements ActionVisitorMerge<T> {
 	public static boolean MERGE_WHEN_EMPTY = true;
 	public static boolean DONT_MERGE_WHEN_EMPTY = false;
 	
@@ -23,7 +23,7 @@ public abstract class ActionVisitorTemplateMergeV2<T extends InfoRecord, S exten
 	private Class<S> sClazz;
 	
 
-	public ActionVisitorTemplateMergeV2(Connection conn, String schemaName, Class<S> clazz) {
+	public ActionVisitorTemplateMerge(Connection conn, String schemaName, Class<S> clazz) {
 		checkArgument(conn, schemaName, clazz);		
 		selOption = makeOption(conn, schemaName);		
 		sClazz = clazz;

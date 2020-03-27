@@ -6,10 +6,10 @@ import java.util.List;
 import br.com.mind5.business.employeePosition.info.EmposInfo;
 import br.com.mind5.business.employeePosition.info.EmposMerger;
 import br.com.mind5.business.employeePosition.model.decisionTree.RootEmposSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 
-final class VisiEmposMergeToDelete extends ActionVisitorTemplateMergeV2<EmposInfo, EmposInfo> {
+final class VisiEmposMergeToDelete extends ActionVisitorTemplateMerge<EmposInfo, EmposInfo> {
 	
 	public VisiEmposMergeToDelete(Connection conn, String schemaName) {
 		super(conn, schemaName, EmposInfo.class);
@@ -30,6 +30,6 @@ final class VisiEmposMergeToDelete extends ActionVisitorTemplateMergeV2<EmposInf
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
 	}	
 }

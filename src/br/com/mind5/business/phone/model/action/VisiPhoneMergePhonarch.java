@@ -7,10 +7,10 @@ import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.business.phone.info.PhoneMerger;
 import br.com.mind5.business.phoneSearch.info.PhonarchInfo;
 import br.com.mind5.business.phoneSearch.model.decisionTree.RootPhonarchSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 
-final class VisiPhoneMergePhonarch extends ActionVisitorTemplateMergeV2<PhoneInfo, PhonarchInfo> {
+final class VisiPhoneMergePhonarch extends ActionVisitorTemplateMerge<PhoneInfo, PhonarchInfo> {
 	
 	public VisiPhoneMergePhonarch(Connection conn, String schemaName) {
 		super(conn, schemaName, PhonarchInfo.class);
@@ -31,6 +31,6 @@ final class VisiPhoneMergePhonarch extends ActionVisitorTemplateMergeV2<PhoneInf
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
 	}
 }

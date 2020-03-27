@@ -6,9 +6,9 @@ import java.util.List;
 import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.business.storeList.info.StolisMerger;
 import br.com.mind5.model.action.ActionStd;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 
-final class VisiStolisMergeToSelect extends ActionVisitorTemplateMergeV2<StolisInfo, StolisInfo> {
+final class VisiStolisMergeToSelect extends ActionVisitorTemplateMerge<StolisInfo, StolisInfo> {
 	
 	public VisiStolisMergeToSelect(Connection conn, String schemaName) {
 		super(conn, schemaName, StolisInfo.class);
@@ -29,6 +29,6 @@ final class VisiStolisMergeToSelect extends ActionVisitorTemplateMergeV2<StolisI
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
 	}
 }

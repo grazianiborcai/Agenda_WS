@@ -6,9 +6,9 @@ import java.util.List;
 import br.com.mind5.business.materialStoreSnapshot.info.MatorapInfo;
 import br.com.mind5.business.materialStoreSnapshot.info.MatorapMerger;
 import br.com.mind5.model.action.ActionStd;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 
-final class VisiMatorapMergeToSelect extends ActionVisitorTemplateMergeV2<MatorapInfo, MatorapInfo> {
+final class VisiMatorapMergeToSelect extends ActionVisitorTemplateMerge<MatorapInfo, MatorapInfo> {
 	
 	public VisiMatorapMergeToSelect(Connection conn, String schemaName) {
 		super(conn, schemaName, MatorapInfo.class);
@@ -29,6 +29,6 @@ final class VisiMatorapMergeToSelect extends ActionVisitorTemplateMergeV2<Matora
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
 	}
 }

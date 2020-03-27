@@ -5,12 +5,12 @@ import java.util.List;
 
 import br.com.mind5.business.scheduleLineSnapshot.info.SchedinapInfo;
 import br.com.mind5.business.scheduleLineSnapshot.info.SchedinapMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.security.userList.info.UselisInfo;
 import br.com.mind5.security.userList.model.decisionTree.RootUselisSelect;
 
-final class VisiSchedinapMergeUselis extends ActionVisitorTemplateMergeV2<SchedinapInfo, UselisInfo> {
+final class VisiSchedinapMergeUselis extends ActionVisitorTemplateMerge<SchedinapInfo, UselisInfo> {
 	
 	public VisiSchedinapMergeUselis(Connection conn, String schemaName) {
 		super(conn, schemaName, UselisInfo.class);
@@ -31,6 +31,6 @@ final class VisiSchedinapMergeUselis extends ActionVisitorTemplateMergeV2<Schedi
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMerge.MERGE_WHEN_EMPTY;
 	}
 }

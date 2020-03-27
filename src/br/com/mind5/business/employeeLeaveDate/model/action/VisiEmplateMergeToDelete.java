@@ -6,10 +6,10 @@ import java.util.List;
 import br.com.mind5.business.employeeLeaveDate.info.EmplateInfo;
 import br.com.mind5.business.employeeLeaveDate.info.EmplateMerger;
 import br.com.mind5.business.employeeLeaveDate.model.decisionTree.RootEmplateSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 
-final class VisiEmplateMergeToDelete extends ActionVisitorTemplateMergeV2<EmplateInfo, EmplateInfo> {
+final class VisiEmplateMergeToDelete extends ActionVisitorTemplateMerge<EmplateInfo, EmplateInfo> {
 	
 	public VisiEmplateMergeToDelete(Connection conn, String schemaName) {
 		super(conn, schemaName, EmplateInfo.class);
@@ -30,6 +30,6 @@ final class VisiEmplateMergeToDelete extends ActionVisitorTemplateMergeV2<Emplat
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
 	}
 }

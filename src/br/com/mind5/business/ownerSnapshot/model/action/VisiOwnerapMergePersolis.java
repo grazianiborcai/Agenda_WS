@@ -8,10 +8,10 @@ import br.com.mind5.business.ownerSnapshot.info.OwnerapMerger;
 import br.com.mind5.business.personList.info.PersolisCopier;
 import br.com.mind5.business.personList.info.PersolisInfo;
 import br.com.mind5.business.personList.model.decisionTree.RootPersolisSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 
-final class VisiOwnerapMergePersolis extends ActionVisitorTemplateMergeV2<OwnerapInfo, PersolisInfo> {
+final class VisiOwnerapMergePersolis extends ActionVisitorTemplateMerge<OwnerapInfo, PersolisInfo> {
 	
 	public VisiOwnerapMergePersolis(Connection conn, String schemaName) {
 		super(conn, schemaName, PersolisInfo.class);
@@ -38,6 +38,6 @@ final class VisiOwnerapMergePersolis extends ActionVisitorTemplateMergeV2<Ownera
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMerge.MERGE_WHEN_EMPTY;
 	}
 }

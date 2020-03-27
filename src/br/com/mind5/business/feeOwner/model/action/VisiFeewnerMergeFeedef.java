@@ -7,10 +7,10 @@ import br.com.mind5.business.feeDefault.info.FeedefInfo;
 import br.com.mind5.business.feeDefault.model.decisionTree.RootFeedefSelectService;
 import br.com.mind5.business.feeOwner.info.FeewnerInfo;
 import br.com.mind5.business.feeOwner.info.FeewnerMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 
-final class VisiFeewnerMergeFeedef extends ActionVisitorTemplateMergeV2<FeewnerInfo, FeedefInfo> {
+final class VisiFeewnerMergeFeedef extends ActionVisitorTemplateMerge<FeewnerInfo, FeedefInfo> {
 	
 	public VisiFeewnerMergeFeedef(Connection conn, String schemaName) {
 		super(conn, schemaName, FeedefInfo.class);
@@ -31,6 +31,6 @@ final class VisiFeewnerMergeFeedef extends ActionVisitorTemplateMergeV2<FeewnerI
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
 	}
 }

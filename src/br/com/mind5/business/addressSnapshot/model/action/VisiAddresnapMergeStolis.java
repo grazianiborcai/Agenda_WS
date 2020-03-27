@@ -8,10 +8,10 @@ import br.com.mind5.business.addressSnapshot.info.AddresnapMerger;
 import br.com.mind5.business.storeList.info.StolisCopier;
 import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.business.storeList.model.decisionTree.RootStolisSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 
-final class VisiAddresnapMergeStolis extends ActionVisitorTemplateMergeV2<AddresnapInfo, StolisInfo> {
+final class VisiAddresnapMergeStolis extends ActionVisitorTemplateMerge<AddresnapInfo, StolisInfo> {
 	
 	public VisiAddresnapMergeStolis(Connection conn, String schemaName) {
 		super(conn, schemaName, StolisInfo.class);
@@ -37,6 +37,6 @@ final class VisiAddresnapMergeStolis extends ActionVisitorTemplateMergeV2<Addres
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMerge.MERGE_WHEN_EMPTY;
 	}
 }

@@ -4,11 +4,11 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionStd;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.security.userSearch.info.UserarchInfo;
 import br.com.mind5.security.userSearch.info.UserarchMerger;
 
-final class VisiUserarchMergeToSelect extends ActionVisitorTemplateMergeV2<UserarchInfo, UserarchInfo> {
+final class VisiUserarchMergeToSelect extends ActionVisitorTemplateMerge<UserarchInfo, UserarchInfo> {
 	
 	public VisiUserarchMergeToSelect(Connection conn, String schemaName) {
 		super(conn, schemaName, UserarchInfo.class);
@@ -29,6 +29,6 @@ final class VisiUserarchMergeToSelect extends ActionVisitorTemplateMergeV2<Usera
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
 	}
 }

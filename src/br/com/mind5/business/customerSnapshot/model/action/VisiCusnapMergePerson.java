@@ -7,10 +7,10 @@ import br.com.mind5.business.customerSnapshot.info.CusnapInfo;
 import br.com.mind5.business.customerSnapshot.info.CusnapMerger;
 import br.com.mind5.business.person.info.PersonInfo;
 import br.com.mind5.business.person.model.decisionTree.RootPersonSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 
-final class VisiCusnapMergePerson extends ActionVisitorTemplateMergeV2<CusnapInfo, PersonInfo> {
+final class VisiCusnapMergePerson extends ActionVisitorTemplateMerge<CusnapInfo, PersonInfo> {
 	
 	public VisiCusnapMergePerson(Connection conn, String schemaName) {
 		super(conn, schemaName, PersonInfo.class);
@@ -31,6 +31,6 @@ final class VisiCusnapMergePerson extends ActionVisitorTemplateMergeV2<CusnapInf
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
 	}
 }

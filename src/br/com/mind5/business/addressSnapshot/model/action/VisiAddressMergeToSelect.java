@@ -6,9 +6,9 @@ import java.util.List;
 import br.com.mind5.business.addressSnapshot.info.AddresnapInfo;
 import br.com.mind5.business.addressSnapshot.info.AddresnapMerger;
 import br.com.mind5.model.action.ActionStd;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 
-final class VisiAddressMergeToSelect extends ActionVisitorTemplateMergeV2<AddresnapInfo, AddresnapInfo> {
+final class VisiAddressMergeToSelect extends ActionVisitorTemplateMerge<AddresnapInfo, AddresnapInfo> {
 	
 	public VisiAddressMergeToSelect(Connection conn, String schemaName) {
 		super(conn, schemaName, AddresnapInfo.class);
@@ -29,6 +29,6 @@ final class VisiAddressMergeToSelect extends ActionVisitorTemplateMergeV2<Addres
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
 	}
 }

@@ -6,10 +6,10 @@ import java.util.List;
 import br.com.mind5.business.material.info.MatInfo;
 import br.com.mind5.business.material.info.MatMerger;
 import br.com.mind5.business.material.model.decisionTree.RootMatSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 
-final class VisiMatMergeToDelete extends ActionVisitorTemplateMergeV2<MatInfo, MatInfo> {
+final class VisiMatMergeToDelete extends ActionVisitorTemplateMerge<MatInfo, MatInfo> {
 	
 	public VisiMatMergeToDelete(Connection conn, String schemaName) {
 		super(conn, schemaName, MatInfo.class);
@@ -30,6 +30,6 @@ final class VisiMatMergeToDelete extends ActionVisitorTemplateMergeV2<MatInfo, M
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
 	}
 }

@@ -7,10 +7,10 @@ import br.com.mind5.business.employee.info.EmpInfo;
 import br.com.mind5.business.employee.info.EmpMerger;
 import br.com.mind5.business.employeeSearch.info.EmparchInfo;
 import br.com.mind5.business.employeeSearch.model.decisionTree.RootEmparchSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 
-final class VisiEmpMergeEmparch extends ActionVisitorTemplateMergeV2<EmpInfo, EmparchInfo> {
+final class VisiEmpMergeEmparch extends ActionVisitorTemplateMerge<EmpInfo, EmparchInfo> {
 	
 	public VisiEmpMergeEmparch(Connection conn, String schemaName) {
 		super(conn, schemaName, EmparchInfo.class);
@@ -31,6 +31,6 @@ final class VisiEmpMergeEmparch extends ActionVisitorTemplateMergeV2<EmpInfo, Em
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
 	}
 }

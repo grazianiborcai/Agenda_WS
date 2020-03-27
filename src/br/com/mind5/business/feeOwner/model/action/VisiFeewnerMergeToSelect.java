@@ -6,9 +6,9 @@ import java.util.List;
 import br.com.mind5.business.feeOwner.info.FeewnerInfo;
 import br.com.mind5.business.feeOwner.info.FeewnerMerger;
 import br.com.mind5.model.action.ActionStd;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 
-final class VisiFeewnerMergeToSelect extends ActionVisitorTemplateMergeV2<FeewnerInfo, FeewnerInfo> {
+final class VisiFeewnerMergeToSelect extends ActionVisitorTemplateMerge<FeewnerInfo, FeewnerInfo> {
 
 	public VisiFeewnerMergeToSelect(Connection conn, String schemaName) {
 		super(conn, schemaName, FeewnerInfo.class);
@@ -29,6 +29,6 @@ final class VisiFeewnerMergeToSelect extends ActionVisitorTemplateMergeV2<Feewne
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
 	}
 }

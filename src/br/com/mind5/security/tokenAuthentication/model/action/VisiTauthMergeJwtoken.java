@@ -3,7 +3,7 @@ package br.com.mind5.security.tokenAuthentication.model.action;
 import java.sql.Connection;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.security.jwtToken.info.JwtokenCopier;
 import br.com.mind5.security.jwtToken.info.JwtokenInfo;
@@ -11,7 +11,7 @@ import br.com.mind5.security.jwtToken.model.decisionTree.RootJwtokenParse;
 import br.com.mind5.security.tokenAuthentication.info.TauthInfo;
 import br.com.mind5.security.tokenAuthentication.info.TauthMerger;
 
-final class VisiTauthMergeJwtoken extends ActionVisitorTemplateMergeV2<TauthInfo, JwtokenInfo> {
+final class VisiTauthMergeJwtoken extends ActionVisitorTemplateMerge<TauthInfo, JwtokenInfo> {
 	
 	public VisiTauthMergeJwtoken(Connection conn, String schemaName) {
 		super(conn, schemaName, JwtokenInfo.class);
@@ -38,6 +38,6 @@ final class VisiTauthMergeJwtoken extends ActionVisitorTemplateMergeV2<TauthInfo
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMerge.MERGE_WHEN_EMPTY;
 	}
 }
