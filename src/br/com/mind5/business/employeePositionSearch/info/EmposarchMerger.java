@@ -2,18 +2,18 @@ package br.com.mind5.business.employeePositionSearch.info;
 
 import java.util.List;
 
-import br.com.mind5.info.obsolete.InfoMerger_;
+import br.com.mind5.info.InfoMergerBuilderV3;
+import br.com.mind5.info.InfoMergerV3;
 
 public final class EmposarchMerger {
-	public static EmposarchInfo mergeToSelect(EmposarchInfo sourceOne, EmposarchInfo sourceTwo) {
-		InfoMerger_<EmposarchInfo, EmposarchInfo> merger = new EmposarchMergerToSelect();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
+	public static List<EmposarchInfo> mergeToSelect(List<EmposarchInfo> baseInfos, List<EmposarchInfo> selectedInfos) {
+		InfoMergerBuilderV3<EmposarchInfo, EmposarchInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new EmposarchVisiMergeToSelect());
+		InfoMergerV3<EmposarchInfo, EmposarchInfo> merger = builder.build();		
 	
-	
-	
-	public static List<EmposarchInfo> mergeToSelect(List<EmposarchInfo> sourceOnes, List<EmposarchInfo> sourceTwos) {
-		InfoMerger_<EmposarchInfo, EmposarchInfo> merger = new EmposarchMergerToSelect();		
-		return merger.merge(sourceOnes, sourceTwos);
+		return merger.merge();
 	}
 }

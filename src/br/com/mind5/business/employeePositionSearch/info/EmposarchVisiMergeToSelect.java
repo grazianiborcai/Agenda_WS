@@ -1,56 +1,38 @@
 package br.com.mind5.business.employeePositionSearch.info;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.ArrayList;
+import java.util.List;
 
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-final class EmposarchVisiMergeToSelect implements InfoMergerVisitor_<EmposarchInfo, EmposarchInfo> {
-
-	@Override public EmposarchInfo writeRecord(EmposarchInfo sourceOne, EmposarchInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);		
-		return merge(sourceOne, sourceTwo);
+final class EmposarchVisiMergeToSelect implements InfoMergerVisitorV3<EmposarchInfo, EmposarchInfo> {
+	
+	@Override public List<EmposarchInfo> beforeMerge(List<EmposarchInfo> baseInfos) {
+		return baseInfos;
 	}
 	
 	
 	
-	private void checkArgument(EmposarchInfo sourceOne, EmposarchInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
+	@Override public boolean shouldMerge(EmposarchInfo baseInfo, EmposarchInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner);
 	}
 	
 	
 	
-	private EmposarchInfo merge(EmposarchInfo sourceOne, EmposarchInfo sourceTwo) {
-		EmposarchInfo result = makeClone(sourceOne);		
-		result.username = sourceTwo.username;
-		result.codLanguage = sourceTwo.codLanguage;
-		return result;
+	@Override public List<EmposarchInfo> merge(EmposarchInfo baseInfo, EmposarchInfo selectedInfo) {
+		List<EmposarchInfo> results = new ArrayList<>();
+		
+		selectedInfo.username = baseInfo.username;
+		selectedInfo.codLanguage = baseInfo.codLanguage;
+		
+		results.add(selectedInfo);
+		return results;
 	}
 	
 	
 	
-	private EmposarchInfo makeClone(EmposarchInfo recordInfo) {
-		try {
-			return (EmposarchInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(EmposarchInfo sourceOne, EmposarchInfo sourceTwo) {		
-		return (sourceOne.codOwner == sourceTwo.codOwner);
-	}
-	
-	
-	
-	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
+	@Override public InfoUniquifier<EmposarchInfo> getUniquifier() {
+		return null;
 	}
 }
