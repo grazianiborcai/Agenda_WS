@@ -27,6 +27,8 @@ public final class DaoDbTable {
 	public static final String CURRENCY_TEXT_TABLE = "currency_unit_text";	
 	public static final String CUS_TABLE = "customer";
 	public static final String CUS_SNAPSHOT_TABLE = "customer_snapshot";
+	public static final String DAYPART_TABLE = "dayparting";
+	public static final String DAYPART_TEXT_TABLE = "dayparting_text";
 	public static final String EMP_TABLE = "employee";	
 	public static final String EMP_MAT_TABLE = "employee_material";
 	public static final String EMP_SNAPSHOT_TABLE = "employee_snapshot";	

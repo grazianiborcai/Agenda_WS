@@ -47,25 +47,7 @@ public final class PlanataInfo extends InfoRecord implements Cloneable {
 	
 	
 	@Override public Object clone()throws CloneNotSupportedException {  
-		PlanataInfo deepCopy = (PlanataInfo) super.clone();  		
-		
-		LocalTime cloneBeginTime = null;		
-		if (beginTime != null) 
-			cloneBeginTime = LocalTime.of(beginTime.getHour(), beginTime.getMinute(), beginTime.getSecond());
-		
-		LocalTime cloneEndTime = null;		
-		if (endTime != null) 
-			cloneEndTime = LocalTime.of(endTime.getHour(), endTime.getMinute(), endTime.getSecond());
-		
-		LocalDate cloneDate = null;	
-		if (date != null) 
-			cloneDate = LocalDate.of(date.getYear(), date.getMonth(), date.getDayOfMonth());				
-		
-		deepCopy.date = cloneDate;
-		deepCopy.beginTime = cloneBeginTime;
-		deepCopy.endTime = cloneEndTime;
-				
-		return deepCopy;	
+		return super.clone();
 	}  
 	
 	

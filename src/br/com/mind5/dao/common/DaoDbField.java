@@ -35,6 +35,7 @@ public final class DaoDbField {
 	public static final String COL_COD_CURRENCY = "cod_curr";
 	public static final String COL_COD_CUSTOMER = "cod_customer";
 	public static final String COL_COD_CUSTOMER_SNAPSHOT = "cod_customer_snapshot";	
+	public static final String COL_COD_DAYPART = "cod_dayparting";
 	public static final String COL_COD_EMPLOYEE = "cod_employee";
 	public static final String COL_COD_EMPLOYEE_SNAPSHOT = "cod_employee_snapshot";	
 	public static final String COL_COD_ENTITY_CATEG = "cod_entity_categ";

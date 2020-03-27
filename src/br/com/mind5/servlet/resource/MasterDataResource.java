@@ -15,6 +15,7 @@ import br.com.mind5.business.masterData.info.CountryInfo;
 import br.com.mind5.business.masterData.info.CountryLegalInfo;
 import br.com.mind5.business.masterData.info.CountryPhoneInfo;
 import br.com.mind5.business.masterData.info.CurrencyInfo;
+import br.com.mind5.business.masterData.info.DaypartInfo;
 import br.com.mind5.business.masterData.info.EntityCategInfo;
 import br.com.mind5.business.masterData.info.FeeCategInfo;
 import br.com.mind5.business.masterData.info.GenderInfo;
@@ -40,6 +41,7 @@ import br.com.mind5.business.masterData.model.CountryLegalModelSelect;
 import br.com.mind5.business.masterData.model.CountryModelSelect;
 import br.com.mind5.business.masterData.model.CountryPhoneModelSelect;
 import br.com.mind5.business.masterData.model.CurrencyModelSelect;
+import br.com.mind5.business.masterData.model.DaypartModelSelect;
 import br.com.mind5.business.masterData.model.EntityCategModelSelect;
 import br.com.mind5.business.masterData.model.FeeCategModelSelect;
 import br.com.mind5.business.masterData.model.GenderModelSelect;
@@ -72,6 +74,7 @@ public final class MasterDataResource {
 	private static final String SELECT_CURRENCY = "/selectCurrency";
 	private static final String SELECT_LANGUAGE = "/selectLanguage";
 	private static final String SELECT_WEEKDAY = "/selectWeekday";
+	private static final String SELECT_DAYPART = "/selectDayparting";
 	private static final String SELECT_TIMEZONE = "/selectTimezone";
 	private static final String SELECT_GENDER = "/selectGender";
 	private static final String SELECT_CART_ITEM_CATEG = "/selectCartItemCateg";
@@ -237,6 +240,23 @@ public final class MasterDataResource {
 		recordInfo.codLanguage = codLanguage;
 		
 		Model model = new WeekdayModelSelect(recordInfo);
+		model.executeRequest();
+		return model.getResponse();
+	}
+	
+	
+	
+	@GET
+	@Path(SELECT_DAYPART)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response selectDaypart(@HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage,
+			                      @HeaderParam("codDaypart")  @DefaultValue("-1") int codDaypart){
+		
+		DaypartInfo recordInfo = new DaypartInfo();
+		recordInfo.codDaypart = codDaypart;
+		recordInfo.codLanguage = codLanguage;
+		
+		Model model = new DaypartModelSelect(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	}

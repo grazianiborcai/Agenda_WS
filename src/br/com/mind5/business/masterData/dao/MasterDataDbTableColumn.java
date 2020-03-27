@@ -18,6 +18,7 @@ public final class MasterDataDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_COUNTRY_ALPHA3 = DaoDbField.COL_COD_COUNTRY_ALPHA3;
 	public static final String COL_COD_COUNTRY_PHONE = DaoDbField.COL_COD_COUNTRY_PHONE;	
 	public static final String COL_COD_CURRENCY = DaoDbField.COL_COD_CURRENCY;
+	public static final String COL_COD_DAYPART = DaoDbField.COL_COD_DAYPART;
 	public static final String COL_COD_ENTITY_CATEG = DaoDbField.COL_COD_ENTITY_CATEG;	
 	public static final String COL_COD_FEE_CATEG = DaoDbField.COL_COD_FEE_CATEG;
 	public static final String COL_COD_GENDER = DaoDbField.COL_COD_GENDER;
@@ -87,6 +88,7 @@ public final class MasterDataDbTableColumn extends DaoDbTableColumnTemplate {
 		sysEnvironmentTable();
 		scheduleStatusTable();
 		scheduleMonthTable();
+		daypartTable();
 		
 		return tableColumns;
 	}
@@ -1121,4 +1123,39 @@ public final class MasterDataDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		tableColumns.put(TABLE_NAME, columns);
 	}	
+	
+	
+	
+	private void daypartTable() {
+		final String TABLE_NAME = DaoDbTable.DAYPART_TABLE;
+		
+		DaoColumn oneColumn;
+		List<DaoColumn> columns = new ArrayList<>();			
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_COD_DAYPART;
+		oneColumn.isPK = IS_PRIMARY_KEY;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);	
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = DaoDbTable.DAYPART_TEXT_TABLE;
+		oneColumn.columnName = COL_COD_LANGUAGE;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = DaoDbTable.DAYPART_TEXT_TABLE;
+		oneColumn.columnName = COL_NAME;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		tableColumns.put(TABLE_NAME, columns);
+	}
 }
