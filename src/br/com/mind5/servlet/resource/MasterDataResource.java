@@ -60,6 +60,8 @@ import br.com.mind5.business.masterData.model.StateModelSelect;
 import br.com.mind5.business.masterData.model.TimezoneModelSelect;
 import br.com.mind5.business.masterData.model.UserCategModelSelect;
 import br.com.mind5.business.masterData.model.WeekdayModelSelect;
+import br.com.mind5.masterData.moonPhase.MoonaseModelSearch;
+import br.com.mind5.masterData.moonPhase.info.MoonaseInfo;
 import br.com.mind5.model.Model;
 
 
@@ -91,6 +93,7 @@ public final class MasterDataResource {
 	private static final String SELECT_USER_CATEG = "/selectUserCategory";
 	private static final String SELECT_MAT_MOV_TYPE = "/selectMatmovType";
 	private static final String SELECT_MONTH = "/selectMonth";
+	private static final String SELECT_MOON_PHASE = "/selectMoonPhase";
 	
 	
 	@GET
@@ -555,6 +558,24 @@ public final class MasterDataResource {
 		
 		
 		Model model = new MonthModelSelect(recordInfo);
+		model.executeRequest();
+		return model.getResponse();
+	}
+	
+	
+	
+	@GET
+	@Path(SELECT_MOON_PHASE)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response selectMoonPhase(@HeaderParam("codLanguage")  @DefaultValue("EN") String codLanguage, 
+			                        @HeaderParam("codMoonPhase") @DefaultValue("-1") int codMoonPhase) {
+		
+		MoonaseInfo recordInfo = new MoonaseInfo();
+		recordInfo.codLanguage = codLanguage;
+		recordInfo.codMoonPhase = codMoonPhase;
+		
+		
+		Model model = new MoonaseModelSearch(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	}

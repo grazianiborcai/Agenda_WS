@@ -155,7 +155,11 @@ public final class SystemCode {
 	public static final int MONTH_MANDATORY_FIELD_EMPTY 				= 5329;
 	public static final int DAYPART_MANDATORY_FIELD_EMPTY 				= 5330;
 	public static final int DAYPART_ALREADY_EXIST						= 5331;
-	public static final int DAYPART_NOT_FOUND							= 5332;
+	public static final int DAYPART_NOT_FOUND							= 5332;	
+	public static final int MOON_PHASE_MANDATORY_FIELD_EMPTY 			= 5333;
+	public static final int MOON_PHASE_ALREADY_EXIST					= 5334;
+	public static final int MOON_PHASE_NOT_FOUND						= 5335;
+	public static final int MOON_PHASE_SEARCH_MANDATORY_FIELD_EMPTY 	= 5336;
 	
 	// Material
 	public static final int MAT_ALREADY_EXIST							= 1200;

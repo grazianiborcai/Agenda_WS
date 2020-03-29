@@ -66,6 +66,9 @@ public final class DaoDbTable {
 	public static final String MAT_UNIT_TEXT_TABLE = "measure_unit_text";
 	public static final String MONTH_TEXT_TABLE = "month_text";
 	public static final String MOIP_PERMISSION_RESPONSE_TABLE = "moip_permission_reponse";
+	public static final String MOON_CALENDAR_TABLE = "moon_calendar";
+	public static final String MOON_PHASE_TABLE = "moon_phase";
+	public static final String MOON_PHASE_TEXT_TABLE = "moon_phase_text";	
 	public static final String ORDER_HDR_TABLE = "order_header";
 	public static final String ORDER_HDR_SNAPSHOT_TABLE = "order_header_snapshot";
 	public static final String ORDER_ITM_TABLE = "order_item";
@@ -156,6 +159,7 @@ public final class DaoDbTable {
 	public static final String MAT_TEXT_SEARCH_VIEW = "view_material_text_search";
 	public static final String MAT_TEXT_DEFAULT_VIEW = "view_material_text_default";
 	public static final String MAT_SEARCH_VIEW = "view_material_search";
+	public static final String MOON_PHASE_SEARCH_VIEW = "view_moon_phase_search";
 	public static final String OWNER_LIST_VIEW = "view_owner_list";
 	public static final String ORDER_LIST_VIEW = "view_order_list";
 	public static final String ORDER_ITM_SEARCH_VIEW = "view_order_item_search";

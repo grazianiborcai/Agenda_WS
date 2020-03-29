@@ -161,6 +161,7 @@ public final class DaoDbField {
 	public static final String COL_MESSAGE = "message";
 	public static final String COL_MONTH = "month";
 	public static final String COL_MONTH_VALID_FROM = "month_valid_from";
+	public static final String COL_COD_MOON_PHASE = "cod_moon_phase";	
 	public static final String COL_NAME = "name";
 	public static final String COL_NAME_DISPLAY = "name_display";
 	public static final String COL_NAME_SEARCH = "name_search";
