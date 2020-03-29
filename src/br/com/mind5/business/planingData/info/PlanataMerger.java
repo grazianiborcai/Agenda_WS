@@ -3,10 +3,24 @@ package br.com.mind5.business.planingData.info;
 import java.util.List;
 
 import br.com.mind5.business.materialList.info.MatlisInfo;
+import br.com.mind5.business.moonCalendar.info.MooncalInfo;
 import br.com.mind5.info.InfoMergerBuilderV3;
 import br.com.mind5.info.InfoMergerV3;
 
 public final class PlanataMerger {		
+	public static List<PlanataInfo> mergeWithMooncal(List<PlanataInfo> baseInfos, List<MooncalInfo> selectedInfos) {
+		InfoMergerBuilderV3<PlanataInfo, MooncalInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new PlanataVisiMergeMooncal());
+		InfoMergerV3<PlanataInfo, MooncalInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	
 	public static List<PlanataInfo> mergeWithMatlis(List<PlanataInfo> baseInfos, List<MatlisInfo> selectedInfos) {
 		InfoMergerBuilderV3<PlanataInfo, MatlisInfo> builder = new InfoMergerBuilderV3<>();
 		
