@@ -21,7 +21,7 @@ final class MoonaseCopyPlanime extends InfoCopierOneToManyTemplate<MoonaseInfo, 
 		
 		for (PlanataInfo eachPlanata : source.planatas) {
 			MoonaseInfo oneResult = new MoonaseInfo();
-			oneResult.codMoonPhase = eachPlanata.codWeekday;
+			oneResult.codMoonPhase = eachPlanata.codMoonPhase;
 			
 			results.add(oneResult);
 		}
