@@ -15,6 +15,7 @@ import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.business.planingData.info.PlanataInfo;
 import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.masterData.moonPhase.info.MoonaseInfo;
 
 final class PlanimeUniquifier implements InfoUniquifier<PlanimeInfo> {	
 	
@@ -30,6 +31,7 @@ final class PlanimeUniquifier implements InfoUniquifier<PlanimeInfo> {
 			result = uniquifyEmployee(result);
 			result = uniquifyWeekday(result);
 			result = uniquifyDaypart(result);
+			result = uniquifyMoonase(result);
 			result = uniquifyPlanata(result);
 			
 			results.add(result);
@@ -100,6 +102,19 @@ final class PlanimeUniquifier implements InfoUniquifier<PlanimeInfo> {
 		allWeekdays = allWeekdays.stream().distinct().collect(Collectors.toList());			
 		
 		result.weekdays = allWeekdays;
+		return result;
+	}
+	
+	
+	
+	private PlanimeInfo uniquifyMoonase(PlanimeInfo result) {
+		if (result.moonases == null)
+			return result;
+		
+		List<MoonaseInfo> allMoonases = new ArrayList<>(result.moonases);
+		allMoonases = allMoonases.stream().distinct().collect(Collectors.toList());			
+		
+		result.moonases = allMoonases;
 		return result;
 	}
 	

@@ -213,6 +213,15 @@ public final class PlanimeInfo extends InfoRecord implements Cloneable {
 		if (planatas != null)
 			result = result * 31 + planatas.hashCode();
 		
+		if (dates != null)
+			result = result * 31 + dates.hashCode();
+		
+		if (dayparts != null)
+			result = result * 31 + dayparts.hashCode();
+		
+		if (moonases != null)
+			result = result * 31 + moonases.hashCode();
+		
 		return result;
 	}
 	
@@ -233,7 +242,10 @@ public final class PlanimeInfo extends InfoRecord implements Cloneable {
 				super.isListEqual(stolises , obj.stolises)	&&
 				super.isListEqual(matlises , obj.matlises) 	&&
 				super.isListEqual(emplises , obj.emplises) 	&&
-				super.isListEqual(weekdays , obj.weekdays) 	&&
+				super.isListEqual(weekdays , obj.weekdays) 	&&				
+				super.isListDateEqual(dates , obj.dates) 	&&
+				super.isListEqual(dayparts , obj.dayparts) 	&&
+				super.isListEqual(moonases , obj.moonases) 	&&				
 				super.isListEqual(planatas , obj.planatas));
 	}
 }
