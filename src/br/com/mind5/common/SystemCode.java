@@ -1151,4 +1151,9 @@ public final class SystemCode {
 	public static final int MOON_CALENDAR_MANDATORY_FIELD_EMPTY 		= 11500;
 	public static final int MOON_CALENDAR_ALREADY_EXIST					= 11501;
 	public static final int MOON_CALENDAR_NOT_FOUND						= 11502;
+	
+	//Calendar Date
+	public static final int CALENDAR_DATE_MANDATORY_FIELD_EMPTY 		= 11550;
+	public static final int CALENDAR_DATE_ALREADY_EXIST					= 11551;
+	public static final int CALENDAR_DATE_NOT_FOUND						= 11552;
 }

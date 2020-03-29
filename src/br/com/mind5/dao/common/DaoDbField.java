@@ -145,6 +145,7 @@ public final class DaoDbField {
 	public static final String COL_INSC_MUNICIPAL = "inscricao_municipal";
 	public static final String COL_INSC_ESTATUAL = "inscricao_estadual";
 	public static final String COL_IS_LOCKED = "is_locked";
+	public static final String COL_IS_WEEKEND = "is_weekend";
 	public static final String COL_ITEM_RECEIVER = "item_receiver";
 	public static final String COL_ITEM_TOTAL = "itemTotal";
 	public static final String COL_LAST_CHANGED = "last_changed";
