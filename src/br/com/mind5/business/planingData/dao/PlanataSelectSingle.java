@@ -72,7 +72,7 @@ public final class PlanataSelectSingle extends DaoStmtTemplate<PlanataInfo> {
 		DaoJoinBuilder joinEmpwotm = new PlanataJoinEmpwotm(RT_STORE_WT);		
 		joins.add(joinEmpwotm.build());
 		
-		DaoJoinBuilder joinCalate = new PlanataJoinEmpwotm(RT_STORE_WT);		
+		DaoJoinBuilder joinCalate = new PlanataJoinCalate(RT_STORE_WT);		
 		joins.add(joinCalate.build());
 		
 		DaoJoinBuilder joinEmpos = new PlanataJoinEmpos(RT_EMP_WT);		
