@@ -123,4 +123,19 @@ public abstract class InfoRecord extends Syslog implements Cloneable {
 			return false;
 		}
 	}
+	
+	
+	
+	protected boolean isListDateEqual(List<LocalDate> listOne, List<LocalDate> listTwo) {
+		try {
+			if (listOne == null && listTwo == null)
+				return true;
+			
+			return listOne.equals(listTwo);
+			
+		} catch (Exception e) {
+			super.logException(e);
+			return false;
+		}
+	}
 }
