@@ -1146,4 +1146,9 @@ public final class SystemCode {
 	
 	// Webhook - Refund-Moip
 	public static final int WHOOK_MOIP_REFUND_MANDATORY_FIELD_EMPTY 	= 11450;
+	
+	//Moon Calendar
+	public static final int MOON_CALENDAR_MANDATORY_FIELD_EMPTY 		= 11500;
+	public static final int MOON_CALENDAR_ALREADY_EXIST					= 11501;
+	public static final int MOON_CALENDAR_NOT_FOUND						= 11502;
 }
