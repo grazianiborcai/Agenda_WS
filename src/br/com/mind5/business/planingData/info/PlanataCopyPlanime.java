@@ -13,6 +13,7 @@ import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.business.planningTime.info.PlanimeInfo;
 import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.info.InfoCopierOneToManyTemplate;
+import br.com.mind5.masterData.moonPhase.info.MoonaseInfo;
 
 final class PlanataCopyPlanime extends InfoCopierOneToManyTemplate<PlanataInfo, PlanimeInfo>{
 	
@@ -29,6 +30,7 @@ final class PlanataCopyPlanime extends InfoCopierOneToManyTemplate<PlanataInfo, 
 		results = storeResult(source, results);
 		results = employeeResult(source, results);
 		results = materialResult(source, results);
+		results = moonaseResult(source, results);
 		
 		return results;
 	}
@@ -125,6 +127,31 @@ final class PlanataCopyPlanime extends InfoCopierOneToManyTemplate<PlanataInfo, 
 		}
 		
 		return materialResults;
+	}
+	
+	
+	
+	private List<PlanataInfo> moonaseResult(PlanimeInfo recordInfo, List<PlanataInfo> results) {
+		if (recordInfo.moonases == null)
+			return results;
+		
+		if (recordInfo.moonases.isEmpty())
+			return results;
+		
+		
+		List<PlanataInfo> moonaselResults = new ArrayList<>();
+		
+		
+		for (PlanataInfo eachResult : results) {			
+			for (MoonaseInfo eachMoonase : recordInfo.moonases) {
+				PlanataInfo oneMoonaseResult = tryToClone(eachResult);
+				oneMoonaseResult.codMoonPhase = eachMoonase.codMoonPhase;
+				
+				moonaselResults.add(oneMoonaseResult);
+			}
+		}
+		
+		return moonaselResults;
 	}
 	
 	

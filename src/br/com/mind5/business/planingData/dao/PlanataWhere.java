@@ -50,6 +50,10 @@ final class PlanataWhere implements DaoStmtWhere {
 			case PlanataDbTableColumn.COL_DATE :
 				builder.addClauseEqualAnd(eachColumn, DaoFormatter.dateToString(recordInfo.date));
 				break;
+				
+			case PlanataDbTableColumn.COL_COD_MOON_PHASE :
+				builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codMoonPhase));
+				break;
 
 			case PlanataDbTableColumn.COL_RECORD_MODE :
 				builder.addClauseEqualAnd(eachColumn, recordInfo.recordMode);

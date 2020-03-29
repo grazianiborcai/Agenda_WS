@@ -25,6 +25,7 @@ public final class PlanataSelectSingle extends DaoStmtTemplate<PlanataInfo> {
 	private final String RT_EMP_WT = DaoDbTable.EMP_WT_TABLE;
 	private final String RT_EMP_POSITION = DaoDbTable.EMPOS_TABLE;
 	private final String RT_EMP_MAT = DaoDbTable.EMP_MAT_TABLE;
+	private final String RT_CALENDAR_DATE = DaoDbTable.CALENDAR_DATE_TABLE;
 	
 	
 	public PlanataSelectSingle(Connection conn, PlanataInfo recordInfo, String schemaName) {
@@ -75,6 +76,9 @@ public final class PlanataSelectSingle extends DaoStmtTemplate<PlanataInfo> {
 		DaoJoinBuilder joinCalate = new PlanataJoinCalate(RT_STORE_WT);		
 		joins.add(joinCalate.build());
 		
+		DaoJoinBuilder joinMooncal = new PlanataJoinMooncal(RT_CALENDAR_DATE);		
+		joins.add(joinMooncal.build());
+		
 		DaoJoinBuilder joinEmpos = new PlanataJoinEmpos(RT_EMP_WT);		
 		joins.add(joinEmpos.build());
 		
@@ -112,6 +116,7 @@ public final class PlanataSelectSingle extends DaoStmtTemplate<PlanataInfo> {
 					dataInfo.beginTime = DaoFormatter.sqlToLocalTime(stmtResult, PlanataDbTableColumn.COL_BEGIN_TIME);
 					dataInfo.endTime = DaoFormatter.sqlToLocalTime(stmtResult, PlanataDbTableColumn.COL_END_TIME);		
 					dataInfo.date = DaoFormatter.sqlToLocalDate(stmtResult, PlanataDbTableColumn.COL_DATE);
+					dataInfo.codMoonPhase = stmtResult.getInt(PlanataDbTableColumn.COL_COD_MOON_PHASE);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());
