@@ -10,8 +10,22 @@ import br.com.mind5.business.planingData.info.PlanataInfo;
 import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.info.InfoMergerBuilderV3;
 import br.com.mind5.info.InfoMergerV3;
+import br.com.mind5.masterData.moonPhase.info.MoonaseInfo;
 
 public final class PlanimeMerger {
+	public static List<PlanimeInfo> mergeWithMoonase(List<PlanimeInfo> baseInfos, List<MoonaseInfo> selectedInfos) {
+		InfoMergerBuilderV3<PlanimeInfo, MoonaseInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new PlanimeVisiMergeMoonase());
+		InfoMergerV3<PlanimeInfo, MoonaseInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	
 	public static List<PlanimeInfo> mergeWithEmplis(List<PlanimeInfo> baseInfos, List<EmplisInfo> selectedInfos) {
 		InfoMergerBuilderV3<PlanimeInfo, EmplisInfo> builder = new InfoMergerBuilderV3<>();
 		

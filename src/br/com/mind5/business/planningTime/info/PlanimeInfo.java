@@ -12,6 +12,7 @@ import br.com.mind5.business.planingData.info.PlanataInfo;
 import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
+import br.com.mind5.masterData.moonPhase.info.MoonaseInfo;
 
 public final class PlanimeInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
@@ -22,6 +23,7 @@ public final class PlanimeInfo extends InfoRecord implements Cloneable {
 	public List<EmplisInfo> emplises;
 	public List<WeekdayInfo> weekdays;
 	public List<DaypartInfo> dayparts;
+	public List<MoonaseInfo> moonases;
 	public List<PlanataInfo> planatas;	
 	
 	
@@ -35,6 +37,7 @@ public final class PlanimeInfo extends InfoRecord implements Cloneable {
 		emplises = DefaultValue.list();
 		weekdays = DefaultValue.list();
 		dayparts = DefaultValue.list();
+		moonases = DefaultValue.list();
 		planatas = DefaultValue.list();
 	}
 	
@@ -61,6 +64,7 @@ public final class PlanimeInfo extends InfoRecord implements Cloneable {
 		deepCopy.emplises = cloneEmployees(deepCopy.emplises);
 		deepCopy.weekdays = cloneWeekdays(deepCopy.weekdays);
 		deepCopy.dayparts = cloneDayparts(deepCopy.dayparts);
+		deepCopy.moonases = cloneMoonases(deepCopy.moonases);
 		deepCopy.planatas = clonePlanatas(deepCopy.planatas);		
 		
 		return deepCopy;
@@ -149,6 +153,22 @@ public final class PlanimeInfo extends InfoRecord implements Cloneable {
 		
 		for (DaypartInfo eachRecord : infoRecords) {
 			DaypartInfo clonedRecord = (DaypartInfo) eachRecord.clone();
+			clones.add(clonedRecord);
+		}
+		
+		return clones;
+	}
+	
+	
+	
+	private List<MoonaseInfo> cloneMoonases(List<MoonaseInfo> infoRecords) throws CloneNotSupportedException {
+		if (infoRecords == null)
+			return infoRecords;		
+		
+		List<MoonaseInfo> clones = new ArrayList<>();
+		
+		for (MoonaseInfo eachRecord : infoRecords) {
+			MoonaseInfo clonedRecord = (MoonaseInfo) eachRecord.clone();
 			clones.add(clonedRecord);
 		}
 		
