@@ -23,7 +23,6 @@ final class PlanataVisiMergeToSelect implements InfoMergerVisitorV3<PlanataInfo,
 	@Override public List<PlanataInfo> merge(PlanataInfo baseInfo, PlanataInfo selectedInfo) {
 		List<PlanataInfo> results = new ArrayList<>();
 		
-		selectedInfo.date = baseInfo.date;
 		selectedInfo.username = baseInfo.username;
 		selectedInfo.codLanguage = baseInfo.codLanguage;
 		

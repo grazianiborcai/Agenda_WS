@@ -72,6 +72,9 @@ public final class PlanataSelectSingle extends DaoStmtTemplate<PlanataInfo> {
 		DaoJoinBuilder joinEmpwotm = new PlanataJoinEmpwotm(RT_STORE_WT);		
 		joins.add(joinEmpwotm.build());
 		
+		DaoJoinBuilder joinCalate = new PlanataJoinEmpwotm(RT_STORE_WT);		
+		joins.add(joinCalate.build());
+		
 		DaoJoinBuilder joinEmpos = new PlanataJoinEmpos(RT_EMP_WT);		
 		joins.add(joinEmpos.build());
 		
@@ -107,7 +110,8 @@ public final class PlanataSelectSingle extends DaoStmtTemplate<PlanataInfo> {
 					dataInfo.codEmployee = stmtResult.getLong(PlanataDbTableColumn.COL_COD_EMPLOYEE);
 					dataInfo.codMat = stmtResult.getLong(PlanataDbTableColumn.COL_COD_MATERIAL);
 					dataInfo.beginTime = DaoFormatter.sqlToLocalTime(stmtResult, PlanataDbTableColumn.COL_BEGIN_TIME);
-					dataInfo.endTime = DaoFormatter.sqlToLocalTime(stmtResult, PlanataDbTableColumn.COL_END_TIME);					
+					dataInfo.endTime = DaoFormatter.sqlToLocalTime(stmtResult, PlanataDbTableColumn.COL_END_TIME);		
+					dataInfo.date = DaoFormatter.sqlToLocalDate(stmtResult, PlanataDbTableColumn.COL_DATE);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

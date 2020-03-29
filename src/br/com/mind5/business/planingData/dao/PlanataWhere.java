@@ -46,6 +46,10 @@ final class PlanataWhere implements DaoStmtWhere {
 			case PlanataDbTableColumn.COL_COD_MATERIAL :
 				builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codMat));
 				break;
+				
+			case PlanataDbTableColumn.COL_DATE :
+				builder.addClauseEqualAnd(eachColumn, DaoFormatter.dateToString(recordInfo.date));
+				break;
 
 			case PlanataDbTableColumn.COL_RECORD_MODE :
 				builder.addClauseEqualAnd(eachColumn, recordInfo.recordMode);

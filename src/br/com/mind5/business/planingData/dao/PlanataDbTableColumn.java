@@ -4,23 +4,21 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 
-import br.com.mind5.business.employeeWorkTime.dao.EmpwotmDbTableColumn;
-import br.com.mind5.business.material.dao.MatDbTableColumn;
-import br.com.mind5.business.store.dao.StoreDbTableColumn;
-import br.com.mind5.business.storeWorkTime.dao.StowotmDbTableColumn;
 import br.com.mind5.dao.DaoColumn;
 import br.com.mind5.dao.DaoDbTableColumnTemplate;
+import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
 public final class PlanataDbTableColumn extends DaoDbTableColumnTemplate {
-	public static final String COL_BEGIN_TIME = EmpwotmDbTableColumn.COL_BEGIN_TIME;
-	public static final String COL_COD_EMPLOYEE = EmpwotmDbTableColumn.COL_COD_EMPLOYEE;
-	public static final String COL_COD_MATERIAL = MatDbTableColumn.COL_COD_MATERIAL;
-	public static final String COL_COD_OWNER = StoreDbTableColumn.COL_COD_OWNER;
-	public static final String COL_COD_STORE = StoreDbTableColumn.COL_COD_STORE;
-	public static final String COL_COD_WEEKDAY = StowotmDbTableColumn.COL_COD_WEEKDAY;
-	public static final String COL_END_TIME = EmpwotmDbTableColumn.COL_END_TIME;
-	public static final String COL_RECORD_MODE = StoreDbTableColumn.COL_RECORD_MODE;	
+	public static final String COL_BEGIN_TIME = DaoDbField.COL_BEGIN_TIME;
+	public static final String COL_COD_EMPLOYEE = DaoDbField.COL_COD_EMPLOYEE;
+	public static final String COL_COD_MATERIAL = DaoDbField.COL_COD_MATERIAL;
+	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;
+	public static final String COL_COD_STORE = DaoDbField.COL_COD_STORE;
+	public static final String COL_COD_WEEKDAY = DaoDbField.COL_COD_WEEKDAY;
+	public static final String COL_DATE = DaoDbField.COL_DATE;
+	public static final String COL_END_TIME = DaoDbField.COL_END_TIME;
+	public static final String COL_RECORD_MODE = DaoDbField.COL_RECORD_MODE;	
 	
 	
 	private Hashtable<String, List<DaoColumn>> tableColumns;	
@@ -33,13 +31,13 @@ public final class PlanataDbTableColumn extends DaoDbTableColumnTemplate {
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
 		tableColumns = new Hashtable<>();		
-		buildEmployeeListTable();		
+		buildTable();		
 		return tableColumns;
 	}
 	
 	
 	
-	private void buildEmployeeListTable() {
+	private void buildTable() {
 		DaoColumn oneColumn;
 		List<DaoColumn> columns = new ArrayList<>();	
 		
@@ -102,6 +100,14 @@ public final class PlanataDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = DaoDbTable.STORE_TABLE;
 		oneColumn.columnName = COL_RECORD_MODE;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = DaoDbTable.CALENDAR_DATE_TABLE;
+		oneColumn.columnName = COL_DATE;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
