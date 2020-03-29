@@ -22,12 +22,14 @@ final class MoonaseCopyPlanime extends InfoCopierOneToManyTemplate<MoonaseInfo, 
 		Set<MoonaseInfo> results = new HashSet<>();
 		
 		for (PlanataInfo eachPlanata: source.planatas) {
-			MoonaseInfo eachResult = new MoonaseInfo();
-			
-			eachResult.codMoonPhase = eachPlanata.codMoonPhase;
-			eachResult.codLanguage = eachPlanata.codLanguage;
-			
-			results.add(eachResult);
+			if (eachPlanata.codMoonPhase > 0) {
+				MoonaseInfo eachResult = new MoonaseInfo();
+				
+				eachResult.codMoonPhase = eachPlanata.codMoonPhase;
+				eachResult.codLanguage = eachPlanata.codLanguage;
+				
+				results.add(eachResult);
+			}
 		}
 		
 		
