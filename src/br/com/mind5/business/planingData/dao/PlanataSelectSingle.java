@@ -116,7 +116,7 @@ public final class PlanataSelectSingle extends DaoStmtTemplate<PlanataInfo> {
 					dataInfo.beginTime = DaoFormatter.sqlToLocalTime(stmtResult, PlanataDbTableColumn.COL_BEGIN_TIME);
 					dataInfo.endTime = DaoFormatter.sqlToLocalTime(stmtResult, PlanataDbTableColumn.COL_END_TIME);		
 					dataInfo.date = DaoFormatter.sqlToLocalDate(stmtResult, PlanataDbTableColumn.COL_DATE);
-					dataInfo.codMoonPhase = stmtResult.getInt(PlanataDbTableColumn.COL_COD_MOON_PHASE);
+					dataInfo.codMoonPhase = DaoFormatter.sqlToInt(stmtResult, PlanataDbTableColumn.COL_COD_MOON_PHASE);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());
