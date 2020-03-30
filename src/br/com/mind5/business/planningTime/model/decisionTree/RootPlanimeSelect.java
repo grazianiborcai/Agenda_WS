@@ -11,7 +11,6 @@ import br.com.mind5.business.planningTime.model.action.LazyPlanimeMergeMoonase;
 import br.com.mind5.business.planningTime.model.action.LazyPlanimeMergeStolis;
 import br.com.mind5.business.planningTime.model.action.LazyPlanimeMergeWeekday;
 import br.com.mind5.business.planningTime.model.action.LazyPlanimePruneDaypart;
-import br.com.mind5.business.planningTime.model.action.LazyPlanimePruneMoonase;
 import br.com.mind5.business.planningTime.model.action.StdPlanimeMergePlanata;
 import br.com.mind5.business.planningTime.model.checker.PlanimeCheckRead;
 import br.com.mind5.model.action.ActionLazy;
@@ -52,7 +51,6 @@ public class RootPlanimeSelect extends DeciTreeReadTemplate<PlanimeInfo> {
 
 		ActionStd<PlanimeInfo> mergePlanata = new StdPlanimeMergePlanata(option);	
 		ActionLazy<PlanimeInfo> pruneDaypart = new LazyPlanimePruneDaypart(option.conn, option.schemaName);
-		ActionLazy<PlanimeInfo> pruneMoonase = new LazyPlanimePruneMoonase(option.conn, option.schemaName);
 		ActionLazy<PlanimeInfo> mergeStolis = new LazyPlanimeMergeStolis(option.conn, option.schemaName);	
 		ActionLazy<PlanimeInfo> mergeEmplis = new LazyPlanimeMergeEmplis(option.conn, option.schemaName);
 		ActionLazy<PlanimeInfo> mergeMatlis = new LazyPlanimeMergeMatlis(option.conn, option.schemaName);			
@@ -61,8 +59,7 @@ public class RootPlanimeSelect extends DeciTreeReadTemplate<PlanimeInfo> {
 		ActionLazy<PlanimeInfo> mergeMoonase = new LazyPlanimeMergeMoonase(option.conn, option.schemaName);
 		
 		mergePlanata.addPostAction(pruneDaypart);
-		pruneDaypart.addPostAction(pruneMoonase);
-		pruneMoonase.addPostAction(mergeStolis);
+		pruneDaypart.addPostAction(mergeStolis);
 		mergeStolis.addPostAction(mergeEmplis);
 		mergeEmplis.addPostAction(mergeMatlis);
 		mergeMatlis.addPostAction(mergeWeekday);
