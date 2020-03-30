@@ -215,6 +215,7 @@ public abstract class ModelTemplate<T extends InfoRecord> implements Model {
 	private void closeTransaction(Connection dbConn, boolean isSuccess) {
 		try {
 			tryToCloseTransaction(dbConn, isSuccess);
+			dbConn= null;
 			
 		} catch (SQLException e) {
 			logException(e);
