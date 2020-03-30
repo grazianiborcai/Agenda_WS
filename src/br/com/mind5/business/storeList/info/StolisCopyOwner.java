@@ -13,6 +13,7 @@ final class StolisCopyOwner extends InfoCopierTemplate<StolisInfo, OwnerInfo>{
 	
 	@Override protected StolisInfo makeCopyHook(OwnerInfo source) {
 		StolisInfo result = new StolisInfo();
+		
 		result.codOwner = source.codOwner;
 		result.username = source.username;
 		result.codLanguage = source.codLanguage;

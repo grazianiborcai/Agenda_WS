@@ -14,6 +14,7 @@ final class StolisCopyPhonap extends InfoCopierTemplate<StolisInfo, PhonapInfo>{
 	
 	@Override protected StolisInfo makeCopyHook(PhonapInfo source) {
 		StolisInfo result = new StolisInfo();
+		
 		result.codOwner = source.codOwner;
 		result.codStore = source.codStore;
 		result.codLanguage = source.codLanguage;

@@ -14,6 +14,7 @@ final class StolisCopyAddresnap extends InfoCopierTemplate<StolisInfo, Addresnap
 	
 	@Override protected StolisInfo makeCopyHook(AddresnapInfo source) {
 		StolisInfo result = new StolisInfo();
+		
 		result.codOwner = source.codOwner;
 		result.codStore = source.codStore;
 		result.codLanguage = source.codLanguage;

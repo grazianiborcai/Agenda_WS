@@ -14,6 +14,7 @@ final class StolisCopySchedine extends InfoCopierTemplate<StolisInfo, SchedineIn
 	
 	@Override protected StolisInfo makeCopyHook(SchedineInfo source) {
 			StolisInfo result = new StolisInfo();
+			
 			result.codOwner = source.codOwner;
 			result.codStore = source.codStore;
 			result.codLanguage = source.codLanguage;

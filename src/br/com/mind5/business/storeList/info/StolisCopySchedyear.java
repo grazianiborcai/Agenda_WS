@@ -25,6 +25,7 @@ final class StolisCopySchedyear extends InfoCopierOneToManyTemplate<StolisInfo, 
 		
 		for (SchedyeratInfo eachSchedyerat : source.schedyerats) {
 			StolisInfo eachResult = new StolisInfo();
+			
 			eachResult.codOwner = eachSchedyerat.codOwner;
 			eachResult.codStore = eachSchedyerat.codStore;
 			eachResult.codLanguage = eachSchedyerat.codLanguage;

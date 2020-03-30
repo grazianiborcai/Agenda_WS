@@ -25,6 +25,7 @@ final class StolisCopySchedmon extends InfoCopierOneToManyTemplate<StolisInfo, S
 		
 		for (SchedonthatInfo eachSchedonthat : source.schedonthats) {
 			StolisInfo eachResult = new StolisInfo();
+			
 			eachResult.codOwner = eachSchedonthat.codOwner;
 			eachResult.codStore = eachSchedonthat.codStore;
 			eachResult.codLanguage = eachSchedonthat.codLanguage;

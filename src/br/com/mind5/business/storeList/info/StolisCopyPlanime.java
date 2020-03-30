@@ -2,7 +2,9 @@ package br.com.mind5.business.storeList.info;
 
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import br.com.mind5.business.planingData.info.PlanataInfo;
 import br.com.mind5.business.planningTime.info.PlanimeInfo;
@@ -17,10 +19,11 @@ final class StolisCopyPlanime extends InfoCopierOneToManyTemplate<StolisInfo, Pl
 	
 	
 	@Override protected List<StolisInfo> makeCopyHook(PlanimeInfo source) {
-		List<StolisInfo> results = new ArrayList<>();
+		Set<StolisInfo> results = new HashSet<>();
 		
 		for (PlanataInfo eachPlanata : source.planatas) {
 			StolisInfo oneResult = new StolisInfo();
+			
 			oneResult.codOwner = eachPlanata.codOwner;
 			oneResult.codStore = eachPlanata.codStore;
 			oneResult.codLanguage = eachPlanata.codLanguage;
@@ -29,6 +32,6 @@ final class StolisCopyPlanime extends InfoCopierOneToManyTemplate<StolisInfo, Pl
 			results.add(oneResult);
 		}
 		
-		return results;
+		return new ArrayList<>(results);
 	}
 }

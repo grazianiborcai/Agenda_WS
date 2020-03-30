@@ -25,6 +25,7 @@ final class StolisCopySchedeek extends InfoCopierOneToManyTemplate<StolisInfo, S
 		
 		for (SchedeekdatInfo eachSchedonthat : source.schedeekdats) {
 			StolisInfo eachResult = new StolisInfo();
+			
 			eachResult.codOwner = eachSchedonthat.codOwner;
 			eachResult.codStore = eachSchedonthat.codStore;
 			eachResult.codLanguage = eachSchedonthat.codLanguage;
