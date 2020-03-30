@@ -25,6 +25,7 @@ final class EmplisCopySchedmon extends InfoCopierOneToManyTemplate<EmplisInfo, S
 		
 		for (SchedonthatInfo eachSchedonthat : source.schedonthats) {
 			EmplisInfo eachResult = new EmplisInfo();
+			
 			eachResult.codOwner = eachSchedonthat.codOwner;
 			eachResult.codEmployee = eachSchedonthat.codEmployee;
 			eachResult.codLanguage = eachSchedonthat.codLanguage;

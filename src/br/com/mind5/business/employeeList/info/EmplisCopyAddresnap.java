@@ -14,6 +14,7 @@ final class EmplisCopyAddresnap extends InfoCopierTemplate<EmplisInfo, Addresnap
 	
 	@Override protected EmplisInfo makeCopyHook(AddresnapInfo source) {
 		EmplisInfo result = new EmplisInfo();
+		
 		result.codOwner = source.codOwner;
 		result.codEmployee = source.codEmployee;
 		result.codLanguage = source.codLanguage;

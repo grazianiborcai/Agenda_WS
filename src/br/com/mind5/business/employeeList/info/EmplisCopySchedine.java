@@ -13,6 +13,7 @@ final class EmplisCopySchedine extends InfoCopierTemplate<EmplisInfo, SchedineIn
 	
 	@Override protected EmplisInfo makeCopyHook(SchedineInfo source) {
 		EmplisInfo result = new EmplisInfo();
+		
 		result.codOwner = source.codOwner;
 		result.codEmployee = source.codEmployee;
 		result.codLanguage = source.codLanguage;

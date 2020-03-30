@@ -14,6 +14,7 @@ final class EmplisCopyPhonap extends InfoCopierTemplate<EmplisInfo, PhonapInfo>{
 	
 	@Override protected EmplisInfo makeCopyHook(PhonapInfo source) {
 		EmplisInfo result = new EmplisInfo();
+		
 		result.codOwner = source.codOwner;
 		result.codEmployee = source.codEmployee;
 		result.codLanguage = source.codLanguage;

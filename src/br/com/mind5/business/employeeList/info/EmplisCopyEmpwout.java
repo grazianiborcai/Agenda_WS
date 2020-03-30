@@ -14,6 +14,7 @@ final class EmplisCopyEmpwout extends InfoCopierTemplate<EmplisInfo, EmpwoutInfo
 	
 	@Override protected EmplisInfo makeCopyHook(EmpwoutInfo source) {
 		EmplisInfo result = new EmplisInfo();
+		
 		result.codOwner = source.codOwner;
 		result.codEmployee = source.codEmployee;
 		result.codLanguage = source.codLanguage;

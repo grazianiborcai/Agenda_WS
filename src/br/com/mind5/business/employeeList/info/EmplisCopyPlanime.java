@@ -1,7 +1,9 @@
 package br.com.mind5.business.employeeList.info;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import br.com.mind5.business.planingData.info.PlanataInfo;
 import br.com.mind5.business.planningTime.info.PlanimeInfo;
@@ -16,10 +18,11 @@ final class EmplisCopyPlanime extends InfoCopierOneToManyTemplate<EmplisInfo, Pl
 	
 	
 	@Override protected List<EmplisInfo> makeCopyHook(PlanimeInfo source) {
-		List<EmplisInfo> results = new ArrayList<>();
+		Set<EmplisInfo> results = new HashSet<>();
 		
 		for (PlanataInfo eachPlanata : source.planatas) {
 			EmplisInfo oneResult = new EmplisInfo();
+			
 			oneResult.codOwner = eachPlanata.codOwner;
 			oneResult.codEmployee = eachPlanata.codEmployee;
 			oneResult.codLanguage = eachPlanata.codLanguage;
@@ -28,6 +31,6 @@ final class EmplisCopyPlanime extends InfoCopierOneToManyTemplate<EmplisInfo, Pl
 			results.add(oneResult);
 		}
 		
-		return results;
+		return new ArrayList<>(results);
 	}
 }

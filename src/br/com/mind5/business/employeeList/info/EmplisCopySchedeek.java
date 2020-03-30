@@ -25,6 +25,7 @@ final class EmplisCopySchedeek extends InfoCopierOneToManyTemplate<EmplisInfo, S
 		
 		for (SchedeekdatInfo eachSchedonthat : source.schedeekdats) {
 			EmplisInfo eachResult = new EmplisInfo();
+			
 			eachResult.codOwner = eachSchedonthat.codOwner;
 			eachResult.codEmployee = eachSchedonthat.codEmployee;
 			eachResult.codLanguage = eachSchedonthat.codLanguage;
