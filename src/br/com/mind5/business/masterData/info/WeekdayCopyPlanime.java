@@ -2,7 +2,9 @@ package br.com.mind5.business.masterData.info;
 
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import br.com.mind5.business.planingData.info.PlanataInfo;
 import br.com.mind5.business.planningTime.info.PlanimeInfo;
@@ -17,7 +19,7 @@ final class WeekdayCopyPlanime extends InfoCopierOneToManyTemplate<WeekdayInfo, 
 	
 	
 	@Override protected List<WeekdayInfo> makeCopyHook(PlanimeInfo source) {
-		List<WeekdayInfo> results = new ArrayList<>();
+		Set<WeekdayInfo> results = new HashSet<>();
 		
 		for (PlanataInfo eachPlanata : source.planatas) {
 			WeekdayInfo oneResult = new WeekdayInfo();
@@ -26,6 +28,6 @@ final class WeekdayCopyPlanime extends InfoCopierOneToManyTemplate<WeekdayInfo, 
 			results.add(oneResult);
 		}
 		
-		return results;
+		return new ArrayList<>(results);
 	}
 }
