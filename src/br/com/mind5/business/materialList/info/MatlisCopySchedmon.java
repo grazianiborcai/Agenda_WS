@@ -25,6 +25,7 @@ final class MatlisCopySchedmon extends InfoCopierOneToManyTemplate<MatlisInfo, S
 		
 		for (SchedonthatInfo eachSchedonthat : source.schedonthats) {
 			MatlisInfo eachResult = new MatlisInfo();
+			
 			eachResult.codOwner = eachSchedonthat.codOwner;
 			eachResult.codMat = eachSchedonthat.codMat;
 			eachResult.codLanguage = eachSchedonthat.codLanguage;

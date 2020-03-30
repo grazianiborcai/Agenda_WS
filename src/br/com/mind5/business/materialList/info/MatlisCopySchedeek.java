@@ -25,6 +25,7 @@ final class MatlisCopySchedeek extends InfoCopierOneToManyTemplate<MatlisInfo, S
 		
 		for (SchedeekdatInfo eachSchedonthat : source.schedeekdats) {
 			MatlisInfo eachResult = new MatlisInfo();
+			
 			eachResult.codOwner = eachSchedonthat.codOwner;
 			eachResult.codMat = eachSchedonthat.codMat;
 			eachResult.codLanguage = eachSchedonthat.codLanguage;

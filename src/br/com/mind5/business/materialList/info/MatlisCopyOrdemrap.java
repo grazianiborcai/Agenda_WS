@@ -14,6 +14,7 @@ final class MatlisCopyOrdemrap extends InfoCopierTemplate<MatlisInfo, OrdemrapIn
 	
 	@Override protected MatlisInfo makeCopyHook(OrdemrapInfo source) {
 		MatlisInfo result = new MatlisInfo();
+		
 		result.codOwner = source.codOwner;
 		result.codMat = source.codMat;
 		result.codLanguage = source.codLanguage;

@@ -2,7 +2,9 @@ package br.com.mind5.business.materialList.info;
 
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import br.com.mind5.business.planingData.info.PlanataInfo;
 import br.com.mind5.business.planningTime.info.PlanimeInfo;
@@ -17,10 +19,11 @@ final class MatlisCopyPlanime extends InfoCopierOneToManyTemplate<MatlisInfo, Pl
 	
 	
 	@Override protected List<MatlisInfo> makeCopyHook(PlanimeInfo source) {
-		List<MatlisInfo> results = new ArrayList<>();
+		Set<MatlisInfo> results = new HashSet<>();
 		
 		for (PlanataInfo eachPlanata : source.planatas) {
 			MatlisInfo oneResult = new MatlisInfo();
+			
 			oneResult.codOwner = eachPlanata.codOwner;
 			oneResult.codMat = eachPlanata.codMat;
 			oneResult.codLanguage = eachPlanata.codLanguage;
@@ -29,6 +32,6 @@ final class MatlisCopyPlanime extends InfoCopierOneToManyTemplate<MatlisInfo, Pl
 			results.add(oneResult);
 		}
 		
-		return results;
+		return new ArrayList<>(results);
 	}
 }

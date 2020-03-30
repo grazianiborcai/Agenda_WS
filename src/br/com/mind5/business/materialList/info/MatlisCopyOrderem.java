@@ -14,6 +14,7 @@ final class MatlisCopyOrderem extends InfoCopierTemplate<MatlisInfo, OrderemInfo
 	
 	@Override protected MatlisInfo makeCopyHook(OrderemInfo source) {
 		MatlisInfo result = new MatlisInfo();
+		
 		result.codOwner = source.codOwner;
 		result.codMat = source.codMat;
 		result.codLanguage = source.codLanguage;

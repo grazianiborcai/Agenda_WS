@@ -14,6 +14,7 @@ final class MatlisCopySchedine extends InfoCopierTemplate<MatlisInfo, SchedineIn
 	
 	@Override protected MatlisInfo makeCopyHook(SchedineInfo source) {
 		MatlisInfo result = new MatlisInfo();
+		
 		result.codOwner = source.codOwner;
 		result.codMat = source.codMat;
 		result.codLanguage = source.codLanguage;
