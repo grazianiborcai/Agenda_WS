@@ -5,7 +5,6 @@ import java.util.List;
 
 import br.com.mind5.info.InfoCopier;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
-import br.com.mind5.payment.customerPartner.info.CusparInfo;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
 import br.com.mind5.payment.statusPayOrder.info.PaytusInfo;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.info.OrdmoipInfo;

@@ -8,13 +8,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.logging.log4j.Logger;
-
+import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciResultHelper;
-
-import org.apache.logging.log4j.LogManager;
 
 public final class ActionStdHelperMap<T, S> extends ActionStdTemplate<T> {
 	private Connection actionConn; 
@@ -212,8 +209,7 @@ public final class ActionStdHelperMap<T, S> extends ActionStdTemplate<T> {
 	
 	
 	
-	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
+	private void logException(Exception e) {		
+		SystemLog.logError(this.getClass(), e);
 	}
 }

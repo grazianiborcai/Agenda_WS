@@ -1,18 +1,16 @@
 package br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.info;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoSetter;
-import br.com.mind5.paymentPartner.partnerMoip.orderMoip.info.OrdmoipInfo;
-
 import static br.com.moip.helpers.PayloadFactory.payloadFactory;
 import static br.com.moip.helpers.PayloadFactory.value;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import br.com.mind5.common.SystemLog;
+import br.com.mind5.common.SystemMessage;
+import br.com.mind5.info.InfoSetter;
+import br.com.mind5.paymentPartner.partnerMoip.orderMoip.info.OrdmoipInfo;
 
 
 public final class MultmoipSetterMultiorder implements InfoSetter<MultmoipInfo> {
@@ -61,7 +59,7 @@ public final class MultmoipSetterMultiorder implements InfoSetter<MultmoipInfo> 
 	
 	
 	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
+		
+		SystemLog.logError(this.getClass(), e);
 	}	
 }

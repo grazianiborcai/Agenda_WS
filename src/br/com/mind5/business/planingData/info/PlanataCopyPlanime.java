@@ -5,13 +5,11 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import br.com.mind5.business.employeeList.info.EmplisInfo;
 import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.business.planningTime.info.PlanimeInfo;
 import br.com.mind5.business.storeList.info.StolisInfo;
+import br.com.mind5.common.SystemLog;
 import br.com.mind5.info.InfoCopierOneToManyTemplate;
 import br.com.mind5.masterData.moonPhase.info.MoonaseInfo;
 
@@ -169,7 +167,7 @@ final class PlanataCopyPlanime extends InfoCopierOneToManyTemplate<PlanataInfo, 
 		
 		
 	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
+		
+		SystemLog.logError(this.getClass(), e);
 	}		
 }

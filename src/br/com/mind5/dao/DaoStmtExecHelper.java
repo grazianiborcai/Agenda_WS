@@ -7,9 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
+import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
 
 public final class DaoStmtExecHelper<T> implements DaoStmtExec<T> {
@@ -200,7 +198,6 @@ public final class DaoStmtExecHelper<T> implements DaoStmtExec<T> {
 		if (clazz == null)
 			clazz = this.getClass();
 		
-		Logger logger = LogManager.getLogger(clazz);
-		logger.error(e.getMessage(), e);
+		SystemLog.logError(clazz, e);
 	}	
 }

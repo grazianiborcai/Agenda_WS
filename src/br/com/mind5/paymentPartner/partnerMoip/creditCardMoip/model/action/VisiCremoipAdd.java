@@ -5,9 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
+import br.com.mind5.common.SystemLog;
 import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.info.CremoipInfo;
 import br.com.moip.Moip;
@@ -60,7 +58,7 @@ final class VisiCremoipAdd implements ActionVisitor<CremoipInfo> {
 	
 	
 	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
+		
+		SystemLog.logError(this.getClass(), e);
 	}
 }

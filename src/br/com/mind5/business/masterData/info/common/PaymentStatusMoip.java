@@ -1,8 +1,6 @@
 package br.com.mind5.business.masterData.info.common;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
+import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
 
 public enum PaymentStatusMoip {
@@ -77,7 +75,6 @@ public enum PaymentStatusMoip {
 	
 	
 	static private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(PaymentStatusMoip.class);
-		logger.error(e.getMessage(), e);
+		SystemLog.logError(PaymentStatusMoip.class, e);
 	}
 }

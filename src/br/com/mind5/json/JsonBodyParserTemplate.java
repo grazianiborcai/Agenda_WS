@@ -2,9 +2,7 @@ package br.com.mind5.json;
 
 import java.util.List;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
+import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
 
 public abstract class JsonBodyParserTemplate<T> implements JsonBodyParser<T> {
@@ -65,7 +63,6 @@ public abstract class JsonBodyParserTemplate<T> implements JsonBodyParser<T> {
 		if (clazz == null) 
 			clazz = this.getClass();
 		
-		Logger logger = LogManager.getLogger(clazz);
-		logger.error(e.getMessage(), e);
+		SystemLog.logError(clazz, e);
 	}
 }

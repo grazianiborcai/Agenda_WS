@@ -4,9 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
+import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
 
 public final class InfoMergerHelperV3<T extends InfoRecord, K extends InfoRecord> implements InfoMergerV3<T, K> {	
@@ -137,7 +135,6 @@ public final class InfoMergerHelperV3<T extends InfoRecord, K extends InfoRecord
 		if (clazz == null)
 			clazz = this.getClass();
 		
-		Logger logger = LogManager.getLogger(clazz);
-		logger.error(e.getMessage(), e);
+		SystemLog.logError(clazz, e);
 	}
 }

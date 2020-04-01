@@ -1,9 +1,7 @@
 package br.com.mind5.business.orderItemSnapshot.info;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import br.com.mind5.business.material.info.MatInfo;
+import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
@@ -47,7 +45,7 @@ final class OrdemrapVisiMergeMat implements InfoMergerVisitor_<OrdemrapInfo, Mat
 	
 	
 	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
+		
+		SystemLog.logError(this.getClass(), e);
 	}
 }

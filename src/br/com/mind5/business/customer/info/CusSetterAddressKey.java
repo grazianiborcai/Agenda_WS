@@ -1,10 +1,8 @@
 package br.com.mind5.business.customer.info;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.common.DefaultValue;
+import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.InfoSetter;
 
@@ -44,7 +42,6 @@ public final class CusSetterAddressKey implements InfoSetter<CusInfo> {
 	
 	
 	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
+		SystemLog.logError(this.getClass(), e);
 	}	
 }

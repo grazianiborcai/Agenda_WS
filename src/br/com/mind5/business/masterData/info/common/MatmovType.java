@@ -1,8 +1,6 @@
 package br.com.mind5.business.masterData.info.common;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
+import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
 
 public enum MatmovType {
@@ -45,7 +43,6 @@ public enum MatmovType {
 	
 	
 	static private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(MatmovType.class);
-		logger.error(e.getMessage(), e);
+		SystemLog.logError(MatmovType.class, e);
 	}
 }

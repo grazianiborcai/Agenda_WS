@@ -9,11 +9,9 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.core.Response;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import br.com.mind5.common.DbConnection;
 import br.com.mind5.common.DbSchema;
+import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.InfoRecord;
 import br.com.mind5.json.JsonBodyParser;
@@ -364,14 +362,12 @@ public abstract class ModelTemplate<T extends InfoRecord> implements Model {
 	private void logException(Exception e) {
 		Class<?> clazz = getImplamentationClassHook();
 		
-		Logger logger = LogManager.getLogger(clazz);
-		logger.error(e.getMessage(), e);
+		SystemLog.logError(clazz, e);
 	}
 	
 	
 	
-	private void logExceptionWithSupperClass(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
+	private void logExceptionWithSupperClass(Exception e) {		
+		SystemLog.logError(this.getClass(), e);
 	}	
 }

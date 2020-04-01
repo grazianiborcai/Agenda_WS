@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import org.glassfish.jersey.servlet.ServletContainer;
 
 import br.com.mind5.common.DbConnection;
+import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.servlet.db.DbMysql;
 
 
@@ -19,8 +20,15 @@ public class ServletMind5 extends ServletContainer {
 	@Override public void init(ServletConfig config) throws ServletException {
 		super.init(config);
 		
+		initDao();
 		db = initDataSource(config);
 		shareDataSource(db);
+	}
+	
+	
+	
+	private void initDao() {
+		DaoDbTableColumnAll.initialize();
 	}
 	
 	

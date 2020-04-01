@@ -3,10 +3,8 @@ package br.com.mind5.business.cartItem.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import br.com.mind5.business.cart.info.CartInfo;
+import br.com.mind5.common.SystemLog;
 import br.com.mind5.info.InfoCopierOneToManyTemplate;
 
 final class CartemCopyCart extends InfoCopierOneToManyTemplate<CartemInfo, CartInfo>{
@@ -42,7 +40,6 @@ final class CartemCopyCart extends InfoCopierOneToManyTemplate<CartemInfo, CartI
 	
 	
 	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
+		SystemLog.logError(this.getClass(), e);
 	}	
 }

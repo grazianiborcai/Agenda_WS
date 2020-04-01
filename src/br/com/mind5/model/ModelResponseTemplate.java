@@ -5,9 +5,7 @@ import java.util.List;
 
 import javax.ws.rs.core.Response;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
+import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.json.JsonResponseMaker;
 import br.com.mind5.model.decisionTree.DeciResult;
@@ -161,15 +159,12 @@ public abstract class ModelResponseTemplate<T> implements ModelResponse<T> {
 	
 	private void logException(Exception e) {
 		Class<?> clazz = getImplamentationClassHook();
-		
-		Logger logger = LogManager.getLogger(clazz);
-		logger.error(e.getMessage(), e);
+		SystemLog.logError(clazz, e);
 	}
 	
 	
 	
-	private void logExceptionWithSupperClass(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
+	private void logExceptionWithSupperClass(Exception e) {		
+		SystemLog.logError(this.getClass(), e);
 	}
 }

@@ -6,9 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map.Entry;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
+import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
 
 public class DaoDbTableColumnTemplate implements DaoDbTableColumn {
@@ -93,7 +91,6 @@ public class DaoDbTableColumnTemplate implements DaoDbTableColumn {
 		if (clazz == null)
 			clazz = this.getClass();
 		
-		Logger logger = LogManager.getLogger(clazz);
-		logger.error(e.getMessage(), e);
+		SystemLog.logError(clazz, e);
 	}	
 }

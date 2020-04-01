@@ -1,8 +1,5 @@
 package br.com.mind5.common;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 public final class TotAmount {
 	private static final int DEFAULT_DEC_PLACE = 2;
 
@@ -56,7 +53,7 @@ public final class TotAmount {
 	
 	
 	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
+		
+		SystemLog.logError(this.getClass(), e);
 	}
 }

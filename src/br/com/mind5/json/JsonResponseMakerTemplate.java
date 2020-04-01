@@ -2,9 +2,7 @@ package br.com.mind5.json;
 
 import javax.ws.rs.core.Response;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
+import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
 
 public abstract class JsonResponseMakerTemplate implements JsonResponseMaker {
@@ -88,7 +86,6 @@ public abstract class JsonResponseMakerTemplate implements JsonResponseMaker {
 		if (clazz == null) 
 			clazz = this.getClass();
 		
-		Logger logger = LogManager.getLogger(clazz);
-		logger.error(e.getMessage(), e);
+		SystemLog.logError(clazz, e);
 	}
 }

@@ -5,15 +5,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import br.com.mind5.business.employeeList.info.EmplisInfo;
 import br.com.mind5.business.masterData.info.DaypartInfo;
 import br.com.mind5.business.masterData.info.WeekdayInfo;
 import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.business.planingData.info.PlanataInfo;
 import br.com.mind5.business.storeList.info.StolisInfo;
+import br.com.mind5.common.SystemLog;
 import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.masterData.moonPhase.info.MoonaseInfo;
 
@@ -159,7 +157,7 @@ final class PlanimeUniquifier implements InfoUniquifier<PlanimeInfo> {
 	
 	
 	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
+		
+		SystemLog.logError(this.getClass(), e);
 	}
 }

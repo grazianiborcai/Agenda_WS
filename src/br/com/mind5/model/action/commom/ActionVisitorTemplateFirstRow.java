@@ -5,9 +5,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
+import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.InfoRecord;
 import br.com.mind5.model.action.ActionVisitorEnforce;
@@ -85,8 +83,7 @@ public abstract class ActionVisitorTemplateFirstRow<T extends InfoRecord> implem
 	
 	
 	
-	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
+	private void logException(Exception e) {		
+		SystemLog.logError(this.getClass(), e);
 	}
 }

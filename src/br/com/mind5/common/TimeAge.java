@@ -4,9 +4,6 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
-import br.com.mind5.common.DefaultValue;
-import br.com.mind5.common.SystemMessage;
-
 public final class TimeAge {
 	private static final int defaultOffset = 15;	
 	private final boolean AGED = true;

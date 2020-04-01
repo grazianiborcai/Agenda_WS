@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 
+import br.com.mind5.common.SystemLog;
 import br.com.mind5.business.address.dao.AddressDbTableColumn;
 import br.com.mind5.business.addressSearch.dao.AddarchDbTableColumn;
 import br.com.mind5.business.addressSnapshot.dao.AddresnapDbTableColumn;
@@ -140,17 +141,10 @@ import br.com.mind5.webhook.moipMultipayment.dao.WokaymoipDbTableColumn;
 import br.com.mind5.webhook.moipRefund.dao.WokefumoipDbTableColumn;
 
 public final class DaoDbTableColumnAll {
-	private static Hashtable<String, List<DaoColumn>> tableColumns;
+	private static Hashtable<String, List<DaoColumn>> tableColumns;	
 	
 	
-	
-	static {
-		buildTableColumns();
-	}
-	
-	
-	
-	private static void buildTableColumns() {
+	public static void initialize() {
 		tableColumns = new Hashtable<>();
 		
 		addTable(new MatDbTableColumn());
@@ -299,19 +293,48 @@ public final class DaoDbTableColumnAll {
 	
 	
 	
-	public static List<DaoColumn> getTableColumnsAsList(String tableName) {
-		List<DaoColumn> columns = tableColumns.get(tableName);
-		
-		if (columns == null)
-			throw new IllegalArgumentException(tableName + " " + SystemMessage.TABLE_NOT_FOUND);
-		
-		
+	public static List<DaoColumn> getTableColumnsAsList(String tableName) {		
 		List<DaoColumn> resultColumns = new ArrayList<>();
+		List<DaoColumn> columns = getColumns(tableName);				
 		
 		for (DaoColumn eachColumn : columns) {
-			resultColumns.add(eachColumn);
+			DaoColumn copyColumn = makeClone(eachColumn);
+			resultColumns.add(copyColumn);
 		}
 		
 		return resultColumns;
+	}
+	
+	
+	
+	private static  List<DaoColumn> getColumns(String tableName) {
+		List<DaoColumn> columns = tableColumns.get(tableName);
+		
+		
+		if (columns == null) {
+			logException(new IllegalArgumentException(tableName + " " + SystemMessage.TABLE_NOT_FOUND));
+			throw new IllegalArgumentException(tableName + " " + SystemMessage.TABLE_NOT_FOUND);
+		}
+		
+		
+		return columns;
+	}
+	
+	
+	
+	private static DaoColumn makeClone(DaoColumn column) {
+		try {
+			return (DaoColumn) column.clone();
+			
+		} catch (CloneNotSupportedException e) {
+			logException(e);
+			throw new IllegalStateException(e);
+		}
+	}
+	
+	
+	
+	private static void logException(Exception e) {
+		SystemLog.logError(DaoDbTableColumnAll.class, e);
 	}
 }

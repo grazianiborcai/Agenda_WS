@@ -5,9 +5,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
+import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
 
 public abstract class ModelRequestChecker {
@@ -108,7 +106,6 @@ public abstract class ModelRequestChecker {
 	
 	
 	private static void logException(Exception e) {
-		Logger logger = LogManager.getLogger(ModelRequestChecker.class);
-		logger.error(e.getMessage(), e);
+		SystemLog.logError(ModelRequestChecker.class, e);
 	}
 }

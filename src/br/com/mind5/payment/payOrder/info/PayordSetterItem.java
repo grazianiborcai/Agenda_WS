@@ -1,9 +1,7 @@
 package br.com.mind5.payment.payOrder.info;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import br.com.mind5.business.orderItem.info.OrderemInfo;
+import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.InfoSetter;
 import br.com.mind5.payment.payOrderItem.info.PayordemInfo;
@@ -39,7 +37,7 @@ public final class PayordSetterItem implements InfoSetter<PayordInfo> {
 	
 	
 	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
+		
+		SystemLog.logError(this.getClass(), e);
 	}
 }

@@ -1,5 +1,8 @@
 package br.com.mind5.paymentPartner.partnerMoip.tokenMoip.model.action;
 
+import static br.com.moip.helpers.PayloadFactory.payloadFactory;
+import static br.com.moip.helpers.PayloadFactory.value;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -7,16 +10,11 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
+import br.com.mind5.common.SystemLog;
 import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.paymentPartner.partnerMoip.tokenMoip.info.TokemoipInfo;
 import br.com.moip.Moip;
 import br.com.moip.models.Setup;
-
-import static br.com.moip.helpers.PayloadFactory.payloadFactory;
-import static br.com.moip.helpers.PayloadFactory.value;
 
 final class VisiTokemoipGenerate implements ActionVisitor<TokemoipInfo> {
 	
@@ -87,7 +85,7 @@ final class VisiTokemoipGenerate implements ActionVisitor<TokemoipInfo> {
 	
 	
 	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
+		
+		SystemLog.logError(this.getClass(), e);
 	}
 }

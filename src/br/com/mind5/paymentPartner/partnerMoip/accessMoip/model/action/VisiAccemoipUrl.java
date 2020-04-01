@@ -6,9 +6,8 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
+import br.com.mind5.common.SystemLog;
 import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.paymentPartner.partnerMoip.accessMoip.info.AccemoipInfo;
 import br.com.moip.Moip;
@@ -84,7 +83,7 @@ final class VisiAccemoipUrl implements ActionVisitor<AccemoipInfo> {
 	
 	
 	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
+		
+		SystemLog.logError(this.getClass(), e);
 	}
 }

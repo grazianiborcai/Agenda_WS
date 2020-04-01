@@ -4,11 +4,9 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import br.com.mind5.business.masterData.info.common.MatUnit;
 import br.com.mind5.business.materialList.info.MatlisInfo;
+import br.com.mind5.common.SystemLog;
 import br.com.mind5.info.InfoMergerVisitorV3;
 import br.com.mind5.info.InfoUniquifier;
 
@@ -101,7 +99,7 @@ final class PlanataVisiMergeMatlis implements InfoMergerVisitorV3<PlanataInfo, M
 	
 	
 	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
+		
+		SystemLog.logError(this.getClass(), e);
 	}	
 }

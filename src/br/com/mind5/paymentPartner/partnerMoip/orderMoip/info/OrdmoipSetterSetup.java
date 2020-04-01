@@ -1,9 +1,7 @@
 package br.com.mind5.paymentPartner.partnerMoip.orderMoip.info;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import br.com.mind5.business.masterData.info.common.Environ;
+import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.InfoSetter;
 import br.com.moip.auth.Authentication;
@@ -61,7 +59,7 @@ public final class OrdmoipSetterSetup implements InfoSetter<OrdmoipInfo> {
 	
 	
 	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
+		
+		SystemLog.logError(this.getClass(), e);
 	}	
 }

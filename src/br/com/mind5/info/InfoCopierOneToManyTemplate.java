@@ -3,9 +3,7 @@ package br.com.mind5.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
+import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
 
 public class InfoCopierOneToManyTemplate<T extends InfoRecord, S extends InfoRecord> implements InfoCopierOneToMany<T,S> {
@@ -113,8 +111,7 @@ public class InfoCopierOneToManyTemplate<T extends InfoRecord, S extends InfoRec
 	
 	
 	
-	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
+	private void logException(Exception e) {		
+		SystemLog.logError(this.getClass(), e);
 	}
 }

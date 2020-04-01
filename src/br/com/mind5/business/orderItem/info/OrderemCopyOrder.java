@@ -3,10 +3,8 @@ package br.com.mind5.business.orderItem.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import br.com.mind5.business.order.info.OrderInfo;
+import br.com.mind5.common.SystemLog;
 import br.com.mind5.info.InfoCopierOneToManyTemplate;
 
 final class OrderemCopyOrder extends InfoCopierOneToManyTemplate<OrderemInfo, OrderInfo>{
@@ -42,7 +40,7 @@ final class OrderemCopyOrder extends InfoCopierOneToManyTemplate<OrderemInfo, Or
 	
 	
 	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
+		
+		SystemLog.logError(this.getClass(), e);
 	}	
 }

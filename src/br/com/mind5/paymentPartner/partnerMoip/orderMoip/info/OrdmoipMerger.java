@@ -11,7 +11,6 @@ import br.com.mind5.payment.payOrderList.info.PayordistInfo;
 import br.com.mind5.payment.setupPartner.info.SetuparInfo;
 import br.com.mind5.payment.storePartner.info.StoparInfo;
 import br.com.mind5.payment.systemPartner.info.SysparInfo;
-import br.com.mind5.paymentPartner.partnerMoip.orderMoip.info.OrdmoipInfo;
 
 public final class OrdmoipMerger {
 	public static List<OrdmoipInfo> mergeWithStopar(List<OrdmoipInfo> baseInfos, List<StoparInfo> selectedInfos) {

@@ -3,9 +3,7 @@ package br.com.mind5.dao;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
+import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
 
 abstract class DaoStmtBuilderTemplate implements DaoStmtBuilder {
@@ -19,7 +17,7 @@ abstract class DaoStmtBuilderTemplate implements DaoStmtBuilder {
 	private Class<?> childClass;
 	
 	
-	DaoStmtBuilderTemplate(DaoStmtBuilderOption option, Class<?> clazz) {
+	DaoStmtBuilderTemplate(DaoStmtBuilderOption option, Class<?> clazz) {	//TODO: noa precisa do clazz
 		checkArgument(option, clazz);		
 		
 		schemaName = option.schemaName;
@@ -155,7 +153,6 @@ abstract class DaoStmtBuilderTemplate implements DaoStmtBuilder {
 		if (clazz == null)
 			clazz = this.getClass();
 		
-		Logger logger = LogManager.getLogger(clazz);
-		logger.error(e.getMessage(), e);
+		SystemLog.logError(clazz, e);
 	}	
 }

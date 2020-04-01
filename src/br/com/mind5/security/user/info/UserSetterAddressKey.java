@@ -1,9 +1,7 @@
 package br.com.mind5.security.user.info;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import br.com.mind5.business.address.info.AddressInfo;
+import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.InfoSetter;
 
@@ -40,7 +38,7 @@ public final class UserSetterAddressKey implements InfoSetter<UserInfo> {
 	
 	
 	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
+		
+		SystemLog.logError(this.getClass(), e);
 	}	
 }

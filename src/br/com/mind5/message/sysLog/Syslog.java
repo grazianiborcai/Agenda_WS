@@ -1,7 +1,6 @@
 package br.com.mind5.message.sysLog;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import br.com.mind5.common.SystemLog;
 
 public abstract class Syslog {
 	transient private Class<?> childClazz;
@@ -26,7 +25,6 @@ public abstract class Syslog {
 	
 	
 	protected void logException(Exception e, Class<?> clazz) {
-		Logger logger = LogManager.getLogger(clazz);
-		logger.error(e.getMessage(), e);
+		SystemLog.logError(clazz, e);
 	}
 }

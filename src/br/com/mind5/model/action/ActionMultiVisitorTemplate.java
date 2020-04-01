@@ -4,10 +4,8 @@ import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import br.com.mind5.common.SystemCode;
+import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciResultHelper;
@@ -185,8 +183,7 @@ public abstract class ActionMultiVisitorTemplate<T> implements ActionMultiVisito
 	
 	
 	
-	private void logException(Exception e) {
-		Logger logger = LogManager.getLogger(this.getClass());
-		logger.error(e.getMessage(), e);
+	private void logException(Exception e) {		
+		SystemLog.logError(this.getClass(), e);
 	}
 }

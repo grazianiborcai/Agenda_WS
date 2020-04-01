@@ -4,9 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
+import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
 
 public final class DaoJoinBuilderHelper implements DaoJoinBuilder {
@@ -243,7 +241,6 @@ public final class DaoJoinBuilderHelper implements DaoJoinBuilder {
 	
 	
 	private void logException(Exception e) {		
-		Logger logger = LogManager.getLogger(childClazz);
-		logger.error(e.getMessage(), e);
+		SystemLog.logError(childClazz, e);
 	}	
 }
