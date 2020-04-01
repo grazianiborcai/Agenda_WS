@@ -16,7 +16,8 @@ public class HomeResource {
 	
 	
 	@GET
-	@Path(MAIN)	
+	@Path(MAIN)
+	@Produces(MediaType.APPLICATION_JSON)
 	public Response main(@HeaderParam("codOwner") @DefaultValue("-1") long codOwner,
                          @HeaderParam("Username") String username,
                          @HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage) {		

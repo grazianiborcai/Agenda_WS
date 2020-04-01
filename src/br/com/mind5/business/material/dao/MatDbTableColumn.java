@@ -27,25 +27,13 @@ public final class MatDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_RECORD_MODE = DaoDbField.COL_RECORD_MODE;
 	
 	
-	private Hashtable<String, List<DaoColumn>> tableColumns;	
-	
 	public MatDbTableColumn() {
-		super(MatDbTableColumn.class);
+		super();
 	}
 	
 	
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
-		tableColumns = new Hashtable<>();
-		
-		buildMatTable();	
-		
-		return tableColumns;
-	}
-	
-	
-	
-	private void buildMatTable() {
 		final String TABLE_NAME = DaoDbTable.MAT_TABLE;
 		
 		DaoColumn oneColumn;
@@ -163,6 +151,9 @@ public final class MatDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 
+		Hashtable<String, List<DaoColumn>> tableColumns = new Hashtable<>();
 		tableColumns.put(TABLE_NAME, columns);
+		
+		return tableColumns;
 	}
 }
