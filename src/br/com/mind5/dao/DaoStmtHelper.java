@@ -103,6 +103,14 @@ public final class DaoStmtHelper<T> implements DaoStmt<T> {
 		checkBeforeExecution();		
 		stmtResultSet = execute(operation, stmt);
 		resultset = parseResultSet(stmtResultSet, option.resultParser, option.recordInfo);
+		close(stmt, stmtResultSet);
+	}
+	
+	
+	
+	private void close(PreparedStatement sqlStmt, ResultSet sqlResultSet) throws SQLException {
+		sqlResultSet.close();
+		sqlStmt.close();
 	}
 	
 	
@@ -146,12 +154,6 @@ public final class DaoStmtHelper<T> implements DaoStmt<T> {
 	@Override public List<T> getResultset() {	
 		checkExecuted();
 		return resultset;
-	}
-	
-	
-	
-	@Override public DaoStmt<T> getNewInstance() {
-		return new DaoStmtHelper<T>(operation, option, childClass);
 	}
 	
 	

@@ -13,8 +13,5 @@ public interface DaoStmt<T> {
 	public void executeStmt() throws SQLException;
 	
 	
-	public List<T> getResultset();	
-	
-	
-	public DaoStmt<T> getNewInstance();		//TODO: remover ?
+	public List<T> getResultset();
 }

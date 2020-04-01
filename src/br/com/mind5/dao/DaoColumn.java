@@ -19,4 +19,36 @@ public final class DaoColumn implements Cloneable {
 	@Override public Object clone()throws CloneNotSupportedException {		
 		return super.clone();
 	}
+	
+	
+	
+	@Override public int hashCode() {
+		int result = 17;
+		
+		if (tableName != null)
+			result = result * 31 + tableName.hashCode();
+		
+		if (columnName != null)
+			result = result * 31 + columnName.hashCode();
+		
+		
+		return result;
+	}
+	
+	
+	
+	@Override public boolean equals(Object o) {
+		if (o == this)
+			return true;
+		
+		
+		if (!(o instanceof DaoColumn))
+			return false;
+		
+		
+		DaoColumn obj = (DaoColumn) o;	
+		
+		return (tableName.equals(obj.tableName)   &&
+				columnName.equals(obj.columnName)	 );
+	}
 }

@@ -155,12 +155,6 @@ public abstract class DaoStmtTemplate<T extends InfoRecord> implements DaoStmt<T
 	
 	
 	
-	@Override public DaoStmt<T> getNewInstance() {
-		return null;
-	}
-	
-	
-	
 	@SuppressWarnings("unchecked")
 	private T makeClone(T recordInfo) {
 		try {

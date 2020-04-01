@@ -21,8 +21,14 @@ public class DaoDbTableColumnTemplate implements DaoDbTableColumn {
 	private Class<?> childClass;
 	
 	
-	protected DaoDbTableColumnTemplate(Class<?> clazz) {		
+	protected DaoDbTableColumnTemplate(Class<?> clazz) {		//TODO: Remover, não precisa do clazz
 		childClass = clazz;
+		tableColumns = buildTableColumns();
+	}
+	
+	
+	
+	protected DaoDbTableColumnTemplate() {		
 		tableColumns = buildTableColumns();
 	}
 	
