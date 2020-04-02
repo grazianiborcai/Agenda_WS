@@ -6,8 +6,9 @@ import java.util.List;
 import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.dao.DaoStmtExec;
+import br.com.mind5.info.InfoRecord;
 
-public final class ActionStdHelperStmt<T> extends ActionStdTemplate<T> {
+public final class ActionStdHelperStmt<T extends InfoRecord> extends ActionStdTemplate<T> {
 	private DaoStmtExec<T> stmtExec;
 	
 	
