@@ -1,6 +1,5 @@
 package br.com.mind5.model.action;
 
-import java.sql.SQLException;
 import java.util.List;
 
 import br.com.mind5.common.CloneUtil;
@@ -10,6 +9,7 @@ import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.InfoRecord;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciResultHelper;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.common.DeciResultError;
 import br.com.mind5.model.decisionTree.common.DeciResultNotFound;
 
@@ -17,17 +17,30 @@ public abstract class ActionStdTemplateV2<T extends InfoRecord> implements Actio
 	private final boolean SUCCESS = true;
 	private final boolean FAILED = false;	
 	
+	private ActionVisitorV2<T> actionVisitor;
 	private DeciResult<T> actionResult;
 	private List<ActionLazyV1<T>> postActions;
 	
 	
-	public ActionStdTemplateV2() {
+	public ActionStdTemplateV2(DeciTreeOption<T> option) {
+		checkArgument(option);
 		clear();
+		
+		actionVisitor = buildVisitorHook(option);
+	}
+	
+	
+	
+	protected ActionVisitorV2<T> buildVisitorHook(DeciTreeOption<T> option) {
+		//Template method to be overridden by subclasses
+		logException(new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION));
+		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);
 	}
 	
 	
 	
 	private void clear() {
+		actionVisitor = DefaultValue.object();
 		actionResult = DefaultValue.object();
 		postActions = DefaultValue.list();
 	}
@@ -42,21 +55,21 @@ public abstract class ActionStdTemplateV2<T extends InfoRecord> implements Actio
 	
 	
 	@Override public boolean executeAction() {
-		actionResult = executeBaseAction();				
+		actionResult = executeBaseAction(actionVisitor);				
 		actionResult = executePostActions(postActions, actionResult);	
 		return actionResult.isSuccess();
 	}
 	
 	
 	
-	private DeciResult<T> executeBaseAction() {
+	private DeciResult<T> executeBaseAction(ActionVisitorV2<T> visitor) {
 		try {
-			List<T> results = tryToExecuteHook();
+			DeciResult<T> deciResult = executeVisitor(visitor);
 			
-			if (checkResultset(results) == FAILED)
+			if (checkDeciResult(deciResult) == FAILED)
 				return buildResultFailedHook();
 			
-			return buildResultSuccess(results);
+			return deciResult;
 		
 		} catch (Exception e) {
 			logException(e);
@@ -66,10 +79,8 @@ public abstract class ActionStdTemplateV2<T extends InfoRecord> implements Actio
 	
 	
 	
-	protected List<T> tryToExecuteHook() throws SQLException { // retornar DeciResult<T>
-		//Template method to be overridden by subclasses
-		logException(new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION));
-		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);
+	protected DeciResult<T> executeVisitor(ActionVisitorV2<T> visitor) { 
+		return visitor.executeTransformation();
 	}
 	
 	
@@ -139,21 +150,19 @@ public abstract class ActionStdTemplateV2<T extends InfoRecord> implements Actio
 	
 	
 	
-	private DeciResult<T> buildResultSuccess(List<T> recordInfos) {
-		DeciResultHelper<T> result = new DeciResultHelper<>();
-		
-		result.isSuccess = SUCCESS;
-		result.hasResultset = true;
-		result.resultset = recordInfos;
-		
-		return result;
+	@Override public void close() {
+		closeVisitor(actionVisitor);
+		closeAction(postActions);
+		clear();
 	}
 	
 	
 	
-	@Override public void close() {
-		closeAction(postActions);
-		clear();
+	private void closeVisitor(ActionVisitorV2<T> visitor) {
+		if (visitor == null)
+			return;
+		
+		visitor.close();
 	}
 	
 	
@@ -221,11 +230,8 @@ public abstract class ActionStdTemplateV2<T extends InfoRecord> implements Actio
 	
 	
 	
-	private boolean checkResultset(List<T> results) {
-		if (results == null)
-			return FAILED;
-		
-		if (results.isEmpty())
+	private boolean checkDeciResult(DeciResult<T> deciResult) {
+		if (deciResult == null)
 			return FAILED;
 		
 		return SUCCESS;
@@ -252,6 +258,15 @@ public abstract class ActionStdTemplateV2<T extends InfoRecord> implements Actio
 		if (actionHandler == null) {
 			logException(new NullPointerException("actionHandler" + SystemMessage.NULL_ARGUMENT));
 			throw new NullPointerException("actionHandler" + SystemMessage.NULL_ARGUMENT);
+		}
+	}
+	
+	
+	
+	private void checkArgument(DeciTreeOption<T> option) {
+		if (option == null) {
+			logException(new NullPointerException("option" + SystemMessage.NULL_ARGUMENT));
+			throw new NullPointerException("option" + SystemMessage.NULL_ARGUMENT);
 		}
 	}
 	

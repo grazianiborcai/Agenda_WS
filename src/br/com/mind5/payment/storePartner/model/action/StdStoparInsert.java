@@ -7,7 +7,7 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionStdHelperStmt;
+import br.com.mind5.model.action.ActionStdHelperStmtV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.storePartner.dao.StoparInsert;
@@ -19,7 +19,7 @@ public final class StdStoparInsert implements ActionStdV1<StoparInfo> {
 	
 	public StdStoparInsert(DeciTreeOption<StoparInfo> option) {
 		DaoStmtExec_<StoparInfo> sqlStmtExecutor = buildStmtExec(option);
-		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
+		actionHelper = new ActionStdHelperStmtV1<>(sqlStmtExecutor);
 	}
 	
 	

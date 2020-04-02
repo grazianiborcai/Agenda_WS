@@ -7,7 +7,7 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionStdHelperStmt;
+import br.com.mind5.model.action.ActionStdHelperStmtV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.customerPartner.dao.CusparSelect;
@@ -19,7 +19,7 @@ public final class StdCusparSelect implements ActionStdV1<CusparInfo> {
 	
 	public StdCusparSelect(DeciTreeOption<CusparInfo> option) {
 		DaoStmtExec_<CusparInfo> sqlStmtExecutor = buildStmtExec(option);
-		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
+		actionHelper = new ActionStdHelperStmtV1<>(sqlStmtExecutor);
 	}
 	
 	

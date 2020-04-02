@@ -1,24 +1,46 @@
 package br.com.mind5.dao;
 
-import java.lang.reflect.InvocationTargetException;
 import java.sql.Connection;
 
-public final class DaoStmtExecOption<T> implements Cloneable {
+import br.com.mind5.common.DefaultValue;
+import br.com.mind5.info.InfoRecord;
+
+public final class DaoStmtExecOption<T extends InfoRecord> implements Cloneable {
 	public Connection conn;
 	public T recordInfo;
 	public String schemaName;
+	
+	
+	public DaoStmtExecOption() {
+		clear();
+	}
 		
 	
-	@SuppressWarnings("unchecked")
+	public void clear() {
+		conn = DefaultValue.object();
+		recordInfo = DefaultValue.object();
+		schemaName = DefaultValue.object();
+	}
+	
+	
+	
 	@Override public Object clone()throws CloneNotSupportedException {  
-		try {
-			DaoStmtExecOption<T> deepCopy = (DaoStmtExecOption<T>) super.clone(); 
-			deepCopy.recordInfo = (T) recordInfo.getClass().getMethod("clone").invoke(recordInfo);
-			
-			return deepCopy;
-			
-		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException e) {
-			throw new CloneNotSupportedException();
-		} 		
+		DaoStmtExecOption<T> result = new DaoStmtExecOption<>();
+		
+		result.conn = conn;
+		result.schemaName = schemaName;
+		result.recordInfo = cloneRecord(recordInfo);
+		
+		return result;		
 	}  
+	
+	
+	
+	@SuppressWarnings("unchecked")
+	private T cloneRecord(T source) throws CloneNotSupportedException {
+		if (source == null)
+			return null;
+		
+		return (T) source.clone();
+	}
 }

@@ -9,7 +9,7 @@ import br.com.mind5.message.emailBody.dao.EmabodySelect;
 import br.com.mind5.message.emailBody.info.EmabodyInfo;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionStdHelperStmt;
+import br.com.mind5.model.action.ActionStdHelperStmtV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -19,7 +19,7 @@ public final class StdEmabodySelect implements ActionStdV1<EmabodyInfo> {
 	
 	public StdEmabodySelect(DeciTreeOption<EmabodyInfo> option) {
 		DaoStmtExec_<EmabodyInfo> sqlStmtExecutor = buildStmtExec(option);
-		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
+		actionHelper = new ActionStdHelperStmtV1<>(sqlStmtExecutor);
 	}
 	
 	

@@ -12,12 +12,12 @@ import br.com.mind5.model.decisionTree.DeciResultHelper;
 
 public final class ActionStdHelper<T extends InfoRecord> extends ActionStdTemplateV1<T> {
 	private List<T> records = new ArrayList<>();
-	private ActionVisitor<T> visi;
+	private ActionVisitorV1<T> visi;
 	private String errorMessage;
 	private int errorCode;
 	
 	
-	public ActionStdHelper(T recordInfo, ActionVisitor<T> visitor, String failedMessage, int failedCode) {		
+	public ActionStdHelper(T recordInfo, ActionVisitorV1<T> visitor, String failedMessage, int failedCode) {		
 		super();
 		checkArgument(recordInfo, visitor, failedMessage, failedCode);
 		makeCopy(recordInfo);
@@ -35,7 +35,7 @@ public final class ActionStdHelper<T extends InfoRecord> extends ActionStdTempla
 	
 	
 	
-	public ActionStdHelper(List<T> recordInfos, ActionVisitor<T> visitor, String failedMessage, int failedCode) {
+	public ActionStdHelper(List<T> recordInfos, ActionVisitorV1<T> visitor, String failedMessage, int failedCode) {
 		super();
 		checkArgument(recordInfos, visitor, failedMessage, failedCode);
 		makeCopy(recordInfos);
@@ -52,7 +52,7 @@ public final class ActionStdHelper<T extends InfoRecord> extends ActionStdTempla
 	
 	
 	
-	private void checkArgument(List<T> recordInfos, ActionVisitor<T> visitor, String failedMessage, int failedCode) {
+	private void checkArgument(List<T> recordInfos, ActionVisitorV1<T> visitor, String failedMessage, int failedCode) {
 		if (recordInfos == null) {
 			logException(new NullPointerException("recordInfos" + SystemMessage.NULL_ARGUMENT));
 			throw new NullPointerException("recordInfos" + SystemMessage.NULL_ARGUMENT);
@@ -72,7 +72,7 @@ public final class ActionStdHelper<T extends InfoRecord> extends ActionStdTempla
 	
 	
 	
-	private void checkArgument(T recordInfo, ActionVisitor<T> visitor, String failedMessage, int failedCode) {
+	private void checkArgument(T recordInfo, ActionVisitorV1<T> visitor, String failedMessage, int failedCode) {
 		if (recordInfo == null) {
 			logException(new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT));
 			throw new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT);

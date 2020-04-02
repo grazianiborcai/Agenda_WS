@@ -6,11 +6,11 @@ import java.util.List;
 import java.util.Map;
 
 import br.com.mind5.common.SystemLog;
-import br.com.mind5.model.action.ActionVisitor;
+import br.com.mind5.model.action.ActionVisitorV1;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.info.OrdmoipInfo;
 import br.com.moip.Moip;
 
-final class VisiOrdmoipRead implements ActionVisitor<OrdmoipInfo> {
+final class VisiOrdmoipRead implements ActionVisitorV1<OrdmoipInfo> {
 	
 	@Override public List<OrdmoipInfo> executeTransformation(List<OrdmoipInfo> recordInfos) {
 		List<OrdmoipInfo> results = new ArrayList<>();

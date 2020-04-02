@@ -7,7 +7,7 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionStdHelperStmt;
+import br.com.mind5.model.action.ActionStdHelperStmtV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.systemPartner.dao.SysparSelect;
@@ -19,7 +19,7 @@ public final class StdSysparSelect implements ActionStdV1<SysparInfo> {
 	
 	public StdSysparSelect(DeciTreeOption<SysparInfo> option) {
 		DaoStmtExec_<SysparInfo> sqlStmtExecutor = buildStmtExec(option);
-		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
+		actionHelper = new ActionStdHelperStmtV1<>(sqlStmtExecutor);
 	}
 	
 	

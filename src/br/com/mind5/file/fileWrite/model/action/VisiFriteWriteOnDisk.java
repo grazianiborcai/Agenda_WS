@@ -8,9 +8,9 @@ import java.util.List;
 
 import br.com.mind5.common.SystemLog;
 import br.com.mind5.file.fileWrite.info.FriteInfo;
-import br.com.mind5.model.action.ActionVisitor;
+import br.com.mind5.model.action.ActionVisitorV1;
 
-final class VisiFriteWriteOnDisk implements ActionVisitor<FriteInfo> {
+final class VisiFriteWriteOnDisk implements ActionVisitorV1<FriteInfo> {
 
 	
 	@Override public List<FriteInfo> executeTransformation(List<FriteInfo> recordInfos) {

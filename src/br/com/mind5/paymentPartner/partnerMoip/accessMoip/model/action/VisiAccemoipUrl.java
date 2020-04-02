@@ -8,11 +8,11 @@ import java.util.Collections;
 import java.util.List;
 
 import br.com.mind5.common.SystemLog;
-import br.com.mind5.model.action.ActionVisitor;
+import br.com.mind5.model.action.ActionVisitorV1;
 import br.com.mind5.paymentPartner.partnerMoip.accessMoip.info.AccemoipInfo;
 import br.com.moip.Moip;
 
-final class VisiAccemoipUrl implements ActionVisitor<AccemoipInfo> {
+final class VisiAccemoipUrl implements ActionVisitorV1<AccemoipInfo> {
 	
 	@Override public List<AccemoipInfo> executeTransformation(List<AccemoipInfo> recordInfos) {
 		List<AccemoipInfo> results = new ArrayList<>();

@@ -5,11 +5,11 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-import br.com.mind5.model.action.ActionVisitor;
+import br.com.mind5.model.action.ActionVisitorV1;
 import br.com.mind5.paymentPartner.partnerMoip.refundMoip.info.RefumoipInfo;
 import br.com.moip.Moip;
 
-final class VisiRefumoipRefund implements ActionVisitor<RefumoipInfo> {
+final class VisiRefumoipRefund implements ActionVisitorV1<RefumoipInfo> {
 	
 	@Override public List<RefumoipInfo> executeTransformation(List<RefumoipInfo> recordInfos) {
 		List<RefumoipInfo> results = new ArrayList<>();

@@ -9,7 +9,7 @@ import br.com.mind5.file.fileImageList.dao.FimistSelect;
 import br.com.mind5.file.fileImageList.info.FimistInfo;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionStdHelperStmt;
+import br.com.mind5.model.action.ActionStdHelperStmtV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -19,7 +19,7 @@ public final class StdFimistSelect implements ActionStdV1<FimistInfo> {
 	
 	public StdFimistSelect(DeciTreeOption<FimistInfo> option) {
 		DaoStmtExec_<FimistInfo> sqlStmtExecutor = buildStmtExec(option);
-		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
+		actionHelper = new ActionStdHelperStmtV1<>(sqlStmtExecutor);
 	}
 	
 	

@@ -11,12 +11,12 @@ import java.util.List;
 import java.util.Map;
 
 import br.com.mind5.common.SystemLog;
-import br.com.mind5.model.action.ActionVisitor;
+import br.com.mind5.model.action.ActionVisitorV1;
 import br.com.mind5.paymentPartner.partnerMoip.tokenMoip.info.TokemoipInfo;
 import br.com.moip.Moip;
 import br.com.moip.models.Setup;
 
-final class VisiTokemoipGenerate implements ActionVisitor<TokemoipInfo> {
+final class VisiTokemoipGenerate implements ActionVisitorV1<TokemoipInfo> {
 	
 	@Override public List<TokemoipInfo> executeTransformation(List<TokemoipInfo> recordInfos) {
 		List<TokemoipInfo> results = new ArrayList<>();

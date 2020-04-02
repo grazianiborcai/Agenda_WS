@@ -9,7 +9,7 @@ import br.com.mind5.file.fileImage.dao.FimgInsert;
 import br.com.mind5.file.fileImage.info.FimgInfo;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionStdHelperStmt;
+import br.com.mind5.model.action.ActionStdHelperStmtV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -19,7 +19,7 @@ public final class StdFimgInsert implements ActionStdV1<FimgInfo> {
 	
 	public StdFimgInsert(DeciTreeOption<FimgInfo> option) {
 		DaoStmtExec_<FimgInfo> sqlStmtExecutor = buildStmtExec(option);
-		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
+		actionHelper = new ActionStdHelperStmtV1<>(sqlStmtExecutor);
 	}
 	
 	

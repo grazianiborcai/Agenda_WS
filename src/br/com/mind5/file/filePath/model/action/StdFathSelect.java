@@ -9,7 +9,7 @@ import br.com.mind5.file.filePath.dao.FathSelect;
 import br.com.mind5.file.filePath.info.FathInfo;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionStdHelperStmt;
+import br.com.mind5.model.action.ActionStdHelperStmtV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -19,7 +19,7 @@ public final class StdFathSelect implements ActionStdV1<FathInfo> {
 	
 	public StdFathSelect(DeciTreeOption<FathInfo> option) {
 		DaoStmtExec_<FathInfo> sqlStmtExecutor = buildStmtExec(option);
-		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
+		actionHelper = new ActionStdHelperStmtV1<>(sqlStmtExecutor);
 	}
 	
 	
