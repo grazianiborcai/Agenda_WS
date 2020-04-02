@@ -7,34 +7,37 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.mind5.common.DefaultValue;
 import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
+import br.com.mind5.info.InfoRecord;
 
-public final class DaoStmtExecHelper<T> implements DaoStmtExec<T> {
+public final class DaoStmtExecHelper<T extends InfoRecord> implements DaoStmtExec<T> {
 	private List<DaoStmt<T>> sqlStmts;
 	private List<T> resultset;
-	private Class<?> stmtClass;
-	
+	private Class<?> stmtClass;	
 	
 	
 	public DaoStmtExecHelper(List<DaoStmtExecOption<T>> options, Class<? extends DaoStmt<T>> classOfStmt, Class<T> classOfT) {
-		stmtClass = classOfStmt;
-		sqlStmts = new ArrayList<>();
-		resultset = new ArrayList<>();
+		checkArgument(options, classOfStmt, classOfT);		
+		clear();
 		
-		checkArgument(options, classOfStmt, classOfT);
-		buildStmt(options, classOfStmt, classOfT);
+		List<DaoStmtExecOption<T>> copyOptions = makeClone(options);		
+		sqlStmts = buildStmt(copyOptions, classOfStmt, classOfT);
 	}
 		
 		
 	
-	private void buildStmt(List<DaoStmtExecOption<T>> options, Class<? extends DaoStmt<T>> classOfStmt, Class<T> classOfT) {
+	private List<DaoStmt<T>> buildStmt(List<DaoStmtExecOption<T>> options, Class<? extends DaoStmt<T>> classOfStmt, Class<T> classOfT) {
+		List<DaoStmt<T>> results = new ArrayList<>();
+		
 		for (DaoStmtExecOption<T> eachOption : options) {
 			DaoStmt<T> sqlStatement = getNewInstanceOfStmt(eachOption, classOfStmt, classOfT);
-			sqlStmts.add(sqlStatement);
+			results.add(sqlStatement);
 		}
 		
-		checkBuild(sqlStmts);
+		checkBuild(results);
+		return results;
 	}
 	
 	
@@ -53,14 +56,14 @@ public final class DaoStmtExecHelper<T> implements DaoStmtExec<T> {
 
 
 	@Override public void executeStmt() throws SQLException {
-		requestCheckStmtGeneration(sqlStmts);
-		requestGenerateStmt(sqlStmts);
-		resultset = requestExecuteStmt(sqlStmts);
+		checkStmtGeneration(sqlStmts);
+		resultset = executeStmt(sqlStmts);
+		closeStmts(sqlStmts);
 	}
 	
 	
 	
-	private void requestCheckStmtGeneration(List<DaoStmt<T>> stmts) throws SQLException { 
+	private void checkStmtGeneration(List<DaoStmt<T>> stmts) throws SQLException { 
 		for (DaoStmt<T> eachStmt : stmts) {
 			if (eachStmt.checkStmtGeneration() == false) {
 				logException(new IllegalStateException(SystemMessage.REQUEST_FAILED));
@@ -71,15 +74,7 @@ public final class DaoStmtExecHelper<T> implements DaoStmtExec<T> {
 	
 	
 	
-	private void requestGenerateStmt(List<DaoStmt<T>> stmts) throws SQLException {
-		for (DaoStmt<T> eachStatement : stmts) {
-			eachStatement.generateStmt();			
-		}
-	}
-	
-	
-	
-	private List<T> requestExecuteStmt(List<DaoStmt<T>> stmts) throws SQLException {
+	private List<T> executeStmt(List<DaoStmt<T>> stmts) throws SQLException {
 		List<T> results = new ArrayList<>();
 		
 		for (DaoStmt<T> eachStmt : stmts) {
@@ -100,6 +95,28 @@ public final class DaoStmtExecHelper<T> implements DaoStmtExec<T> {
 		}
 		
 		return results;
+	}
+	
+	
+	
+	public void close() {
+		closeStmts(sqlStmts);
+		clear();
+	}
+	
+	
+	
+	private void closeStmts(List<DaoStmt<T>> stmts) {
+		for (DaoStmt<T> eachStmt : stmts) {
+			eachStmt.close();
+		}
+	}
+	
+	
+	
+	private void clear() {
+		sqlStmts = DefaultValue.list();
+		resultset = DefaultValue.list();
 	}
 	
 	
@@ -187,6 +204,35 @@ public final class DaoStmtExecHelper<T> implements DaoStmtExec<T> {
 		if (stmts.isEmpty()) {
 			logException(new NullPointerException("sqlStatements" + SystemMessage.EMPTY_ARGUMENT));
 			throw new IllegalArgumentException("sqlStatements" + SystemMessage.EMPTY_ARGUMENT);
+		}
+	}
+	
+	
+	
+	private List<DaoStmtExecOption<T>> makeClone(List<DaoStmtExecOption<T>> options) {
+		List<DaoStmtExecOption<T>> results = new ArrayList<>();
+		
+		for (DaoStmtExecOption<T> eachOption : options) {
+			DaoStmtExecOption<T> eachResult = makeClone(eachOption);
+			results.add(eachResult);
+		}
+		
+		return results;
+	}
+	
+	
+	
+	@SuppressWarnings("unchecked")
+	private DaoStmtExecOption<T> makeClone(DaoStmtExecOption<T> option) {
+		try {
+			if (option == null)
+				return null;
+			
+			return (DaoStmtExecOption<T>) option.clone();
+			
+		} catch (CloneNotSupportedException e) {
+			logException(e);
+			throw new IllegalStateException(e);
 		}
 	}
 	

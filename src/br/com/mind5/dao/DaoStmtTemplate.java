@@ -12,21 +12,21 @@ import br.com.mind5.info.InfoRecord;
 
 
 public abstract class DaoStmtTemplate<T extends InfoRecord> implements DaoStmt<T> {
-	private DaoStmt<T> stmtSql;
-	private DaoStmtOption<T> stmtOption;
-	
+	private DaoStmt<T> helper;
 	
 	
 	protected DaoStmtTemplate(Connection conn, T recordInfo, String schemaName) {
-		stmtOption = buildStmtOption(conn, recordInfo, schemaName);
-		stmtSql = buildStmt(stmtOption);
+		checkArgument(conn, recordInfo, schemaName);
+			
+		DaoStmtOption<T> stmtOption = buildStmtOption(conn, recordInfo, schemaName);
+		helper = buildHelper(stmtOption);
 	}
 	
 	
 	
 	private DaoStmtOption<T> buildStmtOption(Connection conn, T recordInfo, String schemaName) {
 		DaoStmtOption<T> option = new DaoStmtOption<>();
-		//TODO: DEFENSIVE COPY
+
 		option.conn = conn;
 		option.recordInfo = recordInfo;
 		option.schemaName = schemaName;
@@ -50,16 +50,18 @@ public abstract class DaoStmtTemplate<T extends InfoRecord> implements DaoStmt<T
 	
 	
 	private String getWhereClause(String tableName, T recordInfo) {
-		T recordInfoCopy = makeClone(recordInfo);
-		String tableNameCopy = tableName;
+		T recordCopy = makeClone(recordInfo);
+		String tableCopy = tableName;
 		
-		return buildWhereClauseHook(tableNameCopy, recordInfoCopy);
+		return buildWhereClauseHook(tableCopy, recordCopy);
 	}	
 	
 	
 	
-	private DaoStmt<T> buildStmt(DaoStmtOption<T> option) {
-		return new DaoStmtHelper<>(getOperationHook(), option, this.getClass());
+	private DaoStmt<T> buildHelper(DaoStmtOption<T> option) {
+		DaoOperation operation = getOperationHook();
+		
+		return new DaoStmtHelper<>(operation, option, this.getClass());
 	}
 	
 	
@@ -126,29 +128,29 @@ public abstract class DaoStmtTemplate<T extends InfoRecord> implements DaoStmt<T
 		//Template method: default behavior
 		return null;
 	}	
-	
-	
-	
-	@Override public void generateStmt() throws SQLException {
-		stmtSql.generateStmt();		
-	}
 
 	
 	
 	@Override public boolean checkStmtGeneration() {
-		return stmtSql.checkStmtGeneration();
+		return helper.checkStmtGeneration();
 	}
 
 	
 	
 	@Override public void executeStmt() throws SQLException {
-		stmtSql.executeStmt();
+		helper.executeStmt();
 	}
 
 	
 	
 	@Override public List<T> getResultset() {
-		return stmtSql.getResultset();
+		return helper.getResultset();
+	}
+	
+	
+	
+	@Override public void close() {
+		helper.close();
 	}
 	
 	
@@ -161,6 +163,27 @@ public abstract class DaoStmtTemplate<T extends InfoRecord> implements DaoStmt<T
 		} catch (CloneNotSupportedException e) {
 			logException(e);
 			throw new InternalError(e);
+		}
+	}
+	
+	
+	
+	private void checkArgument(Connection conn, T recordInfo, String schemaName) {
+		if (conn == null) {
+			logException(new NullPointerException("conn" + SystemMessage.NULL_ARGUMENT));
+			throw new NullPointerException("conn" + SystemMessage.NULL_ARGUMENT);
+		}
+		
+		
+		if (recordInfo == null) {
+			logException(new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT));
+			throw new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT);		
+		}
+
+		
+		if (schemaName == null) {
+			logException(new NullPointerException("schemaName" + SystemMessage.NULL_ARGUMENT));
+			throw new NullPointerException("schemaName" + SystemMessage.NULL_ARGUMENT);
 		}
 	}
 	

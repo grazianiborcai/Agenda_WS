@@ -7,13 +7,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.mind5.common.DefaultValue;
 import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
-//TODO: trocar por Template ?
-public final class DaoStmtHelper<T> implements DaoStmt<T> {
+import br.com.mind5.info.InfoRecord;
+
+public final class DaoStmtHelper<T extends InfoRecord> implements DaoStmt<T> {
 	private DaoOperation operation;
 	private DaoStmtOption<T> option;
-	private String skeleton;
 	private PreparedStatement stmt;
 	private ResultSet stmtResultSet;
 	private List<T> resultset;
@@ -21,27 +22,28 @@ public final class DaoStmtHelper<T> implements DaoStmt<T> {
 	
 	
 	public DaoStmtHelper(DaoOperation stmtOperation, DaoStmtOption<T> stmtOption, Class<?> clazz) {
-		checkArgument(stmtOperation, stmtOption, clazz);		
+		checkArgument(stmtOperation, stmtOption, clazz);	
+		clear();
 		
 		operation = stmtOperation;
-		childClass = clazz;
-		option = makeDefensiveCopy(stmtOption);	
-	}
+		childClass = clazz;		
+		option = makeClone(stmtOption);
 		
+		stmt = generateStmt(option, stmtOperation);
+	}
 	
 	
-	@Override public void generateStmt() throws SQLException {
-		if (isGenerated() == false) {		
-			skeleton = buildStmtSkeleton(option, operation);
-			stmt = prepareStmt(option.conn, option.schemaName, skeleton);
-			stmt = translateStmtParam(option.stmtParamTranslator, stmt, option.recordInfo);
-		}
+	
+	private PreparedStatement generateStmt(DaoStmtOption<T> stmtOption, DaoOperation stmtOperation) {
+		String skeleton = buildStmtSkeleton(stmtOption, operation);
+		return tryToGenerateStmt(skeleton, stmtOption);
 	}
 	
 	
 	
 	private String buildStmtSkeleton(DaoStmtOption<T> stmtOption, DaoOperation stmtOperation) {
 		DaoStmtBuilderOption builderOption = new DaoStmtBuilderOption();
+		
 		builderOption.columns = stmtOption.columns;
 		builderOption.schemaName = stmtOption.schemaName;
 		builderOption.tableName = stmtOption.tableName;
@@ -50,6 +52,22 @@ public final class DaoStmtHelper<T> implements DaoStmt<T> {
 		
 		DaoStmtBuilder builder = stmtOperation.factorySqlStmtBuilder(builderOption, childClass);
 		return builder.buildStmt();
+	}
+	
+	
+	
+	private PreparedStatement tryToGenerateStmt(String skeleton, DaoStmtOption<T> option) {
+		PreparedStatement result = null;		
+		
+		try {
+			result = prepareStmt(option.conn, option.schemaName, skeleton);
+			result = translateStmtParam(option.stmtParamTranslator, result, option.recordInfo);
+			
+		} catch (SQLException e) {
+			logException(e);
+		}
+		
+		return result;
 	}
 	
 	
@@ -66,37 +84,10 @@ public final class DaoStmtHelper<T> implements DaoStmt<T> {
 			return stmtTranslator.translateStmtParam(stmtSql, recordInfo);
 		
 		return stmtSql;
-	}
-	
-	
-
-	@Override public boolean checkStmtGeneration() {
-		return tryToCheckStmtGeneration(option.conn);
-	}
-	
-	
-	
-	private boolean tryToCheckStmtGeneration(Connection stmtConn) {
-		try {
-			checkConnection(stmtConn);	
-			generateStmt();
-			return true;
-			
-		} catch (Exception e) {
-			logException(e);
-			return false;
-		}
-	}
-	
-	
-	
-	private void checkConnection(Connection stmtConn) throws SQLException {
-		PreparedStatement tester = stmtConn.prepareStatement("SELECT 1;");
-		tester.executeQuery();
 	}	
-	
-	
 
+	
+		
 	@Override public void executeStmt() throws SQLException {
 		checkBeforeExecution();		
 		stmtResultSet = execute(operation, stmt);
@@ -106,10 +97,21 @@ public final class DaoStmtHelper<T> implements DaoStmt<T> {
 	
 	
 	
-	private void close(PreparedStatement sqlStmt, ResultSet sqlResultSet) throws SQLException {
-		sqlResultSet.close();
-		sqlStmt.close();
+	private void checkBeforeExecution() {
+		if (checkStmtGeneration() == false) {
+			logException(new NullPointerException(SystemMessage.OBJ_NOT_INITIALIED));
+			throw new NullPointerException(SystemMessage.OBJ_NOT_INITIALIED);
+		}
 	}
+	
+	
+
+	@Override public boolean checkStmtGeneration() {
+		if (stmt == null)
+			return false;
+		
+		return true;
+	}	
 	
 	
 	
@@ -146,51 +148,117 @@ public final class DaoStmtHelper<T> implements DaoStmt<T> {
 		resultLastId.next();
 		return resultLastId.getLong("LAST_INSERT_ID()");		
 	}
-
-
 	
-	@Override public List<T> getResultset() {	
-		checkExecuted();
-		return resultset;
+	
+	
+	@Override public void close() {
+		tryToClose(stmt, stmtResultSet);
+		clear();
 	}
 	
 	
 	
-	private boolean isGenerated() {
-		if(skeleton == null)
-			return false;
+	private void tryToClose(PreparedStatement sqlStmt, ResultSet sqlResultSet) {
+		try {
+			close(stmt, stmtResultSet);
+			
+		} catch (SQLException e) {
+			logException(e);
+		}
+	}
+	
+	
+	
+	private void close(PreparedStatement sqlStmt, ResultSet sqlResultSet) throws SQLException {
+		closeResultSet(sqlResultSet);
+		closeStatement(sqlStmt);
+	}
+	
+	
+	
+	private void closeResultSet(ResultSet sqlResultSet) throws SQLException {
+		if (sqlResultSet == null)
+			return;
 		
-		return true;
+		if (sqlResultSet.isClosed())
+			return;
+		
+		sqlResultSet.close();
+		sqlResultSet = null;
+	}
+	
+	
+	
+	private void closeStatement(PreparedStatement sqlStmt) throws SQLException {
+		if (sqlStmt == null)
+			return;
+		
+		if (sqlStmt.isClosed())
+			return;
+		
+		sqlStmt.close();
+		sqlStmt = null;
+	}
+	
+	
+	
+	private void clear() {
+		operation = DefaultValue.object();
+		option = DefaultValue.object();
+		stmt = DefaultValue.object();
+		stmtResultSet = DefaultValue.object();
+		resultset = DefaultValue.list();
+	}
+
+
+	
+	@Override public List<T> getResultset() {	
+		hasResult();
+		return makeClone(resultset);
+	}
+	
+	
+	
+	private void hasResult() {
+		if (resultset == null) {
+			logException(new NullPointerException(SystemMessage.OBJ_NOT_INITIALIED));
+			throw new NullPointerException(SystemMessage.OBJ_NOT_INITIALIED);
+		}
 	}
 	
 	
 	
 	@SuppressWarnings("unchecked")
-	private DaoStmtOption<T> makeDefensiveCopy(DaoStmtOption<T> option) {
+	private List<T> makeClone(List<T> sources) {
 		try {
-			return (DaoStmtOption<T>) option.clone();
+			if (sources == null)
+				return null;
+			
+			List<T> results = new ArrayList<>();
+			
+			for (T eachSource : sources) {
+				T clonedSource = (T) eachSource.clone();
+				results.add(clonedSource);
+			}
+			
+			return results;
 			
 		} catch (CloneNotSupportedException e) {
 			logException(e);
-			throw new IllegalStateException(SystemMessage.INTERNAL_ERROR);
-		}
-	}	
-	
-	
-	
-	private void checkBeforeExecution() {
-		if (isGenerated() == false) {
-			logException(new NullPointerException(SystemMessage.OBJ_NOT_INITIALIED));
-			throw new NullPointerException(SystemMessage.OBJ_NOT_INITIALIED);
+			throw new InternalError(e);
 		}
 	}
 	
 	
 	
-	private void checkExecuted() {
-		if (resultset == null) {
-			logException(new NullPointerException(SystemMessage.OBJ_NOT_INITIALIED));
-			throw new NullPointerException(SystemMessage.OBJ_NOT_INITIALIED);
+	@SuppressWarnings("unchecked")
+	private DaoStmtOption<T> makeClone(DaoStmtOption<T> stmtOption) {
+		try {
+			return (DaoStmtOption<T>) stmtOption.clone();
+			
+		} catch (CloneNotSupportedException e) {
+			logException(e);
+			throw new InternalError(e);
 		}
 	}
 	
@@ -231,7 +299,7 @@ public final class DaoStmtHelper<T> implements DaoStmt<T> {
 	}	
 	
 	
-	
+		
 	private void logException(Exception e) {
 		Class<?> clazz = childClass;
 		
