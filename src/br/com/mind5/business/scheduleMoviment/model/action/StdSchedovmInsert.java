@@ -7,14 +7,14 @@ import br.com.mind5.business.scheduleMoviment.dao.SchedovmInsert;
 import br.com.mind5.business.scheduleMoviment.info.SchedovmInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.obsolete.DaoStmtExec_;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperStmt;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdSchedovmInsert implements ActionStd<SchedovmInfo> {
-	private ActionStd<SchedovmInfo> actionHelper;
+public final class StdSchedovmInsert implements ActionStdV1<SchedovmInfo> {
+	private ActionStdV1<SchedovmInfo> actionHelper;
 	
 	
 	public StdSchedovmInsert(DeciTreeOption<SchedovmInfo> option) {
@@ -40,7 +40,7 @@ public final class StdSchedovmInsert implements ActionStd<SchedovmInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<SchedovmInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<SchedovmInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

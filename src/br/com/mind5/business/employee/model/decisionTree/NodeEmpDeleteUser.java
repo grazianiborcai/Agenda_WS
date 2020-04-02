@@ -7,7 +7,7 @@ import br.com.mind5.business.employee.info.EmpInfo;
 import br.com.mind5.business.employee.model.action.StdEmpDeleteUser;
 import br.com.mind5.business.employee.model.action.StdEmpSuccess;
 import br.com.mind5.business.employee.model.checker.EmpCheckHasUser;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -39,10 +39,10 @@ public final class NodeEmpDeleteUser extends DeciTreeWriteTemplate<EmpInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<EmpInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpInfo> option) {
-		List<ActionStd<EmpInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<EmpInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpInfo> option) {
+		List<ActionStdV1<EmpInfo>> actions = new ArrayList<>();
 		
-		ActionStd<EmpInfo> deleteUser = new StdEmpDeleteUser(option);
+		ActionStdV1<EmpInfo> deleteUser = new StdEmpDeleteUser(option);
 		
 		actions.add(deleteUser);		
 		return actions;
@@ -50,8 +50,8 @@ public final class NodeEmpDeleteUser extends DeciTreeWriteTemplate<EmpInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<EmpInfo>> buildActionsOnFailedHook(DeciTreeOption<EmpInfo> option) {
-		List<ActionStd<EmpInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<EmpInfo>> buildActionsOnFailedHook(DeciTreeOption<EmpInfo> option) {
+		List<ActionStdV1<EmpInfo>> actions = new ArrayList<>();
 		
 		actions.add(new StdEmpSuccess(option));		
 		return actions;

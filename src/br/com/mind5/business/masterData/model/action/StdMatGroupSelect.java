@@ -7,14 +7,14 @@ import br.com.mind5.business.masterData.dao.MatGroupSelect;
 import br.com.mind5.business.masterData.info.MatGroupInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.obsolete.DaoStmtExec_;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperStmt;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdMatGroupSelect implements ActionStd<MatGroupInfo> {
-	private ActionStd<MatGroupInfo> actionHelper;
+public final class StdMatGroupSelect implements ActionStdV1<MatGroupInfo> {
+	private ActionStdV1<MatGroupInfo> actionHelper;
 	
 	
 	public StdMatGroupSelect(DeciTreeOption<MatGroupInfo> option) {
@@ -40,7 +40,7 @@ public final class StdMatGroupSelect implements ActionStd<MatGroupInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<MatGroupInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<MatGroupInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

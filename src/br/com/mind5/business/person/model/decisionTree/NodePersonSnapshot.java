@@ -7,8 +7,8 @@ import br.com.mind5.business.person.info.PersonInfo;
 import br.com.mind5.business.person.model.action.LazyPersonUpdate;
 import br.com.mind5.business.person.model.action.StdPersonInsertPersonap;
 import br.com.mind5.business.person.model.checker.PersonCheckDummy;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -34,11 +34,11 @@ public final class NodePersonSnapshot extends DeciTreeWriteTemplate<PersonInfo> 
 	
 	
 	
-	@Override protected List<ActionStd<PersonInfo>> buildActionsOnPassedHook(DeciTreeOption<PersonInfo> option) {
-		List<ActionStd<PersonInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<PersonInfo>> buildActionsOnPassedHook(DeciTreeOption<PersonInfo> option) {
+		List<ActionStdV1<PersonInfo>> actions = new ArrayList<>();
 		
-		ActionStd<PersonInfo> insertPersonap = new StdPersonInsertPersonap(option);		
-		ActionLazy<PersonInfo> update = new LazyPersonUpdate(option.conn, option.schemaName);	
+		ActionStdV1<PersonInfo> insertPersonap = new StdPersonInsertPersonap(option);		
+		ActionLazyV1<PersonInfo> update = new LazyPersonUpdate(option.conn, option.schemaName);	
 		
 		insertPersonap.addPostAction(update);
 		

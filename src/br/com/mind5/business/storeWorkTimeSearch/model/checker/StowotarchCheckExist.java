@@ -3,7 +3,7 @@ package br.com.mind5.business.storeWorkTimeSearch.model.checker;
 import br.com.mind5.business.storeWorkTimeSearch.info.StowotarchInfo;
 import br.com.mind5.business.storeWorkTimeSearch.model.decisionTree.RootStowotarchSelect;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -16,8 +16,8 @@ public final class StowotarchCheckExist extends ModelCheckerTemplateAction<Stowo
 	
 	
 	
-	@Override protected ActionStd<StowotarchInfo> buildActionHook(DeciTreeOption<StowotarchInfo> option) {
-		ActionStd<StowotarchInfo> select = new RootStowotarchSelect(option).toAction();
+	@Override protected ActionStdV1<StowotarchInfo> buildActionHook(DeciTreeOption<StowotarchInfo> option) {
+		ActionStdV1<StowotarchInfo> select = new RootStowotarchSelect(option).toAction();
 		return select;
 	}
 	

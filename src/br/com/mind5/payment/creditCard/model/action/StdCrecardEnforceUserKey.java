@@ -1,14 +1,14 @@
 package br.com.mind5.payment.creditCard.model.action;
 
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperEnforce;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
 
-public final class StdCrecardEnforceUserKey implements ActionStd<CrecardInfo> {
-	private ActionStd<CrecardInfo> actionHelper;	
+public final class StdCrecardEnforceUserKey implements ActionStdV1<CrecardInfo> {
+	private ActionStdV1<CrecardInfo> actionHelper;	
 	
 	
 	public StdCrecardEnforceUserKey(DeciTreeOption<CrecardInfo> option) {			
@@ -17,7 +17,7 @@ public final class StdCrecardEnforceUserKey implements ActionStd<CrecardInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<CrecardInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<CrecardInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

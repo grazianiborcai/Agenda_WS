@@ -7,8 +7,8 @@ import br.com.mind5.business.scheduleLine.info.SchedineInfo;
 import br.com.mind5.business.scheduleLine.model.action.LazySchedineUpdate;
 import br.com.mind5.business.scheduleLine.model.action.StdSchedineInsertSchedinap;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckDummy;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -34,11 +34,11 @@ public final class NodeSchedineSnapshot extends DeciTreeWriteTemplate<SchedineIn
 	
 	
 	
-	@Override protected List<ActionStd<SchedineInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedineInfo> option) {
-		List<ActionStd<SchedineInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<SchedineInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedineInfo> option) {
+		List<ActionStdV1<SchedineInfo>> actions = new ArrayList<>();
 		
-		ActionStd<SchedineInfo> insertSchedinap = new StdSchedineInsertSchedinap(option);
-		ActionLazy<SchedineInfo> update = new LazySchedineUpdate(option.conn, option.schemaName);
+		ActionStdV1<SchedineInfo> insertSchedinap = new StdSchedineInsertSchedinap(option);
+		ActionLazyV1<SchedineInfo> update = new LazySchedineUpdate(option.conn, option.schemaName);
 		
 		insertSchedinap.addPostAction(update);
 		

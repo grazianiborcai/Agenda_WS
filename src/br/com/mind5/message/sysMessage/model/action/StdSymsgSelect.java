@@ -7,14 +7,14 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.message.sysMessage.dao.SymsgSelect;
 import br.com.mind5.message.sysMessage.info.SymsgInfo;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperStmt;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdSymsgSelect implements ActionStd<SymsgInfo> {
-	private ActionStd<SymsgInfo> actionHelper;
+public final class StdSymsgSelect implements ActionStdV1<SymsgInfo> {
+	private ActionStdV1<SymsgInfo> actionHelper;
 	
 	
 	public StdSymsgSelect(DeciTreeOption<SymsgInfo> option) {
@@ -40,7 +40,7 @@ public final class StdSymsgSelect implements ActionStd<SymsgInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<SymsgInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<SymsgInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

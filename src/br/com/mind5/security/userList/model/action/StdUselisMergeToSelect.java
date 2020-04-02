@@ -1,14 +1,14 @@
 package br.com.mind5.security.userList.model.action;
 
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperMerge;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.userList.info.UselisInfo;
 
-public final class StdUselisMergeToSelect implements ActionStd<UselisInfo> {
-	private ActionStd<UselisInfo> actionHelper;	
+public final class StdUselisMergeToSelect implements ActionStdV1<UselisInfo> {
+	private ActionStdV1<UselisInfo> actionHelper;	
 	
 	
 	public StdUselisMergeToSelect(DeciTreeOption<UselisInfo> option) {			
@@ -17,7 +17,7 @@ public final class StdUselisMergeToSelect implements ActionStd<UselisInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<UselisInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<UselisInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

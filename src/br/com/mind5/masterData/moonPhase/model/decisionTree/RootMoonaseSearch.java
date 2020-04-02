@@ -7,8 +7,8 @@ import br.com.mind5.masterData.moonPhase.info.MoonaseInfo;
 import br.com.mind5.masterData.moonPhase.model.action.LazyMoonaseRootSelect;
 import br.com.mind5.masterData.moonPhase.model.action.StdMoonaseMergeMoonasarch;
 import br.com.mind5.masterData.moonPhase.model.checker.MoonaseCheckDummy;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -34,11 +34,11 @@ public final class RootMoonaseSearch extends DeciTreeWriteTemplate<MoonaseInfo> 
 	
 	
 	
-	@Override protected List<ActionStd<MoonaseInfo>> buildActionsOnPassedHook(DeciTreeOption<MoonaseInfo> option) {
-		List<ActionStd<MoonaseInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV1<MoonaseInfo>> buildActionsOnPassedHook(DeciTreeOption<MoonaseInfo> option) {
+		List<ActionStdV1<MoonaseInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<MoonaseInfo> mergeMoonasarch = new StdMoonaseMergeMoonasarch(option);		
-		ActionLazy<MoonaseInfo> select = new LazyMoonaseRootSelect(option.conn, option.schemaName);
+		ActionStdV1<MoonaseInfo> mergeMoonasarch = new StdMoonaseMergeMoonasarch(option);		
+		ActionLazyV1<MoonaseInfo> select = new LazyMoonaseRootSelect(option.conn, option.schemaName);
 		
 		mergeMoonasarch.addPostAction(select);
 		

@@ -11,8 +11,8 @@ import br.com.mind5.business.owner.model.action.LazyOwnerInsert;
 import br.com.mind5.business.owner.model.action.LazyOwnerInsertUserDaemon;
 import br.com.mind5.business.owner.model.action.StdOwnerEnforceLChanged;
 import br.com.mind5.business.owner.model.checker.OwnerCheckDummy;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -38,15 +38,15 @@ public final class NodeOwnerInsert extends DeciTreeWriteTemplate<OwnerInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<OwnerInfo>> buildActionsOnPassedHook(DeciTreeOption<OwnerInfo> option) {
-		List<ActionStd<OwnerInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<OwnerInfo>> buildActionsOnPassedHook(DeciTreeOption<OwnerInfo> option) {
+		List<ActionStdV1<OwnerInfo>> actions = new ArrayList<>();
 		
-		ActionStd<OwnerInfo> enforceLChanged = new StdOwnerEnforceLChanged(option);
-		ActionLazy<OwnerInfo> enforceCreatedOn = new LazyOwnerEnforceCreatedOn(option.conn, option.schemaName);
-		ActionLazy<OwnerInfo> insertOwner = new LazyOwnerInsert(option.conn, option.schemaName);
-		ActionLazy<OwnerInfo> insertDaemon = new LazyOwnerInsertUserDaemon(option.conn, option.schemaName);	
-		ActionLazy<OwnerInfo> enforceLChangedBy = new LazyOwnerEnforceLChangedBy(option.conn, option.schemaName);	
-		ActionLazy<OwnerInfo> enforceCreatedBy = new LazyOwnerEnforceCreatedBy(option.conn, option.schemaName);
+		ActionStdV1<OwnerInfo> enforceLChanged = new StdOwnerEnforceLChanged(option);
+		ActionLazyV1<OwnerInfo> enforceCreatedOn = new LazyOwnerEnforceCreatedOn(option.conn, option.schemaName);
+		ActionLazyV1<OwnerInfo> insertOwner = new LazyOwnerInsert(option.conn, option.schemaName);
+		ActionLazyV1<OwnerInfo> insertDaemon = new LazyOwnerInsertUserDaemon(option.conn, option.schemaName);	
+		ActionLazyV1<OwnerInfo> enforceLChangedBy = new LazyOwnerEnforceLChangedBy(option.conn, option.schemaName);	
+		ActionLazyV1<OwnerInfo> enforceCreatedBy = new LazyOwnerEnforceCreatedBy(option.conn, option.schemaName);
 		
 		enforceLChanged.addPostAction(enforceCreatedOn);
 		enforceCreatedOn.addPostAction(insertOwner);

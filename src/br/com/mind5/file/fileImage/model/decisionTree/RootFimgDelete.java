@@ -11,8 +11,8 @@ import br.com.mind5.file.fileImage.model.action.LazyFimgUpdate;
 import br.com.mind5.file.fileImage.model.action.StdFimgMergeToUpdate;
 import br.com.mind5.file.fileImage.model.checker.FimgCheckDelete;
 import br.com.mind5.file.fileImage.model.checker.FimgCheckExist;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -51,14 +51,14 @@ public final class RootFimgDelete extends DeciTreeWriteTemplate<FimgInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<FimgInfo>> buildActionsOnPassedHook(DeciTreeOption<FimgInfo> option) {
-		List<ActionStd<FimgInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<FimgInfo>> buildActionsOnPassedHook(DeciTreeOption<FimgInfo> option) {
+		List<ActionStdV1<FimgInfo>> actions = new ArrayList<>();
 		
-		ActionStd<FimgInfo> mergeToUpdate = new StdFimgMergeToUpdate(option);	
-		ActionLazy<FimgInfo> enforceLChanged = new LazyFimgEnforceLChanged(option.conn, option.schemaName);	
-		ActionLazy<FimgInfo> enforceLChangedBy = new LazyFimgMergeUsername(option.conn, option.schemaName);
-		ActionLazy<FimgInfo> update = new LazyFimgUpdate(option.conn, option.schemaName);
-		ActionLazy<FimgInfo> delete = new LazyFimgDelete(option.conn, option.schemaName);
+		ActionStdV1<FimgInfo> mergeToUpdate = new StdFimgMergeToUpdate(option);	
+		ActionLazyV1<FimgInfo> enforceLChanged = new LazyFimgEnforceLChanged(option.conn, option.schemaName);	
+		ActionLazyV1<FimgInfo> enforceLChangedBy = new LazyFimgMergeUsername(option.conn, option.schemaName);
+		ActionLazyV1<FimgInfo> update = new LazyFimgUpdate(option.conn, option.schemaName);
+		ActionLazyV1<FimgInfo> delete = new LazyFimgDelete(option.conn, option.schemaName);
 		
 		mergeToUpdate.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceLChangedBy);

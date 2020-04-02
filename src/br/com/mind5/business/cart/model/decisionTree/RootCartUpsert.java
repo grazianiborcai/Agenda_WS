@@ -12,8 +12,8 @@ import br.com.mind5.business.cart.model.action.StdCartMergeUsername;
 import br.com.mind5.business.cart.model.checker.CartCheckLangu;
 import br.com.mind5.business.cart.model.checker.CartCheckOwner;
 import br.com.mind5.business.cart.model.checker.CartCheckWrite;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -66,14 +66,14 @@ public final class RootCartUpsert extends DeciTreeWriteTemplate<CartInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<CartInfo>> buildActionsOnPassedHook(DeciTreeOption<CartInfo> option) {
-		List<ActionStd<CartInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<CartInfo>> buildActionsOnPassedHook(DeciTreeOption<CartInfo> option) {
+		List<ActionStdV1<CartInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CartInfo> mergeUsername = new StdCartMergeUsername(option);
-		ActionLazy<CartInfo> enforceLChanged = new LazyCartEnforceLChanged(option.conn, option.schemaName);	
-		ActionLazy<CartInfo> upsert = new LazyCartNodeUpsert(option.conn, option.schemaName);
-		ActionLazy<CartInfo> cartem = new LazyCartNodeCartem(option.conn, option.schemaName);
-		ActionLazy<CartInfo> select = new LazyCartRootSelect(option.conn, option.schemaName);
+		ActionStdV1<CartInfo> mergeUsername = new StdCartMergeUsername(option);
+		ActionLazyV1<CartInfo> enforceLChanged = new LazyCartEnforceLChanged(option.conn, option.schemaName);	
+		ActionLazyV1<CartInfo> upsert = new LazyCartNodeUpsert(option.conn, option.schemaName);
+		ActionLazyV1<CartInfo> cartem = new LazyCartNodeCartem(option.conn, option.schemaName);
+		ActionLazyV1<CartInfo> select = new LazyCartRootSelect(option.conn, option.schemaName);
 		
 		mergeUsername.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(upsert);

@@ -1,14 +1,14 @@
 package br.com.mind5.business.orderList.model.action;
 
 import br.com.mind5.business.orderList.info.OrdistInfo;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperMerge;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdOrdistMergeOrdarch implements ActionStd<OrdistInfo> {
-	private ActionStd<OrdistInfo> actionHelper;	
+public final class StdOrdistMergeOrdarch implements ActionStdV1<OrdistInfo> {
+	private ActionStdV1<OrdistInfo> actionHelper;	
 	
 	
 	public StdOrdistMergeOrdarch(DeciTreeOption<OrdistInfo> option) {			
@@ -17,7 +17,7 @@ public final class StdOrdistMergeOrdarch implements ActionStd<OrdistInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<OrdistInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<OrdistInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

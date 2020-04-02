@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.materialSnapshot.info.MatsnapInfo;
 import br.com.mind5.business.materialTextSnapshot.info.MatextsnapInfo;
 import br.com.mind5.business.materialTextSnapshot.model.decisionTree.RootMatextsnapInsert;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -18,7 +18,7 @@ final class VisiMatsnapInsertMatextsnap extends ActionVisitorTemplateAction<Mats
 	
 	
 	
-	@Override protected ActionStd<MatextsnapInfo> getActionHook(DeciTreeOption<MatextsnapInfo> option) {
+	@Override protected ActionStdV1<MatextsnapInfo> getActionHook(DeciTreeOption<MatextsnapInfo> option) {
 		return new RootMatextsnapInsert(option).toAction();
 	}
 	

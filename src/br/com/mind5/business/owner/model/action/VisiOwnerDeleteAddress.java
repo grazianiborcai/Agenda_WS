@@ -7,7 +7,7 @@ import java.util.List;
 import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.address.model.decisionTree.RootAddressDelete;
 import br.com.mind5.business.owner.info.OwnerInfo;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -30,7 +30,7 @@ final class VisiOwnerDeleteAddress extends ActionVisitorTemplateAction<OwnerInfo
 	
 	
 	
-	@Override protected ActionStd<AddressInfo> getActionHook(DeciTreeOption<AddressInfo> option) {
+	@Override protected ActionStdV1<AddressInfo> getActionHook(DeciTreeOption<AddressInfo> option) {
 		return new RootAddressDelete(option).toAction();
 	}
 }

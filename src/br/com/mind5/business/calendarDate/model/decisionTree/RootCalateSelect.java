@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.calendarDate.info.CalateInfo;
 import br.com.mind5.business.calendarDate.model.action.StdCalateMergeToSelect;
 import br.com.mind5.business.calendarDate.model.checker.CalateCheckRead;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -38,10 +38,10 @@ public final class RootCalateSelect extends DeciTreeReadTemplate<CalateInfo> {
 
 		
 	
-	@Override protected List<ActionStd<CalateInfo>> buildActionsOnPassedHook(DeciTreeOption<CalateInfo> option) {
-		List<ActionStd<CalateInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<CalateInfo>> buildActionsOnPassedHook(DeciTreeOption<CalateInfo> option) {
+		List<ActionStdV1<CalateInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CalateInfo> mergeToSelect = new StdCalateMergeToSelect(option);
+		ActionStdV1<CalateInfo> mergeToSelect = new StdCalateMergeToSelect(option);
 		
 		actions.add(mergeToSelect);
 		return actions;

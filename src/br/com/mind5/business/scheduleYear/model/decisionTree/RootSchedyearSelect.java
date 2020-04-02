@@ -7,8 +7,8 @@ import br.com.mind5.business.scheduleYear.info.SchedyearInfo;
 import br.com.mind5.business.scheduleYear.model.action.LazySchedyearMergeStolis;
 import br.com.mind5.business.scheduleYear.model.action.StdSchedyearMergeSchedyerat;
 import br.com.mind5.business.scheduleYear.model.checker.SchedyearCheckRead;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -40,11 +40,11 @@ public final class RootSchedyearSelect extends DeciTreeWriteTemplate<SchedyearIn
 	
 	
 	
-	@Override protected List<ActionStd<SchedyearInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedyearInfo> option) {
-		List<ActionStd<SchedyearInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<SchedyearInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedyearInfo> option) {
+		List<ActionStdV1<SchedyearInfo>> actions = new ArrayList<>();
 		
-		ActionStd<SchedyearInfo> mergeSchedyerat = new StdSchedyearMergeSchedyerat(option);
-		ActionLazy<SchedyearInfo> mergeMonth = new LazySchedyearMergeStolis(option.conn, option.schemaName);
+		ActionStdV1<SchedyearInfo> mergeSchedyerat = new StdSchedyearMergeSchedyerat(option);
+		ActionLazyV1<SchedyearInfo> mergeMonth = new LazySchedyearMergeStolis(option.conn, option.schemaName);
 		
 		mergeSchedyerat.addPostAction(mergeMonth);
 		

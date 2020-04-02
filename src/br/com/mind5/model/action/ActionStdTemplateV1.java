@@ -7,21 +7,22 @@ import java.util.List;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
+import br.com.mind5.info.InfoRecord;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciResultHelper;
 import br.com.mind5.model.decisionTree.common.DeciResultError;
 
-public abstract class ActionStdTemplate<T> implements ActionStd<T> {
+public abstract class ActionStdTemplateV1<T extends InfoRecord> implements ActionStdV1<T> {
 	protected final boolean SUCCESS = true;
 	protected final boolean FAILED = false;	
 	
 	private DeciResultHelper<T> actionResult;
 	private DeciResultHelper<T> finalResult;
-	private List<ActionLazy<T>> postActions;
+	private List<ActionLazyV1<T>> postActions;
 	private boolean hasExecuted;
 	
 	
-	public ActionStdTemplate() {
+	public ActionStdTemplateV1() {
 		init();
 	}
 	
@@ -36,23 +37,14 @@ public abstract class ActionStdTemplate<T> implements ActionStd<T> {
 	
 	
 	
-	public void addPostAction(ActionLazy<T> actionHandler) {
-		checkArgument(actionHandler);
-		postActions.add(actionHandler);
+	@Override public void addPostAction(ActionLazyV1<T> actionLazy) {
+		checkArgument(actionLazy);
+		postActions.add(actionLazy);	//TODO: defensive copy
 	}
 	
 	
 	
-	private void checkArgument(ActionLazy<T> actionHandler) {
-		if (actionHandler == null) {
-			logException(new NullPointerException("actionHandler" + SystemMessage.NULL_ARGUMENT));
-			throw new NullPointerException("actionHandler" + SystemMessage.NULL_ARGUMENT);
-		}
-	}
-	
-	
-	
-	public boolean executeAction() {
+	@Override public boolean executeAction() {
 		flagAsExecuted();
 		boolean result = tryToExecuteAction();
 		
@@ -164,7 +156,7 @@ public abstract class ActionStdTemplate<T> implements ActionStd<T> {
 	
 	
 	private boolean executePostActions() {	
-		for (ActionLazy<T> eachAction : postActions) {
+		for (ActionLazyV1<T> eachAction : postActions) {
 			DeciResult<T> postResult = tryToExecutePostActions(eachAction);
 			copyToFinalResult(postResult);
 			
@@ -177,7 +169,7 @@ public abstract class ActionStdTemplate<T> implements ActionStd<T> {
 	
 	
 	
-	private DeciResult<T> tryToExecutePostActions(ActionLazy<T> postAction) {				
+	private DeciResult<T> tryToExecutePostActions(ActionLazyV1<T> postAction) {				
 		try {
 			postAction.executeAction(actionResult.getResultset());
 			return postAction.getDecisionResult();
@@ -209,7 +201,7 @@ public abstract class ActionStdTemplate<T> implements ActionStd<T> {
 	
 	
 	
-	public DeciResult<T> getDecisionResult() {
+	@Override public DeciResult<T> getDecisionResult() {
 		checkState();
 		return finalResult;
 	}
@@ -247,11 +239,20 @@ public abstract class ActionStdTemplate<T> implements ActionStd<T> {
 	@SuppressWarnings("unchecked")
 	private T tryToMakeDefensiveCopy(T recordInfo) {		
 		try {
-			return (T) recordInfo.getClass().getMethod("clone").invoke(recordInfo);
+			return (T) recordInfo.clone();
 			
 		} catch (Exception e) {
 			logException(e);
 			throw new IllegalStateException(e);
+		}
+	}
+	
+	
+	
+	private void checkArgument(ActionLazyV1<T> actionHandler) {
+		if (actionHandler == null) {
+			logException(new NullPointerException("actionHandler" + SystemMessage.NULL_ARGUMENT));
+			throw new NullPointerException("actionHandler" + SystemMessage.NULL_ARGUMENT);
 		}
 	}
 	

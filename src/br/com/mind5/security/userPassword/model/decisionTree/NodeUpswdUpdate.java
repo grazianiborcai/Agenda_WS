@@ -3,8 +3,8 @@ package br.com.mind5.security.userPassword.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -38,15 +38,15 @@ public final class NodeUpswdUpdate extends DeciTreeReadTemplate<UpswdInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<UpswdInfo>> buildActionsOnPassedHook(DeciTreeOption<UpswdInfo> option) {
-		List<ActionStd<UpswdInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<UpswdInfo>> buildActionsOnPassedHook(DeciTreeOption<UpswdInfo> option) {
+		List<ActionStdV1<UpswdInfo>> actions = new ArrayList<>();
 		
-		ActionStd<UpswdInfo> enforceLChanged = new StdUpswdEnforceLChanged(option);
-		ActionLazy<UpswdInfo> enforceLength = new LazyUpswdEnforceLength(option.conn, option.schemaName);
-		ActionLazy<UpswdInfo> enforcePassword = new LazyUpswdEnforcePassword(option.conn, option.schemaName);
-		ActionLazy<UpswdInfo> enforceSalt = new LazyUpswdEnforceSalt(option.conn, option.schemaName);
-		ActionLazy<UpswdInfo> enforceHash = new LazyUpswdEnforceHash(option.conn, option.schemaName);
-		ActionLazy<UpswdInfo> update = new LazyUpswdUpdate(option.conn, option.schemaName);
+		ActionStdV1<UpswdInfo> enforceLChanged = new StdUpswdEnforceLChanged(option);
+		ActionLazyV1<UpswdInfo> enforceLength = new LazyUpswdEnforceLength(option.conn, option.schemaName);
+		ActionLazyV1<UpswdInfo> enforcePassword = new LazyUpswdEnforcePassword(option.conn, option.schemaName);
+		ActionLazyV1<UpswdInfo> enforceSalt = new LazyUpswdEnforceSalt(option.conn, option.schemaName);
+		ActionLazyV1<UpswdInfo> enforceHash = new LazyUpswdEnforceHash(option.conn, option.schemaName);
+		ActionLazyV1<UpswdInfo> update = new LazyUpswdUpdate(option.conn, option.schemaName);
 		
 		enforceLChanged.addPostAction(enforceLength);
 		enforceLength.addPostAction(enforcePassword);

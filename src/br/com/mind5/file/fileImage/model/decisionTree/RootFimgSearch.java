@@ -7,8 +7,8 @@ import br.com.mind5.file.fileImage.info.FimgInfo;
 import br.com.mind5.file.fileImage.model.action.LazyFimgRootSelect;
 import br.com.mind5.file.fileImage.model.action.StdFimgMergeFimarch;
 import br.com.mind5.file.fileImage.model.checker.FimgCheckDummy;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -34,11 +34,11 @@ public final class RootFimgSearch extends DeciTreeReadTemplate<FimgInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<FimgInfo>> buildActionsOnPassedHook(DeciTreeOption<FimgInfo> option) {
-		List<ActionStd<FimgInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<FimgInfo>> buildActionsOnPassedHook(DeciTreeOption<FimgInfo> option) {
+		List<ActionStdV1<FimgInfo>> actions = new ArrayList<>();
 		
-		ActionStd<FimgInfo> mergeFimarch = new StdFimgMergeFimarch(option);
-		ActionLazy<FimgInfo> select = new LazyFimgRootSelect(option.conn, option.schemaName);
+		ActionStdV1<FimgInfo> mergeFimarch = new StdFimgMergeFimarch(option);
+		ActionLazyV1<FimgInfo> select = new LazyFimgRootSelect(option.conn, option.schemaName);
 		
 		mergeFimarch.addPostAction(select);
 		

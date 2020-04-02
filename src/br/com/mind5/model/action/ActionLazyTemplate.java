@@ -8,11 +8,12 @@ import java.util.List;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
+import br.com.mind5.info.InfoRecord;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciResultHelper;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public abstract class ActionLazyTemplate<T,S> implements ActionLazy<T> {
+public abstract class ActionLazyTemplate<T extends InfoRecord, S extends InfoRecord> implements ActionLazyV1<T> {
 	protected final boolean SUCCESS = true;
 	protected final boolean FAILED = false;
 	protected final boolean EMPTY = false;
@@ -20,10 +21,10 @@ public abstract class ActionLazyTemplate<T,S> implements ActionLazy<T> {
 	private DeciTreeOption<S> option;
 	private Connection conn; 
 	private String schemaName;
-	private ActionStd<S> actionHandler;
+	private ActionStdV1<S> actionHandler;
 	private DeciResult<T> resultHandler;
 	private DeciResult<T> resultPostAction;
-	private List<ActionLazy<T>> postActions;
+	private List<ActionLazyV1<T>> postActions;
 	
 	
 	public ActionLazyTemplate(Connection conn, String schemaName) {
@@ -159,7 +160,7 @@ public abstract class ActionLazyTemplate<T,S> implements ActionLazy<T> {
 	
 	
 	
-	protected  ActionStd<S> getInstanceOfActionHook(DeciTreeOption<S> option) {
+	protected  ActionStdV1<S> getInstanceOfActionHook(DeciTreeOption<S> option) {
 		//Template method to be overridden by subclasses
 		logException(new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION));
 		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);
@@ -178,7 +179,7 @@ public abstract class ActionLazyTemplate<T,S> implements ActionLazy<T> {
 	private boolean executePostActions() {				
 		boolean result = true;
 		
-		for (ActionLazy<T> eachAction : postActions) {
+		for (ActionLazyV1<T> eachAction : postActions) {
 			result = tryToExecutePostActions(eachAction);
 			
 			if (result == FAILED)
@@ -190,7 +191,7 @@ public abstract class ActionLazyTemplate<T,S> implements ActionLazy<T> {
 	
 	
 	
-	private boolean tryToExecutePostActions(ActionLazy<T> postAction) {				
+	private boolean tryToExecutePostActions(ActionLazyV1<T> postAction) {				
 		try {
 			postAction.executeAction(resultHandler.getResultset());
 			resultPostAction = postAction.getDecisionResult();
@@ -233,13 +234,13 @@ public abstract class ActionLazyTemplate<T,S> implements ActionLazy<T> {
 	
 	
 	
-	@Override public ActionStd<T> toAction(List<T> recordInfos) {
+	@Override public ActionStdV1<T> toAction(List<T> recordInfos) {
 		return new ActionLazyAdapter<>(this, recordInfos);
 	}
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<T> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<T> actionHandler) {
 		if (actionHandler == null) {
 			logException(new NullPointerException("actionHandler" + SystemMessage.NULL_ARGUMENT));
 			throw new NullPointerException("actionHandler" + SystemMessage.NULL_ARGUMENT);

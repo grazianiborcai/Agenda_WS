@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.materialStoreSnapshot.info.MatorapInfo;
 import br.com.mind5.business.materialStoreSnapshot.info.MatorapMerger;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 
 final class VisiMatorapMergeToSelect extends ActionVisitorTemplateMerge<MatorapInfo, MatorapInfo> {
@@ -16,7 +16,7 @@ final class VisiMatorapMergeToSelect extends ActionVisitorTemplateMerge<MatorapI
 	
 	
 	
-	@Override protected Class<? extends ActionStd<MatorapInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStdV1<MatorapInfo>> getActionClassHook() {
 		return StdMatorapSelect.class;
 	}
 	

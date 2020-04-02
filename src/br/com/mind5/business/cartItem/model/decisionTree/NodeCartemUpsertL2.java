@@ -7,8 +7,8 @@ import br.com.mind5.business.cartItem.info.CartemInfo;
 import br.com.mind5.business.cartItem.model.action.LazyCartemUpdate;
 import br.com.mind5.business.cartItem.model.action.StdCartemMergeToUpdate;
 import br.com.mind5.business.cartItem.model.checker.CartemCheckExist;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -40,11 +40,11 @@ public final class NodeCartemUpsertL2 extends DeciTreeWriteTemplate<CartemInfo> 
 	
 	
 	
-	@Override protected List<ActionStd<CartemInfo>> buildActionsOnPassedHook(DeciTreeOption<CartemInfo> option) {
-		List<ActionStd<CartemInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<CartemInfo>> buildActionsOnPassedHook(DeciTreeOption<CartemInfo> option) {
+		List<ActionStdV1<CartemInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CartemInfo> mergeToUpdate = new StdCartemMergeToUpdate(option);	
-		ActionLazy<CartemInfo> update = new LazyCartemUpdate(option.conn, option.schemaName);			
+		ActionStdV1<CartemInfo> mergeToUpdate = new StdCartemMergeToUpdate(option);	
+		ActionLazyV1<CartemInfo> update = new LazyCartemUpdate(option.conn, option.schemaName);			
 		
 		mergeToUpdate.addPostAction(update);
 		
@@ -54,10 +54,10 @@ public final class NodeCartemUpsertL2 extends DeciTreeWriteTemplate<CartemInfo> 
 	
 	
 	
-	@Override protected List<ActionStd<CartemInfo>> buildActionsOnFailedHook(DeciTreeOption<CartemInfo> option) {
-		List<ActionStd<CartemInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<CartemInfo>> buildActionsOnFailedHook(DeciTreeOption<CartemInfo> option) {
+		List<ActionStdV1<CartemInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CartemInfo> insert = new NodeCartemInsert(option).toAction();	
+		ActionStdV1<CartemInfo> insert = new NodeCartemInsert(option).toAction();	
 		
 		actions.add(insert);		
 		return actions;

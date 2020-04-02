@@ -4,8 +4,8 @@ import br.com.mind5.business.employeePosition.info.EmposInfo;
 import br.com.mind5.business.employeePosition.model.action.LazyEmposSelect;
 import br.com.mind5.business.employeePosition.model.action.StdEmposEnforceDel;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -18,9 +18,9 @@ public final class EmposCheckSoftDelete extends ModelCheckerTemplateAction<Empos
 	
 	
 	
-	@Override protected ActionStd<EmposInfo> buildActionHook(DeciTreeOption<EmposInfo> option) {
-		ActionStd<EmposInfo> enforceDel = new StdEmposEnforceDel(option);
-		ActionLazy<EmposInfo> select = new LazyEmposSelect(option.conn, option.schemaName);
+	@Override protected ActionStdV1<EmposInfo> buildActionHook(DeciTreeOption<EmposInfo> option) {
+		ActionStdV1<EmposInfo> enforceDel = new StdEmposEnforceDel(option);
+		ActionLazyV1<EmposInfo> select = new LazyEmposSelect(option.conn, option.schemaName);
 		
 		enforceDel.addPostAction(select);		
 		return enforceDel;

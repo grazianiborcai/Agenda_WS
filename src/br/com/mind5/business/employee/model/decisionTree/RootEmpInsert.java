@@ -13,8 +13,8 @@ import br.com.mind5.business.employee.model.action.LazyEmpRootSelect;
 import br.com.mind5.business.employee.model.checker.EmpCheckLangu;
 import br.com.mind5.business.employee.model.checker.EmpCheckOwner;
 import br.com.mind5.business.employee.model.checker.EmpCheckInsert;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -60,16 +60,16 @@ public final class RootEmpInsert extends DeciTreeWriteTemplate<EmpInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<EmpInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpInfo> option) {
-		List<ActionStd<EmpInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<EmpInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpInfo> option) {
+		List<ActionStdV1<EmpInfo>> actions = new ArrayList<>();
 		//TODO: O que fazer se o CPF/e-mail ja tiver associado a um customer/owner/store manager ?
-		ActionStd<EmpInfo> insertEmployee = new NodeEmpInsert(option).toAction();	
-		ActionLazy<EmpInfo> insertPerson = new LazyEmpNodeInsertPerson(option.conn, option.schemaName);	
-		ActionLazy<EmpInfo> insertUser = new LazyEmpNodeInsertUser(option.conn, option.schemaName);
-		ActionLazy<EmpInfo> snapshot = new LazyEmpNodeSnapshot(option.conn, option.schemaName);	
-		ActionLazy<EmpInfo> upsertAddress = new LazyEmpNodeUpsertAddress(option.conn, option.schemaName);
-		ActionLazy<EmpInfo> upsertPhone = new LazyEmpNodeUpsertPhone(option.conn, option.schemaName);		
-		ActionLazy<EmpInfo> select = new LazyEmpRootSelect(option.conn, option.schemaName);	
+		ActionStdV1<EmpInfo> insertEmployee = new NodeEmpInsert(option).toAction();	
+		ActionLazyV1<EmpInfo> insertPerson = new LazyEmpNodeInsertPerson(option.conn, option.schemaName);	
+		ActionLazyV1<EmpInfo> insertUser = new LazyEmpNodeInsertUser(option.conn, option.schemaName);
+		ActionLazyV1<EmpInfo> snapshot = new LazyEmpNodeSnapshot(option.conn, option.schemaName);	
+		ActionLazyV1<EmpInfo> upsertAddress = new LazyEmpNodeUpsertAddress(option.conn, option.schemaName);
+		ActionLazyV1<EmpInfo> upsertPhone = new LazyEmpNodeUpsertPhone(option.conn, option.schemaName);		
+		ActionLazyV1<EmpInfo> select = new LazyEmpRootSelect(option.conn, option.schemaName);	
 		
 		insertEmployee.addPostAction(insertPerson);		
 		insertPerson.addPostAction(insertUser);		

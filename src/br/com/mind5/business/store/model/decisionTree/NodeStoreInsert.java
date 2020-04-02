@@ -10,8 +10,8 @@ import br.com.mind5.business.store.model.action.LazyStoreInsert;
 import br.com.mind5.business.store.model.action.LazyStoreMergeUsername;
 import br.com.mind5.business.store.model.action.StdStoreEnforceLChanged;
 import br.com.mind5.business.store.model.checker.StoreCheckDummy;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -37,14 +37,14 @@ public final class NodeStoreInsert extends DeciTreeWriteTemplate<StoreInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<StoreInfo>> buildActionsOnPassedHook(DeciTreeOption<StoreInfo> option) {
-		List<ActionStd<StoreInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<StoreInfo>> buildActionsOnPassedHook(DeciTreeOption<StoreInfo> option) {
+		List<ActionStdV1<StoreInfo>> actions = new ArrayList<>();
 
-		ActionStd<StoreInfo> enforceLChanged = new StdStoreEnforceLChanged(option);
-		ActionLazy<StoreInfo> enforceLChangedBy = new LazyStoreMergeUsername(option.conn, option.schemaName);
-		ActionLazy<StoreInfo> enforceCreatedBy = new LazyStoreEnforceCreatedBy(option.conn, option.schemaName);
-		ActionLazy<StoreInfo> enforceCreatedOn = new LazyStoreEnforceCreatedOn(option.conn, option.schemaName);
-		ActionLazy<StoreInfo> insertStore = new LazyStoreInsert(option.conn, option.schemaName);		
+		ActionStdV1<StoreInfo> enforceLChanged = new StdStoreEnforceLChanged(option);
+		ActionLazyV1<StoreInfo> enforceLChangedBy = new LazyStoreMergeUsername(option.conn, option.schemaName);
+		ActionLazyV1<StoreInfo> enforceCreatedBy = new LazyStoreEnforceCreatedBy(option.conn, option.schemaName);
+		ActionLazyV1<StoreInfo> enforceCreatedOn = new LazyStoreEnforceCreatedOn(option.conn, option.schemaName);
+		ActionLazyV1<StoreInfo> insertStore = new LazyStoreInsert(option.conn, option.schemaName);		
 		
 		enforceLChanged.addPostAction(enforceLChangedBy);
 		enforceLChangedBy.addPostAction(enforceCreatedBy);

@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.addressSearch.info.AddarchInfo;
 import br.com.mind5.business.addressSearch.info.AddarchMerger;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 
 final class VisiAddarchMergeToSelect extends ActionVisitorTemplateMerge<AddarchInfo, AddarchInfo> {
@@ -16,7 +16,7 @@ final class VisiAddarchMergeToSelect extends ActionVisitorTemplateMerge<AddarchI
 	
 	
 	
-	@Override protected Class<? extends ActionStd<AddarchInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStdV1<AddarchInfo>> getActionClassHook() {
 		return StdAddarchSelect.class;
 	}
 	

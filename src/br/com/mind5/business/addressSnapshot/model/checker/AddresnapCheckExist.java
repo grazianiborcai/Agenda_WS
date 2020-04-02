@@ -3,7 +3,7 @@ package br.com.mind5.business.addressSnapshot.model.checker;
 import br.com.mind5.business.addressSnapshot.info.AddresnapInfo;
 import br.com.mind5.business.addressSnapshot.model.action.StdAddresnapSelect;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -16,8 +16,8 @@ public final class AddresnapCheckExist extends ModelCheckerTemplateAction<Addres
 	
 	
 	
-	@Override protected ActionStd<AddresnapInfo> buildActionHook(DeciTreeOption<AddresnapInfo> option) {
-		ActionStd<AddresnapInfo> select = new StdAddresnapSelect(option);
+	@Override protected ActionStdV1<AddresnapInfo> buildActionHook(DeciTreeOption<AddresnapInfo> option) {
+		ActionStdV1<AddresnapInfo> select = new StdAddresnapSelect(option);
 		return select;
 	}
 	

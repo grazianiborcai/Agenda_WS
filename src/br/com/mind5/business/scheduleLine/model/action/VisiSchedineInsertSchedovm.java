@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.scheduleLine.info.SchedineInfo;
 import br.com.mind5.business.scheduleMoviment.info.SchedovmInfo;
 import br.com.mind5.business.scheduleMoviment.model.decisionTree.RootSchedovmInsert;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -18,7 +18,7 @@ final class VisiSchedineInsertSchedovm extends ActionVisitorTemplateAction<Sched
 	
 	
 	
-	@Override protected ActionStd<SchedovmInfo> getActionHook(DeciTreeOption<SchedovmInfo> option) {
+	@Override protected ActionStdV1<SchedovmInfo> getActionHook(DeciTreeOption<SchedovmInfo> option) {
 		return new RootSchedovmInsert(option).toAction();
 	}
 	

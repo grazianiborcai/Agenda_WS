@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.business.store.info.StoreMerger;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.user.info.UserCopier;
@@ -25,7 +25,7 @@ final class VisiStoreInsertUser extends ActionVisitorTemplateAction<StoreInfo, U
 	
 	
 	
-	@Override protected ActionStd<UserInfo> getActionHook(DeciTreeOption<UserInfo> option) {
+	@Override protected ActionStdV1<UserInfo> getActionHook(DeciTreeOption<UserInfo> option) {
 		return new RootUserInsertStore(option).toAction();
 	}
 	

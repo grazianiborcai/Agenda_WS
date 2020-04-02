@@ -1,14 +1,14 @@
 package br.com.mind5.payment.refundOrderItem.model.action;
 
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperAction;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.refundOrderItem.info.RefemInfo;
 
-public final class StdRefemRefumoipRefund implements ActionStd<RefemInfo> {
-	private ActionStd<RefemInfo> actionHelper;	
+public final class StdRefemRefumoipRefund implements ActionStdV1<RefemInfo> {
+	private ActionStdV1<RefemInfo> actionHelper;	
 	
 	
 	public StdRefemRefumoipRefund(DeciTreeOption<RefemInfo> option) {			
@@ -17,7 +17,7 @@ public final class StdRefemRefumoipRefund implements ActionStd<RefemInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<RefemInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<RefemInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

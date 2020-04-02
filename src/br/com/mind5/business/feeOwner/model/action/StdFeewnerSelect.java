@@ -7,14 +7,14 @@ import br.com.mind5.business.feeOwner.dao.FeewnerSelect;
 import br.com.mind5.business.feeOwner.info.FeewnerInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.obsolete.DaoStmtExec_;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperStmt;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdFeewnerSelect implements ActionStd<FeewnerInfo> {
-	private ActionStd<FeewnerInfo> actionHelper;
+public final class StdFeewnerSelect implements ActionStdV1<FeewnerInfo> {
+	private ActionStdV1<FeewnerInfo> actionHelper;
 	
 	
 	public StdFeewnerSelect(DeciTreeOption<FeewnerInfo> option) {
@@ -40,7 +40,7 @@ public final class StdFeewnerSelect implements ActionStd<FeewnerInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<FeewnerInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<FeewnerInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

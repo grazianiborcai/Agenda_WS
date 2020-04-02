@@ -1,14 +1,14 @@
 package br.com.mind5.business.planingData.model.action;
 
 import br.com.mind5.business.planingData.info.PlanataInfo;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperPrune;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdPlanataPruneEmplate implements ActionStd<PlanataInfo> {
-	private ActionStd<PlanataInfo> actionHelper;	
+public final class StdPlanataPruneEmplate implements ActionStdV1<PlanataInfo> {
+	private ActionStdV1<PlanataInfo> actionHelper;	
 	
 	
 	public StdPlanataPruneEmplate(DeciTreeOption<PlanataInfo> option) {			
@@ -17,7 +17,7 @@ public final class StdPlanataPruneEmplate implements ActionStd<PlanataInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<PlanataInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<PlanataInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

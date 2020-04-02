@@ -1,14 +1,14 @@
 package br.com.mind5.business.addressSearch.model.action;
 
 import br.com.mind5.business.addressSearch.info.AddarchInfo;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperMerge;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdAddarchMergeToSelect implements ActionStd<AddarchInfo> {
-	private ActionStd<AddarchInfo> actionHelper;	
+public final class StdAddarchMergeToSelect implements ActionStdV1<AddarchInfo> {
+	private ActionStdV1<AddarchInfo> actionHelper;	
 	
 	
 	public StdAddarchMergeToSelect(DeciTreeOption<AddarchInfo> option) {			
@@ -17,7 +17,7 @@ public final class StdAddarchMergeToSelect implements ActionStd<AddarchInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<AddarchInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<AddarchInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

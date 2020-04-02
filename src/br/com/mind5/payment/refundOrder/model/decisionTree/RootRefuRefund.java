@@ -3,8 +3,8 @@ package br.com.mind5.payment.refundOrder.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -71,11 +71,11 @@ public final class RootRefuRefund extends DeciTreeWriteTemplate<RefuInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<RefuInfo>> buildActionsOnPassedHook(DeciTreeOption<RefuInfo> option) {
-		List<ActionStd<RefuInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV1<RefuInfo>> buildActionsOnPassedHook(DeciTreeOption<RefuInfo> option) {
+		List<ActionStdV1<RefuInfo>> actions = new ArrayList<>();		
 
-		ActionStd<RefuInfo> nodeOrder = new NodeRefuOrder(option).toAction();
-		ActionLazy<RefuInfo> nodeRefund = new LazyRefuNodeRefund(option.conn, option.schemaName);
+		ActionStdV1<RefuInfo> nodeOrder = new NodeRefuOrder(option).toAction();
+		ActionLazyV1<RefuInfo> nodeRefund = new LazyRefuNodeRefund(option.conn, option.schemaName);
 		
 		nodeOrder.addPostAction(nodeRefund);
 		

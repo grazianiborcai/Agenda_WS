@@ -3,7 +3,7 @@ package br.com.mind5.payment.payOrderItem.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -32,10 +32,10 @@ public final class NodePayordemSelectL2 extends DeciTreeWriteTemplate<PayordemIn
 	
 	
 	
-	@Override protected List<ActionStd<PayordemInfo>> buildActionsOnPassedHook(DeciTreeOption<PayordemInfo> option) {
-		List<ActionStd<PayordemInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<PayordemInfo>> buildActionsOnPassedHook(DeciTreeOption<PayordemInfo> option) {
+		List<ActionStdV1<PayordemInfo>> actions = new ArrayList<>();
 		
-		ActionStd<PayordemInfo> mergeMatlis = new StdPayordemMergeMatlis(option);
+		ActionStdV1<PayordemInfo> mergeMatlis = new StdPayordemMergeMatlis(option);
 		
 		actions.add(mergeMatlis);
 		return actions;

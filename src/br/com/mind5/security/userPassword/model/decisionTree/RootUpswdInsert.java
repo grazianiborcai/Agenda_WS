@@ -3,8 +3,8 @@ package br.com.mind5.security.userPassword.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -64,12 +64,12 @@ public final class RootUpswdInsert extends DeciTreeWriteTemplate<UpswdInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<UpswdInfo>> buildActionsOnPassedHook(DeciTreeOption<UpswdInfo> option) {
-		List<ActionStd<UpswdInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<UpswdInfo>> buildActionsOnPassedHook(DeciTreeOption<UpswdInfo> option) {
+		List<ActionStdV1<UpswdInfo>> actions = new ArrayList<>();
 		
-		ActionStd<UpswdInfo> insertUpswd = new NodeUpswdInsert(option).toAction();
-		ActionLazy<UpswdInfo> sendEmail = new LazyUpswdSendEmail(option.conn, option.schemaName);
-		ActionLazy<UpswdInfo> success = new LazyUpswdSuccess(option.conn, option.schemaName);
+		ActionStdV1<UpswdInfo> insertUpswd = new NodeUpswdInsert(option).toAction();
+		ActionLazyV1<UpswdInfo> sendEmail = new LazyUpswdSendEmail(option.conn, option.schemaName);
+		ActionLazyV1<UpswdInfo> success = new LazyUpswdSuccess(option.conn, option.schemaName);
 		
 		insertUpswd.addPostAction(sendEmail);
 		sendEmail.addPostAction(success);

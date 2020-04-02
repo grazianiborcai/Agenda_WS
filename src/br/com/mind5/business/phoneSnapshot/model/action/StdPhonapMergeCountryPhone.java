@@ -1,14 +1,14 @@
 package br.com.mind5.business.phoneSnapshot.model.action;
 
 import br.com.mind5.business.phoneSnapshot.info.PhonapInfo;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperMerge;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class StdPhonapMergeCountryPhone implements ActionStd<PhonapInfo> {
-	private ActionStd<PhonapInfo> actionHelper;	
+final class StdPhonapMergeCountryPhone implements ActionStdV1<PhonapInfo> {
+	private ActionStdV1<PhonapInfo> actionHelper;	
 	
 	
 	public StdPhonapMergeCountryPhone(DeciTreeOption<PhonapInfo> option) {			
@@ -17,7 +17,7 @@ final class StdPhonapMergeCountryPhone implements ActionStd<PhonapInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<PhonapInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<PhonapInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

@@ -3,7 +3,7 @@ package br.com.mind5.business.masterData.model.checker;
 import br.com.mind5.business.masterData.info.FeeCategInfo;
 import br.com.mind5.business.masterData.model.action.StdFeeCategSelect;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -16,8 +16,8 @@ public final class FeeCategCheckExist extends ModelCheckerTemplateAction<FeeCate
 	
 	
 	
-	@Override protected ActionStd<FeeCategInfo> buildActionHook(DeciTreeOption<FeeCategInfo> option) {
-		ActionStd<FeeCategInfo> select = new StdFeeCategSelect(option);
+	@Override protected ActionStdV1<FeeCategInfo> buildActionHook(DeciTreeOption<FeeCategInfo> option) {
+		ActionStdV1<FeeCategInfo> select = new StdFeeCategSelect(option);
 		return select;
 	}
 	

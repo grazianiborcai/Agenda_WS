@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.masterData.info.MatTypeInfo;
 import br.com.mind5.business.masterData.model.action.StdMatTypeSelect;
 import br.com.mind5.business.masterData.model.checker.MatTypeCheckRead;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -38,10 +38,10 @@ public final class RootMatTypeSelect extends DeciTreeReadTemplate<MatTypeInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<MatTypeInfo>> buildActionsOnPassedHook(DeciTreeOption<MatTypeInfo> option) {
-		List<ActionStd<MatTypeInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<MatTypeInfo>> buildActionsOnPassedHook(DeciTreeOption<MatTypeInfo> option) {
+		List<ActionStdV1<MatTypeInfo>> actions = new ArrayList<>();
 		
-		ActionStd<MatTypeInfo> select = new StdMatTypeSelect(option);
+		ActionStdV1<MatTypeInfo> select = new StdMatTypeSelect(option);
 		
 		actions.add(select);
 		return actions;

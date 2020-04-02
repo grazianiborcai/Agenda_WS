@@ -3,7 +3,7 @@ package br.com.mind5.business.masterData.model.checker;
 import br.com.mind5.business.masterData.info.WeekdayInfo;
 import br.com.mind5.business.masterData.model.action.StdWeekdaySelect;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -16,8 +16,8 @@ public final class WeekdayCheckExist extends ModelCheckerTemplateAction<WeekdayI
 	
 	
 	
-	@Override protected ActionStd<WeekdayInfo> buildActionHook(DeciTreeOption<WeekdayInfo> option) {
-		ActionStd<WeekdayInfo> select = new StdWeekdaySelect(option);
+	@Override protected ActionStdV1<WeekdayInfo> buildActionHook(DeciTreeOption<WeekdayInfo> option) {
+		ActionStdV1<WeekdayInfo> select = new StdWeekdaySelect(option);
 		return select;
 	}
 	

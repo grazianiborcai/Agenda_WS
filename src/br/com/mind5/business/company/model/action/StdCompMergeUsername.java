@@ -1,14 +1,14 @@
 package br.com.mind5.business.company.model.action;
 
 import br.com.mind5.business.company.info.CompInfo;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperMerge;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class StdCompMergeUsername implements ActionStd<CompInfo> {
-	private ActionStd<CompInfo> actionHelper;	
+final class StdCompMergeUsername implements ActionStdV1<CompInfo> {
+	private ActionStdV1<CompInfo> actionHelper;	
 	
 	
 	public StdCompMergeUsername(DeciTreeOption<CompInfo> option) {			
@@ -17,7 +17,7 @@ final class StdCompMergeUsername implements ActionStd<CompInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<CompInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<CompInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

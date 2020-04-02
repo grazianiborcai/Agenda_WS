@@ -7,14 +7,14 @@ import br.com.mind5.business.orderItemSearch.dao.OrdemarchSelect;
 import br.com.mind5.business.orderItemSearch.info.OrdemarchInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.obsolete.DaoStmtExec_;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperStmt;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdOrdemarchSelect implements ActionStd<OrdemarchInfo> {
-	private ActionStd<OrdemarchInfo> actionHelper;
+public final class StdOrdemarchSelect implements ActionStdV1<OrdemarchInfo> {
+	private ActionStdV1<OrdemarchInfo> actionHelper;
 	
 	
 	public StdOrdemarchSelect(DeciTreeOption<OrdemarchInfo> option) {
@@ -40,7 +40,7 @@ public final class StdOrdemarchSelect implements ActionStd<OrdemarchInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<OrdemarchInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<OrdemarchInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

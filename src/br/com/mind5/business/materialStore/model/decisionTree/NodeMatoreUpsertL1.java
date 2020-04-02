@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.materialStore.info.MatoreInfo;
 import br.com.mind5.business.materialStore.model.checker.MatoreCheckHasMatCateg;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -37,10 +37,10 @@ public final class NodeMatoreUpsertL1 extends DeciTreeWriteTemplate<MatoreInfo> 
 	
 	
 	
-	@Override protected List<ActionStd<MatoreInfo>> buildActionsOnPassedHook(DeciTreeOption<MatoreInfo> option) {
-		List<ActionStd<MatoreInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<MatoreInfo>> buildActionsOnPassedHook(DeciTreeOption<MatoreInfo> option) {
+		List<ActionStdV1<MatoreInfo>> actions = new ArrayList<>();
 		
-		ActionStd<MatoreInfo> nodeL2 = new NodeMatoreUpsertL2(option).toAction();		
+		ActionStdV1<MatoreInfo> nodeL2 = new NodeMatoreUpsertL2(option).toAction();		
 		actions.add(nodeL2);
 		
 		return actions;

@@ -13,8 +13,8 @@ import br.com.mind5.business.employeeMaterial.model.checker.EmpmatCheckExist;
 import br.com.mind5.business.employeeMaterial.model.checker.EmpmatCheckLangu;
 import br.com.mind5.business.employeeMaterial.model.checker.EmpmatCheckOwner;
 import br.com.mind5.business.employeeMaterial.model.checker.EmpmatCheckWrite;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -67,14 +67,14 @@ public final class RootEmpmatDelete extends DeciTreeWriteTemplate<EmpmatInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<EmpmatInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpmatInfo> option) {
-		List<ActionStd<EmpmatInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<EmpmatInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpmatInfo> option) {
+		List<ActionStdV1<EmpmatInfo>> actions = new ArrayList<>();
 		
-		ActionStd<EmpmatInfo> mergeToDelete = new StdEmpmatMergeToDelete(option);
-		ActionLazy<EmpmatInfo> enforceLChanged = new LazyEmpmatEnforceLChanged(option.conn, option.schemaName);
-		ActionLazy<EmpmatInfo> enforceLChangedBy = new LazyEmpmatMergeUsername(option.conn, option.schemaName);
-		ActionLazy<EmpmatInfo> update = new LazyEmpmatUpdate(option.conn, option.schemaName);
-		ActionLazy<EmpmatInfo> deleteEmpmat = new LazyEmpmatDelete(option.conn, option.schemaName);
+		ActionStdV1<EmpmatInfo> mergeToDelete = new StdEmpmatMergeToDelete(option);
+		ActionLazyV1<EmpmatInfo> enforceLChanged = new LazyEmpmatEnforceLChanged(option.conn, option.schemaName);
+		ActionLazyV1<EmpmatInfo> enforceLChangedBy = new LazyEmpmatMergeUsername(option.conn, option.schemaName);
+		ActionLazyV1<EmpmatInfo> update = new LazyEmpmatUpdate(option.conn, option.schemaName);
+		ActionLazyV1<EmpmatInfo> deleteEmpmat = new LazyEmpmatDelete(option.conn, option.schemaName);
 		
 		mergeToDelete.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceLChangedBy);

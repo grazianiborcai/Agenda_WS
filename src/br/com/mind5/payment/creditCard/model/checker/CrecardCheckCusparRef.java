@@ -3,7 +3,7 @@ package br.com.mind5.payment.creditCard.model.checker;
 import java.util.List;
 
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -20,8 +20,8 @@ public final class CrecardCheckCusparRef extends ModelCheckerTemplateAction<Crec
 	
 	
 	
-	@Override protected ActionStd<CusparchInfo> buildActionHook(DeciTreeOption<CusparchInfo> option) {
-		ActionStd<CusparchInfo> select = new RootCusparchSelect(option).toAction();
+	@Override protected ActionStdV1<CusparchInfo> buildActionHook(DeciTreeOption<CusparchInfo> option) {
+		ActionStdV1<CusparchInfo> select = new RootCusparchSelect(option).toAction();
 		return select;
 	}
 	

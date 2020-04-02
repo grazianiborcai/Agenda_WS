@@ -1,4 +1,4 @@
-package br.com.mind5.model.action;
+package br.com.mind5.model.action.obsolete;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -7,10 +7,11 @@ import java.util.List;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
+import br.com.mind5.info.InfoRecord;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciResultHelper;
 
-public abstract class ActionMultiVisitorTemplate<T> implements ActionMultiVisitor<T> {
+public abstract class ActionMultiVisitorTemplate<T extends InfoRecord> implements ActionMultiVisitor<T> {
 	protected final boolean IS_TAKEN = true;
 	protected final boolean NOT_TAKEN = false;
 	protected final boolean FLAGGED = true;

@@ -3,7 +3,7 @@ package br.com.mind5.paymentPartner.partnerMoip.permissionMoip.model.decisionTre
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -54,10 +54,10 @@ public final class RootPeresmoipSelect extends DeciTreeReadTemplate<PeresmoipInf
 	
 	
 	
-	@Override protected List<ActionStd<PeresmoipInfo>> buildActionsOnPassedHook(DeciTreeOption<PeresmoipInfo> option) {
-		List<ActionStd<PeresmoipInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<PeresmoipInfo>> buildActionsOnPassedHook(DeciTreeOption<PeresmoipInfo> option) {
+		List<ActionStdV1<PeresmoipInfo>> actions = new ArrayList<>();
 		
-		ActionStd<PeresmoipInfo> select = new StdPeresmoipMergeToSelect(option);
+		ActionStdV1<PeresmoipInfo> select = new StdPeresmoipMergeToSelect(option);
 		
 		actions.add(select);
 		return actions;

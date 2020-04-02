@@ -8,7 +8,7 @@ import br.com.mind5.business.materialMovement.info.MatmovMerger;
 import br.com.mind5.business.materialStock.info.MatockCopier;
 import br.com.mind5.business.materialStock.info.MatockInfo;
 import br.com.mind5.business.materialStock.model.decisionTree.RootMatockUpsert;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -25,7 +25,7 @@ final class VisiMatmovUpsertMatock extends ActionVisitorTemplateAction<MatmovInf
 	
 	
 	
-	@Override protected ActionStd<MatockInfo> getActionHook(DeciTreeOption<MatockInfo> option) {
+	@Override protected ActionStdV1<MatockInfo> getActionHook(DeciTreeOption<MatockInfo> option) {
 		return new RootMatockUpsert(option).toAction();
 	}
 	

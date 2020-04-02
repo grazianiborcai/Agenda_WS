@@ -1,14 +1,14 @@
 package br.com.mind5.business.storeWorkTimeSearch.model.action;
 
 import br.com.mind5.business.storeWorkTimeSearch.info.StowotarchInfo;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperMerge;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdStowotarchMergeToSelect implements ActionStd<StowotarchInfo> {
-	private ActionStd<StowotarchInfo> actionHelper;	
+public final class StdStowotarchMergeToSelect implements ActionStdV1<StowotarchInfo> {
+	private ActionStdV1<StowotarchInfo> actionHelper;	
 	
 	
 	public StdStowotarchMergeToSelect(DeciTreeOption<StowotarchInfo> option) {			
@@ -17,7 +17,7 @@ public final class StdStowotarchMergeToSelect implements ActionStd<StowotarchInf
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<StowotarchInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<StowotarchInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

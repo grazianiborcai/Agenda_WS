@@ -7,14 +7,14 @@ import br.com.mind5.business.materialTextSnapshot.dao.MatextsnapInsert;
 import br.com.mind5.business.materialTextSnapshot.info.MatextsnapInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.obsolete.DaoStmtExec_;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperStmt;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdMatextsnapInsert implements ActionStd<MatextsnapInfo> {
-	private ActionStd<MatextsnapInfo> actionHelper;
+public final class StdMatextsnapInsert implements ActionStdV1<MatextsnapInfo> {
+	private ActionStdV1<MatextsnapInfo> actionHelper;
 	
 	
 	public StdMatextsnapInsert(DeciTreeOption<MatextsnapInfo> option) {
@@ -40,7 +40,7 @@ public final class StdMatextsnapInsert implements ActionStd<MatextsnapInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<MatextsnapInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<MatextsnapInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

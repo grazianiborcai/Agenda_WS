@@ -1,14 +1,14 @@
 package br.com.mind5.business.customer.model.action;
 
 import br.com.mind5.business.customer.info.CusInfo;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperEnforce;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdCusEnforceAddressKey implements ActionStd<CusInfo> {
-	private ActionStd<CusInfo> actionHelper;	
+public final class StdCusEnforceAddressKey implements ActionStdV1<CusInfo> {
+	private ActionStdV1<CusInfo> actionHelper;	
 	
 	
 	public StdCusEnforceAddressKey(DeciTreeOption<CusInfo> option) {			
@@ -17,7 +17,7 @@ public final class StdCusEnforceAddressKey implements ActionStd<CusInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<CusInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<CusInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

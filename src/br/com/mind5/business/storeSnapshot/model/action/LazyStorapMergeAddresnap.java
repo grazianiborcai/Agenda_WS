@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.storeSnapshot.info.StorapInfo;
 import br.com.mind5.model.action.ActionLazyTemplate;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -23,7 +23,7 @@ public final class LazyStorapMergeAddresnap extends ActionLazyTemplate<StorapInf
 	
 	
 	
-	@Override protected ActionStd<StorapInfo> getInstanceOfActionHook(DeciTreeOption<StorapInfo> option) {
+	@Override protected ActionStdV1<StorapInfo> getInstanceOfActionHook(DeciTreeOption<StorapInfo> option) {
 		return new StdStorapMergeAddresnap(option);
 	}
 	

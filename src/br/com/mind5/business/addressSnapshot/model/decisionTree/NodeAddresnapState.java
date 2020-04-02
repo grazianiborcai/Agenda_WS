@@ -7,7 +7,7 @@ import br.com.mind5.business.addressSnapshot.info.AddresnapInfo;
 import br.com.mind5.business.addressSnapshot.model.action.StdAddresnapMergeState;
 import br.com.mind5.business.addressSnapshot.model.action.StdAddresnapSuccess;
 import br.com.mind5.business.addressSnapshot.model.checker.AddresnapCheckHasState;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -39,10 +39,10 @@ public final class NodeAddresnapState extends DeciTreeWriteTemplate<AddresnapInf
 	
 	
 	
-	@Override protected List<ActionStd<AddresnapInfo>> buildActionsOnPassedHook(DeciTreeOption<AddresnapInfo> option) {
-		List<ActionStd<AddresnapInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV1<AddresnapInfo>> buildActionsOnPassedHook(DeciTreeOption<AddresnapInfo> option) {
+		List<ActionStdV1<AddresnapInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<AddresnapInfo> mergeState = new StdAddresnapMergeState(option);	
+		ActionStdV1<AddresnapInfo> mergeState = new StdAddresnapMergeState(option);	
 		
 		actions.add(mergeState);			
 		return actions;
@@ -50,10 +50,10 @@ public final class NodeAddresnapState extends DeciTreeWriteTemplate<AddresnapInf
 	
 	
 	
-	@Override protected List<ActionStd<AddresnapInfo>> buildActionsOnFailedHook(DeciTreeOption<AddresnapInfo> option) {
-		List<ActionStd<AddresnapInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV1<AddresnapInfo>> buildActionsOnFailedHook(DeciTreeOption<AddresnapInfo> option) {
+		List<ActionStdV1<AddresnapInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<AddresnapInfo> success = new StdAddresnapSuccess(option);	
+		ActionStdV1<AddresnapInfo> success = new StdAddresnapSuccess(option);	
 		
 		actions.add(success);			
 		return actions;

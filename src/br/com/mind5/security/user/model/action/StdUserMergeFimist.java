@@ -1,14 +1,14 @@
 package br.com.mind5.security.user.model.action;
 
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperMerge;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.user.info.UserInfo;
 
-final class StdUserMergeFimist implements ActionStd<UserInfo> {
-	private ActionStd<UserInfo> actionHelper;	
+final class StdUserMergeFimist implements ActionStdV1<UserInfo> {
+	private ActionStdV1<UserInfo> actionHelper;	
 	
 	
 	public StdUserMergeFimist(DeciTreeOption<UserInfo> option) {			
@@ -17,7 +17,7 @@ final class StdUserMergeFimist implements ActionStd<UserInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<UserInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<UserInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

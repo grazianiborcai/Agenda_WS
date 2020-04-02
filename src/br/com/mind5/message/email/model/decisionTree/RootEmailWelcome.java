@@ -9,8 +9,8 @@ import br.com.mind5.message.email.model.action.LazyEmailMergeEmabody;
 import br.com.mind5.message.email.model.action.LazyEmailNodeSend;
 import br.com.mind5.message.email.model.action.StdEmailEnforceEmabody;
 import br.com.mind5.message.email.model.checker.EmailCheckWelcome;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -42,13 +42,13 @@ public final class RootEmailWelcome extends DeciTreeWriteTemplate<EmailInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<EmailInfo>> buildActionsOnPassedHook(DeciTreeOption<EmailInfo> option) {
-		List<ActionStd<EmailInfo>> actions = new ArrayList<>();	
+	@Override protected List<ActionStdV1<EmailInfo>> buildActionsOnPassedHook(DeciTreeOption<EmailInfo> option) {
+		List<ActionStdV1<EmailInfo>> actions = new ArrayList<>();	
 		
-		ActionStd<EmailInfo> enforceEmabody = new StdEmailEnforceEmabody(option);
-		ActionLazy<EmailInfo> enforceWelcome = new LazyEmailEnforceWelcome(option.conn, option.schemaName);
-		ActionLazy<EmailInfo> mergeEmabody = new LazyEmailMergeEmabody(option.conn, option.schemaName);
-		ActionLazy<EmailInfo> send = new LazyEmailNodeSend(option.conn, option.schemaName);
+		ActionStdV1<EmailInfo> enforceEmabody = new StdEmailEnforceEmabody(option);
+		ActionLazyV1<EmailInfo> enforceWelcome = new LazyEmailEnforceWelcome(option.conn, option.schemaName);
+		ActionLazyV1<EmailInfo> mergeEmabody = new LazyEmailMergeEmabody(option.conn, option.schemaName);
+		ActionLazyV1<EmailInfo> send = new LazyEmailNodeSend(option.conn, option.schemaName);
 		
 		enforceEmabody .addPostAction(enforceWelcome);
 		enforceWelcome.addPostAction(mergeEmabody);

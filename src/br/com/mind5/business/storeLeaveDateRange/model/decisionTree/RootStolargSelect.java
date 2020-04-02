@@ -9,7 +9,7 @@ import br.com.mind5.business.storeLeaveDateRange.model.checker.StolargCheckLangu
 import br.com.mind5.business.storeLeaveDateRange.model.checker.StolargCheckOwner;
 import br.com.mind5.business.storeLeaveDateRange.model.checker.StolargCheckRead;
 import br.com.mind5.business.storeLeaveDateRange.model.checker.StolargCheckStore;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -62,10 +62,10 @@ public class RootStolargSelect extends DeciTreeReadTemplate<StolargInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<StolargInfo>> buildActionsOnPassedHook(DeciTreeOption<StolargInfo> option) {
-		List<ActionStd<StolargInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<StolargInfo>> buildActionsOnPassedHook(DeciTreeOption<StolargInfo> option) {
+		List<ActionStdV1<StolargInfo>> actions = new ArrayList<>();
 		
-		ActionStd<StolargInfo> select = new StdStolargMergeToSelect(option);
+		ActionStdV1<StolargInfo> select = new StdStolargMergeToSelect(option);
 		
 		actions.add(select);
 		return actions;

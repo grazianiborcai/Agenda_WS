@@ -7,14 +7,14 @@ import br.com.mind5.business.orderItemSnapshot.dao.OrdemrapInsert;
 import br.com.mind5.business.orderItemSnapshot.info.OrdemrapInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.obsolete.DaoStmtExec_;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperStmt;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdOrdemrapInsert implements ActionStd<OrdemrapInfo> {
-	private ActionStd<OrdemrapInfo> actionHelper;
+public final class StdOrdemrapInsert implements ActionStdV1<OrdemrapInfo> {
+	private ActionStdV1<OrdemrapInfo> actionHelper;
 	
 	
 	public StdOrdemrapInsert(DeciTreeOption<OrdemrapInfo> option) {
@@ -40,7 +40,7 @@ public final class StdOrdemrapInsert implements ActionStd<OrdemrapInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<OrdemrapInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<OrdemrapInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

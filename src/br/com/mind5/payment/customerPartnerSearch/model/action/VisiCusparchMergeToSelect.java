@@ -3,7 +3,7 @@ package br.com.mind5.payment.customerPartnerSearch.model.action;
 import java.sql.Connection;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.payment.customerPartnerSearch.info.CusparchInfo;
 import br.com.mind5.payment.customerPartnerSearch.info.CusparchMerger;
@@ -16,7 +16,7 @@ final class VisiCusparchMergeToSelect extends ActionVisitorTemplateMerge<Cusparc
 	
 	
 	
-	@Override protected Class<? extends ActionStd<CusparchInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStdV1<CusparchInfo>> getActionClassHook() {
 		return StdCusparchSelect.class;
 	}
 	

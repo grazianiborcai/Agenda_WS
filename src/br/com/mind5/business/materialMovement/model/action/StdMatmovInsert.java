@@ -7,14 +7,14 @@ import br.com.mind5.business.materialMovement.dao.MatmovInsert;
 import br.com.mind5.business.materialMovement.info.MatmovInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.obsolete.DaoStmtExec_;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperStmt;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdMatmovInsert implements ActionStd<MatmovInfo> {
-	private ActionStd<MatmovInfo> actionHelper;
+public final class StdMatmovInsert implements ActionStdV1<MatmovInfo> {
+	private ActionStdV1<MatmovInfo> actionHelper;
 	
 	
 	public StdMatmovInsert(DeciTreeOption<MatmovInfo> option) {
@@ -40,7 +40,7 @@ public final class StdMatmovInsert implements ActionStd<MatmovInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<MatmovInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<MatmovInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

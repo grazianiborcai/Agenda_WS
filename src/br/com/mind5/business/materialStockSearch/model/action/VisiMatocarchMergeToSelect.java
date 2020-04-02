@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.materialStockSearch.info.MatocarchInfo;
 import br.com.mind5.business.materialStockSearch.info.MatocarchMerger;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 
 final class VisiMatocarchMergeToSelect extends ActionVisitorTemplateMerge<MatocarchInfo, MatocarchInfo> {
@@ -16,7 +16,7 @@ final class VisiMatocarchMergeToSelect extends ActionVisitorTemplateMerge<Matoca
 	
 	
 	
-	@Override protected Class<? extends ActionStd<MatocarchInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStdV1<MatocarchInfo>> getActionClassHook() {
 		return StdMatocarchSelect.class;
 	}
 	

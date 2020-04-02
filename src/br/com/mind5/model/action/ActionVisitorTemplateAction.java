@@ -116,14 +116,14 @@ public abstract class ActionVisitorTemplateAction<T extends InfoRecord, S extend
 	
 	
 	private DeciResult<S> executeAction(DeciTreeOption<S> option) {
-		ActionStd<S> action = getActionHook(option);
+		ActionStdV1<S> action = getActionHook(option);
 		action.executeAction();
 		return action.getDecisionResult();
 	}
 	
 	
 	
-	protected ActionStd<S> getActionHook(DeciTreeOption<S> option) {
+	protected ActionStdV1<S> getActionHook(DeciTreeOption<S> option) {
 		//Template method to be overridden by subclasses
 		logException(new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION));
 		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);

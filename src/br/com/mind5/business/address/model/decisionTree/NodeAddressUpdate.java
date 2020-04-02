@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.address.model.checker.AddressCheckFormA01;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -37,10 +37,10 @@ public final class NodeAddressUpdate extends DeciTreeWriteTemplate<AddressInfo> 
 	
 	
 	
-	@Override protected List<ActionStd<AddressInfo>> buildActionsOnPassedHook(DeciTreeOption<AddressInfo> option) {
-		List<ActionStd<AddressInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<AddressInfo>> buildActionsOnPassedHook(DeciTreeOption<AddressInfo> option) {
+		List<ActionStdV1<AddressInfo>> actions = new ArrayList<>();
 		
-		ActionStd<AddressInfo> nodeUpdateA01 = new NodeAddressUpdateA01(option).toAction();	
+		ActionStdV1<AddressInfo> nodeUpdateA01 = new NodeAddressUpdateA01(option).toAction();	
 
 		actions.add(nodeUpdateA01);		
 		return actions;
@@ -48,10 +48,10 @@ public final class NodeAddressUpdate extends DeciTreeWriteTemplate<AddressInfo> 
 	
 	
 	
-	@Override protected List<ActionStd<AddressInfo>> buildActionsOnFailedHook(DeciTreeOption<AddressInfo> option) {
-		List<ActionStd<AddressInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<AddressInfo>> buildActionsOnFailedHook(DeciTreeOption<AddressInfo> option) {
+		List<ActionStdV1<AddressInfo>> actions = new ArrayList<>();
 		
-		ActionStd<AddressInfo> nodeUpdateA00 = new NodeAddressUpdateA00(option).toAction();	
+		ActionStdV1<AddressInfo> nodeUpdateA00 = new NodeAddressUpdateA00(option).toAction();	
 
 		actions.add(nodeUpdateA00);		
 		return actions;

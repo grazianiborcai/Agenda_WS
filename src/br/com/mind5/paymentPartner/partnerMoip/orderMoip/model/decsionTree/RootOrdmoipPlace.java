@@ -3,8 +3,8 @@ package br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.decsionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -58,14 +58,14 @@ public final class RootOrdmoipPlace extends DeciTreeWriteTemplate<OrdmoipInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<OrdmoipInfo>> buildActionsOnPassedHook(DeciTreeOption<OrdmoipInfo> option) {
-		List<ActionStd<OrdmoipInfo>> actions = new ArrayList<>();	
+	@Override protected List<ActionStdV1<OrdmoipInfo>> buildActionsOnPassedHook(DeciTreeOption<OrdmoipInfo> option) {
+		List<ActionStdV1<OrdmoipInfo>> actions = new ArrayList<>();	
 		
-		ActionStd<OrdmoipInfo> nodePayordist = new NodeOrdmoipPayordistL1(option).toAction();	
-		ActionLazy<OrdmoipInfo> nodePayordem = new LazyOrdmoipNodePayordemL1(option.conn, option.schemaName);
-		ActionLazy<OrdmoipInfo> nodeCuspar = new LazyOrdmoipNodeCusparL1(option.conn, option.schemaName);
-		ActionLazy<OrdmoipInfo> nodeSetupar = new LazyOrdmoipNodeSetuparL1(option.conn, option.schemaName);		
-		ActionLazy<OrdmoipInfo> nodeL1 = new LazyOrdmoipNodePlaceL1(option.conn, option.schemaName);	
+		ActionStdV1<OrdmoipInfo> nodePayordist = new NodeOrdmoipPayordistL1(option).toAction();	
+		ActionLazyV1<OrdmoipInfo> nodePayordem = new LazyOrdmoipNodePayordemL1(option.conn, option.schemaName);
+		ActionLazyV1<OrdmoipInfo> nodeCuspar = new LazyOrdmoipNodeCusparL1(option.conn, option.schemaName);
+		ActionLazyV1<OrdmoipInfo> nodeSetupar = new LazyOrdmoipNodeSetuparL1(option.conn, option.schemaName);		
+		ActionLazyV1<OrdmoipInfo> nodeL1 = new LazyOrdmoipNodePlaceL1(option.conn, option.schemaName);	
 		
 		nodePayordist.addPostAction(nodePayordem);
 		nodePayordem.addPostAction(nodeCuspar);

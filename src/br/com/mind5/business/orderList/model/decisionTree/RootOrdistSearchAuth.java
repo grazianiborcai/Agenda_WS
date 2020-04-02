@@ -8,8 +8,8 @@ import br.com.mind5.business.orderList.model.action.LazyOrdistRootSearch;
 import br.com.mind5.business.orderList.model.action.StdOrdistMergeUsername;
 import br.com.mind5.business.orderList.model.checker.OrdistCheckSearchAuth;
 import br.com.mind5.business.orderList.model.checker.OrdistCheckUsername;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -48,11 +48,11 @@ public final class RootOrdistSearchAuth extends DeciTreeReadTemplate<OrdistInfo>
 	
 	
 	
-	@Override protected List<ActionStd<OrdistInfo>> buildActionsOnPassedHook(DeciTreeOption<OrdistInfo> option) {
-		List<ActionStd<OrdistInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV1<OrdistInfo>> buildActionsOnPassedHook(DeciTreeOption<OrdistInfo> option) {
+		List<ActionStdV1<OrdistInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<OrdistInfo> mergeUsername = new StdOrdistMergeUsername(option);
-		ActionLazy<OrdistInfo> search = new LazyOrdistRootSearch(option.conn, option.schemaName);
+		ActionStdV1<OrdistInfo> mergeUsername = new StdOrdistMergeUsername(option);
+		ActionLazyV1<OrdistInfo> search = new LazyOrdistRootSearch(option.conn, option.schemaName);
 		
 		mergeUsername.addPostAction(search);
 		

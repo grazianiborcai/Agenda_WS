@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.cartItem.info.CartemInfo;
 import br.com.mind5.business.cartItem.model.checker.CartemCheckMatarchService;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -37,10 +37,10 @@ public final class NodeCartemSelect extends DeciTreeWriteTemplate<CartemInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<CartemInfo>> buildActionsOnPassedHook(DeciTreeOption<CartemInfo> option) {
-		List<ActionStd<CartemInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<CartemInfo>> buildActionsOnPassedHook(DeciTreeOption<CartemInfo> option) {
+		List<ActionStdV1<CartemInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CartemInfo> selectService = new NodeCartemSelectService(option).toAction();
+		ActionStdV1<CartemInfo> selectService = new NodeCartemSelectService(option).toAction();
 		
 		actions.add(selectService);
 		return actions;

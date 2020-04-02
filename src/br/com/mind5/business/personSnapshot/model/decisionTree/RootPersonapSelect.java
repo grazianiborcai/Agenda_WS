@@ -8,8 +8,8 @@ import br.com.mind5.business.personSnapshot.model.action.LazyPersonapMergeGender
 import br.com.mind5.business.personSnapshot.model.action.StdPersonapSelect;
 import br.com.mind5.business.personSnapshot.model.checker.PersonapCheckOwner;
 import br.com.mind5.business.personSnapshot.model.checker.PersonapCheckRead;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -48,11 +48,11 @@ public final class RootPersonapSelect extends DeciTreeReadTemplate<PersonapInfo>
 	
 	
 	
-	@Override protected List<ActionStd<PersonapInfo>> buildActionsOnPassedHook(DeciTreeOption<PersonapInfo> option) {
-		List<ActionStd<PersonapInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<PersonapInfo>> buildActionsOnPassedHook(DeciTreeOption<PersonapInfo> option) {
+		List<ActionStdV1<PersonapInfo>> actions = new ArrayList<>();
 		
-		ActionStd<PersonapInfo> select = new StdPersonapSelect(option);		
-		ActionLazy<PersonapInfo> mergeGender = new LazyPersonapMergeGender(option.conn, option.schemaName);
+		ActionStdV1<PersonapInfo> select = new StdPersonapSelect(option);		
+		ActionLazyV1<PersonapInfo> mergeGender = new LazyPersonapMergeGender(option.conn, option.schemaName);
 		
 		select.addPostAction(mergeGender);		
 		actions.add(select);

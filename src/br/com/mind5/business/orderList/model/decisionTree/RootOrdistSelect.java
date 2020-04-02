@@ -10,8 +10,8 @@ import br.com.mind5.business.orderList.model.action.StdOrdistMergeToSelect;
 import br.com.mind5.business.orderList.model.checker.OrdistCheckLangu;
 import br.com.mind5.business.orderList.model.checker.OrdistCheckOwner;
 import br.com.mind5.business.orderList.model.checker.OrdistCheckRead;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -57,12 +57,12 @@ public final class RootOrdistSelect extends DeciTreeReadTemplate<OrdistInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<OrdistInfo>> buildActionsOnPassedHook(DeciTreeOption<OrdistInfo> option) {
-		List<ActionStd<OrdistInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV1<OrdistInfo>> buildActionsOnPassedHook(DeciTreeOption<OrdistInfo> option) {
+		List<ActionStdV1<OrdistInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<OrdistInfo> select = new StdOrdistMergeToSelect(option);
-		ActionLazy<OrdistInfo> mergeCurrency = new LazyOrdistMergeCurrency(option.conn, option.schemaName);
-		ActionLazy<OrdistInfo> mergeOrderStatus = new LazyOrdistMergeOrderStatus(option.conn, option.schemaName);
+		ActionStdV1<OrdistInfo> select = new StdOrdistMergeToSelect(option);
+		ActionLazyV1<OrdistInfo> mergeCurrency = new LazyOrdistMergeCurrency(option.conn, option.schemaName);
+		ActionLazyV1<OrdistInfo> mergeOrderStatus = new LazyOrdistMergeOrderStatus(option.conn, option.schemaName);
 		
 		select.addPostAction(mergeCurrency);
 		mergeCurrency.addPostAction(mergeOrderStatus);

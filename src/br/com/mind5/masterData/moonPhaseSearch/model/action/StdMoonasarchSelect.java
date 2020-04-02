@@ -7,14 +7,14 @@ import br.com.mind5.masterData.moonPhaseSearch.dao.MoonasarchSelect;
 import br.com.mind5.masterData.moonPhaseSearch.info.MoonasarchInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.obsolete.DaoStmtExec_;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperStmt;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdMoonasarchSelect implements ActionStd<MoonasarchInfo> {
-	private ActionStd<MoonasarchInfo> actionHelper;
+public final class StdMoonasarchSelect implements ActionStdV1<MoonasarchInfo> {
+	private ActionStdV1<MoonasarchInfo> actionHelper;
 	
 	
 	public StdMoonasarchSelect(DeciTreeOption<MoonasarchInfo> option) {
@@ -40,7 +40,7 @@ public final class StdMoonasarchSelect implements ActionStd<MoonasarchInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<MoonasarchInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<MoonasarchInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

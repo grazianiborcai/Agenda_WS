@@ -3,7 +3,7 @@ package br.com.mind5.payment.storePartner.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -41,8 +41,8 @@ public final class NodeStoparInsert extends DeciTreeWriteTemplate<StoparInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<StoparInfo>> buildActionsOnPassedHook(DeciTreeOption<StoparInfo> option) {
-		List<ActionStd<StoparInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<StoparInfo>> buildActionsOnPassedHook(DeciTreeOption<StoparInfo> option) {
+		List<ActionStdV1<StoparInfo>> actions = new ArrayList<>();
 		
 		actions.add(new StdStoparInsert(option));
 		return actions;
@@ -50,8 +50,8 @@ public final class NodeStoparInsert extends DeciTreeWriteTemplate<StoparInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<StoparInfo>> buildActionsOnFailedHook(DeciTreeOption<StoparInfo> option) {
-		List<ActionStd<StoparInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<StoparInfo>> buildActionsOnFailedHook(DeciTreeOption<StoparInfo> option) {
+		List<ActionStdV1<StoparInfo>> actions = new ArrayList<>();
 		
 		actions.add(new StdStoparUpdate(option));	
 		return actions;

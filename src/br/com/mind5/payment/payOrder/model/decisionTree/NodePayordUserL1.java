@@ -3,8 +3,8 @@ package br.com.mind5.payment.payOrder.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -36,13 +36,13 @@ public final class NodePayordUserL1 extends DeciTreeWriteTemplate<PayordInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<PayordInfo>> buildActionsOnPassedHook(DeciTreeOption<PayordInfo> option) {
-		List<ActionStd<PayordInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV1<PayordInfo>> buildActionsOnPassedHook(DeciTreeOption<PayordInfo> option) {
+		List<ActionStdV1<PayordInfo>> actions = new ArrayList<>();		
 
-		ActionStd<PayordInfo> enforceCreatedOn = new StdPayordEnforceCreatedOn(option);	
-		ActionLazy<PayordInfo> enforceLChanged = new LazyPayordEnforceLChanged(option.conn, option.schemaName);
-		ActionLazy<PayordInfo> mergeUsername = new LazyPayordMergeUsername(option.conn, option.schemaName);
-		ActionLazy<PayordInfo> nodeL2 = new LazyPayordNodeUserL2(option.conn, option.schemaName);
+		ActionStdV1<PayordInfo> enforceCreatedOn = new StdPayordEnforceCreatedOn(option);	
+		ActionLazyV1<PayordInfo> enforceLChanged = new LazyPayordEnforceLChanged(option.conn, option.schemaName);
+		ActionLazyV1<PayordInfo> mergeUsername = new LazyPayordMergeUsername(option.conn, option.schemaName);
+		ActionLazyV1<PayordInfo> nodeL2 = new LazyPayordNodeUserL2(option.conn, option.schemaName);
 		
 		enforceCreatedOn.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(mergeUsername);

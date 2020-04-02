@@ -7,14 +7,14 @@ import br.com.mind5.business.storeSearch.dao.SotarchSelect;
 import br.com.mind5.business.storeSearch.info.SotarchInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.obsolete.DaoStmtExec_;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperStmt;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdSotarchSelect implements ActionStd<SotarchInfo> {
-	private ActionStd<SotarchInfo> actionHelper;
+public final class StdSotarchSelect implements ActionStdV1<SotarchInfo> {
+	private ActionStdV1<SotarchInfo> actionHelper;
 	
 	
 	public StdSotarchSelect(DeciTreeOption<SotarchInfo> option) {
@@ -40,7 +40,7 @@ public final class StdSotarchSelect implements ActionStd<SotarchInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<SotarchInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<SotarchInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

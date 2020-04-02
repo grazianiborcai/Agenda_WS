@@ -7,8 +7,8 @@ import br.com.mind5.message.email.info.EmailInfo;
 import br.com.mind5.message.email.model.action.LazyEmailSendMessage;
 import br.com.mind5.message.email.model.action.StdEmailMergeToSelect;
 import br.com.mind5.message.email.model.checker.EmailCheckSend;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -40,11 +40,11 @@ public final class NodeEmailSend extends DeciTreeWriteTemplate<EmailInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<EmailInfo>> buildActionsOnPassedHook(DeciTreeOption<EmailInfo> option) {
-		List<ActionStd<EmailInfo>> actions = new ArrayList<>();	
+	@Override protected List<ActionStdV1<EmailInfo>> buildActionsOnPassedHook(DeciTreeOption<EmailInfo> option) {
+		List<ActionStdV1<EmailInfo>> actions = new ArrayList<>();	
 		
-		ActionStd<EmailInfo> select = new StdEmailMergeToSelect(option);
-		ActionLazy<EmailInfo> sendMessage = new LazyEmailSendMessage(option.conn, option.schemaName);
+		ActionStdV1<EmailInfo> select = new StdEmailMergeToSelect(option);
+		ActionLazyV1<EmailInfo> sendMessage = new LazyEmailSendMessage(option.conn, option.schemaName);
 		
 		select.addPostAction(sendMessage);
 		//TODO: gravar em log os envios de e-mails

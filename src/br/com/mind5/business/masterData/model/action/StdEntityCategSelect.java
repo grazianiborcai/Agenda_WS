@@ -7,14 +7,14 @@ import br.com.mind5.business.masterData.dao.EntityCategSelect;
 import br.com.mind5.business.masterData.info.EntityCategInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.obsolete.DaoStmtExec_;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperStmt;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdEntityCategSelect implements ActionStd<EntityCategInfo> {
-	private ActionStd<EntityCategInfo> actionHelper;
+public final class StdEntityCategSelect implements ActionStdV1<EntityCategInfo> {
+	private ActionStdV1<EntityCategInfo> actionHelper;
 	
 	
 	public StdEntityCategSelect(DeciTreeOption<EntityCategInfo> option) {
@@ -40,7 +40,7 @@ public final class StdEntityCategSelect implements ActionStd<EntityCategInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<EntityCategInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<EntityCategInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

@@ -1,14 +1,14 @@
 package br.com.mind5.business.order.model.action;
 
 import br.com.mind5.business.order.info.OrderInfo;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperEnforce;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdOrderEnforceExtid implements ActionStd<OrderInfo> {
-	private ActionStd<OrderInfo> actionHelper;	
+public final class StdOrderEnforceExtid implements ActionStdV1<OrderInfo> {
+	private ActionStdV1<OrderInfo> actionHelper;	
 	
 	
 	public StdOrderEnforceExtid(DeciTreeOption<OrderInfo> option) {			
@@ -17,7 +17,7 @@ public final class StdOrderEnforceExtid implements ActionStd<OrderInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<OrderInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<OrderInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

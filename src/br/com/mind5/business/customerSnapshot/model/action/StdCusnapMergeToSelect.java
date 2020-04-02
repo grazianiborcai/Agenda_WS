@@ -1,14 +1,14 @@
 package br.com.mind5.business.customerSnapshot.model.action;
 
 import br.com.mind5.business.customerSnapshot.info.CusnapInfo;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperMerge;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdCusnapMergeToSelect implements ActionStd<CusnapInfo> {
-	private ActionStd<CusnapInfo> actionHelper;	
+public final class StdCusnapMergeToSelect implements ActionStdV1<CusnapInfo> {
+	private ActionStdV1<CusnapInfo> actionHelper;	
 	
 	
 	public StdCusnapMergeToSelect(DeciTreeOption<CusnapInfo> option) {			
@@ -17,7 +17,7 @@ public final class StdCusnapMergeToSelect implements ActionStd<CusnapInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<CusnapInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<CusnapInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

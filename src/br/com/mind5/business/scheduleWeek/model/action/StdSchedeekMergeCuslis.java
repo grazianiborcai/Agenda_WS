@@ -1,14 +1,14 @@
 package br.com.mind5.business.scheduleWeek.model.action;
 
 import br.com.mind5.business.scheduleWeek.info.SchedeekInfo;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperMerge;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class StdSchedeekMergeCuslis implements ActionStd<SchedeekInfo> {
-	private ActionStd<SchedeekInfo> actionHelper;	
+final class StdSchedeekMergeCuslis implements ActionStdV1<SchedeekInfo> {
+	private ActionStdV1<SchedeekInfo> actionHelper;	
 	
 	
 	public StdSchedeekMergeCuslis(DeciTreeOption<SchedeekInfo> option) {			
@@ -17,7 +17,7 @@ final class StdSchedeekMergeCuslis implements ActionStd<SchedeekInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<SchedeekInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<SchedeekInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

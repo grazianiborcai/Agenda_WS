@@ -1,7 +1,7 @@
 package br.com.mind5.payment.creditCard.model.checker;
 
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -16,8 +16,8 @@ public final class CrecardCheckExist extends ModelCheckerTemplateAction<CrecardI
 	
 	
 	
-	@Override protected ActionStd<CrecardInfo> buildActionHook(DeciTreeOption<CrecardInfo> option) {
-		ActionStd<CrecardInfo> select = new StdCrecardSelect(option);
+	@Override protected ActionStdV1<CrecardInfo> buildActionHook(DeciTreeOption<CrecardInfo> option) {
+		ActionStdV1<CrecardInfo> select = new StdCrecardSelect(option);
 		return select;
 	}
 	

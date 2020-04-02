@@ -11,8 +11,8 @@ import br.com.mind5.business.materialMovement.model.action.LazyMatmovInsert;
 import br.com.mind5.business.materialMovement.model.action.LazyMatmovMergeUsername;
 import br.com.mind5.business.materialMovement.model.action.StdMatmovEnforceLChanged;
 import br.com.mind5.business.materialMovement.model.checker.MatmovCheckDummy;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -38,15 +38,15 @@ public final class NodeMatmovInsert extends DeciTreeWriteTemplate<MatmovInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<MatmovInfo>> buildActionsOnPassedHook(DeciTreeOption<MatmovInfo> option) {
-		List<ActionStd<MatmovInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<MatmovInfo>> buildActionsOnPassedHook(DeciTreeOption<MatmovInfo> option) {
+		List<ActionStdV1<MatmovInfo>> actions = new ArrayList<>();
 
-		ActionStd<MatmovInfo> enforceLChanged = new StdMatmovEnforceLChanged(option);
-		ActionLazy<MatmovInfo> enforceLChangedBy = new LazyMatmovMergeUsername(option.conn, option.schemaName);
-		ActionLazy<MatmovInfo> enforceCreatedOn = new LazyMatmovEnforceCreatedOn(option.conn, option.schemaName);	
-		ActionLazy<MatmovInfo> enforceCreatedBy = new LazyMatmovEnforceCreatedBy(option.conn, option.schemaName);
-		ActionLazy<MatmovInfo> enforcePostingDate = new LazyMatmovEnforcePostingDate(option.conn, option.schemaName);
-		ActionLazy<MatmovInfo> insert = new LazyMatmovInsert(option.conn, option.schemaName);
+		ActionStdV1<MatmovInfo> enforceLChanged = new StdMatmovEnforceLChanged(option);
+		ActionLazyV1<MatmovInfo> enforceLChangedBy = new LazyMatmovMergeUsername(option.conn, option.schemaName);
+		ActionLazyV1<MatmovInfo> enforceCreatedOn = new LazyMatmovEnforceCreatedOn(option.conn, option.schemaName);	
+		ActionLazyV1<MatmovInfo> enforceCreatedBy = new LazyMatmovEnforceCreatedBy(option.conn, option.schemaName);
+		ActionLazyV1<MatmovInfo> enforcePostingDate = new LazyMatmovEnforcePostingDate(option.conn, option.schemaName);
+		ActionLazyV1<MatmovInfo> insert = new LazyMatmovInsert(option.conn, option.schemaName);
 		
 		enforceLChanged.addPostAction(enforceLChangedBy);
 		enforceLChangedBy.addPostAction(enforceCreatedOn);

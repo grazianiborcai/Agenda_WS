@@ -13,8 +13,8 @@ import br.com.mind5.business.materialSnapshot.model.action.StdMatsnapMergeToSele
 import br.com.mind5.business.materialSnapshot.model.checker.MatsnapCheckMat;
 import br.com.mind5.business.materialSnapshot.model.checker.MatsnapCheckOwner;
 import br.com.mind5.business.materialSnapshot.model.checker.MatsnapCheckRead;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -60,15 +60,15 @@ public final class RootMatsnapSelect extends DeciTreeReadTemplate<MatsnapInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<MatsnapInfo>> buildActionsOnPassedHook(DeciTreeOption<MatsnapInfo> option) {
-		List<ActionStd<MatsnapInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<MatsnapInfo>> buildActionsOnPassedHook(DeciTreeOption<MatsnapInfo> option) {
+		List<ActionStdV1<MatsnapInfo>> actions = new ArrayList<>();
 		
-		ActionStd<MatsnapInfo> select = new StdMatsnapMergeToSelect(option);
-		ActionLazy<MatsnapInfo> mergeMatextsnap = new LazyMatsnapMergeMatextsnap(option.conn, option.schemaName);
-		ActionLazy<MatsnapInfo> mergeMatType = new LazyMatsnapMergeMatType(option.conn, option.schemaName);
-		ActionLazy<MatsnapInfo> mergeMatCateg = new LazyMatsnapMergeMatCateg(option.conn, option.schemaName);
-		ActionLazy<MatsnapInfo> mergeMatGroup = new LazyMatsnapMergeMatGroup(option.conn, option.schemaName);
-		ActionLazy<MatsnapInfo> mergeMatUnit = new LazyMatsnapMergeMatUnit(option.conn, option.schemaName);
+		ActionStdV1<MatsnapInfo> select = new StdMatsnapMergeToSelect(option);
+		ActionLazyV1<MatsnapInfo> mergeMatextsnap = new LazyMatsnapMergeMatextsnap(option.conn, option.schemaName);
+		ActionLazyV1<MatsnapInfo> mergeMatType = new LazyMatsnapMergeMatType(option.conn, option.schemaName);
+		ActionLazyV1<MatsnapInfo> mergeMatCateg = new LazyMatsnapMergeMatCateg(option.conn, option.schemaName);
+		ActionLazyV1<MatsnapInfo> mergeMatGroup = new LazyMatsnapMergeMatGroup(option.conn, option.schemaName);
+		ActionLazyV1<MatsnapInfo> mergeMatUnit = new LazyMatsnapMergeMatUnit(option.conn, option.schemaName);
 		
 		select.addPostAction(mergeMatextsnap);
 		mergeMatextsnap.addPostAction(mergeMatType);

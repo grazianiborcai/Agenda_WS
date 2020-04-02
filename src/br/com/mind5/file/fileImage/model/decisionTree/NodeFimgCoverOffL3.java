@@ -11,8 +11,8 @@ import br.com.mind5.file.fileImage.model.action.StdFimgSuccess;
 import br.com.mind5.file.fileImage.model.checker.FimgCheckExistMat;
 import br.com.mind5.file.fileImage.model.checker.FimgCheckIsCover;
 import br.com.mind5.file.fileImage.model.checker.FimgCheckIsMat;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -58,12 +58,12 @@ public final class NodeFimgCoverOffL3 extends DeciTreeWriteTemplate<FimgInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<FimgInfo>> buildActionsOnPassedHook(DeciTreeOption<FimgInfo> option) {
-		List<ActionStd<FimgInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV1<FimgInfo>> buildActionsOnPassedHook(DeciTreeOption<FimgInfo> option) {
+		List<ActionStdV1<FimgInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<FimgInfo> mergeFimarch = new StdFimgMergeFimarchMat(option);	
-		ActionLazy<FimgInfo> select = new LazyFimgMergeToSelect(option.conn, option.schemaName);
-		ActionLazy<FimgInfo> coverOff = new LazyFimgNodeCoverOffL4(option.conn, option.schemaName);
+		ActionStdV1<FimgInfo> mergeFimarch = new StdFimgMergeFimarchMat(option);	
+		ActionLazyV1<FimgInfo> select = new LazyFimgMergeToSelect(option.conn, option.schemaName);
+		ActionLazyV1<FimgInfo> coverOff = new LazyFimgNodeCoverOffL4(option.conn, option.schemaName);
 		
 		mergeFimarch.addPostAction(select);
 		select.addPostAction(coverOff);
@@ -74,10 +74,10 @@ public final class NodeFimgCoverOffL3 extends DeciTreeWriteTemplate<FimgInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<FimgInfo>> buildActionsOnFailedHook(DeciTreeOption<FimgInfo> option) {
-		List<ActionStd<FimgInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV1<FimgInfo>> buildActionsOnFailedHook(DeciTreeOption<FimgInfo> option) {
+		List<ActionStdV1<FimgInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<FimgInfo> success = new StdFimgSuccess(option);	
+		ActionStdV1<FimgInfo> success = new StdFimgSuccess(option);	
 		
 		actions.add(success);		
 		return actions;

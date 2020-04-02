@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.employeeMaterial.info.EmpmatInfo;
 import br.com.mind5.business.employeeMaterial.info.EmpmatMerger;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 
 final class VisiEmpmatMergeToSelect extends ActionVisitorTemplateMerge<EmpmatInfo, EmpmatInfo> {
@@ -16,7 +16,7 @@ final class VisiEmpmatMergeToSelect extends ActionVisitorTemplateMerge<EmpmatInf
 	
 	
 	
-	@Override protected Class<? extends ActionStd<EmpmatInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStdV1<EmpmatInfo>> getActionClassHook() {
 		return StdEmpmatSelect.class;
 	}
 	

@@ -7,8 +7,8 @@ import br.com.mind5.business.materialSearch.info.MatarchInfo;
 import br.com.mind5.business.materialSearch.model.action.LazyMatarchRootSelect;
 import br.com.mind5.business.materialSearch.model.action.StdMatarchEnforceMatCategProduct;
 import br.com.mind5.business.materialSearch.model.checker.MatarchCheckReadMat;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -40,11 +40,11 @@ public final class RootMatarchSelectProduct extends DeciTreeReadTemplate<Matarch
 	
 	
 	
-	@Override protected List<ActionStd<MatarchInfo>> buildActionsOnPassedHook(DeciTreeOption<MatarchInfo> option) {
-		List<ActionStd<MatarchInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<MatarchInfo>> buildActionsOnPassedHook(DeciTreeOption<MatarchInfo> option) {
+		List<ActionStdV1<MatarchInfo>> actions = new ArrayList<>();
 		
-		ActionStd<MatarchInfo> enforceMatCategProduct = new StdMatarchEnforceMatCategProduct(option);
-		ActionLazy<MatarchInfo> select = new LazyMatarchRootSelect(option.conn, option.schemaName);
+		ActionStdV1<MatarchInfo> enforceMatCategProduct = new StdMatarchEnforceMatCategProduct(option);
+		ActionLazyV1<MatarchInfo> select = new LazyMatarchRootSelect(option.conn, option.schemaName);
 		
 		enforceMatCategProduct.addPostAction(select);
 		

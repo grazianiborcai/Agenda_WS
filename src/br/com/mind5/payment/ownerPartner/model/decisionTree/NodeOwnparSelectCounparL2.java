@@ -3,7 +3,7 @@ package br.com.mind5.payment.ownerPartner.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -46,10 +46,10 @@ public final class NodeOwnparSelectCounparL2 extends DeciTreeReadTemplate<Ownpar
 	
 	
 	
-	@Override protected List<ActionStd<OwnparInfo>> buildActionsOnPassedHook(DeciTreeOption<OwnparInfo> option) {
-		List<ActionStd<OwnparInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<OwnparInfo>> buildActionsOnPassedHook(DeciTreeOption<OwnparInfo> option) {
+		List<ActionStdV1<OwnparInfo>> actions = new ArrayList<>();
 		
-		ActionStd<OwnparInfo> mergeCountry = new StdOwnparMergeCounpar(option);
+		ActionStdV1<OwnparInfo> mergeCountry = new StdOwnparMergeCounpar(option);
 		
 		actions.add(mergeCountry);
 		return actions;

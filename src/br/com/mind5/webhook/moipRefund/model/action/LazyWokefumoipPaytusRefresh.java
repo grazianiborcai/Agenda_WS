@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionLazyTemplate;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.webhook.moipRefund.info.WokefumoipInfo;
@@ -23,7 +23,7 @@ public final class LazyWokefumoipPaytusRefresh extends ActionLazyTemplate<Wokefu
 	
 	
 	
-	@Override protected ActionStd<WokefumoipInfo> getInstanceOfActionHook(DeciTreeOption<WokefumoipInfo> option) {
+	@Override protected ActionStdV1<WokefumoipInfo> getInstanceOfActionHook(DeciTreeOption<WokefumoipInfo> option) {
 		return new StdWokefumoipPaytusRefresh(option);
 	}
 	

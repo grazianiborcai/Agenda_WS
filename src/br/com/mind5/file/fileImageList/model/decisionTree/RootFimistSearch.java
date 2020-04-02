@@ -7,8 +7,8 @@ import br.com.mind5.file.fileImageList.info.FimistInfo;
 import br.com.mind5.file.fileImageList.model.action.LazyFimistRootSelect;
 import br.com.mind5.file.fileImageList.model.action.StdFimistMergeFimarch;
 import br.com.mind5.file.fileImageList.model.checker.FimistCheckDummy;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -34,11 +34,11 @@ public final class RootFimistSearch extends DeciTreeReadTemplate<FimistInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<FimistInfo>> buildActionsOnPassedHook(DeciTreeOption<FimistInfo> option) {
-		List<ActionStd<FimistInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<FimistInfo>> buildActionsOnPassedHook(DeciTreeOption<FimistInfo> option) {
+		List<ActionStdV1<FimistInfo>> actions = new ArrayList<>();
 		
-		ActionStd<FimistInfo> mergeFimarch = new StdFimistMergeFimarch(option);
-		ActionLazy<FimistInfo> select = new LazyFimistRootSelect(option.conn, option.schemaName);
+		ActionStdV1<FimistInfo> mergeFimarch = new StdFimistMergeFimarch(option);
+		ActionLazyV1<FimistInfo> select = new LazyFimistRootSelect(option.conn, option.schemaName);
 		
 		mergeFimarch.addPostAction(select);
 		

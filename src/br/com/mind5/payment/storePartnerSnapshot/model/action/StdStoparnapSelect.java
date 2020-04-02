@@ -5,16 +5,16 @@ import java.util.List;
 
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.obsolete.DaoStmtExec_;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperStmt;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.storePartnerSnapshot.dao.StoparnapSelect;
 import br.com.mind5.payment.storePartnerSnapshot.info.StoparnapInfo;
 
-public final class StdStoparnapSelect implements ActionStd<StoparnapInfo> {
-	private ActionStd<StoparnapInfo> actionHelper;
+public final class StdStoparnapSelect implements ActionStdV1<StoparnapInfo> {
+	private ActionStdV1<StoparnapInfo> actionHelper;
 	
 	
 	public StdStoparnapSelect(DeciTreeOption<StoparnapInfo> option) {
@@ -40,7 +40,7 @@ public final class StdStoparnapSelect implements ActionStd<StoparnapInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<StoparnapInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<StoparnapInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

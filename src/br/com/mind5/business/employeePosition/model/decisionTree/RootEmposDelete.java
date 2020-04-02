@@ -17,8 +17,8 @@ import br.com.mind5.business.employeePosition.model.checker.EmposCheckLangu;
 import br.com.mind5.business.employeePosition.model.checker.EmposCheckOwner;
 import br.com.mind5.business.employeePosition.model.checker.EmposCheckStorauth;
 import br.com.mind5.business.employeePosition.model.checker.EmposCheckStore;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -85,16 +85,16 @@ public final class RootEmposDelete extends DeciTreeWriteTemplate<EmposInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<EmposInfo>> buildActionsOnPassedHook(DeciTreeOption<EmposInfo> option) {
-		List<ActionStd<EmposInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<EmposInfo>> buildActionsOnPassedHook(DeciTreeOption<EmposInfo> option) {
+		List<ActionStdV1<EmposInfo>> actions = new ArrayList<>();
 		
-		ActionStd<EmposInfo> mergeToDelete = new StdEmposMergeToDelete(option);
-		ActionLazy<EmposInfo> enforceLChanged = new LazyEmposEnforceLChanged(option.conn, option.schemaName);
-		ActionLazy<EmposInfo> enforceLChangedBy = new LazyEmposMergeUsername(option.conn, option.schemaName);
-		ActionLazy<EmposInfo> update = new LazyEmposUpdate(option.conn, option.schemaName);
-		ActionLazy<EmposInfo> delete = new LazyEmposDelete(option.conn, option.schemaName);
-		ActionLazy<EmposInfo> emposarch = new LazyEmposNodeEmposarch(option.conn, option.schemaName);
-		ActionLazy<EmposInfo> emptify = new LazyEmposEmptify(option.conn, option.schemaName);
+		ActionStdV1<EmposInfo> mergeToDelete = new StdEmposMergeToDelete(option);
+		ActionLazyV1<EmposInfo> enforceLChanged = new LazyEmposEnforceLChanged(option.conn, option.schemaName);
+		ActionLazyV1<EmposInfo> enforceLChangedBy = new LazyEmposMergeUsername(option.conn, option.schemaName);
+		ActionLazyV1<EmposInfo> update = new LazyEmposUpdate(option.conn, option.schemaName);
+		ActionLazyV1<EmposInfo> delete = new LazyEmposDelete(option.conn, option.schemaName);
+		ActionLazyV1<EmposInfo> emposarch = new LazyEmposNodeEmposarch(option.conn, option.schemaName);
+		ActionLazyV1<EmposInfo> emptify = new LazyEmposEmptify(option.conn, option.schemaName);
 		
 		mergeToDelete.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceLChangedBy);

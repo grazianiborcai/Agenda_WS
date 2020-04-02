@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.masterData.info.MatUnitInfo;
 import br.com.mind5.business.masterData.model.action.StdMatUnitSelect;
 import br.com.mind5.business.masterData.model.checker.MatUnitCheckRead;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -38,10 +38,10 @@ public final class RootMatUnitSelect extends DeciTreeReadTemplate<MatUnitInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<MatUnitInfo>> buildActionsOnPassedHook(DeciTreeOption<MatUnitInfo> option) {
-		List<ActionStd<MatUnitInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<MatUnitInfo>> buildActionsOnPassedHook(DeciTreeOption<MatUnitInfo> option) {
+		List<ActionStdV1<MatUnitInfo>> actions = new ArrayList<>();
 		
-		ActionStd<MatUnitInfo> select = new StdMatUnitSelect(option);
+		ActionStdV1<MatUnitInfo> select = new StdMatUnitSelect(option);
 		
 		actions.add(select);
 		return actions;

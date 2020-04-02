@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.masterData.info.MatGroupInfo;
 import br.com.mind5.business.masterData.model.action.StdMatGroupSelect;
 import br.com.mind5.business.masterData.model.checker.MatGroupCheckRead;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -38,10 +38,10 @@ public final class RootMatGroupSelect extends DeciTreeReadTemplate<MatGroupInfo>
 	
 	
 	
-	@Override protected List<ActionStd<MatGroupInfo>> buildActionsOnPassedHook(DeciTreeOption<MatGroupInfo> option) {
-		List<ActionStd<MatGroupInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<MatGroupInfo>> buildActionsOnPassedHook(DeciTreeOption<MatGroupInfo> option) {
+		List<ActionStdV1<MatGroupInfo>> actions = new ArrayList<>();
 		
-		ActionStd<MatGroupInfo> select = new StdMatGroupSelect(option);
+		ActionStdV1<MatGroupInfo> select = new StdMatGroupSelect(option);
 		
 		actions.add(select);
 		return actions;

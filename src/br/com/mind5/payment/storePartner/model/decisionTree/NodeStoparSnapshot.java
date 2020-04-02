@@ -3,8 +3,8 @@ package br.com.mind5.payment.storePartner.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -40,11 +40,11 @@ public final class NodeStoparSnapshot extends DeciTreeWriteTemplate<StoparInfo> 
 	
 	
 	
-	@Override protected List<ActionStd<StoparInfo>> buildActionsOnPassedHook(DeciTreeOption<StoparInfo> option) {
-		List<ActionStd<StoparInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<StoparInfo>> buildActionsOnPassedHook(DeciTreeOption<StoparInfo> option) {
+		List<ActionStdV1<StoparInfo>> actions = new ArrayList<>();
 		
-		ActionStd<StoparInfo> InsertStoparnap = new StdStoparInsertStoparnap(option); 
-		ActionLazy<StoparInfo> updateStopar = new LazyStoparUpdate(option.conn, option.schemaName); 
+		ActionStdV1<StoparInfo> InsertStoparnap = new StdStoparInsertStoparnap(option); 
+		ActionLazyV1<StoparInfo> updateStopar = new LazyStoparUpdate(option.conn, option.schemaName); 
 		
 		InsertStoparnap.addPostAction(updateStopar);
 		

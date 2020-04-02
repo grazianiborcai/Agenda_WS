@@ -3,8 +3,8 @@ package br.com.mind5.payment.storePartnerList.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -56,11 +56,11 @@ public final class RootStoplisSelect extends DeciTreeReadTemplate<StoplisInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<StoplisInfo>> buildActionsOnPassedHook(DeciTreeOption<StoplisInfo> option) {
-		List<ActionStd<StoplisInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<StoplisInfo>> buildActionsOnPassedHook(DeciTreeOption<StoplisInfo> option) {
+		List<ActionStdV1<StoplisInfo>> actions = new ArrayList<>();
 		
-		ActionStd<StoplisInfo> select = new StdStoplisMergeToSelect(option);
-		ActionLazy<StoplisInfo> mergePayPartner = new LazyStoplisMergePaypar(option.conn, option.schemaName);
+		ActionStdV1<StoplisInfo> select = new StdStoplisMergeToSelect(option);
+		ActionLazyV1<StoplisInfo> mergePayPartner = new LazyStoplisMergePaypar(option.conn, option.schemaName);
 		
 		select.addPostAction(mergePayPartner);
 		

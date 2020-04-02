@@ -1,14 +1,14 @@
 package br.com.mind5.business.scheduleMonthData.model.action;
 
 import br.com.mind5.business.scheduleMonthData.info.SchedonthatInfo;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperEnforce;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdSchedonthatEnforceWeekday implements ActionStd<SchedonthatInfo> {
-	private ActionStd<SchedonthatInfo> actionHelper;	
+public final class StdSchedonthatEnforceWeekday implements ActionStdV1<SchedonthatInfo> {
+	private ActionStdV1<SchedonthatInfo> actionHelper;	
 	
 	
 	public StdSchedonthatEnforceWeekday(DeciTreeOption<SchedonthatInfo> option) {			
@@ -17,7 +17,7 @@ public final class StdSchedonthatEnforceWeekday implements ActionStd<Schedonthat
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<SchedonthatInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<SchedonthatInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

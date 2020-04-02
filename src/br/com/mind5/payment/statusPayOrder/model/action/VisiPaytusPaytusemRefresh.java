@@ -3,7 +3,7 @@ package br.com.mind5.payment.statusPayOrder.model.action;
 import java.sql.Connection;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.statusPayOrder.info.PaytusInfo;
@@ -19,7 +19,7 @@ final class VisiPaytusPaytusemRefresh extends ActionVisitorTemplateAction<Paytus
 	
 	
 	
-	@Override protected ActionStd<PaytusemInfo> getActionHook(DeciTreeOption<PaytusemInfo> option) {
+	@Override protected ActionStdV1<PaytusemInfo> getActionHook(DeciTreeOption<PaytusemInfo> option) {
 		return new RootPaytusemRefresh(option).toAction();
 	}
 	

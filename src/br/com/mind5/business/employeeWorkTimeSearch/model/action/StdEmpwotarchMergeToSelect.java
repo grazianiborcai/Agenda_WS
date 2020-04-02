@@ -1,14 +1,14 @@
 package br.com.mind5.business.employeeWorkTimeSearch.model.action;
 
 import br.com.mind5.business.employeeWorkTimeSearch.info.EmpwotarchInfo;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperMerge;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdEmpwotarchMergeToSelect implements ActionStd<EmpwotarchInfo> {
-	private ActionStd<EmpwotarchInfo> actionHelper;	
+public final class StdEmpwotarchMergeToSelect implements ActionStdV1<EmpwotarchInfo> {
+	private ActionStdV1<EmpwotarchInfo> actionHelper;	
 	
 	
 	public StdEmpwotarchMergeToSelect(DeciTreeOption<EmpwotarchInfo> option) {			
@@ -17,7 +17,7 @@ public final class StdEmpwotarchMergeToSelect implements ActionStd<EmpwotarchInf
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<EmpwotarchInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<EmpwotarchInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

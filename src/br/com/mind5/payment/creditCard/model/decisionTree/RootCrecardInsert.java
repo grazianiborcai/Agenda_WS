@@ -3,8 +3,8 @@ package br.com.mind5.payment.creditCard.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -91,15 +91,15 @@ public final class RootCrecardInsert extends DeciTreeWriteTemplate<CrecardInfo> 
 	
 	
 	
-	@Override protected List<ActionStd<CrecardInfo>> buildActionsOnPassedHook(DeciTreeOption<CrecardInfo> option) {
-		List<ActionStd<CrecardInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV1<CrecardInfo>> buildActionsOnPassedHook(DeciTreeOption<CrecardInfo> option) {
+		List<ActionStdV1<CrecardInfo>> actions = new ArrayList<>();		
 
-		ActionStd<CrecardInfo> nodeUser = new NodeCrecardUser(option).toAction();
-		ActionLazy<CrecardInfo> nodeAddress = new LazyCrecardNodeAddress(option.conn, option.schemaName);
-		ActionLazy<CrecardInfo> nodePhone = new LazyCrecardNodePhone(option.conn, option.schemaName);
-		ActionLazy<CrecardInfo> nodeCuspar = new LazyCrecardNodeCuspar(option.conn, option.schemaName);
-		ActionLazy<CrecardInfo> nodeInsert = new LazyCrecardNodeInsert(option.conn, option.schemaName);
-		ActionLazy<CrecardInfo> select = new LazyCrecardRootSelect(option.conn, option.schemaName);		
+		ActionStdV1<CrecardInfo> nodeUser = new NodeCrecardUser(option).toAction();
+		ActionLazyV1<CrecardInfo> nodeAddress = new LazyCrecardNodeAddress(option.conn, option.schemaName);
+		ActionLazyV1<CrecardInfo> nodePhone = new LazyCrecardNodePhone(option.conn, option.schemaName);
+		ActionLazyV1<CrecardInfo> nodeCuspar = new LazyCrecardNodeCuspar(option.conn, option.schemaName);
+		ActionLazyV1<CrecardInfo> nodeInsert = new LazyCrecardNodeInsert(option.conn, option.schemaName);
+		ActionLazyV1<CrecardInfo> select = new LazyCrecardRootSelect(option.conn, option.schemaName);		
 		
 		nodeUser.addPostAction(nodeAddress);
 		nodeAddress.addPostAction(nodePhone);

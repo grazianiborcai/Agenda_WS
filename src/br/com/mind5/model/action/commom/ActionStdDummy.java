@@ -2,11 +2,12 @@ package br.com.mind5.model.action.commom;
 
 import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.info.InfoRecord;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 
-public final class ActionStdDummy<T> implements ActionStd<T> {
+public final class ActionStdDummy<T extends InfoRecord> implements ActionStdV1<T> {
 	private DeciResult<T> deciResult;
 	
 	public ActionStdDummy(DeciResult<T> decisionResult) {
@@ -37,7 +38,7 @@ public final class ActionStdDummy<T> implements ActionStd<T> {
 
 	
 	
-	@Override public void addPostAction(ActionLazy<T> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<T> actionHandler) {
 		logException(new IllegalStateException(SystemMessage.NO_IMPLEMENTATION));
 		throw new IllegalStateException(SystemMessage.NO_IMPLEMENTATION);
 	}

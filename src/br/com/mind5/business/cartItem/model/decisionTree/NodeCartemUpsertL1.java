@@ -6,8 +6,8 @@ import java.util.List;
 import br.com.mind5.business.cartItem.info.CartemInfo;
 import br.com.mind5.business.cartItem.model.action.LazyCartemNodeUpsertL2;
 import br.com.mind5.business.cartItem.model.checker.CartemCheckDummy;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -33,11 +33,11 @@ public final class NodeCartemUpsertL1 extends DeciTreeWriteTemplate<CartemInfo> 
 	
 	
 	
-	@Override protected List<ActionStd<CartemInfo>> buildActionsOnPassedHook(DeciTreeOption<CartemInfo> option) {
-		List<ActionStd<CartemInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<CartemInfo>> buildActionsOnPassedHook(DeciTreeOption<CartemInfo> option) {
+		List<ActionStdV1<CartemInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CartemInfo> nodeMat = new NodeCartemMat(option).toAction();
-		ActionLazy<CartemInfo> nodeL2 = new LazyCartemNodeUpsertL2(option.conn, option.schemaName);
+		ActionStdV1<CartemInfo> nodeMat = new NodeCartemMat(option).toAction();
+		ActionLazyV1<CartemInfo> nodeL2 = new LazyCartemNodeUpsertL2(option.conn, option.schemaName);
 		
 		nodeMat.addPostAction(nodeL2);
 		

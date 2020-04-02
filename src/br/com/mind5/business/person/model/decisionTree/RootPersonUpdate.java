@@ -17,8 +17,8 @@ import br.com.mind5.business.person.model.checker.PersonCheckGender;
 import br.com.mind5.business.person.model.checker.PersonCheckLangu;
 import br.com.mind5.business.person.model.checker.PersonCheckOwner;
 import br.com.mind5.business.person.model.checker.PersonCheckUpdate;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -78,17 +78,17 @@ public final class RootPersonUpdate extends DeciTreeWriteTemplate<PersonInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<PersonInfo>> buildActionsOnPassedHook(DeciTreeOption<PersonInfo> option) {
-		List<ActionStd<PersonInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<PersonInfo>> buildActionsOnPassedHook(DeciTreeOption<PersonInfo> option) {
+		List<ActionStdV1<PersonInfo>> actions = new ArrayList<>();
 		
-		ActionStd<PersonInfo> mergeToUpdate = new StdPersonMergeToUpdate(option);	
-		ActionLazy<PersonInfo> cpf = new LazyPersonNodeCpfL1(option.conn, option.schemaName);	
-		ActionLazy<PersonInfo> email = new LazyPersonNodeEmailL1(option.conn, option.schemaName);	
-		ActionLazy<PersonInfo> enforceLChanged = new LazyPersonEnforceLChanged(option.conn, option.schemaName);
-		ActionLazy<PersonInfo> enforceLChangedBy = new LazyPersonMergeUsername(option.conn, option.schemaName);
-		ActionLazy<PersonInfo> nodeName = new LazyPersonNodeName(option.conn, option.schemaName);	
-		ActionLazy<PersonInfo> enforceBirthdate = new LazyPersonEnforceBirthdate(option.conn, option.schemaName);
-		ActionLazy<PersonInfo> snapshot = new LazyPersonNodeSnapshot(option.conn, option.schemaName);
+		ActionStdV1<PersonInfo> mergeToUpdate = new StdPersonMergeToUpdate(option);	
+		ActionLazyV1<PersonInfo> cpf = new LazyPersonNodeCpfL1(option.conn, option.schemaName);	
+		ActionLazyV1<PersonInfo> email = new LazyPersonNodeEmailL1(option.conn, option.schemaName);	
+		ActionLazyV1<PersonInfo> enforceLChanged = new LazyPersonEnforceLChanged(option.conn, option.schemaName);
+		ActionLazyV1<PersonInfo> enforceLChangedBy = new LazyPersonMergeUsername(option.conn, option.schemaName);
+		ActionLazyV1<PersonInfo> nodeName = new LazyPersonNodeName(option.conn, option.schemaName);	
+		ActionLazyV1<PersonInfo> enforceBirthdate = new LazyPersonEnforceBirthdate(option.conn, option.schemaName);
+		ActionLazyV1<PersonInfo> snapshot = new LazyPersonNodeSnapshot(option.conn, option.schemaName);
 		
 		mergeToUpdate.addPostAction(cpf);
 		cpf.addPostAction(email);

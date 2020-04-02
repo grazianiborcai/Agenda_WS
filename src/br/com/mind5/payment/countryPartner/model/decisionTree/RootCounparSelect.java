@@ -3,8 +3,8 @@ package br.com.mind5.payment.countryPartner.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -40,11 +40,11 @@ public final class RootCounparSelect extends DeciTreeReadTemplate<CounparInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<CounparInfo>> buildActionsOnPassedHook(DeciTreeOption<CounparInfo> option) {
-		List<ActionStd<CounparInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<CounparInfo>> buildActionsOnPassedHook(DeciTreeOption<CounparInfo> option) {
+		List<ActionStdV1<CounparInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CounparInfo> select = new StdCounparSelect(option);
-		ActionLazy<CounparInfo> mergePayPartner = new LazyCounparMergePaypar(option.conn, option.schemaName);
+		ActionStdV1<CounparInfo> select = new StdCounparSelect(option);
+		ActionLazyV1<CounparInfo> mergePayPartner = new LazyCounparMergePaypar(option.conn, option.schemaName);
 		
 		select.addPostAction(mergePayPartner);
 		

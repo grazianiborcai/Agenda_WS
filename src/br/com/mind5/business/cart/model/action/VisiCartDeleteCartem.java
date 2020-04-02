@@ -7,7 +7,7 @@ import br.com.mind5.business.cart.info.CartInfo;
 import br.com.mind5.business.cartItem.info.CartemCopier;
 import br.com.mind5.business.cartItem.info.CartemInfo;
 import br.com.mind5.business.cartItem.model.decisionTree.RootCartemDeleteByUser;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -18,7 +18,7 @@ final class VisiCartDeleteCartem extends ActionVisitorTemplateAction<CartInfo, C
 	
 	
 	
-	@Override protected ActionStd<CartemInfo> getActionHook(DeciTreeOption<CartemInfo> option) {
+	@Override protected ActionStdV1<CartemInfo> getActionHook(DeciTreeOption<CartemInfo> option) {
 		return new RootCartemDeleteByUser(option).toAction();
 	}
 	

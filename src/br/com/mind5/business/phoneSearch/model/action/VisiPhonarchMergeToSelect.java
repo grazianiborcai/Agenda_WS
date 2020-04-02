@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.phoneSearch.info.PhonarchInfo;
 import br.com.mind5.business.phoneSearch.info.PhonarchMerger;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 
 final class VisiPhonarchMergeToSelect extends ActionVisitorTemplateMerge<PhonarchInfo, PhonarchInfo> {
@@ -16,7 +16,7 @@ final class VisiPhonarchMergeToSelect extends ActionVisitorTemplateMerge<Phonarc
 	
 	
 	
-	@Override protected Class<? extends ActionStd<PhonarchInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStdV1<PhonarchInfo>> getActionClassHook() {
 		return StdPhonarchSelect.class;
 	}
 	

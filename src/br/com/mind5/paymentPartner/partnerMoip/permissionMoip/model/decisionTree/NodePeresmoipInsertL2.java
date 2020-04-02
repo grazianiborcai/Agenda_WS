@@ -3,7 +3,7 @@ package br.com.mind5.paymentPartner.partnerMoip.permissionMoip.model.decisionTre
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -39,10 +39,10 @@ public final class NodePeresmoipInsertL2 extends DeciTreeWriteTemplate<Peresmoip
 	
 	
 	
-	@Override protected List<ActionStd<PeresmoipInfo>> buildActionsOnPassedHook(DeciTreeOption<PeresmoipInfo> option) {
-		List<ActionStd<PeresmoipInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV1<PeresmoipInfo>> buildActionsOnPassedHook(DeciTreeOption<PeresmoipInfo> option) {
+		List<ActionStdV1<PeresmoipInfo>> actions = new ArrayList<>();		
 
-		ActionStd<PeresmoipInfo> insert = new StdPeresmoipInsert(option);	
+		ActionStdV1<PeresmoipInfo> insert = new StdPeresmoipInsert(option);	
 		
 		actions.add(insert);		
 		return actions;
@@ -50,10 +50,10 @@ public final class NodePeresmoipInsertL2 extends DeciTreeWriteTemplate<Peresmoip
 	
 	
 	
-	@Override protected List<ActionStd<PeresmoipInfo>> buildActionsOnFailedHook(DeciTreeOption<PeresmoipInfo> option) {
-		List<ActionStd<PeresmoipInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV1<PeresmoipInfo>> buildActionsOnFailedHook(DeciTreeOption<PeresmoipInfo> option) {
+		List<ActionStdV1<PeresmoipInfo>> actions = new ArrayList<>();		
 
-		ActionStd<PeresmoipInfo> success = new StdPeresmoipSuccess(option);	
+		ActionStdV1<PeresmoipInfo> success = new StdPeresmoipSuccess(option);	
 		
 		actions.add(success);		
 		return actions;

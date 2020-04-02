@@ -10,7 +10,7 @@ import br.com.mind5.business.employeeWorkTimeRange.model.checker.EmpworgCheckLan
 import br.com.mind5.business.employeeWorkTimeRange.model.checker.EmpworgCheckOwner;
 import br.com.mind5.business.employeeWorkTimeRange.model.checker.EmpworgCheckRead;
 import br.com.mind5.business.employeeWorkTimeRange.model.checker.EmpworgCheckStore;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -70,10 +70,10 @@ public final class RootStoworgSelect extends DeciTreeReadTemplate<EmpworgInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<EmpworgInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpworgInfo> option) {
-		List<ActionStd<EmpworgInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<EmpworgInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpworgInfo> option) {
+		List<ActionStdV1<EmpworgInfo>> actions = new ArrayList<>();
 		
-		ActionStd<EmpworgInfo> mergeToSelect = new StdEmpworgMergeToSelect(option);
+		ActionStdV1<EmpworgInfo> mergeToSelect = new StdEmpworgMergeToSelect(option);
 		
 		actions.add(mergeToSelect);		
 		return actions; 

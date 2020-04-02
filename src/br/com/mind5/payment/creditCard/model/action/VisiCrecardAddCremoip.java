@@ -3,7 +3,7 @@ package br.com.mind5.payment.creditCard.model.action;
 import java.sql.Connection;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
@@ -21,7 +21,7 @@ final class VisiCrecardAddCremoip extends ActionVisitorTemplateAction<CrecardInf
 	
 	
 	
-	@Override protected ActionStd<CremoipInfo> getActionHook(DeciTreeOption<CremoipInfo> option) {
+	@Override protected ActionStdV1<CremoipInfo> getActionHook(DeciTreeOption<CremoipInfo> option) {
 		return new RootCremoipAdd(option).toAction();
 	}
 	

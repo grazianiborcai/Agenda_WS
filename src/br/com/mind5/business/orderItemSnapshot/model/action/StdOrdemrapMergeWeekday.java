@@ -1,14 +1,14 @@
 package br.com.mind5.business.orderItemSnapshot.model.action;
 
 import br.com.mind5.business.orderItemSnapshot.info.OrdemrapInfo;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperMerge;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdOrdemrapMergeWeekday implements ActionStd<OrdemrapInfo> {
-	private ActionStd<OrdemrapInfo> actionHelper;	
+public final class StdOrdemrapMergeWeekday implements ActionStdV1<OrdemrapInfo> {
+	private ActionStdV1<OrdemrapInfo> actionHelper;	
 	
 	
 	public StdOrdemrapMergeWeekday(DeciTreeOption<OrdemrapInfo> option) {			
@@ -17,7 +17,7 @@ public final class StdOrdemrapMergeWeekday implements ActionStd<OrdemrapInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<OrdemrapInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<OrdemrapInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

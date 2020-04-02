@@ -3,8 +3,8 @@ package br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.model.decisionTre
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -34,11 +34,11 @@ public final class NodeCremoipAddressL1 extends DeciTreeWriteTemplate<CremoipInf
 	
 	
 	
-	@Override protected List<ActionStd<CremoipInfo>> buildActionsOnPassedHook(DeciTreeOption<CremoipInfo> option) {
-		List<ActionStd<CremoipInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<CremoipInfo>> buildActionsOnPassedHook(DeciTreeOption<CremoipInfo> option) {
+		List<ActionStdV1<CremoipInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CremoipInfo> mergeAddresnap = new StdCremoipMergeAddresnap(option);
-		ActionLazy<CremoipInfo> nodeL2 = new LazyCremoipNodeAddressL2(option.conn, option.schemaName);
+		ActionStdV1<CremoipInfo> mergeAddresnap = new StdCremoipMergeAddresnap(option);
+		ActionLazyV1<CremoipInfo> nodeL2 = new LazyCremoipNodeAddressL2(option.conn, option.schemaName);
 		
 		mergeAddresnap.addPostAction(nodeL2);
 		

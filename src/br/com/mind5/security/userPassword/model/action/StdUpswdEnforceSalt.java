@@ -1,14 +1,14 @@
 package br.com.mind5.security.userPassword.model.action;
 
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperEnforce;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.userPassword.info.UpswdInfo;
 
-public final class StdUpswdEnforceSalt implements ActionStd<UpswdInfo> {
-	private ActionStd<UpswdInfo> actionHelper;	
+public final class StdUpswdEnforceSalt implements ActionStdV1<UpswdInfo> {
+	private ActionStdV1<UpswdInfo> actionHelper;	
 	
 	
 	public StdUpswdEnforceSalt(DeciTreeOption<UpswdInfo> option) {			
@@ -17,7 +17,7 @@ public final class StdUpswdEnforceSalt implements ActionStd<UpswdInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<UpswdInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<UpswdInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

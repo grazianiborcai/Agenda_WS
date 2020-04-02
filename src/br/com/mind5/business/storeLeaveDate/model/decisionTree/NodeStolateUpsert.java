@@ -7,7 +7,7 @@ import br.com.mind5.business.storeLeaveDate.info.StolateInfo;
 import br.com.mind5.business.storeLeaveDate.model.action.StdStolateInsert;
 import br.com.mind5.business.storeLeaveDate.model.action.StdStolateUpdate;
 import br.com.mind5.business.storeLeaveDate.model.checker.StolateCheckSoftDelete;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -39,10 +39,10 @@ public final class NodeStolateUpsert extends DeciTreeWriteTemplate<StolateInfo> 
 	
 	
 	
-	@Override protected List<ActionStd<StolateInfo>> buildActionsOnPassedHook(DeciTreeOption<StolateInfo> option) {
-		List<ActionStd<StolateInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<StolateInfo>> buildActionsOnPassedHook(DeciTreeOption<StolateInfo> option) {
+		List<ActionStdV1<StolateInfo>> actions = new ArrayList<>();
 		
-		ActionStd<StolateInfo> insert = new StdStolateInsert(option);
+		ActionStdV1<StolateInfo> insert = new StdStolateInsert(option);
 		
 		actions.add(insert);				
 		return actions;
@@ -50,10 +50,10 @@ public final class NodeStolateUpsert extends DeciTreeWriteTemplate<StolateInfo> 
 	
 	
 	
-	@Override protected List<ActionStd<StolateInfo>> buildActionsOnFailedHook(DeciTreeOption<StolateInfo> option) {
-		List<ActionStd<StolateInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<StolateInfo>> buildActionsOnFailedHook(DeciTreeOption<StolateInfo> option) {
+		List<ActionStdV1<StolateInfo>> actions = new ArrayList<>();
 		
-		ActionStd<StolateInfo> update = new StdStolateUpdate(option);
+		ActionStdV1<StolateInfo> update = new StdStolateUpdate(option);
 		
 		actions.add(update);				
 		return actions;

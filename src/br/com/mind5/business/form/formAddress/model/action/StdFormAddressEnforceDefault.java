@@ -1,14 +1,14 @@
 package br.com.mind5.business.form.formAddress.model.action;
 
 import br.com.mind5.business.form.formAddress.info.FormAddressInfo;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperEnforce;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdFormAddressEnforceDefault implements ActionStd<FormAddressInfo> {
-	private ActionStd<FormAddressInfo> actionHelper;	
+public final class StdFormAddressEnforceDefault implements ActionStdV1<FormAddressInfo> {
+	private ActionStdV1<FormAddressInfo> actionHelper;	
 	
 	
 	public StdFormAddressEnforceDefault(DeciTreeOption<FormAddressInfo> option) {			
@@ -17,7 +17,7 @@ public final class StdFormAddressEnforceDefault implements ActionStd<FormAddress
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<FormAddressInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<FormAddressInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

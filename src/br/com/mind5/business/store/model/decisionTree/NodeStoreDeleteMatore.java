@@ -7,7 +7,7 @@ import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.business.store.model.action.StdStoreDeleteMatore;
 import br.com.mind5.business.store.model.action.StdStoreSuccess;
 import br.com.mind5.business.store.model.checker.StoreCheckMatorarch;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -39,10 +39,10 @@ public final class NodeStoreDeleteMatore extends DeciTreeWriteTemplate<StoreInfo
 	
 	
 	
-	@Override protected List<ActionStd<StoreInfo>> buildActionsOnPassedHook(DeciTreeOption<StoreInfo> option) {
-		List<ActionStd<StoreInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<StoreInfo>> buildActionsOnPassedHook(DeciTreeOption<StoreInfo> option) {
+		List<ActionStdV1<StoreInfo>> actions = new ArrayList<>();
 		
-		ActionStd<StoreInfo> deleteMatore = new StdStoreDeleteMatore(option);
+		ActionStdV1<StoreInfo> deleteMatore = new StdStoreDeleteMatore(option);
 		
 		actions.add(deleteMatore);		
 		return actions;
@@ -50,8 +50,8 @@ public final class NodeStoreDeleteMatore extends DeciTreeWriteTemplate<StoreInfo
 	
 	
 	
-	@Override protected List<ActionStd<StoreInfo>> buildActionsOnFailedHook(DeciTreeOption<StoreInfo> option) {
-		List<ActionStd<StoreInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<StoreInfo>> buildActionsOnFailedHook(DeciTreeOption<StoreInfo> option) {
+		List<ActionStdV1<StoreInfo>> actions = new ArrayList<>();
 		
 		actions.add(new StdStoreSuccess(option));		
 		return actions;

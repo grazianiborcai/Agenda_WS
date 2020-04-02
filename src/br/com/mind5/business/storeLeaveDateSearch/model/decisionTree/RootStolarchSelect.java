@@ -9,7 +9,7 @@ import br.com.mind5.business.storeLeaveDateSearch.model.checker.StolarchCheckLan
 import br.com.mind5.business.storeLeaveDateSearch.model.checker.StolarchCheckOwner;
 import br.com.mind5.business.storeLeaveDateSearch.model.checker.StolarchCheckRead;
 import br.com.mind5.business.storeLeaveDateSearch.model.checker.StolarchCheckStore;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -61,8 +61,8 @@ public final class RootStolarchSelect extends DeciTreeReadTemplate<StolarchInfo>
 	
 	
 	
-	@Override protected List<ActionStd<StolarchInfo>> buildActionsOnPassedHook(DeciTreeOption<StolarchInfo> option) {
-		List<ActionStd<StolarchInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<StolarchInfo>> buildActionsOnPassedHook(DeciTreeOption<StolarchInfo> option) {
+		List<ActionStdV1<StolarchInfo>> actions = new ArrayList<>();
 		
 		actions.add(new StdStolarchMergeToSelect(option));
 		return actions;

@@ -7,8 +7,8 @@ import br.com.mind5.business.order.info.OrderInfo;
 import br.com.mind5.business.order.model.action.LazyOrderNodeCusL2;
 import br.com.mind5.business.order.model.action.StdOrderEnforceUser;
 import br.com.mind5.business.order.model.checker.OrderCheckDummy;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -34,11 +34,11 @@ public final class NodeOrderCusL1 extends DeciTreeWriteTemplate<OrderInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<OrderInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderInfo> option) {
-		List<ActionStd<OrderInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<OrderInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderInfo> option) {
+		List<ActionStdV1<OrderInfo>> actions = new ArrayList<>();
 		
-		ActionStd<OrderInfo> enforceUser = new StdOrderEnforceUser(option);
-		ActionLazy<OrderInfo> nodeL2 = new LazyOrderNodeCusL2(option.conn, option.schemaName);
+		ActionStdV1<OrderInfo> enforceUser = new StdOrderEnforceUser(option);
+		ActionLazyV1<OrderInfo> nodeL2 = new LazyOrderNodeCusL2(option.conn, option.schemaName);
 		
 		enforceUser.addPostAction(nodeL2);
 		

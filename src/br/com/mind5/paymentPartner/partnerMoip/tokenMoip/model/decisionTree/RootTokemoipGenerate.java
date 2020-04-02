@@ -3,8 +3,8 @@ package br.com.mind5.paymentPartner.partnerMoip.tokenMoip.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -80,11 +80,11 @@ public final class RootTokemoipGenerate extends DeciTreeWriteTemplate<TokemoipIn
 	
 	
 	
-	@Override protected List<ActionStd<TokemoipInfo>> buildActionsOnPassedHook(DeciTreeOption<TokemoipInfo> option) {
-		List<ActionStd<TokemoipInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV1<TokemoipInfo>> buildActionsOnPassedHook(DeciTreeOption<TokemoipInfo> option) {
+		List<ActionStdV1<TokemoipInfo>> actions = new ArrayList<>();		
 
-		ActionStd<TokemoipInfo> enforcePayPartner = new StdTokemoipEnforcePayPartner(option);	
-		ActionLazy<TokemoipInfo> nodeGenerate = new LazyTokemoipNodeGenerate(option.conn, option.schemaName);
+		ActionStdV1<TokemoipInfo> enforcePayPartner = new StdTokemoipEnforcePayPartner(option);	
+		ActionLazyV1<TokemoipInfo> nodeGenerate = new LazyTokemoipNodeGenerate(option.conn, option.schemaName);
 		
 		enforcePayPartner.addPostAction(nodeGenerate);
 		

@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.file.fileImage.info.FimgInfo;
 import br.com.mind5.model.action.ActionLazyTemplate;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -23,7 +23,7 @@ public final class LazyFimgMergeFath extends ActionLazyTemplate<FimgInfo, FimgIn
 	
 	
 	
-	@Override protected ActionStd<FimgInfo> getInstanceOfActionHook(DeciTreeOption<FimgInfo> option) {
+	@Override protected ActionStdV1<FimgInfo> getInstanceOfActionHook(DeciTreeOption<FimgInfo> option) {
 		return new StdFimgMergeFath(option);
 	}
 	

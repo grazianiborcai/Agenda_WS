@@ -9,7 +9,7 @@ import br.com.mind5.business.cartItem.model.checker.CartemCheckLangu;
 import br.com.mind5.business.cartItem.model.checker.CartemCheckMat;
 import br.com.mind5.business.cartItem.model.checker.CartemCheckOwner;
 import br.com.mind5.business.cartItem.model.checker.CartemCheckUpsert;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -73,10 +73,10 @@ public final class RootCartemUpsert extends DeciTreeWriteTemplate<CartemInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<CartemInfo>> buildActionsOnPassedHook(DeciTreeOption<CartemInfo> option) {
-		List<ActionStd<CartemInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<CartemInfo>> buildActionsOnPassedHook(DeciTreeOption<CartemInfo> option) {
+		List<ActionStdV1<CartemInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CartemInfo> upsertdel = new NodeCartemUpsertdel(option).toAction();
+		ActionStdV1<CartemInfo> upsertdel = new NodeCartemUpsertdel(option).toAction();
 		
 		actions.add(upsertdel);
 		return actions;

@@ -5,16 +5,16 @@ import java.util.List;
 
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.obsolete.DaoStmtExec_;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperStmt;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.userPassword.dao.UpswdSelect;
 import br.com.mind5.security.userPassword.info.UpswdInfo;
 
-public final class StdUpswdSelect implements ActionStd<UpswdInfo> {
-	private ActionStd<UpswdInfo> actionHelper;
+public final class StdUpswdSelect implements ActionStdV1<UpswdInfo> {
+	private ActionStdV1<UpswdInfo> actionHelper;
 	
 	
 	public StdUpswdSelect(DeciTreeOption<UpswdInfo> option) {
@@ -40,7 +40,7 @@ public final class StdUpswdSelect implements ActionStd<UpswdInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<UpswdInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<UpswdInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

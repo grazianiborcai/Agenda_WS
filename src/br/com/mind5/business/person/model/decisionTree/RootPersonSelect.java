@@ -8,8 +8,8 @@ import br.com.mind5.business.person.model.action.LazyPersonMergeGender;
 import br.com.mind5.business.person.model.action.StdPersonMergeToSelect;
 import br.com.mind5.business.person.model.checker.PersonCheckLangu;
 import br.com.mind5.business.person.model.checker.PersonCheckRead;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -48,11 +48,11 @@ public final class RootPersonSelect extends DeciTreeReadTemplate<PersonInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<PersonInfo>> buildActionsOnPassedHook(DeciTreeOption<PersonInfo> option) {
-		List<ActionStd<PersonInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<PersonInfo>> buildActionsOnPassedHook(DeciTreeOption<PersonInfo> option) {
+		List<ActionStdV1<PersonInfo>> actions = new ArrayList<>();
 		
-		ActionStd<PersonInfo> select = new StdPersonMergeToSelect(option);		
-		ActionLazy<PersonInfo> mergeGender = new LazyPersonMergeGender(option.conn, option.schemaName);
+		ActionStdV1<PersonInfo> select = new StdPersonMergeToSelect(option);		
+		ActionLazyV1<PersonInfo> mergeGender = new LazyPersonMergeGender(option.conn, option.schemaName);
 		
 		select.addPostAction(mergeGender);		
 		actions.add(select);

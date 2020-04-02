@@ -3,7 +3,7 @@ package br.com.mind5.paymentPartner.partnerMoip.permissionMoip.model.action;
 import java.sql.Connection;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.storePartner.info.StoparCopier;
@@ -18,7 +18,7 @@ final class VisiPeresmoipInsertStopar extends ActionVisitorTemplateAction<Peresm
 	
 	
 	
-	@Override protected ActionStd<StoparInfo> getActionHook(DeciTreeOption<StoparInfo> option) {
+	@Override protected ActionStdV1<StoparInfo> getActionHook(DeciTreeOption<StoparInfo> option) {
 		return new RootStoparInsert(option).toAction();
 	}
 	

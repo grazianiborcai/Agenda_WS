@@ -7,8 +7,8 @@ import br.com.mind5.business.employeeLeaveDate.info.EmplateInfo;
 import br.com.mind5.business.employeeLeaveDate.model.action.LazyEmplateRootSelect;
 import br.com.mind5.business.employeeLeaveDate.model.action.StdEmplateMergeEmplarch;
 import br.com.mind5.business.employeeLeaveDate.model.checker.EmplateCheckDummy;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -34,11 +34,11 @@ public class RootEmplateSearch extends DeciTreeReadTemplate<EmplateInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<EmplateInfo>> buildActionsOnPassedHook(DeciTreeOption<EmplateInfo> option) {
-		List<ActionStd<EmplateInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<EmplateInfo>> buildActionsOnPassedHook(DeciTreeOption<EmplateInfo> option) {
+		List<ActionStdV1<EmplateInfo>> actions = new ArrayList<>();
 		
-		ActionStd<EmplateInfo> mergeEmplarch = new StdEmplateMergeEmplarch(option);
-		ActionLazy<EmplateInfo> select = new LazyEmplateRootSelect(option.conn, option.schemaName);
+		ActionStdV1<EmplateInfo> mergeEmplarch = new StdEmplateMergeEmplarch(option);
+		ActionLazyV1<EmplateInfo> select = new LazyEmplateRootSelect(option.conn, option.schemaName);
 		
 		mergeEmplarch.addPostAction(select);
 		

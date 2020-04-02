@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.employeeWorkTimeRange.info.EmpworgInfo;
 import br.com.mind5.business.employeeWorkTimeRange.info.EmpworgMerger;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 
 final class VisiEmpworgMergeToSelect extends ActionVisitorTemplateMerge<EmpworgInfo, EmpworgInfo> {
@@ -16,7 +16,7 @@ final class VisiEmpworgMergeToSelect extends ActionVisitorTemplateMerge<EmpworgI
 	
 	
 	
-	@Override protected Class<? extends ActionStd<EmpworgInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStdV1<EmpworgInfo>> getActionClassHook() {
 		return StdEmpworgSelect.class;
 	}
 	

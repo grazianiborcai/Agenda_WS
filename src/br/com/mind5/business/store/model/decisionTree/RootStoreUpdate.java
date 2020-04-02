@@ -15,8 +15,8 @@ import br.com.mind5.business.store.model.checker.StoreCheckOwner;
 import br.com.mind5.business.store.model.checker.StoreCheckStorauth;
 import br.com.mind5.business.store.model.checker.StoreCheckTimezone;
 import br.com.mind5.business.store.model.checker.StoreCheckUpdate;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -90,15 +90,15 @@ public final class RootStoreUpdate extends DeciTreeWriteTemplate<StoreInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<StoreInfo>> buildActionsOnPassedHook(DeciTreeOption<StoreInfo> option) {
-		List<ActionStd<StoreInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<StoreInfo>> buildActionsOnPassedHook(DeciTreeOption<StoreInfo> option) {
+		List<ActionStdV1<StoreInfo>> actions = new ArrayList<>();
 
-		ActionStd<StoreInfo> updateStore = new NodeStoreUpdate(option).toAction();
-		ActionLazy<StoreInfo> updatePerson = new LazyStoreNodeUpdatePerson(option.conn, option.schemaName);
-		ActionLazy<StoreInfo> updateCompany = new LazyStoreNodeUpdateComp(option.conn, option.schemaName);
-		ActionLazy<StoreInfo> upsertAddress = new LazyStoreNodeUpsertAddress(option.conn, option.schemaName);
-		ActionLazy<StoreInfo> upsertPhone = new LazyStoreNodeUpsertPhone(option.conn, option.schemaName);		
-		ActionStd<StoreInfo> select = new RootStoreSelect(option).toAction();	
+		ActionStdV1<StoreInfo> updateStore = new NodeStoreUpdate(option).toAction();
+		ActionLazyV1<StoreInfo> updatePerson = new LazyStoreNodeUpdatePerson(option.conn, option.schemaName);
+		ActionLazyV1<StoreInfo> updateCompany = new LazyStoreNodeUpdateComp(option.conn, option.schemaName);
+		ActionLazyV1<StoreInfo> upsertAddress = new LazyStoreNodeUpsertAddress(option.conn, option.schemaName);
+		ActionLazyV1<StoreInfo> upsertPhone = new LazyStoreNodeUpsertPhone(option.conn, option.schemaName);		
+		ActionStdV1<StoreInfo> select = new RootStoreSelect(option).toAction();	
 			
 		updateStore.addPostAction(updatePerson);
 		updateStore.addPostAction(updateCompany);		

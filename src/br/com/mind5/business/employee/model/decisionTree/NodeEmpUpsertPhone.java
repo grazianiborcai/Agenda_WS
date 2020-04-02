@@ -8,8 +8,8 @@ import br.com.mind5.business.employee.model.action.LazyEmpUpsertPhone;
 import br.com.mind5.business.employee.model.action.StdEmpEnforcePhoneKey;
 import br.com.mind5.business.employee.model.action.StdEmpSuccess;
 import br.com.mind5.business.employee.model.checker.EmpCheckHasPhone;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -41,11 +41,11 @@ public final class NodeEmpUpsertPhone extends DeciTreeWriteTemplate<EmpInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<EmpInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpInfo> option) {
-		List<ActionStd<EmpInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<EmpInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpInfo> option) {
+		List<ActionStdV1<EmpInfo>> actions = new ArrayList<>();
 		
-		ActionStd<EmpInfo> enforcePhoneKey = new StdEmpEnforcePhoneKey(option);
-		ActionLazy<EmpInfo> upsertPhone = new LazyEmpUpsertPhone(option.conn, option.schemaName);	
+		ActionStdV1<EmpInfo> enforcePhoneKey = new StdEmpEnforcePhoneKey(option);
+		ActionLazyV1<EmpInfo> upsertPhone = new LazyEmpUpsertPhone(option.conn, option.schemaName);	
 		
 		enforcePhoneKey.addPostAction(upsertPhone);
 		
@@ -55,8 +55,8 @@ public final class NodeEmpUpsertPhone extends DeciTreeWriteTemplate<EmpInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<EmpInfo>> buildActionsOnFailedHook(DeciTreeOption<EmpInfo> option) {
-		List<ActionStd<EmpInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<EmpInfo>> buildActionsOnFailedHook(DeciTreeOption<EmpInfo> option) {
+		List<ActionStdV1<EmpInfo>> actions = new ArrayList<>();
 		
 		actions.add(new StdEmpSuccess(option));		
 		return actions;

@@ -6,8 +6,8 @@ import java.util.List;
 import br.com.mind5.business.cart.info.CartInfo;
 import br.com.mind5.business.cart.model.action.LazyCartNodeCheckoutL2;
 import br.com.mind5.business.cart.model.checker.CartCheckCartemarch;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -39,11 +39,11 @@ public final class NodeCartCheckoutL1 extends DeciTreeWriteTemplate<CartInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<CartInfo>> buildActionsOnPassedHook(DeciTreeOption<CartInfo> option) {
-		List<ActionStd<CartInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<CartInfo>> buildActionsOnPassedHook(DeciTreeOption<CartInfo> option) {
+		List<ActionStdV1<CartInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CartInfo> select = new RootCartSelect(option).toAction();
-		ActionLazy<CartInfo> nodeL2 = new LazyCartNodeCheckoutL2(option.conn, option.schemaName);	
+		ActionStdV1<CartInfo> select = new RootCartSelect(option).toAction();
+		ActionLazyV1<CartInfo> nodeL2 = new LazyCartNodeCheckoutL2(option.conn, option.schemaName);	
 		
 		select.addPostAction(nodeL2);
 		

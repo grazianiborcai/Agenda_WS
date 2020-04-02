@@ -3,8 +3,8 @@ package br.com.mind5.payment.storePartner.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -34,11 +34,11 @@ public final class RootStoparSearch extends DeciTreeReadTemplate<StoparInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<StoparInfo>> buildActionsOnPassedHook(DeciTreeOption<StoparInfo> option) {
-		List<ActionStd<StoparInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<StoparInfo>> buildActionsOnPassedHook(DeciTreeOption<StoparInfo> option) {
+		List<ActionStdV1<StoparInfo>> actions = new ArrayList<>();
 		
-		ActionStd<StoparInfo> mergeStoparch = new StdStoparMergeStoparch(option);
-		ActionLazy<StoparInfo> select = new LazyStoparRootSelect(option.conn, option.schemaName);
+		ActionStdV1<StoparInfo> mergeStoparch = new StdStoparMergeStoparch(option);
+		ActionLazyV1<StoparInfo> select = new LazyStoparRootSelect(option.conn, option.schemaName);
 		
 		mergeStoparch.addPostAction(select);
 		

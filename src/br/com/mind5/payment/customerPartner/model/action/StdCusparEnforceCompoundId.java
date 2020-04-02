@@ -1,14 +1,14 @@
 package br.com.mind5.payment.customerPartner.model.action;
 
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperEnforce;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
 
-public final class StdCusparEnforceCompoundId implements ActionStd<CusparInfo> {
-	private ActionStd<CusparInfo> actionHelper;	
+public final class StdCusparEnforceCompoundId implements ActionStdV1<CusparInfo> {
+	private ActionStdV1<CusparInfo> actionHelper;	
 	
 	
 	public StdCusparEnforceCompoundId(DeciTreeOption<CusparInfo> option) {			
@@ -17,7 +17,7 @@ public final class StdCusparEnforceCompoundId implements ActionStd<CusparInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<CusparInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<CusparInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

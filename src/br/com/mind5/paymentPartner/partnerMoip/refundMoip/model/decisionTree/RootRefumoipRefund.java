@@ -3,8 +3,8 @@ package br.com.mind5.paymentPartner.partnerMoip.refundMoip.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -43,14 +43,14 @@ public final class RootRefumoipRefund extends DeciTreeWriteTemplate<RefumoipInfo
 	
 	
 	//TODO: verificar refund duas vezes
-	@Override protected List<ActionStd<RefumoipInfo>> buildActionsOnPassedHook(DeciTreeOption<RefumoipInfo> option) {
-		List<ActionStd<RefumoipInfo>> actions = new ArrayList<>();	
+	@Override protected List<ActionStdV1<RefumoipInfo>> buildActionsOnPassedHook(DeciTreeOption<RefumoipInfo> option) {
+		List<ActionStdV1<RefumoipInfo>> actions = new ArrayList<>();	
 		
-		ActionStd<RefumoipInfo> enforcePaypar = new StdRefumoipEnforcePaypar(option);	
-		ActionLazy<RefumoipInfo> mergePayordemist = new LazyRefumoipMergePayordemist(option.conn, option.schemaName);	
-		ActionLazy<RefumoipInfo> nodeRefund = new LazyRefumoipNodeRefundL1(option.conn, option.schemaName);		
-		ActionLazy<RefumoipInfo> refund = new LazyRefumoipRefund(option.conn, option.schemaName);
-		ActionLazy<RefumoipInfo> enforceResponseAttr = new LazyRefumoipEnforceResponseAttr(option.conn, option.schemaName);
+		ActionStdV1<RefumoipInfo> enforcePaypar = new StdRefumoipEnforcePaypar(option);	
+		ActionLazyV1<RefumoipInfo> mergePayordemist = new LazyRefumoipMergePayordemist(option.conn, option.schemaName);	
+		ActionLazyV1<RefumoipInfo> nodeRefund = new LazyRefumoipNodeRefundL1(option.conn, option.schemaName);		
+		ActionLazyV1<RefumoipInfo> refund = new LazyRefumoipRefund(option.conn, option.schemaName);
+		ActionLazyV1<RefumoipInfo> enforceResponseAttr = new LazyRefumoipEnforceResponseAttr(option.conn, option.schemaName);
 		
 		enforcePaypar.addPostAction(mergePayordemist);
 		mergePayordemist.addPostAction(nodeRefund);

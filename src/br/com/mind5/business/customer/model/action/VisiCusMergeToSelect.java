@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.customer.info.CusInfo;
 import br.com.mind5.business.customer.info.CusMerger;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 
 final class VisiCusMergeToSelect extends ActionVisitorTemplateMerge<CusInfo, CusInfo> {
@@ -16,7 +16,7 @@ final class VisiCusMergeToSelect extends ActionVisitorTemplateMerge<CusInfo, Cus
 	
 	
 	
-	@Override protected Class<? extends ActionStd<CusInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStdV1<CusInfo>> getActionClassHook() {
 		return StdCusSelect.class;
 	}
 	

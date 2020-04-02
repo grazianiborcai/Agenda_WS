@@ -1,14 +1,14 @@
 package br.com.mind5.business.scheduleMoviment.model.action;
 
 import br.com.mind5.business.scheduleMoviment.info.SchedovmInfo;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperEnforce;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdSchedovmEnforceZero implements ActionStd<SchedovmInfo> {
-	private ActionStd<SchedovmInfo> actionHelper;	
+public final class StdSchedovmEnforceZero implements ActionStdV1<SchedovmInfo> {
+	private ActionStdV1<SchedovmInfo> actionHelper;	
 	
 	
 	public StdSchedovmEnforceZero(DeciTreeOption<SchedovmInfo> option) {			
@@ -17,7 +17,7 @@ public final class StdSchedovmEnforceZero implements ActionStd<SchedovmInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<SchedovmInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<SchedovmInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

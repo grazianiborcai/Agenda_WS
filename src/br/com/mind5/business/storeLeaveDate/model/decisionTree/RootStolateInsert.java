@@ -22,8 +22,8 @@ import br.com.mind5.business.storeLeaveDate.model.checker.StolateCheckStorauth;
 import br.com.mind5.business.storeLeaveDate.model.checker.StolateCheckStore;
 import br.com.mind5.business.storeLeaveDate.model.checker.StolateCheckTimeRange;
 import br.com.mind5.business.storeLeaveDate.model.checker.StolateCheckWrite;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -104,19 +104,19 @@ public final class RootStolateInsert extends DeciTreeWriteTemplate<StolateInfo> 
 	
 	
 	
-	@Override protected List<ActionStd<StolateInfo>> buildActionsOnPassedHook(DeciTreeOption<StolateInfo> option) {
-		List<ActionStd<StolateInfo>> actions = new ArrayList<>();	
+	@Override protected List<ActionStdV1<StolateInfo>> buildActionsOnPassedHook(DeciTreeOption<StolateInfo> option) {
+		List<ActionStdV1<StolateInfo>> actions = new ArrayList<>();	
 		
-		ActionStd<StolateInfo> enforceLChanged = new StdStolateEnforceLChanged(option);
-		ActionLazy<StolateInfo> enforceLChangedBy = new LazyStolateMergeUsername(option.conn, option.schemaName);
-		ActionLazy<StolateInfo> enforceCreatedOn = new LazyStolateEnforceCreatedOn(option.conn, option.schemaName);
-		ActionLazy<StolateInfo> enforceCreatedBy = new LazyStolateEnforceCreatedBy(option.conn, option.schemaName);		
-		ActionLazy<StolateInfo> enforceValidFrom = new LazyStolateEnforceValidFrom(option.conn, option.schemaName);
-		ActionLazy<StolateInfo> enforceValidTo = new LazyStolateEnforceValidTo(option.conn, option.schemaName);		
-		ActionLazy<StolateInfo> enforceYear = new LazyStolateEnforceYear(option.conn, option.schemaName);
-		ActionLazy<StolateInfo> enforceMonth= new LazyStolateEnforceMonth(option.conn, option.schemaName);
-		ActionLazy<StolateInfo> nodeUpsert = new LazyStolateNodeUpsert(option.conn, option.schemaName);
-		ActionLazy<StolateInfo> select = new LazyStolateRootSelect(option.conn, option.schemaName);
+		ActionStdV1<StolateInfo> enforceLChanged = new StdStolateEnforceLChanged(option);
+		ActionLazyV1<StolateInfo> enforceLChangedBy = new LazyStolateMergeUsername(option.conn, option.schemaName);
+		ActionLazyV1<StolateInfo> enforceCreatedOn = new LazyStolateEnforceCreatedOn(option.conn, option.schemaName);
+		ActionLazyV1<StolateInfo> enforceCreatedBy = new LazyStolateEnforceCreatedBy(option.conn, option.schemaName);		
+		ActionLazyV1<StolateInfo> enforceValidFrom = new LazyStolateEnforceValidFrom(option.conn, option.schemaName);
+		ActionLazyV1<StolateInfo> enforceValidTo = new LazyStolateEnforceValidTo(option.conn, option.schemaName);		
+		ActionLazyV1<StolateInfo> enforceYear = new LazyStolateEnforceYear(option.conn, option.schemaName);
+		ActionLazyV1<StolateInfo> enforceMonth= new LazyStolateEnforceMonth(option.conn, option.schemaName);
+		ActionLazyV1<StolateInfo> nodeUpsert = new LazyStolateNodeUpsert(option.conn, option.schemaName);
+		ActionLazyV1<StolateInfo> select = new LazyStolateRootSelect(option.conn, option.schemaName);
 		
 		enforceLChanged.addPostAction(enforceLChangedBy);
 		enforceLChangedBy.addPostAction(enforceCreatedOn);

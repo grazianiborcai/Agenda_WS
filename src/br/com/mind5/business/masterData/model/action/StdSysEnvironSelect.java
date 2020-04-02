@@ -7,14 +7,14 @@ import br.com.mind5.business.masterData.dao.SysEnvironSelect;
 import br.com.mind5.business.masterData.info.SysEnvironInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.obsolete.DaoStmtExec_;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperStmt;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdSysEnvironSelect implements ActionStd<SysEnvironInfo> {
-	private ActionStd<SysEnvironInfo> actionHelper;
+public final class StdSysEnvironSelect implements ActionStdV1<SysEnvironInfo> {
+	private ActionStdV1<SysEnvironInfo> actionHelper;
 	
 	
 	public StdSysEnvironSelect(DeciTreeOption<SysEnvironInfo> option) {
@@ -40,7 +40,7 @@ public final class StdSysEnvironSelect implements ActionStd<SysEnvironInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<SysEnvironInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<SysEnvironInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

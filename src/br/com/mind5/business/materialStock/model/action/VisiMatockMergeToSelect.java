@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.materialStock.info.MatockInfo;
 import br.com.mind5.business.materialStock.info.MatockMerger;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 
 final class VisiMatockMergeToSelect extends ActionVisitorTemplateMerge<MatockInfo, MatockInfo> {
@@ -16,7 +16,7 @@ final class VisiMatockMergeToSelect extends ActionVisitorTemplateMerge<MatockInf
 	
 	
 	
-	@Override protected Class<? extends ActionStd<MatockInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStdV1<MatockInfo>> getActionClassHook() {
 		return StdMatockSelect.class;
 	}
 	

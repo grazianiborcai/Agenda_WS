@@ -5,16 +5,16 @@ import java.util.List;
 
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.obsolete.DaoStmtExec_;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperStmt;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.countryPartner.dao.CounparSelect;
 import br.com.mind5.payment.countryPartner.info.CounparInfo;
 
-public final class StdCounparSelect implements ActionStd<CounparInfo> {
-	private ActionStd<CounparInfo> actionHelper;
+public final class StdCounparSelect implements ActionStdV1<CounparInfo> {
+	private ActionStdV1<CounparInfo> actionHelper;
 	
 	
 	public StdCounparSelect(DeciTreeOption<CounparInfo> option) {
@@ -40,7 +40,7 @@ public final class StdCounparSelect implements ActionStd<CounparInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<CounparInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<CounparInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

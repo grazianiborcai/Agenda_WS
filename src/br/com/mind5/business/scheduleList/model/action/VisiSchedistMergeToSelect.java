@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.scheduleList.info.SchedistInfo;
 import br.com.mind5.business.scheduleList.info.SchedistMerger;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 
 final class VisiSchedistMergeToSelect extends ActionVisitorTemplateMerge<SchedistInfo, SchedistInfo> {
@@ -16,7 +16,7 @@ final class VisiSchedistMergeToSelect extends ActionVisitorTemplateMerge<Schedis
 	
 	
 	
-	@Override protected Class<? extends ActionStd<SchedistInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStdV1<SchedistInfo>> getActionClassHook() {
 		return StdSchedistSelect.class;
 	}
 	

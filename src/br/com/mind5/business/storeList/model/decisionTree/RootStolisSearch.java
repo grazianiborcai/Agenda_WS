@@ -7,8 +7,8 @@ import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.business.storeList.model.action.LazyStolisRootSelect;
 import br.com.mind5.business.storeList.model.action.StdStolisMergeSotarch;
 import br.com.mind5.business.storeList.model.checker.StolisCheckDummy;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -35,11 +35,11 @@ public final class RootStolisSearch extends DeciTreeReadTemplate<StolisInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<StolisInfo>> buildActionsOnPassedHook(DeciTreeOption<StolisInfo> option) {
-		List<ActionStd<StolisInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<StolisInfo>> buildActionsOnPassedHook(DeciTreeOption<StolisInfo> option) {
+		List<ActionStdV1<StolisInfo>> actions = new ArrayList<>();
 
-		ActionStd<StolisInfo> mergeSotarch = new StdStolisMergeSotarch(option);
-		ActionLazy<StolisInfo> select = new LazyStolisRootSelect(option.conn, option.schemaName);
+		ActionStdV1<StolisInfo> mergeSotarch = new StdStolisMergeSotarch(option);
+		ActionLazyV1<StolisInfo> select = new LazyStolisRootSelect(option.conn, option.schemaName);
 		
 		mergeSotarch.addPostAction(select);
 		

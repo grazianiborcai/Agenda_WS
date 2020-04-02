@@ -1,14 +1,14 @@
 package br.com.mind5.security.tokenAuthentication.model.action;
 
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperMerge;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.tokenAuthentication.info.TauthInfo;
 
-public final class StdTauthMergeUsername implements ActionStd<TauthInfo> {
-	private ActionStd<TauthInfo> actionHelper;	
+public final class StdTauthMergeUsername implements ActionStdV1<TauthInfo> {
+	private ActionStdV1<TauthInfo> actionHelper;	
 	
 	
 	public StdTauthMergeUsername(DeciTreeOption<TauthInfo> option) {			
@@ -17,7 +17,7 @@ public final class StdTauthMergeUsername implements ActionStd<TauthInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<TauthInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<TauthInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

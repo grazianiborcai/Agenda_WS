@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.materialTextSnapshot.info.MatextsnapInfo;
 import br.com.mind5.business.materialTextSnapshot.info.MatextsnapMerger;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 
 final class VisiMatextsnapMergeToSelect extends ActionVisitorTemplateMerge<MatextsnapInfo, MatextsnapInfo> {
@@ -16,7 +16,7 @@ final class VisiMatextsnapMergeToSelect extends ActionVisitorTemplateMerge<Matex
 	
 	
 	
-	@Override protected Class<? extends ActionStd<MatextsnapInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStdV1<MatextsnapInfo>> getActionClassHook() {
 		return StdMatextsnapSelect.class;
 	}
 	

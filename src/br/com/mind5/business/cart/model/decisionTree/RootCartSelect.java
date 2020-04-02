@@ -15,8 +15,8 @@ import br.com.mind5.business.cart.model.action.StdCartMergeUsername;
 import br.com.mind5.business.cart.model.checker.CartCheckLangu;
 import br.com.mind5.business.cart.model.checker.CartCheckOwner;
 import br.com.mind5.business.cart.model.checker.CartCheckRead;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -62,17 +62,17 @@ public final class RootCartSelect extends DeciTreeReadTemplate<CartInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<CartInfo>> buildActionsOnPassedHook(DeciTreeOption<CartInfo> option) {
-		List<ActionStd<CartInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV1<CartInfo>> buildActionsOnPassedHook(DeciTreeOption<CartInfo> option) {
+		List<ActionStdV1<CartInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<CartInfo> mergeUser = new StdCartMergeUsername(option);
-		ActionLazy<CartInfo> select = new LazyCartMergeToSelect(option.conn, option.schemaName);
-		ActionLazy<CartInfo> mergeCartem = new LazyCartMergeCartem(option.conn, option.schemaName);
-		ActionLazy<CartInfo> enforceCurrency = new LazyCartEnforceCurrency(option.conn, option.schemaName);
-		ActionLazy<CartInfo> mergeCurrency = new LazyCartMergeCurrency(option.conn, option.schemaName);
-		ActionLazy<CartInfo> mergeFeewner = new LazyCartMergeFeewner(option.conn, option.schemaName);
-		ActionLazy<CartInfo> enforceItemtotal = new LazyCartEnforceItemtotal(option.conn, option.schemaName);
-		ActionLazy<CartInfo> enforceGrantotal = new LazyCartEnforceGrantotal(option.conn, option.schemaName);
+		ActionStdV1<CartInfo> mergeUser = new StdCartMergeUsername(option);
+		ActionLazyV1<CartInfo> select = new LazyCartMergeToSelect(option.conn, option.schemaName);
+		ActionLazyV1<CartInfo> mergeCartem = new LazyCartMergeCartem(option.conn, option.schemaName);
+		ActionLazyV1<CartInfo> enforceCurrency = new LazyCartEnforceCurrency(option.conn, option.schemaName);
+		ActionLazyV1<CartInfo> mergeCurrency = new LazyCartMergeCurrency(option.conn, option.schemaName);
+		ActionLazyV1<CartInfo> mergeFeewner = new LazyCartMergeFeewner(option.conn, option.schemaName);
+		ActionLazyV1<CartInfo> enforceItemtotal = new LazyCartEnforceItemtotal(option.conn, option.schemaName);
+		ActionLazyV1<CartInfo> enforceGrantotal = new LazyCartEnforceGrantotal(option.conn, option.schemaName);
 		
 		mergeUser.addPostAction(select);
 		select.addPostAction(mergeCartem);

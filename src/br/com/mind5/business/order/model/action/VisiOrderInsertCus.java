@@ -7,7 +7,7 @@ import br.com.mind5.business.customer.info.CusInfo;
 import br.com.mind5.business.customer.model.decisionTree.RootCusInsertFromUser;
 import br.com.mind5.business.order.info.OrderInfo;
 import br.com.mind5.business.order.info.OrderMerger;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -19,7 +19,7 @@ final class VisiOrderInsertCus extends ActionVisitorTemplateAction<OrderInfo, Cu
 	
 	
 	
-	@Override protected ActionStd<CusInfo> getActionHook(DeciTreeOption<CusInfo> option) {
+	@Override protected ActionStdV1<CusInfo> getActionHook(DeciTreeOption<CusInfo> option) {
 		return new RootCusInsertFromUser(option).toAction();
 	}
 	

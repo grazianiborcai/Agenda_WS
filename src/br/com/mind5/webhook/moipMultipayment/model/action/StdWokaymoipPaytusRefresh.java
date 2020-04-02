@@ -1,14 +1,14 @@
 package br.com.mind5.webhook.moipMultipayment.model.action;
 
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperAction;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.webhook.moipMultipayment.info.WokaymoipInfo;
 
-public final class StdWokaymoipPaytusRefresh implements ActionStd<WokaymoipInfo> {
-	private ActionStd<WokaymoipInfo> actionHelper;	
+public final class StdWokaymoipPaytusRefresh implements ActionStdV1<WokaymoipInfo> {
+	private ActionStdV1<WokaymoipInfo> actionHelper;	
 	
 	
 	public StdWokaymoipPaytusRefresh(DeciTreeOption<WokaymoipInfo> option) {			
@@ -17,7 +17,7 @@ public final class StdWokaymoipPaytusRefresh implements ActionStd<WokaymoipInfo>
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<WokaymoipInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<WokaymoipInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

@@ -7,14 +7,14 @@ import br.com.mind5.business.employeeWorkTimeRange.dao.EmpworgSelect;
 import br.com.mind5.business.employeeWorkTimeRange.info.EmpworgInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.obsolete.DaoStmtExec_;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperStmt;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdEmpworgSelect implements ActionStd<EmpworgInfo> {
-	private ActionStd<EmpworgInfo> actionHelper;
+public final class StdEmpworgSelect implements ActionStdV1<EmpworgInfo> {
+	private ActionStdV1<EmpworgInfo> actionHelper;
 	
 	
 	public StdEmpworgSelect(DeciTreeOption<EmpworgInfo> option) {
@@ -40,7 +40,7 @@ public final class StdEmpworgSelect implements ActionStd<EmpworgInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<EmpworgInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<EmpworgInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

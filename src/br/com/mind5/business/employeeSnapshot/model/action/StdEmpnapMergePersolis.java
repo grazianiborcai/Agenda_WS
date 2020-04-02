@@ -1,14 +1,14 @@
 package br.com.mind5.business.employeeSnapshot.model.action;
 
 import br.com.mind5.business.employeeSnapshot.info.EmpnapInfo;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperMerge;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdEmpnapMergePersolis implements ActionStd<EmpnapInfo> {
-	private ActionStd<EmpnapInfo> actionHelper;	
+public final class StdEmpnapMergePersolis implements ActionStdV1<EmpnapInfo> {
+	private ActionStdV1<EmpnapInfo> actionHelper;	
 	
 	
 	public StdEmpnapMergePersolis(DeciTreeOption<EmpnapInfo> option) {			
@@ -17,7 +17,7 @@ public final class StdEmpnapMergePersolis implements ActionStd<EmpnapInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<EmpnapInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<EmpnapInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

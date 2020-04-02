@@ -3,7 +3,7 @@ package br.com.mind5.security.userPassword.model.action;
 import java.sql.Connection;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.security.userPassword.info.UpswdInfo;
 import br.com.mind5.security.userPassword.info.UpswdMerger;
@@ -16,7 +16,7 @@ final class VisiUpswdMergeToAuth extends ActionVisitorTemplateMerge<UpswdInfo, U
 	
 	
 	
-	@Override protected Class<? extends ActionStd<UpswdInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStdV1<UpswdInfo>> getActionClassHook() {
 		return StdUpswdSelect.class;
 	}
 	

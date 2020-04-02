@@ -7,14 +7,14 @@ import br.com.mind5.business.moonCalendar.dao.MooncalSelect;
 import br.com.mind5.business.moonCalendar.info.MooncalInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.obsolete.DaoStmtExec_;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperStmt;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdMooncalSelect implements ActionStd<MooncalInfo> {
-	private ActionStd<MooncalInfo> actionHelper;
+public final class StdMooncalSelect implements ActionStdV1<MooncalInfo> {
+	private ActionStdV1<MooncalInfo> actionHelper;
 	
 	
 	public StdMooncalSelect(DeciTreeOption<MooncalInfo> option) {
@@ -40,7 +40,7 @@ public final class StdMooncalSelect implements ActionStd<MooncalInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<MooncalInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<MooncalInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

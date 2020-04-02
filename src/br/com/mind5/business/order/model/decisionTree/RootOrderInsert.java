@@ -11,8 +11,8 @@ import br.com.mind5.business.order.model.checker.OrderCheckCurrency;
 import br.com.mind5.business.order.model.checker.OrderCheckInsert;
 import br.com.mind5.business.order.model.checker.OrderCheckLangu;
 import br.com.mind5.business.order.model.checker.OrderCheckOwner;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -65,13 +65,13 @@ public final class RootOrderInsert extends DeciTreeWriteTemplate<OrderInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<OrderInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderInfo> option) {
-		List<ActionStd<OrderInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<OrderInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderInfo> option) {
+		List<ActionStdV1<OrderInfo>> actions = new ArrayList<>();
 
-		ActionStd<OrderInfo> insertOrder = new NodeOrderInsert(option).toAction();
-		ActionLazy<OrderInfo> insertOrderem = new LazyOrderNodeOrderem(option.conn, option.schemaName);
-		ActionLazy<OrderInfo> snapshot = new LazyOrderNodeSnapshot(option.conn, option.schemaName);
-		ActionLazy<OrderInfo> insertSchedine = new LazyOrderInsertSchedine(option.conn, option.schemaName);	
+		ActionStdV1<OrderInfo> insertOrder = new NodeOrderInsert(option).toAction();
+		ActionLazyV1<OrderInfo> insertOrderem = new LazyOrderNodeOrderem(option.conn, option.schemaName);
+		ActionLazyV1<OrderInfo> snapshot = new LazyOrderNodeSnapshot(option.conn, option.schemaName);
+		ActionLazyV1<OrderInfo> insertSchedine = new LazyOrderInsertSchedine(option.conn, option.schemaName);	
 		
 		insertOrder.addPostAction(insertOrderem);
 		insertOrderem.addPostAction(snapshot);

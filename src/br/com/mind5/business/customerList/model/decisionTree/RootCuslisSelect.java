@@ -10,8 +10,8 @@ import br.com.mind5.business.customerList.model.action.StdCuslisMergeToSelect;
 import br.com.mind5.business.customerList.model.checker.CuslisCheckLangu;
 import br.com.mind5.business.customerList.model.checker.CuslisCheckOwner;
 import br.com.mind5.business.customerList.model.checker.CuslisCheckRead;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -57,12 +57,12 @@ public final class RootCuslisSelect extends DeciTreeReadTemplate<CuslisInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<CuslisInfo>> buildActionsOnPassedHook(DeciTreeOption<CuslisInfo> option) {
-		List<ActionStd<CuslisInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<CuslisInfo>> buildActionsOnPassedHook(DeciTreeOption<CuslisInfo> option) {
+		List<ActionStdV1<CuslisInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CuslisInfo> select = new StdCuslisMergeToSelect(option);
-		ActionLazy<CuslisInfo> mergePersolis = new LazyCuslisMergePersolis(option.conn, option.schemaName);
-		ActionLazy<CuslisInfo> mergeFimist = new LazyCuslisMergeFimist(option.conn, option.schemaName);
+		ActionStdV1<CuslisInfo> select = new StdCuslisMergeToSelect(option);
+		ActionLazyV1<CuslisInfo> mergePersolis = new LazyCuslisMergePersolis(option.conn, option.schemaName);
+		ActionLazyV1<CuslisInfo> mergeFimist = new LazyCuslisMergeFimist(option.conn, option.schemaName);
 		
 		select.addPostAction(mergePersolis);
 		mergePersolis.addPostAction(mergeFimist);

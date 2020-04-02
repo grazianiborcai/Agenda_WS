@@ -12,8 +12,8 @@ import br.com.mind5.business.cartItem.model.action.LazyCartemMergeMatore;
 import br.com.mind5.business.cartItem.model.action.LazyCartemMergeWeekday;
 import br.com.mind5.business.cartItem.model.action.StdCartemMergeStolis;
 import br.com.mind5.business.cartItem.model.checker.CartemCheckService;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -45,16 +45,16 @@ public final class NodeCartemSelectService extends DeciTreeWriteTemplate<CartemI
 	
 	
 	
-	@Override protected List<ActionStd<CartemInfo>> buildActionsOnPassedHook(DeciTreeOption<CartemInfo> option) {
-		List<ActionStd<CartemInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<CartemInfo>> buildActionsOnPassedHook(DeciTreeOption<CartemInfo> option) {
+		List<ActionStdV1<CartemInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CartemInfo> mergeStolis = new StdCartemMergeStolis(option);
-		ActionLazy<CartemInfo> mergeMatlis = new LazyCartemMergeMatlis(option.conn, option.schemaName);
-		ActionLazy<CartemInfo> mergeEmplis = new LazyCartemMergeEmplis(option.conn, option.schemaName);
-		ActionLazy<CartemInfo> enforceWeekday = new LazyCartemEnforceWeekday(option.conn, option.schemaName);
-		ActionLazy<CartemInfo> mergeWeekday = new LazyCartemMergeWeekday(option.conn, option.schemaName);
-		ActionLazy<CartemInfo> mergeMatore = new LazyCartemMergeMatore(option.conn, option.schemaName);
-		ActionLazy<CartemInfo> enforceTotitem = new LazyCartemEnforceTotitem(option.conn, option.schemaName);
+		ActionStdV1<CartemInfo> mergeStolis = new StdCartemMergeStolis(option);
+		ActionLazyV1<CartemInfo> mergeMatlis = new LazyCartemMergeMatlis(option.conn, option.schemaName);
+		ActionLazyV1<CartemInfo> mergeEmplis = new LazyCartemMergeEmplis(option.conn, option.schemaName);
+		ActionLazyV1<CartemInfo> enforceWeekday = new LazyCartemEnforceWeekday(option.conn, option.schemaName);
+		ActionLazyV1<CartemInfo> mergeWeekday = new LazyCartemMergeWeekday(option.conn, option.schemaName);
+		ActionLazyV1<CartemInfo> mergeMatore = new LazyCartemMergeMatore(option.conn, option.schemaName);
+		ActionLazyV1<CartemInfo> enforceTotitem = new LazyCartemEnforceTotitem(option.conn, option.schemaName);
 		
 		mergeStolis.addPostAction(mergeMatlis);
 		mergeMatlis.addPostAction(mergeEmplis);

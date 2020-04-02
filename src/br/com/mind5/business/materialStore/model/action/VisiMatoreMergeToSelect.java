@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.materialStore.info.MatoreInfo;
 import br.com.mind5.business.materialStore.info.MatoreMerger;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 
 final class VisiMatoreMergeToSelect extends ActionVisitorTemplateMerge<MatoreInfo, MatoreInfo> {
@@ -16,7 +16,7 @@ final class VisiMatoreMergeToSelect extends ActionVisitorTemplateMerge<MatoreInf
 	
 	
 	
-	@Override protected Class<? extends ActionStd<MatoreInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStdV1<MatoreInfo>> getActionClassHook() {
 		return StdMatoreSelect.class;
 	}
 	

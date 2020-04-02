@@ -3,8 +3,8 @@ package br.com.mind5.payment.customerPartner.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -36,13 +36,13 @@ public final class NodeCusparInsert extends DeciTreeWriteTemplate<CusparInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<CusparInfo>> buildActionsOnPassedHook(DeciTreeOption<CusparInfo> option) {
-		List<ActionStd<CusparInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<CusparInfo>> buildActionsOnPassedHook(DeciTreeOption<CusparInfo> option) {
+		List<ActionStdV1<CusparInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CusparInfo> insert = new StdCusparInsert(option);
-		ActionLazy<CusparInfo> enforceCompoundId = new LazyCusparEnforceCompoundId(option.conn, option.schemaName);	
-		ActionLazy<CusparInfo> createMoip = new LazyCusparNodeCreateMoip(option.conn, option.schemaName);
-		ActionLazy<CusparInfo> update = new LazyCusparUpdate(option.conn, option.schemaName);
+		ActionStdV1<CusparInfo> insert = new StdCusparInsert(option);
+		ActionLazyV1<CusparInfo> enforceCompoundId = new LazyCusparEnforceCompoundId(option.conn, option.schemaName);	
+		ActionLazyV1<CusparInfo> createMoip = new LazyCusparNodeCreateMoip(option.conn, option.schemaName);
+		ActionLazyV1<CusparInfo> update = new LazyCusparUpdate(option.conn, option.schemaName);
 		
 		insert.addPostAction(enforceCompoundId);
 		enforceCompoundId.addPostAction(createMoip);

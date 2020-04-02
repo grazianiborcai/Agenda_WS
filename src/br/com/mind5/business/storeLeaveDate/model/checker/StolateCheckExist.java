@@ -3,7 +3,7 @@ package br.com.mind5.business.storeLeaveDate.model.checker;
 import br.com.mind5.business.storeLeaveDate.info.StolateInfo;
 import br.com.mind5.business.storeLeaveDate.model.action.StdStolateSelect;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -16,8 +16,8 @@ public final class StolateCheckExist extends ModelCheckerTemplateAction<StolateI
 	
 	
 	
-	@Override protected ActionStd<StolateInfo> buildActionHook(DeciTreeOption<StolateInfo> option) {
-		ActionStd<StolateInfo> select = new StdStolateSelect(option);
+	@Override protected ActionStdV1<StolateInfo> buildActionHook(DeciTreeOption<StolateInfo> option) {
+		ActionStdV1<StolateInfo> select = new StdStolateSelect(option);
 		return select;
 	}
 	

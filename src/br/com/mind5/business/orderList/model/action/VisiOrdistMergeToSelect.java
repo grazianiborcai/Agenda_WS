@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.orderList.info.OrdistInfo;
 import br.com.mind5.business.orderList.info.OrdistMerger;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 
 final class VisiOrdistMergeToSelect extends ActionVisitorTemplateMerge<OrdistInfo, OrdistInfo> {
@@ -16,7 +16,7 @@ final class VisiOrdistMergeToSelect extends ActionVisitorTemplateMerge<OrdistInf
 	
 	
 	
-	@Override protected Class<? extends ActionStd<OrdistInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStdV1<OrdistInfo>> getActionClassHook() {
 		return StdOrdistSelect.class;
 	}
 	

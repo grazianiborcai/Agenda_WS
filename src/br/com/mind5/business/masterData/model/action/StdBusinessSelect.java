@@ -7,14 +7,14 @@ import br.com.mind5.business.masterData.dao.BusinessSelect;
 import br.com.mind5.business.masterData.info.BusinessInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.obsolete.DaoStmtExec_;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperStmt;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdBusinessSelect implements ActionStd<BusinessInfo> {
-	private ActionStd<BusinessInfo> actionHelper;
+public final class StdBusinessSelect implements ActionStdV1<BusinessInfo> {
+	private ActionStdV1<BusinessInfo> actionHelper;
 	
 	
 	public StdBusinessSelect(DeciTreeOption<BusinessInfo> option) {
@@ -40,7 +40,7 @@ public final class StdBusinessSelect implements ActionStd<BusinessInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<BusinessInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<BusinessInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

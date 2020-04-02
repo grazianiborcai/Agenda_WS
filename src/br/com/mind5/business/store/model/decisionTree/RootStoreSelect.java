@@ -17,8 +17,8 @@ import br.com.mind5.business.store.model.checker.StoreCheckExist;
 import br.com.mind5.business.store.model.checker.StoreCheckLangu;
 import br.com.mind5.business.store.model.checker.StoreCheckRead;
 import br.com.mind5.business.store.model.checker.StoreCheckStorauth;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -72,18 +72,18 @@ public final class RootStoreSelect extends DeciTreeReadTemplate<StoreInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<StoreInfo>> buildActionsOnPassedHook(DeciTreeOption<StoreInfo> option) {
-		List<ActionStd<StoreInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<StoreInfo>> buildActionsOnPassedHook(DeciTreeOption<StoreInfo> option) {
+		List<ActionStdV1<StoreInfo>> actions = new ArrayList<>();
 
-		ActionStd<StoreInfo> select = new StdStoreMergeToSelect(option);
-		ActionLazy<StoreInfo> mergeCurrency = new LazyStoreMergeCurrency(option.conn, option.schemaName);
-		ActionLazy<StoreInfo> mergeTimezone = new LazyStoreMergeTimezone(option.conn, option.schemaName);
-		ActionLazy<StoreInfo> mergePerson = new LazyStoreMergePerson(option.conn, option.schemaName);
-		ActionLazy<StoreInfo> mergeComp = new LazyStoreMergeComp(option.conn, option.schemaName);
-		ActionLazy<StoreInfo> mergeAddress = new LazyStoreMergeAddress(option.conn, option.schemaName);
-		ActionLazy<StoreInfo> mergePhone = new LazyStoreMergePhone(option.conn, option.schemaName);
-		ActionLazy<StoreInfo> mergeUser = new LazyStoreMergeUser(option.conn, option.schemaName);
-		ActionLazy<StoreInfo> mergeFimist = new LazyStoreMergeFimist(option.conn, option.schemaName);
+		ActionStdV1<StoreInfo> select = new StdStoreMergeToSelect(option);
+		ActionLazyV1<StoreInfo> mergeCurrency = new LazyStoreMergeCurrency(option.conn, option.schemaName);
+		ActionLazyV1<StoreInfo> mergeTimezone = new LazyStoreMergeTimezone(option.conn, option.schemaName);
+		ActionLazyV1<StoreInfo> mergePerson = new LazyStoreMergePerson(option.conn, option.schemaName);
+		ActionLazyV1<StoreInfo> mergeComp = new LazyStoreMergeComp(option.conn, option.schemaName);
+		ActionLazyV1<StoreInfo> mergeAddress = new LazyStoreMergeAddress(option.conn, option.schemaName);
+		ActionLazyV1<StoreInfo> mergePhone = new LazyStoreMergePhone(option.conn, option.schemaName);
+		ActionLazyV1<StoreInfo> mergeUser = new LazyStoreMergeUser(option.conn, option.schemaName);
+		ActionLazyV1<StoreInfo> mergeFimist = new LazyStoreMergeFimist(option.conn, option.schemaName);
 		
 		select.addPostAction(mergeCurrency);
 		mergeCurrency.addPostAction(mergeTimezone);

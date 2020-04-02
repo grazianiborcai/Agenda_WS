@@ -3,8 +3,8 @@ package br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.model.decisionTre
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -44,15 +44,15 @@ public final class RootMultmoipRead extends DeciTreeWriteTemplate<MultmoipInfo> 
 	
 	
 	
-	@Override protected List<ActionStd<MultmoipInfo>> buildActionsOnPassedHook(DeciTreeOption<MultmoipInfo> option) {
-		List<ActionStd<MultmoipInfo>> actions = new ArrayList<>();	
+	@Override protected List<ActionStdV1<MultmoipInfo>> buildActionsOnPassedHook(DeciTreeOption<MultmoipInfo> option) {
+		List<ActionStdV1<MultmoipInfo>> actions = new ArrayList<>();	
 		
-		ActionStd<MultmoipInfo> enforcePaypar = new StdMultmoipEnforcePaypar(option);
-		ActionLazy<MultmoipInfo> mergeSetupar = new LazyMultmoipMergeSetupar(option.conn, option.schemaName);	
-		ActionLazy<MultmoipInfo> mergeSysEnviron = new LazyMultmoipMergeSysEnviron(option.conn, option.schemaName);	
-		ActionLazy<MultmoipInfo> enforceSetup = new LazyMultmoipEnforceSetup(option.conn, option.schemaName);		
-		ActionLazy<MultmoipInfo> read = new LazyMultmoipRead(option.conn, option.schemaName);
-		ActionLazy<MultmoipInfo> enforceResponseAttr = new LazyMultmoipEnforceResponseAttr(option.conn, option.schemaName);
+		ActionStdV1<MultmoipInfo> enforcePaypar = new StdMultmoipEnforcePaypar(option);
+		ActionLazyV1<MultmoipInfo> mergeSetupar = new LazyMultmoipMergeSetupar(option.conn, option.schemaName);	
+		ActionLazyV1<MultmoipInfo> mergeSysEnviron = new LazyMultmoipMergeSysEnviron(option.conn, option.schemaName);	
+		ActionLazyV1<MultmoipInfo> enforceSetup = new LazyMultmoipEnforceSetup(option.conn, option.schemaName);		
+		ActionLazyV1<MultmoipInfo> read = new LazyMultmoipRead(option.conn, option.schemaName);
+		ActionLazyV1<MultmoipInfo> enforceResponseAttr = new LazyMultmoipEnforceResponseAttr(option.conn, option.schemaName);
 		
 		enforcePaypar.addPostAction(mergeSetupar);
 		mergeSetupar.addPostAction(mergeSysEnviron);

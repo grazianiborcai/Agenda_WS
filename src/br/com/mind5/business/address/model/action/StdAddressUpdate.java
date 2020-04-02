@@ -7,14 +7,14 @@ import br.com.mind5.business.address.dao.AddressUpdate;
 import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.obsolete.DaoStmtExec_;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperStmt;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdAddressUpdate implements ActionStd<AddressInfo> {
-	private ActionStd<AddressInfo> actionHelper;
+public final class StdAddressUpdate implements ActionStdV1<AddressInfo> {
+	private ActionStdV1<AddressInfo> actionHelper;
 	
 	
 	public StdAddressUpdate(DeciTreeOption<AddressInfo> option) {
@@ -40,7 +40,7 @@ public final class StdAddressUpdate implements ActionStd<AddressInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<AddressInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<AddressInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

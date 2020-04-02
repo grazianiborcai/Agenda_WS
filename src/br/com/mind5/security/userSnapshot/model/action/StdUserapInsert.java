@@ -5,16 +5,16 @@ import java.util.List;
 
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.obsolete.DaoStmtExec_;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperStmt;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.userSnapshot.dao.UserapInsert;
 import br.com.mind5.security.userSnapshot.info.UserapInfo;
 
-public final class StdUserapInsert implements ActionStd<UserapInfo> {
-	private ActionStd<UserapInfo> actionHelper;
+public final class StdUserapInsert implements ActionStdV1<UserapInfo> {
+	private ActionStdV1<UserapInfo> actionHelper;
 	
 	
 	public StdUserapInsert(DeciTreeOption<UserapInfo> option) {
@@ -40,7 +40,7 @@ public final class StdUserapInsert implements ActionStd<UserapInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<UserapInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<UserapInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

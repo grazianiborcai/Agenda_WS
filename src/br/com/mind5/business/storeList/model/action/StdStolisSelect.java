@@ -7,14 +7,14 @@ import br.com.mind5.business.storeList.dao.StolisSelect;
 import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.obsolete.DaoStmtExec_;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperStmt;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdStolisSelect implements ActionStd<StolisInfo> {
-	private ActionStd<StolisInfo> actionHelper;
+public final class StdStolisSelect implements ActionStdV1<StolisInfo> {
+	private ActionStdV1<StolisInfo> actionHelper;
 	
 	
 	public StdStolisSelect(DeciTreeOption<StolisInfo> option) {
@@ -40,7 +40,7 @@ public final class StdStolisSelect implements ActionStd<StolisInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<StolisInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<StolisInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

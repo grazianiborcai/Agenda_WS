@@ -8,7 +8,7 @@ import br.com.mind5.business.owner.info.OwnerInfo;
 import br.com.mind5.business.person.info.PersonCopier;
 import br.com.mind5.business.person.info.PersonInfo;
 import br.com.mind5.business.person.model.decisionTree.RootPersonDelete;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -31,7 +31,7 @@ final class VisiOwnerDeletePerson extends ActionVisitorTemplateAction<OwnerInfo,
 	
 	
 	
-	@Override protected ActionStd<PersonInfo> getActionHook(DeciTreeOption<PersonInfo> option) {
+	@Override protected ActionStdV1<PersonInfo> getActionHook(DeciTreeOption<PersonInfo> option) {
 		return new RootPersonDelete(option).toAction();
 	}
 }

@@ -12,8 +12,8 @@ import br.com.mind5.business.scheduleLine.model.action.LazySchedineNodeOrderL1;
 import br.com.mind5.business.scheduleLine.model.action.LazySchedineNodeTime;
 import br.com.mind5.business.scheduleLine.model.action.StdSchedineMergeToUpdate;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckDummy;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -39,16 +39,16 @@ public final class NodeSchedineUpdate extends DeciTreeWriteTemplate<SchedineInfo
 	
 	
 	
-	@Override protected List<ActionStd<SchedineInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedineInfo> option) {
-		List<ActionStd<SchedineInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<SchedineInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedineInfo> option) {
+		List<ActionStdV1<SchedineInfo>> actions = new ArrayList<>();
 		
-		ActionStd<SchedineInfo> mergeToUpdate = new StdSchedineMergeToUpdate(option);
-		ActionLazy<SchedineInfo> nodeOrder = new LazySchedineNodeOrderL1(option.conn, option.schemaName);
-		ActionLazy<SchedineInfo> enforceLChanged = new LazySchedineEnforceLChanged(option.conn, option.schemaName);
-		ActionLazy<SchedineInfo> mergeCuslis = new LazySchedineMergeCuslis(option.conn, option.schemaName);
-		ActionLazy<SchedineInfo> mergeUsername = new LazySchedineMergeUsername(option.conn, option.schemaName);
-		ActionLazy<SchedineInfo> nodeTime = new LazySchedineNodeTime(option.conn, option.schemaName);
-		ActionLazy<SchedineInfo> enforceStatus = new LazySchedineEnforceStatus(option.conn, option.schemaName);
+		ActionStdV1<SchedineInfo> mergeToUpdate = new StdSchedineMergeToUpdate(option);
+		ActionLazyV1<SchedineInfo> nodeOrder = new LazySchedineNodeOrderL1(option.conn, option.schemaName);
+		ActionLazyV1<SchedineInfo> enforceLChanged = new LazySchedineEnforceLChanged(option.conn, option.schemaName);
+		ActionLazyV1<SchedineInfo> mergeCuslis = new LazySchedineMergeCuslis(option.conn, option.schemaName);
+		ActionLazyV1<SchedineInfo> mergeUsername = new LazySchedineMergeUsername(option.conn, option.schemaName);
+		ActionLazyV1<SchedineInfo> nodeTime = new LazySchedineNodeTime(option.conn, option.schemaName);
+		ActionLazyV1<SchedineInfo> enforceStatus = new LazySchedineEnforceStatus(option.conn, option.schemaName);
 		
 		mergeToUpdate.addPostAction(nodeOrder);
 		nodeOrder.addPostAction(enforceLChanged);

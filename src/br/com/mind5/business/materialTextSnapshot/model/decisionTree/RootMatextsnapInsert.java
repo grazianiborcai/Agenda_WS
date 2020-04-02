@@ -9,8 +9,8 @@ import br.com.mind5.business.materialTextSnapshot.model.action.StdMatextsnapMerg
 import br.com.mind5.business.materialTextSnapshot.model.checker.MatextsnapCheckMat;
 import br.com.mind5.business.materialTextSnapshot.model.checker.MatextsnapCheckOwner;
 import br.com.mind5.business.materialTextSnapshot.model.checker.MatextsnapCheckWrite;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -56,11 +56,11 @@ public final class RootMatextsnapInsert extends DeciTreeWriteTemplate<Matextsnap
 	
 	
 	
-	@Override protected List<ActionStd<MatextsnapInfo>> buildActionsOnPassedHook(DeciTreeOption<MatextsnapInfo> option) {
-		List<ActionStd<MatextsnapInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV1<MatextsnapInfo>> buildActionsOnPassedHook(DeciTreeOption<MatextsnapInfo> option) {
+		List<ActionStdV1<MatextsnapInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<MatextsnapInfo> mergeMatext = new StdMatextsnapMergeMatext(option);	
-		ActionLazy<MatextsnapInfo> insert = new LazyMatextsnapInsert(option.conn, option.schemaName);	
+		ActionStdV1<MatextsnapInfo> mergeMatext = new StdMatextsnapMergeMatext(option);	
+		ActionLazyV1<MatextsnapInfo> insert = new LazyMatextsnapInsert(option.conn, option.schemaName);	
 		
 		mergeMatext.addPostAction(insert);
 		

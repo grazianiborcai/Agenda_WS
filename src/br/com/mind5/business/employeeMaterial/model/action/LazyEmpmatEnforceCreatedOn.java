@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.employeeMaterial.info.EmpmatInfo;
 import br.com.mind5.model.action.ActionLazyTemplate;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -23,7 +23,7 @@ public final class LazyEmpmatEnforceCreatedOn extends ActionLazyTemplate<EmpmatI
 	
 	
 	
-	@Override protected ActionStd<EmpmatInfo> getInstanceOfActionHook(DeciTreeOption<EmpmatInfo> option) {
+	@Override protected ActionStdV1<EmpmatInfo> getInstanceOfActionHook(DeciTreeOption<EmpmatInfo> option) {
 		return new StdEmpmatEnforceCreatedOn(option);
 	}
 	

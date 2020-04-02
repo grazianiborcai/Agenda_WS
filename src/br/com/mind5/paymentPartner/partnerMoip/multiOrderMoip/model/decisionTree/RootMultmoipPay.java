@@ -3,8 +3,8 @@ package br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.model.decisionTre
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -56,12 +56,12 @@ public final class RootMultmoipPay extends DeciTreeReadTemplate<MultmoipInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<MultmoipInfo>> buildActionsOnPassedHook(DeciTreeOption<MultmoipInfo> option) {
-		List<ActionStd<MultmoipInfo>> actions = new ArrayList<>();	
+	@Override protected List<ActionStdV1<MultmoipInfo>> buildActionsOnPassedHook(DeciTreeOption<MultmoipInfo> option) {
+		List<ActionStdV1<MultmoipInfo>> actions = new ArrayList<>();	
 		
-		ActionStd<MultmoipInfo> placeOrdmoip = new NodeMultmoipOrdmoip(option).toAction();
-		ActionLazy<MultmoipInfo> placeMultiorder = new LazyMultmoipNodePlace(option.conn, option.schemaName);
-		ActionLazy<MultmoipInfo> payMultiorder = new LazyMultmoipPaymoipPay(option.conn, option.schemaName);
+		ActionStdV1<MultmoipInfo> placeOrdmoip = new NodeMultmoipOrdmoip(option).toAction();
+		ActionLazyV1<MultmoipInfo> placeMultiorder = new LazyMultmoipNodePlace(option.conn, option.schemaName);
+		ActionLazyV1<MultmoipInfo> payMultiorder = new LazyMultmoipPaymoipPay(option.conn, option.schemaName);
 		
 		placeOrdmoip.addPostAction(placeMultiorder);
 		placeMultiorder.addPostAction(payMultiorder);

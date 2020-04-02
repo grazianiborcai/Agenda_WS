@@ -8,7 +8,7 @@ import br.com.mind5.business.employeeMaterialSearch.model.action.StdEmpmarchMerg
 import br.com.mind5.business.employeeMaterialSearch.model.checker.EmpmarchCheckLangu;
 import br.com.mind5.business.employeeMaterialSearch.model.checker.EmpmarchCheckOwner;
 import br.com.mind5.business.employeeMaterialSearch.model.checker.EmpmarchCheckRead;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -54,10 +54,10 @@ public final class RootEmpmarchSelect extends DeciTreeReadTemplate<EmpmarchInfo>
 	
 	
 	
-	@Override protected List<ActionStd<EmpmarchInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpmarchInfo> option) {
-		List<ActionStd<EmpmarchInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<EmpmarchInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpmarchInfo> option) {
+		List<ActionStdV1<EmpmarchInfo>> actions = new ArrayList<>();
 		
-		ActionStd<EmpmarchInfo> select = new StdEmpmarchMergeToSelect(option);
+		ActionStdV1<EmpmarchInfo> select = new StdEmpmarchMergeToSelect(option);
 		
 		actions.add(select);
 		return actions;

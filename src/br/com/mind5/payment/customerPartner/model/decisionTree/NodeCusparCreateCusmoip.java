@@ -3,7 +3,7 @@ package br.com.mind5.payment.customerPartner.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -38,10 +38,10 @@ public final class NodeCusparCreateCusmoip extends DeciTreeWriteTemplate<CusparI
 	
 	
 	
-	@Override protected List<ActionStd<CusparInfo>> buildActionsOnPassedHook(DeciTreeOption<CusparInfo> option) {
-		List<ActionStd<CusparInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<CusparInfo>> buildActionsOnPassedHook(DeciTreeOption<CusparInfo> option) {
+		List<ActionStdV1<CusparInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CusparInfo> createCusmoip = new StdCusparCreateCusmoip(option);
+		ActionStdV1<CusparInfo> createCusmoip = new StdCusparCreateCusmoip(option);
 		
 		actions.add(createCusmoip);
 		return actions;

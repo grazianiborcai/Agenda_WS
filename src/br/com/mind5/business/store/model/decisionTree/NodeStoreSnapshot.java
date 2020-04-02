@@ -7,8 +7,8 @@ import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.business.store.model.action.LazyStoreUpdate;
 import br.com.mind5.business.store.model.action.StdStoreInsertStorap;
 import br.com.mind5.business.store.model.checker.StoreCheckDummy;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -34,11 +34,11 @@ public final class NodeStoreSnapshot extends DeciTreeWriteTemplate<StoreInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<StoreInfo>> buildActionsOnPassedHook(DeciTreeOption<StoreInfo> option) {
-		List<ActionStd<StoreInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<StoreInfo>> buildActionsOnPassedHook(DeciTreeOption<StoreInfo> option) {
+		List<ActionStdV1<StoreInfo>> actions = new ArrayList<>();
 		
-		ActionStd<StoreInfo> insertSnapshot = new StdStoreInsertStorap(option);		
-		ActionLazy<StoreInfo> update = new LazyStoreUpdate(option.conn, option.schemaName);	
+		ActionStdV1<StoreInfo> insertSnapshot = new StdStoreInsertStorap(option);		
+		ActionLazyV1<StoreInfo> update = new LazyStoreUpdate(option.conn, option.schemaName);	
 		
 		insertSnapshot.addPostAction(update);
 		

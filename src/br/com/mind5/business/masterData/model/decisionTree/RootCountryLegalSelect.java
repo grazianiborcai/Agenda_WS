@@ -7,8 +7,8 @@ import br.com.mind5.business.masterData.info.CountryLegalInfo;
 import br.com.mind5.business.masterData.model.action.LazyCountryLegalMergeCountry;
 import br.com.mind5.business.masterData.model.action.StdCountryLegalSelect;
 import br.com.mind5.business.masterData.model.checker.CountryLegalCheckRead;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -40,11 +40,11 @@ public final class RootCountryLegalSelect extends DeciTreeReadTemplate<CountryLe
 	
 	
 	
-	@Override protected List<ActionStd<CountryLegalInfo>> buildActionsOnPassedHook(DeciTreeOption<CountryLegalInfo> option) {
-		List<ActionStd<CountryLegalInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<CountryLegalInfo>> buildActionsOnPassedHook(DeciTreeOption<CountryLegalInfo> option) {
+		List<ActionStdV1<CountryLegalInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CountryLegalInfo> select = new StdCountryLegalSelect(option);
-		ActionLazy<CountryLegalInfo> mergeCountry = new LazyCountryLegalMergeCountry(option.conn, option.schemaName);
+		ActionStdV1<CountryLegalInfo> select = new StdCountryLegalSelect(option);
+		ActionLazyV1<CountryLegalInfo> mergeCountry = new LazyCountryLegalMergeCountry(option.conn, option.schemaName);
 		
 		select.addPostAction(mergeCountry);
 		

@@ -12,8 +12,8 @@ import br.com.mind5.business.orderItemSnapshot.model.checker.OrdemrapCheckLangu;
 import br.com.mind5.business.orderItemSnapshot.model.checker.OrdemrapCheckOrderem;
 import br.com.mind5.business.orderItemSnapshot.model.checker.OrdemrapCheckOwner;
 import br.com.mind5.business.orderItemSnapshot.model.checker.OrdemrapCheckWrite;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -66,13 +66,13 @@ public final class RootOrdemrapInsert extends DeciTreeWriteTemplate<OrdemrapInfo
 	
 	
 	
-	@Override protected List<ActionStd<OrdemrapInfo>> buildActionsOnPassedHook(DeciTreeOption<OrdemrapInfo> option) {
-		List<ActionStd<OrdemrapInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<OrdemrapInfo>> buildActionsOnPassedHook(DeciTreeOption<OrdemrapInfo> option) {
+		List<ActionStdV1<OrdemrapInfo>> actions = new ArrayList<>();
 		
-		ActionStd<OrdemrapInfo> mergeMat = new StdOrdemrapMergeMat(option);
-		ActionLazy<OrdemrapInfo> nodeStore = new LazyOrdemrapNodeStore(option.conn, option.schemaName);
-		ActionLazy<OrdemrapInfo> nodeEmp = new LazyOrdemrapNodeEmp(option.conn, option.schemaName);
-		ActionLazy<OrdemrapInfo> insert = new LazyOrdemrapInsert(option.conn, option.schemaName);
+		ActionStdV1<OrdemrapInfo> mergeMat = new StdOrdemrapMergeMat(option);
+		ActionLazyV1<OrdemrapInfo> nodeStore = new LazyOrdemrapNodeStore(option.conn, option.schemaName);
+		ActionLazyV1<OrdemrapInfo> nodeEmp = new LazyOrdemrapNodeEmp(option.conn, option.schemaName);
+		ActionLazyV1<OrdemrapInfo> insert = new LazyOrdemrapInsert(option.conn, option.schemaName);
 		
 		mergeMat.addPostAction(nodeStore);
 		nodeStore.addPostAction(nodeEmp);

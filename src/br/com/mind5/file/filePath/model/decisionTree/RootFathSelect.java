@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.file.filePath.info.FathInfo;
 import br.com.mind5.file.filePath.model.action.StdFathSelect;
 import br.com.mind5.file.filePath.model.checker.FathCheckRead;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -38,10 +38,10 @@ public final class RootFathSelect extends DeciTreeReadTemplate<FathInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<FathInfo>> buildActionsOnPassedHook(DeciTreeOption<FathInfo> option) {
-		List<ActionStd<FathInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<FathInfo>> buildActionsOnPassedHook(DeciTreeOption<FathInfo> option) {
+		List<ActionStdV1<FathInfo>> actions = new ArrayList<>();
 		
-		ActionStd<FathInfo> select = new StdFathSelect(option);
+		ActionStdV1<FathInfo> select = new StdFathSelect(option);
 		
 		actions.add(select);
 		return actions;

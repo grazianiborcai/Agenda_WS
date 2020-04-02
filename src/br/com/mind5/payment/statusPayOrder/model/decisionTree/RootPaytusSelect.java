@@ -3,8 +3,8 @@ package br.com.mind5.payment.statusPayOrder.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -48,11 +48,11 @@ public final class RootPaytusSelect extends DeciTreeReadTemplate<PaytusInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<PaytusInfo>> buildActionsOnPassedHook(DeciTreeOption<PaytusInfo> option) {
-		List<ActionStd<PaytusInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV1<PaytusInfo>> buildActionsOnPassedHook(DeciTreeOption<PaytusInfo> option) {
+		List<ActionStdV1<PaytusInfo>> actions = new ArrayList<>();		
 
-		ActionStd<PaytusInfo> mergePayord = new StdPaytusMergePayord(option);	
-		ActionLazy<PaytusInfo> mergePaytusem = new LazyPaytusMergePaytusem(option.conn, option.schemaName);	
+		ActionStdV1<PaytusInfo> mergePayord = new StdPaytusMergePayord(option);	
+		ActionLazyV1<PaytusInfo> mergePaytusem = new LazyPaytusMergePaytusem(option.conn, option.schemaName);	
 		
 		mergePayord.addPostAction(mergePaytusem);
 		

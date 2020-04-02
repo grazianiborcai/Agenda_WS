@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.company.info.CompInfo;
 import br.com.mind5.business.company.model.decisionTree.RootCompDelete;
 import br.com.mind5.business.store.info.StoreInfo;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -23,7 +23,7 @@ final class VisiStoreDeleteComp extends ActionVisitorTemplateAction<StoreInfo, C
 	
 	
 	
-	@Override protected ActionStd<CompInfo> getActionHook(DeciTreeOption<CompInfo> option) {
+	@Override protected ActionStdV1<CompInfo> getActionHook(DeciTreeOption<CompInfo> option) {
 		return new RootCompDelete(option).toAction();
 	}
 	

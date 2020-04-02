@@ -13,8 +13,8 @@ import br.com.mind5.business.owner.model.action.LazyOwnerNodeUpsertPhone;
 import br.com.mind5.business.owner.model.action.LazyOwnerRootSelect;
 import br.com.mind5.business.owner.model.checker.OwnerCheckInsert;
 import br.com.mind5.business.owner.model.checker.OwnerCheckLangu;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -53,17 +53,17 @@ public final class RootOwnerInsert extends DeciTreeWriteTemplate<OwnerInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<OwnerInfo>> buildActionsOnPassedHook(DeciTreeOption<OwnerInfo> option) {
-		List<ActionStd<OwnerInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<OwnerInfo>> buildActionsOnPassedHook(DeciTreeOption<OwnerInfo> option) {
+		List<ActionStdV1<OwnerInfo>> actions = new ArrayList<>();
 		
-		ActionStd<OwnerInfo> insertOwner = new NodeOwnerInsert(option).toAction();
-		ActionLazy<OwnerInfo> insertPerson = new LazyOwnerNodeInsertPerson(option.conn, option.schemaName);			
-		ActionLazy<OwnerInfo> insertComp = new LazyOwnerNodeInsertComp(option.conn, option.schemaName);	
-		ActionLazy<OwnerInfo> insertUser = new LazyOwnerInsertUser(option.conn, option.schemaName);	
-		ActionLazy<OwnerInfo> snapshot = new LazyOwnerNodeSnapshot(option.conn, option.schemaName);
-		ActionLazy<OwnerInfo> upsertAddress = new LazyOwnerNodeUpsertAddress(option.conn, option.schemaName);
-		ActionLazy<OwnerInfo> upsertPhone = new LazyOwnerNodeUpsertPhone(option.conn, option.schemaName);	
-		ActionLazy<OwnerInfo> select = new LazyOwnerRootSelect(option.conn, option.schemaName);	
+		ActionStdV1<OwnerInfo> insertOwner = new NodeOwnerInsert(option).toAction();
+		ActionLazyV1<OwnerInfo> insertPerson = new LazyOwnerNodeInsertPerson(option.conn, option.schemaName);			
+		ActionLazyV1<OwnerInfo> insertComp = new LazyOwnerNodeInsertComp(option.conn, option.schemaName);	
+		ActionLazyV1<OwnerInfo> insertUser = new LazyOwnerInsertUser(option.conn, option.schemaName);	
+		ActionLazyV1<OwnerInfo> snapshot = new LazyOwnerNodeSnapshot(option.conn, option.schemaName);
+		ActionLazyV1<OwnerInfo> upsertAddress = new LazyOwnerNodeUpsertAddress(option.conn, option.schemaName);
+		ActionLazyV1<OwnerInfo> upsertPhone = new LazyOwnerNodeUpsertPhone(option.conn, option.schemaName);	
+		ActionLazyV1<OwnerInfo> select = new LazyOwnerRootSelect(option.conn, option.schemaName);	
 		
 		insertOwner.addPostAction(insertPerson);	
 		insertPerson.addPostAction(insertComp);		

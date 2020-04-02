@@ -7,7 +7,7 @@ import br.com.mind5.business.material.info.MatInfo;
 import br.com.mind5.business.material.info.MatMerger;
 import br.com.mind5.business.materialSnapshot.info.MatsnapInfo;
 import br.com.mind5.business.materialSnapshot.model.decisionTree.RootMatsnapInsert;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -19,7 +19,7 @@ final class VisiMatInsertMatsnap extends ActionVisitorTemplateAction<MatInfo, Ma
 	
 	
 	
-	@Override protected ActionStd<MatsnapInfo> getActionHook(DeciTreeOption<MatsnapInfo> option) {
+	@Override protected ActionStdV1<MatsnapInfo> getActionHook(DeciTreeOption<MatsnapInfo> option) {
 		return new RootMatsnapInsert(option).toAction();
 	}
 	

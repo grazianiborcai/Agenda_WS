@@ -7,8 +7,8 @@ import br.com.mind5.message.emailBody.info.EmabodyInfo;
 import br.com.mind5.message.emailBody.model.action.LazyEmabodyEnforceBody;
 import br.com.mind5.message.emailBody.model.action.StdEmabodyMergeToSelect;
 import br.com.mind5.message.emailBody.model.checker.EmabodyCheckRead;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -40,11 +40,11 @@ public final class RootEmabodySelect extends DeciTreeWriteTemplate<EmabodyInfo> 
 	
 	
 	
-	@Override protected List<ActionStd<EmabodyInfo>> buildActionsOnPassedHook(DeciTreeOption<EmabodyInfo> option) {
-		List<ActionStd<EmabodyInfo>> actions = new ArrayList<>();	
+	@Override protected List<ActionStdV1<EmabodyInfo>> buildActionsOnPassedHook(DeciTreeOption<EmabodyInfo> option) {
+		List<ActionStdV1<EmabodyInfo>> actions = new ArrayList<>();	
 		
-		ActionStd<EmabodyInfo> select = new StdEmabodyMergeToSelect(option);
-		ActionLazy<EmabodyInfo> enforceBody = new LazyEmabodyEnforceBody(option.conn, option.schemaName);
+		ActionStdV1<EmabodyInfo> select = new StdEmabodyMergeToSelect(option);
+		ActionLazyV1<EmabodyInfo> enforceBody = new LazyEmabodyEnforceBody(option.conn, option.schemaName);
 		
 		select.addPostAction(enforceBody);
 		

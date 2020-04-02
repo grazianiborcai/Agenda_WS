@@ -3,7 +3,7 @@ package br.com.mind5.security.storeAuthorization.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -37,10 +37,10 @@ public final class NodeStorauthSelectL1 extends DeciTreeWriteTemplate<StorauthIn
 	
 	
 	
-	@Override protected List<ActionStd<StorauthInfo>> buildActionsOnPassedHook(DeciTreeOption<StorauthInfo> option) {
-		List<ActionStd<StorauthInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<StorauthInfo>> buildActionsOnPassedHook(DeciTreeOption<StorauthInfo> option) {
+		List<ActionStdV1<StorauthInfo>> actions = new ArrayList<>();
 		
-		ActionStd<StorauthInfo> nodeSelectOwner = new NodeStorauthSelectOwner(option).toAction();			
+		ActionStdV1<StorauthInfo> nodeSelectOwner = new NodeStorauthSelectOwner(option).toAction();			
 		actions.add(nodeSelectOwner);		
 		
 		return actions;
@@ -48,10 +48,10 @@ public final class NodeStorauthSelectL1 extends DeciTreeWriteTemplate<StorauthIn
 	
 	
 	
-	@Override protected List<ActionStd<StorauthInfo>> buildActionsOnFailedHook(DeciTreeOption<StorauthInfo> option) {
-		List<ActionStd<StorauthInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<StorauthInfo>> buildActionsOnFailedHook(DeciTreeOption<StorauthInfo> option) {
+		List<ActionStdV1<StorauthInfo>> actions = new ArrayList<>();
 		
-		ActionStd<StorauthInfo> nodeSelectStore = new NodeStorauthSelectStore(option).toAction();			
+		ActionStdV1<StorauthInfo> nodeSelectStore = new NodeStorauthSelectStore(option).toAction();			
 		actions.add(nodeSelectStore);		
 		
 		return actions;

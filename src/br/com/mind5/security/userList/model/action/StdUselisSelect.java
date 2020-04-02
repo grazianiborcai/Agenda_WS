@@ -5,16 +5,16 @@ import java.util.List;
 
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.obsolete.DaoStmtExec_;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperStmt;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.userList.dao.UselisSelect;
 import br.com.mind5.security.userList.info.UselisInfo;
 
-public final class StdUselisSelect implements ActionStd<UselisInfo> {
-	private ActionStd<UselisInfo> actionHelper;
+public final class StdUselisSelect implements ActionStdV1<UselisInfo> {
+	private ActionStdV1<UselisInfo> actionHelper;
 	
 	
 	public StdUselisSelect(DeciTreeOption<UselisInfo> option) {
@@ -40,7 +40,7 @@ public final class StdUselisSelect implements ActionStd<UselisInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<UselisInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<UselisInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

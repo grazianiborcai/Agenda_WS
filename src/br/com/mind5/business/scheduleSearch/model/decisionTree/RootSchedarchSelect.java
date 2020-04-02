@@ -8,7 +8,7 @@ import br.com.mind5.business.scheduleSearch.model.action.StdSchedarchMergeToSele
 import br.com.mind5.business.scheduleSearch.model.checker.SchedarchCheckLangu;
 import br.com.mind5.business.scheduleSearch.model.checker.SchedarchCheckOwner;
 import br.com.mind5.business.scheduleSearch.model.checker.SchedarchCheckRead;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -54,10 +54,10 @@ public final class RootSchedarchSelect extends DeciTreeWriteTemplate<SchedarchIn
 	
 	
 	
-	@Override protected List<ActionStd<SchedarchInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedarchInfo> option) {
-		List<ActionStd<SchedarchInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<SchedarchInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedarchInfo> option) {
+		List<ActionStdV1<SchedarchInfo>> actions = new ArrayList<>();
 		
-		ActionStd<SchedarchInfo> select = new StdSchedarchMergeToSelect(option);
+		ActionStdV1<SchedarchInfo> select = new StdSchedarchMergeToSelect(option);
 		
 		actions.add(select);
 		return actions;

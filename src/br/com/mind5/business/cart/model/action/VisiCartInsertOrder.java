@@ -8,7 +8,7 @@ import br.com.mind5.business.cart.info.CartMerger;
 import br.com.mind5.business.order.info.OrderCopier;
 import br.com.mind5.business.order.info.OrderInfo;
 import br.com.mind5.business.order.model.decisionTree.RootOrderInsert;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -19,7 +19,7 @@ final class VisiCartInsertOrder extends ActionVisitorTemplateAction<CartInfo, Or
 	
 	
 	
-	@Override protected ActionStd<OrderInfo> getActionHook(DeciTreeOption<OrderInfo> option) {
+	@Override protected ActionStdV1<OrderInfo> getActionHook(DeciTreeOption<OrderInfo> option) {
 		return new RootOrderInsert(option).toAction();
 	}
 	

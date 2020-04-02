@@ -1,4 +1,4 @@
-package br.com.mind5.model.action;
+package br.com.mind5.model.action.obsolete;
 
 import java.lang.reflect.Constructor;
 import java.sql.Connection;
@@ -10,10 +10,14 @@ import java.util.Map;
 
 import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
+import br.com.mind5.info.InfoRecord;
+import br.com.mind5.model.action.ActionStdTemplateV1;
+import br.com.mind5.model.action.ActionVisitorAction;
+import br.com.mind5.model.action.ActionVisitorMap;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciResultHelper;
 
-public final class ActionStdHelperMap<T, S> extends ActionStdTemplate<T> {
+public final class ActionStdHelperMap<T extends InfoRecord, S extends InfoRecord> extends ActionStdTemplateV1<T> {
 	private Connection actionConn; 
 	private String actionSchemaName; 
 	private List<T> records;

@@ -8,8 +8,8 @@ import br.com.mind5.business.customer.model.action.LazyCusUpdate;
 import br.com.mind5.business.customer.model.action.StdCusInsertUser;
 import br.com.mind5.business.customer.model.action.StdCusSuccess;
 import br.com.mind5.business.customer.model.checker.CusCheckHasEmail;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -41,11 +41,11 @@ public final class NodeCusInsertUser extends DeciTreeWriteTemplate<CusInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<CusInfo>> buildActionsOnPassedHook(DeciTreeOption<CusInfo> option) {
-		List<ActionStd<CusInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<CusInfo>> buildActionsOnPassedHook(DeciTreeOption<CusInfo> option) {
+		List<ActionStdV1<CusInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CusInfo> insertUser = new StdCusInsertUser(option);
-		ActionLazy<CusInfo> update = new LazyCusUpdate(option.conn, option.schemaName);
+		ActionStdV1<CusInfo> insertUser = new StdCusInsertUser(option);
+		ActionLazyV1<CusInfo> update = new LazyCusUpdate(option.conn, option.schemaName);
 		
 		insertUser.addPostAction(update);
 		
@@ -55,10 +55,10 @@ public final class NodeCusInsertUser extends DeciTreeWriteTemplate<CusInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<CusInfo>> buildActionsOnFailedHook(DeciTreeOption<CusInfo> option) {
-		List<ActionStd<CusInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<CusInfo>> buildActionsOnFailedHook(DeciTreeOption<CusInfo> option) {
+		List<ActionStdV1<CusInfo>> actions = new ArrayList<>();
 
-		ActionStd<CusInfo> success = new StdCusSuccess(option);
+		ActionStdV1<CusInfo> success = new StdCusSuccess(option);
 		
 		actions.add(success);	
 		return actions;

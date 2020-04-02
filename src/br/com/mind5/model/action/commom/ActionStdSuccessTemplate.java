@@ -5,14 +5,14 @@ import java.util.List;
 
 import br.com.mind5.common.SystemLog;
 import br.com.mind5.info.InfoRecord;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciResultHelper;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public abstract class ActionStdSuccessTemplate<T extends InfoRecord> implements ActionStd<T> {
-	private ActionStd<T> helper;
+public abstract class ActionStdSuccessTemplate<T extends InfoRecord> implements ActionStdV1<T> {
+	private ActionStdV1<T> helper;
 	
 	
 	public ActionStdSuccessTemplate(DeciTreeOption<T> option) {
@@ -73,7 +73,7 @@ public abstract class ActionStdSuccessTemplate<T extends InfoRecord> implements 
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<T> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<T> actionHandler) {
 		helper.addPostAction(actionHandler);
 	}
 	

@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.cartReserve.info.CarterveInfo;
 import br.com.mind5.business.cartReserve.info.CarterveMerger;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 
 final class VisiCarterveMergeToSelect extends ActionVisitorTemplateMerge<CarterveInfo, CarterveInfo> {
@@ -16,7 +16,7 @@ final class VisiCarterveMergeToSelect extends ActionVisitorTemplateMerge<Carterv
 	
 	
 	
-	@Override protected Class<? extends ActionStd<CarterveInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStdV1<CarterveInfo>> getActionClassHook() {
 		return StdCarterveSelect.class;
 	}
 	

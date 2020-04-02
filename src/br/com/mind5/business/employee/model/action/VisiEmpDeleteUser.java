@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.employee.info.EmpInfo;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.user.info.UserCopier;
@@ -24,7 +24,7 @@ final class VisiEmpDeleteUser extends ActionVisitorTemplateAction<EmpInfo, UserI
 	
 	
 	
-	@Override protected ActionStd<UserInfo> getActionHook(DeciTreeOption<UserInfo> option) {
+	@Override protected ActionStdV1<UserInfo> getActionHook(DeciTreeOption<UserInfo> option) {
 		return new RootUserDelete(option).toAction();
 	}
 }

@@ -7,14 +7,14 @@ import br.com.mind5.business.materialText.dao.MatextDelete;
 import br.com.mind5.business.materialText.info.MatextInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.obsolete.DaoStmtExec_;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperStmt;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdMatextDelete implements ActionStd<MatextInfo> {
-	private ActionStd<MatextInfo> actionHelper;
+public final class StdMatextDelete implements ActionStdV1<MatextInfo> {
+	private ActionStdV1<MatextInfo> actionHelper;
 	
 	
 	public StdMatextDelete(DeciTreeOption<MatextInfo> option) {
@@ -40,7 +40,7 @@ public final class StdMatextDelete implements ActionStd<MatextInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<MatextInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<MatextInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

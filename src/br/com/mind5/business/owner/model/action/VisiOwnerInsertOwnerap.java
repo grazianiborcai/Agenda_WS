@@ -7,7 +7,7 @@ import br.com.mind5.business.owner.info.OwnerInfo;
 import br.com.mind5.business.owner.info.OwnerMerger;
 import br.com.mind5.business.ownerSnapshot.info.OwnerapInfo;
 import br.com.mind5.business.ownerSnapshot.model.decisionTree.RootOwnerapInsert;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -19,7 +19,7 @@ final class VisiOwnerInsertOwnerap extends ActionVisitorTemplateAction<OwnerInfo
 	
 	
 	
-	@Override protected ActionStd<OwnerapInfo> getActionHook(DeciTreeOption<OwnerapInfo> option) {
+	@Override protected ActionStdV1<OwnerapInfo> getActionHook(DeciTreeOption<OwnerapInfo> option) {
 		return new RootOwnerapInsert(option).toAction();
 	}
 	

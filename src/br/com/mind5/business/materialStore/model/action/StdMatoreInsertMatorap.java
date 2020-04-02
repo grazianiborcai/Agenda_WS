@@ -1,14 +1,14 @@
 package br.com.mind5.business.materialStore.model.action;
 
 import br.com.mind5.business.materialStore.info.MatoreInfo;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperAction;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdMatoreInsertMatorap implements ActionStd<MatoreInfo> {
-	private ActionStd<MatoreInfo> actionHelper;	
+public final class StdMatoreInsertMatorap implements ActionStdV1<MatoreInfo> {
+	private ActionStdV1<MatoreInfo> actionHelper;	
 	
 	
 	public StdMatoreInsertMatorap(DeciTreeOption<MatoreInfo> option) {			
@@ -17,7 +17,7 @@ public final class StdMatoreInsertMatorap implements ActionStd<MatoreInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<MatoreInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<MatoreInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

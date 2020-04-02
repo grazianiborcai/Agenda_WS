@@ -9,8 +9,8 @@ import br.com.mind5.business.cartItem.model.action.LazyCartemMergeSymsg;
 import br.com.mind5.business.cartItem.model.action.StdCartemEnforceSymsgL14;
 import br.com.mind5.business.cartItem.model.action.StdCartemSuccess;
 import br.com.mind5.business.cartItem.model.checker.CartemCheckPlanarch;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -42,10 +42,10 @@ public final class NodeCartemAgedServiceL14 extends DeciTreeWriteTemplate<Cartem
 	
 	
 	
-	@Override protected List<ActionStd<CartemInfo>> buildActionsOnPassedHook(DeciTreeOption<CartemInfo> option) {
-		List<ActionStd<CartemInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<CartemInfo>> buildActionsOnPassedHook(DeciTreeOption<CartemInfo> option) {
+		List<ActionStdV1<CartemInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CartemInfo> success = new StdCartemSuccess(option);	
+		ActionStdV1<CartemInfo> success = new StdCartemSuccess(option);	
 		
 		actions.add(success);		
 		return actions;
@@ -53,12 +53,12 @@ public final class NodeCartemAgedServiceL14 extends DeciTreeWriteTemplate<Cartem
 	
 	
 	
-	@Override protected List<ActionStd<CartemInfo>> buildActionsOnFailedHook(DeciTreeOption<CartemInfo> option) {
-		List<ActionStd<CartemInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<CartemInfo>> buildActionsOnFailedHook(DeciTreeOption<CartemInfo> option) {
+		List<ActionStdV1<CartemInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CartemInfo> enforceSymsg = new StdCartemEnforceSymsgL14(option);	
-		ActionLazy<CartemInfo> mergeSymsg = new LazyCartemMergeSymsg(option.conn, option.schemaName);
-		ActionLazy<CartemInfo> enforceAged = new LazyCartemEnforceAged(option.conn, option.schemaName);
+		ActionStdV1<CartemInfo> enforceSymsg = new StdCartemEnforceSymsgL14(option);	
+		ActionLazyV1<CartemInfo> mergeSymsg = new LazyCartemMergeSymsg(option.conn, option.schemaName);
+		ActionLazyV1<CartemInfo> enforceAged = new LazyCartemEnforceAged(option.conn, option.schemaName);
 		
 		enforceSymsg.addPostAction(mergeSymsg);
 		mergeSymsg.addPostAction(enforceAged);

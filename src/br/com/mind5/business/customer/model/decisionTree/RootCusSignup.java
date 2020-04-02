@@ -9,8 +9,8 @@ import br.com.mind5.business.customer.model.action.StdCusMergeDaemon;
 import br.com.mind5.business.customer.model.checker.CusCheckLangu;
 import br.com.mind5.business.customer.model.checker.CusCheckOwner;
 import br.com.mind5.business.customer.model.checker.CusCheckSignup;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -56,12 +56,12 @@ public final class RootCusSignup extends DeciTreeWriteTemplate<CusInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<CusInfo>> buildActionsOnPassedHook(DeciTreeOption<CusInfo> option) {
-		List<ActionStd<CusInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<CusInfo>> buildActionsOnPassedHook(DeciTreeOption<CusInfo> option) {
+		List<ActionStdV1<CusInfo>> actions = new ArrayList<>();
 		//TODO: mesmo CPF mas email diferente :: da erro
 		
-		ActionStd<CusInfo> mergeDaemon = new StdCusMergeDaemon(option);
-		ActionLazy<CusInfo> insert = new LazyCusRootInsert(option.conn, option.schemaName);
+		ActionStdV1<CusInfo> mergeDaemon = new StdCusMergeDaemon(option);
+		ActionLazyV1<CusInfo> insert = new LazyCusRootInsert(option.conn, option.schemaName);
 		
 		mergeDaemon.addPostAction(insert);
 		

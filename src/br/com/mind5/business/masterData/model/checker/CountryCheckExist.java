@@ -3,7 +3,7 @@ package br.com.mind5.business.masterData.model.checker;
 import br.com.mind5.business.masterData.info.CountryInfo;
 import br.com.mind5.business.masterData.model.action.StdCountrySelect;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -16,8 +16,8 @@ public final class CountryCheckExist extends ModelCheckerTemplateAction<CountryI
 	
 	
 	
-	@Override protected ActionStd<CountryInfo> buildActionHook(DeciTreeOption<CountryInfo> option) {
-		ActionStd<CountryInfo> select = new StdCountrySelect(option);
+	@Override protected ActionStdV1<CountryInfo> buildActionHook(DeciTreeOption<CountryInfo> option) {
+		ActionStdV1<CountryInfo> select = new StdCountrySelect(option);
 		return select;
 	}
 	

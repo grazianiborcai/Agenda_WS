@@ -1,14 +1,14 @@
 package br.com.mind5.security.userAuthentication.model.action;
 
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperAction;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.userAuthentication.info.UauthInfo;
 
-public final class StdUauthAuthenticateUpswd implements ActionStd<UauthInfo> {
-	private ActionStd<UauthInfo> actionHelper;	
+public final class StdUauthAuthenticateUpswd implements ActionStdV1<UauthInfo> {
+	private ActionStdV1<UauthInfo> actionHelper;	
 	
 	
 	public StdUauthAuthenticateUpswd(DeciTreeOption<UauthInfo> option) {			
@@ -17,7 +17,7 @@ public final class StdUauthAuthenticateUpswd implements ActionStd<UauthInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<UauthInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<UauthInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

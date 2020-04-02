@@ -7,8 +7,8 @@ import br.com.mind5.business.orderList.info.OrdistInfo;
 import br.com.mind5.business.orderList.model.action.LazyOrdistRootSelect;
 import br.com.mind5.business.orderList.model.action.StdOrdistMergeOrdarch;
 import br.com.mind5.business.orderList.model.checker.OrdistCheckDummy;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -34,11 +34,11 @@ public final class RootOrdistSearch extends DeciTreeReadTemplate<OrdistInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<OrdistInfo>> buildActionsOnPassedHook(DeciTreeOption<OrdistInfo> option) {
-		List<ActionStd<OrdistInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV1<OrdistInfo>> buildActionsOnPassedHook(DeciTreeOption<OrdistInfo> option) {
+		List<ActionStdV1<OrdistInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<OrdistInfo> mergeOrdarch = new StdOrdistMergeOrdarch(option);
-		ActionLazy<OrdistInfo> select = new LazyOrdistRootSelect(option.conn, option.schemaName);
+		ActionStdV1<OrdistInfo> mergeOrdarch = new StdOrdistMergeOrdarch(option);
+		ActionLazyV1<OrdistInfo> select = new LazyOrdistRootSelect(option.conn, option.schemaName);
 		
 		mergeOrdarch.addPostAction(select);
 		

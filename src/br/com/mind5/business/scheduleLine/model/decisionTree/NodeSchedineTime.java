@@ -12,8 +12,8 @@ import br.com.mind5.business.scheduleLine.model.action.LazySchedineEnforceWeekYe
 import br.com.mind5.business.scheduleLine.model.action.LazySchedineEnforceYear;
 import br.com.mind5.business.scheduleLine.model.action.StdSchedineEnforceWeekday;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckDummy;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -39,16 +39,16 @@ public final class NodeSchedineTime extends DeciTreeWriteTemplate<SchedineInfo> 
 	
 	
 	
-	@Override protected List<ActionStd<SchedineInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedineInfo> option) {
-		List<ActionStd<SchedineInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV1<SchedineInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedineInfo> option) {
+		List<ActionStdV1<SchedineInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<SchedineInfo> enforceWeekday = new StdSchedineEnforceWeekday(option);
-		ActionLazy<SchedineInfo> enforceDay = new LazySchedineEnforceDay(option.conn, option.schemaName);
-		ActionLazy<SchedineInfo> enforceMonth = new LazySchedineEnforceMonth(option.conn, option.schemaName);
-		ActionLazy<SchedineInfo> enforceYear = new LazySchedineEnforceYear(option.conn, option.schemaName);
-		ActionLazy<SchedineInfo> enforceWeekMonth = new LazySchedineEnforceWeekMonth(option.conn, option.schemaName);
-		ActionLazy<SchedineInfo> enforceWeekYear = new LazySchedineEnforceWeekYear(option.conn, option.schemaName);
-		ActionLazy<SchedineInfo> enforceQuarter = new LazySchedineEnforceQuarter(option.conn, option.schemaName);
+		ActionStdV1<SchedineInfo> enforceWeekday = new StdSchedineEnforceWeekday(option);
+		ActionLazyV1<SchedineInfo> enforceDay = new LazySchedineEnforceDay(option.conn, option.schemaName);
+		ActionLazyV1<SchedineInfo> enforceMonth = new LazySchedineEnforceMonth(option.conn, option.schemaName);
+		ActionLazyV1<SchedineInfo> enforceYear = new LazySchedineEnforceYear(option.conn, option.schemaName);
+		ActionLazyV1<SchedineInfo> enforceWeekMonth = new LazySchedineEnforceWeekMonth(option.conn, option.schemaName);
+		ActionLazyV1<SchedineInfo> enforceWeekYear = new LazySchedineEnforceWeekYear(option.conn, option.schemaName);
+		ActionLazyV1<SchedineInfo> enforceQuarter = new LazySchedineEnforceQuarter(option.conn, option.schemaName);
 		
 
 		enforceWeekday.addPostAction(enforceDay);

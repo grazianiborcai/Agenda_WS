@@ -7,14 +7,14 @@ import br.com.mind5.business.materialMovementSearch.dao.MatmarchSelect;
 import br.com.mind5.business.materialMovementSearch.info.MatmarchInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.obsolete.DaoStmtExec_;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperStmt;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdMatmarchSelect implements ActionStd<MatmarchInfo> {
-	private ActionStd<MatmarchInfo> actionHelper;
+public final class StdMatmarchSelect implements ActionStdV1<MatmarchInfo> {
+	private ActionStdV1<MatmarchInfo> actionHelper;
 	
 	
 	public StdMatmarchSelect(DeciTreeOption<MatmarchInfo> option) {
@@ -40,7 +40,7 @@ public final class StdMatmarchSelect implements ActionStd<MatmarchInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<MatmarchInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<MatmarchInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

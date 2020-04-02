@@ -1,14 +1,14 @@
 package br.com.mind5.payment.statusPayOrder.model.action;
 
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperMerge;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.statusPayOrder.info.PaytusInfo;
 
-public final class StdPaytusMergeUsername implements ActionStd<PaytusInfo> {
-	private ActionStd<PaytusInfo> actionHelper;	
+public final class StdPaytusMergeUsername implements ActionStdV1<PaytusInfo> {
+	private ActionStdV1<PaytusInfo> actionHelper;	
 	
 	
 	public StdPaytusMergeUsername(DeciTreeOption<PaytusInfo> option) {			
@@ -17,7 +17,7 @@ public final class StdPaytusMergeUsername implements ActionStd<PaytusInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<PaytusInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<PaytusInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

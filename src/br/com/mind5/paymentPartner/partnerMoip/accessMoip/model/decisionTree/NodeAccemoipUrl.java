@@ -3,8 +3,8 @@ package br.com.mind5.paymentPartner.partnerMoip.accessMoip.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -54,17 +54,17 @@ public final class NodeAccemoipUrl extends DeciTreeWriteTemplate<AccemoipInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<AccemoipInfo>> buildActionsOnPassedHook(DeciTreeOption<AccemoipInfo> option) {
-		List<ActionStd<AccemoipInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV1<AccemoipInfo>> buildActionsOnPassedHook(DeciTreeOption<AccemoipInfo> option) {
+		List<ActionStdV1<AccemoipInfo>> actions = new ArrayList<>();		
 
-		ActionStd<AccemoipInfo> mergeSyspar = new StdAccemoipMergeSyspar(option);	
-		ActionLazy<AccemoipInfo> mergeSetupar = new LazyAccemoipMergeSetupar(option.conn, option.schemaName);
-		ActionLazy<AccemoipInfo> mergeSysEnviron = new LazyAccemoipMergeSysEnviron(option.conn, option.schemaName);
-		ActionLazy<AccemoipInfo> enforceSetup = new LazyAccemoipEnforceSetup(option.conn, option.schemaName);		
-		ActionLazy<AccemoipInfo> enforceScopes = new LazyAccemoipEnforceScopes(option.conn, option.schemaName);
-		ActionLazy<AccemoipInfo> enforceUrl = new LazyAccemoipUrl(option.conn, option.schemaName);
-		ActionLazy<AccemoipInfo> insertPeresmoip = new LazyAccemoipInsertPeresmoip(option.conn, option.schemaName);
-		ActionLazy<AccemoipInfo> obfuscate = new LazyAccemoipEnforceObfuscate(option.conn, option.schemaName);
+		ActionStdV1<AccemoipInfo> mergeSyspar = new StdAccemoipMergeSyspar(option);	
+		ActionLazyV1<AccemoipInfo> mergeSetupar = new LazyAccemoipMergeSetupar(option.conn, option.schemaName);
+		ActionLazyV1<AccemoipInfo> mergeSysEnviron = new LazyAccemoipMergeSysEnviron(option.conn, option.schemaName);
+		ActionLazyV1<AccemoipInfo> enforceSetup = new LazyAccemoipEnforceSetup(option.conn, option.schemaName);		
+		ActionLazyV1<AccemoipInfo> enforceScopes = new LazyAccemoipEnforceScopes(option.conn, option.schemaName);
+		ActionLazyV1<AccemoipInfo> enforceUrl = new LazyAccemoipUrl(option.conn, option.schemaName);
+		ActionLazyV1<AccemoipInfo> insertPeresmoip = new LazyAccemoipInsertPeresmoip(option.conn, option.schemaName);
+		ActionLazyV1<AccemoipInfo> obfuscate = new LazyAccemoipEnforceObfuscate(option.conn, option.schemaName);
 		
 		mergeSyspar.addPostAction(mergeSetupar);
 		mergeSetupar.addPostAction(mergeSysEnviron);

@@ -10,7 +10,7 @@ import br.com.mind5.business.phone.model.checker.PhoneCheckLengthT01;
 import br.com.mind5.business.phone.model.checker.PhoneCheckNumberT01;
 import br.com.mind5.business.phone.model.checker.PhoneCheckOnlyNumber;
 import br.com.mind5.business.phone.model.checker.PhoneCheckSequenceT01;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -70,10 +70,10 @@ public final class NodePhoneUpdateT01 extends DeciTreeWriteTemplate<PhoneInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<PhoneInfo>> buildActionsOnPassedHook(DeciTreeOption<PhoneInfo> option) {
-		List<ActionStd<PhoneInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<PhoneInfo>> buildActionsOnPassedHook(DeciTreeOption<PhoneInfo> option) {
+		List<ActionStdV1<PhoneInfo>> actions = new ArrayList<>();
 		
-		ActionStd<PhoneInfo> success = new StdPhoneSuccess(option);	
+		ActionStdV1<PhoneInfo> success = new StdPhoneSuccess(option);	
 		
 		actions.add(success);		
 		return actions;

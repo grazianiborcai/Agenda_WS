@@ -3,8 +3,8 @@ package br.com.mind5.security.user.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -41,11 +41,11 @@ public final class NodeUserUpsertPhone extends DeciTreeWriteTemplate<UserInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<UserInfo>> buildActionsOnPassedHook(DeciTreeOption<UserInfo> option) {
-		List<ActionStd<UserInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<UserInfo>> buildActionsOnPassedHook(DeciTreeOption<UserInfo> option) {
+		List<ActionStdV1<UserInfo>> actions = new ArrayList<>();
 		
-		ActionStd<UserInfo> enforcePhoneKey = new StdUserEnforcePhoneKey(option);
-		ActionLazy<UserInfo> upsertPhone = new LazyUserUpsertPhone(option.conn, option.schemaName);	
+		ActionStdV1<UserInfo> enforcePhoneKey = new StdUserEnforcePhoneKey(option);
+		ActionLazyV1<UserInfo> upsertPhone = new LazyUserUpsertPhone(option.conn, option.schemaName);	
 		
 		enforcePhoneKey.addPostAction(upsertPhone);
 		
@@ -55,8 +55,8 @@ public final class NodeUserUpsertPhone extends DeciTreeWriteTemplate<UserInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<UserInfo>> buildActionsOnFailedHook(DeciTreeOption<UserInfo> option) {
-		List<ActionStd<UserInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<UserInfo>> buildActionsOnFailedHook(DeciTreeOption<UserInfo> option) {
+		List<ActionStdV1<UserInfo>> actions = new ArrayList<>();
 		
 		actions.add(new StdUserSuccess(option));		
 		return actions;

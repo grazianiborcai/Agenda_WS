@@ -3,7 +3,7 @@ package br.com.mind5.business.planingDataSearch.model.checker;
 import br.com.mind5.business.planingDataSearch.info.PlanarchInfo;
 import br.com.mind5.business.planingDataSearch.model.decisionTree.RootPlanarchSelect;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -16,8 +16,8 @@ public final class PlanarchCheckExist extends ModelCheckerTemplateAction<Planarc
 	
 	
 	
-	@Override protected ActionStd<PlanarchInfo> buildActionHook(DeciTreeOption<PlanarchInfo> option) {
-		ActionStd<PlanarchInfo> select = new RootPlanarchSelect(option).toAction();
+	@Override protected ActionStdV1<PlanarchInfo> buildActionHook(DeciTreeOption<PlanarchInfo> option) {
+		ActionStdV1<PlanarchInfo> select = new RootPlanarchSelect(option).toAction();
 		return select;
 	}
 	

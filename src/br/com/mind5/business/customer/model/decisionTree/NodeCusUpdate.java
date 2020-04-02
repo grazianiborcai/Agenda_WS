@@ -9,8 +9,8 @@ import br.com.mind5.business.customer.model.action.LazyCusMergeUsername;
 import br.com.mind5.business.customer.model.action.LazyCusUpdate;
 import br.com.mind5.business.customer.model.action.StdCusMergeToUpdate;
 import br.com.mind5.business.customer.model.checker.CusCheckDummy;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -36,13 +36,13 @@ public final class NodeCusUpdate extends DeciTreeWriteTemplate<CusInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<CusInfo>> buildActionsOnPassedHook(DeciTreeOption<CusInfo> option) {
-		List<ActionStd<CusInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<CusInfo>> buildActionsOnPassedHook(DeciTreeOption<CusInfo> option) {
+		List<ActionStdV1<CusInfo>> actions = new ArrayList<>();
 
-		ActionStd<CusInfo> mergeToUpdate = new StdCusMergeToUpdate(option);
-		ActionLazy<CusInfo> enforceLChanged = new LazyCusEnforceLChanged(option.conn, option.schemaName);
-		ActionLazy<CusInfo> enforceLChangedBy = new LazyCusMergeUsername(option.conn, option.schemaName);
-		ActionLazy<CusInfo> updateCustomer = new LazyCusUpdate(option.conn, option.schemaName);		
+		ActionStdV1<CusInfo> mergeToUpdate = new StdCusMergeToUpdate(option);
+		ActionLazyV1<CusInfo> enforceLChanged = new LazyCusEnforceLChanged(option.conn, option.schemaName);
+		ActionLazyV1<CusInfo> enforceLChangedBy = new LazyCusMergeUsername(option.conn, option.schemaName);
+		ActionLazyV1<CusInfo> updateCustomer = new LazyCusUpdate(option.conn, option.schemaName);		
 		
 		mergeToUpdate.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceLChangedBy);

@@ -3,7 +3,7 @@ package br.com.mind5.payment.customerPartner.model.action;
 import java.sql.Connection;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
@@ -20,7 +20,7 @@ final class VisiCusparCreateCusmoip extends ActionVisitorTemplateAction<CusparIn
 	
 	
 	
-	@Override protected ActionStd<CusmoipInfo> getActionHook(DeciTreeOption<CusmoipInfo> option) {
+	@Override protected ActionStdV1<CusmoipInfo> getActionHook(DeciTreeOption<CusmoipInfo> option) {
 		return new RootCusmoipCreate(option).toAction();
 	}
 	

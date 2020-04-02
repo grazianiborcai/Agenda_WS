@@ -3,7 +3,7 @@ package br.com.mind5.paymentPartner.partnerMoip.permissionMoip.model.action;
 import java.sql.Connection;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.info.PeresmoipInfo;
@@ -18,7 +18,7 @@ final class VisiPeresmoipGenerateTokemoip extends ActionVisitorTemplateAction<Pe
 	
 	
 	
-	@Override protected ActionStd<TokemoipInfo> getActionHook(DeciTreeOption<TokemoipInfo> option) {
+	@Override protected ActionStdV1<TokemoipInfo> getActionHook(DeciTreeOption<TokemoipInfo> option) {
 		return new RootTokemoipGenerate(option).toAction();
 	}
 	

@@ -3,7 +3,7 @@ package br.com.mind5.business.masterData.model.checker;
 import br.com.mind5.business.masterData.info.StateInfo;
 import br.com.mind5.business.masterData.model.action.StdStateSelect;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -16,8 +16,8 @@ public final class StateCheckExist extends ModelCheckerTemplateAction<StateInfo,
 	
 	
 	
-	@Override protected ActionStd<StateInfo> buildActionHook(DeciTreeOption<StateInfo> option) {
-		ActionStd<StateInfo> select = new StdStateSelect(option);
+	@Override protected ActionStdV1<StateInfo> buildActionHook(DeciTreeOption<StateInfo> option) {
+		ActionStdV1<StateInfo> select = new StdStateSelect(option);
 		return select;
 	}
 	

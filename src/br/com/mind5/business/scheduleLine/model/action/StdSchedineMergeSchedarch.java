@@ -1,14 +1,14 @@
 package br.com.mind5.business.scheduleLine.model.action;
 
 import br.com.mind5.business.scheduleLine.info.SchedineInfo;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperMerge;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdSchedineMergeSchedarch implements ActionStd<SchedineInfo> {
-	private ActionStd<SchedineInfo> actionHelper;	
+public final class StdSchedineMergeSchedarch implements ActionStdV1<SchedineInfo> {
+	private ActionStdV1<SchedineInfo> actionHelper;	
 	
 	
 	public StdSchedineMergeSchedarch(DeciTreeOption<SchedineInfo> option) {			
@@ -17,7 +17,7 @@ public final class StdSchedineMergeSchedarch implements ActionStd<SchedineInfo> 
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<SchedineInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<SchedineInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

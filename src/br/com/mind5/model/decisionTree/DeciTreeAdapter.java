@@ -9,9 +9,9 @@ import java.util.List;
 import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.InfoRecord;
-import br.com.mind5.model.action.ActionStdTemplate;
+import br.com.mind5.model.action.ActionStdTemplateV1;
 
-public final class DeciTreeAdapter<T extends InfoRecord> extends ActionStdTemplate<T> {
+public final class DeciTreeAdapter<T extends InfoRecord> extends ActionStdTemplateV1<T> {
 	private DeciTree<T> currentTree;
 	private List<DeciTree<T>> trees;
 	private Iterator<DeciTree<T>> itr;

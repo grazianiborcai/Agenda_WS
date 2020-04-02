@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.materialStoreSearch.info.MatorarchInfo;
 import br.com.mind5.business.materialStoreSearch.info.MatorarchMerger;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 
 final class VisiMatorarchMergeToSelect extends ActionVisitorTemplateMerge<MatorarchInfo, MatorarchInfo> {
@@ -16,7 +16,7 @@ final class VisiMatorarchMergeToSelect extends ActionVisitorTemplateMerge<Matora
 	
 	
 	
-	@Override protected Class<? extends ActionStd<MatorarchInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStdV1<MatorarchInfo>> getActionClassHook() {
 		return StdMatorarchSelect.class;
 	}
 	

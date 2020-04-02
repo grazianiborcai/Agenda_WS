@@ -5,16 +5,16 @@ import java.util.List;
 
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.obsolete.DaoStmtExec_;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperStmt;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.storeAuthorization.dao.StorauthSelect;
 import br.com.mind5.security.storeAuthorization.info.StorauthInfo;
 
-public final class StdStorauthSelect implements ActionStd<StorauthInfo> {
-	private ActionStd<StorauthInfo> actionHelper;
+public final class StdStorauthSelect implements ActionStdV1<StorauthInfo> {
+	private ActionStdV1<StorauthInfo> actionHelper;
 	
 	
 	public StdStorauthSelect(DeciTreeOption<StorauthInfo> option) {
@@ -40,7 +40,7 @@ public final class StdStorauthSelect implements ActionStd<StorauthInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<StorauthInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<StorauthInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

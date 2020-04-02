@@ -21,8 +21,8 @@ import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckStore;
 import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckStoworg;
 import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckWeekday;
 import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckWrite;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -139,13 +139,13 @@ public final class RootEmpwotmInsert extends DeciTreeWriteTemplate<EmpwotmInfo> 
 	
 	
 	
-	@Override protected List<ActionStd<EmpwotmInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpwotmInfo> option) {
-		List<ActionStd<EmpwotmInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<EmpwotmInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpwotmInfo> option) {
+		List<ActionStdV1<EmpwotmInfo>> actions = new ArrayList<>();
 		
-		ActionStd<EmpwotmInfo> enforceLChanged = new StdEmpwotmEnforceLChanged(option);
-		ActionLazy<EmpwotmInfo> enforceLChangedBy = new LazyEmpwotmMergeUsername(option.conn, option.schemaName);
-		ActionLazy<EmpwotmInfo> nodeInsert = new LazyEmpwotmNodeInsert(option.conn, option.schemaName);
-		ActionLazy<EmpwotmInfo> select = new LazyEmpwotmRootSelect(option.conn, option.schemaName);
+		ActionStdV1<EmpwotmInfo> enforceLChanged = new StdEmpwotmEnforceLChanged(option);
+		ActionLazyV1<EmpwotmInfo> enforceLChangedBy = new LazyEmpwotmMergeUsername(option.conn, option.schemaName);
+		ActionLazyV1<EmpwotmInfo> nodeInsert = new LazyEmpwotmNodeInsert(option.conn, option.schemaName);
+		ActionLazyV1<EmpwotmInfo> select = new LazyEmpwotmRootSelect(option.conn, option.schemaName);
 		
 		enforceLChanged.addPostAction(enforceLChangedBy);
 		enforceLChangedBy.addPostAction(nodeInsert);

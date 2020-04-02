@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.moonCalendar.info.MooncalInfo;
 import br.com.mind5.business.moonCalendar.info.MooncalMerger;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 
 final class VisiMooncalMergeToSelect extends ActionVisitorTemplateMerge<MooncalInfo, MooncalInfo> {
@@ -16,7 +16,7 @@ final class VisiMooncalMergeToSelect extends ActionVisitorTemplateMerge<MooncalI
 	
 	
 	
-	@Override protected Class<? extends ActionStd<MooncalInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStdV1<MooncalInfo>> getActionClassHook() {
 		return StdMooncalSelect.class;
 	}
 	

@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.material.info.MatInfo;
 import br.com.mind5.business.material.info.MatMerger;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 
 final class VisiMatMergeToSelect extends ActionVisitorTemplateMerge<MatInfo, MatInfo> {
@@ -16,7 +16,7 @@ final class VisiMatMergeToSelect extends ActionVisitorTemplateMerge<MatInfo, Mat
 	
 	
 	
-	@Override protected Class<? extends ActionStd<MatInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStdV1<MatInfo>> getActionClassHook() {
 		return StdMatSelect.class;
 	}
 	

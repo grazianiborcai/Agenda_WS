@@ -1,14 +1,14 @@
 package br.com.mind5.business.ownerList.model.action;
 
 import br.com.mind5.business.ownerList.info.OwnelisInfo;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperMerge;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class StdOwnelisMergeComplis implements ActionStd<OwnelisInfo> {
-	private ActionStd<OwnelisInfo> actionHelper;	
+final class StdOwnelisMergeComplis implements ActionStdV1<OwnelisInfo> {
+	private ActionStdV1<OwnelisInfo> actionHelper;	
 	
 	
 	public StdOwnelisMergeComplis(DeciTreeOption<OwnelisInfo> option) {			
@@ -17,7 +17,7 @@ final class StdOwnelisMergeComplis implements ActionStd<OwnelisInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<OwnelisInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<OwnelisInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

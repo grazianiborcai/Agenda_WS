@@ -3,16 +3,16 @@ package br.com.mind5.webhook.moipRefund.model.action;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.commom.ActionStdDummy;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciResultHelper;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.webhook.moipRefund.info.WokefumoipInfo;
 
-public final class StdWokefumoipSuccess implements ActionStd<WokefumoipInfo> {
-	private ActionStd<WokefumoipInfo> actionHelper;
+public final class StdWokefumoipSuccess implements ActionStdV1<WokefumoipInfo> {
+	private ActionStdV1<WokefumoipInfo> actionHelper;
 	
 	
 	public StdWokefumoipSuccess(DeciTreeOption<WokefumoipInfo> option) {
@@ -38,7 +38,7 @@ public final class StdWokefumoipSuccess implements ActionStd<WokefumoipInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<WokefumoipInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<WokefumoipInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

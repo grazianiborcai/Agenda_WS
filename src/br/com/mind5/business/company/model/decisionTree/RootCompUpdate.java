@@ -14,8 +14,8 @@ import br.com.mind5.business.company.model.checker.CompCheckExist;
 import br.com.mind5.business.company.model.checker.CompCheckLangu;
 import br.com.mind5.business.company.model.checker.CompCheckOwner;
 import br.com.mind5.business.company.model.checker.CompCheckUpdate;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -75,14 +75,14 @@ public final class RootCompUpdate extends DeciTreeWriteTemplate<CompInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<CompInfo>> buildActionsOnPassedHook(DeciTreeOption<CompInfo> option) {
-		List<ActionStd<CompInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<CompInfo>> buildActionsOnPassedHook(DeciTreeOption<CompInfo> option) {
+		List<ActionStdV1<CompInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CompInfo> mergeToUpdate = new StdCompMergeToUpdate(option);	
-		ActionLazy<CompInfo> cnpj = new LazyCompNodeCnpjL1(option.conn, option.schemaName);	
-		ActionLazy<CompInfo> enforceLChanged = new LazyCompEnforceLChanged(option.conn, option.schemaName);
-		ActionLazy<CompInfo> enforceLChangedBy = new LazyCompMergeUsername(option.conn, option.schemaName);
-		ActionLazy<CompInfo> snapshot = new LazyCompNodeSnapshot(option.conn, option.schemaName);
+		ActionStdV1<CompInfo> mergeToUpdate = new StdCompMergeToUpdate(option);	
+		ActionLazyV1<CompInfo> cnpj = new LazyCompNodeCnpjL1(option.conn, option.schemaName);	
+		ActionLazyV1<CompInfo> enforceLChanged = new LazyCompEnforceLChanged(option.conn, option.schemaName);
+		ActionLazyV1<CompInfo> enforceLChangedBy = new LazyCompMergeUsername(option.conn, option.schemaName);
+		ActionLazyV1<CompInfo> snapshot = new LazyCompNodeSnapshot(option.conn, option.schemaName);
 		
 		mergeToUpdate.addPostAction(cnpj);
 		cnpj.addPostAction(enforceLChanged);

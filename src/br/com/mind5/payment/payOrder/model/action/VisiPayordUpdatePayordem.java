@@ -3,7 +3,7 @@ package br.com.mind5.payment.payOrder.model.action;
 import java.sql.Connection;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
@@ -18,7 +18,7 @@ final class VisiPayordUpdatePayordem extends ActionVisitorTemplateAction<PayordI
 	
 	
 	
-	@Override protected ActionStd<PayordemInfo> getActionHook(DeciTreeOption<PayordemInfo> option) {
+	@Override protected ActionStdV1<PayordemInfo> getActionHook(DeciTreeOption<PayordemInfo> option) {
 		return new RootPayordemUpdate(option).toAction();
 	}
 	

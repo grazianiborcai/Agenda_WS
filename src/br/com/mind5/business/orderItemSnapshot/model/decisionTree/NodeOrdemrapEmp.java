@@ -7,7 +7,7 @@ import br.com.mind5.business.orderItemSnapshot.info.OrdemrapInfo;
 import br.com.mind5.business.orderItemSnapshot.model.action.StdOrdemrapMergeEmplis;
 import br.com.mind5.business.orderItemSnapshot.model.action.StdOrdemrapSuccess;
 import br.com.mind5.business.orderItemSnapshot.model.checker.OrdemrapCheckHasEmp;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -39,10 +39,10 @@ public final class NodeOrdemrapEmp extends DeciTreeWriteTemplate<OrdemrapInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<OrdemrapInfo>> buildActionsOnPassedHook(DeciTreeOption<OrdemrapInfo> option) {
-		List<ActionStd<OrdemrapInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<OrdemrapInfo>> buildActionsOnPassedHook(DeciTreeOption<OrdemrapInfo> option) {
+		List<ActionStdV1<OrdemrapInfo>> actions = new ArrayList<>();
 		
-		ActionStd<OrdemrapInfo> mergeEmplis = new StdOrdemrapMergeEmplis(option);
+		ActionStdV1<OrdemrapInfo> mergeEmplis = new StdOrdemrapMergeEmplis(option);
 		
 		actions.add(mergeEmplis);
 		return actions;
@@ -50,10 +50,10 @@ public final class NodeOrdemrapEmp extends DeciTreeWriteTemplate<OrdemrapInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<OrdemrapInfo>> buildActionsOnFailedHook(DeciTreeOption<OrdemrapInfo> option) {
-		List<ActionStd<OrdemrapInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<OrdemrapInfo>> buildActionsOnFailedHook(DeciTreeOption<OrdemrapInfo> option) {
+		List<ActionStdV1<OrdemrapInfo>> actions = new ArrayList<>();
 		
-		ActionStd<OrdemrapInfo> success = new StdOrdemrapSuccess(option);
+		ActionStdV1<OrdemrapInfo> success = new StdOrdemrapSuccess(option);
 		
 		actions.add(success);
 		return actions;

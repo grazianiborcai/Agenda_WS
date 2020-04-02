@@ -7,14 +7,14 @@ import br.com.mind5.business.person.dao.PersonInsert;
 import br.com.mind5.business.person.info.PersonInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.obsolete.DaoStmtExec_;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperStmt;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdPersonInsert implements ActionStd<PersonInfo> {
-	ActionStd<PersonInfo> actionHelper;
+public final class StdPersonInsert implements ActionStdV1<PersonInfo> {
+	ActionStdV1<PersonInfo> actionHelper;
 	
 	
 	public StdPersonInsert(DeciTreeOption<PersonInfo> option) {
@@ -40,7 +40,7 @@ public final class StdPersonInsert implements ActionStd<PersonInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<PersonInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<PersonInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

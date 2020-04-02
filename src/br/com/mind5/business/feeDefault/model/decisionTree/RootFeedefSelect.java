@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.feeDefault.info.FeedefInfo;
 import br.com.mind5.business.feeDefault.model.action.StdFeedefSelect;
 import br.com.mind5.business.feeDefault.model.checker.FeedefCheckRead;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -38,8 +38,8 @@ public final class RootFeedefSelect extends DeciTreeReadTemplate<FeedefInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<FeedefInfo>> buildActionsOnPassedHook(DeciTreeOption<FeedefInfo> option) {
-		List<ActionStd<FeedefInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<FeedefInfo>> buildActionsOnPassedHook(DeciTreeOption<FeedefInfo> option) {
+		List<ActionStdV1<FeedefInfo>> actions = new ArrayList<>();
 		
 		actions.add(new StdFeedefSelect(option));
 		return actions;

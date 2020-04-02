@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.business.phone.model.checker.PhoneCheckFlagDel;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -37,10 +37,10 @@ public final class NodePhoneUpsertdel extends DeciTreeWriteTemplate<PhoneInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<PhoneInfo>> buildActionsOnPassedHook(DeciTreeOption<PhoneInfo> option) {
-		List<ActionStd<PhoneInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV1<PhoneInfo>> buildActionsOnPassedHook(DeciTreeOption<PhoneInfo> option) {
+		List<ActionStdV1<PhoneInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<PhoneInfo> delete = new RootPhoneDelete(option).toAction();
+		ActionStdV1<PhoneInfo> delete = new RootPhoneDelete(option).toAction();
 		
 		actions.add(delete);	
 		return actions;
@@ -48,10 +48,10 @@ public final class NodePhoneUpsertdel extends DeciTreeWriteTemplate<PhoneInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<PhoneInfo>> buildActionsOnFailedHook(DeciTreeOption<PhoneInfo> option) {
-		List<ActionStd<PhoneInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV1<PhoneInfo>> buildActionsOnFailedHook(DeciTreeOption<PhoneInfo> option) {
+		List<ActionStdV1<PhoneInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<PhoneInfo> update = new RootPhoneUpdate(option).toAction();
+		ActionStdV1<PhoneInfo> update = new RootPhoneUpdate(option).toAction();
 		
 		actions.add(update);	
 		return actions;

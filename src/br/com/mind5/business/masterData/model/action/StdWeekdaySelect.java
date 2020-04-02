@@ -7,14 +7,14 @@ import br.com.mind5.business.masterData.dao.WeekdaySelect;
 import br.com.mind5.business.masterData.info.WeekdayInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.obsolete.DaoStmtExec_;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperStmt;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdWeekdaySelect implements ActionStd<WeekdayInfo> {
-	private ActionStd<WeekdayInfo> actionHelper;
+public final class StdWeekdaySelect implements ActionStdV1<WeekdayInfo> {
+	private ActionStdV1<WeekdayInfo> actionHelper;
 	
 	
 	public StdWeekdaySelect(DeciTreeOption<WeekdayInfo> option) {
@@ -40,7 +40,7 @@ public final class StdWeekdaySelect implements ActionStd<WeekdayInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<WeekdayInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<WeekdayInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

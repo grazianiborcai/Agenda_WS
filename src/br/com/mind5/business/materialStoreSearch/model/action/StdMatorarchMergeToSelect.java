@@ -1,14 +1,14 @@
 package br.com.mind5.business.materialStoreSearch.model.action;
 
 import br.com.mind5.business.materialStoreSearch.info.MatorarchInfo;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperMerge;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdMatorarchMergeToSelect implements ActionStd<MatorarchInfo> {
-	private ActionStd<MatorarchInfo> actionHelper;	
+public final class StdMatorarchMergeToSelect implements ActionStdV1<MatorarchInfo> {
+	private ActionStdV1<MatorarchInfo> actionHelper;	
 	
 	
 	public StdMatorarchMergeToSelect(DeciTreeOption<MatorarchInfo> option) {			
@@ -17,7 +17,7 @@ public final class StdMatorarchMergeToSelect implements ActionStd<MatorarchInfo>
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<MatorarchInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<MatorarchInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

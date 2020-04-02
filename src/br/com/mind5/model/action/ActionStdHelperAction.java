@@ -6,9 +6,10 @@ import java.util.List;
 
 import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
+import br.com.mind5.info.InfoRecord;
 import br.com.mind5.model.decisionTree.DeciResult;
 
-public final class ActionStdHelperAction<T> extends ActionStdTemplate<T> {
+public final class ActionStdHelperAction<T extends InfoRecord> extends ActionStdTemplateV1<T> {
 	private List<T> records = new ArrayList<>();
 	private ActionVisitorAction<T> visitorAction;
 	

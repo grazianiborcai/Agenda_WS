@@ -11,8 +11,8 @@ import br.com.mind5.business.ownerSnapshot.model.action.StdOwnerapMergePersolis;
 import br.com.mind5.business.ownerSnapshot.model.checker.OwnerapCheckLangu;
 import br.com.mind5.business.ownerSnapshot.model.checker.OwnerapCheckOwner;
 import br.com.mind5.business.ownerSnapshot.model.checker.OwnerapCheckWrite;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -58,13 +58,13 @@ public final class RootOwnerapInsert extends DeciTreeWriteTemplate<OwnerapInfo> 
 	
 	
 	
-	@Override protected List<ActionStd<OwnerapInfo>> buildActionsOnPassedHook(DeciTreeOption<OwnerapInfo> option) {
-		List<ActionStd<OwnerapInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<OwnerapInfo>> buildActionsOnPassedHook(DeciTreeOption<OwnerapInfo> option) {
+		List<ActionStdV1<OwnerapInfo>> actions = new ArrayList<>();
 		
-		ActionStd<OwnerapInfo> mergePersolis = new StdOwnerapMergePersolis(option);
-		ActionLazy<OwnerapInfo> mergeUselis = new LazyOwnerapMergeUselis(option.conn, option.schemaName);
-		ActionLazy<OwnerapInfo> mergeComplis = new LazyOwnerapMergeComplis(option.conn, option.schemaName);
-		ActionLazy<OwnerapInfo> insert = new LazyOwnerapInsert(option.conn, option.schemaName);
+		ActionStdV1<OwnerapInfo> mergePersolis = new StdOwnerapMergePersolis(option);
+		ActionLazyV1<OwnerapInfo> mergeUselis = new LazyOwnerapMergeUselis(option.conn, option.schemaName);
+		ActionLazyV1<OwnerapInfo> mergeComplis = new LazyOwnerapMergeComplis(option.conn, option.schemaName);
+		ActionLazyV1<OwnerapInfo> insert = new LazyOwnerapInsert(option.conn, option.schemaName);
 		
 		mergePersolis.addPostAction(mergeUselis);
 		mergeUselis.addPostAction(mergeComplis);

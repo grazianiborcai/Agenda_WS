@@ -9,7 +9,7 @@ import br.com.mind5.business.materialStoreSnapshot.model.checker.MatorapCheckLan
 import br.com.mind5.business.materialStoreSnapshot.model.checker.MatorapCheckMatore;
 import br.com.mind5.business.materialStoreSnapshot.model.checker.MatorapCheckOwner;
 import br.com.mind5.business.materialStoreSnapshot.model.checker.MatorapCheckInsert;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -62,10 +62,10 @@ public final class RootMatorapInsert extends DeciTreeWriteTemplate<MatorapInfo> 
 	
 	
 	
-	@Override protected List<ActionStd<MatorapInfo>> buildActionsOnPassedHook(DeciTreeOption<MatorapInfo> option) {
-		List<ActionStd<MatorapInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<MatorapInfo>> buildActionsOnPassedHook(DeciTreeOption<MatorapInfo> option) {
+		List<ActionStdV1<MatorapInfo>> actions = new ArrayList<>();
 		
-		ActionStd<MatorapInfo> insert = new StdMatorapInsert(option);
+		ActionStdV1<MatorapInfo> insert = new StdMatorapInsert(option);
 		
 		actions.add(insert);	
 		return actions;

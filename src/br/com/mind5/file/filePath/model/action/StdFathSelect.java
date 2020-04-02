@@ -7,14 +7,14 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.file.filePath.dao.FathSelect;
 import br.com.mind5.file.filePath.info.FathInfo;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperStmt;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdFathSelect implements ActionStd<FathInfo> {
-	private ActionStd<FathInfo> actionHelper;
+public final class StdFathSelect implements ActionStdV1<FathInfo> {
+	private ActionStdV1<FathInfo> actionHelper;
 	
 	
 	public StdFathSelect(DeciTreeOption<FathInfo> option) {
@@ -40,7 +40,7 @@ public final class StdFathSelect implements ActionStd<FathInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<FathInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<FathInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

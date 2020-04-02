@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.masterData.info.UserCategInfo;
 import br.com.mind5.business.masterData.model.action.StdUserCategSelect;
 import br.com.mind5.business.masterData.model.checker.UserCategCheckRead;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -38,10 +38,10 @@ public final class RootUserCategSelect extends DeciTreeReadTemplate<UserCategInf
 	
 	
 	
-	@Override protected List<ActionStd<UserCategInfo>> buildActionsOnPassedHook(DeciTreeOption<UserCategInfo> option) {
-		List<ActionStd<UserCategInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<UserCategInfo>> buildActionsOnPassedHook(DeciTreeOption<UserCategInfo> option) {
+		List<ActionStdV1<UserCategInfo>> actions = new ArrayList<>();
 		
-		ActionStd<UserCategInfo> select = new StdUserCategSelect(option);
+		ActionStdV1<UserCategInfo> select = new StdUserCategSelect(option);
 		
 		actions.add(select);
 		return actions;

@@ -1,14 +1,14 @@
 package br.com.mind5.file.fileImage.model.action;
 
 import br.com.mind5.file.fileImage.info.FimgInfo;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperMerge;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdFimgMergeFimarch implements ActionStd<FimgInfo> {
-	private ActionStd<FimgInfo> actionHelper;	
+public final class StdFimgMergeFimarch implements ActionStdV1<FimgInfo> {
+	private ActionStdV1<FimgInfo> actionHelper;	
 	
 	
 	public StdFimgMergeFimarch(DeciTreeOption<FimgInfo> option) {			
@@ -17,7 +17,7 @@ public final class StdFimgMergeFimarch implements ActionStd<FimgInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<FimgInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<FimgInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

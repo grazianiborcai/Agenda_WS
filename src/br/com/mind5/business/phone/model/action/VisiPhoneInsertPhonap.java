@@ -7,7 +7,7 @@ import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.business.phone.info.PhoneMerger;
 import br.com.mind5.business.phoneSnapshot.info.PhonapInfo;
 import br.com.mind5.business.phoneSnapshot.model.decisionTree.RootPhonapInsert;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -19,7 +19,7 @@ final class VisiPhoneInsertPhonap extends ActionVisitorTemplateAction<PhoneInfo,
 	
 	
 	
-	@Override protected ActionStd<PhonapInfo> getActionHook(DeciTreeOption<PhonapInfo> option) {
+	@Override protected ActionStdV1<PhonapInfo> getActionHook(DeciTreeOption<PhonapInfo> option) {
 		return new RootPhonapInsert(option).toAction();
 	}
 	

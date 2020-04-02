@@ -1,14 +1,14 @@
 package br.com.mind5.security.jwtToken.model.action;
 
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperEnforce;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.jwtToken.info.JwtokenInfo;
 
-public final class StdJwtokenEnforceToken implements ActionStd<JwtokenInfo> {
-	private ActionStd<JwtokenInfo> actionHelper;	
+public final class StdJwtokenEnforceToken implements ActionStdV1<JwtokenInfo> {
+	private ActionStdV1<JwtokenInfo> actionHelper;	
 	
 	
 	public StdJwtokenEnforceToken(DeciTreeOption<JwtokenInfo> option) {			
@@ -17,7 +17,7 @@ public final class StdJwtokenEnforceToken implements ActionStd<JwtokenInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<JwtokenInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<JwtokenInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

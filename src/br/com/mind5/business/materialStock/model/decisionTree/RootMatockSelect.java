@@ -11,7 +11,7 @@ import br.com.mind5.business.materialStock.model.checker.MatockCheckOwner;
 import br.com.mind5.business.materialStock.model.checker.MatockCheckRead;
 import br.com.mind5.business.materialStock.model.checker.MatockCheckStorauth;
 import br.com.mind5.business.materialStock.model.checker.MatockCheckStore;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -79,10 +79,10 @@ public final class RootMatockSelect extends DeciTreeReadTemplate<MatockInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<MatockInfo>> buildActionsOnPassedHook(DeciTreeOption<MatockInfo> option) {
-		List<ActionStd<MatockInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<MatockInfo>> buildActionsOnPassedHook(DeciTreeOption<MatockInfo> option) {
+		List<ActionStdV1<MatockInfo>> actions = new ArrayList<>();
 
-		ActionStd<MatockInfo> select = new StdMatockMergeToSelect(option);
+		ActionStdV1<MatockInfo> select = new StdMatockMergeToSelect(option);
 		
 		actions.add(select);
 		return actions;

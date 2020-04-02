@@ -3,8 +3,8 @@ package br.com.mind5.security.username.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -40,11 +40,11 @@ public final class RootUsernameSelect extends DeciTreeReadTemplate<UsernameInfo>
 	
 	
 	
-	@Override protected List<ActionStd<UsernameInfo>> buildActionsOnPassedHook(DeciTreeOption<UsernameInfo> option) {
-		List<ActionStd<UsernameInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<UsernameInfo>> buildActionsOnPassedHook(DeciTreeOption<UsernameInfo> option) {
+		List<ActionStdV1<UsernameInfo>> actions = new ArrayList<>();
 		
-		ActionStd<UsernameInfo> select = new StdUsernameMergeToSelect(option);
-		ActionLazy<UsernameInfo> mergeAuthGrRole = new LazyUsernameMergeAuthGrRole(option.conn, option.schemaName);
+		ActionStdV1<UsernameInfo> select = new StdUsernameMergeToSelect(option);
+		ActionLazyV1<UsernameInfo> mergeAuthGrRole = new LazyUsernameMergeAuthGrRole(option.conn, option.schemaName);
 		
 		select.addPostAction(mergeAuthGrRole);
 		

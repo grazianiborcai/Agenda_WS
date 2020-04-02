@@ -3,7 +3,7 @@ package br.com.mind5.security.userSearch.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -38,10 +38,10 @@ public final class RootUserarchSelect extends DeciTreeReadTemplate<UserarchInfo>
 	
 	
 	
-	@Override protected List<ActionStd<UserarchInfo>> buildActionsOnPassedHook(DeciTreeOption<UserarchInfo> option) {
-		List<ActionStd<UserarchInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<UserarchInfo>> buildActionsOnPassedHook(DeciTreeOption<UserarchInfo> option) {
+		List<ActionStdV1<UserarchInfo>> actions = new ArrayList<>();
 		
-		ActionStd<UserarchInfo> select = new StdUserarchMergeToSelect(option);
+		ActionStdV1<UserarchInfo> select = new StdUserarchMergeToSelect(option);
 		
 		actions.add(select);
 		return actions;

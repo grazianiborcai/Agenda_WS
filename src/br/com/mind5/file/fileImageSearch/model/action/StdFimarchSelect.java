@@ -7,14 +7,14 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.file.fileImageSearch.dao.FimarchSelect;
 import br.com.mind5.file.fileImageSearch.info.FimarchInfo;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperStmt;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdFimarchSelect implements ActionStd<FimarchInfo> {
-	private ActionStd<FimarchInfo> actionHelper;
+public final class StdFimarchSelect implements ActionStdV1<FimarchInfo> {
+	private ActionStdV1<FimarchInfo> actionHelper;
 	
 	
 	public StdFimarchSelect(DeciTreeOption<FimarchInfo> option) {
@@ -40,7 +40,7 @@ public final class StdFimarchSelect implements ActionStd<FimarchInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<FimarchInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<FimarchInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

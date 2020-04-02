@@ -3,7 +3,7 @@ package br.com.mind5.business.company.model.checker;
 import br.com.mind5.business.company.info.CompInfo;
 import br.com.mind5.business.company.model.action.StdCompSelect;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -16,8 +16,8 @@ public final class CompCheckExist extends ModelCheckerTemplateAction<CompInfo, C
 	
 	
 	
-	@Override protected ActionStd<CompInfo> buildActionHook(DeciTreeOption<CompInfo> option) {
-		ActionStd<CompInfo> select = new StdCompSelect(option);
+	@Override protected ActionStdV1<CompInfo> buildActionHook(DeciTreeOption<CompInfo> option) {
+		ActionStdV1<CompInfo> select = new StdCompSelect(option);
 		return select;
 	}
 	

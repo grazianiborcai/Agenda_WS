@@ -7,7 +7,7 @@ import br.com.mind5.business.company.info.CompInfo;
 import br.com.mind5.business.company.info.CompMerger;
 import br.com.mind5.business.companySnapshot.info.CompnapInfo;
 import br.com.mind5.business.companySnapshot.model.decisionTree.RootCompnapInsert;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -19,7 +19,7 @@ final class VisiCompInsertCompnap extends ActionVisitorTemplateAction<CompInfo, 
 	
 	
 	
-	@Override protected ActionStd<CompnapInfo> getActionHook(DeciTreeOption<CompnapInfo> option) {
+	@Override protected ActionStdV1<CompnapInfo> getActionHook(DeciTreeOption<CompnapInfo> option) {
 		return new RootCompnapInsert(option).toAction();
 	}
 	

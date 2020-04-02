@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.addressSnapshot.info.AddresnapInfo;
 import br.com.mind5.business.addressSnapshot.info.AddresnapMerger;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 
 final class VisiAddressMergeToSelect extends ActionVisitorTemplateMerge<AddresnapInfo, AddresnapInfo> {
@@ -16,7 +16,7 @@ final class VisiAddressMergeToSelect extends ActionVisitorTemplateMerge<Addresna
 	
 	
 	
-	@Override protected Class<? extends ActionStd<AddresnapInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStdV1<AddresnapInfo>> getActionClassHook() {
 		return StdAddresnapSelect.class;
 	}
 	

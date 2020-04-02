@@ -3,7 +3,7 @@ package br.com.mind5.security.tokenAuthentication.model.action;
 import java.sql.Connection;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.jwtToken.info.JwtokenCopier;
@@ -19,7 +19,7 @@ final class VisiTauthValidateJwtoken extends ActionVisitorTemplateAction<TauthIn
 	
 	
 	
-	@Override protected ActionStd<JwtokenInfo> getActionHook(DeciTreeOption<JwtokenInfo> option) {
+	@Override protected ActionStdV1<JwtokenInfo> getActionHook(DeciTreeOption<JwtokenInfo> option) {
 		return new RootJwtokenValidate(option).toAction();
 	}
 	

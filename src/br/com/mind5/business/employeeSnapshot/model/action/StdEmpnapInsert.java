@@ -7,14 +7,14 @@ import br.com.mind5.business.employeeSnapshot.dao.EmpnapInsert;
 import br.com.mind5.business.employeeSnapshot.info.EmpnapInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.obsolete.DaoStmtExec_;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperStmt;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdEmpnapInsert implements ActionStd<EmpnapInfo> {
-	ActionStd<EmpnapInfo> actionHelper;
+public final class StdEmpnapInsert implements ActionStdV1<EmpnapInfo> {
+	ActionStdV1<EmpnapInfo> actionHelper;
 	
 	
 	public StdEmpnapInsert(DeciTreeOption<EmpnapInfo> option) {
@@ -40,7 +40,7 @@ public final class StdEmpnapInsert implements ActionStd<EmpnapInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<EmpnapInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<EmpnapInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

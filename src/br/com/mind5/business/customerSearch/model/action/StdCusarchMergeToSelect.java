@@ -1,14 +1,14 @@
 package br.com.mind5.business.customerSearch.model.action;
 
 import br.com.mind5.business.customerSearch.info.CusarchInfo;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperMerge;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class StdCusarchMergeToSelect implements ActionStd<CusarchInfo> {
-	private ActionStd<CusarchInfo> actionHelper;	
+final class StdCusarchMergeToSelect implements ActionStdV1<CusarchInfo> {
+	private ActionStdV1<CusarchInfo> actionHelper;	
 	
 	
 	public StdCusarchMergeToSelect(DeciTreeOption<CusarchInfo> option) {			
@@ -17,7 +17,7 @@ final class StdCusarchMergeToSelect implements ActionStd<CusarchInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<CusarchInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<CusarchInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

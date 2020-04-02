@@ -7,7 +7,7 @@ import br.com.mind5.message.email.info.EmailCopier;
 import br.com.mind5.message.email.info.EmailInfo;
 import br.com.mind5.message.email.model.decisionTree.RootEmailWelcome;
 import br.com.mind5.message.emailWelcome.info.EmacomeInfo;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -18,7 +18,7 @@ final class VisiEmacomeSendEmail extends ActionVisitorTemplateAction<EmacomeInfo
 	
 	
 	
-	@Override protected ActionStd<EmailInfo> getActionHook(DeciTreeOption<EmailInfo> option) {
+	@Override protected ActionStdV1<EmailInfo> getActionHook(DeciTreeOption<EmailInfo> option) {
 		return new RootEmailWelcome(option).toAction();
 	}
 	

@@ -1,14 +1,14 @@
 package br.com.mind5.business.scheduleYear.model.action;
 
 import br.com.mind5.business.scheduleYear.info.SchedyearInfo;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperMerge;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class StdSchedyearMergeStolis implements ActionStd<SchedyearInfo> {
-	private ActionStd<SchedyearInfo> actionHelper;	
+final class StdSchedyearMergeStolis implements ActionStdV1<SchedyearInfo> {
+	private ActionStdV1<SchedyearInfo> actionHelper;	
 	
 	
 	public StdSchedyearMergeStolis(DeciTreeOption<SchedyearInfo> option) {			
@@ -17,7 +17,7 @@ final class StdSchedyearMergeStolis implements ActionStd<SchedyearInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<SchedyearInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<SchedyearInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

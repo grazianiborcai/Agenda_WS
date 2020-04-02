@@ -9,7 +9,7 @@ import br.com.mind5.business.scheduleRange.model.checker.SchedageCheckLangu;
 import br.com.mind5.business.scheduleRange.model.checker.SchedageCheckOwner;
 import br.com.mind5.business.scheduleRange.model.checker.SchedageCheckRead;
 import br.com.mind5.business.scheduleRange.model.checker.SchedageCheckStore;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -62,10 +62,10 @@ public final class RootSchedageSelect extends DeciTreeWriteTemplate<SchedageInfo
 	
 	
 	
-	@Override protected List<ActionStd<SchedageInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedageInfo> option) {
-		List<ActionStd<SchedageInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<SchedageInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedageInfo> option) {
+		List<ActionStdV1<SchedageInfo>> actions = new ArrayList<>();
 		
-		ActionStd<SchedageInfo> select = new StdSchedageMergeToSelect(option);
+		ActionStdV1<SchedageInfo> select = new StdSchedageMergeToSelect(option);
 		
 		actions.add(select);
 		return actions;

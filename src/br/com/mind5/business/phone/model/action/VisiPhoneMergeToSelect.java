@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.business.phone.info.PhoneMerger;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 
 final class VisiPhoneMergeToSelect extends ActionVisitorTemplateMerge<PhoneInfo, PhoneInfo> {
@@ -16,7 +16,7 @@ final class VisiPhoneMergeToSelect extends ActionVisitorTemplateMerge<PhoneInfo,
 	
 	
 	
-	@Override protected Class<? extends ActionStd<PhoneInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStdV1<PhoneInfo>> getActionClassHook() {
 		return StdPhoneSelect.class;
 	}
 	

@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.masterData.info.MatCategInfo;
 import br.com.mind5.business.masterData.model.action.StdMatCategSelect;
 import br.com.mind5.business.masterData.model.checker.MatCategCheckRead;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -38,10 +38,10 @@ public final class RootMatCategSelect extends DeciTreeReadTemplate<MatCategInfo>
 	
 	
 	
-	@Override protected List<ActionStd<MatCategInfo>> buildActionsOnPassedHook(DeciTreeOption<MatCategInfo> option) {
-		List<ActionStd<MatCategInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<MatCategInfo>> buildActionsOnPassedHook(DeciTreeOption<MatCategInfo> option) {
+		List<ActionStdV1<MatCategInfo>> actions = new ArrayList<>();
 		
-		ActionStd<MatCategInfo> select = new StdMatCategSelect(option);
+		ActionStdV1<MatCategInfo> select = new StdMatCategSelect(option);
 		
 		actions.add(select);
 		return actions;

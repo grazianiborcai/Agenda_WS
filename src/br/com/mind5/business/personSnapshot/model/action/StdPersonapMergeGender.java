@@ -1,14 +1,14 @@
 package br.com.mind5.business.personSnapshot.model.action;
 
 import br.com.mind5.business.personSnapshot.info.PersonapInfo;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperMerge;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class StdPersonapMergeGender implements ActionStd<PersonapInfo> {
-	private ActionStd<PersonapInfo> actionHelper;	
+final class StdPersonapMergeGender implements ActionStdV1<PersonapInfo> {
+	private ActionStdV1<PersonapInfo> actionHelper;	
 	
 	
 	public StdPersonapMergeGender(DeciTreeOption<PersonapInfo> option) {			
@@ -17,7 +17,7 @@ final class StdPersonapMergeGender implements ActionStd<PersonapInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<PersonapInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<PersonapInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

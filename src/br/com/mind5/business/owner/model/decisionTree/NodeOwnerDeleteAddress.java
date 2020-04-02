@@ -8,8 +8,8 @@ import br.com.mind5.business.owner.model.action.LazyOwnerDeleteAddress;
 import br.com.mind5.business.owner.model.action.StdOwnerEnforceAddressKey;
 import br.com.mind5.business.owner.model.action.StdOwnerSuccess;
 import br.com.mind5.business.owner.model.checker.OwnerCheckHasAddress;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -43,11 +43,11 @@ public final class NodeOwnerDeleteAddress extends DeciTreeWriteTemplate<OwnerInf
 	
 	
 	
-	@Override protected List<ActionStd<OwnerInfo>> buildActionsOnPassedHook(DeciTreeOption<OwnerInfo> option) {
-		List<ActionStd<OwnerInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<OwnerInfo>> buildActionsOnPassedHook(DeciTreeOption<OwnerInfo> option) {
+		List<ActionStdV1<OwnerInfo>> actions = new ArrayList<>();
 		
-		ActionStd<OwnerInfo> enforceAddressKey = new StdOwnerEnforceAddressKey(option);
-		ActionLazy<OwnerInfo> deleteAddress = new LazyOwnerDeleteAddress(option.conn, option.schemaName);
+		ActionStdV1<OwnerInfo> enforceAddressKey = new StdOwnerEnforceAddressKey(option);
+		ActionLazyV1<OwnerInfo> deleteAddress = new LazyOwnerDeleteAddress(option.conn, option.schemaName);
 		
 		enforceAddressKey.addPostAction(deleteAddress);
 		
@@ -57,8 +57,8 @@ public final class NodeOwnerDeleteAddress extends DeciTreeWriteTemplate<OwnerInf
 	
 	
 	
-	@Override protected List<ActionStd<OwnerInfo>> buildActionsOnFailedHook(DeciTreeOption<OwnerInfo> option) {
-		List<ActionStd<OwnerInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<OwnerInfo>> buildActionsOnFailedHook(DeciTreeOption<OwnerInfo> option) {
+		List<ActionStdV1<OwnerInfo>> actions = new ArrayList<>();
 		
 		actions.add(new StdOwnerSuccess(option));		
 		return actions;

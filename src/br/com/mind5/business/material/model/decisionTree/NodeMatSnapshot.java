@@ -7,8 +7,8 @@ import br.com.mind5.business.material.info.MatInfo;
 import br.com.mind5.business.material.model.action.LazyMatUpdate;
 import br.com.mind5.business.material.model.action.StdMatInsertMatsnap;
 import br.com.mind5.business.material.model.checker.MatCheckDummy;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -34,11 +34,11 @@ public final class NodeMatSnapshot extends DeciTreeWriteTemplate<MatInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<MatInfo>> buildActionsOnPassedHook(DeciTreeOption<MatInfo> option) {
-		List<ActionStd<MatInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<MatInfo>> buildActionsOnPassedHook(DeciTreeOption<MatInfo> option) {
+		List<ActionStdV1<MatInfo>> actions = new ArrayList<>();
 		
-		ActionStd<MatInfo> insertMatsnap = new StdMatInsertMatsnap(option);
-		ActionLazy<MatInfo> update = new LazyMatUpdate(option.conn, option.schemaName);
+		ActionStdV1<MatInfo> insertMatsnap = new StdMatInsertMatsnap(option);
+		ActionLazyV1<MatInfo> update = new LazyMatUpdate(option.conn, option.schemaName);
 		
 		insertMatsnap.addPostAction(update);
 		

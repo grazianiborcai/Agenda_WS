@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.employeeLeaveDateRange.info.EmplargInfo;
 import br.com.mind5.business.employeeLeaveDateRange.info.EmplargMerger;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 
 final class VisiEmplargMergeToSelect extends ActionVisitorTemplateMerge<EmplargInfo, EmplargInfo> {
@@ -16,7 +16,7 @@ final class VisiEmplargMergeToSelect extends ActionVisitorTemplateMerge<EmplargI
 	
 	
 	
-	@Override protected Class<? extends ActionStd<EmplargInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStdV1<EmplargInfo>> getActionClassHook() {
 		return StdEmplargSelect.class;
 	}
 	

@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.companyList.info.ComplisInfo;
 import br.com.mind5.business.companyList.info.ComplisMerger;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 
 final class VisiComplisMergeToSelect extends ActionVisitorTemplateMerge<ComplisInfo, ComplisInfo> {
@@ -16,7 +16,7 @@ final class VisiComplisMergeToSelect extends ActionVisitorTemplateMerge<ComplisI
 	
 	
 	
-	@Override protected Class<? extends ActionStd<ComplisInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStdV1<ComplisInfo>> getActionClassHook() {
 		return StdComplisSelect.class;
 	}
 	

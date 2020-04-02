@@ -7,7 +7,7 @@ import br.com.mind5.business.address.info.AddressCopier;
 import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.address.model.decisionTree.RootAddressUpsertdel;
 import br.com.mind5.business.employee.info.EmpInfo;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -24,7 +24,7 @@ final class VisiEmpUpsertAddress extends ActionVisitorTemplateAction<EmpInfo, Ad
 	
 	
 	
-	@Override protected ActionStd<AddressInfo> getActionHook(DeciTreeOption<AddressInfo> option) {
+	@Override protected ActionStdV1<AddressInfo> getActionHook(DeciTreeOption<AddressInfo> option) {
 		return new RootAddressUpsertdel(option).toAction();
 	}
 }

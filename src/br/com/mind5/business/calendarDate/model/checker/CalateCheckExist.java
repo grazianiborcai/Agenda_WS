@@ -3,7 +3,7 @@ package br.com.mind5.business.calendarDate.model.checker;
 import br.com.mind5.business.calendarDate.info.CalateInfo;
 import br.com.mind5.business.calendarDate.model.action.StdCalateSelect;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -16,8 +16,8 @@ public final class CalateCheckExist extends ModelCheckerTemplateAction<CalateInf
 	
 	
 	
-	@Override protected ActionStd<CalateInfo> buildActionHook(DeciTreeOption<CalateInfo> option) {
-		ActionStd<CalateInfo> select = new StdCalateSelect(option);
+	@Override protected ActionStdV1<CalateInfo> buildActionHook(DeciTreeOption<CalateInfo> option) {
+		ActionStdV1<CalateInfo> select = new StdCalateSelect(option);
 		return select;
 	}
 	

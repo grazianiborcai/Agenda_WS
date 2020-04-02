@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.masterData.info.LanguInfo;
 import br.com.mind5.business.masterData.model.action.StdLanguSelect;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.checker.common.ModelCherckerTrue;
@@ -32,10 +32,10 @@ public final class RootLanguSelect extends DeciTreeReadTemplate<LanguInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<LanguInfo>> buildActionsOnPassedHook(DeciTreeOption<LanguInfo> option) {
-		List<ActionStd<LanguInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<LanguInfo>> buildActionsOnPassedHook(DeciTreeOption<LanguInfo> option) {
+		List<ActionStdV1<LanguInfo>> actions = new ArrayList<>();
 		
-		ActionStd<LanguInfo> select = new StdLanguSelect(option);
+		ActionStdV1<LanguInfo> select = new StdLanguSelect(option);
 		
 		actions.add(select);
 		return actions;

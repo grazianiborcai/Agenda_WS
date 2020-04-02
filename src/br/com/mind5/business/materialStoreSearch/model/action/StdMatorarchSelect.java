@@ -7,14 +7,14 @@ import br.com.mind5.business.materialStoreSearch.dao.MatorarchSelect;
 import br.com.mind5.business.materialStoreSearch.info.MatorarchInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.obsolete.DaoStmtExec_;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperStmt;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdMatorarchSelect implements ActionStd<MatorarchInfo> {
-	private ActionStd<MatorarchInfo> actionHelper;
+public final class StdMatorarchSelect implements ActionStdV1<MatorarchInfo> {
+	private ActionStdV1<MatorarchInfo> actionHelper;
 	
 	
 	public StdMatorarchSelect(DeciTreeOption<MatorarchInfo> option) {
@@ -40,7 +40,7 @@ public final class StdMatorarchSelect implements ActionStd<MatorarchInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<MatorarchInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<MatorarchInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

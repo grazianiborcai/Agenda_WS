@@ -7,7 +7,7 @@ import br.com.mind5.business.feeOwner.info.FeewnerInfo;
 import br.com.mind5.business.feeOwner.model.checker.FeewnerCheckFeeCateg;
 import br.com.mind5.business.feeOwner.model.checker.FeewnerCheckOwner;
 import br.com.mind5.business.feeOwner.model.checker.FeewnerCheckRead;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -53,10 +53,10 @@ public final class RootFeewnerSelect extends DeciTreeReadTemplate<FeewnerInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<FeewnerInfo>> buildActionsOnPassedHook(DeciTreeOption<FeewnerInfo> option) {
-		List<ActionStd<FeewnerInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<FeewnerInfo>> buildActionsOnPassedHook(DeciTreeOption<FeewnerInfo> option) {
+		List<ActionStdV1<FeewnerInfo>> actions = new ArrayList<>();
 		
-		ActionStd<FeewnerInfo> select = new NodeFeewnerSelect(option).toAction();
+		ActionStdV1<FeewnerInfo> select = new NodeFeewnerSelect(option).toAction();
 		actions.add(select);
 		
 		return actions;

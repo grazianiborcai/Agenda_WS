@@ -1,14 +1,14 @@
 package br.com.mind5.business.planingDataSearch.model.action;
 
 import br.com.mind5.business.planingDataSearch.info.PlanarchInfo;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperPrune;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdPlanarchPruneSel implements ActionStd<PlanarchInfo> {
-	private ActionStd<PlanarchInfo> actionHelper;	
+public final class StdPlanarchPruneSel implements ActionStdV1<PlanarchInfo> {
+	private ActionStdV1<PlanarchInfo> actionHelper;	
 	
 	
 	public StdPlanarchPruneSel(DeciTreeOption<PlanarchInfo> option) {			
@@ -17,7 +17,7 @@ public final class StdPlanarchPruneSel implements ActionStd<PlanarchInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<PlanarchInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<PlanarchInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

@@ -7,8 +7,8 @@ import br.com.mind5.business.cartItem.info.CartemInfo;
 import br.com.mind5.business.cartItem.model.action.LazyCartemRootSelect;
 import br.com.mind5.business.cartItem.model.action.StdCartemMergeCartemarch;
 import br.com.mind5.business.cartItem.model.checker.CartemCheckDummy;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -34,11 +34,11 @@ public final class RootCartemSearch extends DeciTreeWriteTemplate<CartemInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<CartemInfo>> buildActionsOnPassedHook(DeciTreeOption<CartemInfo> option) {
-		List<ActionStd<CartemInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<CartemInfo>> buildActionsOnPassedHook(DeciTreeOption<CartemInfo> option) {
+		List<ActionStdV1<CartemInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CartemInfo> mergeCartemarch = new StdCartemMergeCartemarch(option);
-		ActionLazy<CartemInfo> select = new LazyCartemRootSelect(option.conn, option.schemaName);
+		ActionStdV1<CartemInfo> mergeCartemarch = new StdCartemMergeCartemarch(option);
+		ActionLazyV1<CartemInfo> select = new LazyCartemRootSelect(option.conn, option.schemaName);
 		
 		mergeCartemarch.addPostAction(select);
 		

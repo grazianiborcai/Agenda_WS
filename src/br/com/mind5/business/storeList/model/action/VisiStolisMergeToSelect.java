@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.business.storeList.info.StolisMerger;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 
 final class VisiStolisMergeToSelect extends ActionVisitorTemplateMerge<StolisInfo, StolisInfo> {
@@ -16,7 +16,7 @@ final class VisiStolisMergeToSelect extends ActionVisitorTemplateMerge<StolisInf
 	
 	
 	
-	@Override protected Class<? extends ActionStd<StolisInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStdV1<StolisInfo>> getActionClassHook() {
 		return StdStolisSelect.class;
 	}
 	

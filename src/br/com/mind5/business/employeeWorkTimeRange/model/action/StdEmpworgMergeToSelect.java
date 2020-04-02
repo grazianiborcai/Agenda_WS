@@ -1,14 +1,14 @@
 package br.com.mind5.business.employeeWorkTimeRange.model.action;
 
 import br.com.mind5.business.employeeWorkTimeRange.info.EmpworgInfo;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperMerge;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdEmpworgMergeToSelect implements ActionStd<EmpworgInfo> {
-	private ActionStd<EmpworgInfo> actionHelper;	
+public final class StdEmpworgMergeToSelect implements ActionStdV1<EmpworgInfo> {
+	private ActionStdV1<EmpworgInfo> actionHelper;	
 	
 	
 	public StdEmpworgMergeToSelect(DeciTreeOption<EmpworgInfo> option) {			
@@ -17,7 +17,7 @@ public final class StdEmpworgMergeToSelect implements ActionStd<EmpworgInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<EmpworgInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<EmpworgInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

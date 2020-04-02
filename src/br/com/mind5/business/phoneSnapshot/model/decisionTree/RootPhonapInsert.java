@@ -8,8 +8,8 @@ import br.com.mind5.business.phoneSnapshot.model.action.LazyPhonapInsert;
 import br.com.mind5.business.phoneSnapshot.model.action.LazyPhonapRootSelect;
 import br.com.mind5.business.phoneSnapshot.model.checker.PhonapCheckOwner;
 import br.com.mind5.business.phoneSnapshot.model.checker.PhonapCheckWrite;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -48,12 +48,12 @@ public final class RootPhonapInsert extends DeciTreeWriteTemplate<PhonapInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<PhonapInfo>> buildActionsOnPassedHook(DeciTreeOption<PhonapInfo> option) {
-		List<ActionStd<PhonapInfo>> actions = new ArrayList<>();	
+	@Override protected List<ActionStdV1<PhonapInfo>> buildActionsOnPassedHook(DeciTreeOption<PhonapInfo> option) {
+		List<ActionStdV1<PhonapInfo>> actions = new ArrayList<>();	
 		
-		ActionStd<PhonapInfo> nodeUser = new NodePhonapUselis(option).toAction();	
-		ActionLazy<PhonapInfo> insert = new LazyPhonapInsert(option.conn, option.schemaName);		
-		ActionLazy<PhonapInfo> select = new LazyPhonapRootSelect(option.conn, option.schemaName);	
+		ActionStdV1<PhonapInfo> nodeUser = new NodePhonapUselis(option).toAction();	
+		ActionLazyV1<PhonapInfo> insert = new LazyPhonapInsert(option.conn, option.schemaName);		
+		ActionLazyV1<PhonapInfo> select = new LazyPhonapRootSelect(option.conn, option.schemaName);	
 		
 		nodeUser.addPostAction(insert);
 		insert.addPostAction(select);

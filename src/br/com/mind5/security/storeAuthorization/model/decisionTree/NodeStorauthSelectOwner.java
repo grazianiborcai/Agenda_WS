@@ -3,8 +3,8 @@ package br.com.mind5.security.storeAuthorization.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -40,11 +40,11 @@ public final class NodeStorauthSelectOwner extends DeciTreeWriteTemplate<Storaut
 	
 	
 	
-	@Override protected List<ActionStd<StorauthInfo>> buildActionsOnPassedHook(DeciTreeOption<StorauthInfo> option) {
-		List<ActionStd<StorauthInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<StorauthInfo>> buildActionsOnPassedHook(DeciTreeOption<StorauthInfo> option) {
+		List<ActionStdV1<StorauthInfo>> actions = new ArrayList<>();
 		
-		ActionStd<StorauthInfo> enforceOwnerKey = new StdStorauthEnforceOwnerKey(option);	
-		ActionLazy<StorauthInfo> nodeSelectL2 = new LazyStorauthNodeSelectL2(option.conn, option.schemaName);
+		ActionStdV1<StorauthInfo> enforceOwnerKey = new StdStorauthEnforceOwnerKey(option);	
+		ActionLazyV1<StorauthInfo> nodeSelectL2 = new LazyStorauthNodeSelectL2(option.conn, option.schemaName);
 		
 		enforceOwnerKey.addPostAction(nodeSelectL2);
 			

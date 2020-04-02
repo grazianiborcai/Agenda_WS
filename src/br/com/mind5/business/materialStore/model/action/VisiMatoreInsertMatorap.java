@@ -7,7 +7,7 @@ import br.com.mind5.business.materialStore.info.MatoreInfo;
 import br.com.mind5.business.materialStore.info.MatoreMerger;
 import br.com.mind5.business.materialStoreSnapshot.info.MatorapInfo;
 import br.com.mind5.business.materialStoreSnapshot.model.decisionTree.RootMatorapInsert;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -19,7 +19,7 @@ final class VisiMatoreInsertMatorap extends ActionVisitorTemplateAction<MatoreIn
 	
 	
 	
-	@Override protected ActionStd<MatorapInfo> getActionHook(DeciTreeOption<MatorapInfo> option) {
+	@Override protected ActionStdV1<MatorapInfo> getActionHook(DeciTreeOption<MatorapInfo> option) {
 		return new RootMatorapInsert(option).toAction();
 	}
 	

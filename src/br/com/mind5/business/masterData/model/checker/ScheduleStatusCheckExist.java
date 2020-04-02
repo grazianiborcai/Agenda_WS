@@ -3,7 +3,7 @@ package br.com.mind5.business.masterData.model.checker;
 import br.com.mind5.business.masterData.info.ScheduleStatusInfo;
 import br.com.mind5.business.masterData.model.action.StdScheduleStatusSelect;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -16,8 +16,8 @@ public final class ScheduleStatusCheckExist extends ModelCheckerTemplateAction<S
 	
 	
 	
-	@Override protected ActionStd<ScheduleStatusInfo> buildActionHook(DeciTreeOption<ScheduleStatusInfo> option) {
-		ActionStd<ScheduleStatusInfo> select = new StdScheduleStatusSelect(option);
+	@Override protected ActionStdV1<ScheduleStatusInfo> buildActionHook(DeciTreeOption<ScheduleStatusInfo> option) {
+		ActionStdV1<ScheduleStatusInfo> select = new StdScheduleStatusSelect(option);
 		return select;
 	}
 	

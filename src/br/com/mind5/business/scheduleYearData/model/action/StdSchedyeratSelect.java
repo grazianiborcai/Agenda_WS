@@ -7,14 +7,14 @@ import br.com.mind5.business.scheduleYearData.dao.SchedyeratSelect;
 import br.com.mind5.business.scheduleYearData.info.SchedyeratInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.obsolete.DaoStmtExec_;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperStmt;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdSchedyeratSelect implements ActionStd<SchedyeratInfo> {
-	private ActionStd<SchedyeratInfo> actionHelper;
+public final class StdSchedyeratSelect implements ActionStdV1<SchedyeratInfo> {
+	private ActionStdV1<SchedyeratInfo> actionHelper;
 	
 	
 	public StdSchedyeratSelect(DeciTreeOption<SchedyeratInfo> option) {
@@ -40,7 +40,7 @@ public final class StdSchedyeratSelect implements ActionStd<SchedyeratInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<SchedyeratInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<SchedyeratInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

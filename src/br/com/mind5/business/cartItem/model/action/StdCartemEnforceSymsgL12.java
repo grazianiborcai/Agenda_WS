@@ -1,14 +1,14 @@
 package br.com.mind5.business.cartItem.model.action;
 
 import br.com.mind5.business.cartItem.info.CartemInfo;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperEnforce;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdCartemEnforceSymsgL12 implements ActionStd<CartemInfo> {
-	private ActionStd<CartemInfo> actionHelper;	
+public final class StdCartemEnforceSymsgL12 implements ActionStdV1<CartemInfo> {
+	private ActionStdV1<CartemInfo> actionHelper;	
 	
 	
 	public StdCartemEnforceSymsgL12(DeciTreeOption<CartemInfo> option) {			
@@ -17,7 +17,7 @@ public final class StdCartemEnforceSymsgL12 implements ActionStd<CartemInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<CartemInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<CartemInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

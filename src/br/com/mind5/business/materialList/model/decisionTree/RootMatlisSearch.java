@@ -7,8 +7,8 @@ import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.business.materialList.model.action.LazyMatlisRootSelect;
 import br.com.mind5.business.materialList.model.action.StdMatlisMergeMatarch;
 import br.com.mind5.business.materialList.model.checker.MatlisCheckDummy;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -34,11 +34,11 @@ public final class RootMatlisSearch extends DeciTreeReadTemplate<MatlisInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<MatlisInfo>> buildActionsOnPassedHook(DeciTreeOption<MatlisInfo> option) {
-		List<ActionStd<MatlisInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<MatlisInfo>> buildActionsOnPassedHook(DeciTreeOption<MatlisInfo> option) {
+		List<ActionStdV1<MatlisInfo>> actions = new ArrayList<>();
 		
-		ActionStd<MatlisInfo> mergeMatarch = new StdMatlisMergeMatarch(option);
-		ActionLazy<MatlisInfo> select = new LazyMatlisRootSelect(option.conn, option.schemaName);
+		ActionStdV1<MatlisInfo> mergeMatarch = new StdMatlisMergeMatarch(option);
+		ActionLazyV1<MatlisInfo> select = new LazyMatlisRootSelect(option.conn, option.schemaName);
 		
 		mergeMatarch.addPostAction(select);
 		

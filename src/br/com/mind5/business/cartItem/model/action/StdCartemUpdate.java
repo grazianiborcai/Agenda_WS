@@ -7,14 +7,14 @@ import br.com.mind5.business.cartItem.dao.CartemUpdate;
 import br.com.mind5.business.cartItem.info.CartemInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.obsolete.DaoStmtExec_;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperStmt;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdCartemUpdate implements ActionStd<CartemInfo> {
-	private ActionStd<CartemInfo> actionHelper;
+public final class StdCartemUpdate implements ActionStdV1<CartemInfo> {
+	private ActionStdV1<CartemInfo> actionHelper;
 	
 	
 	public StdCartemUpdate(DeciTreeOption<CartemInfo> option) {
@@ -40,7 +40,7 @@ public final class StdCartemUpdate implements ActionStd<CartemInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<CartemInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<CartemInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

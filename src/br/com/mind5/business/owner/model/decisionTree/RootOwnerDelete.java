@@ -11,8 +11,8 @@ import br.com.mind5.business.owner.model.action.LazyOwnerUpdate;
 import br.com.mind5.business.owner.model.action.StdOwnerMergeToDelete;
 import br.com.mind5.business.owner.model.checker.OwnerCheckDelete;
 import br.com.mind5.business.owner.model.checker.OwnerCheckExist;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -51,14 +51,14 @@ public final class RootOwnerDelete extends DeciTreeWriteTemplate<OwnerInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<OwnerInfo>> buildActionsOnPassedHook(DeciTreeOption<OwnerInfo> option) {
-		List<ActionStd<OwnerInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<OwnerInfo>> buildActionsOnPassedHook(DeciTreeOption<OwnerInfo> option) {
+		List<ActionStdV1<OwnerInfo>> actions = new ArrayList<>();
 		
-		ActionStd<OwnerInfo> mergeToDelete = new StdOwnerMergeToDelete(option);
-		ActionLazy<OwnerInfo> enforceLChanged = new LazyOwnerEnforceLChanged(option.conn, option.schemaName);
-		ActionLazy<OwnerInfo> enforceLChangedBy = new LazyOwnerMergeUsername(option.conn, option.schemaName);
-		ActionLazy<OwnerInfo> update = new LazyOwnerUpdate(option.conn, option.schemaName);
-		ActionLazy<OwnerInfo> delete = new LazyOwnerDelete(option.conn, option.schemaName);			
+		ActionStdV1<OwnerInfo> mergeToDelete = new StdOwnerMergeToDelete(option);
+		ActionLazyV1<OwnerInfo> enforceLChanged = new LazyOwnerEnforceLChanged(option.conn, option.schemaName);
+		ActionLazyV1<OwnerInfo> enforceLChangedBy = new LazyOwnerMergeUsername(option.conn, option.schemaName);
+		ActionLazyV1<OwnerInfo> update = new LazyOwnerUpdate(option.conn, option.schemaName);
+		ActionLazyV1<OwnerInfo> delete = new LazyOwnerDelete(option.conn, option.schemaName);			
 		
 		mergeToDelete.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceLChangedBy);

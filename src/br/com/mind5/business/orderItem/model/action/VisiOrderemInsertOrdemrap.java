@@ -7,7 +7,7 @@ import br.com.mind5.business.orderItem.info.OrderemInfo;
 import br.com.mind5.business.orderItem.info.OrderemMerger;
 import br.com.mind5.business.orderItemSnapshot.info.OrdemrapInfo;
 import br.com.mind5.business.orderItemSnapshot.model.decisionTree.RootOrdemrapInsert;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -19,7 +19,7 @@ final class VisiOrderemInsertOrdemrap extends ActionVisitorTemplateAction<Ordere
 	
 	
 	
-	@Override protected ActionStd<OrdemrapInfo> getActionHook(DeciTreeOption<OrdemrapInfo> option) {
+	@Override protected ActionStdV1<OrdemrapInfo> getActionHook(DeciTreeOption<OrdemrapInfo> option) {
 		return new RootOrdemrapInsert(option).toAction();
 	}
 	

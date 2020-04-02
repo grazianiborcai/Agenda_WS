@@ -1,14 +1,14 @@
 package br.com.mind5.business.employeePosition.model.action;
 
 import br.com.mind5.business.employeePosition.info.EmposInfo;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperEnforce;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdEmposEnforceDel implements ActionStd<EmposInfo> {
-	private ActionStd<EmposInfo> actionHelper;	
+public final class StdEmposEnforceDel implements ActionStdV1<EmposInfo> {
+	private ActionStdV1<EmposInfo> actionHelper;	
 	
 	
 	public StdEmposEnforceDel(DeciTreeOption<EmposInfo> option) {			
@@ -17,7 +17,7 @@ public final class StdEmposEnforceDel implements ActionStd<EmposInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<EmposInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<EmposInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

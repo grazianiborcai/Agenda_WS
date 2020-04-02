@@ -7,7 +7,7 @@ import br.com.mind5.business.employeeLeaveDate.info.EmplateInfo;
 import br.com.mind5.business.employeeLeaveDate.model.action.StdEmplateInsert;
 import br.com.mind5.business.employeeLeaveDate.model.action.StdEmplateUpdate;
 import br.com.mind5.business.employeeLeaveDate.model.checker.EmplateCheckSoftDelete;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -39,10 +39,10 @@ public final class NodeEmplateInsert extends DeciTreeWriteTemplate<EmplateInfo> 
 	
 	
 	
-	@Override protected List<ActionStd<EmplateInfo>> buildActionsOnPassedHook(DeciTreeOption<EmplateInfo> option) {
-		List<ActionStd<EmplateInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<EmplateInfo>> buildActionsOnPassedHook(DeciTreeOption<EmplateInfo> option) {
+		List<ActionStdV1<EmplateInfo>> actions = new ArrayList<>();
 		
-		ActionStd<EmplateInfo> insert = new StdEmplateInsert(option);		
+		ActionStdV1<EmplateInfo> insert = new StdEmplateInsert(option);		
 		actions.add(insert);				
 		
 		return actions;
@@ -50,10 +50,10 @@ public final class NodeEmplateInsert extends DeciTreeWriteTemplate<EmplateInfo> 
 	
 	
 	
-	@Override protected List<ActionStd<EmplateInfo>> buildActionsOnFailedHook(DeciTreeOption<EmplateInfo> option) {
-		List<ActionStd<EmplateInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<EmplateInfo>> buildActionsOnFailedHook(DeciTreeOption<EmplateInfo> option) {
+		List<ActionStdV1<EmplateInfo>> actions = new ArrayList<>();
 		
-		ActionStd<EmplateInfo> update = new StdEmplateUpdate(option);		
+		ActionStdV1<EmplateInfo> update = new StdEmplateUpdate(option);		
 		actions.add(update);	
 		
 		return actions;

@@ -4,15 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.orderItemSnapshot.info.OrdemrapInfo;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.commom.ActionStdDummy;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciResultHelper;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public class StdOrdemrapSuccess implements ActionStd<OrdemrapInfo> {
-	private ActionStd<OrdemrapInfo> actionHelper;
+public class StdOrdemrapSuccess implements ActionStdV1<OrdemrapInfo> {
+	private ActionStdV1<OrdemrapInfo> actionHelper;
 	
 	
 	public StdOrdemrapSuccess(DeciTreeOption<OrdemrapInfo> option) {
@@ -37,7 +37,7 @@ public class StdOrdemrapSuccess implements ActionStd<OrdemrapInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<OrdemrapInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<OrdemrapInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

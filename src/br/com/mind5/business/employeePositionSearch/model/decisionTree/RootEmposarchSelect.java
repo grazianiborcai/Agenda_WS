@@ -8,7 +8,7 @@ import br.com.mind5.business.employeePositionSearch.model.action.StdEmposarchMer
 import br.com.mind5.business.employeePositionSearch.model.checker.EmposarchCheckLangu;
 import br.com.mind5.business.employeePositionSearch.model.checker.EmposarchCheckOwner;
 import br.com.mind5.business.employeePositionSearch.model.checker.EmposarchCheckRead;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -54,10 +54,10 @@ public final class RootEmposarchSelect extends DeciTreeReadTemplate<EmposarchInf
 	
 	
 	
-	@Override protected List<ActionStd<EmposarchInfo>> buildActionsOnPassedHook(DeciTreeOption<EmposarchInfo> option) {
-		List<ActionStd<EmposarchInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<EmposarchInfo>> buildActionsOnPassedHook(DeciTreeOption<EmposarchInfo> option) {
+		List<ActionStdV1<EmposarchInfo>> actions = new ArrayList<>();
 		
-		ActionStd<EmposarchInfo> select	= new StdEmposarchMergeToSelect(option);
+		ActionStdV1<EmposarchInfo> select	= new StdEmposarchMergeToSelect(option);
 		
 		actions.add(select);
 		return actions;

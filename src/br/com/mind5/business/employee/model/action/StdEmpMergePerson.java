@@ -1,14 +1,14 @@
 package br.com.mind5.business.employee.model.action;
 
 import br.com.mind5.business.employee.info.EmpInfo;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperMerge;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class StdEmpMergePerson implements ActionStd<EmpInfo> {
-	private ActionStd<EmpInfo> actionHelper;	
+final class StdEmpMergePerson implements ActionStdV1<EmpInfo> {
+	private ActionStdV1<EmpInfo> actionHelper;	
 	
 	
 	public StdEmpMergePerson(DeciTreeOption<EmpInfo> option) {			
@@ -17,7 +17,7 @@ final class StdEmpMergePerson implements ActionStd<EmpInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<EmpInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<EmpInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

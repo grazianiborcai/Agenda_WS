@@ -3,7 +3,7 @@ package br.com.mind5.business.masterData.model.checker;
 import br.com.mind5.business.masterData.info.EntityCategInfo;
 import br.com.mind5.business.masterData.model.action.StdEntityCategSelect;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -16,8 +16,8 @@ public final class EntityCategCheckExist extends ModelCheckerTemplateAction<Enti
 	
 	
 	
-	@Override protected ActionStd<EntityCategInfo> buildActionHook(DeciTreeOption<EntityCategInfo> option) {
-		ActionStd<EntityCategInfo> select = new StdEntityCategSelect(option);
+	@Override protected ActionStdV1<EntityCategInfo> buildActionHook(DeciTreeOption<EntityCategInfo> option) {
+		ActionStdV1<EntityCategInfo> select = new StdEntityCategSelect(option);
 		return select;
 	}
 	

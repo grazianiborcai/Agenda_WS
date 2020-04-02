@@ -7,14 +7,14 @@ import br.com.mind5.business.storeLeaveDateRange.dao.StolargSelect;
 import br.com.mind5.business.storeLeaveDateRange.info.StolargInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.obsolete.DaoStmtExec_;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperStmt;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdStolargSelect implements ActionStd<StolargInfo> {
-	ActionStd<StolargInfo> actionHelper;
+public final class StdStolargSelect implements ActionStdV1<StolargInfo> {
+	ActionStdV1<StolargInfo> actionHelper;
 	
 	
 	public StdStolargSelect(DeciTreeOption<StolargInfo> option) {
@@ -40,7 +40,7 @@ public final class StdStolargSelect implements ActionStd<StolargInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<StolargInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<StolargInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

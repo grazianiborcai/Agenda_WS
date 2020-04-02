@@ -7,8 +7,8 @@ import br.com.mind5.business.owner.info.OwnerInfo;
 import br.com.mind5.business.owner.model.action.LazyOwnerUpdate;
 import br.com.mind5.business.owner.model.action.StdOwnerInsertOwnerap;
 import br.com.mind5.business.owner.model.checker.OwnerCheckDummy;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -34,11 +34,11 @@ public final class NodeOwnerSnapshot extends DeciTreeWriteTemplate<OwnerInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<OwnerInfo>> buildActionsOnPassedHook(DeciTreeOption<OwnerInfo> option) {
-		List<ActionStd<OwnerInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<OwnerInfo>> buildActionsOnPassedHook(DeciTreeOption<OwnerInfo> option) {
+		List<ActionStdV1<OwnerInfo>> actions = new ArrayList<>();
 		
-		ActionStd<OwnerInfo> insertOwnerap = new StdOwnerInsertOwnerap(option);
-		ActionLazy<OwnerInfo> update = new LazyOwnerUpdate(option.conn, option.schemaName);
+		ActionStdV1<OwnerInfo> insertOwnerap = new StdOwnerInsertOwnerap(option);
+		ActionLazyV1<OwnerInfo> update = new LazyOwnerUpdate(option.conn, option.schemaName);
 		
 		insertOwnerap.addPostAction(update);
 		

@@ -7,14 +7,14 @@ import br.com.mind5.business.masterData.dao.GenderSelect;
 import br.com.mind5.business.masterData.info.GenderInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.obsolete.DaoStmtExec_;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperStmt;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdGenderSelect implements ActionStd<GenderInfo> {
-	private ActionStd<GenderInfo> actionHelper;
+public final class StdGenderSelect implements ActionStdV1<GenderInfo> {
+	private ActionStdV1<GenderInfo> actionHelper;
 	
 	
 	public StdGenderSelect(DeciTreeOption<GenderInfo> option) {
@@ -40,7 +40,7 @@ public final class StdGenderSelect implements ActionStd<GenderInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<GenderInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<GenderInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

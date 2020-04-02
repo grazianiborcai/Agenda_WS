@@ -1,4 +1,4 @@
-package br.com.mind5.model.action;
+package br.com.mind5.model.action.obsolete;
 
 import java.lang.reflect.InvocationTargetException;
 import java.sql.Connection;
@@ -8,11 +8,14 @@ import java.util.List;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
+import br.com.mind5.info.InfoRecord;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciResultHelper;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public abstract class ActionMultiTemplate<T> implements ActionLazy<T>{
+public abstract class ActionMultiTemplate<T extends InfoRecord> implements ActionLazyV1<T>{
 	private final int MIN_SIZE = 2;
 	private final boolean NOT_ENOUGH_ELEMENTS = true;
 	protected final boolean SUCCESS = true;
@@ -23,7 +26,7 @@ public abstract class ActionMultiTemplate<T> implements ActionLazy<T>{
 	private String schemaName;
 	private DeciResult<T> visitorResult;
 	private DeciResult<T> resultPostAction;
-	private List<ActionLazy<T>> postActions;
+	private List<ActionLazyV1<T>> postActions;
 	private List<List<T>> recordLists;
 	private ActionMultiVisitor<T> visitor;
 	
@@ -264,7 +267,7 @@ public abstract class ActionMultiTemplate<T> implements ActionLazy<T>{
 	private boolean executePostActions() {				
 		boolean result = true;
 		
-		for (ActionLazy<T> eachAction : postActions) {
+		for (ActionLazyV1<T> eachAction : postActions) {
 			result = tryToExecutePostActions(eachAction);
 			
 			if (result == FAILED)
@@ -276,7 +279,7 @@ public abstract class ActionMultiTemplate<T> implements ActionLazy<T>{
 	
 	
 	
-	private boolean tryToExecutePostActions(ActionLazy<T> postAction) {				
+	private boolean tryToExecutePostActions(ActionLazyV1<T> postAction) {				
 		try {
 			postAction.executeAction(visitorResult.getResultset());
 			resultPostAction = postAction.getDecisionResult();
@@ -348,7 +351,7 @@ public abstract class ActionMultiTemplate<T> implements ActionLazy<T>{
 	
 	
 	
-	@Override public ActionStd<T> toAction(List<T> recordInfos) {
+	@Override public ActionStdV1<T> toAction(List<T> recordInfos) {
 		//TODO: Verificar se esse metodo faz sentido implementar
 		logException(new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION));
 		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);
@@ -356,7 +359,7 @@ public abstract class ActionMultiTemplate<T> implements ActionLazy<T>{
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<T> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<T> actionHandler) {
 		if (actionHandler == null) {
 			logException(new NullPointerException("actionHandler" + SystemMessage.NULL_ARGUMENT));
 			throw new NullPointerException("actionHandler" + SystemMessage.NULL_ARGUMENT);

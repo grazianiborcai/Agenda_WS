@@ -6,7 +6,7 @@ import br.com.mind5.business.orderSearch.info.OrdarchCopier;
 import br.com.mind5.business.orderSearch.info.OrdarchInfo;
 import br.com.mind5.business.orderSearch.model.decisionTree.RootOrdarchSelect;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -20,8 +20,8 @@ public final class PayordCheckOrdarch extends ModelCheckerTemplateAction<PayordI
 	
 
 	
-	@Override protected ActionStd<OrdarchInfo> buildActionHook(DeciTreeOption<OrdarchInfo> option) {
-		ActionStd<OrdarchInfo> select = new RootOrdarchSelect(option).toAction();
+	@Override protected ActionStdV1<OrdarchInfo> buildActionHook(DeciTreeOption<OrdarchInfo> option) {
+		ActionStdV1<OrdarchInfo> select = new RootOrdarchSelect(option).toAction();
 		return select;
 	}
 	

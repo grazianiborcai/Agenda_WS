@@ -10,8 +10,8 @@ import br.com.mind5.business.scheduleMoviment.model.action.LazySchedovmEnforceZe
 import br.com.mind5.business.scheduleMoviment.model.action.LazySchedovmNodeInsert;
 import br.com.mind5.business.scheduleMoviment.model.action.StdSchedovmEnforceCounter;
 import br.com.mind5.business.scheduleMoviment.model.checker.SchedovmCheckWrite;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -43,14 +43,14 @@ public final class RootSchedovmInsert extends DeciTreeWriteTemplate<SchedovmInfo
 	
 	
 	
-	@Override protected List<ActionStd<SchedovmInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedovmInfo> option) {
-		List<ActionStd<SchedovmInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<SchedovmInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedovmInfo> option) {
+		List<ActionStdV1<SchedovmInfo>> actions = new ArrayList<>();
 		
-		ActionStd<SchedovmInfo> enforceCounter = new StdSchedovmEnforceCounter(option);
-		ActionLazy<SchedovmInfo> enforceZero = new LazySchedovmEnforceZero(option.conn, option.schemaName);
-		ActionLazy<SchedovmInfo> enforceCancel = new LazySchedovmEnforceCancel(option.conn, option.schemaName);
-		ActionLazy<SchedovmInfo> enforceReverse = new LazySchedovmEnforceReverse(option.conn, option.schemaName);
-		ActionLazy<SchedovmInfo> nodeInsert = new LazySchedovmNodeInsert(option.conn, option.schemaName);
+		ActionStdV1<SchedovmInfo> enforceCounter = new StdSchedovmEnforceCounter(option);
+		ActionLazyV1<SchedovmInfo> enforceZero = new LazySchedovmEnforceZero(option.conn, option.schemaName);
+		ActionLazyV1<SchedovmInfo> enforceCancel = new LazySchedovmEnforceCancel(option.conn, option.schemaName);
+		ActionLazyV1<SchedovmInfo> enforceReverse = new LazySchedovmEnforceReverse(option.conn, option.schemaName);
+		ActionLazyV1<SchedovmInfo> nodeInsert = new LazySchedovmNodeInsert(option.conn, option.schemaName);
 		
 		enforceCounter.addPostAction(enforceZero);
 		enforceZero.addPostAction(enforceCancel);

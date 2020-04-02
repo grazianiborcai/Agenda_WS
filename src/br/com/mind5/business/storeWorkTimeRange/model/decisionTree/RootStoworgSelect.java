@@ -9,7 +9,7 @@ import br.com.mind5.business.storeWorkTimeRange.model.checker.StoworgCheckLangu;
 import br.com.mind5.business.storeWorkTimeRange.model.checker.StoworgCheckOwner;
 import br.com.mind5.business.storeWorkTimeRange.model.checker.StoworgCheckRead;
 import br.com.mind5.business.storeWorkTimeRange.model.checker.StoworgCheckStore;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -62,10 +62,10 @@ public final class RootStoworgSelect extends DeciTreeReadTemplate<StoworgInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<StoworgInfo>> buildActionsOnPassedHook(DeciTreeOption<StoworgInfo> option) {
-		List<ActionStd<StoworgInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<StoworgInfo>> buildActionsOnPassedHook(DeciTreeOption<StoworgInfo> option) {
+		List<ActionStdV1<StoworgInfo>> actions = new ArrayList<>();
 		
-		ActionStd<StoworgInfo> mergeToSelect = new StdStoworgMergeToSelect(option);
+		ActionStdV1<StoworgInfo> mergeToSelect = new StdStoworgMergeToSelect(option);
 		
 		actions.add(mergeToSelect);		
 		return actions; 

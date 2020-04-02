@@ -7,8 +7,8 @@ import br.com.mind5.message.sysMessage.info.SymsgInfo;
 import br.com.mind5.message.sysMessage.model.action.LazySymsgNodeSelectL1;
 import br.com.mind5.message.sysMessage.model.action.StdSymsgEnforceBase;
 import br.com.mind5.message.sysMessage.model.checker.SymsgCheckRead;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -40,11 +40,11 @@ public final class RootSymsgSelect extends DeciTreeWriteTemplate<SymsgInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<SymsgInfo>> buildActionsOnPassedHook(DeciTreeOption<SymsgInfo> option) {
-		List<ActionStd<SymsgInfo>> actions = new ArrayList<>();	
+	@Override protected List<ActionStdV1<SymsgInfo>> buildActionsOnPassedHook(DeciTreeOption<SymsgInfo> option) {
+		List<ActionStdV1<SymsgInfo>> actions = new ArrayList<>();	
 		
-		ActionStd<SymsgInfo> enforceBase = new StdSymsgEnforceBase(option);
-		ActionLazy<SymsgInfo> nodeL1 = new LazySymsgNodeSelectL1(option.conn, option.schemaName);
+		ActionStdV1<SymsgInfo> enforceBase = new StdSymsgEnforceBase(option);
+		ActionLazyV1<SymsgInfo> nodeL1 = new LazySymsgNodeSelectL1(option.conn, option.schemaName);
 		
 		enforceBase.addPostAction(nodeL1);
 		

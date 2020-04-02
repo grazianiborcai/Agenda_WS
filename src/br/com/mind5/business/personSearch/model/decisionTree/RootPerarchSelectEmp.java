@@ -7,8 +7,8 @@ import br.com.mind5.business.personSearch.info.PerarchInfo;
 import br.com.mind5.business.personSearch.model.action.LazyPerarchRootSelect;
 import br.com.mind5.business.personSearch.model.action.StdPerarchEnforceCategEmp;
 import br.com.mind5.business.personSearch.model.checker.PerarchCheckDummy;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -34,11 +34,11 @@ public final class RootPerarchSelectEmp extends DeciTreeReadTemplate<PerarchInfo
 	
 	
 	
-	@Override protected List<ActionStd<PerarchInfo>> buildActionsOnPassedHook(DeciTreeOption<PerarchInfo> option) {
-		List<ActionStd<PerarchInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<PerarchInfo>> buildActionsOnPassedHook(DeciTreeOption<PerarchInfo> option) {
+		List<ActionStdV1<PerarchInfo>> actions = new ArrayList<>();
 		
-		ActionStd<PerarchInfo> enforceCategEmp = new StdPerarchEnforceCategEmp(option);		
-		ActionLazy<PerarchInfo> select = new LazyPerarchRootSelect(option.conn, option.schemaName);
+		ActionStdV1<PerarchInfo> enforceCategEmp = new StdPerarchEnforceCategEmp(option);		
+		ActionLazyV1<PerarchInfo> select = new LazyPerarchRootSelect(option.conn, option.schemaName);
 		
 		enforceCategEmp.addPostAction(select);
 

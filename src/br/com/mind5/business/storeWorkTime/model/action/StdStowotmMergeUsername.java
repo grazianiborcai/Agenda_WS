@@ -1,14 +1,14 @@
 package br.com.mind5.business.storeWorkTime.model.action;
 
 import br.com.mind5.business.storeWorkTime.info.StowotmInfo;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperMerge;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdStowotmMergeUsername implements ActionStd<StowotmInfo> {
-	private ActionStd<StowotmInfo> actionHelper;	
+public final class StdStowotmMergeUsername implements ActionStdV1<StowotmInfo> {
+	private ActionStdV1<StowotmInfo> actionHelper;	
 	
 	
 	public StdStowotmMergeUsername(DeciTreeOption<StowotmInfo> option) {			
@@ -17,7 +17,7 @@ public final class StdStowotmMergeUsername implements ActionStd<StowotmInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<StowotmInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<StowotmInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

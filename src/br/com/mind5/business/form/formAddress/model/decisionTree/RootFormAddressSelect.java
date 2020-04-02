@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.form.formAddress.info.FormAddressInfo;
 import br.com.mind5.business.form.formAddress.model.checker.FormAddressCheckCountry;
 import br.com.mind5.business.form.formAddress.model.checker.FormAddressCheckRead;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -46,10 +46,10 @@ public final class RootFormAddressSelect extends DeciTreeReadTemplate<FormAddres
 	
 	
 	
-	@Override protected List<ActionStd<FormAddressInfo>> buildActionsOnPassedHook(DeciTreeOption<FormAddressInfo> option) {
-		List<ActionStd<FormAddressInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<FormAddressInfo>> buildActionsOnPassedHook(DeciTreeOption<FormAddressInfo> option) {
+		List<ActionStdV1<FormAddressInfo>> actions = new ArrayList<>();
 		
-		ActionStd<FormAddressInfo> nodeSelect = new NodeFormAddressSelect(option).toAction();
+		ActionStdV1<FormAddressInfo> nodeSelect = new NodeFormAddressSelect(option).toAction();
 		
 		actions.add(nodeSelect);
 		return actions;

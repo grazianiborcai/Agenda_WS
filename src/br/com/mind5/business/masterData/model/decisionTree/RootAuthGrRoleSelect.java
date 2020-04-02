@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.masterData.info.AuthGrRoleInfo;
 import br.com.mind5.business.masterData.model.action.StdAuthGrRoleSelect;
 import br.com.mind5.business.masterData.model.checker.AuthGrRoleCheckRead;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -38,10 +38,10 @@ public final class RootAuthGrRoleSelect extends DeciTreeReadTemplate<AuthGrRoleI
 	
 	
 	
-	@Override protected List<ActionStd<AuthGrRoleInfo>> buildActionsOnPassedHook(DeciTreeOption<AuthGrRoleInfo> option) {
-		List<ActionStd<AuthGrRoleInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<AuthGrRoleInfo>> buildActionsOnPassedHook(DeciTreeOption<AuthGrRoleInfo> option) {
+		List<ActionStdV1<AuthGrRoleInfo>> actions = new ArrayList<>();
 		
-		ActionStd<AuthGrRoleInfo> select = new StdAuthGrRoleSelect(option);
+		ActionStdV1<AuthGrRoleInfo> select = new StdAuthGrRoleSelect(option);
 		
 		actions.add(select);		
 		return actions;

@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.storeLeaveDate.info.StolateInfo;
 import br.com.mind5.business.storeLeaveDate.info.StolateMerger;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 
 final class VisiStolateMergeToUpdate extends ActionVisitorTemplateMerge<StolateInfo, StolateInfo> {
@@ -16,7 +16,7 @@ final class VisiStolateMergeToUpdate extends ActionVisitorTemplateMerge<StolateI
 	
 	
 	
-	@Override protected Class<? extends ActionStd<StolateInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStdV1<StolateInfo>> getActionClassHook() {
 		return StdStolateSelect.class;
 	}
 	

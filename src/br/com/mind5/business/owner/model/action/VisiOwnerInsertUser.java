@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.owner.info.OwnerInfo;
 import br.com.mind5.business.owner.info.OwnerMerger;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.user.info.UserCopier;
@@ -25,7 +25,7 @@ final class VisiOwnerInsertUser extends ActionVisitorTemplateAction<OwnerInfo, U
 	
 	
 	
-	@Override protected ActionStd<UserInfo> getActionHook(DeciTreeOption<UserInfo> option) {
+	@Override protected ActionStdV1<UserInfo> getActionHook(DeciTreeOption<UserInfo> option) {
 		return new RootUserInsertOwner(option).toAction();
 	}
 	

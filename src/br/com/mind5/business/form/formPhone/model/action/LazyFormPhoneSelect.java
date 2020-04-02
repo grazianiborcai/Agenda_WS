@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.form.formPhone.info.FormPhoneInfo;
 import br.com.mind5.model.action.ActionLazyTemplate;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -23,7 +23,7 @@ public final class LazyFormPhoneSelect extends ActionLazyTemplate<FormPhoneInfo,
 	
 	
 	
-	@Override protected ActionStd<FormPhoneInfo> getInstanceOfActionHook(DeciTreeOption<FormPhoneInfo> option) {
+	@Override protected ActionStdV1<FormPhoneInfo> getInstanceOfActionHook(DeciTreeOption<FormPhoneInfo> option) {
 		return new StdFormPhoneSelect(option);
 	}
 	

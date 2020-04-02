@@ -1,14 +1,14 @@
 package br.com.mind5.security.userSearch.model.action;
 
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperMerge;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.userSearch.info.UserarchInfo;
 
-public final class StdUserarchMergeToSelect implements ActionStd<UserarchInfo> {
-	private ActionStd<UserarchInfo> actionHelper;	
+public final class StdUserarchMergeToSelect implements ActionStdV1<UserarchInfo> {
+	private ActionStdV1<UserarchInfo> actionHelper;	
 	
 	
 	public StdUserarchMergeToSelect(DeciTreeOption<UserarchInfo> option) {			
@@ -17,7 +17,7 @@ public final class StdUserarchMergeToSelect implements ActionStd<UserarchInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<UserarchInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<UserarchInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

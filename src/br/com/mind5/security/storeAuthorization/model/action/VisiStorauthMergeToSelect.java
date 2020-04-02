@@ -3,7 +3,7 @@ package br.com.mind5.security.storeAuthorization.model.action;
 import java.sql.Connection;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.security.storeAuthorization.info.StorauthInfo;
 import br.com.mind5.security.storeAuthorization.info.StorauthMerger;
@@ -16,7 +16,7 @@ final class VisiStorauthMergeToSelect extends ActionVisitorTemplateMerge<Storaut
 	
 	
 	
-	@Override protected Class<? extends ActionStd<StorauthInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStdV1<StorauthInfo>> getActionClassHook() {
 		return StdStorauthSelect.class;
 	}
 	

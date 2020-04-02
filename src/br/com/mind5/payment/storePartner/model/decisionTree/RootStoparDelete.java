@@ -3,8 +3,8 @@ package br.com.mind5.payment.storePartner.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -75,14 +75,14 @@ public final class RootStoparDelete extends DeciTreeWriteTemplate<StoparInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<StoparInfo>> buildActionsOnPassedHook(DeciTreeOption<StoparInfo> option) {
-		List<ActionStd<StoparInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<StoparInfo>> buildActionsOnPassedHook(DeciTreeOption<StoparInfo> option) {
+		List<ActionStdV1<StoparInfo>> actions = new ArrayList<>();
 		//TODO: nao pode elimnar se for Owner-Default
-		ActionStd<StoparInfo> mergeToDelete = new StdStoparMergeToDelete(option);
-		ActionLazy<StoparInfo> enforceLChanged = new LazyStoparEnforceLChanged(option.conn, option.schemaName);
-		ActionLazy<StoparInfo> enforceLChangedBy = new LazyStoparMergeUsername(option.conn, option.schemaName);
-		ActionLazy<StoparInfo> update = new LazyStoparUpdate(option.conn, option.schemaName);
-		ActionLazy<StoparInfo> delete = new LazyStoparDelete(option.conn, option.schemaName);
+		ActionStdV1<StoparInfo> mergeToDelete = new StdStoparMergeToDelete(option);
+		ActionLazyV1<StoparInfo> enforceLChanged = new LazyStoparEnforceLChanged(option.conn, option.schemaName);
+		ActionLazyV1<StoparInfo> enforceLChangedBy = new LazyStoparMergeUsername(option.conn, option.schemaName);
+		ActionLazyV1<StoparInfo> update = new LazyStoparUpdate(option.conn, option.schemaName);
+		ActionLazyV1<StoparInfo> delete = new LazyStoparDelete(option.conn, option.schemaName);
 		
 		mergeToDelete.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceLChangedBy);

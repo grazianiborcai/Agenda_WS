@@ -3,7 +3,7 @@ package br.com.mind5.payment.payOrder.model.action;
 import java.sql.Connection;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
@@ -19,7 +19,7 @@ final class VisiPayordMultmoipPay extends ActionVisitorTemplateAction<PayordInfo
 	
 	
 	
-	@Override protected ActionStd<MultmoipInfo> getActionHook(DeciTreeOption<MultmoipInfo> option) {
+	@Override protected ActionStdV1<MultmoipInfo> getActionHook(DeciTreeOption<MultmoipInfo> option) {
 		return new RootMultmoipPay(option).toAction();
 	}
 	

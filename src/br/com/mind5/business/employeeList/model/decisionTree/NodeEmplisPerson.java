@@ -8,8 +8,8 @@ import br.com.mind5.business.employeeList.model.action.LazyEmplisMergePerarch;
 import br.com.mind5.business.employeeList.model.action.StdEmplisEnforcePersonKey;
 import br.com.mind5.business.employeeList.model.action.StdEmplisSuccess;
 import br.com.mind5.business.employeeList.model.checker.EmplisCheckHasPerson;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -41,11 +41,11 @@ public final class NodeEmplisPerson extends DeciTreeReadTemplate<EmplisInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<EmplisInfo>> buildActionsOnPassedHook(DeciTreeOption<EmplisInfo> option) {
-		List<ActionStd<EmplisInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<EmplisInfo>> buildActionsOnPassedHook(DeciTreeOption<EmplisInfo> option) {
+		List<ActionStdV1<EmplisInfo>> actions = new ArrayList<>();
 
-		ActionStd<EmplisInfo> enforcePersonKey = new StdEmplisEnforcePersonKey(option);
-		ActionLazy<EmplisInfo> mergePerarch = new LazyEmplisMergePerarch(option.conn, option.schemaName);
+		ActionStdV1<EmplisInfo> enforcePersonKey = new StdEmplisEnforcePersonKey(option);
+		ActionLazyV1<EmplisInfo> mergePerarch = new LazyEmplisMergePerarch(option.conn, option.schemaName);
 		
 		enforcePersonKey.addPostAction(mergePerarch);
 		
@@ -55,10 +55,10 @@ public final class NodeEmplisPerson extends DeciTreeReadTemplate<EmplisInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<EmplisInfo>> buildActionsOnFailedHook(DeciTreeOption<EmplisInfo> option) {
-		List<ActionStd<EmplisInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<EmplisInfo>> buildActionsOnFailedHook(DeciTreeOption<EmplisInfo> option) {
+		List<ActionStdV1<EmplisInfo>> actions = new ArrayList<>();
 
-		ActionStd<EmplisInfo> success = new StdEmplisSuccess(option);
+		ActionStdV1<EmplisInfo> success = new StdEmplisSuccess(option);
 		
 		actions.add(success);
 		return actions;

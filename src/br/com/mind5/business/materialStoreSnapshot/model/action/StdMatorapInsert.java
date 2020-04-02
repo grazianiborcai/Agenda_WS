@@ -7,14 +7,14 @@ import br.com.mind5.business.materialStoreSnapshot.dao.MatorapInsert;
 import br.com.mind5.business.materialStoreSnapshot.info.MatorapInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.obsolete.DaoStmtExec_;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperStmt;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdMatorapInsert implements ActionStd<MatorapInfo> {
-	private ActionStd<MatorapInfo> actionHelper;
+public final class StdMatorapInsert implements ActionStdV1<MatorapInfo> {
+	private ActionStdV1<MatorapInfo> actionHelper;
 	
 	
 	public StdMatorapInsert(DeciTreeOption<MatorapInfo> option) {
@@ -40,7 +40,7 @@ public final class StdMatorapInsert implements ActionStd<MatorapInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<MatorapInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<MatorapInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

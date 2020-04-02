@@ -9,8 +9,8 @@ import br.com.mind5.business.scheduleMonthData.model.action.LazySchedonthatMerge
 import br.com.mind5.business.scheduleMonthData.model.action.LazySchedonthatMergeWeekday;
 import br.com.mind5.business.scheduleMonthData.model.action.StdSchedonthatMergeToSelect;
 import br.com.mind5.business.scheduleMonthData.model.checker.SchedonthatCheckRead;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -42,13 +42,13 @@ public final class RootSchedonthatSelect extends DeciTreeWriteTemplate<Schedonth
 	
 	
 	
-	@Override protected List<ActionStd<SchedonthatInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedonthatInfo> option) {
-		List<ActionStd<SchedonthatInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<SchedonthatInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedonthatInfo> option) {
+		List<ActionStdV1<SchedonthatInfo>> actions = new ArrayList<>();
 		
-		ActionStd<SchedonthatInfo> mergeToSelect = new StdSchedonthatMergeToSelect(option);
-		ActionLazy<SchedonthatInfo> mergeMonth = new LazySchedonthatMergeMonth(option.conn, option.schemaName);
-		ActionLazy<SchedonthatInfo> enforceWeekday = new LazySchedonthatEnforceWeekday(option.conn, option.schemaName);
-		ActionLazy<SchedonthatInfo> mergeWeekday = new LazySchedonthatMergeWeekday(option.conn, option.schemaName);
+		ActionStdV1<SchedonthatInfo> mergeToSelect = new StdSchedonthatMergeToSelect(option);
+		ActionLazyV1<SchedonthatInfo> mergeMonth = new LazySchedonthatMergeMonth(option.conn, option.schemaName);
+		ActionLazyV1<SchedonthatInfo> enforceWeekday = new LazySchedonthatEnforceWeekday(option.conn, option.schemaName);
+		ActionLazyV1<SchedonthatInfo> mergeWeekday = new LazySchedonthatMergeWeekday(option.conn, option.schemaName);
 		
 		mergeToSelect.addPostAction(mergeMonth);
 		mergeMonth.addPostAction(enforceWeekday);

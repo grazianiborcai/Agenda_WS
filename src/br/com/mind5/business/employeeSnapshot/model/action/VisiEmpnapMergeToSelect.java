@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.employeeSnapshot.info.EmpnapInfo;
 import br.com.mind5.business.employeeSnapshot.info.EmpnapMerger;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 
 final class VisiEmpnapMergeToSelect extends ActionVisitorTemplateMerge<EmpnapInfo, EmpnapInfo> {
@@ -16,7 +16,7 @@ final class VisiEmpnapMergeToSelect extends ActionVisitorTemplateMerge<EmpnapInf
 	
 	
 	
-	@Override protected Class<? extends ActionStd<EmpnapInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStdV1<EmpnapInfo>> getActionClassHook() {
 		return StdEmpnapSelect.class;
 	}
 	

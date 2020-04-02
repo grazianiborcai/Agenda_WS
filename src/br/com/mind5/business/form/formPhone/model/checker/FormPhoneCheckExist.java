@@ -3,7 +3,7 @@ package br.com.mind5.business.form.formPhone.model.checker;
 import br.com.mind5.business.form.formPhone.info.FormPhoneInfo;
 import br.com.mind5.business.form.formPhone.model.action.StdFormPhoneSelect;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -16,8 +16,8 @@ public final class FormPhoneCheckExist extends ModelCheckerTemplateAction<FormPh
 	
 	
 	
-	@Override protected ActionStd<FormPhoneInfo> buildActionHook(DeciTreeOption<FormPhoneInfo> option) {
-		ActionStd<FormPhoneInfo> Select = new StdFormPhoneSelect(option);
+	@Override protected ActionStdV1<FormPhoneInfo> buildActionHook(DeciTreeOption<FormPhoneInfo> option) {
+		ActionStdV1<FormPhoneInfo> Select = new StdFormPhoneSelect(option);
 		return Select;
 	}
 	

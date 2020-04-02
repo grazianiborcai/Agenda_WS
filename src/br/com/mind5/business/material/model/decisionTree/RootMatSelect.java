@@ -12,8 +12,8 @@ import br.com.mind5.business.material.model.action.LazyMatMergeMatUnit;
 import br.com.mind5.business.material.model.action.LazyMatMergeMatext;
 import br.com.mind5.business.material.model.action.StdMatMergeToSelect;
 import br.com.mind5.business.material.model.checker.MatCheckRead;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -45,16 +45,16 @@ public final class RootMatSelect extends DeciTreeReadTemplate<MatInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<MatInfo>> buildActionsOnPassedHook(DeciTreeOption<MatInfo> option) {
-		List<ActionStd<MatInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<MatInfo>> buildActionsOnPassedHook(DeciTreeOption<MatInfo> option) {
+		List<ActionStdV1<MatInfo>> actions = new ArrayList<>();
 		
-		ActionStd<MatInfo> select = new StdMatMergeToSelect(option);
-		ActionLazy<MatInfo> mergeMatType = new LazyMatMergeMatType(option.conn, option.schemaName);
-		ActionLazy<MatInfo> mergeMatCateg = new LazyMatMergeMatCateg(option.conn, option.schemaName);
-		ActionLazy<MatInfo> mergeMatGroup = new LazyMatMergeMatGroup(option.conn, option.schemaName);
-		ActionLazy<MatInfo> mergeMatUnit = new LazyMatMergeMatUnit(option.conn, option.schemaName);
-		ActionLazy<MatInfo> mergeMatext = new LazyMatMergeMatext(option.conn, option.schemaName);
-		ActionLazy<MatInfo> mergeFimist = new LazyMatMergeFimist(option.conn, option.schemaName);
+		ActionStdV1<MatInfo> select = new StdMatMergeToSelect(option);
+		ActionLazyV1<MatInfo> mergeMatType = new LazyMatMergeMatType(option.conn, option.schemaName);
+		ActionLazyV1<MatInfo> mergeMatCateg = new LazyMatMergeMatCateg(option.conn, option.schemaName);
+		ActionLazyV1<MatInfo> mergeMatGroup = new LazyMatMergeMatGroup(option.conn, option.schemaName);
+		ActionLazyV1<MatInfo> mergeMatUnit = new LazyMatMergeMatUnit(option.conn, option.schemaName);
+		ActionLazyV1<MatInfo> mergeMatext = new LazyMatMergeMatext(option.conn, option.schemaName);
+		ActionLazyV1<MatInfo> mergeFimist = new LazyMatMergeFimist(option.conn, option.schemaName);
 		
 		select.addPostAction(mergeMatType);
 		mergeMatType.addPostAction(mergeMatCateg);

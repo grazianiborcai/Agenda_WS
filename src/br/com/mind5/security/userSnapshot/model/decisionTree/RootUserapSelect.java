@@ -3,8 +3,8 @@ package br.com.mind5.security.userSnapshot.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -42,13 +42,13 @@ public final class RootUserapSelect extends DeciTreeReadTemplate<UserapInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<UserapInfo>> buildActionsOnPassedHook(DeciTreeOption<UserapInfo> option) {
-		List<ActionStd<UserapInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<UserapInfo>> buildActionsOnPassedHook(DeciTreeOption<UserapInfo> option) {
+		List<ActionStdV1<UserapInfo>> actions = new ArrayList<>();
 		
-		ActionStd<UserapInfo> select = new StdUserapMergeToSelect(option);
-		ActionLazy<UserapInfo> mergePerson = new LazyUserapMergePersonap(option.conn, option.schemaName);
-		ActionLazy<UserapInfo> mergeAddress = new LazyUserapMergeAddresnap(option.conn, option.schemaName);
-		ActionLazy<UserapInfo> mergePhone = new LazyUserapMergePhonap(option.conn, option.schemaName);
+		ActionStdV1<UserapInfo> select = new StdUserapMergeToSelect(option);
+		ActionLazyV1<UserapInfo> mergePerson = new LazyUserapMergePersonap(option.conn, option.schemaName);
+		ActionLazyV1<UserapInfo> mergeAddress = new LazyUserapMergeAddresnap(option.conn, option.schemaName);
+		ActionLazyV1<UserapInfo> mergePhone = new LazyUserapMergePhonap(option.conn, option.schemaName);
 		//TODO: PersonCus nao vem do snapshot. Corrigir isso
 		
 		select.addPostAction(mergePerson);

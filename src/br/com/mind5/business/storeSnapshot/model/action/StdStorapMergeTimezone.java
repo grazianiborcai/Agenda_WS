@@ -1,14 +1,14 @@
 package br.com.mind5.business.storeSnapshot.model.action;
 
 import br.com.mind5.business.storeSnapshot.info.StorapInfo;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperMerge;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class StdStorapMergeTimezone implements ActionStd<StorapInfo> {
-	private ActionStd<StorapInfo> actionHelper;	
+final class StdStorapMergeTimezone implements ActionStdV1<StorapInfo> {
+	private ActionStdV1<StorapInfo> actionHelper;	
 	
 	
 	public StdStorapMergeTimezone(DeciTreeOption<StorapInfo> option) {			
@@ -17,7 +17,7 @@ final class StdStorapMergeTimezone implements ActionStd<StorapInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<StorapInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<StorapInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

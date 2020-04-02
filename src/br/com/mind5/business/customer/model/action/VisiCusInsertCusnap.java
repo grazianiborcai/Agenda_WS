@@ -7,7 +7,7 @@ import br.com.mind5.business.customer.info.CusInfo;
 import br.com.mind5.business.customer.info.CusMerger;
 import br.com.mind5.business.customerSnapshot.info.CusnapInfo;
 import br.com.mind5.business.customerSnapshot.model.decisionTree.RootCusnapInsert;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -19,7 +19,7 @@ final class VisiCusInsertCusnap extends ActionVisitorTemplateAction<CusInfo, Cus
 	
 	
 	
-	@Override protected ActionStd<CusnapInfo> getActionHook(DeciTreeOption<CusnapInfo> option) {
+	@Override protected ActionStdV1<CusnapInfo> getActionHook(DeciTreeOption<CusnapInfo> option) {
 		return new RootCusnapInsert(option).toAction();
 	}
 	

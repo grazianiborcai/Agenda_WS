@@ -9,7 +9,7 @@ import br.com.mind5.business.employeeWorkTimeOutlier.model.checker.EmpwoutCheckL
 import br.com.mind5.business.employeeWorkTimeOutlier.model.checker.EmpwoutCheckOwner;
 import br.com.mind5.business.employeeWorkTimeOutlier.model.checker.EmpwoutCheckRead;
 import br.com.mind5.business.employeeWorkTimeOutlier.model.checker.EmpwoutCheckStore;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -62,10 +62,10 @@ public final class RootEmpwoutSelect extends DeciTreeReadTemplate<EmpwoutInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<EmpwoutInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpwoutInfo> option) {
-		List<ActionStd<EmpwoutInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<EmpwoutInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpwoutInfo> option) {
+		List<ActionStdV1<EmpwoutInfo>> actions = new ArrayList<>();
 		
-		ActionStd<EmpwoutInfo> mergeToSelect = new StdEmpwoutMergeToSelect(option);
+		ActionStdV1<EmpwoutInfo> mergeToSelect = new StdEmpwoutMergeToSelect(option);
 		
 		actions.add(mergeToSelect);		
 		return actions; 

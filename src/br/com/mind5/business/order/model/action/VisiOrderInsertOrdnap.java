@@ -7,7 +7,7 @@ import br.com.mind5.business.order.info.OrderInfo;
 import br.com.mind5.business.order.info.OrderMerger;
 import br.com.mind5.business.orderSnapshot.info.OrdnapInfo;
 import br.com.mind5.business.orderSnapshot.model.decisionTree.RootOrdnapInsert;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -19,7 +19,7 @@ final class VisiOrderInsertOrdnap extends ActionVisitorTemplateAction<OrderInfo,
 	
 	
 	
-	@Override protected ActionStd<OrdnapInfo> getActionHook(DeciTreeOption<OrdnapInfo> option) {
+	@Override protected ActionStdV1<OrdnapInfo> getActionHook(DeciTreeOption<OrdnapInfo> option) {
 		return new RootOrdnapInsert(option).toAction();
 	}
 	

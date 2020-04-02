@@ -3,7 +3,7 @@ package br.com.mind5.security.user.model.action;
 import java.sql.Connection;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.security.user.info.UserInfo;
 import br.com.mind5.security.user.info.UserMerger;
@@ -16,7 +16,7 @@ final class VisiUserMergeToDelete extends ActionVisitorTemplateMerge<UserInfo, U
 	
 	
 	
-	@Override protected Class<? extends ActionStd<UserInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStdV1<UserInfo>> getActionClassHook() {
 		return StdUserSelect.class;
 	}
 	

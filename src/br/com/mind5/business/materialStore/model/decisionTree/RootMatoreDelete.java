@@ -12,8 +12,8 @@ import br.com.mind5.business.materialStore.model.action.StdMatoreMergeToDelete;
 import br.com.mind5.business.materialStore.model.checker.MatoreCheckExist;
 import br.com.mind5.business.materialStore.model.checker.MatoreCheckStorauth;
 import br.com.mind5.business.materialStore.model.checker.MatoreCheckWrite;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -60,14 +60,14 @@ public final class RootMatoreDelete extends DeciTreeWriteTemplate<MatoreInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<MatoreInfo>> buildActionsOnPassedHook(DeciTreeOption<MatoreInfo> option) {
-		List<ActionStd<MatoreInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV1<MatoreInfo>> buildActionsOnPassedHook(DeciTreeOption<MatoreInfo> option) {
+		List<ActionStdV1<MatoreInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<MatoreInfo> mergeToDelete = new StdMatoreMergeToDelete(option);
-		ActionLazy<MatoreInfo> enforceLChanged = new LazyMatoreEnforceLChanged(option.conn, option.schemaName);
-		ActionLazy<MatoreInfo> enforceLChangedBy = new LazyMatoreMergeUsername(option.conn, option.schemaName);
-		ActionLazy<MatoreInfo> mergeMatock = new LazyMatoreMergeMatock(option.conn, option.schemaName);
-		ActionLazy<MatoreInfo> nodeDelete = new LazyMatoreNodeDelete(option.conn, option.schemaName);
+		ActionStdV1<MatoreInfo> mergeToDelete = new StdMatoreMergeToDelete(option);
+		ActionLazyV1<MatoreInfo> enforceLChanged = new LazyMatoreEnforceLChanged(option.conn, option.schemaName);
+		ActionLazyV1<MatoreInfo> enforceLChangedBy = new LazyMatoreMergeUsername(option.conn, option.schemaName);
+		ActionLazyV1<MatoreInfo> mergeMatock = new LazyMatoreMergeMatock(option.conn, option.schemaName);
+		ActionLazyV1<MatoreInfo> nodeDelete = new LazyMatoreNodeDelete(option.conn, option.schemaName);
 		
 		mergeToDelete.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceLChangedBy);

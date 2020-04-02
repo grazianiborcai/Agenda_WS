@@ -7,7 +7,7 @@ import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.address.info.AddressMerger;
 import br.com.mind5.business.addressSnapshot.info.AddresnapInfo;
 import br.com.mind5.business.addressSnapshot.model.decisionTree.RootAddresnapInsert;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -19,7 +19,7 @@ final class VisiAddressInsertAddresnap extends ActionVisitorTemplateAction<Addre
 	
 	
 	
-	@Override protected ActionStd<AddresnapInfo> getActionHook(DeciTreeOption<AddresnapInfo> option) {
+	@Override protected ActionStdV1<AddresnapInfo> getActionHook(DeciTreeOption<AddresnapInfo> option) {
 		return new RootAddresnapInsert(option).toAction();
 	}
 	

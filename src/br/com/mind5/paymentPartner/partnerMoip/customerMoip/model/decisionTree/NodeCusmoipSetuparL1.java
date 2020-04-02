@@ -3,8 +3,8 @@ package br.com.mind5.paymentPartner.partnerMoip.customerMoip.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -35,12 +35,12 @@ public final class NodeCusmoipSetuparL1 extends DeciTreeWriteTemplate<CusmoipInf
 	
 	
 	
-	@Override protected List<ActionStd<CusmoipInfo>> buildActionsOnPassedHook(DeciTreeOption<CusmoipInfo> option) {
-		List<ActionStd<CusmoipInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<CusmoipInfo>> buildActionsOnPassedHook(DeciTreeOption<CusmoipInfo> option) {
+		List<ActionStdV1<CusmoipInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CusmoipInfo> enforcePaypar = new StdCusmoipEnforcePaypar(option);
-		ActionLazy<CusmoipInfo> mergeSetupar = new LazyCusmoipMergeSetupar(option.conn, option.schemaName);
-		ActionLazy<CusmoipInfo> enforceSetup = new LazyCusmoipEnforceSetup(option.conn, option.schemaName);
+		ActionStdV1<CusmoipInfo> enforcePaypar = new StdCusmoipEnforcePaypar(option);
+		ActionLazyV1<CusmoipInfo> mergeSetupar = new LazyCusmoipMergeSetupar(option.conn, option.schemaName);
+		ActionLazyV1<CusmoipInfo> enforceSetup = new LazyCusmoipEnforceSetup(option.conn, option.schemaName);
 		
 		enforcePaypar.addPostAction(mergeSetupar);
 		mergeSetupar.addPostAction(enforceSetup);

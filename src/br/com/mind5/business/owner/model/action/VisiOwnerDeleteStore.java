@@ -8,8 +8,8 @@ import br.com.mind5.business.store.info.StoreCopier;
 import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.business.store.model.action.LazyStoreNodeDeleteCascade;
 import br.com.mind5.business.store.model.decisionTree.RootStoreSearch;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -26,10 +26,10 @@ final class VisiOwnerDeleteStore extends ActionVisitorTemplateAction<OwnerInfo, 
 	
 	
 	
-	@Override protected ActionStd<StoreInfo> getActionHook(DeciTreeOption<StoreInfo> option) {
+	@Override protected ActionStdV1<StoreInfo> getActionHook(DeciTreeOption<StoreInfo> option) {
 		
-		ActionStd<StoreInfo> storeSearch = new RootStoreSearch(option).toAction();
-		ActionLazy<StoreInfo> storeDelete = new LazyStoreNodeDeleteCascade(option.conn, option.schemaName);
+		ActionStdV1<StoreInfo> storeSearch = new RootStoreSearch(option).toAction();
+		ActionLazyV1<StoreInfo> storeDelete = new LazyStoreNodeDeleteCascade(option.conn, option.schemaName);
 		
 		storeSearch.addPostAction(storeDelete);
 		

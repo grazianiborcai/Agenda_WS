@@ -7,14 +7,14 @@ import br.com.mind5.business.storeWorkTimeSearch.dao.StowotarchSelect;
 import br.com.mind5.business.storeWorkTimeSearch.info.StowotarchInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.obsolete.DaoStmtExec_;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperStmt;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdStowotarchSelect implements ActionStd<StowotarchInfo> {
-	private ActionStd<StowotarchInfo> actionHelper;
+public final class StdStowotarchSelect implements ActionStdV1<StowotarchInfo> {
+	private ActionStdV1<StowotarchInfo> actionHelper;
 	
 	
 	public StdStowotarchSelect(DeciTreeOption<StowotarchInfo> option) {
@@ -40,7 +40,7 @@ public final class StdStowotarchSelect implements ActionStd<StowotarchInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<StowotarchInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<StowotarchInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

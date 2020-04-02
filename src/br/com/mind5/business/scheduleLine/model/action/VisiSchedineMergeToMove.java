@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.scheduleLine.info.SchedineInfo;
 import br.com.mind5.business.scheduleLine.info.SchedineMerger;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 
 final class VisiSchedineMergeToMove extends ActionVisitorTemplateMerge<SchedineInfo, SchedineInfo> {
@@ -16,7 +16,7 @@ final class VisiSchedineMergeToMove extends ActionVisitorTemplateMerge<SchedineI
 	
 	
 	
-	@Override protected Class<? extends ActionStd<SchedineInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStdV1<SchedineInfo>> getActionClassHook() {
 		return StdSchedineSelect.class;
 	}
 	

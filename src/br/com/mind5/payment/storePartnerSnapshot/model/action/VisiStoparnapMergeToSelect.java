@@ -3,7 +3,7 @@ package br.com.mind5.payment.storePartnerSnapshot.model.action;
 import java.sql.Connection;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.payment.storePartnerSnapshot.info.StoparnapInfo;
 import br.com.mind5.payment.storePartnerSnapshot.info.StoparnapMerger;
@@ -16,7 +16,7 @@ final class VisiStoparnapMergeToSelect extends ActionVisitorTemplateMerge<Stopar
 	
 	
 	
-	@Override protected Class<? extends ActionStd<StoparnapInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStdV1<StoparnapInfo>> getActionClassHook() {
 		return StdStoparnapSelect.class;
 	}
 	

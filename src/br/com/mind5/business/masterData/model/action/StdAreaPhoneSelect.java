@@ -7,14 +7,14 @@ import br.com.mind5.business.masterData.dao.AreaPhoneSelect;
 import br.com.mind5.business.masterData.info.AreaPhoneInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.obsolete.DaoStmtExec_;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperStmt;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdAreaPhoneSelect implements ActionStd<AreaPhoneInfo> {
-	private ActionStd<AreaPhoneInfo> actionHelper;
+public final class StdAreaPhoneSelect implements ActionStdV1<AreaPhoneInfo> {
+	private ActionStdV1<AreaPhoneInfo> actionHelper;
 	
 	
 	public StdAreaPhoneSelect(DeciTreeOption<AreaPhoneInfo> option) {
@@ -40,7 +40,7 @@ public final class StdAreaPhoneSelect implements ActionStd<AreaPhoneInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<AreaPhoneInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<AreaPhoneInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

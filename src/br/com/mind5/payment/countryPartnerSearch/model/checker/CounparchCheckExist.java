@@ -1,7 +1,7 @@
 package br.com.mind5.payment.countryPartnerSearch.model.checker;
 
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -16,8 +16,8 @@ public final class CounparchCheckExist extends ModelCheckerTemplateAction<Counpa
 	
 
 	
-	@Override protected ActionStd<CounparchInfo> buildActionHook(DeciTreeOption<CounparchInfo> option) {
-		ActionStd<CounparchInfo> select = new RootCounparchSelect(option).toAction();
+	@Override protected ActionStdV1<CounparchInfo> buildActionHook(DeciTreeOption<CounparchInfo> option) {
+		ActionStdV1<CounparchInfo> select = new RootCounparchSelect(option).toAction();
 		return select;
 	}
 	

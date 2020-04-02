@@ -3,7 +3,7 @@ package br.com.mind5.paymentPartner.partnerMoip.accessMoip.model.action;
 import java.sql.Connection;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.paymentPartner.partnerMoip.accessMoip.info.AccemoipInfo;
@@ -17,7 +17,7 @@ final class VisiAccemoipInsertPeresmoip extends ActionVisitorTemplateAction<Acce
 	
 	
 	
-	@Override protected ActionStd<PeresmoipInfo> getActionHook(DeciTreeOption<PeresmoipInfo> option) {
+	@Override protected ActionStdV1<PeresmoipInfo> getActionHook(DeciTreeOption<PeresmoipInfo> option) {
 		return new RootPeresmoipInsert(option).toAction();
 	}
 	

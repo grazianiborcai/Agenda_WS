@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionLazyTemplate;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.userAuthentication.info.UauthInfo;
@@ -23,7 +23,7 @@ public final class LazyUauthMergeUselis extends ActionLazyTemplate<UauthInfo, Ua
 	
 	
 	
-	@Override protected ActionStd<UauthInfo> getInstanceOfActionHook(DeciTreeOption<UauthInfo> option) {
+	@Override protected ActionStdV1<UauthInfo> getInstanceOfActionHook(DeciTreeOption<UauthInfo> option) {
 		return new StdUauthMergeUselis(option);
 	}
 	

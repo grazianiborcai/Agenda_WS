@@ -7,8 +7,8 @@ import br.com.mind5.business.ownerList.info.OwnelisInfo;
 import br.com.mind5.business.ownerList.model.action.LazyOwnelisMergeComplis;
 import br.com.mind5.business.ownerList.model.action.StdOwnelisMergeToSelect;
 import br.com.mind5.business.ownerList.model.checker.OwnelisCheckRead;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -40,11 +40,11 @@ public final class RootOwnelisSelect extends DeciTreeReadTemplate<OwnelisInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<OwnelisInfo>> buildActionsOnPassedHook(DeciTreeOption<OwnelisInfo> option) {
-		List<ActionStd<OwnelisInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<OwnelisInfo>> buildActionsOnPassedHook(DeciTreeOption<OwnelisInfo> option) {
+		List<ActionStdV1<OwnelisInfo>> actions = new ArrayList<>();
 
-		ActionStd<OwnelisInfo> select = new StdOwnelisMergeToSelect(option);
-		ActionLazy<OwnelisInfo> mergeComplis = new LazyOwnelisMergeComplis(option.conn, option.schemaName);
+		ActionStdV1<OwnelisInfo> select = new StdOwnelisMergeToSelect(option);
+		ActionLazyV1<OwnelisInfo> mergeComplis = new LazyOwnelisMergeComplis(option.conn, option.schemaName);
 		
 		select.addPostAction(mergeComplis);
 		

@@ -8,7 +8,7 @@ import br.com.mind5.business.company.info.CompInfo;
 import br.com.mind5.business.company.model.decisionTree.RootCompInsertOwner;
 import br.com.mind5.business.owner.info.OwnerInfo;
 import br.com.mind5.business.owner.info.OwnerMerger;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -25,7 +25,7 @@ final class VisiOwnerInsertComp extends ActionVisitorTemplateAction<OwnerInfo, C
 	
 	
 	
-	@Override protected ActionStd<CompInfo> getActionHook(DeciTreeOption<CompInfo> option) {
+	@Override protected ActionStdV1<CompInfo> getActionHook(DeciTreeOption<CompInfo> option) {
 		return new RootCompInsertOwner(option).toAction();
 	}
 	

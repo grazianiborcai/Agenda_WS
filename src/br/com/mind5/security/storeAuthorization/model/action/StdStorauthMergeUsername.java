@@ -1,14 +1,14 @@
 package br.com.mind5.security.storeAuthorization.model.action;
 
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperMerge;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.storeAuthorization.info.StorauthInfo;
 
-public final class StdStorauthMergeUsername implements ActionStd<StorauthInfo> {
-	private ActionStd<StorauthInfo> actionHelper;	
+public final class StdStorauthMergeUsername implements ActionStdV1<StorauthInfo> {
+	private ActionStdV1<StorauthInfo> actionHelper;	
 	
 	
 	public StdStorauthMergeUsername(DeciTreeOption<StorauthInfo> option) {			
@@ -17,7 +17,7 @@ public final class StdStorauthMergeUsername implements ActionStd<StorauthInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<StorauthInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<StorauthInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

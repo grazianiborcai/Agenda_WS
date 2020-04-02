@@ -3,7 +3,7 @@ package br.com.mind5.payment.systemPartnerSearch.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -38,10 +38,10 @@ public final class RootSysparchSelect extends DeciTreeReadTemplate<SysparchInfo>
 	
 	
 	
-	@Override protected List<ActionStd<SysparchInfo>> buildActionsOnPassedHook(DeciTreeOption<SysparchInfo> option) {
-		List<ActionStd<SysparchInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<SysparchInfo>> buildActionsOnPassedHook(DeciTreeOption<SysparchInfo> option) {
+		List<ActionStdV1<SysparchInfo>> actions = new ArrayList<>();
 		
-		ActionStd<SysparchInfo> select = new StdSysparchSelect(option);
+		ActionStdV1<SysparchInfo> select = new StdSysparchSelect(option);
 		
 		actions.add(select);
 		return actions;

@@ -1,14 +1,14 @@
 package br.com.mind5.business.addressSnapshot.model.action;
 
 import br.com.mind5.business.addressSnapshot.info.AddresnapInfo;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperMerge;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdAddresnapMergeStolis implements ActionStd<AddresnapInfo> {
-	private ActionStd<AddresnapInfo> actionHelper;	
+public final class StdAddresnapMergeStolis implements ActionStdV1<AddresnapInfo> {
+	private ActionStdV1<AddresnapInfo> actionHelper;	
 	
 	
 	public StdAddresnapMergeStolis(DeciTreeOption<AddresnapInfo> option) {			
@@ -17,7 +17,7 @@ public final class StdAddresnapMergeStolis implements ActionStd<AddresnapInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<AddresnapInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<AddresnapInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

@@ -1,14 +1,14 @@
 package br.com.mind5.business.storeList.model.action;
 
 import br.com.mind5.business.storeList.info.StolisInfo;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperMerge;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class StdStolisMergeCurrency implements ActionStd<StolisInfo> {
-	private ActionStd<StolisInfo> actionHelper;	
+final class StdStolisMergeCurrency implements ActionStdV1<StolisInfo> {
+	private ActionStdV1<StolisInfo> actionHelper;	
 	
 	
 	public StdStolisMergeCurrency(DeciTreeOption<StolisInfo> option) {			
@@ -17,7 +17,7 @@ final class StdStolisMergeCurrency implements ActionStd<StolisInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<StolisInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<StolisInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

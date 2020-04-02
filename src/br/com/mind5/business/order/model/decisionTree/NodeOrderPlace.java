@@ -7,8 +7,8 @@ import br.com.mind5.business.order.info.OrderInfo;
 import br.com.mind5.business.order.model.action.LazyOrderNodeUpdate;
 import br.com.mind5.business.order.model.action.StdOrderEnforceStatusPlaced;
 import br.com.mind5.business.order.model.checker.OrderCheckPlaceStatus;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -40,11 +40,11 @@ public final class NodeOrderPlace extends DeciTreeWriteTemplate<OrderInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<OrderInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderInfo> option) {
-		List<ActionStd<OrderInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<OrderInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderInfo> option) {
+		List<ActionStdV1<OrderInfo>> actions = new ArrayList<>();
 		
-		ActionStd<OrderInfo> enforceStatus = new StdOrderEnforceStatusPlaced(option);
-		ActionLazy<OrderInfo> update = new LazyOrderNodeUpdate(option.conn, option.schemaName);		
+		ActionStdV1<OrderInfo> enforceStatus = new StdOrderEnforceStatusPlaced(option);
+		ActionLazyV1<OrderInfo> update = new LazyOrderNodeUpdate(option.conn, option.schemaName);		
 		
 		enforceStatus.addPostAction(update);
 		

@@ -5,16 +5,16 @@ import java.util.List;
 
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.obsolete.DaoStmtExec_;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperStmt;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.creditCardSearch.dao.CrecarchSelect;
 import br.com.mind5.payment.creditCardSearch.info.CrecarchInfo;
 
-public final class StdCrecarchSelect implements ActionStd<CrecarchInfo> {
-	private ActionStd<CrecarchInfo> actionHelper;
+public final class StdCrecarchSelect implements ActionStdV1<CrecarchInfo> {
+	private ActionStdV1<CrecarchInfo> actionHelper;
 	
 	
 	public StdCrecarchSelect(DeciTreeOption<CrecarchInfo> option) {
@@ -40,7 +40,7 @@ public final class StdCrecarchSelect implements ActionStd<CrecarchInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<CrecarchInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<CrecarchInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

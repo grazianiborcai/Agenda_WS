@@ -7,14 +7,14 @@ import br.com.mind5.business.cartReserve.dao.CarterveSelect;
 import br.com.mind5.business.cartReserve.info.CarterveInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.obsolete.DaoStmtExec_;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperStmt;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdCarterveSelect implements ActionStd<CarterveInfo> {
-	private ActionStd<CarterveInfo> actionHelper;
+public final class StdCarterveSelect implements ActionStdV1<CarterveInfo> {
+	private ActionStdV1<CarterveInfo> actionHelper;
 	
 	
 	public StdCarterveSelect(DeciTreeOption<CarterveInfo> option) {
@@ -40,7 +40,7 @@ public final class StdCarterveSelect implements ActionStd<CarterveInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<CarterveInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<CarterveInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

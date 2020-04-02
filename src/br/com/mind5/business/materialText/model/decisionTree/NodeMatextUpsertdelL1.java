@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.materialText.info.MatextInfo;
 import br.com.mind5.business.materialText.model.checker.MatextCheckIsDeleted;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -37,10 +37,10 @@ public final class NodeMatextUpsertdelL1 extends DeciTreeWriteTemplate<MatextInf
 	
 	
 	
-	@Override protected List<ActionStd<MatextInfo>> buildActionsOnPassedHook(DeciTreeOption<MatextInfo> option) {
-		List<ActionStd<MatextInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<MatextInfo>> buildActionsOnPassedHook(DeciTreeOption<MatextInfo> option) {
+		List<ActionStdV1<MatextInfo>> actions = new ArrayList<>();
 		
-		ActionStd<MatextInfo> delete = new RootMatextDelete(option).toAction();
+		ActionStdV1<MatextInfo> delete = new RootMatextDelete(option).toAction();
 		
 		actions.add(delete);
 		return actions;
@@ -48,10 +48,10 @@ public final class NodeMatextUpsertdelL1 extends DeciTreeWriteTemplate<MatextInf
 	
 	
 	
-	@Override protected List<ActionStd<MatextInfo>> buildActionsOnFailedHook(DeciTreeOption<MatextInfo> option) {
-		List<ActionStd<MatextInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<MatextInfo>> buildActionsOnFailedHook(DeciTreeOption<MatextInfo> option) {
+		List<ActionStdV1<MatextInfo>> actions = new ArrayList<>();
 		
-		ActionStd<MatextInfo> nodeL2 = new NodeMatextUpsertdelL2(option).toAction();
+		ActionStdV1<MatextInfo> nodeL2 = new NodeMatextUpsertdelL2(option).toAction();
 		
 		actions.add(nodeL2);
 		return actions;

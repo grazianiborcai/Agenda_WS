@@ -13,8 +13,8 @@ import br.com.mind5.business.employee.model.action.StdEmpMergeToSelect;
 import br.com.mind5.business.employee.model.checker.EmpCheckLangu;
 import br.com.mind5.business.employee.model.checker.EmpCheckOwner;
 import br.com.mind5.business.employee.model.checker.EmpCheckRead;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -60,15 +60,15 @@ public final class RootEmpSelect extends DeciTreeReadTemplate<EmpInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<EmpInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpInfo> option) {
-		List<ActionStd<EmpInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<EmpInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpInfo> option) {
+		List<ActionStdV1<EmpInfo>> actions = new ArrayList<>();
 
-		ActionStd<EmpInfo> select = new StdEmpMergeToSelect(option);
-		ActionLazy<EmpInfo> mergePerson = new LazyEmpMergePerson(option.conn, option.schemaName);
-		ActionLazy<EmpInfo> mergeAddress = new LazyEmpMergeAddress(option.conn, option.schemaName);
-		ActionLazy<EmpInfo> mergePhone = new LazyEmpMergePhone(option.conn, option.schemaName);
-		ActionLazy<EmpInfo> mergeUser = new LazyEmpMergeUser(option.conn, option.schemaName);
-		ActionLazy<EmpInfo> mergeFimist = new LazyEmpMergeFimist(option.conn, option.schemaName);
+		ActionStdV1<EmpInfo> select = new StdEmpMergeToSelect(option);
+		ActionLazyV1<EmpInfo> mergePerson = new LazyEmpMergePerson(option.conn, option.schemaName);
+		ActionLazyV1<EmpInfo> mergeAddress = new LazyEmpMergeAddress(option.conn, option.schemaName);
+		ActionLazyV1<EmpInfo> mergePhone = new LazyEmpMergePhone(option.conn, option.schemaName);
+		ActionLazyV1<EmpInfo> mergeUser = new LazyEmpMergeUser(option.conn, option.schemaName);
+		ActionLazyV1<EmpInfo> mergeFimist = new LazyEmpMergeFimist(option.conn, option.schemaName);
 		
 		select.addPostAction(mergePerson);
 		mergePerson.addPostAction(mergeAddress);

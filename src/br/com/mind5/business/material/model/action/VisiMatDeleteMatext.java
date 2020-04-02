@@ -7,7 +7,7 @@ import br.com.mind5.business.material.info.MatInfo;
 import br.com.mind5.business.materialText.info.MatextCopier;
 import br.com.mind5.business.materialText.info.MatextInfo;
 import br.com.mind5.business.materialText.model.decisionTree.RootMatextDeleteByMat;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -18,7 +18,7 @@ final class VisiMatDeleteMatext extends ActionVisitorTemplateAction<MatInfo, Mat
 	
 	
 	
-	@Override protected ActionStd<MatextInfo> getActionHook(DeciTreeOption<MatextInfo> option) {
+	@Override protected ActionStdV1<MatextInfo> getActionHook(DeciTreeOption<MatextInfo> option) {
 		return new RootMatextDeleteByMat(option).toAction();
 	}
 	

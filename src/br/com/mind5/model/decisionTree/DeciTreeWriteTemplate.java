@@ -7,7 +7,7 @@ import java.util.List;
 import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.InfoRecord;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 
 public abstract class DeciTreeWriteTemplate<T extends InfoRecord> implements DeciTree<T> {
@@ -97,7 +97,7 @@ public abstract class DeciTreeWriteTemplate<T extends InfoRecord> implements Dec
 	
 	
 	
-	protected List<ActionStd<T>> buildActionsOnPassedHook(DeciTreeOption<T> option) {
+	protected List<ActionStdV1<T>> buildActionsOnPassedHook(DeciTreeOption<T> option) {
 		//Template method: to be overwritten by subclasses
 		logException(new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION));
 		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);	
@@ -105,7 +105,7 @@ public abstract class DeciTreeWriteTemplate<T extends InfoRecord> implements Dec
 	
 	
 	
-	protected List<ActionStd<T>> buildActionsOnFailedHook(DeciTreeOption<T> option) {
+	protected List<ActionStdV1<T>> buildActionsOnFailedHook(DeciTreeOption<T> option) {
 		//Template method: to be overwritten by subclasses
 		return null;	
 	}
@@ -164,7 +164,7 @@ public abstract class DeciTreeWriteTemplate<T extends InfoRecord> implements Dec
 	
 	
 	
-	@Override public ActionStd<T> toAction() {
+	@Override public ActionStdV1<T> toAction() {
 		return new DeciTreeAdapter<>(trees);
 	}
 	

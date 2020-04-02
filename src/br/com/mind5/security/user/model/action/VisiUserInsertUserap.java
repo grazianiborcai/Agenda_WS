@@ -3,7 +3,7 @@ package br.com.mind5.security.user.model.action;
 import java.sql.Connection;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.user.info.UserInfo;
@@ -18,7 +18,7 @@ final class VisiUserInsertUserap extends ActionVisitorTemplateAction<UserInfo, U
 	
 	
 	
-	@Override protected ActionStd<UserapInfo> getActionHook(DeciTreeOption<UserapInfo> option) {
+	@Override protected ActionStdV1<UserapInfo> getActionHook(DeciTreeOption<UserapInfo> option) {
 		return new RootUserapInsert(option).toAction();
 	}
 	

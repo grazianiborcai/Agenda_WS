@@ -7,14 +7,14 @@ import br.com.mind5.business.scheduleWeekData.dao.SchedeekdatSelect;
 import br.com.mind5.business.scheduleWeekData.info.SchedeekdatInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.obsolete.DaoStmtExec_;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperStmt;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdSchedeekdatSelect implements ActionStd<SchedeekdatInfo> {
-	private ActionStd<SchedeekdatInfo> actionHelper;
+public final class StdSchedeekdatSelect implements ActionStdV1<SchedeekdatInfo> {
+	private ActionStdV1<SchedeekdatInfo> actionHelper;
 	
 	
 	public StdSchedeekdatSelect(DeciTreeOption<SchedeekdatInfo> option) {
@@ -40,7 +40,7 @@ public final class StdSchedeekdatSelect implements ActionStd<SchedeekdatInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<SchedeekdatInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<SchedeekdatInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

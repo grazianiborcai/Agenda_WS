@@ -7,14 +7,14 @@ import br.com.mind5.business.storeWorkTime.dao.StowotmInsert;
 import br.com.mind5.business.storeWorkTime.info.StowotmInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.obsolete.DaoStmtExec_;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperStmt;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdStowotmInsert implements ActionStd<StowotmInfo> {
-	private ActionStd<StowotmInfo> actionHelper;
+public final class StdStowotmInsert implements ActionStdV1<StowotmInfo> {
+	private ActionStdV1<StowotmInfo> actionHelper;
 	
 	
 	public StdStowotmInsert(DeciTreeOption<StowotmInfo> option) {
@@ -40,7 +40,7 @@ public final class StdStowotmInsert implements ActionStd<StowotmInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<StowotmInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<StowotmInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

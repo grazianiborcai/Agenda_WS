@@ -12,8 +12,8 @@ import br.com.mind5.business.storeWorkTime.model.action.LazyStowotmRootSelect;
 import br.com.mind5.business.storeWorkTime.model.action.LazyStowotmUpdate;
 import br.com.mind5.business.storeWorkTime.model.action.StdStowotmEnforceLChanged;
 import br.com.mind5.business.storeWorkTime.model.checker.StowotmCheckSoftDelete;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -45,15 +45,15 @@ final class NodeStowotmInsert extends DeciTreeWriteTemplate<StowotmInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<StowotmInfo>> buildActionsOnPassedHook(DeciTreeOption<StowotmInfo> option) {
-		List<ActionStd<StowotmInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<StowotmInfo>> buildActionsOnPassedHook(DeciTreeOption<StowotmInfo> option) {
+		List<ActionStdV1<StowotmInfo>> actions = new ArrayList<>();
 		
-		ActionStd<StowotmInfo> enforceLChanged = new StdStowotmEnforceLChanged(option);
-		ActionLazy<StowotmInfo> enforceLChangedBy = new LazyStowotmMergeUsername(option.conn, option.schemaName);
-		ActionLazy<StowotmInfo> enforceCreatedOn = new LazyStowotmEnforceCreatedOn(option.conn, option.schemaName);
-		ActionLazy<StowotmInfo> enforceCreatedBy = new LazyStowotmEnforceCreatedBy(option.conn, option.schemaName);
-		ActionLazy<StowotmInfo> insert = new LazyStowotmInsert(option.conn, option.schemaName);
-		ActionLazy<StowotmInfo> select = new LazyStowotmRootSelect(option.conn, option.schemaName);
+		ActionStdV1<StowotmInfo> enforceLChanged = new StdStowotmEnforceLChanged(option);
+		ActionLazyV1<StowotmInfo> enforceLChangedBy = new LazyStowotmMergeUsername(option.conn, option.schemaName);
+		ActionLazyV1<StowotmInfo> enforceCreatedOn = new LazyStowotmEnforceCreatedOn(option.conn, option.schemaName);
+		ActionLazyV1<StowotmInfo> enforceCreatedBy = new LazyStowotmEnforceCreatedBy(option.conn, option.schemaName);
+		ActionLazyV1<StowotmInfo> insert = new LazyStowotmInsert(option.conn, option.schemaName);
+		ActionLazyV1<StowotmInfo> select = new LazyStowotmRootSelect(option.conn, option.schemaName);
 		
 		enforceLChanged.addPostAction(enforceLChangedBy);
 		enforceLChangedBy.addPostAction(enforceCreatedOn);
@@ -67,15 +67,15 @@ final class NodeStowotmInsert extends DeciTreeWriteTemplate<StowotmInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<StowotmInfo>> buildActionsOnFailedHook(DeciTreeOption<StowotmInfo> option) {
-		List<ActionStd<StowotmInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<StowotmInfo>> buildActionsOnFailedHook(DeciTreeOption<StowotmInfo> option) {
+		List<ActionStdV1<StowotmInfo>> actions = new ArrayList<>();
 		
-		ActionStd<StowotmInfo> enforceLChanged = new StdStowotmEnforceLChanged(option);
-		ActionLazy<StowotmInfo> enforceLChangedBy = new LazyStowotmMergeUsername(option.conn, option.schemaName);
-		ActionLazy<StowotmInfo> enforceCreatedOn = new LazyStowotmEnforceCreatedOn(option.conn, option.schemaName);
-		ActionLazy<StowotmInfo> enforceCreatedBy = new LazyStowotmEnforceCreatedBy(option.conn, option.schemaName);
-		ActionLazy<StowotmInfo> update = new LazyStowotmUpdate(option.conn, option.schemaName);
-		ActionLazy<StowotmInfo> select = new LazyStowotmRootSelect(option.conn, option.schemaName);
+		ActionStdV1<StowotmInfo> enforceLChanged = new StdStowotmEnforceLChanged(option);
+		ActionLazyV1<StowotmInfo> enforceLChangedBy = new LazyStowotmMergeUsername(option.conn, option.schemaName);
+		ActionLazyV1<StowotmInfo> enforceCreatedOn = new LazyStowotmEnforceCreatedOn(option.conn, option.schemaName);
+		ActionLazyV1<StowotmInfo> enforceCreatedBy = new LazyStowotmEnforceCreatedBy(option.conn, option.schemaName);
+		ActionLazyV1<StowotmInfo> update = new LazyStowotmUpdate(option.conn, option.schemaName);
+		ActionLazyV1<StowotmInfo> select = new LazyStowotmRootSelect(option.conn, option.schemaName);
 		
 		enforceLChanged.addPostAction(enforceLChangedBy);
 		enforceLChangedBy.addPostAction(enforceCreatedOn);

@@ -7,14 +7,14 @@ import br.com.mind5.business.materialList.dao.MatlisSelect;
 import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.obsolete.DaoStmtExec_;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperStmt;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdMatlisSelect implements ActionStd<MatlisInfo> {
-	private ActionStd<MatlisInfo> actionHelper;
+public final class StdMatlisSelect implements ActionStdV1<MatlisInfo> {
+	private ActionStdV1<MatlisInfo> actionHelper;
 	
 	
 	public StdMatlisSelect(DeciTreeOption<MatlisInfo> option) {
@@ -40,7 +40,7 @@ public final class StdMatlisSelect implements ActionStd<MatlisInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<MatlisInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<MatlisInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

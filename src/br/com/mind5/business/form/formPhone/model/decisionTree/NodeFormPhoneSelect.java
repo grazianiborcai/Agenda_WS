@@ -7,7 +7,7 @@ import br.com.mind5.business.form.formPhone.info.FormPhoneInfo;
 import br.com.mind5.business.form.formPhone.model.action.StdFormPhoneEnforceDefault;
 import br.com.mind5.business.form.formPhone.model.action.StdFormPhoneSelect;
 import br.com.mind5.business.form.formPhone.model.checker.FormPhoneCheckExist;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -39,10 +39,10 @@ public final class NodeFormPhoneSelect extends DeciTreeReadTemplate<FormPhoneInf
 	
 	
 	
-	@Override protected List<ActionStd<FormPhoneInfo>> buildActionsOnPassedHook(DeciTreeOption<FormPhoneInfo> option) {
-		List<ActionStd<FormPhoneInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<FormPhoneInfo>> buildActionsOnPassedHook(DeciTreeOption<FormPhoneInfo> option) {
+		List<ActionStdV1<FormPhoneInfo>> actions = new ArrayList<>();
 		
-		ActionStd<FormPhoneInfo> select = new StdFormPhoneSelect(option);
+		ActionStdV1<FormPhoneInfo> select = new StdFormPhoneSelect(option);
 		
 		actions.add(select);
 		return actions;
@@ -50,8 +50,8 @@ public final class NodeFormPhoneSelect extends DeciTreeReadTemplate<FormPhoneInf
 	
 	
 	
-	@Override protected List<ActionStd<FormPhoneInfo>> buildActionsOnFailedHook(DeciTreeOption<FormPhoneInfo> option) {
-		List<ActionStd<FormPhoneInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<FormPhoneInfo>> buildActionsOnFailedHook(DeciTreeOption<FormPhoneInfo> option) {
+		List<ActionStdV1<FormPhoneInfo>> actions = new ArrayList<>();
 		
 		actions.add(new StdFormPhoneEnforceDefault(option));
 		return actions;

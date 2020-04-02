@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.owner.info.OwnerInfo;
 import br.com.mind5.business.owner.info.OwnerMerger;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 
 final class VisiOwnerMergeToUpdate extends ActionVisitorTemplateMerge<OwnerInfo, OwnerInfo> {
@@ -16,7 +16,7 @@ final class VisiOwnerMergeToUpdate extends ActionVisitorTemplateMerge<OwnerInfo,
 	
 	
 	
-	@Override protected Class<? extends ActionStd<OwnerInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStdV1<OwnerInfo>> getActionClassHook() {
 		return StdOwnerSelect.class;
 	}
 	

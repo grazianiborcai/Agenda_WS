@@ -7,7 +7,7 @@ import br.com.mind5.business.form.formPhone.info.FormPhoneInfo;
 import br.com.mind5.business.form.formPhone.model.checker.FormPhoneCheckCountry;
 import br.com.mind5.business.form.formPhone.model.checker.FormPhoneCheckExist;
 import br.com.mind5.business.form.formPhone.model.checker.FormPhoneCheckRead;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -54,10 +54,10 @@ public final class RootFormPhoneSelect extends DeciTreeReadTemplate<FormPhoneInf
 	
 	
 	
-	@Override protected List<ActionStd<FormPhoneInfo>> buildActionsOnPassedHook(DeciTreeOption<FormPhoneInfo> option) {
-		List<ActionStd<FormPhoneInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<FormPhoneInfo>> buildActionsOnPassedHook(DeciTreeOption<FormPhoneInfo> option) {
+		List<ActionStdV1<FormPhoneInfo>> actions = new ArrayList<>();
 		
-		ActionStd<FormPhoneInfo> nodeSelect = new NodeFormPhoneSelect(option).toAction();
+		ActionStdV1<FormPhoneInfo> nodeSelect = new NodeFormPhoneSelect(option).toAction();
 		
 		actions.add(nodeSelect);
 		return actions;

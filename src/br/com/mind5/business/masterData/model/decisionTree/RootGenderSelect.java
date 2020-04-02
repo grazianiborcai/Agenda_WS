@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.masterData.info.GenderInfo;
 import br.com.mind5.business.masterData.model.action.StdGenderSelect;
 import br.com.mind5.business.masterData.model.checker.GenderCheckRead;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -38,10 +38,10 @@ public final class RootGenderSelect extends DeciTreeReadTemplate<GenderInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<GenderInfo>> buildActionsOnPassedHook(DeciTreeOption<GenderInfo> option) {
-		List<ActionStd<GenderInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<GenderInfo>> buildActionsOnPassedHook(DeciTreeOption<GenderInfo> option) {
+		List<ActionStdV1<GenderInfo>> actions = new ArrayList<>();
 		
-		ActionStd<GenderInfo> select = new StdGenderSelect(option);
+		ActionStdV1<GenderInfo> select = new StdGenderSelect(option);
 		
 		actions.add(select);
 		return actions;

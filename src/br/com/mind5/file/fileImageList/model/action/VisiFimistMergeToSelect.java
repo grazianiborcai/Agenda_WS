@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.file.fileImageList.info.FimistInfo;
 import br.com.mind5.file.fileImageList.info.FimistMerger;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 
 final class VisiFimistMergeToSelect extends ActionVisitorTemplateMerge<FimistInfo, FimistInfo> {
@@ -16,7 +16,7 @@ final class VisiFimistMergeToSelect extends ActionVisitorTemplateMerge<FimistInf
 	
 	
 	
-	@Override protected Class<? extends ActionStd<FimistInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStdV1<FimistInfo>> getActionClassHook() {
 		return StdFimistSelect.class;
 	}
 	

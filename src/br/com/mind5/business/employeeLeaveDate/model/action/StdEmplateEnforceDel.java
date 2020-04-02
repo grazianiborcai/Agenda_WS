@@ -1,14 +1,14 @@
 package br.com.mind5.business.employeeLeaveDate.model.action;
 
 import br.com.mind5.business.employeeLeaveDate.info.EmplateInfo;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperEnforce;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdEmplateEnforceDel implements ActionStd<EmplateInfo> {
-	private ActionStd<EmplateInfo> actionHelper;	
+public final class StdEmplateEnforceDel implements ActionStdV1<EmplateInfo> {
+	private ActionStdV1<EmplateInfo> actionHelper;	
 	
 	
 	public StdEmplateEnforceDel(DeciTreeOption<EmplateInfo> option) {			
@@ -17,7 +17,7 @@ public final class StdEmplateEnforceDel implements ActionStd<EmplateInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<EmplateInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<EmplateInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

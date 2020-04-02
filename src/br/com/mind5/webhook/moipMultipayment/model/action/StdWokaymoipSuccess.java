@@ -3,16 +3,16 @@ package br.com.mind5.webhook.moipMultipayment.model.action;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.commom.ActionStdDummy;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciResultHelper;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.webhook.moipMultipayment.info.WokaymoipInfo;
 
-public final class StdWokaymoipSuccess implements ActionStd<WokaymoipInfo> {
-	private ActionStd<WokaymoipInfo> actionHelper;
+public final class StdWokaymoipSuccess implements ActionStdV1<WokaymoipInfo> {
+	private ActionStdV1<WokaymoipInfo> actionHelper;
 	
 	
 	public StdWokaymoipSuccess(DeciTreeOption<WokaymoipInfo> option) {
@@ -38,7 +38,7 @@ public final class StdWokaymoipSuccess implements ActionStd<WokaymoipInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<WokaymoipInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<WokaymoipInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

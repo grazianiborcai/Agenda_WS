@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.materialText.info.MatextInfo;
 import br.com.mind5.business.materialText.model.checker.MatextCheckUpsertdel;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -37,10 +37,10 @@ public final class RootMatextUpsertdel extends DeciTreeWriteTemplate<MatextInfo>
 	
 	
 	
-	@Override protected List<ActionStd<MatextInfo>> buildActionsOnPassedHook(DeciTreeOption<MatextInfo> option) {
-		List<ActionStd<MatextInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<MatextInfo>> buildActionsOnPassedHook(DeciTreeOption<MatextInfo> option) {
+		List<ActionStdV1<MatextInfo>> actions = new ArrayList<>();
 		
-		ActionStd<MatextInfo> nodeL1 = new NodeMatextUpsertdelL1(option).toAction();
+		ActionStdV1<MatextInfo> nodeL1 = new NodeMatextUpsertdelL1(option).toAction();
 		
 		actions.add(nodeL1);
 		return actions;

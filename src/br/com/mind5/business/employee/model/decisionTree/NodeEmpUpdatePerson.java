@@ -8,8 +8,8 @@ import br.com.mind5.business.employee.model.action.LazyEmpUpdatePerson;
 import br.com.mind5.business.employee.model.action.StdEmpEnforcePersonKey;
 import br.com.mind5.business.employee.model.action.StdEmpSuccess;
 import br.com.mind5.business.employee.model.checker.EmpCheckHasPerson;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -41,11 +41,11 @@ public final class NodeEmpUpdatePerson extends DeciTreeWriteTemplate<EmpInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<EmpInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpInfo> option) {
-		List<ActionStd<EmpInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<EmpInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpInfo> option) {
+		List<ActionStdV1<EmpInfo>> actions = new ArrayList<>();
 		
-		ActionStd<EmpInfo> enforcePersonKey = new StdEmpEnforcePersonKey(option);
-		ActionLazy<EmpInfo> updatePerson = new LazyEmpUpdatePerson(option.conn, option.schemaName);
+		ActionStdV1<EmpInfo> enforcePersonKey = new StdEmpEnforcePersonKey(option);
+		ActionLazyV1<EmpInfo> updatePerson = new LazyEmpUpdatePerson(option.conn, option.schemaName);
 		
 		enforcePersonKey.addPostAction(updatePerson);
 		
@@ -55,8 +55,8 @@ public final class NodeEmpUpdatePerson extends DeciTreeWriteTemplate<EmpInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<EmpInfo>> buildActionsOnFailedHook(DeciTreeOption<EmpInfo> option) {
-		List<ActionStd<EmpInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<EmpInfo>> buildActionsOnFailedHook(DeciTreeOption<EmpInfo> option) {
+		List<ActionStdV1<EmpInfo>> actions = new ArrayList<>();
 		
 		actions.add(new StdEmpSuccess(option));		
 		return actions;

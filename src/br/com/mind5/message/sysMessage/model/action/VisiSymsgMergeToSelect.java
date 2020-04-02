@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.message.sysMessage.info.SymsgInfo;
 import br.com.mind5.message.sysMessage.info.SymsgMerger;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 
 final class VisiSymsgMergeToSelect extends ActionVisitorTemplateMerge<SymsgInfo, SymsgInfo> {
@@ -16,7 +16,7 @@ final class VisiSymsgMergeToSelect extends ActionVisitorTemplateMerge<SymsgInfo,
 	
 	
 	
-	@Override protected Class<? extends ActionStd<SymsgInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStdV1<SymsgInfo>> getActionClassHook() {
 		return StdSymsgSelect.class;
 	}
 	

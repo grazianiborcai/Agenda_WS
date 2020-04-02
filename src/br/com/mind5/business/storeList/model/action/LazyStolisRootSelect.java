@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.business.storeList.model.decisionTree.RootStolisSelect;
 import br.com.mind5.model.action.ActionLazyTemplate;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -24,7 +24,7 @@ public final class LazyStolisRootSelect extends ActionLazyTemplate<StolisInfo, S
 	
 	
 	
-	@Override protected ActionStd<StolisInfo> getInstanceOfActionHook(DeciTreeOption<StolisInfo> option) {
+	@Override protected ActionStdV1<StolisInfo> getInstanceOfActionHook(DeciTreeOption<StolisInfo> option) {
 		return new RootStolisSelect(option).toAction();
 	}
 	

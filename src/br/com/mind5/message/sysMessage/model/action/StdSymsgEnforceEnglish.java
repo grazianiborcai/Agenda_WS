@@ -1,14 +1,14 @@
 package br.com.mind5.message.sysMessage.model.action;
 
 import br.com.mind5.message.sysMessage.info.SymsgInfo;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperEnforce;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdSymsgEnforceEnglish implements ActionStd<SymsgInfo> {
-	private ActionStd<SymsgInfo> actionHelper;	
+public final class StdSymsgEnforceEnglish implements ActionStdV1<SymsgInfo> {
+	private ActionStdV1<SymsgInfo> actionHelper;	
 	
 	
 	public StdSymsgEnforceEnglish(DeciTreeOption<SymsgInfo> option) {			
@@ -17,7 +17,7 @@ public final class StdSymsgEnforceEnglish implements ActionStd<SymsgInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<SymsgInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<SymsgInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

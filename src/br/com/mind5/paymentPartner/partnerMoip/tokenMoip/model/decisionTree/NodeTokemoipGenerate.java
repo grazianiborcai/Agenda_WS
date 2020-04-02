@@ -3,8 +3,8 @@ package br.com.mind5.paymentPartner.partnerMoip.tokenMoip.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -51,14 +51,14 @@ public final class NodeTokemoipGenerate extends DeciTreeWriteTemplate<TokemoipIn
 	
 	
 	
-	@Override protected List<ActionStd<TokemoipInfo>> buildActionsOnPassedHook(DeciTreeOption<TokemoipInfo> option) {
-		List<ActionStd<TokemoipInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV1<TokemoipInfo>> buildActionsOnPassedHook(DeciTreeOption<TokemoipInfo> option) {
+		List<ActionStdV1<TokemoipInfo>> actions = new ArrayList<>();		
 
-		ActionStd<TokemoipInfo> mergeSyspar = new StdTokemoipMergeSyspar(option);	
-		ActionLazy<TokemoipInfo> mergeSetupar = new LazyTokemoipMergeSetupar(option.conn, option.schemaName);
-		ActionLazy<TokemoipInfo> mergeSysEnviron = new LazyTokemoipMergeSysEnviron(option.conn, option.schemaName);
-		ActionLazy<TokemoipInfo> enforceSetup = new LazyTokemoipEnforceSetup(option.conn, option.schemaName);
-		ActionLazy<TokemoipInfo> generateToken = new LazyTokemoipGenerate(option.conn, option.schemaName);
+		ActionStdV1<TokemoipInfo> mergeSyspar = new StdTokemoipMergeSyspar(option);	
+		ActionLazyV1<TokemoipInfo> mergeSetupar = new LazyTokemoipMergeSetupar(option.conn, option.schemaName);
+		ActionLazyV1<TokemoipInfo> mergeSysEnviron = new LazyTokemoipMergeSysEnviron(option.conn, option.schemaName);
+		ActionLazyV1<TokemoipInfo> enforceSetup = new LazyTokemoipEnforceSetup(option.conn, option.schemaName);
+		ActionLazyV1<TokemoipInfo> generateToken = new LazyTokemoipGenerate(option.conn, option.schemaName);
 		
 		mergeSyspar.addPostAction(mergeSetupar);
 		mergeSetupar.addPostAction(mergeSysEnviron);

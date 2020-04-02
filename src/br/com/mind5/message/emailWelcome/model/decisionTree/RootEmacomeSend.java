@@ -8,8 +8,8 @@ import br.com.mind5.message.emailWelcome.model.action.LazyEmacomeEnforceEmabody;
 import br.com.mind5.message.emailWelcome.model.action.LazyEmacomeSendEmail;
 import br.com.mind5.message.emailWelcome.model.action.StdEmacomeMergeOwnelis;
 import br.com.mind5.message.emailWelcome.model.checker.EmacomeCheckSend;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -41,13 +41,13 @@ public final class RootEmacomeSend extends DeciTreeWriteTemplate<EmacomeInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<EmacomeInfo>> buildActionsOnPassedHook(DeciTreeOption<EmacomeInfo> option) {
-		List<ActionStd<EmacomeInfo>> actions = new ArrayList<>();	
+	@Override protected List<ActionStdV1<EmacomeInfo>> buildActionsOnPassedHook(DeciTreeOption<EmacomeInfo> option) {
+		List<ActionStdV1<EmacomeInfo>> actions = new ArrayList<>();	
 		
-		ActionStd<EmacomeInfo> mergeOwnelis = new StdEmacomeMergeOwnelis(option);
-		ActionLazy<EmacomeInfo> enforceEmabody = new LazyEmacomeEnforceEmabody(option.conn, option.schemaName);
+		ActionStdV1<EmacomeInfo> mergeOwnelis = new StdEmacomeMergeOwnelis(option);
+		ActionLazyV1<EmacomeInfo> enforceEmabody = new LazyEmacomeEnforceEmabody(option.conn, option.schemaName);
 		
-		ActionLazy<EmacomeInfo> send = new LazyEmacomeSendEmail(option.conn, option.schemaName);
+		ActionLazyV1<EmacomeInfo> send = new LazyEmacomeSendEmail(option.conn, option.schemaName);
 		
 		mergeOwnelis.addPostAction(enforceEmabody);
 		enforceEmabody.addPostAction(send);

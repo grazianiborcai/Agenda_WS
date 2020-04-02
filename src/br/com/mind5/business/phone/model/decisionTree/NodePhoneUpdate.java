@@ -10,8 +10,8 @@ import br.com.mind5.business.phone.model.action.LazyPhoneNodeUpdateT01;
 import br.com.mind5.business.phone.model.action.StdPhoneEnforceNumberT00;
 import br.com.mind5.business.phone.model.action.StdPhoneEnforceNumberT01;
 import br.com.mind5.business.phone.model.checker.PhoneCheckFormT01;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -43,12 +43,12 @@ public final class NodePhoneUpdate extends DeciTreeWriteTemplate<PhoneInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<PhoneInfo>> buildActionsOnPassedHook(DeciTreeOption<PhoneInfo> option) {
-		List<ActionStd<PhoneInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<PhoneInfo>> buildActionsOnPassedHook(DeciTreeOption<PhoneInfo> option) {
+		List<ActionStdV1<PhoneInfo>> actions = new ArrayList<>();
 		
-		ActionStd<PhoneInfo> enforceNumberT01 = new StdPhoneEnforceNumberT01(option);
-		ActionLazy<PhoneInfo> enforceAreaT01 = new LazyPhoneEnforceAreaT01(option.conn, option.schemaName);
-		ActionLazy<PhoneInfo> nodeUpdateT01 = new LazyPhoneNodeUpdateT01(option.conn, option.schemaName);
+		ActionStdV1<PhoneInfo> enforceNumberT01 = new StdPhoneEnforceNumberT01(option);
+		ActionLazyV1<PhoneInfo> enforceAreaT01 = new LazyPhoneEnforceAreaT01(option.conn, option.schemaName);
+		ActionLazyV1<PhoneInfo> nodeUpdateT01 = new LazyPhoneNodeUpdateT01(option.conn, option.schemaName);
 		
 		enforceNumberT01.addPostAction(enforceAreaT01);
 		enforceAreaT01.addPostAction(nodeUpdateT01);
@@ -59,11 +59,11 @@ public final class NodePhoneUpdate extends DeciTreeWriteTemplate<PhoneInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<PhoneInfo>> buildActionsOnFailedHook(DeciTreeOption<PhoneInfo> option) {
-		List<ActionStd<PhoneInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<PhoneInfo>> buildActionsOnFailedHook(DeciTreeOption<PhoneInfo> option) {
+		List<ActionStdV1<PhoneInfo>> actions = new ArrayList<>();
 
-		ActionStd<PhoneInfo> enforceNumberT00 = new StdPhoneEnforceNumberT00(option);
-		ActionLazy<PhoneInfo> nodeUpdateT00 = new LazyPhoneNodeUpdateT00(option.conn, option.schemaName);
+		ActionStdV1<PhoneInfo> enforceNumberT00 = new StdPhoneEnforceNumberT00(option);
+		ActionLazyV1<PhoneInfo> nodeUpdateT00 = new LazyPhoneNodeUpdateT00(option.conn, option.schemaName);
 		
 		enforceNumberT00.addPostAction(nodeUpdateT00);
 

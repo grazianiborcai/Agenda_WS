@@ -7,14 +7,14 @@ import br.com.mind5.business.storeSnapshot.dao.StorapSelect;
 import br.com.mind5.business.storeSnapshot.info.StorapInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.obsolete.DaoStmtExec_;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperStmt;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdStorapSelect implements ActionStd<StorapInfo> {
-	private ActionStd<StorapInfo> actionHelper;
+public final class StdStorapSelect implements ActionStdV1<StorapInfo> {
+	private ActionStdV1<StorapInfo> actionHelper;
 	
 	
 	public StdStorapSelect(DeciTreeOption<StorapInfo> option) {
@@ -40,7 +40,7 @@ public final class StdStorapSelect implements ActionStd<StorapInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<StorapInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<StorapInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

@@ -7,7 +7,7 @@ import br.com.mind5.business.materialText.info.MatextInfo;
 import br.com.mind5.business.materialText.model.action.StdMatextInsert;
 import br.com.mind5.business.materialText.model.action.StdMatextUpdate;
 import br.com.mind5.business.materialText.model.checker.MatextCheckSoftDelete;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -39,10 +39,10 @@ public final class NodeMatextInsert extends DeciTreeWriteTemplate<MatextInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<MatextInfo>> buildActionsOnPassedHook(DeciTreeOption<MatextInfo> option) {
-		List<ActionStd<MatextInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<MatextInfo>> buildActionsOnPassedHook(DeciTreeOption<MatextInfo> option) {
+		List<ActionStdV1<MatextInfo>> actions = new ArrayList<>();
 		
-		ActionStd<MatextInfo> insert = new StdMatextInsert(option);
+		ActionStdV1<MatextInfo> insert = new StdMatextInsert(option);
 		actions.add(insert);
 		
 		return actions;
@@ -50,10 +50,10 @@ public final class NodeMatextInsert extends DeciTreeWriteTemplate<MatextInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<MatextInfo>> buildActionsOnFailedHook(DeciTreeOption<MatextInfo> option) {
-		List<ActionStd<MatextInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<MatextInfo>> buildActionsOnFailedHook(DeciTreeOption<MatextInfo> option) {
+		List<ActionStdV1<MatextInfo>> actions = new ArrayList<>();
 		
-		ActionStd<MatextInfo> update = new StdMatextUpdate(option);
+		ActionStdV1<MatextInfo> update = new StdMatextUpdate(option);
 		actions.add(update);
 		
 		return actions;

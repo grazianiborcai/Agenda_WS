@@ -3,7 +3,7 @@ package br.com.mind5.business.masterData.model.checker;
 import br.com.mind5.business.masterData.info.MatGroupInfo;
 import br.com.mind5.business.masterData.model.action.StdMatGroupSelect;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -16,8 +16,8 @@ public final class MatGroupCheckExist extends ModelCheckerTemplateAction<MatGrou
 	
 	
 	
-	@Override protected ActionStd<MatGroupInfo> buildActionHook(DeciTreeOption<MatGroupInfo> option) {
-		ActionStd<MatGroupInfo> select = new StdMatGroupSelect(option);
+	@Override protected ActionStdV1<MatGroupInfo> buildActionHook(DeciTreeOption<MatGroupInfo> option) {
+		ActionStdV1<MatGroupInfo> select = new StdMatGroupSelect(option);
 		return select;
 	}
 	

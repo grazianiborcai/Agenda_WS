@@ -3,7 +3,7 @@ package br.com.mind5.payment.creditCard.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -38,10 +38,10 @@ public final class NodeCrecardCusparRefL2 extends DeciTreeWriteTemplate<CrecardI
 	
 	
 	
-	@Override protected List<ActionStd<CrecardInfo>> buildActionsOnPassedHook(DeciTreeOption<CrecardInfo> option) {
-		List<ActionStd<CrecardInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV1<CrecardInfo>> buildActionsOnPassedHook(DeciTreeOption<CrecardInfo> option) {
+		List<ActionStdV1<CrecardInfo>> actions = new ArrayList<>();		
 
-		ActionStd<CrecardInfo> success = new StdCrecardSuccess(option);
+		ActionStdV1<CrecardInfo> success = new StdCrecardSuccess(option);
 		
 		actions.add(success);		
 		return actions;

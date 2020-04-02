@@ -3,8 +3,8 @@ package br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.model.decisionTre
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -34,11 +34,11 @@ public final class NodeMultmoipOrdmoip extends DeciTreeReadTemplate<MultmoipInfo
 	
 	
 	
-	@Override protected List<ActionStd<MultmoipInfo>> buildActionsOnPassedHook(DeciTreeOption<MultmoipInfo> option) {
-		List<ActionStd<MultmoipInfo>> actions = new ArrayList<>();	
+	@Override protected List<ActionStdV1<MultmoipInfo>> buildActionsOnPassedHook(DeciTreeOption<MultmoipInfo> option) {
+		List<ActionStdV1<MultmoipInfo>> actions = new ArrayList<>();	
 		
-		ActionStd<MultmoipInfo> mergePayordemist = new StdMultmoipMergePayordemist(option);
-		ActionLazy<MultmoipInfo> placeOrdmoip = new LazyMultmoipOrdmoipPlace(option.conn, option.schemaName);
+		ActionStdV1<MultmoipInfo> mergePayordemist = new StdMultmoipMergePayordemist(option);
+		ActionLazyV1<MultmoipInfo> placeOrdmoip = new LazyMultmoipOrdmoipPlace(option.conn, option.schemaName);
 		
 		mergePayordemist.addPostAction(placeOrdmoip);
 		

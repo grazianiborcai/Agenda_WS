@@ -7,14 +7,14 @@ import br.com.mind5.business.scheduleList.dao.SchedistSelect;
 import br.com.mind5.business.scheduleList.info.SchedistInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.obsolete.DaoStmtExec_;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperStmt;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdSchedistSelect implements ActionStd<SchedistInfo> {
-	private ActionStd<SchedistInfo> actionHelper;
+public final class StdSchedistSelect implements ActionStdV1<SchedistInfo> {
+	private ActionStdV1<SchedistInfo> actionHelper;
 	
 	
 	public StdSchedistSelect(DeciTreeOption<SchedistInfo> option) {
@@ -40,7 +40,7 @@ public final class StdSchedistSelect implements ActionStd<SchedistInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<SchedistInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<SchedistInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

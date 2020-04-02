@@ -3,8 +3,8 @@ package br.com.mind5.security.tokenAuthentication.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -41,12 +41,12 @@ public final class RootTauthToken extends DeciTreeWriteTemplate<TauthInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<TauthInfo>> buildActionsOnPassedHook(DeciTreeOption<TauthInfo> option) {
-		List<ActionStd<TauthInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<TauthInfo>> buildActionsOnPassedHook(DeciTreeOption<TauthInfo> option) {
+		List<ActionStdV1<TauthInfo>> actions = new ArrayList<>();
 		
-		ActionStd<TauthInfo> validateJwtoken = new StdTauthValidateJwtoken(option);
-		ActionStd<TauthInfo> mergeJwtoken = new StdTauthMergeJwtoken(option);
-		ActionLazy<TauthInfo> mergeUsername = new LazyTauthMergeUsername(option.conn, option.schemaName);
+		ActionStdV1<TauthInfo> validateJwtoken = new StdTauthValidateJwtoken(option);
+		ActionStdV1<TauthInfo> mergeJwtoken = new StdTauthMergeJwtoken(option);
+		ActionLazyV1<TauthInfo> mergeUsername = new LazyTauthMergeUsername(option.conn, option.schemaName);
 		
 		mergeJwtoken.addPostAction(mergeUsername);
 		

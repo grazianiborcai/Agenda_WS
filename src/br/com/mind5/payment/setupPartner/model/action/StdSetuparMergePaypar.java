@@ -1,14 +1,14 @@
 package br.com.mind5.payment.setupPartner.model.action;
 
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperMerge;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.setupPartner.info.SetuparInfo;
 
-public final class StdSetuparMergePaypar implements ActionStd<SetuparInfo> {
-	private ActionStd<SetuparInfo> actionHelper;	
+public final class StdSetuparMergePaypar implements ActionStdV1<SetuparInfo> {
+	private ActionStdV1<SetuparInfo> actionHelper;	
 	
 	
 	public StdSetuparMergePaypar(DeciTreeOption<SetuparInfo> option) {			
@@ -17,7 +17,7 @@ public final class StdSetuparMergePaypar implements ActionStd<SetuparInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<SetuparInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<SetuparInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

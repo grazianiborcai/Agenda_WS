@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.order.info.OrderInfo;
 import br.com.mind5.business.scheduleLine.info.SchedineInfo;
 import br.com.mind5.business.scheduleLine.model.decisionTree.RootSchedineFromOrder;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -17,7 +17,7 @@ final class VisiOrderInsertSchedine extends ActionVisitorTemplateAction<OrderInf
 	
 	
 	
-	@Override protected ActionStd<SchedineInfo> getActionHook(DeciTreeOption<SchedineInfo> option) {
+	@Override protected ActionStdV1<SchedineInfo> getActionHook(DeciTreeOption<SchedineInfo> option) {
 		return new RootSchedineFromOrder(option).toAction();
 	}
 	

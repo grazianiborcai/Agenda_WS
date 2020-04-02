@@ -7,7 +7,7 @@ import br.com.mind5.business.feeOwner.info.FeewnerInfo;
 import br.com.mind5.business.feeOwner.model.action.StdFeewnerMergeFeedef;
 import br.com.mind5.business.feeOwner.model.action.StdFeewnerMergeToSelect;
 import br.com.mind5.business.feeOwner.model.checker.FeewnerCheckExist;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -41,10 +41,10 @@ public final class NodeFeewnerSelect extends DeciTreeReadTemplate<FeewnerInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<FeewnerInfo>> buildActionsOnPassedHook(DeciTreeOption<FeewnerInfo> option) {
-		List<ActionStd<FeewnerInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<FeewnerInfo>> buildActionsOnPassedHook(DeciTreeOption<FeewnerInfo> option) {
+		List<ActionStdV1<FeewnerInfo>> actions = new ArrayList<>();
 		
-		ActionStd<FeewnerInfo> select = new StdFeewnerMergeToSelect(option);
+		ActionStdV1<FeewnerInfo> select = new StdFeewnerMergeToSelect(option);
 		actions.add(select);
 		
 		return actions;
@@ -52,10 +52,10 @@ public final class NodeFeewnerSelect extends DeciTreeReadTemplate<FeewnerInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<FeewnerInfo>> buildActionsOnFailedHook(DeciTreeOption<FeewnerInfo> option) {
-		List<ActionStd<FeewnerInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<FeewnerInfo>> buildActionsOnFailedHook(DeciTreeOption<FeewnerInfo> option) {
+		List<ActionStdV1<FeewnerInfo>> actions = new ArrayList<>();
 		
-		ActionStd<FeewnerInfo> mergeFeedef = new StdFeewnerMergeFeedef(option);
+		ActionStdV1<FeewnerInfo> mergeFeedef = new StdFeewnerMergeFeedef(option);
 		actions.add(mergeFeedef);
 		
 		return actions;

@@ -8,7 +8,7 @@ import br.com.mind5.business.storeWorkTimeSearch.model.action.StdStowotarchMerge
 import br.com.mind5.business.storeWorkTimeSearch.model.checker.StowotarchCheckLangu;
 import br.com.mind5.business.storeWorkTimeSearch.model.checker.StowotarchCheckOwner;
 import br.com.mind5.business.storeWorkTimeSearch.model.checker.StowotarchCheckRead;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -54,10 +54,10 @@ public final class RootStowotarchSelect extends DeciTreeReadTemplate<StowotarchI
 	
 	
 	
-	@Override protected List<ActionStd<StowotarchInfo>> buildActionsOnPassedHook(DeciTreeOption<StowotarchInfo> option) {
-		List<ActionStd<StowotarchInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<StowotarchInfo>> buildActionsOnPassedHook(DeciTreeOption<StowotarchInfo> option) {
+		List<ActionStdV1<StowotarchInfo>> actions = new ArrayList<>();
 		
-		ActionStd<StowotarchInfo> select = new StdStowotarchMergeToSelect(option);
+		ActionStdV1<StowotarchInfo> select = new StdStowotarchMergeToSelect(option);
 		
 		actions.add(select);		
 		return actions; 

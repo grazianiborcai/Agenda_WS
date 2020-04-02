@@ -1,14 +1,14 @@
 package br.com.mind5.business.material.model.action;
 
 import br.com.mind5.business.material.info.MatInfo;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperMerge;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdMatMergeToUpdate implements ActionStd<MatInfo> {
-	private ActionStd<MatInfo> actionHelper;	
+public final class StdMatMergeToUpdate implements ActionStdV1<MatInfo> {
+	private ActionStdV1<MatInfo> actionHelper;	
 	
 	
 	public StdMatMergeToUpdate(DeciTreeOption<MatInfo> option) {			
@@ -17,7 +17,7 @@ public final class StdMatMergeToUpdate implements ActionStd<MatInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<MatInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<MatInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

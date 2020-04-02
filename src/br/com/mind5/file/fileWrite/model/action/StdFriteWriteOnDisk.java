@@ -3,14 +3,14 @@ package br.com.mind5.file.fileWrite.model.action;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.file.fileWrite.info.FriteInfo;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelper;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdFriteWriteOnDisk implements ActionStd<FriteInfo> {
-	private ActionStd<FriteInfo> actionHelper;	
+public final class StdFriteWriteOnDisk implements ActionStdV1<FriteInfo> {
+	private ActionStdV1<FriteInfo> actionHelper;	
 	
 	
 	public StdFriteWriteOnDisk(DeciTreeOption<FriteInfo> option) {			
@@ -19,7 +19,7 @@ public final class StdFriteWriteOnDisk implements ActionStd<FriteInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<FriteInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<FriteInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

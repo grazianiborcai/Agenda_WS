@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.feeOwner.info.FeewnerInfo;
 import br.com.mind5.business.feeOwner.info.FeewnerMerger;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 
 final class VisiFeewnerMergeToSelect extends ActionVisitorTemplateMerge<FeewnerInfo, FeewnerInfo> {
@@ -16,7 +16,7 @@ final class VisiFeewnerMergeToSelect extends ActionVisitorTemplateMerge<FeewnerI
 	
 	
 	
-	@Override protected Class<? extends ActionStd<FeewnerInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStdV1<FeewnerInfo>> getActionClassHook() {
 		return StdFeewnerSelect.class;
 	}
 	

@@ -3,8 +3,8 @@ package br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -34,11 +34,11 @@ public final class NodePaymoipSysparL1 extends DeciTreeWriteTemplate<PaymoipInfo
 	
 	
 	
-	@Override protected List<ActionStd<PaymoipInfo>> buildActionsOnPassedHook(DeciTreeOption<PaymoipInfo> option) {
-		List<ActionStd<PaymoipInfo>> actions = new ArrayList<>();	
+	@Override protected List<ActionStdV1<PaymoipInfo>> buildActionsOnPassedHook(DeciTreeOption<PaymoipInfo> option) {
+		List<ActionStdV1<PaymoipInfo>> actions = new ArrayList<>();	
 		
-		ActionStd<PaymoipInfo> mergeSyspar = new StdPaymoipMergeSyspar(option);
-		ActionLazy<PaymoipInfo> nodeL2 = new LazyPaymoipNodeSysparL2(option.conn, option.schemaName);
+		ActionStdV1<PaymoipInfo> mergeSyspar = new StdPaymoipMergeSyspar(option);
+		ActionLazyV1<PaymoipInfo> nodeL2 = new LazyPaymoipNodeSysparL2(option.conn, option.schemaName);
 		
 		mergeSyspar.addPostAction(nodeL2);
 		

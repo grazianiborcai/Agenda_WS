@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.masterData.info.OrderStatusInfo;
 import br.com.mind5.business.masterData.model.action.StdOrderStatusSelect;
 import br.com.mind5.business.masterData.model.checker.OrderStatusCheckRead;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -38,10 +38,10 @@ public final class RootOrderStatusSelect extends DeciTreeReadTemplate<OrderStatu
 
 		
 	
-	@Override protected List<ActionStd<OrderStatusInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderStatusInfo> option) {
-		List<ActionStd<OrderStatusInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<OrderStatusInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderStatusInfo> option) {
+		List<ActionStdV1<OrderStatusInfo>> actions = new ArrayList<>();
 		
-		ActionStd<OrderStatusInfo> select = new StdOrderStatusSelect(option);
+		ActionStdV1<OrderStatusInfo> select = new StdOrderStatusSelect(option);
 		
 		actions.add(select);
 		return actions;

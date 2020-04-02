@@ -8,7 +8,7 @@ import br.com.mind5.business.storeSearch.model.action.StdSotarchMergeToSelect;
 import br.com.mind5.business.storeSearch.model.checker.SotarchCheckLangu;
 import br.com.mind5.business.storeSearch.model.checker.SotarchCheckOwner;
 import br.com.mind5.business.storeSearch.model.checker.SotarchCheckRead;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -55,10 +55,10 @@ public final class RootSotarchSelect extends DeciTreeReadTemplate<SotarchInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<SotarchInfo>> buildActionsOnPassedHook(DeciTreeOption<SotarchInfo> option) {
-		List<ActionStd<SotarchInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<SotarchInfo>> buildActionsOnPassedHook(DeciTreeOption<SotarchInfo> option) {
+		List<ActionStdV1<SotarchInfo>> actions = new ArrayList<>();
 
-		ActionStd<SotarchInfo> select = new StdSotarchMergeToSelect(option);
+		ActionStdV1<SotarchInfo> select = new StdSotarchMergeToSelect(option);
 		
 		actions.add(select);
 		return actions;

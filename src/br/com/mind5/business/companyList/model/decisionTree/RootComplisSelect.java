@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.companyList.info.ComplisInfo;
 import br.com.mind5.business.companyList.model.action.StdComplisMergeToSelect;
 import br.com.mind5.business.companyList.model.checker.ComplisCheckRead;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -38,10 +38,10 @@ public final class RootComplisSelect extends DeciTreeReadTemplate<ComplisInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<ComplisInfo>> buildActionsOnPassedHook(DeciTreeOption<ComplisInfo> option) {
-		List<ActionStd<ComplisInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<ComplisInfo>> buildActionsOnPassedHook(DeciTreeOption<ComplisInfo> option) {
+		List<ActionStdV1<ComplisInfo>> actions = new ArrayList<>();
 		
-		ActionStd<ComplisInfo> select = new StdComplisMergeToSelect(option);	
+		ActionStdV1<ComplisInfo> select = new StdComplisMergeToSelect(option);	
 		actions.add(select);
 		
 		return actions;

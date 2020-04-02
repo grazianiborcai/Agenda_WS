@@ -7,14 +7,14 @@ import br.com.mind5.business.customerSnapshot.dao.CusnapSelect;
 import br.com.mind5.business.customerSnapshot.info.CusnapInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.obsolete.DaoStmtExec_;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperStmt;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdCusnapSelect implements ActionStd<CusnapInfo> {
-	private ActionStd<CusnapInfo> actionHelper;
+public final class StdCusnapSelect implements ActionStdV1<CusnapInfo> {
+	private ActionStdV1<CusnapInfo> actionHelper;
 	
 	
 	public StdCusnapSelect(DeciTreeOption<CusnapInfo> option) {
@@ -40,7 +40,7 @@ public final class StdCusnapSelect implements ActionStd<CusnapInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<CusnapInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<CusnapInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

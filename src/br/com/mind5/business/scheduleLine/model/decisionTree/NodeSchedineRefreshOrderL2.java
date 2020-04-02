@@ -11,8 +11,8 @@ import br.com.mind5.business.scheduleLine.model.action.LazySchedineMergeToSelect
 import br.com.mind5.business.scheduleLine.model.action.LazySchedineNodeRefreshOrderL3;
 import br.com.mind5.business.scheduleLine.model.action.StdSchedineEnforceOrderKey;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckOrder;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -44,15 +44,15 @@ public final class NodeSchedineRefreshOrderL2 extends DeciTreeWriteTemplate<Sche
 	
 	
 	
-	@Override protected List<ActionStd<SchedineInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedineInfo> option) {
-		List<ActionStd<SchedineInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<SchedineInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedineInfo> option) {
+		List<ActionStdV1<SchedineInfo>> actions = new ArrayList<>();
 		
-		ActionStd<SchedineInfo> enforceOrderKey = new StdSchedineEnforceOrderKey(option);
-		ActionLazy<SchedineInfo> mergeSchedarch = new LazySchedineMergeSchedarch(option.conn, option.schemaName);
-		ActionLazy<SchedineInfo> mergeToSelect = new LazySchedineMergeToSelect(option.conn, option.schemaName);
-		ActionLazy<SchedineInfo> mergeOrdist = new LazySchedineMergeOrdist(option.conn, option.schemaName);
-		ActionLazy<SchedineInfo> enforceStatus = new LazySchedineEnforceStatus(option.conn, option.schemaName);
-		ActionLazy<SchedineInfo> nodeRefreshOrderL3 = new LazySchedineNodeRefreshOrderL3(option.conn, option.schemaName);
+		ActionStdV1<SchedineInfo> enforceOrderKey = new StdSchedineEnforceOrderKey(option);
+		ActionLazyV1<SchedineInfo> mergeSchedarch = new LazySchedineMergeSchedarch(option.conn, option.schemaName);
+		ActionLazyV1<SchedineInfo> mergeToSelect = new LazySchedineMergeToSelect(option.conn, option.schemaName);
+		ActionLazyV1<SchedineInfo> mergeOrdist = new LazySchedineMergeOrdist(option.conn, option.schemaName);
+		ActionLazyV1<SchedineInfo> enforceStatus = new LazySchedineEnforceStatus(option.conn, option.schemaName);
+		ActionLazyV1<SchedineInfo> nodeRefreshOrderL3 = new LazySchedineNodeRefreshOrderL3(option.conn, option.schemaName);
 		
 		enforceOrderKey.addPostAction(mergeSchedarch);
 		mergeSchedarch.addPostAction(mergeToSelect);

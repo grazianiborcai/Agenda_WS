@@ -22,8 +22,8 @@ import br.com.mind5.business.employeeLeaveDate.model.checker.EmplateCheckStoraut
 import br.com.mind5.business.employeeLeaveDate.model.checker.EmplateCheckStore;
 import br.com.mind5.business.employeeLeaveDate.model.checker.EmplateCheckTimeRange;
 import br.com.mind5.business.employeeLeaveDate.model.checker.EmplateCheckWrite;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -118,17 +118,17 @@ public final class RootEmplateInsert extends DeciTreeWriteTemplate<EmplateInfo> 
 	
 	
 	
-	@Override protected List<ActionStd<EmplateInfo>> buildActionsOnPassedHook(DeciTreeOption<EmplateInfo> option) {
-		List<ActionStd<EmplateInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<EmplateInfo>> buildActionsOnPassedHook(DeciTreeOption<EmplateInfo> option) {
+		List<ActionStdV1<EmplateInfo>> actions = new ArrayList<>();
 		
-		ActionStd<EmplateInfo> enforceLChanged = new StdEmplateEnforceLChanged(option);
-		ActionLazy<EmplateInfo> enforceLChangedBy = new LazyEmplateMergeUsername(option.conn, option.schemaName);
-		ActionLazy<EmplateInfo> enforceCreatedBy = new LazyEmplateEnforceCreatedBy(option.conn, option.schemaName);
-		ActionLazy<EmplateInfo> enforceCreatedOn = new LazyEmplateEnforceCreatedOn(option.conn, option.schemaName);
-		ActionLazy<EmplateInfo> enforceValidFrom = new LazyEmplateEnforceValidFrom(option.conn, option.schemaName);
-		ActionLazy<EmplateInfo> enforceValidTo = new LazyEmplateEnforceValidTo(option.conn, option.schemaName);
-		ActionLazy<EmplateInfo> nodeInsert = new LazyEmplateNodeInsert(option.conn, option.schemaName);
-		ActionLazy<EmplateInfo> select = new LazyEmplateRootSelect(option.conn, option.schemaName);
+		ActionStdV1<EmplateInfo> enforceLChanged = new StdEmplateEnforceLChanged(option);
+		ActionLazyV1<EmplateInfo> enforceLChangedBy = new LazyEmplateMergeUsername(option.conn, option.schemaName);
+		ActionLazyV1<EmplateInfo> enforceCreatedBy = new LazyEmplateEnforceCreatedBy(option.conn, option.schemaName);
+		ActionLazyV1<EmplateInfo> enforceCreatedOn = new LazyEmplateEnforceCreatedOn(option.conn, option.schemaName);
+		ActionLazyV1<EmplateInfo> enforceValidFrom = new LazyEmplateEnforceValidFrom(option.conn, option.schemaName);
+		ActionLazyV1<EmplateInfo> enforceValidTo = new LazyEmplateEnforceValidTo(option.conn, option.schemaName);
+		ActionLazyV1<EmplateInfo> nodeInsert = new LazyEmplateNodeInsert(option.conn, option.schemaName);
+		ActionLazyV1<EmplateInfo> select = new LazyEmplateRootSelect(option.conn, option.schemaName);
 		
 		enforceLChanged.addPostAction(enforceLChangedBy);
 		enforceLChangedBy.addPostAction(enforceCreatedBy);

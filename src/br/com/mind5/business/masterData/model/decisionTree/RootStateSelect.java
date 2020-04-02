@@ -7,8 +7,8 @@ import br.com.mind5.business.masterData.info.StateInfo;
 import br.com.mind5.business.masterData.model.action.LazyStateMergeCountry;
 import br.com.mind5.business.masterData.model.action.StdStateSelect;
 import br.com.mind5.business.masterData.model.checker.StateCheckRead;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -40,11 +40,11 @@ public final class RootStateSelect extends DeciTreeReadTemplate<StateInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<StateInfo>> buildActionsOnPassedHook(DeciTreeOption<StateInfo> option) {
-		List<ActionStd<StateInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<StateInfo>> buildActionsOnPassedHook(DeciTreeOption<StateInfo> option) {
+		List<ActionStdV1<StateInfo>> actions = new ArrayList<>();
 		
-		ActionStd<StateInfo> select = new StdStateSelect(option);
-		ActionLazy<StateInfo> mergeCountry = new LazyStateMergeCountry(option.conn, option.schemaName);
+		ActionStdV1<StateInfo> select = new StdStateSelect(option);
+		ActionLazyV1<StateInfo> mergeCountry = new LazyStateMergeCountry(option.conn, option.schemaName);
 		
 		select.addPostAction(mergeCountry);
 		

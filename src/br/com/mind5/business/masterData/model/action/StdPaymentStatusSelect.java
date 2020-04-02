@@ -7,14 +7,14 @@ import br.com.mind5.business.masterData.dao.PaymentStatusSelect;
 import br.com.mind5.business.masterData.info.PaymentStatusInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.obsolete.DaoStmtExec_;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperStmt;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdPaymentStatusSelect implements ActionStd<PaymentStatusInfo> {
-	private ActionStd<PaymentStatusInfo> actionHelper;
+public final class StdPaymentStatusSelect implements ActionStdV1<PaymentStatusInfo> {
+	private ActionStdV1<PaymentStatusInfo> actionHelper;
 	
 	
 	public StdPaymentStatusSelect(DeciTreeOption<PaymentStatusInfo> option) {
@@ -40,7 +40,7 @@ public final class StdPaymentStatusSelect implements ActionStd<PaymentStatusInfo
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<PaymentStatusInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<PaymentStatusInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

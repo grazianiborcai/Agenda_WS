@@ -11,8 +11,8 @@ import br.com.mind5.business.storeWorkTime.model.checker.StowotmCheckLangu;
 import br.com.mind5.business.storeWorkTime.model.checker.StowotmCheckOwner;
 import br.com.mind5.business.storeWorkTime.model.checker.StowotmCheckRead;
 import br.com.mind5.business.storeWorkTime.model.checker.StowotmCheckStore;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -65,12 +65,12 @@ public final class RootStowotmSelect extends DeciTreeReadTemplate<StowotmInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<StowotmInfo>> buildActionsOnPassedHook(DeciTreeOption<StowotmInfo> option) {
-		List<ActionStd<StowotmInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<StowotmInfo>> buildActionsOnPassedHook(DeciTreeOption<StowotmInfo> option) {
+		List<ActionStdV1<StowotmInfo>> actions = new ArrayList<>();
 		
-		ActionStd<StowotmInfo> mergeToSelect = new StdStowotmMergeToSelect(option);
-		ActionLazy<StowotmInfo> mergeStolis = new LazyStowotmMergeStolis(option.conn, option.schemaName);
-		ActionLazy<StowotmInfo> mergeWeekday = new LazyStowotmMergeWeekday(option.conn, option.schemaName);
+		ActionStdV1<StowotmInfo> mergeToSelect = new StdStowotmMergeToSelect(option);
+		ActionLazyV1<StowotmInfo> mergeStolis = new LazyStowotmMergeStolis(option.conn, option.schemaName);
+		ActionLazyV1<StowotmInfo> mergeWeekday = new LazyStowotmMergeWeekday(option.conn, option.schemaName);
 		
 		mergeToSelect.addPostAction(mergeStolis);	
 		mergeStolis.addPostAction(mergeWeekday);

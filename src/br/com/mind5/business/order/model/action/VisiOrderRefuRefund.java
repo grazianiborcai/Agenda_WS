@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.order.info.OrderInfo;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.refundOrder.info.RefuInfo;
@@ -17,7 +17,7 @@ final class VisiOrderRefuRefund extends ActionVisitorTemplateAction<OrderInfo, R
 	
 	
 	
-	@Override protected ActionStd<RefuInfo> getActionHook(DeciTreeOption<RefuInfo> option) {
+	@Override protected ActionStdV1<RefuInfo> getActionHook(DeciTreeOption<RefuInfo> option) {
 		return new RootRefuRefund(option).toAction();
 	}
 	

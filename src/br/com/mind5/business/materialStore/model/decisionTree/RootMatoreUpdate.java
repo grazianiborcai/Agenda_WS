@@ -13,8 +13,8 @@ import br.com.mind5.business.materialStore.model.checker.MatoreCheckOwner;
 import br.com.mind5.business.materialStore.model.checker.MatoreCheckStorauth;
 import br.com.mind5.business.materialStore.model.checker.MatoreCheckStore;
 import br.com.mind5.business.materialStore.model.checker.MatoreCheckWrite;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -87,11 +87,11 @@ public final class RootMatoreUpdate extends DeciTreeWriteTemplate<MatoreInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<MatoreInfo>> buildActionsOnPassedHook(DeciTreeOption<MatoreInfo> option) {
-		List<ActionStd<MatoreInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<MatoreInfo>> buildActionsOnPassedHook(DeciTreeOption<MatoreInfo> option) {
+		List<ActionStdV1<MatoreInfo>> actions = new ArrayList<>();
 		
-		ActionStd<MatoreInfo> mergeMatlis = new StdMatoreMergeMatlis(option);
-		ActionLazy<MatoreInfo> upsert = new LazyMatoreNodeUpsertL1(option.conn, option.schemaName);
+		ActionStdV1<MatoreInfo> mergeMatlis = new StdMatoreMergeMatlis(option);
+		ActionLazyV1<MatoreInfo> upsert = new LazyMatoreNodeUpsertL1(option.conn, option.schemaName);
 		
 		mergeMatlis.addPostAction(upsert);
 		

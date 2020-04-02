@@ -7,8 +7,8 @@ import br.com.mind5.business.moonCalendar.info.MooncalInfo;
 import br.com.mind5.business.moonCalendar.model.action.LazyMooncalMergeMoonase;
 import br.com.mind5.business.moonCalendar.model.action.StdMooncalMergeToSelect;
 import br.com.mind5.business.moonCalendar.model.checker.MooncalCheckRead;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -40,11 +40,11 @@ public final class RootMooncalSelect extends DeciTreeReadTemplate<MooncalInfo> {
 
 		
 	
-	@Override protected List<ActionStd<MooncalInfo>> buildActionsOnPassedHook(DeciTreeOption<MooncalInfo> option) {
-		List<ActionStd<MooncalInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<MooncalInfo>> buildActionsOnPassedHook(DeciTreeOption<MooncalInfo> option) {
+		List<ActionStdV1<MooncalInfo>> actions = new ArrayList<>();
 		
-		ActionStd<MooncalInfo> mergeToSelect = new StdMooncalMergeToSelect(option);
-		ActionLazy<MooncalInfo>  mergeMoonase = new LazyMooncalMergeMoonase(option.conn, option.schemaName);
+		ActionStdV1<MooncalInfo> mergeToSelect = new StdMooncalMergeToSelect(option);
+		ActionLazyV1<MooncalInfo>  mergeMoonase = new LazyMooncalMergeMoonase(option.conn, option.schemaName);
 		
 		mergeToSelect.addPostAction(mergeMoonase);
 		

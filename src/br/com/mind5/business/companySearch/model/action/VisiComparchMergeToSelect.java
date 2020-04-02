@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.companySearch.info.ComparchInfo;
 import br.com.mind5.business.companySearch.info.ComparchMerger;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 
 final class VisiComparchMergeToSelect extends ActionVisitorTemplateMerge<ComparchInfo, ComparchInfo> {
@@ -16,7 +16,7 @@ final class VisiComparchMergeToSelect extends ActionVisitorTemplateMerge<Comparc
 	
 	
 	
-	@Override protected Class<? extends ActionStd<ComparchInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStdV1<ComparchInfo>> getActionClassHook() {
 		return StdComparchSelect.class;
 	}
 	

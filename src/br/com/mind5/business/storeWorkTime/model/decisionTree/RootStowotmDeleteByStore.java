@@ -8,8 +8,8 @@ import br.com.mind5.business.storeWorkTime.model.action.LazyStowotmMergeStowotar
 import br.com.mind5.business.storeWorkTime.model.action.LazyStowotmRootDelete;
 import br.com.mind5.business.storeWorkTime.model.action.StdStowotmEnforceStoreKey;
 import br.com.mind5.business.storeWorkTime.model.checker.StowotmCheckDeleteByStore;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -41,12 +41,12 @@ public final class RootStowotmDeleteByStore extends DeciTreeWriteTemplate<Stowot
 	
 	
 	
-	@Override protected List<ActionStd<StowotmInfo>> buildActionsOnPassedHook(DeciTreeOption<StowotmInfo> option) {
-		List<ActionStd<StowotmInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<StowotmInfo>> buildActionsOnPassedHook(DeciTreeOption<StowotmInfo> option) {
+		List<ActionStdV1<StowotmInfo>> actions = new ArrayList<>();
 		
-		ActionStd<StowotmInfo> enforceStoreKey = new StdStowotmEnforceStoreKey(option);
-		ActionLazy<StowotmInfo> mergeStowotarch = new LazyStowotmMergeStowotarch(option.conn, option.schemaName);
-		ActionLazy<StowotmInfo> delete = new LazyStowotmRootDelete(option.conn, option.schemaName);
+		ActionStdV1<StowotmInfo> enforceStoreKey = new StdStowotmEnforceStoreKey(option);
+		ActionLazyV1<StowotmInfo> mergeStowotarch = new LazyStowotmMergeStowotarch(option.conn, option.schemaName);
+		ActionLazyV1<StowotmInfo> delete = new LazyStowotmRootDelete(option.conn, option.schemaName);
 		
 		enforceStoreKey.addPostAction(mergeStowotarch);
 		mergeStowotarch.addPostAction(delete);

@@ -7,7 +7,7 @@ import br.com.mind5.business.customerSnapshot.info.CusnapInfo;
 import br.com.mind5.business.customerSnapshot.model.action.StdCusnapMergeToSelect;
 import br.com.mind5.business.customerSnapshot.model.checker.CusnapCheckLangu;
 import br.com.mind5.business.customerSnapshot.model.checker.CusnapCheckRead;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -46,10 +46,10 @@ public final class RootCusnapSelect extends DeciTreeReadTemplate<CusnapInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<CusnapInfo>> buildActionsOnPassedHook(DeciTreeOption<CusnapInfo> option) {
-		List<ActionStd<CusnapInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<CusnapInfo>> buildActionsOnPassedHook(DeciTreeOption<CusnapInfo> option) {
+		List<ActionStdV1<CusnapInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CusnapInfo> select = new StdCusnapMergeToSelect(option);
+		ActionStdV1<CusnapInfo> select = new StdCusnapMergeToSelect(option);
 		
 		actions.add(select);
 		return actions;

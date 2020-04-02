@@ -7,14 +7,14 @@ import br.com.mind5.business.masterData.dao.DaypartSelect;
 import br.com.mind5.business.masterData.info.DaypartInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.obsolete.DaoStmtExec_;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperStmt;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdDaypartSelect implements ActionStd<DaypartInfo> {
-	private ActionStd<DaypartInfo> actionHelper;
+public final class StdDaypartSelect implements ActionStdV1<DaypartInfo> {
+	private ActionStdV1<DaypartInfo> actionHelper;
 	
 	
 	public StdDaypartSelect(DeciTreeOption<DaypartInfo> option) {
@@ -40,7 +40,7 @@ public final class StdDaypartSelect implements ActionStd<DaypartInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<DaypartInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<DaypartInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

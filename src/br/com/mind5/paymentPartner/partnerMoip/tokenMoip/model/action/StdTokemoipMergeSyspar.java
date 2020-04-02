@@ -1,14 +1,14 @@
 package br.com.mind5.paymentPartner.partnerMoip.tokenMoip.model.action;
 
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperMerge;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.paymentPartner.partnerMoip.tokenMoip.info.TokemoipInfo;
 
-public final class StdTokemoipMergeSyspar implements ActionStd<TokemoipInfo> {
-	private ActionStd<TokemoipInfo> actionHelper;	
+public final class StdTokemoipMergeSyspar implements ActionStdV1<TokemoipInfo> {
+	private ActionStdV1<TokemoipInfo> actionHelper;	
 	
 	
 	public StdTokemoipMergeSyspar(DeciTreeOption<TokemoipInfo> option) {			
@@ -17,7 +17,7 @@ public final class StdTokemoipMergeSyspar implements ActionStd<TokemoipInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<TokemoipInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<TokemoipInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

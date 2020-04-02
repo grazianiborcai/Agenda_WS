@@ -7,8 +7,8 @@ import br.com.mind5.business.customer.info.CusInfo;
 import br.com.mind5.business.customer.model.action.LazyCusUpdate;
 import br.com.mind5.business.customer.model.action.StdCusInsertCusnap;
 import br.com.mind5.business.customer.model.checker.CusCheckDummy;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -34,11 +34,11 @@ public final class NodeCusSnapshot extends DeciTreeWriteTemplate<CusInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<CusInfo>> buildActionsOnPassedHook(DeciTreeOption<CusInfo> option) {
-		List<ActionStd<CusInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<CusInfo>> buildActionsOnPassedHook(DeciTreeOption<CusInfo> option) {
+		List<ActionStdV1<CusInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CusInfo> insertSnapshot = new StdCusInsertCusnap(option);		
-		ActionLazy<CusInfo> update = new LazyCusUpdate(option.conn, option.schemaName);	
+		ActionStdV1<CusInfo> insertSnapshot = new StdCusInsertCusnap(option);		
+		ActionLazyV1<CusInfo> update = new LazyCusUpdate(option.conn, option.schemaName);	
 		
 		insertSnapshot.addPostAction(update);
 		

@@ -7,8 +7,8 @@ import br.com.mind5.file.fileImage.info.FimgInfo;
 import br.com.mind5.file.fileImage.model.action.LazyFimgRootReplace;
 import br.com.mind5.file.fileImage.model.action.StdFimgMergeFimarch;
 import br.com.mind5.file.fileImage.model.checker.FimgCheckExistCus;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -40,10 +40,10 @@ public final class NodeFimgUpsertCus extends DeciTreeWriteTemplate<FimgInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<FimgInfo>> buildActionsOnPassedHook(DeciTreeOption<FimgInfo> option) {
-		List<ActionStd<FimgInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV1<FimgInfo>> buildActionsOnPassedHook(DeciTreeOption<FimgInfo> option) {
+		List<ActionStdV1<FimgInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<FimgInfo> insert = new RootFimgInsert(option).toAction();
+		ActionStdV1<FimgInfo> insert = new RootFimgInsert(option).toAction();
 		
 		actions.add(insert);		
 		return actions;
@@ -51,11 +51,11 @@ public final class NodeFimgUpsertCus extends DeciTreeWriteTemplate<FimgInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<FimgInfo>> buildActionsOnFailedHook(DeciTreeOption<FimgInfo> option) {
-		List<ActionStd<FimgInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV1<FimgInfo>> buildActionsOnFailedHook(DeciTreeOption<FimgInfo> option) {
+		List<ActionStdV1<FimgInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<FimgInfo> mergeFimarch = new StdFimgMergeFimarch(option);
-		ActionLazy<FimgInfo> replace = new LazyFimgRootReplace(option.conn, option.schemaName);
+		ActionStdV1<FimgInfo> mergeFimarch = new StdFimgMergeFimarch(option);
+		ActionLazyV1<FimgInfo> replace = new LazyFimgRootReplace(option.conn, option.schemaName);
 		
 		mergeFimarch.addPostAction(replace);
 		

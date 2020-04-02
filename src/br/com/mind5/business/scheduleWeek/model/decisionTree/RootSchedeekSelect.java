@@ -10,8 +10,8 @@ import br.com.mind5.business.scheduleWeek.model.action.LazySchedeekMergeMatlis;
 import br.com.mind5.business.scheduleWeek.model.action.LazySchedeekMergeStolis;
 import br.com.mind5.business.scheduleWeek.model.action.StdSchedeekMergeSchedeekdat;
 import br.com.mind5.business.scheduleWeek.model.checker.SchedeekCheckRead;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -43,14 +43,14 @@ public final class RootSchedeekSelect extends DeciTreeWriteTemplate<SchedeekInfo
 	
 	
 	
-	@Override protected List<ActionStd<SchedeekInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedeekInfo> option) {
-		List<ActionStd<SchedeekInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<SchedeekInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedeekInfo> option) {
+		List<ActionStdV1<SchedeekInfo>> actions = new ArrayList<>();
 		
-		ActionStd<SchedeekInfo> mergeSchedeekdat = new StdSchedeekMergeSchedeekdat(option);
-		ActionLazy<SchedeekInfo> mergeStolis = new LazySchedeekMergeStolis(option.conn, option.schemaName);
-		ActionLazy<SchedeekInfo> mergeMatlis = new LazySchedeekMergeMatlis(option.conn, option.schemaName);
-		ActionLazy<SchedeekInfo> mergeEmplis = new LazySchedeekMergeEmplis(option.conn, option.schemaName);
-		ActionLazy<SchedeekInfo> mergeCuslis = new LazySchedeekMergeCuslis(option.conn, option.schemaName);
+		ActionStdV1<SchedeekInfo> mergeSchedeekdat = new StdSchedeekMergeSchedeekdat(option);
+		ActionLazyV1<SchedeekInfo> mergeStolis = new LazySchedeekMergeStolis(option.conn, option.schemaName);
+		ActionLazyV1<SchedeekInfo> mergeMatlis = new LazySchedeekMergeMatlis(option.conn, option.schemaName);
+		ActionLazyV1<SchedeekInfo> mergeEmplis = new LazySchedeekMergeEmplis(option.conn, option.schemaName);
+		ActionLazyV1<SchedeekInfo> mergeCuslis = new LazySchedeekMergeCuslis(option.conn, option.schemaName);
 		
 		mergeSchedeekdat.addPostAction(mergeStolis);
 		mergeStolis.addPostAction(mergeMatlis);

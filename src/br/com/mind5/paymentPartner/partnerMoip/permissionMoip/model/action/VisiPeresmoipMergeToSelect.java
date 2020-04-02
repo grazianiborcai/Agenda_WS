@@ -3,7 +3,7 @@ package br.com.mind5.paymentPartner.partnerMoip.permissionMoip.model.action;
 import java.sql.Connection;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.info.PeresmoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.info.PeresmoipMerger;
@@ -16,7 +16,7 @@ final class VisiPeresmoipMergeToSelect extends ActionVisitorTemplateMerge<Peresm
 	
 	
 	
-	@Override protected Class<? extends ActionStd<PeresmoipInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStdV1<PeresmoipInfo>> getActionClassHook() {
 		return StdPeresmoipSelect.class;
 	}
 	

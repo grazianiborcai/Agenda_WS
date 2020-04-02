@@ -7,14 +7,14 @@ import br.com.mind5.business.phone.dao.PhoneSelect;
 import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.obsolete.DaoStmtExec_;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperStmt;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdPhoneSelect implements ActionStd<PhoneInfo> {
-	private ActionStd<PhoneInfo> actionHelper;
+public final class StdPhoneSelect implements ActionStdV1<PhoneInfo> {
+	private ActionStdV1<PhoneInfo> actionHelper;
 	
 	
 	public StdPhoneSelect(DeciTreeOption<PhoneInfo> option) {
@@ -40,7 +40,7 @@ public final class StdPhoneSelect implements ActionStd<PhoneInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<PhoneInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<PhoneInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

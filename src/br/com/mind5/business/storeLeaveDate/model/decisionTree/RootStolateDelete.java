@@ -15,8 +15,8 @@ import br.com.mind5.business.storeLeaveDate.model.checker.StolateCheckLangu;
 import br.com.mind5.business.storeLeaveDate.model.checker.StolateCheckOwner;
 import br.com.mind5.business.storeLeaveDate.model.checker.StolateCheckStorauth;
 import br.com.mind5.business.storeLeaveDate.model.checker.StolateCheckStore;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -83,14 +83,14 @@ public final class RootStolateDelete extends DeciTreeWriteTemplate<StolateInfo> 
 	
 	
 	
-	@Override protected List<ActionStd<StolateInfo>> buildActionsOnPassedHook(DeciTreeOption<StolateInfo> option) {
-		List<ActionStd<StolateInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<StolateInfo>> buildActionsOnPassedHook(DeciTreeOption<StolateInfo> option) {
+		List<ActionStdV1<StolateInfo>> actions = new ArrayList<>();
 		
-		ActionStd<StolateInfo> mergeToDelete = new StdStolateMergeToDelete(option);
-		ActionLazy<StolateInfo> enforceLChanged = new LazyStolateEnforceLChanged(option.conn, option.schemaName);
-		ActionLazy<StolateInfo> enforceLChangedBy = new LazyStolateMergeUsername(option.conn, option.schemaName);
-		ActionLazy<StolateInfo> update = new LazyStolateUpdate(option.conn, option.schemaName);
-		ActionLazy<StolateInfo> delete = new LazyStolateDelete(option.conn, option.schemaName);
+		ActionStdV1<StolateInfo> mergeToDelete = new StdStolateMergeToDelete(option);
+		ActionLazyV1<StolateInfo> enforceLChanged = new LazyStolateEnforceLChanged(option.conn, option.schemaName);
+		ActionLazyV1<StolateInfo> enforceLChangedBy = new LazyStolateMergeUsername(option.conn, option.schemaName);
+		ActionLazyV1<StolateInfo> update = new LazyStolateUpdate(option.conn, option.schemaName);
+		ActionLazyV1<StolateInfo> delete = new LazyStolateDelete(option.conn, option.schemaName);
 		
 		mergeToDelete.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceLChangedBy);

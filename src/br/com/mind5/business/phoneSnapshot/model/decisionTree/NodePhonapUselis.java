@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.phoneSnapshot.info.PhonapInfo;
 import br.com.mind5.business.phoneSnapshot.model.action.StdPhonapMergeUselis;
 import br.com.mind5.business.phoneSnapshot.model.checker.PhonapCheckHasUser;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -38,10 +38,10 @@ public final class NodePhonapUselis extends DeciTreeReadTemplate<PhonapInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<PhonapInfo>> buildActionsOnPassedHook(DeciTreeOption<PhonapInfo> option) {
-		List<ActionStd<PhonapInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV1<PhonapInfo>> buildActionsOnPassedHook(DeciTreeOption<PhonapInfo> option) {
+		List<ActionStdV1<PhonapInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<PhonapInfo> mergeUselis = new StdPhonapMergeUselis(option);	
+		ActionStdV1<PhonapInfo> mergeUselis = new StdPhonapMergeUselis(option);	
 		
 		actions.add(mergeUselis);			
 		return actions;
@@ -49,10 +49,10 @@ public final class NodePhonapUselis extends DeciTreeReadTemplate<PhonapInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<PhonapInfo>> buildActionsOnFailedHook(DeciTreeOption<PhonapInfo> option) {
-		List<ActionStd<PhonapInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV1<PhonapInfo>> buildActionsOnFailedHook(DeciTreeOption<PhonapInfo> option) {
+		List<ActionStdV1<PhonapInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<PhonapInfo> nodeEmp = new NodePhonapEmplis(option).toAction();	
+		ActionStdV1<PhonapInfo> nodeEmp = new NodePhonapEmplis(option).toAction();	
 		
 		actions.add(nodeEmp);			
 		return actions;

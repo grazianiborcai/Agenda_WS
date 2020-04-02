@@ -10,7 +10,7 @@ import br.com.mind5.business.employeeLeaveDateRange.model.checker.EmplargCheckLa
 import br.com.mind5.business.employeeLeaveDateRange.model.checker.EmplargCheckOwner;
 import br.com.mind5.business.employeeLeaveDateRange.model.checker.EmplargCheckRead;
 import br.com.mind5.business.employeeLeaveDateRange.model.checker.EmplargCheckStore;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -70,10 +70,10 @@ public class RootEmplargSelect extends DeciTreeReadTemplate<EmplargInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<EmplargInfo>> buildActionsOnPassedHook(DeciTreeOption<EmplargInfo> option) {
-		List<ActionStd<EmplargInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<EmplargInfo>> buildActionsOnPassedHook(DeciTreeOption<EmplargInfo> option) {
+		List<ActionStdV1<EmplargInfo>> actions = new ArrayList<>();
 		
-		ActionStd<EmplargInfo> select = new StdEmplargMergeToSelect(option);
+		ActionStdV1<EmplargInfo> select = new StdEmplargMergeToSelect(option);
 		
 		actions.add(select);
 		return actions;

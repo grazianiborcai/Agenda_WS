@@ -10,7 +10,7 @@ import br.com.mind5.business.company.model.checker.CompCheckCnpjNumber;
 import br.com.mind5.business.company.model.checker.CompCheckCnpjOnlyNumber;
 import br.com.mind5.business.company.model.checker.CompCheckCnpjSequence;
 import br.com.mind5.business.company.model.checker.CompCheckCnpjExist;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -70,10 +70,10 @@ public final class NodeCompCnpjL2 extends DeciTreeWriteTemplate<CompInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<CompInfo>> buildActionsOnPassedHook(DeciTreeOption<CompInfo> option) {
-		List<ActionStd<CompInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<CompInfo>> buildActionsOnPassedHook(DeciTreeOption<CompInfo> option) {
+		List<ActionStdV1<CompInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CompInfo> success = new StdCompSuccess(option);
+		ActionStdV1<CompInfo> success = new StdCompSuccess(option);
 		actions.add(success);	
 		return actions;
 	}

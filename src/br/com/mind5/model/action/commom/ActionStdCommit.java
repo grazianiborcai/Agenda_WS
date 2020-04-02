@@ -6,11 +6,12 @@ import java.util.List;
 
 import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
-import br.com.mind5.model.action.ActionStdTemplate;
+import br.com.mind5.info.InfoRecord;
+import br.com.mind5.model.action.ActionStdTemplateV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.common.DeciResultError;
 
-public final class ActionStdCommit<T> extends ActionStdTemplate<T> {	
+public final class ActionStdCommit<T extends InfoRecord> extends ActionStdTemplateV1<T> {	
 	private Connection dbCon;
 	private List<T> recordInfos;
 	

@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.masterData.info.MatmovTypeInfo;
 import br.com.mind5.business.masterData.model.action.StdMatmovTypeSelect;
 import br.com.mind5.business.masterData.model.checker.MatmovTypeCheckRead;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -38,10 +38,10 @@ public final class RootMatmovTypeSelect extends DeciTreeReadTemplate<MatmovTypeI
 
 		
 	
-	@Override protected List<ActionStd<MatmovTypeInfo>> buildActionsOnPassedHook(DeciTreeOption<MatmovTypeInfo> option) {
-		List<ActionStd<MatmovTypeInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<MatmovTypeInfo>> buildActionsOnPassedHook(DeciTreeOption<MatmovTypeInfo> option) {
+		List<ActionStdV1<MatmovTypeInfo>> actions = new ArrayList<>();
 		
-		ActionStd<MatmovTypeInfo> select = new StdMatmovTypeSelect(option);
+		ActionStdV1<MatmovTypeInfo> select = new StdMatmovTypeSelect(option);
 		
 		actions.add(select);
 		return actions;

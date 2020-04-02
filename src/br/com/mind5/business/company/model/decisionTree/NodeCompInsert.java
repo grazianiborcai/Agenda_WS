@@ -10,8 +10,8 @@ import br.com.mind5.business.company.model.action.LazyCompInsert;
 import br.com.mind5.business.company.model.action.LazyCompMergeUsername;
 import br.com.mind5.business.company.model.action.StdCompEnforceLChanged;
 import br.com.mind5.business.company.model.checker.CompCheckDummy;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -37,14 +37,14 @@ public final class NodeCompInsert extends DeciTreeWriteTemplate<CompInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<CompInfo>> buildActionsOnPassedHook(DeciTreeOption<CompInfo> option) {
-		List<ActionStd<CompInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<CompInfo>> buildActionsOnPassedHook(DeciTreeOption<CompInfo> option) {
+		List<ActionStdV1<CompInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CompInfo> enforceLChanged = new StdCompEnforceLChanged(option);
-		ActionLazy<CompInfo> enforceLChangedBy = new LazyCompMergeUsername(option.conn, option.schemaName);
-		ActionLazy<CompInfo> enforceCreatedOn = new LazyCompEnforceCreatedOn(option.conn, option.schemaName);	
-		ActionLazy<CompInfo> enforceCreatedBy = new LazyCompEnforceCreatedBy(option.conn, option.schemaName);	
-		ActionLazy<CompInfo> insert = new LazyCompInsert(option.conn, option.schemaName);
+		ActionStdV1<CompInfo> enforceLChanged = new StdCompEnforceLChanged(option);
+		ActionLazyV1<CompInfo> enforceLChangedBy = new LazyCompMergeUsername(option.conn, option.schemaName);
+		ActionLazyV1<CompInfo> enforceCreatedOn = new LazyCompEnforceCreatedOn(option.conn, option.schemaName);	
+		ActionLazyV1<CompInfo> enforceCreatedBy = new LazyCompEnforceCreatedBy(option.conn, option.schemaName);	
+		ActionLazyV1<CompInfo> insert = new LazyCompInsert(option.conn, option.schemaName);
 		
 		enforceLChanged.addPostAction(enforceLChangedBy);
 		enforceLChangedBy.addPostAction(enforceCreatedOn);

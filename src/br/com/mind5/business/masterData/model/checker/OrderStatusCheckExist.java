@@ -3,7 +3,7 @@ package br.com.mind5.business.masterData.model.checker;
 import br.com.mind5.business.masterData.info.OrderStatusInfo;
 import br.com.mind5.business.masterData.model.action.StdOrderStatusSelect;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -16,8 +16,8 @@ public final class OrderStatusCheckExist extends ModelCheckerTemplateAction<Orde
 	
 	
 	
-	@Override protected ActionStd<OrderStatusInfo> buildActionHook(DeciTreeOption<OrderStatusInfo> option) {
-		ActionStd<OrderStatusInfo> select = new StdOrderStatusSelect(option);
+	@Override protected ActionStdV1<OrderStatusInfo> buildActionHook(DeciTreeOption<OrderStatusInfo> option) {
+		ActionStdV1<OrderStatusInfo> select = new StdOrderStatusSelect(option);
 		return select;
 	}
 	

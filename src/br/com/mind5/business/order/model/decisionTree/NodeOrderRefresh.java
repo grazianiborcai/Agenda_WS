@@ -7,8 +7,8 @@ import br.com.mind5.business.order.info.OrderInfo;
 import br.com.mind5.business.order.model.action.LazyOrderNodeUpdate;
 import br.com.mind5.business.order.model.action.LazyOrderRefreshSchedine;
 import br.com.mind5.business.order.model.checker.OrderCheckDummy;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -34,12 +34,12 @@ public final class NodeOrderRefresh extends DeciTreeWriteTemplate<OrderInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<OrderInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderInfo> option) {
-		List<ActionStd<OrderInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<OrderInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderInfo> option) {
+		List<ActionStdV1<OrderInfo>> actions = new ArrayList<>();
 
-		ActionStd<OrderInfo> nodePayord = new NodeOrderPayord(option).toAction();
-		ActionLazy<OrderInfo> nodeUpdate = new LazyOrderNodeUpdate(option.conn, option.schemaName);
-		ActionLazy<OrderInfo> refreshSchedine = new LazyOrderRefreshSchedine(option.conn, option.schemaName);
+		ActionStdV1<OrderInfo> nodePayord = new NodeOrderPayord(option).toAction();
+		ActionLazyV1<OrderInfo> nodeUpdate = new LazyOrderNodeUpdate(option.conn, option.schemaName);
+		ActionLazyV1<OrderInfo> refreshSchedine = new LazyOrderRefreshSchedine(option.conn, option.schemaName);
 		
 		nodePayord.addPostAction(nodeUpdate);
 		nodeUpdate.addPostAction(refreshSchedine);

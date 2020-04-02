@@ -11,8 +11,8 @@ import br.com.mind5.business.material.model.action.LazyMatUpdate;
 import br.com.mind5.business.material.model.action.StdMatDeleteMatext;
 import br.com.mind5.business.material.model.action.StdMatMergeToDelete;
 import br.com.mind5.business.material.model.checker.MatCheckDummy;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -38,15 +38,15 @@ public final class NodeMatDeleteL2 extends DeciTreeWriteTemplate<MatInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<MatInfo>> buildActionsOnPassedHook(DeciTreeOption<MatInfo> option) {
-		List<ActionStd<MatInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<MatInfo>> buildActionsOnPassedHook(DeciTreeOption<MatInfo> option) {
+		List<ActionStdV1<MatInfo>> actions = new ArrayList<>();
 		
-		ActionStd<MatInfo> deleteMatext = new StdMatDeleteMatext(option);
-		ActionStd<MatInfo> mergeToDelete = new StdMatMergeToDelete(option);
-		ActionLazy<MatInfo> enforceLChanged = new LazyMatEnforceLChanged(option.conn, option.schemaName);
-		ActionLazy<MatInfo> enforceLChangedBy = new LazyMatMergeUsername(option.conn, option.schemaName);
-		ActionLazy<MatInfo> updateAttr = new LazyMatUpdate(option.conn, option.schemaName);
-		ActionLazy<MatInfo> delete = new LazyMatDelete(option.conn, option.schemaName);
+		ActionStdV1<MatInfo> deleteMatext = new StdMatDeleteMatext(option);
+		ActionStdV1<MatInfo> mergeToDelete = new StdMatMergeToDelete(option);
+		ActionLazyV1<MatInfo> enforceLChanged = new LazyMatEnforceLChanged(option.conn, option.schemaName);
+		ActionLazyV1<MatInfo> enforceLChangedBy = new LazyMatMergeUsername(option.conn, option.schemaName);
+		ActionLazyV1<MatInfo> updateAttr = new LazyMatUpdate(option.conn, option.schemaName);
+		ActionLazyV1<MatInfo> delete = new LazyMatDelete(option.conn, option.schemaName);
 		
 		mergeToDelete.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceLChangedBy);

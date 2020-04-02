@@ -10,8 +10,8 @@ import br.com.mind5.business.orderItem.model.action.LazyOrderemMergeMatore;
 import br.com.mind5.business.orderItem.model.action.LazyOrderemMergeWeekday;
 import br.com.mind5.business.orderItem.model.action.StdOrderemMergeStolis;
 import br.com.mind5.business.orderItem.model.checker.OrderemCheckDummy;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -37,14 +37,14 @@ public final class NodeOrderemSelectService extends DeciTreeWriteTemplate<Ordere
 	
 	
 	
-	@Override protected List<ActionStd<OrderemInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderemInfo> option) {
-		List<ActionStd<OrderemInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<OrderemInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderemInfo> option) {
+		List<ActionStdV1<OrderemInfo>> actions = new ArrayList<>();
 		
-		ActionStd<OrderemInfo> mergeStolis = new StdOrderemMergeStolis(option);
-		ActionLazy<OrderemInfo> mergeEmplis = new LazyOrderemMergeEmplis(option.conn, option.schemaName);
-		ActionLazy<OrderemInfo> enforceWeekday = new LazyOrderemEnforceWeekday(option.conn, option.schemaName);
-		ActionLazy<OrderemInfo> mergeWeekday = new LazyOrderemMergeWeekday(option.conn, option.schemaName);
-		ActionLazy<OrderemInfo> mergeMatore = new LazyOrderemMergeMatore(option.conn, option.schemaName);
+		ActionStdV1<OrderemInfo> mergeStolis = new StdOrderemMergeStolis(option);
+		ActionLazyV1<OrderemInfo> mergeEmplis = new LazyOrderemMergeEmplis(option.conn, option.schemaName);
+		ActionLazyV1<OrderemInfo> enforceWeekday = new LazyOrderemEnforceWeekday(option.conn, option.schemaName);
+		ActionLazyV1<OrderemInfo> mergeWeekday = new LazyOrderemMergeWeekday(option.conn, option.schemaName);
+		ActionLazyV1<OrderemInfo> mergeMatore = new LazyOrderemMergeMatore(option.conn, option.schemaName);
 		
 		mergeStolis.addPostAction(mergeEmplis);
 		mergeEmplis.addPostAction(enforceWeekday);

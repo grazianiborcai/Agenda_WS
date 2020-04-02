@@ -7,7 +7,7 @@ import br.com.mind5.business.order.info.OrderInfo;
 import br.com.mind5.business.order.model.action.StdOrderInsertCus;
 import br.com.mind5.business.order.model.action.StdOrderMergeCusarch;
 import br.com.mind5.business.order.model.checker.OrderCheckCusarch;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -39,10 +39,10 @@ public final class NodeOrderCusL2 extends DeciTreeWriteTemplate<OrderInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<OrderInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderInfo> option) {
-		List<ActionStd<OrderInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<OrderInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderInfo> option) {
+		List<ActionStdV1<OrderInfo>> actions = new ArrayList<>();
 
-		ActionStd<OrderInfo> mergeCusarch = new StdOrderMergeCusarch(option);
+		ActionStdV1<OrderInfo> mergeCusarch = new StdOrderMergeCusarch(option);
 		
 		actions.add(mergeCusarch);
 		return actions;
@@ -50,10 +50,10 @@ public final class NodeOrderCusL2 extends DeciTreeWriteTemplate<OrderInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<OrderInfo>> buildActionsOnFailedHook(DeciTreeOption<OrderInfo> option) {
-		List<ActionStd<OrderInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<OrderInfo>> buildActionsOnFailedHook(DeciTreeOption<OrderInfo> option) {
+		List<ActionStdV1<OrderInfo>> actions = new ArrayList<>();
 
-		ActionStd<OrderInfo> insertCus = new StdOrderInsertCus(option);
+		ActionStdV1<OrderInfo> insertCus = new StdOrderInsertCus(option);
 		
 		actions.add(insertCus);
 		return actions;

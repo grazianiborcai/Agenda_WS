@@ -7,8 +7,8 @@ import br.com.mind5.business.materialStock.info.MatockInfo;
 import br.com.mind5.business.materialStock.model.action.LazyMatockNodeBalanceL2;
 import br.com.mind5.business.materialStock.model.action.StdMatockEnforceBalance;
 import br.com.mind5.business.materialStock.model.checker.MatockCheckDummy;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -34,11 +34,11 @@ public final class NodeMatockBalanceL1 extends DeciTreeWriteTemplate<MatockInfo>
 	
 	
 	
-	@Override protected List<ActionStd<MatockInfo>> buildActionsOnPassedHook(DeciTreeOption<MatockInfo> option) {
-		List<ActionStd<MatockInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<MatockInfo>> buildActionsOnPassedHook(DeciTreeOption<MatockInfo> option) {
+		List<ActionStdV1<MatockInfo>> actions = new ArrayList<>();
 
-		ActionStd<MatockInfo> enforceBalance = new StdMatockEnforceBalance(option);
-		ActionLazy<MatockInfo> balanceL2 = new LazyMatockNodeBalanceL2(option.conn, option.schemaName);
+		ActionStdV1<MatockInfo> enforceBalance = new StdMatockEnforceBalance(option);
+		ActionLazyV1<MatockInfo> balanceL2 = new LazyMatockNodeBalanceL2(option.conn, option.schemaName);
 		
 		enforceBalance.addPostAction(balanceL2);
 		

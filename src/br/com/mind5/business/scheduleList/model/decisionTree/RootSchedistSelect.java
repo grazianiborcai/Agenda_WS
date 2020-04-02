@@ -8,7 +8,7 @@ import br.com.mind5.business.scheduleList.model.action.StdSchedistMergeToSelect;
 import br.com.mind5.business.scheduleList.model.checker.SchedistCheckLangu;
 import br.com.mind5.business.scheduleList.model.checker.SchedistCheckOwner;
 import br.com.mind5.business.scheduleList.model.checker.SchedistCheckRead;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -54,10 +54,10 @@ public final class RootSchedistSelect extends DeciTreeWriteTemplate<SchedistInfo
 	
 	
 	
-	@Override protected List<ActionStd<SchedistInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedistInfo> option) {
-		List<ActionStd<SchedistInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<SchedistInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedistInfo> option) {
+		List<ActionStdV1<SchedistInfo>> actions = new ArrayList<>();
 		
-		ActionStd<SchedistInfo> select = new StdSchedistMergeToSelect(option);
+		ActionStdV1<SchedistInfo> select = new StdSchedistMergeToSelect(option);
 		
 		actions.add(select);
 		return actions;

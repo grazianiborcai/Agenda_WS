@@ -7,8 +7,8 @@ import br.com.mind5.business.cart.info.CartInfo;
 import br.com.mind5.business.cart.model.action.LazyCartUpsertCartem;
 import br.com.mind5.business.cart.model.action.StdCartEnforceCartemKey;
 import br.com.mind5.business.cart.model.checker.CartCheckDummy;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -34,11 +34,11 @@ public final class NodeCartCartem extends DeciTreeWriteTemplate<CartInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<CartInfo>> buildActionsOnPassedHook(DeciTreeOption<CartInfo> option) {
-		List<ActionStd<CartInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV1<CartInfo>> buildActionsOnPassedHook(DeciTreeOption<CartInfo> option) {
+		List<ActionStdV1<CartInfo>> actions = new ArrayList<>();		
 
-		ActionStd<CartInfo> enforceCartemKey = new StdCartEnforceCartemKey(option);
-		ActionLazy<CartInfo> upsertCartem = new LazyCartUpsertCartem(option.conn, option.schemaName);
+		ActionStdV1<CartInfo> enforceCartemKey = new StdCartEnforceCartemKey(option);
+		ActionLazyV1<CartInfo> upsertCartem = new LazyCartUpsertCartem(option.conn, option.schemaName);
 		
 		enforceCartemKey.addPostAction(upsertCartem);
 		

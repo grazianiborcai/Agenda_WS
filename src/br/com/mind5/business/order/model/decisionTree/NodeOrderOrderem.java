@@ -7,8 +7,8 @@ import br.com.mind5.business.order.info.OrderInfo;
 import br.com.mind5.business.order.model.action.LazyOrderInsertOrderem;
 import br.com.mind5.business.order.model.action.StdOrderEnforceOrderemKey;
 import br.com.mind5.business.order.model.checker.OrderCheckInsert;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -40,11 +40,11 @@ public final class NodeOrderOrderem extends DeciTreeWriteTemplate<OrderInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<OrderInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderInfo> option) {
-		List<ActionStd<OrderInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV1<OrderInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderInfo> option) {
+		List<ActionStdV1<OrderInfo>> actions = new ArrayList<>();		
 
-		ActionStd<OrderInfo> enforceOrderemKey = new StdOrderEnforceOrderemKey(option);
-		ActionLazy<OrderInfo> insertOrderem = new LazyOrderInsertOrderem(option.conn, option.schemaName);
+		ActionStdV1<OrderInfo> enforceOrderemKey = new StdOrderEnforceOrderemKey(option);
+		ActionLazyV1<OrderInfo> insertOrderem = new LazyOrderInsertOrderem(option.conn, option.schemaName);
 		
 		enforceOrderemKey.addPostAction(insertOrderem);
 		

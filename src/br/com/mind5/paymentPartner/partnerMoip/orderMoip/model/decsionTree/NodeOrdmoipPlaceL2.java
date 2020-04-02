@@ -3,8 +3,8 @@ package br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.decsionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -41,18 +41,18 @@ public final class NodeOrdmoipPlaceL2 extends DeciTreeWriteTemplate<OrdmoipInfo>
 	
 	
 	
-	@Override protected List<ActionStd<OrdmoipInfo>> buildActionsOnPassedHook(DeciTreeOption<OrdmoipInfo> option) {
-		List<ActionStd<OrdmoipInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV1<OrdmoipInfo>> buildActionsOnPassedHook(DeciTreeOption<OrdmoipInfo> option) {
+		List<ActionStdV1<OrdmoipInfo>> actions = new ArrayList<>();		
 
-		ActionStd<OrdmoipInfo> enforceItemNum = new StdOrdmoipEnforceItemNum(option);	
-		ActionLazy<OrdmoipInfo> enforceSubtotal = new LazyOrdmoipEnforceSubtotal(option.conn, option.schemaName);	
-		ActionLazy<OrdmoipInfo> enforceAmount = new LazyOrdmoipEnforceAmount(option.conn, option.schemaName);
-		ActionLazy<OrdmoipInfo> enforceProducts = new LazyOrdmoipEnforceProducts(option.conn, option.schemaName);
-		ActionLazy<OrdmoipInfo> enforceAccount = new LazyOrdmoipEnforceAccount(option.conn, option.schemaName);
-		ActionLazy<OrdmoipInfo> enforceReceivers = new LazyOrdmoipEnforceReceivers(option.conn, option.schemaName);
-		ActionLazy<OrdmoipInfo> enforceCustomer = new LazyOrdmoipEnforceCustomer(option.conn, option.schemaName);
-		ActionLazy<OrdmoipInfo> enforceOwnId = new LazyOrdmoipEnforceOwnId(option.conn, option.schemaName);
-		ActionLazy<OrdmoipInfo> enforceOrder = new LazyOrdmoipEnforceOrder(option.conn, option.schemaName);
+		ActionStdV1<OrdmoipInfo> enforceItemNum = new StdOrdmoipEnforceItemNum(option);	
+		ActionLazyV1<OrdmoipInfo> enforceSubtotal = new LazyOrdmoipEnforceSubtotal(option.conn, option.schemaName);	
+		ActionLazyV1<OrdmoipInfo> enforceAmount = new LazyOrdmoipEnforceAmount(option.conn, option.schemaName);
+		ActionLazyV1<OrdmoipInfo> enforceProducts = new LazyOrdmoipEnforceProducts(option.conn, option.schemaName);
+		ActionLazyV1<OrdmoipInfo> enforceAccount = new LazyOrdmoipEnforceAccount(option.conn, option.schemaName);
+		ActionLazyV1<OrdmoipInfo> enforceReceivers = new LazyOrdmoipEnforceReceivers(option.conn, option.schemaName);
+		ActionLazyV1<OrdmoipInfo> enforceCustomer = new LazyOrdmoipEnforceCustomer(option.conn, option.schemaName);
+		ActionLazyV1<OrdmoipInfo> enforceOwnId = new LazyOrdmoipEnforceOwnId(option.conn, option.schemaName);
+		ActionLazyV1<OrdmoipInfo> enforceOrder = new LazyOrdmoipEnforceOrder(option.conn, option.schemaName);
 		
 		enforceItemNum.addPostAction(enforceSubtotal);
 		enforceSubtotal.addPostAction(enforceAmount);

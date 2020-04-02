@@ -1,14 +1,14 @@
 package br.com.mind5.message.emailBody.model.action;
 
 import br.com.mind5.message.emailBody.info.EmabodyInfo;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperMerge;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdEmabodyMergeToSelect implements ActionStd<EmabodyInfo> {
-	private ActionStd<EmabodyInfo> actionHelper;	
+public final class StdEmabodyMergeToSelect implements ActionStdV1<EmabodyInfo> {
+	private ActionStdV1<EmabodyInfo> actionHelper;	
 	
 	
 	public StdEmabodyMergeToSelect(DeciTreeOption<EmabodyInfo> option) {			
@@ -17,7 +17,7 @@ public final class StdEmabodyMergeToSelect implements ActionStd<EmabodyInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<EmabodyInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<EmabodyInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

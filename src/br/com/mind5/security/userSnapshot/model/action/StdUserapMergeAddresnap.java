@@ -1,14 +1,14 @@
 package br.com.mind5.security.userSnapshot.model.action;
 
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperMerge;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.userSnapshot.info.UserapInfo;
 
-public final class StdUserapMergeAddresnap implements ActionStd<UserapInfo> {
-	private ActionStd<UserapInfo> actionHelper;	
+public final class StdUserapMergeAddresnap implements ActionStdV1<UserapInfo> {
+	private ActionStdV1<UserapInfo> actionHelper;	
 	
 	
 	public StdUserapMergeAddresnap(DeciTreeOption<UserapInfo> option) {			
@@ -17,7 +17,7 @@ public final class StdUserapMergeAddresnap implements ActionStd<UserapInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<UserapInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<UserapInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

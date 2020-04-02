@@ -7,14 +7,14 @@ import br.com.mind5.business.employeePosition.dao.EmposSelect;
 import br.com.mind5.business.employeePosition.info.EmposInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.obsolete.DaoStmtExec_;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperStmt;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdEmposSelect implements ActionStd<EmposInfo> {
-	private ActionStd<EmposInfo> actionHelper;
+public final class StdEmposSelect implements ActionStdV1<EmposInfo> {
+	private ActionStdV1<EmposInfo> actionHelper;
 	
 	
 	public StdEmposSelect(DeciTreeOption<EmposInfo> option) {
@@ -40,7 +40,7 @@ public final class StdEmposSelect implements ActionStd<EmposInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<EmposInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<EmposInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

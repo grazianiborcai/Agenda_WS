@@ -8,8 +8,8 @@ import br.com.mind5.business.customerSearch.model.action.LazyCusarchMergeToSelec
 import br.com.mind5.business.customerSearch.model.action.StdCusarchEnforceEntityCateg;
 import br.com.mind5.business.customerSearch.model.checker.CusarchCheckOwner;
 import br.com.mind5.business.customerSearch.model.checker.CusarchCheckRead;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -48,11 +48,11 @@ public final class RootCusarchSelect extends DeciTreeReadTemplate<CusarchInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<CusarchInfo>> buildActionsOnPassedHook(DeciTreeOption<CusarchInfo> option) {
-		List<ActionStd<CusarchInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<CusarchInfo>> buildActionsOnPassedHook(DeciTreeOption<CusarchInfo> option) {
+		List<ActionStdV1<CusarchInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CusarchInfo> enforceEntityCateg = new StdCusarchEnforceEntityCateg(option);
-		ActionLazy<CusarchInfo> select = new LazyCusarchMergeToSelect(option.conn, option.schemaName);
+		ActionStdV1<CusarchInfo> enforceEntityCateg = new StdCusarchEnforceEntityCateg(option);
+		ActionLazyV1<CusarchInfo> select = new LazyCusarchMergeToSelect(option.conn, option.schemaName);
 		
 		enforceEntityCateg.addPostAction(select);
 		

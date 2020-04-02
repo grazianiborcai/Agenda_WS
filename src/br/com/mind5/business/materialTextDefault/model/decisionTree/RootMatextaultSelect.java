@@ -8,7 +8,7 @@ import br.com.mind5.business.materialTextDefault.model.action.StdMatextaultMerge
 import br.com.mind5.business.materialTextDefault.model.checker.MatextaultCheckMat;
 import br.com.mind5.business.materialTextDefault.model.checker.MatextaultCheckOwner;
 import br.com.mind5.business.materialTextDefault.model.checker.MatextaultCheckRead;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -54,10 +54,10 @@ public final class RootMatextaultSelect extends DeciTreeReadTemplate<MatextaultI
 	
 	
 	
-	@Override protected List<ActionStd<MatextaultInfo>> buildActionsOnPassedHook(DeciTreeOption<MatextaultInfo> option) {
-		List<ActionStd<MatextaultInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<MatextaultInfo>> buildActionsOnPassedHook(DeciTreeOption<MatextaultInfo> option) {
+		List<ActionStdV1<MatextaultInfo>> actions = new ArrayList<>();
 		
-		ActionStd<MatextaultInfo> select = new StdMatextaultMergeToSelect(option);
+		ActionStdV1<MatextaultInfo> select = new StdMatextaultMergeToSelect(option);
 		
 		actions.add(select);
 		return actions;

@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.business.materialList.info.MatlisMerger;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 
 final class VisiMatlisMergeToSelect extends ActionVisitorTemplateMerge<MatlisInfo, MatlisInfo> {
@@ -16,7 +16,7 @@ final class VisiMatlisMergeToSelect extends ActionVisitorTemplateMerge<MatlisInf
 	
 	
 	
-	@Override protected Class<? extends ActionStd<MatlisInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStdV1<MatlisInfo>> getActionClassHook() {
 		return StdMatlisSelect.class;
 	}
 	

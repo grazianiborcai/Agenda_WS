@@ -8,8 +8,8 @@ import br.com.mind5.business.storeLeaveDate.model.action.LazyStolateMergeStolarc
 import br.com.mind5.business.storeLeaveDate.model.action.LazyStolateRootDelete;
 import br.com.mind5.business.storeLeaveDate.model.action.StdStolateEnforceStoreKey;
 import br.com.mind5.business.storeLeaveDate.model.checker.StolateCheckDeleteByStore;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -41,12 +41,12 @@ public final class RootStolateDeleteByStore extends DeciTreeWriteTemplate<Stolat
 	
 	
 	
-	@Override protected List<ActionStd<StolateInfo>> buildActionsOnPassedHook(DeciTreeOption<StolateInfo> option) {
-		List<ActionStd<StolateInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV1<StolateInfo>> buildActionsOnPassedHook(DeciTreeOption<StolateInfo> option) {
+		List<ActionStdV1<StolateInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<StolateInfo> enforceStoreKey = new StdStolateEnforceStoreKey(option);
-		ActionLazy<StolateInfo> mergeStolarch = new LazyStolateMergeStolarch(option.conn, option.schemaName);
-		ActionLazy<StolateInfo> delete = new LazyStolateRootDelete(option.conn, option.schemaName);
+		ActionStdV1<StolateInfo> enforceStoreKey = new StdStolateEnforceStoreKey(option);
+		ActionLazyV1<StolateInfo> mergeStolarch = new LazyStolateMergeStolarch(option.conn, option.schemaName);
+		ActionLazyV1<StolateInfo> delete = new LazyStolateRootDelete(option.conn, option.schemaName);
 		
 		enforceStoreKey.addPostAction(mergeStolarch);
 		mergeStolarch.addPostAction(delete);

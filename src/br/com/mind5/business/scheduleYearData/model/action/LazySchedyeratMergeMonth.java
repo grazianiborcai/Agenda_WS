@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.scheduleYearData.info.SchedyeratInfo;
 import br.com.mind5.model.action.ActionLazyTemplate;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -23,7 +23,7 @@ public final class LazySchedyeratMergeMonth extends ActionLazyTemplate<Schedyera
 	
 	
 	
-	@Override protected ActionStd<SchedyeratInfo> getInstanceOfActionHook(DeciTreeOption<SchedyeratInfo> option) {
+	@Override protected ActionStdV1<SchedyeratInfo> getInstanceOfActionHook(DeciTreeOption<SchedyeratInfo> option) {
 		return new StdSchedyeratMergeMonth(option);
 	}
 	

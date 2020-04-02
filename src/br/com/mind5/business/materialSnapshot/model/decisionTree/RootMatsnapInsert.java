@@ -10,8 +10,8 @@ import br.com.mind5.business.materialSnapshot.model.action.StdMatsnapInsert;
 import br.com.mind5.business.materialSnapshot.model.checker.MatsnapCheckMat;
 import br.com.mind5.business.materialSnapshot.model.checker.MatsnapCheckOwner;
 import br.com.mind5.business.materialSnapshot.model.checker.MatsnapCheckWrite;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -57,12 +57,12 @@ public final class RootMatsnapInsert extends DeciTreeWriteTemplate<MatsnapInfo> 
 	
 	
 	
-	@Override protected List<ActionStd<MatsnapInfo>> buildActionsOnPassedHook(DeciTreeOption<MatsnapInfo> option) {
-		List<ActionStd<MatsnapInfo>> actions = new ArrayList<>();	
+	@Override protected List<ActionStdV1<MatsnapInfo>> buildActionsOnPassedHook(DeciTreeOption<MatsnapInfo> option) {
+		List<ActionStdV1<MatsnapInfo>> actions = new ArrayList<>();	
 		
-		ActionStd<MatsnapInfo> insertMatsnap = new StdMatsnapInsert(option);
-		ActionLazy<MatsnapInfo> insertMatextsnap = new LazyMatsnapInsertMatextsnap(option.conn, option.schemaName);	
-		ActionLazy<MatsnapInfo> select = new LazyMatsnapRootSelect(option.conn, option.schemaName);	
+		ActionStdV1<MatsnapInfo> insertMatsnap = new StdMatsnapInsert(option);
+		ActionLazyV1<MatsnapInfo> insertMatextsnap = new LazyMatsnapInsertMatextsnap(option.conn, option.schemaName);	
+		ActionLazyV1<MatsnapInfo> select = new LazyMatsnapRootSelect(option.conn, option.schemaName);	
 		
 		insertMatsnap.addPostAction(insertMatextsnap);
 		insertMatextsnap.addPostAction(select);

@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.storeSearch.info.SotarchInfo;
 import br.com.mind5.business.storeSearch.info.SotarchMerger;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 
 final class VisiSotarchMergeToSelect extends ActionVisitorTemplateMerge<SotarchInfo, SotarchInfo> {
@@ -16,7 +16,7 @@ final class VisiSotarchMergeToSelect extends ActionVisitorTemplateMerge<SotarchI
 	
 	
 	
-	@Override protected Class<? extends ActionStd<SotarchInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStdV1<SotarchInfo>> getActionClassHook() {
 		return StdSotarchSelect.class;
 	}
 	

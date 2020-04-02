@@ -10,8 +10,8 @@ import br.com.mind5.business.material.model.action.LazyMatNodeServiceL1;
 import br.com.mind5.business.material.model.action.LazyMatUpdate;
 import br.com.mind5.business.material.model.action.StdMatMergeToUpdate;
 import br.com.mind5.business.material.model.checker.MatCheckDummy;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -37,14 +37,14 @@ public final class NodeMatUpdate extends DeciTreeWriteTemplate<MatInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<MatInfo>> buildActionsOnPassedHook(DeciTreeOption<MatInfo> option) {
-		List<ActionStd<MatInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<MatInfo>> buildActionsOnPassedHook(DeciTreeOption<MatInfo> option) {
+		List<ActionStdV1<MatInfo>> actions = new ArrayList<>();
 
-		ActionStd<MatInfo> mergeToUpdate = new StdMatMergeToUpdate(option);	
-		ActionLazy<MatInfo> nodeService = new LazyMatNodeServiceL1(option.conn, option.schemaName);	
-		ActionLazy<MatInfo> enforceLChanged = new LazyMatEnforceLChanged(option.conn, option.schemaName);	
-		ActionLazy<MatInfo> enforceLChangedBy = new LazyMatMergeUsername(option.conn, option.schemaName);
-		ActionLazy<MatInfo> updateMat = new LazyMatUpdate(option.conn, option.schemaName);	
+		ActionStdV1<MatInfo> mergeToUpdate = new StdMatMergeToUpdate(option);	
+		ActionLazyV1<MatInfo> nodeService = new LazyMatNodeServiceL1(option.conn, option.schemaName);	
+		ActionLazyV1<MatInfo> enforceLChanged = new LazyMatEnforceLChanged(option.conn, option.schemaName);	
+		ActionLazyV1<MatInfo> enforceLChangedBy = new LazyMatMergeUsername(option.conn, option.schemaName);
+		ActionLazyV1<MatInfo> updateMat = new LazyMatUpdate(option.conn, option.schemaName);	
 		
 		mergeToUpdate.addPostAction(nodeService);
 		nodeService.addPostAction(enforceLChanged);

@@ -10,8 +10,8 @@ import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckFromOrder;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckLangu;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckOrder;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckOwner;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -64,11 +64,11 @@ public final class RootSchedineFromOrder extends DeciTreeWriteTemplate<SchedineI
 	
 	
 	
-	@Override protected List<ActionStd<SchedineInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedineInfo> option) {
-		List<ActionStd<SchedineInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<SchedineInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedineInfo> option) {
+		List<ActionStdV1<SchedineInfo>> actions = new ArrayList<>();
 		
-		ActionStd<SchedineInfo> mergeOrder = new StdSchedineMergeOrder(option);
-		ActionLazy<SchedineInfo> insert = new LazySchedineRootInsert(option.conn, option.schemaName);
+		ActionStdV1<SchedineInfo> mergeOrder = new StdSchedineMergeOrder(option);
+		ActionLazyV1<SchedineInfo> insert = new LazySchedineRootInsert(option.conn, option.schemaName);
 		
 		mergeOrder.addPostAction(insert);
 		

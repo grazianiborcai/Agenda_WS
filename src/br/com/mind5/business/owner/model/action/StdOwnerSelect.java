@@ -7,14 +7,14 @@ import br.com.mind5.business.owner.dao.OwnerSelect;
 import br.com.mind5.business.owner.info.OwnerInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.obsolete.DaoStmtExec_;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperStmt;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdOwnerSelect implements ActionStd<OwnerInfo> {
-	private ActionStd<OwnerInfo> actionHelper;
+public final class StdOwnerSelect implements ActionStdV1<OwnerInfo> {
+	private ActionStdV1<OwnerInfo> actionHelper;
 	
 	
 	public StdOwnerSelect(DeciTreeOption<OwnerInfo> option) {
@@ -40,7 +40,7 @@ public final class StdOwnerSelect implements ActionStd<OwnerInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<OwnerInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<OwnerInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

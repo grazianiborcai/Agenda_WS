@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.masterData.info.FeeCategInfo;
 import br.com.mind5.business.masterData.model.action.StdFeeCategSelect;
 import br.com.mind5.business.masterData.model.checker.FeeCategCheckRead;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -38,10 +38,10 @@ public final class RootFeeCategSelect extends DeciTreeReadTemplate<FeeCategInfo>
 
 		
 	
-	@Override protected List<ActionStd<FeeCategInfo>> buildActionsOnPassedHook(DeciTreeOption<FeeCategInfo> option) {
-		List<ActionStd<FeeCategInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<FeeCategInfo>> buildActionsOnPassedHook(DeciTreeOption<FeeCategInfo> option) {
+		List<ActionStdV1<FeeCategInfo>> actions = new ArrayList<>();
 		
-		ActionStd<FeeCategInfo> select = new StdFeeCategSelect(option);
+		ActionStdV1<FeeCategInfo> select = new StdFeeCategSelect(option);
 		
 		actions.add(select);
 		return actions;

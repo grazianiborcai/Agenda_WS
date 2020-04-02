@@ -7,14 +7,14 @@ import br.com.mind5.business.masterData.dao.CountrySelect;
 import br.com.mind5.business.masterData.info.CountryInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.obsolete.DaoStmtExec_;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperStmt;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdCountrySelect implements ActionStd<CountryInfo> {
-	private ActionStd<CountryInfo> actionHelper;
+public final class StdCountrySelect implements ActionStdV1<CountryInfo> {
+	private ActionStdV1<CountryInfo> actionHelper;
 	
 	
 	public StdCountrySelect(DeciTreeOption<CountryInfo> option) {
@@ -40,7 +40,7 @@ public final class StdCountrySelect implements ActionStd<CountryInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<CountryInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<CountryInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

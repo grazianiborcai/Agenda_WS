@@ -8,8 +8,8 @@ import br.com.mind5.business.owner.model.action.LazyOwnerInsertComp;
 import br.com.mind5.business.owner.model.action.LazyOwnerUpdate;
 import br.com.mind5.business.owner.model.action.StdOwnerEnforceCompKey;
 import br.com.mind5.business.owner.model.checker.OwnerCheckDummy;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -35,12 +35,12 @@ public final class NodeOwnerInsertComp extends DeciTreeWriteTemplate<OwnerInfo> 
 	
 	
 	
-	@Override protected List<ActionStd<OwnerInfo>> buildActionsOnPassedHook(DeciTreeOption<OwnerInfo> option) {
-		List<ActionStd<OwnerInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<OwnerInfo>> buildActionsOnPassedHook(DeciTreeOption<OwnerInfo> option) {
+		List<ActionStdV1<OwnerInfo>> actions = new ArrayList<>();
 		
-		ActionStd<OwnerInfo> enforceCompKey = new StdOwnerEnforceCompKey(option);
-		ActionLazy<OwnerInfo> insertComp = new LazyOwnerInsertComp(option.conn, option.schemaName);
-		ActionLazy<OwnerInfo> updateOwner = new LazyOwnerUpdate(option.conn, option.schemaName);
+		ActionStdV1<OwnerInfo> enforceCompKey = new StdOwnerEnforceCompKey(option);
+		ActionLazyV1<OwnerInfo> insertComp = new LazyOwnerInsertComp(option.conn, option.schemaName);
+		ActionLazyV1<OwnerInfo> updateOwner = new LazyOwnerUpdate(option.conn, option.schemaName);
 		
 		enforceCompKey.addPostAction(insertComp);
 		insertComp.addPostAction(updateOwner);

@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.customerSnapshot.info.CusnapInfo;
 import br.com.mind5.model.action.ActionLazyTemplate;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -23,7 +23,7 @@ public final class LazyCusnapMergeUselis extends ActionLazyTemplate<CusnapInfo, 
 	
 	
 	
-	@Override protected ActionStd<CusnapInfo> getInstanceOfActionHook(DeciTreeOption<CusnapInfo> option) {
+	@Override protected ActionStdV1<CusnapInfo> getInstanceOfActionHook(DeciTreeOption<CusnapInfo> option) {
 		return new StdCusnapMergeUselis(option);
 	}
 	

@@ -3,7 +3,7 @@ package br.com.mind5.business.masterData.model.checker;
 import br.com.mind5.business.masterData.info.PayparInfo;
 import br.com.mind5.business.masterData.model.action.StdPayparSelect;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -16,8 +16,8 @@ public final class PayparCheckExist extends ModelCheckerTemplateAction<PayparInf
 	
 	
 	
-	@Override protected ActionStd<PayparInfo> buildActionHook(DeciTreeOption<PayparInfo> option) {
-		ActionStd<PayparInfo> select = new StdPayparSelect(option);
+	@Override protected ActionStdV1<PayparInfo> buildActionHook(DeciTreeOption<PayparInfo> option) {
+		ActionStdV1<PayparInfo> select = new StdPayparSelect(option);
 		return select;
 	}
 	

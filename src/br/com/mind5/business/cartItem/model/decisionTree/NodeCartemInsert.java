@@ -7,8 +7,8 @@ import br.com.mind5.business.cartItem.info.CartemInfo;
 import br.com.mind5.business.cartItem.model.action.LazyCartemInsert;
 import br.com.mind5.business.cartItem.model.action.StdCartemEnforceCreatedOn;
 import br.com.mind5.business.cartItem.model.checker.CartemCheckLimit;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -40,11 +40,11 @@ public final class NodeCartemInsert extends DeciTreeWriteTemplate<CartemInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<CartemInfo>> buildActionsOnPassedHook(DeciTreeOption<CartemInfo> option) {
-		List<ActionStd<CartemInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<CartemInfo>> buildActionsOnPassedHook(DeciTreeOption<CartemInfo> option) {
+		List<ActionStdV1<CartemInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CartemInfo> enforceCreatedOn = new StdCartemEnforceCreatedOn(option);	
-		ActionLazy<CartemInfo> insert = new LazyCartemInsert(option.conn, option.schemaName);	
+		ActionStdV1<CartemInfo> enforceCreatedOn = new StdCartemEnforceCreatedOn(option);	
+		ActionLazyV1<CartemInfo> insert = new LazyCartemInsert(option.conn, option.schemaName);	
 		
 		enforceCreatedOn.addPostAction(insert);
 		

@@ -4,10 +4,11 @@ import java.util.List;
 
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.common.SystemMessage;
+import br.com.mind5.info.InfoRecord;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciResultHelper;
 
-public final class DeciResultError<T> implements DeciResult<T> {
+public final class DeciResultError<T extends InfoRecord> implements DeciResult<T> {
 	private final boolean FAILED = false;
 	private DeciResultHelper<T> helper;
 	

@@ -1,14 +1,14 @@
 package br.com.mind5.business.materialStoreSnapshot.model.action;
 
 import br.com.mind5.business.materialStoreSnapshot.info.MatorapInfo;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperMerge;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdMatorapMergeToSelect implements ActionStd<MatorapInfo> {
-	private ActionStd<MatorapInfo> actionHelper;	
+public final class StdMatorapMergeToSelect implements ActionStdV1<MatorapInfo> {
+	private ActionStdV1<MatorapInfo> actionHelper;	
 	
 	
 	public StdMatorapMergeToSelect(DeciTreeOption<MatorapInfo> option) {			
@@ -17,7 +17,7 @@ public final class StdMatorapMergeToSelect implements ActionStd<MatorapInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<MatorapInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<MatorapInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

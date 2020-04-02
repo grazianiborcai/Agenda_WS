@@ -1,14 +1,14 @@
 package br.com.mind5.business.calendarDate.model.action;
 
 import br.com.mind5.business.calendarDate.info.CalateInfo;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperMerge;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdCalateMergeToSelect implements ActionStd<CalateInfo> {
-	private ActionStd<CalateInfo> actionHelper;	
+public final class StdCalateMergeToSelect implements ActionStdV1<CalateInfo> {
+	private ActionStdV1<CalateInfo> actionHelper;	
 	
 	
 	public StdCalateMergeToSelect(DeciTreeOption<CalateInfo> option) {			
@@ -17,7 +17,7 @@ public final class StdCalateMergeToSelect implements ActionStd<CalateInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<CalateInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<CalateInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

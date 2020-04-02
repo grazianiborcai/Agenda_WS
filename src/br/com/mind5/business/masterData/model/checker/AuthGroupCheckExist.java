@@ -3,7 +3,7 @@ package br.com.mind5.business.masterData.model.checker;
 import br.com.mind5.business.masterData.info.AuthGroupInfo;
 import br.com.mind5.business.masterData.model.action.StdAuthGroupSelect;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -16,8 +16,8 @@ public final class AuthGroupCheckExist extends ModelCheckerTemplateAction<AuthGr
 	
 	
 	
-	@Override protected ActionStd<AuthGroupInfo> buildActionHook(DeciTreeOption<AuthGroupInfo> option) {
-		ActionStd<AuthGroupInfo> select = new StdAuthGroupSelect(option);
+	@Override protected ActionStdV1<AuthGroupInfo> buildActionHook(DeciTreeOption<AuthGroupInfo> option) {
+		ActionStdV1<AuthGroupInfo> select = new StdAuthGroupSelect(option);
 		return select;
 	}
 	

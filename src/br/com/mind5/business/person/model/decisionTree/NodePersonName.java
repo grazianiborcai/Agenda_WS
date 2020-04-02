@@ -8,8 +8,8 @@ import br.com.mind5.business.person.model.action.LazyPersonEnforceNameSearch;
 import br.com.mind5.business.person.model.action.StdPersonEnforceNameDisplay;
 import br.com.mind5.business.person.model.action.StdPersonEnforceNameSearch;
 import br.com.mind5.business.person.model.checker.PersonCheckHasNameDisplay;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -41,10 +41,10 @@ public final class NodePersonName extends DeciTreeWriteTemplate<PersonInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<PersonInfo>> buildActionsOnPassedHook(DeciTreeOption<PersonInfo> option) {
-		List<ActionStd<PersonInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<PersonInfo>> buildActionsOnPassedHook(DeciTreeOption<PersonInfo> option) {
+		List<ActionStdV1<PersonInfo>> actions = new ArrayList<>();
 		
-		ActionStd<PersonInfo> enforceNameSearch = new StdPersonEnforceNameSearch(option);
+		ActionStdV1<PersonInfo> enforceNameSearch = new StdPersonEnforceNameSearch(option);
 		
 		actions.add(enforceNameSearch);	
 		return actions;
@@ -52,11 +52,11 @@ public final class NodePersonName extends DeciTreeWriteTemplate<PersonInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<PersonInfo>> buildActionsOnFailedHook(DeciTreeOption<PersonInfo> option) {
-		List<ActionStd<PersonInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<PersonInfo>> buildActionsOnFailedHook(DeciTreeOption<PersonInfo> option) {
+		List<ActionStdV1<PersonInfo>> actions = new ArrayList<>();
 		
-		ActionStd<PersonInfo> enforceNameDisplay = new StdPersonEnforceNameDisplay(option);
-		ActionLazy<PersonInfo> enforceNameSearch = new LazyPersonEnforceNameSearch(option.conn, option.schemaName);	
+		ActionStdV1<PersonInfo> enforceNameDisplay = new StdPersonEnforceNameDisplay(option);
+		ActionLazyV1<PersonInfo> enforceNameSearch = new LazyPersonEnforceNameSearch(option.conn, option.schemaName);	
 		
 		enforceNameDisplay.addPostAction(enforceNameSearch);
 		

@@ -7,10 +7,11 @@ import javax.ws.rs.core.Response;
 
 import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
+import br.com.mind5.info.InfoRecord;
 import br.com.mind5.json.JsonResponseMaker;
 import br.com.mind5.model.decisionTree.DeciResult;
 
-public abstract class ModelResponseTemplate<T> implements ModelResponse<T> {
+public abstract class ModelResponseTemplate<T extends InfoRecord> implements ModelResponse<T> {
 	private final boolean RESULT_FAILED = false;	
 	private List<DeciResult<T>> deciResults;
 	

@@ -3,8 +3,8 @@ package br.com.mind5.payment.creditCard.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -34,12 +34,12 @@ public final class RootCrecardSelectAuth extends DeciTreeReadTemplate<CrecardInf
 	
 	
 	
-	@Override protected List<ActionStd<CrecardInfo>> buildActionsOnPassedHook(DeciTreeOption<CrecardInfo> option) {
-		List<ActionStd<CrecardInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<CrecardInfo>> buildActionsOnPassedHook(DeciTreeOption<CrecardInfo> option) {
+		List<ActionStdV1<CrecardInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CrecardInfo> select = new RootCrecardSelect(option).toAction();
-		ActionLazy<CrecardInfo> user = new LazyCrecardNodeUser(option.conn, option.schemaName);
-		ActionLazy<CrecardInfo> cusparRef = new LazyCrecardNodeCusparRefL1(option.conn, option.schemaName);
+		ActionStdV1<CrecardInfo> select = new RootCrecardSelect(option).toAction();
+		ActionLazyV1<CrecardInfo> user = new LazyCrecardNodeUser(option.conn, option.schemaName);
+		ActionLazyV1<CrecardInfo> cusparRef = new LazyCrecardNodeCusparRefL1(option.conn, option.schemaName);
 		
 		select.addPostAction(user);
 		user.addPostAction(cusparRef);

@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.message.emailWelcome.info.EmacomeCopier;
 import br.com.mind5.message.emailWelcome.info.EmacomeInfo;
 import br.com.mind5.message.emailWelcome.model.decisionTree.RootEmacomeSend;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.userPassword.info.UpswdInfo;
@@ -18,7 +18,7 @@ final class VisiUpswdSendEmail extends ActionVisitorTemplateAction<UpswdInfo, Em
 	
 	
 	
-	@Override protected ActionStd<EmacomeInfo> getActionHook(DeciTreeOption<EmacomeInfo> option) {
+	@Override protected ActionStdV1<EmacomeInfo> getActionHook(DeciTreeOption<EmacomeInfo> option) {
 		return new RootEmacomeSend(option).toAction();
 	}
 	

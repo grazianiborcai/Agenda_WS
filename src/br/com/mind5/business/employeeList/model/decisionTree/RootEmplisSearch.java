@@ -9,8 +9,8 @@ import br.com.mind5.business.employeeList.model.action.LazyEmplisRootSelect;
 import br.com.mind5.business.employeeList.model.checker.EmplisCheckLangu;
 import br.com.mind5.business.employeeList.model.checker.EmplisCheckOwner;
 import br.com.mind5.business.employeeList.model.checker.EmplisCheckSearch;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -56,12 +56,12 @@ public final class RootEmplisSearch extends DeciTreeReadTemplate<EmplisInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<EmplisInfo>> buildActionsOnPassedHook(DeciTreeOption<EmplisInfo> option) {
-		List<ActionStd<EmplisInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<EmplisInfo>> buildActionsOnPassedHook(DeciTreeOption<EmplisInfo> option) {
+		List<ActionStdV1<EmplisInfo>> actions = new ArrayList<>();
 
-		ActionStd<EmplisInfo> nodePerson = new NodeEmplisPerson(option).toAction();
-		ActionLazy<EmplisInfo> mergeEmparch = new LazyEmplisMergeEmparch(option.conn, option.schemaName);
-		ActionLazy<EmplisInfo> select = new LazyEmplisRootSelect(option.conn, option.schemaName);
+		ActionStdV1<EmplisInfo> nodePerson = new NodeEmplisPerson(option).toAction();
+		ActionLazyV1<EmplisInfo> mergeEmparch = new LazyEmplisMergeEmparch(option.conn, option.schemaName);
+		ActionLazyV1<EmplisInfo> select = new LazyEmplisRootSelect(option.conn, option.schemaName);
 		
 		nodePerson.addPostAction(mergeEmparch);
 		mergeEmparch.addPostAction(select);

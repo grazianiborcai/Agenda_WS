@@ -3,8 +3,8 @@ package br.com.mind5.payment.refundOrderItem.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -85,13 +85,13 @@ public final class RootRefemRefund extends DeciTreeWriteTemplate<RefemInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<RefemInfo>> buildActionsOnPassedHook(DeciTreeOption<RefemInfo> option) {
-		List<ActionStd<RefemInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV1<RefemInfo>> buildActionsOnPassedHook(DeciTreeOption<RefemInfo> option) {
+		List<ActionStdV1<RefemInfo>> actions = new ArrayList<>();		
 
-		ActionStd<RefemInfo> mergePayordem = new StdRefemMergePayordem(option);	
-		ActionLazy<RefemInfo> mergePayord = new LazyRefemMergePayord(option.conn, option.schemaName);
-		ActionLazy<RefemInfo> mergeCuspar = new LazyRefemMergeCuspar(option.conn, option.schemaName);
-		ActionLazy<RefemInfo> refund = new LazyRefemRefumoipRefund(option.conn, option.schemaName);
+		ActionStdV1<RefemInfo> mergePayordem = new StdRefemMergePayordem(option);	
+		ActionLazyV1<RefemInfo> mergePayord = new LazyRefemMergePayord(option.conn, option.schemaName);
+		ActionLazyV1<RefemInfo> mergeCuspar = new LazyRefemMergeCuspar(option.conn, option.schemaName);
+		ActionLazyV1<RefemInfo> refund = new LazyRefemRefumoipRefund(option.conn, option.schemaName);
 		
 		mergePayordem.addPostAction(mergePayord);
 		mergePayord.addPostAction(mergeCuspar);	

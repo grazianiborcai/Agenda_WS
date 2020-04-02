@@ -7,14 +7,14 @@ import br.com.mind5.business.companySearch.dao.ComparchSelect;
 import br.com.mind5.business.companySearch.info.ComparchInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.obsolete.DaoStmtExec_;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperStmt;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdComparchSelect implements ActionStd<ComparchInfo> {
-	ActionStd<ComparchInfo> actionHelper;
+public final class StdComparchSelect implements ActionStdV1<ComparchInfo> {
+	ActionStdV1<ComparchInfo> actionHelper;
 	
 	
 	public StdComparchSelect(DeciTreeOption<ComparchInfo> option) {
@@ -40,7 +40,7 @@ public final class StdComparchSelect implements ActionStd<ComparchInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<ComparchInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<ComparchInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

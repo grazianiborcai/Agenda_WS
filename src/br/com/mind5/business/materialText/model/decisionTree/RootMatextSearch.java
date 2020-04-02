@@ -9,8 +9,8 @@ import br.com.mind5.business.materialText.model.action.StdMatextMergeMatextarch;
 import br.com.mind5.business.materialText.model.checker.MatextCheckMat;
 import br.com.mind5.business.materialText.model.checker.MatextCheckOwner;
 import br.com.mind5.business.materialText.model.checker.MatextCheckSearch;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -56,11 +56,11 @@ public final class RootMatextSearch extends DeciTreeWriteTemplate<MatextInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<MatextInfo>> buildActionsOnPassedHook(DeciTreeOption<MatextInfo> option) {
-		List<ActionStd<MatextInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<MatextInfo>> buildActionsOnPassedHook(DeciTreeOption<MatextInfo> option) {
+		List<ActionStdV1<MatextInfo>> actions = new ArrayList<>();
 		
-		ActionStd<MatextInfo> mergeMatextarch = new StdMatextMergeMatextarch(option);
-		ActionLazy<MatextInfo> select = new LazyMatextRootSelect(option.conn, option.schemaName);
+		ActionStdV1<MatextInfo> mergeMatextarch = new StdMatextMergeMatextarch(option);
+		ActionLazyV1<MatextInfo> select = new LazyMatextRootSelect(option.conn, option.schemaName);
 		
 		mergeMatextarch.addPostAction(select);
 		

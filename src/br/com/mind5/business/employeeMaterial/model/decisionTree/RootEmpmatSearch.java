@@ -7,8 +7,8 @@ import br.com.mind5.business.employeeMaterial.info.EmpmatInfo;
 import br.com.mind5.business.employeeMaterial.model.action.LazyEmpmatRootSelect;
 import br.com.mind5.business.employeeMaterial.model.action.StdEmpmatMergeEmpmarch;
 import br.com.mind5.business.employeeMaterial.model.checker.EmpmatCheckDummy;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -34,11 +34,11 @@ public final class RootEmpmatSearch extends DeciTreeReadTemplate<EmpmatInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<EmpmatInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpmatInfo> option) {
-		List<ActionStd<EmpmatInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<EmpmatInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpmatInfo> option) {
+		List<ActionStdV1<EmpmatInfo>> actions = new ArrayList<>();
 		
-		ActionStd<EmpmatInfo> mergeEmpmarch = new StdEmpmatMergeEmpmarch(option);
-		ActionLazy<EmpmatInfo> select = new LazyEmpmatRootSelect(option.conn, option.schemaName);
+		ActionStdV1<EmpmatInfo> mergeEmpmarch = new StdEmpmatMergeEmpmarch(option);
+		ActionLazyV1<EmpmatInfo> select = new LazyEmpmatRootSelect(option.conn, option.schemaName);
 		
 		mergeEmpmarch.addPostAction(select);
 		

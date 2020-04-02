@@ -4,7 +4,7 @@ import br.com.mind5.common.SystemCode;
 import br.com.mind5.file.fileImage.info.FimgInfo;
 import br.com.mind5.file.fileImageSearch.info.FimarchInfo;
 import br.com.mind5.file.fileImageSearch.model.decisionTree.RootFimarchSelectStore;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,8 +19,8 @@ public final class FimgCheckLimitStore extends ModelCheckerTemplateAction<FimgIn
 	
 	
 	
-	@Override protected ActionStd<FimarchInfo> buildActionHook(DeciTreeOption<FimarchInfo> option) {
-		ActionStd<FimarchInfo> select = new RootFimarchSelectStore(option).toAction();
+	@Override protected ActionStdV1<FimarchInfo> buildActionHook(DeciTreeOption<FimarchInfo> option) {
+		ActionStdV1<FimarchInfo> select = new RootFimarchSelectStore(option).toAction();
 		return select;
 	}
 	

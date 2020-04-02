@@ -1,14 +1,14 @@
 package br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.action;
 
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperMerge;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.info.OrdmoipInfo;
 
-public final class StdOrdmoipMergeStopar implements ActionStd<OrdmoipInfo> {
-	private ActionStd<OrdmoipInfo> actionHelper;	
+public final class StdOrdmoipMergeStopar implements ActionStdV1<OrdmoipInfo> {
+	private ActionStdV1<OrdmoipInfo> actionHelper;	
 	
 	
 	public StdOrdmoipMergeStopar(DeciTreeOption<OrdmoipInfo> option) {			
@@ -17,7 +17,7 @@ public final class StdOrdmoipMergeStopar implements ActionStd<OrdmoipInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<OrdmoipInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<OrdmoipInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

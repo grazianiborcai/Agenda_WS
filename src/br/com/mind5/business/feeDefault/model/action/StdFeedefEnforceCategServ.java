@@ -1,14 +1,14 @@
 package br.com.mind5.business.feeDefault.model.action;
 
 import br.com.mind5.business.feeDefault.info.FeedefInfo;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperEnforce;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdFeedefEnforceCategServ implements ActionStd<FeedefInfo> {
-	private ActionStd<FeedefInfo> actionHelper;	
+public final class StdFeedefEnforceCategServ implements ActionStdV1<FeedefInfo> {
+	private ActionStdV1<FeedefInfo> actionHelper;	
 	
 	
 	public StdFeedefEnforceCategServ(DeciTreeOption<FeedefInfo> option) {			
@@ -17,7 +17,7 @@ public final class StdFeedefEnforceCategServ implements ActionStd<FeedefInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<FeedefInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<FeedefInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

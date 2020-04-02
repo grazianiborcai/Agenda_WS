@@ -1,14 +1,14 @@
 package br.com.mind5.business.planningTime.model.action;
 
 import br.com.mind5.business.planningTime.info.PlanimeInfo;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperMerge;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class StdPlanimeMergeWeekday implements ActionStd<PlanimeInfo> {
-	private ActionStd<PlanimeInfo> actionHelper;	
+final class StdPlanimeMergeWeekday implements ActionStdV1<PlanimeInfo> {
+	private ActionStdV1<PlanimeInfo> actionHelper;	
 	
 	
 	public StdPlanimeMergeWeekday(DeciTreeOption<PlanimeInfo> option) {			
@@ -17,7 +17,7 @@ final class StdPlanimeMergeWeekday implements ActionStd<PlanimeInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<PlanimeInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<PlanimeInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

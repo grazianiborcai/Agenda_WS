@@ -3,7 +3,7 @@ package br.com.mind5.payment.refundOrder.model.action;
 import java.sql.Connection;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.refundOrder.info.RefuInfo;
@@ -19,7 +19,7 @@ final class VisiRefuRefundRefem extends ActionVisitorTemplateAction<RefuInfo, Re
 	
 	
 	
-	@Override protected ActionStd<RefemInfo> getActionHook(DeciTreeOption<RefemInfo> option) {
+	@Override protected ActionStdV1<RefemInfo> getActionHook(DeciTreeOption<RefemInfo> option) {
 		return new RootRefemRefund(option).toAction();
 	}
 	

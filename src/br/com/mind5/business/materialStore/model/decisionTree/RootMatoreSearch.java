@@ -7,8 +7,8 @@ import br.com.mind5.business.materialStore.info.MatoreInfo;
 import br.com.mind5.business.materialStore.model.action.LazyMatoreRootSelect;
 import br.com.mind5.business.materialStore.model.action.StdMatoreMergeMatorarch;
 import br.com.mind5.business.materialStore.model.checker.MatoreCheckDummy;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -34,11 +34,11 @@ public final class RootMatoreSearch extends DeciTreeReadTemplate<MatoreInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<MatoreInfo>> buildActionsOnPassedHook(DeciTreeOption<MatoreInfo> option) {
-		List<ActionStd<MatoreInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<MatoreInfo>> buildActionsOnPassedHook(DeciTreeOption<MatoreInfo> option) {
+		List<ActionStdV1<MatoreInfo>> actions = new ArrayList<>();
 		
-		ActionStd<MatoreInfo> mergeMatorarch = new StdMatoreMergeMatorarch(option);
-		ActionLazy<MatoreInfo> select = new LazyMatoreRootSelect(option.conn, option.schemaName);	
+		ActionStdV1<MatoreInfo> mergeMatorarch = new StdMatoreMergeMatorarch(option);
+		ActionLazyV1<MatoreInfo> select = new LazyMatoreRootSelect(option.conn, option.schemaName);	
 		
 		mergeMatorarch.addPostAction(select);
 		

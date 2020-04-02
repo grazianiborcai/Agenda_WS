@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.masterData.info.BusinessInfo;
 import br.com.mind5.business.masterData.model.action.StdBusinessSelect;
 import br.com.mind5.business.masterData.model.checker.BusinessCheckRead;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -38,10 +38,10 @@ public final class RootBusinessSelect extends DeciTreeReadTemplate<BusinessInfo>
 
 		
 	
-	@Override protected List<ActionStd<BusinessInfo>> buildActionsOnPassedHook(DeciTreeOption<BusinessInfo> option) {
-		List<ActionStd<BusinessInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<BusinessInfo>> buildActionsOnPassedHook(DeciTreeOption<BusinessInfo> option) {
+		List<ActionStdV1<BusinessInfo>> actions = new ArrayList<>();
 		
-		ActionStd<BusinessInfo> select = new StdBusinessSelect(option);
+		ActionStdV1<BusinessInfo> select = new StdBusinessSelect(option);
 		
 		actions.add(select);
 		return actions;

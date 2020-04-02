@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.customerSnapshot.info.CusnapInfo;
 import br.com.mind5.business.customerSnapshot.info.CusnapMerger;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 
 final class VisiCusnapMergeToSelect extends ActionVisitorTemplateMerge<CusnapInfo, CusnapInfo> {
@@ -16,7 +16,7 @@ final class VisiCusnapMergeToSelect extends ActionVisitorTemplateMerge<CusnapInf
 	
 	
 	
-	@Override protected Class<? extends ActionStd<CusnapInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStdV1<CusnapInfo>> getActionClassHook() {
 		return StdCusnapSelect.class;
 	}
 	

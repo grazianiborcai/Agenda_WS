@@ -6,8 +6,8 @@ import java.util.List;
 import br.com.mind5.business.planingData.info.PlanataInfo;
 import br.com.mind5.business.planingData.model.action.LazyPlanataNodeReserve;
 import br.com.mind5.business.planingData.model.checker.PlanataCheckDummy;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -33,11 +33,11 @@ public class RootPlanataSelect extends DeciTreeReadTemplate<PlanataInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<PlanataInfo>> buildActionsOnPassedHook(DeciTreeOption<PlanataInfo> option) {
-		List<ActionStd<PlanataInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV1<PlanataInfo>> buildActionsOnPassedHook(DeciTreeOption<PlanataInfo> option) {
+		List<ActionStdV1<PlanataInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<PlanataInfo> select = new RootPlanataSelectNoReserve(option).toAction();	
-		ActionLazy<PlanataInfo> nodeReserve = new LazyPlanataNodeReserve(option.conn, option.schemaName);
+		ActionStdV1<PlanataInfo> select = new RootPlanataSelectNoReserve(option).toAction();	
+		ActionLazyV1<PlanataInfo> nodeReserve = new LazyPlanataNodeReserve(option.conn, option.schemaName);
 		
 		select.addPostAction(nodeReserve);
 		

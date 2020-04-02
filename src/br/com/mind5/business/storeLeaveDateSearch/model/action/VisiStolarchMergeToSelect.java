@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.storeLeaveDateSearch.info.StolarchInfo;
 import br.com.mind5.business.storeLeaveDateSearch.info.StolarchMerger;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 
 final class VisiStolarchMergeToSelect extends ActionVisitorTemplateMerge<StolarchInfo, StolarchInfo> {
@@ -16,7 +16,7 @@ final class VisiStolarchMergeToSelect extends ActionVisitorTemplateMerge<Stolarc
 	
 	
 	
-	@Override protected Class<? extends ActionStd<StolarchInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStdV1<StolarchInfo>> getActionClassHook() {
 		return StdStolarchSelect.class;
 	}
 	

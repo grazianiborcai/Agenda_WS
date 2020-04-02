@@ -10,8 +10,8 @@ import br.com.mind5.business.phoneSnapshot.model.action.StdPhonapSelect;
 import br.com.mind5.business.phoneSnapshot.model.checker.PhonapCheckLangu;
 import br.com.mind5.business.phoneSnapshot.model.checker.PhonapCheckOwner;
 import br.com.mind5.business.phoneSnapshot.model.checker.PhonapCheckRead;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -57,12 +57,12 @@ public final class RootPhonapSelect extends DeciTreeReadTemplate<PhonapInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<PhonapInfo>> buildActionsOnPassedHook(DeciTreeOption<PhonapInfo> option) {
-		List<ActionStd<PhonapInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV1<PhonapInfo>> buildActionsOnPassedHook(DeciTreeOption<PhonapInfo> option) {
+		List<ActionStdV1<PhonapInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<PhonapInfo> select = new StdPhonapSelect(option);	
-		ActionLazy<PhonapInfo> mergeCountryPhone = new LazyPhonapMergeCountryPhone(option.conn, option.schemaName);
-		ActionLazy<PhonapInfo> mergeForm = new LazyPhonapMergeForm(option.conn, option.schemaName);
+		ActionStdV1<PhonapInfo> select = new StdPhonapSelect(option);	
+		ActionLazyV1<PhonapInfo> mergeCountryPhone = new LazyPhonapMergeCountryPhone(option.conn, option.schemaName);
+		ActionLazyV1<PhonapInfo> mergeForm = new LazyPhonapMergeForm(option.conn, option.schemaName);
 
 		select.addPostAction(mergeCountryPhone);	
 		mergeCountryPhone.addPostAction(mergeForm);

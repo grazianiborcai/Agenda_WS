@@ -13,8 +13,8 @@ import br.com.mind5.business.storeWorkTime.model.checker.StowotmCheckDelete;
 import br.com.mind5.business.storeWorkTime.model.checker.StowotmCheckEmpwotarch;
 import br.com.mind5.business.storeWorkTime.model.checker.StowotmCheckExist;
 import br.com.mind5.business.storeWorkTime.model.checker.StowotmCheckStorauth;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -67,14 +67,14 @@ public final class RootStowotmDelete extends DeciTreeWriteTemplate<StowotmInfo> 
 	
 	
 	
-	@Override protected List<ActionStd<StowotmInfo>> buildActionsOnPassedHook(DeciTreeOption<StowotmInfo> option) {
-		List<ActionStd<StowotmInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<StowotmInfo>> buildActionsOnPassedHook(DeciTreeOption<StowotmInfo> option) {
+		List<ActionStdV1<StowotmInfo>> actions = new ArrayList<>();
 		
-		ActionStd<StowotmInfo> mergeToDelete = new StdStowotmMergeToDelete(option);
-		ActionLazy<StowotmInfo> enforceLChanged = new LazyStowotmEnforceLChanged(option.conn, option.schemaName);
-		ActionLazy<StowotmInfo> enforceLChangedBy = new LazyStowotmMergeUsername(option.conn, option.schemaName);
-		ActionLazy<StowotmInfo> update = new LazyStowotmUpdate(option.conn, option.schemaName);
-		ActionLazy<StowotmInfo> delete = new LazyStowotmDelete(option.conn, option.schemaName);
+		ActionStdV1<StowotmInfo> mergeToDelete = new StdStowotmMergeToDelete(option);
+		ActionLazyV1<StowotmInfo> enforceLChanged = new LazyStowotmEnforceLChanged(option.conn, option.schemaName);
+		ActionLazyV1<StowotmInfo> enforceLChangedBy = new LazyStowotmMergeUsername(option.conn, option.schemaName);
+		ActionLazyV1<StowotmInfo> update = new LazyStowotmUpdate(option.conn, option.schemaName);
+		ActionLazyV1<StowotmInfo> delete = new LazyStowotmDelete(option.conn, option.schemaName);
 		
 		mergeToDelete.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceLChangedBy);

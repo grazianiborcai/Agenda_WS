@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.storeSnapshot.info.StorapInfo;
 import br.com.mind5.business.storeSnapshot.info.StorapMerger;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 
 final class VisiStorapMergeToSelect extends ActionVisitorTemplateMerge<StorapInfo, StorapInfo> {
@@ -16,7 +16,7 @@ final class VisiStorapMergeToSelect extends ActionVisitorTemplateMerge<StorapInf
 	
 	
 	
-	@Override protected Class<? extends ActionStd<StorapInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStdV1<StorapInfo>> getActionClassHook() {
 		return StdStorapSelect.class;
 	}
 	

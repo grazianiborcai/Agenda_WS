@@ -1,14 +1,14 @@
 package br.com.mind5.business.materialTextSearch.model.action;
 
 import br.com.mind5.business.materialTextSearch.info.MatextarchInfo;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperMerge;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdMatextarchMergeToSelect implements ActionStd<MatextarchInfo> {
-	private ActionStd<MatextarchInfo> actionHelper;	
+public final class StdMatextarchMergeToSelect implements ActionStdV1<MatextarchInfo> {
+	private ActionStdV1<MatextarchInfo> actionHelper;	
 	
 	
 	public StdMatextarchMergeToSelect(DeciTreeOption<MatextarchInfo> option) {			
@@ -17,7 +17,7 @@ public final class StdMatextarchMergeToSelect implements ActionStd<MatextarchInf
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<MatextarchInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<MatextarchInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

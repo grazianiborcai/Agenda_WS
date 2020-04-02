@@ -8,8 +8,8 @@ import br.com.mind5.business.order.model.action.LazyOrderEnforceStatusMoip;
 import br.com.mind5.business.order.model.action.StdOrderMergePayord;
 import br.com.mind5.business.order.model.action.StdOrderSuccess;
 import br.com.mind5.business.order.model.checker.OrderCheckHasPayord;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -41,11 +41,11 @@ public final class NodeOrderPayord extends DeciTreeWriteTemplate<OrderInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<OrderInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderInfo> option) {
-		List<ActionStd<OrderInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV1<OrderInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderInfo> option) {
+		List<ActionStdV1<OrderInfo>> actions = new ArrayList<>();		
 
-		ActionStd<OrderInfo> mergePayord = new StdOrderMergePayord(option);
-		ActionLazy<OrderInfo> enforceStatus = new LazyOrderEnforceStatusMoip(option.conn, option.schemaName);
+		ActionStdV1<OrderInfo> mergePayord = new StdOrderMergePayord(option);
+		ActionLazyV1<OrderInfo> enforceStatus = new LazyOrderEnforceStatusMoip(option.conn, option.schemaName);
 		
 		mergePayord.addPostAction(enforceStatus);
 		
@@ -55,10 +55,10 @@ public final class NodeOrderPayord extends DeciTreeWriteTemplate<OrderInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<OrderInfo>> buildActionsOnFailedHook(DeciTreeOption<OrderInfo> option) {
-		List<ActionStd<OrderInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV1<OrderInfo>> buildActionsOnFailedHook(DeciTreeOption<OrderInfo> option) {
+		List<ActionStdV1<OrderInfo>> actions = new ArrayList<>();		
 
-		ActionStd<OrderInfo> success = new StdOrderSuccess(option);
+		ActionStdV1<OrderInfo> success = new StdOrderSuccess(option);
 		
 		actions.add(success);
 		return actions;

@@ -1,14 +1,14 @@
 package br.com.mind5.business.personSearch.model.action;
 
 import br.com.mind5.business.personSearch.info.PerarchInfo;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperEnforce;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdPerarchEnforceCategEmp implements ActionStd<PerarchInfo> {
-	private ActionStd<PerarchInfo> actionHelper;	
+public final class StdPerarchEnforceCategEmp implements ActionStdV1<PerarchInfo> {
+	private ActionStdV1<PerarchInfo> actionHelper;	
 	
 	
 	public StdPerarchEnforceCategEmp(DeciTreeOption<PerarchInfo> option) {			
@@ -17,7 +17,7 @@ public final class StdPerarchEnforceCategEmp implements ActionStd<PerarchInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<PerarchInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<PerarchInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

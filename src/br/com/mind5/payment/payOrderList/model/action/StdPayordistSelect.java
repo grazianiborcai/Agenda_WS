@@ -5,16 +5,16 @@ import java.util.List;
 
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.obsolete.DaoStmtExec_;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperStmt;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.payOrderList.dao.PayordistSelect;
 import br.com.mind5.payment.payOrderList.info.PayordistInfo;
 
-public final class StdPayordistSelect implements ActionStd<PayordistInfo> {
-	private ActionStd<PayordistInfo> actionHelper;
+public final class StdPayordistSelect implements ActionStdV1<PayordistInfo> {
+	private ActionStdV1<PayordistInfo> actionHelper;
 	
 	
 	public StdPayordistSelect(DeciTreeOption<PayordistInfo> option) {
@@ -40,7 +40,7 @@ public final class StdPayordistSelect implements ActionStd<PayordistInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<PayordistInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<PayordistInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

@@ -12,7 +12,7 @@ import br.com.mind5.business.storeWorkTime.model.checker.StowotmCheckStorauth;
 import br.com.mind5.business.storeWorkTime.model.checker.StowotmCheckStore;
 import br.com.mind5.business.storeWorkTime.model.checker.StowotmCheckWeekday;
 import br.com.mind5.business.storeWorkTime.model.checker.StowotmCheckWrite;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -93,10 +93,10 @@ public final class RootStowotmInsert extends DeciTreeWriteTemplate<StowotmInfo> 
 	
 	
 	
-	@Override protected List<ActionStd<StowotmInfo>> buildActionsOnPassedHook(DeciTreeOption<StowotmInfo> option) {
-		List<ActionStd<StowotmInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<StowotmInfo>> buildActionsOnPassedHook(DeciTreeOption<StowotmInfo> option) {
+		List<ActionStdV1<StowotmInfo>> actions = new ArrayList<>();
 		
-		ActionStd<StowotmInfo> nodeInsert = new NodeStowotmInsert(option).toAction();
+		ActionStdV1<StowotmInfo> nodeInsert = new NodeStowotmInsert(option).toAction();
 		
 		actions.add(nodeInsert);
 		return actions;

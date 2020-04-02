@@ -1,14 +1,14 @@
 package br.com.mind5.business.feeOwner.model.action;
 
 import br.com.mind5.business.feeOwner.info.FeewnerInfo;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperMerge;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdFeewnerMergeToSelect implements ActionStd<FeewnerInfo> {
-	private ActionStd<FeewnerInfo> actionHelper;	
+public final class StdFeewnerMergeToSelect implements ActionStdV1<FeewnerInfo> {
+	private ActionStdV1<FeewnerInfo> actionHelper;	
 	
 	
 	public StdFeewnerMergeToSelect(DeciTreeOption<FeewnerInfo> option) {			
@@ -17,7 +17,7 @@ public final class StdFeewnerMergeToSelect implements ActionStd<FeewnerInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<FeewnerInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<FeewnerInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.storeWorkTimeRange.info.StoworgInfo;
 import br.com.mind5.business.storeWorkTimeRange.info.StoworgMerger;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 
 final class VisiStoworgMergeToSelect extends ActionVisitorTemplateMerge<StoworgInfo, StoworgInfo> {
@@ -16,7 +16,7 @@ final class VisiStoworgMergeToSelect extends ActionVisitorTemplateMerge<StoworgI
 	
 	
 	
-	@Override protected Class<? extends ActionStd<StoworgInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStdV1<StoworgInfo>> getActionClassHook() {
 		return StdStoworgSelect.class;
 	}
 	

@@ -1,14 +1,14 @@
 package br.com.mind5.business.scheduleList.model.action;
 
 import br.com.mind5.business.scheduleList.info.SchedistInfo;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperMerge;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdSchedistMergeToSelect implements ActionStd<SchedistInfo> {
-	private ActionStd<SchedistInfo> actionHelper;	
+public final class StdSchedistMergeToSelect implements ActionStdV1<SchedistInfo> {
+	private ActionStdV1<SchedistInfo> actionHelper;	
 	
 	
 	public StdSchedistMergeToSelect(DeciTreeOption<SchedistInfo> option) {			
@@ -17,7 +17,7 @@ public final class StdSchedistMergeToSelect implements ActionStd<SchedistInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<SchedistInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<SchedistInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

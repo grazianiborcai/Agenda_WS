@@ -13,8 +13,8 @@ import br.com.mind5.business.address.model.checker.AddressCheckDelete;
 import br.com.mind5.business.address.model.checker.AddressCheckExist;
 import br.com.mind5.business.address.model.checker.AddressCheckLangu;
 import br.com.mind5.business.address.model.checker.AddressCheckOwner;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -67,14 +67,14 @@ public final class RootAddressDelete extends DeciTreeWriteTemplate<AddressInfo> 
 	
 	
 	
-	@Override protected List<ActionStd<AddressInfo>> buildActionsOnPassedHook(DeciTreeOption<AddressInfo> option) {
-		List<ActionStd<AddressInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV1<AddressInfo>> buildActionsOnPassedHook(DeciTreeOption<AddressInfo> option) {
+		List<ActionStdV1<AddressInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<AddressInfo> mergeToDelete = new StdAddressMergeToDelete(option);	
-		ActionLazy<AddressInfo> enforceLChanged = new LazyAddressEnforceLChanged(option.conn, option.schemaName);
-		ActionLazy<AddressInfo> enforceChangedBy = new LazyAddressMergeUsername(option.conn, option.schemaName);
-		ActionLazy<AddressInfo> update = new LazyAddressUpdate(option.conn, option.schemaName);
-		ActionLazy<AddressInfo> delete = new LazyAddressDelete(option.conn, option.schemaName);
+		ActionStdV1<AddressInfo> mergeToDelete = new StdAddressMergeToDelete(option);	
+		ActionLazyV1<AddressInfo> enforceLChanged = new LazyAddressEnforceLChanged(option.conn, option.schemaName);
+		ActionLazyV1<AddressInfo> enforceChangedBy = new LazyAddressMergeUsername(option.conn, option.schemaName);
+		ActionLazyV1<AddressInfo> update = new LazyAddressUpdate(option.conn, option.schemaName);
+		ActionLazyV1<AddressInfo> delete = new LazyAddressDelete(option.conn, option.schemaName);
 		
 		mergeToDelete.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceChangedBy);

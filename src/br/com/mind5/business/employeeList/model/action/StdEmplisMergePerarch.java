@@ -1,14 +1,14 @@
 package br.com.mind5.business.employeeList.model.action;
 
 import br.com.mind5.business.employeeList.info.EmplisInfo;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperMerge;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdEmplisMergePerarch implements ActionStd<EmplisInfo> {
-	private ActionStd<EmplisInfo> actionHelper;	
+public final class StdEmplisMergePerarch implements ActionStdV1<EmplisInfo> {
+	private ActionStdV1<EmplisInfo> actionHelper;	
 	
 	
 	public StdEmplisMergePerarch(DeciTreeOption<EmplisInfo> option) {			
@@ -17,7 +17,7 @@ public final class StdEmplisMergePerarch implements ActionStd<EmplisInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<EmplisInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<EmplisInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

@@ -8,8 +8,8 @@ import br.com.mind5.business.customer.model.action.LazyCusDeletePhone;
 import br.com.mind5.business.customer.model.action.StdCusMergePhone;
 import br.com.mind5.business.customer.model.action.StdCusSuccess;
 import br.com.mind5.business.customer.model.checker.CusCheckPhonarch;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -41,11 +41,11 @@ public final class NodeCusDeletePhone extends DeciTreeWriteTemplate<CusInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<CusInfo>> buildActionsOnPassedHook(DeciTreeOption<CusInfo> option) {
-		List<ActionStd<CusInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<CusInfo>> buildActionsOnPassedHook(DeciTreeOption<CusInfo> option) {
+		List<ActionStdV1<CusInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CusInfo> mergePhone = new StdCusMergePhone(option);
-		ActionLazy<CusInfo> deletePhone = new LazyCusDeletePhone(option.conn, option.schemaName);
+		ActionStdV1<CusInfo> mergePhone = new StdCusMergePhone(option);
+		ActionLazyV1<CusInfo> deletePhone = new LazyCusDeletePhone(option.conn, option.schemaName);
 		
 		mergePhone.addPostAction(deletePhone);
 		
@@ -55,8 +55,8 @@ public final class NodeCusDeletePhone extends DeciTreeWriteTemplate<CusInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<CusInfo>> buildActionsOnFailedHook(DeciTreeOption<CusInfo> option) {
-		List<ActionStd<CusInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<CusInfo>> buildActionsOnFailedHook(DeciTreeOption<CusInfo> option) {
+		List<ActionStdV1<CusInfo>> actions = new ArrayList<>();
 		
 		actions.add(new StdCusSuccess(option));		
 		return actions;

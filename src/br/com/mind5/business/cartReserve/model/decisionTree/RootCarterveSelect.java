@@ -7,8 +7,8 @@ import br.com.mind5.business.cartReserve.info.CarterveInfo;
 import br.com.mind5.business.cartReserve.model.action.LazyCarterveMergeToSelect;
 import br.com.mind5.business.cartReserve.model.action.StdCarterveEnforceLChanged;
 import br.com.mind5.business.cartReserve.model.checker.CarterveCheckRead;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -40,11 +40,11 @@ public final class RootCarterveSelect extends DeciTreeReadTemplate<CarterveInfo>
 	
 	
 	
-	@Override protected List<ActionStd<CarterveInfo>> buildActionsOnPassedHook(DeciTreeOption<CarterveInfo> option) {
-		List<ActionStd<CarterveInfo>> actions = new ArrayList<>();	
+	@Override protected List<ActionStdV1<CarterveInfo>> buildActionsOnPassedHook(DeciTreeOption<CarterveInfo> option) {
+		List<ActionStdV1<CarterveInfo>> actions = new ArrayList<>();	
 		
-		ActionStd<CarterveInfo> enforceLChanged = new StdCarterveEnforceLChanged(option);
-		ActionLazy<CarterveInfo> select = new LazyCarterveMergeToSelect(option.conn, option.schemaName);
+		ActionStdV1<CarterveInfo> enforceLChanged = new StdCarterveEnforceLChanged(option);
+		ActionLazyV1<CarterveInfo> select = new LazyCarterveMergeToSelect(option.conn, option.schemaName);
 		
 		enforceLChanged.addPostAction(select);
 		

@@ -8,7 +8,7 @@ import br.com.mind5.business.person.model.checker.PersonCheckCpfLength;
 import br.com.mind5.business.person.model.checker.PersonCheckCpfNumber;
 import br.com.mind5.business.person.model.checker.PersonCheckCpfOnlyNumber;
 import br.com.mind5.business.person.model.checker.PersonCheckCpfSequence;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -61,10 +61,10 @@ public final class NodePersonCpfL2 extends DeciTreeWriteTemplate<PersonInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<PersonInfo>> buildActionsOnPassedHook(DeciTreeOption<PersonInfo> option) {
-		List<ActionStd<PersonInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<PersonInfo>> buildActionsOnPassedHook(DeciTreeOption<PersonInfo> option) {
+		List<ActionStdV1<PersonInfo>> actions = new ArrayList<>();
 		
-		ActionStd<PersonInfo> nodeCpfL3 = new NodePersonCpfL3(option).toAction();
+		ActionStdV1<PersonInfo> nodeCpfL3 = new NodePersonCpfL3(option).toAction();
 		actions.add(nodeCpfL3);	
 		
 		return actions;

@@ -5,16 +5,16 @@ import java.util.List;
 
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.obsolete.DaoStmtExec_;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperStmt;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.customerPartnerSearch.dao.CusparchSelect;
 import br.com.mind5.payment.customerPartnerSearch.info.CusparchInfo;
 
-public final class StdCusparchSelect implements ActionStd<CusparchInfo> {
-	private ActionStd<CusparchInfo> actionHelper;
+public final class StdCusparchSelect implements ActionStdV1<CusparchInfo> {
+	private ActionStdV1<CusparchInfo> actionHelper;
 	
 	
 	public StdCusparchSelect(DeciTreeOption<CusparchInfo> option) {
@@ -40,7 +40,7 @@ public final class StdCusparchSelect implements ActionStd<CusparchInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<CusparchInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<CusparchInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

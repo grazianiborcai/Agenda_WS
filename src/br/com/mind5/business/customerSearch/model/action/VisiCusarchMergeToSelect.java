@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.customerSearch.info.CusarchInfo;
 import br.com.mind5.business.customerSearch.info.CusarchMerger;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 
 final class VisiCusarchMergeToSelect extends ActionVisitorTemplateMerge<CusarchInfo, CusarchInfo> {
@@ -16,7 +16,7 @@ final class VisiCusarchMergeToSelect extends ActionVisitorTemplateMerge<CusarchI
 	
 	
 	
-	@Override protected Class<? extends ActionStd<CusarchInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStdV1<CusarchInfo>> getActionClassHook() {
 		return StdCusarchSelect.class;
 	}
 	

@@ -1,14 +1,14 @@
 package br.com.mind5.payment.storePartnerList.model.action;
 
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperMerge;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.storePartnerList.info.StoplisInfo;
 
-public final class StdStoplisMergePaypar implements ActionStd<StoplisInfo> {
-	private ActionStd<StoplisInfo> actionHelper;	
+public final class StdStoplisMergePaypar implements ActionStdV1<StoplisInfo> {
+	private ActionStdV1<StoplisInfo> actionHelper;	
 	
 	
 	public StdStoplisMergePaypar(DeciTreeOption<StoplisInfo> option) {			
@@ -17,7 +17,7 @@ public final class StdStoplisMergePaypar implements ActionStd<StoplisInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<StoplisInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<StoplisInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

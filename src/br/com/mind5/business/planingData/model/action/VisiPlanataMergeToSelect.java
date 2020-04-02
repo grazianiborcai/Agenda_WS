@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.planingData.info.PlanataInfo;
 import br.com.mind5.business.planingData.info.PlanataMerger;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 
 final class VisiPlanataMergeToSelect extends ActionVisitorTemplateMerge<PlanataInfo, PlanataInfo> {
@@ -16,7 +16,7 @@ final class VisiPlanataMergeToSelect extends ActionVisitorTemplateMerge<PlanataI
 	
 	
 	
-	@Override protected Class<? extends ActionStd<PlanataInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStdV1<PlanataInfo>> getActionClassHook() {
 		return StdPlanataSelect.class;
 	}
 	

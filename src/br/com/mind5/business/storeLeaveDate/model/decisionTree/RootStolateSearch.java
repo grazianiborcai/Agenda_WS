@@ -7,8 +7,8 @@ import br.com.mind5.business.storeLeaveDate.info.StolateInfo;
 import br.com.mind5.business.storeLeaveDate.model.action.LazyStolateRootSelect;
 import br.com.mind5.business.storeLeaveDate.model.action.StdStolateMergeStolarch;
 import br.com.mind5.business.storeLeaveDate.model.checker.StolateCheckSearch;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -39,11 +39,11 @@ public final class RootStolateSearch extends DeciTreeReadTemplate<StolateInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<StolateInfo>> buildActionsOnPassedHook(DeciTreeOption<StolateInfo> option) {
-		List<ActionStd<StolateInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<StolateInfo>> buildActionsOnPassedHook(DeciTreeOption<StolateInfo> option) {
+		List<ActionStdV1<StolateInfo>> actions = new ArrayList<>();
 		
-		ActionStd<StolateInfo> mergeStolarch = new StdStolateMergeStolarch(option);
-		ActionLazy<StolateInfo> select = new LazyStolateRootSelect(option.conn, option.schemaName);
+		ActionStdV1<StolateInfo> mergeStolarch = new StdStolateMergeStolarch(option);
+		ActionLazyV1<StolateInfo> select = new LazyStolateRootSelect(option.conn, option.schemaName);
 		
 		mergeStolarch.addPostAction(select);
 		

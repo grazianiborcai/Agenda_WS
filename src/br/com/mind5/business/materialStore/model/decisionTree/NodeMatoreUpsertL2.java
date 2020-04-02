@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.materialStore.info.MatoreInfo;
 import br.com.mind5.business.materialStore.model.checker.MatoreCheckIsService;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -37,10 +37,10 @@ public final class NodeMatoreUpsertL2 extends DeciTreeWriteTemplate<MatoreInfo> 
 	
 	
 	
-	@Override protected List<ActionStd<MatoreInfo>> buildActionsOnPassedHook(DeciTreeOption<MatoreInfo> option) {
-		List<ActionStd<MatoreInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<MatoreInfo>> buildActionsOnPassedHook(DeciTreeOption<MatoreInfo> option) {
+		List<ActionStdV1<MatoreInfo>> actions = new ArrayList<>();
 		
-		ActionStd<MatoreInfo> nodeL3 = new NodeMatoreUpsertL3(option).toAction();		
+		ActionStdV1<MatoreInfo> nodeL3 = new NodeMatoreUpsertL3(option).toAction();		
 		actions.add(nodeL3);
 		
 		return actions;
@@ -48,10 +48,10 @@ public final class NodeMatoreUpsertL2 extends DeciTreeWriteTemplate<MatoreInfo> 
 	
 	
 	
-	@Override protected List<ActionStd<MatoreInfo>> buildActionsOnFailedHook(DeciTreeOption<MatoreInfo> option) {
-		List<ActionStd<MatoreInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<MatoreInfo>> buildActionsOnFailedHook(DeciTreeOption<MatoreInfo> option) {
+		List<ActionStdV1<MatoreInfo>> actions = new ArrayList<>();
 		
-		ActionStd<MatoreInfo> nodeL4 = new NodeMatoreUpsertL4(option).toAction();		
+		ActionStdV1<MatoreInfo> nodeL4 = new NodeMatoreUpsertL4(option).toAction();		
 		actions.add(nodeL4);
 		
 		return actions;

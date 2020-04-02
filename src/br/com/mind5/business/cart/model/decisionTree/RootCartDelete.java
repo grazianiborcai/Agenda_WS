@@ -10,7 +10,7 @@ import br.com.mind5.business.cart.model.checker.CartCheckCartemarch;
 import br.com.mind5.business.cart.model.checker.CartCheckDelete;
 import br.com.mind5.business.cart.model.checker.CartCheckLangu;
 import br.com.mind5.business.cart.model.checker.CartCheckOwner;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -63,11 +63,11 @@ public final class RootCartDelete extends DeciTreeWriteTemplate<CartInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<CartInfo>> buildActionsOnPassedHook(DeciTreeOption<CartInfo> option) {
-		List<ActionStd<CartInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV1<CartInfo>> buildActionsOnPassedHook(DeciTreeOption<CartInfo> option) {
+		List<ActionStdV1<CartInfo>> actions = new ArrayList<>();		
 
-		ActionStd<CartInfo> deleteCartem = new StdCartDeleteCartem(option);
-		ActionStd<CartInfo> delete = new StdCartDelete(option);
+		ActionStdV1<CartInfo> deleteCartem = new StdCartDeleteCartem(option);
+		ActionStdV1<CartInfo> delete = new StdCartDelete(option);
 		
 		actions.add(deleteCartem);
 		actions.add(delete);

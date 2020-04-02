@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.employeeWorkTimeConflict.info.EmpwocoInfo;
 import br.com.mind5.business.employeeWorkTimeConflict.info.EmpwocoMerger;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 
 final class VisiEmpwocoMergeToSelect extends ActionVisitorTemplateMerge<EmpwocoInfo, EmpwocoInfo> {
@@ -16,7 +16,7 @@ final class VisiEmpwocoMergeToSelect extends ActionVisitorTemplateMerge<EmpwocoI
 	
 	
 	
-	@Override protected Class<? extends ActionStd<EmpwocoInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStdV1<EmpwocoInfo>> getActionClassHook() {
 		return StdEmpwocoSelect.class;
 	}
 	

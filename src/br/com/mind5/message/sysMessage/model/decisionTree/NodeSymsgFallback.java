@@ -9,8 +9,8 @@ import br.com.mind5.message.sysMessage.model.action.LazySymsgNodeSelectL1;
 import br.com.mind5.message.sysMessage.model.action.StdSymsgEnforceEnglish;
 import br.com.mind5.message.sysMessage.model.action.StdSymsgRestoreBase;
 import br.com.mind5.message.sysMessage.model.checker.SymsgCheckNotEnglish;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -42,11 +42,11 @@ public final class NodeSymsgFallback extends DeciTreeWriteTemplate<SymsgInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<SymsgInfo>> buildActionsOnPassedHook(DeciTreeOption<SymsgInfo> option) {
-		List<ActionStd<SymsgInfo>> actions = new ArrayList<>();	
+	@Override protected List<ActionStdV1<SymsgInfo>> buildActionsOnPassedHook(DeciTreeOption<SymsgInfo> option) {
+		List<ActionStdV1<SymsgInfo>> actions = new ArrayList<>();	
 		
-		ActionStd<SymsgInfo> enforceEnglish = new StdSymsgEnforceEnglish(option);
-		ActionLazy<SymsgInfo> nodeSelect = new LazySymsgNodeSelectL1(option.conn, option.schemaName);
+		ActionStdV1<SymsgInfo> enforceEnglish = new StdSymsgEnforceEnglish(option);
+		ActionLazyV1<SymsgInfo> nodeSelect = new LazySymsgNodeSelectL1(option.conn, option.schemaName);
 		
 		enforceEnglish.addPostAction(nodeSelect);
 		
@@ -56,12 +56,12 @@ public final class NodeSymsgFallback extends DeciTreeWriteTemplate<SymsgInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<SymsgInfo>> buildActionsOnFailedHook(DeciTreeOption<SymsgInfo> option) {
-		List<ActionStd<SymsgInfo>> actions = new ArrayList<>();	
+	@Override protected List<ActionStdV1<SymsgInfo>> buildActionsOnFailedHook(DeciTreeOption<SymsgInfo> option) {
+		List<ActionStdV1<SymsgInfo>> actions = new ArrayList<>();	
 		
-		ActionStd<SymsgInfo> restoreBase = new StdSymsgRestoreBase(option);
-		ActionLazy<SymsgInfo> enforceError = new LazySymsgEnforceError(option.conn, option.schemaName);
-		ActionLazy<SymsgInfo> nodeSelect = new LazySymsgNodeSelectL1(option.conn, option.schemaName);
+		ActionStdV1<SymsgInfo> restoreBase = new StdSymsgRestoreBase(option);
+		ActionLazyV1<SymsgInfo> enforceError = new LazySymsgEnforceError(option.conn, option.schemaName);
+		ActionLazyV1<SymsgInfo> nodeSelect = new LazySymsgNodeSelectL1(option.conn, option.schemaName);
 		
 		restoreBase.addPostAction(enforceError);
 		enforceError.addPostAction(nodeSelect);

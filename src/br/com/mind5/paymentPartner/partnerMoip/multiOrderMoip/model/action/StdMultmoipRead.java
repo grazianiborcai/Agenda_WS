@@ -2,15 +2,15 @@ package br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.model.action;
 
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.common.SystemMessage;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelper;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.info.MultmoipInfo;
 
-public final class StdMultmoipRead implements ActionStd<MultmoipInfo> {
-	private ActionStd<MultmoipInfo> actionHelper;	
+public final class StdMultmoipRead implements ActionStdV1<MultmoipInfo> {
+	private ActionStdV1<MultmoipInfo> actionHelper;	
 	
 	
 	public StdMultmoipRead(DeciTreeOption<MultmoipInfo> option) {			
@@ -19,7 +19,7 @@ public final class StdMultmoipRead implements ActionStd<MultmoipInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<MultmoipInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<MultmoipInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

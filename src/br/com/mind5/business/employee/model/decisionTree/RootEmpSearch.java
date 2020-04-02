@@ -11,8 +11,8 @@ import br.com.mind5.business.employee.model.action.StdEmpEnforcePersonKey;
 import br.com.mind5.business.employee.model.checker.EmpCheckLangu;
 import br.com.mind5.business.employee.model.checker.EmpCheckOwner;
 import br.com.mind5.business.employee.model.checker.EmpCheckSearch;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -58,13 +58,13 @@ public final class RootEmpSearch extends DeciTreeReadTemplate<EmpInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<EmpInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpInfo> option) {
-		List<ActionStd<EmpInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<EmpInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpInfo> option) {
+		List<ActionStdV1<EmpInfo>> actions = new ArrayList<>();
 
-		ActionStd<EmpInfo> enforcePersonKey = new StdEmpEnforcePersonKey(option);
-		ActionLazy<EmpInfo> mergePerarch = new LazyEmpMergePerarch(option.conn, option.schemaName);
-		ActionLazy<EmpInfo> mergeEmparch = new LazyEmpMergeEmparch(option.conn, option.schemaName);
-		ActionLazy<EmpInfo> select = new LazyEmpRootSelect(option.conn, option.schemaName);
+		ActionStdV1<EmpInfo> enforcePersonKey = new StdEmpEnforcePersonKey(option);
+		ActionLazyV1<EmpInfo> mergePerarch = new LazyEmpMergePerarch(option.conn, option.schemaName);
+		ActionLazyV1<EmpInfo> mergeEmparch = new LazyEmpMergeEmparch(option.conn, option.schemaName);
+		ActionLazyV1<EmpInfo> select = new LazyEmpRootSelect(option.conn, option.schemaName);
 		
 		enforcePersonKey.addPostAction(mergePerarch);
 		mergePerarch.addPostAction(mergeEmparch);

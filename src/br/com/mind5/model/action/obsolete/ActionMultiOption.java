@@ -1,4 +1,4 @@
-package br.com.mind5.model.action;
+package br.com.mind5.model.action.obsolete;
 
 import java.sql.Connection;
 

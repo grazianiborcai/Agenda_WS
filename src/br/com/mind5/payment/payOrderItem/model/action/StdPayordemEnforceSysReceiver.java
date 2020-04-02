@@ -1,14 +1,14 @@
 package br.com.mind5.payment.payOrderItem.model.action;
 
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperEnforce;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.payOrderItem.info.PayordemInfo;
 
-public final class StdPayordemEnforceSysReceiver implements ActionStd<PayordemInfo> {
-	private ActionStd<PayordemInfo> actionHelper;	
+public final class StdPayordemEnforceSysReceiver implements ActionStdV1<PayordemInfo> {
+	private ActionStdV1<PayordemInfo> actionHelper;	
 	
 	
 	public StdPayordemEnforceSysReceiver(DeciTreeOption<PayordemInfo> option) {			
@@ -17,7 +17,7 @@ public final class StdPayordemEnforceSysReceiver implements ActionStd<PayordemIn
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<PayordemInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<PayordemInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

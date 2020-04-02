@@ -2,11 +2,13 @@ package br.com.mind5.model.decisionTree;
 
 import java.util.List;
 
+import br.com.mind5.common.CloneUtil;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
+import br.com.mind5.info.InfoRecord;
 
-public final class DeciResultHelper<T> implements DeciResult<T> {
+public final class DeciResultHelper<T extends InfoRecord> implements DeciResult<T> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
@@ -23,15 +25,34 @@ public final class DeciResultHelper<T> implements DeciResult<T> {
 	
 	
 	
-	public void copyWithoutResultset(DeciResult<?> deciResult) {
-		checkArgument(deciResult);			
+	public void copyFrom(DeciResult<T> source) {
+		checkArgument(source);	
 		clear();
 		
-		if (deciResult.isSuccess() == SUCCESS)
-			buildSuccessMessage(deciResult);
+		isSuccess = source.isSuccess();
 		
-		if (deciResult.isSuccess() == FAILED)
-			buildFailMessage(deciResult);		
+		if (source.isSuccess() == false) {
+			failMessage = source.getFailMessage();
+			failCode = source.getFailCode();
+		}
+		
+		hasResultset = source.hasResultset();
+
+		if (source.hasResultset())
+			resultset = makeClone(source.getResultset());
+	}
+	
+	
+	
+	public void copyWithoutResultset(DeciResult<?> source) {
+		checkArgument(source);			
+		clear();
+		
+		if (source.isSuccess() == SUCCESS)
+			buildSuccessMessage(source);
+		
+		if (source.isSuccess() == FAILED)
+			buildFailMessage(source);		
 	}
 	
 	
@@ -120,30 +141,18 @@ public final class DeciResultHelper<T> implements DeciResult<T> {
 	
 	
 	
-	public void copyFrom(DeciResult<T> sourceResult) {
-		clear();
-		
-		isSuccess = sourceResult.isSuccess();
-		
-		if (sourceResult.isSuccess() == false) {
-			failMessage = sourceResult.getFailMessage();
-			failCode = sourceResult.getFailCode();
-		}
-		
-		hasResultset = sourceResult.hasResultset();
-
-		if (sourceResult.hasResultset()) 
-			resultset = sourceResult.getResultset();
-	}
-	
-	
-	
 	private void clear() {
 		resultset = null;
 		failMessage = null;
 		failCode = DefaultValue.number();
 		isSuccess = null;
 		hasResultset = false;
+	}
+	
+	
+	
+	private List<T> makeClone(List<T> recordInfos) {
+		return CloneUtil.cloneRecords(recordInfos, this.getClass());
 	}
 	
 	

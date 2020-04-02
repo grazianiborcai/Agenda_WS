@@ -17,8 +17,8 @@ import br.com.mind5.business.materialStock.model.checker.MatockCheckOwner;
 import br.com.mind5.business.materialStock.model.checker.MatockCheckStorauth;
 import br.com.mind5.business.materialStock.model.checker.MatockCheckStore;
 import br.com.mind5.business.materialStock.model.checker.MatockCheckWrite;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -99,14 +99,14 @@ public final class RootMatockUpdate extends DeciTreeWriteTemplate<MatockInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<MatockInfo>> buildActionsOnPassedHook(DeciTreeOption<MatockInfo> option) {
-		List<ActionStd<MatockInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<MatockInfo>> buildActionsOnPassedHook(DeciTreeOption<MatockInfo> option) {
+		List<ActionStdV1<MatockInfo>> actions = new ArrayList<>();
 
-		ActionStd<MatockInfo> lockRecord = new StdMatockLock(option);
-		ActionLazy<MatockInfo> mergeToUpdate = new LazyMatockMergeToUpdate(option.conn, option.schemaName);
-		ActionLazy<MatockInfo> enforceLChanged = new LazyMatockEnforceLChanged(option.conn, option.schemaName);	
-		ActionLazy<MatockInfo> balance = new LazyMatockNodeBalanceL1(option.conn, option.schemaName);	
-		ActionLazy<MatockInfo> update = new LazyMatockUpdate(option.conn, option.schemaName);	
+		ActionStdV1<MatockInfo> lockRecord = new StdMatockLock(option);
+		ActionLazyV1<MatockInfo> mergeToUpdate = new LazyMatockMergeToUpdate(option.conn, option.schemaName);
+		ActionLazyV1<MatockInfo> enforceLChanged = new LazyMatockEnforceLChanged(option.conn, option.schemaName);	
+		ActionLazyV1<MatockInfo> balance = new LazyMatockNodeBalanceL1(option.conn, option.schemaName);	
+		ActionLazyV1<MatockInfo> update = new LazyMatockUpdate(option.conn, option.schemaName);	
 		
 		lockRecord.addPostAction(mergeToUpdate);
 		mergeToUpdate.addPostAction(enforceLChanged);

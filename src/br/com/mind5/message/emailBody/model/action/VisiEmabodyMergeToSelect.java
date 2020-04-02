@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.message.emailBody.info.EmabodyInfo;
 import br.com.mind5.message.emailBody.info.EmabodyMerger;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 
 final class VisiEmabodyMergeToSelect extends ActionVisitorTemplateMerge<EmabodyInfo, EmabodyInfo> {
@@ -16,7 +16,7 @@ final class VisiEmabodyMergeToSelect extends ActionVisitorTemplateMerge<EmabodyI
 	
 	
 	
-	@Override protected Class<? extends ActionStd<EmabodyInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStdV1<EmabodyInfo>> getActionClassHook() {
 		return StdEmabodySelect.class;
 	}
 	

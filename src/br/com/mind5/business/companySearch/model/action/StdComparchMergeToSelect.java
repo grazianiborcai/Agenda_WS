@@ -1,14 +1,14 @@
 package br.com.mind5.business.companySearch.model.action;
 
 import br.com.mind5.business.companySearch.info.ComparchInfo;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperMerge;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdComparchMergeToSelect implements ActionStd<ComparchInfo> {
-	private ActionStd<ComparchInfo> actionHelper;	
+public final class StdComparchMergeToSelect implements ActionStdV1<ComparchInfo> {
+	private ActionStdV1<ComparchInfo> actionHelper;	
 	
 	
 	public StdComparchMergeToSelect(DeciTreeOption<ComparchInfo> option) {			
@@ -17,7 +17,7 @@ public final class StdComparchMergeToSelect implements ActionStd<ComparchInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<ComparchInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<ComparchInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

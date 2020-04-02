@@ -1,14 +1,14 @@
 package br.com.mind5.business.owner.model.action;
 
 import br.com.mind5.business.owner.info.OwnerInfo;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperMerge;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class StdOwnerMergeComp implements ActionStd<OwnerInfo> {
-	private ActionStd<OwnerInfo> actionHelper;	
+final class StdOwnerMergeComp implements ActionStdV1<OwnerInfo> {
+	private ActionStdV1<OwnerInfo> actionHelper;	
 	
 	
 	public StdOwnerMergeComp(DeciTreeOption<OwnerInfo> option) {			
@@ -17,7 +17,7 @@ final class StdOwnerMergeComp implements ActionStd<OwnerInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<OwnerInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<OwnerInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

@@ -5,7 +5,7 @@ import java.sql.Connection;
 import br.com.mind5.business.employeeLeaveDate.info.EmplateInfo;
 import br.com.mind5.business.employeeLeaveDate.model.decisionTree.RootEmplateDeleteByEmpos;
 import br.com.mind5.business.employeePosition.info.EmposInfo;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -16,7 +16,7 @@ final class VisiEmposDeleteEmplevate extends ActionVisitorTemplateAction<EmposIn
 	
 	
 	
-	@Override protected ActionStd<EmplateInfo> getActionHook(DeciTreeOption<EmplateInfo> option) {
+	@Override protected ActionStdV1<EmplateInfo> getActionHook(DeciTreeOption<EmplateInfo> option) {
 		return new RootEmplateDeleteByEmpos(option).toAction();
 	}
 }

@@ -1,14 +1,14 @@
 package br.com.mind5.business.form.formPhone.model.action;
 
 import br.com.mind5.business.form.formPhone.info.FormPhoneInfo;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperEnforce;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdFormPhoneEnforceDefault implements ActionStd<FormPhoneInfo> {
-	private ActionStd<FormPhoneInfo> actionHelper;	
+public final class StdFormPhoneEnforceDefault implements ActionStdV1<FormPhoneInfo> {
+	private ActionStdV1<FormPhoneInfo> actionHelper;	
 	
 	
 	public StdFormPhoneEnforceDefault(DeciTreeOption<FormPhoneInfo> option) {			
@@ -17,7 +17,7 @@ public final class StdFormPhoneEnforceDefault implements ActionStd<FormPhoneInfo
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<FormPhoneInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<FormPhoneInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

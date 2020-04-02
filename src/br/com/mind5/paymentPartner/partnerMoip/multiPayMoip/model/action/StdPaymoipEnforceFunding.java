@@ -1,14 +1,14 @@
 package br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.model.action;
 
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperEnforce;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.info.PaymoipInfo;
 
-public final class StdPaymoipEnforceFunding implements ActionStd<PaymoipInfo> {
-	private ActionStd<PaymoipInfo> actionHelper;	
+public final class StdPaymoipEnforceFunding implements ActionStdV1<PaymoipInfo> {
+	private ActionStdV1<PaymoipInfo> actionHelper;	
 	
 	
 	public StdPaymoipEnforceFunding(DeciTreeOption<PaymoipInfo> option) {			
@@ -17,7 +17,7 @@ public final class StdPaymoipEnforceFunding implements ActionStd<PaymoipInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<PaymoipInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<PaymoipInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

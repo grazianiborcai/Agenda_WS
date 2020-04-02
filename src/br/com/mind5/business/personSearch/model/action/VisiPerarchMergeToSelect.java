@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.personSearch.info.PerarchInfo;
 import br.com.mind5.business.personSearch.info.PerarchMerger;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 
 final class VisiPerarchMergeToSelect extends ActionVisitorTemplateMerge<PerarchInfo, PerarchInfo> {
@@ -16,7 +16,7 @@ final class VisiPerarchMergeToSelect extends ActionVisitorTemplateMerge<PerarchI
 	
 	
 	
-	@Override protected Class<? extends ActionStd<PerarchInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStdV1<PerarchInfo>> getActionClassHook() {
 		return StdPerarchSelect.class;
 	}
 	

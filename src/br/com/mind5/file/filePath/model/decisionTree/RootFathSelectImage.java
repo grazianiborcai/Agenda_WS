@@ -7,8 +7,8 @@ import br.com.mind5.file.filePath.info.FathInfo;
 import br.com.mind5.file.filePath.model.action.LazyFathRootSelect;
 import br.com.mind5.file.filePath.model.action.StdFathEnforceCodImage;
 import br.com.mind5.file.filePath.model.checker.FathCheckDummy;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -34,11 +34,11 @@ public final class RootFathSelectImage extends DeciTreeReadTemplate<FathInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<FathInfo>> buildActionsOnPassedHook(DeciTreeOption<FathInfo> option) {
-		List<ActionStd<FathInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<FathInfo>> buildActionsOnPassedHook(DeciTreeOption<FathInfo> option) {
+		List<ActionStdV1<FathInfo>> actions = new ArrayList<>();
 		
-		ActionStd<FathInfo> enforceCodImage = new StdFathEnforceCodImage(option);
-		ActionLazy<FathInfo> select = new LazyFathRootSelect(option.conn, option.schemaName);
+		ActionStdV1<FathInfo> enforceCodImage = new StdFathEnforceCodImage(option);
+		ActionLazyV1<FathInfo> select = new LazyFathRootSelect(option.conn, option.schemaName);
 		
 		enforceCodImage.addPostAction(select);
 		

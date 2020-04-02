@@ -3,8 +3,8 @@ package br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.decsionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -34,11 +34,11 @@ public final class NodeOrdmoipPayordistL1 extends DeciTreeWriteTemplate<OrdmoipI
 	
 	
 	
-	@Override protected List<ActionStd<OrdmoipInfo>> buildActionsOnPassedHook(DeciTreeOption<OrdmoipInfo> option) {
-		List<ActionStd<OrdmoipInfo>> actions = new ArrayList<>();	
+	@Override protected List<ActionStdV1<OrdmoipInfo>> buildActionsOnPassedHook(DeciTreeOption<OrdmoipInfo> option) {
+		List<ActionStdV1<OrdmoipInfo>> actions = new ArrayList<>();	
 		
-		ActionStd<OrdmoipInfo> mergePayordist = new StdOrdmoipMergePayordist(option);	
-		ActionLazy<OrdmoipInfo> nodeL2 = new LazyOrdmoipNodePayordistL2(option.conn, option.schemaName);
+		ActionStdV1<OrdmoipInfo> mergePayordist = new StdOrdmoipMergePayordist(option);	
+		ActionLazyV1<OrdmoipInfo> nodeL2 = new LazyOrdmoipNodePayordistL2(option.conn, option.schemaName);
 		
 		mergePayordist.addPostAction(nodeL2);
 		

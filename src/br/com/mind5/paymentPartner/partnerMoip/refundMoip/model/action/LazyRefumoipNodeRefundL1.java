@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionLazyTemplate;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.paymentPartner.partnerMoip.refundMoip.info.RefumoipInfo;
@@ -24,7 +24,7 @@ public final class LazyRefumoipNodeRefundL1 extends ActionLazyTemplate<RefumoipI
 	
 	
 	
-	@Override protected ActionStd<RefumoipInfo> getInstanceOfActionHook(DeciTreeOption<RefumoipInfo> option) {
+	@Override protected ActionStdV1<RefumoipInfo> getInstanceOfActionHook(DeciTreeOption<RefumoipInfo> option) {
 		return new NodeRefumoipRefundL1(option).toAction();
 	}
 	

@@ -13,8 +13,8 @@ import br.com.mind5.business.customer.model.action.StdCusMergeToSelect;
 import br.com.mind5.business.customer.model.checker.CusCheckLangu;
 import br.com.mind5.business.customer.model.checker.CusCheckOwner;
 import br.com.mind5.business.customer.model.checker.CusCheckRead;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -60,15 +60,15 @@ public final class RootCusSelect extends DeciTreeReadTemplate<CusInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<CusInfo>> buildActionsOnPassedHook(DeciTreeOption<CusInfo> option) {
-		List<ActionStd<CusInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<CusInfo>> buildActionsOnPassedHook(DeciTreeOption<CusInfo> option) {
+		List<ActionStdV1<CusInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CusInfo> select = new StdCusMergeToSelect(option);
-		ActionLazy<CusInfo> mergePerson = new LazyCusMergePerson(option.conn, option.schemaName);
-		ActionLazy<CusInfo> mergeAddress = new LazyCusMergeAddress(option.conn, option.schemaName);
-		ActionLazy<CusInfo> mergePhone = new LazyCusMergePhone(option.conn, option.schemaName);
-		ActionLazy<CusInfo> mergeUser = new LazyCusMergeUser(option.conn, option.schemaName);
-		ActionLazy<CusInfo> mergeFimist = new LazyCusMergeFimist(option.conn, option.schemaName);
+		ActionStdV1<CusInfo> select = new StdCusMergeToSelect(option);
+		ActionLazyV1<CusInfo> mergePerson = new LazyCusMergePerson(option.conn, option.schemaName);
+		ActionLazyV1<CusInfo> mergeAddress = new LazyCusMergeAddress(option.conn, option.schemaName);
+		ActionLazyV1<CusInfo> mergePhone = new LazyCusMergePhone(option.conn, option.schemaName);
+		ActionLazyV1<CusInfo> mergeUser = new LazyCusMergeUser(option.conn, option.schemaName);
+		ActionLazyV1<CusInfo> mergeFimist = new LazyCusMergeFimist(option.conn, option.schemaName);
 		
 		select.addPostAction(mergePerson);
 		mergePerson.addPostAction(mergeAddress);

@@ -3,8 +3,8 @@ package br.com.mind5.payment.statusPayOrderItem.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -41,10 +41,10 @@ public final class NodePaytusemRefresh extends DeciTreeWriteTemplate<PaytusemInf
 	
 	
 	
-	@Override protected List<ActionStd<PaytusemInfo>> buildActionsOnPassedHook(DeciTreeOption<PaytusemInfo> option) {
-		List<ActionStd<PaytusemInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV1<PaytusemInfo>> buildActionsOnPassedHook(DeciTreeOption<PaytusemInfo> option) {
+		List<ActionStdV1<PaytusemInfo>> actions = new ArrayList<>();		
 
-		ActionStd<PaytusemInfo> success = new StdPaytusemSuccess(option);	
+		ActionStdV1<PaytusemInfo> success = new StdPaytusemSuccess(option);	
 		
 		actions.add(success);		
 		return actions;
@@ -52,11 +52,11 @@ public final class NodePaytusemRefresh extends DeciTreeWriteTemplate<PaytusemInf
 	
 	
 	
-	@Override protected List<ActionStd<PaytusemInfo>> buildActionsOnFailedHook(DeciTreeOption<PaytusemInfo> option) {
-		List<ActionStd<PaytusemInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV1<PaytusemInfo>> buildActionsOnFailedHook(DeciTreeOption<PaytusemInfo> option) {
+		List<ActionStdV1<PaytusemInfo>> actions = new ArrayList<>();		
 
-		ActionStd<PaytusemInfo> mergeOrdmoip = new StdPaytusemMergeOrdmoip(option);	
-		ActionLazy<PaytusemInfo> payordemUpdate = new LazyPaytusemPayordemUpdate(option.conn, option.schemaName);
+		ActionStdV1<PaytusemInfo> mergeOrdmoip = new StdPaytusemMergeOrdmoip(option);	
+		ActionLazyV1<PaytusemInfo> payordemUpdate = new LazyPaytusemPayordemUpdate(option.conn, option.schemaName);
 		
 		mergeOrdmoip.addPostAction(payordemUpdate);
 		

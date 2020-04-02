@@ -16,8 +16,8 @@ import br.com.mind5.business.customer.model.checker.CusCheckInsertFromUser;
 import br.com.mind5.business.customer.model.checker.CusCheckLangu;
 import br.com.mind5.business.customer.model.checker.CusCheckOwner;
 import br.com.mind5.business.customer.model.checker.CusCheckUser;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -70,17 +70,17 @@ public final class RootCusInsertFromUser extends DeciTreeWriteTemplate<CusInfo> 
 	
 	
 	
-	@Override protected List<ActionStd<CusInfo>> buildActionsOnPassedHook(DeciTreeOption<CusInfo> option) {
-		List<ActionStd<CusInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV1<CusInfo>> buildActionsOnPassedHook(DeciTreeOption<CusInfo> option) {
+		List<ActionStdV1<CusInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<CusInfo> mergeUser = new StdCusMergeUser(option);
-		ActionLazy<CusInfo> insertCustomer = new LazyCusNodeInsert(option.conn, option.schemaName);
-		ActionLazy<CusInfo> enforceUserData = new LazyCusEnforceUserData(option.conn, option.schemaName);		
-		ActionLazy<CusInfo> insertPerson = new LazyCusNodeInsertPerson(option.conn, option.schemaName);
-		ActionLazy<CusInfo> snapshot = new LazyCusNodeSnapshot(option.conn, option.schemaName);
-		ActionLazy<CusInfo> insertAddress = new LazyCusNodeInsertAddress(option.conn, option.schemaName);
-		ActionLazy<CusInfo> insertPhone = new LazyCusNodeInsertPhone(option.conn, option.schemaName);		
-		ActionLazy<CusInfo> select = new LazyCusRootSelect(option.conn, option.schemaName);	
+		ActionStdV1<CusInfo> mergeUser = new StdCusMergeUser(option);
+		ActionLazyV1<CusInfo> insertCustomer = new LazyCusNodeInsert(option.conn, option.schemaName);
+		ActionLazyV1<CusInfo> enforceUserData = new LazyCusEnforceUserData(option.conn, option.schemaName);		
+		ActionLazyV1<CusInfo> insertPerson = new LazyCusNodeInsertPerson(option.conn, option.schemaName);
+		ActionLazyV1<CusInfo> snapshot = new LazyCusNodeSnapshot(option.conn, option.schemaName);
+		ActionLazyV1<CusInfo> insertAddress = new LazyCusNodeInsertAddress(option.conn, option.schemaName);
+		ActionLazyV1<CusInfo> insertPhone = new LazyCusNodeInsertPhone(option.conn, option.schemaName);		
+		ActionLazyV1<CusInfo> select = new LazyCusRootSelect(option.conn, option.schemaName);	
 		
 		mergeUser.addPostAction(insertCustomer);
 		insertCustomer.addPostAction(enforceUserData);

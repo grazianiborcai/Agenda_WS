@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.planningTime.info.PlanimeInfo;
 import br.com.mind5.model.action.ActionLazyTemplate;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -23,7 +23,7 @@ public final class LazyPlanimeMergeMatlis extends ActionLazyTemplate<PlanimeInfo
 	
 	
 	
-	@Override protected ActionStd<PlanimeInfo> getInstanceOfActionHook(DeciTreeOption<PlanimeInfo> option) {
+	@Override protected ActionStdV1<PlanimeInfo> getInstanceOfActionHook(DeciTreeOption<PlanimeInfo> option) {
 		return new StdPlanimeMergeMatlis(option);
 	}
 	

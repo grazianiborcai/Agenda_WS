@@ -6,8 +6,9 @@ import java.util.List;
 
 import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
+import br.com.mind5.info.InfoRecord;
 
-public final class ActionStdHelperMerge<T> extends ActionStdTemplate<T> {
+public final class ActionStdHelperMerge<T extends InfoRecord> extends ActionStdTemplateV1<T> {
 	private List<T> records;
 	private ActionVisitorMerge<T> visitorMerge;
 	

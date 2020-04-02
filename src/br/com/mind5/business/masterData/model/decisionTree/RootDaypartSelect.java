@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.masterData.info.DaypartInfo;
 import br.com.mind5.business.masterData.model.action.StdDaypartSelect;
 import br.com.mind5.business.masterData.model.checker.DaypartCheckRead;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -38,10 +38,10 @@ public final class RootDaypartSelect extends DeciTreeReadTemplate<DaypartInfo> {
 
 		
 	
-	@Override protected List<ActionStd<DaypartInfo>> buildActionsOnPassedHook(DeciTreeOption<DaypartInfo> option) {
-		List<ActionStd<DaypartInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<DaypartInfo>> buildActionsOnPassedHook(DeciTreeOption<DaypartInfo> option) {
+		List<ActionStdV1<DaypartInfo>> actions = new ArrayList<>();
 		
-		ActionStd<DaypartInfo> select = new StdDaypartSelect(option);
+		ActionStdV1<DaypartInfo> select = new StdDaypartSelect(option);
 		
 		actions.add(select);
 		return actions;

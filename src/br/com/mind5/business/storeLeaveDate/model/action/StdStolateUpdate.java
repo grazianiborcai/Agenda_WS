@@ -7,14 +7,14 @@ import br.com.mind5.business.storeLeaveDate.dao.StolateUpdate;
 import br.com.mind5.business.storeLeaveDate.info.StolateInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.obsolete.DaoStmtExec_;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperStmt;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdStolateUpdate implements ActionStd<StolateInfo> {
-	private ActionStd<StolateInfo> actionHelper;
+public final class StdStolateUpdate implements ActionStdV1<StolateInfo> {
+	private ActionStdV1<StolateInfo> actionHelper;
 	
 	
 	public StdStolateUpdate(DeciTreeOption<StolateInfo> option) {
@@ -40,7 +40,7 @@ public final class StdStolateUpdate implements ActionStd<StolateInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<StolateInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<StolateInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

@@ -7,7 +7,7 @@ import br.com.mind5.business.employeePosition.info.EmposInfo;
 import br.com.mind5.business.employeePosition.model.action.StdEmposDeleteEmpwotm;
 import br.com.mind5.business.employeePosition.model.action.StdEmposSuccess;
 import br.com.mind5.business.employeePosition.model.checker.EmposCheckEmpwotarch;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -39,10 +39,10 @@ public final class NodeEmposDeleteEmpwotm extends DeciTreeWriteTemplate<EmposInf
 	
 	
 	
-	@Override protected List<ActionStd<EmposInfo>> buildActionsOnPassedHook(DeciTreeOption<EmposInfo> option) {
-		List<ActionStd<EmposInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<EmposInfo>> buildActionsOnPassedHook(DeciTreeOption<EmposInfo> option) {
+		List<ActionStdV1<EmposInfo>> actions = new ArrayList<>();
 		
-		ActionStd<EmposInfo> deleteEmpwotm = new StdEmposDeleteEmpwotm(option);
+		ActionStdV1<EmposInfo> deleteEmpwotm = new StdEmposDeleteEmpwotm(option);
 		
 		actions.add(deleteEmpwotm);		
 		return actions;
@@ -50,10 +50,10 @@ public final class NodeEmposDeleteEmpwotm extends DeciTreeWriteTemplate<EmposInf
 	
 	
 	
-	@Override protected List<ActionStd<EmposInfo>> buildActionsOnFailedHook(DeciTreeOption<EmposInfo> option) {
-		List<ActionStd<EmposInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<EmposInfo>> buildActionsOnFailedHook(DeciTreeOption<EmposInfo> option) {
+		List<ActionStdV1<EmposInfo>> actions = new ArrayList<>();
 		
-		ActionStd<EmposInfo> success = new StdEmposSuccess(option);
+		ActionStdV1<EmposInfo> success = new StdEmposSuccess(option);
 		
 		actions.add(success);		
 		return actions;

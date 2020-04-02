@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.masterData.info.SysEnvironInfo;
 import br.com.mind5.business.masterData.model.action.StdSysEnvironSelect;
 import br.com.mind5.business.masterData.model.checker.SysEnvironCheckRead;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -32,10 +32,10 @@ public final class RootSysEnvironSelect extends DeciTreeReadTemplate<SysEnvironI
 	
 	
 	
-	@Override protected List<ActionStd<SysEnvironInfo>> buildActionsOnPassedHook(DeciTreeOption<SysEnvironInfo> option) {
-		List<ActionStd<SysEnvironInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<SysEnvironInfo>> buildActionsOnPassedHook(DeciTreeOption<SysEnvironInfo> option) {
+		List<ActionStdV1<SysEnvironInfo>> actions = new ArrayList<>();
 		
-		ActionStd<SysEnvironInfo> select = new StdSysEnvironSelect(option);
+		ActionStdV1<SysEnvironInfo> select = new StdSysEnvironSelect(option);
 		
 		actions.add(select);
 		return actions;

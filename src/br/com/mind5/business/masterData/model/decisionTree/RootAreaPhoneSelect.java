@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.masterData.info.AreaPhoneInfo;
 import br.com.mind5.business.masterData.model.action.StdAreaPhoneSelect;
 import br.com.mind5.business.masterData.model.checker.AreaPhoneCheckRead;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -38,10 +38,10 @@ public final class RootAreaPhoneSelect extends DeciTreeReadTemplate<AreaPhoneInf
 
 		
 	
-	@Override protected List<ActionStd<AreaPhoneInfo>> buildActionsOnPassedHook(DeciTreeOption<AreaPhoneInfo> option) {
-		List<ActionStd<AreaPhoneInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<AreaPhoneInfo>> buildActionsOnPassedHook(DeciTreeOption<AreaPhoneInfo> option) {
+		List<ActionStdV1<AreaPhoneInfo>> actions = new ArrayList<>();
 		
-		ActionStd<AreaPhoneInfo> select = new StdAreaPhoneSelect(option);
+		ActionStdV1<AreaPhoneInfo> select = new StdAreaPhoneSelect(option);
 		
 		actions.add(select);
 		return actions;

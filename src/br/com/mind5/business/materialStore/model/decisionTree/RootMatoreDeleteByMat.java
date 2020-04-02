@@ -8,8 +8,8 @@ import br.com.mind5.business.materialStore.model.action.LazyMatoreMergeMatorarch
 import br.com.mind5.business.materialStore.model.action.LazyMatoreRootDelete;
 import br.com.mind5.business.materialStore.model.action.StdMatoreEnforceMatKey;
 import br.com.mind5.business.materialStore.model.checker.MatoreCheckDeleteByMat;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -41,12 +41,12 @@ public final class RootMatoreDeleteByMat extends DeciTreeWriteTemplate<MatoreInf
 	
 	
 	
-	@Override protected List<ActionStd<MatoreInfo>> buildActionsOnPassedHook(DeciTreeOption<MatoreInfo> option) {
-		List<ActionStd<MatoreInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV1<MatoreInfo>> buildActionsOnPassedHook(DeciTreeOption<MatoreInfo> option) {
+		List<ActionStdV1<MatoreInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<MatoreInfo> enforceMatKey = new StdMatoreEnforceMatKey(option);
-		ActionLazy<MatoreInfo> mergeMatorarch = new LazyMatoreMergeMatorarch(option.conn, option.schemaName);
-		ActionLazy<MatoreInfo> delete = new LazyMatoreRootDelete(option.conn, option.schemaName);
+		ActionStdV1<MatoreInfo> enforceMatKey = new StdMatoreEnforceMatKey(option);
+		ActionLazyV1<MatoreInfo> mergeMatorarch = new LazyMatoreMergeMatorarch(option.conn, option.schemaName);
+		ActionLazyV1<MatoreInfo> delete = new LazyMatoreRootDelete(option.conn, option.schemaName);
 		
 		enforceMatKey.addPostAction(mergeMatorarch);
 		mergeMatorarch.addPostAction(delete);

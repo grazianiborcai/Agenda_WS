@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.materialText.info.MatextInfo;
 import br.com.mind5.business.materialText.info.MatextMerger;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 
 final class VisiMatextMergeToUpdate extends ActionVisitorTemplateMerge<MatextInfo, MatextInfo> {
@@ -16,7 +16,7 @@ final class VisiMatextMergeToUpdate extends ActionVisitorTemplateMerge<MatextInf
 	
 	
 	
-	@Override protected Class<? extends ActionStd<MatextInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStdV1<MatextInfo>> getActionClassHook() {
 		return StdMatextSelect.class;
 	}
 	

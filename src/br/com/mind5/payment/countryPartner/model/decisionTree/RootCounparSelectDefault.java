@@ -3,8 +3,8 @@ package br.com.mind5.payment.countryPartner.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -41,12 +41,12 @@ public final class RootCounparSelectDefault extends DeciTreeReadTemplate<Counpar
 	
 	
 	
-	@Override protected List<ActionStd<CounparInfo>> buildActionsOnPassedHook(DeciTreeOption<CounparInfo> option) {
-		List<ActionStd<CounparInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<CounparInfo>> buildActionsOnPassedHook(DeciTreeOption<CounparInfo> option) {
+		List<ActionStdV1<CounparInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CounparInfo> enforceDefault = new StdCounparEnforceDefault(option);
-		ActionLazy<CounparInfo> mergeCounparch = new LazyCounparMergeCounparch(option.conn, option.schemaName);
-		ActionLazy<CounparInfo> select = new LazyCounparRootSelect(option.conn, option.schemaName);
+		ActionStdV1<CounparInfo> enforceDefault = new StdCounparEnforceDefault(option);
+		ActionLazyV1<CounparInfo> mergeCounparch = new LazyCounparMergeCounparch(option.conn, option.schemaName);
+		ActionLazyV1<CounparInfo> select = new LazyCounparRootSelect(option.conn, option.schemaName);
 		
 		enforceDefault.addPostAction(mergeCounparch);
 		mergeCounparch.addPostAction(select);

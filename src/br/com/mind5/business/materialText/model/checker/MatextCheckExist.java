@@ -3,7 +3,7 @@ package br.com.mind5.business.materialText.model.checker;
 import br.com.mind5.business.materialText.info.MatextInfo;
 import br.com.mind5.business.materialText.model.action.StdMatextSelect;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -16,8 +16,8 @@ public final class MatextCheckExist extends ModelCheckerTemplateAction<MatextInf
 	
 	
 	
-	@Override protected ActionStd<MatextInfo> buildActionHook(DeciTreeOption<MatextInfo> option) {
-		ActionStd<MatextInfo> select = new StdMatextSelect(option);
+	@Override protected ActionStdV1<MatextInfo> buildActionHook(DeciTreeOption<MatextInfo> option) {
+		ActionStdV1<MatextInfo> select = new StdMatextSelect(option);
 		return select;
 	}
 	

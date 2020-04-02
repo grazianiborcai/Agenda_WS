@@ -1,7 +1,7 @@
 package br.com.mind5.security.username.model.checker;
 
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -16,8 +16,8 @@ public final class UsernameCheckExist extends ModelCheckerTemplateAction<Usernam
 	
 
 	
-	@Override protected ActionStd<UsernameInfo> buildActionHook(DeciTreeOption<UsernameInfo> option) {		
-		ActionStd<UsernameInfo> Select = new StdUsernameSelect(option);
+	@Override protected ActionStdV1<UsernameInfo> buildActionHook(DeciTreeOption<UsernameInfo> option) {		
+		ActionStdV1<UsernameInfo> Select = new StdUsernameSelect(option);
 		return Select;
 	}
 	

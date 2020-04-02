@@ -1,14 +1,14 @@
 package br.com.mind5.paymentPartner.partnerMoip.refundMoip.model.action;
 
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperEnforce;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.paymentPartner.partnerMoip.refundMoip.info.RefumoipInfo;
 
-public final class StdRefumoipEnforceSetupSys implements ActionStd<RefumoipInfo> {
-	private ActionStd<RefumoipInfo> actionHelper;	
+public final class StdRefumoipEnforceSetupSys implements ActionStdV1<RefumoipInfo> {
+	private ActionStdV1<RefumoipInfo> actionHelper;	
 	
 	
 	public StdRefumoipEnforceSetupSys(DeciTreeOption<RefumoipInfo> option) {			
@@ -17,7 +17,7 @@ public final class StdRefumoipEnforceSetupSys implements ActionStd<RefumoipInfo>
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<RefumoipInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<RefumoipInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

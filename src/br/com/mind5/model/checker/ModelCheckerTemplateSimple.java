@@ -10,7 +10,7 @@ import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.InfoRecord;
 import br.com.mind5.message.sysMessage.info.SymsgInfo;
 import br.com.mind5.message.sysMessage.model.decisionTree.RootSymsgSelect;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
 public abstract class ModelCheckerTemplateSimple<T extends InfoRecord> implements ModelChecker<T> {
@@ -150,7 +150,7 @@ public abstract class ModelCheckerTemplateSimple<T extends InfoRecord> implement
 	
 	
 	private SymsgInfo readSymsg(DeciTreeOption<SymsgInfo> option) {
-		ActionStd<SymsgInfo> select = new RootSymsgSelect(option).toAction();
+		ActionStdV1<SymsgInfo> select = new RootSymsgSelect(option).toAction();
 		select.executeAction();		
 		
 		return select.getDecisionResult().getResultset().get(0);

@@ -1,13 +1,16 @@
-package br.com.mind5.model.action;
+package br.com.mind5.model.action.obsolete;
 
 import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
+import br.com.mind5.info.InfoRecord;
+import br.com.mind5.model.action.ActionVisitorAction;
+import br.com.mind5.model.action.ActionVisitorMap;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class ActionMapOption<T,S> {
+public final class ActionMapOption<T extends InfoRecord, S extends InfoRecord> {
 	public Connection conn; 
 	public String schemaName; 
 	public List<T> recordInfos; 
@@ -16,7 +19,7 @@ public final class ActionMapOption<T,S> {
 	
 	
 	
-	public static <T,S> ActionMapOption<T,S> copyFromTreeOption(DeciTreeOption<T> treeOption) {
+	public static <T extends InfoRecord, S extends InfoRecord> ActionMapOption<T,S> copyFromTreeOption(DeciTreeOption<T> treeOption) {
 		checkArgument(treeOption);
 		
 		ActionMapOption<T,S> option = new ActionMapOption<>();

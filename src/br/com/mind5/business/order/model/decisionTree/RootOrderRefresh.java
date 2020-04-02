@@ -12,8 +12,8 @@ import br.com.mind5.business.order.model.checker.OrderCheckLangu;
 import br.com.mind5.business.order.model.checker.OrderCheckOwner;
 import br.com.mind5.business.order.model.checker.OrderCheckPayord;
 import br.com.mind5.business.order.model.checker.OrderCheckRefresh;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -73,12 +73,12 @@ public final class RootOrderRefresh extends DeciTreeWriteTemplate<OrderInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<OrderInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderInfo> option) {
-		List<ActionStd<OrderInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<OrderInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderInfo> option) {
+		List<ActionStdV1<OrderInfo>> actions = new ArrayList<>();
 
-		ActionStd<OrderInfo> mergeToUpdate = new StdOrderMergeToUpdate(option);
-		ActionLazy<OrderInfo> nodeRefresh = new LazyOrderNodeRefresh(option.conn, option.schemaName);
-		ActionLazy<OrderInfo> select = new LazyOrderRootSelect(option.conn, option.schemaName);	
+		ActionStdV1<OrderInfo> mergeToUpdate = new StdOrderMergeToUpdate(option);
+		ActionLazyV1<OrderInfo> nodeRefresh = new LazyOrderNodeRefresh(option.conn, option.schemaName);
+		ActionLazyV1<OrderInfo> select = new LazyOrderRootSelect(option.conn, option.schemaName);	
 		
 		mergeToUpdate.addPostAction(nodeRefresh);
 		nodeRefresh.addPostAction(select);

@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.file.fileImage.info.FimgInfo;
 import br.com.mind5.file.fileImage.model.checker.FimgCheckIsStore;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -37,10 +37,10 @@ public final class NodeFimgCoverOffL1 extends DeciTreeWriteTemplate<FimgInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<FimgInfo>> buildActionsOnPassedHook(DeciTreeOption<FimgInfo> option) {
-		List<ActionStd<FimgInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV1<FimgInfo>> buildActionsOnPassedHook(DeciTreeOption<FimgInfo> option) {
+		List<ActionStdV1<FimgInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<FimgInfo> coverStore = new NodeFimgCoverOffL2(option).toAction();
+		ActionStdV1<FimgInfo> coverStore = new NodeFimgCoverOffL2(option).toAction();
 		
 		actions.add(coverStore);		
 		return actions;
@@ -48,10 +48,10 @@ public final class NodeFimgCoverOffL1 extends DeciTreeWriteTemplate<FimgInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<FimgInfo>> buildActionsOnFailedHook(DeciTreeOption<FimgInfo> option) {
-		List<ActionStd<FimgInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV1<FimgInfo>> buildActionsOnFailedHook(DeciTreeOption<FimgInfo> option) {
+		List<ActionStdV1<FimgInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<FimgInfo> coverMat = new NodeFimgCoverOffL3(option).toAction();
+		ActionStdV1<FimgInfo> coverMat = new NodeFimgCoverOffL3(option).toAction();
 		
 		actions.add(coverMat);		
 		return actions;

@@ -8,7 +8,7 @@ import br.com.mind5.common.SystemMessage;
 import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.info.InfoRecord;
 
-public final class ActionStdHelperStmt<T extends InfoRecord> extends ActionStdTemplate<T> {
+public final class ActionStdHelperStmt<T extends InfoRecord> extends ActionStdTemplateV1<T> {
 	private DaoStmtExec_<T> stmtExec;
 	
 	

@@ -12,7 +12,7 @@ import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.InfoRecord;
 import br.com.mind5.message.sysMessage.info.SymsgInfo;
 import br.com.mind5.message.sysMessage.model.decisionTree.RootSymsgSelect;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -89,7 +89,7 @@ public abstract class ModelCheckerTemplateAction<T extends InfoRecord, S extends
 	
 	private boolean executeAction(T recordInfo, Connection dbConn, String dbSchema) {
 		DeciTreeOption<S> option = buildActionOption(recordInfo, dbConn, dbSchema);
-		ActionStd<S> action = buildActionHook(option);
+		ActionStdV1<S> action = buildActionHook(option);
 		
 		DeciResult<S> actionResult = execute(action);			
 		
@@ -109,7 +109,7 @@ public abstract class ModelCheckerTemplateAction<T extends InfoRecord, S extends
 	
 	
 	
-	protected ActionStd<S> buildActionHook(DeciTreeOption<S> option) {
+	protected ActionStdV1<S> buildActionHook(DeciTreeOption<S> option) {
 		//Template method: to be overwritten by subclasses
 		logException(new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION));
 		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);	
@@ -117,7 +117,7 @@ public abstract class ModelCheckerTemplateAction<T extends InfoRecord, S extends
 	
 	
 	
-	private DeciResult<S> execute(ActionStd<S> action) {
+	private DeciResult<S> execute(ActionStdV1<S> action) {
 		 checkArgument(action);
 		 
 		 action.executeAction();
@@ -255,7 +255,7 @@ public abstract class ModelCheckerTemplateAction<T extends InfoRecord, S extends
 	
 	
 	private SymsgInfo readSymsg(DeciTreeOption<SymsgInfo> option) {
-		ActionStd<SymsgInfo> select = new RootSymsgSelect(option).toAction();
+		ActionStdV1<SymsgInfo> select = new RootSymsgSelect(option).toAction();
 		select.executeAction();		
 		
 		return select.getDecisionResult().getResultset().get(0);
@@ -390,7 +390,7 @@ public abstract class ModelCheckerTemplateAction<T extends InfoRecord, S extends
 	
 	
 	
-	private void checkArgument(ActionStd<S> action) {
+	private void checkArgument(ActionStdV1<S> action) {
 		if (action == null) {
 			logException(new NullPointerException("action" + SystemMessage.NULL_ARGUMENT));
 			throw new NullPointerException("action" + SystemMessage.NULL_ARGUMENT);

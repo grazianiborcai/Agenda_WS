@@ -9,8 +9,8 @@ import br.com.mind5.business.employeePosition.model.action.LazyEmposNodeDeleteEm
 import br.com.mind5.business.employeePosition.model.action.LazyEmposUniquify;
 import br.com.mind5.business.employeePosition.model.action.StdEmposSuccess;
 import br.com.mind5.business.employeePosition.model.checker.EmposCheckEmposarch;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -42,10 +42,10 @@ public final class NodeEmposEmposarch extends DeciTreeWriteTemplate<EmposInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<EmposInfo>> buildActionsOnPassedHook(DeciTreeOption<EmposInfo> option) {
-		List<ActionStd<EmposInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<EmposInfo>> buildActionsOnPassedHook(DeciTreeOption<EmposInfo> option) {
+		List<ActionStdV1<EmposInfo>> actions = new ArrayList<>();
 		
-		ActionStd<EmposInfo> success = new StdEmposSuccess(option);
+		ActionStdV1<EmposInfo> success = new StdEmposSuccess(option);
 		
 		actions.add(success);
 		return actions;		
@@ -53,13 +53,13 @@ public final class NodeEmposEmposarch extends DeciTreeWriteTemplate<EmposInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<EmposInfo>> buildActionsOnFailedHook(DeciTreeOption<EmposInfo> option) {
-		List<ActionStd<EmposInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<EmposInfo>> buildActionsOnFailedHook(DeciTreeOption<EmposInfo> option) {
+		List<ActionStdV1<EmposInfo>> actions = new ArrayList<>();
 		
-		ActionStd<EmposInfo> schedage = new NodeEmposSchedage(option).toAction();
-		ActionLazy<EmposInfo> deleteEmplate = new LazyEmposNodeDeleteEmplate(option.conn, option.schemaName);
-		ActionLazy<EmposInfo> deleteEmpwotm = new LazyEmposNodeDeleteEmpwotm(option.conn, option.schemaName);		
-		ActionLazy<EmposInfo> uniquify = new LazyEmposUniquify(option.conn, option.schemaName);
+		ActionStdV1<EmposInfo> schedage = new NodeEmposSchedage(option).toAction();
+		ActionLazyV1<EmposInfo> deleteEmplate = new LazyEmposNodeDeleteEmplate(option.conn, option.schemaName);
+		ActionLazyV1<EmposInfo> deleteEmpwotm = new LazyEmposNodeDeleteEmpwotm(option.conn, option.schemaName);		
+		ActionLazyV1<EmposInfo> uniquify = new LazyEmposUniquify(option.conn, option.schemaName);
 		
 		schedage.addPostAction(deleteEmplate);
 		schedage.addPostAction(deleteEmpwotm);

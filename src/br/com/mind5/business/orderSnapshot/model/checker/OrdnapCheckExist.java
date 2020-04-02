@@ -3,7 +3,7 @@ package br.com.mind5.business.orderSnapshot.model.checker;
 import br.com.mind5.business.orderSnapshot.info.OrdnapInfo;
 import br.com.mind5.business.orderSnapshot.model.action.StdOrdnapSelect;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -16,8 +16,8 @@ public final class OrdnapCheckExist extends ModelCheckerTemplateAction<OrdnapInf
 	
 
 	
-	@Override protected ActionStd<OrdnapInfo> buildActionHook(DeciTreeOption<OrdnapInfo> option) {
-		ActionStd<OrdnapInfo> select = new StdOrdnapSelect(option);		
+	@Override protected ActionStdV1<OrdnapInfo> buildActionHook(DeciTreeOption<OrdnapInfo> option) {
+		ActionStdV1<OrdnapInfo> select = new StdOrdnapSelect(option);		
 		return select;
 	}
 	

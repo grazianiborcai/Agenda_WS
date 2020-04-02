@@ -7,14 +7,14 @@ import br.com.mind5.business.masterData.dao.CurrencySelect;
 import br.com.mind5.business.masterData.info.CurrencyInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.obsolete.DaoStmtExec_;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperStmt;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdCurrencySelect implements ActionStd<CurrencyInfo> {
-	private ActionStd<CurrencyInfo> actionHelper;
+public final class StdCurrencySelect implements ActionStdV1<CurrencyInfo> {
+	private ActionStdV1<CurrencyInfo> actionHelper;
 	
 	
 	public StdCurrencySelect(DeciTreeOption<CurrencyInfo> option) {
@@ -39,7 +39,7 @@ public final class StdCurrencySelect implements ActionStd<CurrencyInfo> {
 	}
 	
 	
-	@Override public void addPostAction(ActionLazy<CurrencyInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<CurrencyInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

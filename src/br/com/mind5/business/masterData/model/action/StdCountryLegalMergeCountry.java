@@ -1,14 +1,14 @@
 package br.com.mind5.business.masterData.model.action;
 
 import br.com.mind5.business.masterData.info.CountryLegalInfo;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperMerge;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdCountryLegalMergeCountry implements ActionStd<CountryLegalInfo> {
-	private ActionStd<CountryLegalInfo> actionHelper;	
+public final class StdCountryLegalMergeCountry implements ActionStdV1<CountryLegalInfo> {
+	private ActionStdV1<CountryLegalInfo> actionHelper;	
 	
 	
 	public StdCountryLegalMergeCountry(DeciTreeOption<CountryLegalInfo> option) {			
@@ -17,7 +17,7 @@ public final class StdCountryLegalMergeCountry implements ActionStd<CountryLegal
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<CountryLegalInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<CountryLegalInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

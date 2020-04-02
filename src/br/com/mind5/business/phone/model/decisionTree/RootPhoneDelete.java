@@ -11,8 +11,8 @@ import br.com.mind5.business.phone.model.action.LazyPhoneUpdate;
 import br.com.mind5.business.phone.model.action.StdPhoneMergeToDelete;
 import br.com.mind5.business.phone.model.checker.PhoneCheckDelete;
 import br.com.mind5.business.phone.model.checker.PhoneCheckExist;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -51,14 +51,14 @@ public final class RootPhoneDelete extends DeciTreeWriteTemplate<PhoneInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<PhoneInfo>> buildActionsOnPassedHook(DeciTreeOption<PhoneInfo> option) {
-		List<ActionStd<PhoneInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV1<PhoneInfo>> buildActionsOnPassedHook(DeciTreeOption<PhoneInfo> option) {
+		List<ActionStdV1<PhoneInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<PhoneInfo> mergeToDelete = new StdPhoneMergeToDelete(option);	
-		ActionLazy<PhoneInfo> enforceLChanged = new LazyPhoneEnforceLChanged(option.conn, option.schemaName);
-		ActionLazy<PhoneInfo> mergeUsername = new LazyPhoneMergeUsername(option.conn, option.schemaName);
-		ActionLazy<PhoneInfo> update = new LazyPhoneUpdate(option.conn, option.schemaName);
-		ActionLazy<PhoneInfo> delete = new LazyPhoneDelete(option.conn, option.schemaName);
+		ActionStdV1<PhoneInfo> mergeToDelete = new StdPhoneMergeToDelete(option);	
+		ActionLazyV1<PhoneInfo> enforceLChanged = new LazyPhoneEnforceLChanged(option.conn, option.schemaName);
+		ActionLazyV1<PhoneInfo> mergeUsername = new LazyPhoneMergeUsername(option.conn, option.schemaName);
+		ActionLazyV1<PhoneInfo> update = new LazyPhoneUpdate(option.conn, option.schemaName);
+		ActionLazyV1<PhoneInfo> delete = new LazyPhoneDelete(option.conn, option.schemaName);
 		
 		mergeToDelete.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(mergeUsername);

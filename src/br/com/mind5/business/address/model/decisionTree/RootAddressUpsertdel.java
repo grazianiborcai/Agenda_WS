@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.address.model.checker.AddressCheckHasAddress;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -37,10 +37,10 @@ public final class RootAddressUpsertdel extends DeciTreeWriteTemplate<AddressInf
 	
 	
 	
-	@Override protected List<ActionStd<AddressInfo>> buildActionsOnPassedHook(DeciTreeOption<AddressInfo> option) {
-		List<ActionStd<AddressInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV1<AddressInfo>> buildActionsOnPassedHook(DeciTreeOption<AddressInfo> option) {
+		List<ActionStdV1<AddressInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<AddressInfo> update = new NodeAddressUpsertdel(option).toAction();
+		ActionStdV1<AddressInfo> update = new NodeAddressUpsertdel(option).toAction();
 		
 		actions.add(update);		
 		return actions;
@@ -48,10 +48,10 @@ public final class RootAddressUpsertdel extends DeciTreeWriteTemplate<AddressInf
 	
 	
 	
-	@Override protected List<ActionStd<AddressInfo>> buildActionsOnFailedHook(DeciTreeOption<AddressInfo> option) {
-		List<ActionStd<AddressInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV1<AddressInfo>> buildActionsOnFailedHook(DeciTreeOption<AddressInfo> option) {
+		List<ActionStdV1<AddressInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<AddressInfo> insert = new RootAddressInsert(option).toAction();
+		ActionStdV1<AddressInfo> insert = new RootAddressInsert(option).toAction();
 		
 		actions.add(insert);	
 		return actions;

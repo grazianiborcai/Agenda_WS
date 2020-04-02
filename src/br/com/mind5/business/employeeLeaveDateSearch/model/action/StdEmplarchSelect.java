@@ -7,14 +7,14 @@ import br.com.mind5.business.employeeLeaveDateSearch.dao.EmplarchSelect;
 import br.com.mind5.business.employeeLeaveDateSearch.info.EmplarchInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.obsolete.DaoStmtExec_;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperStmt;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdEmplarchSelect implements ActionStd<EmplarchInfo> {
-	ActionStd<EmplarchInfo> actionHelper;
+public final class StdEmplarchSelect implements ActionStdV1<EmplarchInfo> {
+	ActionStdV1<EmplarchInfo> actionHelper;
 	
 	
 	public StdEmplarchSelect(DeciTreeOption<EmplarchInfo> option) {
@@ -40,7 +40,7 @@ public final class StdEmplarchSelect implements ActionStd<EmplarchInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<EmplarchInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<EmplarchInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

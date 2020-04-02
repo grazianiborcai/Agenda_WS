@@ -7,7 +7,7 @@ import br.com.mind5.business.scheduleLine.info.SchedineInfo;
 import br.com.mind5.business.scheduleLine.info.SchedineMerger;
 import br.com.mind5.business.scheduleLineSnapshot.info.SchedinapInfo;
 import br.com.mind5.business.scheduleLineSnapshot.model.decisionTree.RootSchedinapInsert;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -19,7 +19,7 @@ final class VisiSchedineInsertSchedinap extends ActionVisitorTemplateAction<Sche
 	
 	
 	
-	@Override protected ActionStd<SchedinapInfo> getActionHook(DeciTreeOption<SchedinapInfo> option) {
+	@Override protected ActionStdV1<SchedinapInfo> getActionHook(DeciTreeOption<SchedinapInfo> option) {
 		return new RootSchedinapInsert(option).toAction();
 	}
 	

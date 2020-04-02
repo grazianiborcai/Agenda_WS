@@ -1,14 +1,14 @@
 package br.com.mind5.payment.payOrderList.model.action;
 
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperMerge;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.payOrderList.info.PayordistInfo;
 
-public final class StdPayordistMergeToSelect implements ActionStd<PayordistInfo> {
-	private ActionStd<PayordistInfo> actionHelper;	
+public final class StdPayordistMergeToSelect implements ActionStdV1<PayordistInfo> {
+	private ActionStdV1<PayordistInfo> actionHelper;	
 	
 	
 	public StdPayordistMergeToSelect(DeciTreeOption<PayordistInfo> option) {			
@@ -17,7 +17,7 @@ public final class StdPayordistMergeToSelect implements ActionStd<PayordistInfo>
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<PayordistInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<PayordistInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

@@ -8,8 +8,8 @@ import br.com.mind5.business.owner.model.action.LazyOwnerDeletePhone;
 import br.com.mind5.business.owner.model.action.StdOwnerEnforcePhoneKey;
 import br.com.mind5.business.owner.model.action.StdOwnerSuccess;
 import br.com.mind5.business.owner.model.checker.OwnerCheckHasPhone;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -43,11 +43,11 @@ public final class NodeOwnerDeletePhone extends DeciTreeWriteTemplate<OwnerInfo>
 	
 	
 	
-	@Override protected List<ActionStd<OwnerInfo>> buildActionsOnPassedHook(DeciTreeOption<OwnerInfo> option) {
-		List<ActionStd<OwnerInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<OwnerInfo>> buildActionsOnPassedHook(DeciTreeOption<OwnerInfo> option) {
+		List<ActionStdV1<OwnerInfo>> actions = new ArrayList<>();
 		
-		ActionStd<OwnerInfo> enforcePhoneKey = new StdOwnerEnforcePhoneKey(option);
-		ActionLazy<OwnerInfo> deletePhone = new LazyOwnerDeletePhone(option.conn, option.schemaName);
+		ActionStdV1<OwnerInfo> enforcePhoneKey = new StdOwnerEnforcePhoneKey(option);
+		ActionLazyV1<OwnerInfo> deletePhone = new LazyOwnerDeletePhone(option.conn, option.schemaName);
 		
 		enforcePhoneKey.addPostAction(deletePhone);
 		
@@ -57,8 +57,8 @@ public final class NodeOwnerDeletePhone extends DeciTreeWriteTemplate<OwnerInfo>
 	
 	
 	
-	@Override protected List<ActionStd<OwnerInfo>> buildActionsOnFailedHook(DeciTreeOption<OwnerInfo> option) {
-		List<ActionStd<OwnerInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<OwnerInfo>> buildActionsOnFailedHook(DeciTreeOption<OwnerInfo> option) {
+		List<ActionStdV1<OwnerInfo>> actions = new ArrayList<>();
 		
 		actions.add(new StdOwnerSuccess(option));		
 		return actions;

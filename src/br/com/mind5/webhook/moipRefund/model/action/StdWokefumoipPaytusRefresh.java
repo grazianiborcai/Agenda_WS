@@ -1,14 +1,14 @@
 package br.com.mind5.webhook.moipRefund.model.action;
 
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperAction;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.webhook.moipRefund.info.WokefumoipInfo;
 
-public final class StdWokefumoipPaytusRefresh implements ActionStd<WokefumoipInfo> {
-	private ActionStd<WokefumoipInfo> actionHelper;	
+public final class StdWokefumoipPaytusRefresh implements ActionStdV1<WokefumoipInfo> {
+	private ActionStdV1<WokefumoipInfo> actionHelper;	
 	
 	
 	public StdWokefumoipPaytusRefresh(DeciTreeOption<WokefumoipInfo> option) {			
@@ -17,7 +17,7 @@ public final class StdWokefumoipPaytusRefresh implements ActionStd<WokefumoipInf
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<WokefumoipInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<WokefumoipInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

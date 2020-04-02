@@ -3,8 +3,8 @@ package br.com.mind5.paymentPartner.partnerMoip.accessMoip.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -80,11 +80,11 @@ public final class RootAccemoipUrl extends DeciTreeWriteTemplate<AccemoipInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<AccemoipInfo>> buildActionsOnPassedHook(DeciTreeOption<AccemoipInfo> option) {
-		List<ActionStd<AccemoipInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV1<AccemoipInfo>> buildActionsOnPassedHook(DeciTreeOption<AccemoipInfo> option) {
+		List<ActionStdV1<AccemoipInfo>> actions = new ArrayList<>();		
 
-		ActionStd<AccemoipInfo> enforcePayPartner = new StdAccemoipEnforcePayPartner(option);	
-		ActionLazy<AccemoipInfo> nodeUrl = new LazyAccemoipNodeUrl(option.conn, option.schemaName);
+		ActionStdV1<AccemoipInfo> enforcePayPartner = new StdAccemoipEnforcePayPartner(option);	
+		ActionLazyV1<AccemoipInfo> nodeUrl = new LazyAccemoipNodeUrl(option.conn, option.schemaName);
 		
 		enforcePayPartner.addPostAction(nodeUrl);
 		

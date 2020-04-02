@@ -7,7 +7,7 @@ import br.com.mind5.business.materialStock.info.MatockInfo;
 import br.com.mind5.business.materialStock.model.action.StdMatockSuccess;
 import br.com.mind5.business.materialStock.model.checker.MatockCheckBalance;
 import br.com.mind5.business.materialStock.model.checker.MatockCheckLimit;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -46,10 +46,10 @@ public final class NodeMatockBalanceL2 extends DeciTreeWriteTemplate<MatockInfo>
 	
 	
 	
-	@Override protected List<ActionStd<MatockInfo>> buildActionsOnPassedHook(DeciTreeOption<MatockInfo> option) {
-		List<ActionStd<MatockInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<MatockInfo>> buildActionsOnPassedHook(DeciTreeOption<MatockInfo> option) {
+		List<ActionStdV1<MatockInfo>> actions = new ArrayList<>();
 
-		ActionStd<MatockInfo> success = new StdMatockSuccess(option);
+		ActionStdV1<MatockInfo> success = new StdMatockSuccess(option);
 		
 		actions.add(success);
 		return actions;

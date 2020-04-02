@@ -7,14 +7,14 @@ import br.com.mind5.business.cartItemSearch.dao.CartemarchSelect;
 import br.com.mind5.business.cartItemSearch.info.CartemarchInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.obsolete.DaoStmtExec_;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperStmt;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdCartemarchSelect implements ActionStd<CartemarchInfo> {
-	private ActionStd<CartemarchInfo> actionHelper;
+public final class StdCartemarchSelect implements ActionStdV1<CartemarchInfo> {
+	private ActionStdV1<CartemarchInfo> actionHelper;
 	
 	
 	public StdCartemarchSelect(DeciTreeOption<CartemarchInfo> option) {
@@ -40,7 +40,7 @@ public final class StdCartemarchSelect implements ActionStd<CartemarchInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<CartemarchInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<CartemarchInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

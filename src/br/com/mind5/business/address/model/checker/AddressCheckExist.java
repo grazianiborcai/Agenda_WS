@@ -3,7 +3,7 @@ package br.com.mind5.business.address.model.checker;
 import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.address.model.action.StdAddressSelect;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -16,8 +16,8 @@ public final class AddressCheckExist extends ModelCheckerTemplateAction<AddressI
 	
 	
 	
-	@Override protected ActionStd<AddressInfo> buildActionHook(DeciTreeOption<AddressInfo> option) {
-		ActionStd<AddressInfo> actionSelect = new StdAddressSelect(option);
+	@Override protected ActionStdV1<AddressInfo> buildActionHook(DeciTreeOption<AddressInfo> option) {
+		ActionStdV1<AddressInfo> actionSelect = new StdAddressSelect(option);
 		return actionSelect;
 	}
 	

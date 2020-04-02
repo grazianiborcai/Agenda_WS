@@ -7,14 +7,14 @@ import br.com.mind5.business.personSearch.dao.PerarchSelect;
 import br.com.mind5.business.personSearch.info.PerarchInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.obsolete.DaoStmtExec_;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperStmt;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdPerarchSelect implements ActionStd<PerarchInfo> {
-	ActionStd<PerarchInfo> actionHelper;
+public final class StdPerarchSelect implements ActionStdV1<PerarchInfo> {
+	ActionStdV1<PerarchInfo> actionHelper;
 	
 	
 	public StdPerarchSelect(DeciTreeOption<PerarchInfo> option) {
@@ -40,7 +40,7 @@ public final class StdPerarchSelect implements ActionStd<PerarchInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<PerarchInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<PerarchInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

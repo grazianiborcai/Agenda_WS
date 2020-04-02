@@ -3,8 +3,8 @@ package br.com.mind5.payment.payOrder.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -81,13 +81,13 @@ public final class RootPayordPay extends DeciTreeWriteTemplate<PayordInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<PayordInfo>> buildActionsOnPassedHook(DeciTreeOption<PayordInfo> option) {
-		List<ActionStd<PayordInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV1<PayordInfo>> buildActionsOnPassedHook(DeciTreeOption<PayordInfo> option) {
+		List<ActionStdV1<PayordInfo>> actions = new ArrayList<>();		
 		//TODO: Refresh Latest ???
-		ActionStd<PayordInfo> nodeUser = new NodePayordUserL1(option).toAction();
-		ActionLazy<PayordInfo> nodeOrder = new LazyPayordNodeOrder(option.conn, option.schemaName);
-		ActionLazy<PayordInfo> nodeInsert = new LazyPayordNodeInsert(option.conn, option.schemaName);
-		ActionLazy<PayordInfo> nodePay = new LazyPayordNodePay(option.conn, option.schemaName);		
+		ActionStdV1<PayordInfo> nodeUser = new NodePayordUserL1(option).toAction();
+		ActionLazyV1<PayordInfo> nodeOrder = new LazyPayordNodeOrder(option.conn, option.schemaName);
+		ActionLazyV1<PayordInfo> nodeInsert = new LazyPayordNodeInsert(option.conn, option.schemaName);
+		ActionLazyV1<PayordInfo> nodePay = new LazyPayordNodePay(option.conn, option.schemaName);		
 		
 		nodeUser.addPostAction(nodeOrder);
 		nodeOrder.addPostAction(nodeInsert);

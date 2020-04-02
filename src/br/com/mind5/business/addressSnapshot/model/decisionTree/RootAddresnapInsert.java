@@ -9,8 +9,8 @@ import br.com.mind5.business.addressSnapshot.model.action.LazyAddresnapRootSelec
 import br.com.mind5.business.addressSnapshot.model.checker.AddresnapCheckAddress;
 import br.com.mind5.business.addressSnapshot.model.checker.AddresnapCheckOwner;
 import br.com.mind5.business.addressSnapshot.model.checker.AddresnapCheckWrite;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -56,12 +56,12 @@ public final class RootAddresnapInsert extends DeciTreeWriteTemplate<AddresnapIn
 	
 	
 	
-	@Override protected List<ActionStd<AddresnapInfo>> buildActionsOnPassedHook(DeciTreeOption<AddresnapInfo> option) {
-		List<ActionStd<AddresnapInfo>> actions = new ArrayList<>();	
+	@Override protected List<ActionStdV1<AddresnapInfo>> buildActionsOnPassedHook(DeciTreeOption<AddresnapInfo> option) {
+		List<ActionStdV1<AddresnapInfo>> actions = new ArrayList<>();	
 		
-		ActionStd<AddresnapInfo> nodeUser = new NodeAddresnapUselis(option).toAction();	
-		ActionLazy<AddresnapInfo> insert = new LazyAddresnapInsert(option.conn, option.schemaName);		
-		ActionLazy<AddresnapInfo> select = new LazyAddresnapRootSelect(option.conn, option.schemaName);
+		ActionStdV1<AddresnapInfo> nodeUser = new NodeAddresnapUselis(option).toAction();	
+		ActionLazyV1<AddresnapInfo> insert = new LazyAddresnapInsert(option.conn, option.schemaName);		
+		ActionLazyV1<AddresnapInfo> select = new LazyAddresnapRootSelect(option.conn, option.schemaName);
 		
 		nodeUser.addPostAction(insert);
 		insert.addPostAction(select);

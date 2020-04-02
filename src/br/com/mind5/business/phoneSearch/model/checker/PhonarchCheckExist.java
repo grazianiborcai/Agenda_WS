@@ -3,7 +3,7 @@ package br.com.mind5.business.phoneSearch.model.checker;
 import br.com.mind5.business.phoneSearch.info.PhonarchInfo;
 import br.com.mind5.business.phoneSearch.model.decisionTree.RootPhonarchSelect;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -16,8 +16,8 @@ public final class PhonarchCheckExist extends ModelCheckerTemplateAction<Phonarc
 	
 	
 	
-	@Override protected ActionStd<PhonarchInfo> buildActionHook(DeciTreeOption<PhonarchInfo> option) {
-		ActionStd<PhonarchInfo> select = new RootPhonarchSelect(option).toAction();
+	@Override protected ActionStdV1<PhonarchInfo> buildActionHook(DeciTreeOption<PhonarchInfo> option) {
+		ActionStdV1<PhonarchInfo> select = new RootPhonarchSelect(option).toAction();
 		return select;
 	}
 	

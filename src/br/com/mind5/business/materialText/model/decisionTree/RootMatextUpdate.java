@@ -16,8 +16,8 @@ import br.com.mind5.business.materialText.model.checker.MatextCheckLangu;
 import br.com.mind5.business.materialText.model.checker.MatextCheckMat;
 import br.com.mind5.business.materialText.model.checker.MatextCheckOwner;
 import br.com.mind5.business.materialText.model.checker.MatextCheckWrite;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -77,16 +77,16 @@ public final class RootMatextUpdate extends DeciTreeWriteTemplate<MatextInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<MatextInfo>> buildActionsOnPassedHook(DeciTreeOption<MatextInfo> option) {
-		List<ActionStd<MatextInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<MatextInfo>> buildActionsOnPassedHook(DeciTreeOption<MatextInfo> option) {
+		List<ActionStdV1<MatextInfo>> actions = new ArrayList<>();
 
-		ActionStd<MatextInfo> mergeToUpdate = new StdMatextMergeToUpdate(option);
-		ActionLazy<MatextInfo> nodeDefault = new LazyMatextNodeDefaultL1(option.conn, option.schemaName);
-		ActionLazy<MatextInfo> enforceLChanged = new LazyMatextEnforceLChanged(option.conn, option.schemaName);	
-		ActionLazy<MatextInfo> enforceLChangedBy = new LazyMatextMergeUsername(option.conn, option.schemaName);
-		ActionLazy<MatextInfo> enforceTxtSearch = new LazyMatextEnforceTxtSearch(option.conn, option.schemaName);
-		ActionLazy<MatextInfo> update = new LazyMatextUpdate(option.conn, option.schemaName);
-		ActionLazy<MatextInfo> select = new LazyMatextRootSelect(option.conn, option.schemaName);	
+		ActionStdV1<MatextInfo> mergeToUpdate = new StdMatextMergeToUpdate(option);
+		ActionLazyV1<MatextInfo> nodeDefault = new LazyMatextNodeDefaultL1(option.conn, option.schemaName);
+		ActionLazyV1<MatextInfo> enforceLChanged = new LazyMatextEnforceLChanged(option.conn, option.schemaName);	
+		ActionLazyV1<MatextInfo> enforceLChangedBy = new LazyMatextMergeUsername(option.conn, option.schemaName);
+		ActionLazyV1<MatextInfo> enforceTxtSearch = new LazyMatextEnforceTxtSearch(option.conn, option.schemaName);
+		ActionLazyV1<MatextInfo> update = new LazyMatextUpdate(option.conn, option.schemaName);
+		ActionLazyV1<MatextInfo> select = new LazyMatextRootSelect(option.conn, option.schemaName);	
 		
 		mergeToUpdate.addPostAction(nodeDefault);
 		nodeDefault.addPostAction(enforceLChanged);

@@ -3,7 +3,7 @@ package br.com.mind5.payment.countryPartnerSearch.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -38,10 +38,10 @@ public final class RootCounparchSelect extends DeciTreeReadTemplate<CounparchInf
 	
 	
 	
-	@Override protected List<ActionStd<CounparchInfo>> buildActionsOnPassedHook(DeciTreeOption<CounparchInfo> option) {
-		List<ActionStd<CounparchInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<CounparchInfo>> buildActionsOnPassedHook(DeciTreeOption<CounparchInfo> option) {
+		List<ActionStdV1<CounparchInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CounparchInfo> select = new StdCounparchSelect(option);
+		ActionStdV1<CounparchInfo> select = new StdCounparchSelect(option);
 		
 		actions.add(select);
 		return actions;

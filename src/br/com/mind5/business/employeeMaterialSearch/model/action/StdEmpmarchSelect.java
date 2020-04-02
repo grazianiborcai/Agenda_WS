@@ -7,14 +7,14 @@ import br.com.mind5.business.employeeMaterialSearch.dao.EmpmarchSelect;
 import br.com.mind5.business.employeeMaterialSearch.info.EmpmarchInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.obsolete.DaoStmtExec_;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperStmt;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdEmpmarchSelect implements ActionStd<EmpmarchInfo> {
-	private ActionStd<EmpmarchInfo> actionHelper;
+public final class StdEmpmarchSelect implements ActionStdV1<EmpmarchInfo> {
+	private ActionStdV1<EmpmarchInfo> actionHelper;
 	
 	
 	public StdEmpmarchSelect(DeciTreeOption<EmpmarchInfo> option) {
@@ -40,7 +40,7 @@ public final class StdEmpmarchSelect implements ActionStd<EmpmarchInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<EmpmarchInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<EmpmarchInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

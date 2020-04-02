@@ -1,7 +1,7 @@
 package br.com.mind5.payment.storePartner.model.checker;
 
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -16,8 +16,8 @@ public final class StoparCheckExist extends ModelCheckerTemplateAction<StoparInf
 	
 
 	
-	@Override protected ActionStd<StoparInfo> buildActionHook(DeciTreeOption<StoparInfo> option) {
-		ActionStd<StoparInfo> select = new StdStoparSelect(option);
+	@Override protected ActionStdV1<StoparInfo> buildActionHook(DeciTreeOption<StoparInfo> option) {
+		ActionStdV1<StoparInfo> select = new StdStoparSelect(option);
 		return select;
 	}
 	

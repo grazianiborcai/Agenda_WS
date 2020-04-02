@@ -5,12 +5,13 @@ import java.util.List;
 
 import javax.ws.rs.core.Response;
 
+import br.com.mind5.info.InfoRecord;
 import br.com.mind5.json.JsonResponseMaker;
 import br.com.mind5.json.standard.JstdResponseMaker;
 import br.com.mind5.model.ModelResponse;
 import br.com.mind5.model.decisionTree.DeciResult;
 
-public final class ModelResponseUnauthorized<T> implements ModelResponse<T> {
+public final class ModelResponseUnauthorized<T extends InfoRecord> implements ModelResponse<T> {
 	
 	@Override public void addTreeResults(List<DeciResult<T>> results) {
 		//DO NOTHING

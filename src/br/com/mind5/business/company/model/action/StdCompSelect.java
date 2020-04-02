@@ -7,14 +7,14 @@ import br.com.mind5.business.company.dao.CompSelect;
 import br.com.mind5.business.company.info.CompInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.obsolete.DaoStmtExec_;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperStmt;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdCompSelect implements ActionStd<CompInfo> {
-	ActionStd<CompInfo> actionHelper;
+public final class StdCompSelect implements ActionStdV1<CompInfo> {
+	ActionStdV1<CompInfo> actionHelper;
 	
 	
 	public StdCompSelect(DeciTreeOption<CompInfo> option) {
@@ -40,7 +40,7 @@ public final class StdCompSelect implements ActionStd<CompInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<CompInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<CompInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

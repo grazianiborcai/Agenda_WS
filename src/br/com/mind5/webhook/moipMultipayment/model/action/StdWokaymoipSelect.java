@@ -5,16 +5,16 @@ import java.util.List;
 
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.obsolete.DaoStmtExec_;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperStmt;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.webhook.moipMultipayment.dao.WokaymoipSelect;
 import br.com.mind5.webhook.moipMultipayment.info.WokaymoipInfo;
 
-public final class StdWokaymoipSelect implements ActionStd<WokaymoipInfo> {
-	private ActionStd<WokaymoipInfo> actionHelper;
+public final class StdWokaymoipSelect implements ActionStdV1<WokaymoipInfo> {
+	private ActionStdV1<WokaymoipInfo> actionHelper;
 	
 	
 	public StdWokaymoipSelect(DeciTreeOption<WokaymoipInfo> option) {
@@ -40,7 +40,7 @@ public final class StdWokaymoipSelect implements ActionStd<WokaymoipInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<WokaymoipInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<WokaymoipInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

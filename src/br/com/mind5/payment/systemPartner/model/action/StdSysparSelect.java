@@ -5,16 +5,16 @@ import java.util.List;
 
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.obsolete.DaoStmtExec_;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperStmt;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.systemPartner.dao.SysparSelect;
 import br.com.mind5.payment.systemPartner.info.SysparInfo;
 
-public final class StdSysparSelect implements ActionStd<SysparInfo> {
-	private ActionStd<SysparInfo> actionHelper;
+public final class StdSysparSelect implements ActionStdV1<SysparInfo> {
+	private ActionStdV1<SysparInfo> actionHelper;
 	
 	
 	public StdSysparSelect(DeciTreeOption<SysparInfo> option) {
@@ -40,7 +40,7 @@ public final class StdSysparSelect implements ActionStd<SysparInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<SysparInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<SysparInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

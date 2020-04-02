@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.companySnapshot.info.CompnapInfo;
 import br.com.mind5.business.companySnapshot.info.CompnapMerger;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 
 final class VisiCompnapMergeToSelect extends ActionVisitorTemplateMerge<CompnapInfo, CompnapInfo> {
@@ -16,7 +16,7 @@ final class VisiCompnapMergeToSelect extends ActionVisitorTemplateMerge<CompnapI
 	
 	
 	
-	@Override protected Class<? extends ActionStd<CompnapInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStdV1<CompnapInfo>> getActionClassHook() {
 		return StdCompnapSelect.class;
 	}
 	

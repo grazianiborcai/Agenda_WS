@@ -1,14 +1,14 @@
 package br.com.mind5.business.materialText.model.action;
 
 import br.com.mind5.business.materialText.info.MatextInfo;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperEnforce;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdMatextEnforceDel implements ActionStd<MatextInfo> {
-	private ActionStd<MatextInfo> actionHelper;	
+public final class StdMatextEnforceDel implements ActionStdV1<MatextInfo> {
+	private ActionStdV1<MatextInfo> actionHelper;	
 	
 	
 	public StdMatextEnforceDel(DeciTreeOption<MatextInfo> option) {			
@@ -17,7 +17,7 @@ public final class StdMatextEnforceDel implements ActionStd<MatextInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<MatextInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<MatextInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

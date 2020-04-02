@@ -4,8 +4,8 @@ import br.com.mind5.business.materialStore.info.MatoreInfo;
 import br.com.mind5.business.materialStore.model.action.LazyMatoreSelect;
 import br.com.mind5.business.materialStore.model.action.StdMatoreEnforceDel;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -18,9 +18,9 @@ public final class MatoreCheckSoftDelete extends ModelCheckerTemplateAction<Mato
 	
 	
 	
-	@Override protected ActionStd<MatoreInfo> buildActionHook(DeciTreeOption<MatoreInfo> option) {	
-		ActionStd<MatoreInfo> enforceDel = new StdMatoreEnforceDel(option);
-		ActionLazy<MatoreInfo> select = new LazyMatoreSelect(option.conn, option.schemaName);
+	@Override protected ActionStdV1<MatoreInfo> buildActionHook(DeciTreeOption<MatoreInfo> option) {	
+		ActionStdV1<MatoreInfo> enforceDel = new StdMatoreEnforceDel(option);
+		ActionLazyV1<MatoreInfo> select = new LazyMatoreSelect(option.conn, option.schemaName);
 		
 		enforceDel.addPostAction(select);
 		

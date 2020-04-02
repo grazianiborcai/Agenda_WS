@@ -7,14 +7,14 @@ import br.com.mind5.business.masterData.dao.MonthSelect;
 import br.com.mind5.business.masterData.info.MonthInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.obsolete.DaoStmtExec_;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperStmt;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdMonthSelect implements ActionStd<MonthInfo> {
-	private ActionStd<MonthInfo> actionHelper;
+public final class StdMonthSelect implements ActionStdV1<MonthInfo> {
+	private ActionStdV1<MonthInfo> actionHelper;
 	
 	
 	public StdMonthSelect(DeciTreeOption<MonthInfo> option) {
@@ -40,7 +40,7 @@ public final class StdMonthSelect implements ActionStd<MonthInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<MonthInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<MonthInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

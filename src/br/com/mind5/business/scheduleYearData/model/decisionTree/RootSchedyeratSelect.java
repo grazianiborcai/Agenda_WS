@@ -7,8 +7,8 @@ import br.com.mind5.business.scheduleYearData.info.SchedyeratInfo;
 import br.com.mind5.business.scheduleYearData.model.action.LazySchedyeratMergeMonth;
 import br.com.mind5.business.scheduleYearData.model.action.StdSchedyeratMergeToSelect;
 import br.com.mind5.business.scheduleYearData.model.checker.SchedyeratCheckRead;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -40,11 +40,11 @@ public final class RootSchedyeratSelect extends DeciTreeWriteTemplate<Schedyerat
 	
 	
 	
-	@Override protected List<ActionStd<SchedyeratInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedyeratInfo> option) {
-		List<ActionStd<SchedyeratInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<SchedyeratInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedyeratInfo> option) {
+		List<ActionStdV1<SchedyeratInfo>> actions = new ArrayList<>();
 		
-		ActionStd<SchedyeratInfo> mergeToSelect = new StdSchedyeratMergeToSelect(option);
-		ActionLazy<SchedyeratInfo> mergeMonth = new LazySchedyeratMergeMonth(option.conn, option.schemaName);
+		ActionStdV1<SchedyeratInfo> mergeToSelect = new StdSchedyeratMergeToSelect(option);
+		ActionLazyV1<SchedyeratInfo> mergeMonth = new LazySchedyeratMergeMonth(option.conn, option.schemaName);
 		
 		mergeToSelect.addPostAction(mergeMonth);
 		

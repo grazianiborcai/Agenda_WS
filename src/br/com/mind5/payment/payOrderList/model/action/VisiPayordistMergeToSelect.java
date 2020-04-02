@@ -3,7 +3,7 @@ package br.com.mind5.payment.payOrderList.model.action;
 import java.sql.Connection;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.payment.payOrderList.info.PayordistInfo;
 import br.com.mind5.payment.payOrderList.info.PayordistMerger;
@@ -16,7 +16,7 @@ final class VisiPayordistMergeToSelect extends ActionVisitorTemplateMerge<Payord
 	
 	
 	
-	@Override protected Class<? extends ActionStd<PayordistInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStdV1<PayordistInfo>> getActionClassHook() {
 		return StdPayordistSelect.class;
 	}
 	

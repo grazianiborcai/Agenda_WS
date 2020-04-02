@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.storeWorkTimeSearch.info.StowotarchInfo;
 import br.com.mind5.business.storeWorkTimeSearch.info.StowotarchMerger;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 
 final class VisiStowotarchMergeToSelect extends ActionVisitorTemplateMerge<StowotarchInfo, StowotarchInfo> {
@@ -16,7 +16,7 @@ final class VisiStowotarchMergeToSelect extends ActionVisitorTemplateMerge<Stowo
 	
 	
 	
-	@Override protected Class<? extends ActionStd<StowotarchInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStdV1<StowotarchInfo>> getActionClassHook() {
 		return StdStowotarchSelect.class;
 	}
 	

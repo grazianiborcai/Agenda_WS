@@ -16,8 +16,8 @@ import br.com.mind5.business.store.model.checker.StoreCheckLangu;
 import br.com.mind5.business.store.model.checker.StoreCheckOwner;
 import br.com.mind5.business.store.model.checker.StoreCheckTimezone;
 import br.com.mind5.business.store.model.checker.StoreCheckWrite;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -77,18 +77,18 @@ public final class RootStoreInsert extends DeciTreeWriteTemplate<StoreInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<StoreInfo>> buildActionsOnPassedHook(DeciTreeOption<StoreInfo> option) {
-		List<ActionStd<StoreInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<StoreInfo>> buildActionsOnPassedHook(DeciTreeOption<StoreInfo> option) {
+		List<ActionStdV1<StoreInfo>> actions = new ArrayList<>();
 		//TODO: permitir que outro usuario seja associado ou inves de sempre criar um novo ?
 		//TODO: O que fazer se o CPF/e-mail ja tiver associado a um customer/owner/store manager ?
-		ActionStd<StoreInfo> insertStore = new NodeStoreInsert(option).toAction();
-		ActionLazy<StoreInfo> insertPerson = new LazyStoreNodeInsertPerson(option.conn, option.schemaName);	
-		ActionLazy<StoreInfo> insertComp = new LazyStoreNodeInsertComp(option.conn, option.schemaName);
-		ActionLazy<StoreInfo> insertUser = new LazyStoreInsertUser(option.conn, option.schemaName);	
-		ActionLazy<StoreInfo> snapshot = new LazyStoreNodeSnapshot(option.conn, option.schemaName);
-		ActionLazy<StoreInfo> insertAddress = new LazyStoreNodeInsertAddress(option.conn, option.schemaName);
-		ActionLazy<StoreInfo> insertPhone = new LazyStoreNodeInsertPhone(option.conn, option.schemaName);		
-		ActionLazy<StoreInfo> selectStore = new LazyStoreRootSelect(option.conn, option.schemaName);	
+		ActionStdV1<StoreInfo> insertStore = new NodeStoreInsert(option).toAction();
+		ActionLazyV1<StoreInfo> insertPerson = new LazyStoreNodeInsertPerson(option.conn, option.schemaName);	
+		ActionLazyV1<StoreInfo> insertComp = new LazyStoreNodeInsertComp(option.conn, option.schemaName);
+		ActionLazyV1<StoreInfo> insertUser = new LazyStoreInsertUser(option.conn, option.schemaName);	
+		ActionLazyV1<StoreInfo> snapshot = new LazyStoreNodeSnapshot(option.conn, option.schemaName);
+		ActionLazyV1<StoreInfo> insertAddress = new LazyStoreNodeInsertAddress(option.conn, option.schemaName);
+		ActionLazyV1<StoreInfo> insertPhone = new LazyStoreNodeInsertPhone(option.conn, option.schemaName);		
+		ActionLazyV1<StoreInfo> selectStore = new LazyStoreRootSelect(option.conn, option.schemaName);	
 		
 		insertStore.addPostAction(insertPerson);		
 		insertPerson.addPostAction(insertComp);		

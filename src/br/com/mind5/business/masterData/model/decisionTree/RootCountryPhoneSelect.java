@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.masterData.info.CountryPhoneInfo;
 import br.com.mind5.business.masterData.model.action.StdCountryPhoneSelect;
 import br.com.mind5.business.masterData.model.checker.CountryPhoneCheckRead;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -38,10 +38,10 @@ public final class RootCountryPhoneSelect extends DeciTreeReadTemplate<CountryPh
 	
 	
 	
-	@Override protected List<ActionStd<CountryPhoneInfo>> buildActionsOnPassedHook(DeciTreeOption<CountryPhoneInfo> option) {
-		List<ActionStd<CountryPhoneInfo>> actions = new ArrayList<>(); 
+	@Override protected List<ActionStdV1<CountryPhoneInfo>> buildActionsOnPassedHook(DeciTreeOption<CountryPhoneInfo> option) {
+		List<ActionStdV1<CountryPhoneInfo>> actions = new ArrayList<>(); 
 		
-		ActionStd<CountryPhoneInfo> select = new StdCountryPhoneSelect(option);
+		ActionStdV1<CountryPhoneInfo> select = new StdCountryPhoneSelect(option);
 		
 		actions.add(select);
 		return actions;

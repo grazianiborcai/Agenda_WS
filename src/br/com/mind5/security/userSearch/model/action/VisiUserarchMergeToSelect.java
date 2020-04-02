@@ -3,7 +3,7 @@ package br.com.mind5.security.userSearch.model.action;
 import java.sql.Connection;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.security.userSearch.info.UserarchInfo;
 import br.com.mind5.security.userSearch.info.UserarchMerger;
@@ -16,7 +16,7 @@ final class VisiUserarchMergeToSelect extends ActionVisitorTemplateMerge<Userarc
 	
 	
 	
-	@Override protected Class<? extends ActionStd<UserarchInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStdV1<UserarchInfo>> getActionClassHook() {
 		return StdUserarchSelect.class;
 	}
 	

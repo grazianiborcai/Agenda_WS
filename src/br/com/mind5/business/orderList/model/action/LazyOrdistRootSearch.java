@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.orderList.info.OrdistInfo;
 import br.com.mind5.business.orderList.model.decisionTree.RootOrdistSearch;
 import br.com.mind5.model.action.ActionLazyTemplate;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -24,7 +24,7 @@ public final class LazyOrdistRootSearch extends ActionLazyTemplate<OrdistInfo, O
 	
 	
 	
-	@Override protected ActionStd<OrdistInfo> getInstanceOfActionHook(DeciTreeOption<OrdistInfo> option) {
+	@Override protected ActionStdV1<OrdistInfo> getInstanceOfActionHook(DeciTreeOption<OrdistInfo> option) {
 		return new RootOrdistSearch(option).toAction();
 	}
 	

@@ -12,8 +12,8 @@ import br.com.mind5.business.person.model.action.StdPersonMergeToDelete;
 import br.com.mind5.business.person.model.checker.PersonCheckDelete;
 import br.com.mind5.business.person.model.checker.PersonCheckExist;
 import br.com.mind5.business.person.model.checker.PersonCheckLangu;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -59,14 +59,14 @@ public final class RootPersonDelete extends DeciTreeWriteTemplate<PersonInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<PersonInfo>> buildActionsOnPassedHook(DeciTreeOption<PersonInfo> option) {
-		List<ActionStd<PersonInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<PersonInfo>> buildActionsOnPassedHook(DeciTreeOption<PersonInfo> option) {
+		List<ActionStdV1<PersonInfo>> actions = new ArrayList<>();
 		
-		ActionStd<PersonInfo> mergeToDelete = new StdPersonMergeToDelete(option);	
-		ActionLazy<PersonInfo> enforceLChanged = new LazyPersonEnforceLChanged(option.conn, option.schemaName);
-		ActionLazy<PersonInfo> enforceLChangedBy = new LazyPersonMergeUsername(option.conn, option.schemaName);
-		ActionLazy<PersonInfo> updatePerson = new LazyPersonUpdate(option.conn, option.schemaName);
-		ActionLazy<PersonInfo> deletePerson = new LazyPersonDelete(option.conn, option.schemaName);
+		ActionStdV1<PersonInfo> mergeToDelete = new StdPersonMergeToDelete(option);	
+		ActionLazyV1<PersonInfo> enforceLChanged = new LazyPersonEnforceLChanged(option.conn, option.schemaName);
+		ActionLazyV1<PersonInfo> enforceLChangedBy = new LazyPersonMergeUsername(option.conn, option.schemaName);
+		ActionLazyV1<PersonInfo> updatePerson = new LazyPersonUpdate(option.conn, option.schemaName);
+		ActionLazyV1<PersonInfo> deletePerson = new LazyPersonDelete(option.conn, option.schemaName);
 		
 		mergeToDelete.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceLChangedBy);

@@ -8,8 +8,8 @@ import br.com.mind5.business.order.model.action.LazyOrderNodeUpdate;
 import br.com.mind5.business.order.model.action.StdOrderEnforceStatusCancelled;
 import br.com.mind5.business.order.model.action.StdOrderRefuRefund;
 import br.com.mind5.business.order.model.checker.OrderCheckHasPayord;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -41,10 +41,10 @@ public final class NodeOrderCancelL2 extends DeciTreeWriteTemplate<OrderInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<OrderInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderInfo> option) {
-		List<ActionStd<OrderInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<OrderInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderInfo> option) {
+		List<ActionStdV1<OrderInfo>> actions = new ArrayList<>();
 		
-		ActionStd<OrderInfo> refundOrder = new StdOrderRefuRefund(option);
+		ActionStdV1<OrderInfo> refundOrder = new StdOrderRefuRefund(option);
 		
 		actions.add(refundOrder);
 		return actions;
@@ -52,11 +52,11 @@ public final class NodeOrderCancelL2 extends DeciTreeWriteTemplate<OrderInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<OrderInfo>> buildActionsOnFailedHook(DeciTreeOption<OrderInfo> option) {
-		List<ActionStd<OrderInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<OrderInfo>> buildActionsOnFailedHook(DeciTreeOption<OrderInfo> option) {
+		List<ActionStdV1<OrderInfo>> actions = new ArrayList<>();
 		
-		ActionStd<OrderInfo> enforceStatus = new StdOrderEnforceStatusCancelled(option);
-		ActionLazy<OrderInfo> update = new LazyOrderNodeUpdate(option.conn, option.schemaName);
+		ActionStdV1<OrderInfo> enforceStatus = new StdOrderEnforceStatusCancelled(option);
+		ActionLazyV1<OrderInfo> update = new LazyOrderNodeUpdate(option.conn, option.schemaName);
 		
 		enforceStatus.addPostAction(update);
 		

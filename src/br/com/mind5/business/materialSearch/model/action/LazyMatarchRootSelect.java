@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.materialSearch.info.MatarchInfo;
 import br.com.mind5.business.materialSearch.model.decisionTree.RootMatarchSelect;
 import br.com.mind5.model.action.ActionLazyTemplate;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -24,7 +24,7 @@ public final class LazyMatarchRootSelect extends ActionLazyTemplate<MatarchInfo,
 	
 	
 	
-	@Override protected ActionStd<MatarchInfo> getInstanceOfActionHook(DeciTreeOption<MatarchInfo> option) {
+	@Override protected ActionStdV1<MatarchInfo> getInstanceOfActionHook(DeciTreeOption<MatarchInfo> option) {
 		return new RootMatarchSelect(option).toAction();
 	}
 	

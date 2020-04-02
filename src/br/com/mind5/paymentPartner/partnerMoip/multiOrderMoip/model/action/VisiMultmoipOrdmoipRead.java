@@ -3,7 +3,7 @@ package br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.model.action;
 import java.sql.Connection;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.info.MultmoipInfo;
@@ -19,7 +19,7 @@ final class VisiMultmoipOrdmoipRead extends ActionVisitorTemplateAction<Multmoip
 	
 	
 	
-	@Override protected ActionStd<OrdmoipInfo> getActionHook(DeciTreeOption<OrdmoipInfo> option) {
+	@Override protected ActionStdV1<OrdmoipInfo> getActionHook(DeciTreeOption<OrdmoipInfo> option) {
 		return new RootOrdmoipRead(option).toAction();
 	}
 	

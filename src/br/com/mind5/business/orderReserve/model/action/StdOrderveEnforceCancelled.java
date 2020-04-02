@@ -1,14 +1,14 @@
 package br.com.mind5.business.orderReserve.model.action;
 
 import br.com.mind5.business.orderReserve.info.OrderveInfo;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperEnforce;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdOrderveEnforceCancelled implements ActionStd<OrderveInfo> {
-	private ActionStd<OrderveInfo> actionHelper;	
+public final class StdOrderveEnforceCancelled implements ActionStdV1<OrderveInfo> {
+	private ActionStdV1<OrderveInfo> actionHelper;	
 	
 	
 	public StdOrderveEnforceCancelled(DeciTreeOption<OrderveInfo> option) {			
@@ -17,7 +17,7 @@ public final class StdOrderveEnforceCancelled implements ActionStd<OrderveInfo> 
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<OrderveInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<OrderveInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

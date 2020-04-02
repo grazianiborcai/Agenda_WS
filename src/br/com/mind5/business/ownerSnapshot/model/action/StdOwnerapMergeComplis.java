@@ -1,14 +1,14 @@
 package br.com.mind5.business.ownerSnapshot.model.action;
 
 import br.com.mind5.business.ownerSnapshot.info.OwnerapInfo;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperMerge;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdOwnerapMergeComplis implements ActionStd<OwnerapInfo> {
-	private ActionStd<OwnerapInfo> actionHelper;	
+public final class StdOwnerapMergeComplis implements ActionStdV1<OwnerapInfo> {
+	private ActionStdV1<OwnerapInfo> actionHelper;	
 	
 	
 	public StdOwnerapMergeComplis(DeciTreeOption<OwnerapInfo> option) {			
@@ -17,7 +17,7 @@ public final class StdOwnerapMergeComplis implements ActionStd<OwnerapInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<OwnerapInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<OwnerapInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

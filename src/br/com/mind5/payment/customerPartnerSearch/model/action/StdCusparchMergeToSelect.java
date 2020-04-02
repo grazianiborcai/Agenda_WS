@@ -1,14 +1,14 @@
 package br.com.mind5.payment.customerPartnerSearch.model.action;
 
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperMerge;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.customerPartnerSearch.info.CusparchInfo;
 
-public final class StdCusparchMergeToSelect implements ActionStd<CusparchInfo> {
-	private ActionStd<CusparchInfo> actionHelper;	
+public final class StdCusparchMergeToSelect implements ActionStdV1<CusparchInfo> {
+	private ActionStdV1<CusparchInfo> actionHelper;	
 	
 	
 	public StdCusparchMergeToSelect(DeciTreeOption<CusparchInfo> option) {			
@@ -17,7 +17,7 @@ public final class StdCusparchMergeToSelect implements ActionStd<CusparchInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<CusparchInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<CusparchInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

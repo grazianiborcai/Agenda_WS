@@ -7,14 +7,14 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.file.fileImage.dao.FimgUpdate;
 import br.com.mind5.file.fileImage.info.FimgInfo;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdHelperStmt;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdFimgUpdate implements ActionStd<FimgInfo> {
-	private ActionStd<FimgInfo> actionHelper;
+public final class StdFimgUpdate implements ActionStdV1<FimgInfo> {
+	private ActionStdV1<FimgInfo> actionHelper;
 	
 	
 	public StdFimgUpdate(DeciTreeOption<FimgInfo> option) {
@@ -40,7 +40,7 @@ public final class StdFimgUpdate implements ActionStd<FimgInfo> {
 	
 	
 	
-	@Override public void addPostAction(ActionLazy<FimgInfo> actionHandler) {
+	@Override public void addPostAction(ActionLazyV1<FimgInfo> actionHandler) {
 		actionHelper.addPostAction(actionHandler);
 	}
 	

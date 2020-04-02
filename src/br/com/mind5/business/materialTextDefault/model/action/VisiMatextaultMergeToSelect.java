@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.materialTextDefault.info.MatextaultInfo;
 import br.com.mind5.business.materialTextDefault.info.MatextaultMerger;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 
 final class VisiMatextaultMergeToSelect extends ActionVisitorTemplateMerge<MatextaultInfo, MatextaultInfo> {
@@ -16,7 +16,7 @@ final class VisiMatextaultMergeToSelect extends ActionVisitorTemplateMerge<Matex
 	
 	
 	
-	@Override protected Class<? extends ActionStd<MatextaultInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStdV1<MatextaultInfo>> getActionClassHook() {
 		return StdMatextaultSelect.class;
 	}
 	

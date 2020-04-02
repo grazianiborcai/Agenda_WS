@@ -3,7 +3,7 @@ package br.com.mind5.payment.customerPartnerSearch.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -47,10 +47,10 @@ public final class RootCusparchSelect extends DeciTreeReadTemplate<CusparchInfo>
 	
 	
 	
-	@Override protected List<ActionStd<CusparchInfo>> buildActionsOnPassedHook(DeciTreeOption<CusparchInfo> option) {
-		List<ActionStd<CusparchInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStdV1<CusparchInfo>> buildActionsOnPassedHook(DeciTreeOption<CusparchInfo> option) {
+		List<ActionStdV1<CusparchInfo>> actions = new ArrayList<>();		
 		
-		ActionStd<CusparchInfo> select = new StdCusparchMergeToSelect(option);
+		ActionStdV1<CusparchInfo> select = new StdCusparchMergeToSelect(option);
 		
 		actions.add(select);			
 		return actions;

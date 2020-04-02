@@ -7,8 +7,8 @@ import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.business.store.model.action.LazyStoreInsertPerson;
 import br.com.mind5.business.store.model.action.StdStoreEnforcePersonKey;
 import br.com.mind5.business.store.model.checker.StoreCheckHasPerson;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -40,11 +40,11 @@ public final class NodeStoreInsertPerson extends DeciTreeWriteTemplate<StoreInfo
 	
 	
 	
-	@Override protected List<ActionStd<StoreInfo>> buildActionsOnPassedHook(DeciTreeOption<StoreInfo> option) {
-		List<ActionStd<StoreInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<StoreInfo>> buildActionsOnPassedHook(DeciTreeOption<StoreInfo> option) {
+		List<ActionStdV1<StoreInfo>> actions = new ArrayList<>();
 		
-		ActionStd<StoreInfo> enforcePersonKey = new StdStoreEnforcePersonKey(option);
-		ActionLazy<StoreInfo> insertPerson = new LazyStoreInsertPerson(option.conn, option.schemaName);	
+		ActionStdV1<StoreInfo> enforcePersonKey = new StdStoreEnforcePersonKey(option);
+		ActionLazyV1<StoreInfo> insertPerson = new LazyStoreInsertPerson(option.conn, option.schemaName);	
 
 		enforcePersonKey.addPostAction(insertPerson);
 		

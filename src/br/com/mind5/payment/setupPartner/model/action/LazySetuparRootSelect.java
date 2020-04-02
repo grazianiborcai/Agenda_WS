@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionLazyTemplate;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.setupPartner.info.SetuparInfo;
@@ -24,7 +24,7 @@ public final class LazySetuparRootSelect extends ActionLazyTemplate<SetuparInfo,
 	
 	
 	
-	@Override protected ActionStd<SetuparInfo> getInstanceOfActionHook(DeciTreeOption<SetuparInfo> option) {
+	@Override protected ActionStdV1<SetuparInfo> getInstanceOfActionHook(DeciTreeOption<SetuparInfo> option) {
 		return new RootSetuparSelect(option).toAction();
 	}
 	

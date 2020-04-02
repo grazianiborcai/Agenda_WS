@@ -7,7 +7,7 @@ import br.com.mind5.file.fileImage.info.FimgInfo;
 import br.com.mind5.file.fileWrite.info.FriteCopier;
 import br.com.mind5.file.fileWrite.info.FriteInfo;
 import br.com.mind5.file.fileWrite.model.decisionTree.RootFriteWriteOnDisk;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionVisitorTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -18,7 +18,7 @@ final class VisiFimgWriteOnDisk extends ActionVisitorTemplateAction<FimgInfo, Fr
 	
 	
 	
-	@Override protected ActionStd<FriteInfo> getActionHook(DeciTreeOption<FriteInfo> option) {
+	@Override protected ActionStdV1<FriteInfo> getActionHook(DeciTreeOption<FriteInfo> option) {
 		return new RootFriteWriteOnDisk(option).toAction();
 	}
 	

@@ -3,8 +3,8 @@ package br.com.mind5.security.user.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -35,12 +35,12 @@ public final class RootUserInsertCus extends DeciTreeWriteTemplate<UserInfo> {
 	
 	
 	
-	@Override protected List<ActionStd<UserInfo>> buildActionsOnPassedHook(DeciTreeOption<UserInfo> option) {
-		List<ActionStd<UserInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<UserInfo>> buildActionsOnPassedHook(DeciTreeOption<UserInfo> option) {
+		List<ActionStdV1<UserInfo>> actions = new ArrayList<>();
 
-		ActionStd<UserInfo> enforceCateg = new StdUserEnforceCategCus(option);
-		ActionLazy<UserInfo> enforceAuthGroup = new LazyUserEnforceAuthCus(option.conn, option.schemaName);
-		ActionLazy<UserInfo> insertUser = new LazyUserRootInsert(option.conn, option.schemaName);
+		ActionStdV1<UserInfo> enforceCateg = new StdUserEnforceCategCus(option);
+		ActionLazyV1<UserInfo> enforceAuthGroup = new LazyUserEnforceAuthCus(option.conn, option.schemaName);
+		ActionLazyV1<UserInfo> insertUser = new LazyUserRootInsert(option.conn, option.schemaName);
 		
 		enforceCateg.addPostAction(enforceAuthGroup);			
 		enforceAuthGroup.addPostAction(insertUser);

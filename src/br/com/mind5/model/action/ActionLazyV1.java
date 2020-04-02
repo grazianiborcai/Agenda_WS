@@ -2,9 +2,10 @@ package br.com.mind5.model.action;
 
 import java.util.List;
 
+import br.com.mind5.info.InfoRecord;
 import br.com.mind5.model.decisionTree.DeciResult;
 
-public interface ActionLazy<T> {
+public interface ActionLazyV1<T extends InfoRecord> {
 	//TODO: adicionar classe que chamou como parametro ?
 	public boolean executeAction(List<T> infoRecords);
 	
@@ -12,7 +13,7 @@ public interface ActionLazy<T> {
 	
 	public DeciResult<T> getDecisionResult(); 	
 	
-	public ActionStd<T> toAction(List<T> recordInfos);
+	public ActionStdV1<T> toAction(List<T> recordInfos);
 	
-	public void addPostAction(ActionLazy<T> actionHandler);
+	public void addPostAction(ActionLazyV1<T> actionHandler);
 }

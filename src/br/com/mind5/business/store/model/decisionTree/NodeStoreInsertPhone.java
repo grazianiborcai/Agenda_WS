@@ -8,8 +8,8 @@ import br.com.mind5.business.store.model.action.LazyStoreInsertPhone;
 import br.com.mind5.business.store.model.action.StdStoreEnforcePhoneKey;
 import br.com.mind5.business.store.model.action.StdStoreSuccess;
 import br.com.mind5.business.store.model.checker.StoreCheckHasPhone;
-import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -41,11 +41,11 @@ public final class NodeStoreInsertPhone extends DeciTreeWriteTemplate<StoreInfo>
 	
 	
 	
-	@Override protected List<ActionStd<StoreInfo>> buildActionsOnPassedHook(DeciTreeOption<StoreInfo> option) {
-		List<ActionStd<StoreInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<StoreInfo>> buildActionsOnPassedHook(DeciTreeOption<StoreInfo> option) {
+		List<ActionStdV1<StoreInfo>> actions = new ArrayList<>();
 		
-		ActionStd<StoreInfo> enforcePhoneKey = new StdStoreEnforcePhoneKey(option);
-		ActionLazy<StoreInfo> insertPhone = new LazyStoreInsertPhone(option.conn, option.schemaName);	
+		ActionStdV1<StoreInfo> enforcePhoneKey = new StdStoreEnforcePhoneKey(option);
+		ActionLazyV1<StoreInfo> insertPhone = new LazyStoreInsertPhone(option.conn, option.schemaName);	
 		
 		enforcePhoneKey.addPostAction(insertPhone);
 		
@@ -55,8 +55,8 @@ public final class NodeStoreInsertPhone extends DeciTreeWriteTemplate<StoreInfo>
 	
 	
 	
-	@Override protected List<ActionStd<StoreInfo>> buildActionsOnFailedHook(DeciTreeOption<StoreInfo> option) {
-		List<ActionStd<StoreInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<StoreInfo>> buildActionsOnFailedHook(DeciTreeOption<StoreInfo> option) {
+		List<ActionStdV1<StoreInfo>> actions = new ArrayList<>();
 		
 		actions.add(new StdStoreSuccess(option));		
 		return actions;

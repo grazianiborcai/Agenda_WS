@@ -8,7 +8,7 @@ import br.com.mind5.business.companySnapshot.model.action.StdCompnapInsert;
 import br.com.mind5.business.companySnapshot.model.checker.CompnapCheckComp;
 import br.com.mind5.business.companySnapshot.model.checker.CompnapCheckOwner;
 import br.com.mind5.business.companySnapshot.model.checker.CompnapCheckWrite;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -54,10 +54,10 @@ public final class RootCompnapInsert extends DeciTreeWriteTemplate<CompnapInfo> 
 	
 	
 	
-	@Override protected List<ActionStd<CompnapInfo>> buildActionsOnPassedHook(DeciTreeOption<CompnapInfo> option) {
-		List<ActionStd<CompnapInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<CompnapInfo>> buildActionsOnPassedHook(DeciTreeOption<CompnapInfo> option) {
+		List<ActionStdV1<CompnapInfo>> actions = new ArrayList<>();
 		
-		ActionStd<CompnapInfo> insert = new StdCompnapInsert(option);
+		ActionStdV1<CompnapInfo> insert = new StdCompnapInsert(option);
 		
 		actions.add(insert);
 		return actions;

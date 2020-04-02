@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.masterData.moonPhaseSearch.info.MoonasarchInfo;
 import br.com.mind5.masterData.moonPhaseSearch.model.action.StdMoonasarchSelect;
 import br.com.mind5.masterData.moonPhaseSearch.model.checker.MoonasarchCheckRead;
-import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerQueue;
@@ -38,10 +38,10 @@ public final class RootMoonasarchSelect extends DeciTreeReadTemplate<MoonasarchI
 
 		
 	
-	@Override protected List<ActionStd<MoonasarchInfo>> buildActionsOnPassedHook(DeciTreeOption<MoonasarchInfo> option) {
-		List<ActionStd<MoonasarchInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStdV1<MoonasarchInfo>> buildActionsOnPassedHook(DeciTreeOption<MoonasarchInfo> option) {
+		List<ActionStdV1<MoonasarchInfo>> actions = new ArrayList<>();
 		
-		ActionStd<MoonasarchInfo> select = new StdMoonasarchSelect(option);
+		ActionStdV1<MoonasarchInfo> select = new StdMoonasarchSelect(option);
 		
 		actions.add(select);
 		return actions;
