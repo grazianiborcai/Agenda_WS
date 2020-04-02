@@ -3,8 +3,8 @@ package br.com.mind5.payment.ownerPartner.model.action;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionStdHelperStmt;
@@ -18,13 +18,13 @@ public final class StdOwnparSelect implements ActionStd<OwnparInfo> {
 	
 	
 	public StdOwnparSelect(DeciTreeOption<OwnparInfo> option) {
-		DaoStmtExec<OwnparInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<OwnparInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<OwnparInfo> buildStmtExec(DeciTreeOption<OwnparInfo> option) {
+	private DaoStmtExec_<OwnparInfo> buildStmtExec(DeciTreeOption<OwnparInfo> option) {
 		List<DaoStmtExecOption<OwnparInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(OwnparInfo eachRecord : option.recordInfos) {

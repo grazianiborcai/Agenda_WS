@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.com.mind5.business.employeeWorkTimeConflict.dao.EmpwocoSelect;
 import br.com.mind5.business.employeeWorkTimeConflict.info.EmpwocoInfo;
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionStdHelperStmt;
@@ -18,13 +18,13 @@ public final class StdEmpwocoSelect implements ActionStd<EmpwocoInfo> {
 	
 	
 	public StdEmpwocoSelect(DeciTreeOption<EmpwocoInfo> option) {
-		DaoStmtExec<EmpwocoInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<EmpwocoInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<EmpwocoInfo> buildStmtExec(DeciTreeOption<EmpwocoInfo> option) {
+	private DaoStmtExec_<EmpwocoInfo> buildStmtExec(DeciTreeOption<EmpwocoInfo> option) {
 		List<DaoStmtExecOption<EmpwocoInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(EmpwocoInfo eachRecord : option.recordInfos) {

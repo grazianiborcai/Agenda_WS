@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.com.mind5.business.orderReserve.dao.OrderveSelect;
 import br.com.mind5.business.orderReserve.info.OrderveInfo;
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionStdHelperStmt;
@@ -18,13 +18,13 @@ public final class StdOrderveSelect implements ActionStd<OrderveInfo> {
 	
 	
 	public StdOrderveSelect(DeciTreeOption<OrderveInfo> option) {
-		DaoStmtExec<OrderveInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<OrderveInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<OrderveInfo> buildStmtExec(DeciTreeOption<OrderveInfo> option) {
+	private DaoStmtExec_<OrderveInfo> buildStmtExec(DeciTreeOption<OrderveInfo> option) {
 		List<DaoStmtExecOption<OrderveInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(OrderveInfo eachRecord : option.recordInfos) {

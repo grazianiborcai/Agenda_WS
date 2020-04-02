@@ -3,8 +3,8 @@ package br.com.mind5.message.emailBody.model.action;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.message.emailBody.dao.EmabodySelect;
 import br.com.mind5.message.emailBody.info.EmabodyInfo;
 import br.com.mind5.model.action.ActionLazy;
@@ -18,13 +18,13 @@ public final class StdEmabodySelect implements ActionStd<EmabodyInfo> {
 	
 	
 	public StdEmabodySelect(DeciTreeOption<EmabodyInfo> option) {
-		DaoStmtExec<EmabodyInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<EmabodyInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<EmabodyInfo> buildStmtExec(DeciTreeOption<EmabodyInfo> option) {
+	private DaoStmtExec_<EmabodyInfo> buildStmtExec(DeciTreeOption<EmabodyInfo> option) {
 		List<DaoStmtExecOption<EmabodyInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(EmabodyInfo eachRecord : option.recordInfos) {

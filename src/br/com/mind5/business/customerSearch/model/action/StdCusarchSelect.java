@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.com.mind5.business.customerSearch.dao.CusarchSelect;
 import br.com.mind5.business.customerSearch.info.CusarchInfo;
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionStdHelperStmt;
@@ -18,13 +18,13 @@ public final class StdCusarchSelect implements ActionStd<CusarchInfo> {
 	
 	
 	public StdCusarchSelect(DeciTreeOption<CusarchInfo> option) {
-		DaoStmtExec<CusarchInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<CusarchInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<CusarchInfo> buildStmtExec(DeciTreeOption<CusarchInfo> option) {
+	private DaoStmtExec_<CusarchInfo> buildStmtExec(DeciTreeOption<CusarchInfo> option) {
 		List<DaoStmtExecOption<CusarchInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(CusarchInfo eachRecord : option.recordInfos) {

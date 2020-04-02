@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.com.mind5.business.owner.dao.OwnerSelect;
 import br.com.mind5.business.owner.info.OwnerInfo;
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionStdHelperStmt;
@@ -18,13 +18,13 @@ public final class StdOwnerSelect implements ActionStd<OwnerInfo> {
 	
 	
 	public StdOwnerSelect(DeciTreeOption<OwnerInfo> option) {
-		DaoStmtExec<OwnerInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<OwnerInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<OwnerInfo> buildStmtExec(DeciTreeOption<OwnerInfo> option) {
+	private DaoStmtExec_<OwnerInfo> buildStmtExec(DeciTreeOption<OwnerInfo> option) {
 		List<DaoStmtExecOption<OwnerInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(OwnerInfo eachRecord : option.recordInfos) {

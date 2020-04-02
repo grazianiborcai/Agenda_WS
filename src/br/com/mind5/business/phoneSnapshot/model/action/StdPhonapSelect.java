@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.com.mind5.business.phoneSnapshot.dao.PhonapSelect;
 import br.com.mind5.business.phoneSnapshot.info.PhonapInfo;
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionStdHelperStmt;
@@ -18,13 +18,13 @@ public final class StdPhonapSelect implements ActionStd<PhonapInfo> {
 	
 	
 	public StdPhonapSelect(DeciTreeOption<PhonapInfo> option) {
-		DaoStmtExec<PhonapInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<PhonapInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<PhonapInfo> buildStmtExec(DeciTreeOption<PhonapInfo> option) {
+	private DaoStmtExec_<PhonapInfo> buildStmtExec(DeciTreeOption<PhonapInfo> option) {
 		List<DaoStmtExecOption<PhonapInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(PhonapInfo eachRecord : option.recordInfos) {

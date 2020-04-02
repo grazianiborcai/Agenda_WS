@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.com.mind5.business.cart.dao.CartSelect;
 import br.com.mind5.business.cart.info.CartInfo;
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionStdHelperStmt;
@@ -18,13 +18,13 @@ public final class StdCartSelect implements ActionStd<CartInfo> {
 	
 	
 	public StdCartSelect(DeciTreeOption<CartInfo> option) {
-		DaoStmtExec<CartInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<CartInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<CartInfo> buildStmtExec(DeciTreeOption<CartInfo> option) {
+	private DaoStmtExec_<CartInfo> buildStmtExec(DeciTreeOption<CartInfo> option) {
 		List<DaoStmtExecOption<CartInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(CartInfo eachRecord : option.recordInfos) {

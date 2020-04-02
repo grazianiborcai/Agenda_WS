@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.com.mind5.business.orderSnapshot.dao.OrdnapInsert;
 import br.com.mind5.business.orderSnapshot.info.OrdnapInfo;
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionStdHelperStmt;
@@ -18,13 +18,13 @@ public final class StdOrdnapInsert implements ActionStd<OrdnapInfo> {
 	
 	
 	public StdOrdnapInsert(DeciTreeOption<OrdnapInfo> option) {
-		DaoStmtExec<OrdnapInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<OrdnapInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<OrdnapInfo> buildStmtExec(DeciTreeOption<OrdnapInfo> option) {
+	private DaoStmtExec_<OrdnapInfo> buildStmtExec(DeciTreeOption<OrdnapInfo> option) {
 		List<DaoStmtExecOption<OrdnapInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(OrdnapInfo eachRecord : option.recordInfos) {

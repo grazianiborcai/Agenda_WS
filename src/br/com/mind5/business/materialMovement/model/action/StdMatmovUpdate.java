@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.com.mind5.business.materialMovement.dao.MatmovUpdate;
 import br.com.mind5.business.materialMovement.info.MatmovInfo;
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionStdHelperStmt;
@@ -18,13 +18,13 @@ public final class StdMatmovUpdate implements ActionStd<MatmovInfo> {
 	
 	
 	public StdMatmovUpdate(DeciTreeOption<MatmovInfo> option) {
-		DaoStmtExec<MatmovInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<MatmovInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<MatmovInfo> buildStmtExec(DeciTreeOption<MatmovInfo> option) {
+	private DaoStmtExec_<MatmovInfo> buildStmtExec(DeciTreeOption<MatmovInfo> option) {
 		List<DaoStmtExecOption<MatmovInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(MatmovInfo eachRecord : option.recordInfos) {

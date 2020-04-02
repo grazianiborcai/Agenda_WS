@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.com.mind5.business.personSearch.dao.PerarchSelect;
 import br.com.mind5.business.personSearch.info.PerarchInfo;
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionStdHelperStmt;
@@ -18,13 +18,13 @@ public final class StdPerarchSelect implements ActionStd<PerarchInfo> {
 	
 	
 	public StdPerarchSelect(DeciTreeOption<PerarchInfo> option) {
-		DaoStmtExec<PerarchInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<PerarchInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<PerarchInfo> buildStmtExec(DeciTreeOption<PerarchInfo> option) {
+	private DaoStmtExec_<PerarchInfo> buildStmtExec(DeciTreeOption<PerarchInfo> option) {
 		List<DaoStmtExecOption<PerarchInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(PerarchInfo eachRecord : option.recordInfos) {

@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.com.mind5.business.scheduleLine.dao.SchedineUpdate;
 import br.com.mind5.business.scheduleLine.info.SchedineInfo;
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionStdHelperStmt;
@@ -18,13 +18,13 @@ public final class StdSchedineUpdate implements ActionStd<SchedineInfo> {
 	
 	
 	public StdSchedineUpdate(DeciTreeOption<SchedineInfo> option) {
-		DaoStmtExec<SchedineInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<SchedineInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<SchedineInfo> buildStmtExec(DeciTreeOption<SchedineInfo> option) {
+	private DaoStmtExec_<SchedineInfo> buildStmtExec(DeciTreeOption<SchedineInfo> option) {
 		List<DaoStmtExecOption<SchedineInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(SchedineInfo eachRecord : option.recordInfos) {

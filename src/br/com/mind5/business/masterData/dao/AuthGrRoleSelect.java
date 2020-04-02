@@ -4,16 +4,16 @@ import java.sql.SQLException;
 import java.util.List;
 
 import br.com.mind5.business.masterData.info.AuthGrRoleInfo;
-import br.com.mind5.dao.DaoStmtExec;
-import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExecHelper_;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 
-public class AuthGrRoleSelect implements DaoStmtExec<AuthGrRoleInfo> {
-	private DaoStmtExec<AuthGrRoleInfo> helper;
+public class AuthGrRoleSelect implements DaoStmtExec_<AuthGrRoleInfo> {
+	private DaoStmtExec_<AuthGrRoleInfo> helper;
 	
 	
 	public AuthGrRoleSelect(List<DaoStmtExecOption<AuthGrRoleInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, AuthGrRoleSelectSingle.class, AuthGrRoleInfo.class);
+		helper = new DaoStmtExecHelper_<>(options, AuthGrRoleSelectSingle.class, AuthGrRoleInfo.class);
 	}
 	
 	

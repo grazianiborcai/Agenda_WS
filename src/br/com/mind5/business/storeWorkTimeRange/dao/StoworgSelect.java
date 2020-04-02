@@ -4,16 +4,16 @@ import java.sql.SQLException;
 import java.util.List;
 
 import br.com.mind5.business.storeWorkTimeRange.info.StoworgInfo;
-import br.com.mind5.dao.DaoStmtExec;
-import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExecHelper_;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 
-public final class StoworgSelect implements DaoStmtExec<StoworgInfo> {
-	private DaoStmtExec<StoworgInfo> helper;
+public final class StoworgSelect implements DaoStmtExec_<StoworgInfo> {
+	private DaoStmtExec_<StoworgInfo> helper;
 	
 	
 	public StoworgSelect(List<DaoStmtExecOption<StoworgInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, StoworgSelectSingle.class, StoworgInfo.class);
+		helper = new DaoStmtExecHelper_<>(options, StoworgSelectSingle.class, StoworgInfo.class);
 	}
 	
 	

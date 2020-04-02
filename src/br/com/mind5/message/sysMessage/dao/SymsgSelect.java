@@ -3,17 +3,17 @@ package br.com.mind5.message.sysMessage.dao;
 import java.sql.SQLException;
 import java.util.List;
 
-import br.com.mind5.dao.DaoStmtExec;
-import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExecHelper_;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.message.sysMessage.info.SymsgInfo;
 
-public final class SymsgSelect implements DaoStmtExec<SymsgInfo> {
-	private DaoStmtExec<SymsgInfo> helper;
+public final class SymsgSelect implements DaoStmtExec_<SymsgInfo> {
+	private DaoStmtExec_<SymsgInfo> helper;
 	
 	
 	public SymsgSelect(List<DaoStmtExecOption<SymsgInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, SymsgSelectSingle.class, SymsgInfo.class);
+		helper = new DaoStmtExecHelper_<>(options, SymsgSelectSingle.class, SymsgInfo.class);
 	}
 	
 	

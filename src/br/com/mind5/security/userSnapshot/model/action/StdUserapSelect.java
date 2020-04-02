@@ -3,8 +3,8 @@ package br.com.mind5.security.userSnapshot.model.action;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionStdHelperStmt;
@@ -18,13 +18,13 @@ public final class StdUserapSelect implements ActionStd<UserapInfo> {
 	
 	
 	public StdUserapSelect(DeciTreeOption<UserapInfo> option) {
-		DaoStmtExec<UserapInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<UserapInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<UserapInfo> buildStmtExec(DeciTreeOption<UserapInfo> option) {
+	private DaoStmtExec_<UserapInfo> buildStmtExec(DeciTreeOption<UserapInfo> option) {
 		List<DaoStmtExecOption<UserapInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(UserapInfo eachRecord : option.recordInfos) {

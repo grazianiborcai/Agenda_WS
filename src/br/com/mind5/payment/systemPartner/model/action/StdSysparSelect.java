@@ -3,8 +3,8 @@ package br.com.mind5.payment.systemPartner.model.action;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionStdHelperStmt;
@@ -18,13 +18,13 @@ public final class StdSysparSelect implements ActionStd<SysparInfo> {
 	
 	
 	public StdSysparSelect(DeciTreeOption<SysparInfo> option) {
-		DaoStmtExec<SysparInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<SysparInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<SysparInfo> buildStmtExec(DeciTreeOption<SysparInfo> option) {
+	private DaoStmtExec_<SysparInfo> buildStmtExec(DeciTreeOption<SysparInfo> option) {
 		List<DaoStmtExecOption<SysparInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(SysparInfo eachRecord : option.recordInfos) {

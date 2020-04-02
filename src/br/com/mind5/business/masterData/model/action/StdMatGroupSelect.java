@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.com.mind5.business.masterData.dao.MatGroupSelect;
 import br.com.mind5.business.masterData.info.MatGroupInfo;
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionStdHelperStmt;
@@ -18,13 +18,13 @@ public final class StdMatGroupSelect implements ActionStd<MatGroupInfo> {
 	
 	
 	public StdMatGroupSelect(DeciTreeOption<MatGroupInfo> option) {
-		DaoStmtExec<MatGroupInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<MatGroupInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<MatGroupInfo> buildStmtExec(DeciTreeOption<MatGroupInfo> option) {
+	private DaoStmtExec_<MatGroupInfo> buildStmtExec(DeciTreeOption<MatGroupInfo> option) {
 		List<DaoStmtExecOption<MatGroupInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(MatGroupInfo eachRecord : option.recordInfos) {

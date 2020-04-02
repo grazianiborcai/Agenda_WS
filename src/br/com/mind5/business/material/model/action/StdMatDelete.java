@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.com.mind5.business.material.dao.MatDelete;
 import br.com.mind5.business.material.info.MatInfo;
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionStdHelperStmt;
@@ -18,13 +18,13 @@ public final class StdMatDelete implements ActionStd<MatInfo> {
 	
 	
 	public StdMatDelete(DeciTreeOption<MatInfo> option) {
-		DaoStmtExec<MatInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<MatInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<MatInfo> buildStmtExec(DeciTreeOption<MatInfo> option) {
+	private DaoStmtExec_<MatInfo> buildStmtExec(DeciTreeOption<MatInfo> option) {
 		List<DaoStmtExecOption<MatInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(MatInfo eachRecord : option.recordInfos) {

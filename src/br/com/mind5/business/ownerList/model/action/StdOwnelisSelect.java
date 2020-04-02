@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.com.mind5.business.ownerList.dao.OwnelisSelect;
 import br.com.mind5.business.ownerList.info.OwnelisInfo;
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionStdHelperStmt;
@@ -18,13 +18,13 @@ public final class StdOwnelisSelect implements ActionStd<OwnelisInfo> {
 	
 	
 	public StdOwnelisSelect(DeciTreeOption<OwnelisInfo> option) {
-		DaoStmtExec<OwnelisInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<OwnelisInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<OwnelisInfo> buildStmtExec(DeciTreeOption<OwnelisInfo> option) {
+	private DaoStmtExec_<OwnelisInfo> buildStmtExec(DeciTreeOption<OwnelisInfo> option) {
 		List<DaoStmtExecOption<OwnelisInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(OwnelisInfo eachRecord : option.recordInfos) {

@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.com.mind5.business.masterData.dao.PayparSelect;
 import br.com.mind5.business.masterData.info.PayparInfo;
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionStdHelperStmt;
@@ -18,13 +18,13 @@ public final class StdPayparSelect implements ActionStd<PayparInfo> {
 	
 	
 	public StdPayparSelect(DeciTreeOption<PayparInfo> option) {
-		DaoStmtExec<PayparInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<PayparInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<PayparInfo> buildStmtExec(DeciTreeOption<PayparInfo> option) {
+	private DaoStmtExec_<PayparInfo> buildStmtExec(DeciTreeOption<PayparInfo> option) {
 		List<DaoStmtExecOption<PayparInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(PayparInfo eachRecord : option.recordInfos) {

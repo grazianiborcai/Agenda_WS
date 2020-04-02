@@ -4,16 +4,16 @@ import java.sql.SQLException;
 import java.util.List;
 
 import br.com.mind5.business.scheduleLineSnapshot.info.SchedinapInfo;
-import br.com.mind5.dao.DaoStmtExec;
-import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExecHelper_;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 
-public final class SchedinapSelect implements DaoStmtExec<SchedinapInfo> {
-	private DaoStmtExec<SchedinapInfo> helper;
+public final class SchedinapSelect implements DaoStmtExec_<SchedinapInfo> {
+	private DaoStmtExec_<SchedinapInfo> helper;
 	
 	
 	public SchedinapSelect(List<DaoStmtExecOption<SchedinapInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, SchedinapSelectSingle.class, SchedinapInfo.class);
+		helper = new DaoStmtExecHelper_<>(options, SchedinapSelectSingle.class, SchedinapInfo.class);
 	}
 	
 	

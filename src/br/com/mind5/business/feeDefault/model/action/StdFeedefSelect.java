@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.com.mind5.business.feeDefault.dao.FeedefSelect;
 import br.com.mind5.business.feeDefault.info.FeedefInfo;
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionStdHelperStmt;
@@ -18,13 +18,13 @@ public final class StdFeedefSelect implements ActionStd<FeedefInfo> {
 	
 	
 	public StdFeedefSelect(DeciTreeOption<FeedefInfo> option) {
-		DaoStmtExec<FeedefInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<FeedefInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<FeedefInfo> buildStmtExec(DeciTreeOption<FeedefInfo> option) {
+	private DaoStmtExec_<FeedefInfo> buildStmtExec(DeciTreeOption<FeedefInfo> option) {
 		List<DaoStmtExecOption<FeedefInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(FeedefInfo eachRecord : option.recordInfos) {

@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.com.mind5.business.masterData.dao.AuthGrRoleSelect;
 import br.com.mind5.business.masterData.info.AuthGrRoleInfo;
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionStdHelperStmt;
@@ -18,13 +18,13 @@ public final class StdAuthGrRoleSelect implements ActionStd<AuthGrRoleInfo> {
 	
 	
 	public StdAuthGrRoleSelect(DeciTreeOption<AuthGrRoleInfo> option) {
-		DaoStmtExec<AuthGrRoleInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<AuthGrRoleInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<AuthGrRoleInfo> buildStmtExec(DeciTreeOption<AuthGrRoleInfo> option) {
+	private DaoStmtExec_<AuthGrRoleInfo> buildStmtExec(DeciTreeOption<AuthGrRoleInfo> option) {
 		List<DaoStmtExecOption<AuthGrRoleInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(AuthGrRoleInfo eachRecord : option.recordInfos) {

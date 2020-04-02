@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.com.mind5.business.orderItemSnapshot.dao.OrdemrapInsert;
 import br.com.mind5.business.orderItemSnapshot.info.OrdemrapInfo;
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionStdHelperStmt;
@@ -18,13 +18,13 @@ public final class StdOrdemrapInsert implements ActionStd<OrdemrapInfo> {
 	
 	
 	public StdOrdemrapInsert(DeciTreeOption<OrdemrapInfo> option) {
-		DaoStmtExec<OrdemrapInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<OrdemrapInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<OrdemrapInfo> buildStmtExec(DeciTreeOption<OrdemrapInfo> option) {
+	private DaoStmtExec_<OrdemrapInfo> buildStmtExec(DeciTreeOption<OrdemrapInfo> option) {
 		List<DaoStmtExecOption<OrdemrapInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(OrdemrapInfo eachRecord : option.recordInfos) {

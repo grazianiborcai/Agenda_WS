@@ -3,8 +3,8 @@ package br.com.mind5.security.userSearch.model.action;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionStdHelperStmt;
@@ -18,13 +18,13 @@ public final class StdUserarchSelect implements ActionStd<UserarchInfo> {
 	
 	
 	public StdUserarchSelect(DeciTreeOption<UserarchInfo> option) {
-		DaoStmtExec<UserarchInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<UserarchInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<UserarchInfo> buildStmtExec(DeciTreeOption<UserarchInfo> option) {
+	private DaoStmtExec_<UserarchInfo> buildStmtExec(DeciTreeOption<UserarchInfo> option) {
 		List<DaoStmtExecOption<UserarchInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(UserarchInfo eachRecord : option.recordInfos) {

@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.com.mind5.business.companySnapshot.dao.CompnapInsert;
 import br.com.mind5.business.companySnapshot.info.CompnapInfo;
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionStdHelperStmt;
@@ -18,13 +18,13 @@ public final class StdCompnapInsert implements ActionStd<CompnapInfo> {
 	
 	
 	public StdCompnapInsert(DeciTreeOption<CompnapInfo> option) {
-		DaoStmtExec<CompnapInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<CompnapInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<CompnapInfo> buildStmtExec(DeciTreeOption<CompnapInfo> option) {
+	private DaoStmtExec_<CompnapInfo> buildStmtExec(DeciTreeOption<CompnapInfo> option) {
 		List<DaoStmtExecOption<CompnapInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(CompnapInfo eachRecord : option.recordInfos) {

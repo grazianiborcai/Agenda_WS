@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.com.mind5.business.employeeWorkTimeOutlier.dao.EmpwoutSelect;
 import br.com.mind5.business.employeeWorkTimeOutlier.info.EmpwoutInfo;
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionStdHelperStmt;
@@ -18,13 +18,13 @@ public final class StdEmpwoutSelect implements ActionStd<EmpwoutInfo> {
 	
 	
 	public StdEmpwoutSelect(DeciTreeOption<EmpwoutInfo> option) {
-		DaoStmtExec<EmpwoutInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<EmpwoutInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<EmpwoutInfo> buildStmtExec(DeciTreeOption<EmpwoutInfo> option) {
+	private DaoStmtExec_<EmpwoutInfo> buildStmtExec(DeciTreeOption<EmpwoutInfo> option) {
 		List<DaoStmtExecOption<EmpwoutInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(EmpwoutInfo eachRecord : option.recordInfos) {

@@ -3,8 +3,8 @@ package br.com.mind5.security.userList.model.action;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionStdHelperStmt;
@@ -18,13 +18,13 @@ public final class StdUselisSelect implements ActionStd<UselisInfo> {
 	
 	
 	public StdUselisSelect(DeciTreeOption<UselisInfo> option) {
-		DaoStmtExec<UselisInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<UselisInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<UselisInfo> buildStmtExec(DeciTreeOption<UselisInfo> option) {
+	private DaoStmtExec_<UselisInfo> buildStmtExec(DeciTreeOption<UselisInfo> option) {
 		List<DaoStmtExecOption<UselisInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(UselisInfo eachRecord : option.recordInfos) {

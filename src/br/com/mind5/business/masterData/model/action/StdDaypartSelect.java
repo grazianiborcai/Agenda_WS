@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.com.mind5.business.masterData.dao.DaypartSelect;
 import br.com.mind5.business.masterData.info.DaypartInfo;
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionStdHelperStmt;
@@ -18,13 +18,13 @@ public final class StdDaypartSelect implements ActionStd<DaypartInfo> {
 	
 	
 	public StdDaypartSelect(DeciTreeOption<DaypartInfo> option) {
-		DaoStmtExec<DaypartInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<DaypartInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<DaypartInfo> buildStmtExec(DeciTreeOption<DaypartInfo> option) {
+	private DaoStmtExec_<DaypartInfo> buildStmtExec(DeciTreeOption<DaypartInfo> option) {
 		List<DaoStmtExecOption<DaypartInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(DaypartInfo eachRecord : option.recordInfos) {

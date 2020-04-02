@@ -4,16 +4,16 @@ import java.sql.SQLException;
 import java.util.List;
 
 import br.com.mind5.masterData.moonPhaseSearch.info.MoonasarchInfo;
-import br.com.mind5.dao.DaoStmtExec;
-import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExecHelper_;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 
-public final class MoonasarchSelect implements DaoStmtExec<MoonasarchInfo> {
-	private DaoStmtExec<MoonasarchInfo> helper;
+public final class MoonasarchSelect implements DaoStmtExec_<MoonasarchInfo> {
+	private DaoStmtExec_<MoonasarchInfo> helper;
 	
 	
 	public MoonasarchSelect(List<DaoStmtExecOption<MoonasarchInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, MoonasarchSelectSingle.class, MoonasarchInfo.class);
+		helper = new DaoStmtExecHelper_<>(options, MoonasarchSelectSingle.class, MoonasarchInfo.class);
 	}
 	
 	

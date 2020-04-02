@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.com.mind5.masterData.moonPhase.dao.MoonaseSelect;
 import br.com.mind5.masterData.moonPhase.info.MoonaseInfo;
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionStdHelperStmt;
@@ -18,13 +18,13 @@ public final class StdMoonaseSelect implements ActionStd<MoonaseInfo> {
 	
 	
 	public StdMoonaseSelect(DeciTreeOption<MoonaseInfo> option) {
-		DaoStmtExec<MoonaseInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<MoonaseInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<MoonaseInfo> buildStmtExec(DeciTreeOption<MoonaseInfo> option) {
+	private DaoStmtExec_<MoonaseInfo> buildStmtExec(DeciTreeOption<MoonaseInfo> option) {
 		List<DaoStmtExecOption<MoonaseInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(MoonaseInfo eachRecord : option.recordInfos) {

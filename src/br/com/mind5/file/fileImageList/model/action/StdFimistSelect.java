@@ -3,8 +3,8 @@ package br.com.mind5.file.fileImageList.model.action;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.file.fileImageList.dao.FimistSelect;
 import br.com.mind5.file.fileImageList.info.FimistInfo;
 import br.com.mind5.model.action.ActionLazy;
@@ -18,13 +18,13 @@ public final class StdFimistSelect implements ActionStd<FimistInfo> {
 	
 	
 	public StdFimistSelect(DeciTreeOption<FimistInfo> option) {
-		DaoStmtExec<FimistInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<FimistInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<FimistInfo> buildStmtExec(DeciTreeOption<FimistInfo> option) {
+	private DaoStmtExec_<FimistInfo> buildStmtExec(DeciTreeOption<FimistInfo> option) {
 		List<DaoStmtExecOption<FimistInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(FimistInfo eachRecord : option.recordInfos) {

@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.com.mind5.business.companyConflict.dao.CompcoSelect;
 import br.com.mind5.business.companyConflict.info.CompcoInfo;
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionStdHelperStmt;
@@ -18,13 +18,13 @@ public final class StdCompcoSelect implements ActionStd<CompcoInfo> {
 	
 	
 	public StdCompcoSelect(DeciTreeOption<CompcoInfo> option) {
-		DaoStmtExec<CompcoInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<CompcoInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<CompcoInfo> buildStmtExec(DeciTreeOption<CompcoInfo> option) {
+	private DaoStmtExec_<CompcoInfo> buildStmtExec(DeciTreeOption<CompcoInfo> option) {
 		List<DaoStmtExecOption<CompcoInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(CompcoInfo eachRecord : option.recordInfos) {

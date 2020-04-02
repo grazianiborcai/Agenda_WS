@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.com.mind5.business.companyList.dao.ComplisSelect;
 import br.com.mind5.business.companyList.info.ComplisInfo;
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionStdHelperStmt;
@@ -18,13 +18,13 @@ public final class StdComplisSelect implements ActionStd<ComplisInfo> {
 	
 	
 	public StdComplisSelect(DeciTreeOption<ComplisInfo> option) {
-		DaoStmtExec<ComplisInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<ComplisInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<ComplisInfo> buildStmtExec(DeciTreeOption<ComplisInfo> option) {
+	private DaoStmtExec_<ComplisInfo> buildStmtExec(DeciTreeOption<ComplisInfo> option) {
 		List<DaoStmtExecOption<ComplisInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(ComplisInfo eachRecord : option.recordInfos) {

@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.com.mind5.business.orderItem.dao.OrderemUpdate;
 import br.com.mind5.business.orderItem.info.OrderemInfo;
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionStdHelperStmt;
@@ -18,13 +18,13 @@ public final class StdOrderemUpdate implements ActionStd<OrderemInfo> {
 	
 	
 	public StdOrderemUpdate(DeciTreeOption<OrderemInfo> option) {
-		DaoStmtExec<OrderemInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<OrderemInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<OrderemInfo> buildStmtExec(DeciTreeOption<OrderemInfo> option) {
+	private DaoStmtExec_<OrderemInfo> buildStmtExec(DeciTreeOption<OrderemInfo> option) {
 		List<DaoStmtExecOption<OrderemInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(OrderemInfo eachRecord : option.recordInfos) {

@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.com.mind5.business.masterData.dao.MatCategSelect;
 import br.com.mind5.business.masterData.info.MatCategInfo;
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionStdHelperStmt;
@@ -18,13 +18,13 @@ public final class StdMatCategSelect implements ActionStd<MatCategInfo> {
 	
 	
 	public StdMatCategSelect(DeciTreeOption<MatCategInfo> option) {
-		DaoStmtExec<MatCategInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<MatCategInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<MatCategInfo> buildStmtExec(DeciTreeOption<MatCategInfo> option) {
+	private DaoStmtExec_<MatCategInfo> buildStmtExec(DeciTreeOption<MatCategInfo> option) {
 		List<DaoStmtExecOption<MatCategInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(MatCategInfo eachRecord : option.recordInfos) {

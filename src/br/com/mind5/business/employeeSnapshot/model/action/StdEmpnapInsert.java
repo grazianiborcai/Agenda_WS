@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.com.mind5.business.employeeSnapshot.dao.EmpnapInsert;
 import br.com.mind5.business.employeeSnapshot.info.EmpnapInfo;
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionStdHelperStmt;
@@ -18,13 +18,13 @@ public final class StdEmpnapInsert implements ActionStd<EmpnapInfo> {
 	
 	
 	public StdEmpnapInsert(DeciTreeOption<EmpnapInfo> option) {
-		DaoStmtExec<EmpnapInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<EmpnapInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<EmpnapInfo> buildStmtExec(DeciTreeOption<EmpnapInfo> option) {
+	private DaoStmtExec_<EmpnapInfo> buildStmtExec(DeciTreeOption<EmpnapInfo> option) {
 		List<DaoStmtExecOption<EmpnapInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(EmpnapInfo eachRecord : option.recordInfos) {

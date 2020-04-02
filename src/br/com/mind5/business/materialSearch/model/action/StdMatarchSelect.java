@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.com.mind5.business.materialSearch.dao.MatarchSelect;
 import br.com.mind5.business.materialSearch.info.MatarchInfo;
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionStdHelperStmt;
@@ -18,13 +18,13 @@ public final class StdMatarchSelect implements ActionStd<MatarchInfo> {
 	
 	
 	public StdMatarchSelect(DeciTreeOption<MatarchInfo> option) {
-		DaoStmtExec<MatarchInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<MatarchInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<MatarchInfo> buildStmtExec(DeciTreeOption<MatarchInfo> option) {
+	private DaoStmtExec_<MatarchInfo> buildStmtExec(DeciTreeOption<MatarchInfo> option) {
 		List<DaoStmtExecOption<MatarchInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(MatarchInfo eachRecord : option.recordInfos) {

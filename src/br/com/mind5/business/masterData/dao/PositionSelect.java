@@ -4,16 +4,16 @@ import java.sql.SQLException;
 import java.util.List;
 
 import br.com.mind5.business.masterData.info.PositionInfo;
-import br.com.mind5.dao.DaoStmtExec;
-import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExecHelper_;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 
-public final class PositionSelect implements DaoStmtExec<PositionInfo> {
-	private DaoStmtExec<PositionInfo> helper;
+public final class PositionSelect implements DaoStmtExec_<PositionInfo> {
+	private DaoStmtExec_<PositionInfo> helper;
 	
 	
 	public PositionSelect(List<DaoStmtExecOption<PositionInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, PositionSelectSingle.class, PositionInfo.class);
+		helper = new DaoStmtExecHelper_<>(options, PositionSelectSingle.class, PositionInfo.class);
 	}
 	
 	

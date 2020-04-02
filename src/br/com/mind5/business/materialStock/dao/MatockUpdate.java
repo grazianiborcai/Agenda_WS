@@ -4,16 +4,16 @@ import java.sql.SQLException;
 import java.util.List;
 
 import br.com.mind5.business.materialStock.info.MatockInfo;
-import br.com.mind5.dao.DaoStmtExec;
-import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExecHelper_;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 
-public final class MatockUpdate implements DaoStmtExec<MatockInfo> {
-	private DaoStmtExec<MatockInfo> helper;
+public final class MatockUpdate implements DaoStmtExec_<MatockInfo> {
+	private DaoStmtExec_<MatockInfo> helper;
 	
 	
 	public MatockUpdate(List<DaoStmtExecOption<MatockInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, MatockUpdateSingle.class, MatockInfo.class);
+		helper = new DaoStmtExecHelper_<>(options, MatockUpdateSingle.class, MatockInfo.class);
 	}
 	
 	

@@ -4,16 +4,16 @@ import java.sql.SQLException;
 import java.util.List;
 
 import br.com.mind5.business.feeOwner.info.FeewnerInfo;
-import br.com.mind5.dao.DaoStmtExec;
-import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExecHelper_;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 
-public final class FeewnerSelect implements DaoStmtExec<FeewnerInfo> {
-	private DaoStmtExec<FeewnerInfo> helper;
+public final class FeewnerSelect implements DaoStmtExec_<FeewnerInfo> {
+	private DaoStmtExec_<FeewnerInfo> helper;
 	
 	
 	public FeewnerSelect(List<DaoStmtExecOption<FeewnerInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, FeewnerSelectSingle.class, FeewnerInfo.class);
+		helper = new DaoStmtExecHelper_<>(options, FeewnerSelectSingle.class, FeewnerInfo.class);
 	}
 	
 	

@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.com.mind5.business.moonCalendar.dao.MooncalSelect;
 import br.com.mind5.business.moonCalendar.info.MooncalInfo;
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionStdHelperStmt;
@@ -18,13 +18,13 @@ public final class StdMooncalSelect implements ActionStd<MooncalInfo> {
 	
 	
 	public StdMooncalSelect(DeciTreeOption<MooncalInfo> option) {
-		DaoStmtExec<MooncalInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<MooncalInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<MooncalInfo> buildStmtExec(DeciTreeOption<MooncalInfo> option) {
+	private DaoStmtExec_<MooncalInfo> buildStmtExec(DeciTreeOption<MooncalInfo> option) {
 		List<DaoStmtExecOption<MooncalInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(MooncalInfo eachRecord : option.recordInfos) {

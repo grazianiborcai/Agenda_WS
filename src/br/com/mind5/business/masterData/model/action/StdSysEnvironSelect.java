@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.com.mind5.business.masterData.dao.SysEnvironSelect;
 import br.com.mind5.business.masterData.info.SysEnvironInfo;
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionStdHelperStmt;
@@ -18,13 +18,13 @@ public final class StdSysEnvironSelect implements ActionStd<SysEnvironInfo> {
 	
 	
 	public StdSysEnvironSelect(DeciTreeOption<SysEnvironInfo> option) {
-		DaoStmtExec<SysEnvironInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<SysEnvironInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<SysEnvironInfo> buildStmtExec(DeciTreeOption<SysEnvironInfo> option) {
+	private DaoStmtExec_<SysEnvironInfo> buildStmtExec(DeciTreeOption<SysEnvironInfo> option) {
 		List<DaoStmtExecOption<SysEnvironInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(SysEnvironInfo eachRecord : option.recordInfos) {

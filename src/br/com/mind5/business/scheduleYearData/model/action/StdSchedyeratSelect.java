@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.com.mind5.business.scheduleYearData.dao.SchedyeratSelect;
 import br.com.mind5.business.scheduleYearData.info.SchedyeratInfo;
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionStdHelperStmt;
@@ -18,13 +18,13 @@ public final class StdSchedyeratSelect implements ActionStd<SchedyeratInfo> {
 	
 	
 	public StdSchedyeratSelect(DeciTreeOption<SchedyeratInfo> option) {
-		DaoStmtExec<SchedyeratInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<SchedyeratInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<SchedyeratInfo> buildStmtExec(DeciTreeOption<SchedyeratInfo> option) {
+	private DaoStmtExec_<SchedyeratInfo> buildStmtExec(DeciTreeOption<SchedyeratInfo> option) {
 		List<DaoStmtExecOption<SchedyeratInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(SchedyeratInfo eachRecord : option.recordInfos) {

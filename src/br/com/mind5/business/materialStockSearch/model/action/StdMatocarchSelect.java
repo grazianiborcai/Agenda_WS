@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.com.mind5.business.materialStockSearch.dao.MatocarchSelect;
 import br.com.mind5.business.materialStockSearch.info.MatocarchInfo;
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionStdHelperStmt;
@@ -18,13 +18,13 @@ public final class StdMatocarchSelect implements ActionStd<MatocarchInfo> {
 	
 	
 	public StdMatocarchSelect(DeciTreeOption<MatocarchInfo> option) {
-		DaoStmtExec<MatocarchInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<MatocarchInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<MatocarchInfo> buildStmtExec(DeciTreeOption<MatocarchInfo> option) {
+	private DaoStmtExec_<MatocarchInfo> buildStmtExec(DeciTreeOption<MatocarchInfo> option) {
 		List<DaoStmtExecOption<MatocarchInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(MatocarchInfo eachRecord : option.recordInfos) {

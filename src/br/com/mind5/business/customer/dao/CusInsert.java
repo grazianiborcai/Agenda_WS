@@ -4,16 +4,16 @@ import java.sql.SQLException;
 import java.util.List;
 
 import br.com.mind5.business.customer.info.CusInfo;
-import br.com.mind5.dao.DaoStmtExec;
-import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExecHelper_;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 
-public final class CusInsert implements DaoStmtExec<CusInfo> {
-	private DaoStmtExec<CusInfo> helper;
+public final class CusInsert implements DaoStmtExec_<CusInfo> {
+	private DaoStmtExec_<CusInfo> helper;
 	
 	
 	public CusInsert(List<DaoStmtExecOption<CusInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, CusInsertSingle.class, CusInfo.class);
+		helper = new DaoStmtExecHelper_<>(options, CusInsertSingle.class, CusInfo.class);
 	}
 	
 	

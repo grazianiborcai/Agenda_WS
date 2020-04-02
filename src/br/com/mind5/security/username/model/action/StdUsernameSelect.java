@@ -3,8 +3,8 @@ package br.com.mind5.security.username.model.action;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionStdHelperStmt;
@@ -18,13 +18,13 @@ public final class StdUsernameSelect implements ActionStd<UsernameInfo> {
 	
 	
 	public StdUsernameSelect(DeciTreeOption<UsernameInfo> option) {
-		DaoStmtExec<UsernameInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<UsernameInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<UsernameInfo> buildStmtExec(DeciTreeOption<UsernameInfo> option) {
+	private DaoStmtExec_<UsernameInfo> buildStmtExec(DeciTreeOption<UsernameInfo> option) {
 		List<DaoStmtExecOption<UsernameInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(UsernameInfo eachRecord : option.recordInfos) {

@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.com.mind5.business.masterData.dao.CountrySelect;
 import br.com.mind5.business.masterData.info.CountryInfo;
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionStdHelperStmt;
@@ -18,13 +18,13 @@ public final class StdCountrySelect implements ActionStd<CountryInfo> {
 	
 	
 	public StdCountrySelect(DeciTreeOption<CountryInfo> option) {
-		DaoStmtExec<CountryInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<CountryInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<CountryInfo> buildStmtExec(DeciTreeOption<CountryInfo> option) {
+	private DaoStmtExec_<CountryInfo> buildStmtExec(DeciTreeOption<CountryInfo> option) {
 		List<DaoStmtExecOption<CountryInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(CountryInfo eachRecord : option.recordInfos) {

@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.com.mind5.business.scheduleWeekData.dao.SchedeekdatSelect;
 import br.com.mind5.business.scheduleWeekData.info.SchedeekdatInfo;
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionStdHelperStmt;
@@ -18,13 +18,13 @@ public final class StdSchedeekdatSelect implements ActionStd<SchedeekdatInfo> {
 	
 	
 	public StdSchedeekdatSelect(DeciTreeOption<SchedeekdatInfo> option) {
-		DaoStmtExec<SchedeekdatInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<SchedeekdatInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<SchedeekdatInfo> buildStmtExec(DeciTreeOption<SchedeekdatInfo> option) {
+	private DaoStmtExec_<SchedeekdatInfo> buildStmtExec(DeciTreeOption<SchedeekdatInfo> option) {
 		List<DaoStmtExecOption<SchedeekdatInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(SchedeekdatInfo eachRecord : option.recordInfos) {

@@ -4,16 +4,16 @@ import java.sql.SQLException;
 import java.util.List;
 
 import br.com.mind5.business.addressSearch.info.AddarchInfo;
-import br.com.mind5.dao.DaoStmtExec;
-import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExecHelper_;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 
-public final class AddarchSelect implements DaoStmtExec<AddarchInfo> {
-	private DaoStmtExec<AddarchInfo> helper;
+public final class AddarchSelect implements DaoStmtExec_<AddarchInfo> {
+	private DaoStmtExec_<AddarchInfo> helper;
 	
 	
 	public AddarchSelect(List<DaoStmtExecOption<AddarchInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, AddarchSelectSingle.class, AddarchInfo.class);
+		helper = new DaoStmtExecHelper_<>(options, AddarchSelectSingle.class, AddarchInfo.class);
 	}
 	
 	

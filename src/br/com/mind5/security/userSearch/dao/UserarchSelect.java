@@ -3,17 +3,17 @@ package br.com.mind5.security.userSearch.dao;
 import java.sql.SQLException;
 import java.util.List;
 
-import br.com.mind5.dao.DaoStmtExec;
-import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExecHelper_;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.security.userSearch.info.UserarchInfo;
 
-public final class UserarchSelect implements DaoStmtExec<UserarchInfo> {
-	private DaoStmtExec<UserarchInfo> helper;
+public final class UserarchSelect implements DaoStmtExec_<UserarchInfo> {
+	private DaoStmtExec_<UserarchInfo> helper;
 	
 	
 	public UserarchSelect(List<DaoStmtExecOption<UserarchInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, UserarchSelectSingle.class, UserarchInfo.class);
+		helper = new DaoStmtExecHelper_<>(options, UserarchSelectSingle.class, UserarchInfo.class);
 	}
 	
 	

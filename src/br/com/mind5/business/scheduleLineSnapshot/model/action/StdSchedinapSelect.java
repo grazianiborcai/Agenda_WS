@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.com.mind5.business.scheduleLineSnapshot.dao.SchedinapSelect;
 import br.com.mind5.business.scheduleLineSnapshot.info.SchedinapInfo;
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionStdHelperStmt;
@@ -18,13 +18,13 @@ public final class StdSchedinapSelect implements ActionStd<SchedinapInfo> {
 	
 	
 	public StdSchedinapSelect(DeciTreeOption<SchedinapInfo> option) {
-		DaoStmtExec<SchedinapInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<SchedinapInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<SchedinapInfo> buildStmtExec(DeciTreeOption<SchedinapInfo> option) {
+	private DaoStmtExec_<SchedinapInfo> buildStmtExec(DeciTreeOption<SchedinapInfo> option) {
 		List<DaoStmtExecOption<SchedinapInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(SchedinapInfo eachRecord : option.recordInfos) {

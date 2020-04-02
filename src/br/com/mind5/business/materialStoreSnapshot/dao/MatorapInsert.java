@@ -4,16 +4,16 @@ import java.sql.SQLException;
 import java.util.List;
 
 import br.com.mind5.business.materialStoreSnapshot.info.MatorapInfo;
-import br.com.mind5.dao.DaoStmtExec;
-import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExecHelper_;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 
-public final class MatorapInsert implements DaoStmtExec<MatorapInfo> {
-	private DaoStmtExec<MatorapInfo> helper;
+public final class MatorapInsert implements DaoStmtExec_<MatorapInfo> {
+	private DaoStmtExec_<MatorapInfo> helper;
 	
 	
 	public MatorapInsert(List<DaoStmtExecOption<MatorapInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, MatorapInsertSingle.class, MatorapInfo.class);
+		helper = new DaoStmtExecHelper_<>(options, MatorapInsertSingle.class, MatorapInfo.class);
 	}
 	
 	

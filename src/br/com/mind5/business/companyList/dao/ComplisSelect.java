@@ -4,16 +4,16 @@ import java.sql.SQLException;
 import java.util.List;
 
 import br.com.mind5.business.companyList.info.ComplisInfo;
-import br.com.mind5.dao.DaoStmtExec;
-import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExecHelper_;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 
-public final class ComplisSelect implements DaoStmtExec<ComplisInfo> {
-	private DaoStmtExec<ComplisInfo> helper;
+public final class ComplisSelect implements DaoStmtExec_<ComplisInfo> {
+	private DaoStmtExec_<ComplisInfo> helper;
 	
 	
 	public ComplisSelect(List<DaoStmtExecOption<ComplisInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, ComplisSelectSingle.class, ComplisInfo.class);
+		helper = new DaoStmtExecHelper_<>(options, ComplisSelectSingle.class, ComplisInfo.class);
 	}
 	
 	

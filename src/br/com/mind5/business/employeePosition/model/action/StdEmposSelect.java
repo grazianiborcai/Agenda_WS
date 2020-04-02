@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.com.mind5.business.employeePosition.dao.EmposSelect;
 import br.com.mind5.business.employeePosition.info.EmposInfo;
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionStdHelperStmt;
@@ -18,13 +18,13 @@ public final class StdEmposSelect implements ActionStd<EmposInfo> {
 	
 	
 	public StdEmposSelect(DeciTreeOption<EmposInfo> option) {
-		DaoStmtExec<EmposInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<EmposInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<EmposInfo> buildStmtExec(DeciTreeOption<EmposInfo> option) {
+	private DaoStmtExec_<EmposInfo> buildStmtExec(DeciTreeOption<EmposInfo> option) {
 		List<DaoStmtExecOption<EmposInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(EmposInfo eachRecord : option.recordInfos) {

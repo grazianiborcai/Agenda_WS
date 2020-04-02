@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.com.mind5.business.addressSnapshot.dao.AddresnapInsert;
 import br.com.mind5.business.addressSnapshot.info.AddresnapInfo;
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionStdHelperStmt;
@@ -18,13 +18,13 @@ public final class StdAddresnapInsert implements ActionStd<AddresnapInfo> {
 	
 	
 	public StdAddresnapInsert(DeciTreeOption<AddresnapInfo> option) {
-		DaoStmtExec<AddresnapInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<AddresnapInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<AddresnapInfo> buildStmtExec(DeciTreeOption<AddresnapInfo> option) {
+	private DaoStmtExec_<AddresnapInfo> buildStmtExec(DeciTreeOption<AddresnapInfo> option) {
 		List<DaoStmtExecOption<AddresnapInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(AddresnapInfo eachRecord : option.recordInfos) {

@@ -3,8 +3,8 @@ package br.com.mind5.payment.setupPartner.model.action;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionStdHelperStmt;
@@ -18,13 +18,13 @@ public final class StdSetuparSelect implements ActionStd<SetuparInfo> {
 	
 	
 	public StdSetuparSelect(DeciTreeOption<SetuparInfo> option) {
-		DaoStmtExec<SetuparInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<SetuparInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<SetuparInfo> buildStmtExec(DeciTreeOption<SetuparInfo> option) {
+	private DaoStmtExec_<SetuparInfo> buildStmtExec(DeciTreeOption<SetuparInfo> option) {
 		List<DaoStmtExecOption<SetuparInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(SetuparInfo eachRecord : option.recordInfos) {

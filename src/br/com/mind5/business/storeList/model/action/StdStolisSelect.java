@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.com.mind5.business.storeList.dao.StolisSelect;
 import br.com.mind5.business.storeList.info.StolisInfo;
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionStdHelperStmt;
@@ -18,13 +18,13 @@ public final class StdStolisSelect implements ActionStd<StolisInfo> {
 	
 	
 	public StdStolisSelect(DeciTreeOption<StolisInfo> option) {
-		DaoStmtExec<StolisInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<StolisInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<StolisInfo> buildStmtExec(DeciTreeOption<StolisInfo> option) {
+	private DaoStmtExec_<StolisInfo> buildStmtExec(DeciTreeOption<StolisInfo> option) {
 		List<DaoStmtExecOption<StolisInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(StolisInfo eachRecord : option.recordInfos) {

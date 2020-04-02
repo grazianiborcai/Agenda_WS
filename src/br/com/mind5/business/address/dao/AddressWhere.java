@@ -15,12 +15,12 @@ final class AddressWhere implements DaoStmtWhere {
 	
 	
 	public AddressWhere(DaoWhereBuilderOption whereOption, String tableName, AddressInfo recordInfo) {
-		generateWhereClause(whereOption, tableName, recordInfo);
+		whereClause = generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
 	
 	
-	private void generateWhereClause(DaoWhereBuilderOption whereOption, String tableName, AddressInfo recordInfo) {
+	private String generateWhereClause(DaoWhereBuilderOption whereOption, String tableName, AddressInfo recordInfo) {
 		DaoWhereBuilder builder = DaoWhereBuilder.factory(whereOption);
 		
 		List<DaoColumn> columns = DaoDbTableColumnAll.getTableColumnsAsList(tableName);
@@ -41,7 +41,7 @@ final class AddressWhere implements DaoStmtWhere {
 			}
 		}		
 		
-		whereClause = builder.generateClause();
+		return builder.generateClause();
 	}
 	
 	

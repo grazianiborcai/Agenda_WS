@@ -3,17 +3,17 @@ package br.com.mind5.security.userPassword.dao;
 import java.sql.SQLException;
 import java.util.List;
 
-import br.com.mind5.dao.DaoStmtExec;
-import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExecHelper_;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.security.userPassword.info.UpswdInfo;
 
-public final class UpswdDelete implements DaoStmtExec<UpswdInfo> {
-	private DaoStmtExec<UpswdInfo> helper;
+public final class UpswdDelete implements DaoStmtExec_<UpswdInfo> {
+	private DaoStmtExec_<UpswdInfo> helper;
 	
 	
 	public UpswdDelete(List<DaoStmtExecOption<UpswdInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, UpswdDeleteSingle.class, UpswdInfo.class);
+		helper = new DaoStmtExecHelper_<>(options, UpswdDeleteSingle.class, UpswdInfo.class);
 	}
 	
 	

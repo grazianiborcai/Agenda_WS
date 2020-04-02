@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.com.mind5.business.phoneSearch.dao.PhonarchSelect;
 import br.com.mind5.business.phoneSearch.info.PhonarchInfo;
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionStdHelperStmt;
@@ -18,13 +18,13 @@ public final class StdPhonarchSelect implements ActionStd<PhonarchInfo> {
 	
 	
 	public StdPhonarchSelect(DeciTreeOption<PhonarchInfo> option) {
-		DaoStmtExec<PhonarchInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<PhonarchInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<PhonarchInfo> buildStmtExec(DeciTreeOption<PhonarchInfo> option) {
+	private DaoStmtExec_<PhonarchInfo> buildStmtExec(DeciTreeOption<PhonarchInfo> option) {
 		List<DaoStmtExecOption<PhonarchInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(PhonarchInfo eachRecord : option.recordInfos) {

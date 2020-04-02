@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.com.mind5.business.personSnapshot.dao.PersonapSelect;
 import br.com.mind5.business.personSnapshot.info.PersonapInfo;
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionStdHelperStmt;
@@ -18,13 +18,13 @@ public final class StdPersonapSelect implements ActionStd<PersonapInfo> {
 	
 	
 	public StdPersonapSelect(DeciTreeOption<PersonapInfo> option) {
-		DaoStmtExec<PersonapInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<PersonapInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<PersonapInfo> buildStmtExec(DeciTreeOption<PersonapInfo> option) {
+	private DaoStmtExec_<PersonapInfo> buildStmtExec(DeciTreeOption<PersonapInfo> option) {
 		List<DaoStmtExecOption<PersonapInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(PersonapInfo eachRecord : option.recordInfos) {

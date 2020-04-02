@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.com.mind5.business.masterData.dao.UserCategSelect;
 import br.com.mind5.business.masterData.info.UserCategInfo;
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionStdHelperStmt;
@@ -18,13 +18,13 @@ public final class StdUserCategSelect implements ActionStd<UserCategInfo> {
 	
 	
 	public StdUserCategSelect(DeciTreeOption<UserCategInfo> option) {
-		DaoStmtExec<UserCategInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<UserCategInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<UserCategInfo> buildStmtExec(DeciTreeOption<UserCategInfo> option) {
+	private DaoStmtExec_<UserCategInfo> buildStmtExec(DeciTreeOption<UserCategInfo> option) {
 		List<DaoStmtExecOption<UserCategInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(UserCategInfo eachRecord : option.recordInfos) {

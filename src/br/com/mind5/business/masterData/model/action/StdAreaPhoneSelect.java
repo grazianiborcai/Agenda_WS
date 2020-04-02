@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.com.mind5.business.masterData.dao.AreaPhoneSelect;
 import br.com.mind5.business.masterData.info.AreaPhoneInfo;
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionStdHelperStmt;
@@ -18,13 +18,13 @@ public final class StdAreaPhoneSelect implements ActionStd<AreaPhoneInfo> {
 	
 	
 	public StdAreaPhoneSelect(DeciTreeOption<AreaPhoneInfo> option) {
-		DaoStmtExec<AreaPhoneInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<AreaPhoneInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<AreaPhoneInfo> buildStmtExec(DeciTreeOption<AreaPhoneInfo> option) {
+	private DaoStmtExec_<AreaPhoneInfo> buildStmtExec(DeciTreeOption<AreaPhoneInfo> option) {
 		List<DaoStmtExecOption<AreaPhoneInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(AreaPhoneInfo eachRecord : option.recordInfos) {

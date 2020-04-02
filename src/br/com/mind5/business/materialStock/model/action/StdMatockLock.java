@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.com.mind5.business.materialStock.dao.MatockLock;
 import br.com.mind5.business.materialStock.info.MatockInfo;
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionStdHelperStmt;
@@ -18,13 +18,13 @@ public final class StdMatockLock implements ActionStd<MatockInfo> {
 	
 	
 	public StdMatockLock(DeciTreeOption<MatockInfo> option) {
-		DaoStmtExec<MatockInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<MatockInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<MatockInfo> buildStmtExec(DeciTreeOption<MatockInfo> option) {
+	private DaoStmtExec_<MatockInfo> buildStmtExec(DeciTreeOption<MatockInfo> option) {
 		List<DaoStmtExecOption<MatockInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(MatockInfo eachRecord : option.recordInfos) {

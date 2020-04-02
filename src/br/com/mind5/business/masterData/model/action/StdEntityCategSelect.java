@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.com.mind5.business.masterData.dao.EntityCategSelect;
 import br.com.mind5.business.masterData.info.EntityCategInfo;
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionStdHelperStmt;
@@ -18,13 +18,13 @@ public final class StdEntityCategSelect implements ActionStd<EntityCategInfo> {
 	
 	
 	public StdEntityCategSelect(DeciTreeOption<EntityCategInfo> option) {
-		DaoStmtExec<EntityCategInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<EntityCategInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<EntityCategInfo> buildStmtExec(DeciTreeOption<EntityCategInfo> option) {
+	private DaoStmtExec_<EntityCategInfo> buildStmtExec(DeciTreeOption<EntityCategInfo> option) {
 		List<DaoStmtExecOption<EntityCategInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(EntityCategInfo eachRecord : option.recordInfos) {

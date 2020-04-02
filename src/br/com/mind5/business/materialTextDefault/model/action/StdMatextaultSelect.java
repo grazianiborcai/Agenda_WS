@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.com.mind5.business.materialTextDefault.dao.MatextaultSelect;
 import br.com.mind5.business.materialTextDefault.info.MatextaultInfo;
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionStdHelperStmt;
@@ -18,13 +18,13 @@ public final class StdMatextaultSelect implements ActionStd<MatextaultInfo> {
 	
 	
 	public StdMatextaultSelect(DeciTreeOption<MatextaultInfo> option) {
-		DaoStmtExec<MatextaultInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<MatextaultInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<MatextaultInfo> buildStmtExec(DeciTreeOption<MatextaultInfo> option) {
+	private DaoStmtExec_<MatextaultInfo> buildStmtExec(DeciTreeOption<MatextaultInfo> option) {
 		List<DaoStmtExecOption<MatextaultInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(MatextaultInfo eachRecord : option.recordInfos) {

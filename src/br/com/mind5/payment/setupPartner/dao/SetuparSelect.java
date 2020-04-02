@@ -3,17 +3,17 @@ package br.com.mind5.payment.setupPartner.dao;
 import java.sql.SQLException;
 import java.util.List;
 
-import br.com.mind5.dao.DaoStmtExec;
-import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExecHelper_;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.payment.setupPartner.info.SetuparInfo;
 
-public final class SetuparSelect implements DaoStmtExec<SetuparInfo> {
-	private DaoStmtExec<SetuparInfo> helper;
+public final class SetuparSelect implements DaoStmtExec_<SetuparInfo> {
+	private DaoStmtExec_<SetuparInfo> helper;
 	
 	
 	public SetuparSelect(List<DaoStmtExecOption<SetuparInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, SetuparSelectSingle.class, SetuparInfo.class);
+		helper = new DaoStmtExecHelper_<>(options, SetuparSelectSingle.class, SetuparInfo.class);
 	}
 	
 	

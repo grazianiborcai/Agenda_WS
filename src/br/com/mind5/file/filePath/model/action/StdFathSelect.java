@@ -3,8 +3,8 @@ package br.com.mind5.file.filePath.model.action;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.file.filePath.dao.FathSelect;
 import br.com.mind5.file.filePath.info.FathInfo;
 import br.com.mind5.model.action.ActionLazy;
@@ -18,13 +18,13 @@ public final class StdFathSelect implements ActionStd<FathInfo> {
 	
 	
 	public StdFathSelect(DeciTreeOption<FathInfo> option) {
-		DaoStmtExec<FathInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<FathInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<FathInfo> buildStmtExec(DeciTreeOption<FathInfo> option) {
+	private DaoStmtExec_<FathInfo> buildStmtExec(DeciTreeOption<FathInfo> option) {
 		List<DaoStmtExecOption<FathInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(FathInfo eachRecord : option.recordInfos) {

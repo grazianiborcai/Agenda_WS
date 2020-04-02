@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.com.mind5.business.masterData.dao.PositionSelect;
 import br.com.mind5.business.masterData.info.PositionInfo;
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionStdHelperStmt;
@@ -18,13 +18,13 @@ public final class StdPositionSelect implements ActionStd<PositionInfo> {
 	
 	
 	public StdPositionSelect(DeciTreeOption<PositionInfo> option) {
-		DaoStmtExec<PositionInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<PositionInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<PositionInfo> buildStmtExec(DeciTreeOption<PositionInfo> option) {
+	private DaoStmtExec_<PositionInfo> buildStmtExec(DeciTreeOption<PositionInfo> option) {
 		List<DaoStmtExecOption<PositionInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(PositionInfo eachRecord : option.recordInfos) {

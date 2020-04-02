@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.com.mind5.business.materialList.dao.MatlisSelect;
 import br.com.mind5.business.materialList.info.MatlisInfo;
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionStdHelperStmt;
@@ -18,13 +18,13 @@ public final class StdMatlisSelect implements ActionStd<MatlisInfo> {
 	
 	
 	public StdMatlisSelect(DeciTreeOption<MatlisInfo> option) {
-		DaoStmtExec<MatlisInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<MatlisInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<MatlisInfo> buildStmtExec(DeciTreeOption<MatlisInfo> option) {
+	private DaoStmtExec_<MatlisInfo> buildStmtExec(DeciTreeOption<MatlisInfo> option) {
 		List<DaoStmtExecOption<MatlisInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(MatlisInfo eachRecord : option.recordInfos) {

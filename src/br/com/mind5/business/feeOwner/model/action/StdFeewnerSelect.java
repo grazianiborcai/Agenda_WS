@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.com.mind5.business.feeOwner.dao.FeewnerSelect;
 import br.com.mind5.business.feeOwner.info.FeewnerInfo;
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionStdHelperStmt;
@@ -18,13 +18,13 @@ public final class StdFeewnerSelect implements ActionStd<FeewnerInfo> {
 	
 	
 	public StdFeewnerSelect(DeciTreeOption<FeewnerInfo> option) {
-		DaoStmtExec<FeewnerInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<FeewnerInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<FeewnerInfo> buildStmtExec(DeciTreeOption<FeewnerInfo> option) {
+	private DaoStmtExec_<FeewnerInfo> buildStmtExec(DeciTreeOption<FeewnerInfo> option) {
 		List<DaoStmtExecOption<FeewnerInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(FeewnerInfo eachRecord : option.recordInfos) {

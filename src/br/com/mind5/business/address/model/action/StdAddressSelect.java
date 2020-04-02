@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.com.mind5.business.address.dao.AddressSelect;
 import br.com.mind5.business.address.info.AddressInfo;
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionStdHelperStmt;
@@ -18,13 +18,13 @@ public final class StdAddressSelect implements ActionStd<AddressInfo> {
 	
 	
 	public StdAddressSelect(DeciTreeOption<AddressInfo> option) {
-		DaoStmtExec<AddressInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<AddressInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<AddressInfo> buildStmtExec(DeciTreeOption<AddressInfo> option) {
+	private DaoStmtExec_<AddressInfo> buildStmtExec(DeciTreeOption<AddressInfo> option) {
 		List<DaoStmtExecOption<AddressInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(AddressInfo eachRecord : option.recordInfos) {

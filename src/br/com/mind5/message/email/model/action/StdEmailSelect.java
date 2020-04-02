@@ -3,8 +3,8 @@ package br.com.mind5.message.email.model.action;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.message.email.dao.EmailSelect;
 import br.com.mind5.message.email.info.EmailInfo;
 import br.com.mind5.model.action.ActionLazy;
@@ -18,13 +18,13 @@ public final class StdEmailSelect implements ActionStd<EmailInfo> {
 	
 	
 	public StdEmailSelect(DeciTreeOption<EmailInfo> option) {
-		DaoStmtExec<EmailInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<EmailInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<EmailInfo> buildStmtExec(DeciTreeOption<EmailInfo> option) {
+	private DaoStmtExec_<EmailInfo> buildStmtExec(DeciTreeOption<EmailInfo> option) {
 		List<DaoStmtExecOption<EmailInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(EmailInfo eachRecord : option.recordInfos) {

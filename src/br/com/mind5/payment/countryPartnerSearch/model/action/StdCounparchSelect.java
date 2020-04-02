@@ -3,8 +3,8 @@ package br.com.mind5.payment.countryPartnerSearch.model.action;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionStdHelperStmt;
@@ -18,13 +18,13 @@ public final class StdCounparchSelect implements ActionStd<CounparchInfo> {
 	
 	
 	public StdCounparchSelect(DeciTreeOption<CounparchInfo> option) {
-		DaoStmtExec<CounparchInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<CounparchInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<CounparchInfo> buildStmtExec(DeciTreeOption<CounparchInfo> option) {
+	private DaoStmtExec_<CounparchInfo> buildStmtExec(DeciTreeOption<CounparchInfo> option) {
 		List<DaoStmtExecOption<CounparchInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(CounparchInfo eachRecord : option.recordInfos) {

@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.com.mind5.business.materialStoreSearch.dao.MatorarchSelect;
 import br.com.mind5.business.materialStoreSearch.info.MatorarchInfo;
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionStdHelperStmt;
@@ -18,13 +18,13 @@ public final class StdMatorarchSelect implements ActionStd<MatorarchInfo> {
 	
 	
 	public StdMatorarchSelect(DeciTreeOption<MatorarchInfo> option) {
-		DaoStmtExec<MatorarchInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<MatorarchInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<MatorarchInfo> buildStmtExec(DeciTreeOption<MatorarchInfo> option) {
+	private DaoStmtExec_<MatorarchInfo> buildStmtExec(DeciTreeOption<MatorarchInfo> option) {
 		List<DaoStmtExecOption<MatorarchInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(MatorarchInfo eachRecord : option.recordInfos) {

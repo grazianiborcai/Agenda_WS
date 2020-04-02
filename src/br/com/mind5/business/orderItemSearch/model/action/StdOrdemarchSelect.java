@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.com.mind5.business.orderItemSearch.dao.OrdemarchSelect;
 import br.com.mind5.business.orderItemSearch.info.OrdemarchInfo;
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionStdHelperStmt;
@@ -18,13 +18,13 @@ public final class StdOrdemarchSelect implements ActionStd<OrdemarchInfo> {
 	
 	
 	public StdOrdemarchSelect(DeciTreeOption<OrdemarchInfo> option) {
-		DaoStmtExec<OrdemarchInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<OrdemarchInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<OrdemarchInfo> buildStmtExec(DeciTreeOption<OrdemarchInfo> option) {
+	private DaoStmtExec_<OrdemarchInfo> buildStmtExec(DeciTreeOption<OrdemarchInfo> option) {
 		List<DaoStmtExecOption<OrdemarchInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(OrdemarchInfo eachRecord : option.recordInfos) {

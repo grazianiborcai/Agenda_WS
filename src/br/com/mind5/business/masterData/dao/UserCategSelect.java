@@ -4,16 +4,16 @@ import java.sql.SQLException;
 import java.util.List;
 
 import br.com.mind5.business.masterData.info.UserCategInfo;
-import br.com.mind5.dao.DaoStmtExec;
-import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExecHelper_;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 
-public final class UserCategSelect implements DaoStmtExec<UserCategInfo> {
-	private DaoStmtExec<UserCategInfo> helper;
+public final class UserCategSelect implements DaoStmtExec_<UserCategInfo> {
+	private DaoStmtExec_<UserCategInfo> helper;
 	
 	
 	public UserCategSelect(List<DaoStmtExecOption<UserCategInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, UserCategSelectSingle.class, UserCategInfo.class);
+		helper = new DaoStmtExecHelper_<>(options, UserCategSelectSingle.class, UserCategInfo.class);
 	}
 	
 	

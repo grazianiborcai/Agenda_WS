@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.com.mind5.business.masterData.dao.LanguSelect;
 import br.com.mind5.business.masterData.info.LanguInfo;
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionStdHelperStmt;
@@ -18,13 +18,13 @@ public final class StdLanguSelect implements ActionStd<LanguInfo> {
 	
 	
 	public StdLanguSelect(DeciTreeOption<LanguInfo> option) {
-		DaoStmtExec<LanguInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<LanguInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<LanguInfo> buildStmtExec(DeciTreeOption<LanguInfo> option) {
+	private DaoStmtExec_<LanguInfo> buildStmtExec(DeciTreeOption<LanguInfo> option) {
 		List<DaoStmtExecOption<LanguInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(LanguInfo eachRecord : option.recordInfos) {

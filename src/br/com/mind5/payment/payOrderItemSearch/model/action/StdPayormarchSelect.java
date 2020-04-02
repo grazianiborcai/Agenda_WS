@@ -3,8 +3,8 @@ package br.com.mind5.payment.payOrderItemSearch.model.action;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionStdHelperStmt;
@@ -18,13 +18,13 @@ public final class StdPayormarchSelect implements ActionStd<PayormarchInfo> {
 	
 	
 	public StdPayormarchSelect(DeciTreeOption<PayormarchInfo> option) {
-		DaoStmtExec<PayormarchInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<PayormarchInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<PayormarchInfo> buildStmtExec(DeciTreeOption<PayormarchInfo> option) {
+	private DaoStmtExec_<PayormarchInfo> buildStmtExec(DeciTreeOption<PayormarchInfo> option) {
 		List<DaoStmtExecOption<PayormarchInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(PayormarchInfo eachRecord : option.recordInfos) {

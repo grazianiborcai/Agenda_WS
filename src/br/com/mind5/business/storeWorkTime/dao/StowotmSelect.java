@@ -4,16 +4,16 @@ import java.sql.SQLException;
 import java.util.List;
 
 import br.com.mind5.business.storeWorkTime.info.StowotmInfo;
-import br.com.mind5.dao.DaoStmtExec;
-import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExecHelper_;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 
-public final class StowotmSelect implements DaoStmtExec<StowotmInfo> {
-	private DaoStmtExec<StowotmInfo> helper;
+public final class StowotmSelect implements DaoStmtExec_<StowotmInfo> {
+	private DaoStmtExec_<StowotmInfo> helper;
 	
 	
 	public StowotmSelect(List<DaoStmtExecOption<StowotmInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, StowotmSelectSingle.class, StowotmInfo.class);
+		helper = new DaoStmtExecHelper_<>(options, StowotmSelectSingle.class, StowotmInfo.class);
 	}
 	
 	

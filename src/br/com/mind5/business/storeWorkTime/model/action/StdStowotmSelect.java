@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.com.mind5.business.storeWorkTime.dao.StowotmSelect;
 import br.com.mind5.business.storeWorkTime.info.StowotmInfo;
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionStdHelperStmt;
@@ -18,13 +18,13 @@ public final class StdStowotmSelect implements ActionStd<StowotmInfo> {
 	
 	
 	public StdStowotmSelect(DeciTreeOption<StowotmInfo> option) {
-		DaoStmtExec<StowotmInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<StowotmInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<StowotmInfo> buildStmtExec(DeciTreeOption<StowotmInfo> option) {
+	private DaoStmtExec_<StowotmInfo> buildStmtExec(DeciTreeOption<StowotmInfo> option) {
 		List<DaoStmtExecOption<StowotmInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(StowotmInfo eachRecord : option.recordInfos) {

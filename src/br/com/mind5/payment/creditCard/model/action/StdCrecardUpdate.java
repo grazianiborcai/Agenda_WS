@@ -3,8 +3,8 @@ package br.com.mind5.payment.creditCard.model.action;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionStdHelperStmt;
@@ -18,13 +18,13 @@ public final class StdCrecardUpdate implements ActionStd<CrecardInfo> {
 	
 	
 	public StdCrecardUpdate(DeciTreeOption<CrecardInfo> option) {
-		DaoStmtExec<CrecardInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<CrecardInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<CrecardInfo> buildStmtExec(DeciTreeOption<CrecardInfo> option) {
+	private DaoStmtExec_<CrecardInfo> buildStmtExec(DeciTreeOption<CrecardInfo> option) {
 		List<DaoStmtExecOption<CrecardInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(CrecardInfo eachRecord : option.recordInfos) {

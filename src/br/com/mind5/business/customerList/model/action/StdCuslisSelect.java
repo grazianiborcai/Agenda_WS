@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.com.mind5.business.customerList.dao.CuslisSelect;
 import br.com.mind5.business.customerList.info.CuslisInfo;
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionStdHelperStmt;
@@ -18,13 +18,13 @@ public final class StdCuslisSelect implements ActionStd<CuslisInfo> {
 	
 	
 	public StdCuslisSelect(DeciTreeOption<CuslisInfo> option) {
-		DaoStmtExec<CuslisInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<CuslisInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<CuslisInfo> buildStmtExec(DeciTreeOption<CuslisInfo> option) {
+	private DaoStmtExec_<CuslisInfo> buildStmtExec(DeciTreeOption<CuslisInfo> option) {
 		List<DaoStmtExecOption<CuslisInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(CuslisInfo eachRecord : option.recordInfos) {

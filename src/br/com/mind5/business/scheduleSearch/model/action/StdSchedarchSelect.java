@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.com.mind5.business.scheduleSearch.dao.SchedarchSelect;
 import br.com.mind5.business.scheduleSearch.info.SchedarchInfo;
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionStdHelperStmt;
@@ -18,13 +18,13 @@ public final class StdSchedarchSelect implements ActionStd<SchedarchInfo> {
 	
 	
 	public StdSchedarchSelect(DeciTreeOption<SchedarchInfo> option) {
-		DaoStmtExec<SchedarchInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<SchedarchInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<SchedarchInfo> buildStmtExec(DeciTreeOption<SchedarchInfo> option) {
+	private DaoStmtExec_<SchedarchInfo> buildStmtExec(DeciTreeOption<SchedarchInfo> option) {
 		List<DaoStmtExecOption<SchedarchInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(SchedarchInfo eachRecord : option.recordInfos) {

@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.com.mind5.business.masterData.dao.FeeCategSelect;
 import br.com.mind5.business.masterData.info.FeeCategInfo;
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionStdHelperStmt;
@@ -18,13 +18,13 @@ public final class StdFeeCategSelect implements ActionStd<FeeCategInfo> {
 	
 	
 	public StdFeeCategSelect(DeciTreeOption<FeeCategInfo> option) {
-		DaoStmtExec<FeeCategInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<FeeCategInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<FeeCategInfo> buildStmtExec(DeciTreeOption<FeeCategInfo> option) {
+	private DaoStmtExec_<FeeCategInfo> buildStmtExec(DeciTreeOption<FeeCategInfo> option) {
 		List<DaoStmtExecOption<FeeCategInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(FeeCategInfo eachRecord : option.recordInfos) {

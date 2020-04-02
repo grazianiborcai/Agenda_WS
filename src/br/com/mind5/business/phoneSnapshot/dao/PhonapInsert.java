@@ -4,16 +4,16 @@ import java.sql.SQLException;
 import java.util.List;
 
 import br.com.mind5.business.phoneSnapshot.info.PhonapInfo;
-import br.com.mind5.dao.DaoStmtExec;
-import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExecHelper_;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 
-public final class PhonapInsert implements DaoStmtExec<PhonapInfo> {
-	private DaoStmtExec<PhonapInfo> helper;
+public final class PhonapInsert implements DaoStmtExec_<PhonapInfo> {
+	private DaoStmtExec_<PhonapInfo> helper;
 	
 	
 	public PhonapInsert(List<DaoStmtExecOption<PhonapInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, PhonapInsertSingle.class, PhonapInfo.class);
+		helper = new DaoStmtExecHelper_<>(options, PhonapInsertSingle.class, PhonapInfo.class);
 	}
 	
 	

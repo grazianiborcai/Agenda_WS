@@ -4,16 +4,16 @@ import java.sql.SQLException;
 import java.util.List;
 
 import br.com.mind5.business.store.info.StoreInfo;
-import br.com.mind5.dao.DaoStmtExec;
-import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExecHelper_;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 
-public final class StoreInsert implements DaoStmtExec<StoreInfo> {
-	private DaoStmtExec<StoreInfo> helper;
+public final class StoreInsert implements DaoStmtExec_<StoreInfo> {
+	private DaoStmtExec_<StoreInfo> helper;
 	
 	
 	public StoreInsert(List<DaoStmtExecOption<StoreInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, StoreInsertSingle.class, StoreInfo.class);
+		helper = new DaoStmtExecHelper_<>(options, StoreInsertSingle.class, StoreInfo.class);
 	}
 	
 	

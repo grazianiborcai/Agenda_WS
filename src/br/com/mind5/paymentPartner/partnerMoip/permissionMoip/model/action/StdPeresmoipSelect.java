@@ -3,8 +3,8 @@ package br.com.mind5.paymentPartner.partnerMoip.permissionMoip.model.action;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionStdHelperStmt;
@@ -18,13 +18,13 @@ public final class StdPeresmoipSelect implements ActionStd<PeresmoipInfo> {
 	
 	
 	public StdPeresmoipSelect(DeciTreeOption<PeresmoipInfo> option) {
-		DaoStmtExec<PeresmoipInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<PeresmoipInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<PeresmoipInfo> buildStmtExec(DeciTreeOption<PeresmoipInfo> option) {
+	private DaoStmtExec_<PeresmoipInfo> buildStmtExec(DeciTreeOption<PeresmoipInfo> option) {
 		List<DaoStmtExecOption<PeresmoipInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(PeresmoipInfo eachRecord : option.recordInfos) {

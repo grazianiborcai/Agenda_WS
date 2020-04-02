@@ -3,17 +3,17 @@ package br.com.mind5.payment.countryPartner.dao;
 import java.sql.SQLException;
 import java.util.List;
 
-import br.com.mind5.dao.DaoStmtExec;
-import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExecHelper_;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.payment.countryPartner.info.CounparInfo;
 
-public final class CounparSelect implements DaoStmtExec<CounparInfo> {
-	private DaoStmtExec<CounparInfo> helper;
+public final class CounparSelect implements DaoStmtExec_<CounparInfo> {
+	private DaoStmtExec_<CounparInfo> helper;
 	
 	
 	public CounparSelect(List<DaoStmtExecOption<CounparInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, CounparSelectSingle.class, CounparInfo.class);
+		helper = new DaoStmtExecHelper_<>(options, CounparSelectSingle.class, CounparInfo.class);
 	}
 	
 	

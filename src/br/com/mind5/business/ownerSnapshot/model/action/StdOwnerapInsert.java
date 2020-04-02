@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.com.mind5.business.ownerSnapshot.dao.OwnerapInsert;
 import br.com.mind5.business.ownerSnapshot.info.OwnerapInfo;
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionStdHelperStmt;
@@ -18,13 +18,13 @@ public final class StdOwnerapInsert implements ActionStd<OwnerapInfo> {
 	
 	
 	public StdOwnerapInsert(DeciTreeOption<OwnerapInfo> option) {
-		DaoStmtExec<OwnerapInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<OwnerapInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<OwnerapInfo> buildStmtExec(DeciTreeOption<OwnerapInfo> option) {
+	private DaoStmtExec_<OwnerapInfo> buildStmtExec(DeciTreeOption<OwnerapInfo> option) {
 		List<DaoStmtExecOption<OwnerapInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(OwnerapInfo eachRecord : option.recordInfos) {

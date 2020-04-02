@@ -3,8 +3,8 @@ package br.com.mind5.file.fileImage.model.action;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.file.fileImage.dao.FimgUpdate;
 import br.com.mind5.file.fileImage.info.FimgInfo;
 import br.com.mind5.model.action.ActionLazy;
@@ -18,13 +18,13 @@ public final class StdFimgUpdate implements ActionStd<FimgInfo> {
 	
 	
 	public StdFimgUpdate(DeciTreeOption<FimgInfo> option) {
-		DaoStmtExec<FimgInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<FimgInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<FimgInfo> buildStmtExec(DeciTreeOption<FimgInfo> option) {
+	private DaoStmtExec_<FimgInfo> buildStmtExec(DeciTreeOption<FimgInfo> option) {
 		List<DaoStmtExecOption<FimgInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(FimgInfo eachRecord : option.recordInfos) {

@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.com.mind5.business.masterData.dao.CurrencySelect;
 import br.com.mind5.business.masterData.info.CurrencyInfo;
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionStdHelperStmt;
@@ -18,13 +18,13 @@ public final class StdCurrencySelect implements ActionStd<CurrencyInfo> {
 	
 	
 	public StdCurrencySelect(DeciTreeOption<CurrencyInfo> option) {
-		DaoStmtExec<CurrencyInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<CurrencyInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<CurrencyInfo> buildStmtExec(DeciTreeOption<CurrencyInfo> option) {
+	private DaoStmtExec_<CurrencyInfo> buildStmtExec(DeciTreeOption<CurrencyInfo> option) {
 		List<DaoStmtExecOption<CurrencyInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(CurrencyInfo eachRecord : option.recordInfos) {

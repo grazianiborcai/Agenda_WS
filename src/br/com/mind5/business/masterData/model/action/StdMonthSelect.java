@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.com.mind5.business.masterData.dao.MonthSelect;
 import br.com.mind5.business.masterData.info.MonthInfo;
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionStdHelperStmt;
@@ -18,13 +18,13 @@ public final class StdMonthSelect implements ActionStd<MonthInfo> {
 	
 	
 	public StdMonthSelect(DeciTreeOption<MonthInfo> option) {
-		DaoStmtExec<MonthInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<MonthInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<MonthInfo> buildStmtExec(DeciTreeOption<MonthInfo> option) {
+	private DaoStmtExec_<MonthInfo> buildStmtExec(DeciTreeOption<MonthInfo> option) {
 		List<DaoStmtExecOption<MonthInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(MonthInfo eachRecord : option.recordInfos) {

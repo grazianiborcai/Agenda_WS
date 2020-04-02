@@ -4,16 +4,16 @@ import java.sql.SQLException;
 import java.util.List;
 
 import br.com.mind5.business.materialStockSearch.info.MatocarchInfo;
-import br.com.mind5.dao.DaoStmtExec;
-import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExecHelper_;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 
-public final class MatocarchSelect implements DaoStmtExec<MatocarchInfo> {
-	private DaoStmtExec<MatocarchInfo> helper;
+public final class MatocarchSelect implements DaoStmtExec_<MatocarchInfo> {
+	private DaoStmtExec_<MatocarchInfo> helper;
 	
 	
 	public MatocarchSelect(List<DaoStmtExecOption<MatocarchInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, MatocarchSelectSingle.class, MatocarchInfo.class);
+		helper = new DaoStmtExecHelper_<>(options, MatocarchSelectSingle.class, MatocarchInfo.class);
 	}
 	
 	

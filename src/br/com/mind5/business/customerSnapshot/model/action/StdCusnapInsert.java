@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.com.mind5.business.customerSnapshot.dao.CusnapInsert;
 import br.com.mind5.business.customerSnapshot.info.CusnapInfo;
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionStdHelperStmt;
@@ -18,13 +18,13 @@ public final class StdCusnapInsert implements ActionStd<CusnapInfo> {
 	
 	
 	public StdCusnapInsert(DeciTreeOption<CusnapInfo> option) {
-		DaoStmtExec<CusnapInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<CusnapInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<CusnapInfo> buildStmtExec(DeciTreeOption<CusnapInfo> option) {
+	private DaoStmtExec_<CusnapInfo> buildStmtExec(DeciTreeOption<CusnapInfo> option) {
 		List<DaoStmtExecOption<CusnapInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(CusnapInfo eachRecord : option.recordInfos) {

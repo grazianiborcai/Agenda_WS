@@ -3,8 +3,8 @@ package br.com.mind5.security.storeAuthorization.model.action;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionStdHelperStmt;
@@ -18,13 +18,13 @@ public final class StdStorauthSelect implements ActionStd<StorauthInfo> {
 	
 	
 	public StdStorauthSelect(DeciTreeOption<StorauthInfo> option) {
-		DaoStmtExec<StorauthInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<StorauthInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<StorauthInfo> buildStmtExec(DeciTreeOption<StorauthInfo> option) {
+	private DaoStmtExec_<StorauthInfo> buildStmtExec(DeciTreeOption<StorauthInfo> option) {
 		List<DaoStmtExecOption<StorauthInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(StorauthInfo eachRecord : option.recordInfos) {

@@ -1,4 +1,4 @@
-package br.com.mind5.dao;
+package br.com.mind5.dao.obsolete;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -10,15 +10,17 @@ import java.util.List;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
+import br.com.mind5.dao.DaoStmt;
+import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.info.InfoRecord;
 
-public final class DaoStmtExecHelper<T extends InfoRecord> implements DaoStmtExec<T> {
+public final class DaoStmtExecHelper_<T extends InfoRecord> implements DaoStmtExec_<T> {
 	private List<DaoStmt<T>> sqlStmts;
 	private List<T> resultset;
 	private Class<?> stmtClass;	
 	
 	
-	public DaoStmtExecHelper(List<DaoStmtExecOption<T>> options, Class<? extends DaoStmt<T>> classOfStmt, Class<T> classOfT) {
+	public DaoStmtExecHelper_(List<DaoStmtExecOption<T>> options, Class<? extends DaoStmt<T>> classOfStmt, Class<T> classOfT) {
 		checkArgument(options, classOfStmt, classOfT);		
 		clear();
 		

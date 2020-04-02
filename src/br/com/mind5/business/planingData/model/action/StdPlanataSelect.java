@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.com.mind5.business.planingData.dao.PlanataSelect;
 import br.com.mind5.business.planingData.info.PlanataInfo;
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionStdHelperStmt;
@@ -18,13 +18,13 @@ public final class StdPlanataSelect implements ActionStd<PlanataInfo> {
 	
 	
 	public StdPlanataSelect(DeciTreeOption<PlanataInfo> option) {
-		DaoStmtExec<PlanataInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<PlanataInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<PlanataInfo> buildStmtExec(DeciTreeOption<PlanataInfo> option) {
+	private DaoStmtExec_<PlanataInfo> buildStmtExec(DeciTreeOption<PlanataInfo> option) {
 		List<DaoStmtExecOption<PlanataInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(PlanataInfo eachRecord : option.recordInfos) {

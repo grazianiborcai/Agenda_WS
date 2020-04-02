@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.com.mind5.business.storeSearch.dao.SotarchSelect;
 import br.com.mind5.business.storeSearch.info.SotarchInfo;
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionStdHelperStmt;
@@ -18,13 +18,13 @@ public final class StdSotarchSelect implements ActionStd<SotarchInfo> {
 	
 	
 	public StdSotarchSelect(DeciTreeOption<SotarchInfo> option) {
-		DaoStmtExec<SotarchInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<SotarchInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<SotarchInfo> buildStmtExec(DeciTreeOption<SotarchInfo> option) {
+	private DaoStmtExec_<SotarchInfo> buildStmtExec(DeciTreeOption<SotarchInfo> option) {
 		List<DaoStmtExecOption<SotarchInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(SotarchInfo eachRecord : option.recordInfos) {

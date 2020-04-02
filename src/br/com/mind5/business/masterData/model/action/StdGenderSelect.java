@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.com.mind5.business.masterData.dao.GenderSelect;
 import br.com.mind5.business.masterData.info.GenderInfo;
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionStdHelperStmt;
@@ -18,13 +18,13 @@ public final class StdGenderSelect implements ActionStd<GenderInfo> {
 	
 	
 	public StdGenderSelect(DeciTreeOption<GenderInfo> option) {
-		DaoStmtExec<GenderInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<GenderInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<GenderInfo> buildStmtExec(DeciTreeOption<GenderInfo> option) {
+	private DaoStmtExec_<GenderInfo> buildStmtExec(DeciTreeOption<GenderInfo> option) {
 		List<DaoStmtExecOption<GenderInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(GenderInfo eachRecord : option.recordInfos) {

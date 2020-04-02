@@ -4,16 +4,16 @@ import java.sql.SQLException;
 import java.util.List;
 
 import br.com.mind5.business.materialMovement.info.MatmovInfo;
-import br.com.mind5.dao.DaoStmtExec;
-import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExecHelper_;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 
-public final class MatmovSelect implements DaoStmtExec<MatmovInfo> {
-	private DaoStmtExec<MatmovInfo> helper;
+public final class MatmovSelect implements DaoStmtExec_<MatmovInfo> {
+	private DaoStmtExec_<MatmovInfo> helper;
 	
 	
 	public MatmovSelect(List<DaoStmtExecOption<MatmovInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, MatmovSelectSingle.class, MatmovInfo.class);
+		helper = new DaoStmtExecHelper_<>(options, MatmovSelectSingle.class, MatmovInfo.class);
 	}
 	
 	

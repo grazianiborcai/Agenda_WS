@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.com.mind5.business.storeLeaveDateSearch.dao.StolarchSelect;
 import br.com.mind5.business.storeLeaveDateSearch.info.StolarchInfo;
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionStdHelperStmt;
@@ -18,13 +18,13 @@ public final class StdStolarchSelect implements ActionStd<StolarchInfo> {
 	
 	
 	public StdStolarchSelect(DeciTreeOption<StolarchInfo> option) {
-		DaoStmtExec<StolarchInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<StolarchInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<StolarchInfo> buildStmtExec(DeciTreeOption<StolarchInfo> option) {
+	private DaoStmtExec_<StolarchInfo> buildStmtExec(DeciTreeOption<StolarchInfo> option) {
 		List<DaoStmtExecOption<StolarchInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(StolarchInfo eachRecord : option.recordInfos) {

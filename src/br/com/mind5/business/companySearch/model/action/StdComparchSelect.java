@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.com.mind5.business.companySearch.dao.ComparchSelect;
 import br.com.mind5.business.companySearch.info.ComparchInfo;
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionStdHelperStmt;
@@ -18,13 +18,13 @@ public final class StdComparchSelect implements ActionStd<ComparchInfo> {
 	
 	
 	public StdComparchSelect(DeciTreeOption<ComparchInfo> option) {
-		DaoStmtExec<ComparchInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<ComparchInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<ComparchInfo> buildStmtExec(DeciTreeOption<ComparchInfo> option) {
+	private DaoStmtExec_<ComparchInfo> buildStmtExec(DeciTreeOption<ComparchInfo> option) {
 		List<DaoStmtExecOption<ComparchInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(ComparchInfo eachRecord : option.recordInfos) {

@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.com.mind5.business.employeeLeaveDateRange.dao.EmplargSelect;
 import br.com.mind5.business.employeeLeaveDateRange.info.EmplargInfo;
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionStdHelperStmt;
@@ -18,13 +18,13 @@ public final class StdEmplargSelect implements ActionStd<EmplargInfo> {
 	
 	
 	public StdEmplargSelect(DeciTreeOption<EmplargInfo> option) {
-		DaoStmtExec<EmplargInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<EmplargInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<EmplargInfo> buildStmtExec(DeciTreeOption<EmplargInfo> option) {
+	private DaoStmtExec_<EmplargInfo> buildStmtExec(DeciTreeOption<EmplargInfo> option) {
 		List<DaoStmtExecOption<EmplargInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(EmplargInfo eachRecord : option.recordInfos) {

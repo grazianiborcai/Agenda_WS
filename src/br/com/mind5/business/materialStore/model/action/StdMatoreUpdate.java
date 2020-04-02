@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.com.mind5.business.materialStore.dao.MatoreUpdate;
 import br.com.mind5.business.materialStore.info.MatoreInfo;
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionStdHelperStmt;
@@ -18,13 +18,13 @@ public final class StdMatoreUpdate implements ActionStd<MatoreInfo> {
 	
 	
 	public StdMatoreUpdate(DeciTreeOption<MatoreInfo> option) {
-		DaoStmtExec<MatoreInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<MatoreInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<MatoreInfo> buildStmtExec(DeciTreeOption<MatoreInfo> option) {
+	private DaoStmtExec_<MatoreInfo> buildStmtExec(DeciTreeOption<MatoreInfo> option) {
 		List<DaoStmtExecOption<MatoreInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(MatoreInfo eachRecord : option.recordInfos) {

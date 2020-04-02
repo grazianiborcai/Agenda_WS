@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.com.mind5.business.calendarDate.dao.CalateSelect;
 import br.com.mind5.business.calendarDate.info.CalateInfo;
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionStdHelperStmt;
@@ -18,13 +18,13 @@ public final class StdCalateSelect implements ActionStd<CalateInfo> {
 	
 	
 	public StdCalateSelect(DeciTreeOption<CalateInfo> option) {
-		DaoStmtExec<CalateInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<CalateInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<CalateInfo> buildStmtExec(DeciTreeOption<CalateInfo> option) {
+	private DaoStmtExec_<CalateInfo> buildStmtExec(DeciTreeOption<CalateInfo> option) {
 		List<DaoStmtExecOption<CalateInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(CalateInfo eachRecord : option.recordInfos) {

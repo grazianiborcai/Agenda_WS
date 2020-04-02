@@ -3,8 +3,8 @@ package br.com.mind5.payment.storePartnerSnapshot.model.action;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionStdHelperStmt;
@@ -18,13 +18,13 @@ public final class StdStoparnapSelect implements ActionStd<StoparnapInfo> {
 	
 	
 	public StdStoparnapSelect(DeciTreeOption<StoparnapInfo> option) {
-		DaoStmtExec<StoparnapInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<StoparnapInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<StoparnapInfo> buildStmtExec(DeciTreeOption<StoparnapInfo> option) {
+	private DaoStmtExec_<StoparnapInfo> buildStmtExec(DeciTreeOption<StoparnapInfo> option) {
 		List<DaoStmtExecOption<StoparnapInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(StoparnapInfo eachRecord : option.recordInfos) {

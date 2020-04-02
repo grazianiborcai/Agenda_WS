@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.com.mind5.business.materialText.dao.MatextUpdate;
 import br.com.mind5.business.materialText.info.MatextInfo;
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionStdHelperStmt;
@@ -18,13 +18,13 @@ public final class StdMatextUpdate implements ActionStd<MatextInfo> {
 	
 	
 	public StdMatextUpdate(DeciTreeOption<MatextInfo> option) {
-		DaoStmtExec<MatextInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<MatextInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<MatextInfo> buildStmtExec(DeciTreeOption<MatextInfo> option) {
+	private DaoStmtExec_<MatextInfo> buildStmtExec(DeciTreeOption<MatextInfo> option) {
 		List<DaoStmtExecOption<MatextInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(MatextInfo eachRecord : option.recordInfos) {

@@ -4,16 +4,16 @@ import java.sql.SQLException;
 import java.util.List;
 
 import br.com.mind5.business.masterData.info.LanguInfo;
-import br.com.mind5.dao.DaoStmtExec;
-import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExecHelper_;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 
-public final class LanguSelect implements DaoStmtExec<LanguInfo> {
-	private DaoStmtExec<LanguInfo> helper;
+public final class LanguSelect implements DaoStmtExec_<LanguInfo> {
+	private DaoStmtExec_<LanguInfo> helper;
 	
 	
 	public LanguSelect(List<DaoStmtExecOption<LanguInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, LanguSelectSingle.class, LanguInfo.class);
+		helper = new DaoStmtExecHelper_<>(options, LanguSelectSingle.class, LanguInfo.class);
 	}
 	
 	

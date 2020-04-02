@@ -3,8 +3,8 @@ package br.com.mind5.file.fileImageSearch.model.action;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.file.fileImageSearch.dao.FimarchSelect;
 import br.com.mind5.file.fileImageSearch.info.FimarchInfo;
 import br.com.mind5.model.action.ActionLazy;
@@ -18,13 +18,13 @@ public final class StdFimarchSelect implements ActionStd<FimarchInfo> {
 	
 	
 	public StdFimarchSelect(DeciTreeOption<FimarchInfo> option) {
-		DaoStmtExec<FimarchInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<FimarchInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<FimarchInfo> buildStmtExec(DeciTreeOption<FimarchInfo> option) {
+	private DaoStmtExec_<FimarchInfo> buildStmtExec(DeciTreeOption<FimarchInfo> option) {
 		List<DaoStmtExecOption<FimarchInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(FimarchInfo eachRecord : option.recordInfos) {

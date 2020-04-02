@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.com.mind5.business.form.formPhone.dao.FormPhoneSelect;
 import br.com.mind5.business.form.formPhone.info.FormPhoneInfo;
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionStdHelperStmt;
@@ -18,13 +18,13 @@ public final class StdFormPhoneSelect implements ActionStd<FormPhoneInfo> {
 	
 	
 	public StdFormPhoneSelect(DeciTreeOption<FormPhoneInfo> option) {
-		DaoStmtExec<FormPhoneInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<FormPhoneInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<FormPhoneInfo> buildStmtExec(DeciTreeOption<FormPhoneInfo> option) {
+	private DaoStmtExec_<FormPhoneInfo> buildStmtExec(DeciTreeOption<FormPhoneInfo> option) {
 		List<DaoStmtExecOption<FormPhoneInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(FormPhoneInfo eachRecord : option.recordInfos) {

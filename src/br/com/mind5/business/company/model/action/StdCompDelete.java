@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.com.mind5.business.company.dao.CompDelete;
 import br.com.mind5.business.company.info.CompInfo;
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionStdHelperStmt;
@@ -18,13 +18,13 @@ public final class StdCompDelete implements ActionStd<CompInfo> {
 	
 	
 	public StdCompDelete(DeciTreeOption<CompInfo> option) {
-		DaoStmtExec<CompInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<CompInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<CompInfo> buildStmtExec(DeciTreeOption<CompInfo> option) {
+	private DaoStmtExec_<CompInfo> buildStmtExec(DeciTreeOption<CompInfo> option) {
 		List<DaoStmtExecOption<CompInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(CompInfo eachRecord : option.recordInfos) {

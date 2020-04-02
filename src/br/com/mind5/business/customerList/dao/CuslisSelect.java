@@ -4,16 +4,16 @@ import java.sql.SQLException;
 import java.util.List;
 
 import br.com.mind5.business.customerList.info.CuslisInfo;
-import br.com.mind5.dao.DaoStmtExec;
-import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExecHelper_;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 
-public final class CuslisSelect implements DaoStmtExec<CuslisInfo> {
-	private DaoStmtExec<CuslisInfo> helper;
+public final class CuslisSelect implements DaoStmtExec_<CuslisInfo> {
+	private DaoStmtExec_<CuslisInfo> helper;
 	
 	
 	public CuslisSelect(List<DaoStmtExecOption<CuslisInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, CuslisSelectSingle.class, CuslisInfo.class);
+		helper = new DaoStmtExecHelper_<>(options, CuslisSelectSingle.class, CuslisInfo.class);
 	}
 	
 	

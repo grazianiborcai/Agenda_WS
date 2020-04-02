@@ -4,16 +4,16 @@ import java.sql.SQLException;
 import java.util.List;
 
 import br.com.mind5.business.employeePositionSearch.info.EmposarchInfo;
-import br.com.mind5.dao.DaoStmtExec;
-import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExecHelper_;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 
-public class EmposarchSelect implements DaoStmtExec<EmposarchInfo> {
-	private DaoStmtExec<EmposarchInfo> helper;
+public class EmposarchSelect implements DaoStmtExec_<EmposarchInfo> {
+	private DaoStmtExec_<EmposarchInfo> helper;
 	
 	
 	public EmposarchSelect(List<DaoStmtExecOption<EmposarchInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, EmposarchSelectSingle.class, EmposarchInfo.class);
+		helper = new DaoStmtExecHelper_<>(options, EmposarchSelectSingle.class, EmposarchInfo.class);
 	}
 	
 	

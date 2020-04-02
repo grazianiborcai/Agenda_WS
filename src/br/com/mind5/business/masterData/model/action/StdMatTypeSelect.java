@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.com.mind5.business.masterData.dao.MatTypeSelect;
 import br.com.mind5.business.masterData.info.MatTypeInfo;
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionStdHelperStmt;
@@ -18,13 +18,13 @@ public final class StdMatTypeSelect implements ActionStd<MatTypeInfo> {
 	
 	
 	public StdMatTypeSelect(DeciTreeOption<MatTypeInfo> option) {
-		DaoStmtExec<MatTypeInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<MatTypeInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<MatTypeInfo> buildStmtExec(DeciTreeOption<MatTypeInfo> option) {
+	private DaoStmtExec_<MatTypeInfo> buildStmtExec(DeciTreeOption<MatTypeInfo> option) {
 		List<DaoStmtExecOption<MatTypeInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(MatTypeInfo eachRecord : option.recordInfos) {

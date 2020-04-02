@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.com.mind5.business.cartItemSearch.dao.CartemarchSelect;
 import br.com.mind5.business.cartItemSearch.info.CartemarchInfo;
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionStdHelperStmt;
@@ -18,13 +18,13 @@ public final class StdCartemarchSelect implements ActionStd<CartemarchInfo> {
 	
 	
 	public StdCartemarchSelect(DeciTreeOption<CartemarchInfo> option) {
-		DaoStmtExec<CartemarchInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<CartemarchInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<CartemarchInfo> buildStmtExec(DeciTreeOption<CartemarchInfo> option) {
+	private DaoStmtExec_<CartemarchInfo> buildStmtExec(DeciTreeOption<CartemarchInfo> option) {
 		List<DaoStmtExecOption<CartemarchInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(CartemarchInfo eachRecord : option.recordInfos) {

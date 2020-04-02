@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.com.mind5.business.masterData.dao.CountryLegalSelect;
 import br.com.mind5.business.masterData.info.CountryLegalInfo;
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionStdHelperStmt;
@@ -18,13 +18,13 @@ public final class StdCountryLegalSelect implements ActionStd<CountryLegalInfo> 
 	
 	
 	public StdCountryLegalSelect(DeciTreeOption<CountryLegalInfo> option) {
-		DaoStmtExec<CountryLegalInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<CountryLegalInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<CountryLegalInfo> buildStmtExec(DeciTreeOption<CountryLegalInfo> option) {
+	private DaoStmtExec_<CountryLegalInfo> buildStmtExec(DeciTreeOption<CountryLegalInfo> option) {
 		List<DaoStmtExecOption<CountryLegalInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(CountryLegalInfo eachRecord : option.recordInfos) {

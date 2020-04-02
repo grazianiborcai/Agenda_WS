@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.com.mind5.business.masterData.dao.ScheduleStatusSelect;
 import br.com.mind5.business.masterData.info.ScheduleStatusInfo;
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionStdHelperStmt;
@@ -18,13 +18,13 @@ public final class StdScheduleStatusSelect implements ActionStd<ScheduleStatusIn
 	
 	
 	public StdScheduleStatusSelect(DeciTreeOption<ScheduleStatusInfo> option) {
-		DaoStmtExec<ScheduleStatusInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<ScheduleStatusInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<ScheduleStatusInfo> buildStmtExec(DeciTreeOption<ScheduleStatusInfo> option) {
+	private DaoStmtExec_<ScheduleStatusInfo> buildStmtExec(DeciTreeOption<ScheduleStatusInfo> option) {
 		List<DaoStmtExecOption<ScheduleStatusInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(ScheduleStatusInfo eachRecord : option.recordInfos) {

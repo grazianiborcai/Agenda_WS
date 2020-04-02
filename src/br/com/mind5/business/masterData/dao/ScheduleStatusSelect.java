@@ -4,16 +4,16 @@ import java.sql.SQLException;
 import java.util.List;
 
 import br.com.mind5.business.masterData.info.ScheduleStatusInfo;
-import br.com.mind5.dao.DaoStmtExec;
-import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExecHelper_;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 
-public final class ScheduleStatusSelect implements DaoStmtExec<ScheduleStatusInfo> {
-	private DaoStmtExec<ScheduleStatusInfo> helper;
+public final class ScheduleStatusSelect implements DaoStmtExec_<ScheduleStatusInfo> {
+	private DaoStmtExec_<ScheduleStatusInfo> helper;
 	
 	
 	public ScheduleStatusSelect(List<DaoStmtExecOption<ScheduleStatusInfo>> options) {
-		helper = new DaoStmtExecHelper<>(options, ScheduleStatusSelectSingle.class, ScheduleStatusInfo.class);
+		helper = new DaoStmtExecHelper_<>(options, ScheduleStatusSelectSingle.class, ScheduleStatusInfo.class);
 	}
 	
 	

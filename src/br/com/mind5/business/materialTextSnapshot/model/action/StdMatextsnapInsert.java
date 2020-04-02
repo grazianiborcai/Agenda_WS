@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.com.mind5.business.materialTextSnapshot.dao.MatextsnapInsert;
 import br.com.mind5.business.materialTextSnapshot.info.MatextsnapInfo;
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionStdHelperStmt;
@@ -18,13 +18,13 @@ public final class StdMatextsnapInsert implements ActionStd<MatextsnapInfo> {
 	
 	
 	public StdMatextsnapInsert(DeciTreeOption<MatextsnapInfo> option) {
-		DaoStmtExec<MatextsnapInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<MatextsnapInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<MatextsnapInfo> buildStmtExec(DeciTreeOption<MatextsnapInfo> option) {
+	private DaoStmtExec_<MatextsnapInfo> buildStmtExec(DeciTreeOption<MatextsnapInfo> option) {
 		List<DaoStmtExecOption<MatextsnapInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(MatextsnapInfo eachRecord : option.recordInfos) {

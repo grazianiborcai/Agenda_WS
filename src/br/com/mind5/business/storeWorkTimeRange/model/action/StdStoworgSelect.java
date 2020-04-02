@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.com.mind5.business.storeWorkTimeRange.dao.StoworgSelect;
 import br.com.mind5.business.storeWorkTimeRange.info.StoworgInfo;
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionStdHelperStmt;
@@ -18,13 +18,13 @@ public final class StdStoworgSelect implements ActionStd<StoworgInfo> {
 	
 	
 	public StdStoworgSelect(DeciTreeOption<StoworgInfo> option) {
-		DaoStmtExec<StoworgInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<StoworgInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<StoworgInfo> buildStmtExec(DeciTreeOption<StoworgInfo> option) {
+	private DaoStmtExec_<StoworgInfo> buildStmtExec(DeciTreeOption<StoworgInfo> option) {
 		List<DaoStmtExecOption<StoworgInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(StoworgInfo eachRecord : option.recordInfos) {

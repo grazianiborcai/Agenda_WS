@@ -3,8 +3,8 @@ package br.com.mind5.security.userPassword.model.action;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.dao.DaoStmtExecOption;
+import br.com.mind5.dao.obsolete.DaoStmtExec_;
 import br.com.mind5.model.action.ActionLazy;
 import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.action.ActionStdHelperStmt;
@@ -18,13 +18,13 @@ public final class StdUpswdInsert implements ActionStd<UpswdInfo> {
 	
 	
 	public StdUpswdInsert(DeciTreeOption<UpswdInfo> option) {
-		DaoStmtExec<UpswdInfo> sqlStmtExecutor = buildStmtExec(option);
+		DaoStmtExec_<UpswdInfo> sqlStmtExecutor = buildStmtExec(option);
 		actionHelper = new ActionStdHelperStmt<>(sqlStmtExecutor);
 	}
 	
 	
 	
-	private DaoStmtExec<UpswdInfo> buildStmtExec(DeciTreeOption<UpswdInfo> option) {
+	private DaoStmtExec_<UpswdInfo> buildStmtExec(DeciTreeOption<UpswdInfo> option) {
 		List<DaoStmtExecOption<UpswdInfo>> stmtExecOptions = new ArrayList<>();			
 		
 		for(UpswdInfo eachRecord : option.recordInfos) {
