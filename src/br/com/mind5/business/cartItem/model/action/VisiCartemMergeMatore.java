@@ -7,10 +7,10 @@ import br.com.mind5.business.cartItem.info.CartemInfo;
 import br.com.mind5.business.cartItem.info.CartemMerger;
 import br.com.mind5.business.materialStore.info.MatoreInfo;
 import br.com.mind5.business.materialStore.model.decisionTree.RootMatoreSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMerge;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 import br.com.mind5.model.decisionTree.DeciTree;
 
-final class VisiCartemMergeMatore extends ActionVisitorTemplateMerge<CartemInfo, MatoreInfo> {
+final class VisiCartemMergeMatore extends ActionVisitorTemplateMergeV1<CartemInfo, MatoreInfo> {
 	
 	public VisiCartemMergeMatore(Connection conn, String schemaName) {
 		super(conn, schemaName, MatoreInfo.class);
@@ -31,6 +31,6 @@ final class VisiCartemMergeMatore extends ActionVisitorTemplateMerge<CartemInfo,
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMerge.MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
 	}
 }

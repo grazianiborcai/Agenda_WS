@@ -7,10 +7,10 @@ import br.com.mind5.business.cartItem.info.CartemInfo;
 import br.com.mind5.business.cartItem.info.CartemMerger;
 import br.com.mind5.business.masterData.info.WeekdayInfo;
 import br.com.mind5.business.masterData.model.decisionTree.RootWeekdaySelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMerge;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 import br.com.mind5.model.decisionTree.DeciTree;
 
-final class VisiCartemMergeWeekday extends ActionVisitorTemplateMerge<CartemInfo, WeekdayInfo> {
+final class VisiCartemMergeWeekday extends ActionVisitorTemplateMergeV1<CartemInfo, WeekdayInfo> {
 	
 	public VisiCartemMergeWeekday(Connection conn, String schemaName) {
 		super(conn, schemaName, WeekdayInfo.class);
@@ -31,6 +31,6 @@ final class VisiCartemMergeWeekday extends ActionVisitorTemplateMerge<CartemInfo
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMerge.MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
 	}
 }

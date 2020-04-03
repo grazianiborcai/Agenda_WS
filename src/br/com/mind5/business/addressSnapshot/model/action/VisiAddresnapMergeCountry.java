@@ -7,10 +7,10 @@ import br.com.mind5.business.addressSnapshot.info.AddresnapInfo;
 import br.com.mind5.business.addressSnapshot.info.AddresnapMerger;
 import br.com.mind5.business.masterData.info.CountryInfo;
 import br.com.mind5.business.masterData.model.decisionTree.RootCountrySelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMerge;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 import br.com.mind5.model.decisionTree.DeciTree;
 
-final class VisiAddresnapMergeCountry extends ActionVisitorTemplateMerge<AddresnapInfo, CountryInfo> {
+final class VisiAddresnapMergeCountry extends ActionVisitorTemplateMergeV1<AddresnapInfo, CountryInfo> {
 	
 	public VisiAddresnapMergeCountry(Connection conn, String schemaName) {
 		super(conn, schemaName, CountryInfo.class);
@@ -31,6 +31,6 @@ final class VisiAddresnapMergeCountry extends ActionVisitorTemplateMerge<Addresn
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMerge.MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
 	}
 }

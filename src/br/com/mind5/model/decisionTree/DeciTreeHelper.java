@@ -2,11 +2,13 @@ package br.com.mind5.model.decisionTree;
 
 import java.util.List;
 
+import br.com.mind5.common.DefaultValue;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.InfoRecord;
 import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelChecker;
 
 public final class DeciTreeHelper<T extends InfoRecord> implements DeciTree<T> {
@@ -23,6 +25,7 @@ public final class DeciTreeHelper<T extends InfoRecord> implements DeciTree<T> {
 
 	public DeciTreeHelper(DeciTreeHelperOption<T> option) {
 		checkArgument(option);
+		clear();
 		init(option);
 	}
 	
@@ -153,6 +156,40 @@ public final class DeciTreeHelper<T extends InfoRecord> implements DeciTree<T> {
 	
 	@Override public ActionStdV1<T> toAction() {
 		return new DeciTreeAdapter<>(this);
+	}
+	
+	
+	
+	@Override public void close() {
+		closeActions(actionsOnPassed);
+		closeActions(actionsOnFailed);
+		clear();
+	}
+	
+	
+	
+	private void closeActions(List<ActionStdV1<T>> actions) {
+		if (actions == null)
+				return;
+		
+		if (actions.isEmpty())
+			return;
+		
+		for(ActionStdV1<T> eachAction: actions) {
+			if (eachAction instanceof ActionStdV2) {
+				((ActionStdV2<T>) eachAction).close();
+			}
+		}
+	}
+	
+	
+	
+	private void clear() {
+		recordInfos = DefaultValue.list();
+		checker = DefaultValue.object();
+		deciResult = DefaultValue.object();
+		actionsOnPassed = DefaultValue.list();
+		actionsOnFailed = DefaultValue.list();
 	}
 	
 	

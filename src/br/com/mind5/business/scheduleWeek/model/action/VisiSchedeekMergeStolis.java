@@ -8,10 +8,10 @@ import br.com.mind5.business.scheduleWeek.info.SchedeekMerger;
 import br.com.mind5.business.storeList.info.StolisCopier;
 import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.business.storeList.model.decisionTree.RootStolisSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMerge;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 import br.com.mind5.model.decisionTree.DeciTree;
 
-final class VisiSchedeekMergeStolis extends ActionVisitorTemplateMerge<SchedeekInfo, StolisInfo> {
+final class VisiSchedeekMergeStolis extends ActionVisitorTemplateMergeV1<SchedeekInfo, StolisInfo> {
 	
 	public VisiSchedeekMergeStolis(Connection conn, String schemaName) {
 		super(conn, schemaName, StolisInfo.class);
@@ -38,6 +38,6 @@ final class VisiSchedeekMergeStolis extends ActionVisitorTemplateMerge<SchedeekI
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
 	}
 }

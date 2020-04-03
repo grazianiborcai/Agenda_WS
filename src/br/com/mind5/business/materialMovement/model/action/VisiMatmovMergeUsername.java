@@ -5,13 +5,13 @@ import java.util.List;
 
 import br.com.mind5.business.materialMovement.info.MatmovInfo;
 import br.com.mind5.business.materialMovement.info.MatmovMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMerge;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.security.username.info.UsernameCopier;
 import br.com.mind5.security.username.info.UsernameInfo;
 import br.com.mind5.security.username.model.decisionTree.RootUsernameSelect;
 
-final class VisiMatmovMergeUsername extends ActionVisitorTemplateMerge<MatmovInfo, UsernameInfo> {
+final class VisiMatmovMergeUsername extends ActionVisitorTemplateMergeV1<MatmovInfo, UsernameInfo> {
 	
 	public VisiMatmovMergeUsername(Connection conn, String schemaName) {
 		super(conn, schemaName, UsernameInfo.class);
@@ -38,6 +38,6 @@ final class VisiMatmovMergeUsername extends ActionVisitorTemplateMerge<MatmovInf
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMerge.MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
 	}
 }

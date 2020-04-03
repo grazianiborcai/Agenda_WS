@@ -6,10 +6,10 @@ import java.util.List;
 import br.com.mind5.business.scheduleLine.info.SchedineInfo;
 import br.com.mind5.business.scheduleSearch.info.SchedarchInfo;
 import br.com.mind5.business.scheduleSearch.model.decisionTree.RootSchedarchSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMerge;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 import br.com.mind5.model.decisionTree.DeciTree;
 
-final class VisiSchedineMergeSchedarch extends ActionVisitorTemplateMerge<SchedineInfo, SchedarchInfo> {
+final class VisiSchedineMergeSchedarch extends ActionVisitorTemplateMergeV1<SchedineInfo, SchedarchInfo> {
 	
 	public VisiSchedineMergeSchedarch(Connection conn, String schemaName) {
 		super(conn, schemaName, SchedarchInfo.class);
@@ -30,6 +30,6 @@ final class VisiSchedineMergeSchedarch extends ActionVisitorTemplateMerge<Schedi
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
 	}
 }

@@ -6,9 +6,9 @@ import java.util.List;
 import br.com.mind5.business.materialText.info.MatextInfo;
 import br.com.mind5.business.materialText.info.MatextMerger;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMerge;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 
-final class VisiMatextMergeToDelete extends ActionVisitorTemplateMerge<MatextInfo, MatextInfo> {
+final class VisiMatextMergeToDelete extends ActionVisitorTemplateMergeV1<MatextInfo, MatextInfo> {
 	
 	public VisiMatextMergeToDelete(Connection conn, String schemaName) {
 		super(conn, schemaName, MatextInfo.class);
@@ -29,6 +29,6 @@ final class VisiMatextMergeToDelete extends ActionVisitorTemplateMerge<MatextInf
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
 	}
 }

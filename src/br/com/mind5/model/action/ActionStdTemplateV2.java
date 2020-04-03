@@ -57,7 +57,11 @@ public abstract class ActionStdTemplateV2<T extends InfoRecord> implements Actio
 	@Override public boolean executeAction() {
 		actionResult = executeBaseAction(actionVisitor);				
 		actionResult = executePostActions(postActions, actionResult);	
-		return actionResult.isSuccess();
+		boolean result = actionResult.isSuccess();
+		
+		closeVisitor(actionVisitor);
+		closeActions(postActions);
+		return result;
 	}
 	
 	
@@ -152,7 +156,7 @@ public abstract class ActionStdTemplateV2<T extends InfoRecord> implements Actio
 	
 	@Override public void close() {
 		closeVisitor(actionVisitor);
-		closeAction(postActions);
+		closeActions(postActions);
 		clear();
 	}
 	
@@ -167,8 +171,11 @@ public abstract class ActionStdTemplateV2<T extends InfoRecord> implements Actio
 	
 	
 	
-	private void closeAction(List<ActionLazyV1<T>> actions) {
+	private void closeActions(List<ActionLazyV1<T>> actions) {
 		if (actions == null)
+			return;
+		
+		if (actions.isEmpty())
 			return;
 		
 		for (ActionLazyV1<T> eachAction : actions)

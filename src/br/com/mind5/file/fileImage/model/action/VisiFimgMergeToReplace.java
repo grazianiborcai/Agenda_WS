@@ -6,9 +6,9 @@ import java.util.List;
 import br.com.mind5.file.fileImage.info.FimgInfo;
 import br.com.mind5.file.fileImage.info.FimgMerger;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMerge;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 
-final class VisiFimgMergeToReplace extends ActionVisitorTemplateMerge<FimgInfo, FimgInfo> {
+final class VisiFimgMergeToReplace extends ActionVisitorTemplateMergeV1<FimgInfo, FimgInfo> {
 	
 	public VisiFimgMergeToReplace(Connection conn, String schemaName) {
 		super(conn, schemaName, FimgInfo.class);
@@ -35,6 +35,6 @@ final class VisiFimgMergeToReplace extends ActionVisitorTemplateMerge<FimgInfo, 
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
 	}
 }

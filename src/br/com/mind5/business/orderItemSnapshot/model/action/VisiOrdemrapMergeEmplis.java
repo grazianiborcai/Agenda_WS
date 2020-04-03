@@ -7,10 +7,10 @@ import br.com.mind5.business.employeeList.info.EmplisInfo;
 import br.com.mind5.business.employeeList.model.decisionTree.RootEmplisSelect;
 import br.com.mind5.business.orderItemSnapshot.info.OrdemrapInfo;
 import br.com.mind5.business.orderItemSnapshot.info.OrdemrapMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMerge;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 import br.com.mind5.model.decisionTree.DeciTree;
 
-final class VisiOrdemrapMergeEmplis extends ActionVisitorTemplateMerge<OrdemrapInfo, EmplisInfo> {
+final class VisiOrdemrapMergeEmplis extends ActionVisitorTemplateMergeV1<OrdemrapInfo, EmplisInfo> {
 	
 	public VisiOrdemrapMergeEmplis(Connection conn, String schemaName) {
 		super(conn, schemaName, EmplisInfo.class);
@@ -31,6 +31,6 @@ final class VisiOrdemrapMergeEmplis extends ActionVisitorTemplateMerge<OrdemrapI
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMerge.MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
 	}
 }

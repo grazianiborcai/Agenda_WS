@@ -6,9 +6,9 @@ import java.util.List;
 import br.com.mind5.business.employeeWorkTimeRange.info.EmpworgInfo;
 import br.com.mind5.business.employeeWorkTimeRange.info.EmpworgMerger;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMerge;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 
-final class VisiEmpworgMergeToSelect extends ActionVisitorTemplateMerge<EmpworgInfo, EmpworgInfo> {
+final class VisiEmpworgMergeToSelect extends ActionVisitorTemplateMergeV1<EmpworgInfo, EmpworgInfo> {
 	
 	public VisiEmpworgMergeToSelect(Connection conn, String schemaName) {
 		super(conn, schemaName, EmpworgInfo.class);
@@ -29,6 +29,6 @@ final class VisiEmpworgMergeToSelect extends ActionVisitorTemplateMerge<EmpworgI
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
 	}
 }

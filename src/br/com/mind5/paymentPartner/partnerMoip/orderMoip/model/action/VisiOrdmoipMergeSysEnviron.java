@@ -5,12 +5,12 @@ import java.util.List;
 
 import br.com.mind5.business.masterData.info.SysEnvironInfo;
 import br.com.mind5.business.masterData.model.decisionTree.RootSysEnvironSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMerge;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.info.OrdmoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.info.OrdmoipMerger;
 
-final class VisiOrdmoipMergeSysEnviron extends ActionVisitorTemplateMerge<OrdmoipInfo, SysEnvironInfo> {
+final class VisiOrdmoipMergeSysEnviron extends ActionVisitorTemplateMergeV1<OrdmoipInfo, SysEnvironInfo> {
 	
 	public VisiOrdmoipMergeSysEnviron(Connection conn, String schemaName) {
 		super(conn, schemaName, SysEnvironInfo.class);
@@ -31,6 +31,6 @@ final class VisiOrdmoipMergeSysEnviron extends ActionVisitorTemplateMerge<Ordmoi
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMerge.MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
 	}
 }

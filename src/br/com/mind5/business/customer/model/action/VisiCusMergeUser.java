@@ -5,13 +5,13 @@ import java.util.List;
 
 import br.com.mind5.business.customer.info.CusInfo;
 import br.com.mind5.business.customer.info.CusMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMerge;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.security.user.info.UserCopier;
 import br.com.mind5.security.user.info.UserInfo;
 import br.com.mind5.security.user.model.decisionTree.RootUserSelect;
 
-final class VisiCusMergeUser extends ActionVisitorTemplateMerge<CusInfo, UserInfo> {
+final class VisiCusMergeUser extends ActionVisitorTemplateMergeV1<CusInfo, UserInfo> {
 	
 	public VisiCusMergeUser(Connection conn, String schemaName) {
 		super(conn, schemaName, UserInfo.class);
@@ -38,6 +38,6 @@ final class VisiCusMergeUser extends ActionVisitorTemplateMerge<CusInfo, UserInf
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
 	}
 }

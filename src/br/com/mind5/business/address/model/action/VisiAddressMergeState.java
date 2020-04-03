@@ -1,19 +1,20 @@
 package br.com.mind5.business.address.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.address.info.AddressMerger;
 import br.com.mind5.business.masterData.info.StateInfo;
 import br.com.mind5.business.masterData.model.decisionTree.RootStateSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMerge;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiAddressMergeState extends ActionVisitorTemplateMerge<AddressInfo, StateInfo> {
+final class VisiAddressMergeState extends ActionVisitorTemplateMergeV2<AddressInfo, StateInfo> {
 	
-	public VisiAddressMergeState(Connection conn, String schemaName) {
-		super(conn, schemaName, StateInfo.class);
+	public VisiAddressMergeState(DeciTreeOption<AddressInfo> option) {
+		super(option, StateInfo.class);
 	}
 	
 	
@@ -31,6 +32,6 @@ final class VisiAddressMergeState extends ActionVisitorTemplateMerge<AddressInfo
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMerge.MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
 	}
 }

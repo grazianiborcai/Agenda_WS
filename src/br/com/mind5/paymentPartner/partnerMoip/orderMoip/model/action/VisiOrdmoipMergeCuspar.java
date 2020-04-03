@@ -3,7 +3,7 @@ package br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.action;
 import java.sql.Connection;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionVisitorTemplateMerge;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.payment.customerPartner.info.CusparCopier;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
@@ -11,7 +11,7 @@ import br.com.mind5.payment.customerPartner.model.decisionTree.RootCusparSelect;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.info.OrdmoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.info.OrdmoipMerger;
 
-final class VisiOrdmoipMergeCuspar extends ActionVisitorTemplateMerge<OrdmoipInfo, CusparInfo> {
+final class VisiOrdmoipMergeCuspar extends ActionVisitorTemplateMergeV1<OrdmoipInfo, CusparInfo> {
 	
 	public VisiOrdmoipMergeCuspar(Connection conn, String schemaName) {
 		super(conn, schemaName, CusparInfo.class);
@@ -38,6 +38,6 @@ final class VisiOrdmoipMergeCuspar extends ActionVisitorTemplateMerge<OrdmoipInf
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMerge.MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
 	}
 }

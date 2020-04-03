@@ -3,14 +3,14 @@ package br.com.mind5.security.userList.model.action;
 import java.sql.Connection;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionVisitorTemplateMerge;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.security.userList.info.UselisInfo;
 import br.com.mind5.security.userList.info.UselisMerger;
 import br.com.mind5.security.userSearch.info.UserarchInfo;
 import br.com.mind5.security.userSearch.model.decisionTree.RootUserarchSelect;
 
-final class VisiUselisMergeUserarch extends ActionVisitorTemplateMerge<UselisInfo, UserarchInfo> {
+final class VisiUselisMergeUserarch extends ActionVisitorTemplateMergeV1<UselisInfo, UserarchInfo> {
 	
 	public VisiUselisMergeUserarch(Connection conn, String schemaName) {
 		super(conn, schemaName, UserarchInfo.class);
@@ -31,6 +31,6 @@ final class VisiUselisMergeUserarch extends ActionVisitorTemplateMerge<UselisInf
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
 	}
 }

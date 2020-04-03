@@ -3,7 +3,7 @@ package br.com.mind5.payment.payOrder.model.action;
 import java.sql.Connection;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionVisitorTemplateMerge;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
 import br.com.mind5.payment.payOrder.info.PayordMerger;
@@ -11,7 +11,7 @@ import br.com.mind5.security.username.info.UsernameCopier;
 import br.com.mind5.security.username.info.UsernameInfo;
 import br.com.mind5.security.username.model.decisionTree.RootUsernameSelect;
 
-final class VisiPayordMergeUsername extends ActionVisitorTemplateMerge<PayordInfo, UsernameInfo> {
+final class VisiPayordMergeUsername extends ActionVisitorTemplateMergeV1<PayordInfo, UsernameInfo> {
 	
 	public VisiPayordMergeUsername(Connection conn, String schemaName) {
 		super(conn, schemaName, UsernameInfo.class);
@@ -38,6 +38,6 @@ final class VisiPayordMergeUsername extends ActionVisitorTemplateMerge<PayordInf
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
 	}
 }

@@ -1,24 +1,24 @@
 package br.com.mind5.business.address.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.address.info.AddressMerger;
-import br.com.mind5.business.address.model.decisionTree.RootAddressSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMerge;
-import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiAddressMergeToDelete extends ActionVisitorTemplateMerge<AddressInfo, AddressInfo> {
+final class VisiAddressMergeToDelete extends ActionVisitorTemplateMergeV2<AddressInfo, AddressInfo> {
 	
-	public VisiAddressMergeToDelete(Connection conn, String schemaName) {
-		super(conn, schemaName, AddressInfo.class);
+	public VisiAddressMergeToDelete(DeciTreeOption<AddressInfo> option) {
+		super(option, AddressInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends DeciTree<AddressInfo>> getTreeClassHook() {
-		return RootAddressSelect.class;
+	@Override protected Class<? extends ActionStdV2<AddressInfo>> getActionClassHook() {
+		return StdAddressSelect.class;
 	}
 	
 	
@@ -30,6 +30,6 @@ final class VisiAddressMergeToDelete extends ActionVisitorTemplateMerge<AddressI
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
 	}
 }

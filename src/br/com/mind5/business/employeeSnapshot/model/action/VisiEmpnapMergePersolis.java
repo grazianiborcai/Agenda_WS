@@ -8,10 +8,10 @@ import br.com.mind5.business.employeeSnapshot.info.EmpnapMerger;
 import br.com.mind5.business.personList.info.PersolisCopier;
 import br.com.mind5.business.personList.info.PersolisInfo;
 import br.com.mind5.business.personList.model.decisionTree.RootPersolisSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMerge;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 import br.com.mind5.model.decisionTree.DeciTree;
 
-final class VisiEmpnapMergePersolis extends ActionVisitorTemplateMerge<EmpnapInfo, PersolisInfo> {
+final class VisiEmpnapMergePersolis extends ActionVisitorTemplateMergeV1<EmpnapInfo, PersolisInfo> {
 	
 	public VisiEmpnapMergePersolis(Connection conn, String schemaName) {
 		super(conn, schemaName, PersolisInfo.class);
@@ -38,6 +38,6 @@ final class VisiEmpnapMergePersolis extends ActionVisitorTemplateMerge<EmpnapInf
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMerge.MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
 	}
 }

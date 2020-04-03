@@ -6,12 +6,12 @@ import java.util.List;
 import br.com.mind5.business.phone.info.PhoneCopier;
 import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.business.phone.model.decisionTree.RootPhoneSearch;
-import br.com.mind5.model.action.ActionVisitorTemplateMerge;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
 import br.com.mind5.payment.creditCard.info.CrecardMerger;
 
-final class VisiCrecardMergePhone extends ActionVisitorTemplateMerge<CrecardInfo, PhoneInfo> {
+final class VisiCrecardMergePhone extends ActionVisitorTemplateMergeV1<CrecardInfo, PhoneInfo> {
 	
 	public VisiCrecardMergePhone(Connection conn, String schemaName) {
 		super(conn, schemaName, PhoneInfo.class);
@@ -38,6 +38,6 @@ final class VisiCrecardMergePhone extends ActionVisitorTemplateMerge<CrecardInfo
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMerge.MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
 	}
 }

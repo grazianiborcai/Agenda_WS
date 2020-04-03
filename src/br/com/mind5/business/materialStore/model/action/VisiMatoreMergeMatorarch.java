@@ -7,10 +7,10 @@ import br.com.mind5.business.materialStore.info.MatoreInfo;
 import br.com.mind5.business.materialStore.info.MatoreMerger;
 import br.com.mind5.business.materialStoreSearch.info.MatorarchInfo;
 import br.com.mind5.business.materialStoreSearch.model.decisionTree.RootMatorarchSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMerge;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 import br.com.mind5.model.decisionTree.DeciTree;
 
-final class VisiMatoreMergeMatorarch extends ActionVisitorTemplateMerge<MatoreInfo, MatorarchInfo> {
+final class VisiMatoreMergeMatorarch extends ActionVisitorTemplateMergeV1<MatoreInfo, MatorarchInfo> {
 	
 	public VisiMatoreMergeMatorarch(Connection conn, String schemaName) {
 		super(conn, schemaName, MatorarchInfo.class);
@@ -37,6 +37,6 @@ final class VisiMatoreMergeMatorarch extends ActionVisitorTemplateMerge<MatoreIn
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
 	}
 }

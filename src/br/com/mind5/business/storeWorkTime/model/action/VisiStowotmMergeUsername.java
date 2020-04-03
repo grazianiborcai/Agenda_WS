@@ -5,13 +5,13 @@ import java.util.List;
 
 import br.com.mind5.business.storeWorkTime.info.StowotmInfo;
 import br.com.mind5.business.storeWorkTime.info.StowotmMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMerge;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.security.username.info.UsernameCopier;
 import br.com.mind5.security.username.info.UsernameInfo;
 import br.com.mind5.security.username.model.decisionTree.RootUsernameSelect;
 
-final class VisiStowotmMergeUsername extends ActionVisitorTemplateMerge<StowotmInfo, UsernameInfo> {
+final class VisiStowotmMergeUsername extends ActionVisitorTemplateMergeV1<StowotmInfo, UsernameInfo> {
 	
 	public VisiStowotmMergeUsername(Connection conn, String schemaName) {
 		super(conn, schemaName, UsernameInfo.class);
@@ -38,6 +38,6 @@ final class VisiStowotmMergeUsername extends ActionVisitorTemplateMerge<StowotmI
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMerge.MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
 	}
 }

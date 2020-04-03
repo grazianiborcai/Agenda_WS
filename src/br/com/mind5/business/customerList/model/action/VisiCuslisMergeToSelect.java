@@ -6,9 +6,9 @@ import java.util.List;
 import br.com.mind5.business.customerList.info.CuslisInfo;
 import br.com.mind5.business.customerList.info.CuslisMerger;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMerge;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 
-final class VisiCuslisMergeToSelect extends ActionVisitorTemplateMerge<CuslisInfo, CuslisInfo> {
+final class VisiCuslisMergeToSelect extends ActionVisitorTemplateMergeV1<CuslisInfo, CuslisInfo> {
 	
 	public VisiCuslisMergeToSelect(Connection conn, String schemaName) {
 		super(conn, schemaName, CuslisInfo.class);
@@ -29,6 +29,6 @@ final class VisiCuslisMergeToSelect extends ActionVisitorTemplateMerge<CuslisInf
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
 	}
 }

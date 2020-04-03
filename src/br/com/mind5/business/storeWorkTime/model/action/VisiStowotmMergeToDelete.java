@@ -6,10 +6,10 @@ import java.util.List;
 import br.com.mind5.business.storeWorkTime.info.StowotmInfo;
 import br.com.mind5.business.storeWorkTime.info.StowotmMerger;
 import br.com.mind5.business.storeWorkTime.model.decisionTree.RootStowotmSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMerge;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 import br.com.mind5.model.decisionTree.DeciTree;
 
-final class VisiStowotmMergeToDelete extends ActionVisitorTemplateMerge<StowotmInfo, StowotmInfo> {
+final class VisiStowotmMergeToDelete extends ActionVisitorTemplateMergeV1<StowotmInfo, StowotmInfo> {
 	
 	public VisiStowotmMergeToDelete(Connection conn, String schemaName) {
 		super(conn, schemaName, StowotmInfo.class);
@@ -30,6 +30,6 @@ final class VisiStowotmMergeToDelete extends ActionVisitorTemplateMerge<StowotmI
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
 	}
 }

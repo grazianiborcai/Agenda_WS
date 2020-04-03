@@ -6,9 +6,9 @@ import java.util.List;
 import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.business.store.info.StoreMerger;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMerge;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 
-final class VisiStoreMergeToDelete extends ActionVisitorTemplateMerge<StoreInfo, StoreInfo> {
+final class VisiStoreMergeToDelete extends ActionVisitorTemplateMergeV1<StoreInfo, StoreInfo> {
 	
 	public VisiStoreMergeToDelete(Connection conn, String schemaName) {
 		super(conn, schemaName, StoreInfo.class);
@@ -29,6 +29,6 @@ final class VisiStoreMergeToDelete extends ActionVisitorTemplateMerge<StoreInfo,
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
 	}
 }

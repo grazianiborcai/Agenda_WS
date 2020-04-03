@@ -7,10 +7,10 @@ import br.com.mind5.file.fileImage.info.FimgInfo;
 import br.com.mind5.file.fileImage.info.FimgMerger;
 import br.com.mind5.file.fileImageSearch.info.FimarchInfo;
 import br.com.mind5.file.fileImageSearch.model.decisionTree.RootFimarchSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMerge;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 import br.com.mind5.model.decisionTree.DeciTree;
 
-final class VisiFimgMergeFimarch extends ActionVisitorTemplateMerge<FimgInfo, FimarchInfo> {
+final class VisiFimgMergeFimarch extends ActionVisitorTemplateMergeV1<FimgInfo, FimarchInfo> {
 	
 	public VisiFimgMergeFimarch(Connection conn, String schemaName) {
 		super(conn, schemaName, FimarchInfo.class);
@@ -31,6 +31,6 @@ final class VisiFimgMergeFimarch extends ActionVisitorTemplateMerge<FimgInfo, Fi
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
 	}
 }

@@ -3,14 +3,14 @@ package br.com.mind5.payment.ownerPartner.model.action;
 import java.sql.Connection;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionVisitorTemplateMerge;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.payment.countryPartner.info.CounparInfo;
 import br.com.mind5.payment.countryPartner.model.decisionTree.RootCounparSelect;
 import br.com.mind5.payment.ownerPartner.info.OwnparInfo;
 import br.com.mind5.payment.ownerPartner.info.OwnparMerger;
 
-final class VisiOwnparMergeCounpar extends ActionVisitorTemplateMerge<OwnparInfo, CounparInfo> {
+final class VisiOwnparMergeCounpar extends ActionVisitorTemplateMergeV1<OwnparInfo, CounparInfo> {
 	
 	public VisiOwnparMergeCounpar(Connection conn, String schemaName) {
 		super(conn, schemaName, CounparInfo.class);
@@ -31,6 +31,6 @@ final class VisiOwnparMergeCounpar extends ActionVisitorTemplateMerge<OwnparInfo
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
 	}
 }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import br.com.mind5.common.DefaultValue;
 import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.InfoRecord;
@@ -22,27 +23,6 @@ public abstract class DeciTreeWriteTemplate<T extends InfoRecord> implements Dec
 		
 		itr = trees.iterator();
 		currentTree = itr.next();
-	}
-	
-	
-	
-	private void checkArgument(DeciTreeOption<T> option) {
-		if (option == null) {
-			logException(new NullPointerException("options" + SystemMessage.NULL_ARGUMENT));
-			throw new NullPointerException("options" + SystemMessage.NULL_ARGUMENT);
-		}
-		
-		
-		if (option.recordInfos == null) {
-			logException(new NullPointerException("option.recordInfos" + SystemMessage.NULL_ARGUMENT));
-			throw new NullPointerException("option.recordInfos" + SystemMessage.NULL_ARGUMENT);
-		}
-		
-		
-		if (option.recordInfos.isEmpty()) {
-			logException(new IllegalArgumentException("option.recordInfos" + SystemMessage.EMPTY_ARGUMENT));
-			throw new IllegalArgumentException("option.recordInfos" + SystemMessage.EMPTY_ARGUMENT);
-		}	
 	}
 	
 	
@@ -123,12 +103,6 @@ public abstract class DeciTreeWriteTemplate<T extends InfoRecord> implements Dec
 			currentTree.makeDecision();
 		}
 	}
-		
-
-	/*
-	@Override public DeciChoice getDecisionMade() {
-		return currentTree.getDecisionMade();
-	} */
 	
 	
 	
@@ -166,6 +140,56 @@ public abstract class DeciTreeWriteTemplate<T extends InfoRecord> implements Dec
 	
 	@Override public ActionStdV1<T> toAction() {
 		return new DeciTreeAdapter<>(trees);
+	}
+	
+	
+	
+	@Override public void close() {
+		closeTree(trees);
+		clear();
+	}
+	
+	
+	
+	private void closeTree(List<DeciTree<T>> deciTrees) {
+		if (deciTrees == null)
+			return;
+		
+		if (deciTrees.isEmpty())
+			return;
+		
+		for (DeciTree<T> eachTree: deciTrees) {
+			eachTree.close();
+		}
+	}
+	
+	
+	
+	private void clear() {
+		currentTree = DefaultValue.object();
+		trees = DefaultValue.list();
+		itr = DefaultValue.object();
+	}
+	
+	
+	
+	private void checkArgument(DeciTreeOption<T> option) {
+		if (option == null) {
+			logException(new NullPointerException("options" + SystemMessage.NULL_ARGUMENT));
+			throw new NullPointerException("options" + SystemMessage.NULL_ARGUMENT);
+		}
+		
+		
+		if (option.recordInfos == null) {
+			logException(new NullPointerException("option.recordInfos" + SystemMessage.NULL_ARGUMENT));
+			throw new NullPointerException("option.recordInfos" + SystemMessage.NULL_ARGUMENT);
+		}
+		
+		
+		if (option.recordInfos.isEmpty()) {
+			logException(new IllegalArgumentException("option.recordInfos" + SystemMessage.EMPTY_ARGUMENT));
+			throw new IllegalArgumentException("option.recordInfos" + SystemMessage.EMPTY_ARGUMENT);
+		}	
 	}
 	
 	

@@ -7,10 +7,10 @@ import br.com.mind5.business.materialMovement.info.MatmovInfo;
 import br.com.mind5.business.materialMovement.info.MatmovMerger;
 import br.com.mind5.business.materialMovementSearch.info.MatmarchInfo;
 import br.com.mind5.business.materialMovementSearch.model.decisionTree.RootMatmarchSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMerge;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 import br.com.mind5.model.decisionTree.DeciTree;
 
-final class VisiMatmovMergeMatmarch extends ActionVisitorTemplateMerge<MatmovInfo, MatmarchInfo> {
+final class VisiMatmovMergeMatmarch extends ActionVisitorTemplateMergeV1<MatmovInfo, MatmarchInfo> {
 	
 	public VisiMatmovMergeMatmarch(Connection conn, String schemaName) {
 		super(conn, schemaName, MatmarchInfo.class);
@@ -30,6 +30,6 @@ final class VisiMatmovMergeMatmarch extends ActionVisitorTemplateMerge<MatmovInf
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
 	}
 }

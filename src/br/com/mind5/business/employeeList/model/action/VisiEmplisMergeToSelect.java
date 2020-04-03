@@ -6,9 +6,9 @@ import java.util.List;
 import br.com.mind5.business.employeeList.info.EmplisInfo;
 import br.com.mind5.business.employeeList.info.EmplisMerger;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMerge;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 
-final class VisiEmplisMergeToSelect extends ActionVisitorTemplateMerge<EmplisInfo, EmplisInfo> {
+final class VisiEmplisMergeToSelect extends ActionVisitorTemplateMergeV1<EmplisInfo, EmplisInfo> {
 	
 	public VisiEmplisMergeToSelect(Connection conn, String schemaName) {
 		super(conn, schemaName, EmplisInfo.class);
@@ -29,6 +29,6 @@ final class VisiEmplisMergeToSelect extends ActionVisitorTemplateMerge<EmplisInf
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
 	}
 }

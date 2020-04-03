@@ -138,7 +138,7 @@ public abstract class ModelTemplate<T extends InfoRecord> implements Model {
 		if (isRequestValid == false)
 			return RESULT_FAILED;
 		
-		if (hasExcuted() == true)
+		if (hasExecuted() == true)
 			return RESULT_FAILED;
 		
 		treeResults = tryToExecuteRequest(recordInfos, conn, schemaName);
@@ -161,7 +161,8 @@ public abstract class ModelTemplate<T extends InfoRecord> implements Model {
 				DeciTreeOption<T> option = buildOption(cursor, dbConn, dbSchema);
 				DeciTree<T> deciTree = getDecisionTreeHook(option);
 				deciTree.makeDecision();				
-				lastResult = deciTree.getDecisionResult();			
+				lastResult = deciTree.getDecisionResult();
+				deciTree.close();
 				
 				allResults.add(lastResult);
 				
@@ -287,7 +288,7 @@ public abstract class ModelTemplate<T extends InfoRecord> implements Model {
 	
 	
 	private void checkState() {
-		if (hasExcuted() == false) {
+		if (hasExecuted() == false) {
 			logException(new IllegalStateException(SystemMessage.NO_RESPONSE));
 			throw new IllegalStateException(SystemMessage.NO_RESPONSE);
 		}
@@ -295,7 +296,7 @@ public abstract class ModelTemplate<T extends InfoRecord> implements Model {
 	
 	
 	
-	private boolean hasExcuted() {
+	private boolean hasExecuted() {
 		if (treeResults == null)
 			return false;
 		

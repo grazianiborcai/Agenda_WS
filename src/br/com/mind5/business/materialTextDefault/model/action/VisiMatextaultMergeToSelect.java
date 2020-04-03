@@ -6,9 +6,9 @@ import java.util.List;
 import br.com.mind5.business.materialTextDefault.info.MatextaultInfo;
 import br.com.mind5.business.materialTextDefault.info.MatextaultMerger;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMerge;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 
-final class VisiMatextaultMergeToSelect extends ActionVisitorTemplateMerge<MatextaultInfo, MatextaultInfo> {
+final class VisiMatextaultMergeToSelect extends ActionVisitorTemplateMergeV1<MatextaultInfo, MatextaultInfo> {
 	
 	public VisiMatextaultMergeToSelect(Connection conn, String schemaName) {
 		super(conn, schemaName, MatextaultInfo.class);
@@ -35,6 +35,6 @@ final class VisiMatextaultMergeToSelect extends ActionVisitorTemplateMerge<Matex
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
 	}
 }

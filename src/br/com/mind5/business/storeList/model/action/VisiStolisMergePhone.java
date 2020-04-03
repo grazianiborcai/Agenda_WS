@@ -8,10 +8,10 @@ import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.business.phone.model.decisionTree.RootPhoneSearch;
 import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.business.storeList.info.StolisMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMerge;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 import br.com.mind5.model.decisionTree.DeciTree;
 
-final class VisiStolisMergePhone extends ActionVisitorTemplateMerge<StolisInfo, PhoneInfo> {
+final class VisiStolisMergePhone extends ActionVisitorTemplateMergeV1<StolisInfo, PhoneInfo> {
 	
 	public VisiStolisMergePhone(Connection conn, String schemaName) {
 		super(conn, schemaName, PhoneInfo.class);
@@ -38,6 +38,6 @@ final class VisiStolisMergePhone extends ActionVisitorTemplateMerge<StolisInfo, 
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMerge.MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
 	}
 }

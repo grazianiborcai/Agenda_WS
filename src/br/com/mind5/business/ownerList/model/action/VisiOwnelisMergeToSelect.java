@@ -6,9 +6,9 @@ import java.util.List;
 import br.com.mind5.business.ownerList.info.OwnelisInfo;
 import br.com.mind5.business.ownerList.info.OwnelisMerger;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMerge;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 
-final class VisiOwnelisMergeToSelect extends ActionVisitorTemplateMerge<OwnelisInfo, OwnelisInfo> {
+final class VisiOwnelisMergeToSelect extends ActionVisitorTemplateMergeV1<OwnelisInfo, OwnelisInfo> {
 	
 	public VisiOwnelisMergeToSelect(Connection conn, String schemaName) {
 		super(conn, schemaName, OwnelisInfo.class);
@@ -29,6 +29,6 @@ final class VisiOwnelisMergeToSelect extends ActionVisitorTemplateMerge<OwnelisI
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
 	}
 }

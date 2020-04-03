@@ -8,10 +8,10 @@ import br.com.mind5.business.addressSnapshot.info.AddresnapInfo;
 import br.com.mind5.business.addressSnapshot.model.decisionTree.RootAddresnapSelect;
 import br.com.mind5.business.storeSnapshot.info.StorapInfo;
 import br.com.mind5.business.storeSnapshot.info.StorapMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMerge;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 import br.com.mind5.model.decisionTree.DeciTree;
 
-final class VisiStorapMergeAddresnap extends ActionVisitorTemplateMerge<StorapInfo, AddresnapInfo> {
+final class VisiStorapMergeAddresnap extends ActionVisitorTemplateMergeV1<StorapInfo, AddresnapInfo> {
 	
 	public VisiStorapMergeAddresnap(Connection conn, String schemaName) {
 		super(conn, schemaName, AddresnapInfo.class);
@@ -38,6 +38,6 @@ final class VisiStorapMergeAddresnap extends ActionVisitorTemplateMerge<StorapIn
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMerge.MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
 	}
 }

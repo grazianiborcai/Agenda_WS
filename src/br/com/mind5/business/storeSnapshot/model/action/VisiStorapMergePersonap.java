@@ -8,10 +8,10 @@ import br.com.mind5.business.personSnapshot.info.PersonapInfo;
 import br.com.mind5.business.personSnapshot.model.decisionTree.RootPersonapSelect;
 import br.com.mind5.business.storeSnapshot.info.StorapInfo;
 import br.com.mind5.business.storeSnapshot.info.StorapMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMerge;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 import br.com.mind5.model.decisionTree.DeciTree;
 
-final class VisiStorapMergePersonap extends ActionVisitorTemplateMerge<StorapInfo, PersonapInfo> {
+final class VisiStorapMergePersonap extends ActionVisitorTemplateMergeV1<StorapInfo, PersonapInfo> {
 	
 	public VisiStorapMergePersonap(Connection conn, String schemaName) {
 		super(conn, schemaName, PersonapInfo.class);
@@ -38,6 +38,6 @@ final class VisiStorapMergePersonap extends ActionVisitorTemplateMerge<StorapInf
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMerge.MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
 	}	
 }

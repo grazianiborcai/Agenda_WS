@@ -6,9 +6,9 @@ import java.util.List;
 import br.com.mind5.business.materialStockSearch.info.MatocarchInfo;
 import br.com.mind5.business.materialStockSearch.info.MatocarchMerger;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMerge;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 
-final class VisiMatocarchMergeToSelect extends ActionVisitorTemplateMerge<MatocarchInfo, MatocarchInfo> {
+final class VisiMatocarchMergeToSelect extends ActionVisitorTemplateMergeV1<MatocarchInfo, MatocarchInfo> {
 	
 	public VisiMatocarchMergeToSelect(Connection conn, String schemaName) {
 		super(conn, schemaName, MatocarchInfo.class);
@@ -29,6 +29,6 @@ final class VisiMatocarchMergeToSelect extends ActionVisitorTemplateMerge<Matoca
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
 	}
 }

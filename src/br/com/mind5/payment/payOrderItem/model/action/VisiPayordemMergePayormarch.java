@@ -3,14 +3,14 @@ package br.com.mind5.payment.payOrderItem.model.action;
 import java.sql.Connection;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionVisitorTemplateMerge;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.payment.payOrderItem.info.PayordemInfo;
 import br.com.mind5.payment.payOrderItem.info.PayordemMerger;
 import br.com.mind5.payment.payOrderItemSearch.info.PayormarchInfo;
 import br.com.mind5.payment.payOrderItemSearch.model.decisionTree.RootPayormarchSelect;
 
-final class VisiPayordemMergePayormarch extends ActionVisitorTemplateMerge<PayordemInfo, PayormarchInfo> {
+final class VisiPayordemMergePayormarch extends ActionVisitorTemplateMergeV1<PayordemInfo, PayormarchInfo> {
 	
 	public VisiPayordemMergePayormarch(Connection conn, String schemaName) {
 		super(conn, schemaName, PayormarchInfo.class);
@@ -31,6 +31,6 @@ final class VisiPayordemMergePayormarch extends ActionVisitorTemplateMerge<Payor
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
 	}
 }

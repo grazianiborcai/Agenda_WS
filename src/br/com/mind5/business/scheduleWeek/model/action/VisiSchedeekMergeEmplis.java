@@ -8,10 +8,10 @@ import br.com.mind5.business.employeeList.info.EmplisInfo;
 import br.com.mind5.business.employeeList.model.decisionTree.RootEmplisSelect;
 import br.com.mind5.business.scheduleWeek.info.SchedeekInfo;
 import br.com.mind5.business.scheduleWeek.info.SchedeekMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMerge;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 import br.com.mind5.model.decisionTree.DeciTree;
 
-final class VisiSchedeekMergeEmplis extends ActionVisitorTemplateMerge<SchedeekInfo, EmplisInfo> {
+final class VisiSchedeekMergeEmplis extends ActionVisitorTemplateMergeV1<SchedeekInfo, EmplisInfo> {
 	
 	public VisiSchedeekMergeEmplis(Connection conn, String schemaName) {
 		super(conn, schemaName, EmplisInfo.class);
@@ -38,6 +38,6 @@ final class VisiSchedeekMergeEmplis extends ActionVisitorTemplateMerge<SchedeekI
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
 	}
 }

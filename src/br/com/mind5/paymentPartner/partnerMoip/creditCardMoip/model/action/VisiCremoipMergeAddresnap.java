@@ -6,12 +6,12 @@ import java.util.List;
 import br.com.mind5.business.addressSnapshot.info.AddresnapCopier;
 import br.com.mind5.business.addressSnapshot.info.AddresnapInfo;
 import br.com.mind5.business.addressSnapshot.model.decisionTree.RootAddresnapSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMerge;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.info.CremoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.info.CremoipMerger;
 
-final class VisiCremoipMergeAddresnap extends ActionVisitorTemplateMerge<CremoipInfo, AddresnapInfo> {
+final class VisiCremoipMergeAddresnap extends ActionVisitorTemplateMergeV1<CremoipInfo, AddresnapInfo> {
 	
 	public VisiCremoipMergeAddresnap(Connection conn, String schemaName) {
 		super(conn, schemaName, AddresnapInfo.class);
@@ -38,6 +38,6 @@ final class VisiCremoipMergeAddresnap extends ActionVisitorTemplateMerge<Cremoip
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
 	}
 }

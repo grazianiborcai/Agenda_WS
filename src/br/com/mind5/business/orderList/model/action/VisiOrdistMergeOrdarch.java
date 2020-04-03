@@ -7,10 +7,10 @@ import br.com.mind5.business.orderList.info.OrdistInfo;
 import br.com.mind5.business.orderList.info.OrdistMerger;
 import br.com.mind5.business.orderSearch.info.OrdarchInfo;
 import br.com.mind5.business.orderSearch.model.decisionTree.RootOrdarchSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMerge;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 import br.com.mind5.model.decisionTree.DeciTree;
 
-final class VisiOrdistMergeOrdarch extends ActionVisitorTemplateMerge<OrdistInfo, OrdarchInfo> {
+final class VisiOrdistMergeOrdarch extends ActionVisitorTemplateMergeV1<OrdistInfo, OrdarchInfo> {
 	
 	public VisiOrdistMergeOrdarch(Connection conn, String schemaName) {
 		super(conn, schemaName, OrdarchInfo.class);
@@ -31,6 +31,6 @@ final class VisiOrdistMergeOrdarch extends ActionVisitorTemplateMerge<OrdistInfo
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
 	}
 }

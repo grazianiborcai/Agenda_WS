@@ -7,10 +7,10 @@ import br.com.mind5.business.company.info.CompInfo;
 import br.com.mind5.business.company.model.decisionTree.RootCompSelect;
 import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.business.store.info.StoreMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMerge;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 import br.com.mind5.model.decisionTree.DeciTree;
 
-final class VisiStoreMergeComp extends ActionVisitorTemplateMerge<StoreInfo, CompInfo> {
+final class VisiStoreMergeComp extends ActionVisitorTemplateMergeV1<StoreInfo, CompInfo> {
 	
 	public VisiStoreMergeComp(Connection conn, String schemaName) {
 		super(conn, schemaName, CompInfo.class);
@@ -31,6 +31,6 @@ final class VisiStoreMergeComp extends ActionVisitorTemplateMerge<StoreInfo, Com
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMerge.MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
 	}	
 }

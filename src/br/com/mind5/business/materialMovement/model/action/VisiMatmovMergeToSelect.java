@@ -6,9 +6,9 @@ import java.util.List;
 import br.com.mind5.business.materialMovement.info.MatmovInfo;
 import br.com.mind5.business.materialMovement.info.MatmovMerger;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMerge;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 
-final class VisiMatmovMergeToSelect extends ActionVisitorTemplateMerge<MatmovInfo, MatmovInfo> {
+final class VisiMatmovMergeToSelect extends ActionVisitorTemplateMergeV1<MatmovInfo, MatmovInfo> {
 	
 	public VisiMatmovMergeToSelect(Connection conn, String schemaName) {
 		super(conn, schemaName, MatmovInfo.class);
@@ -29,6 +29,6 @@ final class VisiMatmovMergeToSelect extends ActionVisitorTemplateMerge<MatmovInf
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
 	}
 }

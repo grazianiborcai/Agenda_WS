@@ -6,9 +6,9 @@ import java.util.List;
 import br.com.mind5.business.companySearch.info.ComparchInfo;
 import br.com.mind5.business.companySearch.info.ComparchMerger;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMerge;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 
-final class VisiComparchMergeToSelect extends ActionVisitorTemplateMerge<ComparchInfo, ComparchInfo> {
+final class VisiComparchMergeToSelect extends ActionVisitorTemplateMergeV1<ComparchInfo, ComparchInfo> {
 	
 	public VisiComparchMergeToSelect(Connection conn, String schemaName) {
 		super(conn, schemaName, ComparchInfo.class);
@@ -29,6 +29,6 @@ final class VisiComparchMergeToSelect extends ActionVisitorTemplateMerge<Comparc
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
 	}
 }

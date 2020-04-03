@@ -84,7 +84,9 @@ public final class AuthFilterJwtoken extends BasicAuthenticationFilter {
     	DeciTree<TauthInfo> authenticator = new AuthJwtoken(tauth);
     	authenticator.makeDecision();
     	
-    	return parseResult(authenticator.getDecisionResult());
+    	TauthInfo result = parseResult(authenticator.getDecisionResult());
+    	authenticator.close();
+    	return result;
     }
     
     

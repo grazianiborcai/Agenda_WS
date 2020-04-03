@@ -6,12 +6,12 @@ import java.util.List;
 import br.com.mind5.business.order.info.OrderCopier;
 import br.com.mind5.business.order.info.OrderInfo;
 import br.com.mind5.business.order.model.decisionTree.RootOrderSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMerge;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
 import br.com.mind5.payment.payOrder.info.PayordMerger;
 
-final class VisiPayordMergeOrder extends ActionVisitorTemplateMerge<PayordInfo, OrderInfo> {
+final class VisiPayordMergeOrder extends ActionVisitorTemplateMergeV1<PayordInfo, OrderInfo> {
 	
 	public VisiPayordMergeOrder(Connection conn, String schemaName) {
 		super(conn, schemaName, OrderInfo.class);
@@ -38,6 +38,6 @@ final class VisiPayordMergeOrder extends ActionVisitorTemplateMerge<PayordInfo, 
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
 	}
 }

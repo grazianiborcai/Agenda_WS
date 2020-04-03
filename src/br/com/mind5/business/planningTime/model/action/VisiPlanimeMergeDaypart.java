@@ -8,10 +8,10 @@ import br.com.mind5.business.masterData.info.DaypartInfo;
 import br.com.mind5.business.masterData.model.decisionTree.RootDaypartSelect;
 import br.com.mind5.business.planningTime.info.PlanimeInfo;
 import br.com.mind5.business.planningTime.info.PlanimeMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMerge;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 import br.com.mind5.model.decisionTree.DeciTree;
 
-final class VisiPlanimeMergeDaypart extends ActionVisitorTemplateMerge<PlanimeInfo, DaypartInfo> {
+final class VisiPlanimeMergeDaypart extends ActionVisitorTemplateMergeV1<PlanimeInfo, DaypartInfo> {
 	
 	public VisiPlanimeMergeDaypart(Connection conn, String schemaName) {
 		super(conn, schemaName, DaypartInfo.class);
@@ -38,6 +38,6 @@ final class VisiPlanimeMergeDaypart extends ActionVisitorTemplateMerge<PlanimeIn
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMerge.MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
 	}
 }

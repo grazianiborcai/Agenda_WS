@@ -3,14 +3,14 @@ package br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.model.action;
 import java.sql.Connection;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionVisitorTemplateMerge;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
 import br.com.mind5.payment.creditCard.model.decisionTree.RootCrecardSelect;
 import br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.info.PaymoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.info.PaymoipMerger;
 
-final class VisiPaymoipMergeCrecard extends ActionVisitorTemplateMerge<PaymoipInfo, CrecardInfo> {
+final class VisiPaymoipMergeCrecard extends ActionVisitorTemplateMergeV1<PaymoipInfo, CrecardInfo> {
 	
 	public VisiPaymoipMergeCrecard(Connection conn, String schemaName) {
 		super(conn, schemaName, CrecardInfo.class);
@@ -31,6 +31,6 @@ final class VisiPaymoipMergeCrecard extends ActionVisitorTemplateMerge<PaymoipIn
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMerge.MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
 	}
 }

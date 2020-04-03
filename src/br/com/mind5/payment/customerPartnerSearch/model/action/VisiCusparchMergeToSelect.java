@@ -4,11 +4,11 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMerge;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 import br.com.mind5.payment.customerPartnerSearch.info.CusparchInfo;
 import br.com.mind5.payment.customerPartnerSearch.info.CusparchMerger;
 
-final class VisiCusparchMergeToSelect extends ActionVisitorTemplateMerge<CusparchInfo, CusparchInfo> {
+final class VisiCusparchMergeToSelect extends ActionVisitorTemplateMergeV1<CusparchInfo, CusparchInfo> {
 	
 	public VisiCusparchMergeToSelect(Connection conn, String schemaName) {
 		super(conn, schemaName, CusparchInfo.class);
@@ -29,6 +29,6 @@ final class VisiCusparchMergeToSelect extends ActionVisitorTemplateMerge<Cusparc
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
 	}
 }

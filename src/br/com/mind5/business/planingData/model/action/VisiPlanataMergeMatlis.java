@@ -7,10 +7,10 @@ import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.business.materialList.model.decisionTree.RootMatlisSelect;
 import br.com.mind5.business.planingData.info.PlanataInfo;
 import br.com.mind5.business.planingData.info.PlanataMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMerge;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 import br.com.mind5.model.decisionTree.DeciTree;
 
-final class VisiPlanataMergeMatlis extends ActionVisitorTemplateMerge<PlanataInfo, MatlisInfo> {
+final class VisiPlanataMergeMatlis extends ActionVisitorTemplateMergeV1<PlanataInfo, MatlisInfo> {
 	
 	public VisiPlanataMergeMatlis(Connection conn, String schemaName) {
 		super(conn, schemaName, MatlisInfo.class);
@@ -31,6 +31,6 @@ final class VisiPlanataMergeMatlis extends ActionVisitorTemplateMerge<PlanataInf
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMerge.MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
 	}
 }

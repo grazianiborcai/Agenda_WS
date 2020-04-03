@@ -8,10 +8,10 @@ import br.com.mind5.business.employeeSnapshot.info.EmpnapMerger;
 import br.com.mind5.business.phoneSnapshot.info.PhonapCopier;
 import br.com.mind5.business.phoneSnapshot.info.PhonapInfo;
 import br.com.mind5.business.phoneSnapshot.model.decisionTree.RootPhonapSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMerge;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 import br.com.mind5.model.decisionTree.DeciTree;
 
-final class VisiEmpnapMergePhonap extends ActionVisitorTemplateMerge<EmpnapInfo, PhonapInfo> {
+final class VisiEmpnapMergePhonap extends ActionVisitorTemplateMergeV1<EmpnapInfo, PhonapInfo> {
 	
 	public VisiEmpnapMergePhonap(Connection conn, String schemaName) {
 		super(conn, schemaName, PhonapInfo.class);
@@ -38,6 +38,6 @@ final class VisiEmpnapMergePhonap extends ActionVisitorTemplateMerge<EmpnapInfo,
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMerge.MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
 	}
 }

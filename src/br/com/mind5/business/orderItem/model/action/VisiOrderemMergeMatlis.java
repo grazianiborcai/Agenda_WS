@@ -8,10 +8,10 @@ import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.business.materialList.model.decisionTree.RootMatlisSelect;
 import br.com.mind5.business.orderItem.info.OrderemInfo;
 import br.com.mind5.business.orderItem.info.OrderemMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMerge;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 import br.com.mind5.model.decisionTree.DeciTree;
 
-final class VisiOrderemMergeMatlis extends ActionVisitorTemplateMerge<OrderemInfo, MatlisInfo> {
+final class VisiOrderemMergeMatlis extends ActionVisitorTemplateMergeV1<OrderemInfo, MatlisInfo> {
 	
 	public VisiOrderemMergeMatlis(Connection conn, String schemaName) {
 		super(conn, schemaName, MatlisInfo.class);
@@ -38,6 +38,6 @@ final class VisiOrderemMergeMatlis extends ActionVisitorTemplateMerge<OrderemInf
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMerge.MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
 	}
 }

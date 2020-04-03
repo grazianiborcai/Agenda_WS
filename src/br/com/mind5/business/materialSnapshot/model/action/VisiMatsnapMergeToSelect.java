@@ -6,9 +6,9 @@ import java.util.List;
 import br.com.mind5.business.materialSnapshot.info.MatsnapInfo;
 import br.com.mind5.business.materialSnapshot.info.MatsnapMerger;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMerge;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 
-final class VisiMatsnapMergeToSelect extends ActionVisitorTemplateMerge<MatsnapInfo, MatsnapInfo> {
+final class VisiMatsnapMergeToSelect extends ActionVisitorTemplateMergeV1<MatsnapInfo, MatsnapInfo> {
 	
 	public VisiMatsnapMergeToSelect(Connection conn, String schemaName) {
 		super(conn, schemaName, MatsnapInfo.class);
@@ -35,6 +35,6 @@ final class VisiMatsnapMergeToSelect extends ActionVisitorTemplateMerge<MatsnapI
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
 	}
 }

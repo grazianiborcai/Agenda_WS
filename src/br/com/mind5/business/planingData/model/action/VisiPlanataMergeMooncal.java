@@ -8,10 +8,10 @@ import br.com.mind5.business.moonCalendar.info.MooncalInfo;
 import br.com.mind5.business.moonCalendar.model.decisionTree.RootMooncalSelect;
 import br.com.mind5.business.planingData.info.PlanataInfo;
 import br.com.mind5.business.planingData.info.PlanataMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMerge;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 import br.com.mind5.model.decisionTree.DeciTree;
 
-final class VisiPlanataMergeMooncal extends ActionVisitorTemplateMerge<PlanataInfo, MooncalInfo> {
+final class VisiPlanataMergeMooncal extends ActionVisitorTemplateMergeV1<PlanataInfo, MooncalInfo> {
 	
 	public VisiPlanataMergeMooncal(Connection conn, String schemaName) {
 		super(conn, schemaName, MooncalInfo.class);
@@ -38,6 +38,6 @@ final class VisiPlanataMergeMooncal extends ActionVisitorTemplateMerge<PlanataIn
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMerge.MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
 	}
 }

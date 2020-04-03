@@ -8,10 +8,10 @@ import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.address.model.decisionTree.RootAddressSearch;
 import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.business.storeList.info.StolisMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMerge;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 import br.com.mind5.model.decisionTree.DeciTree;
 
-final class VisiStolisMergeAddress extends ActionVisitorTemplateMerge<StolisInfo, AddressInfo> {
+final class VisiStolisMergeAddress extends ActionVisitorTemplateMergeV1<StolisInfo, AddressInfo> {
 	
 	public VisiStolisMergeAddress(Connection conn, String schemaName) {
 		super(conn, schemaName, AddressInfo.class);
@@ -38,6 +38,6 @@ final class VisiStolisMergeAddress extends ActionVisitorTemplateMerge<StolisInfo
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMerge.MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
 	}
 }

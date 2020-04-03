@@ -4,11 +4,11 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMerge;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 import br.com.mind5.payment.payOrderItemList.info.PayordemistInfo;
 import br.com.mind5.payment.payOrderItemList.info.PayordemistMerger;
 
-final class VisiPayordemistMergeToSelect extends ActionVisitorTemplateMerge<PayordemistInfo, PayordemistInfo> {
+final class VisiPayordemistMergeToSelect extends ActionVisitorTemplateMergeV1<PayordemistInfo, PayordemistInfo> {
 	
 	public VisiPayordemistMergeToSelect(Connection conn, String schemaName) {
 		super(conn, schemaName, PayordemistInfo.class);
@@ -29,6 +29,6 @@ final class VisiPayordemistMergeToSelect extends ActionVisitorTemplateMerge<Payo
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
 	}
 }

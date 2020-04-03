@@ -8,10 +8,10 @@ import br.com.mind5.business.materialSnapshot.info.MatsnapInfo;
 import br.com.mind5.business.materialSnapshot.model.decisionTree.RootMatsnapSelect;
 import br.com.mind5.business.scheduleLineSnapshot.info.SchedinapInfo;
 import br.com.mind5.business.scheduleLineSnapshot.info.SchedinapMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMerge;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 import br.com.mind5.model.decisionTree.DeciTree;
 
-final class VisiSchedinapMergeMatsnap extends ActionVisitorTemplateMerge<SchedinapInfo, MatsnapInfo> {
+final class VisiSchedinapMergeMatsnap extends ActionVisitorTemplateMergeV1<SchedinapInfo, MatsnapInfo> {
 	
 	public VisiSchedinapMergeMatsnap(Connection conn, String schemaName) {
 		super(conn, schemaName, MatsnapInfo.class);
@@ -38,6 +38,6 @@ final class VisiSchedinapMergeMatsnap extends ActionVisitorTemplateMerge<Schedin
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMerge.MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
 	}
 }

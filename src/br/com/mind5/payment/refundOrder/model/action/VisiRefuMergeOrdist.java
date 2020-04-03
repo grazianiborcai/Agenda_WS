@@ -5,12 +5,12 @@ import java.util.List;
 
 import br.com.mind5.business.orderList.info.OrdistInfo;
 import br.com.mind5.business.orderList.model.decisionTree.RootOrdistSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMerge;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.payment.refundOrder.info.RefuInfo;
 import br.com.mind5.payment.refundOrder.info.RefuMerger;
 
-final class VisiRefuMergeOrdist extends ActionVisitorTemplateMerge<RefuInfo, OrdistInfo> {
+final class VisiRefuMergeOrdist extends ActionVisitorTemplateMergeV1<RefuInfo, OrdistInfo> {
 	
 	public VisiRefuMergeOrdist(Connection conn, String schemaName) {
 		super(conn, schemaName, OrdistInfo.class);
@@ -31,6 +31,6 @@ final class VisiRefuMergeOrdist extends ActionVisitorTemplateMerge<RefuInfo, Ord
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
 	}
 }

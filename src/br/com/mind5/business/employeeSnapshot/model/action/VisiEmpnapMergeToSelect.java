@@ -6,9 +6,9 @@ import java.util.List;
 import br.com.mind5.business.employeeSnapshot.info.EmpnapInfo;
 import br.com.mind5.business.employeeSnapshot.info.EmpnapMerger;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMerge;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 
-final class VisiEmpnapMergeToSelect extends ActionVisitorTemplateMerge<EmpnapInfo, EmpnapInfo> {
+final class VisiEmpnapMergeToSelect extends ActionVisitorTemplateMergeV1<EmpnapInfo, EmpnapInfo> {
 	
 	public VisiEmpnapMergeToSelect(Connection conn, String schemaName) {
 		super(conn, schemaName, EmpnapInfo.class);
@@ -29,6 +29,6 @@ final class VisiEmpnapMergeToSelect extends ActionVisitorTemplateMerge<EmpnapInf
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
 	}
 }

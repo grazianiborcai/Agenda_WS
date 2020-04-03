@@ -34,7 +34,9 @@ public final class AuthProviderPwrd implements AuthenticationProvider {
 		authenticator.makeDecision();		
 		checkResult(authenticator.getDecisionResult());
 		
-		return parseRoles(authenticator.getDecisionResult().getResultset());
+		List<GrantedAuthority> results = parseRoles(authenticator.getDecisionResult().getResultset());
+		authenticator.close();
+		return results;
 	}
 	
 	

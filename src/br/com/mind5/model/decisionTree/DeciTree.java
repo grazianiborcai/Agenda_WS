@@ -9,4 +9,6 @@ public interface DeciTree<T extends InfoRecord> {
 	public DeciResult<T> getDecisionResult();
 	
 	public ActionStdV1<T> toAction();
+	
+	public void close();
 }

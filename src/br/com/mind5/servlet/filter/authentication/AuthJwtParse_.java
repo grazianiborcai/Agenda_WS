@@ -8,15 +8,15 @@ import br.com.mind5.model.decisionTree.common.DeciTreeOneCallTemplate;
 import br.com.mind5.security.jwtToken.info.JwtokenInfo;
 import br.com.mind5.security.jwtToken.model.decisionTree.RootJwtokenParse;
 
-final class AuthJwtParse extends DeciTreeOneCallTemplate<JwtokenInfo> {
+final class AuthJwtParse_ extends DeciTreeOneCallTemplate<JwtokenInfo> {
 
-	public AuthJwtParse(JwtokenInfo recordInfo) {
+	public AuthJwtParse_(JwtokenInfo recordInfo) {
 		super(recordInfo);
 	}
 	
 	
 	
-	public AuthJwtParse(List<JwtokenInfo> recordInfos) {
+	public AuthJwtParse_(List<JwtokenInfo> recordInfos) {
 		super(recordInfos);
 	}
 	

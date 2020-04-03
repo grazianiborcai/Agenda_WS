@@ -3,14 +3,14 @@ package br.com.mind5.paymentPartner.partnerMoip.tokenMoip.model.action;
 import java.sql.Connection;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionVisitorTemplateMerge;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.payment.systemPartner.info.SysparInfo;
 import br.com.mind5.payment.systemPartner.model.decisionTree.RootSysparSelect;
 import br.com.mind5.paymentPartner.partnerMoip.tokenMoip.info.TokemoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.tokenMoip.info.TokemoipMerger;
 
-final class VisiTokemoipMergeSyspar extends ActionVisitorTemplateMerge<TokemoipInfo, SysparInfo> {
+final class VisiTokemoipMergeSyspar extends ActionVisitorTemplateMergeV1<TokemoipInfo, SysparInfo> {
 	
 	public VisiTokemoipMergeSyspar(Connection conn, String schemaName) {
 		super(conn, schemaName, SysparInfo.class);
@@ -31,6 +31,6 @@ final class VisiTokemoipMergeSyspar extends ActionVisitorTemplateMerge<TokemoipI
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
 	}
 }

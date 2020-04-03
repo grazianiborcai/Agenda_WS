@@ -67,10 +67,14 @@ public abstract class ActionVisitorTemplateStmtV2<T extends InfoRecord> implemen
 		try {
 			stmtExec.executeStmt();
 			List<T> resulset = stmtExec.getResultset();
-			return buildDeciResult(resulset);
+			DeciResult<T> result = buildDeciResult(resulset);
+			
+			closeStmtExec(stmtExec);
+			return result;
 			
 		} catch (SQLException e) {
 			logException(e);
+			closeStmtExec(stmtExec);
 			return buildResultInternalError();
 		}
 
@@ -87,6 +91,7 @@ public abstract class ActionVisitorTemplateStmtV2<T extends InfoRecord> implemen
 		
 		return buildResultSuccess(recordInfos);
 	}
+	
 	
 	
 	private DeciResult<T> buildResultDataNotFound() {
@@ -114,7 +119,22 @@ public abstract class ActionVisitorTemplateStmtV2<T extends InfoRecord> implemen
 	
 	
 	@Override public void close() {
-		stmtExec.close();
+		closeStmtExec(stmtExec);
+		clear();
+	}
+	
+	
+	
+	private void closeStmtExec(DaoStmtExecV2<T> exec) {
+		if (exec == null)
+			return;
+					
+		exec.close();			
+	}
+	
+	
+	
+	private void clear() {
 		stmtExec = DefaultValue.object();
 	}
 	

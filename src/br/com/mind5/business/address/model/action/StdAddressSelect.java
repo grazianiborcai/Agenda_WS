@@ -5,7 +5,7 @@ import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.action.ActionStdTemplateV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdAddressSelect extends ActionStdTemplateV2<AddressInfo>{
+public final class StdAddressSelect extends ActionStdTemplateV2<AddressInfo> {
 
 	public StdAddressSelect(DeciTreeOption<AddressInfo> option) {
 		super(option);

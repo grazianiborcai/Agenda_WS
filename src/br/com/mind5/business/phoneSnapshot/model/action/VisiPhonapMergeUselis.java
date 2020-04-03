@@ -5,13 +5,13 @@ import java.util.List;
 
 import br.com.mind5.business.phoneSnapshot.info.PhonapInfo;
 import br.com.mind5.business.phoneSnapshot.info.PhonapMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMerge;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.security.userList.info.UselisCopier;
 import br.com.mind5.security.userList.info.UselisInfo;
 import br.com.mind5.security.userList.model.decisionTree.RootUselisSelect;
 
-final class VisiPhonapMergeUselis extends ActionVisitorTemplateMerge<PhonapInfo, UselisInfo> {
+final class VisiPhonapMergeUselis extends ActionVisitorTemplateMergeV1<PhonapInfo, UselisInfo> {
 	
 	public VisiPhonapMergeUselis(Connection conn, String schemaName) {
 		super(conn, schemaName, UselisInfo.class);
@@ -37,6 +37,6 @@ final class VisiPhonapMergeUselis extends ActionVisitorTemplateMerge<PhonapInfo,
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMerge.MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
 	}
 }

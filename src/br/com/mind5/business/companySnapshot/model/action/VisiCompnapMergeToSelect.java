@@ -6,9 +6,9 @@ import java.util.List;
 import br.com.mind5.business.companySnapshot.info.CompnapInfo;
 import br.com.mind5.business.companySnapshot.info.CompnapMerger;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMerge;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 
-final class VisiCompnapMergeToSelect extends ActionVisitorTemplateMerge<CompnapInfo, CompnapInfo> {
+final class VisiCompnapMergeToSelect extends ActionVisitorTemplateMergeV1<CompnapInfo, CompnapInfo> {
 	
 	public VisiCompnapMergeToSelect(Connection conn, String schemaName) {
 		super(conn, schemaName, CompnapInfo.class);
@@ -29,6 +29,6 @@ final class VisiCompnapMergeToSelect extends ActionVisitorTemplateMerge<CompnapI
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
 	}
 }

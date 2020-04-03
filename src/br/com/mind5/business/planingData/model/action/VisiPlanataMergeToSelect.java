@@ -6,9 +6,9 @@ import java.util.List;
 import br.com.mind5.business.planingData.info.PlanataInfo;
 import br.com.mind5.business.planingData.info.PlanataMerger;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMerge;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 
-final class VisiPlanataMergeToSelect extends ActionVisitorTemplateMerge<PlanataInfo, PlanataInfo> {
+final class VisiPlanataMergeToSelect extends ActionVisitorTemplateMergeV1<PlanataInfo, PlanataInfo> {
 	
 	public VisiPlanataMergeToSelect(Connection conn, String schemaName) {
 		super(conn, schemaName, PlanataInfo.class);
@@ -29,6 +29,6 @@ final class VisiPlanataMergeToSelect extends ActionVisitorTemplateMerge<PlanataI
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
 	}
 }

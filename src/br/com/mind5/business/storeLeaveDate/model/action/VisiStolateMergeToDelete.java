@@ -6,10 +6,10 @@ import java.util.List;
 import br.com.mind5.business.storeLeaveDate.info.StolateInfo;
 import br.com.mind5.business.storeLeaveDate.info.StolateMerger;
 import br.com.mind5.business.storeLeaveDate.model.decisionTree.RootStolateSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMerge;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 import br.com.mind5.model.decisionTree.DeciTree;
 
-final class VisiStolateMergeToDelete extends ActionVisitorTemplateMerge<StolateInfo, StolateInfo> {
+final class VisiStolateMergeToDelete extends ActionVisitorTemplateMergeV1<StolateInfo, StolateInfo> {
 	
 	public VisiStolateMergeToDelete(Connection conn, String schemaName) {
 		super(conn, schemaName, StolateInfo.class);
@@ -30,6 +30,6 @@ final class VisiStolateMergeToDelete extends ActionVisitorTemplateMerge<StolateI
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
 	}
 }

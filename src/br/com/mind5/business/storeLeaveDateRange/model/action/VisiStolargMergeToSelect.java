@@ -6,9 +6,9 @@ import java.util.List;
 import br.com.mind5.business.storeLeaveDateRange.info.StolargInfo;
 import br.com.mind5.business.storeLeaveDateRange.info.StolargMerger;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMerge;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 
-final class VisiStolargMergeToSelect extends ActionVisitorTemplateMerge<StolargInfo, StolargInfo> {
+final class VisiStolargMergeToSelect extends ActionVisitorTemplateMergeV1<StolargInfo, StolargInfo> {
 	
 	public VisiStolargMergeToSelect(Connection conn, String schemaName) {
 		super(conn, schemaName, StolargInfo.class);
@@ -29,6 +29,6 @@ final class VisiStolargMergeToSelect extends ActionVisitorTemplateMerge<StolargI
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
 	}
 }

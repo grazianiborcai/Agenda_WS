@@ -7,10 +7,10 @@ import br.com.mind5.business.masterData.info.MatCategInfo;
 import br.com.mind5.business.masterData.model.decisionTree.RootMatCategSelect;
 import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.business.materialList.info.MatlisMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMerge;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 import br.com.mind5.model.decisionTree.DeciTree;
 
-final class VisiMatlisMergeMatCateg extends ActionVisitorTemplateMerge<MatlisInfo, MatCategInfo> {
+final class VisiMatlisMergeMatCateg extends ActionVisitorTemplateMergeV1<MatlisInfo, MatCategInfo> {
 	
 	public VisiMatlisMergeMatCateg(Connection conn, String schemaName) {
 		super(conn, schemaName, MatCategInfo.class);
@@ -31,6 +31,6 @@ final class VisiMatlisMergeMatCateg extends ActionVisitorTemplateMerge<MatlisInf
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMerge.MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
 	}
 }

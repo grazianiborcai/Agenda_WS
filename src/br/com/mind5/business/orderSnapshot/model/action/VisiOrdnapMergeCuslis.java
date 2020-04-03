@@ -7,10 +7,10 @@ import br.com.mind5.business.customerList.info.CuslisInfo;
 import br.com.mind5.business.customerList.model.decisionTree.RootCuslisSelect;
 import br.com.mind5.business.orderSnapshot.info.OrdnapInfo;
 import br.com.mind5.business.orderSnapshot.info.OrdnapMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMerge;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 import br.com.mind5.model.decisionTree.DeciTree;
 
-final class VisiOrdnapMergeCuslis extends ActionVisitorTemplateMerge<OrdnapInfo, CuslisInfo> {
+final class VisiOrdnapMergeCuslis extends ActionVisitorTemplateMergeV1<OrdnapInfo, CuslisInfo> {
 	
 	public VisiOrdnapMergeCuslis(Connection conn, String schemaName) {
 		super(conn, schemaName, CuslisInfo.class);
@@ -31,6 +31,6 @@ final class VisiOrdnapMergeCuslis extends ActionVisitorTemplateMerge<OrdnapInfo,
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
 	}
 }

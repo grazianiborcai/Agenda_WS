@@ -5,13 +5,13 @@ import java.util.List;
 
 import br.com.mind5.business.employeeSnapshot.info.EmpnapInfo;
 import br.com.mind5.business.employeeSnapshot.info.EmpnapMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMerge;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.security.userList.info.UselisCopier;
 import br.com.mind5.security.userList.info.UselisInfo;
 import br.com.mind5.security.userList.model.decisionTree.RootUselisSelect;
 
-final class VisiEmpnapMergeUselis extends ActionVisitorTemplateMerge<EmpnapInfo, UselisInfo> {
+final class VisiEmpnapMergeUselis extends ActionVisitorTemplateMergeV1<EmpnapInfo, UselisInfo> {
 	
 	public VisiEmpnapMergeUselis(Connection conn, String schemaName) {
 		super(conn, schemaName, UselisInfo.class);
@@ -38,6 +38,6 @@ final class VisiEmpnapMergeUselis extends ActionVisitorTemplateMerge<EmpnapInfo,
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMerge.MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
 	}
 }

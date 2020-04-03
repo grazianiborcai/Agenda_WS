@@ -6,9 +6,9 @@ import java.util.List;
 import br.com.mind5.business.addressSearch.info.AddarchInfo;
 import br.com.mind5.business.addressSearch.info.AddarchMerger;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMerge;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 
-final class VisiAddarchMergeToSelect extends ActionVisitorTemplateMerge<AddarchInfo, AddarchInfo> {
+final class VisiAddarchMergeToSelect extends ActionVisitorTemplateMergeV1<AddarchInfo, AddarchInfo> {
 	
 	public VisiAddarchMergeToSelect(Connection conn, String schemaName) {
 		super(conn, schemaName, AddarchInfo.class);
@@ -29,6 +29,6 @@ final class VisiAddarchMergeToSelect extends ActionVisitorTemplateMerge<AddarchI
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
 	}
 }

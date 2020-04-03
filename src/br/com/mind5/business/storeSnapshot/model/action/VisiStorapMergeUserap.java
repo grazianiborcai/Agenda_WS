@@ -5,13 +5,13 @@ import java.util.List;
 
 import br.com.mind5.business.storeSnapshot.info.StorapInfo;
 import br.com.mind5.business.storeSnapshot.info.StorapMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMerge;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.security.userSnapshot.info.UserapCopier;
 import br.com.mind5.security.userSnapshot.info.UserapInfo;
 import br.com.mind5.security.userSnapshot.model.decisionTree.RootUserapSelect;
 
-final class VisiStorapMergeUserap extends ActionVisitorTemplateMerge<StorapInfo, UserapInfo> {
+final class VisiStorapMergeUserap extends ActionVisitorTemplateMergeV1<StorapInfo, UserapInfo> {
 	
 	public VisiStorapMergeUserap(Connection conn, String schemaName) {
 		super(conn, schemaName, UserapInfo.class);
@@ -38,6 +38,6 @@ final class VisiStorapMergeUserap extends ActionVisitorTemplateMerge<StorapInfo,
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMerge.MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
 	}
 }

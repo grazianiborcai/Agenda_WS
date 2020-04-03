@@ -6,9 +6,9 @@ import java.util.List;
 import br.com.mind5.business.companyList.info.ComplisInfo;
 import br.com.mind5.business.companyList.info.ComplisMerger;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMerge;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 
-final class VisiComplisMergeToSelect extends ActionVisitorTemplateMerge<ComplisInfo, ComplisInfo> {
+final class VisiComplisMergeToSelect extends ActionVisitorTemplateMergeV1<ComplisInfo, ComplisInfo> {
 	
 	public VisiComplisMergeToSelect(Connection conn, String schemaName) {
 		super(conn, schemaName, ComplisInfo.class);
@@ -29,6 +29,6 @@ final class VisiComplisMergeToSelect extends ActionVisitorTemplateMerge<ComplisI
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
 	}
 }

@@ -6,12 +6,12 @@ import java.util.List;
 import br.com.mind5.file.fileImageList.info.FimistCopier;
 import br.com.mind5.file.fileImageList.info.FimistInfo;
 import br.com.mind5.file.fileImageList.model.decisionTree.RootFimistSearch;
-import br.com.mind5.model.action.ActionVisitorTemplateMerge;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.security.user.info.UserInfo;
 import br.com.mind5.security.user.info.UserMerger;
 
-final class VisiUserMergeFimist extends ActionVisitorTemplateMerge<UserInfo, FimistInfo> {
+final class VisiUserMergeFimist extends ActionVisitorTemplateMergeV1<UserInfo, FimistInfo> {
 	
 	public VisiUserMergeFimist(Connection conn, String schemaName) {
 		super(conn, schemaName, FimistInfo.class);
@@ -38,6 +38,6 @@ final class VisiUserMergeFimist extends ActionVisitorTemplateMerge<UserInfo, Fim
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMerge.MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
 	}
 }

@@ -7,10 +7,10 @@ import br.com.mind5.business.masterData.info.FeeCategInfo;
 import br.com.mind5.business.masterData.model.decisionTree.RootFeeCategSelect;
 import br.com.mind5.business.order.info.OrderInfo;
 import br.com.mind5.business.order.info.OrderMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMerge;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 import br.com.mind5.model.decisionTree.DeciTree;
 
-final class VisiOrderMergeFeeCateg extends ActionVisitorTemplateMerge<OrderInfo, FeeCategInfo> {
+final class VisiOrderMergeFeeCateg extends ActionVisitorTemplateMergeV1<OrderInfo, FeeCategInfo> {
 	
 	public VisiOrderMergeFeeCateg(Connection conn, String schemaName) {
 		super(conn, schemaName, FeeCategInfo.class);
@@ -31,6 +31,6 @@ final class VisiOrderMergeFeeCateg extends ActionVisitorTemplateMerge<OrderInfo,
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMerge.MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
 	}
 }

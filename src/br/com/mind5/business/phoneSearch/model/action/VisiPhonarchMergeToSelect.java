@@ -6,9 +6,9 @@ import java.util.List;
 import br.com.mind5.business.phoneSearch.info.PhonarchInfo;
 import br.com.mind5.business.phoneSearch.info.PhonarchMerger;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMerge;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 
-final class VisiPhonarchMergeToSelect extends ActionVisitorTemplateMerge<PhonarchInfo, PhonarchInfo> {
+final class VisiPhonarchMergeToSelect extends ActionVisitorTemplateMergeV1<PhonarchInfo, PhonarchInfo> {
 	
 	public VisiPhonarchMergeToSelect(Connection conn, String schemaName) {
 		super(conn, schemaName, PhonarchInfo.class);
@@ -29,6 +29,6 @@ final class VisiPhonarchMergeToSelect extends ActionVisitorTemplateMerge<Phonarc
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
 	}
 }

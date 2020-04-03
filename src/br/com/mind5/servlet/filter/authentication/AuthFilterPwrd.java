@@ -298,7 +298,9 @@ public final class AuthFilterPwrd extends OncePerRequestFilter {
 		customCheckJwtTokenGeneration(jwtokenGenerate.getDecisionResult());
 		
 		
-		return jwtokenGenerate.getDecisionResult().getResultset().get(0).token;
+		String result = jwtokenGenerate.getDecisionResult().getResultset().get(0).token;
+		jwtokenGenerate.close();
+		return result;
 	}
 	
 	

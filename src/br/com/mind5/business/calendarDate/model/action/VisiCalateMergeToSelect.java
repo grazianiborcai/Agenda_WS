@@ -6,9 +6,9 @@ import java.util.List;
 import br.com.mind5.business.calendarDate.info.CalateInfo;
 import br.com.mind5.business.calendarDate.info.CalateMerger;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMerge;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 
-final class VisiCalateMergeToSelect extends ActionVisitorTemplateMerge<CalateInfo, CalateInfo> {
+final class VisiCalateMergeToSelect extends ActionVisitorTemplateMergeV1<CalateInfo, CalateInfo> {
 	
 	public VisiCalateMergeToSelect(Connection conn, String schemaName) {
 		super(conn, schemaName, CalateInfo.class);
@@ -29,6 +29,6 @@ final class VisiCalateMergeToSelect extends ActionVisitorTemplateMerge<CalateInf
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
 	}
 }

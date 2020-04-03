@@ -8,10 +8,10 @@ import br.com.mind5.business.scheduleMonth.info.SchedmonMerger;
 import br.com.mind5.business.scheduleMonthData.info.SchedonthatCopier;
 import br.com.mind5.business.scheduleMonthData.info.SchedonthatInfo;
 import br.com.mind5.business.scheduleMonthData.model.decisionTree.RootSchedonthatSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMerge;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 import br.com.mind5.model.decisionTree.DeciTree;
 
-final class VisiSchedmonMergeSchedonthat extends ActionVisitorTemplateMerge<SchedmonInfo, SchedonthatInfo> {
+final class VisiSchedmonMergeSchedonthat extends ActionVisitorTemplateMergeV1<SchedmonInfo, SchedonthatInfo> {
 	
 	public VisiSchedmonMergeSchedonthat(Connection conn, String schemaName) {
 		super(conn, schemaName, SchedonthatInfo.class);
@@ -38,6 +38,6 @@ final class VisiSchedmonMergeSchedonthat extends ActionVisitorTemplateMerge<Sche
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
 	}
 }

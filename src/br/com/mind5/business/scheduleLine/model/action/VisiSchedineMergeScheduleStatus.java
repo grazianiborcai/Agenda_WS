@@ -7,10 +7,10 @@ import br.com.mind5.business.masterData.info.ScheduleStatusInfo;
 import br.com.mind5.business.masterData.model.decisionTree.RootScheduleStatusSelect;
 import br.com.mind5.business.scheduleLine.info.SchedineInfo;
 import br.com.mind5.business.scheduleLine.info.SchedineMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMerge;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 import br.com.mind5.model.decisionTree.DeciTree;
 
-final class VisiSchedineMergeScheduleStatus extends ActionVisitorTemplateMerge<SchedineInfo, ScheduleStatusInfo> {
+final class VisiSchedineMergeScheduleStatus extends ActionVisitorTemplateMergeV1<SchedineInfo, ScheduleStatusInfo> {
 	
 	public VisiSchedineMergeScheduleStatus(Connection conn, String schemaName) {
 		super(conn, schemaName, ScheduleStatusInfo.class);
@@ -31,6 +31,6 @@ final class VisiSchedineMergeScheduleStatus extends ActionVisitorTemplateMerge<S
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMerge.MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
 	}
 }

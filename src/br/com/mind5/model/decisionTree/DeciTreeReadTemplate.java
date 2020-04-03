@@ -67,6 +67,12 @@ public abstract class DeciTreeReadTemplate<T extends InfoRecord> implements Deci
 	
 	
 	
+	@Override public void close() {
+		tree.close();
+	}
+	
+	
+	
 	private void logException(Exception e) {		
 		SystemLog.logError(this.getClass(), e);
 	}

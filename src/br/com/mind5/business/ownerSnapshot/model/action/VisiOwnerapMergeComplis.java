@@ -8,10 +8,10 @@ import br.com.mind5.business.companyList.info.ComplisInfo;
 import br.com.mind5.business.companyList.model.decisionTree.RootComplisSelect;
 import br.com.mind5.business.ownerSnapshot.info.OwnerapInfo;
 import br.com.mind5.business.ownerSnapshot.info.OwnerapMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMerge;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 import br.com.mind5.model.decisionTree.DeciTree;
 
-final class VisiOwnerapMergeComplis extends ActionVisitorTemplateMerge<OwnerapInfo, ComplisInfo> {
+final class VisiOwnerapMergeComplis extends ActionVisitorTemplateMergeV1<OwnerapInfo, ComplisInfo> {
 	
 	public VisiOwnerapMergeComplis(Connection conn, String schemaName) {
 		super(conn, schemaName, ComplisInfo.class);
@@ -38,6 +38,6 @@ final class VisiOwnerapMergeComplis extends ActionVisitorTemplateMerge<OwnerapIn
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMerge.MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
 	}
 }

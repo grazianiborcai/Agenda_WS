@@ -109,6 +109,12 @@ public abstract class DeciTreeOneCallTemplate<T extends InfoRecord> implements D
 	
 	
 	
+	@Override public void close() {
+		helper.close();
+	}
+	
+	
+	
 	private DeciTreeOption<T> closeTransaction(DeciResult<T> treeResult, DeciTreeOption<T> opt) {
 		if (treeResult.isSuccess() == RESULT_SUCCESS) 
 			commitWork();

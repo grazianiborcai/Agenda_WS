@@ -7,10 +7,10 @@ import br.com.mind5.business.employeeWorkTime.info.EmpwotmInfo;
 import br.com.mind5.business.employeeWorkTime.info.EmpwotmMerger;
 import br.com.mind5.business.employeeWorkTimeSearch.info.EmpwotarchInfo;
 import br.com.mind5.business.employeeWorkTimeSearch.model.decisionTree.RootEmpwotarchSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMerge;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 import br.com.mind5.model.decisionTree.DeciTree;
 
-final class VisiEmpwotmMergeEmpwotarch extends ActionVisitorTemplateMerge<EmpwotmInfo, EmpwotarchInfo> {
+final class VisiEmpwotmMergeEmpwotarch extends ActionVisitorTemplateMergeV1<EmpwotmInfo, EmpwotarchInfo> {
 	
 	public VisiEmpwotmMergeEmpwotarch(Connection conn, String schemaName) {
 		super(conn, schemaName, EmpwotarchInfo.class);
@@ -31,6 +31,6 @@ final class VisiEmpwotmMergeEmpwotarch extends ActionVisitorTemplateMerge<Empwot
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
 	}
 }

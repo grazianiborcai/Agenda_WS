@@ -7,10 +7,10 @@ import br.com.mind5.business.cart.info.CartInfo;
 import br.com.mind5.business.cart.info.CartMerger;
 import br.com.mind5.business.feeOwner.info.FeewnerInfo;
 import br.com.mind5.business.feeOwner.model.decisionTree.RootFeewnerSelectService;
-import br.com.mind5.model.action.ActionVisitorTemplateMerge;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 import br.com.mind5.model.decisionTree.DeciTree;
 
-final class VisiCartMergeFeewner extends ActionVisitorTemplateMerge<CartInfo, FeewnerInfo> {
+final class VisiCartMergeFeewner extends ActionVisitorTemplateMergeV1<CartInfo, FeewnerInfo> {
 	
 	public VisiCartMergeFeewner(Connection conn, String schemaName) {
 		super(conn, schemaName, FeewnerInfo.class);
@@ -31,6 +31,6 @@ final class VisiCartMergeFeewner extends ActionVisitorTemplateMerge<CartInfo, Fe
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
 	}
 }

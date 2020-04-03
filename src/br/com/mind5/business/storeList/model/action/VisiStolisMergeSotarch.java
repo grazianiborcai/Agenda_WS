@@ -7,10 +7,10 @@ import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.business.storeList.info.StolisMerger;
 import br.com.mind5.business.storeSearch.info.SotarchInfo;
 import br.com.mind5.business.storeSearch.model.decisionTree.RootSotarchSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMerge;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 import br.com.mind5.model.decisionTree.DeciTree;
 
-final class VisiStolisMergeSotarch extends ActionVisitorTemplateMerge<StolisInfo, SotarchInfo> {
+final class VisiStolisMergeSotarch extends ActionVisitorTemplateMergeV1<StolisInfo, SotarchInfo> {
 	
 	public VisiStolisMergeSotarch(Connection conn, String schemaName) {
 		super(conn, schemaName, SotarchInfo.class);
@@ -31,6 +31,6 @@ final class VisiStolisMergeSotarch extends ActionVisitorTemplateMerge<StolisInfo
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
 	}
 }

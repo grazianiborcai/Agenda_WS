@@ -8,10 +8,10 @@ import br.com.mind5.business.cart.info.CartMerger;
 import br.com.mind5.business.cartItem.info.CartemCopier;
 import br.com.mind5.business.cartItem.info.CartemInfo;
 import br.com.mind5.business.cartItem.model.decisionTree.RootCartemSearch;
-import br.com.mind5.model.action.ActionVisitorTemplateMerge;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 import br.com.mind5.model.decisionTree.DeciTree;
 
-final class VisiCartMergeCartem extends ActionVisitorTemplateMerge<CartInfo, CartemInfo> {
+final class VisiCartMergeCartem extends ActionVisitorTemplateMergeV1<CartInfo, CartemInfo> {
 	
 	public VisiCartMergeCartem(Connection conn, String schemaName) {
 		super(conn, schemaName, CartemInfo.class);
@@ -38,6 +38,6 @@ final class VisiCartMergeCartem extends ActionVisitorTemplateMerge<CartInfo, Car
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMerge.MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
 	}
 }

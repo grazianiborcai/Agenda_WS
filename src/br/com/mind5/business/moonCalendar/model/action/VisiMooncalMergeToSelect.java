@@ -6,9 +6,9 @@ import java.util.List;
 import br.com.mind5.business.moonCalendar.info.MooncalInfo;
 import br.com.mind5.business.moonCalendar.info.MooncalMerger;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMerge;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 
-final class VisiMooncalMergeToSelect extends ActionVisitorTemplateMerge<MooncalInfo, MooncalInfo> {
+final class VisiMooncalMergeToSelect extends ActionVisitorTemplateMergeV1<MooncalInfo, MooncalInfo> {
 	
 	public VisiMooncalMergeToSelect(Connection conn, String schemaName) {
 		super(conn, schemaName, MooncalInfo.class);
@@ -29,6 +29,6 @@ final class VisiMooncalMergeToSelect extends ActionVisitorTemplateMerge<MooncalI
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
 	}
 }

@@ -7,10 +7,10 @@ import br.com.mind5.business.employeeLeaveDate.info.EmplateInfo;
 import br.com.mind5.business.employeeLeaveDate.info.EmplateMerger;
 import br.com.mind5.business.employeeLeaveDateSearch.info.EmplarchInfo;
 import br.com.mind5.business.employeeLeaveDateSearch.model.decisionTree.RootEmplarchSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMerge;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 import br.com.mind5.model.decisionTree.DeciTree;
 
-final class VisiEmplateMergeEmplarch extends ActionVisitorTemplateMerge<EmplateInfo, EmplarchInfo> {
+final class VisiEmplateMergeEmplarch extends ActionVisitorTemplateMergeV1<EmplateInfo, EmplarchInfo> {
 	
 	public VisiEmplateMergeEmplarch(Connection conn, String schemaName) {
 		super(conn, schemaName, EmplarchInfo.class);
@@ -31,6 +31,6 @@ final class VisiEmplateMergeEmplarch extends ActionVisitorTemplateMerge<EmplateI
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
 	}
 }

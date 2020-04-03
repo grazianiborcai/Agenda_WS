@@ -8,10 +8,10 @@ import br.com.mind5.business.scheduleYear.info.SchedyearMerger;
 import br.com.mind5.business.scheduleYearData.info.SchedyeratCopier;
 import br.com.mind5.business.scheduleYearData.info.SchedyeratInfo;
 import br.com.mind5.business.scheduleYearData.model.decisionTree.RootSchedyeratSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMerge;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 import br.com.mind5.model.decisionTree.DeciTree;
 
-final class VisiSchedyearMergeSchedyerat extends ActionVisitorTemplateMerge<SchedyearInfo, SchedyeratInfo> {
+final class VisiSchedyearMergeSchedyerat extends ActionVisitorTemplateMergeV1<SchedyearInfo, SchedyeratInfo> {
 	
 	public VisiSchedyearMergeSchedyerat(Connection conn, String schemaName) {
 		super(conn, schemaName, SchedyeratInfo.class);
@@ -38,6 +38,6 @@ final class VisiSchedyearMergeSchedyerat extends ActionVisitorTemplateMerge<Sche
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
 	}
 }

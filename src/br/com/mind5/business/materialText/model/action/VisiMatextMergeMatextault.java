@@ -7,10 +7,10 @@ import br.com.mind5.business.materialText.info.MatextInfo;
 import br.com.mind5.business.materialText.info.MatextMerger;
 import br.com.mind5.business.materialTextDefault.info.MatextaultInfo;
 import br.com.mind5.business.materialTextDefault.model.decisionTree.RootMatextaultSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMerge;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 import br.com.mind5.model.decisionTree.DeciTree;
 
-final class VisiMatextMergeMatextault extends ActionVisitorTemplateMerge<MatextInfo, MatextaultInfo> {
+final class VisiMatextMergeMatextault extends ActionVisitorTemplateMergeV1<MatextInfo, MatextaultInfo> {
 	
 	public VisiMatextMergeMatextault(Connection conn, String schemaName) {
 		super(conn, schemaName, MatextaultInfo.class);
@@ -31,6 +31,6 @@ final class VisiMatextMergeMatextault extends ActionVisitorTemplateMerge<MatextI
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
 	}
 }

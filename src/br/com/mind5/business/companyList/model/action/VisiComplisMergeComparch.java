@@ -7,10 +7,10 @@ import br.com.mind5.business.companyList.info.ComplisInfo;
 import br.com.mind5.business.companyList.info.ComplisMerger;
 import br.com.mind5.business.companySearch.info.ComparchInfo;
 import br.com.mind5.business.companySearch.model.decisionTree.RootComparchSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMerge;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 import br.com.mind5.model.decisionTree.DeciTree;
 
-final class VisiComplisMergeComparch extends ActionVisitorTemplateMerge<ComplisInfo, ComparchInfo> {
+final class VisiComplisMergeComparch extends ActionVisitorTemplateMergeV1<ComplisInfo, ComparchInfo> {
 	
 	public VisiComplisMergeComparch(Connection conn, String schemaName) {
 		super(conn, schemaName, ComparchInfo.class);
@@ -31,6 +31,6 @@ final class VisiComplisMergeComparch extends ActionVisitorTemplateMerge<ComplisI
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
 	}
 }

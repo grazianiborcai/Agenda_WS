@@ -8,10 +8,10 @@ import br.com.mind5.business.planingData.info.PlanataInfo;
 import br.com.mind5.business.planingData.model.decisionTree.RootPlanataSelect;
 import br.com.mind5.business.planningTime.info.PlanimeInfo;
 import br.com.mind5.business.planningTime.info.PlanimeMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMerge;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 import br.com.mind5.model.decisionTree.DeciTree;
 
-final class VisiPlanimeMergePlanata extends ActionVisitorTemplateMerge<PlanimeInfo, PlanataInfo> {
+final class VisiPlanimeMergePlanata extends ActionVisitorTemplateMergeV1<PlanimeInfo, PlanataInfo> {
 	
 	public VisiPlanimeMergePlanata(Connection conn, String schemaName) {
 		super(conn, schemaName, PlanataInfo.class);
@@ -38,6 +38,6 @@ final class VisiPlanimeMergePlanata extends ActionVisitorTemplateMerge<PlanimeIn
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
 	}
 }

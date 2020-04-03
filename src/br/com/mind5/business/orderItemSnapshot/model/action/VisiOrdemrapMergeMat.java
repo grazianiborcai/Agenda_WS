@@ -8,10 +8,10 @@ import br.com.mind5.business.material.info.MatInfo;
 import br.com.mind5.business.material.model.decisionTree.RootMatSelect;
 import br.com.mind5.business.orderItemSnapshot.info.OrdemrapInfo;
 import br.com.mind5.business.orderItemSnapshot.info.OrdemrapMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMerge;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 import br.com.mind5.model.decisionTree.DeciTree;
 
-final class VisiOrdemrapMergeMat extends ActionVisitorTemplateMerge<OrdemrapInfo, MatInfo> {
+final class VisiOrdemrapMergeMat extends ActionVisitorTemplateMergeV1<OrdemrapInfo, MatInfo> {
 	
 	public VisiOrdemrapMergeMat(Connection conn, String schemaName) {
 		super(conn, schemaName, MatInfo.class);
@@ -38,6 +38,6 @@ final class VisiOrdemrapMergeMat extends ActionVisitorTemplateMerge<OrdemrapInfo
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMerge.MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
 	}
 }

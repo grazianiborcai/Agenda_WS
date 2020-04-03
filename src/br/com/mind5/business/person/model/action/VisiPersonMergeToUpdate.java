@@ -6,9 +6,9 @@ import java.util.List;
 import br.com.mind5.business.person.info.PersonInfo;
 import br.com.mind5.business.person.info.PersonMerger;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMerge;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 
-final class VisiPersonMergeToUpdate extends ActionVisitorTemplateMerge<PersonInfo, PersonInfo> {
+final class VisiPersonMergeToUpdate extends ActionVisitorTemplateMergeV1<PersonInfo, PersonInfo> {
 	
 	public VisiPersonMergeToUpdate(Connection conn, String schemaName) {
 		super(conn, schemaName, PersonInfo.class);
@@ -29,6 +29,6 @@ final class VisiPersonMergeToUpdate extends ActionVisitorTemplateMerge<PersonInf
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
 	}
 }

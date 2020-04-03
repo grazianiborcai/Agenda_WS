@@ -7,10 +7,10 @@ import br.com.mind5.business.employee.info.EmpInfo;
 import br.com.mind5.business.employee.info.EmpMerger;
 import br.com.mind5.business.employeeSnapshot.info.EmpnapInfo;
 import br.com.mind5.business.employeeSnapshot.model.decisionTree.RootEmpnapInsert;
-import br.com.mind5.model.action.ActionVisitorTemplateMerge;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 import br.com.mind5.model.decisionTree.DeciTree;
 
-final class VisiEmpInsertEmpnap extends ActionVisitorTemplateMerge<EmpInfo, EmpnapInfo> {
+final class VisiEmpInsertEmpnap extends ActionVisitorTemplateMergeV1<EmpInfo, EmpnapInfo> {
 	
 	public VisiEmpInsertEmpnap(Connection conn, String schemaName) {
 		super(conn, schemaName, EmpnapInfo.class);
@@ -31,6 +31,6 @@ final class VisiEmpInsertEmpnap extends ActionVisitorTemplateMerge<EmpInfo, Empn
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMerge.MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
 	}
 }

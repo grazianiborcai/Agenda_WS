@@ -6,10 +6,10 @@ import java.util.List;
 import br.com.mind5.business.owner.info.OwnerInfo;
 import br.com.mind5.business.owner.info.OwnerMerger;
 import br.com.mind5.business.owner.model.decisionTree.RootOwnerSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMerge;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 import br.com.mind5.model.decisionTree.DeciTree;
 
-final class VisiOwnerMergeToDelete extends ActionVisitorTemplateMerge<OwnerInfo, OwnerInfo> {
+final class VisiOwnerMergeToDelete extends ActionVisitorTemplateMergeV1<OwnerInfo, OwnerInfo> {
 	
 	public VisiOwnerMergeToDelete(Connection conn, String schemaName) {
 		super(conn, schemaName, OwnerInfo.class);
@@ -30,6 +30,6 @@ final class VisiOwnerMergeToDelete extends ActionVisitorTemplateMerge<OwnerInfo,
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
 	}
 }

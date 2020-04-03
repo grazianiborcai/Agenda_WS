@@ -6,9 +6,9 @@ import java.util.List;
 import br.com.mind5.business.scheduleList.info.SchedistInfo;
 import br.com.mind5.business.scheduleList.info.SchedistMerger;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMerge;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 
-final class VisiSchedistMergeToSelect extends ActionVisitorTemplateMerge<SchedistInfo, SchedistInfo> {
+final class VisiSchedistMergeToSelect extends ActionVisitorTemplateMergeV1<SchedistInfo, SchedistInfo> {
 	
 	public VisiSchedistMergeToSelect(Connection conn, String schemaName) {
 		super(conn, schemaName, SchedistInfo.class);
@@ -29,6 +29,6 @@ final class VisiSchedistMergeToSelect extends ActionVisitorTemplateMerge<Schedis
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMerge.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
 	}
 }
