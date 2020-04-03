@@ -17,8 +17,8 @@ public final class AddressCheckExist extends ModelCheckerTemplateAction<AddressI
 	
 	
 	@Override protected ActionStdV1<AddressInfo> buildActionHook(DeciTreeOption<AddressInfo> option) {
-		ActionStdV1<AddressInfo> actionSelect = new StdAddressSelect(option);
-		return actionSelect;
+		ActionStdV1<AddressInfo> select = new StdAddressSelect(option);
+		return select;
 	}
 	
 	

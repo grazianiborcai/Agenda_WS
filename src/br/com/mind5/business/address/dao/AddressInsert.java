@@ -4,16 +4,16 @@ import java.sql.SQLException;
 import java.util.List;
 
 import br.com.mind5.business.address.info.AddressInfo;
+import br.com.mind5.dao.DaoStmtExecHelperV2;
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.obsolete.DaoStmtExecHelper_;
-import br.com.mind5.dao.obsolete.DaoStmtExec_;
+import br.com.mind5.dao.DaoStmtExecV2;
 
-public final class AddressInsert implements DaoStmtExec_<AddressInfo> {
-	private DaoStmtExec_<AddressInfo> helper;
+public final class AddressInsert implements DaoStmtExecV2<AddressInfo> {
+	private DaoStmtExecV2<AddressInfo> helper;
 	
 	
 	public AddressInsert(List<DaoStmtExecOption<AddressInfo>> options) {
-		helper = new DaoStmtExecHelper_<>(options, AddressInsertSingle.class, AddressInfo.class);
+		helper = new DaoStmtExecHelperV2<>(options, AddressInsertSingle.class, AddressInfo.class);
 	}
 	
 	
@@ -26,5 +26,11 @@ public final class AddressInsert implements DaoStmtExec_<AddressInfo> {
 	
 	@Override public List<AddressInfo> getResultset() {
 		return helper.getResultset();
+	}
+	
+	
+	
+	@Override public void close() {
+		helper.close();		
 	}
 }
