@@ -21,7 +21,7 @@ public final class NodeOrdmoipPayordemL2 extends DeciTreeWriteTemplate<OrdmoipIn
 	
 	
 	
-	@Override protected ModelChecker<OrdmoipInfo> buildDecisionCheckerHook(DeciTreeOption<OrdmoipInfo> option) {
+	@Override protected ModelChecker<OrdmoipInfo> buildCheckerHook(DeciTreeOption<OrdmoipInfo> option) {
 		List<ModelChecker<OrdmoipInfo>> queue = new ArrayList<>();		
 		ModelChecker<OrdmoipInfo> checker;	
 		ModelCheckerOption checkerOption;

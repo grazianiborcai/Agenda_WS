@@ -21,7 +21,7 @@ public final class RootAuthGroupSelect extends DeciTreeReadTemplate<AuthGroupInf
 	
 	
 	
-	@Override protected ModelChecker<AuthGroupInfo> buildDecisionCheckerHook(DeciTreeOption<AuthGroupInfo> option) {
+	@Override protected ModelChecker<AuthGroupInfo> buildCheckerHook(DeciTreeOption<AuthGroupInfo> option) {
 		List<ModelChecker<AuthGroupInfo>> queue = new ArrayList<>();		
 		ModelChecker<AuthGroupInfo> checker;
 		ModelCheckerOption checkerOption;	

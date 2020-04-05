@@ -1,45 +1,30 @@
 package br.com.mind5.model.decisionTree;
 
-import java.lang.reflect.InvocationTargetException;
 import java.sql.Connection;
-import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.common.SystemLog;
+import br.com.mind5.common.CloneUtil;
+import br.com.mind5.info.InfoRecord;
 
-public final class DeciTreeOption<T> implements Cloneable {
+public final class DeciTreeOption<T extends InfoRecord> implements Cloneable {
 	public List<T> recordInfos;
 	public Connection conn;
 	public String schemaName;
 	
 	
-	
-	@SuppressWarnings("unchecked")
 	@Override public Object clone()throws CloneNotSupportedException {  
-		try {
-			DeciTreeOption<T> deepCopy = (DeciTreeOption<T>) super.clone(); 
-			
-			if (recordInfos == null)
-				return deepCopy;
-				
-			deepCopy.recordInfos = new ArrayList<>();
-			
-			for (T eachRecord : recordInfos) {
-				T clonedInfo = (T) eachRecord.getClass().getMethod("clone").invoke(eachRecord);
-				deepCopy.recordInfos.add(clonedInfo);
-			}
-			
-			return deepCopy;
-			
-		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException e) {
-			logException(e);
-			throw new CloneNotSupportedException();
-		} 		
-	}  
+		DeciTreeOption<T> deepCopy = new DeciTreeOption<>();
+		
+		deepCopy.recordInfos = cloneRecords(recordInfos);
+		deepCopy.conn = conn;
+		deepCopy.schemaName = schemaName;
+		
+		return deepCopy; 		
+	}
 	
 	
 	
-	private void logException(Exception e) {		
-		SystemLog.logError(this.getClass(), e);
+	private List<T> cloneRecords(List<T> sources) {
+		return CloneUtil.cloneRecords(sources, this.getClass());
 	}
 }

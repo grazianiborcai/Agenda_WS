@@ -21,7 +21,7 @@ public final class RootPayparSelect extends DeciTreeReadTemplate<PayparInfo> {
 	
 	
 	
-	@Override protected ModelChecker<PayparInfo> buildDecisionCheckerHook(DeciTreeOption<PayparInfo> option) {
+	@Override protected ModelChecker<PayparInfo> buildCheckerHook(DeciTreeOption<PayparInfo> option) {
 		List<ModelChecker<PayparInfo>> queue = new ArrayList<>();		
 		ModelChecker<PayparInfo> checker;
 		ModelCheckerOption checkerOption;	

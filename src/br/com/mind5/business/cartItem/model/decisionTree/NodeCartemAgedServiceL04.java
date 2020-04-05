@@ -24,7 +24,7 @@ public final class NodeCartemAgedServiceL04 extends DeciTreeWriteTemplate<Cartem
 	
 	
 	
-	@Override protected ModelChecker<CartemInfo> buildDecisionCheckerHook(DeciTreeOption<CartemInfo> option) {
+	@Override protected ModelChecker<CartemInfo> buildCheckerHook(DeciTreeOption<CartemInfo> option) {
 		List<ModelChecker<CartemInfo>> queue = new ArrayList<>();		
 		ModelChecker<CartemInfo> checker;	
 		ModelCheckerOption checkerOption;

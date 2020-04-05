@@ -21,7 +21,7 @@ public final class RootMatmovTypeSelect extends DeciTreeReadTemplate<MatmovTypeI
 	
 	
 	
-	@Override protected ModelChecker<MatmovTypeInfo> buildDecisionCheckerHook(DeciTreeOption<MatmovTypeInfo> option) {
+	@Override protected ModelChecker<MatmovTypeInfo> buildCheckerHook(DeciTreeOption<MatmovTypeInfo> option) {
 		List<ModelChecker<MatmovTypeInfo>> queue = new ArrayList<>();		
 		ModelChecker<MatmovTypeInfo> checker;
 		ModelCheckerOption checkerOption;	

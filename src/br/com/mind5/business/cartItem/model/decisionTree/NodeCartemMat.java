@@ -23,7 +23,7 @@ public final class NodeCartemMat extends DeciTreeWriteTemplate<CartemInfo> {
 	
 	
 	
-	@Override protected ModelChecker<CartemInfo> buildDecisionCheckerHook(DeciTreeOption<CartemInfo> option) {
+	@Override protected ModelChecker<CartemInfo> buildCheckerHook(DeciTreeOption<CartemInfo> option) {
 		List<ModelChecker<CartemInfo>> queue = new ArrayList<>();		
 		ModelChecker<CartemInfo> checker;	
 		ModelCheckerOption checkerOption;

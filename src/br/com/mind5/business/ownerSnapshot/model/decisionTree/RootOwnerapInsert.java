@@ -27,7 +27,7 @@ public final class RootOwnerapInsert extends DeciTreeWriteTemplate<OwnerapInfo> 
 	
 	
 	
-	@Override protected ModelChecker<OwnerapInfo> buildDecisionCheckerHook(DeciTreeOption<OwnerapInfo> option) {
+	@Override protected ModelChecker<OwnerapInfo> buildCheckerHook(DeciTreeOption<OwnerapInfo> option) {
 		List<ModelChecker<OwnerapInfo>> queue = new ArrayList<>();		
 		ModelChecker<OwnerapInfo> checker;
 		ModelCheckerOption checkerOption;	

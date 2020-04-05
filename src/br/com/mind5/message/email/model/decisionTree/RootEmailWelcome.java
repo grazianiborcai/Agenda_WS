@@ -25,7 +25,7 @@ public final class RootEmailWelcome extends DeciTreeWriteTemplate<EmailInfo> {
 	
 	
 	
-	@Override protected ModelChecker<EmailInfo> buildDecisionCheckerHook(DeciTreeOption<EmailInfo> option) {		
+	@Override protected ModelChecker<EmailInfo> buildCheckerHook(DeciTreeOption<EmailInfo> option) {		
 		List<ModelChecker<EmailInfo>> queue = new ArrayList<>();		
 		ModelChecker<EmailInfo> checker;	
 		ModelCheckerOption checkerOption;		

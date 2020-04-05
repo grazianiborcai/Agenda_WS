@@ -23,7 +23,7 @@ public final class RootOrderveSelect extends DeciTreeReadTemplate<OrderveInfo> {
 	
 	
 	
-	@Override protected ModelChecker<OrderveInfo> buildDecisionCheckerHook(DeciTreeOption<OrderveInfo> option) {
+	@Override protected ModelChecker<OrderveInfo> buildCheckerHook(DeciTreeOption<OrderveInfo> option) {
 		List<ModelChecker<OrderveInfo>> queue = new ArrayList<>();		
 		ModelChecker<OrderveInfo> checker;	
 		ModelCheckerOption checkerOption;

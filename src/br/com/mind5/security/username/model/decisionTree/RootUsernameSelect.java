@@ -23,7 +23,7 @@ public final class RootUsernameSelect extends DeciTreeReadTemplate<UsernameInfo>
 	
 	
 	
-	@Override protected ModelChecker<UsernameInfo> buildDecisionCheckerHook(DeciTreeOption<UsernameInfo> option) {
+	@Override protected ModelChecker<UsernameInfo> buildCheckerHook(DeciTreeOption<UsernameInfo> option) {
 		List<ModelChecker<UsernameInfo>> queue = new ArrayList<>();		
 		ModelChecker<UsernameInfo> checker;
 		ModelCheckerOption checkerOption;

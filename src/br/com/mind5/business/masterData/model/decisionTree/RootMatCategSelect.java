@@ -21,7 +21,7 @@ public final class RootMatCategSelect extends DeciTreeReadTemplate<MatCategInfo>
 	
 	
 	
-	@Override protected ModelChecker<MatCategInfo> buildDecisionCheckerHook(DeciTreeOption<MatCategInfo> option) {
+	@Override protected ModelChecker<MatCategInfo> buildCheckerHook(DeciTreeOption<MatCategInfo> option) {
 		List<ModelChecker<MatCategInfo>> queue = new ArrayList<>();		
 		ModelChecker<MatCategInfo> checker;
 		ModelCheckerOption checkerOption;	

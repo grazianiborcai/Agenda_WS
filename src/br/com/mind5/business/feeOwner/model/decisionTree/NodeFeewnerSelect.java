@@ -22,7 +22,7 @@ public final class NodeFeewnerSelect extends DeciTreeReadTemplate<FeewnerInfo> {
 	
 	
 	
-	@Override protected ModelChecker<FeewnerInfo> buildDecisionCheckerHook(DeciTreeOption<FeewnerInfo> option) {
+	@Override protected ModelChecker<FeewnerInfo> buildCheckerHook(DeciTreeOption<FeewnerInfo> option) {
 		final boolean EXIST_ON_DB = true;
 		
 		List<ModelChecker<FeewnerInfo>> queue = new ArrayList<>();		

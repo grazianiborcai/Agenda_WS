@@ -21,7 +21,7 @@ public final class RootMoonasarchSelect extends DeciTreeReadTemplate<MoonasarchI
 	
 	
 	
-	@Override protected ModelChecker<MoonasarchInfo> buildDecisionCheckerHook(DeciTreeOption<MoonasarchInfo> option) {
+	@Override protected ModelChecker<MoonasarchInfo> buildCheckerHook(DeciTreeOption<MoonasarchInfo> option) {
 		List<ModelChecker<MoonasarchInfo>> queue = new ArrayList<>();		
 		ModelChecker<MoonasarchInfo> checker;
 		ModelCheckerOption checkerOption;	

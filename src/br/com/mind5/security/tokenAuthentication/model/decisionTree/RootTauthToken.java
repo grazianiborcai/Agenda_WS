@@ -24,7 +24,7 @@ public final class RootTauthToken extends DeciTreeWriteTemplate<TauthInfo> {
 	
 	
 	
-	@Override protected ModelChecker<TauthInfo> buildDecisionCheckerHook(DeciTreeOption<TauthInfo> option) {
+	@Override protected ModelChecker<TauthInfo> buildCheckerHook(DeciTreeOption<TauthInfo> option) {
 		List<ModelChecker<TauthInfo>> queue = new ArrayList<>();		
 		ModelChecker<TauthInfo> checker;	
 		ModelCheckerOption checkerOption;

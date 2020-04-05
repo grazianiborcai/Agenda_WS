@@ -21,7 +21,7 @@ public final class RootMatockUpsert extends DeciTreeWriteTemplate<MatockInfo> {
 	
 	
 	
-	@Override protected ModelChecker<MatockInfo> buildDecisionCheckerHook(DeciTreeOption<MatockInfo> option) {
+	@Override protected ModelChecker<MatockInfo> buildCheckerHook(DeciTreeOption<MatockInfo> option) {
 		List<ModelChecker<MatockInfo>> queue = new ArrayList<>();		
 		ModelChecker<MatockInfo> checker;
 		ModelCheckerOption checkerOption;		

@@ -22,7 +22,7 @@ public final class NodePayordOrder extends DeciTreeWriteTemplate<PayordInfo> {
 	
 	
 	
-	@Override protected ModelChecker<PayordInfo> buildDecisionCheckerHook(DeciTreeOption<PayordInfo> option) {
+	@Override protected ModelChecker<PayordInfo> buildCheckerHook(DeciTreeOption<PayordInfo> option) {
 		List<ModelChecker<PayordInfo>> queue = new ArrayList<>();		
 		ModelChecker<PayordInfo> checker;	
 		

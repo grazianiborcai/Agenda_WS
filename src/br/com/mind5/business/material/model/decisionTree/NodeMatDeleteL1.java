@@ -21,7 +21,7 @@ public final class NodeMatDeleteL1 extends DeciTreeWriteTemplate<MatInfo> {
 	
 	
 	
-	@Override protected ModelChecker<MatInfo> buildDecisionCheckerHook(DeciTreeOption<MatInfo> option) {
+	@Override protected ModelChecker<MatInfo> buildCheckerHook(DeciTreeOption<MatInfo> option) {
 		List<ModelChecker<MatInfo>> queue = new ArrayList<>();		
 		ModelChecker<MatInfo> checker;
 		ModelCheckerOption checkerOption;

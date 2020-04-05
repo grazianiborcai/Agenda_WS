@@ -21,7 +21,7 @@ public final class RootPaymentStatusSelect extends DeciTreeReadTemplate<PaymentS
 	
 	
 	
-	@Override protected ModelChecker<PaymentStatusInfo> buildDecisionCheckerHook(DeciTreeOption<PaymentStatusInfo> option) {
+	@Override protected ModelChecker<PaymentStatusInfo> buildCheckerHook(DeciTreeOption<PaymentStatusInfo> option) {
 		List<ModelChecker<PaymentStatusInfo>> queue = new ArrayList<>();		
 		ModelChecker<PaymentStatusInfo> checker;
 		ModelCheckerOption checkerOption;	

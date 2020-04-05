@@ -22,7 +22,7 @@ public final class RootUselisSearch extends DeciTreeReadTemplate<UselisInfo> {
 	
 	
 	
-	@Override protected ModelChecker<UselisInfo> buildDecisionCheckerHook(DeciTreeOption<UselisInfo> option) {
+	@Override protected ModelChecker<UselisInfo> buildCheckerHook(DeciTreeOption<UselisInfo> option) {
 		List<ModelChecker<UselisInfo>> queue = new ArrayList<>();		
 		ModelChecker<UselisInfo> checker;	
 		

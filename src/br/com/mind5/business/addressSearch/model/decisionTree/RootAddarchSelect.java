@@ -22,7 +22,7 @@ public final class RootAddarchSelect extends DeciTreeWriteTemplate<AddarchInfo> 
 	
 	
 	
-	@Override protected ModelChecker<AddarchInfo> buildDecisionCheckerHook(DeciTreeOption<AddarchInfo> option) {
+	@Override protected ModelChecker<AddarchInfo> buildCheckerHook(DeciTreeOption<AddarchInfo> option) {
 		List<ModelChecker<AddarchInfo>> queue = new ArrayList<>();		
 		ModelChecker<AddarchInfo> checker;	
 		ModelCheckerOption checkerOption;

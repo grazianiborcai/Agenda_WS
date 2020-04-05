@@ -21,7 +21,7 @@ public final class RootFeeCategSelect extends DeciTreeReadTemplate<FeeCategInfo>
 	
 	
 	
-	@Override protected ModelChecker<FeeCategInfo> buildDecisionCheckerHook(DeciTreeOption<FeeCategInfo> option) {
+	@Override protected ModelChecker<FeeCategInfo> buildCheckerHook(DeciTreeOption<FeeCategInfo> option) {
 		List<ModelChecker<FeeCategInfo>> queue = new ArrayList<>();		
 		ModelChecker<FeeCategInfo> checker;
 		ModelCheckerOption checkerOption;	

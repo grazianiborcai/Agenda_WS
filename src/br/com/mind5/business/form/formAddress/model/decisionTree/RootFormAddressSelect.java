@@ -21,7 +21,7 @@ public final class RootFormAddressSelect extends DeciTreeReadTemplate<FormAddres
 	
 	
 	
-	@Override protected ModelChecker<FormAddressInfo> buildDecisionCheckerHook(DeciTreeOption<FormAddressInfo> option) {
+	@Override protected ModelChecker<FormAddressInfo> buildCheckerHook(DeciTreeOption<FormAddressInfo> option) {
 		List<ModelChecker<FormAddressInfo>> queue = new ArrayList<>();		
 		ModelChecker<FormAddressInfo> checker;	
 		ModelCheckerOption checkerOption;

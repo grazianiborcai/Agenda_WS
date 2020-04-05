@@ -22,7 +22,7 @@ public final class NodeCremoipCusparL1 extends DeciTreeWriteTemplate<CremoipInfo
 	
 	
 	
-	@Override protected ModelChecker<CremoipInfo> buildDecisionCheckerHook(DeciTreeOption<CremoipInfo> option) {
+	@Override protected ModelChecker<CremoipInfo> buildCheckerHook(DeciTreeOption<CremoipInfo> option) {
 		List<ModelChecker<CremoipInfo>> queue = new ArrayList<>();		
 		ModelChecker<CremoipInfo> checker;	
 

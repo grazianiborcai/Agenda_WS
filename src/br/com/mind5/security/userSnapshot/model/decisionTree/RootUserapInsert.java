@@ -24,7 +24,7 @@ public final class RootUserapInsert extends DeciTreeWriteTemplate<UserapInfo> {
 	
 	
 	
-	@Override protected ModelChecker<UserapInfo> buildDecisionCheckerHook(DeciTreeOption<UserapInfo> option) {
+	@Override protected ModelChecker<UserapInfo> buildCheckerHook(DeciTreeOption<UserapInfo> option) {
 		List<ModelChecker<UserapInfo>> queue = new ArrayList<>();		
 		ModelChecker<UserapInfo> checker;	
 		ModelCheckerOption checkerOption;

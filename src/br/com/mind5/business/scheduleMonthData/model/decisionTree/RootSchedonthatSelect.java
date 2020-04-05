@@ -25,7 +25,7 @@ public final class RootSchedonthatSelect extends DeciTreeWriteTemplate<Schedonth
 	
 	
 	
-	@Override protected ModelChecker<SchedonthatInfo> buildDecisionCheckerHook(DeciTreeOption<SchedonthatInfo> option) {
+	@Override protected ModelChecker<SchedonthatInfo> buildCheckerHook(DeciTreeOption<SchedonthatInfo> option) {
 		List<ModelChecker<SchedonthatInfo>> queue = new ArrayList<>();		
 		ModelChecker<SchedonthatInfo> checker;	
 		ModelCheckerOption checkerOption;

@@ -21,7 +21,7 @@ public final class NodePaytusUserL2 extends DeciTreeWriteTemplate<PaytusInfo> {
 	
 	
 	
-	@Override protected ModelChecker<PaytusInfo> buildDecisionCheckerHook(DeciTreeOption<PaytusInfo> option) {
+	@Override protected ModelChecker<PaytusInfo> buildCheckerHook(DeciTreeOption<PaytusInfo> option) {
 		List<ModelChecker<PaytusInfo>> queue = new ArrayList<>();		
 		ModelChecker<PaytusInfo> checker;	
 		ModelCheckerOption checkerOption;

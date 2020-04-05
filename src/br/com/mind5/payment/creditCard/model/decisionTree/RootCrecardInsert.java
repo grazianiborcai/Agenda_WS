@@ -32,7 +32,7 @@ public final class RootCrecardInsert extends DeciTreeWriteTemplate<CrecardInfo> 
 	
 	
 	
-	@Override protected ModelChecker<CrecardInfo> buildDecisionCheckerHook(DeciTreeOption<CrecardInfo> option) {
+	@Override protected ModelChecker<CrecardInfo> buildCheckerHook(DeciTreeOption<CrecardInfo> option) {
 		List<ModelChecker<CrecardInfo>> queue = new ArrayList<>();		
 		ModelChecker<CrecardInfo> checker;	
 		ModelCheckerOption checkerOption;

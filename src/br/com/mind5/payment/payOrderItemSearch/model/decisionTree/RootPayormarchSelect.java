@@ -21,7 +21,7 @@ public final class RootPayormarchSelect extends DeciTreeWriteTemplate<Payormarch
 	
 	
 	
-	@Override protected ModelChecker<PayormarchInfo> buildDecisionCheckerHook(DeciTreeOption<PayormarchInfo> option) {
+	@Override protected ModelChecker<PayormarchInfo> buildCheckerHook(DeciTreeOption<PayormarchInfo> option) {
 		List<ModelChecker<PayormarchInfo>> queue = new ArrayList<>();		
 		ModelChecker<PayormarchInfo> checker;	
 		ModelCheckerOption checkerOption;

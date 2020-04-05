@@ -21,7 +21,7 @@ public final class RootScheduleStatusSelect extends DeciTreeReadTemplate<Schedul
 	
 	
 	
-	@Override protected ModelChecker<ScheduleStatusInfo> buildDecisionCheckerHook(DeciTreeOption<ScheduleStatusInfo> option) {
+	@Override protected ModelChecker<ScheduleStatusInfo> buildCheckerHook(DeciTreeOption<ScheduleStatusInfo> option) {
 		List<ModelChecker<ScheduleStatusInfo>> queue = new ArrayList<>();		
 		ModelChecker<ScheduleStatusInfo> checker;
 		ModelCheckerOption checkerOption;	

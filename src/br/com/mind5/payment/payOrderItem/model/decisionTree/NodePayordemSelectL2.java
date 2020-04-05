@@ -20,7 +20,7 @@ public final class NodePayordemSelectL2 extends DeciTreeWriteTemplate<PayordemIn
 	
 	
 	
-	@Override protected ModelChecker<PayordemInfo> buildDecisionCheckerHook(DeciTreeOption<PayordemInfo> option) {
+	@Override protected ModelChecker<PayordemInfo> buildCheckerHook(DeciTreeOption<PayordemInfo> option) {
 		List<ModelChecker<PayordemInfo>> queue = new ArrayList<>();		
 		ModelChecker<PayordemInfo> checker;	
 

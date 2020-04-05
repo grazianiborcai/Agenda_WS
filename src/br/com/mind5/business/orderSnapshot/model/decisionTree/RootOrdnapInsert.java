@@ -27,7 +27,7 @@ public final class RootOrdnapInsert extends DeciTreeWriteTemplate<OrdnapInfo> {
 	
 	
 	
-	@Override protected ModelChecker<OrdnapInfo> buildDecisionCheckerHook(DeciTreeOption<OrdnapInfo> option) {
+	@Override protected ModelChecker<OrdnapInfo> buildCheckerHook(DeciTreeOption<OrdnapInfo> option) {
 		List<ModelChecker<OrdnapInfo>> queue = new ArrayList<>();		
 		ModelChecker<OrdnapInfo> checker;	
 		ModelCheckerOption checkerOption;

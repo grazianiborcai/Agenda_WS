@@ -21,7 +21,7 @@ public final class NodeAddresnapCuslis extends DeciTreeReadTemplate<AddresnapInf
 	
 	
 	
-	@Override protected ModelChecker<AddresnapInfo> buildDecisionCheckerHook(DeciTreeOption<AddresnapInfo> option) {
+	@Override protected ModelChecker<AddresnapInfo> buildCheckerHook(DeciTreeOption<AddresnapInfo> option) {
 		List<ModelChecker<AddresnapInfo>> queue = new ArrayList<>();		
 		ModelChecker<AddresnapInfo> checker;	
 		ModelCheckerOption checkerOption;

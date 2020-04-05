@@ -21,7 +21,7 @@ public final class RootUserarchSelect extends DeciTreeReadTemplate<UserarchInfo>
 	
 	
 	
-	@Override protected ModelChecker<UserarchInfo> buildDecisionCheckerHook(DeciTreeOption<UserarchInfo> option) {
+	@Override protected ModelChecker<UserarchInfo> buildCheckerHook(DeciTreeOption<UserarchInfo> option) {
 		List<ModelChecker<UserarchInfo>> queue = new ArrayList<>();		
 		ModelChecker<UserarchInfo> checker;
 		ModelCheckerOption checkerOption;		

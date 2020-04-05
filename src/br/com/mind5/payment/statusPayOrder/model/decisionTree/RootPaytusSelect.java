@@ -24,7 +24,7 @@ public final class RootPaytusSelect extends DeciTreeReadTemplate<PaytusInfo> {
 	
 	
 	
-	@Override protected ModelChecker<PaytusInfo> buildDecisionCheckerHook(DeciTreeOption<PaytusInfo> option) {
+	@Override protected ModelChecker<PaytusInfo> buildCheckerHook(DeciTreeOption<PaytusInfo> option) {
 		List<ModelChecker<PaytusInfo>> queue = new ArrayList<>();		
 		ModelChecker<PaytusInfo> checker;	
 		ModelCheckerOption checkerOption;

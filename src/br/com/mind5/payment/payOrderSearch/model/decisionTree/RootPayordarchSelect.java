@@ -23,7 +23,7 @@ public final class RootPayordarchSelect extends DeciTreeReadTemplate<PayordarchI
 	
 	
 	
-	@Override protected ModelChecker<PayordarchInfo> buildDecisionCheckerHook(DeciTreeOption<PayordarchInfo> option) {
+	@Override protected ModelChecker<PayordarchInfo> buildCheckerHook(DeciTreeOption<PayordarchInfo> option) {
 		List<ModelChecker<PayordarchInfo>> queue = new ArrayList<>();		
 		ModelChecker<PayordarchInfo> checker;	
 		ModelCheckerOption checkerOption;

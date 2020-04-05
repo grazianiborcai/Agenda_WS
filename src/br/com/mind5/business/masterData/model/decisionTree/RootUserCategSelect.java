@@ -21,7 +21,7 @@ public final class RootUserCategSelect extends DeciTreeReadTemplate<UserCategInf
 	
 	
 	
-	@Override protected ModelChecker<UserCategInfo> buildDecisionCheckerHook(DeciTreeOption<UserCategInfo> option) {
+	@Override protected ModelChecker<UserCategInfo> buildCheckerHook(DeciTreeOption<UserCategInfo> option) {
 		List<ModelChecker<UserCategInfo>> queue = new ArrayList<>();		
 		ModelChecker<UserCategInfo> checker;
 		ModelCheckerOption checkerOption;	

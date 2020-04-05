@@ -26,7 +26,7 @@ public final class NodeOwnerInsert extends DeciTreeWriteTemplate<OwnerInfo> {
 	
 	
 	
-	@Override protected ModelChecker<OwnerInfo> buildDecisionCheckerHook(DeciTreeOption<OwnerInfo> option) {
+	@Override protected ModelChecker<OwnerInfo> buildCheckerHook(DeciTreeOption<OwnerInfo> option) {
 		List<ModelChecker<OwnerInfo>> queue = new ArrayList<>();		
 		ModelChecker<OwnerInfo> checker;
 

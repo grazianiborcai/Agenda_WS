@@ -21,7 +21,7 @@ public final class RootTimezoneSelect extends DeciTreeReadTemplate<TimezoneInfo>
 	
 	
 	
-	@Override protected ModelChecker<TimezoneInfo> buildDecisionCheckerHook(DeciTreeOption<TimezoneInfo> option) {
+	@Override protected ModelChecker<TimezoneInfo> buildCheckerHook(DeciTreeOption<TimezoneInfo> option) {
 		List<ModelChecker<TimezoneInfo>> queue = new ArrayList<>();		
 		ModelChecker<TimezoneInfo> checker;
 		ModelCheckerOption checkerOption;	

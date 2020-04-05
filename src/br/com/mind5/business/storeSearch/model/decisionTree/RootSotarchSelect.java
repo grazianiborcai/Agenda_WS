@@ -24,7 +24,7 @@ public final class RootSotarchSelect extends DeciTreeReadTemplate<SotarchInfo> {
 	
 	
 	
-	@Override protected ModelChecker<SotarchInfo> buildDecisionCheckerHook(DeciTreeOption<SotarchInfo> option) {
+	@Override protected ModelChecker<SotarchInfo> buildCheckerHook(DeciTreeOption<SotarchInfo> option) {
 		List<ModelChecker<SotarchInfo>> queue = new ArrayList<>();		
 		ModelChecker<SotarchInfo> checker;
 		ModelCheckerOption checkerOption;

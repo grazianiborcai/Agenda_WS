@@ -26,7 +26,7 @@ public final class RootUpswdInsert extends DeciTreeWriteTemplate<UpswdInfo> {
 	
 	
 	
-	@Override protected ModelChecker<UpswdInfo> buildDecisionCheckerHook(DeciTreeOption<UpswdInfo> option) {
+	@Override protected ModelChecker<UpswdInfo> buildCheckerHook(DeciTreeOption<UpswdInfo> option) {
 		List<ModelChecker<UpswdInfo>> queue = new ArrayList<>();		
 		ModelChecker<UpswdInfo> checker;
 		ModelCheckerOption checkerOption;		

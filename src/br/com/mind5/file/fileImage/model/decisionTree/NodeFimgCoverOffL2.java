@@ -27,7 +27,7 @@ public final class NodeFimgCoverOffL2 extends DeciTreeWriteTemplate<FimgInfo> {
 	
 	
 	
-	@Override protected ModelChecker<FimgInfo> buildDecisionCheckerHook(DeciTreeOption<FimgInfo> option) {
+	@Override protected ModelChecker<FimgInfo> buildCheckerHook(DeciTreeOption<FimgInfo> option) {
 		List<ModelChecker<FimgInfo>> queue = new ArrayList<>();		
 		ModelChecker<FimgInfo> checker;	
 		ModelCheckerOption checkerOption;

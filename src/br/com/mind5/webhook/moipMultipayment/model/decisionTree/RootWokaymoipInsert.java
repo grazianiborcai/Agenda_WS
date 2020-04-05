@@ -26,7 +26,7 @@ public final class RootWokaymoipInsert extends DeciTreeWriteTemplate<WokaymoipIn
 	
 	
 	
-	@Override protected ModelChecker<WokaymoipInfo> buildDecisionCheckerHook(DeciTreeOption<WokaymoipInfo> option) {	
+	@Override protected ModelChecker<WokaymoipInfo> buildCheckerHook(DeciTreeOption<WokaymoipInfo> option) {	
 		List<ModelChecker<WokaymoipInfo>> queue = new ArrayList<>();		
 		ModelChecker<WokaymoipInfo> checker;	
 		ModelCheckerOption checkerOption;

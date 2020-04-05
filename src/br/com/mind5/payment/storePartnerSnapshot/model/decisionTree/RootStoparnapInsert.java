@@ -25,7 +25,7 @@ public final class RootStoparnapInsert extends DeciTreeWriteTemplate<StoparnapIn
 	
 	
 	
-	@Override protected ModelChecker<StoparnapInfo> buildDecisionCheckerHook(DeciTreeOption<StoparnapInfo> option) {
+	@Override protected ModelChecker<StoparnapInfo> buildCheckerHook(DeciTreeOption<StoparnapInfo> option) {
 		List<ModelChecker<StoparnapInfo>> queue = new ArrayList<>();		
 		ModelChecker<StoparnapInfo> checker;	
 		ModelCheckerOption checkerOption;

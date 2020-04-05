@@ -25,7 +25,7 @@ public final class RootMatextsnapInsert extends DeciTreeWriteTemplate<Matextsnap
 	
 	
 	
-	@Override protected ModelChecker<MatextsnapInfo> buildDecisionCheckerHook(DeciTreeOption<MatextsnapInfo> option) {		
+	@Override protected ModelChecker<MatextsnapInfo> buildCheckerHook(DeciTreeOption<MatextsnapInfo> option) {		
 		List<ModelChecker<MatextsnapInfo>> queue = new ArrayList<>();		
 		ModelChecker<MatextsnapInfo> checker;
 		ModelCheckerOption checkerOption;

@@ -24,7 +24,7 @@ public final class RootStoworgSelect extends DeciTreeReadTemplate<StoworgInfo> {
 	
 	
 	
-	@Override protected ModelChecker<StoworgInfo> buildDecisionCheckerHook(DeciTreeOption<StoworgInfo> option) {
+	@Override protected ModelChecker<StoworgInfo> buildCheckerHook(DeciTreeOption<StoworgInfo> option) {
 		List<ModelChecker<StoworgInfo>> queue = new ArrayList<>();		
 		ModelChecker<StoworgInfo> checker;
 		ModelCheckerOption checkerOption;		

@@ -28,7 +28,7 @@ public final class RootOrdemrapInsert extends DeciTreeWriteTemplate<OrdemrapInfo
 	
 	
 	
-	@Override protected ModelChecker<OrdemrapInfo> buildDecisionCheckerHook(DeciTreeOption<OrdemrapInfo> option) {
+	@Override protected ModelChecker<OrdemrapInfo> buildCheckerHook(DeciTreeOption<OrdemrapInfo> option) {
 		List<ModelChecker<OrdemrapInfo>> queue = new ArrayList<>();		
 		ModelChecker<OrdemrapInfo> checker;	
 		ModelCheckerOption checkerOption;

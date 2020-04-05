@@ -21,7 +21,7 @@ public final class RootMatUnitSelect extends DeciTreeReadTemplate<MatUnitInfo> {
 	
 	
 	
-	@Override protected ModelChecker<MatUnitInfo> buildDecisionCheckerHook(DeciTreeOption<MatUnitInfo> option) {
+	@Override protected ModelChecker<MatUnitInfo> buildCheckerHook(DeciTreeOption<MatUnitInfo> option) {
 		List<ModelChecker<MatUnitInfo>> queue = new ArrayList<>();		
 		ModelChecker<MatUnitInfo> checker;
 		ModelCheckerOption checkerOption;	

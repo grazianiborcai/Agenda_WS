@@ -22,7 +22,7 @@ public final class NodeEmpwotmInsert extends DeciTreeWriteTemplate<EmpwotmInfo> 
 	
 	
 	
-	@Override protected ModelChecker<EmpwotmInfo> buildDecisionCheckerHook(DeciTreeOption<EmpwotmInfo> option) {
+	@Override protected ModelChecker<EmpwotmInfo> buildCheckerHook(DeciTreeOption<EmpwotmInfo> option) {
 		List<ModelChecker<EmpwotmInfo>> queue = new ArrayList<>();		
 		ModelChecker<EmpwotmInfo> checker;
 		

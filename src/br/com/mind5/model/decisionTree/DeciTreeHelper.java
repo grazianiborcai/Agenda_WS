@@ -2,23 +2,24 @@ package br.com.mind5.model.decisionTree;
 
 import java.util.List;
 
+import br.com.mind5.common.CloneUtil;
 import br.com.mind5.common.DefaultValue;
-import br.com.mind5.common.SystemCode;
 import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.InfoRecord;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.decisionTree.common.DeciResultError;
 
 public final class DeciTreeHelper<T extends InfoRecord> implements DeciTree<T> {
-	private final boolean RESULT_SUCCESS = true;
-	private final boolean RESULT_FAILED = false;
+	private final boolean SUCCESS = true;
+	private final boolean FAILED = false;
 	private final boolean EMPTY = false;
 	
 	private List<T> recordInfos;
 	private ModelChecker<T> checker;
-	private DeciResultHelper<T> deciResult;
+	private DeciResult<T> deciResult;
 	private List<ActionStdV1<T>> actionsOnPassed;
 	private List<ActionStdV1<T>> actionsOnFailed;
 	
@@ -27,129 +28,89 @@ public final class DeciTreeHelper<T extends InfoRecord> implements DeciTree<T> {
 		checkArgument(option);
 		clear();
 		init(option);
-	}
+	}	
 	
 	
 	
-	private void init(DeciTreeHelperOption<T> option) {
-		checker = option.visitorChecker;
-		recordInfos = option.recordInfos;
-		actionsOnPassed = option.actionsOnPassed;
-		actionsOnFailed = option.actionsOnFailed;
-		deciResult = null;
-	}
-	
-	
-	
-	public synchronized void makeDecision() {
-		//TODO: loop por registro
-		boolean checkResult = checkCondition(recordInfos, checker);
+	@Override public void makeDecision() {
+		boolean checkerResult = executeChecker(recordInfos, checker);
 		
-		if (checkResult == RESULT_SUCCESS)
-			onPassed(actionsOnPassed);
+		if (checkerResult == SUCCESS)
+			deciResult = onPassed(actionsOnPassed);
 			
-		if (checkResult == RESULT_FAILED)
-			onFailed(actionsOnFailed, checker);		
+		if (checkerResult == FAILED)
+			deciResult = onFailed(actionsOnFailed, checker);		
 	}
 	
 	
 	
-	private boolean checkCondition(List<T> records, ModelChecker<T> modelChecker) {		
+	private boolean executeChecker(List<T> records, ModelChecker<T> modelChecker) {	
+		boolean lastResult = SUCCESS;
+		
 		for (T eachRecord : records) {
-			boolean resultChecker = modelChecker.check(eachRecord);
-			
-			if (resultChecker == RESULT_FAILED) 
-				return RESULT_FAILED;
-		}
+			lastResult = modelChecker.check(makeClone(eachRecord));			
+			if (lastResult == FAILED) 
+				break;
+		}		
 		
-		return RESULT_SUCCESS;
+		return lastResult;
 	}
 	
 	
 		
-	private void onPassed(List<ActionStdV1<T>> actions) {
-		buildSuccessMessage();
-		if (hasAction(actions))
-			executeDecisionActions(actions);
+	private DeciResult<T> onPassed(List<ActionStdV1<T>> actions) {
+		if (hasAction(actions) == FAILED)
+			return makeErrorResult();
+		
+		return executeActions(actions);
 	}
 	
 	
 	
-	private void buildSuccessMessage() {	
-		deciResult = new DeciResultHelper<>();
-		deciResult.isSuccess = RESULT_SUCCESS;
-		deciResult.hasResultset = EMPTY; 
-	}
-	
-	
-	
-	private void onFailed(List<ActionStdV1<T>> actions, ModelChecker<T> condiChecker) {
-		buildFailureMessage(condiChecker.getFailCode(), condiChecker.getFailMessage());
-		if (hasAction(actions))
-			executeDecisionActions(actions);		
-	}
-	
-	
-	
-	private void buildFailureMessage(int code, String explanation) {	
-		deciResult = new DeciResultHelper<>();
-		deciResult.isSuccess = RESULT_FAILED;
-		deciResult.hasResultset = EMPTY;
-		deciResult.failCode = code;
-		deciResult.failMessage = explanation;
+	private DeciResult<T> onFailed(List<ActionStdV1<T>> actions, ModelChecker<T> modelChecker) {
+		if (hasAction(actions) == FAILED)		
+			return makeCheckerResult(modelChecker);
+		
+		return executeActions(actions);		
 	}
 	
 	
 	
 	private boolean hasAction(List<ActionStdV1<T>> decisionActions) {
-		return (decisionActions != null);
+		if (decisionActions == null)
+			return FAILED;
+		
+		if (decisionActions.isEmpty())
+			return FAILED;
+		
+		return SUCCESS;
 	}
 	
 	
 	
-	private void executeDecisionActions(List<ActionStdV1<T>> decisionActions) {			
-		for (ActionStdV1<T> eachAction : decisionActions) {
+	private DeciResult<T> executeActions(List<ActionStdV1<T>> actions) {	
+		DeciResult<T> lastResult = makeErrorResult();		
+		
+		if (hasAction(actions) == FAILED)
+			return lastResult;		
+		
+		
+		for (ActionStdV1<T> eachAction : actions) {
 			eachAction.executeAction();
-			DeciResult<T> actionResult = eachAction.getDecisionResult();		
-			buildResultFromAction(actionResult);
+			lastResult = eachAction.getDecisionResult();		
 			
-			if (actionResult.isSuccess() == RESULT_FAILED)
+			if (lastResult.isSuccess() == FAILED)
 				break;
 		}
-	}
-	
-	
-
-	private void buildResultFromAction(DeciResult<T> actionResult) {
-		deciResult = new DeciResultHelper<>();
-		deciResult.isSuccess = actionResult.isSuccess();
-		
-		if (deciResult.isSuccess == RESULT_FAILED) {
-			deciResult.failCode = actionResult.getFailCode();
-			deciResult.failMessage = actionResult.getFailMessage();
-		}
 		
 		
-		deciResult.hasResultset = actionResult.hasResultset();
-		
-		if (actionResult.hasResultset()) {
-			deciResult.resultset = actionResult.getResultset();
-		}
-		
-		
-		if (deciResult.hasResultset()) {
-			if (deciResult.resultset == null || deciResult.resultset.isEmpty()) {
-				deciResult.isSuccess = RESULT_FAILED;
-				deciResult.failCode = SystemCode.DATA_NOT_FOUND;
-				deciResult.failMessage = SystemMessage.DATA_NOT_FOUND;
-			}
-		}
+		return lastResult;
 	}
 
 
 	
-	public synchronized DeciResult<T> getDecisionResult() {
-		return deciResult;
+	@Override public DeciResult<T> getDecisionResult() {
+		return makeClone(deciResult);
 	}
 	
 	
@@ -170,7 +131,7 @@ public final class DeciTreeHelper<T extends InfoRecord> implements DeciTree<T> {
 	
 	private void closeActions(List<ActionStdV1<T>> actions) {
 		if (actions == null)
-				return;
+			return;
 		
 		if (actions.isEmpty())
 			return;
@@ -184,12 +145,57 @@ public final class DeciTreeHelper<T extends InfoRecord> implements DeciTree<T> {
 	
 	
 	
+	private DeciResult<T> makeCheckerResult(ModelChecker<T> modelChecker) {	
+		if (modelChecker.getResult() == SUCCESS)
+			return makeErrorResult();
+		
+		DeciResultHelper<T> result = new DeciResultHelper<>();		
+		result.isSuccess = FAILED;
+		result.hasResultset = EMPTY;
+		result.failCode = modelChecker.getFailCode();
+		result.failMessage = modelChecker.getFailMessage();
+		
+		return result;
+	}
+	
+	
+	
+	private DeciResult<T> makeErrorResult() {
+		return new DeciResultError<T>();
+	}
+	
+	
+	
+	private T makeClone(T recordInfo) {
+		return CloneUtil.cloneRecord(recordInfo, this.getClass());
+	}
+	
+	
+	
+	private DeciResult<T> makeClone(DeciResult<T> source) {
+		DeciResultHelper<T> result = new DeciResultHelper<>();		
+		result.copyFrom(source);
+		return result;
+	}
+	
+	
+	
 	private void clear() {
 		recordInfos = DefaultValue.list();
 		checker = DefaultValue.object();
 		deciResult = DefaultValue.object();
 		actionsOnPassed = DefaultValue.list();
 		actionsOnFailed = DefaultValue.list();
+	}
+	
+	
+	
+	private void init(DeciTreeHelperOption<T> option) {	//TODO: defensive copy
+		checker = option.visitorChecker;
+		recordInfos = option.recordInfos;
+		actionsOnPassed = option.actionsOnPassed;
+		actionsOnFailed = option.actionsOnFailed;
+		deciResult = null;
 	}
 	
 	

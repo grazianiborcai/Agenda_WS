@@ -23,7 +23,7 @@ public class RootPlanarchSelect extends DeciTreeReadTemplate<PlanarchInfo> {
 	
 	
 	
-	@Override protected ModelChecker<PlanarchInfo> buildDecisionCheckerHook(DeciTreeOption<PlanarchInfo> option) {
+	@Override protected ModelChecker<PlanarchInfo> buildCheckerHook(DeciTreeOption<PlanarchInfo> option) {
 		List<ModelChecker<PlanarchInfo>> queue = new ArrayList<>();		
 		ModelChecker<PlanarchInfo> checker;
 		ModelCheckerOption checkerOption;

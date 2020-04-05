@@ -21,7 +21,7 @@ public final class RootGenderSelect extends DeciTreeReadTemplate<GenderInfo> {
 	
 	
 	
-	@Override protected ModelChecker<GenderInfo> buildDecisionCheckerHook(DeciTreeOption<GenderInfo> option) {
+	@Override protected ModelChecker<GenderInfo> buildCheckerHook(DeciTreeOption<GenderInfo> option) {
 		List<ModelChecker<GenderInfo>> queue = new ArrayList<>();		
 		ModelChecker<GenderInfo> checker;
 		ModelCheckerOption checkerOption;	

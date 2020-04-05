@@ -23,7 +23,7 @@ public final class RootMooncalSelect extends DeciTreeReadTemplate<MooncalInfo> {
 	
 	
 	
-	@Override protected ModelChecker<MooncalInfo> buildDecisionCheckerHook(DeciTreeOption<MooncalInfo> option) {
+	@Override protected ModelChecker<MooncalInfo> buildCheckerHook(DeciTreeOption<MooncalInfo> option) {
 		List<ModelChecker<MooncalInfo>> queue = new ArrayList<>();		
 		ModelChecker<MooncalInfo> checker;
 		ModelCheckerOption checkerOption;	

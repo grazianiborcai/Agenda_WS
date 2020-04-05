@@ -23,7 +23,7 @@ public final class RootSchedistSelect extends DeciTreeWriteTemplate<SchedistInfo
 	
 	
 	
-	@Override protected ModelChecker<SchedistInfo> buildDecisionCheckerHook(DeciTreeOption<SchedistInfo> option) {
+	@Override protected ModelChecker<SchedistInfo> buildCheckerHook(DeciTreeOption<SchedistInfo> option) {
 		List<ModelChecker<SchedistInfo>> queue = new ArrayList<>();		
 		ModelChecker<SchedistInfo> checker;
 		ModelCheckerOption checkerOption;

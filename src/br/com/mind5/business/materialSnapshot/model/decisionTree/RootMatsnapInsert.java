@@ -26,7 +26,7 @@ public final class RootMatsnapInsert extends DeciTreeWriteTemplate<MatsnapInfo> 
 	
 	
 	
-	@Override protected ModelChecker<MatsnapInfo> buildDecisionCheckerHook(DeciTreeOption<MatsnapInfo> option) {
+	@Override protected ModelChecker<MatsnapInfo> buildCheckerHook(DeciTreeOption<MatsnapInfo> option) {
 		List<ModelChecker<MatsnapInfo>> queue = new ArrayList<>();		
 		ModelChecker<MatsnapInfo> checker;	
 		ModelCheckerOption checkerOption;

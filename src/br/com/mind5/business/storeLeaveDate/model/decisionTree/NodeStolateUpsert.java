@@ -22,7 +22,7 @@ public final class NodeStolateUpsert extends DeciTreeWriteTemplate<StolateInfo> 
 	
 	
 	
-	@Override protected ModelChecker<StolateInfo> buildDecisionCheckerHook(DeciTreeOption<StolateInfo> option) {
+	@Override protected ModelChecker<StolateInfo> buildCheckerHook(DeciTreeOption<StolateInfo> option) {
 		List<ModelChecker<StolateInfo>> queue = new ArrayList<>();		
 		ModelChecker<StolateInfo> checker;
 		ModelCheckerOption checkerOption;	

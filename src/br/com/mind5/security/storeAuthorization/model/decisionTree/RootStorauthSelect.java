@@ -25,7 +25,7 @@ public final class RootStorauthSelect extends DeciTreeWriteTemplate<StorauthInfo
 	
 	
 	
-	@Override protected ModelChecker<StorauthInfo> buildDecisionCheckerHook(DeciTreeOption<StorauthInfo> option) {	
+	@Override protected ModelChecker<StorauthInfo> buildCheckerHook(DeciTreeOption<StorauthInfo> option) {	
 		List<ModelChecker<StorauthInfo>> queue = new ArrayList<>();		
 		ModelChecker<StorauthInfo> checker;
 		ModelCheckerOption checkerOption;

@@ -24,7 +24,7 @@ public final class NodePaytusemRefresh extends DeciTreeWriteTemplate<PaytusemInf
 	
 	
 	
-	@Override protected ModelChecker<PaytusemInfo> buildDecisionCheckerHook(DeciTreeOption<PaytusemInfo> option) {		
+	@Override protected ModelChecker<PaytusemInfo> buildCheckerHook(DeciTreeOption<PaytusemInfo> option) {		
 		List<ModelChecker<PaytusemInfo>> queue = new ArrayList<>();		
 		ModelChecker<PaytusemInfo> checker;	
 		ModelCheckerOption checkerOption;

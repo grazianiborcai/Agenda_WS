@@ -23,7 +23,7 @@ public final class RootCusparSelect extends DeciTreeReadTemplate<CusparInfo> {
 	
 	
 	
-	@Override protected ModelChecker<CusparInfo> buildDecisionCheckerHook(DeciTreeOption<CusparInfo> option) {
+	@Override protected ModelChecker<CusparInfo> buildCheckerHook(DeciTreeOption<CusparInfo> option) {
 		List<ModelChecker<CusparInfo>> queue = new ArrayList<>();		
 		ModelChecker<CusparInfo> checker;	
 		ModelCheckerOption checkerOption;

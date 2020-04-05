@@ -23,7 +23,7 @@ public final class RootCountryLegalSelect extends DeciTreeReadTemplate<CountryLe
 	
 	
 	
-	@Override protected ModelChecker<CountryLegalInfo> buildDecisionCheckerHook(DeciTreeOption<CountryLegalInfo> option) {
+	@Override protected ModelChecker<CountryLegalInfo> buildCheckerHook(DeciTreeOption<CountryLegalInfo> option) {
 		List<ModelChecker<CountryLegalInfo>> queue = new ArrayList<>();		
 		ModelChecker<CountryLegalInfo> checker;
 		ModelCheckerOption checkerOption;	

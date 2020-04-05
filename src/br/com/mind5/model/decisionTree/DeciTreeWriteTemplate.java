@@ -58,7 +58,7 @@ public abstract class DeciTreeWriteTemplate<T extends InfoRecord> implements Dec
 	private DeciTreeHelper<T> buildTreeHelper(DeciTreeOption<T> option) {
 		DeciTreeHelperOption<T> helperOption = new DeciTreeHelperOption<>();
 		
-		helperOption.visitorChecker = buildDecisionCheckerHook(option);
+		helperOption.visitorChecker = buildCheckerHook(option);
 		helperOption.recordInfos = option.recordInfos;
 		helperOption.conn = option.conn;
 		helperOption.actionsOnPassed = buildActionsOnPassedHook(option);
@@ -69,7 +69,7 @@ public abstract class DeciTreeWriteTemplate<T extends InfoRecord> implements Dec
 	
 	
 	
-	protected ModelChecker<T> buildDecisionCheckerHook(DeciTreeOption<T> option) {
+	protected ModelChecker<T> buildCheckerHook(DeciTreeOption<T> option) {
 		//Template method: to be overwritten by subclasses
 		logException(new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION));
 		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);	

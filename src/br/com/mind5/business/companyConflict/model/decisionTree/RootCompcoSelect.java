@@ -23,7 +23,7 @@ public final class RootCompcoSelect extends DeciTreeReadTemplate<CompcoInfo> {
 	
 	
 	
-	@Override protected ModelChecker<CompcoInfo> buildDecisionCheckerHook(DeciTreeOption<CompcoInfo> option) {
+	@Override protected ModelChecker<CompcoInfo> buildCheckerHook(DeciTreeOption<CompcoInfo> option) {
 		List<ModelChecker<CompcoInfo>> queue = new ArrayList<>();		
 		ModelChecker<CompcoInfo> checker;
 		ModelCheckerOption checkerOption;		

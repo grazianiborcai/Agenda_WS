@@ -29,7 +29,7 @@ public final class RootMatmovSelect extends DeciTreeReadTemplate<MatmovInfo> {
 	
 	
 	
-	@Override protected ModelChecker<MatmovInfo> buildDecisionCheckerHook(DeciTreeOption<MatmovInfo> option) {
+	@Override protected ModelChecker<MatmovInfo> buildCheckerHook(DeciTreeOption<MatmovInfo> option) {
 		List<ModelChecker<MatmovInfo>> queue = new ArrayList<>();		
 		ModelChecker<MatmovInfo> checker;
 		ModelCheckerOption checkerOption;

@@ -24,7 +24,7 @@ public final class NodeOwnerDeletePhone extends DeciTreeWriteTemplate<OwnerInfo>
 	
 	
 	
-	@Override protected ModelChecker<OwnerInfo> buildDecisionCheckerHook(DeciTreeOption<OwnerInfo> option) {
+	@Override protected ModelChecker<OwnerInfo> buildCheckerHook(DeciTreeOption<OwnerInfo> option) {
 		final boolean HAS_PHONE = true;
 		
 		List<ModelChecker<OwnerInfo>> queue = new ArrayList<>();		

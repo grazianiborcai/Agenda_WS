@@ -64,6 +64,7 @@ public final class SystemMessage {
 	public static final String TABLE_NOT_FOUND = "table was not found";	
 	public static final String TECH_FIELD_SHOULD_BE_EMPTY = "Technical fields shouldn't be filled";
 	public static final String WRONG_DATA_TYPE = "Wrong data type";	
+	public static final String OBJECT_IS_CLOSED = "Object has been closed";	
 
 	
 	

@@ -23,7 +23,7 @@ public final class RootStowotarchSelect extends DeciTreeReadTemplate<StowotarchI
 	
 	
 	
-	@Override protected ModelChecker<StowotarchInfo> buildDecisionCheckerHook(DeciTreeOption<StowotarchInfo> option) {
+	@Override protected ModelChecker<StowotarchInfo> buildCheckerHook(DeciTreeOption<StowotarchInfo> option) {
 		List<ModelChecker<StowotarchInfo>> queue = new ArrayList<>();		
 		ModelChecker<StowotarchInfo> checker;
 		ModelCheckerOption checkerOption;		

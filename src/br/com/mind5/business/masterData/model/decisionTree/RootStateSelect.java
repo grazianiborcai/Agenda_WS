@@ -23,7 +23,7 @@ public final class RootStateSelect extends DeciTreeReadTemplate<StateInfo> {
 	
 	
 	
-	@Override protected ModelChecker<StateInfo> buildDecisionCheckerHook(DeciTreeOption<StateInfo> option) {
+	@Override protected ModelChecker<StateInfo> buildCheckerHook(DeciTreeOption<StateInfo> option) {
 		List<ModelChecker<StateInfo>> queue = new ArrayList<>();		
 		ModelChecker<StateInfo> checker;
 		ModelCheckerOption checkerOption;	

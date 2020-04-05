@@ -25,7 +25,7 @@ public final class RootStoplisSelect extends DeciTreeReadTemplate<StoplisInfo> {
 	
 	
 	
-	@Override protected ModelChecker<StoplisInfo> buildDecisionCheckerHook(DeciTreeOption<StoplisInfo> option) {
+	@Override protected ModelChecker<StoplisInfo> buildCheckerHook(DeciTreeOption<StoplisInfo> option) {
 		List<ModelChecker<StoplisInfo>> queue = new ArrayList<>();		
 		ModelChecker<StoplisInfo> checker;
 		ModelCheckerOption checkerOption;

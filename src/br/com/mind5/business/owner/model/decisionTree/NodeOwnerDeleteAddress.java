@@ -24,7 +24,7 @@ public final class NodeOwnerDeleteAddress extends DeciTreeWriteTemplate<OwnerInf
 	
 	
 	
-	@Override protected ModelChecker<OwnerInfo> buildDecisionCheckerHook(DeciTreeOption<OwnerInfo> option) {
+	@Override protected ModelChecker<OwnerInfo> buildCheckerHook(DeciTreeOption<OwnerInfo> option) {
 		final boolean HAS_ADDRESS = true;
 		
 		List<ModelChecker<OwnerInfo>> queue = new ArrayList<>();		

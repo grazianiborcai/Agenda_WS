@@ -25,7 +25,7 @@ public final class RootCusSignup extends DeciTreeWriteTemplate<CusInfo> {
 	
 	
 	
-	@Override protected ModelChecker<CusInfo> buildDecisionCheckerHook(DeciTreeOption<CusInfo> option) {
+	@Override protected ModelChecker<CusInfo> buildCheckerHook(DeciTreeOption<CusInfo> option) {
 		List<ModelChecker<CusInfo>> queue = new ArrayList<>();		
 		ModelChecker<CusInfo> checker;
 		ModelCheckerOption checkerOption;		

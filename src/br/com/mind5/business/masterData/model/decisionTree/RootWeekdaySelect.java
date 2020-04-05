@@ -21,7 +21,7 @@ public final class RootWeekdaySelect extends DeciTreeReadTemplate<WeekdayInfo> {
 	
 	
 	
-	@Override protected ModelChecker<WeekdayInfo> buildDecisionCheckerHook(DeciTreeOption<WeekdayInfo> option) {
+	@Override protected ModelChecker<WeekdayInfo> buildCheckerHook(DeciTreeOption<WeekdayInfo> option) {
 		List<ModelChecker<WeekdayInfo>> queue = new ArrayList<>();		
 		ModelChecker<WeekdayInfo> checker;
 		ModelCheckerOption checkerOption;	

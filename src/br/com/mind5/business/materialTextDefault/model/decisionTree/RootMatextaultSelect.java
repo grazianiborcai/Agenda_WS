@@ -23,7 +23,7 @@ public final class RootMatextaultSelect extends DeciTreeReadTemplate<MatextaultI
 	
 	
 	
-	@Override protected ModelChecker<MatextaultInfo> buildDecisionCheckerHook(DeciTreeOption<MatextaultInfo> option) {
+	@Override protected ModelChecker<MatextaultInfo> buildCheckerHook(DeciTreeOption<MatextaultInfo> option) {
 		List<ModelChecker<MatextaultInfo>> queue = new ArrayList<>();		
 		ModelChecker<MatextaultInfo> checker;
 		ModelCheckerOption checkerOption;

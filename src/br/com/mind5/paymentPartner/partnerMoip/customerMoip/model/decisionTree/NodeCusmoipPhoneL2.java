@@ -22,7 +22,7 @@ public final class NodeCusmoipPhoneL2 extends DeciTreeWriteTemplate<CusmoipInfo>
 	
 	
 	
-	@Override protected ModelChecker<CusmoipInfo> buildDecisionCheckerHook(DeciTreeOption<CusmoipInfo> option) {
+	@Override protected ModelChecker<CusmoipInfo> buildCheckerHook(DeciTreeOption<CusmoipInfo> option) {
 		List<ModelChecker<CusmoipInfo>> queue = new ArrayList<>();		
 		ModelChecker<CusmoipInfo> checker;	
 		ModelCheckerOption checkerOption;

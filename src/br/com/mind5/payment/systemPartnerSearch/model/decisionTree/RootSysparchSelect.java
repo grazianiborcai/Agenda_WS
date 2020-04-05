@@ -21,7 +21,7 @@ public final class RootSysparchSelect extends DeciTreeReadTemplate<SysparchInfo>
 	
 	
 	
-	@Override protected ModelChecker<SysparchInfo> buildDecisionCheckerHook(DeciTreeOption<SysparchInfo> option) {
+	@Override protected ModelChecker<SysparchInfo> buildCheckerHook(DeciTreeOption<SysparchInfo> option) {
 		List<ModelChecker<SysparchInfo>> queue = new ArrayList<>();		
 		ModelChecker<SysparchInfo> checker;	
 		ModelCheckerOption checkerOption;

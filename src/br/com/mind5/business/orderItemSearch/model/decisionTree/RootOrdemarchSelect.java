@@ -22,7 +22,7 @@ public final class RootOrdemarchSelect extends DeciTreeWriteTemplate<OrdemarchIn
 	
 	
 	
-	@Override protected ModelChecker<OrdemarchInfo> buildDecisionCheckerHook(DeciTreeOption<OrdemarchInfo> option) {
+	@Override protected ModelChecker<OrdemarchInfo> buildCheckerHook(DeciTreeOption<OrdemarchInfo> option) {
 		List<ModelChecker<OrdemarchInfo>> queue = new ArrayList<>();		
 		ModelChecker<OrdemarchInfo> checker;	
 		ModelCheckerOption checkerOption;

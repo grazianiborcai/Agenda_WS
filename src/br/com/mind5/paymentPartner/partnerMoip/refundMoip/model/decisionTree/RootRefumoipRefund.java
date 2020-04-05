@@ -26,7 +26,7 @@ public final class RootRefumoipRefund extends DeciTreeWriteTemplate<RefumoipInfo
 	
 	
 	
-	@Override protected ModelChecker<RefumoipInfo> buildDecisionCheckerHook(DeciTreeOption<RefumoipInfo> option) {		
+	@Override protected ModelChecker<RefumoipInfo> buildCheckerHook(DeciTreeOption<RefumoipInfo> option) {		
 		List<ModelChecker<RefumoipInfo>> queue = new ArrayList<>();		
 		ModelChecker<RefumoipInfo> checker;	
 		ModelCheckerOption checkerOption;

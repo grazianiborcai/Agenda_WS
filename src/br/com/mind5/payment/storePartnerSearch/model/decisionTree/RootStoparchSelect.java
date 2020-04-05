@@ -22,7 +22,7 @@ public final class RootStoparchSelect extends DeciTreeReadTemplate<StoparchInfo>
 	
 	
 	
-	@Override protected ModelChecker<StoparchInfo> buildDecisionCheckerHook(DeciTreeOption<StoparchInfo> option) {
+	@Override protected ModelChecker<StoparchInfo> buildCheckerHook(DeciTreeOption<StoparchInfo> option) {
 		List<ModelChecker<StoparchInfo>> queue = new ArrayList<>();		
 		ModelChecker<StoparchInfo> checker;
 		ModelCheckerOption checkerOption;

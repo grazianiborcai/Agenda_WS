@@ -21,7 +21,7 @@ public final class RootOrderStatusSelect extends DeciTreeReadTemplate<OrderStatu
 	
 	
 	
-	@Override protected ModelChecker<OrderStatusInfo> buildDecisionCheckerHook(DeciTreeOption<OrderStatusInfo> option) {
+	@Override protected ModelChecker<OrderStatusInfo> buildCheckerHook(DeciTreeOption<OrderStatusInfo> option) {
 		List<ModelChecker<OrderStatusInfo>> queue = new ArrayList<>();		
 		ModelChecker<OrderStatusInfo> checker;
 		ModelCheckerOption checkerOption;	

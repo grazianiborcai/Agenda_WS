@@ -22,7 +22,7 @@ public final class RootMatlisSearch extends DeciTreeReadTemplate<MatlisInfo> {
 	
 	
 	
-	@Override protected ModelChecker<MatlisInfo> buildDecisionCheckerHook(DeciTreeOption<MatlisInfo> option) {
+	@Override protected ModelChecker<MatlisInfo> buildCheckerHook(DeciTreeOption<MatlisInfo> option) {
 		List<ModelChecker<MatlisInfo>> queue = new ArrayList<>();		
 		ModelChecker<MatlisInfo> checker;
 

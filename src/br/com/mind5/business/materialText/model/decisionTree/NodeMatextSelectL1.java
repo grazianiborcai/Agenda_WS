@@ -21,7 +21,7 @@ public final class NodeMatextSelectL1 extends DeciTreeWriteTemplate<MatextInfo> 
 	
 	
 	
-	@Override protected ModelChecker<MatextInfo> buildDecisionCheckerHook(DeciTreeOption<MatextInfo> option) {
+	@Override protected ModelChecker<MatextInfo> buildCheckerHook(DeciTreeOption<MatextInfo> option) {
 		List<ModelChecker<MatextInfo>> queue = new ArrayList<>();		
 		ModelChecker<MatextInfo> checker;
 		ModelCheckerOption checkerOption;

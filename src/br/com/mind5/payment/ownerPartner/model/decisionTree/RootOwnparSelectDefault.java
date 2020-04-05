@@ -23,7 +23,7 @@ public final class RootOwnparSelectDefault extends DeciTreeReadTemplate<OwnparIn
 	
 	
 	
-	@Override protected ModelChecker<OwnparInfo> buildDecisionCheckerHook(DeciTreeOption<OwnparInfo> option) {
+	@Override protected ModelChecker<OwnparInfo> buildCheckerHook(DeciTreeOption<OwnparInfo> option) {
 		List<ModelChecker<OwnparInfo>> queue = new ArrayList<>();		
 		ModelChecker<OwnparInfo> checker;
 		ModelCheckerOption checkerOption;

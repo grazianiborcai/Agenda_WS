@@ -25,7 +25,7 @@ public final class RootMultmoipPay extends DeciTreeReadTemplate<MultmoipInfo> {
 	
 	
 	
-	@Override protected ModelChecker<MultmoipInfo> buildDecisionCheckerHook(DeciTreeOption<MultmoipInfo> option) {	
+	@Override protected ModelChecker<MultmoipInfo> buildCheckerHook(DeciTreeOption<MultmoipInfo> option) {	
 		List<ModelChecker<MultmoipInfo>> queue = new ArrayList<>();		
 		ModelChecker<MultmoipInfo> checker;
 		ModelCheckerOption checkerOption;

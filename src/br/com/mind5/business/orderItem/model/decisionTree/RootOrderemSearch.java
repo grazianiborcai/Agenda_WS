@@ -22,7 +22,7 @@ public final class RootOrderemSearch extends DeciTreeWriteTemplate<OrderemInfo> 
 	
 	
 	
-	@Override protected ModelChecker<OrderemInfo> buildDecisionCheckerHook(DeciTreeOption<OrderemInfo> option) {
+	@Override protected ModelChecker<OrderemInfo> buildCheckerHook(DeciTreeOption<OrderemInfo> option) {
 		List<ModelChecker<OrderemInfo>> queue = new ArrayList<>();		
 		ModelChecker<OrderemInfo> checker;	
 

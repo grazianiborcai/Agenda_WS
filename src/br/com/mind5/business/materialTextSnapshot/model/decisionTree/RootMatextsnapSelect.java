@@ -23,7 +23,7 @@ public final class RootMatextsnapSelect extends DeciTreeReadTemplate<MatextsnapI
 	
 	
 	
-	@Override protected ModelChecker<MatextsnapInfo> buildDecisionCheckerHook(DeciTreeOption<MatextsnapInfo> option) {
+	@Override protected ModelChecker<MatextsnapInfo> buildCheckerHook(DeciTreeOption<MatextsnapInfo> option) {
 		List<ModelChecker<MatextsnapInfo>> queue = new ArrayList<>();		
 		ModelChecker<MatextsnapInfo> checker;
 		ModelCheckerOption checkerOption;

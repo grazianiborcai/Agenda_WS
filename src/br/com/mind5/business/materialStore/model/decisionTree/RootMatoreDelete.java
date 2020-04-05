@@ -28,7 +28,7 @@ public final class RootMatoreDelete extends DeciTreeWriteTemplate<MatoreInfo> {
 	
 	
 	
-	@Override protected ModelChecker<MatoreInfo> buildDecisionCheckerHook(DeciTreeOption<MatoreInfo> option) {		
+	@Override protected ModelChecker<MatoreInfo> buildCheckerHook(DeciTreeOption<MatoreInfo> option) {		
 		List<ModelChecker<MatoreInfo>> queue = new ArrayList<>();		
 		ModelChecker<MatoreInfo> checker;
 		ModelCheckerOption checkerOption;

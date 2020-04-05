@@ -24,7 +24,7 @@ public class RootStolargSelect extends DeciTreeReadTemplate<StolargInfo> {
 	
 	
 	
-	@Override protected ModelChecker<StolargInfo> buildDecisionCheckerHook(DeciTreeOption<StolargInfo> option) {
+	@Override protected ModelChecker<StolargInfo> buildCheckerHook(DeciTreeOption<StolargInfo> option) {
 		List<ModelChecker<StolargInfo>> queue = new ArrayList<>();		
 		ModelChecker<StolargInfo> checker;
 		ModelCheckerOption checkerOption;

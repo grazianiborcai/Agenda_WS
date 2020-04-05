@@ -26,7 +26,7 @@ public final class NodePeresmoipCode extends DeciTreeWriteTemplate<PeresmoipInfo
 	
 	
 	
-	@Override protected ModelChecker<PeresmoipInfo> buildDecisionCheckerHook(DeciTreeOption<PeresmoipInfo> option) {
+	@Override protected ModelChecker<PeresmoipInfo> buildCheckerHook(DeciTreeOption<PeresmoipInfo> option) {
 		List<ModelChecker<PeresmoipInfo>> queue = new ArrayList<>();		
 		ModelChecker<PeresmoipInfo> checker;			
 		ModelCheckerOption checkerOption;

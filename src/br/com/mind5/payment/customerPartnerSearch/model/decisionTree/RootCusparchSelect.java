@@ -22,7 +22,7 @@ public final class RootCusparchSelect extends DeciTreeReadTemplate<CusparchInfo>
 	
 	
 	
-	@Override protected ModelChecker<CusparchInfo> buildDecisionCheckerHook(DeciTreeOption<CusparchInfo> option) {
+	@Override protected ModelChecker<CusparchInfo> buildCheckerHook(DeciTreeOption<CusparchInfo> option) {
 		List<ModelChecker<CusparchInfo>> queue = new ArrayList<>();		
 		ModelChecker<CusparchInfo> checker;	
 		ModelCheckerOption checkerOption;

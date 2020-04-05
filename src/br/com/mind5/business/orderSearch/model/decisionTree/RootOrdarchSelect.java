@@ -23,7 +23,7 @@ public final class RootOrdarchSelect extends DeciTreeReadTemplate<OrdarchInfo> {
 	
 	
 	
-	@Override protected ModelChecker<OrdarchInfo> buildDecisionCheckerHook(DeciTreeOption<OrdarchInfo> option) {
+	@Override protected ModelChecker<OrdarchInfo> buildCheckerHook(DeciTreeOption<OrdarchInfo> option) {
 		List<ModelChecker<OrdarchInfo>> queue = new ArrayList<>();		
 		ModelChecker<OrdarchInfo> checker;	
 		ModelCheckerOption checkerOption;

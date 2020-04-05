@@ -24,7 +24,7 @@ public final class RootCusarchSelect extends DeciTreeReadTemplate<CusarchInfo> {
 	
 	
 	
-	@Override protected ModelChecker<CusarchInfo> buildDecisionCheckerHook(DeciTreeOption<CusarchInfo> option) {
+	@Override protected ModelChecker<CusarchInfo> buildCheckerHook(DeciTreeOption<CusarchInfo> option) {
 		List<ModelChecker<CusarchInfo>> queue = new ArrayList<>();		
 		ModelChecker<CusarchInfo> checker;
 		ModelCheckerOption checkerOption;	

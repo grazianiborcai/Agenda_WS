@@ -30,7 +30,7 @@ public final class RootSchedinapInsert extends DeciTreeWriteTemplate<SchedinapIn
 	
 	
 	
-	@Override protected ModelChecker<SchedinapInfo> buildDecisionCheckerHook(DeciTreeOption<SchedinapInfo> option) {
+	@Override protected ModelChecker<SchedinapInfo> buildCheckerHook(DeciTreeOption<SchedinapInfo> option) {
 		List<ModelChecker<SchedinapInfo>> queue = new ArrayList<>();		
 		ModelChecker<SchedinapInfo> checker;	
 		ModelCheckerOption checkerOption;

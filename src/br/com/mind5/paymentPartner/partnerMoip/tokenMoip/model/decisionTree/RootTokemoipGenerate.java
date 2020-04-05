@@ -28,7 +28,7 @@ public final class RootTokemoipGenerate extends DeciTreeWriteTemplate<TokemoipIn
 	
 	
 	
-	@Override protected ModelChecker<TokemoipInfo> buildDecisionCheckerHook(DeciTreeOption<TokemoipInfo> option) {
+	@Override protected ModelChecker<TokemoipInfo> buildCheckerHook(DeciTreeOption<TokemoipInfo> option) {
 		List<ModelChecker<TokemoipInfo>> queue = new ArrayList<>();		
 		ModelChecker<TokemoipInfo> checker;	
 		ModelCheckerOption checkerOption;

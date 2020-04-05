@@ -23,7 +23,7 @@ public final class RootPhonarchSelect extends DeciTreeWriteTemplate<PhonarchInfo
 	
 	
 	
-	@Override protected ModelChecker<PhonarchInfo> buildDecisionCheckerHook(DeciTreeOption<PhonarchInfo> option) {
+	@Override protected ModelChecker<PhonarchInfo> buildCheckerHook(DeciTreeOption<PhonarchInfo> option) {
 		List<ModelChecker<PhonarchInfo>> queue = new ArrayList<>();		
 		ModelChecker<PhonarchInfo> checker;	
 		ModelCheckerOption checkerOption;

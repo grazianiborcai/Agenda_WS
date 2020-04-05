@@ -29,7 +29,7 @@ public final class RootPeresmoipInsert extends DeciTreeWriteTemplate<PeresmoipIn
 	
 	
 	
-	@Override protected ModelChecker<PeresmoipInfo> buildDecisionCheckerHook(DeciTreeOption<PeresmoipInfo> option) {
+	@Override protected ModelChecker<PeresmoipInfo> buildCheckerHook(DeciTreeOption<PeresmoipInfo> option) {
 		List<ModelChecker<PeresmoipInfo>> queue = new ArrayList<>();		
 		ModelChecker<PeresmoipInfo> checker;	
 		ModelCheckerOption checkerOption;

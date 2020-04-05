@@ -23,7 +23,7 @@ public final class RootSchedyeratSelect extends DeciTreeWriteTemplate<Schedyerat
 	
 	
 	
-	@Override protected ModelChecker<SchedyeratInfo> buildDecisionCheckerHook(DeciTreeOption<SchedyeratInfo> option) {
+	@Override protected ModelChecker<SchedyeratInfo> buildCheckerHook(DeciTreeOption<SchedyeratInfo> option) {
 		List<ModelChecker<SchedyeratInfo>> queue = new ArrayList<>();		
 		ModelChecker<SchedyeratInfo> checker;	
 		ModelCheckerOption checkerOption;

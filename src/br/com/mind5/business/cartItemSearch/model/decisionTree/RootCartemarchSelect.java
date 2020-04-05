@@ -21,7 +21,7 @@ public final class RootCartemarchSelect extends DeciTreeWriteTemplate<Cartemarch
 	
 	
 	
-	@Override protected ModelChecker<CartemarchInfo> buildDecisionCheckerHook(DeciTreeOption<CartemarchInfo> option) {
+	@Override protected ModelChecker<CartemarchInfo> buildCheckerHook(DeciTreeOption<CartemarchInfo> option) {
 		List<ModelChecker<CartemarchInfo>> queue = new ArrayList<>();		
 		ModelChecker<CartemarchInfo> checker;
 		ModelCheckerOption checkerOption;

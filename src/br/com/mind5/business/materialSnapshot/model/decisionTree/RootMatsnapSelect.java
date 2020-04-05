@@ -29,7 +29,7 @@ public final class RootMatsnapSelect extends DeciTreeReadTemplate<MatsnapInfo> {
 	
 	
 	
-	@Override protected ModelChecker<MatsnapInfo> buildDecisionCheckerHook(DeciTreeOption<MatsnapInfo> option) {
+	@Override protected ModelChecker<MatsnapInfo> buildCheckerHook(DeciTreeOption<MatsnapInfo> option) {
 		List<ModelChecker<MatsnapInfo>> queue = new ArrayList<>();		
 		ModelChecker<MatsnapInfo> checker;
 		ModelCheckerOption checkerOption;

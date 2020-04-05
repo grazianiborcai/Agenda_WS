@@ -21,7 +21,7 @@ public final class RootPersolisSelectRestricted extends DeciTreeReadTemplate<Per
 	
 	
 	
-	@Override protected ModelChecker<PersolisInfo> buildDecisionCheckerHook(DeciTreeOption<PersolisInfo> option) {
+	@Override protected ModelChecker<PersolisInfo> buildCheckerHook(DeciTreeOption<PersolisInfo> option) {
 		List<ModelChecker<PersolisInfo>> queue = new ArrayList<>();		
 		ModelChecker<PersolisInfo> checker;
 

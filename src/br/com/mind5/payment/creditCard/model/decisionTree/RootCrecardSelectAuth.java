@@ -22,7 +22,7 @@ public final class RootCrecardSelectAuth extends DeciTreeReadTemplate<CrecardInf
 	
 	
 	
-	@Override protected ModelChecker<CrecardInfo> buildDecisionCheckerHook(DeciTreeOption<CrecardInfo> option) {
+	@Override protected ModelChecker<CrecardInfo> buildCheckerHook(DeciTreeOption<CrecardInfo> option) {
 		List<ModelChecker<CrecardInfo>> queue = new ArrayList<>();		
 		ModelChecker<CrecardInfo> checker;
 

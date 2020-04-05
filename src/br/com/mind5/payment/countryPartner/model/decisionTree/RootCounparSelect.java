@@ -23,7 +23,7 @@ public final class RootCounparSelect extends DeciTreeReadTemplate<CounparInfo> {
 	
 	
 	
-	@Override protected ModelChecker<CounparInfo> buildDecisionCheckerHook(DeciTreeOption<CounparInfo> option) {
+	@Override protected ModelChecker<CounparInfo> buildCheckerHook(DeciTreeOption<CounparInfo> option) {
 		List<ModelChecker<CounparInfo>> queue = new ArrayList<>();		
 		ModelChecker<CounparInfo> checker;
 		ModelCheckerOption checkerOption;

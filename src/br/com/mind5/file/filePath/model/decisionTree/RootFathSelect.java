@@ -21,7 +21,7 @@ public final class RootFathSelect extends DeciTreeReadTemplate<FathInfo> {
 	
 	
 	
-	@Override protected ModelChecker<FathInfo> buildDecisionCheckerHook(DeciTreeOption<FathInfo> option) {
+	@Override protected ModelChecker<FathInfo> buildCheckerHook(DeciTreeOption<FathInfo> option) {
 		List<ModelChecker<FathInfo>> queue = new ArrayList<>();		
 		ModelChecker<FathInfo> checker;
 		ModelCheckerOption checkerOption;

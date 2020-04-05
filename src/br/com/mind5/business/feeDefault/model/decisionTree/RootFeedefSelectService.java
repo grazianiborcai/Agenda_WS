@@ -23,7 +23,7 @@ public final class RootFeedefSelectService extends DeciTreeReadTemplate<FeedefIn
 	
 	
 	
-	@Override protected ModelChecker<FeedefInfo> buildDecisionCheckerHook(DeciTreeOption<FeedefInfo> option) {		
+	@Override protected ModelChecker<FeedefInfo> buildCheckerHook(DeciTreeOption<FeedefInfo> option) {		
 		List<ModelChecker<FeedefInfo>> queue = new ArrayList<>();		
 		ModelChecker<FeedefInfo> checker;
 		ModelCheckerOption checkerOption;	

@@ -22,7 +22,7 @@ public final class NodeRefuOrder extends DeciTreeWriteTemplate<RefuInfo> {
 	
 	
 	
-	@Override protected ModelChecker<RefuInfo> buildDecisionCheckerHook(DeciTreeOption<RefuInfo> option) {
+	@Override protected ModelChecker<RefuInfo> buildCheckerHook(DeciTreeOption<RefuInfo> option) {
 		List<ModelChecker<RefuInfo>> queue = new ArrayList<>();		
 		ModelChecker<RefuInfo> checker;	
 

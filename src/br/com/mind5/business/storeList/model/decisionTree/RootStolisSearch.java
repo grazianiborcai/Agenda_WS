@@ -23,7 +23,7 @@ public final class RootStolisSearch extends DeciTreeReadTemplate<StolisInfo> {
 	
 	
 	
-	@Override protected ModelChecker<StolisInfo> buildDecisionCheckerHook(DeciTreeOption<StolisInfo> option) {
+	@Override protected ModelChecker<StolisInfo> buildCheckerHook(DeciTreeOption<StolisInfo> option) {
 		List<ModelChecker<StolisInfo>> queue = new ArrayList<>();		
 		ModelChecker<StolisInfo> checker;
 		

@@ -21,7 +21,7 @@ public final class RootFriteWriteOnDisk extends DeciTreeWriteTemplate<FriteInfo>
 	
 	
 	
-	@Override protected ModelChecker<FriteInfo> buildDecisionCheckerHook(DeciTreeOption<FriteInfo> option) {
+	@Override protected ModelChecker<FriteInfo> buildCheckerHook(DeciTreeOption<FriteInfo> option) {
 		List<ModelChecker<FriteInfo>> queue = new ArrayList<>();		
 		ModelChecker<FriteInfo> checker;
 		ModelCheckerOption checkerOption;

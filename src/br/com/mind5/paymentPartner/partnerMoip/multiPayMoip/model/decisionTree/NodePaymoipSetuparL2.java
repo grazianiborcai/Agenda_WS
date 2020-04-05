@@ -21,7 +21,7 @@ public final class NodePaymoipSetuparL2 extends DeciTreeWriteTemplate<PaymoipInf
 	
 	
 	
-	@Override protected ModelChecker<PaymoipInfo> buildDecisionCheckerHook(DeciTreeOption<PaymoipInfo> option) {	
+	@Override protected ModelChecker<PaymoipInfo> buildCheckerHook(DeciTreeOption<PaymoipInfo> option) {	
 		List<ModelChecker<PaymoipInfo>> queue = new ArrayList<>();		
 		ModelChecker<PaymoipInfo> checker;
 		ModelCheckerOption checkerOption;

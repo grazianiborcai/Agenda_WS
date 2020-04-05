@@ -21,7 +21,7 @@ public final class RootCartCategSelect extends DeciTreeReadTemplate<CartCategInf
 	
 	
 	
-	@Override protected ModelChecker<CartCategInfo> buildDecisionCheckerHook(DeciTreeOption<CartCategInfo> option) {
+	@Override protected ModelChecker<CartCategInfo> buildCheckerHook(DeciTreeOption<CartCategInfo> option) {
 		List<ModelChecker<CartCategInfo>> queue = new ArrayList<>();		
 		ModelChecker<CartCategInfo> checker;
 		ModelCheckerOption checkerOption;	

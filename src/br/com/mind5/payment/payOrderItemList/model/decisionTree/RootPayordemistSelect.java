@@ -21,7 +21,7 @@ public final class RootPayordemistSelect extends DeciTreeWriteTemplate<Payordemi
 	
 	
 	
-	@Override protected ModelChecker<PayordemistInfo> buildDecisionCheckerHook(DeciTreeOption<PayordemistInfo> option) {
+	@Override protected ModelChecker<PayordemistInfo> buildCheckerHook(DeciTreeOption<PayordemistInfo> option) {
 		List<ModelChecker<PayordemistInfo>> queue = new ArrayList<>();		
 		ModelChecker<PayordemistInfo> checker;	
 		ModelCheckerOption checkerOption;

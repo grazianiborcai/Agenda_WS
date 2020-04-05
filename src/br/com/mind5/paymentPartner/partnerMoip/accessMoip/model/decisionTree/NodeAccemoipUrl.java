@@ -30,7 +30,7 @@ public final class NodeAccemoipUrl extends DeciTreeWriteTemplate<AccemoipInfo> {
 	
 	
 	
-	@Override protected ModelChecker<AccemoipInfo> buildDecisionCheckerHook(DeciTreeOption<AccemoipInfo> option) {
+	@Override protected ModelChecker<AccemoipInfo> buildCheckerHook(DeciTreeOption<AccemoipInfo> option) {
 		List<ModelChecker<AccemoipInfo>> queue = new ArrayList<>();		
 		ModelChecker<AccemoipInfo> checker;	
 		ModelCheckerOption checkerOption;

@@ -21,7 +21,7 @@ public final class RootDaypartSelect extends DeciTreeReadTemplate<DaypartInfo> {
 	
 	
 	
-	@Override protected ModelChecker<DaypartInfo> buildDecisionCheckerHook(DeciTreeOption<DaypartInfo> option) {
+	@Override protected ModelChecker<DaypartInfo> buildCheckerHook(DeciTreeOption<DaypartInfo> option) {
 		List<ModelChecker<DaypartInfo>> queue = new ArrayList<>();		
 		ModelChecker<DaypartInfo> checker;
 		ModelCheckerOption checkerOption;	

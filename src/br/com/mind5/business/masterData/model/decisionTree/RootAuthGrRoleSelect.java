@@ -21,7 +21,7 @@ public final class RootAuthGrRoleSelect extends DeciTreeReadTemplate<AuthGrRoleI
 	
 	
 	
-	@Override protected ModelChecker<AuthGrRoleInfo> buildDecisionCheckerHook(DeciTreeOption<AuthGrRoleInfo> option) {
+	@Override protected ModelChecker<AuthGrRoleInfo> buildCheckerHook(DeciTreeOption<AuthGrRoleInfo> option) {
 		List<ModelChecker<AuthGrRoleInfo>> queue = new ArrayList<>();		
 		ModelChecker<AuthGrRoleInfo> checker;
 		ModelCheckerOption checkerOption;	

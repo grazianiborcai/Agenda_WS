@@ -23,7 +23,7 @@ public final class RootFimistSelect extends DeciTreeReadTemplate<FimistInfo> {
 	
 	
 	
-	@Override protected ModelChecker<FimistInfo> buildDecisionCheckerHook(DeciTreeOption<FimistInfo> option) {
+	@Override protected ModelChecker<FimistInfo> buildCheckerHook(DeciTreeOption<FimistInfo> option) {
 		List<ModelChecker<FimistInfo>> queue = new ArrayList<>();		
 		ModelChecker<FimistInfo> checker;	
 		ModelCheckerOption checkerOption;

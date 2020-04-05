@@ -24,7 +24,7 @@ public final class RootSetuparSelect extends DeciTreeReadTemplate<SetuparInfo> {
 	
 	
 	
-	@Override protected ModelChecker<SetuparInfo> buildDecisionCheckerHook(DeciTreeOption<SetuparInfo> option) {
+	@Override protected ModelChecker<SetuparInfo> buildCheckerHook(DeciTreeOption<SetuparInfo> option) {
 		List<ModelChecker<SetuparInfo>> queue = new ArrayList<>();		
 		ModelChecker<SetuparInfo> checker;
 		ModelCheckerOption checkerOption;

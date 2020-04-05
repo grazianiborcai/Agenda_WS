@@ -25,7 +25,7 @@ public class RootEmplargSelect extends DeciTreeReadTemplate<EmplargInfo> {
 	
 	
 	
-	@Override protected ModelChecker<EmplargInfo> buildDecisionCheckerHook(DeciTreeOption<EmplargInfo> option) {
+	@Override protected ModelChecker<EmplargInfo> buildCheckerHook(DeciTreeOption<EmplargInfo> option) {
 		List<ModelChecker<EmplargInfo>> queue = new ArrayList<>();		
 		ModelChecker<EmplargInfo> checker;
 		ModelCheckerOption checkerOption;

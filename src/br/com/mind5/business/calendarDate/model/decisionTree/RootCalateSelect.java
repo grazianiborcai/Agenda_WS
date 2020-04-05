@@ -21,7 +21,7 @@ public final class RootCalateSelect extends DeciTreeReadTemplate<CalateInfo> {
 	
 	
 	
-	@Override protected ModelChecker<CalateInfo> buildDecisionCheckerHook(DeciTreeOption<CalateInfo> option) {
+	@Override protected ModelChecker<CalateInfo> buildCheckerHook(DeciTreeOption<CalateInfo> option) {
 		List<ModelChecker<CalateInfo>> queue = new ArrayList<>();		
 		ModelChecker<CalateInfo> checker;
 		ModelCheckerOption checkerOption;	

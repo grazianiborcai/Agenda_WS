@@ -21,7 +21,7 @@ public final class RootMoonaseSelect extends DeciTreeReadTemplate<MoonaseInfo> {
 	
 	
 	
-	@Override protected ModelChecker<MoonaseInfo> buildDecisionCheckerHook(DeciTreeOption<MoonaseInfo> option) {
+	@Override protected ModelChecker<MoonaseInfo> buildCheckerHook(DeciTreeOption<MoonaseInfo> option) {
 		List<ModelChecker<MoonaseInfo>> queue = new ArrayList<>();		
 		ModelChecker<MoonaseInfo> checker;
 		ModelCheckerOption checkerOption;	

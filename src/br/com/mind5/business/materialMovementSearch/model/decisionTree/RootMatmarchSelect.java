@@ -24,7 +24,7 @@ public final class RootMatmarchSelect extends DeciTreeReadTemplate<MatmarchInfo>
 	
 	
 	
-	@Override protected ModelChecker<MatmarchInfo> buildDecisionCheckerHook(DeciTreeOption<MatmarchInfo> option) {
+	@Override protected ModelChecker<MatmarchInfo> buildCheckerHook(DeciTreeOption<MatmarchInfo> option) {
 		List<ModelChecker<MatmarchInfo>> queue = new ArrayList<>();		
 		ModelChecker<MatmarchInfo> checker;
 		ModelCheckerOption checkerOption;

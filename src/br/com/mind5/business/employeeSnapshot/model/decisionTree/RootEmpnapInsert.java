@@ -27,7 +27,7 @@ public final class RootEmpnapInsert extends DeciTreeWriteTemplate<EmpnapInfo> {
 	
 	
 	
-	@Override protected ModelChecker<EmpnapInfo> buildDecisionCheckerHook(DeciTreeOption<EmpnapInfo> option) {
+	@Override protected ModelChecker<EmpnapInfo> buildCheckerHook(DeciTreeOption<EmpnapInfo> option) {
 		List<ModelChecker<EmpnapInfo>> queue = new ArrayList<>();		
 		ModelChecker<EmpnapInfo> checker;
 		ModelCheckerOption checkerOption;		

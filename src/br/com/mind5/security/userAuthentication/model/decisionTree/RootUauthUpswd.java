@@ -23,7 +23,7 @@ public final class RootUauthUpswd extends DeciTreeWriteTemplate<UauthInfo> {
 	
 	
 	
-	@Override protected ModelChecker<UauthInfo> buildDecisionCheckerHook(DeciTreeOption<UauthInfo> option) {
+	@Override protected ModelChecker<UauthInfo> buildCheckerHook(DeciTreeOption<UauthInfo> option) {
 		List<ModelChecker<UauthInfo>> queue = new ArrayList<>();		
 		ModelChecker<UauthInfo> checker;
 		ModelCheckerOption checkerOption;		

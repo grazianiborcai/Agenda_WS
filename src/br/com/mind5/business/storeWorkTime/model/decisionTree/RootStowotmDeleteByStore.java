@@ -24,7 +24,7 @@ public final class RootStowotmDeleteByStore extends DeciTreeWriteTemplate<Stowot
 	
 	
 	
-	@Override protected ModelChecker<StowotmInfo> buildDecisionCheckerHook(DeciTreeOption<StowotmInfo> option) {
+	@Override protected ModelChecker<StowotmInfo> buildCheckerHook(DeciTreeOption<StowotmInfo> option) {
 		List<ModelChecker<StowotmInfo>> queue = new ArrayList<>();		
 		ModelChecker<StowotmInfo> checker;
 		ModelCheckerOption checkerOption;

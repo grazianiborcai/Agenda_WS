@@ -32,7 +32,7 @@ public final class RootPaymoipPay extends DeciTreeWriteTemplate<PaymoipInfo> {
 	
 	
 	
-	@Override protected ModelChecker<PaymoipInfo> buildDecisionCheckerHook(DeciTreeOption<PaymoipInfo> option) {	
+	@Override protected ModelChecker<PaymoipInfo> buildCheckerHook(DeciTreeOption<PaymoipInfo> option) {	
 		List<ModelChecker<PaymoipInfo>> queue = new ArrayList<>();		
 		ModelChecker<PaymoipInfo> checker;
 		ModelCheckerOption checkerOption;

@@ -22,7 +22,7 @@ public final class RootPhoneSearch extends DeciTreeWriteTemplate<PhoneInfo> {
 	
 	
 	
-	@Override protected ModelChecker<PhoneInfo> buildDecisionCheckerHook(DeciTreeOption<PhoneInfo> option) {
+	@Override protected ModelChecker<PhoneInfo> buildCheckerHook(DeciTreeOption<PhoneInfo> option) {
 		List<ModelChecker<PhoneInfo>> queue = new ArrayList<>();		
 		ModelChecker<PhoneInfo> checker;	
 

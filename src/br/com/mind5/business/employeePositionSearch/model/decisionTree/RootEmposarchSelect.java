@@ -23,7 +23,7 @@ public final class RootEmposarchSelect extends DeciTreeReadTemplate<EmposarchInf
 	
 	
 	
-	@Override protected ModelChecker<EmposarchInfo> buildDecisionCheckerHook(DeciTreeOption<EmposarchInfo> option) {
+	@Override protected ModelChecker<EmposarchInfo> buildCheckerHook(DeciTreeOption<EmposarchInfo> option) {
 		List<ModelChecker<EmposarchInfo>> queue = new ArrayList<>();		
 		ModelChecker<EmposarchInfo> checker;
 		ModelCheckerOption checkerOption;

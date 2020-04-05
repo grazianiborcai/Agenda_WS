@@ -23,7 +23,7 @@ public final class RootEmabodySelect extends DeciTreeWriteTemplate<EmabodyInfo> 
 	
 	
 	
-	@Override protected ModelChecker<EmabodyInfo> buildDecisionCheckerHook(DeciTreeOption<EmabodyInfo> option) {		
+	@Override protected ModelChecker<EmabodyInfo> buildCheckerHook(DeciTreeOption<EmabodyInfo> option) {		
 		List<ModelChecker<EmabodyInfo>> queue = new ArrayList<>();		
 		ModelChecker<EmabodyInfo> checker;	
 		ModelCheckerOption checkerOption;		

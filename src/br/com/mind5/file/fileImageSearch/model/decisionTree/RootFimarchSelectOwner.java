@@ -23,7 +23,7 @@ public final class RootFimarchSelectOwner extends DeciTreeReadTemplate<FimarchIn
 	
 	
 	
-	@Override protected ModelChecker<FimarchInfo> buildDecisionCheckerHook(DeciTreeOption<FimarchInfo> option) {
+	@Override protected ModelChecker<FimarchInfo> buildCheckerHook(DeciTreeOption<FimarchInfo> option) {
 		List<ModelChecker<FimarchInfo>> queue = new ArrayList<>();		
 		ModelChecker<FimarchInfo> checker;	
 		ModelCheckerOption checkerOption;

@@ -21,7 +21,7 @@ public final class RootMonthSelect extends DeciTreeReadTemplate<MonthInfo> {
 	
 	
 	
-	@Override protected ModelChecker<MonthInfo> buildDecisionCheckerHook(DeciTreeOption<MonthInfo> option) {
+	@Override protected ModelChecker<MonthInfo> buildCheckerHook(DeciTreeOption<MonthInfo> option) {
 		List<ModelChecker<MonthInfo>> queue = new ArrayList<>();		
 		ModelChecker<MonthInfo> checker;
 		ModelCheckerOption checkerOption;	

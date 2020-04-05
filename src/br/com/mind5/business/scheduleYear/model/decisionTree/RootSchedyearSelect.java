@@ -23,7 +23,7 @@ public final class RootSchedyearSelect extends DeciTreeWriteTemplate<SchedyearIn
 	
 	
 	
-	@Override protected ModelChecker<SchedyearInfo> buildDecisionCheckerHook(DeciTreeOption<SchedyearInfo> option) {
+	@Override protected ModelChecker<SchedyearInfo> buildCheckerHook(DeciTreeOption<SchedyearInfo> option) {
 		List<ModelChecker<SchedyearInfo>> queue = new ArrayList<>();		
 		ModelChecker<SchedyearInfo> checker;	
 		ModelCheckerOption checkerOption;

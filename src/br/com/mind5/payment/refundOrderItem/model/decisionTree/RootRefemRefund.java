@@ -30,7 +30,7 @@ public final class RootRefemRefund extends DeciTreeWriteTemplate<RefemInfo> {
 	
 	
 	
-	@Override protected ModelChecker<RefemInfo> buildDecisionCheckerHook(DeciTreeOption<RefemInfo> option) {
+	@Override protected ModelChecker<RefemInfo> buildCheckerHook(DeciTreeOption<RefemInfo> option) {
 		List<ModelChecker<RefemInfo>> queue = new ArrayList<>();		
 		ModelChecker<RefemInfo> checker;	
 		ModelCheckerOption checkerOption;

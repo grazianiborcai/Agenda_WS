@@ -21,7 +21,7 @@ public final class RootCurrencySelect extends DeciTreeReadTemplate<CurrencyInfo>
 	
 	
 	
-	@Override protected ModelChecker<CurrencyInfo> buildDecisionCheckerHook(DeciTreeOption<CurrencyInfo> option) {
+	@Override protected ModelChecker<CurrencyInfo> buildCheckerHook(DeciTreeOption<CurrencyInfo> option) {
 		List<ModelChecker<CurrencyInfo>> queue = new ArrayList<>();		
 		ModelChecker<CurrencyInfo> checker;
 		ModelCheckerOption checkerOption;	

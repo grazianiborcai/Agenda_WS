@@ -24,7 +24,7 @@ public final class RootPersonapSelect extends DeciTreeReadTemplate<PersonapInfo>
 	
 	
 	
-	@Override protected ModelChecker<PersonapInfo> buildDecisionCheckerHook(DeciTreeOption<PersonapInfo> option) {
+	@Override protected ModelChecker<PersonapInfo> buildCheckerHook(DeciTreeOption<PersonapInfo> option) {
 		List<ModelChecker<PersonapInfo>> queue = new ArrayList<>();		
 		ModelChecker<PersonapInfo> checker;
 		ModelCheckerOption checkerOption;

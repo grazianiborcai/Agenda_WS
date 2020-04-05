@@ -21,7 +21,7 @@ public final class RootEntityCategSelect extends DeciTreeReadTemplate<EntityCate
 	
 	
 	
-	@Override protected ModelChecker<EntityCategInfo> buildDecisionCheckerHook(DeciTreeOption<EntityCategInfo> option) {
+	@Override protected ModelChecker<EntityCategInfo> buildCheckerHook(DeciTreeOption<EntityCategInfo> option) {
 		List<ModelChecker<EntityCategInfo>> queue = new ArrayList<>();		
 		ModelChecker<EntityCategInfo> checker;
 		ModelCheckerOption checkerOption;	

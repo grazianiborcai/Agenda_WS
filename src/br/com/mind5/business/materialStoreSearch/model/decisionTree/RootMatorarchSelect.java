@@ -23,7 +23,7 @@ public final class RootMatorarchSelect extends DeciTreeReadTemplate<MatorarchInf
 	
 	
 	
-	@Override protected ModelChecker<MatorarchInfo> buildDecisionCheckerHook(DeciTreeOption<MatorarchInfo> option) {
+	@Override protected ModelChecker<MatorarchInfo> buildCheckerHook(DeciTreeOption<MatorarchInfo> option) {
 		ModelCheckerOption checkerOption;
 		List<ModelChecker<MatorarchInfo>> queue = new ArrayList<>();		
 		ModelChecker<MatorarchInfo> checker;

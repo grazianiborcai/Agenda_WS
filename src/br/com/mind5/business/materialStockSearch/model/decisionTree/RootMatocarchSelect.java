@@ -24,7 +24,7 @@ public final class RootMatocarchSelect extends DeciTreeReadTemplate<MatocarchInf
 	
 	
 	
-	@Override protected ModelChecker<MatocarchInfo> buildDecisionCheckerHook(DeciTreeOption<MatocarchInfo> option) {
+	@Override protected ModelChecker<MatocarchInfo> buildCheckerHook(DeciTreeOption<MatocarchInfo> option) {
 		List<ModelChecker<MatocarchInfo>> queue = new ArrayList<>();		
 		ModelChecker<MatocarchInfo> checker;
 		ModelCheckerOption checkerOption;

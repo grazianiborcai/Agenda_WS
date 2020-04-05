@@ -361,9 +361,7 @@ public abstract class ModelTemplate<T extends InfoRecord> implements Model {
 	
 	
 	private void logException(Exception e) {
-		Class<?> clazz = getImplamentationClassHook();
-		
-		SystemLog.logError(clazz, e);
+		SystemLog.logError(this.getClass(), e);
 	}
 	
 	

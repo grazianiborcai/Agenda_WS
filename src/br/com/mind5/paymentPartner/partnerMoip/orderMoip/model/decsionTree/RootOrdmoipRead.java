@@ -27,7 +27,7 @@ public final class RootOrdmoipRead extends DeciTreeWriteTemplate<OrdmoipInfo> {
 	
 	
 	
-	@Override protected ModelChecker<OrdmoipInfo> buildDecisionCheckerHook(DeciTreeOption<OrdmoipInfo> option) {	
+	@Override protected ModelChecker<OrdmoipInfo> buildCheckerHook(DeciTreeOption<OrdmoipInfo> option) {	
 		List<ModelChecker<OrdmoipInfo>> queue = new ArrayList<>();		
 		ModelChecker<OrdmoipInfo> checker;	
 		ModelCheckerOption checkerOption;

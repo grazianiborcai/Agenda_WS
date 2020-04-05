@@ -23,7 +23,7 @@ public final class RootComparchSelect extends DeciTreeReadTemplate<ComparchInfo>
 	
 	
 	
-	@Override protected ModelChecker<ComparchInfo> buildDecisionCheckerHook(DeciTreeOption<ComparchInfo> option) {
+	@Override protected ModelChecker<ComparchInfo> buildCheckerHook(DeciTreeOption<ComparchInfo> option) {
 		List<ModelChecker<ComparchInfo>> queue = new ArrayList<>();		
 		ModelChecker<ComparchInfo> checker;
 		ModelCheckerOption checkerOption;		

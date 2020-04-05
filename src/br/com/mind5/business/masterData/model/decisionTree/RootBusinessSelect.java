@@ -21,7 +21,7 @@ public final class RootBusinessSelect extends DeciTreeReadTemplate<BusinessInfo>
 	
 	
 	
-	@Override protected ModelChecker<BusinessInfo> buildDecisionCheckerHook(DeciTreeOption<BusinessInfo> option) {
+	@Override protected ModelChecker<BusinessInfo> buildCheckerHook(DeciTreeOption<BusinessInfo> option) {
 		List<ModelChecker<BusinessInfo>> queue = new ArrayList<>();		
 		ModelChecker<BusinessInfo> checker;
 		ModelCheckerOption checkerOption;	

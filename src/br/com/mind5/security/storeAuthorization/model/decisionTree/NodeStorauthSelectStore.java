@@ -20,7 +20,7 @@ public final class NodeStorauthSelectStore extends DeciTreeWriteTemplate<Storaut
 	
 	
 	
-	@Override protected ModelChecker<StorauthInfo> buildDecisionCheckerHook(DeciTreeOption<StorauthInfo> option) {
+	@Override protected ModelChecker<StorauthInfo> buildCheckerHook(DeciTreeOption<StorauthInfo> option) {
 		List<ModelChecker<StorauthInfo>> queue = new ArrayList<>();		
 		ModelChecker<StorauthInfo> checker;
 		ModelCheckerOption checkerOption;

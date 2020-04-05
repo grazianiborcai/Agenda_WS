@@ -25,7 +25,7 @@ public final class RootPerarchSelect extends DeciTreeReadTemplate<PerarchInfo> {
 	
 	
 	
-	@Override protected ModelChecker<PerarchInfo> buildDecisionCheckerHook(DeciTreeOption<PerarchInfo> option) {
+	@Override protected ModelChecker<PerarchInfo> buildCheckerHook(DeciTreeOption<PerarchInfo> option) {
 		List<ModelChecker<PerarchInfo>> queue = new ArrayList<>();		
 		ModelChecker<PerarchInfo> checker;
 		ModelCheckerOption checkerOption;	

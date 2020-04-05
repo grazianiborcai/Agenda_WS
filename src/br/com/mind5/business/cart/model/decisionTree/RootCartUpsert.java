@@ -28,7 +28,7 @@ public final class RootCartUpsert extends DeciTreeWriteTemplate<CartInfo> {
 	
 	
 	
-	@Override protected ModelChecker<CartInfo> buildDecisionCheckerHook(DeciTreeOption<CartInfo> option) {
+	@Override protected ModelChecker<CartInfo> buildCheckerHook(DeciTreeOption<CartInfo> option) {
 		List<ModelChecker<CartInfo>> queue = new ArrayList<>();		
 		ModelChecker<CartInfo> checker;	
 		ModelCheckerOption checkerOption;

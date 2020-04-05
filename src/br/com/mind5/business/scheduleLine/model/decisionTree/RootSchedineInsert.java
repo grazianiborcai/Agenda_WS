@@ -35,7 +35,7 @@ public final class RootSchedineInsert extends DeciTreeWriteTemplate<SchedineInfo
 	
 	
 	
-	@Override protected ModelChecker<SchedineInfo> buildDecisionCheckerHook(DeciTreeOption<SchedineInfo> option) {
+	@Override protected ModelChecker<SchedineInfo> buildCheckerHook(DeciTreeOption<SchedineInfo> option) {
 		List<ModelChecker<SchedineInfo>> queue = new ArrayList<>();		
 		ModelChecker<SchedineInfo> checker;	
 		ModelCheckerOption checkerOption;

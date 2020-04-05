@@ -21,7 +21,7 @@ public final class RootCrecarchSelect extends DeciTreeReadTemplate<CrecarchInfo>
 	
 	
 	
-	@Override protected ModelChecker<CrecarchInfo> buildDecisionCheckerHook(DeciTreeOption<CrecarchInfo> option) {
+	@Override protected ModelChecker<CrecarchInfo> buildCheckerHook(DeciTreeOption<CrecarchInfo> option) {
 		List<ModelChecker<CrecarchInfo>> queue = new ArrayList<>();		
 		ModelChecker<CrecarchInfo> checker;
 		ModelCheckerOption checkerOption;

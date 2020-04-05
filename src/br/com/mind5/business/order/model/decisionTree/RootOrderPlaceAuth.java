@@ -23,7 +23,7 @@ public final class RootOrderPlaceAuth extends DeciTreeReadTemplate<OrderInfo> {
 	
 	
 	
-	@Override protected ModelChecker<OrderInfo> buildDecisionCheckerHook(DeciTreeOption<OrderInfo> option) {
+	@Override protected ModelChecker<OrderInfo> buildCheckerHook(DeciTreeOption<OrderInfo> option) {
 		List<ModelChecker<OrderInfo>> queue = new ArrayList<>();		
 		ModelChecker<OrderInfo> checker;	
 		ModelCheckerOption checkerOption;

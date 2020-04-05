@@ -29,7 +29,7 @@ public final class RootEmpmatDelete extends DeciTreeWriteTemplate<EmpmatInfo> {
 	
 	
 	
-	@Override protected ModelChecker<EmpmatInfo> buildDecisionCheckerHook(DeciTreeOption<EmpmatInfo> option) {
+	@Override protected ModelChecker<EmpmatInfo> buildCheckerHook(DeciTreeOption<EmpmatInfo> option) {
 		List<ModelChecker<EmpmatInfo>> queue = new ArrayList<>();		
 		ModelChecker<EmpmatInfo> checker;
 		ModelCheckerOption checkerOption;

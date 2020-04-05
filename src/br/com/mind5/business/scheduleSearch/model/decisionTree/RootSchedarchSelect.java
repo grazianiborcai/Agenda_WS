@@ -23,7 +23,7 @@ public final class RootSchedarchSelect extends DeciTreeWriteTemplate<SchedarchIn
 	
 	
 	
-	@Override protected ModelChecker<SchedarchInfo> buildDecisionCheckerHook(DeciTreeOption<SchedarchInfo> option) {
+	@Override protected ModelChecker<SchedarchInfo> buildCheckerHook(DeciTreeOption<SchedarchInfo> option) {
 		List<ModelChecker<SchedarchInfo>> queue = new ArrayList<>();		
 		ModelChecker<SchedarchInfo> checker;
 		ModelCheckerOption checkerOption;

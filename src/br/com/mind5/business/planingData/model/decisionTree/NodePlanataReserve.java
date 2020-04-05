@@ -23,7 +23,7 @@ public class NodePlanataReserve extends DeciTreeReadTemplate<PlanataInfo> {
 	
 	
 	
-	@Override protected ModelChecker<PlanataInfo> buildDecisionCheckerHook(DeciTreeOption<PlanataInfo> option) {
+	@Override protected ModelChecker<PlanataInfo> buildCheckerHook(DeciTreeOption<PlanataInfo> option) {
 		List<ModelChecker<PlanataInfo>> queue = new ArrayList<>();		
 		ModelChecker<PlanataInfo> checker;
 		ModelCheckerOption checkerOption;

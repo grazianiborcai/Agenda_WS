@@ -22,7 +22,7 @@ public final class RootOrdistSearch extends DeciTreeReadTemplate<OrdistInfo> {
 	
 	
 	
-	@Override protected ModelChecker<OrdistInfo> buildDecisionCheckerHook(DeciTreeOption<OrdistInfo> option) {
+	@Override protected ModelChecker<OrdistInfo> buildCheckerHook(DeciTreeOption<OrdistInfo> option) {
 		List<ModelChecker<OrdistInfo>> queue = new ArrayList<>();		
 		ModelChecker<OrdistInfo> checker;
 		

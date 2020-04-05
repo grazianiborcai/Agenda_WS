@@ -20,7 +20,7 @@ public final class RootLanguSelect extends DeciTreeReadTemplate<LanguInfo> {
 	
 	
 	
-	@Override protected ModelChecker<LanguInfo> buildDecisionCheckerHook(DeciTreeOption<LanguInfo> option) {
+	@Override protected ModelChecker<LanguInfo> buildCheckerHook(DeciTreeOption<LanguInfo> option) {
 		List<ModelChecker<LanguInfo>> queue = new ArrayList<>();		
 		ModelChecker<LanguInfo> checker;
 		

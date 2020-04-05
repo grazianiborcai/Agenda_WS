@@ -21,7 +21,7 @@ public final class NodeJwtokenValidate extends DeciTreeWriteTemplate<JwtokenInfo
 	
 	
 	
-	@Override protected ModelChecker<JwtokenInfo> buildDecisionCheckerHook(DeciTreeOption<JwtokenInfo> option) {
+	@Override protected ModelChecker<JwtokenInfo> buildCheckerHook(DeciTreeOption<JwtokenInfo> option) {
 		List<ModelChecker<JwtokenInfo>> queue = new ArrayList<>();		
 		ModelChecker<JwtokenInfo> checker;	
 		ModelCheckerOption checkerOption;

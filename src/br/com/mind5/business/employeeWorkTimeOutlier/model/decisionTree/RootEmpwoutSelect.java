@@ -24,7 +24,7 @@ public final class RootEmpwoutSelect extends DeciTreeReadTemplate<EmpwoutInfo> {
 	
 	
 	
-	@Override protected ModelChecker<EmpwoutInfo> buildDecisionCheckerHook(DeciTreeOption<EmpwoutInfo> option) {
+	@Override protected ModelChecker<EmpwoutInfo> buildCheckerHook(DeciTreeOption<EmpwoutInfo> option) {
 		List<ModelChecker<EmpwoutInfo>> queue = new ArrayList<>();		
 		ModelChecker<EmpwoutInfo> checker;
 		ModelCheckerOption checkerOption;

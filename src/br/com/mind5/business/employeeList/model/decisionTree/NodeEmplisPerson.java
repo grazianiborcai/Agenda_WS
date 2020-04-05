@@ -24,7 +24,7 @@ public final class NodeEmplisPerson extends DeciTreeReadTemplate<EmplisInfo> {
 	
 	
 	
-	@Override protected ModelChecker<EmplisInfo> buildDecisionCheckerHook(DeciTreeOption<EmplisInfo> option) {
+	@Override protected ModelChecker<EmplisInfo> buildCheckerHook(DeciTreeOption<EmplisInfo> option) {
 		List<ModelChecker<EmplisInfo>> queue = new ArrayList<>();		
 		ModelChecker<EmplisInfo> checker;
 		ModelCheckerOption checkerOption;	

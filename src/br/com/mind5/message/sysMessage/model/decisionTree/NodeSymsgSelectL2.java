@@ -21,7 +21,7 @@ public final class NodeSymsgSelectL2 extends DeciTreeWriteTemplate<SymsgInfo> {
 	
 	
 	
-	@Override protected ModelChecker<SymsgInfo> buildDecisionCheckerHook(DeciTreeOption<SymsgInfo> option) {	
+	@Override protected ModelChecker<SymsgInfo> buildCheckerHook(DeciTreeOption<SymsgInfo> option) {	
 		List<ModelChecker<SymsgInfo>> queue = new ArrayList<>();		
 		ModelChecker<SymsgInfo> checker;	
 		ModelCheckerOption checkerOption;	

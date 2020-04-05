@@ -21,7 +21,7 @@ public final class RootMatGroupSelect extends DeciTreeReadTemplate<MatGroupInfo>
 	
 	
 	
-	@Override protected ModelChecker<MatGroupInfo> buildDecisionCheckerHook(DeciTreeOption<MatGroupInfo> option) {
+	@Override protected ModelChecker<MatGroupInfo> buildCheckerHook(DeciTreeOption<MatGroupInfo> option) {
 		List<ModelChecker<MatGroupInfo>> queue = new ArrayList<>();		
 		ModelChecker<MatGroupInfo> checker;
 		ModelCheckerOption checkerOption;	

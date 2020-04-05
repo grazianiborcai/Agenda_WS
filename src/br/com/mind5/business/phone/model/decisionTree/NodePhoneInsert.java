@@ -26,7 +26,7 @@ public final class NodePhoneInsert extends DeciTreeWriteTemplate<PhoneInfo> {
 	
 	
 	
-	@Override protected ModelChecker<PhoneInfo> buildDecisionCheckerHook(DeciTreeOption<PhoneInfo> option) {
+	@Override protected ModelChecker<PhoneInfo> buildCheckerHook(DeciTreeOption<PhoneInfo> option) {
 		List<ModelChecker<PhoneInfo>> queue = new ArrayList<>();		
 		ModelChecker<PhoneInfo> checker;	
 		ModelCheckerOption checkerOption;

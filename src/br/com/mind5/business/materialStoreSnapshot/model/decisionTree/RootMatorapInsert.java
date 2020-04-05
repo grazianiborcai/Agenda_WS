@@ -24,7 +24,7 @@ public final class RootMatorapInsert extends DeciTreeWriteTemplate<MatorapInfo> 
 	
 	
 	
-	@Override protected ModelChecker<MatorapInfo> buildDecisionCheckerHook(DeciTreeOption<MatorapInfo> option) {
+	@Override protected ModelChecker<MatorapInfo> buildCheckerHook(DeciTreeOption<MatorapInfo> option) {
 		List<ModelChecker<MatorapInfo>> queue = new ArrayList<>();		
 		ModelChecker<MatorapInfo> checker;
 		ModelCheckerOption checkerOption;		

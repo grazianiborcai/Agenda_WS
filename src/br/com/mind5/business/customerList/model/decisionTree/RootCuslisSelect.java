@@ -26,7 +26,7 @@ public final class RootCuslisSelect extends DeciTreeReadTemplate<CuslisInfo> {
 	
 	
 	
-	@Override protected ModelChecker<CuslisInfo> buildDecisionCheckerHook(DeciTreeOption<CuslisInfo> option) {
+	@Override protected ModelChecker<CuslisInfo> buildCheckerHook(DeciTreeOption<CuslisInfo> option) {
 		List<ModelChecker<CuslisInfo>> queue = new ArrayList<>();		
 		ModelChecker<CuslisInfo> checker;
 		ModelCheckerOption checkerOption;	

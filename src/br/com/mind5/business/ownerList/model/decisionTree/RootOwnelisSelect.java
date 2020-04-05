@@ -23,7 +23,7 @@ public final class RootOwnelisSelect extends DeciTreeReadTemplate<OwnelisInfo> {
 	
 	
 	
-	@Override protected ModelChecker<OwnelisInfo> buildDecisionCheckerHook(DeciTreeOption<OwnelisInfo> option) {
+	@Override protected ModelChecker<OwnelisInfo> buildCheckerHook(DeciTreeOption<OwnelisInfo> option) {
 		List<ModelChecker<OwnelisInfo>> queue = new ArrayList<>();		
 		ModelChecker<OwnelisInfo> checker;
 		ModelCheckerOption checkerOption;

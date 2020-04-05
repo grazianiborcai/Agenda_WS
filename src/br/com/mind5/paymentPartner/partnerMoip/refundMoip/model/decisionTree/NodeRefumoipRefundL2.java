@@ -20,7 +20,7 @@ public final class NodeRefumoipRefundL2 extends DeciTreeWriteTemplate<RefumoipIn
 	
 	
 	
-	@Override protected ModelChecker<RefumoipInfo> buildDecisionCheckerHook(DeciTreeOption<RefumoipInfo> option) {				
+	@Override protected ModelChecker<RefumoipInfo> buildCheckerHook(DeciTreeOption<RefumoipInfo> option) {				
 		List<ModelChecker<RefumoipInfo>> queue = new ArrayList<>();		
 		ModelChecker<RefumoipInfo> checker;	
 		ModelCheckerOption checkerOption;

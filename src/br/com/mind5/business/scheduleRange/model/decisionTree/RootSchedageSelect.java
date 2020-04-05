@@ -24,7 +24,7 @@ public final class RootSchedageSelect extends DeciTreeWriteTemplate<SchedageInfo
 	
 	
 	
-	@Override protected ModelChecker<SchedageInfo> buildDecisionCheckerHook(DeciTreeOption<SchedageInfo> option) {		
+	@Override protected ModelChecker<SchedageInfo> buildCheckerHook(DeciTreeOption<SchedageInfo> option) {		
 		List<ModelChecker<SchedageInfo>> queue = new ArrayList<>();		
 		ModelChecker<SchedageInfo> checker;
 		ModelCheckerOption checkerOption;

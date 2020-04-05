@@ -24,7 +24,7 @@ public final class NodeAddressInsertA01 extends DeciTreeWriteTemplate<AddressInf
 	
 	
 	
-	@Override protected ModelChecker<AddressInfo> buildDecisionCheckerHook(DeciTreeOption<AddressInfo> option) {
+	@Override protected ModelChecker<AddressInfo> buildCheckerHook(DeciTreeOption<AddressInfo> option) {
 		List<ModelChecker<AddressInfo>> queue = new ArrayList<>();		
 		ModelChecker<AddressInfo> checker;	
 		ModelCheckerOption checkerOption;

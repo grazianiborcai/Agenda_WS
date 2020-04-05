@@ -24,7 +24,7 @@ public final class NodeCusparInsert extends DeciTreeWriteTemplate<CusparInfo> {
 	
 	
 	
-	@Override protected ModelChecker<CusparInfo> buildDecisionCheckerHook(DeciTreeOption<CusparInfo> option) {
+	@Override protected ModelChecker<CusparInfo> buildCheckerHook(DeciTreeOption<CusparInfo> option) {
 		List<ModelChecker<CusparInfo>> queue = new ArrayList<>();		
 		ModelChecker<CusparInfo> checker;	
 

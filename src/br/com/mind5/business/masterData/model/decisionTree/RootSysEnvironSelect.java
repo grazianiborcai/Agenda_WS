@@ -20,7 +20,7 @@ public final class RootSysEnvironSelect extends DeciTreeReadTemplate<SysEnvironI
 	
 	
 	
-	@Override protected ModelChecker<SysEnvironInfo> buildDecisionCheckerHook(DeciTreeOption<SysEnvironInfo> option) {
+	@Override protected ModelChecker<SysEnvironInfo> buildCheckerHook(DeciTreeOption<SysEnvironInfo> option) {
 		List<ModelChecker<SysEnvironInfo>> queue = new ArrayList<>();		
 		ModelChecker<SysEnvironInfo> checker;
 		

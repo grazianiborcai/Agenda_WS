@@ -21,7 +21,7 @@ public final class RootSysparSelect extends DeciTreeReadTemplate<SysparInfo> {
 	
 	
 	
-	@Override protected ModelChecker<SysparInfo> buildDecisionCheckerHook(DeciTreeOption<SysparInfo> option) {
+	@Override protected ModelChecker<SysparInfo> buildCheckerHook(DeciTreeOption<SysparInfo> option) {
 		List<ModelChecker<SysparInfo>> queue = new ArrayList<>();		
 		ModelChecker<SysparInfo> checker;	
 		ModelCheckerOption checkerOption;

@@ -26,7 +26,7 @@ public final class RootSchedeekSelect extends DeciTreeWriteTemplate<SchedeekInfo
 	
 	
 	
-	@Override protected ModelChecker<SchedeekInfo> buildDecisionCheckerHook(DeciTreeOption<SchedeekInfo> option) {
+	@Override protected ModelChecker<SchedeekInfo> buildCheckerHook(DeciTreeOption<SchedeekInfo> option) {
 		List<ModelChecker<SchedeekInfo>> queue = new ArrayList<>();		
 		ModelChecker<SchedeekInfo> checker;	
 		ModelCheckerOption checkerOption;

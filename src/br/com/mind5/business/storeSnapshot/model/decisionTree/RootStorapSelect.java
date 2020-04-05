@@ -32,7 +32,7 @@ public final class RootStorapSelect extends DeciTreeReadTemplate<StorapInfo> {
 	
 	
 	
-	@Override protected ModelChecker<StorapInfo> buildDecisionCheckerHook(DeciTreeOption<StorapInfo> option) {
+	@Override protected ModelChecker<StorapInfo> buildCheckerHook(DeciTreeOption<StorapInfo> option) {
 		List<ModelChecker<StorapInfo>> queue = new ArrayList<>();		
 		ModelChecker<StorapInfo> checker;
 		ModelCheckerOption checkerOption;

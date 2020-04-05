@@ -21,7 +21,7 @@ public final class RootCountryPhoneSelect extends DeciTreeReadTemplate<CountryPh
 	
 	
 	
-	@Override protected ModelChecker<CountryPhoneInfo> buildDecisionCheckerHook(DeciTreeOption<CountryPhoneInfo> option) {
+	@Override protected ModelChecker<CountryPhoneInfo> buildCheckerHook(DeciTreeOption<CountryPhoneInfo> option) {
 		List<ModelChecker<CountryPhoneInfo>> queue = new ArrayList<>();		
 		ModelChecker<CountryPhoneInfo> checker;
 		ModelCheckerOption checkerOption;	

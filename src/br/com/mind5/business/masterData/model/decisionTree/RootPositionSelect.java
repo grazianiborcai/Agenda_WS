@@ -21,7 +21,7 @@ public final class RootPositionSelect extends DeciTreeReadTemplate<PositionInfo>
 	
 	
 	
-	@Override protected ModelChecker<PositionInfo> buildDecisionCheckerHook(DeciTreeOption<PositionInfo> option) {
+	@Override protected ModelChecker<PositionInfo> buildCheckerHook(DeciTreeOption<PositionInfo> option) {
 		List<ModelChecker<PositionInfo>> queue = new ArrayList<>();		
 		ModelChecker<PositionInfo> checker;
 		ModelCheckerOption checkerOption;	

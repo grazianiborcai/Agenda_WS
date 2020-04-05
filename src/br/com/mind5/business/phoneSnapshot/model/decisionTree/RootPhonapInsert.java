@@ -24,7 +24,7 @@ public final class RootPhonapInsert extends DeciTreeWriteTemplate<PhonapInfo> {
 	
 	
 	
-	@Override protected ModelChecker<PhonapInfo> buildDecisionCheckerHook(DeciTreeOption<PhonapInfo> option) {
+	@Override protected ModelChecker<PhonapInfo> buildCheckerHook(DeciTreeOption<PhonapInfo> option) {
 		List<ModelChecker<PhonapInfo>> queue = new ArrayList<>();		
 		ModelChecker<PhonapInfo> checker;	
 		ModelCheckerOption checkerOption;

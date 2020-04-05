@@ -23,7 +23,7 @@ public final class NodeUserUpdatePerson extends DeciTreeWriteTemplate<UserInfo> 
 	
 	
 	
-	@Override protected ModelChecker<UserInfo> buildDecisionCheckerHook(DeciTreeOption<UserInfo> option) {
+	@Override protected ModelChecker<UserInfo> buildCheckerHook(DeciTreeOption<UserInfo> option) {
 		final boolean HAS_PERSON = true;
 		
 		List<ModelChecker<UserInfo>> queue = new ArrayList<>();		

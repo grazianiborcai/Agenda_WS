@@ -21,7 +21,7 @@ public final class RootComplisSelect extends DeciTreeReadTemplate<ComplisInfo> {
 	
 	
 	
-	@Override protected ModelChecker<ComplisInfo> buildDecisionCheckerHook(DeciTreeOption<ComplisInfo> option) {
+	@Override protected ModelChecker<ComplisInfo> buildCheckerHook(DeciTreeOption<ComplisInfo> option) {
 		List<ModelChecker<ComplisInfo>> queue = new ArrayList<>();		
 		ModelChecker<ComplisInfo> checker;
 		ModelCheckerOption checkerOption;

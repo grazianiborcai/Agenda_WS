@@ -28,7 +28,7 @@ public final class RootStoreDelete extends DeciTreeWriteTemplate<StoreInfo> {
 	
 	
 	
-	@Override protected ModelChecker<StoreInfo> buildDecisionCheckerHook(DeciTreeOption<StoreInfo> option) {
+	@Override protected ModelChecker<StoreInfo> buildCheckerHook(DeciTreeOption<StoreInfo> option) {
 		List<ModelChecker<StoreInfo>> queue = new ArrayList<>();		
 		ModelChecker<StoreInfo> checker;
 		ModelCheckerOption checkerOption;

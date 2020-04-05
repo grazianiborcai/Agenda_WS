@@ -21,7 +21,7 @@ public final class RootCounparchSelect extends DeciTreeReadTemplate<CounparchInf
 	
 	
 	
-	@Override protected ModelChecker<CounparchInfo> buildDecisionCheckerHook(DeciTreeOption<CounparchInfo> option) {
+	@Override protected ModelChecker<CounparchInfo> buildCheckerHook(DeciTreeOption<CounparchInfo> option) {
 		List<ModelChecker<CounparchInfo>> queue = new ArrayList<>();		
 		ModelChecker<CounparchInfo> checker;
 		ModelCheckerOption checkerOption;

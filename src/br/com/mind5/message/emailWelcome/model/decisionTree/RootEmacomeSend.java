@@ -24,7 +24,7 @@ public final class RootEmacomeSend extends DeciTreeWriteTemplate<EmacomeInfo> {
 	
 	
 	
-	@Override protected ModelChecker<EmacomeInfo> buildDecisionCheckerHook(DeciTreeOption<EmacomeInfo> option) {		
+	@Override protected ModelChecker<EmacomeInfo> buildCheckerHook(DeciTreeOption<EmacomeInfo> option) {		
 		List<ModelChecker<EmacomeInfo>> queue = new ArrayList<>();		
 		ModelChecker<EmacomeInfo> checker;	
 		ModelCheckerOption checkerOption;		

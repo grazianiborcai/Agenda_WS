@@ -25,7 +25,7 @@ public final class RootEmpwocoSelect extends DeciTreeReadTemplate<EmpwocoInfo> {
 	
 	
 	
-	@Override protected ModelChecker<EmpwocoInfo> buildDecisionCheckerHook(DeciTreeOption<EmpwocoInfo> option) {
+	@Override protected ModelChecker<EmpwocoInfo> buildCheckerHook(DeciTreeOption<EmpwocoInfo> option) {
 		List<ModelChecker<EmpwocoInfo>> queue = new ArrayList<>();		
 		ModelChecker<EmpwocoInfo> checker;
 		ModelCheckerOption checkerOption;

@@ -24,7 +24,7 @@ public final class NodeUserUpsertPhone extends DeciTreeWriteTemplate<UserInfo> {
 	
 	
 	
-	@Override protected ModelChecker<UserInfo> buildDecisionCheckerHook(DeciTreeOption<UserInfo> option) {
+	@Override protected ModelChecker<UserInfo> buildCheckerHook(DeciTreeOption<UserInfo> option) {
 		List<ModelChecker<UserInfo>> queue = new ArrayList<>();		
 		ModelChecker<UserInfo> checker;
 		ModelCheckerOption checkerOption;	

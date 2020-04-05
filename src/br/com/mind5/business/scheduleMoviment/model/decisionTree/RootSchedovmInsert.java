@@ -26,7 +26,7 @@ public final class RootSchedovmInsert extends DeciTreeWriteTemplate<SchedovmInfo
 	
 	
 	
-	@Override protected ModelChecker<SchedovmInfo> buildDecisionCheckerHook(DeciTreeOption<SchedovmInfo> option) {
+	@Override protected ModelChecker<SchedovmInfo> buildCheckerHook(DeciTreeOption<SchedovmInfo> option) {
 		List<ModelChecker<SchedovmInfo>> queue = new ArrayList<>();		
 		ModelChecker<SchedovmInfo> checker;	
 		ModelCheckerOption checkerOption;

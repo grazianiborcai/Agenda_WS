@@ -24,7 +24,7 @@ public final class RootMatorapSelect extends DeciTreeReadTemplate<MatorapInfo> {
 	
 	
 	
-	@Override protected ModelChecker<MatorapInfo> buildDecisionCheckerHook(DeciTreeOption<MatorapInfo> option) {
+	@Override protected ModelChecker<MatorapInfo> buildCheckerHook(DeciTreeOption<MatorapInfo> option) {
 		ModelCheckerOption checkerOption;
 		List<ModelChecker<MatorapInfo>> queue = new ArrayList<>();		
 		ModelChecker<MatorapInfo> checker;

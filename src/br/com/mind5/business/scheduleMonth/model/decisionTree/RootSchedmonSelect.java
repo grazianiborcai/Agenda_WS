@@ -25,7 +25,7 @@ public final class RootSchedmonSelect extends DeciTreeWriteTemplate<SchedmonInfo
 	
 	
 	
-	@Override protected ModelChecker<SchedmonInfo> buildDecisionCheckerHook(DeciTreeOption<SchedmonInfo> option) {
+	@Override protected ModelChecker<SchedmonInfo> buildCheckerHook(DeciTreeOption<SchedmonInfo> option) {
 		List<ModelChecker<SchedmonInfo>> queue = new ArrayList<>();		
 		ModelChecker<SchedmonInfo> checker;	
 		ModelCheckerOption checkerOption;

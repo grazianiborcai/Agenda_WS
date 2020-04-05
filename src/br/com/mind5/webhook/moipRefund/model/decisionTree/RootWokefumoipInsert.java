@@ -26,7 +26,7 @@ public final class RootWokefumoipInsert extends DeciTreeWriteTemplate<Wokefumoip
 	
 	
 	
-	@Override protected ModelChecker<WokefumoipInfo> buildDecisionCheckerHook(DeciTreeOption<WokefumoipInfo> option) {	
+	@Override protected ModelChecker<WokefumoipInfo> buildCheckerHook(DeciTreeOption<WokefumoipInfo> option) {	
 		List<ModelChecker<WokefumoipInfo>> queue = new ArrayList<>();		
 		ModelChecker<WokefumoipInfo> checker;	
 		ModelCheckerOption checkerOption;

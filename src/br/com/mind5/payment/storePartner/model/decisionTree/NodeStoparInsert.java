@@ -22,7 +22,7 @@ public final class NodeStoparInsert extends DeciTreeWriteTemplate<StoparInfo> {
 	
 	
 	
-	@Override protected ModelChecker<StoparInfo> buildDecisionCheckerHook(DeciTreeOption<StoparInfo> option) {
+	@Override protected ModelChecker<StoparInfo> buildCheckerHook(DeciTreeOption<StoparInfo> option) {
 		final boolean NOT_DELETED = false;	
 		
 		List<ModelChecker<StoparInfo>> queue = new ArrayList<>();		

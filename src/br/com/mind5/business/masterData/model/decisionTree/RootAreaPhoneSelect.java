@@ -21,7 +21,7 @@ public final class RootAreaPhoneSelect extends DeciTreeReadTemplate<AreaPhoneInf
 	
 	
 	
-	@Override protected ModelChecker<AreaPhoneInfo> buildDecisionCheckerHook(DeciTreeOption<AreaPhoneInfo> option) {
+	@Override protected ModelChecker<AreaPhoneInfo> buildCheckerHook(DeciTreeOption<AreaPhoneInfo> option) {
 		List<ModelChecker<AreaPhoneInfo>> queue = new ArrayList<>();		
 		ModelChecker<AreaPhoneInfo> checker;
 		ModelCheckerOption checkerOption;	

@@ -23,7 +23,7 @@ public final class RootCompnapInsert extends DeciTreeWriteTemplate<CompnapInfo> 
 	
 	
 	
-	@Override protected ModelChecker<CompnapInfo> buildDecisionCheckerHook(DeciTreeOption<CompnapInfo> option) {
+	@Override protected ModelChecker<CompnapInfo> buildCheckerHook(DeciTreeOption<CompnapInfo> option) {
 		List<ModelChecker<CompnapInfo>> queue = new ArrayList<>();		
 		ModelChecker<CompnapInfo> checker;
 		ModelCheckerOption checkerOption;		

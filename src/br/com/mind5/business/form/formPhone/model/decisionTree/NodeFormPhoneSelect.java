@@ -22,7 +22,7 @@ public final class NodeFormPhoneSelect extends DeciTreeReadTemplate<FormPhoneInf
 	
 	
 	
-	@Override protected ModelChecker<FormPhoneInfo> buildDecisionCheckerHook(DeciTreeOption<FormPhoneInfo> option) {
+	@Override protected ModelChecker<FormPhoneInfo> buildCheckerHook(DeciTreeOption<FormPhoneInfo> option) {
 		List<ModelChecker<FormPhoneInfo>> queue = new ArrayList<>();		
 		ModelChecker<FormPhoneInfo> checker;	
 		ModelCheckerOption checkerOption;

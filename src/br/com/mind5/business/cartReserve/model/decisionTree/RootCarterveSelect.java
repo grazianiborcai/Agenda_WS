@@ -23,7 +23,7 @@ public final class RootCarterveSelect extends DeciTreeReadTemplate<CarterveInfo>
 	
 	
 	
-	@Override protected ModelChecker<CarterveInfo> buildDecisionCheckerHook(DeciTreeOption<CarterveInfo> option) {
+	@Override protected ModelChecker<CarterveInfo> buildCheckerHook(DeciTreeOption<CarterveInfo> option) {
 		List<ModelChecker<CarterveInfo>> queue = new ArrayList<>();		
 		ModelChecker<CarterveInfo> checker;	
 		ModelCheckerOption checkerOption;

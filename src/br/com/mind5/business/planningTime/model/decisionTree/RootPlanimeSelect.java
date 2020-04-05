@@ -29,7 +29,7 @@ public class RootPlanimeSelect extends DeciTreeReadTemplate<PlanimeInfo> {
 	
 	
 	
-	@Override protected ModelChecker<PlanimeInfo> buildDecisionCheckerHook(DeciTreeOption<PlanimeInfo> option) {
+	@Override protected ModelChecker<PlanimeInfo> buildCheckerHook(DeciTreeOption<PlanimeInfo> option) {
 		List<ModelChecker<PlanimeInfo>> queue = new ArrayList<>();		
 		ModelChecker<PlanimeInfo> checker;
 		ModelCheckerOption checkerOption;

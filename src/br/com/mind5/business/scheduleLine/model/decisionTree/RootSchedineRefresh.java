@@ -22,7 +22,7 @@ public final class RootSchedineRefresh extends DeciTreeWriteTemplate<SchedineInf
 	
 	
 	
-	@Override protected ModelChecker<SchedineInfo> buildDecisionCheckerHook(DeciTreeOption<SchedineInfo> option) {
+	@Override protected ModelChecker<SchedineInfo> buildCheckerHook(DeciTreeOption<SchedineInfo> option) {
 		List<ModelChecker<SchedineInfo>> queue = new ArrayList<>();		
 		ModelChecker<SchedineInfo> checker;
 		ModelCheckerOption checkerOption;

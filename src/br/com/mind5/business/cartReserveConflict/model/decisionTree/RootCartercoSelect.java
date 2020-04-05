@@ -23,7 +23,7 @@ public final class RootCartercoSelect extends DeciTreeReadTemplate<CartercoInfo>
 	
 	
 	
-	@Override protected ModelChecker<CartercoInfo> buildDecisionCheckerHook(DeciTreeOption<CartercoInfo> option) {
+	@Override protected ModelChecker<CartercoInfo> buildCheckerHook(DeciTreeOption<CartercoInfo> option) {
 		List<ModelChecker<CartercoInfo>> queue = new ArrayList<>();		
 		ModelChecker<CartercoInfo> checker;	
 		ModelCheckerOption checkerOption;

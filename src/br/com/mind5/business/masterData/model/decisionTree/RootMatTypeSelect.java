@@ -21,7 +21,7 @@ public final class RootMatTypeSelect extends DeciTreeReadTemplate<MatTypeInfo> {
 	
 	
 	
-	@Override protected ModelChecker<MatTypeInfo> buildDecisionCheckerHook(DeciTreeOption<MatTypeInfo> option) {
+	@Override protected ModelChecker<MatTypeInfo> buildCheckerHook(DeciTreeOption<MatTypeInfo> option) {
 		List<ModelChecker<MatTypeInfo>> queue = new ArrayList<>();		
 		ModelChecker<MatTypeInfo> checker;
 		ModelCheckerOption checkerOption;	

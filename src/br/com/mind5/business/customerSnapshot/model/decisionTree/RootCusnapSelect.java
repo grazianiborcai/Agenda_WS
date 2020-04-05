@@ -22,7 +22,7 @@ public final class RootCusnapSelect extends DeciTreeReadTemplate<CusnapInfo> {
 	
 	
 	
-	@Override protected ModelChecker<CusnapInfo> buildDecisionCheckerHook(DeciTreeOption<CusnapInfo> option) {
+	@Override protected ModelChecker<CusnapInfo> buildCheckerHook(DeciTreeOption<CusnapInfo> option) {
 		List<ModelChecker<CusnapInfo>> queue = new ArrayList<>();		
 		ModelChecker<CusnapInfo> checker;
 		ModelCheckerOption checkerOption;	

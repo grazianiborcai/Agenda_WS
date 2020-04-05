@@ -22,7 +22,7 @@ public final class RootPersonInsertOwner extends DeciTreeWriteTemplate<PersonInf
 	
 	
 	
-	@Override protected ModelChecker<PersonInfo> buildDecisionCheckerHook(DeciTreeOption<PersonInfo> option) {
+	@Override protected ModelChecker<PersonInfo> buildCheckerHook(DeciTreeOption<PersonInfo> option) {
 		List<ModelChecker<PersonInfo>> queue = new ArrayList<>();		
 		ModelChecker<PersonInfo> checker;	
 		

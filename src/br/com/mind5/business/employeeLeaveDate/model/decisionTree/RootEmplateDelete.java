@@ -32,7 +32,7 @@ public final class RootEmplateDelete extends DeciTreeWriteTemplate<EmplateInfo> 
 	
 	
 	
-	@Override protected ModelChecker<EmplateInfo> buildDecisionCheckerHook(DeciTreeOption<EmplateInfo> option) {
+	@Override protected ModelChecker<EmplateInfo> buildCheckerHook(DeciTreeOption<EmplateInfo> option) {
 		List<ModelChecker<EmplateInfo>> queue = new ArrayList<>();		
 		ModelChecker<EmplateInfo> checker;
 		ModelCheckerOption checkerOption = new ModelCheckerOption();

@@ -22,7 +22,7 @@ public final class RootFeewnerSelect extends DeciTreeReadTemplate<FeewnerInfo> {
 	
 	
 	
-	@Override protected ModelChecker<FeewnerInfo> buildDecisionCheckerHook(DeciTreeOption<FeewnerInfo> option) {
+	@Override protected ModelChecker<FeewnerInfo> buildCheckerHook(DeciTreeOption<FeewnerInfo> option) {
 		List<ModelChecker<FeewnerInfo>> queue = new ArrayList<>();		
 		ModelChecker<FeewnerInfo> checker;
 		ModelCheckerOption checkerOption;
