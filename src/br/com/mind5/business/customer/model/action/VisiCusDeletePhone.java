@@ -8,10 +8,10 @@ import br.com.mind5.business.phone.info.PhoneCopier;
 import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.business.phone.model.decisionTree.RootPhoneDelete;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateAction;
+import br.com.mind5.model.action.ActionVisitorTemplateActionV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiCusDeletePhone extends ActionVisitorTemplateAction<CusInfo, PhoneInfo> {
+final class VisiCusDeletePhone extends ActionVisitorTemplateActionV1<CusInfo, PhoneInfo> {
 	
 	public VisiCusDeletePhone(Connection conn, String schemaName) {
 		super(conn, schemaName, CusInfo.class, PhoneInfo.class);

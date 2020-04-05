@@ -6,10 +6,10 @@ import br.com.mind5.business.employee.info.EmpInfo;
 import br.com.mind5.business.employeeMaterial.info.EmpmatInfo;
 import br.com.mind5.business.employeeMaterial.model.decisionTree.RootEmpmatDeleteByEmp;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateAction;
+import br.com.mind5.model.action.ActionVisitorTemplateActionV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiEmpDeleteEmpmat extends ActionVisitorTemplateAction<EmpInfo, EmpmatInfo> {
+final class VisiEmpDeleteEmpmat extends ActionVisitorTemplateActionV1<EmpInfo, EmpmatInfo> {
 	public VisiEmpDeleteEmpmat(Connection conn, String schemaName) {
 		super(conn, schemaName, EmpInfo.class, EmpmatInfo.class);
 	}

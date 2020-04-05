@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.address.info.AddressInfo;
-import br.com.mind5.business.address.model.action.LazyAddressUpdate;
+import br.com.mind5.business.address.model.action.LazyAddressDaoUpdate;
 import br.com.mind5.business.address.model.action.StdAddressInsertAddresnap;
 import br.com.mind5.business.address.model.checker.AddressCheckDummy;
 import br.com.mind5.model.action.ActionLazyV1;
@@ -39,7 +39,7 @@ public final class NodeAddressSnapshot extends DeciTreeWriteTemplate<AddressInfo
 		List<ActionStdV1<AddressInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<AddressInfo> insertAddresnap = new StdAddressInsertAddresnap(option);
-		ActionLazyV1<AddressInfo> update = new LazyAddressUpdate(option.conn, option.schemaName);
+		ActionLazyV1<AddressInfo> update = new LazyAddressDaoUpdate(option.conn, option.schemaName);
 
 		insertAddresnap.addPostAction(update);
 		

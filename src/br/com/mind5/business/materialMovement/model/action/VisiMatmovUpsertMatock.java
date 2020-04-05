@@ -9,10 +9,10 @@ import br.com.mind5.business.materialStock.info.MatockCopier;
 import br.com.mind5.business.materialStock.info.MatockInfo;
 import br.com.mind5.business.materialStock.model.decisionTree.RootMatockUpsert;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateAction;
+import br.com.mind5.model.action.ActionVisitorTemplateActionV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiMatmovUpsertMatock extends ActionVisitorTemplateAction<MatmovInfo, MatockInfo> {
+final class VisiMatmovUpsertMatock extends ActionVisitorTemplateActionV1<MatmovInfo, MatockInfo> {
 	public VisiMatmovUpsertMatock(Connection conn, String schemaName) {
 		super(conn, schemaName, MatmovInfo.class, MatockInfo.class);
 	}

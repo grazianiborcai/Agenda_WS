@@ -6,13 +6,13 @@ import java.util.List;
 import br.com.mind5.business.customer.info.CusInfo;
 import br.com.mind5.business.customer.info.CusMerger;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateAction;
+import br.com.mind5.model.action.ActionVisitorTemplateActionV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.user.info.UserCopier;
 import br.com.mind5.security.user.info.UserInfo;
 import br.com.mind5.security.user.model.decisionTree.RootUserInsertCus;
 
-final class VisiCusInsertUser extends ActionVisitorTemplateAction<CusInfo, UserInfo> {
+final class VisiCusInsertUser extends ActionVisitorTemplateActionV1<CusInfo, UserInfo> {
 	public VisiCusInsertUser(Connection conn, String schemaName) {
 		super(conn, schemaName, CusInfo.class, UserInfo.class);
 	}

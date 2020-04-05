@@ -7,10 +7,10 @@ import br.com.mind5.business.materialSnapshot.info.MatsnapInfo;
 import br.com.mind5.business.materialTextSnapshot.info.MatextsnapInfo;
 import br.com.mind5.business.materialTextSnapshot.model.decisionTree.RootMatextsnapInsert;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateAction;
+import br.com.mind5.model.action.ActionVisitorTemplateActionV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiMatsnapInsertMatextsnap extends ActionVisitorTemplateAction<MatsnapInfo, MatextsnapInfo> {
+final class VisiMatsnapInsertMatextsnap extends ActionVisitorTemplateActionV1<MatsnapInfo, MatextsnapInfo> {
 
 	public VisiMatsnapInsertMatextsnap(Connection conn, String schemaName) {
 		super(conn, schemaName, MatsnapInfo.class, MatextsnapInfo.class);

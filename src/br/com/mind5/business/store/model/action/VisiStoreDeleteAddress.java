@@ -8,10 +8,10 @@ import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.address.model.decisionTree.RootAddressDelete;
 import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateAction;
+import br.com.mind5.model.action.ActionVisitorTemplateActionV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiStoreDeleteAddress extends ActionVisitorTemplateAction<StoreInfo, AddressInfo> {
+final class VisiStoreDeleteAddress extends ActionVisitorTemplateActionV1<StoreInfo, AddressInfo> {
 	public VisiStoreDeleteAddress(Connection conn, String schemaName) {
 		super(conn, schemaName, StoreInfo.class, AddressInfo.class);
 	}

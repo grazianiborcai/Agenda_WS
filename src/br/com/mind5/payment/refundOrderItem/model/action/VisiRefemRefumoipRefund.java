@@ -4,14 +4,14 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateAction;
+import br.com.mind5.model.action.ActionVisitorTemplateActionV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.refundOrderItem.info.RefemInfo;
 import br.com.mind5.payment.refundOrderItem.info.RefemMerger;
 import br.com.mind5.paymentPartner.partnerMoip.refundMoip.info.RefumoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.refundMoip.model.decisionTree.RootRefumoipRefund;
 
-final class VisiRefemRefumoipRefund extends ActionVisitorTemplateAction<RefemInfo, RefumoipInfo> {
+final class VisiRefemRefumoipRefund extends ActionVisitorTemplateActionV1<RefemInfo, RefumoipInfo> {
 	
 	public VisiRefemRefumoipRefund(Connection conn, String schemaName) {
 		super(conn, schemaName, RefemInfo.class, RefumoipInfo.class);

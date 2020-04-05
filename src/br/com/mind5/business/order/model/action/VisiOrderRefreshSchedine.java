@@ -8,10 +8,10 @@ import br.com.mind5.business.scheduleLine.info.SchedineCopier;
 import br.com.mind5.business.scheduleLine.info.SchedineInfo;
 import br.com.mind5.business.scheduleLine.model.decisionTree.RootSchedineRefresh;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateAction;
+import br.com.mind5.model.action.ActionVisitorTemplateActionV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiOrderRefreshSchedine extends ActionVisitorTemplateAction<OrderInfo, SchedineInfo> {
+final class VisiOrderRefreshSchedine extends ActionVisitorTemplateActionV1<OrderInfo, SchedineInfo> {
 	public VisiOrderRefreshSchedine(Connection conn, String schemaName) {
 		super(conn, schemaName, OrderInfo.class, SchedineInfo.class);
 	}

@@ -7,12 +7,12 @@ import br.com.mind5.business.person.info.PersonCopier;
 import br.com.mind5.business.person.info.PersonInfo;
 import br.com.mind5.business.person.model.decisionTree.RootPersonUpdate;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateAction;
+import br.com.mind5.model.action.ActionVisitorTemplateActionV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.user.info.UserInfo;
 import br.com.mind5.security.user.info.UserMerger;
 
-final class VisiUserUpdatePerson extends ActionVisitorTemplateAction<UserInfo, PersonInfo> {
+final class VisiUserUpdatePerson extends ActionVisitorTemplateActionV1<UserInfo, PersonInfo> {
 	public VisiUserUpdatePerson(Connection conn, String schemaName) {
 		super(conn, schemaName, UserInfo.class, PersonInfo.class);
 	}

@@ -8,10 +8,10 @@ import br.com.mind5.business.materialStore.info.MatoreMerger;
 import br.com.mind5.business.materialStoreSnapshot.info.MatorapInfo;
 import br.com.mind5.business.materialStoreSnapshot.model.decisionTree.RootMatorapInsert;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateAction;
+import br.com.mind5.model.action.ActionVisitorTemplateActionV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiMatoreInsertMatorap extends ActionVisitorTemplateAction<MatoreInfo, MatorapInfo> {
+final class VisiMatoreInsertMatorap extends ActionVisitorTemplateActionV1<MatoreInfo, MatorapInfo> {
 
 	public VisiMatoreInsertMatorap(Connection conn, String schemaName) {
 		super(conn, schemaName, MatoreInfo.class, MatorapInfo.class);

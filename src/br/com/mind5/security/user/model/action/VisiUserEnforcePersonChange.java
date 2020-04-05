@@ -1,9 +1,9 @@
 package br.com.mind5.security.user.model.action;
 
-import br.com.mind5.model.action.ActionVisitorTemplateEnforce;
+import br.com.mind5.model.action.ActionVisitorTemplateEnforceV1;
 import br.com.mind5.security.user.info.UserInfo;
 
-final class VisiUserEnforcePersonChange extends ActionVisitorTemplateEnforce<UserInfo> {
+final class VisiUserEnforcePersonChange extends ActionVisitorTemplateEnforceV1<UserInfo> {
 	
 	@Override protected UserInfo enforceHook(UserInfo recordInfo) {
 		UserInfo enforcedRecord = new UserInfo();

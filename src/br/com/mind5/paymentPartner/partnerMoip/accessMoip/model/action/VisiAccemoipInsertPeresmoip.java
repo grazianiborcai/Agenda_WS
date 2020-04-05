@@ -4,13 +4,13 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateAction;
+import br.com.mind5.model.action.ActionVisitorTemplateActionV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.paymentPartner.partnerMoip.accessMoip.info.AccemoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.info.PeresmoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.model.decisionTree.RootPeresmoipInsert;
 
-final class VisiAccemoipInsertPeresmoip extends ActionVisitorTemplateAction<AccemoipInfo, PeresmoipInfo> {
+final class VisiAccemoipInsertPeresmoip extends ActionVisitorTemplateActionV1<AccemoipInfo, PeresmoipInfo> {
 	public VisiAccemoipInsertPeresmoip(Connection conn, String schemaName) {
 		super(conn, schemaName, AccemoipInfo.class, PeresmoipInfo.class);
 	}

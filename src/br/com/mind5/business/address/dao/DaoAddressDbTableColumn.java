@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class AddressDbTableColumn extends DaoDbTableColumnTemplate {
+public final class DaoAddressDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_CITY = DaoDbField.COL_CITY; 
 	public static final String COL_COD_ADDRESS = DaoDbField.COL_COD_ADDRESS;
 	public static final String COL_COMPLEMENT = DaoDbField.COL_COMPLEMENT;
@@ -44,8 +44,8 @@ public final class AddressDbTableColumn extends DaoDbTableColumnTemplate {
 	private Hashtable<String, List<DaoColumn>> tableColumns;
 	
 	
-	public AddressDbTableColumn() {
-		super(AddressDbTableColumn.class);
+	public DaoAddressDbTableColumn() {
+		super(DaoAddressDbTableColumn.class);
 	}
 	
 	

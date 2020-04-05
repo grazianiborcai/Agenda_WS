@@ -8,10 +8,10 @@ import br.com.mind5.business.employee.info.EmpInfo;
 import br.com.mind5.business.person.info.PersonInfo;
 import br.com.mind5.business.person.model.decisionTree.RootPersonDelete;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateAction;
+import br.com.mind5.model.action.ActionVisitorTemplateActionV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiEmpDeletePerson extends ActionVisitorTemplateAction<EmpInfo, PersonInfo> {
+final class VisiEmpDeletePerson extends ActionVisitorTemplateActionV1<EmpInfo, PersonInfo> {
 	public VisiEmpDeletePerson(Connection conn, String schemaName) {
 		super(conn, schemaName, EmpInfo.class, PersonInfo.class);
 	}

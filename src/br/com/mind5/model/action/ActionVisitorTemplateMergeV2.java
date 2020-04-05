@@ -282,7 +282,7 @@ public abstract class ActionVisitorTemplateMergeV2<T extends InfoRecord, S exten
 	
 	
 	
-	protected List<S> toActionClass(List<T> recordInfos, Class<S> sClazz) {
+	private List<S> toActionClass(List<T> recordInfos, Class<S> sClazz) {
 		List<S> results = toActionClassHook(recordInfos);	
 		
 		if (results == null)

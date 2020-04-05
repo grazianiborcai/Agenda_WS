@@ -8,10 +8,10 @@ import br.com.mind5.business.cartItem.info.CartemCopier;
 import br.com.mind5.business.cartItem.info.CartemInfo;
 import br.com.mind5.business.cartItem.model.decisionTree.RootCartemDeleteByUser;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateAction;
+import br.com.mind5.model.action.ActionVisitorTemplateActionV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiCartDeleteCartem extends ActionVisitorTemplateAction<CartInfo, CartemInfo> {
+final class VisiCartDeleteCartem extends ActionVisitorTemplateActionV1<CartInfo, CartemInfo> {
 	public VisiCartDeleteCartem(Connection conn, String schemaName) {
 		super(conn, schemaName, CartInfo.class, CartemInfo.class);
 	}

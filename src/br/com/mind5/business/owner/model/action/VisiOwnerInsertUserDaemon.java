@@ -6,13 +6,13 @@ import java.util.List;
 import br.com.mind5.business.owner.info.OwnerInfo;
 import br.com.mind5.business.owner.info.OwnerMerger;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateAction;
+import br.com.mind5.model.action.ActionVisitorTemplateActionV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.user.info.UserCopier;
 import br.com.mind5.security.user.info.UserInfo;
 import br.com.mind5.security.user.model.decisionTree.RootUserInsertDaemon;
 
-final class VisiOwnerInsertUserDaemon extends ActionVisitorTemplateAction<OwnerInfo, UserInfo> {
+final class VisiOwnerInsertUserDaemon extends ActionVisitorTemplateActionV1<OwnerInfo, UserInfo> {
 	public VisiOwnerInsertUserDaemon(Connection conn, String schemaName) {
 		super(conn, schemaName, OwnerInfo.class, UserInfo.class);
 	}

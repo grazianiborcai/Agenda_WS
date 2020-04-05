@@ -11,13 +11,13 @@ import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciResultHelper;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public abstract class ActionVisitorTemplateAction<T extends InfoRecord, S extends InfoRecord> implements ActionVisitorAction<T> {
+public abstract class ActionVisitorTemplateActionV1<T extends InfoRecord, S extends InfoRecord> implements ActionVisitorAction<T> {
 	private DeciTreeOption<S> selOption;
 	private Class<T> tClazz;
 	private Class<S> sClazz;
 	
 
-	public ActionVisitorTemplateAction(Connection conn, String schemaName, Class<T> baseClazz, Class<S> actionClazz) {
+	public ActionVisitorTemplateActionV1(Connection conn, String schemaName, Class<T> baseClazz, Class<S> actionClazz) {
 		checkArgument(conn, schemaName, baseClazz, actionClazz);
 		makeOption(conn, schemaName);
 		tClazz = baseClazz;

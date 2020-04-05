@@ -8,10 +8,10 @@ import br.com.mind5.business.cartItem.info.CartemCopier;
 import br.com.mind5.business.cartItem.info.CartemInfo;
 import br.com.mind5.business.cartItem.model.decisionTree.RootCartemUpsert;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateAction;
+import br.com.mind5.model.action.ActionVisitorTemplateActionV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiCartUpsertCartem extends ActionVisitorTemplateAction<CartInfo, CartemInfo> {
+final class VisiCartUpsertCartem extends ActionVisitorTemplateActionV1<CartInfo, CartemInfo> {
 	public VisiCartUpsertCartem(Connection conn, String schemaName) {
 		super(conn, schemaName, CartInfo.class, CartemInfo.class);
 	}

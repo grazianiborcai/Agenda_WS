@@ -8,10 +8,10 @@ import br.com.mind5.business.materialText.info.MatextCopier;
 import br.com.mind5.business.materialText.info.MatextInfo;
 import br.com.mind5.business.materialText.model.decisionTree.RootMatextDeleteByMat;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateAction;
+import br.com.mind5.model.action.ActionVisitorTemplateActionV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiMatDeleteMatext extends ActionVisitorTemplateAction<MatInfo, MatextInfo> {
+final class VisiMatDeleteMatext extends ActionVisitorTemplateActionV1<MatInfo, MatextInfo> {
 	public VisiMatDeleteMatext(Connection conn, String schemaName) {
 		super(conn, schemaName, MatInfo.class, MatextInfo.class);
 	}

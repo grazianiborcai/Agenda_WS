@@ -7,11 +7,11 @@ import br.com.mind5.business.order.info.OrderCopier;
 import br.com.mind5.business.order.info.OrderInfo;
 import br.com.mind5.business.order.model.decisionTree.RootOrderRefresh;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateAction;
+import br.com.mind5.model.action.ActionVisitorTemplateActionV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
 
-final class VisiPayordOrderRefresh extends ActionVisitorTemplateAction<PayordInfo, OrderInfo> {
+final class VisiPayordOrderRefresh extends ActionVisitorTemplateActionV1<PayordInfo, OrderInfo> {
 	
 	public VisiPayordOrderRefresh(Connection conn, String schemaName) {
 		super(conn, schemaName, PayordInfo.class, OrderInfo.class);

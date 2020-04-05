@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecHelperV2;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExecV2;
 
-public final class AddressSelect implements DaoStmtExecV2<AddressInfo> {
+public final class DaoAddressDelete implements DaoStmtExecV2<AddressInfo> {
 	private DaoStmtExecV2<AddressInfo> helper;
 	
 	
-	public AddressSelect(List<DaoStmtExecOption<AddressInfo>> options) {
-		helper = new DaoStmtExecHelperV2<>(options, AddressSelectSingle.class, AddressInfo.class);
+	public DaoAddressDelete(List<DaoStmtExecOption<AddressInfo>> options) {
+		helper = new DaoStmtExecHelperV2<>(options, DaoAddressDeleteSingle.class, AddressInfo.class);
 	}
 	
 	
@@ -27,8 +27,8 @@ public final class AddressSelect implements DaoStmtExecV2<AddressInfo> {
 	@Override public List<AddressInfo> getResultset() {
 		return helper.getResultset();
 	}
-
-
+	
+	
 	
 	@Override public void close() {
 		helper.close();		

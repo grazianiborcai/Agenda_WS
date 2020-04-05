@@ -7,11 +7,11 @@ import java.util.List;
 import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.address.model.decisionTree.RootAddressUpsertdel;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateAction;
+import br.com.mind5.model.action.ActionVisitorTemplateActionV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.user.info.UserInfo;
 
-final class VisiUserUpsertAddress extends ActionVisitorTemplateAction<UserInfo, AddressInfo> {
+final class VisiUserUpsertAddress extends ActionVisitorTemplateActionV1<UserInfo, AddressInfo> {
 	public VisiUserUpsertAddress(Connection conn, String schemaName) {
 		super(conn, schemaName, UserInfo.class, AddressInfo.class);
 	}

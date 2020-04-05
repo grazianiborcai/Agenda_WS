@@ -8,10 +8,10 @@ import br.com.mind5.business.company.info.CompInfo;
 import br.com.mind5.business.company.model.decisionTree.RootCompDelete;
 import br.com.mind5.business.owner.info.OwnerInfo;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateAction;
+import br.com.mind5.model.action.ActionVisitorTemplateActionV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiOwnerDeleteComp extends ActionVisitorTemplateAction<OwnerInfo, CompInfo> {
+final class VisiOwnerDeleteComp extends ActionVisitorTemplateActionV1<OwnerInfo, CompInfo> {
 	public VisiOwnerDeleteComp(Connection conn, String schemaName) {
 		super(conn, schemaName, OwnerInfo.class, CompInfo.class);
 	}

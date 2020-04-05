@@ -7,10 +7,10 @@ import br.com.mind5.business.person.info.PersonInfo;
 import br.com.mind5.business.person.model.decisionTree.RootPersonDelete;
 import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateAction;
+import br.com.mind5.model.action.ActionVisitorTemplateActionV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiStoreDeletePerson extends ActionVisitorTemplateAction<StoreInfo, PersonInfo> {
+final class VisiStoreDeletePerson extends ActionVisitorTemplateActionV1<StoreInfo, PersonInfo> {
 	public VisiStoreDeletePerson(Connection conn, String schemaName) {
 		super(conn, schemaName, StoreInfo.class, PersonInfo.class);
 	}

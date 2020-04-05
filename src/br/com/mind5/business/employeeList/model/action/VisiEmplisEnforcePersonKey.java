@@ -3,9 +3,9 @@ package br.com.mind5.business.employeeList.model.action;
 import br.com.mind5.business.employeeList.info.EmplisInfo;
 import br.com.mind5.business.employeeList.info.EmplisSetterPersonKey;
 import br.com.mind5.info.InfoSetter;
-import br.com.mind5.model.action.ActionVisitorTemplateEnforce;
+import br.com.mind5.model.action.ActionVisitorTemplateEnforceV1;
 
-final class VisiEmplisEnforcePersonKey extends ActionVisitorTemplateEnforce<EmplisInfo> {
+final class VisiEmplisEnforcePersonKey extends ActionVisitorTemplateEnforceV1<EmplisInfo> {
 	
 	@Override protected EmplisInfo enforceHook(EmplisInfo recordInfo) {
 		InfoSetter<EmplisInfo> attrSetter = new EmplisSetterPersonKey();

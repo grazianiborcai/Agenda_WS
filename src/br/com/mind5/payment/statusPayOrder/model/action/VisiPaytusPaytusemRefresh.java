@@ -4,14 +4,14 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateAction;
+import br.com.mind5.model.action.ActionVisitorTemplateActionV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.statusPayOrder.info.PaytusInfo;
 import br.com.mind5.payment.statusPayOrder.info.PaytusMerger;
 import br.com.mind5.payment.statusPayOrderItem.info.PaytusemInfo;
 import br.com.mind5.payment.statusPayOrderItem.model.decisionTree.RootPaytusemRefresh;
 
-final class VisiPaytusPaytusemRefresh extends ActionVisitorTemplateAction<PaytusInfo, PaytusemInfo> {
+final class VisiPaytusPaytusemRefresh extends ActionVisitorTemplateActionV1<PaytusInfo, PaytusemInfo> {
 	
 	public VisiPaytusPaytusemRefresh(Connection conn, String schemaName) {
 		super(conn, schemaName, PaytusInfo.class, PaytusemInfo.class);

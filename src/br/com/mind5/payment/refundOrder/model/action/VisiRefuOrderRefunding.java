@@ -7,11 +7,11 @@ import br.com.mind5.business.order.info.OrderCopier;
 import br.com.mind5.business.order.info.OrderInfo;
 import br.com.mind5.business.order.model.decisionTree.RootOrderRefunding;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateAction;
+import br.com.mind5.model.action.ActionVisitorTemplateActionV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.refundOrder.info.RefuInfo;
 
-final class VisiRefuOrderRefunding extends ActionVisitorTemplateAction<RefuInfo, OrderInfo> {
+final class VisiRefuOrderRefunding extends ActionVisitorTemplateActionV1<RefuInfo, OrderInfo> {
 	
 	public VisiRefuOrderRefunding(Connection conn, String schemaName) {
 		super(conn, schemaName, RefuInfo.class, OrderInfo.class);

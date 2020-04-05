@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.mind5.common.CloneUtil;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
@@ -90,8 +91,10 @@ public final class DaoStmtHelper<T extends InfoRecord> implements DaoStmt<T> {
 		
 	@Override public void executeStmt() throws SQLException {
 		checkBeforeExecution();		
+		
 		stmtResultSet = execute(operation, stmt);
 		resultset = parseResultSet(stmtResultSet, option.resultParser, option.recordInfo);
+		
 		close(stmt, stmtResultSet);
 	}
 	
@@ -228,25 +231,8 @@ public final class DaoStmtHelper<T extends InfoRecord> implements DaoStmt<T> {
 	
 	
 	
-	@SuppressWarnings("unchecked")
 	private List<T> makeClone(List<T> sources) {
-		try {
-			if (sources == null)
-				return null;
-			
-			List<T> results = new ArrayList<>();
-			
-			for (T eachSource : sources) {
-				T clonedSource = (T) eachSource.clone();
-				results.add(clonedSource);
-			}
-			
-			return results;
-			
-		} catch (CloneNotSupportedException e) {
-			logException(e);
-			throw new InternalError(e);
-		}
+		return CloneUtil.cloneRecords(sources, childClass);
 	}
 	
 	

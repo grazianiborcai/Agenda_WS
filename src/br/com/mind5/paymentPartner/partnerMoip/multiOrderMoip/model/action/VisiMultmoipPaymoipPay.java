@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateAction;
+import br.com.mind5.model.action.ActionVisitorTemplateActionV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.info.MultmoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.info.MultmoipMerger;
@@ -12,7 +12,7 @@ import br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.info.PaymoipCopier;
 import br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.info.PaymoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.model.decisionTree.RootPaymoipPay;
 
-final class VisiMultmoipPaymoipPay extends ActionVisitorTemplateAction<MultmoipInfo, PaymoipInfo> {
+final class VisiMultmoipPaymoipPay extends ActionVisitorTemplateActionV1<MultmoipInfo, PaymoipInfo> {
 	public VisiMultmoipPaymoipPay(Connection conn, String schemaName) {
 		super(conn, schemaName, MultmoipInfo.class, PaymoipInfo.class);
 	}

@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateAction;
+import br.com.mind5.model.action.ActionVisitorTemplateActionV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
 import br.com.mind5.payment.creditCard.info.CrecardMerger;
@@ -13,7 +13,7 @@ import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.info.CremoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.model.decisionTree.RootCremoipAdd;
 
 
-final class VisiCrecardAddCremoip extends ActionVisitorTemplateAction<CrecardInfo, CremoipInfo> {
+final class VisiCrecardAddCremoip extends ActionVisitorTemplateActionV1<CrecardInfo, CremoipInfo> {
 	
 	public VisiCrecardAddCremoip(Connection conn, String schemaName) {
 		super(conn, schemaName, CrecardInfo.class, CremoipInfo.class);

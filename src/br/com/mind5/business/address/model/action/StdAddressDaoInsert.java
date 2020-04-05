@@ -5,15 +5,15 @@ import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.action.ActionStdTemplateV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdAddressInsert extends ActionStdTemplateV2<AddressInfo>{
+public final class StdAddressDaoInsert extends ActionStdTemplateV2<AddressInfo>{
 
-	public StdAddressInsert(DeciTreeOption<AddressInfo> option) {
+	public StdAddressDaoInsert(DeciTreeOption<AddressInfo> option) {
 		super(option);
 	}
 	
 	
 	
 	protected ActionVisitorV2<AddressInfo> buildVisitorHook(DeciTreeOption<AddressInfo> option) {
-		return new VisiAddressInsert(option);
+		return new VisiAddressDaoInsert(option);
 	}
 }

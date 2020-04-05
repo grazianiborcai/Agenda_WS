@@ -4,13 +4,13 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateAction;
+import br.com.mind5.model.action.ActionVisitorTemplateActionV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.statusPayOrder.info.PaytusInfo;
 import br.com.mind5.payment.statusPayOrder.model.decisionTree.RootPaytusRefreshAuth;
 import br.com.mind5.webhook.moipMultipayment.info.WokaymoipInfo;
 
-final class VisiWokaymoipPaytusRefresh extends ActionVisitorTemplateAction<WokaymoipInfo, PaytusInfo> {
+final class VisiWokaymoipPaytusRefresh extends ActionVisitorTemplateActionV1<WokaymoipInfo, PaytusInfo> {
 	public VisiWokaymoipPaytusRefresh(Connection conn, String schemaName) {
 		super(conn, schemaName, WokaymoipInfo.class, PaytusInfo.class);
 	}

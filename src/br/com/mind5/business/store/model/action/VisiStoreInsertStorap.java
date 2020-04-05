@@ -8,10 +8,10 @@ import br.com.mind5.business.store.info.StoreMerger;
 import br.com.mind5.business.storeSnapshot.info.StorapInfo;
 import br.com.mind5.business.storeSnapshot.model.decisionTree.RootStorapInsert;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateAction;
+import br.com.mind5.model.action.ActionVisitorTemplateActionV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiStoreInsertStorap extends ActionVisitorTemplateAction<StoreInfo, StorapInfo> {
+final class VisiStoreInsertStorap extends ActionVisitorTemplateActionV1<StoreInfo, StorapInfo> {
 
 	public VisiStoreInsertStorap(Connection conn, String schemaName) {
 		super(conn, schemaName, StoreInfo.class, StorapInfo.class);

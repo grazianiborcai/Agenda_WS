@@ -3,9 +3,9 @@ package br.com.mind5.business.phone.model.action;
 import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.business.phone.info.PhoneSetterNumberT00;
 import br.com.mind5.info.InfoSetter;
-import br.com.mind5.model.action.ActionVisitorTemplateEnforce;
+import br.com.mind5.model.action.ActionVisitorTemplateEnforceV1;
 
-final class VisiPhoneEnforceNumberT00 extends ActionVisitorTemplateEnforce<PhoneInfo> {
+final class VisiPhoneEnforceNumberT00 extends ActionVisitorTemplateEnforceV1<PhoneInfo> {
 	
 	@Override protected PhoneInfo enforceHook(PhoneInfo recordInfo) {
 		PhoneInfo phone = recordInfo;		

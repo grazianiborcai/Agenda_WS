@@ -35,7 +35,7 @@ public final class DaoStmtOption<T extends InfoRecord> implements Cloneable {
 		columns = DefaultValue.list();
 		stmtParamTranslator = DefaultValue.object();
 		resultParser = DefaultValue.object();
-		joins = DefaultValue.list();;
+		joins = DefaultValue.list();
 	}
 	
 	

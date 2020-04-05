@@ -8,10 +8,10 @@ import br.com.mind5.business.customer.info.CusMerger;
 import br.com.mind5.business.customerSnapshot.info.CusnapInfo;
 import br.com.mind5.business.customerSnapshot.model.decisionTree.RootCusnapInsert;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateAction;
+import br.com.mind5.model.action.ActionVisitorTemplateActionV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiCusInsertCusnap extends ActionVisitorTemplateAction<CusInfo, CusnapInfo> {
+final class VisiCusInsertCusnap extends ActionVisitorTemplateActionV1<CusInfo, CusnapInfo> {
 
 	public VisiCusInsertCusnap(Connection conn, String schemaName) {
 		super(conn, schemaName, CusInfo.class, CusnapInfo.class);

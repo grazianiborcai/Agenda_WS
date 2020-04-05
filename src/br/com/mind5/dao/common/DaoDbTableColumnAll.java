@@ -5,7 +5,7 @@ import java.util.Hashtable;
 import java.util.List;
 
 import br.com.mind5.common.SystemLog;
-import br.com.mind5.business.address.dao.AddressDbTableColumn;
+import br.com.mind5.business.address.dao.DaoAddressDbTableColumn;
 import br.com.mind5.business.addressSearch.dao.AddarchDbTableColumn;
 import br.com.mind5.business.addressSnapshot.dao.AddresnapDbTableColumn;
 import br.com.mind5.business.calendarDate.dao.CalateDbTableColumn;
@@ -173,7 +173,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new CarterveDbTableColumn());
 		addTable(new OrderemDbTableColumn());
 		addTable(new OrderDbTableColumn());
-		addTable(new AddressDbTableColumn());
+		addTable(new DaoAddressDbTableColumn());
 		addTable(new AddresnapDbTableColumn());
 		addTable(new FormAddressDbTableColumn());
 		addTable(new PhoneDbTableColumn());

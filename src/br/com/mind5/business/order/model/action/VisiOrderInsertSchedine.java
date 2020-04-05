@@ -7,10 +7,10 @@ import br.com.mind5.business.order.info.OrderInfo;
 import br.com.mind5.business.scheduleLine.info.SchedineInfo;
 import br.com.mind5.business.scheduleLine.model.decisionTree.RootSchedineFromOrder;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateAction;
+import br.com.mind5.model.action.ActionVisitorTemplateActionV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiOrderInsertSchedine extends ActionVisitorTemplateAction<OrderInfo, SchedineInfo> {
+final class VisiOrderInsertSchedine extends ActionVisitorTemplateActionV1<OrderInfo, SchedineInfo> {
 	public VisiOrderInsertSchedine(Connection conn, String schemaName) {
 		super(conn, schemaName, OrderInfo.class, SchedineInfo.class);
 	}

@@ -9,9 +9,9 @@ import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyAddressUpdate extends ActionLazyTemplate<AddressInfo, AddressInfo> {
+public final class LazyAddressDaoDelete extends ActionLazyTemplate<AddressInfo, AddressInfo> {
 
-	public LazyAddressUpdate(Connection conn, String schemaName) {
+	public LazyAddressDaoDelete(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyAddressUpdate extends ActionLazyTemplate<AddressInfo, Add
 	
 	
 	@Override protected ActionStdV1<AddressInfo> getInstanceOfActionHook(DeciTreeOption<AddressInfo> option) {
-		return new StdAddressUpdate(option);
+		return new StdAddressDaoDelete(option);
 	}
 	
 	

@@ -3,9 +3,9 @@ package br.com.mind5.message.emailWelcome.model.action;
 import br.com.mind5.info.InfoSetter;
 import br.com.mind5.message.emailWelcome.info.EmacomeInfo;
 import br.com.mind5.message.emailWelcome.info.EmacomeSetterEmabody;
-import br.com.mind5.model.action.ActionVisitorTemplateEnforce;
+import br.com.mind5.model.action.ActionVisitorTemplateEnforceV1;
 
-final class VisiEmacomeEnforceEmabody extends ActionVisitorTemplateEnforce<EmacomeInfo> {
+final class VisiEmacomeEnforceEmabody extends ActionVisitorTemplateEnforceV1<EmacomeInfo> {
 	
 	@Override protected EmacomeInfo enforceHook(EmacomeInfo recordInfo) {
 		InfoSetter<EmacomeInfo> attrSetter = new EmacomeSetterEmabody();

@@ -10,10 +10,10 @@ import br.com.mind5.business.store.model.action.LazyStoreNodeDeleteCascade;
 import br.com.mind5.business.store.model.decisionTree.RootStoreSearch;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateAction;
+import br.com.mind5.model.action.ActionVisitorTemplateActionV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiOwnerDeleteStore extends ActionVisitorTemplateAction<OwnerInfo, StoreInfo> {
+final class VisiOwnerDeleteStore extends ActionVisitorTemplateActionV1<OwnerInfo, StoreInfo> {
 	public VisiOwnerDeleteStore(Connection conn, String schemaName) {
 		super(conn, schemaName, OwnerInfo.class, StoreInfo.class);
 	}

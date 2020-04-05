@@ -3,7 +3,7 @@ package br.com.mind5.business.address.info;
 import br.com.mind5.info.InfoCopierTemplate;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
 
-final class AddressCopyCrecard extends InfoCopierTemplate<AddressInfo, CrecardInfo>{
+final class AddressCopyCrecard extends InfoCopierTemplate<AddressInfo, CrecardInfo> {
 	
 	public AddressCopyCrecard() {
 		super();

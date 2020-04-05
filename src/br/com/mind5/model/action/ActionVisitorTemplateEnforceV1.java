@@ -8,7 +8,7 @@ import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.InfoRecord;
 
 
-public abstract class ActionVisitorTemplateEnforce<T extends InfoRecord> implements ActionVisitorEnforce<T> {	
+public abstract class ActionVisitorTemplateEnforceV1<T extends InfoRecord> implements ActionVisitorEnforce<T> {	
 	
 	@Override public List<T> executeTransformation(List<T> recordInfos) {
 		List<T> resultRecords = new ArrayList<>();		

@@ -6,13 +6,13 @@ import java.util.List;
 import br.com.mind5.business.employee.info.EmpInfo;
 import br.com.mind5.business.employee.info.EmpMerger;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateAction;
+import br.com.mind5.model.action.ActionVisitorTemplateActionV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.user.info.UserCopier;
 import br.com.mind5.security.user.info.UserInfo;
 import br.com.mind5.security.user.model.decisionTree.RootUserInsertEmp;
 
-final class VisiEmpInsertUser extends ActionVisitorTemplateAction<EmpInfo, UserInfo> {
+final class VisiEmpInsertUser extends ActionVisitorTemplateActionV1<EmpInfo, UserInfo> {
 	public VisiEmpInsertUser(Connection conn, String schemaName) {
 		super(conn, schemaName, EmpInfo.class, UserInfo.class);
 	}

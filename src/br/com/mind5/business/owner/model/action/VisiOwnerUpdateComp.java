@@ -10,10 +10,10 @@ import br.com.mind5.business.company.model.decisionTree.RootCompUpdate;
 import br.com.mind5.business.owner.info.OwnerInfo;
 import br.com.mind5.business.owner.info.OwnerMerger;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateAction;
+import br.com.mind5.model.action.ActionVisitorTemplateActionV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiOwnerUpdateComp extends ActionVisitorTemplateAction<OwnerInfo, CompInfo> {
+final class VisiOwnerUpdateComp extends ActionVisitorTemplateActionV1<OwnerInfo, CompInfo> {
 	public VisiOwnerUpdateComp(Connection conn, String schemaName) {
 		super(conn, schemaName, OwnerInfo.class, CompInfo.class);
 	}

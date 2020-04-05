@@ -9,10 +9,10 @@ import br.com.mind5.business.address.model.decisionTree.RootAddressUpsertdel;
 import br.com.mind5.business.customer.info.CusInfo;
 import br.com.mind5.business.customer.info.CusMerger;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateAction;
+import br.com.mind5.model.action.ActionVisitorTemplateActionV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiCusUpsertAddress extends ActionVisitorTemplateAction<CusInfo, AddressInfo> {
+final class VisiCusUpsertAddress extends ActionVisitorTemplateActionV1<CusInfo, AddressInfo> {
 	
 	public VisiCusUpsertAddress(Connection conn, String schemaName) {
 		super(conn, schemaName, CusInfo.class, AddressInfo.class);

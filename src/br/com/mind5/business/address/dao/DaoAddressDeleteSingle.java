@@ -15,11 +15,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class AddressDeleteSingle extends DaoStmtTemplate<AddressInfo> {
+public final class DaoAddressDeleteSingle extends DaoStmtTemplate<AddressInfo> {
 	private final String MAIN_TABLE = DaoDbTable.ADDRESS_TABLE;	
 	
 	
-	public AddressDeleteSingle(Connection conn, AddressInfo recordInfo, String schemaName) {
+	public DaoAddressDeleteSingle(Connection conn, AddressInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -44,7 +44,7 @@ public final class AddressDeleteSingle extends DaoStmtTemplate<AddressInfo> {
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;	
 		whereOption.ignoreNonPrimaryKey = DaoOptionValue.IGNORE_NON_PK;		
 		
-		DaoStmtWhere whereClause = new AddressWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new DaoAddressWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	

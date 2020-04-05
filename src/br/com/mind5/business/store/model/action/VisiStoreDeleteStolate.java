@@ -7,10 +7,10 @@ import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.business.storeLeaveDate.info.StolateInfo;
 import br.com.mind5.business.storeLeaveDate.model.decisionTree.RootStolateDeleteByStore;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateAction;
+import br.com.mind5.model.action.ActionVisitorTemplateActionV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiStoreDeleteStolate extends ActionVisitorTemplateAction<StoreInfo, StolateInfo> {
+final class VisiStoreDeleteStolate extends ActionVisitorTemplateActionV1<StoreInfo, StolateInfo> {
 	public VisiStoreDeleteStolate(Connection conn, String schemaName) {
 		super(conn, schemaName, StoreInfo.class, StolateInfo.class);
 	}

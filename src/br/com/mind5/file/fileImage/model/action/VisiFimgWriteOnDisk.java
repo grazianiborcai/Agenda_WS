@@ -8,10 +8,10 @@ import br.com.mind5.file.fileWrite.info.FriteCopier;
 import br.com.mind5.file.fileWrite.info.FriteInfo;
 import br.com.mind5.file.fileWrite.model.decisionTree.RootFriteWriteOnDisk;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateAction;
+import br.com.mind5.model.action.ActionVisitorTemplateActionV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiFimgWriteOnDisk extends ActionVisitorTemplateAction<FimgInfo, FriteInfo> {
+final class VisiFimgWriteOnDisk extends ActionVisitorTemplateActionV1<FimgInfo, FriteInfo> {
 	public VisiFimgWriteOnDisk(Connection conn, String schemaName) {
 		super(conn, schemaName, FimgInfo.class, FriteInfo.class);
 	}

@@ -18,7 +18,7 @@ final class VisiAddressMergeToSelect extends ActionVisitorTemplateMergeV2<Addres
 	
 	
 	@Override protected Class<? extends ActionStdV2<AddressInfo>> getActionClassHook() {
-		return StdAddressSelect.class;
+		return StdAddressDaoSelect.class;
 	}
 	
 	

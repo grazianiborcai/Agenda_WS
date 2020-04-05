@@ -1,26 +1,25 @@
 package br.com.mind5.business.address.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.address.info.AddressMerger;
 import br.com.mind5.business.addressSnapshot.info.AddresnapInfo;
 import br.com.mind5.business.addressSnapshot.model.decisionTree.RootAddresnapInsert;
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateAction;
+import br.com.mind5.model.action.ActionVisitorTemplateActionV2;
+import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiAddressInsertAddresnap extends ActionVisitorTemplateAction<AddressInfo, AddresnapInfo> {
+final class VisiAddressInsertAddresnap extends ActionVisitorTemplateActionV2<AddressInfo, AddresnapInfo> {
 
-	public VisiAddressInsertAddresnap(Connection conn, String schemaName) {
-		super(conn, schemaName, AddressInfo.class, AddresnapInfo.class);
+	public VisiAddressInsertAddresnap(DeciTreeOption<AddressInfo> option) {
+		super(option, AddressInfo.class, AddresnapInfo.class);
 	}
 	
 	
 	
-	@Override protected ActionStdV1<AddresnapInfo> getActionHook(DeciTreeOption<AddresnapInfo> option) {
-		return new RootAddresnapInsert(option).toAction();
+	@Override protected Class<? extends DeciTree<AddresnapInfo>> getTreeClassHook() {
+		return RootAddresnapInsert.class;
 	}
 	
 	

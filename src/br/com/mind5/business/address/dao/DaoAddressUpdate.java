@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecHelperV2;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExecV2;
 
-public final class AddressUpdate implements DaoStmtExecV2<AddressInfo> {
+public final class DaoAddressUpdate implements DaoStmtExecV2<AddressInfo> {
 	private DaoStmtExecV2<AddressInfo> helper;
 	
 	
-	public AddressUpdate(List<DaoStmtExecOption<AddressInfo>> options) {
-		helper = new DaoStmtExecHelperV2<>(options, AddressUpdateSingle.class, AddressInfo.class);
+	public DaoAddressUpdate(List<DaoStmtExecOption<AddressInfo>> options) {
+		helper = new DaoStmtExecHelperV2<>(options, DaoAddressUpdateSingle.class, AddressInfo.class);
 	}
 	
 	

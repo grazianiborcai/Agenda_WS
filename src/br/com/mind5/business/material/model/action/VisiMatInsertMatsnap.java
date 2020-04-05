@@ -8,10 +8,10 @@ import br.com.mind5.business.material.info.MatMerger;
 import br.com.mind5.business.materialSnapshot.info.MatsnapInfo;
 import br.com.mind5.business.materialSnapshot.model.decisionTree.RootMatsnapInsert;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateAction;
+import br.com.mind5.model.action.ActionVisitorTemplateActionV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiMatInsertMatsnap extends ActionVisitorTemplateAction<MatInfo, MatsnapInfo> {
+final class VisiMatInsertMatsnap extends ActionVisitorTemplateActionV1<MatInfo, MatsnapInfo> {
 
 	public VisiMatInsertMatsnap(Connection conn, String schemaName) {
 		super(conn, schemaName, MatInfo.class, MatsnapInfo.class);

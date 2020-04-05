@@ -8,10 +8,10 @@ import br.com.mind5.business.owner.info.OwnerInfo;
 import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.business.phone.model.decisionTree.RootPhoneUpsertdel;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateAction;
+import br.com.mind5.model.action.ActionVisitorTemplateActionV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiOwnerUpsertPhone extends ActionVisitorTemplateAction<OwnerInfo, PhoneInfo> {
+final class VisiOwnerUpsertPhone extends ActionVisitorTemplateActionV1<OwnerInfo, PhoneInfo> {
 	public VisiOwnerUpsertPhone(Connection conn, String schemaName) {
 		super(conn, schemaName, OwnerInfo.class, PhoneInfo.class);
 	}

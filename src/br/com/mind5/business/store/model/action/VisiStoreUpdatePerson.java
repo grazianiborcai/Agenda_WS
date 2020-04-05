@@ -10,10 +10,10 @@ import br.com.mind5.business.person.model.decisionTree.RootPersonUpdate;
 import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.business.store.info.StoreMerger;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateAction;
+import br.com.mind5.model.action.ActionVisitorTemplateActionV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiStoreUpdatePerson extends ActionVisitorTemplateAction<StoreInfo, PersonInfo> {
+final class VisiStoreUpdatePerson extends ActionVisitorTemplateActionV1<StoreInfo, PersonInfo> {
 	public VisiStoreUpdatePerson(Connection conn, String schemaName) {
 		super(conn, schemaName, StoreInfo.class, PersonInfo.class);
 	}

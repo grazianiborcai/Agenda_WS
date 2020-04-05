@@ -6,13 +6,13 @@ import java.util.List;
 import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.business.store.info.StoreMerger;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateAction;
+import br.com.mind5.model.action.ActionVisitorTemplateActionV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.user.info.UserCopier;
 import br.com.mind5.security.user.info.UserInfo;
 import br.com.mind5.security.user.model.decisionTree.RootUserInsertStore;
 
-final class VisiStoreInsertUser extends ActionVisitorTemplateAction<StoreInfo, UserInfo> {
+final class VisiStoreInsertUser extends ActionVisitorTemplateActionV1<StoreInfo, UserInfo> {
 	public VisiStoreInsertUser(Connection conn, String schemaName) {
 		super(conn, schemaName, StoreInfo.class, UserInfo.class);
 	}

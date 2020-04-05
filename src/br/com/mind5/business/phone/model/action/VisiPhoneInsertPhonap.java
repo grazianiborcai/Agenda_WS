@@ -8,10 +8,10 @@ import br.com.mind5.business.phone.info.PhoneMerger;
 import br.com.mind5.business.phoneSnapshot.info.PhonapInfo;
 import br.com.mind5.business.phoneSnapshot.model.decisionTree.RootPhonapInsert;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateAction;
+import br.com.mind5.model.action.ActionVisitorTemplateActionV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiPhoneInsertPhonap extends ActionVisitorTemplateAction<PhoneInfo, PhonapInfo> {
+final class VisiPhoneInsertPhonap extends ActionVisitorTemplateActionV1<PhoneInfo, PhonapInfo> {
 
 	public VisiPhoneInsertPhonap(Connection conn, String schemaName) {
 		super(conn, schemaName, PhoneInfo.class, PhonapInfo.class);

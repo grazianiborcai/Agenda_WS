@@ -7,10 +7,10 @@ import br.com.mind5.business.scheduleLine.info.SchedineInfo;
 import br.com.mind5.business.scheduleMoviment.info.SchedovmInfo;
 import br.com.mind5.business.scheduleMoviment.model.decisionTree.RootSchedovmInsert;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateAction;
+import br.com.mind5.model.action.ActionVisitorTemplateActionV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiSchedineInsertSchedovm extends ActionVisitorTemplateAction<SchedineInfo, SchedovmInfo> {
+final class VisiSchedineInsertSchedovm extends ActionVisitorTemplateActionV1<SchedineInfo, SchedovmInfo> {
 
 	public VisiSchedineInsertSchedovm(Connection conn, String schemaName) {
 		super(conn, schemaName, SchedineInfo.class, SchedovmInfo.class);

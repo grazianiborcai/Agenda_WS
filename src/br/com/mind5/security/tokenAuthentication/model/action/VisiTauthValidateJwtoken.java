@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateAction;
+import br.com.mind5.model.action.ActionVisitorTemplateActionV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.jwtToken.info.JwtokenCopier;
 import br.com.mind5.security.jwtToken.info.JwtokenInfo;
@@ -12,7 +12,7 @@ import br.com.mind5.security.jwtToken.model.decisionTree.RootJwtokenValidate;
 import br.com.mind5.security.tokenAuthentication.info.TauthInfo;
 import br.com.mind5.security.tokenAuthentication.info.TauthMerger;
 
-final class VisiTauthValidateJwtoken extends ActionVisitorTemplateAction<TauthInfo, JwtokenInfo> {
+final class VisiTauthValidateJwtoken extends ActionVisitorTemplateActionV1<TauthInfo, JwtokenInfo> {
 	public VisiTauthValidateJwtoken(Connection conn, String schemaName) {
 		super(conn, schemaName, TauthInfo.class, JwtokenInfo.class);
 	}

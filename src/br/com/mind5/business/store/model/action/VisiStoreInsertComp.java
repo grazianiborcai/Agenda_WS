@@ -9,10 +9,10 @@ import br.com.mind5.business.company.model.decisionTree.RootCompInsertStore;
 import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.business.store.info.StoreMerger;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateAction;
+import br.com.mind5.model.action.ActionVisitorTemplateActionV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiStoreInsertComp extends ActionVisitorTemplateAction<StoreInfo, CompInfo> {
+final class VisiStoreInsertComp extends ActionVisitorTemplateActionV1<StoreInfo, CompInfo> {
 	public VisiStoreInsertComp(Connection conn, String schemaName) {
 		super(conn, schemaName, StoreInfo.class, CompInfo.class);
 	}

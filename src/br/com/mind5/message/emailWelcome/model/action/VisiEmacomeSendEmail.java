@@ -8,10 +8,10 @@ import br.com.mind5.message.email.info.EmailInfo;
 import br.com.mind5.message.email.model.decisionTree.RootEmailWelcome;
 import br.com.mind5.message.emailWelcome.info.EmacomeInfo;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateAction;
+import br.com.mind5.model.action.ActionVisitorTemplateActionV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiEmacomeSendEmail extends ActionVisitorTemplateAction<EmacomeInfo, EmailInfo> {
+final class VisiEmacomeSendEmail extends ActionVisitorTemplateActionV1<EmacomeInfo, EmailInfo> {
 	public VisiEmacomeSendEmail(Connection conn, String schemaName) {
 		super(conn, schemaName, EmacomeInfo.class, EmailInfo.class);
 	}

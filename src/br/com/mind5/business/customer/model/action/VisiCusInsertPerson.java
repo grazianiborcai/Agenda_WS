@@ -9,10 +9,10 @@ import br.com.mind5.business.person.info.PersonCopier;
 import br.com.mind5.business.person.info.PersonInfo;
 import br.com.mind5.business.person.model.decisionTree.RootPersonInsertCus;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateAction;
+import br.com.mind5.model.action.ActionVisitorTemplateActionV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiCusInsertPerson extends ActionVisitorTemplateAction<CusInfo, PersonInfo> {
+final class VisiCusInsertPerson extends ActionVisitorTemplateActionV1<CusInfo, PersonInfo> {
 	public VisiCusInsertPerson(Connection conn, String schemaName) {
 		super(conn, schemaName, CusInfo.class, PersonInfo.class);
 	}

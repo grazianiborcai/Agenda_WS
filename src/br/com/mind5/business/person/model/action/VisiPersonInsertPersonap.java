@@ -8,10 +8,10 @@ import br.com.mind5.business.person.info.PersonMerger;
 import br.com.mind5.business.personSnapshot.info.PersonapInfo;
 import br.com.mind5.business.personSnapshot.model.decisionTree.RootPersonapInsert;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateAction;
+import br.com.mind5.model.action.ActionVisitorTemplateActionV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiPersonInsertPersonap extends ActionVisitorTemplateAction<PersonInfo, PersonapInfo> {
+final class VisiPersonInsertPersonap extends ActionVisitorTemplateActionV1<PersonInfo, PersonapInfo> {
 
 	public VisiPersonInsertPersonap(Connection conn, String schemaName) {
 		super(conn, schemaName, PersonInfo.class, PersonapInfo.class);

@@ -8,10 +8,10 @@ import br.com.mind5.business.orderItem.info.OrderemMerger;
 import br.com.mind5.business.orderItemSnapshot.info.OrdemrapInfo;
 import br.com.mind5.business.orderItemSnapshot.model.decisionTree.RootOrdemrapInsert;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateAction;
+import br.com.mind5.model.action.ActionVisitorTemplateActionV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiOrderemInsertOrdemrap extends ActionVisitorTemplateAction<OrderemInfo, OrdemrapInfo> {
+final class VisiOrderemInsertOrdemrap extends ActionVisitorTemplateActionV1<OrderemInfo, OrdemrapInfo> {
 
 	public VisiOrderemInsertOrdemrap(Connection conn, String schemaName) {
 		super(conn, schemaName, OrderemInfo.class, OrdemrapInfo.class);

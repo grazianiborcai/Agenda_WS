@@ -8,10 +8,10 @@ import br.com.mind5.business.orderItem.info.OrderemCopier;
 import br.com.mind5.business.orderItem.info.OrderemInfo;
 import br.com.mind5.business.orderItem.model.decisionTree.RootOrderemInsert;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateAction;
+import br.com.mind5.model.action.ActionVisitorTemplateActionV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiOrderInsertOrderem extends ActionVisitorTemplateAction<OrderInfo, OrderemInfo> {
+final class VisiOrderInsertOrderem extends ActionVisitorTemplateActionV1<OrderInfo, OrderemInfo> {
 	public VisiOrderInsertOrderem(Connection conn, String schemaName) {
 		super(conn, schemaName, OrderInfo.class, OrderemInfo.class);
 	}

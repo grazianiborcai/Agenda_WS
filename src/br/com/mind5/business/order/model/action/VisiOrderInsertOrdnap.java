@@ -8,10 +8,10 @@ import br.com.mind5.business.order.info.OrderMerger;
 import br.com.mind5.business.orderSnapshot.info.OrdnapInfo;
 import br.com.mind5.business.orderSnapshot.model.decisionTree.RootOrdnapInsert;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateAction;
+import br.com.mind5.model.action.ActionVisitorTemplateActionV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiOrderInsertOrdnap extends ActionVisitorTemplateAction<OrderInfo, OrdnapInfo> {
+final class VisiOrderInsertOrdnap extends ActionVisitorTemplateActionV1<OrderInfo, OrdnapInfo> {
 
 	public VisiOrderInsertOrdnap(Connection conn, String schemaName) {
 		super(conn, schemaName, OrderInfo.class, OrdnapInfo.class);

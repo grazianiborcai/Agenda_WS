@@ -9,10 +9,10 @@ import br.com.mind5.business.order.info.OrderCopier;
 import br.com.mind5.business.order.info.OrderInfo;
 import br.com.mind5.business.order.model.decisionTree.RootOrderInsert;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateAction;
+import br.com.mind5.model.action.ActionVisitorTemplateActionV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiCartInsertOrder extends ActionVisitorTemplateAction<CartInfo, OrderInfo> {
+final class VisiCartInsertOrder extends ActionVisitorTemplateActionV1<CartInfo, OrderInfo> {
 	public VisiCartInsertOrder(Connection conn, String schemaName) {
 		super(conn, schemaName, CartInfo.class, OrderInfo.class);
 	}

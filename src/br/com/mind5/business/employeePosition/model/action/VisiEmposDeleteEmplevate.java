@@ -6,10 +6,10 @@ import br.com.mind5.business.employeeLeaveDate.info.EmplateInfo;
 import br.com.mind5.business.employeeLeaveDate.model.decisionTree.RootEmplateDeleteByEmpos;
 import br.com.mind5.business.employeePosition.info.EmposInfo;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateAction;
+import br.com.mind5.model.action.ActionVisitorTemplateActionV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiEmposDeleteEmplevate extends ActionVisitorTemplateAction<EmposInfo, EmplateInfo> {
+final class VisiEmposDeleteEmplevate extends ActionVisitorTemplateActionV1<EmposInfo, EmplateInfo> {
 	public VisiEmposDeleteEmplevate(Connection conn, String schemaName) {
 		super(conn, schemaName, EmposInfo.class, EmplateInfo.class);
 	}

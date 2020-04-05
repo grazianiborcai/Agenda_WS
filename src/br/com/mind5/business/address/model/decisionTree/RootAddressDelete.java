@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.address.info.AddressInfo;
-import br.com.mind5.business.address.model.action.LazyAddressDelete;
+import br.com.mind5.business.address.model.action.LazyAddressDaoDelete;
 import br.com.mind5.business.address.model.action.LazyAddressEnforceLChanged;
 import br.com.mind5.business.address.model.action.LazyAddressMergeUsername;
-import br.com.mind5.business.address.model.action.LazyAddressUpdate;
+import br.com.mind5.business.address.model.action.LazyAddressDaoUpdate;
 import br.com.mind5.business.address.model.action.StdAddressMergeToDelete;
 import br.com.mind5.business.address.model.checker.AddressCheckDelete;
 import br.com.mind5.business.address.model.checker.AddressCheckExist;
@@ -73,8 +73,8 @@ public final class RootAddressDelete extends DeciTreeWriteTemplate<AddressInfo> 
 		ActionStdV1<AddressInfo> mergeToDelete = new StdAddressMergeToDelete(option);	
 		ActionLazyV1<AddressInfo> enforceLChanged = new LazyAddressEnforceLChanged(option.conn, option.schemaName);
 		ActionLazyV1<AddressInfo> enforceChangedBy = new LazyAddressMergeUsername(option.conn, option.schemaName);
-		ActionLazyV1<AddressInfo> update = new LazyAddressUpdate(option.conn, option.schemaName);
-		ActionLazyV1<AddressInfo> delete = new LazyAddressDelete(option.conn, option.schemaName);
+		ActionLazyV1<AddressInfo> update = new LazyAddressDaoUpdate(option.conn, option.schemaName);
+		ActionLazyV1<AddressInfo> delete = new LazyAddressDaoDelete(option.conn, option.schemaName);
 		
 		mergeToDelete.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceChangedBy);
