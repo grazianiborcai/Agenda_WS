@@ -3,11 +3,11 @@ package br.com.mind5.business.materialStock.model.checker;
 import java.util.List;
 
 import br.com.mind5.business.materialStock.info.MatockInfo;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.common.ModelCherckerTrue;
 
-public final class MatockCheckDummy implements ModelChecker<MatockInfo> {
-	private ModelChecker<MatockInfo> checker;
+public final class MatockCheckDummy implements ModelCheckerV1<MatockInfo> {
+	private ModelCheckerV1<MatockInfo> checker;
 	
 	
 	public MatockCheckDummy() {

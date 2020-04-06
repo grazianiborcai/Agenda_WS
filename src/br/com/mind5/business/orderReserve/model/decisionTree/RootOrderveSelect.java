@@ -9,13 +9,13 @@ import br.com.mind5.business.orderReserve.model.action.StdOrderveEnforceCancelle
 import br.com.mind5.business.orderReserve.model.checker.OrderveCheckRead;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootOrderveSelect extends DeciTreeReadTemplate<OrderveInfo> {
+public final class RootOrderveSelect extends DeciTreeTemplateRead<OrderveInfo> {
 	
 	public RootOrderveSelect(DeciTreeOption<OrderveInfo> option) {
 		super(option);
@@ -23,9 +23,9 @@ public final class RootOrderveSelect extends DeciTreeReadTemplate<OrderveInfo> {
 	
 	
 	
-	@Override protected ModelChecker<OrderveInfo> buildCheckerHook(DeciTreeOption<OrderveInfo> option) {
-		List<ModelChecker<OrderveInfo>> queue = new ArrayList<>();		
-		ModelChecker<OrderveInfo> checker;	
+	@Override protected ModelCheckerV1<OrderveInfo> buildCheckerHook(DeciTreeOption<OrderveInfo> option) {
+		List<ModelCheckerV1<OrderveInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<OrderveInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -35,7 +35,7 @@ public final class RootOrderveSelect extends DeciTreeReadTemplate<OrderveInfo> {
 		checker = new OrderveCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

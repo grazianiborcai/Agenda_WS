@@ -5,10 +5,10 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
 import br.com.mind5.payment.payOrder.model.action.LazyPayordEnforceFee;
 import br.com.mind5.payment.payOrder.model.action.LazyPayordEnforceItem;
@@ -17,7 +17,7 @@ import br.com.mind5.payment.payOrder.model.action.LazyPayordInsertPayordem;
 import br.com.mind5.payment.payOrder.model.action.StdPayordMergeCrecard;
 import br.com.mind5.payment.payOrder.model.checker.PayordCheckDummy;
 
-public final class NodePayordInsert extends DeciTreeWriteTemplate<PayordInfo> {
+public final class NodePayordInsert extends DeciTreeTemplateWrite<PayordInfo> {
 	
 	public NodePayordInsert(DeciTreeOption<PayordInfo> option) {
 		super(option);
@@ -25,14 +25,14 @@ public final class NodePayordInsert extends DeciTreeWriteTemplate<PayordInfo> {
 	
 	
 	
-	@Override protected ModelChecker<PayordInfo> buildCheckerHook(DeciTreeOption<PayordInfo> option) {
-		List<ModelChecker<PayordInfo>> queue = new ArrayList<>();		
-		ModelChecker<PayordInfo> checker;	
+	@Override protected ModelCheckerV1<PayordInfo> buildCheckerHook(DeciTreeOption<PayordInfo> option) {
+		List<ModelCheckerV1<PayordInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<PayordInfo> checker;	
 		
 		checker = new PayordCheckDummy();
 		queue.add(checker);
 
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

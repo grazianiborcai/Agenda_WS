@@ -7,12 +7,12 @@ import br.com.mind5.business.masterData.info.SysEnvironInfo;
 import br.com.mind5.business.masterData.model.action.StdSysEnvironSelect;
 import br.com.mind5.business.masterData.model.checker.SysEnvironCheckRead;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootSysEnvironSelect extends DeciTreeReadTemplate<SysEnvironInfo> {
+public final class RootSysEnvironSelect extends DeciTreeTemplateRead<SysEnvironInfo> {
 	
 	public RootSysEnvironSelect(DeciTreeOption<SysEnvironInfo> option) {
 		super(option);
@@ -20,14 +20,14 @@ public final class RootSysEnvironSelect extends DeciTreeReadTemplate<SysEnvironI
 	
 	
 	
-	@Override protected ModelChecker<SysEnvironInfo> buildCheckerHook(DeciTreeOption<SysEnvironInfo> option) {
-		List<ModelChecker<SysEnvironInfo>> queue = new ArrayList<>();		
-		ModelChecker<SysEnvironInfo> checker;
+	@Override protected ModelCheckerV1<SysEnvironInfo> buildCheckerHook(DeciTreeOption<SysEnvironInfo> option) {
+		List<ModelCheckerV1<SysEnvironInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<SysEnvironInfo> checker;
 		
 		checker = new SysEnvironCheckRead();
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

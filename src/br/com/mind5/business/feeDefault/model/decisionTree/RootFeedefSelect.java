@@ -7,13 +7,13 @@ import br.com.mind5.business.feeDefault.info.FeedefInfo;
 import br.com.mind5.business.feeDefault.model.action.StdFeedefSelect;
 import br.com.mind5.business.feeDefault.model.checker.FeedefCheckRead;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootFeedefSelect extends DeciTreeReadTemplate<FeedefInfo> {
+public final class RootFeedefSelect extends DeciTreeTemplateRead<FeedefInfo> {
 	
 	public RootFeedefSelect(DeciTreeOption<FeedefInfo> option) {
 		super(option);
@@ -21,9 +21,9 @@ public final class RootFeedefSelect extends DeciTreeReadTemplate<FeedefInfo> {
 	
 	
 	
-	@Override protected ModelChecker<FeedefInfo> buildCheckerHook(DeciTreeOption<FeedefInfo> option) {
-		List<ModelChecker<FeedefInfo>> queue = new ArrayList<>();		
-		ModelChecker<FeedefInfo> checker;
+	@Override protected ModelCheckerV1<FeedefInfo> buildCheckerHook(DeciTreeOption<FeedefInfo> option) {
+		List<ModelCheckerV1<FeedefInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<FeedefInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
 		checkerOption = new ModelCheckerOption();
@@ -33,7 +33,7 @@ public final class RootFeedefSelect extends DeciTreeReadTemplate<FeedefInfo> {
 		checker = new FeedefCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

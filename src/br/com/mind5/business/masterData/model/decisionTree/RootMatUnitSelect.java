@@ -7,13 +7,13 @@ import br.com.mind5.business.masterData.info.MatUnitInfo;
 import br.com.mind5.business.masterData.model.action.StdMatUnitSelect;
 import br.com.mind5.business.masterData.model.checker.MatUnitCheckRead;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootMatUnitSelect extends DeciTreeReadTemplate<MatUnitInfo> {
+public final class RootMatUnitSelect extends DeciTreeTemplateRead<MatUnitInfo> {
 	
 	public RootMatUnitSelect(DeciTreeOption<MatUnitInfo> option) {
 		super(option);
@@ -21,9 +21,9 @@ public final class RootMatUnitSelect extends DeciTreeReadTemplate<MatUnitInfo> {
 	
 	
 	
-	@Override protected ModelChecker<MatUnitInfo> buildCheckerHook(DeciTreeOption<MatUnitInfo> option) {
-		List<ModelChecker<MatUnitInfo>> queue = new ArrayList<>();		
-		ModelChecker<MatUnitInfo> checker;
+	@Override protected ModelCheckerV1<MatUnitInfo> buildCheckerHook(DeciTreeOption<MatUnitInfo> option) {
+		List<ModelCheckerV1<MatUnitInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<MatUnitInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
 		checkerOption = new ModelCheckerOption();
@@ -33,7 +33,7 @@ public final class RootMatUnitSelect extends DeciTreeReadTemplate<MatUnitInfo> {
 		checker = new MatUnitCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

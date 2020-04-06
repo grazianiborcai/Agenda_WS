@@ -3,11 +3,11 @@ package br.com.mind5.business.employee.model.checker;
 import java.util.List;
 
 import br.com.mind5.business.employee.info.EmpInfo;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.common.ModelCherckerTrue;
 
-public final class EmpCheckDummy implements ModelChecker<EmpInfo> {
-	private ModelChecker<EmpInfo> checker;
+public final class EmpCheckDummy implements ModelCheckerV1<EmpInfo> {
+	private ModelCheckerV1<EmpInfo> checker;
 	
 	
 	public EmpCheckDummy() {

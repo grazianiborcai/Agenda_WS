@@ -8,13 +8,13 @@ import br.com.mind5.business.ownerSnapshot.model.action.StdOwnerapMergeToSelect;
 import br.com.mind5.business.ownerSnapshot.model.checker.OwnerapCheckLangu;
 import br.com.mind5.business.ownerSnapshot.model.checker.OwnerapCheckRead;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootOwnerapSelect extends DeciTreeReadTemplate<OwnerapInfo> {
+public final class RootOwnerapSelect extends DeciTreeTemplateRead<OwnerapInfo> {
 
 	public RootOwnerapSelect(DeciTreeOption<OwnerapInfo> option) {
 		super(option);
@@ -22,9 +22,9 @@ public final class RootOwnerapSelect extends DeciTreeReadTemplate<OwnerapInfo> {
 	
 	
 	
-	@Override protected ModelChecker<OwnerapInfo> buildCheckerHook(DeciTreeOption<OwnerapInfo> option) {
-		List<ModelChecker<OwnerapInfo>> queue = new ArrayList<>();		
-		ModelChecker<OwnerapInfo> checker;
+	@Override protected ModelCheckerV1<OwnerapInfo> buildCheckerHook(DeciTreeOption<OwnerapInfo> option) {
+		List<ModelCheckerV1<OwnerapInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<OwnerapInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -41,7 +41,7 @@ public final class RootOwnerapSelect extends DeciTreeReadTemplate<OwnerapInfo> {
 		checker = new OwnerapCheckLangu(checkerOption);
 		queue.add(checker);	
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

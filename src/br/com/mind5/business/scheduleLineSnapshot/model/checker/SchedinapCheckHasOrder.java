@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.mind5.business.scheduleLineSnapshot.info.SchedinapInfo;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class SchedinapCheckHasOrder extends ModelCheckerTemplateSimple<SchedinapInfo> {
+public final class SchedinapCheckHasOrder extends ModelCheckerTemplateSimpleV2<SchedinapInfo> {
 
 	public SchedinapCheckHasOrder(ModelCheckerOption option) {
 		super(option);

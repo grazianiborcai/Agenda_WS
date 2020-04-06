@@ -17,13 +17,13 @@ import br.com.mind5.business.planingData.model.checker.PlanataCheckDate;
 import br.com.mind5.business.planingData.model.checker.PlanataCheckRead;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public class RootPlanataSelectNoReserve extends DeciTreeReadTemplate<PlanataInfo> {
+public class RootPlanataSelectNoReserve extends DeciTreeTemplateRead<PlanataInfo> {
 	
 	public RootPlanataSelectNoReserve(DeciTreeOption<PlanataInfo> option) {
 		super(option);
@@ -31,9 +31,9 @@ public class RootPlanataSelectNoReserve extends DeciTreeReadTemplate<PlanataInfo
 	
 	
 	
-	@Override protected ModelChecker<PlanataInfo> buildCheckerHook(DeciTreeOption<PlanataInfo> option) {
-		List<ModelChecker<PlanataInfo>> queue = new ArrayList<>();		
-		ModelChecker<PlanataInfo> checker;
+	@Override protected ModelCheckerV1<PlanataInfo> buildCheckerHook(DeciTreeOption<PlanataInfo> option) {
+		List<ModelCheckerV1<PlanataInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<PlanataInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -50,7 +50,7 @@ public class RootPlanataSelectNoReserve extends DeciTreeReadTemplate<PlanataInfo
 		checker = new PlanataCheckDate(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

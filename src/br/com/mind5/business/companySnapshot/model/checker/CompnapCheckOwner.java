@@ -5,14 +5,14 @@ import java.util.List;
 import br.com.mind5.business.companySnapshot.info.CompnapInfo;
 import br.com.mind5.business.owner.info.OwnerInfo;
 import br.com.mind5.business.owner.model.checker.OwnerCheckExist;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 
-public final class CompnapCheckOwner implements ModelChecker<CompnapInfo> {
+public final class CompnapCheckOwner implements ModelCheckerV1<CompnapInfo> {
 	private final boolean RESULT_FAILED = false;
 	private final boolean RESULT_SUCCESS = true;
 	
-	private ModelChecker<OwnerInfo> checker;
+	private ModelCheckerV1<OwnerInfo> checker;
 	
 	
 	public CompnapCheckOwner(ModelCheckerOption option) {

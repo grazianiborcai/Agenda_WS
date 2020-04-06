@@ -3,11 +3,11 @@ package br.com.mind5.business.cartItem.model.checker;
 import java.util.List;
 
 import br.com.mind5.business.cartItem.info.CartemInfo;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.common.ModelCherckerTrue;
 
-public final class CartemCheckDummy implements ModelChecker<CartemInfo> {
-	private ModelChecker<CartemInfo> checker;
+public final class CartemCheckDummy implements ModelCheckerV1<CartemInfo> {
+	private ModelCheckerV1<CartemInfo> checker;
 	
 	
 	public CartemCheckDummy() {

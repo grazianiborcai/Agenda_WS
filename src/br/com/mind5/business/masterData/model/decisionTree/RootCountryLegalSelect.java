@@ -9,13 +9,13 @@ import br.com.mind5.business.masterData.model.action.StdCountryLegalSelect;
 import br.com.mind5.business.masterData.model.checker.CountryLegalCheckRead;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootCountryLegalSelect extends DeciTreeReadTemplate<CountryLegalInfo> {
+public final class RootCountryLegalSelect extends DeciTreeTemplateRead<CountryLegalInfo> {
 	
 	public RootCountryLegalSelect(DeciTreeOption<CountryLegalInfo> option) {
 		super(option);
@@ -23,9 +23,9 @@ public final class RootCountryLegalSelect extends DeciTreeReadTemplate<CountryLe
 	
 	
 	
-	@Override protected ModelChecker<CountryLegalInfo> buildCheckerHook(DeciTreeOption<CountryLegalInfo> option) {
-		List<ModelChecker<CountryLegalInfo>> queue = new ArrayList<>();		
-		ModelChecker<CountryLegalInfo> checker;
+	@Override protected ModelCheckerV1<CountryLegalInfo> buildCheckerHook(DeciTreeOption<CountryLegalInfo> option) {
+		List<ModelCheckerV1<CountryLegalInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<CountryLegalInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
 		checkerOption = new ModelCheckerOption();
@@ -35,7 +35,7 @@ public final class RootCountryLegalSelect extends DeciTreeReadTemplate<CountryLe
 		checker = new CountryLegalCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

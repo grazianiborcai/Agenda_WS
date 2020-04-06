@@ -2,18 +2,18 @@ package br.com.mind5.security.user.model.checker;
 
 import java.util.List;
 
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.security.user.info.UserInfo;
 import br.com.mind5.security.userSearch.info.UserarchCopier;
 import br.com.mind5.security.userSearch.info.UserarchInfo;
 import br.com.mind5.security.userSearch.model.checker.UserarchCheckExist;
 
-public final class UserCheckUserarch implements ModelChecker<UserInfo> {
+public final class UserCheckUserarch implements ModelCheckerV1<UserInfo> {
 	private final boolean RESULT_FAILED = false;
 	private final boolean RESULT_SUCCESS = true;
 	
-	private ModelChecker<UserarchInfo> checker;
+	private ModelCheckerV1<UserarchInfo> checker;
 	
 	
 	public UserCheckUserarch(ModelCheckerOption option) {

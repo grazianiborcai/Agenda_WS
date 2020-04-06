@@ -1,56 +1,27 @@
 package br.com.mind5.business.address.model.checker;
 
-import java.util.List;
-
 import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.masterData.info.CountryInfo;
 import br.com.mind5.business.masterData.model.checker.CountryCheckExist;
-import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
+import br.com.mind5.model.checker.ModelCheckerV1;
 
-public final class AddressCheckCountry implements ModelChecker<AddressInfo> {
-	private final boolean FAILED = false;
-	private final boolean SUCCESS = true;
-	
-	private ModelChecker<CountryInfo> checker;
-	
+public final class AddressCheckCountry extends ModelCheckerTemplateForwardV2<AddressInfo, CountryInfo> {
 	
 	public AddressCheckCountry(ModelCheckerOption option) {
-		checker = new CountryCheckExist(option);
-	}
-	
-	
-	
-	@Override public boolean check(List<AddressInfo> recordInfos) {
-		for (AddressInfo eachInfo : recordInfos) {
-			if (check(eachInfo) == FAILED)
-				return FAILED;
-		}
-		
-		return SUCCESS;
+		super(option);
 	}
 
 	
-	
-	@Override public boolean check(AddressInfo recordInfo) {
-		return checker.check(CountryInfo.copyFrom(recordInfo));
-	}
 
-	
-	
-	@Override public boolean getResult() {
-		return checker.getResult();
+	@Override protected ModelCheckerV1<CountryInfo> getCheckerHook(ModelCheckerOption option) {
+		return new CountryCheckExist(option);
 	}
-
 	
 	
-	@Override public String getFailMessage() {
-		return checker.getFailMessage();
-	}
-
 	
-	
-	@Override public int getFailCode() {
-		return checker.getFailCode();
+	@Override protected CountryInfo toForwardClass(AddressInfo baseRecord) {
+		return CountryInfo.copyFrom(baseRecord);
 	}
 }

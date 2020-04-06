@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.mind5.business.masterData.info.StateInfo;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class StateCheckRead extends ModelCheckerTemplateSimple<StateInfo> {
+public final class StateCheckRead extends ModelCheckerTemplateSimpleV2<StateInfo> {
 
 	public StateCheckRead(ModelCheckerOption option) {
 		super(option);

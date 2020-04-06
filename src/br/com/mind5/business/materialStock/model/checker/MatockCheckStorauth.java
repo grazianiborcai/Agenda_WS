@@ -3,16 +3,16 @@ package br.com.mind5.business.materialStock.model.checker;
 import java.util.List;
 
 import br.com.mind5.business.materialStock.info.MatockInfo;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.security.storeAuthorization.info.StorauthInfo;
 import br.com.mind5.security.storeAuthorization.model.checker.StorauthCheckExist;
 
-public final class MatockCheckStorauth implements ModelChecker<MatockInfo> {
+public final class MatockCheckStorauth implements ModelCheckerV1<MatockInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<StorauthInfo> checker;
+	private ModelCheckerV1<StorauthInfo> checker;
 	
 	
 	public MatockCheckStorauth(ModelCheckerOption option) {

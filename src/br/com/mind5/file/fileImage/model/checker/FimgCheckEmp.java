@@ -5,14 +5,14 @@ import java.util.List;
 import br.com.mind5.business.employee.info.EmpInfo;
 import br.com.mind5.business.employee.model.checker.EmpCheckExist;
 import br.com.mind5.file.fileImage.info.FimgInfo;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 
-public final class FimgCheckEmp implements ModelChecker<FimgInfo> {
+public final class FimgCheckEmp implements ModelCheckerV1<FimgInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<EmpInfo> checker;
+	private ModelCheckerV1<EmpInfo> checker;
 	
 	
 	public FimgCheckEmp(ModelCheckerOption option) {

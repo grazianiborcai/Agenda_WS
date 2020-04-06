@@ -3,16 +3,16 @@ package br.com.mind5.file.fileImage.model.checker;
 import java.util.List;
 
 import br.com.mind5.file.fileImage.info.FimgInfo;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.security.storeAuthorization.info.StorauthInfo;
 import br.com.mind5.security.storeAuthorization.model.checker.StorauthCheckExist;
 
-public final class FimgCheckStorauth implements ModelChecker<FimgInfo> {
+public final class FimgCheckStorauth implements ModelCheckerV1<FimgInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<StorauthInfo> checker;
+	private ModelCheckerV1<StorauthInfo> checker;
 	
 	
 	public FimgCheckStorauth(ModelCheckerOption option) {

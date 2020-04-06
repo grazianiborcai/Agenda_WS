@@ -7,13 +7,13 @@ import br.com.mind5.business.masterData.info.TimezoneInfo;
 import br.com.mind5.business.masterData.model.action.StdTimezoneSelect;
 import br.com.mind5.business.masterData.model.checker.TimezoneCheckRead;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootTimezoneSelect extends DeciTreeReadTemplate<TimezoneInfo> {
+public final class RootTimezoneSelect extends DeciTreeTemplateRead<TimezoneInfo> {
 	
 	public RootTimezoneSelect(DeciTreeOption<TimezoneInfo> option) {
 		super(option);
@@ -21,9 +21,9 @@ public final class RootTimezoneSelect extends DeciTreeReadTemplate<TimezoneInfo>
 	
 	
 	
-	@Override protected ModelChecker<TimezoneInfo> buildCheckerHook(DeciTreeOption<TimezoneInfo> option) {
-		List<ModelChecker<TimezoneInfo>> queue = new ArrayList<>();		
-		ModelChecker<TimezoneInfo> checker;
+	@Override protected ModelCheckerV1<TimezoneInfo> buildCheckerHook(DeciTreeOption<TimezoneInfo> option) {
+		List<ModelCheckerV1<TimezoneInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<TimezoneInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
 		checkerOption = new ModelCheckerOption();
@@ -33,7 +33,7 @@ public final class RootTimezoneSelect extends DeciTreeReadTemplate<TimezoneInfo>
 		checker = new TimezoneCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 
 		

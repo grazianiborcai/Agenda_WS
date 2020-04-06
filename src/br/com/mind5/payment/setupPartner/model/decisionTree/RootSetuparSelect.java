@@ -5,18 +5,18 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 import br.com.mind5.payment.setupPartner.info.SetuparInfo;
 import br.com.mind5.payment.setupPartner.model.action.LazySetuparMergePaypar;
 import br.com.mind5.payment.setupPartner.model.action.StdSetuparSelect;
 import br.com.mind5.payment.setupPartner.model.checker.SetuparCheckCountry;
 import br.com.mind5.payment.setupPartner.model.checker.SetuparCheckRead;
 
-public final class RootSetuparSelect extends DeciTreeReadTemplate<SetuparInfo> {
+public final class RootSetuparSelect extends DeciTreeTemplateRead<SetuparInfo> {
 	
 	public RootSetuparSelect(DeciTreeOption<SetuparInfo> option) {
 		super(option);
@@ -24,9 +24,9 @@ public final class RootSetuparSelect extends DeciTreeReadTemplate<SetuparInfo> {
 	
 	
 	
-	@Override protected ModelChecker<SetuparInfo> buildCheckerHook(DeciTreeOption<SetuparInfo> option) {
-		List<ModelChecker<SetuparInfo>> queue = new ArrayList<>();		
-		ModelChecker<SetuparInfo> checker;
+	@Override protected ModelCheckerV1<SetuparInfo> buildCheckerHook(DeciTreeOption<SetuparInfo> option) {
+		List<ModelCheckerV1<SetuparInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<SetuparInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -43,7 +43,7 @@ public final class RootSetuparSelect extends DeciTreeReadTemplate<SetuparInfo> {
 		checker = new SetuparCheckCountry(checkerOption);
 		queue.add(checker);	
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

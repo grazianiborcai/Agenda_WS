@@ -3,11 +3,11 @@ package br.com.mind5.message.sysMessage.model.checker;
 import java.util.List;
 
 import br.com.mind5.message.sysMessage.info.SymsgInfo;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.common.ModelCherckerTrue;
 
-public final class SymsgCheckDummy implements ModelChecker<SymsgInfo> {
-	private ModelChecker<SymsgInfo> checker;
+public final class SymsgCheckDummy implements ModelCheckerV1<SymsgInfo> {
+	private ModelCheckerV1<SymsgInfo> checker;
 	
 	
 	public SymsgCheckDummy() {

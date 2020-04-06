@@ -8,12 +8,12 @@ import br.com.mind5.business.personList.model.action.LazyPersolisEnforceRestrict
 import br.com.mind5.business.personList.model.checker.PersolisCheckDummy;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootPersolisSelectRestricted extends DeciTreeReadTemplate<PersolisInfo> {
+public final class RootPersolisSelectRestricted extends DeciTreeTemplateRead<PersolisInfo> {
 	
 	public RootPersolisSelectRestricted(DeciTreeOption<PersolisInfo> option) {
 		super(option);
@@ -21,14 +21,14 @@ public final class RootPersolisSelectRestricted extends DeciTreeReadTemplate<Per
 	
 	
 	
-	@Override protected ModelChecker<PersolisInfo> buildCheckerHook(DeciTreeOption<PersolisInfo> option) {
-		List<ModelChecker<PersolisInfo>> queue = new ArrayList<>();		
-		ModelChecker<PersolisInfo> checker;
+	@Override protected ModelCheckerV1<PersolisInfo> buildCheckerHook(DeciTreeOption<PersolisInfo> option) {
+		List<ModelCheckerV1<PersolisInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<PersolisInfo> checker;
 
 		checker = new PersolisCheckDummy();
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

@@ -6,14 +6,14 @@ import br.com.mind5.business.materialSearch.info.MatarchCopier;
 import br.com.mind5.business.materialSearch.info.MatarchInfo;
 import br.com.mind5.business.materialSearch.model.checker.MatarchCheckExistService;
 import br.com.mind5.business.orderItem.info.OrderemInfo;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 
-public final class OrderemCheckMatarchService implements ModelChecker<OrderemInfo> {
+public final class OrderemCheckMatarchService implements ModelCheckerV1<OrderemInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<MatarchInfo> checker;
+	private ModelCheckerV1<MatarchInfo> checker;
 	
 	
 	public OrderemCheckMatarchService(ModelCheckerOption option) {

@@ -5,11 +5,11 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.info.OrdmoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.checker.OrdmoipCheckPayord;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.checker.OrdmoipCheckPayordem;
@@ -19,7 +19,7 @@ import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.action.LazyOrdmoi
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.action.LazyOrdmoipNodeSetuparL1;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.checker.OrdmoipCheckPlace;
 
-public final class RootOrdmoipPlace extends DeciTreeWriteTemplate<OrdmoipInfo> {
+public final class RootOrdmoipPlace extends DeciTreeTemplateWrite<OrdmoipInfo> {
 	
 	public RootOrdmoipPlace(DeciTreeOption<OrdmoipInfo> option) {
 		super(option);
@@ -27,9 +27,9 @@ public final class RootOrdmoipPlace extends DeciTreeWriteTemplate<OrdmoipInfo> {
 	
 	
 	
-	@Override protected ModelChecker<OrdmoipInfo> buildCheckerHook(DeciTreeOption<OrdmoipInfo> option) {
-		List<ModelChecker<OrdmoipInfo>> queue = new ArrayList<>();		
-		ModelChecker<OrdmoipInfo> checker;	
+	@Override protected ModelCheckerV1<OrdmoipInfo> buildCheckerHook(DeciTreeOption<OrdmoipInfo> option) {
+		List<ModelCheckerV1<OrdmoipInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<OrdmoipInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -53,7 +53,7 @@ public final class RootOrdmoipPlace extends DeciTreeWriteTemplate<OrdmoipInfo> {
 		checker = new OrdmoipCheckPayordem(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

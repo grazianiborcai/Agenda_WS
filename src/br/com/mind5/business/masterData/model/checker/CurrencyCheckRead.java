@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.mind5.business.masterData.info.CurrencyInfo;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public class CurrencyCheckRead extends ModelCheckerTemplateSimple<CurrencyInfo> {
+public class CurrencyCheckRead extends ModelCheckerTemplateSimpleV2<CurrencyInfo> {
 
 	public CurrencyCheckRead(ModelCheckerOption option) {
 		super(option);

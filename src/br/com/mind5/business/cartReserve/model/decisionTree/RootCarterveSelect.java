@@ -9,13 +9,13 @@ import br.com.mind5.business.cartReserve.model.action.StdCarterveEnforceLChanged
 import br.com.mind5.business.cartReserve.model.checker.CarterveCheckRead;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootCarterveSelect extends DeciTreeReadTemplate<CarterveInfo> {
+public final class RootCarterveSelect extends DeciTreeTemplateRead<CarterveInfo> {
 	
 	public RootCarterveSelect(DeciTreeOption<CarterveInfo> option) {
 		super(option);
@@ -23,9 +23,9 @@ public final class RootCarterveSelect extends DeciTreeReadTemplate<CarterveInfo>
 	
 	
 	
-	@Override protected ModelChecker<CarterveInfo> buildCheckerHook(DeciTreeOption<CarterveInfo> option) {
-		List<ModelChecker<CarterveInfo>> queue = new ArrayList<>();		
-		ModelChecker<CarterveInfo> checker;	
+	@Override protected ModelCheckerV1<CarterveInfo> buildCheckerHook(DeciTreeOption<CarterveInfo> option) {
+		List<ModelCheckerV1<CarterveInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<CarterveInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -35,7 +35,7 @@ public final class RootCarterveSelect extends DeciTreeReadTemplate<CarterveInfo>
 		checker = new CarterveCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

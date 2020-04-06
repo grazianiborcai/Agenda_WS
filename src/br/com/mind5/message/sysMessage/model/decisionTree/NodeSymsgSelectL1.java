@@ -9,12 +9,12 @@ import br.com.mind5.message.sysMessage.model.action.StdSymsgMergeToSelect;
 import br.com.mind5.message.sysMessage.model.checker.SymsgCheckDummy;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodeSymsgSelectL1 extends DeciTreeWriteTemplate<SymsgInfo> {
+public final class NodeSymsgSelectL1 extends DeciTreeTemplateWrite<SymsgInfo> {
 	
 	public NodeSymsgSelectL1(DeciTreeOption<SymsgInfo> option) {
 		super(option);
@@ -22,14 +22,14 @@ public final class NodeSymsgSelectL1 extends DeciTreeWriteTemplate<SymsgInfo> {
 	
 	
 	
-	@Override protected ModelChecker<SymsgInfo> buildCheckerHook(DeciTreeOption<SymsgInfo> option) {	
-		List<ModelChecker<SymsgInfo>> queue = new ArrayList<>();		
-		ModelChecker<SymsgInfo> checker;	
+	@Override protected ModelCheckerV1<SymsgInfo> buildCheckerHook(DeciTreeOption<SymsgInfo> option) {	
+		List<ModelCheckerV1<SymsgInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<SymsgInfo> checker;	
 
 		checker = new SymsgCheckDummy();
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

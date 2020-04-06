@@ -4,15 +4,15 @@ import java.util.List;
 
 import br.com.mind5.business.person.info.PersonInfo;
 import br.com.mind5.business.person.model.checker.PersonCheckExist;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.security.user.info.UserInfo;
 
-public final class UserCheckPerson implements ModelChecker<UserInfo> {
+public final class UserCheckPerson implements ModelCheckerV1<UserInfo> {
 	private final boolean RESULT_FAILED = false;
 	private final boolean RESULT_SUCCESS = true;
 	
-	private ModelChecker<PersonInfo> checker;
+	private ModelCheckerV1<PersonInfo> checker;
 	
 	
 	public UserCheckPerson(ModelCheckerOption option) {

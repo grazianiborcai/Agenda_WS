@@ -5,14 +5,14 @@ import java.util.List;
 import br.com.mind5.business.materialMovement.info.MatmovInfo;
 import br.com.mind5.business.materialSearch.info.MatarchInfo;
 import br.com.mind5.business.materialSearch.model.checker.MatarchCheckExistProduct;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 
-public final class MatmovCheckMatarchProduct implements ModelChecker<MatmovInfo> {
+public final class MatmovCheckMatarchProduct implements ModelCheckerV1<MatmovInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<MatarchInfo> checker;
+	private ModelCheckerV1<MatarchInfo> checker;
 	
 	
 	public MatmovCheckMatarchProduct(ModelCheckerOption option) {

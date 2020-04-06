@@ -5,15 +5,15 @@ import java.util.List;
 import br.com.mind5.business.phone.info.PhoneCopier;
 import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.business.phone.model.checker.PhoneCheckExist;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
 
-public final class CrecardCheckPhone implements ModelChecker<CrecardInfo> {
+public final class CrecardCheckPhone implements ModelCheckerV1<CrecardInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<PhoneInfo> checker;
+	private ModelCheckerV1<PhoneInfo> checker;
 	
 	
 	public CrecardCheckPhone(ModelCheckerOption option) {

@@ -2,12 +2,12 @@ package br.com.mind5.security.storeAuthorization.model.checker;
 
 import java.util.List;
 
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.common.ModelCherckerTrue;
 import br.com.mind5.security.storeAuthorization.info.StorauthInfo;
 
-public final class StorauthCheckDummy implements ModelChecker<StorauthInfo> {
-	private ModelChecker<StorauthInfo> checker;
+public final class StorauthCheckDummy implements ModelCheckerV1<StorauthInfo> {
+	private ModelCheckerV1<StorauthInfo> checker;
 	
 	
 	public StorauthCheckDummy() {

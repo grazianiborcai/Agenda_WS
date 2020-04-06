@@ -2,18 +2,18 @@ package br.com.mind5.paymentPartner.partnerMoip.accessMoip.model.checker;
 
 import java.util.List;
 
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.paymentPartner.partnerMoip.accessMoip.info.AccemoipInfo;
 import br.com.mind5.security.username.info.UsernameCopier;
 import br.com.mind5.security.username.info.UsernameInfo;
 import br.com.mind5.security.username.model.checker.UsernameCheckExist;
 
-public final class AccemoipCheckUsername implements ModelChecker<AccemoipInfo> {
+public final class AccemoipCheckUsername implements ModelCheckerV1<AccemoipInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<UsernameInfo> checker;
+	private ModelCheckerV1<UsernameInfo> checker;
 	
 	
 	public AccemoipCheckUsername(ModelCheckerOption option) {

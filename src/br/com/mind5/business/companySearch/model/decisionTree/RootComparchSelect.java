@@ -9,13 +9,13 @@ import br.com.mind5.business.companySearch.model.checker.ComparchCheckLangu;
 import br.com.mind5.business.companySearch.model.checker.ComparchCheckOwner;
 import br.com.mind5.business.companySearch.model.checker.ComparchCheckRead;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootComparchSelect extends DeciTreeReadTemplate<ComparchInfo> {
+public final class RootComparchSelect extends DeciTreeTemplateRead<ComparchInfo> {
 	
 	public RootComparchSelect(DeciTreeOption<ComparchInfo> option) {
 		super(option);
@@ -23,9 +23,9 @@ public final class RootComparchSelect extends DeciTreeReadTemplate<ComparchInfo>
 	
 	
 	
-	@Override protected ModelChecker<ComparchInfo> buildCheckerHook(DeciTreeOption<ComparchInfo> option) {
-		List<ModelChecker<ComparchInfo>> queue = new ArrayList<>();		
-		ModelChecker<ComparchInfo> checker;
+	@Override protected ModelCheckerV1<ComparchInfo> buildCheckerHook(DeciTreeOption<ComparchInfo> option) {
+		List<ModelCheckerV1<ComparchInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<ComparchInfo> checker;
 		ModelCheckerOption checkerOption;		
 		
 		checkerOption = new ModelCheckerOption();
@@ -49,7 +49,7 @@ public final class RootComparchSelect extends DeciTreeReadTemplate<ComparchInfo>
 		checker = new ComparchCheckOwner(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

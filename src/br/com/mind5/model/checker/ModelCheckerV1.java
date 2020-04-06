@@ -2,7 +2,9 @@ package br.com.mind5.model.checker;
 
 import java.util.List;
 
-public interface ModelChecker<T> {
+import br.com.mind5.info.InfoRecord;
+
+public interface ModelCheckerV1<T extends InfoRecord> {
 	public boolean check(List<T> recordInfos);
 	public boolean check(T recordInfo);
 	public boolean getResult();

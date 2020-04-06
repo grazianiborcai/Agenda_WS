@@ -5,11 +5,11 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.paymentPartner.partnerMoip.tokenMoip.info.TokemoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.tokenMoip.model.action.LazyTokemoipNodeGenerate;
 import br.com.mind5.paymentPartner.partnerMoip.tokenMoip.model.action.StdTokemoipEnforcePayPartner;
@@ -20,7 +20,7 @@ import br.com.mind5.paymentPartner.partnerMoip.tokenMoip.model.checker.TokemoipC
 import br.com.mind5.paymentPartner.partnerMoip.tokenMoip.model.checker.TokemoipCheckUsername;
 import br.com.mind5.paymentPartner.partnerMoip.tokenMoip.model.checker.TokemoipCheckWrite;
 
-public final class RootTokemoipGenerate extends DeciTreeWriteTemplate<TokemoipInfo> {
+public final class RootTokemoipGenerate extends DeciTreeTemplateWrite<TokemoipInfo> {
 	
 	public RootTokemoipGenerate(DeciTreeOption<TokemoipInfo> option) {
 		super(option);
@@ -28,9 +28,9 @@ public final class RootTokemoipGenerate extends DeciTreeWriteTemplate<TokemoipIn
 	
 	
 	
-	@Override protected ModelChecker<TokemoipInfo> buildCheckerHook(DeciTreeOption<TokemoipInfo> option) {
-		List<ModelChecker<TokemoipInfo>> queue = new ArrayList<>();		
-		ModelChecker<TokemoipInfo> checker;	
+	@Override protected ModelCheckerV1<TokemoipInfo> buildCheckerHook(DeciTreeOption<TokemoipInfo> option) {
+		List<ModelCheckerV1<TokemoipInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<TokemoipInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -75,7 +75,7 @@ public final class RootTokemoipGenerate extends DeciTreeWriteTemplate<TokemoipIn
 		checker = new TokemoipCheckStorauth(checkerOption);
 		queue.add(checker);
 
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

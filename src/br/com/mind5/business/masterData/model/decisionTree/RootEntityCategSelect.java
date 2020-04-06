@@ -7,13 +7,13 @@ import br.com.mind5.business.masterData.info.EntityCategInfo;
 import br.com.mind5.business.masterData.model.action.StdEntityCategSelect;
 import br.com.mind5.business.masterData.model.checker.EntityCategCheckRead;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootEntityCategSelect extends DeciTreeReadTemplate<EntityCategInfo> {
+public final class RootEntityCategSelect extends DeciTreeTemplateRead<EntityCategInfo> {
 	
 	public RootEntityCategSelect(DeciTreeOption<EntityCategInfo> option) {
 		super(option);
@@ -21,9 +21,9 @@ public final class RootEntityCategSelect extends DeciTreeReadTemplate<EntityCate
 	
 	
 	
-	@Override protected ModelChecker<EntityCategInfo> buildCheckerHook(DeciTreeOption<EntityCategInfo> option) {
-		List<ModelChecker<EntityCategInfo>> queue = new ArrayList<>();		
-		ModelChecker<EntityCategInfo> checker;
+	@Override protected ModelCheckerV1<EntityCategInfo> buildCheckerHook(DeciTreeOption<EntityCategInfo> option) {
+		List<ModelCheckerV1<EntityCategInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<EntityCategInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
 		checkerOption = new ModelCheckerOption();
@@ -33,7 +33,7 @@ public final class RootEntityCategSelect extends DeciTreeReadTemplate<EntityCate
 		checker = new EntityCategCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 
 		

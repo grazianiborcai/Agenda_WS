@@ -11,13 +11,13 @@ import br.com.mind5.business.cart.model.checker.CartCheckLangu;
 import br.com.mind5.business.cart.model.checker.CartCheckOwner;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootCartCheckout extends DeciTreeWriteTemplate<CartInfo> {
+public final class RootCartCheckout extends DeciTreeTemplateWrite<CartInfo> {
 	
 	public RootCartCheckout(DeciTreeOption<CartInfo> option) {
 		super(option);
@@ -25,9 +25,9 @@ public final class RootCartCheckout extends DeciTreeWriteTemplate<CartInfo> {
 	
 	
 	
-	@Override protected ModelChecker<CartInfo> buildCheckerHook(DeciTreeOption<CartInfo> option) {
-		List<ModelChecker<CartInfo>> queue = new ArrayList<>();		
-		ModelChecker<CartInfo> checker;	
+	@Override protected ModelCheckerV1<CartInfo> buildCheckerHook(DeciTreeOption<CartInfo> option) {
+		List<ModelCheckerV1<CartInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<CartInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -51,7 +51,7 @@ public final class RootCartCheckout extends DeciTreeWriteTemplate<CartInfo> {
 		checker = new CartCheckOwner(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

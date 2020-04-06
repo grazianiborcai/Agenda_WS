@@ -10,13 +10,13 @@ import br.com.mind5.business.owner.model.action.StdOwnerSuccess;
 import br.com.mind5.business.owner.model.checker.OwnerCheckHasAddress;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodeOwnerDeleteAddress extends DeciTreeWriteTemplate<OwnerInfo> {
+public final class NodeOwnerDeleteAddress extends DeciTreeTemplateWrite<OwnerInfo> {
 	
 	public NodeOwnerDeleteAddress(DeciTreeOption<OwnerInfo> option) {
 		super(option);
@@ -24,11 +24,11 @@ public final class NodeOwnerDeleteAddress extends DeciTreeWriteTemplate<OwnerInf
 	
 	
 	
-	@Override protected ModelChecker<OwnerInfo> buildCheckerHook(DeciTreeOption<OwnerInfo> option) {
+	@Override protected ModelCheckerV1<OwnerInfo> buildCheckerHook(DeciTreeOption<OwnerInfo> option) {
 		final boolean HAS_ADDRESS = true;
 		
-		List<ModelChecker<OwnerInfo>> queue = new ArrayList<>();		
-		ModelChecker<OwnerInfo> checker;
+		List<ModelCheckerV1<OwnerInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<OwnerInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
 		checkerOption = new ModelCheckerOption();
@@ -38,7 +38,7 @@ public final class NodeOwnerDeleteAddress extends DeciTreeWriteTemplate<OwnerInf
 		checker = new OwnerCheckHasAddress(checkerOption);
 		queue.add(checker);	
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

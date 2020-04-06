@@ -5,14 +5,14 @@ import java.util.List;
 import br.com.mind5.business.masterData.info.MatmovTypeInfo;
 import br.com.mind5.business.masterData.model.checker.MatmovTypeCheckExist;
 import br.com.mind5.business.materialMovement.info.MatmovInfo;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 
-public final class MatmovCheckMatmovType implements ModelChecker<MatmovInfo> {
+public final class MatmovCheckMatmovType implements ModelCheckerV1<MatmovInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<MatmovTypeInfo> checker;
+	private ModelCheckerV1<MatmovTypeInfo> checker;
 	
 	
 	public MatmovCheckMatmovType(ModelCheckerOption option) {

@@ -3,11 +3,11 @@ package br.com.mind5.business.customer.model.checker;
 import java.util.List;
 
 import br.com.mind5.business.customer.info.CusInfo;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.common.ModelCherckerTrue;
 
-public final class CusCheckDummy implements ModelChecker<CusInfo> {
-	private ModelChecker<CusInfo> checker;
+public final class CusCheckDummy implements ModelCheckerV1<CusInfo> {
+	private ModelCheckerV1<CusInfo> checker;
 	
 	
 	public CusCheckDummy() {

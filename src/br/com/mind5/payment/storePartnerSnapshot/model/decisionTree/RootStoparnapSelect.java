@@ -5,18 +5,18 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 import br.com.mind5.payment.storePartnerSnapshot.info.StoparnapInfo;
 import br.com.mind5.payment.storePartnerSnapshot.model.action.LazyStoparnapMergePaypar;
 import br.com.mind5.payment.storePartnerSnapshot.model.action.StdStoparnapMergeToSelect;
 import br.com.mind5.payment.storePartnerSnapshot.model.checker.StoparnapCheckOwner;
 import br.com.mind5.payment.storePartnerSnapshot.model.checker.StoparnapCheckRead;
 
-public final class RootStoparnapSelect extends DeciTreeReadTemplate<StoparnapInfo> {
+public final class RootStoparnapSelect extends DeciTreeTemplateRead<StoparnapInfo> {
 	
 	public RootStoparnapSelect(DeciTreeOption<StoparnapInfo> option) {
 		super(option);
@@ -24,9 +24,9 @@ public final class RootStoparnapSelect extends DeciTreeReadTemplate<StoparnapInf
 	
 	
 	
-	@Override protected ModelChecker<StoparnapInfo> buildCheckerHook(DeciTreeOption<StoparnapInfo> option) {
-		List<ModelChecker<StoparnapInfo>> queue = new ArrayList<>();		
-		ModelChecker<StoparnapInfo> checker;
+	@Override protected ModelCheckerV1<StoparnapInfo> buildCheckerHook(DeciTreeOption<StoparnapInfo> option) {
+		List<ModelCheckerV1<StoparnapInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<StoparnapInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -43,7 +43,7 @@ public final class RootStoparnapSelect extends DeciTreeReadTemplate<StoparnapInf
 		checker = new StoparnapCheckOwner(checkerOption);
 		queue.add(checker);	
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

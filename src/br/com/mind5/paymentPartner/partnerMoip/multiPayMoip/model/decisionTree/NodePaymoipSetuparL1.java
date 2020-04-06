@@ -5,16 +5,16 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.info.PaymoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.model.action.LazyPaymoipNodeSetuparL2;
 import br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.model.action.StdPaymoipMergeSetupar;
 import br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.model.checker.PaymoipCheckDummy;
 
-public final class NodePaymoipSetuparL1 extends DeciTreeWriteTemplate<PaymoipInfo> {
+public final class NodePaymoipSetuparL1 extends DeciTreeTemplateWrite<PaymoipInfo> {
 	
 	public NodePaymoipSetuparL1(DeciTreeOption<PaymoipInfo> option) {
 		super(option);
@@ -22,14 +22,14 @@ public final class NodePaymoipSetuparL1 extends DeciTreeWriteTemplate<PaymoipInf
 	
 	
 	
-	@Override protected ModelChecker<PaymoipInfo> buildCheckerHook(DeciTreeOption<PaymoipInfo> option) {	
-		List<ModelChecker<PaymoipInfo>> queue = new ArrayList<>();		
-		ModelChecker<PaymoipInfo> checker;
+	@Override protected ModelCheckerV1<PaymoipInfo> buildCheckerHook(DeciTreeOption<PaymoipInfo> option) {	
+		List<ModelCheckerV1<PaymoipInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<PaymoipInfo> checker;
 
 		checker = new PaymoipCheckDummy();
 		queue.add(checker);
 
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

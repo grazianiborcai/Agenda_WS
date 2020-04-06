@@ -4,16 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.security.jwtToken.info.JwtokenInfo;
 import br.com.mind5.security.jwtToken.model.action.StdJwtokenSuccess;
 import br.com.mind5.security.jwtToken.model.checker.JwtokenCheckToken;
 
-public final class NodeJwtokenValidate extends DeciTreeWriteTemplate<JwtokenInfo> {
+public final class NodeJwtokenValidate extends DeciTreeTemplateWrite<JwtokenInfo> {
 	
 	public NodeJwtokenValidate(DeciTreeOption<JwtokenInfo> option) {
 		super(option);
@@ -21,9 +21,9 @@ public final class NodeJwtokenValidate extends DeciTreeWriteTemplate<JwtokenInfo
 	
 	
 	
-	@Override protected ModelChecker<JwtokenInfo> buildCheckerHook(DeciTreeOption<JwtokenInfo> option) {
-		List<ModelChecker<JwtokenInfo>> queue = new ArrayList<>();		
-		ModelChecker<JwtokenInfo> checker;	
+	@Override protected ModelCheckerV1<JwtokenInfo> buildCheckerHook(DeciTreeOption<JwtokenInfo> option) {
+		List<ModelCheckerV1<JwtokenInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<JwtokenInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -33,7 +33,7 @@ public final class NodeJwtokenValidate extends DeciTreeWriteTemplate<JwtokenInfo
 		checker = new JwtokenCheckToken(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

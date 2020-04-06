@@ -4,16 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 import br.com.mind5.payment.countryPartnerSearch.info.CounparchInfo;
 import br.com.mind5.payment.countryPartnerSearch.model.action.StdCounparchSelect;
 import br.com.mind5.payment.countryPartnerSearch.model.checker.CounparchCheckRead;
 
-public final class RootCounparchSelect extends DeciTreeReadTemplate<CounparchInfo> {
+public final class RootCounparchSelect extends DeciTreeTemplateRead<CounparchInfo> {
 	
 	public RootCounparchSelect(DeciTreeOption<CounparchInfo> option) {
 		super(option);
@@ -21,9 +21,9 @@ public final class RootCounparchSelect extends DeciTreeReadTemplate<CounparchInf
 	
 	
 	
-	@Override protected ModelChecker<CounparchInfo> buildCheckerHook(DeciTreeOption<CounparchInfo> option) {
-		List<ModelChecker<CounparchInfo>> queue = new ArrayList<>();		
-		ModelChecker<CounparchInfo> checker;
+	@Override protected ModelCheckerV1<CounparchInfo> buildCheckerHook(DeciTreeOption<CounparchInfo> option) {
+		List<ModelCheckerV1<CounparchInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<CounparchInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -33,7 +33,7 @@ public final class RootCounparchSelect extends DeciTreeReadTemplate<CounparchInf
 		checker = new CounparchCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

@@ -5,14 +5,14 @@ import java.util.List;
 import br.com.mind5.business.cartItem.info.CartemInfo;
 import br.com.mind5.business.storeWorkTimeRange.info.StoworgInfo;
 import br.com.mind5.business.storeWorkTimeRange.model.checker.StoworgCheckExist;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 
-public final class CartemCheckStoworg implements ModelChecker<CartemInfo> {
+public final class CartemCheckStoworg implements ModelCheckerV1<CartemInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<StoworgInfo> checker;
+	private ModelCheckerV1<StoworgInfo> checker;
 	
 	
 	public CartemCheckStoworg(ModelCheckerOption option) {

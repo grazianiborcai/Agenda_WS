@@ -5,14 +5,14 @@ import java.util.List;
 import br.com.mind5.business.material.info.MatInfo;
 import br.com.mind5.business.material.model.checker.MatCheckExist;
 import br.com.mind5.business.orderItem.info.OrderemInfo;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 
-public final class OrderemCheckMat implements ModelChecker<OrderemInfo> {
+public final class OrderemCheckMat implements ModelCheckerV1<OrderemInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<MatInfo> checker;
+	private ModelCheckerV1<MatInfo> checker;
 	
 	
 	public OrderemCheckMat(ModelCheckerOption option) {

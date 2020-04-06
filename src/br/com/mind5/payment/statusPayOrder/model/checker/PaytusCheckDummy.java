@@ -2,12 +2,12 @@ package br.com.mind5.payment.statusPayOrder.model.checker;
 
 import java.util.List;
 
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.common.ModelCherckerTrue;
 import br.com.mind5.payment.statusPayOrder.info.PaytusInfo;
 
-public final class PaytusCheckDummy implements ModelChecker<PaytusInfo> {
-	private ModelChecker<PaytusInfo> checker;
+public final class PaytusCheckDummy implements ModelCheckerV1<PaytusInfo> {
+	private ModelCheckerV1<PaytusInfo> checker;
 	
 	
 	public PaytusCheckDummy() {

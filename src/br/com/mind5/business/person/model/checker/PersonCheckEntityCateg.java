@@ -5,14 +5,14 @@ import java.util.List;
 import br.com.mind5.business.masterData.info.EntityCategInfo;
 import br.com.mind5.business.masterData.model.checker.EntityCategCheckExist;
 import br.com.mind5.business.person.info.PersonInfo;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 
-public final class PersonCheckEntityCateg implements ModelChecker<PersonInfo> {
+public final class PersonCheckEntityCateg implements ModelCheckerV1<PersonInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<EntityCategInfo> checker;
+	private ModelCheckerV1<EntityCategInfo> checker;
 	
 	
 	public PersonCheckEntityCateg(ModelCheckerOption option) {

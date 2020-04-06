@@ -7,13 +7,13 @@ import br.com.mind5.file.fileImage.info.FimgInfo;
 import br.com.mind5.file.fileImage.model.action.StdFimgMergeToSelect;
 import br.com.mind5.file.fileImage.model.checker.FimgCheckRead;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootFimgSelect extends DeciTreeReadTemplate<FimgInfo> {
+public final class RootFimgSelect extends DeciTreeTemplateRead<FimgInfo> {
 	
 	public RootFimgSelect(DeciTreeOption<FimgInfo> option) {
 		super(option);
@@ -21,9 +21,9 @@ public final class RootFimgSelect extends DeciTreeReadTemplate<FimgInfo> {
 	
 	
 	
-	@Override protected ModelChecker<FimgInfo> buildCheckerHook(DeciTreeOption<FimgInfo> option) {
-		List<ModelChecker<FimgInfo>> queue = new ArrayList<>();		
-		ModelChecker<FimgInfo> checker;	
+	@Override protected ModelCheckerV1<FimgInfo> buildCheckerHook(DeciTreeOption<FimgInfo> option) {
+		List<ModelCheckerV1<FimgInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<FimgInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -33,7 +33,7 @@ public final class RootFimgSelect extends DeciTreeReadTemplate<FimgInfo> {
 		checker = new FimgCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

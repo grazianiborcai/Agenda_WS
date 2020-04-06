@@ -9,12 +9,12 @@ import br.com.mind5.file.filePath.model.action.StdFathEnforceCodImage;
 import br.com.mind5.file.filePath.model.checker.FathCheckDummy;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootFathSelectImage extends DeciTreeReadTemplate<FathInfo> {
+public final class RootFathSelectImage extends DeciTreeTemplateRead<FathInfo> {
 	
 	public RootFathSelectImage(DeciTreeOption<FathInfo> option) {
 		super(option);
@@ -22,14 +22,14 @@ public final class RootFathSelectImage extends DeciTreeReadTemplate<FathInfo> {
 	
 	
 	
-	@Override protected ModelChecker<FathInfo> buildCheckerHook(DeciTreeOption<FathInfo> option) {
-		List<ModelChecker<FathInfo>> queue = new ArrayList<>();		
-		ModelChecker<FathInfo> checker;
+	@Override protected ModelCheckerV1<FathInfo> buildCheckerHook(DeciTreeOption<FathInfo> option) {
+		List<ModelCheckerV1<FathInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<FathInfo> checker;
 		
 		checker = new FathCheckDummy();
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

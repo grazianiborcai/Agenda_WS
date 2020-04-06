@@ -5,17 +5,17 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 import br.com.mind5.security.username.info.UsernameInfo;
 import br.com.mind5.security.username.model.action.LazyUsernameMergeAuthGrRole;
 import br.com.mind5.security.username.model.action.StdUsernameMergeToSelect;
 import br.com.mind5.security.username.model.checker.UsernameCheckRead;
 
-public final class RootUsernameSelect extends DeciTreeReadTemplate<UsernameInfo> {
+public final class RootUsernameSelect extends DeciTreeTemplateRead<UsernameInfo> {
 	
 	public RootUsernameSelect(DeciTreeOption<UsernameInfo> option) {
 		super(option);
@@ -23,9 +23,9 @@ public final class RootUsernameSelect extends DeciTreeReadTemplate<UsernameInfo>
 	
 	
 	
-	@Override protected ModelChecker<UsernameInfo> buildCheckerHook(DeciTreeOption<UsernameInfo> option) {
-		List<ModelChecker<UsernameInfo>> queue = new ArrayList<>();		
-		ModelChecker<UsernameInfo> checker;
+	@Override protected ModelCheckerV1<UsernameInfo> buildCheckerHook(DeciTreeOption<UsernameInfo> option) {
+		List<ModelCheckerV1<UsernameInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<UsernameInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -35,7 +35,7 @@ public final class RootUsernameSelect extends DeciTreeReadTemplate<UsernameInfo>
 		checker = new UsernameCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

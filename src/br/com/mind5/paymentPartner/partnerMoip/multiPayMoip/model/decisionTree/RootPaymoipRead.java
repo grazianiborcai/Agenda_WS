@@ -5,11 +5,11 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.info.PaymoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.model.action.LazyPaymoipEnforceResponseAttr;
 import br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.model.action.LazyPaymoipEnforceSetup;
@@ -19,7 +19,7 @@ import br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.model.action.LazyPay
 import br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.model.action.StdPaymoipEnforcePaypar;
 import br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.model.checker.PaymoipCheckRead;
 
-public final class RootPaymoipRead extends DeciTreeWriteTemplate<PaymoipInfo> {
+public final class RootPaymoipRead extends DeciTreeTemplateWrite<PaymoipInfo> {
 	
 	public RootPaymoipRead(DeciTreeOption<PaymoipInfo> option) {
 		super(option);
@@ -27,9 +27,9 @@ public final class RootPaymoipRead extends DeciTreeWriteTemplate<PaymoipInfo> {
 	
 	
 	
-	@Override protected ModelChecker<PaymoipInfo> buildCheckerHook(DeciTreeOption<PaymoipInfo> option) {	
-		List<ModelChecker<PaymoipInfo>> queue = new ArrayList<>();		
-		ModelChecker<PaymoipInfo> checker;
+	@Override protected ModelCheckerV1<PaymoipInfo> buildCheckerHook(DeciTreeOption<PaymoipInfo> option) {	
+		List<ModelCheckerV1<PaymoipInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<PaymoipInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -39,7 +39,7 @@ public final class RootPaymoipRead extends DeciTreeWriteTemplate<PaymoipInfo> {
 		checker = new PaymoipCheckRead(checkerOption);
 		queue.add(checker);
 
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

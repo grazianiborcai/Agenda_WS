@@ -5,14 +5,14 @@ import java.util.List;
 import br.com.mind5.business.materialText.info.MatextInfo;
 import br.com.mind5.business.materialTextDefault.info.MatextaultInfo;
 import br.com.mind5.business.materialTextDefault.model.checker.MatextaultCheckExist;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 
-public final class MatextCheckMatextault implements ModelChecker<MatextInfo> {
+public final class MatextCheckMatextault implements ModelCheckerV1<MatextInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<MatextaultInfo> checker;
+	private ModelCheckerV1<MatextaultInfo> checker;
 	
 	
 	public MatextCheckMatextault(ModelCheckerOption option) {

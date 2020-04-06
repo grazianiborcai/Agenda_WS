@@ -3,11 +3,11 @@ package br.com.mind5.business.store.model.checker;
 import java.util.List;
 
 import br.com.mind5.business.store.info.StoreInfo;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.common.ModelCherckerTrue;
 
-public final class StoreCheckDummy implements ModelChecker<StoreInfo> {
-	private ModelChecker<StoreInfo> checker;
+public final class StoreCheckDummy implements ModelCheckerV1<StoreInfo> {
+	private ModelCheckerV1<StoreInfo> checker;
 	
 	
 	public StoreCheckDummy() {

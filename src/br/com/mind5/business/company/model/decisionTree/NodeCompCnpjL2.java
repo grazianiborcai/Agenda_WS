@@ -11,13 +11,13 @@ import br.com.mind5.business.company.model.checker.CompCheckCnpjOnlyNumber;
 import br.com.mind5.business.company.model.checker.CompCheckCnpjSequence;
 import br.com.mind5.business.company.model.checker.CompCheckCnpjExist;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodeCompCnpjL2 extends DeciTreeWriteTemplate<CompInfo> {
+public final class NodeCompCnpjL2 extends DeciTreeTemplateWrite<CompInfo> {
 	
 	public NodeCompCnpjL2(DeciTreeOption<CompInfo> option) {
 		super(option);
@@ -25,9 +25,9 @@ public final class NodeCompCnpjL2 extends DeciTreeWriteTemplate<CompInfo> {
 	
 	
 	
-	@Override protected ModelChecker<CompInfo> buildCheckerHook(DeciTreeOption<CompInfo> option) {
-		List<ModelChecker<CompInfo>> queue = new ArrayList<>();		
-		ModelChecker<CompInfo> checker;	
+	@Override protected ModelCheckerV1<CompInfo> buildCheckerHook(DeciTreeOption<CompInfo> option) {
+		List<ModelCheckerV1<CompInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<CompInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -65,7 +65,7 @@ public final class NodeCompCnpjL2 extends DeciTreeWriteTemplate<CompInfo> {
 		checker = new CompCheckCnpjExist(checkerOption);
 		queue.add(checker);	
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

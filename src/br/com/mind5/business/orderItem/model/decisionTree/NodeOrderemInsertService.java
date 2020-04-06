@@ -14,13 +14,13 @@ import br.com.mind5.business.orderItem.model.checker.OrderemCheckStore;
 import br.com.mind5.business.orderItem.model.checker.OrderemCheckInsertService;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodeOrderemInsertService extends DeciTreeWriteTemplate<OrderemInfo> {
+public final class NodeOrderemInsertService extends DeciTreeTemplateWrite<OrderemInfo> {
 	
 	public NodeOrderemInsertService(DeciTreeOption<OrderemInfo> option) {
 		super(option);
@@ -28,9 +28,9 @@ public final class NodeOrderemInsertService extends DeciTreeWriteTemplate<Ordere
 	
 	
 	
-	@Override protected ModelChecker<OrderemInfo> buildCheckerHook(DeciTreeOption<OrderemInfo> option) {
-		List<ModelChecker<OrderemInfo>> queue = new ArrayList<>();		
-		ModelChecker<OrderemInfo> checker;	
+	@Override protected ModelCheckerV1<OrderemInfo> buildCheckerHook(DeciTreeOption<OrderemInfo> option) {
+		List<ModelCheckerV1<OrderemInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<OrderemInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -75,7 +75,7 @@ public final class NodeOrderemInsertService extends DeciTreeWriteTemplate<Ordere
 		checker = new OrderemCheckEmpmat(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

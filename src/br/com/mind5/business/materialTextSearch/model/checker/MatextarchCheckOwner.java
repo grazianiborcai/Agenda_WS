@@ -5,14 +5,14 @@ import java.util.List;
 import br.com.mind5.business.materialTextSearch.info.MatextarchInfo;
 import br.com.mind5.business.owner.info.OwnerInfo;
 import br.com.mind5.business.owner.model.checker.OwnerCheckExist;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 
-public final class MatextarchCheckOwner implements ModelChecker<MatextarchInfo> {
+public final class MatextarchCheckOwner implements ModelCheckerV1<MatextarchInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<OwnerInfo> checker;
+	private ModelCheckerV1<OwnerInfo> checker;
 	
 	
 	public MatextarchCheckOwner(ModelCheckerOption option) {

@@ -10,13 +10,13 @@ import br.com.mind5.business.order.model.action.StdOrderSuccess;
 import br.com.mind5.business.order.model.checker.OrderCheckHasPayord;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodeOrderPayord extends DeciTreeWriteTemplate<OrderInfo> {
+public final class NodeOrderPayord extends DeciTreeTemplateWrite<OrderInfo> {
 	
 	public NodeOrderPayord(DeciTreeOption<OrderInfo> option) {
 		super(option);
@@ -24,9 +24,9 @@ public final class NodeOrderPayord extends DeciTreeWriteTemplate<OrderInfo> {
 	
 	
 	
-	@Override protected ModelChecker<OrderInfo> buildCheckerHook(DeciTreeOption<OrderInfo> option) {
-		List<ModelChecker<OrderInfo>> queue = new ArrayList<>();		
-		ModelChecker<OrderInfo> checker;	
+	@Override protected ModelCheckerV1<OrderInfo> buildCheckerHook(DeciTreeOption<OrderInfo> option) {
+		List<ModelCheckerV1<OrderInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<OrderInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -36,7 +36,7 @@ public final class NodeOrderPayord extends DeciTreeWriteTemplate<OrderInfo> {
 		checker = new OrderCheckHasPayord(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

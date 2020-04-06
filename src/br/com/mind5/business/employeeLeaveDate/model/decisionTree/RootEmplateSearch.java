@@ -9,12 +9,12 @@ import br.com.mind5.business.employeeLeaveDate.model.action.StdEmplateMergeEmpla
 import br.com.mind5.business.employeeLeaveDate.model.checker.EmplateCheckDummy;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public class RootEmplateSearch extends DeciTreeReadTemplate<EmplateInfo> {
+public class RootEmplateSearch extends DeciTreeTemplateRead<EmplateInfo> {
 	
 	public RootEmplateSearch(DeciTreeOption<EmplateInfo> option) {
 		super(option);
@@ -22,14 +22,14 @@ public class RootEmplateSearch extends DeciTreeReadTemplate<EmplateInfo> {
 	
 	
 	
-	@Override protected ModelChecker<EmplateInfo> buildCheckerHook(DeciTreeOption<EmplateInfo> option) {
-		List<ModelChecker<EmplateInfo>> queue = new ArrayList<>();		
-		ModelChecker<EmplateInfo> checker;
+	@Override protected ModelCheckerV1<EmplateInfo> buildCheckerHook(DeciTreeOption<EmplateInfo> option) {
+		List<ModelCheckerV1<EmplateInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<EmplateInfo> checker;
 
 		checker = new EmplateCheckDummy();
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

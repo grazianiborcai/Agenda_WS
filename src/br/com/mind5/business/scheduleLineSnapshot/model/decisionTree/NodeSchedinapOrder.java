@@ -7,13 +7,13 @@ import br.com.mind5.business.scheduleLineSnapshot.info.SchedinapInfo;
 import br.com.mind5.business.scheduleLineSnapshot.model.action.StdSchedinapSuccess;
 import br.com.mind5.business.scheduleLineSnapshot.model.checker.SchedinapCheckHasOrder;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodeSchedinapOrder extends DeciTreeWriteTemplate<SchedinapInfo> {
+public final class NodeSchedinapOrder extends DeciTreeTemplateWrite<SchedinapInfo> {
 	
 	public NodeSchedinapOrder(DeciTreeOption<SchedinapInfo> option) {
 		super(option);
@@ -21,9 +21,9 @@ public final class NodeSchedinapOrder extends DeciTreeWriteTemplate<SchedinapInf
 	
 	
 	
-	@Override protected ModelChecker<SchedinapInfo> buildCheckerHook(DeciTreeOption<SchedinapInfo> option) {
-		List<ModelChecker<SchedinapInfo>> queue = new ArrayList<>();		
-		ModelChecker<SchedinapInfo> checker;	
+	@Override protected ModelCheckerV1<SchedinapInfo> buildCheckerHook(DeciTreeOption<SchedinapInfo> option) {
+		List<ModelCheckerV1<SchedinapInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<SchedinapInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -33,7 +33,7 @@ public final class NodeSchedinapOrder extends DeciTreeWriteTemplate<SchedinapInf
 		checker = new SchedinapCheckHasOrder(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

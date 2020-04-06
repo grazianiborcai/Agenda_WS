@@ -2,17 +2,17 @@ package br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.checker;
 
 import java.util.List;
 
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.payment.payOrderItem.info.PayordemInfo;
 import br.com.mind5.payment.payOrderItem.model.checker.PayordemCheckExist;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.info.OrdmoipInfo;
 
-public final class OrdmoipCheckPayordem implements ModelChecker<OrdmoipInfo> {
+public final class OrdmoipCheckPayordem implements ModelCheckerV1<OrdmoipInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<PayordemInfo> checker;
+	private ModelCheckerV1<PayordemInfo> checker;
 	
 	
 	public OrdmoipCheckPayordem(ModelCheckerOption option) {

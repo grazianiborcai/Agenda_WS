@@ -5,14 +5,14 @@ import java.util.List;
 import br.com.mind5.business.order.info.OrderInfo;
 import br.com.mind5.business.orderSearch.info.OrdarchInfo;
 import br.com.mind5.business.orderSearch.model.checker.OrdarchCheckExist;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 
-public final class OrderCheckOrdarch implements ModelChecker<OrderInfo> {
+public final class OrderCheckOrdarch implements ModelCheckerV1<OrderInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<OrdarchInfo> checker;
+	private ModelCheckerV1<OrdarchInfo> checker;
 	
 	
 	public OrderCheckOrdarch(ModelCheckerOption option) {

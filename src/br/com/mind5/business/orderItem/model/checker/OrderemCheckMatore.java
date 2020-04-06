@@ -5,14 +5,14 @@ import java.util.List;
 import br.com.mind5.business.materialStore.info.MatoreInfo;
 import br.com.mind5.business.materialStore.model.checker.MatoreCheckExist;
 import br.com.mind5.business.orderItem.info.OrderemInfo;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 
-public final class OrderemCheckMatore implements ModelChecker<OrderemInfo> {
+public final class OrderemCheckMatore implements ModelCheckerV1<OrderemInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<MatoreInfo> checker;
+	private ModelCheckerV1<MatoreInfo> checker;
 	
 	
 	public OrderemCheckMatore(ModelCheckerOption option) {

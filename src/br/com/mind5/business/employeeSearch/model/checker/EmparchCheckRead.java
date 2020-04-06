@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.mind5.business.employeeSearch.info.EmparchInfo;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class EmparchCheckRead extends ModelCheckerTemplateSimple<EmparchInfo> {
+public final class EmparchCheckRead extends ModelCheckerTemplateSimpleV2<EmparchInfo> {
 
 	public EmparchCheckRead(ModelCheckerOption option) {
 		super(option);

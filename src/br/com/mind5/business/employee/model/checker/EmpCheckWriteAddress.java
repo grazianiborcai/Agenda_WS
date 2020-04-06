@@ -6,9 +6,9 @@ import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.employee.info.EmpInfo;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class EmpCheckWriteAddress extends ModelCheckerTemplateSimple<EmpInfo> {
+public final class EmpCheckWriteAddress extends ModelCheckerTemplateSimpleV2<EmpInfo> {
 
 	public EmpCheckWriteAddress(ModelCheckerOption option) {
 		super(option);

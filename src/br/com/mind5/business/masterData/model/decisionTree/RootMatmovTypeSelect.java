@@ -7,13 +7,13 @@ import br.com.mind5.business.masterData.info.MatmovTypeInfo;
 import br.com.mind5.business.masterData.model.action.StdMatmovTypeSelect;
 import br.com.mind5.business.masterData.model.checker.MatmovTypeCheckRead;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootMatmovTypeSelect extends DeciTreeReadTemplate<MatmovTypeInfo> {
+public final class RootMatmovTypeSelect extends DeciTreeTemplateRead<MatmovTypeInfo> {
 	
 	public RootMatmovTypeSelect(DeciTreeOption<MatmovTypeInfo> option) {
 		super(option);
@@ -21,9 +21,9 @@ public final class RootMatmovTypeSelect extends DeciTreeReadTemplate<MatmovTypeI
 	
 	
 	
-	@Override protected ModelChecker<MatmovTypeInfo> buildCheckerHook(DeciTreeOption<MatmovTypeInfo> option) {
-		List<ModelChecker<MatmovTypeInfo>> queue = new ArrayList<>();		
-		ModelChecker<MatmovTypeInfo> checker;
+	@Override protected ModelCheckerV1<MatmovTypeInfo> buildCheckerHook(DeciTreeOption<MatmovTypeInfo> option) {
+		List<ModelCheckerV1<MatmovTypeInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<MatmovTypeInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
 		checkerOption = new ModelCheckerOption();
@@ -33,7 +33,7 @@ public final class RootMatmovTypeSelect extends DeciTreeReadTemplate<MatmovTypeI
 		checker = new MatmovTypeCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 
 		

@@ -6,14 +6,14 @@ import br.com.mind5.business.cartItem.info.CartemInfo;
 import br.com.mind5.business.planingDataSearch.info.PlanarchCopier;
 import br.com.mind5.business.planingDataSearch.info.PlanarchInfo;
 import br.com.mind5.business.planingDataSearch.model.checker.PlanarchCheckExist;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 
-public final class CartemCheckPlanarch implements ModelChecker<CartemInfo> {
+public final class CartemCheckPlanarch implements ModelCheckerV1<CartemInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<PlanarchInfo> checker;
+	private ModelCheckerV1<PlanarchInfo> checker;
 	
 	
 	public CartemCheckPlanarch(ModelCheckerOption option) {

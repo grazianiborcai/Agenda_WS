@@ -4,10 +4,10 @@ import java.sql.Connection;
 
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 import br.com.mind5.security.user.info.UserInfo;
 
-public final class UserCheckDeleteAuth extends ModelCheckerTemplateSimple<UserInfo> {
+public final class UserCheckDeleteAuth extends ModelCheckerTemplateSimpleV2<UserInfo> {
 
 	public UserCheckDeleteAuth(ModelCheckerOption option) {
 		super(option);

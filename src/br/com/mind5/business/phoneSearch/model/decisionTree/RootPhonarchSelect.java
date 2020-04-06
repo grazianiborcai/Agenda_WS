@@ -9,13 +9,13 @@ import br.com.mind5.business.phoneSearch.model.checker.PhonarchCheckLangu;
 import br.com.mind5.business.phoneSearch.model.checker.PhonarchCheckOwner;
 import br.com.mind5.business.phoneSearch.model.checker.PhonarchCheckRead;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootPhonarchSelect extends DeciTreeWriteTemplate<PhonarchInfo> {
+public final class RootPhonarchSelect extends DeciTreeTemplateWrite<PhonarchInfo> {
 	
 	public RootPhonarchSelect(DeciTreeOption<PhonarchInfo> option) {
 		super(option);
@@ -23,9 +23,9 @@ public final class RootPhonarchSelect extends DeciTreeWriteTemplate<PhonarchInfo
 	
 	
 	
-	@Override protected ModelChecker<PhonarchInfo> buildCheckerHook(DeciTreeOption<PhonarchInfo> option) {
-		List<ModelChecker<PhonarchInfo>> queue = new ArrayList<>();		
-		ModelChecker<PhonarchInfo> checker;	
+	@Override protected ModelCheckerV1<PhonarchInfo> buildCheckerHook(DeciTreeOption<PhonarchInfo> option) {
+		List<ModelCheckerV1<PhonarchInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<PhonarchInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -49,7 +49,7 @@ public final class RootPhonarchSelect extends DeciTreeWriteTemplate<PhonarchInfo
 		checker = new PhonarchCheckLangu(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

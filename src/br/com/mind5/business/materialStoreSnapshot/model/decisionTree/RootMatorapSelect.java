@@ -10,13 +10,13 @@ import br.com.mind5.business.materialStoreSnapshot.model.checker.MatorapCheckMat
 import br.com.mind5.business.materialStoreSnapshot.model.checker.MatorapCheckOwner;
 import br.com.mind5.business.materialStoreSnapshot.model.checker.MatorapCheckRead;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootMatorapSelect extends DeciTreeReadTemplate<MatorapInfo> {
+public final class RootMatorapSelect extends DeciTreeTemplateRead<MatorapInfo> {
 	
 	public RootMatorapSelect(DeciTreeOption<MatorapInfo> option) {
 		super(option);
@@ -24,10 +24,10 @@ public final class RootMatorapSelect extends DeciTreeReadTemplate<MatorapInfo> {
 	
 	
 	
-	@Override protected ModelChecker<MatorapInfo> buildCheckerHook(DeciTreeOption<MatorapInfo> option) {
+	@Override protected ModelCheckerV1<MatorapInfo> buildCheckerHook(DeciTreeOption<MatorapInfo> option) {
 		ModelCheckerOption checkerOption;
-		List<ModelChecker<MatorapInfo>> queue = new ArrayList<>();		
-		ModelChecker<MatorapInfo> checker;
+		List<ModelCheckerV1<MatorapInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<MatorapInfo> checker;
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
@@ -57,7 +57,7 @@ public final class RootMatorapSelect extends DeciTreeReadTemplate<MatorapInfo> {
 		checker = new MatorapCheckMatore(checkerOption);
 		queue.add(checker);	
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

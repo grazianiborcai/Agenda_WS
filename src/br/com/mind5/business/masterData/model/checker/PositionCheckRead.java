@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.mind5.business.masterData.info.PositionInfo;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class PositionCheckRead extends ModelCheckerTemplateSimple<PositionInfo> {
+public final class PositionCheckRead extends ModelCheckerTemplateSimpleV2<PositionInfo> {
 
 	public PositionCheckRead(ModelCheckerOption option) {
 		super(option);

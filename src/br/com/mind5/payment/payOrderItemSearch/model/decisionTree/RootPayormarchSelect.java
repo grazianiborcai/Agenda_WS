@@ -4,16 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.payment.payOrderItemSearch.info.PayormarchInfo;
 import br.com.mind5.payment.payOrderItemSearch.model.action.StdPayormarchMergeToSelect;
 import br.com.mind5.payment.payOrderItemSearch.model.checker.PayormarchCheckRead;
 
-public final class RootPayormarchSelect extends DeciTreeWriteTemplate<PayormarchInfo> {
+public final class RootPayormarchSelect extends DeciTreeTemplateWrite<PayormarchInfo> {
 	
 	public RootPayormarchSelect(DeciTreeOption<PayormarchInfo> option) {
 		super(option);
@@ -21,9 +21,9 @@ public final class RootPayormarchSelect extends DeciTreeWriteTemplate<Payormarch
 	
 	
 	
-	@Override protected ModelChecker<PayormarchInfo> buildCheckerHook(DeciTreeOption<PayormarchInfo> option) {
-		List<ModelChecker<PayormarchInfo>> queue = new ArrayList<>();		
-		ModelChecker<PayormarchInfo> checker;	
+	@Override protected ModelCheckerV1<PayormarchInfo> buildCheckerHook(DeciTreeOption<PayormarchInfo> option) {
+		List<ModelCheckerV1<PayormarchInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<PayormarchInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -33,7 +33,7 @@ public final class RootPayormarchSelect extends DeciTreeWriteTemplate<Payormarch
 		checker = new PayormarchCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

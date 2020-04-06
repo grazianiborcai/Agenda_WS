@@ -7,13 +7,13 @@ import br.com.mind5.business.masterData.info.BusinessInfo;
 import br.com.mind5.business.masterData.model.action.StdBusinessSelect;
 import br.com.mind5.business.masterData.model.checker.BusinessCheckRead;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootBusinessSelect extends DeciTreeReadTemplate<BusinessInfo> {
+public final class RootBusinessSelect extends DeciTreeTemplateRead<BusinessInfo> {
 	
 	public RootBusinessSelect(DeciTreeOption<BusinessInfo> option) {
 		super(option);
@@ -21,9 +21,9 @@ public final class RootBusinessSelect extends DeciTreeReadTemplate<BusinessInfo>
 	
 	
 	
-	@Override protected ModelChecker<BusinessInfo> buildCheckerHook(DeciTreeOption<BusinessInfo> option) {
-		List<ModelChecker<BusinessInfo>> queue = new ArrayList<>();		
-		ModelChecker<BusinessInfo> checker;
+	@Override protected ModelCheckerV1<BusinessInfo> buildCheckerHook(DeciTreeOption<BusinessInfo> option) {
+		List<ModelCheckerV1<BusinessInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<BusinessInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
 		checkerOption = new ModelCheckerOption();
@@ -33,7 +33,7 @@ public final class RootBusinessSelect extends DeciTreeReadTemplate<BusinessInfo>
 		checker = new BusinessCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 
 		

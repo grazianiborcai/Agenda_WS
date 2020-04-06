@@ -9,13 +9,13 @@ import br.com.mind5.business.scheduleYear.model.action.StdSchedyearMergeSchedyer
 import br.com.mind5.business.scheduleYear.model.checker.SchedyearCheckRead;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootSchedyearSelect extends DeciTreeWriteTemplate<SchedyearInfo> {
+public final class RootSchedyearSelect extends DeciTreeTemplateWrite<SchedyearInfo> {
 	
 	public RootSchedyearSelect(DeciTreeOption<SchedyearInfo> option) {
 		super(option);
@@ -23,9 +23,9 @@ public final class RootSchedyearSelect extends DeciTreeWriteTemplate<SchedyearIn
 	
 	
 	
-	@Override protected ModelChecker<SchedyearInfo> buildCheckerHook(DeciTreeOption<SchedyearInfo> option) {
-		List<ModelChecker<SchedyearInfo>> queue = new ArrayList<>();		
-		ModelChecker<SchedyearInfo> checker;	
+	@Override protected ModelCheckerV1<SchedyearInfo> buildCheckerHook(DeciTreeOption<SchedyearInfo> option) {
+		List<ModelCheckerV1<SchedyearInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<SchedyearInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -35,7 +35,7 @@ public final class RootSchedyearSelect extends DeciTreeWriteTemplate<SchedyearIn
 		checker = new SchedyearCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

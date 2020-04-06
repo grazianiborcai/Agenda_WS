@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.mind5.masterData.moonPhase.info.MoonaseInfo;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class MoonaseCheckRead extends ModelCheckerTemplateSimple<MoonaseInfo> {
+public final class MoonaseCheckRead extends ModelCheckerTemplateSimpleV2<MoonaseInfo> {
 	
 	public MoonaseCheckRead(ModelCheckerOption option) {
 		super(option);

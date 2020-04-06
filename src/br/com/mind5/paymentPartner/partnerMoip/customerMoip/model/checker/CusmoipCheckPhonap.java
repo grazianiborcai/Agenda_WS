@@ -5,15 +5,15 @@ import java.util.List;
 import br.com.mind5.business.phoneSnapshot.info.PhonapCopier;
 import br.com.mind5.business.phoneSnapshot.info.PhonapInfo;
 import br.com.mind5.business.phoneSnapshot.model.checker.PhonapCheckExist;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.paymentPartner.partnerMoip.customerMoip.info.CusmoipInfo;
 
-public final class CusmoipCheckPhonap implements ModelChecker<CusmoipInfo> {
+public final class CusmoipCheckPhonap implements ModelCheckerV1<CusmoipInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<PhonapInfo> checker;
+	private ModelCheckerV1<PhonapInfo> checker;
 	
 	
 	public CusmoipCheckPhonap(ModelCheckerOption option) {

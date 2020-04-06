@@ -6,14 +6,14 @@ import br.com.mind5.business.materialStoreSearch.info.MatorarchCopier;
 import br.com.mind5.business.materialStoreSearch.info.MatorarchInfo;
 import br.com.mind5.business.materialStoreSearch.model.checker.MatorarchCheckExist;
 import br.com.mind5.business.store.info.StoreInfo;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 
-public final class StoreCheckMatorarch implements ModelChecker<StoreInfo> {
+public final class StoreCheckMatorarch implements ModelCheckerV1<StoreInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<MatorarchInfo> checker;
+	private ModelCheckerV1<MatorarchInfo> checker;
 	
 	
 	public StoreCheckMatorarch(ModelCheckerOption option) {

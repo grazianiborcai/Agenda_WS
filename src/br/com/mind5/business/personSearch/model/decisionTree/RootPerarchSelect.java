@@ -11,13 +11,13 @@ import br.com.mind5.business.personSearch.model.checker.PerarchCheckOwner;
 import br.com.mind5.business.personSearch.model.checker.PerarchCheckRead;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootPerarchSelect extends DeciTreeReadTemplate<PerarchInfo> {
+public final class RootPerarchSelect extends DeciTreeTemplateRead<PerarchInfo> {
 	
 	public RootPerarchSelect(DeciTreeOption<PerarchInfo> option) {
 		super(option);
@@ -25,9 +25,9 @@ public final class RootPerarchSelect extends DeciTreeReadTemplate<PerarchInfo> {
 	
 	
 	
-	@Override protected ModelChecker<PerarchInfo> buildCheckerHook(DeciTreeOption<PerarchInfo> option) {
-		List<ModelChecker<PerarchInfo>> queue = new ArrayList<>();		
-		ModelChecker<PerarchInfo> checker;
+	@Override protected ModelCheckerV1<PerarchInfo> buildCheckerHook(DeciTreeOption<PerarchInfo> option) {
+		List<ModelCheckerV1<PerarchInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<PerarchInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
 		checkerOption = new ModelCheckerOption();
@@ -51,7 +51,7 @@ public final class RootPerarchSelect extends DeciTreeReadTemplate<PerarchInfo> {
 		checker = new PerarchCheckOwner(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

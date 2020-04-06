@@ -4,17 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.security.userSnapshot.info.UserapInfo;
 import br.com.mind5.security.userSnapshot.model.action.StdUserapMergePersolis;
 import br.com.mind5.security.userSnapshot.model.action.StdUserapSuccess;
 import br.com.mind5.security.userSnapshot.model.checker.UserapCheckHasPerson;
 
-public final class NodeUserapPerson extends DeciTreeWriteTemplate<UserapInfo> {
+public final class NodeUserapPerson extends DeciTreeTemplateWrite<UserapInfo> {
 	
 	public NodeUserapPerson(DeciTreeOption<UserapInfo> option) {
 		super(option);
@@ -22,9 +22,9 @@ public final class NodeUserapPerson extends DeciTreeWriteTemplate<UserapInfo> {
 	
 	
 	
-	@Override protected ModelChecker<UserapInfo> buildCheckerHook(DeciTreeOption<UserapInfo> option) {
-		List<ModelChecker<UserapInfo>> queue = new ArrayList<>();		
-		ModelChecker<UserapInfo> checker;	
+	@Override protected ModelCheckerV1<UserapInfo> buildCheckerHook(DeciTreeOption<UserapInfo> option) {
+		List<ModelCheckerV1<UserapInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<UserapInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -34,7 +34,7 @@ public final class NodeUserapPerson extends DeciTreeWriteTemplate<UserapInfo> {
 		checker = new UserapCheckHasPerson(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

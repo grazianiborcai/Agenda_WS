@@ -6,14 +6,14 @@ import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.business.storeLeaveDateSearch.info.StolarchCopier;
 import br.com.mind5.business.storeLeaveDateSearch.info.StolarchInfo;
 import br.com.mind5.business.storeLeaveDateSearch.model.checker.StolarchCheckExist;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 
-public final class StoreCheckStolarch implements ModelChecker<StoreInfo> {
+public final class StoreCheckStolarch implements ModelCheckerV1<StoreInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<StolarchInfo> checker;
+	private ModelCheckerV1<StolarchInfo> checker;
 	
 	
 	public StoreCheckStolarch(ModelCheckerOption option) {

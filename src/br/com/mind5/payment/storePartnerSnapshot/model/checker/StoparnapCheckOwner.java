@@ -4,15 +4,15 @@ import java.util.List;
 
 import br.com.mind5.business.owner.info.OwnerInfo;
 import br.com.mind5.business.owner.model.checker.OwnerCheckExist;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.payment.storePartnerSnapshot.info.StoparnapInfo;
 
-public final class StoparnapCheckOwner implements ModelChecker<StoparnapInfo> {
+public final class StoparnapCheckOwner implements ModelCheckerV1<StoparnapInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<OwnerInfo> checker;
+	private ModelCheckerV1<OwnerInfo> checker;
 	
 	
 	public StoparnapCheckOwner(ModelCheckerOption option) {

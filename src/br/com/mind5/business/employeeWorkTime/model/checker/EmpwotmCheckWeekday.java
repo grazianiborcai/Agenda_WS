@@ -5,14 +5,14 @@ import java.util.List;
 import br.com.mind5.business.employeeWorkTime.info.EmpwotmInfo;
 import br.com.mind5.business.masterData.info.WeekdayInfo;
 import br.com.mind5.business.masterData.model.checker.WeekdayCheckExist;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 
-public final class EmpwotmCheckWeekday implements ModelChecker<EmpwotmInfo> {
+public final class EmpwotmCheckWeekday implements ModelCheckerV1<EmpwotmInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<WeekdayInfo> checker;
+	private ModelCheckerV1<WeekdayInfo> checker;
 	
 	
 	public EmpwotmCheckWeekday(ModelCheckerOption option) {

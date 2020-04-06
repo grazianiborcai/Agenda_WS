@@ -5,17 +5,17 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.security.user.info.UserInfo;
 import br.com.mind5.security.user.model.action.LazyUserEnforceAuthEmp;
 import br.com.mind5.security.user.model.action.LazyUserRootInsert;
 import br.com.mind5.security.user.model.action.StdUserEnforceCategEmp;
 import br.com.mind5.security.user.model.checker.UserCheckDummy;
 
-public final class RootUserInsertEmp extends DeciTreeWriteTemplate<UserInfo> {
+public final class RootUserInsertEmp extends DeciTreeTemplateWrite<UserInfo> {
 	
 	public RootUserInsertEmp(DeciTreeOption<UserInfo> option) {
 		super(option);
@@ -23,14 +23,14 @@ public final class RootUserInsertEmp extends DeciTreeWriteTemplate<UserInfo> {
 	
 	
 	
-	@Override protected ModelChecker<UserInfo> buildCheckerHook(DeciTreeOption<UserInfo> option) {
-		List<ModelChecker<UserInfo>> queue = new ArrayList<>();		
-		ModelChecker<UserInfo> checker;	
+	@Override protected ModelCheckerV1<UserInfo> buildCheckerHook(DeciTreeOption<UserInfo> option) {
+		List<ModelCheckerV1<UserInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<UserInfo> checker;	
 		
 		checker = new UserCheckDummy();
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

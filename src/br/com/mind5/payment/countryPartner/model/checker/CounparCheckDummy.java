@@ -2,12 +2,12 @@ package br.com.mind5.payment.countryPartner.model.checker;
 
 import java.util.List;
 
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.common.ModelCherckerTrue;
 import br.com.mind5.payment.countryPartner.info.CounparInfo;
 
-public final class CounparCheckDummy implements ModelChecker<CounparInfo> {
-	private ModelChecker<CounparInfo> checker;
+public final class CounparCheckDummy implements ModelCheckerV1<CounparInfo> {
+	private ModelCheckerV1<CounparInfo> checker;
 	
 	
 	public CounparCheckDummy() {

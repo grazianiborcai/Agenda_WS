@@ -10,13 +10,13 @@ import br.com.mind5.business.customerSearch.model.checker.CusarchCheckOwner;
 import br.com.mind5.business.customerSearch.model.checker.CusarchCheckRead;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootCusarchSelect extends DeciTreeReadTemplate<CusarchInfo> {
+public final class RootCusarchSelect extends DeciTreeTemplateRead<CusarchInfo> {
 	
 	public RootCusarchSelect(DeciTreeOption<CusarchInfo> option) {
 		super(option);
@@ -24,9 +24,9 @@ public final class RootCusarchSelect extends DeciTreeReadTemplate<CusarchInfo> {
 	
 	
 	
-	@Override protected ModelChecker<CusarchInfo> buildCheckerHook(DeciTreeOption<CusarchInfo> option) {
-		List<ModelChecker<CusarchInfo>> queue = new ArrayList<>();		
-		ModelChecker<CusarchInfo> checker;
+	@Override protected ModelCheckerV1<CusarchInfo> buildCheckerHook(DeciTreeOption<CusarchInfo> option) {
+		List<ModelCheckerV1<CusarchInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<CusarchInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
 		checkerOption = new ModelCheckerOption();
@@ -43,7 +43,7 @@ public final class RootCusarchSelect extends DeciTreeReadTemplate<CusarchInfo> {
 		checker = new CusarchCheckOwner(checkerOption);
 		queue.add(checker);	
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

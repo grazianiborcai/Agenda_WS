@@ -9,13 +9,13 @@ import br.com.mind5.message.emailBody.model.action.StdEmabodyMergeToSelect;
 import br.com.mind5.message.emailBody.model.checker.EmabodyCheckRead;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootEmabodySelect extends DeciTreeWriteTemplate<EmabodyInfo> {
+public final class RootEmabodySelect extends DeciTreeTemplateWrite<EmabodyInfo> {
 	
 	public RootEmabodySelect(DeciTreeOption<EmabodyInfo> option) {
 		super(option);
@@ -23,9 +23,9 @@ public final class RootEmabodySelect extends DeciTreeWriteTemplate<EmabodyInfo> 
 	
 	
 	
-	@Override protected ModelChecker<EmabodyInfo> buildCheckerHook(DeciTreeOption<EmabodyInfo> option) {		
-		List<ModelChecker<EmabodyInfo>> queue = new ArrayList<>();		
-		ModelChecker<EmabodyInfo> checker;	
+	@Override protected ModelCheckerV1<EmabodyInfo> buildCheckerHook(DeciTreeOption<EmabodyInfo> option) {		
+		List<ModelCheckerV1<EmabodyInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<EmabodyInfo> checker;	
 		ModelCheckerOption checkerOption;		
 		
 		checkerOption = new ModelCheckerOption();
@@ -35,7 +35,7 @@ public final class RootEmabodySelect extends DeciTreeWriteTemplate<EmabodyInfo> 
 		checker = new EmabodyCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

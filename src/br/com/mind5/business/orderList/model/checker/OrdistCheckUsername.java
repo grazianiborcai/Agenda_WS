@@ -3,16 +3,16 @@ package br.com.mind5.business.orderList.model.checker;
 import java.util.List;
 
 import br.com.mind5.business.orderList.info.OrdistInfo;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.security.username.info.UsernameInfo;
 import br.com.mind5.security.username.model.checker.UsernameCheckExist;
 
-public final class OrdistCheckUsername implements ModelChecker<OrdistInfo> {
+public final class OrdistCheckUsername implements ModelCheckerV1<OrdistInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<UsernameInfo> checker;
+	private ModelCheckerV1<UsernameInfo> checker;
 	
 	
 	public OrdistCheckUsername(ModelCheckerOption option) {

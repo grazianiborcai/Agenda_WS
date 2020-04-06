@@ -7,13 +7,13 @@ import br.com.mind5.business.masterData.info.AuthGroupInfo;
 import br.com.mind5.business.masterData.model.action.StdAuthGroupSelect;
 import br.com.mind5.business.masterData.model.checker.AuthGroupCheckRead;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootAuthGroupSelect extends DeciTreeReadTemplate<AuthGroupInfo> {
+public final class RootAuthGroupSelect extends DeciTreeTemplateRead<AuthGroupInfo> {
 	
 	public RootAuthGroupSelect(DeciTreeOption<AuthGroupInfo> option) {
 		super(option);
@@ -21,9 +21,9 @@ public final class RootAuthGroupSelect extends DeciTreeReadTemplate<AuthGroupInf
 	
 	
 	
-	@Override protected ModelChecker<AuthGroupInfo> buildCheckerHook(DeciTreeOption<AuthGroupInfo> option) {
-		List<ModelChecker<AuthGroupInfo>> queue = new ArrayList<>();		
-		ModelChecker<AuthGroupInfo> checker;
+	@Override protected ModelCheckerV1<AuthGroupInfo> buildCheckerHook(DeciTreeOption<AuthGroupInfo> option) {
+		List<ModelCheckerV1<AuthGroupInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<AuthGroupInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
 		checkerOption = new ModelCheckerOption();
@@ -33,7 +33,7 @@ public final class RootAuthGroupSelect extends DeciTreeReadTemplate<AuthGroupInf
 		checker = new AuthGroupCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

@@ -5,11 +5,11 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 import br.com.mind5.payment.storePartnerList.info.StoplisInfo;
 import br.com.mind5.payment.storePartnerList.model.action.LazyStoplisMergePaypar;
 import br.com.mind5.payment.storePartnerList.model.action.StdStoplisMergeToSelect;
@@ -17,7 +17,7 @@ import br.com.mind5.payment.storePartnerList.model.checker.StoplisCheckOwner;
 import br.com.mind5.payment.storePartnerList.model.checker.StoplisCheckRead;
 import br.com.mind5.payment.storePartnerList.model.checker.StoplisCheckStore;
 
-public final class RootStoplisSelect extends DeciTreeReadTemplate<StoplisInfo> {
+public final class RootStoplisSelect extends DeciTreeTemplateRead<StoplisInfo> {
 	
 	public RootStoplisSelect(DeciTreeOption<StoplisInfo> option) {
 		super(option);
@@ -25,9 +25,9 @@ public final class RootStoplisSelect extends DeciTreeReadTemplate<StoplisInfo> {
 	
 	
 	
-	@Override protected ModelChecker<StoplisInfo> buildCheckerHook(DeciTreeOption<StoplisInfo> option) {
-		List<ModelChecker<StoplisInfo>> queue = new ArrayList<>();		
-		ModelChecker<StoplisInfo> checker;
+	@Override protected ModelCheckerV1<StoplisInfo> buildCheckerHook(DeciTreeOption<StoplisInfo> option) {
+		List<ModelCheckerV1<StoplisInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<StoplisInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -51,7 +51,7 @@ public final class RootStoplisSelect extends DeciTreeReadTemplate<StoplisInfo> {
 		checker = new StoplisCheckStore(checkerOption);
 		queue.add(checker);	
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

@@ -9,13 +9,13 @@ import br.com.mind5.business.ownerList.model.action.StdOwnelisMergeToSelect;
 import br.com.mind5.business.ownerList.model.checker.OwnelisCheckRead;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootOwnelisSelect extends DeciTreeReadTemplate<OwnelisInfo> {
+public final class RootOwnelisSelect extends DeciTreeTemplateRead<OwnelisInfo> {
 
 	public RootOwnelisSelect(DeciTreeOption<OwnelisInfo> option) {
 		super(option);
@@ -23,9 +23,9 @@ public final class RootOwnelisSelect extends DeciTreeReadTemplate<OwnelisInfo> {
 	
 	
 	
-	@Override protected ModelChecker<OwnelisInfo> buildCheckerHook(DeciTreeOption<OwnelisInfo> option) {
-		List<ModelChecker<OwnelisInfo>> queue = new ArrayList<>();		
-		ModelChecker<OwnelisInfo> checker;
+	@Override protected ModelCheckerV1<OwnelisInfo> buildCheckerHook(DeciTreeOption<OwnelisInfo> option) {
+		List<ModelCheckerV1<OwnelisInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<OwnelisInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -35,7 +35,7 @@ public final class RootOwnelisSelect extends DeciTreeReadTemplate<OwnelisInfo> {
 		checker = new OwnelisCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

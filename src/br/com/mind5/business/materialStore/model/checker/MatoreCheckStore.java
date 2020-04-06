@@ -5,14 +5,14 @@ import java.util.List;
 import br.com.mind5.business.materialStore.info.MatoreInfo;
 import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.business.store.model.checker.StoreCheckExist;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 
-public final class MatoreCheckStore implements ModelChecker<MatoreInfo> {
+public final class MatoreCheckStore implements ModelCheckerV1<MatoreInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<StoreInfo> checker;
+	private ModelCheckerV1<StoreInfo> checker;
 	
 	
 	public MatoreCheckStore(ModelCheckerOption option) {

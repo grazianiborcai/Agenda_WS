@@ -4,15 +4,15 @@ import java.util.List;
 
 import br.com.mind5.business.order.info.OrderInfo;
 import br.com.mind5.business.order.model.checker.OrderCheckExist;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.payment.refundOrder.info.RefuInfo;
 
-public final class RefuCheckOrder implements ModelChecker<RefuInfo> {
+public final class RefuCheckOrder implements ModelCheckerV1<RefuInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<OrderInfo> checker;
+	private ModelCheckerV1<OrderInfo> checker;
 	
 	
 	public RefuCheckOrder(ModelCheckerOption option) {

@@ -7,13 +7,13 @@ import br.com.mind5.business.masterData.info.CurrencyInfo;
 import br.com.mind5.business.masterData.model.action.StdCurrencySelect;
 import br.com.mind5.business.masterData.model.checker.CurrencyCheckRead;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootCurrencySelect extends DeciTreeReadTemplate<CurrencyInfo> {
+public final class RootCurrencySelect extends DeciTreeTemplateRead<CurrencyInfo> {
 	
 	public RootCurrencySelect(DeciTreeOption<CurrencyInfo> option) {
 		super(option);
@@ -21,9 +21,9 @@ public final class RootCurrencySelect extends DeciTreeReadTemplate<CurrencyInfo>
 	
 	
 	
-	@Override protected ModelChecker<CurrencyInfo> buildCheckerHook(DeciTreeOption<CurrencyInfo> option) {
-		List<ModelChecker<CurrencyInfo>> queue = new ArrayList<>();		
-		ModelChecker<CurrencyInfo> checker;
+	@Override protected ModelCheckerV1<CurrencyInfo> buildCheckerHook(DeciTreeOption<CurrencyInfo> option) {
+		List<ModelCheckerV1<CurrencyInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<CurrencyInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
 		checkerOption = new ModelCheckerOption();
@@ -33,7 +33,7 @@ public final class RootCurrencySelect extends DeciTreeReadTemplate<CurrencyInfo>
 		checker = new CurrencyCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

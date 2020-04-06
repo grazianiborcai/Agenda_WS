@@ -6,14 +6,14 @@ import br.com.mind5.business.customerSearch.info.CusarchCopier;
 import br.com.mind5.business.customerSearch.info.CusarchInfo;
 import br.com.mind5.business.customerSearch.model.checker.CusarchCheckExist;
 import br.com.mind5.business.order.info.OrderInfo;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 
-public final class OrderCheckCusarch implements ModelChecker<OrderInfo> {
+public final class OrderCheckCusarch implements ModelCheckerV1<OrderInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<CusarchInfo> checker;
+	private ModelCheckerV1<CusarchInfo> checker;
 	
 	
 	public OrderCheckCusarch(ModelCheckerOption option) {

@@ -8,13 +8,13 @@ import br.com.mind5.business.employee.model.action.StdEmpDeleteEmpmat;
 import br.com.mind5.business.employee.model.action.StdEmpSuccess;
 import br.com.mind5.business.employee.model.checker.EmpCheckEmpmarch;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodeEmpDeleteEmpmat extends DeciTreeWriteTemplate<EmpInfo> {
+public final class NodeEmpDeleteEmpmat extends DeciTreeTemplateWrite<EmpInfo> {
 	
 	public NodeEmpDeleteEmpmat(DeciTreeOption<EmpInfo> option) {
 		super(option);
@@ -22,9 +22,9 @@ public final class NodeEmpDeleteEmpmat extends DeciTreeWriteTemplate<EmpInfo> {
 	
 	
 	
-	@Override protected ModelChecker<EmpInfo> buildCheckerHook(DeciTreeOption<EmpInfo> option) {
-		List<ModelChecker<EmpInfo>> queue = new ArrayList<>();		
-		ModelChecker<EmpInfo> checker;
+	@Override protected ModelCheckerV1<EmpInfo> buildCheckerHook(DeciTreeOption<EmpInfo> option) {
+		List<ModelCheckerV1<EmpInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<EmpInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
 		checkerOption = new ModelCheckerOption();
@@ -34,7 +34,7 @@ public final class NodeEmpDeleteEmpmat extends DeciTreeWriteTemplate<EmpInfo> {
 		checker = new EmpCheckEmpmarch(checkerOption);
 		queue.add(checker);	
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

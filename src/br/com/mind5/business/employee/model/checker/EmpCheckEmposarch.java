@@ -6,14 +6,14 @@ import br.com.mind5.business.employee.info.EmpInfo;
 import br.com.mind5.business.employeePositionSearch.info.EmposarchCopier;
 import br.com.mind5.business.employeePositionSearch.info.EmposarchInfo;
 import br.com.mind5.business.employeePositionSearch.model.checker.EmposarchCheckExist;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 
-public final class EmpCheckEmposarch implements ModelChecker<EmpInfo> {
+public final class EmpCheckEmposarch implements ModelCheckerV1<EmpInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<EmposarchInfo> checker;
+	private ModelCheckerV1<EmposarchInfo> checker;
 	
 	
 	public EmpCheckEmposarch(ModelCheckerOption option) {

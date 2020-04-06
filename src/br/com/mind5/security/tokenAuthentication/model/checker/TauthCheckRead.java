@@ -4,10 +4,10 @@ import java.sql.Connection;
 
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 import br.com.mind5.security.tokenAuthentication.info.TauthInfo;
 
-public final class TauthCheckRead extends ModelCheckerTemplateSimple<TauthInfo> {
+public final class TauthCheckRead extends ModelCheckerTemplateSimpleV2<TauthInfo> {
 
 	public TauthCheckRead(ModelCheckerOption option) {
 		super(option);

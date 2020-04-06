@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.mind5.business.materialText.info.MatextInfo;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class MatextCheckDelete extends ModelCheckerTemplateSimple<MatextInfo> {
+public final class MatextCheckDelete extends ModelCheckerTemplateSimpleV2<MatextInfo> {
 
 	public MatextCheckDelete(ModelCheckerOption option) {
 		super(option);

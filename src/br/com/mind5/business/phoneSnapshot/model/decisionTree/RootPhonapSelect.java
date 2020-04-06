@@ -12,13 +12,13 @@ import br.com.mind5.business.phoneSnapshot.model.checker.PhonapCheckOwner;
 import br.com.mind5.business.phoneSnapshot.model.checker.PhonapCheckRead;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootPhonapSelect extends DeciTreeReadTemplate<PhonapInfo> {
+public final class RootPhonapSelect extends DeciTreeTemplateRead<PhonapInfo> {
 
 	public RootPhonapSelect(DeciTreeOption<PhonapInfo> option) {
 		super(option);
@@ -26,9 +26,9 @@ public final class RootPhonapSelect extends DeciTreeReadTemplate<PhonapInfo> {
 	
 	
 	
-	@Override protected ModelChecker<PhonapInfo> buildCheckerHook(DeciTreeOption<PhonapInfo> option) {
-		List<ModelChecker<PhonapInfo>> queue = new ArrayList<>();		
-		ModelChecker<PhonapInfo> checker;	
+	@Override protected ModelCheckerV1<PhonapInfo> buildCheckerHook(DeciTreeOption<PhonapInfo> option) {
+		List<ModelCheckerV1<PhonapInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<PhonapInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -52,7 +52,7 @@ public final class RootPhonapSelect extends DeciTreeReadTemplate<PhonapInfo> {
 		checker = new PhonapCheckLangu(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

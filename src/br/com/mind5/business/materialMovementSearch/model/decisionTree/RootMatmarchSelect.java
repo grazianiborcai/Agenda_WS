@@ -9,14 +9,14 @@ import br.com.mind5.business.materialMovementSearch.model.checker.MatmarchCheckL
 import br.com.mind5.business.materialMovementSearch.model.checker.MatmarchCheckOwner;
 import br.com.mind5.business.materialMovementSearch.model.checker.MatmarchCheckRead;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
 
-public final class RootMatmarchSelect extends DeciTreeReadTemplate<MatmarchInfo> {
+public final class RootMatmarchSelect extends DeciTreeTemplateRead<MatmarchInfo> {
 	
 	public RootMatmarchSelect(DeciTreeOption<MatmarchInfo> option) {
 		super(option);
@@ -24,9 +24,9 @@ public final class RootMatmarchSelect extends DeciTreeReadTemplate<MatmarchInfo>
 	
 	
 	
-	@Override protected ModelChecker<MatmarchInfo> buildCheckerHook(DeciTreeOption<MatmarchInfo> option) {
-		List<ModelChecker<MatmarchInfo>> queue = new ArrayList<>();		
-		ModelChecker<MatmarchInfo> checker;
+	@Override protected ModelCheckerV1<MatmarchInfo> buildCheckerHook(DeciTreeOption<MatmarchInfo> option) {
+		List<ModelCheckerV1<MatmarchInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<MatmarchInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -50,7 +50,7 @@ public final class RootMatmarchSelect extends DeciTreeReadTemplate<MatmarchInfo>
 		checker = new MatmarchCheckOwner(checkerOption);
 		queue.add(checker);	
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

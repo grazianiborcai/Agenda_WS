@@ -4,18 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.info.PeresmoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.model.action.StdPeresmoipMergeToSelect;
 import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.model.checker.PeresmoipCheckLangu;
 import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.model.checker.PeresmoipCheckOwner;
 import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.model.checker.PeresmoipCheckRead;
 
-public final class RootPeresmoipSelect extends DeciTreeReadTemplate<PeresmoipInfo> {
+public final class RootPeresmoipSelect extends DeciTreeTemplateRead<PeresmoipInfo> {
 	
 	public RootPeresmoipSelect(DeciTreeOption<PeresmoipInfo> option) {
 		super(option);
@@ -23,9 +23,9 @@ public final class RootPeresmoipSelect extends DeciTreeReadTemplate<PeresmoipInf
 	
 	
 	
-	@Override protected ModelChecker<PeresmoipInfo> buildCheckerHook(DeciTreeOption<PeresmoipInfo> option) {
-		List<ModelChecker<PeresmoipInfo>> queue = new ArrayList<>();		
-		ModelChecker<PeresmoipInfo> checker;
+	@Override protected ModelCheckerV1<PeresmoipInfo> buildCheckerHook(DeciTreeOption<PeresmoipInfo> option) {
+		List<ModelCheckerV1<PeresmoipInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<PeresmoipInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -49,7 +49,7 @@ public final class RootPeresmoipSelect extends DeciTreeReadTemplate<PeresmoipInf
 		checker = new PeresmoipCheckLangu(checkerOption);
 		queue.add(checker);	
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

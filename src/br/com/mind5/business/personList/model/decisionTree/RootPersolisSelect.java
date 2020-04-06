@@ -9,13 +9,13 @@ import br.com.mind5.business.personList.model.checker.PersolisCheckLangu;
 import br.com.mind5.business.personList.model.checker.PersolisCheckOwner;
 import br.com.mind5.business.personList.model.checker.PersolisCheckRead;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootPersolisSelect extends DeciTreeReadTemplate<PersolisInfo> {
+public final class RootPersolisSelect extends DeciTreeTemplateRead<PersolisInfo> {
 	
 	public RootPersolisSelect(DeciTreeOption<PersolisInfo> option) {
 		super(option);
@@ -23,9 +23,9 @@ public final class RootPersolisSelect extends DeciTreeReadTemplate<PersolisInfo>
 	
 	
 	
-	@Override protected ModelChecker<PersolisInfo> buildCheckerHook(DeciTreeOption<PersolisInfo> option) {
-		List<ModelChecker<PersolisInfo>> queue = new ArrayList<>();		
-		ModelChecker<PersolisInfo> checker;
+	@Override protected ModelCheckerV1<PersolisInfo> buildCheckerHook(DeciTreeOption<PersolisInfo> option) {
+		List<ModelCheckerV1<PersolisInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<PersolisInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
 		checkerOption = new ModelCheckerOption();
@@ -49,7 +49,7 @@ public final class RootPersolisSelect extends DeciTreeReadTemplate<PersolisInfo>
 		checker = new PersolisCheckOwner(checkerOption);
 		queue.add(checker);	
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

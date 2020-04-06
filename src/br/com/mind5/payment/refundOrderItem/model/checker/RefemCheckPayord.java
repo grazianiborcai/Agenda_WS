@@ -2,17 +2,17 @@ package br.com.mind5.payment.refundOrderItem.model.checker;
 
 import java.util.List;
 
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
 import br.com.mind5.payment.payOrder.model.checker.PayordCheckExist;
 import br.com.mind5.payment.refundOrderItem.info.RefemInfo;
 
-public final class RefemCheckPayord implements ModelChecker<RefemInfo> {
+public final class RefemCheckPayord implements ModelCheckerV1<RefemInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<PayordInfo> checker;
+	private ModelCheckerV1<PayordInfo> checker;
 	
 	
 	public RefemCheckPayord(ModelCheckerOption option) {

@@ -5,14 +5,14 @@ import java.util.List;
 import br.com.mind5.business.employeeWorkTimeOutlier.info.EmpwoutInfo;
 import br.com.mind5.business.employeeWorkTimeOutlier.model.checker.EmpwoutCheckExist;
 import br.com.mind5.business.storeWorkTime.info.StowotmInfo;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 
-public class StowotmCheckEmpwout implements ModelChecker<StowotmInfo> {
+public class StowotmCheckEmpwout implements ModelCheckerV1<StowotmInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<EmpwoutInfo> checker;
+	private ModelCheckerV1<EmpwoutInfo> checker;
 	
 	
 	public StowotmCheckEmpwout(ModelCheckerOption option) {

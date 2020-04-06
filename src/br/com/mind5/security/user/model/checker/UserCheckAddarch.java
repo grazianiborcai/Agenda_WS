@@ -5,15 +5,15 @@ import java.util.List;
 import br.com.mind5.business.addressSearch.info.AddarchCopier;
 import br.com.mind5.business.addressSearch.info.AddarchInfo;
 import br.com.mind5.business.addressSearch.model.checker.AddarchCheckExist;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.security.user.info.UserInfo;
 
-public final class UserCheckAddarch implements ModelChecker<UserInfo> {
+public final class UserCheckAddarch implements ModelCheckerV1<UserInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<AddarchInfo> checker;
+	private ModelCheckerV1<AddarchInfo> checker;
 	
 	
 	public UserCheckAddarch(ModelCheckerOption option) {

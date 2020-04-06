@@ -4,17 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 import br.com.mind5.payment.storePartnerSearch.info.StoparchInfo;
 import br.com.mind5.payment.storePartnerSearch.model.action.StdStoparchMergeToSelect;
 import br.com.mind5.payment.storePartnerSearch.model.checker.StoparchCheckOwner;
 import br.com.mind5.payment.storePartnerSearch.model.checker.StoparchCheckRead;
 
-public final class RootStoparchSelect extends DeciTreeReadTemplate<StoparchInfo> {
+public final class RootStoparchSelect extends DeciTreeTemplateRead<StoparchInfo> {
 	
 	public RootStoparchSelect(DeciTreeOption<StoparchInfo> option) {
 		super(option);
@@ -22,9 +22,9 @@ public final class RootStoparchSelect extends DeciTreeReadTemplate<StoparchInfo>
 	
 	
 	
-	@Override protected ModelChecker<StoparchInfo> buildCheckerHook(DeciTreeOption<StoparchInfo> option) {
-		List<ModelChecker<StoparchInfo>> queue = new ArrayList<>();		
-		ModelChecker<StoparchInfo> checker;
+	@Override protected ModelCheckerV1<StoparchInfo> buildCheckerHook(DeciTreeOption<StoparchInfo> option) {
+		List<ModelCheckerV1<StoparchInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<StoparchInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -41,7 +41,7 @@ public final class RootStoparchSelect extends DeciTreeReadTemplate<StoparchInfo>
 		checker = new StoparchCheckOwner(checkerOption);
 		queue.add(checker);	
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

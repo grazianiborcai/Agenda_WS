@@ -5,11 +5,11 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.info.CremoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.model.action.LazyCremoipNodeAdd;
 import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.model.action.LazyCremoipNodeAddressL1;
@@ -21,7 +21,7 @@ import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.model.checker.Crem
 import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.model.checker.CremoipCheckCuspar;
 import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.model.checker.CremoipCheckPhonap;
 
-public final class RootCremoipAdd extends DeciTreeWriteTemplate<CremoipInfo> {
+public final class RootCremoipAdd extends DeciTreeTemplateWrite<CremoipInfo> {
 	
 	public RootCremoipAdd(DeciTreeOption<CremoipInfo> option) {
 		super(option);
@@ -29,9 +29,9 @@ public final class RootCremoipAdd extends DeciTreeWriteTemplate<CremoipInfo> {
 	
 	
 	
-	@Override protected ModelChecker<CremoipInfo> buildCheckerHook(DeciTreeOption<CremoipInfo> option) {
-		List<ModelChecker<CremoipInfo>> queue = new ArrayList<>();		
-		ModelChecker<CremoipInfo> checker;	
+	@Override protected ModelCheckerV1<CremoipInfo> buildCheckerHook(DeciTreeOption<CremoipInfo> option) {
+		List<ModelCheckerV1<CremoipInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<CremoipInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -69,7 +69,7 @@ public final class RootCremoipAdd extends DeciTreeWriteTemplate<CremoipInfo> {
 		checker = new CremoipCheckAddresnap(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

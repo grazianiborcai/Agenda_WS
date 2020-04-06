@@ -7,13 +7,13 @@ import br.com.mind5.business.masterData.info.AreaPhoneInfo;
 import br.com.mind5.business.masterData.model.action.StdAreaPhoneSelect;
 import br.com.mind5.business.masterData.model.checker.AreaPhoneCheckRead;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootAreaPhoneSelect extends DeciTreeReadTemplate<AreaPhoneInfo> {
+public final class RootAreaPhoneSelect extends DeciTreeTemplateRead<AreaPhoneInfo> {
 	
 	public RootAreaPhoneSelect(DeciTreeOption<AreaPhoneInfo> option) {
 		super(option);
@@ -21,9 +21,9 @@ public final class RootAreaPhoneSelect extends DeciTreeReadTemplate<AreaPhoneInf
 	
 	
 	
-	@Override protected ModelChecker<AreaPhoneInfo> buildCheckerHook(DeciTreeOption<AreaPhoneInfo> option) {
-		List<ModelChecker<AreaPhoneInfo>> queue = new ArrayList<>();		
-		ModelChecker<AreaPhoneInfo> checker;
+	@Override protected ModelCheckerV1<AreaPhoneInfo> buildCheckerHook(DeciTreeOption<AreaPhoneInfo> option) {
+		List<ModelCheckerV1<AreaPhoneInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<AreaPhoneInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
 		checkerOption = new ModelCheckerOption();
@@ -33,7 +33,7 @@ public final class RootAreaPhoneSelect extends DeciTreeReadTemplate<AreaPhoneInf
 		checker = new AreaPhoneCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 
 		

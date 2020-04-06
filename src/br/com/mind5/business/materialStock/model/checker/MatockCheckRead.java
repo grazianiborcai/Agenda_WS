@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.mind5.business.materialStock.info.MatockInfo;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class MatockCheckRead extends ModelCheckerTemplateSimple<MatockInfo> {
+public final class MatockCheckRead extends ModelCheckerTemplateSimpleV2<MatockInfo> {
 
 	public MatockCheckRead(ModelCheckerOption option) {
 		super(option);

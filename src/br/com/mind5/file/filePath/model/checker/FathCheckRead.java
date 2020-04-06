@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.file.filePath.info.FathInfo;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class FathCheckRead extends ModelCheckerTemplateSimple<FathInfo> {
+public final class FathCheckRead extends ModelCheckerTemplateSimpleV2<FathInfo> {
 
 	public FathCheckRead(ModelCheckerOption option) {
 		super(option);

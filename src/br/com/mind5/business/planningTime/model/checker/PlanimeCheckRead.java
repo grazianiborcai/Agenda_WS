@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.mind5.business.planningTime.info.PlanimeInfo;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class PlanimeCheckRead extends ModelCheckerTemplateSimple<PlanimeInfo> {
+public final class PlanimeCheckRead extends ModelCheckerTemplateSimpleV2<PlanimeInfo> {
 
 	public PlanimeCheckRead(ModelCheckerOption option) {
 		super(option);

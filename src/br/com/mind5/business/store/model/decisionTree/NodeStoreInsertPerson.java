@@ -9,13 +9,13 @@ import br.com.mind5.business.store.model.action.StdStoreEnforcePersonKey;
 import br.com.mind5.business.store.model.checker.StoreCheckHasPerson;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodeStoreInsertPerson extends DeciTreeWriteTemplate<StoreInfo> {
+public final class NodeStoreInsertPerson extends DeciTreeTemplateWrite<StoreInfo> {
 	
 	public NodeStoreInsertPerson(DeciTreeOption<StoreInfo> option) {
 		super(option);
@@ -23,9 +23,9 @@ public final class NodeStoreInsertPerson extends DeciTreeWriteTemplate<StoreInfo
 	
 	
 	
-	@Override protected ModelChecker<StoreInfo> buildCheckerHook(DeciTreeOption<StoreInfo> option) {
-		List<ModelChecker<StoreInfo>> queue = new ArrayList<>();		
-		ModelChecker<StoreInfo> checker;
+	@Override protected ModelCheckerV1<StoreInfo> buildCheckerHook(DeciTreeOption<StoreInfo> option) {
+		List<ModelCheckerV1<StoreInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<StoreInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
 		checkerOption = new ModelCheckerOption();
@@ -35,7 +35,7 @@ public final class NodeStoreInsertPerson extends DeciTreeWriteTemplate<StoreInfo
 		checker = new StoreCheckHasPerson(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

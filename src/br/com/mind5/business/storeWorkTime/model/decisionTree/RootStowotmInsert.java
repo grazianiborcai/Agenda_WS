@@ -13,13 +13,13 @@ import br.com.mind5.business.storeWorkTime.model.checker.StowotmCheckStore;
 import br.com.mind5.business.storeWorkTime.model.checker.StowotmCheckWeekday;
 import br.com.mind5.business.storeWorkTime.model.checker.StowotmCheckWrite;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootStowotmInsert extends DeciTreeWriteTemplate<StowotmInfo> {
+public final class RootStowotmInsert extends DeciTreeTemplateWrite<StowotmInfo> {
 	
 	public RootStowotmInsert(DeciTreeOption<StowotmInfo> option) {
 		super(option);
@@ -27,9 +27,9 @@ public final class RootStowotmInsert extends DeciTreeWriteTemplate<StowotmInfo> 
 	
 	
 	
-	@Override protected ModelChecker<StowotmInfo> buildCheckerHook(DeciTreeOption<StowotmInfo> option) {
-		List<ModelChecker<StowotmInfo>> queue = new ArrayList<>();		
-		ModelChecker<StowotmInfo> checker;
+	@Override protected ModelCheckerV1<StowotmInfo> buildCheckerHook(DeciTreeOption<StowotmInfo> option) {
+		List<ModelCheckerV1<StowotmInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<StowotmInfo> checker;
 		ModelCheckerOption checkerOption;		
 		
 		checkerOption = new ModelCheckerOption();
@@ -88,7 +88,7 @@ public final class RootStowotmInsert extends DeciTreeWriteTemplate<StowotmInfo> 
 		checker = new StowotmCheckStorauth(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

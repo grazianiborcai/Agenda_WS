@@ -5,14 +5,14 @@ import java.util.List;
 import br.com.mind5.business.order.info.OrderInfo;
 import br.com.mind5.business.order.model.checker.OrderCheckExist;
 import br.com.mind5.business.scheduleLine.info.SchedineInfo;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 
-public final class SchedineCheckOrder implements ModelChecker<SchedineInfo> {
+public final class SchedineCheckOrder implements ModelCheckerV1<SchedineInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<OrderInfo> checker;
+	private ModelCheckerV1<OrderInfo> checker;
 	
 	
 	public SchedineCheckOrder(ModelCheckerOption option) {

@@ -9,12 +9,12 @@ import br.com.mind5.business.materialStore.model.action.StdMatoreMergeMatorarch;
 import br.com.mind5.business.materialStore.model.checker.MatoreCheckDummy;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootMatoreSearch extends DeciTreeReadTemplate<MatoreInfo> {
+public final class RootMatoreSearch extends DeciTreeTemplateRead<MatoreInfo> {
 	
 	public RootMatoreSearch(DeciTreeOption<MatoreInfo> option) {
 		super(option);
@@ -22,14 +22,14 @@ public final class RootMatoreSearch extends DeciTreeReadTemplate<MatoreInfo> {
 	
 	
 	
-	@Override protected ModelChecker<MatoreInfo> buildCheckerHook(DeciTreeOption<MatoreInfo> option) {
-		List<ModelChecker<MatoreInfo>> queue = new ArrayList<>();		
-		ModelChecker<MatoreInfo> checker;
+	@Override protected ModelCheckerV1<MatoreInfo> buildCheckerHook(DeciTreeOption<MatoreInfo> option) {
+		List<ModelCheckerV1<MatoreInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<MatoreInfo> checker;
 			
 		checker = new MatoreCheckDummy();
 		queue.add(checker);	
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

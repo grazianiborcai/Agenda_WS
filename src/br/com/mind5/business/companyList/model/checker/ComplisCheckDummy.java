@@ -3,11 +3,11 @@ package br.com.mind5.business.companyList.model.checker;
 import java.util.List;
 
 import br.com.mind5.business.companyList.info.ComplisInfo;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.common.ModelCherckerTrue;
 
-public final class ComplisCheckDummy implements ModelChecker<ComplisInfo> {
-	private ModelChecker<ComplisInfo> checker;
+public final class ComplisCheckDummy implements ModelCheckerV1<ComplisInfo> {
+	private ModelCheckerV1<ComplisInfo> checker;
 	
 	
 	public ComplisCheckDummy() {

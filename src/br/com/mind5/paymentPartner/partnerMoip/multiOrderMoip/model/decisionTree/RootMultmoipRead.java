@@ -5,11 +5,11 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.info.MultmoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.model.action.LazyMultmoipEnforceResponseAttr;
 import br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.model.action.LazyMultmoipEnforceSetup;
@@ -19,7 +19,7 @@ import br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.model.action.LazyM
 import br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.model.action.StdMultmoipEnforcePaypar;
 import br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.model.checker.MultmoipCheckRead;
 
-public final class RootMultmoipRead extends DeciTreeWriteTemplate<MultmoipInfo> {
+public final class RootMultmoipRead extends DeciTreeTemplateWrite<MultmoipInfo> {
 	
 	public RootMultmoipRead(DeciTreeOption<MultmoipInfo> option) {
 		super(option);
@@ -27,9 +27,9 @@ public final class RootMultmoipRead extends DeciTreeWriteTemplate<MultmoipInfo> 
 	
 	
 	
-	@Override protected ModelChecker<MultmoipInfo> buildCheckerHook(DeciTreeOption<MultmoipInfo> option) {				
-		List<ModelChecker<MultmoipInfo>> queue = new ArrayList<>();		
-		ModelChecker<MultmoipInfo> checker;	
+	@Override protected ModelCheckerV1<MultmoipInfo> buildCheckerHook(DeciTreeOption<MultmoipInfo> option) {				
+		List<ModelCheckerV1<MultmoipInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<MultmoipInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -39,7 +39,7 @@ public final class RootMultmoipRead extends DeciTreeWriteTemplate<MultmoipInfo> 
 		checker = new MultmoipCheckRead(checkerOption);
 		queue.add(checker);
 
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

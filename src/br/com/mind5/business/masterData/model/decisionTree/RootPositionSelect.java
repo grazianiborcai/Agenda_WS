@@ -7,13 +7,13 @@ import br.com.mind5.business.masterData.info.PositionInfo;
 import br.com.mind5.business.masterData.model.action.StdPositionSelect;
 import br.com.mind5.business.masterData.model.checker.PositionCheckRead;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootPositionSelect extends DeciTreeReadTemplate<PositionInfo> {
+public final class RootPositionSelect extends DeciTreeTemplateRead<PositionInfo> {
 	
 	public RootPositionSelect(DeciTreeOption<PositionInfo> option) {
 		super(option);
@@ -21,9 +21,9 @@ public final class RootPositionSelect extends DeciTreeReadTemplate<PositionInfo>
 	
 	
 	
-	@Override protected ModelChecker<PositionInfo> buildCheckerHook(DeciTreeOption<PositionInfo> option) {
-		List<ModelChecker<PositionInfo>> queue = new ArrayList<>();		
-		ModelChecker<PositionInfo> checker;
+	@Override protected ModelCheckerV1<PositionInfo> buildCheckerHook(DeciTreeOption<PositionInfo> option) {
+		List<ModelCheckerV1<PositionInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<PositionInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
 		checkerOption = new ModelCheckerOption();
@@ -33,7 +33,7 @@ public final class RootPositionSelect extends DeciTreeReadTemplate<PositionInfo>
 		checker = new PositionCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

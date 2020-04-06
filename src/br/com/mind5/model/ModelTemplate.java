@@ -11,6 +11,7 @@ import javax.ws.rs.core.Response;
 
 import br.com.mind5.common.DbConnection;
 import br.com.mind5.common.DbSchema;
+import br.com.mind5.common.DefaultValue;
 import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.InfoRecord;
@@ -132,6 +133,8 @@ public abstract class ModelTemplate<T extends InfoRecord> implements Model {
 
 	
 	@Override public boolean executeRequest() {
+		checkState();
+		
 		if (isError == true)
 			return RESULT_FAILED;
 		
@@ -211,30 +214,6 @@ public abstract class ModelTemplate<T extends InfoRecord> implements Model {
 	
 	
 	
-	private void closeTransaction(Connection dbConn, boolean isSuccess) {
-		try {
-			tryToCloseTransaction(dbConn, isSuccess);
-			dbConn= null;
-			
-		} catch (SQLException e) {
-			logException(e);
-		}
-	}
-	
-	
-	
-	private void tryToCloseTransaction(Connection dbConn, boolean isSuccess) throws SQLException {
-		if (isSuccess == RESULT_SUCCESS) 
-			commitWork(dbConn);
-			
-		if (isSuccess == RESULT_FAILED) 
-			rollback(dbConn);
-		
-		DbConnection.closeConnection(dbConn);
-	}
-	
-	
-	
 	private void commitWork(Connection dbConn) throws SQLException {
 		try {
 			dbConn.commit();
@@ -261,14 +240,62 @@ public abstract class ModelTemplate<T extends InfoRecord> implements Model {
 	
 
 	@Override public Response getResponse() {
+		checkState();
+		
 		if(isError == true)
 			return buildResponseError();
 		
 		if(isRequestValid == false)
 			return buildResponseUnauthorized();
 		
-		checkState();		
+		checkStateExecuted();		
 		return buildResponse(treeResults);
+	}
+	
+	
+	
+	@Override public void close() {
+		clear();
+	}
+	
+	
+	
+	private void closeTransaction(Connection dbConn, boolean isSuccess) {
+		try {
+			tryToCloseTransaction(dbConn, isSuccess);
+			
+		} catch (SQLException e) {
+			logException(e);
+		}
+	}
+	
+	
+	
+	private void tryToCloseTransaction(Connection dbConn, boolean isSuccess) throws SQLException {
+		if (dbConn == null)
+			return;
+		
+		if (dbConn.isClosed())
+			return;
+		
+		if (isSuccess == RESULT_SUCCESS) 
+			commitWork(dbConn);
+			
+		if (isSuccess == RESULT_FAILED) 
+			rollback(dbConn);
+		
+		DbConnection.closeConnection(dbConn);
+	}
+	
+	
+	
+	private void clear() {
+		recordInfos = DefaultValue.list();	
+		conn = DefaultValue.object();	
+		schemaName = DefaultValue.object();
+		treeResults = DefaultValue.object();
+		isRequestValid = DefaultValue.boole();
+		isError = DefaultValue.boole();
 	}
 	
 	
@@ -288,6 +315,23 @@ public abstract class ModelTemplate<T extends InfoRecord> implements Model {
 	
 	
 	private void checkState() {
+		boolean invalidState = false;
+		
+		if (recordInfos == null)
+			invalidState = true;
+		
+		if (recordInfos.isEmpty())
+			invalidState = true;		
+		
+		if (invalidState == true) {
+			logException(new IllegalStateException(SystemMessage.OBJECT_IS_CLOSED));
+			throw new IllegalStateException(SystemMessage.OBJECT_IS_CLOSED);
+		}
+	}
+	
+	
+	
+	private void checkStateExecuted() {
 		if (hasExecuted() == false) {
 			logException(new IllegalStateException(SystemMessage.NO_RESPONSE));
 			throw new IllegalStateException(SystemMessage.NO_RESPONSE);

@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.mind5.business.customer.info.CusInfo;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class CusCheckInsertFromUser extends ModelCheckerTemplateSimple<CusInfo> {
+public final class CusCheckInsertFromUser extends ModelCheckerTemplateSimpleV2<CusInfo> {
 
 	public CusCheckInsertFromUser(ModelCheckerOption option) {
 		super(option);

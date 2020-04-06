@@ -13,13 +13,13 @@ import br.com.mind5.business.orderSnapshot.model.checker.OrdnapCheckOwner;
 import br.com.mind5.business.orderSnapshot.model.checker.OrdnapCheckWrite;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootOrdnapInsert extends DeciTreeWriteTemplate<OrdnapInfo> {
+public final class RootOrdnapInsert extends DeciTreeTemplateWrite<OrdnapInfo> {
 	
 	public RootOrdnapInsert(DeciTreeOption<OrdnapInfo> option) {
 		super(option);
@@ -27,9 +27,9 @@ public final class RootOrdnapInsert extends DeciTreeWriteTemplate<OrdnapInfo> {
 	
 	
 	
-	@Override protected ModelChecker<OrdnapInfo> buildCheckerHook(DeciTreeOption<OrdnapInfo> option) {
-		List<ModelChecker<OrdnapInfo>> queue = new ArrayList<>();		
-		ModelChecker<OrdnapInfo> checker;	
+	@Override protected ModelCheckerV1<OrdnapInfo> buildCheckerHook(DeciTreeOption<OrdnapInfo> option) {
+		List<ModelCheckerV1<OrdnapInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<OrdnapInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -60,7 +60,7 @@ public final class RootOrdnapInsert extends DeciTreeWriteTemplate<OrdnapInfo> {
 		checker = new OrdnapCheckOrder(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

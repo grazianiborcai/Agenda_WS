@@ -4,10 +4,10 @@ import java.sql.Connection;
 
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 import br.com.mind5.webhook.moipMultipayment.info.WokaymoipInfo;
 
-public final class WokaymoipCheckInsert extends ModelCheckerTemplateSimple<WokaymoipInfo> {
+public final class WokaymoipCheckInsert extends ModelCheckerTemplateSimpleV2<WokaymoipInfo> {
 
 	public WokaymoipCheckInsert(ModelCheckerOption option) {
 		super(option);

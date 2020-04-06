@@ -2,12 +2,12 @@ package br.com.mind5.security.user.model.checker;
 
 import java.util.List;
 
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.common.ModelCherckerTrue;
 import br.com.mind5.security.user.info.UserInfo;
 
-public final class UserCheckDummy implements ModelChecker<UserInfo> {
-	private ModelChecker<UserInfo> checker;
+public final class UserCheckDummy implements ModelCheckerV1<UserInfo> {
+	private ModelCheckerV1<UserInfo> checker;
 	
 	
 	public UserCheckDummy() {

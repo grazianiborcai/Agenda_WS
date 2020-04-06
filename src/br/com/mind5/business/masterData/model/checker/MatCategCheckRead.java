@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.mind5.business.masterData.info.MatCategInfo;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class MatCategCheckRead extends ModelCheckerTemplateSimple<MatCategInfo> {
+public final class MatCategCheckRead extends ModelCheckerTemplateSimpleV2<MatCategInfo> {
 	
 	public MatCategCheckRead(ModelCheckerOption option) {
 		super(option);

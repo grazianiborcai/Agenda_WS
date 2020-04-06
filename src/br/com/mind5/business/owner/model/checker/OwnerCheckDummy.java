@@ -3,11 +3,11 @@ package br.com.mind5.business.owner.model.checker;
 import java.util.List;
 
 import br.com.mind5.business.owner.info.OwnerInfo;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.common.ModelCherckerTrue;
 
-public final class OwnerCheckDummy implements ModelChecker<OwnerInfo> {
-	private ModelChecker<OwnerInfo> checker;
+public final class OwnerCheckDummy implements ModelCheckerV1<OwnerInfo> {
+	private ModelCheckerV1<OwnerInfo> checker;
 	
 	
 	public OwnerCheckDummy() {

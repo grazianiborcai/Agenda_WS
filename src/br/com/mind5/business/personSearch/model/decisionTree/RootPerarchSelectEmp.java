@@ -9,12 +9,12 @@ import br.com.mind5.business.personSearch.model.action.StdPerarchEnforceCategEmp
 import br.com.mind5.business.personSearch.model.checker.PerarchCheckDummy;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootPerarchSelectEmp extends DeciTreeReadTemplate<PerarchInfo> {
+public final class RootPerarchSelectEmp extends DeciTreeTemplateRead<PerarchInfo> {
 	
 	public RootPerarchSelectEmp(DeciTreeOption<PerarchInfo> option) {
 		super(option);
@@ -22,14 +22,14 @@ public final class RootPerarchSelectEmp extends DeciTreeReadTemplate<PerarchInfo
 	
 	
 	
-	@Override protected ModelChecker<PerarchInfo> buildCheckerHook(DeciTreeOption<PerarchInfo> option) {
-		List<ModelChecker<PerarchInfo>> queue = new ArrayList<>();		
-		ModelChecker<PerarchInfo> checker;
+	@Override protected ModelCheckerV1<PerarchInfo> buildCheckerHook(DeciTreeOption<PerarchInfo> option) {
+		List<ModelCheckerV1<PerarchInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<PerarchInfo> checker;
 
 		checker = new PerarchCheckDummy();
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

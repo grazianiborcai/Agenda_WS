@@ -9,15 +9,15 @@ import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.InfoRecord;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.common.DeciResultError;
 
-public abstract class DeciTreeWriteTemplate<T extends InfoRecord> implements DeciTree<T> {
+public abstract class DeciTreeTemplateWrite<T extends InfoRecord> implements DeciTree<T> {
 	private List<DeciTree<T>> trees;
 	private DeciResult<T> treeResult;
 	
 	
-	public DeciTreeWriteTemplate(DeciTreeOption<T> option) {
+	public DeciTreeTemplateWrite(DeciTreeOption<T> option) {
 		checkArgument(option);
 		clear();
 		
@@ -70,7 +70,7 @@ public abstract class DeciTreeWriteTemplate<T extends InfoRecord> implements Dec
 	
 	
 	
-	protected ModelChecker<T> buildCheckerHook(DeciTreeOption<T> option) {
+	protected ModelCheckerV1<T> buildCheckerHook(DeciTreeOption<T> option) {
 		//Template method: to be overwritten by subclasses
 		logException(new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION));
 		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);	

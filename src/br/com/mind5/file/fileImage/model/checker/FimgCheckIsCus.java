@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.file.fileImage.info.FimgInfo;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class FimgCheckIsCus extends ModelCheckerTemplateSimple<FimgInfo> {
+public final class FimgCheckIsCus extends ModelCheckerTemplateSimpleV2<FimgInfo> {
 
 	public FimgCheckIsCus(ModelCheckerOption option) {
 		super(option);

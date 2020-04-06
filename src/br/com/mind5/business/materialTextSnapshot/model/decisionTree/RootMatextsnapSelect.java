@@ -9,13 +9,13 @@ import br.com.mind5.business.materialTextSnapshot.model.checker.MatextsnapCheckM
 import br.com.mind5.business.materialTextSnapshot.model.checker.MatextsnapCheckOwner;
 import br.com.mind5.business.materialTextSnapshot.model.checker.MatextsnapCheckRead;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootMatextsnapSelect extends DeciTreeReadTemplate<MatextsnapInfo> {
+public final class RootMatextsnapSelect extends DeciTreeTemplateRead<MatextsnapInfo> {
 	
 	public RootMatextsnapSelect(DeciTreeOption<MatextsnapInfo> option) {
 		super(option);
@@ -23,9 +23,9 @@ public final class RootMatextsnapSelect extends DeciTreeReadTemplate<MatextsnapI
 	
 	
 	
-	@Override protected ModelChecker<MatextsnapInfo> buildCheckerHook(DeciTreeOption<MatextsnapInfo> option) {
-		List<ModelChecker<MatextsnapInfo>> queue = new ArrayList<>();		
-		ModelChecker<MatextsnapInfo> checker;
+	@Override protected ModelCheckerV1<MatextsnapInfo> buildCheckerHook(DeciTreeOption<MatextsnapInfo> option) {
+		List<ModelCheckerV1<MatextsnapInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<MatextsnapInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -49,7 +49,7 @@ public final class RootMatextsnapSelect extends DeciTreeReadTemplate<MatextsnapI
 		checker = new MatextsnapCheckMat(checkerOption);
 		queue.add(checker);		
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

@@ -6,14 +6,14 @@ import br.com.mind5.business.cartItem.info.CartemInfo;
 import br.com.mind5.business.employeeLeaveDateRange.info.EmplargCopier;
 import br.com.mind5.business.employeeLeaveDateRange.info.EmplargInfo;
 import br.com.mind5.business.employeeLeaveDateRange.model.checker.EmplargCheckExist;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 
-public final class CartemCheckEmplarg implements ModelChecker<CartemInfo> {
+public final class CartemCheckEmplarg implements ModelCheckerV1<CartemInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<EmplargInfo> checker;
+	private ModelCheckerV1<EmplargInfo> checker;
 	
 	
 	public CartemCheckEmplarg(ModelCheckerOption option) {

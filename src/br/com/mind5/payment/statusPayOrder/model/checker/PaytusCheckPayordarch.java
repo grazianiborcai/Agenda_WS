@@ -2,17 +2,17 @@ package br.com.mind5.payment.statusPayOrder.model.checker;
 
 import java.util.List;
 
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.payment.payOrderSearch.info.PayordarchInfo;
 import br.com.mind5.payment.payOrderSearch.model.checker.PayordarchCheckExist;
 import br.com.mind5.payment.statusPayOrder.info.PaytusInfo;
 
-public final class PaytusCheckPayordarch implements ModelChecker<PaytusInfo> {
+public final class PaytusCheckPayordarch implements ModelCheckerV1<PaytusInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<PayordarchInfo> checker;
+	private ModelCheckerV1<PayordarchInfo> checker;
 	
 	
 	public PaytusCheckPayordarch(ModelCheckerOption option) {

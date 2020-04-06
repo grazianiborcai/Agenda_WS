@@ -6,13 +6,13 @@ import java.util.List;
 import br.com.mind5.business.masterData.info.LanguInfo;
 import br.com.mind5.business.masterData.model.action.StdLanguSelect;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.common.ModelCherckerTrue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootLanguSelect extends DeciTreeReadTemplate<LanguInfo> {
+public final class RootLanguSelect extends DeciTreeTemplateRead<LanguInfo> {
 	
 	public RootLanguSelect(DeciTreeOption<LanguInfo> option) {
 		super(option);
@@ -20,14 +20,14 @@ public final class RootLanguSelect extends DeciTreeReadTemplate<LanguInfo> {
 	
 	
 	
-	@Override protected ModelChecker<LanguInfo> buildCheckerHook(DeciTreeOption<LanguInfo> option) {
-		List<ModelChecker<LanguInfo>> queue = new ArrayList<>();		
-		ModelChecker<LanguInfo> checker;
+	@Override protected ModelCheckerV1<LanguInfo> buildCheckerHook(DeciTreeOption<LanguInfo> option) {
+		List<ModelCheckerV1<LanguInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<LanguInfo> checker;
 		
 		checker = new ModelCherckerTrue<>();
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

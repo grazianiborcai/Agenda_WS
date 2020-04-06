@@ -3,11 +3,11 @@ package br.com.mind5.business.materialList.model.checker;
 import java.util.List;
 
 import br.com.mind5.business.materialList.info.MatlisInfo;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.common.ModelCherckerTrue;
 
-public final class MatlisCheckDummy implements ModelChecker<MatlisInfo> {
-	private ModelChecker<MatlisInfo> checker;
+public final class MatlisCheckDummy implements ModelCheckerV1<MatlisInfo> {
+	private ModelCheckerV1<MatlisInfo> checker;
 	
 	
 	public MatlisCheckDummy() {

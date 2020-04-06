@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.mind5.business.material.info.MatInfo;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class MatCheckInsert extends ModelCheckerTemplateSimple<MatInfo> {
+public final class MatCheckInsert extends ModelCheckerTemplateSimpleV2<MatInfo> {
 
 	public MatCheckInsert(ModelCheckerOption option) {
 		super(option);

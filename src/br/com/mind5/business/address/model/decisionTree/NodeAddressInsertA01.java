@@ -10,13 +10,13 @@ import br.com.mind5.business.address.model.checker.AddressCheckState;
 import br.com.mind5.business.address.model.checker.AddressCheckWriteA01;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodeAddressInsertA01 extends DeciTreeWriteTemplate<AddressInfo> {
+public final class NodeAddressInsertA01 extends DeciTreeTemplateWrite<AddressInfo> {
 	
 	public NodeAddressInsertA01(DeciTreeOption<AddressInfo> option) {
 		super(option);
@@ -24,9 +24,9 @@ public final class NodeAddressInsertA01 extends DeciTreeWriteTemplate<AddressInf
 	
 	
 	
-	@Override protected ModelChecker<AddressInfo> buildCheckerHook(DeciTreeOption<AddressInfo> option) {
-		List<ModelChecker<AddressInfo>> queue = new ArrayList<>();		
-		ModelChecker<AddressInfo> checker;	
+	@Override protected ModelCheckerV1<AddressInfo> buildCheckerHook(DeciTreeOption<AddressInfo> option) {
+		List<ModelCheckerV1<AddressInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<AddressInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -44,7 +44,7 @@ public final class NodeAddressInsertA01 extends DeciTreeWriteTemplate<AddressInf
 		queue.add(checker);
 		
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

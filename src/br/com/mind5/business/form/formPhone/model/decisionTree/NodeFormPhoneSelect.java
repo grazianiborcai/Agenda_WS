@@ -8,13 +8,13 @@ import br.com.mind5.business.form.formPhone.model.action.StdFormPhoneEnforceDefa
 import br.com.mind5.business.form.formPhone.model.action.StdFormPhoneSelect;
 import br.com.mind5.business.form.formPhone.model.checker.FormPhoneCheckExist;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class NodeFormPhoneSelect extends DeciTreeReadTemplate<FormPhoneInfo> {
+public final class NodeFormPhoneSelect extends DeciTreeTemplateRead<FormPhoneInfo> {
 	
 	public NodeFormPhoneSelect(DeciTreeOption<FormPhoneInfo> option) {
 		super(option);
@@ -22,9 +22,9 @@ public final class NodeFormPhoneSelect extends DeciTreeReadTemplate<FormPhoneInf
 	
 	
 	
-	@Override protected ModelChecker<FormPhoneInfo> buildCheckerHook(DeciTreeOption<FormPhoneInfo> option) {
-		List<ModelChecker<FormPhoneInfo>> queue = new ArrayList<>();		
-		ModelChecker<FormPhoneInfo> checker;	
+	@Override protected ModelCheckerV1<FormPhoneInfo> buildCheckerHook(DeciTreeOption<FormPhoneInfo> option) {
+		List<ModelCheckerV1<FormPhoneInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<FormPhoneInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -34,7 +34,7 @@ public final class NodeFormPhoneSelect extends DeciTreeReadTemplate<FormPhoneInf
 		checker = new FormPhoneCheckExist(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

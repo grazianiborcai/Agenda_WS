@@ -6,13 +6,13 @@ import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.InfoRecord;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 
-public abstract class DeciTreeReadTemplate<T extends InfoRecord> implements DeciTree<T> {
+public abstract class DeciTreeTemplateRead<T extends InfoRecord> implements DeciTree<T> {
 	private DeciTree<T> tree;
 	
 	
-	public DeciTreeReadTemplate(DeciTreeOption<T> option) {
+	public DeciTreeTemplateRead(DeciTreeOption<T> option) {
 		checkArgument(option);
 		clear();
 		
@@ -36,7 +36,7 @@ public abstract class DeciTreeReadTemplate<T extends InfoRecord> implements Deci
 	
 	
 	
-	protected ModelChecker<T> buildCheckerHook(DeciTreeOption<T> option) {
+	protected ModelCheckerV1<T> buildCheckerHook(DeciTreeOption<T> option) {
 		//Template method: to be overwritten by subclasses
 		logException(new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION));
 		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);	

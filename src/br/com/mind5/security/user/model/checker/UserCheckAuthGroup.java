@@ -4,15 +4,15 @@ import java.util.List;
 
 import br.com.mind5.business.masterData.info.AuthGroupInfo;
 import br.com.mind5.business.masterData.model.checker.AuthGroupCheckExist;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.security.user.info.UserInfo;
 
-public final class UserCheckAuthGroup implements ModelChecker<UserInfo> {
+public final class UserCheckAuthGroup implements ModelCheckerV1<UserInfo> {
 	private final boolean RESULT_FAILED = false;
 	private final boolean RESULT_SUCCESS = true;
 	
-	private ModelChecker<AuthGroupInfo> checker;
+	private ModelCheckerV1<AuthGroupInfo> checker;
 	
 	
 	public UserCheckAuthGroup(ModelCheckerOption option) {

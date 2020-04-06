@@ -4,10 +4,10 @@ import java.sql.Connection;
 
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 import br.com.mind5.payment.storePartnerList.info.StoplisInfo;
 
-public final class StoplisCheckRead extends ModelCheckerTemplateSimple<StoplisInfo> {
+public final class StoplisCheckRead extends ModelCheckerTemplateSimpleV2<StoplisInfo> {
 
 	public StoplisCheckRead(ModelCheckerOption option) {
 		super(option);

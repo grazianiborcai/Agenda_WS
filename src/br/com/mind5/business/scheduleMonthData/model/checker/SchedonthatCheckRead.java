@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.mind5.business.scheduleMonthData.info.SchedonthatInfo;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class SchedonthatCheckRead extends ModelCheckerTemplateSimple<SchedonthatInfo> {
+public final class SchedonthatCheckRead extends ModelCheckerTemplateSimpleV2<SchedonthatInfo> {
 
 	public SchedonthatCheckRead(ModelCheckerOption option) {
 		super(option);

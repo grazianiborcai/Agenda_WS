@@ -6,13 +6,13 @@ import java.util.List;
 import br.com.mind5.file.fileImage.info.FimgInfo;
 import br.com.mind5.file.fileImage.model.checker.FimgCheckIsEmp;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodeFimgDeleteEmp extends DeciTreeWriteTemplate<FimgInfo> {
+public final class NodeFimgDeleteEmp extends DeciTreeTemplateWrite<FimgInfo> {
 	
 	public NodeFimgDeleteEmp(DeciTreeOption<FimgInfo> option) {
 		super(option);
@@ -20,9 +20,9 @@ public final class NodeFimgDeleteEmp extends DeciTreeWriteTemplate<FimgInfo> {
 	
 	
 	
-	@Override protected ModelChecker<FimgInfo> buildCheckerHook(DeciTreeOption<FimgInfo> option) {
-		List<ModelChecker<FimgInfo>> queue = new ArrayList<>();		
-		ModelChecker<FimgInfo> checker;	
+	@Override protected ModelCheckerV1<FimgInfo> buildCheckerHook(DeciTreeOption<FimgInfo> option) {
+		List<ModelCheckerV1<FimgInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<FimgInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -32,7 +32,7 @@ public final class NodeFimgDeleteEmp extends DeciTreeWriteTemplate<FimgInfo> {
 		checker = new FimgCheckIsEmp(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

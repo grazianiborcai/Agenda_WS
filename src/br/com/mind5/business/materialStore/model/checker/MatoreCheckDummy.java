@@ -3,11 +3,11 @@ package br.com.mind5.business.materialStore.model.checker;
 import java.util.List;
 
 import br.com.mind5.business.materialStore.info.MatoreInfo;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.common.ModelCherckerTrue;
 
-public final class MatoreCheckDummy implements ModelChecker<MatoreInfo> {
-	private ModelChecker<MatoreInfo> checker;
+public final class MatoreCheckDummy implements ModelCheckerV1<MatoreInfo> {
+	private ModelCheckerV1<MatoreInfo> checker;
 	
 	
 	public MatoreCheckDummy() {

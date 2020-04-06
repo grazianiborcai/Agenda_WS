@@ -4,15 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 import br.com.mind5.payment.ownerPartner.info.OwnparInfo;
 import br.com.mind5.payment.ownerPartner.model.checker.OwnparCheckExist;
 
-public final class NodeOwnparSelect extends DeciTreeReadTemplate<OwnparInfo> {
+public final class NodeOwnparSelect extends DeciTreeTemplateRead<OwnparInfo> {
 	
 	public NodeOwnparSelect(DeciTreeOption<OwnparInfo> option) {
 		super(option);
@@ -20,9 +20,9 @@ public final class NodeOwnparSelect extends DeciTreeReadTemplate<OwnparInfo> {
 	
 	
 	
-	@Override protected ModelChecker<OwnparInfo> buildCheckerHook(DeciTreeOption<OwnparInfo> option) {
-		List<ModelChecker<OwnparInfo>> queue = new ArrayList<>();		
-		ModelChecker<OwnparInfo> checker;
+	@Override protected ModelCheckerV1<OwnparInfo> buildCheckerHook(DeciTreeOption<OwnparInfo> option) {
+		List<ModelCheckerV1<OwnparInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<OwnparInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -32,7 +32,7 @@ public final class NodeOwnparSelect extends DeciTreeReadTemplate<OwnparInfo> {
 		checker = new OwnparCheckExist(checkerOption);
 		queue.add(checker);	
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

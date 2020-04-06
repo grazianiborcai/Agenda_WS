@@ -10,13 +10,13 @@ import br.com.mind5.business.scheduleRange.model.checker.SchedageCheckOwner;
 import br.com.mind5.business.scheduleRange.model.checker.SchedageCheckRead;
 import br.com.mind5.business.scheduleRange.model.checker.SchedageCheckStore;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootSchedageSelect extends DeciTreeWriteTemplate<SchedageInfo> {
+public final class RootSchedageSelect extends DeciTreeTemplateWrite<SchedageInfo> {
 	
 	public RootSchedageSelect(DeciTreeOption<SchedageInfo> option) {
 		super(option);
@@ -24,9 +24,9 @@ public final class RootSchedageSelect extends DeciTreeWriteTemplate<SchedageInfo
 	
 	
 	
-	@Override protected ModelChecker<SchedageInfo> buildCheckerHook(DeciTreeOption<SchedageInfo> option) {		
-		List<ModelChecker<SchedageInfo>> queue = new ArrayList<>();		
-		ModelChecker<SchedageInfo> checker;
+	@Override protected ModelCheckerV1<SchedageInfo> buildCheckerHook(DeciTreeOption<SchedageInfo> option) {		
+		List<ModelCheckerV1<SchedageInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<SchedageInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -57,7 +57,7 @@ public final class RootSchedageSelect extends DeciTreeWriteTemplate<SchedageInfo
 		checker = new SchedageCheckStore(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

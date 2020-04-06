@@ -14,13 +14,13 @@ import br.com.mind5.business.store.model.checker.StoreCheckExist;
 import br.com.mind5.business.store.model.checker.StoreCheckLangu;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootStoreDelete extends DeciTreeWriteTemplate<StoreInfo> {	
+public final class RootStoreDelete extends DeciTreeTemplateWrite<StoreInfo> {	
 	
 	public RootStoreDelete(DeciTreeOption<StoreInfo> option) {
 		super(option);
@@ -28,9 +28,9 @@ public final class RootStoreDelete extends DeciTreeWriteTemplate<StoreInfo> {
 	
 	
 	
-	@Override protected ModelChecker<StoreInfo> buildCheckerHook(DeciTreeOption<StoreInfo> option) {
-		List<ModelChecker<StoreInfo>> queue = new ArrayList<>();		
-		ModelChecker<StoreInfo> checker;
+	@Override protected ModelCheckerV1<StoreInfo> buildCheckerHook(DeciTreeOption<StoreInfo> option) {
+		List<ModelCheckerV1<StoreInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<StoreInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -54,7 +54,7 @@ public final class RootStoreDelete extends DeciTreeWriteTemplate<StoreInfo> {
 		checker = new StoreCheckExist(checkerOption);
 		queue.add(checker);	
 		
-		 return new ModelCheckerQueue<StoreInfo>(queue);
+		 return new ModelCheckerHelperQueueV2<StoreInfo>(queue);
 	}
 	
 	

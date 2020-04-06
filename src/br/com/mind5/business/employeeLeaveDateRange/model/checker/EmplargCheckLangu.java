@@ -5,14 +5,14 @@ import java.util.List;
 import br.com.mind5.business.employeeLeaveDateRange.info.EmplargInfo;
 import br.com.mind5.business.masterData.info.LanguInfo;
 import br.com.mind5.business.masterData.model.checker.LanguCheckExist;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 
-public final class EmplargCheckLangu implements ModelChecker<EmplargInfo> {
+public final class EmplargCheckLangu implements ModelCheckerV1<EmplargInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<LanguInfo> checker;
+	private ModelCheckerV1<LanguInfo> checker;
 	
 	
 	public EmplargCheckLangu(ModelCheckerOption option) {

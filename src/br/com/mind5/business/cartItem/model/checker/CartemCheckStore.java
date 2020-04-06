@@ -5,14 +5,14 @@ import java.util.List;
 import br.com.mind5.business.cartItem.info.CartemInfo;
 import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.business.store.model.checker.StoreCheckExist;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 
-public final class CartemCheckStore implements ModelChecker<CartemInfo> {
+public final class CartemCheckStore implements ModelCheckerV1<CartemInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<StoreInfo> checker;
+	private ModelCheckerV1<StoreInfo> checker;
 	
 	
 	public CartemCheckStore(ModelCheckerOption option) {

@@ -2,17 +2,17 @@ package br.com.mind5.paymentPartner.partnerMoip.tokenMoip.model.checker;
 
 import java.util.List;
 
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.payment.setupPartner.info.SetuparInfo;
 import br.com.mind5.payment.setupPartner.model.checker.SetuparCheckExist;
 import br.com.mind5.paymentPartner.partnerMoip.tokenMoip.info.TokemoipInfo;
 
-public final class TokemoipCheckSetupar implements ModelChecker<TokemoipInfo> {
+public final class TokemoipCheckSetupar implements ModelCheckerV1<TokemoipInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<SetuparInfo> checker;
+	private ModelCheckerV1<SetuparInfo> checker;
 	
 	
 	public TokemoipCheckSetupar(ModelCheckerOption option) {

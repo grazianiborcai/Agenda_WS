@@ -3,16 +3,16 @@ package br.com.mind5.business.materialMovement.model.checker;
 import java.util.List;
 
 import br.com.mind5.business.materialMovement.info.MatmovInfo;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.security.storeAuthorization.info.StorauthInfo;
 import br.com.mind5.security.storeAuthorization.model.checker.StorauthCheckExist;
 
-public final class MatmovCheckStorauth implements ModelChecker<MatmovInfo> {
+public final class MatmovCheckStorauth implements ModelCheckerV1<MatmovInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<StorauthInfo> checker;
+	private ModelCheckerV1<StorauthInfo> checker;
 	
 	
 	public MatmovCheckStorauth(ModelCheckerOption option) {

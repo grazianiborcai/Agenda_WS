@@ -9,13 +9,13 @@ import br.com.mind5.business.feeOwner.model.action.StdFeewnerEnforceCategServ;
 import br.com.mind5.business.feeOwner.model.checker.FeewnerCheckReadService;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootFeewnerSelectService extends DeciTreeReadTemplate<FeewnerInfo> {
+public final class RootFeewnerSelectService extends DeciTreeTemplateRead<FeewnerInfo> {
 	
 	public RootFeewnerSelectService(DeciTreeOption<FeewnerInfo> option) {
 		super(option);
@@ -23,9 +23,9 @@ public final class RootFeewnerSelectService extends DeciTreeReadTemplate<Feewner
 	
 	
 	
-	@Override protected ModelChecker<FeewnerInfo> buildCheckerHook(DeciTreeOption<FeewnerInfo> option) {		
-		List<ModelChecker<FeewnerInfo>> queue = new ArrayList<>();		
-		ModelChecker<FeewnerInfo> checker;
+	@Override protected ModelCheckerV1<FeewnerInfo> buildCheckerHook(DeciTreeOption<FeewnerInfo> option) {		
+		List<ModelCheckerV1<FeewnerInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<FeewnerInfo> checker;
 		ModelCheckerOption checkerOption;
 
 		checkerOption = new ModelCheckerOption();
@@ -35,7 +35,7 @@ public final class RootFeewnerSelectService extends DeciTreeReadTemplate<Feewner
 		checker = new FeewnerCheckReadService(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

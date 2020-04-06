@@ -5,14 +5,14 @@ import java.util.List;
 import br.com.mind5.business.customer.info.CusInfo;
 import br.com.mind5.business.customer.model.checker.CusCheckExist;
 import br.com.mind5.business.scheduleLine.info.SchedineInfo;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 
-public final class SchedineCheckCus implements ModelChecker<SchedineInfo> {
+public final class SchedineCheckCus implements ModelCheckerV1<SchedineInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<CusInfo> checker;
+	private ModelCheckerV1<CusInfo> checker;
 	
 	
 	public SchedineCheckCus(ModelCheckerOption option) {

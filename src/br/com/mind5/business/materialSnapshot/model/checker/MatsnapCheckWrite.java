@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.mind5.business.materialSnapshot.info.MatsnapInfo;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class MatsnapCheckWrite extends ModelCheckerTemplateSimple<MatsnapInfo> {
+public final class MatsnapCheckWrite extends ModelCheckerTemplateSimpleV2<MatsnapInfo> {
 
 	public MatsnapCheckWrite(ModelCheckerOption option) {
 		super(option);

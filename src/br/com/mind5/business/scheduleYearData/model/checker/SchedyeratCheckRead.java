@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.mind5.business.scheduleYearData.info.SchedyeratInfo;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class SchedyeratCheckRead extends ModelCheckerTemplateSimple<SchedyeratInfo> {
+public final class SchedyeratCheckRead extends ModelCheckerTemplateSimpleV2<SchedyeratInfo> {
 
 	public SchedyeratCheckRead(ModelCheckerOption option) {
 		super(option);

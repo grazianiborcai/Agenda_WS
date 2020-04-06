@@ -5,14 +5,14 @@ import java.util.List;
 import br.com.mind5.business.owner.info.OwnerInfo;
 import br.com.mind5.business.person.info.PersonInfo;
 import br.com.mind5.business.person.model.checker.PersonCheckExist;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 
-public final class OwnerCheckPerson implements ModelChecker<OwnerInfo> {
+public final class OwnerCheckPerson implements ModelCheckerV1<OwnerInfo> {
 	private final boolean RESULT_FAILED = false;
 	private final boolean RESULT_SUCCESS = true;
 	
-	private ModelChecker<PersonInfo> checker;
+	private ModelCheckerV1<PersonInfo> checker;
 	
 	
 	public OwnerCheckPerson(ModelCheckerOption option) {

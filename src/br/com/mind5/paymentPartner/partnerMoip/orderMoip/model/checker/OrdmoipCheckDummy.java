@@ -2,12 +2,12 @@ package br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.checker;
 
 import java.util.List;
 
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.common.ModelCherckerTrue;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.info.OrdmoipInfo;
 
-public final class OrdmoipCheckDummy implements ModelChecker<OrdmoipInfo> {
-	private ModelChecker<OrdmoipInfo> checker;
+public final class OrdmoipCheckDummy implements ModelCheckerV1<OrdmoipInfo> {
+	private ModelCheckerV1<OrdmoipInfo> checker;
 	
 	
 	public OrdmoipCheckDummy() {

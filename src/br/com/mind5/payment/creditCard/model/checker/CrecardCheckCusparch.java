@@ -2,18 +2,18 @@ package br.com.mind5.payment.creditCard.model.checker;
 
 import java.util.List;
 
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
 import br.com.mind5.payment.customerPartnerSearch.info.CusparchCopier;
 import br.com.mind5.payment.customerPartnerSearch.info.CusparchInfo;
 import br.com.mind5.payment.customerPartnerSearch.model.checker.CusparchCheckExist;
 
-public final class CrecardCheckCusparch implements ModelChecker<CrecardInfo> {
+public final class CrecardCheckCusparch implements ModelCheckerV1<CrecardInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<CusparchInfo> checker;
+	private ModelCheckerV1<CusparchInfo> checker;
 	
 	
 	public CrecardCheckCusparch(ModelCheckerOption option) {

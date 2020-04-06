@@ -5,14 +5,14 @@ import java.util.List;
 import br.com.mind5.business.owner.info.OwnerInfo;
 import br.com.mind5.business.owner.model.checker.OwnerCheckExist;
 import br.com.mind5.business.phoneSearch.info.PhonarchInfo;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 
-public final class PhonarchCheckOwner implements ModelChecker<PhonarchInfo> {
+public final class PhonarchCheckOwner implements ModelCheckerV1<PhonarchInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<OwnerInfo> checker;
+	private ModelCheckerV1<OwnerInfo> checker;
 	
 	
 	public PhonarchCheckOwner(ModelCheckerOption option) {

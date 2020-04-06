@@ -5,14 +5,14 @@ import java.util.List;
 import br.com.mind5.business.masterData.info.AreaPhoneInfo;
 import br.com.mind5.business.masterData.model.checker.AreaPhoneCheckExist;
 import br.com.mind5.business.phone.info.PhoneInfo;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 
-public final class PhoneCheckArea implements ModelChecker<PhoneInfo> {
+public final class PhoneCheckArea implements ModelCheckerV1<PhoneInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<AreaPhoneInfo> checker;
+	private ModelCheckerV1<AreaPhoneInfo> checker;
 	
 	
 	public PhoneCheckArea(ModelCheckerOption option) {

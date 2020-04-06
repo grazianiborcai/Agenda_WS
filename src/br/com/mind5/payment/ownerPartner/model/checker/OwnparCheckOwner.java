@@ -4,15 +4,15 @@ import java.util.List;
 
 import br.com.mind5.business.owner.info.OwnerInfo;
 import br.com.mind5.business.owner.model.checker.OwnerCheckExist;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.payment.ownerPartner.info.OwnparInfo;
 
-public final class OwnparCheckOwner implements ModelChecker<OwnparInfo> {
+public final class OwnparCheckOwner implements ModelCheckerV1<OwnparInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<OwnerInfo> checker;
+	private ModelCheckerV1<OwnerInfo> checker;
 	
 	
 	public OwnparCheckOwner(ModelCheckerOption option) {

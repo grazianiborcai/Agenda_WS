@@ -12,13 +12,13 @@ import br.com.mind5.business.phone.model.action.StdPhoneEnforceNumberT01;
 import br.com.mind5.business.phone.model.checker.PhoneCheckFormT01;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodePhoneInsert extends DeciTreeWriteTemplate<PhoneInfo> {
+public final class NodePhoneInsert extends DeciTreeTemplateWrite<PhoneInfo> {
 	
 	public NodePhoneInsert(DeciTreeOption<PhoneInfo> option) {
 		super(option);
@@ -26,9 +26,9 @@ public final class NodePhoneInsert extends DeciTreeWriteTemplate<PhoneInfo> {
 	
 	
 	
-	@Override protected ModelChecker<PhoneInfo> buildCheckerHook(DeciTreeOption<PhoneInfo> option) {
-		List<ModelChecker<PhoneInfo>> queue = new ArrayList<>();		
-		ModelChecker<PhoneInfo> checker;	
+	@Override protected ModelCheckerV1<PhoneInfo> buildCheckerHook(DeciTreeOption<PhoneInfo> option) {
+		List<ModelCheckerV1<PhoneInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<PhoneInfo> checker;	
 		ModelCheckerOption checkerOption;
 
 		checkerOption = new ModelCheckerOption();
@@ -38,7 +38,7 @@ public final class NodePhoneInsert extends DeciTreeWriteTemplate<PhoneInfo> {
 		checker = new PhoneCheckFormT01(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

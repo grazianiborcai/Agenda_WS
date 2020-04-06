@@ -11,13 +11,13 @@ import br.com.mind5.business.addressSnapshot.model.action.StdAddresnapMergeToSel
 import br.com.mind5.business.addressSnapshot.model.checker.AddresnapCheckRead;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootAddresnapSelect extends DeciTreeReadTemplate<AddresnapInfo> {
+public final class RootAddresnapSelect extends DeciTreeTemplateRead<AddresnapInfo> {
 	
 	public RootAddresnapSelect(DeciTreeOption<AddresnapInfo> option) {
 		super(option);
@@ -25,9 +25,9 @@ public final class RootAddresnapSelect extends DeciTreeReadTemplate<AddresnapInf
 	
 	
 	
-	@Override protected ModelChecker<AddresnapInfo> buildCheckerHook(DeciTreeOption<AddresnapInfo> option) {
-		List<ModelChecker<AddresnapInfo>> queue = new ArrayList<>();		
-		ModelChecker<AddresnapInfo> checker;	
+	@Override protected ModelCheckerV1<AddresnapInfo> buildCheckerHook(DeciTreeOption<AddresnapInfo> option) {
+		List<ModelCheckerV1<AddresnapInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<AddresnapInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -37,7 +37,7 @@ public final class RootAddresnapSelect extends DeciTreeReadTemplate<AddresnapInf
 		checker = new AddresnapCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

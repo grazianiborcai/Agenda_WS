@@ -17,13 +17,13 @@ import br.com.mind5.business.material.model.checker.MatCheckUnit;
 import br.com.mind5.business.material.model.checker.MatCheckUpdate;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootMatUpdate extends DeciTreeWriteTemplate<MatInfo> {
+public final class RootMatUpdate extends DeciTreeTemplateWrite<MatInfo> {
 	
 	public RootMatUpdate(DeciTreeOption<MatInfo> option) {
 		super(option);
@@ -31,9 +31,9 @@ public final class RootMatUpdate extends DeciTreeWriteTemplate<MatInfo> {
 	
 	
 	
-	@Override protected ModelChecker<MatInfo> buildCheckerHook(DeciTreeOption<MatInfo> option) {
-		List<ModelChecker<MatInfo>> queue = new ArrayList<>();		
-		ModelChecker<MatInfo> checker;
+	@Override protected ModelCheckerV1<MatInfo> buildCheckerHook(DeciTreeOption<MatInfo> option) {
+		List<ModelCheckerV1<MatInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<MatInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -92,7 +92,7 @@ public final class RootMatUpdate extends DeciTreeWriteTemplate<MatInfo> {
 		checker = new MatCheckExist(checkerOption);
 		queue.add(checker);	
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

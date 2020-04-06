@@ -5,11 +5,11 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 import br.com.mind5.security.userPassword.info.UpswdInfo;
 import br.com.mind5.security.userPassword.model.action.LazyUpswdEnforceHashToMatch;
 import br.com.mind5.security.userPassword.model.action.LazyUpswdEnforceLength;
@@ -18,7 +18,7 @@ import br.com.mind5.security.userPassword.model.action.StdUpswdMergeToAuth;
 import br.com.mind5.security.userPassword.model.checker.UpswdCheckExist;
 import br.com.mind5.security.userPassword.model.checker.UpswdCheckIsPasswordEnabled;
 
-public final class NodeUpswdAuth extends DeciTreeReadTemplate<UpswdInfo> {
+public final class NodeUpswdAuth extends DeciTreeTemplateRead<UpswdInfo> {
 	
 	public NodeUpswdAuth(DeciTreeOption<UpswdInfo> option) {
 		super(option);
@@ -26,9 +26,9 @@ public final class NodeUpswdAuth extends DeciTreeReadTemplate<UpswdInfo> {
 	
 	
 	
-	@Override protected ModelChecker<UpswdInfo> buildCheckerHook(DeciTreeOption<UpswdInfo> option) {
-		List<ModelChecker<UpswdInfo>> queue = new ArrayList<>();		
-		ModelChecker<UpswdInfo> checker;
+	@Override protected ModelCheckerV1<UpswdInfo> buildCheckerHook(DeciTreeOption<UpswdInfo> option) {
+		List<ModelCheckerV1<UpswdInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<UpswdInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -45,7 +45,7 @@ public final class NodeUpswdAuth extends DeciTreeReadTemplate<UpswdInfo> {
 		checker = new UpswdCheckExist(checkerOption);
 		queue.add(checker);	
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

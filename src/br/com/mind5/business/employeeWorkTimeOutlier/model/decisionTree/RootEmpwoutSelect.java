@@ -10,13 +10,13 @@ import br.com.mind5.business.employeeWorkTimeOutlier.model.checker.EmpwoutCheckO
 import br.com.mind5.business.employeeWorkTimeOutlier.model.checker.EmpwoutCheckRead;
 import br.com.mind5.business.employeeWorkTimeOutlier.model.checker.EmpwoutCheckStore;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootEmpwoutSelect extends DeciTreeReadTemplate<EmpwoutInfo> {
+public final class RootEmpwoutSelect extends DeciTreeTemplateRead<EmpwoutInfo> {
 	
 	public RootEmpwoutSelect(DeciTreeOption<EmpwoutInfo> option) {
 		super(option);
@@ -24,9 +24,9 @@ public final class RootEmpwoutSelect extends DeciTreeReadTemplate<EmpwoutInfo> {
 	
 	
 	
-	@Override protected ModelChecker<EmpwoutInfo> buildCheckerHook(DeciTreeOption<EmpwoutInfo> option) {
-		List<ModelChecker<EmpwoutInfo>> queue = new ArrayList<>();		
-		ModelChecker<EmpwoutInfo> checker;
+	@Override protected ModelCheckerV1<EmpwoutInfo> buildCheckerHook(DeciTreeOption<EmpwoutInfo> option) {
+		List<ModelCheckerV1<EmpwoutInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<EmpwoutInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -57,7 +57,7 @@ public final class RootEmpwoutSelect extends DeciTreeReadTemplate<EmpwoutInfo> {
 		checker = new EmpwoutCheckLangu(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

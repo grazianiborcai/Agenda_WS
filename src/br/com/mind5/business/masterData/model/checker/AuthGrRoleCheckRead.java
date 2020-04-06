@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.mind5.business.masterData.info.AuthGrRoleInfo;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class AuthGrRoleCheckRead extends ModelCheckerTemplateSimple<AuthGrRoleInfo> {
+public final class AuthGrRoleCheckRead extends ModelCheckerTemplateSimpleV2<AuthGrRoleInfo> {
 
 	public AuthGrRoleCheckRead(ModelCheckerOption option) {
 		super(option);

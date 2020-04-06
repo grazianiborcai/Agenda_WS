@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.mind5.business.storeLeaveDate.info.StolateInfo;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class StolateCheckRead extends ModelCheckerTemplateSimple<StolateInfo> {
+public final class StolateCheckRead extends ModelCheckerTemplateSimpleV2<StolateInfo> {
 
 	public StolateCheckRead(ModelCheckerOption option) {
 		super(option);

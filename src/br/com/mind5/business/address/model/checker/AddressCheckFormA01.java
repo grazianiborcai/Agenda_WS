@@ -6,9 +6,9 @@ import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.form.common.Form;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class AddressCheckFormA01 extends ModelCheckerTemplateSimple<AddressInfo> {
+public final class AddressCheckFormA01 extends ModelCheckerTemplateSimpleV2<AddressInfo> {
 
 	public AddressCheckFormA01(ModelCheckerOption option) {
 		super(option);

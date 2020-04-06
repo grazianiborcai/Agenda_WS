@@ -5,11 +5,11 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.payment.payOrderItem.info.PayordemInfo;
 import br.com.mind5.payment.payOrderItem.model.action.LazyPayordemInsert;
 import br.com.mind5.payment.payOrderItem.model.action.StdPayordemEnforceLChanged;
@@ -18,7 +18,7 @@ import br.com.mind5.payment.payOrderItem.model.checker.PayordemCheckLangu;
 import br.com.mind5.payment.payOrderItem.model.checker.PayordemCheckOwner;
 import br.com.mind5.payment.payOrderItem.model.checker.PayordemCheckPayord;
 
-public final class RootPayordemInsert extends DeciTreeWriteTemplate<PayordemInfo> {
+public final class RootPayordemInsert extends DeciTreeTemplateWrite<PayordemInfo> {
 	
 	public RootPayordemInsert(DeciTreeOption<PayordemInfo> option) {
 		super(option);
@@ -26,9 +26,9 @@ public final class RootPayordemInsert extends DeciTreeWriteTemplate<PayordemInfo
 	
 	
 	
-	@Override protected ModelChecker<PayordemInfo> buildCheckerHook(DeciTreeOption<PayordemInfo> option) {
-		List<ModelChecker<PayordemInfo>> queue = new ArrayList<>();		
-		ModelChecker<PayordemInfo> checker;	
+	@Override protected ModelCheckerV1<PayordemInfo> buildCheckerHook(DeciTreeOption<PayordemInfo> option) {
+		List<ModelCheckerV1<PayordemInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<PayordemInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -59,7 +59,7 @@ public final class RootPayordemInsert extends DeciTreeWriteTemplate<PayordemInfo
 		checker = new PayordemCheckPayord(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

@@ -5,14 +5,14 @@ import java.util.List;
 import br.com.mind5.business.material.info.MatInfo;
 import br.com.mind5.business.material.model.checker.MatCheckExist;
 import br.com.mind5.file.fileImage.info.FimgInfo;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 
-public final class FimgCheckMat implements ModelChecker<FimgInfo> {
+public final class FimgCheckMat implements ModelCheckerV1<FimgInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<MatInfo> checker;
+	private ModelCheckerV1<MatInfo> checker;
 	
 	
 	public FimgCheckMat(ModelCheckerOption option) {

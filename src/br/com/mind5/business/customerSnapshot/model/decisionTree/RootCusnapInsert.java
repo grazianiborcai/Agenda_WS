@@ -12,13 +12,13 @@ import br.com.mind5.business.customerSnapshot.model.checker.CusnapCheckOwner;
 import br.com.mind5.business.customerSnapshot.model.checker.CusnapCheckWrite;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootCusnapInsert extends DeciTreeWriteTemplate<CusnapInfo> {
+public final class RootCusnapInsert extends DeciTreeTemplateWrite<CusnapInfo> {
 
 	public RootCusnapInsert(DeciTreeOption<CusnapInfo> option) {
 		super(option);
@@ -26,9 +26,9 @@ public final class RootCusnapInsert extends DeciTreeWriteTemplate<CusnapInfo> {
 	
 	
 	
-	@Override protected ModelChecker<CusnapInfo> buildCheckerHook(DeciTreeOption<CusnapInfo> option) {	
-		List<ModelChecker<CusnapInfo>> queue = new ArrayList<>();		
-		ModelChecker<CusnapInfo> checker;
+	@Override protected ModelCheckerV1<CusnapInfo> buildCheckerHook(DeciTreeOption<CusnapInfo> option) {	
+		List<ModelCheckerV1<CusnapInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<CusnapInfo> checker;
 		ModelCheckerOption checkerOption;		
 		
 		checkerOption = new ModelCheckerOption();
@@ -52,7 +52,7 @@ public final class RootCusnapInsert extends DeciTreeWriteTemplate<CusnapInfo> {
 		checker = new CusnapCheckOwner(checkerOption);
 		queue.add(checker);	
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

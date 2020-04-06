@@ -2,17 +2,17 @@ package br.com.mind5.paymentPartner.partnerMoip.refundMoip.model.checker;
 
 import java.util.List;
 
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.payment.storePartner.info.StoparInfo;
 import br.com.mind5.payment.storePartner.model.checker.StoparCheckExist;
 import br.com.mind5.paymentPartner.partnerMoip.refundMoip.info.RefumoipInfo;
 
-public final class RefumoipCheckStopar implements ModelChecker<RefumoipInfo> {
+public final class RefumoipCheckStopar implements ModelCheckerV1<RefumoipInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<StoparInfo> checker;
+	private ModelCheckerV1<StoparInfo> checker;
 	
 	
 	public RefumoipCheckStopar(ModelCheckerOption option) {

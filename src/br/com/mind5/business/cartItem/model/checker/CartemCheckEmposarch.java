@@ -5,14 +5,14 @@ import java.util.List;
 import br.com.mind5.business.cartItem.info.CartemInfo;
 import br.com.mind5.business.employeePositionSearch.info.EmposarchInfo;
 import br.com.mind5.business.employeePositionSearch.model.checker.EmposarchCheckExist;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 
-public final class CartemCheckEmposarch implements ModelChecker<CartemInfo> {
+public final class CartemCheckEmposarch implements ModelCheckerV1<CartemInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<EmposarchInfo> checker;
+	private ModelCheckerV1<EmposarchInfo> checker;
 	
 	
 	public CartemCheckEmposarch(ModelCheckerOption option) {

@@ -4,10 +4,10 @@ import java.sql.Connection;
 
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
 
-public final class CusparCheckWrite extends ModelCheckerTemplateSimple<CusparInfo> {
+public final class CusparCheckWrite extends ModelCheckerTemplateSimpleV2<CusparInfo> {
 
 	public CusparCheckWrite(ModelCheckerOption option) {
 		super(option);

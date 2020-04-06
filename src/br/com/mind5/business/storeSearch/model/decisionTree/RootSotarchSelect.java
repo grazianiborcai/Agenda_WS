@@ -9,14 +9,14 @@ import br.com.mind5.business.storeSearch.model.checker.SotarchCheckLangu;
 import br.com.mind5.business.storeSearch.model.checker.SotarchCheckOwner;
 import br.com.mind5.business.storeSearch.model.checker.SotarchCheckRead;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
 
-public final class RootSotarchSelect extends DeciTreeReadTemplate<SotarchInfo> {
+public final class RootSotarchSelect extends DeciTreeTemplateRead<SotarchInfo> {
 	
 	public RootSotarchSelect(DeciTreeOption<SotarchInfo> option) {
 		super(option);
@@ -24,9 +24,9 @@ public final class RootSotarchSelect extends DeciTreeReadTemplate<SotarchInfo> {
 	
 	
 	
-	@Override protected ModelChecker<SotarchInfo> buildCheckerHook(DeciTreeOption<SotarchInfo> option) {
-		List<ModelChecker<SotarchInfo>> queue = new ArrayList<>();		
-		ModelChecker<SotarchInfo> checker;
+	@Override protected ModelCheckerV1<SotarchInfo> buildCheckerHook(DeciTreeOption<SotarchInfo> option) {
+		List<ModelCheckerV1<SotarchInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<SotarchInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -50,7 +50,7 @@ public final class RootSotarchSelect extends DeciTreeReadTemplate<SotarchInfo> {
 		checker = new SotarchCheckOwner(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

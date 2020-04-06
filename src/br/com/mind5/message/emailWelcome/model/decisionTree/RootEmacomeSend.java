@@ -10,13 +10,13 @@ import br.com.mind5.message.emailWelcome.model.action.StdEmacomeMergeOwnelis;
 import br.com.mind5.message.emailWelcome.model.checker.EmacomeCheckSend;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootEmacomeSend extends DeciTreeWriteTemplate<EmacomeInfo> {
+public final class RootEmacomeSend extends DeciTreeTemplateWrite<EmacomeInfo> {
 	
 	public RootEmacomeSend(DeciTreeOption<EmacomeInfo> option) {
 		super(option);
@@ -24,9 +24,9 @@ public final class RootEmacomeSend extends DeciTreeWriteTemplate<EmacomeInfo> {
 	
 	
 	
-	@Override protected ModelChecker<EmacomeInfo> buildCheckerHook(DeciTreeOption<EmacomeInfo> option) {		
-		List<ModelChecker<EmacomeInfo>> queue = new ArrayList<>();		
-		ModelChecker<EmacomeInfo> checker;	
+	@Override protected ModelCheckerV1<EmacomeInfo> buildCheckerHook(DeciTreeOption<EmacomeInfo> option) {		
+		List<ModelCheckerV1<EmacomeInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<EmacomeInfo> checker;	
 		ModelCheckerOption checkerOption;		
 		
 		checkerOption = new ModelCheckerOption();
@@ -36,7 +36,7 @@ public final class RootEmacomeSend extends DeciTreeWriteTemplate<EmacomeInfo> {
 		checker = new EmacomeCheckSend(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

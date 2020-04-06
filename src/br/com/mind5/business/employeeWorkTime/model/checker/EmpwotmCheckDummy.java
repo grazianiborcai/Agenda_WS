@@ -3,11 +3,11 @@ package br.com.mind5.business.employeeWorkTime.model.checker;
 import java.util.List;
 
 import br.com.mind5.business.employeeWorkTime.info.EmpwotmInfo;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.common.ModelCherckerTrue;
 
-public final class EmpwotmCheckDummy implements ModelChecker<EmpwotmInfo> {
-	private ModelChecker<EmpwotmInfo> checker;
+public final class EmpwotmCheckDummy implements ModelCheckerV1<EmpwotmInfo> {
+	private ModelCheckerV1<EmpwotmInfo> checker;
 	
 	
 	public EmpwotmCheckDummy() {

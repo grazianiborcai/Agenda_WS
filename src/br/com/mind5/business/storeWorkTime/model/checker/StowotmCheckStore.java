@@ -5,14 +5,14 @@ import java.util.List;
 import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.business.store.model.checker.StoreCheckExist;
 import br.com.mind5.business.storeWorkTime.info.StowotmInfo;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 
-public final class StowotmCheckStore implements ModelChecker<StowotmInfo> {
+public final class StowotmCheckStore implements ModelCheckerV1<StowotmInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<StoreInfo> checker;
+	private ModelCheckerV1<StoreInfo> checker;
 	
 	
 	public StowotmCheckStore(ModelCheckerOption option) {

@@ -6,9 +6,9 @@ import br.com.mind5.business.feeDefault.info.FeedefInfo;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class FeedefCheckRead extends ModelCheckerTemplateSimple<FeedefInfo> {
+public final class FeedefCheckRead extends ModelCheckerTemplateSimpleV2<FeedefInfo> {
 
 	public FeedefCheckRead(ModelCheckerOption option) {
 		super(option);

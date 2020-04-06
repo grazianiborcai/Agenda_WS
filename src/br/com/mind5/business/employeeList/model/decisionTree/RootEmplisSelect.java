@@ -12,13 +12,13 @@ import br.com.mind5.business.employeeList.model.checker.EmplisCheckOwner;
 import br.com.mind5.business.employeeList.model.checker.EmplisCheckRead;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootEmplisSelect extends DeciTreeReadTemplate<EmplisInfo> {
+public final class RootEmplisSelect extends DeciTreeTemplateRead<EmplisInfo> {
 	
 	public RootEmplisSelect(DeciTreeOption<EmplisInfo> option) {
 		super(option);
@@ -26,9 +26,9 @@ public final class RootEmplisSelect extends DeciTreeReadTemplate<EmplisInfo> {
 	
 	
 	
-	@Override protected ModelChecker<EmplisInfo> buildCheckerHook(DeciTreeOption<EmplisInfo> option) {
-		List<ModelChecker<EmplisInfo>> queue = new ArrayList<>();		
-		ModelChecker<EmplisInfo> checker;
+	@Override protected ModelCheckerV1<EmplisInfo> buildCheckerHook(DeciTreeOption<EmplisInfo> option) {
+		List<ModelCheckerV1<EmplisInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<EmplisInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
 		checkerOption = new ModelCheckerOption();
@@ -52,7 +52,7 @@ public final class RootEmplisSelect extends DeciTreeReadTemplate<EmplisInfo> {
 		checker = new EmplisCheckOwner(checkerOption);
 		queue.add(checker);	
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

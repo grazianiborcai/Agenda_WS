@@ -6,9 +6,9 @@ import br.com.mind5.business.form.common.Form;
 import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class PhoneCheckFormT01 extends ModelCheckerTemplateSimple<PhoneInfo> {
+public final class PhoneCheckFormT01 extends ModelCheckerTemplateSimpleV2<PhoneInfo> {
 
 	public PhoneCheckFormT01(ModelCheckerOption option) {
 		super(option);

@@ -3,11 +3,11 @@ package br.com.mind5.business.order.model.checker;
 import java.util.List;
 
 import br.com.mind5.business.order.info.OrderInfo;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.common.ModelCherckerTrue;
 
-public final class OrderCheckDummy implements ModelChecker<OrderInfo> {
-	private ModelChecker<OrderInfo> checker;
+public final class OrderCheckDummy implements ModelCheckerV1<OrderInfo> {
+	private ModelCheckerV1<OrderInfo> checker;
 	
 	
 	public OrderCheckDummy() {

@@ -3,16 +3,16 @@ package br.com.mind5.business.employeePosition.model.checker;
 import java.util.List;
 
 import br.com.mind5.business.employeePosition.info.EmposInfo;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.security.storeAuthorization.info.StorauthInfo;
 import br.com.mind5.security.storeAuthorization.model.checker.StorauthCheckExist;
 
-public final class EmposCheckStorauth implements ModelChecker<EmposInfo> {
+public final class EmposCheckStorauth implements ModelCheckerV1<EmposInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<StorauthInfo> checker;
+	private ModelCheckerV1<StorauthInfo> checker;
 	
 	
 	public EmposCheckStorauth(ModelCheckerOption option) {

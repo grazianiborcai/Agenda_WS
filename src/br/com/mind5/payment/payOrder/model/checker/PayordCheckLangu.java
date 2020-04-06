@@ -4,15 +4,15 @@ import java.util.List;
 
 import br.com.mind5.business.masterData.info.LanguInfo;
 import br.com.mind5.business.masterData.model.checker.LanguCheckExist;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
 
-public final class PayordCheckLangu implements ModelChecker<PayordInfo> {
+public final class PayordCheckLangu implements ModelCheckerV1<PayordInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<LanguInfo> checker;
+	private ModelCheckerV1<LanguInfo> checker;
 	
 	
 	public PayordCheckLangu(ModelCheckerOption option) {

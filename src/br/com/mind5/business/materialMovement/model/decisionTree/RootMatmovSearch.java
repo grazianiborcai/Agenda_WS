@@ -9,13 +9,13 @@ import br.com.mind5.business.materialMovement.model.action.StdMatmovMergeMatmarc
 import br.com.mind5.business.materialMovement.model.checker.MatmovCheckDummy;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
 
-public final class RootMatmovSearch extends DeciTreeReadTemplate<MatmovInfo> {
+public final class RootMatmovSearch extends DeciTreeTemplateRead<MatmovInfo> {
 	
 	public RootMatmovSearch(DeciTreeOption<MatmovInfo> option) {
 		super(option);
@@ -23,14 +23,14 @@ public final class RootMatmovSearch extends DeciTreeReadTemplate<MatmovInfo> {
 	
 	
 	
-	@Override protected ModelChecker<MatmovInfo> buildCheckerHook(DeciTreeOption<MatmovInfo> option) {
-		List<ModelChecker<MatmovInfo>> queue = new ArrayList<>();		
-		ModelChecker<MatmovInfo> checker;
+	@Override protected ModelCheckerV1<MatmovInfo> buildCheckerHook(DeciTreeOption<MatmovInfo> option) {
+		List<ModelCheckerV1<MatmovInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<MatmovInfo> checker;
 	
 		checker = new MatmovCheckDummy();
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

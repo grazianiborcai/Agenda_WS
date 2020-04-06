@@ -23,6 +23,9 @@ public final class PlanningTimeResource {
 		
 		Model model = new PlanimeModelSelect(incomingData, request);
 		model.executeRequest();
-		return model.getResponse();
+		Response response = model.getResponse();
+		
+		model.close();
+		return response;
 	}
 }

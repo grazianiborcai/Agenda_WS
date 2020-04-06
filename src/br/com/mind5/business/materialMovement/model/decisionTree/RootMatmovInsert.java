@@ -17,13 +17,13 @@ import br.com.mind5.business.materialMovement.model.checker.MatmovCheckStorauth;
 import br.com.mind5.business.materialMovement.model.checker.MatmovCheckStore;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootMatmovInsert extends DeciTreeWriteTemplate<MatmovInfo> {
+public final class RootMatmovInsert extends DeciTreeTemplateWrite<MatmovInfo> {
 	
 	public RootMatmovInsert(DeciTreeOption<MatmovInfo> option) {
 		super(option);
@@ -31,9 +31,9 @@ public final class RootMatmovInsert extends DeciTreeWriteTemplate<MatmovInfo> {
 	
 	
 	
-	@Override protected ModelChecker<MatmovInfo> buildCheckerHook(DeciTreeOption<MatmovInfo> option) {
-		List<ModelChecker<MatmovInfo>> queue = new ArrayList<>();		
-		ModelChecker<MatmovInfo> checker;
+	@Override protected ModelCheckerV1<MatmovInfo> buildCheckerHook(DeciTreeOption<MatmovInfo> option) {
+		List<ModelCheckerV1<MatmovInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<MatmovInfo> checker;
 		ModelCheckerOption checkerOption;		
 		
 		checkerOption = new ModelCheckerOption();
@@ -99,7 +99,7 @@ public final class RootMatmovInsert extends DeciTreeWriteTemplate<MatmovInfo> {
 		checker = new MatmovCheckMatore(checkerOption);
 		queue.add(checker);	
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

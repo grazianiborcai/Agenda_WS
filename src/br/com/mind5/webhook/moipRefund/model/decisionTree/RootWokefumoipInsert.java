@@ -5,11 +5,11 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.webhook.moipRefund.info.WokefumoipInfo;
 import br.com.mind5.webhook.moipRefund.model.action.LazyWokefumoipMergeDaemon;
 import br.com.mind5.webhook.moipRefund.model.action.LazyWokefumoipPaytusRefresh;
@@ -18,7 +18,7 @@ import br.com.mind5.webhook.moipRefund.model.action.LazyWokefumoipSuccess;
 import br.com.mind5.webhook.moipRefund.model.action.StdWokefumoipEnforceIdPayment;
 import br.com.mind5.webhook.moipRefund.model.checker.WokefumoipCheckInsert;
 
-public final class RootWokefumoipInsert extends DeciTreeWriteTemplate<WokefumoipInfo> {
+public final class RootWokefumoipInsert extends DeciTreeTemplateWrite<WokefumoipInfo> {
 	
 	public RootWokefumoipInsert(DeciTreeOption<WokefumoipInfo> option) {
 		super(option);
@@ -26,9 +26,9 @@ public final class RootWokefumoipInsert extends DeciTreeWriteTemplate<Wokefumoip
 	
 	
 	
-	@Override protected ModelChecker<WokefumoipInfo> buildCheckerHook(DeciTreeOption<WokefumoipInfo> option) {	
-		List<ModelChecker<WokefumoipInfo>> queue = new ArrayList<>();		
-		ModelChecker<WokefumoipInfo> checker;	
+	@Override protected ModelCheckerV1<WokefumoipInfo> buildCheckerHook(DeciTreeOption<WokefumoipInfo> option) {	
+		List<ModelCheckerV1<WokefumoipInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<WokefumoipInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -38,7 +38,7 @@ public final class RootWokefumoipInsert extends DeciTreeWriteTemplate<Wokefumoip
 		checker = new WokefumoipCheckInsert(checkerOption);
 		queue.add(checker);
 
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.mind5.business.cartReserve.info.CarterveInfo;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class CarterveCheckRead extends ModelCheckerTemplateSimple<CarterveInfo> {
+public final class CarterveCheckRead extends ModelCheckerTemplateSimpleV2<CarterveInfo> {
 
 	public CarterveCheckRead(ModelCheckerOption option) {
 		super(option);

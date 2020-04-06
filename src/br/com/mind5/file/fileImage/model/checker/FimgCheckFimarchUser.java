@@ -6,14 +6,14 @@ import br.com.mind5.file.fileImage.info.FimgInfo;
 import br.com.mind5.file.fileImageSearch.info.FimarchCopier;
 import br.com.mind5.file.fileImageSearch.info.FimarchInfo;
 import br.com.mind5.file.fileImageSearch.model.checker.FimarchCheckExist;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 
-public final class FimgCheckFimarchUser implements ModelChecker<FimgInfo> {
+public final class FimgCheckFimarchUser implements ModelCheckerV1<FimgInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<FimarchInfo> checker;
+	private ModelCheckerV1<FimarchInfo> checker;
 	
 	
 	public FimgCheckFimarchUser(ModelCheckerOption option) {

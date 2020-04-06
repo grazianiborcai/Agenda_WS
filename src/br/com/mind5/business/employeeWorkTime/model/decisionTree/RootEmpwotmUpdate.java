@@ -22,13 +22,13 @@ import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckWeekday;
 import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckWrite;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootEmpwotmUpdate extends DeciTreeWriteTemplate<EmpwotmInfo> {
+public final class RootEmpwotmUpdate extends DeciTreeTemplateWrite<EmpwotmInfo> {
 	
 	public RootEmpwotmUpdate(DeciTreeOption<EmpwotmInfo> option) {
 		super(option);
@@ -36,9 +36,9 @@ public final class RootEmpwotmUpdate extends DeciTreeWriteTemplate<EmpwotmInfo> 
 	
 	
 	
-	@Override protected ModelChecker<EmpwotmInfo> buildCheckerHook(DeciTreeOption<EmpwotmInfo> option) {
-		List<ModelChecker<EmpwotmInfo>> queue = new ArrayList<>();		
-		ModelChecker<EmpwotmInfo> checker;			
+	@Override protected ModelCheckerV1<EmpwotmInfo> buildCheckerHook(DeciTreeOption<EmpwotmInfo> option) {
+		List<ModelCheckerV1<EmpwotmInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<EmpwotmInfo> checker;			
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -132,7 +132,7 @@ public final class RootEmpwotmUpdate extends DeciTreeWriteTemplate<EmpwotmInfo> 
 		checker = new EmpwotmCheckStorauth(checkerOption);
 		queue.add(checker);	
 
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

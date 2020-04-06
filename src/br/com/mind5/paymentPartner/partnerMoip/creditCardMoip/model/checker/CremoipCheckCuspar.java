@@ -2,17 +2,17 @@ package br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.model.checker;
 
 import java.util.List;
 
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
 import br.com.mind5.payment.customerPartner.model.checker.CusparCheckExist;
 import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.info.CremoipInfo;
 
-public final class CremoipCheckCuspar implements ModelChecker<CremoipInfo> {
+public final class CremoipCheckCuspar implements ModelCheckerV1<CremoipInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<CusparInfo> checker;
+	private ModelCheckerV1<CusparInfo> checker;
 	
 	
 	public CremoipCheckCuspar(ModelCheckerOption option) {

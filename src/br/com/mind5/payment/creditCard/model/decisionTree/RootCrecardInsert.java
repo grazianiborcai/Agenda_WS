@@ -5,11 +5,11 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
 import br.com.mind5.payment.creditCard.model.action.LazyCrecardNodeAddress;
 import br.com.mind5.payment.creditCard.model.action.LazyCrecardNodeCuspar;
@@ -24,7 +24,7 @@ import br.com.mind5.payment.creditCard.model.checker.CrecardCheckPhone;
 import br.com.mind5.payment.creditCard.model.checker.CrecardCheckUsername;
 import br.com.mind5.payment.creditCard.model.checker.CrecardCheckWrite;
 
-public final class RootCrecardInsert extends DeciTreeWriteTemplate<CrecardInfo> {
+public final class RootCrecardInsert extends DeciTreeTemplateWrite<CrecardInfo> {
 	
 	public RootCrecardInsert(DeciTreeOption<CrecardInfo> option) {
 		super(option);
@@ -32,9 +32,9 @@ public final class RootCrecardInsert extends DeciTreeWriteTemplate<CrecardInfo> 
 	
 	
 	
-	@Override protected ModelChecker<CrecardInfo> buildCheckerHook(DeciTreeOption<CrecardInfo> option) {
-		List<ModelChecker<CrecardInfo>> queue = new ArrayList<>();		
-		ModelChecker<CrecardInfo> checker;	
+	@Override protected ModelCheckerV1<CrecardInfo> buildCheckerHook(DeciTreeOption<CrecardInfo> option) {
+		List<ModelCheckerV1<CrecardInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<CrecardInfo> checker;	
 		ModelCheckerOption checkerOption;
 
 		checkerOption = new ModelCheckerOption();
@@ -86,7 +86,7 @@ public final class RootCrecardInsert extends DeciTreeWriteTemplate<CrecardInfo> 
 		checker = new CrecardCheckPhone(checkerOption);
 		queue.add(checker);
 		//TODO: Inserir limite ? Maximo de 10 cartoes ?
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

@@ -12,13 +12,13 @@ import br.com.mind5.business.scheduleWeek.model.action.StdSchedeekMergeSchedeekd
 import br.com.mind5.business.scheduleWeek.model.checker.SchedeekCheckRead;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootSchedeekSelect extends DeciTreeWriteTemplate<SchedeekInfo> {
+public final class RootSchedeekSelect extends DeciTreeTemplateWrite<SchedeekInfo> {
 	
 	public RootSchedeekSelect(DeciTreeOption<SchedeekInfo> option) {
 		super(option);
@@ -26,9 +26,9 @@ public final class RootSchedeekSelect extends DeciTreeWriteTemplate<SchedeekInfo
 	
 	
 	
-	@Override protected ModelChecker<SchedeekInfo> buildCheckerHook(DeciTreeOption<SchedeekInfo> option) {
-		List<ModelChecker<SchedeekInfo>> queue = new ArrayList<>();		
-		ModelChecker<SchedeekInfo> checker;	
+	@Override protected ModelCheckerV1<SchedeekInfo> buildCheckerHook(DeciTreeOption<SchedeekInfo> option) {
+		List<ModelCheckerV1<SchedeekInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<SchedeekInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -38,7 +38,7 @@ public final class RootSchedeekSelect extends DeciTreeWriteTemplate<SchedeekInfo
 		checker = new SchedeekCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

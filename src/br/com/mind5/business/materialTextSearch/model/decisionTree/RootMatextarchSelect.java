@@ -8,13 +8,13 @@ import br.com.mind5.business.materialTextSearch.model.action.StdMatextarchMergeT
 import br.com.mind5.business.materialTextSearch.model.checker.MatextarchCheckOwner;
 import br.com.mind5.business.materialTextSearch.model.checker.MatextarchCheckRead;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootMatextarchSelect extends DeciTreeReadTemplate<MatextarchInfo> {
+public final class RootMatextarchSelect extends DeciTreeTemplateRead<MatextarchInfo> {
 	
 	public RootMatextarchSelect(DeciTreeOption<MatextarchInfo> option) {
 		super(option);
@@ -22,9 +22,9 @@ public final class RootMatextarchSelect extends DeciTreeReadTemplate<MatextarchI
 	
 	
 	
-	@Override protected ModelChecker<MatextarchInfo> buildCheckerHook(DeciTreeOption<MatextarchInfo> option) {
-		List<ModelChecker<MatextarchInfo>> queue = new ArrayList<>();		
-		ModelChecker<MatextarchInfo> checker;
+	@Override protected ModelCheckerV1<MatextarchInfo> buildCheckerHook(DeciTreeOption<MatextarchInfo> option) {
+		List<ModelCheckerV1<MatextarchInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<MatextarchInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -41,7 +41,7 @@ public final class RootMatextarchSelect extends DeciTreeReadTemplate<MatextarchI
 		checker = new MatextarchCheckOwner(checkerOption);
 		queue.add(checker);			
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

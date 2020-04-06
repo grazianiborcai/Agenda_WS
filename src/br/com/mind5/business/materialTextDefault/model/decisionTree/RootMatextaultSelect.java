@@ -9,13 +9,13 @@ import br.com.mind5.business.materialTextDefault.model.checker.MatextaultCheckMa
 import br.com.mind5.business.materialTextDefault.model.checker.MatextaultCheckOwner;
 import br.com.mind5.business.materialTextDefault.model.checker.MatextaultCheckRead;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootMatextaultSelect extends DeciTreeReadTemplate<MatextaultInfo> {
+public final class RootMatextaultSelect extends DeciTreeTemplateRead<MatextaultInfo> {
 	
 	public RootMatextaultSelect(DeciTreeOption<MatextaultInfo> option) {
 		super(option);
@@ -23,9 +23,9 @@ public final class RootMatextaultSelect extends DeciTreeReadTemplate<MatextaultI
 	
 	
 	
-	@Override protected ModelChecker<MatextaultInfo> buildCheckerHook(DeciTreeOption<MatextaultInfo> option) {
-		List<ModelChecker<MatextaultInfo>> queue = new ArrayList<>();		
-		ModelChecker<MatextaultInfo> checker;
+	@Override protected ModelCheckerV1<MatextaultInfo> buildCheckerHook(DeciTreeOption<MatextaultInfo> option) {
+		List<ModelCheckerV1<MatextaultInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<MatextaultInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -49,7 +49,7 @@ public final class RootMatextaultSelect extends DeciTreeReadTemplate<MatextaultI
 		checker = new MatextaultCheckMat(checkerOption);
 		queue.add(checker);	
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

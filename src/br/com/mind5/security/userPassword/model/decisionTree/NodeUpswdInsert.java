@@ -5,10 +5,10 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.security.userPassword.info.UpswdInfo;
 import br.com.mind5.security.userPassword.model.action.LazyUpswdEnforceHash;
 import br.com.mind5.security.userPassword.model.action.LazyUpswdEnforceLength;
@@ -17,7 +17,7 @@ import br.com.mind5.security.userPassword.model.action.LazyUpswdInsert;
 import br.com.mind5.security.userPassword.model.action.StdUpswdEnforceLChanged;
 import br.com.mind5.security.userPassword.model.checker.UpswdCheckDummy;
 
-public final class NodeUpswdInsert extends DeciTreeWriteTemplate<UpswdInfo> {
+public final class NodeUpswdInsert extends DeciTreeTemplateWrite<UpswdInfo> {
 	
 	public NodeUpswdInsert(DeciTreeOption<UpswdInfo> option) {
 		super(option);
@@ -25,14 +25,14 @@ public final class NodeUpswdInsert extends DeciTreeWriteTemplate<UpswdInfo> {
 	
 	
 	
-	@Override protected ModelChecker<UpswdInfo> buildCheckerHook(DeciTreeOption<UpswdInfo> option) {
-		List<ModelChecker<UpswdInfo>> queue = new ArrayList<>();		
-		ModelChecker<UpswdInfo> checker;
+	@Override protected ModelCheckerV1<UpswdInfo> buildCheckerHook(DeciTreeOption<UpswdInfo> option) {
+		List<ModelCheckerV1<UpswdInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<UpswdInfo> checker;
 
 		checker = new UpswdCheckDummy();
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

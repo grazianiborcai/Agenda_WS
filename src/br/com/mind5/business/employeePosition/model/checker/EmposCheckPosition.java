@@ -5,14 +5,14 @@ import java.util.List;
 import br.com.mind5.business.employeePosition.info.EmposInfo;
 import br.com.mind5.business.masterData.info.PositionInfo;
 import br.com.mind5.business.masterData.model.checker.PositionCheckExist;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 
-public final class EmposCheckPosition implements ModelChecker<EmposInfo> {
+public final class EmposCheckPosition implements ModelCheckerV1<EmposInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<PositionInfo> checker;
+	private ModelCheckerV1<PositionInfo> checker;
 	
 	
 	public EmposCheckPosition(ModelCheckerOption option) {

@@ -2,18 +2,18 @@ package br.com.mind5.payment.customerPartner.model.checker;
 
 import java.util.List;
 
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
 import br.com.mind5.payment.customerPartnerSearch.info.CusparchCopier;
 import br.com.mind5.payment.customerPartnerSearch.info.CusparchInfo;
 import br.com.mind5.payment.customerPartnerSearch.model.checker.CusparchCheckExist;
 
-public final class CusparCheckCusparch implements ModelChecker<CusparInfo> {
+public final class CusparCheckCusparch implements ModelCheckerV1<CusparInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<CusparchInfo> checker;
+	private ModelCheckerV1<CusparchInfo> checker;
 	
 	
 	public CusparCheckCusparch(ModelCheckerOption option) {

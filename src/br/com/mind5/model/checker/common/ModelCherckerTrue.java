@@ -4,9 +4,10 @@ import java.util.List;
 
 import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.info.InfoRecord;
+import br.com.mind5.model.checker.ModelCheckerV1;
 
-public final class ModelCherckerTrue<T> implements ModelChecker<T> {
+public final class ModelCherckerTrue<T extends InfoRecord> implements ModelCheckerV1<T> {
 	private final boolean RESULT_SUCCESS = true;
 	
 	public boolean check(List<T> recordInfos) {

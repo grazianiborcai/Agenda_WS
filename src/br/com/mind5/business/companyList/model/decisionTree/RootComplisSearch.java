@@ -9,12 +9,12 @@ import br.com.mind5.business.companyList.model.action.StdComplisMergeComparch;
 import br.com.mind5.business.companyList.model.checker.ComplisCheckDummy;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootComplisSearch extends DeciTreeReadTemplate<ComplisInfo> {
+public final class RootComplisSearch extends DeciTreeTemplateRead<ComplisInfo> {
 	
 	public RootComplisSearch(DeciTreeOption<ComplisInfo> option) {
 		super(option);
@@ -22,14 +22,14 @@ public final class RootComplisSearch extends DeciTreeReadTemplate<ComplisInfo> {
 	
 	
 	
-	@Override protected ModelChecker<ComplisInfo> buildCheckerHook(DeciTreeOption<ComplisInfo> option) {
-		List<ModelChecker<ComplisInfo>> queue = new ArrayList<>();		
-		ModelChecker<ComplisInfo> checker;
+	@Override protected ModelCheckerV1<ComplisInfo> buildCheckerHook(DeciTreeOption<ComplisInfo> option) {
+		List<ModelCheckerV1<ComplisInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<ComplisInfo> checker;
 	
 		checker = new ComplisCheckDummy();
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

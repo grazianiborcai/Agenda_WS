@@ -13,22 +13,22 @@ import br.com.mind5.business.storeLeaveDate.model.checker.StolateCheckStorauth;
 import br.com.mind5.business.storeLeaveDate.model.checker.StolateCheckStore;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootStolateSelect extends DeciTreeReadTemplate<StolateInfo> {
+public final class RootStolateSelect extends DeciTreeTemplateRead<StolateInfo> {
 	
 	public RootStolateSelect(DeciTreeOption<StolateInfo> option) {
 		super(option);
 	}	
 	
 	
-	@Override protected ModelChecker<StolateInfo> buildCheckerHook(DeciTreeOption<StolateInfo> option) {
-		List<ModelChecker<StolateInfo>> queue = new ArrayList<>();		
-		ModelChecker<StolateInfo> checker;
+	@Override protected ModelCheckerV1<StolateInfo> buildCheckerHook(DeciTreeOption<StolateInfo> option) {
+		List<ModelCheckerV1<StolateInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<StolateInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -66,7 +66,7 @@ public final class RootStolateSelect extends DeciTreeReadTemplate<StolateInfo> {
 		checker = new StolateCheckStorauth(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

@@ -4,16 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
 import br.com.mind5.payment.creditCard.model.action.StdCrecardMergePhone;
 import br.com.mind5.payment.creditCard.model.checker.CrecardCheckPhonarch;
 
-public final class NodeCrecardPhone extends DeciTreeWriteTemplate<CrecardInfo> {
+public final class NodeCrecardPhone extends DeciTreeTemplateWrite<CrecardInfo> {
 	
 	public NodeCrecardPhone(DeciTreeOption<CrecardInfo> option) {
 		super(option);
@@ -21,9 +21,9 @@ public final class NodeCrecardPhone extends DeciTreeWriteTemplate<CrecardInfo> {
 	
 	
 	
-	@Override protected ModelChecker<CrecardInfo> buildCheckerHook(DeciTreeOption<CrecardInfo> option) {
-		List<ModelChecker<CrecardInfo>> queue = new ArrayList<>();		
-		ModelChecker<CrecardInfo> checker;	
+	@Override protected ModelCheckerV1<CrecardInfo> buildCheckerHook(DeciTreeOption<CrecardInfo> option) {
+		List<ModelCheckerV1<CrecardInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<CrecardInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -33,7 +33,7 @@ public final class NodeCrecardPhone extends DeciTreeWriteTemplate<CrecardInfo> {
 		checker = new CrecardCheckPhonarch(checkerOption);
 		queue.add(checker);
 
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

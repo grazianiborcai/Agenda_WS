@@ -8,13 +8,13 @@ import br.com.mind5.business.storeSnapshot.model.action.StdStorapMergePersonap;
 import br.com.mind5.business.storeSnapshot.model.action.StdStorapSuccess;
 import br.com.mind5.business.storeSnapshot.model.checker.StorapCheckHasPersonap;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodeStorapPersonap extends DeciTreeWriteTemplate<StorapInfo> {
+public final class NodeStorapPersonap extends DeciTreeTemplateWrite<StorapInfo> {
 	
 	public NodeStorapPersonap(DeciTreeOption<StorapInfo> option) {
 		super(option);
@@ -22,9 +22,9 @@ public final class NodeStorapPersonap extends DeciTreeWriteTemplate<StorapInfo> 
 	
 	
 	
-	@Override protected ModelChecker<StorapInfo> buildCheckerHook(DeciTreeOption<StorapInfo> option) {		
-		List<ModelChecker<StorapInfo>> queue = new ArrayList<>();		
-		ModelChecker<StorapInfo> checker;	
+	@Override protected ModelCheckerV1<StorapInfo> buildCheckerHook(DeciTreeOption<StorapInfo> option) {		
+		List<ModelCheckerV1<StorapInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<StorapInfo> checker;	
 		ModelCheckerOption checkerOption;		
 		
 		checkerOption = new ModelCheckerOption();
@@ -34,7 +34,7 @@ public final class NodeStorapPersonap extends DeciTreeWriteTemplate<StorapInfo> 
 		checker = new StorapCheckHasPersonap(checkerOption);
 		queue.add(checker);		
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

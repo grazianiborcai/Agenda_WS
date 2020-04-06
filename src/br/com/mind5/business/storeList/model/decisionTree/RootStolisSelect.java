@@ -16,14 +16,14 @@ import br.com.mind5.business.storeList.model.checker.StolisCheckOwner;
 import br.com.mind5.business.storeList.model.checker.StolisCheckRead;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
 
-public final class RootStolisSelect extends DeciTreeReadTemplate<StolisInfo> {
+public final class RootStolisSelect extends DeciTreeTemplateRead<StolisInfo> {
 	
 	public RootStolisSelect(DeciTreeOption<StolisInfo> option) {
 		super(option);
@@ -31,9 +31,9 @@ public final class RootStolisSelect extends DeciTreeReadTemplate<StolisInfo> {
 	
 	
 	
-	@Override protected ModelChecker<StolisInfo> buildCheckerHook(DeciTreeOption<StolisInfo> option) {
-		List<ModelChecker<StolisInfo>> queue = new ArrayList<>();		
-		ModelChecker<StolisInfo> checker;
+	@Override protected ModelCheckerV1<StolisInfo> buildCheckerHook(DeciTreeOption<StolisInfo> option) {
+		List<ModelCheckerV1<StolisInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<StolisInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -57,7 +57,7 @@ public final class RootStolisSelect extends DeciTreeReadTemplate<StolisInfo> {
 		checker = new StolisCheckOwner(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

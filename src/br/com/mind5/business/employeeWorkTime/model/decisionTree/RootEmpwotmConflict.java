@@ -9,12 +9,12 @@ import br.com.mind5.business.employeeWorkTime.model.action.StdEmpwotmMergeEmpwoc
 import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckDummy;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootEmpwotmConflict extends DeciTreeReadTemplate<EmpwotmInfo> {
+public final class RootEmpwotmConflict extends DeciTreeTemplateRead<EmpwotmInfo> {
 	
 	public RootEmpwotmConflict(DeciTreeOption<EmpwotmInfo> option) {
 		super(option);
@@ -22,14 +22,14 @@ public final class RootEmpwotmConflict extends DeciTreeReadTemplate<EmpwotmInfo>
 	
 	
 	
-	@Override protected ModelChecker<EmpwotmInfo> buildCheckerHook(DeciTreeOption<EmpwotmInfo> option) {
-		List<ModelChecker<EmpwotmInfo>> queue = new ArrayList<>();		
-		ModelChecker<EmpwotmInfo> checker;
+	@Override protected ModelCheckerV1<EmpwotmInfo> buildCheckerHook(DeciTreeOption<EmpwotmInfo> option) {
+		List<ModelCheckerV1<EmpwotmInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<EmpwotmInfo> checker;
 
 		checker = new EmpwotmCheckDummy();
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

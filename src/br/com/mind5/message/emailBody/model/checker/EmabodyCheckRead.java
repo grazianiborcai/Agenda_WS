@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.message.emailBody.info.EmabodyInfo;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class EmabodyCheckRead extends ModelCheckerTemplateSimple<EmabodyInfo> {
+public final class EmabodyCheckRead extends ModelCheckerTemplateSimpleV2<EmabodyInfo> {
 
 	public EmabodyCheckRead(ModelCheckerOption option) {
 		super(option);

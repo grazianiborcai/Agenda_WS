@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.mind5.business.phoneSnapshot.info.PhonapInfo;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class PhonapCheckHasCustomer extends ModelCheckerTemplateSimple<PhonapInfo> {
+public final class PhonapCheckHasCustomer extends ModelCheckerTemplateSimpleV2<PhonapInfo> {
 
 	public PhonapCheckHasCustomer(ModelCheckerOption option) {
 		super(option);

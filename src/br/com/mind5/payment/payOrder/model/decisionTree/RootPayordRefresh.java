@@ -5,11 +5,11 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
 import br.com.mind5.payment.payOrder.model.action.LazyPayordEnforceLChanged;
 import br.com.mind5.payment.payOrder.model.action.LazyPayordOrderRefresh;
@@ -18,7 +18,7 @@ import br.com.mind5.payment.payOrder.model.action.StdPayordMergeToUpdate;
 import br.com.mind5.payment.payOrder.model.checker.PayordCheckExist;
 import br.com.mind5.payment.payOrder.model.checker.PayordCheckRefresh;
 
-public final class RootPayordRefresh extends DeciTreeWriteTemplate<PayordInfo> {
+public final class RootPayordRefresh extends DeciTreeTemplateWrite<PayordInfo> {
 	
 	public RootPayordRefresh(DeciTreeOption<PayordInfo> option) {
 		super(option);
@@ -26,9 +26,9 @@ public final class RootPayordRefresh extends DeciTreeWriteTemplate<PayordInfo> {
 	
 	
 	
-	@Override protected ModelChecker<PayordInfo> buildCheckerHook(DeciTreeOption<PayordInfo> option) {
-		List<ModelChecker<PayordInfo>> queue = new ArrayList<>();		
-		ModelChecker<PayordInfo> checker;	
+	@Override protected ModelCheckerV1<PayordInfo> buildCheckerHook(DeciTreeOption<PayordInfo> option) {
+		List<ModelCheckerV1<PayordInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<PayordInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -45,7 +45,7 @@ public final class RootPayordRefresh extends DeciTreeWriteTemplate<PayordInfo> {
 		checker = new PayordCheckExist(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

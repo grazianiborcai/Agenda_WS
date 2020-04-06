@@ -8,13 +8,13 @@ import br.com.mind5.business.feeOwner.model.action.StdFeewnerMergeFeedef;
 import br.com.mind5.business.feeOwner.model.action.StdFeewnerMergeToSelect;
 import br.com.mind5.business.feeOwner.model.checker.FeewnerCheckExist;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class NodeFeewnerSelect extends DeciTreeReadTemplate<FeewnerInfo> {
+public final class NodeFeewnerSelect extends DeciTreeTemplateRead<FeewnerInfo> {
 	
 	public NodeFeewnerSelect(DeciTreeOption<FeewnerInfo> option) {
 		super(option);
@@ -22,11 +22,11 @@ public final class NodeFeewnerSelect extends DeciTreeReadTemplate<FeewnerInfo> {
 	
 	
 	
-	@Override protected ModelChecker<FeewnerInfo> buildCheckerHook(DeciTreeOption<FeewnerInfo> option) {
+	@Override protected ModelCheckerV1<FeewnerInfo> buildCheckerHook(DeciTreeOption<FeewnerInfo> option) {
 		final boolean EXIST_ON_DB = true;
 		
-		List<ModelChecker<FeewnerInfo>> queue = new ArrayList<>();		
-		ModelChecker<FeewnerInfo> checker;
+		List<ModelCheckerV1<FeewnerInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<FeewnerInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -36,7 +36,7 @@ public final class NodeFeewnerSelect extends DeciTreeReadTemplate<FeewnerInfo> {
 		checker = new FeewnerCheckExist(checkerOption);
 		queue.add(checker);	
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

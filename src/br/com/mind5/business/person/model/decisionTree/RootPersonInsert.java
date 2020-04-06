@@ -14,13 +14,13 @@ import br.com.mind5.business.person.model.checker.PersonCheckLangu;
 import br.com.mind5.business.person.model.checker.PersonCheckOwner;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootPersonInsert extends DeciTreeWriteTemplate<PersonInfo> {
+public final class RootPersonInsert extends DeciTreeTemplateWrite<PersonInfo> {
 	
 	public RootPersonInsert(DeciTreeOption<PersonInfo> option) {
 		super(option);
@@ -28,9 +28,9 @@ public final class RootPersonInsert extends DeciTreeWriteTemplate<PersonInfo> {
 	
 	
 	
-	@Override protected ModelChecker<PersonInfo> buildCheckerHook(DeciTreeOption<PersonInfo> option) {
-		List<ModelChecker<PersonInfo>> queue = new ArrayList<>();		
-		ModelChecker<PersonInfo> checker;
+	@Override protected ModelCheckerV1<PersonInfo> buildCheckerHook(DeciTreeOption<PersonInfo> option) {
+		List<ModelCheckerV1<PersonInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<PersonInfo> checker;
 		ModelCheckerOption checkerOption;		
 		
 		checkerOption = new ModelCheckerOption();
@@ -68,7 +68,7 @@ public final class RootPersonInsert extends DeciTreeWriteTemplate<PersonInfo> {
 		checker = new PersonCheckEntityCateg(checkerOption);
 		queue.add(checker);	
 			
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

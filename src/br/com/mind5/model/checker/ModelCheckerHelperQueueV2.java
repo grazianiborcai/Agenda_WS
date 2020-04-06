@@ -2,19 +2,21 @@ package br.com.mind5.model.checker;
 
 import java.util.List;
 
+import br.com.mind5.common.DefaultValue;
 import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
+import br.com.mind5.info.InfoRecord;
 
 
-public final class ModelCheckerQueue<T> implements ModelChecker<T> {
+public final class ModelCheckerHelperQueueV2<T extends InfoRecord> implements ModelCheckerV2<T> {
 	protected final boolean SUCCESS = true;
 	protected final boolean FAILED = false;
 	
-	private final List<ModelChecker<T>> checkers;
-	private ModelChecker<T> currentChecker;
+	private List<ModelCheckerV1<T>> checkers;
+	private ModelCheckerV1<T> currentChecker;
 	
 	
-	public ModelCheckerQueue(List<ModelChecker<T>> queue) {
+	public ModelCheckerHelperQueueV2(List<ModelCheckerV1<T>> queue) {
 		checkQueue(queue);
 		checkers = queue;
 	}
@@ -22,6 +24,7 @@ public final class ModelCheckerQueue<T> implements ModelChecker<T> {
 	
 	
 	@Override public boolean check(List<T> recordInfos) {
+		checkState();
 		checkArgument(recordInfos);
 		
 		for (T eachRecord : recordInfos) {
@@ -36,11 +39,12 @@ public final class ModelCheckerQueue<T> implements ModelChecker<T> {
 	
 	
 	@Override public boolean check(T recordInfo) {
+		checkState();
 		checkArgument(recordInfo);
 		boolean checkResult = SUCCESS;
 		
 		
-		for (ModelChecker<T> eachChecker : checkers) {
+		for (ModelCheckerV1<T> eachChecker : checkers) {
 			currentChecker = eachChecker;
 			checkResult = eachChecker.check(recordInfo);
 			
@@ -55,27 +59,61 @@ public final class ModelCheckerQueue<T> implements ModelChecker<T> {
 	
 	
 	@Override public boolean getResult() {
-		checkState(currentChecker);		
+		checkState();
+		checkLastChecker(currentChecker);		
 		return currentChecker.getResult();
 	}
 	
 	
 	
 	@Override public String getFailMessage() {
-		checkState(currentChecker);		
+		checkState();
+		checkLastChecker(currentChecker);		
 		return currentChecker.getFailMessage();
 	}
 	
 	
 	
 	@Override public int getFailCode() {
-		checkState(currentChecker);		
+		checkState();
+		checkLastChecker(currentChecker);		
 		return currentChecker.getFailCode();
 	}
 	
 	
 	
-	private void checkQueue(List<ModelChecker<T>> queue) {
+	@Override public void close() {
+		closeQueue(checkers);
+		clear();
+	}
+	
+	
+	
+	private void closeQueue(List<ModelCheckerV1<T>> queue) {
+		if (queue == null)
+			return;
+		
+		if (queue.isEmpty())
+			return;
+		
+		for (ModelCheckerV1<T> eachChecker : queue) {
+			closeChecker(eachChecker);
+		}
+	}
+	
+	
+	
+	private void closeChecker(ModelCheckerV1<T> checker) {
+		if (checker == null)
+			return;
+		
+		if (checker instanceof ModelCheckerV2)
+			((ModelCheckerV2<T>) checker).close();
+	}
+	
+	
+	
+	private void checkQueue(List<ModelCheckerV1<T>> queue) {
 		if (queue == null) {
 			logException(new NullPointerException("queue" + SystemMessage.NULL_ARGUMENT));
 			throw new NullPointerException("queue" + SystemMessage.NULL_ARGUMENT);
@@ -86,6 +124,22 @@ public final class ModelCheckerQueue<T> implements ModelChecker<T> {
 			logException(new NullPointerException("queue" + SystemMessage.EMPTY_ARGUMENT));
 			throw new NullPointerException("queue" + SystemMessage.EMPTY_ARGUMENT);
 		}	
+	}
+	
+	
+	
+	private void clear() {
+		checkers = DefaultValue.list();
+		currentChecker = DefaultValue.object();
+	}
+	
+	
+	
+	private void checkState() {
+		if (checkers == null) {
+			logException(new IllegalStateException(SystemMessage.OBJECT_IS_CLOSED));
+			throw new IllegalStateException(SystemMessage.OBJECT_IS_CLOSED);
+		}
 	}
 	
 	
@@ -114,7 +168,7 @@ public final class ModelCheckerQueue<T> implements ModelChecker<T> {
 	
 	
 	
-	private void checkState(ModelChecker<T> checker) {
+	private void checkLastChecker(ModelCheckerV1<T> checker) {
 		if (checker == null) {
 			logException(new IllegalStateException(SystemMessage.NO_CHECK_PERFORMED));
 			throw new IllegalStateException(SystemMessage.NO_CHECK_PERFORMED);

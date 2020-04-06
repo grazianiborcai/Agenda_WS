@@ -4,15 +4,15 @@ import java.util.List;
 
 import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.business.store.model.checker.StoreCheckExist;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.paymentPartner.partnerMoip.accessMoip.info.AccemoipInfo;
 
-public final class AccemoipCheckStore implements ModelChecker<AccemoipInfo> {
+public final class AccemoipCheckStore implements ModelCheckerV1<AccemoipInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<StoreInfo> checker;
+	private ModelCheckerV1<StoreInfo> checker;
 	
 	
 	public AccemoipCheckStore(ModelCheckerOption option) {

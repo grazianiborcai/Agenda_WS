@@ -5,11 +5,11 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
 import br.com.mind5.payment.customerPartner.model.action.LazyCusparEnforceLChanged;
 import br.com.mind5.payment.customerPartner.model.action.LazyCusparMergeAddress;
@@ -28,7 +28,7 @@ import br.com.mind5.payment.customerPartner.model.checker.CusparCheckPhonarch;
 import br.com.mind5.payment.customerPartner.model.checker.CusparCheckPhone;
 import br.com.mind5.payment.customerPartner.model.checker.CusparCheckUser;
 
-public final class RootCusparInsert extends DeciTreeWriteTemplate<CusparInfo> {
+public final class RootCusparInsert extends DeciTreeTemplateWrite<CusparInfo> {
 	
 	public RootCusparInsert(DeciTreeOption<CusparInfo> option) {
 		super(option);
@@ -36,9 +36,9 @@ public final class RootCusparInsert extends DeciTreeWriteTemplate<CusparInfo> {
 	
 	
 	
-	@Override protected ModelChecker<CusparInfo> buildCheckerHook(DeciTreeOption<CusparInfo> option) {
-		List<ModelChecker<CusparInfo>> queue = new ArrayList<>();		
-		ModelChecker<CusparInfo> checker;	
+	@Override protected ModelCheckerV1<CusparInfo> buildCheckerHook(DeciTreeOption<CusparInfo> option) {
+		List<ModelCheckerV1<CusparInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<CusparInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -111,7 +111,7 @@ public final class RootCusparInsert extends DeciTreeWriteTemplate<CusparInfo> {
 		checker = new CusparCheckPhonarch(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

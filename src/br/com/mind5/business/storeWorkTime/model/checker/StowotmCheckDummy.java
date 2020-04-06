@@ -3,11 +3,11 @@ package br.com.mind5.business.storeWorkTime.model.checker;
 import java.util.List;
 
 import br.com.mind5.business.storeWorkTime.info.StowotmInfo;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.common.ModelCherckerTrue;
 
-public final class StowotmCheckDummy implements ModelChecker<StowotmInfo> {
-	private ModelChecker<StowotmInfo> checker;
+public final class StowotmCheckDummy implements ModelCheckerV1<StowotmInfo> {
+	private ModelCheckerV1<StowotmInfo> checker;
 	
 	
 	public StowotmCheckDummy() {

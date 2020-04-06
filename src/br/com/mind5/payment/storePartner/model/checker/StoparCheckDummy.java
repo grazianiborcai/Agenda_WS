@@ -2,12 +2,12 @@ package br.com.mind5.payment.storePartner.model.checker;
 
 import java.util.List;
 
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.common.ModelCherckerTrue;
 import br.com.mind5.payment.storePartner.info.StoparInfo;
 
-public final class StoparCheckDummy implements ModelChecker<StoparInfo> {
-	private ModelChecker<StoparInfo> checker;
+public final class StoparCheckDummy implements ModelCheckerV1<StoparInfo> {
+	private ModelCheckerV1<StoparInfo> checker;
 	
 	
 	public StoparCheckDummy() {

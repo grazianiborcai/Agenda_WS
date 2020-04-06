@@ -2,17 +2,17 @@ package br.com.mind5.paymentPartner.partnerMoip.permissionMoip.model.checker;
 
 import java.util.List;
 
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.info.PeresmoipInfo;
 import br.com.mind5.security.username.info.UsernameInfo;
 import br.com.mind5.security.username.model.checker.UsernameCheckExist;
 
-public final class PeresmoipCheckUsername implements ModelChecker<PeresmoipInfo> {
+public final class PeresmoipCheckUsername implements ModelCheckerV1<PeresmoipInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<UsernameInfo> checker;
+	private ModelCheckerV1<UsernameInfo> checker;
 	
 	
 	public PeresmoipCheckUsername(ModelCheckerOption option) {

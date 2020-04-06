@@ -4,10 +4,10 @@ import java.sql.Connection;
 
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 import br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.info.PaymoipInfo;
 
-public final class PaymoipCheckPay extends ModelCheckerTemplateSimple<PaymoipInfo> {
+public final class PaymoipCheckPay extends ModelCheckerTemplateSimpleV2<PaymoipInfo> {
 
 	public PaymoipCheckPay(ModelCheckerOption option) {
 		super(option);

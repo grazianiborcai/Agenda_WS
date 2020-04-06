@@ -5,15 +5,15 @@ import java.util.List;
 import br.com.mind5.business.addressSnapshot.info.AddresnapCopier;
 import br.com.mind5.business.addressSnapshot.info.AddresnapInfo;
 import br.com.mind5.business.addressSnapshot.model.checker.AddresnapCheckExist;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.info.CremoipInfo;
 
-public final class CremoipCheckAddresnap implements ModelChecker<CremoipInfo> {
+public final class CremoipCheckAddresnap implements ModelCheckerV1<CremoipInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<AddresnapInfo> checker;
+	private ModelCheckerV1<AddresnapInfo> checker;
 	
 	
 	public CremoipCheckAddresnap(ModelCheckerOption option) {

@@ -7,13 +7,13 @@ import br.com.mind5.file.filePath.info.FathInfo;
 import br.com.mind5.file.filePath.model.action.StdFathSelect;
 import br.com.mind5.file.filePath.model.checker.FathCheckRead;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootFathSelect extends DeciTreeReadTemplate<FathInfo> {
+public final class RootFathSelect extends DeciTreeTemplateRead<FathInfo> {
 	
 	public RootFathSelect(DeciTreeOption<FathInfo> option) {
 		super(option);
@@ -21,9 +21,9 @@ public final class RootFathSelect extends DeciTreeReadTemplate<FathInfo> {
 	
 	
 	
-	@Override protected ModelChecker<FathInfo> buildCheckerHook(DeciTreeOption<FathInfo> option) {
-		List<ModelChecker<FathInfo>> queue = new ArrayList<>();		
-		ModelChecker<FathInfo> checker;
+	@Override protected ModelCheckerV1<FathInfo> buildCheckerHook(DeciTreeOption<FathInfo> option) {
+		List<ModelCheckerV1<FathInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<FathInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -33,7 +33,7 @@ public final class RootFathSelect extends DeciTreeReadTemplate<FathInfo> {
 		checker = new FathCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

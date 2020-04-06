@@ -3,11 +3,11 @@ package br.com.mind5.business.employeePosition.model.checker;
 import java.util.List;
 
 import br.com.mind5.business.employeePosition.info.EmposInfo;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.common.ModelCherckerTrue;
 
-public final class EmposCheckDummy implements ModelChecker<EmposInfo> {
-	private ModelChecker<EmposInfo> checker;
+public final class EmposCheckDummy implements ModelCheckerV1<EmposInfo> {
+	private ModelCheckerV1<EmposInfo> checker;
 	
 	
 	public EmposCheckDummy() {

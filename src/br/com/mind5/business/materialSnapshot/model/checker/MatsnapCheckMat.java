@@ -5,14 +5,14 @@ import java.util.List;
 import br.com.mind5.business.material.info.MatInfo;
 import br.com.mind5.business.material.model.checker.MatCheckExist;
 import br.com.mind5.business.materialSnapshot.info.MatsnapInfo;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 
-public final class MatsnapCheckMat implements ModelChecker<MatsnapInfo> {
+public final class MatsnapCheckMat implements ModelCheckerV1<MatsnapInfo> {
 	private final boolean RESULT_FAILED = false;
 	private final boolean RESULT_SUCCESS = true;
 	
-	private ModelChecker<MatInfo> checker;
+	private ModelCheckerV1<MatInfo> checker;
 	
 	
 	public MatsnapCheckMat(ModelCheckerOption option) {

@@ -9,13 +9,13 @@ import br.com.mind5.business.masterData.model.action.StdStateSelect;
 import br.com.mind5.business.masterData.model.checker.StateCheckRead;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootStateSelect extends DeciTreeReadTemplate<StateInfo> {
+public final class RootStateSelect extends DeciTreeTemplateRead<StateInfo> {
 	
 	public RootStateSelect(DeciTreeOption<StateInfo> option) {
 		super(option);
@@ -23,9 +23,9 @@ public final class RootStateSelect extends DeciTreeReadTemplate<StateInfo> {
 	
 	
 	
-	@Override protected ModelChecker<StateInfo> buildCheckerHook(DeciTreeOption<StateInfo> option) {
-		List<ModelChecker<StateInfo>> queue = new ArrayList<>();		
-		ModelChecker<StateInfo> checker;
+	@Override protected ModelCheckerV1<StateInfo> buildCheckerHook(DeciTreeOption<StateInfo> option) {
+		List<ModelCheckerV1<StateInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<StateInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
 		checkerOption = new ModelCheckerOption();
@@ -35,7 +35,7 @@ public final class RootStateSelect extends DeciTreeReadTemplate<StateInfo> {
 		checker = new StateCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

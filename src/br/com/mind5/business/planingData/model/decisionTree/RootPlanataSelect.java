@@ -8,12 +8,12 @@ import br.com.mind5.business.planingData.model.action.LazyPlanataNodeReserve;
 import br.com.mind5.business.planingData.model.checker.PlanataCheckDummy;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public class RootPlanataSelect extends DeciTreeReadTemplate<PlanataInfo> {
+public class RootPlanataSelect extends DeciTreeTemplateRead<PlanataInfo> {
 	
 	public RootPlanataSelect(DeciTreeOption<PlanataInfo> option) {
 		super(option);
@@ -21,14 +21,14 @@ public class RootPlanataSelect extends DeciTreeReadTemplate<PlanataInfo> {
 	
 	
 	
-	@Override protected ModelChecker<PlanataInfo> buildCheckerHook(DeciTreeOption<PlanataInfo> option) {
-		List<ModelChecker<PlanataInfo>> queue = new ArrayList<>();		
-		ModelChecker<PlanataInfo> checker;
+	@Override protected ModelCheckerV1<PlanataInfo> buildCheckerHook(DeciTreeOption<PlanataInfo> option) {
+		List<ModelCheckerV1<PlanataInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<PlanataInfo> checker;
 
 		checker = new PlanataCheckDummy();
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

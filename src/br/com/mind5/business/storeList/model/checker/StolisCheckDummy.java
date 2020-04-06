@@ -3,11 +3,11 @@ package br.com.mind5.business.storeList.model.checker;
 import java.util.List;
 
 import br.com.mind5.business.storeList.info.StolisInfo;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.common.ModelCherckerTrue;
 
-public final class StolisCheckDummy implements ModelChecker<StolisInfo> {
-	private ModelChecker<StolisInfo> checker;
+public final class StolisCheckDummy implements ModelCheckerV1<StolisInfo> {
+	private ModelCheckerV1<StolisInfo> checker;
 	
 	
 	public StolisCheckDummy() {

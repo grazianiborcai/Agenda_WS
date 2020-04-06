@@ -6,14 +6,14 @@ import br.com.mind5.business.cart.info.CartInfo;
 import br.com.mind5.business.cartItemSearch.info.CartemarchCopier;
 import br.com.mind5.business.cartItemSearch.info.CartemarchInfo;
 import br.com.mind5.business.cartItemSearch.model.checker.CartemarchCheckExist;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 
-public final class CartCheckCartemarch implements ModelChecker<CartInfo> {
+public final class CartCheckCartemarch implements ModelCheckerV1<CartInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<CartemarchInfo> checker;
+	private ModelCheckerV1<CartemarchInfo> checker;
 	
 	
 	public CartCheckCartemarch(ModelCheckerOption option) {

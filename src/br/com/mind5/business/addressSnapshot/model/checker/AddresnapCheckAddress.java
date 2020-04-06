@@ -5,14 +5,14 @@ import java.util.List;
 import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.address.model.checker.AddressCheckExist;
 import br.com.mind5.business.addressSnapshot.info.AddresnapInfo;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 
-public final class AddresnapCheckAddress implements ModelChecker<AddresnapInfo> {
+public final class AddresnapCheckAddress implements ModelCheckerV1<AddresnapInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<AddressInfo> checker;
+	private ModelCheckerV1<AddressInfo> checker;
 	
 	
 	public AddresnapCheckAddress(ModelCheckerOption option) {

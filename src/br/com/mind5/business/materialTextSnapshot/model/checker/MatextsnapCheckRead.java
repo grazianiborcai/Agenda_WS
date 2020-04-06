@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.mind5.business.materialTextSnapshot.info.MatextsnapInfo;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class MatextsnapCheckRead extends ModelCheckerTemplateSimple<MatextsnapInfo> {
+public final class MatextsnapCheckRead extends ModelCheckerTemplateSimpleV2<MatextsnapInfo> {
 
 	public MatextsnapCheckRead(ModelCheckerOption option) {
 		super(option);

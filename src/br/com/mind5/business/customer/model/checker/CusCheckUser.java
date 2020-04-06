@@ -3,17 +3,17 @@ package br.com.mind5.business.customer.model.checker;
 import java.util.List;
 
 import br.com.mind5.business.customer.info.CusInfo;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.security.user.info.UserCopier;
 import br.com.mind5.security.user.info.UserInfo;
 import br.com.mind5.security.user.model.checker.UserCheckExist;
 
-public final class CusCheckUser implements ModelChecker<CusInfo> {
+public final class CusCheckUser implements ModelCheckerV1<CusInfo> {
 	private final boolean RESULT_FAILED = false;
 	private final boolean RESULT_SUCCESS = true;
 	
-	private ModelChecker<UserInfo> checker;
+	private ModelCheckerV1<UserInfo> checker;
 	
 	
 	public CusCheckUser(ModelCheckerOption option) {

@@ -5,14 +5,14 @@ import java.util.List;
 import br.com.mind5.business.form.formAddress.info.FormAddressInfo;
 import br.com.mind5.business.masterData.info.CountryInfo;
 import br.com.mind5.business.masterData.model.checker.CountryCheckExist;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 
-public final class FormAddressCheckCountry implements ModelChecker<FormAddressInfo> {
+public final class FormAddressCheckCountry implements ModelCheckerV1<FormAddressInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<CountryInfo> checker;
+	private ModelCheckerV1<CountryInfo> checker;
 	
 	
 	public FormAddressCheckCountry(ModelCheckerOption option) {

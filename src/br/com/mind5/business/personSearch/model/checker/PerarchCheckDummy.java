@@ -3,11 +3,11 @@ package br.com.mind5.business.personSearch.model.checker;
 import java.util.List;
 
 import br.com.mind5.business.personSearch.info.PerarchInfo;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.common.ModelCherckerTrue;
 
-public final class PerarchCheckDummy implements ModelChecker<PerarchInfo> {
-	private ModelChecker<PerarchInfo> checker;
+public final class PerarchCheckDummy implements ModelCheckerV1<PerarchInfo> {
+	private ModelCheckerV1<PerarchInfo> checker;
 	
 	
 	public PerarchCheckDummy() {

@@ -2,18 +2,18 @@ package br.com.mind5.paymentPartner.partnerMoip.customerMoip.model.checker;
 
 import java.util.List;
 
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.paymentPartner.partnerMoip.customerMoip.info.CusmoipInfo;
 import br.com.mind5.security.userSnapshot.info.UserapCopier;
 import br.com.mind5.security.userSnapshot.info.UserapInfo;
 import br.com.mind5.security.userSnapshot.model.checker.UserapCheckExist;
 
-public final class CusmoipCheckUserap implements ModelChecker<CusmoipInfo> {
+public final class CusmoipCheckUserap implements ModelCheckerV1<CusmoipInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<UserapInfo> checker;
+	private ModelCheckerV1<UserapInfo> checker;
 	
 	
 	public CusmoipCheckUserap(ModelCheckerOption option) {

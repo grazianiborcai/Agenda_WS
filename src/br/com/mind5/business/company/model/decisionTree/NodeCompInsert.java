@@ -12,12 +12,12 @@ import br.com.mind5.business.company.model.action.StdCompEnforceLChanged;
 import br.com.mind5.business.company.model.checker.CompCheckDummy;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodeCompInsert extends DeciTreeWriteTemplate<CompInfo> {
+public final class NodeCompInsert extends DeciTreeTemplateWrite<CompInfo> {
 	
 	public NodeCompInsert(DeciTreeOption<CompInfo> option) {
 		super(option);
@@ -25,14 +25,14 @@ public final class NodeCompInsert extends DeciTreeWriteTemplate<CompInfo> {
 	
 	
 	
-	@Override protected ModelChecker<CompInfo> buildCheckerHook(DeciTreeOption<CompInfo> option) {
-		List<ModelChecker<CompInfo>> queue = new ArrayList<>();		
-		ModelChecker<CompInfo> checker;
+	@Override protected ModelCheckerV1<CompInfo> buildCheckerHook(DeciTreeOption<CompInfo> option) {
+		List<ModelCheckerV1<CompInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<CompInfo> checker;
 		
 		checker = new CompCheckDummy();
 		queue.add(checker);
 			
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

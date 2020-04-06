@@ -16,7 +16,7 @@ import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public abstract class ModelCheckerTemplateAction<T extends InfoRecord, S extends InfoRecord> implements ModelChecker<T> {
+public abstract class ModelCheckerTemplateAction<T extends InfoRecord, S extends InfoRecord> implements ModelCheckerV1<T> {
 	private final boolean SUCCESS = ModelCheckerOption.SUCCESS;
 	private final boolean FAILED = ModelCheckerOption.FAILED;
 	private final boolean NOT_FOUND = ModelCheckerOption.FAILED;
@@ -100,6 +100,7 @@ public abstract class ModelCheckerTemplateAction<T extends InfoRecord, S extends
 	
 	private DeciTreeOption<S> buildActionOption(T recordInfo, Connection dbConn, String dbSchema) {
 		DeciTreeOption<S> option = new DeciTreeOption<>();
+		
 		option.recordInfos = toActionClass(recordInfo);
 		option.conn = conn;
 		option.schemaName = schemaName;

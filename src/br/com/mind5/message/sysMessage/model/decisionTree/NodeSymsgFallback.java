@@ -11,13 +11,13 @@ import br.com.mind5.message.sysMessage.model.action.StdSymsgRestoreBase;
 import br.com.mind5.message.sysMessage.model.checker.SymsgCheckNotEnglish;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodeSymsgFallback extends DeciTreeWriteTemplate<SymsgInfo> {
+public final class NodeSymsgFallback extends DeciTreeTemplateWrite<SymsgInfo> {
 	
 	public NodeSymsgFallback(DeciTreeOption<SymsgInfo> option) {
 		super(option);
@@ -25,9 +25,9 @@ public final class NodeSymsgFallback extends DeciTreeWriteTemplate<SymsgInfo> {
 	
 	
 	
-	@Override protected ModelChecker<SymsgInfo> buildCheckerHook(DeciTreeOption<SymsgInfo> option) {	
-		List<ModelChecker<SymsgInfo>> queue = new ArrayList<>();		
-		ModelChecker<SymsgInfo> checker;	
+	@Override protected ModelCheckerV1<SymsgInfo> buildCheckerHook(DeciTreeOption<SymsgInfo> option) {	
+		List<ModelCheckerV1<SymsgInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<SymsgInfo> checker;	
 		ModelCheckerOption checkerOption;	
 		
 		checkerOption = new ModelCheckerOption();
@@ -37,7 +37,7 @@ public final class NodeSymsgFallback extends DeciTreeWriteTemplate<SymsgInfo> {
 		checker = new SymsgCheckNotEnglish(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

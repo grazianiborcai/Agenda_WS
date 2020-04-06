@@ -3,11 +3,11 @@ package br.com.mind5.business.phone.model.checker;
 import java.util.List;
 
 import br.com.mind5.business.phone.info.PhoneInfo;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.common.ModelCherckerTrue;
 
-public final class PhoneCheckDummy implements ModelChecker<PhoneInfo> {
-	private ModelChecker<PhoneInfo> checker;
+public final class PhoneCheckDummy implements ModelCheckerV1<PhoneInfo> {
+	private ModelCheckerV1<PhoneInfo> checker;
 	
 	
 	public PhoneCheckDummy() {

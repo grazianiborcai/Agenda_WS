@@ -9,13 +9,13 @@ import br.com.mind5.business.materialStore.model.action.StdMatoreUpdate;
 import br.com.mind5.business.materialStore.model.checker.MatoreCheckHasMatock;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodeMatoreDelete extends DeciTreeWriteTemplate<MatoreInfo> {
+public final class NodeMatoreDelete extends DeciTreeTemplateWrite<MatoreInfo> {
 
 	public NodeMatoreDelete(DeciTreeOption<MatoreInfo> option) {
 		super(option);
@@ -23,9 +23,9 @@ public final class NodeMatoreDelete extends DeciTreeWriteTemplate<MatoreInfo> {
 	
 	
 	
-	@Override protected ModelChecker<MatoreInfo> buildCheckerHook(DeciTreeOption<MatoreInfo> option) {
-		List<ModelChecker<MatoreInfo>> queue = new ArrayList<>();		
-		ModelChecker<MatoreInfo> checker;
+	@Override protected ModelCheckerV1<MatoreInfo> buildCheckerHook(DeciTreeOption<MatoreInfo> option) {
+		List<ModelCheckerV1<MatoreInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<MatoreInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -35,7 +35,7 @@ public final class NodeMatoreDelete extends DeciTreeWriteTemplate<MatoreInfo> {
 		checker = new MatoreCheckHasMatock(checkerOption);
 		queue.add(checker);		
 
-		return new ModelCheckerQueue<MatoreInfo>(queue);
+		return new ModelCheckerHelperQueueV2<MatoreInfo>(queue);
 	}
 	
 	

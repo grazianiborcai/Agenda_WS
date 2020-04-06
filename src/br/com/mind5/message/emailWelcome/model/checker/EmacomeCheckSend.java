@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.message.emailWelcome.info.EmacomeInfo;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class EmacomeCheckSend extends ModelCheckerTemplateSimple<EmacomeInfo> {
+public final class EmacomeCheckSend extends ModelCheckerTemplateSimpleV2<EmacomeInfo> {
 
 	public EmacomeCheckSend(ModelCheckerOption option) {
 		super(option);

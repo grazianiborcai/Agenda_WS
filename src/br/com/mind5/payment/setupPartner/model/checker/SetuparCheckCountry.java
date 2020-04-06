@@ -4,15 +4,15 @@ import java.util.List;
 
 import br.com.mind5.business.masterData.info.CountryInfo;
 import br.com.mind5.business.masterData.model.checker.CountryCheckExist;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.payment.setupPartner.info.SetuparInfo;
 
-public final class SetuparCheckCountry implements ModelChecker<SetuparInfo> {
+public final class SetuparCheckCountry implements ModelCheckerV1<SetuparInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<CountryInfo> checker;
+	private ModelCheckerV1<CountryInfo> checker;
 	
 	
 	public SetuparCheckCountry(ModelCheckerOption option) {

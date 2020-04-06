@@ -9,13 +9,13 @@ import br.com.mind5.business.scheduleList.model.checker.SchedistCheckLangu;
 import br.com.mind5.business.scheduleList.model.checker.SchedistCheckOwner;
 import br.com.mind5.business.scheduleList.model.checker.SchedistCheckRead;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootSchedistSelect extends DeciTreeWriteTemplate<SchedistInfo> {
+public final class RootSchedistSelect extends DeciTreeTemplateWrite<SchedistInfo> {
 	
 	public RootSchedistSelect(DeciTreeOption<SchedistInfo> option) {
 		super(option);
@@ -23,9 +23,9 @@ public final class RootSchedistSelect extends DeciTreeWriteTemplate<SchedistInfo
 	
 	
 	
-	@Override protected ModelChecker<SchedistInfo> buildCheckerHook(DeciTreeOption<SchedistInfo> option) {
-		List<ModelChecker<SchedistInfo>> queue = new ArrayList<>();		
-		ModelChecker<SchedistInfo> checker;
+	@Override protected ModelCheckerV1<SchedistInfo> buildCheckerHook(DeciTreeOption<SchedistInfo> option) {
+		List<ModelCheckerV1<SchedistInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<SchedistInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -49,7 +49,7 @@ public final class RootSchedistSelect extends DeciTreeWriteTemplate<SchedistInfo
 		checker = new SchedistCheckOwner(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

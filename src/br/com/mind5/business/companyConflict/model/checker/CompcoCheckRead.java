@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.mind5.business.companyConflict.info.CompcoInfo;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class CompcoCheckRead extends ModelCheckerTemplateSimple<CompcoInfo> {
+public final class CompcoCheckRead extends ModelCheckerTemplateSimpleV2<CompcoInfo> {
 
 	public CompcoCheckRead(ModelCheckerOption option) {
 		super(option);

@@ -7,13 +7,13 @@ import br.com.mind5.business.masterData.info.CountryPhoneInfo;
 import br.com.mind5.business.masterData.model.action.StdCountryPhoneSelect;
 import br.com.mind5.business.masterData.model.checker.CountryPhoneCheckRead;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootCountryPhoneSelect extends DeciTreeReadTemplate<CountryPhoneInfo> {
+public final class RootCountryPhoneSelect extends DeciTreeTemplateRead<CountryPhoneInfo> {
 	
 	public RootCountryPhoneSelect(DeciTreeOption<CountryPhoneInfo> option) {
 		super(option);
@@ -21,9 +21,9 @@ public final class RootCountryPhoneSelect extends DeciTreeReadTemplate<CountryPh
 	
 	
 	
-	@Override protected ModelChecker<CountryPhoneInfo> buildCheckerHook(DeciTreeOption<CountryPhoneInfo> option) {
-		List<ModelChecker<CountryPhoneInfo>> queue = new ArrayList<>();		
-		ModelChecker<CountryPhoneInfo> checker;
+	@Override protected ModelCheckerV1<CountryPhoneInfo> buildCheckerHook(DeciTreeOption<CountryPhoneInfo> option) {
+		List<ModelCheckerV1<CountryPhoneInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<CountryPhoneInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
 		checkerOption = new ModelCheckerOption();
@@ -33,7 +33,7 @@ public final class RootCountryPhoneSelect extends DeciTreeReadTemplate<CountryPh
 		checker = new CountryPhoneCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

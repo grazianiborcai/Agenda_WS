@@ -6,14 +6,14 @@ import br.com.mind5.business.cartItem.info.CartemInfo;
 import br.com.mind5.business.storeLeaveDateRange.info.StolargCopier;
 import br.com.mind5.business.storeLeaveDateRange.info.StolargInfo;
 import br.com.mind5.business.storeLeaveDateRange.model.checker.StolargCheckExist;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 
-public final class CartemCheckStolarg implements ModelChecker<CartemInfo> {
+public final class CartemCheckStolarg implements ModelCheckerV1<CartemInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<StolargInfo> checker;
+	private ModelCheckerV1<StolargInfo> checker;
 	
 	
 	public CartemCheckStolarg(ModelCheckerOption option) {

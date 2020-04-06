@@ -5,14 +5,14 @@ import java.util.List;
 import br.com.mind5.business.employee.info.EmpInfo;
 import br.com.mind5.business.employee.model.checker.EmpCheckExist;
 import br.com.mind5.business.employeeWorkTime.info.EmpwotmInfo;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 
-public final class EmpwotmCheckEmp implements ModelChecker<EmpwotmInfo> {	
+public final class EmpwotmCheckEmp implements ModelCheckerV1<EmpwotmInfo> {	
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<EmpInfo> checker;
+	private ModelCheckerV1<EmpInfo> checker;
 	
 	
 	public EmpwotmCheckEmp(ModelCheckerOption option) {

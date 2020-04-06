@@ -5,14 +5,14 @@ import java.util.List;
 import br.com.mind5.business.employeePositionSearch.info.EmposarchInfo;
 import br.com.mind5.business.employeePositionSearch.model.checker.EmposarchCheckExist;
 import br.com.mind5.business.scheduleLine.info.SchedineInfo;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 
-public final class SchedineCheckEmposarch implements ModelChecker<SchedineInfo> {
+public final class SchedineCheckEmposarch implements ModelCheckerV1<SchedineInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<EmposarchInfo> checker;
+	private ModelCheckerV1<EmposarchInfo> checker;
 	
 	
 	public SchedineCheckEmposarch(ModelCheckerOption option) {

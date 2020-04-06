@@ -5,18 +5,18 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.security.userSnapshot.info.UserapInfo;
 import br.com.mind5.security.userSnapshot.model.action.LazyUserapInsert;
 import br.com.mind5.security.userSnapshot.model.checker.UserapCheckOwner;
 import br.com.mind5.security.userSnapshot.model.checker.UserapCheckUser;
 import br.com.mind5.security.userSnapshot.model.checker.UserapCheckWrite;
 
-public final class RootUserapInsert extends DeciTreeWriteTemplate<UserapInfo> {
+public final class RootUserapInsert extends DeciTreeTemplateWrite<UserapInfo> {
 	
 	public RootUserapInsert(DeciTreeOption<UserapInfo> option) {
 		super(option);
@@ -24,9 +24,9 @@ public final class RootUserapInsert extends DeciTreeWriteTemplate<UserapInfo> {
 	
 	
 	
-	@Override protected ModelChecker<UserapInfo> buildCheckerHook(DeciTreeOption<UserapInfo> option) {
-		List<ModelChecker<UserapInfo>> queue = new ArrayList<>();		
-		ModelChecker<UserapInfo> checker;	
+	@Override protected ModelCheckerV1<UserapInfo> buildCheckerHook(DeciTreeOption<UserapInfo> option) {
+		List<ModelCheckerV1<UserapInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<UserapInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -50,7 +50,7 @@ public final class RootUserapInsert extends DeciTreeWriteTemplate<UserapInfo> {
 		checker = new UserapCheckUser(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

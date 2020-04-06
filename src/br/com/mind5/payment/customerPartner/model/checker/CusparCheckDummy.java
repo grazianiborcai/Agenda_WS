@@ -2,12 +2,12 @@ package br.com.mind5.payment.customerPartner.model.checker;
 
 import java.util.List;
 
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.common.ModelCherckerTrue;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
 
-public final class CusparCheckDummy implements ModelChecker<CusparInfo> {
-	private ModelChecker<CusparInfo> checker;
+public final class CusparCheckDummy implements ModelCheckerV1<CusparInfo> {
+	private ModelCheckerV1<CusparInfo> checker;
 	
 	
 	public CusparCheckDummy() {

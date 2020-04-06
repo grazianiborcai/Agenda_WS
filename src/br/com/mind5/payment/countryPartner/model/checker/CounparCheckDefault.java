@@ -4,10 +4,10 @@ import java.sql.Connection;
 
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 import br.com.mind5.payment.countryPartner.info.CounparInfo;
 
-public final class CounparCheckDefault extends ModelCheckerTemplateSimple<CounparInfo> {
+public final class CounparCheckDefault extends ModelCheckerTemplateSimpleV2<CounparInfo> {
 
 	public CounparCheckDefault(ModelCheckerOption option) {
 		super(option);

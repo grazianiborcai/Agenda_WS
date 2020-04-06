@@ -6,14 +6,14 @@ import br.com.mind5.business.addressSearch.info.AddarchCopier;
 import br.com.mind5.business.addressSearch.info.AddarchInfo;
 import br.com.mind5.business.addressSearch.model.checker.AddarchCheckExist;
 import br.com.mind5.business.customer.info.CusInfo;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 
-public final class CusCheckAddarch implements ModelChecker<CusInfo> {
+public final class CusCheckAddarch implements ModelCheckerV1<CusInfo> {
 	private final boolean RESULT_FAILED = false;
 	private final boolean RESULT_SUCCESS = true;
 	
-	private ModelChecker<AddarchInfo> checker;
+	private ModelCheckerV1<AddarchInfo> checker;
 	
 	
 	public CusCheckAddarch(ModelCheckerOption option) {

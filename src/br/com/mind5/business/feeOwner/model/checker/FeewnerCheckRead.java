@@ -6,9 +6,9 @@ import br.com.mind5.business.feeOwner.info.FeewnerInfo;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class FeewnerCheckRead extends ModelCheckerTemplateSimple<FeewnerInfo> {
+public final class FeewnerCheckRead extends ModelCheckerTemplateSimpleV2<FeewnerInfo> {
 
 	public FeewnerCheckRead(ModelCheckerOption option) {
 		super(option);

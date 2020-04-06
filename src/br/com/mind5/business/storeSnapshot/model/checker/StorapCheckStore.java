@@ -5,14 +5,14 @@ import java.util.List;
 import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.business.store.model.checker.StoreCheckExist;
 import br.com.mind5.business.storeSnapshot.info.StorapInfo;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 
-public final class StorapCheckStore implements ModelChecker<StorapInfo> {
+public final class StorapCheckStore implements ModelCheckerV1<StorapInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<StoreInfo> checker;
+	private ModelCheckerV1<StoreInfo> checker;
 	
 	
 	public StorapCheckStore(ModelCheckerOption option) {

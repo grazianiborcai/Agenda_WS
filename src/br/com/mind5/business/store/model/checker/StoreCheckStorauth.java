@@ -3,16 +3,16 @@ package br.com.mind5.business.store.model.checker;
 import java.util.List;
 
 import br.com.mind5.business.store.info.StoreInfo;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.security.storeAuthorization.info.StorauthInfo;
 import br.com.mind5.security.storeAuthorization.model.checker.StorauthCheckExist;
 
-public final class StoreCheckStorauth implements ModelChecker<StoreInfo> {
+public final class StoreCheckStorauth implements ModelCheckerV1<StoreInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<StorauthInfo> checker;
+	private ModelCheckerV1<StorauthInfo> checker;
 	
 	
 	public StoreCheckStorauth(ModelCheckerOption option) {

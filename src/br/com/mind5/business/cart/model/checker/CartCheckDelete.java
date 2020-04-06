@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.mind5.business.cart.info.CartInfo;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class CartCheckDelete extends ModelCheckerTemplateSimple<CartInfo> {
+public final class CartCheckDelete extends ModelCheckerTemplateSimpleV2<CartInfo> {
 
 	public CartCheckDelete(ModelCheckerOption option) {
 		super(option);

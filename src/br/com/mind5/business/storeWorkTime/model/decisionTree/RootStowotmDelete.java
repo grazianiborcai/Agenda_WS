@@ -15,13 +15,13 @@ import br.com.mind5.business.storeWorkTime.model.checker.StowotmCheckExist;
 import br.com.mind5.business.storeWorkTime.model.checker.StowotmCheckStorauth;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootStowotmDelete extends DeciTreeWriteTemplate<StowotmInfo> {
+public final class RootStowotmDelete extends DeciTreeTemplateWrite<StowotmInfo> {
 	
 	public RootStowotmDelete(DeciTreeOption<StowotmInfo> option) {
 		super(option);
@@ -29,9 +29,9 @@ public final class RootStowotmDelete extends DeciTreeWriteTemplate<StowotmInfo> 
 	
 	
 	
-	@Override protected ModelChecker<StowotmInfo> buildCheckerHook(DeciTreeOption<StowotmInfo> option) {
-		List<ModelChecker<StowotmInfo>> queue = new ArrayList<>();		
-		ModelChecker<StowotmInfo> checker;
+	@Override protected ModelCheckerV1<StowotmInfo> buildCheckerHook(DeciTreeOption<StowotmInfo> option) {
+		List<ModelCheckerV1<StowotmInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<StowotmInfo> checker;
 		ModelCheckerOption checkerOption;
 			
 		checkerOption = new ModelCheckerOption();
@@ -62,7 +62,7 @@ public final class RootStowotmDelete extends DeciTreeWriteTemplate<StowotmInfo> 
 		checker = new StowotmCheckStorauth(checkerOption);
 		queue.add(checker);
 		
-		 return new ModelCheckerQueue<StowotmInfo>(queue);
+		 return new ModelCheckerHelperQueueV2<StowotmInfo>(queue);
 	}
 	
 	

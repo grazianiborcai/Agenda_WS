@@ -7,13 +7,13 @@ import br.com.mind5.business.masterData.info.AuthGrRoleInfo;
 import br.com.mind5.business.masterData.model.action.StdAuthGrRoleSelect;
 import br.com.mind5.business.masterData.model.checker.AuthGrRoleCheckRead;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootAuthGrRoleSelect extends DeciTreeReadTemplate<AuthGrRoleInfo> {
+public final class RootAuthGrRoleSelect extends DeciTreeTemplateRead<AuthGrRoleInfo> {
 	
 	public RootAuthGrRoleSelect(DeciTreeOption<AuthGrRoleInfo> option) {
 		super(option);
@@ -21,9 +21,9 @@ public final class RootAuthGrRoleSelect extends DeciTreeReadTemplate<AuthGrRoleI
 	
 	
 	
-	@Override protected ModelChecker<AuthGrRoleInfo> buildCheckerHook(DeciTreeOption<AuthGrRoleInfo> option) {
-		List<ModelChecker<AuthGrRoleInfo>> queue = new ArrayList<>();		
-		ModelChecker<AuthGrRoleInfo> checker;
+	@Override protected ModelCheckerV1<AuthGrRoleInfo> buildCheckerHook(DeciTreeOption<AuthGrRoleInfo> option) {
+		List<ModelCheckerV1<AuthGrRoleInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<AuthGrRoleInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
 		checkerOption = new ModelCheckerOption();
@@ -33,7 +33,7 @@ public final class RootAuthGrRoleSelect extends DeciTreeReadTemplate<AuthGrRoleI
 		checker = new AuthGrRoleCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

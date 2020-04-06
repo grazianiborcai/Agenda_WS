@@ -4,16 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.paymentPartner.partnerMoip.customerMoip.info.CusmoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.customerMoip.model.action.StdCusmoipEnforceDocument;
 import br.com.mind5.paymentPartner.partnerMoip.customerMoip.model.checker.CusmoipCheckUserData;
 
-public final class NodeCusmoipUserL2 extends DeciTreeWriteTemplate<CusmoipInfo> {
+public final class NodeCusmoipUserL2 extends DeciTreeTemplateWrite<CusmoipInfo> {
 	
 	public NodeCusmoipUserL2(DeciTreeOption<CusmoipInfo> option) {
 		super(option);
@@ -21,9 +21,9 @@ public final class NodeCusmoipUserL2 extends DeciTreeWriteTemplate<CusmoipInfo> 
 	
 	
 	
-	@Override protected ModelChecker<CusmoipInfo> buildCheckerHook(DeciTreeOption<CusmoipInfo> option) {
-		List<ModelChecker<CusmoipInfo>> queue = new ArrayList<>();		
-		ModelChecker<CusmoipInfo> checker;	
+	@Override protected ModelCheckerV1<CusmoipInfo> buildCheckerHook(DeciTreeOption<CusmoipInfo> option) {
+		List<ModelCheckerV1<CusmoipInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<CusmoipInfo> checker;	
 		ModelCheckerOption checkerOption;
 
 		checkerOption = new ModelCheckerOption();
@@ -33,7 +33,7 @@ public final class NodeCusmoipUserL2 extends DeciTreeWriteTemplate<CusmoipInfo> 
 		checker = new CusmoipCheckUserData(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

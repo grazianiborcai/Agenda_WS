@@ -13,13 +13,13 @@ import br.com.mind5.business.employeePosition.model.checker.EmposCheckRead;
 import br.com.mind5.business.employeePosition.model.checker.EmposCheckStore;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootEmposSelect extends DeciTreeReadTemplate<EmposInfo> {
+public final class RootEmposSelect extends DeciTreeTemplateRead<EmposInfo> {
 	
 	public RootEmposSelect(DeciTreeOption<EmposInfo> option) {
 		super(option);
@@ -27,9 +27,9 @@ public final class RootEmposSelect extends DeciTreeReadTemplate<EmposInfo> {
 	
 	
 	
-	@Override protected ModelChecker<EmposInfo> buildCheckerHook(DeciTreeOption<EmposInfo> option) {
-		List<ModelChecker<EmposInfo>> queue = new ArrayList<>();		
-		ModelChecker<EmposInfo> checker;
+	@Override protected ModelCheckerV1<EmposInfo> buildCheckerHook(DeciTreeOption<EmposInfo> option) {
+		List<ModelCheckerV1<EmposInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<EmposInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -67,7 +67,7 @@ public final class RootEmposSelect extends DeciTreeReadTemplate<EmposInfo> {
 		checker = new EmposCheckEmp(checkerOption);
 		queue.add(checker);		
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

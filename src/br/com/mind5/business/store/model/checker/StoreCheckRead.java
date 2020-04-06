@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class StoreCheckRead extends ModelCheckerTemplateSimple<StoreInfo> {
+public final class StoreCheckRead extends ModelCheckerTemplateSimpleV2<StoreInfo> {
 
 	public StoreCheckRead(ModelCheckerOption option) {
 		super(option);

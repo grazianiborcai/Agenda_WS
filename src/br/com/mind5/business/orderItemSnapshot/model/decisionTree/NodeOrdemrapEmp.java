@@ -8,13 +8,13 @@ import br.com.mind5.business.orderItemSnapshot.model.action.StdOrdemrapMergeEmpl
 import br.com.mind5.business.orderItemSnapshot.model.action.StdOrdemrapSuccess;
 import br.com.mind5.business.orderItemSnapshot.model.checker.OrdemrapCheckHasEmp;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodeOrdemrapEmp extends DeciTreeWriteTemplate<OrdemrapInfo> {
+public final class NodeOrdemrapEmp extends DeciTreeTemplateWrite<OrdemrapInfo> {
 	
 	public NodeOrdemrapEmp(DeciTreeOption<OrdemrapInfo> option) {
 		super(option);
@@ -22,9 +22,9 @@ public final class NodeOrdemrapEmp extends DeciTreeWriteTemplate<OrdemrapInfo> {
 	
 	
 	
-	@Override protected ModelChecker<OrdemrapInfo> buildCheckerHook(DeciTreeOption<OrdemrapInfo> option) {
-		List<ModelChecker<OrdemrapInfo>> queue = new ArrayList<>();		
-		ModelChecker<OrdemrapInfo> checker;	
+	@Override protected ModelCheckerV1<OrdemrapInfo> buildCheckerHook(DeciTreeOption<OrdemrapInfo> option) {
+		List<ModelCheckerV1<OrdemrapInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<OrdemrapInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -34,7 +34,7 @@ public final class NodeOrdemrapEmp extends DeciTreeWriteTemplate<OrdemrapInfo> {
 		checker = new OrdemrapCheckHasEmp(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

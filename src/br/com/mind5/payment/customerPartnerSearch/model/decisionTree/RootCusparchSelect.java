@@ -4,17 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 import br.com.mind5.payment.customerPartnerSearch.info.CusparchInfo;
 import br.com.mind5.payment.customerPartnerSearch.model.action.StdCusparchMergeToSelect;
 import br.com.mind5.payment.customerPartnerSearch.model.checker.CusparchCheckOwner;
 import br.com.mind5.payment.customerPartnerSearch.model.checker.CusparchCheckRead;
 
-public final class RootCusparchSelect extends DeciTreeReadTemplate<CusparchInfo> {
+public final class RootCusparchSelect extends DeciTreeTemplateRead<CusparchInfo> {
 	
 	public RootCusparchSelect(DeciTreeOption<CusparchInfo> option) {
 		super(option);
@@ -22,9 +22,9 @@ public final class RootCusparchSelect extends DeciTreeReadTemplate<CusparchInfo>
 	
 	
 	
-	@Override protected ModelChecker<CusparchInfo> buildCheckerHook(DeciTreeOption<CusparchInfo> option) {
-		List<ModelChecker<CusparchInfo>> queue = new ArrayList<>();		
-		ModelChecker<CusparchInfo> checker;	
+	@Override protected ModelCheckerV1<CusparchInfo> buildCheckerHook(DeciTreeOption<CusparchInfo> option) {
+		List<ModelCheckerV1<CusparchInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<CusparchInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -42,7 +42,7 @@ public final class RootCusparchSelect extends DeciTreeReadTemplate<CusparchInfo>
 		queue.add(checker);
 		
 
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

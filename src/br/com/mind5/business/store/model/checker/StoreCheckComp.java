@@ -5,14 +5,14 @@ import java.util.List;
 import br.com.mind5.business.company.info.CompInfo;
 import br.com.mind5.business.company.model.checker.CompCheckExist;
 import br.com.mind5.business.store.info.StoreInfo;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 
-public final class StoreCheckComp implements ModelChecker<StoreInfo> {
+public final class StoreCheckComp implements ModelCheckerV1<StoreInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<CompInfo> checker;
+	private ModelCheckerV1<CompInfo> checker;
 	
 	
 	public StoreCheckComp(ModelCheckerOption option) {

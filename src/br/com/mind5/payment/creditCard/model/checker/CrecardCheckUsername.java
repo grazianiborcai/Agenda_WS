@@ -2,18 +2,18 @@ package br.com.mind5.payment.creditCard.model.checker;
 
 import java.util.List;
 
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
 import br.com.mind5.security.username.info.UsernameCopier;
 import br.com.mind5.security.username.info.UsernameInfo;
 import br.com.mind5.security.username.model.checker.UsernameCheckExist;
 
-public final class CrecardCheckUsername implements ModelChecker<CrecardInfo> {
+public final class CrecardCheckUsername implements ModelCheckerV1<CrecardInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<UsernameInfo> checker;
+	private ModelCheckerV1<UsernameInfo> checker;
 	
 	
 	public CrecardCheckUsername(ModelCheckerOption option) {

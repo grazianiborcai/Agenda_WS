@@ -5,14 +5,14 @@ import java.util.List;
 import br.com.mind5.business.masterData.info.LanguInfo;
 import br.com.mind5.business.masterData.model.checker.LanguCheckExist;
 import br.com.mind5.business.storeWorkTime.info.StowotmInfo;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 
-public final class StowotmCheckLangu implements ModelChecker<StowotmInfo> {
+public final class StowotmCheckLangu implements ModelCheckerV1<StowotmInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<LanguInfo> checker;
+	private ModelCheckerV1<LanguInfo> checker;
 	
 	
 	public StowotmCheckLangu(ModelCheckerOption option) {

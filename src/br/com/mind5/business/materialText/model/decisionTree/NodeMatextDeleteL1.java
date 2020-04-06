@@ -11,12 +11,12 @@ import br.com.mind5.business.materialText.model.action.StdMatextEnforceLChanged;
 import br.com.mind5.business.materialText.model.checker.MatextCheckDummy;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodeMatextDeleteL1 extends DeciTreeWriteTemplate<MatextInfo> {
+public final class NodeMatextDeleteL1 extends DeciTreeTemplateWrite<MatextInfo> {
 
 	public NodeMatextDeleteL1(DeciTreeOption<MatextInfo> option) {
 		super(option);
@@ -24,14 +24,14 @@ public final class NodeMatextDeleteL1 extends DeciTreeWriteTemplate<MatextInfo> 
 	
 	
 	
-	@Override protected ModelChecker<MatextInfo> buildCheckerHook(DeciTreeOption<MatextInfo> option) {
-		List<ModelChecker<MatextInfo>> queue = new ArrayList<>();		
-		ModelChecker<MatextInfo> checker;
+	@Override protected ModelCheckerV1<MatextInfo> buildCheckerHook(DeciTreeOption<MatextInfo> option) {
+		List<ModelCheckerV1<MatextInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<MatextInfo> checker;
 			
 		checker = new MatextCheckDummy();
 		queue.add(checker);
 
-		return new ModelCheckerQueue<MatextInfo>(queue);
+		return new ModelCheckerHelperQueueV2<MatextInfo>(queue);
 	}
 	
 	

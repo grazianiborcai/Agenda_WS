@@ -2,17 +2,17 @@ package br.com.mind5.security.userPassword.model.checker;
 
 import java.util.List;
 
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.security.user.info.UserInfo;
 import br.com.mind5.security.user.model.checker.UserCheckExist;
 import br.com.mind5.security.userPassword.info.UpswdInfo;
 
-public final class UpswdCheckUser implements ModelChecker<UpswdInfo> {
+public final class UpswdCheckUser implements ModelCheckerV1<UpswdInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<UserInfo> checker;
+	private ModelCheckerV1<UserInfo> checker;
 	
 	
 	public UpswdCheckUser(ModelCheckerOption option) {

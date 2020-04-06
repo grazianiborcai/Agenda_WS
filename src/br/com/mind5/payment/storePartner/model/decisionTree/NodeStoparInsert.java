@@ -4,17 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.payment.storePartner.info.StoparInfo;
 import br.com.mind5.payment.storePartner.model.action.StdStoparInsert;
 import br.com.mind5.payment.storePartner.model.action.StdStoparUpdate;
 import br.com.mind5.payment.storePartner.model.checker.StoparCheckSoftDelete;
 
-public final class NodeStoparInsert extends DeciTreeWriteTemplate<StoparInfo> {
+public final class NodeStoparInsert extends DeciTreeTemplateWrite<StoparInfo> {
 	
 	public NodeStoparInsert(DeciTreeOption<StoparInfo> option) {
 		super(option);
@@ -22,11 +22,11 @@ public final class NodeStoparInsert extends DeciTreeWriteTemplate<StoparInfo> {
 	
 	
 	
-	@Override protected ModelChecker<StoparInfo> buildCheckerHook(DeciTreeOption<StoparInfo> option) {
+	@Override protected ModelCheckerV1<StoparInfo> buildCheckerHook(DeciTreeOption<StoparInfo> option) {
 		final boolean NOT_DELETED = false;	
 		
-		List<ModelChecker<StoparInfo>> queue = new ArrayList<>();		
-		ModelChecker<StoparInfo> checker;
+		List<ModelCheckerV1<StoparInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<StoparInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
 		checkerOption = new ModelCheckerOption();
@@ -36,7 +36,7 @@ public final class NodeStoparInsert extends DeciTreeWriteTemplate<StoparInfo> {
 		checker = new StoparCheckSoftDelete(checkerOption);
 		queue.add(checker);	
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

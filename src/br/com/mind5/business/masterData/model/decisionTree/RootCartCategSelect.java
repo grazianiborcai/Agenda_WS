@@ -7,13 +7,13 @@ import br.com.mind5.business.masterData.info.CartCategInfo;
 import br.com.mind5.business.masterData.model.action.StdCartCategSelect;
 import br.com.mind5.business.masterData.model.checker.CartCategCheckRead;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootCartCategSelect extends DeciTreeReadTemplate<CartCategInfo> {
+public final class RootCartCategSelect extends DeciTreeTemplateRead<CartCategInfo> {
 	
 	public RootCartCategSelect(DeciTreeOption<CartCategInfo> option) {
 		super(option);
@@ -21,9 +21,9 @@ public final class RootCartCategSelect extends DeciTreeReadTemplate<CartCategInf
 	
 	
 	
-	@Override protected ModelChecker<CartCategInfo> buildCheckerHook(DeciTreeOption<CartCategInfo> option) {
-		List<ModelChecker<CartCategInfo>> queue = new ArrayList<>();		
-		ModelChecker<CartCategInfo> checker;
+	@Override protected ModelCheckerV1<CartCategInfo> buildCheckerHook(DeciTreeOption<CartCategInfo> option) {
+		List<ModelCheckerV1<CartCategInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<CartCategInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
 		checkerOption = new ModelCheckerOption();
@@ -33,7 +33,7 @@ public final class RootCartCategSelect extends DeciTreeReadTemplate<CartCategInf
 		checker = new CartCategCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 
 		

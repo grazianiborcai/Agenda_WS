@@ -5,14 +5,14 @@ import java.util.List;
 import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.address.model.checker.AddressCheckExist;
 import br.com.mind5.business.owner.info.OwnerInfo;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 
-public final class OwnerCheckAddress implements ModelChecker<OwnerInfo> {
+public final class OwnerCheckAddress implements ModelCheckerV1<OwnerInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<AddressInfo> checker;
+	private ModelCheckerV1<AddressInfo> checker;
 	
 	
 	public OwnerCheckAddress(ModelCheckerOption option) {

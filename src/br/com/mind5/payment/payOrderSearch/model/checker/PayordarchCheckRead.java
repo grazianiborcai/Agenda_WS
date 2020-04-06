@@ -4,10 +4,10 @@ import java.sql.Connection;
 
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 import br.com.mind5.payment.payOrderSearch.info.PayordarchInfo;
 
-public final class PayordarchCheckRead extends ModelCheckerTemplateSimple<PayordarchInfo> {
+public final class PayordarchCheckRead extends ModelCheckerTemplateSimpleV2<PayordarchInfo> {
 
 	public PayordarchCheckRead(ModelCheckerOption option) {
 		super(option);

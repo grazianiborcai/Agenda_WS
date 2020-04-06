@@ -9,13 +9,13 @@ import br.com.mind5.file.fileImageSearch.model.action.StdFimarchEnforceUser;
 import br.com.mind5.file.fileImageSearch.model.checker.FimarchCheckReadUser;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootFimarchSelectUser extends DeciTreeReadTemplate<FimarchInfo> {
+public final class RootFimarchSelectUser extends DeciTreeTemplateRead<FimarchInfo> {
 	
 	public RootFimarchSelectUser(DeciTreeOption<FimarchInfo> option) {
 		super(option);
@@ -23,9 +23,9 @@ public final class RootFimarchSelectUser extends DeciTreeReadTemplate<FimarchInf
 	
 	
 	
-	@Override protected ModelChecker<FimarchInfo> buildCheckerHook(DeciTreeOption<FimarchInfo> option) {
-		List<ModelChecker<FimarchInfo>> queue = new ArrayList<>();		
-		ModelChecker<FimarchInfo> checker;	
+	@Override protected ModelCheckerV1<FimarchInfo> buildCheckerHook(DeciTreeOption<FimarchInfo> option) {
+		List<ModelCheckerV1<FimarchInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<FimarchInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -35,7 +35,7 @@ public final class RootFimarchSelectUser extends DeciTreeReadTemplate<FimarchInf
 		checker = new FimarchCheckReadUser(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

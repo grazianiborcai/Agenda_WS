@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.mind5.business.cartItem.info.CartemInfo;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class CartemCheckDeleteByUser extends ModelCheckerTemplateSimple<CartemInfo> {
+public final class CartemCheckDeleteByUser extends ModelCheckerTemplateSimpleV2<CartemInfo> {
 
 	public CartemCheckDeleteByUser(ModelCheckerOption option) {
 		super(option);

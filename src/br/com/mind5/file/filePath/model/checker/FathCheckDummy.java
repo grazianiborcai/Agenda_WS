@@ -3,11 +3,11 @@ package br.com.mind5.file.filePath.model.checker;
 import java.util.List;
 
 import br.com.mind5.file.filePath.info.FathInfo;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.common.ModelCherckerTrue;
 
-public final class FathCheckDummy implements ModelChecker<FathInfo> {
-	private ModelChecker<FathInfo> helper;
+public final class FathCheckDummy implements ModelCheckerV1<FathInfo> {
+	private ModelCheckerV1<FathInfo> helper;
 	
 	
 	public FathCheckDummy() {

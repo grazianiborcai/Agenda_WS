@@ -5,14 +5,14 @@ import java.util.List;
 import br.com.mind5.business.materialStore.info.MatoreInfo;
 import br.com.mind5.business.materialStore.model.checker.MatoreCheckExist;
 import br.com.mind5.business.materialStoreSnapshot.info.MatorapInfo;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 
-public final class MatorapCheckMatore implements ModelChecker<MatorapInfo> {
+public final class MatorapCheckMatore implements ModelCheckerV1<MatorapInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<MatoreInfo> checker;
+	private ModelCheckerV1<MatoreInfo> checker;
 	
 	
 	public MatorapCheckMatore(ModelCheckerOption option) {

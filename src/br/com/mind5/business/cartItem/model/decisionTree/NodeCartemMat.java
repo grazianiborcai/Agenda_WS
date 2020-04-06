@@ -9,13 +9,13 @@ import br.com.mind5.business.cartItem.model.action.StdCartemEnforceWeekday;
 import br.com.mind5.business.cartItem.model.checker.CartemCheckMatarchService;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodeCartemMat extends DeciTreeWriteTemplate<CartemInfo> {
+public final class NodeCartemMat extends DeciTreeTemplateWrite<CartemInfo> {
 	
 	public NodeCartemMat(DeciTreeOption<CartemInfo> option) {
 		super(option);
@@ -23,9 +23,9 @@ public final class NodeCartemMat extends DeciTreeWriteTemplate<CartemInfo> {
 	
 	
 	
-	@Override protected ModelChecker<CartemInfo> buildCheckerHook(DeciTreeOption<CartemInfo> option) {
-		List<ModelChecker<CartemInfo>> queue = new ArrayList<>();		
-		ModelChecker<CartemInfo> checker;	
+	@Override protected ModelCheckerV1<CartemInfo> buildCheckerHook(DeciTreeOption<CartemInfo> option) {
+		List<ModelCheckerV1<CartemInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<CartemInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -35,7 +35,7 @@ public final class NodeCartemMat extends DeciTreeWriteTemplate<CartemInfo> {
 		checker = new CartemCheckMatarchService(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

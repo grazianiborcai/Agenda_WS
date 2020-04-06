@@ -14,13 +14,13 @@ import br.com.mind5.business.employee.model.checker.EmpCheckExist;
 import br.com.mind5.business.employee.model.checker.EmpCheckLangu;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootEmpDelete extends DeciTreeWriteTemplate<EmpInfo> {
+public final class RootEmpDelete extends DeciTreeTemplateWrite<EmpInfo> {
 	
 	public RootEmpDelete(DeciTreeOption<EmpInfo> option) {
 		super(option);
@@ -28,9 +28,9 @@ public final class RootEmpDelete extends DeciTreeWriteTemplate<EmpInfo> {
 	
 	
 	
-	@Override protected ModelChecker<EmpInfo> buildCheckerHook(DeciTreeOption<EmpInfo> option) {
-		List<ModelChecker<EmpInfo>> queue = new ArrayList<>();		
-		ModelChecker<EmpInfo> checker;
+	@Override protected ModelCheckerV1<EmpInfo> buildCheckerHook(DeciTreeOption<EmpInfo> option) {
+		List<ModelCheckerV1<EmpInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<EmpInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -54,7 +54,7 @@ public final class RootEmpDelete extends DeciTreeWriteTemplate<EmpInfo> {
 		checker = new EmpCheckExist(checkerOption);
 		queue.add(checker);	
 		
-		 return new ModelCheckerQueue<EmpInfo>(queue);
+		 return new ModelCheckerHelperQueueV2<EmpInfo>(queue);
 	}
 	
 	

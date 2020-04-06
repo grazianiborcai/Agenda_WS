@@ -6,14 +6,14 @@ import br.com.mind5.business.materialText.info.MatextInfo;
 import br.com.mind5.business.materialTextSearch.info.MatextarchCopier;
 import br.com.mind5.business.materialTextSearch.info.MatextarchInfo;
 import br.com.mind5.business.materialTextSearch.model.checker.MatextarchCheckExist;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 
-public final class MatextCheckMatextarch implements ModelChecker<MatextInfo> {
+public final class MatextCheckMatextarch implements ModelCheckerV1<MatextInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<MatextarchInfo> checker;
+	private ModelCheckerV1<MatextarchInfo> checker;
 	
 	
 	public MatextCheckMatextarch(ModelCheckerOption option) {

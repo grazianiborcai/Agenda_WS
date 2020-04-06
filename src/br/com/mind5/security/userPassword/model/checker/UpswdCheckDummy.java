@@ -2,12 +2,12 @@ package br.com.mind5.security.userPassword.model.checker;
 
 import java.util.List;
 
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.common.ModelCherckerTrue;
 import br.com.mind5.security.userPassword.info.UpswdInfo;
 
-public final class UpswdCheckDummy implements ModelChecker<UpswdInfo> {
-	private ModelChecker<UpswdInfo> checker;
+public final class UpswdCheckDummy implements ModelCheckerV1<UpswdInfo> {
+	private ModelCheckerV1<UpswdInfo> checker;
 	
 	
 	public UpswdCheckDummy() {

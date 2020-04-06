@@ -6,14 +6,14 @@ import br.com.mind5.business.phoneSearch.info.PhonarchCopier;
 import br.com.mind5.business.phoneSearch.info.PhonarchInfo;
 import br.com.mind5.business.phoneSearch.model.checker.PhonarchCheckExist;
 import br.com.mind5.business.store.info.StoreInfo;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 
-public final class StoreCheckPhonarch implements ModelChecker<StoreInfo> {
+public final class StoreCheckPhonarch implements ModelCheckerV1<StoreInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<PhonarchInfo> checker;
+	private ModelCheckerV1<PhonarchInfo> checker;
 	
 	
 	public StoreCheckPhonarch(ModelCheckerOption option) {

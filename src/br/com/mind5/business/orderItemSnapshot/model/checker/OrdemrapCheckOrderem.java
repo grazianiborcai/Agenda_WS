@@ -5,14 +5,14 @@ import java.util.List;
 import br.com.mind5.business.orderItem.info.OrderemInfo;
 import br.com.mind5.business.orderItem.model.checker.OrderemCheckExist;
 import br.com.mind5.business.orderItemSnapshot.info.OrdemrapInfo;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 
-public final class OrdemrapCheckOrderem implements ModelChecker<OrdemrapInfo> {
+public final class OrdemrapCheckOrderem implements ModelCheckerV1<OrdemrapInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<OrderemInfo> checker;
+	private ModelCheckerV1<OrderemInfo> checker;
 	
 	
 	public OrdemrapCheckOrderem(ModelCheckerOption option) {

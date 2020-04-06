@@ -5,14 +5,14 @@ import java.util.List;
 import br.com.mind5.business.masterData.info.MatGroupInfo;
 import br.com.mind5.business.masterData.model.checker.MatGroupCheckExist;
 import br.com.mind5.business.material.info.MatInfo;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 
-public final class MatCheckGroup implements ModelChecker<MatInfo> {
+public final class MatCheckGroup implements ModelCheckerV1<MatInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<MatGroupInfo> checker;
+	private ModelCheckerV1<MatGroupInfo> checker;
 	
 	
 	public MatCheckGroup(ModelCheckerOption option) {

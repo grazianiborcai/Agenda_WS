@@ -4,15 +4,15 @@ import java.util.List;
 
 import br.com.mind5.business.masterData.info.FeeCategInfo;
 import br.com.mind5.business.masterData.model.checker.FeeCategCheckExist;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.payment.payOrderItem.info.PayordemInfo;
 
-public final class PayordemCheckFeeCateg implements ModelChecker<PayordemInfo> {
+public final class PayordemCheckFeeCateg implements ModelCheckerV1<PayordemInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<FeeCategInfo> checker;
+	private ModelCheckerV1<FeeCategInfo> checker;
 	
 	
 	public PayordemCheckFeeCateg(ModelCheckerOption option) {

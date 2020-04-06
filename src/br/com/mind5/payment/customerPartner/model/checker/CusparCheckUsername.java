@@ -2,18 +2,18 @@ package br.com.mind5.payment.customerPartner.model.checker;
 
 import java.util.List;
 
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
 import br.com.mind5.security.username.info.UsernameCopier;
 import br.com.mind5.security.username.info.UsernameInfo;
 import br.com.mind5.security.username.model.checker.UsernameCheckExist;
 
-public final class CusparCheckUsername implements ModelChecker<CusparInfo> {
+public final class CusparCheckUsername implements ModelCheckerV1<CusparInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<UsernameInfo> checker;
+	private ModelCheckerV1<UsernameInfo> checker;
 	
 	
 	public CusparCheckUsername(ModelCheckerOption option) {

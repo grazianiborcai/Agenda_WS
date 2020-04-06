@@ -7,13 +7,13 @@ import br.com.mind5.business.masterData.info.DaypartInfo;
 import br.com.mind5.business.masterData.model.action.StdDaypartSelect;
 import br.com.mind5.business.masterData.model.checker.DaypartCheckRead;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootDaypartSelect extends DeciTreeReadTemplate<DaypartInfo> {
+public final class RootDaypartSelect extends DeciTreeTemplateRead<DaypartInfo> {
 	
 	public RootDaypartSelect(DeciTreeOption<DaypartInfo> option) {
 		super(option);
@@ -21,9 +21,9 @@ public final class RootDaypartSelect extends DeciTreeReadTemplate<DaypartInfo> {
 	
 	
 	
-	@Override protected ModelChecker<DaypartInfo> buildCheckerHook(DeciTreeOption<DaypartInfo> option) {
-		List<ModelChecker<DaypartInfo>> queue = new ArrayList<>();		
-		ModelChecker<DaypartInfo> checker;
+	@Override protected ModelCheckerV1<DaypartInfo> buildCheckerHook(DeciTreeOption<DaypartInfo> option) {
+		List<ModelCheckerV1<DaypartInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<DaypartInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
 		checkerOption = new ModelCheckerOption();
@@ -33,7 +33,7 @@ public final class RootDaypartSelect extends DeciTreeReadTemplate<DaypartInfo> {
 		checker = new DaypartCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 
 		

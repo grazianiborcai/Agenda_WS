@@ -4,16 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 import br.com.mind5.payment.systemPartnerSearch.info.SysparchInfo;
 import br.com.mind5.payment.systemPartnerSearch.model.action.StdSysparchSelect;
 import br.com.mind5.payment.systemPartnerSearch.model.checker.SysparchCheckRead;
 
-public final class RootSysparchSelect extends DeciTreeReadTemplate<SysparchInfo> {
+public final class RootSysparchSelect extends DeciTreeTemplateRead<SysparchInfo> {
 	
 	public RootSysparchSelect(DeciTreeOption<SysparchInfo> option) {
 		super(option);
@@ -21,9 +21,9 @@ public final class RootSysparchSelect extends DeciTreeReadTemplate<SysparchInfo>
 	
 	
 	
-	@Override protected ModelChecker<SysparchInfo> buildCheckerHook(DeciTreeOption<SysparchInfo> option) {
-		List<ModelChecker<SysparchInfo>> queue = new ArrayList<>();		
-		ModelChecker<SysparchInfo> checker;	
+	@Override protected ModelCheckerV1<SysparchInfo> buildCheckerHook(DeciTreeOption<SysparchInfo> option) {
+		List<ModelCheckerV1<SysparchInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<SysparchInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -33,7 +33,7 @@ public final class RootSysparchSelect extends DeciTreeReadTemplate<SysparchInfo>
 		checker = new SysparchCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

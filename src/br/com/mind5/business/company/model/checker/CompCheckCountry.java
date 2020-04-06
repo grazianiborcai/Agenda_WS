@@ -6,14 +6,14 @@ import br.com.mind5.business.company.info.CompInfo;
 import br.com.mind5.business.masterData.info.CountryCopier;
 import br.com.mind5.business.masterData.info.CountryInfo;
 import br.com.mind5.business.masterData.model.checker.CountryCheckExist;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 
-public final class CompCheckCountry implements ModelChecker<CompInfo> {
+public final class CompCheckCountry implements ModelCheckerV1<CompInfo> {
 	private final boolean RESULT_FAILED = false;
 	private final boolean RESULT_SUCCESS = true;
 	
-	private ModelChecker<CountryInfo> checker;
+	private ModelCheckerV1<CountryInfo> checker;
 	
 	
 	public CompCheckCountry(ModelCheckerOption option) {

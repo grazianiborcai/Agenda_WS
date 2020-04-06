@@ -5,18 +5,18 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.security.tokenAuthentication.info.TauthInfo;
 import br.com.mind5.security.tokenAuthentication.model.action.LazyTauthMergeUsername;
 import br.com.mind5.security.tokenAuthentication.model.action.StdTauthMergeJwtoken;
 import br.com.mind5.security.tokenAuthentication.model.action.StdTauthValidateJwtoken;
 import br.com.mind5.security.tokenAuthentication.model.checker.TauthCheckRead;
 
-public final class RootTauthToken extends DeciTreeWriteTemplate<TauthInfo> {
+public final class RootTauthToken extends DeciTreeTemplateWrite<TauthInfo> {
 	
 	public RootTauthToken(DeciTreeOption<TauthInfo> option) {
 		super(option);
@@ -24,9 +24,9 @@ public final class RootTauthToken extends DeciTreeWriteTemplate<TauthInfo> {
 	
 	
 	
-	@Override protected ModelChecker<TauthInfo> buildCheckerHook(DeciTreeOption<TauthInfo> option) {
-		List<ModelChecker<TauthInfo>> queue = new ArrayList<>();		
-		ModelChecker<TauthInfo> checker;	
+	@Override protected ModelCheckerV1<TauthInfo> buildCheckerHook(DeciTreeOption<TauthInfo> option) {
+		List<ModelCheckerV1<TauthInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<TauthInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -36,7 +36,7 @@ public final class RootTauthToken extends DeciTreeWriteTemplate<TauthInfo> {
 		checker = new TauthCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

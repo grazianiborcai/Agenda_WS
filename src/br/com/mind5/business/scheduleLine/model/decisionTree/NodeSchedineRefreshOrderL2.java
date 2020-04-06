@@ -13,13 +13,13 @@ import br.com.mind5.business.scheduleLine.model.action.StdSchedineEnforceOrderKe
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckOrder;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodeSchedineRefreshOrderL2 extends DeciTreeWriteTemplate<SchedineInfo> {
+public final class NodeSchedineRefreshOrderL2 extends DeciTreeTemplateWrite<SchedineInfo> {
 	
 	public NodeSchedineRefreshOrderL2(DeciTreeOption<SchedineInfo> option) {
 		super(option);
@@ -27,9 +27,9 @@ public final class NodeSchedineRefreshOrderL2 extends DeciTreeWriteTemplate<Sche
 	
 	
 	
-	@Override protected ModelChecker<SchedineInfo> buildCheckerHook(DeciTreeOption<SchedineInfo> option) {
-		List<ModelChecker<SchedineInfo>> queue = new ArrayList<>();		
-		ModelChecker<SchedineInfo> checker;	
+	@Override protected ModelCheckerV1<SchedineInfo> buildCheckerHook(DeciTreeOption<SchedineInfo> option) {
+		List<ModelCheckerV1<SchedineInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<SchedineInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -39,7 +39,7 @@ public final class NodeSchedineRefreshOrderL2 extends DeciTreeWriteTemplate<Sche
 		checker = new SchedineCheckOrder(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

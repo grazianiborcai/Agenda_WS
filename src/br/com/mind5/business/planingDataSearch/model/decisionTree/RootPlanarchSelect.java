@@ -9,13 +9,13 @@ import br.com.mind5.business.planingDataSearch.model.action.StdPlanarchMergePlan
 import br.com.mind5.business.planingDataSearch.model.checker.PlanarchCheckRead;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public class RootPlanarchSelect extends DeciTreeReadTemplate<PlanarchInfo> {
+public class RootPlanarchSelect extends DeciTreeTemplateRead<PlanarchInfo> {
 	
 	public RootPlanarchSelect(DeciTreeOption<PlanarchInfo> option) {
 		super(option);
@@ -23,9 +23,9 @@ public class RootPlanarchSelect extends DeciTreeReadTemplate<PlanarchInfo> {
 	
 	
 	
-	@Override protected ModelChecker<PlanarchInfo> buildCheckerHook(DeciTreeOption<PlanarchInfo> option) {
-		List<ModelChecker<PlanarchInfo>> queue = new ArrayList<>();		
-		ModelChecker<PlanarchInfo> checker;
+	@Override protected ModelCheckerV1<PlanarchInfo> buildCheckerHook(DeciTreeOption<PlanarchInfo> option) {
+		List<ModelCheckerV1<PlanarchInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<PlanarchInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -35,7 +35,7 @@ public class RootPlanarchSelect extends DeciTreeReadTemplate<PlanarchInfo> {
 		checker = new PlanarchCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

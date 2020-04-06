@@ -8,13 +8,13 @@ import br.com.mind5.business.form.formAddress.model.action.StdFormAddressEnforce
 import br.com.mind5.business.form.formAddress.model.action.StdFormAddressSelect;
 import br.com.mind5.business.form.formAddress.model.checker.FormAddressCheckExist;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class NodeFormAddressSelect extends DeciTreeReadTemplate<FormAddressInfo> {
+public final class NodeFormAddressSelect extends DeciTreeTemplateRead<FormAddressInfo> {
 	
 	public NodeFormAddressSelect(DeciTreeOption<FormAddressInfo> option) {
 		super(option);
@@ -22,9 +22,9 @@ public final class NodeFormAddressSelect extends DeciTreeReadTemplate<FormAddres
 	
 	
 	
-	@Override protected ModelChecker<FormAddressInfo> buildCheckerHook(DeciTreeOption<FormAddressInfo> option) {
-		List<ModelChecker<FormAddressInfo>> queue = new ArrayList<>();		
-		ModelChecker<FormAddressInfo> checker;	
+	@Override protected ModelCheckerV1<FormAddressInfo> buildCheckerHook(DeciTreeOption<FormAddressInfo> option) {
+		List<ModelCheckerV1<FormAddressInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<FormAddressInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -34,7 +34,7 @@ public final class NodeFormAddressSelect extends DeciTreeReadTemplate<FormAddres
 		checker = new FormAddressCheckExist(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

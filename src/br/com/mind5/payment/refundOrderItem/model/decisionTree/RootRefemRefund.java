@@ -5,11 +5,11 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.payment.refundOrderItem.info.RefemInfo;
 import br.com.mind5.payment.refundOrderItem.model.action.LazyRefemMergeCuspar;
 import br.com.mind5.payment.refundOrderItem.model.action.LazyRefemMergePayord;
@@ -22,7 +22,7 @@ import br.com.mind5.payment.refundOrderItem.model.checker.RefemCheckPayordem;
 import br.com.mind5.payment.refundOrderItem.model.checker.RefemCheckRefund;
 import br.com.mind5.payment.refundOrderItem.model.checker.RefemCheckUsername;
 
-public final class RootRefemRefund extends DeciTreeWriteTemplate<RefemInfo> {
+public final class RootRefemRefund extends DeciTreeTemplateWrite<RefemInfo> {
 	
 	public RootRefemRefund(DeciTreeOption<RefemInfo> option) {
 		super(option);
@@ -30,9 +30,9 @@ public final class RootRefemRefund extends DeciTreeWriteTemplate<RefemInfo> {
 	
 	
 	
-	@Override protected ModelChecker<RefemInfo> buildCheckerHook(DeciTreeOption<RefemInfo> option) {
-		List<ModelChecker<RefemInfo>> queue = new ArrayList<>();		
-		ModelChecker<RefemInfo> checker;	
+	@Override protected ModelCheckerV1<RefemInfo> buildCheckerHook(DeciTreeOption<RefemInfo> option) {
+		List<ModelCheckerV1<RefemInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<RefemInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -80,7 +80,7 @@ public final class RootRefemRefund extends DeciTreeWriteTemplate<RefemInfo> {
 		//TODO: somente Manager pode estornar ?
 		//TODO: Cada Manager somente pode estornar sua Ordem ?
 		//TODO: verificar se ja foi estornado
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

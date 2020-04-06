@@ -13,13 +13,13 @@ import br.com.mind5.business.employeeSnapshot.model.checker.EmpnapCheckOwner;
 import br.com.mind5.business.employeeSnapshot.model.checker.EmpnapCheckWrite;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootEmpnapInsert extends DeciTreeWriteTemplate<EmpnapInfo> {	
+public final class RootEmpnapInsert extends DeciTreeTemplateWrite<EmpnapInfo> {	
 	
 	public RootEmpnapInsert(DeciTreeOption<EmpnapInfo> option) {
 		super(option);
@@ -27,9 +27,9 @@ public final class RootEmpnapInsert extends DeciTreeWriteTemplate<EmpnapInfo> {
 	
 	
 	
-	@Override protected ModelChecker<EmpnapInfo> buildCheckerHook(DeciTreeOption<EmpnapInfo> option) {
-		List<ModelChecker<EmpnapInfo>> queue = new ArrayList<>();		
-		ModelChecker<EmpnapInfo> checker;
+	@Override protected ModelCheckerV1<EmpnapInfo> buildCheckerHook(DeciTreeOption<EmpnapInfo> option) {
+		List<ModelCheckerV1<EmpnapInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<EmpnapInfo> checker;
 		ModelCheckerOption checkerOption;		
 
 		checkerOption = new ModelCheckerOption();
@@ -60,7 +60,7 @@ public final class RootEmpnapInsert extends DeciTreeWriteTemplate<EmpnapInfo> {
 		checker = new EmpnapCheckEmp(checkerOption);
 		queue.add(checker);	
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

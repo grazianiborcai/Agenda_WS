@@ -5,14 +5,14 @@ import java.util.List;
 import br.com.mind5.business.employeeMaterial.info.EmpmatInfo;
 import br.com.mind5.business.employeeMaterialSearch.info.EmpmarchInfo;
 import br.com.mind5.business.employeeMaterialSearch.model.checker.EmpmarchCheckExist;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 
-public final class EmpmatCheckEmpmarch implements ModelChecker<EmpmatInfo> {
+public final class EmpmatCheckEmpmarch implements ModelCheckerV1<EmpmatInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<EmpmarchInfo> checker;
+	private ModelCheckerV1<EmpmarchInfo> checker;
 	
 	
 	public EmpmatCheckEmpmarch(ModelCheckerOption option) {

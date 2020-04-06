@@ -10,22 +10,22 @@ import br.com.mind5.business.storeLeaveDateSearch.model.checker.StolarchCheckOwn
 import br.com.mind5.business.storeLeaveDateSearch.model.checker.StolarchCheckRead;
 import br.com.mind5.business.storeLeaveDateSearch.model.checker.StolarchCheckStore;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootStolarchSelect extends DeciTreeReadTemplate<StolarchInfo> {
+public final class RootStolarchSelect extends DeciTreeTemplateRead<StolarchInfo> {
 	
 	public RootStolarchSelect(DeciTreeOption<StolarchInfo> option) {
 		super(option);
 	}	
 	
 	
-	@Override protected ModelChecker<StolarchInfo> buildCheckerHook(DeciTreeOption<StolarchInfo> option) {
-		List<ModelChecker<StolarchInfo>> queue = new ArrayList<>();		
-		ModelChecker<StolarchInfo> checker;
+	@Override protected ModelCheckerV1<StolarchInfo> buildCheckerHook(DeciTreeOption<StolarchInfo> option) {
+		List<ModelCheckerV1<StolarchInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<StolarchInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -56,7 +56,7 @@ public final class RootStolarchSelect extends DeciTreeReadTemplate<StolarchInfo>
 		checker = new StolarchCheckStore(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.mind5.business.ownerSnapshot.info.OwnerapInfo;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class OwnerapCheckRead extends ModelCheckerTemplateSimple<OwnerapInfo> {
+public final class OwnerapCheckRead extends ModelCheckerTemplateSimpleV2<OwnerapInfo> {
 
 	public OwnerapCheckRead(ModelCheckerOption option) {
 		super(option);

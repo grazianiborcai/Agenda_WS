@@ -7,13 +7,13 @@ import br.com.mind5.business.masterData.info.MonthInfo;
 import br.com.mind5.business.masterData.model.action.StdMonthSelect;
 import br.com.mind5.business.masterData.model.checker.MonthCheckRead;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootMonthSelect extends DeciTreeReadTemplate<MonthInfo> {
+public final class RootMonthSelect extends DeciTreeTemplateRead<MonthInfo> {
 	
 	public RootMonthSelect(DeciTreeOption<MonthInfo> option) {
 		super(option);
@@ -21,9 +21,9 @@ public final class RootMonthSelect extends DeciTreeReadTemplate<MonthInfo> {
 	
 	
 	
-	@Override protected ModelChecker<MonthInfo> buildCheckerHook(DeciTreeOption<MonthInfo> option) {
-		List<ModelChecker<MonthInfo>> queue = new ArrayList<>();		
-		ModelChecker<MonthInfo> checker;
+	@Override protected ModelCheckerV1<MonthInfo> buildCheckerHook(DeciTreeOption<MonthInfo> option) {
+		List<ModelCheckerV1<MonthInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<MonthInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
 		checkerOption = new ModelCheckerOption();
@@ -33,7 +33,7 @@ public final class RootMonthSelect extends DeciTreeReadTemplate<MonthInfo> {
 		checker = new MonthCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

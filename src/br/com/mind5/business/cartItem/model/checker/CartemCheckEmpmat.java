@@ -5,14 +5,14 @@ import java.util.List;
 import br.com.mind5.business.cartItem.info.CartemInfo;
 import br.com.mind5.business.employeeMaterial.info.EmpmatInfo;
 import br.com.mind5.business.employeeMaterial.model.checker.EmpmatCheckExist;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 
-public final class CartemCheckEmpmat implements ModelChecker<CartemInfo> {
+public final class CartemCheckEmpmat implements ModelCheckerV1<CartemInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<EmpmatInfo> checker;
+	private ModelCheckerV1<EmpmatInfo> checker;
 	
 	
 	public CartemCheckEmpmat(ModelCheckerOption option) {

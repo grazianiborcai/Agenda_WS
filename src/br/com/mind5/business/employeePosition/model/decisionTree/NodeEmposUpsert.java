@@ -13,13 +13,13 @@ import br.com.mind5.business.employeePosition.model.action.StdEmposEnforceLChang
 import br.com.mind5.business.employeePosition.model.checker.EmposCheckSoftDelete;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodeEmposUpsert extends DeciTreeWriteTemplate<EmposInfo> {
+public final class NodeEmposUpsert extends DeciTreeTemplateWrite<EmposInfo> {
 	
 	public NodeEmposUpsert(DeciTreeOption<EmposInfo> option) {
 		super(option);
@@ -27,9 +27,9 @@ public final class NodeEmposUpsert extends DeciTreeWriteTemplate<EmposInfo> {
 	
 	
 	
-	@Override protected ModelChecker<EmposInfo> buildCheckerHook(DeciTreeOption<EmposInfo> option) {
-		List<ModelChecker<EmposInfo>> queue = new ArrayList<>();		
-		ModelChecker<EmposInfo> checker;
+	@Override protected ModelCheckerV1<EmposInfo> buildCheckerHook(DeciTreeOption<EmposInfo> option) {
+		List<ModelCheckerV1<EmposInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<EmposInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
 		checkerOption = new ModelCheckerOption();
@@ -39,7 +39,7 @@ public final class NodeEmposUpsert extends DeciTreeWriteTemplate<EmposInfo> {
 		checker = new EmposCheckSoftDelete(checkerOption);
 		queue.add(checker);	
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

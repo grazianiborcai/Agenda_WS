@@ -9,13 +9,13 @@ import br.com.mind5.file.fileImageList.model.checker.FimistCheckLangu;
 import br.com.mind5.file.fileImageList.model.checker.FimistCheckOwner;
 import br.com.mind5.file.fileImageList.model.checker.FimistCheckRead;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootFimistSelect extends DeciTreeReadTemplate<FimistInfo> {
+public final class RootFimistSelect extends DeciTreeTemplateRead<FimistInfo> {
 	
 	public RootFimistSelect(DeciTreeOption<FimistInfo> option) {
 		super(option);
@@ -23,9 +23,9 @@ public final class RootFimistSelect extends DeciTreeReadTemplate<FimistInfo> {
 	
 	
 	
-	@Override protected ModelChecker<FimistInfo> buildCheckerHook(DeciTreeOption<FimistInfo> option) {
-		List<ModelChecker<FimistInfo>> queue = new ArrayList<>();		
-		ModelChecker<FimistInfo> checker;	
+	@Override protected ModelCheckerV1<FimistInfo> buildCheckerHook(DeciTreeOption<FimistInfo> option) {
+		List<ModelCheckerV1<FimistInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<FimistInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -49,7 +49,7 @@ public final class RootFimistSelect extends DeciTreeReadTemplate<FimistInfo> {
 		checker = new FimistCheckOwner(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

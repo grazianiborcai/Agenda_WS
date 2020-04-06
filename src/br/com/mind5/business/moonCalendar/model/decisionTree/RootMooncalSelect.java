@@ -9,13 +9,13 @@ import br.com.mind5.business.moonCalendar.model.action.StdMooncalMergeToSelect;
 import br.com.mind5.business.moonCalendar.model.checker.MooncalCheckRead;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootMooncalSelect extends DeciTreeReadTemplate<MooncalInfo> {
+public final class RootMooncalSelect extends DeciTreeTemplateRead<MooncalInfo> {
 	
 	public RootMooncalSelect(DeciTreeOption<MooncalInfo> option) {
 		super(option);
@@ -23,9 +23,9 @@ public final class RootMooncalSelect extends DeciTreeReadTemplate<MooncalInfo> {
 	
 	
 	
-	@Override protected ModelChecker<MooncalInfo> buildCheckerHook(DeciTreeOption<MooncalInfo> option) {
-		List<ModelChecker<MooncalInfo>> queue = new ArrayList<>();		
-		ModelChecker<MooncalInfo> checker;
+	@Override protected ModelCheckerV1<MooncalInfo> buildCheckerHook(DeciTreeOption<MooncalInfo> option) {
+		List<ModelCheckerV1<MooncalInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<MooncalInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
 		checkerOption = new ModelCheckerOption();
@@ -35,7 +35,7 @@ public final class RootMooncalSelect extends DeciTreeReadTemplate<MooncalInfo> {
 		checker = new MooncalCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 
 		

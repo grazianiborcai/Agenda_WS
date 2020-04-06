@@ -6,9 +6,9 @@ import br.com.mind5.business.masterData.info.common.MatCateg;
 import br.com.mind5.business.materialStore.info.MatoreInfo;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class MatoreCheckIsService extends ModelCheckerTemplateSimple<MatoreInfo> {
+public final class MatoreCheckIsService extends ModelCheckerTemplateSimpleV2<MatoreInfo> {
 
 	public MatoreCheckIsService(ModelCheckerOption option) {
 		super(option);

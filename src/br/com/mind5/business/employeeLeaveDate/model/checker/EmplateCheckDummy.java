@@ -3,11 +3,11 @@ package br.com.mind5.business.employeeLeaveDate.model.checker;
 import java.util.List;
 
 import br.com.mind5.business.employeeLeaveDate.info.EmplateInfo;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.common.ModelCherckerTrue;
 
-public final class EmplateCheckDummy implements ModelChecker<EmplateInfo> {
-	private ModelChecker<EmplateInfo> checker;
+public final class EmplateCheckDummy implements ModelCheckerV1<EmplateInfo> {
+	private ModelCheckerV1<EmplateInfo> checker;
 	
 	
 	public EmplateCheckDummy() {

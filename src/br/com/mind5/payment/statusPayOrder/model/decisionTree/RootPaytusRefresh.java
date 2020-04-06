@@ -5,11 +5,11 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.payment.statusPayOrder.info.PaytusInfo;
 import br.com.mind5.payment.statusPayOrder.model.action.LazyPaytusNodeRefresh;
 import br.com.mind5.payment.statusPayOrder.model.action.LazyPaytusPaytusemRefresh;
@@ -17,7 +17,7 @@ import br.com.mind5.payment.statusPayOrder.model.checker.PaytusCheckOwner;
 import br.com.mind5.payment.statusPayOrder.model.checker.PaytusCheckPayord;
 import br.com.mind5.payment.statusPayOrder.model.checker.PaytusCheckRefresh;
 
-public final class RootPaytusRefresh extends DeciTreeWriteTemplate<PaytusInfo> {
+public final class RootPaytusRefresh extends DeciTreeTemplateWrite<PaytusInfo> {
 	
 	public RootPaytusRefresh(DeciTreeOption<PaytusInfo> option) {
 		super(option);
@@ -25,9 +25,9 @@ public final class RootPaytusRefresh extends DeciTreeWriteTemplate<PaytusInfo> {
 	
 	
 	
-	@Override protected ModelChecker<PaytusInfo> buildCheckerHook(DeciTreeOption<PaytusInfo> option) {
-		List<ModelChecker<PaytusInfo>> queue = new ArrayList<>();		
-		ModelChecker<PaytusInfo> checker;	
+	@Override protected ModelCheckerV1<PaytusInfo> buildCheckerHook(DeciTreeOption<PaytusInfo> option) {
+		List<ModelCheckerV1<PaytusInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<PaytusInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -51,7 +51,7 @@ public final class RootPaytusRefresh extends DeciTreeWriteTemplate<PaytusInfo> {
 		checker = new PaytusCheckPayord(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

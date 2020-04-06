@@ -9,12 +9,12 @@ import br.com.mind5.business.employee.model.action.StdEmpInsertEmpnap;
 import br.com.mind5.business.employee.model.checker.EmpCheckDummy;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodeEmpSnapshot extends DeciTreeWriteTemplate<EmpInfo> {	
+public final class NodeEmpSnapshot extends DeciTreeTemplateWrite<EmpInfo> {	
 	
 	public NodeEmpSnapshot(DeciTreeOption<EmpInfo> option) {
 		super(option);
@@ -22,14 +22,14 @@ public final class NodeEmpSnapshot extends DeciTreeWriteTemplate<EmpInfo> {
 	
 	
 	
-	@Override protected ModelChecker<EmpInfo> buildCheckerHook(DeciTreeOption<EmpInfo> option) {		
-		List<ModelChecker<EmpInfo>> queue = new ArrayList<>();		
-		ModelChecker<EmpInfo> checker;
+	@Override protected ModelCheckerV1<EmpInfo> buildCheckerHook(DeciTreeOption<EmpInfo> option) {		
+		List<ModelCheckerV1<EmpInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<EmpInfo> checker;
 
 		checker = new EmpCheckDummy();
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

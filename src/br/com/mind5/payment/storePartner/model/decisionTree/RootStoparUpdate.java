@@ -5,11 +5,11 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.payment.storePartner.info.StoparInfo;
 import br.com.mind5.payment.storePartner.model.action.LazyStoparMergeUsername;
 import br.com.mind5.payment.storePartner.model.action.LazyStoparNodeSnapshot;
@@ -24,7 +24,7 @@ import br.com.mind5.payment.storePartner.model.checker.StoparCheckStorauth;
 import br.com.mind5.payment.storePartner.model.checker.StoparCheckStore;
 import br.com.mind5.payment.storePartner.model.checker.StoparCheckWrite;
 
-public final class RootStoparUpdate extends DeciTreeWriteTemplate<StoparInfo> {
+public final class RootStoparUpdate extends DeciTreeTemplateWrite<StoparInfo> {
 	
 	public RootStoparUpdate(DeciTreeOption<StoparInfo> option) {
 		super(option);
@@ -32,9 +32,9 @@ public final class RootStoparUpdate extends DeciTreeWriteTemplate<StoparInfo> {
 	
 	
 	
-	@Override protected ModelChecker<StoparInfo> buildCheckerHook(DeciTreeOption<StoparInfo> option) {
-		List<ModelChecker<StoparInfo>> queue = new ArrayList<>();		
-		ModelChecker<StoparInfo> checker;
+	@Override protected ModelCheckerV1<StoparInfo> buildCheckerHook(DeciTreeOption<StoparInfo> option) {
+		List<ModelCheckerV1<StoparInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<StoparInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -93,7 +93,7 @@ public final class RootStoparUpdate extends DeciTreeWriteTemplate<StoparInfo> {
 		checker = new StoparCheckStorauth(checkerOption);
 		queue.add(checker);	
 		
-		return new ModelCheckerQueue<StoparInfo>(queue);
+		return new ModelCheckerHelperQueueV2<StoparInfo>(queue);
 	}
 	
 	

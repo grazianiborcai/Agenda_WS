@@ -5,17 +5,17 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.security.userAuthentication.info.UauthInfo;
 import br.com.mind5.security.userAuthentication.model.action.LazyUauthMergeUselis;
 import br.com.mind5.security.userAuthentication.model.action.StdUauthAuthenticateUpswd;
 import br.com.mind5.security.userAuthentication.model.checker.UauthCheckRead;
 
-public final class RootUauthUpswd extends DeciTreeWriteTemplate<UauthInfo> {
+public final class RootUauthUpswd extends DeciTreeTemplateWrite<UauthInfo> {
 	
 	public RootUauthUpswd(DeciTreeOption<UauthInfo> option) {
 		super(option);
@@ -23,9 +23,9 @@ public final class RootUauthUpswd extends DeciTreeWriteTemplate<UauthInfo> {
 	
 	
 	
-	@Override protected ModelChecker<UauthInfo> buildCheckerHook(DeciTreeOption<UauthInfo> option) {
-		List<ModelChecker<UauthInfo>> queue = new ArrayList<>();		
-		ModelChecker<UauthInfo> checker;
+	@Override protected ModelCheckerV1<UauthInfo> buildCheckerHook(DeciTreeOption<UauthInfo> option) {
+		List<ModelCheckerV1<UauthInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<UauthInfo> checker;
 		ModelCheckerOption checkerOption;		
 		
 		checkerOption = new ModelCheckerOption();
@@ -35,7 +35,7 @@ public final class RootUauthUpswd extends DeciTreeWriteTemplate<UauthInfo> {
 		checker = new UauthCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

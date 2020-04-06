@@ -2,17 +2,17 @@ package br.com.mind5.paymentPartner.partnerMoip.accessMoip.model.checker;
 
 import java.util.List;
 
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.payment.systemPartner.info.SysparInfo;
 import br.com.mind5.payment.systemPartner.model.checker.SysparCheckExist;
 import br.com.mind5.paymentPartner.partnerMoip.accessMoip.info.AccemoipInfo;
 
-public final class AccemoipCheckSyspar implements ModelChecker<AccemoipInfo> {
+public final class AccemoipCheckSyspar implements ModelCheckerV1<AccemoipInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<SysparInfo> checker;
+	private ModelCheckerV1<SysparInfo> checker;
 	
 	
 	public AccemoipCheckSyspar(ModelCheckerOption option) {

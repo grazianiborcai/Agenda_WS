@@ -8,13 +8,13 @@ import br.com.mind5.business.customerSnapshot.model.action.StdCusnapMergeToSelec
 import br.com.mind5.business.customerSnapshot.model.checker.CusnapCheckLangu;
 import br.com.mind5.business.customerSnapshot.model.checker.CusnapCheckRead;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootCusnapSelect extends DeciTreeReadTemplate<CusnapInfo> {
+public final class RootCusnapSelect extends DeciTreeTemplateRead<CusnapInfo> {
 	
 	public RootCusnapSelect(DeciTreeOption<CusnapInfo> option) {
 		super(option);
@@ -22,9 +22,9 @@ public final class RootCusnapSelect extends DeciTreeReadTemplate<CusnapInfo> {
 	
 	
 	
-	@Override protected ModelChecker<CusnapInfo> buildCheckerHook(DeciTreeOption<CusnapInfo> option) {
-		List<ModelChecker<CusnapInfo>> queue = new ArrayList<>();		
-		ModelChecker<CusnapInfo> checker;
+	@Override protected ModelCheckerV1<CusnapInfo> buildCheckerHook(DeciTreeOption<CusnapInfo> option) {
+		List<ModelCheckerV1<CusnapInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<CusnapInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
 		checkerOption = new ModelCheckerOption();
@@ -41,7 +41,7 @@ public final class RootCusnapSelect extends DeciTreeReadTemplate<CusnapInfo> {
 		checker = new CusnapCheckLangu(checkerOption);
 		queue.add(checker);	
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

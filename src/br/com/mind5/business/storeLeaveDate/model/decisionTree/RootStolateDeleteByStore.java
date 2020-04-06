@@ -10,13 +10,13 @@ import br.com.mind5.business.storeLeaveDate.model.action.StdStolateEnforceStoreK
 import br.com.mind5.business.storeLeaveDate.model.checker.StolateCheckDeleteByStore;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootStolateDeleteByStore extends DeciTreeWriteTemplate<StolateInfo> {
+public final class RootStolateDeleteByStore extends DeciTreeTemplateWrite<StolateInfo> {
 	
 	public RootStolateDeleteByStore(DeciTreeOption<StolateInfo> option) {
 		super(option);
@@ -24,9 +24,9 @@ public final class RootStolateDeleteByStore extends DeciTreeWriteTemplate<Stolat
 	
 	
 	
-	@Override protected ModelChecker<StolateInfo> buildCheckerHook(DeciTreeOption<StolateInfo> option) {
-		List<ModelChecker<StolateInfo>> queue = new ArrayList<>();		
-		ModelChecker<StolateInfo> checker;
+	@Override protected ModelCheckerV1<StolateInfo> buildCheckerHook(DeciTreeOption<StolateInfo> option) {
+		List<ModelCheckerV1<StolateInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<StolateInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -36,7 +36,7 @@ public final class RootStolateDeleteByStore extends DeciTreeWriteTemplate<Stolat
 		checker = new StolateCheckDeleteByStore(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<StolateInfo>(queue);
+		return new ModelCheckerHelperQueueV2<StolateInfo>(queue);
 	}
 	
 	

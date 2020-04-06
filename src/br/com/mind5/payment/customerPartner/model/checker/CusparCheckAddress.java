@@ -5,15 +5,15 @@ import java.util.List;
 import br.com.mind5.business.address.info.AddressCopier;
 import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.address.model.checker.AddressCheckExist;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
 
-public final class CusparCheckAddress implements ModelChecker<CusparInfo> {
+public final class CusparCheckAddress implements ModelCheckerV1<CusparInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<AddressInfo> checker;
+	private ModelCheckerV1<AddressInfo> checker;
 	
 	
 	public CusparCheckAddress(ModelCheckerOption option) {

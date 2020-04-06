@@ -5,14 +5,14 @@ import java.util.List;
 import br.com.mind5.business.company.info.CompInfo;
 import br.com.mind5.business.masterData.info.EntityCategInfo;
 import br.com.mind5.business.masterData.model.checker.EntityCategCheckExist;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 
-public final class CompCheckEntityCateg implements ModelChecker<CompInfo> {
+public final class CompCheckEntityCateg implements ModelCheckerV1<CompInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<EntityCategInfo> checker;
+	private ModelCheckerV1<EntityCategInfo> checker;
 	
 	
 	public CompCheckEntityCateg(ModelCheckerOption option) {

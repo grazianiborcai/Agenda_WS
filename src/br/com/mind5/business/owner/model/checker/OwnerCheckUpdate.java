@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.mind5.business.owner.info.OwnerInfo;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class OwnerCheckUpdate extends ModelCheckerTemplateSimple<OwnerInfo> {
+public final class OwnerCheckUpdate extends ModelCheckerTemplateSimpleV2<OwnerInfo> {
 
 	public OwnerCheckUpdate(ModelCheckerOption option) {
 		super(option);

@@ -10,23 +10,27 @@ import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.InfoRecord;
 import br.com.mind5.message.sysMessage.info.SymsgInfo;
 import br.com.mind5.message.sysMessage.model.decisionTree.RootSymsgSelect;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public abstract class ModelCheckerTemplateSimple<T extends InfoRecord> implements ModelChecker<T> {
+public abstract class ModelCheckerTemplateSimpleV2<T extends InfoRecord> implements ModelCheckerV2<T> {
+	private final int STATE_INIT = 0;
+	private final int STATE_CLOSED = 1;
+	private final int STATE_EXECUTED = 2;
+	
 	protected final boolean SUCCESS = ModelCheckerOption.SUCCESS;
 	protected final boolean FAILED = ModelCheckerOption.FAILED;
 
-	private Boolean finalResult;
+	private boolean finalResult;
 	private boolean expectedResult;
 	private Connection conn;
 	private String schemaName;
-	private String codLanguage;
 	private SymsgInfo symsgData;
+	private int state;
 	
 	
 	
-	protected ModelCheckerTemplateSimple(ModelCheckerOption option) {
+	protected ModelCheckerTemplateSimpleV2(ModelCheckerOption option) {
 		checkArgument(option);
 		init(option);
 	} 
@@ -38,12 +42,14 @@ public abstract class ModelCheckerTemplateSimple<T extends InfoRecord> implement
 		conn = option.conn;
 		schemaName = option.schemaName;
 		symsgData = null;
-		codLanguage = DefaultValue.language();
+		finalResult = true;
+		state = STATE_INIT;
 	} 	
 	
 	
 	
 	@Override public boolean check(List<T> recordInfos) {
+		checkState();
 		checkArgument(recordInfos);				
 		
 		for (T eachRecordInfo : recordInfos) {
@@ -59,22 +65,34 @@ public abstract class ModelCheckerTemplateSimple<T extends InfoRecord> implement
 	
 	
 	@Override public boolean check(T recordInfo) {
-		checkArgument(recordInfo);		
-		codLanguage = getLanguage(recordInfo);
+		checkState();
+		checkArgument(recordInfo);				
 		
 		boolean checkResult = checkHook(recordInfo, conn, schemaName);
-		finalResult = evaluateResult(checkResult, expectedResult);
+		boolean evaluResult = evaluateResult(checkResult, expectedResult);
+		setFinalResult(evaluResult);		
 		
-		if (finalResult == FAILED) 
-			symsgData = buildMsg(checkResult, codLanguage, conn, schemaName);
+		symsgData = buildMsg(evaluResult, checkResult, recordInfo, conn, schemaName);
 		
 		return getResult();
 	}
 	
 	
 	
+	private void setFinalResult(boolean result) {
+		finalResult = result;
+		state = STATE_EXECUTED;
+	}
+	
+	
+	
 	private String getLanguage(T recordInfo) {
-		return recordInfo.codLanguage;
+		String result = recordInfo.codLanguage;
+		
+		if (result == null)
+			result = DefaultValue.language();
+		
+		return result;
 	}
 	
 	
@@ -88,13 +106,16 @@ public abstract class ModelCheckerTemplateSimple<T extends InfoRecord> implement
 	
 	
 	
-	private SymsgInfo buildMsg(boolean checkResult, String codLangu, Connection dbConn, String dbSchema) {
-		int codMsg = getCodMsg(checkResult);
+	private SymsgInfo buildMsg(boolean evaluResult, boolean checkResult, T recordInfo, Connection dbConn, String dbSchema) {
+		if (evaluResult == SUCCESS)
+			return null;
+		
+		String codLangu = getLanguage(recordInfo);		
+		int codMsg = getCodMsg(checkResult);		
 		SymsgInfo msgToRead = buildMsgToRead(codMsg, codLangu);
 		DeciTreeOption<SymsgInfo> option = buildOption(msgToRead, dbConn, dbSchema);
 		
-		SymsgInfo result = readMsg(option);		
-		return result;
+		return readMsg(option);	
 	}
 	
 	
@@ -150,19 +171,20 @@ public abstract class ModelCheckerTemplateSimple<T extends InfoRecord> implement
 	
 	
 	private SymsgInfo readSymsg(DeciTreeOption<SymsgInfo> option) {
-		ActionStdV1<SymsgInfo> select = new RootSymsgSelect(option).toAction();
-		select.executeAction();		
+		DeciTree<SymsgInfo> select = new RootSymsgSelect(option);
+		select.makeDecision();	
 		
-		return select.getDecisionResult().getResultset().get(0);
+		SymsgInfo result = select.getDecisionResult().getResultset().get(0);
+		select.close();
+		
+		return result;
 	}
 	
 	
 	
 	@Override public boolean getResult() {
-		if (finalResult == null) {
-			logException(new IllegalStateException(SystemMessage.NO_CHECK_PERFORMED));
-			throw new IllegalStateException(SystemMessage.NO_CHECK_PERFORMED);
-		}
+		checkState();
+		checkStateExecuted();
 		
 		return finalResult;
 	}
@@ -210,6 +232,42 @@ public abstract class ModelCheckerTemplateSimple<T extends InfoRecord> implement
 		//Template method: to be overwritten by subclasses
 		logException(new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION));
 		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);
+	}
+	
+	
+	
+	private void checkState() {
+		if (state == STATE_CLOSED) {
+			logException(new IllegalStateException(SystemMessage.OBJECT_IS_CLOSED));
+			throw new IllegalStateException(SystemMessage.OBJECT_IS_CLOSED);
+		}
+	}
+	
+	
+	
+	private void checkStateExecuted() {
+		if (state == STATE_EXECUTED)
+			return;		
+
+		logException(new IllegalStateException(SystemMessage.NO_CHECK_PERFORMED));
+		throw new IllegalStateException(SystemMessage.NO_CHECK_PERFORMED);
+	}
+	
+	
+	
+	@Override public void close() {
+		clear();
+	}
+	
+	
+	
+	private void clear() {
+		finalResult = DefaultValue.boole();
+		expectedResult = DefaultValue.boole();
+		conn = DefaultValue.object();
+		schemaName = DefaultValue.object();;
+		symsgData = DefaultValue.object();;
+		state = STATE_CLOSED;
 	}
 	
 	

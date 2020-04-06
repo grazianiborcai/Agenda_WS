@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.mind5.business.employeeWorkTimeSearch.info.EmpwotarchInfo;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class EmpwotarchCheckRead extends ModelCheckerTemplateSimple<EmpwotarchInfo> {
+public final class EmpwotarchCheckRead extends ModelCheckerTemplateSimpleV2<EmpwotarchInfo> {
 
 	public EmpwotarchCheckRead(ModelCheckerOption option) {
 		super(option);

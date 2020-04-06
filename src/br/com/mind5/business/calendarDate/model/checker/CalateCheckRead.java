@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.mind5.business.calendarDate.info.CalateInfo;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class CalateCheckRead extends ModelCheckerTemplateSimple<CalateInfo> {
+public final class CalateCheckRead extends ModelCheckerTemplateSimpleV2<CalateInfo> {
 	
 	public CalateCheckRead(ModelCheckerOption option) {
 		super(option);

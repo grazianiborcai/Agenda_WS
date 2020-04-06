@@ -9,13 +9,13 @@ import br.com.mind5.business.companyConflict.model.checker.CompcoCheckLangu;
 import br.com.mind5.business.companyConflict.model.checker.CompcoCheckOwner;
 import br.com.mind5.business.companyConflict.model.checker.CompcoCheckRead;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootCompcoSelect extends DeciTreeReadTemplate<CompcoInfo> {
+public final class RootCompcoSelect extends DeciTreeTemplateRead<CompcoInfo> {
 	
 	public RootCompcoSelect(DeciTreeOption<CompcoInfo> option) {
 		super(option);
@@ -23,9 +23,9 @@ public final class RootCompcoSelect extends DeciTreeReadTemplate<CompcoInfo> {
 	
 	
 	
-	@Override protected ModelChecker<CompcoInfo> buildCheckerHook(DeciTreeOption<CompcoInfo> option) {
-		List<ModelChecker<CompcoInfo>> queue = new ArrayList<>();		
-		ModelChecker<CompcoInfo> checker;
+	@Override protected ModelCheckerV1<CompcoInfo> buildCheckerHook(DeciTreeOption<CompcoInfo> option) {
+		List<ModelCheckerV1<CompcoInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<CompcoInfo> checker;
 		ModelCheckerOption checkerOption;		
 		
 		checkerOption = new ModelCheckerOption();
@@ -49,7 +49,7 @@ public final class RootCompcoSelect extends DeciTreeReadTemplate<CompcoInfo> {
 		checker = new CompcoCheckOwner(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

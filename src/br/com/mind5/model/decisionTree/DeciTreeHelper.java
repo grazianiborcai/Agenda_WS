@@ -9,7 +9,8 @@ import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.InfoRecord;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerV2;
 import br.com.mind5.model.decisionTree.common.DeciResultError;
 
 public final class DeciTreeHelper<T extends InfoRecord> implements DeciTree<T> {
@@ -18,7 +19,7 @@ public final class DeciTreeHelper<T extends InfoRecord> implements DeciTree<T> {
 	private final boolean EMPTY = false;
 	
 	private List<T> recordInfos;
-	private ModelChecker<T> checker;
+	private ModelCheckerV1<T> checker;
 	private DeciResult<T> deciResult;
 	private List<ActionStdV1<T>> actionsOnPassed;
 	private List<ActionStdV1<T>> actionsOnFailed;
@@ -44,7 +45,7 @@ public final class DeciTreeHelper<T extends InfoRecord> implements DeciTree<T> {
 	
 	
 	
-	private boolean executeChecker(List<T> records, ModelChecker<T> modelChecker) {	
+	private boolean executeChecker(List<T> records, ModelCheckerV1<T> modelChecker) {	
 		boolean lastResult = SUCCESS;
 		
 		for (T eachRecord : records) {
@@ -67,7 +68,7 @@ public final class DeciTreeHelper<T extends InfoRecord> implements DeciTree<T> {
 	
 	
 	
-	private DeciResult<T> onFailed(List<ActionStdV1<T>> actions, ModelChecker<T> modelChecker) {
+	private DeciResult<T> onFailed(List<ActionStdV1<T>> actions, ModelCheckerV1<T> modelChecker) {
 		if (hasAction(actions) == FAILED)		
 			return makeCheckerResult(modelChecker);
 		
@@ -124,6 +125,7 @@ public final class DeciTreeHelper<T extends InfoRecord> implements DeciTree<T> {
 	@Override public void close() {
 		closeActions(actionsOnPassed);
 		closeActions(actionsOnFailed);
+		closeChecker(checker);
 		clear();
 	}
 	
@@ -145,7 +147,17 @@ public final class DeciTreeHelper<T extends InfoRecord> implements DeciTree<T> {
 	
 	
 	
-	private DeciResult<T> makeCheckerResult(ModelChecker<T> modelChecker) {	
+	private void closeChecker(ModelCheckerV1<T> modelChecker) {
+		if (modelChecker == null)
+			return;
+		
+		if (modelChecker instanceof ModelCheckerV2)
+			((ModelCheckerV2<T>) modelChecker).close();
+	}
+	
+	
+	
+	private DeciResult<T> makeCheckerResult(ModelCheckerV1<T> modelChecker) {	
 		if (modelChecker.getResult() == SUCCESS)
 			return makeErrorResult();
 		

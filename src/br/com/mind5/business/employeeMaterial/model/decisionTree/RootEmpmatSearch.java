@@ -9,12 +9,12 @@ import br.com.mind5.business.employeeMaterial.model.action.StdEmpmatMergeEmpmarc
 import br.com.mind5.business.employeeMaterial.model.checker.EmpmatCheckDummy;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootEmpmatSearch extends DeciTreeReadTemplate<EmpmatInfo> {
+public final class RootEmpmatSearch extends DeciTreeTemplateRead<EmpmatInfo> {
 	
 	public RootEmpmatSearch(DeciTreeOption<EmpmatInfo> option) {
 		super(option);
@@ -22,14 +22,14 @@ public final class RootEmpmatSearch extends DeciTreeReadTemplate<EmpmatInfo> {
 	
 	
 	
-	@Override protected ModelChecker<EmpmatInfo> buildCheckerHook(DeciTreeOption<EmpmatInfo> option) {
-		List<ModelChecker<EmpmatInfo>> queue = new ArrayList<>();		
-		ModelChecker<EmpmatInfo> checker;
+	@Override protected ModelCheckerV1<EmpmatInfo> buildCheckerHook(DeciTreeOption<EmpmatInfo> option) {
+		List<ModelCheckerV1<EmpmatInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<EmpmatInfo> checker;
 			
 		checker = new EmpmatCheckDummy();
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

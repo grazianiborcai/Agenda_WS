@@ -7,13 +7,13 @@ import br.com.mind5.business.masterData.info.MatGroupInfo;
 import br.com.mind5.business.masterData.model.action.StdMatGroupSelect;
 import br.com.mind5.business.masterData.model.checker.MatGroupCheckRead;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootMatGroupSelect extends DeciTreeReadTemplate<MatGroupInfo> {
+public final class RootMatGroupSelect extends DeciTreeTemplateRead<MatGroupInfo> {
 	
 	public RootMatGroupSelect(DeciTreeOption<MatGroupInfo> option) {
 		super(option);
@@ -21,9 +21,9 @@ public final class RootMatGroupSelect extends DeciTreeReadTemplate<MatGroupInfo>
 	
 	
 	
-	@Override protected ModelChecker<MatGroupInfo> buildCheckerHook(DeciTreeOption<MatGroupInfo> option) {
-		List<ModelChecker<MatGroupInfo>> queue = new ArrayList<>();		
-		ModelChecker<MatGroupInfo> checker;
+	@Override protected ModelCheckerV1<MatGroupInfo> buildCheckerHook(DeciTreeOption<MatGroupInfo> option) {
+		List<ModelCheckerV1<MatGroupInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<MatGroupInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
 		checkerOption = new ModelCheckerOption();
@@ -33,7 +33,7 @@ public final class RootMatGroupSelect extends DeciTreeReadTemplate<MatGroupInfo>
 		checker = new MatGroupCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

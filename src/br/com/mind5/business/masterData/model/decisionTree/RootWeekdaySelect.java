@@ -7,13 +7,13 @@ import br.com.mind5.business.masterData.info.WeekdayInfo;
 import br.com.mind5.business.masterData.model.action.StdWeekdaySelect;
 import br.com.mind5.business.masterData.model.checker.WeekdayCheckRead;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootWeekdaySelect extends DeciTreeReadTemplate<WeekdayInfo> {
+public final class RootWeekdaySelect extends DeciTreeTemplateRead<WeekdayInfo> {
 	
 	public RootWeekdaySelect(DeciTreeOption<WeekdayInfo> option) {
 		super(option);
@@ -21,9 +21,9 @@ public final class RootWeekdaySelect extends DeciTreeReadTemplate<WeekdayInfo> {
 	
 	
 	
-	@Override protected ModelChecker<WeekdayInfo> buildCheckerHook(DeciTreeOption<WeekdayInfo> option) {
-		List<ModelChecker<WeekdayInfo>> queue = new ArrayList<>();		
-		ModelChecker<WeekdayInfo> checker;
+	@Override protected ModelCheckerV1<WeekdayInfo> buildCheckerHook(DeciTreeOption<WeekdayInfo> option) {
+		List<ModelCheckerV1<WeekdayInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<WeekdayInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
 		checkerOption = new ModelCheckerOption();
@@ -33,7 +33,7 @@ public final class RootWeekdaySelect extends DeciTreeReadTemplate<WeekdayInfo> {
 		checker = new WeekdayCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 
 		

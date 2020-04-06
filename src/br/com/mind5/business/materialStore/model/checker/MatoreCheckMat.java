@@ -5,14 +5,14 @@ import java.util.List;
 import br.com.mind5.business.material.info.MatInfo;
 import br.com.mind5.business.material.model.checker.MatCheckExist;
 import br.com.mind5.business.materialStore.info.MatoreInfo;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 
-public final class MatoreCheckMat implements ModelChecker<MatoreInfo> {
+public final class MatoreCheckMat implements ModelCheckerV1<MatoreInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<MatInfo> checker;
+	private ModelCheckerV1<MatInfo> checker;
 	
 	
 	public MatoreCheckMat(ModelCheckerOption option) {

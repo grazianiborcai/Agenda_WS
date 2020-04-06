@@ -6,9 +6,9 @@ import br.com.mind5.business.materialStock.info.MatockInfo;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class MatockCheckWrite extends ModelCheckerTemplateSimple<MatockInfo> {
+public final class MatockCheckWrite extends ModelCheckerTemplateSimpleV2<MatockInfo> {
 
 	public MatockCheckWrite(ModelCheckerOption option) {
 		super(option);

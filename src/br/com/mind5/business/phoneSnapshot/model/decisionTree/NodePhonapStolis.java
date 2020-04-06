@@ -8,13 +8,13 @@ import br.com.mind5.business.phoneSnapshot.model.action.StdPhonapMergeStolis;
 import br.com.mind5.business.phoneSnapshot.model.action.StdPhonapSuccess;
 import br.com.mind5.business.phoneSnapshot.model.checker.PhonapCheckHasStore;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class NodePhonapStolis extends DeciTreeReadTemplate<PhonapInfo> {
+public final class NodePhonapStolis extends DeciTreeTemplateRead<PhonapInfo> {
 	
 	public NodePhonapStolis(DeciTreeOption<PhonapInfo> option) {
 		super(option);
@@ -22,9 +22,9 @@ public final class NodePhonapStolis extends DeciTreeReadTemplate<PhonapInfo> {
 	
 	
 	
-	@Override protected ModelChecker<PhonapInfo> buildCheckerHook(DeciTreeOption<PhonapInfo> option) {
-		List<ModelChecker<PhonapInfo>> queue = new ArrayList<>();		
-		ModelChecker<PhonapInfo> checker;	
+	@Override protected ModelCheckerV1<PhonapInfo> buildCheckerHook(DeciTreeOption<PhonapInfo> option) {
+		List<ModelCheckerV1<PhonapInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<PhonapInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -34,7 +34,7 @@ public final class NodePhonapStolis extends DeciTreeReadTemplate<PhonapInfo> {
 		checker = new PhonapCheckHasStore(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

@@ -6,9 +6,9 @@ import br.com.mind5.business.cart.info.CartInfo;
 import br.com.mind5.business.cartItem.info.CartemInfo;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class CartCheckAged extends ModelCheckerTemplateSimple<CartInfo> {
+public final class CartCheckAged extends ModelCheckerTemplateSimpleV2<CartInfo> {
 
 	public CartCheckAged(ModelCheckerOption option) {
 		super(option);

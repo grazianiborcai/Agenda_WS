@@ -14,13 +14,13 @@ import br.com.mind5.business.materialStore.model.checker.MatoreCheckStorauth;
 import br.com.mind5.business.materialStore.model.checker.MatoreCheckWrite;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootMatoreDelete extends DeciTreeWriteTemplate<MatoreInfo> {
+public final class RootMatoreDelete extends DeciTreeTemplateWrite<MatoreInfo> {
 	
 	public RootMatoreDelete(DeciTreeOption<MatoreInfo> option) {
 		super(option);
@@ -28,9 +28,9 @@ public final class RootMatoreDelete extends DeciTreeWriteTemplate<MatoreInfo> {
 	
 	
 	
-	@Override protected ModelChecker<MatoreInfo> buildCheckerHook(DeciTreeOption<MatoreInfo> option) {		
-		List<ModelChecker<MatoreInfo>> queue = new ArrayList<>();		
-		ModelChecker<MatoreInfo> checker;
+	@Override protected ModelCheckerV1<MatoreInfo> buildCheckerHook(DeciTreeOption<MatoreInfo> option) {		
+		List<ModelCheckerV1<MatoreInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<MatoreInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -55,7 +55,7 @@ public final class RootMatoreDelete extends DeciTreeWriteTemplate<MatoreInfo> {
 		queue.add(checker);		
 		
 		//TODO: Verificar conflito com MatEmp ou eliminar MatEmp impactados
-		return new ModelCheckerQueue<MatoreInfo>(queue);
+		return new ModelCheckerHelperQueueV2<MatoreInfo>(queue);
 	}
 	
 	

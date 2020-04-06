@@ -5,11 +5,11 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
 import br.com.mind5.payment.creditCard.model.action.LazyCrecardEnforceUserKey;
 import br.com.mind5.payment.creditCard.model.action.LazyCrecardMergeCrecarch;
@@ -17,7 +17,7 @@ import br.com.mind5.payment.creditCard.model.action.LazyCrecardRootSelect;
 import br.com.mind5.payment.creditCard.model.checker.CrecardCheckSearch;
 import br.com.mind5.payment.creditCard.model.checker.CrecardCheckUsername;
 
-public final class RootCrecardSearch extends DeciTreeReadTemplate<CrecardInfo> {
+public final class RootCrecardSearch extends DeciTreeTemplateRead<CrecardInfo> {
 	
 	public RootCrecardSearch(DeciTreeOption<CrecardInfo> option) {
 		super(option);
@@ -25,9 +25,9 @@ public final class RootCrecardSearch extends DeciTreeReadTemplate<CrecardInfo> {
 	
 	
 	
-	@Override protected ModelChecker<CrecardInfo> buildCheckerHook(DeciTreeOption<CrecardInfo> option) {
-		List<ModelChecker<CrecardInfo>> queue = new ArrayList<>();		
-		ModelChecker<CrecardInfo> checker;
+	@Override protected ModelCheckerV1<CrecardInfo> buildCheckerHook(DeciTreeOption<CrecardInfo> option) {
+		List<ModelCheckerV1<CrecardInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<CrecardInfo> checker;
 		ModelCheckerOption checkerOption;
 
 		checkerOption = new ModelCheckerOption();
@@ -44,7 +44,7 @@ public final class RootCrecardSearch extends DeciTreeReadTemplate<CrecardInfo> {
 		checker = new CrecardCheckUsername(checkerOption);
 		queue.add(checker);	
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.mind5.business.scheduleLine.info.SchedineInfo;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class SchedineCheckMove extends ModelCheckerTemplateSimple<SchedineInfo> {
+public final class SchedineCheckMove extends ModelCheckerTemplateSimpleV2<SchedineInfo> {
 
 	public SchedineCheckMove(ModelCheckerOption option) {
 		super(option);

@@ -5,14 +5,14 @@ import java.util.List;
 import br.com.mind5.business.masterData.info.CurrencyInfo;
 import br.com.mind5.business.masterData.model.checker.CurrencyCheckExist;
 import br.com.mind5.business.store.info.StoreInfo;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 
-public final class StoreCheckCurrency implements ModelChecker<StoreInfo> {
+public final class StoreCheckCurrency implements ModelCheckerV1<StoreInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<CurrencyInfo> checker;
+	private ModelCheckerV1<CurrencyInfo> checker;
 	
 	
 	public StoreCheckCurrency(ModelCheckerOption option) {

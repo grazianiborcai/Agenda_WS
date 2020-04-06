@@ -2,18 +2,18 @@ package br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.model.checker;
 
 import java.util.List;
 
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.payment.payOrderItemSearch.info.PayormarchCopier;
 import br.com.mind5.payment.payOrderItemSearch.info.PayormarchInfo;
 import br.com.mind5.payment.payOrderItemSearch.model.checker.PayormarchCheckExist;
 import br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.info.MultmoipInfo;
 
-public final class MultmoipCheckPayormarch implements ModelChecker<MultmoipInfo> {
+public final class MultmoipCheckPayormarch implements ModelCheckerV1<MultmoipInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<PayormarchInfo> checker;
+	private ModelCheckerV1<PayormarchInfo> checker;
 	
 	
 	public MultmoipCheckPayormarch(ModelCheckerOption option) {

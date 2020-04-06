@@ -7,12 +7,12 @@ import br.com.mind5.business.cart.info.CartInfo;
 import br.com.mind5.business.cart.model.action.StdCartInsert;
 import br.com.mind5.business.cart.model.checker.CartCheckDummy;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodeCartInsert extends DeciTreeWriteTemplate<CartInfo> {
+public final class NodeCartInsert extends DeciTreeTemplateWrite<CartInfo> {
 	
 	public NodeCartInsert(DeciTreeOption<CartInfo> option) {
 		super(option);
@@ -20,14 +20,14 @@ public final class NodeCartInsert extends DeciTreeWriteTemplate<CartInfo> {
 	
 	
 	
-	@Override protected ModelChecker<CartInfo> buildCheckerHook(DeciTreeOption<CartInfo> option) {
-		List<ModelChecker<CartInfo>> queue = new ArrayList<>();		
-		ModelChecker<CartInfo> checker;	
+	@Override protected ModelCheckerV1<CartInfo> buildCheckerHook(DeciTreeOption<CartInfo> option) {
+		List<ModelCheckerV1<CartInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<CartInfo> checker;	
 
 		checker = new CartCheckDummy();
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

@@ -5,14 +5,14 @@ import java.util.List;
 import br.com.mind5.business.masterData.info.LanguInfo;
 import br.com.mind5.business.masterData.model.checker.LanguCheckExist;
 import br.com.mind5.business.person.info.PersonInfo;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 
-public final class PersonCheckLangu implements ModelChecker<PersonInfo> {
+public final class PersonCheckLangu implements ModelCheckerV1<PersonInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelChecker<LanguInfo> checker;
+	private ModelCheckerV1<LanguInfo> checker;
 	
 	
 	public PersonCheckLangu(ModelCheckerOption option) {

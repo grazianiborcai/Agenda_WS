@@ -6,4 +6,6 @@ public interface Model {
 	public boolean executeRequest();
 	
 	public Response getResponse();
+	
+	public void close();
 }

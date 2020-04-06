@@ -6,15 +6,15 @@ import java.util.List;
 import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.address.model.action.LazyAddressRootSelect;
 import br.com.mind5.business.address.model.action.StdAddressMergeAddarch;
-import br.com.mind5.business.address.model.checker.AddressCheckDummy;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.common.ModelCherckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeWriteTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootAddressSearch extends DeciTreeWriteTemplate<AddressInfo> {
+public final class RootAddressSearch extends DeciTreeTemplateWrite<AddressInfo> {
 	
 	public RootAddressSearch(DeciTreeOption<AddressInfo> option) {
 		super(option);
@@ -22,14 +22,14 @@ public final class RootAddressSearch extends DeciTreeWriteTemplate<AddressInfo> 
 	
 	
 	
-	@Override protected ModelChecker<AddressInfo> buildCheckerHook(DeciTreeOption<AddressInfo> option) {
-		List<ModelChecker<AddressInfo>> queue = new ArrayList<>();		
-		ModelChecker<AddressInfo> checker;	
+	@Override protected ModelCheckerV1<AddressInfo> buildCheckerHook(DeciTreeOption<AddressInfo> option) {
+		List<ModelCheckerV1<AddressInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<AddressInfo> checker;	
 
-		checker = new AddressCheckDummy();
+		checker = new ModelCherckerDummy<>();
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
 	

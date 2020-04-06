@@ -7,13 +7,13 @@ import br.com.mind5.masterData.moonPhase.info.MoonaseInfo;
 import br.com.mind5.masterData.moonPhase.model.action.StdMoonaseSelect;
 import br.com.mind5.masterData.moonPhase.model.checker.MoonaseCheckRead;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerQueue;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeReadTemplate;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootMoonaseSelect extends DeciTreeReadTemplate<MoonaseInfo> {
+public final class RootMoonaseSelect extends DeciTreeTemplateRead<MoonaseInfo> {
 	
 	public RootMoonaseSelect(DeciTreeOption<MoonaseInfo> option) {
 		super(option);
@@ -21,9 +21,9 @@ public final class RootMoonaseSelect extends DeciTreeReadTemplate<MoonaseInfo> {
 	
 	
 	
-	@Override protected ModelChecker<MoonaseInfo> buildCheckerHook(DeciTreeOption<MoonaseInfo> option) {
-		List<ModelChecker<MoonaseInfo>> queue = new ArrayList<>();		
-		ModelChecker<MoonaseInfo> checker;
+	@Override protected ModelCheckerV1<MoonaseInfo> buildCheckerHook(DeciTreeOption<MoonaseInfo> option) {
+		List<ModelCheckerV1<MoonaseInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<MoonaseInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
 		checkerOption = new ModelCheckerOption();
@@ -33,7 +33,7 @@ public final class RootMoonaseSelect extends DeciTreeReadTemplate<MoonaseInfo> {
 		checker = new MoonaseCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerQueue<>(queue);
+		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 
 		
