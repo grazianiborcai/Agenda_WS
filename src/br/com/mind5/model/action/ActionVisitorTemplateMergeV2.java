@@ -419,6 +419,7 @@ public abstract class ActionVisitorTemplateMergeV2<T extends InfoRecord, S exten
 			throw new NullPointerException("option.recordInfos" + SystemMessage.NULL_ARGUMENT);
 		}
 		
+		
 		if (option.recordInfos.isEmpty()) {
 			logException(new NullPointerException("option.recordInfos" + SystemMessage.EMPTY_ARGUMENT));
 			throw new NullPointerException("option.recordInfos" + SystemMessage.EMPTY_ARGUMENT);

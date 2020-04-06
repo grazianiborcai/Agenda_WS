@@ -1,47 +1,48 @@
 package br.com.mind5.model.decisionTree;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
+import br.com.mind5.common.CloneUtil;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.InfoRecord;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelChecker;
+import br.com.mind5.model.decisionTree.common.DeciResultError;
 
 public abstract class DeciTreeWriteTemplate<T extends InfoRecord> implements DeciTree<T> {
-	private DeciTree<T> currentTree;
 	private List<DeciTree<T>> trees;
-	private Iterator<DeciTree<T>> itr;
+	private DeciResult<T> treeResult;
 	
 	
 	public DeciTreeWriteTemplate(DeciTreeOption<T> option) {
 		checkArgument(option);
-		trees = buildTrees(option);
+		clear();
 		
-		itr = trees.iterator();
-		currentTree = itr.next();
+		trees = buildTrees(option);
 	}
 	
 	
 	
-	private List<DeciTree<T>> buildTrees(DeciTreeOption<T> option) {
-		List<DeciTree<T>> resultTrees = new ArrayList<>();
+	private List<DeciTree<T>> buildTrees(DeciTreeOption<T> sourceOption) {
+		List<DeciTree<T>> results = new ArrayList<>();
 		
-		for (T eachRecord : option.recordInfos) {
-			DeciTreeOption<T> flatOption = flattenTreeOption(option, eachRecord);
-			DeciTreeHelper<T> treeHelper = buildTreeHelper(flatOption);
-			resultTrees.add(treeHelper);
+		for (T eachRecord : sourceOption.recordInfos) {
+			T clonedRecord = makeClone(eachRecord);
+			
+			DeciTreeOption<T> treeOption = buildTreeOption(sourceOption, clonedRecord);
+			DeciTreeHelper<T> treeHelper = buildTreeHelper(treeOption);
+			results.add(treeHelper);
 		}
 		
-		return resultTrees;
+		return results;
 	}
 	
 	
 	
-	private DeciTreeOption<T> flattenTreeOption(DeciTreeOption<T> option, T recordInfo) {
+	private DeciTreeOption<T> buildTreeOption(DeciTreeOption<T> option, T recordInfo) {
 		List<T> recordInfos = new ArrayList<>();
 		recordInfos.add(recordInfo);
 		
@@ -93,52 +94,56 @@ public abstract class DeciTreeWriteTemplate<T extends InfoRecord> implements Dec
 	
 	
 	@Override public void makeDecision() {
-		currentTree.makeDecision();
+		checkState();
 		
-		while(itr.hasNext()) {
-			if (currentTree.getDecisionResult().isSuccess() == false)
-				break;
+		for(DeciTree<T> eachTree : trees) {
+			eachTree.makeDecision();
+			treeResult = eachTree.getDecisionResult();
 			
-			currentTree = itr.next();
-			currentTree.makeDecision();
+			if (treeResult.isSuccess() == false)
+				break;
 		}
 	}
 	
 	
 	
 	@Override public DeciResult<T> getDecisionResult() {
-		return makeDeciResult();
+		checkState();
+		return makeDeciResult(treeResult, trees);
 	}
 	
 	
 	
-	private DeciResult<T> makeDeciResult() {
-		if (currentTree.getDecisionResult().isSuccess() == false)
-			return currentTree.getDecisionResult();
+	private DeciResult<T> makeDeciResult(DeciResult<T> lastResult, List<DeciTree<T>> deciTrees) {
+		if (lastResult == null)
+			return makeErrorResult();
 		
-		DeciResultHelper<T> result = new DeciResultHelper<>();
-		result.copyWithoutResultset(currentTree.getDecisionResult());
-		result.resultset = new ArrayList<>();
+		if (lastResult.isSuccess() == false)
+			return lastResult;
 		
-		for (DeciTree<T> eachTree : trees) {		
-			result = mergeResultset(eachTree.getDecisionResult(), result);
+		List<T> allResultset = mergeResultset(deciTrees);
+		return makeSuccessResult(allResultset);
+	}
+	
+	
+	
+	private List<T> mergeResultset(List<DeciTree<T>> deciTrees) {	
+		List<T> results = new ArrayList<>();
+		
+		for(DeciTree<T> eachTree : deciTrees) {
+			DeciResult<T> eachResult = eachTree.getDecisionResult();
+			
+			if (eachResult.hasResultset() == true)
+				results.addAll(eachResult.getResultset());
 		}
-		
-		return result;
-	}
-	
-	
-	
-	private DeciResultHelper<T> mergeResultset(DeciResult<T> source, DeciResultHelper<T> target) {		
-		if (source.hasResultset())
-			target.resultset.addAll(source.getResultset());
-		
-		return target;
+
+		return results;
 	}
 	
 	
 	
 	@Override public ActionStdV1<T> toAction() {
+		checkState();
 		return new DeciTreeAdapter<>(trees);
 	}
 	
@@ -166,9 +171,49 @@ public abstract class DeciTreeWriteTemplate<T extends InfoRecord> implements Dec
 	
 	
 	private void clear() {
-		currentTree = DefaultValue.object();
+		treeResult = DefaultValue.object();
 		trees = DefaultValue.list();
-		itr = DefaultValue.object();
+	}
+	
+	
+	
+	private DeciResult<T> makeErrorResult() {
+		return new DeciResultError<T>();
+	}
+	
+	
+	
+	private DeciResult<T> makeSuccessResult(List<T> resultset) {
+		DeciResultHelper<T> result = new DeciResultHelper<>();
+		
+		result.isSuccess = true;
+		result.hasResultset = true;
+		
+		if(resultset == null)
+			result.hasResultset = false;
+		
+		if(resultset.isEmpty())
+			result.hasResultset = false;
+		
+		if (result.hasResultset == true)
+			result.resultset = resultset;
+		
+		return result;
+	}
+	
+	
+	
+	private void checkState() {
+		if (trees == null) {
+			logException(new IllegalStateException(SystemMessage.OBJECT_IS_CLOSED));
+			throw new IllegalStateException(SystemMessage.OBJECT_IS_CLOSED);
+		}
+	}
+	
+	
+	
+	private T makeClone(T recordInfo) {
+		return CloneUtil.cloneRecord(recordInfo, this.getClass());
 	}
 	
 	

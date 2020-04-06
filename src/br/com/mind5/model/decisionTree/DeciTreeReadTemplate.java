@@ -13,7 +13,8 @@ public abstract class DeciTreeReadTemplate<T extends InfoRecord> implements Deci
 	
 	
 	public DeciTreeReadTemplate(DeciTreeOption<T> option) {
-		checkArgument(option);		
+		checkArgument(option);
+		clear();
 		
 		DeciTreeHelperOption<T> helperOption = makeHelperOption(option);		
 		tree = new DeciTreeHelper<>(helperOption);
