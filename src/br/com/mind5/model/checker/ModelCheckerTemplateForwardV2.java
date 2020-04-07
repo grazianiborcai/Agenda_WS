@@ -7,7 +7,7 @@ import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.InfoRecord;
 
-public class ModelCheckerTemplateForwardV2<T extends InfoRecord, S extends InfoRecord> implements ModelCheckerV2<T> {
+public abstract class ModelCheckerTemplateForwardV2<T extends InfoRecord, S extends InfoRecord> implements ModelCheckerV2<T> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	

@@ -13,10 +13,11 @@ import br.com.mind5.info.InfoRecord;
 import br.com.mind5.message.sysMessage.info.SymsgInfo;
 import br.com.mind5.message.sysMessage.model.decisionTree.RootSymsgSelect;
 import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public abstract class ModelCheckerTemplateAction<T extends InfoRecord, S extends InfoRecord> implements ModelCheckerV1<T> {
+public abstract class ModelCheckerTemplateAction<T extends InfoRecord, S extends InfoRecord> implements ModelCheckerV2<T> {
 	private final boolean SUCCESS = ModelCheckerOption.SUCCESS;
 	private final boolean FAILED = ModelCheckerOption.FAILED;
 	private final boolean NOT_FOUND = ModelCheckerOption.FAILED;
@@ -49,6 +50,7 @@ public abstract class ModelCheckerTemplateAction<T extends InfoRecord, S extends
 	
 	
 	@Override public boolean check(List<T> recordInfos) {
+		checkState();
 		checkArgument(recordInfos);		
 		
 		for (T eachRecordInfo : recordInfos) {
@@ -64,6 +66,7 @@ public abstract class ModelCheckerTemplateAction<T extends InfoRecord, S extends
 	
 	
 	@Override public boolean check(T recordInfo) {
+		checkState();
 		checkArgument(recordInfo);		
 		codLanguage = getLanguage(recordInfo);
 		
@@ -91,8 +94,7 @@ public abstract class ModelCheckerTemplateAction<T extends InfoRecord, S extends
 		DeciTreeOption<S> option = buildActionOption(recordInfo, dbConn, dbSchema);
 		ActionStdV1<S> action = buildActionHook(option);
 		
-		DeciResult<S> actionResult = execute(action);			
-		
+		DeciResult<S> actionResult = execute(action);	
 		return evaluateResult(actionResult);		
 	}
 	
@@ -122,7 +124,10 @@ public abstract class ModelCheckerTemplateAction<T extends InfoRecord, S extends
 		 checkArgument(action);
 		 
 		 action.executeAction();
-		 return action.getDecisionResult();
+		 DeciResult<S> result = action.getDecisionResult();
+		 
+		 closeAction(action);
+		 return result;
 	}
 	
 	
@@ -184,6 +189,8 @@ public abstract class ModelCheckerTemplateAction<T extends InfoRecord, S extends
 	
 	
 	@Override public boolean getResult() {
+		checkState();
+		
 		if (finalResult == null) {
 			logException(new IllegalStateException(SystemMessage.NO_CHECK_PERFORMED));
 			throw new IllegalStateException(SystemMessage.NO_CHECK_PERFORMED);
@@ -319,6 +326,8 @@ public abstract class ModelCheckerTemplateAction<T extends InfoRecord, S extends
 	
 	
 	@Override public String getFailMessage() {
+		checkState();
+		
 		if (symsgData == null) {
 			logException(new IllegalStateException(SystemMessage.NO_ERROR_FOUND));
 			throw new IllegalStateException(SystemMessage.NO_ERROR_FOUND);
@@ -330,12 +339,51 @@ public abstract class ModelCheckerTemplateAction<T extends InfoRecord, S extends
 	
 	
 	@Override public int getFailCode() {
+		checkState();
+		
 		if (symsgData == null) {
 			logException(new IllegalStateException(SystemMessage.NO_ERROR_FOUND));
 			throw new IllegalStateException(SystemMessage.NO_ERROR_FOUND);
 		}
 		
 		return symsgData.codMsg;
+	}
+	
+	
+	
+	@Override public void close() {
+		clear();
+	}
+	
+	
+	
+	private void closeAction(ActionStdV1<S> action) {
+		if (action == null)
+			return;
+		
+		if(action instanceof ActionStdV2)
+			((ActionStdV2<S>) action).close();
+	}
+	
+	
+	
+	private void clear() {
+		finalResult = DefaultValue.object();
+		expectedResult = DefaultValue.boole();
+		conn = DefaultValue.object();
+		schemaName = DefaultValue.object();
+		codLanguage = DefaultValue.language();
+		symsgData = DefaultValue.object();
+		sClazz = DefaultValue.object();
+	}
+	
+	
+	
+	private void checkState() {
+		if (conn == null) {
+			logException(new IllegalStateException(SystemMessage.OBJECT_IS_CLOSED));
+			throw new IllegalStateException(SystemMessage.OBJECT_IS_CLOSED);
+		}
 	}
 	
 	
