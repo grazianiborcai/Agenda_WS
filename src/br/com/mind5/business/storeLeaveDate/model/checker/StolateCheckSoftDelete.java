@@ -7,10 +7,10 @@ import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateAction;
+import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StolateCheckSoftDelete extends ModelCheckerTemplateAction<StolateInfo, StolateInfo> {
+public final class StolateCheckSoftDelete extends ModelCheckerTemplateActionV2<StolateInfo, StolateInfo> {
 	
 	public StolateCheckSoftDelete(ModelCheckerOption option) {
 		super(option, StolateInfo.class);

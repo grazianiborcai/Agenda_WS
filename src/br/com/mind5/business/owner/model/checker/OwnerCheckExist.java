@@ -5,10 +5,10 @@ import br.com.mind5.business.owner.model.action.StdOwnerDaoSelect;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateAction;
+import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class OwnerCheckExist extends ModelCheckerTemplateAction<OwnerInfo, OwnerInfo> {
+public final class OwnerCheckExist extends ModelCheckerTemplateActionV2<OwnerInfo, OwnerInfo> {
 	
 	public OwnerCheckExist(ModelCheckerOption option) {
 		super(option, OwnerInfo.class);

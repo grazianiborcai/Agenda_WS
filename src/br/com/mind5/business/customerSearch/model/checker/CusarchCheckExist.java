@@ -5,10 +5,10 @@ import br.com.mind5.business.customerSearch.model.decisionTree.RootCusarchSelect
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateAction;
+import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class CusarchCheckExist extends ModelCheckerTemplateAction<CusarchInfo, CusarchInfo> {
+public final class CusarchCheckExist extends ModelCheckerTemplateActionV2<CusarchInfo, CusarchInfo> {
 	
 	public CusarchCheckExist(ModelCheckerOption option) {
 		super(option, CusarchInfo.class);

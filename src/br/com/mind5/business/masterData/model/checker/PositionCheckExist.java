@@ -5,10 +5,10 @@ import br.com.mind5.business.masterData.model.action.StdPositionSelect;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateAction;
+import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class PositionCheckExist extends ModelCheckerTemplateAction<PositionInfo, PositionInfo> {
+public final class PositionCheckExist extends ModelCheckerTemplateActionV2<PositionInfo, PositionInfo> {
 	
 	public PositionCheckExist(ModelCheckerOption option) {
 		super(option, PositionInfo.class);

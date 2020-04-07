@@ -5,10 +5,10 @@ import br.com.mind5.business.materialSearch.model.decisionTree.RootMatarchSelect
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateAction;
+import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class MatarchCheckExistService extends ModelCheckerTemplateAction<MatarchInfo, MatarchInfo> {	
+public final class MatarchCheckExistService extends ModelCheckerTemplateActionV2<MatarchInfo, MatarchInfo> {	
 	
 	public MatarchCheckExistService(ModelCheckerOption option) {
 		super(option, MatarchInfo.class);

@@ -6,10 +6,10 @@ import br.com.mind5.file.fileImageSearch.info.FimarchInfo;
 import br.com.mind5.file.fileImageSearch.model.decisionTree.RootFimarchSelectEmp;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateAction;
+import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class FimgCheckExistEmp extends ModelCheckerTemplateAction<FimgInfo, FimarchInfo> {	
+public final class FimgCheckExistEmp extends ModelCheckerTemplateActionV2<FimgInfo, FimarchInfo> {	
 	
 	public FimgCheckExistEmp(ModelCheckerOption option) {
 		super(option, FimarchInfo.class);

@@ -14,7 +14,7 @@ import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.common.ModelCherckerDummy;
+import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
@@ -30,7 +30,7 @@ public final class NodeOwnerInsert extends DeciTreeTemplateWrite<OwnerInfo> {
 		List<ModelCheckerV1<OwnerInfo>> queue = new ArrayList<>();		
 		ModelCheckerV1<OwnerInfo> checker;
 
-		checker = new ModelCherckerDummy<>();
+		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueueV2<>(queue);

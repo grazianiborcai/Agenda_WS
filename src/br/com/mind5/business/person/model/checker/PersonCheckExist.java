@@ -5,10 +5,10 @@ import br.com.mind5.business.person.model.action.StdPersonSelect;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateAction;
+import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class PersonCheckExist extends ModelCheckerTemplateAction<PersonInfo, PersonInfo> {
+public final class PersonCheckExist extends ModelCheckerTemplateActionV2<PersonInfo, PersonInfo> {
 	
 	public PersonCheckExist(ModelCheckerOption option) {
 		super(option, PersonInfo.class);

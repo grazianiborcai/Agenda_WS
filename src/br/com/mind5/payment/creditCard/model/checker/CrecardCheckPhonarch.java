@@ -8,11 +8,11 @@ import br.com.mind5.business.phoneSearch.model.decisionTree.RootPhonarchSelect;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateAction;
+import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
 
-public final class CrecardCheckPhonarch extends ModelCheckerTemplateAction<CrecardInfo, PhonarchInfo> {	
+public final class CrecardCheckPhonarch extends ModelCheckerTemplateActionV2<CrecardInfo, PhonarchInfo> {	
 	
 	public CrecardCheckPhonarch(ModelCheckerOption option) {
 		super(option, PhonarchInfo.class);

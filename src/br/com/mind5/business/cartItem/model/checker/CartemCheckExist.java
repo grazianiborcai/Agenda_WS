@@ -5,10 +5,10 @@ import br.com.mind5.business.cartItem.model.action.StdCartemSelect;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateAction;
+import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class CartemCheckExist extends ModelCheckerTemplateAction<CartemInfo, CartemInfo> {
+public final class CartemCheckExist extends ModelCheckerTemplateActionV2<CartemInfo, CartemInfo> {
 	
 	public CartemCheckExist(ModelCheckerOption option) {
 		super(option, CartemInfo.class);

@@ -5,10 +5,10 @@ import br.com.mind5.masterData.moonPhase.model.action.StdMoonaseSelect;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateAction;
+import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class MoonaseCheckExist extends ModelCheckerTemplateAction<MoonaseInfo, MoonaseInfo> {
+public final class MoonaseCheckExist extends ModelCheckerTemplateActionV2<MoonaseInfo, MoonaseInfo> {
 	
 	public MoonaseCheckExist(ModelCheckerOption option) {
 		super(option, MoonaseInfo.class);

@@ -5,10 +5,10 @@ import br.com.mind5.business.calendarDate.model.action.StdCalateSelect;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateAction;
+import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class CalateCheckExist extends ModelCheckerTemplateAction<CalateInfo, CalateInfo> {
+public final class CalateCheckExist extends ModelCheckerTemplateActionV2<CalateInfo, CalateInfo> {
 	
 	public CalateCheckExist(ModelCheckerOption option) {
 		super(option, CalateInfo.class);

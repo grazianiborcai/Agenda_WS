@@ -5,14 +5,14 @@ import java.util.List;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateAction;
+import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.creditCardSearch.info.CrecarchCopier;
 import br.com.mind5.payment.creditCardSearch.info.CrecarchInfo;
 import br.com.mind5.payment.creditCardSearch.model.decisionTree.RootCrecarchSelect;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
 
-public final class PayordCheckCrecarch extends ModelCheckerTemplateAction<PayordInfo, CrecarchInfo> {
+public final class PayordCheckCrecarch extends ModelCheckerTemplateActionV2<PayordInfo, CrecarchInfo> {
 	
 	public PayordCheckCrecarch(ModelCheckerOption option) {
 		super(option, CrecarchInfo.class);

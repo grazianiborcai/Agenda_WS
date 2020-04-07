@@ -5,10 +5,10 @@ import br.com.mind5.business.masterData.model.action.StdOrderStatusSelect;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateAction;
+import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class OrderStatusCheckExist extends ModelCheckerTemplateAction<OrderStatusInfo, OrderStatusInfo> {
+public final class OrderStatusCheckExist extends ModelCheckerTemplateActionV2<OrderStatusInfo, OrderStatusInfo> {
 	
 	public OrderStatusCheckExist(ModelCheckerOption option) {
 		super(option, OrderStatusInfo.class);

@@ -7,10 +7,10 @@ import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateAction;
+import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class EmplateCheckSoftDelete extends ModelCheckerTemplateAction<EmplateInfo, EmplateInfo> {	
+public final class EmplateCheckSoftDelete extends ModelCheckerTemplateActionV2<EmplateInfo, EmplateInfo> {	
 	
 	public EmplateCheckSoftDelete(ModelCheckerOption option) {
 		super(option, EmplateInfo.class);

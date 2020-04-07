@@ -5,10 +5,10 @@ import br.com.mind5.business.employeePosition.model.action.StdEmposSelect;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateAction;
+import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class EmposCheckExist extends ModelCheckerTemplateAction<EmposInfo, EmposInfo> {
+public final class EmposCheckExist extends ModelCheckerTemplateActionV2<EmposInfo, EmposInfo> {
 	
 	public EmposCheckExist(ModelCheckerOption option) {
 		super(option, EmposInfo.class);

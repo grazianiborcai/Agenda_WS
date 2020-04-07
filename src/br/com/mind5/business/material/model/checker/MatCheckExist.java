@@ -5,10 +5,10 @@ import br.com.mind5.business.material.model.action.StdMatSelect;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateAction;
+import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class MatCheckExist extends ModelCheckerTemplateAction<MatInfo, MatInfo> {	
+public final class MatCheckExist extends ModelCheckerTemplateActionV2<MatInfo, MatInfo> {	
 	
 	public MatCheckExist(ModelCheckerOption option) {
 		super(option, MatInfo.class);

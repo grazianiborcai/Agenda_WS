@@ -10,7 +10,7 @@ import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.common.ModelCherckerDummy;
+import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
@@ -26,7 +26,7 @@ public final class RootMatlisSearch extends DeciTreeTemplateRead<MatlisInfo> {
 		List<ModelCheckerV1<MatlisInfo>> queue = new ArrayList<>();		
 		ModelCheckerV1<MatlisInfo> checker;
 
-		checker = new ModelCherckerDummy<>();
+		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueueV2<>(queue);

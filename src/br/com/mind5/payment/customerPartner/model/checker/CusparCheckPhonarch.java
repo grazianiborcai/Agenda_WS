@@ -8,11 +8,11 @@ import br.com.mind5.business.phoneSearch.model.decisionTree.RootPhonarchSelect;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateAction;
+import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
 
-public final class CusparCheckPhonarch extends ModelCheckerTemplateAction<CusparInfo, PhonarchInfo> {	
+public final class CusparCheckPhonarch extends ModelCheckerTemplateActionV2<CusparInfo, PhonarchInfo> {	
 	
 	public CusparCheckPhonarch(ModelCheckerOption option) {
 		super(option, PhonarchInfo.class);

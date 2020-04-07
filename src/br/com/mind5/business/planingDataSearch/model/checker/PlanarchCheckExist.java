@@ -5,10 +5,10 @@ import br.com.mind5.business.planingDataSearch.model.decisionTree.RootPlanarchSe
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateAction;
+import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class PlanarchCheckExist extends ModelCheckerTemplateAction<PlanarchInfo, PlanarchInfo> {
+public final class PlanarchCheckExist extends ModelCheckerTemplateActionV2<PlanarchInfo, PlanarchInfo> {
 	
 	public PlanarchCheckExist(ModelCheckerOption option) {
 		super(option, PlanarchInfo.class);

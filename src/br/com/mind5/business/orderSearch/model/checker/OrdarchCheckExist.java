@@ -5,10 +5,10 @@ import br.com.mind5.business.orderSearch.model.decisionTree.RootOrdarchSelect;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateAction;
+import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class OrdarchCheckExist extends ModelCheckerTemplateAction<OrdarchInfo, OrdarchInfo> {
+public final class OrdarchCheckExist extends ModelCheckerTemplateActionV2<OrdarchInfo, OrdarchInfo> {
 	
 	public OrdarchCheckExist(ModelCheckerOption option) {
 		super(option, OrdarchInfo.class);

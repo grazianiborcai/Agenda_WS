@@ -6,10 +6,10 @@ import br.com.mind5.business.storeWorkTimeRange.model.decisionTree.RootStoworgSe
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateAction;
+import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class EmpwotmCheckStoworg extends ModelCheckerTemplateAction<EmpwotmInfo, StoworgInfo> {
+public final class EmpwotmCheckStoworg extends ModelCheckerTemplateActionV2<EmpwotmInfo, StoworgInfo> {
 
 	public EmpwotmCheckStoworg(ModelCheckerOption option) {
 		super(option, StoworgInfo.class);

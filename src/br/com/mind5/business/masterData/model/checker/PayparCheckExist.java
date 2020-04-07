@@ -5,10 +5,10 @@ import br.com.mind5.business.masterData.model.action.StdPayparSelect;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateAction;
+import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class PayparCheckExist extends ModelCheckerTemplateAction<PayparInfo, PayparInfo> {
+public final class PayparCheckExist extends ModelCheckerTemplateActionV2<PayparInfo, PayparInfo> {
 	
 	public PayparCheckExist(ModelCheckerOption option) {
 		super(option, PayparInfo.class);

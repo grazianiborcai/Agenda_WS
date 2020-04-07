@@ -8,11 +8,11 @@ import br.com.mind5.business.addressSearch.model.decisionTree.RootAddarchSelect;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateAction;
+import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
 
-public final class CrecardCheckAddarch extends ModelCheckerTemplateAction<CrecardInfo, AddarchInfo> {	
+public final class CrecardCheckAddarch extends ModelCheckerTemplateActionV2<CrecardInfo, AddarchInfo> {	
 	
 	public CrecardCheckAddarch(ModelCheckerOption option) {
 		super(option, AddarchInfo.class);

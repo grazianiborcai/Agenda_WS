@@ -9,10 +9,10 @@ import br.com.mind5.business.personSearch.model.decisionTree.RootPerarchSelect;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateAction;
+import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class PersonCheckCpfPerson extends ModelCheckerTemplateAction<PersonInfo, PerarchInfo> {
+public final class PersonCheckCpfPerson extends ModelCheckerTemplateActionV2<PersonInfo, PerarchInfo> {
 	
 	public PersonCheckCpfPerson(ModelCheckerOption option) {
 		super(option, PerarchInfo.class);

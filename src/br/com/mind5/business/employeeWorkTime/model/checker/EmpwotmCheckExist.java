@@ -5,10 +5,10 @@ import br.com.mind5.business.employeeWorkTime.model.action.StdEmpwotmSelect;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateAction;
+import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public class EmpwotmCheckExist extends ModelCheckerTemplateAction<EmpwotmInfo, EmpwotmInfo> {
+public class EmpwotmCheckExist extends ModelCheckerTemplateActionV2<EmpwotmInfo, EmpwotmInfo> {
 	
 	public EmpwotmCheckExist(ModelCheckerOption option) {
 		super(option, EmpwotmInfo.class);

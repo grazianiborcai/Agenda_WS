@@ -5,10 +5,10 @@ import br.com.mind5.business.phoneSearch.model.decisionTree.RootPhonarchSelect;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateAction;
+import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class PhonarchCheckExist extends ModelCheckerTemplateAction<PhonarchInfo, PhonarchInfo> {
+public final class PhonarchCheckExist extends ModelCheckerTemplateActionV2<PhonarchInfo, PhonarchInfo> {
 	
 	public PhonarchCheckExist(ModelCheckerOption option) {
 		super(option, PhonarchInfo.class);

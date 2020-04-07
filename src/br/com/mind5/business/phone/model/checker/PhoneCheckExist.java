@@ -5,10 +5,10 @@ import br.com.mind5.business.phone.model.action.StdPhoneSelect;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateAction;
+import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class PhoneCheckExist extends ModelCheckerTemplateAction<PhoneInfo, PhoneInfo> {
+public final class PhoneCheckExist extends ModelCheckerTemplateActionV2<PhoneInfo, PhoneInfo> {
 	
 	public PhoneCheckExist(ModelCheckerOption option) {
 		super(option, PhoneInfo.class);

@@ -5,10 +5,10 @@ import br.com.mind5.business.cart.model.action.StdCartSelect;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateAction;
+import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class CartCheckExist extends ModelCheckerTemplateAction<CartInfo, CartInfo> {
+public final class CartCheckExist extends ModelCheckerTemplateActionV2<CartInfo, CartInfo> {
 	
 	public CartCheckExist(ModelCheckerOption option) {
 		super(option, CartInfo.class);

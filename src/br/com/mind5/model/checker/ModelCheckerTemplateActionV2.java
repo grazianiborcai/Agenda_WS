@@ -17,7 +17,7 @@ import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public abstract class ModelCheckerTemplateAction<T extends InfoRecord, S extends InfoRecord> implements ModelCheckerV2<T> {
+public abstract class ModelCheckerTemplateActionV2<T extends InfoRecord, S extends InfoRecord> implements ModelCheckerV2<T> {
 	private final boolean SUCCESS = ModelCheckerOption.SUCCESS;
 	private final boolean FAILED = ModelCheckerOption.FAILED;
 	private final boolean NOT_FOUND = ModelCheckerOption.FAILED;
@@ -31,7 +31,7 @@ public abstract class ModelCheckerTemplateAction<T extends InfoRecord, S extends
 	private Class<S> sClazz;
 	
 	
-	protected ModelCheckerTemplateAction(ModelCheckerOption option, Class<S> clazz) {
+	protected ModelCheckerTemplateActionV2(ModelCheckerOption option, Class<S> clazz) {
 		checkArgument(option, clazz);
 		init(option, clazz);
 	}
