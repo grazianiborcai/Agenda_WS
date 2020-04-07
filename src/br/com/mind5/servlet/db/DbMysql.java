@@ -90,7 +90,22 @@ public final class DbMysql {
 	
 	
 	public void close() {
-		if (datasource != null)
-			datasource.close();
+		closeDatasource();
+		clear();
+	}
+	
+	
+	
+	public void closeDatasource() {
+		if (datasource == null)
+			return;
+		
+		datasource.close();
+	}
+	
+	
+	
+	private void clear() {
+		datasource = null;
 	}
 }

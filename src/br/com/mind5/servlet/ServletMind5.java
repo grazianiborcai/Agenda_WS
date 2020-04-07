@@ -51,5 +51,12 @@ public class ServletMind5 extends ServletContainer {
 	@Override public void destroy() {
 		super.destroy();
 		db.close();
+		clear();
+	}
+	
+	
+	
+	private void clear() {
+		db = null;
 	}
 }
