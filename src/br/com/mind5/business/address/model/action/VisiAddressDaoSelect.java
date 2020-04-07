@@ -20,5 +20,4 @@ final class VisiAddressDaoSelect extends ActionVisitorTemplateStmtV2<AddressInfo
 	@Override protected DaoStmtExecV2<AddressInfo> buildStmtExecHook(List<DaoStmtExecOption<AddressInfo>> stmtOptions) {
 		return new DaoAddressSelect(stmtOptions);
 	}
-
 }

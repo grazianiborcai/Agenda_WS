@@ -20,5 +20,4 @@ final class VisiAddressDaoDelete extends ActionVisitorTemplateStmtV2<AddressInfo
 	@Override protected DaoStmtExecV2<AddressInfo> buildStmtExecHook(List<DaoStmtExecOption<AddressInfo>> stmtOptions) {
 		return new DaoAddressDelete(stmtOptions);
 	}
-
 }
