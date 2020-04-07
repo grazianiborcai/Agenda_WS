@@ -1,20 +1,25 @@
 package br.com.mind5.business.owner.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.owner.info.OwnerInfo;
 import br.com.mind5.business.owner.info.OwnerMerger;
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateActionV1;
+import br.com.mind5.model.action.ActionVisitorTemplateActionV2;
+import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.user.info.UserCopier;
 import br.com.mind5.security.user.info.UserInfo;
 import br.com.mind5.security.user.model.decisionTree.RootUserInsertOwner;
 
-final class VisiOwnerInsertUser extends ActionVisitorTemplateActionV1<OwnerInfo, UserInfo> {
-	public VisiOwnerInsertUser(Connection conn, String schemaName) {
-		super(conn, schemaName, OwnerInfo.class, UserInfo.class);
+final class VisiOwnerInsertUser extends ActionVisitorTemplateActionV2<OwnerInfo, UserInfo> {
+	public VisiOwnerInsertUser(DeciTreeOption<OwnerInfo> option) {
+		super(option, OwnerInfo.class, UserInfo.class);
+	}
+	
+	
+	
+	@Override protected Class<? extends DeciTree<UserInfo>> getTreeClassHook() {
+		return RootUserInsertOwner.class;
 	}
 	
 	
@@ -25,13 +30,7 @@ final class VisiOwnerInsertUser extends ActionVisitorTemplateActionV1<OwnerInfo,
 	
 	
 	
-	@Override protected ActionStdV1<UserInfo> getActionHook(DeciTreeOption<UserInfo> option) {
-		return new RootUserInsertOwner(option).toAction();
-	}
-	
-	
-	
 	@Override protected List<OwnerInfo> toBaseClassHook(List<OwnerInfo> baseInfos, List<UserInfo> results) {
-		return OwnerMerger.mergeWithUser(results, baseInfos);
+		return OwnerMerger.mergeWithUser(baseInfos, results);
 	}
 }

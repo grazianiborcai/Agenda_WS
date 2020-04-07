@@ -1,6 +1,5 @@
 package br.com.mind5.business.owner.model.action;
 
-import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,13 +8,19 @@ import br.com.mind5.business.owner.info.OwnerMerger;
 import br.com.mind5.business.person.info.PersonCopier;
 import br.com.mind5.business.person.info.PersonInfo;
 import br.com.mind5.business.person.model.decisionTree.RootPersonUpdate;
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateActionV1;
+import br.com.mind5.model.action.ActionVisitorTemplateActionV2;
+import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiOwnerUpdatePerson extends ActionVisitorTemplateActionV1<OwnerInfo, PersonInfo> {
-	public VisiOwnerUpdatePerson(Connection conn, String schemaName) {
-		super(conn, schemaName, OwnerInfo.class, PersonInfo.class);
+final class VisiOwnerUpdatePerson extends ActionVisitorTemplateActionV2<OwnerInfo, PersonInfo> {
+	public VisiOwnerUpdatePerson(DeciTreeOption<OwnerInfo> option) {
+		super(option, OwnerInfo.class, PersonInfo.class);
+	}
+	
+	
+	
+	@Override protected Class<? extends DeciTree<PersonInfo>> getTreeClassHook() {
+		return RootPersonUpdate.class;
 	}
 	
 	
@@ -32,13 +37,7 @@ final class VisiOwnerUpdatePerson extends ActionVisitorTemplateActionV1<OwnerInf
 	
 	
 	
-	@Override protected ActionStdV1<PersonInfo> getActionHook(DeciTreeOption<PersonInfo> option) {
-		return new RootPersonUpdate(option).toAction();
-	}
-	
-	
-	
 	@Override protected List<OwnerInfo> toBaseClassHook(List<OwnerInfo> baseInfos, List<PersonInfo> results) {
-		return OwnerMerger.mergeWithPerson(results, baseInfos);
+		return OwnerMerger.mergeWithPerson(baseInfos, results);
 	}
 }

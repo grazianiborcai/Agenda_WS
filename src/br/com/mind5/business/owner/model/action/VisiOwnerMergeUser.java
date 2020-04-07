@@ -1,20 +1,20 @@
 package br.com.mind5.business.owner.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.owner.info.OwnerInfo;
 import br.com.mind5.business.owner.info.OwnerMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.user.info.UserCopier;
 import br.com.mind5.security.user.info.UserInfo;
 import br.com.mind5.security.user.model.decisionTree.RootUserSelect;
 
-final class VisiOwnerMergeUser extends ActionVisitorTemplateMergeV1<OwnerInfo, UserInfo> {
+final class VisiOwnerMergeUser extends ActionVisitorTemplateMergeV2<OwnerInfo, UserInfo> {
 	
-	public VisiOwnerMergeUser(Connection conn, String schemaName) {
-		super(conn, schemaName, UserInfo.class);
+	public VisiOwnerMergeUser(DeciTreeOption<OwnerInfo> option) {
+		super(option, UserInfo.class);
 	}
 	
 	
@@ -25,19 +25,19 @@ final class VisiOwnerMergeUser extends ActionVisitorTemplateMergeV1<OwnerInfo, U
 	
 	
 	
-	@Override protected List<UserInfo> toActionClassHook(List<OwnerInfo> recordInfos) {
-		return UserCopier.copyFromOwnerKey(recordInfos);	
+	@Override protected List<UserInfo> toActionClassHook(List<OwnerInfo> baseInfos) {
+		return UserCopier.copyFromOwnerKey(baseInfos);	
 	}
 	
 	
 	
-	@Override protected List<OwnerInfo> mergeHook(List<OwnerInfo> recordInfos, List<UserInfo> selectedInfos) {	
-		return OwnerMerger.mergeWithUser(selectedInfos, recordInfos);
+	@Override protected List<OwnerInfo> mergeHook(List<OwnerInfo> baseInfos, List<UserInfo> selectedInfos) {	
+		return OwnerMerger.mergeWithUser(baseInfos, selectedInfos);
 	}
 	
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV2.MERGE_WHEN_EMPTY;
 	}
 }

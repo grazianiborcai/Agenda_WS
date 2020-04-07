@@ -1,19 +1,19 @@
 package br.com.mind5.business.owner.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.owner.info.OwnerInfo;
 import br.com.mind5.business.owner.info.OwnerMerger;
 import br.com.mind5.business.person.info.PersonInfo;
 import br.com.mind5.business.person.model.decisionTree.RootPersonSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiOwnerMergePerson extends ActionVisitorTemplateMergeV1<OwnerInfo, PersonInfo> {
+final class VisiOwnerMergePerson extends ActionVisitorTemplateMergeV2<OwnerInfo, PersonInfo> {
 	
-	public VisiOwnerMergePerson(Connection conn, String schemaName) {
-		super(conn, schemaName, PersonInfo.class);
+	public VisiOwnerMergePerson(DeciTreeOption<OwnerInfo> option) {
+		super(option, PersonInfo.class);
 	}
 	
 	
@@ -24,13 +24,13 @@ final class VisiOwnerMergePerson extends ActionVisitorTemplateMergeV1<OwnerInfo,
 	
 	
 	
-	@Override protected List<OwnerInfo> mergeHook(List<OwnerInfo> recordInfos, List<PersonInfo> selectedInfos) {	
-		return OwnerMerger.mergeWithPerson(selectedInfos, recordInfos);
+	@Override protected List<OwnerInfo> mergeHook(List<OwnerInfo> baseInfos, List<PersonInfo> selectedInfos) {	
+		return OwnerMerger.mergeWithPerson(baseInfos, selectedInfos);
 	}
 	
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV2.MERGE_WHEN_EMPTY;
 	}	
 }

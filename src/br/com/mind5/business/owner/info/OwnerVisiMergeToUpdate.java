@@ -1,67 +1,50 @@
 package br.com.mind5.business.owner.info;
 
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import java.util.ArrayList;
+import java.util.List;
 
-final class OwnerVisiMergeToUpdate implements InfoMergerVisitor_<OwnerInfo, OwnerInfo> {
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-	@Override public OwnerInfo writeRecord(OwnerInfo sourceOne, OwnerInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);		
-		return merge(sourceOne, sourceTwo);
+final class OwnerVisiMergeToUpdate implements InfoMergerVisitorV3<OwnerInfo, OwnerInfo> {
+	
+	@Override public List<OwnerInfo> beforeMerge(List<OwnerInfo> baseInfos) {
+		return baseInfos;
 	}
 	
 	
 	
-	private void checkArgument(OwnerInfo sourceOne, OwnerInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
+	@Override public boolean shouldMerge(OwnerInfo baseInfo, OwnerInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner);
 	}
 	
 	
 	
-	private OwnerInfo merge(OwnerInfo sourceOne, OwnerInfo sourceTwo) {
-		OwnerInfo result = makeClone(sourceOne);		
-		result.username = sourceTwo.username;
-		result.codLanguage = sourceTwo.codLanguage;
+	@Override public List<OwnerInfo> merge(OwnerInfo baseInfo, OwnerInfo selectedInfo) {
+		List<OwnerInfo> results = new ArrayList<>();
 		
-		if (sourceTwo.addresses != null)
-			result.addresses = sourceTwo.addresses;
+		selectedInfo.username = baseInfo.username;
+		selectedInfo.codLanguage = baseInfo.codLanguage;
 		
-		if (sourceTwo.phones != null)
-			result.phones = sourceTwo.phones;
+		if (baseInfo.addresses != null)
+			selectedInfo.addresses = baseInfo.addresses;
 		
-		if (sourceTwo.userData != null)
-			result.companyData = sourceTwo.companyData;
+		if (baseInfo.phones != null)
+			selectedInfo.phones = baseInfo.phones;
 		
-		if (sourceTwo.personData != null)
-			result.personData = sourceTwo.personData;
+		if (baseInfo.userData != null)
+			selectedInfo.companyData = baseInfo.companyData;
 		
-		return result;
+		if (baseInfo.personData != null)
+			selectedInfo.personData = baseInfo.personData;
+		
+		results.add(selectedInfo);
+		return results;
 	}
 	
 	
 	
-	private OwnerInfo makeClone(OwnerInfo recordInfo) {
-		try {
-			return (OwnerInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(OwnerInfo sourceOne, OwnerInfo sourceTwo) {		
-		return (sourceOne.codOwner == sourceTwo.codOwner);
-	}
-	
-	
-	
-	private void logException(Exception e) {
-		
-		SystemLog.logError(this.getClass(), e);
+	@Override public InfoUniquifier<OwnerInfo> getUniquifier() {
+		return new OwnerUniquifier();
 	}
 }

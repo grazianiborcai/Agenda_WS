@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.owner.info.OwnerInfo;
-import br.com.mind5.business.owner.model.action.LazyOwnerDelete;
+import br.com.mind5.business.owner.model.action.LazyOwnerDaoDelete;
 import br.com.mind5.business.owner.model.action.LazyOwnerEnforceLChanged;
 import br.com.mind5.business.owner.model.action.LazyOwnerMergeUsername;
-import br.com.mind5.business.owner.model.action.LazyOwnerUpdate;
+import br.com.mind5.business.owner.model.action.LazyOwnerDaoUpdate;
 import br.com.mind5.business.owner.model.action.StdOwnerMergeToDelete;
 import br.com.mind5.business.owner.model.checker.OwnerCheckDelete;
 import br.com.mind5.business.owner.model.checker.OwnerCheckExist;
@@ -57,8 +57,8 @@ public final class RootOwnerDelete extends DeciTreeTemplateWrite<OwnerInfo> {
 		ActionStdV1<OwnerInfo> mergeToDelete = new StdOwnerMergeToDelete(option);
 		ActionLazyV1<OwnerInfo> enforceLChanged = new LazyOwnerEnforceLChanged(option.conn, option.schemaName);
 		ActionLazyV1<OwnerInfo> enforceLChangedBy = new LazyOwnerMergeUsername(option.conn, option.schemaName);
-		ActionLazyV1<OwnerInfo> update = new LazyOwnerUpdate(option.conn, option.schemaName);
-		ActionLazyV1<OwnerInfo> delete = new LazyOwnerDelete(option.conn, option.schemaName);			
+		ActionLazyV1<OwnerInfo> update = new LazyOwnerDaoUpdate(option.conn, option.schemaName);
+		ActionLazyV1<OwnerInfo> delete = new LazyOwnerDaoDelete(option.conn, option.schemaName);			
 		
 		mergeToDelete.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceLChangedBy);

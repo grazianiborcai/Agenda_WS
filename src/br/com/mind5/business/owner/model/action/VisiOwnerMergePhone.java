@@ -1,6 +1,5 @@
 package br.com.mind5.business.owner.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.owner.info.OwnerInfo;
@@ -8,13 +7,14 @@ import br.com.mind5.business.owner.info.OwnerMerger;
 import br.com.mind5.business.phone.info.PhoneCopier;
 import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.business.phone.model.decisionTree.RootPhoneSearch;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiOwnerMergePhone extends ActionVisitorTemplateMergeV1<OwnerInfo, PhoneInfo> {
+final class VisiOwnerMergePhone extends ActionVisitorTemplateMergeV2<OwnerInfo, PhoneInfo> {
 	
-	public VisiOwnerMergePhone(Connection conn, String schemaName) {
-		super(conn, schemaName, PhoneInfo.class);
+	public VisiOwnerMergePhone(DeciTreeOption<OwnerInfo> option) {
+		super(option, PhoneInfo.class);
 	}
 	
 	
@@ -25,19 +25,19 @@ final class VisiOwnerMergePhone extends ActionVisitorTemplateMergeV1<OwnerInfo, 
 	
 	
 	
-	@Override protected List<PhoneInfo> toActionClassHook(List<OwnerInfo> recordInfos) {
-		return PhoneCopier.copyFromOwner(recordInfos);	
+	@Override protected List<PhoneInfo> toActionClassHook(List<OwnerInfo> baseInfos) {
+		return PhoneCopier.copyFromOwner(baseInfos);	
 	}
 	
 	
 	
-	@Override protected List<OwnerInfo> mergeHook(List<OwnerInfo> recordInfos, List<PhoneInfo> selectedInfos) {	
-		return OwnerMerger.mergeWithPhone(selectedInfos, recordInfos);
+	@Override protected List<OwnerInfo> mergeHook(List<OwnerInfo> baseInfos, List<PhoneInfo> selectedInfos) {	
+		return OwnerMerger.mergeWithPhone(baseInfos, selectedInfos);
 	}
 	
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV2.MERGE_WHEN_EMPTY;
 	}	
 }

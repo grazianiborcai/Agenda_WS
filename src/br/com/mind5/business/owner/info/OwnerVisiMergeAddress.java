@@ -1,57 +1,39 @@
 package br.com.mind5.business.owner.info;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import br.com.mind5.business.address.info.AddressInfo;
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-final class OwnerVisiMergeAddress implements InfoMergerVisitor_<OwnerInfo, AddressInfo> {
-
-	@Override public OwnerInfo writeRecord(AddressInfo sourceOne, OwnerInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+final class OwnerVisiMergeAddress implements InfoMergerVisitorV3<OwnerInfo, AddressInfo> {
+	
+	@Override public List<OwnerInfo> beforeMerge(List<OwnerInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(OwnerInfo baseInfo, AddressInfo selectedInfo) {
+		return (baseInfo.codOwner 	== selectedInfo.codOwner 	&&
+				baseInfo.codOwner 	== selectedInfo.codOwnerRef		);
+	}
+	
+	
+	
+	@Override public List<OwnerInfo> merge(OwnerInfo baseInfo, AddressInfo selectedInfo) {
+		List<OwnerInfo> results = new ArrayList<>();
 		
-		OwnerInfo clonedInfo = makeClone(sourceTwo);
-		return merge(sourceOne, clonedInfo);
-	}
-	
-	
-	
-	private void checkArgument(AddressInfo sourceOne, OwnerInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private OwnerInfo makeClone(OwnerInfo recordInfo) {
-		try {
-			return (OwnerInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	private OwnerInfo merge(AddressInfo sourceOne, OwnerInfo sourceTwo) {
-		sourceTwo.addresses.add(sourceOne);
-
-		return sourceTwo;
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(AddressInfo sourceOne, OwnerInfo sourceTwo) {
-		return (sourceOne.codOwner 		== sourceTwo.codOwner &&
-				sourceOne.codOwnerRef 	== sourceTwo.codOwner		);
-	}	
-	
-	
-	
-	private void logException(Exception e) {
+		baseInfo.addresses.add(selectedInfo);
 		
-		SystemLog.logError(this.getClass(), e);
+		results.add(baseInfo);
+		return results;
+	}
+	
+	
+	
+	@Override public InfoUniquifier<OwnerInfo> getUniquifier() {
+		return new OwnerUniquifier();
 	}
 }

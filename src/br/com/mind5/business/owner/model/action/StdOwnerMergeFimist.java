@@ -1,35 +1,19 @@
 package br.com.mind5.business.owner.model.action;
 
 import br.com.mind5.business.owner.info.OwnerInfo;
-import br.com.mind5.model.action.ActionLazyV1;
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionStdHelperMerge;
-import br.com.mind5.model.decisionTree.DeciResult;
+import br.com.mind5.model.action.ActionStdTemplateV2;
+import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class StdOwnerMergeFimist implements ActionStdV1<OwnerInfo> {
-	private ActionStdV1<OwnerInfo> actionHelper;	
-	
-	
-	public StdOwnerMergeFimist(DeciTreeOption<OwnerInfo> option) {			
-		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiOwnerMergeFimist(option.conn, option.schemaName));
+final class StdOwnerMergeFimist extends ActionStdTemplateV2<OwnerInfo>{
+
+	public StdOwnerMergeFimist(DeciTreeOption<OwnerInfo> option) {
+		super(option);
 	}
 	
 	
 	
-	@Override public void addPostAction(ActionLazyV1<OwnerInfo> actionHandler) {
-		actionHelper.addPostAction(actionHandler);
-	}
-	
-	
-	
-	@Override public boolean executeAction() {			
-		return actionHelper.executeAction();
-	}
-	
-	
-	
-	@Override public DeciResult<OwnerInfo> getDecisionResult() {
-		return actionHelper.getDecisionResult();
+	protected ActionVisitorV2<OwnerInfo> buildVisitorHook(DeciTreeOption<OwnerInfo> option) {
+		return new VisiOwnerMergeFimist(option);
 	}
 }

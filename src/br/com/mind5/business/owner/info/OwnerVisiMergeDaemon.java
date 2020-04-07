@@ -1,56 +1,39 @@
 package br.com.mind5.business.owner.info;
 
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import java.util.ArrayList;
+import java.util.List;
+
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.security.user.info.UserInfo;
 
-final class OwnerVisiMergeDaemon implements InfoMergerVisitor_<OwnerInfo, UserInfo> {
-
-	@Override public OwnerInfo writeRecord(UserInfo sourceOne, OwnerInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+final class OwnerVisiMergeDaemon implements InfoMergerVisitorV3<OwnerInfo, UserInfo> {
+	
+	@Override public List<OwnerInfo> beforeMerge(List<OwnerInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(OwnerInfo baseInfo, UserInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner);
+	}
+	
+	
+	
+	@Override public List<OwnerInfo> merge(OwnerInfo baseInfo, UserInfo selectedInfo) {
+		List<OwnerInfo> results = new ArrayList<>();
 		
-		OwnerInfo clonedInfo = makeClone(sourceTwo);
-		return merge(sourceOne, clonedInfo);
-	}
-	
-	
-	
-	private void checkArgument(UserInfo sourceOne, OwnerInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private OwnerInfo makeClone(OwnerInfo recordInfo) {
-		try {
-			return (OwnerInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	private OwnerInfo merge(UserInfo sourceOne, OwnerInfo sourceTwo) {
-		sourceTwo.codUser = sourceOne.codUser;
-		sourceTwo.username = sourceOne.username;
-		return sourceTwo;
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(UserInfo sourceOne, OwnerInfo sourceTwo) {
-		return (sourceOne.codOwner == sourceTwo.codOwner);
-	}
-	
-	
-	
-	private void logException(Exception e) {
+		baseInfo.codUser = selectedInfo.codUser;
+		baseInfo.username = selectedInfo.username;
 		
-		SystemLog.logError(this.getClass(), e);
+		results.add(baseInfo);
+		return results;
+	}
+	
+	
+	
+	@Override public InfoUniquifier<OwnerInfo> getUniquifier() {
+		return new OwnerUniquifier();
 	}
 }

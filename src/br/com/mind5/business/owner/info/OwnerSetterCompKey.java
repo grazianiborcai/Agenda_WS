@@ -1,34 +1,10 @@
 package br.com.mind5.business.owner.info;
 
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoSetter;
+import br.com.mind5.info.InfoSetterTemplate;
 
-public final class OwnerSetterCompKey implements InfoSetter<OwnerInfo> {
+public final class OwnerSetterCompKey extends InfoSetterTemplate<OwnerInfo> {
 	
-	public OwnerInfo setAttr(OwnerInfo recordInfo) {
-		checkArgument(recordInfo);
-		return setCompKey(recordInfo);
-	}
-	
-	
-	
-	private void checkArgument(OwnerInfo recordInfo) {
-		if (recordInfo == null) {
-			logException(new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT));
-			throw new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT);
-		}
-		
-		
-		if (recordInfo.personData == null) {
-			logException(new NullPointerException("recordInfo.personData" + SystemMessage.NULL_ARGUMENT));
-			throw new NullPointerException("recordInfo.personData" + SystemMessage.NULL_ARGUMENT);
-		}
-	}
-	
-	
-	
-	private OwnerInfo setCompKey(OwnerInfo recordInfo) {
+	@Override protected OwnerInfo setAttrHook(OwnerInfo recordInfo) {
 		recordInfo.companyData.codOwner = recordInfo.codOwner;
 		recordInfo.companyData.codCompany = recordInfo.codCompany;
 		recordInfo.companyData.username = recordInfo.username;
@@ -36,11 +12,4 @@ public final class OwnerSetterCompKey implements InfoSetter<OwnerInfo> {
 		
 		return recordInfo;
 	}
-	
-	
-	
-	private void logException(Exception e) {
-		
-		SystemLog.logError(this.getClass(), e);
-	}	
 }

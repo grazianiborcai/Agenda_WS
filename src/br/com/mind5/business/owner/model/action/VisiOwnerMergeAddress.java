@@ -1,6 +1,5 @@
 package br.com.mind5.business.owner.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.address.info.AddressCopier;
@@ -8,13 +7,14 @@ import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.address.model.decisionTree.RootAddressSearch;
 import br.com.mind5.business.owner.info.OwnerInfo;
 import br.com.mind5.business.owner.info.OwnerMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiOwnerMergeAddress extends ActionVisitorTemplateMergeV1<OwnerInfo, AddressInfo> {
+final class VisiOwnerMergeAddress extends ActionVisitorTemplateMergeV2<OwnerInfo, AddressInfo> {
 	
-	public VisiOwnerMergeAddress(Connection conn, String schemaName) {
-		super(conn, schemaName, AddressInfo.class);
+	public VisiOwnerMergeAddress(DeciTreeOption<OwnerInfo> option) {
+		super(option, AddressInfo.class);
 	}
 	
 	
@@ -25,19 +25,19 @@ final class VisiOwnerMergeAddress extends ActionVisitorTemplateMergeV1<OwnerInfo
 	
 	
 	
-	@Override protected List<AddressInfo> toActionClassHook(List<OwnerInfo> recordInfos) {
-		return AddressCopier.copyFromOwnerKey(recordInfos);	
+	@Override protected List<AddressInfo> toActionClassHook(List<OwnerInfo> baseInfos) {
+		return AddressCopier.copyFromOwnerKey(baseInfos);	
 	}
 	
 	
 	
-	@Override protected List<OwnerInfo> mergeHook(List<OwnerInfo> recordInfos, List<AddressInfo> selectedInfos) {	
-		return OwnerMerger.mergeWithAddress(selectedInfos, recordInfos);
+	@Override protected List<OwnerInfo> mergeHook(List<OwnerInfo> baseInfos, List<AddressInfo> selectedInfos) {	
+		return OwnerMerger.mergeWithAddress(baseInfos, selectedInfos);
 	}
 	
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV2.MERGE_WHEN_EMPTY;
 	}
 }

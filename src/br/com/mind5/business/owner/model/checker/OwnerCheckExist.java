@@ -1,10 +1,8 @@
 package br.com.mind5.business.owner.model.checker;
 
 import br.com.mind5.business.owner.info.OwnerInfo;
-import br.com.mind5.business.owner.model.action.LazyOwnerSelect;
-import br.com.mind5.business.owner.model.action.StdOwnerEnforceKey;
+import br.com.mind5.business.owner.model.action.StdOwnerDaoSelect;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateAction;
@@ -19,11 +17,8 @@ public final class OwnerCheckExist extends ModelCheckerTemplateAction<OwnerInfo,
 	
 	
 	@Override protected ActionStdV1<OwnerInfo> buildActionHook(DeciTreeOption<OwnerInfo> option) {
-		ActionStdV1<OwnerInfo> enforceKey = new StdOwnerEnforceKey(option);
-		ActionLazyV1<OwnerInfo> select = new LazyOwnerSelect(option.conn, option.schemaName);
-		
-		enforceKey.addPostAction(select);		
-		return enforceKey;
+		ActionStdV1<OwnerInfo> select = new StdOwnerDaoSelect(option);
+		return select;
 	}
 	
 	

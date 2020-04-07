@@ -15,11 +15,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class OwnerDeleteSingle extends DaoStmtTemplate<OwnerInfo> {
+public final class DaoOwnerDeleteSingle extends DaoStmtTemplate<OwnerInfo> {
 	private final String MAIN_TABLE = DaoDbTable.OWNER_TABLE;	
 	
 	
-	public OwnerDeleteSingle(Connection conn, OwnerInfo recordInfo, String schemaName) {
+	public DaoOwnerDeleteSingle(Connection conn, OwnerInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -44,7 +44,7 @@ public final class OwnerDeleteSingle extends DaoStmtTemplate<OwnerInfo> {
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;	
 		whereOption.ignoreNonPrimaryKey = DaoOptionValue.IGNORE_NON_PK;		
 		
-		DaoStmtWhere whereClause = new OwnerWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new DaoOwnerWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	

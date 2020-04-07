@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.owner.info.OwnerInfo;
-import br.com.mind5.business.owner.model.action.LazyOwnerUpdate;
+import br.com.mind5.business.owner.model.action.LazyOwnerDaoUpdate;
 import br.com.mind5.business.owner.model.action.StdOwnerInsertOwnerap;
-import br.com.mind5.business.owner.model.checker.OwnerCheckDummy;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.common.ModelCherckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
@@ -26,7 +26,7 @@ public final class NodeOwnerSnapshot extends DeciTreeTemplateWrite<OwnerInfo> {
 		List<ModelCheckerV1<OwnerInfo>> queue = new ArrayList<>();		
 		ModelCheckerV1<OwnerInfo> checker;	
 		
-		checker = new OwnerCheckDummy();
+		checker = new ModelCherckerDummy<>();
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueueV2<>(queue);
@@ -38,7 +38,7 @@ public final class NodeOwnerSnapshot extends DeciTreeTemplateWrite<OwnerInfo> {
 		List<ActionStdV1<OwnerInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<OwnerInfo> insertOwnerap = new StdOwnerInsertOwnerap(option);
-		ActionLazyV1<OwnerInfo> update = new LazyOwnerUpdate(option.conn, option.schemaName);
+		ActionLazyV1<OwnerInfo> update = new LazyOwnerDaoUpdate(option.conn, option.schemaName);
 		
 		insertOwnerap.addPostAction(update);
 		

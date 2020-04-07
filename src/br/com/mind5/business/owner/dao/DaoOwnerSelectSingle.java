@@ -16,11 +16,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class OwnerSelectSingle extends DaoStmtTemplate<OwnerInfo> {
+public final class DaoOwnerSelectSingle extends DaoStmtTemplate<OwnerInfo> {
 	private final String MAIN_TABLE = DaoDbTable.OWNER_TABLE;	
 	
 	
-	public OwnerSelectSingle(Connection conn, OwnerInfo recordInfo, String schemaName) {
+	public DaoOwnerSelectSingle(Connection conn, OwnerInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -44,7 +44,7 @@ public final class OwnerSelectSingle extends DaoStmtTemplate<OwnerInfo> {
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new OwnerWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new DaoOwnerWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -61,16 +61,16 @@ public final class OwnerSelectSingle extends DaoStmtTemplate<OwnerInfo> {
 				do {
 					OwnerInfo dataInfo = new OwnerInfo();
 					
-					dataInfo.codOwner = stmtResult.getLong(OwnerDbTableColumn.COL_COD_OWNER);
-					dataInfo.recordMode = stmtResult.getString(OwnerDbTableColumn.COL_RECORD_MODE);
-					dataInfo.codPerson = DaoFormatter.sqlToLong(stmtResult, OwnerDbTableColumn.COL_COD_PERSON);
-					dataInfo.codCompany = DaoFormatter.sqlToLong(stmtResult, OwnerDbTableColumn.COL_COD_COMPANY);
-					dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, OwnerDbTableColumn.COL_COD_USER);
-					dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, OwnerDbTableColumn.COL_LAST_CHANGED_BY);
-					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, OwnerDbTableColumn.COL_LAST_CHANGED);				
-					dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, OwnerDbTableColumn.COL_CREATED_BY);
-					dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, OwnerDbTableColumn.COL_CREATED_ON);
-					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, OwnerDbTableColumn.COL_COD_SNAPSHOT);				
+					dataInfo.codOwner = stmtResult.getLong(DaoOwnerDbTableColumn.COL_COD_OWNER);
+					dataInfo.recordMode = stmtResult.getString(DaoOwnerDbTableColumn.COL_RECORD_MODE);
+					dataInfo.codPerson = DaoFormatter.sqlToLong(stmtResult, DaoOwnerDbTableColumn.COL_COD_PERSON);
+					dataInfo.codCompany = DaoFormatter.sqlToLong(stmtResult, DaoOwnerDbTableColumn.COL_COD_COMPANY);
+					dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, DaoOwnerDbTableColumn.COL_COD_USER);
+					dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, DaoOwnerDbTableColumn.COL_LAST_CHANGED_BY);
+					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, DaoOwnerDbTableColumn.COL_LAST_CHANGED);				
+					dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, DaoOwnerDbTableColumn.COL_CREATED_BY);
+					dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, DaoOwnerDbTableColumn.COL_CREATED_ON);
+					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, DaoOwnerDbTableColumn.COL_COD_SNAPSHOT);				
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

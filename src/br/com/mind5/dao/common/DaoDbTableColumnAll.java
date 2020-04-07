@@ -67,7 +67,7 @@ import br.com.mind5.business.orderList.dao.OrdistDbTableColumn;
 import br.com.mind5.business.orderReserve.dao.OrderveDbTableColumn;
 import br.com.mind5.business.orderSearch.dao.OrdarchDbTableColumn;
 import br.com.mind5.business.orderSnapshot.dao.OrdnapDbTableColumn;
-import br.com.mind5.business.owner.dao.OwnerDbTableColumn;
+import br.com.mind5.business.owner.dao.DaoOwnerDbTableColumn;
 import br.com.mind5.business.ownerList.dao.OwnelisDbTableColumn;
 import br.com.mind5.business.ownerSnapshot.dao.OwnerapDbTableColumn;
 import br.com.mind5.business.person.dao.PersonDbTableColumn;
@@ -165,7 +165,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new EmpnapDbTableColumn());
 		addTable(new EmplisDbTableColumn());
 		addTable(new CusDbTableColumn());
-		addTable(new OwnerDbTableColumn());
+		addTable(new DaoOwnerDbTableColumn());
 		addTable(new MatoreDbTableColumn());
 		addTable(new CartDbTableColumn());
 		addTable(new FeewnerDbTableColumn());

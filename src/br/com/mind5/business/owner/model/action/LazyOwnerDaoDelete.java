@@ -9,9 +9,9 @@ import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyOwnerDelete extends ActionLazyTemplate<OwnerInfo, OwnerInfo> {
+public final class LazyOwnerDaoDelete extends ActionLazyTemplate<OwnerInfo, OwnerInfo> {
 	
-	public LazyOwnerDelete(Connection conn, String schemaName) {
+	public LazyOwnerDaoDelete(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyOwnerDelete extends ActionLazyTemplate<OwnerInfo, OwnerIn
 	
 	
 	@Override protected ActionStdV1<OwnerInfo> getInstanceOfActionHook(DeciTreeOption<OwnerInfo> option) {
-		return new StdOwnerDelete(option);
+		return new StdOwnerDaoDelete(option);
 	}
 	
 	

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.owner.info.OwnerInfo;
-import br.com.mind5.business.owner.model.action.LazyOwnerDelete;
+import br.com.mind5.business.owner.model.action.LazyOwnerDaoDelete;
 import br.com.mind5.business.owner.model.action.LazyOwnerDeleteComp;
 import br.com.mind5.business.owner.model.action.LazyOwnerDeletePerson;
 import br.com.mind5.business.owner.model.action.LazyOwnerDeleteUser;
@@ -12,7 +12,7 @@ import br.com.mind5.business.owner.model.action.LazyOwnerEnforceLChanged;
 import br.com.mind5.business.owner.model.action.LazyOwnerMergeUsername;
 import br.com.mind5.business.owner.model.action.LazyOwnerNodeDeleteAddress;
 import br.com.mind5.business.owner.model.action.LazyOwnerNodeDeletePhone;
-import br.com.mind5.business.owner.model.action.LazyOwnerUpdate;
+import br.com.mind5.business.owner.model.action.LazyOwnerDaoUpdate;
 import br.com.mind5.business.owner.model.action.StdOwnerMergeToDelete;
 import br.com.mind5.business.owner.model.checker.OwnerCheckDelete;
 import br.com.mind5.business.owner.model.checker.OwnerCheckExist;
@@ -62,13 +62,13 @@ public final class RootOwnerDeleteCascade extends DeciTreeTemplateWrite<OwnerInf
 		ActionStdV1<OwnerInfo> mergeToDelete = new StdOwnerMergeToDelete(option);
 		ActionLazyV1<OwnerInfo> enforceLChanged = new LazyOwnerEnforceLChanged(option.conn, option.schemaName);
 		ActionLazyV1<OwnerInfo> enforceLChangedBy = new LazyOwnerMergeUsername(option.conn, option.schemaName);
-		ActionLazyV1<OwnerInfo> update = new LazyOwnerUpdate(option.conn, option.schemaName);
+		ActionLazyV1<OwnerInfo> update = new LazyOwnerDaoUpdate(option.conn, option.schemaName);
 		ActionLazyV1<OwnerInfo> deleteAddress = new LazyOwnerNodeDeleteAddress(option.conn, option.schemaName);
 		ActionLazyV1<OwnerInfo> deletePhone = new LazyOwnerNodeDeletePhone(option.conn, option.schemaName);
 		ActionLazyV1<OwnerInfo> deletePerson = new LazyOwnerDeletePerson(option.conn, option.schemaName);
 		ActionLazyV1<OwnerInfo> deleteCompany = new LazyOwnerDeleteComp(option.conn, option.schemaName);
 		ActionLazyV1<OwnerInfo> deleteUser = new LazyOwnerDeleteUser(option.conn, option.schemaName);
-		ActionLazyV1<OwnerInfo> deleteOwner = new LazyOwnerDelete(option.conn, option.schemaName);			
+		ActionLazyV1<OwnerInfo> deleteOwner = new LazyOwnerDaoDelete(option.conn, option.schemaName);			
 		
 		mergeToDelete.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceLChangedBy);

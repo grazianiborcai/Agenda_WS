@@ -7,11 +7,11 @@ import br.com.mind5.model.action.ActionStdHelperEnforce;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdOwnerEnforceKey implements ActionStdV1<OwnerInfo> {
+public final class StdOwnerEnforceKey_ implements ActionStdV1<OwnerInfo> {
 	private ActionStdV1<OwnerInfo> actionHelper;	
 	
 	
-	public StdOwnerEnforceKey(DeciTreeOption<OwnerInfo> option) {			
+	public StdOwnerEnforceKey_(DeciTreeOption<OwnerInfo> option) {			
 		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiOwnerEnforceKey());
 	}
 	

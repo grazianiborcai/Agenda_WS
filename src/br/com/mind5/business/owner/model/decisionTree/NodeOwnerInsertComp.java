@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.owner.info.OwnerInfo;
+import br.com.mind5.business.owner.model.action.LazyOwnerDaoUpdate;
 import br.com.mind5.business.owner.model.action.LazyOwnerInsertComp;
-import br.com.mind5.business.owner.model.action.LazyOwnerUpdate;
 import br.com.mind5.business.owner.model.action.StdOwnerEnforceCompKey;
-import br.com.mind5.business.owner.model.checker.OwnerCheckDummy;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.common.ModelCherckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
@@ -27,7 +27,7 @@ public final class NodeOwnerInsertComp extends DeciTreeTemplateWrite<OwnerInfo> 
 		List<ModelCheckerV1<OwnerInfo>> queue = new ArrayList<>();		
 		ModelCheckerV1<OwnerInfo> checker;
 
-		checker = new OwnerCheckDummy();
+		checker = new ModelCherckerDummy<>();
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueueV2<>(queue);
@@ -40,7 +40,7 @@ public final class NodeOwnerInsertComp extends DeciTreeTemplateWrite<OwnerInfo> 
 		
 		ActionStdV1<OwnerInfo> enforceCompKey = new StdOwnerEnforceCompKey(option);
 		ActionLazyV1<OwnerInfo> insertComp = new LazyOwnerInsertComp(option.conn, option.schemaName);
-		ActionLazyV1<OwnerInfo> updateOwner = new LazyOwnerUpdate(option.conn, option.schemaName);
+		ActionLazyV1<OwnerInfo> updateOwner = new LazyOwnerDaoUpdate(option.conn, option.schemaName);
 		
 		enforceCompKey.addPostAction(insertComp);
 		insertComp.addPostAction(updateOwner);
