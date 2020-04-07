@@ -5,6 +5,7 @@ import java.lang.reflect.Method;
 import java.util.Collections;
 import java.util.List;
 
+import br.com.mind5.common.CloneUtil;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
@@ -19,6 +20,7 @@ import br.com.mind5.model.decisionTree.common.DeciResultNotFound;
 public abstract class ActionVisitorTemplateActionV2<T extends InfoRecord, S extends InfoRecord> implements ActionVisitorV2<T> {	
 	private ActionStdV1<S> action;
 	private Class<T> tClazz;
+	private List<T> bases;
 	
 
 	public ActionVisitorTemplateActionV2(DeciTreeOption<T> option, Class<T> baseClazz, Class<S> actionClazz) {
@@ -26,7 +28,14 @@ public abstract class ActionVisitorTemplateActionV2<T extends InfoRecord, S exte
 		clear();
 		
 		tClazz = baseClazz;	
+		bases = getBaseInfos(option);	
 		action = buildAction(option, actionClazz);		
+	}
+	
+	
+	
+	private List<T> getBaseInfos(DeciTreeOption<T> option) {
+		return makeClone(option.recordInfos);
 	}
 	
 	
@@ -102,7 +111,7 @@ public abstract class ActionVisitorTemplateActionV2<T extends InfoRecord, S exte
 			return makeNotFoundResult();
 		
 		
-		return parseActionResult(actionResult, tClazz);
+		return parseActionResult(tClazz, bases, actionResult);
 	}	
 	
 	
@@ -129,10 +138,10 @@ public abstract class ActionVisitorTemplateActionV2<T extends InfoRecord, S exte
 	
 	
 	
-	private DeciResult<T> parseActionResult(DeciResult<S> actionResult, Class<T> baseClazz) {
+	private DeciResult<T> parseActionResult(Class<T> baseClazz, List<T> baseInfos, DeciResult<S> actionResult) {
 		try {
 			List<S> resultInfos = getResultInfos(actionResult);
-			List<T> translatedInfos = toBaseClass(resultInfos, baseClazz);
+			List<T> translatedInfos = toBaseClass(baseClazz, baseInfos, resultInfos);
 			
 			return makeResult(translatedInfos);
 		
@@ -254,18 +263,18 @@ public abstract class ActionVisitorTemplateActionV2<T extends InfoRecord, S exte
 	
 	
 	
-	private List<T> toBaseClass(List<S> results, Class<T> baseClazz) {
-		List<T> baseInfos = toBaseClassHook(results);	
+	private List<T> toBaseClass(Class<T> baseClazz, List<T> baseInfos, List<S> results) {
+		List<T> newBaseInfos = toBaseClassHook(baseInfos, results);	
 		
-		if (baseInfos == null)
-			baseInfos = toBaseClassDefault(results, baseClazz);
+		if (newBaseInfos == null)
+			newBaseInfos = toBaseClassDefault(results, baseClazz);
 		
-		return baseInfos;
+		return newBaseInfos;
 	}
 	
 	
 	
-	protected List<T> toBaseClassHook(List<S> results) {
+	protected List<T> toBaseClassHook(List<T> baseInfos, List<S> results) {
 		//Template method - Default behavior
 		return null;	
 	}
@@ -357,6 +366,12 @@ public abstract class ActionVisitorTemplateActionV2<T extends InfoRecord, S exte
 	private void clear() {
 		action = DefaultValue.object();
 		tClazz = DefaultValue.object();
+	}
+	
+	
+	
+	private List<T> makeClone(List<T> recordInfos) {
+		return CloneUtil.cloneRecords(recordInfos, this.getClass());
 	}
 	
 	
