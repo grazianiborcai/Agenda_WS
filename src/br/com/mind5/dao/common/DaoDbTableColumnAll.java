@@ -91,7 +91,7 @@ import br.com.mind5.business.store.dao.StoreDbTableColumn;
 import br.com.mind5.business.storeLeaveDate.dao.StolateDbTableColumn;
 import br.com.mind5.business.storeLeaveDateRange.dao.StolargDbTableColumn;
 import br.com.mind5.business.storeLeaveDateSearch.dao.StolarchDbTableColumn;
-import br.com.mind5.business.storeList.dao.StolisDbTableColumn;
+import br.com.mind5.business.storeList.dao.DaoStolisDbTableColumn;
 import br.com.mind5.business.storeSearch.dao.SotarchDbTableColumn;
 import br.com.mind5.business.storeSnapshot.dao.StorapDbTableColumn;
 import br.com.mind5.business.storeWorkTime.dao.StowotmDbTableColumn;
@@ -152,7 +152,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new EmpmatDbTableColumn());
 		addTable(new MatsnapDbTableColumn());
 		addTable(new StoreDbTableColumn());
-		addTable(new StolisDbTableColumn());
+		addTable(new DaoStolisDbTableColumn());
 		addTable(new EmposDbTableColumn());
 		addTable(new MasterDataDbTableColumn());
 		addTable(new StowotmDbTableColumn());

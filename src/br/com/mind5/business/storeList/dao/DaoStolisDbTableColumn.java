@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class StolisDbTableColumn extends DaoDbTableColumnTemplate {
+public final class DaoStolisDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_COMPANY = DaoDbField.COL_COD_COMPANY;
 	public static final String COL_COD_CURRENCY = DaoDbField.COL_COD_CURRENCY;
 	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;	
@@ -22,8 +22,8 @@ public final class StolisDbTableColumn extends DaoDbTableColumnTemplate {
 	
 	private Hashtable<String, List<DaoColumn>> tableColumns;	
 	
-	public StolisDbTableColumn() {
-		super(StolisDbTableColumn.class);
+	public DaoStolisDbTableColumn() {
+		super(DaoStolisDbTableColumn.class);
 	}
 	
 	

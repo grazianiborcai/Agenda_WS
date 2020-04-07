@@ -1,35 +1,19 @@
 package br.com.mind5.business.storeList.model.action;
 
 import br.com.mind5.business.storeList.info.StolisInfo;
-import br.com.mind5.model.action.ActionLazyV1;
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionStdHelperMerge;
-import br.com.mind5.model.decisionTree.DeciResult;
+import br.com.mind5.model.action.ActionStdTemplateV2;
+import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class StdStolisMergeComplis implements ActionStdV1<StolisInfo> {
-	private ActionStdV1<StolisInfo> actionHelper;	
-	
-	
-	public StdStolisMergeComplis(DeciTreeOption<StolisInfo> option) {			
-		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiStolisMergeComplis(option.conn, option.schemaName));
+final class StdStolisMergeComplis extends ActionStdTemplateV2<StolisInfo> {
+
+	public StdStolisMergeComplis(DeciTreeOption<StolisInfo> option) {
+		super(option);
 	}
 	
 	
 	
-	@Override public void addPostAction(ActionLazyV1<StolisInfo> actionHandler) {
-		actionHelper.addPostAction(actionHandler);
-	}
-	
-	
-	
-	@Override public boolean executeAction() {			
-		return actionHelper.executeAction();
-	}
-	
-	
-	
-	@Override public DeciResult<StolisInfo> getDecisionResult() {
-		return actionHelper.getDecisionResult();
+	protected ActionVisitorV2<StolisInfo> buildVisitorHook(DeciTreeOption<StolisInfo> option) {
+		return new VisiStolisMergeComplis(option);
 	}
 }

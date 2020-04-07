@@ -16,11 +16,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class StolisSelectSingle extends DaoStmtTemplate<StolisInfo> {
+public final class DaoStolisSelectSingle extends DaoStmtTemplate<StolisInfo> {
 	private final String MAIN_TABLE = DaoDbTable.STORE_TABLE;	
 	
 	
-	public StolisSelectSingle(Connection conn, StolisInfo recordInfo, String schemaName) {
+	public DaoStolisSelectSingle(Connection conn, StolisInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -50,7 +50,7 @@ public final class StolisSelectSingle extends DaoStmtTemplate<StolisInfo> {
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new StolisWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new DaoStolisWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}	
 	
@@ -67,13 +67,13 @@ public final class StolisSelectSingle extends DaoStmtTemplate<StolisInfo> {
 				do {
 					StolisInfo dataInfo = new StolisInfo();
 					
-					dataInfo.codOwner = stmtResult.getLong(StolisDbTableColumn.COL_COD_OWNER);
-					dataInfo.codStore = stmtResult.getLong(StolisDbTableColumn.COL_COD_STORE);
-					dataInfo.codCurr = stmtResult.getString(StolisDbTableColumn.COL_COD_CURRENCY);
-					dataInfo.codTimezone = stmtResult.getString(StolisDbTableColumn.COL_COD_TIMEZONE);
-					dataInfo.recordMode = stmtResult.getString(StolisDbTableColumn.COL_RECORD_MODE);	
-					dataInfo.codCompany = DaoFormatter.sqlToLong(stmtResult, StolisDbTableColumn.COL_COD_COMPANY);
-					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, StolisDbTableColumn.COL_COD_SNAPSHOT);		
+					dataInfo.codOwner = stmtResult.getLong(DaoStolisDbTableColumn.COL_COD_OWNER);
+					dataInfo.codStore = stmtResult.getLong(DaoStolisDbTableColumn.COL_COD_STORE);
+					dataInfo.codCurr = stmtResult.getString(DaoStolisDbTableColumn.COL_COD_CURRENCY);
+					dataInfo.codTimezone = stmtResult.getString(DaoStolisDbTableColumn.COL_COD_TIMEZONE);
+					dataInfo.recordMode = stmtResult.getString(DaoStolisDbTableColumn.COL_RECORD_MODE);	
+					dataInfo.codCompany = DaoFormatter.sqlToLong(stmtResult, DaoStolisDbTableColumn.COL_COD_COMPANY);
+					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, DaoStolisDbTableColumn.COL_COD_SNAPSHOT);		
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilder;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 
-public final class StolisWhere implements DaoStmtWhere {
+public final class DaoStolisWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public StolisWhere(DaoWhereBuilderOption whereOption, String tableName, StolisInfo recordInfo) {
+	public DaoStolisWhere(DaoWhereBuilderOption whereOption, String tableName, StolisInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -27,15 +27,15 @@ public final class StolisWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-				case StolisDbTableColumn.COL_COD_OWNER :
+				case DaoStolisDbTableColumn.COL_COD_OWNER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;
 					
-				case StolisDbTableColumn.COL_COD_STORE :
+				case DaoStolisDbTableColumn.COL_COD_STORE :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codStore));
 					break;
 					
-				case StolisDbTableColumn.COL_RECORD_MODE :
+				case DaoStolisDbTableColumn.COL_RECORD_MODE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.recordMode);
 					break;
 			}

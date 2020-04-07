@@ -1,23 +1,24 @@
 package br.com.mind5.business.storeList.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.business.storeList.info.StolisMerger;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiStolisMergeToSelect extends ActionVisitorTemplateMergeV1<StolisInfo, StolisInfo> {
+final class VisiStolisMergeToSelect extends ActionVisitorTemplateMergeV2<StolisInfo, StolisInfo> {
 	
-	public VisiStolisMergeToSelect(Connection conn, String schemaName) {
-		super(conn, schemaName, StolisInfo.class);
+	public VisiStolisMergeToSelect(DeciTreeOption<StolisInfo> option) {
+		super(option, StolisInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends ActionStdV1<StolisInfo>> getActionClassHook() {
-		return StdStolisSelect.class;
+	@Override protected Class<? extends ActionStdV2<StolisInfo>> getActionClassHook() {
+		return StdStolisDaoSelect.class;
 	}
 	
 	

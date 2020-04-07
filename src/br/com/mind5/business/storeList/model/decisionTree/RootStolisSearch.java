@@ -6,11 +6,11 @@ import java.util.List;
 import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.business.storeList.model.action.LazyStolisRootSelect;
 import br.com.mind5.business.storeList.model.action.StdStolisMergeSotarch;
-import br.com.mind5.business.storeList.model.checker.StolisCheckDummy;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
@@ -27,7 +27,7 @@ public final class RootStolisSearch extends DeciTreeTemplateRead<StolisInfo> {
 		List<ModelCheckerV1<StolisInfo>> queue = new ArrayList<>();		
 		ModelCheckerV1<StolisInfo> checker;
 		
-		checker = new StolisCheckDummy();
+		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueueV2<>(queue);

@@ -1,6 +1,5 @@
 package br.com.mind5.business.storeList.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.address.info.AddressCopier;
@@ -9,12 +8,14 @@ import br.com.mind5.business.address.model.decisionTree.RootAddressSearch;
 import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.business.storeList.info.StolisMerger;
 import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiStolisMergeAddress extends ActionVisitorTemplateMergeV1<StolisInfo, AddressInfo> {
+final class VisiStolisMergeAddress extends ActionVisitorTemplateMergeV2<StolisInfo, AddressInfo> {
 	
-	public VisiStolisMergeAddress(Connection conn, String schemaName) {
-		super(conn, schemaName, AddressInfo.class);
+	public VisiStolisMergeAddress(DeciTreeOption<StolisInfo> option) {
+		super(option, AddressInfo.class);
 	}
 	
 	
