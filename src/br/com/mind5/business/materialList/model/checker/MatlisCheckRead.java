@@ -16,10 +16,10 @@ public final class MatlisCheckRead extends ModelCheckerTemplateSimpleV2<MatlisIn
 	
 	
 	@Override protected boolean checkHook(MatlisInfo recordInfo, Connection conn, String schemaName) {	
-		if (recordInfo.codOwner 	<= 0 	||
-			recordInfo.codMat 		<= 0 	||
-			recordInfo.username		== null ||
-			recordInfo.codLanguage 	== null		)			
+		if ( recordInfo.codOwner 	<= 0 	||
+			 recordInfo.codMat 		<= 0 	||
+			 recordInfo.username		== null ||
+			 recordInfo.codLanguage 	== null		)			
 			
 			return super.FAILED;
 		

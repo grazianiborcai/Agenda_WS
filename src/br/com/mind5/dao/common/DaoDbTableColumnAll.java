@@ -44,7 +44,7 @@ import br.com.mind5.business.form.formAddress.dao.FormAddressDbTableColumn;
 import br.com.mind5.business.form.formPhone.dao.FormPhoneDbTableColumn;
 import br.com.mind5.business.masterData.dao.MasterDataDbTableColumn;
 import br.com.mind5.business.material.dao.MatDbTableColumn;
-import br.com.mind5.business.materialList.dao.MatlisDbTableColumn;
+import br.com.mind5.business.materialList.dao.DaoMatlisDbTableColumn;
 import br.com.mind5.business.materialMovement.dao.MatmovDbTableColumn;
 import br.com.mind5.business.materialMovementSearch.dao.MatmarchDbTableColumn;
 import br.com.mind5.business.materialSearch.dao.MatarchDbTableColumn;
@@ -253,7 +253,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new EmpmarchDbTableColumn());
 		addTable(new MatextarchDbTableColumn());
 		addTable(new MatextaultDbTableColumn());
-		addTable(new MatlisDbTableColumn());
+		addTable(new DaoMatlisDbTableColumn());
 		addTable(new MatarchDbTableColumn());
 		addTable(new MatorarchDbTableColumn());
 		addTable(new MatorapDbTableColumn());

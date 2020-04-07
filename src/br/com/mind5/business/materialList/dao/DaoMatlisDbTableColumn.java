@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class MatlisDbTableColumn extends DaoDbTableColumnTemplate {
+public final class DaoMatlisDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_BUSINESS = DaoDbField.COL_COD_BUSINESS;
 	public static final String COL_COD_CATEGORY = DaoDbField.COL_COD_CATEGORY;
 	public static final String COL_COD_GROUP = DaoDbField.COL_COD_GROUP;
@@ -25,8 +25,8 @@ public final class MatlisDbTableColumn extends DaoDbTableColumnTemplate {
 	
 	private Hashtable<String, List<DaoColumn>> tableColumns;	
 	
-	public MatlisDbTableColumn() {
-		super(MatlisDbTableColumn.class);
+	public DaoMatlisDbTableColumn() {
+		super(DaoMatlisDbTableColumn.class);
 	}
 	
 	

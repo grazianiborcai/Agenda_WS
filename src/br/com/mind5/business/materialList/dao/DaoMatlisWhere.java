@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilder;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 
-public final class MatlisWhere implements DaoStmtWhere {
+public final class DaoMatlisWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public MatlisWhere(DaoWhereBuilderOption whereOption, String tableName, MatlisInfo recordInfo) {
+	public DaoMatlisWhere(DaoWhereBuilderOption whereOption, String tableName, MatlisInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -27,15 +27,15 @@ public final class MatlisWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-				case MatlisDbTableColumn.COL_COD_OWNER :
+				case DaoMatlisDbTableColumn.COL_COD_OWNER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;
 					
-				case MatlisDbTableColumn.COL_COD_MATERIAL :
+				case DaoMatlisDbTableColumn.COL_COD_MATERIAL :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codMat));
 					break;
 
-				case MatlisDbTableColumn.COL_RECORD_MODE :
+				case DaoMatlisDbTableColumn.COL_RECORD_MODE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.recordMode);
 					break;
 			}

@@ -1,6 +1,5 @@
 package br.com.mind5.business.materialList.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.masterData.info.MatGroupInfo;
@@ -8,12 +7,14 @@ import br.com.mind5.business.masterData.model.decisionTree.RootMatGroupSelect;
 import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.business.materialList.info.MatlisMerger;
 import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiMatlisMergeMatGroup extends ActionVisitorTemplateMergeV1<MatlisInfo, MatGroupInfo> {
+final class VisiMatlisMergeMatGroup extends ActionVisitorTemplateMergeV2<MatlisInfo, MatGroupInfo> {
 	
-	public VisiMatlisMergeMatGroup(Connection conn, String schemaName) {
-		super(conn, schemaName, MatGroupInfo.class);
+	public VisiMatlisMergeMatGroup(DeciTreeOption<MatlisInfo> option) {
+		super(option, MatGroupInfo.class);
 	}
 	
 	
@@ -24,7 +25,7 @@ final class VisiMatlisMergeMatGroup extends ActionVisitorTemplateMergeV1<MatlisI
 	
 	
 	
-	@Override protected List<MatlisInfo> mergeHook(List<MatlisInfo> baseInfos, List<MatGroupInfo> selectedInfos) {	
+	@Override protected List<MatlisInfo> mergeHook(List<MatlisInfo> baseInfos, List<MatGroupInfo> selectedInfos) {
 		return MatlisMerger.mergeWithMatGroup(baseInfos, selectedInfos);
 	}
 	

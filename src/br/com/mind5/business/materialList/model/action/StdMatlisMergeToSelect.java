@@ -1,35 +1,19 @@
 package br.com.mind5.business.materialList.model.action;
 
 import br.com.mind5.business.materialList.info.MatlisInfo;
-import br.com.mind5.model.action.ActionLazyV1;
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionStdHelperMerge;
-import br.com.mind5.model.decisionTree.DeciResult;
+import br.com.mind5.model.action.ActionStdTemplateV2;
+import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdMatlisMergeToSelect implements ActionStdV1<MatlisInfo> {
-	private ActionStdV1<MatlisInfo> actionHelper;	
-	
-	
-	public StdMatlisMergeToSelect(DeciTreeOption<MatlisInfo> option) {			
-		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiMatlisMergeToSelect(option.conn, option.schemaName));
+public final class StdMatlisMergeToSelect extends ActionStdTemplateV2<MatlisInfo> {
+
+	public StdMatlisMergeToSelect(DeciTreeOption<MatlisInfo> option) {
+		super(option);
 	}
 	
 	
 	
-	@Override public void addPostAction(ActionLazyV1<MatlisInfo> actionHandler) {
-		actionHelper.addPostAction(actionHandler);
-	}
-	
-	
-	
-	@Override public boolean executeAction() {			
-		return actionHelper.executeAction();
-	}
-	
-	
-	
-	@Override public DeciResult<MatlisInfo> getDecisionResult() {
-		return actionHelper.getDecisionResult();
+	protected ActionVisitorV2<MatlisInfo> buildVisitorHook(DeciTreeOption<MatlisInfo> option) {
+		return new VisiMatlisMergeToSelect(option);
 	}
 }
