@@ -50,6 +50,7 @@ public final class JwtokenSetterParse implements InfoSetter<JwtokenInfo> {
 			recordInfo.codPlatform = (String) claim.get("codPlatform");
 			recordInfo.expirationTime = claim.getExpiration();			
 			
+			claim.clear();
 			return recordInfo;
 		
 		} catch (Exception e) {
@@ -60,8 +61,7 @@ public final class JwtokenSetterParse implements InfoSetter<JwtokenInfo> {
 	
 	
 	
-	private void logException(Exception e) {
-		
+	private void logException(Exception e) {		
 		SystemLog.logError(this.getClass(), e);
 	}	
 }
