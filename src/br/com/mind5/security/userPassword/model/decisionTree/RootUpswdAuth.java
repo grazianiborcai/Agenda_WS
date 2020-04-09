@@ -5,9 +5,9 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 import br.com.mind5.security.userPassword.info.UpswdInfo;
@@ -51,7 +51,7 @@ public final class RootUpswdAuth extends DeciTreeTemplateRead<UpswdInfo> {
 	@Override protected List<ActionStdV1<UpswdInfo>> buildActionsOnPassedHook(DeciTreeOption<UpswdInfo> option) {
 		List<ActionStdV1<UpswdInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<UpswdInfo> mergeUser = new StdUpswdMergeUser(option);
+		ActionStdV1<UpswdInfo> mergeUser = new StdUpswdMergeUser(option); //TODO: usar Uselis ao inves ?
 		ActionLazyV1<UpswdInfo> nodeAuth = new LazyUpswdNodeAuth(option.conn, option.schemaName);
 		
 		mergeUser.addPostAction(nodeAuth);
