@@ -2,6 +2,7 @@ package br.com.mind5.servlet.filter.authentication;
 
 import java.io.IOException;
 import java.util.Base64;
+
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -100,7 +101,7 @@ public final class AuthFilterPwrd extends OncePerRequestFilter {
 
 				this.rememberMeServices.loginSuccess(request, response, authResult);
 
-				onSuccessfulAuthentication(request, response, authResult, authRequest);
+				response = onSuccessfulAuthentication(request, response, authResult, authRequest);
 			}
 
 		}
@@ -175,8 +176,8 @@ public final class AuthFilterPwrd extends OncePerRequestFilter {
 
 	
 	
-	protected void onSuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response, Authentication authResult, AuthToken authRequest) throws IOException {
-		customAddJwtToken(response, authRequest);
+	protected HttpServletResponse onSuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response, Authentication authResult, AuthToken authRequest) throws IOException {
+		return customAddJwtToken(response, authRequest);
 	}
 
 	
@@ -274,13 +275,14 @@ public final class AuthFilterPwrd extends OncePerRequestFilter {
 	
 	
 	
-	private void customAddJwtToken(HttpServletResponse response, AuthToken authToken) { 
+	private HttpServletResponse customAddJwtToken(HttpServletResponse response, AuthToken authToken) { 
 		String HEADER_STRING = "Authorization";
 		String TOKEN_PREFIX = "Bearer";
 		
 		String jwtToken = customGenerateJwtToken(authToken);
 		
 		response.addHeader(HEADER_STRING, TOKEN_PREFIX + " " + jwtToken);
+		return response;
 	}
 	
 	

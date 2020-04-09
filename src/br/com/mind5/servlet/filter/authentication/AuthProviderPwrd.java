@@ -43,6 +43,7 @@ public final class AuthProviderPwrd implements AuthenticationProvider {
 	
 	private UauthInfo makeRecordInfo(AuthToken token) {
 		UauthInfo recordInfo = new UauthInfo();
+		
 		recordInfo.codOwner = token.getCodOwner();
 		recordInfo.username = token.getName();
 		recordInfo.password = token.getCredentials().toString();

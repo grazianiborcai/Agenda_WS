@@ -1,12 +1,14 @@
 package br.com.mind5.servlet.filter.header;
 
 import java.io.IOException;
+
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.web.filter.GenericFilterBean;
 
 import br.com.mind5.servlet.filter.common.HeaderParam;
@@ -26,8 +28,8 @@ public final class TokenParamFilter extends GenericFilterBean {
 		
 		if (checkHeaderParam(headerParam) == false) {
 			response = onError(response);			
-		} else {		
-			chain.doFilter(requestWrapper, response);
+		} else {
+			chain.doFilter(request, response);
 		}
 		
 		return;
