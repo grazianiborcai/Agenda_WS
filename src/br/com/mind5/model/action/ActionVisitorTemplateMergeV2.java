@@ -53,6 +53,18 @@ public abstract class ActionVisitorTemplateMergeV2<T extends InfoRecord, S exten
 	private DeciTreeOption<S> translateOption(DeciTreeOption<T> sourceOption, Class<S> sClazz) {
 		List<S> translatedInfos = toActionClass(sourceOption.recordInfos, sClazz);
 		
+		if(translatedInfos == null)
+			return null;
+		
+		if (translatedInfos.isEmpty())
+			return null;
+		
+		return toActionOption(sourceOption, translatedInfos);
+	}
+	
+	
+	
+	private DeciTreeOption<S> toActionOption(DeciTreeOption<T> sourceOption, List<S> translatedInfos) {
 		DeciTreeOption<S> resultOption = new DeciTreeOption<>();
 		
 		resultOption.conn = sourceOption.conn;
@@ -65,6 +77,9 @@ public abstract class ActionVisitorTemplateMergeV2<T extends InfoRecord, S exten
 	
 	
 	private ActionStdV1<S> buildAction(DeciTreeOption<S> option) {
+		if (option == null)
+			return null;
+		
 		if (hasTreeClass())
 			return buildActionTree(option);		
 		
@@ -125,7 +140,7 @@ public abstract class ActionVisitorTemplateMergeV2<T extends InfoRecord, S exten
 	
 	private DeciResult<S> executeAction(ActionStdV1<S> action) {
 		if (checkAction(action) == false)
-			return makeErrorResult();
+			return makeNotFoundResult();
 		
 		action.executeAction();
 		DeciResult<S> result = action.getDecisionResult();
