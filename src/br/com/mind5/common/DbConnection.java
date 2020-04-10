@@ -56,4 +56,10 @@ public final class DbConnection {
 		
 		conn = null;
 	}
+	
+	
+	
+	public static void clear() {
+		ds = null;
+	}
 }
