@@ -9,6 +9,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.core.Response;
 
+import br.com.mind5.common.CloneUtil;
 import br.com.mind5.common.DbConnection;
 import br.com.mind5.common.DbSchema;
 import br.com.mind5.common.DefaultValue;
@@ -94,8 +95,8 @@ public abstract class ModelTemplate<T extends InfoRecord> implements Model {
 	
 	
 	private List<T> addToList(T recordInfo) {
-		List<T> results = new ArrayList<>();
-		results.add(recordInfo);
+		List<T> results = new ArrayList<>();		
+		results.add(makeClone(recordInfo));		
 		return results;
 	}
 	
@@ -362,6 +363,12 @@ public abstract class ModelTemplate<T extends InfoRecord> implements Model {
 	
 	protected ModelResponse<T> getModelResponseHook() {
 		return new ModelResponseStandard<>();
+	}
+	
+	
+	
+	private T makeClone(T source) {
+		return CloneUtil.cloneRecord(source, this.getClass());
 	}
 		
 	
