@@ -39,26 +39,16 @@ public final class DaoAddressDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_RECORD_MODE = DaoDbField.COL_RECORD_MODE; 
 	public static final String COL_STATE_PROVINCE = DaoDbField.COL_STATE_PROVINCE; 
 	public static final String COL_STREET = DaoDbField.COL_STREET; 
-	public static final String COL_STREET_NUMBER = DaoDbField.COL_STREET_NUMBER; 	
-	
-	private Hashtable<String, List<DaoColumn>> tableColumns;
+	public static final String COL_STREET_NUMBER = DaoDbField.COL_STREET_NUMBER;
 	
 	
 	public DaoAddressDbTableColumn() {
-		super(DaoAddressDbTableColumn.class);
+		super();
 	}
 	
 	
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
-		tableColumns = new Hashtable<>();		
-		buildAddressTable();	
-		return tableColumns;
-	}
-	
-	
-	
-	private void buildAddressTable() {
 		final String TABLE_NAME = DaoDbTable.ADDRESS_TABLE;
 		
 		DaoColumn oneColumn;
@@ -304,7 +294,8 @@ public final class DaoAddressDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		
-		tableColumns.put(TABLE_NAME, columns);
+		Hashtable<String, List<DaoColumn>> results = new Hashtable<>();
+		results.put(TABLE_NAME, columns);
+		return results;
 	}
 }
