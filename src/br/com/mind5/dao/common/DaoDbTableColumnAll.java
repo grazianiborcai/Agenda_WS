@@ -4,9 +4,8 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 
-import br.com.mind5.common.SystemLog;
 import br.com.mind5.business.address.dao.DaoAddressDbTableColumn;
-import br.com.mind5.business.addressSearch.dao.AddarchDbTableColumn;
+import br.com.mind5.business.addressSearch.dao.DaoAddarchDbTableColumn;
 import br.com.mind5.business.addressSnapshot.dao.AddresnapDbTableColumn;
 import br.com.mind5.business.calendarDate.dao.CalateDbTableColumn;
 import br.com.mind5.business.cart.dao.CartDbTableColumn;
@@ -97,6 +96,7 @@ import br.com.mind5.business.storeSnapshot.dao.StorapDbTableColumn;
 import br.com.mind5.business.storeWorkTime.dao.StowotmDbTableColumn;
 import br.com.mind5.business.storeWorkTimeRange.dao.StoworgDbTableColumn;
 import br.com.mind5.business.storeWorkTimeSearch.dao.StowotarchDbTableColumn;
+import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.dao.DaoColumn;
 import br.com.mind5.dao.DaoDbTableColumn;
@@ -233,7 +233,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new SymsgDbTableColumn());
 		addTable(new OwnerapDbTableColumn());
 		addTable(new ComplisDbTableColumn());
-		addTable(new AddarchDbTableColumn());
+		addTable(new DaoAddarchDbTableColumn());
 		addTable(new PhonarchDbTableColumn());
 		addTable(new SotarchDbTableColumn());
 		addTable(new ComparchDbTableColumn());
@@ -307,7 +307,7 @@ public final class DaoDbTableColumnAll {
 	
 	
 	
-	private static  List<DaoColumn> getColumns(String tableName) {
+	private static List<DaoColumn> getColumns(String tableName) {
 		List<DaoColumn> columns = tableColumns.get(tableName);
 		
 		

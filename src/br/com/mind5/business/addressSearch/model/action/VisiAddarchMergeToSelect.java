@@ -1,23 +1,24 @@
 package br.com.mind5.business.addressSearch.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.addressSearch.info.AddarchInfo;
 import br.com.mind5.business.addressSearch.info.AddarchMerger;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiAddarchMergeToSelect extends ActionVisitorTemplateMergeV1<AddarchInfo, AddarchInfo> {
+final class VisiAddarchMergeToSelect extends ActionVisitorTemplateMergeV2<AddarchInfo, AddarchInfo> {
 	
-	public VisiAddarchMergeToSelect(Connection conn, String schemaName) {
-		super(conn, schemaName, AddarchInfo.class);
+	public VisiAddarchMergeToSelect(DeciTreeOption<AddarchInfo> option) {
+		super(option, AddarchInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends ActionStdV1<AddarchInfo>> getActionClassHook() {
-		return StdAddarchSelect.class;
+	@Override protected Class<? extends ActionStdV2<AddarchInfo>> getActionClassHook() {
+		return StdAddarchDaoSelect.class;
 	}
 	
 	

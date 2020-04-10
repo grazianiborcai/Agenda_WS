@@ -16,8 +16,16 @@ public final class DaoColumn implements Cloneable {
 	
 	
 	
-	@Override public Object clone()throws CloneNotSupportedException {		
-		return super.clone();
+	@Override public Object clone()throws CloneNotSupportedException {	
+		DaoColumn copy = new DaoColumn();
+		
+		copy.tableName = new String(tableName);
+		copy.columnName = new String(columnName);
+		copy.isPK = isPK;
+		copy.isLookUp = isLookUp;
+		copy.isAutoIncremented = isAutoIncremented;
+		
+		return copy;
 	}
 	
 	

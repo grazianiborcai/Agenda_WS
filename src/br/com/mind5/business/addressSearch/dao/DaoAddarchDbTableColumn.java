@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class AddarchDbTableColumn extends DaoDbTableColumnTemplate {
+public final class DaoAddarchDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_CITY = DaoDbField.COL_CITY; 
 	public static final String COL_COD_ADDRESS = DaoDbField.COL_COD_ADDRESS;
 	public static final String COL_COUNTRY = DaoDbField.COL_COUNTRY;
@@ -23,24 +23,14 @@ public final class AddarchDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_RECORD_MODE = DaoDbField.COL_RECORD_MODE; 
 	public static final String COL_STATE_PROVINCE = DaoDbField.COL_STATE_PROVINCE; 
 	
-	private Hashtable<String, List<DaoColumn>> tableColumns;
 	
-	
-	public AddarchDbTableColumn() {
-		super(AddarchDbTableColumn.class);
+	public DaoAddarchDbTableColumn() {
+		super();
 	}
 	
 	
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
-		tableColumns = new Hashtable<>();		
-		buildAddressTable();	
-		return tableColumns;
-	}
-	
-	
-	
-	private void buildAddressTable() {
 		final String TABLE_NAME = DaoDbTable.ADDRESS_TABLE;
 		
 		DaoColumn oneColumn;
@@ -142,7 +132,8 @@ public final class AddarchDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		
-		tableColumns.put(DaoDbTable.ADDRESS_SEARCH_VIEW, columns);
+		Hashtable<String, List<DaoColumn>> results = new Hashtable<>();
+		results.put(DaoDbTable.ADDRESS_SEARCH_VIEW, columns);
+		return results;
 	}
 }
