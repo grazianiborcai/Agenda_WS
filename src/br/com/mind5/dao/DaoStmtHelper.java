@@ -149,7 +149,10 @@ public final class DaoStmtHelper<T extends InfoRecord> implements DaoStmt<T> {
 		PreparedStatement stmtLastId = option.conn.prepareStatement("SELECT LAST_INSERT_ID();");
 		ResultSet resultLastId = stmtLastId.executeQuery();
 		resultLastId.next();
-		return resultLastId.getLong("LAST_INSERT_ID()");		
+		long result = resultLastId.getLong("LAST_INSERT_ID()");
+		
+		close(stmtLastId, resultLastId);
+		return result;
 	}
 	
 	
@@ -206,11 +209,22 @@ public final class DaoStmtHelper<T extends InfoRecord> implements DaoStmt<T> {
 	
 	
 	private void clear() {
-		operation = DefaultValue.object();
-		option = DefaultValue.object();
+		operation = DefaultValue.object();		
 		stmt = DefaultValue.object();
 		stmtResultSet = DefaultValue.object();
 		resultset = DefaultValue.list();
+		
+		clearOption(option);
+		option = DefaultValue.object();
+	}
+	
+	
+	
+	private void clearOption(DaoStmtOption<T> daoOption) {
+		if (daoOption == null)
+			return;
+		
+		daoOption.clear();
 	}
 
 

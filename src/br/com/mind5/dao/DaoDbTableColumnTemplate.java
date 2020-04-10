@@ -46,7 +46,7 @@ public class DaoDbTableColumnTemplate implements DaoDbTableColumn {
 	
 	
 	
-	@Override public List<String> getTableNamesAsList() {
+	@Override public List<String> getTableNamesAsList() {	//criado por causa do MasterDate que contem varias tabelas
 		List<String> allTableNames = new ArrayList<>();		
 		Iterator<Entry<String, List<DaoColumn>>> itrMapEntry = tableColumns.entrySet().iterator();
 		
