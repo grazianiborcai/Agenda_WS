@@ -16,9 +16,9 @@ import br.com.mind5.business.storeList.model.checker.StolisCheckOwner;
 import br.com.mind5.business.storeList.model.checker.StolisCheckRead;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
@@ -74,9 +74,9 @@ public final class RootStolisSelect extends DeciTreeTemplateRead<StolisInfo> {
 		ActionLazyV1<StolisInfo> mergeFimist = new LazyStolisMergeFimist(option.conn, option.schemaName);
 		
 		select.addPostAction(mergeCurrency);
-		mergeCurrency.addPostAction(mergeTimezone);
+		mergeCurrency.addPostAction(mergeTimezone); // 100
 		mergeTimezone.addPostAction(mergeComplis);
-		mergeComplis.addPostAction(mergeAddress);
+		mergeComplis.addPostAction(mergeAddress); // oom
 		mergeAddress.addPostAction(mergePhone);
 		mergePhone.addPostAction(mergeFimist);
 		
