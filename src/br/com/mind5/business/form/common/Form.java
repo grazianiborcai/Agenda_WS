@@ -1,7 +1,7 @@
 package br.com.mind5.business.form.common;
 
 public enum Form {
-	A01("A01"), T01("T01");
+	A00("A00"), A01("A01"), T01("T01");
 	
 	private final String codForm;
 	

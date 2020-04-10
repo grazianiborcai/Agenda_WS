@@ -4,25 +4,25 @@ import java.util.List;
 
 import br.com.mind5.info.InfoRecord;
 
-public final class FormAddressInfo extends InfoRecord implements Cloneable {
+public final class FormessInfo extends InfoRecord implements Cloneable {
 	public String codCountry;
 	public String codForm;
 	
 	
-	public FormAddressInfo() {
-		super(FormAddressInfo.class);
+	public FormessInfo() {
+		super(FormessInfo.class);
 	}
 	
 	
 	
-	public static FormAddressInfo copyFrom(Object sourceObj) {
-		return copyFrom(sourceObj, FormAddressInfo.class);
+	public static FormessInfo copyFrom(Object sourceObj) {
+		return copyFrom(sourceObj, FormessInfo.class);
 	}
 	
 	
 	
-	public static List<FormAddressInfo> copyFrom(List<?> sourceObjs) {
-		return copyFrom(sourceObjs, FormAddressInfo.class);
+	public static List<FormessInfo> copyFrom(List<?> sourceObjs) {
+		return copyFrom(sourceObjs, FormessInfo.class);
 	}
 	
 	
@@ -47,11 +47,11 @@ public final class FormAddressInfo extends InfoRecord implements Cloneable {
 			return true;
 		
 		
-		if (!(o instanceof FormAddressInfo))
+		if (!(o instanceof FormessInfo))
 			return false;
 		
 		
-		FormAddressInfo obj = (FormAddressInfo) o;		
+		FormessInfo obj = (FormessInfo) o;		
 		return (codCountry.equals(obj.codCountry));
 	}
 }

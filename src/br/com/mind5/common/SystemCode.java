@@ -1156,4 +1156,7 @@ public final class SystemCode {
 	public static final int CALENDAR_DATE_MANDATORY_FIELD_EMPTY 		= 11550;
 	public static final int CALENDAR_DATE_ALREADY_EXIST					= 11551;
 	public static final int CALENDAR_DATE_NOT_FOUND						= 11552;
+	
+	// Form Address Search
+	public static final int FORM_ADDRESS_SEARCH_MANDATORY_FIELD_EMPTY	= 11600;
 }

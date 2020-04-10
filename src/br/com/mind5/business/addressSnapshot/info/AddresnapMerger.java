@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.com.mind5.business.customerList.info.CuslisInfo;
 import br.com.mind5.business.employeeList.info.EmplisInfo;
-import br.com.mind5.business.form.formAddress.info.FormAddressInfo;
+import br.com.mind5.business.form.formAddress.info.FormessInfo;
 import br.com.mind5.business.masterData.info.CountryInfo;
 import br.com.mind5.business.masterData.info.StateInfo;
 import br.com.mind5.business.storeList.info.StolisInfo;
@@ -68,15 +68,15 @@ public final class AddresnapMerger {
 	
 	
 	
-	public static AddresnapInfo mergeWithForm(FormAddressInfo sourceOne, AddresnapInfo sourceTwo) {
-		InfoMerger_<AddresnapInfo, FormAddressInfo> merger = new AddresnapMergerForm();		
+	public static AddresnapInfo mergeWithForm(FormessInfo sourceOne, AddresnapInfo sourceTwo) {
+		InfoMerger_<AddresnapInfo, FormessInfo> merger = new AddresnapMergerForm();		
 		return merger.merge(sourceOne, sourceTwo);
 	}
 	
 	
 	
-	public static List<AddresnapInfo> mergeWithForm(List<FormAddressInfo> sourceOnes, List<AddresnapInfo> sourceTwos) {
-		InfoMerger_<AddresnapInfo, FormAddressInfo> merger = new AddresnapMergerForm();		
+	public static List<AddresnapInfo> mergeWithForm(List<FormessInfo> sourceOnes, List<AddresnapInfo> sourceTwos) {
+		InfoMerger_<AddresnapInfo, FormessInfo> merger = new AddresnapMergerForm();		
 		return merger.merge(sourceOnes, sourceTwos);
 	}
 	

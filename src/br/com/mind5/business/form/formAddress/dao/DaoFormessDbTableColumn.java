@@ -9,29 +9,18 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class FormAddressDbTableColumn extends DaoDbTableColumnTemplate {
+public final class DaoFormessDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_COUNTRY = DaoDbField.COL_COD_COUNTRY;
 	public static final String COL_COD_FORM = DaoDbField.COL_COD_FORM;
 	
 	
-	private Hashtable<String, List<DaoColumn>> tableColumns;	
-	
-	public FormAddressDbTableColumn() {
-		super(FormAddressDbTableColumn.class);
+	public DaoFormessDbTableColumn() {
+		super();
 	}
 	
 	
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
-		tableColumns = new Hashtable<>();
-		addressFormTable();
-		
-		return tableColumns;
-	}
-	
-	
-	
-	private void addressFormTable() {
 		final String TABLE_NAME = DaoDbTable.ADDRESS_FORM_TABLE;
 		
 		DaoColumn oneColumn;
@@ -53,6 +42,8 @@ public final class FormAddressDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);	
 		
-		tableColumns.put(TABLE_NAME, columns);
+		Hashtable<String, List<DaoColumn>> results = new Hashtable<>();;
+		results.put(TABLE_NAME, columns);
+		return results;
 	}
 }

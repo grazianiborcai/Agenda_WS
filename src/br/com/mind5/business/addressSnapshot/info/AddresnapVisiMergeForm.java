@@ -1,13 +1,13 @@
 package br.com.mind5.business.addressSnapshot.info;
 
-import br.com.mind5.business.form.formAddress.info.FormAddressInfo;
+import br.com.mind5.business.form.formAddress.info.FormessInfo;
 import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class AddresnapVisiMergeForm implements InfoMergerVisitor_<AddresnapInfo, FormAddressInfo> {
+final class AddresnapVisiMergeForm implements InfoMergerVisitor_<AddresnapInfo, FormessInfo> {
 
-	@Override public AddresnapInfo writeRecord(FormAddressInfo sourceOne, AddresnapInfo sourceTwo) {
+	@Override public AddresnapInfo writeRecord(FormessInfo sourceOne, AddresnapInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);
 		
 		return merge(sourceOne, sourceTwo);
@@ -15,14 +15,14 @@ final class AddresnapVisiMergeForm implements InfoMergerVisitor_<AddresnapInfo, 
 	
 	
 	
-	private void checkArgument(FormAddressInfo sourceOne, AddresnapInfo sourceTwo) {
+	private void checkArgument(FormessInfo sourceOne, AddresnapInfo sourceTwo) {
 		if (shouldWrite(sourceOne, sourceTwo) == false)
 			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}
 	
 	
 	
-	private AddresnapInfo merge(FormAddressInfo sourceOne, AddresnapInfo sourceTwo) {
+	private AddresnapInfo merge(FormessInfo sourceOne, AddresnapInfo sourceTwo) {
 		AddresnapInfo resultInfo = makeClone(sourceTwo);
 		resultInfo.codForm = sourceOne.codForm;
 		
@@ -43,7 +43,7 @@ final class AddresnapVisiMergeForm implements InfoMergerVisitor_<AddresnapInfo, 
 	
 	
 	
-	@Override public boolean shouldWrite(FormAddressInfo sourceOne, AddresnapInfo sourceTwo) {
+	@Override public boolean shouldWrite(FormessInfo sourceOne, AddresnapInfo sourceTwo) {
 		return sourceOne.codCountry.equals(sourceTwo.codCountry);
 	}
 	

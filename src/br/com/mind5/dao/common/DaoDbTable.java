@@ -131,6 +131,7 @@ public final class DaoDbTable {
 	
 	
     //Views
+	public static final String ADDRESS_FORM_SEARCH_VIEW = "view_address_form_search";
 	public static final String ADDRESS_SEARCH_VIEW = "view_address_search";
 	public static final String CART_ITM_SEARCH_VIEW = "view_shop_cart_item_search";
 	public static final String CART_RESERVE_VIEW = "view_cart_reserve";	

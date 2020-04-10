@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.com.mind5.business.addressSearch.info.AddarchInfo;
 import br.com.mind5.business.addressSnapshot.info.AddresnapInfo;
-import br.com.mind5.business.form.formAddress.info.FormAddressInfo;
+import br.com.mind5.business.form.formAddress.info.FormessInfo;
 import br.com.mind5.business.masterData.info.CountryInfo;
 import br.com.mind5.business.masterData.info.StateInfo;
 import br.com.mind5.info.InfoMergerBuilderV3;
@@ -51,13 +51,13 @@ public final class AddressMerger {
 	
 	
 	
-	public static List<AddressInfo> mergeWithForm(List<AddressInfo> baseInfos, List<FormAddressInfo> selectedInfos) {
-		InfoMergerBuilderV3<AddressInfo, FormAddressInfo> builder = new InfoMergerBuilderV3<>();
+	public static List<AddressInfo> mergeWithFormess(List<AddressInfo> baseInfos, List<FormessInfo> selectedInfos) {
+		InfoMergerBuilderV3<AddressInfo, FormessInfo> builder = new InfoMergerBuilderV3<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new AddressVisiMergeForm());
-		InfoMergerV3<AddressInfo, FormAddressInfo> merger = builder.build();		
+		builder.addVisitor(new AddressVisiMergeFormess());
+		InfoMergerV3<AddressInfo, FormessInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}

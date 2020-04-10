@@ -9,9 +9,9 @@ import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyAddressMergeForm extends ActionLazyTemplate<AddressInfo, AddressInfo> {
+public final class LazyAddressMergeFormess extends ActionLazyTemplate<AddressInfo, AddressInfo> {
 
-	public LazyAddressMergeForm(Connection conn, String schemaName) {
+	public LazyAddressMergeFormess(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyAddressMergeForm extends ActionLazyTemplate<AddressInfo, 
 	
 	
 	@Override protected ActionStdV1<AddressInfo> getInstanceOfActionHook(DeciTreeOption<AddressInfo> option) {
-		return new StdAddressMergeForm(option);
+		return new StdAddressMergeFormess(option);
 	}
 	
 	

@@ -1,23 +1,23 @@
 package br.com.mind5.business.form.formAddress.model.checker;
 
-import br.com.mind5.business.form.formAddress.info.FormAddressInfo;
-import br.com.mind5.business.form.formAddress.model.action.StdFormAddressSelect;
+import br.com.mind5.business.form.formAddress.info.FormessInfo;
+import br.com.mind5.business.form.formAddress.model.action.StdFormessDaoSelect;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class FormAddressCheckExist extends ModelCheckerTemplateActionV2<FormAddressInfo, FormAddressInfo> {
+public final class FormessCheckExist extends ModelCheckerTemplateActionV2<FormessInfo, FormessInfo> {
 	
-	public FormAddressCheckExist(ModelCheckerOption option) {
-		super(option, FormAddressInfo.class);
+	public FormessCheckExist(ModelCheckerOption option) {
+		super(option, FormessInfo.class);
 	}
 	
 	
 	
-	@Override protected ActionStdV1<FormAddressInfo> buildActionHook(DeciTreeOption<FormAddressInfo> option) {
-		ActionStdV1<FormAddressInfo> select = new StdFormAddressSelect(option);
+	@Override protected ActionStdV1<FormessInfo> buildActionHook(DeciTreeOption<FormessInfo> option) {
+		ActionStdV1<FormessInfo> select = new StdFormessDaoSelect(option);
 		return select;
 	}
 	

@@ -1,4 +1,4 @@
-package br.com.mind5.business.form.formAddress.dao;
+package br.com.mind5.business.form.formAddressSearch.dao;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.business.form.formAddress.info.FormAddressInfo;
+import br.com.mind5.business.form.formAddressSearch.info.FormesarchInfo;
 import br.com.mind5.dao.DaoOperation;
 import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtTemplate;
@@ -15,11 +15,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class FormAddressSelectSingle extends DaoStmtTemplate<FormAddressInfo> {
+public final class DaoFormesarchSelectSingle extends DaoStmtTemplate<FormesarchInfo> {
 	private final String MAIN_TABLE = DaoDbTable.ADDRESS_FORM_TABLE;
 	
 	
-	public FormAddressSelectSingle(Connection conn, FormAddressInfo recordInfo, String schemaName) {
+	public DaoFormesarchSelectSingle(Connection conn, FormesarchInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -37,32 +37,38 @@ public final class FormAddressSelectSingle extends DaoStmtTemplate<FormAddressIn
 	
 	
 	
-	@Override protected String buildWhereClauseHook(String tableName, FormAddressInfo recordInfo) {
+	@Override protected String getLookupTableHook() {
+		return DaoDbTable.ADDRESS_FORM_SEARCH_VIEW;
+	}	
+	
+	
+	
+	@Override protected String buildWhereClauseHook(String tableName, FormesarchInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
 		
 		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;		
 		whereOption.dummyClauseWhenEmpty = DaoOptionValue.DUMMY_CLAUSE_ALLOWED;
 		
-		DaoStmtWhere whereClause = new FormAddressWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new DaoFormesarchWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
 	
 	
-	@Override protected DaoResultParser<FormAddressInfo> getResultParserHook() {
-		return new DaoResultParser<FormAddressInfo>() {
-			@Override public List<FormAddressInfo> parseResult(FormAddressInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
-				List<FormAddressInfo> finalResult = new ArrayList<>();
+	@Override protected DaoResultParser<FormesarchInfo> getResultParserHook() {
+		return new DaoResultParser<FormesarchInfo>() {
+			@Override public List<FormesarchInfo> parseResult(FormesarchInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
+				List<FormesarchInfo> finalResult = new ArrayList<>();
 				
 				if (stmtResult.next() == false)				
 					return finalResult;
 			
 				do {				
-					FormAddressInfo dataInfo = new FormAddressInfo();
+					FormesarchInfo dataInfo = new FormesarchInfo();
 					
-					dataInfo.codCountry = stmtResult.getString(FormAddressDbTableColumn.COL_COD_COUNTRY);
-					dataInfo.codForm = stmtResult.getString(FormAddressDbTableColumn.COL_COD_FORM);
+					dataInfo.codCountry = stmtResult.getString(DaoFormesarchDbTableColumn.COL_COD_COUNTRY);
+					dataInfo.codForm = stmtResult.getString(DaoFormesarchDbTableColumn.COL_COD_FORM);
 					
 					finalResult.add(dataInfo);				
 				} while (stmtResult.next());

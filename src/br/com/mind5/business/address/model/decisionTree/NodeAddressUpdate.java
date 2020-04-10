@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.address.info.AddressInfo;
-import br.com.mind5.business.address.model.checker.AddressCheckFormA01;
+import br.com.mind5.business.address.model.checker.AddressCheckFormessA01;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -29,7 +29,7 @@ public final class NodeAddressUpdate extends DeciTreeTemplateWrite<AddressInfo> 
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new AddressCheckFormA01(checkerOption);
+		checker = new AddressCheckFormessA01(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueueV2<>(queue);

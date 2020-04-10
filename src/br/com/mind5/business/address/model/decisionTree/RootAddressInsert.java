@@ -9,7 +9,7 @@ import br.com.mind5.business.address.model.action.LazyAddressEnforceCreatedOn;
 import br.com.mind5.business.address.model.action.LazyAddressEnforceLChanged;
 import br.com.mind5.business.address.model.action.LazyAddressMergeUsername;
 import br.com.mind5.business.address.model.action.LazyAddressNodeInsert;
-import br.com.mind5.business.address.model.action.StdAddressMergeForm;
+import br.com.mind5.business.address.model.action.StdAddressMergeFormess;
 import br.com.mind5.business.address.model.checker.AddressCheckCountry;
 import br.com.mind5.business.address.model.checker.AddressCheckInsert;
 import br.com.mind5.business.address.model.checker.AddressCheckLangu;
@@ -95,7 +95,7 @@ public final class RootAddressInsert extends DeciTreeTemplateWrite<AddressInfo> 
 	@Override protected List<ActionStdV1<AddressInfo>> buildActionsOnPassedHook(DeciTreeOption<AddressInfo> option) {
 		List<ActionStdV1<AddressInfo>> actions = new ArrayList<>();	
 		
-		ActionStdV1<AddressInfo> mergeForm = new StdAddressMergeForm(option);		
+		ActionStdV1<AddressInfo> mergeForm = new StdAddressMergeFormess(option);		
 		ActionLazyV1<AddressInfo> mergeUsername = new LazyAddressMergeUsername(option.conn, option.schemaName);
 		ActionLazyV1<AddressInfo> enforceLChanged = new LazyAddressEnforceLChanged(option.conn, option.schemaName);
 		ActionLazyV1<AddressInfo> enforceCreatedOn = new LazyAddressEnforceCreatedOn(option.conn, option.schemaName);	

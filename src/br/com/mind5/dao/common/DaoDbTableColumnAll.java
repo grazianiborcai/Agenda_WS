@@ -39,7 +39,7 @@ import br.com.mind5.business.employeeWorkTimeRange.dao.EmpworgDbTableColumn;
 import br.com.mind5.business.employeeWorkTimeSearch.dao.EmpwotarchDbTableColumn;
 import br.com.mind5.business.feeDefault.dao.FeedefDbTableColumn;
 import br.com.mind5.business.feeOwner.dao.FeewnerDbTableColumn;
-import br.com.mind5.business.form.formAddress.dao.FormAddressDbTableColumn;
+import br.com.mind5.business.form.formAddress.dao.DaoFormessDbTableColumn;
 import br.com.mind5.business.form.formPhone.dao.FormPhoneDbTableColumn;
 import br.com.mind5.business.masterData.dao.MasterDataDbTableColumn;
 import br.com.mind5.business.material.dao.MatDbTableColumn;
@@ -175,7 +175,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new OrderDbTableColumn());
 		addTable(new DaoAddressDbTableColumn());
 		addTable(new AddresnapDbTableColumn());
-		addTable(new FormAddressDbTableColumn());
+		addTable(new DaoFormessDbTableColumn());
 		addTable(new PhoneDbTableColumn());
 		addTable(new PhonapDbTableColumn());
 		addTable(new FormPhoneDbTableColumn());
