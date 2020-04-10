@@ -3,6 +3,7 @@ package br.com.mind5.servlet.resource;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -139,7 +140,10 @@ public class StoreResource {
 		
 		Model model = new StolisModelSearch(incomingData, request);
 		model.executeRequest();
-		return model.getResponse();
+		Response response = model.getResponse();
+		
+		model.close();
+		return response;
 	}
 	
 	

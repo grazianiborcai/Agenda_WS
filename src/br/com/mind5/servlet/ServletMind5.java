@@ -11,7 +11,6 @@ import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.servlet.db.DbMysql;
 
 
-
 public class ServletMind5 extends ServletContainer {
 	private static final long serialVersionUID = 1L;
 	private DbMysql db;
@@ -51,7 +50,14 @@ public class ServletMind5 extends ServletContainer {
 	@Override public void destroy() {
 		super.destroy();
 		db.close();
+		unshareDataSource();
 		clear();
+	}
+	
+	
+	
+	private void unshareDataSource() {
+		DbConnection.clear();
 	}
 	
 	
