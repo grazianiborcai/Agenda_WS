@@ -5,12 +5,12 @@ import java.util.List;
 
 import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.business.store.model.decisionTree.NodeStoreUpsertAddress;
-import br.com.mind5.model.action.ActionLazyTemplate;
+import br.com.mind5.model.action.ActionLazyTemplateV1;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyStoreNodeUpsertAddress extends ActionLazyTemplate<StoreInfo, StoreInfo> {
+public final class LazyStoreNodeUpsertAddress extends ActionLazyTemplateV1<StoreInfo, StoreInfo> {
 
 	public LazyStoreNodeUpsertAddress(Connection conn, String schemaName) {
 		super(conn, schemaName);

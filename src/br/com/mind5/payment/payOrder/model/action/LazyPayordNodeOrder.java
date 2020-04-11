@@ -3,14 +3,14 @@ package br.com.mind5.payment.payOrder.model.action;
 import java.sql.Connection;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazyTemplate;
+import br.com.mind5.model.action.ActionLazyTemplateV1;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
 import br.com.mind5.payment.payOrder.model.decisionTree.NodePayordOrder;
 
-public final class LazyPayordNodeOrder extends ActionLazyTemplate<PayordInfo, PayordInfo> {
+public final class LazyPayordNodeOrder extends ActionLazyTemplateV1<PayordInfo, PayordInfo> {
 	
 	public LazyPayordNodeOrder(Connection conn, String schemaName) {
 		super(conn, schemaName);

@@ -5,12 +5,12 @@ import java.util.List;
 
 import br.com.mind5.business.employeeMaterial.info.EmpmatInfo;
 import br.com.mind5.business.employeeMaterial.model.decisionTree.NodeEmpmatInsert;
-import br.com.mind5.model.action.ActionLazyTemplate;
+import br.com.mind5.model.action.ActionLazyTemplateV1;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyEmpmatNodeInsert extends ActionLazyTemplate<EmpmatInfo, EmpmatInfo> {
+public final class LazyEmpmatNodeInsert extends ActionLazyTemplateV1<EmpmatInfo, EmpmatInfo> {
 
 	public LazyEmpmatNodeInsert(Connection conn, String schemaName) {
 		super(conn, schemaName);

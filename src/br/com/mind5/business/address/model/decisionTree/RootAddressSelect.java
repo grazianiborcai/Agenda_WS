@@ -68,7 +68,7 @@ public final class RootAddressSelect extends DeciTreeTemplateWrite<AddressInfo> 
 		
 		select.addPostAction(mergeFormess);	
 		mergeFormess.addPostAction(mergeCountry);
-		mergeCountry.addPostAction(nodeState);
+		mergeCountry.addPostAction(nodeState); 
 		
 		actions.add(select);			
 		return actions;

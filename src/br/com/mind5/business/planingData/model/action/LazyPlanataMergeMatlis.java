@@ -4,12 +4,12 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.planingData.info.PlanataInfo;
-import br.com.mind5.model.action.ActionLazyTemplate;
+import br.com.mind5.model.action.ActionLazyTemplateV1;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyPlanataMergeMatlis extends ActionLazyTemplate<PlanataInfo, PlanataInfo> {
+public final class LazyPlanataMergeMatlis extends ActionLazyTemplateV1<PlanataInfo, PlanataInfo> {
 	
 	public LazyPlanataMergeMatlis(Connection conn, String schemaName) {
 		super(conn, schemaName);

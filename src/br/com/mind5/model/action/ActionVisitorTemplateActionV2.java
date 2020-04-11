@@ -337,14 +337,6 @@ public abstract class ActionVisitorTemplateActionV2<T extends InfoRecord, S exte
 	
 	
 	
-	protected List<T> _mergeHook(List<T> recordInfos, List<S> selectedInfos) {	
-		//Template method to be overridden by subclasses
-		logException(new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION));
-		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);
-	}
-	
-	
-	
 	@Override public void close() {
 		closeAction(action);
 		clear();

@@ -5,12 +5,12 @@ import java.util.List;
 
 import br.com.mind5.business.addressSnapshot.info.AddresnapInfo;
 import br.com.mind5.business.addressSnapshot.model.decisionTree.RootAddresnapSelect;
-import br.com.mind5.model.action.ActionLazyTemplate;
+import br.com.mind5.model.action.ActionLazyTemplateV1;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyAddresnapRootSelect extends ActionLazyTemplate<AddresnapInfo, AddresnapInfo> {
+public final class LazyAddresnapRootSelect extends ActionLazyTemplateV1<AddresnapInfo, AddresnapInfo> {
 	
 	public LazyAddresnapRootSelect(Connection conn, String schemaName) {
 		super(conn, schemaName);

@@ -5,12 +5,12 @@ import java.util.List;
 
 import br.com.mind5.business.materialStore.info.MatoreInfo;
 import br.com.mind5.business.materialStore.model.decisionTree.RootMatoreDelete;
-import br.com.mind5.model.action.ActionLazyTemplate;
+import br.com.mind5.model.action.ActionLazyTemplateV1;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyMatoreRootDelete extends ActionLazyTemplate<MatoreInfo, MatoreInfo> {
+public final class LazyMatoreRootDelete extends ActionLazyTemplateV1<MatoreInfo, MatoreInfo> {
 	
 	public LazyMatoreRootDelete(Connection conn, String schemaName) {
 		super(conn, schemaName);

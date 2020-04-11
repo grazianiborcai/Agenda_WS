@@ -13,7 +13,7 @@ import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciResultHelper;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public abstract class ActionLazyTemplate<T extends InfoRecord, S extends InfoRecord> implements ActionLazyV1<T> {
+public abstract class ActionLazyTemplateV1<T extends InfoRecord, S extends InfoRecord> implements ActionLazyV1<T> {
 	protected final boolean SUCCESS = true;
 	protected final boolean FAILED = false;
 	protected final boolean EMPTY = false;
@@ -27,7 +27,7 @@ public abstract class ActionLazyTemplate<T extends InfoRecord, S extends InfoRec
 	private List<ActionLazyV1<T>> postActions;
 	
 	
-	public ActionLazyTemplate(Connection conn, String schemaName) {
+	public ActionLazyTemplateV1(Connection conn, String schemaName) {
 		checkArgument(conn, schemaName);
 		
 		this.conn = conn;

@@ -3,13 +3,13 @@ package br.com.mind5.payment.ownerPartner.model.action;
 import java.sql.Connection;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazyTemplate;
+import br.com.mind5.model.action.ActionLazyTemplateV1;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.ownerPartner.info.OwnparInfo;
 
-public final class LazyOwnparMergeOwner extends ActionLazyTemplate<OwnparInfo, OwnparInfo> {
+public final class LazyOwnparMergeOwner extends ActionLazyTemplateV1<OwnparInfo, OwnparInfo> {
 	
 	public LazyOwnparMergeOwner(Connection conn, String schemaName) {
 		super(conn, schemaName);

@@ -5,12 +5,12 @@ import java.util.List;
 
 import br.com.mind5.business.cart.info.CartInfo;
 import br.com.mind5.business.cart.model.decisionTree.NodeCartUpsert;
-import br.com.mind5.model.action.ActionLazyTemplate;
+import br.com.mind5.model.action.ActionLazyTemplateV1;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyCartNodeUpsert extends ActionLazyTemplate<CartInfo, CartInfo> {
+public final class LazyCartNodeUpsert extends ActionLazyTemplateV1<CartInfo, CartInfo> {
 	
 	public LazyCartNodeUpsert(Connection conn, String schemaName) {
 		super(conn, schemaName);

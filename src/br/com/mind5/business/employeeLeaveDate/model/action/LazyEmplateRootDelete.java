@@ -5,12 +5,12 @@ import java.util.List;
 
 import br.com.mind5.business.employeeLeaveDate.info.EmplateInfo;
 import br.com.mind5.business.employeeLeaveDate.model.decisionTree.RootEmplateDelete;
-import br.com.mind5.model.action.ActionLazyTemplate;
+import br.com.mind5.model.action.ActionLazyTemplateV1;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyEmplateRootDelete extends ActionLazyTemplate<EmplateInfo, EmplateInfo> {
+public final class LazyEmplateRootDelete extends ActionLazyTemplateV1<EmplateInfo, EmplateInfo> {
 	
 	public LazyEmplateRootDelete(Connection conn, String schemaName) {
 		super(conn, schemaName);

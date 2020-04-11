@@ -5,12 +5,12 @@ import java.util.List;
 
 import br.com.mind5.business.customer.info.CusInfo;
 import br.com.mind5.business.customer.model.decisionTree.NodeCusInsert;
-import br.com.mind5.model.action.ActionLazyTemplate;
+import br.com.mind5.model.action.ActionLazyTemplateV1;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyCusNodeInsert extends ActionLazyTemplate<CusInfo, CusInfo> {
+public final class LazyCusNodeInsert extends ActionLazyTemplateV1<CusInfo, CusInfo> {
 	
 	public LazyCusNodeInsert(Connection conn, String schemaName) {
 		super(conn, schemaName);

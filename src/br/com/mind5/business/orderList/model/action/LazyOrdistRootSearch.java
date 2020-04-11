@@ -5,12 +5,12 @@ import java.util.List;
 
 import br.com.mind5.business.orderList.info.OrdistInfo;
 import br.com.mind5.business.orderList.model.decisionTree.RootOrdistSearch;
-import br.com.mind5.model.action.ActionLazyTemplate;
+import br.com.mind5.model.action.ActionLazyTemplateV1;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyOrdistRootSearch extends ActionLazyTemplate<OrdistInfo, OrdistInfo> {
+public final class LazyOrdistRootSearch extends ActionLazyTemplateV1<OrdistInfo, OrdistInfo> {
 
 	public LazyOrdistRootSearch(Connection conn, String schemaName) {
 		super(conn, schemaName);

@@ -3,14 +3,14 @@ package br.com.mind5.payment.storePartnerSnapshot.model.action;
 import java.sql.Connection;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazyTemplate;
+import br.com.mind5.model.action.ActionLazyTemplateV1;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.storePartnerSnapshot.info.StoparnapInfo;
 import br.com.mind5.payment.storePartnerSnapshot.model.decisionTree.RootStoparnapSelect;
 
-public final class LazyStoparnapRootSelect extends ActionLazyTemplate<StoparnapInfo, StoparnapInfo> {
+public final class LazyStoparnapRootSelect extends ActionLazyTemplateV1<StoparnapInfo, StoparnapInfo> {
 	
 	public LazyStoparnapRootSelect(Connection conn, String schemaName) {
 		super(conn, schemaName);

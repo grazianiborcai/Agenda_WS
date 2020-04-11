@@ -3,13 +3,13 @@ package br.com.mind5.paymentPartner.partnerMoip.accessMoip.model.action;
 import java.sql.Connection;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazyTemplate;
+import br.com.mind5.model.action.ActionLazyTemplateV1;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.paymentPartner.partnerMoip.accessMoip.info.AccemoipInfo;
 
-public final class LazyAccemoipMergeSetupar extends ActionLazyTemplate<AccemoipInfo, AccemoipInfo> {
+public final class LazyAccemoipMergeSetupar extends ActionLazyTemplateV1<AccemoipInfo, AccemoipInfo> {
 	
 	public LazyAccemoipMergeSetupar(Connection conn, String schemaName) {
 		super(conn, schemaName);
