@@ -17,7 +17,7 @@ public final class DaoStatarchDbTableColumn extends DaoDbTableColumnTemplate {
 	
 	
 	public DaoStatarchDbTableColumn() {
-		super(DaoStatarchDbTableColumn.class);
+		super();
 	}
 	
 	
@@ -61,7 +61,7 @@ public final class DaoStatarchDbTableColumn extends DaoDbTableColumnTemplate {
 		columns.add(oneColumn);
 		
 		Hashtable<String, List<DaoColumn>> results = new Hashtable<>();
-		results.put(TABLE_NAME, columns);
+		results.put(DaoDbTable.STATE_SEARCH_VIEW, columns);
 		return results;
 	}
 }
