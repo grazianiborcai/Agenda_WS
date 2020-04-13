@@ -58,4 +58,10 @@ public final class NodeAddressState extends DeciTreeTemplateWriteV2<AddressInfo>
 		actions.add(success);			
 		return actions;
 	}
+	
+	
+	
+	@Override public void close() {
+		super.close();
+	}
 }

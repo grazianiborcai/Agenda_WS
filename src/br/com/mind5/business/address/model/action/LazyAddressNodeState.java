@@ -33,4 +33,10 @@ public final class LazyAddressNodeState extends ActionLazyTemplateV2<AddressInfo
 	@Override protected DeciResult<AddressInfo> translateResultHook(DeciResult<AddressInfo> result) {
 		return result;
 	}
+	
+	
+	
+	@Override public void close() {
+		super.close();
+	}
 }
