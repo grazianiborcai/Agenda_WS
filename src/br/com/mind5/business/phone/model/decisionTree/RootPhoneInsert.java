@@ -7,7 +7,7 @@ import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.business.phone.model.action.LazyPhoneEnforceCreatedBy;
 import br.com.mind5.business.phone.model.action.LazyPhoneEnforceCreatedOn;
 import br.com.mind5.business.phone.model.action.LazyPhoneEnforceLChanged;
-import br.com.mind5.business.phone.model.action.LazyPhoneMergeForm;
+import br.com.mind5.business.phone.model.action.LazyPhoneMergeFormone;
 import br.com.mind5.business.phone.model.action.LazyPhoneMergeUsername;
 import br.com.mind5.business.phone.model.action.LazyPhoneNodeInsert;
 import br.com.mind5.business.phone.model.action.LazyPhoneNodeSnapshot;
@@ -106,7 +106,7 @@ public final class RootPhoneInsert extends DeciTreeTemplateWriteV1<PhoneInfo> {
 		List<ActionStdV1<PhoneInfo>> actions = new ArrayList<>();	
 		
 		ActionStdV1<PhoneInfo> mergeCountryPhone = new StdPhoneMergeCountryPhone(option);	
-		ActionLazyV1<PhoneInfo> mergeForm = new LazyPhoneMergeForm(option.conn, option.schemaName);	
+		ActionLazyV1<PhoneInfo> mergeFormone = new LazyPhoneMergeFormone(option.conn, option.schemaName);	
 		ActionLazyV1<PhoneInfo> mergeUsername = new LazyPhoneMergeUsername(option.conn, option.schemaName);
 		ActionLazyV1<PhoneInfo> enforceLChanged = new LazyPhoneEnforceLChanged(option.conn, option.schemaName);
 		ActionLazyV1<PhoneInfo> enforceCreatedOn = new LazyPhoneEnforceCreatedOn(option.conn, option.schemaName);	
@@ -114,8 +114,8 @@ public final class RootPhoneInsert extends DeciTreeTemplateWriteV1<PhoneInfo> {
 		ActionLazyV1<PhoneInfo> nodeInsert = new LazyPhoneNodeInsert(option.conn, option.schemaName);	
 		ActionLazyV1<PhoneInfo> nodeSnapshot = new LazyPhoneNodeSnapshot(option.conn, option.schemaName);	
 		
-		mergeCountryPhone.addPostAction(mergeForm);
-		mergeForm.addPostAction(mergeUsername);		
+		mergeCountryPhone.addPostAction(mergeFormone);
+		mergeFormone.addPostAction(mergeUsername);		
 		mergeUsername.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceCreatedOn);
 		enforceCreatedOn.addPostAction(enforceCreatedBy);		

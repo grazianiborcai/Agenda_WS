@@ -1,21 +1,21 @@
-package br.com.mind5.business.form.formPhone.model.checker;
+package br.com.mind5.form.formPhone.model.checker;
 
 import java.sql.Connection;
 
-import br.com.mind5.business.form.formPhone.info.FormPhoneInfo;
 import br.com.mind5.common.SystemCode;
+import br.com.mind5.form.formPhone.info.FormoneInfo;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class FormPhoneCheckRead extends ModelCheckerTemplateSimpleV2<FormPhoneInfo> {
+public final class FormoneCheckRead extends ModelCheckerTemplateSimpleV2<FormoneInfo> {
 
-	public FormPhoneCheckRead(ModelCheckerOption option) {
+	public FormoneCheckRead(ModelCheckerOption option) {
 		super(option);
 	}
 	
 	
 	
-	@Override protected boolean checkHook(FormPhoneInfo recordInfo, Connection conn, String schemaName) {	
+	@Override protected boolean checkHook(FormoneInfo recordInfo, Connection conn, String schemaName) {	
 		if ( recordInfo.codCountry == null )			
 			return super.FAILED;
 		

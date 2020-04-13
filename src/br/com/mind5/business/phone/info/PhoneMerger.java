@@ -2,10 +2,10 @@ package br.com.mind5.business.phone.info;
 
 import java.util.List;
 
-import br.com.mind5.business.form.formPhone.info.FormPhoneInfo;
 import br.com.mind5.business.masterData.info.CountryPhoneInfo;
 import br.com.mind5.business.phoneSearch.info.PhonarchInfo;
 import br.com.mind5.business.phoneSnapshot.info.PhonapInfo;
+import br.com.mind5.form.formPhone.info.FormoneInfo;
 import br.com.mind5.info.obsolete.InfoMerger_;
 import br.com.mind5.security.username.info.UsernameInfo;
 
@@ -52,15 +52,15 @@ public final class PhoneMerger {
 	
 	
 	
-	public static PhoneInfo mergeWithForm(FormPhoneInfo sourceOne, PhoneInfo sourceTwo) {
-		InfoMerger_<PhoneInfo, FormPhoneInfo> merger = new PhoneMergerForm();		
+	public static PhoneInfo mergeWithFormone(FormoneInfo sourceOne, PhoneInfo sourceTwo) {
+		InfoMerger_<PhoneInfo, FormoneInfo> merger = new PhoneMergerFormone();		
 		return merger.merge(sourceOne, sourceTwo);
 	}
 	
 	
 	
-	public static List<PhoneInfo> mergeWithForm(List<FormPhoneInfo> sourceOnes, List<PhoneInfo> sourceTwos) {
-		InfoMerger_<PhoneInfo, FormPhoneInfo> merger = new PhoneMergerForm();		
+	public static List<PhoneInfo> mergeWithFormone(List<FormoneInfo> sourceOnes, List<PhoneInfo> sourceTwos) {
+		InfoMerger_<PhoneInfo, FormoneInfo> merger = new PhoneMergerFormone();		
 		return merger.merge(sourceOnes, sourceTwos);
 	}
 	

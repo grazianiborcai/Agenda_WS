@@ -1,4 +1,4 @@
-package br.com.mind5.business.form.formPhone.dao;
+package br.com.mind5.form.formPhone.dao;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
@@ -9,29 +9,18 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class FormPhoneDbTableColumn extends DaoDbTableColumnTemplate {
+public final class DaoFormoneDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_COUNTRY = DaoDbField.COL_COD_COUNTRY;
 	public static final String COL_COD_FORM = DaoDbField.COL_COD_FORM;
 	
 	
-	private Hashtable<String, List<DaoColumn>> tableColumns;	
-	
-	public FormPhoneDbTableColumn() {
-		super(FormPhoneDbTableColumn.class);
+	public DaoFormoneDbTableColumn() {
+		super();
 	}
 	
 	
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
-		tableColumns = new Hashtable<>();
-		addressFormTable();
-		
-		return tableColumns;
-	}
-	
-	
-	
-	private void addressFormTable() {
 		final String TABLE_NAME = DaoDbTable.PHONE_FORM_TABLE;
 		
 		DaoColumn oneColumn;
@@ -53,6 +42,8 @@ public final class FormPhoneDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);	
 		
-		tableColumns.put(TABLE_NAME, columns);
+		Hashtable<String, List<DaoColumn>> results = new Hashtable<>();
+		results.put(TABLE_NAME, columns);
+		return results;
 	}
 }

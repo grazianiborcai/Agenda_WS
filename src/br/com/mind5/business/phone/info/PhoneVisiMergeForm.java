@@ -1,27 +1,27 @@
 package br.com.mind5.business.phone.info;
 
-import br.com.mind5.business.form.formPhone.info.FormPhoneInfo;
 import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
+import br.com.mind5.form.formPhone.info.FormoneInfo;
 import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class PhoneVisiMergeForm implements InfoMergerVisitor_<PhoneInfo, FormPhoneInfo> {
+final class PhoneVisiMergeForm implements InfoMergerVisitor_<PhoneInfo, FormoneInfo> {
 
-	@Override public PhoneInfo writeRecord(FormPhoneInfo sourceOne, PhoneInfo sourceTwo) {
+	@Override public PhoneInfo writeRecord(FormoneInfo sourceOne, PhoneInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);
 		return merge(sourceOne, sourceTwo);
 	}
 	
 	
 	
-	private void checkArgument(FormPhoneInfo sourceOne, PhoneInfo sourceTwo) {
+	private void checkArgument(FormoneInfo sourceOne, PhoneInfo sourceTwo) {
 		if (shouldWrite(sourceOne, sourceTwo) == false)
 			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}
 	
 	
 	
-	private PhoneInfo merge(FormPhoneInfo sourceOne, PhoneInfo sourceTwo) {
+	private PhoneInfo merge(FormoneInfo sourceOne, PhoneInfo sourceTwo) {
 		PhoneInfo resultInfo = makeClone(sourceTwo);
 		resultInfo.codForm = sourceOne.codForm;
 		
@@ -49,7 +49,7 @@ final class PhoneVisiMergeForm implements InfoMergerVisitor_<PhoneInfo, FormPhon
 
 
 	
-	@Override public boolean shouldWrite(FormPhoneInfo sourceOne, PhoneInfo sourceTwo) {
+	@Override public boolean shouldWrite(FormoneInfo sourceOne, PhoneInfo sourceTwo) {
 		return sourceOne.codCountry.equals(sourceTwo.codCountry);
 	}
 }

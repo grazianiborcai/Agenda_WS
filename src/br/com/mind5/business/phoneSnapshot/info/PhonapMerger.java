@@ -4,9 +4,9 @@ import java.util.List;
 
 import br.com.mind5.business.customerList.info.CuslisInfo;
 import br.com.mind5.business.employeeList.info.EmplisInfo;
-import br.com.mind5.business.form.formPhone.info.FormPhoneInfo;
 import br.com.mind5.business.masterData.info.CountryPhoneInfo;
 import br.com.mind5.business.storeList.info.StolisInfo;
+import br.com.mind5.form.formPhone.info.FormoneInfo;
 import br.com.mind5.info.obsolete.InfoMerger_;
 import br.com.mind5.security.userList.info.UselisInfo;
 
@@ -81,15 +81,15 @@ public final class PhonapMerger {
 	
 	
 	
-	public static PhonapInfo mergeWithForm(FormPhoneInfo sourceOne, PhonapInfo sourceTwo) {
-		InfoMerger_<PhonapInfo, FormPhoneInfo> merger = new PhonapMergerForm();		
+	public static PhonapInfo mergeWithForm(FormoneInfo sourceOne, PhonapInfo sourceTwo) {
+		InfoMerger_<PhonapInfo, FormoneInfo> merger = new PhonapMergerForm();		
 		return merger.merge(sourceOne, sourceTwo);
 	}
 	
 	
 	
-	public static List<PhonapInfo> mergeWithForm(List<FormPhoneInfo> sourceOnes, List<PhonapInfo> sourceTwos) {
-		InfoMerger_<PhonapInfo, FormPhoneInfo> merger = new PhonapMergerForm();		
+	public static List<PhonapInfo> mergeWithForm(List<FormoneInfo> sourceOnes, List<PhonapInfo> sourceTwos) {
+		InfoMerger_<PhonapInfo, FormoneInfo> merger = new PhonapMergerForm();		
 		return merger.merge(sourceOnes, sourceTwos);
 	}
 }

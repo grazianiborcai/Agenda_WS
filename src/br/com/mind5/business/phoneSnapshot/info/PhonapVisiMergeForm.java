@@ -1,27 +1,27 @@
 package br.com.mind5.business.phoneSnapshot.info;
 
-import br.com.mind5.business.form.formPhone.info.FormPhoneInfo;
 import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
+import br.com.mind5.form.formPhone.info.FormoneInfo;
 import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
-final class PhonapVisiMergeForm implements InfoMergerVisitor_<PhonapInfo, FormPhoneInfo> {
+final class PhonapVisiMergeForm implements InfoMergerVisitor_<PhonapInfo, FormoneInfo> {
 
-	@Override public PhonapInfo writeRecord(FormPhoneInfo sourceOne, PhonapInfo sourceTwo) {
+	@Override public PhonapInfo writeRecord(FormoneInfo sourceOne, PhonapInfo sourceTwo) {
 		checkArgument(sourceOne, sourceTwo);
 		return merge(sourceOne, sourceTwo);
 	}
 	
 	
 	
-	private void checkArgument(FormPhoneInfo sourceOne, PhonapInfo sourceTwo) {
+	private void checkArgument(FormoneInfo sourceOne, PhonapInfo sourceTwo) {
 		if (shouldWrite(sourceOne, sourceTwo) == false)
 			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
 	}
 	
 	
 	
-	private PhonapInfo merge(FormPhoneInfo sourceOne, PhonapInfo sourceTwo) {
+	private PhonapInfo merge(FormoneInfo sourceOne, PhonapInfo sourceTwo) {
 		PhonapInfo resultInfo = makeClone(sourceTwo);
 		resultInfo.codForm = sourceOne.codForm;
 		
@@ -49,7 +49,7 @@ final class PhonapVisiMergeForm implements InfoMergerVisitor_<PhonapInfo, FormPh
 
 
 	
-	@Override public boolean shouldWrite(FormPhoneInfo sourceOne, PhonapInfo sourceTwo) {
+	@Override public boolean shouldWrite(FormoneInfo sourceOne, PhonapInfo sourceTwo) {
 		return sourceOne.codCountry.equals(sourceTwo.codCountry);
 	}
 }

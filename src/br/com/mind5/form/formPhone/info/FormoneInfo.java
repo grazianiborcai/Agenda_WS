@@ -1,28 +1,28 @@
-package br.com.mind5.business.form.formPhone.info;
+package br.com.mind5.form.formPhone.info;
 
 import java.util.List;
 
 import br.com.mind5.info.InfoRecord;
 
-public final class FormPhoneInfo extends InfoRecord implements Cloneable {
+public final class FormoneInfo extends InfoRecord implements Cloneable {
 	public String codCountry;
 	public String codForm;
 	
 	
-	public FormPhoneInfo() {
-		super(FormPhoneInfo.class);
+	public FormoneInfo() {
+		super(FormoneInfo.class);
 	}
 	
 	
 	
-	public static FormPhoneInfo copyFrom(Object sourceObj) {
-		return copyFrom(sourceObj, FormPhoneInfo.class);
+	public static FormoneInfo copyFrom(Object sourceObj) {
+		return copyFrom(sourceObj, FormoneInfo.class);
 	}
 	
 	
 	
-	public static List<FormPhoneInfo> copyFrom(List<?> sourceObjs) {
-		return copyFrom(sourceObjs, FormPhoneInfo.class);
+	public static List<FormoneInfo> copyFrom(List<?> sourceObjs) {
+		return copyFrom(sourceObjs, FormoneInfo.class);
 	}
 	
 	
@@ -47,11 +47,11 @@ public final class FormPhoneInfo extends InfoRecord implements Cloneable {
 			return true;
 		
 		
-		if (!(o instanceof FormPhoneInfo))
+		if (!(o instanceof FormoneInfo))
 			return false;
 		
 		
-		FormPhoneInfo obj = (FormPhoneInfo) o;		
+		FormoneInfo obj = (FormoneInfo) o;		
 		return (codCountry.equals(obj.codCountry));
 	}
 }

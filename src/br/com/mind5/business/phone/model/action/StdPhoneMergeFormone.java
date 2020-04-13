@@ -7,12 +7,12 @@ import br.com.mind5.model.action.ActionStdHelperMerge;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdPhoneMergeForm implements ActionStdV1<PhoneInfo> {
+public final class StdPhoneMergeFormone implements ActionStdV1<PhoneInfo> {
 	private ActionStdV1<PhoneInfo> actionHelper;	
 	
 	
-	public StdPhoneMergeForm(DeciTreeOption<PhoneInfo> option) {			
-		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiPhoneMergeForm(option.conn, option.schemaName));
+	public StdPhoneMergeFormone(DeciTreeOption<PhoneInfo> option) {			
+		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiPhoneMergeFormone(option.conn, option.schemaName));
 	}
 	
 	

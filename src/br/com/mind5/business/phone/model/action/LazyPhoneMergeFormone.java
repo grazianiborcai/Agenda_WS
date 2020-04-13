@@ -9,9 +9,9 @@ import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyPhoneMergeForm extends ActionLazyTemplateV1<PhoneInfo, PhoneInfo> {
+public final class LazyPhoneMergeFormone extends ActionLazyTemplateV1<PhoneInfo, PhoneInfo> {
 
-	public LazyPhoneMergeForm(Connection conn, String schemaName) {
+	public LazyPhoneMergeFormone(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyPhoneMergeForm extends ActionLazyTemplateV1<PhoneInfo, Ph
 	
 	
 	@Override protected ActionStdV1<PhoneInfo> getInstanceOfActionHook(DeciTreeOption<PhoneInfo> option) {
-		return new StdPhoneMergeForm(option);
+		return new StdPhoneMergeFormone(option);
 	}
 	
 	
