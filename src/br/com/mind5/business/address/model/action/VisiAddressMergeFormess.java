@@ -4,8 +4,8 @@ import java.util.List;
 
 import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.address.info.AddressMerger;
-import br.com.mind5.business.form.formAddress.info.FormessInfo;
-import br.com.mind5.business.form.formAddress.model.decisionTree.RootFormessSelect;
+import br.com.mind5.form.formAddress.info.FormessInfo;
+import br.com.mind5.form.formAddress.model.decisionTree.RootFormessSelect;
 import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;

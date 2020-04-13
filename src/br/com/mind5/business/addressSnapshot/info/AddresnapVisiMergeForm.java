@@ -1,8 +1,8 @@
 package br.com.mind5.business.addressSnapshot.info;
 
-import br.com.mind5.business.form.formAddress.info.FormessInfo;
 import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
+import br.com.mind5.form.formAddress.info.FormessInfo;
 import br.com.mind5.info.obsolete.InfoMergerVisitor_;
 
 final class AddresnapVisiMergeForm implements InfoMergerVisitor_<AddresnapInfo, FormessInfo> {

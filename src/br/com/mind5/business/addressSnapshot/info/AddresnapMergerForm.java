@@ -1,6 +1,6 @@
 package br.com.mind5.business.addressSnapshot.info;
 
-import br.com.mind5.business.form.formAddress.info.FormessInfo;
+import br.com.mind5.form.formAddress.info.FormessInfo;
 import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.info.obsolete.InfoMergerTemplate_;
 import br.com.mind5.info.obsolete.InfoMergerVisitor_;

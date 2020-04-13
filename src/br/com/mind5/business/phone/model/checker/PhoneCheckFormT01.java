@@ -2,9 +2,9 @@ package br.com.mind5.business.phone.model.checker;
 
 import java.sql.Connection;
 
-import br.com.mind5.business.form.common.Form;
 import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.common.SystemCode;
+import br.com.mind5.form.common.Form;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
