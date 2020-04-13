@@ -11,9 +11,9 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
 
-public final class RootComplisSelect extends DeciTreeTemplateRead<ComplisInfo> {
+public final class RootComplisSelect extends DeciTreeTemplateReadV1<ComplisInfo> {
 	
 	public RootComplisSelect(DeciTreeOption<ComplisInfo> option) {
 		super(option);

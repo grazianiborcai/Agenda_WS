@@ -9,14 +9,14 @@ import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
 import br.com.mind5.security.userPassword.info.UpswdInfo;
 import br.com.mind5.security.userPassword.model.action.LazyUpswdNodeAuth;
 import br.com.mind5.security.userPassword.model.action.StdUpswdMergeUser;
 import br.com.mind5.security.userPassword.model.checker.UpswdCheckAuth;
 import br.com.mind5.security.userPassword.model.checker.UpswdCheckUser;
 
-public final class RootUpswdAuth extends DeciTreeTemplateRead<UpswdInfo> {
+public final class RootUpswdAuth extends DeciTreeTemplateReadV1<UpswdInfo> {
 	
 	public RootUpswdAuth(DeciTreeOption<UpswdInfo> option) {
 		super(option);

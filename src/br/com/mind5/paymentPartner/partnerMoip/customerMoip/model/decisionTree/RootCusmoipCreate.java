@@ -9,7 +9,7 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
 import br.com.mind5.paymentPartner.partnerMoip.customerMoip.info.CusmoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.customerMoip.model.action.LazyCusmoipCreate;
 import br.com.mind5.paymentPartner.partnerMoip.customerMoip.model.action.LazyCusmoipEnforceRequest;
@@ -20,7 +20,7 @@ import br.com.mind5.paymentPartner.partnerMoip.customerMoip.model.checker.Cusmoi
 import br.com.mind5.paymentPartner.partnerMoip.customerMoip.model.checker.CusmoipCheckPhonap;
 import br.com.mind5.paymentPartner.partnerMoip.customerMoip.model.checker.CusmoipCheckWrite;
 
-public final class RootCusmoipCreate extends DeciTreeTemplateWrite<CusmoipInfo> {
+public final class RootCusmoipCreate extends DeciTreeTemplateWriteV1<CusmoipInfo> {
 	
 	public RootCusmoipCreate(DeciTreeOption<CusmoipInfo> option) {
 		super(option);

@@ -87,7 +87,11 @@ public abstract class ActionLazyTemplateV2<T extends InfoRecord, S extends InfoR
 	
 	
 	private DeciResult<T> executePostActions(List<ActionLazyV1<T>> lazyActions, DeciResult<T> mainResult) {				
-		DeciResult<T> lazyResult = makeErrorResult();
+		DeciResult<T> lazyResult = mainResult; 
+		
+		if (hasPostActions(lazyActions) == FAILED)
+			return lazyResult;
+		
 		
 		for (ActionLazyV1<T> eachLazy : lazyActions) {
 			lazyResult = tryToExecutePostAction(eachLazy, mainResult.getResultset());
@@ -227,6 +231,18 @@ public abstract class ActionLazyTemplateV2<T extends InfoRecord, S extends InfoR
 		infoRecords.add(makeClone(infoRecord));
 		
 		return infoRecords;
+	}
+	
+	
+	
+	private boolean hasPostActions(List<ActionLazyV1<T>> lazyActions) {
+		if (lazyActions == null)
+			return FAILED;
+		
+		if (lazyActions.isEmpty())
+			return FAILED;
+		
+		return SUCCESS;
 	}
 	
 	

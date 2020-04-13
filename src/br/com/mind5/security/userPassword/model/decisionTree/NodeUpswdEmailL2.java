@@ -8,13 +8,13 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
 import br.com.mind5.security.userPassword.info.UpswdInfo;
 import br.com.mind5.security.userPassword.model.action.StdUpswdSuccess;
 import br.com.mind5.security.userPassword.model.checker.UpswdCheckHasEmail;
 import br.com.mind5.security.userPassword.model.checker.UpswdCheckHasPerson;
 
-public final class NodeUpswdEmailL2 extends DeciTreeTemplateRead<UpswdInfo> {
+public final class NodeUpswdEmailL2 extends DeciTreeTemplateReadV1<UpswdInfo> {
 	
 	public NodeUpswdEmailL2(DeciTreeOption<UpswdInfo> option) {
 		super(option);

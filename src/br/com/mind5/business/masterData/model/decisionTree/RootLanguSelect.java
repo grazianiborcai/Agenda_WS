@@ -10,9 +10,9 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.common.ModelCherckerTrue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
 
-public final class RootLanguSelect extends DeciTreeTemplateRead<LanguInfo> {
+public final class RootLanguSelect extends DeciTreeTemplateReadV1<LanguInfo> {
 	
 	public RootLanguSelect(DeciTreeOption<LanguInfo> option) {
 		super(option);

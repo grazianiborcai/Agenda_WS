@@ -8,14 +8,14 @@ import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
 import br.com.mind5.security.user.info.UserInfo;
 import br.com.mind5.security.user.model.action.LazyUserEnforceAuthStore;
 import br.com.mind5.security.user.model.action.LazyUserRootInsert;
 import br.com.mind5.security.user.model.action.StdUserEnforceCategStore;
 import br.com.mind5.security.user.model.checker.UserCheckDummy;
 
-public final class RootUserInsertStore extends DeciTreeTemplateWrite<UserInfo> {
+public final class RootUserInsertStore extends DeciTreeTemplateWriteV1<UserInfo> {
 	
 	public RootUserInsertStore(DeciTreeOption<UserInfo> option) {
 		super(option);

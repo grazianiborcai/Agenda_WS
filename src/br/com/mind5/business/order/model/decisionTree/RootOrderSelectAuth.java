@@ -10,9 +10,9 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
 
-public final class RootOrderSelectAuth extends DeciTreeTemplateRead<OrderInfo> {
+public final class RootOrderSelectAuth extends DeciTreeTemplateReadV1<OrderInfo> {
 	
 	public RootOrderSelectAuth(DeciTreeOption<OrderInfo> option) {
 		super(option);

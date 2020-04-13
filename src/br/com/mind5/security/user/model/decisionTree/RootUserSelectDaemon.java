@@ -9,7 +9,7 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
 import br.com.mind5.security.user.info.UserInfo;
 import br.com.mind5.security.user.model.action.LazyUserEnforceCategDaemon;
 import br.com.mind5.security.user.model.action.LazyUserMergeUserarch;
@@ -17,7 +17,7 @@ import br.com.mind5.security.user.model.action.LazyUserRootSelect;
 import br.com.mind5.security.user.model.action.StdUserEnforceUsernameDaemon;
 import br.com.mind5.security.user.model.checker.UserCheckReadDaemon;
 
-public final class RootUserSelectDaemon extends DeciTreeTemplateRead<UserInfo> {
+public final class RootUserSelectDaemon extends DeciTreeTemplateReadV1<UserInfo> {
 	
 	public RootUserSelectDaemon(DeciTreeOption<UserInfo> option) {
 		super(option);

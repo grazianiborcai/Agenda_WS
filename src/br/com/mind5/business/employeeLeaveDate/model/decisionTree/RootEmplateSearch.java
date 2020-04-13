@@ -12,9 +12,9 @@ import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
 
-public class RootEmplateSearch extends DeciTreeTemplateRead<EmplateInfo> {
+public class RootEmplateSearch extends DeciTreeTemplateReadV1<EmplateInfo> {
 	
 	public RootEmplateSearch(DeciTreeOption<EmplateInfo> option) {
 		super(option);

@@ -8,13 +8,13 @@ import br.com.mind5.business.address.model.action.StdAddressMergeState;
 import br.com.mind5.business.address.model.action.StdAddressSuccess;
 import br.com.mind5.business.address.model.checker.AddressCheckHasState;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class NodeAddressState extends DeciTreeTemplateWrite<AddressInfo> {
+public final class NodeAddressState extends DeciTreeTemplateWriteV2<AddressInfo> {
 	
 	public NodeAddressState(DeciTreeOption<AddressInfo> option) {
 		super(option);

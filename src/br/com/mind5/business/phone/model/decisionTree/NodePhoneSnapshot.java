@@ -12,9 +12,9 @@ import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
 
-public final class NodePhoneSnapshot extends DeciTreeTemplateWrite<PhoneInfo> {
+public final class NodePhoneSnapshot extends DeciTreeTemplateWriteV1<PhoneInfo> {
 	
 	public NodePhoneSnapshot(DeciTreeOption<PhoneInfo> option) {
 		super(option);

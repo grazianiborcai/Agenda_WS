@@ -8,12 +8,12 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
 import br.com.mind5.payment.countryPartnerSearch.info.CounparchInfo;
 import br.com.mind5.payment.countryPartnerSearch.model.action.StdCounparchSelect;
 import br.com.mind5.payment.countryPartnerSearch.model.checker.CounparchCheckRead;
 
-public final class RootCounparchSelect extends DeciTreeTemplateRead<CounparchInfo> {
+public final class RootCounparchSelect extends DeciTreeTemplateReadV1<CounparchInfo> {
 	
 	public RootCounparchSelect(DeciTreeOption<CounparchInfo> option) {
 		super(option);

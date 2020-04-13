@@ -13,9 +13,9 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
 
-public final class RootFimistSelect extends DeciTreeTemplateRead<FimistInfo> {
+public final class RootFimistSelect extends DeciTreeTemplateReadV1<FimistInfo> {
 	
 	public RootFimistSelect(DeciTreeOption<FimistInfo> option) {
 		super(option);

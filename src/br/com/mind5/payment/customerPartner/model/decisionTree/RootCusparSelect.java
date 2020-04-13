@@ -8,14 +8,14 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
 import br.com.mind5.payment.customerPartner.model.action.StdCusparMergeToSelect;
 import br.com.mind5.payment.customerPartner.model.checker.CusparCheckLangu;
 import br.com.mind5.payment.customerPartner.model.checker.CusparCheckRead;
 import br.com.mind5.payment.customerPartner.model.checker.CusparCheckUsername;
 
-public final class RootCusparSelect extends DeciTreeTemplateRead<CusparInfo> {
+public final class RootCusparSelect extends DeciTreeTemplateReadV1<CusparInfo> {
 	
 	public RootCusparSelect(DeciTreeOption<CusparInfo> option) {
 		super(option);

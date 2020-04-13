@@ -8,13 +8,13 @@ import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
 import br.com.mind5.payment.creditCard.model.action.LazyCrecardDelete;
 import br.com.mind5.payment.creditCard.model.action.StdCrecardUpdate;
 import br.com.mind5.payment.creditCard.model.checker.CrecardCheckDummy;
 
-public final class NodeCrecardDelete extends DeciTreeTemplateWrite<CrecardInfo> {
+public final class NodeCrecardDelete extends DeciTreeTemplateWriteV1<CrecardInfo> {
 	
 	public NodeCrecardDelete(DeciTreeOption<CrecardInfo> option) {
 		super(option);

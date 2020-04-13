@@ -10,9 +10,9 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
 
-public final class NodeMatextDefaultL1 extends DeciTreeTemplateWrite<MatextInfo> {
+public final class NodeMatextDefaultL1 extends DeciTreeTemplateWriteV1<MatextInfo> {
 	
 	public NodeMatextDefaultL1(DeciTreeOption<MatextInfo> option) {
 		super(option);

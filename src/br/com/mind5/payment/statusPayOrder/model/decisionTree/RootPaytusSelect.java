@@ -9,14 +9,14 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
 import br.com.mind5.payment.statusPayOrder.info.PaytusInfo;
 import br.com.mind5.payment.statusPayOrder.model.action.LazyPaytusMergePaytusem;
 import br.com.mind5.payment.statusPayOrder.model.action.StdPaytusMergePayord;
 import br.com.mind5.payment.statusPayOrder.model.checker.PaytusCheckLangu;
 import br.com.mind5.payment.statusPayOrder.model.checker.PaytusCheckRead;
 
-public final class RootPaytusSelect extends DeciTreeTemplateRead<PaytusInfo> {
+public final class RootPaytusSelect extends DeciTreeTemplateReadV1<PaytusInfo> {
 	
 	public RootPaytusSelect(DeciTreeOption<PaytusInfo> option) {
 		super(option);

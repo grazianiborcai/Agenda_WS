@@ -9,7 +9,7 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
 import br.com.mind5.payment.refundOrder.info.RefuInfo;
 import br.com.mind5.payment.refundOrder.model.action.LazyRefuNodeRefund;
 import br.com.mind5.payment.refundOrder.model.checker.RefuCheckLangu;
@@ -18,7 +18,7 @@ import br.com.mind5.payment.refundOrder.model.checker.RefuCheckOwner;
 import br.com.mind5.payment.refundOrder.model.checker.RefuCheckRefund;
 import br.com.mind5.payment.refundOrder.model.checker.RefuCheckUsername;
 
-public final class RootRefuRefund extends DeciTreeTemplateWrite<RefuInfo> {
+public final class RootRefuRefund extends DeciTreeTemplateWriteV1<RefuInfo> {
 	
 	public RootRefuRefund(DeciTreeOption<RefuInfo> option) {
 		super(option);

@@ -13,9 +13,9 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
 
-public final class RootMatarchSelectService extends DeciTreeTemplateRead<MatarchInfo> {
+public final class RootMatarchSelectService extends DeciTreeTemplateReadV1<MatarchInfo> {
 	
 	public RootMatarchSelectService(DeciTreeOption<MatarchInfo> option) {
 		super(option);

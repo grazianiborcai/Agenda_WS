@@ -8,13 +8,13 @@ import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
 import br.com.mind5.paymentPartner.partnerMoip.customerMoip.info.CusmoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.customerMoip.model.action.LazyCusmoipNodeAddressL2;
 import br.com.mind5.paymentPartner.partnerMoip.customerMoip.model.action.StdCusmoipMergeAddresnap;
 import br.com.mind5.paymentPartner.partnerMoip.customerMoip.model.checker.CusmoipCheckDummy;
 
-public final class NodeCusmoipAddressL1 extends DeciTreeTemplateWrite<CusmoipInfo> {
+public final class NodeCusmoipAddressL1 extends DeciTreeTemplateWriteV1<CusmoipInfo> {
 	
 	public NodeCusmoipAddressL1(DeciTreeOption<CusmoipInfo> option) {
 		super(option);

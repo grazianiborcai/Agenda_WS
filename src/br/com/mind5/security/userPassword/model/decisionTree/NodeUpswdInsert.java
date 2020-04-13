@@ -8,7 +8,7 @@ import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
 import br.com.mind5.security.userPassword.info.UpswdInfo;
 import br.com.mind5.security.userPassword.model.action.LazyUpswdEnforceHash;
 import br.com.mind5.security.userPassword.model.action.LazyUpswdEnforceLength;
@@ -17,7 +17,7 @@ import br.com.mind5.security.userPassword.model.action.LazyUpswdInsert;
 import br.com.mind5.security.userPassword.model.action.StdUpswdEnforceLChanged;
 import br.com.mind5.security.userPassword.model.checker.UpswdCheckDummy;
 
-public final class NodeUpswdInsert extends DeciTreeTemplateWrite<UpswdInfo> {
+public final class NodeUpswdInsert extends DeciTreeTemplateWriteV1<UpswdInfo> {
 	
 	public NodeUpswdInsert(DeciTreeOption<UpswdInfo> option) {
 		super(option);

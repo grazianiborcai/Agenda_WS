@@ -9,7 +9,7 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
 import br.com.mind5.security.user.info.UserInfo;
 import br.com.mind5.security.user.model.action.LazyUserNodeSnapshot;
 import br.com.mind5.security.user.model.action.LazyUserNodeUpdate;
@@ -21,7 +21,7 @@ import br.com.mind5.security.user.model.checker.UserCheckOwner;
 import br.com.mind5.security.user.model.checker.UserCheckUpdate;
 import br.com.mind5.security.user.model.checker.UserCheckUsername;
 
-public final class RootUserUpdateAuth extends DeciTreeTemplateWrite<UserInfo> {
+public final class RootUserUpdateAuth extends DeciTreeTemplateWriteV1<UserInfo> {
 	
 	public RootUserUpdateAuth(DeciTreeOption<UserInfo> option) {
 		super(option);

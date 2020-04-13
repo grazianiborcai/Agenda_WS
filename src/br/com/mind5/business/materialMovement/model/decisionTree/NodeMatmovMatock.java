@@ -12,9 +12,9 @@ import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
 
-public final class NodeMatmovMatock extends DeciTreeTemplateWrite<MatmovInfo> {
+public final class NodeMatmovMatock extends DeciTreeTemplateWriteV1<MatmovInfo> {
 	
 	public NodeMatmovMatock(DeciTreeOption<MatmovInfo> option) {
 		super(option);

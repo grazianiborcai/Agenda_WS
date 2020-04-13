@@ -9,14 +9,14 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
 import br.com.mind5.payment.statusPayOrderItem.info.PaytusemInfo;
 import br.com.mind5.payment.statusPayOrderItem.model.action.LazyPaytusemPayordemUpdate;
 import br.com.mind5.payment.statusPayOrderItem.model.action.StdPaytusemMergeOrdmoip;
 import br.com.mind5.payment.statusPayOrderItem.model.action.StdPaytusemSuccess;
 import br.com.mind5.payment.statusPayOrderItem.model.checker.PaytusemCheckIsFinished;
 
-public final class NodePaytusemRefresh extends DeciTreeTemplateWrite<PaytusemInfo> {
+public final class NodePaytusemRefresh extends DeciTreeTemplateWriteV1<PaytusemInfo> {
 	
 	public NodePaytusemRefresh(DeciTreeOption<PaytusemInfo> option) {
 		super(option);

@@ -12,9 +12,9 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
 
-public final class RootFormPhoneSelect extends DeciTreeTemplateRead<FormPhoneInfo> {
+public final class RootFormPhoneSelect extends DeciTreeTemplateReadV1<FormPhoneInfo> {
 	
 	public RootFormPhoneSelect(DeciTreeOption<FormPhoneInfo> option) {
 		super(option);

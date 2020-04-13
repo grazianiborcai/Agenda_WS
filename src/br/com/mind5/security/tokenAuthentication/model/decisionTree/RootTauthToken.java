@@ -9,14 +9,14 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
 import br.com.mind5.security.tokenAuthentication.info.TauthInfo;
 import br.com.mind5.security.tokenAuthentication.model.action.LazyTauthMergeUsername;
 import br.com.mind5.security.tokenAuthentication.model.action.StdTauthMergeJwtoken;
 import br.com.mind5.security.tokenAuthentication.model.action.StdTauthValidateJwtoken;
 import br.com.mind5.security.tokenAuthentication.model.checker.TauthCheckRead;
 
-public final class RootTauthToken extends DeciTreeTemplateWrite<TauthInfo> {
+public final class RootTauthToken extends DeciTreeTemplateWriteV1<TauthInfo> {
 	
 	public RootTauthToken(DeciTreeOption<TauthInfo> option) {
 		super(option);

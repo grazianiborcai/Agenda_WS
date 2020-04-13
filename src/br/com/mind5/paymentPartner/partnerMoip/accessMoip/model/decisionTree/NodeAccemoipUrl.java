@@ -9,7 +9,7 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
 import br.com.mind5.paymentPartner.partnerMoip.accessMoip.info.AccemoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.accessMoip.model.action.LazyAccemoipEnforceObfuscate;
 import br.com.mind5.paymentPartner.partnerMoip.accessMoip.model.action.LazyAccemoipEnforceScopes;
@@ -22,7 +22,7 @@ import br.com.mind5.paymentPartner.partnerMoip.accessMoip.model.action.StdAccemo
 import br.com.mind5.paymentPartner.partnerMoip.accessMoip.model.checker.AccemoipCheckSetupar;
 import br.com.mind5.paymentPartner.partnerMoip.accessMoip.model.checker.AccemoipCheckSyspar;
 
-public final class NodeAccemoipUrl extends DeciTreeTemplateWrite<AccemoipInfo> {
+public final class NodeAccemoipUrl extends DeciTreeTemplateWriteV1<AccemoipInfo> {
 	
 	public NodeAccemoipUrl(DeciTreeOption<AccemoipInfo> option) {
 		super(option);

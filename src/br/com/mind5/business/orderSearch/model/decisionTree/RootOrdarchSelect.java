@@ -13,9 +13,9 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
 
-public final class RootOrdarchSelect extends DeciTreeTemplateRead<OrdarchInfo> {
+public final class RootOrdarchSelect extends DeciTreeTemplateReadV1<OrdarchInfo> {
 	
 	public RootOrdarchSelect(DeciTreeOption<OrdarchInfo> option) {
 		super(option);

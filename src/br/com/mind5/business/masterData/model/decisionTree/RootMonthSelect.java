@@ -11,9 +11,9 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
 
-public final class RootMonthSelect extends DeciTreeTemplateRead<MonthInfo> {
+public final class RootMonthSelect extends DeciTreeTemplateReadV1<MonthInfo> {
 	
 	public RootMonthSelect(DeciTreeOption<MonthInfo> option) {
 		super(option);

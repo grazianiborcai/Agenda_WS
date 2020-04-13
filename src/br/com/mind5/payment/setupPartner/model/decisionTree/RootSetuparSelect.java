@@ -9,14 +9,14 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
 import br.com.mind5.payment.setupPartner.info.SetuparInfo;
 import br.com.mind5.payment.setupPartner.model.action.LazySetuparMergePaypar;
 import br.com.mind5.payment.setupPartner.model.action.StdSetuparSelect;
 import br.com.mind5.payment.setupPartner.model.checker.SetuparCheckCountry;
 import br.com.mind5.payment.setupPartner.model.checker.SetuparCheckRead;
 
-public final class RootSetuparSelect extends DeciTreeTemplateRead<SetuparInfo> {
+public final class RootSetuparSelect extends DeciTreeTemplateReadV1<SetuparInfo> {
 	
 	public RootSetuparSelect(DeciTreeOption<SetuparInfo> option) {
 		super(option);

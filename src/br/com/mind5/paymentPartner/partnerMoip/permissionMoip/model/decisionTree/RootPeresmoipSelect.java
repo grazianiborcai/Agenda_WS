@@ -8,14 +8,14 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
 import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.info.PeresmoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.model.action.StdPeresmoipMergeToSelect;
 import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.model.checker.PeresmoipCheckLangu;
 import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.model.checker.PeresmoipCheckOwner;
 import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.model.checker.PeresmoipCheckRead;
 
-public final class RootPeresmoipSelect extends DeciTreeTemplateRead<PeresmoipInfo> {
+public final class RootPeresmoipSelect extends DeciTreeTemplateReadV1<PeresmoipInfo> {
 	
 	public RootPeresmoipSelect(DeciTreeOption<PeresmoipInfo> option) {
 		super(option);

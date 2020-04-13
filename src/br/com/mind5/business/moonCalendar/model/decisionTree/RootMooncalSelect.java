@@ -13,9 +13,9 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
 
-public final class RootMooncalSelect extends DeciTreeTemplateRead<MooncalInfo> {
+public final class RootMooncalSelect extends DeciTreeTemplateReadV1<MooncalInfo> {
 	
 	public RootMooncalSelect(DeciTreeOption<MooncalInfo> option) {
 		super(option);

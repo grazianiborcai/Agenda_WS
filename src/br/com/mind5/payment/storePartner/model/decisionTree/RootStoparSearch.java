@@ -8,13 +8,13 @@ import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
 import br.com.mind5.payment.storePartner.info.StoparInfo;
 import br.com.mind5.payment.storePartner.model.action.LazyStoparRootSelect;
 import br.com.mind5.payment.storePartner.model.action.StdStoparMergeStoparch;
 import br.com.mind5.payment.storePartner.model.checker.StoparCheckDummy;
 
-public final class RootStoparSearch extends DeciTreeTemplateRead<StoparInfo> {
+public final class RootStoparSearch extends DeciTreeTemplateReadV1<StoparInfo> {
 	
 	public RootStoparSearch(DeciTreeOption<StoparInfo> option) {
 		super(option);

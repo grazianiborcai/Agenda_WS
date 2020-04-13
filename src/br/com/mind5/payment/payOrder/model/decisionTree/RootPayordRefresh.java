@@ -9,7 +9,7 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
 import br.com.mind5.payment.payOrder.model.action.LazyPayordEnforceLChanged;
 import br.com.mind5.payment.payOrder.model.action.LazyPayordOrderRefresh;
@@ -18,7 +18,7 @@ import br.com.mind5.payment.payOrder.model.action.StdPayordMergeToUpdate;
 import br.com.mind5.payment.payOrder.model.checker.PayordCheckExist;
 import br.com.mind5.payment.payOrder.model.checker.PayordCheckRefresh;
 
-public final class RootPayordRefresh extends DeciTreeTemplateWrite<PayordInfo> {
+public final class RootPayordRefresh extends DeciTreeTemplateWriteV1<PayordInfo> {
 	
 	public RootPayordRefresh(DeciTreeOption<PayordInfo> option) {
 		super(option);

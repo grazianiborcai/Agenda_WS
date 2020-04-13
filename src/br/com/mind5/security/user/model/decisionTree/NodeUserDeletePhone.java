@@ -9,14 +9,14 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
 import br.com.mind5.security.user.info.UserInfo;
 import br.com.mind5.security.user.model.action.LazyUserDeletePhone;
 import br.com.mind5.security.user.model.action.StdUserMergePhone;
 import br.com.mind5.security.user.model.action.StdUserSuccess;
 import br.com.mind5.security.user.model.checker.UserCheckPhonarch;
 
-public final class NodeUserDeletePhone extends DeciTreeTemplateWrite<UserInfo> {
+public final class NodeUserDeletePhone extends DeciTreeTemplateWriteV1<UserInfo> {
 	
 	public NodeUserDeletePhone(DeciTreeOption<UserInfo> option) {super(option);
 	}

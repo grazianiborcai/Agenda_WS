@@ -7,12 +7,12 @@ import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
 import br.com.mind5.payment.payOrderItem.info.PayordemInfo;
 import br.com.mind5.payment.payOrderItem.model.action.StdPayordemMergeMatlis;
 import br.com.mind5.payment.payOrderItem.model.checker.PayordemCheckDummy;
 
-public final class NodePayordemSelectL2 extends DeciTreeTemplateWrite<PayordemInfo> {
+public final class NodePayordemSelectL2 extends DeciTreeTemplateWriteV1<PayordemInfo> {
 	
 	public NodePayordemSelectL2(DeciTreeOption<PayordemInfo> option) {
 		super(option);

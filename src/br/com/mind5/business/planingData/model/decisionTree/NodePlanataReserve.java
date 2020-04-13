@@ -13,9 +13,9 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
 
-public class NodePlanataReserve extends DeciTreeTemplateRead<PlanataInfo> {
+public class NodePlanataReserve extends DeciTreeTemplateReadV1<PlanataInfo> {
 	
 	public NodePlanataReserve(DeciTreeOption<PlanataInfo> option) {
 		super(option);

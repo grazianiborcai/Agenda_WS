@@ -9,14 +9,14 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
 import br.com.mind5.security.userSnapshot.info.UserapInfo;
 import br.com.mind5.security.userSnapshot.model.action.LazyUserapInsert;
 import br.com.mind5.security.userSnapshot.model.checker.UserapCheckOwner;
 import br.com.mind5.security.userSnapshot.model.checker.UserapCheckUser;
 import br.com.mind5.security.userSnapshot.model.checker.UserapCheckWrite;
 
-public final class RootUserapInsert extends DeciTreeTemplateWrite<UserapInfo> {
+public final class RootUserapInsert extends DeciTreeTemplateWriteV1<UserapInfo> {
 	
 	public RootUserapInsert(DeciTreeOption<UserapInfo> option) {
 		super(option);

@@ -17,9 +17,9 @@ import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class RootAddressSelect extends DeciTreeTemplateWrite<AddressInfo> {
+public final class RootAddressSelect extends DeciTreeTemplateWriteV2<AddressInfo> {
 	
 	public RootAddressSelect(DeciTreeOption<AddressInfo> option) {
 		super(option);
@@ -72,5 +72,11 @@ public final class RootAddressSelect extends DeciTreeTemplateWrite<AddressInfo> 
 		
 		actions.add(select);			
 		return actions;
+	}
+	
+	
+	
+	@Override public void close() {
+		super.close();
 	}
 }

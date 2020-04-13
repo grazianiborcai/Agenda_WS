@@ -8,14 +8,14 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
 import br.com.mind5.payment.storePartner.info.StoparInfo;
 import br.com.mind5.payment.storePartner.model.checker.StoparCheckOwner;
 import br.com.mind5.payment.storePartner.model.checker.StoparCheckRead;
 import br.com.mind5.payment.storePartner.model.checker.StoparCheckStorauth;
 import br.com.mind5.payment.storePartner.model.checker.StoparCheckStore;
 
-public final class RootStoparSelectAuth extends DeciTreeTemplateRead<StoparInfo> {
+public final class RootStoparSelectAuth extends DeciTreeTemplateReadV1<StoparInfo> {
 	
 	public RootStoparSelectAuth(DeciTreeOption<StoparInfo> option) {
 		super(option);

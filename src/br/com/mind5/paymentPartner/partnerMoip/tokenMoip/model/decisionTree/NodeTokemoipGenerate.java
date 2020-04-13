@@ -9,7 +9,7 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
 import br.com.mind5.paymentPartner.partnerMoip.tokenMoip.info.TokemoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.tokenMoip.model.action.LazyTokemoipEnforceSetup;
 import br.com.mind5.paymentPartner.partnerMoip.tokenMoip.model.action.LazyTokemoipGenerate;
@@ -19,7 +19,7 @@ import br.com.mind5.paymentPartner.partnerMoip.tokenMoip.model.action.StdTokemoi
 import br.com.mind5.paymentPartner.partnerMoip.tokenMoip.model.checker.TokemoipCheckSetupar;
 import br.com.mind5.paymentPartner.partnerMoip.tokenMoip.model.checker.TokemoipCheckSyspar;
 
-public final class NodeTokemoipGenerate extends DeciTreeTemplateWrite<TokemoipInfo> {
+public final class NodeTokemoipGenerate extends DeciTreeTemplateWriteV1<TokemoipInfo> {
 	
 	public NodeTokemoipGenerate(DeciTreeOption<TokemoipInfo> option) {
 		super(option);

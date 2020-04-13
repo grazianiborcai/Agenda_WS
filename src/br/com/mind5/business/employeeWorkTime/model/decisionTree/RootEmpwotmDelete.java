@@ -20,9 +20,9 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
 
-public final class RootEmpwotmDelete extends DeciTreeTemplateWrite<EmpwotmInfo> {
+public final class RootEmpwotmDelete extends DeciTreeTemplateWriteV1<EmpwotmInfo> {
 	
 	public RootEmpwotmDelete(DeciTreeOption<EmpwotmInfo> option) {
 		super(option);

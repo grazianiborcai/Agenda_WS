@@ -5,12 +5,12 @@ import java.util.List;
 
 import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.address.model.decisionTree.RootAddressSelect;
-import br.com.mind5.model.action.ActionLazyTemplateV1;
+import br.com.mind5.model.action.ActionLazyTemplateV2;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyAddressRootSelect extends ActionLazyTemplateV1<AddressInfo, AddressInfo> {
+public final class LazyAddressRootSelect extends ActionLazyTemplateV2<AddressInfo, AddressInfo> {
 
 	public LazyAddressRootSelect(Connection conn, String schemaName) {
 		super(conn, schemaName);

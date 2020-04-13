@@ -9,7 +9,7 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.info.OrdmoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.action.LazyOrdmoipEnforceResponseAttr;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.action.LazyOrdmoipEnforceSetup;
@@ -19,7 +19,7 @@ import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.action.LazyOrdmoi
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.action.StdOrdmoipEnforcePaypar;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.checker.OrdmoipCheckRead;
 
-public final class RootOrdmoipRead extends DeciTreeTemplateWrite<OrdmoipInfo> {
+public final class RootOrdmoipRead extends DeciTreeTemplateWriteV1<OrdmoipInfo> {
 	
 	public RootOrdmoipRead(DeciTreeOption<OrdmoipInfo> option) {
 		super(option);

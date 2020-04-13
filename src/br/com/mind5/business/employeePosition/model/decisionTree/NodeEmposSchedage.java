@@ -11,9 +11,9 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
 
-public final class NodeEmposSchedage extends DeciTreeTemplateWrite<EmposInfo> {
+public final class NodeEmposSchedage extends DeciTreeTemplateWriteV1<EmposInfo> {
 	
 	public NodeEmposSchedage(DeciTreeOption<EmposInfo> option) {
 		super(option);

@@ -9,7 +9,7 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
 import br.com.mind5.paymentPartner.partnerMoip.refundMoip.info.RefumoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.refundMoip.model.action.LazyRefumoipEnforceResponseAttr;
 import br.com.mind5.paymentPartner.partnerMoip.refundMoip.model.action.LazyRefumoipMergePayordemist;
@@ -18,7 +18,7 @@ import br.com.mind5.paymentPartner.partnerMoip.refundMoip.model.action.LazyRefum
 import br.com.mind5.paymentPartner.partnerMoip.refundMoip.model.action.StdRefumoipEnforcePaypar;
 import br.com.mind5.paymentPartner.partnerMoip.refundMoip.model.checker.RefumoipCheckRefund;
 
-public final class RootRefumoipRefund extends DeciTreeTemplateWrite<RefumoipInfo> {
+public final class RootRefumoipRefund extends DeciTreeTemplateWriteV1<RefumoipInfo> {
 	
 	public RootRefumoipRefund(DeciTreeOption<RefumoipInfo> option) {
 		super(option);

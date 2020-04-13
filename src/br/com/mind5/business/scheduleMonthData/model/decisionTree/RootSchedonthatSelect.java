@@ -15,9 +15,9 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
 
-public final class RootSchedonthatSelect extends DeciTreeTemplateWrite<SchedonthatInfo> {
+public final class RootSchedonthatSelect extends DeciTreeTemplateWriteV1<SchedonthatInfo> {
 	
 	public RootSchedonthatSelect(DeciTreeOption<SchedonthatInfo> option) {
 		super(option);

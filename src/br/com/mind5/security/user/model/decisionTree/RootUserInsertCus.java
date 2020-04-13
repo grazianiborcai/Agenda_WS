@@ -8,14 +8,14 @@ import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
 import br.com.mind5.security.user.info.UserInfo;
 import br.com.mind5.security.user.model.action.LazyUserEnforceAuthCus;
 import br.com.mind5.security.user.model.action.LazyUserRootInsert;
 import br.com.mind5.security.user.model.action.StdUserEnforceCategCus;
 import br.com.mind5.security.user.model.checker.UserCheckDummy;
 
-public final class RootUserInsertCus extends DeciTreeTemplateWrite<UserInfo> {
+public final class RootUserInsertCus extends DeciTreeTemplateWriteV1<UserInfo> {
 	
 	public RootUserInsertCus(DeciTreeOption<UserInfo> option) {
 		super(option);

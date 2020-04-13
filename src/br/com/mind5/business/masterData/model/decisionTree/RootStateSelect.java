@@ -9,13 +9,13 @@ import br.com.mind5.business.masterData.model.action.StdStateSelect;
 import br.com.mind5.business.masterData.model.checker.StateCheckRead;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 
-public final class RootStateSelect extends DeciTreeTemplateRead<StateInfo> {
+public final class RootStateSelect extends DeciTreeTemplateReadV2<StateInfo> {
 	
 	public RootStateSelect(DeciTreeOption<StateInfo> option) {
 		super(option);

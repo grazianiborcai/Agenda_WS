@@ -16,10 +16,10 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
 
 
-public final class RootMatockSelect extends DeciTreeTemplateRead<MatockInfo> {
+public final class RootMatockSelect extends DeciTreeTemplateReadV1<MatockInfo> {
 	
 	public RootMatockSelect(DeciTreeOption<MatockInfo> option) {
 		super(option);

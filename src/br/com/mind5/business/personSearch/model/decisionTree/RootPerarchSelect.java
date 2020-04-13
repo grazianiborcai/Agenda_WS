@@ -15,9 +15,9 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
 
-public final class RootPerarchSelect extends DeciTreeTemplateRead<PerarchInfo> {
+public final class RootPerarchSelect extends DeciTreeTemplateReadV1<PerarchInfo> {
 	
 	public RootPerarchSelect(DeciTreeOption<PerarchInfo> option) {
 		super(option);

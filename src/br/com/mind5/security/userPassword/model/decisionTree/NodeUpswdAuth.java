@@ -9,7 +9,7 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
 import br.com.mind5.security.userPassword.info.UpswdInfo;
 import br.com.mind5.security.userPassword.model.action.LazyUpswdEnforceHashToMatch;
 import br.com.mind5.security.userPassword.model.action.LazyUpswdEnforceLength;
@@ -18,7 +18,7 @@ import br.com.mind5.security.userPassword.model.action.StdUpswdMergeToAuth;
 import br.com.mind5.security.userPassword.model.checker.UpswdCheckExist;
 import br.com.mind5.security.userPassword.model.checker.UpswdCheckIsPasswordEnabled;
 
-public final class NodeUpswdAuth extends DeciTreeTemplateRead<UpswdInfo> {
+public final class NodeUpswdAuth extends DeciTreeTemplateReadV1<UpswdInfo> {
 	
 	public NodeUpswdAuth(DeciTreeOption<UpswdInfo> option) {
 		super(option);

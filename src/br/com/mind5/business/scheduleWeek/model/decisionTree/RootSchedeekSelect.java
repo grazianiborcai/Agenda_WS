@@ -16,9 +16,9 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
 
-public final class RootSchedeekSelect extends DeciTreeTemplateWrite<SchedeekInfo> {
+public final class RootSchedeekSelect extends DeciTreeTemplateWriteV1<SchedeekInfo> {
 	
 	public RootSchedeekSelect(DeciTreeOption<SchedeekInfo> option) {
 		super(option);

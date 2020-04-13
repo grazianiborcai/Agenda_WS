@@ -8,13 +8,13 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
 import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.info.CremoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.model.action.StdCremoipEnforceAddress;
 import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.model.checker.CremoipCheckAddressBR;
 import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.model.checker.CremoipCheckAddressData;
 
-public final class NodeCremoipAddressL2 extends DeciTreeTemplateWrite<CremoipInfo> {
+public final class NodeCremoipAddressL2 extends DeciTreeTemplateWriteV1<CremoipInfo> {
 	
 	public NodeCremoipAddressL2(DeciTreeOption<CremoipInfo> option) {
 		super(option);

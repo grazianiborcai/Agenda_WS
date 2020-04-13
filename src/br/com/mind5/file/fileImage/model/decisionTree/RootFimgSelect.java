@@ -11,9 +11,9 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
 
-public final class RootFimgSelect extends DeciTreeTemplateRead<FimgInfo> {
+public final class RootFimgSelect extends DeciTreeTemplateReadV1<FimgInfo> {
 	
 	public RootFimgSelect(DeciTreeOption<FimgInfo> option) {
 		super(option);

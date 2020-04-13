@@ -11,9 +11,9 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
 
-public final class NodeAddresnapCuslis extends DeciTreeTemplateRead<AddresnapInfo> {
+public final class NodeAddresnapCuslis extends DeciTreeTemplateReadV1<AddresnapInfo> {
 	
 	public NodeAddresnapCuslis(DeciTreeOption<AddresnapInfo> option) {
 		super(option);

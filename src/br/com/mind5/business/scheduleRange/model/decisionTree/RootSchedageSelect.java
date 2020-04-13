@@ -14,9 +14,9 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
 
-public final class RootSchedageSelect extends DeciTreeTemplateWrite<SchedageInfo> {
+public final class RootSchedageSelect extends DeciTreeTemplateWriteV1<SchedageInfo> {
 	
 	public RootSchedageSelect(DeciTreeOption<SchedageInfo> option) {
 		super(option);

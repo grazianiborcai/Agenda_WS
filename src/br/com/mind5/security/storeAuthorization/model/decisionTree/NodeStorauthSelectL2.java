@@ -7,12 +7,12 @@ import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
 import br.com.mind5.security.storeAuthorization.info.StorauthInfo;
 import br.com.mind5.security.storeAuthorization.model.action.StdStorauthMergeToSelect;
 import br.com.mind5.security.storeAuthorization.model.checker.StorauthCheckDummy;
 
-public final class NodeStorauthSelectL2 extends DeciTreeTemplateWrite<StorauthInfo> {
+public final class NodeStorauthSelectL2 extends DeciTreeTemplateWriteV1<StorauthInfo> {
 	
 	public NodeStorauthSelectL2(DeciTreeOption<StorauthInfo> option) {
 		super(option);

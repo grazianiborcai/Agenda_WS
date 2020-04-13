@@ -12,9 +12,9 @@ import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
 
-public final class RootCuslisSearch extends DeciTreeTemplateRead<CuslisInfo> {
+public final class RootCuslisSearch extends DeciTreeTemplateReadV1<CuslisInfo> {
 	
 	public RootCuslisSearch(DeciTreeOption<CuslisInfo> option) {
 		super(option);

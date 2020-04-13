@@ -25,9 +25,9 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
 
-public final class RootSchedineInsert extends DeciTreeTemplateWrite<SchedineInfo> {
+public final class RootSchedineInsert extends DeciTreeTemplateWriteV1<SchedineInfo> {
 	
 	public RootSchedineInsert(DeciTreeOption<SchedineInfo> option) {
 		super(option);

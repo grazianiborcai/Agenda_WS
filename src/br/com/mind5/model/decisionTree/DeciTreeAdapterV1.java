@@ -11,13 +11,13 @@ import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.InfoRecord;
 import br.com.mind5.model.action.ActionStdTemplateV1;
 
-public final class DeciTreeAdapter<T extends InfoRecord> extends ActionStdTemplateV1<T> {
+public final class DeciTreeAdapterV1<T extends InfoRecord> extends ActionStdTemplateV1<T> {
 	private DeciTree<T> currentTree;
 	private List<DeciTree<T>> trees;
 	private Iterator<DeciTree<T>> itr;
 	
 	
-	public DeciTreeAdapter(DeciTree<T> tree) {
+	public DeciTreeAdapterV1(DeciTree<T> tree) {
 		super();
 		checkArgument(tree);		
 
@@ -30,7 +30,7 @@ public final class DeciTreeAdapter<T extends InfoRecord> extends ActionStdTempla
 	
 	
 	
-	public DeciTreeAdapter(List<DeciTree<T>> trees) {
+	public DeciTreeAdapterV1(List<DeciTree<T>> trees) {
 		super();
 		checkArgument(trees);		
 

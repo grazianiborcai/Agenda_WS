@@ -11,9 +11,9 @@ import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class RootFormessSelect extends DeciTreeTemplateRead<FormessInfo> {
+public final class RootFormessSelect extends DeciTreeTemplateWriteV2<FormessInfo> {
 	
 	public RootFormessSelect(DeciTreeOption<FormessInfo> option) {
 		super(option);

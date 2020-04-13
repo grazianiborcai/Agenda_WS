@@ -12,9 +12,9 @@ import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
 
-public final class NodeCartUpdate extends DeciTreeTemplateWrite<CartInfo> {
+public final class NodeCartUpdate extends DeciTreeTemplateWriteV1<CartInfo> {
 	
 	public NodeCartUpdate(DeciTreeOption<CartInfo> option) {
 		super(option);

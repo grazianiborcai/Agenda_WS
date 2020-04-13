@@ -16,9 +16,9 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
 
-public final class RootEmpwotmSelect extends DeciTreeTemplateRead<EmpwotmInfo> {
+public final class RootEmpwotmSelect extends DeciTreeTemplateReadV1<EmpwotmInfo> {
 	
 	public RootEmpwotmSelect(DeciTreeOption<EmpwotmInfo> option) {
 		super(option);

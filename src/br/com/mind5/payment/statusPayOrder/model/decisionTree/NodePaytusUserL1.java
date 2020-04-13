@@ -8,13 +8,13 @@ import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
 import br.com.mind5.payment.statusPayOrder.info.PaytusInfo;
 import br.com.mind5.payment.statusPayOrder.model.action.LazyPaytusNodeUserL2;
 import br.com.mind5.payment.statusPayOrder.model.action.StdPaytusMergeUsername;
 import br.com.mind5.payment.statusPayOrder.model.checker.PaytusCheckDummy;
 
-public final class NodePaytusUserL1 extends DeciTreeTemplateWrite<PaytusInfo> {
+public final class NodePaytusUserL1 extends DeciTreeTemplateWriteV1<PaytusInfo> {
 	
 	public NodePaytusUserL1(DeciTreeOption<PaytusInfo> option) {
 		super(option);

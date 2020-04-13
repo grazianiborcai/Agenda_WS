@@ -8,12 +8,12 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
 import br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.info.PaymoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.model.action.StdPaymoipSuccess;
 import br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.model.checker.PaymoipCheckSysparData;
 
-public final class NodePaymoipSysparL2 extends DeciTreeTemplateWrite<PaymoipInfo> {
+public final class NodePaymoipSysparL2 extends DeciTreeTemplateWriteV1<PaymoipInfo> {
 	
 	public NodePaymoipSysparL2(DeciTreeOption<PaymoipInfo> option) {
 		super(option);

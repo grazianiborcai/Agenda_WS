@@ -9,14 +9,14 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
 import br.com.mind5.security.user.info.UserInfo;
 import br.com.mind5.security.user.model.action.LazyUserRootDelete;
 import br.com.mind5.security.user.model.checker.UserCheckDeleteAuth;
 import br.com.mind5.security.user.model.checker.UserCheckOwner;
 import br.com.mind5.security.user.model.checker.UserCheckUsername;
 
-public final class RootUserDeleteAuth extends DeciTreeTemplateWrite<UserInfo> {
+public final class RootUserDeleteAuth extends DeciTreeTemplateWriteV1<UserInfo> {
 	
 	public RootUserDeleteAuth(DeciTreeOption<UserInfo> option) {
 		super(option);

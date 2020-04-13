@@ -9,13 +9,13 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
 import br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.info.PaymoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.model.action.LazyPaymoipNodeCrecardL2;
 import br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.model.action.StdPaymoipMergeCrecard;
 import br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.model.checker.PaymoipCheckCrecarch;
 
-public final class NodePaymoipCrecardL1 extends DeciTreeTemplateWrite<PaymoipInfo> {
+public final class NodePaymoipCrecardL1 extends DeciTreeTemplateWriteV1<PaymoipInfo> {
 	
 	public NodePaymoipCrecardL1(DeciTreeOption<PaymoipInfo> option) {
 		super(option);

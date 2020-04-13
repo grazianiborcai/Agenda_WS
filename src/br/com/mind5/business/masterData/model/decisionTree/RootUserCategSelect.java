@@ -11,9 +11,9 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
 
-public final class RootUserCategSelect extends DeciTreeTemplateRead<UserCategInfo> {
+public final class RootUserCategSelect extends DeciTreeTemplateReadV1<UserCategInfo> {
 	
 	public RootUserCategSelect(DeciTreeOption<UserCategInfo> option) {
 		super(option);

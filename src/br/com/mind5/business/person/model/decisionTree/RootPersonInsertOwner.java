@@ -12,9 +12,9 @@ import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
 
-public final class RootPersonInsertOwner extends DeciTreeTemplateWrite<PersonInfo> {
+public final class RootPersonInsertOwner extends DeciTreeTemplateWriteV1<PersonInfo> {
 	
 	public RootPersonInsertOwner(DeciTreeOption<PersonInfo> option) {
 		super(option);

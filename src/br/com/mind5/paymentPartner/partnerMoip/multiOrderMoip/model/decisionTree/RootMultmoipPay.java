@@ -9,7 +9,7 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
 import br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.info.MultmoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.model.action.LazyMultmoipNodePlace;
 import br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.model.action.LazyMultmoipPaymoipPay;
@@ -17,7 +17,7 @@ import br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.model.checker.Mult
 import br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.model.checker.MultmoipCheckPayord;
 import br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.model.checker.MultmoipCheckPayormarch;
 
-public final class RootMultmoipPay extends DeciTreeTemplateRead<MultmoipInfo> {
+public final class RootMultmoipPay extends DeciTreeTemplateReadV1<MultmoipInfo> {
 	
 	public RootMultmoipPay(DeciTreeOption<MultmoipInfo> option) {
 		super(option);

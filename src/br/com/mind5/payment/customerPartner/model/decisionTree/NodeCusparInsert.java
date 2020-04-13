@@ -8,7 +8,7 @@ import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
 import br.com.mind5.payment.customerPartner.model.action.LazyCusparEnforceCompoundId;
 import br.com.mind5.payment.customerPartner.model.action.LazyCusparNodeCreateMoip;
@@ -16,7 +16,7 @@ import br.com.mind5.payment.customerPartner.model.action.LazyCusparUpdate;
 import br.com.mind5.payment.customerPartner.model.action.StdCusparInsert;
 import br.com.mind5.payment.customerPartner.model.checker.CusparCheckDummy;
 
-public final class NodeCusparInsert extends DeciTreeTemplateWrite<CusparInfo> {
+public final class NodeCusparInsert extends DeciTreeTemplateWriteV1<CusparInfo> {
 	
 	public NodeCusparInsert(DeciTreeOption<CusparInfo> option) {
 		super(option);

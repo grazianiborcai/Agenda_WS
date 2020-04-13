@@ -8,12 +8,12 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
 import br.com.mind5.security.userSearch.info.UserarchInfo;
 import br.com.mind5.security.userSearch.model.action.StdUserarchMergeToSelect;
 import br.com.mind5.security.userSearch.model.checker.UserarchCheckRead;
 
-public final class RootUserarchSelect extends DeciTreeTemplateRead<UserarchInfo> {
+public final class RootUserarchSelect extends DeciTreeTemplateReadV1<UserarchInfo> {
 	
 	public RootUserarchSelect(DeciTreeOption<UserarchInfo> option) {
 		super(option);

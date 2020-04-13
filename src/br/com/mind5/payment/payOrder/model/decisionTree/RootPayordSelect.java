@@ -9,7 +9,7 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
 import br.com.mind5.payment.payOrder.model.action.LazyPayordMergeCrecard;
 import br.com.mind5.payment.payOrder.model.action.LazyPayordMergePayordem;
@@ -20,7 +20,7 @@ import br.com.mind5.payment.payOrder.model.checker.PayordCheckLangu;
 import br.com.mind5.payment.payOrder.model.checker.PayordCheckRead;
 import br.com.mind5.payment.payOrder.model.checker.PayordCheckUsername;
 
-public final class RootPayordSelect extends DeciTreeTemplateRead<PayordInfo> {
+public final class RootPayordSelect extends DeciTreeTemplateReadV1<PayordInfo> {
 	
 	public RootPayordSelect(DeciTreeOption<PayordInfo> option) {
 		super(option);

@@ -12,9 +12,9 @@ import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
 
-public final class RootStowotmSearch extends DeciTreeTemplateRead<StowotmInfo> {
+public final class RootStowotmSearch extends DeciTreeTemplateReadV1<StowotmInfo> {
 	
 	public RootStowotmSearch(DeciTreeOption<StowotmInfo> option) {
 		super(option);

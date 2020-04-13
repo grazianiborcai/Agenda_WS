@@ -8,7 +8,7 @@ import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
 import br.com.mind5.payment.payOrder.model.action.LazyPayordEnforceLChanged;
 import br.com.mind5.payment.payOrder.model.action.LazyPayordMergeUsername;
@@ -16,7 +16,7 @@ import br.com.mind5.payment.payOrder.model.action.LazyPayordNodeUserL2;
 import br.com.mind5.payment.payOrder.model.action.StdPayordEnforceCreatedOn;
 import br.com.mind5.payment.payOrder.model.checker.PayordCheckDummy;
 
-public final class NodePayordUserL1 extends DeciTreeTemplateWrite<PayordInfo> {
+public final class NodePayordUserL1 extends DeciTreeTemplateWriteV1<PayordInfo> {
 	
 	public NodePayordUserL1(DeciTreeOption<PayordInfo> option) {
 		super(option);

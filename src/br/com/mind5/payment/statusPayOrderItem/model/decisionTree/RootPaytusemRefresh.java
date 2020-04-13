@@ -9,13 +9,13 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
 import br.com.mind5.payment.statusPayOrderItem.info.PaytusemInfo;
 import br.com.mind5.payment.statusPayOrderItem.model.action.LazyPaytusemNodeRefresh;
 import br.com.mind5.payment.statusPayOrderItem.model.checker.PaytusemCheckOwner;
 import br.com.mind5.payment.statusPayOrderItem.model.checker.PaytusemCheckRefresh;
 
-public final class RootPaytusemRefresh extends DeciTreeTemplateWrite<PaytusemInfo> {
+public final class RootPaytusemRefresh extends DeciTreeTemplateWriteV1<PaytusemInfo> {
 	
 	public RootPaytusemRefresh(DeciTreeOption<PaytusemInfo> option) {
 		super(option);

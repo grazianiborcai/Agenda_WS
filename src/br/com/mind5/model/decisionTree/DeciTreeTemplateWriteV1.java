@@ -12,12 +12,12 @@ import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.common.DeciResultError;
 
-public abstract class DeciTreeTemplateWrite<T extends InfoRecord> implements DeciTree<T> {
+public abstract class DeciTreeTemplateWriteV1<T extends InfoRecord> implements DeciTree<T> {
 	private List<DeciTree<T>> trees;
 	private DeciResult<T> treeResult;
 	
 	
-	public DeciTreeTemplateWrite(DeciTreeOption<T> option) {
+	public DeciTreeTemplateWriteV1(DeciTreeOption<T> option) {
 		checkArgument(option);
 		clear();
 		
@@ -144,7 +144,7 @@ public abstract class DeciTreeTemplateWrite<T extends InfoRecord> implements Dec
 	
 	@Override public ActionStdV1<T> toAction() {
 		checkState();
-		return new DeciTreeAdapter<>(trees);
+		return new DeciTreeAdapterV1<>(trees);
 	}
 	
 	

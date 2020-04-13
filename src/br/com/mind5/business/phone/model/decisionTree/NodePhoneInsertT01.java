@@ -15,9 +15,9 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
 
-public final class NodePhoneInsertT01 extends DeciTreeTemplateWrite<PhoneInfo> {
+public final class NodePhoneInsertT01 extends DeciTreeTemplateWriteV1<PhoneInfo> {
 	
 	public NodePhoneInsertT01(DeciTreeOption<PhoneInfo> option) {
 		super(option);

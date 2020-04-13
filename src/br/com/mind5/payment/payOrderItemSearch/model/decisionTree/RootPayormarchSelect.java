@@ -8,12 +8,12 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
 import br.com.mind5.payment.payOrderItemSearch.info.PayormarchInfo;
 import br.com.mind5.payment.payOrderItemSearch.model.action.StdPayormarchMergeToSelect;
 import br.com.mind5.payment.payOrderItemSearch.model.checker.PayormarchCheckRead;
 
-public final class RootPayormarchSelect extends DeciTreeTemplateWrite<PayormarchInfo> {
+public final class RootPayormarchSelect extends DeciTreeTemplateWriteV1<PayormarchInfo> {
 	
 	public RootPayormarchSelect(DeciTreeOption<PayormarchInfo> option) {
 		super(option);

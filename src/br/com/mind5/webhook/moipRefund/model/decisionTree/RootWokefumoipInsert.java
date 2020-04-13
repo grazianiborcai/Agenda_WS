@@ -9,7 +9,7 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
 import br.com.mind5.webhook.moipRefund.info.WokefumoipInfo;
 import br.com.mind5.webhook.moipRefund.model.action.LazyWokefumoipMergeDaemon;
 import br.com.mind5.webhook.moipRefund.model.action.LazyWokefumoipPaytusRefresh;
@@ -18,7 +18,7 @@ import br.com.mind5.webhook.moipRefund.model.action.LazyWokefumoipSuccess;
 import br.com.mind5.webhook.moipRefund.model.action.StdWokefumoipEnforceIdPayment;
 import br.com.mind5.webhook.moipRefund.model.checker.WokefumoipCheckInsert;
 
-public final class RootWokefumoipInsert extends DeciTreeTemplateWrite<WokefumoipInfo> {
+public final class RootWokefumoipInsert extends DeciTreeTemplateWriteV1<WokefumoipInfo> {
 	
 	public RootWokefumoipInsert(DeciTreeOption<WokefumoipInfo> option) {
 		super(option);

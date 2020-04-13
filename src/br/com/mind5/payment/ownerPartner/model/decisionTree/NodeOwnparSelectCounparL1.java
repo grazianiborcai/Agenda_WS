@@ -9,13 +9,13 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
 import br.com.mind5.payment.ownerPartner.info.OwnparInfo;
 import br.com.mind5.payment.ownerPartner.model.action.LazyOwnparNodeSelectCounparL2;
 import br.com.mind5.payment.ownerPartner.model.action.StdOwnparMergeOwner;
 import br.com.mind5.payment.ownerPartner.model.checker.OwnparCheckRead;
 
-public final class NodeOwnparSelectCounparL1 extends DeciTreeTemplateRead<OwnparInfo> {
+public final class NodeOwnparSelectCounparL1 extends DeciTreeTemplateReadV1<OwnparInfo> {
 	
 	public NodeOwnparSelectCounparL1(DeciTreeOption<OwnparInfo> option) {
 		super(option);

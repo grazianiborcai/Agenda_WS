@@ -8,13 +8,13 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
 import br.com.mind5.payment.storePartner.info.StoparInfo;
 import br.com.mind5.payment.storePartner.model.action.StdStoparInsert;
 import br.com.mind5.payment.storePartner.model.action.StdStoparUpdate;
 import br.com.mind5.payment.storePartner.model.checker.StoparCheckSoftDelete;
 
-public final class NodeStoparInsert extends DeciTreeTemplateWrite<StoparInfo> {
+public final class NodeStoparInsert extends DeciTreeTemplateWriteV1<StoparInfo> {
 	
 	public NodeStoparInsert(DeciTreeOption<StoparInfo> option) {
 		super(option);

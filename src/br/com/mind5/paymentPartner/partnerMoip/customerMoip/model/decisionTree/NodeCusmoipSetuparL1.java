@@ -8,14 +8,14 @@ import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
 import br.com.mind5.paymentPartner.partnerMoip.customerMoip.info.CusmoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.customerMoip.model.action.LazyCusmoipEnforceSetup;
 import br.com.mind5.paymentPartner.partnerMoip.customerMoip.model.action.LazyCusmoipMergeSetupar;
 import br.com.mind5.paymentPartner.partnerMoip.customerMoip.model.action.StdCusmoipEnforcePaypar;
 import br.com.mind5.paymentPartner.partnerMoip.customerMoip.model.checker.CusmoipCheckDummy;
 
-public final class NodeCusmoipSetuparL1 extends DeciTreeTemplateWrite<CusmoipInfo> {
+public final class NodeCusmoipSetuparL1 extends DeciTreeTemplateWriteV1<CusmoipInfo> {
 	
 	public NodeCusmoipSetuparL1(DeciTreeOption<CusmoipInfo> option) {
 		super(option);

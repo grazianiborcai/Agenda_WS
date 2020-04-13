@@ -9,14 +9,14 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
 import br.com.mind5.paymentPartner.partnerMoip.refundMoip.info.RefumoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.refundMoip.model.action.LazyRefumoipEnforceSetupSys;
 import br.com.mind5.paymentPartner.partnerMoip.refundMoip.model.action.LazyRefumoipMergeSysEnviron;
 import br.com.mind5.paymentPartner.partnerMoip.refundMoip.model.action.StdRefumoipMergeSetupar;
 import br.com.mind5.paymentPartner.partnerMoip.refundMoip.model.checker.RefumoipCheckSysparch;
 
-public final class NodeRefumoipSystem extends DeciTreeTemplateWrite<RefumoipInfo> {
+public final class NodeRefumoipSystem extends DeciTreeTemplateWriteV1<RefumoipInfo> {
 	
 	public NodeRefumoipSystem(DeciTreeOption<RefumoipInfo> option) {
 		super(option);

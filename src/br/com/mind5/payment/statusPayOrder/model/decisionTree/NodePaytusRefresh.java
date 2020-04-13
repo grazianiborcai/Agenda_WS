@@ -9,7 +9,7 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
 import br.com.mind5.payment.statusPayOrder.info.PaytusInfo;
 import br.com.mind5.payment.statusPayOrder.model.action.LazyPaytusMergePaymoip;
 import br.com.mind5.payment.statusPayOrder.model.action.LazyPaytusPayordRefresh;
@@ -17,7 +17,7 @@ import br.com.mind5.payment.statusPayOrder.model.action.StdPaytusMergeMultmoip;
 import br.com.mind5.payment.statusPayOrder.model.action.StdPaytusSuccess;
 import br.com.mind5.payment.statusPayOrder.model.checker.PaytusCheckIsFinished;
 
-public final class NodePaytusRefresh extends DeciTreeTemplateWrite<PaytusInfo> {
+public final class NodePaytusRefresh extends DeciTreeTemplateWriteV1<PaytusInfo> {
 	
 	public NodePaytusRefresh(DeciTreeOption<PaytusInfo> option) {
 		super(option);

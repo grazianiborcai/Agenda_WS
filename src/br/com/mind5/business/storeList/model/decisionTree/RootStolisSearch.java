@@ -12,10 +12,10 @@ import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
 
 
-public final class RootStolisSearch extends DeciTreeTemplateRead<StolisInfo> {
+public final class RootStolisSearch extends DeciTreeTemplateReadV1<StolisInfo> {
 	
 	public RootStolisSearch(DeciTreeOption<StolisInfo> option) {
 		super(option);

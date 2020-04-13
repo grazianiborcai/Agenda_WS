@@ -8,11 +8,11 @@ import br.com.mind5.info.InfoRecord;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 
-public abstract class DeciTreeTemplateRead<T extends InfoRecord> implements DeciTree<T> {
+public abstract class DeciTreeTemplateReadV2<T extends InfoRecord> implements DeciTree<T> {
 	private DeciTree<T> tree;
 	
 	
-	public DeciTreeTemplateRead(DeciTreeOption<T> option) {
+	public DeciTreeTemplateReadV2(DeciTreeOption<T> option) {
 		checkArgument(option);
 		clear();
 		

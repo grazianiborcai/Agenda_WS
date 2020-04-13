@@ -9,7 +9,7 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
 import br.com.mind5.security.storeAuthorization.info.StorauthInfo;
 import br.com.mind5.security.storeAuthorization.model.action.LazyStorauthNodeSelectL1;
 import br.com.mind5.security.storeAuthorization.model.action.StdStorauthMergeUsername;
@@ -17,7 +17,7 @@ import br.com.mind5.security.storeAuthorization.model.checker.StorauthCheckOwner
 import br.com.mind5.security.storeAuthorization.model.checker.StorauthCheckRead;
 import br.com.mind5.security.storeAuthorization.model.checker.StorauthCheckStore;
 
-public final class RootStorauthSelect extends DeciTreeTemplateWrite<StorauthInfo> {
+public final class RootStorauthSelect extends DeciTreeTemplateWriteV1<StorauthInfo> {
 	
 	public RootStorauthSelect(DeciTreeOption<StorauthInfo> option) {
 		super(option);

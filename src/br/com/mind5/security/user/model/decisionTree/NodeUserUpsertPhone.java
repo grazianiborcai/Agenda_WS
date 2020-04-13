@@ -9,14 +9,14 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
 import br.com.mind5.security.user.info.UserInfo;
 import br.com.mind5.security.user.model.action.LazyUserUpsertPhone;
 import br.com.mind5.security.user.model.action.StdUserEnforcePhoneKey;
 import br.com.mind5.security.user.model.action.StdUserSuccess;
 import br.com.mind5.security.user.model.checker.UserCheckHasPhone;
 
-public final class NodeUserUpsertPhone extends DeciTreeTemplateWrite<UserInfo> {
+public final class NodeUserUpsertPhone extends DeciTreeTemplateWriteV1<UserInfo> {
 	
 	public NodeUserUpsertPhone(DeciTreeOption<UserInfo> option) {
 		super(option);

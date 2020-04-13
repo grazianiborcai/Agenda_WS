@@ -13,9 +13,9 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
 
-public final class RootOrderveSelect extends DeciTreeTemplateRead<OrderveInfo> {
+public final class RootOrderveSelect extends DeciTreeTemplateReadV1<OrderveInfo> {
 	
 	public RootOrderveSelect(DeciTreeOption<OrderveInfo> option) {
 		super(option);

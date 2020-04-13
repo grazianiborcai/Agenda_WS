@@ -8,13 +8,13 @@ import br.com.mind5.business.addressSearch.model.action.StdAddarchMergeToSelect;
 import br.com.mind5.business.addressSearch.model.checker.AddarchCheckLangu;
 import br.com.mind5.business.addressSearch.model.checker.AddarchCheckRead;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class RootAddarchSelect extends DeciTreeTemplateWrite<AddarchInfo> {
+public final class RootAddarchSelect extends DeciTreeTemplateWriteV2<AddarchInfo> {
 	
 	public RootAddarchSelect(DeciTreeOption<AddarchInfo> option) {
 		super(option);

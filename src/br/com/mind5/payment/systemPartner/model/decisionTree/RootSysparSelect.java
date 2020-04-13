@@ -8,12 +8,12 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
 import br.com.mind5.payment.systemPartner.info.SysparInfo;
 import br.com.mind5.payment.systemPartner.model.action.StdSysparSelect;
 import br.com.mind5.payment.systemPartner.model.checker.SysparCheckRead;
 
-public final class RootSysparSelect extends DeciTreeTemplateRead<SysparInfo> {
+public final class RootSysparSelect extends DeciTreeTemplateReadV1<SysparInfo> {
 	
 	public RootSysparSelect(DeciTreeOption<SysparInfo> option) {
 		super(option);

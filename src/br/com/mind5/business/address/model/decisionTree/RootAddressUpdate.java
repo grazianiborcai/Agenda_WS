@@ -22,9 +22,9 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class RootAddressUpdate extends DeciTreeTemplateWrite<AddressInfo> {
+public final class RootAddressUpdate extends DeciTreeTemplateWriteV2<AddressInfo> {
 	
 	public RootAddressUpdate(DeciTreeOption<AddressInfo> option) {
 		super(option);

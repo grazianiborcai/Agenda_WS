@@ -12,9 +12,9 @@ import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
 
-public final class RootMatlisSearch extends DeciTreeTemplateRead<MatlisInfo> {
+public final class RootMatlisSearch extends DeciTreeTemplateReadV1<MatlisInfo> {
 	
 	public RootMatlisSearch(DeciTreeOption<MatlisInfo> option) {
 		super(option);

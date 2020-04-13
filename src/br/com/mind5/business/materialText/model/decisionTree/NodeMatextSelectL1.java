@@ -11,9 +11,9 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
 
-public final class NodeMatextSelectL1 extends DeciTreeTemplateWrite<MatextInfo> {
+public final class NodeMatextSelectL1 extends DeciTreeTemplateWriteV1<MatextInfo> {
 	
 	public NodeMatextSelectL1(DeciTreeOption<MatextInfo> option) {
 		super(option);
