@@ -6,7 +6,7 @@ import java.util.List;
 
 import br.com.mind5.business.address.dao.DaoAddressDbTableColumn;
 import br.com.mind5.business.addressSearch.dao.DaoAddarchDbTableColumn;
-import br.com.mind5.business.addressSnapshot.dao.AddresnapDbTableColumn;
+import br.com.mind5.business.addressSnapshot.dao.DaoAddresnapDbTableColumn;
 import br.com.mind5.business.calendarDate.dao.CalateDbTableColumn;
 import br.com.mind5.business.cart.dao.CartDbTableColumn;
 import br.com.mind5.business.cartItem.dao.CartemDbTableColumn;
@@ -176,7 +176,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new OrderemDbTableColumn());
 		addTable(new OrderDbTableColumn());
 		addTable(new DaoAddressDbTableColumn());
-		addTable(new AddresnapDbTableColumn());
+		addTable(new DaoAddresnapDbTableColumn());
 		addTable(new DaoFormessDbTableColumn());
 		addTable(new DaoPhoneDbTableColumn());
 		addTable(new PhonapDbTableColumn());

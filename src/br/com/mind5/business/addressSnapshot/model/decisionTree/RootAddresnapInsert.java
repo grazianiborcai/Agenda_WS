@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.addressSnapshot.info.AddresnapInfo;
-import br.com.mind5.business.addressSnapshot.model.action.LazyAddresnapInsert;
+import br.com.mind5.business.addressSnapshot.model.action.LazyAddresnapDaoInsert;
 import br.com.mind5.business.addressSnapshot.model.action.LazyAddresnapRootSelect;
 import br.com.mind5.business.addressSnapshot.model.checker.AddresnapCheckAddress;
 import br.com.mind5.business.addressSnapshot.model.checker.AddresnapCheckOwner;
@@ -15,9 +15,9 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class RootAddresnapInsert extends DeciTreeTemplateWriteV1<AddresnapInfo> {
+public final class RootAddresnapInsert extends DeciTreeTemplateWriteV2<AddresnapInfo> {
 	
 	public RootAddresnapInsert(DeciTreeOption<AddresnapInfo> option) {
 		super(option);
@@ -60,7 +60,7 @@ public final class RootAddresnapInsert extends DeciTreeTemplateWriteV1<Addresnap
 		List<ActionStdV1<AddresnapInfo>> actions = new ArrayList<>();	
 		
 		ActionStdV1<AddresnapInfo> nodeUser = new NodeAddresnapUselis(option).toAction();	
-		ActionLazyV1<AddresnapInfo> insert = new LazyAddresnapInsert(option.conn, option.schemaName);		
+		ActionLazyV1<AddresnapInfo> insert = new LazyAddresnapDaoInsert(option.conn, option.schemaName);		
 		ActionLazyV1<AddresnapInfo> select = new LazyAddresnapRootSelect(option.conn, option.schemaName);
 		
 		nodeUser.addPostAction(insert);

@@ -1,54 +1,39 @@
 package br.com.mind5.business.addressSnapshot.info;
 
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import java.util.ArrayList;
+import java.util.List;
 
-final class AddresnapVisiMergeToSelect implements InfoMergerVisitor_<AddresnapInfo, AddresnapInfo> {
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-	@Override public AddresnapInfo writeRecord(AddresnapInfo sourceOne, AddresnapInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);		
-		return merge(sourceOne, sourceTwo);
+final class AddresnapVisiMergeToSelect implements InfoMergerVisitorV3<AddresnapInfo, AddresnapInfo> {
+	
+	@Override public List<AddresnapInfo> beforeMerge(List<AddresnapInfo> baseInfos) {
+		return baseInfos;
 	}
 	
 	
 	
-	private void checkArgument(AddresnapInfo sourceOne, AddresnapInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
+	@Override public boolean shouldMerge(AddresnapInfo baseInfo, AddresnapInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner);
 	}
 	
 	
 	
-	private AddresnapInfo merge(AddresnapInfo sourceOne, AddresnapInfo sourceTwo) {
-		AddresnapInfo result = makeClone(sourceOne);		
-		result.lastChangedBy = sourceTwo.lastChangedBy;
-		result.codLanguage = sourceTwo.codLanguage;
-		result.username = sourceTwo.username;
-		return result;
+	@Override public List<AddresnapInfo> merge(AddresnapInfo baseInfo, AddresnapInfo selectedInfo) {
+		List<AddresnapInfo> results = new ArrayList<>();
+		
+		selectedInfo.username = baseInfo.username;
+		selectedInfo.codLanguage = baseInfo.codLanguage;
+		selectedInfo.lastChangedBy = baseInfo.lastChangedBy;	// TODO: precisa disso mesmo ?
+		
+		results.add(selectedInfo);
+		return results;
 	}
 	
 	
 	
-	private AddresnapInfo makeClone(AddresnapInfo recordInfo) {
-		try {
-			return (AddresnapInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(AddresnapInfo sourceOne, AddresnapInfo sourceTwo) {		
-		return (sourceOne.codOwner == sourceTwo.codOwner);
-	}
-	
-	
-	
-	private void logException(Exception e) {
-		SystemLog.logError(this.getClass(), e);
+	@Override public InfoUniquifier<AddresnapInfo> getUniquifier() {
+		return null;
 	}
 }

@@ -7,13 +7,13 @@ import br.com.mind5.business.addressSnapshot.info.AddresnapInfo;
 import br.com.mind5.business.addressSnapshot.model.action.StdAddresnapMergeEmplis;
 import br.com.mind5.business.addressSnapshot.model.checker.AddresnapCheckHasEmployee;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class NodeAddresnapEmplis extends DeciTreeTemplateReadV1<AddresnapInfo> {
+public final class NodeAddresnapEmplis extends DeciTreeTemplateWriteV2<AddresnapInfo> {
 	
 	public NodeAddresnapEmplis(DeciTreeOption<AddresnapInfo> option) {
 		super(option);

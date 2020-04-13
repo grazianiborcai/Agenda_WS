@@ -8,13 +8,13 @@ import br.com.mind5.business.addressSnapshot.model.action.StdAddresnapMergeStoli
 import br.com.mind5.business.addressSnapshot.model.action.StdAddresnapSuccess;
 import br.com.mind5.business.addressSnapshot.model.checker.AddresnapCheckHasStore;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class NodeAddresnapStolis extends DeciTreeTemplateReadV1<AddresnapInfo> {
+public final class NodeAddresnapStolis extends DeciTreeTemplateWriteV2<AddresnapInfo> {
 	
 	public NodeAddresnapStolis(DeciTreeOption<AddresnapInfo> option) {
 		super(option);

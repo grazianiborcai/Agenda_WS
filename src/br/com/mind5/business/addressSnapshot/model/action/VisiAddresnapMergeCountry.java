@@ -1,6 +1,5 @@
 package br.com.mind5.business.addressSnapshot.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.addressSnapshot.info.AddresnapInfo;
@@ -8,12 +7,14 @@ import br.com.mind5.business.addressSnapshot.info.AddresnapMerger;
 import br.com.mind5.business.masterData.info.CountryInfo;
 import br.com.mind5.business.masterData.model.decisionTree.RootCountrySelect;
 import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiAddresnapMergeCountry extends ActionVisitorTemplateMergeV1<AddresnapInfo, CountryInfo> {
+final class VisiAddresnapMergeCountry extends ActionVisitorTemplateMergeV2<AddresnapInfo, CountryInfo> {
 	
-	public VisiAddresnapMergeCountry(Connection conn, String schemaName) {
-		super(conn, schemaName, CountryInfo.class);
+	public VisiAddresnapMergeCountry(DeciTreeOption<AddresnapInfo> option) {
+		super(option, CountryInfo.class);
 	}
 	
 	
@@ -24,8 +25,8 @@ final class VisiAddresnapMergeCountry extends ActionVisitorTemplateMergeV1<Addre
 	
 	
 	
-	@Override protected List<AddresnapInfo> mergeHook(List<AddresnapInfo> recordInfos, List<CountryInfo> selectedInfos) {
-		return AddresnapMerger.mergeWithCountry(selectedInfos, recordInfos);
+	@Override protected List<AddresnapInfo> mergeHook(List<AddresnapInfo> baseInfos, List<CountryInfo> selectedInfos) {
+		return AddresnapMerger.mergeWithCountry(baseInfos, selectedInfos);
 	}
 	
 	

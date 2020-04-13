@@ -7,118 +7,111 @@ import br.com.mind5.business.employeeList.info.EmplisInfo;
 import br.com.mind5.business.masterData.info.CountryInfo;
 import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.form.formAddress.info.FormessInfo;
-import br.com.mind5.info.obsolete.InfoMerger_;
+import br.com.mind5.info.InfoMergerBuilderV3;
+import br.com.mind5.info.InfoMergerV3;
 import br.com.mind5.masterData.state.info.StateInfo;
 import br.com.mind5.security.userList.info.UselisInfo;
 
 public final class AddresnapMerger {	
-	public static AddresnapInfo mergeWithStolis(StolisInfo sourceOne, AddresnapInfo sourceTwo) {
-		InfoMerger_<AddresnapInfo, StolisInfo> merger = new AddresnapMergerStolis();		
-		return merger.merge(sourceOne, sourceTwo);
+	public static List<AddresnapInfo> mergeWithStolis(List<AddresnapInfo> baseInfos, List<StolisInfo> selectedInfos) {
+		InfoMergerBuilderV3<AddresnapInfo, StolisInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new AddresnapVisiMergeStolis());
+		InfoMergerV3<AddresnapInfo, StolisInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static List<AddresnapInfo> mergeWithStolis(List<StolisInfo> sourceOnes, List<AddresnapInfo> sourceTwos) {
-		InfoMerger_<AddresnapInfo, StolisInfo> merger = new AddresnapMergerStolis();		
-		return merger.merge(sourceOnes, sourceTwos);
+	public static List<AddresnapInfo> mergeWithCuslis(List<AddresnapInfo> baseInfos, List<CuslisInfo> selectedInfos) {
+		InfoMergerBuilderV3<AddresnapInfo, CuslisInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new AddresnapVisiMergeCuslis());
+		InfoMergerV3<AddresnapInfo, CuslisInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static AddresnapInfo mergeWithCuslis(CuslisInfo sourceOne, AddresnapInfo sourceTwo) {
-		InfoMerger_<AddresnapInfo, CuslisInfo> merger = new AddresnapMergerCuslis();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
+	public static List<AddresnapInfo> mergeWithEmplis(List<AddresnapInfo> baseInfos, List<EmplisInfo> selectedInfos) {
+		InfoMergerBuilderV3<AddresnapInfo, EmplisInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new AddresnapVisiMergeEmplis());
+		InfoMergerV3<AddresnapInfo, EmplisInfo> merger = builder.build();		
 	
-	
-	
-	public static List<AddresnapInfo> mergeWithCuslis(List<CuslisInfo> sourceOnes, List<AddresnapInfo> sourceTwos) {
-		InfoMerger_<AddresnapInfo, CuslisInfo> merger = new AddresnapMergerCuslis();		
-		return merger.merge(sourceOnes, sourceTwos);
-	}
-	
-	
-	
-	public static AddresnapInfo mergeWithEmplis(EmplisInfo sourceOne, AddresnapInfo sourceTwo) {
-		InfoMerger_<AddresnapInfo, EmplisInfo> merger = new AddresnapMergerEmplis();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
-	
-	
-	
-	public static List<AddresnapInfo> mergeWithEmplis(List<EmplisInfo> sourceOnes, List<AddresnapInfo> sourceTwos) {
-		InfoMerger_<AddresnapInfo, EmplisInfo> merger = new AddresnapMergerEmplis();		
-		return merger.merge(sourceOnes, sourceTwos);
+		return merger.merge();
 	}	
 	
 	
 	
-	public static AddresnapInfo mergeWithUselis(UselisInfo sourceOne, AddresnapInfo sourceTwo) {
-		InfoMerger_<AddresnapInfo, UselisInfo> merger = new AddresnapMergerUselis();		
-		return merger.merge(sourceOne, sourceTwo);
+	public static List<AddresnapInfo> mergeWithUselis(List<AddresnapInfo> baseInfos, List<UselisInfo> selectedInfos) {
+		InfoMergerBuilderV3<AddresnapInfo, UselisInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new AddresnapVisiMergeUselis());
+		InfoMergerV3<AddresnapInfo, UselisInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static List<AddresnapInfo> mergeWithUselis(List<UselisInfo> sourceOnes, List<AddresnapInfo> sourceTwos) {
-		InfoMerger_<AddresnapInfo, UselisInfo> merger = new AddresnapMergerUselis();		
-		return merger.merge(sourceOnes, sourceTwos);
+	public static List<AddresnapInfo> mergeWithFormess(List<AddresnapInfo> baseInfos, List<FormessInfo> selectedInfos) {
+		InfoMergerBuilderV3<AddresnapInfo, FormessInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new AddresnapVisiMergeFormess());
+		InfoMergerV3<AddresnapInfo, FormessInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static AddresnapInfo mergeWithForm(FormessInfo sourceOne, AddresnapInfo sourceTwo) {
-		InfoMerger_<AddresnapInfo, FormessInfo> merger = new AddresnapMergerForm();		
-		return merger.merge(sourceOne, sourceTwo);
+	public static List<AddresnapInfo> mergeWithCountry(List<AddresnapInfo> baseInfos, List<CountryInfo> selectedInfos) {
+		InfoMergerBuilderV3<AddresnapInfo, CountryInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new AddresnapVisiMergeCountry());
+		InfoMergerV3<AddresnapInfo, CountryInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static List<AddresnapInfo> mergeWithForm(List<FormessInfo> sourceOnes, List<AddresnapInfo> sourceTwos) {
-		InfoMerger_<AddresnapInfo, FormessInfo> merger = new AddresnapMergerForm();		
-		return merger.merge(sourceOnes, sourceTwos);
+	public static List<AddresnapInfo> mergeWithState(List<AddresnapInfo> baseInfos, List<StateInfo> selectedInfos) {
+		InfoMergerBuilderV3<AddresnapInfo, StateInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new AddresnapVisiMergeState());
+		InfoMergerV3<AddresnapInfo, StateInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static AddresnapInfo mergeWithCountry(CountryInfo sourceOne, AddresnapInfo sourceTwo) {
-		InfoMerger_<AddresnapInfo, CountryInfo> merger = new AddresnapMergerCountry();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
+	public static List<AddresnapInfo> mergeToSelect(List<AddresnapInfo> baseInfos, List<AddresnapInfo> selectedInfos) {
+		InfoMergerBuilderV3<AddresnapInfo, AddresnapInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new AddresnapVisiMergeToSelect());
+		InfoMergerV3<AddresnapInfo, AddresnapInfo> merger = builder.build();		
 	
-	
-	
-	public static List<AddresnapInfo> mergeWithCountry(List<CountryInfo> sourceOnes, List<AddresnapInfo> sourceTwos) {
-		InfoMerger_<AddresnapInfo, CountryInfo> merger = new AddresnapMergerCountry();		
-		return merger.merge(sourceOnes, sourceTwos);
-	}
-	
-	
-	
-	public static AddresnapInfo mergeWithState(StateInfo sourceOne, AddresnapInfo sourceTwo) {
-		InfoMerger_<AddresnapInfo, StateInfo> merger = new AddresnapMergerState();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
-	
-	
-	
-	public static List<AddresnapInfo> mergeWithState(List<StateInfo> sourceOnes, List<AddresnapInfo> sourceTwos) {
-		InfoMerger_<AddresnapInfo, StateInfo> merger = new AddresnapMergerState();		
-		return merger.merge(sourceOnes, sourceTwos);
-	}
-	
-	
-	
-	public static AddresnapInfo mergeToSelect(AddresnapInfo sourceOne, AddresnapInfo sourceTwo) {
-		InfoMerger_<AddresnapInfo, AddresnapInfo> merger = new AddresnapMergerToSelect();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
-	
-	
-	
-	public static List<AddresnapInfo> mergeToSelect(List<AddresnapInfo> sourceOnes, List<AddresnapInfo> sourceTwos) {
-		InfoMerger_<AddresnapInfo, AddresnapInfo> merger = new AddresnapMergerToSelect();		
-		return merger.merge(sourceOnes, sourceTwos);
+		return merger.merge();
 	}
 }

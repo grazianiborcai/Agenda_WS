@@ -1,55 +1,38 @@
 package br.com.mind5.business.addressSnapshot.info;
 
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import java.util.ArrayList;
+import java.util.List;
+
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.masterData.state.info.StateInfo;
 
-final class AddresnapVisiMergeState implements InfoMergerVisitor_<AddresnapInfo, StateInfo> {
-
-	@Override public AddresnapInfo writeRecord(StateInfo sourceOne, AddresnapInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+final class AddresnapVisiMergeState implements InfoMergerVisitorV3<AddresnapInfo, StateInfo> {
+	
+	@Override public List<AddresnapInfo> beforeMerge(List<AddresnapInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(AddresnapInfo baseInfo, StateInfo selectedInfo) {
+		return baseInfo.codCountry.equals(selectedInfo.codCountry);
+	}
+	
+	
+	
+	@Override public List<AddresnapInfo> merge(AddresnapInfo baseInfo, StateInfo selectedInfo) {
+		List<AddresnapInfo> results = new ArrayList<>();
 		
-		return merge(sourceOne, sourceTwo);
-	}
-	
-	
-	
-	private void checkArgument(StateInfo sourceOne, AddresnapInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private AddresnapInfo merge(StateInfo sourceOne, AddresnapInfo sourceTwo) {
-		AddresnapInfo resultInfo = makeClone(sourceTwo);
-		resultInfo.txtState = sourceOne.txtState;
+		baseInfo.txtState = selectedInfo.txtState;
 		
-		return resultInfo;
+		results.add(baseInfo);
+		return results;
 	}
 	
 	
 	
-	private AddresnapInfo makeClone(AddresnapInfo recordInfo) {
-		try {
-			return (AddresnapInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(StateInfo sourceOne, AddresnapInfo sourceTwo) {
-		return sourceOne.codCountry.equals(sourceTwo.codCountry);
-	}
-	
-	
-	
-	private void logException(Exception e) {
-		SystemLog.logError(this.getClass(), e);
+	@Override public InfoUniquifier<AddresnapInfo> getUniquifier() {
+		return null;
 	}
 }

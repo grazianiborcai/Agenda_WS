@@ -7,13 +7,13 @@ import br.com.mind5.business.addressSnapshot.info.AddresnapInfo;
 import br.com.mind5.business.addressSnapshot.model.action.StdAddresnapMergeCuslis;
 import br.com.mind5.business.addressSnapshot.model.checker.AddresnapCheckHasCustomer;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class NodeAddresnapCuslis extends DeciTreeTemplateReadV1<AddresnapInfo> {
+public final class NodeAddresnapCuslis extends DeciTreeTemplateWriteV2<AddresnapInfo> {
 	
 	public NodeAddresnapCuslis(DeciTreeOption<AddresnapInfo> option) {
 		super(option);

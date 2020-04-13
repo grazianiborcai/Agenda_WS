@@ -5,15 +5,15 @@ import br.com.mind5.model.action.ActionStdTemplateV2;
 import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdAddresnapMergeStolis extends ActionStdTemplateV2<AddresnapInfo> {
+public final class StdAddresnapDaoInsert extends ActionStdTemplateV2<AddresnapInfo> {
 
-	public StdAddresnapMergeStolis(DeciTreeOption<AddresnapInfo> option) {
+	public StdAddresnapDaoInsert(DeciTreeOption<AddresnapInfo> option) {
 		super(option);
 	}
 	
 	
 	
 	protected ActionVisitorV2<AddresnapInfo> buildVisitorHook(DeciTreeOption<AddresnapInfo> option) {
-		return new VisiAddresnapMergeStolis(option);
+		return new VisiAddresnapDaoInsert(option);
 	}
 }

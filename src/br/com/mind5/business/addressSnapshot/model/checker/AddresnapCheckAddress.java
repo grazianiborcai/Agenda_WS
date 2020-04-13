@@ -1,56 +1,27 @@
 package br.com.mind5.business.addressSnapshot.model.checker;
 
-import java.util.List;
-
 import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.address.model.checker.AddressCheckExist;
 import br.com.mind5.business.addressSnapshot.info.AddresnapInfo;
-import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
+import br.com.mind5.model.checker.ModelCheckerV1;
 
-public final class AddresnapCheckAddress implements ModelCheckerV1<AddresnapInfo> {
-	private final boolean FAILED = false;
-	private final boolean SUCCESS = true;
-	
-	private ModelCheckerV1<AddressInfo> checker;
-	
+public final class AddresnapCheckAddress extends ModelCheckerTemplateForwardV2<AddresnapInfo, AddressInfo> {
 	
 	public AddresnapCheckAddress(ModelCheckerOption option) {
-		checker = new AddressCheckExist(option);
-	}
-	
-	
-	
-	@Override public boolean check(List<AddresnapInfo> recordInfos) {
-		for (AddresnapInfo eachInfo : recordInfos) {
-			if (check(eachInfo) == FAILED)
-				return FAILED;
-		}
-		
-		return SUCCESS;
+		super(option);
 	}
 
-	
-	
-	@Override public boolean check(AddresnapInfo recordInfo) {
-		return checker.check(AddressInfo.copyFrom(recordInfo));
-	}
 
 	
-	
-	@Override public boolean getResult() {
-		return checker.getResult();
+	@Override protected ModelCheckerV1<AddressInfo> getCheckerHook(ModelCheckerOption option) {
+		return new AddressCheckExist(option);
 	}
-
 	
 	
-	@Override public String getFailMessage() {
-		return checker.getFailMessage();
-	}
-
 	
-	
-	@Override public int getFailCode() {
-		return checker.getFailCode();
+	@Override protected AddressInfo toForwardClass(AddresnapInfo baseRecord) {
+		return AddressInfo.copyFrom(baseRecord);
 	}
 }

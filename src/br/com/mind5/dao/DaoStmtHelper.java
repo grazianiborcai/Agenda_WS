@@ -190,20 +190,18 @@ public final class DaoStmtHelper<T extends InfoRecord> implements DaoStmt<T> {
 			return;
 		
 		sqlResultSet.close();
-		sqlResultSet = null;
 	}
 	
 	
 	
 	private void closeStatement(PreparedStatement sqlStmt) throws SQLException {
-		if (sqlStmt == null)
+		if (sqlStmt == null) 
 			return;
 		
 		if (sqlStmt.isClosed())
 			return;
-		
+			
 		sqlStmt.close();
-		sqlStmt = null;
 	}
 	
 	

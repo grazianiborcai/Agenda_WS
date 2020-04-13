@@ -4,14 +4,14 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.addressSnapshot.info.AddresnapInfo;
-import br.com.mind5.model.action.ActionLazyTemplateV1;
+import br.com.mind5.model.action.ActionLazyTemplateV2;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyAddresnapMergeForm extends ActionLazyTemplateV1<AddresnapInfo, AddresnapInfo> {
+public final class LazyAddresnapDaoInsert extends ActionLazyTemplateV2<AddresnapInfo, AddresnapInfo> {
 	
-	public LazyAddresnapMergeForm(Connection conn, String schemaName) {
+	public LazyAddresnapDaoInsert(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyAddresnapMergeForm extends ActionLazyTemplateV1<Addresnap
 	
 	
 	@Override protected ActionStdV1<AddresnapInfo> getInstanceOfActionHook(DeciTreeOption<AddresnapInfo> option) {
-		return new StdAddresnapMergeForm(option);
+		return new StdAddresnapDaoInsert(option);
 	}
 	
 	

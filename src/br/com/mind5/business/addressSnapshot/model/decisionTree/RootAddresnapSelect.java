@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.addressSnapshot.info.AddresnapInfo;
 import br.com.mind5.business.addressSnapshot.model.action.LazyAddresnapMergeCountry;
-import br.com.mind5.business.addressSnapshot.model.action.LazyAddresnapMergeForm;
+import br.com.mind5.business.addressSnapshot.model.action.LazyAddresnapMergeFormess;
 import br.com.mind5.business.addressSnapshot.model.action.LazyAddresnapNodeState;
 import br.com.mind5.business.addressSnapshot.model.action.StdAddresnapMergeToSelect;
 import br.com.mind5.business.addressSnapshot.model.checker.AddresnapCheckRead;
@@ -15,9 +15,9 @@ import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class RootAddresnapSelect extends DeciTreeTemplateReadV1<AddresnapInfo> {
+public final class RootAddresnapSelect extends DeciTreeTemplateWriteV2<AddresnapInfo> {
 	
 	public RootAddresnapSelect(DeciTreeOption<AddresnapInfo> option) {
 		super(option);
@@ -46,13 +46,13 @@ public final class RootAddresnapSelect extends DeciTreeTemplateReadV1<AddresnapI
 		List<ActionStdV1<AddresnapInfo>> actions = new ArrayList<>();		
 		
 		ActionStdV1<AddresnapInfo> select = new StdAddresnapMergeToSelect(option);		
-		ActionLazyV1<AddresnapInfo> mergeForm = new LazyAddresnapMergeForm(option.conn, option.schemaName);
+		ActionLazyV1<AddresnapInfo> mergeFormess = new LazyAddresnapMergeFormess(option.conn, option.schemaName);
 		ActionLazyV1<AddresnapInfo> mergeCountry = new LazyAddresnapMergeCountry(option.conn, option.schemaName);
 		ActionLazyV1<AddresnapInfo> mergeState = new LazyAddresnapNodeState(option.conn, option.schemaName);
 		
 		
-		select.addPostAction(mergeForm);
-		mergeForm.addPostAction(mergeCountry);
+		select.addPostAction(mergeFormess);
+		mergeFormess.addPostAction(mergeCountry);
 		mergeCountry.addPostAction(mergeState);
 		
 		actions.add(select);			

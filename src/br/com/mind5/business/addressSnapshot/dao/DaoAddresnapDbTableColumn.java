@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class AddresnapDbTableColumn extends DaoDbTableColumnTemplate {
+public final class DaoAddresnapDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_CITY = DaoDbField.COL_CITY;
 	public static final String COL_COD_ADDRESS = DaoDbField.COL_COD_ADDRESS;
 	public static final String COL_COMPLEMENT = DaoDbField.COL_COMPLEMENT;
@@ -46,24 +46,14 @@ public final class AddresnapDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_STREET = DaoDbField.COL_STREET;
 	public static final String COL_STREET_NUMBER = DaoDbField.COL_STREET_NUMBER;		
 	
-	private Hashtable<String, List<DaoColumn>> tableColumns;
 	
-	
-	public AddresnapDbTableColumn() {
-		super(AddresnapDbTableColumn.class);
+	public DaoAddresnapDbTableColumn() {
+		super();
 	}
 	
 	
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
-		tableColumns = new Hashtable<>();		
-		buildAddressSnapTable();	
-		return tableColumns;
-	}
-	
-	
-	
-	private void buildAddressSnapTable() {
 		final String TABLE_NAME = DaoDbTable.ADDRESS_SNAPSHOT_TABLE;
 		
 		DaoColumn oneColumn;
@@ -331,8 +321,7 @@ public final class AddresnapDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
+		columns.add(oneColumn);		
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
@@ -348,9 +337,10 @@ public final class AddresnapDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
+		columns.add(oneColumn);		
 		
-		
-		tableColumns.put(TABLE_NAME, columns);
+		Hashtable<String, List<DaoColumn>> results = new Hashtable<>();
+		results.put(TABLE_NAME, columns);
+		return results;
 	}
 }

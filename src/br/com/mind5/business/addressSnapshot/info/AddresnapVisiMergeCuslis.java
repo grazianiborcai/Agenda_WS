@@ -1,55 +1,39 @@
 package br.com.mind5.business.addressSnapshot.info;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import br.com.mind5.business.customerList.info.CuslisInfo;
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-final class AddresnapVisiMergeCuslis implements InfoMergerVisitor_<AddresnapInfo, CuslisInfo> {
-
-	@Override public AddresnapInfo writeRecord(CuslisInfo sourceOne, AddresnapInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+final class AddresnapVisiMergeCuslis implements InfoMergerVisitorV3<AddresnapInfo, CuslisInfo> {
+	
+	@Override public List<AddresnapInfo> beforeMerge(List<AddresnapInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(AddresnapInfo baseInfo, CuslisInfo selectedInfo) {
+		return (baseInfo.codOwner  	 == selectedInfo.codOwner	&&
+				baseInfo.codCustomer == selectedInfo.codCustomer	);
+	}
+	
+	
+	
+	@Override public List<AddresnapInfo> merge(AddresnapInfo baseInfo, CuslisInfo selectedInfo) {
+		List<AddresnapInfo> results = new ArrayList<>();
 		
-		AddresnapInfo clonedInfo = makeClone(sourceTwo);
-		return merge(sourceOne, clonedInfo);
+		baseInfo.codCustomerSnapshot = selectedInfo.codSnapshot;
+		
+		results.add(baseInfo);
+		return results;
 	}
 	
 	
 	
-	private void checkArgument(CuslisInfo sourceOne, AddresnapInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private AddresnapInfo makeClone(AddresnapInfo recordInfo) {
-		try {
-			return (AddresnapInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	private AddresnapInfo merge(CuslisInfo sourceOne, AddresnapInfo sourceTwo) {
-		sourceTwo.codCustomerSnapshot = sourceOne.codSnapshot;
-		return sourceTwo;
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(CuslisInfo sourceOne, AddresnapInfo sourceTwo) {
-		return (sourceOne.codOwner  	== sourceTwo.codOwner	&&
-				sourceOne.codCustomer 	== sourceTwo.codCustomer);
-	}
-	
-	
-	
-	private void logException(Exception e) {
-		SystemLog.logError(this.getClass(), e);
+	@Override public InfoUniquifier<AddresnapInfo> getUniquifier() {
+		return null;
 	}
 }

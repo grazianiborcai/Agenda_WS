@@ -1,6 +1,5 @@
 package br.com.mind5.business.addressSnapshot.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.addressSnapshot.info.AddresnapInfo;
@@ -9,12 +8,14 @@ import br.com.mind5.business.storeList.info.StolisCopier;
 import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.business.storeList.model.decisionTree.RootStolisSelect;
 import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiAddresnapMergeStolis extends ActionVisitorTemplateMergeV1<AddresnapInfo, StolisInfo> {
+final class VisiAddresnapMergeStolis extends ActionVisitorTemplateMergeV2<AddresnapInfo, StolisInfo> {
 	
-	public VisiAddresnapMergeStolis(Connection conn, String schemaName) {
-		super(conn, schemaName, StolisInfo.class);
+	public VisiAddresnapMergeStolis(DeciTreeOption<AddresnapInfo> option) {
+		super(option, StolisInfo.class);
 	}
 	
 	
@@ -25,13 +26,13 @@ final class VisiAddresnapMergeStolis extends ActionVisitorTemplateMergeV1<Addres
 
 	
 	
-	protected List<StolisInfo> toActionClassHook(List<AddresnapInfo> recordInfos) {
-		return StolisCopier.copyFromAddresnap(recordInfos);	
+	protected List<StolisInfo> toActionClassHook(List<AddresnapInfo> baseInfos) {
+		return StolisCopier.copyFromAddresnap(baseInfos);	
 	}	
 	
 	
-	@Override protected List<AddresnapInfo> mergeHook(List<AddresnapInfo> recordInfos, List<StolisInfo> selectedInfos) {	
-		return AddresnapMerger.mergeWithStolis(selectedInfos, recordInfos);
+	@Override protected List<AddresnapInfo> mergeHook(List<AddresnapInfo> baseInfos, List<StolisInfo> selectedInfos) {	
+		return AddresnapMerger.mergeWithStolis(baseInfos, selectedInfos);
 	}
 	
 	

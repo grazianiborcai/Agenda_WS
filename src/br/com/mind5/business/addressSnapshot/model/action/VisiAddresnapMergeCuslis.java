@@ -1,6 +1,5 @@
 package br.com.mind5.business.addressSnapshot.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.addressSnapshot.info.AddresnapInfo;
@@ -9,12 +8,14 @@ import br.com.mind5.business.customerList.info.CuslisCopier;
 import br.com.mind5.business.customerList.info.CuslisInfo;
 import br.com.mind5.business.customerList.model.decisionTree.RootCuslisSelect;
 import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiAddresnapMergeCuslis extends ActionVisitorTemplateMergeV1<AddresnapInfo, CuslisInfo> {
+final class VisiAddresnapMergeCuslis extends ActionVisitorTemplateMergeV2<AddresnapInfo, CuslisInfo> {
 	
-	public VisiAddresnapMergeCuslis(Connection conn, String schemaName) {
-		super(conn, schemaName, CuslisInfo.class);
+	public VisiAddresnapMergeCuslis(DeciTreeOption<AddresnapInfo> option) {
+		super(option, CuslisInfo.class);
 	}
 	
 	
@@ -25,13 +26,13 @@ final class VisiAddresnapMergeCuslis extends ActionVisitorTemplateMergeV1<Addres
 
 	
 	
-	protected List<CuslisInfo> toActionClassHook(List<AddresnapInfo> recordInfos) {
-		return CuslisCopier.copyFromAddresnap(recordInfos);	
+	protected List<CuslisInfo> toActionClassHook(List<AddresnapInfo> baseInfos) {
+		return CuslisCopier.copyFromAddresnap(baseInfos);	
 	}	
 	
 	
-	@Override protected List<AddresnapInfo> mergeHook(List<AddresnapInfo> recordInfos, List<CuslisInfo> selectedInfos) {	
-		return AddresnapMerger.mergeWithCuslis(selectedInfos, recordInfos);
+	@Override protected List<AddresnapInfo> mergeHook(List<AddresnapInfo> baseInfos, List<CuslisInfo> selectedInfos) {	
+		return AddresnapMerger.mergeWithCuslis(baseInfos, selectedInfos);
 	}
 	
 	

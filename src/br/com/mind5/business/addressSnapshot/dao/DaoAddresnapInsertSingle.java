@@ -15,11 +15,11 @@ import br.com.mind5.dao.DaoStmtParamTranslator;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class AddresnapInsertSingle extends DaoStmtTemplate<AddresnapInfo> {
+public final class DaoAddresnapInsertSingle extends DaoStmtTemplate<AddresnapInfo> {
 	private final String MAIN_TABLE = DaoDbTable.ADDRESS_SNAPSHOT_TABLE;	
 	
 	
-	public AddresnapInsertSingle(Connection conn, AddresnapInfo recordInfo, String schemaName) {
+	public DaoAddresnapInsertSingle(Connection conn, AddresnapInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	

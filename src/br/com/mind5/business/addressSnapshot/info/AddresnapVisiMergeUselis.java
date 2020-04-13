@@ -1,55 +1,39 @@
 package br.com.mind5.business.addressSnapshot.info;
 
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import java.util.ArrayList;
+import java.util.List;
+
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.security.userList.info.UselisInfo;
 
-final class AddresnapVisiMergeUselis implements InfoMergerVisitor_<AddresnapInfo, UselisInfo> {
-
-	@Override public AddresnapInfo writeRecord(UselisInfo sourceOne, AddresnapInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+final class AddresnapVisiMergeUselis implements InfoMergerVisitorV3<AddresnapInfo, UselisInfo> {
+	
+	@Override public List<AddresnapInfo> beforeMerge(List<AddresnapInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(AddresnapInfo baseInfo, UselisInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner	&&
+				baseInfo.codUser  == selectedInfo.codUser		);
+	}
+	
+	
+	
+	@Override public List<AddresnapInfo> merge(AddresnapInfo baseInfo, UselisInfo selectedInfo) {
+		List<AddresnapInfo> results = new ArrayList<>();
 		
-		AddresnapInfo clonedInfo = makeClone(sourceTwo);
-		return merge(sourceOne, clonedInfo);
+		baseInfo.codUserSnapshot = selectedInfo.codSnapshot;
+		
+		results.add(baseInfo);
+		return results;
 	}
 	
 	
 	
-	private void checkArgument(UselisInfo sourceOne, AddresnapInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private AddresnapInfo makeClone(AddresnapInfo recordInfo) {
-		try {
-			return (AddresnapInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	private AddresnapInfo merge(UselisInfo sourceOne, AddresnapInfo sourceTwo) {
-		sourceTwo.codUserSnapshot = sourceOne.codSnapshot;
-		return sourceTwo;
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(UselisInfo sourceOne, AddresnapInfo sourceTwo) {
-		return (sourceOne.codOwner  == sourceTwo.codOwner	&&
-				sourceOne.codUser 	== sourceTwo.codUser);
-	}
-	
-	
-	
-	private void logException(Exception e) {
-		SystemLog.logError(this.getClass(), e);
+	@Override public InfoUniquifier<AddresnapInfo> getUniquifier() {
+		return null;
 	}
 }

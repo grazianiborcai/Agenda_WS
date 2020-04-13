@@ -1,35 +1,19 @@
 package br.com.mind5.business.addressSnapshot.model.action;
 
 import br.com.mind5.business.addressSnapshot.info.AddresnapInfo;
-import br.com.mind5.model.action.ActionLazyV1;
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionStdHelperMerge;
-import br.com.mind5.model.decisionTree.DeciResult;
+import br.com.mind5.model.action.ActionStdTemplateV2;
+import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdAddresnapMergeState implements ActionStdV1<AddresnapInfo> {
-	private ActionStdV1<AddresnapInfo> actionHelper;	
-	
-	
-	public StdAddresnapMergeState(DeciTreeOption<AddresnapInfo> option) {			
-		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiAddresnapMergeState(option.conn, option.schemaName));
+public final class StdAddresnapMergeState extends ActionStdTemplateV2<AddresnapInfo> {
+
+	public StdAddresnapMergeState(DeciTreeOption<AddresnapInfo> option) {
+		super(option);
 	}
 	
 	
 	
-	@Override public void addPostAction(ActionLazyV1<AddresnapInfo> actionHandler) {
-		actionHelper.addPostAction(actionHandler);
-	}
-	
-	
-	
-	@Override public boolean executeAction() {			
-		return actionHelper.executeAction();
-	}
-	
-	
-	
-	@Override public DeciResult<AddresnapInfo> getDecisionResult() {
-		return actionHelper.getDecisionResult();
+	protected ActionVisitorV2<AddresnapInfo> buildVisitorHook(DeciTreeOption<AddresnapInfo> option) {
+		return new VisiAddresnapMergeState(option);
 	}
 }
