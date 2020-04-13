@@ -1,27 +1,14 @@
 package br.com.mind5.business.phone.info;
 
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoSetter;
+import br.com.mind5.info.InfoSetterTemplate;
 
-public final class PhoneSetterNumberT01 implements InfoSetter<PhoneInfo> {
+public final class PhoneSetterNumberT01 extends InfoSetterTemplate<PhoneInfo> {
 	
-	public PhoneInfo setAttr(PhoneInfo recordInfo) {
-		checkArgument(recordInfo);
-		
+	@Override protected PhoneInfo setAttrHook(PhoneInfo recordInfo) {		
 		if (hasArea(recordInfo) == false)
 			recordInfo = setArea(recordInfo);
 		
 		return setNumber(recordInfo);
-	}
-	
-		
-	
-	private void checkArgument(PhoneInfo recordInfo) {
-		if (recordInfo == null) {
-			logException(new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT));
-			throw new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT);
-		}
 	}
 	
 	
@@ -57,11 +44,4 @@ public final class PhoneSetterNumberT01 implements InfoSetter<PhoneInfo> {
 	private int getAreaLength(PhoneInfo recordInfo) {
 		return recordInfo.codArea.length();
 	}
-	
-	
-	
-	private void logException(Exception e) {
-		
-		SystemLog.logError(this.getClass(), e);
-	}	
 }

@@ -1,54 +1,38 @@
 package br.com.mind5.business.phone.info;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import br.com.mind5.business.phoneSearch.info.PhonarchInfo;
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-final class PhoneVisiMergePhonarch implements InfoMergerVisitor_<PhoneInfo, PhonarchInfo> {
-
-	@Override public PhoneInfo writeRecord(PhonarchInfo sourceOne, PhoneInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+final class PhoneVisiMergePhonarch implements InfoMergerVisitorV3<PhoneInfo, PhonarchInfo> {
+	
+	@Override public List<PhoneInfo> beforeMerge(List<PhoneInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(PhoneInfo baseInfo, PhonarchInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner);
+	}
+	
+	
+	
+	@Override public List<PhoneInfo> merge(PhoneInfo baseInfo, PhonarchInfo selectedInfo) {
+		List<PhoneInfo> results = new ArrayList<>();
 		
-		PhoneInfo clonedInfo = makeClone(sourceTwo);
-		return merge(sourceOne, clonedInfo);
-	}
-	
-	
-	
-	private void checkArgument(PhonarchInfo sourceOne, PhoneInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private PhoneInfo makeClone(PhoneInfo recordInfo) {
-		try {
-			return (PhoneInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	private PhoneInfo merge(PhonarchInfo sourceOne, PhoneInfo sourceTwo) {
-		return PhoneInfo.copyFrom(sourceOne);
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(PhonarchInfo sourceOne, PhoneInfo sourceTwo) {
-		return (sourceOne.codOwner == sourceTwo.codOwner);
-	}	
-	
-	
-	
-	private void logException(Exception e) {
+		PhoneInfo result = PhoneInfo.copyFrom(selectedInfo);
 		
-		SystemLog.logError(this.getClass(), e);
+		results.add(result);
+		return results;
+	}
+	
+	
+	
+	@Override public InfoUniquifier<PhoneInfo> getUniquifier() {
+		return null;
 	}
 }

@@ -6,117 +6,110 @@ import br.com.mind5.business.masterData.info.CountryPhoneInfo;
 import br.com.mind5.business.phoneSearch.info.PhonarchInfo;
 import br.com.mind5.business.phoneSnapshot.info.PhonapInfo;
 import br.com.mind5.form.formPhone.info.FormoneInfo;
-import br.com.mind5.info.obsolete.InfoMerger_;
+import br.com.mind5.info.InfoMergerBuilderV3;
+import br.com.mind5.info.InfoMergerV3;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class PhoneMerger {
-	public static PhoneInfo mergeWithPhonarch(PhonarchInfo sourceOne, PhoneInfo sourceTwo) {
-		InfoMerger_<PhoneInfo, PhonarchInfo> merger = new PhoneMergerPhonarch();		
-		return merger.merge(sourceOne, sourceTwo);
+	public static List<PhoneInfo> mergeWithPhonarch(List<PhoneInfo> baseInfos, List<PhonarchInfo> selectedInfos) {
+		InfoMergerBuilderV3<PhoneInfo, PhonarchInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new PhoneVisiMergePhonarch());
+		InfoMergerV3<PhoneInfo, PhonarchInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static List<PhoneInfo> mergeWithPhonarch(List<PhonarchInfo> sourceOnes, List<PhoneInfo> sourceTwos) {
-		InfoMerger_<PhoneInfo, PhonarchInfo> merger = new PhoneMergerPhonarch();		
-		return merger.merge(sourceOnes, sourceTwos);
+	public static List<PhoneInfo> mergeWithUsername(List<PhoneInfo> baseInfos, List<UsernameInfo> selectedInfos) {
+		InfoMergerBuilderV3<PhoneInfo, UsernameInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new PhoneVisiMergeUsername());
+		InfoMergerV3<PhoneInfo, UsernameInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static PhoneInfo mergeWithUsername(UsernameInfo sourceOne, PhoneInfo sourceTwo) {
-		InfoMerger_<PhoneInfo, UsernameInfo> merger = new PhoneMergerUsername();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
+	public static List<PhoneInfo> mergeWithCountryPhone(List<PhoneInfo> baseInfos, List<CountryPhoneInfo> selectedInfos) {
+		InfoMergerBuilderV3<PhoneInfo, CountryPhoneInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new PhoneVisiMergeCountryPhone());
+		InfoMergerV3<PhoneInfo, CountryPhoneInfo> merger = builder.build();		
 	
-	
-	
-	public static List<PhoneInfo> mergeWithUsername(List<UsernameInfo> sourceOnes, List<PhoneInfo> sourceTwos) {
-		InfoMerger_<PhoneInfo, UsernameInfo> merger = new PhoneMergerUsername();		
-		return merger.merge(sourceOnes, sourceTwos);
-	}
-	
-	
-	
-	public static PhoneInfo mergeWithCountryPhone(CountryPhoneInfo sourceOne, PhoneInfo sourceTwo) {
-		InfoMerger_<PhoneInfo, CountryPhoneInfo> merger = new PhoneMergerCountryPhone();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
-	
-	
-	
-	public static List<PhoneInfo> mergeWithCountryPhone(List<CountryPhoneInfo> sourceOnes, List<PhoneInfo> sourceTwos) {
-		InfoMerger_<PhoneInfo, CountryPhoneInfo> merger = new PhoneMergerCountryPhone();		
-		return merger.merge(sourceOnes, sourceTwos);
+		return merger.merge();
 	}	
 	
 	
 	
-	public static PhoneInfo mergeWithFormone(FormoneInfo sourceOne, PhoneInfo sourceTwo) {
-		InfoMerger_<PhoneInfo, FormoneInfo> merger = new PhoneMergerFormone();		
-		return merger.merge(sourceOne, sourceTwo);
+	public static List<PhoneInfo> mergeWithFormone(List<PhoneInfo> baseInfos, List<FormoneInfo> selectedInfos) {
+		InfoMergerBuilderV3<PhoneInfo, FormoneInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new PhoneVisiMergeFormone());
+		InfoMergerV3<PhoneInfo, FormoneInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static List<PhoneInfo> mergeWithFormone(List<FormoneInfo> sourceOnes, List<PhoneInfo> sourceTwos) {
-		InfoMerger_<PhoneInfo, FormoneInfo> merger = new PhoneMergerFormone();		
-		return merger.merge(sourceOnes, sourceTwos);
-	}
+	public static List<PhoneInfo> mergeWithPhonap(List<PhoneInfo> baseInfos, List<PhonapInfo> selectedInfos) {
+		InfoMergerBuilderV3<PhoneInfo, PhonapInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new PhoneVisiMergePhonap());
+		InfoMergerV3<PhoneInfo, PhonapInfo> merger = builder.build();		
 	
-	
-	
-	public static PhoneInfo mergeWithPhonap(PhonapInfo sourceOne, PhoneInfo sourceTwo) {
-		InfoMerger_<PhoneInfo, PhonapInfo> merger = new PhoneMergerPhonap();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
-	
-	
-	
-	public static List<PhoneInfo> mergeWithPhonap(List<PhonapInfo> sourceOnes, List<PhoneInfo> sourceTwos) {
-		InfoMerger_<PhoneInfo, PhonapInfo> merger = new PhoneMergerPhonap();		
-		return merger.merge(sourceOnes, sourceTwos);
+		return merger.merge();
 	}	
 	
 	
 	
-	public static PhoneInfo mergeToDelete(PhoneInfo sourceOne, PhoneInfo sourceTwo) {
-		InfoMerger_<PhoneInfo, PhoneInfo> merger = new PhoneMergerToDelete();		
-		return merger.merge(sourceOne, sourceTwo);
+	public static List<PhoneInfo> mergeToDelete(List<PhoneInfo> baseInfos, List<PhoneInfo> selectedInfos) {
+		InfoMergerBuilderV3<PhoneInfo, PhoneInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new PhoneVisiMergeToDelete());
+		InfoMergerV3<PhoneInfo, PhoneInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static List<PhoneInfo> mergeToDelete(List<PhoneInfo> sourceOnes, List<PhoneInfo> sourceTwos) {
-		InfoMerger_<PhoneInfo, PhoneInfo> merger = new PhoneMergerToDelete();		
-		return merger.merge(sourceOnes, sourceTwos);
+	public static List<PhoneInfo> mergeToSelect(List<PhoneInfo> baseInfos, List<PhoneInfo> selectedInfos) {
+		InfoMergerBuilderV3<PhoneInfo, PhoneInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new PhoneVisiMergeToSelect());
+		InfoMergerV3<PhoneInfo, PhoneInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static PhoneInfo mergeToSelect(PhoneInfo sourceOne, PhoneInfo sourceTwo) {
-		InfoMerger_<PhoneInfo, PhoneInfo> merger = new PhoneMergerToSelect();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
+	public static List<PhoneInfo> mergeToUpdate(List<PhoneInfo> baseInfos, List<PhoneInfo> selectedInfos) {
+		InfoMergerBuilderV3<PhoneInfo, PhoneInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new PhoneVisiMergeToUpdate());
+		InfoMergerV3<PhoneInfo, PhoneInfo> merger = builder.build();		
 	
-	
-	
-	public static List<PhoneInfo> mergeToSelect(List<PhoneInfo> sourceOnes, List<PhoneInfo> sourceTwos) {
-		InfoMerger_<PhoneInfo, PhoneInfo> merger = new PhoneMergerToSelect();		
-		return merger.merge(sourceOnes, sourceTwos);
-	}
-	
-	
-	
-	public static PhoneInfo mergeToUpdate(PhoneInfo sourceOne, PhoneInfo sourceTwo) {
-		InfoMerger_<PhoneInfo, PhoneInfo> merger = new PhoneMergerToUpdate();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
-	
-	
-	
-	public static List<PhoneInfo> mergeToUpdate(List<PhoneInfo> sourceOnes, List<PhoneInfo> sourceTwos) {
-		InfoMerger_<PhoneInfo, PhoneInfo> merger = new PhoneMergerToUpdate();		
-		return merger.merge(sourceOnes, sourceTwos);
+		return merger.merge();
 	}
 }

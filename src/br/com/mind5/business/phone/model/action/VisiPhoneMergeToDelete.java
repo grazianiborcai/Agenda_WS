@@ -1,30 +1,30 @@
 package br.com.mind5.business.phone.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.business.phone.info.PhoneMerger;
-import br.com.mind5.business.phone.model.decisionTree.RootPhoneSelect;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
-import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiPhoneMergeToDelete extends ActionVisitorTemplateMergeV1<PhoneInfo, PhoneInfo> {
+final class VisiPhoneMergeToDelete extends ActionVisitorTemplateMergeV2<PhoneInfo, PhoneInfo> {
 	
-	public VisiPhoneMergeToDelete(Connection conn, String schemaName) {
-		super(conn, schemaName, PhoneInfo.class);
+	public VisiPhoneMergeToDelete(DeciTreeOption<PhoneInfo> option) {
+		super(option, PhoneInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends DeciTree<PhoneInfo>> getTreeClassHook() {
-		return RootPhoneSelect.class;
+	@Override protected Class<? extends ActionStdV2<PhoneInfo>> getActionClassHook() {
+		return StdPhoneDaoSelect.class;
 	}
 	
 	
 	
-	@Override protected List<PhoneInfo> mergeHook(List<PhoneInfo> recordInfos, List<PhoneInfo> selectedInfos) {	
-		return PhoneMerger.mergeToDelete(selectedInfos, recordInfos);
+	@Override protected List<PhoneInfo> mergeHook(List<PhoneInfo> baseInfos, List<PhoneInfo> selectedInfos) {	
+		return PhoneMerger.mergeToDelete(baseInfos, selectedInfos);
 	}
 	
 	

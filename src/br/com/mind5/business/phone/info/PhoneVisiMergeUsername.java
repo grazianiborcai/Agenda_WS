@@ -1,60 +1,39 @@
 package br.com.mind5.business.phone.info;
 
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import java.util.ArrayList;
+import java.util.List;
+
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.security.username.info.UsernameInfo;
 
-final class PhoneVisiMergeUsername implements InfoMergerVisitor_<PhoneInfo, UsernameInfo> {
-
-	@Override public PhoneInfo writeRecord(UsernameInfo sourceOne, PhoneInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+final class PhoneVisiMergeUsername implements InfoMergerVisitorV3<PhoneInfo, UsernameInfo> {
+	
+	@Override public List<PhoneInfo> beforeMerge(List<PhoneInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(PhoneInfo baseInfo, UsernameInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner		&&
+				baseInfo.username.equals(selectedInfo.username)		);
+	}
+	
+	
+	
+	@Override public List<PhoneInfo> merge(PhoneInfo baseInfo, UsernameInfo selectedInfo) {
+		List<PhoneInfo> results = new ArrayList<>();
 		
-		PhoneInfo clonedInfo = makeClone(sourceTwo);
-		return merge(sourceOne, clonedInfo);
-	}
-	
-	
-	
-	private void checkArgument(UsernameInfo sourceOne, PhoneInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private PhoneInfo makeClone(PhoneInfo recordInfo) {
-		try {
-			return (PhoneInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	private PhoneInfo merge(UsernameInfo sourceOne, PhoneInfo sourceTwo) {
-		sourceTwo.lastChangedBy = sourceOne.codUser;
-		return sourceTwo;
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(UsernameInfo sourceOne, PhoneInfo sourceTwo) {
-		if (sourceOne.username == null ||
-			sourceTwo.username == null		)
-			return false;
+		baseInfo.lastChangedBy = selectedInfo.codUser;
 		
-		return (sourceOne.codOwner == sourceTwo.codOwner		&&
-				sourceOne.username.equals(sourceTwo.username)		);
+		results.add(baseInfo);
+		return results;
 	}
 	
 	
 	
-	private void logException(Exception e) {
-		
-		SystemLog.logError(this.getClass(), e);
+	@Override public InfoUniquifier<PhoneInfo> getUniquifier() {
+		return null;
 	}
 }

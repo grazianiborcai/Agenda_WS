@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class PhoneDbTableColumn extends DaoDbTableColumnTemplate {	
+public final class DaoPhoneDbTableColumn extends DaoDbTableColumnTemplate {	
 	public static final String COL_COD_AREA = DaoDbField.COL_COD_AREA;
 	public static final String COL_COD_CUSTOMER = DaoDbField.COL_COD_CUSTOMER;
 	public static final String COL_COD_EMPLOYEE = DaoDbField.COL_COD_EMPLOYEE;	
@@ -29,24 +29,14 @@ public final class PhoneDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_LAST_CHANGED_BY = DaoDbField.COL_LAST_CHANGED_BY;
 	public static final String COL_RECORD_MODE = DaoDbField.COL_RECORD_MODE;
 	
-	private Hashtable<String, List<DaoColumn>> tableColumns;
 	
-	
-	public PhoneDbTableColumn() {
-		super(PhoneDbTableColumn.class);
+	public DaoPhoneDbTableColumn() {
+		super();
 	}
 	
 	
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
-		tableColumns = new Hashtable<>();		
-		buildPhoneTable();	
-		return tableColumns;
-	}
-	
-	
-	
-	private void buildPhoneTable() {
 		final String TABLE_NAME = DaoDbTable.PHONE_TABLE;
 		
 		DaoColumn oneColumn;
@@ -197,6 +187,8 @@ public final class PhoneDbTableColumn extends DaoDbTableColumnTemplate {
 		columns.add(oneColumn);
 		
 		
-		tableColumns.put(TABLE_NAME, columns);
+		Hashtable<String, List<DaoColumn>> results = new Hashtable<>();
+		results.put(TABLE_NAME, columns);
+		return results;
 	}
 }

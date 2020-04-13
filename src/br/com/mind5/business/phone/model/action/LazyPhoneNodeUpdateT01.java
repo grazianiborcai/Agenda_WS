@@ -5,12 +5,12 @@ import java.util.List;
 
 import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.business.phone.model.decisionTree.NodePhoneUpdateT01;
-import br.com.mind5.model.action.ActionLazyTemplateV1;
+import br.com.mind5.model.action.ActionLazyTemplateV2;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyPhoneNodeUpdateT01 extends ActionLazyTemplateV1<PhoneInfo, PhoneInfo> {
+public final class LazyPhoneNodeUpdateT01 extends ActionLazyTemplateV2<PhoneInfo, PhoneInfo> {
 
 	public LazyPhoneNodeUpdateT01(Connection conn, String schemaName) {
 		super(conn, schemaName);

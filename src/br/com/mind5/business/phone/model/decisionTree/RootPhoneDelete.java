@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.phone.info.PhoneInfo;
-import br.com.mind5.business.phone.model.action.LazyPhoneDelete;
+import br.com.mind5.business.phone.model.action.LazyPhoneDaoDelete;
 import br.com.mind5.business.phone.model.action.LazyPhoneEnforceLChanged;
 import br.com.mind5.business.phone.model.action.LazyPhoneMergeUsername;
-import br.com.mind5.business.phone.model.action.LazyPhoneUpdate;
+import br.com.mind5.business.phone.model.action.LazyPhoneDaoUpdate;
 import br.com.mind5.business.phone.model.action.StdPhoneMergeToDelete;
 import br.com.mind5.business.phone.model.checker.PhoneCheckDelete;
 import br.com.mind5.business.phone.model.checker.PhoneCheckExist;
@@ -17,9 +17,9 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class RootPhoneDelete extends DeciTreeTemplateWriteV1<PhoneInfo> {
+public final class RootPhoneDelete extends DeciTreeTemplateWriteV2<PhoneInfo> {
 	
 	public RootPhoneDelete(DeciTreeOption<PhoneInfo> option) {
 		super(option);
@@ -57,8 +57,8 @@ public final class RootPhoneDelete extends DeciTreeTemplateWriteV1<PhoneInfo> {
 		ActionStdV1<PhoneInfo> mergeToDelete = new StdPhoneMergeToDelete(option);	
 		ActionLazyV1<PhoneInfo> enforceLChanged = new LazyPhoneEnforceLChanged(option.conn, option.schemaName);
 		ActionLazyV1<PhoneInfo> mergeUsername = new LazyPhoneMergeUsername(option.conn, option.schemaName);
-		ActionLazyV1<PhoneInfo> update = new LazyPhoneUpdate(option.conn, option.schemaName);
-		ActionLazyV1<PhoneInfo> delete = new LazyPhoneDelete(option.conn, option.schemaName);
+		ActionLazyV1<PhoneInfo> update = new LazyPhoneDaoUpdate(option.conn, option.schemaName);
+		ActionLazyV1<PhoneInfo> delete = new LazyPhoneDaoDelete(option.conn, option.schemaName);
 		
 		mergeToDelete.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(mergeUsername);

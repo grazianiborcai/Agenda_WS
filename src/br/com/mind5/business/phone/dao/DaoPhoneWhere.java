@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilder;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 
-final class PhoneWhere implements DaoStmtWhere {	
+final class DaoPhoneWhere implements DaoStmtWhere {	
 	private String whereClause;	
 	
 	
-	public PhoneWhere(DaoWhereBuilderOption whereOption, String tableName, PhoneInfo recordInfo) {
+	public DaoPhoneWhere(DaoWhereBuilderOption whereOption, String tableName, PhoneInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -27,15 +27,15 @@ final class PhoneWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-				case PhoneDbTableColumn.COL_COD_OWNER :
+				case DaoPhoneDbTableColumn.COL_COD_OWNER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;
 					
-				case PhoneDbTableColumn.COL_COD_PHONE :
+				case DaoPhoneDbTableColumn.COL_COD_PHONE :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codPhone));
 					break;
 					
-				case PhoneDbTableColumn.COL_RECORD_MODE :
+				case DaoPhoneDbTableColumn.COL_RECORD_MODE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.recordMode);
 					break;
 			}

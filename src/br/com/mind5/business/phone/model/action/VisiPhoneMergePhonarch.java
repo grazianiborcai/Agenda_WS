@@ -1,6 +1,5 @@
 package br.com.mind5.business.phone.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.phone.info.PhoneInfo;
@@ -8,12 +7,14 @@ import br.com.mind5.business.phone.info.PhoneMerger;
 import br.com.mind5.business.phoneSearch.info.PhonarchInfo;
 import br.com.mind5.business.phoneSearch.model.decisionTree.RootPhonarchSelect;
 import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiPhoneMergePhonarch extends ActionVisitorTemplateMergeV1<PhoneInfo, PhonarchInfo> {
+final class VisiPhoneMergePhonarch extends ActionVisitorTemplateMergeV2<PhoneInfo, PhonarchInfo> {
 	
-	public VisiPhoneMergePhonarch(Connection conn, String schemaName) {
-		super(conn, schemaName, PhonarchInfo.class);
+	public VisiPhoneMergePhonarch(DeciTreeOption<PhoneInfo> option) {
+		super(option, PhonarchInfo.class);
 	}
 	
 	
@@ -24,8 +25,8 @@ final class VisiPhoneMergePhonarch extends ActionVisitorTemplateMergeV1<PhoneInf
 	
 	
 	
-	@Override protected List<PhoneInfo> mergeHook(List<PhoneInfo> recordInfos, List<PhonarchInfo> selectedInfos) {	
-		return PhoneMerger.mergeWithPhonarch(selectedInfos, recordInfos);
+	@Override protected List<PhoneInfo> mergeHook(List<PhoneInfo> baseInfos, List<PhonarchInfo> selectedInfos) {	
+		return PhoneMerger.mergeWithPhonarch(baseInfos, selectedInfos);
 	}
 	
 	

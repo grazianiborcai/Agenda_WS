@@ -4,12 +4,12 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.phone.info.PhoneInfo;
-import br.com.mind5.model.action.ActionLazyTemplateV1;
+import br.com.mind5.model.action.ActionLazyTemplateV2;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyPhoneEnforceLChanged extends ActionLazyTemplateV1<PhoneInfo, PhoneInfo> {
+public final class LazyPhoneEnforceLChanged extends ActionLazyTemplateV2<PhoneInfo, PhoneInfo> {
 
 	public LazyPhoneEnforceLChanged(Connection conn, String schemaName) {
 		super(conn, schemaName);

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.phone.info.PhoneInfo;
-import br.com.mind5.business.phone.model.action.StdPhoneInsert;
+import br.com.mind5.business.phone.model.action.StdPhoneDaoInsert;
 import br.com.mind5.business.phone.model.checker.PhoneCheckArea;
 import br.com.mind5.business.phone.model.checker.PhoneCheckLengthT01;
 import br.com.mind5.business.phone.model.checker.PhoneCheckNumberT01;
@@ -15,9 +15,9 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class NodePhoneInsertT01 extends DeciTreeTemplateWriteV1<PhoneInfo> {
+public final class NodePhoneInsertT01 extends DeciTreeTemplateWriteV2<PhoneInfo> {
 	
 	public NodePhoneInsertT01(DeciTreeOption<PhoneInfo> option) {
 		super(option);
@@ -73,7 +73,7 @@ public final class NodePhoneInsertT01 extends DeciTreeTemplateWriteV1<PhoneInfo>
 	@Override protected List<ActionStdV1<PhoneInfo>> buildActionsOnPassedHook(DeciTreeOption<PhoneInfo> option) {
 		List<ActionStdV1<PhoneInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<PhoneInfo> insert = new StdPhoneInsert(option);	
+		ActionStdV1<PhoneInfo> insert = new StdPhoneDaoInsert(option);	
 		
 		actions.add(insert);		
 		return actions;

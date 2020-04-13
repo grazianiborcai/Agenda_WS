@@ -4,14 +4,14 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.phone.info.PhoneInfo;
-import br.com.mind5.model.action.ActionLazyTemplateV1;
+import br.com.mind5.model.action.ActionLazyTemplateV2;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyPhoneDelete extends ActionLazyTemplateV1<PhoneInfo, PhoneInfo> {
+public final class LazyPhoneDaoUpdate extends ActionLazyTemplateV2<PhoneInfo, PhoneInfo> {
 
-	public LazyPhoneDelete(Connection conn, String schemaName) {
+	public LazyPhoneDaoUpdate(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyPhoneDelete extends ActionLazyTemplateV1<PhoneInfo, Phone
 	
 	
 	@Override protected ActionStdV1<PhoneInfo> getInstanceOfActionHook(DeciTreeOption<PhoneInfo> option) {
-		return new StdPhoneDelete(option);
+		return new StdPhoneDaoUpdate(option);
 	}
 	
 	
