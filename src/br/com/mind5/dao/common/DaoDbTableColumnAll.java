@@ -107,6 +107,7 @@ import br.com.mind5.form.formPhone.dao.DaoFormoneDbTableColumn;
 import br.com.mind5.masterData.moonPhase.dao.MoonaseDbTableColumn;
 import br.com.mind5.masterData.moonPhaseSearch.dao.MoonasarchDbTableColumn;
 import br.com.mind5.masterData.state.dao.DaoStateDbTableColumn;
+import br.com.mind5.masterData.stateSearch.dao.DaoStatarchDbTableColumn;
 import br.com.mind5.message.email.dao.EmailDbTableColumn;
 import br.com.mind5.message.emailBody.dao.EmabodyDbTableColumn;
 import br.com.mind5.message.sysMessage.dao.SymsgDbTableColumn;
@@ -280,6 +281,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new MooncalDbTableColumn());
 		addTable(new CalateDbTableColumn());
 		addTable(new DaoStateDbTableColumn());
+		addTable(new DaoStatarchDbTableColumn());
 	}
 	
 	

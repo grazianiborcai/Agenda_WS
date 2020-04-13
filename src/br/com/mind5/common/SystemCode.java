@@ -160,6 +160,9 @@ public final class SystemCode {
 	public static final int MOON_PHASE_ALREADY_EXIST					= 5334;
 	public static final int MOON_PHASE_NOT_FOUND						= 5335;
 	public static final int MOON_PHASE_SEARCH_MANDATORY_FIELD_EMPTY 	= 5336;
+	public static final int STATE_SEARCH_MANDATORY_FIELD_EMPTY 			= 5337;
+	public static final int STATE_SEARCH_ALREADY_EXIST					= 5338;
+	public static final int STATE_SEARCH_NOT_FOUND						= 5339;
 	
 	// Material
 	public static final int MAT_ALREADY_EXIST							= 1200;

@@ -60,8 +60,8 @@ import br.com.mind5.business.masterData.model.UserCategModelSelect;
 import br.com.mind5.business.masterData.model.WeekdayModelSelect;
 import br.com.mind5.masterData.moonPhase.MoonaseModelSearch;
 import br.com.mind5.masterData.moonPhase.info.MoonaseInfo;
-import br.com.mind5.masterData.state.StateModelSelect;
-import br.com.mind5.masterData.state.info.StateInfo;
+import br.com.mind5.masterData.stateSearch.StatarchModelSelect;
+import br.com.mind5.masterData.stateSearch.info.StatarchInfo;
 import br.com.mind5.model.Model;
 
 
@@ -475,13 +475,13 @@ public final class MasterDataResource {
 			                    @HeaderParam("codCountry") String codCountry,
 			                    @HeaderParam("codState") String codState) {
 		
-		StateInfo recordInfo = new StateInfo();		
+		StatarchInfo recordInfo = new StatarchInfo();		
 		recordInfo.codCountry = codCountry;
 		recordInfo.codState = codState;
 		recordInfo.codLanguage = codLanguage;
 		
 		
-		Model model = new StateModelSelect(recordInfo);
+		Model model = new StatarchModelSelect(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	}
