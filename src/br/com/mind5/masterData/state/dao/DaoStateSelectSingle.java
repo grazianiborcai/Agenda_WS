@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.business.masterData.dao.MasterDataDbTableColumn;
 import br.com.mind5.dao.DaoJoin;
 import br.com.mind5.dao.DaoJoinBuilder;
 import br.com.mind5.dao.DaoOperation;
@@ -43,9 +42,8 @@ public final class DaoStateSelectSingle extends DaoStmtTemplate<StateInfo> {
 	@Override protected String buildWhereClauseHook(String tableName, StateInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
 		
-		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
-		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;	
-		whereOption.dummyClauseWhenEmpty = DaoOptionValue.DUMMY_CLAUSE_ALLOWED;
+		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
+		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;
 		
 		DaoStmtWhere whereClause = new DaoStateWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
@@ -71,10 +69,10 @@ public final class DaoStateSelectSingle extends DaoStmtTemplate<StateInfo> {
 				do {				
 					StateInfo dataInfo = new StateInfo();
 					
-					dataInfo.codCountry = stmtResult.getString(MasterDataDbTableColumn.COL_COD_COUNTRY);
-					dataInfo.codState = stmtResult.getString(MasterDataDbTableColumn.COL_STATE_PROVINCE);
-					dataInfo.txtState = stmtResult.getString(MasterDataDbTableColumn.COL_NAME);
-					dataInfo.codLanguage = stmtResult.getString(MasterDataDbTableColumn.COL_COD_LANGUAGE);		
+					dataInfo.codCountry = stmtResult.getString(DaoStateDbTableColumn.COL_COD_COUNTRY);
+					dataInfo.codState = stmtResult.getString(DaoStateDbTableColumn.COL_STATE_PROVINCE);
+					dataInfo.txtState = stmtResult.getString(DaoStateDbTableColumn.COL_NAME);
+					dataInfo.codLanguage = stmtResult.getString(DaoStateDbTableColumn.COL_COD_LANGUAGE);		
 					
 					finalResult.add(dataInfo);				
 				} while (stmtResult.next());

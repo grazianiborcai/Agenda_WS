@@ -16,7 +16,10 @@ public final class StateCheckRead extends ModelCheckerTemplateSimpleV2<StateInfo
 	
 	
 	@Override protected boolean checkHook(StateInfo recordInfo, Connection conn, String schemaName) {	
-		if ( recordInfo.codLanguage == null )			
+		if ( recordInfo.codLanguage == null ||
+			 recordInfo.codCountry  == null ||
+			 recordInfo.codState    == null		)		
+			
 			return super.FAILED;
 		
 		
