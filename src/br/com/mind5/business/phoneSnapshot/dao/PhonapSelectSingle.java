@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.business.phone.dao.PhoneDbTableColumn;
 import br.com.mind5.business.phoneSnapshot.info.PhonapInfo;
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
@@ -83,8 +82,8 @@ public final class PhonapSelectSingle extends DaoStmtTemplate<PhonapInfo> {
 					dataInfo.codOwnerRefSnapshot = DaoFormatter.sqlToLong(stmtResult, PhonapDbTableColumn.COL_COD_OWNER_REF_SNAPSHOT);
 					dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, PhonapDbTableColumn.COL_LAST_CHANGED_BY);
 					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, PhonapDbTableColumn.COL_LAST_CHANGED);
-					dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, PhoneDbTableColumn.COL_CREATED_ON);
-					dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, PhoneDbTableColumn.COL_CREATED_BY);					
+					dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, PhonapDbTableColumn.COL_CREATED_ON);
+					dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, PhonapDbTableColumn.COL_CREATED_BY);					
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());
