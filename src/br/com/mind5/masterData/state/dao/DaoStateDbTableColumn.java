@@ -17,7 +17,7 @@ public final class DaoStateDbTableColumn extends DaoDbTableColumnTemplate {
 	
 	
 	public DaoStateDbTableColumn() {
-		super(DaoStateDbTableColumn.class);
+		super();
 	}
 	
 	

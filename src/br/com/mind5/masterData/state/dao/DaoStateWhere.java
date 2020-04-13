@@ -2,7 +2,6 @@ package br.com.mind5.masterData.state.dao;
 
 import java.util.List;
 
-import br.com.mind5.business.masterData.dao.MasterDataDbTableColumn;
 import br.com.mind5.dao.DaoColumn;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilder;
@@ -26,15 +25,15 @@ final class DaoStateWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {
 			switch(eachColumn.columnName) {
-				case MasterDataDbTableColumn.COL_COD_COUNTRY :
+				case DaoStateDbTableColumn.COL_COD_COUNTRY :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codCountry);
 					break;
 					
-				case MasterDataDbTableColumn.COL_STATE_PROVINCE :
+				case DaoStateDbTableColumn.COL_STATE_PROVINCE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codState);
 					break;
 					
-				case MasterDataDbTableColumn.COL_COD_LANGUAGE :
+				case DaoStateDbTableColumn.COL_COD_LANGUAGE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codLanguage);
 					break;	
 			}
