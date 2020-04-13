@@ -1,4 +1,4 @@
-package br.com.mind5.business.form.formAddressSearch.dao;
+package br.com.mind5.form.formAddressSearch.dao;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.business.form.formAddressSearch.info.FormesarchInfo;
 import br.com.mind5.dao.DaoOperation;
 import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtTemplate;
@@ -14,6 +13,7 @@ import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
+import br.com.mind5.form.formAddressSearch.info.FormesarchInfo;
 
 public final class DaoFormesarchSelectSingle extends DaoStmtTemplate<FormesarchInfo> {
 	private final String MAIN_TABLE = DaoDbTable.ADDRESS_FORM_TABLE;

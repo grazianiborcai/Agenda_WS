@@ -1,12 +1,12 @@
-package br.com.mind5.business.form.formAddressSearch.dao;
+package br.com.mind5.form.formAddressSearch.dao;
 
 import java.sql.SQLException;
 import java.util.List;
 
-import br.com.mind5.business.form.formAddressSearch.info.FormesarchInfo;
 import br.com.mind5.dao.DaoStmtExecHelperV2;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.form.formAddressSearch.info.FormesarchInfo;
 
 public final class DaoFormesarchSelect implements DaoStmtExecV2<FormesarchInfo> {
 	private DaoStmtExecV2<FormesarchInfo> helper;

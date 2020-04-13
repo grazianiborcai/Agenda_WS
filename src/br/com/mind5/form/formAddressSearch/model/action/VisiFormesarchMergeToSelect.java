@@ -1,9 +1,9 @@
-package br.com.mind5.business.form.formAddressSearch.model.action;
+package br.com.mind5.form.formAddressSearch.model.action;
 
 import java.util.List;
 
-import br.com.mind5.business.form.formAddressSearch.info.FormesarchInfo;
-import br.com.mind5.business.form.formAddressSearch.info.FormesarchMerger;
+import br.com.mind5.form.formAddressSearch.info.FormesarchInfo;
+import br.com.mind5.form.formAddressSearch.info.FormesarchMerger;
 import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;

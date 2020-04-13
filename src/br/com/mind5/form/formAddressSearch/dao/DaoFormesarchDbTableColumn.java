@@ -1,4 +1,4 @@
-package br.com.mind5.business.form.formAddressSearch.dao;
+package br.com.mind5.form.formAddressSearch.dao;
 
 import java.util.ArrayList;
 import java.util.Hashtable;

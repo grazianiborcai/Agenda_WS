@@ -1,6 +1,6 @@
-package br.com.mind5.business.form.formAddressSearch.model.action;
+package br.com.mind5.form.formAddressSearch.model.action;
 
-import br.com.mind5.business.form.formAddressSearch.info.FormesarchInfo;
+import br.com.mind5.form.formAddressSearch.info.FormesarchInfo;
 import br.com.mind5.model.action.ActionStdTemplateV2;
 import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;

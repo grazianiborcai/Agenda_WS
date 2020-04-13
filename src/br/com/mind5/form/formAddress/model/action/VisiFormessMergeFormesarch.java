@@ -2,10 +2,10 @@ package br.com.mind5.form.formAddress.model.action;
 
 import java.util.List;
 
-import br.com.mind5.business.form.formAddressSearch.info.FormesarchInfo;
-import br.com.mind5.business.form.formAddressSearch.model.decisionTree.RootFormesarchSelect;
 import br.com.mind5.form.formAddress.info.FormessInfo;
 import br.com.mind5.form.formAddress.info.FormessMerger;
+import br.com.mind5.form.formAddressSearch.info.FormesarchInfo;
+import br.com.mind5.form.formAddressSearch.model.decisionTree.RootFormesarchSelect;
 import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;

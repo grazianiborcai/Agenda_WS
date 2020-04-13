@@ -3,7 +3,7 @@ package br.com.mind5.form.formAddress.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.business.form.formAddressSearch.info.FormesarchInfo;
+import br.com.mind5.form.formAddressSearch.info.FormesarchInfo;
 import br.com.mind5.info.InfoMergerVisitorV3;
 import br.com.mind5.info.InfoUniquifier;
 

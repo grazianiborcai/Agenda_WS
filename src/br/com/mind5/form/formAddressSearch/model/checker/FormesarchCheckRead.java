@@ -1,9 +1,9 @@
-package br.com.mind5.business.form.formAddressSearch.model.checker;
+package br.com.mind5.form.formAddressSearch.model.checker;
 
 import java.sql.Connection;
 
-import br.com.mind5.business.form.formAddressSearch.info.FormesarchInfo;
 import br.com.mind5.common.SystemCode;
+import br.com.mind5.form.formAddressSearch.info.FormesarchInfo;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 

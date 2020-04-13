@@ -1,19 +1,19 @@
-package br.com.mind5.business.form.formAddressSearch.model.decisionTree;
+package br.com.mind5.form.formAddressSearch.model.decisionTree;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.business.form.formAddressSearch.info.FormesarchInfo;
-import br.com.mind5.business.form.formAddressSearch.model.action.StdFormesarchMergeToSelect;
-import br.com.mind5.business.form.formAddressSearch.model.checker.FormesarchCheckRead;
+import br.com.mind5.form.formAddressSearch.info.FormesarchInfo;
+import br.com.mind5.form.formAddressSearch.model.action.StdFormesarchMergeToSelect;
+import br.com.mind5.form.formAddressSearch.model.checker.FormesarchCheckRead;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 
-public final class RootFormesarchSelect extends DeciTreeTemplateReadV1<FormesarchInfo> {
+public final class RootFormesarchSelect extends DeciTreeTemplateReadV2<FormesarchInfo> {
 	
 	public RootFormesarchSelect(DeciTreeOption<FormesarchInfo> option) {
 		super(option);

@@ -1,4 +1,4 @@
-package br.com.mind5.business.form.formAddressSearch.info;
+package br.com.mind5.form.formAddressSearch.info;
 
 import java.util.ArrayList;
 import java.util.List;
