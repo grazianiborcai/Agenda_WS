@@ -117,7 +117,7 @@ public final class DeciTreeHelper<T extends InfoRecord> implements DeciTree<T> {
 	
 	
 	@Override public ActionStdV1<T> toAction() {
-		return new DeciTreeAdapterV1<>(this);
+		return new DeciTreeAdapterV2<>(this);
 	}
 	
 	
