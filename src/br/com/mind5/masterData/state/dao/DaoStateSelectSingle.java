@@ -87,4 +87,10 @@ public final class DaoStateSelectSingle extends DaoStmtTemplate<StateInfo> {
 	@Override public void executeStmt() throws SQLException {
 		super.executeStmt();
 	}
+	
+	
+	
+	@Override public void close() {
+		super.close();
+	}
 }
