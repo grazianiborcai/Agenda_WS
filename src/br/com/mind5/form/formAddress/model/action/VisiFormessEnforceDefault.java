@@ -2,6 +2,7 @@ package br.com.mind5.form.formAddress.model.action;
 
 import br.com.mind5.form.formAddress.info.FormessInfo;
 import br.com.mind5.form.formAddress.info.FormessSetterDefault;
+import br.com.mind5.info.InfoSetterTemplate;
 import br.com.mind5.model.action.ActionVisitorTemplateEnforceV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -14,7 +15,7 @@ final class VisiFormessEnforceDefault extends ActionVisitorTemplateEnforceV2<For
 	
 	
 	@Override protected FormessInfo enforceHook(FormessInfo recordInfo) {
-		FormessSetterDefault attrSetter = new FormessSetterDefault();
+		InfoSetterTemplate<FormessInfo> attrSetter = new FormessSetterDefault();
 		return attrSetter.setAttr(recordInfo);
 	}
 }

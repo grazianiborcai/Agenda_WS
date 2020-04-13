@@ -42,7 +42,7 @@ public final class DaoFormessDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);	
 		
-		Hashtable<String, List<DaoColumn>> results = new Hashtable<>();;
+		Hashtable<String, List<DaoColumn>> results = new Hashtable<>();
 		results.put(TABLE_NAME, columns);
 		return results;
 	}
