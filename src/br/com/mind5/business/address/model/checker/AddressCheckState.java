@@ -1,8 +1,8 @@
 package br.com.mind5.business.address.model.checker;
 
 import br.com.mind5.business.address.info.AddressInfo;
-import br.com.mind5.business.masterData.info.StateInfo;
-import br.com.mind5.business.masterData.model.checker.StateCheckExist;
+import br.com.mind5.masterData.state.info.StateInfo;
+import br.com.mind5.masterData.state.model.checker.StateCheckExist;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
 import br.com.mind5.model.checker.ModelCheckerV1;

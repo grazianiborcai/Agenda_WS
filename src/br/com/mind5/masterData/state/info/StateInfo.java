@@ -1,4 +1,4 @@
-package br.com.mind5.business.masterData.info;
+package br.com.mind5.masterData.state.info;
 
 import java.util.List;
 

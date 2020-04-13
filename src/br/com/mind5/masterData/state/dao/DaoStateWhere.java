@@ -1,19 +1,20 @@
-package br.com.mind5.business.masterData.dao;
+package br.com.mind5.masterData.state.dao;
 
 import java.util.List;
 
-import br.com.mind5.business.masterData.info.StateInfo;
+import br.com.mind5.business.masterData.dao.MasterDataDbTableColumn;
 import br.com.mind5.dao.DaoColumn;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilder;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
+import br.com.mind5.masterData.state.info.StateInfo;
 
-final class StateWhere implements DaoStmtWhere {
+final class DaoStateWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public StateWhere(DaoWhereBuilderOption whereOption, String tableName, StateInfo recordInfo) {
+	public DaoStateWhere(DaoWhereBuilderOption whereOption, String tableName, StateInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	

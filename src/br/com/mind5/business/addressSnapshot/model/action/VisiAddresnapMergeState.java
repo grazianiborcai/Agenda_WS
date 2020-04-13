@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.com.mind5.business.addressSnapshot.info.AddresnapInfo;
 import br.com.mind5.business.addressSnapshot.info.AddresnapMerger;
-import br.com.mind5.business.masterData.info.StateInfo;
-import br.com.mind5.business.masterData.model.decisionTree.RootStateSelect;
+import br.com.mind5.masterData.state.info.StateInfo;
+import br.com.mind5.masterData.state.model.decisionTree.RootStateSelect;
 import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 import br.com.mind5.model.decisionTree.DeciTree;
 

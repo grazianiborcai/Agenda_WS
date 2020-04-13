@@ -1,9 +1,9 @@
 package br.com.mind5.business.addressSnapshot.info;
 
-import br.com.mind5.business.masterData.info.StateInfo;
 import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.masterData.state.info.StateInfo;
 
 final class AddresnapVisiMergeState implements InfoMergerVisitor_<AddresnapInfo, StateInfo> {
 

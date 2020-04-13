@@ -30,7 +30,6 @@ import br.com.mind5.business.masterData.info.OrderStatusInfo;
 import br.com.mind5.business.masterData.info.PaymentStatusInfo;
 import br.com.mind5.business.masterData.info.PositionInfo;
 import br.com.mind5.business.masterData.info.ScheduleStatusInfo;
-import br.com.mind5.business.masterData.info.StateInfo;
 import br.com.mind5.business.masterData.info.TimezoneInfo;
 import br.com.mind5.business.masterData.info.UserCategInfo;
 import br.com.mind5.business.masterData.info.WeekdayInfo;
@@ -56,12 +55,13 @@ import br.com.mind5.business.masterData.model.OrderStatusModelSelect;
 import br.com.mind5.business.masterData.model.PaymentStatusModelSelect;
 import br.com.mind5.business.masterData.model.PositionModelSelect;
 import br.com.mind5.business.masterData.model.ScheduleStatusModelSelect;
-import br.com.mind5.business.masterData.model.StateModelSelect;
 import br.com.mind5.business.masterData.model.TimezoneModelSelect;
 import br.com.mind5.business.masterData.model.UserCategModelSelect;
 import br.com.mind5.business.masterData.model.WeekdayModelSelect;
 import br.com.mind5.masterData.moonPhase.MoonaseModelSearch;
 import br.com.mind5.masterData.moonPhase.info.MoonaseInfo;
+import br.com.mind5.masterData.state.StateModelSelect;
+import br.com.mind5.masterData.state.info.StateInfo;
 import br.com.mind5.model.Model;
 
 

@@ -1,8 +1,8 @@
-package br.com.mind5.business.masterData.model.checker;
+package br.com.mind5.masterData.state.model.checker;
 
-import br.com.mind5.business.masterData.info.StateInfo;
-import br.com.mind5.business.masterData.model.action.StdStateSelect;
 import br.com.mind5.common.SystemCode;
+import br.com.mind5.masterData.state.info.StateInfo;
+import br.com.mind5.masterData.state.model.action.StdStateDaoSelect;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
@@ -17,7 +17,7 @@ public final class StateCheckExist extends ModelCheckerTemplateActionV2<StateInf
 	
 	
 	@Override protected ActionStdV1<StateInfo> buildActionHook(DeciTreeOption<StateInfo> option) {
-		ActionStdV1<StateInfo> select = new StdStateSelect(option);
+		ActionStdV1<StateInfo> select = new StdStateDaoSelect(option);
 		return select;
 	}
 	

@@ -1,7 +1,7 @@
-package br.com.mind5.business.masterData.model;
+package br.com.mind5.masterData.state;
 
-import br.com.mind5.business.masterData.info.StateInfo;
-import br.com.mind5.business.masterData.model.decisionTree.RootStateSelect;
+import br.com.mind5.masterData.state.info.StateInfo;
+import br.com.mind5.masterData.state.model.decisionTree.RootStateSelect;
 import br.com.mind5.model.ModelTemplate;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;

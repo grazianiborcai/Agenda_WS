@@ -1,4 +1,4 @@
-package br.com.mind5.business.masterData.dao;
+package br.com.mind5.masterData.state.dao;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.business.masterData.info.StateInfo;
+import br.com.mind5.business.masterData.dao.MasterDataDbTableColumn;
 import br.com.mind5.dao.DaoJoin;
 import br.com.mind5.dao.DaoJoinBuilder;
 import br.com.mind5.dao.DaoOperation;
@@ -16,12 +16,13 @@ import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
+import br.com.mind5.masterData.state.info.StateInfo;
 
-public final class StateSelectSingle extends DaoStmtTemplate<StateInfo> {
+public final class DaoStateSelectSingle extends DaoStmtTemplate<StateInfo> {
 	private final String MAIN_TABLE = DaoDbTable.STATE_TABLE;
 	
 	
-	public StateSelectSingle(Connection conn, StateInfo recordInfo, String schemaName) {
+	public DaoStateSelectSingle(Connection conn, StateInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -46,14 +47,14 @@ public final class StateSelectSingle extends DaoStmtTemplate<StateInfo> {
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;	
 		whereOption.dummyClauseWhenEmpty = DaoOptionValue.DUMMY_CLAUSE_ALLOWED;
 		
-		DaoStmtWhere whereClause = new StateWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new DaoStateWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
 	
 	
 	@Override protected DaoJoin getJoinHook(StateInfo recordInfo) {
-		DaoJoinBuilder joinText = new StateJoinTxt(MAIN_TABLE);		
+		DaoJoinBuilder joinText = new DaoStateJoinTxt(MAIN_TABLE);		
 		return joinText.build();
 	}
 	

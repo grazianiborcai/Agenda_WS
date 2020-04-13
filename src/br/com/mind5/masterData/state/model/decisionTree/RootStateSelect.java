@@ -1,12 +1,12 @@
-package br.com.mind5.business.masterData.model.decisionTree;
+package br.com.mind5.masterData.state.model.decisionTree;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.business.masterData.info.StateInfo;
-import br.com.mind5.business.masterData.model.action.LazyStateMergeCountry;
-import br.com.mind5.business.masterData.model.action.StdStateSelect;
-import br.com.mind5.business.masterData.model.checker.StateCheckRead;
+import br.com.mind5.masterData.state.info.StateInfo;
+import br.com.mind5.masterData.state.model.action.LazyStateMergeCountry;
+import br.com.mind5.masterData.state.model.action.StdStateDaoSelect;
+import br.com.mind5.masterData.state.model.checker.StateCheckRead;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
@@ -43,7 +43,7 @@ public final class RootStateSelect extends DeciTreeTemplateReadV2<StateInfo> {
 	@Override protected List<ActionStdV1<StateInfo>> buildActionsOnPassedHook(DeciTreeOption<StateInfo> option) {
 		List<ActionStdV1<StateInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<StateInfo> select = new StdStateSelect(option);
+		ActionStdV1<StateInfo> select = new StdStateDaoSelect(option);
 		ActionLazyV1<StateInfo> mergeCountry = new LazyStateMergeCountry(option.conn, option.schemaName);
 		
 		select.addPostAction(mergeCountry);
