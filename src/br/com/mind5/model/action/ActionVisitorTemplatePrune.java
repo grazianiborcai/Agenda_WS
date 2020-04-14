@@ -13,7 +13,7 @@ import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public abstract class ActionVisitorTemplatePrune<T extends InfoRecord, S extends InfoRecord> implements ActionVisitorPrune<T> {	
+public abstract class ActionVisitorTemplatePrune<T extends InfoRecord, S extends InfoRecord> implements ActionVisitorPruneV1<T> {	
 	public static boolean PRUNE_WHEN_EMPTY = true;
 	public static boolean DONT_PRUNE_WHEN_EMPTY = false;
 	
