@@ -20,10 +20,10 @@ import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
 
 
-public final class RootStolisSelect extends DeciTreeTemplateReadV1<StolisInfo> {
+public final class RootStolisSelect extends DeciTreeTemplateWriteV1<StolisInfo> {
 	
 	public RootStolisSelect(DeciTreeOption<StolisInfo> option) {
 		super(option);
