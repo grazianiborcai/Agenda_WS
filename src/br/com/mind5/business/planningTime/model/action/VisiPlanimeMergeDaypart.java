@@ -1,6 +1,5 @@
 package br.com.mind5.business.planningTime.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.masterData.info.DaypartCopier;
@@ -9,12 +8,14 @@ import br.com.mind5.business.masterData.model.decisionTree.RootDaypartSelect;
 import br.com.mind5.business.planningTime.info.PlanimeInfo;
 import br.com.mind5.business.planningTime.info.PlanimeMerger;
 import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiPlanimeMergeDaypart extends ActionVisitorTemplateMergeV1<PlanimeInfo, DaypartInfo> {
+final class VisiPlanimeMergeDaypart extends ActionVisitorTemplateMergeV2<PlanimeInfo, DaypartInfo> {
 	
-	public VisiPlanimeMergeDaypart(Connection conn, String schemaName) {
-		super(conn, schemaName, DaypartInfo.class);
+	public VisiPlanimeMergeDaypart(DeciTreeOption<PlanimeInfo> option) {
+		super(option, DaypartInfo.class);
 	}
 	
 	

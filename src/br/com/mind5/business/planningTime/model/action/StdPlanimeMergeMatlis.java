@@ -1,35 +1,19 @@
 package br.com.mind5.business.planningTime.model.action;
 
 import br.com.mind5.business.planningTime.info.PlanimeInfo;
-import br.com.mind5.model.action.ActionLazyV1;
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionStdHelperMerge;
-import br.com.mind5.model.decisionTree.DeciResult;
+import br.com.mind5.model.action.ActionStdTemplateV2;
+import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class StdPlanimeMergeMatlis implements ActionStdV1<PlanimeInfo> {
-	private ActionStdV1<PlanimeInfo> actionHelper;	
-	
-	
-	public StdPlanimeMergeMatlis(DeciTreeOption<PlanimeInfo> option) {			
-		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiPlanimeMergeMatlis(option.conn, option.schemaName));
+final class StdPlanimeMergeMatlis extends ActionStdTemplateV2<PlanimeInfo> {
+
+	public StdPlanimeMergeMatlis(DeciTreeOption<PlanimeInfo> option) {
+		super(option);
 	}
 	
 	
 	
-	@Override public void addPostAction(ActionLazyV1<PlanimeInfo> actionHandler) {
-		actionHelper.addPostAction(actionHandler);
-	}
-	
-	
-	
-	@Override public boolean executeAction() {			
-		return actionHelper.executeAction();
-	}
-	
-	
-	
-	@Override public DeciResult<PlanimeInfo> getDecisionResult() {
-		return actionHelper.getDecisionResult();
+	protected ActionVisitorV2<PlanimeInfo> buildVisitorHook(DeciTreeOption<PlanimeInfo> option) {
+		return new VisiPlanimeMergeMatlis(option);
 	}
 }

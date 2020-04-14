@@ -1,6 +1,5 @@
 package br.com.mind5.business.planningTime.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.masterData.info.WeekdayCopier;
@@ -9,12 +8,14 @@ import br.com.mind5.business.masterData.model.decisionTree.RootWeekdaySelect;
 import br.com.mind5.business.planningTime.info.PlanimeInfo;
 import br.com.mind5.business.planningTime.info.PlanimeMerger;
 import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiPlanimeMergeWeekday extends ActionVisitorTemplateMergeV1<PlanimeInfo, WeekdayInfo> {
+final class VisiPlanimeMergeWeekday extends ActionVisitorTemplateMergeV2<PlanimeInfo, WeekdayInfo> {
 	
-	public VisiPlanimeMergeWeekday(Connection conn, String schemaName) {
-		super(conn, schemaName, WeekdayInfo.class);
+	public VisiPlanimeMergeWeekday(DeciTreeOption<PlanimeInfo> option) {
+		super(option, WeekdayInfo.class);
 	}
 	
 	

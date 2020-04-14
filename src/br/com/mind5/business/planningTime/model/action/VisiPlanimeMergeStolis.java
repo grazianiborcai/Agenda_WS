@@ -1,6 +1,5 @@
 package br.com.mind5.business.planningTime.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.planningTime.info.PlanimeInfo;
@@ -9,12 +8,14 @@ import br.com.mind5.business.storeList.info.StolisCopier;
 import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.business.storeList.model.decisionTree.RootStolisSelect;
 import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiPlanimeMergeStolis extends ActionVisitorTemplateMergeV1<PlanimeInfo, StolisInfo> {
+final class VisiPlanimeMergeStolis extends ActionVisitorTemplateMergeV2<PlanimeInfo, StolisInfo> {
 	
-	public VisiPlanimeMergeStolis(Connection conn, String schemaName) {
-		super(conn, schemaName, StolisInfo.class);
+	public VisiPlanimeMergeStolis(DeciTreeOption<PlanimeInfo> option) {
+		super(option, StolisInfo.class);
 	}
 	
 	

@@ -1,6 +1,5 @@
 package br.com.mind5.business.planningTime.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.planingData.info.PlanataCopier;
@@ -9,12 +8,14 @@ import br.com.mind5.business.planingData.model.decisionTree.RootPlanataSelect;
 import br.com.mind5.business.planningTime.info.PlanimeInfo;
 import br.com.mind5.business.planningTime.info.PlanimeMerger;
 import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiPlanimeMergePlanata extends ActionVisitorTemplateMergeV1<PlanimeInfo, PlanataInfo> {
+final class VisiPlanimeMergePlanata extends ActionVisitorTemplateMergeV2<PlanimeInfo, PlanataInfo> {
 	
-	public VisiPlanimeMergePlanata(Connection conn, String schemaName) {
-		super(conn, schemaName, PlanataInfo.class);
+	public VisiPlanimeMergePlanata(DeciTreeOption<PlanimeInfo> option) {
+		super(option, PlanataInfo.class);
 	}
 	
 	
