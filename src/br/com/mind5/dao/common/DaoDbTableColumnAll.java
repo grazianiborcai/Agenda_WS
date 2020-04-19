@@ -110,7 +110,7 @@ import br.com.mind5.masterData.state.dao.DaoStateDbTableColumn;
 import br.com.mind5.masterData.stateSearch.dao.DaoStatarchDbTableColumn;
 import br.com.mind5.message.email.dao.EmailDbTableColumn;
 import br.com.mind5.message.emailBody.dao.EmabodyDbTableColumn;
-import br.com.mind5.message.sysMessage.dao.SymsgDbTableColumn;
+import br.com.mind5.message.sysMessage.dao.DaoSymsgDbTableColumn;
 import br.com.mind5.payment.countryPartner.dao.CounparDbTableColumn;
 import br.com.mind5.payment.countryPartnerSearch.dao.CounparchDbTableColumn;
 import br.com.mind5.payment.creditCard.dao.CrecardDbTableColumn;
@@ -147,7 +147,6 @@ public final class DaoDbTableColumnAll {
 	
 	
 	static {
-		System.out.println("DaoDbTableColumnAll");
 		tableColumns = new Hashtable<>();
 		
 		addTable(new MatDbTableColumn());
@@ -233,7 +232,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new SchedeekdatDbTableColumn());
 		addTable(new FimgDbTableColumn());
 		addTable(new FathDbTableColumn());
-		addTable(new SymsgDbTableColumn());
+		addTable(new DaoSymsgDbTableColumn());
 		addTable(new OwnerapDbTableColumn());
 		addTable(new ComplisDbTableColumn());
 		addTable(new DaoAddarchDbTableColumn());

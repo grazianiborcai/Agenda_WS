@@ -1,23 +1,24 @@
 package br.com.mind5.message.sysMessage.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.message.sysMessage.info.SymsgInfo;
 import br.com.mind5.message.sysMessage.info.SymsgMerger;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiSymsgMergeToSelect extends ActionVisitorTemplateMergeV1<SymsgInfo, SymsgInfo> {
+final class VisiSymsgMergeToSelect extends ActionVisitorTemplateMergeV2<SymsgInfo, SymsgInfo> {
 	
-	public VisiSymsgMergeToSelect(Connection conn, String schemaName) {
-		super(conn, schemaName, SymsgInfo.class);
+	public VisiSymsgMergeToSelect(DeciTreeOption<SymsgInfo> option) {
+		super(option, SymsgInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends ActionStdV1<SymsgInfo>> getActionClassHook() {
-		return StdSymsgSelect.class;
+	@Override protected Class<? extends ActionStdV2<SymsgInfo>> getActionClassHook() {
+		return StdSymsgDaoSelect.class;
 	}
 	
 	

@@ -4,12 +4,12 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.message.sysMessage.info.SymsgInfo;
-import br.com.mind5.model.action.ActionLazyTemplateV1;
+import br.com.mind5.model.action.ActionLazyTemplateV2;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazySymsgEnforceError extends ActionLazyTemplateV1<SymsgInfo, SymsgInfo> {
+public final class LazySymsgEnforceError extends ActionLazyTemplateV2<SymsgInfo, SymsgInfo> {
 
 	public LazySymsgEnforceError(Connection conn, String schemaName) {
 		super(conn, schemaName);

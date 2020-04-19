@@ -5,15 +5,15 @@ import br.com.mind5.model.action.ActionStdTemplateV2;
 import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdSymsgMergeToSelect extends ActionStdTemplateV2<SymsgInfo> {
+public final class StdSymsgDaoSelect extends ActionStdTemplateV2<SymsgInfo> {
 
-	public StdSymsgMergeToSelect(DeciTreeOption<SymsgInfo> option) {
+	public StdSymsgDaoSelect(DeciTreeOption<SymsgInfo> option) {
 		super(option);
 	}
 	
 	
 	
 	protected ActionVisitorV2<SymsgInfo> buildVisitorHook(DeciTreeOption<SymsgInfo> option) {
-		return new VisiSymsgMergeToSelect(option);
+		return new VisiSymsgDaoSelect(option);
 	}
 }

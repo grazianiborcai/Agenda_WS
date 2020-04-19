@@ -9,29 +9,19 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class SymsgDbTableColumn extends DaoDbTableColumnTemplate {
+public final class DaoSymsgDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_LANGUAGE = DaoDbField.COL_COD_LANGUAGE;
 	public static final String COL_COD_MESSAGE = DaoDbField.COL_COD_MESSAGE;
 	public static final String COL_MESSAGE = DaoDbField.COL_MESSAGE;
 	
-	private Hashtable<String, List<DaoColumn>> tableColumns;
 	
-	
-	public SymsgDbTableColumn() {
-		super(SymsgDbTableColumn.class);
+	public DaoSymsgDbTableColumn() {
+		super();
 	}
 	
 	
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
-		tableColumns = new Hashtable<>();		
-		buildSysMessageTable();	
-		return tableColumns;
-	}
-	
-	
-	
-	private void buildSysMessageTable() {
 		final String TABLE_NAME = DaoDbTable.SYS_MESSAGE_TABLE;
 		
 		DaoColumn oneColumn;
@@ -62,6 +52,8 @@ public final class SymsgDbTableColumn extends DaoDbTableColumnTemplate {
 		columns.add(oneColumn);
 		
 		
-		tableColumns.put(TABLE_NAME, columns);
+		Hashtable<String, List<DaoColumn>> results = new Hashtable<>();
+		results.put(TABLE_NAME, columns);
+		return results;
 	}
 }
