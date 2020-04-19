@@ -8,6 +8,5 @@ public final class SystemLog {
 	static public void logError(Class<?> clazz, Exception e) {
 		Logger logger =  LogManager.getLogger(clazz);
 		logger.error(e.getMessage(), e);
-		logger = null;
 	}
 }

@@ -11,16 +11,14 @@ import org.apache.tomcat.jdbc.pool.DataSource;
 import org.apache.tomcat.jdbc.pool.PoolProperties;
 
 public final class DbMysql {
-	private final String DRIVER = "com.mysql.jdbc.Driver";	
-	private DataSource datasource;
-	
-	public DbMysql(ServletContext sContext) {
-		datasource = initDataSource(sContext);
+		
+	public static DataSource getDatasource(ServletContext sContext) {
+		return initDataSource(sContext);
 	}
 	
 	
 	
-	private DataSource initDataSource(ServletContext sContext) {
+	private static DataSource initDataSource(ServletContext sContext) {
 		PoolProperties p = new PoolProperties();
 		
 		Properties prop = new Properties();
@@ -53,7 +51,7 @@ public final class DbMysql {
 		p.setDefaultTransactionIsolation(Connection.TRANSACTION_REPEATABLE_READ);
 		p.setFairQueue(true);
 		p.setUrl(dburl);
-		p.setDriverClassName(DRIVER);
+		p.setDriverClassName("com.mysql.jdbc.Driver");
 		p.setUsername(dbUser);
 		p.setPassword(dbPassword);
 		p.setJmxEnabled(true);
@@ -83,29 +81,10 @@ public final class DbMysql {
 	
 	
 	
-	public DataSource getDataSource() {
-		return datasource;
-	}
-	
-	
-	
-	public void close() {
-		closeDatasource();
-		clear();
-	}
-	
-	
-	
-	public void closeDatasource() {
-		if (datasource == null)
+	public static void closeDatasource(DataSource ds) {
+		if (ds == null)
 			return;
 		
-		datasource.close();
-	}
-	
-	
-	
-	private void clear() {
-		datasource = null;
+		ds.close();
 	}
 }

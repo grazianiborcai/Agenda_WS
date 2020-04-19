@@ -3,7 +3,7 @@ package br.com.mind5.common;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-import javax.sql.DataSource;
+import org.apache.tomcat.jdbc.pool.DataSource;
 
 public final class DbConnection {
 	private static DataSource ds;
@@ -59,7 +59,23 @@ public final class DbConnection {
 	
 	
 	
-	public static void clear() {
+	public static void closeDatasource() {
+		closeDatasource(ds);
+		clear();
+	}
+	
+	
+	
+	public static void closeDatasource(DataSource datasource) {
+		if (datasource == null)
+			return;
+		
+		datasource.close();
+	}
+	
+	
+	
+	private static void clear() {
 		ds = null;
 	}
 }
