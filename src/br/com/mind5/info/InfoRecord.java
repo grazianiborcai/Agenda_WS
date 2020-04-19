@@ -8,16 +8,20 @@ import java.util.List;
 import com.google.gson.Gson;
 
 import br.com.mind5.common.DefaultValue;
-import br.com.mind5.message.sysLog.Syslog;
+import br.com.mind5.common.SystemLog;
 
-public abstract class InfoRecord extends Syslog implements Cloneable {
+public abstract class InfoRecord implements Cloneable {
 	public String codLanguage;
 	
 	
-	protected InfoRecord(Class<? extends InfoRecord> childClazz) {
-		super(childClazz);
-		
+	protected InfoRecord() {
 		codLanguage = DefaultValue.language();
+	}
+	
+	
+	
+	protected InfoRecord(Class<? extends InfoRecord> childClazz) {
+		codLanguage = DefaultValue.language();		//TODO: remover esse constructor
 	}
 	
 	
@@ -59,7 +63,7 @@ public abstract class InfoRecord extends Syslog implements Cloneable {
 			return dateOne.isEqual(dateTwo);
 			
 		} catch (Exception e) {
-			super.logException(e);
+			logException(e);
 			return false;
 		}
 	}
@@ -74,7 +78,7 @@ public abstract class InfoRecord extends Syslog implements Cloneable {
 			return timeOne.equals(timeTwo);
 			
 		} catch (Exception e) {
-			super.logException(e);
+			logException(e);
 			return false;
 		}
 	}
@@ -89,7 +93,7 @@ public abstract class InfoRecord extends Syslog implements Cloneable {
 			return stringOne.equals(stringTwo);
 			
 		} catch (Exception e) {
-			super.logException(e);
+			logException(e);
 			return false;
 		}
 	}
@@ -104,7 +108,7 @@ public abstract class InfoRecord extends Syslog implements Cloneable {
 			return recordOne.equals(recordTwo);
 			
 		} catch (Exception e) {
-			super.logException(e);
+			logException(e);
 			return false;
 		}
 	}
@@ -119,7 +123,7 @@ public abstract class InfoRecord extends Syslog implements Cloneable {
 			return listOne.equals(listTwo);
 			
 		} catch (Exception e) {
-			super.logException(e);
+			logException(e);
 			return false;
 		}
 	}
@@ -134,8 +138,14 @@ public abstract class InfoRecord extends Syslog implements Cloneable {
 			return listOne.equals(listTwo);
 			
 		} catch (Exception e) {
-			super.logException(e);
+			logException(e);
 			return false;
 		}
+	}
+	
+	
+	
+	protected void logException(Exception e) {
+		SystemLog.logError(this.getClass(), e);
 	}
 }
