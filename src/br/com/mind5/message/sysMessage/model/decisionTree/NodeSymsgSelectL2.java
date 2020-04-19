@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.message.sysMessage.info.SymsgInfo;
-import br.com.mind5.message.sysMessage.model.action.SymsgSymsgSuccess;
+import br.com.mind5.message.sysMessage.model.action.StdSymsgSuccess;
 import br.com.mind5.message.sysMessage.model.checker.SymsgCheckNotFound;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
@@ -52,7 +52,7 @@ public final class NodeSymsgSelectL2 extends DeciTreeTemplateWriteV2<SymsgInfo> 
 	@Override protected List<ActionStdV1<SymsgInfo>> buildActionsOnFailedHook(DeciTreeOption<SymsgInfo> option) {
 		List<ActionStdV1<SymsgInfo>> actions = new ArrayList<>();	
 		
-		ActionStdV1<SymsgInfo> success = new SymsgSymsgSuccess(option);
+		ActionStdV1<SymsgInfo> success = new StdSymsgSuccess(option);
 		
 		actions.add(success);		
 		return actions;
