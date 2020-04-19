@@ -15,7 +15,7 @@ public final class SotarchInfo extends InfoRecord implements Cloneable {
 	
 	
 	public SotarchInfo() {
-		super(SotarchInfo.class);
+		super();
 		
 		codOwner = DefaultValue.number();
 		codStore = DefaultValue.number();

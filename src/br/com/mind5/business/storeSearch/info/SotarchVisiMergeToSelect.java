@@ -1,56 +1,38 @@
 package br.com.mind5.business.storeSearch.info;
 
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import java.util.ArrayList;
+import java.util.List;
 
-final class SotarchVisiMergeToSelect implements InfoMergerVisitor_<SotarchInfo, SotarchInfo> {
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-	@Override public SotarchInfo writeRecord(SotarchInfo sourceOne, SotarchInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+final class SotarchVisiMergeToSelect implements InfoMergerVisitorV3<SotarchInfo, SotarchInfo> {
+
+	@Override public List<SotarchInfo> beforeMerge(List<SotarchInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(SotarchInfo baseInfo, SotarchInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner);
+	}
+	
+	
+	
+	@Override public List<SotarchInfo> merge(SotarchInfo baseInfo, SotarchInfo selectedInfo) {
+		List<SotarchInfo> results = new ArrayList<>();
 		
-		SotarchInfo clonedInfo = makeClone(sourceTwo);
-		return merge(sourceOne, clonedInfo);
-	}
-	
-	
-	
-	private void checkArgument(SotarchInfo sourceOne, SotarchInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private SotarchInfo makeClone(SotarchInfo recordInfo) {
-		try {
-			return (SotarchInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	private SotarchInfo merge(SotarchInfo sourceOne, SotarchInfo sourceTwo) {
-		sourceTwo.codLanguage = sourceOne.codLanguage;
-		sourceTwo.username = sourceOne.username;
-
-		return sourceTwo;
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(SotarchInfo sourceOne, SotarchInfo sourceTwo) {
-		return (sourceOne.codOwner == sourceTwo.codOwner);
-	}	
-	
-	
-	
-	private void logException(Exception e) {
+		selectedInfo.username = baseInfo.username;
+		selectedInfo.codLanguage = baseInfo.codLanguage;
 		
-		SystemLog.logError(this.getClass(), e);
+		results.add(selectedInfo);
+		return results;
+	}
+	
+	
+	
+	@Override public InfoUniquifier<SotarchInfo> getUniquifier() {
+		return null;
 	}
 }

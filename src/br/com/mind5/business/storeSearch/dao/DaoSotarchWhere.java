@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilder;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 
-public final class SotarchWhere implements DaoStmtWhere {
+public final class DaoSotarchWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public SotarchWhere(DaoWhereBuilderOption whereOption, String tableName, SotarchInfo recordInfo) {
+	public DaoSotarchWhere(DaoWhereBuilderOption whereOption, String tableName, SotarchInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -27,23 +27,23 @@ public final class SotarchWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-				case SotarchDbTableColumn.COL_COD_OWNER :
+				case DaoSotarchDbTableColumn.COL_COD_OWNER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;
 					
-				case SotarchDbTableColumn.COL_COD_STORE :
+				case DaoSotarchDbTableColumn.COL_COD_STORE :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codStore));
 					break;
 					
-				case SotarchDbTableColumn.COL_COD_COMPANY :
+				case DaoSotarchDbTableColumn.COL_COD_COMPANY :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codCompany));
 					break;
 					
-				case SotarchDbTableColumn.COL_COD_USER :
+				case DaoSotarchDbTableColumn.COL_COD_USER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codUser));
 					break;
 					
-				case SotarchDbTableColumn.COL_RECORD_MODE :
+				case DaoSotarchDbTableColumn.COL_RECORD_MODE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.recordMode);
 					break;
 			}

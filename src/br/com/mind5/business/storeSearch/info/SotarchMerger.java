@@ -2,18 +2,18 @@ package br.com.mind5.business.storeSearch.info;
 
 import java.util.List;
 
-import br.com.mind5.info.obsolete.InfoMerger_;
+import br.com.mind5.info.InfoMergerBuilderV3;
+import br.com.mind5.info.InfoMergerV3;
 
 public final class SotarchMerger {	
-	public static SotarchInfo mergeToSelect(SotarchInfo sourceOne, SotarchInfo sourceTwo) {
-		InfoMerger_<SotarchInfo, SotarchInfo> merger = new SotarchMergerToSelect();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
+	public static List<SotarchInfo> mergeToSelect(List<SotarchInfo> baseInfos, List<SotarchInfo> selectedInfos) {
+		InfoMergerBuilderV3<SotarchInfo, SotarchInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new SotarchVisiMergeToSelect());
+		InfoMergerV3<SotarchInfo, SotarchInfo> merger = builder.build();		
 	
-	
-	
-	public static List<SotarchInfo> mergeToSelect(List<SotarchInfo> sourceOnes, List<SotarchInfo> sourceTwos) {
-		InfoMerger_<SotarchInfo, SotarchInfo> merger = new SotarchMergerToSelect();		
-		return merger.merge(sourceOnes, sourceTwos);
+		return merger.merge();
 	}
 }

@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class SotarchDbTableColumn extends DaoDbTableColumnTemplate {
+public final class DaoSotarchDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_COMPANY = DaoDbField.COL_COD_COMPANY;
 	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;	
 	public static final String COL_COD_STORE = DaoDbField.COL_COD_STORE;
@@ -17,26 +17,13 @@ public final class SotarchDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_RECORD_MODE = DaoDbField.COL_RECORD_MODE;
 
 	
-	
-	private Hashtable<String, List<DaoColumn>> tableColumns;	
-	
-	public SotarchDbTableColumn() {
-		super(SotarchDbTableColumn.class);
+	public DaoSotarchDbTableColumn() {
+		super();
 	}
 	
 	
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
-		tableColumns = new Hashtable<>();
-		
-		buildStoreSearchTable();
-		
-		return tableColumns;
-	}
-	
-	
-	
-	private void buildStoreSearchTable() {
 		final String TABLE_NAME = DaoDbTable.STORE_TABLE;
 		
 		DaoColumn oneColumn;
@@ -82,6 +69,8 @@ public final class SotarchDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		tableColumns.put(DaoDbTable.STORE_SEARCH_VIEW, columns);
+		Hashtable<String, List<DaoColumn>> results = new Hashtable<>();
+		results.put(DaoDbTable.STORE_SEARCH_VIEW, columns);
+		return results;
 	}
 }
