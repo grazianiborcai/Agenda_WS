@@ -146,7 +146,8 @@ public final class DaoDbTableColumnAll {
 	private static Hashtable<String, List<DaoColumn>> tableColumns;	
 	
 	
-	public static void initialize() {
+	static {
+		System.out.println("DaoDbTableColumnAll");
 		tableColumns = new Hashtable<>();
 		
 		addTable(new MatDbTableColumn());
@@ -336,6 +337,16 @@ public final class DaoDbTableColumnAll {
 		}
 	}
 	
+	
+	/*
+	public static void clear() {
+		if (tableColumns == null)
+			return;
+		
+		tableColumns.clear();
+		tableColumns = null;
+	}
+	*/
 	
 	
 	private static void logException(Exception e) {

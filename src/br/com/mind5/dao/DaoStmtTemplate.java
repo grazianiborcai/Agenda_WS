@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.mind5.common.DefaultValue;
 import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
@@ -132,25 +133,44 @@ public abstract class DaoStmtTemplate<T extends InfoRecord> implements DaoStmt<T
 	
 	
 	@Override public boolean checkStmtGeneration() {
+		checkState();
 		return helper.checkStmtGeneration();
 	}
 
 	
 	
 	@Override public void executeStmt() throws SQLException {
+		checkState();
 		helper.executeStmt();
 	}
 
 	
 	
 	@Override public List<T> getResultset() {
+		checkState();
 		return helper.getResultset();
 	}
 	
 	
 	
 	@Override public void close() {
+		closeHelper();
+		clear();
+	}
+	
+	
+	
+	private void closeHelper() {
+		if (helper == null)
+			return;
+		
 		helper.close();
+	}
+	
+	
+	
+	private void clear() {
+		helper = DefaultValue.object();
 	}
 	
 	
@@ -163,6 +183,15 @@ public abstract class DaoStmtTemplate<T extends InfoRecord> implements DaoStmt<T
 		} catch (CloneNotSupportedException e) {
 			logException(e);
 			throw new InternalError(e);
+		}
+	}
+	
+	
+	
+	private void checkState() {
+		if (helper == null) {
+			logException(new NullPointerException(SystemMessage.OBJECT_IS_CLOSED));
+			throw new NullPointerException(SystemMessage.OBJECT_IS_CLOSED);
 		}
 	}
 	
