@@ -1,4 +1,4 @@
-package br.com.mind5.business.masterData.dao;
+package br.com.mind5.masterData.businessArea.dao;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.business.masterData.info.BusinessInfo;
+import br.com.mind5.business.masterData.dao.MasterDataDbTableColumn;
 import br.com.mind5.dao.DaoJoin;
 import br.com.mind5.dao.DaoJoinBuilder;
 import br.com.mind5.dao.DaoOperation;
@@ -16,12 +16,13 @@ import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
+import br.com.mind5.masterData.businessArea.info.BusareaInfo;
 
-public final class BusinessSelectSingle extends DaoStmtTemplate<BusinessInfo> {
+public final class DaoBusareaSelectSingle extends DaoStmtTemplate<BusareaInfo> {
 	private final String MAIN_TABLE = DaoDbTable.BUSINESS_AREA_TABLE;
 	
 	
-	public BusinessSelectSingle(Connection conn, BusinessInfo recordInfo, String schemaName) {
+	public DaoBusareaSelectSingle(Connection conn, BusareaInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -39,36 +40,36 @@ public final class BusinessSelectSingle extends DaoStmtTemplate<BusinessInfo> {
 	
 	
 	
-	@Override protected String buildWhereClauseHook(String tableName, BusinessInfo recordInfo) {
+	@Override protected String buildWhereClauseHook(String tableName, BusareaInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
 		
 		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;	
 		whereOption.dummyClauseWhenEmpty = DaoOptionValue.DUMMY_CLAUSE_ALLOWED;
 		
-		DaoStmtWhere whereClause = new BusinessWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new DaoBusareaWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
 	
 	
-	@Override protected DaoJoin getJoinHook(BusinessInfo recordInfo) {
-		DaoJoinBuilder joinText = new BusinessJoinTxt(MAIN_TABLE);		
+	@Override protected DaoJoin getJoinHook(BusareaInfo recordInfo) {
+		DaoJoinBuilder joinText = new DaoBusareaJoinTxt(MAIN_TABLE);		
 		return joinText.build();
 	}
 	
 	
 	
-	@Override protected DaoResultParser<BusinessInfo> getResultParserHook() {
-		return new DaoResultParser<BusinessInfo>() {
-			@Override public List<BusinessInfo> parseResult(BusinessInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
-				List<BusinessInfo> finalResult = new ArrayList<>();
+	@Override protected DaoResultParser<BusareaInfo> getResultParserHook() {
+		return new DaoResultParser<BusareaInfo>() {
+			@Override public List<BusareaInfo> parseResult(BusareaInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
+				List<BusareaInfo> finalResult = new ArrayList<>();
 				
 				if (stmtResult.next() == false)				
 					return finalResult;
 			
 				do {				
-					BusinessInfo dataInfo = new BusinessInfo();
+					BusareaInfo dataInfo = new BusareaInfo();
 					
 					dataInfo.codBusiness = stmtResult.getInt(MasterDataDbTableColumn.COL_COD_BUSINESS);
 					dataInfo.txtBusiness = stmtResult.getString(MasterDataDbTableColumn.COL_NAME);

@@ -1,26 +1,27 @@
-package br.com.mind5.business.masterData.dao;
+package br.com.mind5.masterData.businessArea.dao;
 
 import java.util.List;
 
-import br.com.mind5.business.masterData.info.BusinessInfo;
+import br.com.mind5.business.masterData.dao.MasterDataDbTableColumn;
 import br.com.mind5.dao.DaoColumn;
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilder;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
+import br.com.mind5.masterData.businessArea.info.BusareaInfo;
 
-final class BusinessWhere implements DaoStmtWhere {
+final class DaoBusareaWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public BusinessWhere(DaoWhereBuilderOption whereOption, String tableName, BusinessInfo recordInfo) {
+	public DaoBusareaWhere(DaoWhereBuilderOption whereOption, String tableName, BusareaInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
 	
 	
-	private void generateWhereClause(DaoWhereBuilderOption whereOption, String tableName, BusinessInfo recordInfo) {
+	private void generateWhereClause(DaoWhereBuilderOption whereOption, String tableName, BusareaInfo recordInfo) {
 		DaoWhereBuilder builder = DaoWhereBuilder.factory(whereOption);		
 		List<DaoColumn> columns = DaoDbTableColumnAll.getTableColumnsAsList(tableName);
 		

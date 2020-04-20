@@ -8,7 +8,6 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import br.com.mind5.business.masterData.info.BusinessInfo;
 import br.com.mind5.business.masterData.info.CartCategInfo;
 import br.com.mind5.business.masterData.info.CountryLegalInfo;
 import br.com.mind5.business.masterData.info.DaypartInfo;
@@ -24,7 +23,6 @@ import br.com.mind5.business.masterData.info.PositionInfo;
 import br.com.mind5.business.masterData.info.ScheduleStatusInfo;
 import br.com.mind5.business.masterData.info.UserCategInfo;
 import br.com.mind5.business.masterData.info.WeekdayInfo;
-import br.com.mind5.business.masterData.model.BusinessModelSelect;
 import br.com.mind5.business.masterData.model.CartCategModelSelect;
 import br.com.mind5.business.masterData.model.CountryLegalModelSelect;
 import br.com.mind5.business.masterData.model.DaypartModelSelect;
@@ -42,6 +40,8 @@ import br.com.mind5.business.masterData.model.UserCategModelSelect;
 import br.com.mind5.business.masterData.model.WeekdayModelSelect;
 import br.com.mind5.masterData.areaPhoneSearch.info.AreanarchInfo;
 import br.com.mind5.masterData.areaPhoneSearch.model.AreanarchModelSelect;
+import br.com.mind5.masterData.businessArea.info.BusareaInfo;
+import br.com.mind5.masterData.businessArea.model.BusareaModelSelect;
 import br.com.mind5.masterData.countryPhoneSearch.info.CountronarchInfo;
 import br.com.mind5.masterData.countryPhoneSearch.model.CountronarchModelSelect;
 import br.com.mind5.masterData.countrySearch.info.CountarchInfo;
@@ -189,11 +189,11 @@ public final class MasterDataResource {
 	public Response selectBusinessArea(@HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage,
 			                       	   @HeaderParam("codBusiness") @DefaultValue("-1") int codBusiness){
 		
-		BusinessInfo recordInfo = new BusinessInfo();
+		BusareaInfo recordInfo = new BusareaInfo();
 		recordInfo.codLanguage = codLanguage;
 		recordInfo.codBusiness = codBusiness;
 		
-		Model model = new BusinessModelSelect(recordInfo);
+		Model model = new BusareaModelSelect(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	}

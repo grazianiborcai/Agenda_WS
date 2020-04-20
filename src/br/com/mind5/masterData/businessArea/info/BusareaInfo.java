@@ -1,31 +1,31 @@
-package br.com.mind5.business.masterData.info;
+package br.com.mind5.masterData.businessArea.info;
 
 import java.util.List;
 
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
 
-public final class BusinessInfo extends InfoRecord implements Cloneable {
+public final class BusareaInfo extends InfoRecord implements Cloneable {
 	public int codBusiness;
 	public String txtBusiness; 
 	
 	
-	public BusinessInfo() {
-		super(BusinessInfo.class);
+	public BusareaInfo() {
+		super();
 		
 		codBusiness = DefaultValue.number();
 	}
 	
 	
 	
-	public static BusinessInfo copyFrom(Object sourceObj) {
-		return copyFrom(sourceObj, BusinessInfo.class);
+	public static BusareaInfo copyFrom(Object sourceObj) {
+		return copyFrom(sourceObj, BusareaInfo.class);
 	}
 	
 	
 	
-	public static List<BusinessInfo> copyFrom(List<?> sourceObjs) {
-		return copyFrom(sourceObjs, BusinessInfo.class);
+	public static List<BusareaInfo> copyFrom(List<?> sourceObjs) {
+		return copyFrom(sourceObjs, BusareaInfo.class);
 	}
 	
 	
@@ -51,11 +51,11 @@ public final class BusinessInfo extends InfoRecord implements Cloneable {
 			return true;
 		
 		
-		if (!(o instanceof BusinessInfo))
+		if (!(o instanceof BusareaInfo))
 			return false;
 		
 		
-		BusinessInfo obj = (BusinessInfo) o;		
+		BusareaInfo obj = (BusareaInfo) o;		
 		return (codBusiness == obj.codBusiness);
 	}
 }
