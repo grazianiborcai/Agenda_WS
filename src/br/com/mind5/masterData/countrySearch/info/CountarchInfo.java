@@ -1,29 +1,29 @@
-package br.com.mind5.business.masterData.info;
+package br.com.mind5.masterData.countrySearch.info;
 
 import java.util.List;
 
 import br.com.mind5.info.InfoRecord;
 
-public final class CountryInfo extends InfoRecord implements Cloneable {
+public final class CountarchInfo extends InfoRecord implements Cloneable {
 	public String codCountry;
 	public String codCountryAlpha3;
 	public String txtCountry;
 	
 	
-	public CountryInfo() {
-		super(CountryInfo.class);
+	public CountarchInfo() {
+		super();
 	}
 	
 	
 	
-	public static CountryInfo copyFrom(Object sourceObj) {
-		return copyFrom(sourceObj, CountryInfo.class);
+	public static CountarchInfo copyFrom(Object sourceObj) {
+		return copyFrom(sourceObj, CountarchInfo.class);
 	}
 	
 	
 	
-	public static List<CountryInfo> copyFrom(List<?> sourceObjs) {
-		return copyFrom(sourceObjs, CountryInfo.class);
+	public static List<CountarchInfo> copyFrom(List<?> sourceObjs) {
+		return copyFrom(sourceObjs, CountarchInfo.class);
 	}
 	
 	
@@ -48,11 +48,11 @@ public final class CountryInfo extends InfoRecord implements Cloneable {
 			return true;
 		
 		
-		if (!(o instanceof CountryInfo))
+		if (!(o instanceof CountarchInfo))
 			return false;
 		
 		
-		CountryInfo obj = (CountryInfo) o;		
+		CountarchInfo obj = (CountarchInfo) o;		
 		return (isStringEqual(codCountry, obj.codCountry));
 	}
 }

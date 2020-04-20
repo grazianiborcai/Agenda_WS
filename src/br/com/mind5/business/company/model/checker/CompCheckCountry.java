@@ -3,9 +3,9 @@ package br.com.mind5.business.company.model.checker;
 import java.util.List;
 
 import br.com.mind5.business.company.info.CompInfo;
-import br.com.mind5.business.masterData.info.CountryCopier;
-import br.com.mind5.business.masterData.info.CountryInfo;
-import br.com.mind5.business.masterData.model.checker.CountryCheckExist;
+import br.com.mind5.masterData.country.info.CountryCopier;
+import br.com.mind5.masterData.country.info.CountryInfo;
+import br.com.mind5.masterData.country.model.checker.CountryCheckExist;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 

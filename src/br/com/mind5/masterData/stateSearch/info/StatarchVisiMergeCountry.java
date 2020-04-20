@@ -3,9 +3,9 @@ package br.com.mind5.masterData.stateSearch.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.business.masterData.info.CountryInfo;
 import br.com.mind5.info.InfoMergerVisitorV3;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.masterData.country.info.CountryInfo;
 
 final class StatarchVisiMergeCountry implements InfoMergerVisitorV3<StatarchInfo, CountryInfo> {
 	

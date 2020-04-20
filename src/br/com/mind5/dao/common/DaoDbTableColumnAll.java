@@ -106,8 +106,10 @@ import br.com.mind5.form.formAddress.dao.DaoFormessDbTableColumn;
 import br.com.mind5.form.formPhone.dao.DaoFormoneDbTableColumn;
 import br.com.mind5.masterData.areaPhone.dao.DaoAreaneDbTableColumn;
 import br.com.mind5.masterData.areaPhoneSearch.dao.DaoAreanarchDbTableColumn;
+import br.com.mind5.masterData.country.dao.DaoCountryDbTableColumn;
 import br.com.mind5.masterData.countryPhone.dao.DaoCountroneDbTableColumn;
 import br.com.mind5.masterData.countryPhoneSearch.dao.DaoCountronarchDbTableColumn;
+import br.com.mind5.masterData.countrySearch.dao.DaoCountarchDbTableColumn;
 import br.com.mind5.masterData.currency.dao.DaoCurrencyDbTableColumn;
 import br.com.mind5.masterData.currencySearch.dao.DaoCurrarshDbTableColumn;
 import br.com.mind5.masterData.language.dao.DaoLanguDbTableColumn;
@@ -302,6 +304,8 @@ public final class DaoDbTableColumnAll {
 		addTable(new DaoCountronarchDbTableColumn());
 		addTable(new DaoAreaneDbTableColumn());
 		addTable(new DaoAreanarchDbTableColumn());
+		addTable(new DaoCountryDbTableColumn());
+		addTable(new DaoCountarchDbTableColumn());
 	}
 	
 	

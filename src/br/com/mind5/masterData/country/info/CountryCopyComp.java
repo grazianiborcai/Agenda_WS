@@ -1,4 +1,4 @@
-package br.com.mind5.business.masterData.info;
+package br.com.mind5.masterData.country.info;
 
 import br.com.mind5.business.company.info.CompInfo;
 import br.com.mind5.info.InfoCopierTemplate;

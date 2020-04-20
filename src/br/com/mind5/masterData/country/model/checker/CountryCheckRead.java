@@ -1,9 +1,9 @@
-package br.com.mind5.business.masterData.model.checker;
+package br.com.mind5.masterData.country.model.checker;
 
 import java.sql.Connection;
 
-import br.com.mind5.business.masterData.info.CountryInfo;
 import br.com.mind5.common.SystemCode;
+import br.com.mind5.masterData.country.info.CountryInfo;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
@@ -16,7 +16,8 @@ public final class CountryCheckRead extends ModelCheckerTemplateSimpleV2<Country
 	
 	
 	@Override protected boolean checkHook(CountryInfo recordInfo, Connection conn, String schemaName) {	
-		if ( recordInfo.codLanguage == null )			
+		if ( recordInfo.codCountry  == null ||
+			 recordInfo.codLanguage == null 	)			
 			return super.FAILED;
 		
 		

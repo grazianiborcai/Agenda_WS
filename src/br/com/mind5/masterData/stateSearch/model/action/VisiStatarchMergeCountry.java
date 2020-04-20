@@ -2,8 +2,8 @@ package br.com.mind5.masterData.stateSearch.model.action;
 
 import java.util.List;
 
-import br.com.mind5.business.masterData.info.CountryInfo;
-import br.com.mind5.business.masterData.model.decisionTree.RootCountrySelect;
+import br.com.mind5.masterData.country.info.CountryInfo;
+import br.com.mind5.masterData.country.model.decisionTree.RootCountrySelect;
 import br.com.mind5.masterData.stateSearch.info.StatarchInfo;
 import br.com.mind5.masterData.stateSearch.info.StatarchMerger;
 import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;

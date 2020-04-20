@@ -170,6 +170,7 @@ public final class SystemCode {
 	public static final int TIMEZONE_SEARCH_MANDATORY_FIELD_EMPTY 		= 5344;
 	public static final int COUNTRY_PHONE_SEARCH_MANDATORY_FIELD_EMPTY 	= 5345;
 	public static final int AREA_PHONE_SEARCH_MANDATORY_FIELD_EMPTY 	= 5346;
+	public static final int COUNTRY_SEARCH_MANDATORY_FIELD_EMPTY 		= 5347;
 	
 	// Material
 	public static final int MAT_ALREADY_EXIST							= 1200;

@@ -3,10 +3,10 @@ package br.com.mind5.business.masterData.model.action;
 import java.sql.Connection;
 import java.util.List;
 
-import br.com.mind5.business.masterData.info.CountryInfo;
 import br.com.mind5.business.masterData.info.CountryLegalInfo;
 import br.com.mind5.business.masterData.info.CountryLegalMerger;
-import br.com.mind5.business.masterData.model.decisionTree.RootCountrySelect;
+import br.com.mind5.masterData.country.info.CountryInfo;
+import br.com.mind5.masterData.country.model.decisionTree.RootCountrySelect;
 import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 import br.com.mind5.model.decisionTree.DeciTree;
 

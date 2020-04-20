@@ -10,7 +10,6 @@ import javax.ws.rs.core.Response;
 
 import br.com.mind5.business.masterData.info.BusinessInfo;
 import br.com.mind5.business.masterData.info.CartCategInfo;
-import br.com.mind5.business.masterData.info.CountryInfo;
 import br.com.mind5.business.masterData.info.CountryLegalInfo;
 import br.com.mind5.business.masterData.info.DaypartInfo;
 import br.com.mind5.business.masterData.info.EntityCategInfo;
@@ -31,7 +30,6 @@ import br.com.mind5.business.masterData.info.WeekdayInfo;
 import br.com.mind5.business.masterData.model.BusinessModelSelect;
 import br.com.mind5.business.masterData.model.CartCategModelSelect;
 import br.com.mind5.business.masterData.model.CountryLegalModelSelect;
-import br.com.mind5.business.masterData.model.CountryModelSelect;
 import br.com.mind5.business.masterData.model.DaypartModelSelect;
 import br.com.mind5.business.masterData.model.EntityCategModelSelect;
 import br.com.mind5.business.masterData.model.FeeCategModelSelect;
@@ -52,6 +50,8 @@ import br.com.mind5.masterData.areaPhoneSearch.info.AreanarchInfo;
 import br.com.mind5.masterData.areaPhoneSearch.model.AreanarchModelSelect;
 import br.com.mind5.masterData.countryPhoneSearch.info.CountronarchInfo;
 import br.com.mind5.masterData.countryPhoneSearch.model.CountronarchModelSelect;
+import br.com.mind5.masterData.countrySearch.info.CountarchInfo;
+import br.com.mind5.masterData.countrySearch.model.CountarchModelSelect;
 import br.com.mind5.masterData.currencySearch.info.CurrarshInfo;
 import br.com.mind5.masterData.currencySearch.model.CurrarshModelSelect;
 import br.com.mind5.masterData.languageSearch.info.LangarchInfo;
@@ -326,12 +326,12 @@ public final class MasterDataResource {
 	public Response selectCountry(@HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage,
 			                      @HeaderParam("codCountry") String codCountry){
 		
-		CountryInfo recordInfo = new CountryInfo();		
+		CountarchInfo recordInfo = new CountarchInfo();		
 		recordInfo.codLanguage = codLanguage;
 		recordInfo.codCountry = codCountry;
 		
 		
-		Model model = new CountryModelSelect(recordInfo);
+		Model model = new CountarchModelSelect(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	}

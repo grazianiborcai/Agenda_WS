@@ -3,6 +3,7 @@ package br.com.mind5.business.masterData.info;
 import java.util.List;
 
 import br.com.mind5.info.obsolete.InfoMerger_;
+import br.com.mind5.masterData.country.info.CountryInfo;
 
 public final class CountryLegalMerger {	
 	public static CountryLegalInfo mergeWithCountry(CountryInfo sourceOne, CountryLegalInfo sourceTwo) {

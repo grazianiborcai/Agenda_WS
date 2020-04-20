@@ -1,11 +1,11 @@
-package br.com.mind5.business.masterData.model.decisionTree;
+package br.com.mind5.masterData.country.model.decisionTree;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.business.masterData.info.CountryInfo;
-import br.com.mind5.business.masterData.model.action.StdCountrySelect;
-import br.com.mind5.business.masterData.model.checker.CountryCheckRead;
+import br.com.mind5.masterData.country.info.CountryInfo;
+import br.com.mind5.masterData.country.model.action.StdCountryDaoSelect;
+import br.com.mind5.masterData.country.model.checker.CountryCheckRead;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -41,7 +41,7 @@ public final class RootCountrySelect extends DeciTreeTemplateReadV2<CountryInfo>
 	@Override protected List<ActionStdV1<CountryInfo>> buildActionsOnPassedHook(DeciTreeOption<CountryInfo> option) {
 		List<ActionStdV1<CountryInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<CountryInfo> select = new StdCountrySelect(option);
+		ActionStdV1<CountryInfo> select = new StdCountryDaoSelect(option);
 		
 		actions.add(select);
 		return actions;

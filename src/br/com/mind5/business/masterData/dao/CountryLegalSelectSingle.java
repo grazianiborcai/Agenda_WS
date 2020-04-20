@@ -14,6 +14,7 @@ import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
+import br.com.mind5.dao.common.DaoJoinCountryTxt;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
@@ -53,7 +54,7 @@ public final class CountryLegalSelectSingle extends DaoStmtTemplate<CountryLegal
 	
 	
 	@Override protected DaoJoin getJoinHook(CountryLegalInfo recordInfo) {
-		DaoJoinBuilder joinText = new CountryJoinTxt(MAIN_TABLE);		
+		DaoJoinBuilder joinText = new DaoJoinCountryTxt(MAIN_TABLE);		
 		return joinText.build();
 	}
 	

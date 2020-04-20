@@ -1,17 +1,15 @@
-package br.com.mind5.business.masterData.dao;
+package br.com.mind5.dao.common;
 
 import br.com.mind5.dao.DaoJoin;
 import br.com.mind5.dao.DaoJoinBuilder;
 import br.com.mind5.dao.DaoJoinBuilderHelper;
 import br.com.mind5.dao.DaoJoinType;
-import br.com.mind5.dao.common.DaoDbField;
-import br.com.mind5.dao.common.DaoDbTable;
 
-public final class CountryJoinTxt implements DaoJoinBuilder {
+public final class DaoJoinCountryTxt implements DaoJoinBuilder {
 	private final String leftTable;
 	
 	
-	public CountryJoinTxt(String leftTableName) {
+	public DaoJoinCountryTxt(String leftTableName) {
 		leftTable = leftTableName;
 	}
 
