@@ -7,9 +7,9 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 
-public final class PhoneCheckCountryPhone extends ModelCheckerTemplateForwardV2<PhoneInfo, CountroneInfo> {
+public final class PhoneCheckCountrone extends ModelCheckerTemplateForwardV2<PhoneInfo, CountroneInfo> {
 	
-	public PhoneCheckCountryPhone(ModelCheckerOption option) {
+	public PhoneCheckCountrone(ModelCheckerOption option) {
 		super(option);
 	}
 

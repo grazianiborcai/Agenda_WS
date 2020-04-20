@@ -12,7 +12,7 @@ import br.com.mind5.business.phone.model.action.LazyPhoneMergeUsername;
 import br.com.mind5.business.phone.model.action.LazyPhoneNodeInsert;
 import br.com.mind5.business.phone.model.action.LazyPhoneNodeSnapshot;
 import br.com.mind5.business.phone.model.action.StdPhoneMergeCountrone;
-import br.com.mind5.business.phone.model.checker.PhoneCheckCountryPhone;
+import br.com.mind5.business.phone.model.checker.PhoneCheckCountrone;
 import br.com.mind5.business.phone.model.checker.PhoneCheckInsert;
 import br.com.mind5.business.phone.model.checker.PhoneCheckLangu;
 import br.com.mind5.business.phone.model.checker.PhoneCheckLength;
@@ -87,7 +87,7 @@ public final class RootPhoneInsert extends DeciTreeTemplateWriteV2<PhoneInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
-		checker = new PhoneCheckCountryPhone(checkerOption);
+		checker = new PhoneCheckCountrone(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
