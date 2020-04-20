@@ -16,7 +16,6 @@ import br.com.mind5.business.masterData.info.EntityCategInfo;
 import br.com.mind5.business.masterData.info.FeeCategInfo;
 import br.com.mind5.business.masterData.info.GenderInfo;
 import br.com.mind5.business.masterData.info.MatGroupInfo;
-import br.com.mind5.business.masterData.info.MatTypeInfo;
 import br.com.mind5.business.masterData.info.MatUnitInfo;
 import br.com.mind5.business.masterData.info.MatmovTypeInfo;
 import br.com.mind5.business.masterData.info.MonthInfo;
@@ -34,7 +33,6 @@ import br.com.mind5.business.masterData.model.EntityCategModelSelect;
 import br.com.mind5.business.masterData.model.FeeCategModelSelect;
 import br.com.mind5.business.masterData.model.GenderModelSelect;
 import br.com.mind5.business.masterData.model.MatGroupModelSelect;
-import br.com.mind5.business.masterData.model.MatTypeModelSelect;
 import br.com.mind5.business.masterData.model.MatUnitModelSelect;
 import br.com.mind5.business.masterData.model.MatmovTypeModelSelect;
 import br.com.mind5.business.masterData.model.MonthModelSelect;
@@ -56,6 +54,8 @@ import br.com.mind5.masterData.languageSearch.info.LangarchInfo;
 import br.com.mind5.masterData.languageSearch.model.LangarchModelSelect;
 import br.com.mind5.masterData.materialCategorySearch.info.MategarchInfo;
 import br.com.mind5.masterData.materialCategorySearch.model.MategarchModelSelect;
+import br.com.mind5.masterData.materialTypeSearch.info.MatyparchInfo;
+import br.com.mind5.masterData.materialTypeSearch.model.MatyparchModelSelect;
 import br.com.mind5.masterData.moonPhase.info.MoonaseInfo;
 import br.com.mind5.masterData.moonPhase.model.MoonaseModelSearch;
 import br.com.mind5.masterData.stateSearch.info.StatarchInfo;
@@ -136,11 +136,11 @@ public final class MasterDataResource {
 	public Response selectMatType(@HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage, 
 			                      @HeaderParam("codType")     @DefaultValue("-1") int codType) {
 		
-		MatTypeInfo recordInfo = new MatTypeInfo();
+		MatyparchInfo recordInfo = new MatyparchInfo();
 		recordInfo.codLanguage = codLanguage;
 		recordInfo.codType = codType;
 		
-		Model model = new MatTypeModelSelect(recordInfo);
+		Model model = new MatyparchModelSelect(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	}

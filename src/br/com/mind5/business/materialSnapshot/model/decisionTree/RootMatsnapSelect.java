@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.materialSnapshot.info.MatsnapInfo;
 import br.com.mind5.business.materialSnapshot.model.action.LazyMatsnapMergeMateg;
 import br.com.mind5.business.materialSnapshot.model.action.LazyMatsnapMergeMatGroup;
-import br.com.mind5.business.materialSnapshot.model.action.LazyMatsnapMergeMatType;
+import br.com.mind5.business.materialSnapshot.model.action.LazyMatsnapMergeMatype;
 import br.com.mind5.business.materialSnapshot.model.action.LazyMatsnapMergeMatUnit;
 import br.com.mind5.business.materialSnapshot.model.action.LazyMatsnapMergeMatextsnap;
 import br.com.mind5.business.materialSnapshot.model.action.StdMatsnapMergeToSelect;
@@ -65,14 +65,14 @@ public final class RootMatsnapSelect extends DeciTreeTemplateReadV1<MatsnapInfo>
 		
 		ActionStdV1<MatsnapInfo> select = new StdMatsnapMergeToSelect(option);
 		ActionLazyV1<MatsnapInfo> mergeMatextsnap = new LazyMatsnapMergeMatextsnap(option.conn, option.schemaName);
-		ActionLazyV1<MatsnapInfo> mergeMatType = new LazyMatsnapMergeMatType(option.conn, option.schemaName);
+		ActionLazyV1<MatsnapInfo> mergeMatype = new LazyMatsnapMergeMatype(option.conn, option.schemaName);
 		ActionLazyV1<MatsnapInfo> mergeMateg = new LazyMatsnapMergeMateg(option.conn, option.schemaName);
 		ActionLazyV1<MatsnapInfo> mergeMatGroup = new LazyMatsnapMergeMatGroup(option.conn, option.schemaName);
 		ActionLazyV1<MatsnapInfo> mergeMatUnit = new LazyMatsnapMergeMatUnit(option.conn, option.schemaName);
 		
 		select.addPostAction(mergeMatextsnap);
-		mergeMatextsnap.addPostAction(mergeMatType);
-		mergeMatType.addPostAction(mergeMateg);
+		mergeMatextsnap.addPostAction(mergeMatype);
+		mergeMatype.addPostAction(mergeMateg);
 		mergeMateg.addPostAction(mergeMatGroup);
 		mergeMatGroup.addPostAction(mergeMatUnit);
 		

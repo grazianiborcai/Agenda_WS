@@ -3,7 +3,6 @@ package br.com.mind5.business.materialList.info;
 import java.util.List;
 
 import br.com.mind5.business.masterData.info.MatGroupInfo;
-import br.com.mind5.business.masterData.info.MatTypeInfo;
 import br.com.mind5.business.masterData.info.MatUnitInfo;
 import br.com.mind5.business.materialSearch.info.MatarchInfo;
 import br.com.mind5.business.materialText.info.MatextInfo;
@@ -11,6 +10,7 @@ import br.com.mind5.file.fileImageList.info.FimistInfo;
 import br.com.mind5.info.InfoMergerBuilderV3;
 import br.com.mind5.info.InfoMergerV3;
 import br.com.mind5.masterData.materialCategory.info.MategInfo;
+import br.com.mind5.masterData.materialType.info.MatypeInfo;
 
 public final class MatlisMerger {
 	public static List<MatlisInfo> mergeWithFimist(List<MatlisInfo> baseInfos, List<FimistInfo> selectedInfos) {
@@ -65,13 +65,13 @@ public final class MatlisMerger {
 	
 	
 	
-	public static List<MatlisInfo> mergeWithMatType(List<MatlisInfo> baseInfos, List<MatTypeInfo> selectedInfos) {
-		InfoMergerBuilderV3<MatlisInfo, MatTypeInfo> builder = new InfoMergerBuilderV3<>();
+	public static List<MatlisInfo> mergeWithMatype(List<MatlisInfo> baseInfos, List<MatypeInfo> selectedInfos) {
+		InfoMergerBuilderV3<MatlisInfo, MatypeInfo> builder = new InfoMergerBuilderV3<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new MatlisVisiMergeMatType());
-		InfoMergerV3<MatlisInfo, MatTypeInfo> merger = builder.build();		
+		builder.addVisitor(new MatlisVisiMergeMatype());
+		InfoMergerV3<MatlisInfo, MatypeInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}

@@ -12,7 +12,7 @@ import br.com.mind5.business.material.model.checker.MatCheckGroup;
 import br.com.mind5.business.material.model.checker.MatCheckInsert;
 import br.com.mind5.business.material.model.checker.MatCheckLangu;
 import br.com.mind5.business.material.model.checker.MatCheckOwner;
-import br.com.mind5.business.material.model.checker.MatCheckType;
+import br.com.mind5.business.material.model.checker.MatCheckMatype;
 import br.com.mind5.business.material.model.checker.MatCheckUnit;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
@@ -81,7 +81,7 @@ public final class RootMatInsert extends DeciTreeTemplateWriteV1<MatInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
-		checker = new MatCheckType(checkerOption);
+		checker = new MatCheckMatype(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueueV2<>(queue);
