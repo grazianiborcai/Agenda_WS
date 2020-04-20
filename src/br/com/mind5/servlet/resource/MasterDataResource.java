@@ -8,7 +8,6 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import br.com.mind5.business.masterData.info.AreaPhoneInfo;
 import br.com.mind5.business.masterData.info.BusinessInfo;
 import br.com.mind5.business.masterData.info.CartCategInfo;
 import br.com.mind5.business.masterData.info.CountryInfo;
@@ -29,7 +28,6 @@ import br.com.mind5.business.masterData.info.PositionInfo;
 import br.com.mind5.business.masterData.info.ScheduleStatusInfo;
 import br.com.mind5.business.masterData.info.UserCategInfo;
 import br.com.mind5.business.masterData.info.WeekdayInfo;
-import br.com.mind5.business.masterData.model.AreaPhoneModelSelect;
 import br.com.mind5.business.masterData.model.BusinessModelSelect;
 import br.com.mind5.business.masterData.model.CartCategModelSelect;
 import br.com.mind5.business.masterData.model.CountryLegalModelSelect;
@@ -50,6 +48,8 @@ import br.com.mind5.business.masterData.model.PositionModelSelect;
 import br.com.mind5.business.masterData.model.ScheduleStatusModelSelect;
 import br.com.mind5.business.masterData.model.UserCategModelSelect;
 import br.com.mind5.business.masterData.model.WeekdayModelSelect;
+import br.com.mind5.masterData.areaPhoneSearch.info.AreanarchInfo;
+import br.com.mind5.masterData.areaPhoneSearch.model.AreanarchModelSelect;
 import br.com.mind5.masterData.countryPhoneSearch.info.CountronarchInfo;
 import br.com.mind5.masterData.countryPhoneSearch.model.CountronarchModelSelect;
 import br.com.mind5.masterData.currencySearch.info.CurrarshInfo;
@@ -455,13 +455,13 @@ public final class MasterDataResource {
 								    @HeaderParam("codCountryPhone") @DefaultValue("-1") int codCountryPhone,
 			                        @HeaderParam("codArea") String codArea) {
 		
-		AreaPhoneInfo recordInfo = new AreaPhoneInfo();		
+		AreanarchInfo recordInfo = new AreanarchInfo();		
 		recordInfo.codCountryPhone = codCountryPhone;
 		recordInfo.codArea = codArea;
 		recordInfo.codLanguage = codLanguage;
 		
 		
-		Model model = new AreaPhoneModelSelect(recordInfo);
+		Model model = new AreanarchModelSelect(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	}

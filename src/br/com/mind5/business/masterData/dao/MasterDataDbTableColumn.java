@@ -73,7 +73,6 @@ public final class MasterDataDbTableColumn extends DaoDbTableColumnTemplate {
 		feeCategTable();
 		orderStatusTable();
 		paymentStatusTable();
-		areaPhoneTable();
 		entityCategTable();
 		payPartnerTable();
 		userCategTable();
@@ -601,49 +600,6 @@ public final class MasterDataDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = DaoDbTable.PAYMENT_STATUS_TEXT_TABLE;
-		oneColumn.columnName = COL_COD_LANGUAGE;
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		tableColumns.put(TABLE_NAME, columns);
-	}
-	
-	
-	
-	private void areaPhoneTable() {
-		final String TABLE_NAME = DaoDbTable.AREA_PHONE_TABLE;
-		
-		DaoColumn oneColumn;
-		List<DaoColumn> columns = new ArrayList<>();			
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COD_COUNTRY_PHONE;
-		oneColumn.isPK = IS_PRIMARY_KEY;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);		
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COD_AREA_PHONE;
-		oneColumn.isPK = IS_PRIMARY_KEY;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);	
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = DaoDbTable.AREA_PHONE_TEXT_TABLE;
-		oneColumn.columnName = COL_NAME;
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = DaoDbTable.AREA_PHONE_TEXT_TABLE;
 		oneColumn.columnName = COL_COD_LANGUAGE;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;

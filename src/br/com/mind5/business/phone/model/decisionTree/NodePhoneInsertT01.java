@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.business.phone.model.action.StdPhoneDaoInsert;
-import br.com.mind5.business.phone.model.checker.PhoneCheckArea;
+import br.com.mind5.business.phone.model.checker.PhoneCheckAreane;
 import br.com.mind5.business.phone.model.checker.PhoneCheckLengthT01;
 import br.com.mind5.business.phone.model.checker.PhoneCheckNumberT01;
 import br.com.mind5.business.phone.model.checker.PhoneCheckOnlyNumber;
@@ -62,7 +62,7 @@ public final class NodePhoneInsertT01 extends DeciTreeTemplateWriteV2<PhoneInfo>
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
-		checker = new PhoneCheckArea(checkerOption);
+		checker = new PhoneCheckAreane(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueueV2<>(queue);
