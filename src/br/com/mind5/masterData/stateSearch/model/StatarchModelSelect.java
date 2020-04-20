@@ -1,4 +1,4 @@
-package br.com.mind5.masterData.stateSearch;
+package br.com.mind5.masterData.stateSearch.model;
 
 import br.com.mind5.masterData.stateSearch.info.StatarchInfo;
 import br.com.mind5.masterData.stateSearch.model.decisionTree.RootStatarchSelect;

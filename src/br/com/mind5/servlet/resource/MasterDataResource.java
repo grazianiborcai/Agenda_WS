@@ -60,8 +60,8 @@ import br.com.mind5.masterData.languageSearch.info.LangarchInfo;
 import br.com.mind5.masterData.languageSearch.model.LangarchModelSelect;
 import br.com.mind5.masterData.moonPhase.info.MoonaseInfo;
 import br.com.mind5.masterData.moonPhase.model.MoonaseModelSearch;
-import br.com.mind5.masterData.stateSearch.StatarchModelSelect;
 import br.com.mind5.masterData.stateSearch.info.StatarchInfo;
+import br.com.mind5.masterData.stateSearch.model.StatarchModelSelect;
 import br.com.mind5.model.Model;
 
 
