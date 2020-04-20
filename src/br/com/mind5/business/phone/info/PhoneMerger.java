@@ -42,7 +42,7 @@ public final class PhoneMerger {
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PhoneVisiMergeCountryPhone());
+		builder.addVisitor(new PhoneVisiMergeCountrone());
 		InfoMergerV3<PhoneInfo, CountroneInfo> merger = builder.build();		
 	
 		return merger.merge();

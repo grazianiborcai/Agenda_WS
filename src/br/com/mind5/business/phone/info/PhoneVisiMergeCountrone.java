@@ -7,7 +7,7 @@ import br.com.mind5.info.InfoMergerVisitorV3;
 import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.masterData.countryPhone.info.CountroneInfo;
 
-final class PhoneVisiMergeCountryPhone implements InfoMergerVisitorV3<PhoneInfo, CountroneInfo> {
+final class PhoneVisiMergeCountrone implements InfoMergerVisitorV3<PhoneInfo, CountroneInfo> {
 	
 	@Override public List<PhoneInfo> beforeMerge(List<PhoneInfo> baseInfos) {
 		return baseInfos;
