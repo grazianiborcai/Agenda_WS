@@ -1,53 +1,37 @@
 package br.com.mind5.security.username.info;
 
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import java.util.ArrayList;
+import java.util.List;
 
-final class UsernameVisiMergeToSelect implements InfoMergerVisitor_<UsernameInfo, UsernameInfo> {
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-	@Override public UsernameInfo writeRecord(UsernameInfo sourceOne, UsernameInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);		
-		return merge(sourceOne, sourceTwo);
+final class UsernameVisiMergeToSelect implements InfoMergerVisitorV3<UsernameInfo, UsernameInfo> {
+	
+	@Override public List<UsernameInfo> beforeMerge(List<UsernameInfo> baseInfos) {
+		return baseInfos;
 	}
 	
 	
 	
-	private void checkArgument(UsernameInfo sourceOne, UsernameInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
+	@Override public boolean shouldMerge(UsernameInfo baseInfo, UsernameInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner);
 	}
 	
 	
 	
-	private UsernameInfo merge(UsernameInfo sourceOne, UsernameInfo sourceTwo) {
-		UsernameInfo result = makeClone(sourceOne);		
-		result.codLanguage = sourceTwo.codLanguage;
-		return result;
-	}
-	
-	
-	
-	private UsernameInfo makeClone(UsernameInfo recordInfo) {
-		try {
-			return (UsernameInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(UsernameInfo sourceOne, UsernameInfo sourceTwo) {		
-		return (sourceOne.codOwner == sourceTwo.codOwner);
-	}
-	
-	
-	
-	private void logException(Exception e) {
+	@Override public List<UsernameInfo> merge(UsernameInfo baseInfo, UsernameInfo selectedInfo) {
+		List<UsernameInfo> results = new ArrayList<>();
 		
-		SystemLog.logError(this.getClass(), e);
+		selectedInfo.codLanguage = baseInfo.codLanguage;
+		
+		results.add(selectedInfo);
+		return results;
+	}
+	
+	
+	
+	@Override public InfoUniquifier<UsernameInfo> getUniquifier() {
+		return new UsernameUniquifier();
 	}
 }

@@ -6,7 +6,7 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.username.info.UsernameInfo;
-import br.com.mind5.security.username.model.action.StdUsernameSelect;
+import br.com.mind5.security.username.model.action.StdUsernameDaoSelect;
 
 public final class UsernameCheckExist extends ModelCheckerTemplateActionV2<UsernameInfo, UsernameInfo> {
 	
@@ -17,7 +17,7 @@ public final class UsernameCheckExist extends ModelCheckerTemplateActionV2<Usern
 
 	
 	@Override protected ActionStdV1<UsernameInfo> buildActionHook(DeciTreeOption<UsernameInfo> option) {		
-		ActionStdV1<UsernameInfo> Select = new StdUsernameSelect(option);
+		ActionStdV1<UsernameInfo> Select = new StdUsernameDaoSelect(option);
 		return Select;
 	}
 	

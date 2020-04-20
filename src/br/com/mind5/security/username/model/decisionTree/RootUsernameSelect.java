@@ -5,17 +5,17 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 import br.com.mind5.security.username.info.UsernameInfo;
 import br.com.mind5.security.username.model.action.LazyUsernameMergeAuthGrRole;
 import br.com.mind5.security.username.model.action.StdUsernameMergeToSelect;
 import br.com.mind5.security.username.model.checker.UsernameCheckRead;
 
-public final class RootUsernameSelect extends DeciTreeTemplateReadV1<UsernameInfo> {
+public final class RootUsernameSelect extends DeciTreeTemplateReadV2<UsernameInfo> {
 	
 	public RootUsernameSelect(DeciTreeOption<UsernameInfo> option) {
 		super(option);

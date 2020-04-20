@@ -16,11 +16,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.security.username.info.UsernameInfo;
 
-public final class UsernameSelectSingle extends DaoStmtTemplate<UsernameInfo> {
+public final class DaoUsernameSelectSingle extends DaoStmtTemplate<UsernameInfo> {
 	private final String MAIN_TABLE = DaoDbTable.USER_TABLE;
 	
 		
-	public UsernameSelectSingle(Connection conn, UsernameInfo recordInfo, String schemaName) {
+	public DaoUsernameSelectSingle(Connection conn, UsernameInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -50,7 +50,7 @@ public final class UsernameSelectSingle extends DaoStmtTemplate<UsernameInfo> {
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new UsernameWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new DaoUsernameWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}	
 	
@@ -67,12 +67,12 @@ public final class UsernameSelectSingle extends DaoStmtTemplate<UsernameInfo> {
 				do {
 					UsernameInfo dataInfo = new UsernameInfo();
 					
-					dataInfo.codOwner = stmtResult.getLong(UsernameDbTableColumn.COL_COD_OWNER);
-					dataInfo.codUser = stmtResult.getLong(UsernameDbTableColumn.COL_COD_USER);									
-					dataInfo.recordMode = stmtResult.getString(UsernameDbTableColumn.COL_RECORD_MODE);
-					dataInfo.username = stmtResult.getString(UsernameDbTableColumn.COL_USERNAME);
-					dataInfo.codAuthGroup = stmtResult.getString(UsernameDbTableColumn.COL_COD_AUTH_GROUP);
-					dataInfo.codUserCategory = DaoFormatter.sqlToChar(stmtResult, UsernameDbTableColumn.COL_COD_USER_CATEG);
+					dataInfo.codOwner = stmtResult.getLong(DaoUsernameDbTableColumn.COL_COD_OWNER);
+					dataInfo.codUser = stmtResult.getLong(DaoUsernameDbTableColumn.COL_COD_USER);									
+					dataInfo.recordMode = stmtResult.getString(DaoUsernameDbTableColumn.COL_RECORD_MODE);
+					dataInfo.username = stmtResult.getString(DaoUsernameDbTableColumn.COL_USERNAME);
+					dataInfo.codAuthGroup = stmtResult.getString(DaoUsernameDbTableColumn.COL_COD_AUTH_GROUP);
+					dataInfo.codUserCategory = DaoFormatter.sqlToChar(stmtResult, DaoUsernameDbTableColumn.COL_COD_USER_CATEG);
 	
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

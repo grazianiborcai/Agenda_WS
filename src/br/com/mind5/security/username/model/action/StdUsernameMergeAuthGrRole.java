@@ -1,35 +1,19 @@
 package br.com.mind5.security.username.model.action;
 
-import br.com.mind5.model.action.ActionLazyV1;
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionStdHelperMerge;
-import br.com.mind5.model.decisionTree.DeciResult;
+import br.com.mind5.model.action.ActionStdTemplateV2;
+import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.username.info.UsernameInfo;
 
-public final class StdUsernameMergeAuthGrRole implements ActionStdV1<UsernameInfo> {
-	private ActionStdV1<UsernameInfo> actionHelper;	
-	
-	
-	public StdUsernameMergeAuthGrRole(DeciTreeOption<UsernameInfo> option) {			
-		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiUsernameMergeAuthGrRole(option.conn, option.schemaName));
+public final class StdUsernameMergeAuthGrRole extends ActionStdTemplateV2<UsernameInfo> {
+
+	public StdUsernameMergeAuthGrRole(DeciTreeOption<UsernameInfo> option) {
+		super(option);
 	}
 	
 	
 	
-	@Override public void addPostAction(ActionLazyV1<UsernameInfo> actionHandler) {
-		actionHelper.addPostAction(actionHandler);
-	}
-	
-	
-	
-	@Override public boolean executeAction() {			
-		return actionHelper.executeAction();
-	}
-	
-	
-	
-	@Override public DeciResult<UsernameInfo> getDecisionResult() {
-		return actionHelper.getDecisionResult();
+	protected ActionVisitorV2<UsernameInfo> buildVisitorHook(DeciTreeOption<UsernameInfo> option) {
+		return new VisiUsernameMergeAuthGrRole(option);
 	}
 }

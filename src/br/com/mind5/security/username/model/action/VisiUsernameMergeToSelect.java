@@ -1,29 +1,30 @@
 package br.com.mind5.security.username.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.username.info.UsernameInfo;
 import br.com.mind5.security.username.info.UsernameMerger;
 
-final class VisiUsernameMergeToSelect extends ActionVisitorTemplateMergeV1<UsernameInfo, UsernameInfo> {
+final class VisiUsernameMergeToSelect extends ActionVisitorTemplateMergeV2<UsernameInfo, UsernameInfo> {
 	
-	public VisiUsernameMergeToSelect(Connection conn, String schemaName) {
-		super(conn, schemaName, UsernameInfo.class);
+	public VisiUsernameMergeToSelect(DeciTreeOption<UsernameInfo> option) {
+		super(option, UsernameInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends ActionStdV1<UsernameInfo>> getActionClassHook() {
-		return StdUsernameSelect.class;
+	@Override protected Class<? extends ActionStdV2<UsernameInfo>> getActionClassHook() {
+		return StdUsernameDaoSelect.class;
 	}
 	
 	
 	
-	@Override protected List<UsernameInfo> mergeHook(List<UsernameInfo> recordInfos, List<UsernameInfo> selectedInfos) {	
-		return UsernameMerger.mergeToSelect(selectedInfos, recordInfos);
+	@Override protected List<UsernameInfo> mergeHook(List<UsernameInfo> baseInfos, List<UsernameInfo> selectedInfos) {	
+		return UsernameMerger.mergeToSelect(baseInfos, selectedInfos);
 	}
 	
 	
