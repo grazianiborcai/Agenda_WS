@@ -2,23 +2,23 @@ package br.com.mind5.business.materialSnapshot.info;
 
 import java.util.List;
 
-import br.com.mind5.business.masterData.info.MatCategInfo;
 import br.com.mind5.business.masterData.info.MatGroupInfo;
 import br.com.mind5.business.masterData.info.MatTypeInfo;
 import br.com.mind5.business.masterData.info.MatUnitInfo;
 import br.com.mind5.business.materialTextSnapshot.info.MatextsnapInfo;
 import br.com.mind5.info.obsolete.InfoMerger_;
+import br.com.mind5.masterData.materialCategory.info.MategInfo;
 
 public final class MatsnapMerger {	
-	public static MatsnapInfo mergeWithMatCateg(MatCategInfo sourceOne, MatsnapInfo sourceTwo) {
-		InfoMerger_<MatsnapInfo, MatCategInfo> merger = new MatsnapMergerMatCateg();		
+	public static MatsnapInfo mergeWithMateg(MategInfo sourceOne, MatsnapInfo sourceTwo) {
+		InfoMerger_<MatsnapInfo, MategInfo> merger = new MatsnapMergerMateg();		
 		return merger.merge(sourceOne, sourceTwo);
 	}
 	
 	
 	
-	public static List<MatsnapInfo> mergeWithMatCateg(List<MatCategInfo> sourceOnes, List<MatsnapInfo> sourceTwos) {
-		InfoMerger_<MatsnapInfo, MatCategInfo> merger = new MatsnapMergerMatCateg();		
+	public static List<MatsnapInfo> mergeWithMateg(List<MategInfo> sourceOnes, List<MatsnapInfo> sourceTwos) {
+		InfoMerger_<MatsnapInfo, MategInfo> merger = new MatsnapMergerMateg();		
 		return merger.merge(sourceOnes, sourceTwos);
 	}
 	

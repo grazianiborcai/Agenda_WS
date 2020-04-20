@@ -2,7 +2,6 @@ package br.com.mind5.business.material.info;
 
 import java.util.List;
 
-import br.com.mind5.business.masterData.info.MatCategInfo;
 import br.com.mind5.business.masterData.info.MatGroupInfo;
 import br.com.mind5.business.masterData.info.MatTypeInfo;
 import br.com.mind5.business.masterData.info.MatUnitInfo;
@@ -11,6 +10,7 @@ import br.com.mind5.business.materialText.info.MatextInfo;
 import br.com.mind5.file.fileImageList.info.FimistInfo;
 import br.com.mind5.info.InfoMergerBuilderV3;
 import br.com.mind5.info.InfoMergerV3;
+import br.com.mind5.masterData.materialCategory.info.MategInfo;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class MatMerger {
@@ -27,13 +27,13 @@ public final class MatMerger {
 	
 	
 	
-	public static List<MatInfo> mergeWithMatCateg(List<MatInfo> baseInfos, List<MatCategInfo> selectedInfos) {
-		InfoMergerBuilderV3<MatInfo, MatCategInfo> builder = new InfoMergerBuilderV3<>();
+	public static List<MatInfo> mergeWithMateg(List<MatInfo> baseInfos, List<MategInfo> selectedInfos) {
+		InfoMergerBuilderV3<MatInfo, MategInfo> builder = new InfoMergerBuilderV3<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new MatVisiMergeMatCateg());
-		InfoMergerV3<MatInfo, MatCategInfo> merger = builder.build();		
+		builder.addVisitor(new MatVisiMergeMateg());
+		InfoMergerV3<MatInfo, MategInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}
