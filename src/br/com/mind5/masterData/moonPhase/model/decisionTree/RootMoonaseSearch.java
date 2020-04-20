@@ -12,9 +12,9 @@ import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class RootMoonaseSearch extends DeciTreeTemplateWriteV1<MoonaseInfo> {
+public final class RootMoonaseSearch extends DeciTreeTemplateWriteV2<MoonaseInfo> {
 	
 	public RootMoonaseSearch(DeciTreeOption<MoonaseInfo> option) {
 		super(option);

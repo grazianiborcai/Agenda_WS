@@ -7,13 +7,13 @@ import br.com.mind5.masterData.moonPhase.info.MoonaseInfo;
 import br.com.mind5.masterData.moonPhase.model.action.StdMoonaseDaoSelect;
 import br.com.mind5.masterData.moonPhase.model.checker.MoonaseCheckRead;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 
-public final class RootMoonaseSelect extends DeciTreeTemplateReadV1<MoonaseInfo> {
+public final class RootMoonaseSelect extends DeciTreeTemplateReadV2<MoonaseInfo> {
 	
 	public RootMoonaseSelect(DeciTreeOption<MoonaseInfo> option) {
 		super(option);
