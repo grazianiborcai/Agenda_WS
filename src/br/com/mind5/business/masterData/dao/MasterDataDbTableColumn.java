@@ -75,7 +75,6 @@ public final class MasterDataDbTableColumn extends DaoDbTableColumnTemplate {
 		entityCategTable();
 		payPartnerTable();
 		userCategTable();
-		authGrRoleTable();
 		authGroupTable();
 		matmovTypeTable();
 		sysEnvironmentTable();
@@ -666,33 +665,6 @@ public final class MasterDataDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
-		
-		tableColumns.put(TABLE_NAME, columns);
-	}
-	
-	
-	
-	private void authGrRoleTable() {
-		final String TABLE_NAME = DaoDbTable.AUTH_GROUP_ROLE_TABLE;
-		
-		DaoColumn oneColumn;
-		List<DaoColumn> columns = new ArrayList<>();			
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COD_AUTH_GROUP;
-		oneColumn.isPK = IS_PRIMARY_KEY;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);		
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COD_AUTH_ROLE;
-		oneColumn.isPK = IS_PRIMARY_KEY;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);	
 		
 		tableColumns.put(TABLE_NAME, columns);
 	}

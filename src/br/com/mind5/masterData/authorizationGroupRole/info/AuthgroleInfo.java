@@ -1,28 +1,28 @@
-package br.com.mind5.business.masterData.info;
+package br.com.mind5.masterData.authorizationGroupRole.info;
 
 import java.util.List;
 
 import br.com.mind5.info.InfoRecord;
 
-public final class AuthGrRoleInfo extends InfoRecord implements Cloneable {
+public final class AuthgroleInfo extends InfoRecord implements Cloneable {
 	public String codAuthGroup;
 	public String codAuthRole;	
 	
 	
-	public AuthGrRoleInfo() {
-		super(AuthGrRoleInfo.class);
+	public AuthgroleInfo() {
+		super();
 	}
 	
 	
 	
-	public static AuthGrRoleInfo copyFrom(Object sourceObj) {
-		return copyFrom(sourceObj, AuthGrRoleInfo.class);
+	public static AuthgroleInfo copyFrom(Object sourceObj) {
+		return copyFrom(sourceObj, AuthgroleInfo.class);
 	}
 	
 	
 	
-	public static List<AuthGrRoleInfo> copyFrom(List<?> sourceObjs) {
-		return copyFrom(sourceObjs, AuthGrRoleInfo.class);
+	public static List<AuthgroleInfo> copyFrom(List<?> sourceObjs) {
+		return copyFrom(sourceObjs, AuthgroleInfo.class);
 	}
 	
 	
@@ -52,11 +52,11 @@ public final class AuthGrRoleInfo extends InfoRecord implements Cloneable {
 			return true;
 		
 		
-		if (!(o instanceof AuthGrRoleInfo))
+		if (!(o instanceof AuthgroleInfo))
 			return false;
 		
 		
-		AuthGrRoleInfo obj = (AuthGrRoleInfo) o;		
+		AuthgroleInfo obj = (AuthgroleInfo) o;		
 		return (super.isStringEqual(codAuthRole, obj.codAuthRole) 	&&
 				super.isStringEqual(codAuthGroup, obj.codAuthGroup)			);
 	}

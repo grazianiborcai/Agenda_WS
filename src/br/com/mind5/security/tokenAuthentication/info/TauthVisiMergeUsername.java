@@ -26,7 +26,7 @@ final class TauthVisiMergeUsername implements InfoMergerVisitorV3<TauthInfo, Use
 		List<TauthInfo> results = new ArrayList<>();
 		
 		baseInfo.codUser = selectedInfo.codUser;
-		baseInfo.authGrRoles.addAll(selectedInfo.authGrRoles);
+		baseInfo.authgroles.addAll(selectedInfo.authgroles);
 		
 		results.add(baseInfo);
 		return results;

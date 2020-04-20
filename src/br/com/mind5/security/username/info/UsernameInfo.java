@@ -1,10 +1,11 @@
 package br.com.mind5.security.username.info;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.business.masterData.info.AuthGrRoleInfo;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
+import br.com.mind5.masterData.authorizationGroupRole.info.AuthgroleInfo;
 
 public final class UsernameInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
@@ -12,7 +13,7 @@ public final class UsernameInfo extends InfoRecord implements Cloneable {
 	public String username;
 	public char codUserCategory;
 	public String codAuthGroup;
-	public List<AuthGrRoleInfo> authGrRoles;
+	public List<AuthgroleInfo> authgroles;
 	public String recordMode;
 	
 	
@@ -22,7 +23,7 @@ public final class UsernameInfo extends InfoRecord implements Cloneable {
 		codOwner = DefaultValue.number();
 		codUser = DefaultValue.number();
 		codUserCategory = DefaultValue.character();
-		authGrRoles = DefaultValue.list();
+		authgroles = DefaultValue.list();
 		recordMode = DefaultValue.recordMode();	
 	}
 	
@@ -41,7 +42,26 @@ public final class UsernameInfo extends InfoRecord implements Cloneable {
 	
 	
 	@Override public Object clone() throws CloneNotSupportedException {
-		return super.clone();
+		UsernameInfo deepCopy = (UsernameInfo) super.clone();
+		
+		deepCopy.authgroles = cloneAuthgroles(deepCopy.authgroles);		
+		return deepCopy;
+	}
+	
+	
+	
+	private List<AuthgroleInfo> cloneAuthgroles(List<AuthgroleInfo> recordInfos) throws CloneNotSupportedException {
+		if (recordInfos == null)
+			return null;
+		
+		List<AuthgroleInfo> deepAuthGrRoles = new ArrayList<>();
+		
+		for (AuthgroleInfo eachAuthGrRole : recordInfos) {
+			AuthgroleInfo clonedAuthGrRole = (AuthgroleInfo) eachAuthGrRole.clone();
+			deepAuthGrRoles.add(clonedAuthGrRole);
+		}
+		
+		return deepAuthGrRoles;
 	}
 	
 	

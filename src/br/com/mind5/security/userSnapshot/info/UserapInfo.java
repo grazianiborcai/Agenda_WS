@@ -5,11 +5,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.addressSnapshot.info.AddresnapInfo;
-import br.com.mind5.business.masterData.info.AuthGrRoleInfo;
 import br.com.mind5.business.personSnapshot.info.PersonapInfo;
 import br.com.mind5.business.phoneSnapshot.info.PhonapInfo;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
+import br.com.mind5.masterData.authorizationGroupRole.info.AuthgroleInfo;
 
 public final class UserapInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
@@ -23,14 +23,14 @@ public final class UserapInfo extends InfoRecord implements Cloneable {
 	public PersonapInfo personData;
 	public List<AddresnapInfo> addresses;
 	public List<PhonapInfo> phones;
-	public List<AuthGrRoleInfo> authGrRoles;
+	public List<AuthgroleInfo> authgroles;
 	public String recordMode;
 	public LocalDateTime lastChanged;
 	public long lastChangedBy;
 	
 	
 	public UserapInfo() {
-		super(UserapInfo.class);
+		super();
 		
 		codOwner = DefaultValue.number();
 		codUser = DefaultValue.number();
@@ -39,7 +39,7 @@ public final class UserapInfo extends InfoRecord implements Cloneable {
 		codPerson = DefaultValue.number();
 		codPersonSnapshot = DefaultValue.number();
 		personData = DefaultValue.object();
-		authGrRoles = DefaultValue.list();
+		authgroles = DefaultValue.list();
 		addresses = DefaultValue.list();
 		phones = DefaultValue.list();	
 		recordMode = DefaultValue.recordMode();		
@@ -66,7 +66,7 @@ public final class UserapInfo extends InfoRecord implements Cloneable {
 		deepCopy.addresses = cloneAddresses(deepCopy.addresses);
 		deepCopy.phones = clonePhones(deepCopy.phones);
 		deepCopy.personData = clonePerson(deepCopy.personData);
-		deepCopy.authGrRoles = cloneAuthGrRoles(deepCopy.authGrRoles);
+		deepCopy.authgroles = cloneAuthgroles(deepCopy.authgroles);
 		
 		return deepCopy;
 	}
@@ -114,14 +114,14 @@ public final class UserapInfo extends InfoRecord implements Cloneable {
 	
 	
 	
-	private List<AuthGrRoleInfo> cloneAuthGrRoles(List<AuthGrRoleInfo> recordInfos) throws CloneNotSupportedException {
+	private List<AuthgroleInfo> cloneAuthgroles(List<AuthgroleInfo> recordInfos) throws CloneNotSupportedException {
 		if (recordInfos == null)
 			return null;
 		
-		List<AuthGrRoleInfo> deepAuthGrRoles = new ArrayList<>();
+		List<AuthgroleInfo> deepAuthGrRoles = new ArrayList<>();
 		
-		for (AuthGrRoleInfo eachAuthGrRole : recordInfos) {
-			AuthGrRoleInfo clonedAuthGrRole = (AuthGrRoleInfo) eachAuthGrRole.clone();
+		for (AuthgroleInfo eachAuthGrRole : recordInfos) {
+			AuthgroleInfo clonedAuthGrRole = (AuthgroleInfo) eachAuthGrRole.clone();
 			deepAuthGrRoles.add(clonedAuthGrRole);
 		}
 		

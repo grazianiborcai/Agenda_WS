@@ -2,16 +2,16 @@ package br.com.mind5.security.tokenAuthentication.info;
 
 import java.util.List;
 
-import br.com.mind5.business.masterData.info.AuthGrRoleInfo;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
+import br.com.mind5.masterData.authorizationGroupRole.info.AuthgroleInfo;
 
 public final class TauthInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codUser;
 	public String username;
 	public String codPlatform;
-	public List<AuthGrRoleInfo> authGrRoles;
+	public List<AuthgroleInfo> authgroles;
 	public String tokenToVerify; 
 	
 	
@@ -20,7 +20,7 @@ public final class TauthInfo extends InfoRecord implements Cloneable {
 		
 		codOwner = DefaultValue.number();
 		codUser = DefaultValue.number();
-		authGrRoles = DefaultValue.list();
+		authgroles = DefaultValue.list();
 	}
 	
 	

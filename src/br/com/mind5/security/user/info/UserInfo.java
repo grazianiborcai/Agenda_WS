@@ -5,12 +5,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.address.info.AddressInfo;
-import br.com.mind5.business.masterData.info.AuthGrRoleInfo;
 import br.com.mind5.business.person.info.PersonInfo;
 import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.file.fileImageList.info.FimistInfo;
 import br.com.mind5.info.InfoRecord;
+import br.com.mind5.masterData.authorizationGroupRole.info.AuthgroleInfo;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
 
 public final class UserInfo extends InfoRecord implements Cloneable {
@@ -24,7 +24,7 @@ public final class UserInfo extends InfoRecord implements Cloneable {
 	public PersonInfo personData;
 	public List<AddressInfo> addresses;
 	public List<PhoneInfo> phones;
-	public List<AuthGrRoleInfo> authGrRoles;
+	public List<AuthgroleInfo> authgroles;
 	public List<CusparInfo> cuspars;
 	public FimistInfo fimistData;
 	public String recordMode;
@@ -33,7 +33,7 @@ public final class UserInfo extends InfoRecord implements Cloneable {
 	
 	
 	public UserInfo() {
-		super(UserInfo.class);
+		super();
 		
 		codOwner = DefaultValue.number();
 		codUser = DefaultValue.number();
@@ -41,7 +41,7 @@ public final class UserInfo extends InfoRecord implements Cloneable {
 		codUserCategory = DefaultValue.character();
 		codPerson = DefaultValue.number();
 		personData = DefaultValue.object();
-		authGrRoles = DefaultValue.list();
+		authgroles = DefaultValue.list();
 		cuspars = DefaultValue.list();
 		addresses = DefaultValue.list();
 		phones = DefaultValue.list();	
@@ -70,7 +70,7 @@ public final class UserInfo extends InfoRecord implements Cloneable {
 		deepCopy.addresses = cloneAddresses(deepCopy.addresses);
 		deepCopy.phones = clonePhones(deepCopy.phones);
 		deepCopy.personData = clonePerson(deepCopy.personData);
-		deepCopy.authGrRoles = cloneAuthGrRoles(deepCopy.authGrRoles);
+		deepCopy.authgroles = cloneAuthgroles(deepCopy.authgroles);
 		deepCopy.fimistData = cloneFimist(deepCopy.fimistData);
 		
 		return deepCopy;
@@ -119,14 +119,14 @@ public final class UserInfo extends InfoRecord implements Cloneable {
 	
 	
 	
-	private List<AuthGrRoleInfo> cloneAuthGrRoles(List<AuthGrRoleInfo> recordInfos) throws CloneNotSupportedException {
+	private List<AuthgroleInfo> cloneAuthgroles(List<AuthgroleInfo> recordInfos) throws CloneNotSupportedException {
 		if (recordInfos == null)
 			return null;
 		
-		List<AuthGrRoleInfo> deepAuthGrRoles = new ArrayList<>();
+		List<AuthgroleInfo> deepAuthGrRoles = new ArrayList<>();
 		
-		for (AuthGrRoleInfo eachAuthGrRole : recordInfos) {
-			AuthGrRoleInfo clonedAuthGrRole = (AuthGrRoleInfo) eachAuthGrRole.clone();
+		for (AuthgroleInfo eachAuthGrRole : recordInfos) {
+			AuthgroleInfo clonedAuthGrRole = (AuthgroleInfo) eachAuthGrRole.clone();
 			deepAuthGrRoles.add(clonedAuthGrRole);
 		}
 		

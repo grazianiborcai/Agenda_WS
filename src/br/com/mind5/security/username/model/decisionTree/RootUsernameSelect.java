@@ -11,7 +11,7 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 import br.com.mind5.security.username.info.UsernameInfo;
-import br.com.mind5.security.username.model.action.LazyUsernameMergeAuthGrRole;
+import br.com.mind5.security.username.model.action.LazyUsernameMergeAuthgrole;
 import br.com.mind5.security.username.model.action.StdUsernameMergeToSelect;
 import br.com.mind5.security.username.model.checker.UsernameCheckRead;
 
@@ -44,9 +44,9 @@ public final class RootUsernameSelect extends DeciTreeTemplateReadV2<UsernameInf
 		List<ActionStdV1<UsernameInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<UsernameInfo> select = new StdUsernameMergeToSelect(option);
-		ActionLazyV1<UsernameInfo> mergeAuthGrRole = new LazyUsernameMergeAuthGrRole(option.conn, option.schemaName);
+		ActionLazyV1<UsernameInfo> mergeAuthgrole = new LazyUsernameMergeAuthgrole(option.conn, option.schemaName);
 		
-		select.addPostAction(mergeAuthGrRole);
+		select.addPostAction(mergeAuthgrole);
 		
 		actions.add(select);
 		return actions;

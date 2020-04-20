@@ -5,9 +5,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import br.com.mind5.business.address.info.AddressInfo;
-import br.com.mind5.business.masterData.info.AuthGrRoleInfo;
 import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.masterData.authorizationGroupRole.info.AuthgroleInfo;
 
 final class UserUniquifier implements InfoUniquifier<UserInfo> {
 	
@@ -21,7 +21,7 @@ final class UserUniquifier implements InfoUniquifier<UserInfo> {
 				
 				uniquifyAddress(duple, eachRecord);
 				uniquifyPhone(duple, eachRecord);
-				uniquifyAuthGrRole(duple, eachRecord);
+				uniquifyAuthgrole(duple, eachRecord);
 				
 			} else {
 				uniques.add(eachRecord);
@@ -56,12 +56,12 @@ final class UserUniquifier implements InfoUniquifier<UserInfo> {
 	
 	
 	
-	private void uniquifyAuthGrRole(UserInfo duple, UserInfo eachRecord) {
-		List<AuthGrRoleInfo> allAuthGrRoles = new ArrayList<>();
+	private void uniquifyAuthgrole(UserInfo duple, UserInfo eachRecord) {
+		List<AuthgroleInfo> allAuthgroles = new ArrayList<>();
 		
-		allAuthGrRoles.addAll(duple.authGrRoles);
-		allAuthGrRoles.addAll(eachRecord.authGrRoles);
+		allAuthgroles.addAll(duple.authgroles);
+		allAuthgroles.addAll(eachRecord.authgroles);
 		
-		duple.authGrRoles = allAuthGrRoles.stream().distinct().collect(Collectors.toList());
+		duple.authgroles = allAuthgroles.stream().distinct().collect(Collectors.toList());
 	}
 }

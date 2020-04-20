@@ -9,9 +9,9 @@ import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.username.info.UsernameInfo;
 
-public final class LazyUsernameMergeAuthGrRole extends ActionLazyTemplateV2<UsernameInfo, UsernameInfo> {
+public final class LazyUsernameMergeAuthgrole extends ActionLazyTemplateV2<UsernameInfo, UsernameInfo> {
 	
-	public LazyUsernameMergeAuthGrRole(Connection conn, String schemaName) {
+	public LazyUsernameMergeAuthgrole(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyUsernameMergeAuthGrRole extends ActionLazyTemplateV2<User
 	
 	
 	@Override protected ActionStdV1<UsernameInfo> getInstanceOfActionHook(DeciTreeOption<UsernameInfo> option) {
-		return new StdUsernameMergeAuthGrRole(option);
+		return new StdUsernameMergeAuthgrole(option);
 	}
 	
 	

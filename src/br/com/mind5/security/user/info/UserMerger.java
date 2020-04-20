@@ -3,12 +3,12 @@ package br.com.mind5.security.user.info;
 import java.util.List;
 
 import br.com.mind5.business.address.info.AddressInfo;
-import br.com.mind5.business.masterData.info.AuthGrRoleInfo;
 import br.com.mind5.business.person.info.PersonInfo;
 import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.file.fileImageList.info.FimistInfo;
 import br.com.mind5.info.InfoMergerBuilderV3;
 import br.com.mind5.info.InfoMergerV3;
+import br.com.mind5.masterData.authorizationGroupRole.info.AuthgroleInfo;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
 import br.com.mind5.security.userSearch.info.UserarchInfo;
 import br.com.mind5.security.userSnapshot.info.UserapInfo;
@@ -67,13 +67,13 @@ public final class UserMerger {
 	
 	
 	
-	public static List<UserInfo> mergeWithAuthGrRole(List<UserInfo> baseInfos, List<AuthGrRoleInfo> selectedInfos) {
-		InfoMergerBuilderV3<UserInfo, AuthGrRoleInfo> builder = new InfoMergerBuilderV3<>();
+	public static List<UserInfo> mergeWithAuthgrole(List<UserInfo> baseInfos, List<AuthgroleInfo> selectedInfos) {
+		InfoMergerBuilderV3<UserInfo, AuthgroleInfo> builder = new InfoMergerBuilderV3<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new UserVisiMergeAuthGrRole());
-		InfoMergerV3<UserInfo, AuthGrRoleInfo> merger = builder.build();		
+		builder.addVisitor(new UserVisiMergeAuthgrole());
+		InfoMergerV3<UserInfo, AuthgroleInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}

@@ -12,7 +12,7 @@ public final class StdUserMergeAuthGrRole implements ActionStdV1<UserInfo> {
 	
 	
 	public StdUserMergeAuthGrRole(DeciTreeOption<UserInfo> option) {			
-		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiUserMergeAuthGrRole(option.conn, option.schemaName));
+		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiUserMergeAuthgrole(option.conn, option.schemaName));
 	}
 	
 	

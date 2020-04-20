@@ -3,11 +3,11 @@ package br.com.mind5.security.username.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.business.masterData.info.AuthGrRoleInfo;
 import br.com.mind5.info.InfoMergerVisitorV3;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.masterData.authorizationGroupRole.info.AuthgroleInfo;
 
-final class UsernameVisiMergeAuthGrRole implements InfoMergerVisitorV3<UsernameInfo, AuthGrRoleInfo> {
+final class UsernameVisiMergeAuthgrole implements InfoMergerVisitorV3<UsernameInfo, AuthgroleInfo> {
 	
 	@Override public List<UsernameInfo> beforeMerge(List<UsernameInfo> baseInfos) {
 		return baseInfos;
@@ -15,16 +15,16 @@ final class UsernameVisiMergeAuthGrRole implements InfoMergerVisitorV3<UsernameI
 	
 	
 	
-	@Override public boolean shouldMerge(UsernameInfo baseInfo, AuthGrRoleInfo selectedInfo) {
+	@Override public boolean shouldMerge(UsernameInfo baseInfo, AuthgroleInfo selectedInfo) {
 		return true;
 	}
 	
 	
 	
-	@Override public List<UsernameInfo> merge(UsernameInfo baseInfo, AuthGrRoleInfo selectedInfo) {
+	@Override public List<UsernameInfo> merge(UsernameInfo baseInfo, AuthgroleInfo selectedInfo) {
 		List<UsernameInfo> results = new ArrayList<>();
 		
-		baseInfo.authGrRoles.add(selectedInfo);
+		baseInfo.authgroles.add(selectedInfo);
 		
 		results.add(baseInfo);
 		return results;

@@ -11,7 +11,7 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
-import br.com.mind5.business.masterData.info.AuthGrRoleInfo;
+import br.com.mind5.masterData.authorizationGroupRole.info.AuthgroleInfo;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.security.userAuthentication.info.UauthInfo;
@@ -75,8 +75,8 @@ public final class AuthProviderPwrd implements AuthenticationProvider {
 		List<GrantedAuthority> resultRoles = new ArrayList<>();
 		
 		for (UauthInfo eachSet : resultSets) {
-			for (AuthGrRoleInfo eachAuthGrRole : eachSet.authGrRoles) {
-				GrantedAuthority role = new SimpleGrantedAuthority(eachAuthGrRole.codAuthRole);
+			for (AuthgroleInfo eachAuthgrole : eachSet.authgroles) {
+				GrantedAuthority role = new SimpleGrantedAuthority(eachAuthgrole.codAuthRole);
 				resultRoles.add(role);
 			}
 		}

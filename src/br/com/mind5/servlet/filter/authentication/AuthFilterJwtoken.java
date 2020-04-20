@@ -16,7 +16,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
-import br.com.mind5.business.masterData.info.AuthGrRoleInfo;
+import br.com.mind5.masterData.authorizationGroupRole.info.AuthgroleInfo;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.security.tokenAuthentication.info.TauthInfo;
@@ -121,8 +121,8 @@ public final class AuthFilterJwtoken extends BasicAuthenticationFilter {
     private List<GrantedAuthority> parseRoles(TauthInfo tauth) {
         List<GrantedAuthority> resultRoles = new ArrayList<>();
         
-		for (AuthGrRoleInfo eachAuthGrRole : tauth.authGrRoles) {
-			GrantedAuthority role = new SimpleGrantedAuthority(eachAuthGrRole.codAuthRole);
+		for (AuthgroleInfo eachAuthgrole : tauth.authgroles) {
+			GrantedAuthority role = new SimpleGrantedAuthority(eachAuthgrole.codAuthRole);
 			resultRoles.add(role);
 		}
 		

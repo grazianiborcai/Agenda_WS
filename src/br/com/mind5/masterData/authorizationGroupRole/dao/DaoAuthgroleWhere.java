@@ -1,36 +1,36 @@
-package br.com.mind5.business.masterData.dao;
+package br.com.mind5.masterData.authorizationGroupRole.dao;
 
 import java.util.List;
 
-import br.com.mind5.business.masterData.info.AuthGrRoleInfo;
 import br.com.mind5.dao.DaoColumn;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilder;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
+import br.com.mind5.masterData.authorizationGroupRole.info.AuthgroleInfo;
 
-public final class AuthGrRoleWhere implements DaoStmtWhere {
+public final class DaoAuthgroleWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public AuthGrRoleWhere(DaoWhereBuilderOption whereOption, String tableName, AuthGrRoleInfo recordInfo) {
+	public DaoAuthgroleWhere(DaoWhereBuilderOption whereOption, String tableName, AuthgroleInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
 	
 	
-	private void generateWhereClause(DaoWhereBuilderOption whereOption, String tableName, AuthGrRoleInfo recordInfo) {
+	private void generateWhereClause(DaoWhereBuilderOption whereOption, String tableName, AuthgroleInfo recordInfo) {
 		DaoWhereBuilder builder = DaoWhereBuilder.factory(whereOption);
 		
 		List<DaoColumn> columns = DaoDbTableColumnAll.getTableColumnsAsList(tableName);
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-				case MasterDataDbTableColumn.COL_COD_AUTH_GROUP :
+				case DaoAuthgroleDbTableColumn.COL_COD_AUTH_GROUP :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codAuthGroup);
 					break;
 				
-				case MasterDataDbTableColumn.COL_COD_AUTH_ROLE :
+				case DaoAuthgroleDbTableColumn.COL_COD_AUTH_ROLE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codAuthRole);
 					break;
 			}
