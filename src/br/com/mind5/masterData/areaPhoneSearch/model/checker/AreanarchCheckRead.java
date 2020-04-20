@@ -26,6 +26,6 @@ public final class AreanarchCheckRead extends ModelCheckerTemplateSimpleV2<Arean
 	
 	
 	@Override protected int getCodMsgOnResultFalseHook() {
-		return SystemCode.AREA_PHONE_MANDATORY_FIELD_EMPTY;
+		return SystemCode.AREA_PHONE_SEARCH_MANDATORY_FIELD_EMPTY;
 	}
 }
