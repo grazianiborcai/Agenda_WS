@@ -42,9 +42,8 @@ public final class DaoCountroneSelectSingle extends DaoStmtTemplate<CountroneInf
 	@Override protected String buildWhereClauseHook(String tableName, CountroneInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
 		
-		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
-		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;	
-		whereOption.dummyClauseWhenEmpty = DaoOptionValue.DUMMY_CLAUSE_ALLOWED;
+		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
+		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;
 		
 		DaoStmtWhere whereClause = new DaoCountroneWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
