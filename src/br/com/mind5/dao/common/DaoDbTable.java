@@ -168,6 +168,7 @@ public final class DaoDbTable {
 	public static final String MAT_TEXT_DEFAULT_VIEW = "view_material_text_default";
 	public static final String MAT_TYPE_SEARCH_VIEW = "view_material_type_search";
 	public static final String MAT_SEARCH_VIEW = "view_material_search";
+	public static final String MAT_UNIT_SEARCH_VIEW = "view_measure_unit_search";
 	public static final String MOON_PHASE_SEARCH_VIEW = "view_moon_phase_search";
 	public static final String OWNER_LIST_VIEW = "view_owner_list";
 	public static final String ORDER_LIST_VIEW = "view_order_list";

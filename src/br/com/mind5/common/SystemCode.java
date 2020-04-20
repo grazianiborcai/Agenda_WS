@@ -173,6 +173,7 @@ public final class SystemCode {
 	public static final int COUNTRY_SEARCH_MANDATORY_FIELD_EMPTY 		= 5347;
 	public static final int MAT_CATEG_SEARCH_MANDATORY_FIELD_EMPTY 		= 5348;
 	public static final int MAT_TYPE_SEARCH_MANDATORY_FIELD_EMPTY 		= 5349;
+	public static final int MAT_UNIT_SEARCH_MANDATORY_FIELD_EMPTY 		= 11650;
 	
 	// Material
 	public static final int MAT_ALREADY_EXIST							= 1200;
@@ -1172,4 +1173,6 @@ public final class SystemCode {
 	
 	// Form Address Search
 	public static final int FORM_ADDRESS_SEARCH_MANDATORY_FIELD_EMPTY	= 11600;
+	
+	//reservado 11650
 }

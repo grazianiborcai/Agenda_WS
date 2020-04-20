@@ -8,7 +8,7 @@ import br.com.mind5.business.material.model.action.LazyMatMergeFimist;
 import br.com.mind5.business.material.model.action.LazyMatMergeMateg;
 import br.com.mind5.business.material.model.action.LazyMatMergeMatGroup;
 import br.com.mind5.business.material.model.action.LazyMatMergeMatype;
-import br.com.mind5.business.material.model.action.LazyMatMergeMatUnit;
+import br.com.mind5.business.material.model.action.LazyMatMergeMatunit;
 import br.com.mind5.business.material.model.action.LazyMatMergeMatext;
 import br.com.mind5.business.material.model.action.StdMatMergeToSelect;
 import br.com.mind5.business.material.model.checker.MatCheckRead;
@@ -52,15 +52,15 @@ public final class RootMatSelect extends DeciTreeTemplateReadV1<MatInfo> {
 		ActionLazyV1<MatInfo> mergeMatype = new LazyMatMergeMatype(option.conn, option.schemaName);
 		ActionLazyV1<MatInfo> mergeMateg = new LazyMatMergeMateg(option.conn, option.schemaName);
 		ActionLazyV1<MatInfo> mergeMatGroup = new LazyMatMergeMatGroup(option.conn, option.schemaName);
-		ActionLazyV1<MatInfo> mergeMatUnit = new LazyMatMergeMatUnit(option.conn, option.schemaName);
+		ActionLazyV1<MatInfo> mergeMatunit = new LazyMatMergeMatunit(option.conn, option.schemaName);
 		ActionLazyV1<MatInfo> mergeMatext = new LazyMatMergeMatext(option.conn, option.schemaName);
 		ActionLazyV1<MatInfo> mergeFimist = new LazyMatMergeFimist(option.conn, option.schemaName);
 		
 		select.addPostAction(mergeMatype);
 		mergeMatype.addPostAction(mergeMateg);
 		mergeMateg.addPostAction(mergeMatGroup);
-		mergeMatGroup.addPostAction(mergeMatUnit);
-		mergeMatUnit.addPostAction(mergeMatext);
+		mergeMatGroup.addPostAction(mergeMatunit);
+		mergeMatunit.addPostAction(mergeMatext);
 		mergeMatext.addPostAction(mergeFimist);
 		
 		actions.add(select);
