@@ -1,54 +1,38 @@
 package br.com.mind5.file.fileImageSearch.info;
 
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import java.util.ArrayList;
+import java.util.List;
 
-final class FimarchVisiMergeToSelect implements InfoMergerVisitor_<FimarchInfo, FimarchInfo> {
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-	@Override public FimarchInfo writeRecord(FimarchInfo sourceOne, FimarchInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);		
-		return merge(sourceOne, sourceTwo);
+final class FimarchVisiMergeToSelect implements InfoMergerVisitorV3<FimarchInfo, FimarchInfo> {
+	
+	@Override public List<FimarchInfo> beforeMerge(List<FimarchInfo> baseInfos) {
+		return baseInfos;
 	}
 	
 	
 	
-	private void checkArgument(FimarchInfo sourceOne, FimarchInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
+	@Override public boolean shouldMerge(FimarchInfo baseInfo, FimarchInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner);
 	}
 	
 	
 	
-	private FimarchInfo merge(FimarchInfo sourceOne, FimarchInfo sourceTwo) {
-		FimarchInfo result = makeClone(sourceOne);		
-		result.username = sourceTwo.username;
-		result.codLanguage = sourceTwo.codLanguage;
-		return result;
-	}
-	
-	
-	
-	private FimarchInfo makeClone(FimarchInfo recordInfo) {
-		try {
-			return (FimarchInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(FimarchInfo sourceOne, FimarchInfo sourceTwo) {		
-		return (sourceOne.codOwner == sourceTwo.codOwner);
-	}
-	
-	
-	
-	private void logException(Exception e) {
+	@Override public List<FimarchInfo> merge(FimarchInfo baseInfo, FimarchInfo selectedInfo) {
+		List<FimarchInfo> results = new ArrayList<>();
 		
-		SystemLog.logError(this.getClass(), e);
+		selectedInfo.username = baseInfo.username;
+		selectedInfo.codLanguage = baseInfo.codLanguage;
+		
+		results.add(selectedInfo);
+		return results;
+	}
+	
+	
+	
+	@Override public InfoUniquifier<FimarchInfo> getUniquifier() {
+		return null;
 	}
 }

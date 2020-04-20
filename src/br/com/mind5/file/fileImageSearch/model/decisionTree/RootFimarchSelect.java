@@ -9,13 +9,13 @@ import br.com.mind5.file.fileImageSearch.model.checker.FimarchCheckLangu;
 import br.com.mind5.file.fileImageSearch.model.checker.FimarchCheckOwner;
 import br.com.mind5.file.fileImageSearch.model.checker.FimarchCheckRead;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 
-public final class RootFimarchSelect extends DeciTreeTemplateReadV1<FimarchInfo> {
+public final class RootFimarchSelect extends DeciTreeTemplateReadV2<FimarchInfo> {
 	
 	public RootFimarchSelect(DeciTreeOption<FimarchInfo> option) {
 		super(option);

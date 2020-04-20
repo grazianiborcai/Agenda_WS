@@ -1,28 +1,10 @@
 package br.com.mind5.file.fileImageSearch.info;
 
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoSetter;
+import br.com.mind5.info.InfoSetterTemplate;
 
-public final class FimarchSetterStore implements InfoSetter<FimarchInfo> {
+public final class FimarchSetterStore extends InfoSetterTemplate<FimarchInfo> {
 	
-	public FimarchInfo setAttr(FimarchInfo recordInfo) {
-		checkArgument(recordInfo);
-		return setCodEntityCateg(recordInfo);
-	}
-	
-	
-	
-	private void checkArgument(FimarchInfo recordInfo) {
-		if (recordInfo == null) {
-			logException(new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT));
-			throw new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT);
-		}
-	}
-	
-	
-	
-	private FimarchInfo setCodEntityCateg(FimarchInfo recordInfo) {
+	@Override protected FimarchInfo setAttrHook(FimarchInfo recordInfo) {
 		FimarchInfo result = new FimarchInfo();
 		
 		result.codOwner = recordInfo.codOwner;
@@ -32,11 +14,4 @@ public final class FimarchSetterStore implements InfoSetter<FimarchInfo> {
 		
 		return result;
 	}
-	
-	
-	
-	private void logException(Exception e) {
-		
-		SystemLog.logError(this.getClass(), e);
-	}	
 }

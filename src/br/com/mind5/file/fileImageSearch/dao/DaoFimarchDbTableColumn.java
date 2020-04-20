@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class FimarchDbTableColumn extends DaoDbTableColumnTemplate {
+public final class DaoFimarchDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_CUSTOMER = DaoDbField.COL_COD_CUSTOMER;
 	public static final String COL_COD_EMPLOYEE = DaoDbField.COL_COD_EMPLOYEE;
 	public static final String COL_COD_FILE_IMG = DaoDbField.COL_COD_FILE_IMG;	
@@ -23,25 +23,13 @@ public final class FimarchDbTableColumn extends DaoDbTableColumnTemplate {
 		
 	
 	
-	private Hashtable<String, List<DaoColumn>> tableColumns;	
-	
-	public FimarchDbTableColumn() {
-		super(FimarchDbTableColumn.class);
+	public DaoFimarchDbTableColumn() {
+		super();
 	}
 	
 	
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
-		tableColumns = new Hashtable<>();
-		
-		buildFileImageTable();	
-		
-		return tableColumns;
-	}
-	
-	
-	
-	private void buildFileImageTable() {
 		final String TABLE_NAME = DaoDbTable.FILE_IMG_TABLE;
 		
 		DaoColumn oneColumn;
@@ -126,7 +114,9 @@ public final class FimarchDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
-
-		tableColumns.put(DaoDbTable.FILE_IMG_SEARCH_VIEW, columns);
+		
+		Hashtable<String, List<DaoColumn>> results = new Hashtable<>();
+		results.put(DaoDbTable.FILE_IMG_SEARCH_VIEW, columns);
+		return results;
 	}
 }

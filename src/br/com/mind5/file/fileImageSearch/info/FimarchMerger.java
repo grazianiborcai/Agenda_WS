@@ -2,18 +2,18 @@ package br.com.mind5.file.fileImageSearch.info;
 
 import java.util.List;
 
-import br.com.mind5.info.obsolete.InfoMerger_;
+import br.com.mind5.info.InfoMergerBuilderV3;
+import br.com.mind5.info.InfoMergerV3;
 
-public final class FimarchMerger {	
-	public static FimarchInfo mergeToSelect(FimarchInfo sourceOne, FimarchInfo sourceTwo) {
-		InfoMerger_<FimarchInfo, FimarchInfo> merger = new FimarchMergerToSelect();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
+public final class FimarchMerger {		
+	public static List<FimarchInfo> mergeToSelect(List<FimarchInfo> baseInfos, List<FimarchInfo> selectedInfos) {
+		InfoMergerBuilderV3<FimarchInfo, FimarchInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new FimarchVisiMergeToSelect());
+		InfoMergerV3<FimarchInfo, FimarchInfo> merger = builder.build();		
 	
-	
-	
-	public static List<FimarchInfo> mergeToSelect(List<FimarchInfo> sourceOnes, List<FimarchInfo> sourceTwos) {
-		InfoMerger_<FimarchInfo, FimarchInfo> merger = new FimarchMergerToSelect();		
-		return merger.merge(sourceOnes, sourceTwos);
+		return merger.merge();
 	}
 }

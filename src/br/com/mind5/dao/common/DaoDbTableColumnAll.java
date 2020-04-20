@@ -100,7 +100,7 @@ import br.com.mind5.dao.DaoColumn;
 import br.com.mind5.dao.DaoDbTableColumn;
 import br.com.mind5.file.fileImage.dao.FimgDbTableColumn;
 import br.com.mind5.file.fileImageList.dao.DaoFimistDbTableColumn;
-import br.com.mind5.file.fileImageSearch.dao.FimarchDbTableColumn;
+import br.com.mind5.file.fileImageSearch.dao.DaoFimarchDbTableColumn;
 import br.com.mind5.file.filePath.dao.FathDbTableColumn;
 import br.com.mind5.form.formAddress.dao.DaoFormessDbTableColumn;
 import br.com.mind5.form.formPhone.dao.DaoFormoneDbTableColumn;
@@ -246,7 +246,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new DaoSotarchDbTableColumn());
 		addTable(new ComparchDbTableColumn());
 		addTable(new PerarchDbTableColumn());
-		addTable(new FimarchDbTableColumn());
+		addTable(new DaoFimarchDbTableColumn());
 		addTable(new DaoFimistDbTableColumn());
 		addTable(new StorauthDbTableColumn());
 		addTable(new StolarchDbTableColumn());

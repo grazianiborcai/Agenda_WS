@@ -1,35 +1,19 @@
 package br.com.mind5.file.fileImageSearch.model.action;
 
 import br.com.mind5.file.fileImageSearch.info.FimarchInfo;
-import br.com.mind5.model.action.ActionLazyV1;
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionStdHelperMerge;
-import br.com.mind5.model.decisionTree.DeciResult;
+import br.com.mind5.model.action.ActionStdTemplateV2;
+import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdFimarchMergeToSelect implements ActionStdV1<FimarchInfo> {
-	private ActionStdV1<FimarchInfo> actionHelper;	
-	
-	
-	public StdFimarchMergeToSelect(DeciTreeOption<FimarchInfo> option) {			
-		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiFimarchMergeToSelect(option.conn, option.schemaName));
+public final class StdFimarchMergeToSelect extends ActionStdTemplateV2<FimarchInfo> {
+
+	public StdFimarchMergeToSelect(DeciTreeOption<FimarchInfo> option) {
+		super(option);
 	}
 	
 	
 	
-	@Override public void addPostAction(ActionLazyV1<FimarchInfo> actionHandler) {
-		actionHelper.addPostAction(actionHandler);
-	}
-	
-	
-	
-	@Override public boolean executeAction() {			
-		return actionHelper.executeAction();
-	}
-	
-	
-	
-	@Override public DeciResult<FimarchInfo> getDecisionResult() {
-		return actionHelper.getDecisionResult();
+	protected ActionVisitorV2<FimarchInfo> buildVisitorHook(DeciTreeOption<FimarchInfo> option) {
+		return new VisiFimarchMergeToSelect(option);
 	}
 }

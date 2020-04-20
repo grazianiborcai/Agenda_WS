@@ -20,7 +20,7 @@ public final class FimarchInfo extends InfoRecord implements Cloneable {
 	
 	
 	public FimarchInfo() {
-		super(FimarchInfo.class);
+		super();
 		
 		codOwner = DefaultValue.number();
 		codFileImg = DefaultValue.number();		
