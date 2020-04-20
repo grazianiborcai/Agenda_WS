@@ -31,15 +31,15 @@ public final class DaoLangarchSelectSingle extends DaoStmtTemplate<LangarchInfo>
 	
 	
 	
-	@Override protected DaoOperation getOperationHook() {
-		return DaoOperation.SELECT;
-	}
-	
-	
-	
 	@Override protected String getLookupTableHook() {
 		return DaoDbTable.LANGUAGE_SEARCH_VIEW;
 	}	
+	
+	
+	
+	@Override protected DaoOperation getOperationHook() {
+		return DaoOperation.SELECT;
+	}
 	
 	
 	
