@@ -16,7 +16,8 @@ public class CurrarshCheckRead extends ModelCheckerTemplateSimpleV2<CurrarshInfo
 	
 	
 	@Override protected boolean checkHook(CurrarshInfo recordInfo, Connection conn, String schemaName) {	
-		if ( recordInfo.codLanguage == null )			
+		if ( recordInfo.codCurr 	== null ||
+			 recordInfo.codLanguage == null		)			
 			return super.FAILED;
 		
 		

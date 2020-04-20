@@ -16,7 +16,8 @@ public class CurrencyCheckRead extends ModelCheckerTemplateSimpleV2<CurrencyInfo
 	
 	
 	@Override protected boolean checkHook(CurrencyInfo recordInfo, Connection conn, String schemaName) {	
-		if ( recordInfo.codLanguage == null )			
+		if ( recordInfo.codCurr 	== null ||
+			 recordInfo.codLanguage == null		)			
 			return super.FAILED;
 		
 		
