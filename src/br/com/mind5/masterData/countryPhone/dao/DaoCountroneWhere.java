@@ -30,10 +30,6 @@ final class DaoCountroneWhere implements DaoStmtWhere {
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codCountryPhone));
 					break;
 					
-				case DaoCountroneDbTableColumn.COL_COD_COUNTRY :
-					builder.addClauseEqualAnd(eachColumn, recordInfo.codCountry);
-					break;
-					
 				case DaoCountroneDbTableColumn.COL_COD_LANGUAGE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codLanguage);
 					break;
