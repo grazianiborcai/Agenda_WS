@@ -24,12 +24,12 @@ public final class LangarchCheckExist extends ModelCheckerTemplateActionV2<Langa
 	
 	
 	@Override protected int getCodMsgOnResultTrueHook() {
-		return SystemCode.LANGUAGE_ALREADY_EXIST;
+		return SystemCode.LANGUAGE_SEARCH_ALREADY_EXIST;
 	}	
 	
 	
 	
 	@Override protected int getCodMsgOnResultFalseHook() {
-		return SystemCode.LANGUAGE_NOT_FOUND;
+		return SystemCode.LANGUAGE_SEARCH_NOT_FOUND;
 	}
 }
