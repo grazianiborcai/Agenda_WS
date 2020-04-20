@@ -4,7 +4,6 @@ import java.util.List;
 
 import br.com.mind5.business.customer.info.CusInfo;
 import br.com.mind5.business.customerSearch.info.CusarchInfo;
-import br.com.mind5.business.masterData.info.CurrencyInfo;
 import br.com.mind5.business.masterData.info.FeeCategInfo;
 import br.com.mind5.business.masterData.info.OrderStatusInfo;
 import br.com.mind5.business.orderItem.info.OrderemInfo;
@@ -12,6 +11,7 @@ import br.com.mind5.business.orderSearch.info.OrdarchInfo;
 import br.com.mind5.business.orderSnapshot.info.OrdnapInfo;
 import br.com.mind5.info.InfoMergerBuilderV3;
 import br.com.mind5.info.InfoMergerV3;
+import br.com.mind5.masterData.currency.info.CurrencyInfo;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
 import br.com.mind5.security.username.info.UsernameInfo;
 

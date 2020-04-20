@@ -1,8 +1,8 @@
-package br.com.mind5.business.masterData.model.checker;
+package br.com.mind5.masterData.currency.model.checker;
 
-import br.com.mind5.business.masterData.info.CurrencyInfo;
-import br.com.mind5.business.masterData.model.action.StdCurrencySelect;
 import br.com.mind5.common.SystemCode;
+import br.com.mind5.masterData.currency.info.CurrencyInfo;
+import br.com.mind5.masterData.currency.model.action.StdCurrencyDaoSelect;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
@@ -17,7 +17,7 @@ public final class CurrencyCheckExist extends ModelCheckerTemplateActionV2<Curre
 	
 	
 	@Override protected ActionStdV1<CurrencyInfo> buildActionHook(DeciTreeOption<CurrencyInfo> option) {
-		ActionStdV1<CurrencyInfo> select = new StdCurrencySelect(option);
+		ActionStdV1<CurrencyInfo> select = new StdCurrencyDaoSelect(option);
 		return select;
 	}
 	

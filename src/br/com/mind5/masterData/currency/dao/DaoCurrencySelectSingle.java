@@ -1,4 +1,4 @@
-package br.com.mind5.business.masterData.dao;
+package br.com.mind5.masterData.currency.dao;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.business.masterData.info.CurrencyInfo;
 import br.com.mind5.dao.DaoJoin;
 import br.com.mind5.dao.DaoJoinBuilder;
 import br.com.mind5.dao.DaoOperation;
@@ -16,12 +15,13 @@ import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
+import br.com.mind5.masterData.currency.info.CurrencyInfo;
 
-public final class CurrencySelectSingle extends DaoStmtTemplate<CurrencyInfo> {
+public final class DaoCurrencySelectSingle extends DaoStmtTemplate<CurrencyInfo> {
 	private final String MAIN_TABLE = DaoDbTable.CURRENCY_TABLE;
 	
 	
-	public CurrencySelectSingle(Connection conn, CurrencyInfo recordInfo, String schemaName) {
+	public DaoCurrencySelectSingle(Connection conn, CurrencyInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -42,18 +42,17 @@ public final class CurrencySelectSingle extends DaoStmtTemplate<CurrencyInfo> {
 	@Override protected String buildWhereClauseHook(String tableName, CurrencyInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
 		
-		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
-		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;	
-		whereOption.dummyClauseWhenEmpty = DaoOptionValue.DUMMY_CLAUSE_ALLOWED;
+		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
+		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;
 		
-		DaoStmtWhere whereClause = new CurrencyWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new DaoCurrencyWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
 	
 	
 	@Override protected DaoJoin getJoinHook(CurrencyInfo recordInfo) {
-		DaoJoinBuilder joinText = new CurrencyJoinTxt(MAIN_TABLE);		
+		DaoJoinBuilder joinText = new DaoCurrencyJoinTxt(MAIN_TABLE);		
 		return joinText.build();
 	}
 	
@@ -70,10 +69,10 @@ public final class CurrencySelectSingle extends DaoStmtTemplate<CurrencyInfo> {
 				do {				
 					CurrencyInfo dataInfo = new CurrencyInfo();
 					
-					dataInfo.codCurr = stmtResult.getString(MasterDataDbTableColumn.COL_COD_CURRENCY);
-					dataInfo.symbolCurr = stmtResult.getString(MasterDataDbTableColumn.COL_CURRENCY_SYMBOL);
-					dataInfo.txtCurr = stmtResult.getString(MasterDataDbTableColumn.COL_NAME);
-					dataInfo.codLanguage = stmtResult.getString(MasterDataDbTableColumn.COL_COD_LANGUAGE);		
+					dataInfo.codCurr = stmtResult.getString(DaoCurrencyDbTableColumn.COL_COD_CURRENCY);
+					dataInfo.symbolCurr = stmtResult.getString(DaoCurrencyDbTableColumn.COL_CURRENCY_SYMBOL);
+					dataInfo.txtCurr = stmtResult.getString(DaoCurrencyDbTableColumn.COL_NAME);
+					dataInfo.codLanguage = stmtResult.getString(DaoCurrencyDbTableColumn.COL_COD_LANGUAGE);		
 					
 					finalResult.add(dataInfo);				
 				} while (stmtResult.next());

@@ -1,9 +1,9 @@
-package br.com.mind5.business.masterData.model.checker;
+package br.com.mind5.masterData.currency.model.checker;
 
 import java.sql.Connection;
 
-import br.com.mind5.business.masterData.info.CurrencyInfo;
 import br.com.mind5.common.SystemCode;
+import br.com.mind5.masterData.currency.info.CurrencyInfo;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 

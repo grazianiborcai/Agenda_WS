@@ -14,7 +14,6 @@ import br.com.mind5.business.masterData.info.CartCategInfo;
 import br.com.mind5.business.masterData.info.CountryInfo;
 import br.com.mind5.business.masterData.info.CountryLegalInfo;
 import br.com.mind5.business.masterData.info.CountryPhoneInfo;
-import br.com.mind5.business.masterData.info.CurrencyInfo;
 import br.com.mind5.business.masterData.info.DaypartInfo;
 import br.com.mind5.business.masterData.info.EntityCategInfo;
 import br.com.mind5.business.masterData.info.FeeCategInfo;
@@ -38,7 +37,6 @@ import br.com.mind5.business.masterData.model.CartCategModelSelect;
 import br.com.mind5.business.masterData.model.CountryLegalModelSelect;
 import br.com.mind5.business.masterData.model.CountryModelSelect;
 import br.com.mind5.business.masterData.model.CountryPhoneModelSelect;
-import br.com.mind5.business.masterData.model.CurrencyModelSelect;
 import br.com.mind5.business.masterData.model.DaypartModelSelect;
 import br.com.mind5.business.masterData.model.EntityCategModelSelect;
 import br.com.mind5.business.masterData.model.FeeCategModelSelect;
@@ -56,6 +54,8 @@ import br.com.mind5.business.masterData.model.ScheduleStatusModelSelect;
 import br.com.mind5.business.masterData.model.TimezoneModelSelect;
 import br.com.mind5.business.masterData.model.UserCategModelSelect;
 import br.com.mind5.business.masterData.model.WeekdayModelSelect;
+import br.com.mind5.masterData.currencySearch.info.CurrarshInfo;
+import br.com.mind5.masterData.currencySearch.model.CurrarshModelSelect;
 import br.com.mind5.masterData.languageSearch.info.LangarchInfo;
 import br.com.mind5.masterData.languageSearch.model.LangarchModelSelect;
 import br.com.mind5.masterData.moonPhase.info.MoonaseInfo;
@@ -206,11 +206,11 @@ public final class MasterDataResource {
 	public Response selectCurrency(@HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage,
 			                       @HeaderParam("codCurr") String codCurr){
 		
-		CurrencyInfo recordInfo = new CurrencyInfo();
+		CurrarshInfo recordInfo = new CurrarshInfo();
 		recordInfo.codLanguage = codLanguage;
 		recordInfo.codCurr = codCurr;
 		
-		Model model = new CurrencyModelSelect(recordInfo);
+		Model model = new CurrarshModelSelect(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	}

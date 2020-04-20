@@ -1,7 +1,7 @@
 package br.com.mind5.business.cart.info;
 
-import br.com.mind5.business.masterData.info.CurrencyInfo;
 import br.com.mind5.info.obsolete.InfoMergerTemplateV2_;
+import br.com.mind5.masterData.currency.info.CurrencyInfo;
 
 final class CartMergerCurrency extends InfoMergerTemplateV2_<CartInfo, CurrencyInfo> {
 

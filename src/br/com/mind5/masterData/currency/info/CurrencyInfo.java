@@ -1,4 +1,4 @@
-package br.com.mind5.business.masterData.info;
+package br.com.mind5.masterData.currency.info;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ public final class CurrencyInfo extends InfoRecord implements Cloneable {
 	
 	
 	public CurrencyInfo() {
-		super(CurrencyInfo.class);
+		super();
 	}
 	
 	

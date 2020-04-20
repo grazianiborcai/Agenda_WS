@@ -3,10 +3,10 @@ package br.com.mind5.business.store.model.action;
 import java.sql.Connection;
 import java.util.List;
 
-import br.com.mind5.business.masterData.info.CurrencyInfo;
-import br.com.mind5.business.masterData.model.decisionTree.RootCurrencySelect;
 import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.business.store.info.StoreMerger;
+import br.com.mind5.masterData.currency.info.CurrencyInfo;
+import br.com.mind5.masterData.currency.model.decisionTree.RootCurrencySelect;
 import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 import br.com.mind5.model.decisionTree.DeciTree;
 

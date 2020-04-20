@@ -4,9 +4,9 @@ import java.util.List;
 
 import br.com.mind5.business.cartItem.info.CartemInfo;
 import br.com.mind5.business.feeOwner.info.FeewnerInfo;
-import br.com.mind5.business.masterData.info.CurrencyInfo;
 import br.com.mind5.business.order.info.OrderInfo;
 import br.com.mind5.info.obsolete.InfoMerger_;
+import br.com.mind5.masterData.currency.info.CurrencyInfo;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class CartMerger {	

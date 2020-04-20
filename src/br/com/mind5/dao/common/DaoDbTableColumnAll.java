@@ -104,6 +104,8 @@ import br.com.mind5.file.fileImageSearch.dao.FimarchDbTableColumn;
 import br.com.mind5.file.filePath.dao.FathDbTableColumn;
 import br.com.mind5.form.formAddress.dao.DaoFormessDbTableColumn;
 import br.com.mind5.form.formPhone.dao.DaoFormoneDbTableColumn;
+import br.com.mind5.masterData.currency.dao.DaoCurrencyDbTableColumn;
+import br.com.mind5.masterData.currencySearch.dao.DaoCurrarshDbTableColumn;
 import br.com.mind5.masterData.language.dao.DaoLanguDbTableColumn;
 import br.com.mind5.masterData.languageSearch.dao.DaoLangarchDbTableColumn;
 import br.com.mind5.masterData.moonPhase.dao.MoonaseDbTableColumn;
@@ -286,6 +288,8 @@ public final class DaoDbTableColumnAll {
 		addTable(new DaoStatarchDbTableColumn());
 		addTable(new DaoLanguDbTableColumn());
 		addTable(new DaoLangarchDbTableColumn());
+		addTable(new DaoCurrencyDbTableColumn());
+		addTable(new DaoCurrarshDbTableColumn());
 	}
 	
 	

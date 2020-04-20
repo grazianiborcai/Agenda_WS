@@ -2,11 +2,11 @@ package br.com.mind5.business.orderList.info;
 
 import java.util.List;
 
-import br.com.mind5.business.masterData.info.CurrencyInfo;
 import br.com.mind5.business.masterData.info.OrderStatusInfo;
 import br.com.mind5.business.orderSearch.info.OrdarchInfo;
 import br.com.mind5.info.InfoMergerBuilderV3;
 import br.com.mind5.info.InfoMergerV3;
+import br.com.mind5.masterData.currency.info.CurrencyInfo;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class OrdistMerger {	

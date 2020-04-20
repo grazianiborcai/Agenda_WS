@@ -4,13 +4,13 @@ import java.util.List;
 
 import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.companyList.info.ComplisInfo;
-import br.com.mind5.business.masterData.info.CurrencyInfo;
 import br.com.mind5.business.masterData.info.TimezoneInfo;
 import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.business.storeSearch.info.SotarchInfo;
 import br.com.mind5.file.fileImageList.info.FimistInfo;
 import br.com.mind5.info.InfoMergerBuilderV3;
 import br.com.mind5.info.InfoMergerV3;
+import br.com.mind5.masterData.currency.info.CurrencyInfo;
 
 public final class StolisMerger {
 	public static List<StolisInfo> mergeWithSotarch(List<StolisInfo> baseInfos, List<SotarchInfo> selectedInfos) {

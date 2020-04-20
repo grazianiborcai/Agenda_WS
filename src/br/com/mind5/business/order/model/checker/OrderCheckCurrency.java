@@ -2,9 +2,9 @@ package br.com.mind5.business.order.model.checker;
 
 import java.util.List;
 
-import br.com.mind5.business.masterData.info.CurrencyInfo;
-import br.com.mind5.business.masterData.model.checker.CurrencyCheckExist;
 import br.com.mind5.business.order.info.OrderInfo;
+import br.com.mind5.masterData.currency.info.CurrencyInfo;
+import br.com.mind5.masterData.currency.model.checker.CurrencyCheckExist;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 

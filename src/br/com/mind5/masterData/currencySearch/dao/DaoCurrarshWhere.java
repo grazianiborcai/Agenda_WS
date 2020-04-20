@@ -1,35 +1,35 @@
-package br.com.mind5.business.masterData.dao;
+package br.com.mind5.masterData.currencySearch.dao;
 
 import java.util.List;
 
-import br.com.mind5.business.masterData.info.CurrencyInfo;
 import br.com.mind5.dao.DaoColumn;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilder;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
+import br.com.mind5.masterData.currencySearch.info.CurrarshInfo;
 
-final class CurrencyWhere implements DaoStmtWhere {
+final class DaoCurrarshWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public CurrencyWhere(DaoWhereBuilderOption whereOption, String tableName, CurrencyInfo recordInfo) {
+	public DaoCurrarshWhere(DaoWhereBuilderOption whereOption, String tableName, CurrarshInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
 	
 	
-	private void generateWhereClause(DaoWhereBuilderOption whereOption, String tableName, CurrencyInfo recordInfo) {
+	private void generateWhereClause(DaoWhereBuilderOption whereOption, String tableName, CurrarshInfo recordInfo) {
 		DaoWhereBuilder builder = DaoWhereBuilder.factory(whereOption);		
 		List<DaoColumn> columns = DaoDbTableColumnAll.getTableColumnsAsList(tableName);
 		
 		for (DaoColumn eachColumn : columns) {
 			switch(eachColumn.columnName) {
-				case MasterDataDbTableColumn.COL_COD_CURRENCY :
+				case DaoCurrarshDbTableColumn.COL_COD_CURRENCY :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codCurr);
 					break;
 					
-				case MasterDataDbTableColumn.COL_COD_LANGUAGE :
+				case DaoCurrarshDbTableColumn.COL_COD_LANGUAGE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codLanguage);
 					break;
 			}
