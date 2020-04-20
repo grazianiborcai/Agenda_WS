@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.business.masterData.dao.MasterDataDbTableColumn;
 import br.com.mind5.dao.DaoJoin;
 import br.com.mind5.dao.DaoJoinBuilder;
 import br.com.mind5.dao.DaoOperation;
@@ -71,9 +70,9 @@ public final class DaoBusareaSelectSingle extends DaoStmtTemplate<BusareaInfo> {
 				do {				
 					BusareaInfo dataInfo = new BusareaInfo();
 					
-					dataInfo.codBusiness = stmtResult.getInt(MasterDataDbTableColumn.COL_COD_BUSINESS);
-					dataInfo.txtBusiness = stmtResult.getString(MasterDataDbTableColumn.COL_NAME);
-					dataInfo.codLanguage = stmtResult.getString(MasterDataDbTableColumn.COL_COD_LANGUAGE);		
+					dataInfo.codBusiness = stmtResult.getInt(DaoBusareaDbTableColumn.COL_COD_BUSINESS);
+					dataInfo.txtBusiness = stmtResult.getString(DaoBusareaDbTableColumn.COL_NAME);
+					dataInfo.codLanguage = stmtResult.getString(DaoBusareaDbTableColumn.COL_COD_LANGUAGE);		
 					
 					finalResult.add(dataInfo);				
 				} while (stmtResult.next());

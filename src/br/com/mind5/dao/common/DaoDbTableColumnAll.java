@@ -107,6 +107,7 @@ import br.com.mind5.form.formPhone.dao.DaoFormoneDbTableColumn;
 import br.com.mind5.masterData.areaPhone.dao.DaoAreaneDbTableColumn;
 import br.com.mind5.masterData.areaPhoneSearch.dao.DaoAreanarchDbTableColumn;
 import br.com.mind5.masterData.authorizationGroupRole.dao.DaoAuthgroleDbTableColumn;
+import br.com.mind5.masterData.businessArea.dao.DaoBusareaDbTableColumn;
 import br.com.mind5.masterData.country.dao.DaoCountryDbTableColumn;
 import br.com.mind5.masterData.countryPhone.dao.DaoCountroneDbTableColumn;
 import br.com.mind5.masterData.countryPhoneSearch.dao.DaoCountronarchDbTableColumn;
@@ -320,6 +321,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new DaoMatyparchDbTableColumn());
 		addTable(new DaoMatunitDbTableColumn());
 		addTable(new DaoMatunitarchDbTableColumn());
+		addTable(new DaoBusareaDbTableColumn());
 	}
 	
 	
