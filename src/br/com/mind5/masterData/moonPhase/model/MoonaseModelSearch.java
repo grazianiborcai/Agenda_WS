@@ -1,4 +1,4 @@
-package br.com.mind5.masterData.moonPhase;
+package br.com.mind5.masterData.moonPhase.model;
 
 import br.com.mind5.masterData.moonPhase.info.MoonaseInfo;
 import br.com.mind5.masterData.moonPhase.model.decisionTree.RootMoonaseSearch;
