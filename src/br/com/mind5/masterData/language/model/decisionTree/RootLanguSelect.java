@@ -8,7 +8,7 @@ import br.com.mind5.masterData.language.model.action.StdLanguDaoSelect;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.common.ModelCherckerTrue;
+import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 
@@ -24,7 +24,7 @@ public final class RootLanguSelect extends DeciTreeTemplateReadV2<LanguInfo> {
 		List<ModelCheckerV1<LanguInfo>> queue = new ArrayList<>();		
 		ModelCheckerV1<LanguInfo> checker;
 		
-		checker = new ModelCherckerTrue<>();
+		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueueV2<>(queue);
