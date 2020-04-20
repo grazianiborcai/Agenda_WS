@@ -15,11 +15,11 @@ import br.com.mind5.dao.DaoStmtParamTranslator;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class PhonapInsertSingle extends DaoStmtTemplate<PhonapInfo> {
+public final class DaoPhonapInsertSingle extends DaoStmtTemplate<PhonapInfo> {
 	private final String MAIN_TABLE = DaoDbTable.PHONE_SNAPSHOT_TABLE;
 	
 	
-	public PhonapInsertSingle(Connection conn, PhonapInfo recordInfo, String schemaName) {
+	public DaoPhonapInsertSingle(Connection conn, PhonapInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	

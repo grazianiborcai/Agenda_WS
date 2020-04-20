@@ -3,7 +3,7 @@ package br.com.mind5.business.phoneSnapshot.model.action;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.business.phoneSnapshot.dao.PhonapInsert;
+import br.com.mind5.business.phoneSnapshot.dao.DaoPhonapInsert;
 import br.com.mind5.business.phoneSnapshot.info.PhonapInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.obsolete.DaoStmtExec_;
@@ -35,7 +35,7 @@ public final class StdPhonapInsert implements ActionStdV1<PhonapInfo> {
 			stmtExecOptions.add(stmtExecOption);
 		}
 		
-		return new PhonapInsert(stmtExecOptions);
+		return new DaoPhonapInsert(stmtExecOptions);
 	}
 	
 	

@@ -7,13 +7,13 @@ import br.com.mind5.business.phoneSnapshot.info.PhonapInfo;
 import br.com.mind5.business.phoneSnapshot.model.action.StdPhonapMergeEmplis;
 import br.com.mind5.business.phoneSnapshot.model.checker.PhonapCheckHasEmployee;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 
-public final class NodePhonapEmplis extends DeciTreeTemplateReadV1<PhonapInfo> {
+public final class NodePhonapEmplis extends DeciTreeTemplateReadV2<PhonapInfo> {
 	
 	public NodePhonapEmplis(DeciTreeOption<PhonapInfo> option) {
 		super(option);

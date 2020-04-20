@@ -1,6 +1,5 @@
 package br.com.mind5.business.phoneSnapshot.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.customerList.info.CuslisCopier;
@@ -9,12 +8,14 @@ import br.com.mind5.business.customerList.model.decisionTree.RootCuslisSelect;
 import br.com.mind5.business.phoneSnapshot.info.PhonapInfo;
 import br.com.mind5.business.phoneSnapshot.info.PhonapMerger;
 import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiPhonapMergeCuslis extends ActionVisitorTemplateMergeV1<PhonapInfo, CuslisInfo> {
+final class VisiPhonapMergeCuslis extends ActionVisitorTemplateMergeV2<PhonapInfo, CuslisInfo> {
 	
-	public VisiPhonapMergeCuslis(Connection conn, String schemaName) {
-		super(conn, schemaName, CuslisInfo.class);
+	public VisiPhonapMergeCuslis(DeciTreeOption<PhonapInfo> option) {
+		super(option, CuslisInfo.class);
 	}
 	
 	
@@ -25,13 +26,13 @@ final class VisiPhonapMergeCuslis extends ActionVisitorTemplateMergeV1<PhonapInf
 
 	
 	
-	protected List<CuslisInfo> toActionClassHook(List<PhonapInfo> recordInfos) {
-		return CuslisCopier.copyFromPhonap(recordInfos);	
+	protected List<CuslisInfo> toActionClassHook(List<PhonapInfo> baseInfos) {
+		return CuslisCopier.copyFromPhonap(baseInfos);	
 	}	
 	
 	
-	@Override protected List<PhonapInfo> mergeHook(List<PhonapInfo> recordInfos, List<CuslisInfo> selectedInfos) {	
-		return PhonapMerger.mergeWithCuslis(selectedInfos, recordInfos);
+	@Override protected List<PhonapInfo> mergeHook(List<PhonapInfo> baseInfos, List<CuslisInfo> selectedInfos) {	
+		return PhonapMerger.mergeWithCuslis(baseInfos, selectedInfos);
 	}
 	
 	

@@ -1,56 +1,39 @@
 package br.com.mind5.business.phoneSnapshot.info;
 
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import java.util.ArrayList;
+import java.util.List;
+
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.security.userList.info.UselisInfo;
 
-final class PhonapVisiMergeUselis implements InfoMergerVisitor_<PhonapInfo, UselisInfo> {
-
-	@Override public PhonapInfo writeRecord(UselisInfo sourceOne, PhonapInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+final class PhonapVisiMergeUselis implements InfoMergerVisitorV3<PhonapInfo, UselisInfo> {
+	
+	@Override public List<PhonapInfo> beforeMerge(List<PhonapInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(PhonapInfo baseInfo, UselisInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner	&&
+				baseInfo.codUser  == selectedInfo.codUser		);
+	}
+	
+	
+	
+	@Override public List<PhonapInfo> merge(PhonapInfo baseInfo, UselisInfo selectedInfo) {
+		List<PhonapInfo> results = new ArrayList<>();
 		
-		PhonapInfo clonedInfo = makeClone(sourceTwo);
-		return merge(sourceOne, clonedInfo);
-	}
-	
-	
-	
-	private void checkArgument(UselisInfo sourceOne, PhonapInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private PhonapInfo makeClone(PhonapInfo recordInfo) {
-		try {
-			return (PhonapInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	private PhonapInfo merge(UselisInfo sourceOne, PhonapInfo sourceTwo) {
-		sourceTwo.codUserSnapshot = sourceOne.codSnapshot;
-		return sourceTwo;
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(UselisInfo sourceOne, PhonapInfo sourceTwo) {
-		return (sourceOne.codOwner  == sourceTwo.codOwner	&&
-				sourceOne.codUser 	== sourceTwo.codUser);
-	}
-	
-	
-	
-	private void logException(Exception e) {
+		baseInfo.codUserSnapshot = selectedInfo.codSnapshot;
 		
-		SystemLog.logError(this.getClass(), e);
+		results.add(baseInfo);
+		return results;
+	}
+	
+	
+	
+	@Override public InfoUniquifier<PhonapInfo> getUniquifier() {
+		return null;
 	}
 }

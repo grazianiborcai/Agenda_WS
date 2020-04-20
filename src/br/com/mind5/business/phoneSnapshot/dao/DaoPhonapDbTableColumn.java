@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class PhonapDbTableColumn extends DaoDbTableColumnTemplate {	
+public final class DaoPhonapDbTableColumn extends DaoDbTableColumnTemplate {	
 	public static final String COL_COD_AREA = DaoDbField.COL_COD_AREA;
 	public static final String COL_COD_CUSTOMER = DaoDbField.COL_COD_CUSTOMER;
 	public static final String COL_COD_CUSTOMER_SNAPSHOT = DaoDbField.COL_COD_CUSTOMER_SNAPSHOT;
@@ -34,24 +34,14 @@ public final class PhonapDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_LAST_CHANGED_BY = DaoDbField.COL_LAST_CHANGED_BY;
 	public static final String COL_RECORD_MODE = DaoDbField.COL_RECORD_MODE;
 	
-	private Hashtable<String, List<DaoColumn>> tableColumns;
 	
-	
-	public PhonapDbTableColumn() {
-		super(PhonapDbTableColumn.class);
+	public DaoPhonapDbTableColumn() {
+		super();
 	}
 	
 	
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
-		tableColumns = new Hashtable<>();		
-		buildPhoneSnapTable();	
-		return tableColumns;
-	}
-	
-	
-	
-	private void buildPhoneSnapTable() {
 		final String TABLE_NAME = DaoDbTable.PHONE_SNAPSHOT_TABLE;
 		
 		DaoColumn oneColumn;
@@ -242,6 +232,8 @@ public final class PhonapDbTableColumn extends DaoDbTableColumnTemplate {
 		columns.add(oneColumn);
 		
 		
-		tableColumns.put(TABLE_NAME, columns);
+		Hashtable<String, List<DaoColumn>> results = new Hashtable<>();
+		results.put(TABLE_NAME, columns);
+		return results;
 	}
 }

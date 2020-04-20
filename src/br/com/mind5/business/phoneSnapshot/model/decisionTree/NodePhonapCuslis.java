@@ -7,13 +7,13 @@ import br.com.mind5.business.phoneSnapshot.info.PhonapInfo;
 import br.com.mind5.business.phoneSnapshot.model.action.StdPhonapMergeCuslis;
 import br.com.mind5.business.phoneSnapshot.model.checker.PhonapCheckHasCustomer;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 
-public final class NodePhonapCuslis extends DeciTreeTemplateReadV1<PhonapInfo> {
+public final class NodePhonapCuslis extends DeciTreeTemplateReadV2<PhonapInfo> {
 	
 	public NodePhonapCuslis(DeciTreeOption<PhonapInfo> option) {
 		super(option);

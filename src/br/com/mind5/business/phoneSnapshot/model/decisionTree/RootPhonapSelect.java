@@ -5,20 +5,20 @@ import java.util.List;
 
 import br.com.mind5.business.phoneSnapshot.info.PhonapInfo;
 import br.com.mind5.business.phoneSnapshot.model.action.LazyPhonapMergeCountrone;
-import br.com.mind5.business.phoneSnapshot.model.action.LazyPhonapMergeForm;
-import br.com.mind5.business.phoneSnapshot.model.action.StdPhonapSelect;
+import br.com.mind5.business.phoneSnapshot.model.action.LazyPhonapMergeFormone;
+import br.com.mind5.business.phoneSnapshot.model.action.StdPhonapMergeToSelect;
 import br.com.mind5.business.phoneSnapshot.model.checker.PhonapCheckLangu;
 import br.com.mind5.business.phoneSnapshot.model.checker.PhonapCheckOwner;
 import br.com.mind5.business.phoneSnapshot.model.checker.PhonapCheckRead;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 
-public final class RootPhonapSelect extends DeciTreeTemplateReadV1<PhonapInfo> {
+public final class RootPhonapSelect extends DeciTreeTemplateReadV2<PhonapInfo> {
 
 	public RootPhonapSelect(DeciTreeOption<PhonapInfo> option) {
 		super(option);
@@ -60,14 +60,14 @@ public final class RootPhonapSelect extends DeciTreeTemplateReadV1<PhonapInfo> {
 	@Override protected List<ActionStdV1<PhonapInfo>> buildActionsOnPassedHook(DeciTreeOption<PhonapInfo> option) {
 		List<ActionStdV1<PhonapInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV1<PhonapInfo> select = new StdPhonapSelect(option);	
+		ActionStdV1<PhonapInfo> mergeToSelect = new StdPhonapMergeToSelect(option);	
 		ActionLazyV1<PhonapInfo> mergeCountrone = new LazyPhonapMergeCountrone(option.conn, option.schemaName);
-		ActionLazyV1<PhonapInfo> mergeForm = new LazyPhonapMergeForm(option.conn, option.schemaName);
+		ActionLazyV1<PhonapInfo> mergeFormone = new LazyPhonapMergeFormone(option.conn, option.schemaName);
 
-		select.addPostAction(mergeCountrone);	
-		mergeCountrone.addPostAction(mergeForm);
+		mergeToSelect.addPostAction(mergeCountrone);	
+		mergeCountrone.addPostAction(mergeFormone);
 		
-		actions.add(select);
+		actions.add(mergeToSelect);
 		
 		return actions;
 	}

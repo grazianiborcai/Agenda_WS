@@ -73,7 +73,7 @@ import br.com.mind5.business.personSearch.dao.PerarchDbTableColumn;
 import br.com.mind5.business.personSnapshot.dao.PersonapDbTableColumn;
 import br.com.mind5.business.phone.dao.DaoPhoneDbTableColumn;
 import br.com.mind5.business.phoneSearch.dao.DaoPhonarchDbTableColumn;
-import br.com.mind5.business.phoneSnapshot.dao.PhonapDbTableColumn;
+import br.com.mind5.business.phoneSnapshot.dao.DaoPhonapDbTableColumn;
 import br.com.mind5.business.planingData.dao.PlanataDbTableColumn;
 import br.com.mind5.business.scheduleLine.dao.SchedineDbTableColumn;
 import br.com.mind5.business.scheduleLineSnapshot.dao.SchedinapDbTableColumn;
@@ -191,7 +191,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new DaoAddresnapDbTableColumn());
 		addTable(new DaoFormessDbTableColumn());
 		addTable(new DaoPhoneDbTableColumn());
-		addTable(new PhonapDbTableColumn());
+		addTable(new DaoPhonapDbTableColumn());
 		addTable(new DaoFormoneDbTableColumn());
 		addTable(new PersonDbTableColumn());
 		addTable(new PersolisDbTableColumn());

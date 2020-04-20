@@ -10,13 +10,13 @@ import br.com.mind5.business.phoneSnapshot.model.checker.PhonapCheckOwner;
 import br.com.mind5.business.phoneSnapshot.model.checker.PhonapCheckWrite;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class RootPhonapInsert extends DeciTreeTemplateWriteV1<PhonapInfo> {
+public final class RootPhonapInsert extends DeciTreeTemplateWriteV2<PhonapInfo> {
 	
 	public RootPhonapInsert(DeciTreeOption<PhonapInfo> option) {
 		super(option);

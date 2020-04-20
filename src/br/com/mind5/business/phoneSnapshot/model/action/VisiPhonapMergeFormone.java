@@ -1,6 +1,5 @@
 package br.com.mind5.business.phoneSnapshot.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.phoneSnapshot.info.PhonapInfo;
@@ -8,12 +7,14 @@ import br.com.mind5.business.phoneSnapshot.info.PhonapMerger;
 import br.com.mind5.form.formPhone.info.FormoneInfo;
 import br.com.mind5.form.formPhone.model.decisionTree.RootFormoneSelect;
 import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiPhonapMergeForm extends ActionVisitorTemplateMergeV1<PhonapInfo, FormoneInfo> {
+final class VisiPhonapMergeFormone extends ActionVisitorTemplateMergeV2<PhonapInfo, FormoneInfo> {
 	
-	public VisiPhonapMergeForm(Connection conn, String schemaName) {
-		super(conn, schemaName, FormoneInfo.class);
+	public VisiPhonapMergeFormone(DeciTreeOption<PhonapInfo> option) {
+		super(option, FormoneInfo.class);
 	}
 	
 	
@@ -24,8 +25,8 @@ final class VisiPhonapMergeForm extends ActionVisitorTemplateMergeV1<PhonapInfo,
 	
 	
 	
-	@Override protected List<PhonapInfo> mergeHook(List<PhonapInfo> recordInfos, List<FormoneInfo> selectedInfos) {	
-		return PhonapMerger.mergeWithForm(selectedInfos, recordInfos);
+	@Override protected List<PhonapInfo> mergeHook(List<PhonapInfo> baseInfos, List<FormoneInfo> selectedInfos) {	
+		return PhonapMerger.mergeWithFormone(baseInfos, selectedInfos);
 	}
 	
 	

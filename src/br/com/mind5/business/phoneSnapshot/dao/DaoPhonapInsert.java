@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.obsolete.DaoStmtExecHelper_;
 import br.com.mind5.dao.obsolete.DaoStmtExec_;
 
-public final class PhonapInsert implements DaoStmtExec_<PhonapInfo> {
+public final class DaoPhonapInsert implements DaoStmtExec_<PhonapInfo> {
 	private DaoStmtExec_<PhonapInfo> helper;
 	
 	
-	public PhonapInsert(List<DaoStmtExecOption<PhonapInfo>> options) {
-		helper = new DaoStmtExecHelper_<>(options, PhonapInsertSingle.class, PhonapInfo.class);
+	public DaoPhonapInsert(List<DaoStmtExecOption<PhonapInfo>> options) {
+		helper = new DaoStmtExecHelper_<>(options, DaoPhonapInsertSingle.class, PhonapInfo.class);
 	}
 	
 	

@@ -4,14 +4,14 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.phoneSnapshot.info.PhonapInfo;
-import br.com.mind5.model.action.ActionLazyTemplateV1;
+import br.com.mind5.model.action.ActionLazyTemplateV2;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyPhonapMergeForm extends ActionLazyTemplateV1<PhonapInfo, PhonapInfo> {
+public final class LazyPhonapMergeFormone extends ActionLazyTemplateV2<PhonapInfo, PhonapInfo> {
 	
-	public LazyPhonapMergeForm(Connection conn, String schemaName) {
+	public LazyPhonapMergeFormone(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyPhonapMergeForm extends ActionLazyTemplateV1<PhonapInfo, 
 	
 	
 	@Override protected ActionStdV1<PhonapInfo> getInstanceOfActionHook(DeciTreeOption<PhonapInfo> option) {
-		return new StdPhonapMergeForm(option);
+		return new StdPhonapMergeFormone(option);
 	}
 	
 	

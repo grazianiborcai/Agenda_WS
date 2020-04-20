@@ -5,9 +5,8 @@ import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorV3;
 import br.com.mind5.info.InfoUniquifier;
-import br.com.mind5.masterData.countryPhone.info.CountroneInfo;
 
-final class PhonapVisiMergeCountrone implements InfoMergerVisitorV3<PhonapInfo, CountroneInfo> {
+final class PhonapVisiMergeToSelect implements InfoMergerVisitorV3<PhonapInfo, PhonapInfo> {
 	
 	@Override public List<PhonapInfo> beforeMerge(List<PhonapInfo> baseInfos) {
 		return baseInfos;
@@ -15,18 +14,19 @@ final class PhonapVisiMergeCountrone implements InfoMergerVisitorV3<PhonapInfo, 
 	
 	
 	
-	@Override public boolean shouldMerge(PhonapInfo baseInfo, CountroneInfo selectedInfo) {
-		return (baseInfo.codCountryPhone == selectedInfo.codCountryPhone);
+	@Override public boolean shouldMerge(PhonapInfo baseInfo, PhonapInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner);
 	}
 	
 	
 	
-	@Override public List<PhonapInfo> merge(PhonapInfo baseInfo, CountroneInfo selectedInfo) {
+	@Override public List<PhonapInfo> merge(PhonapInfo baseInfo, PhonapInfo selectedInfo) {
 		List<PhonapInfo> results = new ArrayList<>();
 		
-		baseInfo.codCountry = selectedInfo.codCountry;
+		selectedInfo.username = baseInfo.username;
+		selectedInfo.codLanguage = baseInfo.codLanguage;
 		
-		results.add(baseInfo);
+		results.add(selectedInfo);
 		return results;
 	}
 	

@@ -36,7 +36,7 @@ public final class PhonapInfo extends InfoRecord implements Cloneable {
 	
 	
 	public PhonapInfo() {
-		super(PhonapInfo.class);
+		super();
 		
 		codOwner = DefaultValue.number();
 		codSnapshot = DefaultValue.number();
