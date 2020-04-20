@@ -9,13 +9,13 @@ import br.com.mind5.business.phoneSearch.model.checker.PhonarchCheckLangu;
 import br.com.mind5.business.phoneSearch.model.checker.PhonarchCheckOwner;
 import br.com.mind5.business.phoneSearch.model.checker.PhonarchCheckRead;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class RootPhonarchSelect extends DeciTreeTemplateWriteV1<PhonarchInfo> {
+public final class RootPhonarchSelect extends DeciTreeTemplateWriteV2<PhonarchInfo> {
 	
 	public RootPhonarchSelect(DeciTreeOption<PhonarchInfo> option) {
 		super(option);

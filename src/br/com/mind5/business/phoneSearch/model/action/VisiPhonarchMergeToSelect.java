@@ -1,23 +1,24 @@
 package br.com.mind5.business.phoneSearch.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.phoneSearch.info.PhonarchInfo;
 import br.com.mind5.business.phoneSearch.info.PhonarchMerger;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiPhonarchMergeToSelect extends ActionVisitorTemplateMergeV1<PhonarchInfo, PhonarchInfo> {
+final class VisiPhonarchMergeToSelect extends ActionVisitorTemplateMergeV2<PhonarchInfo, PhonarchInfo> {
 	
-	public VisiPhonarchMergeToSelect(Connection conn, String schemaName) {
-		super(conn, schemaName, PhonarchInfo.class);
+	public VisiPhonarchMergeToSelect(DeciTreeOption<PhonarchInfo> option) {
+		super(option, PhonarchInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends ActionStdV1<PhonarchInfo>> getActionClassHook() {
-		return StdPhonarchSelect.class;
+	@Override protected Class<? extends ActionStdV2<PhonarchInfo>> getActionClassHook() {
+		return StdPhonarchDaoSelect.class;
 	}
 	
 	

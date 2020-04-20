@@ -23,7 +23,7 @@ public final class PhonarchInfo extends InfoRecord implements Cloneable {
 	
 	
 	public PhonarchInfo() {
-		super(PhonarchInfo.class);
+		super();
 		
 		codOwner = DefaultValue.number();
 		codPhone = DefaultValue.number();
