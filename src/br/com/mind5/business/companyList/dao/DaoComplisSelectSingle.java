@@ -16,11 +16,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class ComplisSelectSingle extends DaoStmtTemplate<ComplisInfo> {
+public final class DaoComplisSelectSingle extends DaoStmtTemplate<ComplisInfo> {
 	private final String MAIN_TABLE = DaoDbTable.COMP_TABLE;
 	
 	
-	public ComplisSelectSingle(Connection conn, ComplisInfo recordInfo, String schemaName) {
+	public DaoComplisSelectSingle(Connection conn, ComplisInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -47,10 +47,10 @@ public final class ComplisSelectSingle extends DaoStmtTemplate<ComplisInfo> {
 	@Override protected String buildWhereClauseHook(String tableName, ComplisInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
 		
-		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;			//TODO: DONT_IGNORE_NULL
+		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new ComplisWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new DaoComplisWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -67,13 +67,13 @@ public final class ComplisSelectSingle extends DaoStmtTemplate<ComplisInfo> {
 				do {
 					ComplisInfo dataInfo = new ComplisInfo();
 					
-					dataInfo.codOwner = stmtResult.getLong(ComplisDbTableColumn.COL_COD_OWNER);
-					dataInfo.codCompany = stmtResult.getLong(ComplisDbTableColumn.COL_COD_COMPANY);
-					dataInfo.name = stmtResult.getString(ComplisDbTableColumn.COL_NAME);			
-					dataInfo.email = stmtResult.getString(ComplisDbTableColumn.COL_EMAIL);						
-					dataInfo.recordMode = stmtResult.getString(ComplisDbTableColumn.COL_RECORD_MODE);
-					dataInfo.razaoSocial = stmtResult.getString(ComplisDbTableColumn.COL_RAZAO_SOCIAL);
-					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, ComplisDbTableColumn.COL_COD_SNAPSHOT);				
+					dataInfo.codOwner = stmtResult.getLong(DaoComplisDbTableColumn.COL_COD_OWNER);
+					dataInfo.codCompany = stmtResult.getLong(DaoComplisDbTableColumn.COL_COD_COMPANY);
+					dataInfo.name = stmtResult.getString(DaoComplisDbTableColumn.COL_NAME);			
+					dataInfo.email = stmtResult.getString(DaoComplisDbTableColumn.COL_EMAIL);						
+					dataInfo.recordMode = stmtResult.getString(DaoComplisDbTableColumn.COL_RECORD_MODE);
+					dataInfo.razaoSocial = stmtResult.getString(DaoComplisDbTableColumn.COL_RAZAO_SOCIAL);
+					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, DaoComplisDbTableColumn.COL_COD_SNAPSHOT);				
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

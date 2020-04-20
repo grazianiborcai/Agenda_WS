@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class ComplisDbTableColumn extends DaoDbTableColumnTemplate {
+public final class DaoComplisDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_COMPANY = DaoDbField.COL_COD_COMPANY;
 	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;
 	public static final String COL_COD_SNAPSHOT = DaoDbField.COL_COD_SNAPSHOT;
@@ -18,26 +18,16 @@ public final class ComplisDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_LAST_CHANGED_BY = DaoDbField.COL_LAST_CHANGED_BY;
 	public static final String COL_NAME = DaoDbField.COL_NAME;
 	public static final String COL_RAZAO_SOCIAL = DaoDbField.COL_RAZAO_SOCIAL;
-	public static final String COL_RECORD_MODE = DaoDbField.COL_RECORD_MODE;		
-	
-	private Hashtable<String, List<DaoColumn>> tableColumns;	
+	public static final String COL_RECORD_MODE = DaoDbField.COL_RECORD_MODE;	
 	
 	
-	public ComplisDbTableColumn() {
-		super(ComplisDbTableColumn.class);
+	public DaoComplisDbTableColumn() {
+		super();
 	}
 	
 	
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
-		tableColumns = new Hashtable<>();		
-		buildCompanyTable();		
-		return tableColumns;
-	}
-	
-	
-	
-	private void buildCompanyTable() {
 		final String TABLE_NAME = DaoDbTable.COMP_TABLE;
 		
 		DaoColumn oneColumn;
@@ -115,6 +105,8 @@ public final class ComplisDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		tableColumns.put(DaoDbTable.COMPANY_LIST_VIEW, columns);
+		Hashtable<String, List<DaoColumn>> results = new Hashtable<>();
+		results.put(TABLE_NAME, columns);
+		return results;
 	}
 }

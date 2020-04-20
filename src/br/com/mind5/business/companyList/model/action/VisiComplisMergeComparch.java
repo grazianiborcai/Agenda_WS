@@ -1,6 +1,5 @@
 package br.com.mind5.business.companyList.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.companyList.info.ComplisInfo;
@@ -8,12 +7,14 @@ import br.com.mind5.business.companyList.info.ComplisMerger;
 import br.com.mind5.business.companySearch.info.ComparchInfo;
 import br.com.mind5.business.companySearch.model.decisionTree.RootComparchSelect;
 import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiComplisMergeComparch extends ActionVisitorTemplateMergeV1<ComplisInfo, ComparchInfo> {
+final class VisiComplisMergeComparch extends ActionVisitorTemplateMergeV2<ComplisInfo, ComparchInfo> {
 	
-	public VisiComplisMergeComparch(Connection conn, String schemaName) {
-		super(conn, schemaName, ComparchInfo.class);
+	public VisiComplisMergeComparch(DeciTreeOption<ComplisInfo> option) {
+		super(option, ComparchInfo.class);
 	}
 	
 	
@@ -24,8 +25,8 @@ final class VisiComplisMergeComparch extends ActionVisitorTemplateMergeV1<Compli
 	
 	
 	
-	@Override protected List<ComplisInfo> mergeHook(List<ComplisInfo> recordInfos, List<ComparchInfo> selectedInfos) {	
-		return ComplisMerger.mergeWithComparch(selectedInfos, recordInfos);
+	@Override protected List<ComplisInfo> mergeHook(List<ComplisInfo> baseInfos, List<ComparchInfo> selectedInfos) {	
+		return ComplisMerger.mergeWithComparch(baseInfos, selectedInfos);
 	}
 	
 	

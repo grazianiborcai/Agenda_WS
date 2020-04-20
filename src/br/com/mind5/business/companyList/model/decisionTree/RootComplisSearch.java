@@ -6,15 +6,15 @@ import java.util.List;
 import br.com.mind5.business.companyList.info.ComplisInfo;
 import br.com.mind5.business.companyList.model.action.LazyComplisRootSelect;
 import br.com.mind5.business.companyList.model.action.StdComplisMergeComparch;
-import br.com.mind5.business.companyList.model.checker.ComplisCheckDummy;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 
-public final class RootComplisSearch extends DeciTreeTemplateReadV1<ComplisInfo> {
+public final class RootComplisSearch extends DeciTreeTemplateReadV2<ComplisInfo> {
 	
 	public RootComplisSearch(DeciTreeOption<ComplisInfo> option) {
 		super(option);
@@ -26,7 +26,7 @@ public final class RootComplisSearch extends DeciTreeTemplateReadV1<ComplisInfo>
 		List<ModelCheckerV1<ComplisInfo>> queue = new ArrayList<>();		
 		ModelCheckerV1<ComplisInfo> checker;
 	
-		checker = new ComplisCheckDummy();
+		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueueV2<>(queue);

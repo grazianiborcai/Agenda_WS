@@ -1,29 +1,30 @@
 package br.com.mind5.business.companyList.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.companyList.info.ComplisInfo;
 import br.com.mind5.business.companyList.info.ComplisMerger;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiComplisMergeToSelect extends ActionVisitorTemplateMergeV1<ComplisInfo, ComplisInfo> {
+final class VisiComplisMergeToSelect extends ActionVisitorTemplateMergeV2<ComplisInfo, ComplisInfo> {
 	
-	public VisiComplisMergeToSelect(Connection conn, String schemaName) {
-		super(conn, schemaName, ComplisInfo.class);
+	public VisiComplisMergeToSelect(DeciTreeOption<ComplisInfo> option) {
+		super(option, ComplisInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends ActionStdV1<ComplisInfo>> getActionClassHook() {
-		return StdComplisSelect.class;
+	@Override protected Class<? extends ActionStdV2<ComplisInfo>> getActionClassHook() {
+		return StdComplisDaoSelect.class;
 	}
 	
 	
 	
-	@Override protected List<ComplisInfo> mergeHook(List<ComplisInfo> recordInfos, List<ComplisInfo> selectedInfos) {	
-		return ComplisMerger.mergeToSelect(selectedInfos, recordInfos);
+	@Override protected List<ComplisInfo> mergeHook(List<ComplisInfo> baseInfos, List<ComplisInfo> selectedInfos) {	
+		return ComplisMerger.mergeToSelect(baseInfos, selectedInfos);
 	}
 	
 	

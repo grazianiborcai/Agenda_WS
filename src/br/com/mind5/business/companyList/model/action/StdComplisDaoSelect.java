@@ -5,15 +5,15 @@ import br.com.mind5.model.action.ActionStdTemplateV2;
 import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdComplisMergeComparch extends ActionStdTemplateV2<ComplisInfo> {
+public final class StdComplisDaoSelect extends ActionStdTemplateV2<ComplisInfo> {
 
-	public StdComplisMergeComparch(DeciTreeOption<ComplisInfo> option) {
+	public StdComplisDaoSelect(DeciTreeOption<ComplisInfo> option) {
 		super(option);
 	}
 	
 	
 	
 	protected ActionVisitorV2<ComplisInfo> buildVisitorHook(DeciTreeOption<ComplisInfo> option) {
-		return new VisiComplisMergeComparch(option);
+		return new VisiComplisDaoSelect(option);
 	}
 }

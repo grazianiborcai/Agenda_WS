@@ -17,7 +17,7 @@ public final class ComplisInfo extends InfoRecord implements Cloneable {
 	
 	
 	public ComplisInfo() {
-		super(ComplisInfo.class);
+		super();
 		
 		codOwner = DefaultValue.number();
 		codCompany = DefaultValue.number();

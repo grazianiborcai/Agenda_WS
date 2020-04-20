@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilder;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 
-public final class ComplisWhere implements DaoStmtWhere {	
+public final class DaoComplisWhere implements DaoStmtWhere {	
 	private String whereClause;	
 	
 	
-	public ComplisWhere(DaoWhereBuilderOption whereOption, String tableName, ComplisInfo recordInfo) {
+	public DaoComplisWhere(DaoWhereBuilderOption whereOption, String tableName, ComplisInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -27,15 +27,15 @@ public final class ComplisWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-				case ComplisDbTableColumn.COL_COD_OWNER :
+				case DaoComplisDbTableColumn.COL_COD_OWNER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;
 					
-				case ComplisDbTableColumn.COL_COD_COMPANY :
+				case DaoComplisDbTableColumn.COL_COD_COMPANY :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codCompany));
 					break;
 					
-				case ComplisDbTableColumn.COL_RECORD_MODE :
+				case DaoComplisDbTableColumn.COL_RECORD_MODE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.recordMode);
 					break;
 			}
