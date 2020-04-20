@@ -1,35 +1,19 @@
 package br.com.mind5.file.fileImageList.model.action;
 
 import br.com.mind5.file.fileImageList.info.FimistInfo;
-import br.com.mind5.model.action.ActionLazyV1;
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionStdHelperMerge;
-import br.com.mind5.model.decisionTree.DeciResult;
+import br.com.mind5.model.action.ActionStdTemplateV2;
+import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdFimistMergeToSelect implements ActionStdV1<FimistInfo> {
-	private ActionStdV1<FimistInfo> actionHelper;	
-	
-	
-	public StdFimistMergeToSelect(DeciTreeOption<FimistInfo> option) {			
-		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiFimistMergeToSelect(option.conn, option.schemaName));
+public final class StdFimistMergeToSelect extends ActionStdTemplateV2<FimistInfo> {
+
+	public StdFimistMergeToSelect(DeciTreeOption<FimistInfo> option) {
+		super(option);
 	}
 	
 	
 	
-	@Override public void addPostAction(ActionLazyV1<FimistInfo> actionHandler) {
-		actionHelper.addPostAction(actionHandler);
-	}
-	
-	
-	
-	@Override public boolean executeAction() {			
-		return actionHelper.executeAction();
-	}
-	
-	
-	
-	@Override public DeciResult<FimistInfo> getDecisionResult() {
-		return actionHelper.getDecisionResult();
+	protected ActionVisitorV2<FimistInfo> buildVisitorHook(DeciTreeOption<FimistInfo> option) {
+		return new VisiFimistMergeToSelect(option);
 	}
 }

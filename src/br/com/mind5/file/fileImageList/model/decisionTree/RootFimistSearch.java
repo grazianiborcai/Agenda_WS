@@ -6,15 +6,15 @@ import java.util.List;
 import br.com.mind5.file.fileImageList.info.FimistInfo;
 import br.com.mind5.file.fileImageList.model.action.LazyFimistRootSelect;
 import br.com.mind5.file.fileImageList.model.action.StdFimistMergeFimarch;
-import br.com.mind5.file.fileImageList.model.checker.FimistCheckDummy;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 
-public final class RootFimistSearch extends DeciTreeTemplateReadV1<FimistInfo> {
+public final class RootFimistSearch extends DeciTreeTemplateReadV2<FimistInfo> {
 	
 	public RootFimistSearch(DeciTreeOption<FimistInfo> option) {
 		super(option);
@@ -26,7 +26,7 @@ public final class RootFimistSearch extends DeciTreeTemplateReadV1<FimistInfo> {
 		List<ModelCheckerV1<FimistInfo>> queue = new ArrayList<>();		
 		ModelCheckerV1<FimistInfo> checker;	
 
-		checker = new FimistCheckDummy();
+		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueueV2<>(queue);

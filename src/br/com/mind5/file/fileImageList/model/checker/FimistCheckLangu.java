@@ -1,56 +1,27 @@
 package br.com.mind5.file.fileImageList.model.checker;
 
-import java.util.List;
-
 import br.com.mind5.file.fileImageList.info.FimistInfo;
 import br.com.mind5.masterData.language.info.LanguInfo;
 import br.com.mind5.masterData.language.model.checker.LanguCheckExist;
-import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
+import br.com.mind5.model.checker.ModelCheckerV1;
 
-public final class FimistCheckLangu implements ModelCheckerV1<FimistInfo> {
-	private final boolean FAILED = false;
-	private final boolean SUCCESS = true;
-	
-	private ModelCheckerV1<LanguInfo> checker;
-	
+public final class FimistCheckLangu extends ModelCheckerTemplateForwardV2<FimistInfo, LanguInfo> {
 	
 	public FimistCheckLangu(ModelCheckerOption option) {
-		checker = new LanguCheckExist(option);
-	}
-	
-	
-	
-	@Override public boolean check(List<FimistInfo> recordInfos) {
-		for (FimistInfo eachInfo : recordInfos) {
-			if (check(eachInfo) == FAILED)
-				return FAILED;
-		}
-		
-		return SUCCESS;
+		super(option);
 	}
 
-	
-	
-	@Override public boolean check(FimistInfo recordInfo) {
-		return checker.check(LanguInfo.copyFrom(recordInfo));
-	}
 
 	
-	
-	@Override public boolean getResult() {
-		return checker.getResult();
+	@Override protected ModelCheckerV1<LanguInfo> getCheckerHook(ModelCheckerOption option) {
+		return new LanguCheckExist(option);
 	}
-
 	
 	
-	@Override public String getFailMessage() {
-		return checker.getFailMessage();
-	}
-
 	
-	
-	@Override public int getFailCode() {
-		return checker.getFailCode();
+	@Override protected LanguInfo toForwardClass(FimistInfo baseRecord) {
+		return LanguInfo.copyFrom(baseRecord);
 	}
 }

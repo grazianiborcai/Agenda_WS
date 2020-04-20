@@ -23,7 +23,7 @@ public final class FimistInfo extends InfoRecord implements Cloneable {
 	
 	
 	public FimistInfo() {
-		super(FimistInfo.class);
+		super();
 		
 		codOwner = DefaultValue.number();
 		codFileImg = DefaultValue.number();

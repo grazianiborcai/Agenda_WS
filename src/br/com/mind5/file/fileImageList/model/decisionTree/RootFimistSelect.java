@@ -9,13 +9,13 @@ import br.com.mind5.file.fileImageList.model.checker.FimistCheckLangu;
 import br.com.mind5.file.fileImageList.model.checker.FimistCheckOwner;
 import br.com.mind5.file.fileImageList.model.checker.FimistCheckRead;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 
-public final class RootFimistSelect extends DeciTreeTemplateReadV1<FimistInfo> {
+public final class RootFimistSelect extends DeciTreeTemplateReadV2<FimistInfo> {
 	
 	public RootFimistSelect(DeciTreeOption<FimistInfo> option) {
 		super(option);
