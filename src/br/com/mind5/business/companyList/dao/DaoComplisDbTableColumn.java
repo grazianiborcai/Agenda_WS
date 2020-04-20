@@ -106,7 +106,7 @@ public final class DaoComplisDbTableColumn extends DaoDbTableColumnTemplate {
 		columns.add(oneColumn);
 		
 		Hashtable<String, List<DaoColumn>> results = new Hashtable<>();
-		results.put(TABLE_NAME, columns);
+		results.put(DaoDbTable.COMPANY_LIST_VIEW, columns);
 		return results;
 	}
 }
