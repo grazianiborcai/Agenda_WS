@@ -1,32 +1,32 @@
-package br.com.mind5.business.masterData.info;
+package br.com.mind5.masterData.countryPhone.info;
 
 import java.util.List;
 
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
 
-public final class CountryPhoneInfo extends InfoRecord implements Cloneable {
+public final class CountroneInfo extends InfoRecord implements Cloneable {
 	public int codCountryPhone;
 	public String codCountry;
 	public String txtCountry;
 	
 	
-	public CountryPhoneInfo() {
-		super(CountryPhoneInfo.class);
+	public CountroneInfo() {
+		super();
 		
 		codCountryPhone = DefaultValue.number();
 	}
 	
 	
 	
-	public static CountryPhoneInfo copyFrom(Object sourceObj) {
-		return copyFrom(sourceObj, CountryPhoneInfo.class);
+	public static CountroneInfo copyFrom(Object sourceObj) {
+		return copyFrom(sourceObj, CountroneInfo.class);
 	}
 	
 	
 	
-	public static List<CountryPhoneInfo> copyFrom(List<?> sourceObjs) {
-		return copyFrom(sourceObjs, CountryPhoneInfo.class);
+	public static List<CountroneInfo> copyFrom(List<?> sourceObjs) {
+		return copyFrom(sourceObjs, CountroneInfo.class);
 	}
 	
 	
@@ -51,11 +51,11 @@ public final class CountryPhoneInfo extends InfoRecord implements Cloneable {
 			return true;
 		
 		
-		if (!(o instanceof CountryPhoneInfo))
+		if (!(o instanceof CountroneInfo))
 			return false;
 		
 		
-		CountryPhoneInfo obj = (CountryPhoneInfo) o;		
+		CountroneInfo obj = (CountroneInfo) o;		
 		return (codCountryPhone == obj.codCountryPhone);
 	}
 }

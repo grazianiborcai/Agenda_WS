@@ -16,7 +16,9 @@ public final class TimezoneCheckRead extends ModelCheckerTemplateSimpleV2<Timezo
 	
 	
 	@Override protected boolean checkHook(TimezoneInfo recordInfo, Connection conn, String schemaName) {	
-		if ( recordInfo.codLanguage == null )			
+		if ( recordInfo.codTimezone == null	||
+			 recordInfo.codLanguage == null 	)
+			
 			return super.FAILED;
 		
 		

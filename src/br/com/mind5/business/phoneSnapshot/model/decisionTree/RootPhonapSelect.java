@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.phoneSnapshot.info.PhonapInfo;
-import br.com.mind5.business.phoneSnapshot.model.action.LazyPhonapMergeCountryPhone;
+import br.com.mind5.business.phoneSnapshot.model.action.LazyPhonapMergeCountrone;
 import br.com.mind5.business.phoneSnapshot.model.action.LazyPhonapMergeForm;
 import br.com.mind5.business.phoneSnapshot.model.action.StdPhonapSelect;
 import br.com.mind5.business.phoneSnapshot.model.checker.PhonapCheckLangu;
@@ -61,11 +61,11 @@ public final class RootPhonapSelect extends DeciTreeTemplateReadV1<PhonapInfo> {
 		List<ActionStdV1<PhonapInfo>> actions = new ArrayList<>();		
 		
 		ActionStdV1<PhonapInfo> select = new StdPhonapSelect(option);	
-		ActionLazyV1<PhonapInfo> mergeCountryPhone = new LazyPhonapMergeCountryPhone(option.conn, option.schemaName);
+		ActionLazyV1<PhonapInfo> mergeCountrone = new LazyPhonapMergeCountrone(option.conn, option.schemaName);
 		ActionLazyV1<PhonapInfo> mergeForm = new LazyPhonapMergeForm(option.conn, option.schemaName);
 
-		select.addPostAction(mergeCountryPhone);	
-		mergeCountryPhone.addPostAction(mergeForm);
+		select.addPostAction(mergeCountrone);	
+		mergeCountrone.addPostAction(mergeForm);
 		
 		actions.add(select);
 		

@@ -7,12 +7,12 @@ import br.com.mind5.model.action.ActionStdHelperMerge;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class StdPhonapMergeCountryPhone implements ActionStdV1<PhonapInfo> {
+final class StdPhonapMergeCountrone implements ActionStdV1<PhonapInfo> {
 	private ActionStdV1<PhonapInfo> actionHelper;	
 	
 	
-	public StdPhonapMergeCountryPhone(DeciTreeOption<PhonapInfo> option) {			
-		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiPhonapMergeCountryPhone(option.conn, option.schemaName));
+	public StdPhonapMergeCountrone(DeciTreeOption<PhonapInfo> option) {			
+		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiPhonapMergeCountrone(option.conn, option.schemaName));
 	}
 	
 	

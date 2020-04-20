@@ -13,7 +13,6 @@ import br.com.mind5.business.masterData.info.BusinessInfo;
 import br.com.mind5.business.masterData.info.CartCategInfo;
 import br.com.mind5.business.masterData.info.CountryInfo;
 import br.com.mind5.business.masterData.info.CountryLegalInfo;
-import br.com.mind5.business.masterData.info.CountryPhoneInfo;
 import br.com.mind5.business.masterData.info.DaypartInfo;
 import br.com.mind5.business.masterData.info.EntityCategInfo;
 import br.com.mind5.business.masterData.info.FeeCategInfo;
@@ -35,7 +34,6 @@ import br.com.mind5.business.masterData.model.BusinessModelSelect;
 import br.com.mind5.business.masterData.model.CartCategModelSelect;
 import br.com.mind5.business.masterData.model.CountryLegalModelSelect;
 import br.com.mind5.business.masterData.model.CountryModelSelect;
-import br.com.mind5.business.masterData.model.CountryPhoneModelSelect;
 import br.com.mind5.business.masterData.model.DaypartModelSelect;
 import br.com.mind5.business.masterData.model.EntityCategModelSelect;
 import br.com.mind5.business.masterData.model.FeeCategModelSelect;
@@ -52,6 +50,8 @@ import br.com.mind5.business.masterData.model.PositionModelSelect;
 import br.com.mind5.business.masterData.model.ScheduleStatusModelSelect;
 import br.com.mind5.business.masterData.model.UserCategModelSelect;
 import br.com.mind5.business.masterData.model.WeekdayModelSelect;
+import br.com.mind5.masterData.countryPhoneSearch.info.CountronarchInfo;
+import br.com.mind5.masterData.countryPhoneSearch.model.CountronarchModelSelect;
 import br.com.mind5.masterData.currencySearch.info.CurrarshInfo;
 import br.com.mind5.masterData.currencySearch.model.CurrarshModelSelect;
 import br.com.mind5.masterData.languageSearch.info.LangarchInfo;
@@ -436,12 +436,12 @@ public final class MasterDataResource {
 	public Response selectCountryPhone(@HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage,
 			                           @HeaderParam("codCountryPhone") @DefaultValue("-1") int codCountryPhone) {
 		
-		CountryPhoneInfo recordInfo = new CountryPhoneInfo();		
+		CountronarchInfo recordInfo = new CountronarchInfo();		
 		recordInfo.codCountryPhone = codCountryPhone;
 		recordInfo.codLanguage = codLanguage;
 		
 		
-		Model model = new CountryPhoneModelSelect(recordInfo);
+		Model model = new CountronarchModelSelect(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	}

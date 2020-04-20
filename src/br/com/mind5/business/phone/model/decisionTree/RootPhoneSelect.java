@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.phone.info.PhoneInfo;
-import br.com.mind5.business.phone.model.action.LazyPhoneMergeCountryPhone;
+import br.com.mind5.business.phone.model.action.LazyPhoneMergeCountrone;
 import br.com.mind5.business.phone.model.action.LazyPhoneMergeFormone;
 import br.com.mind5.business.phone.model.action.StdPhoneMergeToSelect;
 import br.com.mind5.business.phone.model.checker.PhoneCheckLangu;
@@ -61,11 +61,11 @@ public final class RootPhoneSelect extends DeciTreeTemplateWriteV2<PhoneInfo> {
 		List<ActionStdV1<PhoneInfo>> actions = new ArrayList<>();		
 		
 		ActionStdV1<PhoneInfo> select = new StdPhoneMergeToSelect(option);	
-		ActionLazyV1<PhoneInfo> mergeCountryPhone = new LazyPhoneMergeCountryPhone(option.conn, option.schemaName);
+		ActionLazyV1<PhoneInfo> mergeCountrone = new LazyPhoneMergeCountrone(option.conn, option.schemaName);
 		ActionLazyV1<PhoneInfo> mergeFormone = new LazyPhoneMergeFormone(option.conn, option.schemaName);
 
-		select.addPostAction(mergeCountryPhone);	
-		mergeCountryPhone.addPostAction(mergeFormone);
+		select.addPostAction(mergeCountrone);	
+		mergeCountrone.addPostAction(mergeFormone);
 		
 		actions.add(select);
 		

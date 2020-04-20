@@ -11,7 +11,7 @@ import br.com.mind5.business.phone.model.action.LazyPhoneMergeFormone;
 import br.com.mind5.business.phone.model.action.LazyPhoneMergeUsername;
 import br.com.mind5.business.phone.model.action.LazyPhoneNodeInsert;
 import br.com.mind5.business.phone.model.action.LazyPhoneNodeSnapshot;
-import br.com.mind5.business.phone.model.action.StdPhoneMergeCountryPhone;
+import br.com.mind5.business.phone.model.action.StdPhoneMergeCountrone;
 import br.com.mind5.business.phone.model.checker.PhoneCheckCountryPhone;
 import br.com.mind5.business.phone.model.checker.PhoneCheckInsert;
 import br.com.mind5.business.phone.model.checker.PhoneCheckLangu;
@@ -105,7 +105,7 @@ public final class RootPhoneInsert extends DeciTreeTemplateWriteV2<PhoneInfo> {
 	@Override protected List<ActionStdV1<PhoneInfo>> buildActionsOnPassedHook(DeciTreeOption<PhoneInfo> option) {
 		List<ActionStdV1<PhoneInfo>> actions = new ArrayList<>();	
 		
-		ActionStdV1<PhoneInfo> mergeCountryPhone = new StdPhoneMergeCountryPhone(option);	
+		ActionStdV1<PhoneInfo> mergeCountrone = new StdPhoneMergeCountrone(option);	
 		ActionLazyV1<PhoneInfo> mergeFormone = new LazyPhoneMergeFormone(option.conn, option.schemaName);	
 		ActionLazyV1<PhoneInfo> mergeUsername = new LazyPhoneMergeUsername(option.conn, option.schemaName);
 		ActionLazyV1<PhoneInfo> enforceLChanged = new LazyPhoneEnforceLChanged(option.conn, option.schemaName);
@@ -114,7 +114,7 @@ public final class RootPhoneInsert extends DeciTreeTemplateWriteV2<PhoneInfo> {
 		ActionLazyV1<PhoneInfo> nodeInsert = new LazyPhoneNodeInsert(option.conn, option.schemaName);	
 		ActionLazyV1<PhoneInfo> nodeSnapshot = new LazyPhoneNodeSnapshot(option.conn, option.schemaName);	
 		
-		mergeCountryPhone.addPostAction(mergeFormone);
+		mergeCountrone.addPostAction(mergeFormone);
 		mergeFormone.addPostAction(mergeUsername);		
 		mergeUsername.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceCreatedOn);
@@ -122,7 +122,7 @@ public final class RootPhoneInsert extends DeciTreeTemplateWriteV2<PhoneInfo> {
 		enforceCreatedBy.addPostAction(nodeInsert);
 		nodeInsert.addPostAction(nodeSnapshot);
 		
-		actions.add(mergeCountryPhone);		
+		actions.add(mergeCountrone);		
 		return actions;
 	}
 }

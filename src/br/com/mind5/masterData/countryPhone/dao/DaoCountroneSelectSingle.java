@@ -1,4 +1,4 @@
-package br.com.mind5.business.masterData.dao;
+package br.com.mind5.masterData.countryPhone.dao;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.business.masterData.info.CountryPhoneInfo;
 import br.com.mind5.dao.DaoJoin;
 import br.com.mind5.dao.DaoJoinBuilder;
 import br.com.mind5.dao.DaoOperation;
@@ -16,12 +15,13 @@ import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
+import br.com.mind5.masterData.countryPhone.info.CountroneInfo;
 
-public final class CountryPhoneSelectSingle extends DaoStmtTemplate<CountryPhoneInfo> {
+public final class DaoCountroneSelectSingle extends DaoStmtTemplate<CountroneInfo> {
 	private final String MAIN_TABLE = DaoDbTable.COUNTRY_PHONE_TABLE;
 	
 	
-	public CountryPhoneSelectSingle(Connection conn, CountryPhoneInfo recordInfo, String schemaName) {
+	public DaoCountroneSelectSingle(Connection conn, CountroneInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -39,41 +39,41 @@ public final class CountryPhoneSelectSingle extends DaoStmtTemplate<CountryPhone
 	
 	
 	
-	@Override protected String buildWhereClauseHook(String tableName, CountryPhoneInfo recordInfo) {
+	@Override protected String buildWhereClauseHook(String tableName, CountroneInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
 		
 		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;	
 		whereOption.dummyClauseWhenEmpty = DaoOptionValue.DUMMY_CLAUSE_ALLOWED;
 		
-		DaoStmtWhere whereClause = new CountryPhoneWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new DaoCountroneWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
 	
 	
-	@Override protected DaoJoin getJoinHook(CountryPhoneInfo recordInfo) {
-		DaoJoinBuilder joinText = new CountryPhoneJoinTxt(MAIN_TABLE);		
+	@Override protected DaoJoin getJoinHook(CountroneInfo recordInfo) {
+		DaoJoinBuilder joinText = new DaoCountroneJoinTxt(MAIN_TABLE);		
 		return joinText.build();
 	}
 	
 	
 	
-	@Override protected DaoResultParser<CountryPhoneInfo> getResultParserHook() {
-		return new DaoResultParser<CountryPhoneInfo>() {
-			@Override public List<CountryPhoneInfo> parseResult(CountryPhoneInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
-				List<CountryPhoneInfo> finalResult = new ArrayList<>();
+	@Override protected DaoResultParser<CountroneInfo> getResultParserHook() {
+		return new DaoResultParser<CountroneInfo>() {
+			@Override public List<CountroneInfo> parseResult(CountroneInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
+				List<CountroneInfo> finalResult = new ArrayList<>();
 				
 				if (stmtResult.next() == false)				
 					return finalResult;
 			
 				do {				
-					CountryPhoneInfo dataInfo = new CountryPhoneInfo();
+					CountroneInfo dataInfo = new CountroneInfo();
 					
-					dataInfo.codCountryPhone = stmtResult.getInt(MasterDataDbTableColumn.COL_COD_COUNTRY_PHONE);
-					dataInfo.codCountry = stmtResult.getString(MasterDataDbTableColumn.COL_COD_COUNTRY);
-					dataInfo.txtCountry = stmtResult.getString(MasterDataDbTableColumn.COL_NAME);
-					dataInfo.codLanguage = stmtResult.getString(MasterDataDbTableColumn.COL_COD_LANGUAGE);		
+					dataInfo.codCountryPhone = stmtResult.getInt(DaoCountroneDbTableColumn.COL_COD_COUNTRY_PHONE);
+					dataInfo.codCountry = stmtResult.getString(DaoCountroneDbTableColumn.COL_COD_COUNTRY);
+					dataInfo.txtCountry = stmtResult.getString(DaoCountroneDbTableColumn.COL_NAME);
+					dataInfo.codLanguage = stmtResult.getString(DaoCountroneDbTableColumn.COL_COD_LANGUAGE);		
 					
 					finalResult.add(dataInfo);				
 				} while (stmtResult.next());

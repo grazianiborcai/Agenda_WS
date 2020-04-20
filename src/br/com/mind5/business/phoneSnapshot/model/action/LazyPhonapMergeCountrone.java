@@ -9,9 +9,9 @@ import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyPhonapMergeCountryPhone extends ActionLazyTemplateV1<PhonapInfo, PhonapInfo> {
+public final class LazyPhonapMergeCountrone extends ActionLazyTemplateV1<PhonapInfo, PhonapInfo> {
 	
-	public LazyPhonapMergeCountryPhone(Connection conn, String schemaName) {
+	public LazyPhonapMergeCountrone(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyPhonapMergeCountryPhone extends ActionLazyTemplateV1<Phon
 	
 	
 	@Override protected ActionStdV1<PhonapInfo> getInstanceOfActionHook(DeciTreeOption<PhonapInfo> option) {
-		return new StdPhonapMergeCountryPhone(option);
+		return new StdPhonapMergeCountrone(option);
 	}
 	
 	

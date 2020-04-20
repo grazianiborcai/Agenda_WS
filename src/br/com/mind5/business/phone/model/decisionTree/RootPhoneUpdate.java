@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.business.phone.model.action.LazyPhoneEnforceLChanged;
-import br.com.mind5.business.phone.model.action.LazyPhoneMergeCountryPhone;
+import br.com.mind5.business.phone.model.action.LazyPhoneMergeCountrone;
 import br.com.mind5.business.phone.model.action.LazyPhoneMergeFormone;
 import br.com.mind5.business.phone.model.action.LazyPhoneMergeUsername;
 import br.com.mind5.business.phone.model.action.LazyPhoneNodeSnapshot;
@@ -105,15 +105,15 @@ public final class RootPhoneUpdate extends DeciTreeTemplateWriteV2<PhoneInfo> {
 		List<ActionStdV1<PhoneInfo>> actions = new ArrayList<>();		
 		
 		ActionStdV1<PhoneInfo> mergeToUpdate = new StdPhoneMergeToUpdate(option);	
-		ActionLazyV1<PhoneInfo> mergeCountryPhone = new LazyPhoneMergeCountryPhone(option.conn, option.schemaName);	
+		ActionLazyV1<PhoneInfo> mergeCountrone = new LazyPhoneMergeCountrone(option.conn, option.schemaName);	
 		ActionLazyV1<PhoneInfo> mergeFormone = new LazyPhoneMergeFormone(option.conn, option.schemaName);	
 		ActionLazyV1<PhoneInfo> mergeUsername = new LazyPhoneMergeUsername(option.conn, option.schemaName);	
 		ActionLazyV1<PhoneInfo> enforceLChanged = new LazyPhoneEnforceLChanged(option.conn, option.schemaName);	
 		ActionLazyV1<PhoneInfo> nodeUpdate = new LazyPhoneNodeUpdate(option.conn, option.schemaName);	
 		ActionLazyV1<PhoneInfo> nodeSnapshot = new LazyPhoneNodeSnapshot(option.conn, option.schemaName);	
 		
-		mergeToUpdate.addPostAction(mergeCountryPhone);
-		mergeCountryPhone.addPostAction(mergeFormone);
+		mergeToUpdate.addPostAction(mergeCountrone);
+		mergeCountrone.addPostAction(mergeFormone);
 		mergeFormone.addPostAction(mergeUsername);		
 		mergeUsername.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(nodeUpdate);

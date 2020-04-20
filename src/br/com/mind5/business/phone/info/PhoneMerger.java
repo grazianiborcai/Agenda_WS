@@ -2,12 +2,12 @@ package br.com.mind5.business.phone.info;
 
 import java.util.List;
 
-import br.com.mind5.business.masterData.info.CountryPhoneInfo;
 import br.com.mind5.business.phoneSearch.info.PhonarchInfo;
 import br.com.mind5.business.phoneSnapshot.info.PhonapInfo;
 import br.com.mind5.form.formPhone.info.FormoneInfo;
 import br.com.mind5.info.InfoMergerBuilderV3;
 import br.com.mind5.info.InfoMergerV3;
+import br.com.mind5.masterData.countryPhone.info.CountroneInfo;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class PhoneMerger {
@@ -37,13 +37,13 @@ public final class PhoneMerger {
 	
 	
 	
-	public static List<PhoneInfo> mergeWithCountryPhone(List<PhoneInfo> baseInfos, List<CountryPhoneInfo> selectedInfos) {
-		InfoMergerBuilderV3<PhoneInfo, CountryPhoneInfo> builder = new InfoMergerBuilderV3<>();
+	public static List<PhoneInfo> mergeWithCountrone(List<PhoneInfo> baseInfos, List<CountroneInfo> selectedInfos) {
+		InfoMergerBuilderV3<PhoneInfo, CountroneInfo> builder = new InfoMergerBuilderV3<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new PhoneVisiMergeCountryPhone());
-		InfoMergerV3<PhoneInfo, CountryPhoneInfo> merger = builder.build();		
+		InfoMergerV3<PhoneInfo, CountroneInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}	
