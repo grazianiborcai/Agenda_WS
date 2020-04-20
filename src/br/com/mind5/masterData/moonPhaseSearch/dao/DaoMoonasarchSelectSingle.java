@@ -17,11 +17,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class MoonasarchSelectSingle extends DaoStmtTemplate<MoonasarchInfo> {
+public final class DaoMoonasarchSelectSingle extends DaoStmtTemplate<MoonasarchInfo> {
 	private final String MAIN_TABLE = DaoDbTable.MOON_PHASE_TABLE;
 	
 	
-	public MoonasarchSelectSingle(Connection conn, MoonasarchInfo recordInfo, String schemaName) {
+	public DaoMoonasarchSelectSingle(Connection conn, MoonasarchInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -52,14 +52,14 @@ public final class MoonasarchSelectSingle extends DaoStmtTemplate<MoonasarchInfo
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;	
 		whereOption.dummyClauseWhenEmpty = DaoOptionValue.DUMMY_CLAUSE_ALLOWED;
 		
-		DaoStmtWhere whereClause = new MoonasarchWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new DaoMoonasarchWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
 	
 	
 	@Override protected DaoJoin getJoinHook(MoonasarchInfo recordInfo) {
-		DaoJoinBuilder joinText = new MoonasarchJoinTxt(MAIN_TABLE);		
+		DaoJoinBuilder joinText = new DaoMoonasarchJoinTxt(MAIN_TABLE);		
 		return joinText.build();
 	}
 	
@@ -76,9 +76,9 @@ public final class MoonasarchSelectSingle extends DaoStmtTemplate<MoonasarchInfo
 				do {				
 					MoonasarchInfo dataInfo = new MoonasarchInfo();
 					
-					dataInfo.codMoonPhase = stmtResult.getInt(MoonasarchDbTableColumn.COL_COD_MOON_PHASE);
-					dataInfo.txtMoonPhase = stmtResult.getString(MoonasarchDbTableColumn.COL_NAME);
-					dataInfo.codLanguage = stmtResult.getString(MoonasarchDbTableColumn.COL_COD_LANGUAGE);		
+					dataInfo.codMoonPhase = stmtResult.getInt(DaoMoonasarchDbTableColumn.COL_COD_MOON_PHASE);
+					dataInfo.txtMoonPhase = stmtResult.getString(DaoMoonasarchDbTableColumn.COL_NAME);
+					dataInfo.codLanguage = stmtResult.getString(DaoMoonasarchDbTableColumn.COL_COD_LANGUAGE);		
 					
 					finalResult.add(dataInfo);				
 				} while (stmtResult.next());

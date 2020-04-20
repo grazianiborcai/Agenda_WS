@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilder;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 
-final class MoonasarchWhere implements DaoStmtWhere {
+final class DaoMoonasarchWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public MoonasarchWhere(DaoWhereBuilderOption whereOption, String tableName, MoonasarchInfo recordInfo) {
+	public DaoMoonasarchWhere(DaoWhereBuilderOption whereOption, String tableName, MoonasarchInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -26,11 +26,11 @@ final class MoonasarchWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {
 			switch(eachColumn.columnName) {
-				case MoonasarchDbTableColumn.COL_COD_MOON_PHASE :
+				case DaoMoonasarchDbTableColumn.COL_COD_MOON_PHASE :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codMoonPhase));
 					break;
 					
-				case MoonasarchDbTableColumn.COL_COD_LANGUAGE :
+				case DaoMoonasarchDbTableColumn.COL_COD_LANGUAGE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codLanguage);
 					break;
 			}
