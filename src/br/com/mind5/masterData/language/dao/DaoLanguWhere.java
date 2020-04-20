@@ -1,19 +1,19 @@
-package br.com.mind5.business.masterData.dao;
+package br.com.mind5.masterData.language.dao;
 
 import java.util.List;
 
-import br.com.mind5.business.masterData.info.LanguInfo;
 import br.com.mind5.dao.DaoColumn;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilder;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
+import br.com.mind5.masterData.language.info.LanguInfo;
 
-final class LanguWhere implements DaoStmtWhere {
+final class DaoLanguWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public LanguWhere(DaoWhereBuilderOption whereOption, String tableName, LanguInfo recordInfo) {
+	public DaoLanguWhere(DaoWhereBuilderOption whereOption, String tableName, LanguInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -25,7 +25,7 @@ final class LanguWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {
 			switch(eachColumn.columnName) {
-				case MasterDataDbTableColumn.COL_COD_LANGUAGE :
+				case DaoLanguDbTableColumn.COL_COD_LANGUAGE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codLanguage);
 					break;
 			}

@@ -1,4 +1,4 @@
-package br.com.mind5.business.masterData.dao;
+package br.com.mind5.masterData.language.dao;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.business.masterData.info.LanguInfo;
 import br.com.mind5.dao.DaoOperation;
 import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtTemplate;
@@ -14,12 +13,13 @@ import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
+import br.com.mind5.masterData.language.info.LanguInfo;
 
-public final class LanguSelectSingle extends DaoStmtTemplate<LanguInfo> {
+public final class DaoLanguSelectSingle extends DaoStmtTemplate<LanguInfo> {
 	private final String MAIN_TABLE = DaoDbTable.LANGUAGE_TABLE;	
 	
 	
-	public LanguSelectSingle(Connection conn, LanguInfo recordInfo, String schemaName) {
+	public DaoLanguSelectSingle(Connection conn, LanguInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -40,11 +40,10 @@ public final class LanguSelectSingle extends DaoStmtTemplate<LanguInfo> {
 	@Override protected String buildWhereClauseHook(String tableName, LanguInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
 		
-		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
-		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;	
-		whereOption.dummyClauseWhenEmpty = DaoOptionValue.DUMMY_CLAUSE_ALLOWED;
+		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
+		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;
 		
-		DaoStmtWhere whereClause = new LanguWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new DaoLanguWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -61,8 +60,8 @@ public final class LanguSelectSingle extends DaoStmtTemplate<LanguInfo> {
 				do {				
 					LanguInfo dataInfo = new LanguInfo();
 					
-					dataInfo.codLanguage = stmtResult.getString(MasterDataDbTableColumn.COL_COD_LANGUAGE);
-					dataInfo.txtLanguage = stmtResult.getString(MasterDataDbTableColumn.COL_NAME);	
+					dataInfo.codLanguage = stmtResult.getString(DaoLanguDbTableColumn.COL_COD_LANGUAGE);
+					dataInfo.txtLanguage = stmtResult.getString(DaoLanguDbTableColumn.COL_NAME);	
 					
 					finalResult.add(dataInfo);				
 				} while (stmtResult.next());

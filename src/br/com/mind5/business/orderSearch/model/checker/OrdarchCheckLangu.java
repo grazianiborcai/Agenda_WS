@@ -2,9 +2,9 @@ package br.com.mind5.business.orderSearch.model.checker;
 
 import java.util.List;
 
-import br.com.mind5.business.masterData.info.LanguInfo;
-import br.com.mind5.business.masterData.model.checker.LanguCheckExist;
 import br.com.mind5.business.orderSearch.info.OrdarchInfo;
+import br.com.mind5.masterData.language.info.LanguInfo;
+import br.com.mind5.masterData.language.model.checker.LanguCheckExist;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 

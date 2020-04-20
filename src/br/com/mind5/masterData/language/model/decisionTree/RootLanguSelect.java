@@ -1,18 +1,18 @@
-package br.com.mind5.business.masterData.model.decisionTree;
+package br.com.mind5.masterData.language.model.decisionTree;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.business.masterData.info.LanguInfo;
-import br.com.mind5.business.masterData.model.action.StdLanguSelect;
+import br.com.mind5.masterData.language.info.LanguInfo;
+import br.com.mind5.masterData.language.model.action.StdLanguDaoSelect;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.common.ModelCherckerTrue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 
-public final class RootLanguSelect extends DeciTreeTemplateReadV1<LanguInfo> {
+public final class RootLanguSelect extends DeciTreeTemplateReadV2<LanguInfo> {
 	
 	public RootLanguSelect(DeciTreeOption<LanguInfo> option) {
 		super(option);
@@ -35,7 +35,7 @@ public final class RootLanguSelect extends DeciTreeTemplateReadV1<LanguInfo> {
 	@Override protected List<ActionStdV1<LanguInfo>> buildActionsOnPassedHook(DeciTreeOption<LanguInfo> option) {
 		List<ActionStdV1<LanguInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<LanguInfo> select = new StdLanguSelect(option);
+		ActionStdV1<LanguInfo> select = new StdLanguDaoSelect(option);
 		
 		actions.add(select);
 		return actions;

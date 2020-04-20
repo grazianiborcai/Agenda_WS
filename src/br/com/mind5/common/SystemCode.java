@@ -163,6 +163,8 @@ public final class SystemCode {
 	public static final int STATE_SEARCH_MANDATORY_FIELD_EMPTY 			= 5337;
 	public static final int STATE_SEARCH_ALREADY_EXIST					= 5338;
 	public static final int STATE_SEARCH_NOT_FOUND						= 5339;
+	public static final int LANGUAGE_SEARCH_ALREADY_EXIST				= 5340;
+	public static final int LANGUAGE_SEARCH_NOT_FOUND					= 5341;
 	
 	// Material
 	public static final int MAT_ALREADY_EXIST							= 1200;

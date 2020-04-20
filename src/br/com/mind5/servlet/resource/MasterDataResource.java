@@ -19,7 +19,6 @@ import br.com.mind5.business.masterData.info.DaypartInfo;
 import br.com.mind5.business.masterData.info.EntityCategInfo;
 import br.com.mind5.business.masterData.info.FeeCategInfo;
 import br.com.mind5.business.masterData.info.GenderInfo;
-import br.com.mind5.business.masterData.info.LanguInfo;
 import br.com.mind5.business.masterData.info.MatCategInfo;
 import br.com.mind5.business.masterData.info.MatGroupInfo;
 import br.com.mind5.business.masterData.info.MatTypeInfo;
@@ -44,7 +43,6 @@ import br.com.mind5.business.masterData.model.DaypartModelSelect;
 import br.com.mind5.business.masterData.model.EntityCategModelSelect;
 import br.com.mind5.business.masterData.model.FeeCategModelSelect;
 import br.com.mind5.business.masterData.model.GenderModelSelect;
-import br.com.mind5.business.masterData.model.LanguModelSelect;
 import br.com.mind5.business.masterData.model.MatCategModelSelect;
 import br.com.mind5.business.masterData.model.MatGroupModelSelect;
 import br.com.mind5.business.masterData.model.MatTypeModelSelect;
@@ -58,6 +56,8 @@ import br.com.mind5.business.masterData.model.ScheduleStatusModelSelect;
 import br.com.mind5.business.masterData.model.TimezoneModelSelect;
 import br.com.mind5.business.masterData.model.UserCategModelSelect;
 import br.com.mind5.business.masterData.model.WeekdayModelSelect;
+import br.com.mind5.masterData.languageSearch.info.LangarchInfo;
+import br.com.mind5.masterData.languageSearch.model.LangarchModelSelect;
 import br.com.mind5.masterData.moonPhase.MoonaseModelSearch;
 import br.com.mind5.masterData.moonPhase.info.MoonaseInfo;
 import br.com.mind5.masterData.stateSearch.StatarchModelSelect;
@@ -222,10 +222,10 @@ public final class MasterDataResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response selectLangu(@HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage){
 		
-		LanguInfo recordInfo = new LanguInfo();
+		LangarchInfo recordInfo = new LangarchInfo();
 		recordInfo.codLanguage = codLanguage;
 		
-		Model model = new LanguModelSelect(recordInfo);
+		Model model = new LangarchModelSelect(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	}

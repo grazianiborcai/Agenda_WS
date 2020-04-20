@@ -1,4 +1,4 @@
-package br.com.mind5.business.masterData.info;
+package br.com.mind5.masterData.language.info;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ public final class LanguInfo extends InfoRecord implements Cloneable {
 	
 	
 	public LanguInfo() {
-		super(LanguInfo.class);
+		super();
 	}
 	
 	
