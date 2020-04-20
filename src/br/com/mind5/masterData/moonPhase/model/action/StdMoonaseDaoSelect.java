@@ -5,15 +5,15 @@ import br.com.mind5.model.action.ActionStdTemplateV2;
 import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdMoonaseMergeMoonasarch extends ActionStdTemplateV2<MoonaseInfo> {
+public final class StdMoonaseDaoSelect extends ActionStdTemplateV2<MoonaseInfo> {
 
-	public StdMoonaseMergeMoonasarch(DeciTreeOption<MoonaseInfo> option) {
+	public StdMoonaseDaoSelect(DeciTreeOption<MoonaseInfo> option) {
 		super(option);
 	}
 	
 	
 	
 	protected ActionVisitorV2<MoonaseInfo> buildVisitorHook(DeciTreeOption<MoonaseInfo> option) {
-		return new VisiMoonaseMergeMoonasarch(option);
+		return new VisiMoonaseDaoSelect(option);
 	}
 }

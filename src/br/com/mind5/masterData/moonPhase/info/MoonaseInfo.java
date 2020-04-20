@@ -11,7 +11,7 @@ public final class MoonaseInfo extends InfoRecord implements Cloneable {
 	
 	
 	public MoonaseInfo() {
-		super(MoonaseInfo.class);
+		super();
 		
 		codMoonPhase = DefaultValue.number();	
 	}

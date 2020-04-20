@@ -9,31 +9,19 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class MoonaseDbTableColumn extends DaoDbTableColumnTemplate {
+public final class DaoMoonaseDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_LANGUAGE = DaoDbField.COL_COD_LANGUAGE ;
 	public static final String COL_COD_MOON_PHASE = DaoDbField.COL_COD_MOON_PHASE;	
 	public static final String COL_NAME = DaoDbField.COL_NAME;		
 	
 	
-	private Hashtable<String, List<DaoColumn>> tableColumns;	
-	
-	public MoonaseDbTableColumn() {
-		super(MoonaseDbTableColumn.class);
+	public DaoMoonaseDbTableColumn() {
+		super();
 	}
 	
 	
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
-		tableColumns = new Hashtable<>();
-		
-		buildTable();
-		
-		return tableColumns;
-	}
-	
-	
-	
-	private void buildTable() {
 		final String TABLE_NAME = DaoDbTable.MOON_PHASE_TABLE;
 		
 		DaoColumn oneColumn;
@@ -63,6 +51,8 @@ public final class MoonaseDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		tableColumns.put(TABLE_NAME, columns);
+		Hashtable<String, List<DaoColumn>> results = new Hashtable<>();
+		results.put(TABLE_NAME, columns);
+		return results;
 	}
 }

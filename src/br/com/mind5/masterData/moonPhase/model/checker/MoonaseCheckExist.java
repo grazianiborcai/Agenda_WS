@@ -1,7 +1,7 @@
 package br.com.mind5.masterData.moonPhase.model.checker;
 
 import br.com.mind5.masterData.moonPhase.info.MoonaseInfo;
-import br.com.mind5.masterData.moonPhase.model.action.StdMoonaseSelect;
+import br.com.mind5.masterData.moonPhase.model.action.StdMoonaseDaoSelect;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -17,7 +17,7 @@ public final class MoonaseCheckExist extends ModelCheckerTemplateActionV2<Moonas
 	
 	
 	@Override protected ActionStdV1<MoonaseInfo> buildActionHook(DeciTreeOption<MoonaseInfo> option) {
-		ActionStdV1<MoonaseInfo> select = new StdMoonaseSelect(option);
+		ActionStdV1<MoonaseInfo> select = new StdMoonaseDaoSelect(option);
 		return select;
 	}
 	

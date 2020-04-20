@@ -1,6 +1,5 @@
 package br.com.mind5.masterData.moonPhase.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.masterData.moonPhase.info.MoonaseInfo;
@@ -8,12 +7,14 @@ import br.com.mind5.masterData.moonPhase.info.MoonaseMerger;
 import br.com.mind5.masterData.moonPhaseSearch.info.MoonasarchInfo;
 import br.com.mind5.masterData.moonPhaseSearch.model.decisionTree.RootMoonasarchSelect;
 import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiMoonaseMergeMoonasarch extends ActionVisitorTemplateMergeV1<MoonaseInfo, MoonasarchInfo> {
+final class VisiMoonaseMergeMoonasarch extends ActionVisitorTemplateMergeV2<MoonaseInfo, MoonasarchInfo> {
 	
-	public VisiMoonaseMergeMoonasarch(Connection conn, String schemaName) {
-		super(conn, schemaName, MoonasarchInfo.class);
+	public VisiMoonaseMergeMoonasarch(DeciTreeOption<MoonaseInfo> option) {
+		super(option, MoonasarchInfo.class);
 	}
 	
 	

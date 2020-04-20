@@ -7,11 +7,11 @@ import br.com.mind5.dao.DaoJoinType;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class MoonaseJoinTxt implements DaoJoinBuilder {
+public final class DaoMoonaseJoinTxt implements DaoJoinBuilder {
 	private final String leftTable;
 	
 	
-	public MoonaseJoinTxt(String leftTableName) {
+	public DaoMoonaseJoinTxt(String leftTableName) {
 		leftTable = leftTableName;
 	}
 

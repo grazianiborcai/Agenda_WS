@@ -17,11 +17,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class MoonaseSelectSingle extends DaoStmtTemplate<MoonaseInfo> {
+public final class DaoMoonaseSelectSingle extends DaoStmtTemplate<MoonaseInfo> {
 	private final String MAIN_TABLE = DaoDbTable.MOON_PHASE_TABLE;
 	
 	
-	public MoonaseSelectSingle(Connection conn, MoonaseInfo recordInfo, String schemaName) {
+	public DaoMoonaseSelectSingle(Connection conn, MoonaseInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -45,14 +45,14 @@ public final class MoonaseSelectSingle extends DaoStmtTemplate<MoonaseInfo> {
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;	
 		
-		DaoStmtWhere whereClause = new MoonaseWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new DaoMoonaseWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
 	
 	
 	@Override protected DaoJoin getJoinHook(MoonaseInfo recordInfo) {
-		DaoJoinBuilder joinText = new MoonaseJoinTxt(MAIN_TABLE);		
+		DaoJoinBuilder joinText = new DaoMoonaseJoinTxt(MAIN_TABLE);		
 		return joinText.build();
 	}
 	
@@ -69,9 +69,9 @@ public final class MoonaseSelectSingle extends DaoStmtTemplate<MoonaseInfo> {
 				do {				
 					MoonaseInfo dataInfo = new MoonaseInfo();
 					
-					dataInfo.codMoonPhase = stmtResult.getInt(MoonaseDbTableColumn.COL_COD_MOON_PHASE);
-					dataInfo.txtMoonPhase = stmtResult.getString(MoonaseDbTableColumn.COL_NAME);
-					dataInfo.codLanguage = stmtResult.getString(MoonaseDbTableColumn.COL_COD_LANGUAGE);		
+					dataInfo.codMoonPhase = stmtResult.getInt(DaoMoonaseDbTableColumn.COL_COD_MOON_PHASE);
+					dataInfo.txtMoonPhase = stmtResult.getString(DaoMoonaseDbTableColumn.COL_NAME);
+					dataInfo.codLanguage = stmtResult.getString(DaoMoonaseDbTableColumn.COL_COD_LANGUAGE);		
 					
 					finalResult.add(dataInfo);				
 				} while (stmtResult.next());

@@ -108,7 +108,7 @@ import br.com.mind5.masterData.currency.dao.DaoCurrencyDbTableColumn;
 import br.com.mind5.masterData.currencySearch.dao.DaoCurrarshDbTableColumn;
 import br.com.mind5.masterData.language.dao.DaoLanguDbTableColumn;
 import br.com.mind5.masterData.languageSearch.dao.DaoLangarchDbTableColumn;
-import br.com.mind5.masterData.moonPhase.dao.MoonaseDbTableColumn;
+import br.com.mind5.masterData.moonPhase.dao.DaoMoonaseDbTableColumn;
 import br.com.mind5.masterData.moonPhaseSearch.dao.MoonasarchDbTableColumn;
 import br.com.mind5.masterData.state.dao.DaoStateDbTableColumn;
 import br.com.mind5.masterData.stateSearch.dao.DaoStatarchDbTableColumn;
@@ -283,7 +283,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new PayordistDbTableColumn());
 		addTable(new PayordemistDbTableColumn());
 		addTable(new MoonasarchDbTableColumn());
-		addTable(new MoonaseDbTableColumn());
+		addTable(new DaoMoonaseDbTableColumn());
 		addTable(new MooncalDbTableColumn());
 		addTable(new CalateDbTableColumn());
 		addTable(new DaoStateDbTableColumn());
