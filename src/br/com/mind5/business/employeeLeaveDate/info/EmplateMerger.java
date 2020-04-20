@@ -3,8 +3,8 @@ package br.com.mind5.business.employeeLeaveDate.info;
 import java.util.List;
 
 import br.com.mind5.business.employeeLeaveDateSearch.info.EmplarchInfo;
-import br.com.mind5.business.masterData.info.TimezoneInfo;
 import br.com.mind5.info.obsolete.InfoMerger_;
+import br.com.mind5.masterData.timezone.info.TimezoneInfo;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class EmplateMerger {

@@ -1,9 +1,9 @@
 package br.com.mind5.business.employeeLeaveDate.info;
 
-import br.com.mind5.business.masterData.info.TimezoneInfo;
 import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.masterData.timezone.info.TimezoneInfo;
 
 final class EmplateVisiMergeTimezone implements InfoMergerVisitor_<EmplateInfo, TimezoneInfo> {
 

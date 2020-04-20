@@ -1,4 +1,4 @@
-package br.com.mind5.business.masterData.info;
+package br.com.mind5.masterData.timezone.info;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ public final class TimezoneInfo extends InfoRecord implements Cloneable {
 	
 	
 	public TimezoneInfo() {
-		super(TimezoneInfo.class);
+		super();
 	}
 	
 	

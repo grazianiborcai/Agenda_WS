@@ -2,10 +2,10 @@ package br.com.mind5.business.storeList.model.action;
 
 import java.util.List;
 
-import br.com.mind5.business.masterData.info.TimezoneInfo;
-import br.com.mind5.business.masterData.model.decisionTree.RootTimezoneSelect;
 import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.business.storeList.info.StolisMerger;
+import br.com.mind5.masterData.timezone.info.TimezoneInfo;
+import br.com.mind5.masterData.timezone.model.decisionTree.RootTimezoneSelect;
 import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;

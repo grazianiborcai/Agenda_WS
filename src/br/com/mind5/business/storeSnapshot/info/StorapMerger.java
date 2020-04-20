@@ -5,12 +5,12 @@ import java.util.List;
 import br.com.mind5.business.addressSnapshot.info.AddresnapInfo;
 import br.com.mind5.business.company.info.CompInfo;
 import br.com.mind5.business.companySnapshot.info.CompnapInfo;
-import br.com.mind5.business.masterData.info.TimezoneInfo;
 import br.com.mind5.business.person.info.PersonInfo;
 import br.com.mind5.business.personSnapshot.info.PersonapInfo;
 import br.com.mind5.business.phoneSnapshot.info.PhonapInfo;
 import br.com.mind5.info.obsolete.InfoMerger_;
 import br.com.mind5.masterData.currency.info.CurrencyInfo;
+import br.com.mind5.masterData.timezone.info.TimezoneInfo;
 import br.com.mind5.security.user.info.UserInfo;
 import br.com.mind5.security.userSnapshot.info.UserapInfo;
 

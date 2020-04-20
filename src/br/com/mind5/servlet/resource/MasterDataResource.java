@@ -28,7 +28,6 @@ import br.com.mind5.business.masterData.info.OrderStatusInfo;
 import br.com.mind5.business.masterData.info.PaymentStatusInfo;
 import br.com.mind5.business.masterData.info.PositionInfo;
 import br.com.mind5.business.masterData.info.ScheduleStatusInfo;
-import br.com.mind5.business.masterData.info.TimezoneInfo;
 import br.com.mind5.business.masterData.info.UserCategInfo;
 import br.com.mind5.business.masterData.info.WeekdayInfo;
 import br.com.mind5.business.masterData.model.AreaPhoneModelSelect;
@@ -51,7 +50,6 @@ import br.com.mind5.business.masterData.model.OrderStatusModelSelect;
 import br.com.mind5.business.masterData.model.PaymentStatusModelSelect;
 import br.com.mind5.business.masterData.model.PositionModelSelect;
 import br.com.mind5.business.masterData.model.ScheduleStatusModelSelect;
-import br.com.mind5.business.masterData.model.TimezoneModelSelect;
 import br.com.mind5.business.masterData.model.UserCategModelSelect;
 import br.com.mind5.business.masterData.model.WeekdayModelSelect;
 import br.com.mind5.masterData.currencySearch.info.CurrarshInfo;
@@ -62,6 +60,8 @@ import br.com.mind5.masterData.moonPhase.info.MoonaseInfo;
 import br.com.mind5.masterData.moonPhase.model.MoonaseModelSearch;
 import br.com.mind5.masterData.stateSearch.info.StatarchInfo;
 import br.com.mind5.masterData.stateSearch.model.StatarchModelSelect;
+import br.com.mind5.masterData.timezoneSearch.info.TimezonarchInfo;
+import br.com.mind5.masterData.timezoneSearch.model.TimezonarchModelSelect;
 import br.com.mind5.model.Model;
 
 
@@ -272,11 +272,11 @@ public final class MasterDataResource {
 	public Response selectTimezone(@HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage,
 			                       @HeaderParam("codTimezone") String codTimezone){
 		
-		TimezoneInfo recordInfo = new TimezoneInfo();
+		TimezonarchInfo recordInfo = new TimezonarchInfo();
 		recordInfo.codTimezone = codTimezone;
 		recordInfo.codLanguage = codLanguage;
 		
-		Model model = new TimezoneModelSelect(recordInfo);
+		Model model = new TimezonarchModelSelect(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	}

@@ -2,9 +2,9 @@ package br.com.mind5.business.store.model.checker;
 
 import java.util.List;
 
-import br.com.mind5.business.masterData.info.TimezoneInfo;
-import br.com.mind5.business.masterData.model.checker.TimezoneCheckExist;
 import br.com.mind5.business.store.info.StoreInfo;
+import br.com.mind5.masterData.timezone.info.TimezoneInfo;
+import br.com.mind5.masterData.timezone.model.checker.TimezoneCheckExist;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 

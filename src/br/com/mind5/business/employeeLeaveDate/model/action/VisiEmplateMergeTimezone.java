@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.com.mind5.business.employeeLeaveDate.info.EmplateInfo;
 import br.com.mind5.business.employeeLeaveDate.info.EmplateMerger;
-import br.com.mind5.business.masterData.info.TimezoneInfo;
-import br.com.mind5.business.masterData.model.decisionTree.RootTimezoneSelect;
+import br.com.mind5.masterData.timezone.info.TimezoneInfo;
+import br.com.mind5.masterData.timezone.model.decisionTree.RootTimezoneSelect;
 import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 import br.com.mind5.model.decisionTree.DeciTree;
 
