@@ -134,7 +134,7 @@ public final class DaoPhonarchDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		
 		Hashtable<String, List<DaoColumn>> results = new Hashtable<>();
-		results.put(TABLE_NAME, columns);
+		results.put(DaoDbTable.PHONE_SEARCH_VIEW, columns);
 		return results;
 	}
 }
