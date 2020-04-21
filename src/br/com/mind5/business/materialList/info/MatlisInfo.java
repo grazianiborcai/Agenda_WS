@@ -33,7 +33,7 @@ public final class MatlisInfo extends InfoRecord implements Cloneable {
 	
 	
 	public MatlisInfo() {
-		super(MatlisInfo.class);
+		super();
 		
 		codOwner = DefaultValue.number();
 		codSnapshot = DefaultValue.number();

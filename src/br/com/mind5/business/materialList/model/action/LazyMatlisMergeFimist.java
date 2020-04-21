@@ -4,12 +4,12 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.materialList.info.MatlisInfo;
-import br.com.mind5.model.action.ActionLazyTemplateV1;
+import br.com.mind5.model.action.ActionLazyTemplateV2;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyMatlisMergeFimist extends ActionLazyTemplateV1<MatlisInfo, MatlisInfo> {
+public final class LazyMatlisMergeFimist extends ActionLazyTemplateV2<MatlisInfo, MatlisInfo> {
 	
 	public LazyMatlisMergeFimist(Connection conn, String schemaName) {
 		super(conn, schemaName);

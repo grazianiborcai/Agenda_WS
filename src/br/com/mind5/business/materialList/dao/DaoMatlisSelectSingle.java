@@ -46,6 +46,7 @@ public final class DaoMatlisSelectSingle extends DaoStmtTemplate<MatlisInfo> {
 	
 	@Override protected String buildWhereClauseHook(String tableName, MatlisInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
+		
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		

@@ -6,23 +6,23 @@ import java.util.List;
 import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.business.materialList.model.action.LazyMatlisMergeFimist;
 import br.com.mind5.business.materialList.model.action.LazyMatlisMergeMateg;
-import br.com.mind5.business.materialList.model.action.LazyMatlisMergeMatoup;
-import br.com.mind5.business.materialList.model.action.LazyMatlisMergeMatype;
-import br.com.mind5.business.materialList.model.action.LazyMatlisMergeMatunit;
 import br.com.mind5.business.materialList.model.action.LazyMatlisMergeMatext;
+import br.com.mind5.business.materialList.model.action.LazyMatlisMergeMatoup;
+import br.com.mind5.business.materialList.model.action.LazyMatlisMergeMatunit;
+import br.com.mind5.business.materialList.model.action.LazyMatlisMergeMatype;
 import br.com.mind5.business.materialList.model.action.StdMatlisMergeToSelect;
 import br.com.mind5.business.materialList.model.checker.MatlisCheckLangu;
 import br.com.mind5.business.materialList.model.checker.MatlisCheckOwner;
 import br.com.mind5.business.materialList.model.checker.MatlisCheckRead;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 
-public final class RootMatlisSelect extends DeciTreeTemplateReadV1<MatlisInfo> {
+public final class RootMatlisSelect extends DeciTreeTemplateReadV2<MatlisInfo> {
 	
 	public RootMatlisSelect(DeciTreeOption<MatlisInfo> option) {
 		super(option);

@@ -21,27 +21,15 @@ public final class DaoMatlisDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_IS_LOCKED = DaoDbField.COL_IS_LOCKED;
 	public static final String COL_PRICE_UNIT = DaoDbField.COL_PRICE_UNIT;
 	public static final String COL_RECORD_MODE = DaoDbField.COL_RECORD_MODE;
-	
-	
-	private Hashtable<String, List<DaoColumn>> tableColumns;	
+
 	
 	public DaoMatlisDbTableColumn() {
-		super(DaoMatlisDbTableColumn.class);
+		super();
 	}
 	
 	
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
-		tableColumns = new Hashtable<>();
-		
-		buildMatTable();	
-		
-		return tableColumns;
-	}
-	
-	
-	
-	private void buildMatTable() {
 		final String TABLE_NAME = DaoDbTable.MAT_TABLE;
 		
 		DaoColumn oneColumn;
@@ -127,6 +115,8 @@ public final class DaoMatlisDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 
-		tableColumns.put(DaoDbTable.MAT_LIST_VIEW, columns);
+		Hashtable<String, List<DaoColumn>> results = new Hashtable<>();
+		results.put(DaoDbTable.MAT_LIST_VIEW, columns);
+		return results;
 	}
 }
