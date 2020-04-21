@@ -26,6 +26,6 @@ public final class MatouparchCheckRead extends ModelCheckerTemplateSimpleV2<Mato
 	
 	
 	@Override protected int getCodMsgOnResultFalseHook() {
-		return SystemCode.MAT_GROUP_MANDATORY_FIELD_EMPTY;
+		return SystemCode.MAT_GROUP_SEARCH_MANDATORY_FIELD_EMPTY;
 	}
 }

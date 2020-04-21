@@ -174,6 +174,7 @@ public final class SystemCode {
 	public static final int MAT_CATEG_SEARCH_MANDATORY_FIELD_EMPTY 		= 5348;
 	public static final int MAT_TYPE_SEARCH_MANDATORY_FIELD_EMPTY 		= 5349;
 	public static final int MAT_UNIT_SEARCH_MANDATORY_FIELD_EMPTY 		= 11650;
+	public static final int MAT_GROUP_SEARCH_MANDATORY_FIELD_EMPTY 		= 11651;
 	
 	// Material
 	public static final int MAT_ALREADY_EXIST							= 1200;
