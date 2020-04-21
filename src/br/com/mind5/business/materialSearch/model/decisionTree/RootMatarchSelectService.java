@@ -9,13 +9,13 @@ import br.com.mind5.business.materialSearch.model.action.StdMatarchEnforceMatCat
 import br.com.mind5.business.materialSearch.model.checker.MatarchCheckReadMat;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 
-public final class RootMatarchSelectService extends DeciTreeTemplateReadV1<MatarchInfo> {
+public final class RootMatarchSelectService extends DeciTreeTemplateReadV2<MatarchInfo> {
 	
 	public RootMatarchSelectService(DeciTreeOption<MatarchInfo> option) {
 		super(option);

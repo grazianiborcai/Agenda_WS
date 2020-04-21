@@ -21,7 +21,7 @@ public final class MatarchInfo extends InfoRecord implements Cloneable {
 	
 	
 	public MatarchInfo() {
-		super(MatarchInfo.class);
+		super();
 		
 		codOwner = DefaultValue.number();
 		codSnapshot = DefaultValue.number();
