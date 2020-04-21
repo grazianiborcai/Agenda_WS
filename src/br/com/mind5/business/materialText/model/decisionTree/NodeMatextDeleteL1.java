@@ -5,18 +5,18 @@ import java.util.List;
 
 import br.com.mind5.business.materialText.info.MatextInfo;
 import br.com.mind5.business.materialText.model.action.LazyMatextDaoDelete;
-import br.com.mind5.business.materialText.model.action.LazyMatextMergeUsername;
 import br.com.mind5.business.materialText.model.action.LazyMatextDaoUpdate;
+import br.com.mind5.business.materialText.model.action.LazyMatextMergeUsername;
 import br.com.mind5.business.materialText.model.action.StdMatextEnforceLChanged;
-import br.com.mind5.business.materialText.model.checker.MatextCheckDummy;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class NodeMatextDeleteL1 extends DeciTreeTemplateWriteV1<MatextInfo> {
+public final class NodeMatextDeleteL1 extends DeciTreeTemplateWriteV2<MatextInfo> {
 
 	public NodeMatextDeleteL1(DeciTreeOption<MatextInfo> option) {
 		super(option);
@@ -28,7 +28,7 @@ public final class NodeMatextDeleteL1 extends DeciTreeTemplateWriteV1<MatextInfo
 		List<ModelCheckerV1<MatextInfo>> queue = new ArrayList<>();		
 		ModelCheckerV1<MatextInfo> checker;
 			
-		checker = new MatextCheckDummy();
+		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 
 		return new ModelCheckerHelperQueueV2<MatextInfo>(queue);
