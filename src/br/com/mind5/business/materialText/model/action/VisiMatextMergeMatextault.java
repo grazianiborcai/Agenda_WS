@@ -25,8 +25,8 @@ final class VisiMatextMergeMatextault extends ActionVisitorTemplateMergeV2<Matex
 	
 	
 	
-	@Override protected List<MatextInfo> mergeHook(List<MatextInfo> recordInfos, List<MatextaultInfo> selectedInfos) {	
-		return MatextMerger.mergeWithMatextault(selectedInfos, recordInfos);
+	@Override protected List<MatextInfo> mergeHook(List<MatextInfo> baseInfos, List<MatextaultInfo> selectedInfos) {	
+		return MatextMerger.mergeWithMatextault(baseInfos, selectedInfos);
 	}
 	
 	

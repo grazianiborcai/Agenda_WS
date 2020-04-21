@@ -1,54 +1,38 @@
 package br.com.mind5.business.materialText.info;
 
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import java.util.ArrayList;
+import java.util.List;
 
-final class MatextVisiMergeToDelete implements InfoMergerVisitor_<MatextInfo, MatextInfo> {
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-	@Override public MatextInfo writeRecord(MatextInfo sourceOne, MatextInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);		
-		return merge(sourceOne, sourceTwo);
+final class MatextVisiMergeToDelete implements InfoMergerVisitorV3<MatextInfo, MatextInfo> {
+	
+	@Override public List<MatextInfo> beforeMerge(List<MatextInfo> baseInfos) {
+		return baseInfos;
 	}
 	
 	
 	
-	private void checkArgument(MatextInfo sourceOne, MatextInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
+	@Override public boolean shouldMerge(MatextInfo baseInfo, MatextInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner	&& 
+				baseInfo.codMat   == selectedInfo.codMat		);
 	}
 	
 	
 	
-	private MatextInfo merge(MatextInfo sourceOne, MatextInfo sourceTwo) {
-		MatextInfo result = makeClone(sourceOne);		
-		result.username = sourceTwo.username;
-		return result;
-	}
-	
-	
-	
-	private MatextInfo makeClone(MatextInfo recordInfo) {
-		try {
-			return (MatextInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(MatextInfo sourceOne, MatextInfo sourceTwo) {	
-		return (sourceOne.codOwner == sourceTwo.codOwner	&& 
-				sourceOne.codMat   == sourceTwo.codMat			);
-	}
-	
-	
-	
-	private void logException(Exception e) {
+	@Override public List<MatextInfo> merge(MatextInfo baseInfo, MatextInfo selectedInfo) {
+		List<MatextInfo> results = new ArrayList<>();
 		
-		SystemLog.logError(this.getClass(), e);
+		selectedInfo.username = baseInfo.username;
+		
+		results.add(selectedInfo);
+		return results;
+	}
+	
+	
+	
+	@Override public InfoUniquifier<MatextInfo> getUniquifier() {
+		return null;
 	}
 }

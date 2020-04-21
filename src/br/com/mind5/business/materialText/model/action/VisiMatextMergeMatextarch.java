@@ -26,14 +26,14 @@ final class VisiMatextMergeMatextarch extends ActionVisitorTemplateMergeV2<Matex
 	
 	
 	
-	@Override protected List<MatextarchInfo> toActionClassHook(List<MatextInfo> recordInfos) {
-		return MatextarchCopier.copyFromMatext(recordInfos);	
+	@Override protected List<MatextarchInfo> toActionClassHook(List<MatextInfo> baseInfos) {
+		return MatextarchCopier.copyFromMatext(baseInfos);	
 	}
 	
 	
 	
-	@Override protected List<MatextInfo> mergeHook(List<MatextInfo> recordInfos, List<MatextarchInfo> selectedInfos) {	
-		return MatextMerger.mergeWithMatextarch(selectedInfos, recordInfos);
+	@Override protected List<MatextInfo> mergeHook(List<MatextInfo> baseInfos, List<MatextarchInfo> selectedInfos) {	
+		return MatextMerger.mergeWithMatextarch(baseInfos, selectedInfos);
 	}
 	
 	

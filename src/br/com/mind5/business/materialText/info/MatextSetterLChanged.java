@@ -1,40 +1,12 @@
 package br.com.mind5.business.materialText.info;
 
-import java.time.LocalDateTime;
-
 import br.com.mind5.common.DefaultValue;
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoSetter;
+import br.com.mind5.info.InfoSetterTemplate;
 
-public final class MatextSetterLChanged implements InfoSetter<MatextInfo> {
+public final class MatextSetterLChanged extends InfoSetterTemplate<MatextInfo> {
 	
-	public MatextInfo setAttr(MatextInfo recordInfo) {
-		checkArgument(recordInfo);
-		
-		recordInfo.lastChanged = genLastChanged();
+	@Override protected MatextInfo setAttrHook(MatextInfo recordInfo) {	
+		recordInfo.lastChanged = DefaultValue.localDateTimeNow();
 		return recordInfo;
 	}
-	
-	
-	
-	private void checkArgument(MatextInfo recordInfo) {
-		if (recordInfo == null) {
-			logException(new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT));
-			throw new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT);
-		}
-	}
-	
-	
-	
-	private LocalDateTime genLastChanged() {
-		return DefaultValue.localDateTimeNow();
-	}
-	
-	
-	
-	private void logException(Exception e) {
-		
-		SystemLog.logError(this.getClass(), e);
-	}	
 }

@@ -23,8 +23,8 @@ final class VisiMatextMergeToDelete extends ActionVisitorTemplateMergeV2<MatextI
 	
 	
 	
-	@Override protected List<MatextInfo> mergeHook(List<MatextInfo> recordInfos, List<MatextInfo> selectedInfos) {	
-		return MatextMerger.mergeToDelete(selectedInfos, recordInfos);
+	@Override protected List<MatextInfo> mergeHook(List<MatextInfo> baseInfos, List<MatextInfo> selectedInfos) {	
+		return MatextMerger.mergeToDelete(baseInfos, selectedInfos);
 	}
 	
 	

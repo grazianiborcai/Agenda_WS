@@ -26,14 +26,14 @@ final class VisiMatextMergeUsername extends ActionVisitorTemplateMergeV2<MatextI
 	
 	
 	
-	@Override protected List<UsernameInfo> toActionClassHook(List<MatextInfo> recordInfos) {
-		return UsernameCopier.copyFromMatext(recordInfos);	
+	@Override protected List<UsernameInfo> toActionClassHook(List<MatextInfo> baseInfos) {
+		return UsernameCopier.copyFromMatext(baseInfos);	
 	}
 	
 	
 	
-	@Override protected List<MatextInfo> mergeHook(List<MatextInfo> recordInfos, List<UsernameInfo> selectedInfos) {	
-		return MatextMerger.mergeWithUsername(selectedInfos, recordInfos);
+	@Override protected List<MatextInfo> mergeHook(List<MatextInfo> baseInfos, List<UsernameInfo> selectedInfos) {	
+		return MatextMerger.mergeWithUsername(baseInfos, selectedInfos);
 	}
 	
 	

@@ -1,54 +1,38 @@
 package br.com.mind5.business.materialText.info;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import br.com.mind5.business.materialTextSearch.info.MatextarchInfo;
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-final class MatextVisiMergeMatextarch implements InfoMergerVisitor_<MatextInfo, MatextarchInfo> {
-
-	@Override public MatextInfo writeRecord(MatextarchInfo sourceOne, MatextInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+final class MatextVisiMergeMatextarch implements InfoMergerVisitorV3<MatextInfo, MatextarchInfo> {
+	
+	@Override public List<MatextInfo> beforeMerge(List<MatextInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(MatextInfo baseInfo, MatextarchInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner);
+	}
+	
+	
+	
+	@Override public List<MatextInfo> merge(MatextInfo baseInfo, MatextarchInfo selectedInfo) {
+		List<MatextInfo> results = new ArrayList<>();
 		
-		MatextInfo clonedInfo = makeClone(sourceTwo);
-		return merge(sourceOne, clonedInfo);
-	}
-	
-	
-	
-	private void checkArgument(MatextarchInfo sourceOne, MatextInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private MatextInfo makeClone(MatextInfo recordInfo) {
-		try {
-			return (MatextInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	private MatextInfo merge(MatextarchInfo sourceOne, MatextInfo sourceTwo) {
-		return MatextInfo.copyFrom(sourceOne);
-	}
-
-
-	
-	@Override public boolean shouldWrite(MatextarchInfo sourceOne, MatextInfo sourceTwo) {
-		return (sourceOne.codOwner == sourceTwo.codOwner);
-	}		
-	
-	
-	
-	private void logException(Exception e) {
+		MatextInfo result = MatextInfo.copyFrom(selectedInfo);
 		
-		SystemLog.logError(this.getClass(), e);
+		results.add(result);
+		return results;
+	}
+	
+	
+	
+	@Override public InfoUniquifier<MatextInfo> getUniquifier() {
+		return null;
 	}
 }
