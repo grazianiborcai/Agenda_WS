@@ -1,35 +1,19 @@
 package br.com.mind5.business.moonCalendar.model.action;
 
 import br.com.mind5.business.moonCalendar.info.MooncalInfo;
-import br.com.mind5.model.action.ActionLazyV1;
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionStdHelperMerge;
-import br.com.mind5.model.decisionTree.DeciResult;
+import br.com.mind5.model.action.ActionStdTemplateV2;
+import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdMooncalMergeMoonase implements ActionStdV1<MooncalInfo> {
-	private ActionStdV1<MooncalInfo> actionHelper;	
-	
+public final class StdMooncalMergeMoonase extends ActionStdTemplateV2<MooncalInfo> {
 	
 	public StdMooncalMergeMoonase(DeciTreeOption<MooncalInfo> option) {			
-		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiMooncalMergeMoonase(option.conn, option.schemaName));
+		super(option);
 	}
 	
 	
 	
-	@Override public void addPostAction(ActionLazyV1<MooncalInfo> actionHandler) {
-		actionHelper.addPostAction(actionHandler);
-	}
-	
-	
-	
-	@Override public boolean executeAction() {			
-		return actionHelper.executeAction();
-	}
-	
-	
-	
-	@Override public DeciResult<MooncalInfo> getDecisionResult() {
-		return actionHelper.getDecisionResult();
+	protected ActionVisitorV2<MooncalInfo> buildVisitorHook(DeciTreeOption<MooncalInfo> option) {
+		return new VisiMooncalMergeMoonase(option);
 	}
 }

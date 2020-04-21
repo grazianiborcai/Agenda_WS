@@ -18,7 +18,7 @@ public final class MooncalInfo extends InfoRecord implements Cloneable {
 	
 	
 	public MooncalInfo() {
-		super(MooncalInfo.class);
+		super();
 		
 		moonDate = DefaultValue.object();
 		moonTime = DefaultValue.object();

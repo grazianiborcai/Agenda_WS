@@ -9,13 +9,13 @@ import br.com.mind5.business.moonCalendar.model.action.StdMooncalMergeToSelect;
 import br.com.mind5.business.moonCalendar.model.checker.MooncalCheckRead;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 
-public final class RootMooncalSelect extends DeciTreeTemplateReadV1<MooncalInfo> {
+public final class RootMooncalSelect extends DeciTreeTemplateReadV2<MooncalInfo> {
 	
 	public RootMooncalSelect(DeciTreeOption<MooncalInfo> option) {
 		super(option);

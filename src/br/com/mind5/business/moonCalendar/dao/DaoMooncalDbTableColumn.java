@@ -9,32 +9,20 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class MooncalDbTableColumn extends DaoDbTableColumnTemplate {
+public final class DaoMooncalDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_MOON_PHASE = DaoDbField.COL_COD_MOON_PHASE;	
 	public static final String COL_MOON_DATE = DaoDbField.COL_MOON_DATE;		
 	public static final String COL_MOON_DATE_TIME = DaoDbField.COL_MOON_DATE_TIME;	
 	public static final String COL_MOON_TIME = DaoDbField.COL_MOON_TIME;	
 	
 	
-	private Hashtable<String, List<DaoColumn>> tableColumns;	
-	
-	public MooncalDbTableColumn() {
-		super(MooncalDbTableColumn.class);
+	public DaoMooncalDbTableColumn() {
+		super();
 	}
 	
 	
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
-		tableColumns = new Hashtable<>();
-		
-		buildTable();
-		
-		return tableColumns;
-	}
-	
-	
-	
-	private void buildTable() {
 		final String TABLE_NAME = DaoDbTable.MOON_CALENDAR_TABLE;
 		
 		DaoColumn oneColumn;
@@ -72,6 +60,8 @@ public final class MooncalDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		tableColumns.put(TABLE_NAME, columns);
+		Hashtable<String, List<DaoColumn>> results = new Hashtable<>();
+		results.put(TABLE_NAME, columns);
+		return results;
 	}
 }

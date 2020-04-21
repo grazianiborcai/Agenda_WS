@@ -1,7 +1,7 @@
 package br.com.mind5.business.moonCalendar.model.checker;
 
 import br.com.mind5.business.moonCalendar.info.MooncalInfo;
-import br.com.mind5.business.moonCalendar.model.action.StdMooncalSelect;
+import br.com.mind5.business.moonCalendar.model.action.StdMooncalDaoSelect;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -17,7 +17,7 @@ public final class MooncalCheckExist extends ModelCheckerTemplateActionV2<Moonca
 	
 	
 	@Override protected ActionStdV1<MooncalInfo> buildActionHook(DeciTreeOption<MooncalInfo> option) {
-		ActionStdV1<MooncalInfo> select = new StdMooncalSelect(option);
+		ActionStdV1<MooncalInfo> select = new StdMooncalDaoSelect(option);
 		return select;
 	}
 	
