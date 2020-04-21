@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.materialText.info.MatextInfo;
-import br.com.mind5.business.materialText.model.action.LazyMatextDelete;
+import br.com.mind5.business.materialText.model.action.LazyMatextDaoDelete;
 import br.com.mind5.business.materialText.model.action.LazyMatextMergeUsername;
-import br.com.mind5.business.materialText.model.action.LazyMatextUpdate;
+import br.com.mind5.business.materialText.model.action.LazyMatextDaoUpdate;
 import br.com.mind5.business.materialText.model.action.StdMatextEnforceLChanged;
 import br.com.mind5.business.materialText.model.checker.MatextCheckDummy;
 import br.com.mind5.model.action.ActionLazyV1;
@@ -41,8 +41,8 @@ public final class NodeMatextDeleteL1 extends DeciTreeTemplateWriteV1<MatextInfo
 		
 		ActionStdV1<MatextInfo> enforceLChanged = new StdMatextEnforceLChanged(option);
 		ActionLazyV1<MatextInfo> enforceLChangedBy = new LazyMatextMergeUsername(option.conn, option.schemaName);
-		ActionLazyV1<MatextInfo> update = new LazyMatextUpdate(option.conn, option.schemaName);
-		ActionLazyV1<MatextInfo> delete = new LazyMatextDelete(option.conn, option.schemaName);
+		ActionLazyV1<MatextInfo> update = new LazyMatextDaoUpdate(option.conn, option.schemaName);
+		ActionLazyV1<MatextInfo> delete = new LazyMatextDaoDelete(option.conn, option.schemaName);
 		
 		enforceLChanged.addPostAction(enforceLChangedBy);
 		enforceLChangedBy.addPostAction(update);

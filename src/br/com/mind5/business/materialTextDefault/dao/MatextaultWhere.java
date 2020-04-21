@@ -2,7 +2,7 @@ package br.com.mind5.business.materialTextDefault.dao;
 
 import java.util.List;
 
-import br.com.mind5.business.materialText.dao.MatextDbTableColumn;
+import br.com.mind5.business.materialText.dao.DaoMatextDbTableColumn;
 import br.com.mind5.business.materialTextDefault.info.MatextaultInfo;
 import br.com.mind5.dao.DaoColumn;
 import br.com.mind5.dao.DaoFormatter;
@@ -36,7 +36,7 @@ public final class MatextaultWhere implements DaoStmtWhere {
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codMat));
 					break;
 					
-				case MatextDbTableColumn.COL_IS_DEFAULT :
+				case DaoMatextDbTableColumn.COL_IS_DEFAULT :
 					builder.addClauseEqualAnd(eachColumn, "1");
 					break;
 					

@@ -8,7 +8,7 @@ import br.com.mind5.business.materialText.model.action.LazyMatextEnforceDefaultO
 import br.com.mind5.business.materialText.model.action.LazyMatextEnforceLChanged;
 import br.com.mind5.business.materialText.model.action.LazyMatextMergeToSelect;
 import br.com.mind5.business.materialText.model.action.LazyMatextMergeUsername;
-import br.com.mind5.business.materialText.model.action.LazyMatextUpdate;
+import br.com.mind5.business.materialText.model.action.LazyMatextDaoUpdate;
 import br.com.mind5.business.materialText.model.action.StdMatextMergeMatextault;
 import br.com.mind5.business.materialText.model.action.StdMatextSuccess;
 import br.com.mind5.business.materialText.model.checker.MatextCheckMatextault;
@@ -53,7 +53,7 @@ public final class NodeMatextDefaultL2 extends DeciTreeTemplateWriteV1<MatextInf
 		ActionLazyV1<MatextInfo> enforceLChanged = new LazyMatextEnforceLChanged(option.conn, option.schemaName);	
 		ActionLazyV1<MatextInfo> enforceLChangedBy = new LazyMatextMergeUsername(option.conn, option.schemaName);
 		ActionLazyV1<MatextInfo> enforceDefaultOff = new LazyMatextEnforceDefaultOff(option.conn, option.schemaName);
-		ActionLazyV1<MatextInfo> update = new LazyMatextUpdate(option.conn, option.schemaName);
+		ActionLazyV1<MatextInfo> update = new LazyMatextDaoUpdate(option.conn, option.schemaName);
 		ActionStdV1<MatextInfo> success = new StdMatextSuccess(option);	
 		
 		mergeMatextault.addPostAction(mergeToSelect);

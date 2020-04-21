@@ -4,14 +4,14 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.materialText.info.MatextInfo;
-import br.com.mind5.model.action.ActionLazyTemplateV1;
+import br.com.mind5.model.action.ActionLazyTemplateV2;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyMatextDelete extends ActionLazyTemplateV1<MatextInfo, MatextInfo> {
-
-	public LazyMatextDelete(Connection conn, String schemaName) {
+public final class LazyMatextDaoUpdate extends ActionLazyTemplateV2<MatextInfo, MatextInfo> {
+	
+	public LazyMatextDaoUpdate(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyMatextDelete extends ActionLazyTemplateV1<MatextInfo, Mat
 	
 	
 	@Override protected ActionStdV1<MatextInfo> getInstanceOfActionHook(DeciTreeOption<MatextInfo> option) {
-		return new StdMatextDelete(option);
+		return new StdMatextDaoUpdate(option);
 	}
 	
 	

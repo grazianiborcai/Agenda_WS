@@ -1,6 +1,5 @@
 package br.com.mind5.business.materialText.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.materialText.info.MatextInfo;
@@ -8,12 +7,14 @@ import br.com.mind5.business.materialText.info.MatextMerger;
 import br.com.mind5.business.materialTextDefault.info.MatextaultInfo;
 import br.com.mind5.business.materialTextDefault.model.decisionTree.RootMatextaultSelect;
 import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiMatextMergeMatextault extends ActionVisitorTemplateMergeV1<MatextInfo, MatextaultInfo> {
+final class VisiMatextMergeMatextault extends ActionVisitorTemplateMergeV2<MatextInfo, MatextaultInfo> {
 	
-	public VisiMatextMergeMatextault(Connection conn, String schemaName) {
-		super(conn, schemaName, MatextaultInfo.class);
+	public VisiMatextMergeMatextault(DeciTreeOption<MatextInfo> option) {
+		super(option, MatextaultInfo.class);
 	}
 	
 	

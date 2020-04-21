@@ -1,23 +1,24 @@
 package br.com.mind5.business.materialText.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.materialText.info.MatextInfo;
 import br.com.mind5.business.materialText.info.MatextMerger;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiMatextMergeToDelete extends ActionVisitorTemplateMergeV1<MatextInfo, MatextInfo> {
+final class VisiMatextMergeToDelete extends ActionVisitorTemplateMergeV2<MatextInfo, MatextInfo> {
 	
-	public VisiMatextMergeToDelete(Connection conn, String schemaName) {
-		super(conn, schemaName, MatextInfo.class);
+	public VisiMatextMergeToDelete(DeciTreeOption<MatextInfo> option) {
+		super(option, MatextInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends ActionStdV1<MatextInfo>> getActionClassHook() {
-		return StdMatextSelect.class;
+	@Override protected Class<? extends ActionStdV2<MatextInfo>> getActionClassHook() {
+		return StdMatextDaoSelect.class;
 	}
 	
 	

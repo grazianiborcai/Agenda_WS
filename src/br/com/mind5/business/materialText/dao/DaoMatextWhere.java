@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilder;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 
-public final class MatextWhere implements DaoStmtWhere {
+public final class DaoMatextWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public MatextWhere(DaoWhereBuilderOption whereOption, String tableName, MatextInfo recordInfo) {
+	public DaoMatextWhere(DaoWhereBuilderOption whereOption, String tableName, MatextInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -27,19 +27,19 @@ public final class MatextWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-				case MatextDbTableColumn.COL_COD_OWNER :
+				case DaoMatextDbTableColumn.COL_COD_OWNER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;
 					
-				case MatextDbTableColumn.COL_COD_MATERIAL :
+				case DaoMatextDbTableColumn.COL_COD_MATERIAL :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codMat));
 					break;
 					
-				case MatextDbTableColumn.COL_COD_LANGUAGE :
+				case DaoMatextDbTableColumn.COL_COD_LANGUAGE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codLanguage);
 					break;
 					
-				case MatextDbTableColumn.COL_RECORD_MODE :
+				case DaoMatextDbTableColumn.COL_RECORD_MODE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.recordMode);
 					break;
 			}
