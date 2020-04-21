@@ -38,8 +38,8 @@ import br.com.mind5.business.masterData.model.UserCategModelSelect;
 import br.com.mind5.business.masterData.model.WeekdayModelSelect;
 import br.com.mind5.masterData.areaPhoneSearch.info.AreanarchInfo;
 import br.com.mind5.masterData.areaPhoneSearch.model.AreanarchModelSelect;
-import br.com.mind5.masterData.businessArea.info.BusareaInfo;
-import br.com.mind5.masterData.businessArea.model.BusareaModelSelect;
+import br.com.mind5.masterData.businessAreaSearch.info.BusarearchInfo;
+import br.com.mind5.masterData.businessAreaSearch.model.BusarearchModelSelect;
 import br.com.mind5.masterData.countryPhoneSearch.info.CountronarchInfo;
 import br.com.mind5.masterData.countryPhoneSearch.model.CountronarchModelSelect;
 import br.com.mind5.masterData.countrySearch.info.CountarchInfo;
@@ -189,11 +189,11 @@ public final class MasterDataResource {
 	public Response selectBusinessArea(@HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage,
 			                       	   @HeaderParam("codBusiness") @DefaultValue("-1") int codBusiness){
 		
-		BusareaInfo recordInfo = new BusareaInfo();
+		BusarearchInfo recordInfo = new BusarearchInfo();
 		recordInfo.codLanguage = codLanguage;
 		recordInfo.codBusiness = codBusiness;
 		
-		Model model = new BusareaModelSelect(recordInfo);
+		Model model = new BusarearchModelSelect(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	}

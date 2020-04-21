@@ -16,7 +16,9 @@ public final class BusareaCheckRead extends ModelCheckerTemplateSimpleV2<Busarea
 	
 	
 	@Override protected boolean checkHook(BusareaInfo recordInfo, Connection conn, String schemaName) {	
-		if ( recordInfo.codLanguage == null )			
+		if ( recordInfo.codBusiness <= 0 	||
+			 recordInfo.codLanguage == null		)	
+			
 			return super.FAILED;
 		
 		

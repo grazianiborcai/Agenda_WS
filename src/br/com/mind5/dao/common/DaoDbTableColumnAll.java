@@ -108,6 +108,7 @@ import br.com.mind5.masterData.areaPhone.dao.DaoAreaneDbTableColumn;
 import br.com.mind5.masterData.areaPhoneSearch.dao.DaoAreanarchDbTableColumn;
 import br.com.mind5.masterData.authorizationGroupRole.dao.DaoAuthgroleDbTableColumn;
 import br.com.mind5.masterData.businessArea.dao.DaoBusareaDbTableColumn;
+import br.com.mind5.masterData.businessAreaSearch.dao.DaoBusarearchDbTableColumn;
 import br.com.mind5.masterData.country.dao.DaoCountryDbTableColumn;
 import br.com.mind5.masterData.countryPhone.dao.DaoCountroneDbTableColumn;
 import br.com.mind5.masterData.countryPhoneSearch.dao.DaoCountronarchDbTableColumn;
@@ -119,6 +120,7 @@ import br.com.mind5.masterData.languageSearch.dao.DaoLangarchDbTableColumn;
 import br.com.mind5.masterData.materialCategory.dao.DaoMategDbTableColumn;
 import br.com.mind5.masterData.materialCategorySearch.dao.DaoMategarchDbTableColumn;
 import br.com.mind5.masterData.materialGroup.dao.DaoMatoupDbTableColumn;
+import br.com.mind5.masterData.materialGroupSearch.dao.DaoMatouparchDbTableColumn;
 import br.com.mind5.masterData.materialType.dao.DaoMatypeDbTableColumn;
 import br.com.mind5.masterData.materialTypeSearch.dao.DaoMatyparchDbTableColumn;
 import br.com.mind5.masterData.materialUnit.dao.DaoMatunitDbTableColumn;
@@ -323,6 +325,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new DaoMatunitDbTableColumn());
 		addTable(new DaoMatunitarchDbTableColumn());
 		addTable(new DaoBusareaDbTableColumn());
+		addTable(new DaoBusarearchDbTableColumn());
 		addTable(new DaoMatoupDbTableColumn());
 		addTable(new DaoMatouparchDbTableColumn());
 	}
