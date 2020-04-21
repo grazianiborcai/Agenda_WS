@@ -9,7 +9,7 @@ import br.com.mind5.business.material.model.action.LazyMatNodeUpsertMatext;
 import br.com.mind5.business.material.model.action.LazyMatRootSelect;
 import br.com.mind5.business.material.model.checker.MatCheckMateg;
 import br.com.mind5.business.material.model.checker.MatCheckExist;
-import br.com.mind5.business.material.model.checker.MatCheckGroup;
+import br.com.mind5.business.material.model.checker.MatCheckMatoup;
 import br.com.mind5.business.material.model.checker.MatCheckLangu;
 import br.com.mind5.business.material.model.checker.MatCheckOwner;
 import br.com.mind5.business.material.model.checker.MatCheckMatype;
@@ -75,7 +75,7 @@ public final class RootMatUpdate extends DeciTreeTemplateWriteV1<MatInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
-		checker = new MatCheckGroup(checkerOption);
+		checker = new MatCheckMatoup(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
