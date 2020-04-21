@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class MatextaultDbTableColumn extends DaoDbTableColumnTemplate {
+public final class DaoMatextaultDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_LANGUAGE = DaoDbField.COL_COD_LANGUAGE;
 	public static final String COL_COD_MATERIAL = DaoDbField.COL_COD_MATERIAL;
 	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;
@@ -17,25 +17,13 @@ public final class MatextaultDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_RECORD_MODE = DaoDbField.COL_RECORD_MODE;
 	
 	
-	private Hashtable<String, List<DaoColumn>> tableColumns;	
-	
-	public MatextaultDbTableColumn() {
-		super(MatextaultDbTableColumn.class);
+	public DaoMatextaultDbTableColumn() {
+		super();
 	}
 	
 	
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
-		tableColumns = new Hashtable<>();
-			
-		buildMatTextDefaultTable();
-		
-		return tableColumns;
-	}
-	
-	
-	
-	private void buildMatTextDefaultTable() {
 		final String TABLE_NAME = DaoDbTable.MAT_TEXT_TABLE;
 		
 		DaoColumn oneColumn;
@@ -81,6 +69,8 @@ public final class MatextaultDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		tableColumns.put(DaoDbTable.MAT_TEXT_DEFAULT_VIEW, columns);
+		Hashtable<String, List<DaoColumn>> results = new Hashtable<>();
+		results.put(DaoDbTable.MAT_TEXT_DEFAULT_VIEW, columns);
+		return results;
 	}
 }

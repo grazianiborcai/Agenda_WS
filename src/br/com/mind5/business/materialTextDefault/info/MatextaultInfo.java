@@ -14,7 +14,7 @@ public final class MatextaultInfo extends InfoRecord implements Cloneable {
 	
 	
 	public MatextaultInfo() {
-		super(MatextaultInfo.class);
+		super();
 		
 		codOwner = DefaultValue.number();
 		codMat = DefaultValue.number();

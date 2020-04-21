@@ -1,7 +1,7 @@
 package br.com.mind5.business.materialTextDefault.model.checker;
 
 import br.com.mind5.business.materialTextDefault.info.MatextaultInfo;
-import br.com.mind5.business.materialTextDefault.model.action.StdMatextaultSelect;
+import br.com.mind5.business.materialTextDefault.model.action.StdMatextaultDaoSelect;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -17,7 +17,7 @@ public final class MatextaultCheckExist extends ModelCheckerTemplateActionV2<Mat
 	
 	
 	@Override protected ActionStdV1<MatextaultInfo> buildActionHook(DeciTreeOption<MatextaultInfo> option) {
-		ActionStdV1<MatextaultInfo> select = new StdMatextaultSelect(option);
+		ActionStdV1<MatextaultInfo> select = new StdMatextaultDaoSelect(option);
 		return select;
 	}
 	

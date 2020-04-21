@@ -9,13 +9,13 @@ import br.com.mind5.business.materialTextDefault.model.checker.MatextaultCheckMa
 import br.com.mind5.business.materialTextDefault.model.checker.MatextaultCheckOwner;
 import br.com.mind5.business.materialTextDefault.model.checker.MatextaultCheckRead;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 
-public final class RootMatextaultSelect extends DeciTreeTemplateReadV1<MatextaultInfo> {
+public final class RootMatextaultSelect extends DeciTreeTemplateReadV2<MatextaultInfo> {
 	
 	public RootMatextaultSelect(DeciTreeOption<MatextaultInfo> option) {
 		super(option);

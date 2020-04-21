@@ -1,35 +1,36 @@
 package br.com.mind5.business.materialTextDefault.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.materialTextDefault.info.MatextaultInfo;
 import br.com.mind5.business.materialTextDefault.info.MatextaultMerger;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiMatextaultMergeToSelect extends ActionVisitorTemplateMergeV1<MatextaultInfo, MatextaultInfo> {
+final class VisiMatextaultMergeToSelect extends ActionVisitorTemplateMergeV2<MatextaultInfo, MatextaultInfo> {
 	
-	public VisiMatextaultMergeToSelect(Connection conn, String schemaName) {
-		super(conn, schemaName, MatextaultInfo.class);
+	public VisiMatextaultMergeToSelect(DeciTreeOption<MatextaultInfo> option) {
+		super(option, MatextaultInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends ActionStdV1<MatextaultInfo>> getActionClassHook() {
-		return StdMatextaultSelect.class;
+	@Override protected Class<? extends ActionStdV2<MatextaultInfo>> getActionClassHook() {
+		return StdMatextaultDaoSelect.class;
 	}
 	
 	
 	
-	@Override protected List<MatextaultInfo> toActionClassHook(List<MatextaultInfo> recordInfos) {
-		return recordInfos;	
+	@Override protected List<MatextaultInfo> toActionClassHook(List<MatextaultInfo> baseInfos) {
+		return baseInfos;	
 	}	
 	
 	
 	
-	@Override protected List<MatextaultInfo> mergeHook(List<MatextaultInfo> recordInfos, List<MatextaultInfo> selectedInfos) {	
-		return MatextaultMerger.mergeToSelect(selectedInfos, recordInfos);
+	@Override protected List<MatextaultInfo> mergeHook(List<MatextaultInfo> baseInfos, List<MatextaultInfo> selectedInfos) {	
+		return MatextaultMerger.mergeToSelect(baseInfos, selectedInfos);
 	}
 	
 	
