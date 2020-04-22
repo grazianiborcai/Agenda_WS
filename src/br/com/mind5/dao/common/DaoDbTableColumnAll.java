@@ -53,7 +53,7 @@ import br.com.mind5.business.materialStoreSearch.dao.MatorarchDbTableColumn;
 import br.com.mind5.business.materialStoreSnapshot.dao.MatorapDbTableColumn;
 import br.com.mind5.business.materialText.dao.DaoMatextDbTableColumn;
 import br.com.mind5.business.materialTextDefault.dao.DaoMatextaultDbTableColumn;
-import br.com.mind5.business.materialTextSearch.dao.MatextarchDbTableColumn;
+import br.com.mind5.business.materialTextSearch.dao.DaoMatextarchDbTableColumn;
 import br.com.mind5.business.materialTextSnapshot.dao.MatextsnapDbTableColumn;
 import br.com.mind5.business.moonCalendar.dao.DaoMooncalDbTableColumn;
 import br.com.mind5.business.order.dao.OrderDbTableColumn;
@@ -276,7 +276,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new EmplarchDbTableColumn());
 		addTable(new EmparchDbTableColumn());
 		addTable(new EmpmarchDbTableColumn());
-		addTable(new MatextarchDbTableColumn());
+		addTable(new DaoMatextarchDbTableColumn());
 		addTable(new DaoMatextaultDbTableColumn());
 		addTable(new DaoMatlisDbTableColumn());
 		addTable(new DaoMatarchDbTableColumn());

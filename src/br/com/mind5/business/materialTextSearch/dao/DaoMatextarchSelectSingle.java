@@ -15,10 +15,10 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class MatextarchSelectSingle extends DaoStmtTemplate<MatextarchInfo> {
+public final class DaoMatextarchSelectSingle extends DaoStmtTemplate<MatextarchInfo> {
 	private final String MAIN_TABLE = DaoDbTable.MAT_TEXT_TABLE;	
 	
-	public MatextarchSelectSingle(Connection conn, MatextarchInfo recordInfo, String schemaName) {
+	public DaoMatextarchSelectSingle(Connection conn, MatextarchInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -44,10 +44,11 @@ public final class MatextarchSelectSingle extends DaoStmtTemplate<MatextarchInfo
 	
 	@Override protected String buildWhereClauseHook(String tableName, MatextarchInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
+		
 		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new MatextarchWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new DaoMatextarchWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -63,10 +64,11 @@ public final class MatextarchSelectSingle extends DaoStmtTemplate<MatextarchInfo
 				
 				do {
 					MatextarchInfo dataInfo = new MatextarchInfo();
-					dataInfo.codOwner = stmtResult.getLong(MatextarchDbTableColumn.COL_COD_OWNER);
-					dataInfo.codMat = stmtResult.getLong(MatextarchDbTableColumn.COL_COD_MATERIAL);
-					dataInfo.codLanguage = stmtResult.getString(MatextarchDbTableColumn.COL_COD_LANGUAGE);
-					dataInfo.recordMode = stmtResult.getString(MatextarchDbTableColumn.COL_RECORD_MODE);				
+							
+					dataInfo.codOwner = stmtResult.getLong(DaoMatextarchDbTableColumn.COL_COD_OWNER);
+					dataInfo.codMat = stmtResult.getLong(DaoMatextarchDbTableColumn.COL_COD_MATERIAL);
+					dataInfo.codLanguage = stmtResult.getString(DaoMatextarchDbTableColumn.COL_COD_LANGUAGE);
+					dataInfo.recordMode = stmtResult.getString(DaoMatextarchDbTableColumn.COL_RECORD_MODE);				
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

@@ -13,7 +13,7 @@ public final class MatextarchInfo extends InfoRecord implements Cloneable {
 	
 	
 	public MatextarchInfo() {
-		super(MatextarchInfo.class);
+		super();
 		
 		codOwner = DefaultValue.number();
 		codMat = DefaultValue.number();

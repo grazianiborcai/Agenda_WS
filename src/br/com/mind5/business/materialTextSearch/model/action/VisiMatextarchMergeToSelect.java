@@ -1,35 +1,36 @@
 package br.com.mind5.business.materialTextSearch.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.materialTextSearch.info.MatextarchInfo;
 import br.com.mind5.business.materialTextSearch.info.MatextarchMerger;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiMatextarchMergeToSelect extends ActionVisitorTemplateMergeV1<MatextarchInfo, MatextarchInfo> {
+final class VisiMatextarchMergeToSelect extends ActionVisitorTemplateMergeV2<MatextarchInfo, MatextarchInfo> {
 	
-	public VisiMatextarchMergeToSelect(Connection conn, String schemaName) {
-		super(conn, schemaName, MatextarchInfo.class);
+	public VisiMatextarchMergeToSelect(DeciTreeOption<MatextarchInfo> option) {
+		super(option, MatextarchInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends ActionStdV1<MatextarchInfo>> getActionClassHook() {
-		return StdMatextarchSelect.class;
+	@Override protected Class<? extends ActionStdV2<MatextarchInfo>> getActionClassHook() {
+		return StdMatextarchDaoSelect.class;
 	}
 	
 	
 	
-	@Override protected List<MatextarchInfo> toActionClassHook(List<MatextarchInfo> recordInfos) {
-		return recordInfos;	
+	@Override protected List<MatextarchInfo> toActionClassHook(List<MatextarchInfo> baseInfos) {
+		return baseInfos;	
 	}	
 	
 	
 	
-	@Override protected List<MatextarchInfo> mergeHook(List<MatextarchInfo> recordInfos, List<MatextarchInfo> selectedInfos) {	
-		return MatextarchMerger.mergeToSelect(selectedInfos, recordInfos);
+	@Override protected List<MatextarchInfo> mergeHook(List<MatextarchInfo> baseInfos, List<MatextarchInfo> selectedInfos) {	
+		return MatextarchMerger.mergeToSelect(baseInfos, selectedInfos);
 	}
 	
 	

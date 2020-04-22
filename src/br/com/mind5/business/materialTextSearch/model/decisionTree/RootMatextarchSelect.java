@@ -8,13 +8,13 @@ import br.com.mind5.business.materialTextSearch.model.action.StdMatextarchMergeT
 import br.com.mind5.business.materialTextSearch.model.checker.MatextarchCheckOwner;
 import br.com.mind5.business.materialTextSearch.model.checker.MatextarchCheckRead;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 
-public final class RootMatextarchSelect extends DeciTreeTemplateReadV1<MatextarchInfo> {
+public final class RootMatextarchSelect extends DeciTreeTemplateReadV2<MatextarchInfo> {
 	
 	public RootMatextarchSelect(DeciTreeOption<MatextarchInfo> option) {
 		super(option);
