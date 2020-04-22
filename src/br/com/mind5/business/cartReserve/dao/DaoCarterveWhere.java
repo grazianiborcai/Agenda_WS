@@ -12,11 +12,11 @@ import br.com.mind5.dao.DaoWhereCondition;
 import br.com.mind5.dao.DaoWhereOperator;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 
-final class CarterveWhere implements DaoStmtWhere {
+final class DaoCarterveWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public CarterveWhere(DaoWhereBuilderOption whereOption, String tableName, CarterveInfo recordInfo) {
+	public DaoCarterveWhere(DaoWhereBuilderOption whereOption, String tableName, CarterveInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -43,23 +43,23 @@ final class CarterveWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-				case CarterveDbTableColumn.COL_COD_OWNER :
+				case DaoCarterveDbTableColumn.COL_COD_OWNER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;
 					
-				case CarterveDbTableColumn.COL_COD_MATERIAL :
+				case DaoCarterveDbTableColumn.COL_COD_MATERIAL :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codMat));
 					break;
 					
-				case CarterveDbTableColumn.COL_COD_EMPLOYEE :
+				case DaoCarterveDbTableColumn.COL_COD_EMPLOYEE :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codEmployee));
 					break;
 					
-				case CarterveDbTableColumn.COL_DATE :
+				case DaoCarterveDbTableColumn.COL_DATE :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.dateToString(recordInfo.date));
 					break;
 					
-				case CarterveDbTableColumn.COL_LAST_CHANGED :
+				case DaoCarterveDbTableColumn.COL_LAST_CHANGED :
 					builder.addClauseAnd(eachColumn, DaoFormatter.dateTimeToString(recordInfo.lastChanged), DaoWhereCondition.GREATER_OR_EQUAL);
 					break;
 			}
@@ -77,7 +77,7 @@ final class CarterveWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-				case CarterveDbTableColumn.COL_BEGIN_TIME :
+				case DaoCarterveDbTableColumn.COL_BEGIN_TIME :
 					builder.addClauseAnd(eachColumn, DaoFormatter.timeToString(recordInfo.beginTime), DaoWhereCondition.GREATER_OR_EQUAL);					
 					builder.addClauseAnd(eachColumn, DaoFormatter.timeToString(recordInfo.endTime), DaoWhereCondition.LESS_OR_EQUAL);
 					break;
@@ -96,7 +96,7 @@ final class CarterveWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-				case CarterveDbTableColumn.COL_END_TIME :
+				case DaoCarterveDbTableColumn.COL_END_TIME :
 					builder.addClauseAnd(eachColumn, DaoFormatter.timeToString(recordInfo.beginTime), DaoWhereCondition.GREATER_OR_EQUAL);					
 					builder.addClauseAnd(eachColumn, DaoFormatter.timeToString(recordInfo.endTime), DaoWhereCondition.LESS_OR_EQUAL);
 					break;
@@ -115,11 +115,11 @@ final class CarterveWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-				case CarterveDbTableColumn.COL_BEGIN_TIME :
+				case DaoCarterveDbTableColumn.COL_BEGIN_TIME :
 					builder.addClauseAnd(eachColumn, DaoFormatter.timeToString(recordInfo.beginTime), DaoWhereCondition.LESS_OR_EQUAL);	
 					break;
 					
-				case CarterveDbTableColumn.COL_END_TIME :
+				case DaoCarterveDbTableColumn.COL_END_TIME :
 					builder.addClauseAnd(eachColumn, DaoFormatter.timeToString(recordInfo.endTime), DaoWhereCondition.GREATER_OR_EQUAL);	
 					break;
 			}

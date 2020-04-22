@@ -5,15 +5,15 @@ import br.com.mind5.model.action.ActionStdTemplateV2;
 import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdCarterveMergeToSelect extends ActionStdTemplateV2<CarterveInfo> {
+public final class StdCarterveDaoSelect extends ActionStdTemplateV2<CarterveInfo> {
 
-	public StdCarterveMergeToSelect(DeciTreeOption<CarterveInfo> option) {
+	public StdCarterveDaoSelect(DeciTreeOption<CarterveInfo> option) {
 		super(option);
 	}
 	
 	
 	
 	protected ActionVisitorV2<CarterveInfo> buildVisitorHook(DeciTreeOption<CarterveInfo> option) {
-		return new VisiCarterveMergeToSelect(option);
+		return new VisiCarterveDaoSelect(option);
 	}
 }

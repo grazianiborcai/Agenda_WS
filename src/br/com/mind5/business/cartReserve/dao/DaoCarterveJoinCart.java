@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoJoinType;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class CarterveJoinCart implements DaoJoinBuilder {
+public final class DaoCarterveJoinCart implements DaoJoinBuilder {
 	private final String leftTable;
 	
 	
-	public CarterveJoinCart(String leftTableName) {
+	public DaoCarterveJoinCart(String leftTableName) {
 		leftTable = leftTableName;
 	}
 

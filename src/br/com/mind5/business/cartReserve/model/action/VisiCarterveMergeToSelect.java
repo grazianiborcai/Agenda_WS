@@ -1,23 +1,24 @@
 package br.com.mind5.business.cartReserve.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.cartReserve.info.CarterveInfo;
 import br.com.mind5.business.cartReserve.info.CarterveMerger;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiCarterveMergeToSelect extends ActionVisitorTemplateMergeV1<CarterveInfo, CarterveInfo> {
+final class VisiCarterveMergeToSelect extends ActionVisitorTemplateMergeV2<CarterveInfo, CarterveInfo> {
 	
-	public VisiCarterveMergeToSelect(Connection conn, String schemaName) {
-		super(conn, schemaName, CarterveInfo.class);
+	public VisiCarterveMergeToSelect(DeciTreeOption<CarterveInfo> option) {
+		super(option, CarterveInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends ActionStdV1<CarterveInfo>> getActionClassHook() {
-		return StdCarterveSelect.class;
+	@Override protected Class<? extends ActionStdV2<CarterveInfo>> getActionClassHook() {
+		return StdCarterveDaoSelect.class;
 	}
 	
 	

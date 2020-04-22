@@ -4,12 +4,12 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.cartReserve.info.CarterveInfo;
-import br.com.mind5.model.action.ActionLazyTemplateV1;
+import br.com.mind5.model.action.ActionLazyTemplateV2;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyCarterveMergeToSelect extends ActionLazyTemplateV1<CarterveInfo, CarterveInfo> {
+public final class LazyCarterveMergeToSelect extends ActionLazyTemplateV2<CarterveInfo, CarterveInfo> {
 
 	public LazyCarterveMergeToSelect(Connection conn, String schemaName) {
 		super(conn, schemaName);

@@ -9,13 +9,13 @@ import br.com.mind5.business.cartReserve.model.action.StdCarterveEnforceLChanged
 import br.com.mind5.business.cartReserve.model.checker.CarterveCheckRead;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 
-public final class RootCarterveSelect extends DeciTreeTemplateReadV1<CarterveInfo> {
+public final class RootCarterveSelect extends DeciTreeTemplateReadV2<CarterveInfo> {
 	
 	public RootCarterveSelect(DeciTreeOption<CarterveInfo> option) {
 		super(option);

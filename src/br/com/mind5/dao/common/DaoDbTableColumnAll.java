@@ -11,7 +11,7 @@ import br.com.mind5.business.calendarDate.dao.CalateDbTableColumn;
 import br.com.mind5.business.cart.dao.CartDbTableColumn;
 import br.com.mind5.business.cartItem.dao.CartemDbTableColumn;
 import br.com.mind5.business.cartItemSearch.dao.CartemarchDbTableColumn;
-import br.com.mind5.business.cartReserve.dao.CarterveDbTableColumn;
+import br.com.mind5.business.cartReserve.dao.DaoCarterveDbTableColumn;
 import br.com.mind5.business.company.dao.CompDbTableColumn;
 import br.com.mind5.business.companyConflict.dao.CompcoDbTableColumn;
 import br.com.mind5.business.companyList.dao.DaoComplisDbTableColumn;
@@ -195,7 +195,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new CartDbTableColumn());
 		addTable(new FeewnerDbTableColumn());
 		addTable(new FeedefDbTableColumn());
-		addTable(new CarterveDbTableColumn());
+		addTable(new DaoCarterveDbTableColumn());
 		addTable(new OrderemDbTableColumn());
 		addTable(new OrderDbTableColumn());
 		addTable(new DaoAddressDbTableColumn());

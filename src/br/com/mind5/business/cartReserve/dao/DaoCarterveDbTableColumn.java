@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class CarterveDbTableColumn extends DaoDbTableColumnTemplate {	
+public final class DaoCarterveDbTableColumn extends DaoDbTableColumnTemplate {	
 	public static final String COL_BEGIN_TIME = DaoDbField.COL_BEGIN_TIME;
 	public static final String COL_COD_EMPLOYEE = DaoDbField.COL_COD_EMPLOYEE;
 	public static final String COL_COD_MATERIAL = DaoDbField.COL_COD_MATERIAL;
@@ -21,26 +21,13 @@ public final class CarterveDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_LAST_CHANGED = DaoDbField.COL_LAST_CHANGED;
 	
 	
-	
-	
-	private Hashtable<String, List<DaoColumn>> tableColumns;
-	
-	
-	public CarterveDbTableColumn() {
-		super(CarterveDbTableColumn.class);
+	public DaoCarterveDbTableColumn() {
+		super();
 	}
 	
 	
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
-		tableColumns = new Hashtable<>();	
-		buildCartReserveTable();
-		return tableColumns;
-	}
-	
-	
-	
-	private void buildCartReserveTable() {
 		final String TABLE_NAME = DaoDbTable.CART_ITM_TABLE;
 		
 		DaoColumn oneColumn;
@@ -118,6 +105,8 @@ public final class CarterveDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		tableColumns.put(DaoDbTable.CART_RESERVE_VIEW, columns);
+		Hashtable<String, List<DaoColumn>> results = new Hashtable<>();
+		results.put(DaoDbTable.CART_RESERVE_VIEW, columns);
+		return results;
 	}
 }

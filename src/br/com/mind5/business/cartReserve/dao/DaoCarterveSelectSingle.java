@@ -18,11 +18,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class CarterveSelectSingle extends DaoStmtTemplate<CarterveInfo> {
+public final class DaoCarterveSelectSingle extends DaoStmtTemplate<CarterveInfo> {
 	private final String MAIN_TABLE = DaoDbTable.CART_ITM_TABLE;
 	
 	
-	public CarterveSelectSingle(Connection conn, CarterveInfo recordInfo, String schemaName) {
+	public DaoCarterveSelectSingle(Connection conn, CarterveInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -52,14 +52,14 @@ public final class CarterveSelectSingle extends DaoStmtTemplate<CarterveInfo> {
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new CarterveWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new DaoCarterveWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
 	
 	
 	@Override protected DaoJoin getJoinHook(CarterveInfo recordInfo) {
-		DaoJoinBuilder joinCart = new CarterveJoinCart(MAIN_TABLE);		
+		DaoJoinBuilder joinCart = new DaoCarterveJoinCart(MAIN_TABLE);		
 		return joinCart.build();
 	}	
 	
@@ -76,15 +76,15 @@ public final class CarterveSelectSingle extends DaoStmtTemplate<CarterveInfo> {
 				do {
 					CarterveInfo dataInfo = new CarterveInfo();
 					
-					dataInfo.codOwner = stmtResult.getLong(CarterveDbTableColumn.COL_COD_OWNER);
-					dataInfo.codUser = stmtResult.getLong(CarterveDbTableColumn.COL_COD_USER);
-					dataInfo.codStore = stmtResult.getLong(CarterveDbTableColumn.COL_COD_STORE);
-					dataInfo.codEmployee = stmtResult.getLong(CarterveDbTableColumn.COL_COD_EMPLOYEE);
-					dataInfo.codMat = stmtResult.getLong(CarterveDbTableColumn.COL_COD_MATERIAL);
-					dataInfo.date = DaoFormatter.sqlToLocalDate(stmtResult, CarterveDbTableColumn.COL_DATE);
-					dataInfo.beginTime = DaoFormatter.sqlToLocalTime(stmtResult, CarterveDbTableColumn.COL_BEGIN_TIME);
-					dataInfo.endTime = DaoFormatter.sqlToLocalTime(stmtResult, CarterveDbTableColumn.COL_END_TIME);
-					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, CarterveDbTableColumn.COL_END_TIME);		
+					dataInfo.codOwner = stmtResult.getLong(DaoCarterveDbTableColumn.COL_COD_OWNER);
+					dataInfo.codUser = stmtResult.getLong(DaoCarterveDbTableColumn.COL_COD_USER);
+					dataInfo.codStore = stmtResult.getLong(DaoCarterveDbTableColumn.COL_COD_STORE);
+					dataInfo.codEmployee = stmtResult.getLong(DaoCarterveDbTableColumn.COL_COD_EMPLOYEE);
+					dataInfo.codMat = stmtResult.getLong(DaoCarterveDbTableColumn.COL_COD_MATERIAL);
+					dataInfo.date = DaoFormatter.sqlToLocalDate(stmtResult, DaoCarterveDbTableColumn.COL_DATE);
+					dataInfo.beginTime = DaoFormatter.sqlToLocalTime(stmtResult, DaoCarterveDbTableColumn.COL_BEGIN_TIME);
+					dataInfo.endTime = DaoFormatter.sqlToLocalTime(stmtResult, DaoCarterveDbTableColumn.COL_END_TIME);
+					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, DaoCarterveDbTableColumn.COL_END_TIME);		
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());
