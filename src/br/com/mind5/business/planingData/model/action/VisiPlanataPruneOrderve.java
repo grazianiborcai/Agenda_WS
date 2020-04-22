@@ -7,10 +7,10 @@ import br.com.mind5.business.orderReserve.info.OrderveInfo;
 import br.com.mind5.business.orderReserve.model.decisionTree.RootOrderveSelect;
 import br.com.mind5.business.planingData.info.PlanataInfo;
 import br.com.mind5.business.planingData.info.PlanataPruner;
-import br.com.mind5.model.action.ActionVisitorTemplatePrune;
+import br.com.mind5.model.action.ActionVisitorTemplatePruneV1;
 import br.com.mind5.model.decisionTree.DeciTree;
 
-final class VisiPlanataPruneOrderve extends ActionVisitorTemplatePrune<PlanataInfo, OrderveInfo> {
+final class VisiPlanataPruneOrderve extends ActionVisitorTemplatePruneV1<PlanataInfo, OrderveInfo> {
 	
 	public VisiPlanataPruneOrderve(Connection conn, String schemaName) {
 		super(conn, schemaName, OrderveInfo.class);

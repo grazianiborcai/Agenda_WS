@@ -7,10 +7,10 @@ import br.com.mind5.business.cartReserve.info.CarterveInfo;
 import br.com.mind5.business.cartReserve.model.decisionTree.RootCarterveSelect;
 import br.com.mind5.business.planingData.info.PlanataInfo;
 import br.com.mind5.business.planingData.info.PlanataPruner;
-import br.com.mind5.model.action.ActionVisitorTemplatePrune;
+import br.com.mind5.model.action.ActionVisitorTemplatePruneV1;
 import br.com.mind5.model.decisionTree.DeciTree;
 
-final class VisiPlanataPruneCarterve extends ActionVisitorTemplatePrune<PlanataInfo, CarterveInfo> {
+final class VisiPlanataPruneCarterve extends ActionVisitorTemplatePruneV1<PlanataInfo, CarterveInfo> {
 	
 	public VisiPlanataPruneCarterve(Connection conn, String schemaName) {
 		super(conn, schemaName, CarterveInfo.class);

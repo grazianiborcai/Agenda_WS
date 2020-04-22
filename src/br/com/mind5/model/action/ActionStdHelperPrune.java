@@ -10,10 +10,10 @@ import br.com.mind5.info.InfoRecord;
 
 public final class ActionStdHelperPrune<T extends InfoRecord> extends ActionStdTemplateV1<T> {
 	private List<T> records = new ArrayList<>();
-	private ActionVisitorPruneV1<T> visitorPrune;
+	private ActionVisitorPrune_<T> visitorPrune;
 	
 	
-	public ActionStdHelperPrune(T recordInfo, ActionVisitorPruneV1<T> visitor) {		
+	public ActionStdHelperPrune(T recordInfo, ActionVisitorPrune_<T> visitor) {		
 		super();
 		checkArgument(recordInfo, visitor);
 		makeCopy(recordInfo);
@@ -29,7 +29,7 @@ public final class ActionStdHelperPrune<T extends InfoRecord> extends ActionStdT
 	
 	
 	
-	public ActionStdHelperPrune(List<T> recordInfos, ActionVisitorPruneV1<T> visitor) {
+	public ActionStdHelperPrune(List<T> recordInfos, ActionVisitorPrune_<T> visitor) {
 		super();
 		checkArgument(recordInfos, visitor);
 		makeCopy(recordInfos);
@@ -44,7 +44,7 @@ public final class ActionStdHelperPrune<T extends InfoRecord> extends ActionStdT
 	
 	
 	
-	private void checkArgument(List<T> recordInfos, ActionVisitorPruneV1<T> visitor) {
+	private void checkArgument(List<T> recordInfos, ActionVisitorPrune_<T> visitor) {
 		if (recordInfos == null) {
 			logException(new NullPointerException("recordInfos" + SystemMessage.NULL_ARGUMENT));
 			throw new NullPointerException("recordInfos" + SystemMessage.NULL_ARGUMENT);
@@ -64,7 +64,7 @@ public final class ActionStdHelperPrune<T extends InfoRecord> extends ActionStdT
 	
 	
 	
-	private void checkArgument(T recordInfo, ActionVisitorPruneV1<T> visitor) {
+	private void checkArgument(T recordInfo, ActionVisitorPrune_<T> visitor) {
 		if (recordInfo == null) {
 			logException(new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT));
 			throw new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT);

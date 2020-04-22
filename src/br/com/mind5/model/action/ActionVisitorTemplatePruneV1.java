@@ -13,7 +13,7 @@ import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public abstract class ActionVisitorTemplatePrune<T extends InfoRecord, S extends InfoRecord> implements ActionVisitorPruneV1<T> {	
+public abstract class ActionVisitorTemplatePruneV1<T extends InfoRecord, S extends InfoRecord> implements ActionVisitorPrune_<T> {	
 	public static boolean PRUNE_WHEN_EMPTY = true;
 	public static boolean DONT_PRUNE_WHEN_EMPTY = false;
 	
@@ -21,7 +21,7 @@ public abstract class ActionVisitorTemplatePrune<T extends InfoRecord, S extends
 	private Class<S> sClazz;
 	
 
-	public ActionVisitorTemplatePrune(Connection conn, String schemaName, Class<S> clazz) {
+	public ActionVisitorTemplatePruneV1(Connection conn, String schemaName, Class<S> clazz) {
 		checkArgument(conn, schemaName, clazz);
 		makeOption(conn, schemaName);
 		
@@ -61,8 +61,8 @@ public abstract class ActionVisitorTemplatePrune<T extends InfoRecord, S extends
 	
 		
 	@Override public List<T> executeTransformation(List<T> recordInfos) {
-		addRecordToOption(recordInfos);
-		List<S> selectedInfos = selectToPrune();
+		selOption = addRecordToOption(recordInfos, selOption, sClazz);
+		List<S> selectedInfos = selectToPrune(selOption);
 		
 		if(shouldPrune(selectedInfos))		
 			return pruneHook(recordInfos, selectedInfos);
@@ -75,25 +75,31 @@ public abstract class ActionVisitorTemplatePrune<T extends InfoRecord, S extends
 	
 	
 	
-	private void addRecordToOption(List<T> recordInfos) {
-		selOption.recordInfos = toActionClassHook(recordInfos);
+	private DeciTreeOption<S> addRecordToOption(List<T> recordInfos, DeciTreeOption<S> option, Class<S> actionClazz) {
+		List<S> translatedInfos = toActionClassHook(recordInfos);
+		
+		if (translatedInfos == null)
+			translatedInfos = toActionClassDefault(recordInfos, actionClazz);
+		 
+		 option.recordInfos = translatedInfos;
+		 return option;
 	}
 	
 	
 	
 	protected List<S> toActionClassHook(List<T> recordInfos) {
 		//Template method - Default behavior
-		return toActionClass(recordInfos);	
+		return null;
 	}
 	
 	
 	
 	@SuppressWarnings("unchecked")
-	private List<S> toActionClass(List<T> recordInfos) {
+	private List<S> toActionClassDefault(List<T> recordInfos, Class<S> actionClazz) {
 		try {
-			S sInstance = sClazz.getConstructor().newInstance();
+			S sInstance = actionClazz.getConstructor().newInstance();
 			
-			Method met = sClazz.getMethod("copyFrom", List.class);
+			Method met = actionClazz.getMethod("copyFrom", List.class);
 			return (List<S>) met.invoke(sInstance, recordInfos);
 				
 			} catch (Exception e) {
@@ -104,21 +110,24 @@ public abstract class ActionVisitorTemplatePrune<T extends InfoRecord, S extends
 	
 	
 	
-	private List<S> selectToPrune() {
-		ActionStdV1<S> mainAction = buildAction();
+	private List<S> selectToPrune(DeciTreeOption<S> option) {
+		ActionStdV1<S> mainAction = buildAction(option);
 		mainAction.executeAction();
 		
-		return buildResult(mainAction.getDecisionResult());
+		List<S> selectedInfos = buildResult(mainAction.getDecisionResult());
+		
+		closeAction(mainAction);
+		return selectedInfos;
 	}
 	
 	
 	
-	private ActionStdV1<S> buildAction() {
+	private ActionStdV1<S> buildAction(DeciTreeOption<S> option) {
 		if (hasTreeClass())
-			return buildActionTree();		
+			return buildActionTree(option);		
 		
 		if (hasActionClass())
-			return buildActionStd();		
+			return buildActionStd(option);		
 		
 		logException(new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION));
 		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);
@@ -126,11 +135,11 @@ public abstract class ActionVisitorTemplatePrune<T extends InfoRecord, S extends
 	
 	
 	
-	private ActionStdV1<S> buildActionTree() {
+	private ActionStdV1<S> buildActionTree(DeciTreeOption<S> option) {
 		try {
 			Class<? extends DeciTree<S>> actionClass = getTreeClassHook();
 			Constructor<? extends DeciTree<S>> actionConstru = actionClass.getConstructor(new Class[]{DeciTreeOption.class});
-			return (ActionStdV1<S>) actionConstru.newInstance(selOption).toAction();
+			return (ActionStdV1<S>) actionConstru.newInstance(option).toAction();
 				
 			} catch (Exception e) {
 				logException(e);
@@ -140,11 +149,11 @@ public abstract class ActionVisitorTemplatePrune<T extends InfoRecord, S extends
 	
 	
 	
-	private ActionStdV1<S> buildActionStd() {
+	private ActionStdV1<S> buildActionStd(DeciTreeOption<S> option) {
 		try {
 			Class<? extends ActionStdV1<S>> actionClass = getActionClassHook();
 			Constructor<? extends ActionStdV1<S>> actionConstru = actionClass.getConstructor(new Class[]{DeciTreeOption.class});
-			return (ActionStdV1<S>) actionConstru.newInstance(selOption);
+			return (ActionStdV1<S>) actionConstru.newInstance(option);
 				
 			} catch (Exception e) {
 				logException(e);
@@ -224,6 +233,16 @@ public abstract class ActionVisitorTemplatePrune<T extends InfoRecord, S extends
 		//Template method to be overridden by subclasses
 		logException(new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION));
 		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);
+	}
+	
+	
+	
+	private void closeAction(ActionStdV1<S> action) {
+		if (action == null)
+			return;
+		
+		if (action instanceof ActionStdV2)
+			((ActionStdV2<S>) action).close();
 	}
 
 	

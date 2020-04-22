@@ -6,7 +6,7 @@ import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.InfoRecord;
 
-public abstract class ActionVisitorTemplatePruneSelfV1<T extends InfoRecord> implements ActionVisitorPruneV1<T> {	
+public abstract class ActionVisitorTemplatePruneSelfV1<T extends InfoRecord> implements ActionVisitorPrune_<T> {	
 		
 	@Override public List<T> executeTransformation(List<T> recordInfos) {
 		if(shouldPrune(recordInfos))		

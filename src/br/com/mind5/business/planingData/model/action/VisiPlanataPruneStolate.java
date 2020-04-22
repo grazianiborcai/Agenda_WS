@@ -8,10 +8,10 @@ import br.com.mind5.business.planingData.info.PlanataPruner;
 import br.com.mind5.business.storeLeaveDate.info.StolateCopier;
 import br.com.mind5.business.storeLeaveDate.info.StolateInfo;
 import br.com.mind5.business.storeLeaveDate.model.decisionTree.RootStolateSelect;
-import br.com.mind5.model.action.ActionVisitorTemplatePrune;
+import br.com.mind5.model.action.ActionVisitorTemplatePruneV1;
 import br.com.mind5.model.decisionTree.DeciTree;
 
-final class VisiPlanataPruneStolate extends ActionVisitorTemplatePrune<PlanataInfo, StolateInfo> {
+final class VisiPlanataPruneStolate extends ActionVisitorTemplatePruneV1<PlanataInfo, StolateInfo> {
 	
 	public VisiPlanataPruneStolate(Connection conn, String schemaName) {
 		super(conn, schemaName, StolateInfo.class);
