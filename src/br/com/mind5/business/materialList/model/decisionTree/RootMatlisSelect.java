@@ -77,7 +77,7 @@ public final class RootMatlisSelect extends DeciTreeTemplateReadV2<MatlisInfo> {
 		mergeMateg.addPostAction(mergeMatoup);
 		mergeMatoup.addPostAction(mergeMatunit);
 		mergeMatunit.addPostAction(mergeMatext);
-		mergeMatext.addPostAction(mergeFimist);
+		mergeMatext.addPostAction(mergeFimist); 
 		
 		actions.add(select);
 		return actions;

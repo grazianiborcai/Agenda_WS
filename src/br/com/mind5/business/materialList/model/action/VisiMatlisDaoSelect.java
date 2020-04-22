@@ -20,5 +20,4 @@ final class VisiMatlisDaoSelect extends ActionVisitorTemplateStmtV2<MatlisInfo>{
 	@Override protected DaoStmtExecV2<MatlisInfo> buildStmtExecHook(List<DaoStmtExecOption<MatlisInfo>> stmtOptions) {
 		return new DaoMatlisSelect(stmtOptions);
 	}
-
 }

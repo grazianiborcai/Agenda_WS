@@ -85,4 +85,10 @@ public final class DaoMatlisSelectSingle extends DaoStmtTemplate<MatlisInfo> {
 			}
 		};
 	}
+	
+	
+	
+	@Override public void executeStmt() throws SQLException {
+		super.executeStmt();
+	}
 }
