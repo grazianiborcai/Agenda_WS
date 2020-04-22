@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoStmtParamTranslator;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class EmplateInsertSingle extends DaoStmtTemplate<EmplateInfo> {
+public final class DaoEmplateInsertSingle extends DaoStmtTemplate<EmplateInfo> {
 	private final String MAIN_TABLE = DaoDbTable.EMP_LD_TABLE;	
 	
 	
-	public EmplateInsertSingle(Connection conn, EmplateInfo recordInfo, String schemaName) {
+	public DaoEmplateInsertSingle(Connection conn, EmplateInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	

@@ -22,7 +22,7 @@ import br.com.mind5.business.customerList.dao.CuslisDbTableColumn;
 import br.com.mind5.business.customerSearch.dao.CusarchDbTableColumn;
 import br.com.mind5.business.customerSnapshot.dao.CusnapDbTableColumn;
 import br.com.mind5.business.employee.dao.EmpDbTableColumn;
-import br.com.mind5.business.employeeLeaveDate.dao.EmplateDbTableColumn;
+import br.com.mind5.business.employeeLeaveDate.dao.DaoEmplateDbTableColumn;
 import br.com.mind5.business.employeeLeaveDateRange.dao.EmplargDbTableColumn;
 import br.com.mind5.business.employeeLeaveDateSearch.dao.EmplarchDbTableColumn;
 import br.com.mind5.business.employeeList.dao.EmplisDbTableColumn;
@@ -183,7 +183,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new StowotmDbTableColumn());
 		addTable(new StolateDbTableColumn());
 		addTable(new EmpwotmDbTableColumn());
-		addTable(new EmplateDbTableColumn());
+		addTable(new DaoEmplateDbTableColumn());
 		addTable(new EmpwocoDbTableColumn());
 		addTable(new EmpwoutDbTableColumn());
 		addTable(new EmpDbTableColumn());

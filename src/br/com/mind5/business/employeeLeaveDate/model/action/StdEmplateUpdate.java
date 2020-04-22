@@ -3,7 +3,7 @@ package br.com.mind5.business.employeeLeaveDate.model.action;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.business.employeeLeaveDate.dao.EmplateUpdate;
+import br.com.mind5.business.employeeLeaveDate.dao.DaoEmplateUpdate;
 import br.com.mind5.business.employeeLeaveDate.info.EmplateInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.obsolete.DaoStmtExec_;
@@ -35,7 +35,7 @@ public final class StdEmplateUpdate implements ActionStdV1<EmplateInfo> {
 			stmtExecOptions.add(stmtExecOption);
 		}
 		
-		return new EmplateUpdate(stmtExecOptions);
+		return new DaoEmplateUpdate(stmtExecOptions);
 	}
 	
 	

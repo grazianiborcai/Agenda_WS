@@ -13,11 +13,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class EmplateUpdateSingle extends DaoStmtTemplate<EmplateInfo> {
+public final class DaoEmplateUpdateSingle extends DaoStmtTemplate<EmplateInfo> {
 	private final String MAIN_TABLE = DaoDbTable.EMP_LD_TABLE;	
 	
 	
-	public EmplateUpdateSingle(Connection conn, EmplateInfo recordInfo, String schemaName) {
+	public DaoEmplateUpdateSingle(Connection conn, EmplateInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -42,7 +42,7 @@ public final class EmplateUpdateSingle extends DaoStmtTemplate<EmplateInfo> {
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;
 		whereOption.ignoreNonPrimaryKey = DaoOptionValue.IGNORE_NON_PK;
 		
-		DaoStmtWhere whereClause = new EmplateWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new DaoEmplateWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
