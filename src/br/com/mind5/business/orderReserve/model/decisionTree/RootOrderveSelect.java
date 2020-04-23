@@ -9,13 +9,13 @@ import br.com.mind5.business.orderReserve.model.action.StdOrderveEnforceCancelle
 import br.com.mind5.business.orderReserve.model.checker.OrderveCheckRead;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 
-public final class RootOrderveSelect extends DeciTreeTemplateReadV1<OrderveInfo> {
+public final class RootOrderveSelect extends DeciTreeTemplateReadV2<OrderveInfo> {
 	
 	public RootOrderveSelect(DeciTreeOption<OrderveInfo> option) {
 		super(option);

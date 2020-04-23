@@ -1,35 +1,19 @@
 package br.com.mind5.business.orderReserve.model.action;
 
 import br.com.mind5.business.orderReserve.info.OrderveInfo;
-import br.com.mind5.model.action.ActionLazyV1;
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionStdHelperEnforce;
-import br.com.mind5.model.decisionTree.DeciResult;
+import br.com.mind5.model.action.ActionStdTemplateV2;
+import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdOrderveEnforceCancelled implements ActionStdV1<OrderveInfo> {
-	private ActionStdV1<OrderveInfo> actionHelper;	
-	
-	
-	public StdOrderveEnforceCancelled(DeciTreeOption<OrderveInfo> option) {			
-		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiOrderveEnforceCancelled());
+public final class StdOrderveEnforceCancelled extends ActionStdTemplateV2<OrderveInfo> {
+
+	public StdOrderveEnforceCancelled(DeciTreeOption<OrderveInfo> option) {
+		super(option);
 	}
 	
 	
 	
-	@Override public void addPostAction(ActionLazyV1<OrderveInfo> actionHandler) {
-		actionHelper.addPostAction(actionHandler);
-	}
-	
-	
-	
-	@Override public boolean executeAction() {			
-		return actionHelper.executeAction();
-	}
-	
-	
-	
-	@Override public DeciResult<OrderveInfo> getDecisionResult() {
-		return actionHelper.getDecisionResult();
+	protected ActionVisitorV2<OrderveInfo> buildVisitorHook(DeciTreeOption<OrderveInfo> option) {
+		return new VisiOrderveEnforceCancelled(option);
 	}
 }

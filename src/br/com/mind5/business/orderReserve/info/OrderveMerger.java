@@ -2,18 +2,18 @@ package br.com.mind5.business.orderReserve.info;
 
 import java.util.List;
 
-import br.com.mind5.info.obsolete.InfoMerger_;
+import br.com.mind5.info.InfoMergerBuilderV3;
+import br.com.mind5.info.InfoMergerV3;
 
 public final class OrderveMerger {	
-	public static OrderveInfo mergeToSelect(OrderveInfo sourceOne, OrderveInfo sourceTwo) {
-		InfoMerger_<OrderveInfo, OrderveInfo> merger = new OrderveMergerToSelect();		
-		return merger.merge(sourceOne, sourceTwo);
+	public static List<OrderveInfo> mergeToSelect(List<OrderveInfo> baseInfos, List<OrderveInfo> selectedInfos) {
+		InfoMergerBuilderV3<OrderveInfo, OrderveInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new OrderveVisiMergeToSelect());
+		InfoMergerV3<OrderveInfo, OrderveInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
-	
-	
-	
-	public static List<OrderveInfo> mergeToSelect(List<OrderveInfo> sourceOnes, List<OrderveInfo> sourceTwos) {
-		InfoMerger_<OrderveInfo, OrderveInfo> merger = new OrderveMergerToSelect();		
-		return merger.merge(sourceOnes, sourceTwos);
-	}	
 }

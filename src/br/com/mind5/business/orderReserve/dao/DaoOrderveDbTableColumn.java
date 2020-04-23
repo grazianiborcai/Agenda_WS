@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class OrderveDbTableColumn extends DaoDbTableColumnTemplate {	
+public final class DaoOrderveDbTableColumn extends DaoDbTableColumnTemplate {	
 	public static final String COL_BEGIN_TIME = DaoDbField.COL_BEGIN_TIME;
 	public static final String COL_COD_CUSTOMER = DaoDbField.COL_COD_CUSTOMER;
 	public static final String COL_COD_EMPLOYEE = DaoDbField.COL_COD_EMPLOYEE;
@@ -23,24 +23,14 @@ public final class OrderveDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_END_TIME = DaoDbField.COL_END_TIME;	
 	
 	
-	private Hashtable<String, List<DaoColumn>> tableColumns;
 	
-	
-	public OrderveDbTableColumn() {
-		super(OrderveDbTableColumn.class);
+	public DaoOrderveDbTableColumn() {
+		super();
 	}
 	
 	
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
-		tableColumns = new Hashtable<>();	
-		buildOrderReserveTable();
-		return tableColumns;
-	}
-	
-	
-	
-	private void buildOrderReserveTable() {
 		final String TABLE_NAME = DaoDbTable.ORDER_ITM_TABLE;
 		
 		DaoColumn oneColumn;
@@ -134,6 +124,8 @@ public final class OrderveDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		tableColumns.put(DaoDbTable.ORDER_RESERVE_VIEW, columns);
+		Hashtable<String, List<DaoColumn>> results = new Hashtable<>();
+		results.put(DaoDbTable.ORDER_RESERVE_VIEW, columns);
+		return results;
 	}
 }

@@ -61,7 +61,7 @@ import br.com.mind5.business.orderItem.dao.OrderemDbTableColumn;
 import br.com.mind5.business.orderItemSearch.dao.OrdemarchDbTableColumn;
 import br.com.mind5.business.orderItemSnapshot.dao.OrdemrapDbTableColumn;
 import br.com.mind5.business.orderList.dao.OrdistDbTableColumn;
-import br.com.mind5.business.orderReserve.dao.OrderveDbTableColumn;
+import br.com.mind5.business.orderReserve.dao.DaoOrderveDbTableColumn;
 import br.com.mind5.business.orderSearch.dao.OrdarchDbTableColumn;
 import br.com.mind5.business.orderSnapshot.dao.OrdnapDbTableColumn;
 import br.com.mind5.business.owner.dao.DaoOwnerDbTableColumn;
@@ -222,7 +222,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new PlanataDbTableColumn());
 		addTable(new MatextsnapDbTableColumn());
 		addTable(new CartemDbTableColumn());
-		addTable(new OrderveDbTableColumn());
+		addTable(new DaoOrderveDbTableColumn());
 		addTable(new EmailDbTableColumn());
 		addTable(new EmabodyDbTableColumn());
 		addTable(new OwnparDbTableColumn());
