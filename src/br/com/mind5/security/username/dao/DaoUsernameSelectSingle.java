@@ -81,4 +81,10 @@ public final class DaoUsernameSelectSingle extends DaoStmtTemplate<UsernameInfo>
 			}
 		};
 	}
+	
+	
+	
+	@Override public void executeStmt() throws SQLException {
+		super.executeStmt();
+	}
 }
