@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.employee.info.EmpInfo;
 import br.com.mind5.business.employee.model.action.LazyEmpInsertPerson;
-import br.com.mind5.business.employee.model.action.LazyEmpUpdate;
+import br.com.mind5.business.employee.model.action.LazyEmpDaoUpdate;
 import br.com.mind5.business.employee.model.action.StdEmpEnforcePersonKey;
 import br.com.mind5.business.employee.model.checker.EmpCheckHasPerson;
 import br.com.mind5.model.action.ActionLazyV1;
@@ -14,9 +14,9 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class NodeEmpInsertPerson extends DeciTreeTemplateWriteV1<EmpInfo> {
+public final class NodeEmpInsertPerson extends DeciTreeTemplateWriteV2<EmpInfo> {
 	
 	public NodeEmpInsertPerson(DeciTreeOption<EmpInfo> option) {
 		super(option);
@@ -46,7 +46,7 @@ public final class NodeEmpInsertPerson extends DeciTreeTemplateWriteV1<EmpInfo> 
 		
 		ActionStdV1<EmpInfo> enforcePersonKey = new StdEmpEnforcePersonKey(option);
 		ActionLazyV1<EmpInfo> insertPerson = new LazyEmpInsertPerson(option.conn, option.schemaName);
-		ActionLazyV1<EmpInfo> updateEmployee = new LazyEmpUpdate(option.conn, option.schemaName);
+		ActionLazyV1<EmpInfo> updateEmployee = new LazyEmpDaoUpdate(option.conn, option.schemaName);
 		
 		enforcePersonKey.addPostAction(insertPerson);
 		insertPerson.addPostAction(updateEmployee);

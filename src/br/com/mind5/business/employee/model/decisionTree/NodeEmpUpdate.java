@@ -4,19 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.employee.info.EmpInfo;
+import br.com.mind5.business.employee.model.action.LazyEmpDaoUpdate;
 import br.com.mind5.business.employee.model.action.LazyEmpEnforceLChanged;
 import br.com.mind5.business.employee.model.action.LazyEmpMergeUsername;
-import br.com.mind5.business.employee.model.action.LazyEmpUpdate;
 import br.com.mind5.business.employee.model.action.StdEmpMergeToUpdate;
-import br.com.mind5.business.employee.model.checker.EmpCheckDummy;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class NodeEmpUpdate extends DeciTreeTemplateWriteV1<EmpInfo> {
+public final class NodeEmpUpdate extends DeciTreeTemplateWriteV2<EmpInfo> {
 	
 	public NodeEmpUpdate(DeciTreeOption<EmpInfo> option) {
 		super(option);
@@ -28,7 +28,7 @@ public final class NodeEmpUpdate extends DeciTreeTemplateWriteV1<EmpInfo> {
 		List<ModelCheckerV1<EmpInfo>> queue = new ArrayList<>();		
 		ModelCheckerV1<EmpInfo> checker;		
 
-		checker = new EmpCheckDummy();
+		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueueV2<>(queue);
@@ -42,7 +42,7 @@ public final class NodeEmpUpdate extends DeciTreeTemplateWriteV1<EmpInfo> {
 		ActionStdV1<EmpInfo> mergeToUpdate = new StdEmpMergeToUpdate(option);
 		ActionLazyV1<EmpInfo> enforceLChanged = new LazyEmpEnforceLChanged(option.conn, option.schemaName);
 		ActionLazyV1<EmpInfo> enforceLChangedBy = new LazyEmpMergeUsername(option.conn, option.schemaName);
-		ActionLazyV1<EmpInfo> updateEmployee = new LazyEmpUpdate(option.conn, option.schemaName);
+		ActionLazyV1<EmpInfo> updateEmployee = new LazyEmpDaoUpdate(option.conn, option.schemaName);
 		
 		mergeToUpdate.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceLChangedBy);

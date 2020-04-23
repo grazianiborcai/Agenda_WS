@@ -32,7 +32,7 @@ public final class EmpInfo extends InfoRecord implements Cloneable {
 	
 	
 	public EmpInfo() {
-		super(EmpInfo.class);
+		super();
 		
 		codOwner = DefaultValue.number();
 		codEmployee = DefaultValue.number();

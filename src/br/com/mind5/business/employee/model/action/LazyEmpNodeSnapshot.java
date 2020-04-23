@@ -5,12 +5,12 @@ import java.util.List;
 
 import br.com.mind5.business.employee.info.EmpInfo;
 import br.com.mind5.business.employee.model.decisionTree.NodeEmpSnapshot;
-import br.com.mind5.model.action.ActionLazyTemplateV1;
+import br.com.mind5.model.action.ActionLazyTemplateV2;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyEmpNodeSnapshot extends ActionLazyTemplateV1<EmpInfo, EmpInfo> {
+public final class LazyEmpNodeSnapshot extends ActionLazyTemplateV2<EmpInfo, EmpInfo> {
 	
 	public LazyEmpNodeSnapshot(Connection conn, String schemaName) {
 		super(conn, schemaName);

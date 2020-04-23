@@ -1,35 +1,19 @@
 package br.com.mind5.business.employee.model.action;
 
 import br.com.mind5.business.employee.info.EmpInfo;
-import br.com.mind5.model.action.ActionLazyV1;
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionStdHelperMerge;
-import br.com.mind5.model.decisionTree.DeciResult;
+import br.com.mind5.model.action.ActionStdTemplateV2;
+import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdEmpMergeToSelect implements ActionStdV1<EmpInfo> {
-	private ActionStdV1<EmpInfo> actionHelper;	
-	
-	
-	public StdEmpMergeToSelect(DeciTreeOption<EmpInfo> option) {			
-		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiEmpMergeToSelect(option.conn, option.schemaName));
+public final class StdEmpMergeToSelect extends ActionStdTemplateV2<EmpInfo> {
+
+	public StdEmpMergeToSelect(DeciTreeOption<EmpInfo> option) {
+		super(option);
 	}
 	
 	
 	
-	@Override public void addPostAction(ActionLazyV1<EmpInfo> actionHandler) {
-		actionHelper.addPostAction(actionHandler);
-	}
-	
-	
-	
-	@Override public boolean executeAction() {			
-		return actionHelper.executeAction();
-	}
-	
-	
-	
-	@Override public DeciResult<EmpInfo> getDecisionResult() {
-		return actionHelper.getDecisionResult();
+	protected ActionVisitorV2<EmpInfo> buildVisitorHook(DeciTreeOption<EmpInfo> option) {
+		return new VisiEmpMergeToSelect(option);
 	}
 }

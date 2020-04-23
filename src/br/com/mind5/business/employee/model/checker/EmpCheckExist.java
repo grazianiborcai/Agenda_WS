@@ -1,7 +1,7 @@
 package br.com.mind5.business.employee.model.checker;
 
 import br.com.mind5.business.employee.info.EmpInfo;
-import br.com.mind5.business.employee.model.action.StdEmpSelect;
+import br.com.mind5.business.employee.model.action.StdEmpDaoSelect;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -17,7 +17,7 @@ public final class EmpCheckExist extends ModelCheckerTemplateActionV2<EmpInfo, E
 	
 	
 	@Override protected ActionStdV1<EmpInfo> buildActionHook(DeciTreeOption<EmpInfo> option) {
-		ActionStdV1<EmpInfo> select = new StdEmpSelect(option);
+		ActionStdV1<EmpInfo> select = new StdEmpDaoSelect(option);
 		return select;
 	}
 	

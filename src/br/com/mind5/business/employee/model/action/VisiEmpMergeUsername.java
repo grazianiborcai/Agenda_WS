@@ -1,20 +1,21 @@
 package br.com.mind5.business.employee.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.employee.info.EmpInfo;
 import br.com.mind5.business.employee.info.EmpMerger;
 import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.username.info.UsernameCopier;
 import br.com.mind5.security.username.info.UsernameInfo;
 import br.com.mind5.security.username.model.decisionTree.RootUsernameSelect;
 
-final class VisiEmpMergeUsername extends ActionVisitorTemplateMergeV1<EmpInfo, UsernameInfo> {
+final class VisiEmpMergeUsername extends ActionVisitorTemplateMergeV2<EmpInfo, UsernameInfo> {
 	
-	public VisiEmpMergeUsername(Connection conn, String schemaName) {
-		super(conn, schemaName, UsernameInfo.class);
+	public VisiEmpMergeUsername(DeciTreeOption<EmpInfo> option) {
+		super(option, UsernameInfo.class);
 	}
 	
 	

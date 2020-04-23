@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class EmpDbTableColumn extends DaoDbTableColumnTemplate {
+public final class DaoEmpDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_EMPLOYEE = DaoDbField.COL_COD_EMPLOYEE;
 	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;
 	public static final String COL_COD_PERSON = DaoDbField.COL_COD_PERSON;
@@ -22,23 +22,13 @@ public final class EmpDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_RECORD_MODE = DaoDbField.COL_RECORD_MODE;	
 	
 	
-	private Hashtable<String, List<DaoColumn>> tableColumns;	
-	
-	public EmpDbTableColumn() {
-		super(EmpDbTableColumn.class);
+	public DaoEmpDbTableColumn() {
+		super();
 	}
 	
 	
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
-		tableColumns = new Hashtable<>();		
-		buildEmployeeTable();		
-		return tableColumns;
-	}
-	
-	
-	
-	private void buildEmployeeTable() {
 		final String TABLE_NAME = DaoDbTable.EMP_TABLE;
 		
 		DaoColumn oneColumn;
@@ -124,6 +114,8 @@ public final class EmpDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		tableColumns.put(TABLE_NAME, columns);
+		Hashtable<String, List<DaoColumn>> results = new Hashtable<>();
+		results.put(TABLE_NAME, columns);
+		return results;
 	}
 }

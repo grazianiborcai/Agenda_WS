@@ -16,11 +16,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class EmpSelectSingle extends DaoStmtTemplate<EmpInfo> {
+public final class DaoEmpSelectSingle extends DaoStmtTemplate<EmpInfo> {
 	private final String MAIN_TABLE = DaoDbTable.EMP_TABLE;		
 	
 	
-	public EmpSelectSingle(Connection conn, EmpInfo recordInfo, String schemaName) {
+	public DaoEmpSelectSingle(Connection conn, EmpInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -44,7 +44,7 @@ public final class EmpSelectSingle extends DaoStmtTemplate<EmpInfo> {
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new EmpWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new DaoEmpWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -61,16 +61,16 @@ public final class EmpSelectSingle extends DaoStmtTemplate<EmpInfo> {
 				do {
 					EmpInfo dataInfo = new EmpInfo();
 					
-					dataInfo.codOwner = stmtResult.getLong(EmpDbTableColumn.COL_COD_OWNER);
-					dataInfo.codEmployee = stmtResult.getLong(EmpDbTableColumn.COL_COD_EMPLOYEE);
-					dataInfo.recordMode = stmtResult.getString(EmpDbTableColumn.COL_RECORD_MODE);	
-					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, EmpDbTableColumn.COL_COD_SNAPSHOT);
-					dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, EmpDbTableColumn.COL_COD_USER);
-					dataInfo.codPerson = DaoFormatter.sqlToLong(stmtResult, EmpDbTableColumn.COL_COD_PERSON);
-					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, EmpDbTableColumn.COL_LAST_CHANGED);
-					dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, EmpDbTableColumn.COL_LAST_CHANGED_BY);	
-					dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, EmpDbTableColumn.COL_CREATED_ON);
-					dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, EmpDbTableColumn.COL_CREATED_BY);
+					dataInfo.codOwner = stmtResult.getLong(DaoEmpDbTableColumn.COL_COD_OWNER);
+					dataInfo.codEmployee = stmtResult.getLong(DaoEmpDbTableColumn.COL_COD_EMPLOYEE);
+					dataInfo.recordMode = stmtResult.getString(DaoEmpDbTableColumn.COL_RECORD_MODE);	
+					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, DaoEmpDbTableColumn.COL_COD_SNAPSHOT);
+					dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, DaoEmpDbTableColumn.COL_COD_USER);
+					dataInfo.codPerson = DaoFormatter.sqlToLong(stmtResult, DaoEmpDbTableColumn.COL_COD_PERSON);
+					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, DaoEmpDbTableColumn.COL_LAST_CHANGED);
+					dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, DaoEmpDbTableColumn.COL_LAST_CHANGED_BY);	
+					dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, DaoEmpDbTableColumn.COL_CREATED_ON);
+					dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, DaoEmpDbTableColumn.COL_CREATED_BY);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

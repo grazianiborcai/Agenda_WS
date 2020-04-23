@@ -1,56 +1,27 @@
 package br.com.mind5.business.employee.model.checker;
 
-import java.util.List;
-
 import br.com.mind5.business.employee.info.EmpInfo;
 import br.com.mind5.business.employeeMaterialSearch.info.EmpmarchInfo;
 import br.com.mind5.business.employeeMaterialSearch.model.checker.EmpmarchCheckExist;
-import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
+import br.com.mind5.model.checker.ModelCheckerV1;
 
-public final class EmpCheckEmpmarch implements ModelCheckerV1<EmpInfo> {
-	private final boolean FAILED = false;
-	private final boolean SUCCESS = true;
-	
-	private ModelCheckerV1<EmpmarchInfo> checker;
-	
+public final class EmpCheckEmpmarch extends ModelCheckerTemplateForwardV2<EmpInfo, EmpmarchInfo> {
 	
 	public EmpCheckEmpmarch(ModelCheckerOption option) {
-		checker = new EmpmarchCheckExist(option);
-	}
-	
-	
-	
-	@Override public boolean check(List<EmpInfo> recordInfos) {
-		for (EmpInfo eachInfo : recordInfos) {
-			if (check(eachInfo) == FAILED)
-				return FAILED;
-		}
-		
-		return SUCCESS;
+		super(option);
 	}
 
-	
-	
-	@Override public boolean check(EmpInfo recordInfo) {
-		return checker.check(EmpmarchInfo.copyFrom(recordInfo));
-	}
 
 	
-	
-	@Override public boolean getResult() {
-		return checker.getResult();
+	@Override protected ModelCheckerV1<EmpmarchInfo> getCheckerHook(ModelCheckerOption option) {
+		return new EmpmarchCheckExist(option);
 	}
-
 	
 	
-	@Override public String getFailMessage() {
-		return checker.getFailMessage();
-	}
-
 	
-	
-	@Override public int getFailCode() {
-		return checker.getFailCode();
+	@Override protected EmpmarchInfo toForwardClass(EmpInfo baseRecord) {
+		return EmpmarchInfo.copyFrom(baseRecord);
 	}
 }

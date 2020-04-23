@@ -1,24 +1,23 @@
 package br.com.mind5.business.employee.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.employee.info.EmpInfo;
 import br.com.mind5.business.employee.info.EmpMerger;
-import br.com.mind5.business.employee.model.decisionTree.RootEmpSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
-import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiEmpMergeToDelete extends ActionVisitorTemplateMergeV1<EmpInfo, EmpInfo> {
+final class VisiEmpMergeToDelete extends ActionVisitorTemplateMergeV2<EmpInfo, EmpInfo> {
 	
-	public VisiEmpMergeToDelete(Connection conn, String schemaName) {
-		super(conn, schemaName, EmpInfo.class);
+	public VisiEmpMergeToDelete(DeciTreeOption<EmpInfo> option) {
+		super(option, EmpInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends DeciTree<EmpInfo>> getTreeClassHook() {
-		return RootEmpSelect.class;
+	@Override protected Class<? extends ActionStdV2<EmpInfo>> getActionClassHook() {
+		return StdEmpDaoSelect.class;
 	}
 	
 	
@@ -30,6 +29,6 @@ final class VisiEmpMergeToDelete extends ActionVisitorTemplateMergeV1<EmpInfo, E
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV2.DONT_MERGE_WHEN_EMPTY;
 	}
 }

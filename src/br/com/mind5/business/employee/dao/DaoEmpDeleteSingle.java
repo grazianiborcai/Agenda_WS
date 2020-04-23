@@ -15,11 +15,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class EmpDeleteSingle extends DaoStmtTemplate<EmpInfo> {
+public final class DaoEmpDeleteSingle extends DaoStmtTemplate<EmpInfo> {
 	private final String MAIN_TABLE = DaoDbTable.EMP_TABLE;	
 	
 	
-	public EmpDeleteSingle(Connection conn, EmpInfo recordInfo, String schemaName) {
+	public DaoEmpDeleteSingle(Connection conn, EmpInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);		
 	}
 	
@@ -44,7 +44,7 @@ public final class EmpDeleteSingle extends DaoStmtTemplate<EmpInfo> {
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;	
 		whereOption.ignoreNonPrimaryKey = DaoOptionValue.IGNORE_NON_PK;
 		
-		DaoStmtWhere whereClause = new EmpWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new DaoEmpWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}	
 	

@@ -1,36 +1,35 @@
 package br.com.mind5.business.employee.model.action;
 
-import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.employee.info.EmpInfo;
 import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.business.phone.model.decisionTree.RootPhoneDelete;
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateActionV1;
+import br.com.mind5.model.action.ActionVisitorTemplateActionV2;
+import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiEmpDeletePhone extends ActionVisitorTemplateActionV1<EmpInfo, PhoneInfo> {
-	public VisiEmpDeletePhone(Connection conn, String schemaName) {
-		super(conn, schemaName, EmpInfo.class, PhoneInfo.class);
+final class VisiEmpDeletePhone extends ActionVisitorTemplateActionV2<EmpInfo, PhoneInfo> {
+	public VisiEmpDeletePhone(DeciTreeOption<EmpInfo> option) {
+		super(option, EmpInfo.class, PhoneInfo.class);
+	}
+	
+	
+	
+	@Override protected Class<? extends DeciTree<PhoneInfo>> getTreeClassHook() {
+		return RootPhoneDelete.class;
 	}
 	
 	
 	
 	@Override protected List<PhoneInfo> toActionClassHook(List<EmpInfo> recordInfos) {
-		List<PhoneInfo> results = new ArrayList<>();
+		List<PhoneInfo> results = new ArrayList<>();	//TODO: mover para Copier
 		
 		for (EmpInfo eachRecord : recordInfos) {
 			results.addAll(eachRecord.phones);
 		}		
 		
 		return results;
-	}
-	
-	
-	
-	@Override protected ActionStdV1<PhoneInfo> getActionHook(DeciTreeOption<PhoneInfo> option) {
-		return new RootPhoneDelete(option).toAction();
 	}
 }

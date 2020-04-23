@@ -4,20 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.employee.info.EmpInfo;
+import br.com.mind5.business.employee.model.action.LazyEmpDaoInsert;
 import br.com.mind5.business.employee.model.action.LazyEmpEnforceCreatedBy;
 import br.com.mind5.business.employee.model.action.LazyEmpEnforceCreatedOn;
-import br.com.mind5.business.employee.model.action.LazyEmpInsert;
 import br.com.mind5.business.employee.model.action.LazyEmpMergeUsername;
 import br.com.mind5.business.employee.model.action.StdEmpEnforceLChanged;
-import br.com.mind5.business.employee.model.checker.EmpCheckDummy;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class NodeEmpInsert extends DeciTreeTemplateWriteV1<EmpInfo> {	
+public final class NodeEmpInsert extends DeciTreeTemplateWriteV2<EmpInfo> {	
 	
 	public NodeEmpInsert(DeciTreeOption<EmpInfo> option) {
 		super(option);
@@ -29,7 +29,7 @@ public final class NodeEmpInsert extends DeciTreeTemplateWriteV1<EmpInfo> {
 		List<ModelCheckerV1<EmpInfo>> queue = new ArrayList<>();		
 		ModelCheckerV1<EmpInfo> checker;	
 		
-		checker = new EmpCheckDummy();
+		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueueV2<>(queue);
@@ -44,7 +44,7 @@ public final class NodeEmpInsert extends DeciTreeTemplateWriteV1<EmpInfo> {
 		ActionLazyV1<EmpInfo> enforceLChangedBy = new LazyEmpMergeUsername(option.conn, option.schemaName);
 		ActionLazyV1<EmpInfo> enforceCreatedBy = new LazyEmpEnforceCreatedBy(option.conn, option.schemaName);
 		ActionLazyV1<EmpInfo> enforceCreatedOn = new LazyEmpEnforceCreatedOn(option.conn, option.schemaName);
-		ActionLazyV1<EmpInfo> insertEmployee = new LazyEmpInsert(option.conn, option.schemaName);
+		ActionLazyV1<EmpInfo> insertEmployee = new LazyEmpDaoInsert(option.conn, option.schemaName);
 		
 		enforceLChanged.addPostAction(enforceLChangedBy);
 		enforceLChangedBy.addPostAction(enforceCreatedBy);

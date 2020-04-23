@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilder;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 
-final class EmpWhere implements DaoStmtWhere {	
+final class DaoEmpWhere implements DaoStmtWhere {	
 	private String whereClause;	
 	
 	
-	public EmpWhere(DaoWhereBuilderOption whereOption, String tableName, EmpInfo recordInfo) {
+	public DaoEmpWhere(DaoWhereBuilderOption whereOption, String tableName, EmpInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -27,15 +27,15 @@ final class EmpWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-			case EmpDbTableColumn.COL_COD_OWNER :
+			case DaoEmpDbTableColumn.COL_COD_OWNER :
 				builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 				break;
 				
-			case EmpDbTableColumn.COL_COD_EMPLOYEE :
+			case DaoEmpDbTableColumn.COL_COD_EMPLOYEE :
 				builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codEmployee));
 				break;
 				
-			case EmpDbTableColumn.COL_RECORD_MODE :
+			case DaoEmpDbTableColumn.COL_RECORD_MODE :
 				builder.addClauseEqualAnd(eachColumn, recordInfo.recordMode);
 				break;
 			}

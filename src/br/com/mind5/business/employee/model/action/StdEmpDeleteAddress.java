@@ -1,35 +1,19 @@
 package br.com.mind5.business.employee.model.action;
 
 import br.com.mind5.business.employee.info.EmpInfo;
-import br.com.mind5.model.action.ActionLazyV1;
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionStdHelperAction;
-import br.com.mind5.model.decisionTree.DeciResult;
+import br.com.mind5.model.action.ActionStdTemplateV2;
+import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdEmpDeleteAddress implements ActionStdV1<EmpInfo> {
-	private ActionStdV1<EmpInfo> actionHelper;	
-	
-	
-	public StdEmpDeleteAddress(DeciTreeOption<EmpInfo> option) {			
-		actionHelper = new ActionStdHelperAction<>(option.recordInfos, new VisiEmpDeleteAddress(option.conn, option.schemaName));
+public final class StdEmpDeleteAddress extends ActionStdTemplateV2<EmpInfo> {
+
+	public StdEmpDeleteAddress(DeciTreeOption<EmpInfo> option) {
+		super(option);
 	}
 	
 	
 	
-	@Override public void addPostAction(ActionLazyV1<EmpInfo> actionHandler) {
-		actionHelper.addPostAction(actionHandler);
-	}
-	
-	
-	
-	@Override public boolean executeAction() {			
-		return actionHelper.executeAction();
-	}
-	
-	
-	
-	@Override public DeciResult<EmpInfo> getDecisionResult() {
-		return actionHelper.getDecisionResult();
+	protected ActionVisitorV2<EmpInfo> buildVisitorHook(DeciTreeOption<EmpInfo> option) {
+		return new VisiEmpDeleteAddress(option);
 	}
 }
