@@ -1,54 +1,38 @@
 package br.com.mind5.business.storeLeaveDate.info;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import br.com.mind5.business.storeLeaveDateSearch.info.StolarchInfo;
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-final class StolateVisiMergeStolarch implements InfoMergerVisitor_<StolateInfo, StolarchInfo> {
-
-	@Override public StolateInfo writeRecord(StolarchInfo sourceOne, StolateInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+final class StolateVisiMergeStolarch implements InfoMergerVisitorV3<StolateInfo, StolarchInfo> {
+	
+	@Override public List<StolateInfo> beforeMerge(List<StolateInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(StolateInfo baseInfo, StolarchInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner);
+	}
+	
+	
+	
+	@Override public List<StolateInfo> merge(StolateInfo baseInfo, StolarchInfo selectedInfo) {
+		List<StolateInfo> results = new ArrayList<>();
 		
-		StolateInfo clonedInfo = makeClone(sourceTwo);
-		return merge(sourceOne, clonedInfo);
-	}
-	
-	
-	
-	private void checkArgument(StolarchInfo sourceOne, StolateInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private StolateInfo makeClone(StolateInfo recordInfo) {
-		try {
-			return (StolateInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	private StolateInfo merge(StolarchInfo sourceOne, StolateInfo sourceTwo) {
-		return StolateInfo.copyFrom(sourceOne);
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(StolarchInfo sourceOne, StolateInfo sourceTwo) {		
-		return (sourceOne.codOwner == sourceTwo.codOwner);
-	}
-	
-	
-	
-	private void logException(Exception e) {
+		StolateInfo result = StolateInfo.copyFrom(selectedInfo);
 		
-		SystemLog.logError(this.getClass(), e);
+		results.add(result);
+		return results;
+	}
+	
+	
+	
+	@Override public InfoUniquifier<StolateInfo> getUniquifier() {
+		return null;
 	}
 }

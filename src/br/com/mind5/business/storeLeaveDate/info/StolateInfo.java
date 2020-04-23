@@ -33,7 +33,7 @@ public final class StolateInfo extends InfoRecord implements Cloneable {
 	
 	
 	public StolateInfo() {
-		super(StolateInfo.class);
+		super();
 		
 		codOwner = DefaultValue.number();
 		codStore = DefaultValue.number();

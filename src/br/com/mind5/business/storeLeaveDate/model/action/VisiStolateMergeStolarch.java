@@ -1,19 +1,19 @@
 package br.com.mind5.business.storeLeaveDate.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.storeLeaveDate.info.StolateInfo;
 import br.com.mind5.business.storeLeaveDate.info.StolateMerger;
 import br.com.mind5.business.storeLeaveDateSearch.info.StolarchInfo;
 import br.com.mind5.business.storeLeaveDateSearch.model.decisionTree.RootStolarchSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiStolateMergeStolarch extends ActionVisitorTemplateMergeV1<StolateInfo, StolarchInfo> {
+final class VisiStolateMergeStolarch extends ActionVisitorTemplateMergeV2<StolateInfo, StolarchInfo> {
 	
-	public VisiStolateMergeStolarch(Connection conn, String schemaName) {
-		super(conn, schemaName, StolarchInfo.class);
+	public VisiStolateMergeStolarch(DeciTreeOption<StolateInfo> option) {
+		super(option, StolarchInfo.class);
 	}
 	
 	
@@ -24,13 +24,13 @@ final class VisiStolateMergeStolarch extends ActionVisitorTemplateMergeV1<Stolat
 	
 	
 	
-	@Override protected List<StolateInfo> mergeHook(List<StolateInfo> recordInfos, List<StolarchInfo> selectedInfos) {	
-		return StolateMerger.mergeWithStolarch(selectedInfos, recordInfos);
+	@Override protected List<StolateInfo> mergeHook(List<StolateInfo> baseInfos, List<StolarchInfo> selectedInfos) {	
+		return StolateMerger.mergeWithStolarch(baseInfos, selectedInfos);
 	}
 	
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV2.DONT_MERGE_WHEN_EMPTY;
 	}
 }

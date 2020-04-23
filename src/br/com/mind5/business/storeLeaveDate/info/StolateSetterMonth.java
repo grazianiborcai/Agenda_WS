@@ -1,31 +1,11 @@
 package br.com.mind5.business.storeLeaveDate.info;
 
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoSetter;
+import br.com.mind5.info.InfoSetterTemplate;
 
-public final class StolateSetterMonth implements InfoSetter<StolateInfo> {
+public final class StolateSetterMonth extends InfoSetterTemplate<StolateInfo> {
 	
-	public StolateInfo setAttr(StolateInfo recordInfo) {
-		checkArgument(recordInfo);
-		
+	@Override protected StolateInfo setAttrHook(StolateInfo recordInfo) {
 		recordInfo.monthValidFrom = recordInfo.dateValidFrom.getMonth().getValue();
 		return recordInfo;
 	}
-	
-	
-	
-	private void checkArgument(StolateInfo recordInfo) {
-		if (recordInfo == null) {
-			logException(new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT));
-			throw new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT);
-		}
-	}
-	
-	
-	
-	private void logException(Exception e) {
-		
-		SystemLog.logError(this.getClass(), e);
-	}	
 }

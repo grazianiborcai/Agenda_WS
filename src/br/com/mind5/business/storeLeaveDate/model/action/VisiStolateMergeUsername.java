@@ -1,20 +1,20 @@
 package br.com.mind5.business.storeLeaveDate.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.storeLeaveDate.info.StolateInfo;
 import br.com.mind5.business.storeLeaveDate.info.StolateMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.username.info.UsernameCopier;
 import br.com.mind5.security.username.info.UsernameInfo;
 import br.com.mind5.security.username.model.decisionTree.RootUsernameSelect;
 
-final class VisiStolateMergeUsername extends ActionVisitorTemplateMergeV1<StolateInfo, UsernameInfo> {
+final class VisiStolateMergeUsername extends ActionVisitorTemplateMergeV2<StolateInfo, UsernameInfo> {
 	
-	public VisiStolateMergeUsername(Connection conn, String schemaName) {
-		super(conn, schemaName, UsernameInfo.class);
+	public VisiStolateMergeUsername(DeciTreeOption<StolateInfo> option) {
+		super(option, UsernameInfo.class);
 	}
 	
 	
@@ -25,19 +25,19 @@ final class VisiStolateMergeUsername extends ActionVisitorTemplateMergeV1<Stolat
 	
 	
 	
-	protected List<UsernameInfo> toActionClassHook(List<StolateInfo> recordInfos) {
-		return UsernameCopier.copyFromStolate(recordInfos);	
+	protected List<UsernameInfo> toActionClassHook(List<StolateInfo> baseInfos) {
+		return UsernameCopier.copyFromStolate(baseInfos);	
 	}
 	
 	
 	
-	@Override protected List<StolateInfo> mergeHook(List<StolateInfo> recordInfos, List<UsernameInfo> selectedInfos) {	
-		return StolateMerger.mergeWithUsername(selectedInfos, recordInfos);
+	@Override protected List<StolateInfo> mergeHook(List<StolateInfo> baseInfos, List<UsernameInfo> selectedInfos) {	
+		return StolateMerger.mergeWithUsername(baseInfos, selectedInfos);
 	}
 	
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV2.MERGE_WHEN_EMPTY;
 	}
 }

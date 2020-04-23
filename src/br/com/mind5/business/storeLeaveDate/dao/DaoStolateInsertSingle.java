@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoStmtParamTranslator;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class StolateInsertSingle extends DaoStmtTemplate<StolateInfo> {
+public final class DaoStolateInsertSingle extends DaoStmtTemplate<StolateInfo> {
 	private final String MAIN_TABLE = DaoDbTable.STORE_LD_TABLE;	
 	
 	
-	public StolateInsertSingle(Connection conn, StolateInfo recordInfo, String schemaName) {
+	public DaoStolateInsertSingle(Connection conn, StolateInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	

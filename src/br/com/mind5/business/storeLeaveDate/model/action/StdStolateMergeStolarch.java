@@ -1,35 +1,19 @@
 package br.com.mind5.business.storeLeaveDate.model.action;
 
 import br.com.mind5.business.storeLeaveDate.info.StolateInfo;
-import br.com.mind5.model.action.ActionLazyV1;
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionStdHelperMerge;
-import br.com.mind5.model.decisionTree.DeciResult;
+import br.com.mind5.model.action.ActionStdTemplateV2;
+import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdStolateMergeStolarch implements ActionStdV1<StolateInfo> {
-	private ActionStdV1<StolateInfo> actionHelper;	
-	
-	
-	public StdStolateMergeStolarch(DeciTreeOption<StolateInfo> option) {			
-		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiStolateMergeStolarch(option.conn, option.schemaName));
+public final class StdStolateMergeStolarch extends ActionStdTemplateV2<StolateInfo> {
+
+	public StdStolateMergeStolarch(DeciTreeOption<StolateInfo> option) {
+		super(option);
 	}
 	
 	
 	
-	@Override public void addPostAction(ActionLazyV1<StolateInfo> actionHandler) {
-		actionHelper.addPostAction(actionHandler);
-	}
-	
-	
-	
-	@Override public boolean executeAction() {			
-		return actionHelper.executeAction();
-	}
-	
-	
-	
-	@Override public DeciResult<StolateInfo> getDecisionResult() {
-		return actionHelper.getDecisionResult();
+	protected ActionVisitorV2<StolateInfo> buildVisitorHook(DeciTreeOption<StolateInfo> option) {
+		return new VisiStolateMergeStolarch(option);
 	}
 }

@@ -2,7 +2,6 @@ package br.com.mind5.business.storeLeaveDateSearch.dao;
 
 import java.util.List;
 
-import br.com.mind5.business.storeLeaveDate.dao.StolateDbTableColumn;
 import br.com.mind5.business.storeLeaveDateSearch.info.StolarchInfo;
 import br.com.mind5.dao.DaoColumn;
 import br.com.mind5.dao.DaoFormatter;
@@ -36,11 +35,11 @@ public final class StolarchWhere implements DaoStmtWhere {
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codStore));
 					break;
 					
-				case StolateDbTableColumn.COL_YEAR_VALID_FROM :
+				case StolarchDbTableColumn.COL_YEAR_VALID_FROM :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.yearValidFrom));
 					break;
 					
-				case StolateDbTableColumn.COL_MONTH_VALID_FROM :
+				case StolarchDbTableColumn.COL_MONTH_VALID_FROM :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.monthValidFrom));
 					break;
 					

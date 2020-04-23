@@ -1,57 +1,40 @@
 package br.com.mind5.business.storeLeaveDate.info;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import br.com.mind5.business.storeList.info.StolisInfo;
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-final class StolateVisiMergeStolis implements InfoMergerVisitor_<StolateInfo, StolisInfo> {
-
-	@Override public StolateInfo writeRecord(StolisInfo sourceOne, StolateInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+final class StolateVisiMergeStolis implements InfoMergerVisitorV3<StolateInfo, StolisInfo> {
+	
+	@Override public List<StolateInfo> beforeMerge(List<StolateInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(StolateInfo baseInfo, StolisInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner	&&
+				baseInfo.codStore == selectedInfo.codStore		);
+	}
+	
+	
+	
+	@Override public List<StolateInfo> merge(StolateInfo baseInfo, StolisInfo selectedInfo) {
+		List<StolateInfo> results = new ArrayList<>();
 		
-		StolateInfo clonedInfo = makeClone(sourceTwo);
-		return merge(sourceOne, clonedInfo);
-	}
-	
-	
-	
-	private void checkArgument(StolisInfo sourceOne, StolateInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private StolateInfo makeClone(StolateInfo recordInfo) {
-		try {
-			return (StolateInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	private StolateInfo merge(StolisInfo sourceOne, StolateInfo sourceTwo) {
-		sourceTwo.codTimezone = sourceOne.codTimezone;
-		sourceTwo.txtTimezone = sourceOne.txtTimezone;
-		return sourceTwo;
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(StolisInfo sourceOne, StolateInfo sourceTwo) {		
-		return (sourceOne.codOwner == sourceTwo.codOwner	&&
-				sourceOne.codStore == sourceTwo.codStore		);
-	}
-	
-	
-	
-	private void logException(Exception e) {
+		baseInfo.codTimezone = selectedInfo.codTimezone;
+		baseInfo.txtTimezone = selectedInfo.txtTimezone;
 		
-		SystemLog.logError(this.getClass(), e);
+		results.add(baseInfo);
+		return results;
+	}
+	
+	
+	
+	@Override public InfoUniquifier<StolateInfo> getUniquifier() {
+		return null;
 	}
 }

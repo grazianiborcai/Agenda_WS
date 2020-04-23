@@ -13,11 +13,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class StolateUpdateSingle extends DaoStmtTemplate<StolateInfo> {
+public final class DaoStolateUpdateSingle extends DaoStmtTemplate<StolateInfo> {
 	private final String MAIN_TABLE = DaoDbTable.STORE_LD_TABLE;	
 	
 	
-	public StolateUpdateSingle(Connection conn, StolateInfo recordInfo, String schemaName) {
+	public DaoStolateUpdateSingle(Connection conn, StolateInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -41,7 +41,7 @@ public final class StolateUpdateSingle extends DaoStmtTemplate<StolateInfo> {
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;
 		
-		DaoStmtWhere whereClause = new StolateWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new DaoStolateWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	

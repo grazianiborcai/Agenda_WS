@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.storeLeaveDate.info.StolateInfo;
-import br.com.mind5.business.storeLeaveDate.model.action.LazyStolateDelete;
+import br.com.mind5.business.storeLeaveDate.model.action.LazyStolateDaoDelete;
 import br.com.mind5.business.storeLeaveDate.model.action.LazyStolateEnforceLChanged;
 import br.com.mind5.business.storeLeaveDate.model.action.LazyStolateMergeUsername;
-import br.com.mind5.business.storeLeaveDate.model.action.LazyStolateUpdate;
+import br.com.mind5.business.storeLeaveDate.model.action.LazyStolateDaoUpdate;
 import br.com.mind5.business.storeLeaveDate.model.action.StdStolateMergeToDelete;
 import br.com.mind5.business.storeLeaveDate.model.checker.StolateCheckDelete;
 import br.com.mind5.business.storeLeaveDate.model.checker.StolateCheckExist;
@@ -21,9 +21,9 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class RootStolateDelete extends DeciTreeTemplateWriteV1<StolateInfo> {
+public final class RootStolateDelete extends DeciTreeTemplateWriteV2<StolateInfo> {
 	
 	public RootStolateDelete(DeciTreeOption<StolateInfo> option) {
 		super(option);
@@ -89,8 +89,8 @@ public final class RootStolateDelete extends DeciTreeTemplateWriteV1<StolateInfo
 		ActionStdV1<StolateInfo> mergeToDelete = new StdStolateMergeToDelete(option);
 		ActionLazyV1<StolateInfo> enforceLChanged = new LazyStolateEnforceLChanged(option.conn, option.schemaName);
 		ActionLazyV1<StolateInfo> enforceLChangedBy = new LazyStolateMergeUsername(option.conn, option.schemaName);
-		ActionLazyV1<StolateInfo> update = new LazyStolateUpdate(option.conn, option.schemaName);
-		ActionLazyV1<StolateInfo> delete = new LazyStolateDelete(option.conn, option.schemaName);
+		ActionLazyV1<StolateInfo> update = new LazyStolateDaoUpdate(option.conn, option.schemaName);
+		ActionLazyV1<StolateInfo> delete = new LazyStolateDaoDelete(option.conn, option.schemaName);
 		
 		mergeToDelete.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceLChangedBy);

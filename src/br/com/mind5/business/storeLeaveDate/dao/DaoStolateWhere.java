@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilder;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 
-public final class StolateWhere implements DaoStmtWhere {
+public final class DaoStolateWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public StolateWhere(DaoWhereBuilderOption whereOption, String tableName, StolateInfo recordInfo) {
+	public DaoStolateWhere(DaoWhereBuilderOption whereOption, String tableName, StolateInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -27,23 +27,23 @@ public final class StolateWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-				case StolateDbTableColumn.COL_COD_OWNER :
+				case DaoStolateDbTableColumn.COL_COD_OWNER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;
 					
-				case StolateDbTableColumn.COL_COD_STORE :
+				case DaoStolateDbTableColumn.COL_COD_STORE :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codStore));
 					break;
 					
-				case StolateDbTableColumn.COL_DT_VALID_FROM :
+				case DaoStolateDbTableColumn.COL_DT_VALID_FROM :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.dateToString(recordInfo.dateValidFrom));
 					break;
 					
-				case StolateDbTableColumn.COL_TM_VALID_FROM :
+				case DaoStolateDbTableColumn.COL_TM_VALID_FROM :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.timeToString(recordInfo.timeValidFrom));
 					break;
 					
-				case StolateDbTableColumn.COL_RECORD_MODE :
+				case DaoStolateDbTableColumn.COL_RECORD_MODE :
 					builder.addClauseEqualAnd(eachColumn,recordInfo.recordMode);
 					break;
 			}

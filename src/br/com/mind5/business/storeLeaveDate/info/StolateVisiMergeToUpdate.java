@@ -1,56 +1,40 @@
 package br.com.mind5.business.storeLeaveDate.info;
 
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import java.util.ArrayList;
+import java.util.List;
 
-final class StolateVisiMergeToUpdate implements InfoMergerVisitor_<StolateInfo, StolateInfo> {
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-	@Override public StolateInfo writeRecord(StolateInfo sourceOne, StolateInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);		
-		return merge(sourceOne, sourceTwo);
+final class StolateVisiMergeToUpdate implements InfoMergerVisitorV3<StolateInfo, StolateInfo> {
+	
+	@Override public List<StolateInfo> beforeMerge(List<StolateInfo> baseInfos) {
+		return baseInfos;
 	}
 	
 	
 	
-	private void checkArgument(StolateInfo sourceOne, StolateInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
+	@Override public boolean shouldMerge(StolateInfo baseInfo, StolateInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner);
 	}
 	
 	
 	
-	private StolateInfo merge(StolateInfo sourceOne, StolateInfo sourceTwo) {
-		StolateInfo result = makeClone(sourceTwo);		
-		result.yearValidFrom = sourceOne.yearValidFrom;
-		result.monthValidFrom = sourceOne.monthValidFrom;
-		result.createdOn = sourceOne.createdOn;
-		result.createdBy = sourceOne.createdBy;
-		return result;
-	}
-	
-	
-	
-	private StolateInfo makeClone(StolateInfo recordInfo) {
-		try {
-			return (StolateInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(StolateInfo sourceOne, StolateInfo sourceTwo) {		
-		return (sourceOne.codOwner == sourceTwo.codOwner);
-	}
-	
-	
-	
-	private void logException(Exception e) {
+	@Override public List<StolateInfo> merge(StolateInfo baseInfo, StolateInfo selectedInfo) {
+		List<StolateInfo> results = new ArrayList<>();
 		
-		SystemLog.logError(this.getClass(), e);
+		baseInfo.yearValidFrom = selectedInfo.yearValidFrom;
+		baseInfo.monthValidFrom = selectedInfo.monthValidFrom;
+		baseInfo.createdOn = selectedInfo.createdOn;
+		baseInfo.createdBy = selectedInfo.createdBy;
+		
+		results.add(baseInfo);
+		return results;
+	}
+	
+	
+	
+	@Override public InfoUniquifier<StolateInfo> getUniquifier() {
+		return null;
 	}
 }

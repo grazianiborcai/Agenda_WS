@@ -17,9 +17,9 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 
-public final class RootStolateSelect extends DeciTreeTemplateReadV1<StolateInfo> {
+public final class RootStolateSelect extends DeciTreeTemplateReadV2<StolateInfo> {
 	
 	public RootStolateSelect(DeciTreeOption<StolateInfo> option) {
 		super(option);

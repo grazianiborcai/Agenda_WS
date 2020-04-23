@@ -1,37 +1,12 @@
 package br.com.mind5.business.storeLeaveDate.info;
 
 import br.com.mind5.business.masterData.info.common.RecordMode;
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoSetter;
+import br.com.mind5.info.InfoSetterTemplate;
 
-public final class StolateSetterDel implements InfoSetter<StolateInfo> {
+public final class StolateSetterDel extends InfoSetterTemplate<StolateInfo> {
 	
-	public StolateInfo setAttr(StolateInfo recordInfo) {
-		checkArgument(recordInfo);
-		return setCodDel(recordInfo);
-	}
-	
-	
-	
-	private void checkArgument(StolateInfo recordInfo) {
-		if (recordInfo == null) {
-			logException(new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT));
-			throw new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT);
-		}
-	}
-	
-	
-	
-	private StolateInfo setCodDel(StolateInfo recordInfo) {
+	@Override protected StolateInfo setAttrHook(StolateInfo recordInfo) {
 		recordInfo.recordMode = RecordMode.DELETED.getCodRecordMode();
 		return recordInfo;
 	}
-	
-	
-	
-	private void logException(Exception e) {
-		
-		SystemLog.logError(this.getClass(), e);
-	}	
 }

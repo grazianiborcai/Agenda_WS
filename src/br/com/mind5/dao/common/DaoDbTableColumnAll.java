@@ -85,7 +85,7 @@ import br.com.mind5.business.scheduleSearch.dao.SchedarchDbTableColumn;
 import br.com.mind5.business.scheduleWeekData.dao.SchedeekdatDbTableColumn;
 import br.com.mind5.business.scheduleYearData.dao.SchedyeratDbTableColumn;
 import br.com.mind5.business.store.dao.DaoStoreDbTableColumn;
-import br.com.mind5.business.storeLeaveDate.dao.StolateDbTableColumn;
+import br.com.mind5.business.storeLeaveDate.dao.DaoStolateDbTableColumn;
 import br.com.mind5.business.storeLeaveDateRange.dao.StolargDbTableColumn;
 import br.com.mind5.business.storeLeaveDateSearch.dao.StolarchDbTableColumn;
 import br.com.mind5.business.storeList.dao.DaoStolisDbTableColumn;
@@ -183,7 +183,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new EmposDbTableColumn());
 		addTable(new MasterDataDbTableColumn());
 		addTable(new StowotmDbTableColumn());
-		addTable(new StolateDbTableColumn());
+		addTable(new DaoStolateDbTableColumn());
 		addTable(new EmpwotmDbTableColumn());
 		addTable(new DaoEmplateDbTableColumn());
 		addTable(new EmpwocoDbTableColumn());

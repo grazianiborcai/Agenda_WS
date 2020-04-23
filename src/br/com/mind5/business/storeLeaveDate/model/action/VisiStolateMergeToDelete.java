@@ -1,18 +1,18 @@
 package br.com.mind5.business.storeLeaveDate.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.storeLeaveDate.info.StolateInfo;
 import br.com.mind5.business.storeLeaveDate.info.StolateMerger;
 import br.com.mind5.business.storeLeaveDate.model.decisionTree.RootStolateSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiStolateMergeToDelete extends ActionVisitorTemplateMergeV1<StolateInfo, StolateInfo> {
+final class VisiStolateMergeToDelete extends ActionVisitorTemplateMergeV2<StolateInfo, StolateInfo> {
 	
-	public VisiStolateMergeToDelete(Connection conn, String schemaName) {
-		super(conn, schemaName, StolateInfo.class);
+	public VisiStolateMergeToDelete(DeciTreeOption<StolateInfo> option) {
+		super(option, StolateInfo.class);
 	}
 	
 	
@@ -23,13 +23,13 @@ final class VisiStolateMergeToDelete extends ActionVisitorTemplateMergeV1<Stolat
 	
 	
 	
-	@Override protected List<StolateInfo> mergeHook(List<StolateInfo> recordInfos, List<StolateInfo> selectedInfos) {	
-		return StolateMerger.mergeToDelete(selectedInfos, recordInfos);
+	@Override protected List<StolateInfo> mergeHook(List<StolateInfo> baseInfos, List<StolateInfo> selectedInfos) {	
+		return StolateMerger.mergeToDelete(baseInfos, selectedInfos);
 	}
 	
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV2.DONT_MERGE_WHEN_EMPTY;
 	}
 }

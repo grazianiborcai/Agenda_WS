@@ -4,89 +4,84 @@ import java.util.List;
 
 import br.com.mind5.business.storeLeaveDateSearch.info.StolarchInfo;
 import br.com.mind5.business.storeList.info.StolisInfo;
-import br.com.mind5.info.obsolete.InfoMerger_;
+import br.com.mind5.info.InfoMergerBuilderV3;
+import br.com.mind5.info.InfoMergerV3;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class StolateMerger {
-	public static StolateInfo mergeWithStolis(StolisInfo sourceOne, StolateInfo sourceTwo) {
-		InfoMerger_<StolateInfo, StolisInfo> merger = new StolateMergerStolis();		
-		return merger.merge(sourceOne, sourceTwo);
+	public static List<StolateInfo> mergeWithStolis(List<StolateInfo> baseInfos, List<StolisInfo> selectedInfos) {
+		InfoMergerBuilderV3<StolateInfo, StolisInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new StolateVisiMergeStolis());
+		InfoMergerV3<StolateInfo, StolisInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static List<StolateInfo> mergeWithStolis(List<StolisInfo> sourceOnes, List<StolateInfo> sourceTwos) {
-		InfoMerger_<StolateInfo, StolisInfo> merger = new StolateMergerStolis();		
-		return merger.merge(sourceOnes, sourceTwos);
-	}
+	public static List<StolateInfo> mergeWithStolarch(List<StolateInfo> baseInfos, List<StolarchInfo> selectedInfos) {
+		InfoMergerBuilderV3<StolateInfo, StolarchInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new StolateVisiMergeStolarch());
+		InfoMergerV3<StolateInfo, StolarchInfo> merger = builder.build();		
 	
-	
-	
-	public static StolateInfo mergeWithStolarch(StolarchInfo sourceOne, StolateInfo sourceTwo) {
-		InfoMerger_<StolateInfo, StolarchInfo> merger = new StolateMergerStolarch();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
-	
-	
-	
-	public static List<StolateInfo> mergeWithStolarch(List<StolarchInfo> sourceOnes, List<StolateInfo> sourceTwos) {
-		InfoMerger_<StolateInfo, StolarchInfo> merger = new StolateMergerStolarch();		
-		return merger.merge(sourceOnes, sourceTwos);
+		return merger.merge();
 	}	
 	
 	
 	
-	public static StolateInfo mergeWithUsername(UsernameInfo sourceOne, StolateInfo sourceTwo) {
-		InfoMerger_<StolateInfo, UsernameInfo> merger = new StolateMergerUsername();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
+	public static List<StolateInfo> mergeWithUsername(List<StolateInfo> baseInfos, List<UsernameInfo> selectedInfos) {
+		InfoMergerBuilderV3<StolateInfo, UsernameInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new StolateVisiMergeUsername());
+		InfoMergerV3<StolateInfo, UsernameInfo> merger = builder.build();		
 	
-	
-	
-	public static List<StolateInfo> mergeWithUsername(List<UsernameInfo> sourceOnes, List<StolateInfo> sourceTwos) {
-		InfoMerger_<StolateInfo, UsernameInfo> merger = new StolateMergerUsername();		
-		return merger.merge(sourceOnes, sourceTwos);
+		return merger.merge();
 	}	
 	
 	
 	
-	public static StolateInfo mergeToSelect(StolateInfo sourceOne, StolateInfo sourceTwo) {
-		InfoMerger_<StolateInfo, StolateInfo> merger = new StolateMergerToSelect();		
-		return merger.merge(sourceOne, sourceTwo);
+	public static List<StolateInfo> mergeToSelect(List<StolateInfo> baseInfos, List<StolateInfo> selectedInfos) {
+		InfoMergerBuilderV3<StolateInfo, StolateInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new StolateVisiMergeToSelect());
+		InfoMergerV3<StolateInfo, StolateInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static List<StolateInfo> mergeToSelect(List<StolateInfo> sourceOnes, List<StolateInfo> sourceTwos) {
-		InfoMerger_<StolateInfo, StolateInfo> merger = new StolateMergerToSelect();		
-		return merger.merge(sourceOnes, sourceTwos);
+	public static List<StolateInfo> mergeToDelete(List<StolateInfo> baseInfos, List<StolateInfo> selectedInfos) {
+		InfoMergerBuilderV3<StolateInfo, StolateInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new StolateVisiMergeToDelete());
+		InfoMergerV3<StolateInfo, StolateInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static StolateInfo mergeToDeleteSelect(StolateInfo sourceOne, StolateInfo sourceTwo) {
-		InfoMerger_<StolateInfo, StolateInfo> merger = new StolateMergerToDelete();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
+	public static List<StolateInfo> mergeToUpdate(List<StolateInfo> baseInfos, List<StolateInfo> selectedInfos) {
+		InfoMergerBuilderV3<StolateInfo, StolateInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new StolateVisiMergeToUpdate());
+		InfoMergerV3<StolateInfo, StolateInfo> merger = builder.build();		
 	
-	
-	
-	public static List<StolateInfo> mergeToDelete(List<StolateInfo> sourceOnes, List<StolateInfo> sourceTwos) {
-		InfoMerger_<StolateInfo, StolateInfo> merger = new StolateMergerToDelete();		
-		return merger.merge(sourceOnes, sourceTwos);
-	}
-	
-	
-	
-	public static StolateInfo mergeToDeleteUpdate(StolateInfo sourceOne, StolateInfo sourceTwo) {
-		InfoMerger_<StolateInfo, StolateInfo> merger = new StolateMergerToUpdate();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
-	
-	
-	
-	public static List<StolateInfo> mergeToUpdate(List<StolateInfo> sourceOnes, List<StolateInfo> sourceTwos) {
-		InfoMerger_<StolateInfo, StolateInfo> merger = new StolateMergerToUpdate();		
-		return merger.merge(sourceOnes, sourceTwos);
+		return merger.merge();
 	}	
 }
