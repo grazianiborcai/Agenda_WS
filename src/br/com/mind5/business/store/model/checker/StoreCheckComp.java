@@ -1,56 +1,27 @@
 package br.com.mind5.business.store.model.checker;
 
-import java.util.List;
-
 import br.com.mind5.business.company.info.CompInfo;
 import br.com.mind5.business.company.model.checker.CompCheckExist;
 import br.com.mind5.business.store.info.StoreInfo;
-import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
+import br.com.mind5.model.checker.ModelCheckerV1;
 
-public final class StoreCheckComp implements ModelCheckerV1<StoreInfo> {
-	private final boolean FAILED = false;
-	private final boolean SUCCESS = true;
-	
-	private ModelCheckerV1<CompInfo> checker;
-	
+public final class StoreCheckComp extends ModelCheckerTemplateForwardV2<StoreInfo, CompInfo> {
 	
 	public StoreCheckComp(ModelCheckerOption option) {
-		checker = new CompCheckExist(option);
-	}
-	
-	
-	
-	@Override public boolean check(List<StoreInfo> recordInfos) {
-		for (StoreInfo eachInfo : recordInfos) {
-			if (check(eachInfo) == FAILED)
-				return FAILED;
-		}
-		
-		return SUCCESS;
+		super(option);
 	}
 
-	
-	
-	@Override public boolean check(StoreInfo recordInfo) {
-		return checker.check(CompInfo.copyFrom(recordInfo));
-	}
 
 	
-	
-	@Override public boolean getResult() {
-		return checker.getResult();
+	@Override protected ModelCheckerV1<CompInfo> getCheckerHook(ModelCheckerOption option) {
+		return new CompCheckExist(option);
 	}
-
 	
 	
-	@Override public String getFailMessage() {
-		return checker.getFailMessage();
-	}
-
 	
-	
-	@Override public int getFailCode() {
-		return checker.getFailCode();
+	@Override protected CompInfo toForwardClass(StoreInfo baseRecord) {
+		return CompInfo.copyFrom(baseRecord);
 	}
 }

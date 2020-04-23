@@ -6,16 +6,16 @@ import java.util.List;
 import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.business.store.model.action.LazyStoreRootSelect;
 import br.com.mind5.business.store.model.action.StdStoreMergeSotarch;
-import br.com.mind5.business.store.model.checker.StoreCheckDummy;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 
 
-public final class RootStoreSearch extends DeciTreeTemplateReadV1<StoreInfo> {
+public final class RootStoreSearch extends DeciTreeTemplateReadV2<StoreInfo> {
 	
 	public RootStoreSearch(DeciTreeOption<StoreInfo> option) {
 		super(option);
@@ -27,7 +27,7 @@ public final class RootStoreSearch extends DeciTreeTemplateReadV1<StoreInfo> {
 		List<ModelCheckerV1<StoreInfo>> queue = new ArrayList<>();		
 		ModelCheckerV1<StoreInfo> checker;
 		
-		checker = new StoreCheckDummy();
+		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueueV2<>(queue);

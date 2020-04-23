@@ -1,19 +1,19 @@
 package br.com.mind5.business.store.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.business.store.info.StoreMerger;
 import br.com.mind5.masterData.timezone.info.TimezoneInfo;
 import br.com.mind5.masterData.timezone.model.decisionTree.RootTimezoneSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiStoreMergeTimezone extends ActionVisitorTemplateMergeV1<StoreInfo, TimezoneInfo> {
+final class VisiStoreMergeTimezone extends ActionVisitorTemplateMergeV2<StoreInfo, TimezoneInfo> {
 	
-	public VisiStoreMergeTimezone(Connection conn, String schemaName) {
-		super(conn, schemaName, TimezoneInfo.class);
+	public VisiStoreMergeTimezone(DeciTreeOption<StoreInfo> option) {
+		super(option, TimezoneInfo.class);
 	}
 	
 	
@@ -31,6 +31,6 @@ final class VisiStoreMergeTimezone extends ActionVisitorTemplateMergeV1<StoreInf
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV2.MERGE_WHEN_EMPTY;
 	}
 }

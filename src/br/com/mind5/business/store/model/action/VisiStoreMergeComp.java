@@ -1,19 +1,19 @@
 package br.com.mind5.business.store.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.company.info.CompInfo;
 import br.com.mind5.business.company.model.decisionTree.RootCompSelect;
 import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.business.store.info.StoreMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiStoreMergeComp extends ActionVisitorTemplateMergeV1<StoreInfo, CompInfo> {
+final class VisiStoreMergeComp extends ActionVisitorTemplateMergeV2<StoreInfo, CompInfo> {
 	
-	public VisiStoreMergeComp(Connection conn, String schemaName) {
-		super(conn, schemaName, CompInfo.class);
+	public VisiStoreMergeComp(DeciTreeOption<StoreInfo> option) {
+		super(option, CompInfo.class);
 	}
 	
 	
@@ -31,6 +31,6 @@ final class VisiStoreMergeComp extends ActionVisitorTemplateMergeV1<StoreInfo, C
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV2.MERGE_WHEN_EMPTY;
 	}	
 }

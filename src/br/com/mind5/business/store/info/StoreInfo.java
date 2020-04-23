@@ -39,7 +39,7 @@ public final class StoreInfo extends InfoRecord implements Cloneable {
 	
 	
 	public StoreInfo() {
-		super(StoreInfo.class);
+		super();
 		
 		codOwner = DefaultValue.number();
 		codStore = DefaultValue.number();

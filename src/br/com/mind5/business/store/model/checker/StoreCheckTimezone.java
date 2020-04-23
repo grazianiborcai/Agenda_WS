@@ -1,56 +1,27 @@
 package br.com.mind5.business.store.model.checker;
 
-import java.util.List;
-
 import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.masterData.timezone.info.TimezoneInfo;
 import br.com.mind5.masterData.timezone.model.checker.TimezoneCheckExist;
-import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
+import br.com.mind5.model.checker.ModelCheckerV1;
 
-public final class StoreCheckTimezone implements ModelCheckerV1<StoreInfo> {
-	private final boolean FAILED = false;
-	private final boolean SUCCESS = true;
-	
-	private ModelCheckerV1<TimezoneInfo> checker;
-	
+public final class StoreCheckTimezone extends ModelCheckerTemplateForwardV2<StoreInfo, TimezoneInfo> {
 	
 	public StoreCheckTimezone(ModelCheckerOption option) {
-		checker = new TimezoneCheckExist(option);
-	}
-	
-	
-	
-	@Override public boolean check(List<StoreInfo> recordInfos) {
-		for (StoreInfo eachInfo : recordInfos) {
-			if (check(eachInfo) == FAILED)
-				return FAILED;
-		}
-		
-		return SUCCESS;
+		super(option);
 	}
 
-	
-	
-	@Override public boolean check(StoreInfo recordInfo) {
-		return checker.check(TimezoneInfo.copyFrom(recordInfo));
-	}
 
 	
-	
-	@Override public boolean getResult() {
-		return checker.getResult();
+	@Override protected ModelCheckerV1<TimezoneInfo> getCheckerHook(ModelCheckerOption option) {
+		return new TimezoneCheckExist(option);
 	}
-
 	
 	
-	@Override public String getFailMessage() {
-		return checker.getFailMessage();
-	}
-
 	
-	
-	@Override public int getFailCode() {
-		return checker.getFailCode();
+	@Override protected TimezoneInfo toForwardClass(StoreInfo baseRecord) {
+		return TimezoneInfo.copyFrom(baseRecord);
 	}
 }

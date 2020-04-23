@@ -1,6 +1,5 @@
 package br.com.mind5.business.store.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.phone.info.PhoneCopier;
@@ -8,13 +7,14 @@ import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.business.phone.model.decisionTree.RootPhoneSearch;
 import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.business.store.info.StoreMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiStoreMergePhone extends ActionVisitorTemplateMergeV1<StoreInfo, PhoneInfo> {
+final class VisiStoreMergePhone extends ActionVisitorTemplateMergeV2<StoreInfo, PhoneInfo> {
 	
-	public VisiStoreMergePhone(Connection conn, String schemaName) {
-		super(conn, schemaName, PhoneInfo.class);
+	public VisiStoreMergePhone(DeciTreeOption<StoreInfo> option) {
+		super(option, PhoneInfo.class);
 	}
 	
 	
@@ -38,6 +38,6 @@ final class VisiStoreMergePhone extends ActionVisitorTemplateMergeV1<StoreInfo, 
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV2.MERGE_WHEN_EMPTY;
 	}
 }

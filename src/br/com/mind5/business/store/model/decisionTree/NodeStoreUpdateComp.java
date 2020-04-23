@@ -14,9 +14,9 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class NodeStoreUpdateComp extends DeciTreeTemplateWriteV1<StoreInfo> {
+public final class NodeStoreUpdateComp extends DeciTreeTemplateWriteV2<StoreInfo> {
 	
 	public NodeStoreUpdateComp(DeciTreeOption<StoreInfo> option) {
 		super(option);

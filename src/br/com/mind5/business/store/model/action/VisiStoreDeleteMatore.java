@@ -1,25 +1,25 @@
 package br.com.mind5.business.store.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.materialStore.info.MatoreCopier;
 import br.com.mind5.business.materialStore.info.MatoreInfo;
 import br.com.mind5.business.materialStore.model.decisionTree.RootMatoreDeleteByStore;
 import br.com.mind5.business.store.info.StoreInfo;
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateActionV1;
+import br.com.mind5.model.action.ActionVisitorTemplateActionV2;
+import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiStoreDeleteMatore extends ActionVisitorTemplateActionV1<StoreInfo, MatoreInfo> {
-	public VisiStoreDeleteMatore(Connection conn, String schemaName) {
-		super(conn, schemaName, StoreInfo.class, MatoreInfo.class);
+final class VisiStoreDeleteMatore extends ActionVisitorTemplateActionV2<StoreInfo, MatoreInfo> {
+	
+	public VisiStoreDeleteMatore(DeciTreeOption<StoreInfo> option) {
+		super(option, StoreInfo.class, MatoreInfo.class);
 	}
 	
 	
 	
-	@Override protected ActionStdV1<MatoreInfo> getActionHook(DeciTreeOption<MatoreInfo> option) {
-		return new RootMatoreDeleteByStore(option).toAction();
+	@Override protected Class<? extends DeciTree<MatoreInfo>> getTreeClassHook() {
+		return RootMatoreDeleteByStore.class;
 	}
 	
 	

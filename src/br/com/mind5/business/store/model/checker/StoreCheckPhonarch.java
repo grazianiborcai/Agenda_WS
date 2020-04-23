@@ -1,57 +1,28 @@
 package br.com.mind5.business.store.model.checker;
 
-import java.util.List;
-
 import br.com.mind5.business.phoneSearch.info.PhonarchCopier;
 import br.com.mind5.business.phoneSearch.info.PhonarchInfo;
 import br.com.mind5.business.phoneSearch.model.checker.PhonarchCheckExist;
 import br.com.mind5.business.store.info.StoreInfo;
-import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
+import br.com.mind5.model.checker.ModelCheckerV1;
 
-public final class StoreCheckPhonarch implements ModelCheckerV1<StoreInfo> {
-	private final boolean FAILED = false;
-	private final boolean SUCCESS = true;
-	
-	private ModelCheckerV1<PhonarchInfo> checker;
-	
+public final class StoreCheckPhonarch extends ModelCheckerTemplateForwardV2<StoreInfo, PhonarchInfo> {
 	
 	public StoreCheckPhonarch(ModelCheckerOption option) {
-		checker = new PhonarchCheckExist(option);
-	}
-	
-	
-	
-	@Override public boolean check(List<StoreInfo> recordInfos) {
-		for (StoreInfo eachInfo : recordInfos) {
-			if (check(eachInfo) == FAILED)
-				return FAILED;
-		}
-		
-		return SUCCESS;
+		super(option);
 	}
 
-	
-	
-	@Override public boolean check(StoreInfo recordInfo) {
-		return checker.check(PhonarchCopier.copyFromStore(recordInfo));
-	}
 
 	
-	
-	@Override public boolean getResult() {
-		return checker.getResult();
+	@Override protected ModelCheckerV1<PhonarchInfo> getCheckerHook(ModelCheckerOption option) {
+		return new PhonarchCheckExist(option);
 	}
-
 	
 	
-	@Override public String getFailMessage() {
-		return checker.getFailMessage();
-	}
-
 	
-	
-	@Override public int getFailCode() {
-		return checker.getFailCode();
+	@Override protected PhonarchInfo toForwardClass(StoreInfo baseRecord) {
+		return PhonarchCopier.copyFromStore(baseRecord);
 	}
 }

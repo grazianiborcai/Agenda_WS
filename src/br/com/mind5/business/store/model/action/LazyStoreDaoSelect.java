@@ -4,14 +4,14 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.store.info.StoreInfo;
-import br.com.mind5.model.action.ActionLazyTemplateV1;
+import br.com.mind5.model.action.ActionLazyTemplateV2;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyStoreSelect extends ActionLazyTemplateV1<StoreInfo, StoreInfo> {
+public final class LazyStoreDaoSelect extends ActionLazyTemplateV2<StoreInfo, StoreInfo> {
 
-	public LazyStoreSelect(Connection conn, String schemaName) {
+	public LazyStoreDaoSelect(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyStoreSelect extends ActionLazyTemplateV1<StoreInfo, Store
 	
 	
 	@Override protected ActionStdV1<StoreInfo> getInstanceOfActionHook(DeciTreeOption<StoreInfo> option) {
-		return new StdStoreSelect(option);
+		return new StdStoreDaoSelect(option);
 	}
 	
 	

@@ -8,15 +8,15 @@ import br.com.mind5.business.store.model.action.LazyStoreEnforceLChanged;
 import br.com.mind5.business.store.model.action.LazyStoreMergeUsername;
 import br.com.mind5.business.store.model.action.LazyStoreNodeSnapshot;
 import br.com.mind5.business.store.model.action.StdStoreMergeToUpdate;
-import br.com.mind5.business.store.model.checker.StoreCheckDummy;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class NodeStoreUpdate extends DeciTreeTemplateWriteV1<StoreInfo> {
+public final class NodeStoreUpdate extends DeciTreeTemplateWriteV2<StoreInfo> {
 	
 	public NodeStoreUpdate(DeciTreeOption<StoreInfo> option) {
 		super(option);
@@ -28,7 +28,7 @@ public final class NodeStoreUpdate extends DeciTreeTemplateWriteV1<StoreInfo> {
 		List<ModelCheckerV1<StoreInfo>> queue = new ArrayList<>();		
 		ModelCheckerV1<StoreInfo> checker;
 		
-		checker = new StoreCheckDummy();
+		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueueV2<>(queue);

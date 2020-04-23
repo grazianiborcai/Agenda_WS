@@ -4,15 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.store.info.StoreInfo;
-import br.com.mind5.business.store.model.action.StdStoreDelete;
-import br.com.mind5.business.store.model.checker.StoreCheckDummy;
+import br.com.mind5.business.store.model.action.StdStoreDaoDelete;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class NodeStoreDeleteCascade extends DeciTreeTemplateWriteV1<StoreInfo> {	
+public final class NodeStoreDeleteCascade extends DeciTreeTemplateWriteV2<StoreInfo> {	
 	
 	public NodeStoreDeleteCascade(DeciTreeOption<StoreInfo> option) {
 		super(option);
@@ -24,7 +24,7 @@ public final class NodeStoreDeleteCascade extends DeciTreeTemplateWriteV1<StoreI
 		List<ModelCheckerV1<StoreInfo>> queue = new ArrayList<>();		
 		ModelCheckerV1<StoreInfo> checker;
 
-		checker = new StoreCheckDummy();
+		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 		
 		 return new ModelCheckerHelperQueueV2<StoreInfo>(queue);
@@ -43,7 +43,7 @@ public final class NodeStoreDeleteCascade extends DeciTreeTemplateWriteV1<StoreI
 		ActionStdV1<StoreInfo> deletePerson = new NodeStoreDeletePerson(option).toAction();
 		ActionStdV1<StoreInfo> deleteCompany = new NodeStoreDeleteComp(option).toAction();
 		ActionStdV1<StoreInfo> deleteUser = new NodeStoreDeleteUser(option).toAction();
-		ActionStdV1<StoreInfo> deleteStore = new StdStoreDelete(option);
+		ActionStdV1<StoreInfo> deleteStore = new StdStoreDaoDelete(option);
 
 		actions.add(deleteStowotm);		
 		actions.add(deleteStolate);			

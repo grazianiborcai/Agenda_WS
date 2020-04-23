@@ -15,11 +15,11 @@ import br.com.mind5.dao.DaoStmtParamTranslator;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class StoreInsertSingle extends DaoStmtTemplate<StoreInfo> {
+public final class DaoStoreInsertSingle extends DaoStmtTemplate<StoreInfo> {
 	private final String MAIN_TABLE = DaoDbTable.STORE_TABLE;		
 	
 	
-	public StoreInsertSingle(Connection conn, StoreInfo recordInfo, String schemaName) {
+	public DaoStoreInsertSingle(Connection conn, StoreInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
