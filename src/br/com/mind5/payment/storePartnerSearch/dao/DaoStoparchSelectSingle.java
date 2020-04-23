@@ -15,11 +15,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.payment.storePartnerSearch.info.StoparchInfo;
 
-public final class StoparchSelectSingle extends DaoStmtTemplate<StoparchInfo> {
+public final class DaoStoparchSelectSingle extends DaoStmtTemplate<StoparchInfo> {
 	private final String MAIN_TABLE = DaoDbTable.PAY_PARTNER_STORE_TABLE;
 	
 	
-	public StoparchSelectSingle(Connection conn, StoparchInfo recordInfo, String schemaName) {
+	public DaoStoparchSelectSingle(Connection conn, StoparchInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -49,7 +49,7 @@ public final class StoparchSelectSingle extends DaoStmtTemplate<StoparchInfo> {
 		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new StoparchWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new DaoStoparchWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}	
 	
@@ -66,12 +66,12 @@ public final class StoparchSelectSingle extends DaoStmtTemplate<StoparchInfo> {
 				do {
 					StoparchInfo dataInfo = new StoparchInfo();
 					
-					dataInfo.codOwner = stmtResult.getLong(StoparchDbTableColumn.COL_COD_OWNER);
-					dataInfo.codStore = stmtResult.getLong(StoparchDbTableColumn.COL_COD_STORE);
-					dataInfo.codPayPartner = stmtResult.getInt(StoparchDbTableColumn.COL_COD_PAY_PARTNER);
-					dataInfo.recordMode = stmtResult.getString(StoparchDbTableColumn.COL_RECORD_MODE);
-					dataInfo.codePayPartnerStore = stmtResult.getString(StoparchDbTableColumn.COL_CODE_PAY_PARTNER_STORE);
-					dataInfo.idPayPartnerStore = stmtResult.getString(StoparchDbTableColumn.COL_ID_PAY_PARTNER_STORE);	
+					dataInfo.codOwner = stmtResult.getLong(DaoStoparchDbTableColumn.COL_COD_OWNER);
+					dataInfo.codStore = stmtResult.getLong(DaoStoparchDbTableColumn.COL_COD_STORE);
+					dataInfo.codPayPartner = stmtResult.getInt(DaoStoparchDbTableColumn.COL_COD_PAY_PARTNER);
+					dataInfo.recordMode = stmtResult.getString(DaoStoparchDbTableColumn.COL_RECORD_MODE);
+					dataInfo.codePayPartnerStore = stmtResult.getString(DaoStoparchDbTableColumn.COL_CODE_PAY_PARTNER_STORE);
+					dataInfo.idPayPartnerStore = stmtResult.getString(DaoStoparchDbTableColumn.COL_ID_PAY_PARTNER_STORE);	
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

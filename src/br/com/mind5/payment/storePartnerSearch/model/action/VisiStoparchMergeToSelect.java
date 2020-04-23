@@ -1,23 +1,24 @@
 package br.com.mind5.payment.storePartnerSearch.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.storePartnerSearch.info.StoparchInfo;
 import br.com.mind5.payment.storePartnerSearch.info.StoparchMerger;
 
-final class VisStoparchMergeToSelect extends ActionVisitorTemplateMergeV1<StoparchInfo, StoparchInfo> {
+final class VisiStoparchMergeToSelect extends ActionVisitorTemplateMergeV2<StoparchInfo, StoparchInfo> {
 	
-	public VisStoparchMergeToSelect(Connection conn, String schemaName) {
-		super(conn, schemaName, StoparchInfo.class);
+	public VisiStoparchMergeToSelect(DeciTreeOption<StoparchInfo> option) {
+		super(option, StoparchInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends ActionStdV1<StoparchInfo>> getActionClassHook() {
-		return StdStoparchSelect.class;
+	@Override protected Class<? extends ActionStdV2<StoparchInfo>> getActionClassHook() {
+		return StdStoparchDaoSelect.class;
 	}
 	
 	
