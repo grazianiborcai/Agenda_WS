@@ -1,4 +1,4 @@
-package br.com.mind5.business.masterData.dao;
+package br.com.mind5.masterData.genderSearch.dao;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.business.masterData.info.GenderInfo;
 import br.com.mind5.dao.DaoJoin;
 import br.com.mind5.dao.DaoJoinBuilder;
 import br.com.mind5.dao.DaoOperation;
@@ -16,12 +15,13 @@ import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
+import br.com.mind5.masterData.genderSearch.info.GendarchInfo;
 
-public final class GenderSelectSingle extends DaoStmtTemplate<GenderInfo> {
+public final class DaoGendarchSelectSingle extends DaoStmtTemplate<GendarchInfo> {
 	private final String MAIN_TABLE = DaoDbTable.GENDER_TABLE;
 	
 	
-	public GenderSelectSingle(Connection conn, GenderInfo recordInfo, String schemaName) {
+	public DaoGendarchSelectSingle(Connection conn, GendarchInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -33,46 +33,52 @@ public final class GenderSelectSingle extends DaoStmtTemplate<GenderInfo> {
 	
 	
 	
+	@Override protected String getLookupTableHook() {
+		return DaoDbTable.GENDER_SEARCH_VIEW;
+	}	
+	
+	
+	
 	@Override protected DaoOperation getOperationHook() {
 		return DaoOperation.SELECT;
 	}
 	
 	
 	
-	@Override protected String buildWhereClauseHook(String tableName, GenderInfo recordInfo) {
+	@Override protected String buildWhereClauseHook(String tableName, GendarchInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
 		
 		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;	
 		whereOption.dummyClauseWhenEmpty = DaoOptionValue.DUMMY_CLAUSE_ALLOWED;
 		
-		DaoStmtWhere whereClause = new GenderWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new DaoGendarchWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
 	
 	
-	@Override protected DaoJoin getJoinHook(GenderInfo recordInfo) {
-		DaoJoinBuilder joinText = new GenderJoinTxt(MAIN_TABLE);		
+	@Override protected DaoJoin getJoinHook(GendarchInfo recordInfo) {
+		DaoJoinBuilder joinText = new DaoGendarchJoinTxt(MAIN_TABLE);		
 		return joinText.build();
 	}
 	
 	
 	
-	@Override protected DaoResultParser<GenderInfo> getResultParserHook() {
-		return new DaoResultParser<GenderInfo>() {
-			@Override public List<GenderInfo> parseResult(GenderInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
-				List<GenderInfo> finalResult = new ArrayList<>();
+	@Override protected DaoResultParser<GendarchInfo> getResultParserHook() {
+		return new DaoResultParser<GendarchInfo>() {
+			@Override public List<GendarchInfo> parseResult(GendarchInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
+				List<GendarchInfo> finalResult = new ArrayList<>();
 				
 				if (stmtResult.next() == false)				
 					return finalResult;
 			
 				do {				
-					GenderInfo dataInfo = new GenderInfo();
+					GendarchInfo dataInfo = new GendarchInfo();
 					
-					dataInfo.codGender = stmtResult.getInt(MasterDataDbTableColumn.COL_COD_GENDER);
-					dataInfo.txtGender = stmtResult.getString(MasterDataDbTableColumn.COL_NAME);
-					dataInfo.codLanguage = stmtResult.getString(MasterDataDbTableColumn.COL_COD_LANGUAGE);		
+					dataInfo.codGender = stmtResult.getInt(DaoGendarchDbTableColumn.COL_COD_GENDER);
+					dataInfo.txtGender = stmtResult.getString(DaoGendarchDbTableColumn.COL_NAME);
+					dataInfo.codLanguage = stmtResult.getString(DaoGendarchDbTableColumn.COL_COD_LANGUAGE);		
 					
 					finalResult.add(dataInfo);				
 				} while (stmtResult.next());

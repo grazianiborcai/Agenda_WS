@@ -1,8 +1,8 @@
-package br.com.mind5.business.masterData.model.checker;
+package br.com.mind5.masterData.gender.model.checker;
 
-import br.com.mind5.business.masterData.info.GenderInfo;
-import br.com.mind5.business.masterData.model.action.StdGenderSelect;
 import br.com.mind5.common.SystemCode;
+import br.com.mind5.masterData.gender.info.GenderInfo;
+import br.com.mind5.masterData.gender.model.action.StdGenderDaoSelect;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
@@ -17,7 +17,7 @@ public final class GenderCheckExist extends ModelCheckerTemplateActionV2<GenderI
 	
 	
 	@Override protected ActionStdV1<GenderInfo> buildActionHook(DeciTreeOption<GenderInfo> option) {
-		ActionStdV1<GenderInfo> select = new StdGenderSelect(option);
+		ActionStdV1<GenderInfo> select = new StdGenderDaoSelect(option);
 		return select;
 	}
 	

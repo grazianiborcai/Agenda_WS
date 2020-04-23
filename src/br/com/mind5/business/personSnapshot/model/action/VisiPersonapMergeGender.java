@@ -3,10 +3,10 @@ package br.com.mind5.business.personSnapshot.model.action;
 import java.sql.Connection;
 import java.util.List;
 
-import br.com.mind5.business.masterData.info.GenderInfo;
-import br.com.mind5.business.masterData.model.decisionTree.RootGenderSelect;
 import br.com.mind5.business.personSnapshot.info.PersonapInfo;
 import br.com.mind5.business.personSnapshot.info.PersonapMerger;
+import br.com.mind5.masterData.gender.info.GenderInfo;
+import br.com.mind5.masterData.gender.model.decisionTree.RootGenderSelect;
 import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 import br.com.mind5.model.decisionTree.DeciTree;
 

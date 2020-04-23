@@ -1,4 +1,4 @@
-package br.com.mind5.business.masterData.info;
+package br.com.mind5.masterData.gender.info;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ public final class GenderInfo extends InfoRecord implements Cloneable {
 	
 	
 	public GenderInfo() {
-		super(GenderInfo.class);
+		super();
 		
 		codGender = DefaultValue.number();
 	}

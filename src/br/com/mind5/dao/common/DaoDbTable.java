@@ -159,6 +159,7 @@ public final class DaoDbTable {
 	public static final String EMPOS_SEARCH_VIEW = "view_employee_position_search";	
 	public static final String FILE_IMG_LIST_VIEW = "view_file_image_list";	
 	public static final String FILE_IMG_SEARCH_VIEW = "view_file_image_search";
+	public static final String GENDER_SEARCH_VIEW = "view_gender_search";
 	public static final String LANGUAGE_SEARCH_VIEW = "view_language_search";
 	public static final String MAT_CATEG_SEARCH_VIEW = "view_material_category_search";
 	public static final String MAT_GROUP_SEARCH_VIEW = "view_material_group_search";

@@ -13,7 +13,6 @@ import br.com.mind5.business.masterData.info.CountryLegalInfo;
 import br.com.mind5.business.masterData.info.DaypartInfo;
 import br.com.mind5.business.masterData.info.EntityCategInfo;
 import br.com.mind5.business.masterData.info.FeeCategInfo;
-import br.com.mind5.business.masterData.info.GenderInfo;
 import br.com.mind5.business.masterData.info.MatmovTypeInfo;
 import br.com.mind5.business.masterData.info.MonthInfo;
 import br.com.mind5.business.masterData.info.OrderStatusInfo;
@@ -27,7 +26,6 @@ import br.com.mind5.business.masterData.model.CountryLegalModelSelect;
 import br.com.mind5.business.masterData.model.DaypartModelSelect;
 import br.com.mind5.business.masterData.model.EntityCategModelSelect;
 import br.com.mind5.business.masterData.model.FeeCategModelSelect;
-import br.com.mind5.business.masterData.model.GenderModelSelect;
 import br.com.mind5.business.masterData.model.MatmovTypeModelSelect;
 import br.com.mind5.business.masterData.model.MonthModelSelect;
 import br.com.mind5.business.masterData.model.OrderStatusModelSelect;
@@ -46,6 +44,8 @@ import br.com.mind5.masterData.countrySearch.info.CountarchInfo;
 import br.com.mind5.masterData.countrySearch.model.CountarchModelSelect;
 import br.com.mind5.masterData.currencySearch.info.CurrarshInfo;
 import br.com.mind5.masterData.currencySearch.model.CurrarshModelSelect;
+import br.com.mind5.masterData.genderSearch.info.GendarchInfo;
+import br.com.mind5.masterData.genderSearch.model.GendarchModelSelect;
 import br.com.mind5.masterData.languageSearch.info.LangarchInfo;
 import br.com.mind5.masterData.languageSearch.model.LangarchModelSelect;
 import br.com.mind5.masterData.materialCategorySearch.info.MategarchInfo;
@@ -289,11 +289,11 @@ public final class MasterDataResource {
 	public Response selectTGender(@HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage,
 			                      @HeaderParam("codGender")   @DefaultValue("-1") int codGender){
 		
-		GenderInfo recordInfo = new GenderInfo();
+		GendarchInfo recordInfo = new GendarchInfo();
 		recordInfo.codGender = codGender;
 		recordInfo.codLanguage = codLanguage;
 		
-		Model model = new GenderModelSelect(recordInfo);
+		Model model = new GendarchModelSelect(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	}

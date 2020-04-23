@@ -2,9 +2,9 @@ package br.com.mind5.business.person.model.checker;
 
 import java.util.List;
 
-import br.com.mind5.business.masterData.info.GenderInfo;
-import br.com.mind5.business.masterData.model.checker.GenderCheckExist;
 import br.com.mind5.business.person.info.PersonInfo;
+import br.com.mind5.masterData.gender.info.GenderInfo;
+import br.com.mind5.masterData.gender.model.checker.GenderCheckExist;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 

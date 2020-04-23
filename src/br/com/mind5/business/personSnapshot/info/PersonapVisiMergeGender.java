@@ -1,9 +1,9 @@
 package br.com.mind5.business.personSnapshot.info;
 
-import br.com.mind5.business.masterData.info.GenderInfo;
 import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.masterData.gender.info.GenderInfo;
 
 final class PersonapVisiMergeGender implements InfoMergerVisitor_<PersonapInfo, GenderInfo> {
 

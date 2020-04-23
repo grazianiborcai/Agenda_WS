@@ -2,10 +2,10 @@ package br.com.mind5.business.person.info;
 
 import java.util.List;
 
-import br.com.mind5.business.masterData.info.GenderInfo;
 import br.com.mind5.business.personSnapshot.info.PersonapInfo;
 import br.com.mind5.info.InfoMergerBuilderV3;
 import br.com.mind5.info.InfoMergerV3;
+import br.com.mind5.masterData.gender.info.GenderInfo;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class PersonMerger {

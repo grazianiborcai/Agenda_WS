@@ -115,6 +115,8 @@ import br.com.mind5.masterData.countryPhoneSearch.dao.DaoCountronarchDbTableColu
 import br.com.mind5.masterData.countrySearch.dao.DaoCountarchDbTableColumn;
 import br.com.mind5.masterData.currency.dao.DaoCurrencyDbTableColumn;
 import br.com.mind5.masterData.currencySearch.dao.DaoCurrarshDbTableColumn;
+import br.com.mind5.masterData.gender.dao.DaoGenderDbTableColumn;
+import br.com.mind5.masterData.genderSearch.dao.DaoGendarchDbTableColumn;
 import br.com.mind5.masterData.language.dao.DaoLanguDbTableColumn;
 import br.com.mind5.masterData.languageSearch.dao.DaoLangarchDbTableColumn;
 import br.com.mind5.masterData.materialCategory.dao.DaoMategDbTableColumn;
@@ -328,6 +330,8 @@ public final class DaoDbTableColumnAll {
 		addTable(new DaoBusarearchDbTableColumn());
 		addTable(new DaoMatoupDbTableColumn());
 		addTable(new DaoMatouparchDbTableColumn());
+		addTable(new DaoGenderDbTableColumn());
+		addTable(new DaoGendarchDbTableColumn());
 	}
 	
 	
