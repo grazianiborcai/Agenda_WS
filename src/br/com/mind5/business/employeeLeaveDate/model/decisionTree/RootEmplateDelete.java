@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.employeeLeaveDate.info.EmplateInfo;
-import br.com.mind5.business.employeeLeaveDate.model.action.LazyEmplateDelete;
+import br.com.mind5.business.employeeLeaveDate.model.action.LazyEmplateDaoDelete;
 import br.com.mind5.business.employeeLeaveDate.model.action.LazyEmplateEnforceLChanged;
 import br.com.mind5.business.employeeLeaveDate.model.action.LazyEmplateMergeUsername;
-import br.com.mind5.business.employeeLeaveDate.model.action.LazyEmplateUpdate;
+import br.com.mind5.business.employeeLeaveDate.model.action.LazyEmplateDaoUpdate;
 import br.com.mind5.business.employeeLeaveDate.model.action.StdEmplateMergeToDelete;
 import br.com.mind5.business.employeeLeaveDate.model.checker.EmplateCheckDelete;
 import br.com.mind5.business.employeeLeaveDate.model.checker.EmplateCheckEmp;
@@ -22,9 +22,9 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class RootEmplateDelete extends DeciTreeTemplateWriteV1<EmplateInfo> {
+public final class RootEmplateDelete extends DeciTreeTemplateWriteV2<EmplateInfo> {
 	
 	public RootEmplateDelete(DeciTreeOption<EmplateInfo> option) {
 		super(option);
@@ -97,8 +97,8 @@ public final class RootEmplateDelete extends DeciTreeTemplateWriteV1<EmplateInfo
 		ActionStdV1<EmplateInfo> mergeToDelete = new StdEmplateMergeToDelete(option);
 		ActionLazyV1<EmplateInfo> enforceLChanged = new LazyEmplateEnforceLChanged(option.conn, option.schemaName);
 		ActionLazyV1<EmplateInfo> enforceLChangedBy = new LazyEmplateMergeUsername(option.conn, option.schemaName);
-		ActionLazyV1<EmplateInfo> update = new LazyEmplateUpdate(option.conn, option.schemaName);
-		ActionLazyV1<EmplateInfo> delete = new LazyEmplateDelete(option.conn, option.schemaName);
+		ActionLazyV1<EmplateInfo> update = new LazyEmplateDaoUpdate(option.conn, option.schemaName);
+		ActionLazyV1<EmplateInfo> delete = new LazyEmplateDaoDelete(option.conn, option.schemaName);
 		
 		mergeToDelete.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceLChangedBy);

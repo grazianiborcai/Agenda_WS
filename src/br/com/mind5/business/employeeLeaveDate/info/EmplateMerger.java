@@ -3,90 +3,85 @@ package br.com.mind5.business.employeeLeaveDate.info;
 import java.util.List;
 
 import br.com.mind5.business.employeeLeaveDateSearch.info.EmplarchInfo;
-import br.com.mind5.info.obsolete.InfoMerger_;
+import br.com.mind5.info.InfoMergerBuilderV3;
+import br.com.mind5.info.InfoMergerV3;
 import br.com.mind5.masterData.timezone.info.TimezoneInfo;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class EmplateMerger {
-	public static EmplateInfo mergeWithEmplarch(EmplarchInfo sourceOne, EmplateInfo sourceTwo) {
-		InfoMerger_<EmplateInfo, EmplarchInfo> merger = new EmplateMergerEmplarch();		
-		return merger.merge(sourceOne, sourceTwo);
+	public static List<EmplateInfo> mergeWithEmplarch(List<EmplateInfo> baseInfos, List<EmplarchInfo> selectedInfos) {
+		InfoMergerBuilderV3<EmplateInfo, EmplarchInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new EmplateVisiMergeEmplarch());
+		InfoMergerV3<EmplateInfo, EmplarchInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static List<EmplateInfo> mergeWithEmplarch(List<EmplarchInfo> sourceOnes, List<EmplateInfo> sourceTwos) {
-		InfoMerger_<EmplateInfo, EmplarchInfo> merger = new EmplateMergerEmplarch();		
-		return merger.merge(sourceOnes, sourceTwos);
+	public static List<EmplateInfo> mergeWithTimezone(List<EmplateInfo> baseInfos, List<TimezoneInfo> selectedInfos) {
+		InfoMergerBuilderV3<EmplateInfo, TimezoneInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new EmplateVisiMergeTimezone());
+		InfoMergerV3<EmplateInfo, TimezoneInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static EmplateInfo mergeWithTimezone(TimezoneInfo sourceOne, EmplateInfo sourceTwo) {
-		InfoMerger_<EmplateInfo, TimezoneInfo> merger = new EmplateMergerTimezone();		
-		return merger.merge(sourceOne, sourceTwo);
+	public static List<EmplateInfo> mergeWithUsername(List<EmplateInfo> baseInfos, List<UsernameInfo> selectedInfos) {
+		InfoMergerBuilderV3<EmplateInfo, UsernameInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new EmplateVisiMergeUsername());
+		InfoMergerV3<EmplateInfo, UsernameInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static List<EmplateInfo> mergeWithTimezone(List<TimezoneInfo> sourceOnes, List<EmplateInfo> sourceTwos) {
-		InfoMerger_<EmplateInfo, TimezoneInfo> merger = new EmplateMergerTimezone();		
-		return merger.merge(sourceOnes, sourceTwos);
+	public static List<EmplateInfo> mergeToSelect(List<EmplateInfo> baseInfos, List<EmplateInfo> selectedInfos) {
+		InfoMergerBuilderV3<EmplateInfo, EmplateInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new EmplateVisiMergeToSelect());
+		InfoMergerV3<EmplateInfo, EmplateInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static EmplateInfo mergeWithUsername(UsernameInfo sourceOne, EmplateInfo sourceTwo) {
-		InfoMerger_<EmplateInfo, UsernameInfo> merger = new EmplateMergerUsername();		
-		return merger.merge(sourceOne, sourceTwo);
+	public static List<EmplateInfo> mergeToDelete(List<EmplateInfo> baseInfos, List<EmplateInfo> selectedInfos) {
+		InfoMergerBuilderV3<EmplateInfo, EmplateInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new EmplateVisiMergeToDelete());
+		InfoMergerV3<EmplateInfo, EmplateInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static List<EmplateInfo> mergeWithUsername(List<UsernameInfo> sourceOnes, List<EmplateInfo> sourceTwos) {
-		InfoMerger_<EmplateInfo, UsernameInfo> merger = new EmplateMergerUsername();		
-		return merger.merge(sourceOnes, sourceTwos);
-	}
+	public static List<EmplateInfo> mergeToUpdate(List<EmplateInfo> baseInfos, List<EmplateInfo> selectedInfos) {
+		InfoMergerBuilderV3<EmplateInfo, EmplateInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new EmplateVisiMergeToUpdate());
+		InfoMergerV3<EmplateInfo, EmplateInfo> merger = builder.build();		
 	
-	
-	
-	public static EmplateInfo mergeToSelect(EmplateInfo sourceOne, EmplateInfo sourceTwo) {
-		InfoMerger_<EmplateInfo, EmplateInfo> merger = new EmplateMergerToSelect();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
-	
-	
-	
-	public static List<EmplateInfo> mergeToSelect(List<EmplateInfo> sourceOnes, List<EmplateInfo> sourceTwos) {
-		InfoMerger_<EmplateInfo, EmplateInfo> merger = new EmplateMergerToSelect();		
-		return merger.merge(sourceOnes, sourceTwos);
-	}
-	
-	
-	
-	public static EmplateInfo mergeToDelete(EmplateInfo sourceOne, EmplateInfo sourceTwo) {
-		InfoMerger_<EmplateInfo, EmplateInfo> merger = new EmplateMergerToDelete();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
-	
-	
-	
-	public static List<EmplateInfo> mergeToDelete(List<EmplateInfo> sourceOnes, List<EmplateInfo> sourceTwos) {
-		InfoMerger_<EmplateInfo, EmplateInfo> merger = new EmplateMergerToDelete();		
-		return merger.merge(sourceOnes, sourceTwos);
-	}
-	
-	
-	
-	public static EmplateInfo mergeToUpdate(EmplateInfo sourceOne, EmplateInfo sourceTwo) {
-		InfoMerger_<EmplateInfo, EmplateInfo> merger = new EmplateMergerToUpdate();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
-	
-	
-	
-	public static List<EmplateInfo> mergeToUpdate(List<EmplateInfo> sourceOnes, List<EmplateInfo> sourceTwos) {
-		InfoMerger_<EmplateInfo, EmplateInfo> merger = new EmplateMergerToUpdate();		
-		return merger.merge(sourceOnes, sourceTwos);
+		return merger.merge();
 	}	
 }

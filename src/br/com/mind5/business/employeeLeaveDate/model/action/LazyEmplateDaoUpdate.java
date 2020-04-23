@@ -4,14 +4,14 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.employeeLeaveDate.info.EmplateInfo;
-import br.com.mind5.model.action.ActionLazyTemplateV1;
+import br.com.mind5.model.action.ActionLazyTemplateV2;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyEmplateSelect extends ActionLazyTemplateV1<EmplateInfo, EmplateInfo> {
+public final class LazyEmplateDaoUpdate extends ActionLazyTemplateV2<EmplateInfo, EmplateInfo> {
 	
-	public LazyEmplateSelect(Connection conn, String schemaName) {
+	public LazyEmplateDaoUpdate(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyEmplateSelect extends ActionLazyTemplateV1<EmplateInfo, E
 	
 	
 	@Override protected ActionStdV1<EmplateInfo> getInstanceOfActionHook(DeciTreeOption<EmplateInfo> option) {
-		return new StdEmplateSelect(option);
+		return new StdEmplateDaoUpdate(option);
 	}
 	
 	

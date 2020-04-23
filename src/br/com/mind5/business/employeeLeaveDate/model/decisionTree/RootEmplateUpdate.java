@@ -8,7 +8,7 @@ import br.com.mind5.business.employeeLeaveDate.model.action.LazyEmplateEnforceLC
 import br.com.mind5.business.employeeLeaveDate.model.action.LazyEmplateEnforceValidFrom;
 import br.com.mind5.business.employeeLeaveDate.model.action.LazyEmplateEnforceValidTo;
 import br.com.mind5.business.employeeLeaveDate.model.action.LazyEmplateMergeUsername;
-import br.com.mind5.business.employeeLeaveDate.model.action.LazyEmplateUpdate;
+import br.com.mind5.business.employeeLeaveDate.model.action.LazyEmplateDaoUpdate;
 import br.com.mind5.business.employeeLeaveDate.model.action.StdEmplateMergeToUpdate;
 import br.com.mind5.business.employeeLeaveDate.model.checker.EmplateCheckEmp;
 import br.com.mind5.business.employeeLeaveDate.model.checker.EmplateCheckEmposarch;
@@ -26,9 +26,9 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class RootEmplateUpdate extends DeciTreeTemplateWriteV1<EmplateInfo> {
+public final class RootEmplateUpdate extends DeciTreeTemplateWriteV2<EmplateInfo> {
 	
 	public RootEmplateUpdate(DeciTreeOption<EmplateInfo> option) {
 		super(option);
@@ -124,7 +124,7 @@ public final class RootEmplateUpdate extends DeciTreeTemplateWriteV1<EmplateInfo
 		ActionLazyV1<EmplateInfo> enforceLChangedBy = new LazyEmplateMergeUsername(option.conn, option.schemaName);
 		ActionLazyV1<EmplateInfo> enforceValidFrom = new LazyEmplateEnforceValidFrom(option.conn, option.schemaName);
 		ActionLazyV1<EmplateInfo> enforceValidTo = new LazyEmplateEnforceValidTo(option.conn, option.schemaName);
-		ActionLazyV1<EmplateInfo> update = new LazyEmplateUpdate(option.conn, option.schemaName);
+		ActionLazyV1<EmplateInfo> update = new LazyEmplateDaoUpdate(option.conn, option.schemaName);
 		ActionStdV1<EmplateInfo> select = new RootEmplateSelect(option).toAction();
 		
 		mergeToUpdate.addPostAction(enforceLChanged);

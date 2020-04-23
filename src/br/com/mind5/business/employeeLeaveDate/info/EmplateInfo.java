@@ -31,7 +31,7 @@ public final class EmplateInfo extends InfoRecord implements Cloneable {
 	
 	
 	public EmplateInfo() {
-		super(EmplateInfo.class);
+		super();
 		
 		codOwner = DefaultValue.number();
 		codStore = DefaultValue.number();

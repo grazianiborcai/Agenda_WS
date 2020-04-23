@@ -5,15 +5,15 @@ import br.com.mind5.model.action.ActionStdTemplateV2;
 import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdEmplateEnforceValidFrom extends ActionStdTemplateV2<EmplateInfo> {
+public final class StdEmplateDaoDelete extends ActionStdTemplateV2<EmplateInfo> {
 
-	public StdEmplateEnforceValidFrom(DeciTreeOption<EmplateInfo> option) {
+	public StdEmplateDaoDelete(DeciTreeOption<EmplateInfo> option) {
 		super(option);
 	}
 	
 	
 	
 	protected ActionVisitorV2<EmplateInfo> buildVisitorHook(DeciTreeOption<EmplateInfo> option) {
-		return new VisiEmplateEnforceValidFrom(option);
+		return new VisiEmplateDaoDelete(option);
 	}
 }

@@ -1,6 +1,5 @@
 package br.com.mind5.business.employeeLeaveDate.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.employeeLeaveDate.info.EmplateInfo;
@@ -8,12 +7,14 @@ import br.com.mind5.business.employeeLeaveDate.info.EmplateMerger;
 import br.com.mind5.business.employeeLeaveDateSearch.info.EmplarchInfo;
 import br.com.mind5.business.employeeLeaveDateSearch.model.decisionTree.RootEmplarchSelect;
 import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiEmplateMergeEmplarch extends ActionVisitorTemplateMergeV1<EmplateInfo, EmplarchInfo> {
+final class VisiEmplateMergeEmplarch extends ActionVisitorTemplateMergeV2<EmplateInfo, EmplarchInfo> {
 	
-	public VisiEmplateMergeEmplarch(Connection conn, String schemaName) {
-		super(conn, schemaName, EmplarchInfo.class);
+	public VisiEmplateMergeEmplarch(DeciTreeOption<EmplateInfo> option) {
+		super(option, EmplarchInfo.class);
 	}
 	
 	
@@ -24,8 +25,8 @@ final class VisiEmplateMergeEmplarch extends ActionVisitorTemplateMergeV1<Emplat
 	
 	
 	
-	@Override protected List<EmplateInfo> mergeHook(List<EmplateInfo> recordInfos, List<EmplarchInfo> selectedInfos) {	
-		return EmplateMerger.mergeWithEmplarch(selectedInfos, recordInfos);
+	@Override protected List<EmplateInfo> mergeHook(List<EmplateInfo> baseInfos, List<EmplarchInfo> selectedInfos) {	
+		return EmplateMerger.mergeWithEmplarch(baseInfos, selectedInfos);
 	}
 	
 	

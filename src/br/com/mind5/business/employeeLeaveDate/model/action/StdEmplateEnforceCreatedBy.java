@@ -1,35 +1,19 @@
 package br.com.mind5.business.employeeLeaveDate.model.action;
 
 import br.com.mind5.business.employeeLeaveDate.info.EmplateInfo;
-import br.com.mind5.model.action.ActionLazyV1;
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionStdHelperEnforce;
-import br.com.mind5.model.decisionTree.DeciResult;
+import br.com.mind5.model.action.ActionStdTemplateV2;
+import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdEmplateEnforceCreatedBy implements ActionStdV1<EmplateInfo> {
-	private ActionStdV1<EmplateInfo> actionHelper;	
-	
-	
-	public StdEmplateEnforceCreatedBy(DeciTreeOption<EmplateInfo> option) {			
-		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiEmplateEnforceCreatedBy());
+public final class StdEmplateEnforceCreatedBy extends ActionStdTemplateV2<EmplateInfo> {
+
+	public StdEmplateEnforceCreatedBy(DeciTreeOption<EmplateInfo> option) {
+		super(option);
 	}
 	
 	
 	
-	@Override public void addPostAction(ActionLazyV1<EmplateInfo> actionHandler) {
-		actionHelper.addPostAction(actionHandler);
-	}
-	
-	
-	
-	@Override public boolean executeAction() {			
-		return actionHelper.executeAction();
-	}
-	
-	
-	
-	@Override public DeciResult<EmplateInfo> getDecisionResult() {
-		return actionHelper.getDecisionResult();
+	protected ActionVisitorV2<EmplateInfo> buildVisitorHook(DeciTreeOption<EmplateInfo> option) {
+		return new VisiEmplateEnforceCreatedBy(option);
 	}
 }

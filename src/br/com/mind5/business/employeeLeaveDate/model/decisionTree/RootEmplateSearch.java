@@ -6,15 +6,15 @@ import java.util.List;
 import br.com.mind5.business.employeeLeaveDate.info.EmplateInfo;
 import br.com.mind5.business.employeeLeaveDate.model.action.LazyEmplateRootSelect;
 import br.com.mind5.business.employeeLeaveDate.model.action.StdEmplateMergeEmplarch;
-import br.com.mind5.business.employeeLeaveDate.model.checker.EmplateCheckDummy;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 
-public class RootEmplateSearch extends DeciTreeTemplateReadV1<EmplateInfo> {
+public class RootEmplateSearch extends DeciTreeTemplateReadV2<EmplateInfo> {
 	
 	public RootEmplateSearch(DeciTreeOption<EmplateInfo> option) {
 		super(option);
@@ -26,7 +26,7 @@ public class RootEmplateSearch extends DeciTreeTemplateReadV1<EmplateInfo> {
 		List<ModelCheckerV1<EmplateInfo>> queue = new ArrayList<>();		
 		ModelCheckerV1<EmplateInfo> checker;
 
-		checker = new EmplateCheckDummy();
+		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueueV2<>(queue);

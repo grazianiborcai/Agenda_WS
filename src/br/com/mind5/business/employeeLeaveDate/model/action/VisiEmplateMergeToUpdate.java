@@ -1,29 +1,30 @@
 package br.com.mind5.business.employeeLeaveDate.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.employeeLeaveDate.info.EmplateInfo;
 import br.com.mind5.business.employeeLeaveDate.info.EmplateMerger;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiEmplateMergeToUpdate extends ActionVisitorTemplateMergeV1<EmplateInfo, EmplateInfo> {
+final class VisiEmplateMergeToUpdate extends ActionVisitorTemplateMergeV2<EmplateInfo, EmplateInfo> {
 	
-	public VisiEmplateMergeToUpdate(Connection conn, String schemaName) {
-		super(conn, schemaName, EmplateInfo.class);
+	public VisiEmplateMergeToUpdate(DeciTreeOption<EmplateInfo> option) {
+		super(option, EmplateInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends ActionStdV1<EmplateInfo>> getActionClassHook() {
-		return StdEmplateSelect.class;
+	@Override protected Class<? extends ActionStdV2<EmplateInfo>> getActionClassHook() {
+		return StdEmplateDaoSelect.class;
 	}
 	
 	
 	
-	@Override protected List<EmplateInfo> mergeHook(List<EmplateInfo> recordInfos, List<EmplateInfo> selectedInfos) {	
-		return EmplateMerger.mergeToUpdate(selectedInfos, recordInfos);
+	@Override protected List<EmplateInfo> mergeHook(List<EmplateInfo> baseInfos, List<EmplateInfo> selectedInfos) {	
+		return EmplateMerger.mergeToUpdate(baseInfos, selectedInfos);
 	}
 	
 	

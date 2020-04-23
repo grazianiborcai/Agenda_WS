@@ -1,35 +1,19 @@
 package br.com.mind5.business.employeeLeaveDate.model.action;
 
 import br.com.mind5.business.employeeLeaveDate.info.EmplateInfo;
-import br.com.mind5.model.action.ActionLazyV1;
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionStdHelperMerge;
-import br.com.mind5.model.decisionTree.DeciResult;
+import br.com.mind5.model.action.ActionStdTemplateV2;
+import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdEmplateMergeToDelete implements ActionStdV1<EmplateInfo> {
-	private ActionStdV1<EmplateInfo> actionHelper;	
-	
-	
-	public StdEmplateMergeToDelete(DeciTreeOption<EmplateInfo> option) {			
-		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiEmplateMergeToDelete(option.conn, option.schemaName));
+public final class StdEmplateMergeToDelete extends ActionStdTemplateV2<EmplateInfo> {
+
+	public StdEmplateMergeToDelete(DeciTreeOption<EmplateInfo> option) {
+		super(option);
 	}
 	
 	
 	
-	@Override public void addPostAction(ActionLazyV1<EmplateInfo> actionHandler) {
-		actionHelper.addPostAction(actionHandler);
-	}
-	
-	
-	
-	@Override public boolean executeAction() {			
-		return actionHelper.executeAction();
-	}
-	
-	
-	
-	@Override public DeciResult<EmplateInfo> getDecisionResult() {
-		return actionHelper.getDecisionResult();
+	protected ActionVisitorV2<EmplateInfo> buildVisitorHook(DeciTreeOption<EmplateInfo> option) {
+		return new VisiEmplateMergeToDelete(option);
 	}
 }

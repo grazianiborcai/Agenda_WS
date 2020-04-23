@@ -1,55 +1,39 @@
 package br.com.mind5.business.employeeLeaveDate.info;
 
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import java.util.ArrayList;
+import java.util.List;
+
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.masterData.timezone.info.TimezoneInfo;
 
-final class EmplateVisiMergeTimezone implements InfoMergerVisitor_<EmplateInfo, TimezoneInfo> {
-
-	@Override public EmplateInfo writeRecord(TimezoneInfo sourceOne, EmplateInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+final class EmplateVisiMergeTimezone implements InfoMergerVisitorV3<EmplateInfo, TimezoneInfo> {
+	
+	@Override public List<EmplateInfo> beforeMerge(List<EmplateInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(EmplateInfo baseInfo, TimezoneInfo selectedInfo) {
+		return (baseInfo.codTimezone.equals(selectedInfo.codTimezone)	&&
+				baseInfo.codLanguage.equals(selectedInfo.codLanguage)		);
+	}
+	
+	
+	
+	@Override public List<EmplateInfo> merge(EmplateInfo baseInfo, TimezoneInfo selectedInfo) {
+		List<EmplateInfo> results = new ArrayList<>();
 		
-		EmplateInfo clonedInfo = makeClone(sourceTwo);
-		return merge(sourceOne, clonedInfo);
+		baseInfo.txtTimezone = selectedInfo.txtTimezone;
+		
+		results.add(baseInfo);
+		return results;
 	}
 	
 	
 	
-	private void checkArgument(TimezoneInfo sourceOne, EmplateInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private EmplateInfo makeClone(EmplateInfo recordInfo) {
-		try {
-			return (EmplateInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	private EmplateInfo merge(TimezoneInfo sourceOne, EmplateInfo sourceTwo) {
-		sourceTwo.txtTimezone = sourceOne.txtTimezone;
-		return sourceTwo;
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(TimezoneInfo sourceOne, EmplateInfo sourceTwo) {		
-		return (sourceOne.codTimezone.equals(sourceTwo.codTimezone)	&&
-				sourceOne.codLanguage.equals(sourceTwo.codLanguage)		);
-	}
-	
-	
-	
-	private void logException(Exception e) {
-		SystemLog.logError(this.getClass(), e);
+	@Override public InfoUniquifier<EmplateInfo> getUniquifier() {
+		return null;
 	}
 }
