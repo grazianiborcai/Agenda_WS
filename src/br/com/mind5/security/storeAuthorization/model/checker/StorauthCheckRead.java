@@ -17,6 +17,8 @@ public final class StorauthCheckRead extends ModelCheckerTemplateSimpleV2<Storau
 	
 	@Override protected boolean checkHook(StorauthInfo recordInfo, Connection conn, String schemaName) {	
 		if ( recordInfo.codOwner  	<= 0 	||
+			 recordInfo.codUser  	<= 0 	||
+			 recordInfo.codStore  	<= 0 	||
 			 recordInfo.codLanguage	== null	||
 			 recordInfo.username	== null		 )			
 			

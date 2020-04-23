@@ -6,7 +6,7 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.storeAuthorization.info.StorauthInfo;
-import br.com.mind5.security.storeAuthorization.model.decisionTree.RootStorauthSelect;
+import br.com.mind5.security.storeAuthorization.model.action.StdStorauthDaoSelect;
 
 public final class StorauthCheckExist extends ModelCheckerTemplateActionV2<StorauthInfo, StorauthInfo> {
 	
@@ -17,7 +17,7 @@ public final class StorauthCheckExist extends ModelCheckerTemplateActionV2<Stora
 	
 	
 	@Override protected ActionStdV1<StorauthInfo> buildActionHook(DeciTreeOption<StorauthInfo> option) {
-		return new RootStorauthSelect(option).toAction();
+		return new StdStorauthDaoSelect(option);
 	}
 	
 	

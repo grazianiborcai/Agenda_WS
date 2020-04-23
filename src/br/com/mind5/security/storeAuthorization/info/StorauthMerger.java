@@ -2,33 +2,32 @@ package br.com.mind5.security.storeAuthorization.info;
 
 import java.util.List;
 
-import br.com.mind5.info.obsolete.InfoMerger_;
+import br.com.mind5.info.InfoMergerBuilderV3;
+import br.com.mind5.info.InfoMergerV3;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class StorauthMerger {
-	public static StorauthInfo mergeWithUsername(UsernameInfo sourceOne, StorauthInfo sourceTwo) {
-		InfoMerger_<StorauthInfo, UsernameInfo> merger = new StorauthMergerUsername();		
-		return merger.merge(sourceOne, sourceTwo);
+	public static List<StorauthInfo> mergeWithUsername(List<StorauthInfo> baseInfos, List<UsernameInfo> selectedInfos) {
+		InfoMergerBuilderV3<StorauthInfo, UsernameInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new StorauthVisiMergeUsername());
+		InfoMergerV3<StorauthInfo, UsernameInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static List<StorauthInfo> mergeWithUsername(List<UsernameInfo> sourceOnes, List<StorauthInfo> sourceTwos) {
-		InfoMerger_<StorauthInfo, UsernameInfo> merger = new StorauthMergerUsername();		
-		return merger.merge(sourceOnes, sourceTwos);
-	}
+	public static List<StorauthInfo> mergeToSelect(List<StorauthInfo> baseInfos, List<StorauthInfo> selectedInfos) {
+		InfoMergerBuilderV3<StorauthInfo, StorauthInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new StorauthVisiMergeToSelect());
+		InfoMergerV3<StorauthInfo, StorauthInfo> merger = builder.build();		
 	
-	
-	
-	public static StorauthInfo mergeToSelect(StorauthInfo sourceOne, StorauthInfo sourceTwo) {
-		InfoMerger_<StorauthInfo, StorauthInfo> merger = new StorauthMergerToSelect();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
-	
-	
-	
-	public static List<StorauthInfo> mergeToSelect(List<StorauthInfo> sourceOnes, List<StorauthInfo> sourceTwos) {
-		InfoMerger_<StorauthInfo, StorauthInfo> merger = new StorauthMergerToSelect();		
-		return merger.merge(sourceOnes, sourceTwos);
+		return merger.merge();
 	}
 }

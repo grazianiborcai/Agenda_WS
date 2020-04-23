@@ -4,15 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 import br.com.mind5.security.storeAuthorization.info.StorauthInfo;
 import br.com.mind5.security.storeAuthorization.model.action.StdStorauthMergeToSelect;
-import br.com.mind5.security.storeAuthorization.model.checker.StorauthCheckDummy;
 
-public final class NodeStorauthSelectL2 extends DeciTreeTemplateWriteV1<StorauthInfo> {
+public final class NodeStorauthSelectL2 extends DeciTreeTemplateWriteV2<StorauthInfo> {
 	
 	public NodeStorauthSelectL2(DeciTreeOption<StorauthInfo> option) {
 		super(option);
@@ -24,7 +24,7 @@ public final class NodeStorauthSelectL2 extends DeciTreeTemplateWriteV1<Storauth
 		List<ModelCheckerV1<StorauthInfo>> queue = new ArrayList<>();		
 		ModelCheckerV1<StorauthInfo> checker;
 		
-		checker = new StorauthCheckDummy();
+		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueueV2<>(queue);

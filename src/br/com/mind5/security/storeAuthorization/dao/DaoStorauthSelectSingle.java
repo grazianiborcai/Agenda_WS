@@ -19,11 +19,11 @@ import br.com.mind5.dao.common.DaoJoinOwner;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.security.storeAuthorization.info.StorauthInfo;
 
-public final class StorauthSelectSingle extends DaoStmtTemplate<StorauthInfo> {
+public final class DaoStorauthSelectSingle extends DaoStmtTemplate<StorauthInfo> {
 	private final String MAIN_TABLE = DaoDbTable.STORE_TABLE;	
 	
 	
-	public StorauthSelectSingle(Connection conn, StorauthInfo recordInfo, String schemaName) {
+	public DaoStorauthSelectSingle(Connection conn, StorauthInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -50,10 +50,10 @@ public final class StorauthSelectSingle extends DaoStmtTemplate<StorauthInfo> {
 	@Override protected String buildWhereClauseHook(String tableName, StorauthInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
 		
-		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;					//TODO: DONT_IGNORE_NULL
+		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new StorauthWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new DaoStorauthWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -77,10 +77,10 @@ public final class StorauthSelectSingle extends DaoStmtTemplate<StorauthInfo> {
 				do {
 					StorauthInfo dataInfo = new StorauthInfo();
 					
-					dataInfo.codOwner = stmtResult.getLong(StorauthDbTableColumn.COL_COD_OWNER);
-					dataInfo.codStore = stmtResult.getLong(StorauthDbTableColumn.COL_COD_STORE);
-					dataInfo.recordMode = stmtResult.getString(StorauthDbTableColumn.COL_RECORD_MODE);	
-					dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, StorauthDbTableColumn.COL_COD_USER);			
+					dataInfo.codOwner = stmtResult.getLong(DaoStorauthDbTableColumn.COL_COD_OWNER);
+					dataInfo.codStore = stmtResult.getLong(DaoStorauthDbTableColumn.COL_COD_STORE);
+					dataInfo.recordMode = stmtResult.getString(DaoStorauthDbTableColumn.COL_RECORD_MODE);	
+					dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, DaoStorauthDbTableColumn.COL_COD_USER);			
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

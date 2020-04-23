@@ -1,56 +1,27 @@
 package br.com.mind5.security.storeAuthorization.model.checker;
 
-import java.util.List;
-
 import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.business.store.model.checker.StoreCheckExist;
-import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.security.storeAuthorization.info.StorauthInfo;
 
-public final class StorauthCheckStore implements ModelCheckerV1<StorauthInfo> {
-	private final boolean RESULT_FAILED = false;
-	private final boolean RESULT_SUCCESS = true;
-	
-	private ModelCheckerV1<StoreInfo> checker;
-	
+public final class StorauthCheckStore extends ModelCheckerTemplateForwardV2<StorauthInfo, StoreInfo> {
 	
 	public StorauthCheckStore(ModelCheckerOption option) {
-		checker = new StoreCheckExist(option);
-	}
-	
-	
-	
-	@Override public boolean check(List<StorauthInfo> recordInfos) {
-		for (StorauthInfo eachInfo : recordInfos) {
-			if (check(eachInfo) == RESULT_FAILED)
-				return RESULT_FAILED;
-		}
-		
-		return RESULT_SUCCESS;
+		super(option);
 	}
 
-	
-	
-	@Override public boolean check(StorauthInfo recordInfo) {
-		return checker.check(StoreInfo.copyFrom(recordInfo));
-	}
 
 	
-	
-	@Override public boolean getResult() {
-		return checker.getResult();
+	@Override protected ModelCheckerV1<StoreInfo> getCheckerHook(ModelCheckerOption option) {
+		return new StoreCheckExist(option);
 	}
-
 	
 	
-	@Override public String getFailMessage() {
-		return checker.getFailMessage();
-	}
-
 	
-	
-	@Override public int getFailCode() {
-		return checker.getFailCode();
+	@Override protected StoreInfo toForwardClass(StorauthInfo baseRecord) {
+		return StoreInfo.copyFrom(baseRecord);
 	}
 }
