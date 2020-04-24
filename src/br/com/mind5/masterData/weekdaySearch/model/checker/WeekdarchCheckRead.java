@@ -26,6 +26,6 @@ public final class WeekdarchCheckRead extends ModelCheckerTemplateSimpleV2<Weekd
 	
 	
 	@Override protected int getCodMsgOnResultFalseHook() {
-		return SystemCode.WEEKDAY_MANDATORY_FIELD_EMPTY;
+		return SystemCode.WEEKDAY_SEARCH_MANDATORY_FIELD_EMPTY;
 	}
 }
