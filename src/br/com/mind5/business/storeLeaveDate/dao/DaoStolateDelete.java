@@ -21,16 +21,16 @@ public final class DaoStolateDelete implements DaoStmtExecV2<StolateInfo> {
 	@Override public void executeStmt() throws SQLException {
 		helper.executeStmt();		
 	}
-	
-	
-	
-	@Override public void close() {
-		helper.close();		
-	}
 
 	
 	
 	@Override public List<StolateInfo> getResultset() {
 		return helper.getResultset();
+	}
+	
+	
+	
+	@Override public void close() {
+		helper.close();		
 	}
 }
