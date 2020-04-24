@@ -27,4 +27,10 @@ final class VisiPlanataPruneCarterve extends ActionVisitorTemplatePruneV2<Planat
 	@Override protected List<PlanataInfo> pruneHook(List<PlanataInfo> baseInfos, List<CarterveInfo> selectedInfos) {	
 		return PlanataPruner.pruneWithCarterve(baseInfos, selectedInfos);
 	}
+	
+	
+	
+	@Override protected boolean shouldPruneWhenEmptyHook() {
+		return super.PRUNE_WHEN_EMPTY;
+	}
 }

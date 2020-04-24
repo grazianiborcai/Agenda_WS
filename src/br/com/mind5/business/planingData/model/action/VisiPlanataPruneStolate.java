@@ -6,7 +6,7 @@ import br.com.mind5.business.planingData.info.PlanataInfo;
 import br.com.mind5.business.planingData.info.PlanataPruner;
 import br.com.mind5.business.storeLeaveDate.info.StolateCopier;
 import br.com.mind5.business.storeLeaveDate.info.StolateInfo;
-import br.com.mind5.business.storeLeaveDate.model.decisionTree.RootStolateSelect;
+import br.com.mind5.business.storeLeaveDate.model.decisionTree.RootStolateSearch;
 import br.com.mind5.model.action.ActionVisitorTemplatePruneV2;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -20,7 +20,7 @@ final class VisiPlanataPruneStolate extends ActionVisitorTemplatePruneV2<Planata
 	
 	
 	@Override protected Class<? extends DeciTree<StolateInfo>> getTreeClassHook() {
-		return RootStolateSelect.class;
+		return RootStolateSearch.class;
 	}
 	
 	

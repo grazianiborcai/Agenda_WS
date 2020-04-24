@@ -34,4 +34,10 @@ final class VisiPlanataPruneEmplate extends ActionVisitorTemplatePruneV2<Planata
 	@Override protected List<PlanataInfo> pruneHook(List<PlanataInfo> recordInfos, List<EmplateInfo> selectedInfos) {	
 		return PlanataPruner.pruneWithEmplate(recordInfos, selectedInfos);
 	}
+	
+	
+	
+	@Override protected boolean shouldPruneWhenEmptyHook() {
+		return super.PRUNE_WHEN_EMPTY;
+	}
 }

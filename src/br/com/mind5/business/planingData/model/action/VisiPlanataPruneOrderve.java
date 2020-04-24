@@ -27,4 +27,10 @@ final class VisiPlanataPruneOrderve extends ActionVisitorTemplatePruneV2<Planata
 	@Override protected List<PlanataInfo> pruneHook(List<PlanataInfo> recordInfos, List<OrderveInfo> selectedInfos) {	
 		return PlanataPruner.pruneWithOrderve(recordInfos, selectedInfos);
 	}
+	
+	
+	
+	@Override protected boolean shouldPruneWhenEmptyHook() {
+		return super.PRUNE_WHEN_EMPTY;
+	}
 }
