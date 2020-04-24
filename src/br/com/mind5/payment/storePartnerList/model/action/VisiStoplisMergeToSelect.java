@@ -1,29 +1,30 @@
 package br.com.mind5.payment.storePartnerList.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.storePartnerList.info.StoplisInfo;
 import br.com.mind5.payment.storePartnerList.info.StoplisMerger;
 
-final class VisiStoplisMergeToSelect extends ActionVisitorTemplateMergeV1<StoplisInfo, StoplisInfo> {
+final class VisiStoplisMergeToSelect extends ActionVisitorTemplateMergeV2<StoplisInfo, StoplisInfo> {
 	
-	public VisiStoplisMergeToSelect(Connection conn, String schemaName) {
-		super(conn, schemaName, StoplisInfo.class);
+	public VisiStoplisMergeToSelect(DeciTreeOption<StoplisInfo> option) {
+		super(option, StoplisInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends ActionStdV1<StoplisInfo>> getActionClassHook() {
-		return StdStoplisSelect.class;
+	@Override protected Class<? extends ActionStdV2<StoplisInfo>> getActionClassHook() {
+		return StdStoplisDaoSelect.class;
 	}
 	
 	
 	
-	@Override protected List<StoplisInfo> mergeHook(List<StoplisInfo> recordInfos, List<StoplisInfo> selectedInfos) {	
-		return StoplisMerger.mergeToSelect(selectedInfos, recordInfos);
+	@Override protected List<StoplisInfo> mergeHook(List<StoplisInfo> baseInfos, List<StoplisInfo> selectedInfos) {	
+		return StoplisMerger.mergeToSelect(baseInfos, selectedInfos);
 	}
 	
 	

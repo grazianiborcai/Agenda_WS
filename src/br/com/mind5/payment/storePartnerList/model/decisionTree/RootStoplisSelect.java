@@ -5,11 +5,11 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 import br.com.mind5.payment.storePartnerList.info.StoplisInfo;
 import br.com.mind5.payment.storePartnerList.model.action.LazyStoplisMergePaypar;
 import br.com.mind5.payment.storePartnerList.model.action.StdStoplisMergeToSelect;
@@ -17,7 +17,7 @@ import br.com.mind5.payment.storePartnerList.model.checker.StoplisCheckOwner;
 import br.com.mind5.payment.storePartnerList.model.checker.StoplisCheckRead;
 import br.com.mind5.payment.storePartnerList.model.checker.StoplisCheckStore;
 
-public final class RootStoplisSelect extends DeciTreeTemplateReadV1<StoplisInfo> {
+public final class RootStoplisSelect extends DeciTreeTemplateReadV2<StoplisInfo> {
 	
 	public RootStoplisSelect(DeciTreeOption<StoplisInfo> option) {
 		super(option);

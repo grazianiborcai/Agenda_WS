@@ -3,48 +3,45 @@ package br.com.mind5.payment.storePartnerList.info;
 import java.util.List;
 
 import br.com.mind5.business.masterData.info.PayparInfo;
-import br.com.mind5.info.obsolete.InfoMerger_;
+import br.com.mind5.info.InfoMergerBuilderV3;
+import br.com.mind5.info.InfoMergerV3;
 import br.com.mind5.payment.storePartnerSearch.info.StoparchInfo;
 
-public final class StoplisMerger {		
+public final class StoplisMerger {	
+	public static List<StoplisInfo> mergeToSelect(List<StoplisInfo> baseInfos, List<StoplisInfo> selectedInfos) {
+		InfoMergerBuilderV3<StoplisInfo, StoplisInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new StoplisVisiMergeToSelect());
+		InfoMergerV3<StoplisInfo, StoplisInfo> merger = builder.build();		
 	
-	public static StoplisInfo mergeToSelect(StoplisInfo sourceOne, StoplisInfo sourceTwo) {
-		InfoMerger_<StoplisInfo, StoplisInfo> merger = new StoplisMergerToSelect();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
-	
-	
-	
-	public static List<StoplisInfo> mergeToSelect(List<StoplisInfo> sourceOnes, List<StoplisInfo> sourceTwos) {
-		InfoMerger_<StoplisInfo, StoplisInfo> merger = new StoplisMergerToSelect();		
-		return merger.merge(sourceOnes, sourceTwos);
+		return merger.merge();
 	}	
 	
 	
 	
-	public static StoplisInfo mergeWithPaypar(PayparInfo sourceOne, StoplisInfo sourceTwo) {
-		InfoMerger_<StoplisInfo, PayparInfo> merger = new StoplisMergerPaypar();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
+	public static List<StoplisInfo> mergeWithPaypar(List<StoplisInfo> baseInfos, List<PayparInfo> selectedInfos) {
+		InfoMergerBuilderV3<StoplisInfo, PayparInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new StoplisVisiMergePaypar());
+		InfoMergerV3<StoplisInfo, PayparInfo> merger = builder.build();		
 	
-	
-	
-	public static List<StoplisInfo> mergeWithPaypar(List<PayparInfo> sourceOnes, List<StoplisInfo> sourceTwos) {
-		InfoMerger_<StoplisInfo, PayparInfo> merger = new StoplisMergerPaypar();		
-		return merger.merge(sourceOnes, sourceTwos);
+		return merger.merge();
 	}	
 	
 	
 	
-	public static StoplisInfo mergeWithStoparch(StoparchInfo sourceOne, StoplisInfo sourceTwo) {
-		InfoMerger_<StoplisInfo, StoparchInfo> merger = new StoplisMergerStoparch();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
+	public static List<StoplisInfo> mergeWithStoparch(List<StoplisInfo> baseInfos, List<StoparchInfo> selectedInfos) {
+		InfoMergerBuilderV3<StoplisInfo, StoparchInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new StoplisVisiMergeStoparch());
+		InfoMergerV3<StoplisInfo, StoparchInfo> merger = builder.build();		
 	
-	
-	
-	public static List<StoplisInfo> mergeWithStoparch(List<StoparchInfo> sourceOnes, List<StoplisInfo> sourceTwos) {
-		InfoMerger_<StoplisInfo, StoparchInfo> merger = new StoplisMergerStoparch();		
-		return merger.merge(sourceOnes, sourceTwos);
+		return merger.merge();
 	}	
 }

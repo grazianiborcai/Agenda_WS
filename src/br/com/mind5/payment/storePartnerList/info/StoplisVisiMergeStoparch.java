@@ -1,27 +1,38 @@
 package br.com.mind5.payment.storePartnerList.info;
 
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import java.util.ArrayList;
+import java.util.List;
+
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.payment.storePartnerSearch.info.StoparchInfo;
 
-final class StoplisVisiMergeStoparch implements InfoMergerVisitor_<StoplisInfo, StoparchInfo> {
-
-	@Override public StoplisInfo writeRecord(StoparchInfo sourceOne, StoplisInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+final class StoplisVisiMergeStoparch implements InfoMergerVisitorV3<StoplisInfo, StoparchInfo> {
+	
+	@Override public List<StoplisInfo> beforeMerge(List<StoplisInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(StoplisInfo baseInfo, StoparchInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner);
+	}
+	
+	
+	
+	@Override public List<StoplisInfo> merge(StoplisInfo baseInfo, StoparchInfo selectedInfo) {
+		List<StoplisInfo> results = new ArrayList<>();
 		
-		return StoplisInfo.copyFrom(sourceOne);
+		StoplisInfo result = StoplisInfo.copyFrom(selectedInfo);
+		
+		results.add(result);
+		return results;
 	}
 	
 	
 	
-	private void checkArgument(StoparchInfo sourceOne, StoplisInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-
-
-	
-	@Override public boolean shouldWrite(StoparchInfo sourceOne, StoplisInfo sourceTwo) {
-		return (sourceOne.codOwner == sourceTwo.codOwner);
+	@Override public InfoUniquifier<StoplisInfo> getUniquifier() {
+		return null;
 	}
 }

@@ -19,7 +19,7 @@ public final class StoplisInfo extends InfoRecord implements Cloneable {
 	
 	
 	public StoplisInfo() {
-		super(StoplisInfo.class);
+		super();
 		
 		codOwner = DefaultValue.number();
 		codStore = DefaultValue.number();

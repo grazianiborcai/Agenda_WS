@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class StoplisDbTableColumn extends DaoDbTableColumnTemplate {	
+public final class DaoStoplisDbTableColumn extends DaoDbTableColumnTemplate {	
 	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;	
 	public static final String COL_COD_PAY_PARTNER = DaoDbField.COL_COD_PAY_PARTNER;	
 	public static final String COL_COD_SNAPSHOT = DaoDbField.COL_COD_SNAPSHOT;
@@ -19,24 +19,13 @@ public final class StoplisDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_SCOPE = DaoDbField.COL_SCOPE;
 	
 	
-	private Hashtable<String, List<DaoColumn>> tableColumns;
-	
-	
-	public StoplisDbTableColumn() {
-		super(StoplisDbTableColumn.class);
+	public DaoStoplisDbTableColumn() {
+		super();
 	}
 	
 	
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
-		tableColumns = new Hashtable<>();		
-		buildPayPartnerStoreListTable();	
-		return tableColumns;
-	}
-	
-	
-	
-	private void buildPayPartnerStoreListTable() {
 		final String TABLE_NAME = DaoDbTable.PAY_PARTNER_STORE_TABLE;
 		
 		DaoColumn oneColumn;
@@ -98,6 +87,8 @@ public final class StoplisDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 
-		tableColumns.put(DaoDbTable.PAY_PARTNER_STORE_VIEW, columns);
+		Hashtable<String, List<DaoColumn>> results = new Hashtable<>();
+		results.put(DaoDbTable.PAY_PARTNER_STORE_VIEW, columns);
+		return results;
 	}
 }

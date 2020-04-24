@@ -15,11 +15,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.payment.storePartnerList.info.StoplisInfo;
 
-public final class StoplisSelectSingle extends DaoStmtTemplate<StoplisInfo> {
+public final class DaoStoplisSelectSingle extends DaoStmtTemplate<StoplisInfo> {
 	private final String MAIN_TABLE = DaoDbTable.PAY_PARTNER_STORE_TABLE;
 	
 	
-	public StoplisSelectSingle(Connection conn, StoplisInfo recordInfo, String schemaName) {
+	public DaoStoplisSelectSingle(Connection conn, StoplisInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -49,7 +49,7 @@ public final class StoplisSelectSingle extends DaoStmtTemplate<StoplisInfo> {
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new StoplisWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new DaoStoplisWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}	
 	
@@ -66,13 +66,13 @@ public final class StoplisSelectSingle extends DaoStmtTemplate<StoplisInfo> {
 				do {
 					StoplisInfo dataInfo = new StoplisInfo();
 					
-					dataInfo.codOwner = stmtResult.getLong(StoplisDbTableColumn.COL_COD_OWNER);
-					dataInfo.codSnapshot = stmtResult.getLong(StoplisDbTableColumn.COL_COD_SNAPSHOT);
-					dataInfo.codStore = stmtResult.getLong(StoplisDbTableColumn.COL_COD_STORE);
-					dataInfo.codPayPartner = stmtResult.getInt(StoplisDbTableColumn.COL_COD_PAY_PARTNER);
-					dataInfo.recordMode = stmtResult.getString(StoplisDbTableColumn.COL_RECORD_MODE);
-					dataInfo.idPayPartnerStore = stmtResult.getString(StoplisDbTableColumn.COL_ID_PAY_PARTNER_STORE);
-					dataInfo.scope = stmtResult.getString(StoplisDbTableColumn.COL_SCOPE);
+					dataInfo.codOwner = stmtResult.getLong(DaoStoplisDbTableColumn.COL_COD_OWNER);
+					dataInfo.codSnapshot = stmtResult.getLong(DaoStoplisDbTableColumn.COL_COD_SNAPSHOT);
+					dataInfo.codStore = stmtResult.getLong(DaoStoplisDbTableColumn.COL_COD_STORE);
+					dataInfo.codPayPartner = stmtResult.getInt(DaoStoplisDbTableColumn.COL_COD_PAY_PARTNER);
+					dataInfo.recordMode = stmtResult.getString(DaoStoplisDbTableColumn.COL_RECORD_MODE);
+					dataInfo.idPayPartnerStore = stmtResult.getString(DaoStoplisDbTableColumn.COL_ID_PAY_PARTNER_STORE);
+					dataInfo.scope = stmtResult.getString(DaoStoplisDbTableColumn.COL_SCOPE);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

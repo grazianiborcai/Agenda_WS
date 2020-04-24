@@ -5,16 +5,16 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 import br.com.mind5.payment.storePartnerList.info.StoplisInfo;
 import br.com.mind5.payment.storePartnerList.model.action.LazyStoplisRootSelect;
 import br.com.mind5.payment.storePartnerList.model.action.StdStoplisMergeStoparch;
-import br.com.mind5.payment.storePartnerList.model.checker.StoplisCheckDummy;
 
-public final class RootStoplisSearch extends DeciTreeTemplateReadV1<StoplisInfo> {
+public final class RootStoplisSearch extends DeciTreeTemplateReadV2<StoplisInfo> {
 	
 	public RootStoplisSearch(DeciTreeOption<StoplisInfo> option) {
 		super(option);
@@ -26,7 +26,7 @@ public final class RootStoplisSearch extends DeciTreeTemplateReadV1<StoplisInfo>
 		List<ModelCheckerV1<StoplisInfo>> queue = new ArrayList<>();		
 		ModelCheckerV1<StoplisInfo> checker;
 
-		checker = new StoplisCheckDummy();
+		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueueV2<>(queue);

@@ -1,55 +1,39 @@
 package br.com.mind5.payment.storePartnerList.info;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import br.com.mind5.business.masterData.info.PayparInfo;
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-final class StoplisVisiMergePaypar implements InfoMergerVisitor_<StoplisInfo, PayparInfo> {
-	private final boolean SUCCESS = true;
-	private final boolean FAILED = false;
-
-	@Override public StoplisInfo writeRecord(PayparInfo sourceOne, StoplisInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+final class StoplisVisiMergePaypar implements InfoMergerVisitorV3<StoplisInfo, PayparInfo> {
+	
+	@Override public List<StoplisInfo> beforeMerge(List<StoplisInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(StoplisInfo baseInfo, PayparInfo selectedInfo) {
+		return (baseInfo.codPayPartner	== selectedInfo.codPayPartner);
+	}
+	
+	
+	
+	@Override public List<StoplisInfo> merge(StoplisInfo baseInfo, PayparInfo selectedInfo) {
+		List<StoplisInfo> results = new ArrayList<>();
 		
-		StoplisInfo clonedInfo = makeClone(sourceTwo);
-		clonedInfo.txtPayPartner = sourceOne.txtPayPartner; 
-		clonedInfo.description = sourceOne.description;
-		return clonedInfo;
-	}
-	
-	
-	
-	private StoplisInfo makeClone(StoplisInfo recordInfo) {
-		try {
-			return (StoplisInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	private void checkArgument(PayparInfo sourceOne, StoplisInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-
-
-	
-	@Override public boolean shouldWrite(PayparInfo sourceOne, StoplisInfo sourceTwo) {
-		if (sourceOne.codPayPartner	== sourceTwo.codPayPartner) 
-			return SUCCESS;
-			
-		return FAILED;
-	}
-	
-	
-	
-	private void logException(Exception e) {
+		baseInfo.txtPayPartner = selectedInfo.txtPayPartner; 
+		baseInfo.description = selectedInfo.description;
 		
-		SystemLog.logError(this.getClass(), e);
+		results.add(baseInfo);
+		return results;
+	}
+	
+	
+	
+	@Override public InfoUniquifier<StoplisInfo> getUniquifier() {
+		return null;
 	}
 }
