@@ -16,7 +16,7 @@ public final class DaoTimezonarchDbTableColumn extends DaoDbTableColumnTemplate 
 	
 	
 	public DaoTimezonarchDbTableColumn() {
-		super(DaoTimezonarchDbTableColumn.class);
+		super();
 	}
 	
 	

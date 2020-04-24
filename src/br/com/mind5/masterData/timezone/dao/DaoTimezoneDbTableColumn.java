@@ -16,7 +16,7 @@ public final class DaoTimezoneDbTableColumn extends DaoDbTableColumnTemplate {
 	
 	
 	public DaoTimezoneDbTableColumn() {
-		super(DaoTimezoneDbTableColumn.class);
+		super();
 	}
 	
 	
