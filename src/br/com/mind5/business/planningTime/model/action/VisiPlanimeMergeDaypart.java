@@ -2,11 +2,11 @@ package br.com.mind5.business.planningTime.model.action;
 
 import java.util.List;
 
-import br.com.mind5.business.masterData.info.DaypartCopier;
-import br.com.mind5.business.masterData.info.DaypartInfo;
-import br.com.mind5.business.masterData.model.decisionTree.RootDaypartSelect;
 import br.com.mind5.business.planningTime.info.PlanimeInfo;
 import br.com.mind5.business.planningTime.info.PlanimeMerger;
+import br.com.mind5.masterData.dayParting.info.DaypartCopier;
+import br.com.mind5.masterData.dayParting.info.DaypartInfo;
+import br.com.mind5.masterData.dayParting.model.decisionTree.RootDaypartSelect;
 import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;

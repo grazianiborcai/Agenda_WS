@@ -1,4 +1,4 @@
-package br.com.mind5.business.masterData.dao;
+package br.com.mind5.masterData.dayParting.dao;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.business.masterData.info.DaypartInfo;
 import br.com.mind5.dao.DaoJoin;
 import br.com.mind5.dao.DaoJoinBuilder;
 import br.com.mind5.dao.DaoOperation;
@@ -16,12 +15,13 @@ import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
+import br.com.mind5.masterData.dayParting.info.DaypartInfo;
 
-public final class DaypartSelectSingle extends DaoStmtTemplate<DaypartInfo> {
+public final class DaoDaypartSelectSingle extends DaoStmtTemplate<DaypartInfo> {
 	private final String MAIN_TABLE = DaoDbTable.DAYPART_TABLE;
 	
 	
-	public DaypartSelectSingle(Connection conn, DaypartInfo recordInfo, String schemaName) {
+	public DaoDaypartSelectSingle(Connection conn, DaypartInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -42,18 +42,17 @@ public final class DaypartSelectSingle extends DaoStmtTemplate<DaypartInfo> {
 	@Override protected String buildWhereClauseHook(String tableName, DaypartInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
 		
-		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
-		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;	
-		whereOption.dummyClauseWhenEmpty = DaoOptionValue.DUMMY_CLAUSE_ALLOWED;
+		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
+		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;
 		
-		DaoStmtWhere whereClause = new DaypartWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new DaoDaypartWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
 	
 	
 	@Override protected DaoJoin getJoinHook(DaypartInfo recordInfo) {
-		DaoJoinBuilder joinText = new DaypartJoinTxt(MAIN_TABLE);		
+		DaoJoinBuilder joinText = new DaoDaypartJoinTxt(MAIN_TABLE);		
 		return joinText.build();
 	}
 	
@@ -70,9 +69,9 @@ public final class DaypartSelectSingle extends DaoStmtTemplate<DaypartInfo> {
 				do {				
 					DaypartInfo dataInfo = new DaypartInfo();
 					
-					dataInfo.codDaypart = stmtResult.getInt(MasterDataDbTableColumn.COL_COD_DAYPART);
-					dataInfo.txtDaypart = stmtResult.getString(MasterDataDbTableColumn.COL_NAME);
-					dataInfo.codLanguage = stmtResult.getString(MasterDataDbTableColumn.COL_COD_LANGUAGE);		
+					dataInfo.codDaypart = stmtResult.getInt(DaoDaypartDbTableColumn.COL_COD_DAYPART);
+					dataInfo.txtDaypart = stmtResult.getString(DaoDaypartDbTableColumn.COL_NAME);
+					dataInfo.codLanguage = stmtResult.getString(DaoDaypartDbTableColumn.COL_COD_LANGUAGE);		
 					
 					finalResult.add(dataInfo);				
 				} while (stmtResult.next());

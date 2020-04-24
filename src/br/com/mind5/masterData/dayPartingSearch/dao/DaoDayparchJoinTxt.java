@@ -1,4 +1,4 @@
-package br.com.mind5.business.masterData.dao;
+package br.com.mind5.masterData.dayPartingSearch.dao;
 
 import br.com.mind5.dao.DaoJoin;
 import br.com.mind5.dao.DaoJoinBuilder;
@@ -7,11 +7,11 @@ import br.com.mind5.dao.DaoJoinType;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class DaypartJoinTxt implements DaoJoinBuilder {
+public final class DaoDayparchJoinTxt implements DaoJoinBuilder {
 	private final String leftTable;
 	
 	
-	public DaypartJoinTxt(String leftTableName) {
+	public DaoDayparchJoinTxt(String leftTableName) {
 		leftTable = leftTableName;
 	}
 

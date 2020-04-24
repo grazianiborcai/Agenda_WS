@@ -153,9 +153,9 @@ public final class SystemCode {
 	public static final int POSITION_NOT_FOUND							= 5327;
 	public static final int MAT_UNIT_MANDATORY_FIELD_EMPTY 				= 5328;
 	public static final int MONTH_MANDATORY_FIELD_EMPTY 				= 5329;
-	public static final int DAYPART_MANDATORY_FIELD_EMPTY 				= 5330;
-	public static final int DAYPART_ALREADY_EXIST						= 5331;
-	public static final int DAYPART_NOT_FOUND							= 5332;	
+	public static final int DAYPART_ALREADY_EXIST						= 5330;		
+	public static final int DAYPART_NOT_FOUND							= 5331;	
+	public static final int DAYPART_MANDATORY_FIELD_EMPTY 				= 5332;
 	public static final int MOON_PHASE_MANDATORY_FIELD_EMPTY 			= 5333;
 	public static final int MOON_PHASE_ALREADY_EXIST					= 5334;
 	public static final int MOON_PHASE_NOT_FOUND						= 5335;
@@ -178,6 +178,7 @@ public final class SystemCode {
 	public static final int BUSINESS_SEARCH_MANDATORY_FIELD_EMPTY 		= 11652;
 	public static final int GENDER_SEARCH_MANDATORY_FIELD_EMPTY 		= 11653;
 	public static final int WEEKDAY_SEARCH_MANDATORY_FIELD_EMPTY 		= 11654;
+	public static final int DAYPART_SEARCH_MANDATORY_FIELD_EMPTY 		= 11655;
 	
 	// Material
 	public static final int MAT_ALREADY_EXIST							= 1200;

@@ -3,9 +3,9 @@ package br.com.mind5.business.planningTime.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.business.masterData.info.DaypartInfo;
 import br.com.mind5.business.planingData.info.PlanataInfo;
 import br.com.mind5.info.InfoPrunerListVisitor;
+import br.com.mind5.masterData.dayParting.info.DaypartInfo;
 
 final class PlanimeVisiPruneDaypart implements InfoPrunerListVisitor<PlanimeInfo, PlanimeInfo> {
 	

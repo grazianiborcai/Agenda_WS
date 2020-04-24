@@ -1,19 +1,19 @@
-package br.com.mind5.business.masterData.model.decisionTree;
+package br.com.mind5.masterData.dayParting.model.decisionTree;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.business.masterData.info.DaypartInfo;
-import br.com.mind5.business.masterData.model.action.StdDaypartSelect;
-import br.com.mind5.business.masterData.model.checker.DaypartCheckRead;
+import br.com.mind5.masterData.dayParting.info.DaypartInfo;
+import br.com.mind5.masterData.dayParting.model.action.StdDaypartDaoSelect;
+import br.com.mind5.masterData.dayParting.model.checker.DaypartCheckRead;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 
-public final class RootDaypartSelect extends DeciTreeTemplateReadV1<DaypartInfo> {
+public final class RootDaypartSelect extends DeciTreeTemplateReadV2<DaypartInfo> {
 	
 	public RootDaypartSelect(DeciTreeOption<DaypartInfo> option) {
 		super(option);
@@ -41,7 +41,7 @@ public final class RootDaypartSelect extends DeciTreeTemplateReadV1<DaypartInfo>
 	@Override protected List<ActionStdV1<DaypartInfo>> buildActionsOnPassedHook(DeciTreeOption<DaypartInfo> option) {
 		List<ActionStdV1<DaypartInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<DaypartInfo> select = new StdDaypartSelect(option);
+		ActionStdV1<DaypartInfo> select = new StdDaypartDaoSelect(option);
 		
 		actions.add(select);
 		return actions;

@@ -1,4 +1,4 @@
-package br.com.mind5.business.masterData.info;
+package br.com.mind5.masterData.dayParting.info;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ public final class DaypartInfo extends InfoRecord implements Cloneable {
 	
 	
 	public DaypartInfo() {
-		super(DaypartInfo.class);
+		super();
 		
 		codDaypart = DefaultValue.number();	
 	}

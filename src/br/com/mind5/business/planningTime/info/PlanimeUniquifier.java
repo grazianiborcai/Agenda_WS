@@ -6,12 +6,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import br.com.mind5.business.employeeList.info.EmplisInfo;
-import br.com.mind5.business.masterData.info.DaypartInfo;
 import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.business.planingData.info.PlanataInfo;
 import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.common.SystemLog;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.masterData.dayParting.info.DaypartInfo;
 import br.com.mind5.masterData.moonPhase.info.MoonaseInfo;
 import br.com.mind5.masterData.weekday.info.WeekdayInfo;
 

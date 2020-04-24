@@ -1,36 +1,36 @@
-package br.com.mind5.business.masterData.dao;
+package br.com.mind5.masterData.dayPartingSearch.dao;
 
 import java.util.List;
 
-import br.com.mind5.business.masterData.info.DaypartInfo;
 import br.com.mind5.dao.DaoColumn;
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilder;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
+import br.com.mind5.masterData.dayPartingSearch.info.DayparchInfo;
 
-final class DaypartWhere implements DaoStmtWhere {
+final class DaoDayparchWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public DaypartWhere(DaoWhereBuilderOption whereOption, String tableName, DaypartInfo recordInfo) {
+	public DaoDayparchWhere(DaoWhereBuilderOption whereOption, String tableName, DayparchInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
 	
 	
-	private void generateWhereClause(DaoWhereBuilderOption whereOption, String tableName, DaypartInfo recordInfo) {
+	private void generateWhereClause(DaoWhereBuilderOption whereOption, String tableName, DayparchInfo recordInfo) {
 		DaoWhereBuilder builder = DaoWhereBuilder.factory(whereOption);		
 		List<DaoColumn> columns = DaoDbTableColumnAll.getTableColumnsAsList(tableName);
 		
 		for (DaoColumn eachColumn : columns) {
 			switch(eachColumn.columnName) {
-				case MasterDataDbTableColumn.COL_COD_DAYPART :
+				case DaoDayparchDbTableColumn.COL_COD_DAYPART :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codDaypart));
 					break;
 					
-				case MasterDataDbTableColumn.COL_COD_LANGUAGE :
+				case DaoDayparchDbTableColumn.COL_COD_LANGUAGE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codLanguage);
 					break;
 			}
