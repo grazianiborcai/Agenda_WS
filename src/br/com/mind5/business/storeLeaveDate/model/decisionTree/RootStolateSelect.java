@@ -9,13 +9,12 @@ import br.com.mind5.business.storeLeaveDate.model.action.StdStolateMergeToSelect
 import br.com.mind5.business.storeLeaveDate.model.checker.StolateCheckLangu;
 import br.com.mind5.business.storeLeaveDate.model.checker.StolateCheckOwner;
 import br.com.mind5.business.storeLeaveDate.model.checker.StolateCheckRead;
-import br.com.mind5.business.storeLeaveDate.model.checker.StolateCheckStorauth;
 import br.com.mind5.business.storeLeaveDate.model.checker.StolateCheckStore;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 
@@ -58,14 +57,14 @@ public final class RootStolateSelect extends DeciTreeTemplateReadV2<StolateInfo>
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new StolateCheckStore(checkerOption);
 		queue.add(checker);	
-		
+/*		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new StolateCheckStorauth(checkerOption);
 		queue.add(checker);
-		
+*/
 		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
