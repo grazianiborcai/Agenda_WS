@@ -5,15 +5,15 @@ import java.util.List;
 
 import br.com.mind5.business.planingData.info.PlanataInfo;
 import br.com.mind5.business.planingData.model.action.LazyPlanataNodeReserve;
-import br.com.mind5.business.planingData.model.checker.PlanataCheckDummy;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 
-public class RootPlanataSelect extends DeciTreeTemplateReadV1<PlanataInfo> {
+public class RootPlanataSelect extends DeciTreeTemplateReadV2<PlanataInfo> {
 	
 	public RootPlanataSelect(DeciTreeOption<PlanataInfo> option) {
 		super(option);
@@ -25,7 +25,7 @@ public class RootPlanataSelect extends DeciTreeTemplateReadV1<PlanataInfo> {
 		List<ModelCheckerV1<PlanataInfo>> queue = new ArrayList<>();		
 		ModelCheckerV1<PlanataInfo> checker;
 
-		checker = new PlanataCheckDummy();
+		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueueV2<>(queue);

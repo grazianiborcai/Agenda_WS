@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoJoinType;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class PlanataJoinMooncal implements DaoJoinBuilder {
+public final class DaoPlanataJoinMooncal implements DaoJoinBuilder {
 	private final String leftTable;
 	
 	
-	public PlanataJoinMooncal(String leftTableName) {
+	public DaoPlanataJoinMooncal(String leftTableName) {
 		leftTable = leftTableName;
 	}
 

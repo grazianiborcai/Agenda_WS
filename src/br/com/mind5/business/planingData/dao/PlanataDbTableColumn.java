@@ -22,23 +22,13 @@ public final class PlanataDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_RECORD_MODE = DaoDbField.COL_RECORD_MODE;	
 	
 	
-	private Hashtable<String, List<DaoColumn>> tableColumns;	
-	
 	public PlanataDbTableColumn() {
-		super(PlanataDbTableColumn.class);
+		super();
 	}
 	
 	
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
-		tableColumns = new Hashtable<>();		
-		buildTable();		
-		return tableColumns;
-	}
-	
-	
-	
-	private void buildTable() {
 		DaoColumn oneColumn;
 		List<DaoColumn> columns = new ArrayList<>();	
 		
@@ -122,6 +112,8 @@ public final class PlanataDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		tableColumns.put(DaoDbTable.PLANING_DATA_VIEW, columns);
+		Hashtable<String, List<DaoColumn>> results = new Hashtable<>();
+		results.put(DaoDbTable.PLANING_DATA_VIEW, columns);
+		return results;
 	}
 }

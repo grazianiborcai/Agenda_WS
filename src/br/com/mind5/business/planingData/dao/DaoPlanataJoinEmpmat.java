@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoJoinType;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class PlanataJoinMatore implements DaoJoinBuilder {
+public final class DaoPlanataJoinEmpmat implements DaoJoinBuilder {
 	private final String leftTable;
 	
 	
-	public PlanataJoinMatore(String leftTableName) {
+	public DaoPlanataJoinEmpmat(String leftTableName) {
 		leftTable = leftTableName;
 	}
 
@@ -22,7 +22,7 @@ public final class PlanataJoinMatore implements DaoJoinBuilder {
 	
 	@Override public DaoJoin build() {
 		DaoJoin join = new DaoJoin();
-		join.rightTableName = DaoDbTable.MAT_STORE_TABLE;
+		join.rightTableName = DaoDbTable.EMP_MAT_TABLE;
 		join.joinType = DaoJoinType.INNER_JOIN;
 		join.joinColumns = getJoinColumns(leftTable);
 		join.constraintClause = null;
@@ -44,14 +44,8 @@ public final class PlanataJoinMatore implements DaoJoinBuilder {
 		
 		oneColumn = new DaoJoinColumn();
 		oneColumn.leftTableName = leftTableName;
-		oneColumn.leftColumnName = DaoDbField.COL_COD_STORE;
-		oneColumn.rightColumnName = DaoDbField.COL_COD_STORE;
-		joinColumns.add(oneColumn);
-		
-		oneColumn = new DaoJoinColumn();
-		oneColumn.leftTableName = DaoDbTable.MAT_TABLE;
-		oneColumn.leftColumnName = DaoDbField.COL_COD_MATERIAL;
-		oneColumn.rightColumnName = DaoDbField.COL_COD_MATERIAL;
+		oneColumn.leftColumnName = DaoDbField.COL_COD_EMPLOYEE;
+		oneColumn.rightColumnName = DaoDbField.COL_COD_EMPLOYEE;
 		joinColumns.add(oneColumn);
 		
 		oneColumn = new DaoJoinColumn();

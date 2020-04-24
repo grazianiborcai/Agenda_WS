@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoJoinType;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class PlanataJoinCalate implements DaoJoinBuilder {
+public final class DaoPlanataJoinCalate implements DaoJoinBuilder {
 	private final String leftTable;
 	
 	
-	public PlanataJoinCalate(String leftTableName) {
+	public DaoPlanataJoinCalate(String leftTableName) {
 		leftTable = leftTableName;
 	}
 

@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilder;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 
-final class PlanataWhere implements DaoStmtWhere {	
+final class DaoPlanataWhere implements DaoStmtWhere {	
 	private String whereClause;	
 	
 	
-	public PlanataWhere(DaoWhereBuilderOption whereOption, String tableName, PlanataInfo recordInfo) {
+	public DaoPlanataWhere(DaoWhereBuilderOption whereOption, String tableName, PlanataInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	

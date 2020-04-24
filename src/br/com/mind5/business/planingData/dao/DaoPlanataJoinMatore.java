@@ -3,7 +3,6 @@ package br.com.mind5.business.planingData.dao;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.dao.DaoDictionary;
 import br.com.mind5.dao.DaoJoin;
 import br.com.mind5.dao.DaoJoinBuilder;
 import br.com.mind5.dao.DaoJoinColumn;
@@ -11,11 +10,11 @@ import br.com.mind5.dao.DaoJoinType;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class PlanataJoinEmpwotm implements DaoJoinBuilder {
+public final class DaoPlanataJoinMatore implements DaoJoinBuilder {
 	private final String leftTable;
 	
 	
-	public PlanataJoinEmpwotm(String leftTableName) {
+	public DaoPlanataJoinMatore(String leftTableName) {
 		leftTable = leftTableName;
 	}
 
@@ -23,7 +22,7 @@ public final class PlanataJoinEmpwotm implements DaoJoinBuilder {
 	
 	@Override public DaoJoin build() {
 		DaoJoin join = new DaoJoin();
-		join.rightTableName = DaoDbTable.EMP_WT_TABLE;
+		join.rightTableName = DaoDbTable.MAT_STORE_TABLE;
 		join.joinType = DaoJoinType.INNER_JOIN;
 		join.joinColumns = getJoinColumns(leftTable);
 		join.constraintClause = null;
@@ -50,24 +49,10 @@ public final class PlanataJoinEmpwotm implements DaoJoinBuilder {
 		joinColumns.add(oneColumn);
 		
 		oneColumn = new DaoJoinColumn();
-		oneColumn.leftTableName = leftTableName;
-		oneColumn.leftColumnName = DaoDbField.COL_COD_WEEKDAY;
-		oneColumn.rightColumnName = DaoDbField.COL_COD_WEEKDAY;
+		oneColumn.leftTableName = DaoDbTable.MAT_TABLE;
+		oneColumn.leftColumnName = DaoDbField.COL_COD_MATERIAL;
+		oneColumn.rightColumnName = DaoDbField.COL_COD_MATERIAL;
 		joinColumns.add(oneColumn);
-		
-		oneColumn = new DaoJoinColumn();
-		oneColumn.leftTableName = leftTableName;
-		oneColumn.leftColumnName = DaoDbField.COL_BEGIN_TIME;
-		oneColumn.rightColumnName = DaoDbField.COL_BEGIN_TIME;
-		oneColumn.condition = DaoDictionary.LESS_THAN_OR_EQUAL_TO;
-		joinColumns.add(oneColumn);		
-		
-		oneColumn = new DaoJoinColumn();
-		oneColumn.leftTableName = leftTableName;
-		oneColumn.leftColumnName = DaoDbField.COL_END_TIME;
-		oneColumn.rightColumnName = DaoDbField.COL_END_TIME;
-		oneColumn.condition = DaoDictionary.GREATER_THAN_OR_EQUAL_TO;
-		joinColumns.add(oneColumn);	
 		
 		oneColumn = new DaoJoinColumn();
 		oneColumn.leftTableName = leftTableName;

@@ -1,6 +1,5 @@
 package br.com.mind5.business.planingData.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.moonCalendar.info.MooncalCopier;
@@ -9,12 +8,14 @@ import br.com.mind5.business.moonCalendar.model.decisionTree.RootMooncalSelect;
 import br.com.mind5.business.planingData.info.PlanataInfo;
 import br.com.mind5.business.planingData.info.PlanataMerger;
 import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiPlanataMergeMooncal extends ActionVisitorTemplateMergeV1<PlanataInfo, MooncalInfo> {
+final class VisiPlanataMergeMooncal extends ActionVisitorTemplateMergeV2<PlanataInfo, MooncalInfo> {
 	
-	public VisiPlanataMergeMooncal(Connection conn, String schemaName) {
-		super(conn, schemaName, MooncalInfo.class);
+	public VisiPlanataMergeMooncal(DeciTreeOption<PlanataInfo> option) {
+		super(option, MooncalInfo.class);
 	}
 	
 	

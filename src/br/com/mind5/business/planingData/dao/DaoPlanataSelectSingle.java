@@ -19,7 +19,7 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoJoinMat;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class PlanataSelectSingle extends DaoStmtTemplate<PlanataInfo> {
+public final class DaoPlanataSelectSingle extends DaoStmtTemplate<PlanataInfo> {
 	private final String MAIN_TABLE = DaoDbTable.STORE_TABLE;
 	private final String RT_STORE_WT = DaoDbTable.STORE_WT_TABLE;
 	private final String RT_EMP_WT = DaoDbTable.EMP_WT_TABLE;
@@ -28,7 +28,7 @@ public final class PlanataSelectSingle extends DaoStmtTemplate<PlanataInfo> {
 	private final String RT_CALENDAR_DATE = DaoDbTable.CALENDAR_DATE_TABLE;
 	
 	
-	public PlanataSelectSingle(Connection conn, PlanataInfo recordInfo, String schemaName) {
+	public DaoPlanataSelectSingle(Connection conn, PlanataInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -58,7 +58,7 @@ public final class PlanataSelectSingle extends DaoStmtTemplate<PlanataInfo> {
 		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new PlanataWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new DaoPlanataWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -67,28 +67,28 @@ public final class PlanataSelectSingle extends DaoStmtTemplate<PlanataInfo> {
 	@Override protected List<DaoJoin> getJoinsHook(PlanataInfo recordInfo) {
 		List<DaoJoin> joins = new ArrayList<>();
 		
-		DaoJoinBuilder joinStowotm = new PlanataJoinStowotm(MAIN_TABLE);		
+		DaoJoinBuilder joinStowotm = new DaoPlanataJoinStowotm(MAIN_TABLE);		
 		joins.add(joinStowotm.build());
 		
-		DaoJoinBuilder joinEmpwotm = new PlanataJoinEmpwotm(RT_STORE_WT);		
+		DaoJoinBuilder joinEmpwotm = new DaoPlanataJoinEmpwotm(RT_STORE_WT);		
 		joins.add(joinEmpwotm.build());
 		
-		DaoJoinBuilder joinCalate = new PlanataJoinCalate(RT_STORE_WT);		
+		DaoJoinBuilder joinCalate = new DaoPlanataJoinCalate(RT_STORE_WT);		
 		joins.add(joinCalate.build());
 		
-		DaoJoinBuilder joinMooncal = new PlanataJoinMooncal(RT_CALENDAR_DATE);		
+		DaoJoinBuilder joinMooncal = new DaoPlanataJoinMooncal(RT_CALENDAR_DATE);		
 		joins.add(joinMooncal.build());
 		
-		DaoJoinBuilder joinEmpos = new PlanataJoinEmpos(RT_EMP_WT);		
+		DaoJoinBuilder joinEmpos = new DaoPlanataJoinEmpos(RT_EMP_WT);		
 		joins.add(joinEmpos.build());
 		
-		DaoJoinBuilder joinEmpmat = new PlanataJoinEmpmat(RT_EMP_WT);		
+		DaoJoinBuilder joinEmpmat = new DaoPlanataJoinEmpmat(RT_EMP_WT);		
 		joins.add(joinEmpmat.build());
 		
 		DaoJoinBuilder joinMat = new DaoJoinMat(RT_EMP_MAT);		
 		joins.add(joinMat.build());
 		
-		DaoJoinBuilder joinMatore = new PlanataJoinMatore(RT_EMP_POSITION);		
+		DaoJoinBuilder joinMatore = new DaoPlanataJoinMatore(RT_EMP_POSITION);		
 		joins.add(joinMatore.build());
 		
 		return joins;

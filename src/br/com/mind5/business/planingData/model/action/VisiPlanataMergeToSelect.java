@@ -1,23 +1,24 @@
 package br.com.mind5.business.planingData.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.planingData.info.PlanataInfo;
 import br.com.mind5.business.planingData.info.PlanataMerger;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiPlanataMergeToSelect extends ActionVisitorTemplateMergeV1<PlanataInfo, PlanataInfo> {
+final class VisiPlanataMergeToSelect extends ActionVisitorTemplateMergeV2<PlanataInfo, PlanataInfo> {
 	
-	public VisiPlanataMergeToSelect(Connection conn, String schemaName) {
-		super(conn, schemaName, PlanataInfo.class);
+	public VisiPlanataMergeToSelect(DeciTreeOption<PlanataInfo> option) {
+		super(option, PlanataInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends ActionStdV1<PlanataInfo>> getActionClassHook() {
-		return StdPlanataSelect.class;
+	@Override protected Class<? extends ActionStdV2<PlanataInfo>> getActionClassHook() {
+		return StdPlanataDaoSelect.class;
 	}
 	
 	

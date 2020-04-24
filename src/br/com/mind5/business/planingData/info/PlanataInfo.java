@@ -24,7 +24,7 @@ public final class PlanataInfo extends InfoRecord implements Cloneable {
 	
 	
 	public PlanataInfo() {
-		super(PlanataInfo.class);
+		super();
 		
 		codOwner = DefaultValue.number();
 		codWeekday = DefaultValue.number();

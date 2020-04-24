@@ -9,13 +9,13 @@ import br.com.mind5.business.planingData.model.action.StdPlanataPruneCarterve;
 import br.com.mind5.business.planingData.model.checker.PlanataCheckRead;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 
-public class NodePlanataReserve extends DeciTreeTemplateReadV1<PlanataInfo> {
+public class NodePlanataReserve extends DeciTreeTemplateReadV2<PlanataInfo> {
 	
 	public NodePlanataReserve(DeciTreeOption<PlanataInfo> option) {
 		super(option);
