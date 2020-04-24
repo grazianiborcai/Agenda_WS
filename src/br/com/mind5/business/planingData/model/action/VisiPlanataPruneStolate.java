@@ -34,4 +34,10 @@ final class VisiPlanataPruneStolate extends ActionVisitorTemplatePruneV2<Planata
 	@Override protected List<PlanataInfo> pruneHook(List<PlanataInfo> recordInfos, List<StolateInfo> selectedInfos) {	
 		return PlanataPruner.pruneWithStolate(recordInfos, selectedInfos);
 	}
+	
+	
+	
+	@Override protected boolean shouldPruneWhenEmptyHook() {
+		return super.PRUNE_WHEN_EMPTY;
+	}
 }
