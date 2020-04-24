@@ -6,13 +6,13 @@ import java.util.List;
 
 import br.com.mind5.business.employeeList.info.EmplisInfo;
 import br.com.mind5.business.masterData.info.DaypartInfo;
-import br.com.mind5.business.masterData.info.WeekdayInfo;
 import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.business.planingData.info.PlanataInfo;
 import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
 import br.com.mind5.masterData.moonPhase.info.MoonaseInfo;
+import br.com.mind5.masterData.weekday.info.WeekdayInfo;
 
 public final class PlanimeInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
@@ -28,7 +28,7 @@ public final class PlanimeInfo extends InfoRecord implements Cloneable {
 	
 	
 	public PlanimeInfo() {
-		super(PlanimeInfo.class);
+		super();
 		
 		codOwner = DefaultValue.number();
 		dates = DefaultValue.list();

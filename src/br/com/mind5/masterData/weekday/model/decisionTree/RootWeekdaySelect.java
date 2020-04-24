@@ -1,19 +1,19 @@
-package br.com.mind5.business.masterData.model.decisionTree;
+package br.com.mind5.masterData.weekday.model.decisionTree;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.business.masterData.info.WeekdayInfo;
-import br.com.mind5.business.masterData.model.action.StdWeekdaySelect;
-import br.com.mind5.business.masterData.model.checker.WeekdayCheckRead;
+import br.com.mind5.masterData.weekday.info.WeekdayInfo;
+import br.com.mind5.masterData.weekday.model.action.StdWeekdayDaoSelect;
+import br.com.mind5.masterData.weekday.model.checker.WeekdayCheckRead;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 
-public final class RootWeekdaySelect extends DeciTreeTemplateReadV1<WeekdayInfo> {
+public final class RootWeekdaySelect extends DeciTreeTemplateReadV2<WeekdayInfo> {
 	
 	public RootWeekdaySelect(DeciTreeOption<WeekdayInfo> option) {
 		super(option);
@@ -41,7 +41,7 @@ public final class RootWeekdaySelect extends DeciTreeTemplateReadV1<WeekdayInfo>
 	@Override protected List<ActionStdV1<WeekdayInfo>> buildActionsOnPassedHook(DeciTreeOption<WeekdayInfo> option) {
 		List<ActionStdV1<WeekdayInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<WeekdayInfo> select = new StdWeekdaySelect(option);
+		ActionStdV1<WeekdayInfo> select = new StdWeekdayDaoSelect(option);
 		
 		actions.add(select);
 		return actions;

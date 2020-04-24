@@ -208,4 +208,5 @@ public final class DaoDbTable {
 	public static final String USER_LIST_VIEW = "view_user_list";
 	public static final String USER_SEARCH_VIEW = "view_user_search";
 	public static final String USERNAME_VIEW = "view_username";		
+	public static final String WEEKDAY_SEARCH_VIEW = "view_weekday_search";
 }

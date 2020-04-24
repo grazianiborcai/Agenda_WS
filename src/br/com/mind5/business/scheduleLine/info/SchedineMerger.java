@@ -5,7 +5,6 @@ import java.util.List;
 import br.com.mind5.business.customerList.info.CuslisInfo;
 import br.com.mind5.business.employeeList.info.EmplisInfo;
 import br.com.mind5.business.masterData.info.ScheduleStatusInfo;
-import br.com.mind5.business.masterData.info.WeekdayInfo;
 import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.business.order.info.OrderInfo;
 import br.com.mind5.business.orderList.info.OrdistInfo;
@@ -13,6 +12,7 @@ import br.com.mind5.business.scheduleLineSnapshot.info.SchedinapInfo;
 import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.info.obsolete.InfoMergerOneToMany_;
 import br.com.mind5.info.obsolete.InfoMerger_;
+import br.com.mind5.masterData.weekday.info.WeekdayInfo;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class SchedineMerger {

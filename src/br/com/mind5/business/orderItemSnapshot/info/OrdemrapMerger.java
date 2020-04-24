@@ -3,11 +3,11 @@ package br.com.mind5.business.orderItemSnapshot.info;
 import java.util.List;
 
 import br.com.mind5.business.employeeList.info.EmplisInfo;
-import br.com.mind5.business.masterData.info.WeekdayInfo;
 import br.com.mind5.business.material.info.MatInfo;
 import br.com.mind5.business.materialSnapshot.info.MatsnapInfo;
 import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.info.obsolete.InfoMerger_;
+import br.com.mind5.masterData.weekday.info.WeekdayInfo;
 
 public final class OrdemrapMerger {
 	public static OrdemrapInfo mergeWithMat(MatInfo sourceOne, OrdemrapInfo sourceTwo) {

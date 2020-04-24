@@ -1,9 +1,9 @@
 package br.com.mind5.business.scheduleWeekData.info;
 
-import br.com.mind5.business.masterData.info.WeekdayInfo;
 import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.masterData.weekday.info.WeekdayInfo;
 
 final class SchedeekdatVisiMergeWeekday implements InfoMergerVisitor_<SchedeekdatInfo, WeekdayInfo> {
 

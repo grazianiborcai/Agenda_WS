@@ -1,31 +1,31 @@
-package br.com.mind5.business.masterData.info;
+package br.com.mind5.masterData.weekdaySearch.info;
 
 import java.util.List;
 
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
 
-public final class WeekdayInfo extends InfoRecord implements Cloneable {
+public final class WeekdarchInfo extends InfoRecord implements Cloneable {
 	public int codWeekday;
 	public String txtWeekday;
 	
 	
-	public WeekdayInfo() {
-		super(WeekdayInfo.class);
+	public WeekdarchInfo() {
+		super();
 		
 		codWeekday = DefaultValue.number();	
 	}
 	
 	
 	
-	public static WeekdayInfo copyFrom(Object sourceObj) {
-		return copyFrom(sourceObj, WeekdayInfo.class);
+	public static WeekdarchInfo copyFrom(Object sourceObj) {
+		return copyFrom(sourceObj, WeekdarchInfo.class);
 	}
 	
 	
 	
-	public static List<WeekdayInfo> copyFrom(List<?> sourceObjs) {
-		return copyFrom(sourceObjs, WeekdayInfo.class);
+	public static List<WeekdarchInfo> copyFrom(List<?> sourceObjs) {
+		return copyFrom(sourceObjs, WeekdarchInfo.class);
 	}
 	
 	
@@ -51,11 +51,11 @@ public final class WeekdayInfo extends InfoRecord implements Cloneable {
 			return true;
 		
 		
-		if (!(o instanceof WeekdayInfo))
+		if (!(o instanceof WeekdarchInfo))
 			return false;
 		
 		
-		WeekdayInfo obj = (WeekdayInfo) o;		
+		WeekdarchInfo obj = (WeekdarchInfo) o;		
 		return (codWeekday == obj.codWeekday);
 	}
 }

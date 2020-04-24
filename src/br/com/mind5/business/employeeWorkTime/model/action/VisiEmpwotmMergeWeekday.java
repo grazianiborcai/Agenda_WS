@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.com.mind5.business.employeeWorkTime.info.EmpwotmInfo;
 import br.com.mind5.business.employeeWorkTime.info.EmpwotmMerger;
-import br.com.mind5.business.masterData.info.WeekdayInfo;
-import br.com.mind5.business.masterData.model.decisionTree.RootWeekdaySelect;
+import br.com.mind5.masterData.weekday.info.WeekdayInfo;
+import br.com.mind5.masterData.weekday.model.decisionTree.RootWeekdaySelect;
 import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 import br.com.mind5.model.decisionTree.DeciTree;
 

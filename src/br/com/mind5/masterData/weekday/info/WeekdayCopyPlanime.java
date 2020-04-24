@@ -1,4 +1,4 @@
-package br.com.mind5.business.masterData.info;
+package br.com.mind5.masterData.weekday.info;
 
 
 import java.util.ArrayList;

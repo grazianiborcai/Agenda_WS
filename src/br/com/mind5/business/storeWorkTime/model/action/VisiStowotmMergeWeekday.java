@@ -3,10 +3,10 @@ package br.com.mind5.business.storeWorkTime.model.action;
 import java.sql.Connection;
 import java.util.List;
 
-import br.com.mind5.business.masterData.info.WeekdayInfo;
-import br.com.mind5.business.masterData.model.decisionTree.RootWeekdaySelect;
 import br.com.mind5.business.storeWorkTime.info.StowotmInfo;
 import br.com.mind5.business.storeWorkTime.info.StowotmMerger;
+import br.com.mind5.masterData.weekday.info.WeekdayInfo;
+import br.com.mind5.masterData.weekday.model.decisionTree.RootWeekdaySelect;
 import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 import br.com.mind5.model.decisionTree.DeciTree;
 

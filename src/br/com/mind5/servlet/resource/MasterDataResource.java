@@ -20,7 +20,6 @@ import br.com.mind5.business.masterData.info.PaymentStatusInfo;
 import br.com.mind5.business.masterData.info.PositionInfo;
 import br.com.mind5.business.masterData.info.ScheduleStatusInfo;
 import br.com.mind5.business.masterData.info.UserCategInfo;
-import br.com.mind5.business.masterData.info.WeekdayInfo;
 import br.com.mind5.business.masterData.model.CartCategModelSelect;
 import br.com.mind5.business.masterData.model.CountryLegalModelSelect;
 import br.com.mind5.business.masterData.model.DaypartModelSelect;
@@ -33,7 +32,6 @@ import br.com.mind5.business.masterData.model.PaymentStatusModelSelect;
 import br.com.mind5.business.masterData.model.PositionModelSelect;
 import br.com.mind5.business.masterData.model.ScheduleStatusModelSelect;
 import br.com.mind5.business.masterData.model.UserCategModelSelect;
-import br.com.mind5.business.masterData.model.WeekdayModelSelect;
 import br.com.mind5.masterData.areaPhoneSearch.info.AreanarchInfo;
 import br.com.mind5.masterData.areaPhoneSearch.model.AreanarchModelSelect;
 import br.com.mind5.masterData.businessAreaSearch.info.BusarearchInfo;
@@ -62,6 +60,8 @@ import br.com.mind5.masterData.stateSearch.info.StatarchInfo;
 import br.com.mind5.masterData.stateSearch.model.StatarchModelSelect;
 import br.com.mind5.masterData.timezoneSearch.info.TimezonarchInfo;
 import br.com.mind5.masterData.timezoneSearch.model.TimezonarchModelSelect;
+import br.com.mind5.masterData.weekdaySearch.info.WeekdarchInfo;
+import br.com.mind5.masterData.weekdaySearch.model.WeekdarchModelSelect;
 import br.com.mind5.model.Model;
 
 
@@ -238,11 +238,11 @@ public final class MasterDataResource {
 	public Response selectWeekday(@HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage,
 			                      @HeaderParam("codWeekday")  @DefaultValue("-1") int codWeekday){
 		
-		WeekdayInfo recordInfo = new WeekdayInfo();
+		WeekdarchInfo recordInfo = new WeekdarchInfo();
 		recordInfo.codWeekday = codWeekday;
 		recordInfo.codLanguage = codLanguage;
 		
-		Model model = new WeekdayModelSelect(recordInfo);
+		Model model = new WeekdarchModelSelect(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	}

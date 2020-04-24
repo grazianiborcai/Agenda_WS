@@ -1,20 +1,20 @@
-package br.com.mind5.business.masterData.dao;
+package br.com.mind5.masterData.weekday.dao;
 
 import java.util.List;
 
-import br.com.mind5.business.masterData.info.WeekdayInfo;
 import br.com.mind5.dao.DaoColumn;
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilder;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
+import br.com.mind5.masterData.weekday.info.WeekdayInfo;
 
-final class WeekdayWhere implements DaoStmtWhere {
+final class DaoWeekdayWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public WeekdayWhere(DaoWhereBuilderOption whereOption, String tableName, WeekdayInfo recordInfo) {
+	public DaoWeekdayWhere(DaoWhereBuilderOption whereOption, String tableName, WeekdayInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -26,11 +26,11 @@ final class WeekdayWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {
 			switch(eachColumn.columnName) {
-				case MasterDataDbTableColumn.COL_COD_WEEKDAY :
+				case DaoWeekdayDbTableColumn.COL_COD_WEEKDAY :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codWeekday));
 					break;
 					
-				case MasterDataDbTableColumn.COL_COD_LANGUAGE :
+				case DaoWeekdayDbTableColumn.COL_COD_LANGUAGE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codLanguage);
 					break;
 			}

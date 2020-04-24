@@ -3,8 +3,8 @@ package br.com.mind5.business.scheduleWeekData.info;
 import java.util.List;
 
 import br.com.mind5.business.masterData.info.MonthInfo;
-import br.com.mind5.business.masterData.info.WeekdayInfo;
 import br.com.mind5.info.obsolete.InfoMerger_;
+import br.com.mind5.masterData.weekday.info.WeekdayInfo;
 
 public final class SchedeekdatMerger {
 	public static SchedeekdatInfo mergeWithWeekday(WeekdayInfo sourceOne, SchedeekdatInfo sourceTwo) {

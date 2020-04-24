@@ -1,9 +1,9 @@
-package br.com.mind5.business.masterData.model.checker;
+package br.com.mind5.masterData.weekday.model.checker;
 
 import java.sql.Connection;
 
-import br.com.mind5.business.masterData.info.WeekdayInfo;
 import br.com.mind5.common.SystemCode;
+import br.com.mind5.masterData.weekday.info.WeekdayInfo;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
@@ -16,7 +16,8 @@ public final class WeekdayCheckRead extends ModelCheckerTemplateSimpleV2<Weekday
 	
 	
 	@Override protected boolean checkHook(WeekdayInfo recordInfo, Connection conn, String schemaName) {	
-		if ( recordInfo.codLanguage == null )			
+		if ( recordInfo.codWeekday <= 0 	||
+			recordInfo.codLanguage == null		)			
 			return super.FAILED;
 		
 		

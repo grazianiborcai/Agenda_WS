@@ -2,11 +2,11 @@ package br.com.mind5.business.storeWorkTime.info;
 
 import java.util.List;
 
-import br.com.mind5.business.masterData.info.WeekdayInfo;
 import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.business.storeWorkTimeSearch.info.StowotarchInfo;
 import br.com.mind5.info.InfoMergerBuilderV3;
 import br.com.mind5.info.InfoMergerV3;
+import br.com.mind5.masterData.weekday.info.WeekdayInfo;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class StowotmMerger {
