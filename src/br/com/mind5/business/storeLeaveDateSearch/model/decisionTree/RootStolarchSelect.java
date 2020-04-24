@@ -10,13 +10,13 @@ import br.com.mind5.business.storeLeaveDateSearch.model.checker.StolarchCheckOwn
 import br.com.mind5.business.storeLeaveDateSearch.model.checker.StolarchCheckRead;
 import br.com.mind5.business.storeLeaveDateSearch.model.checker.StolarchCheckStore;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 
-public final class RootStolarchSelect extends DeciTreeTemplateReadV1<StolarchInfo> {
+public final class RootStolarchSelect extends DeciTreeTemplateReadV2<StolarchInfo> {
 	
 	public RootStolarchSelect(DeciTreeOption<StolarchInfo> option) {
 		super(option);

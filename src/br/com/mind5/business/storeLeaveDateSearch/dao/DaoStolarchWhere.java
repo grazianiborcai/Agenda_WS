@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilder;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 
-public final class StolarchWhere implements DaoStmtWhere {
+public final class DaoStolarchWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public StolarchWhere(DaoWhereBuilderOption whereOption, String tableName, StolarchInfo recordInfo) {
+	public DaoStolarchWhere(DaoWhereBuilderOption whereOption, String tableName, StolarchInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -27,23 +27,23 @@ public final class StolarchWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-				case StolarchDbTableColumn.COL_COD_OWNER :
+				case DaoStolarchDbTableColumn.COL_COD_OWNER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;
 					
-				case StolarchDbTableColumn.COL_COD_STORE :
+				case DaoStolarchDbTableColumn.COL_COD_STORE :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codStore));
 					break;
 					
-				case StolarchDbTableColumn.COL_YEAR_VALID_FROM :
+				case DaoStolarchDbTableColumn.COL_YEAR_VALID_FROM :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.yearValidFrom));
 					break;
 					
-				case StolarchDbTableColumn.COL_MONTH_VALID_FROM :
+				case DaoStolarchDbTableColumn.COL_MONTH_VALID_FROM :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.monthValidFrom));
 					break;
 					
-				case StolarchDbTableColumn.COL_RECORD_MODE :
+				case DaoStolarchDbTableColumn.COL_RECORD_MODE :
 					builder.addClauseEqualAnd(eachColumn,recordInfo.recordMode);
 					break;
 			}

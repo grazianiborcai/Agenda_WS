@@ -7,6 +7,7 @@ import java.util.List;
 
 import br.com.mind5.common.CloneUtil;
 import br.com.mind5.common.DefaultValue;
+import br.com.mind5.common.SystemCode;
 import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.InfoRecord;
@@ -18,8 +19,8 @@ import br.com.mind5.model.decisionTree.common.DeciResultError;
 import br.com.mind5.model.decisionTree.common.DeciResultNotFound;
 
 public abstract class ActionVisitorTemplatePruneV2<T extends InfoRecord, S extends InfoRecord> implements ActionVisitorV2<T> {	
-	public static boolean PRUNE_WHEN_EMPTY = true;
-	public static boolean DONT_PRUNE_WHEN_EMPTY = false;
+	protected final boolean PRUNE_WHEN_EMPTY = true;
+	protected final boolean DONT_PRUNE_WHEN_EMPTY = false;
 	
 	private DeciTreeOption<S> actionOption;
 	private List<T> bases;
@@ -84,7 +85,7 @@ public abstract class ActionVisitorTemplatePruneV2<T extends InfoRecord, S exten
 		checkState();			
 		DeciResult<S> actionResult = selectToPrune(actionOption);
 		
-		if (actionResult.isSuccess() == false)
+		if (isResultError(actionResult) == true)
 			return makeResultError(actionResult);		 		 
 		 
 		List<T> prunedInfos = prune(bases, actionResult);
@@ -258,6 +259,18 @@ public abstract class ActionVisitorTemplatePruneV2<T extends InfoRecord, S exten
 		result.resultset = results;
 		
 		return result;
+	}
+	
+	
+	
+	private boolean isResultError(DeciResult<S> actionResult) {
+		if (actionResult.isSuccess() == true)
+			return false;
+		
+		if (actionResult.getFailCode() == SystemCode.DATA_NOT_FOUND)
+			return false;
+		
+		return true;
 	}
 	
 	
