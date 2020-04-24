@@ -24,7 +24,7 @@ public final class PlanarchInfo extends InfoRecord implements Cloneable {
 	
 	
 	public PlanarchInfo() {
-		super(PlanarchInfo.class);
+		super();
 		
 		codOwner = DefaultValue.number();
 		codWeekday = DefaultValue.number();

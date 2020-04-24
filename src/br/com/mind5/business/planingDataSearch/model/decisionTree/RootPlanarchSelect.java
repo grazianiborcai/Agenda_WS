@@ -9,13 +9,13 @@ import br.com.mind5.business.planingDataSearch.model.action.StdPlanarchMergePlan
 import br.com.mind5.business.planingDataSearch.model.checker.PlanarchCheckRead;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 
-public class RootPlanarchSelect extends DeciTreeTemplateReadV1<PlanarchInfo> {
+public class RootPlanarchSelect extends DeciTreeTemplateReadV2<PlanarchInfo> {
 	
 	public RootPlanarchSelect(DeciTreeOption<PlanarchInfo> option) {
 		super(option);
