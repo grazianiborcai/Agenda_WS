@@ -105,6 +105,10 @@ public final class DeciTreeAdapterV2<T extends InfoRecord> implements ActionStdV
 	
 	@Override public void addPostAction(ActionLazyV1<T> actionLazy) {
 		checkArgument(actionLazy);
+		
+		if (postActions == null)
+			postActions = new ArrayList<>();
+		
 		postActions.add(actionLazy);	//TODO: defensive copy
 	}
 	
