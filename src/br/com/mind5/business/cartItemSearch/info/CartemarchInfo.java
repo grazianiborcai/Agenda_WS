@@ -19,7 +19,7 @@ public final class CartemarchInfo extends InfoRecord implements Cloneable {
 	
 	
 	public CartemarchInfo() {
-		super(CartemarchInfo.class);
+		super();
 		
 		codOwner = DefaultValue.number();	
 		codUser = DefaultValue.number();

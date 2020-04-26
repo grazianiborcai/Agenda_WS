@@ -7,13 +7,13 @@ import br.com.mind5.business.cartItemSearch.info.CartemarchInfo;
 import br.com.mind5.business.cartItemSearch.model.action.StdCartemarchMergeToSelect;
 import br.com.mind5.business.cartItemSearch.model.checker.CartemarchCheckRead;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class RootCartemarchSelect extends DeciTreeTemplateWriteV1<CartemarchInfo> {
+public final class RootCartemarchSelect extends DeciTreeTemplateWriteV2<CartemarchInfo> {
 	
 	public RootCartemarchSelect(DeciTreeOption<CartemarchInfo> option) {
 		super(option);
