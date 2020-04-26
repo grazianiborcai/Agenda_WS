@@ -1,56 +1,27 @@
 package br.com.mind5.business.cartItem.model.checker;
 
-import java.util.List;
-
 import br.com.mind5.business.cartItem.info.CartemInfo;
 import br.com.mind5.business.material.info.MatInfo;
 import br.com.mind5.business.material.model.checker.MatCheckExist;
-import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
+import br.com.mind5.model.checker.ModelCheckerV1;
 
-public final class CartemCheckMat implements ModelCheckerV1<CartemInfo> {
-	private final boolean FAILED = false;
-	private final boolean SUCCESS = true;
-	
-	private ModelCheckerV1<MatInfo> checker;
-	
+public final class CartemCheckMat extends ModelCheckerTemplateForwardV2<CartemInfo, MatInfo> {
 	
 	public CartemCheckMat(ModelCheckerOption option) {
-		checker = new MatCheckExist(option);
-	}
-	
-	
-	
-	@Override public boolean check(List<CartemInfo> recordInfos) {
-		for (CartemInfo eachInfo : recordInfos) {
-			if (check(eachInfo) == FAILED)
-				return FAILED;
-		}
-		
-		return SUCCESS;
+		super(option);
 	}
 
-	
-	
-	@Override public boolean check(CartemInfo recordInfo) {
-		return checker.check(MatInfo.copyFrom(recordInfo));
-	}
 
 	
-	
-	@Override public boolean getResult() {
-		return checker.getResult();
+	@Override protected ModelCheckerV1<MatInfo> getCheckerHook(ModelCheckerOption option) {
+		return new MatCheckExist(option);
 	}
-
 	
 	
-	@Override public String getFailMessage() {
-		return checker.getFailMessage();
-	}
-
 	
-	
-	@Override public int getFailCode() {
-		return checker.getFailCode();
+	@Override protected MatInfo toForwardClass(CartemInfo baseRecord) {
+		return MatInfo.copyFrom(baseRecord);
 	}
 }

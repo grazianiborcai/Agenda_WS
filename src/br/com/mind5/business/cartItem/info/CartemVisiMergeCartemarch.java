@@ -1,27 +1,38 @@
 package br.com.mind5.business.cartItem.info;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import br.com.mind5.business.cartItemSearch.info.CartemarchInfo;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-final class CartemVisiMergeCartemarch implements InfoMergerVisitor_<CartemInfo, CartemarchInfo> {
-
-	@Override public CartemInfo writeRecord(CartemarchInfo sourceOne, CartemInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
-
-		return CartemInfo.copyFrom(sourceOne);
+final class CartemVisiMergeCartemarch implements InfoMergerVisitorV3<CartemInfo, CartemarchInfo> {
+	
+	@Override public List<CartemInfo> beforeMerge(List<CartemInfo> baseInfos) {
+		return baseInfos;
 	}
 	
 	
 	
-	private void checkArgument(CartemarchInfo sourceOne, CartemInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
+	@Override public boolean shouldMerge(CartemInfo baseInfo, CartemarchInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner);
 	}
-
-
 	
-	@Override public boolean shouldWrite(CartemarchInfo sourceOne, CartemInfo sourceTwo) {
-		return (sourceOne.codOwner == sourceTwo.codOwner);
+	
+	
+	@Override public List<CartemInfo> merge(CartemInfo baseInfo, CartemarchInfo selectedInfo) {
+		List<CartemInfo> results = new ArrayList<>();
+		
+		CartemInfo result = CartemInfo.copyFrom(selectedInfo);
+		
+		results.add(result);
+		return results;
+	}
+	
+	
+	
+	@Override public InfoUniquifier<CartemInfo> getUniquifier() {
+		return null;
 	}
 }

@@ -16,11 +16,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class CartemSelectSingle extends DaoStmtTemplate<CartemInfo> {	
+public final class DaoCartemSelectSingle extends DaoStmtTemplate<CartemInfo> {	
 	private final String MAIN_TABLE = DaoDbTable.CART_ITM_TABLE;
 	
 	
-	public CartemSelectSingle(Connection conn, CartemInfo recordInfo, String schemaName) {
+	public DaoCartemSelectSingle(Connection conn, CartemInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -44,7 +44,7 @@ public final class CartemSelectSingle extends DaoStmtTemplate<CartemInfo> {
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new CartemWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new DaoCartemWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 		
@@ -61,16 +61,16 @@ public final class CartemSelectSingle extends DaoStmtTemplate<CartemInfo> {
 				do {
 					CartemInfo dataInfo = new CartemInfo();
 					
-					dataInfo.codOwner = stmtResult.getLong(CartemDbTableColumn.COL_COD_OWNER);	
-					dataInfo.codUser = stmtResult.getLong(CartemDbTableColumn.COL_COD_USER);
-					dataInfo.quantity = stmtResult.getInt(CartemDbTableColumn.COL_QUANTITY);
-					dataInfo.codStore = DaoFormatter.sqlToLong(stmtResult, CartemDbTableColumn.COL_COD_STORE);
-					dataInfo.codEmployee = DaoFormatter.sqlToLong(stmtResult, CartemDbTableColumn.COL_COD_EMPLOYEE);
-					dataInfo.codMat = DaoFormatter.sqlToLong(stmtResult, CartemDbTableColumn.COL_COD_MATERIAL);
-					dataInfo.date = DaoFormatter.sqlToLocalDate(stmtResult, CartemDbTableColumn.COL_DATE);
-					dataInfo.beginTime = DaoFormatter.sqlToLocalTime(stmtResult, CartemDbTableColumn.COL_BEGIN_TIME);
-					dataInfo.endTime = DaoFormatter.sqlToLocalTime(stmtResult, CartemDbTableColumn.COL_END_TIME);
-					dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, CartemDbTableColumn.COL_CREATED_ON);				
+					dataInfo.codOwner = stmtResult.getLong(DaoCartemDbTableColumn.COL_COD_OWNER);	
+					dataInfo.codUser = stmtResult.getLong(DaoCartemDbTableColumn.COL_COD_USER);
+					dataInfo.quantity = stmtResult.getInt(DaoCartemDbTableColumn.COL_QUANTITY);
+					dataInfo.codStore = DaoFormatter.sqlToLong(stmtResult, DaoCartemDbTableColumn.COL_COD_STORE);
+					dataInfo.codEmployee = DaoFormatter.sqlToLong(stmtResult, DaoCartemDbTableColumn.COL_COD_EMPLOYEE);
+					dataInfo.codMat = DaoFormatter.sqlToLong(stmtResult, DaoCartemDbTableColumn.COL_COD_MATERIAL);
+					dataInfo.date = DaoFormatter.sqlToLocalDate(stmtResult, DaoCartemDbTableColumn.COL_DATE);
+					dataInfo.beginTime = DaoFormatter.sqlToLocalTime(stmtResult, DaoCartemDbTableColumn.COL_BEGIN_TIME);
+					dataInfo.endTime = DaoFormatter.sqlToLocalTime(stmtResult, DaoCartemDbTableColumn.COL_END_TIME);
+					dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, DaoCartemDbTableColumn.COL_CREATED_ON);				
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

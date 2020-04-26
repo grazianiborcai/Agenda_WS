@@ -15,11 +15,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class CartemDeleteSingle extends DaoStmtTemplate<CartemInfo> {
+public final class DaoCartemDeleteSingle extends DaoStmtTemplate<CartemInfo> {
 	private final String MAIN_TABLE = DaoDbTable.CART_ITM_TABLE;	
 	
 	
-	public CartemDeleteSingle(Connection conn, CartemInfo recordInfo, String schemaName) {
+	public DaoCartemDeleteSingle(Connection conn, CartemInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -44,7 +44,7 @@ public final class CartemDeleteSingle extends DaoStmtTemplate<CartemInfo> {
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;	
 		whereOption.ignoreNonPrimaryKey = DaoOptionValue.IGNORE_NON_PK;		
 		
-		DaoStmtWhere whereClause = new CartemWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new DaoCartemWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	

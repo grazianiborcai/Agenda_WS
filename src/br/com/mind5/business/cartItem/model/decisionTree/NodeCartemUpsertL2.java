@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.cartItem.info.CartemInfo;
-import br.com.mind5.business.cartItem.model.action.LazyCartemUpdate;
+import br.com.mind5.business.cartItem.model.action.LazyCartemDaoUpdate;
 import br.com.mind5.business.cartItem.model.action.StdCartemMergeToUpdate;
 import br.com.mind5.business.cartItem.model.checker.CartemCheckExist;
 import br.com.mind5.model.action.ActionLazyV1;
@@ -13,9 +13,9 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class NodeCartemUpsertL2 extends DeciTreeTemplateWriteV1<CartemInfo> {
+public final class NodeCartemUpsertL2 extends DeciTreeTemplateWriteV2<CartemInfo> {
 	
 	public NodeCartemUpsertL2(DeciTreeOption<CartemInfo> option) {
 		super(option);
@@ -44,7 +44,7 @@ public final class NodeCartemUpsertL2 extends DeciTreeTemplateWriteV1<CartemInfo
 		List<ActionStdV1<CartemInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<CartemInfo> mergeToUpdate = new StdCartemMergeToUpdate(option);	
-		ActionLazyV1<CartemInfo> update = new LazyCartemUpdate(option.conn, option.schemaName);			
+		ActionLazyV1<CartemInfo> update = new LazyCartemDaoUpdate(option.conn, option.schemaName);			
 		
 		mergeToUpdate.addPostAction(update);
 		

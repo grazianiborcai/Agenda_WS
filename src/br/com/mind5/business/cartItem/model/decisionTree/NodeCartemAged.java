@@ -10,9 +10,9 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class NodeCartemAged extends DeciTreeTemplateWriteV1<CartemInfo> {
+public final class NodeCartemAged extends DeciTreeTemplateWriteV2<CartemInfo> {
 	
 	public NodeCartemAged(DeciTreeOption<CartemInfo> option) {
 		super(option);

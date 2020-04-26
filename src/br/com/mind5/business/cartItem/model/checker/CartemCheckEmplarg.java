@@ -1,57 +1,28 @@
 package br.com.mind5.business.cartItem.model.checker;
 
-import java.util.List;
-
 import br.com.mind5.business.cartItem.info.CartemInfo;
 import br.com.mind5.business.employeeLeaveDateRange.info.EmplargCopier;
 import br.com.mind5.business.employeeLeaveDateRange.info.EmplargInfo;
 import br.com.mind5.business.employeeLeaveDateRange.model.checker.EmplargCheckExist;
-import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
+import br.com.mind5.model.checker.ModelCheckerV1;
 
-public final class CartemCheckEmplarg implements ModelCheckerV1<CartemInfo> {
-	private final boolean FAILED = false;
-	private final boolean SUCCESS = true;
-	
-	private ModelCheckerV1<EmplargInfo> checker;
-	
+public final class CartemCheckEmplarg extends ModelCheckerTemplateForwardV2<CartemInfo, EmplargInfo> {
 	
 	public CartemCheckEmplarg(ModelCheckerOption option) {
-		checker = new EmplargCheckExist(option);
-	}
-	
-	
-	
-	@Override public boolean check(List<CartemInfo> recordInfos) {
-		for (CartemInfo eachInfo : recordInfos) {
-			if (check(eachInfo) == FAILED)
-				return FAILED;
-		}
-		
-		return SUCCESS;
+		super(option);
 	}
 
-	
-	
-	@Override public boolean check(CartemInfo recordInfo) {
-		return checker.check(EmplargCopier.copyFromCartem(recordInfo));
-	}
 
 	
-	
-	@Override public boolean getResult() {
-		return checker.getResult();
+	@Override protected ModelCheckerV1<EmplargInfo> getCheckerHook(ModelCheckerOption option) {
+		return new EmplargCheckExist(option);
 	}
-
 	
 	
-	@Override public String getFailMessage() {
-		return checker.getFailMessage();
-	}
-
 	
-	
-	@Override public int getFailCode() {
-		return checker.getFailCode();
+	@Override protected EmplargInfo toForwardClass(CartemInfo baseRecord) {
+		return EmplargCopier.copyFromCartem(baseRecord);
 	}
 }

@@ -6,15 +6,15 @@ import java.util.List;
 import br.com.mind5.business.cartItem.info.CartemInfo;
 import br.com.mind5.business.cartItem.model.action.LazyCartemRootSelect;
 import br.com.mind5.business.cartItem.model.action.StdCartemMergeCartemarch;
-import br.com.mind5.business.cartItem.model.checker.CartemCheckDummy;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class RootCartemSearch extends DeciTreeTemplateWriteV1<CartemInfo> {
+public final class RootCartemSearch extends DeciTreeTemplateWriteV2<CartemInfo> {
 	
 	public RootCartemSearch(DeciTreeOption<CartemInfo> option) {
 		super(option);
@@ -26,7 +26,7 @@ public final class RootCartemSearch extends DeciTreeTemplateWriteV1<CartemInfo> 
 		List<ModelCheckerV1<CartemInfo>> queue = new ArrayList<>();		
 		ModelCheckerV1<CartemInfo> checker;
 		
-		checker = new CartemCheckDummy();
+		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueueV2<>(queue);

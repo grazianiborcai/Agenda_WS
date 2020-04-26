@@ -1,56 +1,27 @@
 package br.com.mind5.business.cartItem.model.checker;
 
-import java.util.List;
-
 import br.com.mind5.business.cartItem.info.CartemInfo;
 import br.com.mind5.business.employeeWorkTimeRange.info.EmpworgInfo;
 import br.com.mind5.business.employeeWorkTimeRange.model.checker.EmpworgCheckExist;
-import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
+import br.com.mind5.model.checker.ModelCheckerV1;
 
-public final class CartemCheckEmpworg implements ModelCheckerV1<CartemInfo> {
-	private final boolean FAILED = false;
-	private final boolean SUCCESS = true;
-	
-	private ModelCheckerV1<EmpworgInfo> checker;
-	
+public final class CartemCheckEmpworg extends ModelCheckerTemplateForwardV2<CartemInfo, EmpworgInfo> {
 	
 	public CartemCheckEmpworg(ModelCheckerOption option) {
-		checker = new EmpworgCheckExist(option);
-	}
-	
-	
-	
-	@Override public boolean check(List<CartemInfo> recordInfos) {
-		for (CartemInfo eachInfo : recordInfos) {
-			if (check(eachInfo) == FAILED)
-				return FAILED;
-		}
-		
-		return SUCCESS;
+		super(option);
 	}
 
-	
-	
-	@Override public boolean check(CartemInfo recordInfo) {
-		return checker.check(EmpworgInfo.copyFrom(recordInfo));
-	}
 
 	
-	
-	@Override public boolean getResult() {
-		return checker.getResult();
+	@Override protected ModelCheckerV1<EmpworgInfo> getCheckerHook(ModelCheckerOption option) {
+		return new EmpworgCheckExist(option);
 	}
-
 	
 	
-	@Override public String getFailMessage() {
-		return checker.getFailMessage();
-	}
-
 	
-	
-	@Override public int getFailCode() {
-		return checker.getFailCode();
+	@Override protected EmpworgInfo toForwardClass(CartemInfo baseRecord) {
+		return EmpworgInfo.copyFrom(baseRecord);
 	}
 }

@@ -1,72 +1,61 @@
 package br.com.mind5.business.cartItem.info;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import br.com.mind5.business.materialStore.info.MatoreInfo;
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-final class CartemVisiMergeMatore implements InfoMergerVisitor_<CartemInfo, MatoreInfo> {
-
-	@Override public CartemInfo writeRecord(MatoreInfo sourceOne, CartemInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
-		
-		CartemInfo resultInfo = makeClone(sourceTwo);
-		resultInfo.price = sourceOne.matPrice;
-		
-		if (resultInfo.codWeekday == 1)
-			resultInfo.price = sourceOne.matPrice1;
-		
-		if (resultInfo.codWeekday == 2)
-			resultInfo.price = sourceOne.matPrice2;
-		
-		if (resultInfo.codWeekday == 3)
-			resultInfo.price = sourceOne.matPrice3;
-		
-		if (resultInfo.codWeekday == 4)
-			resultInfo.price = sourceOne.matPrice4;
-		
-		if (resultInfo.codWeekday == 5)
-			resultInfo.price = sourceOne.matPrice5;
-		
-		if (resultInfo.codWeekday == 6)
-			resultInfo.price = sourceOne.matPrice6;
-		
-		if (resultInfo.codWeekday == 7)
-			resultInfo.price = sourceOne.matPrice7;
-
-		return resultInfo;
+final class CartemVisiMergeMatore implements InfoMergerVisitorV3<CartemInfo, MatoreInfo> {
+	
+	@Override public List<CartemInfo> beforeMerge(List<CartemInfo> baseInfos) {
+		return baseInfos;
 	}
 	
 	
 	
-	private void checkArgument(MatoreInfo sourceOne, CartemInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}	
-	
-	
-	
-	private CartemInfo makeClone(CartemInfo recordInfo) {
-		try {
-			return (CartemInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-
-
-	
-	@Override public boolean shouldWrite(MatoreInfo sourceOne, CartemInfo sourceTwo) {
-		return (sourceOne.codOwner == sourceTwo.codOwner && 
-				sourceOne.codStore == sourceTwo.codStore && 
-				sourceOne.codMat   == sourceTwo.codMat		);
+	@Override public boolean shouldMerge(CartemInfo baseInfo, MatoreInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner && 
+				baseInfo.codStore == selectedInfo.codStore && 
+				baseInfo.codMat   == selectedInfo.codMat		);
 	}
 	
 	
 	
-	private void logException(Exception e) {
-		SystemLog.logError(this.getClass(), e);
+	@Override public List<CartemInfo> merge(CartemInfo baseInfo, MatoreInfo selectedInfo) {
+		List<CartemInfo> results = new ArrayList<>();
+		
+		baseInfo.price = selectedInfo.matPrice;
+		
+		if (baseInfo.codWeekday == 1)
+			baseInfo.price = selectedInfo.matPrice1;
+		
+		if (baseInfo.codWeekday == 2)
+			baseInfo.price = selectedInfo.matPrice2;
+		
+		if (baseInfo.codWeekday == 3)
+			baseInfo.price = selectedInfo.matPrice3;
+		
+		if (baseInfo.codWeekday == 4)
+			baseInfo.price = selectedInfo.matPrice4;
+		
+		if (baseInfo.codWeekday == 5)
+			baseInfo.price = selectedInfo.matPrice5;
+		
+		if (baseInfo.codWeekday == 6)
+			baseInfo.price = selectedInfo.matPrice6;
+		
+		if (baseInfo.codWeekday == 7)
+			baseInfo.price = selectedInfo.matPrice7;
+		
+		results.add(baseInfo);
+		return results;
+	}
+	
+	
+	
+	@Override public InfoUniquifier<CartemInfo> getUniquifier() {
+		return null;
 	}
 }

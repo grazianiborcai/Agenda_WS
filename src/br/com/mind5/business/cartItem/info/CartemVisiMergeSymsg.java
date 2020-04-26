@@ -1,48 +1,38 @@
 package br.com.mind5.business.cartItem.info;
 
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import java.util.ArrayList;
+import java.util.List;
+
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.message.sysMessage.info.SymsgInfo;
 
-final class CartemVisiMergeSymsg implements InfoMergerVisitor_<CartemInfo, SymsgInfo> {
-
-	@Override public CartemInfo writeRecord(SymsgInfo sourceOne, CartemInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
-		
-		CartemInfo resultInfo = makeClone(sourceTwo);
-		resultInfo.symsgData = sourceOne;
-		return resultInfo;
+final class CartemVisiMergeSymsg implements InfoMergerVisitorV3<CartemInfo, SymsgInfo> {
+	
+	@Override public List<CartemInfo> beforeMerge(List<CartemInfo> baseInfos) {
+		return baseInfos;
 	}
 	
 	
 	
-	private void checkArgument(SymsgInfo sourceOne, CartemInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private CartemInfo makeClone(CartemInfo recordInfo) {
-		try {
-			return (CartemInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-
-
-	
-	@Override public boolean shouldWrite(SymsgInfo sourceOne, CartemInfo sourceTwo) {
+	@Override public boolean shouldMerge(CartemInfo baseInfo, SymsgInfo selectedInfo) {
 		return true;
 	}
 	
 	
 	
-	private void logException(Exception e) {
-		SystemLog.logError(this.getClass(), e);
+	@Override public List<CartemInfo> merge(CartemInfo baseInfo, SymsgInfo selectedInfo) {
+		List<CartemInfo> results = new ArrayList<>();
+		
+		baseInfo.symsgData = selectedInfo;
+		
+		results.add(baseInfo);
+		return results;
+	}
+	
+	
+	
+	@Override public InfoUniquifier<CartemInfo> getUniquifier() {
+		return null;
 	}
 }

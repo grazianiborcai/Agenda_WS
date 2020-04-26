@@ -1,57 +1,28 @@
 package br.com.mind5.business.cartItem.model.checker;
 
-import java.util.List;
-
 import br.com.mind5.business.cartItem.info.CartemInfo;
 import br.com.mind5.business.planingDataSearch.info.PlanarchCopier;
 import br.com.mind5.business.planingDataSearch.info.PlanarchInfo;
 import br.com.mind5.business.planingDataSearch.model.checker.PlanarchCheckExist;
-import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
+import br.com.mind5.model.checker.ModelCheckerV1;
 
-public final class CartemCheckPlanarch implements ModelCheckerV1<CartemInfo> {
-	private final boolean FAILED = false;
-	private final boolean SUCCESS = true;
-	
-	private ModelCheckerV1<PlanarchInfo> checker;
-	
+public final class CartemCheckPlanarch extends ModelCheckerTemplateForwardV2<CartemInfo, PlanarchInfo> {
 	
 	public CartemCheckPlanarch(ModelCheckerOption option) {
-		checker = new PlanarchCheckExist(option);
-	}
-	
-	
-	
-	@Override public boolean check(List<CartemInfo> recordInfos) {
-		for (CartemInfo eachInfo : recordInfos) {
-			if (check(eachInfo) == FAILED)
-				return FAILED;
-		}
-		
-		return SUCCESS;
+		super(option);
 	}
 
-	
-	
-	@Override public boolean check(CartemInfo recordInfo) {
-		return checker.check(PlanarchCopier.copyFromCartem(recordInfo));
-	}
 
 	
-	
-	@Override public boolean getResult() {
-		return checker.getResult();
+	@Override protected ModelCheckerV1<PlanarchInfo> getCheckerHook(ModelCheckerOption option) {
+		return new PlanarchCheckExist(option);
 	}
-
 	
 	
-	@Override public String getFailMessage() {
-		return checker.getFailMessage();
-	}
-
 	
-	
-	@Override public int getFailCode() {
-		return checker.getFailCode();
+	@Override protected PlanarchInfo toForwardClass(CartemInfo baseRecord) {
+		return PlanarchCopier.copyFromCartem(baseRecord);
 	}
 }

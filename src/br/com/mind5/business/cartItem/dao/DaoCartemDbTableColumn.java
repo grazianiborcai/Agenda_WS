@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class CartemDbTableColumn extends DaoDbTableColumnTemplate {
+public final class DaoCartemDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_BEGIN_TIME = DaoDbField.COL_BEGIN_TIME;		
 	public static final String COL_COD_EMPLOYEE = DaoDbField.COL_COD_EMPLOYEE;	
 	public static final String COL_COD_LANGUAGE = DaoDbField.COL_COD_LANGUAGE;
@@ -20,27 +20,16 @@ public final class CartemDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_CREATED_ON = DaoDbField.COL_CREATED_ON;	
 	public static final String COL_DATE = DaoDbField.COL_DATE;					
 	public static final String COL_END_TIME = DaoDbField.COL_END_TIME;	
-	public static final String COL_QUANTITY = DaoDbField.COL_QUANTITY;			
+	public static final String COL_QUANTITY = DaoDbField.COL_QUANTITY;		
 	
 	
-	private Hashtable<String, List<DaoColumn>> tableColumns;
-	
-	
-	public CartemDbTableColumn() {
-		super(CartemDbTableColumn.class);
+	public DaoCartemDbTableColumn() {
+		super();
 	}
 	
 	
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
-		tableColumns = new Hashtable<>();	
-		buildCartemTable();
-		return tableColumns;
-	}
-	
-	
-	
-	private void buildCartemTable() {
 		final String TABLE_NAME = DaoDbTable.CART_ITM_TABLE;
 		
 		DaoColumn oneColumn;
@@ -126,6 +115,8 @@ public final class CartemDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		tableColumns.put(TABLE_NAME, columns);
+		Hashtable<String, List<DaoColumn>> results = new Hashtable<>();
+		results.put(TABLE_NAME, columns);
+		return results;
 	}
 }

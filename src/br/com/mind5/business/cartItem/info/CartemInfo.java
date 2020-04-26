@@ -39,7 +39,7 @@ public final class CartemInfo extends InfoRecord implements Cloneable, Comparabl
 	
 	
 	public CartemInfo() {
-		super(CartemInfo.class);
+		super();
 		
 		codOwner = DefaultValue.number();	
 		codCustomer = DefaultValue.number();

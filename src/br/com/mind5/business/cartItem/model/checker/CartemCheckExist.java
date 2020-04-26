@@ -1,7 +1,7 @@
 package br.com.mind5.business.cartItem.model.checker;
 
 import br.com.mind5.business.cartItem.info.CartemInfo;
-import br.com.mind5.business.cartItem.model.action.StdCartemSelect;
+import br.com.mind5.business.cartItem.model.action.StdCartemDaoSelect;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -17,7 +17,7 @@ public final class CartemCheckExist extends ModelCheckerTemplateActionV2<CartemI
 
 	
 	@Override protected ActionStdV1<CartemInfo> buildActionHook(DeciTreeOption<CartemInfo> option) {
-		ActionStdV1<CartemInfo> actionSelect = new StdCartemSelect(option);
+		ActionStdV1<CartemInfo> actionSelect = new StdCartemDaoSelect(option);
 		return actionSelect;
 	}
 	

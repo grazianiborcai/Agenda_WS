@@ -4,15 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.cartItem.info.CartemInfo;
-import br.com.mind5.business.cartItem.model.action.StdCartemDelete;
-import br.com.mind5.business.cartItem.model.checker.CartemCheckDummy;
+import br.com.mind5.business.cartItem.model.action.StdCartemDaoDelete;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class NodeCartemDeleteService extends DeciTreeTemplateWriteV1<CartemInfo> {
+public final class NodeCartemDeleteService extends DeciTreeTemplateWriteV2<CartemInfo> {
 	
 	public NodeCartemDeleteService(DeciTreeOption<CartemInfo> option) {
 		super(option);
@@ -24,7 +24,7 @@ public final class NodeCartemDeleteService extends DeciTreeTemplateWriteV1<Carte
 		List<ModelCheckerV1<CartemInfo>> queue = new ArrayList<>();		
 		ModelCheckerV1<CartemInfo> checker;	
 
-		checker = new CartemCheckDummy();
+		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueueV2<>(queue);
@@ -35,7 +35,7 @@ public final class NodeCartemDeleteService extends DeciTreeTemplateWriteV1<Carte
 	@Override protected List<ActionStdV1<CartemInfo>> buildActionsOnPassedHook(DeciTreeOption<CartemInfo> option) {
 		List<ActionStdV1<CartemInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<CartemInfo> delete = new StdCartemDelete(option);
+		ActionStdV1<CartemInfo> delete = new StdCartemDaoDelete(option);
 		
 		actions.add(delete);
 		return actions;

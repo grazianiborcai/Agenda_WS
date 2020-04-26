@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoStmtParamTranslator;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public class CartemInsertSingle extends DaoStmtTemplate<CartemInfo> {
+public class DaoCartemInsertSingle extends DaoStmtTemplate<CartemInfo> {
 	private final String MAIN_TABLE = DaoDbTable.CART_ITM_TABLE;		
 	
 	
-	public CartemInsertSingle(Connection conn, CartemInfo recordInfo, String schemaName) {
+	public DaoCartemInsertSingle(Connection conn, CartemInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	

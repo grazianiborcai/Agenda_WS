@@ -4,14 +4,14 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.cartItem.info.CartemInfo;
-import br.com.mind5.model.action.ActionLazyTemplateV1;
+import br.com.mind5.model.action.ActionLazyTemplateV2;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyCartemInsert extends ActionLazyTemplateV1<CartemInfo, CartemInfo> {
+public final class LazyCartemDaoDelete extends ActionLazyTemplateV2<CartemInfo, CartemInfo> {
 	
-	public LazyCartemInsert(Connection conn, String schemaName) {
+	public LazyCartemDaoDelete(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyCartemInsert extends ActionLazyTemplateV1<CartemInfo, Car
 	
 	
 	@Override protected ActionStdV1<CartemInfo> getInstanceOfActionHook(DeciTreeOption<CartemInfo> option) {
-		return new StdCartemInsert(option);
+		return new StdCartemDaoDelete(option);
 	}
 	
 	

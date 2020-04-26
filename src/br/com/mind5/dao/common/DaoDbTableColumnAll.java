@@ -9,7 +9,7 @@ import br.com.mind5.business.addressSearch.dao.DaoAddarchDbTableColumn;
 import br.com.mind5.business.addressSnapshot.dao.DaoAddresnapDbTableColumn;
 import br.com.mind5.business.calendarDate.dao.CalateDbTableColumn;
 import br.com.mind5.business.cart.dao.DaoCartDbTableColumn;
-import br.com.mind5.business.cartItem.dao.CartemDbTableColumn;
+import br.com.mind5.business.cartItem.dao.DaoCartemDbTableColumn;
 import br.com.mind5.business.cartItemSearch.dao.CartemarchDbTableColumn;
 import br.com.mind5.business.cartReserve.dao.DaoCarterveDbTableColumn;
 import br.com.mind5.business.company.dao.CompDbTableColumn;
@@ -225,7 +225,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new CusarchDbTableColumn());
 		addTable(new PlanataDbTableColumn());
 		addTable(new MatextsnapDbTableColumn());
-		addTable(new CartemDbTableColumn());
+		addTable(new DaoCartemDbTableColumn());
 		addTable(new DaoOrderveDbTableColumn());
 		addTable(new EmailDbTableColumn());
 		addTable(new EmabodyDbTableColumn());

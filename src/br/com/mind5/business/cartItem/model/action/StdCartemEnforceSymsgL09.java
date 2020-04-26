@@ -1,35 +1,19 @@
 package br.com.mind5.business.cartItem.model.action;
 
 import br.com.mind5.business.cartItem.info.CartemInfo;
-import br.com.mind5.model.action.ActionLazyV1;
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionStdHelperEnforce;
-import br.com.mind5.model.decisionTree.DeciResult;
+import br.com.mind5.model.action.ActionStdTemplateV2;
+import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdCartemEnforceSymsgL09 implements ActionStdV1<CartemInfo> {
-	private ActionStdV1<CartemInfo> actionHelper;	
-	
-	
-	public StdCartemEnforceSymsgL09(DeciTreeOption<CartemInfo> option) {			
-		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiCartemEnforceSymsgL09());
+public final class StdCartemEnforceSymsgL09 extends ActionStdTemplateV2<CartemInfo> {
+
+	public StdCartemEnforceSymsgL09(DeciTreeOption<CartemInfo> option) {
+		super(option);
 	}
 	
 	
 	
-	@Override public void addPostAction(ActionLazyV1<CartemInfo> actionHandler) {
-		actionHelper.addPostAction(actionHandler);
-	}
-	
-	
-	
-	@Override public boolean executeAction() {			
-		return actionHelper.executeAction();
-	}
-	
-	
-	
-	@Override public DeciResult<CartemInfo> getDecisionResult() {
-		return actionHelper.getDecisionResult();
+	protected ActionVisitorV2<CartemInfo> buildVisitorHook(DeciTreeOption<CartemInfo> option) {
+		return new VisiCartemEnforceSymsgL09(option);
 	}
 }

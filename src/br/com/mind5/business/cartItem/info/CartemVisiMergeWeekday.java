@@ -1,49 +1,38 @@
 package br.com.mind5.business.cartItem.info;
 
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import java.util.ArrayList;
+import java.util.List;
+
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.masterData.weekday.info.WeekdayInfo;
 
-final class CartemVisiMergeWeekday implements InfoMergerVisitor_<CartemInfo, WeekdayInfo> {
-
-	@Override public CartemInfo writeRecord(WeekdayInfo sourceOne, CartemInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+final class CartemVisiMergeWeekday implements InfoMergerVisitorV3<CartemInfo, WeekdayInfo> {
+	
+	@Override public List<CartemInfo> beforeMerge(List<CartemInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(CartemInfo baseInfo, WeekdayInfo selectedInfo) {
+		return (baseInfo.codWeekday == selectedInfo.codWeekday);
+	}
+	
+	
+	
+	@Override public List<CartemInfo> merge(CartemInfo baseInfo, WeekdayInfo selectedInfo) {
+		List<CartemInfo> results = new ArrayList<>();
 		
-		CartemInfo resultInfo = makeClone(sourceTwo);
-		resultInfo.txtWeekday = sourceOne.txtWeekday;
-
-		return resultInfo;
+		baseInfo.txtWeekday = selectedInfo.txtWeekday;
+		
+		results.add(baseInfo);
+		return results;
 	}
 	
 	
 	
-	private void checkArgument(WeekdayInfo sourceOne, CartemInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private CartemInfo makeClone(CartemInfo recordInfo) {
-		try {
-			return (CartemInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-
-
-	
-	@Override public boolean shouldWrite(WeekdayInfo sourceOne, CartemInfo sourceTwo) {
-		return (sourceOne.codWeekday == sourceTwo.codWeekday);
-	}
-	
-	
-	
-	private void logException(Exception e) {
-		SystemLog.logError(this.getClass(), e);
+	@Override public InfoUniquifier<CartemInfo> getUniquifier() {
+		return null;
 	}
 }

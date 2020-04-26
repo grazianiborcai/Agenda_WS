@@ -1,19 +1,19 @@
 package br.com.mind5.business.cartItem.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.cartItem.info.CartemInfo;
 import br.com.mind5.business.cartItem.info.CartemMerger;
 import br.com.mind5.business.cartItemSearch.info.CartemarchInfo;
 import br.com.mind5.business.cartItemSearch.model.decisionTree.RootCartemarchSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiCartemMergeCartemarch extends ActionVisitorTemplateMergeV1<CartemInfo, CartemarchInfo> {
+final class VisiCartemMergeCartemarch extends ActionVisitorTemplateMergeV2<CartemInfo, CartemarchInfo> {
 	
-	public VisiCartemMergeCartemarch(Connection conn, String schemaName) {
-		super(conn, schemaName, CartemarchInfo.class);
+	public VisiCartemMergeCartemarch(DeciTreeOption<CartemInfo> option) {
+		super(option, CartemarchInfo.class);
 	}
 	
 	
@@ -24,13 +24,13 @@ final class VisiCartemMergeCartemarch extends ActionVisitorTemplateMergeV1<Carte
 	
 	
 	
-	@Override protected List<CartemInfo> mergeHook(List<CartemInfo> recordInfos, List<CartemarchInfo> selectedInfos) {	
-		return CartemMerger.mergeWithCartemarch(selectedInfos, recordInfos);
+	@Override protected List<CartemInfo> mergeHook(List<CartemInfo> baseInfos, List<CartemarchInfo> selectedInfos) {	
+		return CartemMerger.mergeWithCartemarch(baseInfos, selectedInfos);
 	}
 	
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV2.DONT_MERGE_WHEN_EMPTY;
 	}
 }

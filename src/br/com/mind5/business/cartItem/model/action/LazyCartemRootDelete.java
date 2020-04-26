@@ -5,12 +5,12 @@ import java.util.List;
 
 import br.com.mind5.business.cartItem.info.CartemInfo;
 import br.com.mind5.business.cartItem.model.decisionTree.RootCartemDelete;
-import br.com.mind5.model.action.ActionLazyTemplateV1;
+import br.com.mind5.model.action.ActionLazyTemplateV2;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyCartemRootDelete extends ActionLazyTemplateV1<CartemInfo, CartemInfo> {
+public final class LazyCartemRootDelete extends ActionLazyTemplateV2<CartemInfo, CartemInfo> {
 	
 	public LazyCartemRootDelete(Connection conn, String schemaName) {
 		super(conn, schemaName);

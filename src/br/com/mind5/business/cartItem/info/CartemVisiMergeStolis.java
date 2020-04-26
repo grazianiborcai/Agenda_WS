@@ -1,49 +1,39 @@
 package br.com.mind5.business.cartItem.info;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import br.com.mind5.business.storeList.info.StolisInfo;
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-final class CartemVisiMergeStolis implements InfoMergerVisitor_<CartemInfo, StolisInfo> {
-
-	@Override public CartemInfo writeRecord(StolisInfo sourceOne, CartemInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+final class CartemVisiMergeStolis implements InfoMergerVisitorV3<CartemInfo, StolisInfo> {
+	
+	@Override public List<CartemInfo> beforeMerge(List<CartemInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(CartemInfo baseInfo, StolisInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner && 
+				baseInfo.codStore == selectedInfo.codStore	);
+	}
+	
+	
+	
+	@Override public List<CartemInfo> merge(CartemInfo baseInfo, StolisInfo selectedInfo) {
+		List<CartemInfo> results = new ArrayList<>();
 		
-		CartemInfo resultInfo = makeClone(sourceTwo);
-		resultInfo.stolisData = sourceOne;
-		return resultInfo;
+		baseInfo.stolisData = selectedInfo;
+		
+		results.add(baseInfo);
+		return results;
 	}
 	
 	
 	
-	private void checkArgument(StolisInfo sourceOne, CartemInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private CartemInfo makeClone(CartemInfo recordInfo) {
-		try {
-			return (CartemInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-
-
-	
-	@Override public boolean shouldWrite(StolisInfo sourceOne, CartemInfo sourceTwo) {
-		return (sourceOne.codOwner == sourceTwo.codOwner && 
-				sourceOne.codStore == sourceTwo.codStore	);
-	}
-	
-	
-	
-	private void logException(Exception e) {
-		SystemLog.logError(this.getClass(), e);
+	@Override public InfoUniquifier<CartemInfo> getUniquifier() {
+		return null;
 	}
 }
