@@ -8,7 +8,7 @@ import br.com.mind5.business.address.dao.DaoAddressDbTableColumn;
 import br.com.mind5.business.addressSearch.dao.DaoAddarchDbTableColumn;
 import br.com.mind5.business.addressSnapshot.dao.DaoAddresnapDbTableColumn;
 import br.com.mind5.business.calendarDate.dao.CalateDbTableColumn;
-import br.com.mind5.business.cart.dao.CartDbTableColumn;
+import br.com.mind5.business.cart.dao.DaoCartDbTableColumn;
 import br.com.mind5.business.cartItem.dao.CartemDbTableColumn;
 import br.com.mind5.business.cartItemSearch.dao.CartemarchDbTableColumn;
 import br.com.mind5.business.cartReserve.dao.DaoCarterveDbTableColumn;
@@ -198,7 +198,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new CusDbTableColumn());
 		addTable(new DaoOwnerDbTableColumn());
 		addTable(new MatoreDbTableColumn());
-		addTable(new CartDbTableColumn());
+		addTable(new DaoCartDbTableColumn());
 		addTable(new FeewnerDbTableColumn());
 		addTable(new FeedefDbTableColumn());
 		addTable(new DaoCarterveDbTableColumn());

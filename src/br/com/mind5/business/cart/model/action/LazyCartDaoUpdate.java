@@ -4,14 +4,14 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.cart.info.CartInfo;
-import br.com.mind5.model.action.ActionLazyTemplateV1;
+import br.com.mind5.model.action.ActionLazyTemplateV2;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyCartSelect extends ActionLazyTemplateV1<CartInfo, CartInfo> {
+public final class LazyCartDaoUpdate extends ActionLazyTemplateV2<CartInfo, CartInfo> {
 
-	public LazyCartSelect(Connection conn, String schemaName) {
+	public LazyCartDaoUpdate(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyCartSelect extends ActionLazyTemplateV1<CartInfo, CartInf
 	
 	
 	@Override protected ActionStdV1<CartInfo> getInstanceOfActionHook(DeciTreeOption<CartInfo> option) {
-		return new StdCartSelect(option);
+		return new StdCartDaoUpdate(option);
 	}
 	
 	

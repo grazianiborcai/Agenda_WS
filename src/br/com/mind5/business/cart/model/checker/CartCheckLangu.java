@@ -1,56 +1,27 @@
 package br.com.mind5.business.cart.model.checker;
 
-import java.util.List;
-
 import br.com.mind5.business.cart.info.CartInfo;
 import br.com.mind5.masterData.language.info.LanguInfo;
 import br.com.mind5.masterData.language.model.checker.LanguCheckExist;
-import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
+import br.com.mind5.model.checker.ModelCheckerV1;
 
-public final class CartCheckLangu implements ModelCheckerV1<CartInfo> {
-	private final boolean FAILED = false;
-	private final boolean SUCCESS = true;
-	
-	private ModelCheckerV1<LanguInfo> checker;
-	
+public final class CartCheckLangu extends ModelCheckerTemplateForwardV2<CartInfo, LanguInfo> {
 	
 	public CartCheckLangu(ModelCheckerOption option) {
-		checker = new LanguCheckExist(option);
-	}
-	
-	
-	
-	@Override public boolean check(List<CartInfo> recordInfos) {
-		for (CartInfo eachInfo : recordInfos) {
-			if (check(eachInfo) == FAILED)
-				return FAILED;
-		}
-		
-		return SUCCESS;
+		super(option);
 	}
 
-	
-	
-	@Override public boolean check(CartInfo recordInfo) {
-		return checker.check(LanguInfo.copyFrom(recordInfo));
-	}
 
 	
-	
-	@Override public boolean getResult() {
-		return checker.getResult();
+	@Override protected ModelCheckerV1<LanguInfo> getCheckerHook(ModelCheckerOption option) {
+		return new LanguCheckExist(option);
 	}
-
 	
 	
-	@Override public String getFailMessage() {
-		return checker.getFailMessage();
-	}
-
 	
-	
-	@Override public int getFailCode() {
-		return checker.getFailCode();
+	@Override protected LanguInfo toForwardClass(CartInfo baseRecord) {
+		return LanguInfo.copyFrom(baseRecord);
 	}
 }

@@ -1,35 +1,19 @@
 package br.com.mind5.business.cart.model.action;
 
 import br.com.mind5.business.cart.info.CartInfo;
-import br.com.mind5.model.action.ActionLazyV1;
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionStdHelperMerge;
-import br.com.mind5.model.decisionTree.DeciResult;
+import br.com.mind5.model.action.ActionStdTemplateV2;
+import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdCartMergeToUpdate implements ActionStdV1<CartInfo> {
-	private ActionStdV1<CartInfo> actionHelper;	
-	
-	
-	public StdCartMergeToUpdate(DeciTreeOption<CartInfo> option) {			
-		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiCartMergeToUpdate(option.conn, option.schemaName));
+public final class StdCartMergeToUpdate extends ActionStdTemplateV2<CartInfo>{
+
+	public StdCartMergeToUpdate(DeciTreeOption<CartInfo> option) {
+		super(option);
 	}
 	
 	
 	
-	@Override public void addPostAction(ActionLazyV1<CartInfo> actionHandler) {
-		actionHelper.addPostAction(actionHandler);
-	}
-	
-	
-	
-	@Override public boolean executeAction() {			
-		return actionHelper.executeAction();
-	}
-	
-	
-	
-	@Override public DeciResult<CartInfo> getDecisionResult() {
-		return actionHelper.getDecisionResult();
+	protected ActionVisitorV2<CartInfo> buildVisitorHook(DeciTreeOption<CartInfo> option) {
+		return new VisiCartMergeToUpdate(option);
 	}
 }

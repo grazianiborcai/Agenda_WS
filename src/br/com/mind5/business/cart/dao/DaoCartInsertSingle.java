@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoStmtParamTranslator;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class CartInsertSingle extends DaoStmtTemplate<CartInfo> {
+public final class DaoCartInsertSingle extends DaoStmtTemplate<CartInfo> {
 	private final String MAIN_TABLE = DaoDbTable.CART_HDR_TABLE;	
 	
 	
-	public CartInsertSingle(Connection conn, CartInfo recordInfo, String schemaName) {
+	public DaoCartInsertSingle(Connection conn, CartInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	

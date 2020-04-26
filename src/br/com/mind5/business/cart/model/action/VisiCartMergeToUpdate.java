@@ -1,34 +1,34 @@
 package br.com.mind5.business.cart.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.cart.info.CartInfo;
 import br.com.mind5.business.cart.info.CartMerger;
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiCartMergeToUpdate extends ActionVisitorTemplateMergeV1<CartInfo, CartInfo> {
+final class VisiCartMergeToUpdate extends ActionVisitorTemplateMergeV2<CartInfo, CartInfo> {
 	
-	public VisiCartMergeToUpdate(Connection conn, String schemaName) {
-		super(conn, schemaName, CartInfo.class);
+	public VisiCartMergeToUpdate(DeciTreeOption<CartInfo> option) {
+		super(option, CartInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends ActionStdV1<CartInfo>> getActionClassHook() {
-		return StdCartSelect.class;
+	@Override protected Class<? extends ActionStdV2<CartInfo>> getActionClassHook() {
+		return StdCartDaoSelect.class;
 	}
 	
 	
 	
 	@Override protected List<CartInfo> mergeHook(List<CartInfo> baseInfos, List<CartInfo> selectedInfos) {	
-		return CartMerger.mergeToUpdate(selectedInfos, baseInfos);
+		return CartMerger.mergeToUpdate(baseInfos, selectedInfos);
 	}
 	
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV2.DONT_MERGE_WHEN_EMPTY;
 	}
 }

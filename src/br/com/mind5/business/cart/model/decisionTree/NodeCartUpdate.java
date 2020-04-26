@@ -4,17 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.cart.info.CartInfo;
-import br.com.mind5.business.cart.model.action.LazyCartUpdate;
+import br.com.mind5.business.cart.model.action.LazyCartDaoUpdate;
 import br.com.mind5.business.cart.model.action.StdCartMergeToUpdate;
-import br.com.mind5.business.cart.model.checker.CartCheckDummy;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class NodeCartUpdate extends DeciTreeTemplateWriteV1<CartInfo> {
+public final class NodeCartUpdate extends DeciTreeTemplateWriteV2<CartInfo> {
 	
 	public NodeCartUpdate(DeciTreeOption<CartInfo> option) {
 		super(option);
@@ -26,7 +26,7 @@ public final class NodeCartUpdate extends DeciTreeTemplateWriteV1<CartInfo> {
 		List<ModelCheckerV1<CartInfo>> queue = new ArrayList<>();		
 		ModelCheckerV1<CartInfo> checker;	
 
-		checker = new CartCheckDummy();
+		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueueV2<>(queue);
@@ -38,7 +38,7 @@ public final class NodeCartUpdate extends DeciTreeTemplateWriteV1<CartInfo> {
 		List<ActionStdV1<CartInfo>> actions = new ArrayList<>();		
 
 		ActionStdV1<CartInfo> mergeToUpdate = new StdCartMergeToUpdate(option);
-		ActionLazyV1<CartInfo> update = new LazyCartUpdate(option.conn, option.schemaName);
+		ActionLazyV1<CartInfo> update = new LazyCartDaoUpdate(option.conn, option.schemaName);
 		
 		mergeToUpdate.addPostAction(update);
 		

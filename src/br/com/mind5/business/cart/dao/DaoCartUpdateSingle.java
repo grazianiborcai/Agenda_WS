@@ -13,11 +13,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class CartUpdateSingle extends DaoStmtTemplate<CartInfo> {
+public final class DaoCartUpdateSingle extends DaoStmtTemplate<CartInfo> {
 	private final String MAIN_TABLE = DaoDbTable.CART_HDR_TABLE;	
 	
 	
-	public CartUpdateSingle(Connection conn, CartInfo recordInfo, String schemaName) {
+	public DaoCartUpdateSingle(Connection conn, CartInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -42,7 +42,7 @@ public final class CartUpdateSingle extends DaoStmtTemplate<CartInfo> {
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;
 		whereOption.ignoreNonPrimaryKey = DaoOptionValue.IGNORE_NON_PK;
 		
-		DaoStmtWhere whereClause = new CartWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new DaoCartWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	

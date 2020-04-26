@@ -4,15 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.cart.info.CartInfo;
-import br.com.mind5.business.cart.model.action.StdCartInsert;
-import br.com.mind5.business.cart.model.checker.CartCheckDummy;
+import br.com.mind5.business.cart.model.action.StdCartDaoInsert;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class NodeCartInsert extends DeciTreeTemplateWriteV1<CartInfo> {
+public final class NodeCartInsert extends DeciTreeTemplateWriteV2<CartInfo> {
 	
 	public NodeCartInsert(DeciTreeOption<CartInfo> option) {
 		super(option);
@@ -24,7 +24,7 @@ public final class NodeCartInsert extends DeciTreeTemplateWriteV1<CartInfo> {
 		List<ModelCheckerV1<CartInfo>> queue = new ArrayList<>();		
 		ModelCheckerV1<CartInfo> checker;	
 
-		checker = new CartCheckDummy();
+		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueueV2<>(queue);
@@ -35,7 +35,7 @@ public final class NodeCartInsert extends DeciTreeTemplateWriteV1<CartInfo> {
 	@Override protected List<ActionStdV1<CartInfo>> buildActionsOnPassedHook(DeciTreeOption<CartInfo> option) {
 		List<ActionStdV1<CartInfo>> actions = new ArrayList<>();		
 
-		ActionStdV1<CartInfo> insert = new StdCartInsert(option);
+		ActionStdV1<CartInfo> insert = new StdCartDaoInsert(option);
 		
 		actions.add(insert);
 		return actions;

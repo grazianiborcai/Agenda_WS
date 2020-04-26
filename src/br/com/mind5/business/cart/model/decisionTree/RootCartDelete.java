@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.cart.info.CartInfo;
-import br.com.mind5.business.cart.model.action.StdCartDelete;
+import br.com.mind5.business.cart.model.action.StdCartDaoDelete;
 import br.com.mind5.business.cart.model.action.StdCartDeleteCartem;
 import br.com.mind5.business.cart.model.checker.CartCheckCartemarch;
 import br.com.mind5.business.cart.model.checker.CartCheckDelete;
@@ -15,9 +15,9 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class RootCartDelete extends DeciTreeTemplateWriteV1<CartInfo> {
+public final class RootCartDelete extends DeciTreeTemplateWriteV2<CartInfo> {
 	
 	public RootCartDelete(DeciTreeOption<CartInfo> option) {
 		super(option);
@@ -67,7 +67,7 @@ public final class RootCartDelete extends DeciTreeTemplateWriteV1<CartInfo> {
 		List<ActionStdV1<CartInfo>> actions = new ArrayList<>();		
 
 		ActionStdV1<CartInfo> deleteCartem = new StdCartDeleteCartem(option);
-		ActionStdV1<CartInfo> delete = new StdCartDelete(option);
+		ActionStdV1<CartInfo> delete = new StdCartDaoDelete(option);
 		
 		actions.add(deleteCartem);
 		actions.add(delete);

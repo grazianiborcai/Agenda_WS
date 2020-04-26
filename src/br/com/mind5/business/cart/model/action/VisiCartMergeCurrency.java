@@ -1,19 +1,19 @@
 package br.com.mind5.business.cart.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.cart.info.CartInfo;
 import br.com.mind5.business.cart.info.CartMerger;
 import br.com.mind5.masterData.currency.info.CurrencyInfo;
 import br.com.mind5.masterData.currency.model.decisionTree.RootCurrencySelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiCartMergeCurrency extends ActionVisitorTemplateMergeV1<CartInfo, CurrencyInfo> {
+final class VisiCartMergeCurrency extends ActionVisitorTemplateMergeV2<CartInfo, CurrencyInfo> {
 	
-	public VisiCartMergeCurrency(Connection conn, String schemaName) {
-		super(conn, schemaName, CurrencyInfo.class);
+	public VisiCartMergeCurrency(DeciTreeOption<CartInfo> option) {
+		super(option, CurrencyInfo.class);
 	}
 	
 	
@@ -25,12 +25,12 @@ final class VisiCartMergeCurrency extends ActionVisitorTemplateMergeV1<CartInfo,
 	
 	
 	@Override protected List<CartInfo> mergeHook(List<CartInfo> baseInfos, List<CurrencyInfo> selectedInfos) {	
-		return CartMerger.mergeWithCurrency(selectedInfos, baseInfos);
+		return CartMerger.mergeWithCurrency(baseInfos, selectedInfos);
 	}
 	
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV2.MERGE_WHEN_EMPTY;
 	}
 }

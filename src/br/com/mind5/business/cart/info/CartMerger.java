@@ -5,104 +5,98 @@ import java.util.List;
 import br.com.mind5.business.cartItem.info.CartemInfo;
 import br.com.mind5.business.feeOwner.info.FeewnerInfo;
 import br.com.mind5.business.order.info.OrderInfo;
-import br.com.mind5.info.obsolete.InfoMerger_;
+import br.com.mind5.info.InfoMergerBuilderV3;
+import br.com.mind5.info.InfoMergerV3;
 import br.com.mind5.masterData.currency.info.CurrencyInfo;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class CartMerger {	
-	public static CartInfo mergeWithOrder(OrderInfo selectedInfo, CartInfo baseInfo) {
-		InfoMerger_<CartInfo, OrderInfo> merger = new CartMergerOrder();		
-		return merger.merge(selectedInfo, baseInfo);
-	}
+	public static List<CartInfo> mergeWithOrder(List<CartInfo> baseInfos, List<OrderInfo> selectedInfos) {
+		InfoMergerBuilderV3<CartInfo, OrderInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new CartVisiMergeOrder());
+		InfoMergerV3<CartInfo, OrderInfo> merger = builder.build();		
 	
-	
-	
-	public static List<CartInfo> mergeWithOrder(List<OrderInfo> selectedInfos, List<CartInfo> baseInfos) {
-		InfoMerger_<CartInfo, OrderInfo> merger = new CartMergerOrder();		
-		return merger.merge(selectedInfos, baseInfos);
+		return merger.merge();
 	}	
 	
 	
 	
-	public static CartInfo mergeWithFeewner(FeewnerInfo selectedInfo, CartInfo baseInfo) {
-		InfoMerger_<CartInfo, FeewnerInfo> merger = new CartMergerFeewner();		
-		return merger.merge(selectedInfo, baseInfo);
-	}
+	public static List<CartInfo> mergeWithFeewner(List<CartInfo> baseInfos, List<FeewnerInfo> selectedInfos) {
+		InfoMergerBuilderV3<CartInfo, FeewnerInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new CartVisiMergeFeewner());
+		InfoMergerV3<CartInfo, FeewnerInfo> merger = builder.build();		
 	
-	
-	
-	public static List<CartInfo> mergeWithFeewner(List<FeewnerInfo> selectedInfos, List<CartInfo> baseInfos) {
-		InfoMerger_<CartInfo, FeewnerInfo> merger = new CartMergerFeewner();		
-		return merger.merge(selectedInfos, baseInfos);
+		return merger.merge();
 	}	
 	
 	
 	
-	public static CartInfo mergeWithCurrency(CurrencyInfo selectedInfo, CartInfo baseInfo) {
-		InfoMerger_<CartInfo, CurrencyInfo> merger = new CartMergerCurrency();		
-		return merger.merge(selectedInfo, baseInfo);
-	}
+	public static List<CartInfo> mergeWithCurrency(List<CartInfo> baseInfos, List<CurrencyInfo> selectedInfos) {
+		InfoMergerBuilderV3<CartInfo, CurrencyInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new CartVisiMergeCurrency());
+		InfoMergerV3<CartInfo, CurrencyInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}	
 	
 	
 	
-	public static List<CartInfo> mergeWithCurrency(List<CurrencyInfo> selectedInfos, List<CartInfo> baseInfos) {
-		InfoMerger_<CartInfo, CurrencyInfo> merger = new CartMergerCurrency();		
-		return merger.merge(selectedInfos, baseInfos);
+	public static List<CartInfo> mergeWithCartem(List<CartInfo> baseInfos, List<CartemInfo> selectedInfos) {
+		InfoMergerBuilderV3<CartInfo, CartemInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new CartVisiMergeCartem());
+		InfoMergerV3<CartInfo, CartemInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}		
 	
 	
 	
-	public static CartInfo mergeWithCartem(CartemInfo selectedInfo, CartInfo baseInfo) {
-		InfoMerger_<CartInfo, CartemInfo> merger = new CartMergerCartem();		
-		return merger.merge(selectedInfo, baseInfo);
-	}
+	public static List<CartInfo> mergeWithUsername(List<CartInfo> baseInfos, List<UsernameInfo> selectedInfos) {
+		InfoMergerBuilderV3<CartInfo, UsernameInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new CartVisiMergeUsername());
+		InfoMergerV3<CartInfo, UsernameInfo> merger = builder.build();		
 	
-	
-	
-	public static List<CartInfo> mergeWithCartem(List<CartemInfo> selectedInfos, List<CartInfo> baseInfos) {
-		InfoMerger_<CartInfo, CartemInfo> merger = new CartMergerCartem();		
-		return merger.merge(selectedInfos, baseInfos);
+		return merger.merge();
 	}		
 	
 	
 	
-	public static CartInfo mergeWithUsername(UsernameInfo selectedInfo, CartInfo baseInfo) {
-		InfoMerger_<CartInfo, UsernameInfo> merger = new CartMergerUsername();		
-		return merger.merge(selectedInfo, baseInfo);
-	}
+	public static List<CartInfo> mergeToSelect(List<CartInfo> baseInfos, List<CartInfo> selectedInfos) {
+		InfoMergerBuilderV3<CartInfo, CartInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new CartVisiMergeToSelect());
+		InfoMergerV3<CartInfo, CartInfo> merger = builder.build();		
 	
-	
-	
-	public static List<CartInfo> mergeWithUsername(List<UsernameInfo> selectedInfos, List<CartInfo> baseInfos) {
-		InfoMerger_<CartInfo, UsernameInfo> merger = new CartMergerUsername();		
-		return merger.merge(selectedInfos, baseInfos);
+		return merger.merge();
 	}		
 	
 	
 	
-	public static CartInfo mergeToSelect(CartInfo selectedInfo, CartInfo baseInfo) {
-		InfoMerger_<CartInfo, CartInfo> merger = new CartMergerToSelect();		
-		return merger.merge(selectedInfo, baseInfo);
-	}
+	public static List<CartInfo> mergeToUpdate(List<CartInfo> baseInfos, List<CartInfo> selectedInfos) {
+		InfoMergerBuilderV3<CartInfo, CartInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new CartVisiMergeToUpdate());
+		InfoMergerV3<CartInfo, CartInfo> merger = builder.build();		
 	
-	
-	
-	public static List<CartInfo> mergeToSelect(List<CartInfo> selectedInfos, List<CartInfo> baseInfos) {
-		InfoMerger_<CartInfo, CartInfo> merger = new CartMergerToSelect();		
-		return merger.merge(selectedInfos, baseInfos);
-	}		
-	
-	
-	
-	public static CartInfo mergeToUpdate(CartInfo selectedInfo, CartInfo baseInfo) {
-		InfoMerger_<CartInfo, CartInfo> merger = new CartMergerToUpdate();		
-		return merger.merge(selectedInfo, baseInfo);
-	}
-	
-	
-	
-	public static List<CartInfo> mergeToUpdate(List<CartInfo> selectedInfos, List<CartInfo> baseInfos) {
-		InfoMerger_<CartInfo, CartInfo> merger = new CartMergerToUpdate();		
-		return merger.merge(selectedInfos, baseInfos);
+		return merger.merge();
 	}	
 }

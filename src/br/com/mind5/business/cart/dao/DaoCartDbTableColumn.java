@@ -9,30 +9,18 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class CartDbTableColumn extends DaoDbTableColumnTemplate {
+public final class DaoCartDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;
 	public static final String COL_COD_USER = DaoDbField.COL_COD_USER;
-	public static final String COL_LAST_CHANGED = DaoDbField.COL_LAST_CHANGED;
+	public static final String COL_LAST_CHANGED = DaoDbField.COL_LAST_CHANGED;	
 	
-	
-	private Hashtable<String, List<DaoColumn>> tableColumns;
-	
-	
-	public CartDbTableColumn() {
-		super(CartDbTableColumn.class);
+	public DaoCartDbTableColumn() {
+		super();
 	}
 	
 	
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
-		tableColumns = new Hashtable<>();		
-		buildCartHdrTable();	
-		return tableColumns;
-	}
-	
-	
-	
-	private void buildCartHdrTable() {
 		final String TABLE_NAME = DaoDbTable.CART_HDR_TABLE;
 		
 		DaoColumn oneColumn;
@@ -62,6 +50,8 @@ public final class CartDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		tableColumns.put(TABLE_NAME, columns);
+		Hashtable<String, List<DaoColumn>> results = new Hashtable<>();
+		results.put(TABLE_NAME, columns);
+		return results;
 	}
 }

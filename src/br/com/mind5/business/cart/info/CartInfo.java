@@ -23,7 +23,7 @@ public final class CartInfo extends InfoRecord implements Cloneable {
 	
 	
 	public CartInfo() {
-		super(CartInfo.class);
+		super();
 		
 		codOwner = DefaultValue.number();	
 		codUser = DefaultValue.number();
