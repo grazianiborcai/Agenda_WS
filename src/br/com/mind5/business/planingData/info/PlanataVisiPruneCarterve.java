@@ -10,7 +10,16 @@ final class PlanataVisiPruneCarterve implements InfoPrunerSingleVisitor<PlanataI
 	
 	@Override public boolean pruneRecord(PlanataInfo baseInfo, CarterveInfo selectedInfo) {
 		
-		if (hasTimeOverlap(baseInfo, selectedInfo))
+		if (isStoreEqual(baseInfo, selectedInfo) == false)
+			return false;
+		
+		if (isEmployeeEqual(baseInfo, selectedInfo) == false)
+			return false;
+		
+		if (isMaterialEqual(baseInfo, selectedInfo) == false)
+			return false;
+		
+		if (hasTimeOverlap(baseInfo, selectedInfo) == true)
 			return true;
 		
 		return false;
@@ -18,31 +27,52 @@ final class PlanataVisiPruneCarterve implements InfoPrunerSingleVisitor<PlanataI
 	
 	
 	
-	private boolean hasTimeOverlap(PlanataInfo baseInfo, CarterveInfo recordInfo) {
-		if (isDifferent(baseInfo.date, recordInfo.date))
+	private boolean isStoreEqual(PlanataInfo baseInfo, CarterveInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner &&
+				baseInfo.codStore == selectedInfo.codStore	);
+	}
+	
+	
+	
+	private boolean isEmployeeEqual(PlanataInfo baseInfo, CarterveInfo selectedInfo) {
+		return (baseInfo.codOwner    == selectedInfo.codOwner	 &&
+				baseInfo.codEmployee == selectedInfo.codEmployee	);
+	}
+	
+	
+	
+	private boolean isMaterialEqual(PlanataInfo baseInfo, CarterveInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner &&
+				baseInfo.codMat   == selectedInfo.codMat		);
+	}
+	
+	
+	
+	private boolean hasTimeOverlap(PlanataInfo baseInfo, CarterveInfo selectedInfo) {
+		if (isDifferent(baseInfo.date, selectedInfo.date))
 			return false;
 		
 		
-		if (isEqual(baseInfo.beginTime, recordInfo.endTime))
+		if (isEqual(baseInfo.beginTime, selectedInfo.endTime))
 			return false;
 		
 		
-		if (isEqual(baseInfo.endTime, recordInfo.beginTime))
+		if (isEqual(baseInfo.endTime, selectedInfo.beginTime))
 			return false;		
 		
 		
-		if (isEqualOrAfter(baseInfo.beginTime, recordInfo.beginTime)	 &&
-			isEqualOrBefore(baseInfo.beginTime, recordInfo.endTime)		)
+		if (isEqualOrAfter(baseInfo.beginTime, selectedInfo.beginTime)	 &&
+			isEqualOrBefore(baseInfo.beginTime, selectedInfo.endTime)		)
 			return true;
 		
 		
-		if (isEqualOrAfter(baseInfo.endTime, recordInfo.beginTime)	 &&
-			isEqualOrBefore(baseInfo.endTime, recordInfo.endTime)		)
+		if (isEqualOrAfter(baseInfo.endTime, selectedInfo.beginTime)	 &&
+			isEqualOrBefore(baseInfo.endTime, selectedInfo.endTime)		)
 			return true;
 		
 		
-		if (isEqualOrBefore(baseInfo.beginTime, recordInfo.beginTime) &&
-			isEqualOrAfter(baseInfo.endTime, recordInfo.endTime)			)
+		if (isEqualOrBefore(baseInfo.beginTime, selectedInfo.beginTime) &&
+			isEqualOrAfter(baseInfo.endTime, selectedInfo.endTime)			)
 			return true;	
 		
 		
