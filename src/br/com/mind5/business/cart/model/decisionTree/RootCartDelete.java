@@ -4,9 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.cart.info.CartInfo;
+import br.com.mind5.business.cart.model.action.LazyCartNodeDeleteL1;
+import br.com.mind5.business.cart.model.action.StdCartMergeUsername;
 import br.com.mind5.business.cart.model.checker.CartCheckDelete;
 import br.com.mind5.business.cart.model.checker.CartCheckLangu;
 import br.com.mind5.business.cart.model.checker.CartCheckOwner;
+import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -56,8 +59,12 @@ public final class RootCartDelete extends DeciTreeTemplateWriteV2<CartInfo> {
 	@Override protected List<ActionStdV1<CartInfo>> buildActionsOnPassedHook(DeciTreeOption<CartInfo> option) {
 		List<ActionStdV1<CartInfo>> actions = new ArrayList<>();		
 
-		ActionStdV1<CartInfo> nodeL1 = new NodeCartDeleteL1(option).toAction();
-		actions.add(nodeL1);
+		ActionStdV1<CartInfo> mergeUser = new StdCartMergeUsername(option);
+		ActionLazyV1<CartInfo> nodeL1 = new LazyCartNodeDeleteL1(option.conn, option.schemaName);
+		
+		mergeUser.addPostAction(nodeL1);
+		
+		actions.add(mergeUser);
 		
 		return actions;
 	}
