@@ -4,19 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.cart.info.CartInfo;
-import br.com.mind5.business.cart.model.action.LazyCartUpsertCartem;
-import br.com.mind5.business.cart.model.action.StdCartEnforceCartemKey;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.business.cart.model.checker.CartCheckExist;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class NodeCartCartem extends DeciTreeTemplateWriteV2<CartInfo> {
+public final class NodeCartUpsertHeader extends DeciTreeTemplateWriteV2<CartInfo> {
 	
-	public NodeCartCartem(DeciTreeOption<CartInfo> option) {
+	public NodeCartUpsertHeader(DeciTreeOption<CartInfo> option) {
 		super(option);
 	}
 	
@@ -25,10 +23,15 @@ public final class NodeCartCartem extends DeciTreeTemplateWriteV2<CartInfo> {
 	@Override protected ModelCheckerV1<CartInfo> buildCheckerHook(DeciTreeOption<CartInfo> option) {
 		List<ModelCheckerV1<CartInfo>> queue = new ArrayList<>();		
 		ModelCheckerV1<CartInfo> checker;	
+		ModelCheckerOption checkerOption;
 		
-		checker = new ModelCheckerDummy<>();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
+		checker = new CartCheckExist(checkerOption);
 		queue.add(checker);
-
+		
 		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
@@ -37,12 +40,20 @@ public final class NodeCartCartem extends DeciTreeTemplateWriteV2<CartInfo> {
 	@Override protected List<ActionStdV1<CartInfo>> buildActionsOnPassedHook(DeciTreeOption<CartInfo> option) {
 		List<ActionStdV1<CartInfo>> actions = new ArrayList<>();		
 
-		ActionStdV1<CartInfo> enforceCartemKey = new StdCartEnforceCartemKey(option);
-		ActionLazyV1<CartInfo> upsertCartem = new LazyCartUpsertCartem(option.conn, option.schemaName);
+		ActionStdV1<CartInfo> update = new NodeCartUpdate(option).toAction();
+
+		actions.add(update);
+		return actions;
+	}
+	
+	
+	
+	@Override protected List<ActionStdV1<CartInfo>> buildActionsOnFailedHook(DeciTreeOption<CartInfo> option) {
+		List<ActionStdV1<CartInfo>> actions = new ArrayList<>();		
+
+		ActionStdV1<CartInfo> insert = new NodeCartInsert(option).toAction();
 		
-		enforceCartemKey.addPostAction(upsertCartem);
-		
-		actions.add(enforceCartemKey);
+		actions.add(insert);
 		return actions;
 	}
 }

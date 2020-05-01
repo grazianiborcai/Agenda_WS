@@ -4,15 +4,15 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.cart.info.CartInfo;
-import br.com.mind5.business.cart.model.decisionTree.NodeCartCartem;
+import br.com.mind5.business.cart.model.decisionTree.NodeCartUpsertItem;
 import br.com.mind5.model.action.ActionLazyTemplateV2;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyCartNodeCartem extends ActionLazyTemplateV2<CartInfo, CartInfo> {
+public final class LazyCartNodeUpsertItem extends ActionLazyTemplateV2<CartInfo, CartInfo> {
 	
-	public LazyCartNodeCartem(Connection conn, String schemaName) {
+	public LazyCartNodeUpsertItem(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -25,7 +25,7 @@ public final class LazyCartNodeCartem extends ActionLazyTemplateV2<CartInfo, Car
 	
 	
 	@Override protected ActionStdV1<CartInfo> getInstanceOfActionHook(DeciTreeOption<CartInfo> option) {
-		return new NodeCartCartem(option).toAction();
+		return new NodeCartUpsertItem(option).toAction();
 	}
 	
 	

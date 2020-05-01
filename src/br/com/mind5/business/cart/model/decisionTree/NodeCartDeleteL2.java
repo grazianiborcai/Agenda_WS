@@ -4,9 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.cart.info.CartInfo;
-import br.com.mind5.business.cart.model.checker.CartCheckDelete;
-import br.com.mind5.business.cart.model.checker.CartCheckLangu;
-import br.com.mind5.business.cart.model.checker.CartCheckOwner;
+import br.com.mind5.business.cart.model.action.StdCartDaoDelete;
+import br.com.mind5.business.cart.model.checker.CartCheckExist;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -14,9 +13,9 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class RootCartDelete extends DeciTreeTemplateWriteV2<CartInfo> {
+public final class NodeCartDeleteL2 extends DeciTreeTemplateWriteV2<CartInfo> {
 	
-	public RootCartDelete(DeciTreeOption<CartInfo> option) {
+	public NodeCartDeleteL2(DeciTreeOption<CartInfo> option) {
 		super(option);
 	}
 	
@@ -30,22 +29,8 @@ public final class RootCartDelete extends DeciTreeTemplateWriteV2<CartInfo> {
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new CartCheckDelete(checkerOption);
-		queue.add(checker);
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
-		checker = new CartCheckOwner(checkerOption);
-		queue.add(checker);
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
-		checker = new CartCheckLangu(checkerOption);
+		checker = new CartCheckExist(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueueV2<>(queue);
@@ -56,9 +41,9 @@ public final class RootCartDelete extends DeciTreeTemplateWriteV2<CartInfo> {
 	@Override protected List<ActionStdV1<CartInfo>> buildActionsOnPassedHook(DeciTreeOption<CartInfo> option) {
 		List<ActionStdV1<CartInfo>> actions = new ArrayList<>();		
 
-		ActionStdV1<CartInfo> nodeL1 = new NodeCartDeleteL1(option).toAction();
-		actions.add(nodeL1);
+		ActionStdV1<CartInfo> delete = new StdCartDaoDelete(option);
 		
+		actions.add(delete);		
 		return actions;
 	}
 }

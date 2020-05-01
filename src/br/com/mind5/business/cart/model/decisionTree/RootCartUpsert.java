@@ -5,18 +5,18 @@ import java.util.List;
 
 import br.com.mind5.business.cart.info.CartInfo;
 import br.com.mind5.business.cart.model.action.LazyCartEnforceLChanged;
-import br.com.mind5.business.cart.model.action.LazyCartNodeCartem;
 import br.com.mind5.business.cart.model.action.LazyCartNodeUpsert;
-import br.com.mind5.business.cart.model.action.LazyCartRootSelect;
+import br.com.mind5.business.cart.model.action.LazyCartNodeUpsertHeader;
+import br.com.mind5.business.cart.model.action.LazyCartNodeUpsertItem;
 import br.com.mind5.business.cart.model.action.StdCartMergeUsername;
 import br.com.mind5.business.cart.model.checker.CartCheckLangu;
 import br.com.mind5.business.cart.model.checker.CartCheckOwner;
 import br.com.mind5.business.cart.model.checker.CartCheckWrite;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
@@ -53,14 +53,7 @@ public final class RootCartUpsert extends DeciTreeTemplateWriteV2<CartInfo> {
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
 		checker = new CartCheckOwner(checkerOption);
 		queue.add(checker);
-		
-		//TODO: verificar serico
-		//TODO: verificar limite de itens no carrinho
-		//TODO: verificar quantidade. Somente 1 para servico. Nao pode ser negativa para todos os casos
-		//TODO: verificar valores negativos
-		//TODO: verificar Ordem em aberto
-		//TODO: Eliminar cabecalho se nao existe item ?
-		
+		//TODO: verificar Ordem em aberto		
 		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
@@ -71,14 +64,14 @@ public final class RootCartUpsert extends DeciTreeTemplateWriteV2<CartInfo> {
 		
 		ActionStdV1<CartInfo> mergeUsername = new StdCartMergeUsername(option);
 		ActionLazyV1<CartInfo> enforceLChanged = new LazyCartEnforceLChanged(option.conn, option.schemaName);	
-		ActionLazyV1<CartInfo> upsert = new LazyCartNodeUpsert(option.conn, option.schemaName);
-		ActionLazyV1<CartInfo> cartem = new LazyCartNodeCartem(option.conn, option.schemaName);
-		ActionLazyV1<CartInfo> select = new LazyCartRootSelect(option.conn, option.schemaName);
+		ActionLazyV1<CartInfo> upsertHeader = new LazyCartNodeUpsertHeader(option.conn, option.schemaName);
+		ActionLazyV1<CartInfo> upsertItem = new LazyCartNodeUpsertItem(option.conn, option.schemaName);
+		ActionLazyV1<CartInfo> nodeL1 = new LazyCartNodeUpsert(option.conn, option.schemaName);
 		
 		mergeUsername.addPostAction(enforceLChanged);
-		enforceLChanged.addPostAction(upsert);
-		upsert.addPostAction(cartem);
-		cartem.addPostAction(select);
+		enforceLChanged.addPostAction(upsertHeader);
+		upsertHeader.addPostAction(upsertItem);
+		upsertItem.addPostAction(nodeL1);
 		
 		actions.add(mergeUsername);
 		return actions;
