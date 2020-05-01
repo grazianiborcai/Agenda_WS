@@ -64,8 +64,10 @@ public final class InfoPrunerHelper<T extends InfoRecord, S extends InfoRecord> 
 			boolean pruneResult = false;
 			
 			for (S eachSelected : selectedInfos) {		
-				if (pruneResult == false)
-					pruneResult = pruneWithVisitor(eachBase, eachSelected, visitor);
+				pruneResult = pruneWithVisitor(eachBase, eachSelected, visitor);
+				
+				if (pruneResult == true)
+					break;
 			}			
 			
 			if (pruneResult == false)
