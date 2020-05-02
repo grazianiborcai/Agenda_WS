@@ -5,13 +5,13 @@ import java.util.List;
 import br.com.mind5.business.customer.info.CusInfo;
 import br.com.mind5.business.customerSearch.info.CusarchInfo;
 import br.com.mind5.business.masterData.info.FeeCategInfo;
-import br.com.mind5.business.masterData.info.OrderStatusInfo;
 import br.com.mind5.business.orderItem.info.OrderemInfo;
 import br.com.mind5.business.orderSearch.info.OrdarchInfo;
 import br.com.mind5.business.orderSnapshot.info.OrdnapInfo;
 import br.com.mind5.info.InfoMergerBuilderV3;
 import br.com.mind5.info.InfoMergerV3;
 import br.com.mind5.masterData.currency.info.CurrencyInfo;
+import br.com.mind5.masterData.orderStatus.info.OrderatusInfo;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
 import br.com.mind5.security.username.info.UsernameInfo;
 
@@ -120,13 +120,13 @@ public final class OrderMerger {
 	
 	
 	
-	public static List<OrderInfo> mergeWithOrderStatus(List<OrderInfo> baseInfos, List<OrderStatusInfo> selectedInfos) {
-		InfoMergerBuilderV3<OrderInfo, OrderStatusInfo> builder = new InfoMergerBuilderV3<>();
+	public static List<OrderInfo> mergeWithOrderatus(List<OrderInfo> baseInfos, List<OrderatusInfo> selectedInfos) {
+		InfoMergerBuilderV3<OrderInfo, OrderatusInfo> builder = new InfoMergerBuilderV3<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new OrderVisiMergeOrderStatus());
-		InfoMergerV3<OrderInfo, OrderStatusInfo> merger = builder.build();		
+		builder.addVisitor(new OrderVisiMergeOrderatus());
+		InfoMergerV3<OrderInfo, OrderatusInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}	

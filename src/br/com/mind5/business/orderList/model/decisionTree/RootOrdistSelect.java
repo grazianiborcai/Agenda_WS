@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.orderList.info.OrdistInfo;
 import br.com.mind5.business.orderList.model.action.LazyOrdistMergeCurrency;
-import br.com.mind5.business.orderList.model.action.LazyOrdistMergeOrderStatus;
+import br.com.mind5.business.orderList.model.action.LazyOrdistMergeOrderatus;
 import br.com.mind5.business.orderList.model.action.StdOrdistMergeToSelect;
 import br.com.mind5.business.orderList.model.checker.OrdistCheckLangu;
 import br.com.mind5.business.orderList.model.checker.OrdistCheckOwner;
@@ -62,10 +62,10 @@ public final class RootOrdistSelect extends DeciTreeTemplateReadV1<OrdistInfo> {
 		
 		ActionStdV1<OrdistInfo> select = new StdOrdistMergeToSelect(option);
 		ActionLazyV1<OrdistInfo> mergeCurrency = new LazyOrdistMergeCurrency(option.conn, option.schemaName);
-		ActionLazyV1<OrdistInfo> mergeOrderStatus = new LazyOrdistMergeOrderStatus(option.conn, option.schemaName);
+		ActionLazyV1<OrdistInfo> mergeOrderatus = new LazyOrdistMergeOrderatus(option.conn, option.schemaName);
 		
 		select.addPostAction(mergeCurrency);
-		mergeCurrency.addPostAction(mergeOrderStatus);
+		mergeCurrency.addPostAction(mergeOrderatus);
 		
 		actions.add(select);			
 		return actions;

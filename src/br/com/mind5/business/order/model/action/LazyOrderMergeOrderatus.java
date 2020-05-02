@@ -9,9 +9,9 @@ import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyOrderMergeOrderStatus extends ActionLazyTemplateV1<OrderInfo, OrderInfo> {
+public final class LazyOrderMergeOrderatus extends ActionLazyTemplateV1<OrderInfo, OrderInfo> {
 
-	public LazyOrderMergeOrderStatus(Connection conn, String schemaName) {
+	public LazyOrderMergeOrderatus(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyOrderMergeOrderStatus extends ActionLazyTemplateV1<OrderI
 	
 	
 	@Override protected ActionStdV1<OrderInfo> getInstanceOfActionHook(DeciTreeOption<OrderInfo> option) {
-		return new StdOrderMergeOrderStatus(option);
+		return new StdOrderMergeOrderatus(option);
 	}
 	
 	

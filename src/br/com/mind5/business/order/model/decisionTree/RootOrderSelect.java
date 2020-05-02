@@ -8,7 +8,7 @@ import br.com.mind5.business.order.model.action.LazyOrderEnforceCurrency;
 import br.com.mind5.business.order.model.action.LazyOrderEnforceFeeCateg;
 import br.com.mind5.business.order.model.action.LazyOrderMergeCurrency;
 import br.com.mind5.business.order.model.action.LazyOrderMergeFeeCateg;
-import br.com.mind5.business.order.model.action.LazyOrderMergeOrderStatus;
+import br.com.mind5.business.order.model.action.LazyOrderMergeOrderatus;
 import br.com.mind5.business.order.model.action.LazyOrderMergeOrderem;
 import br.com.mind5.business.order.model.action.LazyOrderNodePayord;
 import br.com.mind5.business.order.model.action.StdOrderMergeToSelect;
@@ -61,7 +61,7 @@ public final class RootOrderSelect extends DeciTreeTemplateReadV1<OrderInfo> {
 		ActionLazyV1<OrderInfo> mergeItem = new LazyOrderMergeOrderem(option.conn, option.schemaName);
 		ActionLazyV1<OrderInfo> enforceCurrency = new LazyOrderEnforceCurrency(option.conn, option.schemaName);
 		ActionLazyV1<OrderInfo> mergeCurrency = new LazyOrderMergeCurrency(option.conn, option.schemaName);
-		ActionLazyV1<OrderInfo> mergeOrderStatus = new LazyOrderMergeOrderStatus(option.conn, option.schemaName);
+		ActionLazyV1<OrderInfo> mergeOrderatus = new LazyOrderMergeOrderatus(option.conn, option.schemaName);
 		ActionLazyV1<OrderInfo> enforceFeeCateg = new LazyOrderEnforceFeeCateg(option.conn, option.schemaName);
 		ActionLazyV1<OrderInfo> mergeFeeCateg = new LazyOrderMergeFeeCateg(option.conn, option.schemaName);
 		ActionLazyV1<OrderInfo> nodePayord = new LazyOrderNodePayord(option.conn, option.schemaName);
@@ -69,8 +69,8 @@ public final class RootOrderSelect extends DeciTreeTemplateReadV1<OrderInfo> {
 		select.addPostAction(mergeItem);
 		mergeItem.addPostAction(enforceCurrency);
 		enforceCurrency.addPostAction(mergeCurrency);
-		mergeCurrency.addPostAction(mergeOrderStatus);
-		mergeOrderStatus.addPostAction(enforceFeeCateg);
+		mergeCurrency.addPostAction(mergeOrderatus);
+		mergeOrderatus.addPostAction(enforceFeeCateg);
 		enforceFeeCateg.addPostAction(mergeFeeCateg);
 		mergeFeeCateg.addPostAction(nodePayord);
 		

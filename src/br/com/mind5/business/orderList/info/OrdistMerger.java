@@ -2,11 +2,11 @@ package br.com.mind5.business.orderList.info;
 
 import java.util.List;
 
-import br.com.mind5.business.masterData.info.OrderStatusInfo;
 import br.com.mind5.business.orderSearch.info.OrdarchInfo;
 import br.com.mind5.info.InfoMergerBuilderV3;
 import br.com.mind5.info.InfoMergerV3;
 import br.com.mind5.masterData.currency.info.CurrencyInfo;
+import br.com.mind5.masterData.orderStatus.info.OrderatusInfo;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class OrdistMerger {	
@@ -49,13 +49,13 @@ public final class OrdistMerger {
 	
 	
 	
-	public static List<OrdistInfo> mergeWithOrderStatus(List<OrdistInfo> baseInfos, List<OrderStatusInfo> selectedInfos) {
-		InfoMergerBuilderV3<OrdistInfo, OrderStatusInfo> builder = new InfoMergerBuilderV3<>();
+	public static List<OrdistInfo> mergeWithOrderatus(List<OrdistInfo> baseInfos, List<OrderatusInfo> selectedInfos) {
+		InfoMergerBuilderV3<OrdistInfo, OrderatusInfo> builder = new InfoMergerBuilderV3<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new OrdistVisiMergeOrderStatus());
-		InfoMergerV3<OrdistInfo, OrderStatusInfo> merger = builder.build();		
+		builder.addVisitor(new OrdistVisiMergeOrderatus());
+		InfoMergerV3<OrdistInfo, OrderatusInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}	

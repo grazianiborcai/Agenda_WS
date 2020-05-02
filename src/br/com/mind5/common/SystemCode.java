@@ -179,6 +179,7 @@ public final class SystemCode {
 	public static final int GENDER_SEARCH_MANDATORY_FIELD_EMPTY 		= 11653;
 	public static final int WEEKDAY_SEARCH_MANDATORY_FIELD_EMPTY 		= 11654;
 	public static final int DAYPART_SEARCH_MANDATORY_FIELD_EMPTY 		= 11655;
+	public static final int ORDER_STATUS_SEARCH_MANDATORY_FIELD_EMPTY 	= 11656;
 	
 	// Material
 	public static final int MAT_ALREADY_EXIST							= 1200;

@@ -1,35 +1,35 @@
-package br.com.mind5.business.masterData.dao;
+package br.com.mind5.masterData.orderStatus.dao;
 
 import java.util.List;
 
-import br.com.mind5.business.masterData.info.OrderStatusInfo;
 import br.com.mind5.dao.DaoColumn;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilder;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
+import br.com.mind5.masterData.orderStatus.info.OrderatusInfo;
 
-final class OrderStatusWhere implements DaoStmtWhere {
+final class DaoOrderatusWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public OrderStatusWhere(DaoWhereBuilderOption whereOption, String tableName, OrderStatusInfo recordInfo) {
+	public DaoOrderatusWhere(DaoWhereBuilderOption whereOption, String tableName, OrderatusInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
 	
 	
-	private void generateWhereClause(DaoWhereBuilderOption whereOption, String tableName, OrderStatusInfo recordInfo) {
+	private void generateWhereClause(DaoWhereBuilderOption whereOption, String tableName, OrderatusInfo recordInfo) {
 		DaoWhereBuilder builder = DaoWhereBuilder.factory(whereOption);		
 		List<DaoColumn> columns = DaoDbTableColumnAll.getTableColumnsAsList(tableName);
 		
 		for (DaoColumn eachColumn : columns) {
 			switch(eachColumn.columnName) {
-				case MasterDataDbTableColumn.COL_COD_ORDER_STATUS :
+				case DaoOrderatusDbTableColumn.COL_COD_ORDER_STATUS :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codOrderStatus);
 					break;
 					
-				case MasterDataDbTableColumn.COL_COD_LANGUAGE :
+				case DaoOrderatusDbTableColumn.COL_COD_LANGUAGE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codLanguage);
 					break;
 			}

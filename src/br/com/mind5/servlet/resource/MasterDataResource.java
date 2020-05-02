@@ -14,7 +14,6 @@ import br.com.mind5.business.masterData.info.EntityCategInfo;
 import br.com.mind5.business.masterData.info.FeeCategInfo;
 import br.com.mind5.business.masterData.info.MatmovTypeInfo;
 import br.com.mind5.business.masterData.info.MonthInfo;
-import br.com.mind5.business.masterData.info.OrderStatusInfo;
 import br.com.mind5.business.masterData.info.PaymentStatusInfo;
 import br.com.mind5.business.masterData.info.PositionInfo;
 import br.com.mind5.business.masterData.info.ScheduleStatusInfo;
@@ -25,7 +24,6 @@ import br.com.mind5.business.masterData.model.EntityCategModelSelect;
 import br.com.mind5.business.masterData.model.FeeCategModelSelect;
 import br.com.mind5.business.masterData.model.MatmovTypeModelSelect;
 import br.com.mind5.business.masterData.model.MonthModelSelect;
-import br.com.mind5.business.masterData.model.OrderStatusModelSelect;
 import br.com.mind5.business.masterData.model.PaymentStatusModelSelect;
 import br.com.mind5.business.masterData.model.PositionModelSelect;
 import br.com.mind5.business.masterData.model.ScheduleStatusModelSelect;
@@ -56,6 +54,8 @@ import br.com.mind5.masterData.materialUnitSearch.info.MatunitarchInfo;
 import br.com.mind5.masterData.materialUnitSearch.model.MatunitarchModelSelect;
 import br.com.mind5.masterData.moonPhase.info.MoonaseInfo;
 import br.com.mind5.masterData.moonPhase.model.MoonaseModelSearch;
+import br.com.mind5.masterData.orderStatusSearch.OrderatarchModelSelect;
+import br.com.mind5.masterData.orderStatusSearch.info.OrderatarchInfo;
 import br.com.mind5.masterData.stateSearch.info.StatarchInfo;
 import br.com.mind5.masterData.stateSearch.model.StatarchModelSelect;
 import br.com.mind5.masterData.timezoneSearch.info.TimezonarchInfo;
@@ -382,12 +382,12 @@ public final class MasterDataResource {
 	public Response selectOrderStatus(@HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage,
 			                          @HeaderParam("codOrderStatus") String codOrderStatus){
 		
-		OrderStatusInfo recordInfo = new OrderStatusInfo();		
+		OrderatarchInfo recordInfo = new OrderatarchInfo();		
 		recordInfo.codOrderStatus = codOrderStatus;
 		recordInfo.codLanguage = codLanguage;
 		
 		
-		Model model = new OrderStatusModelSelect(recordInfo);
+		Model model = new OrderatarchModelSelect(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	}

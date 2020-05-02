@@ -131,6 +131,8 @@ import br.com.mind5.masterData.materialUnit.dao.DaoMatunitDbTableColumn;
 import br.com.mind5.masterData.materialUnitSearch.dao.DaoMatunitarchDbTableColumn;
 import br.com.mind5.masterData.moonPhase.dao.DaoMoonaseDbTableColumn;
 import br.com.mind5.masterData.moonPhaseSearch.dao.DaoMoonasarchDbTableColumn;
+import br.com.mind5.masterData.orderStatus.dao.DaoOrderatusDbTableColumn;
+import br.com.mind5.masterData.orderStatusSearch.dao.DaoOrderatarchDbTableColumn;
 import br.com.mind5.masterData.state.dao.DaoStateDbTableColumn;
 import br.com.mind5.masterData.stateSearch.dao.DaoStatarchDbTableColumn;
 import br.com.mind5.masterData.timezone.dao.DaoTimezoneDbTableColumn;
@@ -340,6 +342,8 @@ public final class DaoDbTableColumnAll {
 		addTable(new DaoWeekdarchDbTableColumn());
 		addTable(new DaoDaypartDbTableColumn());
 		addTable(new DaoDayparchDbTableColumn());
+		addTable(new DaoOrderatusDbTableColumn());
+		addTable(new DaoOrderatarchDbTableColumn());
 	}
 	
 	

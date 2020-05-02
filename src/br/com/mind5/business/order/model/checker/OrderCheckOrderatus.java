@@ -2,21 +2,21 @@ package br.com.mind5.business.order.model.checker;
 
 import java.util.List;
 
-import br.com.mind5.business.masterData.info.OrderStatusInfo;
-import br.com.mind5.business.masterData.model.checker.OrderStatusCheckExist;
 import br.com.mind5.business.order.info.OrderInfo;
+import br.com.mind5.masterData.orderStatus.info.OrderatusInfo;
+import br.com.mind5.masterData.orderStatus.model.checker.OrderatusCheckExist;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 
-public final class OrderCheckStatus implements ModelCheckerV1<OrderInfo> {
+public final class OrderCheckOrderatus implements ModelCheckerV1<OrderInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelCheckerV1<OrderStatusInfo> checker;
+	private ModelCheckerV1<OrderatusInfo> checker;
 	
 	
-	public OrderCheckStatus(ModelCheckerOption option) {
-		checker = new OrderStatusCheckExist(option);
+	public OrderCheckOrderatus(ModelCheckerOption option) {
+		checker = new OrderatusCheckExist(option);
 	}
 	
 	
@@ -33,7 +33,7 @@ public final class OrderCheckStatus implements ModelCheckerV1<OrderInfo> {
 	
 	
 	@Override public boolean check(OrderInfo recordInfo) {
-		return checker.check(OrderStatusInfo.copyFrom(recordInfo));
+		return checker.check(OrderatusInfo.copyFrom(recordInfo));
 	}
 
 	

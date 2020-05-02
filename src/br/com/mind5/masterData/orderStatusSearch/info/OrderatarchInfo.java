@@ -1,28 +1,28 @@
-package br.com.mind5.business.masterData.info;
+package br.com.mind5.masterData.orderStatusSearch.info;
 
 import java.util.List;
 
 import br.com.mind5.info.InfoRecord;
 
-public final class OrderStatusInfo extends InfoRecord implements Cloneable {
+public final class OrderatarchInfo extends InfoRecord implements Cloneable {
 	public String codOrderStatus;
 	public String txtOrderStatus;
 	
 	
-	public OrderStatusInfo() {
-		super(OrderStatusInfo.class);
+	public OrderatarchInfo() {
+		super();
 	}
 	
 	
 	
-	public static OrderStatusInfo copyFrom(Object sourceObj) {
-		return copyFrom(sourceObj, OrderStatusInfo.class);
+	public static OrderatarchInfo copyFrom(Object sourceObj) {
+		return copyFrom(sourceObj, OrderatarchInfo.class);
 	}
 	
 	
 	
-	public static List<OrderStatusInfo> copyFrom(List<?> sourceObjs) {
-		return copyFrom(sourceObjs, OrderStatusInfo.class);
+	public static List<OrderatarchInfo> copyFrom(List<?> sourceObjs) {
+		return copyFrom(sourceObjs, OrderatarchInfo.class);
 	}
 	
 	
@@ -47,11 +47,11 @@ public final class OrderStatusInfo extends InfoRecord implements Cloneable {
 			return true;
 		
 		
-		if (!(o instanceof OrderStatusInfo))
+		if (!(o instanceof OrderatarchInfo))
 			return false;
 		
 		
-		OrderStatusInfo obj = (OrderStatusInfo) o;		
+		OrderatarchInfo obj = (OrderatarchInfo) o;		
 		return (isStringEqual(codOrderStatus, obj.codOrderStatus));
 	}
 }

@@ -7,12 +7,12 @@ import br.com.mind5.model.action.ActionStdHelperMerge;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdOrdistMergeOrderStatus implements ActionStdV1<OrdistInfo> {
+public final class StdOrdistMergeOrderatus implements ActionStdV1<OrdistInfo> {
 	private ActionStdV1<OrdistInfo> actionHelper;	
 	
 	
-	public StdOrdistMergeOrderStatus(DeciTreeOption<OrdistInfo> option) {			
-		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiOrdistMergeOrderStatus(option.conn, option.schemaName));
+	public StdOrdistMergeOrderatus(DeciTreeOption<OrdistInfo> option) {			
+		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiOrdistMergeOrderatus(option.conn, option.schemaName));
 	}
 	
 	
