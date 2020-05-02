@@ -1,26 +1,24 @@
 package br.com.mind5.business.order.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.order.info.OrderInfo;
 import br.com.mind5.business.order.info.OrderMerger;
 import br.com.mind5.business.orderSnapshot.info.OrdnapInfo;
 import br.com.mind5.business.orderSnapshot.model.decisionTree.RootOrdnapInsert;
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateActionV1;
+import br.com.mind5.model.action.ActionVisitorTemplateActionV2;
+import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiOrderInsertOrdnap extends ActionVisitorTemplateActionV1<OrderInfo, OrdnapInfo> {
+final class VisiOrderInsertOrdnap extends ActionVisitorTemplateActionV2<OrderInfo, OrdnapInfo> {
 
-	public VisiOrderInsertOrdnap(Connection conn, String schemaName) {
-		super(conn, schemaName, OrderInfo.class, OrdnapInfo.class);
+	public VisiOrderInsertOrdnap(DeciTreeOption<OrderInfo> option) {
+		super(option, OrderInfo.class, OrdnapInfo.class);
 	}
 	
 	
-	
-	@Override protected ActionStdV1<OrdnapInfo> getActionHook(DeciTreeOption<OrdnapInfo> option) {
-		return new RootOrdnapInsert(option).toAction();
+	@Override protected Class<? extends DeciTree<OrdnapInfo>> getTreeClassHook() {
+		return RootOrdnapInsert.class;
 	}
 	
 	

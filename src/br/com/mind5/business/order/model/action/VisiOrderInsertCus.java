@@ -1,26 +1,25 @@
 package br.com.mind5.business.order.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.customer.info.CusInfo;
 import br.com.mind5.business.customer.model.decisionTree.RootCusInsertFromUser;
 import br.com.mind5.business.order.info.OrderInfo;
 import br.com.mind5.business.order.info.OrderMerger;
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateActionV1;
+import br.com.mind5.model.action.ActionVisitorTemplateActionV2;
+import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiOrderInsertCus extends ActionVisitorTemplateActionV1<OrderInfo, CusInfo> {
+final class VisiOrderInsertCus extends ActionVisitorTemplateActionV2<OrderInfo, CusInfo> {
 
-	public VisiOrderInsertCus(Connection conn, String schemaName) {
-		super(conn, schemaName, OrderInfo.class, CusInfo.class);
+	public VisiOrderInsertCus(DeciTreeOption<OrderInfo> option) {
+		super(option, OrderInfo.class, CusInfo.class);
 	}
 	
 	
 	
-	@Override protected ActionStdV1<CusInfo> getActionHook(DeciTreeOption<CusInfo> option) {
-		return new RootCusInsertFromUser(option).toAction();
+	@Override protected Class<? extends DeciTree<CusInfo>> getTreeClassHook() {
+		return RootCusInsertFromUser.class;
 	}
 	
 	

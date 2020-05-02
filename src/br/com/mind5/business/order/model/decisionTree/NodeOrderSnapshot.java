@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.order.info.OrderInfo;
-import br.com.mind5.business.order.model.action.LazyOrderUpdate;
+import br.com.mind5.business.order.model.action.LazyOrderDaoUpdate;
 import br.com.mind5.business.order.model.action.StdOrderInsertOrdnap;
 import br.com.mind5.business.order.model.checker.OrderCheckWrite;
 import br.com.mind5.model.action.ActionLazyV1;
@@ -13,9 +13,9 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class NodeOrderSnapshot extends DeciTreeTemplateWriteV1<OrderInfo> {
+public final class NodeOrderSnapshot extends DeciTreeTemplateWriteV2<OrderInfo> {
 	
 	public NodeOrderSnapshot(DeciTreeOption<OrderInfo> option) {
 		super(option);
@@ -44,7 +44,7 @@ public final class NodeOrderSnapshot extends DeciTreeTemplateWriteV1<OrderInfo> 
 		List<ActionStdV1<OrderInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<OrderInfo> insertOrdnap = new StdOrderInsertOrdnap(option);
-		ActionLazyV1<OrderInfo> update = new LazyOrderUpdate(option.conn, option.schemaName);
+		ActionLazyV1<OrderInfo> update = new LazyOrderDaoUpdate(option.conn, option.schemaName);
 		
 		insertOrdnap.addPostAction(update);
 		

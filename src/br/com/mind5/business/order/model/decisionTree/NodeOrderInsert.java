@@ -9,7 +9,7 @@ import br.com.mind5.business.order.model.action.LazyOrderEnforceCreatedOn;
 import br.com.mind5.business.order.model.action.LazyOrderEnforceExtid;
 import br.com.mind5.business.order.model.action.LazyOrderEnforcePostingDate;
 import br.com.mind5.business.order.model.action.LazyOrderEnforceStatusCreated;
-import br.com.mind5.business.order.model.action.LazyOrderInsert;
+import br.com.mind5.business.order.model.action.LazyOrderDaoInsert;
 import br.com.mind5.business.order.model.action.LazyOrderNodeCusL1;
 import br.com.mind5.business.order.model.action.StdOrderMergeUsername;
 import br.com.mind5.business.order.model.checker.OrderCheckDummy;
@@ -18,9 +18,9 @@ import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class NodeOrderInsert extends DeciTreeTemplateWriteV1<OrderInfo> {
+public final class NodeOrderInsert extends DeciTreeTemplateWriteV2<OrderInfo> {
 	
 	public NodeOrderInsert(DeciTreeOption<OrderInfo> option) {
 		super(option);
@@ -50,7 +50,7 @@ public final class NodeOrderInsert extends DeciTreeTemplateWriteV1<OrderInfo> {
 		ActionLazyV1<OrderInfo> enforcePostingDate = new LazyOrderEnforcePostingDate(option.conn, option.schemaName);	
 		ActionLazyV1<OrderInfo> enforceExtid = new LazyOrderEnforceExtid(option.conn, option.schemaName);
 		ActionLazyV1<OrderInfo> enforceStatus = new LazyOrderEnforceStatusCreated(option.conn, option.schemaName);
-		ActionLazyV1<OrderInfo> insert = new LazyOrderInsert(option.conn, option.schemaName);
+		ActionLazyV1<OrderInfo> insert = new LazyOrderDaoInsert(option.conn, option.schemaName);
 		
 		mergeUsername.addPostAction(nodeCus);
 		nodeCus.addPostAction(enforceCreatedOn);

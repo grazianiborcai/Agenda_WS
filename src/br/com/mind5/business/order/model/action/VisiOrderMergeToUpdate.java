@@ -1,23 +1,23 @@
 package br.com.mind5.business.order.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.order.info.OrderInfo;
 import br.com.mind5.business.order.info.OrderMerger;
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiOrderMergeToUpdate extends ActionVisitorTemplateMergeV1<OrderInfo, OrderInfo> {
+final class VisiOrderMergeToUpdate extends ActionVisitorTemplateMergeV2<OrderInfo, OrderInfo> {
 	
-	public VisiOrderMergeToUpdate(Connection conn, String schemaName) {
-		super(conn, schemaName, OrderInfo.class);
+	public VisiOrderMergeToUpdate(DeciTreeOption<OrderInfo> option) {
+		super(option, OrderInfo.class); 
 	}
 	
 	
 	
-	@Override protected Class<? extends ActionStdV1<OrderInfo>> getActionClassHook() {
-		return StdOrderSelect.class;
+	@Override protected Class<? extends ActionStdV2<OrderInfo>> getActionClassHook() {
+		return StdOrderDaoSelect.class;
 	}
 	
 	
@@ -29,6 +29,6 @@ final class VisiOrderMergeToUpdate extends ActionVisitorTemplateMergeV1<OrderInf
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV2.DONT_MERGE_WHEN_EMPTY;
 	}
 }

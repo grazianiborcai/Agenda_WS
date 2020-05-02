@@ -1,19 +1,19 @@
 package br.com.mind5.business.order.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.order.info.OrderInfo;
 import br.com.mind5.business.order.info.OrderMerger;
 import br.com.mind5.masterData.currency.info.CurrencyInfo;
 import br.com.mind5.masterData.currency.model.decisionTree.RootCurrencySelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiOrderMergeCurrency extends ActionVisitorTemplateMergeV1<OrderInfo, CurrencyInfo> {
+final class VisiOrderMergeCurrency extends ActionVisitorTemplateMergeV2<OrderInfo, CurrencyInfo> {
 	
-	public VisiOrderMergeCurrency(Connection conn, String schemaName) {
-		super(conn, schemaName, CurrencyInfo.class);
+	public VisiOrderMergeCurrency(DeciTreeOption<OrderInfo> option) { 
+		super(option, CurrencyInfo.class);
 	}
 	
 	
@@ -31,6 +31,6 @@ final class VisiOrderMergeCurrency extends ActionVisitorTemplateMergeV1<OrderInf
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV2.MERGE_WHEN_EMPTY;
 	}
 }

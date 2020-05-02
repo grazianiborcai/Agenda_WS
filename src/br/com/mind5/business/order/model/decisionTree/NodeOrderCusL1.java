@@ -12,9 +12,9 @@ import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class NodeOrderCusL1 extends DeciTreeTemplateWriteV1<OrderInfo> {
+public final class NodeOrderCusL1 extends DeciTreeTemplateWriteV2<OrderInfo> {
 	
 	public NodeOrderCusL1(DeciTreeOption<OrderInfo> option) {
 		super(option);

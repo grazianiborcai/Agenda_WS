@@ -2,24 +2,22 @@ package br.com.mind5.business.order.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-
 import br.com.mind5.business.order.info.OrderInfo;
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtParamTranslator;
 import br.com.mind5.dao.DaoStmtTemplate;
+import br.com.mind5.dao.DaoStmtWhere;
+import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
+import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class OrderInsertSingle extends DaoStmtTemplate<OrderInfo> {
-	private final String MAIN_TABLE = DaoDbTable.ORDER_HDR_TABLE;	
+public final class DaoOrderUpdateSingle extends DaoStmtTemplate<OrderInfo> {
+	private final String MAIN_TABLE = DaoDbTable.ORDER_HDR_TABLE;
 	
 	
-	public OrderInsertSingle(Connection conn, OrderInfo recordInfo, String schemaName) {
+	public DaoOrderUpdateSingle(Connection conn, OrderInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -32,17 +30,29 @@ public final class OrderInsertSingle extends DaoStmtTemplate<OrderInfo> {
 	
 	
 	@Override protected DaoOperation getOperationHook() {
-		return DaoOperation.INSERT;
+		return DaoOperation.UPDATE;
+	}
+	
+	
+	
+	@Override protected String buildWhereClauseHook(String tableName, OrderInfo recordInfo) {	
+		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
+		
+		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
+		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;
+		whereOption.ignoreNonPrimaryKey = DaoOptionValue.IGNORE_NON_PK;
+		
+		DaoStmtWhere whereClause = new DaoOrderWhere(whereOption, tableName, recordInfo);
+		return whereClause.getWhereClause();
 	}
 	
 	
 	
 	@Override protected DaoStmtParamTranslator<OrderInfo> getParamTranslatorHook() {
-		return new DaoStmtParamTranslator<OrderInfo>() {			
+		return new DaoStmtParamTranslator<OrderInfo>() {		
 			@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, OrderInfo recordInfo) throws SQLException {	
 				int i = 1;
 				
-				stmt.setLong(i++, recordInfo.codOwner);
 				stmt.setLong(i++, recordInfo.codUser);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codCustomer);
 				stmt.setString(i++, recordInfo.codOrderExt);
@@ -64,22 +74,9 @@ public final class OrderInsertSingle extends DaoStmtTemplate<OrderInfo> {
 				stmt = DaoFormatter.localDateToStmt(stmt, i++, recordInfo.postingDate);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.postingYear);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.postingYearMonth);
-	
+				
 				return stmt;
 			}		
-		};
-	}
-	
-	
-	
-	@Override protected DaoResultParser<OrderInfo> getResultParserHook() {
-		return new DaoResultParser<OrderInfo>() {		
-			@Override public List<OrderInfo> parseResult(OrderInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
-				List<OrderInfo> finalResult = new ArrayList<>();
-				recordInfo.codOrder = lastId;
-				finalResult.add(recordInfo);			
-				return finalResult;
-			}
 		};
 	}
 }

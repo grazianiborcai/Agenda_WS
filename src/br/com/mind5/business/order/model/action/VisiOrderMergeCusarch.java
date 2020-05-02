@@ -1,6 +1,5 @@
 package br.com.mind5.business.order.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.customerSearch.info.CusarchCopier;
@@ -8,13 +7,14 @@ import br.com.mind5.business.customerSearch.info.CusarchInfo;
 import br.com.mind5.business.customerSearch.model.decisionTree.RootCusarchSelect;
 import br.com.mind5.business.order.info.OrderInfo;
 import br.com.mind5.business.order.info.OrderMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiOrderMergeCusarch extends ActionVisitorTemplateMergeV1<OrderInfo, CusarchInfo> {
+final class VisiOrderMergeCusarch extends ActionVisitorTemplateMergeV2<OrderInfo, CusarchInfo> {
 	
-	public VisiOrderMergeCusarch(Connection conn, String schemaName) {
-		super(conn, schemaName, CusarchInfo.class);
+	public VisiOrderMergeCusarch(DeciTreeOption<OrderInfo> option) { 
+		super(option, CusarchInfo.class);
 	}
 	
 	
@@ -38,6 +38,6 @@ final class VisiOrderMergeCusarch extends ActionVisitorTemplateMergeV1<OrderInfo
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV2.DONT_MERGE_WHEN_EMPTY;
 	}
 }

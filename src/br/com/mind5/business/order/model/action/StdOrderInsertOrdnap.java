@@ -1,35 +1,19 @@
 package br.com.mind5.business.order.model.action;
 
 import br.com.mind5.business.order.info.OrderInfo;
-import br.com.mind5.model.action.ActionLazyV1;
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionStdHelperAction;
-import br.com.mind5.model.decisionTree.DeciResult;
+import br.com.mind5.model.action.ActionStdTemplateV2;
+import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdOrderInsertOrdnap implements ActionStdV1<OrderInfo> {
-	private ActionStdV1<OrderInfo> actionHelper;	
-	
-	
-	public StdOrderInsertOrdnap(DeciTreeOption<OrderInfo> option) {			
-		actionHelper = new ActionStdHelperAction<>(option.recordInfos, new VisiOrderInsertOrdnap(option.conn, option.schemaName));
+public final class StdOrderInsertOrdnap extends ActionStdTemplateV2<OrderInfo> {
+
+	public StdOrderInsertOrdnap(DeciTreeOption<OrderInfo> option) {
+		super(option);
 	}
 	
 	
 	
-	@Override public void addPostAction(ActionLazyV1<OrderInfo> actionHandler) {
-		actionHelper.addPostAction(actionHandler);
-	}
-	
-	
-	
-	@Override public boolean executeAction() {			
-		return actionHelper.executeAction();
-	}
-	
-	
-	
-	@Override public DeciResult<OrderInfo> getDecisionResult() {
-		return actionHelper.getDecisionResult();
+	protected ActionVisitorV2<OrderInfo> buildVisitorHook(DeciTreeOption<OrderInfo> option) {
+		return new VisiOrderInsertOrdnap(option);
 	}
 }
