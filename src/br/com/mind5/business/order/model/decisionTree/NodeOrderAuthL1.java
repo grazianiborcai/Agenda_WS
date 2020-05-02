@@ -8,11 +8,11 @@ import br.com.mind5.business.order.model.action.LazyOrderEnforceUser;
 import br.com.mind5.business.order.model.action.LazyOrderMergeUsername;
 import br.com.mind5.business.order.model.action.LazyOrderNodeAuthL2;
 import br.com.mind5.business.order.model.action.StdOrderEnforceKey;
-import br.com.mind5.business.order.model.checker.OrderCheckDummy;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
@@ -28,7 +28,7 @@ public final class NodeOrderAuthL1 extends DeciTreeTemplateWriteV2<OrderInfo> {
 		List<ModelCheckerV1<OrderInfo>> queue = new ArrayList<>();		
 		ModelCheckerV1<OrderInfo> checker;	
 
-		checker = new OrderCheckDummy();
+		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueueV2<>(queue);
