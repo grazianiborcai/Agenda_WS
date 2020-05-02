@@ -3,29 +3,16 @@ package br.com.mind5.business.order.info;
 import java.time.LocalDate;
 
 import br.com.mind5.common.DefaultValue;
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoSetter;
+import br.com.mind5.info.InfoSetterTemplate;
 
-public final class OrderSetterPostingDate implements InfoSetter<OrderInfo> {
+public final class OrderSetterPostingDate extends InfoSetterTemplate<OrderInfo> {
 	
-	public OrderInfo setAttr(OrderInfo recordInfo) {
-		checkArgument(recordInfo);
-		
+	@Override protected OrderInfo setAttrHook(OrderInfo recordInfo) {
 		recordInfo.postingDate = DefaultValue.localDateNow();		
 		recordInfo.postingYearMonth = getYearMonth(recordInfo.postingDate);
 		recordInfo.postingYear = recordInfo.postingDate.getYear();
 		
 		return recordInfo;
-	}
-	
-	
-	
-	private void checkArgument(OrderInfo recordInfo) {
-		if (recordInfo == null) {
-			logException(new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT));
-			throw new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT);
-		}
 	}
 	
 	
@@ -44,11 +31,4 @@ public final class OrderSetterPostingDate implements InfoSetter<OrderInfo> {
 		String month = "0" + String.valueOf(postingDate.getMonthValue());		
 		return month.substring(month.length()-2, month.length());
 	}
-	
-	
-	
-	private void logException(Exception e) {
-		
-		SystemLog.logError(this.getClass(), e);
-	}	
 }

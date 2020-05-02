@@ -3,23 +3,13 @@ package br.com.mind5.business.order.info;
 import java.time.format.DateTimeFormatter;
 
 import br.com.mind5.common.DefaultValue;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoSetter;
+import br.com.mind5.info.InfoSetterTemplate;
 
-public final class OrderSetterExtid implements InfoSetter<OrderInfo> {
+public final class OrderSetterExtid extends InfoSetterTemplate<OrderInfo> {
 	
-	public OrderInfo setAttr(OrderInfo order) {
-		checkArgument(order);
-		
-		order.codOrderExt = genExtId();
-		return order;
-	}
-	
-	
-	
-	private void checkArgument(OrderInfo order) {
-		if (order == null)
-			throw new NullPointerException("order" + SystemMessage.NULL_ARGUMENT);
+	@Override protected OrderInfo setAttrHook(OrderInfo recordInfo) {		
+		recordInfo.codOrderExt = genExtId();
+		return recordInfo;
 	}
 	
 	

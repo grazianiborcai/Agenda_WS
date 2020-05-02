@@ -1,13 +1,10 @@
 package br.com.mind5.business.order.info;
 
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoSetter;
+import br.com.mind5.info.InfoSetterTemplate;
 
-public final class OrderSetterKey implements InfoSetter<OrderInfo> {
+public final class OrderSetterKey extends InfoSetterTemplate<OrderInfo> {
 	
-	public OrderInfo setAttr(OrderInfo recordInfo) {
-		checkArgument(recordInfo);
-		
+	@Override protected OrderInfo setAttrHook(OrderInfo recordInfo) {
 		OrderInfo result = new OrderInfo();
 		
 		result.codOwner = recordInfo.codOwner;
@@ -16,12 +13,5 @@ public final class OrderSetterKey implements InfoSetter<OrderInfo> {
 		result.codLanguage = recordInfo.codLanguage;
 		
 		return result;
-	}
-	
-	
-	
-	private void checkArgument(OrderInfo recordInfo) {
-		if (recordInfo == null)
-			throw new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT);
 	}
 }
