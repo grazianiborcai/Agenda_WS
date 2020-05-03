@@ -1061,6 +1061,8 @@ public final class SystemCode {
 	
 	//Order Reserve
 	public static final int ORDER_RESERVE_MANDATORY_FIELD_EMPTY			= 10200;
+	public static final int ORDER_RESERVE_ALREADY_EXIST 				= 10201;
+	public static final int ORDER_RESERVE_NOT_FOUND 					= 10202;
 	
 	//Company Conflict
 	public static final int COMPANY_CONFLICT_MANDATORY_FIELD_EMPTY 		= 10250;
