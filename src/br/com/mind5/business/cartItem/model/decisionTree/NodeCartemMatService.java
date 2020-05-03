@@ -12,15 +12,17 @@ import br.com.mind5.business.cartItem.model.checker.CartemCheckEmposarch;
 import br.com.mind5.business.cartItem.model.checker.CartemCheckEmpworg;
 import br.com.mind5.business.cartItem.model.checker.CartemCheckIsTimeAged;
 import br.com.mind5.business.cartItem.model.checker.CartemCheckMatore;
+import br.com.mind5.business.cartItem.model.checker.CartemCheckOrderve;
+import br.com.mind5.business.cartItem.model.checker.CartemCheckPlanarch;
+import br.com.mind5.business.cartItem.model.checker.CartemCheckQuantity;
 import br.com.mind5.business.cartItem.model.checker.CartemCheckService;
 import br.com.mind5.business.cartItem.model.checker.CartemCheckStolarg;
-import br.com.mind5.business.cartItem.model.checker.CartemCheckQuantity;
 import br.com.mind5.business.cartItem.model.checker.CartemCheckStore;
 import br.com.mind5.business.cartItem.model.checker.CartemCheckStoworg;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
@@ -119,6 +121,20 @@ public final class NodeCartemMatService extends DeciTreeTemplateWriteV2<CartemIn
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.NOT_FOUND;	
 		checker = new CartemCheckStolarg(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
+		checker = new CartemCheckPlanarch(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.NOT_FOUND;	
+		checker = new CartemCheckOrderve(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueueV2<>(queue);
