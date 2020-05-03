@@ -9,13 +9,13 @@ import br.com.mind5.business.orderSearch.model.checker.OrdarchCheckLangu;
 import br.com.mind5.business.orderSearch.model.checker.OrdarchCheckOwner;
 import br.com.mind5.business.orderSearch.model.checker.OrdarchCheckRead;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 
-public final class RootOrdarchSelect extends DeciTreeTemplateReadV1<OrdarchInfo> {
+public final class RootOrdarchSelect extends DeciTreeTemplateReadV2<OrdarchInfo> {
 	
 	public RootOrdarchSelect(DeciTreeOption<OrdarchInfo> option) {
 		super(option);

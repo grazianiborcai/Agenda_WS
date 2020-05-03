@@ -1,23 +1,24 @@
 package br.com.mind5.business.orderSearch.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.orderSearch.info.OrdarchInfo;
 import br.com.mind5.business.orderSearch.info.OrdarchMerger;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiOrdarchMergeToSelect extends ActionVisitorTemplateMergeV1<OrdarchInfo, OrdarchInfo> {
+final class VisiOrdarchMergeToSelect extends ActionVisitorTemplateMergeV2<OrdarchInfo, OrdarchInfo> {
 	
-	public VisiOrdarchMergeToSelect(Connection conn, String schemaName) {
-		super(conn, schemaName, OrdarchInfo.class);
+	public VisiOrdarchMergeToSelect(DeciTreeOption<OrdarchInfo> option) {
+		super(option, OrdarchInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends ActionStdV1<OrdarchInfo>> getActionClassHook() {
-		return StdOrdarchSelect.class;
+	@Override protected Class<? extends ActionStdV2<OrdarchInfo>> getActionClassHook() {
+		return StdOrdarchDaoSelect.class;
 	}
 	
 	

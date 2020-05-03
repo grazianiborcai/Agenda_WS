@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilder;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 
-public final class OrdarchWhere implements DaoStmtWhere {	
+public final class DaoOrdarchWhere implements DaoStmtWhere {	
 	private String whereClause;	
 	
 	
-	public OrdarchWhere(DaoWhereBuilderOption whereOption, String tableName, OrdarchInfo recordInfo) {
+	public DaoOrdarchWhere(DaoWhereBuilderOption whereOption, String tableName, OrdarchInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -27,31 +27,31 @@ public final class OrdarchWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-				case OrdarchDbTableColumn.COL_COD_OWNER :
+				case DaoOrdarchDbTableColumn.COL_COD_OWNER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;
 					
-				case OrdarchDbTableColumn.COL_COD_ORDER :
+				case DaoOrdarchDbTableColumn.COL_COD_ORDER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOrder));
 					break;
 					
-				case OrdarchDbTableColumn.COL_COD_USER :
+				case DaoOrdarchDbTableColumn.COL_COD_USER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codUser));
 					break;
 					
-				case OrdarchDbTableColumn.COL_COD_CUSTOMER :
+				case DaoOrdarchDbTableColumn.COL_COD_CUSTOMER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codCustomer));
 					break;
 					
-				case OrdarchDbTableColumn.COL_COD_ORDER_STATUS :
+				case DaoOrdarchDbTableColumn.COL_COD_ORDER_STATUS :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codOrderStatus);
 					break;
 					
-				case OrdarchDbTableColumn.COL_POSTING_YEAR :
+				case DaoOrdarchDbTableColumn.COL_POSTING_YEAR :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.postingYear));
 					break;
 					
-				case OrdarchDbTableColumn.COL_POSTING_YEAR_MONTH :
+				case DaoOrdarchDbTableColumn.COL_POSTING_YEAR_MONTH :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.postingYearMonth));
 					break;
 			}

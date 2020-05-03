@@ -16,11 +16,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class OrdarchSelectSingle extends DaoStmtTemplate<OrdarchInfo> {
+public final class DaoOrdarchSelectSingle extends DaoStmtTemplate<OrdarchInfo> {
 	private final String MAIN_TABLE = DaoDbTable.ORDER_HDR_TABLE;
 	
 	
-	public OrdarchSelectSingle(Connection conn, OrdarchInfo recordInfo, String schemaName) {
+	public DaoOrdarchSelectSingle(Connection conn, OrdarchInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -50,7 +50,7 @@ public final class OrdarchSelectSingle extends DaoStmtTemplate<OrdarchInfo> {
 		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new OrdarchWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new DaoOrdarchWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -67,15 +67,15 @@ public final class OrdarchSelectSingle extends DaoStmtTemplate<OrdarchInfo> {
 				do {
 					OrdarchInfo dataInfo = new OrdarchInfo();
 					
-					dataInfo.codOwner = stmtResult.getLong(OrdarchDbTableColumn.COL_COD_OWNER);	
-					dataInfo.codOrder = stmtResult.getLong(OrdarchDbTableColumn.COL_COD_ORDER);
-					dataInfo.codUser = stmtResult.getLong(OrdarchDbTableColumn.COL_COD_USER);	
-					dataInfo.codOrderExt = stmtResult.getString(OrdarchDbTableColumn.COL_COD_ORDER_EXTERNAL);	
-					dataInfo.codOrderStatus = stmtResult.getString(OrdarchDbTableColumn.COL_COD_ORDER_STATUS);
-					dataInfo.codCustomer = stmtResult.getLong(OrdarchDbTableColumn.COL_COD_CUSTOMER);
-					dataInfo.codPayOrder = stmtResult.getLong(OrdarchDbTableColumn.COL_COD_PAY_ORDER);	
-					dataInfo.postingYear = DaoFormatter.sqlToInt(stmtResult, OrdarchDbTableColumn.COL_POSTING_YEAR);
-					dataInfo.postingYearMonth = DaoFormatter.sqlToInt(stmtResult, OrdarchDbTableColumn.COL_POSTING_YEAR_MONTH);
+					dataInfo.codOwner = stmtResult.getLong(DaoOrdarchDbTableColumn.COL_COD_OWNER);	
+					dataInfo.codOrder = stmtResult.getLong(DaoOrdarchDbTableColumn.COL_COD_ORDER);
+					dataInfo.codUser = stmtResult.getLong(DaoOrdarchDbTableColumn.COL_COD_USER);	
+					dataInfo.codOrderExt = stmtResult.getString(DaoOrdarchDbTableColumn.COL_COD_ORDER_EXTERNAL);	
+					dataInfo.codOrderStatus = stmtResult.getString(DaoOrdarchDbTableColumn.COL_COD_ORDER_STATUS);
+					dataInfo.codCustomer = stmtResult.getLong(DaoOrdarchDbTableColumn.COL_COD_CUSTOMER);
+					dataInfo.codPayOrder = stmtResult.getLong(DaoOrdarchDbTableColumn.COL_COD_PAY_ORDER);	
+					dataInfo.postingYear = DaoFormatter.sqlToInt(stmtResult, DaoOrdarchDbTableColumn.COL_POSTING_YEAR);
+					dataInfo.postingYearMonth = DaoFormatter.sqlToInt(stmtResult, DaoOrdarchDbTableColumn.COL_POSTING_YEAR_MONTH);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());
