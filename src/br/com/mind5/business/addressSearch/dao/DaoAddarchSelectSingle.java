@@ -32,6 +32,12 @@ public final class DaoAddarchSelectSingle extends DaoStmtTemplate<AddarchInfo> {
 	
 	
 	
+	@Override protected String getLookupTableHook() {
+		return DaoDbTable.ADDRESS_SEARCH_VIEW;
+	}	
+	
+	
+	
 	@Override protected DaoOperation getOperationHook() {
 		return DaoOperation.SELECT;
 	}
@@ -80,5 +86,11 @@ public final class DaoAddarchSelectSingle extends DaoStmtTemplate<AddarchInfo> {
 				return finalResult;
 			}
 		};
+	}
+	
+	
+	
+	@Override public void executeStmt() throws SQLException {
+		super.executeStmt();
 	}
 }

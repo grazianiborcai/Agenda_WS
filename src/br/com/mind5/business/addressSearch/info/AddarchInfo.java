@@ -25,7 +25,7 @@ public final class AddarchInfo extends InfoRecord implements Cloneable {
 	
 	
 	public AddarchInfo() {
-		super(AddarchInfo.class);
+		super();
 		
 		codOwner = DefaultValue.number();
 		codAddress = DefaultValue.number();
