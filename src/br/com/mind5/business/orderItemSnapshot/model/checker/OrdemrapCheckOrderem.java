@@ -1,56 +1,27 @@
 package br.com.mind5.business.orderItemSnapshot.model.checker;
 
-import java.util.List;
-
 import br.com.mind5.business.orderItem.info.OrderemInfo;
 import br.com.mind5.business.orderItem.model.checker.OrderemCheckExist;
 import br.com.mind5.business.orderItemSnapshot.info.OrdemrapInfo;
-import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
+import br.com.mind5.model.checker.ModelCheckerV1;
 
-public final class OrdemrapCheckOrderem implements ModelCheckerV1<OrdemrapInfo> {
-	private final boolean FAILED = false;
-	private final boolean SUCCESS = true;
-	
-	private ModelCheckerV1<OrderemInfo> checker;
-	
+public final class OrdemrapCheckOrderem extends ModelCheckerTemplateForwardV2<OrdemrapInfo, OrderemInfo> {
 	
 	public OrdemrapCheckOrderem(ModelCheckerOption option) {
-		checker = new OrderemCheckExist(option);
-	}
-	
-	
-	
-	@Override public boolean check(List<OrdemrapInfo> recordInfos) {
-		for (OrdemrapInfo eachInfo : recordInfos) {
-			if (check(eachInfo) == FAILED)
-				return FAILED;
-		}
-		
-		return SUCCESS;
+		super(option);
 	}
 
-	
-	
-	@Override public boolean check(OrdemrapInfo recordInfo) {
-		return checker.check(OrderemInfo.copyFrom(recordInfo));
-	}
 
 	
-	
-	@Override public boolean getResult() {
-		return checker.getResult();
+	@Override protected ModelCheckerV1<OrderemInfo> getCheckerHook(ModelCheckerOption option) {
+		return new OrderemCheckExist(option);
 	}
-
 	
 	
-	@Override public String getFailMessage() {
-		return checker.getFailMessage();
-	}
-
 	
-	
-	@Override public int getFailCode() {
-		return checker.getFailCode();
+	@Override protected OrderemInfo toForwardClass(OrdemrapInfo baseRecord) {
+		return OrderemInfo.copyFrom(baseRecord);
 	}
 }

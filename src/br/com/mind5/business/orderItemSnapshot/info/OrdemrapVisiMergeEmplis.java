@@ -1,50 +1,39 @@
 package br.com.mind5.business.orderItemSnapshot.info;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import br.com.mind5.business.employeeList.info.EmplisInfo;
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-final class OrdemrapVisiMergeEmplis implements InfoMergerVisitor_<OrdemrapInfo, EmplisInfo> {
-
-	@Override public OrdemrapInfo writeRecord(EmplisInfo sourceOne, OrdemrapInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+final class OrdemrapVisiMergeEmplis implements InfoMergerVisitorV3<OrdemrapInfo, EmplisInfo> {
+	
+	@Override public List<OrdemrapInfo> beforeMerge(List<OrdemrapInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(OrdemrapInfo baseInfo, EmplisInfo selectedInfo) {
+		return (baseInfo.codOwner 	 == selectedInfo.codOwner 	&& 
+				baseInfo.codEmployee == selectedInfo.codEmployee	);
+	}
+	
+	
+	
+	@Override public List<OrdemrapInfo> merge(OrdemrapInfo baseInfo, EmplisInfo selectedInfo) {
+		List<OrdemrapInfo> results = new ArrayList<>();
 		
-		OrdemrapInfo resultInfo = makeClone(sourceTwo);
-		resultInfo.codEmployeeSnapshot = sourceOne.codSnapshot;
-		return resultInfo;
-	}
-	
-	
-	
-	private void checkArgument(EmplisInfo sourceOne, OrdemrapInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private OrdemrapInfo makeClone(OrdemrapInfo recordInfo) {
-		try {
-			return (OrdemrapInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-
-
-	
-	@Override public boolean shouldWrite(EmplisInfo sourceOne, OrdemrapInfo sourceTwo) {
-		return (sourceOne.codOwner 		== sourceTwo.codOwner 	&& 
-				sourceOne.codEmployee 	== sourceTwo.codEmployee	);
-	}
-	
-	
-	
-	private void logException(Exception e) {
+		baseInfo.codEmployeeSnapshot = selectedInfo.codSnapshot;
 		
-		SystemLog.logError(this.getClass(), e);
+		results.add(baseInfo);
+		return results;
+	}
+	
+	
+	
+	@Override public InfoUniquifier<OrdemrapInfo> getUniquifier() {
+		return null;
 	}
 }

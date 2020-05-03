@@ -42,7 +42,7 @@ public final class OrdemrapInfo extends InfoRecord implements Cloneable, Compara
 	
 	
 	public OrdemrapInfo() {
-		super(OrdemrapInfo.class);
+		super();
 		
 		codOwner = DefaultValue.number();	
 		codSnapshot = DefaultValue.number();

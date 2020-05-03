@@ -59,7 +59,7 @@ import br.com.mind5.business.moonCalendar.dao.DaoMooncalDbTableColumn;
 import br.com.mind5.business.order.dao.DaoOrderDbTableColumn;
 import br.com.mind5.business.orderItem.dao.DaoOrderemDbTableColumn;
 import br.com.mind5.business.orderItemSearch.dao.DaoOrdemarchDbTableColumn;
-import br.com.mind5.business.orderItemSnapshot.dao.OrdemrapDbTableColumn;
+import br.com.mind5.business.orderItemSnapshot.dao.DaoOrdemrapDbTableColumn;
 import br.com.mind5.business.orderList.dao.OrdistDbTableColumn;
 import br.com.mind5.business.orderReserve.dao.DaoOrderveDbTableColumn;
 import br.com.mind5.business.orderSearch.dao.OrdarchDbTableColumn;
@@ -254,7 +254,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new OrdistDbTableColumn());
 		addTable(new SchedarchDbTableColumn());
 		addTable(new OrdnapDbTableColumn());
-		addTable(new OrdemrapDbTableColumn());
+		addTable(new DaoOrdemrapDbTableColumn());
 		addTable(new PayordarchDbTableColumn());
 		addTable(new SchedistDbTableColumn());
 		addTable(new SchedovmDbTableColumn());

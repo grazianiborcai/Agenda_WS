@@ -1,35 +1,19 @@
 package br.com.mind5.business.orderItemSnapshot.model.action;
 
 import br.com.mind5.business.orderItemSnapshot.info.OrdemrapInfo;
-import br.com.mind5.model.action.ActionLazyV1;
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionStdHelperMerge;
-import br.com.mind5.model.decisionTree.DeciResult;
+import br.com.mind5.model.action.ActionStdTemplateV2;
+import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdOrdemrapMergeEmplis implements ActionStdV1<OrdemrapInfo> {
-	private ActionStdV1<OrdemrapInfo> actionHelper;	
-	
-	
-	public StdOrdemrapMergeEmplis(DeciTreeOption<OrdemrapInfo> option) {			
-		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiOrdemrapMergeEmplis(option.conn, option.schemaName));
+public final class StdOrdemrapMergeEmplis extends ActionStdTemplateV2<OrdemrapInfo> {
+
+	public StdOrdemrapMergeEmplis(DeciTreeOption<OrdemrapInfo> option) {
+		super(option);
 	}
 	
 	
 	
-	@Override public void addPostAction(ActionLazyV1<OrdemrapInfo> actionHandler) {
-		actionHelper.addPostAction(actionHandler);
-	}
-	
-	
-	
-	@Override public boolean executeAction() {			
-		return actionHelper.executeAction();
-	}
-	
-	
-	
-	@Override public DeciResult<OrdemrapInfo> getDecisionResult() {
-		return actionHelper.getDecisionResult();
+	protected ActionVisitorV2<OrdemrapInfo> buildVisitorHook(DeciTreeOption<OrdemrapInfo> option) {
+		return new VisiOrdemrapMergeEmplis(option);
 	}
 }

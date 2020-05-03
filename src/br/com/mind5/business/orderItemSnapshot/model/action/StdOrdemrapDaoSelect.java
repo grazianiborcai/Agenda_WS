@@ -5,15 +5,15 @@ import br.com.mind5.model.action.ActionStdTemplateV2;
 import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdOrdemrapMergeToSelect extends ActionStdTemplateV2<OrdemrapInfo> {
+public final class StdOrdemrapDaoSelect extends ActionStdTemplateV2<OrdemrapInfo> {
 
-	public StdOrdemrapMergeToSelect(DeciTreeOption<OrdemrapInfo> option) {
+	public StdOrdemrapDaoSelect(DeciTreeOption<OrdemrapInfo> option) {
 		super(option);
 	}
 	
 	
 	
 	protected ActionVisitorV2<OrdemrapInfo> buildVisitorHook(DeciTreeOption<OrdemrapInfo> option) {
-		return new VisiOrdemrapMergeToSelect(option);
+		return new VisiOrdemrapDaoSelect(option);
 	}
 }

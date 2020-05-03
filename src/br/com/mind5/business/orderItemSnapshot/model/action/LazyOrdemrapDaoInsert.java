@@ -4,14 +4,14 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.orderItemSnapshot.info.OrdemrapInfo;
-import br.com.mind5.model.action.ActionLazyTemplateV1;
+import br.com.mind5.model.action.ActionLazyTemplateV2;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyOrdemrapSelect extends ActionLazyTemplateV1<OrdemrapInfo, OrdemrapInfo> {
+public final class LazyOrdemrapDaoInsert extends ActionLazyTemplateV2<OrdemrapInfo, OrdemrapInfo> {
 
-	public LazyOrdemrapSelect(Connection conn, String schemaName) {
+	public LazyOrdemrapDaoInsert(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyOrdemrapSelect extends ActionLazyTemplateV1<OrdemrapInfo,
 	
 	
 	@Override protected ActionStdV1<OrdemrapInfo> getInstanceOfActionHook(DeciTreeOption<OrdemrapInfo> option) {
-		return new StdOrdemrapSelect(option);
+		return new StdOrdemrapDaoInsert(option);
 	}
 	
 	

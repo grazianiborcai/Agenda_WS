@@ -15,11 +15,11 @@ import br.com.mind5.dao.DaoStmtParamTranslator;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public class OrdemrapInsertSingle extends DaoStmtTemplate<OrdemrapInfo> {
+public class DaoOrdemrapInsertSingle extends DaoStmtTemplate<OrdemrapInfo> {
 	private final String MAIN_TABLE = DaoDbTable.ORDER_ITM_SNAPSHOT_TABLE;		
 	
 	
-	public OrdemrapInsertSingle(Connection conn, OrdemrapInfo recordInfo, String schemaName) {
+	public DaoOrdemrapInsertSingle(Connection conn, OrdemrapInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	

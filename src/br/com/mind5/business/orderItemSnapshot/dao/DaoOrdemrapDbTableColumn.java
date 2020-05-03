@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class OrdemrapDbTableColumn extends DaoDbTableColumnTemplate {
+public final class DaoOrdemrapDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_BEGIN_TIME = DaoDbField.COL_BEGIN_TIME;	
 	public static final String COL_COD_CURRENCY = DaoDbField.COL_COD_CURRENCY;
 	public static final String COL_COD_EMPLOYEE = DaoDbField.COL_COD_EMPLOYEE;	
@@ -32,24 +32,13 @@ public final class OrdemrapDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_TOTAL_ITEM = DaoDbField.COL_TOTAL_ITEM;
 	
 	
-	private Hashtable<String, List<DaoColumn>> tableColumns;
-	
-	
-	public OrdemrapDbTableColumn() {
-		super(OrdemrapDbTableColumn.class);
+	public DaoOrdemrapDbTableColumn() {
+		super();
 	}
 	
 	
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
-		tableColumns = new Hashtable<>();	
-		buildOrdemItemTable();
-		return tableColumns;
-	}
-	
-	
-	
-	private void buildOrdemItemTable() {
 		final String TABLE_NAME = DaoDbTable.ORDER_ITM_SNAPSHOT_TABLE;
 		
 		DaoColumn oneColumn;
@@ -207,6 +196,8 @@ public final class OrdemrapDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);	
 		
-		tableColumns.put(TABLE_NAME, columns);
+		Hashtable<String, List<DaoColumn>> results = new Hashtable<>();
+		results.put(TABLE_NAME, columns);
+		return results;
 	}
 }

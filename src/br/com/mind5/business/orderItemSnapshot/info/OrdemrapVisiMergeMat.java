@@ -1,51 +1,39 @@
 package br.com.mind5.business.orderItemSnapshot.info;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import br.com.mind5.business.material.info.MatInfo;
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-final class OrdemrapVisiMergeMat implements InfoMergerVisitor_<OrdemrapInfo, MatInfo> {
-
-	@Override public OrdemrapInfo writeRecord(MatInfo sourceOne, OrdemrapInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+final class OrdemrapVisiMergeMat implements InfoMergerVisitorV3<OrdemrapInfo, MatInfo> {
+	
+	@Override public List<OrdemrapInfo> beforeMerge(List<OrdemrapInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(OrdemrapInfo baseInfo, MatInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner && 
+				baseInfo.codMat   == selectedInfo.codMat		);
+	}
+	
+	
+	
+	@Override public List<OrdemrapInfo> merge(OrdemrapInfo baseInfo, MatInfo selectedInfo) {
+		List<OrdemrapInfo> results = new ArrayList<>();
 		
-		OrdemrapInfo resultInfo = makeClone(sourceTwo);
-		resultInfo.codMatSnapshot = sourceOne.codSnapshot;
-
-		return resultInfo;
-	}
-	
-	
-	
-	private void checkArgument(MatInfo sourceOne, OrdemrapInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}	
-	
-	
-	
-	private OrdemrapInfo makeClone(OrdemrapInfo recordInfo) {
-		try {
-			return (OrdemrapInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-
-
-	
-	@Override public boolean shouldWrite(MatInfo sourceOne, OrdemrapInfo sourceTwo) {
-		return (sourceOne.codOwner == sourceTwo.codOwner && 
-				sourceOne.codMat   == sourceTwo.codMat		);
-	}
-	
-	
-	
-	private void logException(Exception e) {
+		baseInfo.codMatSnapshot = selectedInfo.codSnapshot;
 		
-		SystemLog.logError(this.getClass(), e);
+		results.add(baseInfo);
+		return results;
+	}
+	
+	
+	
+	@Override public InfoUniquifier<OrdemrapInfo> getUniquifier() {
+		return null;
 	}
 }

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.orderItemSnapshot.info.OrdemrapInfo;
-import br.com.mind5.business.orderItemSnapshot.model.action.LazyOrdemrapInsert;
+import br.com.mind5.business.orderItemSnapshot.model.action.LazyOrdemrapDaoInsert;
 import br.com.mind5.business.orderItemSnapshot.model.action.LazyOrdemrapNodeEmp;
 import br.com.mind5.business.orderItemSnapshot.model.action.LazyOrdemrapNodeStore;
 import br.com.mind5.business.orderItemSnapshot.model.action.StdOrdemrapMergeMat;
@@ -18,9 +18,9 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class RootOrdemrapInsert extends DeciTreeTemplateWriteV1<OrdemrapInfo> {
+public final class RootOrdemrapInsert extends DeciTreeTemplateWriteV2<OrdemrapInfo> {
 	
 	public RootOrdemrapInsert(DeciTreeOption<OrdemrapInfo> option) {
 		super(option);
@@ -72,7 +72,7 @@ public final class RootOrdemrapInsert extends DeciTreeTemplateWriteV1<OrdemrapIn
 		ActionStdV1<OrdemrapInfo> mergeMat = new StdOrdemrapMergeMat(option);
 		ActionLazyV1<OrdemrapInfo> nodeStore = new LazyOrdemrapNodeStore(option.conn, option.schemaName);
 		ActionLazyV1<OrdemrapInfo> nodeEmp = new LazyOrdemrapNodeEmp(option.conn, option.schemaName);
-		ActionLazyV1<OrdemrapInfo> insert = new LazyOrdemrapInsert(option.conn, option.schemaName);
+		ActionLazyV1<OrdemrapInfo> insert = new LazyOrdemrapDaoInsert(option.conn, option.schemaName);
 		
 		mergeMat.addPostAction(nodeStore);
 		nodeStore.addPostAction(nodeEmp);

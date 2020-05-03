@@ -1,19 +1,19 @@
 package br.com.mind5.business.orderItemSnapshot.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.orderItemSnapshot.info.OrdemrapInfo;
 import br.com.mind5.business.orderItemSnapshot.info.OrdemrapMerger;
 import br.com.mind5.masterData.weekday.info.WeekdayInfo;
 import br.com.mind5.masterData.weekday.model.decisionTree.RootWeekdaySelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiOrdemrapMergeWeekday extends ActionVisitorTemplateMergeV1<OrdemrapInfo, WeekdayInfo> {
+final class VisiOrdemrapMergeWeekday extends ActionVisitorTemplateMergeV2<OrdemrapInfo, WeekdayInfo> {
 	
-	public VisiOrdemrapMergeWeekday(Connection conn, String schemaName) {
-		super(conn, schemaName, WeekdayInfo.class);
+	public VisiOrdemrapMergeWeekday(DeciTreeOption<OrdemrapInfo> option) {
+		super(option, WeekdayInfo.class); 
 	}
 	
 	
@@ -24,13 +24,13 @@ final class VisiOrdemrapMergeWeekday extends ActionVisitorTemplateMergeV1<Ordemr
 	
 	
 	
-	@Override protected List<OrdemrapInfo> mergeHook(List<OrdemrapInfo> recordInfos, List<WeekdayInfo> selectedInfos) {	
-		return OrdemrapMerger.mergeWithWeekday(selectedInfos, recordInfos);
+	@Override protected List<OrdemrapInfo> mergeHook(List<OrdemrapInfo> baseInfos, List<WeekdayInfo> selectedInfos) {	
+		return OrdemrapMerger.mergeWithWeekday(baseInfos, selectedInfos);
 	}
 	
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV2.MERGE_WHEN_EMPTY;
 	}
 }
