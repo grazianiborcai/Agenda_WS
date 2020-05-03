@@ -9,15 +9,15 @@ import br.com.mind5.business.orderItem.model.action.LazyOrderemMergeEmplis;
 import br.com.mind5.business.orderItem.model.action.LazyOrderemMergeMatore;
 import br.com.mind5.business.orderItem.model.action.LazyOrderemMergeWeekday;
 import br.com.mind5.business.orderItem.model.action.StdOrderemMergeStolis;
-import br.com.mind5.business.orderItem.model.checker.OrderemCheckDummy;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class NodeOrderemSelectService extends DeciTreeTemplateWriteV1<OrderemInfo> {
+public final class NodeOrderemSelectService extends DeciTreeTemplateWriteV2<OrderemInfo> {
 	
 	public NodeOrderemSelectService(DeciTreeOption<OrderemInfo> option) {
 		super(option);
@@ -29,7 +29,7 @@ public final class NodeOrderemSelectService extends DeciTreeTemplateWriteV1<Orde
 		List<ModelCheckerV1<OrderemInfo>> queue = new ArrayList<>();		
 		ModelCheckerV1<OrderemInfo> checker;
 		
-		checker = new OrderemCheckDummy();
+		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueueV2<>(queue);

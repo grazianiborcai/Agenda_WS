@@ -1,6 +1,5 @@
 package br.com.mind5.business.orderItem.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.materialList.info.MatlisCopier;
@@ -8,13 +7,14 @@ import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.business.materialList.model.decisionTree.RootMatlisSelect;
 import br.com.mind5.business.orderItem.info.OrderemInfo;
 import br.com.mind5.business.orderItem.info.OrderemMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiOrderemMergeMatlis extends ActionVisitorTemplateMergeV1<OrderemInfo, MatlisInfo> {
+final class VisiOrderemMergeMatlis extends ActionVisitorTemplateMergeV2<OrderemInfo, MatlisInfo> {
 	
-	public VisiOrderemMergeMatlis(Connection conn, String schemaName) {
-		super(conn, schemaName, MatlisInfo.class);
+	public VisiOrderemMergeMatlis(DeciTreeOption<OrderemInfo> option) {
+		super(option, MatlisInfo.class); 
 	}
 	
 	
@@ -25,19 +25,19 @@ final class VisiOrderemMergeMatlis extends ActionVisitorTemplateMergeV1<OrderemI
 	
 	
 	
-	@Override protected List<MatlisInfo> toActionClassHook(List<OrderemInfo> recordInfos) {
-		return MatlisCopier.copyFromOrderem(recordInfos);	
+	@Override protected List<MatlisInfo> toActionClassHook(List<OrderemInfo> baseInfos) {
+		return MatlisCopier.copyFromOrderem(baseInfos);	
 	}
 	
 	
 	
-	@Override protected List<OrderemInfo> mergeHook(List<OrderemInfo> recordInfos, List<MatlisInfo> selectedInfos) {	
-		return OrderemMerger.mergeWithMatlis(selectedInfos, recordInfos);
+	@Override protected List<OrderemInfo> mergeHook(List<OrderemInfo> baseInfos, List<MatlisInfo> selectedInfos) {	
+		return OrderemMerger.mergeWithMatlis(baseInfos, selectedInfos);
 	}
 	
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV2.MERGE_WHEN_EMPTY;
 	}
 }

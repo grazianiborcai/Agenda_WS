@@ -1,50 +1,39 @@
 package br.com.mind5.business.orderItem.info;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import br.com.mind5.business.employeeList.info.EmplisInfo;
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-final class OrderemVisiMergeEmplis implements InfoMergerVisitor_<OrderemInfo, EmplisInfo> {
-
-	@Override public OrderemInfo writeRecord(EmplisInfo sourceOne, OrderemInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+final class OrderemVisiMergeEmplis implements InfoMergerVisitorV3<OrderemInfo, EmplisInfo> {
+	
+	@Override public List<OrderemInfo> beforeMerge(List<OrderemInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(OrderemInfo baseInfo, EmplisInfo selectedInfo) {
+		return (baseInfo.codOwner 	 == selectedInfo.codOwner 	&& 
+				baseInfo.codEmployee == selectedInfo.codEmployee	);
+	}
+	
+	
+	
+	@Override public List<OrderemInfo> merge(OrderemInfo baseInfo, EmplisInfo selectedInfo) {
+		List<OrderemInfo> results = new ArrayList<>();
 		
-		OrderemInfo resultInfo = makeClone(sourceTwo);
-		resultInfo.emplisData = sourceOne;
-		return resultInfo;
-	}
-	
-	
-	
-	private void checkArgument(EmplisInfo sourceOne, OrderemInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private OrderemInfo makeClone(OrderemInfo recordInfo) {
-		try {
-			return (OrderemInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-
-
-	
-	@Override public boolean shouldWrite(EmplisInfo sourceOne, OrderemInfo sourceTwo) {
-		return (sourceOne.codOwner 		== sourceTwo.codOwner 	&& 
-				sourceOne.codEmployee 	== sourceTwo.codEmployee	);
-	}
-	
-	
-	
-	private void logException(Exception e) {
+		baseInfo.emplisData = selectedInfo;
 		
-		SystemLog.logError(this.getClass(), e);
+		results.add(baseInfo);
+		return results;
+	}
+	
+	
+	
+	@Override public InfoUniquifier<OrderemInfo> getUniquifier() {
+		return null;
 	}
 }

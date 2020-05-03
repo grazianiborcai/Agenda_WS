@@ -1,73 +1,61 @@
 package br.com.mind5.business.orderItem.info;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import br.com.mind5.business.materialStore.info.MatoreInfo;
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-final class OrderemVisiMergeMatore implements InfoMergerVisitor_<OrderemInfo, MatoreInfo> {
-
-	@Override public OrderemInfo writeRecord(MatoreInfo sourceOne, OrderemInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
-		
-		OrderemInfo resultInfo = makeClone(sourceTwo);
-		resultInfo.price = sourceOne.matPrice;
-		
-		if (resultInfo.codWeekday == 1)
-			resultInfo.price = sourceOne.matPrice1;
-		
-		if (resultInfo.codWeekday == 2)
-			resultInfo.price = sourceOne.matPrice2;
-		
-		if (resultInfo.codWeekday == 3)
-			resultInfo.price = sourceOne.matPrice3;
-		
-		if (resultInfo.codWeekday == 4)
-			resultInfo.price = sourceOne.matPrice4;
-		
-		if (resultInfo.codWeekday == 5)
-			resultInfo.price = sourceOne.matPrice5;
-		
-		if (resultInfo.codWeekday == 6)
-			resultInfo.price = sourceOne.matPrice6;
-		
-		if (resultInfo.codWeekday == 7)
-			resultInfo.price = sourceOne.matPrice7;
-
-		return resultInfo;
+final class OrderemVisiMergeMatore implements InfoMergerVisitorV3<OrderemInfo, MatoreInfo> {
+	
+	@Override public List<OrderemInfo> beforeMerge(List<OrderemInfo> baseInfos) {
+		return baseInfos;
 	}
 	
 	
 	
-	private void checkArgument(MatoreInfo sourceOne, OrderemInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}	
-	
-	
-	
-	private OrderemInfo makeClone(OrderemInfo recordInfo) {
-		try {
-			return (OrderemInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-
-
-	
-	@Override public boolean shouldWrite(MatoreInfo sourceOne, OrderemInfo sourceTwo) {
-		return (sourceOne.codOwner == sourceTwo.codOwner && 
-				sourceOne.codStore == sourceTwo.codStore && 
-				sourceOne.codMat   == sourceTwo.codMat		);
+	@Override public boolean shouldMerge(OrderemInfo baseInfo, MatoreInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner && 
+				baseInfo.codStore == selectedInfo.codStore && 
+				baseInfo.codMat   == selectedInfo.codMat		);
 	}
 	
 	
 	
-	private void logException(Exception e) {
+	@Override public List<OrderemInfo> merge(OrderemInfo baseInfo, MatoreInfo selectedInfo) {
+		List<OrderemInfo> results = new ArrayList<>();
 		
-		SystemLog.logError(this.getClass(), e);
+		baseInfo.price = selectedInfo.matPrice;
+		
+		if (baseInfo.codWeekday == 1)
+			baseInfo.price = selectedInfo.matPrice1;
+		
+		if (baseInfo.codWeekday == 2)
+			baseInfo.price = selectedInfo.matPrice2;
+		
+		if (baseInfo.codWeekday == 3)
+			baseInfo.price = selectedInfo.matPrice3;
+		
+		if (baseInfo.codWeekday == 4)
+			baseInfo.price = selectedInfo.matPrice4;
+		
+		if (baseInfo.codWeekday == 5)
+			baseInfo.price = selectedInfo.matPrice5;
+		
+		if (baseInfo.codWeekday == 6)
+			baseInfo.price = selectedInfo.matPrice6;
+		
+		if (baseInfo.codWeekday == 7)
+			baseInfo.price = selectedInfo.matPrice7;
+		
+		results.add(baseInfo);
+		return results;
+	}
+	
+	
+	
+	@Override public InfoUniquifier<OrderemInfo> getUniquifier() {
+		return null;
 	}
 }

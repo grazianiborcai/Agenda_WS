@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilder;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 
-public final class OrderemWhere implements DaoStmtWhere {	
+public final class DaoOrderemWhere implements DaoStmtWhere {	
 	private String whereClause;	
 	
 	
-	public OrderemWhere(DaoWhereBuilderOption whereOption, String tableName, OrderemInfo recordInfo) {
+	public DaoOrderemWhere(DaoWhereBuilderOption whereOption, String tableName, OrderemInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -27,15 +27,15 @@ public final class OrderemWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-				case OrderemDbTableColumn.COL_COD_OWNER :
+				case DaoOrderemDbTableColumn.COL_COD_OWNER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;
 					
-				case OrderemDbTableColumn.COL_COD_ORDER :
+				case DaoOrderemDbTableColumn.COL_COD_ORDER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOrder));
 					break;
 					
-				case OrderemDbTableColumn.COL_COD_ORDER_ITEM :
+				case DaoOrderemDbTableColumn.COL_COD_ORDER_ITEM :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOrderItem));
 					break;
 			}

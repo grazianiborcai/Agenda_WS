@@ -4,14 +4,14 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.orderItem.info.OrderemInfo;
-import br.com.mind5.model.action.ActionLazyTemplateV1;
+import br.com.mind5.model.action.ActionLazyTemplateV2;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyOrderemSelect extends ActionLazyTemplateV1<OrderemInfo, OrderemInfo> {
+public final class LazyOrderemDaoSelect extends ActionLazyTemplateV2<OrderemInfo, OrderemInfo> {
 
-	public LazyOrderemSelect(Connection conn, String schemaName) {
+	public LazyOrderemDaoSelect(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyOrderemSelect extends ActionLazyTemplateV1<OrderemInfo, O
 	
 	
 	@Override protected ActionStdV1<OrderemInfo> getInstanceOfActionHook(DeciTreeOption<OrderemInfo> option) {
-		return new StdOrderemSelect(option);
+		return new StdOrderemDaoSelect(option);
 	}
 	
 	

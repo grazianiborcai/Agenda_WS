@@ -4,17 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.orderItem.info.OrderemInfo;
-import br.com.mind5.business.orderItem.model.action.LazyOrderemUpdate;
+import br.com.mind5.business.orderItem.model.action.LazyOrderemDaoUpdate;
 import br.com.mind5.business.orderItem.model.action.StdOrderemInsertOrdemrap;
-import br.com.mind5.business.orderItem.model.checker.OrderemCheckDummy;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class NodeOrderemSnapshot extends DeciTreeTemplateWriteV1<OrderemInfo> {
+public final class NodeOrderemSnapshot extends DeciTreeTemplateWriteV2<OrderemInfo> {
 	
 	public NodeOrderemSnapshot(DeciTreeOption<OrderemInfo> option) {
 		super(option);
@@ -26,7 +26,7 @@ public final class NodeOrderemSnapshot extends DeciTreeTemplateWriteV1<OrderemIn
 		List<ModelCheckerV1<OrderemInfo>> queue = new ArrayList<>();		
 		ModelCheckerV1<OrderemInfo> checker;	
 
-		checker = new OrderemCheckDummy();
+		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueueV2<>(queue);
@@ -38,7 +38,7 @@ public final class NodeOrderemSnapshot extends DeciTreeTemplateWriteV1<OrderemIn
 		List<ActionStdV1<OrderemInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<OrderemInfo> insertOrdemrap = new StdOrderemInsertOrdemrap(option);
-		ActionLazyV1<OrderemInfo> update = new LazyOrderemUpdate(option.conn, option.schemaName);
+		ActionLazyV1<OrderemInfo> update = new LazyOrderemDaoUpdate(option.conn, option.schemaName);
 		
 		insertOrdemrap.addPostAction(update);
 		

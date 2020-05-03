@@ -1,19 +1,19 @@
 package br.com.mind5.business.orderItem.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.employeeList.info.EmplisInfo;
 import br.com.mind5.business.employeeList.model.decisionTree.RootEmplisSelect;
 import br.com.mind5.business.orderItem.info.OrderemInfo;
 import br.com.mind5.business.orderItem.info.OrderemMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiOrderemMergeEmplis extends ActionVisitorTemplateMergeV1<OrderemInfo, EmplisInfo> {
+final class VisiOrderemMergeEmplis extends ActionVisitorTemplateMergeV2<OrderemInfo, EmplisInfo> {
 	
-	public VisiOrderemMergeEmplis(Connection conn, String schemaName) {
-		super(conn, schemaName, EmplisInfo.class);
+	public VisiOrderemMergeEmplis(DeciTreeOption<OrderemInfo> option) {
+		super(option, EmplisInfo.class);
 	}
 	
 	
@@ -24,13 +24,13 @@ final class VisiOrderemMergeEmplis extends ActionVisitorTemplateMergeV1<OrderemI
 	
 	
 	
-	@Override protected List<OrderemInfo> mergeHook(List<OrderemInfo> recordInfos, List<EmplisInfo> selectedInfos) {	
-		return OrderemMerger.mergeWithEmplis(selectedInfos, recordInfos);
+	@Override protected List<OrderemInfo> mergeHook(List<OrderemInfo> baseInfos, List<EmplisInfo> selectedInfos) {	
+		return OrderemMerger.mergeWithEmplis(baseInfos, selectedInfos);
 	}
 	
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV2.MERGE_WHEN_EMPTY;
 	}
 }

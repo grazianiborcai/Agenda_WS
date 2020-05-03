@@ -1,51 +1,39 @@
 package br.com.mind5.business.orderItem.info;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import br.com.mind5.business.materialList.info.MatlisInfo;
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-final class OrderemVisiMergeMatlis implements InfoMergerVisitor_<OrderemInfo, MatlisInfo> {
-
-	@Override public OrderemInfo writeRecord(MatlisInfo sourceOne, OrderemInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+final class OrderemVisiMergeMatlis implements InfoMergerVisitorV3<OrderemInfo, MatlisInfo> {
+	
+	@Override public List<OrderemInfo> beforeMerge(List<OrderemInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(OrderemInfo baseInfo, MatlisInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner && 
+				baseInfo.codMat   == selectedInfo.codMat		);
+	}
+	
+	
+	
+	@Override public List<OrderemInfo> merge(OrderemInfo baseInfo, MatlisInfo selectedInfo) {
+		List<OrderemInfo> results = new ArrayList<>();
 		
-		OrderemInfo resultInfo = makeClone(sourceTwo);
-		resultInfo.matlisData = sourceOne;
-
-		return resultInfo;
-	}
-	
-	
-	
-	private void checkArgument(MatlisInfo sourceOne, OrderemInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}	
-	
-	
-	
-	private OrderemInfo makeClone(OrderemInfo recordInfo) {
-		try {
-			return (OrderemInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-
-
-	
-	@Override public boolean shouldWrite(MatlisInfo sourceOne, OrderemInfo sourceTwo) {
-		return (sourceOne.codOwner == sourceTwo.codOwner && 
-				sourceOne.codMat   == sourceTwo.codMat		);
-	}
-	
-	
-	
-	private void logException(Exception e) {
+		baseInfo.matlisData = selectedInfo;
 		
-		SystemLog.logError(this.getClass(), e);
+		results.add(baseInfo);
+		return results;
+	}
+	
+	
+	
+	@Override public InfoUniquifier<OrderemInfo> getUniquifier() {
+		return null;
 	}
 }

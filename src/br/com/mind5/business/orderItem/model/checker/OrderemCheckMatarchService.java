@@ -1,57 +1,28 @@
 package br.com.mind5.business.orderItem.model.checker;
 
-import java.util.List;
-
 import br.com.mind5.business.materialSearch.info.MatarchCopier;
 import br.com.mind5.business.materialSearch.info.MatarchInfo;
 import br.com.mind5.business.materialSearch.model.checker.MatarchCheckExistService;
 import br.com.mind5.business.orderItem.info.OrderemInfo;
-import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
+import br.com.mind5.model.checker.ModelCheckerV1;
 
-public final class OrderemCheckMatarchService implements ModelCheckerV1<OrderemInfo> {
-	private final boolean FAILED = false;
-	private final boolean SUCCESS = true;
-	
-	private ModelCheckerV1<MatarchInfo> checker;
-	
+public final class OrderemCheckMatarchService extends ModelCheckerTemplateForwardV2<OrderemInfo, MatarchInfo> {
 	
 	public OrderemCheckMatarchService(ModelCheckerOption option) {
-		checker = new MatarchCheckExistService(option);
-	}
-	
-	
-	
-	@Override public boolean check(List<OrderemInfo> recordInfos) {
-		for (OrderemInfo eachInfo : recordInfos) {
-			if (check(eachInfo) == FAILED)
-				return FAILED;
-		}
-		
-		return SUCCESS;
+		super(option);
 	}
 
-	
-	
-	@Override public boolean check(OrderemInfo recordInfo) {
-		return checker.check(MatarchCopier.copyFromOrderem(recordInfo));
-	}
 
 	
-	
-	@Override public boolean getResult() {
-		return checker.getResult();
+	@Override protected ModelCheckerV1<MatarchInfo> getCheckerHook(ModelCheckerOption option) {
+		return new MatarchCheckExistService(option);
 	}
-
 	
 	
-	@Override public String getFailMessage() {
-		return checker.getFailMessage();
-	}
-
 	
-	
-	@Override public int getFailCode() {
-		return checker.getFailCode();
+	@Override protected MatarchInfo toForwardClass(OrderemInfo baseRecord) {
+		return MatarchCopier.copyFromOrderem(baseRecord);
 	}
 }

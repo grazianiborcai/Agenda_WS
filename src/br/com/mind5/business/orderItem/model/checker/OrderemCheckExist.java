@@ -1,7 +1,7 @@
 package br.com.mind5.business.orderItem.model.checker;
 
 import br.com.mind5.business.orderItem.info.OrderemInfo;
-import br.com.mind5.business.orderItem.model.action.StdOrderemSelect;
+import br.com.mind5.business.orderItem.model.action.StdOrderemDaoSelect;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -17,7 +17,7 @@ public final class OrderemCheckExist extends ModelCheckerTemplateActionV2<Ordere
 
 	
 	@Override protected ActionStdV1<OrderemInfo> buildActionHook(DeciTreeOption<OrderemInfo> option) {
-		ActionStdV1<OrderemInfo> select = new StdOrderemSelect(option);
+		ActionStdV1<OrderemInfo> select = new StdOrderemDaoSelect(option);
 		return select;
 	}
 	

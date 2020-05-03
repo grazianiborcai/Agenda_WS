@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.orderItem.info.OrderemInfo;
-import br.com.mind5.business.orderItem.model.action.LazyOrderemInsert;
+import br.com.mind5.business.orderItem.model.action.LazyOrderemDaoInsert;
 import br.com.mind5.business.orderItem.model.action.StdOrderemMergeStolis;
 import br.com.mind5.business.orderItem.model.checker.OrderemCheckEmp;
 import br.com.mind5.business.orderItem.model.checker.OrderemCheckEmpmat;
@@ -18,9 +18,9 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class NodeOrderemInsertService extends DeciTreeTemplateWriteV1<OrderemInfo> {
+public final class NodeOrderemInsertService extends DeciTreeTemplateWriteV2<OrderemInfo> {
 	
 	public NodeOrderemInsertService(DeciTreeOption<OrderemInfo> option) {
 		super(option);
@@ -84,7 +84,7 @@ public final class NodeOrderemInsertService extends DeciTreeTemplateWriteV1<Orde
 		List<ActionStdV1<OrderemInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<OrderemInfo> mergeStolis = new StdOrderemMergeStolis(option);		
-		ActionLazyV1<OrderemInfo> insert = new LazyOrderemInsert(option.conn, option.schemaName);
+		ActionLazyV1<OrderemInfo> insert = new LazyOrderemDaoInsert(option.conn, option.schemaName);
 		
 		mergeStolis.addPostAction(insert);
 		

@@ -39,7 +39,7 @@ public final class OrderemInfo extends InfoRecord implements Cloneable, Comparab
 	
 	
 	public OrderemInfo() {
-		super(OrderemInfo.class);
+		super();
 		
 		codOwner = DefaultValue.number();	
 		codOrder = DefaultValue.number();

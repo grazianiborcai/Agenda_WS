@@ -1,27 +1,38 @@
 package br.com.mind5.business.orderItem.info;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import br.com.mind5.business.orderItemSearch.info.OrdemarchInfo;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-final class OrderemVisiMergeOrdemarch implements InfoMergerVisitor_<OrderemInfo, OrdemarchInfo> {
-
-	@Override public OrderemInfo writeRecord(OrdemarchInfo sourceOne, OrderemInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
-
-		return OrderemInfo.copyFrom(sourceOne);
+final class OrderemVisiMergeOrdemarch implements InfoMergerVisitorV3<OrderemInfo, OrdemarchInfo> {
+	
+	@Override public List<OrderemInfo> beforeMerge(List<OrderemInfo> baseInfos) {
+		return baseInfos;
 	}
 	
 	
 	
-	private void checkArgument(OrdemarchInfo sourceOne, OrderemInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
+	@Override public boolean shouldMerge(OrderemInfo baseInfo, OrdemarchInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner);
 	}
-
-
 	
-	@Override public boolean shouldWrite(OrdemarchInfo sourceOne, OrderemInfo sourceTwo) {
-		return (sourceOne.codOwner == sourceTwo.codOwner);
+	
+	
+	@Override public List<OrderemInfo> merge(OrderemInfo baseInfo, OrdemarchInfo selectedInfo) {
+		List<OrderemInfo> results = new ArrayList<>();
+		
+		OrderemInfo result = OrderemInfo.copyFrom(selectedInfo);
+		
+		results.add(result);
+		return results;
+	}
+	
+	
+	
+	@Override public InfoUniquifier<OrderemInfo> getUniquifier() {
+		return null;
 	}
 }

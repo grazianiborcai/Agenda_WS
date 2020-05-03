@@ -1,31 +1,30 @@
 package br.com.mind5.business.orderItem.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.orderItem.info.OrderemInfo;
 import br.com.mind5.business.orderItem.info.OrderemMerger;
 import br.com.mind5.business.orderItemSnapshot.info.OrdemrapInfo;
 import br.com.mind5.business.orderItemSnapshot.model.decisionTree.RootOrdemrapInsert;
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateActionV1;
+import br.com.mind5.model.action.ActionVisitorTemplateActionV2;
+import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiOrderemInsertOrdemrap extends ActionVisitorTemplateActionV1<OrderemInfo, OrdemrapInfo> {
+final class VisiOrderemInsertOrdemrap extends ActionVisitorTemplateActionV2<OrderemInfo, OrdemrapInfo> {
 
-	public VisiOrderemInsertOrdemrap(Connection conn, String schemaName) {
-		super(conn, schemaName, OrderemInfo.class, OrdemrapInfo.class);
+	public VisiOrderemInsertOrdemrap(DeciTreeOption<OrderemInfo> option) {
+		super(option, OrderemInfo.class, OrdemrapInfo.class);
 	}
 	
 	
 	
-	@Override protected ActionStdV1<OrdemrapInfo> getActionHook(DeciTreeOption<OrdemrapInfo> option) {
-		return new RootOrdemrapInsert(option).toAction();
+	@Override protected Class<? extends DeciTree<OrdemrapInfo>> getTreeClassHook() {
+		return RootOrdemrapInsert.class;
 	}
 	
 	
 	
 	protected List<OrderemInfo> toBaseClassHook(List<OrderemInfo> baseInfos, List<OrdemrapInfo> results) {
-		return OrderemMerger.mergeWithOrdemrap(results, baseInfos);
+		return OrderemMerger.mergeWithOrdemrap(baseInfos, results);
 	}
 }

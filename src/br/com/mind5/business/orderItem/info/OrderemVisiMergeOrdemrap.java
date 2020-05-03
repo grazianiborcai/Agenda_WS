@@ -1,57 +1,40 @@
 package br.com.mind5.business.orderItem.info;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import br.com.mind5.business.orderItemSnapshot.info.OrdemrapInfo;
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-final class OrderemVisiMergeOrdemrap implements InfoMergerVisitor_<OrderemInfo, OrdemrapInfo> {
-
-	@Override public OrderemInfo writeRecord(OrdemrapInfo sourceOne, OrderemInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+final class OrderemVisiMergeOrdemrap implements InfoMergerVisitorV3<OrderemInfo, OrdemrapInfo> {
+	
+	@Override public List<OrderemInfo> beforeMerge(List<OrderemInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(OrderemInfo baseInfo, OrdemrapInfo selectedInfo) {
+		return (baseInfo.codOwner 		== selectedInfo.codOwner &&
+				baseInfo.codOrder 		== selectedInfo.codOrder &&
+				baseInfo.codOrderItem 	== selectedInfo.codOrderItem); 
+	}
+	
+	
+	
+	@Override public List<OrderemInfo> merge(OrderemInfo baseInfo, OrdemrapInfo selectedInfo) {
+		List<OrderemInfo> results = new ArrayList<>();
 		
-		OrderemInfo clonedInfo = makeClone(sourceTwo);
-		return merge(sourceOne, clonedInfo);
-	}
-	
-	
-	
-	private void checkArgument(OrdemrapInfo sourceOne, OrderemInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private OrderemInfo makeClone(OrderemInfo recordInfo) {
-		try {
-			return (OrderemInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	private OrderemInfo merge(OrdemrapInfo sourceOne, OrderemInfo sourceTwo) {
-		sourceTwo.codSnapshot = sourceOne.codSnapshot;
-		return sourceTwo;
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(OrdemrapInfo sourceOne, OrderemInfo sourceTwo) {		
-		return (sourceOne.codOwner 		== sourceTwo.codOwner &&
-				sourceOne.codOrder 		== sourceTwo.codOrder &&
-				sourceOne.codOrderItem 	== sourceTwo.codOrderItem); 
-	}
-	
-	
-	
-	private void logException(Exception e) {
+		baseInfo.codSnapshot = selectedInfo.codSnapshot;
 		
-		SystemLog.logError(this.getClass(), e);
+		results.add(baseInfo);
+		return results;
+	}
+	
+	
+	
+	@Override public InfoUniquifier<OrderemInfo> getUniquifier() {
+		return null;
 	}
 }
