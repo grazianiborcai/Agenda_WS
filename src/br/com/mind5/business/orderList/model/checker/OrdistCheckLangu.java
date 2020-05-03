@@ -1,56 +1,27 @@
 package br.com.mind5.business.orderList.model.checker;
 
-import java.util.List;
-
 import br.com.mind5.business.orderList.info.OrdistInfo;
 import br.com.mind5.masterData.language.info.LanguInfo;
 import br.com.mind5.masterData.language.model.checker.LanguCheckExist;
-import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
+import br.com.mind5.model.checker.ModelCheckerV1;
 
-public final class OrdistCheckLangu implements ModelCheckerV1<OrdistInfo> {
-	private final boolean FAILED = false;
-	private final boolean SUCCESS = true;
-	
-	private ModelCheckerV1<LanguInfo> checker;
-	
+public final class OrdistCheckLangu extends ModelCheckerTemplateForwardV2<OrdistInfo, LanguInfo> {
 	
 	public OrdistCheckLangu(ModelCheckerOption option) {
-		checker = new LanguCheckExist(option);
-	}
-	
-	
-	
-	@Override public boolean check(List<OrdistInfo> recordInfos) {
-		for (OrdistInfo eachInfo : recordInfos) {
-			if (check(eachInfo) == FAILED)
-				return FAILED;
-		}
-		
-		return SUCCESS;
+		super(option);
 	}
 
-	
-	
-	@Override public boolean check(OrdistInfo recordInfo) {
-		return checker.check(LanguInfo.copyFrom(recordInfo));
-	}
 
 	
-	
-	@Override public boolean getResult() {
-		return checker.getResult();
+	@Override protected ModelCheckerV1<LanguInfo> getCheckerHook(ModelCheckerOption option) {
+		return new LanguCheckExist(option);
 	}
-
 	
 	
-	@Override public String getFailMessage() {
-		return checker.getFailMessage();
-	}
-
 	
-	
-	@Override public int getFailCode() {
-		return checker.getFailCode();
+	@Override protected LanguInfo toForwardClass(OrdistInfo baseRecord) {
+		return LanguInfo.copyFrom(baseRecord);
 	}
 }

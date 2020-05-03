@@ -5,15 +5,15 @@ import br.com.mind5.model.action.ActionStdTemplateV2;
 import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdOrdistMergeUsername extends ActionStdTemplateV2<OrdistInfo> {
+public final class StdOrdistDaoSelect extends ActionStdTemplateV2<OrdistInfo> {
 
-	public StdOrdistMergeUsername(DeciTreeOption<OrdistInfo> option) {
+	public StdOrdistDaoSelect(DeciTreeOption<OrdistInfo> option) {
 		super(option);
 	}
 	
 	
 	
 	protected ActionVisitorV2<OrdistInfo> buildVisitorHook(DeciTreeOption<OrdistInfo> option) {
-		return new VisiOrdistMergeUsername(option);
+		return new VisiOrdistDaoSelect(option);
 	}
 }

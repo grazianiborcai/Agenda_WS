@@ -1,19 +1,19 @@
 package br.com.mind5.business.orderList.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.orderList.info.OrdistInfo;
 import br.com.mind5.business.orderList.info.OrdistMerger;
 import br.com.mind5.business.orderSearch.info.OrdarchInfo;
 import br.com.mind5.business.orderSearch.model.decisionTree.RootOrdarchSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiOrdistMergeOrdarch extends ActionVisitorTemplateMergeV1<OrdistInfo, OrdarchInfo> {
+final class VisiOrdistMergeOrdarch extends ActionVisitorTemplateMergeV2<OrdistInfo, OrdarchInfo> {
 	
-	public VisiOrdistMergeOrdarch(Connection conn, String schemaName) {
-		super(conn, schemaName, OrdarchInfo.class);
+	public VisiOrdistMergeOrdarch(DeciTreeOption<OrdistInfo> option) {
+		super(option, OrdarchInfo.class); 
 	}
 	
 	
@@ -31,6 +31,6 @@ final class VisiOrdistMergeOrdarch extends ActionVisitorTemplateMergeV1<OrdistIn
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV2.DONT_MERGE_WHEN_EMPTY;
 	}
 }

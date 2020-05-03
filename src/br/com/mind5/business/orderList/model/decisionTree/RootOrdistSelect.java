@@ -12,13 +12,13 @@ import br.com.mind5.business.orderList.model.checker.OrdistCheckOwner;
 import br.com.mind5.business.orderList.model.checker.OrdistCheckRead;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 
-public final class RootOrdistSelect extends DeciTreeTemplateReadV1<OrdistInfo> {
+public final class RootOrdistSelect extends DeciTreeTemplateReadV2<OrdistInfo> {
 	
 	public RootOrdistSelect(DeciTreeOption<OrdistInfo> option) {
 		super(option);

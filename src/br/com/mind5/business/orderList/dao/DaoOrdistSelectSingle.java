@@ -16,11 +16,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class OrdistSelectSingle extends DaoStmtTemplate<OrdistInfo> {
+public final class DaoOrdistSelectSingle extends DaoStmtTemplate<OrdistInfo> {
 	private final String MAIN_TABLE = DaoDbTable.ORDER_HDR_TABLE;
 	
 	
-	public OrdistSelectSingle(Connection conn, OrdistInfo recordInfo, String schemaName) {
+	public DaoOrdistSelectSingle(Connection conn, OrdistInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -50,7 +50,7 @@ public final class OrdistSelectSingle extends DaoStmtTemplate<OrdistInfo> {
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new OrdistWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new DaoOrdistWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 		
@@ -67,21 +67,21 @@ public final class OrdistSelectSingle extends DaoStmtTemplate<OrdistInfo> {
 				do {
 					OrdistInfo dataInfo = new OrdistInfo();
 					
-					dataInfo.codOwner = stmtResult.getLong(OrdistDbTableColumn.COL_COD_OWNER);	
-					dataInfo.codOrder = stmtResult.getLong(OrdistDbTableColumn.COL_COD_ORDER);
-					dataInfo.codUser = stmtResult.getLong(OrdistDbTableColumn.COL_COD_USER);	
-					dataInfo.codOrderExt = stmtResult.getString(OrdistDbTableColumn.COL_COD_ORDER_EXTERNAL);	
-					dataInfo.codOrderStatus = stmtResult.getString(OrdistDbTableColumn.COL_COD_ORDER_STATUS);
-					dataInfo.codCurr = stmtResult.getString(OrdistDbTableColumn.COL_COD_CURRENCY);
-					dataInfo.codCustomer = DaoFormatter.sqlToLong(stmtResult, OrdistDbTableColumn.COL_COD_CUSTOMER);
-					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, OrdistDbTableColumn.COL_LAST_CHANGED);
-					dataInfo.itemTotal = DaoFormatter.sqlToDouble(stmtResult, OrdistDbTableColumn.COL_ITEM_TOTAL);
-					dataInfo.feeService = DaoFormatter.sqlToDouble(stmtResult, OrdistDbTableColumn.COL_FEE_SERVICE);
-					dataInfo.grandTotal = DaoFormatter.sqlToDouble(stmtResult, OrdistDbTableColumn.COL_GRAND_TOTAL);
-					dataInfo.codPayOrder = DaoFormatter.sqlToLong(stmtResult, OrdistDbTableColumn.COL_COD_PAY_ORDER);	
-					dataInfo.postingDate = DaoFormatter.sqlToLocalDate(stmtResult, OrdistDbTableColumn.COL_POSTING_DATE);
-					dataInfo.postingYear = DaoFormatter.sqlToInt(stmtResult, OrdistDbTableColumn.COL_POSTING_YEAR);
-					dataInfo.postingYearMonth = DaoFormatter.sqlToInt(stmtResult, OrdistDbTableColumn.COL_POSTING_YEAR_MONTH);
+					dataInfo.codOwner = stmtResult.getLong(DaoOrdistDbTableColumn.COL_COD_OWNER);	
+					dataInfo.codOrder = stmtResult.getLong(DaoOrdistDbTableColumn.COL_COD_ORDER);
+					dataInfo.codUser = stmtResult.getLong(DaoOrdistDbTableColumn.COL_COD_USER);	
+					dataInfo.codOrderExt = stmtResult.getString(DaoOrdistDbTableColumn.COL_COD_ORDER_EXTERNAL);	
+					dataInfo.codOrderStatus = stmtResult.getString(DaoOrdistDbTableColumn.COL_COD_ORDER_STATUS);
+					dataInfo.codCurr = stmtResult.getString(DaoOrdistDbTableColumn.COL_COD_CURRENCY);
+					dataInfo.codCustomer = DaoFormatter.sqlToLong(stmtResult, DaoOrdistDbTableColumn.COL_COD_CUSTOMER);
+					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, DaoOrdistDbTableColumn.COL_LAST_CHANGED);
+					dataInfo.itemTotal = DaoFormatter.sqlToDouble(stmtResult, DaoOrdistDbTableColumn.COL_ITEM_TOTAL);
+					dataInfo.feeService = DaoFormatter.sqlToDouble(stmtResult, DaoOrdistDbTableColumn.COL_FEE_SERVICE);
+					dataInfo.grandTotal = DaoFormatter.sqlToDouble(stmtResult, DaoOrdistDbTableColumn.COL_GRAND_TOTAL);
+					dataInfo.codPayOrder = DaoFormatter.sqlToLong(stmtResult, DaoOrdistDbTableColumn.COL_COD_PAY_ORDER);	
+					dataInfo.postingDate = DaoFormatter.sqlToLocalDate(stmtResult, DaoOrdistDbTableColumn.COL_POSTING_DATE);
+					dataInfo.postingYear = DaoFormatter.sqlToInt(stmtResult, DaoOrdistDbTableColumn.COL_POSTING_YEAR);
+					dataInfo.postingYearMonth = DaoFormatter.sqlToInt(stmtResult, DaoOrdistDbTableColumn.COL_POSTING_YEAR_MONTH);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

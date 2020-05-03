@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilder;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 
-public final class OrdistWhere implements DaoStmtWhere {	
+public final class DaoOrdistWhere implements DaoStmtWhere {	
 	private String whereClause;	
 	
 	
-	public OrdistWhere(DaoWhereBuilderOption whereOption, String tableName, OrdistInfo recordInfo) {
+	public DaoOrdistWhere(DaoWhereBuilderOption whereOption, String tableName, OrdistInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -27,11 +27,11 @@ public final class OrdistWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-				case OrdistDbTableColumn.COL_COD_OWNER :
+				case DaoOrdistDbTableColumn.COL_COD_OWNER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;
 					
-				case OrdistDbTableColumn.COL_COD_ORDER :
+				case DaoOrdistDbTableColumn.COL_COD_ORDER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOrder));
 					break;
 			}

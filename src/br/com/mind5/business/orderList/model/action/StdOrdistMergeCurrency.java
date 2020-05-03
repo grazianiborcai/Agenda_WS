@@ -1,35 +1,19 @@
 package br.com.mind5.business.orderList.model.action;
 
 import br.com.mind5.business.orderList.info.OrdistInfo;
-import br.com.mind5.model.action.ActionLazyV1;
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionStdHelperMerge;
-import br.com.mind5.model.decisionTree.DeciResult;
+import br.com.mind5.model.action.ActionStdTemplateV2;
+import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdOrdistMergeCurrency implements ActionStdV1<OrdistInfo> {
-	private ActionStdV1<OrdistInfo> actionHelper;	
-	
-	
-	public StdOrdistMergeCurrency(DeciTreeOption<OrdistInfo> option) {			
-		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiOrdistMergeCurrency(option.conn, option.schemaName));
+public final class StdOrdistMergeCurrency extends ActionStdTemplateV2<OrdistInfo> {
+
+	public StdOrdistMergeCurrency(DeciTreeOption<OrdistInfo> option) {
+		super(option);
 	}
 	
 	
 	
-	@Override public void addPostAction(ActionLazyV1<OrdistInfo> actionHandler) {
-		actionHelper.addPostAction(actionHandler);
-	}
-	
-	
-	
-	@Override public boolean executeAction() {			
-		return actionHelper.executeAction();
-	}
-	
-	
-	
-	@Override public DeciResult<OrdistInfo> getDecisionResult() {
-		return actionHelper.getDecisionResult();
+	protected ActionVisitorV2<OrdistInfo> buildVisitorHook(DeciTreeOption<OrdistInfo> option) {
+		return new VisiOrdistMergeCurrency(option);
 	}
 }

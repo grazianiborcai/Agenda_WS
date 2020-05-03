@@ -1,20 +1,20 @@
 package br.com.mind5.business.orderList.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.orderList.info.OrdistInfo;
 import br.com.mind5.business.orderList.info.OrdistMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.username.info.UsernameCopier;
 import br.com.mind5.security.username.info.UsernameInfo;
 import br.com.mind5.security.username.model.decisionTree.RootUsernameSelect;
 
-final class VisiOrdistMergeUsername extends ActionVisitorTemplateMergeV1<OrdistInfo, UsernameInfo> {
+final class VisiOrdistMergeUsername extends ActionVisitorTemplateMergeV2<OrdistInfo, UsernameInfo> {
 	
-	public VisiOrdistMergeUsername(Connection conn, String schemaName) {
-		super(conn, schemaName, UsernameInfo.class);
+	public VisiOrdistMergeUsername(DeciTreeOption<OrdistInfo> option) {
+		super(option, UsernameInfo.class); 
 	}
 	
 	
@@ -38,6 +38,6 @@ final class VisiOrdistMergeUsername extends ActionVisitorTemplateMergeV1<OrdistI
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV2.DONT_MERGE_WHEN_EMPTY;
 	}
 }

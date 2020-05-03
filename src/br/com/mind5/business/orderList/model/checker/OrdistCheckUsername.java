@@ -1,56 +1,27 @@
 package br.com.mind5.business.orderList.model.checker;
 
-import java.util.List;
-
 import br.com.mind5.business.orderList.info.OrdistInfo;
-import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.security.username.info.UsernameInfo;
 import br.com.mind5.security.username.model.checker.UsernameCheckExist;
 
-public final class OrdistCheckUsername implements ModelCheckerV1<OrdistInfo> {
-	private final boolean FAILED = false;
-	private final boolean SUCCESS = true;
-	
-	private ModelCheckerV1<UsernameInfo> checker;
-	
+public final class OrdistCheckUsername extends ModelCheckerTemplateForwardV2<OrdistInfo, UsernameInfo> {
 	
 	public OrdistCheckUsername(ModelCheckerOption option) {
-		checker = new UsernameCheckExist(option);
-	}
-	
-	
-	
-	@Override public boolean check(List<OrdistInfo> recordInfos) {
-		for (OrdistInfo eachInfo : recordInfos) {
-			if (check(eachInfo) == FAILED)
-				return FAILED;
-		}
-		
-		return SUCCESS;
+		super(option);
 	}
 
-	
-	
-	@Override public boolean check(OrdistInfo recordInfo) {
-		return checker.check(UsernameInfo.copyFrom(recordInfo));
-	}
 
 	
-	
-	@Override public boolean getResult() {
-		return checker.getResult();
+	@Override protected ModelCheckerV1<UsernameInfo> getCheckerHook(ModelCheckerOption option) {
+		return new UsernameCheckExist(option);
 	}
-
 	
 	
-	@Override public String getFailMessage() {
-		return checker.getFailMessage();
-	}
-
 	
-	
-	@Override public int getFailCode() {
-		return checker.getFailCode();
+	@Override protected UsernameInfo toForwardClass(OrdistInfo baseRecord) {
+		return UsernameInfo.copyFrom(baseRecord);
 	}
 }

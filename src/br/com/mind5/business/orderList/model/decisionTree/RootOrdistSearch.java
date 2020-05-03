@@ -6,15 +6,15 @@ import java.util.List;
 import br.com.mind5.business.orderList.info.OrdistInfo;
 import br.com.mind5.business.orderList.model.action.LazyOrdistRootSelect;
 import br.com.mind5.business.orderList.model.action.StdOrdistMergeOrdarch;
-import br.com.mind5.business.orderList.model.checker.OrdistCheckDummy;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 
-public final class RootOrdistSearch extends DeciTreeTemplateReadV1<OrdistInfo> {
+public final class RootOrdistSearch extends DeciTreeTemplateReadV2<OrdistInfo> {
 	
 	public RootOrdistSearch(DeciTreeOption<OrdistInfo> option) {
 		super(option);
@@ -26,7 +26,7 @@ public final class RootOrdistSearch extends DeciTreeTemplateReadV1<OrdistInfo> {
 		List<ModelCheckerV1<OrdistInfo>> queue = new ArrayList<>();		
 		ModelCheckerV1<OrdistInfo> checker;
 		
-		checker = new OrdistCheckDummy();
+		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueueV2<>(queue);
