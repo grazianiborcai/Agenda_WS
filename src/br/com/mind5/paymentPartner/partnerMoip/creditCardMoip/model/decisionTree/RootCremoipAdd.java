@@ -9,7 +9,7 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.info.CremoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.model.action.LazyCremoipNodeAdd;
 import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.model.action.LazyCremoipNodeAddressL1;
@@ -21,7 +21,7 @@ import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.model.checker.Crem
 import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.model.checker.CremoipCheckCuspar;
 import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.model.checker.CremoipCheckPhonap;
 
-public final class RootCremoipAdd extends DeciTreeTemplateWriteV1<CremoipInfo> {
+public final class RootCremoipAdd extends DeciTreeTemplateWriteV2<CremoipInfo> {
 	
 	public RootCremoipAdd(DeciTreeOption<CremoipInfo> option) {
 		super(option);

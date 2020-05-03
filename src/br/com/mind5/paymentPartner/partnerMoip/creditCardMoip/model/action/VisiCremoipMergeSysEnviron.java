@@ -1,19 +1,19 @@
 package br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.masterData.info.SysEnvironInfo;
 import br.com.mind5.business.masterData.model.decisionTree.RootSysEnvironSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.info.CremoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.info.CremoipMerger;
 
-final class VisiCremoipMergeSysEnviron extends ActionVisitorTemplateMergeV1<CremoipInfo, SysEnvironInfo> {
+final class VisiCremoipMergeSysEnviron extends ActionVisitorTemplateMergeV2<CremoipInfo, SysEnvironInfo> {
 	
-	public VisiCremoipMergeSysEnviron(Connection conn, String schemaName) {
-		super(conn, schemaName, SysEnvironInfo.class);
+	public VisiCremoipMergeSysEnviron(DeciTreeOption<CremoipInfo> option) {
+		super(option, SysEnvironInfo.class); 
 	}
 	
 	
@@ -31,6 +31,6 @@ final class VisiCremoipMergeSysEnviron extends ActionVisitorTemplateMergeV1<Crem
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV2.DONT_MERGE_WHEN_EMPTY;
 	}
 }

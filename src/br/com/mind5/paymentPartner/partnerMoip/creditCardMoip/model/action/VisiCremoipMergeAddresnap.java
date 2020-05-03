@@ -1,20 +1,20 @@
 package br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.addressSnapshot.info.AddresnapCopier;
 import br.com.mind5.business.addressSnapshot.info.AddresnapInfo;
 import br.com.mind5.business.addressSnapshot.model.decisionTree.RootAddresnapSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.info.CremoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.info.CremoipMerger;
 
-final class VisiCremoipMergeAddresnap extends ActionVisitorTemplateMergeV1<CremoipInfo, AddresnapInfo> {
+final class VisiCremoipMergeAddresnap extends ActionVisitorTemplateMergeV2<CremoipInfo, AddresnapInfo> {
 	
-	public VisiCremoipMergeAddresnap(Connection conn, String schemaName) {
-		super(conn, schemaName, AddresnapInfo.class);
+	public VisiCremoipMergeAddresnap(DeciTreeOption<CremoipInfo> option) {
+		super(option, AddresnapInfo.class); 
 	}
 	
 	
@@ -38,6 +38,6 @@ final class VisiCremoipMergeAddresnap extends ActionVisitorTemplateMergeV1<Cremo
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV2.DONT_MERGE_WHEN_EMPTY;
 	}
 }

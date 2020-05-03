@@ -1,26 +1,33 @@
 package br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.model.action;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
+import br.com.mind5.common.SystemCode;
 import br.com.mind5.common.SystemLog;
-import br.com.mind5.model.action.ActionVisitorV1;
+import br.com.mind5.model.action.ActionVisitorTemplateSimpleV2;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.info.CremoipInfo;
 import br.com.moip.Moip;
 
-final class VisiCremoipAdd implements ActionVisitorV1<CremoipInfo> {
+final class VisiCremoipAdd extends ActionVisitorTemplateSimpleV2<CremoipInfo> {
 	
-	@Override public List<CremoipInfo> executeTransformation(List<CremoipInfo> recordInfos) {
+	public VisiCremoipAdd(DeciTreeOption<CremoipInfo> option) {
+		super(option);
+	}
+	
+	
+	
+	@Override public List<CremoipInfo> executeTransformationHook(List<CremoipInfo> baseInfos) {	
 		List<CremoipInfo> results = new ArrayList<>();
 		
-		for(CremoipInfo eachRecod : recordInfos) {
+		for(CremoipInfo eachRecod : baseInfos) {
 			Map<String, Object> response;
 			response = tryToAddMoip(eachRecod);
 			
 			if (response == null)
-				return Collections.emptyList();
+				return null;
 			
 			eachRecod = setAttribute(eachRecod, response);
 			results.add(eachRecod);
@@ -38,6 +45,7 @@ final class VisiCremoipAdd implements ActionVisitorV1<CremoipInfo> {
 			
 		} catch (Exception e) {
 			logException(e);
+			//TODO: Escrever em log detalhes do erro
 			return null;
 		}
 	}
@@ -57,8 +65,13 @@ final class VisiCremoipAdd implements ActionVisitorV1<CremoipInfo> {
 	
 	
 	
-	private void logException(Exception e) {
-		
+	@Override protected int getErrorCodeHook() {
+		return SystemCode.CREDIT_CARD_MOIP_CREATION_ERROR;
+	}
+	
+	
+	
+	private void logException(Exception e) {		
 		SystemLog.logError(this.getClass(), e);
 	}
 }

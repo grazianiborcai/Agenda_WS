@@ -1,57 +1,28 @@
 package br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.model.checker;
 
-import java.util.List;
-
 import br.com.mind5.business.addressSnapshot.info.AddresnapCopier;
 import br.com.mind5.business.addressSnapshot.info.AddresnapInfo;
 import br.com.mind5.business.addressSnapshot.model.checker.AddresnapCheckExist;
-import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.info.CremoipInfo;
 
-public final class CremoipCheckAddresnap implements ModelCheckerV1<CremoipInfo> {
-	private final boolean FAILED = false;
-	private final boolean SUCCESS = true;
-	
-	private ModelCheckerV1<AddresnapInfo> checker;
-	
+public final class CremoipCheckAddresnap extends ModelCheckerTemplateForwardV2<CremoipInfo, AddresnapInfo> {
 	
 	public CremoipCheckAddresnap(ModelCheckerOption option) {
-		checker = new AddresnapCheckExist(option);
-	}
-	
-	
-	
-	@Override public boolean check(List<CremoipInfo> recordInfos) {
-		for (CremoipInfo eachInfo : recordInfos) {
-			if (check(eachInfo) == FAILED)
-				return FAILED;
-		}
-		
-		return SUCCESS;
+		super(option);
 	}
 
-	
-	
-	@Override public boolean check(CremoipInfo recordInfo) {
-		return checker.check(AddresnapCopier.copyFromCremoip(recordInfo));
-	}
 
 	
-	
-	@Override public boolean getResult() {
-		return checker.getResult();
+	@Override protected ModelCheckerV1<AddresnapInfo> getCheckerHook(ModelCheckerOption option) {
+		return new AddresnapCheckExist(option);
 	}
-
 	
 	
-	@Override public String getFailMessage() {
-		return checker.getFailMessage();
-	}
-
 	
-	
-	@Override public int getFailCode() {
-		return checker.getFailCode();
+	@Override protected AddresnapInfo toForwardClass(CremoipInfo baseRecord) {
+		return AddresnapCopier.copyFromCremoip(baseRecord);
 	}
 }

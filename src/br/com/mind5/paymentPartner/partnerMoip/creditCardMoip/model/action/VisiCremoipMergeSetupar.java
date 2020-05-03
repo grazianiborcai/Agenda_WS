@@ -1,19 +1,19 @@
 package br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.setupPartner.info.SetuparInfo;
 import br.com.mind5.payment.setupPartner.model.decisionTree.RootSetuparSelect;
 import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.info.CremoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.info.CremoipMerger;
 
-final class VisiCremoipMergeSetupar extends ActionVisitorTemplateMergeV1<CremoipInfo, SetuparInfo> {
+final class VisiCremoipMergeSetupar extends ActionVisitorTemplateMergeV2<CremoipInfo, SetuparInfo> {
 	
-	public VisiCremoipMergeSetupar(Connection conn, String schemaName) {
-		super(conn, schemaName, SetuparInfo.class);
+	public VisiCremoipMergeSetupar(DeciTreeOption<CremoipInfo> option) {
+		super(option, SetuparInfo.class); 
 	}
 	
 	
@@ -31,6 +31,6 @@ final class VisiCremoipMergeSetupar extends ActionVisitorTemplateMergeV1<Cremoip
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV2.DONT_MERGE_WHEN_EMPTY;
 	}
 }
