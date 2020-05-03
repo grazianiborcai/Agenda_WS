@@ -4,13 +4,13 @@ import java.util.List;
 
 import br.com.mind5.business.customer.info.CusInfo;
 import br.com.mind5.business.customerSearch.info.CusarchInfo;
-import br.com.mind5.business.masterData.info.FeeCategInfo;
 import br.com.mind5.business.orderItem.info.OrderemInfo;
 import br.com.mind5.business.orderSearch.info.OrdarchInfo;
 import br.com.mind5.business.orderSnapshot.info.OrdnapInfo;
 import br.com.mind5.info.InfoMergerBuilderV3;
 import br.com.mind5.info.InfoMergerV3;
 import br.com.mind5.masterData.currency.info.CurrencyInfo;
+import br.com.mind5.masterData.feeCategory.info.FeecatInfo;
 import br.com.mind5.masterData.orderStatus.info.OrderatusInfo;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
 import br.com.mind5.security.username.info.UsernameInfo;
@@ -81,13 +81,13 @@ public final class OrderMerger {
 	
 	
 	
-	public static List<OrderInfo> mergeWithFeeCateg(List<OrderInfo> baseInfos, List<FeeCategInfo> selectedInfos) {
-		InfoMergerBuilderV3<OrderInfo, FeeCategInfo> builder = new InfoMergerBuilderV3<>();
+	public static List<OrderInfo> mergeWithFeecat(List<OrderInfo> baseInfos, List<FeecatInfo> selectedInfos) {
+		InfoMergerBuilderV3<OrderInfo, FeecatInfo> builder = new InfoMergerBuilderV3<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new OrderVisiMergeFeeCateg());
-		InfoMergerV3<OrderInfo, FeeCategInfo> merger = builder.build();		
+		builder.addVisitor(new OrderVisiMergeFeecat());
+		InfoMergerV3<OrderInfo, FeecatInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}	

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.feeOwner.info.FeewnerInfo;
-import br.com.mind5.business.feeOwner.model.checker.FeewnerCheckFeeCateg;
+import br.com.mind5.business.feeOwner.model.checker.FeewnerCheckFeecat;
 import br.com.mind5.business.feeOwner.model.checker.FeewnerCheckOwner;
 import br.com.mind5.business.feeOwner.model.checker.FeewnerCheckRead;
 import br.com.mind5.model.action.ActionStdV1;
@@ -45,7 +45,7 @@ public final class RootFeewnerSelect extends DeciTreeTemplateReadV1<FeewnerInfo>
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
-		checker = new FeewnerCheckFeeCateg(checkerOption);
+		checker = new FeewnerCheckFeecat(checkerOption);
 		queue.add(checker);	
 		
 		return new ModelCheckerHelperQueueV2<>(queue);

@@ -117,6 +117,8 @@ import br.com.mind5.masterData.currency.dao.DaoCurrencyDbTableColumn;
 import br.com.mind5.masterData.currencySearch.dao.DaoCurrarshDbTableColumn;
 import br.com.mind5.masterData.dayParting.dao.DaoDaypartDbTableColumn;
 import br.com.mind5.masterData.dayPartingSearch.dao.DaoDayparchDbTableColumn;
+import br.com.mind5.masterData.feeCategory.dao.DaoFeecatDbTableColumn;
+import br.com.mind5.masterData.feeCategorySearch.dao.DaoFeecatarchDbTableColumn;
 import br.com.mind5.masterData.gender.dao.DaoGenderDbTableColumn;
 import br.com.mind5.masterData.genderSearch.dao.DaoGendarchDbTableColumn;
 import br.com.mind5.masterData.language.dao.DaoLanguDbTableColumn;
@@ -344,6 +346,8 @@ public final class DaoDbTableColumnAll {
 		addTable(new DaoDayparchDbTableColumn());
 		addTable(new DaoOrderatusDbTableColumn());
 		addTable(new DaoOrderatarchDbTableColumn());
+		addTable(new DaoFeecatDbTableColumn());
+		addTable(new DaoFeecatarchDbTableColumn());
 	}
 	
 	

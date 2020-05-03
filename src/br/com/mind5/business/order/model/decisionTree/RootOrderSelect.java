@@ -5,9 +5,9 @@ import java.util.List;
 
 import br.com.mind5.business.order.info.OrderInfo;
 import br.com.mind5.business.order.model.action.LazyOrderEnforceCurrency;
-import br.com.mind5.business.order.model.action.LazyOrderEnforceFeeCateg;
+import br.com.mind5.business.order.model.action.LazyOrderEnforceFeecat;
 import br.com.mind5.business.order.model.action.LazyOrderMergeCurrency;
-import br.com.mind5.business.order.model.action.LazyOrderMergeFeeCateg;
+import br.com.mind5.business.order.model.action.LazyOrderMergeFeecat;
 import br.com.mind5.business.order.model.action.LazyOrderMergeOrderatus;
 import br.com.mind5.business.order.model.action.LazyOrderMergeOrderem;
 import br.com.mind5.business.order.model.action.LazyOrderNodePayord;
@@ -62,17 +62,17 @@ public final class RootOrderSelect extends DeciTreeTemplateReadV2<OrderInfo> {
 		ActionLazyV1<OrderInfo> enforceCurrency = new LazyOrderEnforceCurrency(option.conn, option.schemaName);
 		ActionLazyV1<OrderInfo> mergeCurrency = new LazyOrderMergeCurrency(option.conn, option.schemaName);
 		ActionLazyV1<OrderInfo> mergeOrderatus = new LazyOrderMergeOrderatus(option.conn, option.schemaName);
-		ActionLazyV1<OrderInfo> enforceFeeCateg = new LazyOrderEnforceFeeCateg(option.conn, option.schemaName);
-		ActionLazyV1<OrderInfo> mergeFeeCateg = new LazyOrderMergeFeeCateg(option.conn, option.schemaName);
+		ActionLazyV1<OrderInfo> enforceFeecat = new LazyOrderEnforceFeecat(option.conn, option.schemaName);
+		ActionLazyV1<OrderInfo> mergeFeecat = new LazyOrderMergeFeecat(option.conn, option.schemaName);
 		ActionLazyV1<OrderInfo> nodePayord = new LazyOrderNodePayord(option.conn, option.schemaName);
 		
 		select.addPostAction(mergeItem);
 		mergeItem.addPostAction(enforceCurrency);
 		enforceCurrency.addPostAction(mergeCurrency);
 		mergeCurrency.addPostAction(mergeOrderatus);
-		mergeOrderatus.addPostAction(enforceFeeCateg);
-		enforceFeeCateg.addPostAction(mergeFeeCateg);
-		mergeFeeCateg.addPostAction(nodePayord);
+		mergeOrderatus.addPostAction(enforceFeecat);
+		enforceFeecat.addPostAction(mergeFeecat);
+		mergeFeecat.addPostAction(nodePayord);
 		
 		actions.add(select);			
 		return actions;

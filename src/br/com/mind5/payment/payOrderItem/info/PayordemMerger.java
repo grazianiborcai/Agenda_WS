@@ -2,10 +2,10 @@ package br.com.mind5.payment.payOrderItem.info;
 
 import java.util.List;
 
-import br.com.mind5.business.masterData.info.FeeCategInfo;
 import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.info.InfoMergerBuilderV3;
 import br.com.mind5.info.InfoMergerV3;
+import br.com.mind5.masterData.feeCategory.info.FeecatInfo;
 import br.com.mind5.payment.payOrderItemSearch.info.PayormarchInfo;
 
 public final class PayordemMerger {
@@ -35,13 +35,13 @@ public final class PayordemMerger {
 	
 	
 	
-	public static List<PayordemInfo> mergeWithFeeCateg(List<PayordemInfo> baseInfos, List<FeeCategInfo> selectedInfos) {
-		InfoMergerBuilderV3<PayordemInfo, FeeCategInfo> builder = new InfoMergerBuilderV3<>();
+	public static List<PayordemInfo> mergeWithFeecat(List<PayordemInfo> baseInfos, List<FeecatInfo> selectedInfos) {
+		InfoMergerBuilderV3<PayordemInfo, FeecatInfo> builder = new InfoMergerBuilderV3<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PayordemVisiMergeFeeCateg());
-		InfoMergerV3<PayordemInfo, FeeCategInfo> merger = builder.build();		
+		builder.addVisitor(new PayordemVisiMergeFeecat());
+		InfoMergerV3<PayordemInfo, FeecatInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}	

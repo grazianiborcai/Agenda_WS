@@ -11,7 +11,6 @@ import javax.ws.rs.core.Response;
 import br.com.mind5.business.masterData.info.CartCategInfo;
 import br.com.mind5.business.masterData.info.CountryLegalInfo;
 import br.com.mind5.business.masterData.info.EntityCategInfo;
-import br.com.mind5.business.masterData.info.FeeCategInfo;
 import br.com.mind5.business.masterData.info.MatmovTypeInfo;
 import br.com.mind5.business.masterData.info.MonthInfo;
 import br.com.mind5.business.masterData.info.PaymentStatusInfo;
@@ -21,7 +20,6 @@ import br.com.mind5.business.masterData.info.UserCategInfo;
 import br.com.mind5.business.masterData.model.CartCategModelSelect;
 import br.com.mind5.business.masterData.model.CountryLegalModelSelect;
 import br.com.mind5.business.masterData.model.EntityCategModelSelect;
-import br.com.mind5.business.masterData.model.FeeCategModelSelect;
 import br.com.mind5.business.masterData.model.MatmovTypeModelSelect;
 import br.com.mind5.business.masterData.model.MonthModelSelect;
 import br.com.mind5.business.masterData.model.PaymentStatusModelSelect;
@@ -40,6 +38,8 @@ import br.com.mind5.masterData.currencySearch.info.CurrarshInfo;
 import br.com.mind5.masterData.currencySearch.model.CurrarshModelSelect;
 import br.com.mind5.masterData.dayPartingSearch.info.DayparchInfo;
 import br.com.mind5.masterData.dayPartingSearch.model.DayparchModelSelect;
+import br.com.mind5.masterData.feeCategorySearch.info.FeecatarchInfo;
+import br.com.mind5.masterData.feeCategorySearch.model.FeecatarchModelSelect;
 import br.com.mind5.masterData.genderSearch.info.GendarchInfo;
 import br.com.mind5.masterData.genderSearch.model.GendarchModelSelect;
 import br.com.mind5.masterData.languageSearch.info.LangarchInfo;
@@ -362,14 +362,14 @@ public final class MasterDataResource {
 	public Response selectFeeCateg(@HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage,
 			                       @HeaderParam("codFeeCateg") String codFeeCateg){
 		
-		FeeCategInfo recordInfo = new FeeCategInfo();		
+		FeecatarchInfo recordInfo = new FeecatarchInfo();		
 		recordInfo.codLanguage = codLanguage;
 		
 		if (codFeeCateg != null)
 			recordInfo.codFeeCateg = codFeeCateg.charAt(0);
 		
 		
-		Model model = new FeeCategModelSelect(recordInfo);
+		Model model = new FeecatarchModelSelect(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	}

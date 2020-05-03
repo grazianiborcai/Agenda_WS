@@ -10,7 +10,7 @@ import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
 import br.com.mind5.payment.payOrderItem.info.PayordemInfo;
-import br.com.mind5.payment.payOrderItem.model.action.StdPayordemMergeFeeCateg;
+import br.com.mind5.payment.payOrderItem.model.action.StdPayordemMergeFeecat;
 import br.com.mind5.payment.payOrderItem.model.checker.PayordemCheckIsFee;
 
 public final class NodePayordemSelectL1 extends DeciTreeTemplateWriteV1<PayordemInfo> {
@@ -41,9 +41,9 @@ public final class NodePayordemSelectL1 extends DeciTreeTemplateWriteV1<Payordem
 	@Override protected List<ActionStdV1<PayordemInfo>> buildActionsOnPassedHook(DeciTreeOption<PayordemInfo> option) {
 		List<ActionStdV1<PayordemInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<PayordemInfo> mergeFeeCateg = new StdPayordemMergeFeeCateg(option);
+		ActionStdV1<PayordemInfo> mergeFeecat = new StdPayordemMergeFeecat(option);
 		
-		actions.add(mergeFeeCateg);
+		actions.add(mergeFeecat);
 		return actions;
 	}
 	
