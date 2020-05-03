@@ -41,12 +41,14 @@ public final class OrderResource {
 		recordInfo.username = username;
 		recordInfo.codOrder = codOrder;
 		recordInfo.codOrderStatus = codOrderStatus;
-		recordInfo.codLanguage = codLanguage;
-		
+		recordInfo.codLanguage = codLanguage;		
 		
 		Model model = new OrderModelSelectAuth(recordInfo);
 		model.executeRequest();
-		return model.getResponse();	
+		Response result = model.getResponse();
+		model.close();
+		
+		return result;
 	} 
 	
 	
@@ -63,12 +65,14 @@ public final class OrderResource {
 		recordInfo.codOwner = codOwner;
 		recordInfo.username = username;
 		recordInfo.codOrder = codOrder;
-		recordInfo.codLanguage = codLanguage;
-		
+		recordInfo.codLanguage = codLanguage;		
 		
 		Model model = new OrderModelPlaceAuth(recordInfo);
 		model.executeRequest();
-		return model.getResponse();	
+		Response result = model.getResponse();
+		model.close();
+		
+		return result;
 	} 
 	
 	
@@ -85,12 +89,14 @@ public final class OrderResource {
 		recordInfo.codOwner = codOwner;
 		recordInfo.username = username;
 		recordInfo.codOrder = codOrder;
-		recordInfo.codLanguage = codLanguage;
-		
+		recordInfo.codLanguage = codLanguage;		
 		
 		Model model = new OrderModelCancelAuth(recordInfo);
 		model.executeRequest();
-		return model.getResponse();	
+		Response result = model.getResponse();
+		model.close();
+		
+		return result;
 	} 
 	
 	
@@ -102,6 +108,9 @@ public final class OrderResource {
 		
 		Model model = new OrdistModelSearchAuth(incomingData, request);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();
+		model.close();
+		
+		return result;
 	} 
 }
