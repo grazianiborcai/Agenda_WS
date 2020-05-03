@@ -21,7 +21,7 @@ public final class OrdemarchInfo extends InfoRecord implements Cloneable {
 	
 	
 	public OrdemarchInfo() {
-		super(OrdemarchInfo.class);
+		super();
 		
 		codOwner = DefaultValue.number();	
 		codOrder = DefaultValue.number();

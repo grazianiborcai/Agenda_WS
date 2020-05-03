@@ -58,7 +58,7 @@ import br.com.mind5.business.materialTextSnapshot.dao.MatextsnapDbTableColumn;
 import br.com.mind5.business.moonCalendar.dao.DaoMooncalDbTableColumn;
 import br.com.mind5.business.order.dao.DaoOrderDbTableColumn;
 import br.com.mind5.business.orderItem.dao.DaoOrderemDbTableColumn;
-import br.com.mind5.business.orderItemSearch.dao.OrdemarchDbTableColumn;
+import br.com.mind5.business.orderItemSearch.dao.DaoOrdemarchDbTableColumn;
 import br.com.mind5.business.orderItemSnapshot.dao.OrdemrapDbTableColumn;
 import br.com.mind5.business.orderList.dao.OrdistDbTableColumn;
 import br.com.mind5.business.orderReserve.dao.DaoOrderveDbTableColumn;
@@ -298,7 +298,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new EmpworgDbTableColumn());
 		addTable(new EmplargDbTableColumn());
 		addTable(new StolargDbTableColumn());
-		addTable(new OrdemarchDbTableColumn());
+		addTable(new DaoOrdemarchDbTableColumn());
 		addTable(new CompcoDbTableColumn());
 		addTable(new OwnelisDbTableColumn());
 		addTable(new CusparchDbTableColumn());

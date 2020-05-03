@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class OrdemarchDbTableColumn extends DaoDbTableColumnTemplate {
+public final class DaoOrdemarchDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_BEGIN_TIME = DaoDbField.COL_BEGIN_TIME;	
 	public static final String COL_COD_EMPLOYEE = DaoDbField.COL_COD_EMPLOYEE;
 	public static final String COL_COD_MATERIAL = DaoDbField.COL_COD_MATERIAL;
@@ -18,27 +18,16 @@ public final class OrdemarchDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;	
 	public static final String COL_COD_STORE = DaoDbField.COL_COD_STORE;			
 	public static final String COL_DATE = DaoDbField.COL_DATE;					
-	public static final String COL_END_TIME = DaoDbField.COL_END_TIME;	
+	public static final String COL_END_TIME = DaoDbField.COL_END_TIME;		
 	
 	
-	private Hashtable<String, List<DaoColumn>> tableColumns;
-	
-	
-	public OrdemarchDbTableColumn() {
-		super(OrdemarchDbTableColumn.class);
+	public DaoOrdemarchDbTableColumn() {
+		super();
 	}
 	
 	
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
-		tableColumns = new Hashtable<>();	
-		buildOrdemItemTable();
-		return tableColumns;
-	}
-	
-	
-	
-	private void buildOrdemItemTable() {
 		final String TABLE_NAME = DaoDbTable.ORDER_ITM_TABLE;
 		
 		DaoColumn oneColumn;
@@ -116,6 +105,8 @@ public final class OrdemarchDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		tableColumns.put(DaoDbTable.ORDER_ITM_SEARCH_VIEW, columns);
+		Hashtable<String, List<DaoColumn>> results = new Hashtable<>();
+		results.put(DaoDbTable.ORDER_ITM_SEARCH_VIEW, columns);
+		return results;
 	}
 }

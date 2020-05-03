@@ -16,11 +16,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class OrdemarchSelectSingle extends DaoStmtTemplate<OrdemarchInfo> {	
+public final class DaoOrdemarchSelectSingle extends DaoStmtTemplate<OrdemarchInfo> {	
 	private final String MAIN_TABLE = DaoDbTable.ORDER_ITM_TABLE;
 	
 	
-	public OrdemarchSelectSingle(Connection conn, OrdemarchInfo recordInfo, String schemaName) {
+	public DaoOrdemarchSelectSingle(Connection conn, OrdemarchInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -50,7 +50,7 @@ public final class OrdemarchSelectSingle extends DaoStmtTemplate<OrdemarchInfo> 
 		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new OrdemarchWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new DaoOrdemarchWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}	
 	
@@ -67,15 +67,15 @@ public final class OrdemarchSelectSingle extends DaoStmtTemplate<OrdemarchInfo> 
 				do {
 					OrdemarchInfo dataInfo = new OrdemarchInfo();
 					
-					dataInfo.codOwner = stmtResult.getLong(OrdemarchDbTableColumn.COL_COD_OWNER);	
-					dataInfo.codOrder = stmtResult.getLong(OrdemarchDbTableColumn.COL_COD_ORDER);
-					dataInfo.codOrderItem = DaoFormatter.sqlToInt(stmtResult, OrdemarchDbTableColumn.COL_COD_ORDER_ITEM);
-					dataInfo.codStore = DaoFormatter.sqlToLong(stmtResult, OrdemarchDbTableColumn.COL_COD_STORE);
-					dataInfo.codEmployee = DaoFormatter.sqlToLong(stmtResult, OrdemarchDbTableColumn.COL_COD_EMPLOYEE);
-					dataInfo.codMat = DaoFormatter.sqlToLong(stmtResult, OrdemarchDbTableColumn.COL_COD_MATERIAL);
-					dataInfo.date = DaoFormatter.sqlToLocalDate(stmtResult, OrdemarchDbTableColumn.COL_DATE);
-					dataInfo.beginTime = DaoFormatter.sqlToLocalTime(stmtResult, OrdemarchDbTableColumn.COL_BEGIN_TIME);
-					dataInfo.endTime = DaoFormatter.sqlToLocalTime(stmtResult, OrdemarchDbTableColumn.COL_END_TIME);			
+					dataInfo.codOwner = stmtResult.getLong(DaoOrdemarchDbTableColumn.COL_COD_OWNER);	
+					dataInfo.codOrder = stmtResult.getLong(DaoOrdemarchDbTableColumn.COL_COD_ORDER);
+					dataInfo.codOrderItem = DaoFormatter.sqlToInt(stmtResult, DaoOrdemarchDbTableColumn.COL_COD_ORDER_ITEM);
+					dataInfo.codStore = DaoFormatter.sqlToLong(stmtResult, DaoOrdemarchDbTableColumn.COL_COD_STORE);
+					dataInfo.codEmployee = DaoFormatter.sqlToLong(stmtResult, DaoOrdemarchDbTableColumn.COL_COD_EMPLOYEE);
+					dataInfo.codMat = DaoFormatter.sqlToLong(stmtResult, DaoOrdemarchDbTableColumn.COL_COD_MATERIAL);
+					dataInfo.date = DaoFormatter.sqlToLocalDate(stmtResult, DaoOrdemarchDbTableColumn.COL_DATE);
+					dataInfo.beginTime = DaoFormatter.sqlToLocalTime(stmtResult, DaoOrdemarchDbTableColumn.COL_BEGIN_TIME);
+					dataInfo.endTime = DaoFormatter.sqlToLocalTime(stmtResult, DaoOrdemarchDbTableColumn.COL_END_TIME);			
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

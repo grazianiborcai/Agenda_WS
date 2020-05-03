@@ -2,18 +2,18 @@ package br.com.mind5.business.orderItemSearch.info;
 
 import java.util.List;
 
-import br.com.mind5.info.obsolete.InfoMerger_;
+import br.com.mind5.info.InfoMergerBuilderV3;
+import br.com.mind5.info.InfoMergerV3;
 
 public final class OrdemarchMerger {
-	public static OrdemarchInfo mergeToSelect(OrdemarchInfo sourceOne, OrdemarchInfo sourceTwo) {
-		InfoMerger_<OrdemarchInfo, OrdemarchInfo> merger = new OrdemarchMergerToSelect();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
+	public static List<OrdemarchInfo> mergeToSelect(List<OrdemarchInfo> baseInfos, List<OrdemarchInfo> selectedInfos) {
+		InfoMergerBuilderV3<OrdemarchInfo, OrdemarchInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new OrdemarchVisiMergeToSelect());
+		InfoMergerV3<OrdemarchInfo, OrdemarchInfo> merger = builder.build();		
 	
-	
-	
-	public static List<OrdemarchInfo> mergeToSelect(List<OrdemarchInfo> sourceOnes, List<OrdemarchInfo> sourceTwos) {
-		InfoMerger_<OrdemarchInfo, OrdemarchInfo> merger = new OrdemarchMergerToSelect();		
-		return merger.merge(sourceOnes, sourceTwos);
+		return merger.merge();
 	}	
 }

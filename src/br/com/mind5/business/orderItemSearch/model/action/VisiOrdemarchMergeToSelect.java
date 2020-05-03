@@ -17,13 +17,13 @@ final class VisiOrdemarchMergeToSelect extends ActionVisitorTemplateMergeV1<Orde
 	
 	
 	@Override protected Class<? extends ActionStdV1<OrdemarchInfo>> getActionClassHook() {
-		return StdOrdemarchSelect.class;
+		return StdOrdemarchDaoSelect.class;
 	}
 	
 	
 	
-	@Override protected List<OrdemarchInfo> mergeHook(List<OrdemarchInfo> recordInfos, List<OrdemarchInfo> selectedInfos) {	
-		return OrdemarchMerger.mergeToSelect(selectedInfos, recordInfos);
+	@Override protected List<OrdemarchInfo> mergeHook(List<OrdemarchInfo> baseInfos, List<OrdemarchInfo> selectedInfos) {	
+		return OrdemarchMerger.mergeToSelect(baseInfos, selectedInfos);
 	}
 	
 	
