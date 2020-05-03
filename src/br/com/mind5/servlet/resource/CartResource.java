@@ -54,7 +54,10 @@ public final class CartResource {
 		
 		Model model = new CartModelSelect(recordInfo);
 		model.executeRequest();
-		return model.getResponse();	
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
 	}
 	
 	
@@ -73,7 +76,10 @@ public final class CartResource {
 		
 		Model model = new CartModelDelete(recordInfo);
 		model.executeRequest();
-		return model.getResponse();	
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
 	}
 	
 	
@@ -92,6 +98,9 @@ public final class CartResource {
 		
 		Model model = new CartModelCheckout(recordInfo);
 		model.executeRequest();
-		return model.getResponse();	
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
 	}
 }
