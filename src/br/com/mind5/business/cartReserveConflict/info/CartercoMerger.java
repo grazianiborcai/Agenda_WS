@@ -3,18 +3,18 @@ package br.com.mind5.business.cartReserveConflict.info;
 import java.util.List;
 
 import br.com.mind5.business.cartReserve.info.CarterveInfo;
-import br.com.mind5.info.obsolete.InfoMerger_;
+import br.com.mind5.info.InfoMergerBuilderV3;
+import br.com.mind5.info.InfoMergerV3;
 
 public final class CartercoMerger {	
-	public static CartercoInfo mergeWithCarterve(CarterveInfo selectedInfo, CartercoInfo baseInfo) {
-		InfoMerger_<CartercoInfo, CarterveInfo> merger = new CartercoMergerCarterve();		
-		return merger.merge(selectedInfo, baseInfo);
-	}
+	public static List<CartercoInfo> mergeWithCarterve(List<CartercoInfo> baseInfos, List<CarterveInfo> selectedInfos) {
+		InfoMergerBuilderV3<CartercoInfo, CarterveInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new CartercoVisiMergeCarterve());
+		InfoMergerV3<CartercoInfo, CarterveInfo> merger = builder.build();		
 	
-	
-	
-	public static List<CartercoInfo> mergeWithCarterve(List<CarterveInfo> selectedInfos, List<CartercoInfo> baseInfos) {
-		InfoMerger_<CartercoInfo, CarterveInfo> merger = new CartercoMergerCarterve();		
-		return merger.merge(selectedInfos, baseInfos);
+		return merger.merge();
 	}	
 }

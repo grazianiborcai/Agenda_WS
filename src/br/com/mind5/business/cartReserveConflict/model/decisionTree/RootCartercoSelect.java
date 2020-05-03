@@ -9,13 +9,13 @@ import br.com.mind5.business.cartReserveConflict.model.action.StdCartercoMergeCa
 import br.com.mind5.business.cartReserveConflict.model.checker.CartercoCheckRead;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 
-public final class RootCartercoSelect extends DeciTreeTemplateReadV1<CartercoInfo> {
+public final class RootCartercoSelect extends DeciTreeTemplateReadV2<CartercoInfo> {
 	
 	public RootCartercoSelect(DeciTreeOption<CartercoInfo> option) {
 		super(option);
