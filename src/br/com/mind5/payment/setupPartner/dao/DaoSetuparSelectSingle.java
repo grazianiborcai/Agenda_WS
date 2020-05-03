@@ -15,11 +15,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.payment.setupPartner.info.SetuparInfo;
 
-public final class SetuparSelectSingle extends DaoStmtTemplate<SetuparInfo> {
+public final class DaoSetuparSelectSingle extends DaoStmtTemplate<SetuparInfo> {
 	private final String MAIN_TABLE = DaoDbTable.PAY_PARTNER_SETUP_TABLE;
 	
 	
-	public SetuparSelectSingle(Connection conn, SetuparInfo recordInfo, String schemaName) {
+	public DaoSetuparSelectSingle(Connection conn, SetuparInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -43,7 +43,7 @@ public final class SetuparSelectSingle extends DaoStmtTemplate<SetuparInfo> {
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new SetuparWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new DaoSetuparWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}	
 	
@@ -60,11 +60,11 @@ public final class SetuparSelectSingle extends DaoStmtTemplate<SetuparInfo> {
 				do {
 					SetuparInfo dataInfo = new SetuparInfo();
 					
-					dataInfo.codPayPartner = stmtResult.getInt(SetuparDbTableColumn.COL_COD_PAY_PARTNER);
-					dataInfo.basicKey = stmtResult.getString(SetuparDbTableColumn.COL_BASIC_KEY);
-					dataInfo.basicToken = stmtResult.getString(SetuparDbTableColumn.COL_BASIC_TOKEN);		
-					dataInfo.secret = stmtResult.getString(SetuparDbTableColumn.COL_SECRET);
-					dataInfo.oauthToken = stmtResult.getString(SetuparDbTableColumn.COL_OAUTH_TOKEN);
+					dataInfo.codPayPartner = stmtResult.getInt(DaoSetuparDbTableColumn.COL_COD_PAY_PARTNER);
+					dataInfo.basicKey = stmtResult.getString(DaoSetuparDbTableColumn.COL_BASIC_KEY);
+					dataInfo.basicToken = stmtResult.getString(DaoSetuparDbTableColumn.COL_BASIC_TOKEN);		
+					dataInfo.secret = stmtResult.getString(DaoSetuparDbTableColumn.COL_SECRET);
+					dataInfo.oauthToken = stmtResult.getString(DaoSetuparDbTableColumn.COL_OAUTH_TOKEN);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());
@@ -72,5 +72,11 @@ public final class SetuparSelectSingle extends DaoStmtTemplate<SetuparInfo> {
 				return finalResult;
 			}
 		};
+	}
+	
+	
+	
+	@Override public void executeStmt() throws SQLException {
+		super.executeStmt();
 	}
 }
