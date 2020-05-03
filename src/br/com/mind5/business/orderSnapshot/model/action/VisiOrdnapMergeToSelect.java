@@ -1,29 +1,30 @@
 package br.com.mind5.business.orderSnapshot.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.orderSnapshot.info.OrdnapInfo;
 import br.com.mind5.business.orderSnapshot.info.OrdnapMerger;
-import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiOrdnapMergeToSelect extends ActionVisitorTemplateMergeV1<OrdnapInfo, OrdnapInfo> {
+final class VisiOrdnapMergeToSelect extends ActionVisitorTemplateMergeV2<OrdnapInfo, OrdnapInfo> {
 	
-	public VisiOrdnapMergeToSelect(Connection conn, String schemaName) {
-		super(conn, schemaName, OrdnapInfo.class);
+	public VisiOrdnapMergeToSelect(DeciTreeOption<OrdnapInfo> option) {
+		super(option, OrdnapInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends ActionStdV1<OrdnapInfo>> getActionClassHook() {
-		return StdOrdnapSelect.class;
+	@Override protected Class<? extends ActionStdV2<OrdnapInfo>> getActionClassHook() {
+		return StdOrdnapDaoSelect.class;
 	}
 	
 	
 	
-	@Override protected List<OrdnapInfo> mergeHook(List<OrdnapInfo> recordInfos, List<OrdnapInfo> selectedInfos) {	
-		return OrdnapMerger.mergeToSelect(selectedInfos, recordInfos);
+	@Override protected List<OrdnapInfo> mergeHook(List<OrdnapInfo> baseInfos, List<OrdnapInfo> selectedInfos) {	
+		return OrdnapMerger.mergeToSelect(baseInfos, selectedInfos);
 	}
 	
 	

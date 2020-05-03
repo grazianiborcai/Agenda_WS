@@ -4,14 +4,14 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.orderSnapshot.info.OrdnapInfo;
-import br.com.mind5.model.action.ActionLazyTemplateV1;
+import br.com.mind5.model.action.ActionLazyTemplateV2;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyOrdnapInsert extends ActionLazyTemplateV1<OrdnapInfo, OrdnapInfo> {
+public final class LazyOrdnapDaoInsert extends ActionLazyTemplateV2<OrdnapInfo, OrdnapInfo> {
 
-	public LazyOrdnapInsert(Connection conn, String schemaName) {
+	public LazyOrdnapDaoInsert(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyOrdnapInsert extends ActionLazyTemplateV1<OrdnapInfo, Ord
 	
 	
 	@Override protected ActionStdV1<OrdnapInfo> getInstanceOfActionHook(DeciTreeOption<OrdnapInfo> option) {
-		return new StdOrdnapInsert(option);
+		return new StdOrdnapDaoInsert(option);
 	}
 	
 	

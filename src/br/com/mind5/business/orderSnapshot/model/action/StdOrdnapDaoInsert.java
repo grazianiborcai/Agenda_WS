@@ -5,15 +5,15 @@ import br.com.mind5.model.action.ActionStdTemplateV2;
 import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdOrdnapMergeCuslis extends ActionStdTemplateV2<OrdnapInfo> {
+public final class StdOrdnapDaoInsert extends ActionStdTemplateV2<OrdnapInfo> {
 
-	public StdOrdnapMergeCuslis(DeciTreeOption<OrdnapInfo> option) {
+	public StdOrdnapDaoInsert(DeciTreeOption<OrdnapInfo> option) {
 		super(option);
 	}
 	
 	
 	
 	protected ActionVisitorV2<OrdnapInfo> buildVisitorHook(DeciTreeOption<OrdnapInfo> option) {
-		return new VisiOrdnapMergeCuslis(option);
+		return new VisiOrdnapDaoInsert(option);
 	}
 }

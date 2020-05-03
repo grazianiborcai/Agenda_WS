@@ -1,56 +1,39 @@
 package br.com.mind5.business.orderSnapshot.info;
 
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import java.util.ArrayList;
+import java.util.List;
+
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.security.userList.info.UselisInfo;
 
-final class OrdnapVisiMergeUselis implements InfoMergerVisitor_<OrdnapInfo, UselisInfo> {
-
-	@Override public OrdnapInfo writeRecord(UselisInfo sourceOne, OrdnapInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+final class OrdnapVisiMergeUselis implements InfoMergerVisitorV3<OrdnapInfo, UselisInfo> {
+	
+	@Override public List<OrdnapInfo> beforeMerge(List<OrdnapInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(OrdnapInfo baseInfo, UselisInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner &&
+				baseInfo.codUser  == selectedInfo.codUser		); 
+	}
+	
+	
+	
+	@Override public List<OrdnapInfo> merge(OrdnapInfo baseInfo, UselisInfo selectedInfo) {
+		List<OrdnapInfo> results = new ArrayList<>();
 		
-		OrdnapInfo clonedInfo = makeClone(sourceTwo);
-		return merge(sourceOne, clonedInfo);
-	}
-	
-	
-	
-	private void checkArgument(UselisInfo sourceOne, OrdnapInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private OrdnapInfo makeClone(OrdnapInfo recordInfo) {
-		try {
-			return (OrdnapInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	private OrdnapInfo merge(UselisInfo sourceOne, OrdnapInfo sourceTwo) {
-		sourceTwo.codUserSnapshot = sourceOne.codSnapshot;
-		return sourceTwo;
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(UselisInfo sourceOne, OrdnapInfo sourceTwo) {		
-		return (sourceOne.codOwner == sourceTwo.codOwner &&
-				sourceOne.codUser  == sourceTwo.codUser		); 
-	}
-	
-	
-	
-	private void logException(Exception e) {
+		baseInfo.codUserSnapshot = selectedInfo.codSnapshot;
 		
-		SystemLog.logError(this.getClass(), e);
+		results.add(baseInfo);
+		return results;
+	}
+	
+	
+	
+	@Override public InfoUniquifier<OrdnapInfo> getUniquifier() {
+		return null;
 	}
 }

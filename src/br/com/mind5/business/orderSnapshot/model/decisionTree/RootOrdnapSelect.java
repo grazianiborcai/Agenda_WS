@@ -9,13 +9,13 @@ import br.com.mind5.business.orderSnapshot.model.checker.OrdnapCheckLangu;
 import br.com.mind5.business.orderSnapshot.model.checker.OrdnapCheckOwner;
 import br.com.mind5.business.orderSnapshot.model.checker.OrdnapCheckRead;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 
-public final class RootOrdnapSelect extends DeciTreeTemplateReadV1<OrdnapInfo> {
+public final class RootOrdnapSelect extends DeciTreeTemplateReadV2<OrdnapInfo> {
 	
 	public RootOrdnapSelect(DeciTreeOption<OrdnapInfo> option) {
 		super(option);
