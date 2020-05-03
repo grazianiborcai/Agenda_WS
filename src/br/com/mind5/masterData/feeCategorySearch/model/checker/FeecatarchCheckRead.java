@@ -26,6 +26,6 @@ public final class FeecatarchCheckRead extends ModelCheckerTemplateSimpleV2<Feec
 	
 	
 	@Override protected int getCodMsgOnResultFalseHook() {
-		return SystemCode.FEE_CATEG_MANDATORY_FIELD_EMPTY;
+		return SystemCode.FEE_CATEG_SEARCH_MANDATORY_FIELD_EMPTY;
 	}
 }

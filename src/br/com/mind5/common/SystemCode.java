@@ -180,6 +180,7 @@ public final class SystemCode {
 	public static final int WEEKDAY_SEARCH_MANDATORY_FIELD_EMPTY 		= 11654;
 	public static final int DAYPART_SEARCH_MANDATORY_FIELD_EMPTY 		= 11655;
 	public static final int ORDER_STATUS_SEARCH_MANDATORY_FIELD_EMPTY 	= 11656;
+	public static final int FEE_CATEG_SEARCH_MANDATORY_FIELD_EMPTY 		= 11657;
 	
 	// Material
 	public static final int MAT_ALREADY_EXIST							= 1200;
