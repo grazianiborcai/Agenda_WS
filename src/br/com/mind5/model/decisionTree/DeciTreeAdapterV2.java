@@ -39,7 +39,7 @@ public final class DeciTreeAdapterV2<T extends InfoRecord> implements ActionStdV
 	@Override public boolean executeAction() {
 		checkState(trees);	
 		
-		finalResult = executeTrees(trees);		
+		finalResult = executeTrees(trees);	
 		finalResult = executePostActions(postActions, finalResult);
 		
 		return finalResult.isSuccess();
@@ -50,15 +50,44 @@ public final class DeciTreeAdapterV2<T extends InfoRecord> implements ActionStdV
 	private DeciResult<T> executeTrees(List<DeciTree<T>> sourceTrees) {
 		DeciResult<T> lastResult = makeErrorResult();
 		
+		
 		for (DeciTree<T> eachTree : sourceTrees) {
 			eachTree.makeDecision();
 			lastResult = eachTree.getDecisionResult();
 			
 			if (lastResult.isSuccess() == false)
-				break;
+				return lastResult;
 		}		
 		
-		return lastResult;
+		return makeDeciResult(lastResult, sourceTrees);
+	}
+	
+	
+	
+	private DeciResult<T> makeDeciResult(DeciResult<T> lastResult, List<DeciTree<T>> deciTrees) {
+		if (lastResult == null)
+			return makeErrorResult();
+		
+		if (lastResult.isSuccess() == false)
+			return lastResult;
+		
+		List<T> allResultset = mergeResultset(deciTrees);
+		return makeSuccessResult(allResultset);
+	}
+	
+	
+	
+	private List<T> mergeResultset(List<DeciTree<T>> deciTrees) {	
+		List<T> results = new ArrayList<>();
+		
+		for(DeciTree<T> eachTree : deciTrees) {
+			DeciResult<T> eachResult = eachTree.getDecisionResult();
+			
+			if (eachResult.hasResultset() == true)
+				results.addAll(eachResult.getResultset());
+		}
+
+		return results;
 	}
 	
 	
@@ -184,6 +213,26 @@ public final class DeciTreeAdapterV2<T extends InfoRecord> implements ActionStdV
 	
 	private DeciResult<T> makeErrorResult() {
 		return new DeciResultError<T>();
+	}
+	
+	
+	
+	private DeciResult<T> makeSuccessResult(List<T> resultset) {
+		DeciResultHelper<T> result = new DeciResultHelper<>();
+		
+		result.isSuccess = true;
+		result.hasResultset = true;
+		
+		if(resultset == null)
+			result.hasResultset = false;
+		
+		if(resultset.isEmpty())
+			result.hasResultset = false;
+		
+		if (result.hasResultset == true)
+			result.resultset = resultset;
+		
+		return result;
 	}
 	
 	

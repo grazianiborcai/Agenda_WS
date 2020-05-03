@@ -259,7 +259,7 @@ public abstract class ActionVisitorTemplateMergeV2<T extends InfoRecord, S exten
 		DeciResultHelper<T> helper = new DeciResultHelper<>();
 		
 		helper.resultset = margedInfos;
-		helper.isSuccess = true;;
+		helper.isSuccess = true;
 		helper.hasResultset = true;
 		
 		return helper;

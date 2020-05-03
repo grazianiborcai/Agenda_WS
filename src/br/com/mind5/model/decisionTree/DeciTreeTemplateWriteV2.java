@@ -14,7 +14,7 @@ import br.com.mind5.model.decisionTree.common.DeciResultError;
 
 public abstract class DeciTreeTemplateWriteV2<T extends InfoRecord> implements DeciTree<T> {
 	private List<DeciTree<T>> trees;
-	private DeciResult<T> treeResult;
+	private DeciResult<T> lastTreeResult;
 	
 	
 	public DeciTreeTemplateWriteV2(DeciTreeOption<T> option) {
@@ -98,9 +98,9 @@ public abstract class DeciTreeTemplateWriteV2<T extends InfoRecord> implements D
 		
 		for(DeciTree<T> eachTree : trees) {
 			eachTree.makeDecision();
-			treeResult = eachTree.getDecisionResult();
+			lastTreeResult = eachTree.getDecisionResult();
 			
-			if (treeResult.isSuccess() == false)
+			if (lastTreeResult.isSuccess() == false)
 				break;
 		}
 	}
@@ -109,7 +109,7 @@ public abstract class DeciTreeTemplateWriteV2<T extends InfoRecord> implements D
 	
 	@Override public DeciResult<T> getDecisionResult() {
 		checkState();
-		return makeDeciResult(treeResult, trees);
+		return makeDeciResult(lastTreeResult, trees);
 	}
 	
 	
@@ -171,7 +171,7 @@ public abstract class DeciTreeTemplateWriteV2<T extends InfoRecord> implements D
 	
 	
 	private void clear() {
-		treeResult = DefaultValue.object();
+		lastTreeResult = DefaultValue.object();
 		trees = DefaultValue.list();
 	}
 	

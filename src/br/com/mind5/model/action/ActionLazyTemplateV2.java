@@ -18,7 +18,6 @@ public abstract class ActionLazyTemplateV2<T extends InfoRecord, S extends InfoR
 	protected final boolean FAILED = false;
 	protected final boolean EMPTY = false;
 	
-	private DeciTreeOption<S> option;
 	private Connection conn; 
 	private String schemaName;
 	private ActionStdV1<S> mainAction;
@@ -49,7 +48,7 @@ public abstract class ActionLazyTemplateV2<T extends InfoRecord, S extends InfoR
 		checkStateClosed();
 		checkArgument(infoRecords);	
 		
-		mainAction = getMainAction(infoRecords, option);
+		mainAction = getMainAction(infoRecords);
 		actionResult = executeMainAction(mainAction);	
 		
 		if (actionResult.isSuccess() == SUCCESS) 
@@ -60,9 +59,9 @@ public abstract class ActionLazyTemplateV2<T extends InfoRecord, S extends InfoR
 	
 	
 	
-	private ActionStdV1<S> getMainAction(List<T> infoRecords, DeciTreeOption<S> opt) {
-		opt = buildOption(infoRecords);		
-		return getInstanceOfActionHook(opt);
+	private ActionStdV1<S> getMainAction(List<T> infoRecords) {
+		DeciTreeOption<S> option = buildOption(infoRecords);		
+		return getInstanceOfActionHook(option);
 	}
 	
 	
@@ -186,7 +185,6 @@ public abstract class ActionLazyTemplateV2<T extends InfoRecord, S extends InfoR
 	
 	
 	private void clear() {
-		option = DefaultValue.object();
 		conn = DefaultValue.object();
 		schemaName = DefaultValue.object();
 		mainAction = DefaultValue.object();
