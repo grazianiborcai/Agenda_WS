@@ -9,11 +9,40 @@ import br.com.mind5.info.InfoPrunerSingleVisitor;
 final class PlanataVisiPruneOrderve implements InfoPrunerSingleVisitor<PlanataInfo, OrderveInfo> {
 	
 	@Override public boolean pruneRecord(PlanataInfo baseInfo, OrderveInfo selectedInfo) {
+		if (isStoreEqual(baseInfo, selectedInfo) == false)
+			return false;
 		
-		if (hasTimeOverlap(baseInfo, selectedInfo))
+		if (isEmployeeEqual(baseInfo, selectedInfo) == false)
+			return false;
+		
+		if (isMaterialEqual(baseInfo, selectedInfo) == false)
+			return false;
+		
+		if (hasTimeOverlap(baseInfo, selectedInfo) == true)
 			return true;
 		
 		return false;
+	}
+	
+	
+	
+	private boolean isStoreEqual(PlanataInfo baseInfo, OrderveInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner &&
+				baseInfo.codStore == selectedInfo.codStore	);
+	}
+	
+	
+	
+	private boolean isEmployeeEqual(PlanataInfo baseInfo, OrderveInfo selectedInfo) {
+		return (baseInfo.codOwner    == selectedInfo.codOwner	 &&
+				baseInfo.codEmployee == selectedInfo.codEmployee	);
+	}
+	
+	
+	
+	private boolean isMaterialEqual(PlanataInfo baseInfo, OrderveInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner &&
+				baseInfo.codMat   == selectedInfo.codMat		);
 	}
 	
 	

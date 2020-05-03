@@ -8,8 +8,7 @@ import br.com.mind5.info.InfoPrunerSingleVisitor;
 
 final class PlanataVisiPruneCarterve implements InfoPrunerSingleVisitor<PlanataInfo, CarterveInfo> {
 	
-	@Override public boolean pruneRecord(PlanataInfo baseInfo, CarterveInfo selectedInfo) {
-		
+	@Override public boolean pruneRecord(PlanataInfo baseInfo, CarterveInfo selectedInfo) {		
 		if (isStoreEqual(baseInfo, selectedInfo) == false)
 			return false;
 		
