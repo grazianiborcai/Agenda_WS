@@ -96,7 +96,10 @@ public final class PaymentResource {
 		
 		Model model = new PaytusModelRefreshAuth(recordInfo);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();
+		model.close();
+		
+		return result;
 	}		
 	
 	

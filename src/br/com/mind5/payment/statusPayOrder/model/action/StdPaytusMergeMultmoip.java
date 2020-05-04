@@ -1,35 +1,19 @@
 package br.com.mind5.payment.statusPayOrder.model.action;
 
-import br.com.mind5.model.action.ActionLazyV1;
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionStdHelperMerge;
-import br.com.mind5.model.decisionTree.DeciResult;
+import br.com.mind5.model.action.ActionStdTemplateV2;
+import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.statusPayOrder.info.PaytusInfo;
 
-public final class StdPaytusMergeMultmoip implements ActionStdV1<PaytusInfo> {
-	private ActionStdV1<PaytusInfo> actionHelper;	
-	
-	
-	public StdPaytusMergeMultmoip(DeciTreeOption<PaytusInfo> option) {			
-		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiPaytusMergeMultmoip(option.conn, option.schemaName));
+public final class StdPaytusMergeMultmoip extends ActionStdTemplateV2<PaytusInfo> {
+
+	public StdPaytusMergeMultmoip(DeciTreeOption<PaytusInfo> option) {
+		super(option);
 	}
 	
 	
 	
-	@Override public void addPostAction(ActionLazyV1<PaytusInfo> actionHandler) {
-		actionHelper.addPostAction(actionHandler);
-	}
-	
-	
-	
-	@Override public boolean executeAction() {			
-		return actionHelper.executeAction();
-	}
-	
-	
-	
-	@Override public DeciResult<PaytusInfo> getDecisionResult() {
-		return actionHelper.getDecisionResult();
+	protected ActionVisitorV2<PaytusInfo> buildVisitorHook(DeciTreeOption<PaytusInfo> option) {
+		return new VisiPaytusMergeMultmoip(option);
 	}
 }

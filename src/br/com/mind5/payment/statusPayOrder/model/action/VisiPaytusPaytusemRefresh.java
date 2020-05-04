@@ -1,26 +1,25 @@
 package br.com.mind5.payment.statusPayOrder.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateActionV1;
+import br.com.mind5.model.action.ActionVisitorTemplateActionV2;
+import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.statusPayOrder.info.PaytusInfo;
 import br.com.mind5.payment.statusPayOrder.info.PaytusMerger;
 import br.com.mind5.payment.statusPayOrderItem.info.PaytusemInfo;
 import br.com.mind5.payment.statusPayOrderItem.model.decisionTree.RootPaytusemRefresh;
 
-final class VisiPaytusPaytusemRefresh extends ActionVisitorTemplateActionV1<PaytusInfo, PaytusemInfo> {
+final class VisiPaytusPaytusemRefresh extends ActionVisitorTemplateActionV2<PaytusInfo, PaytusemInfo> {
 	
-	public VisiPaytusPaytusemRefresh(Connection conn, String schemaName) {
-		super(conn, schemaName, PaytusInfo.class, PaytusemInfo.class);
+	public VisiPaytusPaytusemRefresh(DeciTreeOption<PaytusInfo> option) {
+		super(option, PaytusInfo.class, PaytusemInfo.class);
 	}
 	
 	
 	
-	@Override protected ActionStdV1<PaytusemInfo> getActionHook(DeciTreeOption<PaytusemInfo> option) {
-		return new RootPaytusemRefresh(option).toAction();
+	@Override protected Class<? extends DeciTree<PaytusemInfo>> getTreeClassHook() {
+		return RootPaytusemRefresh.class;
 	}
 	
 	

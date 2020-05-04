@@ -1,19 +1,19 @@
 package br.com.mind5.payment.statusPayOrder.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.statusPayOrder.info.PaytusInfo;
 import br.com.mind5.payment.statusPayOrder.info.PaytusMerger;
 import br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.info.MultmoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.model.decisionTree.RootMultmoipRead;
 
-final class VisiPaytusMergeMultmoip extends ActionVisitorTemplateMergeV1<PaytusInfo, MultmoipInfo> {
+final class VisiPaytusMergeMultmoip extends ActionVisitorTemplateMergeV2<PaytusInfo, MultmoipInfo> {
 	
-	public VisiPaytusMergeMultmoip(Connection conn, String schemaName) {
-		super(conn, schemaName, MultmoipInfo.class);
+	public VisiPaytusMergeMultmoip(DeciTreeOption<PaytusInfo> option) {
+		super(option, MultmoipInfo.class); 
 	}
 	
 	
@@ -31,6 +31,6 @@ final class VisiPaytusMergeMultmoip extends ActionVisitorTemplateMergeV1<PaytusI
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV2.DONT_MERGE_WHEN_EMPTY;
 	}
 }
