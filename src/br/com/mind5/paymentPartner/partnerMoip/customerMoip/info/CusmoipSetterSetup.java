@@ -1,33 +1,15 @@
 package br.com.mind5.paymentPartner.partnerMoip.customerMoip.info;
 
 import br.com.mind5.business.masterData.info.common.Environ;
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoSetter;
+import br.com.mind5.info.InfoSetterTemplate;
 import br.com.moip.auth.Authentication;
 import br.com.moip.auth.BasicAuth;
 import br.com.moip.models.Setup;
 import br.com.moip.models.Setup.Environment;
 
-public final class CusmoipSetterSetup implements InfoSetter<CusmoipInfo> {
+public final class CusmoipSetterSetup extends InfoSetterTemplate<CusmoipInfo> {
 	
-	public CusmoipInfo setAttr(CusmoipInfo recordInfo) {
-		checkArgument(recordInfo);
-		return setSetup(recordInfo);
-	}
-	
-	
-	
-	private void checkArgument(CusmoipInfo recordInfo) {
-		if (recordInfo == null) {
-			logException(new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT));
-			throw new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT);
-		}
-	}
-	
-	
-	
-	private CusmoipInfo setSetup(CusmoipInfo recordInfo) {
+	@Override protected CusmoipInfo setAttrHook(CusmoipInfo recordInfo) {
 		Authentication auth = getAuthentication(recordInfo);
 		Environment environment = getEnvironment(recordInfo);
 		
@@ -55,11 +37,4 @@ public final class CusmoipSetterSetup implements InfoSetter<CusmoipInfo> {
 		
 		return Environment.SANDBOX;
 	}
-	
-	
-	
-	private void logException(Exception e) {
-		
-		SystemLog.logError(this.getClass(), e);
-	}	
 }

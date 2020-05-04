@@ -1,57 +1,28 @@
 package br.com.mind5.paymentPartner.partnerMoip.customerMoip.model.checker;
 
-import java.util.List;
-
-import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.paymentPartner.partnerMoip.customerMoip.info.CusmoipInfo;
 import br.com.mind5.security.userSnapshot.info.UserapCopier;
 import br.com.mind5.security.userSnapshot.info.UserapInfo;
 import br.com.mind5.security.userSnapshot.model.checker.UserapCheckExist;
 
-public final class CusmoipCheckUserap implements ModelCheckerV1<CusmoipInfo> {
-	private final boolean FAILED = false;
-	private final boolean SUCCESS = true;
-	
-	private ModelCheckerV1<UserapInfo> checker;
-	
+public final class CusmoipCheckUserap extends ModelCheckerTemplateForwardV2<CusmoipInfo, UserapInfo> {
 	
 	public CusmoipCheckUserap(ModelCheckerOption option) {
-		checker = new UserapCheckExist(option);
-	}
-	
-	
-	
-	@Override public boolean check(List<CusmoipInfo> recordInfos) {
-		for (CusmoipInfo eachInfo : recordInfos) {
-			if (check(eachInfo) == FAILED)
-				return FAILED;
-		}
-		
-		return SUCCESS;
+		super(option);
 	}
 
-	
-	
-	@Override public boolean check(CusmoipInfo recordInfo) {
-		return checker.check(UserapCopier.copyFromCusmoip(recordInfo));
-	}
 
 	
-	
-	@Override public boolean getResult() {
-		return checker.getResult();
+	@Override protected ModelCheckerV1<UserapInfo> getCheckerHook(ModelCheckerOption option) {
+		return new UserapCheckExist(option);
 	}
-
 	
 	
-	@Override public String getFailMessage() {
-		return checker.getFailMessage();
-	}
-
 	
-	
-	@Override public int getFailCode() {
-		return checker.getFailCode();
+	@Override protected UserapInfo toForwardClass(CusmoipInfo baseRecord) {
+		return UserapCopier.copyFromCusmoip(baseRecord);
 	}
 }

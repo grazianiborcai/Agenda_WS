@@ -38,7 +38,7 @@ public final class CusmoipInfo extends InfoRecord implements Cloneable {
 	
 	
 	public CusmoipInfo() {
-		super(CusmoipInfo.class);
+		super();
 		
 		codOwner = DefaultValue.number();	
 		codPayPartner = DefaultValue.number();	

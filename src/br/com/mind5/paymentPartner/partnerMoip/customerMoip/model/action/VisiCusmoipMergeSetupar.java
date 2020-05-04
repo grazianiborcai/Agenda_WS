@@ -1,19 +1,19 @@
 package br.com.mind5.paymentPartner.partnerMoip.customerMoip.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.setupPartner.info.SetuparInfo;
 import br.com.mind5.payment.setupPartner.model.decisionTree.RootSetuparSelect;
 import br.com.mind5.paymentPartner.partnerMoip.customerMoip.info.CusmoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.customerMoip.info.CusmoipMerger;
 
-final class VisiCusmoipMergeSetupar extends ActionVisitorTemplateMergeV1<CusmoipInfo, SetuparInfo> {
+final class VisiCusmoipMergeSetupar extends ActionVisitorTemplateMergeV2<CusmoipInfo, SetuparInfo> {
 	
-	public VisiCusmoipMergeSetupar(Connection conn, String schemaName) {
-		super(conn, schemaName, SetuparInfo.class);
+	public VisiCusmoipMergeSetupar(DeciTreeOption<CusmoipInfo> option) {
+		super(option, SetuparInfo.class); 
 	}
 	
 	
@@ -31,6 +31,6 @@ final class VisiCusmoipMergeSetupar extends ActionVisitorTemplateMergeV1<Cusmoip
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV2.DONT_MERGE_WHEN_EMPTY;
 	}
 }

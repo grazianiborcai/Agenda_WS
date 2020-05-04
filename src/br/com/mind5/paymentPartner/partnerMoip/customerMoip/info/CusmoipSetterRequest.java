@@ -6,31 +6,12 @@ import static br.com.moip.helpers.PayloadFactory.value;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoSetter;
+import br.com.mind5.info.InfoSetterTemplate;
 
 
-public final class CusmoipSetterRequest implements InfoSetter<CusmoipInfo> {
+public final class CusmoipSetterRequest extends InfoSetterTemplate<CusmoipInfo> {
 	
-	public CusmoipInfo setAttr(CusmoipInfo recordInfo) {
-		checkArgument(recordInfo);
-		return setrequest(recordInfo);
-	}
-	
-	
-	
-	private void checkArgument(CusmoipInfo recordInfo) {
-		if (recordInfo == null) {
-			logException(new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT));
-			throw new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT);
-		}
-	}
-	
-	
-	
-	private CusmoipInfo setrequest(CusmoipInfo recordInfo) {		
-		
+	@Override protected CusmoipInfo setAttrHook(CusmoipInfo recordInfo) {
 		recordInfo.requestBody = payloadFactory(
 		        value("ownId"			, recordInfo.compoundId),
 		        value("fullname"		, recordInfo.userapData.personData.name),
@@ -50,11 +31,4 @@ public final class CusmoipSetterRequest implements InfoSetter<CusmoipInfo> {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		return date.format(formatter);
 	}
-	
-	
-	
-	private void logException(Exception e) {
-		
-		SystemLog.logError(this.getClass(), e);
-	}	
 }

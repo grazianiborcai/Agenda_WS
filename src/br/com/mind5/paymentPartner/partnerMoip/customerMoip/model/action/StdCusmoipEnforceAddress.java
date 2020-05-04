@@ -1,35 +1,19 @@
 package br.com.mind5.paymentPartner.partnerMoip.customerMoip.model.action;
 
-import br.com.mind5.model.action.ActionLazyV1;
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionStdHelperEnforce;
-import br.com.mind5.model.decisionTree.DeciResult;
+import br.com.mind5.model.action.ActionStdTemplateV2;
+import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.paymentPartner.partnerMoip.customerMoip.info.CusmoipInfo;
 
-public final class StdCusmoipEnforceAddress implements ActionStdV1<CusmoipInfo> {
-	private ActionStdV1<CusmoipInfo> actionHelper;	
-	
-	
-	public StdCusmoipEnforceAddress(DeciTreeOption<CusmoipInfo> option) {			
-		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiCusmoipEnforceAddress());
+public final class StdCusmoipEnforceAddress extends ActionStdTemplateV2<CusmoipInfo> {
+
+	public StdCusmoipEnforceAddress(DeciTreeOption<CusmoipInfo> option) {
+		super(option);
 	}
 	
 	
 	
-	@Override public void addPostAction(ActionLazyV1<CusmoipInfo> actionHandler) {
-		actionHelper.addPostAction(actionHandler);
-	}
-	
-	
-	
-	@Override public boolean executeAction() {			
-		return actionHelper.executeAction();
-	}
-	
-	
-	
-	@Override public DeciResult<CusmoipInfo> getDecisionResult() {
-		return actionHelper.getDecisionResult();
+	protected ActionVisitorV2<CusmoipInfo> buildVisitorHook(DeciTreeOption<CusmoipInfo> option) {
+		return new VisiCusmoipEnforceAddress(option);
 	}
 }

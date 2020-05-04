@@ -1,12 +1,12 @@
 package br.com.mind5.paymentPartner.partnerMoip.customerMoip.info;
 
 import br.com.mind5.business.masterData.info.common.Paypar;
-import br.com.mind5.info.InfoSetter;
+import br.com.mind5.info.InfoSetterTemplate;
 
 
-public final class CusmoipSetterPaypar implements InfoSetter<CusmoipInfo> {
+public final class CusmoipSetterPaypar extends InfoSetterTemplate<CusmoipInfo> {
 	
-	public CusmoipInfo setAttr(CusmoipInfo recordInfo) {		
+	@Override protected CusmoipInfo setAttrHook(CusmoipInfo recordInfo) {	
 		recordInfo.codPayPartner = Paypar.MOIP.getCodPayPartner();
 		return recordInfo;
 	}

@@ -1,20 +1,20 @@
 package br.com.mind5.paymentPartner.partnerMoip.customerMoip.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.phoneSnapshot.info.PhonapCopier;
 import br.com.mind5.business.phoneSnapshot.info.PhonapInfo;
 import br.com.mind5.business.phoneSnapshot.model.decisionTree.RootPhonapSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.paymentPartner.partnerMoip.customerMoip.info.CusmoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.customerMoip.info.CusmoipMerger;
 
-final class VisiCusmoipMergePhonap extends ActionVisitorTemplateMergeV1<CusmoipInfo, PhonapInfo> {
+final class VisiCusmoipMergePhonap extends ActionVisitorTemplateMergeV2<CusmoipInfo, PhonapInfo> {
 	
-	public VisiCusmoipMergePhonap(Connection conn, String schemaName) {
-		super(conn, schemaName, PhonapInfo.class);
+	public VisiCusmoipMergePhonap(DeciTreeOption<CusmoipInfo> option) {
+		super(option, PhonapInfo.class); 
 	}
 	
 	
@@ -38,6 +38,6 @@ final class VisiCusmoipMergePhonap extends ActionVisitorTemplateMergeV1<CusmoipI
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV2.DONT_MERGE_WHEN_EMPTY;
 	}
 }

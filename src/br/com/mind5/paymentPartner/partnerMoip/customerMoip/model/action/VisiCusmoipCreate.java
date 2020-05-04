@@ -1,18 +1,25 @@
 package br.com.mind5.paymentPartner.partnerMoip.customerMoip.model.action;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
+import br.com.mind5.common.SystemCode;
 import br.com.mind5.common.SystemLog;
-import br.com.mind5.model.action.ActionVisitorV1;
+import br.com.mind5.model.action.ActionVisitorTemplateSimpleV2;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.paymentPartner.partnerMoip.customerMoip.info.CusmoipInfo;
 import br.com.moip.Moip;
 
-final class VisiCusmoipCreate implements ActionVisitorV1<CusmoipInfo> {
+final class VisiCusmoipCreate extends ActionVisitorTemplateSimpleV2<CusmoipInfo> {
 	
-	@Override public List<CusmoipInfo> executeTransformation(List<CusmoipInfo> recordInfos) {
+	public VisiCusmoipCreate(DeciTreeOption<CusmoipInfo> option) {
+		super(option);
+	}
+	
+	
+	
+	@Override public List<CusmoipInfo> executeTransformationHook(List<CusmoipInfo> recordInfos) {
 		List<CusmoipInfo> results = new ArrayList<>();
 		
 		for(CusmoipInfo eachRecod : recordInfos) {
@@ -20,7 +27,7 @@ final class VisiCusmoipCreate implements ActionVisitorV1<CusmoipInfo> {
 			response = tryToCreateMoip(eachRecod);
 			
 			if (response == null)
-				return Collections.emptyList();
+				return null;
 			
 			eachRecod = setAttribute(eachRecod, response);
 			results.add(eachRecod);
@@ -38,6 +45,7 @@ final class VisiCusmoipCreate implements ActionVisitorV1<CusmoipInfo> {
 			
 		} catch (Exception e) {
 			logException(e);
+			//TODO: Escrever em log detalhes do erro
 			return null;
 		}
 	}
@@ -57,8 +65,13 @@ final class VisiCusmoipCreate implements ActionVisitorV1<CusmoipInfo> {
 	
 	
 	
-	private void logException(Exception e) {
-		
+	@Override protected int getErrorCodeHook() {
+		return SystemCode.PAY_CUS_MOIP_CREATION_ERROR;
+	}
+	
+	
+	
+	private void logException(Exception e) {		
 		SystemLog.logError(this.getClass(), e);
 	}
 }
