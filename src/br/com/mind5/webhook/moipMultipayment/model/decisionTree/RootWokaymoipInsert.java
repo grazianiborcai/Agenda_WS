@@ -5,11 +5,11 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 import br.com.mind5.webhook.moipMultipayment.info.WokaymoipInfo;
 import br.com.mind5.webhook.moipMultipayment.model.action.LazyWokaymoipMergeDaemon;
 import br.com.mind5.webhook.moipMultipayment.model.action.LazyWokaymoipPaytusRefresh;
@@ -18,7 +18,7 @@ import br.com.mind5.webhook.moipMultipayment.model.action.LazyWokaymoipSuccess;
 import br.com.mind5.webhook.moipMultipayment.model.action.StdWokaymoipEnforceIdPayment;
 import br.com.mind5.webhook.moipMultipayment.model.checker.WokaymoipCheckInsert;
 
-public final class RootWokaymoipInsert extends DeciTreeTemplateWriteV1<WokaymoipInfo> {
+public final class RootWokaymoipInsert extends DeciTreeTemplateWriteV2<WokaymoipInfo> {
 	
 	public RootWokaymoipInsert(DeciTreeOption<WokaymoipInfo> option) {
 		super(option);

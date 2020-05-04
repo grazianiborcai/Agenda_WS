@@ -1,19 +1,20 @@
 package br.com.mind5.webhook.moipMultipayment.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.user.info.UserInfo;
 import br.com.mind5.security.user.model.decisionTree.RootUserSelectDaemon;
 import br.com.mind5.webhook.moipMultipayment.info.WokaymoipInfo;
 import br.com.mind5.webhook.moipMultipayment.info.WokaymoipMerger;
 
-final class VisiWokaymoipMergeDaemon extends ActionVisitorTemplateMergeV1<WokaymoipInfo, UserInfo> {
+final class VisiWokaymoipMergeDaemon extends ActionVisitorTemplateMergeV2<WokaymoipInfo, UserInfo> {
 	
-	public VisiWokaymoipMergeDaemon(Connection conn, String schemaName) {
-		super(conn, schemaName, UserInfo.class);
+	public VisiWokaymoipMergeDaemon(DeciTreeOption<WokaymoipInfo> option) {
+		super(option, UserInfo.class);
 	}
 	
 	

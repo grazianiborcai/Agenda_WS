@@ -5,15 +5,15 @@ import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.webhook.moipMultipayment.info.WokaymoipInfo;
 
-public final class StdWokaymoipEnforceIdPayment extends ActionStdTemplateV2<WokaymoipInfo> {
+public final class StdWokaymoipDaoSelect extends ActionStdTemplateV2<WokaymoipInfo> {
 
-	public StdWokaymoipEnforceIdPayment(DeciTreeOption<WokaymoipInfo> option) {
+	public StdWokaymoipDaoSelect(DeciTreeOption<WokaymoipInfo> option) {
 		super(option);
 	}
 	
 	
 	
 	protected ActionVisitorV2<WokaymoipInfo> buildVisitorHook(DeciTreeOption<WokaymoipInfo> option) {
-		return new VisiWokaymoipEnforceIdPayment(option);
+		return new VisiWokaymoipDaoSelect(option);
 	}
 }

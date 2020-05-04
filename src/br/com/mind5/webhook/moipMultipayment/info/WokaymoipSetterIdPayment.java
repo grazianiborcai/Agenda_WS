@@ -1,23 +1,13 @@
 package br.com.mind5.webhook.moipMultipayment.info;
 
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoSetter;
+import br.com.mind5.info.InfoSetterTemplate;
 
-public final class WokaymoipSetterIdPayment implements InfoSetter<WokaymoipInfo> {
+public final class WokaymoipSetterIdPayment extends InfoSetterTemplate<WokaymoipInfo> {
 	
-	public WokaymoipInfo setAttr(WokaymoipInfo recordInfo) {
-		checkArgument(recordInfo);
-		
+	@Override protected WokaymoipInfo setAttrHook(WokaymoipInfo recordInfo) {
 		WokaymoipInfo result = new WokaymoipInfo();				
 		result.idPaymentPartner = recordInfo.id;
 
 		return result;
-	}
-	
-	
-	
-	private void checkArgument(WokaymoipInfo recordInfo) {
-		if (recordInfo == null)
-			throw new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT);
 	}
 }

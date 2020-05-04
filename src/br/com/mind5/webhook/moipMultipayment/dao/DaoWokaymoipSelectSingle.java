@@ -15,11 +15,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.webhook.moipMultipayment.info.WokaymoipInfo;
 
-public final class WokaymoipSelectSingle extends DaoStmtTemplate<WokaymoipInfo> {
+public final class DaoWokaymoipSelectSingle extends DaoStmtTemplate<WokaymoipInfo> {
 	private final String MAIN_TABLE = DaoDbTable.PAY_ORDER_HDR_TABLE;
 	
 	
-	public WokaymoipSelectSingle(Connection conn, WokaymoipInfo recordInfo, String schemaName) {
+	public DaoWokaymoipSelectSingle(Connection conn, WokaymoipInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -43,7 +43,7 @@ public final class WokaymoipSelectSingle extends DaoStmtTemplate<WokaymoipInfo> 
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new WokaymoipWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new DaoWokaymoipWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -60,9 +60,9 @@ public final class WokaymoipSelectSingle extends DaoStmtTemplate<WokaymoipInfo> 
 				do {
 					WokaymoipInfo dataInfo = new WokaymoipInfo();
 					
-					dataInfo.codOwner = stmtResult.getLong(WokaymoipDbTableColumn.COL_COD_OWNER);
-					dataInfo.codPayOrder = stmtResult.getLong(WokaymoipDbTableColumn.COL_COD_PAY_ORDER);	
-					dataInfo.idPaymentPartner = stmtResult.getString(WokaymoipDbTableColumn.COL_ID_PAYMENT_PARTNER);				
+					dataInfo.codOwner = stmtResult.getLong(DaoWokaymoipDbTableColumn.COL_COD_OWNER);
+					dataInfo.codPayOrder = stmtResult.getLong(DaoWokaymoipDbTableColumn.COL_COD_PAY_ORDER);	
+					dataInfo.idPaymentPartner = stmtResult.getString(DaoWokaymoipDbTableColumn.COL_ID_PAYMENT_PARTNER);				
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

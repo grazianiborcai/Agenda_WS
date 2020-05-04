@@ -22,6 +22,8 @@
 	<http pattern="/**/Signin/**" 						security="none"/>
 	<http pattern="/**/Webhook/**"     					security="none"/>
 	<http pattern="/**/Payment/permissionCodeMoip"		security="none"/>
+	<http pattern="/**/Webhook/insertMultipaymentMoip"	security="none"/>
+	<http pattern="/**/Webhook/insertRefundMoip"		security="none"/>
 	<http pattern="/**/MoipApp/**"  					security="none"/>	<!-- TODO: Somente para teste -->
 	
 	

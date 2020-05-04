@@ -25,7 +25,10 @@ public final class WebhookResource {
 		
 		Model model = new WokaymoipModelInsert(incomingData, request);
 		model.executeRequest();
-		return model.getResponse();	
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
 	}
 	
 	

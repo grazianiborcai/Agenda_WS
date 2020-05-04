@@ -1,35 +1,19 @@
 package br.com.mind5.webhook.moipMultipayment.model.action;
 
-import br.com.mind5.model.action.ActionLazyV1;
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionStdHelperMerge;
-import br.com.mind5.model.decisionTree.DeciResult;
+import br.com.mind5.model.action.ActionStdTemplateV2;
+import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.webhook.moipMultipayment.info.WokaymoipInfo;
 
-public final class StdWokaymoipMergeDaemon implements ActionStdV1<WokaymoipInfo> {
-	private ActionStdV1<WokaymoipInfo> actionHelper;	
-	
-	
-	public StdWokaymoipMergeDaemon(DeciTreeOption<WokaymoipInfo> option) {			
-		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiWokaymoipMergeDaemon(option.conn, option.schemaName));
+public final class StdWokaymoipMergeDaemon extends ActionStdTemplateV2<WokaymoipInfo> {
+
+	public StdWokaymoipMergeDaemon(DeciTreeOption<WokaymoipInfo> option) {
+		super(option);
 	}
 	
 	
 	
-	@Override public void addPostAction(ActionLazyV1<WokaymoipInfo> actionHandler) {
-		actionHelper.addPostAction(actionHandler);
-	}
-	
-	
-	
-	@Override public boolean executeAction() {			
-		return actionHelper.executeAction();
-	}
-	
-	
-	
-	@Override public DeciResult<WokaymoipInfo> getDecisionResult() {
-		return actionHelper.getDecisionResult();
+	protected ActionVisitorV2<WokaymoipInfo> buildVisitorHook(DeciTreeOption<WokaymoipInfo> option) {
+		return new VisiWokaymoipMergeDaemon(option);
 	}
 }

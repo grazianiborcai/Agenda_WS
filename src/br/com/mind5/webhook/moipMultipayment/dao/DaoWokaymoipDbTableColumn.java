@@ -9,30 +9,19 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class WokaymoipDbTableColumn extends DaoDbTableColumnTemplate {
+public final class DaoWokaymoipDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER; 	
 	public static final String COL_COD_PAY_ORDER = DaoDbField.COL_COD_PAY_ORDER; 
 	public static final String COL_ID_PAYMENT_PARTNER = DaoDbField.COL_ID_PAYMENT_PARTNER;
 	
 	
-	private Hashtable<String, List<DaoColumn>> tableColumns;
-	
-	
-	public WokaymoipDbTableColumn() {
-		super(WokaymoipDbTableColumn.class);
+	public DaoWokaymoipDbTableColumn() {
+		super();
 	}
 	
 	
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
-		tableColumns = new Hashtable<>();		
-		buildPaymentView();	
-		return tableColumns;
-	}
-	
-	
-	
-	private void buildPaymentView() {
 		final String TABLE_NAME = DaoDbTable.PAY_ORDER_HDR_TABLE;
 		
 		DaoColumn oneColumn;
@@ -62,6 +51,8 @@ public final class WokaymoipDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 
-		tableColumns.put(DaoDbTable.PAYMENT_VIEW, columns);
+		Hashtable<String, List<DaoColumn>> results = new Hashtable<>();
+		results.put(DaoDbTable.PAYMENT_VIEW, columns);
+		return results;
 	}
 }
