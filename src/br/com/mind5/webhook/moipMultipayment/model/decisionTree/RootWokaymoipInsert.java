@@ -13,7 +13,7 @@ import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 import br.com.mind5.webhook.moipMultipayment.info.WokaymoipInfo;
 import br.com.mind5.webhook.moipMultipayment.model.action.LazyWokaymoipMergeDaemon;
 import br.com.mind5.webhook.moipMultipayment.model.action.LazyWokaymoipPaytusRefresh;
-import br.com.mind5.webhook.moipMultipayment.model.action.LazyWokaymoipSelect;
+import br.com.mind5.webhook.moipMultipayment.model.action.LazyWokaymoipDaoSelect;
 import br.com.mind5.webhook.moipMultipayment.model.action.LazyWokaymoipSuccess;
 import br.com.mind5.webhook.moipMultipayment.model.action.StdWokaymoipEnforceIdPayment;
 import br.com.mind5.webhook.moipMultipayment.model.checker.WokaymoipCheckInsert;
@@ -47,7 +47,7 @@ public final class RootWokaymoipInsert extends DeciTreeTemplateWriteV2<Wokaymoip
 		List<ActionStdV1<WokaymoipInfo>> actions = new ArrayList<>();	
 		
 		ActionStdV1<WokaymoipInfo> enforceIdPayment = new StdWokaymoipEnforceIdPayment(option);
-		ActionLazyV1<WokaymoipInfo> select = new LazyWokaymoipSelect(option.conn, option.schemaName);
+		ActionLazyV1<WokaymoipInfo> select = new LazyWokaymoipDaoSelect(option.conn, option.schemaName);
 		ActionLazyV1<WokaymoipInfo> mergeDaemon = new LazyWokaymoipMergeDaemon(option.conn, option.schemaName);
 		ActionLazyV1<WokaymoipInfo> paytusRefresh = new LazyWokaymoipPaytusRefresh(option.conn, option.schemaName);
 		ActionLazyV1<WokaymoipInfo> success = new LazyWokaymoipSuccess(option.conn, option.schemaName);

@@ -9,9 +9,9 @@ import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.webhook.moipMultipayment.info.WokaymoipInfo;
 
-public final class LazyWokaymoipSelect extends ActionLazyTemplateV2<WokaymoipInfo, WokaymoipInfo> {
+public final class LazyWokaymoipDaoSelect extends ActionLazyTemplateV2<WokaymoipInfo, WokaymoipInfo> {
 	
-	public LazyWokaymoipSelect(Connection conn, String schemaName) {
+	public LazyWokaymoipDaoSelect(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
