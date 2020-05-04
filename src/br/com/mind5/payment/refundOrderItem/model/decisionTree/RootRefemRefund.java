@@ -5,11 +5,11 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 import br.com.mind5.payment.refundOrderItem.info.RefemInfo;
 import br.com.mind5.payment.refundOrderItem.model.action.LazyRefemMergeCuspar;
 import br.com.mind5.payment.refundOrderItem.model.action.LazyRefemMergePayord;
@@ -22,7 +22,7 @@ import br.com.mind5.payment.refundOrderItem.model.checker.RefemCheckPayordem;
 import br.com.mind5.payment.refundOrderItem.model.checker.RefemCheckRefund;
 import br.com.mind5.payment.refundOrderItem.model.checker.RefemCheckUsername;
 
-public final class RootRefemRefund extends DeciTreeTemplateWriteV1<RefemInfo> {
+public final class RootRefemRefund extends DeciTreeTemplateWriteV2<RefemInfo> {
 	
 	public RootRefemRefund(DeciTreeOption<RefemInfo> option) {
 		super(option);

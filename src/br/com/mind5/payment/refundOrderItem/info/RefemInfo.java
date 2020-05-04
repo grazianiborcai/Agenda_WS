@@ -20,7 +20,7 @@ public final class RefemInfo extends InfoRecord implements Cloneable {
 	
 	
 	public RefemInfo() {
-		super(RefemInfo.class);
+		super();
 		
 		codOwner = DefaultValue.number();
 		codPayOrder = DefaultValue.number();

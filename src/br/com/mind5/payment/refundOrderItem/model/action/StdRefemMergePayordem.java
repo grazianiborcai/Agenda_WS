@@ -1,35 +1,19 @@
 package br.com.mind5.payment.refundOrderItem.model.action;
 
-import br.com.mind5.model.action.ActionLazyV1;
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionStdHelperMerge;
-import br.com.mind5.model.decisionTree.DeciResult;
+import br.com.mind5.model.action.ActionStdTemplateV2;
+import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.refundOrderItem.info.RefemInfo;
 
-public final class StdRefemMergePayordem implements ActionStdV1<RefemInfo> {
-	private ActionStdV1<RefemInfo> actionHelper;	
-	
-	
-	public StdRefemMergePayordem(DeciTreeOption<RefemInfo> option) {			
-		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiRefemMergePayordem(option.conn, option.schemaName));
+public final class StdRefemMergePayordem extends ActionStdTemplateV2<RefemInfo> {
+
+	public StdRefemMergePayordem(DeciTreeOption<RefemInfo> option) {
+		super(option);
 	}
 	
 	
 	
-	@Override public void addPostAction(ActionLazyV1<RefemInfo> actionHandler) {
-		actionHelper.addPostAction(actionHandler);
-	}
-	
-	
-	
-	@Override public boolean executeAction() {			
-		return actionHelper.executeAction();
-	}
-	
-	
-	
-	@Override public DeciResult<RefemInfo> getDecisionResult() {
-		return actionHelper.getDecisionResult();
+	protected ActionVisitorV2<RefemInfo> buildVisitorHook(DeciTreeOption<RefemInfo> option) {
+		return new VisiRefemMergePayordem(option);
 	}
 }
