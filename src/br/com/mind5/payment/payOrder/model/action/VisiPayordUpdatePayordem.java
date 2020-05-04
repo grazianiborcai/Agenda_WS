@@ -1,25 +1,25 @@
 package br.com.mind5.payment.payOrder.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateActionV1;
+import br.com.mind5.model.action.ActionVisitorTemplateActionV2;
+import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
 import br.com.mind5.payment.payOrderItem.info.PayordemCopier;
 import br.com.mind5.payment.payOrderItem.info.PayordemInfo;
 import br.com.mind5.payment.payOrderItem.model.decisionTree.RootPayordemUpdate;
 
-final class VisiPayordUpdatePayordem extends ActionVisitorTemplateActionV1<PayordInfo, PayordemInfo> {
-	public VisiPayordUpdatePayordem(Connection conn, String schemaName) {
-		super(conn, schemaName, PayordInfo.class, PayordemInfo.class);
+final class VisiPayordUpdatePayordem extends ActionVisitorTemplateActionV2<PayordInfo, PayordemInfo> {
+	
+	public VisiPayordUpdatePayordem(DeciTreeOption<PayordInfo> option) {
+		super(option, PayordInfo.class, PayordemInfo.class);
 	}
 	
 	
 	
-	@Override protected ActionStdV1<PayordemInfo> getActionHook(DeciTreeOption<PayordemInfo> option) {
-		return new RootPayordemUpdate(option).toAction();
+	@Override protected Class<? extends DeciTree<PayordemInfo>> getTreeClassHook() {
+		return RootPayordemUpdate.class;
 	}
 	
 	

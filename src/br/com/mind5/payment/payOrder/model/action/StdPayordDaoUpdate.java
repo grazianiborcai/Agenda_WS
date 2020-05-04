@@ -5,15 +5,15 @@ import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
 
-public final class StdPayordOrderPay extends ActionStdTemplateV2<PayordInfo> {
+public final class StdPayordDaoUpdate extends ActionStdTemplateV2<PayordInfo> {
 
-	public StdPayordOrderPay(DeciTreeOption<PayordInfo> option) {
+	public StdPayordDaoUpdate(DeciTreeOption<PayordInfo> option) {
 		super(option);
 	}
 	
 	
 	
 	protected ActionVisitorV2<PayordInfo> buildVisitorHook(DeciTreeOption<PayordInfo> option) {
-		return new VisiPayordOrderPay(option);
+		return new VisiPayordDaoUpdate(option);
 	}
 }

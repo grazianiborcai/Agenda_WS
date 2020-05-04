@@ -1,16 +1,12 @@
 package br.com.mind5.payment.payOrder.info;
 
 import br.com.mind5.business.orderItem.info.OrderemInfo;
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoSetter;
+import br.com.mind5.info.InfoSetterTemplate;
 import br.com.mind5.payment.payOrderItem.info.PayordemInfo;
 
-public final class PayordSetterItem implements InfoSetter<PayordInfo> {
+public final class PayordSetterItem extends InfoSetterTemplate<PayordInfo> {
 	
-	public PayordInfo setAttr(PayordInfo recordInfo) {
-		checkArgument(recordInfo);
-		
+	@Override protected PayordInfo setAttrHook(PayordInfo recordInfo) {
 		int itemNum = 2;
 		
 		for(OrderemInfo eachItem : recordInfo.orderData.orderms) {
@@ -23,21 +19,5 @@ public final class PayordSetterItem implements InfoSetter<PayordInfo> {
 		}
 		
 		return recordInfo;
-	}
-	
-	
-	
-	private void checkArgument(PayordInfo recordInfo) {
-		if (recordInfo == null) {
-			logException(new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT));
-			throw new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT);
-		}
-	}
-	
-	
-	
-	private void logException(Exception e) {
-		
-		SystemLog.logError(this.getClass(), e);
 	}
 }

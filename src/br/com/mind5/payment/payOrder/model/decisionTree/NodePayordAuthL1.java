@@ -11,12 +11,13 @@ import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
-import br.com.mind5.payment.payOrder.model.action.LazyPayordMergeOrder;
-import br.com.mind5.payment.payOrder.model.action.StdPayordOrderPay;
+import br.com.mind5.payment.payOrder.model.action.LazyPayordMergeUsername;
+import br.com.mind5.payment.payOrder.model.action.LazyPayordNodeAuthL2;
+import br.com.mind5.payment.payOrder.model.action.StdPayordMergeToSelect;
 
-public final class NodePayordOrder extends DeciTreeTemplateWriteV2<PayordInfo> {
+public final class NodePayordAuthL1 extends DeciTreeTemplateWriteV2<PayordInfo> {
 	
-	public NodePayordOrder(DeciTreeOption<PayordInfo> option) {
+	public NodePayordAuthL1(DeciTreeOption<PayordInfo> option) {
 		super(option);
 	}
 	
@@ -25,7 +26,7 @@ public final class NodePayordOrder extends DeciTreeTemplateWriteV2<PayordInfo> {
 	@Override protected ModelCheckerV1<PayordInfo> buildCheckerHook(DeciTreeOption<PayordInfo> option) {
 		List<ModelCheckerV1<PayordInfo>> queue = new ArrayList<>();		
 		ModelCheckerV1<PayordInfo> checker;	
-		
+
 		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 		
@@ -37,12 +38,14 @@ public final class NodePayordOrder extends DeciTreeTemplateWriteV2<PayordInfo> {
 	@Override protected List<ActionStdV1<PayordInfo>> buildActionsOnPassedHook(DeciTreeOption<PayordInfo> option) {
 		List<ActionStdV1<PayordInfo>> actions = new ArrayList<>();		
 
-		ActionStdV1<PayordInfo> orderPay = new StdPayordOrderPay(option);
-		ActionLazyV1<PayordInfo> mergeOrder = new LazyPayordMergeOrder(option.conn, option.schemaName);
-			
-		orderPay.addPostAction(mergeOrder);
+		ActionStdV1<PayordInfo> mergeToSelect = new StdPayordMergeToSelect(option);
+		ActionLazyV1<PayordInfo> mergeUsername = new LazyPayordMergeUsername(option.conn, option.schemaName);
+		ActionLazyV1<PayordInfo> nodeL2 = new LazyPayordNodeAuthL2(option.conn, option.schemaName);
 		
-		actions.add(orderPay);		
+		mergeToSelect.addPostAction(mergeUsername);
+		mergeUsername.addPostAction(nodeL2);
+		
+		actions.add(mergeToSelect);		
 		return actions;
 	}
 }

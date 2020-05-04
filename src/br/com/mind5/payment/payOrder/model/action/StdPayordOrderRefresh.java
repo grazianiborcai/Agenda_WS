@@ -1,35 +1,19 @@
 package br.com.mind5.payment.payOrder.model.action;
 
-import br.com.mind5.model.action.ActionLazyV1;
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionStdHelperAction;
-import br.com.mind5.model.decisionTree.DeciResult;
+import br.com.mind5.model.action.ActionStdTemplateV2;
+import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
 
-public final class StdPayordOrderRefresh implements ActionStdV1<PayordInfo> {
-	private ActionStdV1<PayordInfo> actionHelper;	
-	
-	
-	public StdPayordOrderRefresh(DeciTreeOption<PayordInfo> option) {			
-		actionHelper = new ActionStdHelperAction<>(option.recordInfos, new VisiPayordOrderRefresh(option.conn, option.schemaName));
+public final class StdPayordOrderRefresh extends ActionStdTemplateV2<PayordInfo> {
+
+	public StdPayordOrderRefresh(DeciTreeOption<PayordInfo> option) {
+		super(option);
 	}
 	
 	
 	
-	@Override public void addPostAction(ActionLazyV1<PayordInfo> actionHandler) {
-		actionHelper.addPostAction(actionHandler);
-	}
-	
-	
-	
-	@Override public boolean executeAction() {			
-		return actionHelper.executeAction();
-	}
-	
-	
-	
-	@Override public DeciResult<PayordInfo> getDecisionResult() {
-		return actionHelper.getDecisionResult();
+	protected ActionVisitorV2<PayordInfo> buildVisitorHook(DeciTreeOption<PayordInfo> option) {
+		return new VisiPayordOrderRefresh(option);
 	}
 }

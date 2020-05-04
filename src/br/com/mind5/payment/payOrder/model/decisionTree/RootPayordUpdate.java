@@ -9,14 +9,14 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
-import br.com.mind5.payment.payOrder.model.action.LazyPayordUpdate;
+import br.com.mind5.payment.payOrder.model.action.LazyPayordDaoUpdate;
 import br.com.mind5.payment.payOrder.model.action.StdPayordMergeToUpdate;
 import br.com.mind5.payment.payOrder.model.checker.PayordCheckExist;
 import br.com.mind5.payment.payOrder.model.checker.PayordCheckUpdate;
 
-public final class RootPayordUpdate extends DeciTreeTemplateWriteV1<PayordInfo> {
+public final class RootPayordUpdate extends DeciTreeTemplateWriteV2<PayordInfo> {
 	
 	public RootPayordUpdate(DeciTreeOption<PayordInfo> option) {
 		super(option);
@@ -52,7 +52,7 @@ public final class RootPayordUpdate extends DeciTreeTemplateWriteV1<PayordInfo> 
 		List<ActionStdV1<PayordInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<PayordInfo> select = new StdPayordMergeToUpdate(option);
-		ActionLazyV1<PayordInfo> updatePayord = new LazyPayordUpdate(option.conn, option.schemaName);
+		ActionLazyV1<PayordInfo> updatePayord = new LazyPayordDaoUpdate(option.conn, option.schemaName);
 		
 		select.addPostAction(updatePayord);
 		

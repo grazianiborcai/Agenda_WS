@@ -16,11 +16,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
 
-public final class PayordSelectSingle extends DaoStmtTemplate<PayordInfo> {
+public final class DaoPayordSelectSingle extends DaoStmtTemplate<PayordInfo> {
 	private final String MAIN_TABLE = DaoDbTable.PAY_ORDER_HDR_TABLE;	
 	
 	
-	public PayordSelectSingle(Connection conn, PayordInfo recordInfo, String schemaName) {
+	public DaoPayordSelectSingle(Connection conn, PayordInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -44,7 +44,7 @@ public final class PayordSelectSingle extends DaoStmtTemplate<PayordInfo> {
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new PayordWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new DaoPayordWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 		
@@ -61,20 +61,20 @@ public final class PayordSelectSingle extends DaoStmtTemplate<PayordInfo> {
 				do {
 					PayordInfo dataInfo = new PayordInfo();
 					
-					dataInfo.codOwner = stmtResult.getLong(PayordDbTableColumn.COL_COD_OWNER);
-					dataInfo.codPayOrder = stmtResult.getLong(PayordDbTableColumn.COL_COD_PAY_ORDER);				
-					dataInfo.idOrderPartner = stmtResult.getString(PayordDbTableColumn.COL_ID_ORDER_PARTNER);
-					dataInfo.statusOrderPartner = stmtResult.getString(PayordDbTableColumn.COL_STATUS_ORDER_PARTNER);
-					dataInfo.amountTotalPartner = stmtResult.getString(PayordDbTableColumn.COL_AMOUNT_TOTAL_PARTNER);
-					dataInfo.amountCurrencyPartner = stmtResult.getString(PayordDbTableColumn.COL_AMOUNT_CURRENCY_PARTNER);
-					dataInfo.idPaymentPartner = stmtResult.getString(PayordDbTableColumn.COL_ID_PAYMENT_PARTNER);
-					dataInfo.statusPaymentPartner = stmtResult.getString(PayordDbTableColumn.COL_STATUS_PAYMENT_PARTNER);
-					dataInfo.codOrder = DaoFormatter.sqlToLong(stmtResult, PayordDbTableColumn.COL_COD_ORDER);
-					dataInfo.codCreditCard = DaoFormatter.sqlToLong(stmtResult, PayordDbTableColumn.COL_COD_CREDIT_CARD);
-					dataInfo.codPayCustomer = DaoFormatter.sqlToLong(stmtResult, PayordDbTableColumn.COL_COD_PAY_CUSTOMER);
-					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, PayordDbTableColumn.COL_LAST_CHANGED);
-					dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, PayordDbTableColumn.COL_CREATED_ON);
-					dataInfo.ownId = stmtResult.getString(PayordDbTableColumn.COL_OWN_ID);
+					dataInfo.codOwner = stmtResult.getLong(DaoPayordDbTableColumn.COL_COD_OWNER);
+					dataInfo.codPayOrder = stmtResult.getLong(DaoPayordDbTableColumn.COL_COD_PAY_ORDER);				
+					dataInfo.idOrderPartner = stmtResult.getString(DaoPayordDbTableColumn.COL_ID_ORDER_PARTNER);
+					dataInfo.statusOrderPartner = stmtResult.getString(DaoPayordDbTableColumn.COL_STATUS_ORDER_PARTNER);
+					dataInfo.amountTotalPartner = stmtResult.getString(DaoPayordDbTableColumn.COL_AMOUNT_TOTAL_PARTNER);
+					dataInfo.amountCurrencyPartner = stmtResult.getString(DaoPayordDbTableColumn.COL_AMOUNT_CURRENCY_PARTNER);
+					dataInfo.idPaymentPartner = stmtResult.getString(DaoPayordDbTableColumn.COL_ID_PAYMENT_PARTNER);
+					dataInfo.statusPaymentPartner = stmtResult.getString(DaoPayordDbTableColumn.COL_STATUS_PAYMENT_PARTNER);
+					dataInfo.codOrder = DaoFormatter.sqlToLong(stmtResult, DaoPayordDbTableColumn.COL_COD_ORDER);
+					dataInfo.codCreditCard = DaoFormatter.sqlToLong(stmtResult, DaoPayordDbTableColumn.COL_COD_CREDIT_CARD);
+					dataInfo.codPayCustomer = DaoFormatter.sqlToLong(stmtResult, DaoPayordDbTableColumn.COL_COD_PAY_CUSTOMER);
+					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, DaoPayordDbTableColumn.COL_LAST_CHANGED);
+					dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, DaoPayordDbTableColumn.COL_CREATED_ON);
+					dataInfo.ownId = stmtResult.getString(DaoPayordDbTableColumn.COL_OWN_ID);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

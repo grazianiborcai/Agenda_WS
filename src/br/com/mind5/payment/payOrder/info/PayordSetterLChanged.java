@@ -1,40 +1,12 @@
 package br.com.mind5.payment.payOrder.info;
 
-import java.time.LocalDateTime;
-
 import br.com.mind5.common.DefaultValue;
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoSetter;
+import br.com.mind5.info.InfoSetterTemplate;
 
-public final class PayordSetterLChanged implements InfoSetter<PayordInfo> {
+public final class PayordSetterLChanged extends InfoSetterTemplate<PayordInfo> {
 	
-	public PayordInfo setAttr(PayordInfo recordInfo) {
-		checkArgument(recordInfo);
-		
-		recordInfo.lastChanged = genLastChanged();
+	@Override protected PayordInfo setAttrHook(PayordInfo recordInfo) {
+		recordInfo.lastChanged = DefaultValue.localDateTimeNow();
 		return recordInfo;
-	}
-	
-	
-	
-	private void checkArgument(PayordInfo recordInfo) {
-		if (recordInfo == null) {
-			logException(new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT));
-			throw new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT);
-		}
-	}
-	
-	
-	
-	private LocalDateTime genLastChanged() {
-		return DefaultValue.localDateTimeNow();
-	}
-	
-	
-	
-	private void logException(Exception e) {
-		
-		SystemLog.logError(this.getClass(), e);
 	}
 }

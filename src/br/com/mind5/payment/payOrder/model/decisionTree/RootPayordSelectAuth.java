@@ -3,7 +3,6 @@ package br.com.mind5.payment.payOrder.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -11,17 +10,13 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
-import br.com.mind5.payment.payOrder.model.action.LazyPayordMergeCrecard;
-import br.com.mind5.payment.payOrder.model.action.LazyPayordMergePayordem;
-import br.com.mind5.payment.payOrder.model.action.LazyPayordMergePaypar;
-import br.com.mind5.payment.payOrder.model.action.StdPayordMergeToSelect;
 import br.com.mind5.payment.payOrder.model.checker.PayordCheckLangu;
 import br.com.mind5.payment.payOrder.model.checker.PayordCheckRead;
 import br.com.mind5.payment.payOrder.model.checker.PayordCheckUsername;
 
-public final class RootPayordSelect extends DeciTreeTemplateReadV2<PayordInfo> {
+public final class RootPayordSelectAuth extends DeciTreeTemplateReadV2<PayordInfo> {
 	
-	public RootPayordSelect(DeciTreeOption<PayordInfo> option) {
+	public RootPayordSelectAuth(DeciTreeOption<PayordInfo> option) {
 		super(option);
 	}
 	
@@ -61,16 +56,12 @@ public final class RootPayordSelect extends DeciTreeTemplateReadV2<PayordInfo> {
 	@Override protected List<ActionStdV1<PayordInfo>> buildActionsOnPassedHook(DeciTreeOption<PayordInfo> option) {
 		List<ActionStdV1<PayordInfo>> actions = new ArrayList<>();		
 
-		ActionStdV1<PayordInfo> mergeToSelect = new StdPayordMergeToSelect(option);
-		ActionLazyV1<PayordInfo> mergeCrecard = new LazyPayordMergeCrecard(option.conn, option.schemaName);
-		ActionLazyV1<PayordInfo> mergePaypar = new LazyPayordMergePaypar(option.conn, option.schemaName);
-		ActionLazyV1<PayordInfo> mergePayordem = new LazyPayordMergePayordem(option.conn, option.schemaName);
+		ActionStdV1<PayordInfo> nodeAuth = new NodePayordAuthL1(option).toAction();
+		ActionStdV1<PayordInfo> nodeSelect = new RootPayordSelect(option).toAction();
 		
-		mergeToSelect.addPostAction(mergeCrecard);
-		mergeCrecard.addPostAction(mergePaypar);
-		mergePaypar.addPostAction(mergePayordem);
+		actions.add(nodeAuth);		
+		actions.add(nodeSelect);
 		
-		actions.add(mergeToSelect);		
 		return actions;
 	}
 }

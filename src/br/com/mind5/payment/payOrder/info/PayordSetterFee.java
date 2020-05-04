@@ -2,16 +2,12 @@ package br.com.mind5.payment.payOrder.info;
 
 import java.util.ArrayList;
 
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoSetter;
+import br.com.mind5.info.InfoSetterTemplate;
 import br.com.mind5.payment.payOrderItem.info.PayordemInfo;
 
-public final class PayordSetterFee implements InfoSetter<PayordInfo> {
+public final class PayordSetterFee extends InfoSetterTemplate<PayordInfo> {
 	
-	public PayordInfo setAttr(PayordInfo recordInfo) {
-		checkArgument(recordInfo);
-		
+	@Override protected PayordInfo setAttrHook(PayordInfo recordInfo) {		
 		recordInfo.payordems = new ArrayList<>();		
 		PayordemInfo feeItem = new PayordemInfo();
 		
@@ -29,21 +25,5 @@ public final class PayordSetterFee implements InfoSetter<PayordInfo> {
 		
 		recordInfo.payordems.add(feeItem);		
 		return recordInfo;
-	}
-	
-	
-	
-	private void checkArgument(PayordInfo recordInfo) {
-		if (recordInfo == null) {
-			logException(new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT));
-			throw new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT);
-		}
-	}
-	
-	
-	
-	private void logException(Exception e) {
-		
-		SystemLog.logError(this.getClass(), e);
 	}
 }

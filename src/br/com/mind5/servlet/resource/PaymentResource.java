@@ -46,7 +46,10 @@ public final class PaymentResource {
 		
 		Model model = new PayordModelPay(incomingData, request);
 		model.executeRequest();
-		return model.getResponse();	
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
 	}
 	
 	

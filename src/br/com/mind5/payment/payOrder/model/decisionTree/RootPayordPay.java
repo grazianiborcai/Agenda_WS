@@ -5,11 +5,11 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
 import br.com.mind5.payment.payOrder.model.action.LazyPayordNodeInsert;
 import br.com.mind5.payment.payOrder.model.action.LazyPayordNodeOrder;
@@ -21,7 +21,7 @@ import br.com.mind5.payment.payOrder.model.checker.PayordCheckOwner;
 import br.com.mind5.payment.payOrder.model.checker.PayordCheckPay;
 import br.com.mind5.payment.payOrder.model.checker.PayordCheckUsername;
 
-public final class RootPayordPay extends DeciTreeTemplateWriteV1<PayordInfo> {
+public final class RootPayordPay extends DeciTreeTemplateWriteV2<PayordInfo> {
 	
 	public RootPayordPay(DeciTreeOption<PayordInfo> option) {
 		super(option);
@@ -84,7 +84,8 @@ public final class RootPayordPay extends DeciTreeTemplateWriteV1<PayordInfo> {
 	@Override protected List<ActionStdV1<PayordInfo>> buildActionsOnPassedHook(DeciTreeOption<PayordInfo> option) {
 		List<ActionStdV1<PayordInfo>> actions = new ArrayList<>();		
 		//TODO: Refresh Latest ???
-		ActionStdV1<PayordInfo> nodeUser = new NodePayordUserL1(option).toAction();
+		ActionStdV1<PayordInfo> nodeAuth = new NodePayordAuthL1(option).toAction();
+		ActionStdV1<PayordInfo> nodeUser = new NodePayordUser(option).toAction();
 		ActionLazyV1<PayordInfo> nodeOrder = new LazyPayordNodeOrder(option.conn, option.schemaName);
 		ActionLazyV1<PayordInfo> nodeInsert = new LazyPayordNodeInsert(option.conn, option.schemaName);
 		ActionLazyV1<PayordInfo> nodePay = new LazyPayordNodePay(option.conn, option.schemaName);		
@@ -93,7 +94,8 @@ public final class RootPayordPay extends DeciTreeTemplateWriteV1<PayordInfo> {
 		nodeOrder.addPostAction(nodeInsert);
 		nodeInsert.addPostAction(nodePay);
 		
-		actions.add(nodeUser);		
+		actions.add(nodeAuth);
+		actions.add(nodeUser);
 		return actions;
 	}
 }
