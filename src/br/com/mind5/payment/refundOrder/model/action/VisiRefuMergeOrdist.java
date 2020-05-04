@@ -1,19 +1,19 @@
 package br.com.mind5.payment.refundOrder.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.orderList.info.OrdistInfo;
 import br.com.mind5.business.orderList.model.decisionTree.RootOrdistSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.refundOrder.info.RefuInfo;
 import br.com.mind5.payment.refundOrder.info.RefuMerger;
 
-final class VisiRefuMergeOrdist extends ActionVisitorTemplateMergeV1<RefuInfo, OrdistInfo> {
+final class VisiRefuMergeOrdist extends ActionVisitorTemplateMergeV2<RefuInfo, OrdistInfo> {
 	
-	public VisiRefuMergeOrdist(Connection conn, String schemaName) {
-		super(conn, schemaName, OrdistInfo.class);
+	public VisiRefuMergeOrdist(DeciTreeOption<RefuInfo> option) {
+		super(option, OrdistInfo.class); 
 	}
 	
 	
@@ -31,6 +31,6 @@ final class VisiRefuMergeOrdist extends ActionVisitorTemplateMergeV1<RefuInfo, O
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV2.DONT_MERGE_WHEN_EMPTY;
 	}
 }

@@ -1,57 +1,28 @@
 package br.com.mind5.payment.refundOrder.model.checker;
 
-import java.util.List;
-
-import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.payment.refundOrder.info.RefuInfo;
 import br.com.mind5.security.username.info.UsernameCopier;
 import br.com.mind5.security.username.info.UsernameInfo;
 import br.com.mind5.security.username.model.checker.UsernameCheckExist;
 
-public final class RefuCheckUsername implements ModelCheckerV1<RefuInfo> {
-	private final boolean FAILED = false;
-	private final boolean SUCCESS = true;
-	
-	private ModelCheckerV1<UsernameInfo> checker;
-	
+public final class RefuCheckUsername extends ModelCheckerTemplateForwardV2<RefuInfo, UsernameInfo> {
 	
 	public RefuCheckUsername(ModelCheckerOption option) {
-		checker = new UsernameCheckExist(option);
-	}
-	
-	
-	
-	@Override public boolean check(List<RefuInfo> recordInfos) {
-		for (RefuInfo eachInfo : recordInfos) {
-			if (check(eachInfo) == FAILED)
-				return FAILED;
-		}
-		
-		return SUCCESS;
+		super(option);
 	}
 
-	
-	
-	@Override public boolean check(RefuInfo recordInfo) {
-		return checker.check(UsernameCopier.copyFromRefu(recordInfo));
-	}
 
 	
-	
-	@Override public boolean getResult() {
-		return checker.getResult();
+	@Override protected ModelCheckerV1<UsernameInfo> getCheckerHook(ModelCheckerOption option) {
+		return new UsernameCheckExist(option);
 	}
-
 	
 	
-	@Override public String getFailMessage() {
-		return checker.getFailMessage();
-	}
-
 	
-	
-	@Override public int getFailCode() {
-		return checker.getFailCode();
+	@Override protected UsernameInfo toForwardClass(RefuInfo baseRecord) {
+		return UsernameCopier.copyFromRefu(baseRecord);
 	}
 }

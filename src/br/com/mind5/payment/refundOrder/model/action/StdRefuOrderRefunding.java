@@ -1,35 +1,19 @@
 package br.com.mind5.payment.refundOrder.model.action;
 
-import br.com.mind5.model.action.ActionLazyV1;
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionStdHelperAction;
-import br.com.mind5.model.decisionTree.DeciResult;
+import br.com.mind5.model.action.ActionStdTemplateV2;
+import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.refundOrder.info.RefuInfo;
 
-public final class StdRefuOrderRefunding implements ActionStdV1<RefuInfo> {
-	private ActionStdV1<RefuInfo> actionHelper;	
-	
-	
-	public StdRefuOrderRefunding(DeciTreeOption<RefuInfo> option) {			
-		actionHelper = new ActionStdHelperAction<>(option.recordInfos, new VisiRefuOrderRefunding(option.conn, option.schemaName));
+public final class StdRefuOrderRefunding extends ActionStdTemplateV2<RefuInfo> {
+
+	public StdRefuOrderRefunding(DeciTreeOption<RefuInfo> option) {
+		super(option);
 	}
 	
 	
 	
-	@Override public void addPostAction(ActionLazyV1<RefuInfo> actionHandler) {
-		actionHelper.addPostAction(actionHandler);
-	}
-	
-	
-	
-	@Override public boolean executeAction() {			
-		return actionHelper.executeAction();
-	}
-	
-	
-	
-	@Override public DeciResult<RefuInfo> getDecisionResult() {
-		return actionHelper.getDecisionResult();
+	protected ActionVisitorV2<RefuInfo> buildVisitorHook(DeciTreeOption<RefuInfo> option) {
+		return new VisiRefuOrderRefunding(option);
 	}
 }

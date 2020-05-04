@@ -5,16 +5,16 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 import br.com.mind5.payment.refundOrder.info.RefuInfo;
 import br.com.mind5.payment.refundOrder.model.action.LazyRefuRefundRefem;
 import br.com.mind5.payment.refundOrder.model.action.StdRefuMergePayormarch;
-import br.com.mind5.payment.refundOrder.model.checker.RefuCheckDummy;
 
-public final class NodeRefuRefund extends DeciTreeTemplateWriteV1<RefuInfo> {
+public final class NodeRefuRefund extends DeciTreeTemplateWriteV2<RefuInfo> {
 	
 	public NodeRefuRefund(DeciTreeOption<RefuInfo> option) {
 		super(option);
@@ -26,7 +26,7 @@ public final class NodeRefuRefund extends DeciTreeTemplateWriteV1<RefuInfo> {
 		List<ModelCheckerV1<RefuInfo>> queue = new ArrayList<>();		
 		ModelCheckerV1<RefuInfo> checker;	
 
-		checker = new RefuCheckDummy();
+		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueueV2<>(queue);

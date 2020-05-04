@@ -16,7 +16,7 @@ public final class RefuInfo extends InfoRecord implements Cloneable {
 	
 	
 	public RefuInfo() {
-		super(RefuInfo.class);
+		super();
 		
 		codOwner = DefaultValue.number();
 		codPayOrder = DefaultValue.number();
