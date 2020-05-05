@@ -40,7 +40,10 @@ public final class WebhookResource {
 		
 		Model model = new WokefumoipModelInsert(incomingData, request);
 		model.executeRequest();
-		return model.getResponse();	
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
 	}	
 
 }

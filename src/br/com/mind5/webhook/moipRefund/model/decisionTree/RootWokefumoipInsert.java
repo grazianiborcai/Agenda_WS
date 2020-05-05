@@ -5,20 +5,20 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 import br.com.mind5.webhook.moipRefund.info.WokefumoipInfo;
+import br.com.mind5.webhook.moipRefund.model.action.LazyWokefumoipDaoSelect;
 import br.com.mind5.webhook.moipRefund.model.action.LazyWokefumoipMergeDaemon;
 import br.com.mind5.webhook.moipRefund.model.action.LazyWokefumoipPaytusRefresh;
-import br.com.mind5.webhook.moipRefund.model.action.LazyWokefumoipSelect;
 import br.com.mind5.webhook.moipRefund.model.action.LazyWokefumoipSuccess;
 import br.com.mind5.webhook.moipRefund.model.action.StdWokefumoipEnforceIdPayment;
 import br.com.mind5.webhook.moipRefund.model.checker.WokefumoipCheckInsert;
 
-public final class RootWokefumoipInsert extends DeciTreeTemplateWriteV1<WokefumoipInfo> {
+public final class RootWokefumoipInsert extends DeciTreeTemplateWriteV2<WokefumoipInfo> {
 	
 	public RootWokefumoipInsert(DeciTreeOption<WokefumoipInfo> option) {
 		super(option);
@@ -47,7 +47,7 @@ public final class RootWokefumoipInsert extends DeciTreeTemplateWriteV1<Wokefumo
 		List<ActionStdV1<WokefumoipInfo>> actions = new ArrayList<>();	
 		
 		ActionStdV1<WokefumoipInfo> enforceIdPayment = new StdWokefumoipEnforceIdPayment(option);
-		ActionLazyV1<WokefumoipInfo> select = new LazyWokefumoipSelect(option.conn, option.schemaName);
+		ActionLazyV1<WokefumoipInfo> select = new LazyWokefumoipDaoSelect(option.conn, option.schemaName);
 		ActionLazyV1<WokefumoipInfo> mergeDaemon = new LazyWokefumoipMergeDaemon(option.conn, option.schemaName);
 		ActionLazyV1<WokefumoipInfo> paytusRefresh = new LazyWokefumoipPaytusRefresh(option.conn, option.schemaName);
 		ActionLazyV1<WokefumoipInfo> success = new LazyWokefumoipSuccess(option.conn, option.schemaName);

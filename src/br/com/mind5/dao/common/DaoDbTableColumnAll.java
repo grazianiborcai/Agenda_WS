@@ -173,7 +173,7 @@ import br.com.mind5.security.userSearch.dao.UserarchDbTableColumn;
 import br.com.mind5.security.userSnapshot.dao.UserapDbTableColumn;
 import br.com.mind5.security.username.dao.DaoUsernameDbTableColumn;
 import br.com.mind5.webhook.moipMultipayment.dao.DaoWokaymoipDbTableColumn;
-import br.com.mind5.webhook.moipRefund.dao.WokefumoipDbTableColumn;
+import br.com.mind5.webhook.moipRefund.dao.DaoWokefumoipDbTableColumn;
 
 public final class DaoDbTableColumnAll {
 	private static Hashtable<String, List<DaoColumn>> tableColumns;	
@@ -244,7 +244,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new PayordemDbTableColumn());
 		addTable(new PeresmoipDbTableColumn());
 		addTable(new DaoWokaymoipDbTableColumn());
-		addTable(new WokefumoipDbTableColumn());
+		addTable(new DaoWokefumoipDbTableColumn());
 		addTable(new SchedineDbTableColumn());
 		addTable(new StorapDbTableColumn());
 		addTable(new CompnapDbTableColumn());

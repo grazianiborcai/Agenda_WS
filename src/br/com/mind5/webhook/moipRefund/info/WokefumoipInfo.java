@@ -14,7 +14,7 @@ public final class WokefumoipInfo extends InfoRecord implements Cloneable {
 	
 	
 	public WokefumoipInfo() {
-		super(WokefumoipInfo.class);
+		super();
 		
 		codOwner = DefaultValue.number();
 		codPayOrder = DefaultValue.number();

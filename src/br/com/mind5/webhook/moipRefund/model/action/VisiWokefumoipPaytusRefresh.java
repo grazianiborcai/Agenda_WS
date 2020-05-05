@@ -1,24 +1,24 @@
 package br.com.mind5.webhook.moipRefund.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateActionV1;
+import br.com.mind5.model.action.ActionVisitorTemplateActionV2;
+import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.statusPayOrder.info.PaytusInfo;
-import br.com.mind5.payment.statusPayOrder.model.decisionTree.RootPaytusRefreshAuth;
+import br.com.mind5.payment.statusPayOrder.model.decisionTree.RootPaytusRefresh;
 import br.com.mind5.webhook.moipRefund.info.WokefumoipInfo;
 
-final class VisiWokefumoipPaytusRefresh extends ActionVisitorTemplateActionV1<WokefumoipInfo, PaytusInfo> {
-	public VisiWokefumoipPaytusRefresh(Connection conn, String schemaName) {
-		super(conn, schemaName, WokefumoipInfo.class, PaytusInfo.class);
+final class VisiWokefumoipPaytusRefresh extends ActionVisitorTemplateActionV2<WokefumoipInfo, PaytusInfo> {
+	
+	public VisiWokefumoipPaytusRefresh(DeciTreeOption<WokefumoipInfo> option) {
+		super(option, WokefumoipInfo.class, PaytusInfo.class);
 	}
 	
 	
 	
-	@Override protected ActionStdV1<PaytusInfo> getActionHook(DeciTreeOption<PaytusInfo> option) {
-		return new RootPaytusRefreshAuth(option).toAction();
+	@Override protected Class<? extends DeciTree<PaytusInfo>> getTreeClassHook() {
+		return RootPaytusRefresh.class;
 	}
 	
 	
