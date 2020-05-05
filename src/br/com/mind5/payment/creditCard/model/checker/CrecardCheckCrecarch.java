@@ -1,57 +1,28 @@
 package br.com.mind5.payment.creditCard.model.checker;
 
-import java.util.List;
-
-import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
 import br.com.mind5.payment.creditCardSearch.info.CrecarchCopier;
 import br.com.mind5.payment.creditCardSearch.info.CrecarchInfo;
 import br.com.mind5.payment.creditCardSearch.model.checker.CrecarchCheckExist;
 
-public final class CrecardCheckCrecarch implements ModelCheckerV1<CrecardInfo> {
-	private final boolean FAILED = false;
-	private final boolean SUCCESS = true;
-	
-	private ModelCheckerV1<CrecarchInfo> checker;
-	
+public final class CrecardCheckCrecarch extends ModelCheckerTemplateForwardV2<CrecardInfo, CrecarchInfo> {
 	
 	public CrecardCheckCrecarch(ModelCheckerOption option) {
-		checker = new CrecarchCheckExist(option);
-	}
-	
-	
-	
-	@Override public boolean check(List<CrecardInfo> recordInfos) {
-		for (CrecardInfo eachInfo : recordInfos) {
-			if (check(eachInfo) == FAILED)
-				return FAILED;
-		}
-		
-		return SUCCESS;
+		super(option);
 	}
 
-	
-	
-	@Override public boolean check(CrecardInfo recordInfo) {
-		return checker.check(CrecarchCopier.copyFromCrecard(recordInfo));
-	}
 
 	
-	
-	@Override public boolean getResult() {
-		return checker.getResult();
+	@Override protected ModelCheckerV1<CrecarchInfo> getCheckerHook(ModelCheckerOption option) {
+		return new CrecarchCheckExist(option);
 	}
-
 	
 	
-	@Override public String getFailMessage() {
-		return checker.getFailMessage();
-	}
-
 	
-	
-	@Override public int getFailCode() {
-		return checker.getFailCode();
+	@Override protected CrecarchInfo toForwardClass(CrecardInfo baseRecord) {
+		return CrecarchCopier.copyFromCrecard(baseRecord);
 	}
 }

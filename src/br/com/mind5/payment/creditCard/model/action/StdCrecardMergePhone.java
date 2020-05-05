@@ -1,35 +1,19 @@
 package br.com.mind5.payment.creditCard.model.action;
 
-import br.com.mind5.model.action.ActionLazyV1;
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionStdHelperMerge;
-import br.com.mind5.model.decisionTree.DeciResult;
+import br.com.mind5.model.action.ActionStdTemplateV2;
+import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
 
-public final class StdCrecardMergePhone implements ActionStdV1<CrecardInfo> {
-	private ActionStdV1<CrecardInfo> actionHelper;	
-	
-	
-	public StdCrecardMergePhone(DeciTreeOption<CrecardInfo> option) {			
-		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiCrecardMergePhone(option.conn, option.schemaName));
+public final class StdCrecardMergePhone extends ActionStdTemplateV2<CrecardInfo> {
+
+	public StdCrecardMergePhone(DeciTreeOption<CrecardInfo> option) {
+		super(option);
 	}
 	
 	
 	
-	@Override public void addPostAction(ActionLazyV1<CrecardInfo> actionHandler) {
-		actionHelper.addPostAction(actionHandler);
-	}
-	
-	
-	
-	@Override public boolean executeAction() {			
-		return actionHelper.executeAction();
-	}
-	
-	
-	
-	@Override public DeciResult<CrecardInfo> getDecisionResult() {
-		return actionHelper.getDecisionResult();
+	protected ActionVisitorV2<CrecardInfo> buildVisitorHook(DeciTreeOption<CrecardInfo> option) {
+		return new VisiCrecardMergePhone(option);
 	}
 }

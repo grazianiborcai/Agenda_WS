@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
 
-public final class CrecardWhere implements DaoStmtWhere {
+public final class DaoCrecardWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public CrecardWhere(DaoWhereBuilderOption whereOption, String tableName, CrecardInfo recordInfo) {
+	public DaoCrecardWhere(DaoWhereBuilderOption whereOption, String tableName, CrecardInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -27,15 +27,15 @@ public final class CrecardWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-				case CrecardDbTableColumn.COL_COD_OWNER :
+				case DaoCrecardDbTableColumn.COL_COD_OWNER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;
 					
-				case CrecardDbTableColumn.COL_COD_CREDIT_CARD :
+				case DaoCrecardDbTableColumn.COL_COD_CREDIT_CARD :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codCreditCard));
 					break;
 					
-				case CrecardDbTableColumn.COL_RECORD_MODE :
+				case DaoCrecardDbTableColumn.COL_RECORD_MODE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.recordMode);
 					break;
 			}

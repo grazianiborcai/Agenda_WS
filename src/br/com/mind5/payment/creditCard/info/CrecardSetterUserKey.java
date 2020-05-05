@@ -1,14 +1,10 @@
 package br.com.mind5.payment.creditCard.info;
 
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoSetter;
+import br.com.mind5.info.InfoSetterTemplate;
 
-public final class CrecardSetterUserKey implements InfoSetter<CrecardInfo> {
+public final class CrecardSetterUserKey extends InfoSetterTemplate<CrecardInfo> {
 	
-	public CrecardInfo setAttr(CrecardInfo recordInfo) {
-		checkArgument(recordInfo);
-		
+	@Override protected CrecardInfo setAttrHook(CrecardInfo recordInfo) {
 		CrecardInfo result = new CrecardInfo();
 		
 		result.codOwner = recordInfo.codOwner;
@@ -18,20 +14,4 @@ public final class CrecardSetterUserKey implements InfoSetter<CrecardInfo> {
 
 		return result;
 	}
-	
-	
-	
-	private void checkArgument(CrecardInfo recordInfo) {
-		if (recordInfo == null) {
-			logException(new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT));
-			throw new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT);
-		}
-	}
-	
-	
-	
-	private void logException(Exception e) {
-		
-		SystemLog.logError(this.getClass(), e);
-	}	
 }

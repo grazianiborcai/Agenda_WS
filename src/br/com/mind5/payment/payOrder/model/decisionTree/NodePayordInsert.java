@@ -15,7 +15,7 @@ import br.com.mind5.payment.payOrder.model.action.LazyPayordDaoInsert;
 import br.com.mind5.payment.payOrder.model.action.LazyPayordEnforceFee;
 import br.com.mind5.payment.payOrder.model.action.LazyPayordEnforceItem;
 import br.com.mind5.payment.payOrder.model.action.LazyPayordInsertPayordem;
-import br.com.mind5.payment.payOrder.model.action.StdPayordMergeCrecard;
+import br.com.mind5.payment.payOrder.model.action.StdPayordMergeCrecardAuth;
 
 public final class NodePayordInsert extends DeciTreeTemplateWriteV2<PayordInfo> {
 	
@@ -40,7 +40,7 @@ public final class NodePayordInsert extends DeciTreeTemplateWriteV2<PayordInfo> 
 	@Override protected List<ActionStdV1<PayordInfo>> buildActionsOnPassedHook(DeciTreeOption<PayordInfo> option) {
 		List<ActionStdV1<PayordInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV1<PayordInfo> mergeCrecard = new StdPayordMergeCrecard(option);
+		ActionStdV1<PayordInfo> mergeCrecard = new StdPayordMergeCrecardAuth(option);
 		ActionLazyV1<PayordInfo> insertPayord = new LazyPayordDaoInsert(option.conn, option.schemaName);	
 		ActionLazyV1<PayordInfo> enforceFee = new LazyPayordEnforceFee(option.conn, option.schemaName);
 		ActionLazyV1<PayordInfo> enforceItem = new LazyPayordEnforceItem(option.conn, option.schemaName);		

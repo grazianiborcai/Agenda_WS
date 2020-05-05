@@ -1,20 +1,20 @@
 package br.com.mind5.payment.creditCard.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.address.info.AddressCopier;
 import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.address.model.decisionTree.RootAddressSearch;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
 import br.com.mind5.payment.creditCard.info.CrecardMerger;
 
-final class VisiCrecardMergeAddress extends ActionVisitorTemplateMergeV1<CrecardInfo, AddressInfo> {
+final class VisiCrecardMergeAddress extends ActionVisitorTemplateMergeV2<CrecardInfo, AddressInfo> {
 	
-	public VisiCrecardMergeAddress(Connection conn, String schemaName) {
-		super(conn, schemaName, AddressInfo.class);
+	public VisiCrecardMergeAddress(DeciTreeOption<CrecardInfo> option) {
+		super(option, AddressInfo.class); 
 	}
 	
 	
@@ -38,6 +38,6 @@ final class VisiCrecardMergeAddress extends ActionVisitorTemplateMergeV1<Crecard
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV2.MERGE_WHEN_EMPTY;
 	}
 }

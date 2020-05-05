@@ -134,7 +134,10 @@ public final class PaymentResource {
 		
 		Model model = new CrecardModelInsert(incomingData, request);
 		model.executeRequest();
-		return model.getResponse();	
+		Response result = model.getResponse();
+		model.close();
+		
+		return result;
 	}
 	
 	
@@ -155,7 +158,10 @@ public final class PaymentResource {
 		
 		Model model = new CrecardModelDelete(recordInfo);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();
+		model.close();
+		
+		return result;
 	}
 	
 	
@@ -177,7 +183,10 @@ public final class PaymentResource {
 		
 		Model model = new CrecardModelSelect(recordInfo);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();
+		model.close();
+		
+		return result;
 	}	
 	
 	
@@ -189,6 +198,9 @@ public final class PaymentResource {
 		
 		Model model = new CrecardModelSearch(incomingData, request);
 		model.executeRequest();
-		return model.getResponse();	
+		Response result = model.getResponse();
+		model.close();
+		
+		return result;
 	}
 }

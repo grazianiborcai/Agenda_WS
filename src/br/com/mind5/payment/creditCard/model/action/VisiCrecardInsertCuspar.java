@@ -1,10 +1,9 @@
 package br.com.mind5.payment.creditCard.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateActionV1;
+import br.com.mind5.model.action.ActionVisitorTemplateActionV2;
+import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
 import br.com.mind5.payment.creditCard.info.CrecardMerger;
@@ -12,15 +11,16 @@ import br.com.mind5.payment.customerPartner.info.CusparCopier;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
 import br.com.mind5.payment.customerPartner.model.decisionTree.RootCusparInsertAuth;
 
-final class VisiCrecardInsertCuspar extends ActionVisitorTemplateActionV1<CrecardInfo, CusparInfo> {
-	public VisiCrecardInsertCuspar(Connection conn, String schemaName) {
-		super(conn, schemaName, CrecardInfo.class, CusparInfo.class);
+final class VisiCrecardInsertCuspar extends ActionVisitorTemplateActionV2<CrecardInfo, CusparInfo> {
+	
+	public VisiCrecardInsertCuspar(DeciTreeOption<CrecardInfo> option) {
+		super(option, CrecardInfo.class, CusparInfo.class);
 	}
 	
 	
 	
-	@Override protected ActionStdV1<CusparInfo> getActionHook(DeciTreeOption<CusparInfo> option) {
-		return new RootCusparInsertAuth(option).toAction();
+	@Override protected Class<? extends DeciTree<CusparInfo>> getTreeClassHook() {
+		return RootCusparInsertAuth.class;
 	}
 	
 	

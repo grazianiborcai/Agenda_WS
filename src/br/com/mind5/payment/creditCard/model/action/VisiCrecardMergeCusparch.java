@@ -1,20 +1,20 @@
 package br.com.mind5.payment.creditCard.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
 import br.com.mind5.payment.creditCard.info.CrecardMerger;
 import br.com.mind5.payment.customerPartnerSearch.info.CusparchCopier;
 import br.com.mind5.payment.customerPartnerSearch.info.CusparchInfo;
 import br.com.mind5.payment.customerPartnerSearch.model.decisionTree.RootCusparchSelect;
 
-final class VisiCrecardMergeCusparch extends ActionVisitorTemplateMergeV1<CrecardInfo, CusparchInfo> {
+final class VisiCrecardMergeCusparch extends ActionVisitorTemplateMergeV2<CrecardInfo, CusparchInfo> {
 	
-	public VisiCrecardMergeCusparch(Connection conn, String schemaName) {
-		super(conn, schemaName, CusparchInfo.class);
+	public VisiCrecardMergeCusparch(DeciTreeOption<CrecardInfo> option) {
+		super(option, CusparchInfo.class); 
 	}
 	
 	
@@ -38,6 +38,6 @@ final class VisiCrecardMergeCusparch extends ActionVisitorTemplateMergeV1<Crecar
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV2.DONT_MERGE_WHEN_EMPTY;
 	}
 }

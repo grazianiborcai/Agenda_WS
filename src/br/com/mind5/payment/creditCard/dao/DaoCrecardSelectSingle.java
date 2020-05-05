@@ -16,11 +16,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
 
-public final class CrecardSelectSingle extends DaoStmtTemplate<CrecardInfo> {
+public final class DaoCrecardSelectSingle extends DaoStmtTemplate<CrecardInfo> {
 	private final String MAIN_TABLE = DaoDbTable.CREDIT_CARD_TABLE;	
 	
 	
-	public CrecardSelectSingle(Connection conn, CrecardInfo recordInfo, String schemaName) {
+	public DaoCrecardSelectSingle(Connection conn, CrecardInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -44,7 +44,7 @@ public final class CrecardSelectSingle extends DaoStmtTemplate<CrecardInfo> {
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new CrecardWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new DaoCrecardWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -61,21 +61,21 @@ public final class CrecardSelectSingle extends DaoStmtTemplate<CrecardInfo> {
 				do {
 					CrecardInfo dataInfo = new CrecardInfo();
 					
-					dataInfo.codOwner = stmtResult.getLong(CrecardDbTableColumn.COL_COD_OWNER);
-					dataInfo.codCreditCard = stmtResult.getLong(CrecardDbTableColumn.COL_COD_CREDIT_CARD);
-					dataInfo.codPayCustomer = stmtResult.getLong(CrecardDbTableColumn.COL_COD_PAY_CUSTOMER);
-					dataInfo.creditCardId = stmtResult.getString(CrecardDbTableColumn.COL_CREDIT_CARD_ID);	
-					dataInfo.creditCardBrand = stmtResult.getString(CrecardDbTableColumn.COL_CREDIT_CARD_BRAND);	
-					dataInfo.creditCardLast4 = stmtResult.getString(CrecardDbTableColumn.COL_CREDIT_CARD_LAST4);
-					dataInfo.recordMode = stmtResult.getString(CrecardDbTableColumn.COL_RECORD_MODE);
-					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, CrecardDbTableColumn.COL_LAST_CHANGED);
-					dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, CrecardDbTableColumn.COL_LAST_CHANGED_BY);
-					dataInfo.codAddressHolder = DaoFormatter.sqlToLong(stmtResult, CrecardDbTableColumn.COL_COD_ADDRESS);
-					dataInfo.codAddressSnapshotHolder = DaoFormatter.sqlToLong(stmtResult, CrecardDbTableColumn.COL_COD_ADDRESS_SNAPSHOT);
-					dataInfo.codPhoneHolder = DaoFormatter.sqlToLong(stmtResult, CrecardDbTableColumn.COL_COD_PHONE);
-					dataInfo.codPhoneSnapshotHolder = DaoFormatter.sqlToLong(stmtResult, CrecardDbTableColumn.COL_COD_PHONE_SNAPSHOT);	
-					dataInfo.expirationMonth = stmtResult.getString(CrecardDbTableColumn.COL_EXPIRATION_MONTH);
-					dataInfo.expirationYear = stmtResult.getString(CrecardDbTableColumn.COL_EXPIRATION_YEAR);
+					dataInfo.codOwner = stmtResult.getLong(DaoCrecardDbTableColumn.COL_COD_OWNER);
+					dataInfo.codCreditCard = stmtResult.getLong(DaoCrecardDbTableColumn.COL_COD_CREDIT_CARD);
+					dataInfo.codPayCustomer = stmtResult.getLong(DaoCrecardDbTableColumn.COL_COD_PAY_CUSTOMER);
+					dataInfo.creditCardId = stmtResult.getString(DaoCrecardDbTableColumn.COL_CREDIT_CARD_ID);	
+					dataInfo.creditCardBrand = stmtResult.getString(DaoCrecardDbTableColumn.COL_CREDIT_CARD_BRAND);	
+					dataInfo.creditCardLast4 = stmtResult.getString(DaoCrecardDbTableColumn.COL_CREDIT_CARD_LAST4);
+					dataInfo.recordMode = stmtResult.getString(DaoCrecardDbTableColumn.COL_RECORD_MODE);
+					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, DaoCrecardDbTableColumn.COL_LAST_CHANGED);
+					dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, DaoCrecardDbTableColumn.COL_LAST_CHANGED_BY);
+					dataInfo.codAddressHolder = DaoFormatter.sqlToLong(stmtResult, DaoCrecardDbTableColumn.COL_COD_ADDRESS);
+					dataInfo.codAddressSnapshotHolder = DaoFormatter.sqlToLong(stmtResult, DaoCrecardDbTableColumn.COL_COD_ADDRESS_SNAPSHOT);
+					dataInfo.codPhoneHolder = DaoFormatter.sqlToLong(stmtResult, DaoCrecardDbTableColumn.COL_COD_PHONE);
+					dataInfo.codPhoneSnapshotHolder = DaoFormatter.sqlToLong(stmtResult, DaoCrecardDbTableColumn.COL_COD_PHONE_SNAPSHOT);	
+					dataInfo.expirationMonth = stmtResult.getString(DaoCrecardDbTableColumn.COL_EXPIRATION_MONTH);
+					dataInfo.expirationYear = stmtResult.getString(DaoCrecardDbTableColumn.COL_EXPIRATION_YEAR);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

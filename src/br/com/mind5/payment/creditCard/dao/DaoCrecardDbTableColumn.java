@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class CrecardDbTableColumn extends DaoDbTableColumnTemplate {
+public final class DaoCrecardDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_ADDRESS = DaoDbField.COL_COD_ADDRESS;
 	public static final String COL_COD_ADDRESS_SNAPSHOT = DaoDbField.COL_COD_ADDRESS_SNAPSHOT;
 	public static final String COL_COD_CREDIT_CARD = DaoDbField.COL_COD_CREDIT_CARD;
@@ -27,26 +27,13 @@ public final class CrecardDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_RECORD_MODE = DaoDbField.COL_RECORD_MODE;
 	
 	
-	
-	private Hashtable<String, List<DaoColumn>> tableColumns;	
-	
-	public CrecardDbTableColumn() {
-		super(CrecardDbTableColumn.class);
+	public DaoCrecardDbTableColumn() {
+		super();
 	}
 	
 	
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
-		tableColumns = new Hashtable<>();
-		
-		buildCreditCardTable();	
-		
-		return tableColumns;
-	}
-	
-	
-	
-	private void buildCreditCardTable() {
 		final String TABLE_NAME = DaoDbTable.CREDIT_CARD_TABLE;
 		
 		DaoColumn oneColumn;
@@ -172,6 +159,8 @@ public final class CrecardDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 
-		tableColumns.put(TABLE_NAME, columns);
+		Hashtable<String, List<DaoColumn>> results = new Hashtable<>();
+		results.put(TABLE_NAME, columns);
+		return results;
 	}
 }

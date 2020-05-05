@@ -146,7 +146,7 @@ import br.com.mind5.message.emailBody.dao.EmabodyDbTableColumn;
 import br.com.mind5.message.sysMessage.dao.DaoSymsgDbTableColumn;
 import br.com.mind5.payment.countryPartner.dao.CounparDbTableColumn;
 import br.com.mind5.payment.countryPartnerSearch.dao.CounparchDbTableColumn;
-import br.com.mind5.payment.creditCard.dao.CrecardDbTableColumn;
+import br.com.mind5.payment.creditCard.dao.DaoCrecardDbTableColumn;
 import br.com.mind5.payment.creditCardSearch.dao.CrecarchDbTableColumn;
 import br.com.mind5.payment.customerPartner.dao.CusparDbTableColumn;
 import br.com.mind5.payment.customerPartnerSearch.dao.CusparchDbTableColumn;
@@ -238,7 +238,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new DaoSetuparDbTableColumn());
 		addTable(new DaoPayordDbTableColumn());
 		addTable(new CusparDbTableColumn());
-		addTable(new CrecardDbTableColumn());
+		addTable(new DaoCrecardDbTableColumn());
 		addTable(new SysparchDbTableColumn());
 		addTable(new SysparDbTableColumn());
 		addTable(new PayordemDbTableColumn());

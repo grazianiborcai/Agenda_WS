@@ -3,15 +3,15 @@ package br.com.mind5.payment.creditCard.model.action;
 import java.sql.Connection;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazyTemplateV1;
+import br.com.mind5.model.action.ActionLazyTemplateV2;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
 
-public final class LazyCrecardInsert extends ActionLazyTemplateV1<CrecardInfo, CrecardInfo> {
+public final class LazyCrecardDaoInsert extends ActionLazyTemplateV2<CrecardInfo, CrecardInfo> {
 
-	public LazyCrecardInsert(Connection conn, String schemaName) {
+	public LazyCrecardDaoInsert(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyCrecardInsert extends ActionLazyTemplateV1<CrecardInfo, C
 	
 	
 	@Override protected ActionStdV1<CrecardInfo> getInstanceOfActionHook(DeciTreeOption<CrecardInfo> option) {
-		return new StdCrecardInsert(option);
+		return new StdCrecardDaoInsert(option);
 	}
 	
 	

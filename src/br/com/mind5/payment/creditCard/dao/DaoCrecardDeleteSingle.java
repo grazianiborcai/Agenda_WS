@@ -15,11 +15,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
 
-public final class CrecardDeleteSingle extends DaoStmtTemplate<CrecardInfo> {
+public final class DaoCrecardDeleteSingle extends DaoStmtTemplate<CrecardInfo> {
 	private final String MAIN_TABLE = DaoDbTable.CREDIT_CARD_TABLE;	
 	
 	
-	public CrecardDeleteSingle(Connection conn, CrecardInfo recordInfo, String schemaName) {
+	public DaoCrecardDeleteSingle(Connection conn, CrecardInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -44,7 +44,7 @@ public final class CrecardDeleteSingle extends DaoStmtTemplate<CrecardInfo> {
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;	
 		whereOption.ignoreNonPrimaryKey = DaoOptionValue.IGNORE_NON_PK;		
 		
-		DaoStmtWhere whereClause = new CrecardWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new DaoCrecardWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	

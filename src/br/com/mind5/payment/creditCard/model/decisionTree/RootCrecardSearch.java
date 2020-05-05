@@ -9,7 +9,7 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
 import br.com.mind5.payment.creditCard.model.action.LazyCrecardEnforceUserKey;
 import br.com.mind5.payment.creditCard.model.action.LazyCrecardMergeCrecarch;
@@ -17,7 +17,7 @@ import br.com.mind5.payment.creditCard.model.action.LazyCrecardRootSelect;
 import br.com.mind5.payment.creditCard.model.checker.CrecardCheckSearch;
 import br.com.mind5.payment.creditCard.model.checker.CrecardCheckUsername;
 
-public final class RootCrecardSearch extends DeciTreeTemplateReadV1<CrecardInfo> {
+public final class RootCrecardSearch extends DeciTreeTemplateReadV2<CrecardInfo> {
 	
 	public RootCrecardSearch(DeciTreeOption<CrecardInfo> option) {
 		super(option);

@@ -15,11 +15,11 @@ import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
 
-public final class CrecardInsertSingle extends DaoStmtTemplate<CrecardInfo> {
+public final class DaoCrecardInsertSingle extends DaoStmtTemplate<CrecardInfo> {
 	private final String MAIN_TABLE = DaoDbTable.CREDIT_CARD_TABLE;
 	
 	
-	public CrecardInsertSingle(Connection conn, CrecardInfo recordInfo, String schemaName) {
+	public DaoCrecardInsertSingle(Connection conn, CrecardInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	

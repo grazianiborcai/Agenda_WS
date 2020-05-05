@@ -5,21 +5,20 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
-import br.com.mind5.payment.creditCard.model.action.LazyCrecardNodeCusparRefL1;
+import br.com.mind5.payment.creditCard.model.action.LazyCrecardNodeAuth;
 import br.com.mind5.payment.creditCard.model.action.LazyCrecardNodeDelete;
-import br.com.mind5.payment.creditCard.model.action.LazyCrecardNodeUser;
 import br.com.mind5.payment.creditCard.model.action.StdCrecardMergeToDelete;
 import br.com.mind5.payment.creditCard.model.checker.CrecardCheckDelete;
 import br.com.mind5.payment.creditCard.model.checker.CrecardCheckExist;
 import br.com.mind5.payment.creditCard.model.checker.CrecardCheckUsername;
 
-public final class RootCrecardDelete extends DeciTreeTemplateWriteV1<CrecardInfo> {
+public final class RootCrecardDelete extends DeciTreeTemplateWriteV2<CrecardInfo> {
 	
 	public RootCrecardDelete(DeciTreeOption<CrecardInfo> option) {
 		super(option);
@@ -62,13 +61,11 @@ public final class RootCrecardDelete extends DeciTreeTemplateWriteV1<CrecardInfo
 		List<ActionStdV1<CrecardInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<CrecardInfo> mergeToDelete = new StdCrecardMergeToDelete(option);
-		ActionLazyV1<CrecardInfo> user = new LazyCrecardNodeUser(option.conn, option.schemaName);
-		ActionLazyV1<CrecardInfo> cusparRef = new LazyCrecardNodeCusparRefL1(option.conn, option.schemaName);
-		ActionLazyV1<CrecardInfo> delete = new LazyCrecardNodeDelete(option.conn, option.schemaName);
+		ActionLazyV1<CrecardInfo> nodeAuth = new LazyCrecardNodeAuth(option.conn, option.schemaName);
+		ActionLazyV1<CrecardInfo> nodeDelete = new LazyCrecardNodeDelete(option.conn, option.schemaName);
 		
-		mergeToDelete.addPostAction(user);
-		user.addPostAction(cusparRef);		
-		cusparRef.addPostAction(delete);
+		mergeToDelete.addPostAction(nodeAuth);
+		nodeAuth.addPostAction(nodeDelete);
 		
 		actions.add(mergeToDelete);
 		return actions;

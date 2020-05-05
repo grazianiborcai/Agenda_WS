@@ -1,18 +1,18 @@
 package br.com.mind5.payment.creditCard.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
 import br.com.mind5.payment.creditCard.info.CrecardMerger;
 import br.com.mind5.payment.creditCard.model.decisionTree.RootCrecardSelectAuth;
 
-final class VisiCrecardMergeToDelete extends ActionVisitorTemplateMergeV1<CrecardInfo, CrecardInfo> {
+final class VisiCrecardMergeToDelete extends ActionVisitorTemplateMergeV2<CrecardInfo, CrecardInfo> {
 	
-	public VisiCrecardMergeToDelete(Connection conn, String schemaName) {
-		super(conn, schemaName, CrecardInfo.class);
+	public VisiCrecardMergeToDelete(DeciTreeOption<CrecardInfo> option) {
+		super(option, CrecardInfo.class); 
 	}
 	
 	
@@ -30,6 +30,6 @@ final class VisiCrecardMergeToDelete extends ActionVisitorTemplateMergeV1<Crecar
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV2.DONT_MERGE_WHEN_EMPTY;
 	}
 }
