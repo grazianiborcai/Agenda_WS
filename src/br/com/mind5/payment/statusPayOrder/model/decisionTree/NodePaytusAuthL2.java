@@ -13,9 +13,9 @@ import br.com.mind5.payment.statusPayOrder.info.PaytusInfo;
 import br.com.mind5.payment.statusPayOrder.model.action.StdPaytusSuccess;
 import br.com.mind5.payment.statusPayOrder.model.checker.PaytusCheckPayordarch;
 
-public final class NodePaytusUserL2 extends DeciTreeTemplateWriteV2<PaytusInfo> {
+public final class NodePaytusAuthL2 extends DeciTreeTemplateWriteV2<PaytusInfo> {
 	
-	public NodePaytusUserL2(DeciTreeOption<PaytusInfo> option) {
+	public NodePaytusAuthL2(DeciTreeOption<PaytusInfo> option) {
 		super(option);
 	}
 	

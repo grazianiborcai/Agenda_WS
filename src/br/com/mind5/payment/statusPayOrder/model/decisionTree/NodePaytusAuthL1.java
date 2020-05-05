@@ -11,12 +11,12 @@ import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 import br.com.mind5.payment.statusPayOrder.info.PaytusInfo;
-import br.com.mind5.payment.statusPayOrder.model.action.LazyPaytusNodeUserL2;
+import br.com.mind5.payment.statusPayOrder.model.action.LazyPaytusNodeAuthL2;
 import br.com.mind5.payment.statusPayOrder.model.action.StdPaytusMergeUsername;
 
-public final class NodePaytusUserL1 extends DeciTreeTemplateWriteV2<PaytusInfo> {
+public final class NodePaytusAuthL1 extends DeciTreeTemplateWriteV2<PaytusInfo> {
 	
-	public NodePaytusUserL1(DeciTreeOption<PaytusInfo> option) {
+	public NodePaytusAuthL1(DeciTreeOption<PaytusInfo> option) {
 		super(option);
 	}
 	
@@ -38,7 +38,7 @@ public final class NodePaytusUserL1 extends DeciTreeTemplateWriteV2<PaytusInfo> 
 		List<ActionStdV1<PaytusInfo>> actions = new ArrayList<>();		
 
 		ActionStdV1<PaytusInfo> mergeUsername = new StdPaytusMergeUsername(option);
-		ActionLazyV1<PaytusInfo> nodeL2 = new LazyPaytusNodeUserL2(option.conn, option.schemaName);
+		ActionLazyV1<PaytusInfo> nodeL2 = new LazyPaytusNodeAuthL2(option.conn, option.schemaName);
 		
 		mergeUsername.addPostAction(nodeL2);
 		

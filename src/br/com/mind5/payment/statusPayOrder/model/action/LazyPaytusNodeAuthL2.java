@@ -8,11 +8,11 @@ import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.statusPayOrder.info.PaytusInfo;
-import br.com.mind5.payment.statusPayOrder.model.decisionTree.NodePaytusUserL2;
+import br.com.mind5.payment.statusPayOrder.model.decisionTree.NodePaytusAuthL2;
 
-public final class LazyPaytusNodeUserL2 extends ActionLazyTemplateV2<PaytusInfo, PaytusInfo> {
+public final class LazyPaytusNodeAuthL2 extends ActionLazyTemplateV2<PaytusInfo, PaytusInfo> {
 	
-	public LazyPaytusNodeUserL2(Connection conn, String schemaName) {
+	public LazyPaytusNodeAuthL2(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -25,7 +25,7 @@ public final class LazyPaytusNodeUserL2 extends ActionLazyTemplateV2<PaytusInfo,
 	
 	
 	@Override protected ActionStdV1<PaytusInfo> getInstanceOfActionHook(DeciTreeOption<PaytusInfo> option) {
-		return new NodePaytusUserL2(option).toAction();
+		return new NodePaytusAuthL2(option).toAction();
 	}
 	
 	

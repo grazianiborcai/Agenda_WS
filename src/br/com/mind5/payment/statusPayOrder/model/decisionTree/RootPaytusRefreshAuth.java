@@ -58,12 +58,12 @@ public final class RootPaytusRefreshAuth extends DeciTreeTemplateWriteV2<PaytusI
 	@Override protected List<ActionStdV1<PaytusInfo>> buildActionsOnPassedHook(DeciTreeOption<PaytusInfo> option) {
 		List<ActionStdV1<PaytusInfo>> actions = new ArrayList<>();		
 
-		ActionStdV1<PaytusInfo> nodeUserL1 = new NodePaytusUserL1(option).toAction();
+		ActionStdV1<PaytusInfo> nodeAuth = new NodePaytusAuthL1(option).toAction();
 		ActionLazyV1<PaytusInfo> nodeRefresh = new LazyPaytusRootRefresh(option.conn, option.schemaName);	
 		
-		nodeUserL1.addPostAction(nodeRefresh);
+		nodeAuth.addPostAction(nodeRefresh);
 		
-		actions.add(nodeUserL1);
+		actions.add(nodeAuth);
 		return actions;
 	}
 }
