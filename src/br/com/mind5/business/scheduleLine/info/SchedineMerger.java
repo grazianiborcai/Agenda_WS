@@ -10,189 +10,176 @@ import br.com.mind5.business.order.info.OrderInfo;
 import br.com.mind5.business.orderList.info.OrdistInfo;
 import br.com.mind5.business.scheduleLineSnapshot.info.SchedinapInfo;
 import br.com.mind5.business.storeList.info.StolisInfo;
-import br.com.mind5.info.obsolete.InfoMergerOneToMany_;
-import br.com.mind5.info.obsolete.InfoMerger_;
+import br.com.mind5.info.InfoMergerBuilderV3;
+import br.com.mind5.info.InfoMergerV3;
 import br.com.mind5.masterData.weekday.info.WeekdayInfo;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class SchedineMerger {
-	public static SchedineInfo mergeWithWeekday(WeekdayInfo sourceOne, SchedineInfo sourceTwo) {
-		InfoMerger_<SchedineInfo, WeekdayInfo> merger = new SchedineMergerWeekday();		
-		return merger.merge(sourceOne, sourceTwo);
+	public static List<SchedineInfo> mergeWithWeekday(List<SchedineInfo> baseInfos, List<WeekdayInfo> selectedInfos) {
+		InfoMergerBuilderV3<SchedineInfo, WeekdayInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new SchedineVisiMergeWeekday());
+		InfoMergerV3<SchedineInfo, WeekdayInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static List<SchedineInfo> mergeWithWeekday(List<WeekdayInfo> sourceOnes, List<SchedineInfo> sourceTwos) {
-		InfoMerger_<SchedineInfo, WeekdayInfo> merger = new SchedineMergerWeekday();		
-		return merger.merge(sourceOnes, sourceTwos);
+	public static List<SchedineInfo> mergeWithEmplis(List<SchedineInfo> baseInfos, List<EmplisInfo> selectedInfos) {
+		InfoMergerBuilderV3<SchedineInfo, EmplisInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new SchedineVisiMergeEmplis());
+		InfoMergerV3<SchedineInfo, EmplisInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static SchedineInfo mergeWithEmplis(EmplisInfo sourceOne, SchedineInfo sourceTwo) {
-		InfoMerger_<SchedineInfo, EmplisInfo> merger = new SchedineMergerEmplis();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
+	public static List<SchedineInfo> mergeWithScheduleStatus(List<SchedineInfo> baseInfos, List<ScheduleStatusInfo> selectedInfos) {
+		InfoMergerBuilderV3<SchedineInfo, ScheduleStatusInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new SchedineVisiMergeScheduleStatus());
+		InfoMergerV3<SchedineInfo, ScheduleStatusInfo> merger = builder.build();		
 	
-	
-	
-	public static List<SchedineInfo> mergeWithEmplis(List<EmplisInfo> sourceOnes, List<SchedineInfo> sourceTwos) {
-		InfoMerger_<SchedineInfo, EmplisInfo> merger = new SchedineMergerEmplis();		
-		return merger.merge(sourceOnes, sourceTwos);
-	}
-	
-	
-	
-	public static SchedineInfo mergeWithScheduleStatus(ScheduleStatusInfo sourceOne, SchedineInfo sourceTwo) {
-		InfoMerger_<SchedineInfo, ScheduleStatusInfo> merger = new SchedineMergerScheduleStatus();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
-	
-	
-	
-	public static List<SchedineInfo> mergeWithScheduleStatus(List<ScheduleStatusInfo> sourceOnes, List<SchedineInfo> sourceTwos) {
-		InfoMerger_<SchedineInfo, ScheduleStatusInfo> merger = new SchedineMergerScheduleStatus();		
-		return merger.merge(sourceOnes, sourceTwos);
+		return merger.merge();
 	}	
 	
 	
 	
-	public static SchedineInfo mergeWithStolis(StolisInfo sourceOne, SchedineInfo sourceTwo) {
-		InfoMerger_<SchedineInfo, StolisInfo> merger = new SchedineMergerStolis();		
-		return merger.merge(sourceOne, sourceTwo);
+	public static List<SchedineInfo> mergeWithStolis(List<SchedineInfo> baseInfos, List<StolisInfo> selectedInfos) {
+		InfoMergerBuilderV3<SchedineInfo, StolisInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new SchedineVisiMergeStolis());
+		InfoMergerV3<SchedineInfo, StolisInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static List<SchedineInfo> mergeWithStolis(List<StolisInfo> sourceOnes, List<SchedineInfo> sourceTwos) {
-		InfoMerger_<SchedineInfo, StolisInfo> merger = new SchedineMergerStolis();		
-		return merger.merge(sourceOnes, sourceTwos);
+	public static List<SchedineInfo> mergeWithOrdist(List<SchedineInfo> baseInfos, List<OrdistInfo> selectedInfos) {
+		InfoMergerBuilderV3<SchedineInfo, OrdistInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new SchedineVisiMergeOrdist());
+		InfoMergerV3<SchedineInfo, OrdistInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static SchedineInfo mergeWithOrdist(OrdistInfo sourceOne, SchedineInfo sourceTwo) {
-		InfoMerger_<SchedineInfo, OrdistInfo> merger = new SchedineMergerOrdist();		
-		return merger.merge(sourceOne, sourceTwo);
+	public static List<SchedineInfo> mergeWithOrder(List<SchedineInfo> baseInfos, List<OrderInfo> selectedInfos) {
+		InfoMergerBuilderV3<SchedineInfo, OrderInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new SchedineVisiMergeOrder());
+		InfoMergerV3<SchedineInfo, OrderInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static List<SchedineInfo> mergeWithOrdist(List<OrdistInfo> sourceOnes, List<SchedineInfo> sourceTwos) {
-		InfoMerger_<SchedineInfo, OrdistInfo> merger = new SchedineMergerOrdist();		
-		return merger.merge(sourceOnes, sourceTwos);
+	public static List<SchedineInfo> mergeWithCuslis(List<SchedineInfo> baseInfos, List<CuslisInfo> selectedInfos) {
+		InfoMergerBuilderV3<SchedineInfo, CuslisInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new SchedineVisiMergeCuslis());
+		InfoMergerV3<SchedineInfo, CuslisInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static List<SchedineInfo> mergeWithOrder(OrderInfo sourceOne, SchedineInfo sourceTwo) {
-		InfoMergerOneToMany_<SchedineInfo, OrderInfo> merger = new SchedineMergerOrder();		
-		return merger.merge(sourceOne, sourceTwo);
+	public static List<SchedineInfo> mergeWithSchedinap(List<SchedineInfo> baseInfos, List<SchedinapInfo> selectedInfos) {
+		InfoMergerBuilderV3<SchedineInfo, SchedinapInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new SchedineVisiMergeSchedinap());
+		InfoMergerV3<SchedineInfo, SchedinapInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static List<SchedineInfo> mergeWithOrder(List<OrderInfo> sourceOnes, List<SchedineInfo> sourceTwos) {
-		InfoMergerOneToMany_<SchedineInfo, OrderInfo> merger = new SchedineMergerOrder();		
-		return merger.merge(sourceOnes, sourceTwos);
+	public static List<SchedineInfo> mergeWithUsername(List<SchedineInfo> baseInfos, List<UsernameInfo> selectedInfos) {
+		InfoMergerBuilderV3<SchedineInfo, UsernameInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new SchedineVisiMergeUsername());
+		InfoMergerV3<SchedineInfo, UsernameInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static SchedineInfo mergeWithCuslis(CuslisInfo sourceOne, SchedineInfo sourceTwo) {
-		InfoMerger_<SchedineInfo, CuslisInfo> merger = new SchedineMergerCuslis();		
-		return merger.merge(sourceOne, sourceTwo);
+	public static List<SchedineInfo> mergeWithMatlis(List<SchedineInfo> baseInfos, List<MatlisInfo> selectedInfos) {
+		InfoMergerBuilderV3<SchedineInfo, MatlisInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new SchedineVisiMergeMatlis());
+		InfoMergerV3<SchedineInfo, MatlisInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static List<SchedineInfo> mergeWithCuslis(List<CuslisInfo> sourceOnes, List<SchedineInfo> sourceTwos) {
-		InfoMerger_<SchedineInfo, CuslisInfo> merger = new SchedineMergerCuslis();		
-		return merger.merge(sourceOnes, sourceTwos);
+	public static List<SchedineInfo> mergeToSelect(List<SchedineInfo> baseInfos, List<SchedineInfo> selectedInfos) {
+		InfoMergerBuilderV3<SchedineInfo, SchedineInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new SchedineVisiMergeToSelect());
+		InfoMergerV3<SchedineInfo, SchedineInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static SchedineInfo mergeWithSchedinap(SchedinapInfo sourceOne, SchedineInfo sourceTwo) {
-		InfoMerger_<SchedineInfo, SchedinapInfo> merger = new SchedineMergerSchedinap();		
-		return merger.merge(sourceOne, sourceTwo);
+	public static List<SchedineInfo> mergeToUpdate(List<SchedineInfo> baseInfos, List<SchedineInfo> selectedInfos) {
+		InfoMergerBuilderV3<SchedineInfo, SchedineInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new SchedineVisiMergeToUpdate());
+		InfoMergerV3<SchedineInfo, SchedineInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static List<SchedineInfo> mergeWithSchedinap(List<SchedinapInfo> sourceOnes, List<SchedineInfo> sourceTwos) {
-		InfoMerger_<SchedineInfo, SchedinapInfo> merger = new SchedineMergerSchedinap();		
-		return merger.merge(sourceOnes, sourceTwos);
-	}
+	public static List<SchedineInfo> mergeToMove(List<SchedineInfo> baseInfos, List<SchedineInfo> selectedInfos) {
+		InfoMergerBuilderV3<SchedineInfo, SchedineInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new SchedineVisiMergeToMove());
+		InfoMergerV3<SchedineInfo, SchedineInfo> merger = builder.build();		
 	
-	
-	
-	public static SchedineInfo mergeWithUsername(UsernameInfo sourceOne, SchedineInfo sourceTwo) {
-		InfoMerger_<SchedineInfo, UsernameInfo> merger = new SchedineMergerUsername();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
-	
-	
-	
-	public static List<SchedineInfo> mergeWithUsername(List<UsernameInfo> sourceOnes, List<SchedineInfo> sourceTwos) {
-		InfoMerger_<SchedineInfo, UsernameInfo> merger = new SchedineMergerUsername();		
-		return merger.merge(sourceOnes, sourceTwos);
-	}	
-	
-	
-	
-	public static SchedineInfo mergeWithMatlis(MatlisInfo sourceOne, SchedineInfo sourceTwo) {
-		InfoMerger_<SchedineInfo, MatlisInfo> merger = new SchedineMergerMatlis();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
-	
-	
-	
-	public static List<SchedineInfo> mergeWithMatlis(List<MatlisInfo> sourceOnes, List<SchedineInfo> sourceTwos) {
-		InfoMerger_<SchedineInfo, MatlisInfo> merger = new SchedineMergerMatlis();		
-		return merger.merge(sourceOnes, sourceTwos);
-	}
-	
-	
-	
-	public static SchedineInfo mergeToSelect(SchedineInfo sourceOne, SchedineInfo sourceTwo) {
-		InfoMerger_<SchedineInfo, SchedineInfo> merger = new SchedineMergerToSelect();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
-	
-	
-	
-	public static List<SchedineInfo> mergeToSelect(List<SchedineInfo> sourceOnes, List<SchedineInfo> sourceTwos) {
-		InfoMerger_<SchedineInfo, SchedineInfo> merger = new SchedineMergerToSelect();		
-		return merger.merge(sourceOnes, sourceTwos);
-	}	
-	
-	
-	
-	public static SchedineInfo mergeToUpdate(SchedineInfo sourceOne, SchedineInfo sourceTwo) {
-		InfoMerger_<SchedineInfo, SchedineInfo> merger = new SchedineMergerToUpdate();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
-	
-	
-	
-	public static List<SchedineInfo> mergeToUpdate(List<SchedineInfo> sourceOnes, List<SchedineInfo> sourceTwos) {
-		InfoMerger_<SchedineInfo, SchedineInfo> merger = new SchedineMergerToUpdate();		
-		return merger.merge(sourceOnes, sourceTwos);
-	}	
-	
-	
-	
-	public static SchedineInfo mergeToMove(SchedineInfo sourceOne, SchedineInfo sourceTwo) {
-		InfoMerger_<SchedineInfo, SchedineInfo> merger = new SchedineMergerToMove();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
-	
-	
-	
-	public static List<SchedineInfo> mergeToMove(List<SchedineInfo> sourceOnes, List<SchedineInfo> sourceTwos) {
-		InfoMerger_<SchedineInfo, SchedineInfo> merger = new SchedineMergerToMove();		
-		return merger.merge(sourceOnes, sourceTwos);
+		return merger.merge();
 	}
 }

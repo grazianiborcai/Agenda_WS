@@ -1,7 +1,7 @@
 package br.com.mind5.business.scheduleLine.model.checker;
 
 import br.com.mind5.business.scheduleLine.info.SchedineInfo;
-import br.com.mind5.business.scheduleLine.model.action.StdSchedineSelect;
+import br.com.mind5.business.scheduleLine.model.action.StdSchedineDaoSelect;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -17,7 +17,7 @@ public final class SchedineCheckExist extends ModelCheckerTemplateActionV2<Sched
 
 	
 	@Override protected ActionStdV1<SchedineInfo> buildActionHook(DeciTreeOption<SchedineInfo> option) {
-		ActionStdV1<SchedineInfo> select = new StdSchedineSelect(option);
+		ActionStdV1<SchedineInfo> select = new StdSchedineDaoSelect(option);
 		return select;
 	}
 	

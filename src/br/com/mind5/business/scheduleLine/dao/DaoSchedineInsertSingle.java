@@ -15,11 +15,11 @@ import br.com.mind5.dao.DaoStmtParamTranslator;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public class SchedineInsertSingle extends DaoStmtTemplate<SchedineInfo> {
+public class DaoSchedineInsertSingle extends DaoStmtTemplate<SchedineInfo> {
 	private final String MAIN_TABLE = DaoDbTable.SCHEDULE_TABLE;
 	
 	
-	public SchedineInsertSingle(Connection conn, SchedineInfo recordInfo, String schemaName) {
+	public DaoSchedineInsertSingle(Connection conn, SchedineInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	

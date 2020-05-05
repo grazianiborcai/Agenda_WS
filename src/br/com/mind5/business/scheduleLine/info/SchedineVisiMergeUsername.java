@@ -1,60 +1,39 @@
 package br.com.mind5.business.scheduleLine.info;
 
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import java.util.ArrayList;
+import java.util.List;
+
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.security.username.info.UsernameInfo;
 
-final class SchedineVisiMergeUsername implements InfoMergerVisitor_<SchedineInfo, UsernameInfo> {
-
-	@Override public SchedineInfo writeRecord(UsernameInfo sourceOne, SchedineInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+final class SchedineVisiMergeUsername implements InfoMergerVisitorV3<SchedineInfo, UsernameInfo> {
+	
+	@Override public List<SchedineInfo> beforeMerge(List<SchedineInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(SchedineInfo baseInfo, UsernameInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner		&&
+				baseInfo.username.equals(selectedInfo.username)		);
+	}
+	
+	
+	
+	@Override public List<SchedineInfo> merge(SchedineInfo baseInfo, UsernameInfo selectedInfo) {
+		List<SchedineInfo> results = new ArrayList<>();
 		
-		SchedineInfo clonedInfo = makeClone(sourceTwo);
-		return merge(sourceOne, clonedInfo);
-	}
-	
-	
-	
-	private void checkArgument(UsernameInfo sourceOne, SchedineInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private SchedineInfo makeClone(SchedineInfo recordInfo) {
-		try {
-			return (SchedineInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	private SchedineInfo merge(UsernameInfo sourceOne, SchedineInfo sourceTwo) {
-		sourceTwo.lastChangedBy = sourceOne.codUser;
-		return sourceTwo;
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(UsernameInfo sourceOne, SchedineInfo sourceTwo) {
-		if (sourceOne.username == null ||
-			sourceTwo.username == null		)
-			return false;
+		baseInfo.lastChangedBy = selectedInfo.codUser;
 		
-		return (sourceOne.codOwner == sourceTwo.codOwner		&&
-				sourceOne.username.equals(sourceTwo.username)		);
+		results.add(baseInfo);
+		return results;
 	}
 	
 	
 	
-	private void logException(Exception e) {
-		
-		SystemLog.logError(this.getClass(), e);
+	@Override public InfoUniquifier<SchedineInfo> getUniquifier() {
+		return null;
 	}
 }

@@ -11,15 +11,15 @@ import br.com.mind5.business.scheduleLine.model.action.LazySchedineEnforceWeekMo
 import br.com.mind5.business.scheduleLine.model.action.LazySchedineEnforceWeekYear;
 import br.com.mind5.business.scheduleLine.model.action.LazySchedineEnforceYear;
 import br.com.mind5.business.scheduleLine.model.action.StdSchedineEnforceWeekday;
-import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckDummy;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class NodeSchedineTime extends DeciTreeTemplateWriteV1<SchedineInfo> {
+public final class NodeSchedineTime extends DeciTreeTemplateWriteV2<SchedineInfo> {
 	
 	public NodeSchedineTime(DeciTreeOption<SchedineInfo> option) {
 		super(option);
@@ -31,7 +31,7 @@ public final class NodeSchedineTime extends DeciTreeTemplateWriteV1<SchedineInfo
 		List<ModelCheckerV1<SchedineInfo>> queue = new ArrayList<>();		
 		ModelCheckerV1<SchedineInfo> checker;	
 
-		checker = new SchedineCheckDummy();
+		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueueV2<>(queue);

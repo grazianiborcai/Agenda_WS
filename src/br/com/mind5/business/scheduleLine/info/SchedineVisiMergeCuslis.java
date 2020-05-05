@@ -1,51 +1,39 @@
 package br.com.mind5.business.scheduleLine.info;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import br.com.mind5.business.customerList.info.CuslisInfo;
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-final class SchedineVisiMergeCuslis implements InfoMergerVisitor_<SchedineInfo, CuslisInfo> {
-
-	@Override public SchedineInfo writeRecord(CuslisInfo sourceOne, SchedineInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+final class SchedineVisiMergeCuslis implements InfoMergerVisitorV3<SchedineInfo, CuslisInfo> {
+	
+	@Override public List<SchedineInfo> beforeMerge(List<SchedineInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(SchedineInfo baseInfo, CuslisInfo selectedInfo) {
+		return (baseInfo.codOwner    == selectedInfo.codOwner	 && 
+				baseInfo.codCustomer == selectedInfo.codCustomer		);
+	}
+	
+	
+	
+	@Override public List<SchedineInfo> merge(SchedineInfo baseInfo, CuslisInfo selectedInfo) {
+		List<SchedineInfo> results = new ArrayList<>();
 		
-		SchedineInfo resultInfo = makeClone(sourceTwo);
-		resultInfo.codUser = sourceOne.codUser;
-
-		return resultInfo;
-	}
-	
-	
-	
-	private void checkArgument(CuslisInfo sourceOne, SchedineInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}	
-	
-	
-	
-	private SchedineInfo makeClone(SchedineInfo recordInfo) {
-		try {
-			return (SchedineInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-
-
-	
-	@Override public boolean shouldWrite(CuslisInfo sourceOne, SchedineInfo sourceTwo) {
-		return (sourceOne.codOwner    == sourceTwo.codOwner && 
-				sourceOne.codCustomer == sourceTwo.codCustomer		);
-	}
-	
-	
-	
-	private void logException(Exception e) {
+		baseInfo.codUser = selectedInfo.codUser;
 		
-		SystemLog.logError(this.getClass(), e);
+		results.add(baseInfo);
+		return results;
+	}
+	
+	
+	
+	@Override public InfoUniquifier<SchedineInfo> getUniquifier() {
+		return null;
 	}
 }

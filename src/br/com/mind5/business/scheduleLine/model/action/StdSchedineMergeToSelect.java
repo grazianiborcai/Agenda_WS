@@ -1,35 +1,19 @@
 package br.com.mind5.business.scheduleLine.model.action;
 
 import br.com.mind5.business.scheduleLine.info.SchedineInfo;
-import br.com.mind5.model.action.ActionLazyV1;
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionStdHelperMerge;
-import br.com.mind5.model.decisionTree.DeciResult;
+import br.com.mind5.model.action.ActionStdTemplateV2;
+import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdSchedineMergeToSelect implements ActionStdV1<SchedineInfo> {
-	private ActionStdV1<SchedineInfo> actionHelper;	
-	
-	
-	public StdSchedineMergeToSelect(DeciTreeOption<SchedineInfo> option) {			
-		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiSchedineMergeToSelect(option.conn, option.schemaName));
+public final class StdSchedineMergeToSelect extends ActionStdTemplateV2<SchedineInfo> {
+
+	public StdSchedineMergeToSelect(DeciTreeOption<SchedineInfo> option) {
+		super(option);
 	}
 	
 	
 	
-	@Override public void addPostAction(ActionLazyV1<SchedineInfo> actionHandler) {
-		actionHelper.addPostAction(actionHandler);
-	}
-	
-	
-	
-	@Override public boolean executeAction() {			
-		return actionHelper.executeAction();
-	}
-	
-	
-	
-	@Override public DeciResult<SchedineInfo> getDecisionResult() {
-		return actionHelper.getDecisionResult();
+	protected ActionVisitorV2<SchedineInfo> buildVisitorHook(DeciTreeOption<SchedineInfo> option) {
+		return new VisiSchedineMergeToSelect(option);
 	}
 }

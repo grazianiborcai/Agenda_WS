@@ -1,60 +1,47 @@
 package br.com.mind5.business.scheduleLine.info;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import br.com.mind5.business.masterData.info.ScheduleStatusInfo;
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-final class SchedineVisiMergeScheduleStatus implements InfoMergerVisitor_<SchedineInfo, ScheduleStatusInfo> {
-
-	@Override public SchedineInfo writeRecord(ScheduleStatusInfo sourceOne, SchedineInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
-		
-		SchedineInfo resultInfo = makeClone(sourceTwo);
-		resultInfo.txtScheduleStatus = sourceOne.txtScheduleStatus;
-
-		return resultInfo;
+final class SchedineVisiMergeScheduleStatus implements InfoMergerVisitorV3<SchedineInfo, ScheduleStatusInfo> {
+	
+	@Override public List<SchedineInfo> beforeMerge(List<SchedineInfo> baseInfos) {
+		return baseInfos;
 	}
 	
 	
 	
-	private void checkArgument(ScheduleStatusInfo sourceOne, SchedineInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}	
-	
-	
-	
-	private SchedineInfo makeClone(SchedineInfo recordInfo) {
-		try {
-			return (SchedineInfo) recordInfo.clone();
+	@Override public boolean shouldMerge(SchedineInfo baseInfo, ScheduleStatusInfo selectedInfo) {
+		if (baseInfo.codScheduleStatus  == null ||
+			baseInfo.codLanguage		== null ||
+			baseInfo.codScheduleStatus  == null ||
+			baseInfo.codLanguage		== null 	)
 			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-
-
-	
-	@Override public boolean shouldWrite(ScheduleStatusInfo sourceOne, SchedineInfo sourceTwo) {
-		if (sourceOne.codScheduleStatus == null ||
-			sourceOne.codLanguage		== null ||
-			sourceTwo.codScheduleStatus == null ||
-			sourceTwo.codLanguage		== null 	)
+			return false;					
 			
-			return false;
-				
-		
-		
-		return (sourceOne.codScheduleStatus.equals(sourceTwo.codScheduleStatus) && 
-				sourceOne.codLanguage.equals(sourceTwo.codLanguage));
+			
+			return (baseInfo.codScheduleStatus.equals(selectedInfo.codScheduleStatus) && 
+					baseInfo.codLanguage.equals(selectedInfo.codLanguage));
 	}
 	
 	
 	
-	private void logException(Exception e) {
+	@Override public List<SchedineInfo> merge(SchedineInfo baseInfo, ScheduleStatusInfo selectedInfo) {
+		List<SchedineInfo> results = new ArrayList<>();
 		
-		SystemLog.logError(this.getClass(), e);
+		baseInfo.txtScheduleStatus = selectedInfo.txtScheduleStatus;
+		
+		results.add(baseInfo);
+		return results;
+	}
+	
+	
+	
+	@Override public InfoUniquifier<SchedineInfo> getUniquifier() {
+		return null;
 	}
 }

@@ -4,14 +4,14 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.scheduleLine.info.SchedineInfo;
-import br.com.mind5.model.action.ActionLazyTemplateV1;
+import br.com.mind5.model.action.ActionLazyTemplateV2;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazySchedineUpdate extends ActionLazyTemplateV1<SchedineInfo, SchedineInfo> {
-
-	public LazySchedineUpdate(Connection conn, String schemaName) {
+public final class LazySchedineDaoDelete extends ActionLazyTemplateV2<SchedineInfo, SchedineInfo> {
+	
+	public LazySchedineDaoDelete(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazySchedineUpdate extends ActionLazyTemplateV1<SchedineInfo,
 	
 	
 	@Override protected ActionStdV1<SchedineInfo> getInstanceOfActionHook(DeciTreeOption<SchedineInfo> option) {
-		return new StdSchedineUpdate(option);
+		return new StdSchedineDaoDelete(option);
 	}
 	
 	

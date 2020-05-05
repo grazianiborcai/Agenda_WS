@@ -15,11 +15,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class SchedineDeleteSingle extends DaoStmtTemplate<SchedineInfo> {
+public final class DaoSchedineDeleteSingle extends DaoStmtTemplate<SchedineInfo> {
 	private final String MAIN_TABLE = DaoDbTable.SCHEDULE_TABLE;		
 	
 	
-	public SchedineDeleteSingle(Connection conn, SchedineInfo recordInfo, String schemaName) {
+	public DaoSchedineDeleteSingle(Connection conn, SchedineInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -44,7 +44,7 @@ public final class SchedineDeleteSingle extends DaoStmtTemplate<SchedineInfo> {
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;	
 		whereOption.ignoreNonPrimaryKey = DaoOptionValue.IGNORE_NON_PK;		
 		
-		DaoStmtWhere whereClause = new SchedineWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new DaoSchedineWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	

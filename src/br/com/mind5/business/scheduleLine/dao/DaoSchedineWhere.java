@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilder;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 
-public final class SchedineWhere implements DaoStmtWhere {	
+public final class DaoSchedineWhere implements DaoStmtWhere {	
 	private String whereClause;	
 	
 	
-	public SchedineWhere(DaoWhereBuilderOption whereOption, String tableName, SchedineInfo recordInfo) {
+	public DaoSchedineWhere(DaoWhereBuilderOption whereOption, String tableName, SchedineInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -27,15 +27,15 @@ public final class SchedineWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-				case SchedineDbTableColumn.COL_COD_OWNER :
+				case DaoSchedineDbTableColumn.COL_COD_OWNER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;
 					
-				case SchedineDbTableColumn.COL_COD_SCHEDULE :
+				case DaoSchedineDbTableColumn.COL_COD_SCHEDULE :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codSchedule));
 					break;
 					
-				case SchedineDbTableColumn.COL_RECORD_MODE :
+				case DaoSchedineDbTableColumn.COL_RECORD_MODE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.recordMode);
 					break;
 			}

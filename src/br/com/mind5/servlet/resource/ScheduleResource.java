@@ -51,7 +51,10 @@ public final class ScheduleResource {
 		
 		Model model = new SchedineModelInsert(incomingData, request);
 		model.executeRequest();
-		return model.getResponse();	
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
 	}
 	
 	
@@ -63,7 +66,10 @@ public final class ScheduleResource {
 		
 		Model model = new SchedineModelUpdate(incomingData, request);
 		model.executeRequest();
-		return model.getResponse();	
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
 	}
 	
 	
@@ -75,7 +81,10 @@ public final class ScheduleResource {
 		
 		Model model = new SchedineModelMove(incomingData, request);
 		model.executeRequest();
-		return model.getResponse();	
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
 	}
 	
 	
@@ -96,7 +105,10 @@ public final class ScheduleResource {
 		
 		Model model = new SchedineModelSelect(recordInfo);
 		model.executeRequest();
-		return model.getResponse();	
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
 	}	
 	
 	
@@ -117,7 +129,10 @@ public final class ScheduleResource {
 		
 		Model model = new SchedineModelCancel(recordInfo);
 		model.executeRequest();
-		return model.getResponse();	
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
 	}	
 	
 	
@@ -140,7 +155,10 @@ public final class ScheduleResource {
 		
 		Model model = new SchedyearModelSelect(recordInfo);
 		model.executeRequest();
-		return model.getResponse();	
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
 	}	
 	
 	
@@ -170,7 +188,10 @@ public final class ScheduleResource {
 		
 		Model model = new SchedmonModelSelect(recordInfo);
 		model.executeRequest();
-		return model.getResponse();	
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
 	}	
 	
 	
@@ -204,7 +225,10 @@ public final class ScheduleResource {
 		
 		Model model = new SchedeekModelSelect(recordInfo);
 		model.executeRequest();
-		return model.getResponse();	
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
 	}		
 	
 	
@@ -233,6 +257,9 @@ public final class ScheduleResource {
 		
 		Model model = new SchedageModelSelect(recordInfo);
 		model.executeRequest();
-		return model.getResponse();	
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
 	}	
 }

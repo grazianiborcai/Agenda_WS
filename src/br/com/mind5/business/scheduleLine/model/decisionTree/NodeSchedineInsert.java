@@ -7,7 +7,7 @@ import br.com.mind5.business.scheduleLine.info.SchedineInfo;
 import br.com.mind5.business.scheduleLine.model.action.LazySchedineEnforceCreatedBy;
 import br.com.mind5.business.scheduleLine.model.action.LazySchedineEnforceCreatedOn;
 import br.com.mind5.business.scheduleLine.model.action.LazySchedineEnforceStatus;
-import br.com.mind5.business.scheduleLine.model.action.LazySchedineInsert;
+import br.com.mind5.business.scheduleLine.model.action.LazySchedineDaoInsert;
 import br.com.mind5.business.scheduleLine.model.action.LazySchedineMergeCuslis;
 import br.com.mind5.business.scheduleLine.model.action.LazySchedineMergeUsername;
 import br.com.mind5.business.scheduleLine.model.action.LazySchedineNodeTime;
@@ -19,9 +19,9 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class NodeSchedineInsert extends DeciTreeTemplateWriteV1<SchedineInfo> {
+public final class NodeSchedineInsert extends DeciTreeTemplateWriteV2<SchedineInfo> {
 	
 	public NodeSchedineInsert(DeciTreeOption<SchedineInfo> option) {
 		super(option);
@@ -56,7 +56,7 @@ public final class NodeSchedineInsert extends DeciTreeTemplateWriteV1<SchedineIn
 		ActionLazyV1<SchedineInfo> enforceCreatedOn = new LazySchedineEnforceCreatedOn(option.conn, option.schemaName);
 		ActionLazyV1<SchedineInfo> enforceCreatedBy = new LazySchedineEnforceCreatedBy(option.conn, option.schemaName);
 		ActionLazyV1<SchedineInfo> enforceStatus = new LazySchedineEnforceStatus(option.conn, option.schemaName);
-		ActionLazyV1<SchedineInfo> insert = new LazySchedineInsert(option.conn, option.schemaName);
+		ActionLazyV1<SchedineInfo> insert = new LazySchedineDaoInsert(option.conn, option.schemaName);
 		
 		enforceLChanged.addPostAction(mergeCuslis);		
 		mergeCuslis.addPostAction(mergeUsername);

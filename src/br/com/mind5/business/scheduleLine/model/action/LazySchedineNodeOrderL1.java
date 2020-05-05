@@ -5,12 +5,12 @@ import java.util.List;
 
 import br.com.mind5.business.scheduleLine.info.SchedineInfo;
 import br.com.mind5.business.scheduleLine.model.decisionTree.NodeSchedineOrderL1;
-import br.com.mind5.model.action.ActionLazyTemplateV1;
+import br.com.mind5.model.action.ActionLazyTemplateV2;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazySchedineNodeOrderL1 extends ActionLazyTemplateV1<SchedineInfo, SchedineInfo> {
+public final class LazySchedineNodeOrderL1 extends ActionLazyTemplateV2<SchedineInfo, SchedineInfo> {
 	
 	public LazySchedineNodeOrderL1(Connection conn, String schemaName) {
 		super(conn, schemaName);

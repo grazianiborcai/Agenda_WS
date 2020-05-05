@@ -1,51 +1,39 @@
 package br.com.mind5.business.scheduleLine.info;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import br.com.mind5.business.employeeList.info.EmplisInfo;
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-final class SchedineVisiMergeEmplis implements InfoMergerVisitor_<SchedineInfo, EmplisInfo> {
-
-	@Override public SchedineInfo writeRecord(EmplisInfo sourceOne, SchedineInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+final class SchedineVisiMergeEmplis implements InfoMergerVisitorV3<SchedineInfo, EmplisInfo> {
+	
+	@Override public List<SchedineInfo> beforeMerge(List<SchedineInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(SchedineInfo baseInfo, EmplisInfo selectedInfo) {
+		return (baseInfo.codOwner    == selectedInfo.codOwner 	&& 
+				baseInfo.codEmployee == selectedInfo.codEmployee	);
+	}
+	
+	
+	
+	@Override public List<SchedineInfo> merge(SchedineInfo baseInfo, EmplisInfo selectedInfo) {
+		List<SchedineInfo> results = new ArrayList<>();
 		
-		SchedineInfo resultInfo = makeClone(sourceTwo);
-		resultInfo.empData = sourceOne;
-
-		return resultInfo;
-	}
-	
-	
-	
-	private void checkArgument(EmplisInfo sourceOne, SchedineInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}	
-	
-	
-	
-	private SchedineInfo makeClone(SchedineInfo recordInfo) {
-		try {
-			return (SchedineInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-
-
-	
-	@Override public boolean shouldWrite(EmplisInfo sourceOne, SchedineInfo sourceTwo) {
-		return (sourceOne.codOwner    == sourceTwo.codOwner 	&& 
-				sourceOne.codEmployee == sourceTwo.codEmployee		);
-	}
-	
-	
-	
-	private void logException(Exception e) {
+		baseInfo.empData = selectedInfo;
 		
-		SystemLog.logError(this.getClass(), e);
+		results.add(baseInfo);
+		return results;
+	}
+	
+	
+	
+	@Override public InfoUniquifier<SchedineInfo> getUniquifier() {
+		return null;
 	}
 }

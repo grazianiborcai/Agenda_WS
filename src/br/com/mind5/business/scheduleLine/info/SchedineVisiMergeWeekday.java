@@ -1,58 +1,39 @@
 package br.com.mind5.business.scheduleLine.info;
 
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import java.util.ArrayList;
+import java.util.List;
+
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.masterData.weekday.info.WeekdayInfo;
 
-final class SchedineVisiMergeWeekday implements InfoMergerVisitor_<SchedineInfo, WeekdayInfo> {
-
-	@Override public SchedineInfo writeRecord(WeekdayInfo sourceOne, SchedineInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
-		
-		SchedineInfo resultInfo = makeClone(sourceTwo);
-		resultInfo.txtWeekday = sourceOne.txtWeekday;
-
-		return resultInfo;
+final class SchedineVisiMergeWeekday implements InfoMergerVisitorV3<SchedineInfo, WeekdayInfo> {
+	
+	@Override public List<SchedineInfo> beforeMerge(List<SchedineInfo> baseInfos) {
+		return baseInfos;
 	}
 	
 	
 	
-	private void checkArgument(WeekdayInfo sourceOne, SchedineInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}	
-	
-	
-	
-	private SchedineInfo makeClone(SchedineInfo recordInfo) {
-		try {
-			return (SchedineInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-
-
-	
-	@Override public boolean shouldWrite(WeekdayInfo sourceOne, SchedineInfo sourceTwo) {
-		if (sourceOne.codLanguage == null ||
-			sourceTwo.codLanguage == null 	)
-			
-			return false;
-				
-		
-		
-		return (sourceOne.codWeekday == sourceTwo.codWeekday && 
-				sourceOne.codLanguage.equals(sourceTwo.codLanguage));
+	@Override public boolean shouldMerge(SchedineInfo baseInfo, WeekdayInfo selectedInfo) {
+		return (baseInfo.codWeekday == selectedInfo.codWeekday && 
+				baseInfo.codLanguage.equals(selectedInfo.codLanguage));
 	}
 	
 	
 	
-	private void logException(Exception e) {
+	@Override public List<SchedineInfo> merge(SchedineInfo baseInfo, WeekdayInfo selectedInfo) {
+		List<SchedineInfo> results = new ArrayList<>();
 		
-		SystemLog.logError(this.getClass(), e);
+		baseInfo.txtWeekday = selectedInfo.txtWeekday;
+		
+		results.add(baseInfo);
+		return results;
+	}
+	
+	
+	
+	@Override public InfoUniquifier<SchedineInfo> getUniquifier() {
+		return null;
 	}
 }

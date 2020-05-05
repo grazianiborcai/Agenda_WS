@@ -5,12 +5,12 @@ import java.util.List;
 
 import br.com.mind5.business.scheduleLine.info.SchedineInfo;
 import br.com.mind5.business.scheduleLine.model.decisionTree.RootSchedineInsert;
-import br.com.mind5.model.action.ActionLazyTemplateV1;
+import br.com.mind5.model.action.ActionLazyTemplateV2;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazySchedineRootInsert extends ActionLazyTemplateV1<SchedineInfo, SchedineInfo> {
+public final class LazySchedineRootInsert extends ActionLazyTemplateV2<SchedineInfo, SchedineInfo> {
 	
 	public LazySchedineRootInsert(Connection conn, String schemaName) {
 		super(conn, schemaName);

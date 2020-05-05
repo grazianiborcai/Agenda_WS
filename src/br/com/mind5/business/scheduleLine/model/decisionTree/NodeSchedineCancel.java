@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.scheduleLine.info.SchedineInfo;
-import br.com.mind5.business.scheduleLine.model.action.LazySchedineDelete;
+import br.com.mind5.business.scheduleLine.model.action.LazySchedineDaoDelete;
 import br.com.mind5.business.scheduleLine.model.action.LazySchedineEnforceCancelled;
 import br.com.mind5.business.scheduleLine.model.action.LazySchedineEnforceLChanged;
 import br.com.mind5.business.scheduleLine.model.action.LazySchedineInsertSchedovm;
@@ -18,9 +18,9 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class NodeSchedineCancel extends DeciTreeTemplateWriteV1<SchedineInfo> {
+public final class NodeSchedineCancel extends DeciTreeTemplateWriteV2<SchedineInfo> {
 	
 	public NodeSchedineCancel(DeciTreeOption<SchedineInfo> option) {
 		super(option);
@@ -54,7 +54,7 @@ public final class NodeSchedineCancel extends DeciTreeTemplateWriteV1<SchedineIn
 		ActionLazyV1<SchedineInfo> enforceStatus = new LazySchedineEnforceCancelled(option.conn, option.schemaName);
 		ActionLazyV1<SchedineInfo> nodeSnapshot = new LazySchedineNodeSnapshot(option.conn, option.schemaName);
 		ActionLazyV1<SchedineInfo> insertSchedovm = new LazySchedineInsertSchedovm(option.conn, option.schemaName);
-		ActionLazyV1<SchedineInfo> delete = new LazySchedineDelete(option.conn, option.schemaName);
+		ActionLazyV1<SchedineInfo> delete = new LazySchedineDaoDelete(option.conn, option.schemaName);
 		
 		mergeToSelect.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(mergeUsername);

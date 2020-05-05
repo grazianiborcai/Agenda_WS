@@ -75,7 +75,7 @@ import br.com.mind5.business.phone.dao.DaoPhoneDbTableColumn;
 import br.com.mind5.business.phoneSearch.dao.DaoPhonarchDbTableColumn;
 import br.com.mind5.business.phoneSnapshot.dao.DaoPhonapDbTableColumn;
 import br.com.mind5.business.planingData.dao.PlanataDbTableColumn;
-import br.com.mind5.business.scheduleLine.dao.SchedineDbTableColumn;
+import br.com.mind5.business.scheduleLine.dao.DaoSchedineDbTableColumn;
 import br.com.mind5.business.scheduleLineSnapshot.dao.SchedinapDbTableColumn;
 import br.com.mind5.business.scheduleList.dao.SchedistDbTableColumn;
 import br.com.mind5.business.scheduleMonthData.dao.SchedonthatDbTableColumn;
@@ -245,7 +245,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new PeresmoipDbTableColumn());
 		addTable(new DaoWokaymoipDbTableColumn());
 		addTable(new DaoWokefumoipDbTableColumn());
-		addTable(new SchedineDbTableColumn());
+		addTable(new DaoSchedineDbTableColumn());
 		addTable(new StorapDbTableColumn());
 		addTable(new CompnapDbTableColumn());
 		addTable(new CusnapDbTableColumn());

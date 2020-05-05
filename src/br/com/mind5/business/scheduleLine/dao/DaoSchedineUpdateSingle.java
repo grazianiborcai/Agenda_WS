@@ -13,11 +13,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public class SchedineUpdateSingle extends DaoStmtTemplate<SchedineInfo> {
+public class DaoSchedineUpdateSingle extends DaoStmtTemplate<SchedineInfo> {
 	private final String MAIN_TABLE = DaoDbTable.SCHEDULE_TABLE;
 
 	
-	public SchedineUpdateSingle(Connection conn, SchedineInfo recordInfo, String schemaName) {
+	public DaoSchedineUpdateSingle(Connection conn, SchedineInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -42,7 +42,7 @@ public class SchedineUpdateSingle extends DaoStmtTemplate<SchedineInfo> {
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;
 		whereOption.ignoreNonPrimaryKey = DaoOptionValue.IGNORE_NON_PK;		
 		
-		DaoStmtWhere whereClause = new SchedineWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new DaoSchedineWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	

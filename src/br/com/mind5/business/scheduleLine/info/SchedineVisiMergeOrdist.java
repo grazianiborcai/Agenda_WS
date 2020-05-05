@@ -1,34 +1,39 @@
 package br.com.mind5.business.scheduleLine.info;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import br.com.mind5.business.orderList.info.OrdistInfo;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-final class SchedineVisiMergeOrdist implements InfoMergerVisitor_<SchedineInfo, OrdistInfo> {
-
-	@Override public SchedineInfo writeRecord(OrdistInfo sourceOne, SchedineInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
-		return merge(sourceOne, sourceTwo);
+final class SchedineVisiMergeOrdist implements InfoMergerVisitorV3<SchedineInfo, OrdistInfo> {
+	
+	@Override public List<SchedineInfo> beforeMerge(List<SchedineInfo> baseInfos) {
+		return baseInfos;
 	}
 	
 	
 	
-	private void checkArgument(OrdistInfo sourceOne, SchedineInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
+	@Override public boolean shouldMerge(SchedineInfo baseInfo, OrdistInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner &&
+				baseInfo.codOrder == selectedInfo.codOrder		);
 	}
 	
 	
 	
-	private SchedineInfo merge(OrdistInfo sourceOne, SchedineInfo sourceTwo) {
-		sourceTwo.codOrderStatus = sourceOne.codOrderStatus;		
-		return sourceTwo;
+	@Override public List<SchedineInfo> merge(SchedineInfo baseInfo, OrdistInfo selectedInfo) {
+		List<SchedineInfo> results = new ArrayList<>();
+		
+		baseInfo.codOrderStatus = selectedInfo.codOrderStatus;
+		
+		results.add(baseInfo);
+		return results;
 	}
 	
 	
 	
-	@Override public boolean shouldWrite(OrdistInfo sourceOne, SchedineInfo sourceTwo) {		
-		return (sourceOne.codOwner == sourceTwo.codOwner &&
-				sourceOne.codOrder == sourceTwo.codOrder	);
+	@Override public InfoUniquifier<SchedineInfo> getUniquifier() {
+		return null;
 	}
 }
