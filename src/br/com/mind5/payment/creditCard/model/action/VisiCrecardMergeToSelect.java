@@ -29,6 +29,6 @@ final class VisiCrecardMergeToSelect extends ActionVisitorTemplateMergeV2<Crecar
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.DONT_MERGE_WHEN_EMPTY;
+		return super.DONT_MERGE_WHEN_EMPTY;
 	}
 }

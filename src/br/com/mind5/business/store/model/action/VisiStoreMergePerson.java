@@ -31,6 +31,6 @@ final class VisiStoreMergePerson extends ActionVisitorTemplateMergeV2<StoreInfo,
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.MERGE_WHEN_EMPTY;
+		return super.MERGE_WHEN_EMPTY;
 	}	
 }

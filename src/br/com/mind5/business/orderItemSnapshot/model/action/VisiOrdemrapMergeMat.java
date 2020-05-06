@@ -38,6 +38,6 @@ final class VisiOrdemrapMergeMat extends ActionVisitorTemplateMergeV2<OrdemrapIn
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.MERGE_WHEN_EMPTY;
+		return super.MERGE_WHEN_EMPTY;
 	}
 }

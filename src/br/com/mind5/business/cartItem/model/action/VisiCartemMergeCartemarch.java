@@ -31,6 +31,6 @@ final class VisiCartemMergeCartemarch extends ActionVisitorTemplateMergeV2<Carte
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.DONT_MERGE_WHEN_EMPTY;
+		return super.DONT_MERGE_WHEN_EMPTY;
 	}
 }

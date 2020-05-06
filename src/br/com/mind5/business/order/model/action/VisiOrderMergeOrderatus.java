@@ -31,6 +31,6 @@ final class VisiOrderMergeOrderatus extends ActionVisitorTemplateMergeV2<OrderIn
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.MERGE_WHEN_EMPTY;
+		return super.MERGE_WHEN_EMPTY;
 	}
 }

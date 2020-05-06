@@ -38,6 +38,6 @@ final class VisiEmpMergePerarch extends ActionVisitorTemplateMergeV2<EmpInfo, Pe
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.DONT_MERGE_WHEN_EMPTY;
+		return super.DONT_MERGE_WHEN_EMPTY;
 	}
 }

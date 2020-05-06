@@ -31,6 +31,6 @@ final class VisiCremoipMergeCuspar extends ActionVisitorTemplateMergeV2<CremoipI
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.DONT_MERGE_WHEN_EMPTY;
+		return super.DONT_MERGE_WHEN_EMPTY;
 	}
 }

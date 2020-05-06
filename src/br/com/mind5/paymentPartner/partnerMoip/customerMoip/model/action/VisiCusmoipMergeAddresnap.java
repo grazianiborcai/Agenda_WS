@@ -38,6 +38,6 @@ final class VisiCusmoipMergeAddresnap extends ActionVisitorTemplateMergeV2<Cusmo
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.DONT_MERGE_WHEN_EMPTY;
+		return super.DONT_MERGE_WHEN_EMPTY;
 	}
 }

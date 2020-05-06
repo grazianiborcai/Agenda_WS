@@ -31,6 +31,6 @@ final class VisiStoreMergeTimezone extends ActionVisitorTemplateMergeV2<StoreInf
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.MERGE_WHEN_EMPTY;
+		return super.MERGE_WHEN_EMPTY;
 	}
 }

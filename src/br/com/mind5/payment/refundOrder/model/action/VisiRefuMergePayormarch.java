@@ -38,6 +38,6 @@ final class VisiRefuMergePayormarch extends ActionVisitorTemplateMergeV2<RefuInf
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.DONT_MERGE_WHEN_EMPTY;
+		return super.DONT_MERGE_WHEN_EMPTY;
 	}
 }

@@ -31,6 +31,6 @@ final class VisiOrdmoipMergeSysEnviron extends ActionVisitorTemplateMergeV2<Ordm
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.MERGE_WHEN_EMPTY;
+		return super.MERGE_WHEN_EMPTY;
 	}
 }

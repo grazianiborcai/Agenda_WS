@@ -38,6 +38,6 @@ final class VisiPayordMergePayordem extends ActionVisitorTemplateMergeV2<PayordI
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.MERGE_WHEN_EMPTY;
+		return super.MERGE_WHEN_EMPTY;
 	}
 }

@@ -38,6 +38,6 @@ final class VisiEmpMergeAddress extends ActionVisitorTemplateMergeV2<EmpInfo, Ad
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.MERGE_WHEN_EMPTY;
+		return super.MERGE_WHEN_EMPTY;
 	}
 }

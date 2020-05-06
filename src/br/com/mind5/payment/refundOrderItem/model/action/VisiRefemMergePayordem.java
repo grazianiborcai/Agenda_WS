@@ -31,6 +31,6 @@ final class VisiRefemMergePayordem extends ActionVisitorTemplateMergeV2<RefemInf
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.DONT_MERGE_WHEN_EMPTY;
+		return super.DONT_MERGE_WHEN_EMPTY;
 	}
 }

@@ -38,6 +38,6 @@ final class VisiPaytusMergeUsername extends ActionVisitorTemplateMergeV2<PaytusI
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.DONT_MERGE_WHEN_EMPTY;
+		return super.DONT_MERGE_WHEN_EMPTY;
 	}
 }

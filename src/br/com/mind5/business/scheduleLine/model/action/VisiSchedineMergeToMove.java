@@ -29,6 +29,6 @@ final class VisiSchedineMergeToMove extends ActionVisitorTemplateMergeV2<Schedin
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.DONT_MERGE_WHEN_EMPTY;
+		return super.DONT_MERGE_WHEN_EMPTY;
 	}
 }

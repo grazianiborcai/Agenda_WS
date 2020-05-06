@@ -38,6 +38,6 @@ final class VisiStolateMergeUsername extends ActionVisitorTemplateMergeV2<Stolat
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.MERGE_WHEN_EMPTY;
+		return super.MERGE_WHEN_EMPTY;
 	}
 }

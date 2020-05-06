@@ -31,6 +31,6 @@ final class VisiOwnerMergeComp extends ActionVisitorTemplateMergeV2<OwnerInfo, C
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.MERGE_WHEN_EMPTY;
+		return super.MERGE_WHEN_EMPTY;
 	}
 }

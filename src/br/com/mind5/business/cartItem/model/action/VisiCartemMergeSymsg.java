@@ -38,6 +38,6 @@ final class VisiCartemMergeSymsg extends ActionVisitorTemplateMergeV2<CartemInfo
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV2.MERGE_WHEN_EMPTY;
+		return super.MERGE_WHEN_EMPTY;
 	}
 }
