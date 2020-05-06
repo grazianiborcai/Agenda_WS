@@ -96,6 +96,7 @@ public final class DaoDbTable {
 	public static final String PHONE_SNAPSHOT_TABLE = "phone_snapshot";
 	public static final String POSITION_TABLE = "position";
 	public static final String POSITION_TEXT_TABLE = "position_text";
+	public static final String REFUND_POLICY_OWNER = "refund_policy_owner";
 	public static final String REFUND_POLICY_TABLE = "refund_policy";
 	public static final String REFUND_POLICY_TEXT_TABLE = "refund_policy_text";
 	public static final String TIMEZONE_TABLE = "timezone";

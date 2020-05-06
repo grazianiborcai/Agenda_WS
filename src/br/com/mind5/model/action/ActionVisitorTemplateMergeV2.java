@@ -19,8 +19,8 @@ import br.com.mind5.model.decisionTree.common.DeciResultError;
 import br.com.mind5.model.decisionTree.common.DeciResultNotFound;
 
 public abstract class ActionVisitorTemplateMergeV2<T extends InfoRecord, S extends InfoRecord> implements ActionVisitorV2<T> {
-	protected static boolean MERGE_WHEN_EMPTY = true;
-	protected static boolean DONT_MERGE_WHEN_EMPTY = false;
+	protected boolean MERGE_WHEN_EMPTY = true;
+	protected boolean DONT_MERGE_WHEN_EMPTY = false;
 	
 	private List<T> bases;
 	private ActionStdV1<S> actionSelect;

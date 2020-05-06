@@ -1188,5 +1188,10 @@ public final class SystemCode {
 	// Form Address Search
 	public static final int FORM_ADDRESS_SEARCH_MANDATORY_FIELD_EMPTY	= 11600;
 	
-	//reservado 11650
+	//Refund Policy Owner
+	public static final int REFUND_POL_OWNER_MANDATORY_FIELD_EMPTY 		= 11700;
+	public static final int REFUND_POL_OWNER_ALREADY_EXIST				= 11701;
+	public static final int REFUND_POL_OWNER_NOT_FOUND					= 11702;	
+	
+
 }
