@@ -9,9 +9,9 @@ import br.com.mind5.masterData.refundPolicy.info.RefupoInfo;
 import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiMatunitDaoSelect extends ActionVisitorTemplateStmtV2<RefupoInfo>{
+final class VisiRefupoDaoSelect extends ActionVisitorTemplateStmtV2<RefupoInfo>{
 
-	public VisiMatunitDaoSelect(DeciTreeOption<RefupoInfo> option) {
+	public VisiRefupoDaoSelect(DeciTreeOption<RefupoInfo> option) {
 		super(option);
 	}
 	

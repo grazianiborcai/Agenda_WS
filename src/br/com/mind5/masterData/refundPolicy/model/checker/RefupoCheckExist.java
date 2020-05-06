@@ -2,7 +2,7 @@ package br.com.mind5.masterData.refundPolicy.model.checker;
 
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.masterData.refundPolicy.info.RefupoInfo;
-import br.com.mind5.masterData.refundPolicy.model.action.StdMatunitDaoSelect;
+import br.com.mind5.masterData.refundPolicy.model.action.StdRefupoDaoSelect;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
@@ -17,7 +17,7 @@ public final class RefupoCheckExist extends ModelCheckerTemplateActionV2<RefupoI
 	
 	
 	@Override protected ActionStdV1<RefupoInfo> buildActionHook(DeciTreeOption<RefupoInfo> option) {
-		ActionStdV1<RefupoInfo> select = new StdMatunitDaoSelect(option);
+		ActionStdV1<RefupoInfo> select = new StdRefupoDaoSelect(option);
 		return select;
 	}
 	
