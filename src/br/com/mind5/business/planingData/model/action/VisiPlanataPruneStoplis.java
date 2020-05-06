@@ -4,7 +4,6 @@ import java.util.List;
 
 import br.com.mind5.business.planingData.info.PlanataInfo;
 import br.com.mind5.business.planingData.info.PlanataPruner;
-import br.com.mind5.model.action.ActionVisitorTemplatePruneV1;
 import br.com.mind5.model.action.ActionVisitorTemplatePruneV2;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -39,6 +38,6 @@ final class VisiPlanataPruneStoplis extends ActionVisitorTemplatePruneV2<Planata
 	
 	
 	@Override protected boolean shouldPruneWhenEmptyHook() {
-		return ActionVisitorTemplatePruneV1.PRUNE_WHEN_EMPTY;
+		return super.PRUNE_WHEN_EMPTY;
 	}
 }
