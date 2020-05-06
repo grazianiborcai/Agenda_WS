@@ -70,7 +70,7 @@ public final class DaoRefupoSelectSingle extends DaoStmtTemplate<RefupoInfo> {
 				do {				
 					RefupoInfo dataInfo = new RefupoInfo();
 					
-					dataInfo.codRefundPolicy = stmtResult.getString(DaoRefupoDbTableColumn.COL_COD_REFUND_POLICY);
+					dataInfo.codRefundPolicy = DaoFormatter.sqlToInt(stmtResult, DaoRefupoDbTableColumn.COL_COD_REFUND_POLICY);
 					dataInfo.txtRefundPolicy = stmtResult.getString(DaoRefupoDbTableColumn.COL_NAME);
 					dataInfo.codLanguage = stmtResult.getString(DaoRefupoDbTableColumn.COL_COD_LANGUAGE);		
 					dataInfo.hourBefore = DaoFormatter.sqlToInt(stmtResult, DaoRefupoDbTableColumn.COL_HOUR_BEFORE);

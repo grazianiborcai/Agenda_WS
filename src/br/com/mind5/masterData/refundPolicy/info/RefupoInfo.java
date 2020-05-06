@@ -6,7 +6,7 @@ import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
 
 public final class RefupoInfo extends InfoRecord implements Cloneable {
-	public String codRefundPolicy;
+	public int codRefundPolicy;
 	public String txtRefundPolicy;
 	public int hourBefore;
 	
@@ -14,6 +14,7 @@ public final class RefupoInfo extends InfoRecord implements Cloneable {
 	public RefupoInfo() {
 		super();
 		
+		codRefundPolicy = DefaultValue.number();
 		hourBefore = DefaultValue.number();
 	}
 	
@@ -38,15 +39,8 @@ public final class RefupoInfo extends InfoRecord implements Cloneable {
 	
 	
 	@Override public int hashCode() {
-		int result = 17;
-		
-		if (codRefundPolicy != null) {
-			char[] chars = codRefundPolicy.toCharArray();
-			
-			for (char eachChar : chars) {
-				result = result * 31 + (int) eachChar;
-			}
-		}		
+		int result = 17;		
+		result = result * 31 + (int) (codRefundPolicy ^ (codRefundPolicy >>> 32));
 		
 		return result;
 	}
@@ -63,6 +57,6 @@ public final class RefupoInfo extends InfoRecord implements Cloneable {
 		
 		
 		RefupoInfo obj = (RefupoInfo) o;
-		return isStringEqual(codRefundPolicy, obj.codRefundPolicy);
+		return codRefundPolicy == obj.codRefundPolicy;
 	}
 }

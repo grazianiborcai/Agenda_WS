@@ -62,7 +62,7 @@ public final class DaoRefupownSelectSingle extends DaoStmtTemplate<RefupownInfo>
 					RefupownInfo dataInfo = new RefupownInfo();
 					
 					dataInfo.codOwner = DaoFormatter.sqlToLong(stmtResult, DaoRefupownDbTableColumn.COL_COD_OWNER);
-					dataInfo.codRefundPolicy = stmtResult.getString(DaoRefupownDbTableColumn.COL_COD_REFUND_POLICY);					
+					dataInfo.codRefundPolicy = DaoFormatter.sqlToInt(stmtResult, DaoRefupownDbTableColumn.COL_COD_REFUND_POLICY);					
 					
 					finalResult.add(dataInfo);				
 				} while (stmtResult.next());

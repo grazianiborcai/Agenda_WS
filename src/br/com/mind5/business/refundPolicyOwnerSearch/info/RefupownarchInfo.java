@@ -1,18 +1,17 @@
-package br.com.mind5.business.refundPolicyOwner.info;
+package br.com.mind5.business.refundPolicyOwnerSearch.info;
 
 import java.util.List;
 
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
 
-public final class RefupownInfo extends InfoRecord implements Cloneable {
+public final class RefupownarchInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public int codRefundPolicy;
-	public String txtRefundPolicy;
 	public int hourBefore;
 	
 	
-	public RefupownInfo() {
+	public RefupownarchInfo() {
 		super();
 		
 		codOwner = DefaultValue.number();
@@ -22,14 +21,14 @@ public final class RefupownInfo extends InfoRecord implements Cloneable {
 	
 	
 	
-	public static RefupownInfo copyFrom(Object sourceObj) {
-		return copyFrom(sourceObj, RefupownInfo.class);
+	public static RefupownarchInfo copyFrom(Object sourceObj) {
+		return copyFrom(sourceObj, RefupownarchInfo.class);
 	}
 	
 	
 	
-	public static List<RefupownInfo> copyFrom(List<?> sourceObjs) {
-		return copyFrom(sourceObjs, RefupownInfo.class);
+	public static List<RefupownarchInfo> copyFrom(List<?> sourceObjs) {
+		return copyFrom(sourceObjs, RefupownarchInfo.class);
 	}
 	
 	
@@ -56,11 +55,11 @@ public final class RefupownInfo extends InfoRecord implements Cloneable {
 			return true;
 		
 		
-		if (!(o instanceof RefupownInfo))
+		if (!(o instanceof RefupownarchInfo))
 			return false;
 		
 		
-		RefupownInfo obj = (RefupownInfo) o;
+		RefupownarchInfo obj = (RefupownarchInfo) o;
 		return (codOwner 		== obj.codOwner 		&&
 				codRefundPolicy == obj.codRefundPolicy		);
 	}

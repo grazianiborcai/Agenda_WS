@@ -76,6 +76,7 @@ import br.com.mind5.business.phoneSearch.dao.DaoPhonarchDbTableColumn;
 import br.com.mind5.business.phoneSnapshot.dao.DaoPhonapDbTableColumn;
 import br.com.mind5.business.planingData.dao.PlanataDbTableColumn;
 import br.com.mind5.business.refundPolicyOwner.dao.DaoRefupownDbTableColumn;
+import br.com.mind5.business.refundPolicyOwnerSearch.dao.DaoRefupownarchDbTableColumn;
 import br.com.mind5.business.scheduleLine.dao.DaoSchedineDbTableColumn;
 import br.com.mind5.business.scheduleLineSnapshot.dao.SchedinapDbTableColumn;
 import br.com.mind5.business.scheduleList.dao.SchedistDbTableColumn;
@@ -352,6 +353,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new DaoFeecatarchDbTableColumn());
 		addTable(new DaoRefupoDbTableColumn());
 		addTable(new DaoRefupownDbTableColumn());
+		addTable(new DaoRefupownarchDbTableColumn());
 	}
 	
 	

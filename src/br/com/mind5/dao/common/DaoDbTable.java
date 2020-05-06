@@ -198,6 +198,7 @@ public final class DaoDbTable {
 	public static final String PHONE_SEARCH_VIEW = "view_phone_search";
 	public static final String PLANING_DATA_VIEW = "planing_data_list";
 	public static final String REFUND_VIEW = "view_refund";	
+	public static final String REFUND_POLICY_OWNER_SEARCH_VIEW = "view_refund_policy_owner_search";
 	public static final String SCHEDULE_LIST_VIEW = "view_list_search";
 	public static final String SCHEDULE_RANGE_VIEW = "view_schedule_range";
 	public static final String SCHEDULE_SEARCH_VIEW = "view_schedule_search";

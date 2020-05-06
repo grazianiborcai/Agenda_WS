@@ -16,7 +16,7 @@ public final class RefupoCheckRead extends ModelCheckerTemplateSimpleV2<RefupoIn
 	
 	
 	@Override protected boolean checkHook(RefupoInfo recordInfo, Connection conn, String schemaName) {	
-		if ( recordInfo.codRefundPolicy == null ||
+		if ( recordInfo.codRefundPolicy <= 0 	||
 			 recordInfo.codLanguage 	== null 	)			
 			return super.FAILED;
 		

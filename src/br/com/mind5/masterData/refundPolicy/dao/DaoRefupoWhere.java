@@ -3,6 +3,7 @@ package br.com.mind5.masterData.refundPolicy.dao;
 import java.util.List;
 
 import br.com.mind5.dao.DaoColumn;
+import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilder;
 import br.com.mind5.dao.DaoWhereBuilderOption;
@@ -26,7 +27,7 @@ final class DaoRefupoWhere implements DaoStmtWhere {
 		for (DaoColumn eachColumn : columns) {
 			switch(eachColumn.columnName) {
 				case DaoRefupoDbTableColumn.COL_COD_REFUND_POLICY :
-					builder.addClauseEqualAnd(eachColumn, recordInfo.codRefundPolicy);
+					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codRefundPolicy));
 					break;
 					
 				case DaoRefupoDbTableColumn.COL_COD_LANGUAGE :

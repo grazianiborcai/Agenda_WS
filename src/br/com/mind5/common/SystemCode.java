@@ -1193,5 +1193,10 @@ public final class SystemCode {
 	public static final int REFUND_POL_OWNER_ALREADY_EXIST				= 11701;
 	public static final int REFUND_POL_OWNER_NOT_FOUND					= 11702;	
 	
+	//Refund Policy Owner Search
+	public static final int REFUPOL_OWNER_SEARCH_MANDATORY_FIELD_EMPTY 	= 11750;
+	public static final int REFUPOL_OWNER_SEARCH_ALREADY_EXIST			= 11751;
+	public static final int REFUPOL_OWNER_SEARCH_NOT_FOUND				= 11752;	
+	
 
 }
