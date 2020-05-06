@@ -135,6 +135,7 @@ import br.com.mind5.masterData.moonPhase.dao.DaoMoonaseDbTableColumn;
 import br.com.mind5.masterData.moonPhaseSearch.dao.DaoMoonasarchDbTableColumn;
 import br.com.mind5.masterData.orderStatus.dao.DaoOrderatusDbTableColumn;
 import br.com.mind5.masterData.orderStatusSearch.dao.DaoOrderatarchDbTableColumn;
+import br.com.mind5.masterData.refundPolicy.dao.DaoRefupoDbTableColumn;
 import br.com.mind5.masterData.state.dao.DaoStateDbTableColumn;
 import br.com.mind5.masterData.stateSearch.dao.DaoStatarchDbTableColumn;
 import br.com.mind5.masterData.timezone.dao.DaoTimezoneDbTableColumn;
@@ -348,6 +349,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new DaoOrderatarchDbTableColumn());
 		addTable(new DaoFeecatDbTableColumn());
 		addTable(new DaoFeecatarchDbTableColumn());
+		addTable(new DaoRefupoDbTableColumn());
 	}
 	
 	

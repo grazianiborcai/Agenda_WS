@@ -77,6 +77,7 @@ public final class DaoDbField {
 	public static final String COL_COD_PHONE_SNAPSHOT = "cod_phone_snapshot";	
 	public static final String COL_COD_PHONE_INVOICE = "cod_phone_invoice";
 	public static final String COL_COD_PHONE_INVOICE_SNAPSHOT = "cod_phone_invoice_snapshot";
+	public static final String COL_COD_REFUND_POLICY = "cod_refund_policy";
 	public static final String COL_COD_SCHEDULE = "cod_schedule";
 	public static final String COL_COD_SCHEDULE_STATUS = "cod_schedule_status";
 	public static final String COL_COD_SNAPSHOT = "cod_snapshot";
@@ -130,6 +131,7 @@ public final class DaoDbField {
 	public static final String COL_FILE_URI_EXTERNAL = "file_img_uri_external";
 	public static final String COL_FULL_NUMBER = "full_number";
 	public static final String COL_GRAND_TOTAL = "grandTotal";
+	public static final String COL_HOUR_BEFORE = "hour_before";
 	public static final String COL_ID_ORDER_PARTNER = "id_order_partner";
 	public static final String COL_ID_PAY_PARTNER_APP = "id_pay_partner_app";	
 	public static final String COL_ID_PAY_PARTNER_STORE = "id_pay_partner_store";
