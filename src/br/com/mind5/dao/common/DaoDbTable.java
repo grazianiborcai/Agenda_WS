@@ -97,6 +97,7 @@ public final class DaoDbTable {
 	public static final String POSITION_TABLE = "position";
 	public static final String POSITION_TEXT_TABLE = "position_text";
 	public static final String REFUND_POLICY_OWNER = "refund_policy_owner";
+	public static final String REFUND_POLICY_STORE = "refund_policy_store";
 	public static final String REFUND_POLICY_TABLE = "refund_policy";
 	public static final String REFUND_POLICY_TEXT_TABLE = "refund_policy_text";
 	public static final String TIMEZONE_TABLE = "timezone";
@@ -199,6 +200,7 @@ public final class DaoDbTable {
 	public static final String PLANING_DATA_VIEW = "planing_data_list";
 	public static final String REFUND_VIEW = "view_refund";	
 	public static final String REFUND_POLICY_OWNER_SEARCH_VIEW = "view_refund_policy_owner_search";
+	public static final String REFUND_POLICY_STORE_SEARCH_VIEW = "view_refund_policy_store_search";
 	public static final String SCHEDULE_LIST_VIEW = "view_list_search";
 	public static final String SCHEDULE_RANGE_VIEW = "view_schedule_range";
 	public static final String SCHEDULE_SEARCH_VIEW = "view_schedule_search";

@@ -28,6 +28,6 @@ public final class RefupownCheckRead extends ModelCheckerTemplateSimpleV2<Refupo
 	
 	
 	@Override protected int getCodMsgOnResultFalseHook() {
-		return SystemCode.REFUND_POL_OWNER_MANDATORY_FIELD_EMPTY;
+		return SystemCode.REFUPOL_OWNER_MANDATORY_FIELD_EMPTY;
 	}
 }

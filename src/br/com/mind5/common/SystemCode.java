@@ -1189,14 +1189,22 @@ public final class SystemCode {
 	public static final int FORM_ADDRESS_SEARCH_MANDATORY_FIELD_EMPTY	= 11600;
 	
 	//Refund Policy Owner
-	public static final int REFUND_POL_OWNER_MANDATORY_FIELD_EMPTY 		= 11700;
-	public static final int REFUND_POL_OWNER_ALREADY_EXIST				= 11701;
-	public static final int REFUND_POL_OWNER_NOT_FOUND					= 11702;	
+	public static final int REFUPOL_OWNER_MANDATORY_FIELD_EMPTY 		= 11700;
+	public static final int REFUPOL_OWNER_ALREADY_EXIST					= 11701;
+	public static final int REFUPOL_OWNER_NOT_FOUND						= 11702;	
 	
 	//Refund Policy Owner Search
 	public static final int REFUPOL_OWNER_SEARCH_MANDATORY_FIELD_EMPTY 	= 11750;
 	public static final int REFUPOL_OWNER_SEARCH_ALREADY_EXIST			= 11751;
 	public static final int REFUPOL_OWNER_SEARCH_NOT_FOUND				= 11752;	
 	
-
+	//Refund Policy Store
+	public static final int REFUPOL_STORE_MANDATORY_FIELD_EMPTY 		= 11800;
+	public static final int REFUPOL_STORE_ALREADY_EXIST					= 11801;
+	public static final int REFUPOL_STORE_NOT_FOUND						= 11802;	
+	
+	//Refund Policy Store Search
+	public static final int REFUPOL_STORE_SEARCH_MANDATORY_FIELD_EMPTY 	= 11850;
+	public static final int REFUPOL_STORE_SEARCH_ALREADY_EXIST			= 11851;
+	public static final int REFUPOL_STORE_SEARCH_NOT_FOUND				= 11852;	
 }

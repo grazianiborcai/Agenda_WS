@@ -24,12 +24,12 @@ public final class RefupownCheckExist extends ModelCheckerTemplateActionV2<Refup
 	
 	
 	@Override protected int getCodMsgOnResultTrueHook() {
-		return SystemCode.REFUND_POL_OWNER_ALREADY_EXIST;
+		return SystemCode.REFUPOL_OWNER_ALREADY_EXIST;
 	}	
 	
 	
 	
 	@Override protected int getCodMsgOnResultFalseHook() {
-		return SystemCode.REFUND_POL_OWNER_NOT_FOUND;
+		return SystemCode.REFUPOL_OWNER_NOT_FOUND;
 	}
 }
