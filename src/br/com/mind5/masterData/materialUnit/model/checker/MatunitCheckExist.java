@@ -24,12 +24,12 @@ public final class MatunitCheckExist extends ModelCheckerTemplateActionV2<Matuni
 	
 	
 	@Override protected int getCodMsgOnResultTrueHook() {
-		return SystemCode.UNIT_ALREADY_EXIST;
+		return SystemCode.MAT_UNIT_ALREADY_EXIST;
 	}	
 	
 	
 	
 	@Override protected int getCodMsgOnResultFalseHook() {
-		return SystemCode.UNIT_NOT_FOUND;
+		return SystemCode.MAT_UNIT_NOT_FOUND;
 	}
 }
