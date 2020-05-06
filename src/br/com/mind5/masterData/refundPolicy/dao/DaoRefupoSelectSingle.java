@@ -19,7 +19,7 @@ import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.masterData.refundPolicy.info.RefupoInfo;
 
 public final class DaoRefupoSelectSingle extends DaoStmtTemplate<RefupoInfo> {
-	private final String MAIN_TABLE = DaoDbTable.MAT_UNIT_TABLE;
+	private final String MAIN_TABLE = DaoDbTable.REFUND_POLICY_TABLE;
 	
 	
 	public DaoRefupoSelectSingle(Connection conn, RefupoInfo recordInfo, String schemaName) {
