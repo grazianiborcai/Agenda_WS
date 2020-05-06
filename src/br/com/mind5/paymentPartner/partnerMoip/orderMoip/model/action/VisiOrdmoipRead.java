@@ -1,18 +1,25 @@
 package br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.action;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
+import br.com.mind5.common.SystemCode;
 import br.com.mind5.common.SystemLog;
-import br.com.mind5.model.action.ActionVisitorV1;
+import br.com.mind5.model.action.ActionVisitorTemplateSimpleV2;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.info.OrdmoipInfo;
 import br.com.moip.Moip;
 
-final class VisiOrdmoipRead implements ActionVisitorV1<OrdmoipInfo> {
+final class VisiOrdmoipRead extends ActionVisitorTemplateSimpleV2<OrdmoipInfo> {
 	
-	@Override public List<OrdmoipInfo> executeTransformation(List<OrdmoipInfo> recordInfos) {
+	public VisiOrdmoipRead(DeciTreeOption<OrdmoipInfo> option) {
+		super(option);
+	}
+	
+	
+	
+	@Override public List<OrdmoipInfo> executeTransformationHook(List<OrdmoipInfo> recordInfos) {
 		List<OrdmoipInfo> results = new ArrayList<>();
 		
 		for(OrdmoipInfo eachRecod : recordInfos) {
@@ -20,7 +27,7 @@ final class VisiOrdmoipRead implements ActionVisitorV1<OrdmoipInfo> {
 			response = tryToReadOrder(eachRecod);
 			
 			if (response == null)
-				return Collections.emptyList();
+				return null;
 			
 			eachRecod.response = response;
 			results.add(eachRecod);
@@ -38,14 +45,20 @@ final class VisiOrdmoipRead implements ActionVisitorV1<OrdmoipInfo> {
 			
 		} catch (Exception e) {
 			logException(e);
+			//TODO: Escrever em log detalhes do erro
 			return null;
 		}
 	}
 	
 	
 	
-	private void logException(Exception e) {
-		
+	@Override protected int getErrorCodeHook() {
+		return SystemCode.ORDER_MOIP_READ_ERROR;
+	}
+	
+	
+	
+	private void logException(Exception e) {		
 		SystemLog.logError(this.getClass(), e);
 	}
 }

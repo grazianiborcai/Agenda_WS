@@ -1,13 +1,10 @@
 package br.com.mind5.paymentPartner.partnerMoip.orderMoip.info;
 
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoSetter;
+import br.com.mind5.info.InfoSetterTemplate;
 
-public final class OrdmoipSetterOwnId implements InfoSetter<OrdmoipInfo> {
+public final class OrdmoipSetterOwnId extends InfoSetterTemplate<OrdmoipInfo> {
 	
-	public OrdmoipInfo setAttr(OrdmoipInfo recordInfo) {
-		checkArgument(recordInfo);
-		
+	@Override protected OrdmoipInfo setAttrHook(OrdmoipInfo recordInfo) {
 		recordInfo.ownId = String.valueOf(recordInfo.payordemData.codOwner)
 				         + "-"
 				         + String.valueOf(recordInfo.payordemData.codPayOrder)
@@ -15,12 +12,5 @@ public final class OrdmoipSetterOwnId implements InfoSetter<OrdmoipInfo> {
 				         + String.valueOf(recordInfo.payordemData.codPayOrderItem);
 		
 		return recordInfo;
-	}
-	
-	
-	
-	private void checkArgument(OrdmoipInfo recordInfo) {
-		if (recordInfo == null)
-			throw new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT);
 	}
 }

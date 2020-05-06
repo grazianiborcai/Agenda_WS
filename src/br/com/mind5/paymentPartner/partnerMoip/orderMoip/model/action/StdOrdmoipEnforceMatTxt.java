@@ -1,35 +1,19 @@
 package br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.action;
 
-import br.com.mind5.model.action.ActionLazyV1;
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionStdHelperEnforce;
-import br.com.mind5.model.decisionTree.DeciResult;
+import br.com.mind5.model.action.ActionStdTemplateV2;
+import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.info.OrdmoipInfo;
 
-public final class StdOrdmoipEnforceMatTxt implements ActionStdV1<OrdmoipInfo> {
-	private ActionStdV1<OrdmoipInfo> actionHelper;	
-	
-	
-	public StdOrdmoipEnforceMatTxt(DeciTreeOption<OrdmoipInfo> option) {			
-		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiOrdmoipEnforceMatTxt());
+public final class StdOrdmoipEnforceMatTxt extends ActionStdTemplateV2<OrdmoipInfo> {
+
+	public StdOrdmoipEnforceMatTxt(DeciTreeOption<OrdmoipInfo> option) {
+		super(option);
 	}
 	
 	
 	
-	@Override public void addPostAction(ActionLazyV1<OrdmoipInfo> actionHandler) {
-		actionHelper.addPostAction(actionHandler);
-	}
-	
-	
-	
-	@Override public boolean executeAction() {			
-		return actionHelper.executeAction();
-	}
-	
-	
-	
-	@Override public DeciResult<OrdmoipInfo> getDecisionResult() {
-		return actionHelper.getDecisionResult();
+	protected ActionVisitorV2<OrdmoipInfo> buildVisitorHook(DeciTreeOption<OrdmoipInfo> option) {
+		return new VisiOrdmoipEnforceMatTxt(option);
 	}
 }

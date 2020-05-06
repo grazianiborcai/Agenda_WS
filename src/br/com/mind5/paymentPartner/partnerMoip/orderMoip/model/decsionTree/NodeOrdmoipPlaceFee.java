@@ -5,18 +5,18 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.info.OrdmoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.action.LazyOrdmoipEnforceReceiverSys;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.action.LazyOrdmoipNodePlaceL2;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.action.LazyOrdmoipNodeSysparL1;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.action.StdOrdmoipEnforceFeeTxt;
-import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.checker.OrdmoipCheckDummy;
 
-public final class NodeOrdmoipPlaceFee extends DeciTreeTemplateWriteV1<OrdmoipInfo> {
+public final class NodeOrdmoipPlaceFee extends DeciTreeTemplateWriteV2<OrdmoipInfo> {
 	
 	public NodeOrdmoipPlaceFee(DeciTreeOption<OrdmoipInfo> option) {
 		super(option);
@@ -28,7 +28,7 @@ public final class NodeOrdmoipPlaceFee extends DeciTreeTemplateWriteV1<OrdmoipIn
 		List<ModelCheckerV1<OrdmoipInfo>> queue = new ArrayList<>();		
 		ModelCheckerV1<OrdmoipInfo> checker;	
 	
-		checker = new OrdmoipCheckDummy();
+		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 
 		return new ModelCheckerHelperQueueV2<>(queue);

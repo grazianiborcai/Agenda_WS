@@ -5,14 +5,11 @@ import static br.com.moip.helpers.PayloadFactory.value;
 
 import java.util.Map;
 
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoSetter;
+import br.com.mind5.info.InfoSetterTemplate;
 
-public final class OrdmoipSetterReceivers implements InfoSetter<OrdmoipInfo> {
+public final class OrdmoipSetterReceivers extends InfoSetterTemplate<OrdmoipInfo> {
 	
-	public OrdmoipInfo setAttr(OrdmoipInfo recordInfo) {
-		checkArgument(recordInfo);
-		
+	@Override protected OrdmoipInfo setAttrHook(OrdmoipInfo recordInfo) {
 		Map<String, Object> receiver = payloadFactory(
 				value("moipAccount", recordInfo.account),
 			    value("type", "PRIMARY")
@@ -20,12 +17,5 @@ public final class OrdmoipSetterReceivers implements InfoSetter<OrdmoipInfo> {
 
 		recordInfo.receivers.add(receiver);
 		return recordInfo;
-	}
-	
-	
-	
-	private void checkArgument(OrdmoipInfo recordInfo) {
-		if (recordInfo == null)
-			throw new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT);
 	}
 }

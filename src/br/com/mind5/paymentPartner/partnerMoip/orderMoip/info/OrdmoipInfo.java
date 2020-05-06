@@ -49,7 +49,7 @@ public final class OrdmoipInfo extends InfoRecord implements Cloneable {
 	
 	
 	public OrdmoipInfo() {
-		super(OrdmoipInfo.class);
+		super();
 		
 		codOwner = DefaultValue.character();
 		codPayOrder = DefaultValue.character();

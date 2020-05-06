@@ -5,14 +5,11 @@ import static br.com.moip.helpers.PayloadFactory.value;
 
 import java.util.Map;
 
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoSetter;
+import br.com.mind5.info.InfoSetterTemplate;
 
-public final class OrdmoipSetterProducts implements InfoSetter<OrdmoipInfo> {
+public final class OrdmoipSetterProducts extends InfoSetterTemplate<OrdmoipInfo> {
 	
-	public OrdmoipInfo setAttr(OrdmoipInfo recordInfo) {
-		checkArgument(recordInfo);
-		
+	@Override protected OrdmoipInfo setAttrHook(OrdmoipInfo recordInfo) {
 		Map<String, Object> product = payloadFactory(
 			    value("product", recordInfo.productTxt),
 		   //   value("category", recordInfo.payordemData.matData.txtMatCateg),
@@ -23,12 +20,5 @@ public final class OrdmoipSetterProducts implements InfoSetter<OrdmoipInfo> {
 		
 		recordInfo.products.add(product);
 		return recordInfo;
-	}
-	
-	
-	
-	private void checkArgument(OrdmoipInfo recordInfo) {
-		if (recordInfo == null)
-			throw new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT);
 	}
 }

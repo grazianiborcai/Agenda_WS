@@ -4,29 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoSetter;
+import br.com.mind5.info.InfoSetterTemplate;
 
-public final class OrdmoipSetterResponseAttr implements InfoSetter<OrdmoipInfo> {
+public final class OrdmoipSetterResponseAttr extends InfoSetterTemplate<OrdmoipInfo> {
 	
-	public OrdmoipInfo setAttr(OrdmoipInfo recordInfo) {
-		checkArgument(recordInfo);
-		return setResponseAtt(recordInfo);
-	}
-	
-	
-	
-	private void checkArgument(OrdmoipInfo recordInfo) {
-		if (recordInfo == null) {
-			logException(new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT));
-			throw new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT);
-		}
-	}
-	
-	
-	
-	private OrdmoipInfo setResponseAtt(OrdmoipInfo recordInfo) {		
+	@Override protected OrdmoipInfo setAttrHook(OrdmoipInfo recordInfo) {	
 		recordInfo = setAttrStatus(recordInfo);
 		recordInfo = setAttrPayment(recordInfo);
 		recordInfo = setAttrRefund(recordInfo);
@@ -103,11 +85,4 @@ public final class OrdmoipSetterResponseAttr implements InfoSetter<OrdmoipInfo> 
 		
 		return true;
 	}
-	
-	
-	
-	private void logException(Exception e) {
-		
-		SystemLog.logError(this.getClass(), e);
-	}	
 }
