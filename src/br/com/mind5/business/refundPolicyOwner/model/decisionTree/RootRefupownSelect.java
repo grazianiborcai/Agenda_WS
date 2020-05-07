@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.refundPolicyOwner.info.RefupownInfo;
-import br.com.mind5.business.refundPolicyOwner.model.action.LazyRefupownMergeRefupo;
+import br.com.mind5.business.refundPolicyOwner.model.action.LazyRefupownMergeRefugroup;
 import br.com.mind5.business.refundPolicyOwner.model.action.StdRefupownDaoSelect;
 import br.com.mind5.business.refundPolicyOwner.model.checker.RefupownCheckRead;
 import br.com.mind5.model.action.ActionLazyV1;
@@ -44,7 +44,7 @@ public final class RootRefupownSelect extends DeciTreeTemplateReadV2<RefupownInf
 		List<ActionStdV1<RefupownInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<RefupownInfo> select = new StdRefupownDaoSelect(option);
-		ActionLazyV1<RefupownInfo> mergeRefupo = new LazyRefupownMergeRefupo(option.conn, option.schemaName);
+		ActionLazyV1<RefupownInfo> mergeRefupo = new LazyRefupownMergeRefugroup(option.conn, option.schemaName);
 		
 		select.addPostAction(mergeRefupo);
 		

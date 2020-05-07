@@ -16,7 +16,7 @@ final class RefuporeVisiMergeRefupown implements InfoMergerVisitorV3<RefuporeInf
 	
 	
 	@Override public boolean shouldMerge(RefuporeInfo baseInfo, RefupownInfo selectedInfo) {
-		return baseInfo.codOwner == selectedInfo.codOwner;
+		return true;
 	}
 	
 	
@@ -24,9 +24,9 @@ final class RefuporeVisiMergeRefupown implements InfoMergerVisitorV3<RefuporeInf
 	@Override public List<RefuporeInfo> merge(RefuporeInfo baseInfo, RefupownInfo selectedInfo) {
 		List<RefuporeInfo> results = new ArrayList<>();
 		
-		baseInfo.codRefundPolicy = selectedInfo.codRefundPolicy;
-		baseInfo.txtRefundPolicy = selectedInfo.txtRefundPolicy;
-		baseInfo.hourBefore = selectedInfo.hourBefore;
+		baseInfo.codRefundPolicyGroup = selectedInfo.codRefundPolicyGroup;
+		baseInfo.txtRefundPolicyGroup = selectedInfo.txtRefundPolicyGroup;
+		baseInfo.refugritemes = selectedInfo.refugritemes;
 		
 		results.add(baseInfo);
 		return results;

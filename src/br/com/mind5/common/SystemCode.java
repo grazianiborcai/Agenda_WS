@@ -1194,9 +1194,9 @@ public final class SystemCode {
 	public static final int REFUPOL_OWNER_NOT_FOUND						= 11702;	
 	
 	//Refund Policy Owner Search
-	public static final int REFUPOL_OWNER_SEARCH_MANDATORY_FIELD_EMPTY 	= 11750;
-	public static final int REFUPOL_OWNER_SEARCH_ALREADY_EXIST			= 11751;
-	public static final int REFUPOL_OWNER_SEARCH_NOT_FOUND				= 11752;	
+//	public static final int REFUPOL_OWNER_SEARCH_MANDATORY_FIELD_EMPTY 	= 11750;
+//	public static final int REFUPOL_OWNER_SEARCH_ALREADY_EXIST			= 11751;
+//	public static final int REFUPOL_OWNER_SEARCH_NOT_FOUND				= 11752;	
 	
 	//Refund Policy Store
 	public static final int REFUPOL_STORE_MANDATORY_FIELD_EMPTY 		= 11800;
@@ -1204,7 +1204,27 @@ public final class SystemCode {
 	public static final int REFUPOL_STORE_NOT_FOUND						= 11802;	
 	
 	//Refund Policy Store Search
-	public static final int REFUPOL_STORE_SEARCH_MANDATORY_FIELD_EMPTY 	= 11850;
-	public static final int REFUPOL_STORE_SEARCH_ALREADY_EXIST			= 11851;
-	public static final int REFUPOL_STORE_SEARCH_NOT_FOUND				= 11852;	
+//	public static final int REFUPOL_STORE_SEARCH_MANDATORY_FIELD_EMPTY 	= 11850;
+//	public static final int REFUPOL_STORE_SEARCH_ALREADY_EXIST			= 11851;
+//	public static final int REFUPOL_STORE_SEARCH_NOT_FOUND				= 11852;	
+	
+	//Refund Policy Group Header
+	public static final int REFUPOL_GR_HDR_MANDATORY_FIELD_EMPTY 		= 11900;
+	public static final int REFUPOL_GR_HDR_ALREADY_EXIST				= 11901;
+	public static final int REFUPOL_GR_HDR_NOT_FOUND					= 11902;	
+	
+	//Refund Policy Group Item
+	public static final int REFUPOL_GR_ITM_MANDATORY_FIELD_EMPTY 		= 11950;
+	public static final int REFUPOL_GR_ITM_ALREADY_EXIST				= 11951;
+	public static final int REFUPOL_GR_ITM_NOT_FOUND					= 11952;	
+	
+	//Refund Policy Group Item Search
+	public static final int REFUPOL_GR_ITM_SEARCH_MANDATORY_FIELD_EMPTY = 12000;
+	public static final int REFUPOL_GR_ITM_SEARCH_ALREADY_EXIST			= 12001;
+	public static final int REFUPOL_GR_ITM_SEARCH_NOT_FOUND				= 12002;	
+	
+	//Refund Policy Group
+	public static final int REFUPOL_GR_MANDATORY_FIELD_EMPTY 			= 12050;
+	public static final int REFUPOL_GR_ALREADY_EXIST					= 12051;
+	public static final int REFUPOL_GR_NOT_FOUND						= 12052;	
 }

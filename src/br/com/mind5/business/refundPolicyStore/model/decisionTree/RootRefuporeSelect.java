@@ -4,10 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.refundPolicyStore.info.RefuporeInfo;
-import br.com.mind5.business.refundPolicyStore.model.action.LazyRefuporeMergeRefupo;
-import br.com.mind5.business.refundPolicyStore.model.action.StdRefuporeDaoSelect;
 import br.com.mind5.business.refundPolicyStore.model.checker.RefuporeCheckRead;
-import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -43,10 +40,7 @@ public final class RootRefuporeSelect extends DeciTreeTemplateReadV2<RefuporeInf
 	@Override protected List<ActionStdV1<RefuporeInfo>> buildActionsOnPassedHook(DeciTreeOption<RefuporeInfo> option) {
 		List<ActionStdV1<RefuporeInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<RefuporeInfo> select = new StdRefuporeDaoSelect(option);
-		ActionLazyV1<RefuporeInfo> mergeRefupo = new LazyRefuporeMergeRefupo(option.conn, option.schemaName);
-		
-		select.addPostAction(mergeRefupo);
+		ActionStdV1<RefuporeInfo> select = new NodeRefuporeSelect(option).toAction();
 		
 		actions.add(select);
 		return actions;

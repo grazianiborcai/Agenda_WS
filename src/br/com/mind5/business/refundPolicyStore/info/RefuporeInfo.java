@@ -4,13 +4,14 @@ import java.util.List;
 
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
+import br.com.mind5.masterData.refundPolicyGroupItem.info.RefugritemInfo;
 
 public final class RefuporeInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codStore;
-	public int codRefundPolicy;
-	public String txtRefundPolicy;
-	public int hourBefore;
+	public int codRefundPolicyGroup;
+	public String txtRefundPolicyGroup;
+	public List<RefugritemInfo> refugritemes;
 	
 	
 	public RefuporeInfo() {
@@ -18,8 +19,8 @@ public final class RefuporeInfo extends InfoRecord implements Cloneable {
 		
 		codOwner = DefaultValue.number();
 		codStore = DefaultValue.number();
-		codRefundPolicy = DefaultValue.number();
-		hourBefore = DefaultValue.number();
+		codRefundPolicyGroup = DefaultValue.number();
+		refugritemes = DefaultValue.list();
 	}
 	
 	
@@ -45,9 +46,9 @@ public final class RefuporeInfo extends InfoRecord implements Cloneable {
 	@Override public int hashCode() {
 		int result = 17;
 		
-		result = result * 31 + (int) (codOwner 		  ^ (codOwner 		 >>> 32));
-		result = result * 31 + (int) (codStore 		  ^ (codStore 		 >>> 32));
-		result = result * 31 + (int) (codRefundPolicy ^ (codRefundPolicy >>> 32));
+		result = result * 31 + (int) (codOwner 		  		^ (codOwner 		 	>>> 32));
+		result = result * 31 + (int) (codStore 		  		^ (codStore 		 	>>> 32));
+		result = result * 31 + (int) (codRefundPolicyGroup 	^ (codRefundPolicyGroup >>> 32));
 		
 		return result;
 	}
@@ -64,8 +65,8 @@ public final class RefuporeInfo extends InfoRecord implements Cloneable {
 		
 		
 		RefuporeInfo obj = (RefuporeInfo) o;
-		return (codOwner 		== obj.codOwner 		&&
-				codStore 		== obj.codStore 		&&
-				codRefundPolicy == obj.codRefundPolicy		);
+		return (codOwner 			 == obj.codOwner 		&&
+				codStore 			 == obj.codStore 		&&
+				codRefundPolicyGroup == obj.codRefundPolicyGroup		);
 	}
 }

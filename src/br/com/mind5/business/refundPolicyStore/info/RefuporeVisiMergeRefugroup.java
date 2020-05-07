@@ -1,0 +1,39 @@
+package br.com.mind5.business.refundPolicyStore.info;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.masterData.refundPolicyGroup.info.RefugroupInfo;
+
+final class RefuporeVisiMergeRefugroup implements InfoMergerVisitorV3<RefuporeInfo, RefugroupInfo> {
+	
+	@Override public List<RefuporeInfo> beforeMerge(List<RefuporeInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(RefuporeInfo baseInfo, RefugroupInfo selectedInfo) {
+		return baseInfo.codRefundPolicyGroup == selectedInfo.codRefundPolicyGroup;
+	}
+	
+	
+	
+	@Override public List<RefuporeInfo> merge(RefuporeInfo baseInfo, RefugroupInfo selectedInfo) {
+		List<RefuporeInfo> results = new ArrayList<>();
+		
+		baseInfo.txtRefundPolicyGroup = selectedInfo.txtRefundPolicyGroup;
+		baseInfo.refugritemes = selectedInfo.refugritemes;
+		
+		results.add(baseInfo);
+		return results;
+	}
+	
+	
+	
+	@Override public InfoUniquifier<RefuporeInfo> getUniquifier() {
+		return null;
+	}
+}

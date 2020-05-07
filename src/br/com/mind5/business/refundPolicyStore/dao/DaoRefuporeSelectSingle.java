@@ -17,7 +17,7 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
 public final class DaoRefuporeSelectSingle extends DaoStmtTemplate<RefuporeInfo> {
-	private final String MAIN_TABLE = DaoDbTable.REFUND_POLICY_STORE;
+	private final String MAIN_TABLE = DaoDbTable.REFUND_POLICY_STORE_TABLE;
 	
 	
 	public DaoRefuporeSelectSingle(Connection conn, RefuporeInfo recordInfo, String schemaName) {
@@ -63,7 +63,7 @@ public final class DaoRefuporeSelectSingle extends DaoStmtTemplate<RefuporeInfo>
 					
 					dataInfo.codStore = DaoFormatter.sqlToLong(stmtResult, DaoRefuporeDbTableColumn.COL_COD_STORE);
 					dataInfo.codOwner = DaoFormatter.sqlToLong(stmtResult, DaoRefuporeDbTableColumn.COL_COD_OWNER);
-					dataInfo.codRefundPolicy = DaoFormatter.sqlToInt(stmtResult, DaoRefuporeDbTableColumn.COL_COD_REFUND_POLICY);					
+					dataInfo.codRefundPolicyGroup = DaoFormatter.sqlToInt(stmtResult, DaoRefuporeDbTableColumn.COL_COD_REFUND_POLICY_GROUP);					
 					
 					finalResult.add(dataInfo);				
 				} while (stmtResult.next());

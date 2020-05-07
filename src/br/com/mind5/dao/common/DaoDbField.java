@@ -78,6 +78,7 @@ public final class DaoDbField {
 	public static final String COL_COD_PHONE_INVOICE = "cod_phone_invoice";
 	public static final String COL_COD_PHONE_INVOICE_SNAPSHOT = "cod_phone_invoice_snapshot";
 	public static final String COL_COD_REFUND_POLICY = "cod_refund_policy";
+	public static final String COL_COD_REFUND_POLICY_GROUP = "cod_refund_policy_group";
 	public static final String COL_COD_SCHEDULE = "cod_schedule";
 	public static final String COL_COD_SCHEDULE_STATUS = "cod_schedule_status";
 	public static final String COL_COD_SNAPSHOT = "cod_snapshot";

@@ -76,7 +76,6 @@ import br.com.mind5.business.phoneSearch.dao.DaoPhonarchDbTableColumn;
 import br.com.mind5.business.phoneSnapshot.dao.DaoPhonapDbTableColumn;
 import br.com.mind5.business.planingData.dao.PlanataDbTableColumn;
 import br.com.mind5.business.refundPolicyOwner.dao.DaoRefupownDbTableColumn;
-import br.com.mind5.business.refundPolicyOwnerSearch.dao.DaoRefupownarchDbTableColumn;
 import br.com.mind5.business.refundPolicyStore.dao.DaoRefuporeDbTableColumn;
 import br.com.mind5.business.scheduleLine.dao.DaoSchedineDbTableColumn;
 import br.com.mind5.business.scheduleLineSnapshot.dao.SchedinapDbTableColumn;
@@ -139,6 +138,9 @@ import br.com.mind5.masterData.moonPhaseSearch.dao.DaoMoonasarchDbTableColumn;
 import br.com.mind5.masterData.orderStatus.dao.DaoOrderatusDbTableColumn;
 import br.com.mind5.masterData.orderStatusSearch.dao.DaoOrderatarchDbTableColumn;
 import br.com.mind5.masterData.refundPolicy.dao.DaoRefupoDbTableColumn;
+import br.com.mind5.masterData.refundPolicyGroupHeader.dao.DaoRefugraderDbTableColumn;
+import br.com.mind5.masterData.refundPolicyGroupItem.dao.DaoRefugritemDbTableColumn;
+import br.com.mind5.masterData.refundPolicyGroupItemSearch.dao.DaoRefugritarchDbTableColumn;
 import br.com.mind5.masterData.state.dao.DaoStateDbTableColumn;
 import br.com.mind5.masterData.stateSearch.dao.DaoStatarchDbTableColumn;
 import br.com.mind5.masterData.timezone.dao.DaoTimezoneDbTableColumn;
@@ -354,8 +356,10 @@ public final class DaoDbTableColumnAll {
 		addTable(new DaoFeecatarchDbTableColumn());
 		addTable(new DaoRefupoDbTableColumn());
 		addTable(new DaoRefupownDbTableColumn());
-		addTable(new DaoRefupownarchDbTableColumn());
 		addTable(new DaoRefuporeDbTableColumn());
+		addTable(new DaoRefugraderDbTableColumn());
+		addTable(new DaoRefugritemDbTableColumn());
+		addTable(new DaoRefugritarchDbTableColumn());
 	}
 	
 	
