@@ -1,4 +1,4 @@
-package br.com.mind5.masterData.orderStatusSearch;
+package br.com.mind5.masterData.orderStatusSearch.model;
 
 import br.com.mind5.masterData.orderStatusSearch.info.OrderatarchInfo;
 import br.com.mind5.masterData.orderStatusSearch.model.decisionTree.RootOrderatarchSelect;
