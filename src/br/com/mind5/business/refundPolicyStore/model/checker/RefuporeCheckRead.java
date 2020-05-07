@@ -18,7 +18,6 @@ public final class RefuporeCheckRead extends ModelCheckerTemplateSimpleV2<Refupo
 	@Override protected boolean checkHook(RefuporeInfo recordInfo, Connection conn, String schemaName) {	
 		if ( recordInfo.codOwner 		<= 0 	||
 			 recordInfo.codStore 		<= 0 	||
-			 recordInfo.codRefundPolicyGroup <= 0 	||
 			 recordInfo.codLanguage 	== null 	)		
 			
 			return super.FAILED;

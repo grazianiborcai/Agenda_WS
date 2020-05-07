@@ -46,9 +46,8 @@ public final class RefuporeInfo extends InfoRecord implements Cloneable {
 	@Override public int hashCode() {
 		int result = 17;
 		
-		result = result * 31 + (int) (codOwner 		  		^ (codOwner 		 	>>> 32));
-		result = result * 31 + (int) (codStore 		  		^ (codStore 		 	>>> 32));
-		result = result * 31 + (int) (codRefundPolicyGroup 	^ (codRefundPolicyGroup >>> 32));
+		result = result * 31 + (int) (codOwner ^ (codOwner >>> 32));
+		result = result * 31 + (int) (codStore ^ (codStore >>> 32));
 		
 		return result;
 	}
@@ -65,8 +64,7 @@ public final class RefuporeInfo extends InfoRecord implements Cloneable {
 		
 		
 		RefuporeInfo obj = (RefuporeInfo) o;
-		return (codOwner 			 == obj.codOwner 		&&
-				codStore 			 == obj.codStore 		&&
-				codRefundPolicyGroup == obj.codRefundPolicyGroup		);
+		return (codOwner == obj.codOwner &&
+				codStore == obj.codStore 	);
 	}
 }
