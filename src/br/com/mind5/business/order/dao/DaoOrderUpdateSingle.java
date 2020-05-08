@@ -3,6 +3,7 @@ package br.com.mind5.business.order.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+
 import br.com.mind5.business.order.info.OrderInfo;
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
@@ -74,6 +75,7 @@ public final class DaoOrderUpdateSingle extends DaoStmtTemplate<OrderInfo> {
 				stmt = DaoFormatter.localDateToStmt(stmt, i++, recordInfo.postingDate);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.postingYear);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.postingYearMonth);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codRefundPolicyGroup);
 				
 				return stmt;
 			}		

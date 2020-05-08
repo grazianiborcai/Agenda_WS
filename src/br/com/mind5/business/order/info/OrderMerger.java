@@ -7,15 +7,43 @@ import br.com.mind5.business.customerSearch.info.CusarchInfo;
 import br.com.mind5.business.orderItem.info.OrderemInfo;
 import br.com.mind5.business.orderSearch.info.OrdarchInfo;
 import br.com.mind5.business.orderSnapshot.info.OrdnapInfo;
+import br.com.mind5.business.refundPolicyOwner.info.RefupownInfo;
 import br.com.mind5.info.InfoMergerBuilderV3;
 import br.com.mind5.info.InfoMergerV3;
 import br.com.mind5.masterData.currency.info.CurrencyInfo;
 import br.com.mind5.masterData.feeCategory.info.FeecatInfo;
 import br.com.mind5.masterData.orderStatus.info.OrderatusInfo;
+import br.com.mind5.masterData.refundPolicyGroupHeader.info.RefugraderInfo;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class OrderMerger {	
+	public static List<OrderInfo> mergeWithRefupown(List<OrderInfo> baseInfos, List<RefupownInfo> selectedInfos) {
+		InfoMergerBuilderV3<OrderInfo, RefupownInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new OrderVisiMergeRefupown());
+		InfoMergerV3<OrderInfo, RefupownInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}	
+	
+	
+	
+	public static List<OrderInfo> mergeWithRefugrader(List<OrderInfo> baseInfos, List<RefugraderInfo> selectedInfos) {
+		InfoMergerBuilderV3<OrderInfo, RefugraderInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new OrderVisiMergeRefugrader());
+		InfoMergerV3<OrderInfo, RefugraderInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}	
+	
+	
+	
 	public static List<OrderInfo> mergeWithOrdarch(List<OrderInfo> baseInfos, List<OrdarchInfo> selectedInfos) {
 		InfoMergerBuilderV3<OrderInfo, OrdarchInfo> builder = new InfoMergerBuilderV3<>();
 		

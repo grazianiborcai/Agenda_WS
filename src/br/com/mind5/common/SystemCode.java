@@ -600,6 +600,7 @@ public final class SystemCode {
 	public static final int ORDER_HEADER_MANDATORY_FIELD_EMPTY			= 4007;
 	public static final int ORDER_DONT_HAVE_PAYMENT						= 4008;
 	public static final int ORDER_ITEM_IS_NOT_SERVICE 					= 4009;
+	public static final int ORDER_DONT_HAVE_REFUND_POLICY				= 4010;
 	
 	//Pay-Order Header
 	public static final int PAY_ORDER_HEADER_DIF_ORDER_USER				= 4051;

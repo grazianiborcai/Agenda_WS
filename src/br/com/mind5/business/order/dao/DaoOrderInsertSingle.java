@@ -64,6 +64,7 @@ public final class DaoOrderInsertSingle extends DaoStmtTemplate<OrderInfo> {
 				stmt = DaoFormatter.localDateToStmt(stmt, i++, recordInfo.postingDate);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.postingYear);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.postingYearMonth);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codRefundPolicyGroup);
 	
 				return stmt;
 			}		

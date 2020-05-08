@@ -84,6 +84,7 @@ public final class DaoOrderSelectSingle extends DaoStmtTemplate<OrderInfo> {
 					dataInfo.postingDate = DaoFormatter.sqlToLocalDate(stmtResult, DaoOrderDbTableColumn.COL_POSTING_DATE);
 					dataInfo.postingYear = DaoFormatter.sqlToInt(stmtResult, DaoOrderDbTableColumn.COL_POSTING_YEAR);
 					dataInfo.postingYearMonth = DaoFormatter.sqlToInt(stmtResult, DaoOrderDbTableColumn.COL_POSTING_YEAR_MONTH);
+					dataInfo.codRefundPolicyGroup = DaoFormatter.sqlToInt(stmtResult, DaoOrderDbTableColumn.COL_COD_REFUND_POLICY_GROUP);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

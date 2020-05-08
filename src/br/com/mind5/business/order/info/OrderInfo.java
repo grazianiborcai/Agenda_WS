@@ -36,6 +36,8 @@ public final class OrderInfo extends InfoRecord implements Cloneable {
 	public int postingYear;
 	public int postingYearMonth;
 	public LocalDate postingDate;
+	public int codRefundPolicyGroup;
+	public String txtRefundPolicyGroup;
 	public LocalDateTime lastChanged;
 	public LocalDateTime createdOn;
 	public long lastChangedBy;
@@ -64,6 +66,7 @@ public final class OrderInfo extends InfoRecord implements Cloneable {
 		codPayPartner = DefaultValue.number();
 		postingYear = DefaultValue.number();
 		postingYearMonth = DefaultValue.number();
+		codRefundPolicyGroup = DefaultValue.number();
 		lastChangedBy = DefaultValue.number();
 		createdBy = DefaultValue.number();
 		orderms = DefaultValue.list();
