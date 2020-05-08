@@ -26,6 +26,7 @@ public final class DaoOrdnapDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_PHONE_SHIP_SNAPSHOT = DaoDbField.COL_COD_PHONE_SHIP_SNAPSHOT;
 	public static final String COL_COD_PHONE_INVOICE = DaoDbField.COL_COD_PHONE_INVOICE;
 	public static final String COL_COD_PHONE_INVOICE_SNAPSHOT = DaoDbField.COL_COD_PHONE_INVOICE_SNAPSHOT;	
+	public static final String COL_COD_REFUND_POLICY_GROUP = DaoDbField.COL_COD_REFUND_POLICY_GROUP;	
 	public static final String COL_COD_SNAPSHOT = DaoDbField.COL_COD_SNAPSHOT;
 	public static final String COL_COD_USER = DaoDbField.COL_COD_USER;
 	public static final String COL_COD_USER_SNAPSHOT = DaoDbField.COL_COD_USER_SNAPSHOT;
@@ -280,6 +281,14 @@ public final class DaoOrdnapDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_POSTING_YEAR_MONTH;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_COD_REFUND_POLICY_GROUP;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;

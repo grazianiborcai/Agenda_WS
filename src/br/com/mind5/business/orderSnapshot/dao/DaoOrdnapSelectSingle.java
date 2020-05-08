@@ -90,6 +90,7 @@ public final class DaoOrdnapSelectSingle extends DaoStmtTemplate<OrdnapInfo> {
 					dataInfo.postingDate = DaoFormatter.sqlToLocalDate(stmtResult, DaoOrdnapDbTableColumn.COL_POSTING_DATE);
 					dataInfo.postingYear = DaoFormatter.sqlToInt(stmtResult, DaoOrdnapDbTableColumn.COL_POSTING_YEAR);
 					dataInfo.postingYearMonth = DaoFormatter.sqlToInt(stmtResult, DaoOrdnapDbTableColumn.COL_POSTING_YEAR_MONTH);
+					dataInfo.codRefundPolicyGroup = DaoFormatter.sqlToInt(stmtResult, DaoOrdnapDbTableColumn.COL_COD_REFUND_POLICY_GROUP);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());
