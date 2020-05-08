@@ -4,7 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.refundPolicyOwner.info.RefupownInfo;
-import br.com.mind5.business.refundPolicyOwner.model.checker.RefupownCheckRead;
+import br.com.mind5.business.refundPolicyOwner.model.action.LazyRefupownMergeRefugroup;
+import br.com.mind5.business.refundPolicyOwner.model.action.StdRefupownDaoSelect;
+import br.com.mind5.business.refundPolicyOwner.model.action.StdRefupownMergeDefault;
+import br.com.mind5.business.refundPolicyOwner.model.checker.RefupownCheckExist;
+import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -12,9 +16,9 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 
-public final class RootRefupownSelect extends DeciTreeTemplateReadV2<RefupownInfo> {
+public final class NodeRefupownSelect extends DeciTreeTemplateReadV2<RefupownInfo> {
 	
-	public RootRefupownSelect(DeciTreeOption<RefupownInfo> option) {
+	public NodeRefupownSelect(DeciTreeOption<RefupownInfo> option) {
 		super(option);
 	}
 	
@@ -29,7 +33,7 @@ public final class RootRefupownSelect extends DeciTreeTemplateReadV2<RefupownInf
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new RefupownCheckRead(checkerOption);
+		checker = new RefupownCheckExist(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueueV2<>(queue);
@@ -40,9 +44,23 @@ public final class RootRefupownSelect extends DeciTreeTemplateReadV2<RefupownInf
 	@Override protected List<ActionStdV1<RefupownInfo>> buildActionsOnPassedHook(DeciTreeOption<RefupownInfo> option) {
 		List<ActionStdV1<RefupownInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<RefupownInfo> select = new NodeRefupownSelect(option).toAction();
+		ActionStdV1<RefupownInfo> select = new StdRefupownDaoSelect(option);
+		ActionLazyV1<RefupownInfo> mergeRefupo = new LazyRefupownMergeRefugroup(option.conn, option.schemaName);
+		
+		select.addPostAction(mergeRefupo);
 		
 		actions.add(select);
+		return actions;
+	}
+	
+	
+	
+	@Override protected List<ActionStdV1<RefupownInfo>> buildActionsOnFailedHook(DeciTreeOption<RefupownInfo> option) {
+		List<ActionStdV1<RefupownInfo>> actions = new ArrayList<>();
+		
+		ActionStdV1<RefupownInfo> mergeDefault = new StdRefupownMergeDefault(option);
+		
+		actions.add(mergeDefault);
 		return actions;
 	}
 }

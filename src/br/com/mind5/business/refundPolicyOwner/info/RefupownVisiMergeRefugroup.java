@@ -16,6 +16,9 @@ final class RefupownVisiMergeRefugroup implements InfoMergerVisitorV3<RefupownIn
 	
 	
 	@Override public boolean shouldMerge(RefupownInfo baseInfo, RefugroupInfo selectedInfo) {
+		if (baseInfo.codRefundPolicyGroup <= 0)
+			return true;
+		
 		return baseInfo.codRefundPolicyGroup == selectedInfo.codRefundPolicyGroup;
 	}
 	
@@ -24,6 +27,7 @@ final class RefupownVisiMergeRefugroup implements InfoMergerVisitorV3<RefupownIn
 	@Override public List<RefupownInfo> merge(RefupownInfo baseInfo, RefugroupInfo selectedInfo) {
 		List<RefupownInfo> results = new ArrayList<>();
 		
+		baseInfo.codRefundPolicyGroup = selectedInfo.codRefundPolicyGroup;
 		baseInfo.txtRefundPolicyGroup = selectedInfo.txtRefundPolicyGroup;
 		baseInfo.refugritemes = selectedInfo.refugritemes;
 		
