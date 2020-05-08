@@ -13,7 +13,6 @@ import br.com.mind5.business.masterData.info.CountryLegalInfo;
 import br.com.mind5.business.masterData.info.EntityCategInfo;
 import br.com.mind5.business.masterData.info.MatmovTypeInfo;
 import br.com.mind5.business.masterData.info.MonthInfo;
-import br.com.mind5.business.masterData.info.PaymentStatusInfo;
 import br.com.mind5.business.masterData.info.PositionInfo;
 import br.com.mind5.business.masterData.info.ScheduleStatusInfo;
 import br.com.mind5.business.masterData.info.UserCategInfo;
@@ -22,7 +21,6 @@ import br.com.mind5.business.masterData.model.CountryLegalModelSelect;
 import br.com.mind5.business.masterData.model.EntityCategModelSelect;
 import br.com.mind5.business.masterData.model.MatmovTypeModelSelect;
 import br.com.mind5.business.masterData.model.MonthModelSelect;
-import br.com.mind5.business.masterData.model.PaymentStatusModelSelect;
 import br.com.mind5.business.masterData.model.PositionModelSelect;
 import br.com.mind5.business.masterData.model.ScheduleStatusModelSelect;
 import br.com.mind5.business.masterData.model.UserCategModelSelect;
@@ -56,6 +54,8 @@ import br.com.mind5.masterData.moonPhase.info.MoonaseInfo;
 import br.com.mind5.masterData.moonPhase.model.MoonaseModelSearch;
 import br.com.mind5.masterData.orderStatusSearch.info.OrderatarchInfo;
 import br.com.mind5.masterData.orderStatusSearch.model.OrderatarchModelSelect;
+import br.com.mind5.masterData.paymentStatusSearch.info.PaymenusarchInfo;
+import br.com.mind5.masterData.paymentStatusSearch.model.PaymenusarchModelSelect;
 import br.com.mind5.masterData.stateSearch.info.StatarchInfo;
 import br.com.mind5.masterData.stateSearch.model.StatarchModelSelect;
 import br.com.mind5.masterData.timezoneSearch.info.TimezonarchInfo;
@@ -418,12 +418,12 @@ public final class MasterDataResource {
 	public Response selectPaymentStatus(@HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage,
 			                            @HeaderParam("codPaymentStatus") String codPaymentStatus){
 		
-		PaymentStatusInfo recordInfo = new PaymentStatusInfo();		
+		PaymenusarchInfo recordInfo = new PaymenusarchInfo();		
 		recordInfo.codPaymentStatus = codPaymentStatus;
 		recordInfo.codLanguage = codLanguage;
 		
 		
-		Model model = new PaymentStatusModelSelect(recordInfo);
+		Model model = new PaymenusarchModelSelect(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	}

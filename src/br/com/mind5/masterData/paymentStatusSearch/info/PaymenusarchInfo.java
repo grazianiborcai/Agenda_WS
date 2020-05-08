@@ -1,28 +1,28 @@
-package br.com.mind5.business.masterData.info;
+package br.com.mind5.masterData.paymentStatusSearch.info;
 
 import java.util.List;
 
 import br.com.mind5.info.InfoRecord;
 
-public final class PaymentStatusInfo extends InfoRecord implements Cloneable {
+public final class PaymenusarchInfo extends InfoRecord implements Cloneable {
 	public String codPaymentStatus;
 	public String txtPaymentStatus;
 	
 	
-	public PaymentStatusInfo() {
-		super(PaymentStatusInfo.class);
+	public PaymenusarchInfo() {
+		super();
 	}
 	
 	
 	
-	public static PaymentStatusInfo copyFrom(Object sourceObj) {
-		return copyFrom(sourceObj, PaymentStatusInfo.class);
+	public static PaymenusarchInfo copyFrom(Object sourceObj) {
+		return copyFrom(sourceObj, PaymenusarchInfo.class);
 	}
 	
 	
 	
-	public static List<PaymentStatusInfo> copyFrom(List<?> sourceObjs) {
-		return copyFrom(sourceObjs, PaymentStatusInfo.class);
+	public static List<PaymenusarchInfo> copyFrom(List<?> sourceObjs) {
+		return copyFrom(sourceObjs, PaymenusarchInfo.class);
 	}
 	
 	
@@ -47,11 +47,11 @@ public final class PaymentStatusInfo extends InfoRecord implements Cloneable {
 			return true;
 		
 		
-		if (!(o instanceof PaymentStatusInfo))
+		if (!(o instanceof PaymenusarchInfo))
 			return false;
 		
 		
-		PaymentStatusInfo obj = (PaymentStatusInfo) o;		
+		PaymenusarchInfo obj = (PaymenusarchInfo) o;		
 		return (isStringEqual(codPaymentStatus, obj.codPaymentStatus));
 	}
 }

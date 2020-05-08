@@ -186,6 +186,7 @@ public final class SystemCode {
 	public static final int REFUND_POLICY_ALREADY_EXIST					= 11660;
 	public static final int REFUND_POLICY_NOT_FOUND						= 11661;
 	public static final int REFUND_POLICY_MANDATORY_FIELD_EMPTY 		= 11662;
+	public static final int PAYMENT_STATUS_SEARCH_MANDATORY_FIELD_EMPTY = 11663;
 	
 	// Material
 	public static final int MAT_ALREADY_EXIST							= 1200;

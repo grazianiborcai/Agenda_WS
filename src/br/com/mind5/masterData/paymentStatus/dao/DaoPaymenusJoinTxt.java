@@ -1,4 +1,4 @@
-package br.com.mind5.business.masterData.dao;
+package br.com.mind5.masterData.paymentStatus.dao;
 
 import br.com.mind5.dao.DaoJoin;
 import br.com.mind5.dao.DaoJoinBuilder;
@@ -7,11 +7,11 @@ import br.com.mind5.dao.DaoJoinType;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class PaymentStatusJoinTxt implements DaoJoinBuilder {
+public final class DaoPaymenusJoinTxt implements DaoJoinBuilder {
 	private final String leftTable;
 	
 	
-	public PaymentStatusJoinTxt(String leftTableName) {
+	public DaoPaymenusJoinTxt(String leftTableName) {
 		leftTable = leftTableName;
 	}
 
