@@ -297,18 +297,18 @@ public abstract class ActionVisitorTemplateMergeV2<T extends InfoRecord, S exten
 	
 	
 	
-	private List<S> toActionClass(List<T> recordInfos, Class<S> sClazz) {
-		List<S> results = toActionClassHook(recordInfos);	
+	private List<S> toActionClass(List<T> baseInfos, Class<S> sClazz) {
+		List<S> results = toActionClassHook(baseInfos);	
 		
 		if (results == null)
-			results = toActionClassDefault(recordInfos, sClazz);
+			results = toActionClassDefault(baseInfos, sClazz);
 		
 		return results;
 	}
 	
 	
 	
-	protected List<S> toActionClassHook(List<T> recordInfos) {
+	protected List<S> toActionClassHook(List<T> baseInfos) {
 		//Template method - Default behavior
 		return null;	
 	}
@@ -316,12 +316,12 @@ public abstract class ActionVisitorTemplateMergeV2<T extends InfoRecord, S exten
 	
 	
 	@SuppressWarnings("unchecked")
-	private List<S> toActionClassDefault(List<T> recordInfos, Class<S> sClazz) {
+	private List<S> toActionClassDefault(List<T> baseInfos, Class<S> sClazz) {
 		try {
 			S sInstance = sClazz.getConstructor().newInstance();
 			
 			Method met = sClazz.getMethod("copyFrom", List.class);
-			return (List<S>) met.invoke(sInstance, recordInfos);
+			return (List<S>) met.invoke(sInstance, baseInfos);
 				
 			} catch (Exception e) {
 				logException(e);
