@@ -9,6 +9,8 @@ public final class RefemInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codPayOrder;
 	public int codPayOrderItem;
+	public long codOrder;
+	public int codOrderItem;
 	public long codStore;
 	public long codPayCustomer;
 	public int codPayPartner;
@@ -25,6 +27,8 @@ public final class RefemInfo extends InfoRecord implements Cloneable {
 		codOwner = DefaultValue.number();
 		codPayOrder = DefaultValue.number();
 		codPayOrderItem = DefaultValue.number();
+		codOrder = DefaultValue.number();	
+		codOrderItem = DefaultValue.number();
 		codStore = DefaultValue.number();
 		codPayCustomer = DefaultValue.number();
 		codPayPartner = DefaultValue.number();

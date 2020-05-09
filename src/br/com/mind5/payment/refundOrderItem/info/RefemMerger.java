@@ -7,9 +7,23 @@ import br.com.mind5.info.InfoMergerV3;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
 import br.com.mind5.payment.payOrderItem.info.PayordemInfo;
+import br.com.mind5.payment.payOrderItemSearch.info.PayormarchInfo;
 import br.com.mind5.paymentPartner.partnerMoip.refundMoip.info.RefumoipInfo;
 
 public final class RefemMerger {
+	public static List<RefemInfo> mergeWithPayormarch(List<RefemInfo> baseInfos, List<PayormarchInfo> selectedInfos) {
+		InfoMergerBuilderV3<RefemInfo, PayormarchInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new RefemVisiMergePayormarch());
+		InfoMergerV3<RefemInfo, PayormarchInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}	
+	
+	
+	
 	public static List<RefemInfo> mergeWithRefumoip(List<RefemInfo> baseInfos, List<RefumoipInfo> selectedInfos) {
 		InfoMergerBuilderV3<RefemInfo, RefumoipInfo> builder = new InfoMergerBuilderV3<>();
 		

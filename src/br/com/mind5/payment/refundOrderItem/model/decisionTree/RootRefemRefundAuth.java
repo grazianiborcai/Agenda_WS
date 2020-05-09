@@ -14,17 +14,17 @@ import br.com.mind5.payment.refundOrderItem.info.RefemInfo;
 import br.com.mind5.payment.refundOrderItem.model.action.LazyRefemMergeCuspar;
 import br.com.mind5.payment.refundOrderItem.model.action.LazyRefemMergePayord;
 import br.com.mind5.payment.refundOrderItem.model.action.LazyRefemNodeRefund;
-import br.com.mind5.payment.refundOrderItem.model.action.StdRefemMergePayordem;
+import br.com.mind5.payment.refundOrderItem.model.action.StdRefemMergePayormarch;
 import br.com.mind5.payment.refundOrderItem.model.checker.RefemCheckLangu;
+import br.com.mind5.payment.refundOrderItem.model.checker.RefemCheckOrder;
+import br.com.mind5.payment.refundOrderItem.model.checker.RefemCheckOrderem;
 import br.com.mind5.payment.refundOrderItem.model.checker.RefemCheckOwner;
-import br.com.mind5.payment.refundOrderItem.model.checker.RefemCheckPayord;
-import br.com.mind5.payment.refundOrderItem.model.checker.RefemCheckPayordem;
-import br.com.mind5.payment.refundOrderItem.model.checker.RefemCheckRefund;
+import br.com.mind5.payment.refundOrderItem.model.checker.RefemCheckRefundAuth;
 import br.com.mind5.payment.refundOrderItem.model.checker.RefemCheckUsername;
 
-public final class RootRefemRefund extends DeciTreeTemplateWriteV2<RefemInfo> {
+public final class RootRefemRefundAuth extends DeciTreeTemplateWriteV2<RefemInfo> {
 	
-	public RootRefemRefund(DeciTreeOption<RefemInfo> option) {
+	public RootRefemRefundAuth(DeciTreeOption<RefemInfo> option) {
 		super(option);
 	}
 	
@@ -39,7 +39,7 @@ public final class RootRefemRefund extends DeciTreeTemplateWriteV2<RefemInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new RefemCheckRefund(checkerOption);
+		checker = new RefemCheckRefundAuth(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
@@ -67,18 +67,16 @@ public final class RootRefemRefund extends DeciTreeTemplateWriteV2<RefemInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
-		checker = new RefemCheckPayord(checkerOption);
+		checker = new RefemCheckOrder(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
-		checker = new RefemCheckPayordem(checkerOption);
+		checker = new RefemCheckOrderem(checkerOption);
 		queue.add(checker);
 		
-		//TODO: somente Manager pode estornar ?
-		//TODO: Cada Manager somente pode estornar sua Ordem ?
 		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
@@ -87,16 +85,16 @@ public final class RootRefemRefund extends DeciTreeTemplateWriteV2<RefemInfo> {
 	@Override protected List<ActionStdV1<RefemInfo>> buildActionsOnPassedHook(DeciTreeOption<RefemInfo> option) {
 		List<ActionStdV1<RefemInfo>> actions = new ArrayList<>();		
 
-		ActionStdV1<RefemInfo> mergePayordem = new StdRefemMergePayordem(option);	
+		ActionStdV1<RefemInfo> mergePayormarch = new StdRefemMergePayormarch(option);	
 		ActionLazyV1<RefemInfo> mergePayord = new LazyRefemMergePayord(option.conn, option.schemaName);
 		ActionLazyV1<RefemInfo> mergeCuspar = new LazyRefemMergeCuspar(option.conn, option.schemaName);
 		ActionLazyV1<RefemInfo> refund = new LazyRefemNodeRefund(option.conn, option.schemaName);
 		
-		mergePayordem.addPostAction(mergePayord);
+		mergePayormarch.addPostAction(mergePayord);
 		mergePayord.addPostAction(mergeCuspar);	
 		mergeCuspar.addPostAction(refund);
 		
-		actions.add(mergePayordem);		
+		actions.add(mergePayormarch);		
 		return actions;
 	}
 }
