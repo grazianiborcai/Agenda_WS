@@ -18,6 +18,7 @@ public final class RefemInfo extends InfoRecord implements Cloneable {
 	public String idRefundPartner;
 	public String statusRefundPartner;	
 	public String itemReceiver;
+	public long codUser;
 	public String username;	
 	
 	
@@ -32,6 +33,7 @@ public final class RefemInfo extends InfoRecord implements Cloneable {
 		codStore = DefaultValue.number();
 		codPayCustomer = DefaultValue.number();
 		codPayPartner = DefaultValue.number();
+		codUser = DefaultValue.number();
 	} 
 	
 	
