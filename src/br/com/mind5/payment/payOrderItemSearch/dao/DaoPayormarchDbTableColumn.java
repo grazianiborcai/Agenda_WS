@@ -9,9 +9,11 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class PayormarchDbTableColumn extends DaoDbTableColumnTemplate {
+public final class DaoPayormarchDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_PAY_ORDER = DaoDbField.COL_COD_PAY_ORDER;	
 	public static final String COL_COD_PAY_ORDER_ITEM = DaoDbField.COL_COD_PAY_ORDER_ITEM;
+	public static final String COL_COD_ORDER = DaoDbField.COL_COD_ORDER;
+	public static final String COL_COD_ORDER_ITEM = DaoDbField.COL_COD_ORDER_ITEM;
 	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;
 	public static final String COL_ID_ORDER_PARTNER = DaoDbField.COL_ID_ORDER_PARTNER;
 	public static final String COL_ID_PAYMENT_PARTNER = DaoDbField.COL_ID_PAYMENT_PARTNER;
@@ -23,24 +25,13 @@ public final class PayormarchDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_STATUS_REFUND_PARTNER = DaoDbField.COL_STATUS_REFUND_PARTNER;
 	
 	
-	private Hashtable<String, List<DaoColumn>> tableColumns;
-	
-	
-	public PayormarchDbTableColumn() {
-		super(PayormarchDbTableColumn.class);
+	public DaoPayormarchDbTableColumn() {
+		super();
 	}
 	
 	
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
-		tableColumns = new Hashtable<>();	
-		buildPayordemTable();
-		return tableColumns;
-	}
-	
-	
-	
-	private void buildPayordemTable() {
 		final String TABLE_NAME = DaoDbTable.PAY_ORDER_ITM_TABLE;
 		
 		DaoColumn oneColumn;
@@ -134,6 +125,24 @@ public final class PayormarchDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);	
 		
-		tableColumns.put(DaoDbTable.PAY_ORDER_ITM_SEARCH_VIEW, columns);
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_COD_ORDER;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);	
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_COD_ORDER_ITEM;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);	
+		
+		Hashtable<String, List<DaoColumn>> results = new Hashtable<>();
+		results.put(TABLE_NAME, columns);
+		return results;
 	}
 }

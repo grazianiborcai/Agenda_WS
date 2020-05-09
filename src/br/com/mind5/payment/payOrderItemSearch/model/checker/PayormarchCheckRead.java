@@ -23,8 +23,8 @@ public final class PayormarchCheckRead extends ModelCheckerTemplateSimpleV2<Payo
 			return super.FAILED;		
 		
 		
-		if ( recordInfo.codPayOrder		<= 0 	&&
-			 recordInfo.codPayOrderItem	<= 0		)
+		if ( recordInfo.codPayOrder	<= 0 &&
+			 recordInfo.codOrder	<= 0	)
 			
 			return super.FAILED;		
 		

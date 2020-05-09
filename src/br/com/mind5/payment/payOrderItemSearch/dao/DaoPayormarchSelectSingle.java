@@ -15,11 +15,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.payment.payOrderItemSearch.info.PayormarchInfo;
 
-public final class PayormarchSelectSingle extends DaoStmtTemplate<PayormarchInfo> {	
+public final class DaoPayormarchSelectSingle extends DaoStmtTemplate<PayormarchInfo> {	
 	private final String MAIN_TABLE = DaoDbTable.PAY_ORDER_ITM_TABLE;	
 	
 	
-	public PayormarchSelectSingle(Connection conn, PayormarchInfo recordInfo, String schemaName) {
+	public DaoPayormarchSelectSingle(Connection conn, PayormarchInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -31,15 +31,15 @@ public final class PayormarchSelectSingle extends DaoStmtTemplate<PayormarchInfo
 	
 	
 	
-	@Override protected DaoOperation getOperationHook() {
-		return DaoOperation.SELECT;
-	}
-	
-	
-	
 	@Override protected String getLookupTableHook() {
 		return DaoDbTable.PAY_ORDER_ITM_SEARCH_VIEW;
 	}	
+	
+	
+	
+	@Override protected DaoOperation getOperationHook() {
+		return DaoOperation.SELECT;
+	}
 	
 	
 	
@@ -49,7 +49,7 @@ public final class PayormarchSelectSingle extends DaoStmtTemplate<PayormarchInfo
 		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new PayormarchWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new DaoPayormarchWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}	
 	
@@ -66,17 +66,19 @@ public final class PayormarchSelectSingle extends DaoStmtTemplate<PayormarchInfo
 				do {
 					PayormarchInfo dataInfo = new PayormarchInfo();
 					
-					dataInfo.codOwner = stmtResult.getLong(PayormarchDbTableColumn.COL_COD_OWNER);	
-					dataInfo.codPayOrder = stmtResult.getLong(PayormarchDbTableColumn.COL_COD_PAY_ORDER);
-					dataInfo.codPayOrderItem = stmtResult.getInt(PayormarchDbTableColumn.COL_COD_PAY_ORDER_ITEM);
-					dataInfo.ownId = stmtResult.getString(PayormarchDbTableColumn.COL_OWN_ID);
-					dataInfo.idOrderPartner = stmtResult.getString(PayormarchDbTableColumn.COL_ID_ORDER_PARTNER);
-					dataInfo.statusOrderPartner = stmtResult.getString(PayormarchDbTableColumn.COL_STATUS_ORDER_PARTNER);
-					dataInfo.idPaymentPartner = stmtResult.getString(PayormarchDbTableColumn.COL_ID_PAYMENT_PARTNER);
-					dataInfo.statusPaymentPartner = stmtResult.getString(PayormarchDbTableColumn.COL_STATUS_PAYMENT_PARTNER);
-					dataInfo.idRefundPartner = stmtResult.getString(PayormarchDbTableColumn.COL_ID_REFUND_PARTNER);
-					dataInfo.statusRefundPartner = stmtResult.getString(PayormarchDbTableColumn.COL_STATUS_REFUND_PARTNER);	
-					dataInfo.itemReceiver = stmtResult.getString(PayormarchDbTableColumn.COL_ITEM_RECEIVER);
+					dataInfo.codOwner = stmtResult.getLong(DaoPayormarchDbTableColumn.COL_COD_OWNER);	
+					dataInfo.codPayOrder = stmtResult.getLong(DaoPayormarchDbTableColumn.COL_COD_PAY_ORDER);
+					dataInfo.codPayOrderItem = stmtResult.getInt(DaoPayormarchDbTableColumn.COL_COD_PAY_ORDER_ITEM);					
+					dataInfo.codOrder = stmtResult.getLong(DaoPayormarchDbTableColumn.COL_COD_ORDER);
+					dataInfo.codOrderItem = stmtResult.getInt(DaoPayormarchDbTableColumn.COL_COD_ORDER_ITEM);					
+					dataInfo.ownId = stmtResult.getString(DaoPayormarchDbTableColumn.COL_OWN_ID);
+					dataInfo.idOrderPartner = stmtResult.getString(DaoPayormarchDbTableColumn.COL_ID_ORDER_PARTNER);
+					dataInfo.statusOrderPartner = stmtResult.getString(DaoPayormarchDbTableColumn.COL_STATUS_ORDER_PARTNER);
+					dataInfo.idPaymentPartner = stmtResult.getString(DaoPayormarchDbTableColumn.COL_ID_PAYMENT_PARTNER);
+					dataInfo.statusPaymentPartner = stmtResult.getString(DaoPayormarchDbTableColumn.COL_STATUS_PAYMENT_PARTNER);
+					dataInfo.idRefundPartner = stmtResult.getString(DaoPayormarchDbTableColumn.COL_ID_REFUND_PARTNER);
+					dataInfo.statusRefundPartner = stmtResult.getString(DaoPayormarchDbTableColumn.COL_STATUS_REFUND_PARTNER);	
+					dataInfo.itemReceiver = stmtResult.getString(DaoPayormarchDbTableColumn.COL_ITEM_RECEIVER);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

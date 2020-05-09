@@ -17,7 +17,7 @@ final class VisiPayormarchMergeToSelect extends ActionVisitorTemplateMergeV1<Pay
 	
 	
 	@Override protected Class<? extends ActionStdV1<PayormarchInfo>> getActionClassHook() {
-		return StdPayormarchSelect.class;
+		return StdPayormarchDaoSelect.class;
 	}
 	
 	
