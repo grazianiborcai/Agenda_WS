@@ -4,6 +4,7 @@ package br.com.mind5.security.userSearch.info;
 import java.util.List;
 
 import br.com.mind5.info.InfoCopier;
+import br.com.mind5.payment.refundOrderItem.info.RefemInfo;
 import br.com.mind5.security.user.info.UserInfo;
 
 public final class UserarchCopier {
@@ -16,6 +17,20 @@ public final class UserarchCopier {
 	
 	public static List<UserarchInfo> copyFromUser(List<UserInfo> sources) {
 		InfoCopier<UserarchInfo, UserInfo> copier = new UserarchCopyUser();
+		return copier.makeCopy(sources);
+	}
+	
+	
+	
+	public static UserarchInfo copyFromRefem(RefemInfo source) {
+		InfoCopier<UserarchInfo, RefemInfo> copier = new UserarchCopyRefem();
+		return copier.makeCopy(source);
+	}
+	
+	
+	
+	public static List<UserarchInfo> copyFromRefem(List<RefemInfo> sources) {
+		InfoCopier<UserarchInfo, RefemInfo> copier = new UserarchCopyRefem();
 		return copier.makeCopy(sources);
 	}
 }

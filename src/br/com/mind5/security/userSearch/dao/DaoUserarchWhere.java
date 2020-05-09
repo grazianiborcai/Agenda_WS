@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.security.userSearch.info.UserarchInfo;
 
-public final class UserarchWhere implements DaoStmtWhere {	
+public final class DaoUserarchWhere implements DaoStmtWhere {	
 	private String whereClause;	
 	
 	
-	public UserarchWhere(DaoWhereBuilderOption whereOption, String tableName, UserarchInfo recordInfo) {
+	public DaoUserarchWhere(DaoWhereBuilderOption whereOption, String tableName, UserarchInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -27,27 +27,31 @@ public final class UserarchWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-				case UserarchDbTableColumn.COL_COD_OWNER :
+				case DaoUserarchDbTableColumn.COL_COD_OWNER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;
 					
-				case UserarchDbTableColumn.COL_COD_USER :
+				case DaoUserarchDbTableColumn.COL_COD_USER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codUser));
 					break;
 					
-				case UserarchDbTableColumn.COL_COD_PERSON :
+				case DaoUserarchDbTableColumn.COL_COD_PERSON :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codPerson));
 					break;
 					
-				case UserarchDbTableColumn.COL_USERNAME :
+				case DaoUserarchDbTableColumn.COL_USERNAME :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.username);
 					break;
 					
-				case UserarchDbTableColumn.COL_COD_USER_CATEG :
+				case DaoUserarchDbTableColumn.COL_COD_USER_CATEG :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.charToString(recordInfo.codUserCategory));
 					break;
 					
-				case UserarchDbTableColumn.COL_RECORD_MODE :
+				case DaoUserarchDbTableColumn.COL_COD_AUTH_GROUP :
+					builder.addClauseEqualAnd(eachColumn, recordInfo.codAuthGroup);
+					break;
+					
+				case DaoUserarchDbTableColumn.COL_RECORD_MODE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.recordMode);
 					break;
 			}

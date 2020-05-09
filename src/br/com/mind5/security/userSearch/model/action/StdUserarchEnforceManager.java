@@ -5,15 +5,15 @@ import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.userSearch.info.UserarchInfo;
 
-public final class StdUserarchMergeToSelect extends ActionStdTemplateV2<UserarchInfo> {
+public final class StdUserarchEnforceManager extends ActionStdTemplateV2<UserarchInfo> {
 
-	public StdUserarchMergeToSelect(DeciTreeOption<UserarchInfo> option) {
+	public StdUserarchEnforceManager(DeciTreeOption<UserarchInfo> option) {
 		super(option);
 	}
 	
 	
 	
 	protected ActionVisitorV2<UserarchInfo> buildVisitorHook(DeciTreeOption<UserarchInfo> option) {
-		return new VisiUserarchMergeToSelect(option);
+		return new VisiUserarchEnforceManager(option);
 	}
 }

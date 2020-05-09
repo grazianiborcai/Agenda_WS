@@ -177,7 +177,7 @@ import br.com.mind5.security.storeAuthorization.dao.DaoStorauthDbTableColumn;
 import br.com.mind5.security.user.dao.UserDbTableColumn;
 import br.com.mind5.security.userList.dao.UselisDbTableColumn;
 import br.com.mind5.security.userPassword.dao.UpswdDbTableColumn;
-import br.com.mind5.security.userSearch.dao.UserarchDbTableColumn;
+import br.com.mind5.security.userSearch.dao.DaoUserarchDbTableColumn;
 import br.com.mind5.security.userSnapshot.dao.UserapDbTableColumn;
 import br.com.mind5.security.username.dao.DaoUsernameDbTableColumn;
 import br.com.mind5.webhook.moipMultipayment.dao.DaoWokaymoipDbTableColumn;
@@ -302,7 +302,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new MatorapDbTableColumn());
 		addTable(new MatocarchDbTableColumn());
 		addTable(new MatmarchDbTableColumn());
-		addTable(new UserarchDbTableColumn());
+		addTable(new DaoUserarchDbTableColumn());
 		addTable(new DaoStoparchDbTableColumn());
 		addTable(new DaoCartemarchDbTableColumn());
 		addTable(new EmpworgDbTableColumn());

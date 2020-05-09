@@ -17,7 +17,7 @@ public final class UserarchInfo extends InfoRecord implements Cloneable {
 	
 	
 	public UserarchInfo() {
-		super(UserarchInfo.class);
+		super();
 		
 		codOwner = DefaultValue.number();
 		codUser = DefaultValue.number();
