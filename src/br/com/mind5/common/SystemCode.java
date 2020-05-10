@@ -759,7 +759,8 @@ public final class SystemCode {
 	// Pay Order Search
 	public static final int PAY_ORDER_SEARCH_MANDATORY_FIELD_EMPTY		= 5550;	
 	public static final int PAY_ORDER_SEARCH_ALREADY_EXIST				= 5551;
-	public static final int PAY_ORDER_SEARCH_NOT_FOUND					= 5552;
+	public static final int PAY_ORDER_SEARCH_NOT_FOUND					= 5552;	
+	public static final int PAY_ORDER_SEARCH_NOT_ALLOWED				= 5553;
 	
 	// Schedule List
 	public static final int SCHEDULE_LIST_MANDATORY_FIELD_EMPTY			= 5600;
@@ -1233,7 +1234,7 @@ public final class SystemCode {
 	public static final int REFUPOL_GR_NOT_FOUND						= 12052;	
 	
 	//Order Status Change
-	public static final int ORDER_STATUS_CHANGE_MANDATORY_FIELD_EMPTY	= 12100;
-	public static final int ORDER_STATUS_CHANGE_NOT_ALLOWED				= 12101;
+	public static final int ORDER_STATUS_CHANGE_NOT_ALLOWED				= 12100;
+	public static final int ORDER_STATUS_CHANGE_MANDATORY_FIELD_EMPTY	= 12101;
 	public static final int ORDER_STATUS_CHANGE_DONT_HAVE_PAYMENT		= 12102;
 }
