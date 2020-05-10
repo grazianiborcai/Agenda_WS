@@ -9,6 +9,7 @@ public final class OrdugeInfo extends InfoRecord implements Cloneable {
 	public String codOrderStatusOld;
 	public String codOrderStatusNew;
 	public long codPayOrder;
+	public String statusOrderPartner;
 	public String username;
 	
 	

@@ -7,16 +7,16 @@ import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class OrdugeCheckWrite extends ModelCheckerTemplateSimpleV2<OrdugeInfo> {
+public final class OrdugeCheckPartner extends ModelCheckerTemplateSimpleV2<OrdugeInfo> {
 
-	public OrdugeCheckWrite(ModelCheckerOption option) {
+	public OrdugeCheckPartner(ModelCheckerOption option) {
 		super(option);
 	}
 	
 	
 	
 	@Override protected boolean checkHook(OrdugeInfo recordInfo, Connection conn, String schemaName) {	
-		if ( recordInfo.codOrderStatusOld 	== null || 
+		if ( recordInfo.statusOrderPartner 	== null || 
 			 recordInfo.username			== null	||
 			 recordInfo.codLanguage			== null		)
 			

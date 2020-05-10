@@ -16,6 +16,7 @@ final class OrdugeCopyOrder extends InfoCopierTemplate<OrdugeInfo, OrderInfo> {
 		
 		result.codOrderStatusOld = source.codOrderStatus;
 		result.codPayOrder = source.codPayOrder;
+		result.statusOrderPartner = source.statusOrderPartner;
 		result.codLanguage = source.codLanguage;
 		result.username = source.username;
 		
