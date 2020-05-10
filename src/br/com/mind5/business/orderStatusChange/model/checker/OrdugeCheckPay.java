@@ -54,6 +54,6 @@ public final class OrdugeCheckPay extends ModelCheckerTemplateSimpleV2<OrdugeInf
 	
 	
 	@Override protected int getCodMsgOnResultFalseHook() {
-		return SystemCode.ORDER_HEADER_STATUS_CHANGE_NOT_ALLOWED;
+		return SystemCode.ORDER_STATUS_CHANGE_NOT_ALLOWED;
 	}
 }

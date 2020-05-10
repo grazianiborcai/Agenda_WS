@@ -29,6 +29,6 @@ public final class OrdugeCheckPartner extends ModelCheckerTemplateSimpleV2<Ordug
 	
 	
 	@Override protected int getCodMsgOnResultFalseHook() {
-		return SystemCode.ORDER_HEADER_MANDATORY_FIELD_EMPTY;
+		return SystemCode.ORDER_STATUS_CHANGE_MANDATORY_FIELD_EMPTY;
 	}
 }

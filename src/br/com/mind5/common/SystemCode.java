@@ -1231,4 +1231,9 @@ public final class SystemCode {
 	public static final int REFUPOL_GR_MANDATORY_FIELD_EMPTY 			= 12050;
 	public static final int REFUPOL_GR_ALREADY_EXIST					= 12051;
 	public static final int REFUPOL_GR_NOT_FOUND						= 12052;	
+	
+	//Order Status Change
+	public static final int ORDER_STATUS_CHANGE_MANDATORY_FIELD_EMPTY	= 12100;
+	public static final int ORDER_STATUS_CHANGE_NOT_ALLOWED				= 12101;
+	public static final int ORDER_STATUS_CHANGE_DONT_HAVE_PAYMENT		= 12102;
 }

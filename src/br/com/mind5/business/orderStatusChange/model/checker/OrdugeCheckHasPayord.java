@@ -26,6 +26,6 @@ public final class OrdugeCheckHasPayord extends ModelCheckerTemplateSimpleV2<Ord
 	
 	
 	@Override protected int getCodMsgOnResultFalseHook() {
-		return SystemCode.ORDER_DONT_HAVE_PAYMENT;
+		return SystemCode.ORDER_STATUS_CHANGE_DONT_HAVE_PAYMENT;
 	}
 }

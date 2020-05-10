@@ -82,6 +82,6 @@ public final class OrdugeCheckCancel extends ModelCheckerTemplateSimpleV2<Orduge
 	
 	
 	@Override protected int getCodMsgOnResultFalseHook() {
-		return SystemCode.ORDER_HEADER_STATUS_CHANGE_NOT_ALLOWED;
+		return SystemCode.ORDER_STATUS_CHANGE_NOT_ALLOWED;
 	}
 }
