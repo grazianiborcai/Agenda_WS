@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.cartItem.info.CartemInfo;
 import br.com.mind5.business.cartItem.model.action.StdCartemSuccess;
+import br.com.mind5.business.cartItem.model.checker.CartemCheckCarterco;
 import br.com.mind5.business.cartItem.model.checker.CartemCheckEmp;
 import br.com.mind5.business.cartItem.model.checker.CartemCheckEmplarg;
 import br.com.mind5.business.cartItem.model.checker.CartemCheckEmpmat;
@@ -135,6 +136,13 @@ public final class NodeCartemMatService extends DeciTreeTemplateWriteV2<CartemIn
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.NOT_FOUND;	
 		checker = new CartemCheckOrderve(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.NOT_FOUND;	
+		checker = new CartemCheckCarterco(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueueV2<>(queue);
