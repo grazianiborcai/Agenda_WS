@@ -9,13 +9,13 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 import br.com.mind5.payment.payOrderItem.info.PayordemInfo;
 import br.com.mind5.payment.payOrderItem.model.action.LazyPayordemNodeSelectL1;
 import br.com.mind5.payment.payOrderItem.model.action.StdPayordemMergeToSelect;
 import br.com.mind5.payment.payOrderItem.model.checker.PayordemCheckRead;
 
-public final class RootPayordemSelect extends DeciTreeTemplateWriteV1<PayordemInfo> {
+public final class RootPayordemSelect extends DeciTreeTemplateWriteV2<PayordemInfo> {
 	
 	public RootPayordemSelect(DeciTreeOption<PayordemInfo> option) {
 		super(option);

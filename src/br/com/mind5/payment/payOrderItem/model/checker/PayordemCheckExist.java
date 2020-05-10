@@ -6,7 +6,7 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.payOrderItem.info.PayordemInfo;
-import br.com.mind5.payment.payOrderItem.model.action.StdPayordemSelect;
+import br.com.mind5.payment.payOrderItem.model.action.StdPayordemDaoSelect;
 
 public final class PayordemCheckExist extends ModelCheckerTemplateActionV2<PayordemInfo, PayordemInfo> {
 	
@@ -17,7 +17,7 @@ public final class PayordemCheckExist extends ModelCheckerTemplateActionV2<Payor
 
 	
 	@Override protected ActionStdV1<PayordemInfo> buildActionHook(DeciTreeOption<PayordemInfo> option) {
-		ActionStdV1<PayordemInfo> select = new StdPayordemSelect(option);
+		ActionStdV1<PayordemInfo> select = new StdPayordemDaoSelect(option);
 		return select;
 	}
 	

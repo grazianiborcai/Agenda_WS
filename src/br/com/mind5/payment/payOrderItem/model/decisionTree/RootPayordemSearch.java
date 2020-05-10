@@ -5,16 +5,16 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 import br.com.mind5.payment.payOrderItem.info.PayordemInfo;
 import br.com.mind5.payment.payOrderItem.model.action.LazyPayordemRootSelect;
 import br.com.mind5.payment.payOrderItem.model.action.StdPayordemMergePayormarch;
-import br.com.mind5.payment.payOrderItem.model.checker.PayordemCheckDummy;
 
-public final class RootPayordemSearch extends DeciTreeTemplateWriteV1<PayordemInfo> {
+public final class RootPayordemSearch extends DeciTreeTemplateWriteV2<PayordemInfo> {
 	
 	public RootPayordemSearch(DeciTreeOption<PayordemInfo> option) {
 		super(option);
@@ -26,7 +26,7 @@ public final class RootPayordemSearch extends DeciTreeTemplateWriteV1<PayordemIn
 		List<ModelCheckerV1<PayordemInfo>> queue = new ArrayList<>();		
 		ModelCheckerV1<PayordemInfo> checker;	
 
-		checker = new PayordemCheckDummy();
+		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueueV2<>(queue);

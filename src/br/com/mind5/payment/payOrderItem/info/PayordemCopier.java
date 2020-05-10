@@ -6,9 +6,24 @@ import java.util.List;
 import br.com.mind5.info.InfoCopierOneToManyTemplate;
 import br.com.mind5.info.InfoCopierTemplate;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
+import br.com.mind5.payment.statusPayOrderItem.info.PaytusemInfo;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.info.OrdmoipInfo;
 
 public final class PayordemCopier {
+	public static PayordemInfo copyFromPaytusem(PaytusemInfo source) {
+		InfoCopierTemplate<PayordemInfo, PaytusemInfo> copier = new PayordemCopyPaytusem();
+		return copier.makeCopy(source);
+	}
+	
+	
+	
+	public static List<PayordemInfo> copyFromPaytusem(List<PaytusemInfo> sources) {
+		InfoCopierTemplate<PayordemInfo, PaytusemInfo> copier = new PayordemCopyPaytusem();
+		return copier.makeCopy(sources);
+	}
+	
+	
+	
 	public static PayordemInfo copyFromPayordKey(PayordInfo source) {
 		InfoCopierTemplate<PayordemInfo, PayordInfo> copier = new PayordemCopyPayordKey();
 		return copier.makeCopy(source);

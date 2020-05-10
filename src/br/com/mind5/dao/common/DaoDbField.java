@@ -144,7 +144,6 @@ public final class DaoDbField {
 	public static final String COL_IS_COVER = "is_cover";
 	public static final String COL_IS_DEFAULT = "is_default";
 	public static final String COL_IS_EXPECTED = "is_expected";
-	public static final String COL_IS_SYSTEM_RECEIVER = "is_system_receiver";
 	public static final String COL_INSC_MUNICIPAL = "inscricao_municipal";
 	public static final String COL_INSC_ESTATUAL = "inscricao_estadual";
 	public static final String COL_IS_LOCKED = "is_locked";

@@ -8,12 +8,12 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 import br.com.mind5.payment.payOrderItem.info.PayordemInfo;
 import br.com.mind5.payment.payOrderItem.model.action.StdPayordemMergeFeecat;
 import br.com.mind5.payment.payOrderItem.model.checker.PayordemCheckIsFee;
 
-public final class NodePayordemSelectL1 extends DeciTreeTemplateWriteV1<PayordemInfo> {
+public final class NodePayordemSelectL1 extends DeciTreeTemplateWriteV2<PayordemInfo> {
 	
 	public NodePayordemSelectL1(DeciTreeOption<PayordemInfo> option) {
 		super(option);

@@ -1,35 +1,19 @@
 package br.com.mind5.payment.payOrderItem.model.action;
 
-import br.com.mind5.model.action.ActionLazyV1;
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionStdHelperMerge;
-import br.com.mind5.model.decisionTree.DeciResult;
+import br.com.mind5.model.action.ActionStdTemplateV2;
+import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.payOrderItem.info.PayordemInfo;
 
-public final class StdPayordemMergeMatlis implements ActionStdV1<PayordemInfo> {
-	private ActionStdV1<PayordemInfo> actionHelper;	
-	
-	
-	public StdPayordemMergeMatlis(DeciTreeOption<PayordemInfo> option) {			
-		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiPayordemMergeMatlis(option.conn, option.schemaName));
+public final class StdPayordemMergeMatlis extends ActionStdTemplateV2<PayordemInfo> {
+
+	public StdPayordemMergeMatlis(DeciTreeOption<PayordemInfo> option) {
+		super(option);
 	}
 	
 	
 	
-	@Override public void addPostAction(ActionLazyV1<PayordemInfo> actionHandler) {
-		actionHelper.addPostAction(actionHandler);
-	}
-	
-	
-	
-	@Override public boolean executeAction() {			
-		return actionHelper.executeAction();
-	}
-	
-	
-	
-	@Override public DeciResult<PayordemInfo> getDecisionResult() {
-		return actionHelper.getDecisionResult();
+	protected ActionVisitorV2<PayordemInfo> buildVisitorHook(DeciTreeOption<PayordemInfo> option) {
+		return new VisiPayordemMergeMatlis(option);
 	}
 }

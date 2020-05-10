@@ -3,15 +3,15 @@ package br.com.mind5.payment.payOrderItem.model.action;
 import java.sql.Connection;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazyTemplateV1;
+import br.com.mind5.model.action.ActionLazyTemplateV2;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.payOrderItem.info.PayordemInfo;
 
-public final class LazyPayordemSelect extends ActionLazyTemplateV1<PayordemInfo, PayordemInfo> {
-
-	public LazyPayordemSelect(Connection conn, String schemaName) {
+public final class LazyPayordemDaoInsert extends ActionLazyTemplateV2<PayordemInfo, PayordemInfo> {
+	
+	public LazyPayordemDaoInsert(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyPayordemSelect extends ActionLazyTemplateV1<PayordemInfo,
 	
 	
 	@Override protected ActionStdV1<PayordemInfo> getInstanceOfActionHook(DeciTreeOption<PayordemInfo> option) {
-		return new StdPayordemSelect(option);
+		return new StdPayordemDaoInsert(option);
 	}
 	
 	

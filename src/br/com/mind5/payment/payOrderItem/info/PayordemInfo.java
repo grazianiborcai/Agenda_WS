@@ -37,7 +37,6 @@ public final class PayordemInfo extends InfoRecord implements Cloneable, Compara
 	public String idRefundPartner;
 	public String statusRefundPartner;
 	public String itemReceiver;
-	public boolean isSystemReceiver;		//TODO: Remover
 	public LocalDateTime lastChanged;
 	public String username;
 	public StolisInfo stolisData;
@@ -46,7 +45,7 @@ public final class PayordemInfo extends InfoRecord implements Cloneable, Compara
 	
 	
 	public PayordemInfo() {
-		super(PayordemInfo.class);
+		super();
 		
 		codOwner = DefaultValue.number();	
 		codPayOrderItem = DefaultValue.number();	
@@ -60,7 +59,6 @@ public final class PayordemInfo extends InfoRecord implements Cloneable, Compara
 		price = DefaultValue.number();
 		quantity = DefaultValue.number();
 		totitem = DefaultValue.number();
-		isSystemReceiver = DefaultValue.boole();
 		stolisData = DefaultValue.object();
 		emplisData = DefaultValue.object();
 		matlisData = DefaultValue.object();

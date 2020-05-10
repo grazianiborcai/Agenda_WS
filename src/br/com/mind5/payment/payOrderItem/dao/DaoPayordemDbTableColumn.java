@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class PayordemDbTableColumn extends DaoDbTableColumnTemplate {
+public final class DaoPayordemDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_BEGIN_TIME = DaoDbField.COL_BEGIN_TIME;	
 	public static final String COL_COD_CURRENCY = DaoDbField.COL_COD_CURRENCY;
 	public static final String COL_COD_EMPLOYEE = DaoDbField.COL_COD_EMPLOYEE;
@@ -25,7 +25,6 @@ public final class PayordemDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_ID_ORDER_PARTNER = DaoDbField.COL_ID_ORDER_PARTNER;
 	public static final String COL_ID_PAYMENT_PARTNER = DaoDbField.COL_ID_PAYMENT_PARTNER;
 	public static final String COL_ID_REFUND_PARTNER = DaoDbField.COL_ID_REFUND_PARTNER;
-	public static final String COL_IS_SYSTEM_RECEIVER = DaoDbField.COL_IS_SYSTEM_RECEIVER;	
 	public static final String COL_ITEM_RECEIVER = DaoDbField.COL_ITEM_RECEIVER;
 	public static final String COL_LAST_CHANGED = DaoDbField.COL_LAST_CHANGED;
 	public static final String COL_OWN_ID = DaoDbField.COL_OWN_ID;	
@@ -37,24 +36,13 @@ public final class PayordemDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_TOTAL_ITEM = DaoDbField.COL_TOTAL_ITEM;
 	
 	
-	private Hashtable<String, List<DaoColumn>> tableColumns;
-	
-	
-	public PayordemDbTableColumn() {
-		super(PayordemDbTableColumn.class);
+	public DaoPayordemDbTableColumn() {
+		super();
 	}
 	
 	
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
-		tableColumns = new Hashtable<>();	
-		buildPayordemTable();
-		return tableColumns;
-	}
-	
-	
-	
-	private void buildPayordemTable() {
 		final String TABLE_NAME = DaoDbTable.PAY_ORDER_ITM_TABLE;
 		
 		DaoColumn oneColumn;
@@ -222,14 +210,6 @@ public final class PayordemDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_IS_SYSTEM_RECEIVER;
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_ID_REFUND_PARTNER;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
@@ -260,6 +240,8 @@ public final class PayordemDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		tableColumns.put(TABLE_NAME, columns);
+		Hashtable<String, List<DaoColumn>> results = new Hashtable<>();
+		results.put(TABLE_NAME, columns);
+		return results;
 	}
 }
