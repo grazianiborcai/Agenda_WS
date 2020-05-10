@@ -1,23 +1,23 @@
 package br.com.mind5.payment.payOrderSearch.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.payOrderSearch.info.PayordarchInfo;
 import br.com.mind5.payment.payOrderSearch.info.PayordarchMerger;
 
-final class VisiPayordarchMergeToSelect extends ActionVisitorTemplateMergeV1<PayordarchInfo, PayordarchInfo> {
+final class VisiPayordarchMergeToSelect extends ActionVisitorTemplateMergeV2<PayordarchInfo, PayordarchInfo> {
 	
-	public VisiPayordarchMergeToSelect(Connection conn, String schemaName) {
-		super(conn, schemaName, PayordarchInfo.class);
+	public VisiPayordarchMergeToSelect(DeciTreeOption<PayordarchInfo> option) {
+		super(option, PayordarchInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends ActionStdV1<PayordarchInfo>> getActionClassHook() {
-		return StdPayordarchSelect.class;
+	@Override protected Class<? extends ActionStdV2<PayordarchInfo>> getActionClassHook() {
+		return StdPayordarchDaoSelect.class;
 	}
 	
 	
@@ -29,6 +29,6 @@ final class VisiPayordarchMergeToSelect extends ActionVisitorTemplateMergeV1<Pay
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
+		return super.DONT_MERGE_WHEN_EMPTY;
 	}
 }

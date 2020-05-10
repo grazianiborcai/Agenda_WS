@@ -4,18 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 import br.com.mind5.payment.payOrderSearch.info.PayordarchInfo;
 import br.com.mind5.payment.payOrderSearch.model.action.StdPayordarchMergeToSelect;
 import br.com.mind5.payment.payOrderSearch.model.checker.PayordarchCheckLangu;
 import br.com.mind5.payment.payOrderSearch.model.checker.PayordarchCheckOwner;
 import br.com.mind5.payment.payOrderSearch.model.checker.PayordarchCheckRead;
 
-public final class RootPayordarchSelect extends DeciTreeTemplateReadV1<PayordarchInfo> {
+public final class RootPayordarchSelect extends DeciTreeTemplateReadV2<PayordarchInfo> {
 	
 	public RootPayordarchSelect(DeciTreeOption<PayordarchInfo> option) {
 		super(option);

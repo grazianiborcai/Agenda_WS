@@ -27,7 +27,7 @@ public final class PayordarchInfo extends InfoRecord implements Cloneable {
 	
 	
 	public PayordarchInfo() {
-		super(PayordarchInfo.class);
+		super();
 		
 		codOwner = DefaultValue.number();
 		codCreditCard = DefaultValue.number();

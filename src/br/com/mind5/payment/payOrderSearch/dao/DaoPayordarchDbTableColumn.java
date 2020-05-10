@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class PayordarchDbTableColumn extends DaoDbTableColumnTemplate {
+public final class DaoPayordarchDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_AMOUNT_CURRENCY_PARTNER = DaoDbField.COL_AMOUNT_CURRENCY_PARTNER;
 	public static final String COL_AMOUNT_TOTAL_PARTNER = DaoDbField.COL_AMOUNT_TOTAL_PARTNER;
 	public static final String COL_COD_CREDIT_CARD = DaoDbField.COL_COD_CREDIT_CARD;
@@ -27,24 +27,13 @@ public final class PayordarchDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_STATUS_PAYMENT_PARTNER = DaoDbField.COL_STATUS_PAYMENT_PARTNER;
 	
 	
-	private Hashtable<String, List<DaoColumn>> tableColumns;
-	
-	
-	public PayordarchDbTableColumn() {
-		super(PayordarchDbTableColumn.class);
+	public DaoPayordarchDbTableColumn() {
+		super();
 	}
 	
 	
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
-		tableColumns = new Hashtable<>();		
-		buildPayOrderTable();	
-		return tableColumns;
-	}
-	
-	
-	
-	private void buildPayOrderTable() {
 		final String TABLE_NAME = DaoDbTable.PAY_ORDER_HDR_TABLE;
 		
 		DaoColumn oneColumn;
@@ -170,6 +159,8 @@ public final class PayordarchDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 
-		tableColumns.put(DaoDbTable.PAY_ORDER_HDR_SEARCH_VIEW, columns);
+		Hashtable<String, List<DaoColumn>> results = new Hashtable<>();
+		results.put(DaoDbTable.PAY_ORDER_HDR_SEARCH_VIEW, columns);
+		return results;
 	}
 }
