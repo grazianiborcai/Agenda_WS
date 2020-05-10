@@ -4,6 +4,7 @@ import java.util.List;
 
 import br.com.mind5.business.order.info.OrderInfo;
 import br.com.mind5.business.order.info.OrderMerger;
+import br.com.mind5.business.orderStatusChange.info.OrdugeCopier;
 import br.com.mind5.business.orderStatusChange.info.OrdugeInfo;
 import br.com.mind5.business.orderStatusChange.model.decisionTree.RootOrdugePlace;
 import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
@@ -20,6 +21,12 @@ final class VisiOrderMergeOrdugePlace extends ActionVisitorTemplateMergeV2<Order
 	
 	@Override protected Class<? extends DeciTree<OrdugeInfo>> getTreeClassHook() {
 		return RootOrdugePlace.class;
+	}
+	
+	
+	
+	@Override protected List<OrdugeInfo> toActionClassHook(List<OrderInfo> baseInfos) {
+		return OrdugeCopier.copyFromOrder(baseInfos);
 	}
 	
 	

@@ -16,6 +16,9 @@ final class OrderVisiMergeOrduge implements InfoMergerVisitorV3<OrderInfo, Ordug
 	
 	
 	@Override public boolean shouldMerge(OrderInfo baseInfo, OrdugeInfo selectedInfo) {
+		if (baseInfo.codOrderStatus == null)
+			return true;
+		
 		return baseInfo.codOrderStatus.equals(selectedInfo.codOrderStatusOld);
 	}
 	
