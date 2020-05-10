@@ -3,7 +3,6 @@ package br.com.mind5.payment.refundOrderItem.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -11,9 +10,6 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 import br.com.mind5.payment.refundOrderItem.info.RefemInfo;
-import br.com.mind5.payment.refundOrderItem.model.action.LazyRefemNodeAuthL2;
-import br.com.mind5.payment.refundOrderItem.model.action.StdRefemMergeUsername;
-import br.com.mind5.payment.refundOrderItem.model.action.StdRefemSuccess;
 import br.com.mind5.payment.refundOrderItem.model.checker.RefemCheckManager;
 
 public final class NodeRefemAuthL1 extends DeciTreeTemplateWriteV2<RefemInfo> {
@@ -44,9 +40,9 @@ public final class NodeRefemAuthL1 extends DeciTreeTemplateWriteV2<RefemInfo> {
 	@Override protected List<ActionStdV1<RefemInfo>> buildActionsOnPassedHook(DeciTreeOption<RefemInfo> option) {
 		List<ActionStdV1<RefemInfo>> actions = new ArrayList<>();		
 
-		ActionStdV1<RefemInfo> success = new StdRefemSuccess(option);	//TODO: STORE_AUTH
+		ActionStdV1<RefemInfo> nodeL3 = new NodeRefemAuthL3(option).toAction();
 		
-		actions.add(success);		
+		actions.add(nodeL3);		
 		return actions;
 	}
 	
@@ -54,13 +50,10 @@ public final class NodeRefemAuthL1 extends DeciTreeTemplateWriteV2<RefemInfo> {
 	
 	@Override protected List<ActionStdV1<RefemInfo>> buildActionsOnFailedHook(DeciTreeOption<RefemInfo> option) {
 		List<ActionStdV1<RefemInfo>> actions = new ArrayList<>();		
-
-		ActionStdV1<RefemInfo> mergeUsername = new StdRefemMergeUsername(option);	
-		ActionLazyV1<RefemInfo> nodeL2 = new LazyRefemNodeAuthL2(option.conn, option.schemaName);	
+	
+		ActionStdV1<RefemInfo> nodeL2 = new NodeRefemAuthL2(option).toAction();	
 		
-		mergeUsername.addPostAction(nodeL2);
-		
-		actions.add(mergeUsername);		
+		actions.add(nodeL2);		
 		return actions;
 	}
 }

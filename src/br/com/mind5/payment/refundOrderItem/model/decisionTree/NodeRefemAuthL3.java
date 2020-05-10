@@ -11,11 +11,11 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 import br.com.mind5.payment.refundOrderItem.info.RefemInfo;
 import br.com.mind5.payment.refundOrderItem.model.action.StdRefemSuccess;
-import br.com.mind5.payment.refundOrderItem.model.checker.RefemCheckOrdarch;
+import br.com.mind5.payment.refundOrderItem.model.checker.RefemCheckStorauth;
 
-public final class NodeRefemAuthL2 extends DeciTreeTemplateWriteV2<RefemInfo> {
+public final class NodeRefemAuthL3 extends DeciTreeTemplateWriteV2<RefemInfo> {
 	
-	public NodeRefemAuthL2(DeciTreeOption<RefemInfo> option) {
+	public NodeRefemAuthL3(DeciTreeOption<RefemInfo> option) {
 		super(option);
 	}
 	
@@ -30,7 +30,7 @@ public final class NodeRefemAuthL2 extends DeciTreeTemplateWriteV2<RefemInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new RefemCheckOrdarch(checkerOption);
+		checker = new RefemCheckStorauth(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueueV2<>(queue);

@@ -22,6 +22,8 @@ import br.com.mind5.payment.creditCard.model.CrecardModelSelect;
 import br.com.mind5.payment.payOrder.model.PayordModelPay;
 import br.com.mind5.payment.refundOrder.info.RefuInfo;
 import br.com.mind5.payment.refundOrder.model.RefuModelRefund;
+import br.com.mind5.payment.refundOrderItem.info.RefemInfo;
+import br.com.mind5.payment.refundOrderItem.model.RefemModelRefund;
 import br.com.mind5.payment.statusPayOrder.info.PaytusInfo;
 import br.com.mind5.payment.statusPayOrder.model.PaytusModelRefreshAuth;
 import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.info.PeresmoipInfo;
@@ -31,6 +33,7 @@ import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.model.PeresmoipMod
 public final class PaymentResource {
 	private static final String PAY_ORDER = "/payOrder";
 	private static final String REFUND_ORDER = "/refundOrder";
+	private static final String REFUND_ORDER_ITEM = "/refundOrderItem";
 	private static final String REFRESH_STATUS = "/refreshStatus";
 	private static final String PERMISSION_CODE_MOIP = "/permissionCodeMoip";
 	private static final String INSERT_CREDIT_CARD = "/insertCreditCard";
@@ -76,6 +79,33 @@ public final class PaymentResource {
 		
 		return result;
 	}		
+	
+	
+	
+	@GET
+	@Path(REFUND_ORDER_ITEM)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response refundOrderItem(@HeaderParam("TOKEN_OWNER") 	@DefaultValue("-1") long codOwner,
+									@HeaderParam("codOrder")  		@DefaultValue("-1") long codOrder,
+									@HeaderParam("codOrderItem")  	@DefaultValue("-1") int codOrderItem,
+									@HeaderParam("TOKEN_USERNAME") 	String username,
+									@HeaderParam("codLanguage") 	@DefaultValue("EN") String codLanguage) {
+
+		RefemInfo recordInfo = new RefemInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.codOrder = codOrder;
+		recordInfo.codOrderItem = codOrderItem;
+		recordInfo.username = username;
+		recordInfo.codLanguage = codLanguage;
+		
+		
+		Model model = new RefemModelRefund(recordInfo);
+		model.executeRequest();
+		Response result =  model.getResponse();
+		model.close();
+		
+		return result;
+	}	
 	
 	
 	

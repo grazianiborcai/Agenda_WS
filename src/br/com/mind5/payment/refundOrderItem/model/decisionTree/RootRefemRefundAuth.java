@@ -11,9 +11,9 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 import br.com.mind5.payment.refundOrderItem.info.RefemInfo;
-import br.com.mind5.payment.refundOrderItem.model.action.LazyRefemMergeCuspar;
-import br.com.mind5.payment.refundOrderItem.model.action.LazyRefemMergePayord;
-import br.com.mind5.payment.refundOrderItem.model.action.LazyRefemNodeRefund;
+import br.com.mind5.payment.refundOrderItem.model.action.LazyRefemMergeUsername;
+import br.com.mind5.payment.refundOrderItem.model.action.LazyRefemNodeAuthL1;
+import br.com.mind5.payment.refundOrderItem.model.action.LazyRefemRootRefund;
 import br.com.mind5.payment.refundOrderItem.model.action.StdRefemMergePayormarch;
 import br.com.mind5.payment.refundOrderItem.model.checker.RefemCheckLangu;
 import br.com.mind5.payment.refundOrderItem.model.checker.RefemCheckOrder;
@@ -86,13 +86,13 @@ public final class RootRefemRefundAuth extends DeciTreeTemplateWriteV2<RefemInfo
 		List<ActionStdV1<RefemInfo>> actions = new ArrayList<>();		
 
 		ActionStdV1<RefemInfo> mergePayormarch = new StdRefemMergePayormarch(option);	
-		ActionLazyV1<RefemInfo> mergePayord = new LazyRefemMergePayord(option.conn, option.schemaName);
-		ActionLazyV1<RefemInfo> mergeCuspar = new LazyRefemMergeCuspar(option.conn, option.schemaName);
-		ActionLazyV1<RefemInfo> refund = new LazyRefemNodeRefund(option.conn, option.schemaName);
+		ActionLazyV1<RefemInfo> mergeUsername = new LazyRefemMergeUsername(option.conn, option.schemaName);
+		ActionLazyV1<RefemInfo> nodeAuth = new LazyRefemNodeAuthL1(option.conn, option.schemaName);
+		ActionLazyV1<RefemInfo> refund = new LazyRefemRootRefund(option.conn, option.schemaName);
 		
-		mergePayormarch.addPostAction(mergePayord);
-		mergePayord.addPostAction(mergeCuspar);	
-		mergeCuspar.addPostAction(refund);
+		mergePayormarch.addPostAction(mergeUsername);
+		mergeUsername.addPostAction(nodeAuth);	
+		nodeAuth.addPostAction(refund);
 		
 		actions.add(mergePayormarch);		
 		return actions;
