@@ -22,7 +22,7 @@ public final class PaytusemInfo extends InfoRecord implements Cloneable, Compara
 	
 	
 	public PaytusemInfo() {
-		super(PaytusemInfo.class);
+		super();
 		
 		codOwner = DefaultValue.number();	
 		codPayOrderItem = DefaultValue.number();	

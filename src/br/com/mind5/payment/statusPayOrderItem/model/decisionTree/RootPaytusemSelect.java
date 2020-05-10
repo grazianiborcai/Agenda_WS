@@ -4,17 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 import br.com.mind5.payment.statusPayOrderItem.info.PaytusemInfo;
 import br.com.mind5.payment.statusPayOrderItem.model.action.StdPaytusemMergePayordem;
 import br.com.mind5.payment.statusPayOrderItem.model.checker.PaytusemCheckLangu;
 import br.com.mind5.payment.statusPayOrderItem.model.checker.PaytusemCheckRead;
 
-public final class RootPaytusemSelect extends DeciTreeTemplateReadV1<PaytusemInfo> {
+public final class RootPaytusemSelect extends DeciTreeTemplateReadV2<PaytusemInfo> {
 	
 	public RootPaytusemSelect(DeciTreeOption<PaytusemInfo> option) {
 		super(option);

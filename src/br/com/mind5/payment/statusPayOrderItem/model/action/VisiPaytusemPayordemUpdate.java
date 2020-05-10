@@ -1,19 +1,19 @@
 package br.com.mind5.payment.statusPayOrderItem.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.payOrderItem.info.PayordemInfo;
 import br.com.mind5.payment.payOrderItem.model.decisionTree.RootPayordemUpdateStatus;
 import br.com.mind5.payment.statusPayOrderItem.info.PaytusemInfo;
 import br.com.mind5.payment.statusPayOrderItem.info.PaytusemMerger;
 
-final class VisiPaytusemPayordemUpdate extends ActionVisitorTemplateMergeV1<PaytusemInfo, PayordemInfo> {
+final class VisiPaytusemPayordemUpdate extends ActionVisitorTemplateMergeV2<PaytusemInfo, PayordemInfo> {
 	
-	public VisiPaytusemPayordemUpdate(Connection conn, String schemaName) {
-		super(conn, schemaName, PayordemInfo.class);
+	public VisiPaytusemPayordemUpdate(DeciTreeOption<PaytusemInfo> option) {
+		super(option, PayordemInfo.class);
 	}
 	
 	
@@ -31,6 +31,6 @@ final class VisiPaytusemPayordemUpdate extends ActionVisitorTemplateMergeV1<Payt
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
+		return super.DONT_MERGE_WHEN_EMPTY;
 	}
 }
