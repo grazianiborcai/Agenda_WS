@@ -142,7 +142,7 @@ public final class DaoPayormarchDbTableColumn extends DaoDbTableColumnTemplate {
 		columns.add(oneColumn);	
 		
 		Hashtable<String, List<DaoColumn>> results = new Hashtable<>();
-		results.put(TABLE_NAME, columns);
+		results.put(DaoDbTable.PAY_ORDER_ITM_SEARCH_VIEW, columns);
 		return results;
 	}
 }

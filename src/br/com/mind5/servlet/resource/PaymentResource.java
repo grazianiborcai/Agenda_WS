@@ -23,7 +23,7 @@ import br.com.mind5.payment.payOrder.model.PayordModelPay;
 import br.com.mind5.payment.refundOrder.info.RefuInfo;
 import br.com.mind5.payment.refundOrder.model.RefuModelRefund;
 import br.com.mind5.payment.refundOrderItem.info.RefemInfo;
-import br.com.mind5.payment.refundOrderItem.model.RefemModelRefund;
+import br.com.mind5.payment.refundOrderItem.model.RefemModelRefundAuth;
 import br.com.mind5.payment.statusPayOrder.info.PaytusInfo;
 import br.com.mind5.payment.statusPayOrder.model.PaytusModelRefreshAuth;
 import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.info.PeresmoipInfo;
@@ -99,7 +99,7 @@ public final class PaymentResource {
 		recordInfo.codLanguage = codLanguage;
 		
 		
-		Model model = new RefemModelRefund(recordInfo);
+		Model model = new RefemModelRefundAuth(recordInfo);
 		model.executeRequest();
 		Response result =  model.getResponse();
 		model.close();
