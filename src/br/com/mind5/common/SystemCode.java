@@ -739,7 +739,9 @@ public final class SystemCode {
 	// Order Search
 	public static final int ORDER_SEARCH_MANDATORY_FIELD_EMPTY 			= 5351;
 	public static final int ORDER_SEARCH_ALREADY_EXIST					= 5352;
-	public static final int ORDER_SEARCH_NOT_FOUND						= 5353;
+	public static final int ORDER_SEARCH_NOT_FOUND						= 5353;	
+	public static final int ORDER_SEARCH_ALREADY_EXIST_AUTH				= 5354;
+	public static final int ORDER_SEARCH_NOT_FOUND_AUTH					= 5355;
 	
 	// Order List
 	public static final int ORDER_LIST_MANDATORY_FIELD_EMPTY 			= 5400;
