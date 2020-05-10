@@ -4,15 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.order.info.OrderInfo;
-import br.com.mind5.business.order.model.action.LazyOrderNodeUpdate;
-import br.com.mind5.business.order.model.action.StdOrderEnforceStatusCancelled;
 import br.com.mind5.business.order.model.action.StdOrderRefuRefund;
 import br.com.mind5.business.order.model.checker.OrderCheckHasPayord;
-import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
@@ -55,12 +52,9 @@ public final class NodeOrderCancelL2 extends DeciTreeTemplateWriteV2<OrderInfo> 
 	@Override protected List<ActionStdV1<OrderInfo>> buildActionsOnFailedHook(DeciTreeOption<OrderInfo> option) {
 		List<ActionStdV1<OrderInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<OrderInfo> enforceStatus = new StdOrderEnforceStatusCancelled(option);
-		ActionLazyV1<OrderInfo> update = new LazyOrderNodeUpdate(option.conn, option.schemaName);
+		ActionStdV1<OrderInfo> update = new NodeOrderUpdate(option).toAction();
 		
-		enforceStatus.addPostAction(update);
-		
-		actions.add(enforceStatus);
+		actions.add(update);
 		return actions;
 	}
 }

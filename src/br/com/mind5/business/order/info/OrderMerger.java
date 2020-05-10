@@ -7,6 +7,7 @@ import br.com.mind5.business.customerSearch.info.CusarchInfo;
 import br.com.mind5.business.orderItem.info.OrderemInfo;
 import br.com.mind5.business.orderSearch.info.OrdarchInfo;
 import br.com.mind5.business.orderSnapshot.info.OrdnapInfo;
+import br.com.mind5.business.orderStatusChange.info.OrdugeInfo;
 import br.com.mind5.business.refundPolicyOwner.info.RefupownInfo;
 import br.com.mind5.info.InfoMergerBuilderV3;
 import br.com.mind5.info.InfoMergerV3;
@@ -18,6 +19,19 @@ import br.com.mind5.payment.payOrder.info.PayordInfo;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class OrderMerger {	
+	public static List<OrderInfo> mergeWithOrduge(List<OrderInfo> baseInfos, List<OrdugeInfo> selectedInfos) {
+		InfoMergerBuilderV3<OrderInfo, OrdugeInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new OrderVisiMergeOrduge());
+		InfoMergerV3<OrderInfo, OrdugeInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}	
+	
+	
+	
 	public static List<OrderInfo> mergeWithRefupown(List<OrderInfo> baseInfos, List<RefupownInfo> selectedInfos) {
 		InfoMergerBuilderV3<OrderInfo, RefupownInfo> builder = new InfoMergerBuilderV3<>();
 		

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.order.info.OrderInfo;
-import br.com.mind5.business.order.model.action.LazyOrderEnforceStatusMoip;
+import br.com.mind5.business.order.model.action.LazyOrderMergeOrdugePartner;
 import br.com.mind5.business.order.model.action.StdOrderMergePayord;
 import br.com.mind5.business.order.model.action.StdOrderSuccess;
 import br.com.mind5.business.order.model.checker.OrderCheckHasPayord;
@@ -45,9 +45,9 @@ public final class NodeOrderPayord extends DeciTreeTemplateWriteV2<OrderInfo> {
 		List<ActionStdV1<OrderInfo>> actions = new ArrayList<>();		
 
 		ActionStdV1<OrderInfo> mergePayord = new StdOrderMergePayord(option);
-		ActionLazyV1<OrderInfo> enforceStatus = new LazyOrderEnforceStatusMoip(option.conn, option.schemaName);
+		ActionLazyV1<OrderInfo> statusChange = new LazyOrderMergeOrdugePartner(option.conn, option.schemaName);
 		
-		mergePayord.addPostAction(enforceStatus);
+		mergePayord.addPostAction(statusChange);
 		
 		actions.add(mergePayord);
 		return actions;

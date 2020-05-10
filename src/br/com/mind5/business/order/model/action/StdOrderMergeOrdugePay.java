@@ -5,15 +5,15 @@ import br.com.mind5.model.action.ActionStdTemplateV2;
 import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdOrderEnforceStatusCancelled extends ActionStdTemplateV2<OrderInfo> {
+public final class StdOrderMergeOrdugePay extends ActionStdTemplateV2<OrderInfo> {
 
-	public StdOrderEnforceStatusCancelled(DeciTreeOption<OrderInfo> option) {
+	public StdOrderMergeOrdugePay(DeciTreeOption<OrderInfo> option) {
 		super(option);
 	}
 	
 	
 	
 	protected ActionVisitorV2<OrderInfo> buildVisitorHook(DeciTreeOption<OrderInfo> option) {
-		return new VisiOrderEnforceStatusCancelled(option);
+		return new VisiOrderMergeOrdugePay(option);
 	}
 }
