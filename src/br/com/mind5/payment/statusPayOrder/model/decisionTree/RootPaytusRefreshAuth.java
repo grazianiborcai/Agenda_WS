@@ -5,9 +5,9 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 import br.com.mind5.payment.statusPayOrder.info.PaytusInfo;
@@ -15,6 +15,7 @@ import br.com.mind5.payment.statusPayOrder.model.action.LazyPaytusRootRefresh;
 import br.com.mind5.payment.statusPayOrder.model.checker.PaytusCheckOwner;
 import br.com.mind5.payment.statusPayOrder.model.checker.PaytusCheckPayord;
 import br.com.mind5.payment.statusPayOrder.model.checker.PaytusCheckRefresh;
+import br.com.mind5.payment.statusPayOrder.model.checker.PaytusCheckUsername;
 
 public final class RootPaytusRefreshAuth extends DeciTreeTemplateWriteV2<PaytusInfo> {
 	
@@ -48,6 +49,13 @@ public final class RootPaytusRefreshAuth extends DeciTreeTemplateWriteV2<PaytusI
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
 		checker = new PaytusCheckPayord(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
+		checker = new PaytusCheckUsername(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueueV2<>(queue);
