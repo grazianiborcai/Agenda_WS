@@ -1,19 +1,19 @@
 package br.com.mind5.security.tokenAuthentication.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.tokenAuthentication.info.TauthInfo;
 import br.com.mind5.security.tokenAuthentication.info.TauthMerger;
 import br.com.mind5.security.username.info.UsernameInfo;
 import br.com.mind5.security.username.model.decisionTree.RootUsernameSelect;
 
-final class VisiTauthMergeUsername extends ActionVisitorTemplateMergeV1<TauthInfo, UsernameInfo> {
+final class VisiTauthMergeUsername extends ActionVisitorTemplateMergeV2<TauthInfo, UsernameInfo> {
 	
-	public VisiTauthMergeUsername(Connection conn, String schemaName) {
-		super(conn, schemaName, UsernameInfo.class);
+	public VisiTauthMergeUsername(DeciTreeOption<TauthInfo> option) {
+		super(option, UsernameInfo.class);
 	}
 	
 	
@@ -31,6 +31,6 @@ final class VisiTauthMergeUsername extends ActionVisitorTemplateMergeV1<TauthInf
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
+		return super.MERGE_WHEN_EMPTY;
 	}
 }

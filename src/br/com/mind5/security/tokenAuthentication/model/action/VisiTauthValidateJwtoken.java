@@ -1,10 +1,9 @@
 package br.com.mind5.security.tokenAuthentication.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateActionV1;
+import br.com.mind5.model.action.ActionVisitorTemplateActionV2;
+import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.jwtToken.info.JwtokenCopier;
 import br.com.mind5.security.jwtToken.info.JwtokenInfo;
@@ -12,15 +11,16 @@ import br.com.mind5.security.jwtToken.model.decisionTree.RootJwtokenValidate;
 import br.com.mind5.security.tokenAuthentication.info.TauthInfo;
 import br.com.mind5.security.tokenAuthentication.info.TauthMerger;
 
-final class VisiTauthValidateJwtoken extends ActionVisitorTemplateActionV1<TauthInfo, JwtokenInfo> {
-	public VisiTauthValidateJwtoken(Connection conn, String schemaName) {
-		super(conn, schemaName, TauthInfo.class, JwtokenInfo.class);
+final class VisiTauthValidateJwtoken extends ActionVisitorTemplateActionV2<TauthInfo, JwtokenInfo> {
+	
+	public VisiTauthValidateJwtoken(DeciTreeOption<TauthInfo> option) {
+		super(option, TauthInfo.class, JwtokenInfo.class);
 	}
 	
 	
 	
-	@Override protected ActionStdV1<JwtokenInfo> getActionHook(DeciTreeOption<JwtokenInfo> option) {
-		return new RootJwtokenValidate(option).toAction();
+	@Override protected Class<? extends DeciTree<JwtokenInfo>> getTreeClassHook() {
+		return RootJwtokenValidate.class;
 	}
 	
 	

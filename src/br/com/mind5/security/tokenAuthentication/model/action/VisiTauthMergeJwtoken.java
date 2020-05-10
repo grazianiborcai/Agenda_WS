@@ -1,20 +1,20 @@
 package br.com.mind5.security.tokenAuthentication.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.jwtToken.info.JwtokenCopier;
 import br.com.mind5.security.jwtToken.info.JwtokenInfo;
 import br.com.mind5.security.jwtToken.model.decisionTree.RootJwtokenParse;
 import br.com.mind5.security.tokenAuthentication.info.TauthInfo;
 import br.com.mind5.security.tokenAuthentication.info.TauthMerger;
 
-final class VisiTauthMergeJwtoken extends ActionVisitorTemplateMergeV1<TauthInfo, JwtokenInfo> {
+final class VisiTauthMergeJwtoken extends ActionVisitorTemplateMergeV2<TauthInfo, JwtokenInfo> {
 	
-	public VisiTauthMergeJwtoken(Connection conn, String schemaName) {
-		super(conn, schemaName, JwtokenInfo.class);
+	public VisiTauthMergeJwtoken(DeciTreeOption<TauthInfo> option) {
+		super(option, JwtokenInfo.class);
 	}
 	
 	
@@ -38,6 +38,6 @@ final class VisiTauthMergeJwtoken extends ActionVisitorTemplateMergeV1<TauthInfo
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
+		return super.MERGE_WHEN_EMPTY;
 	}
 }
