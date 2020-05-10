@@ -1,57 +1,28 @@
 package br.com.mind5.paymentPartner.partnerMoip.refundMoip.model.checker;
 
-import java.util.List;
-
-import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.payment.systemPartnerSearch.info.SysparchCopier;
 import br.com.mind5.payment.systemPartnerSearch.info.SysparchInfo;
 import br.com.mind5.payment.systemPartnerSearch.model.checker.SysparchCheckExist;
 import br.com.mind5.paymentPartner.partnerMoip.refundMoip.info.RefumoipInfo;
 
-public final class RefumoipCheckSysparch implements ModelCheckerV1<RefumoipInfo> {
-	private final boolean FAILED = false;
-	private final boolean SUCCESS = true;
-	
-	private ModelCheckerV1<SysparchInfo> checker;
-	
+public final class RefumoipCheckSysparch extends ModelCheckerTemplateForwardV2<RefumoipInfo, SysparchInfo> {
 	
 	public RefumoipCheckSysparch(ModelCheckerOption option) {
-		checker = new SysparchCheckExist(option);
-	}
-	
-	
-	
-	@Override public boolean check(List<RefumoipInfo> recordInfos) {
-		for (RefumoipInfo eachInfo : recordInfos) {
-			if (check(eachInfo) == FAILED)
-				return FAILED;
-		}
-		
-		return SUCCESS;
+		super(option);
 	}
 
-	
-	
-	@Override public boolean check(RefumoipInfo recordInfo) {
-		return checker.check(SysparchCopier.copyFromRefumoip(recordInfo));
-	}
 
 	
-	
-	@Override public boolean getResult() {
-		return checker.getResult();
+	@Override protected ModelCheckerV1<SysparchInfo> getCheckerHook(ModelCheckerOption option) {
+		return new SysparchCheckExist(option);
 	}
-
 	
 	
-	@Override public String getFailMessage() {
-		return checker.getFailMessage();
-	}
-
 	
-	
-	@Override public int getFailCode() {
-		return checker.getFailCode();
+	@Override protected SysparchInfo toForwardClass(RefumoipInfo baseRecord) {
+		return SysparchCopier.copyFromRefumoip(baseRecord);
 	}
 }

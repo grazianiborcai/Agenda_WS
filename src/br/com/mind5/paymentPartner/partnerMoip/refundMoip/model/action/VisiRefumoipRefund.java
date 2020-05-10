@@ -1,17 +1,24 @@
 package br.com.mind5.paymentPartner.partnerMoip.refundMoip.model.action;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-import br.com.mind5.model.action.ActionVisitorV1;
+import br.com.mind5.common.SystemCode;
+import br.com.mind5.model.action.ActionVisitorTemplateSimpleV2;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.paymentPartner.partnerMoip.refundMoip.info.RefumoipInfo;
 import br.com.moip.Moip;
 
-final class VisiRefumoipRefund implements ActionVisitorV1<RefumoipInfo> {
+final class VisiRefumoipRefund extends ActionVisitorTemplateSimpleV2<RefumoipInfo> {
 	
-	@Override public List<RefumoipInfo> executeTransformation(List<RefumoipInfo> recordInfos) {
+	public VisiRefumoipRefund(DeciTreeOption<RefumoipInfo> option) {
+		super(option);
+	}
+	
+	
+	
+	@Override public List<RefumoipInfo> executeTransformationHook(List<RefumoipInfo> recordInfos) {
 		List<RefumoipInfo> results = new ArrayList<>();
 		
 		for(RefumoipInfo eachRecod : recordInfos) {
@@ -19,7 +26,7 @@ final class VisiRefumoipRefund implements ActionVisitorV1<RefumoipInfo> {
 			response = refundOrder(eachRecod);
 			
 			if (response == null)
-				return Collections.emptyList();
+				return null;
 			
 			eachRecod.response = response;
 			results.add(eachRecod);
@@ -32,6 +39,18 @@ final class VisiRefumoipRefund implements ActionVisitorV1<RefumoipInfo> {
 	
 	
 	private Map<String, Object> refundOrder(RefumoipInfo recordInfo) {
-		return Moip.API.refunds().refundOrder(recordInfo.idOrderPartner, recordInfo.setup);	
+		try {
+			return Moip.API.refunds().refundOrder(recordInfo.idOrderPartner, recordInfo.setup);	
+		
+		} catch (Exception e) {
+			super.logException(e);
+			return null;
+		}
+	}
+	
+	
+	
+	@Override protected int getErrorCodeHook() {
+		return SystemCode.REFUND_MOIP_REFUND_ERROR;
 	}
 }

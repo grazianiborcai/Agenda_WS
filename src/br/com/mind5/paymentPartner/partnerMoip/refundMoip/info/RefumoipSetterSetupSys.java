@@ -1,33 +1,15 @@
 package br.com.mind5.paymentPartner.partnerMoip.refundMoip.info;
 
 import br.com.mind5.business.masterData.info.common.Environ;
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoSetter;
+import br.com.mind5.info.InfoSetterTemplate;
 import br.com.moip.auth.Authentication;
 import br.com.moip.auth.OAuth;
 import br.com.moip.models.Setup;
 import br.com.moip.models.Setup.Environment;
 
-public final class RefumoipSetterSetupSys implements InfoSetter<RefumoipInfo> {
+public final class RefumoipSetterSetupSys extends InfoSetterTemplate<RefumoipInfo> {
 	
-	public RefumoipInfo setAttr(RefumoipInfo recordInfo) {
-		checkArgument(recordInfo);
-		return setSetup(recordInfo);
-	}
-	
-	
-	
-	private void checkArgument(RefumoipInfo recordInfo) {
-		if (recordInfo == null) {
-			logException(new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT));
-			throw new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT);
-		}
-	}
-	
-	
-	
-	private RefumoipInfo setSetup(RefumoipInfo recordInfo) {
+	@Override protected RefumoipInfo setAttrHook(RefumoipInfo recordInfo) {
 		Authentication auth = getAuthentication(recordInfo);
 		Environment environment = getEnvironment(recordInfo);
 		
@@ -55,11 +37,4 @@ public final class RefumoipSetterSetupSys implements InfoSetter<RefumoipInfo> {
 		
 		return Environment.SANDBOX;
 	}
-	
-	
-	
-	private void logException(Exception e) {
-		
-		SystemLog.logError(this.getClass(), e);
-	}	
 }

@@ -3,14 +3,14 @@ package br.com.mind5.paymentPartner.partnerMoip.refundMoip.model.action;
 import java.sql.Connection;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazyTemplateV1;
+import br.com.mind5.model.action.ActionLazyTemplateV2;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.paymentPartner.partnerMoip.refundMoip.info.RefumoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.refundMoip.model.decisionTree.NodeRefumoipRefundL1;
 
-public final class LazyRefumoipNodeRefundL1 extends ActionLazyTemplateV1<RefumoipInfo, RefumoipInfo> {
+public final class LazyRefumoipNodeRefundL1 extends ActionLazyTemplateV2<RefumoipInfo, RefumoipInfo> {
 
 	public LazyRefumoipNodeRefundL1(Connection conn, String schemaName) {
 		super(conn, schemaName);
