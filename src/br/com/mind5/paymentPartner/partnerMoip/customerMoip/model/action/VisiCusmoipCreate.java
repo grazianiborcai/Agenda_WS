@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Map;
 
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.common.SystemLog;
 import br.com.mind5.model.action.ActionVisitorTemplateSimpleV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.paymentPartner.partnerMoip.customerMoip.info.CusmoipInfo;
@@ -44,7 +43,7 @@ final class VisiCusmoipCreate extends ActionVisitorTemplateSimpleV2<CusmoipInfo>
 			return Moip.API.customers().create(recordInfo.requestBody, recordInfo.setup);			
 			
 		} catch (Exception e) {
-			logException(e);
+			super.logException(e);
 			//TODO: Escrever em log detalhes do erro
 			return null;
 		}
@@ -67,11 +66,5 @@ final class VisiCusmoipCreate extends ActionVisitorTemplateSimpleV2<CusmoipInfo>
 	
 	@Override protected int getErrorCodeHook() {
 		return SystemCode.PAY_CUS_MOIP_CREATION_ERROR;
-	}
-	
-	
-	
-	private void logException(Exception e) {		
-		SystemLog.logError(this.getClass(), e);
 	}
 }

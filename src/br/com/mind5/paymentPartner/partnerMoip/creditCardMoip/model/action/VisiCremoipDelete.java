@@ -3,7 +3,6 @@ package br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.model.action;
 import java.util.List;
 
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.common.SystemLog;
 import br.com.mind5.model.action.ActionVisitorTemplateSimpleV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.info.CremoipInfo;
@@ -36,7 +35,7 @@ final class VisiCremoipDelete extends ActionVisitorTemplateSimpleV2<CremoipInfo>
 			return true;
 			
 		} catch (Exception e) {
-			logException(e);
+			super.logException(e);
 			return false;
 			//TODO: Escrever em log detalhes do erro
 		}
@@ -46,11 +45,5 @@ final class VisiCremoipDelete extends ActionVisitorTemplateSimpleV2<CremoipInfo>
 	
 	@Override protected int getErrorCodeHook() {
 		return SystemCode.CREDIT_CARD_MOIP_DELETION_ERROR;
-	}
-	
-	
-	
-	private void logException(Exception e) {		
-		SystemLog.logError(this.getClass(), e);
 	}
 }

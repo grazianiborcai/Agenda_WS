@@ -204,7 +204,7 @@ public abstract class ActionVisitorTemplateSimpleV2<T extends InfoRecord> implem
 	
 	
 	
-	private void logException(Exception e) {		
+	protected void logException(Exception e) {		
 		SystemLog.logError(this.getClass(), e);
 	}
 }

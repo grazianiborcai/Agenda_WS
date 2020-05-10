@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Map;
 
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.common.SystemLog;
 import br.com.mind5.model.action.ActionVisitorTemplateSimpleV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.info.OrdmoipInfo;
@@ -44,7 +43,7 @@ final class VisiOrdmoipRead extends ActionVisitorTemplateSimpleV2<OrdmoipInfo> {
 			return Moip.API.orders().get(recordInfo.idOrderPartner, recordInfo.setup);			
 			
 		} catch (Exception e) {
-			logException(e);
+			super.logException(e);
 			//TODO: Escrever em log detalhes do erro
 			return null;
 		}
@@ -54,11 +53,5 @@ final class VisiOrdmoipRead extends ActionVisitorTemplateSimpleV2<OrdmoipInfo> {
 	
 	@Override protected int getErrorCodeHook() {
 		return SystemCode.ORDER_MOIP_READ_ERROR;
-	}
-	
-	
-	
-	private void logException(Exception e) {		
-		SystemLog.logError(this.getClass(), e);
 	}
 }
