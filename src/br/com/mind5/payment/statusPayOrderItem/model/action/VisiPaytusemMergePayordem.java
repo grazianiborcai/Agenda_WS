@@ -6,6 +6,7 @@ import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
+import br.com.mind5.payment.payOrderItem.info.PayordemCopier;
 import br.com.mind5.payment.payOrderItem.info.PayordemInfo;
 import br.com.mind5.payment.payOrderItem.model.decisionTree.RootPayordemSearch;
 import br.com.mind5.payment.statusPayOrderItem.info.PaytusemInfo;
@@ -21,6 +22,12 @@ final class VisiPaytusemMergePayordem extends ActionVisitorTemplateMergeV2<Paytu
 	
 	@Override protected Class<? extends DeciTree<PayordemInfo>> getTreeClassHook() {
 		return RootPayordemSearch.class;
+	}
+	
+	
+	
+	@Override protected List<PayordemInfo> toActionClassHook(List<PaytusemInfo> baseInfos) {
+		return PayordemCopier.copyFromPaytusem(baseInfos);	
 	}
 	
 	
