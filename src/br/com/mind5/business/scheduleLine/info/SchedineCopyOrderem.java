@@ -1,21 +1,22 @@
 package br.com.mind5.business.scheduleLine.info;
 
-import br.com.mind5.business.order.info.OrderInfo;
+import br.com.mind5.business.orderItem.info.OrderemInfo;
 import br.com.mind5.info.InfoCopierTemplate;
 
-final class SchedineCopyOrderKey extends InfoCopierTemplate<SchedineInfo, OrderInfo> {
+final class SchedineCopyOrderem extends InfoCopierTemplate<SchedineInfo, OrderemInfo> {
 	
-	public SchedineCopyOrderKey() {
+	public SchedineCopyOrderem() {
 		super();
 	}
 	
 	
 	
-	@Override protected SchedineInfo makeCopyHook(OrderInfo source) {
+	@Override protected SchedineInfo makeCopyHook(OrderemInfo source) {
 		SchedineInfo result = new SchedineInfo();
 		
 		result.codOwner = source.codOwner;
 		result.codOrder = source.codOrder;
+		result.codOrderItem = source.codOrderItem;
 		result.codLanguage = source.codLanguage;
 		result.username = source.username;
 		
