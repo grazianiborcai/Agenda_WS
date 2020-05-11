@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class UserDbTableColumn extends DaoDbTableColumnTemplate {	
+public final class DaoUserDbTableColumn extends DaoDbTableColumnTemplate {	
 	public static final String COL_COD_AUTH_GROUP = DaoDbField.COL_COD_AUTH_GROUP;
 	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;
 	public static final String COL_COD_PERSON = DaoDbField.COL_COD_PERSON;
@@ -21,24 +21,14 @@ public final class UserDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_RECORD_MODE = DaoDbField.COL_RECORD_MODE;	
 	public static final String COL_USERNAME = DaoDbField.COL_USERNAME;
 	
-	private Hashtable<String, List<DaoColumn>> tableColumns;	
 	
-	
-	public UserDbTableColumn() {
-		super(UserDbTableColumn.class);
+	public DaoUserDbTableColumn() {
+		super();
 	}
 	
 	
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
-		tableColumns = new Hashtable<>();		
-		buildUserTable();		
-		return tableColumns;
-	}
-	
-	
-	
-	private void buildUserTable() {
 		final String TABLE_NAME = DaoDbTable.USER_TABLE;
 		
 		DaoColumn oneColumn;
@@ -124,6 +114,8 @@ public final class UserDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		tableColumns.put(TABLE_NAME, columns);
+		Hashtable<String, List<DaoColumn>> results = new Hashtable<>();
+		results.put(TABLE_NAME, columns);
+		return results;
 	}
 }

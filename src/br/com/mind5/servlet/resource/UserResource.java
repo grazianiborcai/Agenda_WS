@@ -37,7 +37,10 @@ public class UserResource {
 		
 		Model model = new UserModelInsert(incomingData, request);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();
+		model.close();
+		
+		return result;
 	}
 	
 	
@@ -49,7 +52,10 @@ public class UserResource {
 		
 		Model model = new UserModelUpdateAuth(incomingData, request);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();
+		model.close();
+		
+		return result;
 	}
 
 	
@@ -67,7 +73,10 @@ public class UserResource {
 		
 		Model model = new UserModelDeleteAuth(recordInfo);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();
+		model.close();
+		
+		return result;
 	}
 
 	
@@ -86,6 +95,9 @@ public class UserResource {
 		
 		Model model = new UserModelSelectAuth(recordInfo);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();
+		model.close();
+		
+		return result;
 	}
 }

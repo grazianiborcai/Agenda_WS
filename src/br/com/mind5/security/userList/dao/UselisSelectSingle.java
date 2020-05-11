@@ -14,7 +14,7 @@ import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
-import br.com.mind5.security.user.dao.UserDbTableColumn;
+import br.com.mind5.security.user.dao.DaoUserDbTableColumn;
 import br.com.mind5.security.userList.info.UselisInfo;
 
 public final class UselisSelectSingle extends DaoStmtTemplate<UselisInfo> {
@@ -68,16 +68,16 @@ public final class UselisSelectSingle extends DaoStmtTemplate<UselisInfo> {
 				do {
 					UselisInfo dataInfo = new UselisInfo();
 					
-					dataInfo.codOwner = stmtResult.getLong(UserDbTableColumn.COL_COD_OWNER);
-					dataInfo.codUser = stmtResult.getLong(UserDbTableColumn.COL_COD_USER);									
-					dataInfo.recordMode = stmtResult.getString(UserDbTableColumn.COL_RECORD_MODE);
-					dataInfo.username = stmtResult.getString(UserDbTableColumn.COL_USERNAME);
-					dataInfo.codAuthGroup = stmtResult.getString(UserDbTableColumn.COL_COD_AUTH_GROUP);
-					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, UserDbTableColumn.COL_COD_SNAPSHOT);
-					dataInfo.codPerson = DaoFormatter.sqlToLong(stmtResult, UserDbTableColumn.COL_COD_PERSON);
-					dataInfo.codUserCategory = DaoFormatter.sqlToChar(stmtResult, UserDbTableColumn.COL_COD_USER_CATEG);
-					dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, UserDbTableColumn.COL_LAST_CHANGED_BY);
-					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, UserDbTableColumn.COL_LAST_CHANGED);	
+					dataInfo.codOwner = stmtResult.getLong(DaoUserDbTableColumn.COL_COD_OWNER);
+					dataInfo.codUser = stmtResult.getLong(DaoUserDbTableColumn.COL_COD_USER);									
+					dataInfo.recordMode = stmtResult.getString(DaoUserDbTableColumn.COL_RECORD_MODE);
+					dataInfo.username = stmtResult.getString(DaoUserDbTableColumn.COL_USERNAME);
+					dataInfo.codAuthGroup = stmtResult.getString(DaoUserDbTableColumn.COL_COD_AUTH_GROUP);
+					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, DaoUserDbTableColumn.COL_COD_SNAPSHOT);
+					dataInfo.codPerson = DaoFormatter.sqlToLong(stmtResult, DaoUserDbTableColumn.COL_COD_PERSON);
+					dataInfo.codUserCategory = DaoFormatter.sqlToChar(stmtResult, DaoUserDbTableColumn.COL_COD_USER_CATEG);
+					dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, DaoUserDbTableColumn.COL_LAST_CHANGED_BY);
+					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, DaoUserDbTableColumn.COL_LAST_CHANGED);	
 					
 					finalResult.add(dataInfo);				
 				} while (stmtResult.next());

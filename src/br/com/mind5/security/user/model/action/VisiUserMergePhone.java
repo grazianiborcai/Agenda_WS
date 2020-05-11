@@ -1,19 +1,19 @@
 package br.com.mind5.security.user.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.business.phone.model.decisionTree.RootPhoneSearch;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.user.info.UserInfo;
 import br.com.mind5.security.user.info.UserMerger;
 
-final class VisiUserMergePhone extends ActionVisitorTemplateMergeV1<UserInfo, PhoneInfo> {
+final class VisiUserMergePhone extends ActionVisitorTemplateMergeV2<UserInfo, PhoneInfo> {
 	
-	public VisiUserMergePhone(Connection conn, String schemaName) {
-		super(conn, schemaName, PhoneInfo.class);
+	public VisiUserMergePhone(DeciTreeOption<UserInfo> option) {
+		super(option, PhoneInfo.class); 
 	}
 	
 	
@@ -31,6 +31,6 @@ final class VisiUserMergePhone extends ActionVisitorTemplateMergeV1<UserInfo, Ph
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
+		return super.MERGE_WHEN_EMPTY;
 	}
 }

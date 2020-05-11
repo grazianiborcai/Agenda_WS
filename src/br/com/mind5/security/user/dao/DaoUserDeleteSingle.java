@@ -15,11 +15,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.security.user.info.UserInfo;
 
-public final class UserDeleteSingle extends DaoStmtTemplate<UserInfo> {
+public final class DaoUserDeleteSingle extends DaoStmtTemplate<UserInfo> {
 	private final String MAIN_TABLE = DaoDbTable.USER_TABLE;	
 	
 	
-	public UserDeleteSingle(Connection conn, UserInfo recordInfo, String schemaName) {
+	public DaoUserDeleteSingle(Connection conn, UserInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -44,7 +44,7 @@ public final class UserDeleteSingle extends DaoStmtTemplate<UserInfo> {
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;	
 		whereOption.ignoreNonPrimaryKey = DaoOptionValue.IGNORE_NON_PK;		
 		
-		DaoStmtWhere whereClause = new UserWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new DaoUserWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	

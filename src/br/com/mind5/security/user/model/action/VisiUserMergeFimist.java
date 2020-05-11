@@ -1,20 +1,20 @@
 package br.com.mind5.security.user.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.file.fileImageList.info.FimistCopier;
 import br.com.mind5.file.fileImageList.info.FimistInfo;
 import br.com.mind5.file.fileImageList.model.decisionTree.RootFimistSearch;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.user.info.UserInfo;
 import br.com.mind5.security.user.info.UserMerger;
 
-final class VisiUserMergeFimist extends ActionVisitorTemplateMergeV1<UserInfo, FimistInfo> {
+final class VisiUserMergeFimist extends ActionVisitorTemplateMergeV2<UserInfo, FimistInfo> {
 	
-	public VisiUserMergeFimist(Connection conn, String schemaName) {
-		super(conn, schemaName, FimistInfo.class);
+	public VisiUserMergeFimist(DeciTreeOption<UserInfo> option) {
+		super(option, FimistInfo.class); 
 	}
 	
 	
@@ -38,6 +38,6 @@ final class VisiUserMergeFimist extends ActionVisitorTemplateMergeV1<UserInfo, F
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
+		return super.MERGE_WHEN_EMPTY;
 	}
 }

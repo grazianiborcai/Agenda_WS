@@ -9,22 +9,22 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 import br.com.mind5.security.user.info.UserInfo;
-import br.com.mind5.security.user.model.action.LazyUserDelete;
+import br.com.mind5.security.user.model.action.LazyUserDaoDelete;
 import br.com.mind5.security.user.model.action.LazyUserDeletePerson;
 import br.com.mind5.security.user.model.action.LazyUserDeleteUpswd;
 import br.com.mind5.security.user.model.action.LazyUserEnforceLChanged;
 import br.com.mind5.security.user.model.action.LazyUserMergeToDelete;
 import br.com.mind5.security.user.model.action.LazyUserNodeDeleteAddress;
 import br.com.mind5.security.user.model.action.LazyUserNodeDeletePhone;
-import br.com.mind5.security.user.model.action.LazyUserUpdate;
+import br.com.mind5.security.user.model.action.LazyUserDaoUpdate;
 import br.com.mind5.security.user.model.action.StdUserMergeUsername;
 import br.com.mind5.security.user.model.checker.UserCheckDelete;
 import br.com.mind5.security.user.model.checker.UserCheckExist;
 import br.com.mind5.security.user.model.checker.UserCheckOwner;
 
-public final class RootUserDelete extends DeciTreeTemplateWriteV1<UserInfo> {
+public final class RootUserDelete extends DeciTreeTemplateWriteV2<UserInfo> {
 	
 	public RootUserDelete(DeciTreeOption<UserInfo> option) {
 		super(option);
@@ -69,10 +69,10 @@ public final class RootUserDelete extends DeciTreeTemplateWriteV1<UserInfo> {
 		ActionStdV1<UserInfo> enforceLChangedBy = new StdUserMergeUsername(option);	
 		ActionLazyV1<UserInfo> mergeToDelete = new LazyUserMergeToDelete(option.conn, option.schemaName);	
 		ActionLazyV1<UserInfo> enforceLChanged = new LazyUserEnforceLChanged(option.conn, option.schemaName);		
-		ActionLazyV1<UserInfo> updateUser = new LazyUserUpdate(option.conn, option.schemaName);
+		ActionLazyV1<UserInfo> updateUser = new LazyUserDaoUpdate(option.conn, option.schemaName);
 		ActionLazyV1<UserInfo> deleteAddress = new LazyUserNodeDeleteAddress(option.conn, option.schemaName);
 		ActionLazyV1<UserInfo> deletePhone = new LazyUserNodeDeletePhone(option.conn, option.schemaName);
-		ActionLazyV1<UserInfo> deleteUser = new LazyUserDelete(option.conn, option.schemaName);	
+		ActionLazyV1<UserInfo> deleteUser = new LazyUserDaoDelete(option.conn, option.schemaName);	
 		ActionLazyV1<UserInfo> deletePassword = new LazyUserDeleteUpswd(option.conn, option.schemaName);	
 		ActionLazyV1<UserInfo> deletePerson = new LazyUserDeletePerson(option.conn, option.schemaName);
 		

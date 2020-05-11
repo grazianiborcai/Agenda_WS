@@ -9,7 +9,7 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 import br.com.mind5.security.user.info.UserInfo;
 import br.com.mind5.security.user.model.action.LazyUserEnforceAuthDaemon;
 import br.com.mind5.security.user.model.action.LazyUserEnforceCategDaemon;
@@ -20,7 +20,7 @@ import br.com.mind5.security.user.model.action.StdUserEnforceUsernameDaemon;
 import br.com.mind5.security.user.model.checker.UserCheckInsertDaemon;
 import br.com.mind5.security.user.model.checker.UserCheckOwner;
 
-public final class RootUserInsertDaemon extends DeciTreeTemplateWriteV1<UserInfo> {
+public final class RootUserInsertDaemon extends DeciTreeTemplateWriteV2<UserInfo> {
 	
 	public RootUserInsertDaemon(DeciTreeOption<UserInfo> option) {
 		super(option);

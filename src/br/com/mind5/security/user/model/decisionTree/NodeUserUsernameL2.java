@@ -9,13 +9,13 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 import br.com.mind5.security.user.info.UserInfo;
 import br.com.mind5.security.user.model.action.LazyUserNodeUsernameL3;
 import br.com.mind5.security.user.model.action.StdUserEnforceUsername;
 import br.com.mind5.security.user.model.checker.UserCheckPersonData;
 
-public final class NodeUserUsernameL2 extends DeciTreeTemplateWriteV1<UserInfo> {
+public final class NodeUserUsernameL2 extends DeciTreeTemplateWriteV2<UserInfo> {
 	
 	public NodeUserUsernameL2(DeciTreeOption<UserInfo> option) {
 		super(option);

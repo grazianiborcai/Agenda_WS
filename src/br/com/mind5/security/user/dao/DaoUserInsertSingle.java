@@ -15,11 +15,11 @@ import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.security.user.info.UserInfo;
 
-public final class UserInsertSingle extends DaoStmtTemplate<UserInfo> {	
+public final class DaoUserInsertSingle extends DaoStmtTemplate<UserInfo> {	
 	private final String MAIN_TABLE = DaoDbTable.USER_TABLE;	
 	
 	
-	public UserInsertSingle(Connection conn, UserInfo recordInfo, String schemaName) {
+	public DaoUserInsertSingle(Connection conn, UserInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	

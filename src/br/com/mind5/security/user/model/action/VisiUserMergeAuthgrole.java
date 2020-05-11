@@ -1,19 +1,19 @@
 package br.com.mind5.security.user.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.masterData.authorizationGroupRole.info.AuthgroleInfo;
 import br.com.mind5.masterData.authorizationGroupRole.model.decisionTree.RootAuthgroleSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.user.info.UserInfo;
 import br.com.mind5.security.user.info.UserMerger;
 
-final class VisiUserMergeAuthgrole extends ActionVisitorTemplateMergeV1<UserInfo, AuthgroleInfo> {
+final class VisiUserMergeAuthgrole extends ActionVisitorTemplateMergeV2<UserInfo, AuthgroleInfo> {
 	
-	public VisiUserMergeAuthgrole(Connection conn, String schemaName) {
-		super(conn, schemaName, AuthgroleInfo.class);
+	public VisiUserMergeAuthgrole(DeciTreeOption<UserInfo> option) {
+		super(option, AuthgroleInfo.class); 
 	}
 	
 	
@@ -31,6 +31,6 @@ final class VisiUserMergeAuthgrole extends ActionVisitorTemplateMergeV1<UserInfo
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
+		return super.MERGE_WHEN_EMPTY;
 	}
 }

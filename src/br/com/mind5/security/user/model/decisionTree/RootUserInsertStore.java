@@ -5,17 +5,17 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 import br.com.mind5.security.user.info.UserInfo;
 import br.com.mind5.security.user.model.action.LazyUserEnforceAuthStore;
 import br.com.mind5.security.user.model.action.LazyUserRootInsert;
 import br.com.mind5.security.user.model.action.StdUserEnforceCategStore;
-import br.com.mind5.security.user.model.checker.UserCheckDummy;
 
-public final class RootUserInsertStore extends DeciTreeTemplateWriteV1<UserInfo> {
+public final class RootUserInsertStore extends DeciTreeTemplateWriteV2<UserInfo> {
 	
 	public RootUserInsertStore(DeciTreeOption<UserInfo> option) {
 		super(option);
@@ -27,7 +27,7 @@ public final class RootUserInsertStore extends DeciTreeTemplateWriteV1<UserInfo>
 		List<ModelCheckerV1<UserInfo>> queue = new ArrayList<>();		
 		ModelCheckerV1<UserInfo> checker;	
 		
-		checker = new UserCheckDummy();
+		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueueV2<>(queue);

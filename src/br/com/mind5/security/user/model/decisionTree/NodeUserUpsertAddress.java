@@ -9,14 +9,14 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 import br.com.mind5.security.user.info.UserInfo;
 import br.com.mind5.security.user.model.action.LazyUserUpsertAddress;
 import br.com.mind5.security.user.model.action.StdUserEnforceAddressKey;
 import br.com.mind5.security.user.model.action.StdUserSuccess;
 import br.com.mind5.security.user.model.checker.UserCheckHasAddress;
 
-public final class NodeUserUpsertAddress extends DeciTreeTemplateWriteV1<UserInfo> {
+public final class NodeUserUpsertAddress extends DeciTreeTemplateWriteV2<UserInfo> {
 	
 	public NodeUserUpsertAddress(DeciTreeOption<UserInfo> option) {
 		super(option);

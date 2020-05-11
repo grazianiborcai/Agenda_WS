@@ -1,19 +1,25 @@
 package br.com.mind5.security.user.model.action;
 
-import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.address.model.decisionTree.RootAddressDelete;
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateActionV1;
+import br.com.mind5.model.action.ActionVisitorTemplateActionV2;
+import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.user.info.UserInfo;
 
-final class VisiUserDeleteAddress extends ActionVisitorTemplateActionV1<UserInfo, AddressInfo> {
-	public VisiUserDeleteAddress(Connection conn, String schemaName) {
-		super(conn, schemaName, UserInfo.class, AddressInfo.class);
+final class VisiUserDeleteAddress extends ActionVisitorTemplateActionV2<UserInfo, AddressInfo> {
+	
+	public VisiUserDeleteAddress(DeciTreeOption<UserInfo> option) {
+		super(option, UserInfo.class, AddressInfo.class);
+	}
+	
+	
+	
+	@Override protected Class<? extends DeciTree<AddressInfo>> getTreeClassHook() {
+		return RootAddressDelete.class;
 	}
 	
 	
@@ -26,11 +32,5 @@ final class VisiUserDeleteAddress extends ActionVisitorTemplateActionV1<UserInfo
 		}		
 		
 		return results;
-	}
-	
-	
-	
-	@Override protected ActionStdV1<AddressInfo> getActionHook(DeciTreeOption<AddressInfo> option) {
-		return new RootAddressDelete(option).toAction();
 	}
 }

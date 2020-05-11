@@ -1,23 +1,23 @@
 package br.com.mind5.security.user.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.user.info.UserInfo;
 import br.com.mind5.security.user.info.UserMerger;
 
-final class VisiUserMergeToDelete extends ActionVisitorTemplateMergeV1<UserInfo, UserInfo> {
+final class VisiUserMergeToDelete extends ActionVisitorTemplateMergeV2<UserInfo, UserInfo> {
 	
-	public VisiUserMergeToDelete(Connection conn, String schemaName) {
-		super(conn, schemaName, UserInfo.class);
+	public VisiUserMergeToDelete(DeciTreeOption<UserInfo> option) {
+		super(option, UserInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends ActionStdV1<UserInfo>> getActionClassHook() {
-		return StdUserSelect.class;
+	@Override protected Class<? extends ActionStdV2<UserInfo>> getActionClassHook() {
+		return StdUserDaoSelect.class;
 	}
 	
 	
@@ -29,6 +29,6 @@ final class VisiUserMergeToDelete extends ActionVisitorTemplateMergeV1<UserInfo,
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
+		return super.DONT_MERGE_WHEN_EMPTY;
 	}
 }

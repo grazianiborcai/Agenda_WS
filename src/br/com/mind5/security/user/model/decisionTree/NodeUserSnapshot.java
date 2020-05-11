@@ -5,16 +5,16 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 import br.com.mind5.security.user.info.UserInfo;
-import br.com.mind5.security.user.model.action.LazyUserUpdate;
+import br.com.mind5.security.user.model.action.LazyUserDaoUpdate;
 import br.com.mind5.security.user.model.action.StdUserInsertUserap;
-import br.com.mind5.security.user.model.checker.UserCheckDummy;
 
-public final class NodeUserSnapshot extends DeciTreeTemplateWriteV1<UserInfo> {
+public final class NodeUserSnapshot extends DeciTreeTemplateWriteV2<UserInfo> {
 	
 	public NodeUserSnapshot(DeciTreeOption<UserInfo> option) {
 		super(option);
@@ -26,7 +26,7 @@ public final class NodeUserSnapshot extends DeciTreeTemplateWriteV1<UserInfo> {
 		List<ModelCheckerV1<UserInfo>> queue = new ArrayList<>();		
 		ModelCheckerV1<UserInfo> checker;	
 		
-		checker = new UserCheckDummy();
+		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueueV2<>(queue);
@@ -38,7 +38,7 @@ public final class NodeUserSnapshot extends DeciTreeTemplateWriteV1<UserInfo> {
 		List<ActionStdV1<UserInfo>> actions = new ArrayList<>();
 
 		ActionStdV1<UserInfo> insertSnapshot = new StdUserInsertUserap(option);		
-		ActionLazyV1<UserInfo> updateUser = new LazyUserUpdate(option.conn, option.schemaName);
+		ActionLazyV1<UserInfo> updateUser = new LazyUserDaoUpdate(option.conn, option.schemaName);
 		
 		insertSnapshot.addPostAction(updateUser);
 		
