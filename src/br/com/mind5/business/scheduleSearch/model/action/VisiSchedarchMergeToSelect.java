@@ -1,23 +1,23 @@
 package br.com.mind5.business.scheduleSearch.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.scheduleSearch.info.SchedarchInfo;
 import br.com.mind5.business.scheduleSearch.info.SchedarchMerger;
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiSchedarchMergeToSelect extends ActionVisitorTemplateMergeV1<SchedarchInfo, SchedarchInfo> {
+final class VisiSchedarchMergeToSelect extends ActionVisitorTemplateMergeV2<SchedarchInfo, SchedarchInfo> {
 	
-	public VisiSchedarchMergeToSelect(Connection conn, String schemaName) {
-		super(conn, schemaName, SchedarchInfo.class);
+	public VisiSchedarchMergeToSelect(DeciTreeOption<SchedarchInfo> option) {
+		super(option, SchedarchInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends ActionStdV1<SchedarchInfo>> getActionClassHook() {
-		return StdSchedarchSelect.class;
+	@Override protected Class<? extends ActionStdV2<SchedarchInfo>> getActionClassHook() {
+		return StdSchedarchDaoSelect.class;
 	}
 	
 	
@@ -29,6 +29,6 @@ final class VisiSchedarchMergeToSelect extends ActionVisitorTemplateMergeV1<Sche
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
+		return super.DONT_MERGE_WHEN_EMPTY;
 	}
 }

@@ -1,54 +1,38 @@
 package br.com.mind5.business.scheduleSearch.info;
 
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import java.util.ArrayList;
+import java.util.List;
 
-final class SchedarchVisiMergeToSelect implements InfoMergerVisitor_<SchedarchInfo, SchedarchInfo> {
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-	@Override public SchedarchInfo writeRecord(SchedarchInfo sourceOne, SchedarchInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);		
-		return merge(sourceOne, sourceTwo);
+final class SchedarchVisiMergeToSelect implements InfoMergerVisitorV3<SchedarchInfo, SchedarchInfo> {
+	
+	@Override public List<SchedarchInfo> beforeMerge(List<SchedarchInfo> baseInfos) {
+		return baseInfos;
 	}
 	
 	
 	
-	private void checkArgument(SchedarchInfo sourceOne, SchedarchInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
+	@Override public boolean shouldMerge(SchedarchInfo baseInfo, SchedarchInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner);
 	}
 	
 	
 	
-	private SchedarchInfo merge(SchedarchInfo sourceOne, SchedarchInfo sourceTwo) {
-		SchedarchInfo result = makeClone(sourceOne);		
-		result.username = sourceTwo.username;
-		result.codLanguage = sourceTwo.codLanguage;
-		return result;
-	}
-	
-	
-	
-	private SchedarchInfo makeClone(SchedarchInfo recordInfo) {
-		try {
-			return (SchedarchInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(SchedarchInfo sourceOne, SchedarchInfo sourceTwo) {		
-		return (sourceOne.codOwner == sourceTwo.codOwner);
-	}
-	
-	
-	
-	private void logException(Exception e) {
+	@Override public List<SchedarchInfo> merge(SchedarchInfo baseInfo, SchedarchInfo selectedInfo) {
+		List<SchedarchInfo> results = new ArrayList<>();
 		
-		SystemLog.logError(this.getClass(), e);
+		selectedInfo.username = baseInfo.username;
+		selectedInfo.codLanguage = baseInfo.codLanguage;
+		
+		results.add(selectedInfo);
+		return results;
+	}
+	
+	
+	
+	@Override public InfoUniquifier<SchedarchInfo> getUniquifier() {
+		return null;
 	}
 }

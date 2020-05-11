@@ -13,6 +13,7 @@ public final class SchedarchInfo extends InfoRecord implements Cloneable, Compar
 	public long codSchedule;
 	public String codScheduleStatus;
 	public long codOrder;
+	public int codOrderItem;
 	public String codOrderStatus;
 	public long codStore;
 	public long codEmployee;
@@ -34,11 +35,12 @@ public final class SchedarchInfo extends InfoRecord implements Cloneable, Compar
 	
 	
 	public SchedarchInfo() {
-		super(SchedarchInfo.class);
+		super();
 		
 		codOwner = DefaultValue.number();	
 		codSchedule = DefaultValue.number();
 		codOrder = DefaultValue.number();
+		codOrderItem = DefaultValue.number();
 		codStore = DefaultValue.number();
 		codEmployee = DefaultValue.number();
 		codMat = DefaultValue.number();

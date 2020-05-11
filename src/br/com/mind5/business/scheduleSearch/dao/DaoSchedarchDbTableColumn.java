@@ -9,13 +9,14 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class SchedarchDbTableColumn extends DaoDbTableColumnTemplate {
+public final class DaoSchedarchDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_BEGIN_TIME = DaoDbField.COL_BEGIN_TIME;	
 	public static final String COL_COD_CUSTOMER = DaoDbField.COL_COD_CUSTOMER;	
 	public static final String COL_COD_EMPLOYEE = DaoDbField.COL_COD_EMPLOYEE;	
 	public static final String COL_COD_LANGUAGE = DaoDbField.COL_COD_LANGUAGE;
 	public static final String COL_COD_MATERIAL = DaoDbField.COL_COD_MATERIAL;	
 	public static final String COL_COD_ORDER = DaoDbField.COL_COD_ORDER;	
+	public static final String COL_COD_ORDER_ITEM = DaoDbField.COL_COD_ORDER_ITEM;	
 	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;			
 	public static final String COL_COD_SCHEDULE = DaoDbField.COL_COD_SCHEDULE;
 	public static final String COL_COD_SCHEDULE_STATUS = DaoDbField.COL_COD_SCHEDULE_STATUS;
@@ -33,24 +34,13 @@ public final class SchedarchDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_WEEK_YEAR = DaoDbField.COL_WEEK_YEAR;
 	
 	
-	private Hashtable<String, List<DaoColumn>> tableColumns;
-	
-	
-	public SchedarchDbTableColumn() {
-		super(SchedarchDbTableColumn.class);
+	public DaoSchedarchDbTableColumn() {
+		super();
 	}
 	
 	
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
-		tableColumns = new Hashtable<>();	
-		buildScheduleLineTable();
-		return tableColumns;
-	}
-	
-	
-	
-	private void buildScheduleLineTable() {
 		final String TABLE_NAME = DaoDbTable.SCHEDULE_TABLE;
 		
 		DaoColumn oneColumn;
@@ -75,6 +65,14 @@ public final class SchedarchDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_COD_ORDER;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_COD_ORDER_ITEM;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -216,6 +214,8 @@ public final class SchedarchDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);			
 		
-		tableColumns.put(DaoDbTable.SCHEDULE_SEARCH_VIEW, columns);
+		Hashtable<String, List<DaoColumn>> results = new Hashtable<>();
+		results.put(DaoDbTable.SCHEDULE_SEARCH_VIEW, columns);
+		return results;
 	}
 }
