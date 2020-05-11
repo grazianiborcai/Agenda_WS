@@ -1,38 +1,13 @@
 package br.com.mind5.security.jwtToken.info;
 
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoSetter;
+import br.com.mind5.info.InfoSetterTemplate;
 
-public final class JwtokenSetterSecret implements InfoSetter<JwtokenInfo> {
+public final class JwtokenSetterSecret extends InfoSetterTemplate<JwtokenInfo> {
 	private final String SECRET_KEY = "t8%A$?Cx>u?px^'<XfSGn3&w~6OEYu/M5}${Un>Xgto7#}Lt6ZgaQGQ#_V(y{j$";
 	
 	
-	public JwtokenInfo setAttr(JwtokenInfo recordInfo) {
-		checkArgument(recordInfo);
-		return setSecret(recordInfo);
-	}
-	
-	
-	
-	private void checkArgument(JwtokenInfo recordInfo) {
-		if (recordInfo == null) {
-			logException(new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT));
-			throw new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT);
-		}
-	}
-	
-	
-	
-	private JwtokenInfo setSecret(JwtokenInfo recordInfo) {
+	@Override protected JwtokenInfo setAttrHook(JwtokenInfo recordInfo) {
 		recordInfo.secret = SECRET_KEY;
 		return recordInfo;
 	}
-	
-	
-	
-	private void logException(Exception e) {
-		
-		SystemLog.logError(this.getClass(), e);
-	}	
 }

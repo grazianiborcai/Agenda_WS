@@ -19,7 +19,7 @@ public final class JwtokenInfo extends InfoRecord implements Cloneable {
 	
 	
 	public JwtokenInfo() {
-		super(JwtokenInfo.class);
+		super();
 		
 		codOwner = DefaultValue.number();
 		expirationTime = DefaultValue.object();

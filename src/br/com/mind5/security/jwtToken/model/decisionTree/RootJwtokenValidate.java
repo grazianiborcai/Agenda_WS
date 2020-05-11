@@ -9,14 +9,14 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 import br.com.mind5.security.jwtToken.info.JwtokenInfo;
 import br.com.mind5.security.jwtToken.model.action.LazyJwtokenEnforceAlgo;
 import br.com.mind5.security.jwtToken.model.action.LazyJwtokenNodeValidate;
 import br.com.mind5.security.jwtToken.model.action.StdJwtokenEnforceSecret;
 import br.com.mind5.security.jwtToken.model.checker.JwtokenCheckValidate;
 
-public final class RootJwtokenValidate extends DeciTreeTemplateWriteV1<JwtokenInfo> {
+public final class RootJwtokenValidate extends DeciTreeTemplateWriteV2<JwtokenInfo> {
 	
 	public RootJwtokenValidate(DeciTreeOption<JwtokenInfo> option) {
 		super(option);
