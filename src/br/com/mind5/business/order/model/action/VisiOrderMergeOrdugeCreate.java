@@ -11,9 +11,9 @@ import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiOrderMergeOrdugeCreated extends ActionVisitorTemplateMergeV2<OrderInfo, OrdugeInfo> {
+final class VisiOrderMergeOrdugeCreate extends ActionVisitorTemplateMergeV2<OrderInfo, OrdugeInfo> {
 	
-	public VisiOrderMergeOrdugeCreated(DeciTreeOption<OrderInfo> option) { 
+	public VisiOrderMergeOrdugeCreate(DeciTreeOption<OrderInfo> option) { 
 		super(option, OrdugeInfo.class);
 	}
 	

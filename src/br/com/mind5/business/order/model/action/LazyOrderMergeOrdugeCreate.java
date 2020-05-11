@@ -9,9 +9,9 @@ import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyOrderMergeOrdugeCreated extends ActionLazyTemplateV2<OrderInfo, OrderInfo> {
+public final class LazyOrderMergeOrdugeCreate extends ActionLazyTemplateV2<OrderInfo, OrderInfo> {
 
-	public LazyOrderMergeOrdugeCreated(Connection conn, String schemaName) {
+	public LazyOrderMergeOrdugeCreate(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	

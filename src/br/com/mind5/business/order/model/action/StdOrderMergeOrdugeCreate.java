@@ -14,6 +14,6 @@ public final class StdOrderMergeOrdugeCreate extends ActionStdTemplateV2<OrderIn
 	
 	
 	protected ActionVisitorV2<OrderInfo> buildVisitorHook(DeciTreeOption<OrderInfo> option) {
-		return new VisiOrderMergeOrdugeCreated(option);
+		return new VisiOrderMergeOrdugeCreate(option);
 	}
 }
