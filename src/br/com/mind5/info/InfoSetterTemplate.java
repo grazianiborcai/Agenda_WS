@@ -30,7 +30,7 @@ public abstract class InfoSetterTemplate<T extends InfoRecord> implements InfoSe
 	
 	
 	
-	private void logException(Exception e) {
+	protected void logException(Exception e) {
 		SystemLog.logError(this.getClass(), e);
 	}
 }
