@@ -14,11 +14,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
 
-public final class CusparUpdateSingle extends DaoStmtTemplate<CusparInfo> {
+public final class DaoCusparUpdateSingle extends DaoStmtTemplate<CusparInfo> {
 	private final String MAIN_TABLE = DaoDbTable.PAY_CUS_TABLE;
 	
 	
-	public CusparUpdateSingle(Connection conn, CusparInfo recordInfo, String schemaName) {
+	public DaoCusparUpdateSingle(Connection conn, CusparInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -43,7 +43,7 @@ public final class CusparUpdateSingle extends DaoStmtTemplate<CusparInfo> {
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;
 		whereOption.ignoreNonPrimaryKey = DaoOptionValue.IGNORE_NON_PK;
 		
-		DaoStmtWhere whereClause = new CusparWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new DaoCusparWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	

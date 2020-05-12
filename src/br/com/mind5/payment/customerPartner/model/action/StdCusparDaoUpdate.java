@@ -5,15 +5,15 @@ import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
 
-public final class StdCusparEnforceLChanged extends ActionStdTemplateV2<CusparInfo> {
+public final class StdCusparDaoUpdate extends ActionStdTemplateV2<CusparInfo> {
 
-	public StdCusparEnforceLChanged(DeciTreeOption<CusparInfo> option) {
+	public StdCusparDaoUpdate(DeciTreeOption<CusparInfo> option) {
 		super(option);
 	}
 	
 	
 	
 	protected ActionVisitorV2<CusparInfo> buildVisitorHook(DeciTreeOption<CusparInfo> option) {
-		return new VisiCusparEnforceLChanged(option);
+		return new VisiCusparDaoUpdate(option);
 	}
 }

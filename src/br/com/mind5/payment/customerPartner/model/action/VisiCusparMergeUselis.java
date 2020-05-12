@@ -1,19 +1,19 @@
 package br.com.mind5.payment.customerPartner.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
 import br.com.mind5.payment.customerPartner.info.CusparMerger;
 import br.com.mind5.security.userList.info.UselisInfo;
 import br.com.mind5.security.userList.model.decisionTree.RootUselisSelect;
 
-final class VisiCusparMergeUselis extends ActionVisitorTemplateMergeV1<CusparInfo, UselisInfo> {
+final class VisiCusparMergeUselis extends ActionVisitorTemplateMergeV2<CusparInfo, UselisInfo> {
 	
-	public VisiCusparMergeUselis(Connection conn, String schemaName) {
-		super(conn, schemaName, UselisInfo.class);
+	public VisiCusparMergeUselis(DeciTreeOption<CusparInfo> option) {
+		super(option, UselisInfo.class);
 	}
 	
 	
@@ -31,6 +31,6 @@ final class VisiCusparMergeUselis extends ActionVisitorTemplateMergeV1<CusparInf
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
+		return super.DONT_MERGE_WHEN_EMPTY;
 	}
 }

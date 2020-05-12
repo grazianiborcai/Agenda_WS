@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
 
-public final class CusparWhere implements DaoStmtWhere {	
+public final class DaoCusparWhere implements DaoStmtWhere {	
 	private String whereClause;	
 	
 	
-	public CusparWhere(DaoWhereBuilderOption whereOption, String tableName, CusparInfo recordInfo) {
+	public DaoCusparWhere(DaoWhereBuilderOption whereOption, String tableName, CusparInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -27,15 +27,15 @@ public final class CusparWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-				case CusparDbTableColumn.COL_COD_OWNER :
+				case DaoCusparDbTableColumn.COL_COD_OWNER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;
 					
-				case CusparDbTableColumn.COL_COD_PAYCUS :
+				case DaoCusparDbTableColumn.COL_COD_PAYCUS :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codPayCustomer));
 					break;
 					
-				case CusparDbTableColumn.COL_RECORD_MODE :
+				case DaoCusparDbTableColumn.COL_RECORD_MODE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.recordMode);
 					break;
 			}

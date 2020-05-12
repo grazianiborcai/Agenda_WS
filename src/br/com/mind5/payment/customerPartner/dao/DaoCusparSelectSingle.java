@@ -16,12 +16,12 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
 
-public final class CusparSelectSingle extends DaoStmtTemplate<CusparInfo> {
+public final class DaoCusparSelectSingle extends DaoStmtTemplate<CusparInfo> {
 	private final String MAIN_TABLE = DaoDbTable.PAY_CUS_TABLE;
 	
 	
 	
-	public CusparSelectSingle(Connection conn, CusparInfo recordInfo, String schemaName) {
+	public DaoCusparSelectSingle(Connection conn, CusparInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -45,7 +45,7 @@ public final class CusparSelectSingle extends DaoStmtTemplate<CusparInfo> {
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new CusparWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new DaoCusparWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -62,21 +62,21 @@ public final class CusparSelectSingle extends DaoStmtTemplate<CusparInfo> {
 				do {
 					CusparInfo dataInfo = new CusparInfo();
 					
-					dataInfo.codOwner = stmtResult.getLong(CusparDbTableColumn.COL_COD_OWNER);	
-					dataInfo.codPayCustomer = stmtResult.getLong(CusparDbTableColumn.COL_COD_PAYCUS);
-					dataInfo.codUser = stmtResult.getLong(CusparDbTableColumn.COL_COD_USER);
-					dataInfo.recordMode = stmtResult.getString(CusparDbTableColumn.COL_RECORD_MODE);				
-					dataInfo.compoundId = stmtResult.getString(CusparDbTableColumn.COL_COMPOUND_ID);
-					dataInfo.customerId = stmtResult.getString(CusparDbTableColumn.COL_CUSTOMER_ID);
-					dataInfo.codUserSnapshot = DaoFormatter.sqlToLong(stmtResult, CusparDbTableColumn.COL_COD_USER_SNAPSHOT);
-					dataInfo.codCustomer = DaoFormatter.sqlToLong(stmtResult, CusparDbTableColumn.COL_COD_CUSTOMER);
-					dataInfo.codCustomerSnapshot = DaoFormatter.sqlToLong(stmtResult, CusparDbTableColumn.COL_COD_CUSTOMER_SNAPSHOT);
-					dataInfo.codPayPartner = DaoFormatter.sqlToInt(stmtResult, CusparDbTableColumn.COL_COD_PAY_PARTNER);
-					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, CusparDbTableColumn.COL_LAST_CHANGED);						
-					dataInfo.codAddress = DaoFormatter.sqlToLong(stmtResult, CusparDbTableColumn.COL_COD_ADDRESS);
-					dataInfo.codAddressSnapshot = DaoFormatter.sqlToLong(stmtResult, CusparDbTableColumn.COL_COD_ADDRESS_SNAPSHOT);
-					dataInfo.codPhone = DaoFormatter.sqlToLong(stmtResult, CusparDbTableColumn.COL_COD_PHONE);
-					dataInfo.codPhoneSnapshot = DaoFormatter.sqlToLong(stmtResult, CusparDbTableColumn.COL_COD_PHONE_SNAPSHOT);
+					dataInfo.codOwner = stmtResult.getLong(DaoCusparDbTableColumn.COL_COD_OWNER);	
+					dataInfo.codPayCustomer = stmtResult.getLong(DaoCusparDbTableColumn.COL_COD_PAYCUS);
+					dataInfo.codUser = stmtResult.getLong(DaoCusparDbTableColumn.COL_COD_USER);
+					dataInfo.recordMode = stmtResult.getString(DaoCusparDbTableColumn.COL_RECORD_MODE);				
+					dataInfo.compoundId = stmtResult.getString(DaoCusparDbTableColumn.COL_COMPOUND_ID);
+					dataInfo.customerId = stmtResult.getString(DaoCusparDbTableColumn.COL_CUSTOMER_ID);
+					dataInfo.codUserSnapshot = DaoFormatter.sqlToLong(stmtResult, DaoCusparDbTableColumn.COL_COD_USER_SNAPSHOT);
+					dataInfo.codCustomer = DaoFormatter.sqlToLong(stmtResult, DaoCusparDbTableColumn.COL_COD_CUSTOMER);
+					dataInfo.codCustomerSnapshot = DaoFormatter.sqlToLong(stmtResult, DaoCusparDbTableColumn.COL_COD_CUSTOMER_SNAPSHOT);
+					dataInfo.codPayPartner = DaoFormatter.sqlToInt(stmtResult, DaoCusparDbTableColumn.COL_COD_PAY_PARTNER);
+					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, DaoCusparDbTableColumn.COL_LAST_CHANGED);						
+					dataInfo.codAddress = DaoFormatter.sqlToLong(stmtResult, DaoCusparDbTableColumn.COL_COD_ADDRESS);
+					dataInfo.codAddressSnapshot = DaoFormatter.sqlToLong(stmtResult, DaoCusparDbTableColumn.COL_COD_ADDRESS_SNAPSHOT);
+					dataInfo.codPhone = DaoFormatter.sqlToLong(stmtResult, DaoCusparDbTableColumn.COL_COD_PHONE);
+					dataInfo.codPhoneSnapshot = DaoFormatter.sqlToLong(stmtResult, DaoCusparDbTableColumn.COL_COD_PHONE_SNAPSHOT);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

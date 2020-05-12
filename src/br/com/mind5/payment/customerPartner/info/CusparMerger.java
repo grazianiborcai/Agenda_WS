@@ -6,6 +6,7 @@ import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.info.InfoMergerBuilderV3;
 import br.com.mind5.info.InfoMergerV3;
+import br.com.mind5.payment.customerPartnerSearch.info.CusparchInfo;
 import br.com.mind5.paymentPartner.partnerMoip.customerMoip.info.CusmoipInfo;
 import br.com.mind5.security.userList.info.UselisInfo;
 import br.com.mind5.security.username.info.UsernameInfo;
@@ -18,6 +19,19 @@ public final class CusparMerger {
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new CusparVisiMergePhone());
 		InfoMergerV3<CusparInfo, PhoneInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}	
+	
+	
+	
+	public static List<CusparInfo> mergeWithCusparch(List<CusparInfo> baseInfos, List<CusparchInfo> selectedInfos) {
+		InfoMergerBuilderV3<CusparInfo, CusparchInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new CusparVisiMergeCusparch());
+		InfoMergerV3<CusparInfo, CusparchInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}	

@@ -16,11 +16,11 @@ import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
 
-public final class CusparInsertSingle extends DaoStmtTemplate<CusparInfo> {
+public final class DaoCusparInsertSingle extends DaoStmtTemplate<CusparInfo> {
 	private final String MAIN_TABLE = DaoDbTable.PAY_CUS_TABLE;
 	
 	
-	public CusparInsertSingle(Connection conn, CusparInfo recordInfo, String schemaName) {
+	public DaoCusparInsertSingle(Connection conn, CusparInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	

@@ -1,57 +1,28 @@
 package br.com.mind5.payment.customerPartner.model.checker;
 
-import java.util.List;
-
 import br.com.mind5.business.phone.info.PhoneCopier;
 import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.business.phone.model.checker.PhoneCheckExist;
-import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
 
-public final class CusparCheckPhone implements ModelCheckerV1<CusparInfo> {
-	private final boolean FAILED = false;
-	private final boolean SUCCESS = true;
-	
-	private ModelCheckerV1<PhoneInfo> checker;
-	
+public final class CusparCheckPhone extends ModelCheckerTemplateForwardV2<CusparInfo, PhoneInfo> {
 	
 	public CusparCheckPhone(ModelCheckerOption option) {
-		checker = new PhoneCheckExist(option);
-	}
-	
-	
-	
-	@Override public boolean check(List<CusparInfo> recordInfos) {
-		for (CusparInfo eachInfo : recordInfos) {
-			if (check(eachInfo) == FAILED)
-				return FAILED;
-		}
-		
-		return SUCCESS;
+		super(option);
 	}
 
-	
-	
-	@Override public boolean check(CusparInfo recordInfo) {
-		return checker.check(PhoneCopier.copyFromCuspar(recordInfo));
-	}
 
 	
-	
-	@Override public boolean getResult() {
-		return checker.getResult();
+	@Override protected ModelCheckerV1<PhoneInfo> getCheckerHook(ModelCheckerOption option) {
+		return new PhoneCheckExist(option);
 	}
-
 	
 	
-	@Override public String getFailMessage() {
-		return checker.getFailMessage();
-	}
-
 	
-	
-	@Override public int getFailCode() {
-		return checker.getFailCode();
+	@Override protected PhoneInfo toForwardClass(CusparInfo baseRecord) {
+		return PhoneCopier.copyFromCuspar(baseRecord);
 	}
 }

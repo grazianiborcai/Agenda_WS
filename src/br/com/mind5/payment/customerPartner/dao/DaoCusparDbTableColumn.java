@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class CusparDbTableColumn extends DaoDbTableColumnTemplate {
+public final class DaoCusparDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_ACCOUNT_LINK = DaoDbField.COL_ACCOUNT_LINK;
 	public static final String COL_COD_ADDRESS = DaoDbField.COL_COD_ADDRESS;
 	public static final String COL_COD_ADDRESS_SNAPSHOT = DaoDbField.COL_COD_ADDRESS_SNAPSHOT;
@@ -29,24 +29,13 @@ public final class CusparDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_RECORD_MODE = DaoDbField.COL_RECORD_MODE;
 	
 	
-	private Hashtable<String, List<DaoColumn>> tableColumns;
-	
-	
-	public CusparDbTableColumn() {
-		super(CusparDbTableColumn.class);
+	public DaoCusparDbTableColumn() {
+		super();
 	}
 	
 	
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
-		tableColumns = new Hashtable<>();		
-		buildPayCustomerTable();	
-		return tableColumns;
-	}
-	
-	
-	
-	private void buildPayCustomerTable() {
 		final String TABLE_NAME = DaoDbTable.PAY_CUS_TABLE;
 		
 		DaoColumn oneColumn;
@@ -188,6 +177,8 @@ public final class CusparDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);	
 		
-		tableColumns.put(TABLE_NAME, columns);
+		Hashtable<String, List<DaoColumn>> results = new Hashtable<>();
+		results.put(TABLE_NAME, columns);
+		return results;
 	}
 }
