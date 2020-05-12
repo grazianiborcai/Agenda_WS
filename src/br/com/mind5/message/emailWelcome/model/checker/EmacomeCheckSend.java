@@ -24,11 +24,11 @@ public final class EmacomeCheckSend extends ModelCheckerTemplateSimpleV2<Emacome
 			return super.FAILED;
 		
 		
-		if ( recordInfo.personData == null )
+		if ( recordInfo.persolisData == null )
 			return super.FAILED;
 		
 		
-		if ( recordInfo.personData.name == null	)		
+		if ( recordInfo.persolisData.name == null	)		
 			return super.FAILED;
 		
 		
