@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.order.info.OrderInfo;
-import br.com.mind5.business.order.model.action.LazyOrderInsertOrderem;
+import br.com.mind5.business.order.model.action.LazyOrderOrderemInsert;
 import br.com.mind5.business.order.model.action.StdOrderEnforceOrderemKey;
 import br.com.mind5.business.order.model.checker.OrderCheckInsert;
 import br.com.mind5.model.action.ActionLazyV1;
@@ -44,7 +44,7 @@ public final class NodeOrderOrderem extends DeciTreeTemplateWriteV2<OrderInfo> {
 		List<ActionStdV1<OrderInfo>> actions = new ArrayList<>();		
 
 		ActionStdV1<OrderInfo> enforceOrderemKey = new StdOrderEnforceOrderemKey(option);
-		ActionLazyV1<OrderInfo> insertOrderem = new LazyOrderInsertOrderem(option.conn, option.schemaName);
+		ActionLazyV1<OrderInfo> insertOrderem = new LazyOrderOrderemInsert(option.conn, option.schemaName);
 		
 		enforceOrderemKey.addPostAction(insertOrderem);
 		

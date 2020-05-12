@@ -5,15 +5,15 @@ import br.com.mind5.model.action.ActionStdTemplateV2;
 import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdOrderInsertCus extends ActionStdTemplateV2<OrderInfo> {
+public final class StdOrderOrderemPay extends ActionStdTemplateV2<OrderInfo> {
 
-	public StdOrderInsertCus(DeciTreeOption<OrderInfo> option) {
+	public StdOrderOrderemPay(DeciTreeOption<OrderInfo> option) {
 		super(option);
 	}
 	
 	
 	
 	protected ActionVisitorV2<OrderInfo> buildVisitorHook(DeciTreeOption<OrderInfo> option) {
-		return new VisiOrderInsertCus(option);
+		return new VisiOrderOrderemPay(option);
 	}
 }

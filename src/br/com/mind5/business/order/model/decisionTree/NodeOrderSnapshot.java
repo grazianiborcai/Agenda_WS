@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.order.info.OrderInfo;
 import br.com.mind5.business.order.model.action.LazyOrderDaoUpdate;
-import br.com.mind5.business.order.model.action.StdOrderInsertOrdnap;
+import br.com.mind5.business.order.model.action.StdOrderOrdnapInsert;
 import br.com.mind5.business.order.model.checker.OrderCheckWrite;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
@@ -43,7 +43,7 @@ public final class NodeOrderSnapshot extends DeciTreeTemplateWriteV2<OrderInfo> 
 	@Override protected List<ActionStdV1<OrderInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderInfo> option) {
 		List<ActionStdV1<OrderInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<OrderInfo> insertOrdnap = new StdOrderInsertOrdnap(option);
+		ActionStdV1<OrderInfo> insertOrdnap = new StdOrderOrdnapInsert(option);
 		ActionLazyV1<OrderInfo> update = new LazyOrderDaoUpdate(option.conn, option.schemaName);
 		
 		insertOrdnap.addPostAction(update);

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.order.info.OrderInfo;
-import br.com.mind5.business.order.model.action.LazyOrderInsertSchedine;
+import br.com.mind5.business.order.model.action.LazyOrderSchedineInsert;
 import br.com.mind5.business.order.model.action.LazyOrderNodeOrderem;
 import br.com.mind5.business.order.model.action.LazyOrderNodeSnapshot;
 import br.com.mind5.business.order.model.checker.OrderCheckCurrency;
@@ -71,7 +71,7 @@ public final class RootOrderInsert extends DeciTreeTemplateWriteV2<OrderInfo> {
 		ActionStdV1<OrderInfo> insertOrder = new NodeOrderInsert(option).toAction();
 		ActionLazyV1<OrderInfo> insertOrderem = new LazyOrderNodeOrderem(option.conn, option.schemaName);
 		ActionLazyV1<OrderInfo> snapshot = new LazyOrderNodeSnapshot(option.conn, option.schemaName);
-		ActionLazyV1<OrderInfo> insertSchedine = new LazyOrderInsertSchedine(option.conn, option.schemaName);	
+		ActionLazyV1<OrderInfo> insertSchedine = new LazyOrderSchedineInsert(option.conn, option.schemaName);	
 		
 		insertOrder.addPostAction(insertOrderem);
 		insertOrderem.addPostAction(snapshot);

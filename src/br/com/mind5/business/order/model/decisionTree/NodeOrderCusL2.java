@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.order.info.OrderInfo;
-import br.com.mind5.business.order.model.action.StdOrderInsertCus;
+import br.com.mind5.business.order.model.action.StdOrderCusInsert;
 import br.com.mind5.business.order.model.action.StdOrderMergeCusarch;
 import br.com.mind5.business.order.model.checker.OrderCheckCusarch;
 import br.com.mind5.model.action.ActionStdV1;
@@ -53,7 +53,7 @@ public final class NodeOrderCusL2 extends DeciTreeTemplateWriteV2<OrderInfo> {
 	@Override protected List<ActionStdV1<OrderInfo>> buildActionsOnFailedHook(DeciTreeOption<OrderInfo> option) {
 		List<ActionStdV1<OrderInfo>> actions = new ArrayList<>();
 
-		ActionStdV1<OrderInfo> insertCus = new StdOrderInsertCus(option);
+		ActionStdV1<OrderInfo> insertCus = new StdOrderCusInsert(option);
 		
 		actions.add(insertCus);
 		return actions;

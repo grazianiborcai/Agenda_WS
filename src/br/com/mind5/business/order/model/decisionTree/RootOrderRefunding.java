@@ -68,14 +68,14 @@ public final class RootOrderRefunding extends DeciTreeTemplateWriteV2<OrderInfo>
 	@Override protected List<ActionStdV1<OrderInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderInfo> option) {
 		List<ActionStdV1<OrderInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<OrderInfo> select = new StdOrderMergeToSelect(option);
+		ActionStdV1<OrderInfo> mergeToSelect = new StdOrderMergeToSelect(option);
 		ActionLazyV1<OrderInfo> nodeRefunding = new LazyOrderNodeRefunding(option.conn, option.schemaName);		
-		ActionLazyV1<OrderInfo> rootSelect = new LazyOrderRootSelect(option.conn, option.schemaName);	
+		ActionLazyV1<OrderInfo> select = new LazyOrderRootSelect(option.conn, option.schemaName);	
 		
-		select.addPostAction(nodeRefunding);
-		nodeRefunding.addPostAction(rootSelect);
+		mergeToSelect.addPostAction(nodeRefunding);
+		nodeRefunding.addPostAction(select);
 		
-		actions.add(select);
+		actions.add(mergeToSelect);
 		return actions;
 	}
 }

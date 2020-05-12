@@ -68,14 +68,14 @@ public final class RootOrderPay extends DeciTreeTemplateWriteV2<OrderInfo> {
 	@Override protected List<ActionStdV1<OrderInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderInfo> option) {
 		List<ActionStdV1<OrderInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<OrderInfo> select = new StdOrderMergeToUpdate(option);
+		ActionStdV1<OrderInfo> mergeToUpdate = new StdOrderMergeToUpdate(option);
 		ActionLazyV1<OrderInfo> nodePay = new LazyOrderNodePay(option.conn, option.schemaName);		
-		ActionLazyV1<OrderInfo> rootSelect = new LazyOrderRootSelect(option.conn, option.schemaName);	
+		ActionLazyV1<OrderInfo> select = new LazyOrderRootSelect(option.conn, option.schemaName);	
 		
-		select.addPostAction(nodePay);
-		nodePay.addPostAction(rootSelect);
+		mergeToUpdate.addPostAction(nodePay);
+		nodePay.addPostAction(select);
 		
-		actions.add(select);
+		actions.add(mergeToUpdate);
 		return actions;
 	}
 }

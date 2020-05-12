@@ -68,14 +68,14 @@ public final class RootOrderPlace extends DeciTreeTemplateWriteV2<OrderInfo> {
 	@Override protected List<ActionStdV1<OrderInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderInfo> option) {
 		List<ActionStdV1<OrderInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<OrderInfo> select = new StdOrderMergeToSelect(option);
+		ActionStdV1<OrderInfo> mergeToSelect = new StdOrderMergeToSelect(option);
 		ActionLazyV1<OrderInfo> nodePlace = new LazyOrderNodePlace(option.conn, option.schemaName);		
-		ActionLazyV1<OrderInfo> rootSelect = new LazyOrderRootSelect(option.conn, option.schemaName);	
+		ActionLazyV1<OrderInfo> select = new LazyOrderRootSelect(option.conn, option.schemaName);	
 		
-		select.addPostAction(nodePlace);
-		nodePlace.addPostAction(rootSelect);
+		mergeToSelect.addPostAction(nodePlace);
+		nodePlace.addPostAction(select);
 		
-		actions.add(select);
+		actions.add(mergeToSelect);
 		return actions;
 	}
 }

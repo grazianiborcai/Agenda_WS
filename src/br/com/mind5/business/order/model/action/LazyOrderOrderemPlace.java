@@ -9,9 +9,9 @@ import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyOrderInsertOrderem extends ActionLazyTemplateV2<OrderInfo, OrderInfo> {
+public final class LazyOrderOrderemPlace extends ActionLazyTemplateV2<OrderInfo, OrderInfo> {
 
-	public LazyOrderInsertOrderem(Connection conn, String schemaName) {
+	public LazyOrderOrderemPlace(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyOrderInsertOrderem extends ActionLazyTemplateV2<OrderInfo
 	
 	
 	@Override protected ActionStdV1<OrderInfo> getInstanceOfActionHook(DeciTreeOption<OrderInfo> option) {
-		return new StdOrderInsertOrderem(option);
+		return new StdOrderOrderemPlace(option);
 	}
 	
 	

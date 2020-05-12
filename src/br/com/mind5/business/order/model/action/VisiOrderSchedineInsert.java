@@ -9,9 +9,9 @@ import br.com.mind5.model.action.ActionVisitorTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiOrderInsertSchedine extends ActionVisitorTemplateActionV2<OrderInfo, SchedineInfo> {
+final class VisiOrderSchedineInsert extends ActionVisitorTemplateActionV2<OrderInfo, SchedineInfo> {
 	
-	public VisiOrderInsertSchedine(DeciTreeOption<OrderInfo> option) {
+	public VisiOrderSchedineInsert(DeciTreeOption<OrderInfo> option) {
 		super(option, OrderInfo.class, SchedineInfo.class);
 	}
 	

@@ -4,15 +4,14 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.order.info.OrderInfo;
-import br.com.mind5.business.order.model.decisionTree.NodeOrderCancelL2;
 import br.com.mind5.model.action.ActionLazyTemplateV2;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyOrderNodeCancelL2 extends ActionLazyTemplateV2<OrderInfo, OrderInfo> {
-	
-	public LazyOrderNodeCancelL2(Connection conn, String schemaName) {
+public final class LazyOrderOrderemInsert extends ActionLazyTemplateV2<OrderInfo, OrderInfo> {
+
+	public LazyOrderOrderemInsert(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -25,7 +24,7 @@ public final class LazyOrderNodeCancelL2 extends ActionLazyTemplateV2<OrderInfo,
 	
 	
 	@Override protected ActionStdV1<OrderInfo> getInstanceOfActionHook(DeciTreeOption<OrderInfo> option) {
-		return new NodeOrderCancelL2(option).toAction();
+		return new StdOrderOrderemInsert(option);
 	}
 	
 	

@@ -10,9 +10,9 @@ import br.com.mind5.model.action.ActionVisitorTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiOrderInsertCus extends ActionVisitorTemplateActionV2<OrderInfo, CusInfo> {
+final class VisiOrderCusInsert extends ActionVisitorTemplateActionV2<OrderInfo, CusInfo> {
 
-	public VisiOrderInsertCus(DeciTreeOption<OrderInfo> option) {
+	public VisiOrderCusInsert(DeciTreeOption<OrderInfo> option) {
 		super(option, OrderInfo.class, CusInfo.class);
 	}
 	

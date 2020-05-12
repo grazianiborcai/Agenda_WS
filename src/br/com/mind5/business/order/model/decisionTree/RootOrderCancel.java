@@ -4,8 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.order.info.OrderInfo;
-import br.com.mind5.business.order.model.action.LazyOrderNodeCancelL1;
-import br.com.mind5.business.order.model.action.LazyOrderRefreshSchedine;
+import br.com.mind5.business.order.model.action.LazyOrderNodeCancel;
 import br.com.mind5.business.order.model.action.LazyOrderRootSelect;
 import br.com.mind5.business.order.model.action.StdOrderMergeToSelect;
 import br.com.mind5.business.order.model.checker.OrderCheckExist;
@@ -14,9 +13,9 @@ import br.com.mind5.business.order.model.checker.OrderCheckOwner;
 import br.com.mind5.business.order.model.checker.OrderCheckWrite;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
@@ -69,16 +68,14 @@ public final class RootOrderCancel extends DeciTreeTemplateWriteV2<OrderInfo> {
 	@Override protected List<ActionStdV1<OrderInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderInfo> option) {
 		List<ActionStdV1<OrderInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<OrderInfo> select = new StdOrderMergeToSelect(option);
-		ActionLazyV1<OrderInfo> nodeCancel = new LazyOrderNodeCancelL1(option.conn, option.schemaName);
-		ActionLazyV1<OrderInfo> refreshSchedine = new LazyOrderRefreshSchedine(option.conn, option.schemaName);
-		ActionLazyV1<OrderInfo> rootSelect = new LazyOrderRootSelect(option.conn, option.schemaName);		
+		ActionStdV1<OrderInfo> mergeToSelect = new StdOrderMergeToSelect(option);
+		ActionLazyV1<OrderInfo> cancel = new LazyOrderNodeCancel(option.conn, option.schemaName);
+		ActionLazyV1<OrderInfo> select = new LazyOrderRootSelect(option.conn, option.schemaName);		
 		
-		select.addPostAction(nodeCancel);		
-		nodeCancel.addPostAction(refreshSchedine);
-		refreshSchedine.addPostAction(rootSelect);
+		mergeToSelect.addPostAction(cancel);		
+		cancel.addPostAction(select);
 		
-		actions.add(select);
+		actions.add(mergeToSelect);
 		return actions;
 	}
 }

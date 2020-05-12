@@ -5,7 +5,6 @@ import java.util.List;
 
 import br.com.mind5.business.order.info.OrderInfo;
 import br.com.mind5.business.order.model.action.LazyOrderNodeUpdate;
-import br.com.mind5.business.order.model.action.LazyOrderRefreshSchedine;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
@@ -39,10 +38,8 @@ public final class NodeOrderRefresh extends DeciTreeTemplateWriteV2<OrderInfo> {
 
 		ActionStdV1<OrderInfo> nodePayord = new NodeOrderPayord(option).toAction();
 		ActionLazyV1<OrderInfo> nodeUpdate = new LazyOrderNodeUpdate(option.conn, option.schemaName);
-		ActionLazyV1<OrderInfo> refreshSchedine = new LazyOrderRefreshSchedine(option.conn, option.schemaName);
 		
 		nodePayord.addPostAction(nodeUpdate);
-		nodeUpdate.addPostAction(refreshSchedine);
 		
 		actions.add(nodePayord);
 		return actions;

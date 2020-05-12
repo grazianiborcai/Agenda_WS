@@ -10,9 +10,9 @@ import br.com.mind5.model.action.ActionVisitorTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiOrderInsertOrdnap extends ActionVisitorTemplateActionV2<OrderInfo, OrdnapInfo> {
+final class VisiOrderOrdnapInsert extends ActionVisitorTemplateActionV2<OrderInfo, OrdnapInfo> {
 
-	public VisiOrderInsertOrdnap(DeciTreeOption<OrderInfo> option) {
+	public VisiOrderOrdnapInsert(DeciTreeOption<OrderInfo> option) {
 		super(option, OrderInfo.class, OrdnapInfo.class);
 	}
 	

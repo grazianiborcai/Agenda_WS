@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.order.info.OrderInfo;
+import br.com.mind5.business.order.model.action.LazyOrderMergeOrderem;
 import br.com.mind5.business.order.model.action.LazyOrderNodeUpdate;
+import br.com.mind5.business.order.model.action.LazyOrderOrderemPlace;
 import br.com.mind5.business.order.model.action.StdOrderMergeOrdugePlace;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
@@ -38,9 +40,13 @@ public final class NodeOrderPlace extends DeciTreeTemplateWriteV2<OrderInfo> {
 		List<ActionStdV1<OrderInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<OrderInfo> enforceStatus = new StdOrderMergeOrdugePlace(option);
-		ActionLazyV1<OrderInfo> update = new LazyOrderNodeUpdate(option.conn, option.schemaName);		
+		ActionLazyV1<OrderInfo> update = new LazyOrderNodeUpdate(option.conn, option.schemaName);
+		ActionLazyV1<OrderInfo> mergeOrderem = new LazyOrderMergeOrderem(option.conn, option.schemaName);
+		ActionLazyV1<OrderInfo> placeOrderem = new LazyOrderOrderemPlace(option.conn, option.schemaName);
 		
 		enforceStatus.addPostAction(update);
+		update.addPostAction(mergeOrderem);
+		mergeOrderem.addPostAction(placeOrderem);
 		
 		actions.add(enforceStatus);
 		return actions;
