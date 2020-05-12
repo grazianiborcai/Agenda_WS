@@ -1,25 +1,25 @@
 package br.com.mind5.security.userPassword.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.message.emailWelcome.info.EmacomeCopier;
 import br.com.mind5.message.emailWelcome.info.EmacomeInfo;
 import br.com.mind5.message.emailWelcome.model.decisionTree.RootEmacomeSend;
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateActionV1;
+import br.com.mind5.model.action.ActionVisitorTemplateActionV2;
+import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.userPassword.info.UpswdInfo;
 
-final class VisiUpswdSendEmail extends ActionVisitorTemplateActionV1<UpswdInfo, EmacomeInfo> {
-	public VisiUpswdSendEmail(Connection conn, String schemaName) {
-		super(conn, schemaName, UpswdInfo.class, EmacomeInfo.class);
+final class VisiUpswdSendEmail extends ActionVisitorTemplateActionV2<UpswdInfo, EmacomeInfo> {
+	
+	public VisiUpswdSendEmail(DeciTreeOption<UpswdInfo> option) {
+		super(option, UpswdInfo.class, EmacomeInfo.class);
 	}
 	
 	
 	
-	@Override protected ActionStdV1<EmacomeInfo> getActionHook(DeciTreeOption<EmacomeInfo> option) {
-		return new RootEmacomeSend(option).toAction();
+	@Override protected Class<? extends DeciTree<EmacomeInfo>> getTreeClassHook() {
+		return RootEmacomeSend.class;
 	}
 	
 	

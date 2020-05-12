@@ -3,15 +3,15 @@ package br.com.mind5.security.userPassword.model.action;
 import java.sql.Connection;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazyTemplateV1;
+import br.com.mind5.model.action.ActionLazyTemplateV2;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.userPassword.info.UpswdInfo;
 
-public final class LazyUpswdInsert extends ActionLazyTemplateV1<UpswdInfo, UpswdInfo> {
+public final class LazyUpswdDaoInsert extends ActionLazyTemplateV2<UpswdInfo, UpswdInfo> {
 	
-	public LazyUpswdInsert(Connection conn, String schemaName) {
+	public LazyUpswdDaoInsert(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyUpswdInsert extends ActionLazyTemplateV1<UpswdInfo, Upswd
 	
 	
 	@Override protected ActionStdV1<UpswdInfo> getInstanceOfActionHook(DeciTreeOption<UpswdInfo> option) {
-		return new StdUpswdInsert(option);
+		return new StdUpswdDaoInsert(option);
 	}
 	
 	

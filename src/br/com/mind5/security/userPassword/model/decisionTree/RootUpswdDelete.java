@@ -8,13 +8,13 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 import br.com.mind5.security.userPassword.info.UpswdInfo;
-import br.com.mind5.security.userPassword.model.action.StdUpswdDelete;
+import br.com.mind5.security.userPassword.model.action.StdUpswdDaoDelete;
 import br.com.mind5.security.userPassword.model.checker.UpswdCheckDelete;
 import br.com.mind5.security.userPassword.model.checker.UpswdCheckExist;
 
-public final class RootUpswdDelete extends DeciTreeTemplateReadV1<UpswdInfo> {
+public final class RootUpswdDelete extends DeciTreeTemplateWriteV2<UpswdInfo> {
 	
 	public RootUpswdDelete(DeciTreeOption<UpswdInfo> option) {
 		super(option);
@@ -49,7 +49,7 @@ public final class RootUpswdDelete extends DeciTreeTemplateReadV1<UpswdInfo> {
 	@Override protected List<ActionStdV1<UpswdInfo>> buildActionsOnPassedHook(DeciTreeOption<UpswdInfo> option) {
 		List<ActionStdV1<UpswdInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<UpswdInfo> delete = new StdUpswdDelete(option);		
+		ActionStdV1<UpswdInfo> delete = new StdUpswdDaoDelete(option);		
 		actions.add(delete);
 		
 		return actions;

@@ -6,7 +6,7 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.userPassword.info.UpswdInfo;
-import br.com.mind5.security.userPassword.model.action.StdUpswdSelect;
+import br.com.mind5.security.userPassword.model.action.StdUpswdDaoSelect;
 
 public final class UpswdCheckExist extends ModelCheckerTemplateActionV2<UpswdInfo, UpswdInfo> {
 	
@@ -17,7 +17,7 @@ public final class UpswdCheckExist extends ModelCheckerTemplateActionV2<UpswdInf
 	
 	
 	@Override protected ActionStdV1<UpswdInfo> buildActionHook(DeciTreeOption<UpswdInfo> option) {
-		ActionStdV1<UpswdInfo> select = new StdUpswdSelect(option);
+		ActionStdV1<UpswdInfo> select = new StdUpswdDaoSelect(option);
 		return select;
 	}
 	

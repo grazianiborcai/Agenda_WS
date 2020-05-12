@@ -4,11 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoSetter;
+import br.com.mind5.info.InfoSetterTemplate;
 
-public final class UpswdSetterPasswordRandom implements InfoSetter<UpswdInfo> {
+public final class UpswdSetterPasswordRandom extends InfoSetterTemplate<UpswdInfo> {
     private static final String LOWER = "abcdefghijklmnopqrstuvwxyz";
     private static final String UPPER = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     private static final String DIGITS = "0123456789";
@@ -16,25 +14,8 @@ public final class UpswdSetterPasswordRandom implements InfoSetter<UpswdInfo> {
     private static final int LENGTH = 8;
 	
 	
-	public UpswdInfo setAttr(UpswdInfo recordInfo) {
-		checkArgument(recordInfo);
-		return setLength(recordInfo);
-	}
-	
-	
-	
-	private void checkArgument(UpswdInfo recordInfo) {
-		if (recordInfo == null) {
-			logException(new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT));
-			throw new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT);
-		}
-	}
-	
-	
-	
-	private UpswdInfo setLength(UpswdInfo recordInfo) {
+    @Override protected UpswdInfo setAttrHook(UpswdInfo recordInfo) {
 		recordInfo.password = generateRandomPassword();
-		System.out.println(recordInfo.password);			//TODO: remover quando email estiver implementado
 		return recordInfo;
 	}
 	
@@ -59,11 +40,4 @@ public final class UpswdSetterPasswordRandom implements InfoSetter<UpswdInfo> {
 		
         return new String(password);
 	}
-	
-	
-	
-	private void logException(Exception e) {
-		
-		SystemLog.logError(this.getClass(), e);
-	}	
 }

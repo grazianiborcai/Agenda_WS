@@ -1,19 +1,19 @@
 package br.com.mind5.security.userPassword.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.user.info.UserInfo;
 import br.com.mind5.security.user.model.decisionTree.RootUserSelect;
 import br.com.mind5.security.userPassword.info.UpswdInfo;
 import br.com.mind5.security.userPassword.info.UpswdMerger;
 
-final class VisiUpswdMergeUser extends ActionVisitorTemplateMergeV1<UpswdInfo, UserInfo> {
+final class VisiUpswdMergeUser extends ActionVisitorTemplateMergeV2<UpswdInfo, UserInfo> {
 	
-	public VisiUpswdMergeUser(Connection conn, String schemaName) {
-		super(conn, schemaName, UserInfo.class);
+	public VisiUpswdMergeUser(DeciTreeOption<UpswdInfo> option) {
+		super(option, UserInfo.class);
 	}
 	
 	
@@ -31,6 +31,6 @@ final class VisiUpswdMergeUser extends ActionVisitorTemplateMergeV1<UpswdInfo, U
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
+		return super.DONT_MERGE_WHEN_EMPTY;
 	}
 }

@@ -176,7 +176,7 @@ import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.dao.PeresmoipDbTab
 import br.com.mind5.security.storeAuthorization.dao.DaoStorauthDbTableColumn;
 import br.com.mind5.security.user.dao.DaoUserDbTableColumn;
 import br.com.mind5.security.userList.dao.UselisDbTableColumn;
-import br.com.mind5.security.userPassword.dao.UpswdDbTableColumn;
+import br.com.mind5.security.userPassword.dao.DaoUpswdDbTableColumn;
 import br.com.mind5.security.userSearch.dao.DaoUserarchDbTableColumn;
 import br.com.mind5.security.userSnapshot.dao.UserapDbTableColumn;
 import br.com.mind5.security.username.dao.DaoUsernameDbTableColumn;
@@ -230,7 +230,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new StoparDbTableColumn());
 		addTable(new CounparDbTableColumn());
 		addTable(new CompDbTableColumn());
-		addTable(new UpswdDbTableColumn());
+		addTable(new DaoUpswdDbTableColumn());
 		addTable(new DaoUsernameDbTableColumn());
 		addTable(new MatmovDbTableColumn());
 		addTable(new MatockDbTableColumn());

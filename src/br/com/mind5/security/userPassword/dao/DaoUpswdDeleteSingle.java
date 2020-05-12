@@ -15,11 +15,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.security.userPassword.info.UpswdInfo;
 
-public final class UpswdDeleteSingle extends DaoStmtTemplate<UpswdInfo> {
+public final class DaoUpswdDeleteSingle extends DaoStmtTemplate<UpswdInfo> {
 	private final String MAIN_TABLE = DaoDbTable.USER_PASSWORD_TABLE;
 	
 	
-	public UpswdDeleteSingle(Connection conn, UpswdInfo recordInfo, String schemaName) {
+	public DaoUpswdDeleteSingle(Connection conn, UpswdInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -44,7 +44,7 @@ public final class UpswdDeleteSingle extends DaoStmtTemplate<UpswdInfo> {
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;	
 		whereOption.ignoreNonPrimaryKey = DaoOptionValue.IGNORE_NON_PK;		
 		
-		DaoStmtWhere whereClause = new UpswdWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new DaoUpswdWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	

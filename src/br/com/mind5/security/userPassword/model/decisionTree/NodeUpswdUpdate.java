@@ -5,20 +5,20 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 import br.com.mind5.security.userPassword.info.UpswdInfo;
+import br.com.mind5.security.userPassword.model.action.LazyUpswdDaoUpdate;
 import br.com.mind5.security.userPassword.model.action.LazyUpswdEnforceHash;
 import br.com.mind5.security.userPassword.model.action.LazyUpswdEnforceLength;
 import br.com.mind5.security.userPassword.model.action.LazyUpswdEnforcePassword;
 import br.com.mind5.security.userPassword.model.action.LazyUpswdEnforceSalt;
-import br.com.mind5.security.userPassword.model.action.LazyUpswdUpdate;
 import br.com.mind5.security.userPassword.model.action.StdUpswdEnforceLChanged;
-import br.com.mind5.security.userPassword.model.checker.UpswdCheckDummy;
 
-public final class NodeUpswdUpdate extends DeciTreeTemplateReadV1<UpswdInfo> {
+public final class NodeUpswdUpdate extends DeciTreeTemplateWriteV2<UpswdInfo> {
 	
 	public NodeUpswdUpdate(DeciTreeOption<UpswdInfo> option) {
 		super(option);
@@ -30,7 +30,7 @@ public final class NodeUpswdUpdate extends DeciTreeTemplateReadV1<UpswdInfo> {
 		List<ModelCheckerV1<UpswdInfo>> queue = new ArrayList<>();		
 		ModelCheckerV1<UpswdInfo> checker;
 
-		checker = new UpswdCheckDummy();
+		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueueV2<>(queue);
@@ -46,7 +46,7 @@ public final class NodeUpswdUpdate extends DeciTreeTemplateReadV1<UpswdInfo> {
 		ActionLazyV1<UpswdInfo> enforcePassword = new LazyUpswdEnforcePassword(option.conn, option.schemaName);
 		ActionLazyV1<UpswdInfo> enforceSalt = new LazyUpswdEnforceSalt(option.conn, option.schemaName);
 		ActionLazyV1<UpswdInfo> enforceHash = new LazyUpswdEnforceHash(option.conn, option.schemaName);
-		ActionLazyV1<UpswdInfo> update = new LazyUpswdUpdate(option.conn, option.schemaName);
+		ActionLazyV1<UpswdInfo> update = new LazyUpswdDaoUpdate(option.conn, option.schemaName);
 		
 		enforceLChanged.addPostAction(enforceLength);
 		enforceLength.addPostAction(enforcePassword);

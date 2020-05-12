@@ -16,11 +16,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.security.userPassword.info.UpswdInfo;
 
-public final class UpswdSelectSingle extends DaoStmtTemplate<UpswdInfo> {	
+public final class DaoUpswdSelectSingle extends DaoStmtTemplate<UpswdInfo> {	
 	private final String MAIN_TABLE = DaoDbTable.USER_PASSWORD_TABLE;
 	
 	
-	public UpswdSelectSingle(Connection conn, UpswdInfo recordInfo, String schemaName) {
+	public DaoUpswdSelectSingle(Connection conn, UpswdInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -44,7 +44,7 @@ public final class UpswdSelectSingle extends DaoStmtTemplate<UpswdInfo> {
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new UpswdWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new DaoUpswdWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}	
 	
@@ -61,11 +61,11 @@ public final class UpswdSelectSingle extends DaoStmtTemplate<UpswdInfo> {
 				do {
 					UpswdInfo dataInfo = new UpswdInfo();
 					
-					dataInfo.codOwner = stmtResult.getLong(UpswdDbTableColumn.COL_COD_OWNER);
-					dataInfo.codUser = stmtResult.getLong(UpswdDbTableColumn.COL_COD_USER);
-					dataInfo.hash = DaoFormatter.sqlToBase64(stmtResult, UpswdDbTableColumn.COL_PASSWORD);	
-					dataInfo.salt = DaoFormatter.sqlToBase64(stmtResult, UpswdDbTableColumn.COL_SALT);	
-					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, UpswdDbTableColumn.COL_LAST_CHANGED);
+					dataInfo.codOwner = stmtResult.getLong(DaoUpswdDbTableColumn.COL_COD_OWNER);
+					dataInfo.codUser = stmtResult.getLong(DaoUpswdDbTableColumn.COL_COD_USER);
+					dataInfo.hash = DaoFormatter.sqlToBase64(stmtResult, DaoUpswdDbTableColumn.COL_PASSWORD);	
+					dataInfo.salt = DaoFormatter.sqlToBase64(stmtResult, DaoUpswdDbTableColumn.COL_SALT);	
+					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, DaoUpswdDbTableColumn.COL_LAST_CHANGED);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

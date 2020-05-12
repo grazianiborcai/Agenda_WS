@@ -9,33 +9,21 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class UpswdDbTableColumn extends DaoDbTableColumnTemplate {	
+public final class DaoUpswdDbTableColumn extends DaoDbTableColumnTemplate {	
 	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;	
 	public static final String COL_COD_USER = DaoDbField.COL_COD_USER;
 	public static final String COL_LAST_CHANGED = DaoDbField.COL_LAST_CHANGED;
 	public static final String COL_PASSWORD = DaoDbField.COL_PASSWORD;
 	public static final String COL_SALT = DaoDbField.COL_SALT;
 	
-
-	Hashtable<String, List<DaoColumn>> tableColumns;	
 	
-	public UpswdDbTableColumn() {
-		super(UpswdDbTableColumn.class);
+	public DaoUpswdDbTableColumn() {
+		super();
 	}
 	
 	
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
-		tableColumns = new Hashtable<>();
-		
-		buildStoreEmployeeTable();
-		
-		return tableColumns;
-	}
-	
-	
-	
-	private void buildStoreEmployeeTable() {
 		final String TABLE_NAME = DaoDbTable.USER_PASSWORD_TABLE;
 		
 		DaoColumn oneColumn;
@@ -81,6 +69,8 @@ public final class UpswdDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		tableColumns.put(TABLE_NAME, columns);
+		Hashtable<String, List<DaoColumn>> results = new Hashtable<>();
+		results.put(TABLE_NAME, columns);
+		return results;
 	}
 }

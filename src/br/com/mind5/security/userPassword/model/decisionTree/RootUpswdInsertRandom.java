@@ -9,13 +9,13 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 import br.com.mind5.security.userPassword.info.UpswdInfo;
 import br.com.mind5.security.userPassword.model.action.LazyUpswdRootInsert;
 import br.com.mind5.security.userPassword.model.action.StdUpswdEnforcePasswordRandom;
 import br.com.mind5.security.userPassword.model.checker.UpswdCheckWriteRandom;
 
-public final class RootUpswdInsertRandom extends DeciTreeTemplateReadV1<UpswdInfo> {
+public final class RootUpswdInsertRandom extends DeciTreeTemplateWriteV2<UpswdInfo> {
 	
 	public RootUpswdInsertRandom(DeciTreeOption<UpswdInfo> option) {
 		super(option);

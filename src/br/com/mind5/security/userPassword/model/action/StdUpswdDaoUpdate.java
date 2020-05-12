@@ -5,15 +5,15 @@ import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.userPassword.info.UpswdInfo;
 
-public final class StdUpswdSendEmail extends ActionStdTemplateV2<UpswdInfo> {
+public final class StdUpswdDaoUpdate extends ActionStdTemplateV2<UpswdInfo> {
 
-	public StdUpswdSendEmail(DeciTreeOption<UpswdInfo> option) {
+	public StdUpswdDaoUpdate(DeciTreeOption<UpswdInfo> option) {
 		super(option);
 	}
 	
 	
 	
 	protected ActionVisitorV2<UpswdInfo> buildVisitorHook(DeciTreeOption<UpswdInfo> option) {
-		return new VisiUpswdSendEmail(option);
+		return new VisiUpswdDaoUpdate(option);
 	}
 }

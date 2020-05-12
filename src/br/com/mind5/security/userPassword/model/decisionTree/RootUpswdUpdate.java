@@ -9,12 +9,12 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 import br.com.mind5.security.userPassword.info.UpswdInfo;
 import br.com.mind5.security.userPassword.model.action.LazyUpswdSuccess;
 import br.com.mind5.security.userPassword.model.checker.UpswdCheckUpdate;
 
-public final class RootUpswdUpdate extends DeciTreeTemplateReadV1<UpswdInfo> {
+public final class RootUpswdUpdate extends DeciTreeTemplateWriteV2<UpswdInfo> {
 	
 	public RootUpswdUpdate(DeciTreeOption<UpswdInfo> option) {
 		super(option);
