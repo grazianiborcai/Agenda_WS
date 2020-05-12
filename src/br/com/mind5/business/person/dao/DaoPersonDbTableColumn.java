@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class PersonDbTableColumn extends DaoDbTableColumnTemplate {
+public final class DaoPersonDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_BIRTH_DATE = DaoDbField.COL_BIRTH_DATE;
 	public static final String COL_BIRTH_DAY = DaoDbField.COL_BIRTH_DAY;
 	public static final String COL_BIRTH_MONTH = DaoDbField.COL_BIRTH_MONTH;
@@ -31,26 +31,13 @@ public final class PersonDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_RECORD_MODE = DaoDbField.COL_RECORD_MODE;	
 	
 	
-	
-	
-	private Hashtable<String, List<DaoColumn>> tableColumns;	
-	
-	
-	public PersonDbTableColumn() {
-		super(PersonDbTableColumn.class);
+	public DaoPersonDbTableColumn() {
+		super();
 	}
 	
 	
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
-		tableColumns = new Hashtable<>();		
-		buildPersonTable();		
-		return tableColumns;
-	}
-	
-	
-	
-	private void buildPersonTable() {
 		final String TABLE_NAME = DaoDbTable.PERSON_TABLE;
 		
 		DaoColumn oneColumn;
@@ -208,6 +195,8 @@ public final class PersonDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		tableColumns.put(TABLE_NAME, columns);
+		Hashtable<String, List<DaoColumn>> results = new Hashtable<>();
+		results.put(TABLE_NAME, columns);
+		return results;
 	}
 }

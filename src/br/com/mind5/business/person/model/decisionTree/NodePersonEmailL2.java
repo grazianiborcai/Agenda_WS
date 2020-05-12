@@ -10,9 +10,9 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class NodePersonEmailL2 extends DeciTreeTemplateWriteV1<PersonInfo> {
+public final class NodePersonEmailL2 extends DeciTreeTemplateWriteV2<PersonInfo> {
 	
 	public NodePersonEmailL2(DeciTreeOption<PersonInfo> option) {
 		super(option);

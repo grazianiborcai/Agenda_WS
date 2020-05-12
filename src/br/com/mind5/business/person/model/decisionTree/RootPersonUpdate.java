@@ -23,9 +23,9 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class RootPersonUpdate extends DeciTreeTemplateWriteV1<PersonInfo> {
+public final class RootPersonUpdate extends DeciTreeTemplateWriteV2<PersonInfo> {
 	
 	public RootPersonUpdate(DeciTreeOption<PersonInfo> option) {
 		super(option);

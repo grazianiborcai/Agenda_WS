@@ -1,35 +1,19 @@
 package br.com.mind5.business.person.model.action;
 
 import br.com.mind5.business.person.info.PersonInfo;
-import br.com.mind5.model.action.ActionLazyV1;
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionStdHelperEnforce;
-import br.com.mind5.model.decisionTree.DeciResult;
+import br.com.mind5.model.action.ActionStdTemplateV2;
+import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdPersonEnforceCategCus implements ActionStdV1<PersonInfo> {
-	private ActionStdV1<PersonInfo> actionHelper;	
-	
-	
-	public StdPersonEnforceCategCus(DeciTreeOption<PersonInfo> option) {			
-		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiPersonEnforceCategCus());
+public final class StdPersonEnforceCategCus extends ActionStdTemplateV2<PersonInfo> {
+
+	public StdPersonEnforceCategCus(DeciTreeOption<PersonInfo> option) {
+		super(option);
 	}
 	
 	
 	
-	@Override public void addPostAction(ActionLazyV1<PersonInfo> actionHandler) {
-		actionHelper.addPostAction(actionHandler);
-	}
-	
-	
-	
-	@Override public boolean executeAction() {			
-		return actionHelper.executeAction();
-	}
-	
-	
-	
-	@Override public DeciResult<PersonInfo> getDecisionResult() {
-		return actionHelper.getDecisionResult();
+	protected ActionVisitorV2<PersonInfo> buildVisitorHook(DeciTreeOption<PersonInfo> option) {
+		return new VisiPersonEnforceCategCus(option);
 	}
 }

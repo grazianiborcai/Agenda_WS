@@ -2,25 +2,23 @@ package br.com.mind5.business.person.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-
 import br.com.mind5.business.person.info.PersonInfo;
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtParamTranslator;
 import br.com.mind5.dao.DaoStmtTemplate;
+import br.com.mind5.dao.DaoStmtWhere;
+import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
+import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class PersonInsertSingle extends DaoStmtTemplate<PersonInfo> {	
+public final class DaoPersonUpdateSingle extends DaoStmtTemplate<PersonInfo> {
 	private final String MAIN_TABLE = DaoDbTable.PERSON_TABLE;
 	
 	
-	public PersonInsertSingle(Connection conn, PersonInfo recordInfo, String schemaName) {
-		super(conn, recordInfo, schemaName);
+	public DaoPersonUpdateSingle(Connection conn, PersonInfo recordInfo, String schemaName) {
+		super(conn, recordInfo, schemaName);		
 	}
 	
 	
@@ -32,23 +30,35 @@ public final class PersonInsertSingle extends DaoStmtTemplate<PersonInfo> {
 	
 	
 	@Override protected DaoOperation getOperationHook() {
-		return DaoOperation.INSERT;
+		return DaoOperation.UPDATE;
+	}
+	
+	
+	
+	@Override protected String buildWhereClauseHook(String tableName, PersonInfo recordInfo) {
+		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
+		
+		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
+		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;
+		whereOption.ignoreNonPrimaryKey = DaoOptionValue.IGNORE_NON_PK;
+		
+		DaoStmtWhere whereClause = new DaoPersonWhere(whereOption, tableName, recordInfo);
+		return whereClause.getWhereClause();
 	}
 	
 	
 	
 	@Override protected DaoStmtParamTranslator<PersonInfo> getParamTranslatorHook() {
 		return new DaoStmtParamTranslator<PersonInfo>() {	
-			@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, PersonInfo recordInfo) throws SQLException {
+			@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, PersonInfo recordInfo) throws SQLException {	
 				
 				int i = 1;
-				stmt.setLong(i++, recordInfo.codOwner);
 				stmt.setString(i++, recordInfo.cpf);
 				stmt.setString(i++, recordInfo.name);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codGender);
 				stmt = DaoFormatter.localDateToStmt(stmt, i++, recordInfo.birthDate);
-				stmt.setString(i++, recordInfo.email);			
-				stmt.setString(i++, recordInfo.recordMode);		
+				stmt.setString(i++, recordInfo.email);	
+				stmt.setString(i++, recordInfo.recordMode);			
 				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.lastChanged);
 				stmt.setString(i++, recordInfo.codEntityCateg);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.lastChangedBy);
@@ -63,19 +73,6 @@ public final class PersonInsertSingle extends DaoStmtTemplate<PersonInfo> {
 				
 				return stmt;
 			}		
-		};
-	}	
-	
-	
-	
-	@Override protected DaoResultParser<PersonInfo> getResultParserHook() {
-		return new DaoResultParser<PersonInfo>() {	
-			@Override public List<PersonInfo> parseResult(PersonInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
-				List<PersonInfo> finalResult = new ArrayList<>();
-				recordInfo.codPerson = lastId;
-				finalResult.add(recordInfo);			
-				return finalResult;
-			}
 		};
 	}
 }

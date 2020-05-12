@@ -6,15 +6,15 @@ import java.util.List;
 import br.com.mind5.business.person.info.PersonInfo;
 import br.com.mind5.business.person.model.action.LazyPersonRootInsert;
 import br.com.mind5.business.person.model.action.StdPersonEnforceCategStore;
-import br.com.mind5.business.person.model.checker.PersonCheckDummy;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class RootPersonInsertStore extends DeciTreeTemplateWriteV1<PersonInfo> {
+public final class RootPersonInsertStore extends DeciTreeTemplateWriteV2<PersonInfo> {
 	
 	public RootPersonInsertStore(DeciTreeOption<PersonInfo> option) {
 		super(option);
@@ -26,7 +26,7 @@ public final class RootPersonInsertStore extends DeciTreeTemplateWriteV1<PersonI
 		List<ModelCheckerV1<PersonInfo>> queue = new ArrayList<>();		
 		ModelCheckerV1<PersonInfo> checker;	
 		
-		checker = new PersonCheckDummy();
+		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 			
 		return new ModelCheckerHelperQueueV2<>(queue);

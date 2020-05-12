@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.person.info.PersonInfo;
-import br.com.mind5.business.person.model.action.LazyPersonDelete;
+import br.com.mind5.business.person.model.action.LazyPersonDaoDelete;
 import br.com.mind5.business.person.model.action.LazyPersonEnforceLChanged;
 import br.com.mind5.business.person.model.action.LazyPersonMergeUsername;
-import br.com.mind5.business.person.model.action.LazyPersonUpdate;
+import br.com.mind5.business.person.model.action.LazyPersonDaoUpdate;
 import br.com.mind5.business.person.model.action.StdPersonMergeToDelete;
 import br.com.mind5.business.person.model.checker.PersonCheckDelete;
 import br.com.mind5.business.person.model.checker.PersonCheckExist;
@@ -18,9 +18,9 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class RootPersonDelete extends DeciTreeTemplateWriteV1<PersonInfo> {
+public final class RootPersonDelete extends DeciTreeTemplateWriteV2<PersonInfo> {
 	
 	public RootPersonDelete(DeciTreeOption<PersonInfo> option) {
 		super(option);
@@ -65,8 +65,8 @@ public final class RootPersonDelete extends DeciTreeTemplateWriteV1<PersonInfo> 
 		ActionStdV1<PersonInfo> mergeToDelete = new StdPersonMergeToDelete(option);	
 		ActionLazyV1<PersonInfo> enforceLChanged = new LazyPersonEnforceLChanged(option.conn, option.schemaName);
 		ActionLazyV1<PersonInfo> enforceLChangedBy = new LazyPersonMergeUsername(option.conn, option.schemaName);
-		ActionLazyV1<PersonInfo> updatePerson = new LazyPersonUpdate(option.conn, option.schemaName);
-		ActionLazyV1<PersonInfo> deletePerson = new LazyPersonDelete(option.conn, option.schemaName);
+		ActionLazyV1<PersonInfo> updatePerson = new LazyPersonDaoUpdate(option.conn, option.schemaName);
+		ActionLazyV1<PersonInfo> deletePerson = new LazyPersonDaoDelete(option.conn, option.schemaName);
 		
 		mergeToDelete.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceLChangedBy);

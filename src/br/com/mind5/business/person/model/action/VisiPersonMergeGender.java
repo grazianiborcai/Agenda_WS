@@ -1,19 +1,19 @@
 package br.com.mind5.business.person.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.person.info.PersonInfo;
 import br.com.mind5.business.person.info.PersonMerger;
 import br.com.mind5.masterData.gender.info.GenderInfo;
 import br.com.mind5.masterData.gender.model.decisionTree.RootGenderSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiPersonMergeGender extends ActionVisitorTemplateMergeV1<PersonInfo, GenderInfo> {
+final class VisiPersonMergeGender extends ActionVisitorTemplateMergeV2<PersonInfo, GenderInfo> {
 	
-	public VisiPersonMergeGender(Connection conn, String schemaName) {
-		super(conn, schemaName, GenderInfo.class);
+	public VisiPersonMergeGender(DeciTreeOption<PersonInfo> option) {
+		super(option, GenderInfo.class);
 	}
 	
 	
@@ -31,6 +31,6 @@ final class VisiPersonMergeGender extends ActionVisitorTemplateMergeV1<PersonInf
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
+		return super.MERGE_WHEN_EMPTY;
 	}
 }

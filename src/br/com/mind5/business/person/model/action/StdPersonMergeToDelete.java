@@ -1,35 +1,19 @@
 package br.com.mind5.business.person.model.action;
 
 import br.com.mind5.business.person.info.PersonInfo;
-import br.com.mind5.model.action.ActionLazyV1;
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionStdHelperMerge;
-import br.com.mind5.model.decisionTree.DeciResult;
+import br.com.mind5.model.action.ActionStdTemplateV2;
+import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdPersonMergeToDelete implements ActionStdV1<PersonInfo> {
-	private ActionStdV1<PersonInfo> actionHelper;	
-	
-	
-	public StdPersonMergeToDelete(DeciTreeOption<PersonInfo> option) {			
-		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiPersonMergeToDelete(option.conn, option.schemaName));
+public final class StdPersonMergeToDelete extends ActionStdTemplateV2<PersonInfo> {
+
+	public StdPersonMergeToDelete(DeciTreeOption<PersonInfo> option) {
+		super(option);
 	}
 	
 	
 	
-	@Override public void addPostAction(ActionLazyV1<PersonInfo> actionHandler) {
-		actionHelper.addPostAction(actionHandler);
-	}
-	
-	
-	
-	@Override public boolean executeAction() {			
-		return actionHelper.executeAction();
-	}
-	
-	
-	
-	@Override public DeciResult<PersonInfo> getDecisionResult() {
-		return actionHelper.getDecisionResult();
+	protected ActionVisitorV2<PersonInfo> buildVisitorHook(DeciTreeOption<PersonInfo> option) {
+		return new VisiPersonMergeToDelete(option);
 	}
 }
