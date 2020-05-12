@@ -1,23 +1,23 @@
 package br.com.mind5.payment.customerPartnerSearch.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.customerPartnerSearch.info.CusparchInfo;
 import br.com.mind5.payment.customerPartnerSearch.info.CusparchMerger;
 
-final class VisiCusparchMergeToSelect extends ActionVisitorTemplateMergeV1<CusparchInfo, CusparchInfo> {
+final class VisiCusparchMergeToSelect extends ActionVisitorTemplateMergeV2<CusparchInfo, CusparchInfo> {
 	
-	public VisiCusparchMergeToSelect(Connection conn, String schemaName) {
-		super(conn, schemaName, CusparchInfo.class);
+	public VisiCusparchMergeToSelect(DeciTreeOption<CusparchInfo> option) {
+		super(option, CusparchInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends ActionStdV1<CusparchInfo>> getActionClassHook() {
-		return StdCusparchSelect.class;
+	@Override protected Class<? extends ActionStdV2<CusparchInfo>> getActionClassHook() {
+		return StdCusparchDaoSelect.class;
 	}
 	
 	
@@ -29,6 +29,6 @@ final class VisiCusparchMergeToSelect extends ActionVisitorTemplateMergeV1<Cuspa
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
+		return super.DONT_MERGE_WHEN_EMPTY;
 	}
 }

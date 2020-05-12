@@ -18,7 +18,7 @@ public final class CusparchInfo extends InfoRecord implements Cloneable {
 	
 	
 	public CusparchInfo() {
-		super(CusparchInfo.class);
+		super();
 		
 		codOwner = DefaultValue.number();	
 		codPayPartner = DefaultValue.number();

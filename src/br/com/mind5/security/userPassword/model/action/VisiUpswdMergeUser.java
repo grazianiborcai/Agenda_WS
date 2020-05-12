@@ -31,6 +31,6 @@ final class VisiUpswdMergeUser extends ActionVisitorTemplateMergeV1<UpswdInfo, U
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
+		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
 	}
 }

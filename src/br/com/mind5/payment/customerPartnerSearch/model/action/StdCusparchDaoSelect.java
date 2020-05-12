@@ -5,15 +5,15 @@ import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.customerPartnerSearch.info.CusparchInfo;
 
-public final class StdCusparchMergeToSelect extends ActionStdTemplateV2<CusparchInfo> {
+public final class StdCusparchDaoSelect extends ActionStdTemplateV2<CusparchInfo> {
 
-	public StdCusparchMergeToSelect(DeciTreeOption<CusparchInfo> option) {
+	public StdCusparchDaoSelect(DeciTreeOption<CusparchInfo> option) {
 		super(option);
 	}
 	
 	
 	
 	protected ActionVisitorV2<CusparchInfo> buildVisitorHook(DeciTreeOption<CusparchInfo> option) {
-		return new VisiCusparchMergeToSelect(option);
+		return new VisiCusparchDaoSelect(option);
 	}
 }

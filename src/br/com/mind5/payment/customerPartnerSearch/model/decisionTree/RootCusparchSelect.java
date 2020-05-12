@@ -4,17 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 import br.com.mind5.payment.customerPartnerSearch.info.CusparchInfo;
 import br.com.mind5.payment.customerPartnerSearch.model.action.StdCusparchMergeToSelect;
 import br.com.mind5.payment.customerPartnerSearch.model.checker.CusparchCheckOwner;
 import br.com.mind5.payment.customerPartnerSearch.model.checker.CusparchCheckRead;
 
-public final class RootCusparchSelect extends DeciTreeTemplateReadV1<CusparchInfo> {
+public final class RootCusparchSelect extends DeciTreeTemplateReadV2<CusparchInfo> {
 	
 	public RootCusparchSelect(DeciTreeOption<CusparchInfo> option) {
 		super(option);
