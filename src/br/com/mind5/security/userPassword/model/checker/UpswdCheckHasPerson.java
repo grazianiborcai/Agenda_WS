@@ -16,7 +16,7 @@ public final class UpswdCheckHasPerson extends ModelCheckerTemplateSimpleV2<Upsw
 	
 	
 	@Override protected boolean checkHook(UpswdInfo recordInfo, Connection conn, String schemaName) {	
-		if ( recordInfo.personData == null )			
+		if ( recordInfo.persolisData == null )			
 			return super.FAILED;
 		
 		

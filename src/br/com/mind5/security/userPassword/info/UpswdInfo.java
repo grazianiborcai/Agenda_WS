@@ -3,7 +3,7 @@ package br.com.mind5.security.userPassword.info;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import br.com.mind5.business.person.info.PersonInfo;
+import br.com.mind5.business.personList.info.PersolisInfo;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
 
@@ -18,7 +18,7 @@ public final class UpswdInfo extends InfoRecord implements Cloneable {
 	public byte[] salt;
 	public byte[] hashToMatch;
 	public int hashLength;
-	public PersonInfo personData;
+	public PersolisInfo persolisData;
 	public LocalDateTime lastChanged;
 	
 	
@@ -28,7 +28,7 @@ public final class UpswdInfo extends InfoRecord implements Cloneable {
 		codOwner = DefaultValue.number();
 		codUser = DefaultValue.number();
 		codUserCategory = DefaultValue.character();
-		personData = DefaultValue.object();
+		persolisData = DefaultValue.object();
 	}
 	
 	
@@ -48,17 +48,17 @@ public final class UpswdInfo extends InfoRecord implements Cloneable {
 	@Override public Object clone() throws CloneNotSupportedException {
 		UpswdInfo deepCopy = (UpswdInfo) super.clone();
 		
-		deepCopy.personData = clonePerson(deepCopy.personData);
+		deepCopy.persolisData = clonePersolis(deepCopy.persolisData);
 		return deepCopy;
 	}
 	
 	
 	
-	private PersonInfo clonePerson(PersonInfo recordInfo) throws CloneNotSupportedException {
+	private PersolisInfo clonePersolis(PersolisInfo recordInfo) throws CloneNotSupportedException {
 		if (recordInfo == null)
 			return null;
 		
-		return (PersonInfo) recordInfo.clone();
+		return (PersolisInfo) recordInfo.clone();
 	}
 	
 	

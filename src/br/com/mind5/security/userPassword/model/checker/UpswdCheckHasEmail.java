@@ -16,11 +16,11 @@ public final class UpswdCheckHasEmail extends ModelCheckerTemplateSimpleV2<Upswd
 	
 	
 	@Override protected boolean checkHook(UpswdInfo recordInfo, Connection conn, String schemaName) {	
-		if ( recordInfo.personData == null )			
+		if ( recordInfo.persolisData == null )			
 			return super.FAILED;
 		
 		
-		if ( recordInfo.personData.email == null )			
+		if ( recordInfo.persolisData.email == null )			
 			return super.FAILED;
 		
 		

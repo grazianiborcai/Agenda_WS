@@ -5,15 +5,15 @@ import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.userPassword.info.UpswdInfo;
 
-public final class StdUpswdMergeUser extends ActionStdTemplateV2<UpswdInfo> {
+public final class StdUpswdMergeUselis extends ActionStdTemplateV2<UpswdInfo> {
 
-	public StdUpswdMergeUser(DeciTreeOption<UpswdInfo> option) {
+	public StdUpswdMergeUselis(DeciTreeOption<UpswdInfo> option) {
 		super(option);
 	}
 	
 	
 	
 	protected ActionVisitorV2<UpswdInfo> buildVisitorHook(DeciTreeOption<UpswdInfo> option) {
-		return new VisiUpswdMergeUser(option);
+		return new VisiUpswdMergeUselis(option);
 	}
 }

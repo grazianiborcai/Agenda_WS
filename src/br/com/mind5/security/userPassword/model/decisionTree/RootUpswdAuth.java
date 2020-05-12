@@ -12,7 +12,7 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 import br.com.mind5.security.userPassword.info.UpswdInfo;
 import br.com.mind5.security.userPassword.model.action.LazyUpswdNodeAuth;
-import br.com.mind5.security.userPassword.model.action.StdUpswdMergeUser;
+import br.com.mind5.security.userPassword.model.action.StdUpswdMergeUselis;
 import br.com.mind5.security.userPassword.model.checker.UpswdCheckAuth;
 import br.com.mind5.security.userPassword.model.checker.UpswdCheckUser;
 
@@ -51,12 +51,12 @@ public final class RootUpswdAuth extends DeciTreeTemplateWriteV2<UpswdInfo> {
 	@Override protected List<ActionStdV1<UpswdInfo>> buildActionsOnPassedHook(DeciTreeOption<UpswdInfo> option) {
 		List<ActionStdV1<UpswdInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<UpswdInfo> mergeUser = new StdUpswdMergeUser(option); //TODO: usar Uselis ao inves ?
+		ActionStdV1<UpswdInfo> mergeUselis = new StdUpswdMergeUselis(option);
 		ActionLazyV1<UpswdInfo> nodeAuth = new LazyUpswdNodeAuth(option.conn, option.schemaName);
 		
-		mergeUser.addPostAction(nodeAuth);
+		mergeUselis.addPostAction(nodeAuth);
 		
-		actions.add(mergeUser);		
+		actions.add(mergeUselis);		
 		return actions;
 	}
 }
