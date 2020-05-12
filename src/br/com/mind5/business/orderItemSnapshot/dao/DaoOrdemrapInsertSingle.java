@@ -60,6 +60,9 @@ public class DaoOrdemrapInsertSingle extends DaoStmtTemplate<OrdemrapInfo> {
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.totitem);
 				stmt.setString(i++, recordInfo.codCurr);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.lastChangedBy);
+				stmt.setString(i++, recordInfo.codOrderStatus);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPayOrder);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPayOrderItem);
 				
 				return stmt;
 			}		

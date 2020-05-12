@@ -79,7 +79,10 @@ public final class DaoOrdemrapSelectSingle extends DaoStmtTemplate<OrdemrapInfo>
 					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, DaoOrdemrapDbTableColumn.COL_LAST_CHANGED);
 					dataInfo.lastChangedBy = stmtResult.getLong(DaoOrdemrapDbTableColumn.COL_LAST_CHANGED_BY);
 					dataInfo.price = DaoFormatter.sqlToDouble(stmtResult, DaoOrdemrapDbTableColumn.COL_PRICE);
-					dataInfo.totitem = DaoFormatter.sqlToDouble(stmtResult, DaoOrdemrapDbTableColumn.COL_TOTAL_ITEM);				
+					dataInfo.totitem = DaoFormatter.sqlToDouble(stmtResult, DaoOrdemrapDbTableColumn.COL_TOTAL_ITEM);	
+					dataInfo.codOrderStatus = stmtResult.getString(DaoOrdemrapDbTableColumn.COL_COD_ORDER_STATUS);
+					dataInfo.codPayOrder = DaoFormatter.sqlToLong(stmtResult, DaoOrdemrapDbTableColumn.COL_COD_PAY_ORDER);
+					dataInfo.codPayOrderItem = DaoFormatter.sqlToInt(stmtResult, DaoOrdemrapDbTableColumn.COL_COD_PAY_ORDER_ITEM);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());
