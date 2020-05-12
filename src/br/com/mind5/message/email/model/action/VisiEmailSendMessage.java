@@ -1,31 +1,34 @@
 package br.com.mind5.message.email.model.action;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.common.EmailSender;
 import br.com.mind5.message.email.info.EmailInfo;
-import br.com.mind5.model.action.ActionVisitorAction;
-import br.com.mind5.model.decisionTree.DeciResult;
-import br.com.mind5.model.decisionTree.DeciResultHelper;
-import br.com.mind5.model.decisionTree.common.DeciResultError;
+import br.com.mind5.model.action.ActionVisitorTemplateSimpleV2;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiEmailSendMessage implements ActionVisitorAction<EmailInfo> {
+final class VisiEmailSendMessage extends ActionVisitorTemplateSimpleV2<EmailInfo> {
 	private final boolean SUCCESS = true;
 	private final boolean FAILED = false;
 	
 	
-	@Override public DeciResult<EmailInfo> executeTransformation(List<EmailInfo> recordInfos) {
+	public VisiEmailSendMessage(DeciTreeOption<EmailInfo> option) {
+		super(option);
+	}
+	
+	
+	
+	@Override public List<EmailInfo> executeTransformationHook(List<EmailInfo> recordInfos) {
 		boolean result = SUCCESS;
 		
 		for (EmailInfo eachRecord : recordInfos) {
 			result = tryToSendMessage(eachRecord);
 			
 			if (result == FAILED)
-				break;
+				return null;
 		}
 		
-		return buildDeciResult(result);
+		return recordInfos;
 	}
 	
 	
@@ -37,6 +40,7 @@ final class VisiEmailSendMessage implements ActionVisitorAction<EmailInfo> {
 			return SUCCESS;
 			
 		} catch (Exception e) {
+			super.logException(e);
 			return FAILED;
 		}
 	}
@@ -52,35 +56,5 @@ final class VisiEmailSendMessage implements ActionVisitorAction<EmailInfo> {
 								.setSenderRecipient(recordInfo.recipientAddr)
 								.setSenderSubject(recordInfo.bodyData.subject)
 								.build();
-	}
-	
-	
-	
-	private DeciResult<EmailInfo> buildDeciResult(boolean result) {		
-		if (result == SUCCESS)
-			return buildResultSuccess();
-		
-		return buildResultFailed();		
-	}
-	
-	
-	
-	private DeciResult<EmailInfo> buildResultSuccess() {
-		DeciResultHelper<EmailInfo> helper = new DeciResultHelper<>();
-		
-		List<EmailInfo> results = new ArrayList<>();
-		results.add(new EmailInfo());
-		
-		helper.resultset = results;
-		helper.isSuccess = true;
-		helper.hasResultset = true;
-		
-		return helper;
-	}
-	
-	
-	
-	private DeciResult<EmailInfo> buildResultFailed() {
-		return new DeciResultError<EmailInfo>();
 	}
 }

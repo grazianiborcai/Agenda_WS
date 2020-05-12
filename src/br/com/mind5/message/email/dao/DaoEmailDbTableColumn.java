@@ -9,30 +9,20 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class EmailDbTableColumn extends DaoDbTableColumnTemplate {
+public final class DaoEmailDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_EMAIL_SENDER = DaoDbField.COL_EMAIL_SENDER;
 	public static final String COL_SENDER_PASSWORD = DaoDbField.COL_SENDER_PASSWORD;
 	public static final String COL_SMTP_HOST_NAME = DaoDbField.COL_SMTP_HOST_NAME;
-	public static final String COL_SMTP_PORT = DaoDbField.COL_SMTP_PORT;	
-	
-	private Hashtable<String, List<DaoColumn>> tableColumns;
+	public static final String COL_SMTP_PORT = DaoDbField.COL_SMTP_PORT;
 	
 	
-	public EmailDbTableColumn() {
-		super(EmailDbTableColumn.class);
+	public DaoEmailDbTableColumn() {
+		super();
 	}
 	
 	
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
-		tableColumns = new Hashtable<>();		
-		buildEmailTable();	
-		return tableColumns;
-	}
-	
-	
-	
-	private void buildEmailTable() {
 		final String TABLE_NAME = DaoDbTable.SYS_EMAIL_TABLE;
 		
 		DaoColumn oneColumn;
@@ -68,9 +58,10 @@ public final class EmailDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
+		columns.add(oneColumn);		
 		
-		
-		tableColumns.put(TABLE_NAME, columns);
+		Hashtable<String, List<DaoColumn>> results = new Hashtable<>();
+		results.put(TABLE_NAME, columns);
+		return results;
 	}
 }

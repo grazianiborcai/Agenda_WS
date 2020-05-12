@@ -1,6 +1,5 @@
 package br.com.mind5.message.email.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.message.email.info.EmailInfo;
@@ -8,13 +7,14 @@ import br.com.mind5.message.email.info.EmailMerger;
 import br.com.mind5.message.emailBody.info.EmabodyCopier;
 import br.com.mind5.message.emailBody.info.EmabodyInfo;
 import br.com.mind5.message.emailBody.model.decisionTree.RootEmabodySelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiEmailMergeEmabody extends ActionVisitorTemplateMergeV1<EmailInfo, EmabodyInfo> {
+final class VisiEmailMergeEmabody extends ActionVisitorTemplateMergeV2<EmailInfo, EmabodyInfo> {
 	
-	public VisiEmailMergeEmabody(Connection conn, String schemaName) {
-		super(conn, schemaName, EmabodyInfo.class);
+	public VisiEmailMergeEmabody(DeciTreeOption<EmailInfo> option) {
+		super(option, EmabodyInfo.class);
 	}
 	
 	
@@ -38,6 +38,6 @@ final class VisiEmailMergeEmabody extends ActionVisitorTemplateMergeV1<EmailInfo
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
+		return super.DONT_MERGE_WHEN_EMPTY;
 	}
 }

@@ -15,11 +15,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.message.email.info.EmailInfo;
 
-public final class EmailSelectSingle extends DaoStmtTemplate<EmailInfo> {
+public final class DaoEmailSelectSingle extends DaoStmtTemplate<EmailInfo> {
 	private final String MAIN_TABLE = DaoDbTable.SYS_EMAIL_TABLE;
 	
 	
-	public EmailSelectSingle(Connection conn, EmailInfo recordInfo, String schemaName) {
+	public DaoEmailSelectSingle(Connection conn, EmailInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -44,7 +44,7 @@ public final class EmailSelectSingle extends DaoStmtTemplate<EmailInfo> {
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;
 		whereOption.dummyClauseWhenEmpty = DaoOptionValue.DUMMY_CLAUSE_ALLOWED;
 		
-		DaoStmtWhere whereClause = new EmailWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new DaoEmailWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}	
 	
@@ -61,10 +61,10 @@ public final class EmailSelectSingle extends DaoStmtTemplate<EmailInfo> {
 				do {
 					EmailInfo dataInfo = new EmailInfo();
 					
-					dataInfo.smtpHostname = stmtResult.getString(EmailDbTableColumn.COL_SMTP_HOST_NAME);
-					dataInfo.smtpPort = stmtResult.getInt(EmailDbTableColumn.COL_SMTP_PORT);
-					dataInfo.senderAddr = stmtResult.getString(EmailDbTableColumn.COL_EMAIL_SENDER);
-					dataInfo.senderPass = stmtResult.getString(EmailDbTableColumn.COL_SENDER_PASSWORD);
+					dataInfo.smtpHostname = stmtResult.getString(DaoEmailDbTableColumn.COL_SMTP_HOST_NAME);
+					dataInfo.smtpPort = stmtResult.getInt(DaoEmailDbTableColumn.COL_SMTP_PORT);
+					dataInfo.senderAddr = stmtResult.getString(DaoEmailDbTableColumn.COL_EMAIL_SENDER);
+					dataInfo.senderPass = stmtResult.getString(DaoEmailDbTableColumn.COL_SENDER_PASSWORD);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

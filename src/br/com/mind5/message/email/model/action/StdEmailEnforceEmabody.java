@@ -1,35 +1,19 @@
 package br.com.mind5.message.email.model.action;
 
 import br.com.mind5.message.email.info.EmailInfo;
-import br.com.mind5.model.action.ActionLazyV1;
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionStdHelperEnforce;
-import br.com.mind5.model.decisionTree.DeciResult;
+import br.com.mind5.model.action.ActionStdTemplateV2;
+import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdEmailEnforceEmabody implements ActionStdV1<EmailInfo> {
-	private ActionStdV1<EmailInfo> actionHelper;	
-	
-	
-	public StdEmailEnforceEmabody(DeciTreeOption<EmailInfo> option) {			
-		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiEmailEnforceEmabody());
+public final class StdEmailEnforceEmabody extends ActionStdTemplateV2<EmailInfo> {
+
+	public StdEmailEnforceEmabody(DeciTreeOption<EmailInfo> option) {
+		super(option);
 	}
 	
 	
 	
-	@Override public void addPostAction(ActionLazyV1<EmailInfo> actionHandler) {
-		actionHelper.addPostAction(actionHandler);
-	}
-	
-	
-	
-	@Override public boolean executeAction() {			
-		return actionHelper.executeAction();
-	}
-	
-	
-	
-	@Override public DeciResult<EmailInfo> getDecisionResult() {
-		return actionHelper.getDecisionResult();
+	protected ActionVisitorV2<EmailInfo> buildVisitorHook(DeciTreeOption<EmailInfo> option) {
+		return new VisiEmailEnforceEmabody(option);
 	}
 }

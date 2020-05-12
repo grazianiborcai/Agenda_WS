@@ -18,8 +18,8 @@ final class EmailCopyUpswd extends InfoCopierTemplate<EmailInfo, UpswdInfo>{
 		
 		result.codLanguage = source.codLanguage;
 		result.username = source.username;
-		result.recipientAddr = source.personData.email;
-		result.bodyData.param01 = source.personData.name;
+		result.recipientAddr = source.persolisData.email;
+		result.bodyData.param01 = source.persolisData.name;
 		result.bodyData.param02 = source.password;
 		result.bodyData.param03 = source.username;
 		

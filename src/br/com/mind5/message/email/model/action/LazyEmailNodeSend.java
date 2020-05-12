@@ -5,12 +5,12 @@ import java.util.List;
 
 import br.com.mind5.message.email.info.EmailInfo;
 import br.com.mind5.message.email.model.decisionTree.NodeEmailSend;
-import br.com.mind5.model.action.ActionLazyTemplateV1;
+import br.com.mind5.model.action.ActionLazyTemplateV2;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyEmailNodeSend extends ActionLazyTemplateV1<EmailInfo, EmailInfo> {
+public final class LazyEmailNodeSend extends ActionLazyTemplateV2<EmailInfo, EmailInfo> {
 
 	public LazyEmailNodeSend(Connection conn, String schemaName) {
 		super(conn, schemaName);
