@@ -9,13 +9,13 @@ import br.com.mind5.message.emailBody.model.action.StdEmabodyMergeToSelect;
 import br.com.mind5.message.emailBody.model.checker.EmabodyCheckRead;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class RootEmabodySelect extends DeciTreeTemplateWriteV1<EmabodyInfo> {
+public final class RootEmabodySelect extends DeciTreeTemplateWriteV2<EmabodyInfo> {
 	
 	public RootEmabodySelect(DeciTreeOption<EmabodyInfo> option) {
 		super(option);

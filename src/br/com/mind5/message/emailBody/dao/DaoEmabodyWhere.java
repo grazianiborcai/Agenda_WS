@@ -9,11 +9,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.message.emailBody.info.EmabodyInfo;
 
-final class EmabodyWhere implements DaoStmtWhere {	
+final class DaoEmabodyWhere implements DaoStmtWhere {	
 	private String whereClause;	
 	
 	
-	public EmabodyWhere(DaoWhereBuilderOption whereOption, String tableName, EmabodyInfo recordInfo) {
+	public DaoEmabodyWhere(DaoWhereBuilderOption whereOption, String tableName, EmabodyInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -26,11 +26,11 @@ final class EmabodyWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-				case EmabodyDbTableColumn.COL_COD_BODY :
+				case DaoEmabodyDbTableColumn.COL_COD_BODY :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codBody);
 					break;
 					
-				case EmabodyDbTableColumn.COL_COD_LANGUAGE :
+				case DaoEmabodyDbTableColumn.COL_COD_LANGUAGE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codLanguage);
 					break;
 			}

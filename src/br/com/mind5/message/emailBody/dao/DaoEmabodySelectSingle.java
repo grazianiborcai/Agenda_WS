@@ -15,11 +15,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.message.emailBody.info.EmabodyInfo;
 
-public final class EmabodySelectSingle extends DaoStmtTemplate<EmabodyInfo> {
+public final class DaoEmabodySelectSingle extends DaoStmtTemplate<EmabodyInfo> {
 	private final String MAIN_TABLE = DaoDbTable.SYS_EMAIL_BODY_TABLE;	
 	
 	
-	public EmabodySelectSingle(Connection conn, EmabodyInfo recordInfo, String schemaName) {
+	public DaoEmabodySelectSingle(Connection conn, EmabodyInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -43,7 +43,7 @@ public final class EmabodySelectSingle extends DaoStmtTemplate<EmabodyInfo> {
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;
 		
-		DaoStmtWhere whereClause = new EmabodyWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new DaoEmabodyWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -60,10 +60,10 @@ public final class EmabodySelectSingle extends DaoStmtTemplate<EmabodyInfo> {
 				do {
 					EmabodyInfo dataInfo = new EmabodyInfo();
 					
-					dataInfo.codBody = stmtResult.getString(EmabodyDbTableColumn.COL_COD_BODY);
-					dataInfo.txtbody = stmtResult.getString(EmabodyDbTableColumn.COL_TXT_BODY);
-					dataInfo.subject = stmtResult.getString(EmabodyDbTableColumn.COL_SUBJECT);
-					dataInfo.codLanguage = stmtResult.getString(EmabodyDbTableColumn.COL_COD_LANGUAGE);
+					dataInfo.codBody = stmtResult.getString(DaoEmabodyDbTableColumn.COL_COD_BODY);
+					dataInfo.txtbody = stmtResult.getString(DaoEmabodyDbTableColumn.COL_TXT_BODY);
+					dataInfo.subject = stmtResult.getString(DaoEmabodyDbTableColumn.COL_SUBJECT);
+					dataInfo.codLanguage = stmtResult.getString(DaoEmabodyDbTableColumn.COL_COD_LANGUAGE);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

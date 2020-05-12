@@ -9,30 +9,20 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class EmabodyDbTableColumn extends DaoDbTableColumnTemplate {
+public final class DaoEmabodyDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_BODY = DaoDbField.COL_COD_BODY;
 	public static final String COL_COD_LANGUAGE = DaoDbField.COL_COD_LANGUAGE;
 	public static final String COL_SUBJECT = DaoDbField.COL_SUBJECT;	
 	public static final String COL_TXT_BODY = DaoDbField.COL_TXT_BODY;	
 	
-	private Hashtable<String, List<DaoColumn>> tableColumns;
 	
-	
-	public EmabodyDbTableColumn() {
-		super(EmabodyDbTableColumn.class);
+	public DaoEmabodyDbTableColumn() {
+		super();
 	}
 	
 	
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
-		tableColumns = new Hashtable<>();		
-		buildEmailBodyTable();	
-		return tableColumns;
-	}
-	
-	
-	
-	private void buildEmailBodyTable() {
 		final String TABLE_NAME = DaoDbTable.SYS_EMAIL_BODY_TABLE;
 		
 		DaoColumn oneColumn;
@@ -70,7 +60,8 @@ public final class EmabodyDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		
-		tableColumns.put(TABLE_NAME, columns);
+		Hashtable<String, List<DaoColumn>> results = new Hashtable<>();
+		results.put(TABLE_NAME, columns);
+		return results;
 	}
 }
