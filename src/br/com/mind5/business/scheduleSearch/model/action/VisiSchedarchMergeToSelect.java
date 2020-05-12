@@ -22,8 +22,8 @@ final class VisiSchedarchMergeToSelect extends ActionVisitorTemplateMergeV2<Sche
 	
 	
 	
-	@Override protected List<SchedarchInfo> mergeHook(List<SchedarchInfo> recordInfos, List<SchedarchInfo> selectedInfos) {	
-		return SchedarchMerger.mergeToSelect(selectedInfos, recordInfos);
+	@Override protected List<SchedarchInfo> mergeHook(List<SchedarchInfo> baseInfos, List<SchedarchInfo> selectedInfos) {	
+		return SchedarchMerger.mergeToSelect(baseInfos, selectedInfos);
 	}
 	
 	
