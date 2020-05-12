@@ -31,8 +31,8 @@ final class VisiEmailMergeEmabody extends ActionVisitorTemplateMergeV2<EmailInfo
 	
 	
 	
-	@Override protected List<EmailInfo> mergeHook(List<EmailInfo> recordInfos, List<EmabodyInfo> selectedInfos) {	
-		return EmailMerger.mergeWithEmabody(selectedInfos, recordInfos);
+	@Override protected List<EmailInfo> mergeHook(List<EmailInfo> baseInfos, List<EmabodyInfo> selectedInfos) {	
+		return EmailMerger.mergeWithEmabody(baseInfos, selectedInfos);
 	}
 	
 	

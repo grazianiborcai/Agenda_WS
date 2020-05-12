@@ -17,7 +17,7 @@ public final class EmailInfo extends InfoRecord implements Cloneable {
 	
 	
 	public EmailInfo() {
-		super(EmailInfo.class);
+		super();
 		
 		smtpPort = DefaultValue.number();
 		bodyData = DefaultValue.object();

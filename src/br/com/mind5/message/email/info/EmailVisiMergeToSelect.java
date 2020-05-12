@@ -1,56 +1,40 @@
 package br.com.mind5.message.email.info;
 
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import java.util.ArrayList;
+import java.util.List;
 
-final class EmailVisiMergeToSelect implements InfoMergerVisitor_<EmailInfo, EmailInfo> {
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-	@Override public EmailInfo writeRecord(EmailInfo sourceOne, EmailInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);		
-		return merge(sourceOne, sourceTwo);
+final class EmailVisiMergeToSelect implements InfoMergerVisitorV3<EmailInfo, EmailInfo> {
+	
+	@Override public List<EmailInfo> beforeMerge(List<EmailInfo> baseInfos) {
+		return baseInfos;
 	}
 	
 	
 	
-	private void checkArgument(EmailInfo sourceOne, EmailInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private EmailInfo merge(EmailInfo sourceOne, EmailInfo sourceTwo) {
-		EmailInfo result = makeClone(sourceTwo);		
-		result.senderAddr = sourceOne.senderAddr;
-		result.senderPass = sourceOne.senderPass;
-		result.smtpHostname = sourceOne.smtpHostname;
-		result.smtpPort = sourceOne.smtpPort;
-		return result;
-	}
-	
-	
-	
-	private EmailInfo makeClone(EmailInfo recordInfo) {
-		try {
-			return (EmailInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(EmailInfo sourceOne, EmailInfo sourceTwo) {		
+	@Override public boolean shouldMerge(EmailInfo baseInfo, EmailInfo selectedInfo) {
 		return true;
 	}
 	
 	
 	
-	private void logException(Exception e) {
+	@Override public List<EmailInfo> merge(EmailInfo baseInfo, EmailInfo selectedInfo) {
+		List<EmailInfo> results = new ArrayList<>();
 		
-		SystemLog.logError(this.getClass(), e);
+		baseInfo.senderAddr = baseInfo.senderAddr;
+		baseInfo.senderPass = baseInfo.senderPass;		
+		baseInfo.smtpHostname = baseInfo.smtpHostname;
+		baseInfo.smtpPort = baseInfo.smtpPort;
+		
+		results.add(baseInfo);
+		return results;
+	}
+	
+	
+	
+	@Override public InfoUniquifier<EmailInfo> getUniquifier() {
+		return null;
 	}
 }

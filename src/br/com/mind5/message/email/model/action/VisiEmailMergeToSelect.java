@@ -22,8 +22,8 @@ final class VisiEmailMergeToSelect extends ActionVisitorTemplateMergeV2<EmailInf
 	
 	
 	
-	@Override protected List<EmailInfo> mergeHook(List<EmailInfo> recordInfos, List<EmailInfo> selectedInfos) {	
-		return EmailMerger.mergeToSelect(selectedInfos, recordInfos);
+	@Override protected List<EmailInfo> mergeHook(List<EmailInfo> baseInfos, List<EmailInfo> selectedInfos) {	
+		return EmailMerger.mergeToSelect(baseInfos, selectedInfos);
 	}
 	
 	
