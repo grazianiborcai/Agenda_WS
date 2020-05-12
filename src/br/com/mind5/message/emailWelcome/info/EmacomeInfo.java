@@ -14,12 +14,12 @@ public final class EmacomeInfo extends InfoRecord implements Cloneable {
 	public String password;	
 	public String username;		
 	public EmabodyInfo bodyData;
-	public PersonInfo personData;
+	public PersonInfo personData;		//TODO: mudara para personlis
 	public OwnelisInfo ownelisData;
 	
 	
 	public EmacomeInfo() {
-		super(EmacomeInfo.class);
+		super();
 		
 		codOwner = DefaultValue.number();
 		bodyData = DefaultValue.object();

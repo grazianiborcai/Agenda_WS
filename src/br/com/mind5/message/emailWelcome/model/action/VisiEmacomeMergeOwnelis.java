@@ -1,19 +1,19 @@
 package br.com.mind5.message.emailWelcome.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
-import br.com.mind5.message.emailWelcome.info.EmacomeInfo;
-import br.com.mind5.message.emailWelcome.info.EmacomeMerger;
 import br.com.mind5.business.ownerList.info.OwnelisInfo;
 import br.com.mind5.business.ownerList.model.decisionTree.RootOwnelisSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.message.emailWelcome.info.EmacomeInfo;
+import br.com.mind5.message.emailWelcome.info.EmacomeMerger;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiEmacomeMergeOwnelis extends ActionVisitorTemplateMergeV1<EmacomeInfo, OwnelisInfo> {
+final class VisiEmacomeMergeOwnelis extends ActionVisitorTemplateMergeV2<EmacomeInfo, OwnelisInfo> {
 	
-	public VisiEmacomeMergeOwnelis(Connection conn, String schemaName) {
-		super(conn, schemaName, OwnelisInfo.class);
+	public VisiEmacomeMergeOwnelis(DeciTreeOption<EmacomeInfo> option) {
+		super(option, OwnelisInfo.class);
 	}
 	
 	
@@ -24,13 +24,13 @@ final class VisiEmacomeMergeOwnelis extends ActionVisitorTemplateMergeV1<Emacome
 	
 	
 	
-	@Override protected List<EmacomeInfo> mergeHook(List<EmacomeInfo> recordInfos, List<OwnelisInfo> selectedInfos) {	
-		return EmacomeMerger.mergeWithOwnelis(selectedInfos, recordInfos);
+	@Override protected List<EmacomeInfo> mergeHook(List<EmacomeInfo> baseInfos, List<OwnelisInfo> selectedInfos) {	
+		return EmacomeMerger.mergeWithOwnelis(baseInfos, selectedInfos);
 	}
 	
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
+		return super.DONT_MERGE_WHEN_EMPTY;
 	}
 }

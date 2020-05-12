@@ -1,5 +1,6 @@
 package br.com.mind5.message.emailWelcome.info;
 
+import br.com.mind5.business.person.info.PersonInfo;
 import br.com.mind5.info.InfoCopierTemplate;
 import br.com.mind5.security.userPassword.info.UpswdInfo;
 
@@ -18,7 +19,7 @@ final class EmacomeCopyUpswd extends InfoCopierTemplate<EmacomeInfo, UpswdInfo>{
 		result.password = source.password;
 		result.username = source.username;
 		result.codLanguage = source.codLanguage;		
-		result.personData = source.personData;
+		result.personData = PersonInfo.copyFrom(source.persolisData);
 		
 		return result;
 	}

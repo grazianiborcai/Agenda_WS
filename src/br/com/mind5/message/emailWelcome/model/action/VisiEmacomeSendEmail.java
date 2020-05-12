@@ -1,25 +1,25 @@
 package br.com.mind5.message.emailWelcome.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.message.email.info.EmailCopier;
 import br.com.mind5.message.email.info.EmailInfo;
 import br.com.mind5.message.email.model.decisionTree.RootEmailWelcome;
 import br.com.mind5.message.emailWelcome.info.EmacomeInfo;
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateActionV1;
+import br.com.mind5.model.action.ActionVisitorTemplateActionV2;
+import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiEmacomeSendEmail extends ActionVisitorTemplateActionV1<EmacomeInfo, EmailInfo> {
-	public VisiEmacomeSendEmail(Connection conn, String schemaName) {
-		super(conn, schemaName, EmacomeInfo.class, EmailInfo.class);
+final class VisiEmacomeSendEmail extends ActionVisitorTemplateActionV2<EmacomeInfo, EmailInfo> {
+	
+	public VisiEmacomeSendEmail(DeciTreeOption<EmacomeInfo> option) {
+		super(option, EmacomeInfo.class, EmailInfo.class);
 	}
 	
 	
 	
-	@Override protected ActionStdV1<EmailInfo> getActionHook(DeciTreeOption<EmailInfo> option) {
-		return new RootEmailWelcome(option).toAction();
+	@Override protected Class<? extends DeciTree<EmailInfo>> getTreeClassHook() {
+		return RootEmailWelcome.class;
 	}
 	
 	

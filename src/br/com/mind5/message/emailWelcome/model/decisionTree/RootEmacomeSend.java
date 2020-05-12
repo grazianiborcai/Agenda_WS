@@ -10,13 +10,13 @@ import br.com.mind5.message.emailWelcome.model.action.StdEmacomeMergeOwnelis;
 import br.com.mind5.message.emailWelcome.model.checker.EmacomeCheckSend;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class RootEmacomeSend extends DeciTreeTemplateWriteV1<EmacomeInfo> {
+public final class RootEmacomeSend extends DeciTreeTemplateWriteV2<EmacomeInfo> {
 	
 	public RootEmacomeSend(DeciTreeOption<EmacomeInfo> option) {
 		super(option);
