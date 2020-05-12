@@ -1,40 +1,12 @@
 package br.com.mind5.business.person.info;
 
-import java.time.LocalDateTime;
-
 import br.com.mind5.common.DefaultValue;
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoSetter;
+import br.com.mind5.info.InfoSetterTemplate;
 
-public final class PersonSetterLChanged implements InfoSetter<PersonInfo> {
+public final class PersonSetterLChanged extends InfoSetterTemplate<PersonInfo> {
 	
-	public PersonInfo setAttr(PersonInfo recordInfo) {
-		checkArgument(recordInfo);
-		
-		recordInfo.lastChanged = genLastChanged();
+	@Override protected PersonInfo setAttrHook(PersonInfo recordInfo) {
+		recordInfo.lastChanged = DefaultValue.localDateTimeNow();
 		return recordInfo;
 	}
-	
-	
-	
-	private void checkArgument(PersonInfo recordInfo) {
-		if (recordInfo == null) {
-			logException(new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT));
-			throw new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT);
-		}
-	}
-	
-	
-	
-	private LocalDateTime genLastChanged() {
-		return DefaultValue.localDateTimeNow();
-	}
-	
-	
-	
-	private void logException(Exception e) {
-		
-		SystemLog.logError(this.getClass(), e);
-	}	
 }
