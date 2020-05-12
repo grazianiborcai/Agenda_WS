@@ -16,7 +16,7 @@ final class EmailCopyEmacome extends InfoCopierTemplate<EmailInfo, EmacomeInfo>{
 		
 		result.codLanguage = source.codLanguage;
 		result.username = source.username;
-		result.recipientAddr = source.personData.email;
+		result.recipientAddr = source.persolisData.email;
 		result.bodyData = source.bodyData;
 		
 		return result;
