@@ -15,8 +15,15 @@ import br.com.mind5.info.InfoRecord;
 public final class OrderemInfo extends InfoRecord implements Cloneable, Comparable<OrderemInfo> {
 	public long codOwner;
 	public long codOrder;
-	public int codOrderItem;
+	public int codOrderItem;	
 	public long codSnapshot;
+	public String codOrderStatus;
+	public String txtOrderStatus;
+	public String statusOrderPartner;
+	public String statusPaymentPartner;
+	public long codPayOrder;
+	public long codPayOrderItem;
+//	public int codPayPartner;
 	public long codStore;
 	public long codEmployee;
 	public long codMat;
@@ -45,6 +52,9 @@ public final class OrderemInfo extends InfoRecord implements Cloneable, Comparab
 		codOrder = DefaultValue.number();
 		codOrderItem = DefaultValue.number();
 		codSnapshot = DefaultValue.number();
+		codPayOrder = DefaultValue.number();
+		codPayOrderItem = DefaultValue.number();		
+//		codPayPartner = DefaultValue.number();
 		codStore = DefaultValue.number();
 		codEmployee = DefaultValue.number();
 		codMat = DefaultValue.number();

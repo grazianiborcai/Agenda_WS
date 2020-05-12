@@ -4,28 +4,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.orderItem.info.OrderemInfo;
-import br.com.mind5.business.orderItem.model.action.LazyOrderemMergeOrdugeCreate;
-import br.com.mind5.business.orderItem.model.action.LazyOrderemMergeUsername;
-import br.com.mind5.business.orderItem.model.action.LazyOrderemNodeInsert;
-import br.com.mind5.business.orderItem.model.action.LazyOrderemNodeSnapshot;
-import br.com.mind5.business.orderItem.model.action.StdOrderemEnforceLChanged;
+import br.com.mind5.business.orderItem.model.action.LazyOrderemNodeCancel;
+import br.com.mind5.business.orderItem.model.action.LazyOrderemRootSelect;
+import br.com.mind5.business.orderItem.model.action.StdOrderemMergeToSelect;
 import br.com.mind5.business.orderItem.model.checker.OrderemCheckExist;
-import br.com.mind5.business.orderItem.model.checker.OrderemCheckInsert;
 import br.com.mind5.business.orderItem.model.checker.OrderemCheckLangu;
-import br.com.mind5.business.orderItem.model.checker.OrderemCheckMat;
-import br.com.mind5.business.orderItem.model.checker.OrderemCheckOrder;
 import br.com.mind5.business.orderItem.model.checker.OrderemCheckOwner;
+import br.com.mind5.business.orderItem.model.checker.OrderemCheckWrite;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 
-public final class RootOrderemInsert extends DeciTreeTemplateWriteV2<OrderemInfo> {
+public final class RootOrderemCancel extends DeciTreeTemplateReadV2<OrderemInfo> {
 	
-	public RootOrderemInsert(DeciTreeOption<OrderemInfo> option) {
+	public RootOrderemCancel(DeciTreeOption<OrderemInfo> option) {
 		super(option);
 	}
 	
@@ -39,8 +35,8 @@ public final class RootOrderemInsert extends DeciTreeTemplateWriteV2<OrderemInfo
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
-		checker = new OrderemCheckInsert(checkerOption);
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new OrderemCheckWrite(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
@@ -61,20 +57,6 @@ public final class RootOrderemInsert extends DeciTreeTemplateWriteV2<OrderemInfo
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
-		checker = new OrderemCheckOrder(checkerOption);
-		queue.add(checker);
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
-		checker = new OrderemCheckMat(checkerOption);
-		queue.add(checker);
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.NOT_FOUND;	
 		checker = new OrderemCheckExist(checkerOption);
 		queue.add(checker);
 		
@@ -86,18 +68,14 @@ public final class RootOrderemInsert extends DeciTreeTemplateWriteV2<OrderemInfo
 	@Override protected List<ActionStdV1<OrderemInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderemInfo> option) {
 		List<ActionStdV1<OrderemInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<OrderemInfo> enforceLChanged = new StdOrderemEnforceLChanged(option);
-		ActionLazyV1<OrderemInfo> mergeUsername = new LazyOrderemMergeUsername(option.conn, option.schemaName);
-		ActionLazyV1<OrderemInfo> statusChange = new LazyOrderemMergeOrdugeCreate(option.conn, option.schemaName);
-		ActionLazyV1<OrderemInfo> nodeInsert = new LazyOrderemNodeInsert(option.conn, option.schemaName);
-		ActionLazyV1<OrderemInfo> nodeSnapshot = new LazyOrderemNodeSnapshot(option.conn, option.schemaName);
+		ActionStdV1<OrderemInfo> mergeToSelect = new StdOrderemMergeToSelect(option);
+		ActionLazyV1<OrderemInfo> cancel = new LazyOrderemNodeCancel(option.conn, option.schemaName);
+		ActionLazyV1<OrderemInfo> select = new LazyOrderemRootSelect(option.conn, option.schemaName);		
 		
-		enforceLChanged.addPostAction(mergeUsername);
-		mergeUsername.addPostAction(statusChange);
-		statusChange.addPostAction(nodeInsert);
-		nodeInsert.addPostAction(nodeSnapshot);
+		mergeToSelect.addPostAction(cancel);
+		cancel.addPostAction(select);
 		
-		actions.add(enforceLChanged);
+		actions.add(mergeToSelect);
 		return actions;
 	}
 }

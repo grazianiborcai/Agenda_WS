@@ -3,6 +3,7 @@ package br.com.mind5.business.orderItem.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+
 import br.com.mind5.business.orderItem.info.OrderemInfo;
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
@@ -66,6 +67,9 @@ public final class DaoOrderemUpdateSingle extends DaoStmtTemplate<OrderemInfo> {
 				stmt.setString(i++, recordInfo.codCurr);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.lastChangedBy);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codSnapshot);
+				stmt.setString(i++, recordInfo.codOrderStatus);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPayOrder);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPayOrderItem);
 				
 				return stmt;
 			}		

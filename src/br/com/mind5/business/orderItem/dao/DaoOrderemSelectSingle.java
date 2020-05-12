@@ -76,7 +76,10 @@ public final class DaoOrderemSelectSingle extends DaoStmtTemplate<OrderemInfo> {
 					dataInfo.lastChangedBy = stmtResult.getLong(DaoOrderemDbTableColumn.COL_LAST_CHANGED_BY);
 					dataInfo.price = DaoFormatter.sqlToDouble(stmtResult, DaoOrderemDbTableColumn.COL_PRICE);
 					dataInfo.totitem = DaoFormatter.sqlToDouble(stmtResult, DaoOrderemDbTableColumn.COL_TOTAL_ITEM);
-					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, DaoOrderemDbTableColumn.COL_COD_SNAPSHOT);					
+					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, DaoOrderemDbTableColumn.COL_COD_SNAPSHOT);	
+					dataInfo.codOrderStatus = stmtResult.getString(DaoOrderemDbTableColumn.COL_COD_ORDER_STATUS);
+					dataInfo.codPayOrder = DaoFormatter.sqlToLong(stmtResult, DaoOrderemDbTableColumn.COL_COD_PAY_ORDER);
+					dataInfo.codPayOrderItem = DaoFormatter.sqlToLong(stmtResult, DaoOrderemDbTableColumn.COL_COD_PAY_ORDER_ITEM);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

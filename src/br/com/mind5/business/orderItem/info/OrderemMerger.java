@@ -7,13 +7,41 @@ import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.business.materialStore.info.MatoreInfo;
 import br.com.mind5.business.orderItemSearch.info.OrdemarchInfo;
 import br.com.mind5.business.orderItemSnapshot.info.OrdemrapInfo;
+import br.com.mind5.business.orderStatusChange.info.OrdugeInfo;
 import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.info.InfoMergerBuilderV3;
 import br.com.mind5.info.InfoMergerV3;
 import br.com.mind5.masterData.weekday.info.WeekdayInfo;
+import br.com.mind5.payment.payOrderItem.info.PayordemInfo;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class OrderemMerger {
+	public static List<OrderemInfo> mergeWithPayordem(List<OrderemInfo> baseInfos, List<PayordemInfo> selectedInfos) {
+		InfoMergerBuilderV3<OrderemInfo, PayordemInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new OrderemVisiMergePayordem());
+		InfoMergerV3<OrderemInfo,PayordemInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}	
+	
+	
+	
+	public static List<OrderemInfo> mergeWithOrduge(List<OrderemInfo> baseInfos, List<OrdugeInfo> selectedInfos) {
+		InfoMergerBuilderV3<OrderemInfo, OrdugeInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new OrderemVisiMergeOrduge());
+		InfoMergerV3<OrderemInfo,OrdugeInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}	
+	
+	
+	
 	public static List<OrderemInfo> mergeWithOrdemarch(List<OrderemInfo> baseInfos, List<OrdemarchInfo> selectedInfos) {
 		InfoMergerBuilderV3<OrderemInfo, OrdemarchInfo> builder = new InfoMergerBuilderV3<>();
 		
@@ -124,6 +152,19 @@ public final class OrderemMerger {
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new OrderemVisiMergeToSelect());
+		InfoMergerV3<OrderemInfo, OrderemInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}	
+	
+	
+	
+	public static List<OrderemInfo> mergeToUpdate(List<OrderemInfo> baseInfos, List<OrderemInfo> selectedInfos) {
+		InfoMergerBuilderV3<OrderemInfo, OrderemInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new OrderemVisiMergeToUpdate());
 		InfoMergerV3<OrderemInfo, OrderemInfo> merger = builder.build();		
 	
 		return merger.merge();
