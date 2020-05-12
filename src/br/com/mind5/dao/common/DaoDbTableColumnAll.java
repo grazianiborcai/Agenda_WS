@@ -68,7 +68,7 @@ import br.com.mind5.business.owner.dao.DaoOwnerDbTableColumn;
 import br.com.mind5.business.ownerList.dao.OwnelisDbTableColumn;
 import br.com.mind5.business.ownerSnapshot.dao.OwnerapDbTableColumn;
 import br.com.mind5.business.person.dao.DaoPersonDbTableColumn;
-import br.com.mind5.business.personList.dao.PersolisDbTableColumn;
+import br.com.mind5.business.personList.dao.DaoPersolisDbTableColumn;
 import br.com.mind5.business.personSearch.dao.PerarchDbTableColumn;
 import br.com.mind5.business.personSnapshot.dao.PersonapDbTableColumn;
 import br.com.mind5.business.phone.dao.DaoPhoneDbTableColumn;
@@ -223,7 +223,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new DaoPhonapDbTableColumn());
 		addTable(new DaoFormoneDbTableColumn());
 		addTable(new DaoPersonDbTableColumn());
-		addTable(new PersolisDbTableColumn());
+		addTable(new DaoPersolisDbTableColumn());
 		addTable(new PersonapDbTableColumn());
 		addTable(new DaoUserDbTableColumn());
 		addTable(new UserapDbTableColumn());

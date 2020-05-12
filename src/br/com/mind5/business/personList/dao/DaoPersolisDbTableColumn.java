@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class PersolisDbTableColumn extends DaoDbTableColumnTemplate {
+public final class DaoPersolisDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_BIRTH_DATE = DaoDbField.COL_BIRTH_DATE;
 	public static final String COL_BIRTH_DAY = DaoDbField.COL_BIRTH_DAY;
 	public static final String COL_BIRTH_MONTH = DaoDbField.COL_BIRTH_MONTH;
@@ -23,26 +23,13 @@ public final class PersolisDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_RECORD_MODE = DaoDbField.COL_RECORD_MODE;	
 	
 	
-	
-	
-	private Hashtable<String, List<DaoColumn>> tableColumns;	
-	
-	
-	public PersolisDbTableColumn() {
-		super(PersolisDbTableColumn.class);
+	public DaoPersolisDbTableColumn() {
+		super();
 	}
 	
 	
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
-		tableColumns = new Hashtable<>();		
-		buildPersolisTable();		
-		return tableColumns;
-	}
-	
-	
-	
-	private void buildPersolisTable() {
 		final String TABLE_NAME = DaoDbTable.PERSON_TABLE;
 		
 		DaoColumn oneColumn;
@@ -136,6 +123,8 @@ public final class PersolisDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		tableColumns.put(DaoDbTable.PERSON_LIST_VIEW, columns);
+		Hashtable<String, List<DaoColumn>> results = new Hashtable<>();
+		results.put(DaoDbTable.PERSON_LIST_VIEW, columns);
+		return results;
 	}
 }

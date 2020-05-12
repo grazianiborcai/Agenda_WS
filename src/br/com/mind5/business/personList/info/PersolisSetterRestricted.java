@@ -1,14 +1,10 @@
 package br.com.mind5.business.personList.info;
 
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoSetter;
+import br.com.mind5.info.InfoSetterTemplate;
 
-public final class PersolisSetterRestricted implements InfoSetter<PersolisInfo> {
+public final class PersolisSetterRestricted extends InfoSetterTemplate<PersolisInfo> {
 	
-	public PersolisInfo setAttr(PersolisInfo recordInfo) {
-		checkArgument(recordInfo);
-		
+	@Override protected PersolisInfo setAttrHook(PersolisInfo recordInfo) {
 		PersolisInfo result = new PersolisInfo();
 		
 		result.codOwner = recordInfo.codOwner;	
@@ -19,21 +15,5 @@ public final class PersolisSetterRestricted implements InfoSetter<PersolisInfo> 
 		result.username = recordInfo.username;		
 		
 		return result;
-	}
-	
-	
-	
-	private void checkArgument(PersolisInfo recordInfo) {
-		if (recordInfo == null) {
-			logException(new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT));
-			throw new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT);
-		}
-	}
-	
-	
-	
-	private void logException(Exception e) {
-		
-		SystemLog.logError(this.getClass(), e);
 	}
 }

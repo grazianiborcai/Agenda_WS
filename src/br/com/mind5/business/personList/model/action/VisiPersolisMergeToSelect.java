@@ -1,23 +1,23 @@
 package br.com.mind5.business.personList.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.personList.info.PersolisInfo;
 import br.com.mind5.business.personList.info.PersolisMerger;
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiPersolisMergeToSelect extends ActionVisitorTemplateMergeV1<PersolisInfo, PersolisInfo> {
+final class VisiPersolisMergeToSelect extends ActionVisitorTemplateMergeV2<PersolisInfo, PersolisInfo> {
 	
-	public VisiPersolisMergeToSelect(Connection conn, String schemaName) {
-		super(conn, schemaName, PersolisInfo.class);
+	public VisiPersolisMergeToSelect(DeciTreeOption<PersolisInfo> option) {
+		super(option, PersolisInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends ActionStdV1<PersolisInfo>> getActionClassHook() {
-		return StdPersolisSelect.class;
+	@Override protected Class<? extends ActionStdV2<PersolisInfo>> getActionClassHook() {
+		return StdPersolisDaoSelect.class;
 	}
 	
 	
@@ -29,6 +29,6 @@ final class VisiPersolisMergeToSelect extends ActionVisitorTemplateMergeV1<Perso
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
+		return super.DONT_MERGE_WHEN_EMPTY;
 	}
 }

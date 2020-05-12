@@ -5,15 +5,15 @@ import java.util.List;
 
 import br.com.mind5.business.personList.info.PersolisInfo;
 import br.com.mind5.business.personList.model.action.LazyPersolisEnforceRestricted;
-import br.com.mind5.business.personList.model.checker.PersolisCheckDummy;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 
-public final class RootPersolisSelectRestricted extends DeciTreeTemplateReadV1<PersolisInfo> {
+public final class RootPersolisSelectRestricted extends DeciTreeTemplateReadV2<PersolisInfo> {
 	
 	public RootPersolisSelectRestricted(DeciTreeOption<PersolisInfo> option) {
 		super(option);
@@ -25,7 +25,7 @@ public final class RootPersolisSelectRestricted extends DeciTreeTemplateReadV1<P
 		List<ModelCheckerV1<PersolisInfo>> queue = new ArrayList<>();		
 		ModelCheckerV1<PersolisInfo> checker;
 
-		checker = new PersolisCheckDummy();
+		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueueV2<>(queue);

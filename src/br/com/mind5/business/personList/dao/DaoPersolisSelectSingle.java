@@ -16,11 +16,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class PersolisSelectSingle extends DaoStmtTemplate<PersolisInfo> {
+public final class DaoPersolisSelectSingle extends DaoStmtTemplate<PersolisInfo> {
 	private final String MAIN_TABLE = DaoDbTable.PERSON_TABLE;
 	
 	
-	public PersolisSelectSingle(Connection conn, PersolisInfo recordInfo, String schemaName) {
+	public DaoPersolisSelectSingle(Connection conn, PersolisInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -50,7 +50,7 @@ public final class PersolisSelectSingle extends DaoStmtTemplate<PersolisInfo> {
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new PersolisWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new DaoPersolisWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -67,17 +67,17 @@ public final class PersolisSelectSingle extends DaoStmtTemplate<PersolisInfo> {
 				do {
 					PersolisInfo dataInfo = new PersolisInfo();
 					
-					dataInfo.codOwner = stmtResult.getLong(PersolisDbTableColumn.COL_COD_OWNER);
-					dataInfo.codPerson = stmtResult.getLong(PersolisDbTableColumn.COL_COD_PERSON);
-					dataInfo.name = stmtResult.getString(PersolisDbTableColumn.COL_NAME);							
-					dataInfo.recordMode = stmtResult.getString(PersolisDbTableColumn.COL_RECORD_MODE);	
-					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, PersolisDbTableColumn.COL_COD_SNAPSHOT);
-					dataInfo.birthDate = DaoFormatter.sqlToLocalDate(stmtResult, PersolisDbTableColumn.COL_BIRTH_DATE);
-					dataInfo.birthYear = DaoFormatter.sqlToInt(stmtResult, PersolisDbTableColumn.COL_BIRTH_YEAR);
-					dataInfo.birthMonth = DaoFormatter.sqlToInt(stmtResult, PersolisDbTableColumn.COL_BIRTH_MONTH);
-					dataInfo.birthDay = DaoFormatter.sqlToInt(stmtResult, PersolisDbTableColumn.COL_BIRTH_DAY);
-					dataInfo.email = stmtResult.getString(PersolisDbTableColumn.COL_EMAIL);	
-					dataInfo.cpf = stmtResult.getString(PersolisDbTableColumn.COL_CPF);
+					dataInfo.codOwner = stmtResult.getLong(DaoPersolisDbTableColumn.COL_COD_OWNER);
+					dataInfo.codPerson = stmtResult.getLong(DaoPersolisDbTableColumn.COL_COD_PERSON);
+					dataInfo.name = stmtResult.getString(DaoPersolisDbTableColumn.COL_NAME);							
+					dataInfo.recordMode = stmtResult.getString(DaoPersolisDbTableColumn.COL_RECORD_MODE);	
+					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, DaoPersolisDbTableColumn.COL_COD_SNAPSHOT);
+					dataInfo.birthDate = DaoFormatter.sqlToLocalDate(stmtResult, DaoPersolisDbTableColumn.COL_BIRTH_DATE);
+					dataInfo.birthYear = DaoFormatter.sqlToInt(stmtResult, DaoPersolisDbTableColumn.COL_BIRTH_YEAR);
+					dataInfo.birthMonth = DaoFormatter.sqlToInt(stmtResult, DaoPersolisDbTableColumn.COL_BIRTH_MONTH);
+					dataInfo.birthDay = DaoFormatter.sqlToInt(stmtResult, DaoPersolisDbTableColumn.COL_BIRTH_DAY);
+					dataInfo.email = stmtResult.getString(DaoPersolisDbTableColumn.COL_EMAIL);	
+					dataInfo.cpf = stmtResult.getString(DaoPersolisDbTableColumn.COL_CPF);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

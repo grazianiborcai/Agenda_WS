@@ -22,7 +22,7 @@ public final class PersolisInfo extends InfoRecord implements Cloneable {
 	
 	
 	public PersolisInfo() {
-		super(PersolisInfo.class);
+		super();
 		
 		codOwner = DefaultValue.number();
 		codSnapshot = DefaultValue.number();
