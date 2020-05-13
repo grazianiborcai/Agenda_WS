@@ -32,15 +32,15 @@ public final class DaoOrdemarchSelectSingle extends DaoStmtTemplate<OrdemarchInf
 	
 	
 	
-	@Override protected DaoOperation getOperationHook() {
-		return DaoOperation.SELECT;
-	}
-	
-	
-	
 	@Override protected String getLookupTableHook() {
 		return DaoDbTable.ORDER_ITM_SEARCH_VIEW;
 	}	
+	
+	
+	
+	@Override protected DaoOperation getOperationHook() {
+		return DaoOperation.SELECT;
+	}
 	
 	
 	
