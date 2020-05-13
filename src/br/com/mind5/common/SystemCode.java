@@ -1239,4 +1239,7 @@ public final class SystemCode {
 	public static final int ORDER_STATUS_CHANGE_NOT_ALLOWED				= 12100;
 	public static final int ORDER_STATUS_CHANGE_MANDATORY_FIELD_EMPTY	= 12101;
 	public static final int ORDER_STATUS_CHANGE_DONT_HAVE_PAYMENT		= 12102;
+	
+	//Order Item List
+	public static final int ORDER_ITEM_LIST_MANDATORY_FIELD_EMPTY		= 12150;
 }
