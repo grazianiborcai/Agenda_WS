@@ -7,9 +7,9 @@ import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class OrderemCheckWrite extends ModelCheckerTemplateSimpleV2<OrderemInfo> {
+public final class OrderemCheckPay extends ModelCheckerTemplateSimpleV2<OrderemInfo> {
 
-	public OrderemCheckWrite(ModelCheckerOption option) {
+	public OrderemCheckPay(ModelCheckerOption option) {
 		super(option);
 	}
 	
@@ -19,6 +19,8 @@ public final class OrderemCheckWrite extends ModelCheckerTemplateSimpleV2<Ordere
 		if ( recordInfo.codOwner 		<= 0 	|| 
 			 recordInfo.codOrder		<= 0 	||
 			 recordInfo.codOrderItem	<= 0 	||
+			 recordInfo.codPayOrder		<= 0 	||
+			 recordInfo.codPayOrderItem	<= 0 	||
 			 recordInfo.username		== null ||
 			 recordInfo.codLanguage		== null		)
 			

@@ -24,6 +24,7 @@ final class OrderemVisiMergeToUpdate implements InfoMergerVisitorV3<OrderemInfo,
 		List<OrderemInfo> results = new ArrayList<>();
 		
 		selectedInfo.codPayOrder = baseInfo.codPayOrder;
+		selectedInfo.codPayOrderItem = baseInfo.codPayOrderItem;
 		selectedInfo.statusOrderPartner = baseInfo.statusOrderPartner;
 		selectedInfo.username = baseInfo.username;
 		selectedInfo.codLanguage = baseInfo.codLanguage;

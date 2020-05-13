@@ -10,7 +10,8 @@ import br.com.mind5.business.orderItem.model.action.StdOrderemMergeToUpdate;
 import br.com.mind5.business.orderItem.model.checker.OrderemCheckExist;
 import br.com.mind5.business.orderItem.model.checker.OrderemCheckLangu;
 import br.com.mind5.business.orderItem.model.checker.OrderemCheckOwner;
-import br.com.mind5.business.orderItem.model.checker.OrderemCheckWrite;
+import br.com.mind5.business.orderItem.model.checker.OrderemCheckPay;
+import br.com.mind5.business.orderItem.model.checker.OrderemCheckPayordem;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
@@ -36,7 +37,7 @@ public final class RootOrderemPay extends DeciTreeTemplateWriteV2<OrderemInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new OrderemCheckWrite(checkerOption);
+		checker = new OrderemCheckPay(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
@@ -57,6 +58,13 @@ public final class RootOrderemPay extends DeciTreeTemplateWriteV2<OrderemInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
+		checker = new OrderemCheckPayordem(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
 		checker = new OrderemCheckExist(checkerOption);
 		queue.add(checker);
 
@@ -68,14 +76,14 @@ public final class RootOrderemPay extends DeciTreeTemplateWriteV2<OrderemInfo> {
 	@Override protected List<ActionStdV1<OrderemInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderemInfo> option) {
 		List<ActionStdV1<OrderemInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<OrderemInfo> mergeToSelect = new StdOrderemMergeToUpdate(option);
+		ActionStdV1<OrderemInfo> mergeToUpdate = new StdOrderemMergeToUpdate(option);
 		ActionLazyV1<OrderemInfo> nodePay = new LazyOrderemNodePay(option.conn, option.schemaName);		
 		ActionLazyV1<OrderemInfo> select = new LazyOrderemRootSelect(option.conn, option.schemaName);	
 		
-		mergeToSelect.addPostAction(nodePay);
+		mergeToUpdate.addPostAction(nodePay);
 		nodePay.addPostAction(select);
 		
-		actions.add(mergeToSelect);
+		actions.add(mergeToUpdate);
 		return actions;
 	}
 }
