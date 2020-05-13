@@ -7,9 +7,9 @@ import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class SchedineCheckFromOrder extends ModelCheckerTemplateSimpleV2<SchedineInfo> {
+public final class SchedineCheckFromOrderem extends ModelCheckerTemplateSimpleV2<SchedineInfo> {
 
-	public SchedineCheckFromOrder(ModelCheckerOption option) {
+	public SchedineCheckFromOrderem(ModelCheckerOption option) {
 		super(option);
 	}
 	
@@ -18,6 +18,7 @@ public final class SchedineCheckFromOrder extends ModelCheckerTemplateSimpleV2<S
 	@Override protected boolean checkHook(SchedineInfo recordInfo, Connection conn, String schemaName) {	
 		if (   recordInfo.codOwner 		<= 0 	
 			|| recordInfo.codOrder		<= 0 
+			|| recordInfo.codOrderItem	<= 0 
 			|| recordInfo.username		== null 
 			|| recordInfo.codLanguage	== null	)
 			

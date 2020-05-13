@@ -20,6 +20,7 @@ public final class SchedineCheckInsert extends ModelCheckerTemplateSimpleV2<Sche
 			|| recordInfo.codCustomer	<= 0 	
 			|| recordInfo.codStore 		<= 0
 			|| recordInfo.codMat		<= 0
+			|| recordInfo.codEmployee	<= 0
 			|| recordInfo.username		== null 
 			|| recordInfo.codLanguage	== null	)
 			

@@ -5,15 +5,15 @@ import br.com.mind5.model.action.ActionStdTemplateV2;
 import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdSchedineMergeOrder extends ActionStdTemplateV2<SchedineInfo> {
+public final class StdSchedineMergeOrdemist extends ActionStdTemplateV2<SchedineInfo> {
 
-	public StdSchedineMergeOrder(DeciTreeOption<SchedineInfo> option) {
+	public StdSchedineMergeOrdemist(DeciTreeOption<SchedineInfo> option) {
 		super(option);
 	}
 	
 	
 	
 	protected ActionVisitorV2<SchedineInfo> buildVisitorHook(DeciTreeOption<SchedineInfo> option) {
-		return new VisiSchedineMergeOrder(option);
+		return new VisiSchedineMergeOrdemist(option);
 	}
 }

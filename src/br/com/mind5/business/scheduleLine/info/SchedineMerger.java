@@ -6,7 +6,7 @@ import br.com.mind5.business.customerList.info.CuslisInfo;
 import br.com.mind5.business.employeeList.info.EmplisInfo;
 import br.com.mind5.business.masterData.info.ScheduleStatusInfo;
 import br.com.mind5.business.materialList.info.MatlisInfo;
-import br.com.mind5.business.order.info.OrderInfo;
+import br.com.mind5.business.orderItemList.info.OrdemistInfo;
 import br.com.mind5.business.orderList.info.OrdistInfo;
 import br.com.mind5.business.scheduleLineSnapshot.info.SchedinapInfo;
 import br.com.mind5.business.storeList.info.StolisInfo;
@@ -23,6 +23,19 @@ public final class SchedineMerger {
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new SchedineVisiMergeWeekday());
 		InfoMergerV3<SchedineInfo, WeekdayInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	
+	public static List<SchedineInfo> mergeWithOrdist(List<SchedineInfo> baseInfos, List<OrdistInfo> selectedInfos) {
+		InfoMergerBuilderV3<SchedineInfo, OrdistInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new SchedineVisiMergeOrdist());
+		InfoMergerV3<SchedineInfo, OrdistInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}
@@ -68,26 +81,13 @@ public final class SchedineMerger {
 	
 	
 	
-	public static List<SchedineInfo> mergeWithOrdist(List<SchedineInfo> baseInfos, List<OrdistInfo> selectedInfos) {
-		InfoMergerBuilderV3<SchedineInfo, OrdistInfo> builder = new InfoMergerBuilderV3<>();
+	public static List<SchedineInfo> mergeWithOrdemist(List<SchedineInfo> baseInfos, List<OrdemistInfo> selectedInfos) {
+		InfoMergerBuilderV3<SchedineInfo, OrdemistInfo> builder = new InfoMergerBuilderV3<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SchedineVisiMergeOrdist());
-		InfoMergerV3<SchedineInfo, OrdistInfo> merger = builder.build();		
-	
-		return merger.merge();
-	}
-	
-	
-	
-	public static List<SchedineInfo> mergeWithOrder(List<SchedineInfo> baseInfos, List<OrderInfo> selectedInfos) {
-		InfoMergerBuilderV3<SchedineInfo, OrderInfo> builder = new InfoMergerBuilderV3<>();
-		
-		builder.addBaseInfos(baseInfos);
-		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SchedineVisiMergeOrder());
-		InfoMergerV3<SchedineInfo, OrderInfo> merger = builder.build();		
+		builder.addVisitor(new SchedineVisiMergeOrdemist());
+		InfoMergerV3<SchedineInfo, OrdemistInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}

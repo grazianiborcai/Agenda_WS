@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.scheduleLine.info.SchedineInfo;
 import br.com.mind5.business.scheduleLine.model.action.LazySchedineEnforceStatus;
-import br.com.mind5.business.scheduleLine.model.action.LazySchedineMergeOrdist;
+import br.com.mind5.business.scheduleLine.model.action.LazySchedineMergeOrdemist;
 import br.com.mind5.business.scheduleLine.model.action.LazySchedineMergeToSelect;
 import br.com.mind5.business.scheduleLine.model.action.LazySchedineNodeRefreshL2;
 import br.com.mind5.business.scheduleLine.model.action.StdSchedineMergeSchedarch;
@@ -49,13 +49,13 @@ public final class NodeSchedineRefreshL1 extends DeciTreeTemplateWriteV2<Schedin
 		
 		ActionStdV1<SchedineInfo> mergeSchedarch = new StdSchedineMergeSchedarch(option);
 		ActionLazyV1<SchedineInfo> mergeToSelect = new LazySchedineMergeToSelect(option.conn, option.schemaName);
-		ActionLazyV1<SchedineInfo> mergeOrdist = new LazySchedineMergeOrdist(option.conn, option.schemaName);	//TODO: substituir por Ordem Item List
+		ActionLazyV1<SchedineInfo> mergeOrdemist = new LazySchedineMergeOrdemist(option.conn, option.schemaName);
 		ActionLazyV1<SchedineInfo> enforceStatus = new LazySchedineEnforceStatus(option.conn, option.schemaName);
 		ActionLazyV1<SchedineInfo> nodeL2 = new LazySchedineNodeRefreshL2(option.conn, option.schemaName);
 		
 		mergeSchedarch.addPostAction(mergeToSelect);
-		mergeToSelect.addPostAction(mergeOrdist);
-		mergeOrdist.addPostAction(enforceStatus);
+		mergeToSelect.addPostAction(mergeOrdemist);
+		mergeOrdemist.addPostAction(enforceStatus);
 		enforceStatus.addPostAction(nodeL2);
 		
 		actions.add(mergeSchedarch);
