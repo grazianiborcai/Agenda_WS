@@ -3,7 +3,6 @@ package br.com.mind5.payment.payOrderItem.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -11,14 +10,13 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 import br.com.mind5.payment.payOrderItem.info.PayordemInfo;
-import br.com.mind5.payment.payOrderItem.model.action.LazyPayordemNodeUpdate;
-import br.com.mind5.payment.payOrderItem.model.action.StdPayordemMergeToUpdateStatus;
-import br.com.mind5.payment.payOrderItem.model.checker.PayordemCheckExist;
-import br.com.mind5.payment.payOrderItem.model.checker.PayordemCheckUpdate;
+import br.com.mind5.payment.payOrderItem.model.action.StdPayordemOrderemPay;
+import br.com.mind5.payment.payOrderItem.model.action.StdPayordemSuccess;
+import br.com.mind5.payment.payOrderItem.model.checker.PayordemCheckHasOrderem;
 
-public final class RootPayordemUpdateStatus extends DeciTreeTemplateWriteV2<PayordemInfo> {
+public final class NodePayordemPay extends DeciTreeTemplateWriteV2<PayordemInfo> {
 	
-	public RootPayordemUpdateStatus(DeciTreeOption<PayordemInfo> option) {
+	public NodePayordemPay(DeciTreeOption<PayordemInfo> option) {
 		super(option);
 	}
 	
@@ -33,14 +31,7 @@ public final class RootPayordemUpdateStatus extends DeciTreeTemplateWriteV2<Payo
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new PayordemCheckUpdate(checkerOption);
-		queue.add(checker);
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
-		checker = new PayordemCheckExist(checkerOption);
+		checker = new PayordemCheckHasOrderem(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueueV2<>(queue);
@@ -51,12 +42,20 @@ public final class RootPayordemUpdateStatus extends DeciTreeTemplateWriteV2<Payo
 	@Override protected List<ActionStdV1<PayordemInfo>> buildActionsOnPassedHook(DeciTreeOption<PayordemInfo> option) {
 		List<ActionStdV1<PayordemInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<PayordemInfo> select = new StdPayordemMergeToUpdateStatus(option);
-		ActionLazyV1<PayordemInfo> update = new LazyPayordemNodeUpdate(option.conn, option.schemaName);
+		ActionStdV1<PayordemInfo> orderemPay = new StdPayordemOrderemPay(option);
 		
-		select.addPostAction(update);
+		actions.add(orderemPay);
+		return actions;
+	}
+	
+	
+	
+	@Override protected List<ActionStdV1<PayordemInfo>> buildActionsOnFailedHook(DeciTreeOption<PayordemInfo> option) {
+		List<ActionStdV1<PayordemInfo>> actions = new ArrayList<>();
 		
-		actions.add(select);
+		ActionStdV1<PayordemInfo> success = new StdPayordemSuccess(option);
+		
+		actions.add(success);
 		return actions;
 	}
 }

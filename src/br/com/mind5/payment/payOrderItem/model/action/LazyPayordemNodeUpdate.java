@@ -8,10 +8,11 @@ import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.payOrderItem.info.PayordemInfo;
+import br.com.mind5.payment.payOrderItem.model.decisionTree.NodePayordemUpdate;
 
-public final class LazyPayordemEnforceLChanged extends ActionLazyTemplateV2<PayordemInfo, PayordemInfo> {
+public final class LazyPayordemNodeUpdate extends ActionLazyTemplateV2<PayordemInfo, PayordemInfo> {
 	
-	public LazyPayordemEnforceLChanged(Connection conn, String schemaName) {
+	public LazyPayordemNodeUpdate(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +25,7 @@ public final class LazyPayordemEnforceLChanged extends ActionLazyTemplateV2<Payo
 	
 	
 	@Override protected ActionStdV1<PayordemInfo> getInstanceOfActionHook(DeciTreeOption<PayordemInfo> option) {
-		return new StdPayordemEnforceLChanged(option);
+		return new NodePayordemUpdate(option).toAction();
 	}
 	
 	

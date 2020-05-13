@@ -5,14 +5,13 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 import br.com.mind5.payment.payOrderItem.info.PayordemInfo;
-import br.com.mind5.payment.payOrderItem.model.action.LazyPayordemEnforceLChanged;
-import br.com.mind5.payment.payOrderItem.model.action.LazyPayordemUpdate;
+import br.com.mind5.payment.payOrderItem.model.action.LazyPayordemNodeUpdate;
 import br.com.mind5.payment.payOrderItem.model.action.StdPayordemMergeToUpdate;
 import br.com.mind5.payment.payOrderItem.model.checker.PayordemCheckExist;
 import br.com.mind5.payment.payOrderItem.model.checker.PayordemCheckUpdate;
@@ -53,11 +52,9 @@ public final class RootPayordemUpdate extends DeciTreeTemplateWriteV2<PayordemIn
 		List<ActionStdV1<PayordemInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<PayordemInfo> select = new StdPayordemMergeToUpdate(option);
-		ActionLazyV1<PayordemInfo> enforceLChanged = new LazyPayordemEnforceLChanged(option.conn, option.schemaName);
-		ActionLazyV1<PayordemInfo> update = new LazyPayordemUpdate(option.conn, option.schemaName);
+		ActionLazyV1<PayordemInfo> update = new LazyPayordemNodeUpdate(option.conn, option.schemaName);
 		
-		select.addPostAction(enforceLChanged);
-		enforceLChanged.addPostAction(update);
+		select.addPostAction(update);
 		
 		actions.add(select);
 		return actions;
