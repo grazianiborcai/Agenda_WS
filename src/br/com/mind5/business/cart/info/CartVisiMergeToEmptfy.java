@@ -15,7 +15,7 @@ final class CartVisiMergeToEmptfy implements InfoMergerVisitorV3<CartInfo, CartI
 	
 	
 	@Override public boolean shouldMerge(CartInfo baseInfo, CartInfo selectedInfo) {
-		return (baseInfo.codOwner == selectedInfo.codOwner);
+		return true;
 	}
 	
 	
@@ -25,10 +25,10 @@ final class CartVisiMergeToEmptfy implements InfoMergerVisitorV3<CartInfo, CartI
 		
 		CartInfo result = new CartInfo();
 		
-		result.codOwner = selectedInfo.codOwner;
-		result.codOrder = selectedInfo.codOrder;
-		result.username = selectedInfo.username;
-		result.codLanguage = selectedInfo.codLanguage;
+		result.codOwner = baseInfo.codOwner;
+		result.codOrder = baseInfo.codOrder;
+		result.username = baseInfo.username;
+		result.codLanguage = baseInfo.codLanguage;
 		
 		results.add(result);
 		return results;
