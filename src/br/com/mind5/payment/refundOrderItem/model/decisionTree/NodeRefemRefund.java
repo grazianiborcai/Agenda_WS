@@ -43,7 +43,6 @@ public final class NodeRefemRefund extends DeciTreeTemplateWriteV2<RefemInfo> {
 		List<ActionStdV1<RefemInfo>> actions = new ArrayList<>();		
 
 		ActionStdV1<RefemInfo> refund = new StdRefemRefumoipRefund(option);
-
 		
 		actions.add(refund);		
 		return actions;
@@ -55,7 +54,6 @@ public final class NodeRefemRefund extends DeciTreeTemplateWriteV2<RefemInfo> {
 		List<ActionStdV1<RefemInfo>> actions = new ArrayList<>();		
 
 		ActionStdV1<RefemInfo> success = new StdRefemSuccess(option);
-
 		
 		actions.add(success);		
 		return actions;
