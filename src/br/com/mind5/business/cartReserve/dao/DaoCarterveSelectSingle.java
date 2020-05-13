@@ -84,7 +84,7 @@ public final class DaoCarterveSelectSingle extends DaoStmtTemplate<CarterveInfo>
 					dataInfo.date = DaoFormatter.sqlToLocalDate(stmtResult, DaoCarterveDbTableColumn.COL_DATE);
 					dataInfo.beginTime = DaoFormatter.sqlToLocalTime(stmtResult, DaoCarterveDbTableColumn.COL_BEGIN_TIME);
 					dataInfo.endTime = DaoFormatter.sqlToLocalTime(stmtResult, DaoCarterveDbTableColumn.COL_END_TIME);
-					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, DaoCarterveDbTableColumn.COL_END_TIME);		
+					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, DaoCarterveDbTableColumn.COL_LAST_CHANGED);		
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

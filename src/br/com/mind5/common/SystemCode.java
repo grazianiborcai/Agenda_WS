@@ -1242,4 +1242,7 @@ public final class SystemCode {
 	
 	//Order Item List
 	public static final int ORDER_ITEM_LIST_MANDATORY_FIELD_EMPTY		= 12150;
+	
+	// Schedule Reserve
+	public static final int SCHEDULE_RESERVE_MANDATORY_FIELD_EMPTY		= 12200;
 }
