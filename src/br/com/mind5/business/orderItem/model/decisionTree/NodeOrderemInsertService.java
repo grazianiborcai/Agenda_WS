@@ -5,18 +5,19 @@ import java.util.List;
 
 import br.com.mind5.business.orderItem.info.OrderemInfo;
 import br.com.mind5.business.orderItem.model.action.LazyOrderemDaoInsert;
+import br.com.mind5.business.orderItem.model.action.LazyOrderemSchedineInsert;
 import br.com.mind5.business.orderItem.model.action.StdOrderemMergeStolis;
 import br.com.mind5.business.orderItem.model.checker.OrderemCheckEmp;
 import br.com.mind5.business.orderItem.model.checker.OrderemCheckEmpmat;
 import br.com.mind5.business.orderItem.model.checker.OrderemCheckEmposarch;
+import br.com.mind5.business.orderItem.model.checker.OrderemCheckInsertService;
 import br.com.mind5.business.orderItem.model.checker.OrderemCheckMatore;
 import br.com.mind5.business.orderItem.model.checker.OrderemCheckStore;
-import br.com.mind5.business.orderItem.model.checker.OrderemCheckInsertService;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
@@ -85,8 +86,10 @@ public final class NodeOrderemInsertService extends DeciTreeTemplateWriteV2<Orde
 		
 		ActionStdV1<OrderemInfo> mergeStolis = new StdOrderemMergeStolis(option);		
 		ActionLazyV1<OrderemInfo> insert = new LazyOrderemDaoInsert(option.conn, option.schemaName);
+		ActionLazyV1<OrderemInfo> schedineInsert = new LazyOrderemSchedineInsert(option.conn, option.schemaName);
 		
 		mergeStolis.addPostAction(insert);
+		insert.addPostAction(schedineInsert);
 		
 		actions.add(mergeStolis);		
 		return actions;

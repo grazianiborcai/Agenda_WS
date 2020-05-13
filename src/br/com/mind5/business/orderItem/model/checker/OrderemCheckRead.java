@@ -16,10 +16,11 @@ public final class OrderemCheckRead extends ModelCheckerTemplateSimpleV2<Orderem
 	
 	
 	@Override protected boolean checkHook(OrderemInfo recordInfo, Connection conn, String schemaName) {	
-		if ( recordInfo.codOwner 	<= 0 	|| 
-			 recordInfo.codOrder	<= 0 	||
-			 recordInfo.username	== null ||
-			 recordInfo.codLanguage	== null		)
+		if ( recordInfo.codOwner 		<= 0 	|| 
+			 recordInfo.codOrder		<= 0 	||
+			 recordInfo.codOrderItem	<= 0 	||
+			 recordInfo.username		== null ||
+			 recordInfo.codLanguage		== null		)
 			
 			return super.FAILED;
 		
