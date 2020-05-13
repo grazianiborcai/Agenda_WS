@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.planingData.info.PlanataInfo;
 import br.com.mind5.business.planingData.model.action.LazyPlanataPruneOrderve;
+import br.com.mind5.business.planingData.model.action.LazyPlanataPruneSchederve;
 import br.com.mind5.business.planingData.model.action.StdPlanataPruneCarterve;
 import br.com.mind5.business.planingData.model.checker.PlanataCheckRead;
 import br.com.mind5.model.action.ActionLazyV1;
@@ -45,8 +46,10 @@ public class NodePlanataReserve extends DeciTreeTemplateReadV2<PlanataInfo> {
 		
 		ActionStdV1<PlanataInfo> pruneCarteve = new StdPlanataPruneCarterve(option);
 		ActionLazyV1<PlanataInfo> pruneOrderve = new LazyPlanataPruneOrderve(option.conn, option.schemaName);
+		ActionLazyV1<PlanataInfo> pruneSchederve = new LazyPlanataPruneSchederve(option.conn, option.schemaName);
 		
 		pruneCarteve.addPostAction(pruneOrderve);
+		pruneOrderve.addPostAction(pruneSchederve);
 		
 		actions.add(pruneCarteve);
 		return actions;

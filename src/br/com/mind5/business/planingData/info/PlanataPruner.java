@@ -5,6 +5,7 @@ import java.util.List;
 import br.com.mind5.business.cartReserve.info.CarterveInfo;
 import br.com.mind5.business.employeeLeaveDate.info.EmplateInfo;
 import br.com.mind5.business.orderReserve.info.OrderveInfo;
+import br.com.mind5.business.scheduleReserve.info.SchederveInfo;
 import br.com.mind5.business.storeLeaveDate.info.StolateInfo;
 import br.com.mind5.info.InfoPruner;
 import br.com.mind5.info.InfoPrunerBuilder;
@@ -18,6 +19,19 @@ public final class PlanataPruner {
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new PlanataVisiPruneStoplis());
 		InfoPruner<PlanataInfo, StoplisInfo> pruner = builder.build();		
+	
+		return pruner.prune();
+	}
+	
+	
+	
+	public static List<PlanataInfo> pruneWithSchederve(List<PlanataInfo> baseInfos, List<SchederveInfo> selectedInfos) {
+		InfoPrunerBuilder<PlanataInfo, SchederveInfo> builder = new InfoPrunerBuilder<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new PlanataVisiPruneSchederve());
+		InfoPruner<PlanataInfo, SchederveInfo> pruner = builder.build();		
 	
 		return pruner.prune();
 	}
