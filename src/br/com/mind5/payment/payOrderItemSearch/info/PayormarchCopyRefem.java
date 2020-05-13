@@ -16,6 +16,7 @@ final class PayormarchCopyRefem extends InfoCopierTemplate<PayormarchInfo, Refem
 		
 		oneResult.codOwner = source.codOwner;
 		oneResult.codOrder = source.codOrder;
+		oneResult.codOrderItem = source.codOrderItem;
 		oneResult.username = source.username;	
 		oneResult.codLanguage = source.codLanguage;	
 		
