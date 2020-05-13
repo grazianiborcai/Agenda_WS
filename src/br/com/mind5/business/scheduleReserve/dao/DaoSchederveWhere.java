@@ -58,6 +58,10 @@ final class DaoSchederveWhere implements DaoStmtWhere {
 				case DaoSchederveDbTableColumn.COL_DATE :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.dateToString(recordInfo.date));
 					break;
+					
+				case DaoSchederveDbTableColumn.COL_RECORD_MODE :
+					builder.addClauseEqualAnd(eachColumn, recordInfo.recordMode);
+					break;
 			}
 		}		
 		

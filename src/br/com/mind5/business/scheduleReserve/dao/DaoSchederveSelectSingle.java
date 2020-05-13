@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.business.scheduleLine.dao.DaoSchedineDbTableColumn;
 import br.com.mind5.business.scheduleReserve.info.SchederveInfo;
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
@@ -69,7 +68,7 @@ public final class DaoSchederveSelectSingle extends DaoStmtTemplate<SchederveInf
 					SchederveInfo dataInfo = new SchederveInfo();
 					
 					dataInfo.codOwner = stmtResult.getLong(DaoSchederveDbTableColumn.COL_COD_OWNER);
-					dataInfo.codSchedule = DaoFormatter.sqlToLong(stmtResult, DaoSchedineDbTableColumn.COL_COD_SCHEDULE);	
+					dataInfo.codSchedule = DaoFormatter.sqlToLong(stmtResult, DaoSchederveDbTableColumn.COL_COD_SCHEDULE);	
 					dataInfo.codUser = stmtResult.getLong(DaoSchederveDbTableColumn.COL_COD_USER);
 					dataInfo.codStore = stmtResult.getLong(DaoSchederveDbTableColumn.COL_COD_STORE);
 					dataInfo.codEmployee = stmtResult.getLong(DaoSchederveDbTableColumn.COL_COD_EMPLOYEE);
@@ -77,6 +76,7 @@ public final class DaoSchederveSelectSingle extends DaoStmtTemplate<SchederveInf
 					dataInfo.date = DaoFormatter.sqlToLocalDate(stmtResult, DaoSchederveDbTableColumn.COL_DATE);
 					dataInfo.beginTime = DaoFormatter.sqlToLocalTime(stmtResult, DaoSchederveDbTableColumn.COL_BEGIN_TIME);
 					dataInfo.endTime = DaoFormatter.sqlToLocalTime(stmtResult, DaoSchederveDbTableColumn.COL_END_TIME);		
+					dataInfo.recordMode = stmtResult.getString(DaoSchederveDbTableColumn.COL_RECORD_MODE);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

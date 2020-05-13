@@ -19,6 +19,7 @@ public final class DaoSchederveDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_USER = DaoDbField.COL_COD_USER;
 	public static final String COL_DATE = DaoDbField.COL_DATE;
 	public static final String COL_END_TIME = DaoDbField.COL_END_TIME;
+	public static final String COL_RECORD_MODE = DaoDbField.COL_RECORD_MODE;
 	
 	
 	public DaoSchederveDbTableColumn() {
@@ -100,6 +101,14 @@ public final class DaoSchederveDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_COD_USER;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_RECORD_MODE;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
