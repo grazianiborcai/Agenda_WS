@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.cart.info.CartInfo;
-import br.com.mind5.business.cart.model.action.LazyCartRootDelete;
+import br.com.mind5.business.cart.model.action.LazyCartEmptfy;
 import br.com.mind5.business.cart.model.action.StdCartInsertOrder;
 import br.com.mind5.business.cart.model.checker.CartCheckAged;
 import br.com.mind5.model.action.ActionLazyV1;
@@ -44,9 +44,9 @@ public final class NodeCartCheckoutL2 extends DeciTreeTemplateWriteV2<CartInfo> 
 		List<ActionStdV1<CartInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<CartInfo> insertOrder = new StdCartInsertOrder(option);	
-		ActionLazyV1<CartInfo> delete = new LazyCartRootDelete(option.conn, option.schemaName);
+		ActionLazyV1<CartInfo> emptfy = new LazyCartEmptfy(option.conn, option.schemaName);
 		
-		insertOrder.addPostAction(delete);
+		insertOrder.addPostAction(emptfy);
 		
 		actions.add(insertOrder);
 		return actions;

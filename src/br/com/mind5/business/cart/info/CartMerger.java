@@ -99,4 +99,17 @@ public final class CartMerger {
 	
 		return merger.merge();
 	}	
+	
+	
+	
+	public static List<CartInfo> mergeToEmptfy(List<CartInfo> baseInfos, List<CartInfo> selectedInfos) {
+		InfoMergerBuilderV3<CartInfo, CartInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new CartVisiMergeToEmptfy());
+		InfoMergerV3<CartInfo, CartInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}	
 }

@@ -4,15 +4,14 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.cart.info.CartInfo;
-import br.com.mind5.business.cart.model.decisionTree.RootCartDelete;
 import br.com.mind5.model.action.ActionLazyTemplateV2;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyCartRootDelete extends ActionLazyTemplateV2<CartInfo, CartInfo> {
+public final class LazyCartEmptfy extends ActionLazyTemplateV2<CartInfo, CartInfo> {
 	
-	public LazyCartRootDelete(Connection conn, String schemaName) {
+	public LazyCartEmptfy(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -25,7 +24,7 @@ public final class LazyCartRootDelete extends ActionLazyTemplateV2<CartInfo, Car
 	
 	
 	@Override protected ActionStdV1<CartInfo> getInstanceOfActionHook(DeciTreeOption<CartInfo> option) {
-		return new RootCartDelete(option).toAction();
+		return new StdCartEmptfy(option);
 	}
 	
 	
