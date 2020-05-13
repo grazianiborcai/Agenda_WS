@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.order.info.OrderInfo;
-import br.com.mind5.business.order.model.action.LazyOrderSchedineInsert;
 import br.com.mind5.business.order.model.action.LazyOrderNodeOrderem;
 import br.com.mind5.business.order.model.action.LazyOrderNodeSnapshot;
 import br.com.mind5.business.order.model.checker.OrderCheckCurrency;
@@ -13,9 +12,9 @@ import br.com.mind5.business.order.model.checker.OrderCheckLangu;
 import br.com.mind5.business.order.model.checker.OrderCheckOwner;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
@@ -71,11 +70,9 @@ public final class RootOrderInsert extends DeciTreeTemplateWriteV2<OrderInfo> {
 		ActionStdV1<OrderInfo> insertOrder = new NodeOrderInsert(option).toAction();
 		ActionLazyV1<OrderInfo> insertOrderem = new LazyOrderNodeOrderem(option.conn, option.schemaName);
 		ActionLazyV1<OrderInfo> snapshot = new LazyOrderNodeSnapshot(option.conn, option.schemaName);
-		ActionLazyV1<OrderInfo> insertSchedine = new LazyOrderSchedineInsert(option.conn, option.schemaName);	
 		
 		insertOrder.addPostAction(insertOrderem);
 		insertOrderem.addPostAction(snapshot);
-		snapshot.addPostAction(insertSchedine);
 		
 		actions.add(insertOrder);
 		return actions;
