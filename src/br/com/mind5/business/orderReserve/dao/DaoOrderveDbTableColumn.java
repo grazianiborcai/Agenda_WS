@@ -112,12 +112,12 @@ public final class DaoOrderveDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.tableName = DaoDbTable.ORDER_HDR_TABLE;
 		oneColumn.columnName = COL_COD_USER;
 		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
 		oneColumn = new DaoColumn();
-		oneColumn.tableName = DaoDbTable.ORDER_HDR_TABLE;
+		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_COD_ORDER_STATUS;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
