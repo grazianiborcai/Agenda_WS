@@ -52,6 +52,7 @@ public final class OrderemInfo extends InfoRecord implements Cloneable, Comparab
 		codOrderItem = DefaultValue.number();
 		codSnapshot = DefaultValue.number();
 		codPayOrder = DefaultValue.number();
+		codPayOrderItem = DefaultValue.number();
 		codStore = DefaultValue.number();
 		codEmployee = DefaultValue.number();
 		codMat = DefaultValue.number();
