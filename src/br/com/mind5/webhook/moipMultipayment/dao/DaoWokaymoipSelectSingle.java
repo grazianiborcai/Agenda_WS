@@ -31,6 +31,12 @@ public final class DaoWokaymoipSelectSingle extends DaoStmtTemplate<WokaymoipInf
 	
 	
 	
+	@Override protected String getLookupTableHook() {
+		return DaoDbTable.PAYMENT_VIEW;
+	}	
+	
+	
+	
 	@Override protected DaoOperation getOperationHook() {
 		return DaoOperation.SELECT;
 	}
