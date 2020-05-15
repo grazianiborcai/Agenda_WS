@@ -3,7 +3,7 @@ package br.com.mind5.security.userSearch.info;
 import br.com.mind5.info.InfoCopierTemplate;
 import br.com.mind5.payment.refundOrderItem.info.RefemInfo;
 
-final class UserarchCopyRefem extends InfoCopierTemplate<UserarchInfo, RefemInfo>{
+final class UserarchCopyRefem extends InfoCopierTemplate<UserarchInfo, RefemInfo> {
 	
 	public UserarchCopyRefem() {
 		super();

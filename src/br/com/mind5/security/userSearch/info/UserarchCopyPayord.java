@@ -1,21 +1,20 @@
 package br.com.mind5.security.userSearch.info;
 
 import br.com.mind5.info.InfoCopierTemplate;
-import br.com.mind5.security.user.info.UserInfo;
+import br.com.mind5.payment.payOrder.info.PayordInfo;
 
-final class UserarchCopyUser extends InfoCopierTemplate<UserarchInfo, UserInfo> {
+final class UserarchCopyPayord extends InfoCopierTemplate<UserarchInfo, PayordInfo> {
 	
-	public UserarchCopyUser() {
+	public UserarchCopyPayord() {
 		super();
 	}
 	
 	
 	
-	@Override protected UserarchInfo makeCopyHook(UserInfo source) {
+	@Override protected UserarchInfo makeCopyHook(PayordInfo source) {
 		UserarchInfo result = new UserarchInfo();
 		
 		result.codOwner = source.codOwner;
-		result.codUser = source.codUser;
 		result.username = source.username;
 		result.codLanguage = source.codLanguage;
 		
