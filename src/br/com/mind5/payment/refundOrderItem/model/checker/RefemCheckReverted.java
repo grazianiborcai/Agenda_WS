@@ -23,6 +23,6 @@ public final class RefemCheckReverted extends ModelCheckerTemplateForwardV2<Refe
 	
 	
 	@Override protected PayormarchInfo toForwardClass(RefemInfo baseRecord) {
-		return PayormarchCopier.copyFromRefem(baseRecord);
+		return PayormarchCopier.copyFromRefemKey(baseRecord);
 	}
 }

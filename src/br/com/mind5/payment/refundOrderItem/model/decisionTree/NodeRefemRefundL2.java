@@ -32,7 +32,7 @@ public final class NodeRefemRefundL2 extends DeciTreeTemplateWriteV2<RefemInfo> 
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.NOT_FOUND;	
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
 		checker = new RefemCheckHasOrderem(checkerOption);
 		queue.add(checker);
 		

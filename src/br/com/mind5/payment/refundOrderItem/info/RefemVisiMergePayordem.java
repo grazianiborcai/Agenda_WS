@@ -16,7 +16,9 @@ final class RefemVisiMergePayordem implements InfoMergerVisitorV3<RefemInfo, Pay
 	
 	
 	@Override public boolean shouldMerge(RefemInfo baseInfo, PayordemInfo selectedInfo) {
-		return true;
+		return ( baseInfo.codOwner 		  == baseInfo.codOwner 	  &&
+				 baseInfo.codPayOrder 	  == baseInfo.codPayOrder &&
+				 baseInfo.codPayOrderItem == baseInfo.codPayOrderItem );
 	}
 	
 	
@@ -24,9 +26,15 @@ final class RefemVisiMergePayordem implements InfoMergerVisitorV3<RefemInfo, Pay
 	@Override public List<RefemInfo> merge(RefemInfo baseInfo, PayordemInfo selectedInfo) {
 		List<RefemInfo> results = new ArrayList<>();
 		
-		RefemInfo result = RefemInfo.copyFrom(selectedInfo);
+		baseInfo.codOrder = selectedInfo.codOrder;
+		baseInfo.codOrderItem = selectedInfo.codOrderItem;
+		baseInfo.codStore = selectedInfo.codStore;
+		baseInfo.idOrderPartner = selectedInfo.idOrderPartner;
+		baseInfo.idRefundPartner = selectedInfo.idRefundPartner;
+		baseInfo.statusRefundPartner = selectedInfo.statusRefundPartner;	
+		baseInfo.itemReceiver = selectedInfo.itemReceiver;
 		
-		results.add(result);
+		results.add(baseInfo);
 		return results;
 	}
 	
