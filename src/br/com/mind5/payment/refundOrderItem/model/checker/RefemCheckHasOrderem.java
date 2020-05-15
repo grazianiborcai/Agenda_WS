@@ -16,8 +16,8 @@ public final class RefemCheckHasOrderem extends ModelCheckerTemplateSimpleV2<Ref
 	
 	
 	@Override protected boolean checkHook(RefemInfo recordInfo, Connection conn, String schemaName) {	
-		if ( recordInfo.codPayOrder		<= 0 	||
-			 recordInfo.codPayOrderItem	<= 0	)
+		if ( recordInfo.codOrder		<= 0 	||
+			 recordInfo.codOrderItem	<= 0		)
 			
 			return super.FAILED;
 		
