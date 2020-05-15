@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.orderItem.info.OrderemInfo;
 import br.com.mind5.business.orderItem.model.action.LazyOrderemNodeUpdate;
+import br.com.mind5.business.orderItem.model.action.LazyOrderemRefupolEvaluate;
 import br.com.mind5.business.orderItem.model.action.StdOrderemMergeOrdugeRefunding;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
@@ -38,9 +39,11 @@ public final class NodeOrderemRefunding extends DeciTreeTemplateWriteV2<OrderemI
 		List<ActionStdV1<OrderemInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<OrderemInfo> enforceStatus = new StdOrderemMergeOrdugeRefunding(option);
+		ActionLazyV1<OrderemInfo> refupolEvaluat = new LazyOrderemRefupolEvaluate(option.conn, option.schemaName);	
 		ActionLazyV1<OrderemInfo> update = new LazyOrderemNodeUpdate(option.conn, option.schemaName);		
 		
-		enforceStatus.addPostAction(update);
+		enforceStatus.addPostAction(refupolEvaluat);
+		refupolEvaluat.addPostAction(update);
 		
 		actions.add(enforceStatus);
 		return actions;
