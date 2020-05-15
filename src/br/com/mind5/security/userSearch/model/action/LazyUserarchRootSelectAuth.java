@@ -8,11 +8,11 @@ import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.userSearch.info.UserarchInfo;
-import br.com.mind5.security.userSearch.model.decisionTree.RootUserarchSelect;
+import br.com.mind5.security.userSearch.model.decisionTree.RootUserarchSelectAuth;
 
-public final class LazyUserarchRootSelect extends ActionLazyTemplateV2<UserarchInfo, UserarchInfo> {
+public final class LazyUserarchRootSelectAuth extends ActionLazyTemplateV2<UserarchInfo, UserarchInfo> {
 	
-	public LazyUserarchRootSelect(Connection conn, String schemaName) {
+	public LazyUserarchRootSelectAuth(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -25,7 +25,7 @@ public final class LazyUserarchRootSelect extends ActionLazyTemplateV2<UserarchI
 	
 	
 	@Override protected ActionStdV1<UserarchInfo> getInstanceOfActionHook(DeciTreeOption<UserarchInfo> option) {
-		return new RootUserarchSelect(option).toAction();
+		return new RootUserarchSelectAuth(option).toAction();
 	}
 	
 	
