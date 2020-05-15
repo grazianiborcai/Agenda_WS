@@ -13,7 +13,7 @@ import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 import br.com.mind5.payment.refundOrderItem.info.RefemInfo;
 import br.com.mind5.payment.refundOrderItem.model.action.LazyRefemMergeCuspar;
 import br.com.mind5.payment.refundOrderItem.model.action.LazyRefemMergePayord;
-import br.com.mind5.payment.refundOrderItem.model.action.LazyRefemNodeRefund;
+import br.com.mind5.payment.refundOrderItem.model.action.LazyRefemNodeRefundL1;
 import br.com.mind5.payment.refundOrderItem.model.action.StdRefemMergePayordem;
 import br.com.mind5.payment.refundOrderItem.model.checker.RefemCheckLangu;
 import br.com.mind5.payment.refundOrderItem.model.checker.RefemCheckOwner;
@@ -77,8 +77,6 @@ public final class RootRefemRefund extends DeciTreeTemplateWriteV2<RefemInfo> {
 		checker = new RefemCheckPayordem(checkerOption);
 		queue.add(checker);
 		
-		//TODO: somente Manager pode estornar ?
-		//TODO: Cada Manager somente pode estornar sua Ordem ?
 		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
@@ -90,7 +88,7 @@ public final class RootRefemRefund extends DeciTreeTemplateWriteV2<RefemInfo> {
 		ActionStdV1<RefemInfo> mergePayordem = new StdRefemMergePayordem(option);	
 		ActionLazyV1<RefemInfo> mergePayord = new LazyRefemMergePayord(option.conn, option.schemaName);
 		ActionLazyV1<RefemInfo> mergeCuspar = new LazyRefemMergeCuspar(option.conn, option.schemaName);
-		ActionLazyV1<RefemInfo> refund = new LazyRefemNodeRefund(option.conn, option.schemaName);
+		ActionLazyV1<RefemInfo> refund = new LazyRefemNodeRefundL1(option.conn, option.schemaName);
 		
 		mergePayordem.addPostAction(mergePayord);
 		mergePayord.addPostAction(mergeCuspar);	

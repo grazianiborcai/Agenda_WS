@@ -6,18 +6,18 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.payment.refundOrderItem.info.RefemInfo;
 import br.com.mind5.security.userSearch.info.UserarchCopier;
 import br.com.mind5.security.userSearch.info.UserarchInfo;
-import br.com.mind5.security.userSearch.model.checker.UserarchCheckExistManager;
+import br.com.mind5.security.userSearch.model.checker.UserarchCheckExistOwner;
 
-public final class RefemCheckManager extends ModelCheckerTemplateForwardV2<RefemInfo, UserarchInfo> {
+public final class RefemCheckAuthOwner extends ModelCheckerTemplateForwardV2<RefemInfo, UserarchInfo> {
 	
-	public RefemCheckManager(ModelCheckerOption option) {
+	public RefemCheckAuthOwner(ModelCheckerOption option) {
 		super(option);
 	}
 
 
 	
 	@Override protected ModelCheckerV1<UserarchInfo> getCheckerHook(ModelCheckerOption option) {
-		return new UserarchCheckExistManager(option);
+		return new UserarchCheckExistOwner(option);
 	}
 	
 	

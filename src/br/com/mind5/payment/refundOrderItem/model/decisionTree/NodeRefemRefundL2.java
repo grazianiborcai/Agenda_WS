@@ -3,6 +3,7 @@ package br.com.mind5.payment.refundOrderItem.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -10,11 +11,14 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 import br.com.mind5.payment.refundOrderItem.info.RefemInfo;
-import br.com.mind5.payment.refundOrderItem.model.checker.RefemCheckAuthManager;
+import br.com.mind5.payment.refundOrderItem.model.action.LazyRefemRefumoipRefund;
+import br.com.mind5.payment.refundOrderItem.model.action.StdRefemOrderemRefunding;
+import br.com.mind5.payment.refundOrderItem.model.action.StdRefemRefumoipRefund;
+import br.com.mind5.payment.refundOrderItem.model.checker.RefemCheckHasOrderem;
 
-public final class NodeRefemAuthL2 extends DeciTreeTemplateWriteV2<RefemInfo> {
+public final class NodeRefemRefundL2 extends DeciTreeTemplateWriteV2<RefemInfo> {
 	
-	public NodeRefemAuthL2(DeciTreeOption<RefemInfo> option) {
+	public NodeRefemRefundL2(DeciTreeOption<RefemInfo> option) {
 		super(option);
 	}
 	
@@ -28,8 +32,8 @@ public final class NodeRefemAuthL2 extends DeciTreeTemplateWriteV2<RefemInfo> {
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new RefemCheckAuthManager(checkerOption);
+		checkerOption.expectedResult = ModelCheckerOption.NOT_FOUND;	
+		checker = new RefemCheckHasOrderem(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueueV2<>(queue);
@@ -39,10 +43,13 @@ public final class NodeRefemAuthL2 extends DeciTreeTemplateWriteV2<RefemInfo> {
 	
 	@Override protected List<ActionStdV1<RefemInfo>> buildActionsOnPassedHook(DeciTreeOption<RefemInfo> option) {
 		List<ActionStdV1<RefemInfo>> actions = new ArrayList<>();		
-
-		ActionStdV1<RefemInfo> nodeL4 = new NodeRefemAuthL4(option).toAction();
 		
-		actions.add(nodeL4);		
+		ActionStdV1<RefemInfo> orderemRefunding = new StdRefemOrderemRefunding(option);
+		ActionLazyV1<RefemInfo> refund = new LazyRefemRefumoipRefund(option.conn, option.schemaName);
+		
+		orderemRefunding.addPostAction(refund);
+		
+		actions.add(orderemRefunding);		
 		return actions;
 	}
 	
@@ -50,10 +57,10 @@ public final class NodeRefemAuthL2 extends DeciTreeTemplateWriteV2<RefemInfo> {
 	
 	@Override protected List<ActionStdV1<RefemInfo>> buildActionsOnFailedHook(DeciTreeOption<RefemInfo> option) {
 		List<ActionStdV1<RefemInfo>> actions = new ArrayList<>();		
-	
-		ActionStdV1<RefemInfo> nodeL3 = new NodeRefemAuthL3(option).toAction();	
+
+		ActionStdV1<RefemInfo> refund = new StdRefemRefumoipRefund(option);
 		
-		actions.add(nodeL3);		
+		actions.add(refund);		
 		return actions;
 	}
 }

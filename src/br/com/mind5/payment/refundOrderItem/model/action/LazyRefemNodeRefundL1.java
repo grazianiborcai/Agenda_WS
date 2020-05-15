@@ -8,11 +8,11 @@ import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.refundOrderItem.info.RefemInfo;
-import br.com.mind5.payment.refundOrderItem.model.decisionTree.NodeRefemRefund;
+import br.com.mind5.payment.refundOrderItem.model.decisionTree.NodeRefemRefundL1;
 
-public final class LazyRefemNodeRefund extends ActionLazyTemplateV2<RefemInfo, RefemInfo> {
+public final class LazyRefemNodeRefundL1 extends ActionLazyTemplateV2<RefemInfo, RefemInfo> {
 	
-	public LazyRefemNodeRefund(Connection conn, String schemaName) {
+	public LazyRefemNodeRefundL1(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -25,7 +25,7 @@ public final class LazyRefemNodeRefund extends ActionLazyTemplateV2<RefemInfo, R
 	
 	
 	@Override protected ActionStdV1<RefemInfo> getInstanceOfActionHook(DeciTreeOption<RefemInfo> option) {
-		return new NodeRefemRefund(option).toAction();
+		return new NodeRefemRefundL1(option).toAction();
 	}
 	
 	
