@@ -9,6 +9,20 @@ import br.com.mind5.payment.refundOrderItem.info.RefemInfo;
 import br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.info.MultmoipInfo;
 
 public final class PayormarchCopier {	
+	public static PayormarchInfo copyFromRefemKey(RefemInfo source) {
+		InfoCopierTemplate<PayormarchInfo, RefemInfo> copier = new PayormarchCopyRefemKey();
+		return copier.makeCopy(source);
+	}
+	
+	
+	
+	public static List<PayormarchInfo> copyFromRefemKey(List<RefemInfo> sources) {
+		InfoCopierTemplate<PayormarchInfo, RefemInfo> copier = new PayormarchCopyRefemKey();
+		return copier.makeCopy(sources);
+	}
+	
+	
+	
 	public static PayormarchInfo copyFromRefem(RefemInfo source) {
 		InfoCopierTemplate<PayormarchInfo, RefemInfo> copier = new PayormarchCopyRefem();
 		return copier.makeCopy(source);
