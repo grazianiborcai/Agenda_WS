@@ -2,6 +2,7 @@ package br.com.mind5.business.refundPolicyOwner.info;
 
 import java.util.List;
 
+import br.com.mind5.common.CloneUtil;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
 import br.com.mind5.masterData.refundPolicyGroupItem.info.RefugritemInfo;
@@ -35,7 +36,11 @@ public final class RefupownInfo extends InfoRecord implements Cloneable {
 	
 	
 	@Override public Object clone()throws CloneNotSupportedException {
-		return super.clone();
+		RefupownInfo deepCopy = (RefupownInfo) super.clone();
+		
+		deepCopy.refugritemes = CloneUtil.cloneRecords(refugritemes, this.getClass());
+		
+		return deepCopy;
 	}
 	
 	
