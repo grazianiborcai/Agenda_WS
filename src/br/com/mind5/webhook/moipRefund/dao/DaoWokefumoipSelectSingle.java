@@ -31,6 +31,12 @@ public final class DaoWokefumoipSelectSingle extends DaoStmtTemplate<WokefumoipI
 	
 	
 	
+	@Override protected String getLookupTableHook() {
+		return DaoDbTable.REFUND_VIEW;
+	}	
+	
+	
+	
 	@Override protected DaoOperation getOperationHook() {
 		return DaoOperation.SELECT;
 	}
