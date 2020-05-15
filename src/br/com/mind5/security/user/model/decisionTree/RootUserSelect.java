@@ -5,23 +5,23 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 import br.com.mind5.security.user.info.UserInfo;
 import br.com.mind5.security.user.model.action.LazyUserMergeAddress;
 import br.com.mind5.security.user.model.action.LazyUserMergeAuthgrole;
 import br.com.mind5.security.user.model.action.LazyUserMergeCuspar;
 import br.com.mind5.security.user.model.action.LazyUserMergeFimist;
-import br.com.mind5.security.user.model.action.LazyUserMergePerson;
+import br.com.mind5.security.user.model.action.LazyUserNodePerson;
 import br.com.mind5.security.user.model.action.LazyUserMergePhone;
 import br.com.mind5.security.user.model.action.StdUserMergeToSelect;
 import br.com.mind5.security.user.model.checker.UserCheckOwner;
 import br.com.mind5.security.user.model.checker.UserCheckRead;
 
-public final class RootUserSelect extends DeciTreeTemplateReadV2<UserInfo> {
+public final class RootUserSelect extends DeciTreeTemplateWriteV2<UserInfo> {
 	
 	public RootUserSelect(DeciTreeOption<UserInfo> option) {
 		super(option);
@@ -57,7 +57,7 @@ public final class RootUserSelect extends DeciTreeTemplateReadV2<UserInfo> {
 		List<ActionStdV1<UserInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<UserInfo> mergeToSelect = new StdUserMergeToSelect(option);
-		ActionLazyV1<UserInfo> mergePerson = new LazyUserMergePerson(option.conn, option.schemaName);
+		ActionLazyV1<UserInfo> mergePerson = new LazyUserNodePerson(option.conn, option.schemaName);
 		ActionLazyV1<UserInfo> mergeAddress = new LazyUserMergeAddress(option.conn, option.schemaName);
 		ActionLazyV1<UserInfo> mergePhone = new LazyUserMergePhone(option.conn, option.schemaName);
 		ActionLazyV1<UserInfo> mergeAuthgrole = new LazyUserMergeAuthgrole(option.conn, option.schemaName);

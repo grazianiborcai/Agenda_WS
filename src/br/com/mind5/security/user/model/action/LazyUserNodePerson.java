@@ -8,10 +8,11 @@ import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.user.info.UserInfo;
+import br.com.mind5.security.user.model.decisionTree.NodeUserPerson;
 
-public final class LazyUserMergePerson extends ActionLazyTemplateV2<UserInfo, UserInfo> {
+public final class LazyUserNodePerson extends ActionLazyTemplateV2<UserInfo, UserInfo> {
 	
-	public LazyUserMergePerson(Connection conn, String schemaName) {
+	public LazyUserNodePerson(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +25,7 @@ public final class LazyUserMergePerson extends ActionLazyTemplateV2<UserInfo, Us
 	
 	
 	@Override protected ActionStdV1<UserInfo> getInstanceOfActionHook(DeciTreeOption<UserInfo> option) {
-		return new StdUserMergePerson(option);
+		return new NodeUserPerson(option).toAction();
 	}
 	
 	

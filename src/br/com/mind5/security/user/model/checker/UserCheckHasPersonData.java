@@ -7,16 +7,16 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 import br.com.mind5.security.user.info.UserInfo;
 
-public final class UserCheckHasPerson extends ModelCheckerTemplateSimpleV2<UserInfo> {
+public final class UserCheckHasPersonData extends ModelCheckerTemplateSimpleV2<UserInfo> {
 	
-	public UserCheckHasPerson(ModelCheckerOption option) {
+	public UserCheckHasPersonData(ModelCheckerOption option) {
 		super(option);
 	}
 	
 	
 	
 	@Override protected boolean checkHook(UserInfo recordInfo, Connection conn, String schemaName) {	
-		if (recordInfo.codPerson <= 0)			
+		if (recordInfo.personData == null)			
 			return super.FAILED;		
 		
 		return super.SUCCESS;
