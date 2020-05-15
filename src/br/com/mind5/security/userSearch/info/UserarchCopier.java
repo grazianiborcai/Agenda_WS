@@ -3,12 +3,27 @@ package br.com.mind5.security.userSearch.info;
 
 import java.util.List;
 
+import br.com.mind5.business.refundPolicy.info.RefupolInfo;
 import br.com.mind5.info.InfoCopier;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
 import br.com.mind5.payment.refundOrderItem.info.RefemInfo;
 import br.com.mind5.security.user.info.UserInfo;
 
 public final class UserarchCopier {
+	public static UserarchInfo copyFromRefupol(RefupolInfo source) {
+		InfoCopier<UserarchInfo, RefupolInfo> copier = new UserarchCopyRefupol();
+		return copier.makeCopy(source);
+	}
+	
+	
+	
+	public static List<UserarchInfo> copyFromRefupol(List<RefupolInfo> sources) {
+		InfoCopier<UserarchInfo, RefupolInfo> copier = new UserarchCopyRefupol();
+		return copier.makeCopy(sources);
+	}
+	
+	
+	
 	public static UserarchInfo copyFromUser(UserInfo source) {
 		InfoCopier<UserarchInfo, UserInfo> copier = new UserarchCopyUser();
 		return copier.makeCopy(source);
