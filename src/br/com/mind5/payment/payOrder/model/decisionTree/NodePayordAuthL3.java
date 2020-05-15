@@ -4,18 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
 import br.com.mind5.payment.payOrder.model.action.StdPayordSuccess;
-import br.com.mind5.payment.payOrder.model.checker.PayordCheckAuthOwner;
+import br.com.mind5.payment.payOrder.model.checker.PayordCheckCrecarch;
+import br.com.mind5.payment.payOrder.model.checker.PayordCheckOrdarch;
 
-public final class NodePayordAuthL2 extends DeciTreeTemplateWriteV2<PayordInfo> {
+public final class NodePayordAuthL3 extends DeciTreeTemplateWriteV2<PayordInfo> {
 	
-	public NodePayordAuthL2(DeciTreeOption<PayordInfo> option) {
+	public NodePayordAuthL3(DeciTreeOption<PayordInfo> option) {
 		super(option);
 	}
 	
@@ -30,7 +31,14 @@ public final class NodePayordAuthL2 extends DeciTreeTemplateWriteV2<PayordInfo> 
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
-		checker = new PayordCheckAuthOwner(checkerOption);
+		checker = new PayordCheckOrdarch(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
+		checker = new PayordCheckCrecarch(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueueV2<>(queue);
@@ -44,17 +52,6 @@ public final class NodePayordAuthL2 extends DeciTreeTemplateWriteV2<PayordInfo> 
 		ActionStdV1<PayordInfo> success = new StdPayordSuccess(option);
 		
 		actions.add(success);		
-		return actions;
-	}
-	
-	
-	
-	@Override protected List<ActionStdV1<PayordInfo>> buildActionsOnFailedHook(DeciTreeOption<PayordInfo> option) {
-		List<ActionStdV1<PayordInfo>> actions = new ArrayList<>();		
-
-		ActionStdV1<PayordInfo> nodeL3 = new NodePayordAuthL3(option).toAction();
-		
-		actions.add(nodeL3);		
 		return actions;
 	}
 }
