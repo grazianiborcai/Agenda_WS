@@ -111,7 +111,7 @@
         <security:intercept-url pattern="/**/Order/searchOrder"					access="isAuthenticated()" 							/>         
         <security:intercept-url pattern="/**/Order/**"							access="isAuthenticated()" 							/>   <!-- TODO: rever -->
         <security:intercept-url pattern="/**/Payment/payOrder"					access="isAuthenticated()" 							/>     
-        <security:intercept-url pattern="/**/Payment/refundOrder"				access="hasAuthority('STORE_PAY_WRITE')" 			/>   <!-- TODO: Remover ? -->
+        <security:intercept-url pattern="/**/Payment/refundOrder"				access="hasAuthority('OWNER_WRITE')" 				/>
         <security:intercept-url pattern="/**/Payment/refundOrderItem"			access="isAuthenticated()" 							/>        
         <security:intercept-url pattern="/**/Payment/refreshStatus"				access="isAuthenticated()" 							/>     
         <security:intercept-url pattern="/**/Payment/insertCreditCard"			access="isAuthenticated()" 							/>

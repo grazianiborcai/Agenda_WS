@@ -16,7 +16,7 @@ public final class UauthInfo extends InfoRecord implements Cloneable {
 	
 	
 	public UauthInfo() {
-		super(UauthInfo.class);
+		super();
 		
 		codOwner = DefaultValue.number();
 		codUser = DefaultValue.number();
