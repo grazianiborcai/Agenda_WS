@@ -1247,4 +1247,8 @@ public final class SystemCode {
 	public static final int SCHEDULE_RESERVE_MANDATORY_FIELD_EMPTY		= 12200;
 	public static final int SCHEDULE_RESERVE_ALREADY_EXIST 				= 12201;
 	public static final int SCHEDULE_RESERVE_NOT_FOUND 					= 12202;
+	
+	//Refund Policy
+	public static final int REFUPOL_MANDATORY_FIELD_EMPTY 				= 12250;
+	public static final int REFUPOL_REJECTEC_BY_RULE 					= 12251;
 }
