@@ -17,11 +17,11 @@ import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.security.user.dao.DaoUserDbTableColumn;
 import br.com.mind5.security.userList.info.UselisInfo;
 
-public final class UselisSelectSingle extends DaoStmtTemplate<UselisInfo> {
+public final class DaoUselisSelectSingle extends DaoStmtTemplate<UselisInfo> {
 	private final String MAIN_TABLE = DaoDbTable.USER_TABLE;
 	
 	
-	public UselisSelectSingle(Connection conn, UselisInfo recordInfo, String schemaName) {
+	public DaoUselisSelectSingle(Connection conn, UselisInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -51,7 +51,7 @@ public final class UselisSelectSingle extends DaoStmtTemplate<UselisInfo> {
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new UselisWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new DaoUselisWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	

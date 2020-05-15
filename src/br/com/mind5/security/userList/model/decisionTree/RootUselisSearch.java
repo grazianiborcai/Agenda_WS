@@ -5,16 +5,16 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 import br.com.mind5.security.userList.info.UselisInfo;
 import br.com.mind5.security.userList.model.action.LazyUselisRootSelect;
 import br.com.mind5.security.userList.model.action.StdUselisMergeUserarch;
-import br.com.mind5.security.userList.model.checker.UselisCheckDummy;
 
-public final class RootUselisSearch extends DeciTreeTemplateReadV1<UselisInfo> {
+public final class RootUselisSearch extends DeciTreeTemplateReadV2<UselisInfo> {
 	
 	public RootUselisSearch(DeciTreeOption<UselisInfo> option) {
 		super(option);
@@ -26,7 +26,7 @@ public final class RootUselisSearch extends DeciTreeTemplateReadV1<UselisInfo> {
 		List<ModelCheckerV1<UselisInfo>> queue = new ArrayList<>();		
 		ModelCheckerV1<UselisInfo> checker;	
 		
-		checker = new UselisCheckDummy();
+		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueueV2<>(queue);

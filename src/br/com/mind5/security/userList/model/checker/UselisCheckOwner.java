@@ -1,56 +1,27 @@
 package br.com.mind5.security.userList.model.checker;
 
-import java.util.List;
-
 import br.com.mind5.business.owner.info.OwnerInfo;
 import br.com.mind5.business.owner.model.checker.OwnerCheckExist;
-import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.security.userList.info.UselisInfo;
 
-public final class UselisCheckOwner implements ModelCheckerV1<UselisInfo> {
-	private final boolean RESULT_FAILED = false;
-	private final boolean RESULT_SUCCESS = true;
-	
-	private ModelCheckerV1<OwnerInfo> checker;
-	
+public final class UselisCheckOwner extends ModelCheckerTemplateForwardV2<UselisInfo, OwnerInfo> {
 	
 	public UselisCheckOwner(ModelCheckerOption option) {
-		checker = new OwnerCheckExist(option);
-	}
-	
-	
-	
-	@Override public boolean check(List<UselisInfo> recordInfos) {
-		for (UselisInfo eachInfo : recordInfos) {
-			if (check(eachInfo) == RESULT_FAILED)
-				return RESULT_FAILED;
-		}
-		
-		return RESULT_SUCCESS;
+		super(option);
 	}
 
-	
-	
-	@Override public boolean check(UselisInfo recordInfo) {
-		return checker.check(OwnerInfo.copyFrom(recordInfo));
-	}
 
 	
-	
-	@Override public boolean getResult() {
-		return checker.getResult();
+	@Override protected ModelCheckerV1<OwnerInfo> getCheckerHook(ModelCheckerOption option) {
+		return new OwnerCheckExist(option);
 	}
-
 	
 	
-	@Override public String getFailMessage() {
-		return checker.getFailMessage();
-	}
-
 	
-	
-	@Override public int getFailCode() {
-		return checker.getFailCode();
+	@Override protected OwnerInfo toForwardClass(UselisInfo baseRecord) {
+		return OwnerInfo.copyFrom(baseRecord);
 	}
 }

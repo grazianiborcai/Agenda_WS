@@ -5,11 +5,11 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 import br.com.mind5.security.userList.info.UselisInfo;
 import br.com.mind5.security.userList.model.action.LazyUselisMergePersolis;
 import br.com.mind5.security.userList.model.action.StdUselisMergeToSelect;
@@ -17,7 +17,7 @@ import br.com.mind5.security.userList.model.checker.UselisCheckLangu;
 import br.com.mind5.security.userList.model.checker.UselisCheckOwner;
 import br.com.mind5.security.userList.model.checker.UselisCheckRead;
 
-public final class RootUselisSelect extends DeciTreeTemplateReadV1<UselisInfo> {
+public final class RootUselisSelect extends DeciTreeTemplateReadV2<UselisInfo> {
 	
 	public RootUselisSelect(DeciTreeOption<UselisInfo> option) {
 		super(option);

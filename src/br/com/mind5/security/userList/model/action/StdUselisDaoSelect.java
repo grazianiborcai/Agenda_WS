@@ -5,15 +5,15 @@ import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.userList.info.UselisInfo;
 
-public final class StdUselisMergeUserarch extends ActionStdTemplateV2<UselisInfo> {
+public final class StdUselisDaoSelect extends ActionStdTemplateV2<UselisInfo> {
 
-	public StdUselisMergeUserarch(DeciTreeOption<UselisInfo> option) {
+	public StdUselisDaoSelect(DeciTreeOption<UselisInfo> option) {
 		super(option);
 	}
 	
 	
 	
 	protected ActionVisitorV2<UselisInfo> buildVisitorHook(DeciTreeOption<UselisInfo> option) {
-		return new VisiUselisMergeUserarch(option);
+		return new VisiUselisDaoSelect(option);
 	}
 }

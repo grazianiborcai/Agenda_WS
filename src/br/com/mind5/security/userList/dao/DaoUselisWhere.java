@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.security.userList.info.UselisInfo;
 
-public final class UselisWhere implements DaoStmtWhere {	
+public final class DaoUselisWhere implements DaoStmtWhere {	
 	private String whereClause;	
 	
 	
-	public UselisWhere(DaoWhereBuilderOption whereOption, String tableName, UselisInfo recordInfo) {
+	public DaoUselisWhere(DaoWhereBuilderOption whereOption, String tableName, UselisInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -27,15 +27,15 @@ public final class UselisWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-				case UselisDbTableColumn.COL_COD_OWNER :
+				case DaoUselisDbTableColumn.COL_COD_OWNER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;
 					
-				case UselisDbTableColumn.COL_COD_USER :
+				case DaoUselisDbTableColumn.COL_COD_USER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codUser));
 					break;
 					
-				case UselisDbTableColumn.COL_RECORD_MODE :
+				case DaoUselisDbTableColumn.COL_RECORD_MODE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.recordMode);
 					break;
 			}
