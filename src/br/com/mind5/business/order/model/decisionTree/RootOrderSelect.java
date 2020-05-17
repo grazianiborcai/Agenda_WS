@@ -11,7 +11,7 @@ import br.com.mind5.business.order.model.action.LazyOrderMergeFeecat;
 import br.com.mind5.business.order.model.action.LazyOrderMergeOrderatus;
 import br.com.mind5.business.order.model.action.LazyOrderMergeOrderem;
 import br.com.mind5.business.order.model.action.LazyOrderNodePayord;
-import br.com.mind5.business.order.model.action.LazyOrderNodeRefugroup;
+import br.com.mind5.business.order.model.action.LazyOrderNodeRefugroupL1;
 import br.com.mind5.business.order.model.action.StdOrderMergeToSelect;
 import br.com.mind5.business.order.model.checker.OrderCheckLangu;
 import br.com.mind5.business.order.model.checker.OrderCheckRead;
@@ -66,7 +66,7 @@ public final class RootOrderSelect extends DeciTreeTemplateReadV2<OrderInfo> {
 		ActionLazyV1<OrderInfo> enforceFeecat = new LazyOrderEnforceFeecat(option.conn, option.schemaName);
 		ActionLazyV1<OrderInfo> mergeFeecat = new LazyOrderMergeFeecat(option.conn, option.schemaName);
 		ActionLazyV1<OrderInfo> nodePayord = new LazyOrderNodePayord(option.conn, option.schemaName);
-		ActionLazyV1<OrderInfo> nodeRefugroup = new LazyOrderNodeRefugroup(option.conn, option.schemaName);
+		ActionLazyV1<OrderInfo> nodeRefugroup = new LazyOrderNodeRefugroupL1(option.conn, option.schemaName);
 		
 		select.addPostAction(mergeItem);
 		mergeItem.addPostAction(enforceCurrency);

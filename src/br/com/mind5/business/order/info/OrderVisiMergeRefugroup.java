@@ -5,9 +5,9 @@ import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorV3;
 import br.com.mind5.info.InfoUniquifier;
-import br.com.mind5.masterData.refundPolicyGroupHeader.info.RefugraderInfo;
+import br.com.mind5.masterData.refundPolicyGroup.info.RefugroupInfo;
 
-final class OrderVisiMergeRefugrader implements InfoMergerVisitorV3<OrderInfo, RefugraderInfo> {
+final class OrderVisiMergeRefugroup implements InfoMergerVisitorV3<OrderInfo, RefugroupInfo> {
 
 	@Override public List<OrderInfo> beforeMerge(List<OrderInfo> baseInfos) {
 		return baseInfos;
@@ -15,13 +15,13 @@ final class OrderVisiMergeRefugrader implements InfoMergerVisitorV3<OrderInfo, R
 	
 	
 	
-	@Override public boolean shouldMerge(OrderInfo baseInfo, RefugraderInfo selectedInfo) {
+	@Override public boolean shouldMerge(OrderInfo baseInfo, RefugroupInfo selectedInfo) {
 		return (baseInfo.codRefundPolicyGroup == selectedInfo.codRefundPolicyGroup);
 	}
 	
 	
 
-	@Override public List<OrderInfo> merge(OrderInfo baseInfo, RefugraderInfo selectedInfo) {
+	@Override public List<OrderInfo> merge(OrderInfo baseInfo, RefugroupInfo selectedInfo) {
 		List<OrderInfo> results = new ArrayList<>();
 		
 		baseInfo.txtRefundPolicyGroup = selectedInfo.txtRefundPolicyGroup;

@@ -14,7 +14,7 @@ import br.com.mind5.info.InfoMergerV3;
 import br.com.mind5.masterData.currency.info.CurrencyInfo;
 import br.com.mind5.masterData.feeCategory.info.FeecatInfo;
 import br.com.mind5.masterData.orderStatus.info.OrderatusInfo;
-import br.com.mind5.masterData.refundPolicyGroupHeader.info.RefugraderInfo;
+import br.com.mind5.masterData.refundPolicyGroup.info.RefugroupInfo;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
 import br.com.mind5.security.username.info.UsernameInfo;
 
@@ -45,13 +45,13 @@ public final class OrderMerger {
 	
 	
 	
-	public static List<OrderInfo> mergeWithRefugrader(List<OrderInfo> baseInfos, List<RefugraderInfo> selectedInfos) {
-		InfoMergerBuilderV3<OrderInfo, RefugraderInfo> builder = new InfoMergerBuilderV3<>();
+	public static List<OrderInfo> mergeWithRefugroup(List<OrderInfo> baseInfos, List<RefugroupInfo> selectedInfos) {
+		InfoMergerBuilderV3<OrderInfo, RefugroupInfo> builder = new InfoMergerBuilderV3<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new OrderVisiMergeRefugrader());
-		InfoMergerV3<OrderInfo, RefugraderInfo> merger = builder.build();		
+		builder.addVisitor(new OrderVisiMergeRefugroup());
+		InfoMergerV3<OrderInfo, RefugroupInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}	

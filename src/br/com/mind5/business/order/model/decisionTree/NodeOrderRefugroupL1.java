@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.order.info.OrderInfo;
-import br.com.mind5.business.order.model.action.StdOrderMergeRefugrader;
+import br.com.mind5.business.order.model.action.StdOrderMergeRefugroup;
 import br.com.mind5.business.order.model.action.StdOrderMergeRefupown;
 import br.com.mind5.business.order.model.checker.OrderCheckHasRefugroup;
 import br.com.mind5.model.action.ActionStdV1;
@@ -14,9 +14,9 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class NodeOrderRefugroup extends DeciTreeTemplateWriteV2<OrderInfo> {
+public final class NodeOrderRefugroupL1 extends DeciTreeTemplateWriteV2<OrderInfo> {
 	
-	public NodeOrderRefugroup(DeciTreeOption<OrderInfo> option) {
+	public NodeOrderRefugroupL1(DeciTreeOption<OrderInfo> option) {
 		super(option);
 	}
 	
@@ -42,9 +42,9 @@ public final class NodeOrderRefugroup extends DeciTreeTemplateWriteV2<OrderInfo>
 	@Override protected List<ActionStdV1<OrderInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderInfo> option) {
 		List<ActionStdV1<OrderInfo>> actions = new ArrayList<>();		
 
-		ActionStdV1<OrderInfo> mergeRefugrader = new StdOrderMergeRefugrader(option);
+		ActionStdV1<OrderInfo> mergeRefugroup = new StdOrderMergeRefugroup(option);
 		
-		actions.add(mergeRefugrader);
+		actions.add(mergeRefugroup);
 		return actions;
 	}
 	
