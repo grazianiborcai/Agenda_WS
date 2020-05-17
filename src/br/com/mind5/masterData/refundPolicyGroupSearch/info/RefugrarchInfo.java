@@ -1,16 +1,16 @@
-package br.com.mind5.masterData.refundPolicyGroupHeaderSearch.info;
+package br.com.mind5.masterData.refundPolicyGroupSearch.info;
 
 import java.util.List;
 
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
 
-public final class RefugradarchInfo extends InfoRecord implements Cloneable {
+public final class RefugrarchInfo extends InfoRecord implements Cloneable {
 	public int codRefundPolicyGroup;
 	public String txtRefundPolicyGroup;
 	
 	
-	public RefugradarchInfo() {
+	public RefugrarchInfo() {
 		super();
 		
 		codRefundPolicyGroup = DefaultValue.number();
@@ -18,14 +18,14 @@ public final class RefugradarchInfo extends InfoRecord implements Cloneable {
 	
 	
 	
-	public static RefugradarchInfo copyFrom(Object sourceObj) {
-		return copyFrom(sourceObj, RefugradarchInfo.class);
+	public static RefugrarchInfo copyFrom(Object sourceObj) {
+		return copyFrom(sourceObj, RefugrarchInfo.class);
 	}
 	
 	
 	
-	public static List<RefugradarchInfo> copyFrom(List<?> sourceObjs) {
-		return copyFrom(sourceObjs, RefugradarchInfo.class);
+	public static List<RefugrarchInfo> copyFrom(List<?> sourceObjs) {
+		return copyFrom(sourceObjs, RefugrarchInfo.class);
 	}
 	
 	
@@ -50,11 +50,11 @@ public final class RefugradarchInfo extends InfoRecord implements Cloneable {
 			return true;
 		
 		
-		if (!(o instanceof RefugradarchInfo))
+		if (!(o instanceof RefugrarchInfo))
 			return false;
 		
 		
-		RefugradarchInfo obj = (RefugradarchInfo) o;
+		RefugrarchInfo obj = (RefugrarchInfo) o;
 		return (codRefundPolicyGroup == obj.codRefundPolicyGroup);
 	}
 }

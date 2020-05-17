@@ -1,4 +1,4 @@
-package br.com.mind5.masterData.refundPolicyGroupHeaderSearch.dao;
+package br.com.mind5.masterData.refundPolicyGroupSearch.dao;
 
 import br.com.mind5.dao.DaoJoin;
 import br.com.mind5.dao.DaoJoinBuilder;
@@ -7,11 +7,11 @@ import br.com.mind5.dao.DaoJoinType;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class DaoRefugradarchJoinTxt implements DaoJoinBuilder {
+public final class DaoRefugrarchJoinTxt implements DaoJoinBuilder {
 	private final String leftTable;
 	
 	
-	public DaoRefugradarchJoinTxt(String leftTableName) {
+	public DaoRefugrarchJoinTxt(String leftTableName) {
 		leftTable = leftTableName;
 	}
 
