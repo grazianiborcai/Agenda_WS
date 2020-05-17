@@ -1,4 +1,4 @@
-package br.com.mind5.masterData.refundPolicyGroupHeader.dao;
+package br.com.mind5.masterData.refundPolicyGroup.dao;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -16,13 +16,13 @@ import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
-import br.com.mind5.masterData.refundPolicyGroupHeader.info.RefugraderInfo;
+import br.com.mind5.masterData.refundPolicyGroup.info.RefugroupInfo;
 
-public final class DaoRefugraderSelectSingle extends DaoStmtTemplate<RefugraderInfo> {
+public final class DaoRefugroupSelectSingle extends DaoStmtTemplate<RefugroupInfo> {
 	private final String MAIN_TABLE = DaoDbTable.REFUND_POLICY_GROUP_HEADER_TABLE;
 	
 	
-	public DaoRefugraderSelectSingle(Connection conn, RefugraderInfo recordInfo, String schemaName) {
+	public DaoRefugroupSelectSingle(Connection conn, RefugroupInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -40,39 +40,39 @@ public final class DaoRefugraderSelectSingle extends DaoStmtTemplate<RefugraderI
 	
 	
 	
-	@Override protected String buildWhereClauseHook(String tableName, RefugraderInfo recordInfo) {
+	@Override protected String buildWhereClauseHook(String tableName, RefugroupInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
 		
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;
 		
-		DaoStmtWhere whereClause = new DaoRefugraderWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new DaoRefugroupWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
 	
 	
-	@Override protected DaoJoin getJoinHook(RefugraderInfo recordInfo) {
-		DaoJoinBuilder joinText = new DaoRefugraderJoinTxt(MAIN_TABLE);		
+	@Override protected DaoJoin getJoinHook(RefugroupInfo recordInfo) {
+		DaoJoinBuilder joinText = new DaoRefugroupJoinTxt(MAIN_TABLE);		
 		return joinText.build();
 	}
 	
 	
 	
-	@Override protected DaoResultParser<RefugraderInfo> getResultParserHook() {
-		return new DaoResultParser<RefugraderInfo>() {
-			@Override public List<RefugraderInfo> parseResult(RefugraderInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
-				List<RefugraderInfo> finalResult = new ArrayList<>();
+	@Override protected DaoResultParser<RefugroupInfo> getResultParserHook() {
+		return new DaoResultParser<RefugroupInfo>() {
+			@Override public List<RefugroupInfo> parseResult(RefugroupInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
+				List<RefugroupInfo> finalResult = new ArrayList<>();
 				
 				if (stmtResult.next() == false)				
 					return finalResult;
 			
 				do {				
-					RefugraderInfo dataInfo = new RefugraderInfo();
+					RefugroupInfo dataInfo = new RefugroupInfo();
 					
-					dataInfo.codRefundPolicyGroup = DaoFormatter.sqlToInt(stmtResult, DaoRefugraderDbTableColumn.COL_COD_REFUND_POLICY_GROUP);
-					dataInfo.txtRefundPolicyGroup = stmtResult.getString(DaoRefugraderDbTableColumn.COL_NAME);
-					dataInfo.codLanguage = stmtResult.getString(DaoRefugraderDbTableColumn.COL_COD_LANGUAGE);	
+					dataInfo.codRefundPolicyGroup = DaoFormatter.sqlToInt(stmtResult, DaoRefugroupDbTableColumn.COL_COD_REFUND_POLICY_GROUP);
+					dataInfo.txtRefundPolicyGroup = stmtResult.getString(DaoRefugroupDbTableColumn.COL_NAME);
+					dataInfo.codLanguage = stmtResult.getString(DaoRefugroupDbTableColumn.COL_COD_LANGUAGE);	
 					
 					finalResult.add(dataInfo);				
 				} while (stmtResult.next());

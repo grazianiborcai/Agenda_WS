@@ -1,4 +1,4 @@
-package br.com.mind5.masterData.refundPolicyGroupHeader.dao;
+package br.com.mind5.masterData.refundPolicyGroup.dao;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
@@ -9,13 +9,13 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class DaoRefugraderDbTableColumn extends DaoDbTableColumnTemplate {
+public final class DaoRefugroupDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_LANGUAGE = DaoDbField.COL_COD_LANGUAGE;
 	public static final String COL_COD_REFUND_POLICY_GROUP = DaoDbField.COL_COD_REFUND_POLICY_GROUP;
 	public static final String COL_NAME = DaoDbField.COL_NAME;
 	
 	
-	public DaoRefugraderDbTableColumn() {
+	public DaoRefugroupDbTableColumn() {
 		super();
 	}
 	

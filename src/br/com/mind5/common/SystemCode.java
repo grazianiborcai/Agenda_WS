@@ -1251,4 +1251,7 @@ public final class SystemCode {
 	//Refund Policy
 	public static final int REFUPOL_MANDATORY_FIELD_EMPTY 				= 12250;
 	public static final int REFUPOL_REJECTEC_BY_RULE 					= 12251;
+	
+	//Refund Policy Group Header Search
+	public static final int REFUPOL_GR_HDR_SEARCH_MANDATORY_FIELD_EMPTY = 12300;
 }

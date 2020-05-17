@@ -142,7 +142,7 @@ import br.com.mind5.masterData.orderStatusSearch.dao.DaoOrderatarchDbTableColumn
 import br.com.mind5.masterData.paymentStatus.dao.DaoPaymenusDbTableColumn;
 import br.com.mind5.masterData.paymentStatusSearch.dao.DaoPaymenusarchDbTableColumn;
 import br.com.mind5.masterData.refundPolicy.dao.DaoRefupoDbTableColumn;
-import br.com.mind5.masterData.refundPolicyGroupHeader.dao.DaoRefugraderDbTableColumn;
+import br.com.mind5.masterData.refundPolicyGroup.dao.DaoRefugroupDbTableColumn;
 import br.com.mind5.masterData.refundPolicyGroupItem.dao.DaoRefugritemDbTableColumn;
 import br.com.mind5.masterData.refundPolicyGroupItemSearch.dao.DaoRefugritarchDbTableColumn;
 import br.com.mind5.masterData.state.dao.DaoStateDbTableColumn;
@@ -361,7 +361,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new DaoRefupoDbTableColumn());
 		addTable(new DaoRefupownDbTableColumn());
 		addTable(new DaoRefuporeDbTableColumn());
-		addTable(new DaoRefugraderDbTableColumn());
+		addTable(new DaoRefugroupDbTableColumn());
 		addTable(new DaoRefugritemDbTableColumn());
 		addTable(new DaoRefugritarchDbTableColumn());
 		addTable(new DaoPaymenusDbTableColumn());
