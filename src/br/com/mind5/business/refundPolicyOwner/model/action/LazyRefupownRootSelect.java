@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.refundPolicyOwner.info.RefupownInfo;
-import br.com.mind5.business.refundPolicyOwner.model.decisionTree.RootRefupownSelect;
+import br.com.mind5.business.refundPolicyOwner.model.decisionTree.RootRefupownSelectFallback;
 import br.com.mind5.model.action.ActionLazyTemplateV2;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
@@ -25,7 +25,7 @@ public final class LazyRefupownRootSelect extends ActionLazyTemplateV2<RefupownI
 	
 	
 	@Override protected ActionStdV1<RefupownInfo> getInstanceOfActionHook(DeciTreeOption<RefupownInfo> option) {
-		return new RootRefupownSelect(option).toAction();
+		return new RootRefupownSelectFallback(option).toAction();
 	}
 	
 	

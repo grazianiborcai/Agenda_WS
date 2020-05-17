@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.order.info.OrderInfo;
 import br.com.mind5.business.order.info.OrderMerger;
 import br.com.mind5.business.refundPolicyOwner.info.RefupownInfo;
-import br.com.mind5.business.refundPolicyOwner.model.decisionTree.RootRefupownSelect;
+import br.com.mind5.business.refundPolicyOwner.model.decisionTree.RootRefupownSelectFallback;
 import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,7 +19,7 @@ final class VisiOrderMergeRefupown extends ActionVisitorTemplateMergeV2<OrderInf
 	
 	
 	@Override protected Class<? extends DeciTree<RefupownInfo>> getTreeClassHook() {
-		return RootRefupownSelect.class;
+		return RootRefupownSelectFallback.class;
 	}
 	
 	
