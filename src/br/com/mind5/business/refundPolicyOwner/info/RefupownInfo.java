@@ -18,6 +18,7 @@ public final class RefupownInfo extends InfoRecord implements Cloneable {
 		super();
 		
 		codOwner = DefaultValue.number();
+		codRefundPolicyGroup = DefaultValue.number();
 		refugritemes = DefaultValue.list();
 	}
 	
