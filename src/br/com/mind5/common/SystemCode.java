@@ -1254,4 +1254,7 @@ public final class SystemCode {
 	
 	//Refund Policy Group Header Search
 	public static final int REFUPOL_GR_HDR_SEARCH_MANDATORY_FIELD_EMPTY = 12300;
+	
+	//Refund Policy Owner Search
+	public static final int REFUPOL_OWNER_SEARCH_MANDATORY_FIELD_EMPTY 	= 12350;
 }
