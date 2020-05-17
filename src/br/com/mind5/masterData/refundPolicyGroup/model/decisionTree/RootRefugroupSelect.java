@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.masterData.refundPolicyGroup.info.RefugroupInfo;
+import br.com.mind5.masterData.refundPolicyGroup.model.action.LazyRefugroupMergeRefugritem;
+import br.com.mind5.masterData.refundPolicyGroup.model.action.StdRefugroupMergeRefugrader;
 import br.com.mind5.masterData.refundPolicyGroup.model.checker.RefugroupCheckRead;
+import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -40,9 +43,12 @@ public final class RootRefugroupSelect extends DeciTreeTemplateReadV2<RefugroupI
 	@Override protected List<ActionStdV1<RefugroupInfo>> buildActionsOnPassedHook(DeciTreeOption<RefugroupInfo> option) {
 		List<ActionStdV1<RefugroupInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<RefugroupInfo> nodeL1 = new NodeRefugroupSelectL1(option).toAction();
+		ActionStdV1<RefugroupInfo> mergeRefugrader = new StdRefugroupMergeRefugrader(option);
+		ActionLazyV1<RefugroupInfo> mergeRefugritem = new LazyRefugroupMergeRefugritem(option.conn, option.schemaName);
 		
-		actions.add(nodeL1);
+		mergeRefugrader.addPostAction(mergeRefugritem);
+		
+		actions.add(mergeRefugrader);
 		return actions;
 	}
 }
