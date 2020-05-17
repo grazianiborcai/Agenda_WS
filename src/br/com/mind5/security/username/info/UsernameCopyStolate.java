@@ -3,7 +3,7 @@ package br.com.mind5.security.username.info;
 import br.com.mind5.business.storeLeaveDate.info.StolateInfo;
 import br.com.mind5.info.InfoCopierTemplate;
 
-final class UsernameCopyStolate extends InfoCopierTemplate<UsernameInfo, StolateInfo>{
+final class UsernameCopyStolate extends InfoCopierTemplate<UsernameInfo, StolateInfo> {
 	
 	public UsernameCopyStolate() {
 		super();

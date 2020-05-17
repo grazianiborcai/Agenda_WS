@@ -3,7 +3,7 @@ package br.com.mind5.security.username.info;
 import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.info.InfoCopierTemplate;
 
-final class UsernameCopyStore extends InfoCopierTemplate<UsernameInfo, StoreInfo>{
+final class UsernameCopyStore extends InfoCopierTemplate<UsernameInfo, StoreInfo> {
 	
 	public UsernameCopyStore() {
 		super();

@@ -3,7 +3,7 @@ package br.com.mind5.security.username.info;
 import br.com.mind5.business.orderList.info.OrdistInfo;
 import br.com.mind5.info.InfoCopierTemplate;
 
-final class UsernameCopyOrdist extends InfoCopierTemplate<UsernameInfo, OrdistInfo>{
+final class UsernameCopyOrdist extends InfoCopierTemplate<UsernameInfo, OrdistInfo> {
 	
 	public UsernameCopyOrdist() {
 		super();

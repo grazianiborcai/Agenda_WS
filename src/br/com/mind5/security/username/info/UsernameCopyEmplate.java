@@ -3,7 +3,7 @@ package br.com.mind5.security.username.info;
 import br.com.mind5.business.employeeLeaveDate.info.EmplateInfo;
 import br.com.mind5.info.InfoCopierTemplate;
 
-final class UsernameCopyEmplate extends InfoCopierTemplate<UsernameInfo, EmplateInfo>{
+final class UsernameCopyEmplate extends InfoCopierTemplate<UsernameInfo, EmplateInfo> {
 	
 	public UsernameCopyEmplate() {
 		super();

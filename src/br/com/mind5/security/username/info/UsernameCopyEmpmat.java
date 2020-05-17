@@ -3,7 +3,7 @@ package br.com.mind5.security.username.info;
 import br.com.mind5.business.employeeMaterial.info.EmpmatInfo;
 import br.com.mind5.info.InfoCopierTemplate;
 
-final class UsernameCopyEmpmat extends InfoCopierTemplate<UsernameInfo, EmpmatInfo>{
+final class UsernameCopyEmpmat extends InfoCopierTemplate<UsernameInfo, EmpmatInfo> {
 	
 	public UsernameCopyEmpmat() {
 		super();

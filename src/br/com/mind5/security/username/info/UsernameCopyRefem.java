@@ -3,7 +3,7 @@ package br.com.mind5.security.username.info;
 import br.com.mind5.info.InfoCopierTemplate;
 import br.com.mind5.payment.refundOrderItem.info.RefemInfo;
 
-final class UsernameCopyRefem extends InfoCopierTemplate<UsernameInfo, RefemInfo>{
+final class UsernameCopyRefem extends InfoCopierTemplate<UsernameInfo, RefemInfo> {
 	
 	public UsernameCopyRefem() {
 		super();

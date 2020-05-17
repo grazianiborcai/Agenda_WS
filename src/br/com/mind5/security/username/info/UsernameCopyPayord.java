@@ -3,7 +3,7 @@ package br.com.mind5.security.username.info;
 import br.com.mind5.info.InfoCopierTemplate;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
 
-final class UsernameCopyPayord extends InfoCopierTemplate<UsernameInfo, PayordInfo>{
+final class UsernameCopyPayord extends InfoCopierTemplate<UsernameInfo, PayordInfo> {
 	
 	public UsernameCopyPayord() {
 		super();

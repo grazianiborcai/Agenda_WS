@@ -1,17 +1,17 @@
 package br.com.mind5.security.username.info;
 
+import br.com.mind5.business.refundPolicyOwner.info.RefupownInfo;
 import br.com.mind5.info.InfoCopierTemplate;
-import br.com.mind5.security.userPassword.info.UpswdInfo;
 
-final class UsernameCopyUpswd extends InfoCopierTemplate<UsernameInfo, UpswdInfo> {
+final class UsernameCopyRefupown extends InfoCopierTemplate<UsernameInfo, RefupownInfo> {
 	
-	public UsernameCopyUpswd() {
+	public UsernameCopyRefupown() {
 		super();
 	}
 	
 	
 	
-	@Override protected UsernameInfo makeCopyHook(UpswdInfo source) {
+	@Override protected UsernameInfo makeCopyHook(RefupownInfo source) {
 		UsernameInfo result = new UsernameInfo();
 		
 		result.codOwner = source.codOwner;	

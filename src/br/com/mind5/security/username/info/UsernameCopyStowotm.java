@@ -3,7 +3,7 @@ package br.com.mind5.security.username.info;
 import br.com.mind5.business.storeWorkTime.info.StowotmInfo;
 import br.com.mind5.info.InfoCopierTemplate;
 
-final class UsernameCopyStowotm extends InfoCopierTemplate<UsernameInfo, StowotmInfo>{
+final class UsernameCopyStowotm extends InfoCopierTemplate<UsernameInfo, StowotmInfo> {
 	
 	public UsernameCopyStowotm() {
 		super();

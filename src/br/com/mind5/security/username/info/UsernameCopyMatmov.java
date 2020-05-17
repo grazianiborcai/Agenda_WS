@@ -3,7 +3,7 @@ package br.com.mind5.security.username.info;
 import br.com.mind5.business.materialMovement.info.MatmovInfo;
 import br.com.mind5.info.InfoCopierTemplate;
 
-final class UsernameCopyMatmov extends InfoCopierTemplate<UsernameInfo, MatmovInfo>{
+final class UsernameCopyMatmov extends InfoCopierTemplate<UsernameInfo, MatmovInfo> {
 	
 	public UsernameCopyMatmov() {
 		super();
