@@ -56,6 +56,8 @@ import br.com.mind5.masterData.orderStatusSearch.info.OrderatarchInfo;
 import br.com.mind5.masterData.orderStatusSearch.model.OrderatarchModelSelect;
 import br.com.mind5.masterData.paymentStatusSearch.info.PaymenusarchInfo;
 import br.com.mind5.masterData.paymentStatusSearch.model.PaymenusarchModelSelect;
+import br.com.mind5.masterData.refundPolicyGroup.info.RefugroupInfo;
+import br.com.mind5.masterData.refundPolicyGroup.model.RefugroupModelSearch;
 import br.com.mind5.masterData.stateSearch.info.StatarchInfo;
 import br.com.mind5.masterData.stateSearch.model.StatarchModelSelect;
 import br.com.mind5.masterData.timezoneSearch.info.TimezonarchInfo;
@@ -94,6 +96,7 @@ public final class MasterDataResource {
 	private static final String SELECT_MAT_MOV_TYPE = "/selectMatmovType";
 	private static final String SELECT_MONTH = "/selectMonth";
 	private static final String SELECT_MOON_PHASE = "/selectMoonPhase";
+	private static final String SELECT_REFUND_POLICY_GROUP = "/selectRefundPolicyGroup";
 	
 	
 	@GET
@@ -108,7 +111,10 @@ public final class MasterDataResource {
 		
 		Model model = new PositionModelSelect(recordInfo);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();
+		model.close();
+		
+		return result;
 	}
 	
 	
@@ -125,7 +131,10 @@ public final class MasterDataResource {
 		
 		Model model = new MatunitarchModelSelect(recordInfo);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();
+		model.close();
+		
+		return result;
 	}
 	
 	
@@ -142,7 +151,10 @@ public final class MasterDataResource {
 		
 		Model model = new MatyparchModelSelect(recordInfo);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();
+		model.close();
+		
+		return result;
 	}
 	
 	
@@ -159,7 +171,10 @@ public final class MasterDataResource {
 		
 		Model model = new MategarchModelSelect(recordInfo);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();
+		model.close();
+		
+		return result;
 	}
 	
 	
@@ -178,7 +193,10 @@ public final class MasterDataResource {
 		
 		Model model = new MatGroupModelSearch(recordInfo);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();
+		model.close();
+		
+		return result;
 	}
 	
 	
@@ -195,7 +213,10 @@ public final class MasterDataResource {
 		
 		Model model = new BusarearchModelSelect(recordInfo);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();
+		model.close();
+		
+		return result;
 	}
 	
 	
@@ -212,7 +233,10 @@ public final class MasterDataResource {
 		
 		Model model = new CurrarshModelSelect(recordInfo);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();
+		model.close();
+		
+		return result;
 	}
 	
 	
@@ -227,7 +251,10 @@ public final class MasterDataResource {
 		
 		Model model = new LangarchModelSelect(recordInfo);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();
+		model.close();
+		
+		return result;
 	}
 	
 	
@@ -244,7 +271,10 @@ public final class MasterDataResource {
 		
 		Model model = new WeekdarchModelSelect(recordInfo);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();
+		model.close();
+		
+		return result;
 	}
 	
 	
@@ -261,7 +291,10 @@ public final class MasterDataResource {
 		
 		Model model = new DayparchModelSelect(recordInfo);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();
+		model.close();
+		
+		return result;
 	}
 	
 	
@@ -278,7 +311,10 @@ public final class MasterDataResource {
 		
 		Model model = new TimezonarchModelSelect(recordInfo);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();
+		model.close();
+		
+		return result;
 	}
 	
 	
@@ -295,7 +331,10 @@ public final class MasterDataResource {
 		
 		Model model = new GendarchModelSelect(recordInfo);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();
+		model.close();
+		
+		return result;
 	}
 	
 	
@@ -315,7 +354,10 @@ public final class MasterDataResource {
 		
 		Model model = new CartCategModelSelect(recordInfo);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();
+		model.close();
+		
+		return result;
 	}
 	
 	
@@ -333,7 +375,10 @@ public final class MasterDataResource {
 		
 		Model model = new CountarchModelSelect(recordInfo);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();
+		model.close();
+		
+		return result;
 	}
 	
 	
@@ -351,7 +396,10 @@ public final class MasterDataResource {
 		
 		Model model = new CountryLegalModelSelect(recordInfo);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();
+		model.close();
+		
+		return result;
 	}
 	
 	
@@ -371,7 +419,10 @@ public final class MasterDataResource {
 		
 		Model model = new FeecatarchModelSelect(recordInfo);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();
+		model.close();
+		
+		return result;
 	}
 	
 	
@@ -389,7 +440,10 @@ public final class MasterDataResource {
 		
 		Model model = new OrderatarchModelSelect(recordInfo);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();
+		model.close();
+		
+		return result;
 	}
 	
 	
@@ -407,7 +461,10 @@ public final class MasterDataResource {
 		
 		Model model = new ScheduleStatusModelSelect(recordInfo);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();
+		model.close();
+		
+		return result;
 	}
 	
 	
@@ -425,7 +482,10 @@ public final class MasterDataResource {
 		
 		Model model = new PaymenusarchModelSelect(recordInfo);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();
+		model.close();
+		
+		return result;
 	}
 	
 	
@@ -443,7 +503,10 @@ public final class MasterDataResource {
 		
 		Model model = new CountronarchModelSelect(recordInfo);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();
+		model.close();
+		
+		return result;
 	}
 	
 	
@@ -463,7 +526,10 @@ public final class MasterDataResource {
 		
 		Model model = new AreanarchModelSelect(recordInfo);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();
+		model.close();
+		
+		return result;
 	}
 	
 	
@@ -483,7 +549,10 @@ public final class MasterDataResource {
 		
 		Model model = new StatarchModelSelect(recordInfo);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();
+		model.close();
+		
+		return result;
 	}
 	
 	
@@ -501,7 +570,10 @@ public final class MasterDataResource {
 		
 		Model model = new EntityCategModelSelect(recordInfo);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();
+		model.close();
+		
+		return result;
 	}	
 	
 	
@@ -521,7 +593,10 @@ public final class MasterDataResource {
 		
 		Model model = new UserCategModelSelect(recordInfo);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();
+		model.close();
+		
+		return result;
 	}
 	
 	
@@ -541,7 +616,10 @@ public final class MasterDataResource {
 		
 		Model model = new MatmovTypeModelSelect(recordInfo);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();
+		model.close();
+		
+		return result;
 	}
 	
 	
@@ -559,7 +637,10 @@ public final class MasterDataResource {
 		
 		Model model = new MonthModelSelect(recordInfo);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();
+		model.close();
+		
+		return result;
 	}
 	
 	
@@ -577,6 +658,30 @@ public final class MasterDataResource {
 		
 		Model model = new MoonaseModelSearch(recordInfo);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();
+		model.close();
+		
+		return result;
+	}
+	
+	
+	
+	@GET
+	@Path(SELECT_REFUND_POLICY_GROUP)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response selectRefundPolicyGroup(@HeaderParam("codLanguage")          @DefaultValue("EN") String codLanguage, 
+			                                @HeaderParam("codRefundPolicyGroup") @DefaultValue("-1") int codRefundPolicyGroup) {
+		
+		RefugroupInfo recordInfo = new RefugroupInfo();
+		recordInfo.codLanguage = codLanguage;
+		recordInfo.codRefundPolicyGroup = codRefundPolicyGroup;
+		
+		
+		Model model = new RefugroupModelSearch(recordInfo);
+		model.executeRequest();
+		Response result = model.getResponse();
+		model.close();
+		
+		return result;
 	}
 }
