@@ -32,14 +32,14 @@ public final class DaoPhonarchSelectSingle extends DaoStmtTemplate<PhonarchInfo>
 	
 	
 	
-	@Override protected DaoOperation getOperationHook() {
-		return DaoOperation.SELECT;
+	protected String getLookupTableHook() {
+		return DaoDbTable.PHONE_SEARCH_VIEW;
 	}	
 	
 	
 	
-	protected String getLookupTableHook() {
-		return DaoDbTable.PHONE_SEARCH_VIEW;
+	@Override protected DaoOperation getOperationHook() {
+		return DaoOperation.SELECT;
 	}	
 	
 	
