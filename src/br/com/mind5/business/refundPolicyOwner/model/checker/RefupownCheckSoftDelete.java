@@ -30,12 +30,12 @@ public final class RefupownCheckSoftDelete extends ModelCheckerTemplateActionV2<
 	
 	
 	@Override protected int getCodMsgOnResultTrueHook() {
-		return SystemCode.REFUPOL_OWNER_SEARCH_FLAGGED_AS_DELETED;
+		return SystemCode.REFUPOL_OWNER_FLAGGED_AS_DELETED;
 	}
 	
 	
 	
 	@Override protected int getCodMsgOnResultFalseHook() {
-		return SystemCode.REFUPOL_OWNER_SEARCH_NOT_FLAGGED_AS_DELETED;
+		return SystemCode.REFUPOL_OWNER_NOT_FLAGGED_AS_DELETED;
 	}
 }
