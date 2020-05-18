@@ -24,12 +24,12 @@ public final class RefuporarchCheckExist extends ModelCheckerTemplateActionV2<Re
 	
 	
 	@Override protected int getCodMsgOnResultTrueHook() {
-		return SystemCode.REFUPOL_OWNER_SEARCH_ALREADY_EXIST;
+		return SystemCode.REFUPOL_STORE_SEARCH_ALREADY_EXIST;
 	}	
 	
 	
 	
 	@Override protected int getCodMsgOnResultFalseHook() {
-		return SystemCode.REFUPOL_OWNER_SEARCH_NOT_FOUND;
+		return SystemCode.REFUPOL_STORE_SEARCH_NOT_FOUND;
 	}
 }

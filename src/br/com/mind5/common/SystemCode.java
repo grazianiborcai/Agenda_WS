@@ -1202,7 +1202,7 @@ public final class SystemCode {
 	public static final int REFUPOL_OWNER_FLAGGED_AS_DELETED 			= 11703;	
 	public static final int REFUPOL_OWNER_NOT_FLAGGED_AS_DELETED 		= 11704;
 	
-	//Refund Policy Owner Search
+	//Refund Policy Owner Search <-- Intervalo livre -->
 //	public static final int REFUPOL_OWNER_SEARCH_MANDATORY_FIELD_EMPTY 	= 11750;
 //	public static final int REFUPOL_OWNER_SEARCH_ALREADY_EXIST			= 11751;
 //	public static final int REFUPOL_OWNER_SEARCH_NOT_FOUND				= 11752;	
@@ -1215,9 +1215,9 @@ public final class SystemCode {
 	public static final int REFUPOL_STORE_NOT_FLAGGED_AS_DELETED 		= 11804;	
 	
 	//Refund Policy Store Search
-//	public static final int REFUPOL_STORE_SEARCH_MANDATORY_FIELD_EMPTY 	= 11850;
-//	public static final int REFUPOL_STORE_SEARCH_ALREADY_EXIST			= 11851;
-//	public static final int REFUPOL_STORE_SEARCH_NOT_FOUND				= 11852;	
+	public static final int REFUPOL_STORE_SEARCH_MANDATORY_FIELD_EMPTY 	= 11850;
+	public static final int REFUPOL_STORE_SEARCH_ALREADY_EXIST			= 11851;
+	public static final int REFUPOL_STORE_SEARCH_NOT_FOUND				= 11852;	
 	
 	//Refund Policy Group Header
 	public static final int REFUPOL_GR_HDR_MANDATORY_FIELD_EMPTY 		= 11900;
@@ -1258,9 +1258,4 @@ public final class SystemCode {
 	
 	//Refund Policy Group Header Search
 	public static final int REFUPOL_GR_HDR_SEARCH_MANDATORY_FIELD_EMPTY = 12300;
-	
-	//Refund Policy Owner Search
-	public static final int REFUPOL_OWNER_SEARCH_MANDATORY_FIELD_EMPTY 	= 12350;
-	public static final int REFUPOL_OWNER_SEARCH_ALREADY_EXIST			= 12351;
-	public static final int REFUPOL_OWNER_SEARCH_NOT_FOUND				= 12352;	
 }

@@ -29,6 +29,6 @@ public final class RefuporarchCheckRead extends ModelCheckerTemplateSimpleV2<Ref
 	
 	
 	@Override protected int getCodMsgOnResultFalseHook() {
-		return SystemCode.REFUPOL_OWNER_SEARCH_MANDATORY_FIELD_EMPTY;
+		return SystemCode.REFUPOL_STORE_SEARCH_MANDATORY_FIELD_EMPTY;
 	}
 }
