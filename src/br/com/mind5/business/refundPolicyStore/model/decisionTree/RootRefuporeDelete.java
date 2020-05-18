@@ -8,6 +8,7 @@ import br.com.mind5.business.refundPolicyStore.model.action.StdRefuporeDaoDelete
 import br.com.mind5.business.refundPolicyStore.model.checker.RefuporeCheckDelete;
 import br.com.mind5.business.refundPolicyStore.model.checker.RefuporeCheckExist;
 import br.com.mind5.business.refundPolicyStore.model.checker.RefuporeCheckOwner;
+import br.com.mind5.business.refundPolicyStore.model.checker.RefuporeCheckStorauth;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -47,6 +48,13 @@ public final class RootRefuporeDelete extends DeciTreeTemplateWriteV2<RefuporeIn
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
 		checker = new RefuporeCheckExist(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
+		checker = new RefuporeCheckStorauth(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueueV2<>(queue);

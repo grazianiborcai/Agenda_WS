@@ -18,6 +18,7 @@ import br.com.mind5.business.refundPolicyOwner.model.RefupownModelSelect;
 import br.com.mind5.business.refundPolicyOwner.model.RefupownModelUpsert;
 import br.com.mind5.business.refundPolicyStore.info.RefuporeInfo;
 import br.com.mind5.business.refundPolicyStore.model.RefuporeModelDelete;
+import br.com.mind5.business.refundPolicyStore.model.RefuporeModelSearch;
 import br.com.mind5.business.refundPolicyStore.model.RefuporeModelSelect;
 import br.com.mind5.business.refundPolicyStore.model.RefuporeModelUpsert;
 import br.com.mind5.model.Model;
@@ -28,7 +29,8 @@ public final class RefundPolicyResource {
 	private static final String SELECT_REFUPOL_OWNER = "/selectRefundPolicyOwner";	
 	private static final String UPSERT_REFUPOL_OWNER = "/upsertRefundPolicyOwner";		
 	private static final String DELETE_REFUPOL_STORE = "/deleteRefundPolicyStore";
-	private static final String SELECT_REFUPOL_STORE = "/selectRefundPolicyStore";	
+	private static final String SEARCH_REFUPOL_STORE = "/searchRefundPolicyStore";	
+	private static final String SELECT_REFUPOL_STORE = "/selectRefundPolicyStore";
 	private static final String UPSERT_REFUPOL_STORE = "/upsertRefundPolicyStore";	
 	
 	
@@ -113,6 +115,21 @@ public final class RefundPolicyResource {
 		
 		return result;
 	}
+	
+	
+	
+	@POST
+	@Path(SEARCH_REFUPOL_STORE)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response searchRefupore(@Context HttpServletRequest request, String incomingData) {
+		
+		Model model = new RefuporeModelSearch(incomingData, request);
+		model.executeRequest();
+		Response result = model.getResponse();
+		model.close();
+		
+		return result;
+	} 
 	
 	
 	

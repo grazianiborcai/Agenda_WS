@@ -145,6 +145,7 @@
         <security:intercept-url pattern="/**/RefundPolicy/selectRefundPolicyOwner" 	access="isAuthenticated()" 							/>
         <security:intercept-url pattern="/**/RefundPolicy/upsertRefundPolicyOwner" 	access="hasAuthority('OWNER_WRITE')" 				/>      
         <security:intercept-url pattern="/**/RefundPolicy/deleteRefundPolicyStore" 	access="hasAuthority('STORE_WRITE')" 				/>
+        <security:intercept-url pattern="/**/RefundPolicy/searchRefundPolicyStore" 	access="isAuthenticated()" 							/>        
         <security:intercept-url pattern="/**/RefundPolicy/selectRefundPolicyStore" 	access="isAuthenticated()" 							/>
         <security:intercept-url pattern="/**/RefundPolicy/upsertRefundPolicyStore" 	access="hasAuthority('STORE_WRITE')" 				/>   
         <security:intercept-url pattern="/**" 										access="denyAll" 									/>

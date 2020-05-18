@@ -33,6 +33,10 @@ final class DaoRefuporeWhere implements DaoStmtWhere {
 				case DaoRefuporeDbTableColumn.COL_COD_OWNER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;
+					
+				case DaoRefuporeDbTableColumn.COL_RECORD_MODE :
+					builder.addClauseEqualAnd(eachColumn, recordInfo.recordMode);
+					break;
 			}
 		}		
 			
