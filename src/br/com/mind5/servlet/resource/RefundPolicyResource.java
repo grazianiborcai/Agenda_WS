@@ -31,12 +31,10 @@ public final class RefundPolicyResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response deleteRefupown(@HeaderParam("TOKEN_OWNER")    		@DefaultValue("-1") long codOwner, 
 				                   @HeaderParam("TOKEN_USERNAME") 		String username,
-				                   @HeaderParam("codRefundPolicyGroup") @DefaultValue("-1") int codRefundPolicyGroup,
 							       @HeaderParam("codLanguage")      	@DefaultValue("EN") String codLanguage) {
 		
 		RefupownInfo recordInfo = new RefupownInfo();
 		recordInfo.codOwner = codOwner;
-		recordInfo.codRefundPolicyGroup = codRefundPolicyGroup;
 		recordInfo.username = username;
 		recordInfo.codLanguage = codLanguage;		
 		
@@ -55,13 +53,11 @@ public final class RefundPolicyResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response selectRefupown(@HeaderParam("TOKEN_OWNER") 			@DefaultValue("-1") long codOwner, 
 								   @HeaderParam("TOKEN_USERNAME")  		String username,
-							       @HeaderParam("codRefundPolicyGroup") @DefaultValue("-1") int codRefundPolicyGroup,
 							       @HeaderParam("codLanguage") 			@DefaultValue("EN") String codLanguage) {
 		
 		RefupownInfo recordInfo = new RefupownInfo();
 		recordInfo.codOwner = codOwner;
 		recordInfo.username = username;
-		recordInfo.codRefundPolicyGroup = codRefundPolicyGroup;
 		recordInfo.codLanguage = codLanguage;		
 		
 		Model model = new RefupownModelSelect(recordInfo);

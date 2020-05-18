@@ -54,7 +54,6 @@ public final class DaoRefupownUpdateSingle extends DaoStmtTemplate<RefupownInfo>
 			@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, RefupownInfo recordInfo) throws SQLException {		
 				int i = 1;
 				
-				stmt.setLong(i++, recordInfo.codOwner);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codRefundPolicyGroup);
 				stmt.setString(i++, recordInfo.recordMode);
 				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.createdOn);	

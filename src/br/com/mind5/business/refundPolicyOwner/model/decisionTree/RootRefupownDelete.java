@@ -5,9 +5,9 @@ import java.util.List;
 
 import br.com.mind5.business.refundPolicyOwner.info.RefupownInfo;
 import br.com.mind5.business.refundPolicyOwner.model.action.StdRefupownDaoDelete;
+import br.com.mind5.business.refundPolicyOwner.model.checker.RefupownCheckDelete;
 import br.com.mind5.business.refundPolicyOwner.model.checker.RefupownCheckExist;
 import br.com.mind5.business.refundPolicyOwner.model.checker.RefupownCheckOwner;
-import br.com.mind5.business.refundPolicyOwner.model.checker.RefupownCheckWrite;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -32,7 +32,7 @@ public final class RootRefupownDelete extends DeciTreeTemplateWriteV2<RefupownIn
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new RefupownCheckWrite(checkerOption);
+		checker = new RefupownCheckDelete(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
