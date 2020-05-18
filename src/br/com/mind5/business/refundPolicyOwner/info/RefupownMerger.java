@@ -2,26 +2,12 @@ package br.com.mind5.business.refundPolicyOwner.info;
 
 import java.util.List;
 
-import br.com.mind5.business.refundPolicyOwnerSearch.info.RefupowarchInfo;
 import br.com.mind5.info.InfoMergerBuilderV3;
 import br.com.mind5.info.InfoMergerV3;
 import br.com.mind5.masterData.refundPolicyGroup.info.RefugroupInfo;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class RefupownMerger {
-	public static List<RefupownInfo> mergeWithRefupowarch(List<RefupownInfo> baseInfos, List<RefupowarchInfo> selectedInfos) {
-		InfoMergerBuilderV3<RefupownInfo, RefupowarchInfo> builder = new InfoMergerBuilderV3<>();
-		
-		builder.addBaseInfos(baseInfos);
-		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new RefupownVisiMergeRefupowarch());
-		InfoMergerV3<RefupownInfo, RefupowarchInfo> merger = builder.build();		
-	
-		return merger.merge();
-	}
-	
-	
-	
 	public static List<RefupownInfo> mergeWithRefugroup(List<RefupownInfo> baseInfos, List<RefugroupInfo> selectedInfos) {
 		InfoMergerBuilderV3<RefupownInfo, RefugroupInfo> builder = new InfoMergerBuilderV3<>();
 		

@@ -52,7 +52,7 @@ public final class NodeRefupownUpsert extends DeciTreeTemplateWriteV2<RefupownIn
 	@Override protected List<ActionStdV1<RefupownInfo>> buildActionsOnFailedHook(DeciTreeOption<RefupownInfo> option) {
 		List<ActionStdV1<RefupownInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV1<RefupownInfo> insert = new NodeRefupownInsertL1(option).toAction();	
+		ActionStdV1<RefupownInfo> insert = new NodeRefupownInsert(option).toAction();	
 		
 		actions.add(insert);
 		return actions;

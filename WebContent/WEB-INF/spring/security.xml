@@ -142,7 +142,6 @@
         <security:intercept-url pattern="/**/File/insertFileImgUser" 				access="isAuthenticated()" 							/>
         <security:intercept-url pattern="/**/File/deleteFileImgUser" 				access="isAuthenticated()" 							/>        
         <security:intercept-url pattern="/**/RefundPolicy/deleteRefundPolicyOwner" 	access="hasAuthority('OWNER_WRITE')" 				/>
-        <security:intercept-url pattern="/**/RefundPolicy/searchRefundPolicyOwner" 	access="isAuthenticated()" 							/>
         <security:intercept-url pattern="/**/RefundPolicy/selectRefundPolicyOwner" 	access="isAuthenticated()" 							/>
         <security:intercept-url pattern="/**/RefundPolicy/upsertRefundPolicyOwner" 	access="hasAuthority('OWNER_WRITE')" 				/>        
         <security:intercept-url pattern="/**" 										access="denyAll" 									/>

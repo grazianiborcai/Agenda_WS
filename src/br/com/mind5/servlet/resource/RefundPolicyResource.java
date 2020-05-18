@@ -14,7 +14,6 @@ import javax.ws.rs.core.Response;
 
 import br.com.mind5.business.refundPolicyOwner.info.RefupownInfo;
 import br.com.mind5.business.refundPolicyOwner.model.RefupownModelDelete;
-import br.com.mind5.business.refundPolicyOwner.model.RefupownModelSearch;
 import br.com.mind5.business.refundPolicyOwner.model.RefupownModelSelect;
 import br.com.mind5.business.refundPolicyOwner.model.RefupownModelUpsert;
 import br.com.mind5.model.Model;
@@ -22,7 +21,6 @@ import br.com.mind5.model.Model;
 @Path("/RefundPolicy")
 public final class RefundPolicyResource {
 	private static final String DELETE_REFUPOL_OWNER = "/deleteRefundPolicyOwner";
-	private static final String SEARCH_REFUPOL_OWNER = "/searchRefundPolicyOwner";
 	private static final String SELECT_REFUPOL_OWNER = "/selectRefundPolicyOwner";	
 	private static final String UPSERT_REFUPOL_OWNER = "/upsertRefundPolicyOwner";	
 	
@@ -49,21 +47,6 @@ public final class RefundPolicyResource {
 		
 		return result;
 	}
-	
-	
-	
-	@POST
-	@Path(SEARCH_REFUPOL_OWNER)
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response searchRefupown(@Context HttpServletRequest request, String incomingData) {
-		
-		Model model = new RefupownModelSearch(incomingData, request);
-		model.executeRequest();
-		Response result = model.getResponse();
-		model.close();
-		
-		return result;
-	} 
 	
 	
 	

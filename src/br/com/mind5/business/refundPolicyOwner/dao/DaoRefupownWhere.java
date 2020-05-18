@@ -30,8 +30,8 @@ final class DaoRefupownWhere implements DaoStmtWhere {
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;
 					
-				case DaoRefupownDbTableColumn.COL_COD_REFUND_POLICY_GROUP :
-					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codRefundPolicyGroup));
+				case DaoRefupownDbTableColumn.COL_RECORD_MODE :
+					builder.addClauseEqualAnd(eachColumn, recordInfo.recordMode);
 					break;
 			}
 		}		
