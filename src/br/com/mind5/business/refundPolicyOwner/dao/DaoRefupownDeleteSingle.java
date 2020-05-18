@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.refundPolicyOwner.info.RefupownInfo;
-import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
 import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtTemplate;
@@ -16,11 +15,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class DaoRefupownSelectSingle extends DaoStmtTemplate<RefupownInfo> {
-	private final String MAIN_TABLE = DaoDbTable.REFUND_POLICY_OWNER_TABLE;
+public final class DaoRefupownDeleteSingle extends DaoStmtTemplate<RefupownInfo> {
+	private final String MAIN_TABLE = DaoDbTable.REFUND_POLICY_OWNER_TABLE;	
 	
 	
-	public DaoRefupownSelectSingle(Connection conn, RefupownInfo recordInfo, String schemaName) {
+	public DaoRefupownDeleteSingle(Connection conn, RefupownInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -33,7 +32,7 @@ public final class DaoRefupownSelectSingle extends DaoStmtTemplate<RefupownInfo>
 	
 	
 	@Override protected DaoOperation getOperationHook() {
-		return DaoOperation.SELECT;
+		return DaoOperation.SOFT_DELETE;
 	}
 	
 	
@@ -42,7 +41,8 @@ public final class DaoRefupownSelectSingle extends DaoStmtTemplate<RefupownInfo>
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
 		
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
-		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;
+		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;	
+		whereOption.ignoreNonPrimaryKey = DaoOptionValue.IGNORE_NON_PK;		
 		
 		DaoStmtWhere whereClause = new DaoRefupownWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
@@ -54,24 +54,8 @@ public final class DaoRefupownSelectSingle extends DaoStmtTemplate<RefupownInfo>
 		return new DaoResultParser<RefupownInfo>() {
 			@Override public List<RefupownInfo> parseResult(RefupownInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
 				List<RefupownInfo> finalResult = new ArrayList<>();
-				
-				if (stmtResult.next() == false)				
-					return finalResult;
-			
-				do {				
-					RefupownInfo dataInfo = new RefupownInfo();
-					
-					dataInfo.codOwner = DaoFormatter.sqlToLong(stmtResult, DaoRefupownDbTableColumn.COL_COD_OWNER);
-					dataInfo.codRefundPolicyGroup = DaoFormatter.sqlToInt(stmtResult, DaoRefupownDbTableColumn.COL_COD_REFUND_POLICY_GROUP);	
-					dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, DaoRefupownDbTableColumn.COL_CREATED_BY);
-					dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, DaoRefupownDbTableColumn.COL_CREATED_ON);					
-					dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, DaoRefupownDbTableColumn.COL_LAST_CHANGED_BY);
-					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, DaoRefupownDbTableColumn.COL_LAST_CHANGED);
-					dataInfo.recordMode = stmtResult.getString(DaoRefupownDbTableColumn.COL_RECORD_MODE);
-					
-					finalResult.add(dataInfo);				
-				} while (stmtResult.next());
-				
+				RefupownInfo emptyInfo = new RefupownInfo();
+				finalResult.add(emptyInfo);			
 				return finalResult;
 			}
 		};

@@ -1259,4 +1259,6 @@ public final class SystemCode {
 	public static final int REFUPOL_OWNER_SEARCH_MANDATORY_FIELD_EMPTY 	= 12350;
 	public static final int REFUPOL_OWNER_SEARCH_ALREADY_EXIST			= 12351;
 	public static final int REFUPOL_OWNER_SEARCH_NOT_FOUND				= 12352;
+	public static final int REFUPOL_OWNER_SEARCH_FLAGGED_AS_DELETED 	= 12353;	
+	public static final int REFUPOL_OWNER_SEARCH_NOT_FLAGGED_AS_DELETED = 12354;	
 }
