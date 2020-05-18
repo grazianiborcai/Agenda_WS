@@ -206,7 +206,7 @@ public final class DaoDbTable {
 	public static final String REFUND_VIEW = "view_refund";	
 	public static final String REFUND_POLICY_GROUP_ITEM_SEARCH_VIEW = "view_refund_policy_group_item_search";
 	public static final String REFUND_POLICY_GROUP_HEADER_SEARCH_VIEW = "view_refund_policy_group_header_search";
-	public static final String REFUND_POLICY_OWNER_SEARCH_VIEW = "view_refund_policy_owner_search";	
+	public static final String REFUND_POLICY_STORE_SEARCH_VIEW = "view_refund_policy_store_search";	
 	public static final String SCHEDULE_LIST_VIEW = "view_list_search";
 	public static final String SCHEDULE_RANGE_VIEW = "view_schedule_range";
 	public static final String SCHEDULE_RESERVE_VIEW = "view_schedule_reserve";	

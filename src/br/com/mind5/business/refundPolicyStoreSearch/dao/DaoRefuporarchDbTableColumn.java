@@ -1,4 +1,4 @@
-package br.com.mind5.business.refundPolicyOwnerSearch.dao;
+package br.com.mind5.business.refundPolicyStoreSearch.dao;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
@@ -9,23 +9,32 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class DaoRefupowarchDbTableColumn extends DaoDbTableColumnTemplate {
+public final class DaoRefuporarchDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_REFUND_POLICY_GROUP = DaoDbField.COL_COD_REFUND_POLICY_GROUP;
 	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;
+	public static final String COL_COD_STORE = DaoDbField.COL_COD_STORE;
 	public static final String COL_RECORD_MODE = DaoDbField.COL_RECORD_MODE; 
 	
 	
-	public DaoRefupowarchDbTableColumn() {
+	public DaoRefuporarchDbTableColumn() {
 		super();
 	}
 	
 	
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
-		final String TABLE_NAME = DaoDbTable.REFUND_POLICY_OWNER_TABLE;
+		final String TABLE_NAME = DaoDbTable.REFUND_POLICY_STORE_TABLE;
 		
 		DaoColumn oneColumn;
 		List<DaoColumn> columns = new ArrayList<>();	
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_COD_STORE;
+		oneColumn.isPK = IS_PRIMARY_KEY;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
@@ -38,7 +47,7 @@ public final class DaoRefupowarchDbTableColumn extends DaoDbTableColumnTemplate 
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_COD_REFUND_POLICY_GROUP;
-		oneColumn.isPK = IS_PRIMARY_KEY;
+		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);		
@@ -52,7 +61,7 @@ public final class DaoRefupowarchDbTableColumn extends DaoDbTableColumnTemplate 
 		columns.add(oneColumn);
 		
 		Hashtable<String, List<DaoColumn>> results = new Hashtable<>();
-		results.put(DaoDbTable.REFUND_POLICY_OWNER_SEARCH_VIEW, columns);
+		results.put(DaoDbTable.REFUND_POLICY_STORE_SEARCH_VIEW, columns);
 		return results;
 	}
 }
