@@ -8,14 +8,42 @@ import br.com.mind5.business.materialStore.info.MatoreInfo;
 import br.com.mind5.business.orderItemSearch.info.OrdemarchInfo;
 import br.com.mind5.business.orderItemSnapshot.info.OrdemrapInfo;
 import br.com.mind5.business.orderStatusChange.info.OrdugeInfo;
+import br.com.mind5.business.refundPolicyStore.info.RefuporeInfo;
 import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.info.InfoMergerBuilderV3;
 import br.com.mind5.info.InfoMergerV3;
+import br.com.mind5.masterData.refundPolicyGroup.info.RefugroupInfo;
 import br.com.mind5.masterData.weekday.info.WeekdayInfo;
 import br.com.mind5.payment.payOrderItem.info.PayordemInfo;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class OrderemMerger {
+	public static List<OrderemInfo> mergeWithRefugroup(List<OrderemInfo> baseInfos, List<RefugroupInfo> selectedInfos) {
+		InfoMergerBuilderV3<OrderemInfo, RefugroupInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new OrderemVisiMergeRefugroup());
+		InfoMergerV3<OrderemInfo,RefugroupInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}	
+	
+	
+	
+	public static List<OrderemInfo> mergeWithRefupore(List<OrderemInfo> baseInfos, List<RefuporeInfo> selectedInfos) {
+		InfoMergerBuilderV3<OrderemInfo, RefuporeInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new OrderemVisiMergeRefupore());
+		InfoMergerV3<OrderemInfo,RefuporeInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	
 	public static List<OrderemInfo> mergeWithPayordem(List<OrderemInfo> baseInfos, List<PayordemInfo> selectedInfos) {
 		InfoMergerBuilderV3<OrderemInfo, PayordemInfo> builder = new InfoMergerBuilderV3<>();
 		
