@@ -7,19 +7,20 @@ import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class RefuporeCheckRead extends ModelCheckerTemplateSimpleV2<RefuporeInfo> {
+public final class RefuporeCheckWrite extends ModelCheckerTemplateSimpleV2<RefuporeInfo> {
 
-	public RefuporeCheckRead(ModelCheckerOption option) {
+	public RefuporeCheckWrite(ModelCheckerOption option) {
 		super(option);
 	}
 	
 	
 	
 	@Override protected boolean checkHook(RefuporeInfo recordInfo, Connection conn, String schemaName) {	
-		if ( recordInfo.codOwner 		<= 0 	||
-			 recordInfo.codStore 		<= 0 	||
-			 recordInfo.codLanguage 	== null ||
-			 recordInfo.username 		== null		)		
+		if ( recordInfo.codOwner 			 <= 0 	||
+			 recordInfo.codStore 			 <= 0 	||
+			 recordInfo.codRefundPolicyGroup <= 0	||
+			 recordInfo.codLanguage 		== null ||
+			 recordInfo.username 			== null		)		
 			
 			return super.FAILED;
 		

@@ -7,9 +7,9 @@ import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class RefuporeCheckRead extends ModelCheckerTemplateSimpleV2<RefuporeInfo> {
+public final class RefuporeCheckDelete extends ModelCheckerTemplateSimpleV2<RefuporeInfo> {
 
-	public RefuporeCheckRead(ModelCheckerOption option) {
+	public RefuporeCheckDelete(ModelCheckerOption option) {
 		super(option);
 	}
 	

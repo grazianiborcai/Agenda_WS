@@ -1,5 +1,6 @@
 package br.com.mind5.business.refundPolicyStore.info;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import br.com.mind5.common.CloneUtil;
@@ -13,6 +14,12 @@ public final class RefuporeInfo extends InfoRecord implements Cloneable {
 	public int codRefundPolicyGroup;
 	public String txtRefundPolicyGroup;
 	public List<RefugritemInfo> refugritemes;
+	public String recordMode;
+	public LocalDateTime createdOn;
+	public long createdBy;	
+	public LocalDateTime lastChanged;
+	public long lastChangedBy;
+	public String username;
 	
 	
 	public RefuporeInfo() {
@@ -22,6 +29,9 @@ public final class RefuporeInfo extends InfoRecord implements Cloneable {
 		codStore = DefaultValue.number();
 		codRefundPolicyGroup = DefaultValue.number();
 		refugritemes = DefaultValue.list();
+		recordMode = DefaultValue.recordMode();
+		createdBy = DefaultValue.number();
+		lastChangedBy = DefaultValue.number();
 	}
 	
 	

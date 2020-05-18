@@ -1209,6 +1209,8 @@ public final class SystemCode {
 	public static final int REFUPOL_STORE_MANDATORY_FIELD_EMPTY 		= 11800;
 	public static final int REFUPOL_STORE_ALREADY_EXIST					= 11801;
 	public static final int REFUPOL_STORE_NOT_FOUND						= 11802;	
+	public static final int REFUPOL_STORE_FLAGGED_AS_DELETED 			= 11803;	
+	public static final int REFUPOL_STORE_NOT_FLAGGED_AS_DELETED 		= 11804;	
 	
 	//Refund Policy Store Search
 //	public static final int REFUPOL_STORE_SEARCH_MANDATORY_FIELD_EMPTY 	= 11850;
