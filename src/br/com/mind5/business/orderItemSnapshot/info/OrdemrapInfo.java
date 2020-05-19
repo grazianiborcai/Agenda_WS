@@ -37,6 +37,8 @@ public final class OrdemrapInfo extends InfoRecord implements Cloneable, Compara
 	public String txtWeekday;
 	public LocalTime beginTime;
 	public LocalTime endTime;
+	public int codRefundPolicyGroup;
+	public String txtRefundPolicyGroup;
 	public LocalDateTime lastChanged;
 	public long lastChangedBy;
 	public String username;
@@ -65,6 +67,7 @@ public final class OrdemrapInfo extends InfoRecord implements Cloneable, Compara
 		totitem = DefaultValue.number();
 		codWeekday = DefaultValue.number();
 		lastChangedBy = DefaultValue.number();
+		codRefundPolicyGroup = DefaultValue.number();
 		stolisData = DefaultValue.object();
 		emplisData = DefaultValue.object();
 		matData = DefaultValue.object();
