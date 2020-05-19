@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.orderItem.info.OrderemInfo;
 import br.com.mind5.business.orderItem.model.action.LazyOrderemDaoInsert;
+import br.com.mind5.business.orderItem.model.action.LazyOrderemMergeRefupore;
 import br.com.mind5.business.orderItem.model.action.LazyOrderemSchedineInsert;
 import br.com.mind5.business.orderItem.model.action.StdOrderemMergeStolis;
 import br.com.mind5.business.orderItem.model.checker.OrderemCheckEmp;
@@ -84,11 +85,13 @@ public final class NodeOrderemInsertService extends DeciTreeTemplateWriteV2<Orde
 	@Override protected List<ActionStdV1<OrderemInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderemInfo> option) {
 		List<ActionStdV1<OrderemInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<OrderemInfo> mergeStolis = new StdOrderemMergeStolis(option);		
+		ActionStdV1<OrderemInfo> mergeStolis = new StdOrderemMergeStolis(option);	
+		ActionLazyV1<OrderemInfo> mergeRefupore = new LazyOrderemMergeRefupore(option.conn, option.schemaName);
 		ActionLazyV1<OrderemInfo> insert = new LazyOrderemDaoInsert(option.conn, option.schemaName);
 		ActionLazyV1<OrderemInfo> schedineInsert = new LazyOrderemSchedineInsert(option.conn, option.schemaName);
 		
-		mergeStolis.addPostAction(insert);
+		mergeStolis.addPostAction(mergeRefupore);
+		mergeRefupore.addPostAction(insert);
 		insert.addPostAction(schedineInsert);
 		
 		actions.add(mergeStolis);		

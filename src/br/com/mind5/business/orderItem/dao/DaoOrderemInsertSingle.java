@@ -57,6 +57,7 @@ public class DaoOrderemInsertSingle extends DaoStmtTemplate<OrderemInfo> {
 				stmt.setString(i++, recordInfo.codOrderStatus);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPayOrder);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPayOrderItem);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codRefundPolicyGroup);
 				
 				return stmt;
 			}		

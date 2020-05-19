@@ -20,6 +20,7 @@ public final class DaoOrderemDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;	
 	public static final String COL_COD_PAY_ORDER = DaoDbField.COL_COD_PAY_ORDER;
 	public static final String COL_COD_PAY_ORDER_ITEM = DaoDbField.COL_COD_PAY_ORDER_ITEM;
+	public static final String COL_COD_REFUND_POLICY_GROUP = DaoDbField.COL_COD_REFUND_POLICY_GROUP;	
 	public static final String COL_COD_SNAPSHOT = DaoDbField.COL_COD_SNAPSHOT;	
 	public static final String COL_COD_STORE = DaoDbField.COL_COD_STORE;			
 	public static final String COL_DATE = DaoDbField.COL_DATE;					
@@ -190,6 +191,14 @@ public final class DaoOrderemDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_COD_PAY_ORDER_ITEM;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_COD_REFUND_POLICY_GROUP;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;

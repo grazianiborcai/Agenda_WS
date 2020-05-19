@@ -7,6 +7,7 @@ import br.com.mind5.business.orderItem.info.OrderemInfo;
 import br.com.mind5.business.orderItem.model.action.LazyOrderemEnforceWeekday;
 import br.com.mind5.business.orderItem.model.action.LazyOrderemMergeEmplis;
 import br.com.mind5.business.orderItem.model.action.LazyOrderemMergeMatore;
+import br.com.mind5.business.orderItem.model.action.LazyOrderemMergeRefugroup;
 import br.com.mind5.business.orderItem.model.action.LazyOrderemMergeWeekday;
 import br.com.mind5.business.orderItem.model.action.StdOrderemMergeStolis;
 import br.com.mind5.model.action.ActionLazyV1;
@@ -45,11 +46,13 @@ public final class NodeOrderemSelectService extends DeciTreeTemplateWriteV2<Orde
 		ActionLazyV1<OrderemInfo> enforceWeekday = new LazyOrderemEnforceWeekday(option.conn, option.schemaName);
 		ActionLazyV1<OrderemInfo> mergeWeekday = new LazyOrderemMergeWeekday(option.conn, option.schemaName);
 		ActionLazyV1<OrderemInfo> mergeMatore = new LazyOrderemMergeMatore(option.conn, option.schemaName);
+		ActionLazyV1<OrderemInfo> mergeRefugroup = new LazyOrderemMergeRefugroup(option.conn, option.schemaName);
 		
 		mergeStolis.addPostAction(mergeEmplis);
 		mergeEmplis.addPostAction(enforceWeekday);
 		enforceWeekday.addPostAction(mergeWeekday);
 		mergeWeekday.addPostAction(mergeMatore);
+		mergeMatore.addPostAction(mergeRefugroup);
 		
 		actions.add(mergeStolis);
 		return actions;
