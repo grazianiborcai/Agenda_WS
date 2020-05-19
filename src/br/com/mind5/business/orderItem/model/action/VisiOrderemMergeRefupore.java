@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.orderItem.info.OrderemInfo;
 import br.com.mind5.business.orderItem.info.OrderemMerger;
 import br.com.mind5.business.refundPolicyStore.info.RefuporeInfo;
-import br.com.mind5.business.refundPolicyStore.model.decisionTree.RootRefuporeSelect;
+import br.com.mind5.business.refundPolicyStore.model.decisionTree.RootRefuporeSelectFallback;
 import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -19,7 +19,7 @@ final class VisiOrderemMergeRefupore extends ActionVisitorTemplateMergeV2<Ordere
 	
 	
 	@Override protected Class<? extends DeciTree<RefuporeInfo>> getTreeClassHook() {
-		return RootRefuporeSelect.class;
+		return RootRefuporeSelectFallback.class;
 	}
 	
 	
