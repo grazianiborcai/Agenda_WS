@@ -13,6 +13,7 @@ import br.com.mind5.business.refundPolicyStore.model.action.StdRefuporeEnforceLC
 import br.com.mind5.business.refundPolicyStore.model.checker.RefuporeCheckOwner;
 import br.com.mind5.business.refundPolicyStore.model.checker.RefuporeCheckRefugroup;
 import br.com.mind5.business.refundPolicyStore.model.checker.RefuporeCheckStorauth;
+import br.com.mind5.business.refundPolicyStore.model.checker.RefuporeCheckStore;
 import br.com.mind5.business.refundPolicyStore.model.checker.RefuporeCheckWrite;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
@@ -47,6 +48,13 @@ public final class RootRefuporeUpsert extends DeciTreeTemplateWriteV2<RefuporeIn
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
 		checker = new RefuporeCheckOwner(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
+		checker = new RefuporeCheckStore(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
