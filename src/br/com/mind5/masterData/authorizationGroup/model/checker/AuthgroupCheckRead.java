@@ -1,21 +1,21 @@
-package br.com.mind5.business.masterData.model.checker;
+package br.com.mind5.masterData.authorizationGroup.model.checker;
 
 import java.sql.Connection;
 
-import br.com.mind5.business.masterData.info.AuthGroupInfo;
 import br.com.mind5.common.SystemCode;
+import br.com.mind5.masterData.authorizationGroup.info.AuthgroupInfo;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class AuthGroupCheckRead extends ModelCheckerTemplateSimpleV2<AuthGroupInfo> {
+public final class AuthgroupCheckRead extends ModelCheckerTemplateSimpleV2<AuthgroupInfo> {
 
-	public AuthGroupCheckRead(ModelCheckerOption option) {
+	public AuthgroupCheckRead(ModelCheckerOption option) {
 		super(option);
 	}
 	
 	
 	
-	@Override protected boolean checkHook(AuthGroupInfo recordInfo, Connection conn, String schemaName) {	
+	@Override protected boolean checkHook(AuthgroupInfo recordInfo, Connection conn, String schemaName) {	
 		if ( recordInfo.codAuthGroup == null )			
 			return super.FAILED;
 		

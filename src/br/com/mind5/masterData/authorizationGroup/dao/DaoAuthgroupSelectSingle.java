@@ -1,4 +1,4 @@
-package br.com.mind5.business.masterData.dao;
+package br.com.mind5.masterData.authorizationGroup.dao;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.business.masterData.info.AuthGroupInfo;
 import br.com.mind5.dao.DaoOperation;
 import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtTemplate;
@@ -14,12 +13,13 @@ import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
+import br.com.mind5.masterData.authorizationGroup.info.AuthgroupInfo;
 
-public final class AuthGroupSelectSingle extends DaoStmtTemplate<AuthGroupInfo> {	
+public final class DaoAuthgroupSelectSingle extends DaoStmtTemplate<AuthgroupInfo> {	
 	private final String MAIN_TABLE = DaoDbTable.AUTH_GROUP_TABLE;
 	
 	
-	public AuthGroupSelectSingle(Connection conn, AuthGroupInfo recordInfo, String schemaName) {
+	public DaoAuthgroupSelectSingle(Connection conn, AuthgroupInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -37,29 +37,29 @@ public final class AuthGroupSelectSingle extends DaoStmtTemplate<AuthGroupInfo> 
 	
 	
 	
-	@Override protected String buildWhereClauseHook(String tableName, AuthGroupInfo recordInfo) {
+	@Override protected String buildWhereClauseHook(String tableName, AuthgroupInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
 		
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new AuthGroupWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new DaoAuthgroupWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}	
 	
 	
 	
-	@Override protected DaoResultParser<AuthGroupInfo> getResultParserHook() {
-		return new DaoResultParser<AuthGroupInfo>() {
-			@Override public List<AuthGroupInfo> parseResult(AuthGroupInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
-				List<AuthGroupInfo> finalResult = new ArrayList<>();
+	@Override protected DaoResultParser<AuthgroupInfo> getResultParserHook() {
+		return new DaoResultParser<AuthgroupInfo>() {
+			@Override public List<AuthgroupInfo> parseResult(AuthgroupInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
+				List<AuthgroupInfo> finalResult = new ArrayList<>();
 				
 				if (stmtResult.next() == false)				
 					return finalResult;
 				
 				do {
-					AuthGroupInfo dataInfo = new AuthGroupInfo();					
-					dataInfo.codAuthGroup = stmtResult.getString(MasterDataDbTableColumn.COL_COD_AUTH_GROUP);
+					AuthgroupInfo dataInfo = new AuthgroupInfo();					
+					dataInfo.codAuthGroup = stmtResult.getString(DaoAuthgroupDbTableColumn.COL_COD_AUTH_GROUP);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

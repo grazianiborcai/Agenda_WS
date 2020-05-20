@@ -111,6 +111,7 @@ import br.com.mind5.form.formAddress.dao.DaoFormessDbTableColumn;
 import br.com.mind5.form.formPhone.dao.DaoFormoneDbTableColumn;
 import br.com.mind5.masterData.areaPhone.dao.DaoAreaneDbTableColumn;
 import br.com.mind5.masterData.areaPhoneSearch.dao.DaoAreanarchDbTableColumn;
+import br.com.mind5.masterData.authorizationGroup.dao.DaoAuthgroupDbTableColumn;
 import br.com.mind5.masterData.authorizationGroupRole.dao.DaoAuthgroleDbTableColumn;
 import br.com.mind5.masterData.businessArea.dao.DaoBusareaDbTableColumn;
 import br.com.mind5.masterData.businessAreaSearch.dao.DaoBusarearchDbTableColumn;
@@ -372,6 +373,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new DaoSchederveDbTableColumn());
 		addTable(new DaoRefugrarchDbTableColumn());
 		addTable(new DaoRefuporarchDbTableColumn());
+		addTable(new DaoAuthgroupDbTableColumn());
 	}
 	
 	
