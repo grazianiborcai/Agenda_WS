@@ -27,7 +27,7 @@ public final class SchedovmInfo extends InfoRecord implements Cloneable {
 	
 	
 	public SchedovmInfo() {
-		super(SchedovmInfo.class);
+		super();
 		
 		codOwner = DefaultValue.number();	
 		codStore = DefaultValue.number();
@@ -91,12 +91,12 @@ public final class SchedovmInfo extends InfoRecord implements Cloneable {
 		
 		
 		SchedovmInfo obj = (SchedovmInfo) o;		
-		return (codOwner    == obj.codOwner    		&& 
-				codStore    == obj.codStore			&&
-				codEmployee == obj.codEmployee		&&
-				codMat    	== obj.codMat			&&
-				year    	== obj.year				&&
-				month    	== obj.month			&&
-				day    		== obj.day			);
+		return (codOwner    == obj.codOwner    	&& 
+				codStore    == obj.codStore		&&
+				codEmployee == obj.codEmployee	&&
+				codMat    	== obj.codMat		&&
+				year    	== obj.year			&&
+				month    	== obj.month		&&
+				day    		== obj.day				);
 	}
 }

@@ -1,29 +1,11 @@
 package br.com.mind5.business.scheduleMoviment.info;
 
 import br.com.mind5.business.masterData.info.common.ScheduleStatus;
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoSetter;
+import br.com.mind5.info.InfoSetterTemplate;
 
-public final class SchedovmSetterCounter implements InfoSetter<SchedovmInfo> {
+public final class SchedovmSetterCounter extends InfoSetterTemplate<SchedovmInfo> {
 	
-	public SchedovmInfo setAttr(SchedovmInfo recordInfo) {
-		checkArgument(recordInfo);
-		return setCounter(recordInfo);
-	}
-	
-	
-	
-	private void checkArgument(SchedovmInfo recordInfo) {
-		if (recordInfo == null) {
-			logException(new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT));
-			throw new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT);
-		}
-	}
-	
-	
-	
-	private SchedovmInfo setCounter(SchedovmInfo recordInfo) {
+	@Override protected SchedovmInfo setAttrHook(SchedovmInfo recordInfo) {
 		ScheduleStatus status = ScheduleStatus.getScheduleStatus(recordInfo.codScheduleStatus); 
 		
 		recordInfo = setWaiting(status, recordInfo);
@@ -36,6 +18,8 @@ public final class SchedovmSetterCounter implements InfoSetter<SchedovmInfo> {
 	
 	
 	private SchedovmInfo setWaiting(ScheduleStatus status, SchedovmInfo recordInfo) {
+		recordInfo.waiting = 0;
+		
 		if (ScheduleStatus.WAITING == status) 
 			recordInfo.waiting = 1;
 		
@@ -45,6 +29,8 @@ public final class SchedovmSetterCounter implements InfoSetter<SchedovmInfo> {
 	
 	
 	private SchedovmInfo setConfirmed(ScheduleStatus status, SchedovmInfo recordInfo) {
+		recordInfo.confirmed = 0;
+		
 		if (ScheduleStatus.CONFIRMED == status) 
 			recordInfo.confirmed = 1;
 		
@@ -60,12 +46,5 @@ public final class SchedovmSetterCounter implements InfoSetter<SchedovmInfo> {
 			recordInfo.counter = 1;
 		
 		return recordInfo;
-	}	
-	
-	
-	
-	private void logException(Exception e) {
-		
-		SystemLog.logError(this.getClass(), e);
 	}	
 }

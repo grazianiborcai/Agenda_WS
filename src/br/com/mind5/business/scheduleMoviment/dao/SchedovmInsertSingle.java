@@ -3,6 +3,7 @@ package br.com.mind5.business.scheduleMoviment.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+
 import br.com.mind5.business.scheduleMoviment.info.SchedovmInfo;
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
@@ -45,9 +46,9 @@ public class SchedovmInsertSingle extends DaoStmtTemplate<SchedovmInfo> {
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.day);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.month);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.year);
-				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.confirmed);
-				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.waiting);
-				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.counter);
+				stmt.setInt(i++, recordInfo.confirmed);
+				stmt.setInt(i++, recordInfo.waiting);
+				stmt.setInt(i++, recordInfo.counter);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codWeekday);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.weekMonth);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.weekYear);

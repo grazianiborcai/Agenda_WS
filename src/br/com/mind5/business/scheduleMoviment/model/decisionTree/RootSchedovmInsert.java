@@ -12,13 +12,13 @@ import br.com.mind5.business.scheduleMoviment.model.action.StdSchedovmEnforceCou
 import br.com.mind5.business.scheduleMoviment.model.checker.SchedovmCheckWrite;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class RootSchedovmInsert extends DeciTreeTemplateWriteV1<SchedovmInfo> {
+public final class RootSchedovmInsert extends DeciTreeTemplateWriteV2<SchedovmInfo> {
 	
 	public RootSchedovmInsert(DeciTreeOption<SchedovmInfo> option) {
 		super(option);

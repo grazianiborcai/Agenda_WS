@@ -1,29 +1,11 @@
 package br.com.mind5.business.scheduleMoviment.info;
 
 import br.com.mind5.business.masterData.info.common.ScheduleStatus;
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoSetter;
+import br.com.mind5.info.InfoSetterTemplate;
 
-public final class SchedovmSetterCancel implements InfoSetter<SchedovmInfo> {
+public final class SchedovmSetterCancel extends InfoSetterTemplate<SchedovmInfo> {
 	
-	public SchedovmInfo setAttr(SchedovmInfo recordInfo) {
-		checkArgument(recordInfo);
-		return setCancel(recordInfo);
-	}
-	
-	
-	
-	private void checkArgument(SchedovmInfo recordInfo) {
-		if (recordInfo == null) {
-			logException(new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT));
-			throw new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT);
-		}
-	}
-	
-	
-	
-	private SchedovmInfo setCancel(SchedovmInfo recordInfo) {
+	@Override protected SchedovmInfo setAttrHook(SchedovmInfo recordInfo) {
 		ScheduleStatus status = ScheduleStatus.getScheduleStatus(recordInfo.codScheduleStatus); 
 		
 		if (isCancelled(status) == false)
@@ -64,11 +46,4 @@ public final class SchedovmSetterCancel implements InfoSetter<SchedovmInfo> {
 		
 		return recordInfo;
 	}
-	
-	
-	
-	private void logException(Exception e) {
-		
-		SystemLog.logError(this.getClass(), e);
-	}	
 }

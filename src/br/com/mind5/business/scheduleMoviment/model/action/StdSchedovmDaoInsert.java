@@ -5,15 +5,15 @@ import br.com.mind5.model.action.ActionStdTemplateV2;
 import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdSchedovmEnforceReverse extends ActionStdTemplateV2<SchedovmInfo> {
+public final class StdSchedovmDaoInsert extends ActionStdTemplateV2<SchedovmInfo> {
 
-	public StdSchedovmEnforceReverse(DeciTreeOption<SchedovmInfo> option) {
+	public StdSchedovmDaoInsert(DeciTreeOption<SchedovmInfo> option) {
 		super(option);
 	}
 	
 	
 	
 	protected ActionVisitorV2<SchedovmInfo> buildVisitorHook(DeciTreeOption<SchedovmInfo> option) {
-		return new VisiSchedovmEnforceReverse(option);
+		return new VisiSchedovmDaoInsert(option);
 	}
 }
