@@ -1,89 +1,63 @@
-package br.com.mind5.business.cartItem.info;
+package br.com.mind5.business.bookService.info;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 
-import br.com.mind5.business.employeeList.info.EmplisInfo;
-import br.com.mind5.business.materialList.info.MatlisInfo;
-import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.common.CloneUtil;
 import br.com.mind5.common.DefaultValue;
-import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.InfoRecord;
 import br.com.mind5.message.sysMessage.info.SymsgInfo;
 
-public final class CartemInfo extends InfoRecord implements Cloneable, Comparable<CartemInfo> {
+public final class BookiceInfo extends InfoRecord implements Cloneable {
 	public long codOwner;	
 	public long codCustomer;
 	public long codUser;
-	public boolean isDeleted;
 	public boolean isAged;
 	public long codStore;
 	public long codEmployee;
 	public long codMat;
-	public double price;
 	public int quantity;
-	public double totitem;
 	public LocalDate date;
 	public int codWeekday;
-	public String txtWeekday;
 	public LocalTime beginTime;
 	public LocalTime endTime;	
-	public LocalDateTime createdOn;
 	public String username;
-	public StolisInfo stolisData;
-	public EmplisInfo emplisData;
-	public MatlisInfo matlisData;
 	public SymsgInfo symsgData;
 	
 	
-	public CartemInfo() {
+	public BookiceInfo() {
 		super();
 		
 		codOwner = DefaultValue.number();	
 		codCustomer = DefaultValue.number();
-		isDeleted = DefaultValue.boole();
 		isAged = DefaultValue.boole();
 		codUser = DefaultValue.number();
 		codStore = DefaultValue.number();
 		codEmployee = DefaultValue.number();
 		codMat = DefaultValue.number();
-		price = DefaultValue.number();
 		quantity = DefaultValue.number();
-		totitem = DefaultValue.number();
-		codWeekday = DefaultValue.number();		
-		stolisData = DefaultValue.object();
-		emplisData = DefaultValue.object();
-		matlisData = DefaultValue.object();
+		codWeekday = DefaultValue.number();	
 		symsgData = DefaultValue.object();
 	}
 	
 	
 	
-	public static CartemInfo copyFrom(Object sourceObj) {
-		return copyFrom(sourceObj, CartemInfo.class);
+	public static BookiceInfo copyFrom(Object sourceObj) {
+		return copyFrom(sourceObj, BookiceInfo.class);
 	}
 	
 	
 	
-	public static List<CartemInfo> copyFrom(List<?> sourceObjs) {
-		return copyFrom(sourceObjs, CartemInfo.class);
+	public static List<BookiceInfo> copyFrom(List<?> sourceObjs) {
+		return copyFrom(sourceObjs, BookiceInfo.class);
 	}
 	
 	
 	
 	@Override public Object clone() throws CloneNotSupportedException {
-		CartemInfo deepCopy = (CartemInfo) super.clone();
+		BookiceInfo deepCopy = (BookiceInfo) super.clone();
 		
-		deepCopy.date = date;
-		deepCopy.beginTime = beginTime;
-		deepCopy.endTime = endTime;
-		deepCopy.createdOn = createdOn;
-		deepCopy.stolisData = CloneUtil.cloneRecord(stolisData, this.getClass());
-		deepCopy.emplisData = CloneUtil.cloneRecord(emplisData, this.getClass());
-		deepCopy.matlisData = CloneUtil.cloneRecord(matlisData, this.getClass());
 		deepCopy.symsgData  = CloneUtil.cloneRecord(symsgData , this.getClass());
 		
 		return deepCopy;
@@ -117,11 +91,11 @@ public final class CartemInfo extends InfoRecord implements Cloneable, Comparabl
 			return true;
 		
 		
-		if (!(o instanceof CartemInfo))
+		if (!(o instanceof BookiceInfo))
 			return false;
 		
 		
-		CartemInfo obj = (CartemInfo) o;		
+		BookiceInfo obj = (BookiceInfo) o;		
 		return (codOwner    == obj.codOwner    		&& 
 				codCustomer == obj.codCustomer 		&&
 				codUser     == obj.codUser			&&
@@ -130,28 +104,5 @@ public final class CartemInfo extends InfoRecord implements Cloneable, Comparabl
 				codEmployee == obj.codEmployee		&&
 				super.isDateEqual(date, obj.date)	&&
 				super.isTimeEqual(beginTime, obj.beginTime));
-	}
-
-
-	
-	@Override public int compareTo(CartemInfo arg0) {
-		if (arg0 == null) {
-			super.logException(new NullPointerException("arg0" + SystemMessage.NULL_ARGUMENT));
-			throw new NullPointerException("arg0" + SystemMessage.NULL_ARGUMENT);	
-		}
-
-		/*
-		if (itemNumber < arg0.itemNumber)
-			return -1;
-		
-		if (itemNumber > arg0.itemNumber)
-			return 1;
-		
-		if (equals(arg0))*/
-			return 0;
-		
-		/*
-		logException(new IllegalArgumentException(SystemMessage.COMPARE_NOT_POSSIBLE));
-		throw new IllegalArgumentException(SystemMessage.COMPARE_NOT_POSSIBLE);*/
 	}
 }

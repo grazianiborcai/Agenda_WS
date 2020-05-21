@@ -1258,4 +1258,10 @@ public final class SystemCode {
 	
 	//Refund Policy Group Header Search
 	public static final int REFUPOL_GR_HDR_SEARCH_MANDATORY_FIELD_EMPTY = 12300;
+	
+	//Book Service
+	public static final int BOOK_SERVICE_MANDATORY_FIELD_EMPTY			= 12350;
+	public static final int BOOK_SERVICE_QUANTITY_ILLEGAL				= 12351;
+	public static final int BOOK_SERVICE_AGED_DATE						= 12352;
+	public static final int BOOK_SERVICE_BAD_TIME_RANGE 				= 12353;
 }
