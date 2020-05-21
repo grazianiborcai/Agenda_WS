@@ -1,28 +1,38 @@
 package br.com.mind5.business.scheduleMonth.info;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import br.com.mind5.business.employeeList.info.EmplisInfo;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-final class SchedmonVisiMergeEmplis implements InfoMergerVisitor_<SchedmonInfo, EmplisInfo> {
-
-	@Override public SchedmonInfo writeRecord(EmplisInfo sourceOne, SchedmonInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
-		sourceTwo.emplises.add(sourceOne);
-
-		return sourceTwo;
+final class SchedmonVisiMergeEmplis implements InfoMergerVisitorV3<SchedmonInfo, EmplisInfo> {
+	
+	@Override public List<SchedmonInfo> beforeMerge(List<SchedmonInfo> baseInfos) {
+		return baseInfos;
 	}
 	
 	
 	
-	private void checkArgument(EmplisInfo sourceOne, SchedmonInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}	
-
-
+	@Override public boolean shouldMerge(SchedmonInfo baseInfo, EmplisInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner);
+	}
 	
-	@Override public boolean shouldWrite(EmplisInfo sourceOne, SchedmonInfo sourceTwo) {		
-		return (sourceOne.codOwner == sourceTwo.codOwner);
+	
+	
+	@Override public List<SchedmonInfo> merge(SchedmonInfo baseInfo, EmplisInfo selectedInfo) {
+		List<SchedmonInfo> results = new ArrayList<>();
+		
+		baseInfo.emplises.add(selectedInfo);
+		
+		results.add(baseInfo);
+		return results;
+	}
+	
+	
+	
+	@Override public InfoUniquifier<SchedmonInfo> getUniquifier() {
+		return null;
 	}
 }

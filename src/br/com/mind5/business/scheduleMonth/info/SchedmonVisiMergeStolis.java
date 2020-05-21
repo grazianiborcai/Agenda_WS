@@ -1,28 +1,38 @@
 package br.com.mind5.business.scheduleMonth.info;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import br.com.mind5.business.storeList.info.StolisInfo;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-final class SchedmonVisiMergeStolis implements InfoMergerVisitor_<SchedmonInfo, StolisInfo> {
-
-	@Override public SchedmonInfo writeRecord(StolisInfo sourceOne, SchedmonInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
-		sourceTwo.stolises.add(sourceOne);
-
-		return sourceTwo;
+final class SchedmonVisiMergeStolis implements InfoMergerVisitorV3<SchedmonInfo, StolisInfo> {
+	
+	@Override public List<SchedmonInfo> beforeMerge(List<SchedmonInfo> baseInfos) {
+		return baseInfos;
 	}
 	
 	
 	
-	private void checkArgument(StolisInfo sourceOne, SchedmonInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}	
-
-
+	@Override public boolean shouldMerge(SchedmonInfo baseInfo, StolisInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner);
+	}
 	
-	@Override public boolean shouldWrite(StolisInfo sourceOne, SchedmonInfo sourceTwo) {		
-		return (sourceOne.codOwner == sourceTwo.codOwner);
+	
+	
+	@Override public List<SchedmonInfo> merge(SchedmonInfo baseInfo, StolisInfo selectedInfo) {
+		List<SchedmonInfo> results = new ArrayList<>();
+		
+		baseInfo.stolises.add(selectedInfo);
+		
+		results.add(baseInfo);
+		return results;
+	}
+	
+	
+	
+	@Override public InfoUniquifier<SchedmonInfo> getUniquifier() {
+		return null;
 	}
 }

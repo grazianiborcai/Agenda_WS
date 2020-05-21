@@ -1,6 +1,5 @@
 package br.com.mind5.business.scheduleMonth.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.scheduleMonth.info.SchedmonInfo;
@@ -8,13 +7,14 @@ import br.com.mind5.business.scheduleMonth.info.SchedmonMerger;
 import br.com.mind5.business.scheduleMonthData.info.SchedonthatCopier;
 import br.com.mind5.business.scheduleMonthData.info.SchedonthatInfo;
 import br.com.mind5.business.scheduleMonthData.model.decisionTree.RootSchedonthatSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiSchedmonMergeSchedonthat extends ActionVisitorTemplateMergeV1<SchedmonInfo, SchedonthatInfo> {
+final class VisiSchedmonMergeSchedonthat extends ActionVisitorTemplateMergeV2<SchedmonInfo, SchedonthatInfo> {
 	
-	public VisiSchedmonMergeSchedonthat(Connection conn, String schemaName) {
-		super(conn, schemaName, SchedonthatInfo.class);
+	public VisiSchedmonMergeSchedonthat(DeciTreeOption<SchedmonInfo> option) {
+		super(option, SchedonthatInfo.class);
 	}
 	
 	
@@ -31,13 +31,13 @@ final class VisiSchedmonMergeSchedonthat extends ActionVisitorTemplateMergeV1<Sc
 	
 	
 	
-	@Override protected List<SchedmonInfo> mergeHook(List<SchedmonInfo> recordInfos, List<SchedonthatInfo> selectedInfos) {	
-		return SchedmonMerger.mergeWithSchedonthat(selectedInfos, recordInfos);
+	@Override protected List<SchedmonInfo> mergeHook(List<SchedmonInfo> baseInfos, List<SchedonthatInfo> selectedInfos) {	
+		return SchedmonMerger.mergeWithSchedonthat(baseInfos, selectedInfos);
 	}
 	
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
+		return super.DONT_MERGE_WHEN_EMPTY;
 	}
 }
