@@ -1,54 +1,38 @@
 package br.com.mind5.business.scheduleMonthData.info;
 
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import java.util.ArrayList;
+import java.util.List;
 
-final class SchedonthatVisiMergeToSelect implements InfoMergerVisitor_<SchedonthatInfo, SchedonthatInfo> {
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-	@Override public SchedonthatInfo writeRecord(SchedonthatInfo sourceOne, SchedonthatInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);		
-		return merge(sourceOne, sourceTwo);
+final class SchedonthatVisiMergeToSelect implements InfoMergerVisitorV3<SchedonthatInfo, SchedonthatInfo> {
+	
+	@Override public List<SchedonthatInfo> beforeMerge(List<SchedonthatInfo> baseInfos) {
+		return baseInfos;
 	}
 	
 	
 	
-	private void checkArgument(SchedonthatInfo sourceOne, SchedonthatInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
+	@Override public boolean shouldMerge(SchedonthatInfo baseInfo, SchedonthatInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner);
 	}
 	
 	
 	
-	private SchedonthatInfo merge(SchedonthatInfo sourceOne, SchedonthatInfo sourceTwo) {
-		SchedonthatInfo result = makeClone(sourceOne);		
-		result.username = sourceTwo.username;
-		result.codLanguage = sourceTwo.codLanguage;
-		return result;
-	}
-	
-	
-	
-	private SchedonthatInfo makeClone(SchedonthatInfo recordInfo) {
-		try {
-			return (SchedonthatInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(SchedonthatInfo sourceOne, SchedonthatInfo sourceTwo) {		
-		return (sourceOne.codOwner == sourceTwo.codOwner);
-	}
-	
-	
-	
-	private void logException(Exception e) {
+	@Override public List<SchedonthatInfo> merge(SchedonthatInfo baseInfo, SchedonthatInfo selectedInfo) {
+		List<SchedonthatInfo> results = new ArrayList<>();
 		
-		SystemLog.logError(this.getClass(), e);
+		selectedInfo.username = baseInfo.username;
+		selectedInfo.codLanguage = baseInfo.codLanguage;
+		
+		results.add(selectedInfo);
+		return results;
+	}
+	
+	
+	
+	@Override public InfoUniquifier<SchedonthatInfo> getUniquifier() {
+		return null;
 	}
 }

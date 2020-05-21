@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class SchedonthatDbTableColumn extends DaoDbTableColumnTemplate {
+public final class DaoSchedonthatDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_EMPLOYEE = DaoDbField.COL_COD_EMPLOYEE;
 	public static final String COL_COD_MATERIAL = DaoDbField.COL_COD_MATERIAL;
 	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;	
@@ -23,24 +23,13 @@ public final class SchedonthatDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_YEAR = DaoDbField.COL_YEAR;
 	
 	
-	private Hashtable<String, List<DaoColumn>> tableColumns;
-	
-	
-	public SchedonthatDbTableColumn() {
-		super(SchedonthatDbTableColumn.class);
+	public DaoSchedonthatDbTableColumn() {
+		super();
 	}
 	
 	
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
-		tableColumns = new Hashtable<>();	
-		buildScheduleMonthDataTable();
-		return tableColumns;
-	}
-	
-	
-	
-	private void buildScheduleMonthDataTable() {
 		final String TABLE_NAME = DaoDbTable.SCHEDULE_MONTH_TABLE;
 		
 		DaoColumn oneColumn;
@@ -134,6 +123,8 @@ public final class SchedonthatDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);	
 		
-		tableColumns.put(TABLE_NAME, columns);
+		Hashtable<String, List<DaoColumn>> results = new Hashtable<>();
+		results.put(TABLE_NAME, columns);
+		return results;
 	}
 }

@@ -1,35 +1,19 @@
 package br.com.mind5.business.scheduleMonthData.model.action;
 
 import br.com.mind5.business.scheduleMonthData.info.SchedonthatInfo;
-import br.com.mind5.model.action.ActionLazyV1;
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionStdHelperEnforce;
-import br.com.mind5.model.decisionTree.DeciResult;
+import br.com.mind5.model.action.ActionStdTemplateV2;
+import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdSchedonthatEnforceWeekday implements ActionStdV1<SchedonthatInfo> {
-	private ActionStdV1<SchedonthatInfo> actionHelper;	
-	
-	
-	public StdSchedonthatEnforceWeekday(DeciTreeOption<SchedonthatInfo> option) {			
-		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiSchedonthatEnforceWeekday());
+public final class StdSchedonthatEnforceWeekday extends ActionStdTemplateV2<SchedonthatInfo> {
+
+	public StdSchedonthatEnforceWeekday(DeciTreeOption<SchedonthatInfo> option) {
+		super(option);
 	}
 	
 	
 	
-	@Override public void addPostAction(ActionLazyV1<SchedonthatInfo> actionHandler) {
-		actionHelper.addPostAction(actionHandler);
-	}
-	
-	
-	
-	@Override public boolean executeAction() {			
-		return actionHelper.executeAction();
-	}
-	
-	
-	
-	@Override public DeciResult<SchedonthatInfo> getDecisionResult() {
-		return actionHelper.getDecisionResult();
+	protected ActionVisitorV2<SchedonthatInfo> buildVisitorHook(DeciTreeOption<SchedonthatInfo> option) {
+		return new VisiSchedonthatEnforceWeekday(option);
 	}
 }

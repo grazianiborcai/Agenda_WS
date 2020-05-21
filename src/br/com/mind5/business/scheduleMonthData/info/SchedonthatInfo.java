@@ -25,7 +25,7 @@ public final class SchedonthatInfo extends InfoRecord implements Cloneable {
 	
 	
 	public SchedonthatInfo() {
-		super(SchedonthatInfo.class);
+		super();
 		
 		codOwner = DefaultValue.number();	
 		codStore = DefaultValue.number();
@@ -67,7 +67,7 @@ public final class SchedonthatInfo extends InfoRecord implements Cloneable {
 		result = result * 31 + (int) (codOwner    ^ (codOwner    >>> 32));
 		result = result * 31 + (int) (codStore 	  ^ (codStore 	 >>> 32));
 		result = result * 31 + (int) (codEmployee ^ (codEmployee >>> 32));
-		result = result * 31 + (int) (codMat ^ (codMat >>> 32));
+		result = result * 31 + (int) (codMat 	  ^ (codMat 	 >>> 32));
 		result = result * 31 + (int) (year 	  	  ^ (year 	 	 >>> 32));
 		result = result * 31 + (int) (month 	  ^ (month 	 	 >>> 32));
 		result = result * 31 + (int) (day 	  	  ^ (day 	 	 >>> 32));
@@ -90,7 +90,7 @@ public final class SchedonthatInfo extends InfoRecord implements Cloneable {
 		return (codOwner    == obj.codOwner		&& 
 				codStore    == obj.codStore		&&
 				codEmployee == obj.codEmployee	&&
-				codMat == obj.codMat	&&
+				codMat 		== obj.codMat		&&
 				year    	== obj.year			&&
 				day    		== obj.day			&&
 				month    	== obj.month		);

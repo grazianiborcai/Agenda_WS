@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilder;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 
-public final class SchedonthatWhere implements DaoStmtWhere {	
+public final class DaoSchedonthatWhere implements DaoStmtWhere {	
 	private String whereClause;	
 	
 	
-	public SchedonthatWhere(DaoWhereBuilderOption whereOption, String tableName, SchedonthatInfo recordInfo) {
+	public DaoSchedonthatWhere(DaoWhereBuilderOption whereOption, String tableName, SchedonthatInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -27,27 +27,27 @@ public final class SchedonthatWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-				case SchedonthatDbTableColumn.COL_COD_OWNER :
+				case DaoSchedonthatDbTableColumn.COL_COD_OWNER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;
 					
-				case SchedonthatDbTableColumn.COL_COD_STORE :
+				case DaoSchedonthatDbTableColumn.COL_COD_STORE :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codStore));
 					break;
 					
-				case SchedonthatDbTableColumn.COL_COD_EMPLOYEE :
+				case DaoSchedonthatDbTableColumn.COL_COD_EMPLOYEE :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codEmployee));
 					break;
 					
-				case SchedonthatDbTableColumn.COL_COD_MATERIAL :
+				case DaoSchedonthatDbTableColumn.COL_COD_MATERIAL :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codMat));
 					break;
 					
-				case SchedonthatDbTableColumn.COL_YEAR :
+				case DaoSchedonthatDbTableColumn.COL_YEAR :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.year));
 					break;
 					
-				case SchedonthatDbTableColumn.COL_MONTH :
+				case DaoSchedonthatDbTableColumn.COL_MONTH :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.month));
 					break;
 			}

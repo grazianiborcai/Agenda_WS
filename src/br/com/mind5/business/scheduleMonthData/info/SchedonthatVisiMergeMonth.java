@@ -1,58 +1,39 @@
 package br.com.mind5.business.scheduleMonthData.info;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import br.com.mind5.business.masterData.info.MonthInfo;
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-final class SchedonthatVisiMergeMonth implements InfoMergerVisitor_<SchedonthatInfo, MonthInfo> {
-
-	@Override public SchedonthatInfo writeRecord(MonthInfo sourceOne, SchedonthatInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
-		
-		SchedonthatInfo resultInfo = makeClone(sourceTwo);
-		resultInfo.txtMonth = sourceOne.txtMonth;
-
-		return resultInfo;
+final class SchedonthatVisiMergeMonth implements InfoMergerVisitorV3<SchedonthatInfo, MonthInfo> {
+	
+	@Override public List<SchedonthatInfo> beforeMerge(List<SchedonthatInfo> baseInfos) {
+		return baseInfos;
 	}
 	
 	
 	
-	private void checkArgument(MonthInfo sourceOne, SchedonthatInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}	
-	
-	
-	
-	private SchedonthatInfo makeClone(SchedonthatInfo recordInfo) {
-		try {
-			return (SchedonthatInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-
-
-	
-	@Override public boolean shouldWrite(MonthInfo sourceOne, SchedonthatInfo sourceTwo) {
-		if (sourceOne.codLanguage == null ||
-			sourceTwo.codLanguage == null	)
-			
-			return false;
-				
-		
-		
-		return (sourceOne.month == sourceTwo.month && 
-				sourceOne.codLanguage.equals(sourceTwo.codLanguage));
+	@Override public boolean shouldMerge(SchedonthatInfo baseInfo, MonthInfo selectedInfo) {
+		return (baseInfo.month == selectedInfo.month && 
+				baseInfo.codLanguage.equals(selectedInfo.codLanguage));
 	}
 	
 	
 	
-	private void logException(Exception e) {
+	@Override public List<SchedonthatInfo> merge(SchedonthatInfo baseInfo, MonthInfo selectedInfo) {
+		List<SchedonthatInfo> results = new ArrayList<>();
 		
-		SystemLog.logError(this.getClass(), e);
+		baseInfo.txtMonth = selectedInfo.txtMonth;
+		
+		results.add(baseInfo);
+		return results;
+	}
+	
+	
+	
+	@Override public InfoUniquifier<SchedonthatInfo> getUniquifier() {
+		return null;
 	}
 }

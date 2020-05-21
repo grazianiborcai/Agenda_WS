@@ -11,13 +11,13 @@ import br.com.mind5.business.scheduleMonthData.model.action.StdSchedonthatMergeT
 import br.com.mind5.business.scheduleMonthData.model.checker.SchedonthatCheckRead;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class RootSchedonthatSelect extends DeciTreeTemplateWriteV1<SchedonthatInfo> {
+public final class RootSchedonthatSelect extends DeciTreeTemplateWriteV2<SchedonthatInfo> {
 	
 	public RootSchedonthatSelect(DeciTreeOption<SchedonthatInfo> option) {
 		super(option);
