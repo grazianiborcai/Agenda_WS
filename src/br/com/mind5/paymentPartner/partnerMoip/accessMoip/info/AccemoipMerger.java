@@ -2,20 +2,20 @@ package br.com.mind5.paymentPartner.partnerMoip.accessMoip.info;
 
 import java.util.List;
 
-import br.com.mind5.business.masterData.info.SysEnvironInfo;
 import br.com.mind5.info.InfoMergerBuilderV3;
 import br.com.mind5.info.InfoMergerV3;
+import br.com.mind5.masterData.sysEnvironment.info.SysenvInfo;
 import br.com.mind5.payment.setupPartner.info.SetuparInfo;
 import br.com.mind5.payment.systemPartner.info.SysparInfo;
 
 public final class AccemoipMerger {
-	public static List<AccemoipInfo> mergeWithSysEnviron(List<AccemoipInfo> baseInfos, List<SysEnvironInfo> selectedInfos) {
-		InfoMergerBuilderV3<AccemoipInfo, SysEnvironInfo> builder = new InfoMergerBuilderV3<>();
+	public static List<AccemoipInfo> mergeWithSysenv(List<AccemoipInfo> baseInfos, List<SysenvInfo> selectedInfos) {
+		InfoMergerBuilderV3<AccemoipInfo, SysenvInfo> builder = new InfoMergerBuilderV3<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new AccemoipVisiMergeSysEnviron());
-		InfoMergerV3<AccemoipInfo, SysEnvironInfo> merger = builder.build();		
+		builder.addVisitor(new AccemoipVisiMergeSysenv());
+		InfoMergerV3<AccemoipInfo, SysenvInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}	

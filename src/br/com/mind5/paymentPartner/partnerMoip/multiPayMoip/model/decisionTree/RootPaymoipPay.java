@@ -17,7 +17,7 @@ import br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.model.action.LazyPay
 import br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.model.action.LazyPaymoipEnforcePayment;
 import br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.model.action.LazyPaymoipEnforceResponseAttr;
 import br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.model.action.LazyPaymoipEnforceSetup;
-import br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.model.action.LazyPaymoipMergeSysEnviron;
+import br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.model.action.LazyPaymoipMergeSysenv;
 import br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.model.action.LazyPaymoipNodeCrecardL1;
 import br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.model.action.LazyPaymoipNodeSetuparL1;
 import br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.model.action.LazyPaymoipNodeSysparL1;
@@ -59,7 +59,7 @@ public final class RootPaymoipPay extends DeciTreeTemplateWriteV1<PaymoipInfo> {
 		ActionLazyV1<PaymoipInfo> enforceCard = new LazyPaymoipEnforceCard(option.conn, option.schemaName);
 		ActionLazyV1<PaymoipInfo> enforceFunding = new LazyPaymoipEnforceFunding(option.conn, option.schemaName);
 		ActionLazyV1<PaymoipInfo> enforcePayment = new LazyPaymoipEnforcePayment(option.conn, option.schemaName);
-		ActionLazyV1<PaymoipInfo> mergeSysEnviron = new LazyPaymoipMergeSysEnviron(option.conn, option.schemaName);
+		ActionLazyV1<PaymoipInfo> mergeSysenv = new LazyPaymoipMergeSysenv(option.conn, option.schemaName);
 		ActionLazyV1<PaymoipInfo> enforceSetup = new LazyPaymoipEnforceSetup(option.conn, option.schemaName);
 		ActionLazyV1<PaymoipInfo> payWithCredicard = new LazyPaymoipCard(option.conn, option.schemaName);
 		ActionLazyV1<PaymoipInfo> enforceReponseAttr = new LazyPaymoipEnforceResponseAttr(option.conn, option.schemaName);
@@ -70,8 +70,8 @@ public final class RootPaymoipPay extends DeciTreeTemplateWriteV1<PaymoipInfo> {
 		nodeSetupar.addPostAction(enforceCard);
 		enforceCard.addPostAction(enforceFunding);
 		enforceFunding.addPostAction(enforcePayment);
-		enforcePayment.addPostAction(mergeSysEnviron);
-		mergeSysEnviron.addPostAction(enforceSetup);
+		enforcePayment.addPostAction(mergeSysenv);
+		mergeSysenv.addPostAction(enforceSetup);
 		enforceSetup.addPostAction(payWithCredicard);
 		payWithCredicard.addPostAction(enforceReponseAttr);
 		

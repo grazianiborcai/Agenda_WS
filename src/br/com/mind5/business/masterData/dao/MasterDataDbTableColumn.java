@@ -65,7 +65,6 @@ public final class MasterDataDbTableColumn extends DaoDbTableColumnTemplate {
 		entityCategTable();
 		userCategTable();
 		matmovTypeTable();
-		sysEnvironmentTable();
 		scheduleStatusTable();
 		scheduleMonthTable();
 		
@@ -286,25 +285,6 @@ public final class MasterDataDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
-		
-		tableColumns.put(TABLE_NAME, columns);
-	}
-	
-	
-	
-	private void sysEnvironmentTable() {
-		final String TABLE_NAME = DaoDbTable.SYS_ENVIRONMENT_TABLE ;
-		
-		DaoColumn oneColumn;
-		List<DaoColumn> columns = new ArrayList<>();			
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COD_SYS_ENVIRONMENT;
-		oneColumn.isPK = IS_PRIMARY_KEY;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);		
 		
 		tableColumns.put(TABLE_NAME, columns);
 	}

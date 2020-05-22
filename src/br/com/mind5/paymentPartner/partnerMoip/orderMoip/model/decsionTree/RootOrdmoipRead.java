@@ -14,7 +14,7 @@ import br.com.mind5.paymentPartner.partnerMoip.orderMoip.info.OrdmoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.action.LazyOrdmoipEnforceResponseAttr;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.action.LazyOrdmoipEnforceSetup;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.action.LazyOrdmoipMergeSetupar;
-import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.action.LazyOrdmoipMergeSysEnviron;
+import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.action.LazyOrdmoipMergeSysenv;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.action.LazyOrdmoipRead;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.action.StdOrdmoipEnforcePaypar;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.checker.OrdmoipCheckRead;
@@ -49,14 +49,14 @@ public final class RootOrdmoipRead extends DeciTreeTemplateWriteV2<OrdmoipInfo> 
 		
 		ActionStdV1<OrdmoipInfo> enforcePaypar = new StdOrdmoipEnforcePaypar(option);	
 		ActionLazyV1<OrdmoipInfo> mergeSetupar = new LazyOrdmoipMergeSetupar(option.conn, option.schemaName);	
-		ActionLazyV1<OrdmoipInfo> mergeSysEnviron = new LazyOrdmoipMergeSysEnviron(option.conn, option.schemaName);	
+		ActionLazyV1<OrdmoipInfo> mergeSysenv = new LazyOrdmoipMergeSysenv(option.conn, option.schemaName);	
 		ActionLazyV1<OrdmoipInfo> enforceSetup = new LazyOrdmoipEnforceSetup(option.conn, option.schemaName);		
 		ActionLazyV1<OrdmoipInfo> read = new LazyOrdmoipRead(option.conn, option.schemaName);
 		ActionLazyV1<OrdmoipInfo> enforceResponseAttr = new LazyOrdmoipEnforceResponseAttr(option.conn, option.schemaName);
 		
 		enforcePaypar.addPostAction(mergeSetupar);
-		mergeSetupar.addPostAction(mergeSysEnviron);
-		mergeSysEnviron.addPostAction(enforceSetup);
+		mergeSetupar.addPostAction(mergeSysenv);
+		mergeSysenv.addPostAction(enforceSetup);
 		enforceSetup.addPostAction(read);
 		read.addPostAction(enforceResponseAttr);
 		

@@ -151,6 +151,7 @@ import br.com.mind5.masterData.refundPolicyGroupItemSearch.dao.DaoRefugritarchDb
 import br.com.mind5.masterData.refundPolicyGroupSearch.dao.DaoRefugrarchDbTableColumn;
 import br.com.mind5.masterData.state.dao.DaoStateDbTableColumn;
 import br.com.mind5.masterData.stateSearch.dao.DaoStatarchDbTableColumn;
+import br.com.mind5.masterData.sysEnvironment.dao.DaoSysenvDbTableColumn;
 import br.com.mind5.masterData.timezone.dao.DaoTimezoneDbTableColumn;
 import br.com.mind5.masterData.timezoneSearch.dao.DaoTimezonarchDbTableColumn;
 import br.com.mind5.masterData.weekday.dao.DaoWeekdayDbTableColumn;
@@ -376,6 +377,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new DaoRefuporarchDbTableColumn());
 		addTable(new DaoAuthgroupDbTableColumn());
 		addTable(new DaoPayparDbTableColumn());
+		addTable(new DaoSysenvDbTableColumn());
 	}
 	
 	

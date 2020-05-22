@@ -3,10 +3,10 @@ package br.com.mind5.paymentPartner.partnerMoip.customerMoip.info;
 import java.util.List;
 
 import br.com.mind5.business.addressSnapshot.info.AddresnapInfo;
-import br.com.mind5.business.masterData.info.SysEnvironInfo;
 import br.com.mind5.business.phoneSnapshot.info.PhonapInfo;
 import br.com.mind5.info.InfoMergerBuilderV3;
 import br.com.mind5.info.InfoMergerV3;
+import br.com.mind5.masterData.sysEnvironment.info.SysenvInfo;
 import br.com.mind5.payment.setupPartner.info.SetuparInfo;
 import br.com.mind5.security.userSnapshot.info.UserapInfo;
 
@@ -25,13 +25,13 @@ public final class CusmoipMerger {
 	
 	
 	
-	public static List<CusmoipInfo> mergeWithSysEnviron(List<CusmoipInfo> baseInfos, List<SysEnvironInfo> selectedInfos) {
-		InfoMergerBuilderV3<CusmoipInfo, SysEnvironInfo> builder = new InfoMergerBuilderV3<>();
+	public static List<CusmoipInfo> mergeWithSysenv(List<CusmoipInfo> baseInfos, List<SysenvInfo> selectedInfos) {
+		InfoMergerBuilderV3<CusmoipInfo, SysenvInfo> builder = new InfoMergerBuilderV3<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CusmoipVisiMergeSysEnviron());
-		InfoMergerV3<CusmoipInfo, SysEnvironInfo> merger = builder.build();		
+		builder.addVisitor(new CusmoipVisiMergeSysenv());
+		InfoMergerV3<CusmoipInfo, SysenvInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}		

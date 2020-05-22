@@ -16,7 +16,7 @@ import br.com.mind5.paymentPartner.partnerMoip.accessMoip.model.action.LazyAccem
 import br.com.mind5.paymentPartner.partnerMoip.accessMoip.model.action.LazyAccemoipEnforceSetup;
 import br.com.mind5.paymentPartner.partnerMoip.accessMoip.model.action.LazyAccemoipInsertPeresmoip;
 import br.com.mind5.paymentPartner.partnerMoip.accessMoip.model.action.LazyAccemoipMergeSetupar;
-import br.com.mind5.paymentPartner.partnerMoip.accessMoip.model.action.LazyAccemoipMergeSysEnviron;
+import br.com.mind5.paymentPartner.partnerMoip.accessMoip.model.action.LazyAccemoipMergeSysenv;
 import br.com.mind5.paymentPartner.partnerMoip.accessMoip.model.action.LazyAccemoipUrl;
 import br.com.mind5.paymentPartner.partnerMoip.accessMoip.model.action.StdAccemoipMergeSyspar;
 import br.com.mind5.paymentPartner.partnerMoip.accessMoip.model.checker.AccemoipCheckSetupar;
@@ -59,7 +59,7 @@ public final class NodeAccemoipUrl extends DeciTreeTemplateWriteV1<AccemoipInfo>
 
 		ActionStdV1<AccemoipInfo> mergeSyspar = new StdAccemoipMergeSyspar(option);	
 		ActionLazyV1<AccemoipInfo> mergeSetupar = new LazyAccemoipMergeSetupar(option.conn, option.schemaName);
-		ActionLazyV1<AccemoipInfo> mergeSysEnviron = new LazyAccemoipMergeSysEnviron(option.conn, option.schemaName);
+		ActionLazyV1<AccemoipInfo> mergeSysenv = new LazyAccemoipMergeSysenv(option.conn, option.schemaName);
 		ActionLazyV1<AccemoipInfo> enforceSetup = new LazyAccemoipEnforceSetup(option.conn, option.schemaName);		
 		ActionLazyV1<AccemoipInfo> enforceScopes = new LazyAccemoipEnforceScopes(option.conn, option.schemaName);
 		ActionLazyV1<AccemoipInfo> enforceUrl = new LazyAccemoipUrl(option.conn, option.schemaName);
@@ -67,8 +67,8 @@ public final class NodeAccemoipUrl extends DeciTreeTemplateWriteV1<AccemoipInfo>
 		ActionLazyV1<AccemoipInfo> obfuscate = new LazyAccemoipEnforceObfuscate(option.conn, option.schemaName);
 		
 		mergeSyspar.addPostAction(mergeSetupar);
-		mergeSetupar.addPostAction(mergeSysEnviron);
-		mergeSysEnviron.addPostAction(enforceSetup);		
+		mergeSetupar.addPostAction(mergeSysenv);
+		mergeSysenv.addPostAction(enforceSetup);		
 		enforceSetup.addPostAction(enforceScopes);
 		enforceScopes.addPostAction(enforceUrl);
 		enforceUrl.addPostAction(insertPeresmoip);

@@ -12,7 +12,7 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.info.CremoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.model.action.LazyCremoipEnforceSetup;
-import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.model.action.LazyCremoipMergeSysEnviron;
+import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.model.action.LazyCremoipMergeSysenv;
 import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.model.action.StdCremoipMergeSetupar;
 import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.model.checker.CremoipCheckSetupar;
 
@@ -45,11 +45,11 @@ public final class NodeCremoipSetuparL2 extends DeciTreeTemplateWriteV2<CremoipI
 		List<ActionStdV1<CremoipInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<CremoipInfo> mergeSetupar = new StdCremoipMergeSetupar(option);
-		ActionLazyV1<CremoipInfo> mergeSysEnviron = new LazyCremoipMergeSysEnviron(option.conn, option.schemaName);
+		ActionLazyV1<CremoipInfo> mergeSysenv = new LazyCremoipMergeSysenv(option.conn, option.schemaName);
 		ActionLazyV1<CremoipInfo> enforceSetup = new LazyCremoipEnforceSetup(option.conn, option.schemaName);
 		
-		mergeSetupar.addPostAction(mergeSysEnviron);
-		mergeSysEnviron.addPostAction(enforceSetup);
+		mergeSetupar.addPostAction(mergeSysenv);
+		mergeSysenv.addPostAction(enforceSetup);
 		
 		actions.add(mergeSetupar);
 		return actions;

@@ -3,10 +3,10 @@ package br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.info;
 import java.util.List;
 
 import br.com.mind5.business.addressSnapshot.info.AddresnapInfo;
-import br.com.mind5.business.masterData.info.SysEnvironInfo;
 import br.com.mind5.business.phoneSnapshot.info.PhonapInfo;
 import br.com.mind5.info.InfoMergerBuilderV3;
 import br.com.mind5.info.InfoMergerV3;
+import br.com.mind5.masterData.sysEnvironment.info.SysenvInfo;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
 import br.com.mind5.payment.setupPartner.info.SetuparInfo;
 
@@ -24,13 +24,13 @@ public final class CremoipMerger {
 	
 	
 	
-	public static List<CremoipInfo> mergeWithSysEnviron(List<CremoipInfo> baseInfos, List<SysEnvironInfo> selectedInfos) {
-		InfoMergerBuilderV3<CremoipInfo, SysEnvironInfo> builder = new InfoMergerBuilderV3<>();
+	public static List<CremoipInfo> mergeWithSysenv(List<CremoipInfo> baseInfos, List<SysenvInfo> selectedInfos) {
+		InfoMergerBuilderV3<CremoipInfo, SysenvInfo> builder = new InfoMergerBuilderV3<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CremoipVisiMergeSysEnviron());
-		InfoMergerV3<CremoipInfo, SysEnvironInfo> merger = builder.build();		
+		builder.addVisitor(new CremoipVisiMergeSysenv());
+		InfoMergerV3<CremoipInfo, SysenvInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}	

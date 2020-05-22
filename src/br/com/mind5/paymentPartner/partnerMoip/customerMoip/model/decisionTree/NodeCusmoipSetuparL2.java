@@ -12,7 +12,7 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 import br.com.mind5.paymentPartner.partnerMoip.customerMoip.info.CusmoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.customerMoip.model.action.LazyCusmoipEnforceSetup;
-import br.com.mind5.paymentPartner.partnerMoip.customerMoip.model.action.LazyCusmoipMergeSysEnviron;
+import br.com.mind5.paymentPartner.partnerMoip.customerMoip.model.action.LazyCusmoipMergeSysenv;
 import br.com.mind5.paymentPartner.partnerMoip.customerMoip.model.action.StdCusmoipMergeSetupar;
 import br.com.mind5.paymentPartner.partnerMoip.customerMoip.model.checker.CusmoipCheckSetupar;
 
@@ -45,11 +45,11 @@ public final class NodeCusmoipSetuparL2 extends DeciTreeTemplateWriteV2<CusmoipI
 		List<ActionStdV1<CusmoipInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<CusmoipInfo> mergeSetupar = new StdCusmoipMergeSetupar(option);
-		ActionLazyV1<CusmoipInfo> mergeSysEnviron = new LazyCusmoipMergeSysEnviron(option.conn, option.schemaName);
+		ActionLazyV1<CusmoipInfo> mergeSysenv = new LazyCusmoipMergeSysenv(option.conn, option.schemaName);
 		ActionLazyV1<CusmoipInfo> enforceSetup = new LazyCusmoipEnforceSetup(option.conn, option.schemaName);
 		
-		mergeSetupar.addPostAction(mergeSysEnviron);
-		mergeSysEnviron.addPostAction(enforceSetup);
+		mergeSetupar.addPostAction(mergeSysenv);
+		mergeSysenv.addPostAction(enforceSetup);
 		
 		actions.add(mergeSetupar);
 		return actions;

@@ -17,7 +17,7 @@ import br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.model.action.LazyM
 import br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.model.action.LazyMultmoipEnforceResponseOrdmoip;
 import br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.model.action.LazyMultmoipEnforceSetup;
 import br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.model.action.LazyMultmoipMergeSetupar;
-import br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.model.action.LazyMultmoipMergeSysEnviron;
+import br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.model.action.LazyMultmoipMergeSysenv;
 import br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.model.action.StdMultmoipEnforceMultiorder;
 import br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.model.checker.MultmoipCheckDummy;
 
@@ -47,7 +47,7 @@ public final class NodeMultmoipPlace extends DeciTreeTemplateReadV1<MultmoipInfo
 		ActionStdV1<MultmoipInfo> enforceMultiorder = new StdMultmoipEnforceMultiorder(option);		
 		ActionLazyV1<MultmoipInfo> enforcePaypar = new LazyMultmoipEnforcePaypar(option.conn, option.schemaName);
 		ActionLazyV1<MultmoipInfo> mergeSetupar = new LazyMultmoipMergeSetupar(option.conn, option.schemaName);
-		ActionLazyV1<MultmoipInfo> mergeSysEnviron = new LazyMultmoipMergeSysEnviron(option.conn, option.schemaName);	
+		ActionLazyV1<MultmoipInfo> mergeSysenv = new LazyMultmoipMergeSysenv(option.conn, option.schemaName);	
 		ActionLazyV1<MultmoipInfo> enforceSetup = new LazyMultmoipEnforceSetup(option.conn, option.schemaName);	
 		ActionLazyV1<MultmoipInfo> enforceOwnId = new LazyMultmoipEnforceOwnId(option.conn, option.schemaName);
 		ActionLazyV1<MultmoipInfo> create = new LazyMultmoipCreate(option.conn, option.schemaName);
@@ -56,8 +56,8 @@ public final class NodeMultmoipPlace extends DeciTreeTemplateReadV1<MultmoipInfo
 			
 		enforceMultiorder.addPostAction(enforcePaypar);
 		enforcePaypar.addPostAction(mergeSetupar);
-		mergeSetupar.addPostAction(mergeSysEnviron);
-		mergeSysEnviron.addPostAction(enforceSetup);
+		mergeSetupar.addPostAction(mergeSysenv);
+		mergeSysenv.addPostAction(enforceSetup);
 		enforceSetup.addPostAction(enforceOwnId);
 		enforceOwnId.addPostAction(create);
 		create.addPostAction(enforceResponseAttr);

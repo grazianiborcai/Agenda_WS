@@ -14,7 +14,7 @@ import br.com.mind5.paymentPartner.partnerMoip.tokenMoip.info.TokemoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.tokenMoip.model.action.LazyTokemoipEnforceSetup;
 import br.com.mind5.paymentPartner.partnerMoip.tokenMoip.model.action.LazyTokemoipGenerate;
 import br.com.mind5.paymentPartner.partnerMoip.tokenMoip.model.action.LazyTokemoipMergeSetupar;
-import br.com.mind5.paymentPartner.partnerMoip.tokenMoip.model.action.LazyTokemoipMergeSysEnviron;
+import br.com.mind5.paymentPartner.partnerMoip.tokenMoip.model.action.LazyTokemoipMergeSysenv;
 import br.com.mind5.paymentPartner.partnerMoip.tokenMoip.model.action.StdTokemoipMergeSyspar;
 import br.com.mind5.paymentPartner.partnerMoip.tokenMoip.model.checker.TokemoipCheckSetupar;
 import br.com.mind5.paymentPartner.partnerMoip.tokenMoip.model.checker.TokemoipCheckSyspar;
@@ -56,13 +56,13 @@ public final class NodeTokemoipGenerate extends DeciTreeTemplateWriteV1<Tokemoip
 
 		ActionStdV1<TokemoipInfo> mergeSyspar = new StdTokemoipMergeSyspar(option);	
 		ActionLazyV1<TokemoipInfo> mergeSetupar = new LazyTokemoipMergeSetupar(option.conn, option.schemaName);
-		ActionLazyV1<TokemoipInfo> mergeSysEnviron = new LazyTokemoipMergeSysEnviron(option.conn, option.schemaName);
+		ActionLazyV1<TokemoipInfo> mergeSysenv = new LazyTokemoipMergeSysenv(option.conn, option.schemaName);
 		ActionLazyV1<TokemoipInfo> enforceSetup = new LazyTokemoipEnforceSetup(option.conn, option.schemaName);
 		ActionLazyV1<TokemoipInfo> generateToken = new LazyTokemoipGenerate(option.conn, option.schemaName);
 		
 		mergeSyspar.addPostAction(mergeSetupar);
-		mergeSetupar.addPostAction(mergeSysEnviron);
-		mergeSysEnviron.addPostAction(enforceSetup);
+		mergeSetupar.addPostAction(mergeSysenv);
+		mergeSysenv.addPostAction(enforceSetup);
 		enforceSetup.addPostAction(generateToken);
 		
 		actions.add(mergeSyspar);		

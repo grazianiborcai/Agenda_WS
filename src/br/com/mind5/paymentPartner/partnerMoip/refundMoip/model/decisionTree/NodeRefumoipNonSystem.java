@@ -12,7 +12,7 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 import br.com.mind5.paymentPartner.partnerMoip.refundMoip.info.RefumoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.refundMoip.model.action.LazyRefumoipEnforceSetupNonsys;
-import br.com.mind5.paymentPartner.partnerMoip.refundMoip.model.action.LazyRefumoipMergeSysEnviron;
+import br.com.mind5.paymentPartner.partnerMoip.refundMoip.model.action.LazyRefumoipMergeSysenv;
 import br.com.mind5.paymentPartner.partnerMoip.refundMoip.model.action.StdRefumoipMergeStopar;
 import br.com.mind5.paymentPartner.partnerMoip.refundMoip.model.checker.RefumoipCheckStopar;
 
@@ -45,11 +45,11 @@ public final class NodeRefumoipNonSystem extends DeciTreeTemplateWriteV2<Refumoi
 		List<ActionStdV1<RefumoipInfo>> actions = new ArrayList<>();	
 		
 		ActionStdV1<RefumoipInfo> mergeStopar = new StdRefumoipMergeStopar(option);	
-		ActionLazyV1<RefumoipInfo> mergeSysEnviron = new LazyRefumoipMergeSysEnviron(option.conn, option.schemaName);
+		ActionLazyV1<RefumoipInfo> mergeSysenv = new LazyRefumoipMergeSysenv(option.conn, option.schemaName);
 		ActionLazyV1<RefumoipInfo> enforceSetup = new LazyRefumoipEnforceSetupNonsys(option.conn, option.schemaName);	
 		
-		mergeStopar.addPostAction(mergeSysEnviron);
-		mergeSysEnviron.addPostAction(enforceSetup);
+		mergeStopar.addPostAction(mergeSysenv);
+		mergeSysenv.addPostAction(enforceSetup);
 		
 		actions.add(mergeStopar);		
 		return actions;

@@ -2,9 +2,9 @@ package br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.info;
 
 import java.util.List;
 
-import br.com.mind5.business.masterData.info.SysEnvironInfo;
 import br.com.mind5.info.InfoMergerBuilderV3;
 import br.com.mind5.info.InfoMergerV3;
+import br.com.mind5.masterData.sysEnvironment.info.SysenvInfo;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
 import br.com.mind5.payment.setupPartner.info.SetuparInfo;
 import br.com.mind5.payment.systemPartner.info.SysparInfo;
@@ -49,13 +49,13 @@ public final class PaymoipMerger {
 	
 	
 	
-	public static List<PaymoipInfo> mergeWithSysEnviron(List<PaymoipInfo> baseInfos, List<SysEnvironInfo> selectedInfos) {
-		InfoMergerBuilderV3<PaymoipInfo, SysEnvironInfo> builder = new InfoMergerBuilderV3<>();
+	public static List<PaymoipInfo> mergeWithSysenv(List<PaymoipInfo> baseInfos, List<SysenvInfo> selectedInfos) {
+		InfoMergerBuilderV3<PaymoipInfo, SysenvInfo> builder = new InfoMergerBuilderV3<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PaymoipVisiMergeSysEnviron());
-		InfoMergerV3<PaymoipInfo, SysEnvironInfo> merger = builder.build();		
+		builder.addVisitor(new PaymoipVisiMergeSysenv());
+		InfoMergerV3<PaymoipInfo, SysenvInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}	
