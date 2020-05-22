@@ -37,8 +37,7 @@ public final class ScheduleResource {
 	private static final String INSERT_SCHEDULE_LINE = "/insertScheduleLine";
 	private static final String UPDATE_SCHEDULE_LINE = "/updateScheduleLine";
 	private static final String MOVE_SCHEDULE_LINE = "/moveScheduleLine";
-	private static final String SEARCH_SCHEDULE_LINE = "/searchtScheduleLine";
-	
+	private static final String SEARCH_SCHEDULE_LINE = "/searchScheduleLine";	
 	private static final String SELECT_SCHEDULE_LINE = "/selectScheduleLine";
 	private static final String CANCEL_SCHEDULE_LINE = "/cancelScheduleLine";
 	private static final String SELECT_SCHEDULE_YEAR = "/selectScheduleYear";
