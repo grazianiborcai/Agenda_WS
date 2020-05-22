@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.business.masterData.dao.MasterDataDbTableColumn;
 import br.com.mind5.dao.DaoJoin;
 import br.com.mind5.dao.DaoJoinBuilder;
 import br.com.mind5.dao.DaoOperation;
@@ -43,9 +42,8 @@ public final class DaoEntitegSelectSingle extends DaoStmtTemplate<EntitegInfo> {
 	@Override protected String buildWhereClauseHook(String tableName, EntitegInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
 		
-		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
-		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;	
-		whereOption.dummyClauseWhenEmpty = DaoOptionValue.DUMMY_CLAUSE_ALLOWED;
+		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
+		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;
 		
 		DaoStmtWhere whereClause = new DaoEntitegWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
@@ -71,9 +69,9 @@ public final class DaoEntitegSelectSingle extends DaoStmtTemplate<EntitegInfo> {
 				do {				
 					EntitegInfo dataInfo = new EntitegInfo();
 					
-					dataInfo.codEntityCateg = stmtResult.getString(MasterDataDbTableColumn.COL_COD_ENTITY_CATEG);
-					dataInfo.txtEntityCateg = stmtResult.getString(MasterDataDbTableColumn.COL_NAME);
-					dataInfo.codLanguage = stmtResult.getString(MasterDataDbTableColumn.COL_COD_LANGUAGE);		
+					dataInfo.codEntityCateg = stmtResult.getString(DaoEntitegDbTableColumn.COL_COD_ENTITY_CATEG);
+					dataInfo.txtEntityCateg = stmtResult.getString(DaoEntitegDbTableColumn.COL_NAME);
+					dataInfo.codLanguage = stmtResult.getString(DaoEntitegDbTableColumn.COL_COD_LANGUAGE);		
 					
 					finalResult.add(dataInfo);				
 				} while (stmtResult.next());
