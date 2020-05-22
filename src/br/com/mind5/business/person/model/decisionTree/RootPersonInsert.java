@@ -7,7 +7,7 @@ import br.com.mind5.business.person.info.PersonInfo;
 import br.com.mind5.business.person.model.action.LazyPersonNodeEmailL1;
 import br.com.mind5.business.person.model.action.LazyPersonNodeInsert;
 import br.com.mind5.business.person.model.action.LazyPersonNodeSnapshot;
-import br.com.mind5.business.person.model.checker.PersonCheckEntityCateg;
+import br.com.mind5.business.person.model.checker.PersonCheckEntiteg;
 import br.com.mind5.business.person.model.checker.PersonCheckGender;
 import br.com.mind5.business.person.model.checker.PersonCheckInsert;
 import br.com.mind5.business.person.model.checker.PersonCheckLangu;
@@ -65,7 +65,7 @@ public final class RootPersonInsert extends DeciTreeTemplateWriteV2<PersonInfo> 
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
-		checker = new PersonCheckEntityCateg(checkerOption);
+		checker = new PersonCheckEntiteg(checkerOption);
 		queue.add(checker);	
 			
 		return new ModelCheckerHelperQueueV2<>(queue);

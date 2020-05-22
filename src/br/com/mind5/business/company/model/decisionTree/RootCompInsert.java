@@ -7,7 +7,7 @@ import br.com.mind5.business.company.info.CompInfo;
 import br.com.mind5.business.company.model.action.LazyCompNodeInsert;
 import br.com.mind5.business.company.model.action.LazyCompNodeSnapshot;
 import br.com.mind5.business.company.model.checker.CompCheckCountry;
-import br.com.mind5.business.company.model.checker.CompCheckEntityCateg;
+import br.com.mind5.business.company.model.checker.CompCheckEntiteg;
 import br.com.mind5.business.company.model.checker.CompCheckInsert;
 import br.com.mind5.business.company.model.checker.CompCheckLangu;
 import br.com.mind5.business.company.model.checker.CompCheckOwner;
@@ -57,7 +57,7 @@ public final class RootCompInsert extends DeciTreeTemplateWriteV1<CompInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
-		checker = new CompCheckEntityCateg(checkerOption);
+		checker = new CompCheckEntiteg(checkerOption);
 		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();

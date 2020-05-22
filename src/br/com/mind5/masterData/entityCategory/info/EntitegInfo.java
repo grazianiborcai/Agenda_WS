@@ -1,28 +1,28 @@
-package br.com.mind5.business.masterData.info;
+package br.com.mind5.masterData.entityCategory.info;
 
 import java.util.List;
 
 import br.com.mind5.info.InfoRecord;
 
-public final class EntityCategInfo extends InfoRecord implements Cloneable {
+public final class EntitegInfo extends InfoRecord implements Cloneable {
 	public String codEntityCateg;
 	public String txtEntityCateg;
 	
 	
-	public EntityCategInfo() {
-		super(EntityCategInfo.class);
+	public EntitegInfo() {
+		super();
 	}
 	
 	
 	
-	public static EntityCategInfo copyFrom(Object sourceObj) {
-		return copyFrom(sourceObj, EntityCategInfo.class);
+	public static EntitegInfo copyFrom(Object sourceObj) {
+		return copyFrom(sourceObj, EntitegInfo.class);
 	}
 	
 	
 	
-	public static List<EntityCategInfo> copyFrom(List<?> sourceObjs) {
-		return copyFrom(sourceObjs, EntityCategInfo.class);
+	public static List<EntitegInfo> copyFrom(List<?> sourceObjs) {
+		return copyFrom(sourceObjs, EntitegInfo.class);
 	}
 	
 	
@@ -50,11 +50,11 @@ public final class EntityCategInfo extends InfoRecord implements Cloneable {
 			return true;
 		
 		
-		if (!(o instanceof EntityCategInfo))
+		if (!(o instanceof EntitegInfo))
 			return false;
 		
 		
-		EntityCategInfo obj = (EntityCategInfo) o;	
+		EntitegInfo obj = (EntitegInfo) o;	
 		return super.isStringEqual(codEntityCateg, obj.codEntityCateg);
 	}
 }

@@ -1,4 +1,4 @@
-package br.com.mind5.business.masterData.dao;
+package br.com.mind5.masterData.entityCategory.dao;
 
 import br.com.mind5.dao.DaoJoin;
 import br.com.mind5.dao.DaoJoinBuilder;
@@ -7,11 +7,11 @@ import br.com.mind5.dao.DaoJoinType;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class EntityCategJoinTxt implements DaoJoinBuilder {
+public final class DaoEntitegJoinTxt implements DaoJoinBuilder {
 	private final String leftTable;
 	
 	
-	public EntityCategJoinTxt(String leftTableName) {
+	public DaoEntitegJoinTxt(String leftTableName) {
 		leftTable = leftTableName;
 	}
 

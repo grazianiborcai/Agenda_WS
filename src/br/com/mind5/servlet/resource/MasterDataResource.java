@@ -10,14 +10,12 @@ import javax.ws.rs.core.Response;
 
 import br.com.mind5.business.masterData.info.CartCategInfo;
 import br.com.mind5.business.masterData.info.CountryLegalInfo;
-import br.com.mind5.business.masterData.info.EntityCategInfo;
 import br.com.mind5.business.masterData.info.MatmovTypeInfo;
 import br.com.mind5.business.masterData.info.MonthInfo;
 import br.com.mind5.business.masterData.info.PositionInfo;
 import br.com.mind5.business.masterData.info.ScheduleStatusInfo;
 import br.com.mind5.business.masterData.model.CartCategModelSelect;
 import br.com.mind5.business.masterData.model.CountryLegalModelSelect;
-import br.com.mind5.business.masterData.model.EntityCategModelSelect;
 import br.com.mind5.business.masterData.model.MatmovTypeModelSelect;
 import br.com.mind5.business.masterData.model.MonthModelSelect;
 import br.com.mind5.business.masterData.model.PositionModelSelect;
@@ -34,6 +32,8 @@ import br.com.mind5.masterData.currencySearch.info.CurrarshInfo;
 import br.com.mind5.masterData.currencySearch.model.CurrarshModelSelect;
 import br.com.mind5.masterData.dayPartingSearch.info.DayparchInfo;
 import br.com.mind5.masterData.dayPartingSearch.model.DayparchModelSelect;
+import br.com.mind5.masterData.entityCategory.info.EntitegInfo;
+import br.com.mind5.masterData.entityCategory.model.EntitegModelSelect;
 import br.com.mind5.masterData.feeCategorySearch.info.FeecatarchInfo;
 import br.com.mind5.masterData.feeCategorySearch.model.FeecatarchModelSelect;
 import br.com.mind5.masterData.genderSearch.info.GendarchInfo;
@@ -563,12 +563,12 @@ public final class MasterDataResource {
 	public Response selectEntityCateg(@HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage,
 			                          @HeaderParam("codEntityCateg") String codEntityCateg) {
 		
-		EntityCategInfo recordInfo = new EntityCategInfo();		
+		EntitegInfo recordInfo = new EntitegInfo();		
 		recordInfo.codEntityCateg = codEntityCateg;
 		recordInfo.codLanguage = codLanguage;
 		
 		
-		Model model = new EntityCategModelSelect(recordInfo);
+		Model model = new EntitegModelSelect(recordInfo);
 		model.executeRequest();
 		Response result = model.getResponse();
 		model.close();

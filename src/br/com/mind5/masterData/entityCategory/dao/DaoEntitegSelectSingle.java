@@ -1,4 +1,4 @@
-package br.com.mind5.business.masterData.dao;
+package br.com.mind5.masterData.entityCategory.dao;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.business.masterData.info.EntityCategInfo;
+import br.com.mind5.business.masterData.dao.MasterDataDbTableColumn;
 import br.com.mind5.dao.DaoJoin;
 import br.com.mind5.dao.DaoJoinBuilder;
 import br.com.mind5.dao.DaoOperation;
@@ -16,12 +16,13 @@ import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
+import br.com.mind5.masterData.entityCategory.info.EntitegInfo;
 
-public final class EntityCategSelectSingle extends DaoStmtTemplate<EntityCategInfo> {
+public final class DaoEntitegSelectSingle extends DaoStmtTemplate<EntitegInfo> {
 	private final String MAIN_TABLE = DaoDbTable.ENTITY_CATEG_TABLE;
 	
 	
-	public EntityCategSelectSingle(Connection conn, EntityCategInfo recordInfo, String schemaName) {
+	public DaoEntitegSelectSingle(Connection conn, EntitegInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -39,36 +40,36 @@ public final class EntityCategSelectSingle extends DaoStmtTemplate<EntityCategIn
 	
 	
 	
-	@Override protected String buildWhereClauseHook(String tableName, EntityCategInfo recordInfo) {
+	@Override protected String buildWhereClauseHook(String tableName, EntitegInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
 		
 		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;	
 		whereOption.dummyClauseWhenEmpty = DaoOptionValue.DUMMY_CLAUSE_ALLOWED;
 		
-		DaoStmtWhere whereClause = new EntityCategWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new DaoEntitegWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
 	
 	
-	@Override protected DaoJoin getJoinHook(EntityCategInfo recordInfo) {
-		DaoJoinBuilder joinText = new EntityCategJoinTxt(MAIN_TABLE);		
+	@Override protected DaoJoin getJoinHook(EntitegInfo recordInfo) {
+		DaoJoinBuilder joinText = new DaoEntitegJoinTxt(MAIN_TABLE);		
 		return joinText.build();
 	}
 	
 	
 	
-	@Override protected DaoResultParser<EntityCategInfo> getResultParserHook() {
-		return new DaoResultParser<EntityCategInfo>() {
-			@Override public List<EntityCategInfo> parseResult(EntityCategInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
-				List<EntityCategInfo> finalResult = new ArrayList<>();
+	@Override protected DaoResultParser<EntitegInfo> getResultParserHook() {
+		return new DaoResultParser<EntitegInfo>() {
+			@Override public List<EntitegInfo> parseResult(EntitegInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
+				List<EntitegInfo> finalResult = new ArrayList<>();
 				
 				if (stmtResult.next() == false)				
 					return finalResult;
 			
 				do {				
-					EntityCategInfo dataInfo = new EntityCategInfo();
+					EntitegInfo dataInfo = new EntitegInfo();
 					
 					dataInfo.codEntityCateg = stmtResult.getString(MasterDataDbTableColumn.COL_COD_ENTITY_CATEG);
 					dataInfo.txtEntityCateg = stmtResult.getString(MasterDataDbTableColumn.COL_NAME);

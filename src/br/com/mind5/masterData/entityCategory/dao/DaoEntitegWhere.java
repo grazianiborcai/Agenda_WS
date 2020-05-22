@@ -1,25 +1,26 @@
-package br.com.mind5.business.masterData.dao;
+package br.com.mind5.masterData.entityCategory.dao;
 
 import java.util.List;
 
-import br.com.mind5.business.masterData.info.EntityCategInfo;
+import br.com.mind5.business.masterData.dao.MasterDataDbTableColumn;
 import br.com.mind5.dao.DaoColumn;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilder;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
+import br.com.mind5.masterData.entityCategory.info.EntitegInfo;
 
-final class EntityCategWhere implements DaoStmtWhere {
+final class DaoEntitegWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public EntityCategWhere(DaoWhereBuilderOption whereOption, String tableName, EntityCategInfo recordInfo) {
+	public DaoEntitegWhere(DaoWhereBuilderOption whereOption, String tableName, EntitegInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
 	
 	
-	private void generateWhereClause(DaoWhereBuilderOption whereOption, String tableName, EntityCategInfo recordInfo) {
+	private void generateWhereClause(DaoWhereBuilderOption whereOption, String tableName, EntitegInfo recordInfo) {
 		DaoWhereBuilder builder = DaoWhereBuilder.factory(whereOption);		
 		List<DaoColumn> columns = DaoDbTableColumnAll.getTableColumnsAsList(tableName);
 		

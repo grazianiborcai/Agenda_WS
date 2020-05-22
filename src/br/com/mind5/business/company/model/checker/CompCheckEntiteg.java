@@ -3,20 +3,20 @@ package br.com.mind5.business.company.model.checker;
 import java.util.List;
 
 import br.com.mind5.business.company.info.CompInfo;
-import br.com.mind5.business.masterData.info.EntityCategInfo;
-import br.com.mind5.business.masterData.model.checker.EntityCategCheckExist;
+import br.com.mind5.masterData.entityCategory.info.EntitegInfo;
+import br.com.mind5.masterData.entityCategory.model.checker.EntitegCheckExist;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 
-public final class CompCheckEntityCateg implements ModelCheckerV1<CompInfo> {
+public final class CompCheckEntiteg implements ModelCheckerV1<CompInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelCheckerV1<EntityCategInfo> checker;
+	private ModelCheckerV1<EntitegInfo> checker;
 	
 	
-	public CompCheckEntityCateg(ModelCheckerOption option) {
-		checker = new EntityCategCheckExist(option);
+	public CompCheckEntiteg(ModelCheckerOption option) {
+		checker = new EntitegCheckExist(option);
 	}
 	
 	
@@ -33,7 +33,7 @@ public final class CompCheckEntityCateg implements ModelCheckerV1<CompInfo> {
 	
 	
 	@Override public boolean check(CompInfo recordInfo) {
-		return checker.check(EntityCategInfo.copyFrom(recordInfo));
+		return checker.check(EntitegInfo.copyFrom(recordInfo));
 	}
 
 	
