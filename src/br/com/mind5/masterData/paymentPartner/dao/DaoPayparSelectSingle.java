@@ -1,4 +1,4 @@
-package br.com.mind5.business.masterData.dao;
+package br.com.mind5.masterData.paymentPartner.dao;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.business.masterData.info.PayparInfo;
 import br.com.mind5.dao.DaoOperation;
 import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtTemplate;
@@ -14,12 +13,13 @@ import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
+import br.com.mind5.masterData.paymentPartner.info.PayparInfo;
 
-public final class PayparSelectSingle extends DaoStmtTemplate<PayparInfo> {
+public final class DaoPayparSelectSingle extends DaoStmtTemplate<PayparInfo> {
 	private final String MAIN_TABLE = DaoDbTable.PAY_PARTNER_TABLE;
 	
 	
-	public PayparSelectSingle(Connection conn, PayparInfo recordInfo, String schemaName) {
+	public DaoPayparSelectSingle(Connection conn, PayparInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -40,11 +40,10 @@ public final class PayparSelectSingle extends DaoStmtTemplate<PayparInfo> {
 	@Override protected String buildWhereClauseHook(String tableName, PayparInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
 		
-		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
-		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;	
-		whereOption.dummyClauseWhenEmpty = DaoOptionValue.DUMMY_CLAUSE_ALLOWED;
+		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
+		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;
 		
-		DaoStmtWhere whereClause = new PayparWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new DaoPayparWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -61,9 +60,9 @@ public final class PayparSelectSingle extends DaoStmtTemplate<PayparInfo> {
 				do {				
 					PayparInfo dataInfo = new PayparInfo();
 					
-					dataInfo.codPayPartner = stmtResult.getInt(MasterDataDbTableColumn.COL_COD_PAY_PARTNER);
-					dataInfo.txtPayPartner = stmtResult.getString(MasterDataDbTableColumn.COL_NAME);
-					dataInfo.description = stmtResult.getString(MasterDataDbTableColumn.COL_DESCRIPTION);	
+					dataInfo.codPayPartner = stmtResult.getInt(DaoPayparDbTableColumn.COL_COD_PAY_PARTNER);
+					dataInfo.txtPayPartner = stmtResult.getString(DaoPayparDbTableColumn.COL_NAME);
+					dataInfo.description = stmtResult.getString(DaoPayparDbTableColumn.COL_DESCRIPTION);	
 					
 					finalResult.add(dataInfo);				
 				} while (stmtResult.next());

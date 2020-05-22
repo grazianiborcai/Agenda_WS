@@ -3,9 +3,9 @@ package br.com.mind5.payment.storePartnerSnapshot.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.business.masterData.info.PayparInfo;
 import br.com.mind5.info.InfoMergerVisitorV3;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.masterData.paymentPartner.info.PayparInfo;
 
 final class StoparnapVisiMergePaypar implements InfoMergerVisitorV3<StoparnapInfo, PayparInfo> {
 	

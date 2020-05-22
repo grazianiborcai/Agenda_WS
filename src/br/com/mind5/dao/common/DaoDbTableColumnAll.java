@@ -141,6 +141,7 @@ import br.com.mind5.masterData.moonPhase.dao.DaoMoonaseDbTableColumn;
 import br.com.mind5.masterData.moonPhaseSearch.dao.DaoMoonasarchDbTableColumn;
 import br.com.mind5.masterData.orderStatus.dao.DaoOrderatusDbTableColumn;
 import br.com.mind5.masterData.orderStatusSearch.dao.DaoOrderatarchDbTableColumn;
+import br.com.mind5.masterData.paymentPartner.dao.DaoPayparDbTableColumn;
 import br.com.mind5.masterData.paymentStatus.dao.DaoPaymenusDbTableColumn;
 import br.com.mind5.masterData.paymentStatusSearch.dao.DaoPaymenusarchDbTableColumn;
 import br.com.mind5.masterData.refundPolicy.dao.DaoRefupoDbTableColumn;
@@ -374,6 +375,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new DaoRefugrarchDbTableColumn());
 		addTable(new DaoRefuporarchDbTableColumn());
 		addTable(new DaoAuthgroupDbTableColumn());
+		addTable(new DaoPayparDbTableColumn());
 	}
 	
 	

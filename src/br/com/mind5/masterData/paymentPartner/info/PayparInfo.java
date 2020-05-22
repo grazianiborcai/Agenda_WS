@@ -1,4 +1,4 @@
-package br.com.mind5.business.masterData.info;
+package br.com.mind5.masterData.paymentPartner.info;
 
 import java.util.List;
 
@@ -12,7 +12,7 @@ public final class PayparInfo extends InfoRecord implements Cloneable {
 	
 	
 	public PayparInfo() {
-		super(PayparInfo.class);
+		super();
 		
 		codPayPartner = DefaultValue.number();
 	}

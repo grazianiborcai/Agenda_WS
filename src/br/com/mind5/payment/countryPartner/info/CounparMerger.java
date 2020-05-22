@@ -2,9 +2,9 @@ package br.com.mind5.payment.countryPartner.info;
 
 import java.util.List;
 
-import br.com.mind5.business.masterData.info.PayparInfo;
 import br.com.mind5.info.InfoMergerBuilderV3;
 import br.com.mind5.info.InfoMergerV3;
+import br.com.mind5.masterData.paymentPartner.info.PayparInfo;
 import br.com.mind5.payment.countryPartnerSearch.info.CounparchInfo;
 
 public final class CounparMerger {	

@@ -2,8 +2,8 @@ package br.com.mind5.payment.storePartner.info;
 
 import java.util.List;
 
-import br.com.mind5.business.masterData.info.PayparInfo;
 import br.com.mind5.info.obsolete.InfoMerger_;
+import br.com.mind5.masterData.paymentPartner.info.PayparInfo;
 import br.com.mind5.payment.storePartnerSearch.info.StoparchInfo;
 import br.com.mind5.payment.storePartnerSnapshot.info.StoparnapInfo;
 import br.com.mind5.security.username.info.UsernameInfo;

@@ -1,9 +1,9 @@
 package br.com.mind5.payment.storePartner.info;
 
-import br.com.mind5.business.masterData.info.PayparInfo;
 import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.info.obsolete.InfoMergerTemplate_;
 import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.masterData.paymentPartner.info.PayparInfo;
 
 final class StoparMergerPaypar extends InfoMergerTemplate_<StoparInfo, PayparInfo> {
 

@@ -1,7 +1,7 @@
 package br.com.mind5.payment.customerPartner.model.checker;
 
-import br.com.mind5.business.masterData.info.PayparInfo;
-import br.com.mind5.business.masterData.model.checker.PayparCheckExist;
+import br.com.mind5.masterData.paymentPartner.info.PayparInfo;
+import br.com.mind5.masterData.paymentPartner.model.checker.PayparCheckExist;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
 import br.com.mind5.model.checker.ModelCheckerV1;

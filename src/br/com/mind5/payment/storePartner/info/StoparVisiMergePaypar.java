@@ -1,9 +1,9 @@
 package br.com.mind5.payment.storePartner.info;
 
-import br.com.mind5.business.masterData.info.PayparInfo;
 import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.masterData.paymentPartner.info.PayparInfo;
 
 final class StoparVisiMergePaypar implements InfoMergerVisitor_<StoparInfo, PayparInfo> {
 	private final boolean SUCCESS = true;

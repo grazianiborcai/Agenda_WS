@@ -63,7 +63,6 @@ public final class MasterDataDbTableColumn extends DaoDbTableColumnTemplate {
 		countryLegalTable();
 		cartItemCategTable();
 		entityCategTable();
-		payPartnerTable();
 		userCategTable();
 		matmovTypeTable();
 		sysEnvironmentTable();
@@ -215,41 +214,6 @@ public final class MasterDataDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.columnName = COL_COD_LANGUAGE;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		tableColumns.put(TABLE_NAME, columns);
-	}
-	
-	
-	
-	private void payPartnerTable() {
-		final String TABLE_NAME = DaoDbTable.PAY_PARTNER_TABLE;
-		
-		DaoColumn oneColumn;
-		List<DaoColumn> columns = new ArrayList<>();			
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COD_PAY_PARTNER;
-		oneColumn.isPK = IS_PRIMARY_KEY;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);			
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_NAME;
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_DESCRIPTION;
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		

@@ -3,8 +3,8 @@ package br.com.mind5.payment.storePartnerSnapshot.model.action;
 import java.sql.Connection;
 import java.util.List;
 
-import br.com.mind5.business.masterData.info.PayparInfo;
-import br.com.mind5.business.masterData.model.decisionTree.RootPayparSelect;
+import br.com.mind5.masterData.paymentPartner.info.PayparInfo;
+import br.com.mind5.masterData.paymentPartner.model.decisionTree.RootPayparSelect;
 import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.payment.storePartnerSnapshot.info.StoparnapInfo;

@@ -2,9 +2,9 @@ package br.com.mind5.payment.storePartnerSnapshot.info;
 
 import java.util.List;
 
-import br.com.mind5.business.masterData.info.PayparInfo;
 import br.com.mind5.info.InfoMergerBuilderV3;
 import br.com.mind5.info.InfoMergerV3;
+import br.com.mind5.masterData.paymentPartner.info.PayparInfo;
 
 public final class StoparnapMerger {
 	public static List<StoparnapInfo> mergeWithPaypar(List<StoparnapInfo> baseInfos, List<PayparInfo> selectedInfos) {
