@@ -25,7 +25,7 @@ final class SchedineVisiMergeMatlis implements InfoMergerVisitorV3<SchedineInfo,
 	@Override public List<SchedineInfo> merge(SchedineInfo baseInfo, MatlisInfo selectedInfo) {
 		List<SchedineInfo> results = new ArrayList<>();
 		
-		baseInfo.matData = selectedInfo;
+		baseInfo.matlisData = selectedInfo;
 		
 		results.add(baseInfo);
 		return results;

@@ -38,9 +38,9 @@ public final class SchedineInfo extends InfoRecord implements Cloneable, Compara
 	public LocalTime endTime;
 	public long codUser;
 	public long codCustomer;
-	public MatlisInfo matData;
-	public StolisInfo storeData;
-	public EmplisInfo empData;
+	public MatlisInfo matlisData;
+	public StolisInfo stolisData;
+	public EmplisInfo emplisData;
 	public LocalDateTime createdOn;
 	public long createdBy;
 	public LocalDateTime lastChanged;
@@ -72,9 +72,9 @@ public final class SchedineInfo extends InfoRecord implements Cloneable, Compara
 		createdBy = DefaultValue.number();
 		lastChangedBy = DefaultValue.number();
 		recordMode = DefaultValue.recordMode();
-		matData = DefaultValue.object();
-		storeData = DefaultValue.object();
-		empData = DefaultValue.object();
+		matlisData = DefaultValue.object();
+		stolisData = DefaultValue.object();
+		emplisData = DefaultValue.object();
 	}
 	
 	
@@ -98,9 +98,9 @@ public final class SchedineInfo extends InfoRecord implements Cloneable, Compara
 		deepCopy.beginTime = beginTime;
 		deepCopy.endTime = endTime;
 		deepCopy.lastChanged = lastChanged;
-		deepCopy.matData = cloneMat(matData);
-		deepCopy.storeData = cloneStore(storeData);
-		deepCopy.empData = cloneEmp(empData);
+		deepCopy.matlisData = cloneMat(matlisData);
+		deepCopy.stolisData = cloneStore(stolisData);
+		deepCopy.emplisData = cloneEmp(emplisData);
 		
 		return deepCopy;
 	}	

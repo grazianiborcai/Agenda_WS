@@ -25,7 +25,7 @@ final class SchedineVisiMergeEmplis implements InfoMergerVisitorV3<SchedineInfo,
 	@Override public List<SchedineInfo> merge(SchedineInfo baseInfo, EmplisInfo selectedInfo) {
 		List<SchedineInfo> results = new ArrayList<>();
 		
-		baseInfo.empData = selectedInfo;
+		baseInfo.emplisData = selectedInfo;
 		
 		results.add(baseInfo);
 		return results;
