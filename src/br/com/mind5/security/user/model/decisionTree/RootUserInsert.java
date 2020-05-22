@@ -21,7 +21,7 @@ import br.com.mind5.security.user.model.action.LazyUserNodeUpsertPhone;
 import br.com.mind5.security.user.model.action.LazyUserRootSelect;
 import br.com.mind5.security.user.model.action.StdUserMergeUsername;
 import br.com.mind5.security.user.model.checker.UserCheckAuthgroup;
-import br.com.mind5.security.user.model.checker.UserCheckCateg;
+import br.com.mind5.security.user.model.checker.UserCheckUsereg;
 import br.com.mind5.security.user.model.checker.UserCheckInsert;
 import br.com.mind5.security.user.model.checker.UserCheckOwner;
 
@@ -56,7 +56,7 @@ public final class RootUserInsert extends DeciTreeTemplateWriteV2<UserInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
-		checker = new UserCheckCateg(checkerOption);
+		checker = new UserCheckUsereg(checkerOption);
 		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();

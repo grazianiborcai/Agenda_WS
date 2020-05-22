@@ -15,7 +15,6 @@ import br.com.mind5.business.masterData.info.MatmovTypeInfo;
 import br.com.mind5.business.masterData.info.MonthInfo;
 import br.com.mind5.business.masterData.info.PositionInfo;
 import br.com.mind5.business.masterData.info.ScheduleStatusInfo;
-import br.com.mind5.business.masterData.info.UserCategInfo;
 import br.com.mind5.business.masterData.model.CartCategModelSelect;
 import br.com.mind5.business.masterData.model.CountryLegalModelSelect;
 import br.com.mind5.business.masterData.model.EntityCategModelSelect;
@@ -23,7 +22,6 @@ import br.com.mind5.business.masterData.model.MatmovTypeModelSelect;
 import br.com.mind5.business.masterData.model.MonthModelSelect;
 import br.com.mind5.business.masterData.model.PositionModelSelect;
 import br.com.mind5.business.masterData.model.ScheduleStatusModelSelect;
-import br.com.mind5.business.masterData.model.UserCategModelSelect;
 import br.com.mind5.masterData.areaPhoneSearch.info.AreanarchInfo;
 import br.com.mind5.masterData.areaPhoneSearch.model.AreanarchModelSelect;
 import br.com.mind5.masterData.businessAreaSearch.info.BusarearchInfo;
@@ -62,6 +60,8 @@ import br.com.mind5.masterData.stateSearch.info.StatarchInfo;
 import br.com.mind5.masterData.stateSearch.model.StatarchModelSelect;
 import br.com.mind5.masterData.timezoneSearch.info.TimezonarchInfo;
 import br.com.mind5.masterData.timezoneSearch.model.TimezonarchModelSelect;
+import br.com.mind5.masterData.userCategory.info.UseregInfo;
+import br.com.mind5.masterData.userCategory.model.UseregModelSelect;
 import br.com.mind5.masterData.weekdaySearch.info.WeekdarchInfo;
 import br.com.mind5.masterData.weekdaySearch.model.WeekdarchModelSelect;
 import br.com.mind5.model.Model;
@@ -584,14 +584,14 @@ public final class MasterDataResource {
 	public Response selectUserCateg(@HeaderParam("codLanguage")  @DefaultValue("EN") String codLanguage, 
 			                        @HeaderParam("codUserCategory") String codUserCategory) {
 		
-		UserCategInfo recordInfo = new UserCategInfo();
+		UseregInfo recordInfo = new UseregInfo();
 		recordInfo.codLanguage = codLanguage;
 		
 		if (codUserCategory != null)
 			recordInfo.codUserCategory = codUserCategory.charAt(0);
 		
 		
-		Model model = new UserCategModelSelect(recordInfo);
+		Model model = new UseregModelSelect(recordInfo);
 		model.executeRequest();
 		Response result = model.getResponse();
 		model.close();

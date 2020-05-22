@@ -1,31 +1,31 @@
-package br.com.mind5.business.masterData.info;
+package br.com.mind5.masterData.userCategory.info;
 
 import java.util.List;
 
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
 
-public final class UserCategInfo extends InfoRecord implements Cloneable {
+public final class UseregInfo extends InfoRecord implements Cloneable {
 	public char codUserCategory;
 	public String txtUserCategory;
 	
 	
-	public UserCategInfo() {
-		super(UserCategInfo.class);
+	public UseregInfo() {
+		super();
 		
 		codUserCategory = DefaultValue.character();
 	}
 	
 	
 	
-	public static UserCategInfo copyFrom(Object sourceObj) {
-		return copyFrom(sourceObj, UserCategInfo.class);
+	public static UseregInfo copyFrom(Object sourceObj) {
+		return copyFrom(sourceObj, UseregInfo.class);
 	}
 	
 	
 	
-	public static List<UserCategInfo> copyFrom(List<?> sourceObjs) {
-		return copyFrom(sourceObjs, UserCategInfo.class);
+	public static List<UseregInfo> copyFrom(List<?> sourceObjs) {
+		return copyFrom(sourceObjs, UseregInfo.class);
 	}
 	
 	
@@ -51,11 +51,11 @@ public final class UserCategInfo extends InfoRecord implements Cloneable {
 			return true;
 		
 		
-		if (!(o instanceof UserCategInfo))
+		if (!(o instanceof UseregInfo))
 			return false;
 		
 		
-		UserCategInfo obj = (UserCategInfo) o;		
+		UseregInfo obj = (UseregInfo) o;		
 		return (codUserCategory == obj.codUserCategory);
 	}
 }
