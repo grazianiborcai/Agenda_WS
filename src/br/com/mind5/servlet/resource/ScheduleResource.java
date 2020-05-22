@@ -19,6 +19,7 @@ import br.com.mind5.business.scheduleLine.info.SchedineInfo;
 import br.com.mind5.business.scheduleLine.model.SchedineModelCancel;
 import br.com.mind5.business.scheduleLine.model.SchedineModelInsert;
 import br.com.mind5.business.scheduleLine.model.SchedineModelMove;
+import br.com.mind5.business.scheduleLine.model.SchedineModelSearch;
 import br.com.mind5.business.scheduleLine.model.SchedineModelSelect;
 import br.com.mind5.business.scheduleLine.model.SchedineModelUpdate;
 import br.com.mind5.business.scheduleMonth.info.SchedmonInfo;
@@ -36,6 +37,8 @@ public final class ScheduleResource {
 	private static final String INSERT_SCHEDULE_LINE = "/insertScheduleLine";
 	private static final String UPDATE_SCHEDULE_LINE = "/updateScheduleLine";
 	private static final String MOVE_SCHEDULE_LINE = "/moveScheduleLine";
+	private static final String SEARCH_SCHEDULE_LINE = "/searchtScheduleLine";
+	
 	private static final String SELECT_SCHEDULE_LINE = "/selectScheduleLine";
 	private static final String CANCEL_SCHEDULE_LINE = "/cancelScheduleLine";
 	private static final String SELECT_SCHEDULE_YEAR = "/selectScheduleYear";
@@ -80,6 +83,21 @@ public final class ScheduleResource {
 	public Response moveSchedine(@Context HttpServletRequest request, String incomingData) {
 		
 		Model model = new SchedineModelMove(incomingData, request);
+		model.executeRequest();
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
+	}
+	
+	
+	
+	@POST
+	@Path(SEARCH_SCHEDULE_LINE)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response searchSchedine(@Context HttpServletRequest request, String incomingData) {
+		
+		Model model = new SchedineModelSearch(incomingData, request);
 		model.executeRequest();
 		Response result = model.getResponse();	
 		model.close();
