@@ -2,21 +2,21 @@ package br.com.mind5.business.materialStock.model.checker;
 
 import java.util.List;
 
-import br.com.mind5.business.masterData.info.MatmovTypeInfo;
-import br.com.mind5.business.masterData.model.checker.MatmovTypeCheckExist;
 import br.com.mind5.business.materialStock.info.MatockInfo;
+import br.com.mind5.masterData.movimentType.info.MamovypeInfo;
+import br.com.mind5.masterData.movimentType.model.checker.MamovypeCheckExist;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 
-public final class MatockCheckMatmovType implements ModelCheckerV1<MatockInfo> {
+public final class MatockCheckMamovype implements ModelCheckerV1<MatockInfo> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelCheckerV1<MatmovTypeInfo> checker;
+	private ModelCheckerV1<MamovypeInfo> checker;
 	
 	
-	public MatockCheckMatmovType(ModelCheckerOption option) {
-		checker = new MatmovTypeCheckExist(option);
+	public MatockCheckMamovype(ModelCheckerOption option) {
+		checker = new MamovypeCheckExist(option);
 	}
 	
 	
@@ -33,7 +33,7 @@ public final class MatockCheckMatmovType implements ModelCheckerV1<MatockInfo> {
 	
 	
 	@Override public boolean check(MatockInfo recordInfo) {
-		return checker.check(MatmovTypeInfo.copyFrom(recordInfo));
+		return checker.check(MamovypeInfo.copyFrom(recordInfo));
 	}
 
 	

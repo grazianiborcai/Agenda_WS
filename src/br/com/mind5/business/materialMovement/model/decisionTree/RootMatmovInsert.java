@@ -10,7 +10,7 @@ import br.com.mind5.business.materialMovement.model.checker.MatmovCheckInsert;
 import br.com.mind5.business.materialMovement.model.checker.MatmovCheckLangu;
 import br.com.mind5.business.materialMovement.model.checker.MatmovCheckMat;
 import br.com.mind5.business.materialMovement.model.checker.MatmovCheckMatarchProduct;
-import br.com.mind5.business.materialMovement.model.checker.MatmovCheckMatmovType;
+import br.com.mind5.business.materialMovement.model.checker.MatmovCheckMamovype;
 import br.com.mind5.business.materialMovement.model.checker.MatmovCheckMatore;
 import br.com.mind5.business.materialMovement.model.checker.MatmovCheckOwner;
 import br.com.mind5.business.materialMovement.model.checker.MatmovCheckStorauth;
@@ -75,7 +75,7 @@ public final class RootMatmovInsert extends DeciTreeTemplateWriteV1<MatmovInfo> 
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
-		checker = new MatmovCheckMatmovType(checkerOption);
+		checker = new MatmovCheckMamovype(checkerOption);
 		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();

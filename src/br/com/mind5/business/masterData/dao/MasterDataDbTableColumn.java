@@ -61,7 +61,6 @@ public final class MasterDataDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		countryLegalTable();
 		cartItemCategTable();
-		matmovTypeTable();
 		scheduleStatusTable();
 		scheduleMonthTable();
 		
@@ -138,41 +137,6 @@ public final class MasterDataDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = DaoDbTable.CART_ITM_CATEG_TEXT_TABLE;
 		oneColumn.columnName = COL_COD_LANGUAGE;
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		tableColumns.put(TABLE_NAME, columns);
-	}
-	
-	
-	
-	private void matmovTypeTable() {
-		final String TABLE_NAME = DaoDbTable.MAT_MOV_TYPE_TABLE;
-		
-		DaoColumn oneColumn;
-		List<DaoColumn> columns = new ArrayList<>();			
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COD_MAT_MOV_TYPE;
-		oneColumn.isPK = IS_PRIMARY_KEY;
-		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);		
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = DaoDbTable.MAT_MOV_TYPE_TEXT_TABLE;
-		oneColumn.columnName = COL_COD_LANGUAGE;
-		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
-		oneColumn.isAutoIncremented = NEGATIVE;
-		columns.add(oneColumn);
-		
-		oneColumn = new DaoColumn();
-		oneColumn.tableName = DaoDbTable.MAT_MOV_TYPE_TEXT_TABLE;
-		oneColumn.columnName = COL_NAME;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
 		oneColumn.isAutoIncremented = NEGATIVE;

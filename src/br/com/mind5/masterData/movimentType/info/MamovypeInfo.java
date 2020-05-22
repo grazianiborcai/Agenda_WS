@@ -1,31 +1,31 @@
-package br.com.mind5.business.masterData.info;
+package br.com.mind5.masterData.movimentType.info;
 
 import java.util.List;
 
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
 
-public final class MatmovTypeInfo extends InfoRecord implements Cloneable {
+public final class MamovypeInfo extends InfoRecord implements Cloneable {
 	public char codMatmovType;
 	public String txtMatmovType;
 	
 	
-	public MatmovTypeInfo() {
-		super(MatmovTypeInfo.class);
+	public MamovypeInfo() {
+		super();
 		
 		codMatmovType = DefaultValue.character();
 	}
 	
 	
 	
-	public static MatmovTypeInfo copyFrom(Object sourceObj) {
-		return copyFrom(sourceObj, MatmovTypeInfo.class);
+	public static MamovypeInfo copyFrom(Object sourceObj) {
+		return copyFrom(sourceObj, MamovypeInfo.class);
 	}
 	
 	
 	
-	public static List<MatmovTypeInfo> copyFrom(List<?> sourceObjs) {
-		return copyFrom(sourceObjs, MatmovTypeInfo.class);
+	public static List<MamovypeInfo> copyFrom(List<?> sourceObjs) {
+		return copyFrom(sourceObjs, MamovypeInfo.class);
 	}
 	
 	
@@ -51,11 +51,11 @@ public final class MatmovTypeInfo extends InfoRecord implements Cloneable {
 			return true;
 		
 		
-		if (!(o instanceof MatmovTypeInfo))
+		if (!(o instanceof MamovypeInfo))
 			return false;
 		
 		
-		MatmovTypeInfo obj = (MatmovTypeInfo) o;		
+		MamovypeInfo obj = (MamovypeInfo) o;		
 		return (codMatmovType == obj.codMatmovType);
 	}
 }

@@ -10,12 +10,10 @@ import javax.ws.rs.core.Response;
 
 import br.com.mind5.business.masterData.info.CartCategInfo;
 import br.com.mind5.business.masterData.info.CountryLegalInfo;
-import br.com.mind5.business.masterData.info.MatmovTypeInfo;
 import br.com.mind5.business.masterData.info.MonthInfo;
 import br.com.mind5.business.masterData.info.ScheduleStatusInfo;
 import br.com.mind5.business.masterData.model.CartCategModelSelect;
 import br.com.mind5.business.masterData.model.CountryLegalModelSelect;
-import br.com.mind5.business.masterData.model.MatmovTypeModelSelect;
 import br.com.mind5.business.masterData.model.MonthModelSelect;
 import br.com.mind5.business.masterData.model.ScheduleStatusModelSelect;
 import br.com.mind5.masterData.areaPhoneSearch.info.AreanarchInfo;
@@ -48,6 +46,8 @@ import br.com.mind5.masterData.materialUnitSearch.info.MatunitarchInfo;
 import br.com.mind5.masterData.materialUnitSearch.model.MatunitarchModelSelect;
 import br.com.mind5.masterData.moonPhase.info.MoonaseInfo;
 import br.com.mind5.masterData.moonPhase.model.MoonaseModelSearch;
+import br.com.mind5.masterData.movimentType.info.MamovypeInfo;
+import br.com.mind5.masterData.movimentType.model.MamovypeModelSelect;
 import br.com.mind5.masterData.orderStatusSearch.info.OrderatarchInfo;
 import br.com.mind5.masterData.orderStatusSearch.model.OrderatarchModelSelect;
 import br.com.mind5.masterData.paymentStatusSearch.info.PaymenusarchInfo;
@@ -607,14 +607,14 @@ public final class MasterDataResource {
 	public Response selectMatmovType(@HeaderParam("codLanguage")  @DefaultValue("EN") String codLanguage, 
 			                        @HeaderParam("codMatMovType") String codMatMovType) {
 		
-		MatmovTypeInfo recordInfo = new MatmovTypeInfo();
+		MamovypeInfo recordInfo = new MamovypeInfo();
 		recordInfo.codLanguage = codLanguage;
 		
 		if (codMatMovType != null)
 			recordInfo.codMatmovType = codMatMovType.charAt(0);
 		
 		
-		Model model = new MatmovTypeModelSelect(recordInfo);
+		Model model = new MamovypeModelSelect(recordInfo);
 		model.executeRequest();
 		Response result = model.getResponse();
 		model.close();

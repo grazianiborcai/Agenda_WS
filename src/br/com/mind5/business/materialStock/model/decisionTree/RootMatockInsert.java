@@ -9,7 +9,7 @@ import br.com.mind5.business.materialStock.model.action.LazyMatockNodeBalanceL1;
 import br.com.mind5.business.materialStock.model.action.StdMatockEnforceLChanged;
 import br.com.mind5.business.materialStock.model.checker.MatockCheckLangu;
 import br.com.mind5.business.materialStock.model.checker.MatockCheckMat;
-import br.com.mind5.business.materialStock.model.checker.MatockCheckMatmovType;
+import br.com.mind5.business.materialStock.model.checker.MatockCheckMamovype;
 import br.com.mind5.business.materialStock.model.checker.MatockCheckOwner;
 import br.com.mind5.business.materialStock.model.checker.MatockCheckStorauth;
 import br.com.mind5.business.materialStock.model.checker.MatockCheckStore;
@@ -74,7 +74,7 @@ public final class RootMatockInsert extends DeciTreeTemplateWriteV1<MatockInfo> 
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
-		checker = new MatockCheckMatmovType(checkerOption);
+		checker = new MatockCheckMamovype(checkerOption);
 		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
