@@ -1,8 +1,8 @@
-package br.com.mind5.business.masterData.model.checker;
+package br.com.mind5.masterData.position.model.checker;
 
-import br.com.mind5.business.masterData.info.PositionInfo;
-import br.com.mind5.business.masterData.model.action.StdPositionSelect;
 import br.com.mind5.common.SystemCode;
+import br.com.mind5.masterData.position.info.PositionInfo;
+import br.com.mind5.masterData.position.model.action.StdPositionDaoSelect;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
@@ -17,7 +17,7 @@ public final class PositionCheckExist extends ModelCheckerTemplateActionV2<Posit
 	
 	
 	@Override protected ActionStdV1<PositionInfo> buildActionHook(DeciTreeOption<PositionInfo> option) {
-		ActionStdV1<PositionInfo> select = new StdPositionSelect(option);
+		ActionStdV1<PositionInfo> select = new StdPositionDaoSelect(option);
 		return select;
 	}
 	

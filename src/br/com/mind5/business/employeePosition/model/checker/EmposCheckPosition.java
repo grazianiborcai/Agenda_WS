@@ -3,8 +3,8 @@ package br.com.mind5.business.employeePosition.model.checker;
 import java.util.List;
 
 import br.com.mind5.business.employeePosition.info.EmposInfo;
-import br.com.mind5.business.masterData.info.PositionInfo;
-import br.com.mind5.business.masterData.model.checker.PositionCheckExist;
+import br.com.mind5.masterData.position.info.PositionInfo;
+import br.com.mind5.masterData.position.model.checker.PositionCheckExist;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 

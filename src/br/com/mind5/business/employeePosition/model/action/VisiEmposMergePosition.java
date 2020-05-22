@@ -5,8 +5,8 @@ import java.util.List;
 
 import br.com.mind5.business.employeePosition.info.EmposInfo;
 import br.com.mind5.business.employeePosition.info.EmposMerger;
-import br.com.mind5.business.masterData.info.PositionInfo;
-import br.com.mind5.business.masterData.model.decisionTree.RootPositionSelect;
+import br.com.mind5.masterData.position.info.PositionInfo;
+import br.com.mind5.masterData.position.model.decisionTree.RootPositionSelect;
 import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 import br.com.mind5.model.decisionTree.DeciTree;
 

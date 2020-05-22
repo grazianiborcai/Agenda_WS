@@ -1,20 +1,21 @@
-package br.com.mind5.business.masterData.dao;
+package br.com.mind5.masterData.position.dao;
 
 import java.util.List;
 
-import br.com.mind5.business.masterData.info.PositionInfo;
+import br.com.mind5.business.masterData.dao.MasterDataDbTableColumn;
 import br.com.mind5.dao.DaoColumn;
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilder;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
+import br.com.mind5.masterData.position.info.PositionInfo;
 
-final class PositionWhere implements DaoStmtWhere {
+final class DaoPositionWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public PositionWhere(DaoWhereBuilderOption whereOption, String tableName, PositionInfo recordInfo) {
+	public DaoPositionWhere(DaoWhereBuilderOption whereOption, String tableName, PositionInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	

@@ -1,4 +1,4 @@
-package br.com.mind5.business.masterData.info;
+package br.com.mind5.masterData.position.info;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ public final class PositionInfo extends InfoRecord implements Cloneable {
 	
 	
 	public PositionInfo() {
-		super(PositionInfo.class);
+		super();
 		
 		codPosition = DefaultValue.number();
 	}

@@ -3,9 +3,9 @@ package br.com.mind5.business.employeePosition.info;
 import java.util.List;
 
 import br.com.mind5.business.employeePositionSearch.info.EmposarchInfo;
-import br.com.mind5.business.masterData.info.PositionInfo;
 import br.com.mind5.info.InfoMergerBuilderV3;
 import br.com.mind5.info.InfoMergerV3;
+import br.com.mind5.masterData.position.info.PositionInfo;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class EmposMerger {
