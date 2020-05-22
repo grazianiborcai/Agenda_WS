@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.business.masterData.dao.MasterDataDbTableColumn;
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoJoin;
 import br.com.mind5.dao.DaoJoinBuilder;
@@ -71,9 +70,9 @@ public final class DaoUseregSelectSingle extends DaoStmtTemplate<UseregInfo> {
 				do {				
 					UseregInfo dataInfo = new UseregInfo();
 					
-					dataInfo.codUserCategory = DaoFormatter.sqlToChar(stmtResult, MasterDataDbTableColumn.COL_COD_USER_CATEG);
-					dataInfo.txtUserCategory = stmtResult.getString(MasterDataDbTableColumn.COL_NAME);
-					dataInfo.codLanguage = stmtResult.getString(MasterDataDbTableColumn.COL_COD_LANGUAGE);		
+					dataInfo.codUserCategory = DaoFormatter.sqlToChar(stmtResult, DaoUseregDbTableColumn.COL_COD_USER_CATEG);
+					dataInfo.txtUserCategory = stmtResult.getString(DaoUseregDbTableColumn.COL_NAME);
+					dataInfo.codLanguage = stmtResult.getString(DaoUseregDbTableColumn.COL_COD_LANGUAGE);		
 					
 					finalResult.add(dataInfo);				
 				} while (stmtResult.next());

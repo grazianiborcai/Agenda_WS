@@ -2,7 +2,6 @@ package br.com.mind5.masterData.userCategory.dao;
 
 import java.util.List;
 
-import br.com.mind5.business.masterData.dao.MasterDataDbTableColumn;
 import br.com.mind5.dao.DaoColumn;
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoStmtWhere;
@@ -27,11 +26,11 @@ final class DaoUseregWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {
 			switch(eachColumn.columnName) {
-				case MasterDataDbTableColumn.COL_COD_USER_CATEG :
+				case DaoUseregDbTableColumn.COL_COD_USER_CATEG :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.charToString(recordInfo.codUserCategory));
 					break;
 					
-				case MasterDataDbTableColumn.COL_COD_LANGUAGE :
+				case DaoUseregDbTableColumn.COL_COD_LANGUAGE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codLanguage);
 					break;
 			}
