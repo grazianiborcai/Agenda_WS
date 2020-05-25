@@ -1,18 +1,17 @@
 package br.com.mind5.business.employeeList.info;
 
-
-import br.com.mind5.business.phoneSnapshot.info.PhonapInfo;
+import br.com.mind5.business.scheduleDay.info.SchedayInfo;
 import br.com.mind5.info.InfoCopierTemplate;
 
-final class EmplisCopyPhonap extends InfoCopierTemplate<EmplisInfo, PhonapInfo> {
+final class EmplisCopyScheday extends InfoCopierTemplate<EmplisInfo, SchedayInfo> {
 	
-	public EmplisCopyPhonap() {
+	public EmplisCopyScheday() {
 		super();
 	}
 	
 	
 	
-	@Override protected EmplisInfo makeCopyHook(PhonapInfo source) {
+	@Override protected EmplisInfo makeCopyHook(SchedayInfo source) {
 		EmplisInfo result = new EmplisInfo();
 		
 		result.codOwner = source.codOwner;

@@ -4,7 +4,7 @@ package br.com.mind5.business.employeeList.info;
 import br.com.mind5.business.employeeWorkTimeOutlier.info.EmpwoutInfo;
 import br.com.mind5.info.InfoCopierTemplate;
 
-final class EmplisCopyEmpwout extends InfoCopierTemplate<EmplisInfo, EmpwoutInfo>{
+final class EmplisCopyEmpwout extends InfoCopierTemplate<EmplisInfo, EmpwoutInfo> {
 	
 	public EmplisCopyEmpwout() {
 		super();

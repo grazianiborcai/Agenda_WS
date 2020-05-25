@@ -3,7 +3,7 @@ package br.com.mind5.business.employeeList.info;
 import br.com.mind5.business.scheduleLine.info.SchedineInfo;
 import br.com.mind5.info.InfoCopierTemplate;
 
-final class EmplisCopySchedine extends InfoCopierTemplate<EmplisInfo, SchedineInfo>{
+final class EmplisCopySchedine extends InfoCopierTemplate<EmplisInfo, SchedineInfo> {
 	
 	public EmplisCopySchedine() {
 		super();
