@@ -14,15 +14,15 @@ import br.com.mind5.info.InfoCopier;
 import br.com.mind5.info.InfoCopierOneToMany;
 
 public final class EmplisCopier {
-	public static EmplisInfo copyFromScheday(SchedayInfo source) {
-		InfoCopier<EmplisInfo, SchedayInfo> copier = new EmplisCopyScheday();
+	public static List<EmplisInfo> copyFromScheday(SchedayInfo source) {
+		InfoCopierOneToMany<EmplisInfo, SchedayInfo> copier = new EmplisCopyScheday();
 		return copier.makeCopy(source);
 	}
 	
 	
 	
 	public static List<EmplisInfo> copyFromScheday(List<SchedayInfo> sources) {
-		InfoCopier<EmplisInfo, SchedayInfo> copier = new EmplisCopyScheday();
+		InfoCopierOneToMany<EmplisInfo, SchedayInfo> copier = new EmplisCopyScheday();
 		return copier.makeCopy(sources);
 	}
 	

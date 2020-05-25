@@ -1,9 +1,14 @@
 package br.com.mind5.business.employeeList.info;
 
-import br.com.mind5.business.scheduleDay.info.SchedayInfo;
-import br.com.mind5.info.InfoCopierTemplate;
+import java.util.ArrayList;
+import java.util.List;
 
-final class EmplisCopyScheday extends InfoCopierTemplate<EmplisInfo, SchedayInfo> {
+import br.com.mind5.business.scheduleDay.info.SchedayInfo;
+import br.com.mind5.business.scheduleDayData.info.SchedaytaInfo;
+import br.com.mind5.info.InfoCopierOneToManyTemplate;
+import br.com.mind5.info.InfoUniquifier;
+
+final class EmplisCopyScheday extends InfoCopierOneToManyTemplate<EmplisInfo, SchedayInfo> {
 	
 	public EmplisCopyScheday() {
 		super();
@@ -11,14 +16,26 @@ final class EmplisCopyScheday extends InfoCopierTemplate<EmplisInfo, SchedayInfo
 	
 	
 	
-	@Override protected EmplisInfo makeCopyHook(SchedayInfo source) {
-		EmplisInfo result = new EmplisInfo();
+	@Override protected List<EmplisInfo> makeCopyHook(SchedayInfo source) {
+		List<EmplisInfo> results = new ArrayList<>();
 		
-		result.codOwner = source.codOwner;
-		result.codEmployee = source.codEmployee;
-		result.codLanguage = source.codLanguage;
-		result.username = source.username;
+		if (source.schedaytas == null)
+			return results;
 		
-		return result;
+		
+		for (SchedaytaInfo eachSchedonthat : source.schedaytas) {
+			EmplisInfo eachResult = new EmplisInfo();
+			
+			eachResult.codOwner = eachSchedonthat.codOwner;
+			eachResult.codEmployee = eachSchedonthat.codEmployee;
+			eachResult.codLanguage = eachSchedonthat.codLanguage;
+			eachResult.username = eachSchedonthat.username;
+			
+			results.add(eachResult);
+		}
+		
+		
+		InfoUniquifier<EmplisInfo> uniquifier = new EmplisUniquifier();
+		return uniquifier.uniquify(results);	
 	}
 }
