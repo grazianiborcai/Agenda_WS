@@ -10,7 +10,7 @@ import br.com.mind5.business.planingData.info.PlanataInfo;
 import br.com.mind5.business.planningTime.info.PlanimeInfo;
 import br.com.mind5.info.InfoCopierOneToManyTemplate;
 
-final class MatlisCopyPlanime extends InfoCopierOneToManyTemplate<MatlisInfo, PlanimeInfo>{
+final class MatlisCopyPlanime extends InfoCopierOneToManyTemplate<MatlisInfo, PlanimeInfo> {
 	
 	public MatlisCopyPlanime() {
 		super();

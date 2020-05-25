@@ -6,6 +6,7 @@ import br.com.mind5.business.cartItem.info.CartemInfo;
 import br.com.mind5.business.orderItem.info.OrderemInfo;
 import br.com.mind5.business.orderItemSnapshot.info.OrdemrapInfo;
 import br.com.mind5.business.planningTime.info.PlanimeInfo;
+import br.com.mind5.business.scheduleDay.info.SchedayInfo;
 import br.com.mind5.business.scheduleLine.info.SchedineInfo;
 import br.com.mind5.business.scheduleLineSnapshot.info.SchedinapInfo;
 import br.com.mind5.business.scheduleMonth.info.SchedmonInfo;
@@ -121,6 +122,20 @@ public final class MatlisCopier {
 	
 	public static List<MatlisInfo> copyFromOrderem(List<OrderemInfo> sources) {
 		InfoCopier<MatlisInfo, OrderemInfo> copier = new MatlisCopyOrderem();
+		return copier.makeCopy(sources);
+	}	
+	
+	
+	
+	public static MatlisInfo copyFromScheday(SchedayInfo source) {
+		InfoCopier<MatlisInfo, SchedayInfo> copier = new MatlisCopyScheday();
+		return copier.makeCopy(source);
+	}
+	
+	
+	
+	public static List<MatlisInfo> copyFromScheday(List<SchedayInfo> sources) {
+		InfoCopier<MatlisInfo, SchedayInfo> copier = new MatlisCopyScheday();
 		return copier.makeCopy(sources);
 	}	
 }

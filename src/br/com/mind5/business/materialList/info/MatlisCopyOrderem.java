@@ -4,7 +4,7 @@ package br.com.mind5.business.materialList.info;
 import br.com.mind5.business.orderItem.info.OrderemInfo;
 import br.com.mind5.info.InfoCopierTemplate;
 
-final class MatlisCopyOrderem extends InfoCopierTemplate<MatlisInfo, OrderemInfo>{
+final class MatlisCopyOrderem extends InfoCopierTemplate<MatlisInfo, OrderemInfo> {
 	
 	public MatlisCopyOrderem() {
 		super();
