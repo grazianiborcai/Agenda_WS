@@ -4,10 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.scheduleDayData.info.SchedaytaInfo;
-import br.com.mind5.business.scheduleDayData.model.action.StdSchedaytaMergeToSelect;
+import br.com.mind5.business.scheduleDayData.model.action.LazySchedaytaMergeToSelect;
+import br.com.mind5.business.scheduleDayData.model.action.StdSchedaytaMergeSchedarch;
 import br.com.mind5.business.scheduleDayData.model.checker.SchedaytaCheckLangu;
 import br.com.mind5.business.scheduleDayData.model.checker.SchedaytaCheckOwner;
 import br.com.mind5.business.scheduleDayData.model.checker.SchedaytaCheckRead;
+import br.com.mind5.business.scheduleDayData.model.checker.SchedaytaCheckStore;
+import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -49,6 +52,13 @@ public final class RootSchedaytaSelect extends DeciTreeTemplateWriteV2<Schedayta
 		checker = new SchedaytaCheckOwner(checkerOption);
 		queue.add(checker);
 		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
+		checker = new SchedaytaCheckStore(checkerOption);
+		queue.add(checker);
+		
 		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
@@ -57,9 +67,12 @@ public final class RootSchedaytaSelect extends DeciTreeTemplateWriteV2<Schedayta
 	@Override protected List<ActionStdV1<SchedaytaInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedaytaInfo> option) {
 		List<ActionStdV1<SchedaytaInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<SchedaytaInfo> select = new StdSchedaytaMergeToSelect(option);
+		ActionStdV1<SchedaytaInfo> mergeSchedarch = new StdSchedaytaMergeSchedarch(option);
+		ActionLazyV1<SchedaytaInfo> select = new LazySchedaytaMergeToSelect(option.conn, option.schemaName);
 		
-		actions.add(select);
+		mergeSchedarch.addPostAction(select);
+		
+		actions.add(mergeSchedarch);
 		return actions;
 	}
 }

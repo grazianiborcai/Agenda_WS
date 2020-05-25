@@ -17,7 +17,8 @@ public final class SchedaytaCheckRead extends ModelCheckerTemplateSimpleV2<Sched
 	
 	@Override protected boolean checkHook(SchedaytaInfo recordInfo, Connection conn, String schemaName) {	
 		if ( recordInfo.codOwner 	<= 0 	|| 
-			 recordInfo.codSchedule <= 0 	|| 
+			 recordInfo.codStore 	<= 0 	|| 
+			 recordInfo.date		== null ||
 			 recordInfo.username	== null ||
 			 recordInfo.codLanguage	== null		)
 			
