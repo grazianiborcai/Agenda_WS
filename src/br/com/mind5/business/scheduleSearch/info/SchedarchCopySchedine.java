@@ -22,6 +22,7 @@ final class SchedarchCopySchedine extends InfoCopierTemplate<SchedarchInfo, Sche
 		result.beginTime = source.beginTime;
 		result.endTime = source.endTime;
 		result.username = source.username;	
+		result.codLanguage = source.codLanguage;
 		
 		return result;
 	}
