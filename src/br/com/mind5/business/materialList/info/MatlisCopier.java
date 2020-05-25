@@ -127,15 +127,15 @@ public final class MatlisCopier {
 	
 	
 	
-	public static MatlisInfo copyFromScheday(SchedayInfo source) {
-		InfoCopier<MatlisInfo, SchedayInfo> copier = new MatlisCopyScheday();
+	public static List<MatlisInfo> copyFromScheday(SchedayInfo source) {
+		InfoCopierOneToMany<MatlisInfo, SchedayInfo> copier = new MatlisCopyScheday();
 		return copier.makeCopy(source);
 	}
 	
 	
 	
 	public static List<MatlisInfo> copyFromScheday(List<SchedayInfo> sources) {
-		InfoCopier<MatlisInfo, SchedayInfo> copier = new MatlisCopyScheday();
+		InfoCopierOneToMany<MatlisInfo, SchedayInfo> copier = new MatlisCopyScheday();
 		return copier.makeCopy(sources);
 	}	
 }

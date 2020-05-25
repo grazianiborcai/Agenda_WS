@@ -1,8 +1,8 @@
 package br.com.mind5.business.materialList.info;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import br.com.mind5.common.CloneUtil;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.file.fileImageList.info.FimistInfo;
 import br.com.mind5.info.InfoRecord;
@@ -65,25 +65,9 @@ public final class MatlisInfo extends InfoRecord implements Cloneable {
 	@Override public Object clone() throws CloneNotSupportedException {
 		MatlisInfo deepCopy = (MatlisInfo) super.clone();
 		
-		deepCopy.fimistes = cloneFimistes(deepCopy.fimistes);
+		deepCopy.fimistes = CloneUtil.cloneRecords(deepCopy.fimistes, this.getClass());
 		
 		return deepCopy;
-	}
-	
-	
-	
-	private List<FimistInfo> cloneFimistes(List<FimistInfo> recordInfos) throws CloneNotSupportedException {
-		if (recordInfos == null)
-			return null;
-		
-		List<FimistInfo> deepAddresses = new ArrayList<>();
-		
-		for (FimistInfo eachAddress : recordInfos) {
-			FimistInfo clonedAddress = (FimistInfo) eachAddress.clone();
-			deepAddresses.add(clonedAddress);
-		}
-		
-		return deepAddresses;
 	}
 	
 	
