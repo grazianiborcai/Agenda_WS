@@ -26,7 +26,7 @@ final class VisiSchedayMergeStolis extends ActionVisitorTemplateMergeV2<SchedayI
 	
 	
 	@Override protected List<StolisInfo> toActionClassHook(List<SchedayInfo> recordInfos) {
-		return StolisCopier.copyFromSchedmon(recordInfos);
+		return StolisCopier.copyFromScheday(recordInfos);
 	}
 	
 	

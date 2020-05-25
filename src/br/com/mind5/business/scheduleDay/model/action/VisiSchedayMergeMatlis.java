@@ -26,7 +26,7 @@ final class VisiSchedayMergeMatlis extends ActionVisitorTemplateMergeV2<SchedayI
 	
 	
 	@Override protected List<MatlisInfo> toActionClassHook(List<SchedayInfo> recordInfos) {
-		return MatlisCopier.copyFromSchedmon(recordInfos);
+		return MatlisCopier.copyFromScheday(recordInfos);
 	}
 	
 	

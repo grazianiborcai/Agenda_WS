@@ -26,7 +26,7 @@ final class VisiSchedayMergeEmplis extends ActionVisitorTemplateMergeV2<SchedayI
 	
 	
 	@Override protected List<EmplisInfo> toActionClassHook(List<SchedayInfo> recordInfos) {
-		return EmplisCopier.copyFromSchedmon(recordInfos);
+		return EmplisCopier.copyFromScheday(recordInfos);
 	}
 	
 	
