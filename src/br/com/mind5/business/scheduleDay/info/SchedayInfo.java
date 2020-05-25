@@ -6,6 +6,7 @@ import java.util.List;
 import br.com.mind5.business.customerList.info.CuslisInfo;
 import br.com.mind5.business.employeeList.info.EmplisInfo;
 import br.com.mind5.business.materialList.info.MatlisInfo;
+import br.com.mind5.business.moonCalendar.info.MooncalInfo;
 import br.com.mind5.business.scheduleDayData.info.SchedaytaInfo;
 import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.common.CloneUtil;
@@ -27,6 +28,7 @@ public final class SchedayInfo extends InfoRecord implements Cloneable {
 	public List<SchedatusInfo> schedatuses;
 	public List<MonthInfo> monthes;
 	public List<WeekdayInfo> weekdays;
+	public List<MooncalInfo> mooncales;
 	public String username;	
 	
 	
@@ -44,6 +46,7 @@ public final class SchedayInfo extends InfoRecord implements Cloneable {
 		schedatuses = DefaultValue.list();
 		monthes = DefaultValue.list();
 		weekdays = DefaultValue.list();
+		mooncales = DefaultValue.list();
 	}
 	
 	
@@ -71,6 +74,7 @@ public final class SchedayInfo extends InfoRecord implements Cloneable {
 		deepCopy.schedatuses = CloneUtil.cloneRecords(schedatuses, this.getClass());
 		deepCopy.monthes = CloneUtil.cloneRecords(monthes, this.getClass());
 		deepCopy.weekdays = CloneUtil.cloneRecords(weekdays, this.getClass());
+		deepCopy.mooncales = CloneUtil.cloneRecords(mooncales, this.getClass());
 		
 		return deepCopy;
 	}

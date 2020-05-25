@@ -8,6 +8,7 @@ import br.com.mind5.business.scheduleDay.model.action.LazySchedayMergeCuslis;
 import br.com.mind5.business.scheduleDay.model.action.LazySchedayMergeEmplis;
 import br.com.mind5.business.scheduleDay.model.action.LazySchedayMergeMatlis;
 import br.com.mind5.business.scheduleDay.model.action.LazySchedayMergeMonth;
+import br.com.mind5.business.scheduleDay.model.action.LazySchedayMergeMooncal;
 import br.com.mind5.business.scheduleDay.model.action.LazySchedayMergeSchedatus;
 import br.com.mind5.business.scheduleDay.model.action.LazySchedayMergeStolis;
 import br.com.mind5.business.scheduleDay.model.action.LazySchedayMergeWeekday;
@@ -57,6 +58,7 @@ public final class RootSchedaySelect extends DeciTreeTemplateWriteV2<SchedayInfo
 		ActionLazyV1<SchedayInfo> mergeSchedatus = new LazySchedayMergeSchedatus(option.conn, option.schemaName);
 		ActionLazyV1<SchedayInfo> mergeMonth = new LazySchedayMergeMonth(option.conn, option.schemaName);
 		ActionLazyV1<SchedayInfo> mergeWeekday = new LazySchedayMergeWeekday(option.conn, option.schemaName);
+		ActionLazyV1<SchedayInfo> mergeMooncal = new LazySchedayMergeMooncal(option.conn, option.schemaName);
 		
 		mergeSchedayta.addPostAction(mergeStolis);
 		mergeStolis.addPostAction(mergeMatlis);
@@ -65,6 +67,7 @@ public final class RootSchedaySelect extends DeciTreeTemplateWriteV2<SchedayInfo
 		mergeCuslis.addPostAction(mergeSchedatus);
 		mergeSchedatus.addPostAction(mergeMonth);
 		mergeMonth.addPostAction(mergeWeekday);
+		mergeWeekday.addPostAction(mergeMooncal);
 		
 		actions.add(mergeSchedayta);
 		return actions;

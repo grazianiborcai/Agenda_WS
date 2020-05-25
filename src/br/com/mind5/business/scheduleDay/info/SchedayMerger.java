@@ -5,6 +5,7 @@ import java.util.List;
 import br.com.mind5.business.customerList.info.CuslisInfo;
 import br.com.mind5.business.employeeList.info.EmplisInfo;
 import br.com.mind5.business.materialList.info.MatlisInfo;
+import br.com.mind5.business.moonCalendar.info.MooncalInfo;
 import br.com.mind5.business.scheduleDayData.info.SchedaytaInfo;
 import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.info.InfoMergerBuilderV3;
@@ -14,6 +15,19 @@ import br.com.mind5.masterData.scheduleStatus.info.SchedatusInfo;
 import br.com.mind5.masterData.weekday.info.WeekdayInfo;
 
 public final class SchedayMerger {
+	public static List<SchedayInfo> mergeWithMooncal(List<SchedayInfo> baseInfos, List<MooncalInfo> selectedInfos) {
+		InfoMergerBuilderV3<SchedayInfo, MooncalInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new SchedayVisiMergeMooncal());
+		InfoMergerV3<SchedayInfo, MooncalInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	
 	public static List<SchedayInfo> mergeWithWeekday(List<SchedayInfo> baseInfos, List<WeekdayInfo> selectedInfos) {
 		InfoMergerBuilderV3<SchedayInfo, WeekdayInfo> builder = new InfoMergerBuilderV3<>();
 		
