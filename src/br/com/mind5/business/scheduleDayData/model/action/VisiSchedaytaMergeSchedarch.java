@@ -3,6 +3,7 @@ package br.com.mind5.business.scheduleDayData.model.action;
 import java.util.List;
 
 import br.com.mind5.business.scheduleDayData.info.SchedaytaInfo;
+import br.com.mind5.business.scheduleSearch.info.SchedarchCopier;
 import br.com.mind5.business.scheduleSearch.info.SchedarchInfo;
 import br.com.mind5.business.scheduleSearch.model.decisionTree.RootSchedarchSelect;
 import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
@@ -19,6 +20,12 @@ final class VisiSchedaytaMergeSchedarch extends ActionVisitorTemplateMergeV2<Sch
 	
 	@Override protected Class<? extends DeciTree<SchedarchInfo>> getTreeClassHook() {
 		return RootSchedarchSelect.class;
+	}
+	
+	
+	
+	protected List<SchedarchInfo> toActionClassHook(List<SchedaytaInfo> baseInfos) {
+		return SchedarchCopier.copyFromSchedayta(baseInfos);	
 	}
 	
 	
