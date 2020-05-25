@@ -1264,4 +1264,7 @@ public final class SystemCode {
 	public static final int BOOK_SERVICE_QUANTITY_ILLEGAL				= 12351;
 	public static final int BOOK_SERVICE_AGED_DATE						= 12352;
 	public static final int BOOK_SERVICE_BAD_TIME_RANGE 				= 12353;
+	
+	// Schedule Day Data
+	public static final int SCHEDULE_DAY_DATA_MANDATORY_FIELD_EMPTY		= 12400;
 }
