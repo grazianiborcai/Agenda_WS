@@ -11,7 +11,7 @@ public final class MonthInfo extends InfoRecord implements Cloneable {
 	
 	
 	public MonthInfo() {
-		super(MonthInfo.class);
+		super();
 		
 		month = DefaultValue.number();
 	}

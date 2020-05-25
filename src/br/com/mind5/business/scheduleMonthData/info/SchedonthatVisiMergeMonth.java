@@ -3,9 +3,9 @@ package br.com.mind5.business.scheduleMonthData.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.business.masterData.info.MonthInfo;
 import br.com.mind5.info.InfoMergerVisitorV3;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.masterData.month.info.MonthInfo;
 
 final class SchedonthatVisiMergeMonth implements InfoMergerVisitorV3<SchedonthatInfo, MonthInfo> {
 	

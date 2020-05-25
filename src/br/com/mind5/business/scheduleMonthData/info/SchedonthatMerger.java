@@ -2,9 +2,9 @@ package br.com.mind5.business.scheduleMonthData.info;
 
 import java.util.List;
 
-import br.com.mind5.business.masterData.info.MonthInfo;
 import br.com.mind5.info.InfoMergerBuilderV3;
 import br.com.mind5.info.InfoMergerV3;
+import br.com.mind5.masterData.month.info.MonthInfo;
 import br.com.mind5.masterData.weekday.info.WeekdayInfo;
 
 public final class SchedonthatMerger {

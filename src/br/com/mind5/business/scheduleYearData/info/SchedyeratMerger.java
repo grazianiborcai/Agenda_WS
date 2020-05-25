@@ -2,8 +2,8 @@ package br.com.mind5.business.scheduleYearData.info;
 
 import java.util.List;
 
-import br.com.mind5.business.masterData.info.MonthInfo;
 import br.com.mind5.info.obsolete.InfoMerger_;
+import br.com.mind5.masterData.month.info.MonthInfo;
 
 public final class SchedyeratMerger {
 	public static SchedyeratInfo mergeWithMonth(MonthInfo sourceOne, SchedyeratInfo sourceTwo) {

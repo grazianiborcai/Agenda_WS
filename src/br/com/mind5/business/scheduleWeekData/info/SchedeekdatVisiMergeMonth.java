@@ -1,9 +1,9 @@
 package br.com.mind5.business.scheduleWeekData.info;
 
-import br.com.mind5.business.masterData.info.MonthInfo;
 import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.masterData.month.info.MonthInfo;
 
 final class SchedeekdatVisiMergeMonth implements InfoMergerVisitor_<SchedeekdatInfo, MonthInfo> {
 
