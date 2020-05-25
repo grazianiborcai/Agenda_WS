@@ -24,11 +24,11 @@ final class SchedatusCopyScheday extends InfoCopierOneToManyTemplate<SchedatusIn
 			return results;
 		
 		
-		for (SchedaytaInfo eachSchedonthat : source.schedaytas) {
+		for (SchedaytaInfo eachSchedayta : source.schedaytas) {
 			SchedatusInfo eachResult = new SchedatusInfo();
 			
-			eachResult.codScheduleStatus = eachSchedonthat.codScheduleStatus;
-			eachResult.codLanguage = eachSchedonthat.codLanguage;
+			eachResult.codScheduleStatus = eachSchedayta.codScheduleStatus;
+			eachResult.codLanguage = eachSchedayta.codLanguage;
 			
 			results.add(eachResult);
 		}
