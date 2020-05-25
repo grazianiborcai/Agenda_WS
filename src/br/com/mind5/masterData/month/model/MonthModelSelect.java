@@ -1,7 +1,7 @@
-package br.com.mind5.business.masterData.model;
+package br.com.mind5.masterData.month.model;
 
-import br.com.mind5.business.masterData.info.MonthInfo;
-import br.com.mind5.business.masterData.model.decisionTree.RootMonthSelect;
+import br.com.mind5.masterData.month.info.MonthInfo;
+import br.com.mind5.masterData.month.model.decisionTree.RootMonthSelect;
 import br.com.mind5.model.ModelTemplate;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;

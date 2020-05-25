@@ -139,6 +139,7 @@ import br.com.mind5.masterData.materialType.dao.DaoMatypeDbTableColumn;
 import br.com.mind5.masterData.materialTypeSearch.dao.DaoMatyparchDbTableColumn;
 import br.com.mind5.masterData.materialUnit.dao.DaoMatunitDbTableColumn;
 import br.com.mind5.masterData.materialUnitSearch.dao.DaoMatunitarchDbTableColumn;
+import br.com.mind5.masterData.month.dao.DaoMonthDbTableColumn;
 import br.com.mind5.masterData.moonPhase.dao.DaoMoonaseDbTableColumn;
 import br.com.mind5.masterData.moonPhaseSearch.dao.DaoMoonasarchDbTableColumn;
 import br.com.mind5.masterData.movimentType.dao.DaoMamovypeDbTableColumn;
@@ -390,6 +391,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new DaoMamovypeDbTableColumn());
 		addTable(new DaoSchedaytaDbTableColumn());
 		addTable(new DaoSchedatusDbTableColumn());
+		addTable(new DaoMonthDbTableColumn());
 	}
 	
 	

@@ -1,9 +1,9 @@
-package br.com.mind5.business.masterData.model.checker;
+package br.com.mind5.masterData.month.model.checker;
 
 import java.sql.Connection;
 
-import br.com.mind5.business.masterData.info.MonthInfo;
 import br.com.mind5.common.SystemCode;
+import br.com.mind5.masterData.month.info.MonthInfo;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
@@ -16,7 +16,8 @@ public final class MonthCheckRead extends ModelCheckerTemplateSimpleV2<MonthInfo
 	
 	
 	@Override protected boolean checkHook(MonthInfo recordInfo, Connection conn, String schemaName) {	
-		if ( recordInfo.codLanguage == null )			
+		if ( recordInfo.month 		<= 0 	||
+			 recordInfo.codLanguage == null 	)			
 			return super.FAILED;
 		
 		

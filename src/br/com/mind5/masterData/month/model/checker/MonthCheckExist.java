@@ -1,8 +1,8 @@
-package br.com.mind5.business.masterData.model.checker;
+package br.com.mind5.masterData.month.model.checker;
 
-import br.com.mind5.business.masterData.info.MonthInfo;
-import br.com.mind5.business.masterData.model.action.StdMonthSelect;
 import br.com.mind5.common.SystemCode;
+import br.com.mind5.masterData.month.info.MonthInfo;
+import br.com.mind5.masterData.month.model.action.StdMonthDaoSelect;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
@@ -17,7 +17,7 @@ public final class MonthCheckExist extends ModelCheckerTemplateActionV2<MonthInf
 	
 	
 	@Override protected ActionStdV1<MonthInfo> buildActionHook(DeciTreeOption<MonthInfo> option) {
-		ActionStdV1<MonthInfo> select = new StdMonthSelect(option);
+		ActionStdV1<MonthInfo> select = new StdMonthDaoSelect(option);
 		return select;
 	}
 	

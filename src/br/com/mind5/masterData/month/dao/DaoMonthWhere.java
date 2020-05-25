@@ -1,20 +1,20 @@
-package br.com.mind5.business.masterData.dao;
+package br.com.mind5.masterData.month.dao;
 
 import java.util.List;
 
-import br.com.mind5.business.masterData.info.MonthInfo;
 import br.com.mind5.dao.DaoColumn;
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilder;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
+import br.com.mind5.masterData.month.info.MonthInfo;
 
-final class MonthWhere implements DaoStmtWhere {
+final class DaoMonthWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public MonthWhere(DaoWhereBuilderOption whereOption, String tableName, MonthInfo recordInfo) {
+	public DaoMonthWhere(DaoWhereBuilderOption whereOption, String tableName, MonthInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -26,12 +26,12 @@ final class MonthWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {
 			switch(eachColumn.columnName) {
-				case MasterDataDbTableColumn.COL_MONTH :
+				case DaoMonthDbTableColumn.COL_MONTH :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.month));
 					break;
 					
 					
-				case MasterDataDbTableColumn.COL_COD_LANGUAGE :
+				case DaoMonthDbTableColumn.COL_COD_LANGUAGE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codLanguage);
 					break;
 			}
