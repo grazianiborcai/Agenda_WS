@@ -4,17 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.scheduleLine.info.SchedineInfo;
-import br.com.mind5.business.scheduleLine.model.action.LazySchedineRootUpdate;
-import br.com.mind5.business.scheduleLine.model.action.StdSchedineMergeToMove;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckExist;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckLangu;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckMove;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckOwner;
-import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
@@ -67,12 +64,11 @@ public final class RootSchedineMove extends DeciTreeTemplateWriteV2<SchedineInfo
 	@Override protected List<ActionStdV1<SchedineInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedineInfo> option) {
 		List<ActionStdV1<SchedineInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<SchedineInfo> select = new StdSchedineMergeToMove(option);
-		ActionLazyV1<SchedineInfo> rootUpdate = new LazySchedineRootUpdate(option.conn, option.schemaName);
+		ActionStdV1<SchedineInfo> cancel = new RootSchedineCancel(option).toAction();
+		ActionStdV1<SchedineInfo> move = new NodeSchedineMove(option).toAction();
 		
-		select.addPostAction(rootUpdate);
-		
-		actions.add(select);
+		actions.add(cancel);
+		actions.add(move);
 		return actions;
 	}
 }

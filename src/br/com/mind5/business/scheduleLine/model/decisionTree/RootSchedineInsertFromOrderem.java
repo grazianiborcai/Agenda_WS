@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.scheduleLine.info.SchedineInfo;
 import br.com.mind5.business.scheduleLine.model.action.LazySchedineMergeOrdemist;
-import br.com.mind5.business.scheduleLine.model.action.LazySchedineRootInsert;
+import br.com.mind5.business.scheduleLine.model.action.LazySchedineNodeInsert;
 import br.com.mind5.business.scheduleLine.model.action.StdSchedineMergeOrdist;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckFromOrderem;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckLangu;
@@ -78,7 +78,7 @@ public final class RootSchedineInsertFromOrderem extends DeciTreeTemplateWriteV2
 		
 		ActionStdV1<SchedineInfo> mergeOrdist = new StdSchedineMergeOrdist(option);
 		ActionLazyV1<SchedineInfo> mergeOrdemist = new LazySchedineMergeOrdemist(option.conn, option.schemaName);
-		ActionLazyV1<SchedineInfo> insert = new LazySchedineRootInsert(option.conn, option.schemaName);
+		ActionLazyV1<SchedineInfo> insert = new LazySchedineNodeInsert(option.conn, option.schemaName);
 		
 		mergeOrdist.addPostAction(mergeOrdemist);
 		mergeOrdemist.addPostAction(insert);

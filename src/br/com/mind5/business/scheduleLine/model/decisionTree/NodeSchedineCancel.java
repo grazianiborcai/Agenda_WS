@@ -11,12 +11,11 @@ import br.com.mind5.business.scheduleLine.model.action.LazySchedineInsertSchedov
 import br.com.mind5.business.scheduleLine.model.action.LazySchedineMergeUsername;
 import br.com.mind5.business.scheduleLine.model.action.LazySchedineNodeSnapshot;
 import br.com.mind5.business.scheduleLine.model.action.StdSchedineMergeToSelect;
-import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckCancel;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
@@ -31,13 +30,8 @@ public final class NodeSchedineCancel extends DeciTreeTemplateWriteV2<SchedineIn
 	@Override protected ModelCheckerV1<SchedineInfo> buildCheckerHook(DeciTreeOption<SchedineInfo> option) {
 		List<ModelCheckerV1<SchedineInfo>> queue = new ArrayList<>();		
 		ModelCheckerV1<SchedineInfo> checker;	
-		ModelCheckerOption checkerOption;
 
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new SchedineCheckCancel(checkerOption);
+		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueueV2<>(queue);

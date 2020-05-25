@@ -5,9 +5,9 @@ import br.com.mind5.model.action.ActionStdTemplateV2;
 import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdSchedineMergeToUpdate extends ActionStdTemplateV2<SchedineInfo> {
+public final class StdSchedineMergeToUpdate_ extends ActionStdTemplateV2<SchedineInfo> {
 
-	public StdSchedineMergeToUpdate(DeciTreeOption<SchedineInfo> option) {
+	public StdSchedineMergeToUpdate_(DeciTreeOption<SchedineInfo> option) {
 		super(option);
 	}
 	

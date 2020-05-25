@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.scheduleLine.info.SchedineInfo;
-import br.com.mind5.business.scheduleLine.model.decisionTree.RootSchedineUpdate;
+import br.com.mind5.business.scheduleLine.model.decisionTree.RootSchedineUpdate_;
 import br.com.mind5.model.action.ActionLazyTemplateV2;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
@@ -25,7 +25,7 @@ public final class LazySchedineRootUpdate extends ActionLazyTemplateV2<SchedineI
 	
 	
 	@Override protected ActionStdV1<SchedineInfo> getInstanceOfActionHook(DeciTreeOption<SchedineInfo> option) {
-		return new RootSchedineUpdate(option).toAction();
+		return new RootSchedineUpdate_(option).toAction();
 	}
 	
 	

@@ -9,7 +9,6 @@ import br.com.mind5.business.scheduleLine.model.action.LazySchedineNodeSnapshot;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckCus;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckEmp;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckEmpmat;
-import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckEmposarch;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckExist;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckLangu;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckMat;
@@ -20,15 +19,15 @@ import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckStore;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckUpdate;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class RootSchedineUpdate extends DeciTreeTemplateWriteV2<SchedineInfo> {
+public final class RootSchedineUpdate_ extends DeciTreeTemplateWriteV2<SchedineInfo> {
 	
-	public RootSchedineUpdate(DeciTreeOption<SchedineInfo> option) {
+	public RootSchedineUpdate_(DeciTreeOption<SchedineInfo> option) {
 		super(option);
 	}
 	
@@ -106,13 +105,6 @@ public final class RootSchedineUpdate extends DeciTreeTemplateWriteV2<SchedineIn
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
-		checker = new SchedineCheckEmposarch(checkerOption);
-		queue.add(checker);
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
 		checker = new SchedineCheckEmpmat(checkerOption);
 		queue.add(checker);
 		
@@ -131,7 +123,7 @@ public final class RootSchedineUpdate extends DeciTreeTemplateWriteV2<SchedineIn
 	@Override protected List<ActionStdV1<SchedineInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedineInfo> option) {
 		List<ActionStdV1<SchedineInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<SchedineInfo> nodeUpdate = new NodeSchedineUpdate(option).toAction();
+		ActionStdV1<SchedineInfo> nodeUpdate = new NodeSchedineUpdate_(option).toAction();
 		ActionLazyV1<SchedineInfo> nodeSnapshot = new LazySchedineNodeSnapshot(option.conn, option.schemaName);
 		ActionLazyV1<SchedineInfo> insertSchedovm = new LazySchedineInsertSchedovm(option.conn, option.schemaName);
 		

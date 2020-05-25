@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.scheduleLine.info.SchedineInfo;
 import br.com.mind5.business.scheduleLine.model.action.LazySchedineNodeInsert;
-import br.com.mind5.business.scheduleLine.model.action.StdSchedineObfuscateOrder;
+import br.com.mind5.business.scheduleLine.model.action.StdSchedineMergeToMove;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
@@ -14,9 +14,9 @@ import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class RootSchedineInsert extends DeciTreeTemplateWriteV2<SchedineInfo> {
+public final class NodeSchedineMove extends DeciTreeTemplateWriteV2<SchedineInfo> {
 	
-	public RootSchedineInsert(DeciTreeOption<SchedineInfo> option) {
+	public NodeSchedineMove(DeciTreeOption<SchedineInfo> option) {
 		super(option);
 	}
 	
@@ -37,12 +37,12 @@ public final class RootSchedineInsert extends DeciTreeTemplateWriteV2<SchedineIn
 	@Override protected List<ActionStdV1<SchedineInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedineInfo> option) {
 		List<ActionStdV1<SchedineInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<SchedineInfo> obfuscateOrder = new StdSchedineObfuscateOrder(option);
-		ActionLazyV1<SchedineInfo> nodeInsert = new LazySchedineNodeInsert(option.conn, option.schemaName);
+		ActionStdV1<SchedineInfo> cancel = new StdSchedineMergeToMove(option); //TODO: adicionar cod ultimo agendamento
+		ActionLazyV1<SchedineInfo> insert = new LazySchedineNodeInsert(option.conn, option.schemaName);
 		
-		obfuscateOrder.addPostAction(nodeInsert);
+		cancel.addPostAction(insert);
 		
-		actions.add(obfuscateOrder);
+		actions.add(cancel);
 		return actions;
 	}
 }

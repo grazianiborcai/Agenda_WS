@@ -24,15 +24,10 @@ final class SchedineVisiMergeToMove implements InfoMergerVisitorV3<SchedineInfo,
 	@Override public List<SchedineInfo> merge(SchedineInfo baseInfo, SchedineInfo selectedInfo) {
 		List<SchedineInfo> results = new ArrayList<>();
 		
-		baseInfo.createdOn = selectedInfo.createdOn;
-		baseInfo.createdBy = selectedInfo.createdBy;
-		baseInfo.codOwner = selectedInfo.codOwner;
-		baseInfo.codSchedule = selectedInfo.codSchedule;
 		baseInfo.codOrder = selectedInfo.codOrder;
 		baseInfo.codOrderItem = selectedInfo.codOrderItem;
 		baseInfo.codUser = selectedInfo.codUser;
 		baseInfo.codCustomer = selectedInfo.codCustomer;
-		baseInfo.codMat = selectedInfo.codMat;
 		baseInfo.codScheduleStatusOld = selectedInfo.codScheduleStatusOld;
 		
 		results.add(baseInfo);

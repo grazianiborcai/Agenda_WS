@@ -17,11 +17,7 @@ public final class SchedineCheckMove extends ModelCheckerTemplateSimpleV2<Schedi
 	
 	@Override protected boolean checkHook(SchedineInfo recordInfo, Connection conn, String schemaName) {	
 		if (   recordInfo.codOwner 		<= 0 	
-			|| recordInfo.codSchedule	<= 0 	
-			|| recordInfo.codStore 		<= 0
-			|| recordInfo.date			== null
-			|| recordInfo.beginTime		== null
-			|| recordInfo.endTime		== null
+			|| recordInfo.codSchedule	<= 0
 			|| recordInfo.username		== null 
 			|| recordInfo.codLanguage	== null	)
 			

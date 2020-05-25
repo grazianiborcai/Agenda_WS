@@ -51,7 +51,7 @@ public final class NodeSchedineRefreshL2 extends DeciTreeTemplateWriteV2<Schedin
 	@Override protected List<ActionStdV1<SchedineInfo>> buildActionsOnFailedHook(DeciTreeOption<SchedineInfo> option) {
 		List<ActionStdV1<SchedineInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<SchedineInfo> rootUpdate = new RootSchedineUpdate(option).toAction();
+		ActionStdV1<SchedineInfo> rootUpdate = new RootSchedineUpdate_(option).toAction();
 		
 		actions.add(rootUpdate);
 		return actions;
