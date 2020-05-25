@@ -6,15 +6,15 @@ import java.util.List;
 import br.com.mind5.business.customerList.info.CuslisInfo;
 import br.com.mind5.business.customerList.model.action.LazyCuslisRootSelect;
 import br.com.mind5.business.customerList.model.action.StdCuslisMergeCusarch;
-import br.com.mind5.business.customerList.model.checker.CuslisCheckDummy;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 
-public final class RootCuslisSearch extends DeciTreeTemplateReadV1<CuslisInfo> {
+public final class RootCuslisSearch extends DeciTreeTemplateReadV2<CuslisInfo> {
 	
 	public RootCuslisSearch(DeciTreeOption<CuslisInfo> option) {
 		super(option);
@@ -26,7 +26,7 @@ public final class RootCuslisSearch extends DeciTreeTemplateReadV1<CuslisInfo> {
 		List<ModelCheckerV1<CuslisInfo>> queue = new ArrayList<>();		
 		ModelCheckerV1<CuslisInfo> checker;
 
-		checker = new CuslisCheckDummy();
+		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueueV2<>(queue);

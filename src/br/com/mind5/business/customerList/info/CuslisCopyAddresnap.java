@@ -4,7 +4,7 @@ package br.com.mind5.business.customerList.info;
 import br.com.mind5.business.addressSnapshot.info.AddresnapInfo;
 import br.com.mind5.info.InfoCopierTemplate;
 
-final class CuslisCopyAddresnap extends InfoCopierTemplate<CuslisInfo, AddresnapInfo>{
+final class CuslisCopyAddresnap extends InfoCopierTemplate<CuslisInfo, AddresnapInfo> {
 	
 	public CuslisCopyAddresnap() {
 		super();

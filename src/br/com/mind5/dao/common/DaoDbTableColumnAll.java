@@ -18,7 +18,7 @@ import br.com.mind5.business.companyList.dao.DaoComplisDbTableColumn;
 import br.com.mind5.business.companySearch.dao.ComparchDbTableColumn;
 import br.com.mind5.business.companySnapshot.dao.CompnapDbTableColumn;
 import br.com.mind5.business.customer.dao.CusDbTableColumn;
-import br.com.mind5.business.customerList.dao.CuslisDbTableColumn;
+import br.com.mind5.business.customerList.dao.DaoCuslisDbTableColumn;
 import br.com.mind5.business.customerSearch.dao.CusarchDbTableColumn;
 import br.com.mind5.business.customerSnapshot.dao.CusnapDbTableColumn;
 import br.com.mind5.business.employee.dao.DaoEmpDbTableColumn;
@@ -270,7 +270,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new StorapDbTableColumn());
 		addTable(new CompnapDbTableColumn());
 		addTable(new CusnapDbTableColumn());
-		addTable(new CuslisDbTableColumn());
+		addTable(new DaoCuslisDbTableColumn());
 		addTable(new DaoUselisDbTableColumn());
 		addTable(new SchedinapDbTableColumn());
 		addTable(new DaoOrdarchDbTableColumn());

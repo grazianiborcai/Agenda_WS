@@ -9,33 +9,22 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class CuslisDbTableColumn extends DaoDbTableColumnTemplate {
+public final class DaoCuslisDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_CUSTOMER = DaoDbField.COL_COD_CUSTOMER;
 	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;
 	public static final String COL_COD_PERSON = DaoDbField.COL_COD_PERSON;
 	public static final String COL_COD_SNAPSHOT = DaoDbField.COL_COD_SNAPSHOT;
 	public static final String COL_COD_USER = DaoDbField.COL_COD_USER;
 	public static final String COL_RECORD_MODE = DaoDbField.COL_RECORD_MODE;	
+
 	
-	
-	private Hashtable<String, List<DaoColumn>> tableColumns;	
-	
-	
-	public CuslisDbTableColumn() {
-		super(CuslisDbTableColumn.class);
+	public DaoCuslisDbTableColumn() {
+		super();
 	}
 	
 	
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
-		tableColumns = new Hashtable<>();		
-		buildCustomerListTable();		
-		return tableColumns;
-	}
-	
-	
-	
-	private void buildCustomerListTable() {
 		final String TABLE_NAME = DaoDbTable.CUS_TABLE;
 		
 		DaoColumn oneColumn;
@@ -89,6 +78,8 @@ public final class CuslisDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		tableColumns.put(DaoDbTable.CUS_LIST_VIEW, columns);
+		Hashtable<String, List<DaoColumn>> results = new Hashtable<>();
+		results.put(DaoDbTable.CUS_LIST_VIEW, columns);
+		return results;
 	}
 }

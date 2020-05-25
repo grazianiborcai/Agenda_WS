@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilder;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 
-public final class CuslisWhere implements DaoStmtWhere {	
+public final class DaoCuslisWhere implements DaoStmtWhere {	
 	private String whereClause;	
 	
 	
-	public CuslisWhere(DaoWhereBuilderOption whereOption, String tableName, CuslisInfo recordInfo) {
+	public DaoCuslisWhere(DaoWhereBuilderOption whereOption, String tableName, CuslisInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -27,15 +27,15 @@ public final class CuslisWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-				case CuslisDbTableColumn.COL_COD_OWNER :
+				case DaoCuslisDbTableColumn.COL_COD_OWNER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;
 					
-				case CuslisDbTableColumn.COL_COD_CUSTOMER :
+				case DaoCuslisDbTableColumn.COL_COD_CUSTOMER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codCustomer));
 					break;
 					
-				case CuslisDbTableColumn.COL_RECORD_MODE :
+				case DaoCuslisDbTableColumn.COL_RECORD_MODE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.recordMode);
 					break;
 			}

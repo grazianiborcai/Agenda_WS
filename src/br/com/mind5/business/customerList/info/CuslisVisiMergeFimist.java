@@ -1,55 +1,39 @@
 package br.com.mind5.business.customerList.info;
 
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
+import java.util.ArrayList;
+import java.util.List;
+
 import br.com.mind5.file.fileImageList.info.FimistInfo;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-final class CuslisVisiMergeFimist implements InfoMergerVisitor_<CuslisInfo, FimistInfo> {
-
-	@Override public CuslisInfo writeRecord(FimistInfo sourceOne, CuslisInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+final class CuslisVisiMergeFimist implements InfoMergerVisitorV3<CuslisInfo, FimistInfo> {
+	
+	@Override public List<CuslisInfo> beforeMerge(List<CuslisInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(CuslisInfo baseInfo, FimistInfo selectedInfo) {
+		return (baseInfo.codOwner    == selectedInfo.codOwner	&&
+				baseInfo.codCustomer == selectedInfo.codCustomer);
+	}
+	
+	
+	
+	@Override public List<CuslisInfo> merge(CuslisInfo baseInfo, FimistInfo selectedInfo) {
+		List<CuslisInfo> results = new ArrayList<>();
 		
-		CuslisInfo clonedInfo = makeClone(sourceTwo);
-		return merge(sourceOne, clonedInfo);
+		baseInfo.fimistData = selectedInfo;
+		
+		results.add(baseInfo);
+		return results;
 	}
 	
 	
 	
-	private void checkArgument(FimistInfo sourceOne, CuslisInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private CuslisInfo makeClone(CuslisInfo recordInfo) {
-		try {
-			return (CuslisInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	private CuslisInfo merge(FimistInfo sourceOne, CuslisInfo sourceTwo) {
-		sourceTwo.fimistData = sourceOne;
-		return sourceTwo;
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(FimistInfo sourceOne, CuslisInfo sourceTwo) {
-		return (sourceOne.codOwner 		== sourceTwo.codOwner	&&
-				sourceOne.codCustomer	== sourceTwo.codCustomer	);
-	}
-	
-	
-	
-	private void logException(Exception e) {
-		SystemLog.logError(this.getClass(), e);
+	@Override public InfoUniquifier<CuslisInfo> getUniquifier() {
+		return null;
 	}
 }

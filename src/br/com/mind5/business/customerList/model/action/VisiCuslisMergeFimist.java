@@ -1,6 +1,5 @@
 package br.com.mind5.business.customerList.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.customerList.info.CuslisInfo;
@@ -9,12 +8,14 @@ import br.com.mind5.file.fileImageList.info.FimistCopier;
 import br.com.mind5.file.fileImageList.info.FimistInfo;
 import br.com.mind5.file.fileImageList.model.decisionTree.RootFimistSearch;
 import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiCuslisMergeFimist extends ActionVisitorTemplateMergeV1<CuslisInfo, FimistInfo> {
+final class VisiCuslisMergeFimist extends ActionVisitorTemplateMergeV2<CuslisInfo, FimistInfo> {
 	
-	public VisiCuslisMergeFimist(Connection conn, String schemaName) {
-		super(conn, schemaName, FimistInfo.class);
+	public VisiCuslisMergeFimist(DeciTreeOption<CuslisInfo> option) {
+		super(option, FimistInfo.class);
 	}
 	
 	
@@ -31,8 +32,8 @@ final class VisiCuslisMergeFimist extends ActionVisitorTemplateMergeV1<CuslisInf
 	
 	
 	
-	@Override protected List<CuslisInfo> mergeHook(List<CuslisInfo> recordInfos, List<FimistInfo> selectedInfos) {	
-		return CuslisMerger.mergeWithFimist(selectedInfos, recordInfos);
+	@Override protected List<CuslisInfo> mergeHook(List<CuslisInfo> baseInfos, List<FimistInfo> selectedInfos) {	
+		return CuslisMerger.mergeWithFimist(baseInfos, selectedInfos);
 	}
 	
 	

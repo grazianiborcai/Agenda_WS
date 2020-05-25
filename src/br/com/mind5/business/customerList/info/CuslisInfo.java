@@ -3,6 +3,7 @@ package br.com.mind5.business.customerList.info;
 import java.util.List;
 
 import br.com.mind5.business.personList.info.PersolisInfo;
+import br.com.mind5.common.CloneUtil;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.file.fileImageList.info.FimistInfo;
 import br.com.mind5.info.InfoRecord;
@@ -14,13 +15,13 @@ public final class CuslisInfo extends InfoRecord implements Cloneable {
 	public long codPerson;
 	public long codUser;
 	public String recordMode;
-	public PersolisInfo personData;
+	public PersolisInfo persolisData;
 	public FimistInfo fimistData;
 	public String username;
 	
 	
 	public CuslisInfo() {
-		super(CuslisInfo.class);
+		super();
 		
 		codOwner = DefaultValue.number();
 		codCustomer = DefaultValue.number();
@@ -28,7 +29,7 @@ public final class CuslisInfo extends InfoRecord implements Cloneable {
 		codPerson = DefaultValue.number();
 		codUser = DefaultValue.number();
 		recordMode = DefaultValue.recordMode();	
-		personData = DefaultValue.object();
+		persolisData = DefaultValue.object();
 		fimistData = DefaultValue.object();
 	}
 	
@@ -49,29 +50,11 @@ public final class CuslisInfo extends InfoRecord implements Cloneable {
 	@Override public Object clone() throws CloneNotSupportedException {
 		CuslisInfo deepCopy = (CuslisInfo) super.clone();		
 		
-		deepCopy.personData = clonePersolis(deepCopy.personData);		
-		deepCopy.fimistData = cloneFimist(deepCopy.fimistData);
+		deepCopy.persolisData = CloneUtil.cloneRecord(deepCopy.persolisData, this.getClass());		
+		deepCopy.fimistData = CloneUtil.cloneRecord(deepCopy.fimistData, this.getClass());
 		
 		return deepCopy;
 	}
-	
-	
-	
-	private PersolisInfo clonePersolis(PersolisInfo recordInfos) throws CloneNotSupportedException {
-		if (recordInfos == null)
-			return null;
-		
-		return (PersolisInfo) recordInfos.clone();
-	}
-	
-	
-	
-	private FimistInfo cloneFimist(FimistInfo recordInfo) throws CloneNotSupportedException {
-		if (recordInfo == null)
-			return null;
-		
-		return (FimistInfo) recordInfo.clone();
-	}	
 	
 	
 	

@@ -5,12 +5,12 @@ import java.util.List;
 
 import br.com.mind5.business.customerList.info.CuslisInfo;
 import br.com.mind5.business.customerList.model.decisionTree.RootCuslisSelect;
-import br.com.mind5.model.action.ActionLazyTemplateV1;
+import br.com.mind5.model.action.ActionLazyTemplateV2;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyCuslisRootSelect extends ActionLazyTemplateV1<CuslisInfo, CuslisInfo> {
+public final class LazyCuslisRootSelect extends ActionLazyTemplateV2<CuslisInfo, CuslisInfo> {
 	
 	public LazyCuslisRootSelect(Connection conn, String schemaName) {
 		super(conn, schemaName);

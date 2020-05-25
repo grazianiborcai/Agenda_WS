@@ -4,7 +4,7 @@ package br.com.mind5.business.customerList.info;
 import br.com.mind5.business.phoneSnapshot.info.PhonapInfo;
 import br.com.mind5.info.InfoCopierTemplate;
 
-final class CuslisCopyPhonap extends InfoCopierTemplate<CuslisInfo, PhonapInfo>{
+final class CuslisCopyPhonap extends InfoCopierTemplate<CuslisInfo, PhonapInfo> {
 	
 	public CuslisCopyPhonap() {
 		super();

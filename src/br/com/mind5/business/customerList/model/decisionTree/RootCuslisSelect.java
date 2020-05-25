@@ -12,13 +12,13 @@ import br.com.mind5.business.customerList.model.checker.CuslisCheckOwner;
 import br.com.mind5.business.customerList.model.checker.CuslisCheckRead;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 
-public final class RootCuslisSelect extends DeciTreeTemplateReadV1<CuslisInfo> {
+public final class RootCuslisSelect extends DeciTreeTemplateReadV2<CuslisInfo> {
 	
 	public RootCuslisSelect(DeciTreeOption<CuslisInfo> option) {
 		super(option);

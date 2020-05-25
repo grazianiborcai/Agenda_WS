@@ -1,53 +1,38 @@
 package br.com.mind5.business.customerList.info;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import br.com.mind5.business.customerSearch.info.CusarchInfo;
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-final class CuslisVisiMergeCusarch implements InfoMergerVisitor_<CuslisInfo, CusarchInfo> {
-
-	@Override public CuslisInfo writeRecord(CusarchInfo sourceOne, CuslisInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+final class CuslisVisiMergeCusarch implements InfoMergerVisitorV3<CuslisInfo, CusarchInfo> {
+	
+	@Override public List<CuslisInfo> beforeMerge(List<CuslisInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(CuslisInfo baseInfo, CusarchInfo selectedInfo) {
+		return (baseInfo.codOwner  == selectedInfo.codOwner);
+	}
+	
+	
+	
+	@Override public List<CuslisInfo> merge(CuslisInfo baseInfo, CusarchInfo selectedInfo) {
+		List<CuslisInfo> results = new ArrayList<>();
 		
-		CuslisInfo clonedInfo = makeClone(sourceTwo);
-		return merge(sourceOne, clonedInfo);
+		CuslisInfo result = CuslisInfo.copyFrom(selectedInfo);
+		
+		results.add(result);
+		return results;
 	}
 	
 	
 	
-	private void checkArgument(CusarchInfo sourceOne, CuslisInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private CuslisInfo makeClone(CuslisInfo recordInfo) {
-		try {
-			return (CuslisInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	private CuslisInfo merge(CusarchInfo sourceOne, CuslisInfo sourceTwo) {
-		return CuslisInfo.copyFrom(sourceOne);
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(CusarchInfo sourceOne, CuslisInfo sourceTwo) {
-		return (sourceOne.codOwner  == sourceTwo.codOwner);
-	}
-	
-	
-	
-	private void logException(Exception e) {
-		SystemLog.logError(this.getClass(), e);
+	@Override public InfoUniquifier<CuslisInfo> getUniquifier() {
+		return null;
 	}
 }
