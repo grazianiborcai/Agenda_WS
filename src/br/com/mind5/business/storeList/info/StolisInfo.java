@@ -1,11 +1,11 @@
 package br.com.mind5.business.storeList.info;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.companyList.info.ComplisInfo;
 import br.com.mind5.business.phone.info.PhoneInfo;
+import br.com.mind5.common.CloneUtil;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.file.fileImageList.info.FimistInfo;
 import br.com.mind5.info.InfoRecord;
@@ -28,7 +28,7 @@ public final class StolisInfo extends InfoRecord implements Cloneable {
 	
 	
 	public StolisInfo() {
-		super(StolisInfo.class);
+		super();
 		
 		codOwner = DefaultValue.number();
 		codStore = DefaultValue.number();
@@ -58,69 +58,12 @@ public final class StolisInfo extends InfoRecord implements Cloneable {
 	@Override public Object clone() throws CloneNotSupportedException {
 		StolisInfo deepCopy = (StolisInfo) super.clone();
 		
-		deepCopy.fimistes = cloneFimistes(deepCopy.fimistes);
-		deepCopy.addresses = cloneAddresses(deepCopy.addresses);
-		deepCopy.phones = clonePhones(deepCopy.phones);
-		deepCopy.complisData = cloneCompany(deepCopy.complisData);
+		deepCopy.fimistes = CloneUtil.cloneRecords(fimistes, this.getClass());
+		deepCopy.addresses = CloneUtil.cloneRecords(addresses, this.getClass());
+		deepCopy.phones = CloneUtil.cloneRecords(phones, this.getClass());
+		deepCopy.complisData = CloneUtil.cloneRecord(complisData, this.getClass());
 		
 		return deepCopy;
-	}
-	
-	
-	
-	private List<FimistInfo> cloneFimistes(List<FimistInfo> recordInfos) throws CloneNotSupportedException {
-		if (recordInfos == null)
-			return null;
-		
-		List<FimistInfo> deepAddresses = new ArrayList<>();
-		
-		for (FimistInfo eachAddress : recordInfos) {
-			FimistInfo clonedAddress = (FimistInfo) eachAddress.clone();
-			deepAddresses.add(clonedAddress);
-		}
-		
-		return deepAddresses;
-	}
-	
-	
-	
-	private List<AddressInfo> cloneAddresses(List<AddressInfo> recordInfos) throws CloneNotSupportedException {
-		if (recordInfos == null)
-			return null;
-		
-		List<AddressInfo> deepAddresses = new ArrayList<>();
-		
-		for (AddressInfo eachAddress : recordInfos) {
-			AddressInfo clonedAddress = (AddressInfo) eachAddress.clone();
-			deepAddresses.add(clonedAddress);
-		}
-		
-		return deepAddresses;
-	}
-	
-	
-	
-	private List<PhoneInfo> clonePhones(List<PhoneInfo> recordInfos) throws CloneNotSupportedException {
-		if (recordInfos == null)
-			return null;
-		
-		List<PhoneInfo> deepPhones = new ArrayList<>();
-		
-		for (PhoneInfo eachPhone : recordInfos) {
-			PhoneInfo clonedPhone = (PhoneInfo) eachPhone.clone();
-			deepPhones.add(clonedPhone);
-		}
-		
-		return deepPhones;
-	}
-	
-	
-	
-	private ComplisInfo cloneCompany(ComplisInfo recordInfos) throws CloneNotSupportedException {
-		if (recordInfos == null)
-			return null;
-		
-		return (ComplisInfo) recordInfos.clone();
 	}
 	
 	

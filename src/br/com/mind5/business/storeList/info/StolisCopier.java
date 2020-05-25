@@ -127,15 +127,15 @@ public final class StolisCopier {
 	
 	
 	
-	public static StolisInfo copyFromScheday(SchedayInfo source) {
-		InfoCopier<StolisInfo, SchedayInfo> copier = new StolisCopyScheday();
+	public static List<StolisInfo> copyFromScheday(SchedayInfo source) {
+		InfoCopierOneToMany<StolisInfo, SchedayInfo> copier = new StolisCopyScheday();
 		return copier.makeCopy(source);
 	}
 	
 	
 	
 	public static List<StolisInfo> copyFromScheday(List<SchedayInfo> sources) {
-		InfoCopier<StolisInfo, SchedayInfo> copier = new StolisCopyScheday();
+		InfoCopierOneToMany<StolisInfo, SchedayInfo> copier = new StolisCopyScheday();
 		return copier.makeCopy(sources);
 	}
 }
