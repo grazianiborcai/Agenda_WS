@@ -1,4 +1,4 @@
-package br.com.mind5.business.masterData.dao;
+package br.com.mind5.masterData.scheduleStatus.dao;
 
 import br.com.mind5.dao.DaoJoin;
 import br.com.mind5.dao.DaoJoinBuilder;
@@ -7,11 +7,11 @@ import br.com.mind5.dao.DaoJoinType;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class ScheduleStatusJoinTxt implements DaoJoinBuilder {
+public final class DaoSchedatusJoinTxt implements DaoJoinBuilder {
 	private final String leftTable;
 	
 	
-	public ScheduleStatusJoinTxt(String leftTableName) {
+	public DaoSchedatusJoinTxt(String leftTableName) {
 		leftTable = leftTableName;
 	}
 

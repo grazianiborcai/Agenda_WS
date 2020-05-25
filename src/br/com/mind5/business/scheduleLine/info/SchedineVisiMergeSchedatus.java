@@ -3,11 +3,11 @@ package br.com.mind5.business.scheduleLine.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.business.masterData.info.ScheduleStatusInfo;
 import br.com.mind5.info.InfoMergerVisitorV3;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.masterData.scheduleStatus.info.SchedatusInfo;
 
-final class SchedineVisiMergeScheduleStatus implements InfoMergerVisitorV3<SchedineInfo, ScheduleStatusInfo> {
+final class SchedineVisiMergeSchedatus implements InfoMergerVisitorV3<SchedineInfo, SchedatusInfo> {
 	
 	@Override public List<SchedineInfo> beforeMerge(List<SchedineInfo> baseInfos) {
 		return baseInfos;
@@ -15,7 +15,7 @@ final class SchedineVisiMergeScheduleStatus implements InfoMergerVisitorV3<Sched
 	
 	
 	
-	@Override public boolean shouldMerge(SchedineInfo baseInfo, ScheduleStatusInfo selectedInfo) {
+	@Override public boolean shouldMerge(SchedineInfo baseInfo, SchedatusInfo selectedInfo) {
 		if (baseInfo.codScheduleStatus  == null ||
 			baseInfo.codLanguage		== null ||
 			baseInfo.codScheduleStatus  == null ||
@@ -30,7 +30,7 @@ final class SchedineVisiMergeScheduleStatus implements InfoMergerVisitorV3<Sched
 	
 	
 	
-	@Override public List<SchedineInfo> merge(SchedineInfo baseInfo, ScheduleStatusInfo selectedInfo) {
+	@Override public List<SchedineInfo> merge(SchedineInfo baseInfo, SchedatusInfo selectedInfo) {
 		List<SchedineInfo> results = new ArrayList<>();
 		
 		baseInfo.txtScheduleStatus = selectedInfo.txtScheduleStatus;

@@ -1,28 +1,28 @@
-package br.com.mind5.business.masterData.info;
+package br.com.mind5.masterData.scheduleStatus.info;
 
 import java.util.List;
 
 import br.com.mind5.info.InfoRecord;
 
-public final class ScheduleStatusInfo extends InfoRecord implements Cloneable {
+public final class SchedatusInfo extends InfoRecord implements Cloneable {
 	public String codScheduleStatus;
 	public String txtScheduleStatus;
 	
 	
-	public ScheduleStatusInfo() {
-		super(ScheduleStatusInfo.class);
+	public SchedatusInfo() {
+		super();
 	}
 	
 	
 	
-	public static ScheduleStatusInfo copyFrom(Object sourceObj) {
-		return copyFrom(sourceObj, ScheduleStatusInfo.class);
+	public static SchedatusInfo copyFrom(Object sourceObj) {
+		return copyFrom(sourceObj, SchedatusInfo.class);
 	}
 	
 	
 	
-	public static List<ScheduleStatusInfo> copyFrom(List<?> sourceObjs) {
-		return copyFrom(sourceObjs, ScheduleStatusInfo.class);
+	public static List<SchedatusInfo> copyFrom(List<?> sourceObjs) {
+		return copyFrom(sourceObjs, SchedatusInfo.class);
 	}
 	
 	
@@ -47,11 +47,11 @@ public final class ScheduleStatusInfo extends InfoRecord implements Cloneable {
 			return true;
 		
 		
-		if (!(o instanceof ScheduleStatusInfo))
+		if (!(o instanceof SchedatusInfo))
 			return false;
 		
 		
-		ScheduleStatusInfo obj = (ScheduleStatusInfo) o;		
+		SchedatusInfo obj = (SchedatusInfo) o;		
 		return (isStringEqual(codScheduleStatus, obj.codScheduleStatus));
 	}
 }

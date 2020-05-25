@@ -4,7 +4,6 @@ import java.util.List;
 
 import br.com.mind5.business.customerList.info.CuslisInfo;
 import br.com.mind5.business.employeeList.info.EmplisInfo;
-import br.com.mind5.business.masterData.info.ScheduleStatusInfo;
 import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.business.orderItemList.info.OrdemistInfo;
 import br.com.mind5.business.orderList.info.OrdistInfo;
@@ -12,6 +11,7 @@ import br.com.mind5.business.scheduleLineSnapshot.info.SchedinapInfo;
 import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.info.InfoMergerBuilderV3;
 import br.com.mind5.info.InfoMergerV3;
+import br.com.mind5.masterData.scheduleStatus.info.SchedatusInfo;
 import br.com.mind5.masterData.weekday.info.WeekdayInfo;
 import br.com.mind5.security.username.info.UsernameInfo;
 
@@ -55,13 +55,13 @@ public final class SchedineMerger {
 	
 	
 	
-	public static List<SchedineInfo> mergeWithScheduleStatus(List<SchedineInfo> baseInfos, List<ScheduleStatusInfo> selectedInfos) {
-		InfoMergerBuilderV3<SchedineInfo, ScheduleStatusInfo> builder = new InfoMergerBuilderV3<>();
+	public static List<SchedineInfo> mergeWithSchedatus(List<SchedineInfo> baseInfos, List<SchedatusInfo> selectedInfos) {
+		InfoMergerBuilderV3<SchedineInfo, SchedatusInfo> builder = new InfoMergerBuilderV3<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SchedineVisiMergeScheduleStatus());
-		InfoMergerV3<SchedineInfo, ScheduleStatusInfo> merger = builder.build();		
+		builder.addVisitor(new SchedineVisiMergeSchedatus());
+		InfoMergerV3<SchedineInfo, SchedatusInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}	

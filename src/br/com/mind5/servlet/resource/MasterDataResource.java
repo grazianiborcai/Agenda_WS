@@ -11,11 +11,9 @@ import javax.ws.rs.core.Response;
 import br.com.mind5.business.masterData.info.CartCategInfo;
 import br.com.mind5.business.masterData.info.CountryLegalInfo;
 import br.com.mind5.business.masterData.info.MonthInfo;
-import br.com.mind5.business.masterData.info.ScheduleStatusInfo;
 import br.com.mind5.business.masterData.model.CartCategModelSelect;
 import br.com.mind5.business.masterData.model.CountryLegalModelSelect;
 import br.com.mind5.business.masterData.model.MonthModelSelect;
-import br.com.mind5.business.masterData.model.ScheduleStatusModelSelect;
 import br.com.mind5.masterData.areaPhoneSearch.info.AreanarchInfo;
 import br.com.mind5.masterData.areaPhoneSearch.model.AreanarchModelSelect;
 import br.com.mind5.masterData.businessAreaSearch.info.BusarearchInfo;
@@ -56,6 +54,8 @@ import br.com.mind5.masterData.position.info.PositionInfo;
 import br.com.mind5.masterData.position.model.PositionModelSelect;
 import br.com.mind5.masterData.refundPolicyGroup.info.RefugroupInfo;
 import br.com.mind5.masterData.refundPolicyGroup.model.RefugroupModelSearch;
+import br.com.mind5.masterData.scheduleStatus.info.SchedatusInfo;
+import br.com.mind5.masterData.scheduleStatus.model.SchedatusModelSelect;
 import br.com.mind5.masterData.stateSearch.info.StatarchInfo;
 import br.com.mind5.masterData.stateSearch.model.StatarchModelSelect;
 import br.com.mind5.masterData.timezoneSearch.info.TimezonarchInfo;
@@ -454,12 +454,12 @@ public final class MasterDataResource {
 	public Response selectScheduleStatus(@HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage,
 			                             @HeaderParam("codScheduleStatus") String codScheduleStatus){
 		
-		ScheduleStatusInfo recordInfo = new ScheduleStatusInfo();		
+		SchedatusInfo recordInfo = new SchedatusInfo();		
 		recordInfo.codScheduleStatus = codScheduleStatus;
 		recordInfo.codLanguage = codLanguage;
 		
 		
-		Model model = new ScheduleStatusModelSelect(recordInfo);
+		Model model = new SchedatusModelSelect(recordInfo);
 		model.executeRequest();
 		Response result = model.getResponse();
 		model.close();
