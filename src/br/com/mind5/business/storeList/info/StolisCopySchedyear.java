@@ -8,7 +8,7 @@ import br.com.mind5.business.scheduleYear.info.SchedyearInfo;
 import br.com.mind5.business.scheduleYearData.info.SchedyeratInfo;
 import br.com.mind5.info.InfoCopierOneToManyTemplate;
 
-final class StolisCopySchedyear extends InfoCopierOneToManyTemplate<StolisInfo, SchedyearInfo>{
+final class StolisCopySchedyear extends InfoCopierOneToManyTemplate<StolisInfo, SchedyearInfo> {
 	
 	public StolisCopySchedyear() {
 		super();

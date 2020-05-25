@@ -8,7 +8,7 @@ import br.com.mind5.business.scheduleWeek.info.SchedeekInfo;
 import br.com.mind5.business.scheduleWeekData.info.SchedeekdatInfo;
 import br.com.mind5.info.InfoCopierOneToManyTemplate;
 
-final class StolisCopySchedeek extends InfoCopierOneToManyTemplate<StolisInfo, SchedeekInfo>{
+final class StolisCopySchedeek extends InfoCopierOneToManyTemplate<StolisInfo, SchedeekInfo> {
 	
 	public StolisCopySchedeek() {
 		super();

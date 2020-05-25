@@ -6,6 +6,7 @@ import br.com.mind5.business.addressSnapshot.info.AddresnapInfo;
 import br.com.mind5.business.owner.info.OwnerInfo;
 import br.com.mind5.business.phoneSnapshot.info.PhonapInfo;
 import br.com.mind5.business.planningTime.info.PlanimeInfo;
+import br.com.mind5.business.scheduleDay.info.SchedayInfo;
 import br.com.mind5.business.scheduleLine.info.SchedineInfo;
 import br.com.mind5.business.scheduleMonth.info.SchedmonInfo;
 import br.com.mind5.business.scheduleWeek.info.SchedeekInfo;
@@ -121,6 +122,20 @@ public final class StolisCopier {
 	
 	public static List<StolisInfo> copyFromPhonap(List<PhonapInfo> sources) {
 		InfoCopier<StolisInfo, PhonapInfo> copier = new StolisCopyPhonap();
+		return copier.makeCopy(sources);
+	}
+	
+	
+	
+	public static StolisInfo copyFromScheday(SchedayInfo source) {
+		InfoCopier<StolisInfo, SchedayInfo> copier = new StolisCopyScheday();
+		return copier.makeCopy(source);
+	}
+	
+	
+	
+	public static List<StolisInfo> copyFromScheday(List<SchedayInfo> sources) {
+		InfoCopier<StolisInfo, SchedayInfo> copier = new StolisCopyScheday();
 		return copier.makeCopy(sources);
 	}
 }

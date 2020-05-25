@@ -1,18 +1,18 @@
 package br.com.mind5.business.storeList.info;
 
 
-import br.com.mind5.business.phoneSnapshot.info.PhonapInfo;
+import br.com.mind5.business.scheduleDay.info.SchedayInfo;
 import br.com.mind5.info.InfoCopierTemplate;
 
-final class StolisCopyPhonap extends InfoCopierTemplate<StolisInfo, PhonapInfo> {
+final class StolisCopyScheday extends InfoCopierTemplate<StolisInfo, SchedayInfo> {
 	
-	public StolisCopyPhonap() {
+	public StolisCopyScheday() {
 		super();
 	}
 	
 	
 	
-	@Override protected StolisInfo makeCopyHook(PhonapInfo source) {
+	@Override protected StolisInfo makeCopyHook(SchedayInfo source) {
 		StolisInfo result = new StolisInfo();
 		
 		result.codOwner = source.codOwner;
@@ -20,6 +20,6 @@ final class StolisCopyPhonap extends InfoCopierTemplate<StolisInfo, PhonapInfo> 
 		result.codLanguage = source.codLanguage;
 		result.username = source.username;
 		
-		return result;
+		return result;			
 	}
 }

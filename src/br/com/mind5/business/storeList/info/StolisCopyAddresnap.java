@@ -4,7 +4,7 @@ package br.com.mind5.business.storeList.info;
 import br.com.mind5.business.addressSnapshot.info.AddresnapInfo;
 import br.com.mind5.info.InfoCopierTemplate;
 
-final class StolisCopyAddresnap extends InfoCopierTemplate<StolisInfo, AddresnapInfo>{
+final class StolisCopyAddresnap extends InfoCopierTemplate<StolisInfo, AddresnapInfo> {
 	
 	public StolisCopyAddresnap() {
 		super();

@@ -3,7 +3,7 @@ package br.com.mind5.business.storeList.info;
 import br.com.mind5.business.owner.info.OwnerInfo;
 import br.com.mind5.info.InfoCopierTemplate;
 
-final class StolisCopyOwner extends InfoCopierTemplate<StolisInfo, OwnerInfo>{
+final class StolisCopyOwner extends InfoCopierTemplate<StolisInfo, OwnerInfo> {
 	
 	public StolisCopyOwner() {
 		super();
