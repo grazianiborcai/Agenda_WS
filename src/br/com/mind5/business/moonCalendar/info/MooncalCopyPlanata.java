@@ -4,7 +4,7 @@ package br.com.mind5.business.moonCalendar.info;
 import br.com.mind5.business.planingData.info.PlanataInfo;
 import br.com.mind5.info.InfoCopierTemplate;
 
-final class MooncalCopyPlanata extends InfoCopierTemplate<MooncalInfo, PlanataInfo>{
+final class MooncalCopyPlanata extends InfoCopierTemplate<MooncalInfo, PlanataInfo> {
 	
 	public MooncalCopyPlanata() {
 		super();

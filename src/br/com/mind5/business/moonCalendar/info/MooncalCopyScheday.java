@@ -10,7 +10,7 @@ import br.com.mind5.business.scheduleDay.info.SchedayInfo;
 import br.com.mind5.business.scheduleDayData.info.SchedaytaInfo;
 import br.com.mind5.info.InfoCopierOneToManyTemplate;
 
-final class MooncalCopyScheday extends InfoCopierOneToManyTemplate<MooncalInfo, SchedayInfo>{
+final class MooncalCopyScheday extends InfoCopierOneToManyTemplate<MooncalInfo, SchedayInfo> {
 	
 	public MooncalCopyScheday() {
 		super();
