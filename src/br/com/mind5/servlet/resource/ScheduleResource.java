@@ -188,8 +188,6 @@ public final class ScheduleResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response selectSchedMonth(@HeaderParam("TOKEN_OWNER")    @DefaultValue("-1") long codOwner, 
 			                         @HeaderParam("codStore")    	@DefaultValue("-1") long codStore,
-			                         @HeaderParam("codEmployee")   	@DefaultValue("-1") long codEmployee,
-			                         @HeaderParam("codMaterial")   	@DefaultValue("-1") long codMat,
 			                         @HeaderParam("year")    		@DefaultValue("-1") int year,
 			                         @HeaderParam("month")    		@DefaultValue("-1") int month,
 								     @HeaderParam("TOKEN_USERNAME") String username,
@@ -198,8 +196,6 @@ public final class ScheduleResource {
 		SchedmonInfo recordInfo = new SchedmonInfo();
 		recordInfo.codOwner = codOwner;
 		recordInfo.codStore = codStore;
-		recordInfo.codEmployee = codEmployee;
-		recordInfo.codMat = codMat;
 		recordInfo.codStore = codStore;
 		recordInfo.year = year;
 		recordInfo.month = month;

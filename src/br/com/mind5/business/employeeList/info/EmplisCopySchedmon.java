@@ -19,11 +19,11 @@ final class EmplisCopySchedmon extends InfoCopierOneToManyTemplate<EmplisInfo, S
 	@Override protected List<EmplisInfo> makeCopyHook(SchedmonInfo source) {
 		List<EmplisInfo> results = new ArrayList<>();
 		
-		if (source.schedonthats == null)
+		if (source.schedonthates == null)
 			return results;
 		
 		
-		for (SchedonthatInfo eachSchedonthat : source.schedonthats) {
+		for (SchedonthatInfo eachSchedonthat : source.schedonthates) {
 			EmplisInfo eachResult = new EmplisInfo();
 			
 			eachResult.codOwner = eachSchedonthat.codOwner;

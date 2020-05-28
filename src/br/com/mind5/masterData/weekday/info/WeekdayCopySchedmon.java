@@ -22,7 +22,7 @@ final class WeekdayCopySchedmon extends InfoCopierOneToManyTemplate<WeekdayInfo,
 		Set<WeekdayInfo> results = new HashSet<>();
 		
 		
-		for (SchedonthatInfo eachSchedonthat : source.schedonthats) {
+		for (SchedonthatInfo eachSchedonthat : source.schedonthates) {
 			WeekdayInfo eachResult = new WeekdayInfo();
 			
 			eachResult.codWeekday = eachSchedonthat.codWeekday;

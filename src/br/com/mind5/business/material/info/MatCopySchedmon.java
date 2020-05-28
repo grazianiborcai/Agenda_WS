@@ -19,11 +19,11 @@ final class MatCopySchedmon extends InfoCopierOneToManyTemplate<MatInfo, Schedmo
 	@Override protected List<MatInfo> makeCopyHook(SchedmonInfo source) {
 		List<MatInfo> results = new ArrayList<>();
 		
-		if (source.schedonthats == null)
+		if (source.schedonthates == null)
 			return results;
 		
 		
-		for (SchedonthatInfo eachSchedonthat : source.schedonthats) {
+		for (SchedonthatInfo eachSchedonthat : source.schedonthates) {
 			MatInfo eachResult = new MatInfo();
 			eachResult.codOwner = eachSchedonthat.codOwner;
 			eachResult.codMat = eachSchedonthat.codMat;

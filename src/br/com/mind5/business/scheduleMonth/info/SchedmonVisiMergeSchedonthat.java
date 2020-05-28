@@ -26,7 +26,7 @@ final class SchedmonVisiMergeSchedonthat implements InfoMergerVisitorV3<Schedmon
 	@Override public List<SchedmonInfo> merge(SchedmonInfo baseInfo, SchedonthatInfo selectedInfo) {
 		List<SchedmonInfo> results = new ArrayList<>();
 		
-		baseInfo.schedonthats.add(selectedInfo);
+		baseInfo.schedonthates.add(selectedInfo);
 		
 		results.add(baseInfo);
 		return results;

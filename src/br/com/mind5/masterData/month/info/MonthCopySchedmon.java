@@ -22,7 +22,7 @@ final class MonthCopySchedmon extends InfoCopierOneToManyTemplate<MonthInfo, Sch
 		Set<MonthInfo> results = new HashSet<>();
 		
 		
-		for (SchedonthatInfo eachSchedonthat : source.schedonthats) {
+		for (SchedonthatInfo eachSchedonthat : source.schedonthates) {
 			MonthInfo eachResult = new MonthInfo();
 			
 			eachResult.month = eachSchedonthat.month;

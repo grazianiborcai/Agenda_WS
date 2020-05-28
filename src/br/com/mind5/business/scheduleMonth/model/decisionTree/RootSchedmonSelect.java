@@ -6,7 +6,10 @@ import java.util.List;
 import br.com.mind5.business.scheduleMonth.info.SchedmonInfo;
 import br.com.mind5.business.scheduleMonth.model.action.LazySchedmonMergeEmplis;
 import br.com.mind5.business.scheduleMonth.model.action.LazySchedmonMergeMatlis;
+import br.com.mind5.business.scheduleMonth.model.action.LazySchedmonMergeMonth;
+import br.com.mind5.business.scheduleMonth.model.action.LazySchedmonMergeMooncal;
 import br.com.mind5.business.scheduleMonth.model.action.LazySchedmonMergeStolis;
+import br.com.mind5.business.scheduleMonth.model.action.LazySchedmonMergeWeekday;
 import br.com.mind5.business.scheduleMonth.model.action.StdSchedmonMergeSchedonthat;
 import br.com.mind5.business.scheduleMonth.model.checker.SchedmonCheckRead;
 import br.com.mind5.model.action.ActionLazyV1;
@@ -49,10 +52,16 @@ public final class RootSchedmonSelect extends DeciTreeTemplateWriteV2<SchedmonIn
 		ActionLazyV1<SchedmonInfo> mergeStolis = new LazySchedmonMergeStolis(option.conn, option.schemaName);
 		ActionLazyV1<SchedmonInfo> mergeMatlis = new LazySchedmonMergeMatlis(option.conn, option.schemaName);
 		ActionLazyV1<SchedmonInfo> mergeEmplis = new LazySchedmonMergeEmplis(option.conn, option.schemaName);
+		ActionLazyV1<SchedmonInfo> mergeMonth = new LazySchedmonMergeMonth(option.conn, option.schemaName);
+		ActionLazyV1<SchedmonInfo> mergeWeekday = new LazySchedmonMergeWeekday(option.conn, option.schemaName);
+		ActionLazyV1<SchedmonInfo> mergeMooncal = new LazySchedmonMergeMooncal(option.conn, option.schemaName);
 		
 		mergeSchedonthat.addPostAction(mergeStolis);
 		mergeStolis.addPostAction(mergeMatlis);
 		mergeMatlis.addPostAction(mergeEmplis);
+		mergeEmplis.addPostAction(mergeMonth);
+		mergeMonth.addPostAction(mergeWeekday);
+		mergeWeekday.addPostAction(mergeMooncal);
 		
 		actions.add(mergeSchedonthat);
 		return actions;

@@ -17,6 +17,7 @@ public final class SchedmonCheckRead extends ModelCheckerTemplateSimpleV2<Schedm
 	
 	@Override protected boolean checkHook(SchedmonInfo recordInfo, Connection conn, String schemaName) {	
 		if ( recordInfo.codOwner 	<= 0 	|| 
+			 recordInfo.codStore 	<= 0 	|| 
 			 recordInfo.year 		<= 0 	|| 
 			 recordInfo.month 		<= 0 	|| 
 			 recordInfo.username	== null	||

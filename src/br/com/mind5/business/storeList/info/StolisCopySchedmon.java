@@ -19,11 +19,11 @@ final class StolisCopySchedmon extends InfoCopierOneToManyTemplate<StolisInfo, S
 	@Override protected List<StolisInfo> makeCopyHook(SchedmonInfo source) {
 		List<StolisInfo> results = new ArrayList<>();
 		
-		if (source.schedonthats == null)
+		if (source.schedonthates == null)
 			return results;
 		
 		
-		for (SchedonthatInfo eachSchedonthat : source.schedonthats) {
+		for (SchedonthatInfo eachSchedonthat : source.schedonthates) {
 			StolisInfo eachResult = new StolisInfo();
 			
 			eachResult.codOwner = eachSchedonthat.codOwner;

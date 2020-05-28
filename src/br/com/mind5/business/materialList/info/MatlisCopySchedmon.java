@@ -19,11 +19,11 @@ final class MatlisCopySchedmon extends InfoCopierOneToManyTemplate<MatlisInfo, S
 	@Override protected List<MatlisInfo> makeCopyHook(SchedmonInfo source) {
 		List<MatlisInfo> results = new ArrayList<>();
 		
-		if (source.schedonthats == null)
+		if (source.schedonthates == null)
 			return results;
 		
 		
-		for (SchedonthatInfo eachSchedonthat : source.schedonthats) {
+		for (SchedonthatInfo eachSchedonthat : source.schedonthates) {
 			MatlisInfo eachResult = new MatlisInfo();
 			
 			eachResult.codOwner = eachSchedonthat.codOwner;
