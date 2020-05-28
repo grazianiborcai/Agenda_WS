@@ -6,10 +6,25 @@ import java.util.List;
 import br.com.mind5.business.planingData.info.PlanataInfo;
 import br.com.mind5.business.scheduleDay.info.SchedayInfo;
 import br.com.mind5.business.scheduleMonth.info.SchedmonInfo;
+import br.com.mind5.business.scheduleWeek.info.SchedeekInfo;
 import br.com.mind5.info.InfoCopier;
 import br.com.mind5.info.InfoCopierOneToMany;
 
 public final class MooncalCopier {	
+	public static List<MooncalInfo> copyFromSchedeek(SchedeekInfo source) {
+		InfoCopierOneToMany<MooncalInfo, SchedeekInfo> copier = new MooncalCopySchedeek();
+		return copier.makeCopy(source);
+	}
+	
+	
+	
+	public static List<MooncalInfo> copyFromSchedeek(List<SchedeekInfo> sources) {
+		InfoCopierOneToMany<MooncalInfo, SchedeekInfo> copier = new MooncalCopySchedeek();
+		return copier.makeCopy(sources);
+	}
+	
+	
+	
 	public static MooncalInfo copyFromPlanata(PlanataInfo source) {
 		InfoCopier<MooncalInfo, PlanataInfo> copier = new MooncalCopyPlanata();
 		return copier.makeCopy(source);
