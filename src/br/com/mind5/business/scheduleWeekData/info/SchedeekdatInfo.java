@@ -15,9 +15,7 @@ public final class SchedeekdatInfo extends InfoRecord implements Cloneable {
 	public LocalDate date;
 	public int month;
 	public int day;
-	public String txtMonth;
 	public int codWeekday;
-	public String txtWeekday;
 	public int weekMonth;
 	public int weekYear;
 	public int year;
@@ -28,7 +26,7 @@ public final class SchedeekdatInfo extends InfoRecord implements Cloneable {
 	
 	
 	public SchedeekdatInfo() {
-		super(SchedeekdatInfo.class);
+		super();
 		
 		codOwner = DefaultValue.number();	
 		codStore = DefaultValue.number();

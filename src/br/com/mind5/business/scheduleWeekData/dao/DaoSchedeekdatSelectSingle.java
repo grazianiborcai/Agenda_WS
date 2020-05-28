@@ -16,11 +16,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public class SchedeekdatSelectSingle extends DaoStmtTemplate<SchedeekdatInfo> {
+public class DaoSchedeekdatSelectSingle extends DaoStmtTemplate<SchedeekdatInfo> {
 	private final String MAIN_TABLE = DaoDbTable.SCHEDULE_WEEK_TABLE;
 	
 	
-	public SchedeekdatSelectSingle(Connection conn, SchedeekdatInfo recordInfo, String schemaName) {
+	public DaoSchedeekdatSelectSingle(Connection conn, SchedeekdatInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -44,7 +44,7 @@ public class SchedeekdatSelectSingle extends DaoStmtTemplate<SchedeekdatInfo> {
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new SchedeekdatWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new DaoSchedeekdatWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -61,20 +61,20 @@ public class SchedeekdatSelectSingle extends DaoStmtTemplate<SchedeekdatInfo> {
 				do {
 					SchedeekdatInfo dataInfo = new SchedeekdatInfo();
 					
-					dataInfo.codOwner = DaoFormatter.sqlToLong(stmtResult, SchedeekdatDbTableColumn.COL_COD_OWNER);
-					dataInfo.codStore = DaoFormatter.sqlToLong(stmtResult, SchedeekdatDbTableColumn.COL_COD_STORE);				
-					dataInfo.codEmployee = DaoFormatter.sqlToLong(stmtResult, SchedeekdatDbTableColumn.COL_COD_EMPLOYEE);
-					dataInfo.codCustomer = DaoFormatter.sqlToLong(stmtResult, SchedeekdatDbTableColumn.COL_COD_CUSTOMER);
-					dataInfo.codMat = DaoFormatter.sqlToLong(stmtResult, SchedeekdatDbTableColumn.COL_COD_MATERIAL);
-					dataInfo.date = DaoFormatter.sqlToLocalDate(stmtResult, SchedeekdatDbTableColumn.COL_DATE);	
-					dataInfo.day = DaoFormatter.sqlToInt(stmtResult, SchedeekdatDbTableColumn.COL_DAY);
-					dataInfo.month = DaoFormatter.sqlToInt(stmtResult, SchedeekdatDbTableColumn.COL_MONTH);
-					dataInfo.weekMonth = DaoFormatter.sqlToInt(stmtResult, SchedeekdatDbTableColumn.COL_WEEK_MONTH);
-					dataInfo.weekYear = DaoFormatter.sqlToInt(stmtResult, SchedeekdatDbTableColumn.COL_WEEK_YEAR);
-					dataInfo.year = DaoFormatter.sqlToInt(stmtResult, SchedeekdatDbTableColumn.COL_YEAR);
-					dataInfo.confirmed = stmtResult.getInt(SchedeekdatDbTableColumn.COL_CONFIRMED);
-					dataInfo.waiting = stmtResult.getInt(SchedeekdatDbTableColumn.COL_WAITING);
-					dataInfo.counter = stmtResult.getInt(SchedeekdatDbTableColumn.COL_COUNTER);
+					dataInfo.codOwner = DaoFormatter.sqlToLong(stmtResult, DaoSchedeekdatDbTableColumn.COL_COD_OWNER);
+					dataInfo.codStore = DaoFormatter.sqlToLong(stmtResult, DaoSchedeekdatDbTableColumn.COL_COD_STORE);				
+					dataInfo.codEmployee = DaoFormatter.sqlToLong(stmtResult, DaoSchedeekdatDbTableColumn.COL_COD_EMPLOYEE);
+					dataInfo.codCustomer = DaoFormatter.sqlToLong(stmtResult, DaoSchedeekdatDbTableColumn.COL_COD_CUSTOMER);
+					dataInfo.codMat = DaoFormatter.sqlToLong(stmtResult, DaoSchedeekdatDbTableColumn.COL_COD_MATERIAL);
+					dataInfo.date = DaoFormatter.sqlToLocalDate(stmtResult, DaoSchedeekdatDbTableColumn.COL_DATE);	
+					dataInfo.day = DaoFormatter.sqlToInt(stmtResult, DaoSchedeekdatDbTableColumn.COL_DAY);
+					dataInfo.month = DaoFormatter.sqlToInt(stmtResult, DaoSchedeekdatDbTableColumn.COL_MONTH);
+					dataInfo.weekMonth = DaoFormatter.sqlToInt(stmtResult, DaoSchedeekdatDbTableColumn.COL_WEEK_MONTH);
+					dataInfo.weekYear = DaoFormatter.sqlToInt(stmtResult, DaoSchedeekdatDbTableColumn.COL_WEEK_YEAR);
+					dataInfo.year = DaoFormatter.sqlToInt(stmtResult, DaoSchedeekdatDbTableColumn.COL_YEAR);
+					dataInfo.confirmed = stmtResult.getInt(DaoSchedeekdatDbTableColumn.COL_CONFIRMED);
+					dataInfo.waiting = stmtResult.getInt(DaoSchedeekdatDbTableColumn.COL_WAITING);
+					dataInfo.counter = stmtResult.getInt(DaoSchedeekdatDbTableColumn.COL_COUNTER);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

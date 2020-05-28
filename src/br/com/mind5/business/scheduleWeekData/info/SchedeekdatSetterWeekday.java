@@ -1,49 +1,11 @@
 package br.com.mind5.business.scheduleWeekData.info;
 
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoSetter;
+import br.com.mind5.info.InfoSetterTemplate;
 
-public final class SchedeekdatSetterWeekday implements InfoSetter<SchedeekdatInfo> {
+public final class SchedeekdatSetterWeekday extends InfoSetterTemplate<SchedeekdatInfo> {
 	
 	public SchedeekdatInfo setAttr(SchedeekdatInfo recordInfo) {
-		checkArgument(recordInfo);
-		return setCodWeekday(recordInfo);
+		recordInfo.codWeekday = recordInfo.date.getDayOfWeek().getValue();		
+		return recordInfo;
 	}
-	
-	
-	
-	private void checkArgument(SchedeekdatInfo recordInfo) {
-		if (recordInfo == null) {
-			logException(new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT));
-			throw new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT);
-		}
-	}
-	
-	
-	
-	private SchedeekdatInfo setCodWeekday(SchedeekdatInfo recordInfo) {
-		SchedeekdatInfo enforcedInfo = makeClone(recordInfo);
-		enforcedInfo.codWeekday = enforcedInfo.date.getDayOfWeek().getValue();		
-		return enforcedInfo;
-	}
-	
-	
-	
-	private SchedeekdatInfo makeClone(SchedeekdatInfo recordInfo) {
-		try {
-			return (SchedeekdatInfo) recordInfo.clone();
-			
-		} catch (CloneNotSupportedException e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}	
-	
-	
-	
-	private void logException(Exception e) {
-		
-		SystemLog.logError(this.getClass(), e);
-	}	
 }

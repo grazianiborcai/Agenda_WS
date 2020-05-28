@@ -5,15 +5,13 @@ import java.util.List;
 
 import br.com.mind5.business.scheduleWeekData.info.SchedeekdatInfo;
 import br.com.mind5.business.scheduleWeekData.model.action.LazySchedeekdatEnforceWeekday;
-import br.com.mind5.business.scheduleWeekData.model.action.LazySchedeekdatMergeMonth;
-import br.com.mind5.business.scheduleWeekData.model.action.LazySchedeekdatMergeWeekday;
 import br.com.mind5.business.scheduleWeekData.model.action.StdSchedeekdatMergeToSelect;
 import br.com.mind5.business.scheduleWeekData.model.checker.SchedeekdatCheckRead;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
 
@@ -46,13 +44,9 @@ public final class RootSchedeekdatSelect extends DeciTreeTemplateWriteV1<Schedee
 		List<ActionStdV1<SchedeekdatInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<SchedeekdatInfo> mergeToSelect = new StdSchedeekdatMergeToSelect(option);
-		ActionLazyV1<SchedeekdatInfo> mergeMonth = new LazySchedeekdatMergeMonth(option.conn, option.schemaName);
 		ActionLazyV1<SchedeekdatInfo> enforceWeekday = new LazySchedeekdatEnforceWeekday(option.conn, option.schemaName);
-		ActionLazyV1<SchedeekdatInfo> mergeWeekday = new LazySchedeekdatMergeWeekday(option.conn, option.schemaName);
 		
-		mergeToSelect.addPostAction(mergeMonth);
-		mergeMonth.addPostAction(enforceWeekday);
-		enforceWeekday.addPostAction(mergeWeekday);
+		mergeToSelect.addPostAction(enforceWeekday);
 		
 		actions.add(mergeToSelect);
 		return actions;
