@@ -1,35 +1,19 @@
 package br.com.mind5.business.scheduleWeek.model.action;
 
 import br.com.mind5.business.scheduleWeek.info.SchedeekInfo;
-import br.com.mind5.model.action.ActionLazyV1;
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionStdHelperMerge;
-import br.com.mind5.model.decisionTree.DeciResult;
+import br.com.mind5.model.action.ActionStdTemplateV2;
+import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdSchedeekMergeSchedeekdat implements ActionStdV1<SchedeekInfo> {
-	private ActionStdV1<SchedeekInfo> actionHelper;	
-	
-	
-	public StdSchedeekMergeSchedeekdat(DeciTreeOption<SchedeekInfo> option) {			
-		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiSchedeekMergeSchedeekdat(option.conn, option.schemaName));
+public final class StdSchedeekMergeSchedeekdat extends ActionStdTemplateV2<SchedeekInfo> {
+
+	public StdSchedeekMergeSchedeekdat(DeciTreeOption<SchedeekInfo> option) {
+		super(option);
 	}
 	
 	
 	
-	@Override public void addPostAction(ActionLazyV1<SchedeekInfo> actionHandler) {
-		actionHelper.addPostAction(actionHandler);
-	}
-	
-	
-	
-	@Override public boolean executeAction() {			
-		return actionHelper.executeAction();
-	}
-	
-	
-	
-	@Override public DeciResult<SchedeekInfo> getDecisionResult() {
-		return actionHelper.getDecisionResult();
+	protected ActionVisitorV2<SchedeekInfo> buildVisitorHook(DeciTreeOption<SchedeekInfo> option) {
+		return new VisiSchedeekMergeSchedeekdat(option);
 	}
 }

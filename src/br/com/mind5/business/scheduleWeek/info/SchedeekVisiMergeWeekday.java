@@ -3,11 +3,11 @@ package br.com.mind5.business.scheduleWeek.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.info.InfoMergerVisitorV3;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.masterData.weekday.info.WeekdayInfo;
 
-final class SchedeekVisiMergeMatlis implements InfoMergerVisitorV3<SchedeekInfo, MatlisInfo> {
+final class SchedeekVisiMergeWeekday implements InfoMergerVisitorV3<SchedeekInfo, WeekdayInfo> {
 	
 	@Override public List<SchedeekInfo> beforeMerge(List<SchedeekInfo> baseInfos) {
 		return baseInfos;
@@ -15,16 +15,16 @@ final class SchedeekVisiMergeMatlis implements InfoMergerVisitorV3<SchedeekInfo,
 	
 	
 	
-	@Override public boolean shouldMerge(SchedeekInfo baseInfo, MatlisInfo selectedInfo) {
-		return (baseInfo.codOwner == selectedInfo.codOwner		);
+	@Override public boolean shouldMerge(SchedeekInfo baseInfo, WeekdayInfo selectedInfo) {
+		return true;
 	}
 	
 	
 	
-	@Override public List<SchedeekInfo> merge(SchedeekInfo baseInfo, MatlisInfo selectedInfo) {
+	@Override public List<SchedeekInfo> merge(SchedeekInfo baseInfo, WeekdayInfo selectedInfo) {
 		List<SchedeekInfo> results = new ArrayList<>();
 		
-		baseInfo.matlises.add(selectedInfo);
+		baseInfo.weekdays.add(selectedInfo);
 		
 		results.add(baseInfo);
 		return results;

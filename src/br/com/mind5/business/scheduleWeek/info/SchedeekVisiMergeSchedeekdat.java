@@ -1,31 +1,42 @@
 package br.com.mind5.business.scheduleWeek.info;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import br.com.mind5.business.scheduleWeekData.info.SchedeekdatInfo;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-final class SchedeekVisiMergeSchedeekdat implements InfoMergerVisitor_<SchedeekInfo, SchedeekdatInfo> {
-
-	@Override public SchedeekInfo writeRecord(SchedeekdatInfo sourceOne, SchedeekInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
-		sourceTwo.schedeekdats.add(sourceOne);
-
-		return sourceTwo;
+final class SchedeekVisiMergeSchedeekdat implements InfoMergerVisitorV3<SchedeekInfo, SchedeekdatInfo> {
+	
+	@Override public List<SchedeekInfo> beforeMerge(List<SchedeekInfo> baseInfos) {
+		return baseInfos;
 	}
 	
 	
 	
-	private void checkArgument(SchedeekdatInfo sourceOne, SchedeekInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}	
-
-
+	@Override public boolean shouldMerge(SchedeekInfo baseInfo, SchedeekdatInfo selectedInfo) {
+		return (baseInfo.codOwner 	== selectedInfo.codOwner  && 
+				baseInfo.codStore 	== selectedInfo.codStore  &&
+				baseInfo.year     	== selectedInfo.year	  &&
+				baseInfo.month    	== selectedInfo.month	  &&
+				baseInfo.weekMonth  == selectedInfo.weekMonth	);
+	}
 	
-	@Override public boolean shouldWrite(SchedeekdatInfo sourceOne, SchedeekInfo sourceTwo) {		
-		return (sourceOne.codOwner 	== sourceTwo.codOwner && 
-				sourceOne.year     	== sourceTwo.year	  &&
-				sourceOne.month    	== sourceTwo.month	  &&
-				sourceOne.weekMonth == sourceTwo.weekMonth);
+	
+	
+	@Override public List<SchedeekInfo> merge(SchedeekInfo baseInfo, SchedeekdatInfo selectedInfo) {
+		List<SchedeekInfo> results = new ArrayList<>();
+		
+		baseInfo.schedeekdates.add(selectedInfo);
+		
+		results.add(baseInfo);
+		return results;
+	}
+	
+	
+	
+	@Override public InfoUniquifier<SchedeekInfo> getUniquifier() {
+		return null;
 	}
 }

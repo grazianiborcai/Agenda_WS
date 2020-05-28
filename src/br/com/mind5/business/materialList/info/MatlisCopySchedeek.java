@@ -19,11 +19,11 @@ final class MatlisCopySchedeek extends InfoCopierOneToManyTemplate<MatlisInfo, S
 	@Override protected List<MatlisInfo> makeCopyHook(SchedeekInfo source) {
 		List<MatlisInfo> results = new ArrayList<>();
 		
-		if (source.schedeekdats == null)
+		if (source.schedeekdates == null)
 			return results;
 		
 		
-		for (SchedeekdatInfo eachSchedonthat : source.schedeekdats) {
+		for (SchedeekdatInfo eachSchedonthat : source.schedeekdates) {
 			MatlisInfo eachResult = new MatlisInfo();
 			
 			eachResult.codOwner = eachSchedonthat.codOwner;

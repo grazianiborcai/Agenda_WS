@@ -19,11 +19,11 @@ final class CuslisCopySchedeek extends InfoCopierOneToManyTemplate<CuslisInfo, S
 	@Override protected List<CuslisInfo> makeCopyHook(SchedeekInfo source) {
 		List<CuslisInfo> results = new ArrayList<>();
 		
-		if (source.schedeekdats == null)
+		if (source.schedeekdates == null)
 			return results;
 		
 		
-		for (SchedeekdatInfo eachSchedonthat : source.schedeekdats) {
+		for (SchedeekdatInfo eachSchedonthat : source.schedeekdates) {
 			CuslisInfo eachResult = new CuslisInfo();
 			eachResult.codOwner = eachSchedonthat.codOwner;
 			eachResult.codCustomer = eachSchedonthat.codCustomer;

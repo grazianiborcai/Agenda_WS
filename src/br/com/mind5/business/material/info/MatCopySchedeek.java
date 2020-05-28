@@ -19,11 +19,11 @@ final class MatCopySchedeek extends InfoCopierOneToManyTemplate<MatInfo, Schedee
 	@Override protected List<MatInfo> makeCopyHook(SchedeekInfo source) {
 		List<MatInfo> results = new ArrayList<>();
 		
-		if (source.schedeekdats == null)
+		if (source.schedeekdates == null)
 			return results;
 		
 		
-		for (SchedeekdatInfo eachSchedonthat : source.schedeekdats) {
+		for (SchedeekdatInfo eachSchedonthat : source.schedeekdates) {
 			MatInfo eachResult = new MatInfo();
 			eachResult.codOwner = eachSchedonthat.codOwner;
 			eachResult.codMat = eachSchedonthat.codMat;

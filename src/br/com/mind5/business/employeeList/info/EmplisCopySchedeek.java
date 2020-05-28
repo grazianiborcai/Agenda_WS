@@ -19,11 +19,11 @@ final class EmplisCopySchedeek extends InfoCopierOneToManyTemplate<EmplisInfo, S
 	@Override protected List<EmplisInfo> makeCopyHook(SchedeekInfo source) {
 		List<EmplisInfo> results = new ArrayList<>();
 		
-		if (source.schedeekdats == null)
+		if (source.schedeekdates == null)
 			return results;
 		
 		
-		for (SchedeekdatInfo eachSchedonthat : source.schedeekdats) {
+		for (SchedeekdatInfo eachSchedonthat : source.schedeekdates) {
 			EmplisInfo eachResult = new EmplisInfo();
 			
 			eachResult.codOwner = eachSchedonthat.codOwner;

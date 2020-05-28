@@ -19,11 +19,11 @@ final class StolisCopySchedeek extends InfoCopierOneToManyTemplate<StolisInfo, S
 	@Override protected List<StolisInfo> makeCopyHook(SchedeekInfo source) {
 		List<StolisInfo> results = new ArrayList<>();
 		
-		if (source.schedeekdats == null)
+		if (source.schedeekdates == null)
 			return results;
 		
 		
-		for (SchedeekdatInfo eachSchedonthat : source.schedeekdats) {
+		for (SchedeekdatInfo eachSchedonthat : source.schedeekdates) {
 			StolisInfo eachResult = new StolisInfo();
 			
 			eachResult.codOwner = eachSchedonthat.codOwner;

@@ -5,15 +5,15 @@ import br.com.mind5.model.action.ActionStdTemplateV2;
 import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class StdSchedeekMergeStolis extends ActionStdTemplateV2<SchedeekInfo> {
+final class StdSchedeekMergeMonth extends ActionStdTemplateV2<SchedeekInfo> {
 
-	public StdSchedeekMergeStolis(DeciTreeOption<SchedeekInfo> option) {
+	public StdSchedeekMergeMonth(DeciTreeOption<SchedeekInfo> option) {
 		super(option);
 	}
 	
 	
 	
 	protected ActionVisitorV2<SchedeekInfo> buildVisitorHook(DeciTreeOption<SchedeekInfo> option) {
-		return new VisiSchedeekMergeStolis(option);
+		return new VisiSchedeekMergeMonth(option);
 	}
 }

@@ -17,6 +17,7 @@ public final class SchedeekCheckRead extends ModelCheckerTemplateSimpleV2<Schede
 	
 	@Override protected boolean checkHook(SchedeekInfo recordInfo, Connection conn, String schemaName) {	
 		if ( recordInfo.codOwner 	<= 0 	|| 
+			 recordInfo.codStore 	<= 0 	|| 
 			 recordInfo.year 		<= 0 	|| 
 			 recordInfo.month 		<= 0 	|| 
 			 recordInfo.weekMonth 	<= 0 	|| 

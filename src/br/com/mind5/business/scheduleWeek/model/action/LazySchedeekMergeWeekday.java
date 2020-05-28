@@ -9,9 +9,9 @@ import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazySchedeekMergeStolis extends ActionLazyTemplateV2<SchedeekInfo, SchedeekInfo> {
+public final class LazySchedeekMergeWeekday extends ActionLazyTemplateV2<SchedeekInfo, SchedeekInfo> {
 	
-	public LazySchedeekMergeStolis(Connection conn, String schemaName) {
+	public LazySchedeekMergeWeekday(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazySchedeekMergeStolis extends ActionLazyTemplateV2<Schedeek
 	
 	
 	@Override protected ActionStdV1<SchedeekInfo> getInstanceOfActionHook(DeciTreeOption<SchedeekInfo> option) {
-		return new StdSchedeekMergeStolis(option);
+		return new StdSchedeekMergeWeekday(option);
 	}
 	
 	
