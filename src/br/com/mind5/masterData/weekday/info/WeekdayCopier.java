@@ -6,9 +6,24 @@ import java.util.List;
 import br.com.mind5.business.planningTime.info.PlanimeInfo;
 import br.com.mind5.business.scheduleDay.info.SchedayInfo;
 import br.com.mind5.business.scheduleMonth.info.SchedmonInfo;
+import br.com.mind5.business.scheduleWeek.info.SchedeekInfo;
 import br.com.mind5.info.InfoCopierOneToMany;
 
 public final class WeekdayCopier {	
+	public static List<WeekdayInfo> copyFromSchedeek(SchedeekInfo source) {
+		InfoCopierOneToMany<WeekdayInfo, SchedeekInfo> copier = new WeekdayCopySchedeek();
+		return copier.makeCopy(source);
+	}
+	
+	
+	
+	public static List<WeekdayInfo> copyFromSchedeek(List<SchedeekInfo> sources) {
+		InfoCopierOneToMany<WeekdayInfo, SchedeekInfo> copier = new WeekdayCopySchedeek();
+		return copier.makeCopy(sources);
+	}
+	
+	
+	
 	public static List<WeekdayInfo> copyFromSchedmon(SchedmonInfo source) {
 		InfoCopierOneToMany<WeekdayInfo, SchedmonInfo> copier = new WeekdayCopySchedmon();
 		return copier.makeCopy(source);
