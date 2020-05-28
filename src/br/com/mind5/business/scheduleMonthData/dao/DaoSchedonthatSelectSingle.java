@@ -41,7 +41,7 @@ public class DaoSchedonthatSelectSingle extends DaoStmtTemplate<SchedonthatInfo>
 	@Override protected String buildWhereClauseHook(String tableName, SchedonthatInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
 		
-		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
+		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;		
 		
 		DaoStmtWhere whereClause = new DaoSchedonthatWhere(whereOption, tableName, recordInfo);

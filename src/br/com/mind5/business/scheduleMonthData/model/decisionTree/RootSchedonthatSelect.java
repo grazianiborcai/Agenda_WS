@@ -5,8 +5,6 @@ import java.util.List;
 
 import br.com.mind5.business.scheduleMonthData.info.SchedonthatInfo;
 import br.com.mind5.business.scheduleMonthData.model.action.LazySchedonthatEnforceWeekday;
-import br.com.mind5.business.scheduleMonthData.model.action.LazySchedonthatMergeMonth;
-import br.com.mind5.business.scheduleMonthData.model.action.LazySchedonthatMergeWeekday;
 import br.com.mind5.business.scheduleMonthData.model.action.StdSchedonthatMergeToSelect;
 import br.com.mind5.business.scheduleMonthData.model.checker.SchedonthatCheckRead;
 import br.com.mind5.model.action.ActionLazyV1;
@@ -46,13 +44,9 @@ public final class RootSchedonthatSelect extends DeciTreeTemplateWriteV2<Schedon
 		List<ActionStdV1<SchedonthatInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<SchedonthatInfo> mergeToSelect = new StdSchedonthatMergeToSelect(option);
-		ActionLazyV1<SchedonthatInfo> mergeMonth = new LazySchedonthatMergeMonth(option.conn, option.schemaName);
 		ActionLazyV1<SchedonthatInfo> enforceWeekday = new LazySchedonthatEnforceWeekday(option.conn, option.schemaName);
-		ActionLazyV1<SchedonthatInfo> mergeWeekday = new LazySchedonthatMergeWeekday(option.conn, option.schemaName);
 		
-		mergeToSelect.addPostAction(mergeMonth);
-		mergeMonth.addPostAction(enforceWeekday);
-		enforceWeekday.addPostAction(mergeWeekday);
+		mergeToSelect.addPostAction(enforceWeekday);
 		
 		actions.add(mergeToSelect);
 		return actions;

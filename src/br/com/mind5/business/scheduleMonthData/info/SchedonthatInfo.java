@@ -14,9 +14,7 @@ public final class SchedonthatInfo extends InfoRecord implements Cloneable {
 	public LocalDate date;
 	public int month;
 	public int day;
-	public String txtMonth;
 	public int codWeekday;
-	public String txtWeekday;
 	public int year;
 	public int confirmed;
 	public int waiting;
