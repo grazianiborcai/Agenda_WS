@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.scheduleYear.info.SchedyearInfo;
+import br.com.mind5.business.scheduleYear.model.action.LazySchedyearMergeMonth;
 import br.com.mind5.business.scheduleYear.model.action.LazySchedyearMergeStolis;
 import br.com.mind5.business.scheduleYear.model.action.StdSchedyearMergeSchedyerat;
 import br.com.mind5.business.scheduleYear.model.checker.SchedyearCheckRead;
@@ -44,9 +45,11 @@ public final class RootSchedyearSelect extends DeciTreeTemplateWriteV2<Schedyear
 		List<ActionStdV1<SchedyearInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<SchedyearInfo> mergeSchedyerat = new StdSchedyearMergeSchedyerat(option);
-		ActionLazyV1<SchedyearInfo> mergeMonth = new LazySchedyearMergeStolis(option.conn, option.schemaName);
+		ActionLazyV1<SchedyearInfo> mergeStolis = new LazySchedyearMergeStolis(option.conn, option.schemaName);
+		ActionLazyV1<SchedyearInfo> mergeMonth = new LazySchedyearMergeMonth(option.conn, option.schemaName);
 		
-		mergeSchedyerat.addPostAction(mergeMonth);
+		mergeSchedyerat.addPostAction(mergeStolis);
+		mergeStolis.addPostAction(mergeMonth);
 		
 		actions.add(mergeSchedyerat);
 		return actions;

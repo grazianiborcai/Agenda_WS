@@ -6,6 +6,7 @@ import br.com.mind5.business.scheduleYearData.info.SchedyeratInfo;
 import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.info.InfoMergerBuilderV3;
 import br.com.mind5.info.InfoMergerV3;
+import br.com.mind5.masterData.month.info.MonthInfo;
 
 public final class SchedyearMerger {
 	public static List<SchedyearInfo> mergeWithStolis(List<SchedyearInfo> baseInfos, List<StolisInfo> selectedInfos) {
@@ -15,6 +16,19 @@ public final class SchedyearMerger {
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new SchedyearVisiMergeStolis());
 		InfoMergerV3<SchedyearInfo, StolisInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	
+	public static List<SchedyearInfo> mergeWithMonth(List<SchedyearInfo> baseInfos, List<MonthInfo> selectedInfos) {
+		InfoMergerBuilderV3<SchedyearInfo, MonthInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new SchedyearVisiMergeMonth());
+		InfoMergerV3<SchedyearInfo, MonthInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}

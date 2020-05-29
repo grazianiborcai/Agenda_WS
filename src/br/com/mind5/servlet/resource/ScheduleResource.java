@@ -217,9 +217,6 @@ public final class ScheduleResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response selectSchedWeek(@HeaderParam("TOKEN_OWNER")    @DefaultValue("-1") long codOwner, 
 			                        @HeaderParam("codStore")    	@DefaultValue("-1") long codStore,
-			                        @HeaderParam("codEmployee")   	@DefaultValue("-1") long codEmployee,
-			                        @HeaderParam("codCustomer")   	@DefaultValue("-1") long codCustomer,
-			                        @HeaderParam("codMaterial")   	@DefaultValue("-1") long codMat,
 			                        @HeaderParam("year")    		@DefaultValue("-1") int year,
 			                        @HeaderParam("month")    		@DefaultValue("-1") int month,
 			                        @HeaderParam("weekMonth")    	@DefaultValue("-1") int weekMonth,
@@ -229,9 +226,6 @@ public final class ScheduleResource {
 		SchedeekInfo recordInfo = new SchedeekInfo();
 		recordInfo.codOwner = codOwner;
 		recordInfo.codStore = codStore;
-		recordInfo.codEmployee = codEmployee;
-		recordInfo.codCustomer = codCustomer;
-		recordInfo.codMat = codMat;
 		recordInfo.codStore = codStore;
 		recordInfo.year = year;
 		recordInfo.month = month;
