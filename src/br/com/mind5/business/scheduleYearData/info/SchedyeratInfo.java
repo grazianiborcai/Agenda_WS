@@ -9,7 +9,6 @@ public final class SchedyeratInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codStore;
 	public int month;
-	public String txtMonth;
 	public int year;
 	public int confirmed;
 	public int waiting;
@@ -18,7 +17,7 @@ public final class SchedyeratInfo extends InfoRecord implements Cloneable {
 	
 	
 	public SchedyeratInfo() {
-		super(SchedyeratInfo.class);
+		super();
 		
 		codOwner = DefaultValue.number();	
 		codStore = DefaultValue.number();

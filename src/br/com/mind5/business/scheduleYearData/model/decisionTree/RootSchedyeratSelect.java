@@ -4,18 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.scheduleYearData.info.SchedyeratInfo;
-import br.com.mind5.business.scheduleYearData.model.action.LazySchedyeratMergeMonth;
 import br.com.mind5.business.scheduleYearData.model.action.StdSchedyeratMergeToSelect;
 import br.com.mind5.business.scheduleYearData.model.checker.SchedyeratCheckRead;
-import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class RootSchedyeratSelect extends DeciTreeTemplateWriteV1<SchedyeratInfo> {
+public final class RootSchedyeratSelect extends DeciTreeTemplateWriteV2<SchedyeratInfo> {
 	
 	public RootSchedyeratSelect(DeciTreeOption<SchedyeratInfo> option) {
 		super(option);
@@ -44,9 +42,6 @@ public final class RootSchedyeratSelect extends DeciTreeTemplateWriteV1<Schedyer
 		List<ActionStdV1<SchedyeratInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<SchedyeratInfo> mergeToSelect = new StdSchedyeratMergeToSelect(option);
-		ActionLazyV1<SchedyeratInfo> mergeMonth = new LazySchedyeratMergeMonth(option.conn, option.schemaName);
-		
-		mergeToSelect.addPostAction(mergeMonth);
 		
 		actions.add(mergeToSelect);
 		return actions;

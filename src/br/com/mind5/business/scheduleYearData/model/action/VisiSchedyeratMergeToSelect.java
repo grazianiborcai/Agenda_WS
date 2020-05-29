@@ -1,34 +1,34 @@
 package br.com.mind5.business.scheduleYearData.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.scheduleYearData.info.SchedyeratInfo;
 import br.com.mind5.business.scheduleYearData.info.SchedyeratMerger;
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiSchedyeratMergeToSelect extends ActionVisitorTemplateMergeV1<SchedyeratInfo, SchedyeratInfo> {
+final class VisiSchedyeratMergeToSelect extends ActionVisitorTemplateMergeV2<SchedyeratInfo, SchedyeratInfo> {
 	
-	public VisiSchedyeratMergeToSelect(Connection conn, String schemaName) {
-		super(conn, schemaName, SchedyeratInfo.class);
+	public VisiSchedyeratMergeToSelect(DeciTreeOption<SchedyeratInfo> option) {
+		super(option, SchedyeratInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends ActionStdV1<SchedyeratInfo>> getActionClassHook() {
-		return StdSchedyeratSelect.class;
+	@Override protected Class<? extends ActionStdV2<SchedyeratInfo>> getActionClassHook() {
+		return StdSchedyeratDaoSelect.class;
 	}
 	
 	
 	
-	@Override protected List<SchedyeratInfo> mergeHook(List<SchedyeratInfo> recordInfos, List<SchedyeratInfo> selectedInfos) {	
-		return SchedyeratMerger.mergeToSelect(selectedInfos, recordInfos);
+	@Override protected List<SchedyeratInfo> mergeHook(List<SchedyeratInfo> baseInfos, List<SchedyeratInfo> selectedInfos) {	
+		return SchedyeratMerger.mergeToSelect(baseInfos, selectedInfos);
 	}
 	
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
+		return super.DONT_MERGE_WHEN_EMPTY;
 	}
 }

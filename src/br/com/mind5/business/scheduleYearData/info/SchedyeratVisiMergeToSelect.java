@@ -1,54 +1,38 @@
 package br.com.mind5.business.scheduleYearData.info;
 
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import java.util.ArrayList;
+import java.util.List;
 
-final class SchedyeratVisiMergeToSelect implements InfoMergerVisitor_<SchedyeratInfo, SchedyeratInfo> {
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-	@Override public SchedyeratInfo writeRecord(SchedyeratInfo sourceOne, SchedyeratInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);		
-		return merge(sourceOne, sourceTwo);
+final class SchedyeratVisiMergeToSelect implements InfoMergerVisitorV3<SchedyeratInfo, SchedyeratInfo> {
+	
+	@Override public List<SchedyeratInfo> beforeMerge(List<SchedyeratInfo> baseInfos) {
+		return baseInfos;
 	}
 	
 	
 	
-	private void checkArgument(SchedyeratInfo sourceOne, SchedyeratInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
+	@Override public boolean shouldMerge(SchedyeratInfo baseInfo, SchedyeratInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner);
 	}
 	
 	
 	
-	private SchedyeratInfo merge(SchedyeratInfo sourceOne, SchedyeratInfo sourceTwo) {
-		SchedyeratInfo result = makeClone(sourceOne);		
-		result.username = sourceTwo.username;
-		result.codLanguage = sourceTwo.codLanguage;
-		return result;
-	}
-	
-	
-	
-	private SchedyeratInfo makeClone(SchedyeratInfo recordInfo) {
-		try {
-			return (SchedyeratInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(SchedyeratInfo sourceOne, SchedyeratInfo sourceTwo) {		
-		return (sourceOne.codOwner == sourceTwo.codOwner);
-	}
-	
-	
-	
-	private void logException(Exception e) {
+	@Override public List<SchedyeratInfo> merge(SchedyeratInfo baseInfo, SchedyeratInfo selectedInfo) {
+		List<SchedyeratInfo> results = new ArrayList<>();
 		
-		SystemLog.logError(this.getClass(), e);
+		selectedInfo.username = baseInfo.username;
+		selectedInfo.codLanguage = baseInfo.codLanguage;
+		
+		results.add(selectedInfo);
+		return results;
+	}
+	
+	
+	
+	@Override public InfoUniquifier<SchedyeratInfo> getUniquifier() {
+		return null;
 	}
 }

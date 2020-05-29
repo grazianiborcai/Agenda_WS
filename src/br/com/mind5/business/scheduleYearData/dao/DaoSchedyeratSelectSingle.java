@@ -16,11 +16,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public class SchedyeratSelectSingle extends DaoStmtTemplate<SchedyeratInfo> {
+public class DaoSchedyeratSelectSingle extends DaoStmtTemplate<SchedyeratInfo> {
 	private final String MAIN_TABLE = DaoDbTable.SCHEDULE_YEAR_TABLE;
 	
 	
-	public SchedyeratSelectSingle(Connection conn, SchedyeratInfo recordInfo, String schemaName) {
+	public DaoSchedyeratSelectSingle(Connection conn, SchedyeratInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -44,7 +44,7 @@ public class SchedyeratSelectSingle extends DaoStmtTemplate<SchedyeratInfo> {
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new SchedyeratWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new DaoSchedyeratWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -61,13 +61,13 @@ public class SchedyeratSelectSingle extends DaoStmtTemplate<SchedyeratInfo> {
 				do {
 					SchedyeratInfo dataInfo = new SchedyeratInfo();
 					
-					dataInfo.codOwner = DaoFormatter.sqlToLong(stmtResult, SchedyeratDbTableColumn.COL_COD_OWNER);
-					dataInfo.codStore = DaoFormatter.sqlToLong(stmtResult, SchedyeratDbTableColumn.COL_COD_STORE);
-					dataInfo.month = DaoFormatter.sqlToInt(stmtResult, SchedyeratDbTableColumn.COL_MONTH);
-					dataInfo.year = DaoFormatter.sqlToInt(stmtResult, SchedyeratDbTableColumn.COL_YEAR);
-					dataInfo.confirmed = stmtResult.getInt(SchedyeratDbTableColumn.COL_CONFIRMED);
-					dataInfo.waiting = stmtResult.getInt(SchedyeratDbTableColumn.COL_WAITING);
-					dataInfo.counter = stmtResult.getInt(SchedyeratDbTableColumn.COL_COUNTER);
+					dataInfo.codOwner = DaoFormatter.sqlToLong(stmtResult, DaoSchedyeratDbTableColumn.COL_COD_OWNER);
+					dataInfo.codStore = DaoFormatter.sqlToLong(stmtResult, DaoSchedyeratDbTableColumn.COL_COD_STORE);
+					dataInfo.month = DaoFormatter.sqlToInt(stmtResult, DaoSchedyeratDbTableColumn.COL_MONTH);
+					dataInfo.year = DaoFormatter.sqlToInt(stmtResult, DaoSchedyeratDbTableColumn.COL_YEAR);
+					dataInfo.confirmed = stmtResult.getInt(DaoSchedyeratDbTableColumn.COL_CONFIRMED);
+					dataInfo.waiting = stmtResult.getInt(DaoSchedyeratDbTableColumn.COL_WAITING);
+					dataInfo.counter = stmtResult.getInt(DaoSchedyeratDbTableColumn.COL_COUNTER);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

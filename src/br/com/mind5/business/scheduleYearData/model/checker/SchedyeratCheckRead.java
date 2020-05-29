@@ -17,6 +17,7 @@ public final class SchedyeratCheckRead extends ModelCheckerTemplateSimpleV2<Sche
 	
 	@Override protected boolean checkHook(SchedyeratInfo recordInfo, Connection conn, String schemaName) {	
 		if ( recordInfo.codOwner 	<= 0 	|| 
+			 recordInfo.codStore 	<= 0 	|| 
 			 recordInfo.year 		<= 0 	|| 
 			 recordInfo.username	== null	||
 			 recordInfo.codLanguage	== null		)
