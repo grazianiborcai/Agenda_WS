@@ -9,13 +9,13 @@ import br.com.mind5.business.scheduleYear.model.action.StdSchedyearMergeSchedyer
 import br.com.mind5.business.scheduleYear.model.checker.SchedyearCheckRead;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class RootSchedyearSelect extends DeciTreeTemplateWriteV1<SchedyearInfo> {
+public final class RootSchedyearSelect extends DeciTreeTemplateWriteV2<SchedyearInfo> {
 	
 	public RootSchedyearSelect(DeciTreeOption<SchedyearInfo> option) {
 		super(option);

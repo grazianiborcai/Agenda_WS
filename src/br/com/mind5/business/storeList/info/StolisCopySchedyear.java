@@ -19,11 +19,11 @@ final class StolisCopySchedyear extends InfoCopierOneToManyTemplate<StolisInfo, 
 	@Override protected List<StolisInfo> makeCopyHook(SchedyearInfo source) {
 		List<StolisInfo> results = new ArrayList<>();
 		
-		if (source.schedyerats == null)
+		if (source.schedyerates == null)
 			return results;
 		
 		
-		for (SchedyeratInfo eachSchedyerat : source.schedyerats) {
+		for (SchedyeratInfo eachSchedyerat : source.schedyerates) {
 			StolisInfo eachResult = new StolisInfo();
 			
 			eachResult.codOwner = eachSchedyerat.codOwner;

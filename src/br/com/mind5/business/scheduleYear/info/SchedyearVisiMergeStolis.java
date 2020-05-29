@@ -1,28 +1,39 @@
 package br.com.mind5.business.scheduleYear.info;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import br.com.mind5.business.storeList.info.StolisInfo;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-final class SchedyearVisiMergeStolis implements InfoMergerVisitor_<SchedyearInfo, StolisInfo> {
-
-	@Override public SchedyearInfo writeRecord(StolisInfo sourceOne, SchedyearInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
-		sourceTwo.stolises.add(sourceOne);
-
-		return sourceTwo;
+final class SchedyearVisiMergeStolis implements InfoMergerVisitorV3<SchedyearInfo, StolisInfo> {
+	
+	@Override public List<SchedyearInfo> beforeMerge(List<SchedyearInfo> baseInfos) {
+		return baseInfos;
 	}
 	
 	
 	
-	private void checkArgument(StolisInfo sourceOne, SchedyearInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}	
-
-
+	@Override public boolean shouldMerge(SchedyearInfo baseInfo, StolisInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner	&&
+				baseInfo.codStore == selectedInfo.codStore		);
+	}
 	
-	@Override public boolean shouldWrite(StolisInfo sourceOne, SchedyearInfo sourceTwo) {		
-		return (sourceOne.codOwner == sourceTwo.codOwner);
+	
+	
+	@Override public List<SchedyearInfo> merge(SchedyearInfo baseInfo, StolisInfo selectedInfo) {
+		List<SchedyearInfo> results = new ArrayList<>();
+		
+		baseInfo.stolises.add(selectedInfo);
+		
+		results.add(baseInfo);
+		return results;
+	}
+	
+	
+	
+	@Override public InfoUniquifier<SchedyearInfo> getUniquifier() {
+		return null;
 	}
 }

@@ -1,30 +1,33 @@
 package br.com.mind5.business.scheduleYear.info;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.scheduleYearData.info.SchedyeratInfo;
 import br.com.mind5.business.storeList.info.StolisInfo;
+import br.com.mind5.common.CloneUtil;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
+import br.com.mind5.masterData.month.info.MonthInfo;
 
 public final class SchedyearInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codStore;
 	public int year;
-	public List<SchedyeratInfo> schedyerats;
+	public List<SchedyeratInfo> schedyerates;
 	public List<StolisInfo> stolises;
+	public List<MonthInfo> monthes;
 	public String username;
 	
 	
 	public SchedyearInfo() {
-		super(SchedyearInfo.class);
+		super();
 		
 		codOwner = DefaultValue.number();	
 		codStore = DefaultValue.number();
 		year = DefaultValue.number();
-		schedyerats = DefaultValue.list();
+		schedyerates = DefaultValue.list();
 		stolises = DefaultValue.list();
+		monthes = DefaultValue.list();
 	}
 	
 	
@@ -43,45 +46,13 @@ public final class SchedyearInfo extends InfoRecord implements Cloneable {
 	
 	@Override public Object clone() throws CloneNotSupportedException {
 		SchedyearInfo deepCopy = (SchedyearInfo) super.clone();
-		deepCopy.schedyerats = cloneSchedyerat(schedyerats);
-		deepCopy.stolises = cloneStolis(stolises);
+		
+		deepCopy.schedyerates = CloneUtil.cloneRecords(schedyerates, this.getClass());
+		deepCopy.stolises = CloneUtil.cloneRecords(stolises, this.getClass());
+		deepCopy.monthes = CloneUtil.cloneRecords(monthes, this.getClass());
 		
 		return deepCopy;
 	}
-	
-	
-	
-	private List<SchedyeratInfo> cloneSchedyerat(List<SchedyeratInfo> recordInfos) throws CloneNotSupportedException {
-		if (recordInfos == null)
-			return null;
-		
-		
-		List<SchedyeratInfo> results = new ArrayList<>();
-		
-		for (SchedyeratInfo eachRecord : recordInfos) {
-			SchedyeratInfo copy = (SchedyeratInfo) eachRecord.clone();
-			results.add(copy);
-		}
-		
-		return results;
-	}
-	
-	
-	
-	private List<StolisInfo> cloneStolis(List<StolisInfo> recordInfos) throws CloneNotSupportedException {
-		if (recordInfos == null)
-			return null;
-		
-		
-		List<StolisInfo> results = new ArrayList<>();
-		
-		for (StolisInfo eachRecord : recordInfos) {
-			StolisInfo copy = (StolisInfo) eachRecord.clone();
-			results.add(copy);
-		}
-		
-		return results;
-	}	
 	
 	
 	

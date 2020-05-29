@@ -1,6 +1,5 @@
 package br.com.mind5.business.scheduleYear.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.scheduleYear.info.SchedyearInfo;
@@ -8,13 +7,14 @@ import br.com.mind5.business.scheduleYear.info.SchedyearMerger;
 import br.com.mind5.business.scheduleYearData.info.SchedyeratCopier;
 import br.com.mind5.business.scheduleYearData.info.SchedyeratInfo;
 import br.com.mind5.business.scheduleYearData.model.decisionTree.RootSchedyeratSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiSchedyearMergeSchedyerat extends ActionVisitorTemplateMergeV1<SchedyearInfo, SchedyeratInfo> {
+final class VisiSchedyearMergeSchedyerat extends ActionVisitorTemplateMergeV2<SchedyearInfo, SchedyeratInfo> {
 	
-	public VisiSchedyearMergeSchedyerat(Connection conn, String schemaName) {
-		super(conn, schemaName, SchedyeratInfo.class);
+	public VisiSchedyearMergeSchedyerat(DeciTreeOption<SchedyearInfo> option) {
+		super(option, SchedyeratInfo.class);
 	}
 	
 	
@@ -25,19 +25,19 @@ final class VisiSchedyearMergeSchedyerat extends ActionVisitorTemplateMergeV1<Sc
 	
 	
 	
-	@Override protected List<SchedyeratInfo> toActionClassHook(List<SchedyearInfo> recordInfos) {
-		return SchedyeratCopier.copyFromSchedyear(recordInfos);
+	@Override protected List<SchedyeratInfo> toActionClassHook(List<SchedyearInfo> baseInfos) {
+		return SchedyeratCopier.copyFromSchedyear(baseInfos);
 	}
 	
 	
 	
-	@Override protected List<SchedyearInfo> mergeHook(List<SchedyearInfo> recordInfos, List<SchedyeratInfo> selectedInfos) {	
-		return SchedyearMerger.mergeWithSchedyerat(selectedInfos, recordInfos);
+	@Override protected List<SchedyearInfo> mergeHook(List<SchedyearInfo> baseInfos, List<SchedyeratInfo> selectedInfos) {	
+		return SchedyearMerger.mergeWithSchedyerat(baseInfos, selectedInfos);
 	}
 	
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
+		return super.DONT_MERGE_WHEN_EMPTY;
 	}
 }
