@@ -31,8 +31,12 @@ public final class DaoSchedaytaWhere implements DaoStmtWhere {
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;
 					
-				case DaoSchedaytaDbTableColumn.COL_COD_SCHEDULE :
-					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codSchedule));
+				case DaoSchedaytaDbTableColumn.COL_COD_STORE :
+					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codStore));
+					break;
+					
+				case DaoSchedaytaDbTableColumn.COL_DATE :
+					builder.addClauseEqualAnd(eachColumn, DaoFormatter.dateToString(recordInfo.date));
 					break;
 					
 				case DaoSchedaytaDbTableColumn.COL_RECORD_MODE :
