@@ -1267,6 +1267,8 @@ public final class SystemCode {
 	
 	// Schedule Day Data
 	public static final int SCHEDULE_DAY_DATA_MANDATORY_FIELD_EMPTY		= 12400;
+	public static final int SCHEDULE_DAY_ALREADY_EXIST 					= 12401;
+	public static final int SCHEDULE_DAY_NOT_FOUND 						= 12402;
 	
 	// Schedule Day
 	public static final int SCHEDULE_DAY_MANDATORY_FIELD_EMPTY			= 12450;
