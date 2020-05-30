@@ -3,7 +3,7 @@ package br.com.mind5.business.address.info;
 import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.info.InfoCopierTemplate;
 
-final class AddressCopyStolis extends InfoCopierTemplate<AddressInfo, StolisInfo>{
+final class AddressCopyStolis extends InfoCopierTemplate<AddressInfo, StolisInfo> {
 	
 	public AddressCopyStolis() {
 		super();

@@ -5,7 +5,7 @@ import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.action.ActionStdTemplateV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdAddressDaoDelete extends ActionStdTemplateV2<AddressInfo>{
+public final class StdAddressDaoDelete extends ActionStdTemplateV2<AddressInfo> {
 
 	public StdAddressDaoDelete(DeciTreeOption<AddressInfo> option) {
 		super(option);

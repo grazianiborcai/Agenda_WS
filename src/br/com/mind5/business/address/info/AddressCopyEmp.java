@@ -8,7 +8,7 @@ import br.com.mind5.business.employee.info.EmpInfo;
 import br.com.mind5.common.SystemLog;
 import br.com.mind5.info.InfoCopierOneToManyTemplate;
 
-final class AddressCopyEmp extends InfoCopierOneToManyTemplate<AddressInfo, EmpInfo>{
+final class AddressCopyEmp extends InfoCopierOneToManyTemplate<AddressInfo, EmpInfo> {
 	
 	public AddressCopyEmp() {
 		super();

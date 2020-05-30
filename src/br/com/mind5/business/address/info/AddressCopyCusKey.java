@@ -3,7 +3,7 @@ package br.com.mind5.business.address.info;
 import br.com.mind5.business.customer.info.CusInfo;
 import br.com.mind5.info.InfoCopierTemplate;
 
-final class AddressCopyCusKey extends InfoCopierTemplate<AddressInfo, CusInfo>{
+final class AddressCopyCusKey extends InfoCopierTemplate<AddressInfo, CusInfo> {
 	
 	public AddressCopyCusKey() {
 		super();

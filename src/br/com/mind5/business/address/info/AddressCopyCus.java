@@ -8,7 +8,7 @@ import br.com.mind5.business.customer.info.CusInfo;
 import br.com.mind5.common.SystemLog;
 import br.com.mind5.info.InfoCopierOneToManyTemplate;
 
-final class AddressCopyCus extends InfoCopierOneToManyTemplate<AddressInfo, CusInfo>{
+final class AddressCopyCus extends InfoCopierOneToManyTemplate<AddressInfo, CusInfo> {
 	
 	public AddressCopyCus() {
 		super();

@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.owner.info.OwnerInfo;
 import br.com.mind5.info.InfoCopierOneToManyTemplate;
 
-final class AddressCopyOwner extends InfoCopierOneToManyTemplate<AddressInfo, OwnerInfo>{
+final class AddressCopyOwner extends InfoCopierOneToManyTemplate<AddressInfo, OwnerInfo> {
 	
 	public AddressCopyOwner() {
 		super();

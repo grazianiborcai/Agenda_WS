@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.info.InfoCopierOneToManyTemplate;
 
-final class AddressCopyStore extends InfoCopierOneToManyTemplate<AddressInfo, StoreInfo>{
+final class AddressCopyStore extends InfoCopierOneToManyTemplate<AddressInfo, StoreInfo> {
 	
 	public AddressCopyStore() {
 		super();
