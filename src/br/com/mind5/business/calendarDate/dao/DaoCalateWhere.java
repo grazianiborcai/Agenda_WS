@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilder;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 
-final class CalateWhere implements DaoStmtWhere {
+final class DaoCalateWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public CalateWhere(DaoWhereBuilderOption whereOption, String tableName, CalateInfo recordInfo) {
+	public DaoCalateWhere(DaoWhereBuilderOption whereOption, String tableName, CalateInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -26,7 +26,7 @@ final class CalateWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {
 			switch(eachColumn.columnName) {
-				case CalateDbTableColumn.COL_DATE :
+				case DaoCalateDbTableColumn.COL_DATE :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.dateToString(recordInfo.date));
 					break;
 			}

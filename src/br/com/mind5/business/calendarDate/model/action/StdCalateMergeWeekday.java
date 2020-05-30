@@ -5,15 +5,15 @@ import br.com.mind5.model.action.ActionStdTemplateV2;
 import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdCalateMergeToSelect extends ActionStdTemplateV2<CalateInfo> {
+final class StdCalateMergeWeekday extends ActionStdTemplateV2<CalateInfo> {
 
-	public StdCalateMergeToSelect(DeciTreeOption<CalateInfo> option) {
+	public StdCalateMergeWeekday(DeciTreeOption<CalateInfo> option) {
 		super(option);
 	}
 	
 	
 	
 	protected ActionVisitorV2<CalateInfo> buildVisitorHook(DeciTreeOption<CalateInfo> option) {
-		return new VisiCalateMergeToSelect(option);
+		return new VisiCalateMergeWeekday(option);
 	}
 }

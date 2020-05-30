@@ -16,11 +16,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class CalateSelectSingle extends DaoStmtTemplate<CalateInfo> {
+public final class DaoCalateSelectSingle extends DaoStmtTemplate<CalateInfo> {
 	private final String MAIN_TABLE = DaoDbTable.CALENDAR_DATE_TABLE;
 	
 	
-	public CalateSelectSingle(Connection conn, CalateInfo recordInfo, String schemaName) {
+	public DaoCalateSelectSingle(Connection conn, CalateInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -44,7 +44,7 @@ public final class CalateSelectSingle extends DaoStmtTemplate<CalateInfo> {
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;	
 		
-		DaoStmtWhere whereClause = new CalateWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new DaoCalateWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -61,14 +61,14 @@ public final class CalateSelectSingle extends DaoStmtTemplate<CalateInfo> {
 				do {				
 					CalateInfo dataInfo = new CalateInfo();
 					
-					dataInfo.date = DaoFormatter.sqlToLocalDate(stmtResult, CalateDbTableColumn.COL_DATE);
-					dataInfo.year = stmtResult.getInt(CalateDbTableColumn.COL_YEAR);					
-					dataInfo.month = stmtResult.getInt(CalateDbTableColumn.COL_MONTH);
-					dataInfo.day = stmtResult.getInt(CalateDbTableColumn.COL_DAY);
-					dataInfo.codWeekday = stmtResult.getInt(CalateDbTableColumn.COL_COD_WEEKDAY);
-					dataInfo.quarter = stmtResult.getInt(CalateDbTableColumn.COL_QUARTER);
-					dataInfo.weekYear = stmtResult.getInt(CalateDbTableColumn.COL_WEEK_YEAR);
-					dataInfo.isWeekend = stmtResult.getBoolean(CalateDbTableColumn.COL_IS_WEEKEND);
+					dataInfo.date = DaoFormatter.sqlToLocalDate(stmtResult, DaoCalateDbTableColumn.COL_DATE);
+					dataInfo.year = stmtResult.getInt(DaoCalateDbTableColumn.COL_YEAR);					
+					dataInfo.month = stmtResult.getInt(DaoCalateDbTableColumn.COL_MONTH);
+					dataInfo.day = stmtResult.getInt(DaoCalateDbTableColumn.COL_DAY);
+					dataInfo.codWeekday = stmtResult.getInt(DaoCalateDbTableColumn.COL_COD_WEEKDAY);
+					dataInfo.quarter = stmtResult.getInt(DaoCalateDbTableColumn.COL_QUARTER);
+					dataInfo.weekYear = stmtResult.getInt(DaoCalateDbTableColumn.COL_WEEK_YEAR);
+					dataInfo.isWeekend = stmtResult.getBoolean(DaoCalateDbTableColumn.COL_IS_WEEKEND);
 					
 					finalResult.add(dataInfo);				
 				} while (stmtResult.next());

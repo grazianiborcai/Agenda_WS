@@ -1,23 +1,23 @@
 package br.com.mind5.business.calendarDate.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.calendarDate.info.CalateInfo;
 import br.com.mind5.business.calendarDate.info.CalateMerger;
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiCalateMergeToSelect extends ActionVisitorTemplateMergeV1<CalateInfo, CalateInfo> {
+final class VisiCalateMergeToSelect extends ActionVisitorTemplateMergeV2<CalateInfo, CalateInfo> {
 	
-	public VisiCalateMergeToSelect(Connection conn, String schemaName) {
-		super(conn, schemaName, CalateInfo.class);
+	public VisiCalateMergeToSelect(DeciTreeOption<CalateInfo> option) {
+		super(option, CalateInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends ActionStdV1<CalateInfo>> getActionClassHook() {
-		return StdCalateSelect.class;
+	@Override protected Class<? extends ActionStdV2<CalateInfo>> getActionClassHook() {
+		return StdCalateDaoSelect.class;
 	}
 	
 	
@@ -29,6 +29,6 @@ final class VisiCalateMergeToSelect extends ActionVisitorTemplateMergeV1<CalateI
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
+		return super.DONT_MERGE_WHEN_EMPTY;
 	}
 }

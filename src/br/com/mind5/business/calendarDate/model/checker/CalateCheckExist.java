@@ -1,7 +1,7 @@
 package br.com.mind5.business.calendarDate.model.checker;
 
 import br.com.mind5.business.calendarDate.info.CalateInfo;
-import br.com.mind5.business.calendarDate.model.action.StdCalateSelect;
+import br.com.mind5.business.calendarDate.model.action.StdCalateDaoSelect;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -17,7 +17,7 @@ public final class CalateCheckExist extends ModelCheckerTemplateActionV2<CalateI
 	
 	
 	@Override protected ActionStdV1<CalateInfo> buildActionHook(DeciTreeOption<CalateInfo> option) {
-		ActionStdV1<CalateInfo> select = new StdCalateSelect(option);
+		ActionStdV1<CalateInfo> select = new StdCalateDaoSelect(option);
 		return select;
 	}
 	

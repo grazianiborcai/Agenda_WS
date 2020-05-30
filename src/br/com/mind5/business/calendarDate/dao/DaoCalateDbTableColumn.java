@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class CalateDbTableColumn extends DaoDbTableColumnTemplate {
+public final class DaoCalateDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_WEEKDAY = DaoDbField.COL_COD_WEEKDAY;	
 	public static final String COL_DATE = DaoDbField.COL_DATE;
 	public static final String COL_DAY = DaoDbField.COL_DAY;
@@ -20,25 +20,13 @@ public final class CalateDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_WEEK_YEAR = DaoDbField.COL_WEEK_YEAR;	
 	
 	
-	private Hashtable<String, List<DaoColumn>> tableColumns;	
-	
-	public CalateDbTableColumn() {
-		super(CalateDbTableColumn.class);
+	public DaoCalateDbTableColumn() {
+		super();
 	}
 	
 	
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
-		tableColumns = new Hashtable<>();
-		
-		buildTable();
-		
-		return tableColumns;
-	}
-	
-	
-	
-	private void buildTable() {
 		final String TABLE_NAME = DaoDbTable.CALENDAR_DATE_TABLE;
 		
 		DaoColumn oneColumn;
@@ -108,6 +96,8 @@ public final class CalateDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		tableColumns.put(TABLE_NAME, columns);
+		Hashtable<String, List<DaoColumn>> results = new Hashtable<>();
+		results.put(TABLE_NAME, columns);
+		return results;
 	}
 }

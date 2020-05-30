@@ -16,8 +16,9 @@ public final class CalateCheckRead extends ModelCheckerTemplateSimpleV2<CalateIn
 	
 	
 	@Override protected boolean checkHook(CalateInfo recordInfo, Connection conn, String schemaName) {	
-		if ( recordInfo.date	== null ||
-			 recordInfo.codLanguage == null		)	
+		if ( recordInfo.date		== null ||
+			 recordInfo.codLanguage == null	||
+			 recordInfo.username 	== null		)	
 			
 			return super.FAILED;
 		

@@ -10,17 +10,20 @@ public final class CalateInfo extends InfoRecord implements Cloneable {
 	public LocalDate date;
 	public int year;
 	public int month;
+	public String txtMonth;
 	public int day;
 	public int codWeekday;
+	public String txtWeekday;
 	public int quarter;
 	public int weekYear;
 	public int weekMonth;
 	public boolean isWeekend;
+	public String txtMoonPhase;
 	public String username;
 	
 	
 	public CalateInfo() {
-		super(CalateInfo.class);
+		super();
 		
 		date = DefaultValue.object();
 		year = DefaultValue.number();
