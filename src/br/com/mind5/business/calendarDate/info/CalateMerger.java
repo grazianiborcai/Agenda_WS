@@ -2,6 +2,7 @@ package br.com.mind5.business.calendarDate.info;
 
 import java.util.List;
 
+import br.com.mind5.business.calendarDateSearch.info.CalatarchInfo;
 import br.com.mind5.business.moonCalendar.info.MooncalInfo;
 import br.com.mind5.info.InfoMergerBuilderV3;
 import br.com.mind5.info.InfoMergerV3;
@@ -9,6 +10,19 @@ import br.com.mind5.masterData.month.info.MonthInfo;
 import br.com.mind5.masterData.weekday.info.WeekdayInfo;
 
 public final class CalateMerger {
+	public static List<CalateInfo> mergeWithCalatarch(List<CalateInfo> baseInfos, List<CalatarchInfo> selectedInfos) {
+		InfoMergerBuilderV3<CalateInfo, CalatarchInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new CalateVisiMergeCalatarch());
+		InfoMergerV3<CalateInfo, CalatarchInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	
 	public static List<CalateInfo> mergeWithMonth(List<CalateInfo> baseInfos, List<MonthInfo> selectedInfos) {
 		InfoMergerBuilderV3<CalateInfo, MonthInfo> builder = new InfoMergerBuilderV3<>();
 		
