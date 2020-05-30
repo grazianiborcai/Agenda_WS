@@ -3,6 +3,7 @@ package br.com.mind5.business.moonCalendar.info;
 
 import java.util.List;
 
+import br.com.mind5.business.calendarDate.info.CalateInfo;
 import br.com.mind5.business.planingData.info.PlanataInfo;
 import br.com.mind5.business.scheduleDay.info.SchedayInfo;
 import br.com.mind5.business.scheduleMonth.info.SchedmonInfo;
@@ -11,6 +12,20 @@ import br.com.mind5.info.InfoCopier;
 import br.com.mind5.info.InfoCopierOneToMany;
 
 public final class MooncalCopier {	
+	public static MooncalInfo copyFromCalate(CalateInfo source) {
+		InfoCopier<MooncalInfo, CalateInfo> copier = new MooncalCopyCalate();
+		return copier.makeCopy(source);
+	}
+	
+	
+	
+	public static List<MooncalInfo> copyFromCalate(List<CalateInfo> sources) {
+		InfoCopier<MooncalInfo, CalateInfo> copier = new MooncalCopyCalate();
+		return copier.makeCopy(sources);
+	}
+	
+	
+	
 	public static List<MooncalInfo> copyFromSchedeek(SchedeekInfo source) {
 		InfoCopierOneToMany<MooncalInfo, SchedeekInfo> copier = new MooncalCopySchedeek();
 		return copier.makeCopy(source);
