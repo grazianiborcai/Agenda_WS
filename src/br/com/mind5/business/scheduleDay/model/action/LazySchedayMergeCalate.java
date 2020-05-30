@@ -9,9 +9,9 @@ import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazySchedayMergeMonth extends ActionLazyTemplateV2<SchedayInfo, SchedayInfo> {
+public final class LazySchedayMergeCalate extends ActionLazyTemplateV2<SchedayInfo, SchedayInfo> {
 	
-	public LazySchedayMergeMonth(Connection conn, String schemaName) {
+	public LazySchedayMergeCalate(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazySchedayMergeMonth extends ActionLazyTemplateV2<SchedayInf
 	
 	
 	@Override protected ActionStdV1<SchedayInfo> getInstanceOfActionHook(DeciTreeOption<SchedayInfo> option) {
-		return new StdSchedayMergeMonth(option);
+		return new StdSchedayMergeCalate(option);
 	}
 	
 	
