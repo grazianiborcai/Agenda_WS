@@ -68,6 +68,7 @@ public final class DaoCalateSelectSingle extends DaoStmtTemplate<CalateInfo> {
 					dataInfo.codWeekday = stmtResult.getInt(DaoCalateDbTableColumn.COL_COD_WEEKDAY);
 					dataInfo.quarter = stmtResult.getInt(DaoCalateDbTableColumn.COL_QUARTER);
 					dataInfo.weekYear = stmtResult.getInt(DaoCalateDbTableColumn.COL_WEEK_YEAR);
+					dataInfo.weekMonth = stmtResult.getInt(DaoCalateDbTableColumn.COL_WEEK_MONTH);
 					dataInfo.isWeekend = stmtResult.getBoolean(DaoCalateDbTableColumn.COL_IS_WEEKEND);
 					
 					finalResult.add(dataInfo);				
