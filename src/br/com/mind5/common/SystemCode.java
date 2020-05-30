@@ -1188,9 +1188,9 @@ public final class SystemCode {
 	public static final int MOON_CALENDAR_NOT_FOUND						= 11502;
 	
 	//Calendar Date
-	public static final int CALENDAR_DATE_MANDATORY_FIELD_EMPTY 		= 11550;
-	public static final int CALENDAR_DATE_ALREADY_EXIST					= 11551;
-	public static final int CALENDAR_DATE_NOT_FOUND						= 11552;
+	public static final int CALENDAR_DATE_ALREADY_EXIST					= 11550;
+	public static final int CALENDAR_DATE_NOT_FOUND						= 11551;
+	public static final int CALENDAR_DATE_MANDATORY_FIELD_EMPTY 		= 11552;
 	
 	// Form Address Search
 	public static final int FORM_ADDRESS_SEARCH_MANDATORY_FIELD_EMPTY	= 11600;
@@ -1270,4 +1270,7 @@ public final class SystemCode {
 	
 	// Schedule Day
 	public static final int SCHEDULE_DAY_MANDATORY_FIELD_EMPTY			= 12450;
+	
+	//Calendar Date Search
+	public static final int CALENDAR_DATE_SEARCH_MANDATORY_FIELD_EMPTY 	= 12500;
 }
