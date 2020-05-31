@@ -4,11 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.scheduleYear.info.SchedyearInfo;
-import br.com.mind5.business.scheduleYear.model.action.LazySchedyearMergeMonth;
-import br.com.mind5.business.scheduleYear.model.action.LazySchedyearMergeStolis;
-import br.com.mind5.business.scheduleYear.model.action.StdSchedyearMergeSchedyerat;
+import br.com.mind5.business.scheduleYear.model.checker.SchedyearCheckOwner;
 import br.com.mind5.business.scheduleYear.model.checker.SchedyearCheckRead;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.business.scheduleYear.model.checker.SchedyearCheckStore;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -36,6 +34,20 @@ public final class RootSchedyearSelect extends DeciTreeTemplateWriteV2<Schedyear
 		checker = new SchedyearCheckRead(checkerOption);
 		queue.add(checker);
 		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new SchedyearCheckOwner(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new SchedyearCheckStore(checkerOption);
+		queue.add(checker);
+		
 		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
@@ -44,14 +56,9 @@ public final class RootSchedyearSelect extends DeciTreeTemplateWriteV2<Schedyear
 	@Override protected List<ActionStdV1<SchedyearInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedyearInfo> option) {
 		List<ActionStdV1<SchedyearInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<SchedyearInfo> mergeSchedyerat = new StdSchedyearMergeSchedyerat(option);
-		ActionLazyV1<SchedyearInfo> mergeStolis = new LazySchedyearMergeStolis(option.conn, option.schemaName);
-		ActionLazyV1<SchedyearInfo> mergeMonth = new LazySchedyearMergeMonth(option.conn, option.schemaName);
+		ActionStdV1<SchedyearInfo> select = new NodeSchedyearSelect(option).toAction();
 		
-		mergeSchedyerat.addPostAction(mergeStolis);
-		mergeStolis.addPostAction(mergeMonth);
-		
-		actions.add(mergeSchedyerat);
+		actions.add(select);
 		return actions;
 	}
 }

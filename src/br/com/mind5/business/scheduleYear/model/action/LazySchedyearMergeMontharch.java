@@ -9,9 +9,9 @@ import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazySchedyearMergeMonth extends ActionLazyTemplateV2<SchedyearInfo, SchedyearInfo> {
+public final class LazySchedyearMergeMontharch extends ActionLazyTemplateV2<SchedyearInfo, SchedyearInfo> {
 	
-	public LazySchedyearMergeMonth(Connection conn, String schemaName) {
+	public LazySchedyearMergeMontharch(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazySchedyearMergeMonth extends ActionLazyTemplateV2<Schedyea
 	
 	
 	@Override protected ActionStdV1<SchedyearInfo> getInstanceOfActionHook(DeciTreeOption<SchedyearInfo> option) {
-		return new StdSchedyearMergeMonth(option);
+		return new StdSchedyearMergeMontharch(option);
 	}
 	
 	

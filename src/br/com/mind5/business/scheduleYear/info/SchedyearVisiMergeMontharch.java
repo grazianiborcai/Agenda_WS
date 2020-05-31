@@ -6,8 +6,9 @@ import java.util.List;
 import br.com.mind5.info.InfoMergerVisitorV3;
 import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.masterData.month.info.MonthInfo;
+import br.com.mind5.masterData.monthSearch.info.MontharchInfo;
 
-final class SchedyearVisiMergeMonth implements InfoMergerVisitorV3<SchedyearInfo, MonthInfo> {
+final class SchedyearVisiMergeMontharch implements InfoMergerVisitorV3<SchedyearInfo, MontharchInfo> {
 	
 	@Override public List<SchedyearInfo> beforeMerge(List<SchedyearInfo> baseInfos) {
 		return baseInfos;
@@ -15,16 +16,16 @@ final class SchedyearVisiMergeMonth implements InfoMergerVisitorV3<SchedyearInfo
 	
 	
 	
-	@Override public boolean shouldMerge(SchedyearInfo baseInfo, MonthInfo selectedInfo) {
+	@Override public boolean shouldMerge(SchedyearInfo baseInfo, MontharchInfo selectedInfo) {
 		return true;
 	}
 	
 	
 	
-	@Override public List<SchedyearInfo> merge(SchedyearInfo baseInfo, MonthInfo selectedInfo) {
+	@Override public List<SchedyearInfo> merge(SchedyearInfo baseInfo, MontharchInfo selectedInfo) {
 		List<SchedyearInfo> results = new ArrayList<>();
 		
-		baseInfo.monthes.add(selectedInfo);
+		baseInfo.monthes.add(MonthInfo.copyFrom(selectedInfo));
 		
 		results.add(baseInfo);
 		return results;
