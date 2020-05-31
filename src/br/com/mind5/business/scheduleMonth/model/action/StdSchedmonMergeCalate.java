@@ -5,15 +5,15 @@ import br.com.mind5.model.action.ActionStdTemplateV2;
 import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class StdSchedmonMergeMooncal extends ActionStdTemplateV2<SchedmonInfo> {
+public final class StdSchedmonMergeCalate extends ActionStdTemplateV2<SchedmonInfo> {
 
-	public StdSchedmonMergeMooncal(DeciTreeOption<SchedmonInfo> option) {
+	public StdSchedmonMergeCalate(DeciTreeOption<SchedmonInfo> option) {
 		super(option);
 	}
 	
 	
 	
 	protected ActionVisitorV2<SchedmonInfo> buildVisitorHook(DeciTreeOption<SchedmonInfo> option) {
-		return new VisiSchedmonMergeMooncal(option);
+		return new VisiSchedmonMergeCalate(option);
 	}
 }

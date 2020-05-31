@@ -4,15 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.scheduleMonth.info.SchedmonInfo;
-import br.com.mind5.business.scheduleMonth.model.action.LazySchedmonMergeEmplis;
-import br.com.mind5.business.scheduleMonth.model.action.LazySchedmonMergeMatlis;
-import br.com.mind5.business.scheduleMonth.model.action.LazySchedmonMergeMonth;
-import br.com.mind5.business.scheduleMonth.model.action.LazySchedmonMergeMooncal;
-import br.com.mind5.business.scheduleMonth.model.action.LazySchedmonMergeStolis;
-import br.com.mind5.business.scheduleMonth.model.action.LazySchedmonMergeWeekday;
-import br.com.mind5.business.scheduleMonth.model.action.StdSchedmonMergeSchedonthat;
 import br.com.mind5.business.scheduleMonth.model.checker.SchedmonCheckRead;
-import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -48,22 +40,9 @@ public final class RootSchedmonSelect extends DeciTreeTemplateWriteV2<SchedmonIn
 	@Override protected List<ActionStdV1<SchedmonInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedmonInfo> option) {
 		List<ActionStdV1<SchedmonInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<SchedmonInfo> mergeSchedonthat = new StdSchedmonMergeSchedonthat(option);
-		ActionLazyV1<SchedmonInfo> mergeStolis = new LazySchedmonMergeStolis(option.conn, option.schemaName);
-		ActionLazyV1<SchedmonInfo> mergeMatlis = new LazySchedmonMergeMatlis(option.conn, option.schemaName);
-		ActionLazyV1<SchedmonInfo> mergeEmplis = new LazySchedmonMergeEmplis(option.conn, option.schemaName);
-		ActionLazyV1<SchedmonInfo> mergeMonth = new LazySchedmonMergeMonth(option.conn, option.schemaName);
-		ActionLazyV1<SchedmonInfo> mergeWeekday = new LazySchedmonMergeWeekday(option.conn, option.schemaName);
-		ActionLazyV1<SchedmonInfo> mergeMooncal = new LazySchedmonMergeMooncal(option.conn, option.schemaName);
+		ActionStdV1<SchedmonInfo> select = new NodeSchedmonSelect(option).toAction();
 		
-		mergeSchedonthat.addPostAction(mergeStolis);
-		mergeStolis.addPostAction(mergeMatlis);
-		mergeMatlis.addPostAction(mergeEmplis);
-		mergeEmplis.addPostAction(mergeMonth);
-		mergeMonth.addPostAction(mergeWeekday);
-		mergeWeekday.addPostAction(mergeMooncal);
-		
-		actions.add(mergeSchedonthat);
+		actions.add(select);
 		return actions;
 	}
 }

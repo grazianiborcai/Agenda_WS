@@ -2,30 +2,15 @@ package br.com.mind5.business.scheduleMonth.info;
 
 import java.util.List;
 
+import br.com.mind5.business.calendarDate.info.CalateInfo;
 import br.com.mind5.business.employeeList.info.EmplisInfo;
 import br.com.mind5.business.materialList.info.MatlisInfo;
-import br.com.mind5.business.moonCalendar.info.MooncalInfo;
 import br.com.mind5.business.scheduleMonthData.info.SchedonthatInfo;
 import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.info.InfoMergerBuilderV3;
 import br.com.mind5.info.InfoMergerV3;
-import br.com.mind5.masterData.month.info.MonthInfo;
-import br.com.mind5.masterData.weekday.info.WeekdayInfo;
 
 public final class SchedmonMerger {
-	public static List<SchedmonInfo> mergeWithMooncal(List<SchedmonInfo> baseInfos, List<MooncalInfo> selectedInfos) {
-		InfoMergerBuilderV3<SchedmonInfo, MooncalInfo> builder = new InfoMergerBuilderV3<>();
-		
-		builder.addBaseInfos(baseInfos);
-		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SchedmonVisiMergeMooncal());
-		InfoMergerV3<SchedmonInfo, MooncalInfo> merger = builder.build();		
-	
-		return merger.merge();
-	}
-	
-	
-	
 	public static List<SchedmonInfo> mergeWithEmplis(List<SchedmonInfo> baseInfos, List<EmplisInfo> selectedInfos) {
 		InfoMergerBuilderV3<SchedmonInfo, EmplisInfo> builder = new InfoMergerBuilderV3<>();
 		
@@ -39,26 +24,13 @@ public final class SchedmonMerger {
 	
 	
 	
-	public static List<SchedmonInfo> mergeWithWeekday(List<SchedmonInfo> baseInfos, List<WeekdayInfo> selectedInfos) {
-		InfoMergerBuilderV3<SchedmonInfo, WeekdayInfo> builder = new InfoMergerBuilderV3<>();
+	public static List<SchedmonInfo> mergeWithCalate(List<SchedmonInfo> baseInfos, List<CalateInfo> selectedInfos) {
+		InfoMergerBuilderV3<SchedmonInfo, CalateInfo> builder = new InfoMergerBuilderV3<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SchedmonVisiMergeWeekday());
-		InfoMergerV3<SchedmonInfo, WeekdayInfo> merger = builder.build();		
-	
-		return merger.merge();
-	}
-	
-	
-	
-	public static List<SchedmonInfo> mergeWithMonth(List<SchedmonInfo> baseInfos, List<MonthInfo> selectedInfos) {
-		InfoMergerBuilderV3<SchedmonInfo, MonthInfo> builder = new InfoMergerBuilderV3<>();
-		
-		builder.addBaseInfos(baseInfos);
-		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SchedmonVisiMergeMonth());
-		InfoMergerV3<SchedmonInfo, MonthInfo> merger = builder.build();		
+		builder.addVisitor(new SchedmonVisiMergeCalate());
+		InfoMergerV3<SchedmonInfo, CalateInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}

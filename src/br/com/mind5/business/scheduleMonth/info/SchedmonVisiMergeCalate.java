@@ -3,11 +3,11 @@ package br.com.mind5.business.scheduleMonth.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.business.moonCalendar.info.MooncalInfo;
+import br.com.mind5.business.calendarDate.info.CalateInfo;
 import br.com.mind5.info.InfoMergerVisitorV3;
 import br.com.mind5.info.InfoUniquifier;
 
-final class SchedmonVisiMergeMooncal implements InfoMergerVisitorV3<SchedmonInfo, MooncalInfo> {
+final class SchedmonVisiMergeCalate implements InfoMergerVisitorV3<SchedmonInfo, CalateInfo> {
 	
 	@Override public List<SchedmonInfo> beforeMerge(List<SchedmonInfo> baseInfos) {
 		return baseInfos;
@@ -15,16 +15,16 @@ final class SchedmonVisiMergeMooncal implements InfoMergerVisitorV3<SchedmonInfo
 	
 	
 	
-	@Override public boolean shouldMerge(SchedmonInfo baseInfo, MooncalInfo selectedInfo) {
+	@Override public boolean shouldMerge(SchedmonInfo baseInfo, CalateInfo selectedInfo) {
 		return true;
 	}
 	
 	
 	
-	@Override public List<SchedmonInfo> merge(SchedmonInfo baseInfo, MooncalInfo selectedInfo) {
+	@Override public List<SchedmonInfo> merge(SchedmonInfo baseInfo, CalateInfo selectedInfo) {
 		List<SchedmonInfo> results = new ArrayList<>();
 		
-		baseInfo.mooncales.add(selectedInfo);
+		baseInfo.calates.add(selectedInfo);
 		
 		results.add(baseInfo);
 		return results;
