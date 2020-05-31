@@ -40,8 +40,8 @@ import br.com.mind5.masterData.materialTypeSearch.info.MatyparchInfo;
 import br.com.mind5.masterData.materialTypeSearch.model.MatyparchModelSelect;
 import br.com.mind5.masterData.materialUnitSearch.info.MatunitarchInfo;
 import br.com.mind5.masterData.materialUnitSearch.model.MatunitarchModelSelect;
-import br.com.mind5.masterData.month.info.MonthInfo;
-import br.com.mind5.masterData.month.model.MonthModelSelect;
+import br.com.mind5.masterData.monthSearch.info.MontharchInfo;
+import br.com.mind5.masterData.monthSearch.model.MontharchModelSelect;
 import br.com.mind5.masterData.moonPhase.info.MoonaseInfo;
 import br.com.mind5.masterData.moonPhase.model.MoonaseModelSearch;
 import br.com.mind5.masterData.movimentType.info.MamovypeInfo;
@@ -630,12 +630,12 @@ public final class MasterDataResource {
 	public Response selectMonth(@HeaderParam("codLanguage")  @DefaultValue("EN") String codLanguage, 
 			                    @HeaderParam("month")        @DefaultValue("-1") int month) {
 		
-		MonthInfo recordInfo = new MonthInfo();
+		MontharchInfo recordInfo = new MontharchInfo();
 		recordInfo.codLanguage = codLanguage;
 		recordInfo.month = month;
 		
 		
-		Model model = new MonthModelSelect(recordInfo);
+		Model model = new MontharchModelSelect(recordInfo);
 		model.executeRequest();
 		Response result = model.getResponse();
 		model.close();
