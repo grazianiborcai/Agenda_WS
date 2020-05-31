@@ -9,9 +9,9 @@ import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazySchedineEnforceQuarter extends ActionLazyTemplateV2<SchedineInfo, SchedineInfo> {
-	
-	public LazySchedineEnforceQuarter(Connection conn, String schemaName) {
+public final class LazySchedineMergeCalate extends ActionLazyTemplateV2<SchedineInfo, SchedineInfo> {
+
+	public LazySchedineMergeCalate(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazySchedineEnforceQuarter extends ActionLazyTemplateV2<Sched
 	
 	
 	@Override protected ActionStdV1<SchedineInfo> getInstanceOfActionHook(DeciTreeOption<SchedineInfo> option) {
-		return new StdSchedineEnforceQuarter(option);
+		return new StdSchedineMergeCalate(option);
 	}
 	
 	

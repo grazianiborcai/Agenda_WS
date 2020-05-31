@@ -2,6 +2,7 @@ package br.com.mind5.business.scheduleLine.info;
 
 import java.util.List;
 
+import br.com.mind5.business.calendarDate.info.CalateInfo;
 import br.com.mind5.business.customerList.info.CuslisInfo;
 import br.com.mind5.business.employeeList.info.EmplisInfo;
 import br.com.mind5.business.materialList.info.MatlisInfo;
@@ -16,6 +17,19 @@ import br.com.mind5.masterData.weekday.info.WeekdayInfo;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class SchedineMerger {
+	public static List<SchedineInfo> mergeWithCalate(List<SchedineInfo> baseInfos, List<CalateInfo> selectedInfos) {
+		InfoMergerBuilderV3<SchedineInfo, CalateInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new SchedineVisiMergeCalate());
+		InfoMergerV3<SchedineInfo, CalateInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	
 	public static List<SchedineInfo> mergeWithWeekday(List<SchedineInfo> baseInfos, List<WeekdayInfo> selectedInfos) {
 		InfoMergerBuilderV3<SchedineInfo, WeekdayInfo> builder = new InfoMergerBuilderV3<>();
 		

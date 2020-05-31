@@ -12,7 +12,7 @@ import br.com.mind5.business.scheduleLine.model.action.LazySchedineInsertSchedov
 import br.com.mind5.business.scheduleLine.model.action.LazySchedineMergeCuslis;
 import br.com.mind5.business.scheduleLine.model.action.LazySchedineMergeUsername;
 import br.com.mind5.business.scheduleLine.model.action.LazySchedineNodeSnapshot;
-import br.com.mind5.business.scheduleLine.model.action.LazySchedineNodeTime;
+import br.com.mind5.business.scheduleLine.model.action.LazySchedineMergeCalate;
 import br.com.mind5.business.scheduleLine.model.action.StdSchedineEnforceLChanged;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckCus;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckEmp;
@@ -134,7 +134,7 @@ public final class NodeSchedineInsert extends DeciTreeTemplateWriteV2<SchedineIn
 		ActionStdV1<SchedineInfo> enforceLChanged = new StdSchedineEnforceLChanged(option);
 		ActionLazyV1<SchedineInfo> mergeCuslis = new LazySchedineMergeCuslis(option.conn, option.schemaName);
 		ActionLazyV1<SchedineInfo> mergeUsername = new LazySchedineMergeUsername(option.conn, option.schemaName);
-		ActionLazyV1<SchedineInfo> nodeTime = new LazySchedineNodeTime(option.conn, option.schemaName);
+		ActionLazyV1<SchedineInfo> mergeCalate = new LazySchedineMergeCalate(option.conn, option.schemaName);
 		ActionLazyV1<SchedineInfo> enforceCreatedOn = new LazySchedineEnforceCreatedOn(option.conn, option.schemaName);
 		ActionLazyV1<SchedineInfo> enforceCreatedBy = new LazySchedineEnforceCreatedBy(option.conn, option.schemaName);
 		ActionLazyV1<SchedineInfo> enforceStatus = new LazySchedineEnforceStatus(option.conn, option.schemaName);
@@ -144,8 +144,8 @@ public final class NodeSchedineInsert extends DeciTreeTemplateWriteV2<SchedineIn
 		
 		enforceLChanged.addPostAction(mergeCuslis);		
 		mergeCuslis.addPostAction(mergeUsername);
-		mergeUsername.addPostAction(nodeTime);
-		nodeTime.addPostAction(enforceCreatedOn);
+		mergeUsername.addPostAction(mergeCalate);
+		mergeCalate.addPostAction(enforceCreatedOn);
 		enforceCreatedOn.addPostAction(enforceCreatedBy);
 		enforceCreatedBy.addPostAction(enforceStatus);
 		enforceStatus.addPostAction(insert);
