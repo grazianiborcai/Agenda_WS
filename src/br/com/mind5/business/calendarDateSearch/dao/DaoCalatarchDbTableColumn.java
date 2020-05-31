@@ -17,7 +17,8 @@ public final class DaoCalatarchDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_MONTH = DaoDbField.COL_MONTH;	
 	public static final String COL_QUARTER = DaoDbField.COL_QUARTER;
 	public static final String COL_YEAR = DaoDbField.COL_YEAR;	
-	public static final String COL_WEEK_YEAR = DaoDbField.COL_WEEK_YEAR;	
+	public static final String COL_WEEK_MONTH = DaoDbField.COL_WEEK_MONTH;	
+	public static final String COL_WEEK_YEAR = DaoDbField.COL_WEEK_YEAR;
 	
 	
 	public DaoCalatarchDbTableColumn() {
@@ -91,6 +92,14 @@ public final class DaoCalatarchDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_IS_WEEKEND;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_WEEK_MONTH;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;

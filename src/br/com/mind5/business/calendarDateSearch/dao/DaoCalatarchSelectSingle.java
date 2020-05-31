@@ -47,7 +47,7 @@ public final class DaoCalatarchSelectSingle extends DaoStmtTemplate<CalatarchInf
 	@Override protected String buildWhereClauseHook(String tableName, CalatarchInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
 		
-		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
+		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;	
 		
 		DaoStmtWhere whereClause = new DaoCalatarchWhere(whereOption, tableName, recordInfo);
@@ -74,6 +74,7 @@ public final class DaoCalatarchSelectSingle extends DaoStmtTemplate<CalatarchInf
 					dataInfo.codWeekday = stmtResult.getInt(DaoCalatarchDbTableColumn.COL_COD_WEEKDAY);
 					dataInfo.quarter = stmtResult.getInt(DaoCalatarchDbTableColumn.COL_QUARTER);
 					dataInfo.weekYear = stmtResult.getInt(DaoCalatarchDbTableColumn.COL_WEEK_YEAR);
+					dataInfo.weekMonth = stmtResult.getInt(DaoCalatarchDbTableColumn.COL_WEEK_MONTH);
 					dataInfo.isWeekend = stmtResult.getBoolean(DaoCalatarchDbTableColumn.COL_IS_WEEKEND);
 					
 					finalResult.add(dataInfo);				
