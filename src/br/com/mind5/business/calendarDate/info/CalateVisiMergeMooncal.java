@@ -24,6 +24,7 @@ final class CalateVisiMergeMooncal implements InfoMergerVisitorV3<CalateInfo, Mo
 	@Override public List<CalateInfo> merge(CalateInfo baseInfo, MooncalInfo selectedInfo) {
 		List<CalateInfo> results = new ArrayList<>();
 		
+		baseInfo.codMoonPhase = selectedInfo.codMoonPhase;
 		baseInfo.txtMoonPhase = selectedInfo.txtMoonPhase;
 		
 		results.add(baseInfo);

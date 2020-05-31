@@ -18,6 +18,7 @@ public final class CalateInfo extends InfoRecord implements Cloneable {
 	public int weekYear;
 	public int weekMonth;
 	public boolean isWeekend;
+	public int codMoonPhase;
 	public String txtMoonPhase;
 	public String username;
 	
@@ -33,7 +34,8 @@ public final class CalateInfo extends InfoRecord implements Cloneable {
 		quarter = DefaultValue.number();
 		weekYear = DefaultValue.number();
 		weekMonth = DefaultValue.number();
-		isWeekend = DefaultValue.boole();			
+		isWeekend = DefaultValue.boole();
+		codMoonPhase = DefaultValue.number();	
 	}
 	
 	
