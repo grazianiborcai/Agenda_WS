@@ -17,6 +17,7 @@ final class SchedmonVisiMergeSchedonthat implements InfoMergerVisitorV3<Schedmon
 	
 	@Override public boolean shouldMerge(SchedmonInfo baseInfo, SchedonthatInfo selectedInfo) {
 		return (baseInfo.codOwner == selectedInfo.codOwner && 
+				baseInfo.codStore == selectedInfo.codStore && 
 				baseInfo.year     == selectedInfo.year	   &&
 				baseInfo.month    == selectedInfo.month			);
 	}
