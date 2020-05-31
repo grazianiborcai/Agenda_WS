@@ -1,13 +1,13 @@
 package br.com.mind5.business.bookService.model.checker;
 
 import br.com.mind5.business.bookService.info.BookiceInfo;
-import br.com.mind5.business.cartReserveConflict.info.CartercoInfo;
-import br.com.mind5.business.cartReserveConflict.model.checker.CartercoCheckExist;
+import br.com.mind5.business.cartReserve.info.CarterveInfo;
+import br.com.mind5.business.cartReserve.model.checker.CarterveCheckExist;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 
-public final class BookiceCheckCarterco extends ModelCheckerTemplateForwardV2<BookiceInfo, CartercoInfo> {
+public final class BookiceCheckCarterco extends ModelCheckerTemplateForwardV2<BookiceInfo, CarterveInfo> {
 	
 	public BookiceCheckCarterco(ModelCheckerOption option) {
 		super(option);
@@ -15,13 +15,13 @@ public final class BookiceCheckCarterco extends ModelCheckerTemplateForwardV2<Bo
 
 
 	
-	@Override protected ModelCheckerV1<CartercoInfo> getCheckerHook(ModelCheckerOption option) {
-		return new CartercoCheckExist(option);
+	@Override protected ModelCheckerV1<CarterveInfo> getCheckerHook(ModelCheckerOption option) {
+		return new CarterveCheckExist(option);
 	}
 	
 	
 	
-	@Override protected CartercoInfo toForwardClass(BookiceInfo baseRecord) {
-		return CartercoInfo.copyFrom(baseRecord);
+	@Override protected CarterveInfo toForwardClass(BookiceInfo baseRecord) {
+		return CarterveInfo.copyFrom(baseRecord);
 	}
 }

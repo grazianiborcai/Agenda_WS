@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.bookService.info.BookiceInfo;
 import br.com.mind5.business.bookService.model.action.StdBookiceSuccess;
+import br.com.mind5.business.bookService.model.checker.BookiceCheckCarterco;
 import br.com.mind5.business.bookService.model.checker.BookiceCheckEmp;
 import br.com.mind5.business.bookService.model.checker.BookiceCheckEmplarg;
 import br.com.mind5.business.bookService.model.checker.BookiceCheckEmpmat;
@@ -25,9 +26,9 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class NodeBookiceServiceL2 extends DeciTreeTemplateWriteV2<BookiceInfo> {
+public final class NodeBookiceCartemL2 extends DeciTreeTemplateWriteV2<BookiceInfo> {
 	
-	public NodeBookiceServiceL2(DeciTreeOption<BookiceInfo> option) {
+	public NodeBookiceCartemL2(DeciTreeOption<BookiceInfo> option) {
 		super(option);
 	}
 	
@@ -128,9 +129,14 @@ public final class NodeBookiceServiceL2 extends DeciTreeTemplateWriteV2<BookiceI
 		checkerOption.expectedResult = ModelCheckerOption.NOT_FOUND;	
 		checker = new BookiceCheckOrderve(checkerOption);
 		queue.add(checker);
-		//TODO: verificar quantidade. Somente 1 para servico. Nao pode ser negativa para todos os casos
-		//TODO: verificar valores negativos
-		//TODO: verificar Ordem em aberto
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.NOT_FOUND;	
+		checker = new BookiceCheckCarterco(checkerOption);
+		queue.add(checker);
+
 		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	

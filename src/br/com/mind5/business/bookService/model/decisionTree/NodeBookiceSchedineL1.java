@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.bookService.info.BookiceInfo;
-import br.com.mind5.business.bookService.model.action.LazyBookiceNodeServiceL2;
+import br.com.mind5.business.bookService.model.action.LazyBookiceNodeSchedineL2;
 import br.com.mind5.business.bookService.model.action.StdBookiceEnforceWeekday;
 import br.com.mind5.business.bookService.model.checker.BookiceCheckLangu;
 import br.com.mind5.business.bookService.model.checker.BookiceCheckOwner;
@@ -17,9 +17,9 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class NodeBookiceServiceL1 extends DeciTreeTemplateWriteV2<BookiceInfo> {
+public final class NodeBookiceSchedineL1 extends DeciTreeTemplateWriteV2<BookiceInfo> {
 	
-	public NodeBookiceServiceL1(DeciTreeOption<BookiceInfo> option) {
+	public NodeBookiceSchedineL1(DeciTreeOption<BookiceInfo> option) {
 		super(option);
 	}
 	
@@ -60,7 +60,7 @@ public final class NodeBookiceServiceL1 extends DeciTreeTemplateWriteV2<BookiceI
 		List<ActionStdV1<BookiceInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<BookiceInfo> enforceWeekday = new StdBookiceEnforceWeekday(option);
-		ActionLazyV1<BookiceInfo> nodeL2 = new LazyBookiceNodeServiceL2(option.conn, option.schemaName);
+		ActionLazyV1<BookiceInfo> nodeL2 = new LazyBookiceNodeSchedineL2(option.conn, option.schemaName);
 		
 		enforceWeekday.addPostAction(nodeL2);
 		

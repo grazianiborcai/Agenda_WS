@@ -34,9 +34,9 @@ public final class RootBookiceSchedine extends DeciTreeTemplateWriteV2<BookiceIn
 	@Override protected List<ActionStdV1<BookiceInfo>> buildActionsOnPassedHook(DeciTreeOption<BookiceInfo> option) {
 		List<ActionStdV1<BookiceInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<BookiceInfo> nodeService = new NodeBookiceServiceL1(option).toAction();
+		ActionStdV1<BookiceInfo> nodeL1 = new NodeBookiceSchedineL1(option).toAction();
 		
-		actions.add(nodeService);
+		actions.add(nodeL1);
 		return actions;
 	}
 }

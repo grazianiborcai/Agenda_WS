@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.bookService.info.BookiceInfo;
-import br.com.mind5.business.bookService.model.action.LazyBookiceNodeCartem;
-import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -36,12 +34,9 @@ public final class RootBookiceCartem extends DeciTreeTemplateWriteV2<BookiceInfo
 	@Override protected List<ActionStdV1<BookiceInfo>> buildActionsOnPassedHook(DeciTreeOption<BookiceInfo> option) {
 		List<ActionStdV1<BookiceInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<BookiceInfo> nodeService = new NodeBookiceServiceL1(option).toAction();
-		ActionLazyV1<BookiceInfo> nodeCartem = new LazyBookiceNodeCartem(option.conn, option.schemaName);
+		ActionStdV1<BookiceInfo> nodeL1 = new NodeBookiceCartemL1(option).toAction();
 		
-		nodeService.addPostAction(nodeCartem);
-		
-		actions.add(nodeService);
+		actions.add(nodeL1);
 		return actions;
 	}
 }

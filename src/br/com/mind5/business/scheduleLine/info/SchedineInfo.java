@@ -8,6 +8,7 @@ import java.util.List;
 import br.com.mind5.business.employeeList.info.EmplisInfo;
 import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.business.storeList.info.StolisInfo;
+import br.com.mind5.common.CloneUtil;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.InfoRecord;
@@ -98,44 +99,11 @@ public final class SchedineInfo extends InfoRecord implements Cloneable, Compara
 		deepCopy.beginTime = beginTime;
 		deepCopy.endTime = endTime;
 		deepCopy.lastChanged = lastChanged;
-		deepCopy.matlisData = cloneMat(matlisData);
-		deepCopy.stolisData = cloneStore(stolisData);
-		deepCopy.emplisData = cloneEmp(emplisData);
+		deepCopy.matlisData = CloneUtil.cloneRecord(matlisData, this.getClass());
+		deepCopy.stolisData = CloneUtil.cloneRecord(stolisData, this.getClass());
+		deepCopy.emplisData = CloneUtil.cloneRecord(emplisData, this.getClass());
 		
 		return deepCopy;
-	}	
-	
-	
-	
-	private MatlisInfo cloneMat(MatlisInfo recordInfo) throws CloneNotSupportedException {
-		MatlisInfo result = null;
-		
-		if (recordInfo != null)
-			result = (MatlisInfo) recordInfo.clone();
-		
-		return result;
-	}
-	
-	
-	
-	private StolisInfo cloneStore(StolisInfo recordInfo) throws CloneNotSupportedException {
-		StolisInfo result = null;
-		
-		if (recordInfo != null)
-			result = (StolisInfo) recordInfo.clone();
-		
-		return result;
-	}
-	
-	
-	
-	private EmplisInfo cloneEmp(EmplisInfo recordInfo) throws CloneNotSupportedException {
-		EmplisInfo result = null;
-		
-		if (recordInfo != null)
-			result = (EmplisInfo) recordInfo.clone();
-		
-		return result;
 	}
 	
 	
