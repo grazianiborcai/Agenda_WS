@@ -776,14 +776,16 @@ public final class SystemCode {
 	
 	// Schedule Month Data
 	public static final int SCHEDULE_MONTH_DATA_FIELD_EMPTY				= 5800;
-	public static final int SCHEDULE_MONTH_ALREADY_EXIST				= 5801;
-	public static final int SCHEDULE_MONTH_NOT_FOUND					= 5802;
+	public static final int SCHEDULE_MONTH_DATA_ALREADY_EXIST			= 5801;
+	public static final int SCHEDULE_MONTH_DATA_NOT_FOUND				= 5802;
 	
 	// Schedule Month
 	public static final int SCHEDULE_MONTH_FIELD_EMPTY					= 5850;
 	
 	// Schedule Week Data
 	public static final int SCHEDULE_WEEK_DATA_FIELD_EMPTY				= 5900;
+	public static final int SCHEDULE_WEEK_DATA_ALREADY_EXIST			= 5901;
+	public static final int SCHEDULE_WEEK_DATA_NOT_FOUND				= 5902;
 	
 	// Schedule Week
 	public static final int SCHEDULE_WEEK_FIELD_EMPTY					= 5950;

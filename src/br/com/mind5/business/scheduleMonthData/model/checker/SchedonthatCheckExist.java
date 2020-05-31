@@ -24,12 +24,12 @@ public final class SchedonthatCheckExist extends ModelCheckerTemplateActionV2<Sc
 	
 	
 	@Override protected int getCodMsgOnResultTrueHook() {
-		return SystemCode.SCHEDULE_MONTH_ALREADY_EXIST;
+		return SystemCode.SCHEDULE_MONTH_DATA_ALREADY_EXIST;
 	}	
 	
 	
 	
 	@Override protected int getCodMsgOnResultFalseHook() {
-		return SystemCode.SCHEDULE_MONTH_NOT_FOUND;
+		return SystemCode.SCHEDULE_MONTH_DATA_NOT_FOUND;
 	}
 }
