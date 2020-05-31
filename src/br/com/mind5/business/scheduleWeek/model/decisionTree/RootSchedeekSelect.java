@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.scheduleWeek.info.SchedeekInfo;
+import br.com.mind5.business.scheduleWeek.model.checker.SchedeekCheckOwner;
 import br.com.mind5.business.scheduleWeek.model.checker.SchedeekCheckRead;
+import br.com.mind5.business.scheduleWeek.model.checker.SchedeekCheckStore;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -30,6 +32,20 @@ public final class RootSchedeekSelect extends DeciTreeTemplateWriteV2<SchedeekIn
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;			
 		checker = new SchedeekCheckRead(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;			
+		checker = new SchedeekCheckOwner(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;			
+		checker = new SchedeekCheckStore(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueueV2<>(queue);
