@@ -4,16 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.scheduleWeek.info.SchedeekInfo;
-import br.com.mind5.business.scheduleWeek.model.action.LazySchedeekMergeCuslis;
-import br.com.mind5.business.scheduleWeek.model.action.LazySchedeekMergeEmplis;
-import br.com.mind5.business.scheduleWeek.model.action.LazySchedeekMergeMatlis;
-import br.com.mind5.business.scheduleWeek.model.action.LazySchedeekMergeMonth;
-import br.com.mind5.business.scheduleWeek.model.action.LazySchedeekMergeMooncal;
-import br.com.mind5.business.scheduleWeek.model.action.LazySchedeekMergeStolis;
-import br.com.mind5.business.scheduleWeek.model.action.LazySchedeekMergeWeekday;
-import br.com.mind5.business.scheduleWeek.model.action.StdSchedeekMergeSchedeekdat;
 import br.com.mind5.business.scheduleWeek.model.checker.SchedeekCheckRead;
-import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -49,24 +40,9 @@ public final class RootSchedeekSelect extends DeciTreeTemplateWriteV2<SchedeekIn
 	@Override protected List<ActionStdV1<SchedeekInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedeekInfo> option) {
 		List<ActionStdV1<SchedeekInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<SchedeekInfo> mergeSchedeekdat = new StdSchedeekMergeSchedeekdat(option);
-		ActionLazyV1<SchedeekInfo> mergeStolis = new LazySchedeekMergeStolis(option.conn, option.schemaName);
-		ActionLazyV1<SchedeekInfo> mergeMatlis = new LazySchedeekMergeMatlis(option.conn, option.schemaName);
-		ActionLazyV1<SchedeekInfo> mergeEmplis = new LazySchedeekMergeEmplis(option.conn, option.schemaName);
-		ActionLazyV1<SchedeekInfo> mergeCuslis = new LazySchedeekMergeCuslis(option.conn, option.schemaName);
-		ActionLazyV1<SchedeekInfo> mergeWeekday = new LazySchedeekMergeWeekday(option.conn, option.schemaName);
-		ActionLazyV1<SchedeekInfo> mergeMonth = new LazySchedeekMergeMonth(option.conn, option.schemaName);
-		ActionLazyV1<SchedeekInfo> mergeMooncal = new LazySchedeekMergeMooncal(option.conn, option.schemaName);
+		ActionStdV1<SchedeekInfo> select = new NodeSchedeekSelect(option).toAction();
 		
-		mergeSchedeekdat.addPostAction(mergeStolis);
-		mergeStolis.addPostAction(mergeMatlis);
-		mergeMatlis.addPostAction(mergeEmplis);
-		mergeEmplis.addPostAction(mergeCuslis);
-		mergeCuslis.addPostAction(mergeWeekday);
-		mergeWeekday.addPostAction(mergeMonth);
-		mergeMonth.addPostAction(mergeMooncal);
-		
-		actions.add(mergeSchedeekdat);
+		actions.add(select);
 		return actions;
 	}
 }

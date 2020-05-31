@@ -2,51 +2,23 @@ package br.com.mind5.business.scheduleWeek.info;
 
 import java.util.List;
 
+import br.com.mind5.business.calendarDate.info.CalateInfo;
 import br.com.mind5.business.customerList.info.CuslisInfo;
 import br.com.mind5.business.employeeList.info.EmplisInfo;
 import br.com.mind5.business.materialList.info.MatlisInfo;
-import br.com.mind5.business.moonCalendar.info.MooncalInfo;
 import br.com.mind5.business.scheduleWeekData.info.SchedeekdatInfo;
 import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.info.InfoMergerBuilderV3;
 import br.com.mind5.info.InfoMergerV3;
-import br.com.mind5.masterData.month.info.MonthInfo;
-import br.com.mind5.masterData.weekday.info.WeekdayInfo;
 
 public final class SchedeekMerger {
-	public static List<SchedeekInfo> mergeWithWeekday(List<SchedeekInfo> baseInfos, List<WeekdayInfo> selectedInfos) {
-		InfoMergerBuilderV3<SchedeekInfo, WeekdayInfo> builder = new InfoMergerBuilderV3<>();
+	public static List<SchedeekInfo> mergeWithCalate(List<SchedeekInfo> baseInfos, List<CalateInfo> selectedInfos) {
+		InfoMergerBuilderV3<SchedeekInfo, CalateInfo> builder = new InfoMergerBuilderV3<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SchedeekVisiMergeWeekday());
-		InfoMergerV3<SchedeekInfo, WeekdayInfo> merger = builder.build();		
-	
-		return merger.merge();
-	}
-	
-	
-	
-	public static List<SchedeekInfo> mergeWithMooncal(List<SchedeekInfo> baseInfos, List<MooncalInfo> selectedInfos) {
-		InfoMergerBuilderV3<SchedeekInfo, MooncalInfo> builder = new InfoMergerBuilderV3<>();
-		
-		builder.addBaseInfos(baseInfos);
-		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SchedeekVisiMergeMooncal());
-		InfoMergerV3<SchedeekInfo, MooncalInfo> merger = builder.build();		
-	
-		return merger.merge();
-	}
-	
-	
-	
-	public static List<SchedeekInfo> mergeWithMonth(List<SchedeekInfo> baseInfos, List<MonthInfo> selectedInfos) {
-		InfoMergerBuilderV3<SchedeekInfo, MonthInfo> builder = new InfoMergerBuilderV3<>();
-		
-		builder.addBaseInfos(baseInfos);
-		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SchedeekVisiMergeMonth());
-		InfoMergerV3<SchedeekInfo, MonthInfo> merger = builder.build();		
+		builder.addVisitor(new SchedeekVisiMergeCalate());
+		InfoMergerV3<SchedeekInfo, CalateInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}

@@ -9,9 +9,9 @@ import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazySchedeekMergeMonth extends ActionLazyTemplateV2<SchedeekInfo, SchedeekInfo> {
+public final class LazySchedeekMergeCalate extends ActionLazyTemplateV2<SchedeekInfo, SchedeekInfo> {
 	
-	public LazySchedeekMergeMonth(Connection conn, String schemaName) {
+	public LazySchedeekMergeCalate(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazySchedeekMergeMonth extends ActionLazyTemplateV2<SchedeekI
 	
 	
 	@Override protected ActionStdV1<SchedeekInfo> getInstanceOfActionHook(DeciTreeOption<SchedeekInfo> option) {
-		return new StdSchedeekMergeMonth(option);
+		return new StdSchedeekMergeCalate(option);
 	}
 	
 	

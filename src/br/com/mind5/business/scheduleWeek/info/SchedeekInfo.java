@@ -2,17 +2,15 @@ package br.com.mind5.business.scheduleWeek.info;
 
 import java.util.List;
 
+import br.com.mind5.business.calendarDate.info.CalateInfo;
 import br.com.mind5.business.customerList.info.CuslisInfo;
 import br.com.mind5.business.employeeList.info.EmplisInfo;
 import br.com.mind5.business.materialList.info.MatlisInfo;
-import br.com.mind5.business.moonCalendar.info.MooncalInfo;
 import br.com.mind5.business.scheduleWeekData.info.SchedeekdatInfo;
 import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.common.CloneUtil;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
-import br.com.mind5.masterData.month.info.MonthInfo;
-import br.com.mind5.masterData.weekday.info.WeekdayInfo;
 
 public final class SchedeekInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
@@ -25,9 +23,7 @@ public final class SchedeekInfo extends InfoRecord implements Cloneable {
 	public List<CuslisInfo> cuslises;
 	public List<MatlisInfo> matlises;
 	public List<EmplisInfo> emplises;
-	public List<MonthInfo> monthes;
-	public List<WeekdayInfo> weekdays;
-	public List<MooncalInfo> mooncales;
+	public List<CalateInfo> calates;
 	public String username;
 	
 	
@@ -44,9 +40,7 @@ public final class SchedeekInfo extends InfoRecord implements Cloneable {
 		matlises = DefaultValue.list();
 		emplises = DefaultValue.list();
 		cuslises = DefaultValue.list();
-		monthes = DefaultValue.list();
-		weekdays = DefaultValue.list();
-		mooncales = DefaultValue.list();
+		calates = DefaultValue.list();
 	}
 	
 	
@@ -71,9 +65,7 @@ public final class SchedeekInfo extends InfoRecord implements Cloneable {
 		deepCopy.matlises = CloneUtil.cloneRecords(matlises, this.getClass());
 		deepCopy.emplises = CloneUtil.cloneRecords(emplises, this.getClass());
 		deepCopy.cuslises = CloneUtil.cloneRecords(cuslises, this.getClass());
-		deepCopy.monthes = CloneUtil.cloneRecords(monthes, this.getClass());
-		deepCopy.weekdays = CloneUtil.cloneRecords(weekdays, this.getClass());
-		deepCopy.mooncales = CloneUtil.cloneRecords(mooncales, this.getClass());
+		deepCopy.calates = CloneUtil.cloneRecords(calates, this.getClass());
 		
 		return deepCopy;
 	}
