@@ -3,7 +3,7 @@ package br.com.mind5.business.calendarDate.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.business.moonCalendar.info.MooncalInfo;
+import br.com.mind5.business.calendarMoon.info.MooncalInfo;
 import br.com.mind5.info.InfoMergerVisitorV3;
 import br.com.mind5.info.InfoUniquifier;
 

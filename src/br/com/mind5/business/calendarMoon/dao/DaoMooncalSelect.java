@@ -1,9 +1,9 @@
-package br.com.mind5.business.moonCalendar.dao;
+package br.com.mind5.business.calendarMoon.dao;
 
 import java.sql.SQLException;
 import java.util.List;
 
-import br.com.mind5.business.moonCalendar.info.MooncalInfo;
+import br.com.mind5.business.calendarMoon.info.MooncalInfo;
 import br.com.mind5.dao.DaoStmtExecHelperV2;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExecV2;

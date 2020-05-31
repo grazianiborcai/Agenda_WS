@@ -2,9 +2,9 @@ package br.com.mind5.business.planingData.model.action;
 
 import java.util.List;
 
-import br.com.mind5.business.moonCalendar.info.MooncalCopier;
-import br.com.mind5.business.moonCalendar.info.MooncalInfo;
-import br.com.mind5.business.moonCalendar.model.decisionTree.RootMooncalSelect;
+import br.com.mind5.business.calendarMoon.info.MooncalCopier;
+import br.com.mind5.business.calendarMoon.info.MooncalInfo;
+import br.com.mind5.business.calendarMoon.model.decisionTree.RootMooncalSelect;
 import br.com.mind5.business.planingData.info.PlanataInfo;
 import br.com.mind5.business.planingData.info.PlanataMerger;
 import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;

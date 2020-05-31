@@ -1,4 +1,4 @@
-package br.com.mind5.business.moonCalendar.dao;
+package br.com.mind5.business.calendarMoon.dao;
 
 import java.util.ArrayList;
 import java.util.Hashtable;

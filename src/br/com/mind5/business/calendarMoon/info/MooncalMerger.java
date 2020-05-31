@@ -1,4 +1,4 @@
-package br.com.mind5.business.moonCalendar.info;
+package br.com.mind5.business.calendarMoon.info;
 
 import java.util.List;
 

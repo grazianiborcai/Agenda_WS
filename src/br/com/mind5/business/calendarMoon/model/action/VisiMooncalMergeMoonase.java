@@ -1,9 +1,9 @@
-package br.com.mind5.business.moonCalendar.model.action;
+package br.com.mind5.business.calendarMoon.model.action;
 
 import java.util.List;
 
-import br.com.mind5.business.moonCalendar.info.MooncalInfo;
-import br.com.mind5.business.moonCalendar.info.MooncalMerger;
+import br.com.mind5.business.calendarMoon.info.MooncalInfo;
+import br.com.mind5.business.calendarMoon.info.MooncalMerger;
 import br.com.mind5.masterData.moonPhase.info.MoonaseInfo;
 import br.com.mind5.masterData.moonPhase.model.decisionTree.RootMoonaseSelect;
 import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;

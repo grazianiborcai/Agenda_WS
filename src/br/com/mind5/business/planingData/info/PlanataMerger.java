@@ -2,8 +2,8 @@ package br.com.mind5.business.planingData.info;
 
 import java.util.List;
 
+import br.com.mind5.business.calendarMoon.info.MooncalInfo;
 import br.com.mind5.business.materialList.info.MatlisInfo;
-import br.com.mind5.business.moonCalendar.info.MooncalInfo;
 import br.com.mind5.info.InfoMergerBuilderV3;
 import br.com.mind5.info.InfoMergerV3;
 

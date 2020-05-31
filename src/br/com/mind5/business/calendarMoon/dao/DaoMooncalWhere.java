@@ -1,8 +1,8 @@
-package br.com.mind5.business.moonCalendar.dao;
+package br.com.mind5.business.calendarMoon.dao;
 
 import java.util.List;
 
-import br.com.mind5.business.moonCalendar.info.MooncalInfo;
+import br.com.mind5.business.calendarMoon.info.MooncalInfo;
 import br.com.mind5.dao.DaoColumn;
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoStmtWhere;
