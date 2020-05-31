@@ -1116,6 +1116,8 @@ public final class SystemCode {
 	
 	// Cart Reserve
 	public static final int CART_RESERVE_MANDATORY_FIELD_EMPTY			= 10650;
+	public static final int CART_RESERVE_ALREADY_EXIST					= 10651;
+	public static final int CART_RESERVE_NOT_FOUND						= 10652;
 	
 	// Cart Reserve Conflict
 	public static final int CART_RESERVE_CONFLICT_MANDATORY_FIELD_EMPTY	= 10700;
