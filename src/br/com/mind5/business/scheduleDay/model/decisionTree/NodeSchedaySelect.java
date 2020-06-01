@@ -77,6 +77,9 @@ public final class NodeSchedaySelect extends DeciTreeTemplateWriteV2<SchedayInfo
 		List<ActionStdV1<SchedayInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<SchedayInfo> mergeCalate = new StdSchedayMergeCalate(option);
+		ActionLazyV1<SchedayInfo> mergeCalimore = new LazySchedayMergeCalimore(option.conn, option.schemaName);
+		
+		mergeCalate.addPostAction(mergeCalimore);
 		
 		actions.add(mergeCalate);
 		return actions;
