@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.calendarTimeStore.info.CalimoreInfo;
-import br.com.mind5.business.calendarTimeStore.model.action.LazyCalimoreMergeStowotarch;
+import br.com.mind5.business.calendarTimeStore.model.action.LazyCalimoreNodeSelect;
 import br.com.mind5.business.calendarTimeStore.model.action.StdCalimoreMergeCalate;
 import br.com.mind5.business.calendarTimeStore.model.checker.CalimoreCheckOwner;
 import br.com.mind5.business.calendarTimeStore.model.checker.CalimoreCheckRead;
@@ -60,9 +60,9 @@ public final class RootCalimoreSelect extends DeciTreeTemplateWriteV2<CalimoreIn
 		List<ActionStdV1<CalimoreInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<CalimoreInfo> mergeCalate = new StdCalimoreMergeCalate(option);
-		ActionLazyV1<CalimoreInfo> mergeStowotarch = new LazyCalimoreMergeStowotarch(option.conn, option.schemaName);
+		ActionLazyV1<CalimoreInfo> select = new LazyCalimoreNodeSelect(option.conn, option.schemaName);
 		
-		mergeCalate.addPostAction(mergeStowotarch);
+		mergeCalate.addPostAction(select);
 		
 		actions.add(mergeCalate);
 		return actions;

@@ -4,14 +4,15 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.calendarTimeStore.info.CalimoreInfo;
+import br.com.mind5.business.calendarTimeStore.model.decisionTree.NodeCalimoreSelect;
 import br.com.mind5.model.action.ActionLazyTemplateV2;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyCalimoreMergeStowotarch extends ActionLazyTemplateV2<CalimoreInfo, CalimoreInfo> {
+public final class LazyCalimoreNodeSelect extends ActionLazyTemplateV2<CalimoreInfo, CalimoreInfo> {
 
-	public LazyCalimoreMergeStowotarch(Connection conn, String schemaName) {
+	public LazyCalimoreNodeSelect(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +25,7 @@ public final class LazyCalimoreMergeStowotarch extends ActionLazyTemplateV2<Cali
 	
 	
 	@Override protected ActionStdV1<CalimoreInfo> getInstanceOfActionHook(DeciTreeOption<CalimoreInfo> option) {
-		return new StdCalimoreMergeStowotarch(option);
+		return new NodeCalimoreSelect(option).toAction();
 	}
 	
 	
