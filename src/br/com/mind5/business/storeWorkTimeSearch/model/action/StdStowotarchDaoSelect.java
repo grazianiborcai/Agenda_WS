@@ -5,15 +5,15 @@ import br.com.mind5.model.action.ActionStdTemplateV2;
 import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdStowotarchMergeToSelect extends ActionStdTemplateV2<StowotarchInfo> {
+public final class StdStowotarchDaoSelect extends ActionStdTemplateV2<StowotarchInfo> {
 
-	public StdStowotarchMergeToSelect(DeciTreeOption<StowotarchInfo> option) {
+	public StdStowotarchDaoSelect(DeciTreeOption<StowotarchInfo> option) {
 		super(option);
 	}
 	
 	
 	
 	protected ActionVisitorV2<StowotarchInfo> buildVisitorHook(DeciTreeOption<StowotarchInfo> option) {
-		return new VisiStowotarchMergeToSelect(option);
+		return new VisiStowotarchDaoSelect(option);
 	}
 }

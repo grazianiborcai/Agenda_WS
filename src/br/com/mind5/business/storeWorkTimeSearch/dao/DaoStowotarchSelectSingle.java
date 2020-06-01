@@ -19,11 +19,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoJoinStore;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class StowotarchSelectSingle extends DaoStmtTemplate<StowotarchInfo> {
+public final class DaoStowotarchSelectSingle extends DaoStmtTemplate<StowotarchInfo> {
 	private final String MAIN_TABLE = DaoDbTable.STORE_WT_TABLE;		
 	
 	
-	public StowotarchSelectSingle(Connection conn, StowotarchInfo recordInfo, String schemaName) {
+	public DaoStowotarchSelectSingle(Connection conn, StowotarchInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -53,7 +53,7 @@ public final class StowotarchSelectSingle extends DaoStmtTemplate<StowotarchInfo
 		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new StowotarchWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new DaoStowotarchWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -81,12 +81,12 @@ public final class StowotarchSelectSingle extends DaoStmtTemplate<StowotarchInfo
 				do {
 					StowotarchInfo dataInfo = new StowotarchInfo();
 					
-					dataInfo.codOwner = stmtResult.getLong(StowotarchDbTableColumn.COL_COD_OWNER);
-					dataInfo.codStore = stmtResult.getLong(StowotarchDbTableColumn.COL_COD_STORE);
-					dataInfo.codWeekday = stmtResult.getInt(StowotarchDbTableColumn.COL_COD_WEEKDAY);
-					dataInfo.beginTime = DaoFormatter.sqlToLocalTime(stmtResult, StowotarchDbTableColumn.COL_BEGIN_TIME);
-					dataInfo.endTime = DaoFormatter.sqlToLocalTime(stmtResult, StowotarchDbTableColumn.COL_END_TIME);
-					dataInfo.recordMode = stmtResult.getString(StowotarchDbTableColumn.COL_RECORD_MODE);				
+					dataInfo.codOwner = stmtResult.getLong(DaoStowotarchDbTableColumn.COL_COD_OWNER);
+					dataInfo.codStore = stmtResult.getLong(DaoStowotarchDbTableColumn.COL_COD_STORE);
+					dataInfo.codWeekday = stmtResult.getInt(DaoStowotarchDbTableColumn.COL_COD_WEEKDAY);
+					dataInfo.beginTime = DaoFormatter.sqlToLocalTime(stmtResult, DaoStowotarchDbTableColumn.COL_BEGIN_TIME);
+					dataInfo.endTime = DaoFormatter.sqlToLocalTime(stmtResult, DaoStowotarchDbTableColumn.COL_END_TIME);
+					dataInfo.recordMode = stmtResult.getString(DaoStowotarchDbTableColumn.COL_RECORD_MODE);				
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

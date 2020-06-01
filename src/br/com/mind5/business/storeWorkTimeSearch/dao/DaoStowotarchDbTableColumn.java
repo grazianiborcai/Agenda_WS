@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class StowotarchDbTableColumn extends DaoDbTableColumnTemplate {
+public final class DaoStowotarchDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_BEGIN_TIME = DaoDbField.COL_BEGIN_TIME;	
 	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;	
 	public static final String COL_COD_STORE = DaoDbField.COL_COD_STORE;
@@ -18,26 +18,13 @@ public final class StowotarchDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_RECORD_MODE = DaoDbField.COL_RECORD_MODE;
 	
 	
-	
-	private Hashtable<String, List<DaoColumn>> tableColumns;	
-	
-	public StowotarchDbTableColumn() {
-		super(StowotarchDbTableColumn.class);
+	public DaoStowotarchDbTableColumn() {
+		super();
 	}
 	
 	
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
-		tableColumns = new Hashtable<>();
-		
-		buildStowotarchTable();
-		
-		return tableColumns;
-	}
-	
-	
-	
-	private void buildStowotarchTable() {
 		final String TABLE_NAME = DaoDbTable.STORE_WT_TABLE;
 		
 		DaoColumn oneColumn;
@@ -91,6 +78,8 @@ public final class StowotarchDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);	
 		
-		tableColumns.put(DaoDbTable.STORE_WTIME_SEARCH_VIEW, columns);
+		Hashtable<String, List<DaoColumn>> results = new Hashtable<>();
+		results.put(DaoDbTable.STORE_WTIME_SEARCH_VIEW, columns);
+		return results;
 	}
 }

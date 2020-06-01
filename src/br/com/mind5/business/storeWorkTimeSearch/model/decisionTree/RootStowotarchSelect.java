@@ -8,14 +8,15 @@ import br.com.mind5.business.storeWorkTimeSearch.model.action.StdStowotarchMerge
 import br.com.mind5.business.storeWorkTimeSearch.model.checker.StowotarchCheckLangu;
 import br.com.mind5.business.storeWorkTimeSearch.model.checker.StowotarchCheckOwner;
 import br.com.mind5.business.storeWorkTimeSearch.model.checker.StowotarchCheckRead;
+import br.com.mind5.business.storeWorkTimeSearch.model.checker.StowotarchCheckStore;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 
-public final class RootStowotarchSelect extends DeciTreeTemplateReadV1<StowotarchInfo> {
+public final class RootStowotarchSelect extends DeciTreeTemplateReadV2<StowotarchInfo> {
 	
 	public RootStowotarchSelect(DeciTreeOption<StowotarchInfo> option) {
 		super(option);
@@ -47,6 +48,13 @@ public final class RootStowotarchSelect extends DeciTreeTemplateReadV1<Stowotarc
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new StowotarchCheckLangu(checkerOption);
+		queue.add(checker);	
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
+		checker = new StowotarchCheckStore(checkerOption);
 		queue.add(checker);	
 		
 		return new ModelCheckerHelperQueueV2<>(queue);
