@@ -4,13 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.scheduleDayData.info.SchedaytaInfo;
-import br.com.mind5.business.scheduleDayData.model.action.LazySchedaytaMergeToSelect;
-import br.com.mind5.business.scheduleDayData.model.action.StdSchedaytaMergeSchedarch;
+import br.com.mind5.business.scheduleDayData.model.action.StdSchedaytaMergeToSelect;
 import br.com.mind5.business.scheduleDayData.model.checker.SchedaytaCheckLangu;
 import br.com.mind5.business.scheduleDayData.model.checker.SchedaytaCheckOwner;
 import br.com.mind5.business.scheduleDayData.model.checker.SchedaytaCheckRead;
 import br.com.mind5.business.scheduleDayData.model.checker.SchedaytaCheckStore;
-import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -67,12 +65,9 @@ public final class RootSchedaytaSelect extends DeciTreeTemplateWriteV2<Schedayta
 	@Override protected List<ActionStdV1<SchedaytaInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedaytaInfo> option) {
 		List<ActionStdV1<SchedaytaInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<SchedaytaInfo> mergeSchedarch = new StdSchedaytaMergeSchedarch(option);
-		ActionLazyV1<SchedaytaInfo> select = new LazySchedaytaMergeToSelect(option.conn, option.schemaName);
+		ActionStdV1<SchedaytaInfo> select = new StdSchedaytaMergeToSelect(option);
 		
-		mergeSchedarch.addPostAction(select);
-		
-		actions.add(mergeSchedarch);
+		actions.add(select);
 		return actions;
 	}
 }
