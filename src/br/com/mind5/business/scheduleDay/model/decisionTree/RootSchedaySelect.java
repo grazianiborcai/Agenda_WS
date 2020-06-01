@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.scheduleDay.info.SchedayInfo;
+import br.com.mind5.business.scheduleDay.model.checker.SchedayCheckCalate;
 import br.com.mind5.business.scheduleDay.model.checker.SchedayCheckOwner;
 import br.com.mind5.business.scheduleDay.model.checker.SchedayCheckRead;
 import br.com.mind5.business.scheduleDay.model.checker.SchedayCheckStore;
@@ -46,6 +47,13 @@ public final class RootSchedaySelect extends DeciTreeTemplateWriteV2<SchedayInfo
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
 		checker = new SchedayCheckStore(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new SchedayCheckCalate(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueueV2<>(queue);

@@ -83,5 +83,5 @@ public final class NodeSchedaySelect extends DeciTreeTemplateWriteV2<SchedayInfo
 		
 		actions.add(mergeCalate);
 		return actions;
-	}
+	} 
 }
