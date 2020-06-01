@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import br.com.mind5.business.calendarDate.info.CalateInfo;
+import br.com.mind5.business.calendarTimeStore.info.CalimoreInfo;
 import br.com.mind5.business.customerList.info.CuslisInfo;
 import br.com.mind5.business.employeeList.info.EmplisInfo;
 import br.com.mind5.business.materialList.info.MatlisInfo;
@@ -25,6 +26,7 @@ public final class SchedayInfo extends InfoRecord implements Cloneable {
 	public List<CuslisInfo> cuslises;
 	public List<SchedatusInfo> schedatuses;
 	public List<CalateInfo> calates;
+	public List<CalimoreInfo> calimores;
 	public String username;	
 	
 	
@@ -41,6 +43,7 @@ public final class SchedayInfo extends InfoRecord implements Cloneable {
 		cuslises = DefaultValue.list();
 		schedatuses = DefaultValue.list();
 		calates = DefaultValue.list();
+		calimores = DefaultValue.list();
 	}
 	
 	
@@ -67,6 +70,7 @@ public final class SchedayInfo extends InfoRecord implements Cloneable {
 		deepCopy.cuslises = CloneUtil.cloneRecords(cuslises, this.getClass());
 		deepCopy.schedatuses = CloneUtil.cloneRecords(schedatuses, this.getClass());
 		deepCopy.calates = CloneUtil.cloneRecords(calates, this.getClass());
+		deepCopy.calimores = CloneUtil.cloneRecords(calimores, this.getClass());
 		
 		return deepCopy;
 	}

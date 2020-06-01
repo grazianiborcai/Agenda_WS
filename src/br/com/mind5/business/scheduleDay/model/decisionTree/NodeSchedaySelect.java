@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.scheduleDay.info.SchedayInfo;
 import br.com.mind5.business.scheduleDay.model.action.LazySchedayMergeCalate;
+import br.com.mind5.business.scheduleDay.model.action.LazySchedayMergeCalimore;
 import br.com.mind5.business.scheduleDay.model.action.LazySchedayMergeCuslis;
 import br.com.mind5.business.scheduleDay.model.action.LazySchedayMergeEmplis;
 import br.com.mind5.business.scheduleDay.model.action.LazySchedayMergeMatlis;
@@ -56,6 +57,7 @@ public final class NodeSchedaySelect extends DeciTreeTemplateWriteV2<SchedayInfo
 		ActionLazyV1<SchedayInfo> mergeCuslis = new LazySchedayMergeCuslis(option.conn, option.schemaName);
 		ActionLazyV1<SchedayInfo> mergeSchedatus = new LazySchedayMergeSchedatus(option.conn, option.schemaName);
 		ActionLazyV1<SchedayInfo> mergeCalate = new LazySchedayMergeCalate(option.conn, option.schemaName);
+		ActionLazyV1<SchedayInfo> mergeCalimore = new LazySchedayMergeCalimore(option.conn, option.schemaName);
 		
 		mergeSchedayta.addPostAction(mergeStolis);
 		mergeStolis.addPostAction(mergeMatlis);
@@ -63,6 +65,7 @@ public final class NodeSchedaySelect extends DeciTreeTemplateWriteV2<SchedayInfo
 		mergeEmplis.addPostAction(mergeCuslis);
 		mergeCuslis.addPostAction(mergeSchedatus);
 		mergeSchedatus.addPostAction(mergeCalate);
+		mergeCalate.addPostAction(mergeCalimore);
 		
 		actions.add(mergeSchedayta);
 		return actions;

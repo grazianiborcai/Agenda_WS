@@ -3,6 +3,7 @@ package br.com.mind5.business.scheduleDay.info;
 import java.util.List;
 
 import br.com.mind5.business.calendarDate.info.CalateInfo;
+import br.com.mind5.business.calendarTimeStore.info.CalimoreInfo;
 import br.com.mind5.business.customerList.info.CuslisInfo;
 import br.com.mind5.business.employeeList.info.EmplisInfo;
 import br.com.mind5.business.materialList.info.MatlisInfo;
@@ -13,6 +14,19 @@ import br.com.mind5.info.InfoMergerV3;
 import br.com.mind5.masterData.scheduleStatus.info.SchedatusInfo;
 
 public final class SchedayMerger {
+	public static List<SchedayInfo> mergeWithCalimore(List<SchedayInfo> baseInfos, List<CalimoreInfo> selectedInfos) {
+		InfoMergerBuilderV3<SchedayInfo, CalimoreInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new SchedayVisiMergeCalimore());
+		InfoMergerV3<SchedayInfo, CalimoreInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	
 	public static List<SchedayInfo> mergeWithCalate(List<SchedayInfo> baseInfos, List<CalateInfo> selectedInfos) {
 		InfoMergerBuilderV3<SchedayInfo, CalateInfo> builder = new InfoMergerBuilderV3<>();
 		
