@@ -16,9 +16,7 @@ import br.com.mind5.info.InfoRecord;
 public final class SchedeekInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codStore;
-	public int year;
-	public int month;
-	public int weekMonth;
+	public int weekYear;
 	public List<SchedeekdatInfo> schedeekdates;
 	public List<StolisInfo> stolises;
 	public List<CuslisInfo> cuslises;
@@ -34,9 +32,7 @@ public final class SchedeekInfo extends InfoRecord implements Cloneable {
 		
 		codOwner = DefaultValue.number();	
 		codStore = DefaultValue.number();
-		year = DefaultValue.number();
-		month = DefaultValue.number();
-		weekMonth = DefaultValue.number();
+		weekYear = DefaultValue.number();
 		schedeekdates = DefaultValue.list();
 		stolises = DefaultValue.list();
 		matlises = DefaultValue.list();
@@ -81,9 +77,7 @@ public final class SchedeekInfo extends InfoRecord implements Cloneable {
 		
 		result = result * 31 + (int) (codOwner    ^ (codOwner    >>> 32));
 		result = result * 31 + (int) (codStore 	  ^ (codStore 	 >>> 32));
-		result = result * 31 + (int) (year 	  	  ^ (year 	 	 >>> 32));
-		result = result * 31 + (int) (month	  	  ^ (month 	 	 >>> 32));
-		result = result * 31 + (int) (weekMonth	  ^ (weekMonth 	 >>> 32));
+		result = result * 31 + (int) (weekYear	  ^ (weekYear 	 >>> 32));
 		
 		return result;
 	}
@@ -102,8 +96,6 @@ public final class SchedeekInfo extends InfoRecord implements Cloneable {
 		SchedeekInfo obj = (SchedeekInfo) o;		
 		return (codOwner    == obj.codOwner		&& 
 				codStore    == obj.codStore		&&
-				year    	== obj.year			&&
-				month    	== obj.month		&&
-				weekMonth   == obj.weekMonth);
+				weekYear   == obj.weekYear);
 	}
 }

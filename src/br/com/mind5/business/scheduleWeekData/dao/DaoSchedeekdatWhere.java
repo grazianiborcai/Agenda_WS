@@ -35,16 +35,8 @@ public final class DaoSchedeekdatWhere implements DaoStmtWhere {
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codStore));
 					break;
 					
-				case DaoSchedeekdatDbTableColumn.COL_YEAR :
-					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.year));
-					break;
-					
-				case DaoSchedeekdatDbTableColumn.COL_MONTH :
-					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.month));
-					break;
-					
-				case DaoSchedeekdatDbTableColumn.COL_WEEK_MONTH :
-					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.weekMonth));
+				case DaoSchedeekdatDbTableColumn.COL_WEEK_YEAR :
+					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.weekYear));
 					break;
 			}
 		}		

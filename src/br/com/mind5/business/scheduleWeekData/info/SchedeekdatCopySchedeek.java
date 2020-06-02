@@ -18,9 +18,7 @@ final class SchedeekdatCopySchedeek extends InfoCopierTemplate<SchedeekdatInfo, 
 			result.codOwner = source.codOwner;
 			result.codStore = source.codStore;
 			result.codStore = source.codStore;
-			result.year = source.year;
-			result.month = source.month;
-			result.weekMonth = source.weekMonth;
+			result.weekYear = source.weekYear;
 			result.codLanguage = source.codLanguage;
 			result.username = source.username;
 		

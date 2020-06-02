@@ -18,9 +18,7 @@ final class SchedeekVisiMergeSchedeekdat implements InfoMergerVisitorV3<Schedeek
 	@Override public boolean shouldMerge(SchedeekInfo baseInfo, SchedeekdatInfo selectedInfo) {
 		return (baseInfo.codOwner 	== selectedInfo.codOwner  && 
 				baseInfo.codStore 	== selectedInfo.codStore  &&
-				baseInfo.year     	== selectedInfo.year	  &&
-				baseInfo.month    	== selectedInfo.month	  &&
-				baseInfo.weekMonth  == selectedInfo.weekMonth	);
+				baseInfo.weekYear  == selectedInfo.weekYear	);
 	}
 	
 	
