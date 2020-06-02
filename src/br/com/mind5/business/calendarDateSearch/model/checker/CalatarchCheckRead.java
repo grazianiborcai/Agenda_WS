@@ -16,10 +16,18 @@ public final class CalatarchCheckRead extends ModelCheckerTemplateSimpleV2<Calat
 	
 	
 	@Override protected boolean checkHook(CalatarchInfo recordInfo, Connection conn, String schemaName) {	
-		if ( recordInfo.year		<= 0 	||
-			 recordInfo.month		<= 0 	||
-			 recordInfo.codLanguage == null	||
+		if ( recordInfo.codLanguage == null	||
 			 recordInfo.username 	== null		)	
+			
+			return super.FAILED;
+		
+		
+		if ( recordInfo.weekYear > 0 )				
+			return super.SUCCESS;
+		
+		
+		if ( recordInfo.year  <= 0 	&&
+			 recordInfo.month <= 0		)	
 			
 			return super.FAILED;
 		

@@ -37,6 +37,10 @@ final class DaoCalatarchWhere implements DaoStmtWhere {
 				case DaoCalatarchDbTableColumn.COL_WEEK_MONTH :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.weekMonth));
 					break;
+					
+				case DaoCalatarchDbTableColumn.COL_WEEK_YEAR :
+					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.weekYear));
+					break;
 			}
 		}		
 			

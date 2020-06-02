@@ -1284,6 +1284,8 @@ public final class SystemCode {
 	
 	//Calendar Date Search
 	public static final int CALENDAR_DATE_SEARCH_MANDATORY_FIELD_EMPTY 	= 12500;
+	public static final int CALENDAR_DATE_SEARCH_NOT_FOUND				= 12501;
+	public static final int CALENDAR_DATE_SEARCH_ALREADY_EXIST			= 12502;
 	
 	// Calendar Time Store
 	public static final int CAL_TIME_STORE_MANDATORY_FIELD_EMPTY		= 12550;
