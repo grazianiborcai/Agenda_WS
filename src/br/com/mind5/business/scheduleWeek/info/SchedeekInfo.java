@@ -3,6 +3,7 @@ package br.com.mind5.business.scheduleWeek.info;
 import java.util.List;
 
 import br.com.mind5.business.calendarDate.info.CalateInfo;
+import br.com.mind5.business.calendarTimeStore.info.CalimoreInfo;
 import br.com.mind5.business.customerList.info.CuslisInfo;
 import br.com.mind5.business.employeeList.info.EmplisInfo;
 import br.com.mind5.business.materialList.info.MatlisInfo;
@@ -24,6 +25,7 @@ public final class SchedeekInfo extends InfoRecord implements Cloneable {
 	public List<MatlisInfo> matlises;
 	public List<EmplisInfo> emplises;
 	public List<CalateInfo> calates;
+	public List<CalimoreInfo> calimores;
 	public String username;
 	
 	
@@ -41,6 +43,7 @@ public final class SchedeekInfo extends InfoRecord implements Cloneable {
 		emplises = DefaultValue.list();
 		cuslises = DefaultValue.list();
 		calates = DefaultValue.list();
+		calimores = DefaultValue.list();
 	}
 	
 	
@@ -66,6 +69,7 @@ public final class SchedeekInfo extends InfoRecord implements Cloneable {
 		deepCopy.emplises = CloneUtil.cloneRecords(emplises, this.getClass());
 		deepCopy.cuslises = CloneUtil.cloneRecords(cuslises, this.getClass());
 		deepCopy.calates = CloneUtil.cloneRecords(calates, this.getClass());
+		deepCopy.calimores = CloneUtil.cloneRecords(calimores, this.getClass());
 		
 		return deepCopy;
 	}

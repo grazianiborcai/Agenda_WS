@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.scheduleWeek.info.SchedeekInfo;
 import br.com.mind5.business.scheduleWeek.model.action.LazySchedeekMergeCalate;
+import br.com.mind5.business.scheduleWeek.model.action.LazySchedeekMergeCalimore;
 import br.com.mind5.business.scheduleWeek.model.action.LazySchedeekMergeCuslis;
 import br.com.mind5.business.scheduleWeek.model.action.LazySchedeekMergeEmplis;
 import br.com.mind5.business.scheduleWeek.model.action.LazySchedeekMergeMatlis;
@@ -54,12 +55,14 @@ public final class NodeSchedeekSelect extends DeciTreeTemplateWriteV2<SchedeekIn
 		ActionLazyV1<SchedeekInfo> mergeEmplis = new LazySchedeekMergeEmplis(option.conn, option.schemaName);
 		ActionLazyV1<SchedeekInfo> mergeCuslis = new LazySchedeekMergeCuslis(option.conn, option.schemaName);
 		ActionLazyV1<SchedeekInfo> mergeCalate = new LazySchedeekMergeCalate(option.conn, option.schemaName);
+		ActionLazyV1<SchedeekInfo> mergeCalimore = new LazySchedeekMergeCalimore(option.conn, option.schemaName);
 		
 		mergeSchedeekdat.addPostAction(mergeStolis);
 		mergeStolis.addPostAction(mergeMatlis);
 		mergeMatlis.addPostAction(mergeEmplis);
 		mergeEmplis.addPostAction(mergeCuslis);
 		mergeCuslis.addPostAction(mergeCalate);
+		mergeCalate.addPostAction(mergeCalimore);
 		
 		actions.add(mergeSchedeekdat);
 		return actions;
@@ -71,6 +74,9 @@ public final class NodeSchedeekSelect extends DeciTreeTemplateWriteV2<SchedeekIn
 		List<ActionStdV1<SchedeekInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<SchedeekInfo> mergeCalate = new StdSchedeekMergeCalate(option);
+		ActionLazyV1<SchedeekInfo> mergeCalimore = new LazySchedeekMergeCalimore(option.conn, option.schemaName);
+		
+		mergeCalate.addPostAction(mergeCalimore);
 		
 		actions.add(mergeCalate);
 		return actions;
