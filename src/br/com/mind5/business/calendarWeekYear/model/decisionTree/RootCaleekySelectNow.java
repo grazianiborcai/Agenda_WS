@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.calendarWeekYear.info.CaleekyInfo;
 import br.com.mind5.business.calendarWeekYear.model.action.LazyCaleekyRootSelect;
-import br.com.mind5.business.calendarWeekYear.model.action.StdCalateEnforceNow;
+import br.com.mind5.business.calendarWeekYear.model.action.StdCaleekyMergeNow;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
@@ -37,12 +37,12 @@ public final class RootCaleekySelectNow extends DeciTreeTemplateReadV2<CaleekyIn
 	@Override protected List<ActionStdV1<CaleekyInfo>> buildActionsOnPassedHook(DeciTreeOption<CaleekyInfo> option) {
 		List<ActionStdV1<CaleekyInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<CaleekyInfo> enforceNow = new StdCalateEnforceNow(option);
+		ActionStdV1<CaleekyInfo> mergeNow = new StdCaleekyMergeNow(option);
 		ActionLazyV1<CaleekyInfo> select = new LazyCaleekyRootSelect(option.conn, option.schemaName);
 		
-		enforceNow.addPostAction(select);
+		mergeNow.addPostAction(select);
 		
-		actions.add(enforceNow);
+		actions.add(mergeNow);
 		return actions;
 	}
 }
