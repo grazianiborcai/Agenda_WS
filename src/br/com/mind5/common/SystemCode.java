@@ -1289,4 +1289,9 @@ public final class SystemCode {
 	
 	// Calendar Time Store
 	public static final int CAL_TIME_STORE_MANDATORY_FIELD_EMPTY		= 12550;
+	
+	//Calendar Week Year
+	public static final int CAL_WEEK_YEAR_ALREADY_EXIST					= 12600;
+	public static final int CAL_WEEK_YEAR_NOT_FOUND						= 12601;
+	public static final int CAL_WEEK_YEAR_MANDATORY_FIELD_EMPTY 		= 12602;
 }

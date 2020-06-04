@@ -12,6 +12,7 @@ public final class DaoDbTable {
 	public static final String BUSINESS_AREA_TABLE = "business_area";
 	public static final String BUSINESS_AREA_TEXT_TABLE = "business_area_text";	
 	public static final String CALENDAR_DATE_TABLE = "calendar_date";	
+	public static final String CALENDAR_WEEK_YEAR_TABLE = "calendar_week_year";	
 	public static final String CART_HDR_TABLE = "shop_cart_header";
 	public static final String CART_HDR_SNAPSHOT_TABLE = "shop_cart_header_snapshot";
 	public static final String CART_ITM_CATEG_TABLE = "shop_cart_categ";
