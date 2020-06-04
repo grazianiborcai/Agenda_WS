@@ -33,6 +33,9 @@ import br.com.mind5.business.scheduleRange.info.SchedageInfo;
 import br.com.mind5.business.scheduleRange.model.SchedageModelSelect;
 import br.com.mind5.business.scheduleWeek.info.SchedeekInfo;
 import br.com.mind5.business.scheduleWeek.model.SchedeekModelSelect;
+import br.com.mind5.business.scheduleWeek.model.SchedeekModelSelectNext;
+import br.com.mind5.business.scheduleWeek.model.SchedeekModelSelectNow;
+import br.com.mind5.business.scheduleWeek.model.SchedeekModelSelectPrevious;
 import br.com.mind5.business.scheduleYear.info.SchedyearInfo;
 import br.com.mind5.business.scheduleYear.model.SchedyearModelSelect;
 import br.com.mind5.model.Model;
@@ -48,6 +51,9 @@ public final class ScheduleResource {
 	private static final String SELECT_SCHEDULE_YEAR = "/selectScheduleYear";
 	private static final String SELECT_SCHEDULE_MONTH = "/selectScheduleMonth";
 	private static final String SELECT_SCHEDULE_WEEK = "/selectScheduleWeek";
+	private static final String SELECT_SCHEDULE_WEEK_NEXT = "/selectScheduleWeekNext";
+	private static final String SELECT_SCHEDULE_WEEK_NOW = "/selectScheduleWeekNow";
+	private static final String SELECT_SCHEDULE_WEEK_PREVIOUS = "/selectScheduleWeekPrevious";
 	private static final String SELECT_SCHEDULE_DAY = "/selectScheduleDay";
 	private static final String SELECT_SCHEDULE_DAY_NEXT = "/selectScheduleDayNext";
 	private static final String SELECT_SCHEDULE_DAY_NOW = "/selectScheduleDayNow";
@@ -242,6 +248,85 @@ public final class ScheduleResource {
 		
 		return result;
 	}		
+	
+	
+	
+	@GET
+	@Path(SELECT_SCHEDULE_WEEK_NEXT)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response selectSchedWeekNext(@HeaderParam("TOKEN_OWNER")    @DefaultValue("-1") long codOwner, 
+			                            @HeaderParam("codStore")       @DefaultValue("-1") long codStore,
+			                            @HeaderParam("weekYear")       @DefaultValue("-1") int weekYear,
+								        @HeaderParam("TOKEN_USERNAME") String username,
+								        @HeaderParam("codLanguage")    @DefaultValue("EN") String codLanguage) {
+		
+		SchedeekInfo recordInfo = new SchedeekInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.codStore = codStore;
+		recordInfo.codStore = codStore;
+		recordInfo.weekYear = weekYear;
+		recordInfo.username = username;
+		recordInfo.codLanguage = codLanguage;		
+		
+		Model model = new SchedeekModelSelectNext(recordInfo);
+		model.executeRequest();
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
+	}		
+	
+	
+	
+	@GET
+	@Path(SELECT_SCHEDULE_WEEK_NOW)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response selectSchedWeekNow(@HeaderParam("TOKEN_OWNER")    @DefaultValue("-1") long codOwner, 
+			                           @HeaderParam("codStore")       @DefaultValue("-1") long codStore,
+								       @HeaderParam("TOKEN_USERNAME") String username,
+								       @HeaderParam("codLanguage")    @DefaultValue("EN") String codLanguage) {
+		
+		SchedeekInfo recordInfo = new SchedeekInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.codStore = codStore;
+		recordInfo.codStore = codStore;
+		recordInfo.username = username;
+		recordInfo.codLanguage = codLanguage;		
+		
+		Model model = new SchedeekModelSelectNow(recordInfo);
+		model.executeRequest();
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
+	}		
+	
+	
+	
+	@GET
+	@Path(SELECT_SCHEDULE_WEEK_PREVIOUS)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response selectSchedWeekPrevious(@HeaderParam("TOKEN_OWNER")    @DefaultValue("-1") long codOwner, 
+			                                @HeaderParam("codStore")       @DefaultValue("-1") long codStore,
+			                                @HeaderParam("weekYear")       @DefaultValue("-1") int weekYear,
+								            @HeaderParam("TOKEN_USERNAME") String username,
+								            @HeaderParam("codLanguage")    @DefaultValue("EN") String codLanguage) {
+		
+		SchedeekInfo recordInfo = new SchedeekInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.codStore = codStore;
+		recordInfo.codStore = codStore;
+		recordInfo.weekYear = weekYear;
+		recordInfo.username = username;
+		recordInfo.codLanguage = codLanguage;		
+		
+		Model model = new SchedeekModelSelectPrevious(recordInfo);
+		model.executeRequest();
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
+	}	
 	
 	
 	

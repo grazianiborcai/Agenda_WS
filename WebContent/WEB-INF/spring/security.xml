@@ -126,7 +126,10 @@
         <security:intercept-url pattern="/**/Schedule/selectScheduleLine"			access="hasAuthority('SCHEDULE_READ')" 				/>  
         <security:intercept-url pattern="/**/Schedule/selectScheduleYear"			access="hasAuthority('SCHEDULE_READ')"				/> 
         <security:intercept-url pattern="/**/Schedule/selectScheduleMonth"			access="hasAuthority('SCHEDULE_READ')"				/> 
-        <security:intercept-url pattern="/**/Schedule/selectScheduleWeek"			access="hasAuthority('SCHEDULE_READ')"				/> 
+        <security:intercept-url pattern="/**/Schedule/selectScheduleWeek"			access="hasAuthority('SCHEDULE_READ')"				/>         
+        <security:intercept-url pattern="/**/Schedule/selectScheduleWeekNext"		access="hasAuthority('SCHEDULE_READ')"				/> 
+        <security:intercept-url pattern="/**/Schedule/selectScheduleWeekNow"		access="hasAuthority('SCHEDULE_READ')"				/> 
+        <security:intercept-url pattern="/**/Schedule/selectScheduleWeekPrevious"	access="hasAuthority('SCHEDULE_READ')"				/>         
         <security:intercept-url pattern="/**/Schedule/selectScheduleDay"			access="hasAuthority('SCHEDULE_READ')"				/> 
         <security:intercept-url pattern="/**/Schedule/selectScheduleDayNext"		access="hasAuthority('SCHEDULE_READ')"				/> 
         <security:intercept-url pattern="/**/Schedule/selectScheduleDayNow"			access="hasAuthority('SCHEDULE_READ')"				/> 

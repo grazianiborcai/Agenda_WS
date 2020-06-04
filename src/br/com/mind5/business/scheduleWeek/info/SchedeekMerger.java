@@ -4,6 +4,7 @@ import java.util.List;
 
 import br.com.mind5.business.calendarDate.info.CalateInfo;
 import br.com.mind5.business.calendarTimeStore.info.CalimoreInfo;
+import br.com.mind5.business.calendarWeekYear.info.CaleekyInfo;
 import br.com.mind5.business.customerList.info.CuslisInfo;
 import br.com.mind5.business.employeeList.info.EmplisInfo;
 import br.com.mind5.business.materialList.info.MatlisInfo;
@@ -33,6 +34,19 @@ public final class SchedeekMerger {
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new SchedeekVisiMergeCalate());
 		InfoMergerV3<SchedeekInfo, CalateInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	
+	public static List<SchedeekInfo> mergeWithCaleeky(List<SchedeekInfo> baseInfos, List<CaleekyInfo> selectedInfos) {
+		InfoMergerBuilderV3<SchedeekInfo, CaleekyInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new SchedeekVisiMergeCaleeky());
+		InfoMergerV3<SchedeekInfo, CaleekyInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}
