@@ -41,6 +41,9 @@ import br.com.mind5.business.scheduleWeek.model.SchedeekModelSelectNow;
 import br.com.mind5.business.scheduleWeek.model.SchedeekModelSelectPrevious;
 import br.com.mind5.business.scheduleYear.info.SchedyearInfo;
 import br.com.mind5.business.scheduleYear.model.SchedyearModelSelect;
+import br.com.mind5.business.scheduleYear.model.SchedyearModelSelectNext;
+import br.com.mind5.business.scheduleYear.model.SchedyearModelSelectNow;
+import br.com.mind5.business.scheduleYear.model.SchedyearModelSelectPrevious;
 import br.com.mind5.model.Model;
 
 @Path("/Schedule")
@@ -51,7 +54,6 @@ public final class ScheduleResource {
 	private static final String SEARCH_SCHEDULE_LINE = "/searchScheduleLine";	
 	private static final String SELECT_SCHEDULE_LINE = "/selectScheduleLine";
 	private static final String CANCEL_SCHEDULE_LINE = "/cancelScheduleLine";
-	private static final String SELECT_SCHEDULE_YEAR = "/selectScheduleYear";
 	private static final String SELECT_SCHEDULE_MONTH = "/selectScheduleMonth";	
 	private static final String SELECT_SCHEDULE_MONTH_NEXT = "/selectScheduleMonthNext";
 	private static final String SELECT_SCHEDULE_MONTH_NOW = "/selectScheduleMonthNow";
@@ -65,6 +67,10 @@ public final class ScheduleResource {
 	private static final String SELECT_SCHEDULE_DAY_NOW = "/selectScheduleDayNow";
 	private static final String SELECT_SCHEDULE_DAY_PREVIOUS = "/selectScheduleDayPrevious";
 	private static final String SELECT_SCHEDULE_RANGE = "/selectScheduleRange";
+	private static final String SELECT_SCHEDULE_YEAR = "/selectScheduleYear";
+	private static final String SELECT_SCHEDULE_YEAR_NEXT = "/selectScheduleYearNext";
+	private static final String SELECT_SCHEDULE_YEAR_NOW = "/selectScheduleYearNow";
+	private static final String SELECT_SCHEDULE_YEAR_PREVIOUS = "/selectScheduleYearPrevious";
 	
 	
 	@POST
@@ -192,6 +198,82 @@ public final class ScheduleResource {
 		recordInfo.codLanguage = codLanguage;		
 		
 		Model model = new SchedyearModelSelect(recordInfo);
+		model.executeRequest();
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
+	}	
+	
+	
+	
+	@GET
+	@Path(SELECT_SCHEDULE_YEAR_NEXT)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response selectSchedyearNext(@HeaderParam("TOKEN_OWNER")    	@DefaultValue("-1") long codOwner, 
+			                            @HeaderParam("codStore")    	@DefaultValue("-1") long codStore,
+			                            @HeaderParam("year")    		@DefaultValue("-1") int year,
+								        @HeaderParam("TOKEN_USERNAME") 	String username,
+								        @HeaderParam("codLanguage")     @DefaultValue("EN") String codLanguage) {
+		
+		SchedyearInfo recordInfo = new SchedyearInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.codStore = codStore;
+		recordInfo.year = year;
+		recordInfo.username = username;
+		recordInfo.codLanguage = codLanguage;		
+		
+		Model model = new SchedyearModelSelectNext(recordInfo);
+		model.executeRequest();
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
+	}	
+	
+	
+	
+	@GET
+	@Path(SELECT_SCHEDULE_YEAR_NOW)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response selectSchedyearNow(@HeaderParam("TOKEN_OWNER")    	@DefaultValue("-1") long codOwner, 
+			                           @HeaderParam("codStore")    		@DefaultValue("-1") long codStore,
+								       @HeaderParam("TOKEN_USERNAME") 	String username,
+								       @HeaderParam("codLanguage")     	@DefaultValue("EN") String codLanguage) {
+		
+		SchedyearInfo recordInfo = new SchedyearInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.codStore = codStore;
+		recordInfo.username = username;
+		recordInfo.codLanguage = codLanguage;		
+		
+		Model model = new SchedyearModelSelectNow(recordInfo);
+		model.executeRequest();
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
+	}	
+	
+	
+	
+	@GET
+	@Path(SELECT_SCHEDULE_YEAR_PREVIOUS)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response selectSchedyearPrevious(@HeaderParam("TOKEN_OWNER")    	@DefaultValue("-1") long codOwner, 
+			                                @HeaderParam("codStore")    	@DefaultValue("-1") long codStore,
+			                                @HeaderParam("year")    		@DefaultValue("-1") int year,
+								            @HeaderParam("TOKEN_USERNAME") 	String username,
+								            @HeaderParam("codLanguage")     @DefaultValue("EN") String codLanguage) {
+		
+		SchedyearInfo recordInfo = new SchedyearInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.codStore = codStore;
+		recordInfo.year = year;
+		recordInfo.username = username;
+		recordInfo.codLanguage = codLanguage;		
+		
+		Model model = new SchedyearModelSelectPrevious(recordInfo);
 		model.executeRequest();
 		Response result = model.getResponse();	
 		model.close();
