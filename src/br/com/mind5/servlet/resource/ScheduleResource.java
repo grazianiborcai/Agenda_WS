@@ -17,7 +17,9 @@ import javax.ws.rs.core.Response;
 
 import br.com.mind5.business.scheduleDay.info.SchedayInfo;
 import br.com.mind5.business.scheduleDay.model.SchedayModelSelect;
+import br.com.mind5.business.scheduleDay.model.SchedayModelSelectNext;
 import br.com.mind5.business.scheduleDay.model.SchedayModelSelectNow;
+import br.com.mind5.business.scheduleDay.model.SchedayModelSelectPrevious;
 import br.com.mind5.business.scheduleLine.info.SchedineInfo;
 import br.com.mind5.business.scheduleLine.model.SchedineModelCancel;
 import br.com.mind5.business.scheduleLine.model.SchedineModelInsert;
@@ -47,7 +49,9 @@ public final class ScheduleResource {
 	private static final String SELECT_SCHEDULE_MONTH = "/selectScheduleMonth";
 	private static final String SELECT_SCHEDULE_WEEK = "/selectScheduleWeek";
 	private static final String SELECT_SCHEDULE_DAY = "/selectScheduleDay";
+	private static final String SELECT_SCHEDULE_DAY_NEXT = "/selectScheduleDayNext";
 	private static final String SELECT_SCHEDULE_DAY_NOW = "/selectScheduleDayNow";
+	private static final String SELECT_SCHEDULE_DAY_PREVIOUS = "/selectScheduleDayPrevious";
 	private static final String SELECT_SCHEDULE_RANGE = "/selectScheduleRange";
 	
 	
@@ -268,6 +272,32 @@ public final class ScheduleResource {
 	
 	
 	@GET
+	@Path(SELECT_SCHEDULE_DAY_NEXT)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response selectSchedDayNext(@HeaderParam("TOKEN_OWNER")    	@DefaultValue("-1") long codOwner, 
+			                           @HeaderParam("codStore")    		@DefaultValue("-1") long codStore,
+			                           @HeaderParam("date")    			@DefaultValue("1900-01-01") String date,
+								       @HeaderParam("TOKEN_USERNAME") 	String username,
+								       @HeaderParam("codLanguage")    	@DefaultValue("EN") String codLanguage) {
+		
+		SchedayInfo recordInfo = new SchedayInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.codStore = codStore;
+		recordInfo.date = LocalDate.parse(date, DateTimeFormatter.ISO_LOCAL_DATE);
+		recordInfo.username = username;
+		recordInfo.codLanguage = codLanguage;		
+		
+		Model model = new SchedayModelSelectNext(recordInfo);
+		model.executeRequest();
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
+	}
+	
+	
+	
+	@GET
 	@Path(SELECT_SCHEDULE_DAY_NOW)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response selectSchedDayNow(@HeaderParam("TOKEN_OWNER")    	@DefaultValue("-1") long codOwner, 
@@ -288,6 +318,32 @@ public final class ScheduleResource {
 		
 		return result;
 	}	
+	
+	
+	
+	@GET
+	@Path(SELECT_SCHEDULE_DAY_PREVIOUS)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response selectSchedDayPrevious(@HeaderParam("TOKEN_OWNER")    	@DefaultValue("-1") long codOwner, 
+			                               @HeaderParam("codStore")    		@DefaultValue("-1") long codStore,
+			                               @HeaderParam("date")    			@DefaultValue("1900-01-01") String date,
+								           @HeaderParam("TOKEN_USERNAME") 	String username,
+								           @HeaderParam("codLanguage")    	@DefaultValue("EN") String codLanguage) {
+		
+		SchedayInfo recordInfo = new SchedayInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.codStore = codStore;
+		recordInfo.date = LocalDate.parse(date, DateTimeFormatter.ISO_LOCAL_DATE);
+		recordInfo.username = username;
+		recordInfo.codLanguage = codLanguage;		
+		
+		Model model = new SchedayModelSelectPrevious(recordInfo);
+		model.executeRequest();
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
+	}
 	
 	
 	

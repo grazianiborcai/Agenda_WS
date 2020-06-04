@@ -7,7 +7,7 @@ import br.com.mind5.business.calendarDate.info.CalateInfo;
 import br.com.mind5.info.InfoMergerVisitorV3;
 import br.com.mind5.info.InfoUniquifier;
 
-final class SchedayVisiMergeNow implements InfoMergerVisitorV3<SchedayInfo, CalateInfo> {
+final class SchedayVisiMergeDate implements InfoMergerVisitorV3<SchedayInfo, CalateInfo> {
 	
 	@Override public List<SchedayInfo> beforeMerge(List<SchedayInfo> baseInfos) {
 		return baseInfos;

@@ -40,12 +40,12 @@ public final class SchedayMerger {
 	
 	
 	
-	public static List<SchedayInfo> mergeWithNow(List<SchedayInfo> baseInfos, List<CalateInfo> selectedInfos) {
+	public static List<SchedayInfo> mergeWithDate(List<SchedayInfo> baseInfos, List<CalateInfo> selectedInfos) {
 		InfoMergerBuilderV3<SchedayInfo, CalateInfo> builder = new InfoMergerBuilderV3<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new SchedayVisiMergeNow());
+		builder.addVisitor(new SchedayVisiMergeDate());
 		InfoMergerV3<SchedayInfo, CalateInfo> merger = builder.build();		
 	
 		return merger.merge();
