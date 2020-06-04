@@ -6,11 +6,12 @@ import java.util.List;
 import br.com.mind5.business.calendarDate.info.CalateInfo;
 import br.com.mind5.business.calendarDate.model.action.LazyCalateRootSelect;
 import br.com.mind5.business.calendarDate.model.action.StdCalateEnforceNext;
+import br.com.mind5.business.calendarDate.model.checker.CalateCheckRead;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 
@@ -25,8 +26,13 @@ public final class RootCalateSelectNext extends DeciTreeTemplateReadV2<CalateInf
 	@Override protected ModelCheckerV1<CalateInfo> buildCheckerHook(DeciTreeOption<CalateInfo> option) {
 		List<ModelCheckerV1<CalateInfo>> queue = new ArrayList<>();		
 		ModelCheckerV1<CalateInfo> checker;
-
-		checker = new ModelCheckerDummy<>();
+		ModelCheckerOption checkerOption;	
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new CalateCheckRead(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueueV2<>(queue);
