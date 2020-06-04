@@ -17,6 +17,7 @@ import javax.ws.rs.core.Response;
 
 import br.com.mind5.business.scheduleDay.info.SchedayInfo;
 import br.com.mind5.business.scheduleDay.model.SchedayModelSelect;
+import br.com.mind5.business.scheduleDay.model.SchedayModelSelectNow;
 import br.com.mind5.business.scheduleLine.info.SchedineInfo;
 import br.com.mind5.business.scheduleLine.model.SchedineModelCancel;
 import br.com.mind5.business.scheduleLine.model.SchedineModelInsert;
@@ -46,6 +47,7 @@ public final class ScheduleResource {
 	private static final String SELECT_SCHEDULE_MONTH = "/selectScheduleMonth";
 	private static final String SELECT_SCHEDULE_WEEK = "/selectScheduleWeek";
 	private static final String SELECT_SCHEDULE_DAY = "/selectScheduleDay";
+	private static final String SELECT_SCHEDULE_DAY_NOW = "/selectScheduleDayNow";
 	private static final String SELECT_SCHEDULE_RANGE = "/selectScheduleRange";
 	
 	
@@ -256,6 +258,30 @@ public final class ScheduleResource {
 		recordInfo.codLanguage = codLanguage;		
 		
 		Model model = new SchedayModelSelect(recordInfo);
+		model.executeRequest();
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
+	}	
+	
+	
+	
+	@GET
+	@Path(SELECT_SCHEDULE_DAY_NOW)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response selectSchedDayNow(@HeaderParam("TOKEN_OWNER")    	@DefaultValue("-1") long codOwner, 
+			                          @HeaderParam("codStore")    		@DefaultValue("-1") long codStore,
+								      @HeaderParam("TOKEN_USERNAME") 	String username,
+								      @HeaderParam("codLanguage")    	@DefaultValue("EN") String codLanguage) {
+		
+		SchedayInfo recordInfo = new SchedayInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.codStore = codStore;
+		recordInfo.username = username;
+		recordInfo.codLanguage = codLanguage;		
+		
+		Model model = new SchedayModelSelectNow(recordInfo);
 		model.executeRequest();
 		Response result = model.getResponse();	
 		model.close();

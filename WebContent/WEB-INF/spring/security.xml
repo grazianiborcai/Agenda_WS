@@ -128,6 +128,7 @@
         <security:intercept-url pattern="/**/Schedule/selectScheduleMonth"			access="hasAuthority('SCHEDULE_READ')"				/> 
         <security:intercept-url pattern="/**/Schedule/selectScheduleWeek"			access="hasAuthority('SCHEDULE_READ')"				/> 
         <security:intercept-url pattern="/**/Schedule/selectScheduleDay"			access="hasAuthority('SCHEDULE_READ')"				/> 
+        <security:intercept-url pattern="/**/Schedule/selectScheduleDayNow"			access="hasAuthority('SCHEDULE_READ')"				/> 
         <security:intercept-url pattern="/**/Schedule/selectScheduleRange"			access="hasAuthority('SCHEDULE_READ')"				/> 
         <security:intercept-url pattern="/**/File/insertFileImgOwner"				access="hasAuthority('OWNER_WRITE')" 				/>
         <security:intercept-url pattern="/**/File/deleteFileImgOwner"				access="hasAuthority('OWNER_WRITE')" 				/>
