@@ -3,11 +3,25 @@ package br.com.mind5.business.calendarTimeStore.info;
 import java.util.List;
 
 import br.com.mind5.business.calendarDate.info.CalateInfo;
+import br.com.mind5.business.storeLeaveDateRange.info.StolargInfo;
 import br.com.mind5.business.storeWorkTimeSearch.info.StowotarchInfo;
 import br.com.mind5.info.InfoMergerBuilderV3;
 import br.com.mind5.info.InfoMergerV3;
 
 public final class CalimoreMerger {
+	public static List<CalimoreInfo> mergeWithStolarg(List<CalimoreInfo> baseInfos, List<StolargInfo> selectedInfos) {
+		InfoMergerBuilderV3<CalimoreInfo, StolargInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new CalimoreVisiMergeStolarg());
+		InfoMergerV3<CalimoreInfo, StolargInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	
 	public static List<CalimoreInfo> mergeWithCalate(List<CalimoreInfo> baseInfos, List<CalateInfo> selectedInfos) {
 		InfoMergerBuilderV3<CalimoreInfo, CalateInfo> builder = new InfoMergerBuilderV3<>();
 		
