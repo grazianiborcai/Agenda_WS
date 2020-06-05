@@ -25,7 +25,8 @@ public final class DaoStolargWhere implements DaoStmtWhere {
 	private void generateWhereClause(DaoWhereBuilderOption whereOption, String tableName, StolargInfo recordInfo) {
 		DaoWhereBuilder builderKey = DaoWhereBuilder.factory(whereOption);	
 		DaoWhereBuilder builderValidFrom = DaoWhereBuilder.factory(whereOption);		
-		DaoWhereBuilder builderValidTo = DaoWhereBuilder.factory(whereOption);	
+		DaoWhereBuilder builderValidTo = DaoWhereBuilder.factory(whereOption);
+		DaoWhereBuilder builderBetween = DaoWhereBuilder.factory(whereOption);
 		
 		List<DaoColumn> columns = DaoDbTableColumnAll.getTableColumnsAsList(tableName);
 		
@@ -33,8 +34,10 @@ public final class DaoStolargWhere implements DaoStmtWhere {
 			builderKey = generateKey(eachColumn, recordInfo, builderKey);
 			builderValidFrom = generateValidFrom(eachColumn, recordInfo, builderValidFrom);
 			builderValidTo = generateValidTo(eachColumn, recordInfo, builderValidTo);
+			builderBetween = generateBetween(eachColumn, recordInfo, builderBetween);
 		}
 		
+		builderValidTo.mergeBuilder(builderBetween, DaoWhereOperator.OR);	//TODO: Adicionado por conta do ScheduleDay::Testar planningTime/CartInsert
 		builderValidTo.mergeBuilder(builderValidFrom, DaoWhereOperator.OR);
 		builderKey.mergeBuilder(builderValidTo, DaoWhereOperator.AND);
 		
@@ -92,6 +95,22 @@ public final class DaoStolargWhere implements DaoStmtWhere {
 	
 		return builder;
 	}	
+	
+	
+	
+	private DaoWhereBuilder generateBetween(DaoColumn column, StolargInfo recordInfo, DaoWhereBuilder builder) {
+		switch(column.columnName) {
+			case DaoStolargDbTableColumn.COL_DATE_TIME_VALID_FROM :
+				builder.addClauseAnd(column, DaoFormatter.dateTimeToString(recordInfo.validFrom), DaoWhereCondition.GREATER_OR_EQUAL);
+				break;
+				
+			case DaoStolargDbTableColumn.COL_DATE_TIME_VALID_TO :
+				builder.addClauseAnd(column, DaoFormatter.dateTimeToString(recordInfo.validTo), DaoWhereCondition.LESS_OR_EQUAL);
+				break;
+		}
+	
+		return builder;
+	}
 	
 	
 	
