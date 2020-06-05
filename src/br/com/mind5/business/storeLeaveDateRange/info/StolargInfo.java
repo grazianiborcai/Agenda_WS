@@ -23,7 +23,7 @@ public final class StolargInfo extends InfoRecord implements Cloneable {
 	
 	
 	public StolargInfo() {
-		super(StolargInfo.class);
+		super();
 		
 		codOwner = DefaultValue.number();
 		codStore = DefaultValue.number();

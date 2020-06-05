@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class StolargDbTableColumn extends DaoDbTableColumnTemplate {
+public final class DaoStolargDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER; 	
 	public static final String COL_COD_STORE = DaoDbField.COL_COD_STORE;  
 	public static final String COL_DATE_TIME_VALID_FROM = DaoDbField.COL_DATE_TIME_VALID_FROM; 		
@@ -20,23 +20,13 @@ public final class StolargDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_TM_VALID_FROM = DaoDbField.COL_TM_VALID_FROM; 
 	public static final String COL_TM_VALID_TO = DaoDbField.COL_TM_VALID_TO; 
 	
-	private Hashtable<String, List<DaoColumn>> tableColumns;	
-	
-	public StolargDbTableColumn() {
-		super(StolargDbTableColumn.class);
+	public DaoStolargDbTableColumn() {
+		super();
 	}
 	
 	
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
-		tableColumns = new Hashtable<>();		
-		buildEmpLeaveDateTable();		
-		return tableColumns;
-	}
-	
-	
-	
-	private void buildEmpLeaveDateTable() {
 		final String TABLE_NAME = DaoDbTable.STORE_LD_TABLE;
 		
 		DaoColumn oneColumn;
@@ -114,6 +104,8 @@ public final class StolargDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		tableColumns.put(DaoDbTable.STORE_LD_RANGE_VIEW, columns);
+		Hashtable<String, List<DaoColumn>> results = new Hashtable<>();
+		results.put(DaoDbTable.STORE_LD_RANGE_VIEW, columns);
+		return results;
 	}
 }
