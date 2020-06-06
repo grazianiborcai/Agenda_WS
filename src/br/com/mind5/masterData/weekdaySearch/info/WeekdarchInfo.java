@@ -8,12 +8,16 @@ import br.com.mind5.info.InfoRecord;
 public final class WeekdarchInfo extends InfoRecord implements Cloneable {
 	public int codWeekday;
 	public String txtWeekday;
+	public int sortSaturday;
+	public int sortSunday;
 	
 	
 	public WeekdarchInfo() {
 		super();
 		
 		codWeekday = DefaultValue.number();	
+		sortSaturday = DefaultValue.number();	
+		sortSunday = DefaultValue.number();	
 	}
 	
 	

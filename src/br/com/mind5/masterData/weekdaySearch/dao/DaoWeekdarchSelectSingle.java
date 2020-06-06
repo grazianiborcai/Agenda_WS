@@ -77,6 +77,8 @@ public final class DaoWeekdarchSelectSingle extends DaoStmtTemplate<WeekdarchInf
 					WeekdarchInfo dataInfo = new WeekdarchInfo();
 					
 					dataInfo.codWeekday = stmtResult.getInt(DaoWeekdarchDbTableColumn.COL_COD_WEEKDAY);
+					dataInfo.sortSaturday = stmtResult.getInt(DaoWeekdarchDbTableColumn.COL_SORT_SATURDAY);
+					dataInfo.sortSunday = stmtResult.getInt(DaoWeekdarchDbTableColumn.COL_SORT_SUNDAY);
 					dataInfo.txtWeekday = stmtResult.getString(DaoWeekdarchDbTableColumn.COL_NAME);
 					dataInfo.codLanguage = stmtResult.getString(DaoWeekdarchDbTableColumn.COL_COD_LANGUAGE);		
 					
