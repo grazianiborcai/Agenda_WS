@@ -204,7 +204,9 @@ public final class DaoDbField {
 	public static final String COL_SECRET = "secret";
 	public static final String COL_SENDER_PASSWORD = "sender_password";
 	public static final String COL_SMTP_HOST_NAME = "smtp_host_name";
-	public static final String COL_SMTP_PORT = "smtp_port";
+	public static final String COL_SMTP_PORT = "smtp_port";	
+	public static final String COL_SORT_SATURDAY = "sort_saturday";
+	public static final String COL_SORT_SUNDAY = "sort_sunday";	
 	public static final String COL_STATE_PROVINCE = "state_province";
 	public static final String COL_STATUS_ORDER_PARTNER = "status_order_partner";	
 	public static final String COL_STATUS_PAYMENT_PARTNER = "status_payment_partner";

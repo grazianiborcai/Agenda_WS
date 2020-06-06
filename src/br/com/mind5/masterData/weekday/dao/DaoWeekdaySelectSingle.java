@@ -70,6 +70,8 @@ public final class DaoWeekdaySelectSingle extends DaoStmtTemplate<WeekdayInfo> {
 					WeekdayInfo dataInfo = new WeekdayInfo();
 					
 					dataInfo.codWeekday = stmtResult.getInt(DaoWeekdayDbTableColumn.COL_COD_WEEKDAY);
+					dataInfo.sortSaturday = stmtResult.getInt(DaoWeekdayDbTableColumn.COL_SORT_SATURDAY);
+					dataInfo.sortSunday = stmtResult.getInt(DaoWeekdayDbTableColumn.COL_SORT_SUNDAY);
 					dataInfo.txtWeekday = stmtResult.getString(DaoWeekdayDbTableColumn.COL_NAME);
 					dataInfo.codLanguage = stmtResult.getString(DaoWeekdayDbTableColumn.COL_COD_LANGUAGE);		
 					

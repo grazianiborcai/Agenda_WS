@@ -13,6 +13,8 @@ public final class DaoWeekdayDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_LANGUAGE = DaoDbField.COL_COD_LANGUAGE;
 	public static final String COL_COD_WEEKDAY = DaoDbField.COL_COD_WEEKDAY;	
 	public static final String COL_NAME = DaoDbField.COL_NAME;
+	public static final String COL_SORT_SATURDAY = DaoDbField.COL_SORT_SATURDAY;
+	public static final String COL_SORT_SUNDAY = DaoDbField.COL_SORT_SUNDAY;	
 
 	
 	public DaoWeekdayDbTableColumn() {
@@ -48,6 +50,22 @@ public final class DaoWeekdayDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.columnName = COL_NAME;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_SORT_SATURDAY;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_SORT_SUNDAY;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
