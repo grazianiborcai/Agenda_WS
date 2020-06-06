@@ -1,5 +1,6 @@
 package br.com.mind5.business.employeeWorkTimeSearch.info;
 
+import java.time.LocalTime;
 import java.util.List;
 
 import br.com.mind5.common.DefaultValue;
@@ -10,12 +11,14 @@ public class EmpwotarchInfo extends InfoRecord implements Cloneable {
 	public long codStore;
 	public long codEmployee;
 	public int codWeekday;
+	public LocalTime beginTime;
+	public LocalTime endTime;
 	public String recordMode;
 	public String username;
 	
 	
 	public EmpwotarchInfo() {
-		super(EmpwotarchInfo.class);
+		super();
 		
 		codOwner = DefaultValue.number();
 		codStore = DefaultValue.number();

@@ -1,23 +1,23 @@
 package br.com.mind5.business.employeeWorkTimeSearch.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.employeeWorkTimeSearch.info.EmpwotarchInfo;
 import br.com.mind5.business.employeeWorkTimeSearch.info.EmpwotarchMerger;
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiEmpwotarchMergeToSelect extends ActionVisitorTemplateMergeV1<EmpwotarchInfo, EmpwotarchInfo> {
+final class VisiEmpwotarchMergeToSelect extends ActionVisitorTemplateMergeV2<EmpwotarchInfo, EmpwotarchInfo> {
 	
-	public VisiEmpwotarchMergeToSelect(Connection conn, String schemaName) {
-		super(conn, schemaName, EmpwotarchInfo.class);
+	public VisiEmpwotarchMergeToSelect(DeciTreeOption<EmpwotarchInfo> option) {
+		super(option, EmpwotarchInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends ActionStdV1<EmpwotarchInfo>> getActionClassHook() {
-		return StdEmpwotarchSelect.class;
+	@Override protected Class<? extends ActionStdV2<EmpwotarchInfo>> getActionClassHook() {
+		return StdEmpwotarchDaoSelect.class;
 	}
 	
 	
@@ -29,6 +29,6 @@ final class VisiEmpwotarchMergeToSelect extends ActionVisitorTemplateMergeV1<Emp
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
+		return super.DONT_MERGE_WHEN_EMPTY;
 	}
 }

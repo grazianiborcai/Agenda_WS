@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilder;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 
-final class EmpwotarchWhere implements DaoStmtWhere {
+final class DaoEmpwotarchWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public EmpwotarchWhere(DaoWhereBuilderOption whereOption, String tableName, EmpwotarchInfo recordInfo) {
+	public DaoEmpwotarchWhere(DaoWhereBuilderOption whereOption, String tableName, EmpwotarchInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -26,23 +26,23 @@ final class EmpwotarchWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {
 			switch(eachColumn.columnName) {
-				case EmpwotarchDbTableColumn.COL_COD_OWNER :
+				case DaoEmpwotarchDbTableColumn.COL_COD_OWNER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;
 				
-				case EmpwotarchDbTableColumn.COL_COD_STORE :
+				case DaoEmpwotarchDbTableColumn.COL_COD_STORE :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codStore));
 					break;
 					
-				case EmpwotarchDbTableColumn.COL_COD_EMPLOYEE :
+				case DaoEmpwotarchDbTableColumn.COL_COD_EMPLOYEE :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codEmployee));
 					break;
 					
-				case EmpwotarchDbTableColumn.COL_COD_WEEKDAY :
+				case DaoEmpwotarchDbTableColumn.COL_COD_WEEKDAY :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codWeekday));
 					break;
 					
-				case EmpwotarchDbTableColumn.COL_RECORD_MODE :
+				case DaoEmpwotarchDbTableColumn.COL_RECORD_MODE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.recordMode);
 					break;
 			}
