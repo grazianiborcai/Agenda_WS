@@ -16,12 +16,12 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class EmplargSelectSingle extends DaoStmtTemplate<EmplargInfo> {	
+public final class DaoEmplargSelectSingle extends DaoStmtTemplate<EmplargInfo> {	
 	private final String MAIN_TABLE = DaoDbTable.EMP_LD_TABLE;	
 	
 	
 	
-	public EmplargSelectSingle(Connection conn, EmplargInfo recordInfo, String schemaName) {
+	public DaoEmplargSelectSingle(Connection conn, EmplargInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -33,15 +33,15 @@ public final class EmplargSelectSingle extends DaoStmtTemplate<EmplargInfo> {
 	
 	
 	
-	@Override protected DaoOperation getOperationHook() {
-		return DaoOperation.SELECT;
-	}
-	
-	
-	
 	@Override protected String getLookupTableHook() {
 		return DaoDbTable.EMP_LD_RANGE_VIEW;
 	}	
+	
+	
+	
+	@Override protected DaoOperation getOperationHook() {
+		return DaoOperation.SELECT;
+	}
 	
 	
 	
@@ -51,7 +51,7 @@ public final class EmplargSelectSingle extends DaoStmtTemplate<EmplargInfo> {
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new EmplargWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new DaoEmplargWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -68,16 +68,16 @@ public final class EmplargSelectSingle extends DaoStmtTemplate<EmplargInfo> {
 				do {
 					EmplargInfo dataInfo = new EmplargInfo();
 					
-					dataInfo.codOwner = stmtResult.getLong(EmplargDbTableColumn.COL_COD_OWNER);
-					dataInfo.codStore = stmtResult.getLong(EmplargDbTableColumn.COL_COD_STORE);
-					dataInfo.codEmployee = stmtResult.getLong(EmplargDbTableColumn.COL_COD_EMPLOYEE);
-					dataInfo.recordMode = stmtResult.getString(EmplargDbTableColumn.COL_RECORD_MODE);	
-					dataInfo.timeValidFrom = DaoFormatter.sqlToLocalTime(stmtResult, EmplargDbTableColumn.COL_TM_VALID_FROM);
-					dataInfo.timeValidTo = DaoFormatter.sqlToLocalTime(stmtResult, EmplargDbTableColumn.COL_TM_VALID_TO);
-					dataInfo.dateValidFrom = DaoFormatter.sqlToLocalDate(stmtResult, EmplargDbTableColumn.COL_DT_VALID_FROM);
-					dataInfo.dateValidTo = DaoFormatter.sqlToLocalDate(stmtResult, EmplargDbTableColumn.COL_DT_VALID_TO);
-					dataInfo.validFrom = DaoFormatter.sqlToLocalDateTime(stmtResult, EmplargDbTableColumn.COL_DATE_TIME_VALID_FROM);
-					dataInfo.validTo = DaoFormatter.sqlToLocalDateTime(stmtResult, EmplargDbTableColumn.COL_DATE_TIME_VALID_TO);
+					dataInfo.codOwner = stmtResult.getLong(DaoEmplargDbTableColumn.COL_COD_OWNER);
+					dataInfo.codStore = stmtResult.getLong(DaoEmplargDbTableColumn.COL_COD_STORE);
+					dataInfo.codEmployee = stmtResult.getLong(DaoEmplargDbTableColumn.COL_COD_EMPLOYEE);
+					dataInfo.recordMode = stmtResult.getString(DaoEmplargDbTableColumn.COL_RECORD_MODE);	
+					dataInfo.timeValidFrom = DaoFormatter.sqlToLocalTime(stmtResult, DaoEmplargDbTableColumn.COL_TM_VALID_FROM);
+					dataInfo.timeValidTo = DaoFormatter.sqlToLocalTime(stmtResult, DaoEmplargDbTableColumn.COL_TM_VALID_TO);
+					dataInfo.dateValidFrom = DaoFormatter.sqlToLocalDate(stmtResult, DaoEmplargDbTableColumn.COL_DT_VALID_FROM);
+					dataInfo.dateValidTo = DaoFormatter.sqlToLocalDate(stmtResult, DaoEmplargDbTableColumn.COL_DT_VALID_TO);
+					dataInfo.validFrom = DaoFormatter.sqlToLocalDateTime(stmtResult, DaoEmplargDbTableColumn.COL_DATE_TIME_VALID_FROM);
+					dataInfo.validTo = DaoFormatter.sqlToLocalDateTime(stmtResult, DaoEmplargDbTableColumn.COL_DATE_TIME_VALID_TO);
 					
 					finalResult.add(dataInfo);		
 				} while (stmtResult.next());

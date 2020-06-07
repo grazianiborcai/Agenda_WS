@@ -4,16 +4,16 @@ import java.sql.SQLException;
 import java.util.List;
 
 import br.com.mind5.business.employeeLeaveDateRange.info.EmplargInfo;
+import br.com.mind5.dao.DaoStmtExecHelperV2;
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.obsolete.DaoStmtExecHelper_;
-import br.com.mind5.dao.obsolete.DaoStmtExec_;
+import br.com.mind5.dao.DaoStmtExecV2;
 
-public final class EmplargSelect implements DaoStmtExec_<EmplargInfo> {
-	private DaoStmtExec_<EmplargInfo> helper;
+public final class DaoEmplargSelect implements DaoStmtExecV2<EmplargInfo> {
+	private DaoStmtExecV2<EmplargInfo> helper;
 	
 	
-	public EmplargSelect(List<DaoStmtExecOption<EmplargInfo>> options) {
-		helper = new DaoStmtExecHelper_<>(options, EmplargSelectSingle.class, EmplargInfo.class);
+	public DaoEmplargSelect(List<DaoStmtExecOption<EmplargInfo>> options) {
+		helper = new DaoStmtExecHelperV2<>(options, DaoEmplargSelectSingle.class, EmplargInfo.class);
 	}
 	
 	
@@ -26,5 +26,11 @@ public final class EmplargSelect implements DaoStmtExec_<EmplargInfo> {
 	
 	@Override public List<EmplargInfo> getResultset() {
 		return helper.getResultset();
+	}
+	
+	
+	
+	@Override public void close() {
+		helper.close();		
 	}
 }

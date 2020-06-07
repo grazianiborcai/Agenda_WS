@@ -24,7 +24,7 @@ public final class EmplargInfo extends InfoRecord implements Cloneable {
 	
 	
 	public EmplargInfo() {
-		super(EmplargInfo.class);
+		super();
 		
 		codOwner = DefaultValue.number();
 		codStore = DefaultValue.number();

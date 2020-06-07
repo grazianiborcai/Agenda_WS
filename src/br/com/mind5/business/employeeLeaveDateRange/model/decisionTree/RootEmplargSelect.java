@@ -11,13 +11,13 @@ import br.com.mind5.business.employeeLeaveDateRange.model.checker.EmplargCheckOw
 import br.com.mind5.business.employeeLeaveDateRange.model.checker.EmplargCheckRead;
 import br.com.mind5.business.employeeLeaveDateRange.model.checker.EmplargCheckStore;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 
-public class RootEmplargSelect extends DeciTreeTemplateReadV1<EmplargInfo> {
+public class RootEmplargSelect extends DeciTreeTemplateReadV2<EmplargInfo> {
 	
 	public RootEmplargSelect(DeciTreeOption<EmplargInfo> option) {
 		super(option);

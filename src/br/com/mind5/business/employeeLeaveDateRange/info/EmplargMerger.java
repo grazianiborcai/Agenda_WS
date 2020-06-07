@@ -2,18 +2,18 @@ package br.com.mind5.business.employeeLeaveDateRange.info;
 
 import java.util.List;
 
-import br.com.mind5.info.obsolete.InfoMerger_;
+import br.com.mind5.info.InfoMergerBuilderV3;
+import br.com.mind5.info.InfoMergerV3;
 
 public final class EmplargMerger {
-	public static EmplargInfo mergeToSelect(EmplargInfo sourceOne, EmplargInfo sourceTwo) {
-		InfoMerger_<EmplargInfo, EmplargInfo> merger = new EmplargMergerToSelect();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
+	public static List<EmplargInfo> mergeToSelect(List<EmplargInfo> baseInfos, List<EmplargInfo> selectedInfos) {
+		InfoMergerBuilderV3<EmplargInfo, EmplargInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new EmplargVisiMergeToSelect());
+		InfoMergerV3<EmplargInfo, EmplargInfo> merger = builder.build();		
 	
-	
-	
-	public static List<EmplargInfo> mergeToSelect(List<EmplargInfo> sourceOnes, List<EmplargInfo> sourceTwos) {
-		InfoMerger_<EmplargInfo, EmplargInfo> merger = new EmplargMergerToSelect();		
-		return merger.merge(sourceOnes, sourceTwos);
+		return merger.merge();
 	}
 }

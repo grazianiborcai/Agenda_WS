@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class EmplargDbTableColumn extends DaoDbTableColumnTemplate {
+public final class DaoEmplargDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_EMPLOYEE = DaoDbField.COL_COD_EMPLOYEE; 
 	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER; 	
 	public static final String COL_COD_STORE = DaoDbField.COL_COD_STORE;  
@@ -20,24 +20,15 @@ public final class EmplargDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_RECORD_MODE = DaoDbField.COL_RECORD_MODE; 	
 	public static final String COL_TM_VALID_FROM = DaoDbField.COL_TM_VALID_FROM; 
 	public static final String COL_TM_VALID_TO = DaoDbField.COL_TM_VALID_TO; 
+		
 	
-	private Hashtable<String, List<DaoColumn>> tableColumns;	
-	
-	public EmplargDbTableColumn() {
-		super(EmplargDbTableColumn.class);
+	public DaoEmplargDbTableColumn() {
+		super();
 	}
 	
 	
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
-		tableColumns = new Hashtable<>();		
-		buildEmpLeaveDateTable();		
-		return tableColumns;
-	}
-	
-	
-	
-	private void buildEmpLeaveDateTable() {
 		final String TABLE_NAME = DaoDbTable.EMP_LD_TABLE;
 		
 		DaoColumn oneColumn;
@@ -123,6 +114,8 @@ public final class EmplargDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		tableColumns.put(DaoDbTable.EMP_LD_RANGE_VIEW, columns);
+		Hashtable<String, List<DaoColumn>> results = new Hashtable<>();
+		results.put(DaoDbTable.EMP_LD_RANGE_VIEW, columns);
+		return results;
 	}
 }

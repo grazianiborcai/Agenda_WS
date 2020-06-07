@@ -12,11 +12,11 @@ import br.com.mind5.dao.DaoWhereCondition;
 import br.com.mind5.dao.DaoWhereOperator;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 
-public final class EmplargWhere implements DaoStmtWhere {
+public final class DaoEmplargWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public EmplargWhere(DaoWhereBuilderOption whereOption, String tableName, EmplargInfo recordInfo) {
+	public DaoEmplargWhere(DaoWhereBuilderOption whereOption, String tableName, EmplargInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -26,6 +26,7 @@ public final class EmplargWhere implements DaoStmtWhere {
 		DaoWhereBuilder builderKey = DaoWhereBuilder.factory(whereOption);	
 		DaoWhereBuilder builderValidFrom = DaoWhereBuilder.factory(whereOption);		
 		DaoWhereBuilder builderValidTo = DaoWhereBuilder.factory(whereOption);	
+		DaoWhereBuilder builderBetween = DaoWhereBuilder.factory(whereOption);
 		
 		List<DaoColumn> columns = DaoDbTableColumnAll.getTableColumnsAsList(tableName);
 		
@@ -33,8 +34,10 @@ public final class EmplargWhere implements DaoStmtWhere {
 			builderKey = generateKey(eachColumn, recordInfo, builderKey);
 			builderValidFrom = generateValidFrom(eachColumn, recordInfo, builderValidFrom);
 			builderValidTo = generateValidTo(eachColumn, recordInfo, builderValidTo);
+			builderBetween = generateBetween(eachColumn, recordInfo, builderBetween);
 		}
 		
+		builderValidTo.mergeBuilder(builderBetween, DaoWhereOperator.OR);	//TODO: Adicionado por conta do ScheduleDay::Testar planningTime/CartInsert
 		builderValidTo.mergeBuilder(builderValidFrom, DaoWhereOperator.OR);
 		builderKey.mergeBuilder(builderValidTo, DaoWhereOperator.AND);
 		
@@ -45,19 +48,19 @@ public final class EmplargWhere implements DaoStmtWhere {
 	
 	private DaoWhereBuilder generateKey(DaoColumn column, EmplargInfo recordInfo, DaoWhereBuilder builder) {
 		switch(column.columnName) {
-			case EmplargDbTableColumn.COL_COD_OWNER :
+			case DaoEmplargDbTableColumn.COL_COD_OWNER :
 				builder.addClauseEqualAnd(column, DaoFormatter.numberToString(recordInfo.codOwner));
 				break;
 			
-			case EmplargDbTableColumn.COL_COD_STORE :
+			case DaoEmplargDbTableColumn.COL_COD_STORE :
 				builder.addClauseEqualAnd(column, DaoFormatter.numberToString(recordInfo.codStore));
 				break;
 				
-			case EmplargDbTableColumn.COL_COD_EMPLOYEE :
+			case DaoEmplargDbTableColumn.COL_COD_EMPLOYEE :
 				builder.addClauseEqualAnd(column, DaoFormatter.numberToString(recordInfo.codEmployee));
 				break;
 				
-			case EmplargDbTableColumn.COL_RECORD_MODE :
+			case DaoEmplargDbTableColumn.COL_RECORD_MODE :
 				builder.addClauseEqualAnd(column, recordInfo.recordMode);
 				break;
 		}
@@ -69,11 +72,11 @@ public final class EmplargWhere implements DaoStmtWhere {
 	
 	private DaoWhereBuilder generateValidFrom(DaoColumn column, EmplargInfo recordInfo, DaoWhereBuilder builder) {
 		switch(column.columnName) {
-			case EmplargDbTableColumn.COL_DATE_TIME_VALID_FROM :
+			case DaoEmplargDbTableColumn.COL_DATE_TIME_VALID_FROM :
 				builder.addClauseAnd(column, DaoFormatter.dateTimeToString(recordInfo.validFrom), DaoWhereCondition.LESS_OR_EQUAL);
 				break;
 				
-			case EmplargDbTableColumn.COL_DATE_TIME_VALID_TO :
+			case DaoEmplargDbTableColumn.COL_DATE_TIME_VALID_TO :
 				builder.addClauseAnd(column, DaoFormatter.dateTimeToString(recordInfo.validFrom), DaoWhereCondition.GREATER_OR_EQUAL);
 				break;
 		}
@@ -85,17 +88,33 @@ public final class EmplargWhere implements DaoStmtWhere {
 	
 	private DaoWhereBuilder generateValidTo(DaoColumn column, EmplargInfo recordInfo, DaoWhereBuilder builder) {
 		switch(column.columnName) {
-			case EmplargDbTableColumn.COL_DATE_TIME_VALID_FROM :
+			case DaoEmplargDbTableColumn.COL_DATE_TIME_VALID_FROM :
 				builder.addClauseAnd(column, DaoFormatter.dateTimeToString(recordInfo.validTo), DaoWhereCondition.LESS_OR_EQUAL);
 				break;
 				
-			case EmplargDbTableColumn.COL_DATE_TIME_VALID_TO :
+			case DaoEmplargDbTableColumn.COL_DATE_TIME_VALID_TO :
 				builder.addClauseAnd(column, DaoFormatter.dateTimeToString(recordInfo.validTo), DaoWhereCondition.GREATER_OR_EQUAL);
 				break;
 		}
 	
 		return builder;
 	}	
+	
+	
+	
+	private DaoWhereBuilder generateBetween(DaoColumn column, EmplargInfo recordInfo, DaoWhereBuilder builder) {
+		switch(column.columnName) {
+			case DaoEmplargDbTableColumn.COL_DATE_TIME_VALID_FROM :
+				builder.addClauseAnd(column, DaoFormatter.dateTimeToString(recordInfo.validFrom), DaoWhereCondition.GREATER_OR_EQUAL);
+				break;
+				
+			case DaoEmplargDbTableColumn.COL_DATE_TIME_VALID_TO :
+				builder.addClauseAnd(column, DaoFormatter.dateTimeToString(recordInfo.validTo), DaoWhereCondition.LESS_OR_EQUAL);
+				break;
+		}
+	
+		return builder;
+	}
 	
 	
 	
