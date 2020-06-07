@@ -3,10 +3,25 @@ package br.com.mind5.business.employeeLeaveDateRange.info;
 import java.util.List;
 
 import br.com.mind5.business.bookService.info.BookiceInfo;
+import br.com.mind5.business.calendarTimeEmployee.info.CalimempInfo;
 import br.com.mind5.business.cartItem.info.CartemInfo;
 import br.com.mind5.info.InfoCopier;
 
 public final class EmplargCopier {
+	public static EmplargInfo copyFromCalimemp(CalimempInfo source) {
+		InfoCopier<EmplargInfo, CalimempInfo> copier = new EmplargCopyCalimemp();
+		return copier.makeCopy(source);
+	}
+	
+	
+	
+	public static List<EmplargInfo> copyFromCalimemp(List<CalimempInfo> sources) {
+		InfoCopier<EmplargInfo, CalimempInfo> copier = new EmplargCopyCalimemp();
+		return copier.makeCopy(sources);
+	}
+	
+	
+	
 	public static EmplargInfo copyFromBookice(BookiceInfo source) {
 		InfoCopier<EmplargInfo, BookiceInfo> copier = new EmplargCopyBookice();
 		return copier.makeCopy(source);
