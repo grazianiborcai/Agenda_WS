@@ -1294,4 +1294,7 @@ public final class SystemCode {
 	public static final int CAL_WEEK_YEAR_ALREADY_EXIST					= 12600;
 	public static final int CAL_WEEK_YEAR_NOT_FOUND						= 12601;
 	public static final int CAL_WEEK_YEAR_MANDATORY_FIELD_EMPTY 		= 12602;
+	
+	// Calendar Time Employee
+	public static final int CAL_TIME_EMP_MANDATORY_FIELD_EMPTY			= 12650;
 }
