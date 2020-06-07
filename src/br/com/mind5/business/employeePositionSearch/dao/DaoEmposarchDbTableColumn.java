@@ -9,33 +9,21 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class EmposarchDbTableColumn extends DaoDbTableColumnTemplate {
+public final class DaoEmposarchDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_EMPLOYEE = DaoDbField.COL_COD_EMPLOYEE;
 	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;
 	public static final String COL_COD_POSITION = DaoDbField.COL_COD_POSITION;
 	public static final String COL_COD_STORE = DaoDbField.COL_COD_STORE;
 	public static final String COL_RECORD_MODE = DaoDbField.COL_RECORD_MODE;
 	
-
-	Hashtable<String, List<DaoColumn>> tableColumns;	
 	
-	public EmposarchDbTableColumn() {
-		super(EmposarchDbTableColumn.class);
+	public DaoEmposarchDbTableColumn() {
+		super();
 	}
 	
 	
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
-		tableColumns = new Hashtable<>();
-		
-		buildEmployeePositionSearchTable();
-		
-		return tableColumns;
-	}
-	
-	
-	
-	private void buildEmployeePositionSearchTable() {
 		final String TABLE_NAME = DaoDbTable.EMPOS_TABLE;
 		
 		DaoColumn oneColumn;
@@ -81,6 +69,8 @@ public final class EmposarchDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		tableColumns.put(DaoDbTable.EMPOS_SEARCH_VIEW, columns);
+		Hashtable<String, List<DaoColumn>> results = new Hashtable<>();
+		results.put(DaoDbTable.EMPOS_SEARCH_VIEW, columns);
+		return results;
 	}
 }

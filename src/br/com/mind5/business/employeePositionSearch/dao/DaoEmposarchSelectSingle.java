@@ -19,11 +19,11 @@ import br.com.mind5.dao.common.DaoJoinEmp;
 import br.com.mind5.dao.common.DaoJoinStore;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class EmposarchSelectSingle extends DaoStmtTemplate<EmposarchInfo> {	
+public final class DaoEmposarchSelectSingle extends DaoStmtTemplate<EmposarchInfo> {	
 	private final String MAIN_TABLE = DaoDbTable.EMPOS_TABLE;	
 
 	
-	public EmposarchSelectSingle(Connection conn, EmposarchInfo recordInfo, String schemaName) {
+	public DaoEmposarchSelectSingle(Connection conn, EmposarchInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -53,7 +53,7 @@ public final class EmposarchSelectSingle extends DaoStmtTemplate<EmposarchInfo> 
 		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new EmposarchWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new DaoEmposarchWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -84,11 +84,11 @@ public final class EmposarchSelectSingle extends DaoStmtTemplate<EmposarchInfo> 
 				do {
 					EmposarchInfo dataInfo = new EmposarchInfo();
 					
-					dataInfo.codOwner = stmtResult.getLong(EmposarchDbTableColumn.COL_COD_OWNER);
-					dataInfo.codStore = stmtResult.getLong(EmposarchDbTableColumn.COL_COD_STORE);
-					dataInfo.codEmployee = stmtResult.getLong(EmposarchDbTableColumn.COL_COD_EMPLOYEE);
-					dataInfo.codPosition = stmtResult.getInt(EmposarchDbTableColumn.COL_COD_POSITION);
-					dataInfo.recordMode = stmtResult.getString(EmposarchDbTableColumn.COL_RECORD_MODE);					
+					dataInfo.codOwner = stmtResult.getLong(DaoEmposarchDbTableColumn.COL_COD_OWNER);
+					dataInfo.codStore = stmtResult.getLong(DaoEmposarchDbTableColumn.COL_COD_STORE);
+					dataInfo.codEmployee = stmtResult.getLong(DaoEmposarchDbTableColumn.COL_COD_EMPLOYEE);
+					dataInfo.codPosition = stmtResult.getInt(DaoEmposarchDbTableColumn.COL_COD_POSITION);
+					dataInfo.recordMode = stmtResult.getString(DaoEmposarchDbTableColumn.COL_RECORD_MODE);					
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

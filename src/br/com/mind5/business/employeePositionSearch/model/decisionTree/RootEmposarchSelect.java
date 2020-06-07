@@ -9,13 +9,13 @@ import br.com.mind5.business.employeePositionSearch.model.checker.EmposarchCheck
 import br.com.mind5.business.employeePositionSearch.model.checker.EmposarchCheckOwner;
 import br.com.mind5.business.employeePositionSearch.model.checker.EmposarchCheckRead;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 
-public final class RootEmposarchSelect extends DeciTreeTemplateReadV1<EmposarchInfo> {
+public final class RootEmposarchSelect extends DeciTreeTemplateReadV2<EmposarchInfo> {
 	
 	public RootEmposarchSelect(DeciTreeOption<EmposarchInfo> option) {
 		super(option);
@@ -57,7 +57,7 @@ public final class RootEmposarchSelect extends DeciTreeTemplateReadV1<EmposarchI
 	@Override protected List<ActionStdV1<EmposarchInfo>> buildActionsOnPassedHook(DeciTreeOption<EmposarchInfo> option) {
 		List<ActionStdV1<EmposarchInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<EmposarchInfo> select	= new StdEmposarchMergeToSelect(option);
+		ActionStdV1<EmposarchInfo> select = new StdEmposarchMergeToSelect(option);
 		
 		actions.add(select);
 		return actions;

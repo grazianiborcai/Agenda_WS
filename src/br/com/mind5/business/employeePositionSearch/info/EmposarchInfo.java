@@ -15,7 +15,7 @@ public final class EmposarchInfo extends InfoRecord implements Cloneable {
 	
 	
 	public EmposarchInfo() {
-		super(EmposarchInfo.class);
+		super();
 		
 		codOwner = DefaultValue.number();
 		codStore = DefaultValue.number();
