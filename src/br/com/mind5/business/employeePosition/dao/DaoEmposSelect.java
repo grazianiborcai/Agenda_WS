@@ -4,16 +4,16 @@ import java.sql.SQLException;
 import java.util.List;
 
 import br.com.mind5.business.employeePosition.info.EmposInfo;
+import br.com.mind5.dao.DaoStmtExecHelperV2;
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.obsolete.DaoStmtExecHelper_;
-import br.com.mind5.dao.obsolete.DaoStmtExec_;
+import br.com.mind5.dao.DaoStmtExecV2;
 
-public final class EmposUpdate implements DaoStmtExec_<EmposInfo> {
-	private DaoStmtExec_<EmposInfo> helper;
+public class DaoEmposSelect implements DaoStmtExecV2<EmposInfo> {
+	private DaoStmtExecV2<EmposInfo> helper;
 	
 	
-	public EmposUpdate(List<DaoStmtExecOption<EmposInfo>> options) {
-		helper = new DaoStmtExecHelper_<>(options, EmposUpdateSingle.class, EmposInfo.class);
+	public DaoEmposSelect(List<DaoStmtExecOption<EmposInfo>> options) {
+		helper = new DaoStmtExecHelperV2<>(options, DaoEmposSelectSingle.class, EmposInfo.class);
 	}
 	
 	
@@ -26,5 +26,11 @@ public final class EmposUpdate implements DaoStmtExec_<EmposInfo> {
 	
 	@Override public List<EmposInfo> getResultset() {
 		return helper.getResultset();
+	}
+	
+	
+	
+	@Override public void close() {
+		helper.close();		
 	}
 }

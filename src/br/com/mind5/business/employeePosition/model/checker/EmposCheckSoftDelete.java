@@ -1,7 +1,7 @@
 package br.com.mind5.business.employeePosition.model.checker;
 
 import br.com.mind5.business.employeePosition.info.EmposInfo;
-import br.com.mind5.business.employeePosition.model.action.LazyEmposSelect;
+import br.com.mind5.business.employeePosition.model.action.LazyEmposDaoSelect;
 import br.com.mind5.business.employeePosition.model.action.StdEmposEnforceDel;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionLazyV1;
@@ -20,7 +20,7 @@ public final class EmposCheckSoftDelete extends ModelCheckerTemplateActionV2<Emp
 	
 	@Override protected ActionStdV1<EmposInfo> buildActionHook(DeciTreeOption<EmposInfo> option) {
 		ActionStdV1<EmposInfo> enforceDel = new StdEmposEnforceDel(option);
-		ActionLazyV1<EmposInfo> select = new LazyEmposSelect(option.conn, option.schemaName);
+		ActionLazyV1<EmposInfo> select = new LazyEmposDaoSelect(option.conn, option.schemaName);
 		
 		enforceDel.addPostAction(select);		
 		return enforceDel;

@@ -2,6 +2,7 @@ package br.com.mind5.business.employeePosition.info;
 
 import java.util.List;
 
+import br.com.mind5.business.employeeList.info.EmplisInfo;
 import br.com.mind5.business.employeePositionSearch.info.EmposarchInfo;
 import br.com.mind5.info.InfoMergerBuilderV3;
 import br.com.mind5.info.InfoMergerV3;
@@ -9,6 +10,19 @@ import br.com.mind5.masterData.position.info.PositionInfo;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class EmposMerger {
+	public static List<EmposInfo> mergeWithEmplis(List<EmposInfo> baseInfos, List<EmplisInfo> selectedInfos) {
+		InfoMergerBuilderV3<EmposInfo, EmplisInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new EmposVisiMergeEmplis());
+		InfoMergerV3<EmposInfo, EmplisInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	
 	public static List<EmposInfo> mergeWithEmposarch(List<EmposInfo> baseInfos, List<EmposarchInfo> selectedInfos) {
 		InfoMergerBuilderV3<EmposInfo, EmposarchInfo> builder = new InfoMergerBuilderV3<>();
 		

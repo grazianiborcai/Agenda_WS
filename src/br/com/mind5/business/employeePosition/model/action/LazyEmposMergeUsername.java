@@ -4,12 +4,12 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.employeePosition.info.EmposInfo;
-import br.com.mind5.model.action.ActionLazyTemplateV1;
+import br.com.mind5.model.action.ActionLazyTemplateV2;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyEmposMergeUsername extends ActionLazyTemplateV1<EmposInfo, EmposInfo> {
+public final class LazyEmposMergeUsername extends ActionLazyTemplateV2<EmposInfo, EmposInfo> {
 	
 	public LazyEmposMergeUsername(Connection conn, String schemaName) {
 		super(conn, schemaName);

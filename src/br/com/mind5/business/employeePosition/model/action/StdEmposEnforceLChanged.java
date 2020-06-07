@@ -1,35 +1,19 @@
 package br.com.mind5.business.employeePosition.model.action;
 
 import br.com.mind5.business.employeePosition.info.EmposInfo;
-import br.com.mind5.model.action.ActionLazyV1;
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionStdHelperEnforce;
-import br.com.mind5.model.decisionTree.DeciResult;
+import br.com.mind5.model.action.ActionStdTemplateV2;
+import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdEmposEnforceLChanged implements ActionStdV1<EmposInfo> {
-	private ActionStdV1<EmposInfo> actionHelper;	
-	
-	
-	public StdEmposEnforceLChanged(DeciTreeOption<EmposInfo> option) {			
-		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiEmposEnforceLChanged());
+public final class StdEmposEnforceLChanged extends ActionStdTemplateV2<EmposInfo> {
+
+	public StdEmposEnforceLChanged(DeciTreeOption<EmposInfo> option) {
+		super(option);
 	}
 	
 	
 	
-	@Override public void addPostAction(ActionLazyV1<EmposInfo> actionHandler) {
-		actionHelper.addPostAction(actionHandler);
-	}
-	
-	
-	
-	@Override public boolean executeAction() {			
-		return actionHelper.executeAction();
-	}
-	
-	
-	
-	@Override public DeciResult<EmposInfo> getDecisionResult() {
-		return actionHelper.getDecisionResult();
+	protected ActionVisitorV2<EmposInfo> buildVisitorHook(DeciTreeOption<EmposInfo> option) {
+		return new VisiEmposEnforceLChanged(option);
 	}
 }

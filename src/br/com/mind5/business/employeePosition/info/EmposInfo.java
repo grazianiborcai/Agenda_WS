@@ -3,6 +3,8 @@ package br.com.mind5.business.employeePosition.info;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import br.com.mind5.business.employeeList.info.EmplisInfo;
+import br.com.mind5.common.CloneUtil;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
 
@@ -15,13 +17,14 @@ public final class EmposInfo extends InfoRecord implements Cloneable {
 	public LocalDateTime lastChanged;
 	public long lastChangedBy;
 	public LocalDateTime createdOn;
-	public long createdBy;
+	public long createdBy;	
 	public String username;
 	public String recordMode;
+	public EmplisInfo emplisData;
 	
 	
 	public EmposInfo() {
-		super(EmposInfo.class);
+		super();
 		
 		codOwner = DefaultValue.number();
 		codStore = DefaultValue.number();
@@ -30,6 +33,7 @@ public final class EmposInfo extends InfoRecord implements Cloneable {
 		lastChangedBy = DefaultValue.number();
 		recordMode = DefaultValue.recordMode();
 		createdBy = DefaultValue.number();
+		emplisData = DefaultValue.object();
 	}
 	
 	
@@ -47,7 +51,11 @@ public final class EmposInfo extends InfoRecord implements Cloneable {
 	
 	
 	@Override public Object clone() throws CloneNotSupportedException {
-		return super.clone();
+		EmposInfo deepCopy = (EmposInfo) super.clone();
+		
+		deepCopy.emplisData = CloneUtil.cloneRecord(emplisData, this.getClass());
+		
+		return deepCopy;
 	}
 	
 	

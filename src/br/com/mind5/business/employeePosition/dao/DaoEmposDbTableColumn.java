@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class EmposDbTableColumn extends DaoDbTableColumnTemplate {
+public final class DaoEmposDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_EMPLOYEE = DaoDbField.COL_COD_EMPLOYEE;
 	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;
 	public static final String COL_COD_POSITION = DaoDbField.COL_COD_POSITION;
@@ -20,26 +20,14 @@ public final class EmposDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_LAST_CHANGED_BY = DaoDbField.COL_LAST_CHANGED_BY;
 	public static final String COL_RECORD_MODE = DaoDbField.COL_RECORD_MODE;
 	
-
-	Hashtable<String, List<DaoColumn>> tableColumns;	
 	
-	public EmposDbTableColumn() {
-		super(EmposDbTableColumn.class);
+	public DaoEmposDbTableColumn() {
+		super();
 	}
 	
 	
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
-		tableColumns = new Hashtable<>();
-		
-		buildStoreEmployeeTable();
-		
-		return tableColumns;
-	}
-	
-	
-	
-	private void buildStoreEmployeeTable() {
 		final String TABLE_NAME = DaoDbTable.EMPOS_TABLE;
 		
 		DaoColumn oneColumn;
@@ -117,6 +105,8 @@ public final class EmposDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		tableColumns.put(TABLE_NAME, columns);
+		Hashtable<String, List<DaoColumn>> results = new Hashtable<>();
+		results.put(TABLE_NAME, columns);
+		return results;
 	}
 }

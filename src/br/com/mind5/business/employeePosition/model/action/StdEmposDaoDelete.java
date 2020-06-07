@@ -5,15 +5,15 @@ import br.com.mind5.model.action.ActionStdTemplateV2;
 import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdEmposMergeToDelete extends ActionStdTemplateV2<EmposInfo> {
+public final class StdEmposDaoDelete extends ActionStdTemplateV2<EmposInfo> {
 
-	public StdEmposMergeToDelete(DeciTreeOption<EmposInfo> option) {
+	public StdEmposDaoDelete(DeciTreeOption<EmposInfo> option) {
 		super(option);
 	}
 	
 	
 	
 	protected ActionVisitorV2<EmposInfo> buildVisitorHook(DeciTreeOption<EmposInfo> option) {
-		return new VisiEmposMergeToDelete(option);
+		return new VisiEmposDaoDelete(option);
 	}
 }

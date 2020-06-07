@@ -1,31 +1,12 @@
 package br.com.mind5.business.employeePosition.info;
 
 import br.com.mind5.common.DefaultValue;
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoSetter;
+import br.com.mind5.info.InfoSetterTemplate;
 
-public final class EmposSetterCreatedOn implements InfoSetter<EmposInfo> {
+public final class EmposSetterCreatedOn extends InfoSetterTemplate<EmposInfo> {
 	
-	public EmposInfo setAttr(EmposInfo recordInfo) {
-		checkArgument(recordInfo);
-		
+	@Override protected EmposInfo setAttrHook(EmposInfo recordInfo) {
 		recordInfo.createdOn = DefaultValue.localDateTimeNow();
 		return recordInfo;
-	}
-	
-	
-	
-	private void checkArgument(EmposInfo recordInfo) {
-		if (recordInfo == null) {
-			logException(new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT));
-			throw new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT);
-		}
-	}
-	
-	
-	
-	private void logException(Exception e) {
-		SystemLog.logError(this.getClass(), e);
 	}	
 }

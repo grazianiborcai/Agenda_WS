@@ -1,19 +1,19 @@
 package br.com.mind5.business.employeePosition.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.employeePosition.info.EmposInfo;
 import br.com.mind5.business.employeePosition.info.EmposMerger;
 import br.com.mind5.masterData.position.info.PositionInfo;
 import br.com.mind5.masterData.position.model.decisionTree.RootPositionSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiEmposMergePosition extends ActionVisitorTemplateMergeV1<EmposInfo, PositionInfo> {
+final class VisiEmposMergePosition extends ActionVisitorTemplateMergeV2<EmposInfo, PositionInfo> {
 	
-	public VisiEmposMergePosition(Connection conn, String schemaName) {
-		super(conn, schemaName, PositionInfo.class);
+	public VisiEmposMergePosition(DeciTreeOption<EmposInfo> option) {
+		super(option, PositionInfo.class);
 	}
 	
 	
@@ -31,6 +31,6 @@ final class VisiEmposMergePosition extends ActionVisitorTemplateMergeV1<EmposInf
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
+		return super.MERGE_WHEN_EMPTY;
 	}
 }

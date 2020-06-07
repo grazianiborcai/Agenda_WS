@@ -6,18 +6,17 @@ import java.util.List;
 import br.com.mind5.business.employeePosition.info.EmposInfo;
 import br.com.mind5.business.employeePosition.model.action.LazyEmposNodeDeleteEmplate;
 import br.com.mind5.business.employeePosition.model.action.LazyEmposNodeDeleteEmpwotm;
-import br.com.mind5.business.employeePosition.model.action.LazyEmposUniquify;
 import br.com.mind5.business.employeePosition.model.action.StdEmposSuccess;
 import br.com.mind5.business.employeePosition.model.checker.EmposCheckEmposarch;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class NodeEmposEmposarch extends DeciTreeTemplateWriteV1<EmposInfo> {
+public final class NodeEmposEmposarch extends DeciTreeTemplateWriteV2<EmposInfo> {
 	
 	public NodeEmposEmposarch(DeciTreeOption<EmposInfo> option) {
 		super(option);
@@ -59,11 +58,9 @@ public final class NodeEmposEmposarch extends DeciTreeTemplateWriteV1<EmposInfo>
 		ActionStdV1<EmposInfo> schedage = new NodeEmposSchedage(option).toAction();
 		ActionLazyV1<EmposInfo> deleteEmplate = new LazyEmposNodeDeleteEmplate(option.conn, option.schemaName);
 		ActionLazyV1<EmposInfo> deleteEmpwotm = new LazyEmposNodeDeleteEmpwotm(option.conn, option.schemaName);		
-		ActionLazyV1<EmposInfo> uniquify = new LazyEmposUniquify(option.conn, option.schemaName);
 		
 		schedage.addPostAction(deleteEmplate);
 		schedage.addPostAction(deleteEmpwotm);
-		deleteEmpwotm.addPostAction(uniquify);
 		
 		
 		actions.add(schedage);

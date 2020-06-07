@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.employeePosition.info.EmposInfo;
+import br.com.mind5.business.employeePosition.model.action.LazyEmposMergeEmplis;
 import br.com.mind5.business.employeePosition.model.action.LazyEmposMergePosition;
 import br.com.mind5.business.employeePosition.model.action.StdEmposMergeToSelect;
 import br.com.mind5.business.employeePosition.model.checker.EmposCheckEmp;
@@ -13,13 +14,13 @@ import br.com.mind5.business.employeePosition.model.checker.EmposCheckRead;
 import br.com.mind5.business.employeePosition.model.checker.EmposCheckStore;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 
-public final class RootEmposSelect extends DeciTreeTemplateReadV1<EmposInfo> {
+public final class RootEmposSelect extends DeciTreeTemplateReadV2<EmposInfo> {
 	
 	public RootEmposSelect(DeciTreeOption<EmposInfo> option) {
 		super(option);
@@ -77,8 +78,10 @@ public final class RootEmposSelect extends DeciTreeTemplateReadV1<EmposInfo> {
 		
 		ActionStdV1<EmposInfo> select	= new StdEmposMergeToSelect(option);
 		ActionLazyV1<EmposInfo> mergePosition = new LazyEmposMergePosition(option.conn, option.schemaName);
+		ActionLazyV1<EmposInfo> mergeEmplis = new LazyEmposMergeEmplis(option.conn, option.schemaName);
 		
 		select.addPostAction(mergePosition);
+		mergePosition.addPostAction(mergeEmplis);
 		
 		actions.add(select);
 		return actions;

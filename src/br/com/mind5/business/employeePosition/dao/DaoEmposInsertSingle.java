@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoStmtParamTranslator;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class EmposInsertSingle extends DaoStmtTemplate<EmposInfo> {
+public final class DaoEmposInsertSingle extends DaoStmtTemplate<EmposInfo> {
 	private final String MAIN_TABLE = DaoDbTable.EMPOS_TABLE;	
 	
 	
-	public EmposInsertSingle(Connection conn, EmposInfo recordInfo, String schemaName) {
+	public DaoEmposInsertSingle(Connection conn, EmposInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	

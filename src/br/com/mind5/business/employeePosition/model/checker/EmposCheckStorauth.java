@@ -1,56 +1,27 @@
 package br.com.mind5.business.employeePosition.model.checker;
 
-import java.util.List;
-
 import br.com.mind5.business.employeePosition.info.EmposInfo;
-import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.security.storeAuthorization.info.StorauthInfo;
 import br.com.mind5.security.storeAuthorization.model.checker.StorauthCheckExist;
 
-public final class EmposCheckStorauth implements ModelCheckerV1<EmposInfo> {
-	private final boolean FAILED = false;
-	private final boolean SUCCESS = true;
-	
-	private ModelCheckerV1<StorauthInfo> checker;
-	
+public final class EmposCheckStorauth extends ModelCheckerTemplateForwardV2<EmposInfo, StorauthInfo> {
 	
 	public EmposCheckStorauth(ModelCheckerOption option) {
-		checker = new StorauthCheckExist(option);
-	}
-	
-	
-	
-	@Override public boolean check(List<EmposInfo> recordInfos) {
-		for (EmposInfo eachInfo : recordInfos) {
-			if (check(eachInfo) == FAILED)
-				return FAILED;
-		}
-		
-		return SUCCESS;
+		super(option);
 	}
 
-	
-	
-	@Override public boolean check(EmposInfo recordInfo) {
-		return checker.check(StorauthInfo.copyFrom(recordInfo));
-	}
 
 	
-	
-	@Override public boolean getResult() {
-		return checker.getResult();
+	@Override protected ModelCheckerV1<StorauthInfo> getCheckerHook(ModelCheckerOption option) {
+		return new StorauthCheckExist(option);
 	}
-
 	
 	
-	@Override public String getFailMessage() {
-		return checker.getFailMessage();
-	}
-
 	
-	
-	@Override public int getFailCode() {
-		return checker.getFailCode();
+	@Override protected StorauthInfo toForwardClass(EmposInfo baseRecord) {
+		return StorauthInfo.copyFrom(baseRecord);
 	}
 }

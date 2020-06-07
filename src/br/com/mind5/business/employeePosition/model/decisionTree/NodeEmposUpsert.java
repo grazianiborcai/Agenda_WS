@@ -6,9 +6,9 @@ import java.util.List;
 import br.com.mind5.business.employeePosition.info.EmposInfo;
 import br.com.mind5.business.employeePosition.model.action.LazyEmposEnforceCreatedBy;
 import br.com.mind5.business.employeePosition.model.action.LazyEmposEnforceCreatedOn;
-import br.com.mind5.business.employeePosition.model.action.LazyEmposInsert;
+import br.com.mind5.business.employeePosition.model.action.LazyEmposDaoInsert;
 import br.com.mind5.business.employeePosition.model.action.LazyEmposMergeUsername;
-import br.com.mind5.business.employeePosition.model.action.LazyEmposUpdate;
+import br.com.mind5.business.employeePosition.model.action.LazyEmposDaoUpdate;
 import br.com.mind5.business.employeePosition.model.action.StdEmposEnforceLChanged;
 import br.com.mind5.business.employeePosition.model.checker.EmposCheckSoftDelete;
 import br.com.mind5.model.action.ActionLazyV1;
@@ -17,9 +17,9 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class NodeEmposUpsert extends DeciTreeTemplateWriteV1<EmposInfo> {
+public final class NodeEmposUpsert extends DeciTreeTemplateWriteV2<EmposInfo> {
 	
 	public NodeEmposUpsert(DeciTreeOption<EmposInfo> option) {
 		super(option);
@@ -51,7 +51,7 @@ public final class NodeEmposUpsert extends DeciTreeTemplateWriteV1<EmposInfo> {
 		ActionLazyV1<EmposInfo> enforceLChangedBy = new LazyEmposMergeUsername(option.conn, option.schemaName);
 		ActionLazyV1<EmposInfo> enforceCreatedBy = new LazyEmposEnforceCreatedBy(option.conn, option.schemaName);
 		ActionLazyV1<EmposInfo> enforceCreatedOn = new LazyEmposEnforceCreatedOn(option.conn, option.schemaName);
-		ActionLazyV1<EmposInfo> insert = new LazyEmposInsert(option.conn, option.schemaName);
+		ActionLazyV1<EmposInfo> insert = new LazyEmposDaoInsert(option.conn, option.schemaName);
 		
 		enforceLChanged.addPostAction(enforceLChangedBy);
 		enforceLChangedBy.addPostAction(enforceCreatedBy);
@@ -71,7 +71,7 @@ public final class NodeEmposUpsert extends DeciTreeTemplateWriteV1<EmposInfo> {
 		ActionLazyV1<EmposInfo> enforceLChangedBy = new LazyEmposMergeUsername(option.conn, option.schemaName);
 		ActionLazyV1<EmposInfo> enforceCreatedBy = new LazyEmposEnforceCreatedBy(option.conn, option.schemaName);
 		ActionLazyV1<EmposInfo> enforceCreatedOn = new LazyEmposEnforceCreatedOn(option.conn, option.schemaName);
-		ActionLazyV1<EmposInfo> update = new LazyEmposUpdate(option.conn, option.schemaName);
+		ActionLazyV1<EmposInfo> update = new LazyEmposDaoUpdate(option.conn, option.schemaName);
 		
 		enforceLChanged.addPostAction(enforceLChangedBy);
 		enforceLChangedBy.addPostAction(enforceCreatedBy);

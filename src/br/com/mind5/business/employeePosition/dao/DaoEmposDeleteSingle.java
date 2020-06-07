@@ -15,11 +15,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class EmposDeleteSingle extends DaoStmtTemplate<EmposInfo> {
+public final class DaoEmposDeleteSingle extends DaoStmtTemplate<EmposInfo> {
 	private final String MAIN_TABLE = DaoDbTable.EMPOS_TABLE;
 	
 	
-	public EmposDeleteSingle(Connection conn, EmposInfo recordInfo, String schemaName) {
+	public DaoEmposDeleteSingle(Connection conn, EmposInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -44,7 +44,7 @@ public final class EmposDeleteSingle extends DaoStmtTemplate<EmposInfo> {
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;	
 		whereOption.ignoreNonPrimaryKey = DaoOptionValue.IGNORE_NON_PK;		
 		
-		DaoStmtWhere whereClause = new EmposWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new DaoEmposWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	

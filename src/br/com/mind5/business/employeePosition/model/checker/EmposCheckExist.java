@@ -1,7 +1,7 @@
 package br.com.mind5.business.employeePosition.model.checker;
 
 import br.com.mind5.business.employeePosition.info.EmposInfo;
-import br.com.mind5.business.employeePosition.model.action.StdEmposSelect;
+import br.com.mind5.business.employeePosition.model.action.StdEmposDaoSelect;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -17,7 +17,7 @@ public final class EmposCheckExist extends ModelCheckerTemplateActionV2<EmposInf
 	
 	
 	@Override protected ActionStdV1<EmposInfo> buildActionHook(DeciTreeOption<EmposInfo> option) {
-		ActionStdV1<EmposInfo> select = new StdEmposSelect(option);
+		ActionStdV1<EmposInfo> select = new StdEmposDaoSelect(option);
 		return select;
 	}
 	

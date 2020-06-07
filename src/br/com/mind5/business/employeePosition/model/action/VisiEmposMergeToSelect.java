@@ -1,23 +1,23 @@
 package br.com.mind5.business.employeePosition.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.employeePosition.info.EmposInfo;
 import br.com.mind5.business.employeePosition.info.EmposMerger;
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiEmposMergeToSelect extends ActionVisitorTemplateMergeV1<EmposInfo, EmposInfo> {
+final class VisiEmposMergeToSelect extends ActionVisitorTemplateMergeV2<EmposInfo, EmposInfo> {
 	
-	public VisiEmposMergeToSelect(Connection conn, String schemaName) {
-		super(conn, schemaName, EmposInfo.class);
+	public VisiEmposMergeToSelect(DeciTreeOption<EmposInfo> option) {
+		super(option, EmposInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends ActionStdV1<EmposInfo>> getActionClassHook() {
-		return StdEmposSelect.class;
+	@Override protected Class<? extends ActionStdV2<EmposInfo>> getActionClassHook() {
+		return StdEmposDaoSelect.class;
 	}
 	
 	
@@ -29,6 +29,6 @@ final class VisiEmposMergeToSelect extends ActionVisitorTemplateMergeV1<EmposInf
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
+		return super.DONT_MERGE_WHEN_EMPTY;
 	}	
 }

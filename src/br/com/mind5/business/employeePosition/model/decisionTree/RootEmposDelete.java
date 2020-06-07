@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.employeePosition.info.EmposInfo;
-import br.com.mind5.business.employeePosition.model.action.LazyEmposDelete;
+import br.com.mind5.business.employeePosition.model.action.LazyEmposDaoDelete;
 import br.com.mind5.business.employeePosition.model.action.LazyEmposEmptify;
 import br.com.mind5.business.employeePosition.model.action.LazyEmposEnforceLChanged;
 import br.com.mind5.business.employeePosition.model.action.LazyEmposMergeUsername;
 import br.com.mind5.business.employeePosition.model.action.LazyEmposNodeEmposarch;
-import br.com.mind5.business.employeePosition.model.action.LazyEmposUpdate;
+import br.com.mind5.business.employeePosition.model.action.LazyEmposDaoUpdate;
 import br.com.mind5.business.employeePosition.model.action.StdEmposMergeToDelete;
 import br.com.mind5.business.employeePosition.model.checker.EmposCheckDelete;
 import br.com.mind5.business.employeePosition.model.checker.EmposCheckExist;
@@ -23,9 +23,9 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class RootEmposDelete extends DeciTreeTemplateWriteV1<EmposInfo> {
+public final class RootEmposDelete extends DeciTreeTemplateWriteV2<EmposInfo> {
 	
 	public RootEmposDelete(DeciTreeOption<EmposInfo> option) {
 		super(option);
@@ -91,8 +91,8 @@ public final class RootEmposDelete extends DeciTreeTemplateWriteV1<EmposInfo> {
 		ActionStdV1<EmposInfo> mergeToDelete = new StdEmposMergeToDelete(option);
 		ActionLazyV1<EmposInfo> enforceLChanged = new LazyEmposEnforceLChanged(option.conn, option.schemaName);
 		ActionLazyV1<EmposInfo> enforceLChangedBy = new LazyEmposMergeUsername(option.conn, option.schemaName);
-		ActionLazyV1<EmposInfo> update = new LazyEmposUpdate(option.conn, option.schemaName);
-		ActionLazyV1<EmposInfo> delete = new LazyEmposDelete(option.conn, option.schemaName);
+		ActionLazyV1<EmposInfo> update = new LazyEmposDaoUpdate(option.conn, option.schemaName);
+		ActionLazyV1<EmposInfo> delete = new LazyEmposDaoDelete(option.conn, option.schemaName);
 		ActionLazyV1<EmposInfo> emposarch = new LazyEmposNodeEmposarch(option.conn, option.schemaName);
 		ActionLazyV1<EmposInfo> emptify = new LazyEmposEmptify(option.conn, option.schemaName);
 		

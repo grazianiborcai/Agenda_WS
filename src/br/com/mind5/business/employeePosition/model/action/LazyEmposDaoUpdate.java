@@ -4,14 +4,14 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.employeePosition.info.EmposInfo;
-import br.com.mind5.model.action.ActionLazyTemplateV1;
+import br.com.mind5.model.action.ActionLazyTemplateV2;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyEmposDelete extends ActionLazyTemplateV1<EmposInfo, EmposInfo> {
+public final class LazyEmposDaoUpdate extends ActionLazyTemplateV2<EmposInfo, EmposInfo> {
 	
-	public LazyEmposDelete(Connection conn, String schemaName) {
+	public LazyEmposDaoUpdate(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyEmposDelete extends ActionLazyTemplateV1<EmposInfo, Empos
 	
 	
 	@Override protected ActionStdV1<EmposInfo> getInstanceOfActionHook(DeciTreeOption<EmposInfo> option) {
-		return new StdEmposDelete(option);
+		return new StdEmposDaoUpdate(option);
 	}
 	
 	

@@ -6,15 +6,15 @@ import java.util.List;
 import br.com.mind5.business.employeePosition.info.EmposInfo;
 import br.com.mind5.business.employeePosition.model.action.LazyEmposRootSelect;
 import br.com.mind5.business.employeePosition.model.action.StdEmposMergeEmposarch;
-import br.com.mind5.business.employeePosition.model.checker.EmposCheckDummy;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 
-public final class RootEmposSearch extends DeciTreeTemplateReadV1<EmposInfo> {
+public final class RootEmposSearch extends DeciTreeTemplateReadV2<EmposInfo> {
 	
 	public RootEmposSearch(DeciTreeOption<EmposInfo> option) {
 		super(option);
@@ -26,7 +26,7 @@ public final class RootEmposSearch extends DeciTreeTemplateReadV1<EmposInfo> {
 		List<ModelCheckerV1<EmposInfo>> queue = new ArrayList<>();		
 		ModelCheckerV1<EmposInfo> checker;
 
-		checker = new EmposCheckDummy();
+		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueueV2<>(queue);
@@ -37,7 +37,7 @@ public final class RootEmposSearch extends DeciTreeTemplateReadV1<EmposInfo> {
 	@Override protected List<ActionStdV1<EmposInfo>> buildActionsOnPassedHook(DeciTreeOption<EmposInfo> option) {
 		List<ActionStdV1<EmposInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<EmposInfo> mergeEmposarch	= new StdEmposMergeEmposarch(option);
+		ActionStdV1<EmposInfo> mergeEmposarch = new StdEmposMergeEmposarch(option);
 		ActionLazyV1<EmposInfo> select = new LazyEmposRootSelect(option.conn, option.schemaName);
 		
 		mergeEmposarch.addPostAction(select);
