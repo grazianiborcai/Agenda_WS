@@ -104,6 +104,7 @@ import br.com.mind5.business.storeWorkTimeRange.dao.StoworgDbTableColumn;
 import br.com.mind5.business.storeWorkTimeSearch.dao.DaoStowotarchDbTableColumn;
 import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
+import br.com.mind5.config.sysOwnerSignup.dao.DaoSysonupDbTableColumn;
 import br.com.mind5.dao.DaoColumn;
 import br.com.mind5.dao.DaoDbTableColumn;
 import br.com.mind5.file.fileImage.dao.FimgDbTableColumn;
@@ -398,6 +399,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new DaoCalatarchDbTableColumn());
 		addTable(new DaoMontharchDbTableColumn());
 		addTable(new DaoCaleekyDbTableColumn());
+		addTable(new DaoSysonupDbTableColumn());
 	}
 	
 	

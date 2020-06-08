@@ -123,6 +123,7 @@ public final class DaoDbTable {
 	public static final String SYS_EMAIL_TABLE = "sys_email";
 	public static final String SYS_EMAIL_BODY_TABLE = "sys_email_body";
 	public static final String SYS_MESSAGE_TABLE = "sys_message";
+	public static final String SYS_CONFIG_TABLE = "sys_config";
 	public static final String SYS_PAY_PARTNER_TABLE = "sys_pay_partner";
 	public static final String SYS_ENVIRONMENT_TABLE = "sys_environment";
 	public static final String UNIT_TABLE = "measure_unit";
@@ -223,6 +224,7 @@ public final class DaoDbTable {
 	public static final String STORE_SEARCH_VIEW = "view_store_search";	
 	public static final String STORE_WTIME_RANGE_VIEW = "view_store_wtime_range";
 	public static final String STORE_WTIME_SEARCH_VIEW = "view_store_wtime_search";
+	public static final String SYS_OWNER_SIGNUP_VIEW = "view_sys_owner_signup";
 	public static final String SYS_PAY_PARTNER_SEARCH_VIEW = "view_sys_pay_partner_search";
 	public static final String TIMEZONE_SEARCH_VIEW = "view_timezone_search";
 	public static final String USER_LIST_VIEW = "view_user_list";

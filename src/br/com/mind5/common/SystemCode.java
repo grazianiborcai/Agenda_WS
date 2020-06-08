@@ -1297,4 +1297,8 @@ public final class SystemCode {
 	
 	// Calendar Time Employee
 	public static final int CAL_TIME_EMP_MANDATORY_FIELD_EMPTY			= 12650;
+	
+	// Sys Owner Signup
+	public static final int SYS_OWNER_SIGNUP_DISABLED					= 12700;
+	public static final int SYS_OWNER_SIGNUP_ENABLED					= 12700;
 }

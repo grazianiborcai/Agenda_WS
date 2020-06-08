@@ -176,6 +176,7 @@ public final class DaoDbField {
 	public static final String COL_NUMBER = "number";
 	public static final String COL_OAUTH_TOKEN = "oauth_token";
 	public static final String COL_OWN_ID = "own_id";
+	public static final String COL_OWNER_SIGNUP = "owner_signup";
 	public static final String COL_PASSWORD = "hash1";
 	public static final String COL_PAY_PARTNER_NAME = "pay_partner_name";
 	public static final String COL_POSTING_DATE = "posting_date";
