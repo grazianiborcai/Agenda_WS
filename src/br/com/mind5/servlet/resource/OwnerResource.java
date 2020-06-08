@@ -17,14 +17,32 @@ import br.com.mind5.business.owner.info.OwnerInfo;
 import br.com.mind5.business.owner.model.OwnerModelDelete;
 import br.com.mind5.business.owner.model.OwnerModelSelect;
 import br.com.mind5.business.owner.model.OwnerModelUpdate;
+import br.com.mind5.business.ownerList.model.OwnelisModelSearch;
 import br.com.mind5.model.Model;
 
 @Path("/Owner")
 @Produces(MediaType.APPLICATION_JSON)
 public class OwnerResource {
+	private static final String LIST_OWNER = "/listOwner";
 	private static final String SELECT_OWNER = "/selectOwner";
 	private static final String DELETE_OWNER = "/deleteOwner";
 	private static final String UPDATE_OWNER = "/updateOwner";
+	
+	
+	
+	@POST
+	@Path(LIST_OWNER)
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response listOwner(@Context HttpServletRequest request, String incomingData) {
+		
+		Model model = new OwnelisModelSearch(incomingData, request);
+		model.executeRequest();
+		Response result = model.getResponse();
+		model.close();
+		
+		return result;
+	}
 	
 	
 	
