@@ -15,7 +15,7 @@ final class OwnarchVisiMergeToSelect implements InfoMergerVisitorV3<OwnarchInfo,
 	
 	
 	@Override public boolean shouldMerge(OwnarchInfo baseInfo, OwnarchInfo selectedInfo) {
-		return (baseInfo.codOwner == selectedInfo.codOwner);
+		return true;
 	}
 	
 	

@@ -8,6 +8,8 @@ import java.util.List;
 
 import br.com.mind5.business.ownerSearch.info.OwnarchInfo;
 import br.com.mind5.dao.DaoFormatter;
+import br.com.mind5.dao.DaoJoin;
+import br.com.mind5.dao.DaoJoinBuilder;
 import br.com.mind5.dao.DaoOperation;
 import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtTemplate;
@@ -48,11 +50,17 @@ public final class DaoOwnarchSelectSingle extends DaoStmtTemplate<OwnarchInfo> {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
 		
 		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
-		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;	
-		whereOption.dummyClauseWhenEmpty = DaoOptionValue.DUMMY_CLAUSE_ALLOWED;
+		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;
 		
 		DaoStmtWhere whereClause = new DaoOwnarchWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
+	}
+	
+	
+	
+	@Override protected DaoJoin getJoinHook(OwnarchInfo recordInfo) {
+		DaoJoinBuilder joinCompany = new DaoOwnarchJoinCompany(MAIN_TABLE);		
+		return joinCompany.build();
 	}
 	
 	
@@ -70,7 +78,8 @@ public final class DaoOwnarchSelectSingle extends DaoStmtTemplate<OwnarchInfo> {
 					
 					dataInfo.codOwner = stmtResult.getLong(DaoOwnarchDbTableColumn.COL_COD_OWNER);
 					dataInfo.recordMode = stmtResult.getString(DaoOwnarchDbTableColumn.COL_RECORD_MODE);
-					dataInfo.codCompany = DaoFormatter.sqlToLong(stmtResult, DaoOwnarchDbTableColumn.COL_COD_COMPANY);				
+					dataInfo.codCompany = DaoFormatter.sqlToLong(stmtResult, DaoOwnarchDbTableColumn.COL_COD_COMPANY);		
+					dataInfo.name = stmtResult.getString(DaoOwnarchDbTableColumn.COL_NAME);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());
@@ -78,5 +87,11 @@ public final class DaoOwnarchSelectSingle extends DaoStmtTemplate<OwnarchInfo> {
 				return finalResult;
 			}
 		};
+	}
+	
+	
+	
+	@Override public void executeStmt() throws SQLException {
+		super.executeStmt();
 	}
 }

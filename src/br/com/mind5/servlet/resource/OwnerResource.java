@@ -17,7 +17,8 @@ import br.com.mind5.business.owner.info.OwnerInfo;
 import br.com.mind5.business.owner.model.OwnerModelDelete;
 import br.com.mind5.business.owner.model.OwnerModelSelect;
 import br.com.mind5.business.owner.model.OwnerModelUpdate;
-import br.com.mind5.business.ownerList.model.OwnelisModelSearch;
+import br.com.mind5.business.ownerSearch.info.OwnarchInfo;
+import br.com.mind5.business.ownerSearch.model.OwnarchModelSelect;
 import br.com.mind5.model.Model;
 
 @Path("/Owner")
@@ -30,13 +31,15 @@ public class OwnerResource {
 	
 	
 	
-	@POST
+	@GET
 	@Path(LIST_OWNER)
-	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response listOwner(@Context HttpServletRequest request, String incomingData) {
+	public Response listOwner(@HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage) {
 		
-		Model model = new OwnelisModelSearch(incomingData, request);
+		OwnarchInfo recordInfo = new OwnarchInfo();
+		recordInfo.codLanguage = codLanguage;
+		
+		Model model = new OwnarchModelSelect(recordInfo);
 		model.executeRequest();
 		Response result = model.getResponse();
 		model.close();

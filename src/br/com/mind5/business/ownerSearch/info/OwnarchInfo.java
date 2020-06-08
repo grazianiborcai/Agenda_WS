@@ -8,6 +8,7 @@ import br.com.mind5.info.InfoRecord;
 public final class OwnarchInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codCompany;
+	public String name;
 	public String username;
 	public String recordMode;
 	
