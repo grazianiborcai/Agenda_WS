@@ -15,7 +15,7 @@ final class EmabodyVisiMergeToSelect implements InfoMergerVisitorV3<EmabodyInfo,
 	
 	
 	@Override public boolean shouldMerge(EmabodyInfo baseInfo, EmabodyInfo selectedInfo) {
-		return (baseInfo.codBody == selectedInfo.codBody);
+		return (baseInfo.codBody.equals(selectedInfo.codBody));
 	}
 	
 	

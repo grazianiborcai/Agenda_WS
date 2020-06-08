@@ -9,7 +9,7 @@ import br.com.mind5.message.emailBody.info.EmabodyInfo;
 import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiEmabodyDaoSelect extends ActionVisitorTemplateStmtV2<EmabodyInfo>{
+final class VisiEmabodyDaoSelect extends ActionVisitorTemplateStmtV2<EmabodyInfo> {
 
 	public VisiEmabodyDaoSelect(DeciTreeOption<EmabodyInfo> option) {
 		super(option);
