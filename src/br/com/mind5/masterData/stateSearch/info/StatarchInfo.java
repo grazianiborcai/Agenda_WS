@@ -13,7 +13,7 @@ public final class StatarchInfo extends InfoRecord implements Cloneable {
 	
 	
 	public StatarchInfo() {
-		super(StatarchInfo.class);
+		super();
 	}
 	
 	
