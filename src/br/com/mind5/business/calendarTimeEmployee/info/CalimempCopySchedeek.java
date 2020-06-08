@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 import br.com.mind5.business.calendarDate.info.CalateInfo;
+import br.com.mind5.business.employeeList.info.EmplisInfo;
 import br.com.mind5.business.scheduleWeek.info.SchedeekInfo;
 import br.com.mind5.info.InfoCopierOneToManyTemplate;
 
@@ -22,15 +23,18 @@ final class CalimempCopySchedeek extends InfoCopierOneToManyTemplate<CalimempInf
 		
 		for (CalateInfo eachCalate: source.calates) {
 			if (eachCalate.date != null) {
-				CalimempInfo eachResult = new CalimempInfo();
-				
-				eachResult.codOwner = source.codOwner;
-				eachResult.codStore = source.codStore;
-				eachResult.date = eachCalate.date;
-				eachResult.username = eachCalate.username;
-				eachResult.codLanguage = eachCalate.codLanguage;
-				
-				results.add(eachResult);
+				for (EmplisInfo eachEmplis : source.emplises) {
+					CalimempInfo eachResult = new CalimempInfo();
+					
+					eachResult.codOwner = source.codOwner;
+					eachResult.codStore = source.codStore;
+					eachResult.codEmployee = eachEmplis.codEmployee;
+					eachResult.date = eachCalate.date;
+					eachResult.username = eachCalate.username;
+					eachResult.codLanguage = eachCalate.codLanguage;
+					
+					results.add(eachResult);
+				}
 			}
 		}
 		
