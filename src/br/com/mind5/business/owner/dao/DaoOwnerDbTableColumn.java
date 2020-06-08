@@ -21,23 +21,13 @@ public final class DaoOwnerDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_LAST_CHANGED_BY = DaoDbField.COL_LAST_CHANGED_BY;
 	public static final String COL_RECORD_MODE = DaoDbField.COL_RECORD_MODE;
 	
-	private Hashtable<String, List<DaoColumn>> tableColumns;	
-	
 	public DaoOwnerDbTableColumn() {
-		super(DaoOwnerDbTableColumn.class);
+		super();
 	}
 	
 	
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
-		tableColumns = new Hashtable<>();		
-		buildOwnerTable();		
-		return tableColumns;
-	}
-	
-	
-	
-	private void buildOwnerTable() {
 		final String TABLE_NAME = DaoDbTable.OWNER_TABLE;
 		
 		DaoColumn oneColumn;
@@ -123,6 +113,8 @@ public final class DaoOwnerDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);	
 		
-		tableColumns.put(TABLE_NAME, columns);
+		Hashtable<String, List<DaoColumn>> results = new Hashtable<>();
+		results.put(TABLE_NAME, columns);
+		return results;
 	}
 }
