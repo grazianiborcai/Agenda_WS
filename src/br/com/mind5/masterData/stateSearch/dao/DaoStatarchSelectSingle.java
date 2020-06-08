@@ -33,18 +33,18 @@ public final class DaoStatarchSelectSingle extends DaoStmtTemplate<StatarchInfo>
 	
 	
 	
-	@Override protected DaoOperation getOperationHook() {
-		return DaoOperation.SELECT;
-	}
-	
-	
-	
 	@Override protected String getLookupTableHook() {
 		return DaoDbTable.STATE_SEARCH_VIEW;
 	}	
 	
 	
 	
+	@Override protected DaoOperation getOperationHook() {
+		return DaoOperation.SELECT;
+	}
+
+	
+		
 	@Override protected String buildWhereClauseHook(String tableName, StatarchInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
 		
