@@ -23,10 +23,10 @@ final class EmailVisiMergeToSelect implements InfoMergerVisitorV3<EmailInfo, Ema
 	@Override public List<EmailInfo> merge(EmailInfo baseInfo, EmailInfo selectedInfo) {
 		List<EmailInfo> results = new ArrayList<>();
 		
-		baseInfo.senderAddr = baseInfo.senderAddr;
-		baseInfo.senderPass = baseInfo.senderPass;		
-		baseInfo.smtpHostname = baseInfo.smtpHostname;
-		baseInfo.smtpPort = baseInfo.smtpPort;
+		baseInfo.senderAddr = selectedInfo.senderAddr;
+		baseInfo.senderPass = selectedInfo.senderPass;		
+		baseInfo.smtpHostname = selectedInfo.smtpHostname;
+		baseInfo.smtpPort = selectedInfo.smtpPort;
 		
 		results.add(baseInfo);
 		return results;
