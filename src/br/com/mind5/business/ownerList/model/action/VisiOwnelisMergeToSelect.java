@@ -1,34 +1,34 @@
 package br.com.mind5.business.ownerList.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.ownerList.info.OwnelisInfo;
 import br.com.mind5.business.ownerList.info.OwnelisMerger;
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiOwnelisMergeToSelect extends ActionVisitorTemplateMergeV1<OwnelisInfo, OwnelisInfo> {
+final class VisiOwnelisMergeToSelect extends ActionVisitorTemplateMergeV2<OwnelisInfo, OwnelisInfo> {
 	
-	public VisiOwnelisMergeToSelect(Connection conn, String schemaName) {
-		super(conn, schemaName, OwnelisInfo.class);
+	public VisiOwnelisMergeToSelect(DeciTreeOption<OwnelisInfo> option) {
+		super(option, OwnelisInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends ActionStdV1<OwnelisInfo>> getActionClassHook() {
-		return StdOwnelisSelect.class;
+	@Override protected Class<? extends ActionStdV2<OwnelisInfo>> getActionClassHook() {
+		return StdOwnelisDaoSelect.class;
 	}
 	
 	
 	
-	@Override protected List<OwnelisInfo> mergeHook(List<OwnelisInfo> recordInfos, List<OwnelisInfo> selectedInfos) {	
-		return OwnelisMerger.mergeToSelect(selectedInfos, recordInfos);
+	@Override protected List<OwnelisInfo> mergeHook(List<OwnelisInfo> baseInfos, List<OwnelisInfo> selectedInfos) {	
+		return OwnelisMerger.mergeToSelect(baseInfos, selectedInfos);
 	}
 	
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
+		return super.DONT_MERGE_WHEN_EMPTY;
 	}
 }

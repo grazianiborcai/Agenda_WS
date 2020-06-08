@@ -9,29 +9,19 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class OwnelisDbTableColumn extends DaoDbTableColumnTemplate {
+public final class DaoOwnelisDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_COMPANY = DaoDbField.COL_COD_COMPANY;
 	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;
 	public static final String COL_COD_SNAPSHOT = DaoDbField.COL_COD_SNAPSHOT;
 	public static final String COL_RECORD_MODE = DaoDbField.COL_RECORD_MODE;
 	
-	private Hashtable<String, List<DaoColumn>> tableColumns;	
-	
-	public OwnelisDbTableColumn() {
-		super(OwnelisDbTableColumn.class);
+	public DaoOwnelisDbTableColumn() {
+		super();
 	}
 	
 	
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
-		tableColumns = new Hashtable<>();		
-		buildOwnerTable();		
-		return tableColumns;
-	}
-	
-	
-	
-	private void buildOwnerTable() {
 		final String TABLE_NAME = DaoDbTable.OWNER_TABLE;
 		
 		DaoColumn oneColumn;
@@ -69,6 +59,8 @@ public final class OwnelisDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);	
 		
-		tableColumns.put(DaoDbTable.OWNER_LIST_VIEW, columns);
+		Hashtable<String, List<DaoColumn>> results = new Hashtable<>();
+		results.put(DaoDbTable.OWNER_LIST_VIEW, columns);
+		return results;
 	}
 }

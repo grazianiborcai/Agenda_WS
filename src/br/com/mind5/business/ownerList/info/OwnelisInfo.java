@@ -3,6 +3,7 @@ package br.com.mind5.business.ownerList.info;
 import java.util.List;
 
 import br.com.mind5.business.companyList.info.ComplisInfo;
+import br.com.mind5.common.CloneUtil;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
 
@@ -17,7 +18,7 @@ public final class OwnelisInfo extends InfoRecord implements Cloneable {
 	
 	
 	public OwnelisInfo() {
-		super(OwnelisInfo.class);
+		super();
 		
 		codOwner = DefaultValue.number();
 		codSnapshot = DefaultValue.number();
@@ -43,18 +44,9 @@ public final class OwnelisInfo extends InfoRecord implements Cloneable {
 	@Override public Object clone() throws CloneNotSupportedException {
 		OwnelisInfo deepCopy = (OwnelisInfo) super.clone();
 		
-		deepCopy.complisData = cloneComplis(deepCopy.complisData);
+		deepCopy.complisData = CloneUtil.cloneRecord(deepCopy.complisData, this.getClass());
 		
 		return deepCopy;
-	}
-	
-	
-	
-	private ComplisInfo cloneComplis(ComplisInfo recordInfo) throws CloneNotSupportedException {
-		if (recordInfo == null)
-			return null;
-		
-		return (ComplisInfo) recordInfo.clone();
 	}
 	
 	

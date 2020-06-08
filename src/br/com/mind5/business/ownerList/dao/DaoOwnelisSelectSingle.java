@@ -16,11 +16,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class OwnelisSelectSingle extends DaoStmtTemplate<OwnelisInfo> {
+public final class DaoOwnelisSelectSingle extends DaoStmtTemplate<OwnelisInfo> {
 	private final String MAIN_TABLE = DaoDbTable.OWNER_TABLE;	
 	
 	
-	public OwnelisSelectSingle(Connection conn, OwnelisInfo recordInfo, String schemaName) {
+	public DaoOwnelisSelectSingle(Connection conn, OwnelisInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -32,14 +32,14 @@ public final class OwnelisSelectSingle extends DaoStmtTemplate<OwnelisInfo> {
 	
 	
 	
-	@Override protected DaoOperation getOperationHook() {
-		return DaoOperation.SELECT;
+	@Override protected String getLookupTableHook() {
+		return DaoDbTable.OWNER_LIST_VIEW;
 	}
 	
 	
 	
-	@Override protected String getLookupTableHook() {
-		return DaoDbTable.OWNER_LIST_VIEW;
+	@Override protected DaoOperation getOperationHook() {
+		return DaoOperation.SELECT;
 	}
 	
 	
@@ -50,7 +50,7 @@ public final class OwnelisSelectSingle extends DaoStmtTemplate<OwnelisInfo> {
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new OwnelisWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new DaoOwnelisWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -67,10 +67,10 @@ public final class OwnelisSelectSingle extends DaoStmtTemplate<OwnelisInfo> {
 				do {
 					OwnelisInfo dataInfo = new OwnelisInfo();
 					
-					dataInfo.codOwner = stmtResult.getLong(OwnelisDbTableColumn.COL_COD_OWNER);
-					dataInfo.recordMode = stmtResult.getString(OwnelisDbTableColumn.COL_RECORD_MODE);
-					dataInfo.codCompany = DaoFormatter.sqlToLong(stmtResult, OwnelisDbTableColumn.COL_COD_COMPANY);
-					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, OwnelisDbTableColumn.COL_COD_SNAPSHOT);				
+					dataInfo.codOwner = stmtResult.getLong(DaoOwnelisDbTableColumn.COL_COD_OWNER);
+					dataInfo.recordMode = stmtResult.getString(DaoOwnelisDbTableColumn.COL_RECORD_MODE);
+					dataInfo.codCompany = DaoFormatter.sqlToLong(stmtResult, DaoOwnelisDbTableColumn.COL_COD_COMPANY);
+					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, DaoOwnelisDbTableColumn.COL_COD_SNAPSHOT);				
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

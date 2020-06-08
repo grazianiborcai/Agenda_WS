@@ -68,7 +68,7 @@ import br.com.mind5.business.orderReserve.dao.DaoOrderveDbTableColumn;
 import br.com.mind5.business.orderSearch.dao.DaoOrdarchDbTableColumn;
 import br.com.mind5.business.orderSnapshot.dao.DaoOrdnapDbTableColumn;
 import br.com.mind5.business.owner.dao.DaoOwnerDbTableColumn;
-import br.com.mind5.business.ownerList.dao.OwnelisDbTableColumn;
+import br.com.mind5.business.ownerList.dao.DaoOwnelisDbTableColumn;
 import br.com.mind5.business.ownerSnapshot.dao.OwnerapDbTableColumn;
 import br.com.mind5.business.person.dao.DaoPersonDbTableColumn;
 import br.com.mind5.business.personList.dao.DaoPersolisDbTableColumn;
@@ -328,7 +328,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new DaoStolargDbTableColumn());
 		addTable(new DaoOrdemarchDbTableColumn());
 		addTable(new CompcoDbTableColumn());
-		addTable(new OwnelisDbTableColumn());
+		addTable(new DaoOwnelisDbTableColumn());
 		addTable(new DaoCusparchDbTableColumn());
 		addTable(new CrecarchDbTableColumn());
 		addTable(new CounparchDbTableColumn());
