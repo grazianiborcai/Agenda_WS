@@ -3,6 +3,7 @@ package br.com.mind5.business.scheduleWeek.info;
 import java.util.List;
 
 import br.com.mind5.business.calendarDate.info.CalateInfo;
+import br.com.mind5.business.calendarTimeEmployee.info.CalimempInfo;
 import br.com.mind5.business.calendarTimeStore.info.CalimoreInfo;
 import br.com.mind5.business.customerList.info.CuslisInfo;
 import br.com.mind5.business.employeeList.info.EmplisInfo;
@@ -24,6 +25,7 @@ public final class SchedeekInfo extends InfoRecord implements Cloneable {
 	public List<EmplisInfo> emplises;
 	public List<CalateInfo> calates;
 	public List<CalimoreInfo> calimores;
+	public List<CalimempInfo> calimempes;	
 	public String username;
 	
 	
@@ -40,6 +42,7 @@ public final class SchedeekInfo extends InfoRecord implements Cloneable {
 		cuslises = DefaultValue.list();
 		calates = DefaultValue.list();
 		calimores = DefaultValue.list();
+		calimempes = DefaultValue.list();
 	}
 	
 	
@@ -66,6 +69,7 @@ public final class SchedeekInfo extends InfoRecord implements Cloneable {
 		deepCopy.cuslises = CloneUtil.cloneRecords(cuslises, this.getClass());
 		deepCopy.calates = CloneUtil.cloneRecords(calates, this.getClass());
 		deepCopy.calimores = CloneUtil.cloneRecords(calimores, this.getClass());
+		deepCopy.calimempes = CloneUtil.cloneRecords(calimempes, this.getClass());
 		
 		return deepCopy;
 	}
@@ -94,8 +98,8 @@ public final class SchedeekInfo extends InfoRecord implements Cloneable {
 		
 		
 		SchedeekInfo obj = (SchedeekInfo) o;		
-		return (codOwner    == obj.codOwner		&& 
-				codStore    == obj.codStore		&&
-				weekYear   == obj.weekYear);
+		return (codOwner == obj.codOwner && 
+				codStore == obj.codStore &&
+				weekYear == obj.weekYear	);
 	}
 }

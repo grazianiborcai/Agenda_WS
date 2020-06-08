@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.scheduleWeek.info.SchedeekInfo;
 import br.com.mind5.business.scheduleWeek.model.action.LazySchedeekMergeCalate;
+import br.com.mind5.business.scheduleWeek.model.action.LazySchedeekMergeCalimemp;
 import br.com.mind5.business.scheduleWeek.model.action.LazySchedeekMergeCalimore;
 import br.com.mind5.business.scheduleWeek.model.action.LazySchedeekMergeCuslis;
 import br.com.mind5.business.scheduleWeek.model.action.LazySchedeekMergeEmplis;
@@ -56,6 +57,7 @@ public final class NodeSchedeekSelect extends DeciTreeTemplateWriteV2<SchedeekIn
 		ActionLazyV1<SchedeekInfo> mergeCuslis = new LazySchedeekMergeCuslis(option.conn, option.schemaName);
 		ActionLazyV1<SchedeekInfo> mergeCalate = new LazySchedeekMergeCalate(option.conn, option.schemaName);
 		ActionLazyV1<SchedeekInfo> mergeCalimore = new LazySchedeekMergeCalimore(option.conn, option.schemaName);
+		ActionLazyV1<SchedeekInfo> mergeCalimemp = new LazySchedeekMergeCalimemp(option.conn, option.schemaName);
 		
 		mergeSchedeekdat.addPostAction(mergeStolis);
 		mergeStolis.addPostAction(mergeMatlis);
@@ -63,6 +65,7 @@ public final class NodeSchedeekSelect extends DeciTreeTemplateWriteV2<SchedeekIn
 		mergeEmplis.addPostAction(mergeCuslis);
 		mergeCuslis.addPostAction(mergeCalate);
 		mergeCalate.addPostAction(mergeCalimore);
+		mergeCalimore.addPostAction(mergeCalimemp);
 		
 		actions.add(mergeSchedeekdat);
 		return actions;
@@ -75,8 +78,10 @@ public final class NodeSchedeekSelect extends DeciTreeTemplateWriteV2<SchedeekIn
 		
 		ActionStdV1<SchedeekInfo> mergeCalate = new StdSchedeekMergeCalate(option);
 		ActionLazyV1<SchedeekInfo> mergeCalimore = new LazySchedeekMergeCalimore(option.conn, option.schemaName);
+		ActionLazyV1<SchedeekInfo> mergeCalimemp = new LazySchedeekMergeCalimemp(option.conn, option.schemaName);
 		
 		mergeCalate.addPostAction(mergeCalimore);
+		mergeCalimore.addPostAction(mergeCalimemp);
 		
 		actions.add(mergeCalate);
 		return actions;
