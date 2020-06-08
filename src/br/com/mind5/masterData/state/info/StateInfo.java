@@ -13,7 +13,7 @@ public final class StateInfo extends InfoRecord implements Cloneable {
 	
 	
 	public StateInfo() {
-		super(StateInfo.class);
+		super();
 	}
 	
 	
