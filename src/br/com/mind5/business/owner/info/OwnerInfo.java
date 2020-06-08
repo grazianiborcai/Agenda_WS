@@ -1,17 +1,16 @@
 package br.com.mind5.business.owner.info;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.company.info.CompInfo;
 import br.com.mind5.business.person.info.PersonInfo;
 import br.com.mind5.business.phone.info.PhoneInfo;
+import br.com.mind5.common.CloneUtil;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.file.fileImageList.info.FimistInfo;
 import br.com.mind5.info.InfoRecord;
-import br.com.mind5.security.user.info.UserInfo;
 
 public final class OwnerInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
@@ -27,7 +26,6 @@ public final class OwnerInfo extends InfoRecord implements Cloneable {
 	public String recordMode;
 	public List<AddressInfo> addresses;
 	public List<PhoneInfo> phones;
-	public UserInfo userData;
 	public CompInfo companyData;
 	public PersonInfo personData;
 	public FimistInfo fimistData;
@@ -35,7 +33,7 @@ public final class OwnerInfo extends InfoRecord implements Cloneable {
 	
 	
 	public OwnerInfo() {
-		super(OwnerInfo.class);
+		super();
 		
 		codOwner = DefaultValue.number();
 		codSnapshot = DefaultValue.number();
@@ -46,8 +44,7 @@ public final class OwnerInfo extends InfoRecord implements Cloneable {
 		phones = DefaultValue.list();
 		lastChangedBy = DefaultValue.number();
 		createdBy = DefaultValue.number();
-		recordMode = DefaultValue.recordMode();		
-		userData = DefaultValue.object();
+		recordMode = DefaultValue.recordMode();	
 		companyData = DefaultValue.object();
 		personData = DefaultValue.object();
 		fimistData = DefaultValue.object();
@@ -70,82 +67,13 @@ public final class OwnerInfo extends InfoRecord implements Cloneable {
 	@Override public Object clone() throws CloneNotSupportedException {
 		OwnerInfo deepCopy = (OwnerInfo) super.clone();
 		
-		deepCopy.addresses = cloneAddresses(deepCopy.addresses);
-		deepCopy.phones = clonePhones(deepCopy.phones);
-		deepCopy.personData = clonePerson(deepCopy.personData);
-		deepCopy.companyData = cloneCompany(deepCopy.companyData);
-		deepCopy.userData = cloneUser(deepCopy.userData);
-		deepCopy.fimistData = cloneFimist(deepCopy.fimistData);
+		deepCopy.addresses = CloneUtil.cloneRecords(deepCopy.addresses, this.getClass());
+		deepCopy.phones = CloneUtil.cloneRecords(deepCopy.phones, this.getClass());
+		deepCopy.personData = CloneUtil.cloneRecord(deepCopy.personData, this.getClass());
+		deepCopy.companyData = CloneUtil.cloneRecord(deepCopy.companyData, this.getClass());
+		deepCopy.fimistData = CloneUtil.cloneRecord(deepCopy.fimistData, this.getClass());
 		
 		return deepCopy;
-	}
-	
-	
-	
-	private List<AddressInfo> cloneAddresses(List<AddressInfo> recordInfos) throws CloneNotSupportedException {
-		if (recordInfos == null)
-			return null;
-		
-		List<AddressInfo> deepAddresses = new ArrayList<>();
-		
-		for (AddressInfo eachAddress : recordInfos) {
-			AddressInfo clonedAddress = (AddressInfo) eachAddress.clone();
-			deepAddresses.add(clonedAddress);
-		}
-		
-		return deepAddresses;
-	}
-	
-	
-	
-	private List<PhoneInfo> clonePhones(List<PhoneInfo> recordInfos) throws CloneNotSupportedException {
-		if (recordInfos == null)
-			return null;
-		
-		List<PhoneInfo> deepPhones = new ArrayList<>();
-		
-		for (PhoneInfo eachPhone : recordInfos) {
-			PhoneInfo clonedPhone = (PhoneInfo) eachPhone.clone();
-			deepPhones.add(clonedPhone);
-		}
-		
-		return deepPhones;
-	}
-	
-	
-	
-	private PersonInfo clonePerson(PersonInfo recordInfo) throws CloneNotSupportedException {
-		if (recordInfo == null)
-			return null;
-		
-		return (PersonInfo) recordInfo.clone();
-	}
-	
-	
-	
-	private CompInfo cloneCompany(CompInfo recordInfo) throws CloneNotSupportedException {
-		if (recordInfo == null)
-			return null;
-		
-		return (CompInfo) recordInfo.clone();
-	}
-	
-	
-	
-	private UserInfo cloneUser(UserInfo recordInfo) throws CloneNotSupportedException {
-		if (recordInfo == null)
-			return null;
-		
-		return (UserInfo) recordInfo.clone();
-	}
-	
-	
-	
-	private FimistInfo cloneFimist(FimistInfo recordInfo) throws CloneNotSupportedException {
-		if (recordInfo == null)
-			return null;
-		
-		return (FimistInfo) recordInfo.clone();
 	}
 	
 	

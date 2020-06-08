@@ -1,19 +1,25 @@
 package br.com.mind5.business.owner.model.action;
 
-import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.owner.info.OwnerInfo;
 import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.business.phone.model.decisionTree.RootPhoneUpsertdel;
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateActionV1;
+import br.com.mind5.model.action.ActionVisitorTemplateActionV2;
+import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiOwnerUpsertPhone extends ActionVisitorTemplateActionV1<OwnerInfo, PhoneInfo> {
-	public VisiOwnerUpsertPhone(Connection conn, String schemaName) {
-		super(conn, schemaName, OwnerInfo.class, PhoneInfo.class);
+final class VisiOwnerUpsertPhone extends ActionVisitorTemplateActionV2<OwnerInfo, PhoneInfo> {
+	
+	public VisiOwnerUpsertPhone(DeciTreeOption<OwnerInfo> option) {
+		super(option, OwnerInfo.class, PhoneInfo.class);
+	}
+	
+	
+	
+	@Override protected Class<? extends DeciTree<PhoneInfo>> getTreeClassHook() {
+		return RootPhoneUpsertdel.class;
 	}
 	
 	
@@ -26,11 +32,5 @@ final class VisiOwnerUpsertPhone extends ActionVisitorTemplateActionV1<OwnerInfo
 		}		
 		
 		return results;
-	}
-	
-	
-	
-	@Override protected ActionStdV1<PhoneInfo> getActionHook(DeciTreeOption<PhoneInfo> option) {
-		return new RootPhoneUpsertdel(option).toAction();
 	}
 }

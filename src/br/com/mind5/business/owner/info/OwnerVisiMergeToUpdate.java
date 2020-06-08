@@ -32,7 +32,7 @@ final class OwnerVisiMergeToUpdate implements InfoMergerVisitorV3<OwnerInfo, Own
 		if (baseInfo.phones != null)
 			selectedInfo.phones = baseInfo.phones;
 		
-		if (baseInfo.userData != null)
+		if (baseInfo.companyData != null)
 			selectedInfo.companyData = baseInfo.companyData;
 		
 		if (baseInfo.personData != null)

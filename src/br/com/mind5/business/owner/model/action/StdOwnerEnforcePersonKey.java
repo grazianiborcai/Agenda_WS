@@ -1,35 +1,19 @@
 package br.com.mind5.business.owner.model.action;
 
 import br.com.mind5.business.owner.info.OwnerInfo;
-import br.com.mind5.model.action.ActionLazyV1;
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionStdHelperEnforce;
-import br.com.mind5.model.decisionTree.DeciResult;
+import br.com.mind5.model.action.ActionStdTemplateV2;
+import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdOwnerEnforcePersonKey implements ActionStdV1<OwnerInfo> {
-	private ActionStdV1<OwnerInfo> actionHelper;	
-	
-	
-	public StdOwnerEnforcePersonKey(DeciTreeOption<OwnerInfo> option) {			
-		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiOwnerEnforcePersonKey());
+public final class StdOwnerEnforcePersonKey extends ActionStdTemplateV2<OwnerInfo>{
+
+	public StdOwnerEnforcePersonKey(DeciTreeOption<OwnerInfo> option) {
+		super(option);
 	}
 	
 	
 	
-	@Override public void addPostAction(ActionLazyV1<OwnerInfo> actionHandler) {
-		actionHelper.addPostAction(actionHandler);
-	}
-	
-	
-	
-	@Override public boolean executeAction() {			
-		return actionHelper.executeAction();
-	}
-	
-	
-	
-	@Override public DeciResult<OwnerInfo> getDecisionResult() {
-		return actionHelper.getDecisionResult();
+	protected ActionVisitorV2<OwnerInfo> buildVisitorHook(DeciTreeOption<OwnerInfo> option) {
+		return new VisiOwnerEnforcePersonKey(option);
 	}
 }

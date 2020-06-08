@@ -12,6 +12,7 @@ import br.com.mind5.security.user.info.UserInfo;
 import br.com.mind5.security.user.model.decisionTree.RootUserInsertDaemon;
 
 final class VisiOwnerInsertUserDaemon extends ActionVisitorTemplateActionV2<OwnerInfo, UserInfo> {
+	
 	public VisiOwnerInsertUserDaemon(DeciTreeOption<OwnerInfo> option) {
 		super(option, OwnerInfo.class, UserInfo.class);
 	}

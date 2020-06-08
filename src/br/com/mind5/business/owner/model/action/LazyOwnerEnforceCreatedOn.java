@@ -4,12 +4,12 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.owner.info.OwnerInfo;
-import br.com.mind5.model.action.ActionLazyTemplateV1;
+import br.com.mind5.model.action.ActionLazyTemplateV2;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyOwnerEnforceCreatedOn extends ActionLazyTemplateV1<OwnerInfo, OwnerInfo> {
+public final class LazyOwnerEnforceCreatedOn extends ActionLazyTemplateV2<OwnerInfo, OwnerInfo> {
 	
 	public LazyOwnerEnforceCreatedOn(Connection conn, String schemaName) {
 		super(conn, schemaName);

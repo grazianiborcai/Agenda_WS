@@ -12,6 +12,7 @@ import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
 final class VisiOwnerInsertComp extends ActionVisitorTemplateActionV2<OwnerInfo, CompInfo> {
+	
 	public VisiOwnerInsertComp(DeciTreeOption<OwnerInfo> option) {
 		super(option, OwnerInfo.class, CompInfo.class);
 	}

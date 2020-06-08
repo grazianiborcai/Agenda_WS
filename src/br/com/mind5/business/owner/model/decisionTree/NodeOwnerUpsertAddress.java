@@ -10,13 +10,13 @@ import br.com.mind5.business.owner.model.action.StdOwnerSuccess;
 import br.com.mind5.business.owner.model.checker.OwnerCheckHasAddress;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class NodeOwnerUpsertAddress extends DeciTreeTemplateReadV1<OwnerInfo> {
+public final class NodeOwnerUpsertAddress extends DeciTreeTemplateWriteV2<OwnerInfo> {
 	
 	public NodeOwnerUpsertAddress(DeciTreeOption<OwnerInfo> option) {
 		super(option);

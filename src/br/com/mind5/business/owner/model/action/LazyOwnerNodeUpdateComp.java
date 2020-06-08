@@ -5,12 +5,12 @@ import java.util.List;
 
 import br.com.mind5.business.owner.info.OwnerInfo;
 import br.com.mind5.business.owner.model.decisionTree.NodeOwnerUpdateComp;
-import br.com.mind5.model.action.ActionLazyTemplateV1;
+import br.com.mind5.model.action.ActionLazyTemplateV2;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyOwnerNodeUpdateComp extends ActionLazyTemplateV1<OwnerInfo, OwnerInfo> {
+public final class LazyOwnerNodeUpdateComp extends ActionLazyTemplateV2<OwnerInfo, OwnerInfo> {
 	
 	public LazyOwnerNodeUpdateComp(Connection conn, String schemaName) {
 		super(conn, schemaName);

@@ -12,6 +12,7 @@ import br.com.mind5.security.user.info.UserInfo;
 import br.com.mind5.security.user.model.decisionTree.RootUserInsertOwner;
 
 final class VisiOwnerInsertUser extends ActionVisitorTemplateActionV2<OwnerInfo, UserInfo> {
+	
 	public VisiOwnerInsertUser(DeciTreeOption<OwnerInfo> option) {
 		super(option, OwnerInfo.class, UserInfo.class);
 	}
