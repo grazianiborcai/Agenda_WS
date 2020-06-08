@@ -187,6 +187,7 @@ public final class DaoDbTable {
 	public static final String MONTH_TEXT_SEARCH_VIEW = "view_month_text_search";	
 	public static final String MOON_PHASE_SEARCH_VIEW = "view_moon_phase_search";
 	public static final String OWNER_LIST_VIEW = "view_owner_list";
+	public static final String OWNER_SEARCH_VIEW = "view_owner_search";
 	public static final String ORDER_LIST_VIEW = "view_order_list";
 	public static final String ORDER_ITM_LIST_VIEW = "view_order_item_list";	
 	public static final String ORDER_ITM_SEARCH_VIEW = "view_order_item_search";
