@@ -17,7 +17,6 @@
 	
 	
 	<!-- Free of authentication --> 
-	<http pattern="/**/Dummy/**"   						security="none"/>   <!-- TODO: Somente para teste -->
 	<http pattern="/**/Signup/**"   					security="none"/>
 	<http pattern="/**/Signin/**" 						security="none"/>
 	<http pattern="/**/Webhook/**"     					security="none"/>
@@ -40,7 +39,9 @@
 
 	<!-- JWT Token authentication --> 
     <security:http create-session="stateless" pattern="/**">    
-        <security:intercept-url pattern="/**/Owner/**"       						access="hasAuthority('OWNER_WRITE')" 				/> <!-- TODO: rever -->
+        <security:intercept-url pattern="/**/Owner/selectOwner"       				access="hasAuthority('OWNER_WRITE')" 				/>
+        <security:intercept-url pattern="/**/Owner/updateOwner"       				access="hasAuthority('OWNER_WRITE')" 				/>
+        <security:intercept-url pattern="/**/Owner/deleteOwner"       				access="denyAll" 									/>
     	<security:intercept-url pattern="/**/Store/updateStoreWorkTime" 			access="hasAuthority('STORE_UPDATE')" 				/>
     	<security:intercept-url pattern="/**/Store/insertStoreWorkTime" 			access="hasAuthority('STORE_UPDATE')" 				/>
     	<security:intercept-url pattern="/**/Store/deleteStoreWorkTime" 			access="hasAuthority('STORE_UPDATE')" 				/>

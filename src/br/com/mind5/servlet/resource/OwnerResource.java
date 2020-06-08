@@ -43,7 +43,10 @@ public class OwnerResource {
 		
 		Model model = new OwnerModelSelect(recordInfo);
 		model.executeRequest();
-		return model.getResponse();	
+		Response result = model.getResponse();
+		model.close();
+		
+		return result;
 	}
 		
 
@@ -63,7 +66,10 @@ public class OwnerResource {
 		
 		Model model = new OwnerModelDelete(recordInfo);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();
+		model.close();
+		
+		return result;
 	}
 	
 	
@@ -76,6 +82,9 @@ public class OwnerResource {
 		
 		Model model = new OwnerModelUpdate(incomingData, request);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();
+		model.close();
+		
+		return result;
 	}
 }
