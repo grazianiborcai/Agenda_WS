@@ -9,7 +9,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import br.com.mind5.business.customer.model.CusModelSignup;
-import br.com.mind5.business.owner.model.OwnerModelInsert;
+import br.com.mind5.business.owner.model.OwnerModelSignup;
 import br.com.mind5.model.Model;
 
 @Path("/Signup")
@@ -24,7 +24,7 @@ public class SignupResource {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response signupOwner(@Context HttpServletRequest request, String incomingData) {		
 		
-		Model model = new OwnerModelInsert(incomingData, request);
+		Model model = new OwnerModelSignup(incomingData, request);
 		model.executeRequest();
 		return model.getResponse();
 	}
