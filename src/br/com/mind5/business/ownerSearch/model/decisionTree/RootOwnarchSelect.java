@@ -13,9 +13,9 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 
-public final class RootOwnelisSelect extends DeciTreeTemplateReadV2<OwnarchInfo> {
+public final class RootOwnarchSelect extends DeciTreeTemplateReadV2<OwnarchInfo> {
 
-	public RootOwnelisSelect(DeciTreeOption<OwnarchInfo> option) {
+	public RootOwnarchSelect(DeciTreeOption<OwnarchInfo> option) {
 		super(option);
 	}
 	
