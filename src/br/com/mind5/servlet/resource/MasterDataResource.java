@@ -28,6 +28,8 @@ import br.com.mind5.masterData.entityCategory.info.EntitegInfo;
 import br.com.mind5.masterData.entityCategory.model.EntitegModelSelect;
 import br.com.mind5.masterData.feeCategorySearch.info.FeecatarchInfo;
 import br.com.mind5.masterData.feeCategorySearch.model.FeecatarchModelSelect;
+import br.com.mind5.masterData.fileDocTypeSearch.info.FidocarchInfo;
+import br.com.mind5.masterData.fileDocTypeSearch.model.FidocarchModelSelect;
 import br.com.mind5.masterData.genderSearch.info.GendarchInfo;
 import br.com.mind5.masterData.genderSearch.model.GendarchModelSelect;
 import br.com.mind5.masterData.languageSearch.info.LangarchInfo;
@@ -97,6 +99,7 @@ public final class MasterDataResource {
 	private static final String SELECT_MONTH = "/selectMonth";
 	private static final String SELECT_MOON_PHASE = "/selectMoonPhase";
 	private static final String SELECT_REFUND_POLICY_GROUP = "/selectRefundPolicyGroup";
+	private static final String SELECT_FILE_DOC_TYPE = "/selectFileDocType";
 	
 	
 	@GET
@@ -678,6 +681,27 @@ public final class MasterDataResource {
 		
 		
 		Model model = new RefugroupModelSearch(recordInfo);
+		model.executeRequest();
+		Response result = model.getResponse();
+		model.close();
+		
+		return result;
+	}
+	
+	
+	
+	@GET
+	@Path(SELECT_FILE_DOC_TYPE)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response selectFileDocType(@HeaderParam("codLanguage")    @DefaultValue("EN") String codLanguage, 
+			                          @HeaderParam("codFileDocType")                     String codFileDocType) {
+		
+		FidocarchInfo recordInfo = new FidocarchInfo();
+		recordInfo.codLanguage = codLanguage;
+		recordInfo.codFileDocType = codFileDocType;
+		
+		
+		Model model = new FidocarchModelSelect(recordInfo);
 		model.executeRequest();
 		Response result = model.getResponse();
 		model.close();

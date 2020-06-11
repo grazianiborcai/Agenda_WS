@@ -191,6 +191,7 @@ public final class SystemCode {
 	public static final int FILE_DOC_TYPE_ALREADY_EXIST					= 11665;
 	public static final int FILE_DOC_TYPE_NOT_FOUND						= 11666;	
 	public static final int FILE_DOC_TYPE_MANDATORY_FIELD_EMPTY 		= 11667;
+	public static final int FILE_DOC_TYPE_SEARCH_MANDATORY_FIELD_EMPTY 	= 11668;
 	
 	// Material
 	public static final int MAT_ALREADY_EXIST							= 1200;

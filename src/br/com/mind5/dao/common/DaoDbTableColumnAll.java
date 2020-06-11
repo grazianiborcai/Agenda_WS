@@ -132,6 +132,7 @@ import br.com.mind5.masterData.entityCategory.dao.DaoEntitegDbTableColumn;
 import br.com.mind5.masterData.feeCategory.dao.DaoFeecatDbTableColumn;
 import br.com.mind5.masterData.feeCategorySearch.dao.DaoFeecatarchDbTableColumn;
 import br.com.mind5.masterData.fileDocType.dao.DaoFidoceDbTableColumn;
+import br.com.mind5.masterData.fileDocTypeSearch.dao.DaoFidocarchDbTableColumn;
 import br.com.mind5.masterData.gender.dao.DaoGenderDbTableColumn;
 import br.com.mind5.masterData.genderSearch.dao.DaoGendarchDbTableColumn;
 import br.com.mind5.masterData.language.dao.DaoLanguDbTableColumn;
@@ -404,6 +405,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new DaoSysonupDbTableColumn());
 		addTable(new DaoOwnarchDbTableColumn());
 		addTable(new DaoFidoceDbTableColumn());
+		addTable(new DaoFidocarchDbTableColumn());
 	}
 	
 	
