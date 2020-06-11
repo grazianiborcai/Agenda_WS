@@ -6,7 +6,6 @@ import br.com.mind5.info.InfoRecord;
 
 public final class OtpInfo extends InfoRecord implements Cloneable {
 	public String password;
-	public String passwordToChange;
 	public byte[] hash;
 	public byte[] salt;
 	public byte[] hashToMatch;
