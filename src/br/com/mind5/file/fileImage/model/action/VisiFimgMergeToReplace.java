@@ -1,23 +1,23 @@
 package br.com.mind5.file.fileImage.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.file.fileImage.info.FimgInfo;
 import br.com.mind5.file.fileImage.info.FimgMerger;
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiFimgMergeToReplace extends ActionVisitorTemplateMergeV1<FimgInfo, FimgInfo> {
+final class VisiFimgMergeToReplace extends ActionVisitorTemplateMergeV2<FimgInfo, FimgInfo> {
 	
-	public VisiFimgMergeToReplace(Connection conn, String schemaName) {
-		super(conn, schemaName, FimgInfo.class);
+	public VisiFimgMergeToReplace(DeciTreeOption<FimgInfo> option) {
+		super(option, FimgInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends ActionStdV1<FimgInfo>> getActionClassHook() {
-		return StdFimgSelect.class;
+	@Override protected Class<? extends ActionStdV2<FimgInfo>> getActionClassHook() {
+		return StdFimgDaoSelect.class;
 	}
 	
 	
@@ -35,6 +35,6 @@ final class VisiFimgMergeToReplace extends ActionVisitorTemplateMergeV1<FimgInfo
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
+		return super.DONT_MERGE_WHEN_EMPTY;
 	}
 }

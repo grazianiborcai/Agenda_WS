@@ -5,12 +5,12 @@ import java.util.List;
 
 import br.com.mind5.file.fileImage.info.FimgInfo;
 import br.com.mind5.file.fileImage.model.decisionTree.NodeFimgDeleteStore;
-import br.com.mind5.model.action.ActionLazyTemplateV1;
+import br.com.mind5.model.action.ActionLazyTemplateV2;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyFimgNodeDeleteStore extends ActionLazyTemplateV1<FimgInfo, FimgInfo> {
+public final class LazyFimgNodeDeleteStore extends ActionLazyTemplateV2<FimgInfo, FimgInfo> {
 
 	public LazyFimgNodeDeleteStore(Connection conn, String schemaName) {
 		super(conn, schemaName);

@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.file.fileImage.info.FimgInfo;
-import br.com.mind5.file.fileImage.model.action.LazyFimgDelete;
+import br.com.mind5.file.fileImage.model.action.LazyFimgDaoDelete;
 import br.com.mind5.file.fileImage.model.action.LazyFimgEnforceLChanged;
 import br.com.mind5.file.fileImage.model.action.LazyFimgMergeUsername;
-import br.com.mind5.file.fileImage.model.action.LazyFimgUpdate;
+import br.com.mind5.file.fileImage.model.action.LazyFimgDaoUpdate;
 import br.com.mind5.file.fileImage.model.action.StdFimgMergeToUpdate;
 import br.com.mind5.file.fileImage.model.checker.FimgCheckDelete;
 import br.com.mind5.file.fileImage.model.checker.FimgCheckExist;
@@ -17,9 +17,9 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class RootFimgDelete extends DeciTreeTemplateWriteV1<FimgInfo> {
+public final class RootFimgDelete extends DeciTreeTemplateWriteV2<FimgInfo> {
 	
 	public RootFimgDelete(DeciTreeOption<FimgInfo> option) {
 		super(option);
@@ -57,8 +57,8 @@ public final class RootFimgDelete extends DeciTreeTemplateWriteV1<FimgInfo> {
 		ActionStdV1<FimgInfo> mergeToUpdate = new StdFimgMergeToUpdate(option);	
 		ActionLazyV1<FimgInfo> enforceLChanged = new LazyFimgEnforceLChanged(option.conn, option.schemaName);	
 		ActionLazyV1<FimgInfo> enforceLChangedBy = new LazyFimgMergeUsername(option.conn, option.schemaName);
-		ActionLazyV1<FimgInfo> update = new LazyFimgUpdate(option.conn, option.schemaName);
-		ActionLazyV1<FimgInfo> delete = new LazyFimgDelete(option.conn, option.schemaName);
+		ActionLazyV1<FimgInfo> update = new LazyFimgDaoUpdate(option.conn, option.schemaName);
+		ActionLazyV1<FimgInfo> delete = new LazyFimgDaoDelete(option.conn, option.schemaName);
 		
 		mergeToUpdate.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceLChangedBy);

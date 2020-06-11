@@ -11,7 +11,7 @@ import br.com.mind5.file.fileImage.model.action.LazyFimgEnforceUriExternal;
 import br.com.mind5.file.fileImage.model.action.LazyFimgMergeFath;
 import br.com.mind5.file.fileImage.model.action.LazyFimgMergeUsername;
 import br.com.mind5.file.fileImage.model.action.LazyFimgRootSelect;
-import br.com.mind5.file.fileImage.model.action.LazyFimgUpdate;
+import br.com.mind5.file.fileImage.model.action.LazyFimgDaoUpdate;
 import br.com.mind5.file.fileImage.model.action.LazyFimgWriteOnDisk;
 import br.com.mind5.file.fileImage.model.action.StdFimgMergeToReplace;
 import br.com.mind5.file.fileImage.model.checker.FimgCheckExist;
@@ -24,9 +24,9 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class RootFimgReplace extends DeciTreeTemplateWriteV1<FimgInfo> {
+public final class RootFimgReplace extends DeciTreeTemplateWriteV2<FimgInfo> {
 	
 	public RootFimgReplace(DeciTreeOption<FimgInfo> option) {
 		super(option);
@@ -82,7 +82,7 @@ public final class RootFimgReplace extends DeciTreeTemplateWriteV1<FimgInfo> {
 		ActionLazyV1<FimgInfo> mergeFath = new LazyFimgMergeFath(option.conn, option.schemaName);
 		ActionLazyV1<FimgInfo> enforceUri = new LazyFimgEnforceUri(option.conn, option.schemaName);
 		ActionLazyV1<FimgInfo> enforceUriExternal = new LazyFimgEnforceUriExternal(option.conn, option.schemaName);
-		ActionLazyV1<FimgInfo> update = new LazyFimgUpdate(option.conn, option.schemaName);	
+		ActionLazyV1<FimgInfo> update = new LazyFimgDaoUpdate(option.conn, option.schemaName);	
 		ActionLazyV1<FimgInfo> writeOnDisk = new LazyFimgWriteOnDisk(option.conn, option.schemaName);
 		ActionLazyV1<FimgInfo> select = new LazyFimgRootSelect(option.conn, option.schemaName);
 		

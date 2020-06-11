@@ -108,7 +108,7 @@ import br.com.mind5.common.SystemMessage;
 import br.com.mind5.config.sysOwnerSignup.dao.DaoSysonupDbTableColumn;
 import br.com.mind5.dao.DaoColumn;
 import br.com.mind5.dao.DaoDbTableColumn;
-import br.com.mind5.file.fileImage.dao.FimgDbTableColumn;
+import br.com.mind5.file.fileImage.dao.DaoFimgDbTableColumn;
 import br.com.mind5.file.fileImageList.dao.DaoFimistDbTableColumn;
 import br.com.mind5.file.fileImageSearch.dao.DaoFimarchDbTableColumn;
 import br.com.mind5.file.filePath.dao.FathDbTableColumn;
@@ -292,7 +292,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new DaoSchedyeratDbTableColumn());
 		addTable(new DaoSchedonthatDbTableColumn());
 		addTable(new DaoSchedeekdatDbTableColumn());
-		addTable(new FimgDbTableColumn());
+		addTable(new DaoFimgDbTableColumn());
 		addTable(new FathDbTableColumn());
 		addTable(new DaoSymsgDbTableColumn());
 		addTable(new OwnerapDbTableColumn());

@@ -1,35 +1,19 @@
 package br.com.mind5.file.fileImage.model.action;
 
 import br.com.mind5.file.fileImage.info.FimgInfo;
-import br.com.mind5.model.action.ActionLazyV1;
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionStdHelperMerge;
-import br.com.mind5.model.decisionTree.DeciResult;
+import br.com.mind5.model.action.ActionStdTemplateV2;
+import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdFimgMergeUsername implements ActionStdV1<FimgInfo> {
-	private ActionStdV1<FimgInfo> actionHelper;	
-	
-	
-	public StdFimgMergeUsername(DeciTreeOption<FimgInfo> option) {			
-		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiFimgMergeUsername(option.conn, option.schemaName));
+public final class StdFimgMergeUsername extends ActionStdTemplateV2<FimgInfo> {
+
+	public StdFimgMergeUsername(DeciTreeOption<FimgInfo> option) {
+		super(option);
 	}
 	
 	
 	
-	@Override public void addPostAction(ActionLazyV1<FimgInfo> actionHandler) {
-		actionHelper.addPostAction(actionHandler);
-	}
-	
-	
-	
-	@Override public boolean executeAction() {			
-		return actionHelper.executeAction();
-	}
-	
-	
-	
-	@Override public DeciResult<FimgInfo> getDecisionResult() {
-		return actionHelper.getDecisionResult();
+	protected ActionVisitorV2<FimgInfo> buildVisitorHook(DeciTreeOption<FimgInfo> option) {
+		return new VisiFimgMergeUsername(option);
 	}
 }

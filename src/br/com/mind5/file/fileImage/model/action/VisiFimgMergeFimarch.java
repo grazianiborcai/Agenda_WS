@@ -1,19 +1,19 @@
 package br.com.mind5.file.fileImage.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.file.fileImage.info.FimgInfo;
 import br.com.mind5.file.fileImage.info.FimgMerger;
 import br.com.mind5.file.fileImageSearch.info.FimarchInfo;
 import br.com.mind5.file.fileImageSearch.model.decisionTree.RootFimarchSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiFimgMergeFimarch extends ActionVisitorTemplateMergeV1<FimgInfo, FimarchInfo> {
+final class VisiFimgMergeFimarch extends ActionVisitorTemplateMergeV2<FimgInfo, FimarchInfo> {
 	
-	public VisiFimgMergeFimarch(Connection conn, String schemaName) {
-		super(conn, schemaName, FimarchInfo.class);
+	public VisiFimgMergeFimarch(DeciTreeOption<FimgInfo> option) {
+		super(option, FimarchInfo.class);
 	}
 	
 	
@@ -31,6 +31,6 @@ final class VisiFimgMergeFimarch extends ActionVisitorTemplateMergeV1<FimgInfo, 
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
+		return super.DONT_MERGE_WHEN_EMPTY;
 	}
 }

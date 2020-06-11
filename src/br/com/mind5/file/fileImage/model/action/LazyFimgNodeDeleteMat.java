@@ -5,12 +5,12 @@ import java.util.List;
 
 import br.com.mind5.file.fileImage.info.FimgInfo;
 import br.com.mind5.file.fileImage.model.decisionTree.NodeFimgDeleteMat;
-import br.com.mind5.model.action.ActionLazyTemplateV1;
+import br.com.mind5.model.action.ActionLazyTemplateV2;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyFimgNodeDeleteMat extends ActionLazyTemplateV1<FimgInfo, FimgInfo> {
+public final class LazyFimgNodeDeleteMat extends ActionLazyTemplateV2<FimgInfo, FimgInfo> {
 
 	public LazyFimgNodeDeleteMat(Connection conn, String schemaName) {
 		super(conn, schemaName);

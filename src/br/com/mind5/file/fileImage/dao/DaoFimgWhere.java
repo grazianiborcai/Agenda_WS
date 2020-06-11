@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.file.fileImage.info.FimgInfo;
 
-public final class FimgWhere implements DaoStmtWhere {
+public final class DaoFimgWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public FimgWhere(DaoWhereBuilderOption whereOption, String tableName, FimgInfo recordInfo) {
+	public DaoFimgWhere(DaoWhereBuilderOption whereOption, String tableName, FimgInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -27,15 +27,15 @@ public final class FimgWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-				case FimgDbTableColumn.COL_COD_OWNER :
+				case DaoFimgDbTableColumn.COL_COD_OWNER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;
 					
-				case FimgDbTableColumn.COL_COD_FILE_IMG :
+				case DaoFimgDbTableColumn.COL_COD_FILE_IMG :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codFileImg));
 					break;
 					
-				case FimgDbTableColumn.COL_RECORD_MODE :
+				case DaoFimgDbTableColumn.COL_RECORD_MODE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.recordMode);
 					break;
 			}

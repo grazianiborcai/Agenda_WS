@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class FimgDbTableColumn extends DaoDbTableColumnTemplate {
+public final class DaoFimgDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_CUSTOMER = DaoDbField.COL_COD_CUSTOMER;
 	public static final String COL_COD_EMPLOYEE = DaoDbField.COL_COD_EMPLOYEE;	
 	public static final String COL_COD_FILE_IMG = DaoDbField.COL_COD_FILE_IMG;	
@@ -31,28 +31,15 @@ public final class FimgDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_LAST_CHANGED = DaoDbField.COL_LAST_CHANGED;
 	public static final String COL_LAST_CHANGED_BY = DaoDbField.COL_LAST_CHANGED_BY;
 	public static final String COL_RECORD_MODE = DaoDbField.COL_RECORD_MODE;	
-		
+			
 	
-	
-	private Hashtable<String, List<DaoColumn>> tableColumns;	
-	
-	public FimgDbTableColumn() {
-		super(FimgDbTableColumn.class);
+	public DaoFimgDbTableColumn() {
+		super();
 	}
 	
 	
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
-		tableColumns = new Hashtable<>();
-		
-		buildFileImageTable();	
-		
-		return tableColumns;
-	}
-	
-	
-	
-	private void buildFileImageTable() {
 		final String TABLE_NAME = DaoDbTable.FILE_IMG_TABLE;
 		
 		DaoColumn oneColumn;
@@ -226,6 +213,8 @@ public final class FimgDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 
-		tableColumns.put(TABLE_NAME, columns);
+		Hashtable<String, List<DaoColumn>> results = new Hashtable<>();
+		results.put(TABLE_NAME, columns);
+		return results;
 	}
 }

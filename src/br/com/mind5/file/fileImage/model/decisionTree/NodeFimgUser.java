@@ -6,15 +6,15 @@ import java.util.List;
 import br.com.mind5.file.fileImage.info.FimgInfo;
 import br.com.mind5.file.fileImage.model.action.LazyFimgEnforceCodUser;
 import br.com.mind5.file.fileImage.model.action.StdFimgMergeUsername;
-import br.com.mind5.file.fileImage.model.checker.FimgCheckDummy;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class NodeFimgUser extends DeciTreeTemplateWriteV1<FimgInfo> {
+public final class NodeFimgUser extends DeciTreeTemplateWriteV2<FimgInfo> {
 	
 	public NodeFimgUser(DeciTreeOption<FimgInfo> option) {
 		super(option);
@@ -26,7 +26,7 @@ public final class NodeFimgUser extends DeciTreeTemplateWriteV1<FimgInfo> {
 		List<ModelCheckerV1<FimgInfo>> queue = new ArrayList<>();		
 		ModelCheckerV1<FimgInfo> checker;	
 
-		checker = new FimgCheckDummy();
+		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueueV2<>(queue);

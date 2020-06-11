@@ -11,9 +11,9 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class NodeFimgUpdateStore extends DeciTreeTemplateWriteV1<FimgInfo> {
+public final class NodeFimgUpdateStore extends DeciTreeTemplateWriteV2<FimgInfo> {
 	
 	public NodeFimgUpdateStore(DeciTreeOption<FimgInfo> option) {
 		super(option);

@@ -1,25 +1,25 @@
 package br.com.mind5.file.fileImage.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.file.fileImage.info.FimgInfo;
 import br.com.mind5.file.fileWrite.info.FriteCopier;
 import br.com.mind5.file.fileWrite.info.FriteInfo;
 import br.com.mind5.file.fileWrite.model.decisionTree.RootFriteWriteOnDisk;
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateActionV1;
+import br.com.mind5.model.action.ActionVisitorTemplateActionV2;
+import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiFimgWriteOnDisk extends ActionVisitorTemplateActionV1<FimgInfo, FriteInfo> {
-	public VisiFimgWriteOnDisk(Connection conn, String schemaName) {
-		super(conn, schemaName, FimgInfo.class, FriteInfo.class);
+final class VisiFimgWriteOnDisk extends ActionVisitorTemplateActionV2<FimgInfo, FriteInfo> {
+	
+	public VisiFimgWriteOnDisk(DeciTreeOption<FimgInfo> option) {
+		super(option, FimgInfo.class, FriteInfo.class);
 	}
 	
 	
 	
-	@Override protected ActionStdV1<FriteInfo> getActionHook(DeciTreeOption<FriteInfo> option) {
-		return new RootFriteWriteOnDisk(option).toAction();
+	@Override protected Class<? extends DeciTree<FriteInfo>> getTreeClassHook() {
+		return RootFriteWriteOnDisk.class;
 	}
 	
 	

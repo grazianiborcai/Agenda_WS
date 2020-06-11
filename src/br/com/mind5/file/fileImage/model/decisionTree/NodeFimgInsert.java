@@ -4,24 +4,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.file.fileImage.info.FimgInfo;
+import br.com.mind5.file.fileImage.model.action.LazyFimgDaoInsert;
 import br.com.mind5.file.fileImage.model.action.LazyFimgEnforceCreatedBy;
 import br.com.mind5.file.fileImage.model.action.LazyFimgEnforceCreatedOn;
 import br.com.mind5.file.fileImage.model.action.LazyFimgEnforceFilename;
 import br.com.mind5.file.fileImage.model.action.LazyFimgEnforceUri;
 import br.com.mind5.file.fileImage.model.action.LazyFimgEnforceUriExternal;
-import br.com.mind5.file.fileImage.model.action.LazyFimgInsert;
 import br.com.mind5.file.fileImage.model.action.LazyFimgMergeFath;
 import br.com.mind5.file.fileImage.model.action.LazyFimgMergeUsername;
 import br.com.mind5.file.fileImage.model.action.StdFimgEnforceLChanged;
-import br.com.mind5.file.fileImage.model.checker.FimgCheckDummy;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class NodeFimgInsert extends DeciTreeTemplateWriteV1<FimgInfo> {
+public final class NodeFimgInsert extends DeciTreeTemplateWriteV2<FimgInfo> {
 	
 	public NodeFimgInsert(DeciTreeOption<FimgInfo> option) {
 		super(option);
@@ -33,7 +33,7 @@ public final class NodeFimgInsert extends DeciTreeTemplateWriteV1<FimgInfo> {
 		List<ModelCheckerV1<FimgInfo>> queue = new ArrayList<>();		
 		ModelCheckerV1<FimgInfo> checker;	
 
-		checker = new FimgCheckDummy();
+		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueueV2<>(queue);
@@ -52,7 +52,7 @@ public final class NodeFimgInsert extends DeciTreeTemplateWriteV1<FimgInfo> {
 		ActionLazyV1<FimgInfo> mergeFath = new LazyFimgMergeFath(option.conn, option.schemaName);
 		ActionLazyV1<FimgInfo> enforceUri = new LazyFimgEnforceUri(option.conn, option.schemaName);
 		ActionLazyV1<FimgInfo> enforceUriExternal = new LazyFimgEnforceUriExternal(option.conn, option.schemaName);
-		ActionLazyV1<FimgInfo> insert = new LazyFimgInsert(option.conn, option.schemaName);	
+		ActionLazyV1<FimgInfo> insert = new LazyFimgDaoInsert(option.conn, option.schemaName);	
 		
 		enforceLChanged.addPostAction(enforceCreatedOn);
 		enforceCreatedOn.addPostAction(enforceLChangedBy);

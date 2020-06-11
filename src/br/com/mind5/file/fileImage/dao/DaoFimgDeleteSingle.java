@@ -15,11 +15,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.file.fileImage.info.FimgInfo;
 
-public final class FimgDeleteSingle extends DaoStmtTemplate<FimgInfo> {
+public final class DaoFimgDeleteSingle extends DaoStmtTemplate<FimgInfo> {
 	private final String MAIN_TABLE = DaoDbTable.FILE_IMG_TABLE;		
 	
 	
-	public FimgDeleteSingle(Connection conn, FimgInfo recordInfo, String schemaName) {
+	public DaoFimgDeleteSingle(Connection conn, FimgInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);		
 	}
 	
@@ -44,7 +44,7 @@ public final class FimgDeleteSingle extends DaoStmtTemplate<FimgInfo> {
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;	
 		whereOption.ignoreNonPrimaryKey = DaoOptionValue.IGNORE_NON_PK;		
 		
-		DaoStmtWhere whereClause = new FimgWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new DaoFimgWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
