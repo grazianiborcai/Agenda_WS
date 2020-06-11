@@ -4,6 +4,7 @@ import java.util.List;
 
 import br.com.mind5.business.ownerList.info.OwnelisInfo;
 import br.com.mind5.business.personList.info.PersolisInfo;
+import br.com.mind5.common.CloneUtil;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
 import br.com.mind5.message.emailBody.info.EmabodyInfo;
@@ -44,38 +45,11 @@ public final class EmacomeInfo extends InfoRecord implements Cloneable {
 	@Override public Object clone() throws CloneNotSupportedException {
 		EmacomeInfo deepCopy = (EmacomeInfo) super.clone();
 		
-		deepCopy.bodyData = cloneEmabody(bodyData);
-		deepCopy.persolisData = clonePersolis(deepCopy.persolisData);
-		deepCopy.ownelisData = cloneOwnelis(deepCopy.ownelisData);
+		deepCopy.bodyData = CloneUtil.cloneRecord(bodyData, this.getClass());
+		deepCopy.persolisData = CloneUtil.cloneRecord(deepCopy.persolisData, this.getClass());
+		deepCopy.ownelisData = CloneUtil.cloneRecord(deepCopy.ownelisData, this.getClass());
 		
 		return deepCopy;
-	}
-	
-	
-	
-	private EmabodyInfo cloneEmabody(EmabodyInfo recordInfo) throws CloneNotSupportedException {
-		if (recordInfo == null)
-			return null;
-		
-		return (EmabodyInfo) recordInfo.clone();
-	}
-	
-	
-	
-	private PersolisInfo clonePersolis(PersolisInfo recordInfo) throws CloneNotSupportedException {
-		if (recordInfo == null)
-			return null;
-		
-		return (PersolisInfo) recordInfo.clone();
-	}
-	
-	
-	
-	private OwnelisInfo cloneOwnelis(OwnelisInfo recordInfo) throws CloneNotSupportedException {
-		if (recordInfo == null)
-			return null;
-		
-		return (OwnelisInfo) recordInfo.clone();
 	}
 	
 	
