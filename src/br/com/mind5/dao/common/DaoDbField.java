@@ -40,6 +40,7 @@ public final class DaoDbField {
 	public static final String COL_COD_EMPLOYEE_SNAPSHOT = "cod_employee_snapshot";	
 	public static final String COL_COD_ENTITY_CATEG = "cod_entity_categ";
 	public static final String COL_COD_FEE_CATEG = "cod_fee_categ";
+	public static final String COL_COD_FILE_DOC_TYPE = "cod_file_doc_type";	
 	public static final String COL_COD_FILE_IMG = "cod_file_img";
 	public static final String COL_COD_FILE_PATH = "cod_file_path";
 	public static final String COL_COD_FORM = "cod_form";

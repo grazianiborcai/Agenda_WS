@@ -187,7 +187,10 @@ public final class SystemCode {
 	public static final int REFUND_POLICY_NOT_FOUND						= 11661;
 	public static final int REFUND_POLICY_MANDATORY_FIELD_EMPTY 		= 11662;
 	public static final int PAYMENT_STATUS_SEARCH_MANDATORY_FIELD_EMPTY = 11663;
-	public static final int MONTH_SEARCH_MANDATORY_FIELD_EMPTY 			= 11664;
+	public static final int MONTH_SEARCH_MANDATORY_FIELD_EMPTY 			= 11664;	
+	public static final int FILE_DOC_TYPE_ALREADY_EXIST					= 11665;
+	public static final int FILE_DOC_TYPE_NOT_FOUND						= 11666;	
+	public static final int FILE_DOC_TYPE_MANDATORY_FIELD_EMPTY 		= 11667;
 	
 	// Material
 	public static final int MAT_ALREADY_EXIST							= 1200;
