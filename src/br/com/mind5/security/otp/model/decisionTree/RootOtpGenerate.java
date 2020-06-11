@@ -1,0 +1,54 @@
+package br.com.mind5.security.otp.model.decisionTree;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.common.ModelCheckerDummy;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.security.otp.info.OtpInfo;
+import br.com.mind5.security.otp.model.action.LazyOtpEnforceHash;
+import br.com.mind5.security.otp.model.action.LazyOtpEnforceLength;
+import br.com.mind5.security.otp.model.action.LazyOtpEnforceSalt;
+import br.com.mind5.security.otp.model.action.StdOtpEnforceRandom;
+
+public final class RootOtpGenerate extends DeciTreeTemplateWriteV2<OtpInfo> {
+	
+	public RootOtpGenerate(DeciTreeOption<OtpInfo> option) {
+		super(option);
+	}
+	
+	
+	
+	@Override protected ModelCheckerV1<OtpInfo> buildCheckerHook(DeciTreeOption<OtpInfo> option) {
+		List<ModelCheckerV1<OtpInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<OtpInfo> checker;
+
+		checker = new ModelCheckerDummy<>();
+		queue.add(checker);
+		
+		return new ModelCheckerHelperQueueV2<>(queue);
+	}
+	
+	
+	
+	@Override protected List<ActionStdV1<OtpInfo>> buildActionsOnPassedHook(DeciTreeOption<OtpInfo> option) {
+		List<ActionStdV1<OtpInfo>> actions = new ArrayList<>();
+		
+		ActionStdV1<OtpInfo> enforceRandom = new StdOtpEnforceRandom(option);
+		ActionLazyV1<OtpInfo> enforceLength = new LazyOtpEnforceLength(option.conn, option.schemaName);
+		ActionLazyV1<OtpInfo> enforceSalt = new LazyOtpEnforceSalt(option.conn, option.schemaName);
+		ActionLazyV1<OtpInfo> enforceHash = new LazyOtpEnforceHash(option.conn, option.schemaName);
+		
+		enforceRandom.addPostAction(enforceLength);
+		enforceLength.addPostAction(enforceSalt);
+		enforceSalt.addPostAction(enforceHash);
+		
+		actions.add(enforceRandom);	
+		return actions;
+	}
+}

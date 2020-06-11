@@ -1308,4 +1308,9 @@ public final class SystemCode {
 	
 	// Order Search
 	public static final int OWNER_SEARCH_MANDATORY_FIELD_EMPTY 			= 12750;
+	
+	// OTP
+	public static final int OTP_MANDATORY_FIELD_EMPTY					= 12800;
+	public static final int OTP_IS_INVALID								= 12801;
+	public static final int OTP_IS_VALID								= 12802;
 }
