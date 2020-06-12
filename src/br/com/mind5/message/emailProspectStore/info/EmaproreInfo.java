@@ -13,8 +13,6 @@ public final class EmaproreInfo extends InfoRecord implements Cloneable {
 	public String password;	
 	public String username;		
 	public EmabodyInfo bodyData;
-	//public PersolisInfo persolisData;
-	//public OwnelisInfo ownelisData;
 	
 	
 	public EmaproreInfo() {
@@ -22,8 +20,6 @@ public final class EmaproreInfo extends InfoRecord implements Cloneable {
 		
 		codOwner = DefaultValue.number();
 		bodyData = DefaultValue.object();
-		//persolisData = DefaultValue.object();
-		//ownelisData = DefaultValue.object();
 	}
 	
 	
@@ -44,9 +40,6 @@ public final class EmaproreInfo extends InfoRecord implements Cloneable {
 		EmaproreInfo deepCopy = (EmaproreInfo) super.clone();
 		
 		deepCopy.bodyData = CloneUtil.cloneRecord(bodyData, this.getClass());
-		//deepCopy.persolisData = CloneUtil.cloneRecord(deepCopy.persolisData, this.getClass());
-		//deepCopy.ownelisData = CloneUtil.cloneRecord(deepCopy.ownelisData, this.getClass());
-		
 		return deepCopy;
 	}
 	
