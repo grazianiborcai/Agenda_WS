@@ -1318,4 +1318,7 @@ public final class SystemCode {
 	public static final int OTP_PROSP_STORE_MANDATORY_FIELD_EMPTY		= 12850;
 	public static final int OTP_PROSP_STORE_NOT_FOUND					= 12851;
 	public static final int OTP_PROSP_STORE_ALREADY_EXIST				= 12852;
+	
+	// Email Prospect Store
+	public static final int EMAIL_PROSP_STORE_MANDATORY_FIELD_EMPTY		= 12900;
 }
