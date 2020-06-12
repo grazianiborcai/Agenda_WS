@@ -45,8 +45,7 @@ public final class RootEmacomeSend extends DeciTreeTemplateWriteV2<EmacomeInfo> 
 		List<ActionStdV1<EmacomeInfo>> actions = new ArrayList<>();	
 		
 		ActionStdV1<EmacomeInfo> mergeOwnelis = new StdEmacomeMergeOwnelis(option);
-		ActionLazyV1<EmacomeInfo> enforceEmabody = new LazyEmacomeEnforceEmabody(option.conn, option.schemaName);
-		
+		ActionLazyV1<EmacomeInfo> enforceEmabody = new LazyEmacomeEnforceEmabody(option.conn, option.schemaName);		
 		ActionLazyV1<EmacomeInfo> send = new LazyEmacomeSendEmail(option.conn, option.schemaName);
 		
 		mergeOwnelis.addPostAction(enforceEmabody);
