@@ -8,12 +8,12 @@ import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExecV2;
 import br.com.mind5.security.otpProspectStore.info.OtporeInfo;
 
-public final class DaoUpswdDelete implements DaoStmtExecV2<OtporeInfo> {
+public class DaoOtporeSelect implements DaoStmtExecV2<OtporeInfo> {
 	private DaoStmtExecV2<OtporeInfo> helper;
 	
 	
-	public DaoUpswdDelete(List<DaoStmtExecOption<OtporeInfo>> options) {
-		helper = new DaoStmtExecHelperV2<>(options, DaoUpswdDeleteSingle.class, OtporeInfo.class);
+	public DaoOtporeSelect(List<DaoStmtExecOption<OtporeInfo>> options) {
+		helper = new DaoStmtExecHelperV2<>(options, DaoOtporeSelectSingle.class, OtporeInfo.class);
 	}
 	
 	

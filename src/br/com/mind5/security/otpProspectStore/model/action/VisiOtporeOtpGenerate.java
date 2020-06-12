@@ -8,7 +8,7 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.otp.info.OtpInfo;
 import br.com.mind5.security.otp.model.decisionTree.RootOtpGenerate;
 import br.com.mind5.security.otpProspectStore.info.OtporeInfo;
-import br.com.mind5.security.otpProspectStore.info.UpswdMerger;
+import br.com.mind5.security.otpProspectStore.info.OtporeMerger;
 
 final class VisiOtporeOtpGenerate extends ActionVisitorTemplateActionV2<OtporeInfo, OtpInfo> {
 	
@@ -25,6 +25,6 @@ final class VisiOtporeOtpGenerate extends ActionVisitorTemplateActionV2<OtporeIn
 	
 	
 	@Override protected List<OtporeInfo> toBaseClassHook(List<OtporeInfo> baseInfos, List<OtpInfo> results) {	
-		return UpswdMerger.mergeWithOtp(baseInfos, results);
+		return OtporeMerger.mergeWithOtp(baseInfos, results);
 	}
 }

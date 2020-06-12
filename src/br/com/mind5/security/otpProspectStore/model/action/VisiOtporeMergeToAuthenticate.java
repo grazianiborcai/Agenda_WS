@@ -6,7 +6,7 @@ import br.com.mind5.model.action.ActionStdV2;
 import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.otpProspectStore.info.OtporeInfo;
-import br.com.mind5.security.otpProspectStore.info.UpswdMerger;
+import br.com.mind5.security.otpProspectStore.info.OtporeMerger;
 
 final class VisiOtporeMergeToAuthenticate extends ActionVisitorTemplateMergeV2<OtporeInfo, OtporeInfo> {
 	
@@ -17,13 +17,13 @@ final class VisiOtporeMergeToAuthenticate extends ActionVisitorTemplateMergeV2<O
 	
 	
 	@Override protected Class<? extends ActionStdV2<OtporeInfo>> getActionClassHook() {
-		return StdUpswdDaoSelect.class;
+		return StdOtporeDaoSelect.class;
 	}
 	
 	
 	
 	@Override protected List<OtporeInfo> mergeHook(List<OtporeInfo> baseInfos, List<OtporeInfo> selectedInfos) {	
-		return UpswdMerger.mergeToAuthenticate(baseInfos, selectedInfos);
+		return OtporeMerger.mergeToAuthenticate(baseInfos, selectedInfos);
 	}
 	
 	

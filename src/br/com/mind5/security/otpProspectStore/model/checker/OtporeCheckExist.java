@@ -6,7 +6,7 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.otpProspectStore.info.OtporeInfo;
-import br.com.mind5.security.otpProspectStore.model.action.StdUpswdDaoSelect;
+import br.com.mind5.security.otpProspectStore.model.action.StdOtporeDaoSelect;
 
 public final class OtporeCheckExist extends ModelCheckerTemplateActionV2<OtporeInfo, OtporeInfo> {
 	
@@ -17,7 +17,7 @@ public final class OtporeCheckExist extends ModelCheckerTemplateActionV2<OtporeI
 	
 	
 	@Override protected ActionStdV1<OtporeInfo> buildActionHook(DeciTreeOption<OtporeInfo> option) {
-		ActionStdV1<OtporeInfo> select = new StdUpswdDaoSelect(option);
+		ActionStdV1<OtporeInfo> select = new StdOtporeDaoSelect(option);
 		return select;
 	}
 	

@@ -15,11 +15,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.security.otpProspectStore.info.OtporeInfo;
 
-public final class DaoUpswdDeleteSingle extends DaoStmtTemplate<OtporeInfo> {
-	private final String MAIN_TABLE = DaoDbTable.USER_PASSWORD_TABLE;
+public final class DaoOtporeDeleteSingle extends DaoStmtTemplate<OtporeInfo> {
+	private final String MAIN_TABLE = DaoDbTable.OTP_PROSPECT_STORE_TABLE;
 	
 	
-	public DaoUpswdDeleteSingle(Connection conn, OtporeInfo recordInfo, String schemaName) {
+	public DaoOtporeDeleteSingle(Connection conn, OtporeInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -44,7 +44,7 @@ public final class DaoUpswdDeleteSingle extends DaoStmtTemplate<OtporeInfo> {
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;	
 		whereOption.ignoreNonPrimaryKey = DaoOptionValue.IGNORE_NON_PK;		
 		
-		DaoStmtWhere whereClause = new DaoUpswdWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new DaoOtporeWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	

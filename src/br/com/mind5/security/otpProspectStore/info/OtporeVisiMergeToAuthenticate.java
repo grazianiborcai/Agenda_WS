@@ -5,9 +5,8 @@ import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorV3;
 import br.com.mind5.info.InfoUniquifier;
-import br.com.mind5.security.otp.info.OtpInfo;
 
-final class UpswdVisiMergeOtp implements InfoMergerVisitorV3<OtporeInfo, OtpInfo> {
+final class OtporeVisiMergeToAuthenticate implements InfoMergerVisitorV3<OtporeInfo, OtporeInfo> {
 	
 	@Override public List<OtporeInfo> beforeMerge(List<OtporeInfo> baseInfos) {
 		return baseInfos;
@@ -15,20 +14,19 @@ final class UpswdVisiMergeOtp implements InfoMergerVisitorV3<OtporeInfo, OtpInfo
 	
 	
 	
-	@Override public boolean shouldMerge(OtporeInfo baseInfo, OtpInfo selectedInfo) {
-		return true;
+	@Override public boolean shouldMerge(OtporeInfo baseInfo, OtporeInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner);
 	}
 	
 	
 	
-	@Override public List<OtporeInfo> merge(OtporeInfo baseInfo, OtpInfo selectedInfo) {
+	@Override public List<OtporeInfo> merge(OtporeInfo baseInfo, OtporeInfo selectedInfo) {
 		List<OtporeInfo> results = new ArrayList<>();
-
-		baseInfo.password = selectedInfo.password;
-		baseInfo.hash = selectedInfo.hash;
-		baseInfo.salt = selectedInfo.salt;	
 		
-		results.add(baseInfo);
+		selectedInfo.codLanguage = baseInfo.codLanguage;
+		selectedInfo.password = baseInfo.password;
+		
+		results.add(selectedInfo);
 		return results;
 	}
 	

@@ -16,11 +16,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.security.otpProspectStore.info.OtporeInfo;
 
-public final class DaoUpswdSelectSingle extends DaoStmtTemplate<OtporeInfo> {	
-	private final String MAIN_TABLE = DaoDbTable.USER_PASSWORD_TABLE;
+public final class DaoOtporeSelectSingle extends DaoStmtTemplate<OtporeInfo> {	
+	private final String MAIN_TABLE = DaoDbTable.OTP_PROSPECT_STORE_TABLE;
 	
 	
-	public DaoUpswdSelectSingle(Connection conn, OtporeInfo recordInfo, String schemaName) {
+	public DaoOtporeSelectSingle(Connection conn, OtporeInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -44,7 +44,7 @@ public final class DaoUpswdSelectSingle extends DaoStmtTemplate<OtporeInfo> {
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new DaoUpswdWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new DaoOtporeWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}	
 	
@@ -61,11 +61,12 @@ public final class DaoUpswdSelectSingle extends DaoStmtTemplate<OtporeInfo> {
 				do {
 					OtporeInfo dataInfo = new OtporeInfo();
 					
-					dataInfo.codOwner = stmtResult.getLong(DaoUpswdDbTableColumn.COL_COD_OWNER);
-					dataInfo.prospectEmail = stmtResult.getLong(DaoUpswdDbTableColumn.COL_COD_USER);
-					dataInfo.hash = DaoFormatter.sqlToBase64(stmtResult, DaoUpswdDbTableColumn.COL_PASSWORD);	
-					dataInfo.salt = DaoFormatter.sqlToBase64(stmtResult, DaoUpswdDbTableColumn.COL_SALT);	
-					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, DaoUpswdDbTableColumn.COL_LAST_CHANGED);
+					dataInfo.codOwner = stmtResult.getLong(DaoOtporeDbTableColumn.COL_COD_OWNER);
+					dataInfo.prospectEmail = stmtResult.getString(DaoOtporeDbTableColumn.COL_PROSPECT_EMAIL);
+					dataInfo.hash = DaoFormatter.sqlToBase64(stmtResult, DaoOtporeDbTableColumn.COL_PASSWORD);	
+					dataInfo.salt = DaoFormatter.sqlToBase64(stmtResult, DaoOtporeDbTableColumn.COL_SALT);	
+					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, DaoOtporeDbTableColumn.COL_LAST_CHANGED);
+					dataInfo.validUntil = DaoFormatter.sqlToLocalDateTime(stmtResult, DaoOtporeDbTableColumn.COL_VALID_UNTIL);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

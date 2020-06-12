@@ -3,6 +3,7 @@ package br.com.mind5.security.otpProspectStore.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
 import br.com.mind5.dao.DaoStmtParamTranslator;
@@ -13,11 +14,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.security.otpProspectStore.info.OtporeInfo;
 
-public final class DaoUpswdUpdateSingle extends DaoStmtTemplate<OtporeInfo> {
-	private final String MAIN_TABLE = DaoDbTable.USER_PASSWORD_TABLE;
+public final class DaoOtporeUpdateSingle extends DaoStmtTemplate<OtporeInfo> {
+	private final String MAIN_TABLE = DaoDbTable.OTP_PROSPECT_STORE_TABLE;
 	
 	
-	public DaoUpswdUpdateSingle(Connection conn, OtporeInfo recordInfo, String schemaName) {
+	public DaoOtporeUpdateSingle(Connection conn, OtporeInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -41,7 +42,7 @@ public final class DaoUpswdUpdateSingle extends DaoStmtTemplate<OtporeInfo> {
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;
 		
-		DaoStmtWhere whereClause = new DaoUpswdWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new DaoOtporeWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -55,6 +56,7 @@ public final class DaoUpswdUpdateSingle extends DaoStmtTemplate<OtporeInfo> {
 				stmt = DaoFormatter.base64ToStmt(stmt, i++, recordInfo.hash);
 				stmt = DaoFormatter.base64ToStmt(stmt, i++, recordInfo.salt);
 				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.lastChanged);
+				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.validUntil);
 				
 				return stmt;
 			}	

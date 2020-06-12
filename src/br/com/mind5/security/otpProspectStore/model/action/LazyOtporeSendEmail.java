@@ -9,9 +9,9 @@ import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.otpProspectStore.info.OtporeInfo;
 
-public final class LazyUpswdSuccess extends ActionLazyTemplateV2<OtporeInfo, OtporeInfo> {
+public final class LazyOtporeSendEmail extends ActionLazyTemplateV2<OtporeInfo, OtporeInfo> {
 	
-	public LazyUpswdSuccess(Connection conn, String schemaName) {
+	public LazyOtporeSendEmail(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyUpswdSuccess extends ActionLazyTemplateV2<OtporeInfo, Otp
 	
 	
 	@Override protected ActionStdV1<OtporeInfo> getInstanceOfActionHook(DeciTreeOption<OtporeInfo> option) {
-		return new StdOtporeSuccess_(option);
+		return new StdOtporeSendEmail(option);
 	}
 	
 	

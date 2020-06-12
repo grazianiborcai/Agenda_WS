@@ -11,8 +11,8 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 import br.com.mind5.security.otpProspectStore.info.OtporeInfo;
-import br.com.mind5.security.otpProspectStore.model.action.LazyUpswdSendEmail;
-import br.com.mind5.security.otpProspectStore.model.action.LazyUpswdSuccess;
+import br.com.mind5.security.otpProspectStore.model.action.LazyOtporeSendEmail;
+import br.com.mind5.security.otpProspectStore.model.action.LazyOtporeSuccess;
 import br.com.mind5.security.otpProspectStore.model.checker.OtporeCheckInsert;
 import br.com.mind5.security.otpProspectStore.model.checker.OtporeCheckOwner;
 
@@ -52,8 +52,8 @@ public final class RootOtporeInsert extends DeciTreeTemplateWriteV2<OtporeInfo> 
 		List<ActionStdV1<OtporeInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<OtporeInfo> upsert = new NodeOtporeUpsertL1(option).toAction();
-		ActionLazyV1<OtporeInfo> sendEmail = new LazyUpswdSendEmail(option.conn, option.schemaName);
-		ActionLazyV1<OtporeInfo> success = new LazyUpswdSuccess(option.conn, option.schemaName);
+		ActionLazyV1<OtporeInfo> sendEmail = new LazyOtporeSendEmail(option.conn, option.schemaName);
+		ActionLazyV1<OtporeInfo> success = new LazyOtporeSuccess(option.conn, option.schemaName);
 		
 		upsert.addPostAction(sendEmail);
 		sendEmail.addPostAction(success);

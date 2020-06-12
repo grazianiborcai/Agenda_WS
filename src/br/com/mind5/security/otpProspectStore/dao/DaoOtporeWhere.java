@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.security.otpProspectStore.info.OtporeInfo;
 
-public final class DaoUpswdWhere implements DaoStmtWhere {
+public final class DaoOtporeWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public DaoUpswdWhere(DaoWhereBuilderOption whereOption, String tableName, OtporeInfo recordInfo) {
+	public DaoOtporeWhere(DaoWhereBuilderOption whereOption, String tableName, OtporeInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -27,12 +27,12 @@ public final class DaoUpswdWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-				case DaoUpswdDbTableColumn.COL_COD_OWNER :
+				case DaoOtporeDbTableColumn.COL_COD_OWNER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;
 					
-				case DaoUpswdDbTableColumn.COL_COD_USER :
-					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.prospectEmail));
+				case DaoOtporeDbTableColumn.COL_PROSPECT_EMAIL :
+					builder.addClauseEqualAnd(eachColumn, recordInfo.prospectEmail);
 					break;
 			}
 		}		

@@ -178,6 +178,7 @@ public final class DaoDbField {
 	public static final String COL_OAUTH_TOKEN = "oauth_token";
 	public static final String COL_OWN_ID = "own_id";
 	public static final String COL_OWNER_SIGNUP = "owner_signup";
+	public static final String COL_PROSPECT_EMAIL = "prospect_email";	
 	public static final String COL_PASSWORD = "hash1";
 	public static final String COL_PAY_PARTNER_NAME = "pay_partner_name";
 	public static final String COL_POSTING_DATE = "posting_date";
@@ -223,6 +224,7 @@ public final class DaoDbField {
 	public static final String COL_TXT_BODY = "body";
 	public static final String COL_URL_RETURN = "url_return";
 	public static final String COL_USERNAME = "username";
+	public static final String COL_VALID_UNTIL = "valid_until";	
 	public static final String COL_VALUE = "value";
 	public static final String COL_WAITING = "waiting";
 	public static final String COL_WEEK_MONTH = "week_month";
