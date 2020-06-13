@@ -11,7 +11,6 @@ public final class EmaproreSetterEmabody extends InfoSetterTemplate<EmaproreInfo
 		recordInfo.bodyData.codLanguage = recordInfo.codLanguage;		
 		recordInfo.bodyData.username = recordInfo.username;			
 		recordInfo.bodyData.param01 = recordInfo.password;
-		recordInfo.bodyData.param02 = recordInfo.username;
 		
 		return recordInfo;
 	}
