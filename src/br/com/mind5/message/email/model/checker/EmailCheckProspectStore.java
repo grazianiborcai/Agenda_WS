@@ -20,9 +20,7 @@ public final class EmailCheckProspectStore extends ModelCheckerTemplateSimpleV2<
 			return super.FAILED;
 		
 		
-		if (recordInfo.bodyData.param01 == null ||
-			recordInfo.bodyData.param02 == null		)				
-			
+		if (recordInfo.bodyData.param01 == null	)
 			return super.FAILED;
 		
 		
