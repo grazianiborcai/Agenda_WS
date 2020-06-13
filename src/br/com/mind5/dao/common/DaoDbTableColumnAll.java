@@ -194,6 +194,7 @@ import br.com.mind5.payment.storePartnerSnapshot.dao.StoparnapDbTableColumn;
 import br.com.mind5.payment.systemPartner.dao.SysparDbTableColumn;
 import br.com.mind5.payment.systemPartnerSearch.dao.SysparchDbTableColumn;
 import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.dao.PeresmoipDbTableColumn;
+import br.com.mind5.security.otpProspectStore.dao.DaoOtporeDbTableColumn;
 import br.com.mind5.security.storeAuthorization.dao.DaoStorauthDbTableColumn;
 import br.com.mind5.security.user.dao.DaoUserDbTableColumn;
 import br.com.mind5.security.userList.dao.DaoUselisDbTableColumn;
@@ -406,6 +407,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new DaoOwnarchDbTableColumn());
 		addTable(new DaoFidoceDbTableColumn());
 		addTable(new DaoFidocarchDbTableColumn());
+		addTable(new DaoOtporeDbTableColumn());
 	}
 	
 	

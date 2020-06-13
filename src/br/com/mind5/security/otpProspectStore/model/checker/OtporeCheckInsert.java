@@ -16,8 +16,9 @@ public final class OtporeCheckInsert extends ModelCheckerTemplateSimpleV2<Otpore
 	
 	
 	@Override protected boolean checkHook(OtporeInfo recordInfo, Connection conn, String schemaName) {	
-		if (   recordInfo.codOwner 		<= 0 	
-			|| recordInfo.prospectEmail == null	)
+		if ( recordInfo.codOwner 		<= 0 	||
+			 recordInfo.prospectEmail	== null	||
+			 recordInfo.codLanguage 	== null		)
 			
 			return super.FAILED;
 		
