@@ -1313,6 +1313,7 @@ public final class SystemCode {
 	public static final int OTP_MANDATORY_FIELD_EMPTY					= 12800;
 	public static final int OTP_IS_INVALID								= 12801;
 	public static final int OTP_IS_VALID								= 12802;
+	public static final int OTP_IS_EXPIRED								= 12803;
 	
 	// OTP Prospect Store
 	public static final int OTP_PROSP_STORE_MANDATORY_FIELD_EMPTY		= 12850;

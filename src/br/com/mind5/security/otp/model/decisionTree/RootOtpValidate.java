@@ -14,6 +14,7 @@ import br.com.mind5.security.otp.info.OtpInfo;
 import br.com.mind5.security.otp.model.action.LazyOtpEnforceHashToMatch;
 import br.com.mind5.security.otp.model.action.LazyOtpNodeMatch;
 import br.com.mind5.security.otp.model.action.StdOtpEnforceLength;
+import br.com.mind5.security.otp.model.checker.OtpCheckExpiry;
 import br.com.mind5.security.otp.model.checker.OtpCheckValidate;
 
 public final class RootOtpValidate extends DeciTreeTemplateWriteV2<OtpInfo> {
@@ -34,6 +35,13 @@ public final class RootOtpValidate extends DeciTreeTemplateWriteV2<OtpInfo> {
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
 		checker = new OtpCheckValidate(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new OtpCheckExpiry(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueueV2<>(queue);

@@ -1,5 +1,6 @@
 package br.com.mind5.security.otp.info;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import br.com.mind5.info.InfoRecord;
@@ -10,6 +11,7 @@ public final class OtpInfo extends InfoRecord implements Cloneable {
 	public byte[] salt;
 	public byte[] hashToMatch;
 	public int hashLength;
+	public LocalDateTime validUntil;
 	
 	
 	public OtpInfo() {
