@@ -52,6 +52,6 @@ public final class ProstusInfo extends InfoRecord implements Cloneable {
 		
 		
 		ProstusInfo obj = (ProstusInfo) o;		
-		return (isStringEqual(codProspectStatus, obj.codProspectStatus));
+		return (isStringEqual(codProspectStatus, obj.codProspectStatus) );
 	}
 }
