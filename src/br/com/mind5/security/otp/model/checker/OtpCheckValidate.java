@@ -18,7 +18,6 @@ public final class OtpCheckValidate extends ModelCheckerTemplateSimpleV2<OtpInfo
 	@Override protected boolean checkHook(OtpInfo recordInfo, Connection conn, String schemaName) {	
 		if ( recordInfo.password 	== null ||
 			 recordInfo.validUntil 	== null	||
-			 recordInfo.hashToMatch	== null ||
 			 recordInfo.codLanguage	== null		)	
 			
 			return super.FAILED;
