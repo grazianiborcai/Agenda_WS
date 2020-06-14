@@ -1322,4 +1322,9 @@ public final class SystemCode {
 	
 	// Email Prospect Store
 	public static final int EMAIL_PROSP_STORE_MANDATORY_FIELD_EMPTY		= 12900;
+	
+	// Store Prospect
+	public static final int STORE_PROSPECT_MANDATORY_FIELD_EMPTY		= 12950;
+	public static final int STORE_PROSPECT_ALREADY_EXIST 				= 12951;
+	public static final int STORE_PROSPECT_NOT_FOUND 					= 12952;
 }

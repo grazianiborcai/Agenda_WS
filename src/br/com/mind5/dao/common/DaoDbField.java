@@ -84,6 +84,7 @@ public final class DaoDbField {
 	public static final String COL_COD_SCHEDULE_STATUS = "cod_schedule_status";
 	public static final String COL_COD_SNAPSHOT = "cod_snapshot";
 	public static final String COL_COD_STORE = "cod_store";
+	public static final String COL_COD_STORE_PROSPECT = "cod_store_prospect";
 	public static final String COL_COD_STORE_SNAPSHOT = "cod_store_snapshot";	
 	public static final String COL_COD_SYS_ENVIRONMENT = "cod_environment";
 	public static final String COL_COD_TIMEZONE = "cod_timezone";
@@ -179,6 +180,8 @@ public final class DaoDbField {
 	public static final String COL_OWN_ID = "own_id";
 	public static final String COL_OWNER_SIGNUP = "owner_signup";
 	public static final String COL_PROSPECT_EMAIL = "prospect_email";	
+	public static final String COL_PROSPECT_NAME = "prospect_name";
+	public static final String COL_PROSPECT_PHONE = "prospect_phone";
 	public static final String COL_PASSWORD = "hash1";
 	public static final String COL_PAY_PARTNER_NAME = "pay_partner_name";
 	public static final String COL_POSTING_DATE = "posting_date";
