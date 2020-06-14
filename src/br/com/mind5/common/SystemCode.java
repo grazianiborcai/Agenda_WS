@@ -1331,4 +1331,7 @@ public final class SystemCode {
 	public static final int STORE_PROSPECT_MANDATORY_FIELD_EMPTY		= 12950;
 	public static final int STORE_PROSPECT_ALREADY_EXIST 				= 12951;
 	public static final int STORE_PROSPECT_NOT_FOUND 					= 12952;
+	
+	// Store Prospect Search
+	public static final int STORE_PROSPECT_SEARCH_MANDATORY_FIELD_EMPTY	= 13000;
 }
