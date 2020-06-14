@@ -54,6 +54,8 @@ import br.com.mind5.masterData.paymentStatusSearch.info.PaymenusarchInfo;
 import br.com.mind5.masterData.paymentStatusSearch.model.PaymenusarchModelSelect;
 import br.com.mind5.masterData.position.info.PositionInfo;
 import br.com.mind5.masterData.position.model.PositionModelSelect;
+import br.com.mind5.masterData.prospectStatusSearch.info.ProstarchInfo;
+import br.com.mind5.masterData.prospectStatusSearch.model.ProstarchModelSelect;
 import br.com.mind5.masterData.refundPolicyGroup.info.RefugroupInfo;
 import br.com.mind5.masterData.refundPolicyGroup.model.RefugroupModelSearch;
 import br.com.mind5.masterData.scheduleStatus.info.SchedatusInfo;
@@ -100,6 +102,7 @@ public final class MasterDataResource {
 	private static final String SELECT_MOON_PHASE = "/selectMoonPhase";
 	private static final String SELECT_REFUND_POLICY_GROUP = "/selectRefundPolicyGroup";
 	private static final String SELECT_FILE_DOC_TYPE = "/selectFileDocType";
+	private static final String SELECT_PROSPECT_STATUS = "/selectProspectStatus";
 	
 	
 	@GET
@@ -702,6 +705,27 @@ public final class MasterDataResource {
 		
 		
 		Model model = new FidocarchModelSelect(recordInfo);
+		model.executeRequest();
+		Response result = model.getResponse();
+		model.close();
+		
+		return result;
+	}
+	
+	
+	
+	@GET
+	@Path(SELECT_PROSPECT_STATUS)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response selectProspectStatus(@HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage, 
+			                             @HeaderParam("codProspectStatus") String codProspectStatus) {
+		
+		ProstarchInfo recordInfo = new ProstarchInfo();
+		recordInfo.codLanguage = codLanguage;
+		recordInfo.codProspectStatus = codProspectStatus;
+		
+		
+		Model model = new ProstarchModelSelect(recordInfo);
 		model.executeRequest();
 		Response result = model.getResponse();
 		model.close();

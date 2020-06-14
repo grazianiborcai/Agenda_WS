@@ -24,12 +24,12 @@ public final class ProstusCheckExist extends ModelCheckerTemplateActionV2<Prostu
 	
 	
 	@Override protected int getCodMsgOnResultTrueHook() {
-		return SystemCode.PROSPECT_STATUS_ALREADY_EXIST;
+		return SystemCode.PROSP_STATUS_ALREADY_EXIST;
 	}	
 	
 	
 	
 	@Override protected int getCodMsgOnResultFalseHook() {
-		return SystemCode.PROSPECT_STATUS_NOT_FOUND;
+		return SystemCode.PROSP_STATUS_NOT_FOUND;
 	}
 }

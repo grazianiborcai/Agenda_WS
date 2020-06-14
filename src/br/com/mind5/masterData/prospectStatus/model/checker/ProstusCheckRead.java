@@ -28,6 +28,6 @@ public final class ProstusCheckRead extends ModelCheckerTemplateSimpleV2<Prostus
 	
 	
 	@Override protected int getCodMsgOnResultFalseHook() {
-		return SystemCode.PROSPECT_STATUS_MANDATORY_FIELD_EMPTY;
+		return SystemCode.PROSP_STATUS_MANDATORY_FIELD_EMPTY;
 	}
 }
