@@ -8,9 +8,9 @@ import br.com.mind5.business.storeProspect.model.action.LazyStoprosDaoDelete;
 import br.com.mind5.business.storeProspect.model.action.LazyStoprosDaoUpdate;
 import br.com.mind5.business.storeProspect.model.action.LazyStoprosEnforceLChanged;
 import br.com.mind5.business.storeProspect.model.action.StdStoprosMergeToSelect;
+import br.com.mind5.business.storeProspect.model.checker.StoprosCheckDelete;
 import br.com.mind5.business.storeProspect.model.checker.StoprosCheckExist;
 import br.com.mind5.business.storeProspect.model.checker.StoprosCheckLangu;
-import br.com.mind5.business.storeProspect.model.checker.StoprosCheckWrite;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
@@ -36,7 +36,7 @@ public final class RootStoprosDelete extends DeciTreeTemplateWriteV2<StoprosInfo
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new StoprosCheckWrite(checkerOption);
+		checker = new StoprosCheckDelete(checkerOption);
 		queue.add(checker);
 			
 		checkerOption = new ModelCheckerOption();

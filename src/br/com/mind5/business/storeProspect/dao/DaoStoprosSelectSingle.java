@@ -66,9 +66,11 @@ public final class DaoStoprosSelectSingle extends DaoStmtTemplate<StoprosInfo> {
 					dataInfo.recordMode = stmtResult.getString(DaoStoprosDbTableColumn.COL_RECORD_MODE);	
 					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, DaoStoprosDbTableColumn.COL_LAST_CHANGED);
 					dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, DaoStoprosDbTableColumn.COL_CREATED_ON);
-					dataInfo.prospecteEmail = stmtResult.getString(DaoStoprosDbTableColumn.COL_PROSPECT_EMAIL);
+					dataInfo.prospectEmail = stmtResult.getString(DaoStoprosDbTableColumn.COL_PROSPECT_EMAIL);
 					dataInfo.prospectName = stmtResult.getString(DaoStoprosDbTableColumn.COL_PROSPECT_NAME);
-					dataInfo.prospectPhone = stmtResult.getString(DaoStoprosDbTableColumn.COL_PROSPECT_PHONE);
+					dataInfo.prospectPhone = stmtResult.getString(DaoStoprosDbTableColumn.COL_PROSPECT_PHONE);					
+					dataInfo.codProspectStatus = stmtResult.getString(DaoStoprosDbTableColumn.COL_COD_PROSPECT_STATUS);
+					dataInfo.notes = stmtResult.getString(DaoStoprosDbTableColumn.COL_NOTES);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

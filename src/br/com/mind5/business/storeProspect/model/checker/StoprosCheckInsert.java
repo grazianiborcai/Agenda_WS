@@ -7,9 +7,9 @@ import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class StoprosCheckWrite extends ModelCheckerTemplateSimpleV2<StoprosInfo> {
+public final class StoprosCheckInsert extends ModelCheckerTemplateSimpleV2<StoprosInfo> {
 
-	public StoprosCheckWrite(ModelCheckerOption option) {
+	public StoprosCheckInsert(ModelCheckerOption option) {
 		super(option);
 	}
 	
@@ -17,9 +17,10 @@ public final class StoprosCheckWrite extends ModelCheckerTemplateSimpleV2<Stopro
 	
 	@Override protected boolean checkHook(StoprosInfo recordInfo, Connection conn, String schemaName) {	
 		if (   recordInfo.codOwner 			<= 0 
-			|| recordInfo.prospectName 		== null 	
+			|| recordInfo.prospectEmail 	== null	
+			|| recordInfo.prospectName 		== null
 			|| recordInfo.prospectPhone 	== null
-			|| recordInfo.prospecteEmail 	== null
+			|| recordInfo.password 			== null	
 			|| recordInfo.codLanguage 		== null	)
 			
 			return super.FAILED;

@@ -4,10 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.storeProspect.info.StoprosInfo;
-import br.com.mind5.business.storeProspect.model.action.StdStoprosDaoInsert;
+import br.com.mind5.business.storeProspect.model.action.LazyStoprosDaoInsert;
+import br.com.mind5.business.storeProspect.model.action.LazyStoprosEnforceCreated;
+import br.com.mind5.business.storeProspect.model.action.LazyStoprosEnforceCreatedOn;
+import br.com.mind5.business.storeProspect.model.action.LazyStoprosRootSelect;
+import br.com.mind5.business.storeProspect.model.action.StdStoprosOtporeAuthenticate;
+import br.com.mind5.business.storeProspect.model.checker.StoprosCheckInsert;
 import br.com.mind5.business.storeProspect.model.checker.StoprosCheckLangu;
 import br.com.mind5.business.storeProspect.model.checker.StoprosCheckOwner;
-import br.com.mind5.business.storeProspect.model.checker.StoprosCheckWrite;
+import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -32,7 +37,7 @@ public final class RootStoprosInsert extends DeciTreeTemplateWriteV2<StoprosInfo
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new StoprosCheckWrite(checkerOption);
+		checker = new StoprosCheckInsert(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
@@ -56,9 +61,19 @@ public final class RootStoprosInsert extends DeciTreeTemplateWriteV2<StoprosInfo
 	
 	@Override protected List<ActionStdV1<StoprosInfo>> buildActionsOnPassedHook(DeciTreeOption<StoprosInfo> option) {
 		List<ActionStdV1<StoprosInfo>> actions = new ArrayList<>();
-		ActionStdV1<StoprosInfo> insert = new StdStoprosDaoInsert(option);
 		
-		actions.add(insert);	
+		ActionStdV1<StoprosInfo> otporeAuthenticate = new StdStoprosOtporeAuthenticate(option);
+		ActionLazyV1<StoprosInfo> enforceCreated = new LazyStoprosEnforceCreated(option.conn, option.schemaName);
+		ActionLazyV1<StoprosInfo> enforceCreatedOn = new LazyStoprosEnforceCreatedOn(option.conn, option.schemaName);
+		ActionLazyV1<StoprosInfo> insert = new LazyStoprosDaoInsert(option.conn, option.schemaName);
+		ActionLazyV1<StoprosInfo> select = new LazyStoprosRootSelect(option.conn, option.schemaName);
+		
+		otporeAuthenticate.addPostAction(enforceCreated);
+		enforceCreated.addPostAction(enforceCreatedOn);
+		enforceCreatedOn.addPostAction(insert);
+		insert.addPostAction(select);
+		
+		actions.add(otporeAuthenticate);
 		return actions;
 	}
 }

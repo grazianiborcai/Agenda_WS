@@ -9,9 +9,9 @@ import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyStoprosDaoSelect extends ActionLazyTemplateV2<StoprosInfo, StoprosInfo> {
-
-	public LazyStoprosDaoSelect(Connection conn, String schemaName) {
+public final class LazyStoprosMergeProstus extends ActionLazyTemplateV2<StoprosInfo, StoprosInfo> {
+	
+	public LazyStoprosMergeProstus(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyStoprosDaoSelect extends ActionLazyTemplateV2<StoprosInfo
 	
 	
 	@Override protected ActionStdV1<StoprosInfo> getInstanceOfActionHook(DeciTreeOption<StoprosInfo> option) {
-		return new StdStoprosDaoSelect(option);
+		return new StdStoprosMergeProstus(option);
 	}
 	
 	

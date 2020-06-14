@@ -24,7 +24,9 @@ final class StoprosVisiMergeToUpdate implements InfoMergerVisitorV3<StoprosInfo,
 	@Override public List<StoprosInfo> merge(StoprosInfo baseInfo, StoprosInfo selectedInfo) {
 		List<StoprosInfo> results = new ArrayList<>();
 		
-		baseInfo.prospecteEmail = selectedInfo.prospecteEmail;
+		baseInfo.prospectEmail = selectedInfo.prospectEmail;
+		baseInfo.prospectName = selectedInfo.prospectName;
+		baseInfo.prospectPhone = selectedInfo.prospectPhone;
 		baseInfo.createdOn = selectedInfo.createdOn;
 		
 		results.add(baseInfo);

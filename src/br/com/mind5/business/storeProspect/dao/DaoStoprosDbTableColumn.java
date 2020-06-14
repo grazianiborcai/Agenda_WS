@@ -11,9 +11,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 
 public final class DaoStoprosDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;	
+	public static final String COL_COD_PROSPECT_STATUS = DaoDbField.COL_COD_PROSPECT_STATUS;
 	public static final String COL_COD_STORE_PROSPECT = DaoDbField.COL_COD_STORE_PROSPECT;
 	public static final String COL_CREATED_ON = DaoDbField.COL_CREATED_ON;
 	public static final String COL_LAST_CHANGED = DaoDbField.COL_LAST_CHANGED;
+	public static final String COL_NOTES = DaoDbField.COL_NOTES;
 	public static final String COL_PROSPECT_EMAIL = DaoDbField.COL_PROSPECT_EMAIL;
 	public static final String COL_PROSPECT_NAME = DaoDbField.COL_PROSPECT_NAME;
 	public static final String COL_PROSPECT_PHONE = DaoDbField.COL_PROSPECT_PHONE;
@@ -91,6 +93,22 @@ public final class DaoStoprosDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_PROSPECT_PHONE;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_COD_PROSPECT_STATUS;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_NOTES;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;

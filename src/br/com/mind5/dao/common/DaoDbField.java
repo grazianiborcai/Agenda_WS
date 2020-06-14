@@ -56,6 +56,7 @@ public final class DaoDbField {
 	public static final String COL_COD_MATERIAL = "cod_material";	
 	public static final String COL_COD_MATERIAL_SNAPSHOT = "cod_material_snapshot";
 	public static final String COL_COD_MESSAGE = "cod_message";
+	public static final String COL_COD_MOON_PHASE = "cod_moon_phase";	
 	public static final String COL_COD_ORDER = "cod_order";
 	public static final String COL_COD_ORDER_EXTERNAL = "cod_order_external";
 	public static final String COL_COD_ORDER_ITEM = "cod_order_item";
@@ -171,11 +172,11 @@ public final class DaoDbField {
 	public static final String COL_MONTH_VALID_FROM = "month_valid_from";
 	public static final String COL_MOON_DATE = "moon_date";
 	public static final String COL_MOON_DATE_TIME = "moon_date_time";
-	public static final String COL_MOON_TIME = "moon_time";
-	public static final String COL_COD_MOON_PHASE = "cod_moon_phase";	
+	public static final String COL_MOON_TIME = "moon_time";	
 	public static final String COL_NAME = "name";
 	public static final String COL_NAME_DISPLAY = "name_display";
 	public static final String COL_NAME_SEARCH = "name_search";
+	public static final String COL_NOTES = "notes";	
 	public static final String COL_NUMBER = "number";
 	public static final String COL_OAUTH_TOKEN = "oauth_token";
 	public static final String COL_OWN_ID = "own_id";

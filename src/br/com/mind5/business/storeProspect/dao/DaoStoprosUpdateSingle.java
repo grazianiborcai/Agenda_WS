@@ -58,9 +58,11 @@ public final class DaoStoprosUpdateSingle extends DaoStmtTemplate<StoprosInfo> {
 				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.lastChanged);
 				stmt.setString(i++, recordInfo.recordMode);	
 				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.createdOn);
-				stmt.setString(i++, recordInfo.prospecteEmail);	
+				stmt.setString(i++, recordInfo.prospectEmail);	
 				stmt.setString(i++, recordInfo.prospectName);	
 				stmt.setString(i++, recordInfo.prospectPhone);	
+				stmt.setString(i++, recordInfo.codProspectStatus);	
+				stmt.setString(i++, recordInfo.notes);	
 				
 				return stmt;
 			}		

@@ -11,7 +11,11 @@ public final class StoprosInfo extends InfoRecord implements Cloneable {
 	public long codStoreProspect;		
 	public String prospectName;
 	public String prospectPhone;
-	public String prospecteEmail;
+	public String prospectEmail;
+	public String codProspectStatus;
+	public String txtProspectStatus;
+	public String notes;
+	public String password;
 	public LocalDateTime createdOn;
 	public LocalDateTime lastChanged;
 	public String username;
