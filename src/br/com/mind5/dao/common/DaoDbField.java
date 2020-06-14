@@ -66,6 +66,7 @@ public final class DaoDbField {
 	public static final String COL_COD_PAY_PARTNER = "cod_pay_partner";
 	public static final String COL_COD_PAYMENT_STATUS = "cod_payment_status";
 	public static final String COL_COD_POSITION = "cod_position";	
+	public static final String COL_COD_PROSPECT_STATUS = "cod_prospect_status";
 	public static final String COL_COD_OWNER = "cod_owner";
 	public static final String COL_COD_OWNER_REF = "cod_owner_ref";
 	public static final String COL_COD_OWNER_REF_SNAPSHOT = "cod_owner_ref_snapshot";

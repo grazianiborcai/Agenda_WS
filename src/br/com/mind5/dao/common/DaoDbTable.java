@@ -100,6 +100,8 @@ public final class DaoDbTable {
 	public static final String PHONE_SNAPSHOT_TABLE = "phone_snapshot";
 	public static final String POSITION_TABLE = "position";
 	public static final String POSITION_TEXT_TABLE = "position_text";
+	public static final String PROSPECT_STATUS_TABLE = "prospect_status";
+	public static final String PROSPECT_STATUS_TEXT_TABLE = "prospect_status_text";
 	public static final String REFUND_POLICY_GROUP_HEADER_TABLE = "refund_policy_group_header";
 	public static final String REFUND_POLICY_GROUP_ITEM_TABLE = "refund_policy_group_item";
 	public static final String REFUND_POLICY_GROUP_TEXT_TABLE = "refund_policy_group_text";

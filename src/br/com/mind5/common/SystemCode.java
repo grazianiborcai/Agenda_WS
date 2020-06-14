@@ -192,6 +192,9 @@ public final class SystemCode {
 	public static final int FILE_DOC_TYPE_NOT_FOUND						= 11666;	
 	public static final int FILE_DOC_TYPE_MANDATORY_FIELD_EMPTY 		= 11667;
 	public static final int FILE_DOC_TYPE_SEARCH_MANDATORY_FIELD_EMPTY 	= 11668;
+	public static final int PROSPECT_STATUS_MANDATORY_FIELD_EMPTY 		= 11669;
+	public static final int PROSPECT_STATUS_ALREADY_EXIST				= 11670;
+	public static final int PROSPECT_STATUS_NOT_FOUND					= 11671;
 	
 	// Material
 	public static final int MAT_ALREADY_EXIST							= 1200;
