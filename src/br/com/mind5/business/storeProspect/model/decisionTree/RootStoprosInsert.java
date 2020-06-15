@@ -7,6 +7,7 @@ import br.com.mind5.business.storeProspect.info.StoprosInfo;
 import br.com.mind5.business.storeProspect.model.action.LazyStoprosDaoInsert;
 import br.com.mind5.business.storeProspect.model.action.LazyStoprosEnforceCreated;
 import br.com.mind5.business.storeProspect.model.action.LazyStoprosEnforceCreatedOn;
+import br.com.mind5.business.storeProspect.model.action.LazyStoprosEnforceLChanged;
 import br.com.mind5.business.storeProspect.model.action.LazyStoprosRootSelect;
 import br.com.mind5.business.storeProspect.model.action.StdStoprosOtporeAuthenticate;
 import br.com.mind5.business.storeProspect.model.checker.StoprosCheckInsert;
@@ -65,12 +66,14 @@ public final class RootStoprosInsert extends DeciTreeTemplateWriteV2<StoprosInfo
 		ActionStdV1<StoprosInfo> otporeAuthenticate = new StdStoprosOtporeAuthenticate(option);
 		ActionLazyV1<StoprosInfo> enforceCreated = new LazyStoprosEnforceCreated(option.conn, option.schemaName);
 		ActionLazyV1<StoprosInfo> enforceCreatedOn = new LazyStoprosEnforceCreatedOn(option.conn, option.schemaName);
+		ActionLazyV1<StoprosInfo> enforceLChanged = new LazyStoprosEnforceLChanged(option.conn, option.schemaName);
 		ActionLazyV1<StoprosInfo> insert = new LazyStoprosDaoInsert(option.conn, option.schemaName);
 		ActionLazyV1<StoprosInfo> select = new LazyStoprosRootSelect(option.conn, option.schemaName);
 		
 		otporeAuthenticate.addPostAction(enforceCreated);
 		enforceCreated.addPostAction(enforceCreatedOn);
-		enforceCreatedOn.addPostAction(insert);
+		enforceCreatedOn.addPostAction(enforceLChanged);
+		enforceLChanged.addPostAction(insert);
 		insert.addPostAction(select);
 		
 		actions.add(otporeAuthenticate);
