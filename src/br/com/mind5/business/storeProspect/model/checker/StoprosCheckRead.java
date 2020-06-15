@@ -18,7 +18,6 @@ public final class StoprosCheckRead extends ModelCheckerTemplateSimpleV2<Stopros
 	@Override protected boolean checkHook(StoprosInfo recordInfo, Connection conn, String schemaName) {	
 		if (recordInfo.codOwner 			<= 0 	|| 
 			recordInfo.codStoreProspect 	<= 0 	|| 
-			recordInfo.username 			== null ||
 			recordInfo.codLanguage 			== null		)	
 			
 			return super.FAILED;

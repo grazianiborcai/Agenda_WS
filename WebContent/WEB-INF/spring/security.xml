@@ -24,6 +24,7 @@
 	<http pattern="/**/Webhook/insertMultipaymentMoip"	security="none"/>
 	<http pattern="/**/Webhook/insertRefundMoip"		security="none"/>
 	<http pattern="/**/Owner/listOwner"					security="none"/>
+	<http pattern="/**/Prospect/insertProspectStore"	security="none"/>
 	<http pattern="/**/Prospect/insertOtpProspectStore"	security="none"/>
 	<http pattern="/**/MoipApp/**"  					security="none"/>	<!-- TODO: Somente para teste -->
 	
@@ -164,7 +165,11 @@
         <security:intercept-url pattern="/**/RefundPolicy/deleteRefundPolicyStore" 	access="hasAuthority('STORE_WRITE')" 				/>
         <security:intercept-url pattern="/**/RefundPolicy/searchRefundPolicyStore" 	access="isAuthenticated()" 							/>        
         <security:intercept-url pattern="/**/RefundPolicy/selectRefundPolicyStore" 	access="isAuthenticated()" 							/>
-        <security:intercept-url pattern="/**/RefundPolicy/upsertRefundPolicyStore" 	access="hasAuthority('STORE_WRITE')" 				/>   
+        <security:intercept-url pattern="/**/RefundPolicy/upsertRefundPolicyStore" 	access="hasAuthority('STORE_WRITE')" 				/>        
+        <security:intercept-url pattern="/**/Prospect/updateProspectStore" 			access="hasAuthority('OWNER_WRITE')" 				/>
+        <security:intercept-url pattern="/**/Prospect/deleteProspectStore" 			access="hasAuthority('OWNER_WRITE')" 				/>
+        <security:intercept-url pattern="/**/Prospect/searchProspectStore" 			access="hasAuthority('OWNER_READ')" 				/>        
+        <security:intercept-url pattern="/**/Prospect/selectProspectStore" 			access="hasAuthority('OWNER_READ')" 				/>     
         <security:intercept-url pattern="/**" 										access="denyAll" 									/>
         <security:http-basic />
         <csrf disabled="true"/>

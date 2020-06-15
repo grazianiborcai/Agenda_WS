@@ -54,7 +54,6 @@ public final class DaoStoprosUpdateSingle extends DaoStmtTemplate<StoprosInfo> {
 			@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, StoprosInfo recordInfo) throws SQLException {				
 				int i = 1;	
 				
-				stmt.setLong(i++, recordInfo.codOwner);
 				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.lastChanged);
 				stmt.setString(i++, recordInfo.recordMode);	
 				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.createdOn);
