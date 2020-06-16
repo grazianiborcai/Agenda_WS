@@ -1,23 +1,23 @@
 package br.com.mind5.message.emailProspectStore.info;
 
 import br.com.mind5.info.InfoCopierTemplate;
-import br.com.mind5.security.otpProspectStore.info.OtporeInfo;
+import br.com.mind5.security.otpUserPassword.info.OtperasInfo;
 
-final class EmaproreCopyOtpore extends InfoCopierTemplate<EmaproreInfo, OtporeInfo> {
+final class EmaproreCopyOtperas extends InfoCopierTemplate<EmaproreInfo, OtperasInfo> {
 	
-	public EmaproreCopyOtpore() {
+	public EmaproreCopyOtperas() {
 		super();
 	} 
 	
 	
 	
-	@Override protected EmaproreInfo makeCopyHook(OtporeInfo source) {
+	@Override protected EmaproreInfo makeCopyHook(OtperasInfo source) {
 		EmaproreInfo result = new EmaproreInfo();
 		
 		result.codOwner = source.codOwner;
 		result.password = source.password;
 		result.codLanguage = source.codLanguage;		
-		result.recipientAddr = source.prospectEmail;
+	//	result.recipientAddr = source.prospectEmail;
 		
 		return result;
 	}

@@ -25,7 +25,7 @@ final class VisiOtperasSendEmail extends ActionVisitorTemplateActionV2<OtperasIn
 	
 	
 	@Override protected List<EmaproreInfo> toActionClassHook(List<OtperasInfo> recordInfos) {
-		return EmaproreCopier.copyFromOtpore(recordInfos);
+		return EmaproreCopier.copyFromOtperas(recordInfos);
 	}
 	
 	
