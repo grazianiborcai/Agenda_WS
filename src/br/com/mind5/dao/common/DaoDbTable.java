@@ -80,6 +80,7 @@ public final class DaoDbTable {
 	public static final String ORDER_STATUS_TABLE = "order_status";
 	public static final String ORDER_STATUS_TEXT_TABLE = "order_status_text";	
 	public static final String OTP_PROSPECT_STORE_TABLE = "otp_prospect_store";	
+	public static final String OTP_USER_PASSWORD_TABLE = "otp_user_password";	
 	public static final String OWNER_TABLE = "owner";
 	public static final String OWNER_SNAPSHOT_TABLE = "owner_snapshot";
 	public static final String PAY_CUS_TABLE = "pay_customer";
