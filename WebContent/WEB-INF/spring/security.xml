@@ -26,6 +26,7 @@
 	<http pattern="/**/Owner/listOwner"					security="none"/>
 	<http pattern="/**/Prospect/insertProspectStore"	security="none"/>
 	<http pattern="/**/Prospect/insertOtpProspectStore"	security="none"/>
+	<http pattern="/**/insertOtpUserPassword"			security="none"/>
 	<http pattern="/**/MoipApp/**"  					security="none"/>	<!-- TODO: Somente para teste -->
 	
 	

@@ -19,6 +19,7 @@ public final class OtperasInfo extends InfoRecord implements Cloneable {
 	public LocalDateTime validUntil;
 	public LocalDateTime lastChanged;
 	public UselisInfo uselisData;
+	public String username;
 
 	
 	public OtperasInfo() {

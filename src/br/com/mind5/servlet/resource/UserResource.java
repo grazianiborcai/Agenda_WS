@@ -14,6 +14,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import br.com.mind5.model.Model;
+import br.com.mind5.security.otpUserPassword.model.OtperasModelInsert;
 import br.com.mind5.security.user.info.UserInfo;
 import br.com.mind5.security.user.model.UserModelDeleteAuth;
 import br.com.mind5.security.user.model.UserModelInsert;
@@ -23,11 +24,27 @@ import br.com.mind5.security.user.model.UserModelUpdateAuth;
 @Path("/User")
 public class UserResource {
 
+	private static final String INSERT_OTP_USER_PASSWORD = "/insertOtpUserPassword";
 	private static final String INSERT_USER = "/insertUser";
 	private static final String UPDATE_USER = "/updateUser";
 	private static final String DELETE_USER = "/deleteUser";
 	private static final String SELECT_USER = "/selectUser";
 
+	
+	
+	@POST
+	@Path(INSERT_OTP_USER_PASSWORD)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response insertOtperas(@Context HttpServletRequest request, String incomingData) {		
+		
+		Model model = new OtperasModelInsert(incomingData, request);
+		model.executeRequest();
+		Response result = model.getResponse();
+		model.close();
+		
+		return result;
+	}
+	
 	
 	
 	@POST

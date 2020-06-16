@@ -13,6 +13,7 @@ import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 import br.com.mind5.security.otpUserPassword.info.OtperasInfo;
 import br.com.mind5.security.otpUserPassword.model.action.LazyOtperasEnforceLChanged;
 import br.com.mind5.security.otpUserPassword.model.action.LazyOtperasEnforceValidUntil;
+import br.com.mind5.security.otpUserPassword.model.action.LazyOtperasMergeUsername;
 import br.com.mind5.security.otpUserPassword.model.action.LazyOtperasNodeUpsertL2;
 import br.com.mind5.security.otpUserPassword.model.action.StdOtperasOtpGenerate;
 
@@ -42,11 +43,13 @@ public final class NodeOtperasUpsertL1 extends DeciTreeTemplateWriteV2<OtperasIn
 		ActionStdV1<OtperasInfo> otpGenerate = new StdOtperasOtpGenerate(option);
 		ActionLazyV1<OtperasInfo> enforceLChanged = new LazyOtperasEnforceLChanged(option.conn, option.schemaName);
 		ActionLazyV1<OtperasInfo> enforceValidUntil = new LazyOtperasEnforceValidUntil(option.conn, option.schemaName);
+		ActionLazyV1<OtperasInfo> mergeUsername = new LazyOtperasMergeUsername(option.conn, option.schemaName);
 		ActionLazyV1<OtperasInfo> nodeL2 = new LazyOtperasNodeUpsertL2(option.conn, option.schemaName);
 		
 		otpGenerate.addPostAction(enforceLChanged);				
 		enforceLChanged.addPostAction(enforceValidUntil);
-		enforceValidUntil.addPostAction(nodeL2);
+		enforceValidUntil.addPostAction(mergeUsername);
+		mergeUsername.addPostAction(nodeL2);
 		
 		actions.add(otpGenerate);	
 		return actions;

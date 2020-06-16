@@ -17,7 +17,7 @@ public final class OtperasCheckInsert extends ModelCheckerTemplateSimpleV2<Otper
 	
 	@Override protected boolean checkHook(OtperasInfo recordInfo, Connection conn, String schemaName) {	
 		if ( recordInfo.codOwner 	<= 0 	||
-			 recordInfo.codUser		<= 0	||
+			 recordInfo.username	== null	||
 			 recordInfo.codLanguage == null		)
 			
 			return super.FAILED;
