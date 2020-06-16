@@ -24,7 +24,7 @@ public final class LazyOtporeSuccess extends ActionLazyTemplateV2<OtporeInfo, Ot
 	
 	
 	@Override protected ActionStdV1<OtporeInfo> getInstanceOfActionHook(DeciTreeOption<OtporeInfo> option) {
-		return new StdOtporeSuccess_(option);
+		return new StdOtporeSuccess(option);
 	}
 	
 	
