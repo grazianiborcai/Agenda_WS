@@ -17,7 +17,7 @@ final class EmaproreCopyOtperas extends InfoCopierTemplate<EmaproreInfo, Otperas
 		result.codOwner = source.codOwner;
 		result.password = source.password;
 		result.codLanguage = source.codLanguage;		
-	//	result.recipientAddr = source.prospectEmail;
+		result.recipientAddr = source.uselisData.persolisData.email;
 		
 		return result;
 	}
