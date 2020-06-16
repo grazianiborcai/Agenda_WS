@@ -1,4 +1,4 @@
-package br.com.mind5.business.masterData.info.common;
+package br.com.mind5.masterData.country.info;
 
 public enum Country {
 	BRAZIL("BR", "BRA");

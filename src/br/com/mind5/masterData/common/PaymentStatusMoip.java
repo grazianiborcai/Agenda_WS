@@ -1,14 +1,18 @@
-package br.com.mind5.business.masterData.info.common;
+package br.com.mind5.masterData.common;
 
 import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
 
-public enum OrderStatusMoip {
+public enum PaymentStatusMoip {
+	AUTHORIZED("AUTHORIZED", true, true, false, false), 
+	CANCELLED("CANCELLED", false, false, true, false),
 	CREATED("CREATED", true, false, false, true), 
-	WAITING("WAITING", true, false, false, true), 
-	PAID("PAID", true, true, false, false), 
-	NOT_PAID("NOT_PAID", false, false, true, false), 
-	REVERTED("REVERTED", false, false, true, false);
+	IN_ANALYSIS("IN_ANALYSIS", true, false, false, true), 
+	PRE_AUTHORIZED("PRE_AUTHORIZED", true , false, false, true), 
+	REFUNDED("REFUNDED", false, true, false, false),
+	REVERSED("REVERSED", false, false, true, false),
+	SETTLED("SETTLED", false, true, false, false),
+	WAITING("WAITING", true, false, false, true);
 	
 	
 	private final String codStatus;
@@ -18,12 +22,12 @@ public enum OrderStatusMoip {
 	private final boolean isOnWait;
 	
 	
-	private OrderStatusMoip(String cod, boolean change, boolean paid, boolean notPaid, boolean wait) {
+	private PaymentStatusMoip(String cod, boolean change, boolean paid, boolean notPaid, boolean wait) {
 		codStatus = cod;
 		isChangeable = change;
 		isPaid = paid;
 		isNotPaid = notPaid;
-		isOnWait = wait;	
+		isOnWait = wait;		
 	}
 	
 	
@@ -58,8 +62,8 @@ public enum OrderStatusMoip {
 	
 	
 	
-	static public OrderStatusMoip getStatus(String cod) {
-		for(OrderStatusMoip eachElem : OrderStatusMoip.values()) {
+	static public PaymentStatusMoip getStatus(String cod) {
+		for(PaymentStatusMoip eachElem : PaymentStatusMoip.values()) {
 			if (eachElem.getCodStatus().equals(cod))
 				return eachElem;
 		}
@@ -71,6 +75,6 @@ public enum OrderStatusMoip {
 	
 	
 	static private void logException(Exception e) {
-		SystemLog.logError(OrderStatusMoip.class, e);
+		SystemLog.logError(PaymentStatusMoip.class, e);
 	}
 }

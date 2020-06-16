@@ -1,9 +1,9 @@
 package br.com.mind5.paymentPartner.partnerMoip.accessMoip.info;
 
-import br.com.mind5.business.masterData.info.common.Environ;
 import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.InfoSetter;
+import br.com.mind5.masterData.common.Environ;
 import br.com.moip.auth.Authentication;
 import br.com.moip.auth.BasicAuth;
 import br.com.moip.models.Setup;

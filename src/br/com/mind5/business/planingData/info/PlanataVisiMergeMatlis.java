@@ -4,11 +4,11 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.business.masterData.info.common.MatUnit;
 import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.common.SystemLog;
 import br.com.mind5.info.InfoMergerVisitorV3;
 import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.masterData.materialUnit.info.Matunit;
 
 final class PlanataVisiMergeMatlis implements InfoMergerVisitorV3<PlanataInfo, MatlisInfo> {
 	
@@ -55,10 +55,10 @@ final class PlanataVisiMergeMatlis implements InfoMergerVisitorV3<PlanataInfo, M
 	
 	
 	private PlanataInfo setEndTime(MatlisInfo mat, PlanataInfo planata) {
-		MatUnit matUnit = MatUnit.getMatUnit(mat.codUnit);		
+		Matunit matUnit = Matunit.getMatUnit(mat.codUnit);		
 		PlanataInfo resultInfo = makeClone(planata);
 		
-		if (MatUnit.MINUTE == matUnit)
+		if (Matunit.MINUTE == matUnit)
 			resultInfo.endTime = resultInfo.beginTime.plusMinutes(mat.priceUnit);
 		
 		return resultInfo;
@@ -67,10 +67,10 @@ final class PlanataVisiMergeMatlis implements InfoMergerVisitorV3<PlanataInfo, M
 	
 	
 	private PlanataInfo shiftTime(MatlisInfo selectedInfo, PlanataInfo baseInfo) {
-		MatUnit matUnit = MatUnit.getMatUnit(selectedInfo.codUnit);		
+		Matunit matUnit = Matunit.getMatUnit(selectedInfo.codUnit);		
 		PlanataInfo resultInfo = makeClone(baseInfo);
 		
-		if (MatUnit.MINUTE == matUnit) {
+		if (Matunit.MINUTE == matUnit) {
 			resultInfo.beginTime = resultInfo.beginTime.plusMinutes(selectedInfo.priceUnit);
 			resultInfo.endTime = resultInfo.endTime.plusMinutes(selectedInfo.priceUnit);
 		}

@@ -1,9 +1,9 @@
 package br.com.mind5.business.company.info;
 
-import br.com.mind5.business.masterData.info.common.EntityCateg;
 import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.InfoSetter;
+import br.com.mind5.masterData.entityCategory.info.Entiteg;
 
 public final class CompSetterCategStore implements InfoSetter<CompInfo> {
 	
@@ -24,7 +24,7 @@ public final class CompSetterCategStore implements InfoSetter<CompInfo> {
 	
 	
 	private CompInfo setCodEntityCateg(CompInfo recordInfo) {
-		recordInfo.codEntityCateg = EntityCateg.STORE.getCodEntityCateg();
+		recordInfo.codEntityCateg = Entiteg.STORE.getCodEntityCateg();
 		return recordInfo;
 	}
 	

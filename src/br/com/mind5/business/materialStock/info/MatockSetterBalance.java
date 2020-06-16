@@ -1,9 +1,9 @@
 package br.com.mind5.business.materialStock.info;
 
-import br.com.mind5.business.masterData.info.common.MatmovType;
 import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.InfoSetter;
+import br.com.mind5.masterData.common.MatmovType;
 
 public final class MatockSetterBalance implements InfoSetter<MatockInfo> {
 	

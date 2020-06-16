@@ -1,4 +1,4 @@
-package br.com.mind5.business.masterData.info.common;
+package br.com.mind5.masterData.common;
 
 public enum EmailBody {
 	PROSPECT_STORE("PROSPECT_STORE"),

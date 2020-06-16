@@ -1,4 +1,4 @@
-package br.com.mind5.business.masterData.info.common;
+package br.com.mind5.masterData.common;
 
 import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;

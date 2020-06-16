@@ -2,8 +2,8 @@ package br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.model.checker;
 
 import java.sql.Connection;
 
-import br.com.mind5.business.masterData.info.common.CountryPhone;
 import br.com.mind5.common.SystemCode;
+import br.com.mind5.masterData.countryPhone.info.Countrone;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.info.CremoipInfo;
@@ -25,7 +25,7 @@ public final class CremoipCheckPhoneBR extends ModelCheckerTemplateSimpleV2<Crem
 			return super.FAILED;
 		
 		
-		if (recordInfo.phonapData.codCountryPhone == CountryPhone.BRAZIL.getCodCountryPhone()) 
+		if (recordInfo.phonapData.codCountryPhone == Countrone.BRAZIL.getCodCountryPhone()) 
 			return super.SUCCESS;
 
 		

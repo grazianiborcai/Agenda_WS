@@ -1,4 +1,4 @@
-package br.com.mind5.business.masterData.info.common;
+package br.com.mind5.masterData.common;
 
 public enum CartCateg {
 	ITEM('I'), TOTAL('T'), SERVICE_FEE('S');

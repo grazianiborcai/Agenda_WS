@@ -1,4 +1,4 @@
-package br.com.mind5.masterData.common;
+package br.com.mind5.masterData.prospectStatus.info;
 
 public enum Prostus {
 	CREATED("CREATED"),

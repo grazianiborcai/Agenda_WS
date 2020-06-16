@@ -1,12 +1,12 @@
-package br.com.mind5.business.masterData.info.common;
+package br.com.mind5.masterData.countryPhone.info;
 
-public enum CountryPhone {
+public enum Countrone {
 	BRAZIL("BR", 55);
 
 	private final String codCountry;
 	private final int codCountryPhone;
 	
-	private CountryPhone(String country, int phone) {
+	private Countrone(String country, int phone) {
 		codCountry = country;
 		codCountryPhone = phone;
 	}

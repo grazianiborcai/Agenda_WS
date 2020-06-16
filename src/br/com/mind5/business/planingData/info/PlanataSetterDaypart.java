@@ -1,7 +1,7 @@
 package br.com.mind5.business.planingData.info;
 
-import br.com.mind5.business.masterData.info.common.Daypart;
 import br.com.mind5.info.InfoSetterTemplate;
+import br.com.mind5.masterData.dayParting.info.Daypart;
 
 public final class PlanataSetterDaypart extends InfoSetterTemplate<PlanataInfo> {
 	

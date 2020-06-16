@@ -1,7 +1,7 @@
 package br.com.mind5.business.orderSearch.info;
 
-import br.com.mind5.business.masterData.info.common.OrderStatus;
 import br.com.mind5.info.InfoPrunerSingleVisitor;
+import br.com.mind5.masterData.orderStatus.info.Orderatus;
 
 final class OrdarchVisiPruneInactive implements InfoPrunerSingleVisitor<OrdarchInfo, OrdarchInfo> {
 	
@@ -9,7 +9,7 @@ final class OrdarchVisiPruneInactive implements InfoPrunerSingleVisitor<OrdarchI
 		if (baseInfo.codOrderStatus == null)
 			return true;
 		
-		if (baseInfo.codOrderStatus.equals(OrderStatus.CANCELLED.getCodStatus()))
+		if (baseInfo.codOrderStatus.equals(Orderatus.CANCELLED.getCodStatus()))
 			return true;
 		
 		return false;

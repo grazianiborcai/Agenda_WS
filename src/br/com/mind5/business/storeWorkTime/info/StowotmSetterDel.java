@@ -1,9 +1,9 @@
 package br.com.mind5.business.storeWorkTime.info;
 
-import br.com.mind5.business.masterData.info.common.RecordMode;
 import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.InfoSetter;
+import br.com.mind5.masterData.common.RecordMode;
 
 public final class StowotmSetterDel implements InfoSetter<StowotmInfo> {
 	

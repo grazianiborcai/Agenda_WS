@@ -1,9 +1,9 @@
 package br.com.mind5.business.customerSearch.info;
 
-import br.com.mind5.business.masterData.info.common.EntityCateg;
 import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.InfoSetter;
+import br.com.mind5.masterData.entityCategory.info.Entiteg;
 
 public final class CusarchSetterCodEntityCateg implements InfoSetter<CusarchInfo> {
 	
@@ -24,7 +24,7 @@ public final class CusarchSetterCodEntityCateg implements InfoSetter<CusarchInfo
 	
 	
 	private CusarchInfo setCodEntityCateg(CusarchInfo recordInfo) {		
-		recordInfo.codEntityCateg = EntityCateg.CUSTOMER.getCodEntityCateg();
+		recordInfo.codEntityCateg = Entiteg.CUSTOMER.getCodEntityCateg();
 		return recordInfo;
 	}
 	

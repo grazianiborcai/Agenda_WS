@@ -1,4 +1,4 @@
-package br.com.mind5.business.masterData.info.common;
+package br.com.mind5.masterData.language.info;
 
 public enum Langu {
 	ENGLISH("EN");

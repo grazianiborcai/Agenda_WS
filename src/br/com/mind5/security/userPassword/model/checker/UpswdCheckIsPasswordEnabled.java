@@ -2,8 +2,8 @@ package br.com.mind5.security.userPassword.model.checker;
 
 import java.sql.Connection;
 
-import br.com.mind5.business.masterData.info.common.UserCateg;
 import br.com.mind5.common.SystemCode;
+import br.com.mind5.masterData.userCategory.info.Usereg;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 import br.com.mind5.security.userPassword.info.UpswdInfo;
@@ -17,7 +17,7 @@ public final class UpswdCheckIsPasswordEnabled extends ModelCheckerTemplateSimpl
 	
 	
 	@Override protected boolean checkHook(UpswdInfo recordInfo, Connection conn, String schemaName) {	
-		UserCateg categ = getUserCateg(recordInfo);
+		Usereg categ = getUserCateg(recordInfo);
 		
 		if (categ.isPasswordEnabled() == true)
 			return super.SUCCESS;
@@ -28,8 +28,8 @@ public final class UpswdCheckIsPasswordEnabled extends ModelCheckerTemplateSimpl
 	
 	
 	
-	private UserCateg getUserCateg(UpswdInfo recordInfo) {
-		return UserCateg.getUserCateg(recordInfo.codUserCategory);
+	private Usereg getUserCateg(UpswdInfo recordInfo) {
+		return Usereg.getUserCateg(recordInfo.codUserCategory);
 	}
 	
 	

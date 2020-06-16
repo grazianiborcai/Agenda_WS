@@ -1,12 +1,12 @@
-package br.com.mind5.business.masterData.info.common;
+package br.com.mind5.masterData.feeCategory.info;
 
-public enum FeeCateg {
+public enum Feecat {
 	SERVICE('S');
 	
 	private char codCateg;
 	
 	
-	private FeeCateg(char cod) {
+	private Feecat(char cod) {
 		codCateg = cod;
 	}
 	

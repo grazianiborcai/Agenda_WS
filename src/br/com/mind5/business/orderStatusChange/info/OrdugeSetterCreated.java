@@ -1,12 +1,12 @@
 package br.com.mind5.business.orderStatusChange.info;
 
-import br.com.mind5.business.masterData.info.common.OrderStatus;
 import br.com.mind5.info.InfoSetterTemplate;
+import br.com.mind5.masterData.orderStatus.info.Orderatus;
 
 public final class OrdugeSetterCreated extends InfoSetterTemplate<OrdugeInfo> {
 	
 	@Override protected OrdugeInfo setAttrHook(OrdugeInfo recordInfo) {
-		recordInfo.codOrderStatusNew = OrderStatus.CREATED.getCodStatus();
+		recordInfo.codOrderStatusNew = Orderatus.CREATED.getCodStatus();
 		return recordInfo;
 	}
 }

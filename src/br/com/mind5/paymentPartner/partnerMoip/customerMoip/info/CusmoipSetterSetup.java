@@ -1,7 +1,7 @@
 package br.com.mind5.paymentPartner.partnerMoip.customerMoip.info;
 
-import br.com.mind5.business.masterData.info.common.Environ;
 import br.com.mind5.info.InfoSetterTemplate;
+import br.com.mind5.masterData.common.Environ;
 import br.com.moip.auth.Authentication;
 import br.com.moip.auth.BasicAuth;
 import br.com.moip.models.Setup;

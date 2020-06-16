@@ -1,9 +1,9 @@
-package br.com.mind5.business.masterData.info.common;
+package br.com.mind5.masterData.userCategory.info;
 
 import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
 
-public enum UserCateg {
+public enum Usereg {
 	OWNER('O', true), 
 	STORE('S', true), 
 	CUSTOMER('C', true), 
@@ -14,7 +14,7 @@ public enum UserCateg {
 	private final boolean isPasswordEnabled;
 	
 	
-	private UserCateg(char cod, boolean isPassword) {
+	private Usereg(char cod, boolean isPassword) {
 		codCateg = cod;
 		isPasswordEnabled = isPassword;
 	}
@@ -33,8 +33,8 @@ public enum UserCateg {
 	
 	
 	
-	static public UserCateg getUserCateg(char cod) {
-		for(UserCateg eachElem : UserCateg.values()) {
+	static public Usereg getUserCateg(char cod) {
+		for(Usereg eachElem : Usereg.values()) {
 			if (eachElem.getCodUserCateg() == cod)
 				return eachElem;
 		}
@@ -46,6 +46,6 @@ public enum UserCateg {
 	
 	
 	static private void logException(Exception e) {
-		SystemLog.logError(UserCateg.class, e);
+		SystemLog.logError(Usereg.class, e);
 	}
 }

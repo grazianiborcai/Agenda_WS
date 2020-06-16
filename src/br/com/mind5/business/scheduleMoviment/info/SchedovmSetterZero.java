@@ -1,16 +1,16 @@
 package br.com.mind5.business.scheduleMoviment.info;
 
-import br.com.mind5.business.masterData.info.common.ScheduleStatus;
 import br.com.mind5.info.InfoSetterTemplate;
+import br.com.mind5.masterData.scheduleStatus.info.Schedatus;
 
 public final class SchedovmSetterZero extends InfoSetterTemplate<SchedovmInfo> {
 	
 	@Override protected SchedovmInfo setAttrHook(SchedovmInfo recordInfo) {
-		ScheduleStatus status = ScheduleStatus.getScheduleStatus(recordInfo.codScheduleStatus); 		
-		ScheduleStatus statusOld = null; 
+		Schedatus status = Schedatus.getScheduleStatus(recordInfo.codScheduleStatus); 		
+		Schedatus statusOld = null; 
 		
 		if (recordInfo.codScheduleStatus != null)
-			statusOld = ScheduleStatus.getScheduleStatus(recordInfo.codScheduleStatusOld); 
+			statusOld = Schedatus.getScheduleStatus(recordInfo.codScheduleStatusOld); 
 		
 		recordInfo = setZero(status, statusOld, recordInfo);
 		
@@ -19,7 +19,7 @@ public final class SchedovmSetterZero extends InfoSetterTemplate<SchedovmInfo> {
 	
 	
 	
-	private SchedovmInfo setZero(ScheduleStatus status, ScheduleStatus statusOld, SchedovmInfo recordInfo) {
+	private SchedovmInfo setZero(Schedatus status, Schedatus statusOld, SchedovmInfo recordInfo) {
 		if (statusOld == null)
 			return recordInfo;
 		

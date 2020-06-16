@@ -1,12 +1,12 @@
-package br.com.mind5.business.masterData.info.common;
+package br.com.mind5.masterData.entityCategory.info;
 
-public enum EntityCateg {
+public enum Entiteg {
 	CUSTOMER("C"), USER("U"), PAY_CUSTOMER("Y"), OWNER("O"), STORE("S"), EMPLOYEE("E");
 
 	private final String codStringCateg;
 	
 	
-	private EntityCateg (String cod) {
+	private Entiteg (String cod) {
 		codStringCateg = cod;
 	}
 	

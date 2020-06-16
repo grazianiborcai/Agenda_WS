@@ -1,8 +1,8 @@
 package br.com.mind5.business.orderStatusChange.info;
 
-import br.com.mind5.business.masterData.info.common.OrderStatus;
-import br.com.mind5.business.masterData.info.common.OrderStatusMoip;
 import br.com.mind5.info.InfoSetterTemplate;
+import br.com.mind5.masterData.common.OrderStatusMoip;
+import br.com.mind5.masterData.orderStatus.info.Orderatus;
 
 public final class OrdugeSetterMoip extends InfoSetterTemplate<OrdugeInfo> {
 	
@@ -30,7 +30,7 @@ public final class OrdugeSetterMoip extends InfoSetterTemplate<OrdugeInfo> {
 	
 	
 	private OrdugeInfo setDefault(OrdugeInfo recordInfo) {
-		recordInfo.codOrderStatusNew = OrderStatus.CREATED.getCodStatus();
+		recordInfo.codOrderStatusNew = Orderatus.CREATED.getCodStatus();
 		return recordInfo;
 	}
 	
@@ -42,7 +42,7 @@ public final class OrdugeSetterMoip extends InfoSetterTemplate<OrdugeInfo> {
 		
 		if(status == OrderStatusMoip.CREATED || 
 		   status == OrderStatusMoip.WAITING	)
-			recordInfo.codOrderStatusNew = OrderStatus.WAITING.getCodStatus();
+			recordInfo.codOrderStatusNew = Orderatus.WAITING.getCodStatus();
 		
 		return recordInfo;
 	}
@@ -54,7 +54,7 @@ public final class OrdugeSetterMoip extends InfoSetterTemplate<OrdugeInfo> {
 			return recordInfo;
 		
 		if(status == OrderStatusMoip.PAID)
-			recordInfo.codOrderStatusNew = OrderStatus.PAID.getCodStatus();
+			recordInfo.codOrderStatusNew = Orderatus.PAID.getCodStatus();
 		
 		return recordInfo;
 	}
@@ -66,7 +66,7 @@ public final class OrdugeSetterMoip extends InfoSetterTemplate<OrdugeInfo> {
 			return recordInfo;
 		
 		if(status == OrderStatusMoip.NOT_PAID)
-			recordInfo.codOrderStatusNew = OrderStatus.NOT_PAID.getCodStatus();
+			recordInfo.codOrderStatusNew = Orderatus.NOT_PAID.getCodStatus();
 		
 		return recordInfo;
 	}
@@ -78,7 +78,7 @@ public final class OrdugeSetterMoip extends InfoSetterTemplate<OrdugeInfo> {
 			return recordInfo;
 		
 		if(status == OrderStatusMoip.REVERTED)
-			recordInfo.codOrderStatusNew = OrderStatus.CANCELLED.getCodStatus();
+			recordInfo.codOrderStatusNew = Orderatus.CANCELLED.getCodStatus();
 		
 		return recordInfo;
 	}	

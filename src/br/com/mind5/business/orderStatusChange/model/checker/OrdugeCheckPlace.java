@@ -2,9 +2,9 @@ package br.com.mind5.business.orderStatusChange.model.checker;
 
 import java.sql.Connection;
 
-import br.com.mind5.business.masterData.info.common.OrderStatus;
 import br.com.mind5.business.orderStatusChange.info.OrdugeInfo;
 import br.com.mind5.common.SystemCode;
+import br.com.mind5.masterData.orderStatus.info.Orderatus;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
@@ -29,9 +29,9 @@ public final class OrdugeCheckPlace extends ModelCheckerTemplateSimpleV2<OrdugeI
 	
 	
 	private boolean isStatusCreated(String codOrderStatus) {		
-		OrderStatus status = OrderStatus.getOrderStatus(codOrderStatus);
+		Orderatus status = Orderatus.getOrderStatus(codOrderStatus);
 		
-		if(status == OrderStatus.CREATED)
+		if(status == Orderatus.CREATED)
 			return super.SUCCESS;		
 		
 		return super.FAILED;

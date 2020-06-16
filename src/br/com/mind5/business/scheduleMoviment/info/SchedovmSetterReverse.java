@@ -1,7 +1,7 @@
 package br.com.mind5.business.scheduleMoviment.info;
 
-import br.com.mind5.business.masterData.info.common.ScheduleStatus;
 import br.com.mind5.info.InfoSetterTemplate;
+import br.com.mind5.masterData.scheduleStatus.info.Schedatus;
 
 public final class SchedovmSetterReverse extends InfoSetterTemplate<SchedovmInfo> {
 	
@@ -10,13 +10,13 @@ public final class SchedovmSetterReverse extends InfoSetterTemplate<SchedovmInfo
 			return recordInfo;
 		
 		
-		ScheduleStatus status = ScheduleStatus.getScheduleStatus(recordInfo.codScheduleStatus); 
+		Schedatus status = Schedatus.getScheduleStatus(recordInfo.codScheduleStatus); 
 		
 		if (isCancelled(status))
 			return recordInfo;
 		
 		
-		ScheduleStatus statusOld = ScheduleStatus.getScheduleStatus(recordInfo.codScheduleStatusOld); 		
+		Schedatus statusOld = Schedatus.getScheduleStatus(recordInfo.codScheduleStatusOld); 		
 		
 		if (isUnchanged(status, statusOld)) 
 			return recordInfo;
@@ -31,8 +31,8 @@ public final class SchedovmSetterReverse extends InfoSetterTemplate<SchedovmInfo
 	
 	
 	
-	private boolean isCancelled(ScheduleStatus status) {
-		return ScheduleStatus.CANCELLED == status;
+	private boolean isCancelled(Schedatus status) {
+		return Schedatus.CANCELLED == status;
 	}
 	
 	
@@ -43,14 +43,14 @@ public final class SchedovmSetterReverse extends InfoSetterTemplate<SchedovmInfo
 	
 	
 	
-	private boolean isUnchanged(ScheduleStatus status, ScheduleStatus statusOld) {
+	private boolean isUnchanged(Schedatus status, Schedatus statusOld) {
 		return status == statusOld;
 	}
 	
 	
 	
-	private SchedovmInfo reverseWaiting(ScheduleStatus status, SchedovmInfo recordInfo) {
-		if (ScheduleStatus.WAITING == status) {
+	private SchedovmInfo reverseWaiting(Schedatus status, SchedovmInfo recordInfo) {
+		if (Schedatus.WAITING == status) {
 			recordInfo.waiting = -1;
 			recordInfo.counter = 0;
 		}
@@ -60,8 +60,8 @@ public final class SchedovmSetterReverse extends InfoSetterTemplate<SchedovmInfo
 	
 	
 	
-	private SchedovmInfo reverseConfirmed(ScheduleStatus status, SchedovmInfo recordInfo) {
-		if (ScheduleStatus.CONFIRMED == status) {
+	private SchedovmInfo reverseConfirmed(Schedatus status, SchedovmInfo recordInfo) {
+		if (Schedatus.CONFIRMED == status) {
 			recordInfo.confirmed = -1;
 			recordInfo.counter = 0;
 		}

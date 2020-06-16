@@ -2,9 +2,9 @@ package br.com.mind5.payment.statusPayOrderItem.model.checker;
 
 import java.sql.Connection;
 
-import br.com.mind5.business.masterData.info.common.OrderStatusMoip;
-import br.com.mind5.business.masterData.info.common.PaymentStatusMoip;
 import br.com.mind5.common.SystemCode;
+import br.com.mind5.masterData.common.OrderStatusMoip;
+import br.com.mind5.masterData.common.PaymentStatusMoip;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 import br.com.mind5.payment.statusPayOrderItem.info.PaytusemInfo;

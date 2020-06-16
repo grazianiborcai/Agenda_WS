@@ -1,6 +1,6 @@
-package br.com.mind5.business.masterData.info.common;
+package br.com.mind5.masterData.authorizationGroup.info;
 
-public enum AuthGroup {
+public enum Authgroup {
 	OWNER("OWNER"), 
 	STORE_MANAGER("STORE_MANAGER"), 
 	EMPLOYEE("EMPLOYEE"), 
@@ -10,7 +10,7 @@ public enum AuthGroup {
 	private final String codAuthGroup;
 	
 	
-	private AuthGroup(String authGroup) {
+	private Authgroup(String authGroup) {
 		codAuthGroup = authGroup;
 	}
 	

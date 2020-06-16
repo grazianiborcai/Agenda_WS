@@ -1,7 +1,7 @@
 package br.com.mind5.business.employeePosition.info;
 
-import br.com.mind5.business.masterData.info.common.RecordMode;
 import br.com.mind5.info.InfoSetterTemplate;
+import br.com.mind5.masterData.common.RecordMode;
 
 public final class EmposSetterDel extends InfoSetterTemplate<EmposInfo> {
 	

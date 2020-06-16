@@ -1,9 +1,9 @@
 package br.com.mind5.payment.storePartner.info;
 
-import br.com.mind5.business.masterData.info.common.RecordMode;
 import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.InfoSetter;
+import br.com.mind5.masterData.common.RecordMode;
 
 public final class StoparSetterDel implements InfoSetter<StoparInfo> {
 	

@@ -1,18 +1,22 @@
-package br.com.mind5.business.masterData.info.common;
+package br.com.mind5.masterData.orderStatus.info;
 
 import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
 
-public enum ScheduleStatus {
+public enum Orderatus {
 	CANCELLED("CANCELLED"),
-	CONFIRMED("CONFIRMED"), 
+	CREATED("CREATED"), 
+	NOT_PAID("NOT_PAID"),
+	PAID("PAID"), 
+	PLACED("PLACED"), 
+	REFUNDING("REFUNDING"), 
 	WAITING("WAITING");
 	
 	
 	private final String codStatus;
 	
 	
-	private ScheduleStatus(String cod) {
+	private Orderatus(String cod) {
 		codStatus = cod;
 	}
 	
@@ -24,12 +28,12 @@ public enum ScheduleStatus {
 	
 	
 	
-	static public ScheduleStatus getScheduleStatus(String cod) {
+	static public Orderatus getOrderStatus(String cod) {
 		if (cod == null)
 			return null;
 		
 		
-		for(ScheduleStatus eachElem : ScheduleStatus.values()) {
+		for(Orderatus eachElem : Orderatus.values()) {
 			if (eachElem.getCodStatus().equals(cod))
 				return eachElem;
 		}
@@ -42,6 +46,6 @@ public enum ScheduleStatus {
 	
 	
 	static private void logException(Exception e) {
-		SystemLog.logError(ScheduleStatus.class, e);
+		SystemLog.logError(Orderatus.class, e);
 	}
 }

@@ -1,9 +1,9 @@
 package br.com.mind5.file.filePath.info;
 
-import br.com.mind5.business.masterData.info.common.FilePath;
 import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.InfoSetter;
+import br.com.mind5.masterData.common.FilePath;
 
 public final class FathSetterCodImage implements InfoSetter<FathInfo> {
 	

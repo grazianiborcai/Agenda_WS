@@ -1,16 +1,16 @@
 package br.com.mind5.business.scheduleLine.info;
 
-import br.com.mind5.business.masterData.info.common.OrderStatus;
-import br.com.mind5.business.masterData.info.common.ScheduleStatus;
 import br.com.mind5.info.InfoSetterTemplate;
+import br.com.mind5.masterData.orderStatus.info.Orderatus;
+import br.com.mind5.masterData.scheduleStatus.info.Schedatus;
 
 public final class SchedineSetterStatus extends InfoSetterTemplate<SchedineInfo> {
 	
 	@Override protected SchedineInfo setAttrHook(SchedineInfo recordInfo) {
-		OrderStatus status = null;
+		Orderatus status = null;
 		
 		if (recordInfo.codOrderStatus != null)
-			status = OrderStatus.getOrderStatus(recordInfo.codOrderStatus);		
+			status = Orderatus.getOrderStatus(recordInfo.codOrderStatus);		
 		
 		recordInfo = setDefault(recordInfo);
 		recordInfo = setConfirmed(recordInfo, status);
@@ -23,54 +23,54 @@ public final class SchedineSetterStatus extends InfoSetterTemplate<SchedineInfo>
 	
 	
 	private SchedineInfo setDefault(SchedineInfo recordInfo) {
-		recordInfo.codScheduleStatus = ScheduleStatus.CONFIRMED.getCodStatus();
+		recordInfo.codScheduleStatus = Schedatus.CONFIRMED.getCodStatus();
 		return recordInfo;
 	}
 	
 	
 	
-	private SchedineInfo setConfirmed(SchedineInfo recordInfo, OrderStatus status) {
+	private SchedineInfo setConfirmed(SchedineInfo recordInfo, Orderatus status) {
 		if (status == null)
 			return recordInfo;
 		
-		if (status == OrderStatus.PAID)
-			recordInfo.codScheduleStatus = ScheduleStatus.CONFIRMED.getCodStatus();
+		if (status == Orderatus.PAID)
+			recordInfo.codScheduleStatus = Schedatus.CONFIRMED.getCodStatus();
 		
-		if (status == OrderStatus.REFUNDING)
-			recordInfo.codScheduleStatus = ScheduleStatus.CONFIRMED.getCodStatus();
-		
-		return recordInfo;
-	}
-	
-	
-	
-	private SchedineInfo setWaiting(SchedineInfo recordInfo, OrderStatus status) {
-		if (status == null)
-			return recordInfo;
-		
-		if (status == OrderStatus.CREATED)
-			recordInfo.codScheduleStatus = ScheduleStatus.WAITING.getCodStatus();
-		
-		if (status == OrderStatus.NOT_PAID)
-			recordInfo.codScheduleStatus = ScheduleStatus.WAITING.getCodStatus();
-		
-		if (status == OrderStatus.PLACED)
-			recordInfo.codScheduleStatus = ScheduleStatus.WAITING.getCodStatus();
-		
-		if (status == OrderStatus.WAITING)
-			recordInfo.codScheduleStatus = ScheduleStatus.WAITING.getCodStatus();
+		if (status == Orderatus.REFUNDING)
+			recordInfo.codScheduleStatus = Schedatus.CONFIRMED.getCodStatus();
 		
 		return recordInfo;
 	}
 	
 	
 	
-	private SchedineInfo setCancelled(SchedineInfo recordInfo, OrderStatus status) {
+	private SchedineInfo setWaiting(SchedineInfo recordInfo, Orderatus status) {
 		if (status == null)
 			return recordInfo;
 		
-		if (status == OrderStatus.CANCELLED)
-			recordInfo.codScheduleStatus = ScheduleStatus.CANCELLED.getCodStatus();
+		if (status == Orderatus.CREATED)
+			recordInfo.codScheduleStatus = Schedatus.WAITING.getCodStatus();
+		
+		if (status == Orderatus.NOT_PAID)
+			recordInfo.codScheduleStatus = Schedatus.WAITING.getCodStatus();
+		
+		if (status == Orderatus.PLACED)
+			recordInfo.codScheduleStatus = Schedatus.WAITING.getCodStatus();
+		
+		if (status == Orderatus.WAITING)
+			recordInfo.codScheduleStatus = Schedatus.WAITING.getCodStatus();
+		
+		return recordInfo;
+	}
+	
+	
+	
+	private SchedineInfo setCancelled(SchedineInfo recordInfo, Orderatus status) {
+		if (status == null)
+			return recordInfo;
+		
+		if (status == Orderatus.CANCELLED)
+			recordInfo.codScheduleStatus = Schedatus.CANCELLED.getCodStatus();
 		
 		return recordInfo;
 	}

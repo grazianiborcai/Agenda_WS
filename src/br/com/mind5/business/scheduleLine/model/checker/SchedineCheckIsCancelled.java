@@ -2,9 +2,9 @@ package br.com.mind5.business.scheduleLine.model.checker;
 
 import java.sql.Connection;
 
-import br.com.mind5.business.masterData.info.common.ScheduleStatus;
 import br.com.mind5.business.scheduleLine.info.SchedineInfo;
 import br.com.mind5.common.SystemCode;
+import br.com.mind5.masterData.scheduleStatus.info.Schedatus;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
@@ -20,9 +20,9 @@ public final class SchedineCheckIsCancelled extends ModelCheckerTemplateSimpleV2
 		if(recordInfo.codScheduleStatus == null)
 			return super.FAILED;
 		
-		ScheduleStatus status = ScheduleStatus.getScheduleStatus(recordInfo.codScheduleStatus);
+		Schedatus status = Schedatus.getScheduleStatus(recordInfo.codScheduleStatus);
 		
-		if (status == ScheduleStatus.CANCELLED) 
+		if (status == Schedatus.CANCELLED) 
 			return super.SUCCESS;		
 		
 		

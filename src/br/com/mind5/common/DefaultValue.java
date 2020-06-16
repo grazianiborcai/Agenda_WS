@@ -9,8 +9,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import br.com.mind5.business.masterData.info.common.Environ;
-import br.com.mind5.business.masterData.info.common.RecordMode;
+import br.com.mind5.masterData.common.Environ;
+import br.com.mind5.masterData.common.RecordMode;
 
 
 public final class DefaultValue {

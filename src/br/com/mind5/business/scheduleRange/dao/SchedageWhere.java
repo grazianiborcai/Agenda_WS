@@ -2,7 +2,6 @@ package br.com.mind5.business.scheduleRange.dao;
 
 import java.util.List;
 
-import br.com.mind5.business.masterData.info.common.ScheduleStatus;
 import br.com.mind5.business.scheduleRange.info.SchedageInfo;
 import br.com.mind5.dao.DaoColumn;
 import br.com.mind5.dao.DaoFormatter;
@@ -12,6 +11,7 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.DaoWhereCondition;
 import br.com.mind5.dao.DaoWhereOperator;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
+import br.com.mind5.masterData.scheduleStatus.info.Schedatus;
 
 public final class SchedageWhere implements DaoStmtWhere {	
 	private String whereClause;	
@@ -77,7 +77,7 @@ public final class SchedageWhere implements DaoStmtWhere {
 			break;
 			
 		case SchedageDbTableColumn.COL_COD_SCHEDULE_STATUS :
-			builderKey.addClauseAnd(column, ScheduleStatus.CANCELLED.getCodStatus(), DaoWhereCondition.NOT_EQUAL);
+			builderKey.addClauseAnd(column, Schedatus.CANCELLED.getCodStatus(), DaoWhereCondition.NOT_EQUAL);
 			break;
 		}
 		

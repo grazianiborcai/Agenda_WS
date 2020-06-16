@@ -1,17 +1,17 @@
 package br.com.mind5.business.scheduleMoviment.info;
 
-import br.com.mind5.business.masterData.info.common.ScheduleStatus;
 import br.com.mind5.info.InfoSetterTemplate;
+import br.com.mind5.masterData.scheduleStatus.info.Schedatus;
 
 public final class SchedovmSetterCancel extends InfoSetterTemplate<SchedovmInfo> {
 	
 	@Override protected SchedovmInfo setAttrHook(SchedovmInfo recordInfo) {
-		ScheduleStatus status = ScheduleStatus.getScheduleStatus(recordInfo.codScheduleStatus); 
+		Schedatus status = Schedatus.getScheduleStatus(recordInfo.codScheduleStatus); 
 		
 		if (isCancelled(status) == false)
 			return recordInfo;
 		
-		ScheduleStatus statusOld = ScheduleStatus.getScheduleStatus(recordInfo.codScheduleStatusOld); 
+		Schedatus statusOld = Schedatus.getScheduleStatus(recordInfo.codScheduleStatusOld); 
 		
 		recordInfo = cancelWaiting(statusOld, recordInfo);
 		recordInfo = cancelConfirmed(statusOld, recordInfo);
@@ -21,14 +21,14 @@ public final class SchedovmSetterCancel extends InfoSetterTemplate<SchedovmInfo>
 	
 	
 	
-	private boolean isCancelled(ScheduleStatus status) {
-		return ScheduleStatus.CANCELLED == status;
+	private boolean isCancelled(Schedatus status) {
+		return Schedatus.CANCELLED == status;
 	}
 	
 	
 	
-	private SchedovmInfo cancelWaiting(ScheduleStatus status, SchedovmInfo recordInfo) {
-		if (ScheduleStatus.WAITING == status) {
+	private SchedovmInfo cancelWaiting(Schedatus status, SchedovmInfo recordInfo) {
+		if (Schedatus.WAITING == status) {
 			recordInfo.waiting = -1;
 			recordInfo.counter = -1;
 		}
@@ -38,8 +38,8 @@ public final class SchedovmSetterCancel extends InfoSetterTemplate<SchedovmInfo>
 	
 	
 	
-	private SchedovmInfo cancelConfirmed(ScheduleStatus status, SchedovmInfo recordInfo) {
-		if (ScheduleStatus.CONFIRMED == status) {
+	private SchedovmInfo cancelConfirmed(Schedatus status, SchedovmInfo recordInfo) {
+		if (Schedatus.CONFIRMED == status) {
 			recordInfo.confirmed = -1;
 			recordInfo.counter = -1;
 		}

@@ -1,9 +1,9 @@
 package br.com.mind5.business.feeDefault.info;
 
-import br.com.mind5.business.masterData.info.common.FeeCateg;
 import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.InfoSetter;
+import br.com.mind5.masterData.feeCategory.info.Feecat;
 
 public final class FeedefSetterCategServ implements InfoSetter<FeedefInfo> {
 	
@@ -24,7 +24,7 @@ public final class FeedefSetterCategServ implements InfoSetter<FeedefInfo> {
 	
 	
 	private FeedefInfo setKey(FeedefInfo recordInfo) {		
-		recordInfo.codFeeCateg = FeeCateg.SERVICE.getCodCateg();
+		recordInfo.codFeeCateg = Feecat.SERVICE.getCodCateg();
 		return recordInfo;
 	}	
 	

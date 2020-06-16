@@ -1,7 +1,7 @@
 package br.com.mind5.payment.payOrderItemSearch.info;
 
-import br.com.mind5.business.masterData.info.common.OrderStatusMoip;
 import br.com.mind5.info.InfoSetterTemplate;
+import br.com.mind5.masterData.common.OrderStatusMoip;
 
 public final class PayormarchSetterReverted extends InfoSetterTemplate<PayormarchInfo> {
 	

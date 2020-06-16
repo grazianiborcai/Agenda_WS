@@ -1,15 +1,15 @@
-package br.com.mind5.business.masterData.info.common;
+package br.com.mind5.masterData.materialCategory.info;
 
 import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
 
-public enum MatCateg {
+public enum Mateg {
 	PRODUCT(1), SERVICE(2);	
 	
 	private final int codMatCateg;
 	
 	
-	private MatCateg(int cod) {
+	private Mateg(int cod) {
 		codMatCateg = cod;
 	}
 	
@@ -21,8 +21,8 @@ public enum MatCateg {
 	
 	
 	
-	static public MatCateg getMatCateg(int cod) {
-		for(MatCateg eachElem : MatCateg.values()) {
+	static public Mateg getMatCateg(int cod) {
+		for(Mateg eachElem : Mateg.values()) {
 			if (eachElem.getCodMatCateg() == cod)
 				return eachElem;
 		}
@@ -34,6 +34,6 @@ public enum MatCateg {
 	
 	
 	static private void logException(Exception e) {
-		SystemLog.logError(MatCateg.class, e);
+		SystemLog.logError(Mateg.class, e);
 	}
 }

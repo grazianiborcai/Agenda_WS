@@ -2,9 +2,9 @@ package br.com.mind5.business.materialStore.model.checker;
 
 import java.sql.Connection;
 
-import br.com.mind5.business.masterData.info.common.MatCateg;
 import br.com.mind5.business.materialStore.info.MatoreInfo;
 import br.com.mind5.common.SystemCode;
+import br.com.mind5.masterData.materialCategory.info.Mateg;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
@@ -21,7 +21,7 @@ public final class MatoreCheckIsService extends ModelCheckerTemplateSimpleV2<Mat
 			return super.FAILED;
 		
 		
-		if ( recordInfo.matlisData.codMatCateg == MatCateg.SERVICE.getCodMatCateg() )	
+		if ( recordInfo.matlisData.codMatCateg == Mateg.SERVICE.getCodMatCateg() )	
 			return super.SUCCESS;
 		
 		

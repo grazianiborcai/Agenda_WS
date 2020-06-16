@@ -2,9 +2,9 @@ package br.com.mind5.business.orderItem.model.checker;
 
 import java.sql.Connection;
 
-import br.com.mind5.business.masterData.info.common.OrderStatus;
 import br.com.mind5.business.orderItem.info.OrderemInfo;
 import br.com.mind5.common.SystemCode;
+import br.com.mind5.masterData.orderStatus.info.Orderatus;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
@@ -26,9 +26,9 @@ public final class OrderemCheckIsCancelled extends ModelCheckerTemplateSimpleV2<
 	
 	
 	private boolean isStatusCancelled(String codOrderStatus) {		
-		OrderStatus status = OrderStatus.getOrderStatus(codOrderStatus);
+		Orderatus status = Orderatus.getOrderStatus(codOrderStatus);
 		
-		if(status == OrderStatus.CANCELLED)
+		if(status == Orderatus.CANCELLED)
 			return super.SUCCESS;		
 		
 		return super.FAILED;

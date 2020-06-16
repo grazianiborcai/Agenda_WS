@@ -2,7 +2,7 @@ package br.com.mind5.dao;
 
 import java.util.List;
 
-import br.com.mind5.business.masterData.info.common.RecordMode;
+import br.com.mind5.masterData.common.RecordMode;
 
 final class DaoStmtBuilderDeleteSoft extends DaoStmtBuilderTemplate {
 

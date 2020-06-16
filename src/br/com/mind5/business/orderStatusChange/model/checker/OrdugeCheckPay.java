@@ -2,9 +2,9 @@ package br.com.mind5.business.orderStatusChange.model.checker;
 
 import java.sql.Connection;
 
-import br.com.mind5.business.masterData.info.common.OrderStatus;
 import br.com.mind5.business.orderStatusChange.info.OrdugeInfo;
 import br.com.mind5.common.SystemCode;
+import br.com.mind5.masterData.orderStatus.info.Orderatus;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
@@ -32,9 +32,9 @@ public final class OrdugeCheckPay extends ModelCheckerTemplateSimpleV2<OrdugeInf
 	
 	
 	private boolean isStatusPlaced(String codOrderStatus) {		
-		OrderStatus status = OrderStatus.getOrderStatus(codOrderStatus);
+		Orderatus status = Orderatus.getOrderStatus(codOrderStatus);
 		
-		if(status == OrderStatus.PLACED)
+		if(status == Orderatus.PLACED)
 			return super.SUCCESS;		
 		
 		return super.FAILED;
@@ -43,9 +43,9 @@ public final class OrdugeCheckPay extends ModelCheckerTemplateSimpleV2<OrdugeInf
 	
 	
 	private boolean isStatusNotPaid(String codOrderStatus) {		
-		OrderStatus status = OrderStatus.getOrderStatus(codOrderStatus);
+		Orderatus status = Orderatus.getOrderStatus(codOrderStatus);
 		
-		if(status == OrderStatus.NOT_PAID)
+		if(status == Orderatus.NOT_PAID)
 			return super.SUCCESS;		
 		
 		return super.FAILED;

@@ -1,6 +1,6 @@
-package br.com.mind5.business.masterData.info.common;
+package br.com.mind5.masterData.paymentStatus.info;
 
-public enum PaymentStatus {
+public enum Paymenus {
 	ACCEPTED("ACCEPTED"), 
 	REFUSED("REFUSED"), 
 	WAITING("WAITING");
@@ -9,7 +9,7 @@ public enum PaymentStatus {
 	private final String codStatus;
 	
 	
-	private PaymentStatus(String cod) {
+	private Paymenus(String cod) {
 		codStatus = cod;
 	}
 	

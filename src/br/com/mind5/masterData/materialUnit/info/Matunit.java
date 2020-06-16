@@ -1,16 +1,16 @@
-package br.com.mind5.business.masterData.info.common;
+package br.com.mind5.masterData.materialUnit.info;
 
 import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
 
-public enum MatUnit {
+public enum Matunit {
 	EACH("EAC"), MINUTE("MIN"), HOUR("H");
 	
 	
 	private String codUnit;
 	
 	
-	private MatUnit(String cod) {
+	private Matunit(String cod) {
 		codUnit = cod;
 	}
 	
@@ -22,8 +22,8 @@ public enum MatUnit {
 	
 	
 	
-	static public MatUnit getMatUnit(String cod) {
-		for(MatUnit eachElem : MatUnit.values()) {
+	static public Matunit getMatUnit(String cod) {
+		for(Matunit eachElem : Matunit.values()) {
 			if (eachElem.getCodUnit().equals(cod))
 				return eachElem;
 		}
@@ -35,6 +35,6 @@ public enum MatUnit {
 	
 	
 	static private void logException(Exception e) {
-		SystemLog.logError(MatUnit.class, e);
+		SystemLog.logError(Matunit.class, e);
 	}
 }

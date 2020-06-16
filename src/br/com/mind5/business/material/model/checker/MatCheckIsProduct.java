@@ -2,9 +2,9 @@ package br.com.mind5.business.material.model.checker;
 
 import java.sql.Connection;
 
-import br.com.mind5.business.masterData.info.common.MatCateg;
 import br.com.mind5.business.material.info.MatInfo;
 import br.com.mind5.common.SystemCode;
+import br.com.mind5.masterData.materialCategory.info.Mateg;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
@@ -18,7 +18,7 @@ public final class MatCheckIsProduct extends ModelCheckerTemplateSimpleV2<MatInf
 	
 	@Override protected boolean checkHook(MatInfo recordInfo, Connection conn, String schemaName) {	
 		
-		if (MatCateg.PRODUCT.getCodMatCateg() == recordInfo.codMatCateg )
+		if (Mateg.PRODUCT.getCodMatCateg() == recordInfo.codMatCateg )
 			return super.SUCCESS;			
 			
 		
