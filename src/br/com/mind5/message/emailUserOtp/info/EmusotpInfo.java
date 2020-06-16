@@ -2,6 +2,7 @@ package br.com.mind5.message.emailUserOtp.info;
 
 import java.util.List;
 
+import br.com.mind5.business.personList.info.PersolisInfo;
 import br.com.mind5.common.CloneUtil;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
@@ -13,6 +14,7 @@ public final class EmusotpInfo extends InfoRecord implements Cloneable {
 	public String password;	
 	public String username;		
 	public EmabodyInfo bodyData;
+	public PersolisInfo persolisData;
 	
 	
 	public EmusotpInfo() {
@@ -20,6 +22,7 @@ public final class EmusotpInfo extends InfoRecord implements Cloneable {
 		
 		codOwner = DefaultValue.number();
 		bodyData = DefaultValue.object();
+		persolisData = DefaultValue.object();
 	}
 	
 	
@@ -40,6 +43,8 @@ public final class EmusotpInfo extends InfoRecord implements Cloneable {
 		EmusotpInfo deepCopy = (EmusotpInfo) super.clone();
 		
 		deepCopy.bodyData = CloneUtil.cloneRecord(bodyData, this.getClass());
+		deepCopy.persolisData = CloneUtil.cloneRecord(persolisData, this.getClass());
+		
 		return deepCopy;
 	}
 	

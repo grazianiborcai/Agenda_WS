@@ -16,8 +16,8 @@ final class EmusotpCopyOtperas extends InfoCopierTemplate<EmusotpInfo, OtperasIn
 		
 		result.codOwner = source.codOwner;
 		result.password = source.password;
-		result.codLanguage = source.codLanguage;		
-		result.recipientAddr = source.uselisData.persolisData.email;
+		result.codLanguage = source.codLanguage;
+		result.persolisData = source.uselisData.persolisData;
 		
 		return result;
 	}

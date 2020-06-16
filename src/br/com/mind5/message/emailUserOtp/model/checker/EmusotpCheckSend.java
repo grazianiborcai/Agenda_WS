@@ -16,11 +16,18 @@ public final class EmusotpCheckSend extends ModelCheckerTemplateSimpleV2<Emusotp
 	
 	
 	@Override protected boolean checkHook(EmusotpInfo recordInfo, Connection conn, String schemaName) {	
-		if ( recordInfo.codOwner		<= 0	||
-			 recordInfo.password		== null	||
-			 recordInfo.recipientAddr	== null	||
-			 recordInfo.codLanguage		== null		)		
+		if ( recordInfo.codOwner	<= 0	||
+			 recordInfo.password	== null	||
+			 recordInfo.codLanguage	== null		)		
 			
+			return super.FAILED;
+		
+		
+		if ( recordInfo.persolisData == null )
+			return super.FAILED;
+		
+		
+		if ( recordInfo.persolisData.name == null	)		
 			return super.FAILED;
 		
 		
