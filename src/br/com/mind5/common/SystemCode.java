@@ -1339,4 +1339,7 @@ public final class SystemCode {
 	public static final int OTP_USER_PASSWORD_MANDATORY_FIELD_EMPTY		= 13050;
 	public static final int OTP_USER_PASSWORD_NOT_FOUND					= 13051;
 	public static final int OTP_USER_PASSWORD_ALREADY_EXIST				= 13052;
+	
+	// Email User OTP
+	public static final int EMAIL_USER_OTP_MANDATORY_FIELD_EMPTY		= 13100;
 }
