@@ -1,0 +1,39 @@
+package br.com.mind5.security.otpUserPassword.info;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
+import br.com.mind5.security.userList.info.UselisInfo;
+
+final class OtperasVisiMergeUselis implements InfoMergerVisitorV3<OtperasInfo, UselisInfo> {
+	
+	@Override public List<OtperasInfo> beforeMerge(List<OtperasInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(OtperasInfo baseInfo, UselisInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner &&
+				baseInfo.codUser  == selectedInfo.codUser);
+	}
+	
+	
+	
+	@Override public List<OtperasInfo> merge(OtperasInfo baseInfo, UselisInfo selectedInfo) {
+		List<OtperasInfo> results = new ArrayList<>();
+
+		baseInfo.uselisData = selectedInfo;
+		
+		results.add(baseInfo);
+		return results;
+	}
+	
+	
+	
+	@Override public InfoUniquifier<OtperasInfo> getUniquifier() {
+		return null;
+	}
+}

@@ -3,8 +3,10 @@ package br.com.mind5.security.otpUserPassword.info;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import br.com.mind5.common.CloneUtil;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
+import br.com.mind5.security.userList.info.UselisInfo;
 
 public final class OtperasInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
@@ -16,6 +18,7 @@ public final class OtperasInfo extends InfoRecord implements Cloneable {
 	public int hashLength;
 	public LocalDateTime validUntil;
 	public LocalDateTime lastChanged;
+	public UselisInfo uselisData;
 
 	
 	public OtperasInfo() {
@@ -40,7 +43,10 @@ public final class OtperasInfo extends InfoRecord implements Cloneable {
 	
 	
 	@Override public Object clone() throws CloneNotSupportedException {
-		return super.clone();
+		OtperasInfo deepCopy = (OtperasInfo) super.clone();
+		
+		deepCopy.uselisData = CloneUtil.cloneRecord(uselisData, this.getClass());
+		return deepCopy;
 	}
 	
 	
