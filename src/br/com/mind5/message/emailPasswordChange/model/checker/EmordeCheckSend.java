@@ -16,17 +16,10 @@ public final class EmordeCheckSend extends ModelCheckerTemplateSimpleV2<EmordeIn
 	
 	
 	@Override protected boolean checkHook(EmordeInfo recordInfo, Connection conn, String schemaName) {	
-		if ( recordInfo.codOwner		<= 0	||
-			 recordInfo.codLanguage		== null		)		
+		if ( recordInfo.codOwner 	<= 0	||
+			 recordInfo.codUser	 	<= 0	||
+			 recordInfo.codLanguage	== null		)	
 			
-			return super.FAILED;
-		
-		
-		if ( recordInfo.persolisData == null )
-			return super.FAILED;
-		
-		
-		if ( recordInfo.persolisData.name == null	)		
 			return super.FAILED;
 		
 		

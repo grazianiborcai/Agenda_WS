@@ -10,6 +10,7 @@ import br.com.mind5.message.emailBody.info.EmabodyInfo;
 
 public final class EmordeInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
+	public long codUser;
 	public String recipientAddr;
 	public String username;		
 	public EmabodyInfo bodyData;
@@ -20,6 +21,7 @@ public final class EmordeInfo extends InfoRecord implements Cloneable {
 		super();
 		
 		codOwner = DefaultValue.number();
+		codUser = DefaultValue.number();
 		bodyData = DefaultValue.object();
 		persolisData = DefaultValue.object();
 	}
@@ -52,13 +54,8 @@ public final class EmordeInfo extends InfoRecord implements Cloneable {
 	@Override public int hashCode() {
 		int result = 17;
 		
-		result = result * 31 + (int) (codOwner  ^ (codOwner >>> 32));
-		
-		if (username != null)
-			result = result * 31 + username.hashCode();
-		
-		if (recipientAddr != null)
-			result = result * 31 + recipientAddr.hashCode();
+		result = result * 31 + (int) (codOwner ^ (codOwner >>> 32));
+		result = result * 31 + (int) (codUser  ^ (codUser  >>> 32));
 		
 		return result;
 	}
@@ -75,8 +72,7 @@ public final class EmordeInfo extends InfoRecord implements Cloneable {
 		
 		
 		EmordeInfo obj = (EmordeInfo) o;		
-		return (codOwner == obj.codOwner							&&
-				super.isStringEqual(username, 		obj.username)	&&	
-				super.isStringEqual(recipientAddr, 	obj.recipientAddr));
+		return (codOwner == obj.codOwner &&
+				codUser  == obj.codUser);
 	}	
 }

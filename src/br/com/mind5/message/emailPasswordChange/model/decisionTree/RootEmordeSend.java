@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.message.emailPasswordChange.info.EmordeInfo;
+import br.com.mind5.message.emailPasswordChange.model.action.LazyEmordeEnforceEmabody;
 import br.com.mind5.message.emailPasswordChange.model.action.LazyEmordeSendEmail;
-import br.com.mind5.message.emailPasswordChange.model.action.StdEmordeEnforceEmabody;
+import br.com.mind5.message.emailPasswordChange.model.action.StdEmordeMergeUselis;
 import br.com.mind5.message.emailPasswordChange.model.checker.EmordeCheckSend;
+import br.com.mind5.message.emailPasswordChange.model.checker.EmordeCheckUser;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
@@ -35,6 +37,13 @@ public final class RootEmordeSend extends DeciTreeTemplateWriteV2<EmordeInfo> {
 		checker = new EmordeCheckSend(checkerOption);
 		queue.add(checker);
 		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new EmordeCheckUser(checkerOption);
+		queue.add(checker);
+		
 		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
@@ -43,12 +52,14 @@ public final class RootEmordeSend extends DeciTreeTemplateWriteV2<EmordeInfo> {
 	@Override protected List<ActionStdV1<EmordeInfo>> buildActionsOnPassedHook(DeciTreeOption<EmordeInfo> option) {
 		List<ActionStdV1<EmordeInfo>> actions = new ArrayList<>();	
 		
-		ActionStdV1<EmordeInfo> enforceEmabody = new StdEmordeEnforceEmabody(option);
+		ActionStdV1<EmordeInfo> mergeUselis = new StdEmordeMergeUselis(option);
+		ActionLazyV1<EmordeInfo> enforceEmabody = new LazyEmordeEnforceEmabody(option.conn, option.schemaName);
 		ActionLazyV1<EmordeInfo> send = new LazyEmordeSendEmail(option.conn, option.schemaName);
 		
+		mergeUselis.addPostAction(enforceEmabody);
 		enforceEmabody.addPostAction(send);
 		
-		actions.add(enforceEmabody);		
+		actions.add(mergeUselis);		
 		return actions;
 	}
 }
