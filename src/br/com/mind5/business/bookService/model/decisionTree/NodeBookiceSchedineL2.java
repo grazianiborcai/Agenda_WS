@@ -14,6 +14,7 @@ import br.com.mind5.business.bookService.model.checker.BookiceCheckMat;
 import br.com.mind5.business.bookService.model.checker.BookiceCheckMatore;
 import br.com.mind5.business.bookService.model.checker.BookiceCheckOrderve;
 import br.com.mind5.business.bookService.model.checker.BookiceCheckPlanarch;
+import br.com.mind5.business.bookService.model.checker.BookiceCheckSchedarch;
 import br.com.mind5.business.bookService.model.checker.BookiceCheckStolarg;
 import br.com.mind5.business.bookService.model.checker.BookiceCheckStore;
 import br.com.mind5.business.bookService.model.checker.BookiceCheckStoworg;
@@ -117,8 +118,15 @@ public final class NodeBookiceSchedineL2 extends DeciTreeTemplateWriteV2<Bookice
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
+		checkerOption.expectedResult = ModelCheckerOption.NOT_FOUND;	
 		checker = new BookiceCheckCarterve(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.NOT_FOUND;	
+		checker = new BookiceCheckSchedarch(checkerOption);
 		queue.add(checker);
 
 		return new ModelCheckerHelperQueueV2<>(queue);
