@@ -9,7 +9,7 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.userPassword.dao.DaoUpswdSelect;
 import br.com.mind5.security.userPassword.info.UpswdInfo;
 
-final class VisiUpswdDaoSelect extends ActionVisitorTemplateStmtV2<UpswdInfo>{
+final class VisiUpswdDaoSelect extends ActionVisitorTemplateStmtV2<UpswdInfo> {
 
 	public VisiUpswdDaoSelect(DeciTreeOption<UpswdInfo> option) {
 		super(option);

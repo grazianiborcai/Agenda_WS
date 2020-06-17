@@ -9,9 +9,9 @@ import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.userPassword.info.UpswdInfo;
 
-public final class LazyUpswdEnforcePassword extends ActionLazyTemplateV2<UpswdInfo, UpswdInfo> {
+public final class LazyUpswdOtperasAuthenticate extends ActionLazyTemplateV2<UpswdInfo, UpswdInfo> {
 	
-	public LazyUpswdEnforcePassword(Connection conn, String schemaName) {
+	public LazyUpswdOtperasAuthenticate(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyUpswdEnforcePassword extends ActionLazyTemplateV2<UpswdIn
 	
 	
 	@Override protected ActionStdV1<UpswdInfo> getInstanceOfActionHook(DeciTreeOption<UpswdInfo> option) {
-		return new StdUpswdEnforcePassword(option);
+		return new StdUpswdOtperasAuthenticate(option);
 	}
 	
 	

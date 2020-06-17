@@ -9,7 +9,7 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.userPassword.dao.DaoUpswdDelete;
 import br.com.mind5.security.userPassword.info.UpswdInfo;
 
-final class VisiUpswdDaoDelete extends ActionVisitorTemplateStmtV2<UpswdInfo>{
+final class VisiUpswdDaoDelete extends ActionVisitorTemplateStmtV2<UpswdInfo> {
 
 	public VisiUpswdDaoDelete(DeciTreeOption<UpswdInfo> option) {
 		super(option);

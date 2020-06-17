@@ -4,7 +4,7 @@ import br.com.mind5.business.personList.info.PersolisInfo;
 import br.com.mind5.info.InfoCopierTemplate;
 import br.com.mind5.security.user.info.UserInfo;
 
-final class UpswdCopyUser extends InfoCopierTemplate<UpswdInfo, UserInfo>{
+final class UpswdCopyUser extends InfoCopierTemplate<UpswdInfo, UserInfo> {
 	
 	public UpswdCopyUser() {
 		super();

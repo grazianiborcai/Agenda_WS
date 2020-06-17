@@ -20,6 +20,7 @@ import br.com.mind5.security.user.model.UserModelDeleteAuth;
 import br.com.mind5.security.user.model.UserModelInsert;
 import br.com.mind5.security.user.model.UserModelSelectAuth;
 import br.com.mind5.security.user.model.UserModelUpdateAuth;
+import br.com.mind5.security.userPassword.model.UpswdModelUpdateAuth;
 
 @Path("/User")
 public class UserResource {
@@ -29,6 +30,7 @@ public class UserResource {
 	private static final String UPDATE_USER = "/updateUser";
 	private static final String DELETE_USER = "/deleteUser";
 	private static final String SELECT_USER = "/selectUser";
+	private static final String UPDATE_USER_PASSWORD = "/updateUserPassword";
 
 	
 	
@@ -111,6 +113,21 @@ public class UserResource {
 		recordInfo.codLanguage = codLanguage;
 		
 		Model model = new UserModelSelectAuth(recordInfo);
+		model.executeRequest();
+		Response result = model.getResponse();
+		model.close();
+		
+		return result;
+	}
+	
+	
+	
+	@POST
+	@Path(UPDATE_USER_PASSWORD)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response updateUpswd(@Context HttpServletRequest request, String incomingData) {
+		
+		Model model = new UpswdModelUpdateAuth(incomingData, request);
 		model.executeRequest();
 		Response result = model.getResponse();
 		model.close();

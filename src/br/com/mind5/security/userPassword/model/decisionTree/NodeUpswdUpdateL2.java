@@ -14,13 +14,12 @@ import br.com.mind5.security.userPassword.info.UpswdInfo;
 import br.com.mind5.security.userPassword.model.action.LazyUpswdDaoUpdate;
 import br.com.mind5.security.userPassword.model.action.LazyUpswdEnforceHash;
 import br.com.mind5.security.userPassword.model.action.LazyUpswdEnforceLength;
-import br.com.mind5.security.userPassword.model.action.LazyUpswdEnforcePassword;
 import br.com.mind5.security.userPassword.model.action.LazyUpswdEnforceSalt;
 import br.com.mind5.security.userPassword.model.action.StdUpswdEnforceLChanged;
 
-public final class NodeUpswdUpdate extends DeciTreeTemplateWriteV2<UpswdInfo> {
+public final class NodeUpswdUpdateL2 extends DeciTreeTemplateWriteV2<UpswdInfo> {
 	
-	public NodeUpswdUpdate(DeciTreeOption<UpswdInfo> option) {
+	public NodeUpswdUpdateL2(DeciTreeOption<UpswdInfo> option) {
 		super(option);
 	}
 	
@@ -43,14 +42,12 @@ public final class NodeUpswdUpdate extends DeciTreeTemplateWriteV2<UpswdInfo> {
 		
 		ActionStdV1<UpswdInfo> enforceLChanged = new StdUpswdEnforceLChanged(option);
 		ActionLazyV1<UpswdInfo> enforceLength = new LazyUpswdEnforceLength(option.conn, option.schemaName);
-		ActionLazyV1<UpswdInfo> enforcePassword = new LazyUpswdEnforcePassword(option.conn, option.schemaName);
 		ActionLazyV1<UpswdInfo> enforceSalt = new LazyUpswdEnforceSalt(option.conn, option.schemaName);
 		ActionLazyV1<UpswdInfo> enforceHash = new LazyUpswdEnforceHash(option.conn, option.schemaName);
 		ActionLazyV1<UpswdInfo> update = new LazyUpswdDaoUpdate(option.conn, option.schemaName);
 		
 		enforceLChanged.addPostAction(enforceLength);
-		enforceLength.addPostAction(enforcePassword);
-		enforcePassword.addPostAction(enforceSalt);
+		enforceLength.addPostAction(enforceSalt);
 		enforceSalt.addPostAction(enforceHash);				
 		enforceHash.addPostAction(update);
 
