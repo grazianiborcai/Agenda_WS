@@ -9,9 +9,9 @@ import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.userPassword.info.UpswdInfo;
 
-public final class LazyUpswdSendEmail extends ActionLazyTemplateV2<UpswdInfo, UpswdInfo> {
+public final class LazyUpswdEmacomeSend extends ActionLazyTemplateV2<UpswdInfo, UpswdInfo> {
 	
-	public LazyUpswdSendEmail(Connection conn, String schemaName) {
+	public LazyUpswdEmacomeSend(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyUpswdSendEmail extends ActionLazyTemplateV2<UpswdInfo, Up
 	
 	
 	@Override protected ActionStdV1<UpswdInfo> getInstanceOfActionHook(DeciTreeOption<UpswdInfo> option) {
-		return new StdUpswdSendEmail(option);
+		return new StdUpswdEmacomeSend(option);
 	}
 	
 	

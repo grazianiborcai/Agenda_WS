@@ -11,6 +11,7 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 import br.com.mind5.security.userPassword.info.UpswdInfo;
+import br.com.mind5.security.userPassword.model.action.LazyUpswdEmordeSend;
 import br.com.mind5.security.userPassword.model.action.LazyUpswdNodeUpdateL2;
 import br.com.mind5.security.userPassword.model.action.LazyUpswdOtperasAuthenticate;
 import br.com.mind5.security.userPassword.model.action.LazyUpswdSuccess;
@@ -49,11 +50,13 @@ public final class NodeUpswdUpdateL1 extends DeciTreeTemplateWriteV2<UpswdInfo> 
 		ActionStdV1<UpswdInfo> mergeUsername = new StdUpswdMergeUsername(option);
 		ActionLazyV1<UpswdInfo> otperasAuthenticate = new LazyUpswdOtperasAuthenticate(option.conn, option.schemaName);
 		ActionLazyV1<UpswdInfo> nodeL2 = new LazyUpswdNodeUpdateL2(option.conn, option.schemaName);
+		ActionLazyV1<UpswdInfo> sendEmail = new LazyUpswdEmordeSend(option.conn, option.schemaName);
 		ActionLazyV1<UpswdInfo> success = new LazyUpswdSuccess(option.conn, option.schemaName);
 		
 		mergeUsername.addPostAction(otperasAuthenticate);
 		otperasAuthenticate.addPostAction(nodeL2);
-		nodeL2.addPostAction(success);
+		nodeL2.addPostAction(sendEmail);
+		sendEmail.addPostAction(success);
 		
 		actions.add(mergeUsername);	
 		return actions;

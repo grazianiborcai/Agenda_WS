@@ -64,7 +64,7 @@ public final class UpswdCheckPassword extends ModelCheckerTemplateSimpleV2<Upswd
 	private boolean hasNumber(String password) {
 		String regex = "[0-9]+";      
 		Pattern pattern = Pattern.compile(regex);
-		return pattern.matcher(password).matches();
+		return pattern.matcher(password).find();
 	}
 	
 	
@@ -72,7 +72,7 @@ public final class UpswdCheckPassword extends ModelCheckerTemplateSimpleV2<Upswd
 	private boolean hasUpperCase(String password) {
 		String regex = "[A-Z]+";      
 		Pattern pattern = Pattern.compile(regex);
-		return pattern.matcher(password).matches();
+		return pattern.matcher(password).find();
 	}
 	
 	
@@ -80,7 +80,7 @@ public final class UpswdCheckPassword extends ModelCheckerTemplateSimpleV2<Upswd
 	private boolean hasLowerCase(String password) {
 		String regex = "[a-z]+";      
 		Pattern pattern = Pattern.compile(regex);
-		return pattern.matcher(password).matches();
+		return pattern.matcher(password).find();
 	}
 	
 	

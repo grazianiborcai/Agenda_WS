@@ -11,7 +11,7 @@ import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 import br.com.mind5.security.userPassword.info.UpswdInfo;
-import br.com.mind5.security.userPassword.model.action.LazyUpswdSendEmail;
+import br.com.mind5.security.userPassword.model.action.LazyUpswdEmacomeSend;
 import br.com.mind5.security.userPassword.model.action.LazyUpswdSuccess;
 import br.com.mind5.security.userPassword.model.checker.UpswdCheckExist;
 import br.com.mind5.security.userPassword.model.checker.UpswdCheckOwner;
@@ -68,7 +68,7 @@ public final class RootUpswdInsert extends DeciTreeTemplateWriteV2<UpswdInfo> {
 		List<ActionStdV1<UpswdInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<UpswdInfo> insertUpswd = new NodeUpswdInsert(option).toAction();
-		ActionLazyV1<UpswdInfo> sendEmail = new LazyUpswdSendEmail(option.conn, option.schemaName);
+		ActionLazyV1<UpswdInfo> sendEmail = new LazyUpswdEmacomeSend(option.conn, option.schemaName);
 		ActionLazyV1<UpswdInfo> success = new LazyUpswdSuccess(option.conn, option.schemaName);
 		
 		insertUpswd.addPostAction(sendEmail);

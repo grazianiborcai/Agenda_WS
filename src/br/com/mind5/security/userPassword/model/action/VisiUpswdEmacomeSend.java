@@ -10,9 +10,9 @@ import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.userPassword.info.UpswdInfo;
 
-final class VisiUpswdSendEmail extends ActionVisitorTemplateActionV2<UpswdInfo, EmacomeInfo> {
+final class VisiUpswdEmacomeSend extends ActionVisitorTemplateActionV2<UpswdInfo, EmacomeInfo> {
 	
-	public VisiUpswdSendEmail(DeciTreeOption<UpswdInfo> option) {
+	public VisiUpswdEmacomeSend(DeciTreeOption<UpswdInfo> option) {
 		super(option, UpswdInfo.class, EmacomeInfo.class);
 	}
 	
