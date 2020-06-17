@@ -1343,4 +1343,7 @@ public final class SystemCode {
 	
 	// Email User OTP
 	public static final int EMAIL_USER_OTP_MANDATORY_FIELD_EMPTY		= 13100;
+	
+	// Email User Password Change
+	public static final int EMAIL_PASSWORD_CHANGE_MANDATORY_FIELD_EMPTY	= 13150;
 }
