@@ -1,8 +1,8 @@
 package br.com.mind5.security.username.info;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import br.com.mind5.common.CloneUtil;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
 import br.com.mind5.masterData.authorizationGroupRole.info.AuthgroleInfo;
@@ -44,24 +44,8 @@ public final class UsernameInfo extends InfoRecord implements Cloneable {
 	@Override public Object clone() throws CloneNotSupportedException {
 		UsernameInfo deepCopy = (UsernameInfo) super.clone();
 		
-		deepCopy.authgroles = cloneAuthgroles(deepCopy.authgroles);		
+		deepCopy.authgroles = CloneUtil.cloneRecords(deepCopy.authgroles, this.getClass());		
 		return deepCopy;
-	}
-	
-	
-	
-	private List<AuthgroleInfo> cloneAuthgroles(List<AuthgroleInfo> recordInfos) throws CloneNotSupportedException {
-		if (recordInfos == null)
-			return null;
-		
-		List<AuthgroleInfo> deepAuthGrRoles = new ArrayList<>();
-		
-		for (AuthgroleInfo eachAuthGrRole : recordInfos) {
-			AuthgroleInfo clonedAuthGrRole = (AuthgroleInfo) eachAuthGrRole.clone();
-			deepAuthGrRoles.add(clonedAuthGrRole);
-		}
-		
-		return deepAuthGrRoles;
 	}
 	
 	

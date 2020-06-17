@@ -3,6 +3,7 @@ package br.com.mind5.security.username.info;
 
 import java.util.List;
 
+import br.com.mind5.business.bookService.info.BookiceInfo;
 import br.com.mind5.business.cartReserveConflict.info.CartercoInfo;
 import br.com.mind5.business.customer.info.CusInfo;
 import br.com.mind5.business.employee.info.EmpInfo;
@@ -35,6 +36,20 @@ import br.com.mind5.paymentPartner.partnerMoip.tokenMoip.info.TokemoipInfo;
 import br.com.mind5.security.userPassword.info.UpswdInfo;
 
 public final class UsernameCopier {
+	public static UsernameInfo copyFromBookice(BookiceInfo source) {
+		InfoCopier<UsernameInfo, BookiceInfo> copier = new UsernameCopyBookice();
+		return copier.makeCopy(source);
+	}
+	
+	
+	
+	public static List<UsernameInfo> copyFromBookice(List<BookiceInfo> sources) {
+		InfoCopier<UsernameInfo, BookiceInfo> copier = new UsernameCopyBookice();
+		return copier.makeCopy(sources);
+	}
+	
+	
+	
 	public static UsernameInfo copyFromRefupore(RefuporeInfo source) {
 		InfoCopier<UsernameInfo, RefuporeInfo> copier = new UsernameCopyRefupore();
 		return copier.makeCopy(source);
