@@ -4,11 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.bookService.info.BookiceInfo;
+import br.com.mind5.business.bookService.model.action.LazyBookiceMergeUsername;
 import br.com.mind5.business.bookService.model.action.LazyBookiceNodeSchedineL2;
 import br.com.mind5.business.bookService.model.action.StdBookiceEnforceWeekday;
 import br.com.mind5.business.bookService.model.checker.BookiceCheckLangu;
 import br.com.mind5.business.bookService.model.checker.BookiceCheckOwner;
-import br.com.mind5.business.bookService.model.checker.BookiceCheckService;
+import br.com.mind5.business.bookService.model.checker.BookiceCheckServiceSchedine;
+import br.com.mind5.business.bookService.model.checker.BookiceCheckUsername;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
@@ -34,7 +36,7 @@ public final class NodeBookiceSchedineL1 extends DeciTreeTemplateWriteV2<Bookice
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new BookiceCheckService(checkerOption);
+		checker = new BookiceCheckServiceSchedine(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
@@ -51,6 +53,13 @@ public final class NodeBookiceSchedineL1 extends DeciTreeTemplateWriteV2<Bookice
 		checker = new BookiceCheckOwner(checkerOption);
 		queue.add(checker);
 		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
+		checker = new BookiceCheckUsername(checkerOption);
+		queue.add(checker);
+		
 		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
@@ -60,9 +69,11 @@ public final class NodeBookiceSchedineL1 extends DeciTreeTemplateWriteV2<Bookice
 		List<ActionStdV1<BookiceInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<BookiceInfo> enforceWeekday = new StdBookiceEnforceWeekday(option);
+		ActionLazyV1<BookiceInfo> mergeUsername = new LazyBookiceMergeUsername(option.conn, option.schemaName);
 		ActionLazyV1<BookiceInfo> nodeL2 = new LazyBookiceNodeSchedineL2(option.conn, option.schemaName);
 		
-		enforceWeekday.addPostAction(nodeL2);
+		enforceWeekday.addPostAction(mergeUsername);
+		mergeUsername.addPostAction(nodeL2);
 		
 		actions.add(enforceWeekday);
 		return actions;

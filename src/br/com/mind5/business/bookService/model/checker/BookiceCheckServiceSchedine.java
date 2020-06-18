@@ -7,25 +7,23 @@ import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class BookiceCheckService extends ModelCheckerTemplateSimpleV2<BookiceInfo> {
+public final class BookiceCheckServiceSchedine extends ModelCheckerTemplateSimpleV2<BookiceInfo> {
 
-	public BookiceCheckService(ModelCheckerOption option) {
+	public BookiceCheckServiceSchedine(ModelCheckerOption option) {
 		super(option);
 	}
 	
 	
 	
 	@Override protected boolean checkHook(BookiceInfo recordInfo, Connection conn, String schemaName) {	
-		if (   recordInfo.codOwner 		<= 0 	
-			|| recordInfo.codUser		<= 0 	
-			|| recordInfo.codEmployee	<= 0 
-			|| recordInfo.codStore 		<= 0
-			|| recordInfo.codMat		<= 0
-			|| recordInfo.quantity		<= 0
-			|| recordInfo.date			== null 
-			|| recordInfo.beginTime		== null 
-			|| recordInfo.username		== null 
-			|| recordInfo.codLanguage	== null	)
+		if ( recordInfo.codOwner 	<= 0 	||
+			 recordInfo.codEmployee	<= 0 	|| 	
+			 recordInfo.codStore 	<= 0 	||
+			 recordInfo.codMat		<= 0 	||
+			 recordInfo.date		== null ||
+			 recordInfo.beginTime	== null ||
+			 recordInfo.username	== null ||
+			 recordInfo.codLanguage	== null		)
 			
 			return super.FAILED;
 		

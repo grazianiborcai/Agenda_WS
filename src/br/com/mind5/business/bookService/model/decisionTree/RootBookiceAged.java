@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.bookService.info.BookiceInfo;
-import br.com.mind5.business.bookService.model.checker.BookiceCheckService;
+import br.com.mind5.business.bookService.model.checker.BookiceCheckServiceCartem;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -29,7 +29,7 @@ public final class RootBookiceAged extends DeciTreeTemplateWriteV2<BookiceInfo> 
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new BookiceCheckService(checkerOption);
+		checker = new BookiceCheckServiceCartem(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueueV2<>(queue);
