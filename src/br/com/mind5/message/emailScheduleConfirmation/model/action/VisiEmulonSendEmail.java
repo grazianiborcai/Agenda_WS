@@ -2,9 +2,8 @@ package br.com.mind5.message.emailScheduleConfirmation.model.action;
 
 import java.util.List;
 
-import br.com.mind5.message.email.info.EmailCopier;
 import br.com.mind5.message.email.info.EmailInfo;
-import br.com.mind5.message.email.model.decisionTree.RootEmailWelcome;
+import br.com.mind5.message.email.model.decisionTree.RootEmailScheduleConfirmation;
 import br.com.mind5.message.emailScheduleConfirmation.info.EmulonInfo;
 import br.com.mind5.model.action.ActionVisitorTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTree;
@@ -19,13 +18,7 @@ final class VisiEmulonSendEmail extends ActionVisitorTemplateActionV2<EmulonInfo
 	
 	
 	@Override protected Class<? extends DeciTree<EmailInfo>> getTreeClassHook() {
-		return RootEmailWelcome.class;
-	}
-	
-	
-	
-	@Override protected List<EmailInfo> toActionClassHook(List<EmulonInfo> recordInfos) {
-		return EmailCopier.copyFromEmacome(recordInfos);
+		return RootEmailScheduleConfirmation.class;
 	}
 	
 	
