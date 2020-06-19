@@ -20,6 +20,21 @@ public final class EmabodySetterBody extends InfoSetterTemplate<EmabodyInfo> {
 		if(recordInfo.param05 != null)
 			recordInfo.txtbody = recordInfo.txtbody.replace("&&PARAM_05&&", recordInfo.param05);
 		
+		if(recordInfo.param06 != null)
+			recordInfo.txtbody = recordInfo.txtbody.replace("&&PARAM_06&&", recordInfo.param06);
+		
+		if(recordInfo.param07 != null)
+			recordInfo.txtbody = recordInfo.txtbody.replace("&&PARAM_07&&", recordInfo.param07);
+		
+		if(recordInfo.param08 != null)
+			recordInfo.txtbody = recordInfo.txtbody.replace("&&PARAM_08&&", recordInfo.param08);
+		
+		if(recordInfo.param09 != null)
+			recordInfo.txtbody = recordInfo.txtbody.replace("&&PARAM_09&&", recordInfo.param09);
+		
+		if(recordInfo.param10 != null)
+			recordInfo.txtbody = recordInfo.txtbody.replace("&&PARAM_10&&", recordInfo.param10);
+		
 		return recordInfo;
 	}
 }

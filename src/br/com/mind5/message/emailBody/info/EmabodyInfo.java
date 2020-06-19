@@ -13,6 +13,11 @@ public final class EmabodyInfo extends InfoRecord implements Cloneable {
 	public String param03;
 	public String param04;
 	public String param05;
+	public String param06;
+	public String param07;
+	public String param08;
+	public String param09;
+	public String param10;
 	public String username;
 	
 	
@@ -64,6 +69,21 @@ public final class EmabodyInfo extends InfoRecord implements Cloneable {
 		if (param05 != null)
 			result = result * 31 + param05.hashCode();
 		
+		if (param06 != null)
+			result = result * 31 + param06.hashCode();
+		
+		if (param07 != null)
+			result = result * 31 + param07.hashCode();
+		
+		if (param08 != null)
+			result = result * 31 + param08.hashCode();
+		
+		if (param09 != null)
+			result = result * 31 + param09.hashCode();
+		
+		if (param10 != null)
+			result = result * 31 + param10.hashCode();
+		
 		return result;
 	}
 	
@@ -85,6 +105,11 @@ public final class EmabodyInfo extends InfoRecord implements Cloneable {
 				super.isStringEqual(param02, obj.param02)			&&
 				super.isStringEqual(param03, obj.param03)			&&
 				super.isStringEqual(param04, obj.param04)			&&
-				super.isStringEqual(param05, obj.param05)				);
+				super.isStringEqual(param05, obj.param05)			&&
+				super.isStringEqual(param06, obj.param06)			&&
+				super.isStringEqual(param07, obj.param07)			&&
+				super.isStringEqual(param08, obj.param04)			&&
+				super.isStringEqual(param09, obj.param09)			&&
+				super.isStringEqual(param10, obj.param10)				);
 	}	
 }
