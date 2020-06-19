@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.scheduleLine.info.SchedineInfo;
 import br.com.mind5.business.scheduleLine.model.action.LazySchedineDaoInsert;
+import br.com.mind5.business.scheduleLine.model.action.LazySchedineEmulonSend;
 import br.com.mind5.business.scheduleLine.model.action.LazySchedineEnforceCreatedBy;
 import br.com.mind5.business.scheduleLine.model.action.LazySchedineEnforceCreatedOn;
 import br.com.mind5.business.scheduleLine.model.action.LazySchedineEnforceLChanged;
@@ -135,6 +136,7 @@ public final class NodeSchedineInsert extends DeciTreeTemplateWriteV2<SchedineIn
 		ActionLazyV1<SchedineInfo> insert = new LazySchedineDaoInsert(option.conn, option.schemaName);
 		ActionLazyV1<SchedineInfo> nodeSnapshot = new LazySchedineNodeSnapshot(option.conn, option.schemaName);
 		ActionLazyV1<SchedineInfo> insertSchedovm = new LazySchedineInsertSchedovm(option.conn, option.schemaName);
+		ActionLazyV1<SchedineInfo> sendEmail = new LazySchedineEmulonSend(option.conn, option.schemaName);
 		
 		bookiceValidate.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(mergeCuslis);		
@@ -146,6 +148,7 @@ public final class NodeSchedineInsert extends DeciTreeTemplateWriteV2<SchedineIn
 		enforceStatus.addPostAction(insert);
 		insert.addPostAction(nodeSnapshot);
 		nodeSnapshot.addPostAction(insertSchedovm);
+		insertSchedovm.addPostAction(sendEmail);
 		
 		actions.add(bookiceValidate);
 		return actions;
