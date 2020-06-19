@@ -1346,4 +1346,7 @@ public final class SystemCode {
 	
 	// Email User Password Change
 	public static final int EMAIL_PASSWORD_CHANGE_MANDATORY_FIELD_EMPTY	= 13150;
+	
+	// Email Schedule Confirmation
+	public static final int EMAIL_SCHEDU_CONFIRM_MANDATORY_FIELD_EMPTY	= 13200;
 }
