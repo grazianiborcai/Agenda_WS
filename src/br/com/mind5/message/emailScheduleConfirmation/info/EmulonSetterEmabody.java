@@ -1,8 +1,8 @@
 package br.com.mind5.message.emailScheduleConfirmation.info;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.storeList.info.StolisInfo;
@@ -32,14 +32,16 @@ public final class EmulonSetterEmabody extends InfoSetterTemplate<EmulonInfo> {
 	
 	private String dateToString(LocalDate date) {
 		String pattern = "dd/MM/yyyy";
-		SimpleDateFormat formatter = new SimpleDateFormat(pattern);
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
 		return formatter.format(date);
 	}
 	
 	
 	
 	private String timeToString(LocalTime time) {
-		return String.valueOf(time.getHour()) + ":" + String.valueOf(time.getMinute());
+		String pattern = "HH:mm";
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
+		return formatter.format(time);
 	}
 	
 	
