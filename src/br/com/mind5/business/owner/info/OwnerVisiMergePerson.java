@@ -25,6 +25,7 @@ final class OwnerVisiMergePerson implements InfoMergerVisitorV3<OwnerInfo, Perso
 		List<OwnerInfo> results = new ArrayList<>();
 		
 		baseInfo.codPerson = selectedInfo.codPerson;
+		baseInfo.personData = selectedInfo;
 		
 		results.add(baseInfo);
 		return results;
