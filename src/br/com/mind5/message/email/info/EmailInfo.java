@@ -2,6 +2,7 @@ package br.com.mind5.message.email.info;
 
 import java.util.List;
 
+import br.com.mind5.common.CloneUtil;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
 import br.com.mind5.message.emailBody.info.EmabodyInfo;
@@ -39,18 +40,9 @@ public final class EmailInfo extends InfoRecord implements Cloneable {
 	
 	@Override public Object clone() throws CloneNotSupportedException {
 		EmailInfo deepCopy = (EmailInfo) super.clone();
-		deepCopy.bodyData = cloneEmabody(bodyData);
 		
+		deepCopy.bodyData = CloneUtil.cloneRecord(bodyData, this.getClass());		
 		return deepCopy;
-	}
-	
-	
-	
-	private EmabodyInfo cloneEmabody(EmabodyInfo emabody) throws CloneNotSupportedException {
-		if (emabody == null)
-			return null;
-		
-		return (EmabodyInfo) emabody.clone();
 	}
 	
 	
