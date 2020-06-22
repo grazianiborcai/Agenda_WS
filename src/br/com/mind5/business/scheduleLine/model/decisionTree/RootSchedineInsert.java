@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.scheduleLine.info.SchedineInfo;
+import br.com.mind5.business.scheduleLine.model.action.LazySchedineBookiceValidate;
 import br.com.mind5.business.scheduleLine.model.action.LazySchedineNodeInsert;
 import br.com.mind5.business.scheduleLine.model.action.StdSchedineObfuscateOrder;
 import br.com.mind5.model.action.ActionLazyV1;
@@ -38,9 +39,11 @@ public final class RootSchedineInsert extends DeciTreeTemplateWriteV2<SchedineIn
 		List<ActionStdV1<SchedineInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<SchedineInfo> obfuscateOrder = new StdSchedineObfuscateOrder(option);
+		ActionLazyV1<SchedineInfo> bookiceValidate = new LazySchedineBookiceValidate(option.conn, option.schemaName);
 		ActionLazyV1<SchedineInfo> nodeInsert = new LazySchedineNodeInsert(option.conn, option.schemaName);
 		
-		obfuscateOrder.addPostAction(nodeInsert);
+		obfuscateOrder.addPostAction(bookiceValidate);
+		bookiceValidate.addPostAction(nodeInsert);
 		
 		actions.add(obfuscateOrder);
 		return actions;

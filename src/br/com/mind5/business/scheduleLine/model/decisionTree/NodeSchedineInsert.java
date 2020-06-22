@@ -8,14 +8,13 @@ import br.com.mind5.business.scheduleLine.model.action.LazySchedineDaoInsert;
 import br.com.mind5.business.scheduleLine.model.action.LazySchedineEmulonSend;
 import br.com.mind5.business.scheduleLine.model.action.LazySchedineEnforceCreatedBy;
 import br.com.mind5.business.scheduleLine.model.action.LazySchedineEnforceCreatedOn;
-import br.com.mind5.business.scheduleLine.model.action.LazySchedineEnforceLChanged;
 import br.com.mind5.business.scheduleLine.model.action.LazySchedineEnforceStatus;
 import br.com.mind5.business.scheduleLine.model.action.LazySchedineInsertSchedovm;
 import br.com.mind5.business.scheduleLine.model.action.LazySchedineMergeCalate;
 import br.com.mind5.business.scheduleLine.model.action.LazySchedineMergeCuslis;
 import br.com.mind5.business.scheduleLine.model.action.LazySchedineMergeUsername;
 import br.com.mind5.business.scheduleLine.model.action.LazySchedineNodeSnapshot;
-import br.com.mind5.business.scheduleLine.model.action.StdSchedineBookiceValidate;
+import br.com.mind5.business.scheduleLine.model.action.StdSchedineEnforceLChanged;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckCus;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckEmp;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckEmpmat;
@@ -125,8 +124,7 @@ public final class NodeSchedineInsert extends DeciTreeTemplateWriteV2<SchedineIn
 	@Override protected List<ActionStdV1<SchedineInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedineInfo> option) {
 		List<ActionStdV1<SchedineInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<SchedineInfo> bookiceValidate = new StdSchedineBookiceValidate(option);
-		ActionLazyV1<SchedineInfo> enforceLChanged = new LazySchedineEnforceLChanged(option.conn, option.schemaName);
+		ActionStdV1<SchedineInfo> enforceLChanged = new StdSchedineEnforceLChanged(option);
 		ActionLazyV1<SchedineInfo> mergeCuslis = new LazySchedineMergeCuslis(option.conn, option.schemaName);
 		ActionLazyV1<SchedineInfo> mergeUsername = new LazySchedineMergeUsername(option.conn, option.schemaName);
 		ActionLazyV1<SchedineInfo> mergeCalate = new LazySchedineMergeCalate(option.conn, option.schemaName);
@@ -138,7 +136,6 @@ public final class NodeSchedineInsert extends DeciTreeTemplateWriteV2<SchedineIn
 		ActionLazyV1<SchedineInfo> insertSchedovm = new LazySchedineInsertSchedovm(option.conn, option.schemaName);
 		ActionLazyV1<SchedineInfo> sendEmail = new LazySchedineEmulonSend(option.conn, option.schemaName);
 		
-		bookiceValidate.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(mergeCuslis);		
 		mergeCuslis.addPostAction(mergeUsername);
 		mergeUsername.addPostAction(mergeCalate);
@@ -150,7 +147,7 @@ public final class NodeSchedineInsert extends DeciTreeTemplateWriteV2<SchedineIn
 		nodeSnapshot.addPostAction(insertSchedovm);
 		insertSchedovm.addPostAction(sendEmail);
 		
-		actions.add(bookiceValidate);
+		actions.add(enforceLChanged);
 		return actions;
 	}
 }

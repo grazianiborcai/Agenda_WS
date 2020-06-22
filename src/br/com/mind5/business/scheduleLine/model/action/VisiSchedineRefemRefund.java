@@ -7,7 +7,7 @@ import br.com.mind5.model.action.ActionVisitorTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.refundOrderItem.info.RefemInfo;
-import br.com.mind5.payment.refundOrderItem.model.decisionTree.RootRefemRefund;
+import br.com.mind5.payment.refundOrderItem.model.decisionTree.RootRefemRefundAuth;
 
 final class VisiSchedineRefemRefund extends ActionVisitorTemplateActionV2<SchedineInfo, RefemInfo> {
 
@@ -18,7 +18,7 @@ final class VisiSchedineRefemRefund extends ActionVisitorTemplateActionV2<Schedi
 	
 	
 	@Override protected Class<? extends DeciTree<RefemInfo>> getTreeClassHook() {
-		return RootRefemRefund.class;
+		return RootRefemRefundAuth.class;
 	}
 	
 	
