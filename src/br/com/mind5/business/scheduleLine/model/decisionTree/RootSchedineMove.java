@@ -4,10 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.scheduleLine.info.SchedineInfo;
+import br.com.mind5.business.scheduleLine.model.action.StdSchedineDaoDelete;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckExist;
+import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckInsert;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckLangu;
-import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckMove;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckOwner;
+import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckRead;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -32,7 +34,14 @@ public final class RootSchedineMove extends DeciTreeTemplateWriteV2<SchedineInfo
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new SchedineCheckMove(checkerOption);
+		checker = new SchedineCheckRead(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new SchedineCheckInsert(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
@@ -63,12 +72,12 @@ public final class RootSchedineMove extends DeciTreeTemplateWriteV2<SchedineInfo
 	
 	@Override protected List<ActionStdV1<SchedineInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedineInfo> option) {
 		List<ActionStdV1<SchedineInfo>> actions = new ArrayList<>();
+		//TODO: adicionar cod ultimo agendamento
+		ActionStdV1<SchedineInfo> delete = new StdSchedineDaoDelete(option);
+		ActionStdV1<SchedineInfo> insert = new RootSchedineInsert(option).toAction();
 		
-		ActionStdV1<SchedineInfo> cancel = new RootSchedineCancel(option).toAction();
-		ActionStdV1<SchedineInfo> move = new NodeSchedineMove(option).toAction();
-		
-		actions.add(cancel);
-		actions.add(move);
+		actions.add(delete);
+		actions.add(insert);
 		return actions;
 	}
 }
