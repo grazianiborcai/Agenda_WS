@@ -13,9 +13,9 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class NodeSchedineCancelL1 extends DeciTreeTemplateWriteV2<SchedineInfo> {
+public final class NodeSchedineCancel extends DeciTreeTemplateWriteV2<SchedineInfo> {
 	
-	public NodeSchedineCancelL1(DeciTreeOption<SchedineInfo> option) {
+	public NodeSchedineCancel(DeciTreeOption<SchedineInfo> option) {
 		super(option);
 	}
 	
@@ -52,9 +52,9 @@ public final class NodeSchedineCancelL1 extends DeciTreeTemplateWriteV2<Schedine
 	@Override protected List<ActionStdV1<SchedineInfo>> buildActionsOnFailedHook(DeciTreeOption<SchedineInfo> option) {
 		List<ActionStdV1<SchedineInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<SchedineInfo> nodeL2 = new NodeSchedineCancelL2(option).toAction();
+		ActionStdV1<SchedineInfo> cancelForce = new RootSchedineCancelForce(option).toAction();
 		
-		actions.add(nodeL2);
+		actions.add(cancelForce);
 		return actions;
 	}
 }

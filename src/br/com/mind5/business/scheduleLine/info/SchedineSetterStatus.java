@@ -16,7 +16,7 @@ public final class SchedineSetterStatus extends InfoSetterTemplate<SchedineInfo>
 		recordInfo = setConfirmed(recordInfo, status);
 		recordInfo = setWaiting(recordInfo, status);
 		recordInfo = setCancelled(recordInfo, status);;
-		
+
 		return recordInfo;
 	}
 	

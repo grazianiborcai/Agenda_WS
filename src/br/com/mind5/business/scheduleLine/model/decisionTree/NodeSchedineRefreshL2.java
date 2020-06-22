@@ -6,9 +6,9 @@ import java.util.List;
 import br.com.mind5.business.scheduleLine.info.SchedineInfo;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckIsCancelled;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
@@ -40,9 +40,9 @@ public final class NodeSchedineRefreshL2 extends DeciTreeTemplateWriteV2<Schedin
 	@Override protected List<ActionStdV1<SchedineInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedineInfo> option) {
 		List<ActionStdV1<SchedineInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<SchedineInfo> nodeCancel = new NodeSchedineCancelL1(option).toAction();
+		ActionStdV1<SchedineInfo> cancel = new RootSchedineCancelForce(option).toAction();
 		
-		actions.add(nodeCancel);
+		actions.add(cancel);
 		return actions;
 	}
 	
@@ -51,9 +51,9 @@ public final class NodeSchedineRefreshL2 extends DeciTreeTemplateWriteV2<Schedin
 	@Override protected List<ActionStdV1<SchedineInfo>> buildActionsOnFailedHook(DeciTreeOption<SchedineInfo> option) {
 		List<ActionStdV1<SchedineInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<SchedineInfo> rootUpdate = new RootSchedineUpdate_(option).toAction();
+		ActionStdV1<SchedineInfo> snapshot = new NodeSchedineSnapshot(option).toAction();
 		
-		actions.add(rootUpdate);
+		actions.add(snapshot);
 		return actions;
 	}
 }

@@ -4,8 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.scheduleLine.info.SchedineInfo;
-import br.com.mind5.business.scheduleLine.model.action.LazySchedineEmulelSend;
-import br.com.mind5.business.scheduleLine.model.action.LazySchedineNodeCancelL1;
+import br.com.mind5.business.scheduleLine.model.action.LazySchedineNodeCancel;
 import br.com.mind5.business.scheduleLine.model.action.LazySchedineObfuscate;
 import br.com.mind5.business.scheduleLine.model.action.StdSchedineMergeToSelect;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckCancel;
@@ -70,13 +69,11 @@ public final class RootSchedineCancel extends DeciTreeTemplateWriteV2<SchedineIn
 		List<ActionStdV1<SchedineInfo>> actions = new ArrayList<>();
 
 		ActionStdV1<SchedineInfo> mergeToSelect = new StdSchedineMergeToSelect(option);
-		ActionLazyV1<SchedineInfo> nodeL1 = new LazySchedineNodeCancelL1(option.conn, option.schemaName);
-		ActionLazyV1<SchedineInfo> sendEmail = new LazySchedineEmulelSend(option.conn, option.schemaName);
+		ActionLazyV1<SchedineInfo> cancel = new LazySchedineNodeCancel(option.conn, option.schemaName);
 		ActionLazyV1<SchedineInfo> obfuscate = new LazySchedineObfuscate(option.conn, option.schemaName);
 		
-		mergeToSelect.addPostAction(nodeL1);
-		mergeToSelect.addPostAction(sendEmail);
-		sendEmail.addPostAction(obfuscate);
+		mergeToSelect.addPostAction(cancel);
+		mergeToSelect.addPostAction(obfuscate);
 		
 		actions.add(mergeToSelect);
 		return actions;
