@@ -4,14 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.scheduleLine.info.SchedineInfo;
+import br.com.mind5.business.scheduleLine.model.action.LazySchedineEmulelSend;
+import br.com.mind5.business.scheduleLine.model.action.LazySchedineNodeCancelL1;
+import br.com.mind5.business.scheduleLine.model.action.StdSchedineMergeToSelect;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckCancel;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckExist;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckLangu;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckOwner;
+import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
@@ -63,10 +67,15 @@ public final class RootSchedineCancel extends DeciTreeTemplateWriteV2<SchedineIn
 	
 	@Override protected List<ActionStdV1<SchedineInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedineInfo> option) {
 		List<ActionStdV1<SchedineInfo>> actions = new ArrayList<>();
-		//TODO: estornar Ordem ?
-		ActionStdV1<SchedineInfo> nodeCancel = new NodeSchedineCancel(option).toAction();
+
+		ActionStdV1<SchedineInfo> mergeToSelect = new StdSchedineMergeToSelect(option);
+		ActionLazyV1<SchedineInfo> nodeL1 = new LazySchedineNodeCancelL1(option.conn, option.schemaName);
+		ActionLazyV1<SchedineInfo> sendEmail = new LazySchedineEmulelSend(option.conn, option.schemaName);		
 		
-		actions.add(nodeCancel);
+		mergeToSelect.addPostAction(nodeL1);
+		mergeToSelect.addPostAction(sendEmail);
+		
+		actions.add(mergeToSelect);
 		return actions;
 	}
 }

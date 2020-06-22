@@ -4,17 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.scheduleLine.info.SchedineInfo;
-import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckIsCancelled;
+import br.com.mind5.business.scheduleLine.model.action.StdSchedineRefemRefund;
+import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckHasOrderItem;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class NodeSchedineRefreshL2 extends DeciTreeTemplateWriteV2<SchedineInfo> {
+public final class NodeSchedineCancelL1 extends DeciTreeTemplateWriteV2<SchedineInfo> {
 	
-	public NodeSchedineRefreshL2(DeciTreeOption<SchedineInfo> option) {
+	public NodeSchedineCancelL1(DeciTreeOption<SchedineInfo> option) {
 		super(option);
 	}
 	
@@ -29,7 +30,7 @@ public final class NodeSchedineRefreshL2 extends DeciTreeTemplateWriteV2<Schedin
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new SchedineCheckIsCancelled(checkerOption);
+		checker = new SchedineCheckHasOrderItem(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueueV2<>(queue);
@@ -40,9 +41,9 @@ public final class NodeSchedineRefreshL2 extends DeciTreeTemplateWriteV2<Schedin
 	@Override protected List<ActionStdV1<SchedineInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedineInfo> option) {
 		List<ActionStdV1<SchedineInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<SchedineInfo> nodeCancel = new NodeSchedineCancelL1(option).toAction();
+		ActionStdV1<SchedineInfo> refemRefund = new StdSchedineRefemRefund(option);
 		
-		actions.add(nodeCancel);
+		actions.add(refemRefund);
 		return actions;
 	}
 	
@@ -51,9 +52,9 @@ public final class NodeSchedineRefreshL2 extends DeciTreeTemplateWriteV2<Schedin
 	@Override protected List<ActionStdV1<SchedineInfo>> buildActionsOnFailedHook(DeciTreeOption<SchedineInfo> option) {
 		List<ActionStdV1<SchedineInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<SchedineInfo> rootUpdate = new RootSchedineUpdate_(option).toAction();
+		ActionStdV1<SchedineInfo> nodeL2 = new NodeSchedineCancelL2(option).toAction();
 		
-		actions.add(rootUpdate);
+		actions.add(nodeL2);
 		return actions;
 	}
 }
