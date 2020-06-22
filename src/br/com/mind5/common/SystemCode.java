@@ -1349,4 +1349,7 @@ public final class SystemCode {
 	
 	// Email Schedule Confirmation
 	public static final int EMAIL_SCHEDU_CONFIRM_MANDATORY_FIELD_EMPTY	= 13200;
+	
+	// Email Schedule Cancellation
+	public static final int EMAIL_SCHEDU_CANCEL_MANDATORY_FIELD_EMPTY	= 13250;
 }
