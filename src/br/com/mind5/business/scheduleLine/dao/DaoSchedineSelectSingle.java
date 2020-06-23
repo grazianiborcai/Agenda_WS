@@ -64,6 +64,7 @@ public final class DaoSchedineSelectSingle extends DaoStmtTemplate<SchedineInfo>
 					
 					dataInfo.codOwner = DaoFormatter.sqlToLong(stmtResult, DaoSchedineDbTableColumn.COL_COD_OWNER);	
 					dataInfo.codSchedule = DaoFormatter.sqlToLong(stmtResult, DaoSchedineDbTableColumn.COL_COD_SCHEDULE);	
+					dataInfo.codScheduleRef = DaoFormatter.sqlToLong(stmtResult, DaoSchedineDbTableColumn.COL_COD_SCHEDULE_REF);	
 					dataInfo.codOrder = DaoFormatter.sqlToLong(stmtResult, DaoSchedineDbTableColumn.COL_COD_ORDER);
 					dataInfo.codOrderItem = DaoFormatter.sqlToInt(stmtResult, DaoSchedineDbTableColumn.COL_COD_ORDER_ITEM);
 					dataInfo.recordMode = stmtResult.getString(DaoSchedineDbTableColumn.COL_RECORD_MODE);				

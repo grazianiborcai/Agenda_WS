@@ -14,6 +14,7 @@ import br.com.mind5.business.scheduleLine.model.action.LazySchedineMergeCalate;
 import br.com.mind5.business.scheduleLine.model.action.LazySchedineMergeCuslis;
 import br.com.mind5.business.scheduleLine.model.action.LazySchedineMergeUsername;
 import br.com.mind5.business.scheduleLine.model.action.LazySchedineNodeSnapshot;
+import br.com.mind5.business.scheduleLine.model.action.LazySchedineRootSelect;
 import br.com.mind5.business.scheduleLine.model.action.StdSchedineEnforceLChanged;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckCus;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckEmp;
@@ -33,9 +34,9 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class NodeSchedineInsert extends DeciTreeTemplateWriteV2<SchedineInfo> {
+public final class RootSchedineInsertForce extends DeciTreeTemplateWriteV2<SchedineInfo> {
 	
-	public NodeSchedineInsert(DeciTreeOption<SchedineInfo> option) {
+	public RootSchedineInsertForce(DeciTreeOption<SchedineInfo> option) {
 		super(option);
 	}
 	
@@ -135,6 +136,7 @@ public final class NodeSchedineInsert extends DeciTreeTemplateWriteV2<SchedineIn
 		ActionLazyV1<SchedineInfo> nodeSnapshot = new LazySchedineNodeSnapshot(option.conn, option.schemaName);
 		ActionLazyV1<SchedineInfo> insertSchedovm = new LazySchedineInsertSchedovm(option.conn, option.schemaName);
 		ActionLazyV1<SchedineInfo> sendEmail = new LazySchedineEmulonSend(option.conn, option.schemaName);
+		ActionLazyV1<SchedineInfo> select = new LazySchedineRootSelect(option.conn, option.schemaName);
 		
 		enforceLChanged.addPostAction(mergeCuslis);		
 		mergeCuslis.addPostAction(mergeUsername);
@@ -146,6 +148,7 @@ public final class NodeSchedineInsert extends DeciTreeTemplateWriteV2<SchedineIn
 		insert.addPostAction(nodeSnapshot);
 		nodeSnapshot.addPostAction(insertSchedovm);
 		insertSchedovm.addPostAction(sendEmail);
+		sendEmail.addPostAction(select);
 		
 		actions.add(enforceLChanged);
 		return actions;

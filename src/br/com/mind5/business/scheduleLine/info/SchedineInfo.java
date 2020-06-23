@@ -16,9 +16,10 @@ import br.com.mind5.info.InfoRecord;
 public final class SchedineInfo extends InfoRecord implements Cloneable, Comparable<SchedineInfo> {
 	public long codOwner;
 	public long codSchedule;
+	public long codScheduleRef;
 	public long codSnapshot;
 	public String codScheduleStatus;
-	public String codScheduleStatusOld;
+	public String codScheduleStatusOld;	//TODO: remover ?
 	public String txtScheduleStatus;
 	public long codOrder;
 	public int codOrderItem;
@@ -55,6 +56,7 @@ public final class SchedineInfo extends InfoRecord implements Cloneable, Compara
 		
 		codOwner = DefaultValue.number();	
 		codSchedule = DefaultValue.number();
+		codScheduleRef = DefaultValue.number();
 		codSnapshot = DefaultValue.number();
 		codOrder = DefaultValue.number();
 		codOrderItem = DefaultValue.number();

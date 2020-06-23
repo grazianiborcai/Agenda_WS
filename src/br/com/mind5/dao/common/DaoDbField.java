@@ -83,6 +83,7 @@ public final class DaoDbField {
 	public static final String COL_COD_REFUND_POLICY = "cod_refund_policy";
 	public static final String COL_COD_REFUND_POLICY_GROUP = "cod_refund_policy_group";
 	public static final String COL_COD_SCHEDULE = "cod_schedule";
+	public static final String COL_COD_SCHEDULE_REF = "cod_schedule_ref";
 	public static final String COL_COD_SCHEDULE_STATUS = "cod_schedule_status";
 	public static final String COL_COD_SNAPSHOT = "cod_snapshot";
 	public static final String COL_COD_STORE = "cod_store";

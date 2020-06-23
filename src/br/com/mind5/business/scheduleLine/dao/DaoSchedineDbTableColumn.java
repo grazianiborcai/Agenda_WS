@@ -19,6 +19,7 @@ public final class DaoSchedineDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_ORDER_ITEM = DaoDbField.COL_COD_ORDER_ITEM;
 	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;			
 	public static final String COL_COD_SCHEDULE = DaoDbField.COL_COD_SCHEDULE;
+	public static final String COL_COD_SCHEDULE_REF = DaoDbField.COL_COD_SCHEDULE_REF;
 	public static final String COL_COD_SCHEDULE_STATUS = DaoDbField.COL_COD_SCHEDULE_STATUS;
 	public static final String COL_COD_SNAPSHOT = DaoDbField.COL_COD_SNAPSHOT;
 	public static final String COL_COD_STORE = DaoDbField.COL_COD_STORE;	
@@ -258,6 +259,14 @@ public final class DaoSchedineDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);			
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_COD_SCHEDULE_REF;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);		
 		
 		Hashtable<String, List<DaoColumn>> results = new Hashtable<>();
 		results.put(TABLE_NAME, columns);

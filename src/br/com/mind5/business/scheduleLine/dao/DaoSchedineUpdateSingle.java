@@ -3,6 +3,7 @@ package br.com.mind5.business.scheduleLine.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+
 import br.com.mind5.business.scheduleLine.info.SchedineInfo;
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
@@ -77,6 +78,7 @@ public class DaoSchedineUpdateSingle extends DaoStmtTemplate<SchedineInfo> {
 				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.createdOn);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.createdBy);
 				stmt.setString(i++, recordInfo.codScheduleStatus);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codScheduleRef);
 				
 				return stmt;
 			}		

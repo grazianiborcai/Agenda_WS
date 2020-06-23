@@ -6,8 +6,7 @@ import java.util.List;
 import br.com.mind5.business.scheduleLine.info.SchedineInfo;
 import br.com.mind5.business.scheduleLine.model.action.LazySchedineBookiceValidate;
 import br.com.mind5.business.scheduleLine.model.action.LazySchedineRootInsertForce;
-import br.com.mind5.business.scheduleLine.model.action.LazySchedineObfuscateRef;
-import br.com.mind5.business.scheduleLine.model.action.StdSchedineObfuscateOrder;
+import br.com.mind5.business.scheduleLine.model.action.StdSchedineEnforceRef;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
@@ -16,9 +15,9 @@ import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class RootSchedineInsert extends DeciTreeTemplateWriteV2<SchedineInfo> {
+public final class NodeSchedineMoveL1 extends DeciTreeTemplateWriteV2<SchedineInfo> {
 	
-	public RootSchedineInsert(DeciTreeOption<SchedineInfo> option) {
+	public NodeSchedineMoveL1(DeciTreeOption<SchedineInfo> option) {
 		super(option);
 	}
 	
@@ -27,7 +26,7 @@ public final class RootSchedineInsert extends DeciTreeTemplateWriteV2<SchedineIn
 	@Override protected ModelCheckerV1<SchedineInfo> buildCheckerHook(DeciTreeOption<SchedineInfo> option) {
 		List<ModelCheckerV1<SchedineInfo>> queue = new ArrayList<>();		
 		ModelCheckerV1<SchedineInfo> checker;	
-
+		
 		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 		
@@ -39,16 +38,14 @@ public final class RootSchedineInsert extends DeciTreeTemplateWriteV2<SchedineIn
 	@Override protected List<ActionStdV1<SchedineInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedineInfo> option) {
 		List<ActionStdV1<SchedineInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<SchedineInfo> obfuscateOrder = new StdSchedineObfuscateOrder(option);
-		ActionLazyV1<SchedineInfo> obfuscateRef = new LazySchedineObfuscateRef(option.conn, option.schemaName);
+		ActionStdV1<SchedineInfo> enforceRef = new StdSchedineEnforceRef(option);
 		ActionLazyV1<SchedineInfo> bookiceValidate = new LazySchedineBookiceValidate(option.conn, option.schemaName);
 		ActionLazyV1<SchedineInfo> insert = new LazySchedineRootInsertForce(option.conn, option.schemaName);
 		
-		obfuscateOrder.addPostAction(obfuscateRef);
-		obfuscateRef.addPostAction(bookiceValidate);
+		enforceRef.addPostAction(bookiceValidate);
 		bookiceValidate.addPostAction(insert);
 		
-		actions.add(obfuscateOrder);
+		actions.add(enforceRef);
 		return actions;
 	}
 }

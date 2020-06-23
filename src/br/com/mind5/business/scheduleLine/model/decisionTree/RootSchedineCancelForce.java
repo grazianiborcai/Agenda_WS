@@ -4,13 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.scheduleLine.info.SchedineInfo;
-import br.com.mind5.business.scheduleLine.model.action.LazySchedineDaoDelete;
 import br.com.mind5.business.scheduleLine.model.action.LazySchedineEmulelSend;
-import br.com.mind5.business.scheduleLine.model.action.LazySchedineEnforceCancelled;
-import br.com.mind5.business.scheduleLine.model.action.LazySchedineInsertSchedovm;
-import br.com.mind5.business.scheduleLine.model.action.LazySchedineMergeUsername;
-import br.com.mind5.business.scheduleLine.model.action.LazySchedineNodeSnapshot;
-import br.com.mind5.business.scheduleLine.model.action.StdSchedineEnforceLChanged;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckCancel;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckExist;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckLangu;
@@ -72,22 +66,12 @@ public final class RootSchedineCancelForce extends DeciTreeTemplateWriteV2<Sched
 	@Override protected List<ActionStdV1<SchedineInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedineInfo> option) {
 		List<ActionStdV1<SchedineInfo>> actions = new ArrayList<>();
 
-		ActionStdV1<SchedineInfo> enforceLChanged = new StdSchedineEnforceLChanged(option);
-		ActionLazyV1<SchedineInfo> mergeUsername = new LazySchedineMergeUsername(option.conn, option.schemaName);
-		ActionLazyV1<SchedineInfo> enforceStatus = new LazySchedineEnforceCancelled(option.conn, option.schemaName);
-		ActionLazyV1<SchedineInfo> nodeSnapshot = new LazySchedineNodeSnapshot(option.conn, option.schemaName);
-		ActionLazyV1<SchedineInfo> insertSchedovm = new LazySchedineInsertSchedovm(option.conn, option.schemaName);
-		ActionLazyV1<SchedineInfo> delete = new LazySchedineDaoDelete(option.conn, option.schemaName);
+		ActionStdV1<SchedineInfo> cancel = new RootSchedineCancelSilent(option).toAction();
 		ActionLazyV1<SchedineInfo> sendEmail = new LazySchedineEmulelSend(option.conn, option.schemaName);
 		
-		enforceLChanged.addPostAction(mergeUsername);
-		mergeUsername.addPostAction(enforceStatus);
-		enforceStatus.addPostAction(nodeSnapshot);
-		nodeSnapshot.addPostAction(insertSchedovm);
-		insertSchedovm.addPostAction(delete);
-		insertSchedovm.addPostAction(sendEmail);
+		cancel.addPostAction(sendEmail);
 		
-		actions.add(enforceLChanged);
+		actions.add(cancel);
 		return actions;
 	}
 }
