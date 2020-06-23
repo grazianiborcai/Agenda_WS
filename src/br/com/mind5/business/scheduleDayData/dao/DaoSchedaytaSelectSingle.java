@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.scheduleDayData.info.SchedaytaInfo;
-import br.com.mind5.business.scheduleLineSnapshot.dao.SchedinapDbTableColumn;
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
 import br.com.mind5.dao.DaoResultParser;
@@ -86,7 +85,7 @@ public final class DaoSchedaytaSelectSingle extends DaoStmtTemplate<SchedaytaInf
 					dataInfo.quarter = DaoFormatter.sqlToInt(stmtResult, DaoSchedaytaDbTableColumn.COL_QUARTER);
 					dataInfo.year = DaoFormatter.sqlToInt(stmtResult, DaoSchedaytaDbTableColumn.COL_YEAR);
 					dataInfo.codWeekday = DaoFormatter.sqlToInt(stmtResult, DaoSchedaytaDbTableColumn.COL_COD_WEEKDAY);
-					dataInfo.codScheduleStatus = stmtResult.getString(SchedinapDbTableColumn.COL_COD_SCHEDULE_STATUS);
+					dataInfo.codScheduleStatus = stmtResult.getString(DaoSchedaytaDbTableColumn.COL_COD_SCHEDULE_STATUS);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

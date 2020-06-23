@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoStmtExecV2;
 import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiSchedaytaDaoSelect extends ActionVisitorTemplateStmtV2<SchedaytaInfo>{
+final class VisiSchedaytaDaoSelect extends ActionVisitorTemplateStmtV2<SchedaytaInfo> {
 
 	public VisiSchedaytaDaoSelect(DeciTreeOption<SchedaytaInfo> option) {
 		super(option);
