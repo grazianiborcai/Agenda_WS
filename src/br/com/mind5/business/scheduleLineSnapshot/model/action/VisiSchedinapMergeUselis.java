@@ -1,19 +1,19 @@
 package br.com.mind5.business.scheduleLineSnapshot.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.scheduleLineSnapshot.info.SchedinapInfo;
 import br.com.mind5.business.scheduleLineSnapshot.info.SchedinapMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.userList.info.UselisInfo;
 import br.com.mind5.security.userList.model.decisionTree.RootUselisSelect;
 
-final class VisiSchedinapMergeUselis extends ActionVisitorTemplateMergeV1<SchedinapInfo, UselisInfo> {
+final class VisiSchedinapMergeUselis extends ActionVisitorTemplateMergeV2<SchedinapInfo, UselisInfo> {
 	
-	public VisiSchedinapMergeUselis(Connection conn, String schemaName) {
-		super(conn, schemaName, UselisInfo.class);
+	public VisiSchedinapMergeUselis(DeciTreeOption<SchedinapInfo> option) {
+		super(option, UselisInfo.class);
 	}
 	
 	
@@ -24,13 +24,13 @@ final class VisiSchedinapMergeUselis extends ActionVisitorTemplateMergeV1<Schedi
 	
 	
 	
-	@Override protected List<SchedinapInfo> mergeHook(List<SchedinapInfo> recordInfos, List<UselisInfo> selectedInfos) {	
-		return SchedinapMerger.mergeWithUselis(selectedInfos, recordInfos);
+	@Override protected List<SchedinapInfo> mergeHook(List<SchedinapInfo> baseInfos, List<UselisInfo> selectedInfos) {	
+		return SchedinapMerger.mergeWithUselis(baseInfos, selectedInfos);
 	}
 	
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
+		return super.MERGE_WHEN_EMPTY;
 	}
 }

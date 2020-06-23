@@ -1,35 +1,19 @@
 package br.com.mind5.business.scheduleLineSnapshot.model.action;
 
 import br.com.mind5.business.scheduleLineSnapshot.info.SchedinapInfo;
-import br.com.mind5.model.action.ActionLazyV1;
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionStdHelperMerge;
-import br.com.mind5.model.decisionTree.DeciResult;
+import br.com.mind5.model.action.ActionStdTemplateV2;
+import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdSchedinapMergeToSelect implements ActionStdV1<SchedinapInfo> {
-	private ActionStdV1<SchedinapInfo> actionHelper;	
-	
-	
-	public StdSchedinapMergeToSelect(DeciTreeOption<SchedinapInfo> option) {			
-		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiSchedinapMergeToSelect(option.conn, option.schemaName));
+public final class StdSchedinapMergeToSelect extends ActionStdTemplateV2<SchedinapInfo> {
+
+	public StdSchedinapMergeToSelect(DeciTreeOption<SchedinapInfo> option) {
+		super(option);
 	}
 	
 	
 	
-	@Override public void addPostAction(ActionLazyV1<SchedinapInfo> actionHandler) {
-		actionHelper.addPostAction(actionHandler);
-	}
-	
-	
-	
-	@Override public boolean executeAction() {			
-		return actionHelper.executeAction();
-	}
-	
-	
-	
-	@Override public DeciResult<SchedinapInfo> getDecisionResult() {
-		return actionHelper.getDecisionResult();
+	protected ActionVisitorV2<SchedinapInfo> buildVisitorHook(DeciTreeOption<SchedinapInfo> option) {
+		return new VisiSchedinapMergeToSelect(option);
 	}
 }

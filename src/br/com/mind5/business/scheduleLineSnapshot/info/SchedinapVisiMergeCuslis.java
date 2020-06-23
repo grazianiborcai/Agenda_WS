@@ -1,52 +1,40 @@
 package br.com.mind5.business.scheduleLineSnapshot.info;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import br.com.mind5.business.customerList.info.CuslisInfo;
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-final class SchedinapVisiMergeCuslis implements InfoMergerVisitor_<SchedinapInfo, CuslisInfo> {
-
-	@Override public SchedinapInfo writeRecord(CuslisInfo sourceOne, SchedinapInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+final class SchedinapVisiMergeCuslis implements InfoMergerVisitorV3<SchedinapInfo, CuslisInfo> {
+	
+	@Override public List<SchedinapInfo> beforeMerge(List<SchedinapInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(SchedinapInfo baseInfo, CuslisInfo selectedInfo) {
+		return (baseInfo.codOwner    == selectedInfo.codOwner && 
+				baseInfo.codCustomer == selectedInfo.codCustomer	);
+	}
+	
+	
+	
+	@Override public List<SchedinapInfo> merge(SchedinapInfo baseInfo, CuslisInfo selectedInfo) {
+		List<SchedinapInfo> results = new ArrayList<>();
 		
-		SchedinapInfo resultInfo = makeClone(sourceTwo);
-		resultInfo.codCustomerSnapshot = sourceOne.codSnapshot;
-		resultInfo.codUser = sourceOne.codUser;
-
-		return resultInfo;
-	}
-	
-	
-	
-	private void checkArgument(CuslisInfo sourceOne, SchedinapInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}	
-	
-	
-	
-	private SchedinapInfo makeClone(SchedinapInfo recordInfo) {
-		try {
-			return (SchedinapInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-
-
-	
-	@Override public boolean shouldWrite(CuslisInfo sourceOne, SchedinapInfo sourceTwo) {
-		return (sourceOne.codOwner    == sourceTwo.codOwner && 
-				sourceOne.codCustomer == sourceTwo.codCustomer		);
-	}
-	
-	
-	
-	private void logException(Exception e) {
+		baseInfo.codCustomerSnapshot = selectedInfo.codSnapshot;
+		baseInfo.codUser = selectedInfo.codUser;
 		
-		SystemLog.logError(this.getClass(), e);
+		results.add(baseInfo);
+		return results;
+	}
+	
+	
+	
+	@Override public InfoUniquifier<SchedinapInfo> getUniquifier() {
+		return null;
 	}
 }

@@ -16,10 +16,10 @@ public final class SchedinapCheckWrite extends ModelCheckerTemplateSimpleV2<Sche
 	
 	
 	@Override protected boolean checkHook(SchedinapInfo recordInfo, Connection conn, String schemaName) {	
-		if (   recordInfo.codOwner 		<= 0 	
-			|| recordInfo.codSchedule	<= 0 
-			|| recordInfo.username		== null 
-			|| recordInfo.codLanguage	== null	)
+		if ( recordInfo.codOwner 	<= 0 	||	
+			 recordInfo.codSchedule	<= 0 	||
+			 recordInfo.username	== null ||
+			 recordInfo.codLanguage	== null		)
 			
 			return super.FAILED;
 		

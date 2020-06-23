@@ -6,6 +6,7 @@ import java.time.LocalTime;
 import java.util.List;
 
 import br.com.mind5.business.materialSnapshot.info.MatsnapInfo;
+import br.com.mind5.common.CloneUtil;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.InfoRecord;
@@ -13,7 +14,8 @@ import br.com.mind5.info.InfoRecord;
 public final class SchedinapInfo extends InfoRecord implements Cloneable, Comparable<SchedinapInfo> {
 	public long codOwner;
 	public long codSnapshot;
-	public long codSchedule;	
+	public long codSchedule;
+	public long codScheduleRef;
 	public String codScheduleStatus;
 	public long codOrder;
 	public int codOrderItem;
@@ -47,10 +49,11 @@ public final class SchedinapInfo extends InfoRecord implements Cloneable, Compar
 	
 	
 	public SchedinapInfo() {
-		super(SchedinapInfo.class);
+		super();
 		
 		codOwner = DefaultValue.number();	
 		codSchedule = DefaultValue.number();
+		codScheduleRef = DefaultValue.number();
 		codSnapshot = DefaultValue.number();
 		codOrder = DefaultValue.number();
 		codOrderItem = DefaultValue.number();
@@ -98,20 +101,9 @@ public final class SchedinapInfo extends InfoRecord implements Cloneable, Compar
 		deepCopy.beginTime = beginTime;
 		deepCopy.endTime = endTime;
 		deepCopy.lastChanged = lastChanged;
-		deepCopy.matData = cloneMat(matData);
+		deepCopy.matData = CloneUtil.cloneRecord(matData, this.getClass());
 		
 		return deepCopy;
-	}	
-	
-	
-	
-	private MatsnapInfo cloneMat(MatsnapInfo recordInfo) throws CloneNotSupportedException {
-		MatsnapInfo result = null;
-		
-		if (recordInfo != null)
-			result = (MatsnapInfo) recordInfo.clone();
-		
-		return result;
 	}
 	
 	

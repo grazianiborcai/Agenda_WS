@@ -1,51 +1,39 @@
 package br.com.mind5.business.scheduleLineSnapshot.info;
 
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import java.util.ArrayList;
+import java.util.List;
+
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.security.userList.info.UselisInfo;
 
-final class SchedinapVisiMergeUselis implements InfoMergerVisitor_<SchedinapInfo, UselisInfo> {
-
-	@Override public SchedinapInfo writeRecord(UselisInfo sourceOne, SchedinapInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+final class SchedinapVisiMergeUselis implements InfoMergerVisitorV3<SchedinapInfo, UselisInfo> {
+	
+	@Override public List<SchedinapInfo> beforeMerge(List<SchedinapInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(SchedinapInfo baseInfo, UselisInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner && 
+				baseInfo.codUser  == selectedInfo.codUser		);
+	}
+	
+	
+	
+	@Override public List<SchedinapInfo> merge(SchedinapInfo baseInfo, UselisInfo selectedInfo) {
+		List<SchedinapInfo> results = new ArrayList<>();
 		
-		SchedinapInfo resultInfo = makeClone(sourceTwo);
-		resultInfo.codUserSnapshot = sourceOne.codSnapshot;
-
-		return resultInfo;
-	}
-	
-	
-	
-	private void checkArgument(UselisInfo sourceOne, SchedinapInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}	
-	
-	
-	
-	private SchedinapInfo makeClone(SchedinapInfo recordInfo) {
-		try {
-			return (SchedinapInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-
-
-	
-	@Override public boolean shouldWrite(UselisInfo sourceOne, SchedinapInfo sourceTwo) {
-		return (sourceOne.codOwner == sourceTwo.codOwner && 
-				sourceOne.codUser  == sourceTwo.codUser		);
-	}
-	
-	
-	
-	private void logException(Exception e) {
+		baseInfo.codUserSnapshot = selectedInfo.codSnapshot;
 		
-		SystemLog.logError(this.getClass(), e);
+		results.add(baseInfo);
+		return results;
+	}
+	
+	
+	
+	@Override public InfoUniquifier<SchedinapInfo> getUniquifier() {
+		return null;
 	}
 }

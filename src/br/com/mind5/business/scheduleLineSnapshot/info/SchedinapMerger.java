@@ -7,103 +7,97 @@ import br.com.mind5.business.employeeList.info.EmplisInfo;
 import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.business.materialSnapshot.info.MatsnapInfo;
 import br.com.mind5.business.storeList.info.StolisInfo;
-import br.com.mind5.info.obsolete.InfoMerger_;
+import br.com.mind5.info.InfoMergerBuilderV3;
+import br.com.mind5.info.InfoMergerV3;
 import br.com.mind5.security.userList.info.UselisInfo;
 
 public final class SchedinapMerger {
-	public static SchedinapInfo mergeWithUselis(UselisInfo sourceOne, SchedinapInfo sourceTwo) {
-		InfoMerger_<SchedinapInfo, UselisInfo> merger = new SchedinapMergerUselis();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
+	public static List<SchedinapInfo> mergeWithUselis(List<SchedinapInfo> baseInfos, List<UselisInfo> selectedInfos) {
+		InfoMergerBuilderV3<SchedinapInfo, UselisInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new SchedinapVisiMergeUselis());
+		InfoMergerV3<SchedinapInfo, UselisInfo> merger = builder.build();		
 	
-	
-	
-	public static List<SchedinapInfo> mergeWithUselis(List<UselisInfo> sourceOnes, List<SchedinapInfo> sourceTwos) {
-		InfoMerger_<SchedinapInfo, UselisInfo> merger = new SchedinapMergerUselis();		
-		return merger.merge(sourceOnes, sourceTwos);
+		return merger.merge();
 	}	
 	
 	
 	
-	public static SchedinapInfo mergeWithCuslis(CuslisInfo sourceOne, SchedinapInfo sourceTwo) {
-		InfoMerger_<SchedinapInfo, CuslisInfo> merger = new SchedinapMergerCuslis();		
-		return merger.merge(sourceOne, sourceTwo);
+	public static List<SchedinapInfo> mergeWithCuslis(List<SchedinapInfo> baseInfos, List<CuslisInfo> selectedInfos) {
+		InfoMergerBuilderV3<SchedinapInfo, CuslisInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new SchedinapVisiMergeCuslis());
+		InfoMergerV3<SchedinapInfo, CuslisInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static List<SchedinapInfo> mergeWithCuslis(List<CuslisInfo> sourceOnes, List<SchedinapInfo> sourceTwos) {
-		InfoMerger_<SchedinapInfo, CuslisInfo> merger = new SchedinapMergerCuslis();		
-		return merger.merge(sourceOnes, sourceTwos);
+	public static List<SchedinapInfo> mergeWithEmplis(List<SchedinapInfo> baseInfos, List<EmplisInfo> selectedInfos) {
+		InfoMergerBuilderV3<SchedinapInfo, EmplisInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new SchedinapVisiMergeEmplis());
+		InfoMergerV3<SchedinapInfo, EmplisInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static SchedinapInfo mergeWithEmplis(EmplisInfo sourceOne, SchedinapInfo sourceTwo) {
-		InfoMerger_<SchedinapInfo, EmplisInfo> merger = new SchedinapMergerEmplis();		
-		return merger.merge(sourceOne, sourceTwo);
+	public static List<SchedinapInfo> mergeWithStolis(List<SchedinapInfo> baseInfos, List<StolisInfo> selectedInfos) {
+		InfoMergerBuilderV3<SchedinapInfo, StolisInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new SchedinapVisiMergeStolis());
+		InfoMergerV3<SchedinapInfo, StolisInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static List<SchedinapInfo> mergeWithEmplis(List<EmplisInfo> sourceOnes, List<SchedinapInfo> sourceTwos) {
-		InfoMerger_<SchedinapInfo, EmplisInfo> merger = new SchedinapMergerEmplis();		
-		return merger.merge(sourceOnes, sourceTwos);
+	public static List<SchedinapInfo> mergeWithMatsnap(List<SchedinapInfo> baseInfos, List<MatsnapInfo> selectedInfos) {
+		InfoMergerBuilderV3<SchedinapInfo, MatsnapInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new SchedinapVisiMergeMatsnap());
+		InfoMergerV3<SchedinapInfo, MatsnapInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static SchedinapInfo mergeWithStolis(StolisInfo sourceOne, SchedinapInfo sourceTwo) {
-		InfoMerger_<SchedinapInfo, StolisInfo> merger = new SchedinapMergerStolis();		
-		return merger.merge(sourceOne, sourceTwo);
+	public static List<SchedinapInfo> mergeWithMatlis(List<SchedinapInfo> baseInfos, List<MatlisInfo> selectedInfos) {
+		InfoMergerBuilderV3<SchedinapInfo, MatlisInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new SchedinapVisiMergeMatlis());
+		InfoMergerV3<SchedinapInfo, MatlisInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static List<SchedinapInfo> mergeWithStolis(List<StolisInfo> sourceOnes, List<SchedinapInfo> sourceTwos) {
-		InfoMerger_<SchedinapInfo, StolisInfo> merger = new SchedinapMergerStolis();		
-		return merger.merge(sourceOnes, sourceTwos);
-	}
+	public static List<SchedinapInfo> mergeToSelect(List<SchedinapInfo> baseInfos, List<SchedinapInfo> selectedInfos) {
+		InfoMergerBuilderV3<SchedinapInfo, SchedinapInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new SchedinapVisiMergeToSelect());
+		InfoMergerV3<SchedinapInfo, SchedinapInfo> merger = builder.build();		
 	
-	
-	
-	public static SchedinapInfo mergeWithMatsnap(MatsnapInfo sourceOne, SchedinapInfo sourceTwo) {
-		InfoMerger_<SchedinapInfo, MatsnapInfo> merger = new SchedinapMergerMatsnap();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
-	
-	
-	
-	public static List<SchedinapInfo> mergeWithMatsnap(List<MatsnapInfo> sourceOnes, List<SchedinapInfo> sourceTwos) {
-		InfoMerger_<SchedinapInfo, MatsnapInfo> merger = new SchedinapMergerMatsnap();		
-		return merger.merge(sourceOnes, sourceTwos);
-	}
-	
-	
-	
-	public static SchedinapInfo mergeWithMatlis(MatlisInfo sourceOne, SchedinapInfo sourceTwo) {
-		InfoMerger_<SchedinapInfo, MatlisInfo> merger = new SchedinapMergerMatlis();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
-	
-	
-	
-	public static List<SchedinapInfo> mergeWithMatlis(List<MatlisInfo> sourceOnes, List<SchedinapInfo> sourceTwos) {
-		InfoMerger_<SchedinapInfo, MatlisInfo> merger = new SchedinapMergerMatlis();		
-		return merger.merge(sourceOnes, sourceTwos);
-	}
-	
-	
-	
-	public static SchedinapInfo mergeToSelect(SchedinapInfo sourceOne, SchedinapInfo sourceTwo) {
-		InfoMerger_<SchedinapInfo, SchedinapInfo> merger = new SchedinapMergerToSelect();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
-	
-	
-	
-	public static List<SchedinapInfo> mergeToSelect(List<SchedinapInfo> sourceOnes, List<SchedinapInfo> sourceTwos) {
-		InfoMerger_<SchedinapInfo, SchedinapInfo> merger = new SchedinapMergerToSelect();		
-		return merger.merge(sourceOnes, sourceTwos);
+		return merger.merge();
 	}	
 }

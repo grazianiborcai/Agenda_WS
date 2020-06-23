@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class SchedinapDbTableColumn extends DaoDbTableColumnTemplate {
+public final class DaoSchedinapDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_BEGIN_TIME = DaoDbField.COL_BEGIN_TIME;	
 	public static final String COL_COD_CUSTOMER = DaoDbField.COL_COD_CUSTOMER;	
 	public static final String COL_COD_CUSTOMER_SNAPSHOT = DaoDbField.COL_COD_CUSTOMER_SNAPSHOT;	
@@ -21,7 +21,8 @@ public final class SchedinapDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_ORDER = DaoDbField.COL_COD_ORDER;	
 	public static final String COL_COD_ORDER_ITEM = DaoDbField.COL_COD_ORDER_ITEM;
 	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;			
-	public static final String COL_COD_SCHEDULE = DaoDbField.COL_COD_SCHEDULE;	
+	public static final String COL_COD_SCHEDULE = DaoDbField.COL_COD_SCHEDULE;
+	public static final String COL_COD_SCHEDULE_REF = DaoDbField.COL_COD_SCHEDULE_REF;	
 	public static final String COL_COD_SCHEDULE_STATUS = DaoDbField.COL_COD_SCHEDULE_STATUS;
 	public static final String COL_COD_SNAPSHOT = DaoDbField.COL_COD_SNAPSHOT;
 	public static final String COL_COD_STORE = DaoDbField.COL_COD_STORE;	
@@ -44,24 +45,13 @@ public final class SchedinapDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_WEEK_YEAR = DaoDbField.COL_WEEK_YEAR;
 	
 	
-	private Hashtable<String, List<DaoColumn>> tableColumns;
-	
-	
-	public SchedinapDbTableColumn() {
-		super(SchedinapDbTableColumn.class);
+	public DaoSchedinapDbTableColumn() {
+		super();
 	}
 	
 	
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
-		tableColumns = new Hashtable<>();	
-		buildScheduleLineSnapshotTable();
-		return tableColumns;
-	}
-	
-	
-	
-	private void buildScheduleLineSnapshotTable() {
 		final String TABLE_NAME = DaoDbTable.SCHEDULE_SNAPSHOT_TABLE;
 		
 		DaoColumn oneColumn;
@@ -315,6 +305,16 @@ public final class SchedinapDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);	
 		
-		tableColumns.put(TABLE_NAME, columns);
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_COD_SCHEDULE_REF;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);	
+		
+		Hashtable<String, List<DaoColumn>> results = new Hashtable<>();
+		results.put(TABLE_NAME, columns);
+		return results;
 	}
 }

@@ -1,51 +1,39 @@
 package br.com.mind5.business.scheduleLineSnapshot.info;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import br.com.mind5.business.storeList.info.StolisInfo;
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-final class SchedinapVisiMergeStolis implements InfoMergerVisitor_<SchedinapInfo, StolisInfo> {
-
-	@Override public SchedinapInfo writeRecord(StolisInfo sourceOne, SchedinapInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+final class SchedinapVisiMergeStolis implements InfoMergerVisitorV3<SchedinapInfo, StolisInfo> {
+	
+	@Override public List<SchedinapInfo> beforeMerge(List<SchedinapInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(SchedinapInfo baseInfo, StolisInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner && 
+				baseInfo.codStore == selectedInfo.codStore		);
+	}
+	
+	
+	
+	@Override public List<SchedinapInfo> merge(SchedinapInfo baseInfo, StolisInfo selectedInfo) {
+		List<SchedinapInfo> results = new ArrayList<>();
 		
-		SchedinapInfo resultInfo = makeClone(sourceTwo);
-		resultInfo.codStoreSnapshot = sourceOne.codSnapshot;
-
-		return resultInfo;
-	}
-	
-	
-	
-	private void checkArgument(StolisInfo sourceOne, SchedinapInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}	
-	
-	
-	
-	private SchedinapInfo makeClone(SchedinapInfo recordInfo) {
-		try {
-			return (SchedinapInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-
-
-	
-	@Override public boolean shouldWrite(StolisInfo sourceOne, SchedinapInfo sourceTwo) {
-		return (sourceOne.codOwner == sourceTwo.codOwner && 
-				sourceOne.codStore == sourceTwo.codStore		);
-	}
-	
-	
-	
-	private void logException(Exception e) {
+		baseInfo.codStoreSnapshot = selectedInfo.codSnapshot;
 		
-		SystemLog.logError(this.getClass(), e);
+		results.add(baseInfo);
+		return results;
+	}
+	
+	
+	
+	@Override public InfoUniquifier<SchedinapInfo> getUniquifier() {
+		return null;
 	}
 }

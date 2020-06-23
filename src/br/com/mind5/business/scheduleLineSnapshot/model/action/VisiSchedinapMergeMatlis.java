@@ -1,6 +1,5 @@
 package br.com.mind5.business.scheduleLineSnapshot.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.materialList.info.MatlisCopier;
@@ -8,13 +7,14 @@ import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.business.materialList.model.decisionTree.RootMatlisSelect;
 import br.com.mind5.business.scheduleLineSnapshot.info.SchedinapInfo;
 import br.com.mind5.business.scheduleLineSnapshot.info.SchedinapMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiSchedinapMergeMatlis extends ActionVisitorTemplateMergeV1<SchedinapInfo, MatlisInfo> {
+final class VisiSchedinapMergeMatlis extends ActionVisitorTemplateMergeV2<SchedinapInfo, MatlisInfo> {
 	
-	public VisiSchedinapMergeMatlis(Connection conn, String schemaName) {
-		super(conn, schemaName, MatlisInfo.class);
+	public VisiSchedinapMergeMatlis(DeciTreeOption<SchedinapInfo> option) {
+		super(option, MatlisInfo.class);
 	}
 	
 	
@@ -25,19 +25,19 @@ final class VisiSchedinapMergeMatlis extends ActionVisitorTemplateMergeV1<Schedi
 	
 	
 	
-	@Override protected List<MatlisInfo> toActionClassHook(List<SchedinapInfo> recordInfos) {
-		return MatlisCopier.copyFromSchedinap(recordInfos);	
+	@Override protected List<MatlisInfo> toActionClassHook(List<SchedinapInfo> baseInfos) {
+		return MatlisCopier.copyFromSchedinap(baseInfos);	
 	}
 	
 	
 	
-	@Override protected List<SchedinapInfo> mergeHook(List<SchedinapInfo> recordInfos, List<MatlisInfo> selectedInfos) {	
-		return SchedinapMerger.mergeWithMatlis(selectedInfos, recordInfos);
+	@Override protected List<SchedinapInfo> mergeHook(List<SchedinapInfo> baseInfos, List<MatlisInfo> selectedInfos) {	
+		return SchedinapMerger.mergeWithMatlis(baseInfos, selectedInfos);
 	}
 	
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
+		return super.MERGE_WHEN_EMPTY;
 	}
 }

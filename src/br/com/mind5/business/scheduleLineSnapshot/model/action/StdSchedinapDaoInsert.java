@@ -5,15 +5,15 @@ import br.com.mind5.model.action.ActionStdTemplateV2;
 import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdSchedinapMergeStolis extends ActionStdTemplateV2<SchedinapInfo> {
+public final class StdSchedinapDaoInsert extends ActionStdTemplateV2<SchedinapInfo> {
 
-	public StdSchedinapMergeStolis(DeciTreeOption<SchedinapInfo> option) {
+	public StdSchedinapDaoInsert(DeciTreeOption<SchedinapInfo> option) {
 		super(option);
 	}
 	
 	
 	
 	protected ActionVisitorV2<SchedinapInfo> buildVisitorHook(DeciTreeOption<SchedinapInfo> option) {
-		return new VisiSchedinapMergeStolis(option);
+		return new VisiSchedinapDaoInsert(option);
 	}
 }

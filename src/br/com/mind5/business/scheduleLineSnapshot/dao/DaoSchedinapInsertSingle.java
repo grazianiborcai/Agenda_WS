@@ -15,11 +15,11 @@ import br.com.mind5.dao.DaoStmtParamTranslator;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public class SchedinapInsertSingle extends DaoStmtTemplate<SchedinapInfo> {
+public class DaoSchedinapInsertSingle extends DaoStmtTemplate<SchedinapInfo> {
 	private final String MAIN_TABLE = DaoDbTable.SCHEDULE_SNAPSHOT_TABLE;
 	
 	
-	public SchedinapInsertSingle(Connection conn, SchedinapInfo recordInfo, String schemaName) {
+	public DaoSchedinapInsertSingle(Connection conn, SchedinapInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -72,6 +72,7 @@ public class SchedinapInsertSingle extends DaoStmtTemplate<SchedinapInfo> {
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.createdBy);
 				stmt.setString(i++, recordInfo.codScheduleStatus);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codOrderItem);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codScheduleRef);
 				
 				return stmt;
 			}		

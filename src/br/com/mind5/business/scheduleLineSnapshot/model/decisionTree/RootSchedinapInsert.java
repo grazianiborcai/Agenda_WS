@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.scheduleLineSnapshot.info.SchedinapInfo;
-import br.com.mind5.business.scheduleLineSnapshot.model.action.LazySchedinapInsert;
+import br.com.mind5.business.scheduleLineSnapshot.model.action.LazySchedinapDaoInsert;
 import br.com.mind5.business.scheduleLineSnapshot.model.action.LazySchedinapMergapStolis;
 import br.com.mind5.business.scheduleLineSnapshot.model.action.LazySchedinapMergapUselis;
 import br.com.mind5.business.scheduleLineSnapshot.model.action.LazySchedinapMergeCuslis;
@@ -16,13 +16,13 @@ import br.com.mind5.business.scheduleLineSnapshot.model.checker.SchedinapCheckSc
 import br.com.mind5.business.scheduleLineSnapshot.model.checker.SchedinapCheckWrite;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class RootSchedinapInsert extends DeciTreeTemplateWriteV1<SchedinapInfo> {
+public final class RootSchedinapInsert extends DeciTreeTemplateWriteV2<SchedinapInfo> {
 	
 	public RootSchedinapInsert(DeciTreeOption<SchedinapInfo> option) {
 		super(option);
@@ -77,7 +77,7 @@ public final class RootSchedinapInsert extends DeciTreeTemplateWriteV1<Schedinap
 		ActionLazyV1<SchedinapInfo> mergCuslis = new LazySchedinapMergeCuslis(option.conn, option.schemaName);
 		ActionLazyV1<SchedinapInfo> mergUselis = new LazySchedinapMergapUselis(option.conn, option.schemaName);
 		ActionLazyV1<SchedinapInfo> mergeEmplis = new LazySchedinapMergeEmplis(option.conn, option.schemaName);
-		ActionLazyV1<SchedinapInfo> insert = new LazySchedinapInsert(option.conn, option.schemaName);
+		ActionLazyV1<SchedinapInfo> insert = new LazySchedinapDaoInsert(option.conn, option.schemaName);
 		
 		nodeOrder.addPostAction(mergeMatlis);
 		mergeMatlis.addPostAction(mergeStolis);

@@ -4,12 +4,12 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.scheduleLineSnapshot.info.SchedinapInfo;
-import br.com.mind5.model.action.ActionLazyTemplateV1;
+import br.com.mind5.model.action.ActionLazyTemplateV2;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazySchedinapMergeCuslis extends ActionLazyTemplateV1<SchedinapInfo, SchedinapInfo> {
+public final class LazySchedinapMergeCuslis extends ActionLazyTemplateV2<SchedinapInfo, SchedinapInfo> {
 	
 	public LazySchedinapMergeCuslis(Connection conn, String schemaName) {
 		super(conn, schemaName);
