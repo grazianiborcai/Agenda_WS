@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.scheduleLine.info.SchedineInfo;
-import br.com.mind5.business.scheduleLineSnapshot.dao.SchedinapDbTableColumn;
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
 import br.com.mind5.dao.DaoResultParser;
@@ -88,8 +87,8 @@ public final class DaoSchedineSelectSingle extends DaoStmtTemplate<SchedineInfo>
 					dataInfo.year = DaoFormatter.sqlToInt(stmtResult, DaoSchedineDbTableColumn.COL_YEAR);		
 					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, DaoSchedineDbTableColumn.COL_COD_SNAPSHOT);
 					dataInfo.codWeekday = DaoFormatter.sqlToInt(stmtResult, DaoSchedineDbTableColumn.COL_COD_WEEKDAY);
-					dataInfo.codScheduleStatus = stmtResult.getString(SchedinapDbTableColumn.COL_COD_SCHEDULE_STATUS);
-					dataInfo.codScheduleStatusOld = stmtResult.getString(SchedinapDbTableColumn.COL_COD_SCHEDULE_STATUS);
+					dataInfo.codScheduleStatus = stmtResult.getString(DaoSchedineDbTableColumn.COL_COD_SCHEDULE_STATUS);
+					dataInfo.codScheduleStatusOld = stmtResult.getString(DaoSchedineDbTableColumn.COL_COD_SCHEDULE_STATUS);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());
