@@ -23,7 +23,7 @@ import br.com.mind5.business.scheduleDay.model.SchedayModelSelectPrevious;
 import br.com.mind5.business.scheduleLine.info.SchedineInfo;
 import br.com.mind5.business.scheduleLine.model.SchedineModelCancel;
 import br.com.mind5.business.scheduleLine.model.SchedineModelInsert;
-import br.com.mind5.business.scheduleLine.model.SchedineModelMove;
+import br.com.mind5.business.scheduleLine.model.SchedineModelMoveAuth;
 import br.com.mind5.business.scheduleLine.model.SchedineModelSearch;
 import br.com.mind5.business.scheduleLine.model.SchedineModelSelect;
 import br.com.mind5.business.scheduleLine.model.SchedineModelUpdate_;
@@ -108,7 +108,7 @@ public final class ScheduleResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response moveSchedine(@Context HttpServletRequest request, String incomingData) {
 		
-		Model model = new SchedineModelMove(incomingData, request);
+		Model model = new SchedineModelMoveAuth(incomingData, request);
 		model.executeRequest();
 		Response result = model.getResponse();	
 		model.close();

@@ -4,15 +4,15 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.scheduleLine.info.SchedineInfo;
-import br.com.mind5.business.scheduleLine.model.decisionTree.NodeSchedineMoveL1;
+import br.com.mind5.business.scheduleLine.model.decisionTree.NodeSchedineMoveL2;
 import br.com.mind5.model.action.ActionLazyTemplateV2;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazySchedineNodeMoveL1 extends ActionLazyTemplateV2<SchedineInfo, SchedineInfo> {
+public final class LazySchedineNodeMoveL2 extends ActionLazyTemplateV2<SchedineInfo, SchedineInfo> {
 
-	public LazySchedineNodeMoveL1(Connection conn, String schemaName) {
+	public LazySchedineNodeMoveL2(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -25,7 +25,7 @@ public final class LazySchedineNodeMoveL1 extends ActionLazyTemplateV2<SchedineI
 	
 	
 	@Override protected ActionStdV1<SchedineInfo> getInstanceOfActionHook(DeciTreeOption<SchedineInfo> option) {
-		return new NodeSchedineMoveL1(option).toAction();
+		return new NodeSchedineMoveL2(option).toAction();
 	}
 	
 	

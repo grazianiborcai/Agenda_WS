@@ -4,8 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.scheduleLine.info.SchedineInfo;
-import br.com.mind5.business.scheduleLine.model.action.LazySchedineRootCancelSilent;
-import br.com.mind5.business.scheduleLine.model.action.StdSchedineMergeToSelect;
+import br.com.mind5.business.scheduleLine.model.action.LazySchedineBookiceValidate;
+import br.com.mind5.business.scheduleLine.model.action.LazySchedineRootInsertForce;
+import br.com.mind5.business.scheduleLine.model.action.StdSchedineEnforceRef;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
@@ -14,9 +15,9 @@ import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class NodeSchedineMoveL1 extends DeciTreeTemplateWriteV2<SchedineInfo> {
+public final class NodeSchedineMoveL2 extends DeciTreeTemplateWriteV2<SchedineInfo> {
 	
-	public NodeSchedineMoveL1(DeciTreeOption<SchedineInfo> option) {
+	public NodeSchedineMoveL2(DeciTreeOption<SchedineInfo> option) {
 		super(option);
 	}
 	
@@ -36,13 +37,15 @@ public final class NodeSchedineMoveL1 extends DeciTreeTemplateWriteV2<SchedineIn
 	
 	@Override protected List<ActionStdV1<SchedineInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedineInfo> option) {
 		List<ActionStdV1<SchedineInfo>> actions = new ArrayList<>();
-
-		ActionStdV1<SchedineInfo> select = new StdSchedineMergeToSelect(option);		
-		ActionLazyV1<SchedineInfo> cancel = new LazySchedineRootCancelSilent(option.conn, option.schemaName);
 		
-		select.addPostAction(cancel);
+		ActionStdV1<SchedineInfo> enforceRef = new StdSchedineEnforceRef(option);
+		ActionLazyV1<SchedineInfo> bookiceValidate = new LazySchedineBookiceValidate(option.conn, option.schemaName);
+		ActionLazyV1<SchedineInfo> insert = new LazySchedineRootInsertForce(option.conn, option.schemaName);
 		
-		actions.add(select);
+		enforceRef.addPostAction(bookiceValidate);
+		bookiceValidate.addPostAction(insert);
+		
+		actions.add(enforceRef);
 		return actions;
 	}
 }
