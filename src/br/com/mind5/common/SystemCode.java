@@ -1352,4 +1352,9 @@ public final class SystemCode {
 	
 	// Email Schedule Cancellation
 	public static final int EMAIL_SCHEDU_CANCEL_MANDATORY_FIELD_EMPTY	= 13250;
+	
+	// Schedule Authorization
+	public static final int SCHEDULE_AUTH_MANDATORY_FIELD_EMPTY			= 13300;
+	public static final int SCHEDULE_AUTH_NOT_AUTHORIZED				= 13301;	
+	public static final int SCHEDULE_AUTH_USER_AUTHORIZED				= 13302;
 }
