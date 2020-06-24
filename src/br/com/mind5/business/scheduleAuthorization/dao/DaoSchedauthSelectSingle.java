@@ -71,6 +71,7 @@ public final class DaoSchedauthSelectSingle extends DaoStmtTemplate<SchedauthInf
 					dataInfo.codSchedule = stmtResult.getLong(DaoSchedauthDbTableColumn.COL_COD_SCHEDULE);
 					dataInfo.recordMode = stmtResult.getString(DaoSchedauthDbTableColumn.COL_RECORD_MODE);	
 					dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, DaoSchedauthDbTableColumn.COL_COD_USER);
+					dataInfo.codStore = DaoFormatter.sqlToLong(stmtResult, DaoSchedauthDbTableColumn.COL_COD_STORE);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());
