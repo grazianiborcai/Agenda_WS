@@ -7,9 +7,9 @@ import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class SchedauthCheckRead extends ModelCheckerTemplateSimpleV2<SchedauthInfo> {
+public final class SchedauthCheckMove extends ModelCheckerTemplateSimpleV2<SchedauthInfo> {
 
-	public SchedauthCheckRead(ModelCheckerOption option) {
+	public SchedauthCheckMove(ModelCheckerOption option) {
 		super(option);
 	}
 	

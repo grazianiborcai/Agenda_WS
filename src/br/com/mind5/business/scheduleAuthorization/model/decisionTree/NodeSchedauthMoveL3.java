@@ -13,9 +13,9 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class NodeSchedauthAuthL3 extends DeciTreeTemplateWriteV2<SchedauthInfo> {
+public final class NodeSchedauthMoveL3 extends DeciTreeTemplateWriteV2<SchedauthInfo> {
 	
-	public NodeSchedauthAuthL3(DeciTreeOption<SchedauthInfo> option) {
+	public NodeSchedauthMoveL3(DeciTreeOption<SchedauthInfo> option) {
 		super(option);
 	}
 	
