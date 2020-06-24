@@ -4,15 +4,14 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.scheduleLine.info.SchedineInfo;
-import br.com.mind5.business.scheduleLine.model.decisionTree.RootSchedineSelectAuth;
 import br.com.mind5.model.action.ActionLazyTemplateV2;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazySchedineRootSelect extends ActionLazyTemplateV2<SchedineInfo, SchedineInfo> {
+public final class LazySchedineSchedauthMove extends ActionLazyTemplateV2<SchedineInfo, SchedineInfo> {
 	
-	public LazySchedineRootSelect(Connection conn, String schemaName) {
+	public LazySchedineSchedauthMove(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -25,7 +24,7 @@ public final class LazySchedineRootSelect extends ActionLazyTemplateV2<SchedineI
 	
 	
 	@Override protected ActionStdV1<SchedineInfo> getInstanceOfActionHook(DeciTreeOption<SchedineInfo> option) {
-		return new RootSchedineSelectAuth(option).toAction();
+		return new StdSchedineSchedauthMove(option);
 	}
 	
 	

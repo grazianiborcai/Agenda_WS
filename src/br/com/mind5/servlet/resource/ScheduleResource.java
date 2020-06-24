@@ -22,10 +22,10 @@ import br.com.mind5.business.scheduleDay.model.SchedayModelSelectNow;
 import br.com.mind5.business.scheduleDay.model.SchedayModelSelectPrevious;
 import br.com.mind5.business.scheduleLine.info.SchedineInfo;
 import br.com.mind5.business.scheduleLine.model.SchedineModelCancel;
-import br.com.mind5.business.scheduleLine.model.SchedineModelInsert;
+import br.com.mind5.business.scheduleLine.model.SchedineModelInsertAuth;
 import br.com.mind5.business.scheduleLine.model.SchedineModelMoveAuth;
 import br.com.mind5.business.scheduleLine.model.SchedineModelSearch;
-import br.com.mind5.business.scheduleLine.model.SchedineModelSelect;
+import br.com.mind5.business.scheduleLine.model.SchedineModelSelectAuth;
 import br.com.mind5.business.scheduleLine.model.SchedineModelUpdate_;
 import br.com.mind5.business.scheduleMonth.info.SchedmonInfo;
 import br.com.mind5.business.scheduleMonth.model.SchedmonModelSelect;
@@ -78,7 +78,7 @@ public final class ScheduleResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response insertSchedine(@Context HttpServletRequest request, String incomingData) {
 		
-		Model model = new SchedineModelInsert(incomingData, request);
+		Model model = new SchedineModelInsertAuth(incomingData, request);
 		model.executeRequest();
 		Response result = model.getResponse();	
 		model.close();
@@ -147,7 +147,7 @@ public final class ScheduleResource {
 		recordInfo.username = username;
 		recordInfo.codLanguage = codLanguage;		
 		
-		Model model = new SchedineModelSelect(recordInfo);
+		Model model = new SchedineModelSelectAuth(recordInfo);
 		model.executeRequest();
 		Response result = model.getResponse();	
 		model.close();
