@@ -29,6 +29,6 @@ public final class CartCheckDelete extends ModelCheckerTemplateSimpleV2<CartInfo
 	
 	
 	@Override protected int getCodMsgOnResultFalseHook() {
-		return SystemCode.MANDATORY_FIELD_EMPTY;
+		return SystemCode.CART_HEADER_MANDATORY_FIELD_EMPTY;
 	}
 }

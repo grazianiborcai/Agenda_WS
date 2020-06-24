@@ -1,10 +1,10 @@
 package br.com.mind5.business.cart.info;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.cartItem.info.CartemInfo;
+import br.com.mind5.common.CloneUtil;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
 
@@ -52,26 +52,9 @@ public final class CartInfo extends InfoRecord implements Cloneable {
 		CartInfo deepCopy = (CartInfo) super.clone();
 		
 		deepCopy.lastChanged = lastChanged;
-		deepCopy.cartems = cloneCartems(cartems);
+		deepCopy.cartems = CloneUtil.cloneRecords(cartems, this.getClass());
 		
 		return deepCopy;
-	}
-	
-	
-	
-	private List<CartemInfo> cloneCartems(List<CartemInfo> recordInfos) throws CloneNotSupportedException {
-		List<CartemInfo> results = new ArrayList<>();
-		
-		if (recordInfos == null)
-			return null;
-		
-		for (CartemInfo eachRecord : recordInfos) {
-			CartemInfo clonedRecord = (CartemInfo) eachRecord.clone();
-			results.add(clonedRecord);
-		}
-		
-		
-		return results;
 	}
 	
 	
