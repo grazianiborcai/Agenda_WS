@@ -21,10 +21,10 @@ import br.com.mind5.business.scheduleDay.model.SchedayModelSelectNext;
 import br.com.mind5.business.scheduleDay.model.SchedayModelSelectNow;
 import br.com.mind5.business.scheduleDay.model.SchedayModelSelectPrevious;
 import br.com.mind5.business.scheduleLine.info.SchedineInfo;
-import br.com.mind5.business.scheduleLine.model.SchedineModelCancel;
+import br.com.mind5.business.scheduleLine.model.SchedineModelCancelAuth;
 import br.com.mind5.business.scheduleLine.model.SchedineModelInsertAuth;
 import br.com.mind5.business.scheduleLine.model.SchedineModelMoveAuth;
-import br.com.mind5.business.scheduleLine.model.SchedineModelSearch;
+import br.com.mind5.business.scheduleLine.model.SchedineModelSearchAuth;
 import br.com.mind5.business.scheduleLine.model.SchedineModelSelectAuth;
 import br.com.mind5.business.scheduleLine.model.SchedineModelUpdate_;
 import br.com.mind5.business.scheduleMonth.info.SchedmonInfo;
@@ -123,7 +123,7 @@ public final class ScheduleResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response searchSchedine(@Context HttpServletRequest request, String incomingData) {
 		
-		Model model = new SchedineModelSearch(incomingData, request);
+		Model model = new SchedineModelSearchAuth(incomingData, request);
 		model.executeRequest();
 		Response result = model.getResponse();	
 		model.close();
@@ -171,7 +171,7 @@ public final class ScheduleResource {
 		recordInfo.username = username;
 		recordInfo.codLanguage = codLanguage;		
 		
-		Model model = new SchedineModelCancel(recordInfo);
+		Model model = new SchedineModelCancelAuth(recordInfo);
 		model.executeRequest();
 		Response result = model.getResponse();	
 		model.close();

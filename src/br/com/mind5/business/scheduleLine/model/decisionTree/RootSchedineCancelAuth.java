@@ -4,14 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.scheduleLine.info.SchedineInfo;
-import br.com.mind5.business.scheduleLine.model.action.LazySchedineEmulelSend;
-import br.com.mind5.business.scheduleLine.model.action.LazySchedineRootCancelSilent;
-import br.com.mind5.business.scheduleLine.model.action.StdSchedineMergeToSelect;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckCancel;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckExist;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckLangu;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckOwner;
-import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -19,9 +15,9 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class RootSchedineCancelForce extends DeciTreeTemplateWriteV2<SchedineInfo> {
+public final class RootSchedineCancelAuth extends DeciTreeTemplateWriteV2<SchedineInfo> {
 	
-	public RootSchedineCancelForce(DeciTreeOption<SchedineInfo> option) {
+	public RootSchedineCancelAuth(DeciTreeOption<SchedineInfo> option) {
 		super(option);
 	}
 	
@@ -68,14 +64,12 @@ public final class RootSchedineCancelForce extends DeciTreeTemplateWriteV2<Sched
 	@Override protected List<ActionStdV1<SchedineInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedineInfo> option) {
 		List<ActionStdV1<SchedineInfo>> actions = new ArrayList<>();
 
-		ActionStdV1<SchedineInfo> select = new StdSchedineMergeToSelect(option);
-		ActionLazyV1<SchedineInfo> cancel = new LazySchedineRootCancelSilent(option.conn, option.schemaName);
-		ActionLazyV1<SchedineInfo> sendEmail = new LazySchedineEmulelSend(option.conn, option.schemaName);
+		ActionStdV1<SchedineInfo> auth = new NodeSchedineAuthCancel(option).toAction();
+		ActionStdV1<SchedineInfo> cancel = new RootSchedineCancel(option).toAction();
 		
-		select.addPostAction(cancel);
-		select.addPostAction(sendEmail);
+		actions.add(auth);	
+		actions.add(cancel);
 		
-		actions.add(select);
 		return actions;
 	}
 }
