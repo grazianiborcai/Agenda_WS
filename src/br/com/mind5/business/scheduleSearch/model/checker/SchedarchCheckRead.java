@@ -33,15 +33,17 @@ public final class SchedarchCheckRead extends ModelCheckerTemplateSimpleV2<Sched
 		
 		if ( recordInfo.codStore 	<= 0 	&& 
 			 recordInfo.codMat		<= 0 	&&
-			 recordInfo.codEmployee	<= 0 		)
+			 recordInfo.codEmployee	<= 0 	&&
+			 recordInfo.codUser		<= 0 		)
 				
-				return super.FAILED;	
+			return super.FAILED;	
 		
 		
-		if ( recordInfo.month	<= 0 	&&
-			 recordInfo.date	== null 	)
+		if ( recordInfo.year		<= 0 	&&
+			 recordInfo.month		<= 0 	&&
+			 recordInfo.date		== null 	)
 				
-				return super.FAILED;
+			return super.FAILED;
 		
 		
 		return super.SUCCESS;

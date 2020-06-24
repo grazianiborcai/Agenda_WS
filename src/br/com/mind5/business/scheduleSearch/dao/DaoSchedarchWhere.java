@@ -67,6 +67,18 @@ public final class DaoSchedarchWhere implements DaoStmtWhere {
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.timeToString(recordInfo.endTime));
 					break;
 					
+				case DaoSchedarchDbTableColumn.COL_COD_USER :
+					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codUser));
+					break;
+					
+				case DaoSchedarchDbTableColumn.COL_YEAR :
+					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.year));
+					break;
+					
+				case DaoSchedarchDbTableColumn.COL_MONTH :
+					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.month));
+					break;
+					
 				case DaoSchedarchDbTableColumn.COL_RECORD_MODE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.recordMode);
 					break;
