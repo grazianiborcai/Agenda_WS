@@ -68,6 +68,7 @@ public final class DaoStoreSelectSingle extends DaoStmtTemplate<StoreInfo> {
 					dataInfo.recordMode = stmtResult.getString(DaoStoreDbTableColumn.COL_RECORD_MODE);	
 					dataInfo.codPerson = DaoFormatter.sqlToLong(stmtResult, DaoStoreDbTableColumn.COL_COD_PERSON);
 					dataInfo.codCompany = DaoFormatter.sqlToLong(stmtResult, DaoStoreDbTableColumn.COL_COD_COMPANY);
+					dataInfo.codAddress = DaoFormatter.sqlToLong(stmtResult, DaoStoreDbTableColumn.COL_COD_ADDRESS);
 					dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, DaoStoreDbTableColumn.COL_COD_USER);
 					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, DaoStoreDbTableColumn.COL_LAST_CHANGED);
 					dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, DaoStoreDbTableColumn.COL_LAST_CHANGED_BY);

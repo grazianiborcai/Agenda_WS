@@ -4,15 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.store.info.StoreInfo;
-import br.com.mind5.business.store.model.action.LazyStoreDeleteAddress;
-import br.com.mind5.business.store.model.action.StdStoreMergeAddress;
+import br.com.mind5.business.store.model.action.StdStoreDeleteAddress;
 import br.com.mind5.business.store.model.action.StdStoreSuccess;
-import br.com.mind5.business.store.model.checker.StoreCheckAddarch;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.business.store.model.checker.StoreCheckAddress;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
@@ -33,7 +31,7 @@ public final class NodeStoreDeleteAddress extends DeciTreeTemplateWriteV2<StoreI
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
-		checker = new StoreCheckAddarch(checkerOption);
+		checker = new StoreCheckAddress(checkerOption);
 		queue.add(checker);	
 		
 		return new ModelCheckerHelperQueueV2<>(queue);
@@ -44,12 +42,9 @@ public final class NodeStoreDeleteAddress extends DeciTreeTemplateWriteV2<StoreI
 	@Override protected List<ActionStdV1<StoreInfo>> buildActionsOnPassedHook(DeciTreeOption<StoreInfo> option) {
 		List<ActionStdV1<StoreInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<StoreInfo> mergeAddress = new StdStoreMergeAddress(option);
-		ActionLazyV1<StoreInfo> deleteAddress = new LazyStoreDeleteAddress(option.conn, option.schemaName);
+		ActionStdV1<StoreInfo> deleteAddress = new StdStoreDeleteAddress(option);
 		
-		mergeAddress.addPostAction(deleteAddress);
-		
-		actions.add(mergeAddress);		
+		actions.add(deleteAddress);		
 		return actions;
 	}
 	
@@ -58,7 +53,9 @@ public final class NodeStoreDeleteAddress extends DeciTreeTemplateWriteV2<StoreI
 	@Override protected List<ActionStdV1<StoreInfo>> buildActionsOnFailedHook(DeciTreeOption<StoreInfo> option) {
 		List<ActionStdV1<StoreInfo>> actions = new ArrayList<>();
 		
-		actions.add(new StdStoreSuccess(option));		
+		ActionStdV1<StoreInfo> success = new StdStoreSuccess(option);
+		
+		actions.add(success);		
 		return actions;
 	}
 }

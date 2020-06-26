@@ -16,8 +16,7 @@ final class StoreVisiMergeAddress implements InfoMergerVisitorV3<StoreInfo, Addr
 	
 	
 	@Override public boolean shouldMerge(StoreInfo baseInfo, AddressInfo selectedInfo) {
-		return (baseInfo.codOwner == selectedInfo.codOwner		&&
-				baseInfo.codStore == selectedInfo.codStore	);
+		return (baseInfo.codOwner == selectedInfo.codOwner);
 	}
 	
 	
@@ -25,7 +24,8 @@ final class StoreVisiMergeAddress implements InfoMergerVisitorV3<StoreInfo, Addr
 	@Override public List<StoreInfo> merge(StoreInfo baseInfo, AddressInfo selectedInfo) {
 		List<StoreInfo> results = new ArrayList<>();
 		
-		baseInfo.addresses.add(selectedInfo);
+		baseInfo.codAddress = selectedInfo.codAddress;
+		baseInfo.addressData = selectedInfo;
 		
 		results.add(baseInfo);
 		return results;

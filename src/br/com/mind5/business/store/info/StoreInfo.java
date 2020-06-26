@@ -20,11 +20,12 @@ public final class StoreInfo extends InfoRecord implements Cloneable {
 	public long codUser;
 	public long codPerson;
 	public long codCompany;
+	public long codAddress;
 	public String codCurr;
 	public String txtCurr;
 	public String codTimezone;
 	public String txtTimezone;
-	public List<AddressInfo> addresses;
+	public AddressInfo addressData;
 	public List<PhoneInfo> phones;
 	public List<FimistInfo> fimistes;
 	public UserInfo userData;
@@ -47,11 +48,12 @@ public final class StoreInfo extends InfoRecord implements Cloneable {
 		codUser = DefaultValue.number();
 		codPerson = DefaultValue.number();
 		codCompany = DefaultValue.number();
+		codAddress = DefaultValue.number();
 		recordMode = DefaultValue.recordMode();
 		userData = DefaultValue.object();
 		companyData = DefaultValue.object();
 		personData = DefaultValue.object();
-		addresses = DefaultValue.list();
+		addressData = DefaultValue.object();
 		phones = DefaultValue.list();
 		fimistes = DefaultValue.list();
 		lastChangedBy = DefaultValue.number();
@@ -76,7 +78,7 @@ public final class StoreInfo extends InfoRecord implements Cloneable {
 		StoreInfo deepCopy = (StoreInfo) super.clone();
 		
 		deepCopy.fimistes = CloneUtil.cloneRecords(deepCopy.fimistes, this.getClass());
-		deepCopy.addresses = CloneUtil.cloneRecords(deepCopy.addresses, this.getClass());
+		deepCopy.addressData = CloneUtil.cloneRecord(deepCopy.addressData, this.getClass());
 		deepCopy.phones = CloneUtil.cloneRecords(deepCopy.phones, this.getClass());
 		deepCopy.personData = CloneUtil.cloneRecord(deepCopy.personData, this.getClass());
 		deepCopy.companyData = CloneUtil.cloneRecord(deepCopy.companyData, this.getClass());

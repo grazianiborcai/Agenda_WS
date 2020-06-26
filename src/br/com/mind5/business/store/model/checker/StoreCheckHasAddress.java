@@ -16,10 +16,7 @@ public final class StoreCheckHasAddress extends ModelCheckerTemplateSimpleV2<Sto
 	
 	
 	@Override protected boolean checkHook(StoreInfo recordInfo, Connection conn, String schemaName) {	
-		if (recordInfo.addresses == null)			
-			return super.FAILED;		
-		
-		if (recordInfo.addresses.isEmpty())			
+		if (recordInfo.addressData == null)			
 			return super.FAILED;
 		
 		return super.SUCCESS;

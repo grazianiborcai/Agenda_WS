@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.info.InfoUniquifier;
 
@@ -18,7 +17,6 @@ final class StoreUniquifier implements InfoUniquifier<StoreInfo> {
 				int dupleIndex = uniques.indexOf(eachRecord);
 				StoreInfo duple = uniques.get(dupleIndex);
 				
-				uniquifyAddress(duple, eachRecord);
 				uniquifyPhone(duple, eachRecord);
 				
 			} else {
@@ -28,17 +26,6 @@ final class StoreUniquifier implements InfoUniquifier<StoreInfo> {
 			
 		
 			return uniques;
-	}
-	
-	
-	
-	private void uniquifyAddress(StoreInfo duple, StoreInfo eachRecord) {
-		List<AddressInfo> allAddresses = new ArrayList<>();
-		
-		allAddresses.addAll(duple.addresses);
-		allAddresses.addAll(eachRecord.addresses);
-		
-		duple.addresses = allAddresses.stream().distinct().collect(Collectors.toList());
 	}
 	
 	

@@ -10,6 +10,7 @@ import br.com.mind5.business.store.model.action.LazyStoreNodeUpsertAddress;
 import br.com.mind5.business.store.model.action.LazyStoreNodeUpsertPhone;
 import br.com.mind5.business.store.model.checker.StoreCheckCurrency;
 import br.com.mind5.business.store.model.checker.StoreCheckExist;
+import br.com.mind5.business.store.model.checker.StoreCheckHasAddress;
 import br.com.mind5.business.store.model.checker.StoreCheckLangu;
 import br.com.mind5.business.store.model.checker.StoreCheckOwner;
 import br.com.mind5.business.store.model.checker.StoreCheckStorauth;
@@ -17,9 +18,9 @@ import br.com.mind5.business.store.model.checker.StoreCheckTimezone;
 import br.com.mind5.business.store.model.checker.StoreCheckUpdate;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
@@ -42,6 +43,13 @@ public final class RootStoreUpdate extends DeciTreeTemplateWriteV2<StoreInfo> {
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
 		checker = new StoreCheckUpdate(checkerOption);
 		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
+		checker = new StoreCheckHasAddress(checkerOption);
+		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
