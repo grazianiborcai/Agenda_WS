@@ -15,11 +15,11 @@ import br.com.mind5.dao.DaoStmtParamTranslator;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class StorapInsertSingle extends DaoStmtTemplate<StorapInfo> {
+public final class DaoStorapInsertSingle extends DaoStmtTemplate<StorapInfo> {
 	private final String MAIN_TABLE = DaoDbTable.STORE_SNAPSHOT_TABLE;		
 	
 	
-	public StorapInsertSingle(Connection conn, StorapInfo recordInfo, String schemaName) {
+	public DaoStorapInsertSingle(Connection conn, StorapInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -57,6 +57,8 @@ public final class StorapInsertSingle extends DaoStmtTemplate<StorapInfo> {
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codUserSnapshot);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.createdBy);
 				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.createdOn);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codAddress);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codAddressSnapshot);
 				
 				return stmt;
 			}	

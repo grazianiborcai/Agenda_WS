@@ -1,36 +1,41 @@
 package br.com.mind5.business.storeSnapshot.info;
 
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import java.util.ArrayList;
+import java.util.List;
+
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.security.user.info.UserInfo;
 import br.com.mind5.security.userSnapshot.info.UserapInfo;
 
-final class StorapVisiMergeUserap implements InfoMergerVisitor_<StorapInfo, UserapInfo> {
-
-	@Override public StorapInfo writeRecord(UserapInfo sourceOne, StorapInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
-		return merge(sourceOne, sourceTwo);
+final class StorapVisiMergeUserap implements InfoMergerVisitorV3<StorapInfo, UserapInfo> {
+	
+	@Override public List<StorapInfo> beforeMerge(List<StorapInfo> baseInfos) {
+		return baseInfos;
 	}
 	
 	
 	
-	private void checkArgument(UserapInfo sourceOne, StorapInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
+	@Override public boolean shouldMerge(StorapInfo baseInfo, UserapInfo selectedInfo) {
+		return (baseInfo.codOwner   	 == selectedInfo.codOwner	&&
+				baseInfo.codUser 		 == selectedInfo.codUser	&&
+				baseInfo.codUserSnapshot == selectedInfo.codSnapshot		);
 	}
 	
 	
 	
-	private StorapInfo merge(UserapInfo sourceOne, StorapInfo sourceTwo) {
-		sourceTwo.userData = UserInfo.copyFrom(sourceOne);
-		return sourceTwo;
+	@Override public List<StorapInfo> merge(StorapInfo baseInfo, UserapInfo selectedInfo) {
+		List<StorapInfo> results = new ArrayList<>();
+		
+		baseInfo.userData = UserInfo.copyFrom(selectedInfo);
+		
+		results.add(baseInfo);
+		return results;
 	}
-
-
 	
-	@Override public boolean shouldWrite(UserapInfo sourceOne, StorapInfo sourceTwo) {
-		return (sourceOne.codOwner 		== sourceTwo.codOwner 	&&
-				sourceOne.codUser 		== sourceTwo.codUser	&&
-				sourceOne.codSnapshot 	== sourceTwo.codUserSnapshot);
-	}	
+	
+	
+	@Override public InfoUniquifier<StorapInfo> getUniquifier() {
+		return new StorapUniquifier();
+	}
 }

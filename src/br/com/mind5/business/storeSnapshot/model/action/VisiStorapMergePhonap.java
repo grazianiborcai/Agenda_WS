@@ -1,6 +1,5 @@
 package br.com.mind5.business.storeSnapshot.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.phoneSnapshot.info.PhonapCopier;
@@ -8,13 +7,14 @@ import br.com.mind5.business.phoneSnapshot.info.PhonapInfo;
 import br.com.mind5.business.phoneSnapshot.model.decisionTree.RootPhonapSelect;
 import br.com.mind5.business.storeSnapshot.info.StorapInfo;
 import br.com.mind5.business.storeSnapshot.info.StorapMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiStorapMergePhonap extends ActionVisitorTemplateMergeV1<StorapInfo, PhonapInfo> {
+final class VisiStorapMergePhonap extends ActionVisitorTemplateMergeV2<StorapInfo, PhonapInfo> {
 	
-	public VisiStorapMergePhonap(Connection conn, String schemaName) {
-		super(conn, schemaName, PhonapInfo.class);
+	public VisiStorapMergePhonap(DeciTreeOption<StorapInfo> option) {
+		super(option, PhonapInfo.class);
 	}
 	
 	
@@ -25,19 +25,19 @@ final class VisiStorapMergePhonap extends ActionVisitorTemplateMergeV1<StorapInf
 	
 	
 	
-	@Override protected List<PhonapInfo> toActionClassHook(List<StorapInfo> recordInfos) {
-		return PhonapCopier.copyFromStorap(recordInfos);	
+	@Override protected List<PhonapInfo> toActionClassHook(List<StorapInfo> baseInfos) {
+		return PhonapCopier.copyFromStorap(baseInfos);	
 	}
 	
 	
 	
-	@Override protected List<StorapInfo> mergeHook(List<StorapInfo> recordInfos, List<PhonapInfo> selectedInfos) {	
-		return StorapMerger.mergeWithPhonap(selectedInfos, recordInfos);
+	@Override protected List<StorapInfo> mergeHook(List<StorapInfo> baseInfos, List<PhonapInfo> selectedInfos) {	
+		return StorapMerger.mergeWithPhonap(baseInfos, selectedInfos);
 	}
 	
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
+		return super.MERGE_WHEN_EMPTY;
 	}
 }

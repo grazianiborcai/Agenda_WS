@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilder;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 
-public final class StorapWhere implements DaoStmtWhere {
+public final class DaoStorapWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public StorapWhere(DaoWhereBuilderOption whereOption, String tableName, StorapInfo recordInfo) {
+	public DaoStorapWhere(DaoWhereBuilderOption whereOption, String tableName, StorapInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -27,15 +27,15 @@ public final class StorapWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-				case StorapDbTableColumn.COL_COD_OWNER :
+				case DaoStorapDbTableColumn.COL_COD_OWNER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;
 					
-				case StorapDbTableColumn.COL_COD_STORE :
+				case DaoStorapDbTableColumn.COL_COD_STORE :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codStore));
 					break;
 					
-				case StorapDbTableColumn.COL_COD_SNAPSHOT :
+				case DaoStorapDbTableColumn.COL_COD_SNAPSHOT :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codSnapshot));
 					break;
 			}

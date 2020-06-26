@@ -5,12 +5,12 @@ import java.util.List;
 
 import br.com.mind5.business.storeSnapshot.info.StorapInfo;
 import br.com.mind5.business.storeSnapshot.model.decisionTree.NodeStorapComp;
-import br.com.mind5.model.action.ActionLazyTemplateV1;
+import br.com.mind5.model.action.ActionLazyTemplateV2;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyStorapNodeComp extends ActionLazyTemplateV1<StorapInfo, StorapInfo> {
+public final class LazyStorapNodeComp extends ActionLazyTemplateV2<StorapInfo, StorapInfo> {
 	
 	public LazyStorapNodeComp(Connection conn, String schemaName) {
 		super(conn, schemaName);

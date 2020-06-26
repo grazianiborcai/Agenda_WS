@@ -16,8 +16,8 @@ public final class StorapCheckWrite extends ModelCheckerTemplateSimpleV2<StorapI
 	
 	
 	@Override protected boolean checkHook(StorapInfo recordInfo, Connection conn, String schemaName) {	
-		if (   recordInfo.codOwner <= 0 
-			|| recordInfo.codStore <= 0	)
+		if ( recordInfo.codOwner <= 0 ||
+			 recordInfo.codStore <= 0	)
 			
 			return super.FAILED;
 		

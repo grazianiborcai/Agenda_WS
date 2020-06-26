@@ -1,20 +1,20 @@
 package br.com.mind5.business.storeSnapshot.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.storeSnapshot.info.StorapInfo;
 import br.com.mind5.business.storeSnapshot.info.StorapMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.userSnapshot.info.UserapCopier;
 import br.com.mind5.security.userSnapshot.info.UserapInfo;
 import br.com.mind5.security.userSnapshot.model.decisionTree.RootUserapSelect;
 
-final class VisiStorapMergeUserap extends ActionVisitorTemplateMergeV1<StorapInfo, UserapInfo> {
+final class VisiStorapMergeUserap extends ActionVisitorTemplateMergeV2<StorapInfo, UserapInfo> {
 	
-	public VisiStorapMergeUserap(Connection conn, String schemaName) {
-		super(conn, schemaName, UserapInfo.class);
+	public VisiStorapMergeUserap(DeciTreeOption<StorapInfo> option) {
+		super(option, UserapInfo.class);
 	}
 	
 	
@@ -25,19 +25,19 @@ final class VisiStorapMergeUserap extends ActionVisitorTemplateMergeV1<StorapInf
 	
 	
 	
-	@Override protected List<UserapInfo> toActionClassHook(List<StorapInfo> recordInfos) {
-		return UserapCopier.copyFromStorap(recordInfos);	
+	@Override protected List<UserapInfo> toActionClassHook(List<StorapInfo> baseInfos) {
+		return UserapCopier.copyFromStorap(baseInfos);	
 	}
 	
 	
 	
-	@Override protected List<StorapInfo> mergeHook(List<StorapInfo> recordInfos, List<UserapInfo> selectedInfos) {	
-		return StorapMerger.mergeWithUserap(selectedInfos, recordInfos);
+	@Override protected List<StorapInfo> mergeHook(List<StorapInfo> baseInfos, List<UserapInfo> selectedInfos) {	
+		return StorapMerger.mergeWithUserap(baseInfos, selectedInfos);
 	}
 	
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
+		return super.MERGE_WHEN_EMPTY;
 	}
 }

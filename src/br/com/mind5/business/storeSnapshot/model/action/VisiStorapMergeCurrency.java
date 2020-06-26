@@ -1,19 +1,19 @@
 package br.com.mind5.business.storeSnapshot.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.storeSnapshot.info.StorapInfo;
 import br.com.mind5.business.storeSnapshot.info.StorapMerger;
 import br.com.mind5.masterData.currency.info.CurrencyInfo;
 import br.com.mind5.masterData.currency.model.decisionTree.RootCurrencySelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiStorapMergeCurrency extends ActionVisitorTemplateMergeV1<StorapInfo, CurrencyInfo> {
+final class VisiStorapMergeCurrency extends ActionVisitorTemplateMergeV2<StorapInfo, CurrencyInfo> {
 	
-	public VisiStorapMergeCurrency(Connection conn, String schemaName) {
-		super(conn, schemaName, CurrencyInfo.class);
+	public VisiStorapMergeCurrency(DeciTreeOption<StorapInfo> option) {
+		super(option, CurrencyInfo.class);
 	}
 	
 	
@@ -24,13 +24,13 @@ final class VisiStorapMergeCurrency extends ActionVisitorTemplateMergeV1<StorapI
 	
 	
 	
-	@Override protected List<StorapInfo> mergeHook(List<StorapInfo> recordInfos, List<CurrencyInfo> selectedInfos) {	
-		return StorapMerger.mergeWithCurrency(selectedInfos, recordInfos);
+	@Override protected List<StorapInfo> mergeHook(List<StorapInfo> baseInfos, List<CurrencyInfo> selectedInfos) {	
+		return StorapMerger.mergeWithCurrency(baseInfos, selectedInfos);
 	}
 	
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
+		return super.MERGE_WHEN_EMPTY;
 	}
 }

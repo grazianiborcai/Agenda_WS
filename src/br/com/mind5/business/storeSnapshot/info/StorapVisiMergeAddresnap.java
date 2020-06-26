@@ -1,38 +1,41 @@
 package br.com.mind5.business.storeSnapshot.info;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.addressSnapshot.info.AddresnapInfo;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-final class StorapVisiMergeAddresnap implements InfoMergerVisitor_<StorapInfo, AddresnapInfo> {
-
-	@Override public StorapInfo writeRecord(AddresnapInfo sourceOne, StorapInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
-		return merge(sourceOne, sourceTwo);
+final class StorapVisiMergeAddresnap implements InfoMergerVisitorV3<StorapInfo, AddresnapInfo> {
+	
+	@Override public List<StorapInfo> beforeMerge(List<StorapInfo> baseInfos) {
+		return baseInfos;
 	}
 	
 	
 	
-	private void checkArgument(AddresnapInfo sourceOne, StorapInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
+	@Override public boolean shouldMerge(StorapInfo baseInfo, AddresnapInfo selectedInfo) {
+		return (baseInfo.codOwner   		== selectedInfo.codOwner	&&
+				baseInfo.codAddress 		== selectedInfo.codAddress	&&
+				baseInfo.codAddressSnapshot == selectedInfo.codSnapshot		);
 	}
 	
 	
 	
-	private StorapInfo merge(AddresnapInfo sourceOne, StorapInfo sourceTwo) {
-		AddressInfo addressCopy = AddressInfo.copyFrom(sourceOne);
-		sourceTwo.addresses.add(addressCopy);
-
-		return sourceTwo;
+	@Override public List<StorapInfo> merge(StorapInfo baseInfo, AddresnapInfo selectedInfo) {
+		List<StorapInfo> results = new ArrayList<>();
+		
+		baseInfo.addressData = AddressInfo.copyFrom(selectedInfo);
+		
+		results.add(baseInfo);
+		return results;
 	}
 	
 	
 	
-	@Override public boolean shouldWrite(AddresnapInfo sourceOne, StorapInfo sourceTwo) {
-		return (sourceOne.codOwner 			== sourceTwo.codOwner &&
-				sourceOne.codStore 			== sourceTwo.codStore &&
-				sourceOne.codStoreSnapshot 	== sourceTwo.codSnapshot);
-	}	
+	@Override public InfoUniquifier<StorapInfo> getUniquifier() {
+		return new StorapUniquifier();
+	}
 }

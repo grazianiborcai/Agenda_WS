@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.storeSnapshot.info.StorapInfo;
-import br.com.mind5.business.storeSnapshot.model.action.StdStorapMergeUser;
+import br.com.mind5.business.storeSnapshot.model.action.StdStorapMergeUselis;
 import br.com.mind5.business.storeSnapshot.model.action.StdStorapSuccess;
 import br.com.mind5.business.storeSnapshot.model.checker.StorapCheckHasUser;
 import br.com.mind5.model.action.ActionStdV1;
@@ -12,9 +12,9 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class NodeStorapUser extends DeciTreeTemplateWriteV1<StorapInfo> {
+public final class NodeStorapUser extends DeciTreeTemplateWriteV2<StorapInfo> {
 	
 	public NodeStorapUser(DeciTreeOption<StorapInfo> option) {
 		super(option);
@@ -42,9 +42,9 @@ public final class NodeStorapUser extends DeciTreeTemplateWriteV1<StorapInfo> {
 	@Override protected List<ActionStdV1<StorapInfo>> buildActionsOnPassedHook(DeciTreeOption<StorapInfo> option) {
 		List<ActionStdV1<StorapInfo>> actions = new ArrayList<>();
 
-		ActionStdV1<StorapInfo> mergeUser = new StdStorapMergeUser(option);
+		ActionStdV1<StorapInfo> mergeUselis = new StdStorapMergeUselis(option);
 		
-		actions.add(mergeUser);	
+		actions.add(mergeUselis);	
 		return actions;
 	}
 	

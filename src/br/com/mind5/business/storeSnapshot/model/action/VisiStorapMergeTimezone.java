@@ -1,19 +1,19 @@
 package br.com.mind5.business.storeSnapshot.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.storeSnapshot.info.StorapInfo;
 import br.com.mind5.business.storeSnapshot.info.StorapMerger;
 import br.com.mind5.masterData.timezone.info.TimezoneInfo;
 import br.com.mind5.masterData.timezone.model.decisionTree.RootTimezoneSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiStorapMergeTimezone extends ActionVisitorTemplateMergeV1<StorapInfo, TimezoneInfo> {
+final class VisiStorapMergeTimezone extends ActionVisitorTemplateMergeV2<StorapInfo, TimezoneInfo> {
 	
-	public VisiStorapMergeTimezone(Connection conn, String schemaName) {
-		super(conn, schemaName, TimezoneInfo.class);
+	public VisiStorapMergeTimezone(DeciTreeOption<StorapInfo> option) {
+		super(option, TimezoneInfo.class);
 	}
 	
 	
@@ -24,13 +24,13 @@ final class VisiStorapMergeTimezone extends ActionVisitorTemplateMergeV1<StorapI
 	
 	
 	
-	@Override protected List<StorapInfo> mergeHook(List<StorapInfo> recordInfos, List<TimezoneInfo> selectedInfos) {	
-		return StorapMerger.mergeWithTimezone(selectedInfos, recordInfos);
+	@Override protected List<StorapInfo> mergeHook(List<StorapInfo> baseInfos, List<TimezoneInfo> selectedInfos) {	
+		return StorapMerger.mergeWithTimezone(baseInfos, selectedInfos);
 	}
 	
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
+		return super.MERGE_WHEN_EMPTY;
 	}
 }
