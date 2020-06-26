@@ -2,7 +2,7 @@ package br.com.mind5.business.store.info;
 
 import br.com.mind5.info.InfoCopierTemplate;
 
-final class StoreCopyStoreKey extends InfoCopierTemplate<StoreInfo, StoreInfo>{
+final class StoreCopyStoreKey extends InfoCopierTemplate<StoreInfo, StoreInfo> {
 	
 	public StoreCopyStoreKey() {
 		super();
