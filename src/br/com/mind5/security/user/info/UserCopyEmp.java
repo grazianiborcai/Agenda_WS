@@ -10,7 +10,7 @@ import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.common.SystemLog;
 import br.com.mind5.info.InfoCopierTemplate;
 
-final class UserCopyEmp extends InfoCopierTemplate<UserInfo, EmpInfo>{
+final class UserCopyEmp extends InfoCopierTemplate<UserInfo, EmpInfo> {
 	
 	public UserCopyEmp() {
 		super();

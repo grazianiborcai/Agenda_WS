@@ -3,7 +3,7 @@ package br.com.mind5.security.user.info;
 import br.com.mind5.business.customer.info.CusInfo;
 import br.com.mind5.info.InfoCopierTemplate;
 
-final class UserCopyCusKey extends InfoCopierTemplate<UserInfo, CusInfo>{
+final class UserCopyCusKey extends InfoCopierTemplate<UserInfo, CusInfo> {
 	
 	public UserCopyCusKey() {
 		super();

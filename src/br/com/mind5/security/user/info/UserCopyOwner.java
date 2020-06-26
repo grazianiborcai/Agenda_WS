@@ -10,7 +10,7 @@ import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.common.SystemLog;
 import br.com.mind5.info.InfoCopierTemplate;
 
-final class UserCopyOwner extends InfoCopierTemplate<UserInfo, OwnerInfo>{
+final class UserCopyOwner extends InfoCopierTemplate<UserInfo, OwnerInfo> {
 	
 	public UserCopyOwner() {
 		super();

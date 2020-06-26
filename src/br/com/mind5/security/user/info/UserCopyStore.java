@@ -1,16 +1,11 @@
 package br.com.mind5.security.user.info;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
-import br.com.mind5.business.address.info.AddressInfo;
-import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.business.store.info.StoreInfo;
-import br.com.mind5.common.SystemLog;
 import br.com.mind5.info.InfoCopierTemplate;
 
-final class UserCopyStore extends InfoCopierTemplate<UserInfo, StoreInfo>{
+final class UserCopyStore extends InfoCopierTemplate<UserInfo, StoreInfo> {
 	
 	public UserCopyStore() {
 		super();
@@ -26,69 +21,11 @@ final class UserCopyStore extends InfoCopierTemplate<UserInfo, StoreInfo>{
 		result.codUser = source.codUser;
 		result.codLanguage = source.codLanguage;
 		result.username = source.username;
+		result.phones = source.phones;
 		
-		result.addresses = cloneAddresses(source.addresses);
-		result.phones = clonePhones(source.phones);
+		result.addresses = new ArrayList<>();
+		result.addresses.add(source.addressData);		
 		
 		return result;
-	}
-	
-	
-	
-	private List<AddressInfo> cloneAddresses(List<AddressInfo> recordInfos) {
-		try {
-			if (recordInfos == null)
-				return null;
-			
-			if (recordInfos.isEmpty())
-				return Collections.emptyList();
-			
-			
-			List<AddressInfo> clones = new ArrayList<>();
-			
-			for (AddressInfo eachRecord : recordInfos) {
-				AddressInfo cloned = (AddressInfo) eachRecord.clone();
-				clones.add(cloned);
-			}
-			
-			return clones;
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	private List<PhoneInfo> clonePhones(List<PhoneInfo> recordInfos) {
-		try {
-			if (recordInfos == null)
-				return null;
-			
-			if (recordInfos.isEmpty())
-				return Collections.emptyList();
-			
-			
-			List<PhoneInfo> clones = new ArrayList<>();
-			
-			for (PhoneInfo eachRecord : recordInfos) {
-				PhoneInfo cloned = (PhoneInfo) eachRecord.clone();
-				clones.add(cloned);
-			}
-			
-			return clones;
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	private void logException(Exception e) {
-		
-		SystemLog.logError(this.getClass(), e);
 	}
 }

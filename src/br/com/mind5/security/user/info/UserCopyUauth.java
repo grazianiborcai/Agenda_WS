@@ -3,7 +3,7 @@ package br.com.mind5.security.user.info;
 import br.com.mind5.info.InfoCopierTemplate;
 import br.com.mind5.security.userAuthentication.info.UauthInfo;
 
-final class UserCopyUauth extends InfoCopierTemplate<UserInfo, UauthInfo>{
+final class UserCopyUauth extends InfoCopierTemplate<UserInfo, UauthInfo> {
 	
 	public UserCopyUauth() {
 		super();

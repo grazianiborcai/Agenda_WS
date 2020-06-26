@@ -9,7 +9,7 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.user.dao.DaoUserDelete;
 import br.com.mind5.security.user.info.UserInfo;
 
-final class VisiUserDaoDelete extends ActionVisitorTemplateStmtV2<UserInfo>{
+final class VisiUserDaoDelete extends ActionVisitorTemplateStmtV2<UserInfo> {
 
 	public VisiUserDaoDelete(DeciTreeOption<UserInfo> option) {
 		super(option);

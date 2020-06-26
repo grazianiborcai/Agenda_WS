@@ -3,7 +3,7 @@ package br.com.mind5.security.user.info;
 import br.com.mind5.business.owner.info.OwnerInfo;
 import br.com.mind5.info.InfoCopierTemplate;
 
-final class UserCopyOwnerKey extends InfoCopierTemplate<UserInfo, OwnerInfo>{
+final class UserCopyOwnerKey extends InfoCopierTemplate<UserInfo, OwnerInfo> {
 	
 	public UserCopyOwnerKey() {
 		super();
