@@ -4,17 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 import br.com.mind5.security.storeAuthorization.info.StorauthInfo;
-import br.com.mind5.security.storeAuthorization.model.checker.StorauthCheckIsOwner;
+import br.com.mind5.security.storeAuthorization.model.action.StdStorauthMergeToSelect;
+import br.com.mind5.security.storeAuthorization.model.action.StdStorauthSuccess;
+import br.com.mind5.security.storeAuthorization.model.checker.StorauthCheckAuthOwner;
 
-public final class NodeStorauthSelectL1 extends DeciTreeTemplateWriteV2<StorauthInfo> {
+public final class NodeStorauthSelect extends DeciTreeTemplateWriteV2<StorauthInfo> {
 	
-	public NodeStorauthSelectL1(DeciTreeOption<StorauthInfo> option) {
+	public NodeStorauthSelect(DeciTreeOption<StorauthInfo> option) {
 		super(option);
 	}
 	
@@ -29,7 +31,7 @@ public final class NodeStorauthSelectL1 extends DeciTreeTemplateWriteV2<Storauth
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;
-		checker = new StorauthCheckIsOwner(checkerOption);
+		checker = new StorauthCheckAuthOwner(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueueV2<>(queue);
@@ -40,8 +42,8 @@ public final class NodeStorauthSelectL1 extends DeciTreeTemplateWriteV2<Storauth
 	@Override protected List<ActionStdV1<StorauthInfo>> buildActionsOnPassedHook(DeciTreeOption<StorauthInfo> option) {
 		List<ActionStdV1<StorauthInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<StorauthInfo> nodeSelectOwner = new NodeStorauthSelectOwner(option).toAction();			
-		actions.add(nodeSelectOwner);		
+		ActionStdV1<StorauthInfo> success = new StdStorauthSuccess(option);			
+		actions.add(success);		
 		
 		return actions;
 	}
@@ -51,9 +53,9 @@ public final class NodeStorauthSelectL1 extends DeciTreeTemplateWriteV2<Storauth
 	@Override protected List<ActionStdV1<StorauthInfo>> buildActionsOnFailedHook(DeciTreeOption<StorauthInfo> option) {
 		List<ActionStdV1<StorauthInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<StorauthInfo> nodeSelectStore = new NodeStorauthSelectStore(option).toAction();			
-		actions.add(nodeSelectStore);		
-		
+		ActionStdV1<StorauthInfo> select = new StdStorauthMergeToSelect(option);
+			
+		actions.add(select);		
 		return actions;
 	}
 }

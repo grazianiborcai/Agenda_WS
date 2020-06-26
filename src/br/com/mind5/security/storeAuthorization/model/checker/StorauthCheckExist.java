@@ -1,14 +1,12 @@
 package br.com.mind5.security.storeAuthorization.model.checker;
 
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.storeAuthorization.info.StorauthInfo;
-import br.com.mind5.security.storeAuthorization.model.action.LazyStorauthDaoSelect;
-import br.com.mind5.security.storeAuthorization.model.action.StdStorauthMergeUsername;
+import br.com.mind5.security.storeAuthorization.model.decisionTree.RootStorauthSelect;
 
 public final class StorauthCheckExist extends ModelCheckerTemplateActionV2<StorauthInfo, StorauthInfo> {
 	
@@ -19,12 +17,8 @@ public final class StorauthCheckExist extends ModelCheckerTemplateActionV2<Stora
 	
 	
 	@Override protected ActionStdV1<StorauthInfo> buildActionHook(DeciTreeOption<StorauthInfo> option) {
-		ActionStdV1<StorauthInfo> mergeUsername = new StdStorauthMergeUsername(option);
-		ActionLazyV1<StorauthInfo> select = new LazyStorauthDaoSelect(option.conn, option.schemaName);
-		
-		mergeUsername.addPostAction(select);
-		
-		return mergeUsername;
+		ActionStdV1<StorauthInfo> select = new RootStorauthSelect(option).toAction();		
+		return select;
 	}
 	
 	

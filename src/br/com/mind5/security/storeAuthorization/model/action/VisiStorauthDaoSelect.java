@@ -9,7 +9,7 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.storeAuthorization.dao.DaoStorauthSelect;
 import br.com.mind5.security.storeAuthorization.info.StorauthInfo;
 
-final class VisiStorauthDaoSelect extends ActionVisitorTemplateStmtV2<StorauthInfo>{
+final class VisiStorauthDaoSelect extends ActionVisitorTemplateStmtV2<StorauthInfo> {
 
 	public VisiStorauthDaoSelect(DeciTreeOption<StorauthInfo> option) {
 		super(option);

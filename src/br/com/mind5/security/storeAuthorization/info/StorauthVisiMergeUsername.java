@@ -26,7 +26,6 @@ final class StorauthVisiMergeUsername implements InfoMergerVisitorV3<StorauthInf
 		List<StorauthInfo> results = new ArrayList<>();
 		
 		baseInfo.codUser = selectedInfo.codUser;
-		baseInfo.codUserCategory = selectedInfo.codUserCategory;
 		
 		results.add(baseInfo);
 		return results;

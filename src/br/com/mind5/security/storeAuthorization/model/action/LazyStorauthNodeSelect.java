@@ -8,10 +8,11 @@ import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.storeAuthorization.info.StorauthInfo;
+import br.com.mind5.security.storeAuthorization.model.decisionTree.NodeStorauthSelect;
 
-public final class LazyStorauthDaoSelect extends ActionLazyTemplateV2<StorauthInfo, StorauthInfo> {
+public final class LazyStorauthNodeSelect extends ActionLazyTemplateV2<StorauthInfo, StorauthInfo> {
 	
-	public LazyStorauthDaoSelect(Connection conn, String schemaName) {
+	public LazyStorauthNodeSelect(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +25,7 @@ public final class LazyStorauthDaoSelect extends ActionLazyTemplateV2<StorauthIn
 	
 	
 	@Override protected ActionStdV1<StorauthInfo> getInstanceOfActionHook(DeciTreeOption<StorauthInfo> option) {
-		return new StdStorauthDaoSelect(option);
+		return new NodeStorauthSelect(option).toAction();
 	}
 	
 	

@@ -29,16 +29,16 @@ public final class DaoStorauthDbTableColumn extends DaoDbTableColumnTemplate {
 		List<DaoColumn> columns = new ArrayList<>();	
 		
 		oneColumn = new DaoColumn();
-		oneColumn.tableName = DaoDbTable.OWNER_TABLE;
-		oneColumn.columnName = COL_COD_OWNER;
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_COD_STORE;
 		oneColumn.isPK = IS_PRIMARY_KEY;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
 		oneColumn = new DaoColumn();
-		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COD_STORE;
+		oneColumn.tableName = DaoDbTable.OWNER_TABLE;
+		oneColumn.columnName = COL_COD_OWNER;
 		oneColumn.isPK = IS_PRIMARY_KEY;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
