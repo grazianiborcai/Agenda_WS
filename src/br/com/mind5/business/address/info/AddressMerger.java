@@ -25,6 +25,19 @@ public final class AddressMerger {
 	
 	
 	
+	public static List<AddressInfo> mergeWithAddarchStore(List<AddressInfo> baseInfos, List<AddarchInfo> selectedInfos) {
+		InfoMergerBuilderV3<AddressInfo, AddarchInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new AddressVisiMergeAddarchStore());
+		InfoMergerV3<AddressInfo, AddarchInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	
 	public static List<AddressInfo> mergeWithUsername(List<AddressInfo> baseInfos, List<UsernameInfo> selectedInfos) {
 		InfoMergerBuilderV3<AddressInfo, UsernameInfo> builder = new InfoMergerBuilderV3<>();
 		

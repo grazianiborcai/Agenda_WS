@@ -7,9 +7,9 @@ import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class AddressCheckInsert extends ModelCheckerTemplateSimpleV2<AddressInfo> {
+public final class AddressCheckUpsertStore extends ModelCheckerTemplateSimpleV2<AddressInfo> {
 
-	public AddressCheckInsert(ModelCheckerOption option) {
+	public AddressCheckUpsertStore(ModelCheckerOption option) {
 		super(option);
 	}
 	
@@ -17,8 +17,8 @@ public final class AddressCheckInsert extends ModelCheckerTemplateSimpleV2<Addre
 	
 	@Override protected boolean checkHook(AddressInfo recordInfo, Connection conn, String schemaName) {	
 		if ( recordInfo.codOwner 	<= 0 	||
+			 recordInfo.codStore 	<= 0 	||
 			 recordInfo.username 	== null	||
-			 recordInfo.codCountry 	== null ||
 			 recordInfo.codLanguage	== null		)	
 			
 			return super.FAILED;
