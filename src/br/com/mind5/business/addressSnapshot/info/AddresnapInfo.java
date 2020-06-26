@@ -12,8 +12,6 @@ public final class AddresnapInfo extends InfoRecord implements Cloneable {
 	public long codAddress;
 	public long codCustomer;
 	public long codCustomerSnapshot;
-	public long codStore;
-	public long codStoreSnapshot;
 	public long codEmployee;
 	public long codEmployeeSnapshot;
 	public long codUser;
@@ -51,15 +49,13 @@ public final class AddresnapInfo extends InfoRecord implements Cloneable {
 	
 	
 	public AddresnapInfo() {
-		super(AddresnapInfo.class);
+		super();
 		
 		codOwner = DefaultValue.number();
 		codSnapshot = DefaultValue.number();
 		codAddress = DefaultValue.number();
 		codCustomer = DefaultValue.number();
 		codCustomerSnapshot = DefaultValue.number();
-		codStore = DefaultValue.number();
-		codStoreSnapshot = DefaultValue.number();
 		codEmployee = DefaultValue.number();
 		codEmployeeSnapshot = DefaultValue.number();
 		codOwnerRef = DefaultValue.number();
@@ -101,7 +97,6 @@ public final class AddresnapInfo extends InfoRecord implements Cloneable {
 		result = result * 31 + (int) (codSnapshot 	^ (codSnapshot  >>> 32));
 		result = result * 31 + (int) (codAddress 	^ (codAddress 	>>> 32));		
 		result = result * 31 + (int) (codCustomer 	^ (codCustomer 	>>> 32));
-		result = result * 31 + (int) (codStore 		^ (codStore 	>>> 32));
 		result = result * 31 + (int) (codEmployee 	^ (codEmployee 	>>> 32));
 		
 		if (codCountry != null)
@@ -169,7 +164,6 @@ public final class AddresnapInfo extends InfoRecord implements Cloneable {
 				codSnapshot == obj.codSnapshot 						&& 
 				codAddress 	== obj.codAddress						&&
 				codCustomer	== obj.codCustomer						&&
-				codStore	== obj.codStore							&&
 				codEmployee	== obj.codEmployee						&&
 				super.isStringEqual(codCountry, obj.codCountry)		&&				
 				super.isStringEqual(codState, obj.codState)			&&

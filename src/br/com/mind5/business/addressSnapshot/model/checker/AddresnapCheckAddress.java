@@ -7,7 +7,7 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 
-public final class AddresnapCheckAddress extends ModelCheckerTemplateForwardV2<AddresnapInfo, AddressInfo> {
+public final class AddresnapCheckAddress extends ModelCheckerTemplateForwardV2<AddresnapInfo, AddressInfo>{
 	
 	public AddresnapCheckAddress(ModelCheckerOption option) {
 		super(option);

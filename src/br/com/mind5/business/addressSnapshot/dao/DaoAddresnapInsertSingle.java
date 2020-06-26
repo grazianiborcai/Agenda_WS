@@ -15,7 +15,7 @@ import br.com.mind5.dao.DaoStmtParamTranslator;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class DaoAddresnapInsertSingle extends DaoStmtTemplate<AddresnapInfo> {
+public final class DaoAddresnapInsertSingle extends DaoStmtTemplate<AddresnapInfo>{
 	private final String MAIN_TABLE = DaoDbTable.ADDRESS_SNAPSHOT_TABLE;	
 	
 	
@@ -44,7 +44,6 @@ public final class DaoAddresnapInsertSingle extends DaoStmtTemplate<AddresnapInf
 				
 				stmt.setLong(i++, recordInfo.codOwner);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codAddress);
-				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codStore);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codCustomer);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codEmployee);			
 				stmt.setString(i++, recordInfo.codCountry);
@@ -71,7 +70,6 @@ public final class DaoAddresnapInsertSingle extends DaoStmtTemplate<AddresnapInf
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.lastChangedBy);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codCustomerSnapshot);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codEmployeeSnapshot);
-				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codStoreSnapshot);	
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codUserSnapshot);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codOwnerRefSnapshot);	
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.createdBy);	

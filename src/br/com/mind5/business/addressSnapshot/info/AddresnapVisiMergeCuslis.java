@@ -7,7 +7,7 @@ import br.com.mind5.business.customerList.info.CuslisInfo;
 import br.com.mind5.info.InfoMergerVisitorV3;
 import br.com.mind5.info.InfoUniquifier;
 
-final class AddresnapVisiMergeCuslis implements InfoMergerVisitorV3<AddresnapInfo, CuslisInfo> {
+final class AddresnapVisiMergeCuslis implements InfoMergerVisitorV3<AddresnapInfo, CuslisInfo>{
 	
 	@Override public List<AddresnapInfo> beforeMerge(List<AddresnapInfo> baseInfos) {
 		return baseInfos;

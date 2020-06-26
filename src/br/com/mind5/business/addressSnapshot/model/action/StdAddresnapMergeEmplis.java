@@ -5,7 +5,7 @@ import br.com.mind5.model.action.ActionStdTemplateV2;
 import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdAddresnapMergeEmplis extends ActionStdTemplateV2<AddresnapInfo> {
+public final class StdAddresnapMergeEmplis extends ActionStdTemplateV2<AddresnapInfo>{
 
 	public StdAddresnapMergeEmplis(DeciTreeOption<AddresnapInfo> option) {
 		super(option);

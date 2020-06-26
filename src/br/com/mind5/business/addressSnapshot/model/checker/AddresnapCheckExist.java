@@ -8,7 +8,7 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class AddresnapCheckExist extends ModelCheckerTemplateActionV2<AddresnapInfo, AddresnapInfo> {
+public final class AddresnapCheckExist extends ModelCheckerTemplateActionV2<AddresnapInfo, AddresnapInfo>{
 	
 	public AddresnapCheckExist(ModelCheckerOption option) {
 		super(option, AddresnapInfo.class);

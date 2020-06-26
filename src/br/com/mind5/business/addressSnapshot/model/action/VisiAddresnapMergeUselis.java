@@ -12,7 +12,7 @@ import br.com.mind5.security.userList.info.UselisCopier;
 import br.com.mind5.security.userList.info.UselisInfo;
 import br.com.mind5.security.userList.model.decisionTree.RootUselisSelect;
 
-final class VisiAddresnapMergeUselis extends ActionVisitorTemplateMergeV2<AddresnapInfo, UselisInfo> {
+final class VisiAddresnapMergeUselis extends ActionVisitorTemplateMergeV2<AddresnapInfo, UselisInfo>{
 	
 	public VisiAddresnapMergeUselis(DeciTreeOption<AddresnapInfo> option) {
 		super(option, UselisInfo.class);

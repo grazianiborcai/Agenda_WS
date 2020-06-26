@@ -16,7 +16,7 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class DaoAddresnapSelectSingle extends DaoStmtTemplate<AddresnapInfo> {
+public final class DaoAddresnapSelectSingle extends DaoStmtTemplate<AddresnapInfo>{
 	private final String MAIN_TABLE = DaoDbTable.ADDRESS_SNAPSHOT_TABLE;	
 	
 	
@@ -80,8 +80,6 @@ public final class DaoAddresnapSelectSingle extends DaoStmtTemplate<AddresnapInf
 					dataInfo.line6 = stmtResult.getString(DaoAddresnapDbTableColumn.COL_LINE6);
 					dataInfo.line7 = stmtResult.getString(DaoAddresnapDbTableColumn.COL_LINE7);
 					dataInfo.recordMode = stmtResult.getString(DaoAddresnapDbTableColumn.COL_RECORD_MODE);
-					dataInfo.codStore = DaoFormatter.sqlToLong(stmtResult, DaoAddresnapDbTableColumn.COL_COD_STORE);
-					dataInfo.codStoreSnapshot = DaoFormatter.sqlToLong(stmtResult, DaoAddresnapDbTableColumn.COL_COD_STORE_SNAPSHOT);
 					dataInfo.codCustomer = DaoFormatter.sqlToLong(stmtResult, DaoAddresnapDbTableColumn.COL_COD_CUSTOMER);
 					dataInfo.codCustomerSnapshot = DaoFormatter.sqlToLong(stmtResult, DaoAddresnapDbTableColumn.COL_COD_CUSTOMER_SNAPSHOT);
 					dataInfo.codEmployee = DaoFormatter.sqlToLong(stmtResult, DaoAddresnapDbTableColumn.COL_COD_EMPLOYEE);

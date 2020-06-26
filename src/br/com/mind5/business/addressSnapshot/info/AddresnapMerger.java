@@ -4,7 +4,6 @@ import java.util.List;
 
 import br.com.mind5.business.customerList.info.CuslisInfo;
 import br.com.mind5.business.employeeList.info.EmplisInfo;
-import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.form.formAddress.info.FormessInfo;
 import br.com.mind5.info.InfoMergerBuilderV3;
 import br.com.mind5.info.InfoMergerV3;
@@ -12,20 +11,7 @@ import br.com.mind5.masterData.country.info.CountryInfo;
 import br.com.mind5.masterData.state.info.StateInfo;
 import br.com.mind5.security.userList.info.UselisInfo;
 
-public final class AddresnapMerger {	
-	public static List<AddresnapInfo> mergeWithStolis(List<AddresnapInfo> baseInfos, List<StolisInfo> selectedInfos) {
-		InfoMergerBuilderV3<AddresnapInfo, StolisInfo> builder = new InfoMergerBuilderV3<>();
-		
-		builder.addBaseInfos(baseInfos);
-		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new AddresnapVisiMergeStolis());
-		InfoMergerV3<AddresnapInfo, StolisInfo> merger = builder.build();		
-	
-		return merger.merge();
-	}
-	
-	
-	
+public final class AddresnapMerger {
 	public static List<AddresnapInfo> mergeWithCuslis(List<AddresnapInfo> baseInfos, List<CuslisInfo> selectedInfos) {
 		InfoMergerBuilderV3<AddresnapInfo, CuslisInfo> builder = new InfoMergerBuilderV3<>();
 		

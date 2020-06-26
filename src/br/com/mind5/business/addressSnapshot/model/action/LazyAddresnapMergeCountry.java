@@ -9,7 +9,7 @@ import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyAddresnapMergeCountry extends ActionLazyTemplateV2<AddresnapInfo, AddresnapInfo> {
+public final class LazyAddresnapMergeCountry extends ActionLazyTemplateV2<AddresnapInfo, AddresnapInfo>{
 
 	public LazyAddresnapMergeCountry(Connection conn, String schemaName) {
 		super(conn, schemaName);

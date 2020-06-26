@@ -13,7 +13,7 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class NodeAddresnapUselis extends DeciTreeTemplateWriteV2<AddresnapInfo> {
+public final class NodeAddresnapUselis extends DeciTreeTemplateWriteV2<AddresnapInfo>{
 	
 	public NodeAddresnapUselis(DeciTreeOption<AddresnapInfo> option) {
 		super(option);

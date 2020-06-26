@@ -15,8 +15,8 @@ final class AddresnapCopyStorap extends InfoCopierTemplate<AddresnapInfo, Storap
 		AddresnapInfo result = new AddresnapInfo();
 		
 		result.codOwner = source.codOwner;
-		result.codStore = source.codStore;
-		result.codStoreSnapshot = source.codSnapshot;
+		result.codAddress = source.codAddress;
+		result.codSnapshot = source.codAddressSnapshot;
 		result.codLanguage = source.codLanguage;		
 		result.username = source.username;
 		

@@ -14,7 +14,7 @@ import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class NodeAddresnapState extends DeciTreeTemplateWriteV2<AddresnapInfo> {
+public final class NodeAddresnapState extends DeciTreeTemplateWriteV2<AddresnapInfo>{
 	
 	public NodeAddresnapState(DeciTreeOption<AddresnapInfo> option) {
 		super(option);
