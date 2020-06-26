@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
-import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.info.InfoSetterTemplate;
 import br.com.mind5.message.emailBody.info.EmabodyInfo;
@@ -47,24 +46,20 @@ public final class EmulelSetterEmabody extends InfoSetterTemplate<EmulelInfo> {
 	
 	
 	private String firstAddressToString(StolisInfo stolis) {
-		if (stolis.addresses == null)
+		if (stolis.addressData == null)
 			return "";
 		
-		if (stolis.addresses.isEmpty())
-			return "";
 		
-		AddressInfo firstAddress = stolis.addresses.get(0);
+		String result = stolis.addressData.street + " - " + stolis.addressData.streetNumber;
 		
-		String result = firstAddress.street + " - " + firstAddress.streetNumber;
+		if (stolis.addressData.complement != null)
+			result = result + " - " + stolis.addressData.complement;
 		
-		if (firstAddress.complement != null)
-			result = result + " - " + firstAddress.complement;
+		if (stolis.addressData.district != null)
+			result = result + " - " + stolis.addressData.district;
 		
-		if (firstAddress.district != null)
-			result = result + " - " + firstAddress.district;
-		
-		result = result + " - " + firstAddress.city;
-		result = result + " - " + firstAddress.txtState;
+		result = result + " - " + stolis.addressData.city;
+		result = result + " - " + stolis.addressData.txtState;
 		
 		return result;
 	}
