@@ -17,7 +17,7 @@ final class StolisVisiMergeAddress implements InfoMergerVisitorV3<StolisInfo, Ad
 	
 	@Override public boolean shouldMerge(StolisInfo baseInfo, AddressInfo selectedInfo) {
 		return (baseInfo.codOwner 	== selectedInfo.codOwner &&
-				baseInfo.codStore 	== selectedInfo.codStore		);
+				baseInfo.codAddress == selectedInfo.codAddress	);
 	}
 	
 	
@@ -25,7 +25,7 @@ final class StolisVisiMergeAddress implements InfoMergerVisitorV3<StolisInfo, Ad
 	@Override public List<StolisInfo> merge(StolisInfo baseInfo, AddressInfo selectedInfo) {
 		List<StolisInfo> results = new ArrayList<>();
 		
-		baseInfo.addresses.add(selectedInfo);
+		baseInfo.addressData = selectedInfo;
 		
 		results.add(baseInfo);
 		return results;

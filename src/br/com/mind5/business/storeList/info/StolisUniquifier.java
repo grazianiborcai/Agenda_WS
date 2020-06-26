@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.common.SystemLog;
 import br.com.mind5.info.InfoUniquifier;
@@ -17,26 +16,12 @@ final class StolisUniquifier implements InfoUniquifier<StolisInfo> {
 		for (StolisInfo eachRecord : infoRecords) {
 			StolisInfo result = makeClone(eachRecord);
 			
-			result = uniquifyAddress(result);
 			result = uniquifyPhone(result);
 			
 			results.add(result);
 		}
 		
 		return results.stream().distinct().collect(Collectors.toList());
-	}
-	
-	
-	
-	private StolisInfo uniquifyAddress(StolisInfo result) {
-		if (result.addresses == null)
-			return result;
-		
-		List<AddressInfo> allAddresses = new ArrayList<>(result.addresses);
-		allAddresses = allAddresses.stream().distinct().collect(Collectors.toList());			
-		
-		result.addresses = allAddresses;
-		return result;
 	}
 	
 	

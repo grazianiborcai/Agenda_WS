@@ -15,11 +15,12 @@ public final class StolisInfo extends InfoRecord implements Cloneable {
 	public long codStore;
 	public long codSnapshot;
 	public long codCompany;
+	public long codAddress;
 	public String codCurr;
 	public String txtCurr;
 	public String codTimezone;
 	public String txtTimezone;
-	public List<AddressInfo> addresses;
+	public AddressInfo addressData;
 	public List<PhoneInfo> phones;
 	public ComplisInfo complisData;
 	public List<FimistInfo> fimistes;
@@ -34,9 +35,10 @@ public final class StolisInfo extends InfoRecord implements Cloneable {
 		codStore = DefaultValue.number();
 		codSnapshot = DefaultValue.number();
 		codCompany = DefaultValue.number();
+		codAddress = DefaultValue.number();
 		recordMode = DefaultValue.recordMode();
 		complisData = DefaultValue.object();
-		addresses = DefaultValue.list();
+		addressData = DefaultValue.object();
 		phones = DefaultValue.list();
 		fimistes = DefaultValue.list();
 	}
@@ -59,7 +61,7 @@ public final class StolisInfo extends InfoRecord implements Cloneable {
 		StolisInfo deepCopy = (StolisInfo) super.clone();
 		
 		deepCopy.fimistes = CloneUtil.cloneRecords(fimistes, this.getClass());
-		deepCopy.addresses = CloneUtil.cloneRecords(addresses, this.getClass());
+		deepCopy.addressData = CloneUtil.cloneRecord(addressData, this.getClass());
 		deepCopy.phones = CloneUtil.cloneRecords(phones, this.getClass());
 		deepCopy.complisData = CloneUtil.cloneRecord(complisData, this.getClass());
 		
