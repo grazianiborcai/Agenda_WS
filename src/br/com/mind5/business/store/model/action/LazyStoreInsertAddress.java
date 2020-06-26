@@ -4,15 +4,14 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.store.info.StoreInfo;
-import br.com.mind5.business.store.model.decisionTree.NodeStoreUpsertAddress;
 import br.com.mind5.model.action.ActionLazyTemplateV2;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyStoreNodeUpsertAddress extends ActionLazyTemplateV2<StoreInfo, StoreInfo> {
-
-	public LazyStoreNodeUpsertAddress(Connection conn, String schemaName) {
+public final class LazyStoreInsertAddress extends ActionLazyTemplateV2<StoreInfo, StoreInfo> {
+	
+	public LazyStoreInsertAddress(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -25,7 +24,7 @@ public final class LazyStoreNodeUpsertAddress extends ActionLazyTemplateV2<Store
 	
 	
 	@Override protected ActionStdV1<StoreInfo> getInstanceOfActionHook(DeciTreeOption<StoreInfo> option) {
-		return new NodeStoreUpsertAddress(option).toAction();
+		return new StdStoreInsertAddress(option);
 	}
 	
 	

@@ -9,7 +9,7 @@ import br.com.mind5.business.store.model.action.LazyStoreNodeInsertComp;
 import br.com.mind5.business.store.model.action.LazyStoreNodeInsertPerson;
 import br.com.mind5.business.store.model.action.LazyStoreNodeInsertPhone;
 import br.com.mind5.business.store.model.action.LazyStoreNodeSnapshot;
-import br.com.mind5.business.store.model.action.LazyStoreNodeUpsertAddress;
+import br.com.mind5.business.store.model.action.LazyStoreNodeInsertAddress;
 import br.com.mind5.business.store.model.action.LazyStoreRootSelect;
 import br.com.mind5.business.store.model.checker.StoreCheckCurrency;
 import br.com.mind5.business.store.model.checker.StoreCheckHasAddress;
@@ -93,7 +93,7 @@ public final class RootStoreInsert extends DeciTreeTemplateWriteV2<StoreInfo> {
 		ActionLazyV1<StoreInfo> insertPerson = new LazyStoreNodeInsertPerson(option.conn, option.schemaName);	
 		ActionLazyV1<StoreInfo> insertComp = new LazyStoreNodeInsertComp(option.conn, option.schemaName);
 		ActionLazyV1<StoreInfo> insertUser = new LazyStoreInsertUser(option.conn, option.schemaName);	
-		ActionLazyV1<StoreInfo> upsertAddress = new LazyStoreNodeUpsertAddress(option.conn, option.schemaName);
+		ActionLazyV1<StoreInfo> insertAddress = new LazyStoreNodeInsertAddress(option.conn, option.schemaName);
 		ActionLazyV1<StoreInfo> snapshot = new LazyStoreNodeSnapshot(option.conn, option.schemaName);
 		ActionLazyV1<StoreInfo> insertPhone = new LazyStoreNodeInsertPhone(option.conn, option.schemaName);		
 		ActionLazyV1<StoreInfo> selectStore = new LazyStoreRootSelect(option.conn, option.schemaName);	
@@ -101,8 +101,8 @@ public final class RootStoreInsert extends DeciTreeTemplateWriteV2<StoreInfo> {
 		insertStore.addPostAction(insertPerson);		
 		insertPerson.addPostAction(insertComp);		
 		insertComp.addPostAction(insertUser);
-		insertUser.addPostAction(upsertAddress);		
-		upsertAddress.addPostAction(snapshot);	
+		insertUser.addPostAction(insertAddress);		
+		insertAddress.addPostAction(snapshot);	
 		
 		snapshot.addPostAction(insertPhone);			
 		snapshot.addPostAction(selectStore);
