@@ -3,7 +3,7 @@ package br.com.mind5.business.addressSearch.info;
 import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.info.InfoCopierTemplate;
 
-final class AddarchCopyAddressRef extends InfoCopierTemplate<AddarchInfo, AddressInfo>{
+final class AddarchCopyAddressRef extends InfoCopierTemplate<AddarchInfo, AddressInfo> {
 	
 	public AddarchCopyAddressRef() {
 		super();
