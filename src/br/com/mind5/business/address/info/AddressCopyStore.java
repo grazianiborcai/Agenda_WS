@@ -1,11 +1,9 @@
 package br.com.mind5.business.address.info;
 
-import java.util.List;
-
 import br.com.mind5.business.store.info.StoreInfo;
-import br.com.mind5.info.InfoCopierOneToManyTemplate;
+import br.com.mind5.info.InfoCopierTemplate;
 
-final class AddressCopyStore extends InfoCopierOneToManyTemplate<AddressInfo, StoreInfo> {
+final class AddressCopyStore extends InfoCopierTemplate<AddressInfo, StoreInfo> {
 	
 	public AddressCopyStore() {
 		super();
@@ -13,7 +11,7 @@ final class AddressCopyStore extends InfoCopierOneToManyTemplate<AddressInfo, St
 	
 	
 	
-	@Override protected List<AddressInfo> makeCopyHook(StoreInfo source) {
-		return source.addresses;
+	@Override protected AddressInfo makeCopyHook(StoreInfo source) {
+		return source.addressData;
 	}
 }

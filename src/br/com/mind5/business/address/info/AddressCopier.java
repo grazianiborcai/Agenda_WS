@@ -15,15 +15,15 @@ import br.com.mind5.payment.customerPartner.info.CusparInfo;
 import br.com.mind5.security.user.info.UserInfo;
 
 public final class AddressCopier {
-	public static List<AddressInfo> copyFromStore(StoreInfo source) {
-		InfoCopierOneToMany<AddressInfo, StoreInfo> copier = new AddressCopyStore();
+	public static AddressInfo copyFromStore(StoreInfo source) {
+		InfoCopier<AddressInfo, StoreInfo> copier = new AddressCopyStore();
 		return copier.makeCopy(source);
 	}
 	
 	
 	
 	public static List<AddressInfo> copyFromStore(List<StoreInfo> sources) {
-		InfoCopierOneToMany<AddressInfo, StoreInfo> copier = new AddressCopyStore();
+		InfoCopier<AddressInfo, StoreInfo> copier = new AddressCopyStore();
 		return copier.makeCopy(sources);
 	}
 	
