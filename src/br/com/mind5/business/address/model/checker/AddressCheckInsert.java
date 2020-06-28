@@ -17,8 +17,8 @@ public final class AddressCheckInsert extends ModelCheckerTemplateSimpleV2<Addre
 	
 	@Override protected boolean checkHook(AddressInfo recordInfo, Connection conn, String schemaName) {	
 		if ( recordInfo.codOwner 	<= 0 	||
-			 recordInfo.username 	== null	||
 			 recordInfo.codCountry 	== null ||
+			 recordInfo.username 	== null	||			 
 			 recordInfo.codLanguage	== null		)	
 			
 			return super.FAILED;
