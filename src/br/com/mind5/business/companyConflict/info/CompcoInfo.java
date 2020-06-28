@@ -16,7 +16,7 @@ public final class CompcoInfo extends InfoRecord implements Cloneable {
 	
 	
 	public CompcoInfo() {
-		super(CompcoInfo.class);
+		super();
 		
 		codOwner = DefaultValue.number();
 		codCompany = DefaultValue.number();	

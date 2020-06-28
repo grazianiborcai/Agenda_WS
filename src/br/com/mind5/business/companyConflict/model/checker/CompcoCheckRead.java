@@ -16,15 +16,13 @@ public final class CompcoCheckRead extends ModelCheckerTemplateSimpleV2<CompcoIn
 	
 	
 	@Override protected boolean checkHook(CompcoInfo recordInfo, Connection conn, String schemaName) {	
-		if ( recordInfo.codOwner  	<= 0 	||
-			 recordInfo.codCompany  <= 0 	||
-			 recordInfo.codLanguage	== null ||
-			 recordInfo.username	== null		)			
-			return super.FAILED;		
-		
-		
-		if ( recordInfo.cnpj  			== null &&
-			 recordInfo.codEntityCateg	== null		)			
+		if ( recordInfo.codOwner  		<= 0 	||
+			 recordInfo.codCompany  	<= 0 	||
+			 recordInfo.cnpj  			== null ||
+			 recordInfo.codEntityCateg	== null	||
+			 recordInfo.codLanguage		== null ||
+			 recordInfo.username		== null		)	
+			
 			return super.FAILED;	
 		
 		

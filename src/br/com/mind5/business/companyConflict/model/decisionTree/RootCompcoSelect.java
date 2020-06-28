@@ -9,13 +9,13 @@ import br.com.mind5.business.companyConflict.model.checker.CompcoCheckLangu;
 import br.com.mind5.business.companyConflict.model.checker.CompcoCheckOwner;
 import br.com.mind5.business.companyConflict.model.checker.CompcoCheckRead;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 
-public final class RootCompcoSelect extends DeciTreeTemplateReadV1<CompcoInfo> {
+public final class RootCompcoSelect extends DeciTreeTemplateReadV2<CompcoInfo> {
 	
 	public RootCompcoSelect(DeciTreeOption<CompcoInfo> option) {
 		super(option);

@@ -16,7 +16,7 @@ import br.com.mind5.business.cartItem.dao.DaoCartemDbTableColumn;
 import br.com.mind5.business.cartItemSearch.dao.DaoCartemarchDbTableColumn;
 import br.com.mind5.business.cartReserve.dao.DaoCarterveDbTableColumn;
 import br.com.mind5.business.company.dao.DaoCompDbTableColumn;
-import br.com.mind5.business.companyConflict.dao.CompcoDbTableColumn;
+import br.com.mind5.business.companyConflict.dao.DaoCompcoDbTableColumn;
 import br.com.mind5.business.companyList.dao.DaoComplisDbTableColumn;
 import br.com.mind5.business.companySearch.dao.ComparchDbTableColumn;
 import br.com.mind5.business.companySnapshot.dao.CompnapDbTableColumn;
@@ -337,7 +337,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new DaoEmplargDbTableColumn());
 		addTable(new DaoStolargDbTableColumn());
 		addTable(new DaoOrdemarchDbTableColumn());
-		addTable(new CompcoDbTableColumn());
+		addTable(new DaoCompcoDbTableColumn());
 		addTable(new DaoOwnelisDbTableColumn());
 		addTable(new DaoCusparchDbTableColumn());
 		addTable(new CrecarchDbTableColumn());

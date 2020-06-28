@@ -1,53 +1,39 @@
 package br.com.mind5.business.companyConflict.info;
 
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import java.util.ArrayList;
+import java.util.List;
 
-final class CompcoVisiMergeToSelect implements InfoMergerVisitor_<CompcoInfo, CompcoInfo> {
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-	@Override public CompcoInfo writeRecord(CompcoInfo sourceOne, CompcoInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);		
-		return merge(sourceOne, sourceTwo);
+final class CompcoVisiMergeToSelect implements InfoMergerVisitorV3<CompcoInfo, CompcoInfo> {
+	
+	@Override public List<CompcoInfo> beforeMerge(List<CompcoInfo> baseInfos) {
+		return baseInfos;
 	}
 	
 	
 	
-	private void checkArgument(CompcoInfo sourceOne, CompcoInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
+	@Override public boolean shouldMerge(CompcoInfo baseInfo, CompcoInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner);
 	}
 	
 	
 	
-	private CompcoInfo merge(CompcoInfo sourceOne, CompcoInfo sourceTwo) {
-		CompcoInfo result = makeClone(sourceOne);		
-		result.username = sourceTwo.username;
-		result.codLanguage = sourceTwo.codLanguage;
-		return result;
+	@Override public List<CompcoInfo> merge(CompcoInfo baseInfo, CompcoInfo selectedInfo) {
+		List<CompcoInfo> results = new ArrayList<>();
+		
+		selectedInfo.codLanguage = baseInfo.codLanguage;
+		selectedInfo.username = baseInfo.username;
+
+		
+		results.add(selectedInfo);
+		return results;
 	}
 	
 	
 	
-	private CompcoInfo makeClone(CompcoInfo recordInfo) {
-		try {
-			return (CompcoInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(CompcoInfo sourceOne, CompcoInfo sourceTwo) {		
-		return (sourceOne.codOwner == sourceTwo.codOwner);
-	}
-	
-	
-	
-	private void logException(Exception e) {
-		SystemLog.logError(this.getClass(), e);
+	@Override public InfoUniquifier<CompcoInfo> getUniquifier() {
+		return null;
 	}
 }

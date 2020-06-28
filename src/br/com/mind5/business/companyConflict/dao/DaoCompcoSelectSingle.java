@@ -15,11 +15,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class CompcoSelectSingle extends DaoStmtTemplate<CompcoInfo> {
+public final class DaoCompcoSelectSingle extends DaoStmtTemplate<CompcoInfo> {
 	private final String MAIN_TABLE = DaoDbTable.COMP_TABLE;
 	
 	
-	public CompcoSelectSingle(Connection conn, CompcoInfo recordInfo, String schemaName) {
+	public DaoCompcoSelectSingle(Connection conn, CompcoInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -31,25 +31,25 @@ public final class CompcoSelectSingle extends DaoStmtTemplate<CompcoInfo> {
 	
 	
 	
-	@Override protected DaoOperation getOperationHook() {
-		return DaoOperation.SELECT;
-	}
-	
-	
-	
 	@Override protected String getLookupTableHook() {
 		return DaoDbTable.COMP_CONFLICT_VIEW;
 	}		
 	
 	
 	
+	@Override protected DaoOperation getOperationHook() {
+		return DaoOperation.SELECT;
+	}
+	
+	
+	
 	@Override protected String buildWhereClauseHook(String tableName, CompcoInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
 		
-		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
+		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new CompcoWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new DaoCompcoWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}	
 	
@@ -66,12 +66,12 @@ public final class CompcoSelectSingle extends DaoStmtTemplate<CompcoInfo> {
 				do {
 					CompcoInfo dataInfo = new CompcoInfo();
 					
-					dataInfo.codOwner = stmtResult.getLong(CompcoDbTableColumn.COL_COD_OWNER);
-					dataInfo.codCompany = stmtResult.getLong(CompcoDbTableColumn.COL_COD_COMPANY);
-					dataInfo.cnpj = stmtResult.getString(CompcoDbTableColumn.COL_CNPJ);		
-					dataInfo.email = stmtResult.getString(CompcoDbTableColumn.COL_EMAIL);						
-					dataInfo.recordMode = stmtResult.getString(CompcoDbTableColumn.COL_RECORD_MODE);
-					dataInfo.codEntityCateg = stmtResult.getString(CompcoDbTableColumn.COL_COD_ENTITY_CATEG);			
+					dataInfo.codOwner = stmtResult.getLong(DaoCompcoDbTableColumn.COL_COD_OWNER);
+					dataInfo.codCompany = stmtResult.getLong(DaoCompcoDbTableColumn.COL_COD_COMPANY);
+					dataInfo.cnpj = stmtResult.getString(DaoCompcoDbTableColumn.COL_CNPJ);		
+					dataInfo.email = stmtResult.getString(DaoCompcoDbTableColumn.COL_EMAIL);						
+					dataInfo.recordMode = stmtResult.getString(DaoCompcoDbTableColumn.COL_RECORD_MODE);
+					dataInfo.codEntityCateg = stmtResult.getString(DaoCompcoDbTableColumn.COL_COD_ENTITY_CATEG);			
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());
