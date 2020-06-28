@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoStmtExecV2;
 import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiCartDaoUpdate extends ActionVisitorTemplateStmtV2<CartInfo>{
+final class VisiCartDaoUpdate extends ActionVisitorTemplateStmtV2<CartInfo> {
 
 	public VisiCartDaoUpdate(DeciTreeOption<CartInfo> option) {
 		super(option);

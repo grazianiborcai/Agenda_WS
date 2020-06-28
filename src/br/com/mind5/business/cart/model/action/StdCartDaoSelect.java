@@ -5,7 +5,7 @@ import br.com.mind5.model.action.ActionStdTemplateV2;
 import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdCartDaoSelect extends ActionStdTemplateV2<CartInfo>{
+public final class StdCartDaoSelect extends ActionStdTemplateV2<CartInfo> {
 
 	public StdCartDaoSelect(DeciTreeOption<CartInfo> option) {
 		super(option);
