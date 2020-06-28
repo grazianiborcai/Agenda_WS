@@ -17,7 +17,9 @@ public final class CompnapCheckRead extends ModelCheckerTemplateSimpleV2<Compnap
 	
 	@Override protected boolean checkHook(CompnapInfo recordInfo, Connection conn, String schemaName) {	
 		if ( recordInfo.codOwner  	<= 0 	||
-			 recordInfo.codSnapshot <= 0		)	
+			 recordInfo.codSnapshot <= 0	||
+			 recordInfo.codLanguage	== null	||
+			 recordInfo.username	== null		)	
 			
 			return super.FAILED;		
 		

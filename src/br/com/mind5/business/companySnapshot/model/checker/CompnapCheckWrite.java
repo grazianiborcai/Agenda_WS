@@ -16,8 +16,10 @@ public final class CompnapCheckWrite extends ModelCheckerTemplateSimpleV2<Compna
 	
 	
 	@Override protected boolean checkHook(CompnapInfo recordInfo, Connection conn, String schemaName) {	
-		if (   recordInfo.codOwner 	 <= 0	
-			|| recordInfo.codCompany <= 0  )
+		if ( recordInfo.codOwner    <= 0	||
+			 recordInfo.codCompany  <= 0  	||
+			 recordInfo.codLanguage	== null	||
+			 recordInfo.username	== null		)	
 			
 			return super.FAILED;
 		

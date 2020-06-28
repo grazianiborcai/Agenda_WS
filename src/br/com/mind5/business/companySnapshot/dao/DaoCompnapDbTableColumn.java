@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class CompnapDbTableColumn extends DaoDbTableColumnTemplate {
+public final class DaoCompnapDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_CNPJ = DaoDbField.COL_CNPJ;
 	public static final String COL_COD_COMPANY = DaoDbField.COL_COD_COMPANY;
 	public static final String COL_COD_ENTITY_CATEG = DaoDbField.COL_COD_ENTITY_CATEG;
@@ -27,24 +27,14 @@ public final class CompnapDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_RAZAO_SOCIAL = DaoDbField.COL_RAZAO_SOCIAL;
 	public static final String COL_RECORD_MODE = DaoDbField.COL_RECORD_MODE;		
 	
-	private Hashtable<String, List<DaoColumn>> tableColumns;	
 	
-	
-	public CompnapDbTableColumn() {
-		super(CompnapDbTableColumn.class);
+	public DaoCompnapDbTableColumn() {
+		super();
 	}
 	
 	
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
-		tableColumns = new Hashtable<>();		
-		buildComanySnapshotTable();		
-		return tableColumns;
-	}
-	
-	
-	
-	private void buildComanySnapshotTable() {
 		final String TABLE_NAME = DaoDbTable.COMP_SNAPHOT_TABLE;
 		
 		DaoColumn oneColumn;
@@ -178,6 +168,8 @@ public final class CompnapDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		tableColumns.put(TABLE_NAME, columns);
+		Hashtable<String, List<DaoColumn>> results = new Hashtable<>();
+		results.put(TABLE_NAME, columns);
+		return results;
 	}
 }

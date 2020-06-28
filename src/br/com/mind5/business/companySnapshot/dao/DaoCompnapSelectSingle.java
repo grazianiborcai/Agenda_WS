@@ -16,11 +16,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class CompnapSelectSingle extends DaoStmtTemplate<CompnapInfo> {
+public final class DaoCompnapSelectSingle extends DaoStmtTemplate<CompnapInfo> {
 	private final String MAIN_TABLE = DaoDbTable.COMP_SNAPHOT_TABLE;
 	
 	
-	public CompnapSelectSingle(Connection conn, CompnapInfo recordInfo, String schemaName) {
+	public DaoCompnapSelectSingle(Connection conn, CompnapInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -44,7 +44,7 @@ public final class CompnapSelectSingle extends DaoStmtTemplate<CompnapInfo> {
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new CompnapWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new DaoCompnapWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -61,22 +61,22 @@ public final class CompnapSelectSingle extends DaoStmtTemplate<CompnapInfo> {
 				do {
 					CompnapInfo dataInfo = new CompnapInfo();
 					
-					dataInfo.codOwner = stmtResult.getLong(CompnapDbTableColumn.COL_COD_OWNER);
-					dataInfo.codCompany = stmtResult.getLong(CompnapDbTableColumn.COL_COD_COMPANY);
-					dataInfo.codSnapshot = stmtResult.getLong(CompnapDbTableColumn.COL_COD_SNAPSHOT);
-					dataInfo.cnpj = stmtResult.getString(CompnapDbTableColumn.COL_CNPJ);
-					dataInfo.name = stmtResult.getString(CompnapDbTableColumn.COL_NAME);			
-					dataInfo.email = stmtResult.getString(CompnapDbTableColumn.COL_EMAIL);						
-					dataInfo.recordMode = stmtResult.getString(CompnapDbTableColumn.COL_RECORD_MODE);
-					dataInfo.codEntityCateg = stmtResult.getString(CompnapDbTableColumn.COL_COD_ENTITY_CATEG);
-					dataInfo.codCountryLegal = stmtResult.getString(CompnapDbTableColumn.COL_COUNTRY_LEGAL);
-					dataInfo.inscrEst = stmtResult.getString(CompnapDbTableColumn.COL_INSC_ESTATUAL);
-					dataInfo.inscrMun = stmtResult.getString(CompnapDbTableColumn.COL_INSC_MUNICIPAL);
-					dataInfo.razaoSocial = stmtResult.getString(CompnapDbTableColumn.COL_RAZAO_SOCIAL);
-					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, CompnapDbTableColumn.COL_LAST_CHANGED);
-					dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, CompnapDbTableColumn.COL_LAST_CHANGED_BY);				
-					dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, CompnapDbTableColumn.COL_CREATED_ON);
-					dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, CompnapDbTableColumn.COL_CREATED_BY);					
+					dataInfo.codOwner = stmtResult.getLong(DaoCompnapDbTableColumn.COL_COD_OWNER);
+					dataInfo.codCompany = stmtResult.getLong(DaoCompnapDbTableColumn.COL_COD_COMPANY);
+					dataInfo.codSnapshot = stmtResult.getLong(DaoCompnapDbTableColumn.COL_COD_SNAPSHOT);
+					dataInfo.cnpj = stmtResult.getString(DaoCompnapDbTableColumn.COL_CNPJ);
+					dataInfo.name = stmtResult.getString(DaoCompnapDbTableColumn.COL_NAME);			
+					dataInfo.email = stmtResult.getString(DaoCompnapDbTableColumn.COL_EMAIL);						
+					dataInfo.recordMode = stmtResult.getString(DaoCompnapDbTableColumn.COL_RECORD_MODE);
+					dataInfo.codEntityCateg = stmtResult.getString(DaoCompnapDbTableColumn.COL_COD_ENTITY_CATEG);
+					dataInfo.codCountryLegal = stmtResult.getString(DaoCompnapDbTableColumn.COL_COUNTRY_LEGAL);
+					dataInfo.inscrEst = stmtResult.getString(DaoCompnapDbTableColumn.COL_INSC_ESTATUAL);
+					dataInfo.inscrMun = stmtResult.getString(DaoCompnapDbTableColumn.COL_INSC_MUNICIPAL);
+					dataInfo.razaoSocial = stmtResult.getString(DaoCompnapDbTableColumn.COL_RAZAO_SOCIAL);
+					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, DaoCompnapDbTableColumn.COL_LAST_CHANGED);
+					dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, DaoCompnapDbTableColumn.COL_LAST_CHANGED_BY);				
+					dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, DaoCompnapDbTableColumn.COL_CREATED_ON);
+					dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, DaoCompnapDbTableColumn.COL_CREATED_BY);					
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

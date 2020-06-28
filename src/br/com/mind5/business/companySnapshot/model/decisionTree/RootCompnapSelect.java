@@ -8,13 +8,13 @@ import br.com.mind5.business.companySnapshot.model.action.StdCompnapMergeToSelec
 import br.com.mind5.business.companySnapshot.model.checker.CompnapCheckOwner;
 import br.com.mind5.business.companySnapshot.model.checker.CompnapCheckRead;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 
-public final class RootCompnapSelect extends DeciTreeTemplateReadV1<CompnapInfo> {
+public final class RootCompnapSelect extends DeciTreeTemplateReadV2<CompnapInfo> {
 	
 	public RootCompnapSelect(DeciTreeOption<CompnapInfo> option) {
 		super(option);
