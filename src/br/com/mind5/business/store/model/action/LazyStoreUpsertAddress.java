@@ -9,9 +9,9 @@ import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyStoreUpdateAddress extends ActionLazyTemplateV2<StoreInfo, StoreInfo> {
+public final class LazyStoreUpsertAddress extends ActionLazyTemplateV2<StoreInfo, StoreInfo> {
 	
-	public LazyStoreUpdateAddress(Connection conn, String schemaName) {
+	public LazyStoreUpsertAddress(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyStoreUpdateAddress extends ActionLazyTemplateV2<StoreInfo
 	
 	
 	@Override protected ActionStdV1<StoreInfo> getInstanceOfActionHook(DeciTreeOption<StoreInfo> option) {
-		return new StdStoreUpdateAddress(option);
+		return new StdStoreUpsertAddress(option);
 	}
 	
 	

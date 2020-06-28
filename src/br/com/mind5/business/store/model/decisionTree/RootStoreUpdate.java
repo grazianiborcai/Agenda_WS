@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.store.info.StoreInfo;
-import br.com.mind5.business.store.model.action.LazyStoreNodeUpdateAddress;
+import br.com.mind5.business.store.model.action.LazyStoreNodeUpsertAddress;
 import br.com.mind5.business.store.model.action.LazyStoreNodeUpdateComp;
 import br.com.mind5.business.store.model.action.LazyStoreNodeUpdatePerson;
 import br.com.mind5.business.store.model.action.LazyStoreNodeUpsertPhone;
@@ -104,7 +104,7 @@ public final class RootStoreUpdate extends DeciTreeTemplateWriteV2<StoreInfo> {
 		ActionStdV1<StoreInfo> updateStore = new NodeStoreUpdate(option).toAction();
 		ActionLazyV1<StoreInfo> updatePerson = new LazyStoreNodeUpdatePerson(option.conn, option.schemaName);
 		ActionLazyV1<StoreInfo> updateCompany = new LazyStoreNodeUpdateComp(option.conn, option.schemaName);
-		ActionLazyV1<StoreInfo> updateAddress = new LazyStoreNodeUpdateAddress(option.conn, option.schemaName);
+		ActionLazyV1<StoreInfo> updateAddress = new LazyStoreNodeUpsertAddress(option.conn, option.schemaName);
 		ActionLazyV1<StoreInfo> upsertPhone = new LazyStoreNodeUpsertPhone(option.conn, option.schemaName);		
 		ActionStdV1<StoreInfo> select = new RootStoreSelect(option).toAction();	
 			
