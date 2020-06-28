@@ -4,13 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.store.info.StoreInfo;
-import br.com.mind5.business.store.model.action.LazyStoreNodeUpsertAddress;
 import br.com.mind5.business.store.model.action.LazyStoreNodeUpdateComp;
 import br.com.mind5.business.store.model.action.LazyStoreNodeUpdatePerson;
+import br.com.mind5.business.store.model.action.LazyStoreNodeUpsertAddress;
 import br.com.mind5.business.store.model.action.LazyStoreNodeUpsertPhone;
 import br.com.mind5.business.store.model.checker.StoreCheckCurrency;
 import br.com.mind5.business.store.model.checker.StoreCheckExist;
-import br.com.mind5.business.store.model.checker.StoreCheckHasAddress;
 import br.com.mind5.business.store.model.checker.StoreCheckLangu;
 import br.com.mind5.business.store.model.checker.StoreCheckOwner;
 import br.com.mind5.business.store.model.checker.StoreCheckStorauth;
@@ -43,13 +42,6 @@ public final class RootStoreUpdate extends DeciTreeTemplateWriteV2<StoreInfo> {
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
 		checker = new StoreCheckUpdate(checkerOption);
 		queue.add(checker);
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
-		checker = new StoreCheckHasAddress(checkerOption);
-		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
@@ -104,13 +96,13 @@ public final class RootStoreUpdate extends DeciTreeTemplateWriteV2<StoreInfo> {
 		ActionStdV1<StoreInfo> updateStore = new NodeStoreUpdate(option).toAction();
 		ActionLazyV1<StoreInfo> updatePerson = new LazyStoreNodeUpdatePerson(option.conn, option.schemaName);
 		ActionLazyV1<StoreInfo> updateCompany = new LazyStoreNodeUpdateComp(option.conn, option.schemaName);
-		ActionLazyV1<StoreInfo> updateAddress = new LazyStoreNodeUpsertAddress(option.conn, option.schemaName);
+		ActionLazyV1<StoreInfo> upsertAddress = new LazyStoreNodeUpsertAddress(option.conn, option.schemaName);
 		ActionLazyV1<StoreInfo> upsertPhone = new LazyStoreNodeUpsertPhone(option.conn, option.schemaName);		
 		ActionStdV1<StoreInfo> select = new RootStoreSelect(option).toAction();	
 			
 		updateStore.addPostAction(updatePerson);
 		updateStore.addPostAction(updateCompany);		
-		updateStore.addPostAction(updateAddress);		
+		updateStore.addPostAction(upsertAddress);		
 		updateStore.addPostAction(upsertPhone);
 		
 		actions.add(updateStore);

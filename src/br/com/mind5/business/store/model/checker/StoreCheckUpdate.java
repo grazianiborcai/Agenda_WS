@@ -18,12 +18,10 @@ public final class StoreCheckUpdate extends ModelCheckerTemplateSimpleV2<StoreIn
 	@Override protected boolean checkHook(StoreInfo recordInfo, Connection conn, String schemaName) {	
 		if ( recordInfo.codOwner 	<= 0 	||
 			 recordInfo.codStore  	<= 0	||
-			 recordInfo.personData 	== null ||
-			 recordInfo.companyData == null	||
-			 recordInfo.codLanguage == null	||
+			 recordInfo.codTimezone	== null	||
 			 recordInfo.codCurr 	== null	||
-			 recordInfo.username 	== null ||
-			 recordInfo.codTimezone	== null		)
+			 recordInfo.codLanguage == null	||
+			 recordInfo.username 	== null 	)
 			
 			return super.FAILED;
 		
