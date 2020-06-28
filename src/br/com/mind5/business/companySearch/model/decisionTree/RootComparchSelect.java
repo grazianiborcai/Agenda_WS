@@ -9,13 +9,13 @@ import br.com.mind5.business.companySearch.model.checker.ComparchCheckLangu;
 import br.com.mind5.business.companySearch.model.checker.ComparchCheckOwner;
 import br.com.mind5.business.companySearch.model.checker.ComparchCheckRead;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 
-public final class RootComparchSelect extends DeciTreeTemplateReadV1<ComparchInfo> {
+public final class RootComparchSelect extends DeciTreeTemplateReadV2<ComparchInfo> {
 	
 	public RootComparchSelect(DeciTreeOption<ComparchInfo> option) {
 		super(option);

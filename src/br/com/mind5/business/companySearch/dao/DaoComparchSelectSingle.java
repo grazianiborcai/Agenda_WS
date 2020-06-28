@@ -16,11 +16,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class ComparchSelectSingle extends DaoStmtTemplate<ComparchInfo> {
+public final class DaoComparchSelectSingle extends DaoStmtTemplate<ComparchInfo> {
 	private final String MAIN_TABLE = DaoDbTable.COMP_TABLE;
 	
 	
-	public ComparchSelectSingle(Connection conn, ComparchInfo recordInfo, String schemaName) {
+	public DaoComparchSelectSingle(Connection conn, ComparchInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -32,15 +32,15 @@ public final class ComparchSelectSingle extends DaoStmtTemplate<ComparchInfo> {
 	
 	
 	
-	@Override protected DaoOperation getOperationHook() {
-		return DaoOperation.SELECT;
-	}
-	
-	
-	
 	@Override protected String getLookupTableHook() {
 		return DaoDbTable.COMP_SEARCH_VIEW;
-	}		
+	}	
+	
+	
+	
+	@Override protected DaoOperation getOperationHook() {
+		return DaoOperation.SELECT;
+	}	
 	
 	
 	
@@ -50,7 +50,7 @@ public final class ComparchSelectSingle extends DaoStmtTemplate<ComparchInfo> {
 		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new ComparchWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new DaoComparchWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}	
 	
@@ -67,13 +67,13 @@ public final class ComparchSelectSingle extends DaoStmtTemplate<ComparchInfo> {
 				do {
 					ComparchInfo dataInfo = new ComparchInfo();
 					
-					dataInfo.codOwner = stmtResult.getLong(ComparchDbTableColumn.COL_COD_OWNER);
-					dataInfo.codCompany = stmtResult.getLong(ComparchDbTableColumn.COL_COD_COMPANY);
-					dataInfo.cnpj = stmtResult.getString(ComparchDbTableColumn.COL_CNPJ);		
-					dataInfo.email = stmtResult.getString(ComparchDbTableColumn.COL_EMAIL);						
-					dataInfo.recordMode = stmtResult.getString(ComparchDbTableColumn.COL_RECORD_MODE);
-					dataInfo.codEntityCateg = stmtResult.getString(ComparchDbTableColumn.COL_COD_ENTITY_CATEG);
-					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, ComparchDbTableColumn.COL_COD_SNAPSHOT);				
+					dataInfo.codOwner = stmtResult.getLong(DaoComparchDbTableColumn.COL_COD_OWNER);
+					dataInfo.codCompany = stmtResult.getLong(DaoComparchDbTableColumn.COL_COD_COMPANY);
+					dataInfo.cnpj = stmtResult.getString(DaoComparchDbTableColumn.COL_CNPJ);		
+					dataInfo.email = stmtResult.getString(DaoComparchDbTableColumn.COL_EMAIL);						
+					dataInfo.recordMode = stmtResult.getString(DaoComparchDbTableColumn.COL_RECORD_MODE);
+					dataInfo.codEntityCateg = stmtResult.getString(DaoComparchDbTableColumn.COL_COD_ENTITY_CATEG);
+					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, DaoComparchDbTableColumn.COL_COD_SNAPSHOT);				
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

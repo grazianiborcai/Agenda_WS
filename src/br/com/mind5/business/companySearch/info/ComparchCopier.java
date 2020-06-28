@@ -9,14 +9,14 @@ import br.com.mind5.info.InfoCopier;
 
 public final class ComparchCopier {
 	public static ComparchInfo copyFromComp(CompInfo source) {
-		InfoCopier<ComparchInfo, CompInfo> copier = new ComparchCopyCompCnpj();
+		InfoCopier<ComparchInfo, CompInfo> copier = new ComparchCopyComp();
 		return copier.makeCopy(source);
 	}
 	
 	
 	
 	public static List<ComparchInfo> copyFromComp(List<CompInfo> sources) {
-		InfoCopier<ComparchInfo, CompInfo> copier = new ComparchCopyCompCnpj();
+		InfoCopier<ComparchInfo, CompInfo> copier = new ComparchCopyComp();
 		return copier.makeCopy(sources);
 	}
 }

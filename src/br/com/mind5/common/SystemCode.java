@@ -1095,6 +1095,8 @@ public final class SystemCode {
 	
 	//Company Conflict
 	public static final int COMPANY_CONFLICT_MANDATORY_FIELD_EMPTY 		= 10250;
+	public static final int COMPANY_CONFLICT_CNPJ_ALREADY_EXIST 		= 10251;
+	public static final int COMPANY_CONFLICT_CNPJ_NOT_FOUND 			= 10252;
 	
 	//Fee Default
 	public static final int FEE_DEFAULT_MANDATORY_FIELD_EMPTY 			= 10300;

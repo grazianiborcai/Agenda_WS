@@ -1,34 +1,34 @@
 package br.com.mind5.business.companySearch.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.companySearch.info.ComparchInfo;
 import br.com.mind5.business.companySearch.info.ComparchMerger;
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiComparchMergeToSelect extends ActionVisitorTemplateMergeV1<ComparchInfo, ComparchInfo> {
+final class VisiComparchMergeToSelect extends ActionVisitorTemplateMergeV2<ComparchInfo, ComparchInfo> {
 	
-	public VisiComparchMergeToSelect(Connection conn, String schemaName) {
-		super(conn, schemaName, ComparchInfo.class);
+	public VisiComparchMergeToSelect(DeciTreeOption<ComparchInfo> option) {
+		super(option, ComparchInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends ActionStdV1<ComparchInfo>> getActionClassHook() {
-		return StdComparchSelect.class;
+	@Override protected Class<? extends ActionStdV2<ComparchInfo>> getActionClassHook() {
+		return StdComparchDaoSelect.class;
 	}
 	
 	
 	
-	@Override protected List<ComparchInfo> mergeHook(List<ComparchInfo> recordInfos, List<ComparchInfo> selectedInfos) {	
-		return ComparchMerger.mergeToSelect(selectedInfos, recordInfos);
+	@Override protected List<ComparchInfo> mergeHook(List<ComparchInfo> baseInfos, List<ComparchInfo> selectedInfos) {	
+		return ComparchMerger.mergeToSelect(baseInfos, selectedInfos);
 	}
 	
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
+		return super.DONT_MERGE_WHEN_EMPTY;
 	}
 }

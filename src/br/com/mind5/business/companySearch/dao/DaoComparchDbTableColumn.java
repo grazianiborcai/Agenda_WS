@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class ComparchDbTableColumn extends DaoDbTableColumnTemplate {
+public final class DaoComparchDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_CNPJ = DaoDbField.COL_CNPJ;
 	public static final String COL_COD_COMPANY = DaoDbField.COL_COD_COMPANY;
 	public static final String COL_COD_ENTITY_CATEG = DaoDbField.COL_COD_ENTITY_CATEG;
@@ -18,24 +18,14 @@ public final class ComparchDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_EMAIL = DaoDbField.COL_EMAIL;
 	public static final String COL_RECORD_MODE = DaoDbField.COL_RECORD_MODE;		
 	
-	private Hashtable<String, List<DaoColumn>> tableColumns;	
-	
-	
-	public ComparchDbTableColumn() {
-		super(ComparchDbTableColumn.class);
+
+	public DaoComparchDbTableColumn() {
+		super();
 	}
 	
 	
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
-		tableColumns = new Hashtable<>();		
-		buildCompanySearchTable();		
-		return tableColumns;
-	}
-	
-	
-	
-	private void buildCompanySearchTable() {
 		final String TABLE_NAME = DaoDbTable.COMP_TABLE;
 		
 		DaoColumn oneColumn;
@@ -43,7 +33,7 @@ public final class ComparchDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COD_OWNER;
+		oneColumn.columnName = COL_COD_COMPANY;
 		oneColumn.isPK = IS_PRIMARY_KEY;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
@@ -51,10 +41,10 @@ public final class ComparchDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_COD_COMPANY;
+		oneColumn.columnName = COL_COD_OWNER;
 		oneColumn.isPK = IS_PRIMARY_KEY;
 		oneColumn.isLookUp = NEGATIVE;
-		oneColumn.isAutoIncremented = IS_AUTO_INCREMENTED;
+		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
 		oneColumn = new DaoColumn();
@@ -97,6 +87,8 @@ public final class ComparchDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		tableColumns.put(DaoDbTable.COMP_SEARCH_VIEW, columns);
+		Hashtable<String, List<DaoColumn>> results = new Hashtable<>();
+		results.put(DaoDbTable.COMP_SEARCH_VIEW, columns);
+		return results;
 	}
 }

@@ -1,53 +1,39 @@
 package br.com.mind5.business.companySearch.info;
 
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import java.util.ArrayList;
+import java.util.List;
 
-final class ComparchVisiMergeToSelect implements InfoMergerVisitor_<ComparchInfo, ComparchInfo> {
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-	@Override public ComparchInfo writeRecord(ComparchInfo sourceOne, ComparchInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);		
-		return merge(sourceOne, sourceTwo);
+final class ComparchVisiMergeToSelect implements InfoMergerVisitorV3<ComparchInfo, ComparchInfo> {
+
+	@Override public List<ComparchInfo> beforeMerge(List<ComparchInfo> baseInfos) {
+		return baseInfos;
 	}
 	
 	
 	
-	private void checkArgument(ComparchInfo sourceOne, ComparchInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
+	@Override public boolean shouldMerge(ComparchInfo baseInfo, ComparchInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner);
 	}
 	
 	
 	
-	private ComparchInfo merge(ComparchInfo sourceOne, ComparchInfo sourceTwo) {
-		ComparchInfo result = makeClone(sourceOne);		
-		result.username = sourceTwo.username;
-		result.codLanguage = sourceTwo.codLanguage;
-		return result;
+	@Override public List<ComparchInfo> merge(ComparchInfo baseInfo, ComparchInfo selectedInfo) {
+		List<ComparchInfo> results = new ArrayList<>();
+		
+		selectedInfo.codLanguage = baseInfo.codLanguage;
+		selectedInfo.username = baseInfo.username;
+
+		
+		results.add(selectedInfo);
+		return results;
 	}
 	
 	
 	
-	private ComparchInfo makeClone(ComparchInfo recordInfo) {
-		try {
-			return (ComparchInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(ComparchInfo sourceOne, ComparchInfo sourceTwo) {		
-		return (sourceOne.codOwner == sourceTwo.codOwner);
-	}
-	
-	
-	
-	private void logException(Exception e) {
-		SystemLog.logError(this.getClass(), e);
+	@Override public InfoUniquifier<ComparchInfo> getUniquifier() {
+		return null;
 	}
 }

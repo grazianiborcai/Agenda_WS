@@ -2,18 +2,18 @@ package br.com.mind5.business.companySearch.info;
 
 import java.util.List;
 
-import br.com.mind5.info.obsolete.InfoMerger_;
+import br.com.mind5.info.InfoMergerBuilderV3;
+import br.com.mind5.info.InfoMergerV3;
 
 public final class ComparchMerger {	
-	public static ComparchInfo mergeToSelect(ComparchInfo sourceOne, ComparchInfo sourceTwo) {
-		InfoMerger_<ComparchInfo, ComparchInfo> merger = new ComparchMergerToSelect();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
+	public static List<ComparchInfo> mergeToSelect(List<ComparchInfo> baseInfos, List<ComparchInfo> selectedInfos) {
+		InfoMergerBuilderV3<ComparchInfo, ComparchInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new ComparchVisiMergeToSelect());
+		InfoMergerV3<ComparchInfo, ComparchInfo> merger = builder.build();		
 	
-	
-	
-	public static List<ComparchInfo> mergeToSelect(List<ComparchInfo> sourceOnes, List<ComparchInfo> sourceTwos) {
-		InfoMerger_<ComparchInfo, ComparchInfo> merger = new ComparchMergerToSelect();		
-		return merger.merge(sourceOnes, sourceTwos);
+		return merger.merge();
 	}
 }

@@ -17,7 +17,7 @@ public final class ComparchInfo extends InfoRecord implements Cloneable {
 	
 	
 	public ComparchInfo() {
-		super(ComparchInfo.class);
+		super();
 		
 		codOwner = DefaultValue.number();
 		codCompany = DefaultValue.number();
