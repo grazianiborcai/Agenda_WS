@@ -2,8 +2,9 @@ package br.com.mind5.business.storeList.model.action;
 
 import java.util.List;
 
+import br.com.mind5.business.address.info.AddressCopier;
 import br.com.mind5.business.address.info.AddressInfo;
-import br.com.mind5.business.address.model.decisionTree.RootAddressSelect;
+import br.com.mind5.business.address.model.decisionTree.RootAddressSearch;
 import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.business.storeList.info.StolisMerger;
 import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
@@ -20,7 +21,13 @@ final class VisiStolisMergeAddress extends ActionVisitorTemplateMergeV2<StolisIn
 	
 	
 	@Override protected Class<? extends DeciTree<AddressInfo>> getTreeClassHook() {
-		return RootAddressSelect.class;
+		return RootAddressSearch.class;
+	}
+	
+	
+	
+	@Override protected List<AddressInfo> toActionClassHook(List<StolisInfo> baseInfos) {		
+		return AddressCopier.copyFromStolis(baseInfos);
 	}
 	
 	

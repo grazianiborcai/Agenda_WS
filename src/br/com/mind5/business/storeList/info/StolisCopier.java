@@ -2,6 +2,7 @@ package br.com.mind5.business.storeList.info;
 
 import java.util.List;
 
+import br.com.mind5.business.addressSnapshot.info.AddresnapInfo;
 import br.com.mind5.business.owner.info.OwnerInfo;
 import br.com.mind5.business.phoneSnapshot.info.PhonapInfo;
 import br.com.mind5.business.planningTime.info.PlanimeInfo;
@@ -14,6 +15,20 @@ import br.com.mind5.info.InfoCopier;
 import br.com.mind5.info.InfoCopierOneToMany;
 
 public final class StolisCopier {
+	public static StolisInfo copyFromAddresnap(AddresnapInfo source) {
+		InfoCopier<StolisInfo, AddresnapInfo> copier = new StolisCopyAddresnap();
+		return copier.makeCopy(source);
+	}
+	
+	
+	
+	public static List<StolisInfo> copyFromAddresnap(List<AddresnapInfo> sources) {
+		InfoCopier<StolisInfo, AddresnapInfo> copier = new StolisCopyAddresnap();
+		return copier.makeCopy(sources);
+	}
+	
+	
+	
 	public static List<StolisInfo> copyFromSchedeek(SchedeekInfo source) {
 		InfoCopierOneToMany<StolisInfo, SchedeekInfo> copier = new StolisCopySchedeek();
 		return copier.makeCopy(source);

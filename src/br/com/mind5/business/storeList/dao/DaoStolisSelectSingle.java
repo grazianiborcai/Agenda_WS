@@ -73,7 +73,6 @@ public final class DaoStolisSelectSingle extends DaoStmtTemplate<StolisInfo> {
 					dataInfo.codTimezone = stmtResult.getString(DaoStolisDbTableColumn.COL_COD_TIMEZONE);
 					dataInfo.recordMode = stmtResult.getString(DaoStolisDbTableColumn.COL_RECORD_MODE);	
 					dataInfo.codCompany = DaoFormatter.sqlToLong(stmtResult, DaoStolisDbTableColumn.COL_COD_COMPANY);
-					dataInfo.codAddress = DaoFormatter.sqlToLong(stmtResult, DaoStolisDbTableColumn.COL_COD_ADDRESS);
 					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, DaoStolisDbTableColumn.COL_COD_SNAPSHOT);		
 					
 					finalResult.add(dataInfo);
