@@ -2,8 +2,6 @@ package br.com.mind5.business.storeSnapshot.info;
 
 import java.util.List;
 
-import br.com.mind5.business.address.info.AddressInfo;
-import br.com.mind5.business.addressSnapshot.info.AddresnapInfo;
 import br.com.mind5.business.companyList.info.ComplisInfo;
 import br.com.mind5.business.companySnapshot.info.CompnapInfo;
 import br.com.mind5.business.personList.info.PersolisInfo;
@@ -16,33 +14,7 @@ import br.com.mind5.masterData.timezone.info.TimezoneInfo;
 import br.com.mind5.security.userList.info.UselisInfo;
 import br.com.mind5.security.userSnapshot.info.UserapInfo;
 
-public final class StorapMerger {
-	public static List<StorapInfo> mergeWithAddress(List<StorapInfo> baseInfos, List<AddressInfo> selectedInfos) {
-		InfoMergerBuilderV3<StorapInfo, AddressInfo> builder = new InfoMergerBuilderV3<>();
-		
-		builder.addBaseInfos(baseInfos);
-		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StorapVisiMergeAddress());
-		InfoMergerV3<StorapInfo, AddressInfo> merger = builder.build();		
-	
-		return merger.merge();
-	}
-	
-	
-	
-	public static List<StorapInfo> mergeWithAddresnap(List<StorapInfo> baseInfos, List<AddresnapInfo> selectedInfos) {
-		InfoMergerBuilderV3<StorapInfo, AddresnapInfo> builder = new InfoMergerBuilderV3<>();
-		
-		builder.addBaseInfos(baseInfos);
-		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StorapVisiMergeAddresnap());
-		InfoMergerV3<StorapInfo, AddresnapInfo> merger = builder.build();		
-	
-		return merger.merge();
-	}
-	
-	
-	
+public final class StorapMerger {	
 	public static List<StorapInfo> mergeWithComplis(List<StorapInfo> baseInfos, List<ComplisInfo> selectedInfos) {
 		InfoMergerBuilderV3<StorapInfo, ComplisInfo> builder = new InfoMergerBuilderV3<>();
 		

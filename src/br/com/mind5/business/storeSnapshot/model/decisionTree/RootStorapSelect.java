@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.storeSnapshot.info.StorapInfo;
-import br.com.mind5.business.storeSnapshot.model.action.LazyStorapMergeAddresnap;
 import br.com.mind5.business.storeSnapshot.model.action.LazyStorapMergeCurrency;
 import br.com.mind5.business.storeSnapshot.model.action.LazyStorapMergePhonap;
 import br.com.mind5.business.storeSnapshot.model.action.LazyStorapMergeTimezone;
@@ -17,9 +16,9 @@ import br.com.mind5.business.storeSnapshot.model.checker.StorapCheckOwner;
 import br.com.mind5.business.storeSnapshot.model.checker.StorapCheckRead;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 
@@ -69,7 +68,6 @@ public final class RootStorapSelect extends DeciTreeTemplateReadV2<StorapInfo> {
 		ActionStdV1<StorapInfo> select = new StdStorapMergeToSelect(option);
 		ActionLazyV1<StorapInfo> mergeCurrency = new LazyStorapMergeCurrency(option.conn, option.schemaName);
 		ActionLazyV1<StorapInfo> mergeTimezone = new LazyStorapMergeTimezone(option.conn, option.schemaName); 
-		ActionLazyV1<StorapInfo> mergeAddresnap = new LazyStorapMergeAddresnap(option.conn, option.schemaName);
 		ActionLazyV1<StorapInfo> mergePhonap = new LazyStorapMergePhonap(option.conn, option.schemaName);
 		ActionLazyV1<StorapInfo> nodeUserap = new LazyStorapNodeUserap(option.conn, option.schemaName);
 		ActionLazyV1<StorapInfo> nodePersonap = new LazyStorapNodePersonap(option.conn, option.schemaName);
@@ -77,8 +75,7 @@ public final class RootStorapSelect extends DeciTreeTemplateReadV2<StorapInfo> {
 		
 		select.addPostAction(mergeCurrency);
 		mergeCurrency.addPostAction(mergeTimezone); 
-		mergeTimezone.addPostAction(mergeAddresnap);
-		mergeAddresnap.addPostAction(mergePhonap);
+		mergeTimezone.addPostAction(mergePhonap);
 		mergePhonap.addPostAction(nodeUserap);
 		nodeUserap.addPostAction(nodePersonap);
 		nodePersonap.addPostAction(nodeCompnap);

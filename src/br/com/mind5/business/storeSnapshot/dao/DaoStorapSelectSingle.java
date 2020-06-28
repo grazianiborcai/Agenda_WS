@@ -68,13 +68,11 @@ public final class DaoStorapSelectSingle extends DaoStmtTemplate<StorapInfo> {
 					dataInfo.codTimezone = stmtResult.getString(DaoStorapDbTableColumn.COL_COD_TIMEZONE);
 					dataInfo.recordMode = stmtResult.getString(DaoStorapDbTableColumn.COL_RECORD_MODE);	
 					dataInfo.codPerson = DaoFormatter.sqlToLong(stmtResult, DaoStorapDbTableColumn.COL_COD_PERSON);
-					dataInfo.codCompany = DaoFormatter.sqlToLong(stmtResult, DaoStorapDbTableColumn.COL_COD_COMPANY);
-					dataInfo.codAddress = DaoFormatter.sqlToLong(stmtResult, DaoStorapDbTableColumn.COL_COD_ADDRESS);					
+					dataInfo.codCompany = DaoFormatter.sqlToLong(stmtResult, DaoStorapDbTableColumn.COL_COD_COMPANY);					
 					dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, DaoStorapDbTableColumn.COL_COD_USER);
 					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, DaoStorapDbTableColumn.COL_LAST_CHANGED);
 					dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, DaoStorapDbTableColumn.COL_LAST_CHANGED_BY);
-					dataInfo.codCompanySnapshot = DaoFormatter.sqlToLong(stmtResult, DaoStorapDbTableColumn.COL_COD_COMPANY_SNAPSHOT);
-					dataInfo.codAddressSnapshot = DaoFormatter.sqlToLong(stmtResult, DaoStorapDbTableColumn.COL_COD_ADDRESS_SNAPSHOT);					
+					dataInfo.codCompanySnapshot = DaoFormatter.sqlToLong(stmtResult, DaoStorapDbTableColumn.COL_COD_COMPANY_SNAPSHOT);				
 					dataInfo.codPersonSnapshot = DaoFormatter.sqlToLong(stmtResult, DaoStorapDbTableColumn.COL_COD_PERSON_SNAPSHOT);
 					dataInfo.codUserSnapshot = DaoFormatter.sqlToLong(stmtResult, DaoStorapDbTableColumn.COL_COD_USER_SNAPSHOT);
 					dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, DaoStorapDbTableColumn.COL_CREATED_ON);
