@@ -1,35 +1,19 @@
 package br.com.mind5.business.company.model.action;
 
 import br.com.mind5.business.company.info.CompInfo;
-import br.com.mind5.model.action.ActionLazyV1;
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionStdHelperMerge;
-import br.com.mind5.model.decisionTree.DeciResult;
+import br.com.mind5.model.action.ActionStdTemplateV2;
+import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdCompMergeToSelect implements ActionStdV1<CompInfo> {
-	private ActionStdV1<CompInfo> actionHelper;	
-	
-	
-	public StdCompMergeToSelect(DeciTreeOption<CompInfo> option) {			
-		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiCompMergeToSelect(option.conn, option.schemaName));
+public final class StdCompMergeToSelect extends ActionStdTemplateV2<CompInfo> {
+
+	public StdCompMergeToSelect(DeciTreeOption<CompInfo> option) {
+		super(option);
 	}
 	
 	
 	
-	@Override public void addPostAction(ActionLazyV1<CompInfo> actionHandler) {
-		actionHelper.addPostAction(actionHandler);
-	}
-	
-	
-	
-	@Override public boolean executeAction() {			
-		return actionHelper.executeAction();
-	}
-	
-	
-	
-	@Override public DeciResult<CompInfo> getDecisionResult() {
-		return actionHelper.getDecisionResult();
+	protected ActionVisitorV2<CompInfo> buildVisitorHook(DeciTreeOption<CompInfo> option) {
+		return new VisiCompMergeToSelect(option);
 	}
 }

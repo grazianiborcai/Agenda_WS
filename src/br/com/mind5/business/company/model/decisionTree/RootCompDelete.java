@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.company.info.CompInfo;
-import br.com.mind5.business.company.model.action.LazyCompDelete;
+import br.com.mind5.business.company.model.action.LazyCompDaoDelete;
 import br.com.mind5.business.company.model.action.LazyCompEnforceLChanged;
 import br.com.mind5.business.company.model.action.LazyCompMergeUsername;
-import br.com.mind5.business.company.model.action.LazyCompUpdate;
+import br.com.mind5.business.company.model.action.LazyCompDaoUpdate;
 import br.com.mind5.business.company.model.action.StdCompMergeToDelete;
 import br.com.mind5.business.company.model.checker.CompCheckDelete;
 import br.com.mind5.business.company.model.checker.CompCheckExist;
@@ -19,9 +19,9 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class RootCompDelete extends DeciTreeTemplateWriteV1<CompInfo> {
+public final class RootCompDelete extends DeciTreeTemplateWriteV2<CompInfo> {
 	
 	public RootCompDelete(DeciTreeOption<CompInfo> option) {
 		super(option);
@@ -73,8 +73,8 @@ public final class RootCompDelete extends DeciTreeTemplateWriteV1<CompInfo> {
 		ActionStdV1<CompInfo> mergeToDelete = new StdCompMergeToDelete(option);	
 		ActionLazyV1<CompInfo> enforceLChanged = new LazyCompEnforceLChanged(option.conn, option.schemaName);
 		ActionLazyV1<CompInfo> enforceLChangedBy = new LazyCompMergeUsername(option.conn, option.schemaName);
-		ActionLazyV1<CompInfo> updateCompany = new LazyCompUpdate(option.conn, option.schemaName);
-		ActionLazyV1<CompInfo> deleteCompany = new LazyCompDelete(option.conn, option.schemaName);
+		ActionLazyV1<CompInfo> updateCompany = new LazyCompDaoUpdate(option.conn, option.schemaName);
+		ActionLazyV1<CompInfo> deleteCompany = new LazyCompDaoDelete(option.conn, option.schemaName);
 		
 		mergeToDelete.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceLChangedBy);

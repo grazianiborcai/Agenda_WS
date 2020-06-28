@@ -1,56 +1,39 @@
 package br.com.mind5.business.company.info;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import br.com.mind5.business.companySnapshot.info.CompnapInfo;
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-final class CompVisiMergeCompnap implements InfoMergerVisitor_<CompInfo, CompnapInfo> {
-
-	@Override public CompInfo writeRecord(CompnapInfo sourceOne, CompInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+final class CompVisiMergeCompnap implements InfoMergerVisitorV3<CompInfo, CompnapInfo> {
+	
+	@Override public List<CompInfo> beforeMerge(List<CompInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(CompInfo baseInfo, CompnapInfo selectedInfo) {
+		return (baseInfo.codOwner	== selectedInfo.codOwner	&&
+				baseInfo.codCompany == selectedInfo.codCompany);
+	}
+	
+	
+	
+	@Override public List<CompInfo> merge(CompInfo baseInfo, CompnapInfo selectedInfo) {
+		List<CompInfo> results = new ArrayList<>();
 		
-		CompInfo clonedInfo = makeClone(sourceTwo);
-		return merge(sourceOne, clonedInfo);
+		baseInfo.codSnapshot = selectedInfo.codSnapshot;
+		
+		results.add(baseInfo);
+		return results;
 	}
 	
 	
 	
-	private void checkArgument(CompnapInfo sourceOne, CompInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private CompInfo makeClone(CompInfo recordInfo) {
-		try {
-			return (CompInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	private CompInfo merge(CompnapInfo sourceOne, CompInfo sourceTwo) {
-		sourceTwo.codSnapshot = sourceOne.codSnapshot;
-
-		return sourceTwo;
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(CompnapInfo sourceOne, CompInfo sourceTwo) {
-		return (sourceOne.codOwner	 == sourceTwo.codOwner	&&
-				sourceOne.codCompany == sourceTwo.codCompany);
-	}	
-	
-	
-	
-	private void logException(Exception e) {
-		SystemLog.logError(this.getClass(), e);
+	@Override public InfoUniquifier<CompInfo> getUniquifier() {
+		return null;
 	}
 }

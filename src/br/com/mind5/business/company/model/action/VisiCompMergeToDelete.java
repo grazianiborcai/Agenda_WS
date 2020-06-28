@@ -1,35 +1,34 @@
 package br.com.mind5.business.company.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.company.info.CompInfo;
 import br.com.mind5.business.company.info.CompMerger;
-import br.com.mind5.business.company.model.decisionTree.RootCompSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
-import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiCompMergeToDelete extends ActionVisitorTemplateMergeV1<CompInfo, CompInfo> {
+final class VisiCompMergeToDelete extends ActionVisitorTemplateMergeV2<CompInfo, CompInfo> {
 	
-	public VisiCompMergeToDelete(Connection conn, String schemaName) {
-		super(conn, schemaName, CompInfo.class);
+	public VisiCompMergeToDelete(DeciTreeOption<CompInfo> option) {
+		super(option, CompInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends DeciTree<CompInfo>> getTreeClassHook() {
-		return RootCompSelect.class;
+	@Override protected Class<? extends ActionStdV2<CompInfo>> getActionClassHook() {
+		return StdCompDaoSelect.class;
 	}
 	
 	
 	
-	@Override protected List<CompInfo> mergeHook(List<CompInfo> recordInfos, List<CompInfo> selectedInfos) {	
-		return CompMerger.mergeToDelete(selectedInfos, recordInfos);
+	@Override protected List<CompInfo> mergeHook(List<CompInfo> baseInfos, List<CompInfo> selectedInfos) {	
+		return CompMerger.mergeToDelete(baseInfos, selectedInfos);
 	}
 	
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
+		return super.DONT_MERGE_WHEN_EMPTY;
 	}
 }

@@ -4,14 +4,14 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.company.info.CompInfo;
-import br.com.mind5.model.action.ActionLazyTemplateV1;
+import br.com.mind5.model.action.ActionLazyTemplateV2;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyCompDelete extends ActionLazyTemplateV1<CompInfo, CompInfo> {
+public final class LazyCompDaoDelete extends ActionLazyTemplateV2<CompInfo, CompInfo> {
 	
-	public LazyCompDelete(Connection conn, String schemaName) {
+	public LazyCompDaoDelete(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyCompDelete extends ActionLazyTemplateV1<CompInfo, CompInf
 	
 	
 	@Override protected ActionStdV1<CompInfo> getInstanceOfActionHook(DeciTreeOption<CompInfo> option) {
-		return new StdCompDelete(option);
+		return new StdCompDaoDelete(option);
 	}
 	
 	

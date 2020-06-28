@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class CompDbTableColumn extends DaoDbTableColumnTemplate {
+public final class DaoCompDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_CNPJ = DaoDbField.COL_CNPJ;
 	public static final String COL_COD_COMPANY = DaoDbField.COL_COD_COMPANY;
 	public static final String COL_COD_ENTITY_CATEG = DaoDbField.COL_COD_ENTITY_CATEG;
@@ -26,25 +26,15 @@ public final class CompDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_NAME = DaoDbField.COL_NAME;
 	public static final String COL_RAZAO_SOCIAL = DaoDbField.COL_RAZAO_SOCIAL;
 	public static final String COL_RECORD_MODE = DaoDbField.COL_RECORD_MODE;		
+
 	
-	private Hashtable<String, List<DaoColumn>> tableColumns;	
-	
-	
-	public CompDbTableColumn() {
-		super(CompDbTableColumn.class);
+	public DaoCompDbTableColumn() {
+		super();
 	}
 	
 	
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
-		tableColumns = new Hashtable<>();		
-		buildCompanyTable();		
-		return tableColumns;
-	}
-	
-	
-	
-	private void buildCompanyTable() {
 		final String TABLE_NAME = DaoDbTable.COMP_TABLE;
 		
 		DaoColumn oneColumn;
@@ -178,6 +168,8 @@ public final class CompDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		tableColumns.put(TABLE_NAME, columns);
+		Hashtable<String, List<DaoColumn>> results = new Hashtable<>();
+		results.put(TABLE_NAME, columns);
+		return results;
 	}
 }

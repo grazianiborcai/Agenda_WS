@@ -3,7 +3,7 @@ package br.com.mind5.business.company.info;
 import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.info.InfoCopierTemplate;
 
-final class CompCopyStore extends InfoCopierTemplate<CompInfo, StoreInfo>{
+final class CompCopyStore extends InfoCopierTemplate<CompInfo, StoreInfo> {
 	
 	public CompCopyStore() {
 		super();

@@ -1,15 +1,21 @@
 package br.com.mind5.business.company.model.action;
 
 import br.com.mind5.business.company.info.CompInfo;
-import br.com.mind5.model.action.ActionVisitorTemplateEnforceV1;
+import br.com.mind5.business.company.info.CompSetterCnpj;
+import br.com.mind5.info.InfoSetter;
+import br.com.mind5.model.action.ActionVisitorTemplateEnforceV2;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiCompEnforceCnpj extends ActionVisitorTemplateEnforceV1<CompInfo> {
+final class VisiCompEnforceCnpj extends ActionVisitorTemplateEnforceV2<CompInfo> {
+	
+	public VisiCompEnforceCnpj(DeciTreeOption<CompInfo> option) {
+		super(option);	
+	}
+	
+	
 	
 	@Override protected CompInfo enforceHook(CompInfo recordInfo) {
-		CompInfo enforcedRecord = new CompInfo();
-		enforcedRecord.codOwner = recordInfo.codOwner;
-		enforcedRecord.cnpj = recordInfo.cnpj;
-		enforcedRecord.codEntityCateg = recordInfo.codEntityCateg;
-		return enforcedRecord;
+		InfoSetter<CompInfo> attrSetter = new CompSetterCnpj();
+		return attrSetter.setAttr(recordInfo);
 	}
 }

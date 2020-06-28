@@ -1,35 +1,19 @@
 package br.com.mind5.business.company.model.action;
 
 import br.com.mind5.business.company.info.CompInfo;
-import br.com.mind5.model.action.ActionLazyV1;
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionStdHelperEnforce;
-import br.com.mind5.model.decisionTree.DeciResult;
+import br.com.mind5.model.action.ActionStdTemplateV2;
+import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdCompEnforceCnpj implements ActionStdV1<CompInfo> {
-	private ActionStdV1<CompInfo> actionHelper;	
-	
-	
-	public StdCompEnforceCnpj(DeciTreeOption<CompInfo> option) {			
-		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiCompEnforceCnpj());
+public final class StdCompEnforceCnpj extends ActionStdTemplateV2<CompInfo> {
+
+	public StdCompEnforceCnpj(DeciTreeOption<CompInfo> option) {
+		super(option);
 	}
 	
 	
 	
-	@Override public void addPostAction(ActionLazyV1<CompInfo> actionHandler) {
-		actionHelper.addPostAction(actionHandler);
-	}
-	
-	
-	
-	@Override public boolean executeAction() {			
-		return actionHelper.executeAction();
-	}
-	
-	
-	
-	@Override public DeciResult<CompInfo> getDecisionResult() {
-		return actionHelper.getDecisionResult();
+	protected ActionVisitorV2<CompInfo> buildVisitorHook(DeciTreeOption<CompInfo> option) {
+		return new VisiCompEnforceCnpj(option);
 	}
 }

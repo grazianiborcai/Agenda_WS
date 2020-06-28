@@ -3,75 +3,71 @@ package br.com.mind5.business.company.info;
 import java.util.List;
 
 import br.com.mind5.business.companySnapshot.info.CompnapInfo;
-import br.com.mind5.info.obsolete.InfoMerger_;
+import br.com.mind5.info.InfoMergerBuilderV3;
+import br.com.mind5.info.InfoMergerV3;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class CompMerger {
-	public static CompInfo mergeWithCompnap(CompnapInfo sourceOne, CompInfo sourceTwo) {
-		InfoMerger_<CompInfo, CompnapInfo> merger = new CompMergerCompnap();		
-		return merger.merge(sourceOne, sourceTwo);
+	public static List<CompInfo> mergeWithCompnap(List<CompInfo> baseInfos, List<CompnapInfo> selectedInfos) {
+		InfoMergerBuilderV3<CompInfo, CompnapInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new CompVisiMergeCompnap());
+		InfoMergerV3<CompInfo, CompnapInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static List<CompInfo> mergeWithCompnap(List<CompnapInfo> sourceOnes, List<CompInfo> sourceTwos) {
-		InfoMerger_<CompInfo, CompnapInfo> merger = new CompMergerCompnap();		
-		return merger.merge(sourceOnes, sourceTwos);
+	public static List<CompInfo> mergeWithUsername(List<CompInfo> baseInfos, List<UsernameInfo> selectedInfos) {
+		InfoMergerBuilderV3<CompInfo, UsernameInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new CompVisiMergeUsername());
+		InfoMergerV3<CompInfo, UsernameInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static CompInfo mergeWithUsername(UsernameInfo sourceOne, CompInfo sourceTwo) {
-		InfoMerger_<CompInfo, UsernameInfo> merger = new CompMergerUsername();		
-		return merger.merge(sourceOne, sourceTwo);
+	public static List<CompInfo> mergeToDelete(List<CompInfo> baseInfos, List<CompInfo> selectedInfos) {
+		InfoMergerBuilderV3<CompInfo, CompInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new CompVisiMergeToDelete());
+		InfoMergerV3<CompInfo, CompInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static List<CompInfo> mergeWithUsername(List<UsernameInfo> sourceOnes, List<CompInfo> sourceTwos) {
-		InfoMerger_<CompInfo, UsernameInfo> merger = new CompMergerUsername();		
-		return merger.merge(sourceOnes, sourceTwos);
+	public static List<CompInfo> mergeToSelect(List<CompInfo> baseInfos, List<CompInfo> selectedInfos) {
+		InfoMergerBuilderV3<CompInfo, CompInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new CompVisiMergeToSelect());
+		InfoMergerV3<CompInfo, CompInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static CompInfo mergeToDelete(CompInfo sourceOne, CompInfo sourceTwo) {
-		InfoMerger_<CompInfo, CompInfo> merger = new CompMergerToDelete();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
+	public static List<CompInfo> mergeToUpdate(List<CompInfo> baseInfos, List<CompInfo> selectedInfos) {
+		InfoMergerBuilderV3<CompInfo, CompInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new CompVisiMergeToUpdate());
+		InfoMergerV3<CompInfo, CompInfo> merger = builder.build();		
 	
-	
-	
-	public static List<CompInfo> mergeToDelete(List<CompInfo> sourceOnes, List<CompInfo> sourceTwos) {
-		InfoMerger_<CompInfo, CompInfo> merger = new CompMergerToDelete();		
-		return merger.merge(sourceOnes, sourceTwos);
-	}
-	
-	
-	
-	public static CompInfo mergeToSelect(CompInfo sourceOne, CompInfo sourceTwo) {
-		InfoMerger_<CompInfo, CompInfo> merger = new CompMergerToSelect();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
-	
-	
-	
-	public static List<CompInfo> mergeToSelect(List<CompInfo> sourceOnes, List<CompInfo> sourceTwos) {
-		InfoMerger_<CompInfo, CompInfo> merger = new CompMergerToSelect();		
-		return merger.merge(sourceOnes, sourceTwos);
-	}
-	
-	
-	
-	public static CompInfo mergeToUpdate(CompInfo sourceOne, CompInfo sourceTwo) {
-		InfoMerger_<CompInfo, CompInfo> merger = new CompMergerToUpdate();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
-	
-	
-	
-	public static List<CompInfo> mergeToUpdate(List<CompInfo> sourceOnes, List<CompInfo> sourceTwos) {
-		InfoMerger_<CompInfo, CompInfo> merger = new CompMergerToUpdate();		
-		return merger.merge(sourceOnes, sourceTwos);
+		return merger.merge();
 	}
 }

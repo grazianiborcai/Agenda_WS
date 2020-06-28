@@ -16,12 +16,12 @@ public final class CompCheckInsert extends ModelCheckerTemplateSimpleV2<CompInfo
 	
 	
 	@Override protected boolean checkHook(CompInfo recordInfo, Connection conn, String schemaName) {	
-		if (   recordInfo.codOwner 			<= 0	
-			|| recordInfo.username			== null
-			|| recordInfo.codLanguage		== null
-			|| recordInfo.name 				== null
-			|| recordInfo.codCountryLegal	== null
-			|| recordInfo.codEntityCateg	== null )
+		if ( recordInfo.codOwner 		<= 0	||
+			 recordInfo.username		== null	||
+			 recordInfo.codLanguage		== null	||
+			 recordInfo.name 			== null	||
+			 recordInfo.codCountryLegal	== null	||
+			 recordInfo.codEntityCateg	== null 	)
 			
 			return super.FAILED;
 		

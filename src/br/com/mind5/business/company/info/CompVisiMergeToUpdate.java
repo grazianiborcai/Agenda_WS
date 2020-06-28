@@ -1,59 +1,39 @@
 package br.com.mind5.business.company.info;
 
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import java.util.ArrayList;
+import java.util.List;
 
-final class CompVisiMergeToUpdate implements InfoMergerVisitor_<CompInfo, CompInfo> {
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-	@Override public CompInfo writeRecord(CompInfo sourceOne, CompInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);		
-		return merge(sourceOne, sourceTwo);
+final class CompVisiMergeToUpdate implements InfoMergerVisitorV3<CompInfo, CompInfo> {
+	
+	@Override public List<CompInfo> beforeMerge(List<CompInfo> baseInfos) {
+		return baseInfos;
 	}
 	
 	
 	
-	private void checkArgument(CompInfo sourceOne, CompInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
+	@Override public boolean shouldMerge(CompInfo baseInfo, CompInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner);
 	}
 	
 	
 	
-	private CompInfo merge(CompInfo sourceOne, CompInfo sourceTwo) {
-		CompInfo result = makeClone(sourceTwo);		
+	@Override public List<CompInfo> merge(CompInfo baseInfo, CompInfo selectedInfo) {
+		List<CompInfo> results = new ArrayList<>();
 		
-		result.codEntityCateg = sourceOne.codEntityCateg;
-		result.createdBy = sourceOne.createdBy;
-		result.createdOn = sourceOne.createdOn;
+		baseInfo.codEntityCateg = selectedInfo.codEntityCateg;
+		baseInfo.createdBy = selectedInfo.createdBy;
+		baseInfo.createdOn = selectedInfo.createdOn;
 		
-		if (sourceOne.cnpj != null)
-			result.cnpj = sourceOne.cnpj;
-		
-		return result;
+		results.add(baseInfo);
+		return results;
 	}
 	
 	
 	
-	private CompInfo makeClone(CompInfo recordInfo) {
-		try {
-			return (CompInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(CompInfo sourceOne, CompInfo sourceTwo) {		
-		return (sourceOne.codOwner == sourceTwo.codOwner);
-	}
-	
-	
-	
-	private void logException(Exception e) {
-		SystemLog.logError(this.getClass(), e);
+	@Override public InfoUniquifier<CompInfo> getUniquifier() {
+		return null;
 	}
 }
