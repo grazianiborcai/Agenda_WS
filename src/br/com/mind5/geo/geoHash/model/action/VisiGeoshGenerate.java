@@ -41,7 +41,7 @@ final class VisiGeoshGenerate extends ActionVisitorTemplateSimpleV2<GeoshInfo> {
 	
 	
 	private String getHash(GeoshInfo recordInfo) {
-		final int PRECISION = 10;
+		final int PRECISION = 12;
 		
 		try {
 			GeoHash geoHash = GeoHash.withCharacterPrecision(recordInfo.latitude, recordInfo.longitude, PRECISION);

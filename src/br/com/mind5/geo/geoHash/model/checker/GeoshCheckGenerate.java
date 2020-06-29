@@ -16,8 +16,8 @@ public final class GeoshCheckGenerate extends ModelCheckerTemplateSimpleV2<Geosh
 	
 	
 	@Override protected boolean checkHook(GeoshInfo recordInfo, Connection conn, String schemaName) {	
-		if ( recordInfo.latitude 	<= 0 	||
-			 recordInfo.longitude	<= 0 	||
+		if ( recordInfo.latitude 	== 0 	||
+			 recordInfo.longitude	== 0 	||
 			 recordInfo.codLanguage	== null	||
 			 recordInfo.username	== null		)	
 			
