@@ -1359,4 +1359,8 @@ public final class SystemCode {
 	public static final int SCHEDULE_AUTH_MANDATORY_FIELD_EMPTY			= 13300;
 	public static final int SCHEDULE_AUTH_NOT_AUTHORIZED				= 13301;	
 	public static final int SCHEDULE_AUTH_USER_AUTHORIZED				= 13302;
+	
+	// Geo Hash
+	public static final int GEO_HASH_GENERATE_ERROR 					= 4650;
+	public static final int GEO_HASH_MANDATORY_FIELD_EMPTY				= 4651;
 }
