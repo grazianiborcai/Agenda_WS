@@ -86,6 +86,7 @@ public final class DaoAddressUpdateSingle extends DaoStmtTemplate<AddressInfo> {
 				stmt.setString(i++, recordInfo.geoHash04);
 				stmt.setString(i++, recordInfo.geoHash05);
 				stmt.setString(i++, recordInfo.geoHash12);
+				stmt.setString(i++, recordInfo.districtSearch);
 				
 				return stmt;
 			}		

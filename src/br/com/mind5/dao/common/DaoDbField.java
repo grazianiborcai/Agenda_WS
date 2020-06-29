@@ -125,6 +125,7 @@ public final class DaoDbField {
 	public static final String COL_DAY = "day";
 	public static final String COL_DESCRIPTION = "description";
 	public static final String COL_DISTRICT = "district";
+	public static final String COL_DISTRICT_SEARCH = "district_search";
 	public static final String COL_EMAIL = "email";
 	public static final String COL_EMAIL_SENDER = "email_sender";
 	public static final String COL_END_TIME = "end_time";	

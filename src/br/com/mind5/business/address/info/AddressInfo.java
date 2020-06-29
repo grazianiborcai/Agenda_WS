@@ -22,6 +22,7 @@ public final class AddressInfo extends InfoRecord implements Cloneable {
 	public String txtState;
 	public String city;
 	public String district;
+	public String districtSearch;
 	public String street;
 	public String streetNumber;
 	public String complement;

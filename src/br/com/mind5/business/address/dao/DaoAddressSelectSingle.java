@@ -67,6 +67,7 @@ public final class DaoAddressSelectSingle extends DaoStmtTemplate<AddressInfo> {
 					dataInfo.codState = stmtResult.getString(DaoAddressDbTableColumn.COL_STATE_PROVINCE);
 					dataInfo.city = stmtResult.getString(DaoAddressDbTableColumn.COL_CITY);
 					dataInfo.district = stmtResult.getString(DaoAddressDbTableColumn.COL_DISTRICT);
+					dataInfo.districtSearch = stmtResult.getString(DaoAddressDbTableColumn.COL_DISTRICT_SEARCH);
 					dataInfo.street = stmtResult.getString(DaoAddressDbTableColumn.COL_STREET);
 					dataInfo.streetNumber = stmtResult.getString(DaoAddressDbTableColumn.COL_STREET_NUMBER);
 					dataInfo.complement = stmtResult.getString(DaoAddressDbTableColumn.COL_COMPLEMENT);
