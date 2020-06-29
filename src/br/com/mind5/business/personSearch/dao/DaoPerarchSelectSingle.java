@@ -16,11 +16,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class PerarchSelectSingle extends DaoStmtTemplate<PerarchInfo> {
+public final class DaoPerarchSelectSingle extends DaoStmtTemplate<PerarchInfo> {
 	private final String MAIN_TABLE = DaoDbTable.PERSON_TABLE;
 	
 	
-	public PerarchSelectSingle(Connection conn, PerarchInfo recordInfo, String schemaName) {
+	public DaoPerarchSelectSingle(Connection conn, PerarchInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -50,7 +50,7 @@ public final class PerarchSelectSingle extends DaoStmtTemplate<PerarchInfo> {
 		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new PerarchWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new DaoPerarchWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -67,19 +67,19 @@ public final class PerarchSelectSingle extends DaoStmtTemplate<PerarchInfo> {
 				do {
 					PerarchInfo dataInfo = new PerarchInfo();
 					
-					dataInfo.codOwner = stmtResult.getLong(PerarchDbTableColumn.COL_COD_OWNER);
-					dataInfo.codPerson = stmtResult.getLong(PerarchDbTableColumn.COL_COD_PERSON);
-					dataInfo.cpf = stmtResult.getString(PerarchDbTableColumn.COL_CPF);
-					dataInfo.name = stmtResult.getString(PerarchDbTableColumn.COL_NAME);	
-					dataInfo.nameSearch = stmtResult.getString(PerarchDbTableColumn.COL_NAME_SEARCH);
-					dataInfo.email = stmtResult.getString(PerarchDbTableColumn.COL_EMAIL);						
-					dataInfo.recordMode = stmtResult.getString(PerarchDbTableColumn.COL_RECORD_MODE);
-					dataInfo.codEntityCateg = stmtResult.getString(PerarchDbTableColumn.COL_COD_ENTITY_CATEG);
-					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, PerarchDbTableColumn.COL_COD_SNAPSHOT);
-					dataInfo.codGender = DaoFormatter.sqlToInt(stmtResult, PerarchDbTableColumn.COL_COD_GENDER);
-					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, PerarchDbTableColumn.COL_LAST_CHANGED);
-					dataInfo.lastChangedBy = DaoFormatter.sqlToInt(stmtResult, PerarchDbTableColumn.COL_LAST_CHANGED_BY);
-					dataInfo.birthDate = DaoFormatter.sqlToLocalDate(stmtResult, PerarchDbTableColumn.COL_BIRTH_DATE);
+					dataInfo.codOwner = stmtResult.getLong(DaoPerarchDbTableColumn.COL_COD_OWNER);
+					dataInfo.codPerson = stmtResult.getLong(DaoPerarchDbTableColumn.COL_COD_PERSON);
+					dataInfo.cpf = stmtResult.getString(DaoPerarchDbTableColumn.COL_CPF);
+					dataInfo.name = stmtResult.getString(DaoPerarchDbTableColumn.COL_NAME);	
+					dataInfo.nameSearch = stmtResult.getString(DaoPerarchDbTableColumn.COL_NAME_SEARCH);
+					dataInfo.email = stmtResult.getString(DaoPerarchDbTableColumn.COL_EMAIL);						
+					dataInfo.recordMode = stmtResult.getString(DaoPerarchDbTableColumn.COL_RECORD_MODE);
+					dataInfo.codEntityCateg = stmtResult.getString(DaoPerarchDbTableColumn.COL_COD_ENTITY_CATEG);
+					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, DaoPerarchDbTableColumn.COL_COD_SNAPSHOT);
+					dataInfo.codGender = DaoFormatter.sqlToInt(stmtResult, DaoPerarchDbTableColumn.COL_COD_GENDER);
+					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, DaoPerarchDbTableColumn.COL_LAST_CHANGED);
+					dataInfo.lastChangedBy = DaoFormatter.sqlToInt(stmtResult, DaoPerarchDbTableColumn.COL_LAST_CHANGED_BY);
+					dataInfo.birthDate = DaoFormatter.sqlToLocalDate(stmtResult, DaoPerarchDbTableColumn.COL_BIRTH_DATE);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

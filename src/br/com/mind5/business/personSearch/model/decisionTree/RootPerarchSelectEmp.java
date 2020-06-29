@@ -6,15 +6,15 @@ import java.util.List;
 import br.com.mind5.business.personSearch.info.PerarchInfo;
 import br.com.mind5.business.personSearch.model.action.LazyPerarchRootSelect;
 import br.com.mind5.business.personSearch.model.action.StdPerarchEnforceCategEmp;
-import br.com.mind5.business.personSearch.model.checker.PerarchCheckDummy;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 
-public final class RootPerarchSelectEmp extends DeciTreeTemplateReadV1<PerarchInfo> {
+public final class RootPerarchSelectEmp extends DeciTreeTemplateReadV2<PerarchInfo> {
 	
 	public RootPerarchSelectEmp(DeciTreeOption<PerarchInfo> option) {
 		super(option);
@@ -26,7 +26,7 @@ public final class RootPerarchSelectEmp extends DeciTreeTemplateReadV1<PerarchIn
 		List<ModelCheckerV1<PerarchInfo>> queue = new ArrayList<>();		
 		ModelCheckerV1<PerarchInfo> checker;
 
-		checker = new PerarchCheckDummy();
+		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueueV2<>(queue);

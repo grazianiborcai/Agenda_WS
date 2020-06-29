@@ -11,13 +11,13 @@ import br.com.mind5.business.personSearch.model.checker.PerarchCheckOwner;
 import br.com.mind5.business.personSearch.model.checker.PerarchCheckRead;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 
-public final class RootPerarchSelect extends DeciTreeTemplateReadV1<PerarchInfo> {
+public final class RootPerarchSelect extends DeciTreeTemplateReadV2<PerarchInfo> {
 	
 	public RootPerarchSelect(DeciTreeOption<PerarchInfo> option) {
 		super(option);

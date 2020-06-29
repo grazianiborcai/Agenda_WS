@@ -5,15 +5,15 @@ import br.com.mind5.model.action.ActionStdTemplateV2;
 import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdPerarchEnforceCategEmp extends ActionStdTemplateV2<PerarchInfo> {
+public final class StdPerarchDaoSelect extends ActionStdTemplateV2<PerarchInfo> {
 
-	public StdPerarchEnforceCategEmp(DeciTreeOption<PerarchInfo> option) {
+	public StdPerarchDaoSelect(DeciTreeOption<PerarchInfo> option) {
 		super(option);
 	}
 	
 	
 	
 	protected ActionVisitorV2<PerarchInfo> buildVisitorHook(DeciTreeOption<PerarchInfo> option) {
-		return new VisiPerarchEnforceCategEmp(option);
+		return new VisiPerarchDaoSelect(option);
 	}
 }

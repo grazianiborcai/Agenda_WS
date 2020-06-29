@@ -3,7 +3,7 @@ package br.com.mind5.business.personSearch.info;
 import br.com.mind5.business.person.info.PersonInfo;
 import br.com.mind5.info.InfoCopierTemplate;
 
-final class PerarchCopyPersonCpf extends InfoCopierTemplate<PerarchInfo, PersonInfo>{
+final class PerarchCopyPersonCpf extends InfoCopierTemplate<PerarchInfo, PersonInfo> {
 	
 	public PerarchCopyPersonCpf() {
 		super();

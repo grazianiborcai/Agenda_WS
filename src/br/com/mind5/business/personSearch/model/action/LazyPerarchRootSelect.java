@@ -5,12 +5,12 @@ import java.util.List;
 
 import br.com.mind5.business.personSearch.info.PerarchInfo;
 import br.com.mind5.business.personSearch.model.decisionTree.RootPerarchSelect;
-import br.com.mind5.model.action.ActionLazyTemplateV1;
+import br.com.mind5.model.action.ActionLazyTemplateV2;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyPerarchRootSelect extends ActionLazyTemplateV1<PerarchInfo, PerarchInfo> {
+public final class LazyPerarchRootSelect extends ActionLazyTemplateV2<PerarchInfo, PerarchInfo> {
 
 	public LazyPerarchRootSelect(Connection conn, String schemaName) {
 		super(conn, schemaName);

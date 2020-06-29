@@ -11,11 +11,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.DaoWhereCondition;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 
-public final class PerarchWhere implements DaoStmtWhere {	
+public final class DaoPerarchWhere implements DaoStmtWhere {	
 	private String whereClause;	
 	
 	
-	public PerarchWhere(DaoWhereBuilderOption whereOption, String tableName, PerarchInfo recordInfo) {
+	public DaoPerarchWhere(DaoWhereBuilderOption whereOption, String tableName, PerarchInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -28,31 +28,31 @@ public final class PerarchWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-				case PerarchDbTableColumn.COL_COD_OWNER :
+				case DaoPerarchDbTableColumn.COL_COD_OWNER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;
 					
-				case PerarchDbTableColumn.COL_COD_PERSON :
+				case DaoPerarchDbTableColumn.COL_COD_PERSON :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codPerson));
 					break;
 					
-				case PerarchDbTableColumn.COL_CPF :
+				case DaoPerarchDbTableColumn.COL_CPF :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.cpf);
 					break;
 					
-				case PerarchDbTableColumn.COL_EMAIL :
+				case DaoPerarchDbTableColumn.COL_EMAIL :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.email);
 					break;
 					
-				case PerarchDbTableColumn.COL_COD_ENTITY_CATEG :
+				case DaoPerarchDbTableColumn.COL_COD_ENTITY_CATEG :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codEntityCateg);
 					break;
 					
-				case PerarchDbTableColumn.COL_NAME_SEARCH :
+				case DaoPerarchDbTableColumn.COL_NAME_SEARCH :
 					builder.addClauseAnd(eachColumn, recordInfo.nameSearch, DaoWhereCondition.LIKE);
 					break;
 					
-				case PerarchDbTableColumn.COL_RECORD_MODE :
+				case DaoPerarchDbTableColumn.COL_RECORD_MODE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.recordMode);
 					break;
 			}

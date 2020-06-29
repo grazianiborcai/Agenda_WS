@@ -1,23 +1,23 @@
 package br.com.mind5.business.personSearch.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.personSearch.info.PerarchInfo;
 import br.com.mind5.business.personSearch.info.PerarchMerger;
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiPerarchMergeToSelect extends ActionVisitorTemplateMergeV1<PerarchInfo, PerarchInfo> {
+final class VisiPerarchMergeToSelect extends ActionVisitorTemplateMergeV2<PerarchInfo, PerarchInfo> {
 	
-	public VisiPerarchMergeToSelect(Connection conn, String schemaName) {
-		super(conn, schemaName, PerarchInfo.class);
+	public VisiPerarchMergeToSelect(DeciTreeOption<PerarchInfo> option) {
+		super(option, PerarchInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends ActionStdV1<PerarchInfo>> getActionClassHook() {
-		return StdPerarchSelect.class;
+	@Override protected Class<? extends ActionStdV2<PerarchInfo>> getActionClassHook() {
+		return StdPerarchDaoSelect.class;
 	}
 	
 	
@@ -29,6 +29,6 @@ final class VisiPerarchMergeToSelect extends ActionVisitorTemplateMergeV1<Perarc
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
+		return super.DONT_MERGE_WHEN_EMPTY;
 	}
 }
