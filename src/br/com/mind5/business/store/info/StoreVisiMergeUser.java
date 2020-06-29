@@ -24,7 +24,6 @@ final class StoreVisiMergeUser implements InfoMergerVisitorV3<StoreInfo, UserInf
 	@Override public List<StoreInfo> merge(StoreInfo baseInfo, UserInfo selectedInfo) {
 		List<StoreInfo> results = new ArrayList<>();
 		
-		baseInfo.userData = selectedInfo;
 		baseInfo.codUser = selectedInfo.codUser;
 		
 		results.add(baseInfo);

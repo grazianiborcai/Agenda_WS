@@ -11,7 +11,6 @@ import br.com.mind5.business.store.model.action.LazyStoreMergeFimist;
 import br.com.mind5.business.store.model.action.LazyStoreMergePerson;
 import br.com.mind5.business.store.model.action.LazyStoreMergePhone;
 import br.com.mind5.business.store.model.action.LazyStoreMergeTimezone;
-import br.com.mind5.business.store.model.action.LazyStoreMergeUser;
 import br.com.mind5.business.store.model.action.StdStoreMergeToSelect;
 import br.com.mind5.business.store.model.checker.StoreCheckExist;
 import br.com.mind5.business.store.model.checker.StoreCheckLangu;
@@ -19,9 +18,9 @@ import br.com.mind5.business.store.model.checker.StoreCheckRead;
 import br.com.mind5.business.store.model.checker.StoreCheckStorauth;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 
@@ -82,7 +81,6 @@ public final class RootStoreSelect extends DeciTreeTemplateReadV2<StoreInfo> {
 		ActionLazyV1<StoreInfo> mergeComp = new LazyStoreMergeComp(option.conn, option.schemaName);
 		ActionLazyV1<StoreInfo> mergeAddress = new LazyStoreMergeAddress(option.conn, option.schemaName);
 		ActionLazyV1<StoreInfo> mergePhone = new LazyStoreMergePhone(option.conn, option.schemaName);
-		ActionLazyV1<StoreInfo> mergeUser = new LazyStoreMergeUser(option.conn, option.schemaName);
 		ActionLazyV1<StoreInfo> mergeFimist = new LazyStoreMergeFimist(option.conn, option.schemaName);
 		
 		select.addPostAction(mergeCurrency);
@@ -91,8 +89,7 @@ public final class RootStoreSelect extends DeciTreeTemplateReadV2<StoreInfo> {
 		mergePerson.addPostAction(mergeComp);
 		mergeComp.addPostAction(mergeAddress);
 		mergeAddress.addPostAction(mergePhone);
-		mergePhone.addPostAction(mergeUser);
-		mergeUser.addPostAction(mergeFimist);
+		mergePhone.addPostAction(mergeFimist);
 		
 		actions.add(select);
 		return actions;
