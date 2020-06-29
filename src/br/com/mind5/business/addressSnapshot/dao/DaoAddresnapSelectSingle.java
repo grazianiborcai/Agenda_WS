@@ -68,6 +68,7 @@ public final class DaoAddresnapSelectSingle extends DaoStmtTemplate<AddresnapInf
 					dataInfo.codState = stmtResult.getString(DaoAddresnapDbTableColumn.COL_STATE_PROVINCE);
 					dataInfo.city = stmtResult.getString(DaoAddresnapDbTableColumn.COL_CITY);
 					dataInfo.district = stmtResult.getString(DaoAddresnapDbTableColumn.COL_DISTRICT);
+					dataInfo.districtSearch = stmtResult.getString(DaoAddresnapDbTableColumn.COL_DISTRICT_SEARCH);
 					dataInfo.street = stmtResult.getString(DaoAddresnapDbTableColumn.COL_STREET);
 					dataInfo.streetNumber = stmtResult.getString(DaoAddresnapDbTableColumn.COL_STREET_NUMBER);
 					dataInfo.complement = stmtResult.getString(DaoAddresnapDbTableColumn.COL_COMPLEMENT);
