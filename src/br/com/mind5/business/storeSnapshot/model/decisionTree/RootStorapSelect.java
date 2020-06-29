@@ -9,7 +9,6 @@ import br.com.mind5.business.storeSnapshot.model.action.LazyStorapMergePhonap;
 import br.com.mind5.business.storeSnapshot.model.action.LazyStorapMergeTimezone;
 import br.com.mind5.business.storeSnapshot.model.action.LazyStorapNodeCompnap;
 import br.com.mind5.business.storeSnapshot.model.action.LazyStorapNodePersonap;
-import br.com.mind5.business.storeSnapshot.model.action.LazyStorapNodeUserap;
 import br.com.mind5.business.storeSnapshot.model.action.StdStorapMergeToSelect;
 import br.com.mind5.business.storeSnapshot.model.checker.StorapCheckLangu;
 import br.com.mind5.business.storeSnapshot.model.checker.StorapCheckOwner;
@@ -69,15 +68,13 @@ public final class RootStorapSelect extends DeciTreeTemplateReadV2<StorapInfo> {
 		ActionLazyV1<StorapInfo> mergeCurrency = new LazyStorapMergeCurrency(option.conn, option.schemaName);
 		ActionLazyV1<StorapInfo> mergeTimezone = new LazyStorapMergeTimezone(option.conn, option.schemaName); 
 		ActionLazyV1<StorapInfo> mergePhonap = new LazyStorapMergePhonap(option.conn, option.schemaName);
-		ActionLazyV1<StorapInfo> nodeUserap = new LazyStorapNodeUserap(option.conn, option.schemaName);
 		ActionLazyV1<StorapInfo> nodePersonap = new LazyStorapNodePersonap(option.conn, option.schemaName);
 		ActionLazyV1<StorapInfo> nodeCompnap = new LazyStorapNodeCompnap(option.conn, option.schemaName);
 		
 		select.addPostAction(mergeCurrency);
 		mergeCurrency.addPostAction(mergeTimezone); 
 		mergeTimezone.addPostAction(mergePhonap);
-		mergePhonap.addPostAction(nodeUserap);
-		nodeUserap.addPostAction(nodePersonap);
+		mergePhonap.addPostAction(nodePersonap);
 		nodePersonap.addPostAction(nodeCompnap);
 		
 		actions.add(select);
