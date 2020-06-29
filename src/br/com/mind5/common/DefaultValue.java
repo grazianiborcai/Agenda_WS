@@ -23,6 +23,12 @@ public final class DefaultValue {
 	
 	
 	
+	public static int geo() {
+		return 0;
+	}
+	
+	
+	
 	public static boolean boole() {
 		return false;
 	}
