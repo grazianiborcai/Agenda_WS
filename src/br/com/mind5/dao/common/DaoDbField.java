@@ -138,6 +138,10 @@ public final class DaoDbField {
 	public static final String COL_FILE_URI = "file_img_uri";
 	public static final String COL_FILE_URI_EXTERNAL = "file_img_uri_external";
 	public static final String COL_FULL_NUMBER = "full_number";
+	public static final String COL_GEO_HASH_03 = "geo_hash_03";
+	public static final String COL_GEO_HASH_04 = "geo_hash_04";
+	public static final String COL_GEO_HASH_05 = "geo_hash_05";
+	public static final String COL_GEO_HASH_12 = "geo_hash_12";	
 	public static final String COL_GRAND_TOTAL = "grandTotal";
 	public static final String COL_HOUR_BEFORE = "hour_before";
 	public static final String COL_ID_ORDER_PARTNER = "id_order_partner";

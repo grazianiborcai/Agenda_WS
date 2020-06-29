@@ -10,9 +10,9 @@ import br.com.mind5.model.action.ActionVisitorTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiAddressInsertAddresnap extends ActionVisitorTemplateActionV2<AddressInfo, AddresnapInfo> {
+final class VisiAddressAddresnapInsert extends ActionVisitorTemplateActionV2<AddressInfo, AddresnapInfo> {
 
-	public VisiAddressInsertAddresnap(DeciTreeOption<AddressInfo> option) {
+	public VisiAddressAddresnapInsert(DeciTreeOption<AddressInfo> option) {
 		super(option, AddressInfo.class, AddresnapInfo.class);
 	}
 	

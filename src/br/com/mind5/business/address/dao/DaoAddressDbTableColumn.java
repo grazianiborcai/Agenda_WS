@@ -24,6 +24,10 @@ public final class DaoAddressDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_CREATED_BY = DaoDbField.COL_CREATED_BY;
 	public static final String COL_CREATED_ON = DaoDbField.COL_CREATED_ON;
 	public static final String COL_DISTRICT = DaoDbField.COL_DISTRICT; 
+	public static final String COL_GEO_HASH_03 = DaoDbField.COL_GEO_HASH_03;
+	public static final String COL_GEO_HASH_04 = DaoDbField.COL_GEO_HASH_04; 
+	public static final String COL_GEO_HASH_05 = DaoDbField.COL_GEO_HASH_05; 
+	public static final String COL_GEO_HASH_12 = DaoDbField.COL_GEO_HASH_12;
 	public static final String COL_LATITUDE = DaoDbField.COL_LATITUDE; 
 	public static final String COL_LAST_CHANGED = DaoDbField.COL_LAST_CHANGED; 
 	public static final String COL_LAST_CHANGED_BY = DaoDbField.COL_LAST_CHANGED_BY; 
@@ -289,6 +293,38 @@ public final class DaoAddressDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_CREATED_ON;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_GEO_HASH_03;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_GEO_HASH_04;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_GEO_HASH_05;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_GEO_HASH_12;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;

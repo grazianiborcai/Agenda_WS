@@ -195,6 +195,20 @@ public final class DaoFormatter {
 	
 	
 	
+	public static PreparedStatement geoToStmt(PreparedStatement stmt, int index, float number) throws SQLException {
+		checkArgument(stmt, index);		
+		
+		if (number == 0) {
+			stmt.setNull(index, Types.FLOAT);			
+			return stmt;
+		}		
+		
+		stmt.setFloat(index, number);
+		return stmt;
+	}
+	
+	
+	
 	public static PreparedStatement numberToStmt(PreparedStatement stmt, int index, long number) throws SQLException {
 		checkArgument(stmt, index);		
 		

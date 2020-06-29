@@ -7,6 +7,7 @@ import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.address.model.action.LazyAddressEnforceLChanged;
 import br.com.mind5.business.address.model.action.LazyAddressMergeFormess;
 import br.com.mind5.business.address.model.action.LazyAddressMergeUsername;
+import br.com.mind5.business.address.model.action.LazyAddressNodeGeo;
 import br.com.mind5.business.address.model.action.LazyAddressNodeUpdate;
 import br.com.mind5.business.address.model.action.StdAddressMergeToUpdate;
 import br.com.mind5.business.address.model.checker.AddressCheckCountry;
@@ -18,9 +19,9 @@ import br.com.mind5.business.address.model.checker.AddressCheckRefWrite;
 import br.com.mind5.business.address.model.checker.AddressCheckUpdate;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
@@ -97,13 +98,15 @@ public final class RootAddressUpdate extends DeciTreeTemplateWriteV2<AddressInfo
 		ActionStdV1<AddressInfo> mergeToUpdate = new StdAddressMergeToUpdate(option);		
 		ActionLazyV1<AddressInfo> mergeUsername = new LazyAddressMergeUsername(option.conn, option.schemaName);
 		ActionLazyV1<AddressInfo> mergeForm = new LazyAddressMergeFormess(option.conn, option.schemaName);	
-		ActionLazyV1<AddressInfo> enforceLChanged = new LazyAddressEnforceLChanged(option.conn, option.schemaName);	
+		ActionLazyV1<AddressInfo> enforceLChanged = new LazyAddressEnforceLChanged(option.conn, option.schemaName);
+		ActionLazyV1<AddressInfo> nodeGeo = new LazyAddressNodeGeo(option.conn, option.schemaName);
 		ActionLazyV1<AddressInfo> nodeUpdate = new LazyAddressNodeUpdate(option.conn, option.schemaName);	
 		
 		mergeToUpdate.addPostAction(mergeUsername);
 		mergeUsername.addPostAction(mergeForm);
 		mergeForm.addPostAction(enforceLChanged);
-		enforceLChanged.addPostAction(nodeUpdate);
+		enforceLChanged.addPostAction(nodeGeo);
+		nodeGeo.addPostAction(nodeUpdate);
 		
 		actions.add(mergeToUpdate);		
 		return actions;
