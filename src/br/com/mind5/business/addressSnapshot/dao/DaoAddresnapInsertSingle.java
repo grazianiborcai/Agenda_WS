@@ -55,8 +55,8 @@ public final class DaoAddresnapInsertSingle extends DaoStmtTemplate<AddresnapInf
 				stmt.setString(i++, recordInfo.streetNumber);
 				stmt.setString(i++, recordInfo.complement);
 				stmt.setString(i++, recordInfo.postalCode);
-				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.latitude);	
-				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.longitude);	
+				stmt = DaoFormatter.geoToStmt(stmt, i++, recordInfo.latitude);	
+				stmt = DaoFormatter.geoToStmt(stmt, i++, recordInfo.longitude);	
 				stmt.setString(i++, recordInfo.line1);
 				stmt.setString(i++, recordInfo.line2);
 				stmt.setString(i++, recordInfo.line3);
@@ -76,6 +76,10 @@ public final class DaoAddresnapInsertSingle extends DaoStmtTemplate<AddresnapInf
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codOwnerRefSnapshot);	
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.createdBy);	
 				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.createdOn);	
+				stmt.setString(i++, recordInfo.geoHash03);
+				stmt.setString(i++, recordInfo.geoHash04);
+				stmt.setString(i++, recordInfo.geoHash05);
+				stmt.setString(i++, recordInfo.geoHash12);
 	
 				return stmt;
 			}		

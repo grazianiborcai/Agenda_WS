@@ -33,6 +33,10 @@ public final class AddresnapInfo extends InfoRecord implements Cloneable {
 	public String postalCode;
 	public float longitude;
 	public float latitude;
+	public String geoHash03;
+	public String geoHash04;	
+	public String geoHash05;
+	public String geoHash12;
 	public String line1;
 	public String line2;
 	public String line3;
@@ -66,8 +70,8 @@ public final class AddresnapInfo extends InfoRecord implements Cloneable {
 		codOwnerRefSnapshot = DefaultValue.number();
 		codUser = DefaultValue.number();
 		codUserSnapshot = DefaultValue.number();
-		longitude = DefaultValue.number();
-		latitude = DefaultValue.number();		
+		longitude = DefaultValue.geo();
+		latitude = DefaultValue.geo();		
 		recordMode = DefaultValue.recordMode();
 		lastChangedBy = DefaultValue.number();
 		createdBy = DefaultValue.number();
