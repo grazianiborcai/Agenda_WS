@@ -3,7 +3,7 @@ package br.com.mind5.business.person.info;
 import br.com.mind5.info.InfoCopierTemplate;
 import br.com.mind5.security.user.info.UserInfo;
 
-final class PersonCopyUser extends InfoCopierTemplate<PersonInfo, UserInfo>{
+final class PersonCopyUser extends InfoCopierTemplate<PersonInfo, UserInfo> {
 	
 	public PersonCopyUser() {
 		super();
