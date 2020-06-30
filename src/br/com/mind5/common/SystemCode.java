@@ -1361,6 +1361,10 @@ public final class SystemCode {
 	public static final int SCHEDULE_AUTH_USER_AUTHORIZED				= 13302;
 	
 	// Geo Hash
-	public static final int GEO_HASH_GENERATE_ERROR 					= 4650;
-	public static final int GEO_HASH_MANDATORY_FIELD_EMPTY				= 4651;
+	public static final int GEO_HASH_GENERATE_ERROR 					= 13350;
+	public static final int GEO_HASH_MANDATORY_FIELD_EMPTY				= 13351;
+	
+	// Geo Coding
+	public static final int GEO_CODE_GENERATE_ERROR 					= 13400;
+	public static final int GEO_CODE_MANDATORY_FIELD_EMPTY				= 13401;
 }
