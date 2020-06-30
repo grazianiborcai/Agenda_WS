@@ -5,6 +5,7 @@ import java.util.List;
 import br.com.mind5.business.addressSearch.info.AddarchInfo;
 import br.com.mind5.business.addressSnapshot.info.AddresnapInfo;
 import br.com.mind5.form.formAddress.info.FormessInfo;
+import br.com.mind5.geo.geoCode.info.GeodeInfo;
 import br.com.mind5.geo.geoHash.info.GeoshInfo;
 import br.com.mind5.info.InfoMergerBuilderV3;
 import br.com.mind5.info.InfoMergerV3;
@@ -13,6 +14,19 @@ import br.com.mind5.masterData.state.info.StateInfo;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class AddressMerger {
+	public static List<AddressInfo> mergeWithGeode(List<AddressInfo> baseInfos, List<GeodeInfo> selectedInfos) {
+		InfoMergerBuilderV3<AddressInfo, GeodeInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new AddressVisiMergeGeode());
+		InfoMergerV3<AddressInfo, GeodeInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	
 	public static List<AddressInfo> mergeWithGeosh(List<AddressInfo> baseInfos, List<GeoshInfo> selectedInfos) {
 		InfoMergerBuilderV3<AddressInfo, GeoshInfo> builder = new InfoMergerBuilderV3<>();
 		

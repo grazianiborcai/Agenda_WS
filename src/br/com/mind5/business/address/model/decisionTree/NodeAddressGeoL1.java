@@ -4,9 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.address.info.AddressInfo;
-import br.com.mind5.business.address.model.action.StdAddressGeoshGenerate;
-import br.com.mind5.business.address.model.action.StdAddressSuccess;
-import br.com.mind5.business.address.model.checker.AddressCheckHasGeo;
+import br.com.mind5.business.address.model.action.LazyAddressNodeGeoL2;
+import br.com.mind5.business.address.model.action.StdAddressGeodeCoding;
+import br.com.mind5.business.address.model.checker.AddressCheckHasGeode;
+import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -14,9 +15,9 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class NodeAddressGeo extends DeciTreeTemplateWriteV2<AddressInfo> {
+public final class NodeAddressGeoL1 extends DeciTreeTemplateWriteV2<AddressInfo> {
 	
-	public NodeAddressGeo(DeciTreeOption<AddressInfo> option) {
+	public NodeAddressGeoL1(DeciTreeOption<AddressInfo> option) {
 		super(option);
 	}
 	
@@ -31,7 +32,7 @@ public final class NodeAddressGeo extends DeciTreeTemplateWriteV2<AddressInfo> {
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new AddressCheckHasGeo(checkerOption);
+		checker = new AddressCheckHasGeode(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueueV2<>(queue);
@@ -42,9 +43,12 @@ public final class NodeAddressGeo extends DeciTreeTemplateWriteV2<AddressInfo> {
 	@Override protected List<ActionStdV1<AddressInfo>> buildActionsOnPassedHook(DeciTreeOption<AddressInfo> option) {
 		List<ActionStdV1<AddressInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<AddressInfo> geoshGenerate = new StdAddressGeoshGenerate(option);	
+		ActionStdV1<AddressInfo> geodeCoding = new StdAddressGeodeCoding(option);	
+		ActionLazyV1<AddressInfo> nodeL2 = new LazyAddressNodeGeoL2(option.conn, option.schemaName);	
+		
+		geodeCoding.addPostAction(nodeL2);
 
-		actions.add(geoshGenerate);		
+		actions.add(geodeCoding);		
 		return actions;
 	}
 	
@@ -53,9 +57,9 @@ public final class NodeAddressGeo extends DeciTreeTemplateWriteV2<AddressInfo> {
 	@Override protected List<ActionStdV1<AddressInfo>> buildActionsOnFailedHook(DeciTreeOption<AddressInfo> option) {
 		List<ActionStdV1<AddressInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<AddressInfo> success = new StdAddressSuccess(option);	
+		ActionStdV1<AddressInfo> nodeL2 = new NodeAddressGeoL2(option).toAction();	
 
-		actions.add(success);		
+		actions.add(nodeL2);		
 		return actions;
 	}
 }

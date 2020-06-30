@@ -8,7 +8,7 @@ import br.com.mind5.business.address.model.action.LazyAddressEnforceDistrictSear
 import br.com.mind5.business.address.model.action.LazyAddressEnforceLChanged;
 import br.com.mind5.business.address.model.action.LazyAddressMergeFormess;
 import br.com.mind5.business.address.model.action.LazyAddressMergeUsername;
-import br.com.mind5.business.address.model.action.LazyAddressNodeGeo;
+import br.com.mind5.business.address.model.action.LazyAddressNodeGeoL1;
 import br.com.mind5.business.address.model.action.LazyAddressNodeUpdate;
 import br.com.mind5.business.address.model.action.StdAddressMergeToUpdate;
 import br.com.mind5.business.address.model.checker.AddressCheckCountry;
@@ -101,7 +101,7 @@ public final class RootAddressUpdate extends DeciTreeTemplateWriteV2<AddressInfo
 		ActionLazyV1<AddressInfo> mergeForm = new LazyAddressMergeFormess(option.conn, option.schemaName);	
 		ActionLazyV1<AddressInfo> enforceLChanged = new LazyAddressEnforceLChanged(option.conn, option.schemaName);
 		ActionLazyV1<AddressInfo> enforceDistrictSearch = new LazyAddressEnforceDistrictSearch(option.conn, option.schemaName);
-		ActionLazyV1<AddressInfo> nodeGeo = new LazyAddressNodeGeo(option.conn, option.schemaName);
+		ActionLazyV1<AddressInfo> nodeGeo = new LazyAddressNodeGeoL1(option.conn, option.schemaName);
 		ActionLazyV1<AddressInfo> nodeUpdate = new LazyAddressNodeUpdate(option.conn, option.schemaName);	
 		
 		mergeToUpdate.addPostAction(mergeUsername);

@@ -9,7 +9,7 @@ import br.com.mind5.business.address.model.action.LazyAddressEnforceCreatedOn;
 import br.com.mind5.business.address.model.action.LazyAddressEnforceDistrictSearch;
 import br.com.mind5.business.address.model.action.LazyAddressEnforceLChanged;
 import br.com.mind5.business.address.model.action.LazyAddressMergeUsername;
-import br.com.mind5.business.address.model.action.LazyAddressNodeGeo;
+import br.com.mind5.business.address.model.action.LazyAddressNodeGeoL1;
 import br.com.mind5.business.address.model.action.LazyAddressNodeInsert;
 import br.com.mind5.business.address.model.action.StdAddressMergeFormess;
 import br.com.mind5.business.address.model.checker.AddressCheckCountry;
@@ -103,7 +103,7 @@ public final class RootAddressInsert extends DeciTreeTemplateWriteV2<AddressInfo
 		ActionLazyV1<AddressInfo> enforceCreatedOn = new LazyAddressEnforceCreatedOn(option.conn, option.schemaName);	
 		ActionLazyV1<AddressInfo> enforceCreatedBy = new LazyAddressEnforceCreatedBy(option.conn, option.schemaName);
 		ActionLazyV1<AddressInfo> enforceDistrictSearch = new LazyAddressEnforceDistrictSearch(option.conn, option.schemaName);
-		ActionLazyV1<AddressInfo> nodeGeo = new LazyAddressNodeGeo(option.conn, option.schemaName);	
+		ActionLazyV1<AddressInfo> nodeGeo = new LazyAddressNodeGeoL1(option.conn, option.schemaName);	
 		ActionLazyV1<AddressInfo> nodeInsert = new LazyAddressNodeInsert(option.conn, option.schemaName);	
 		
 		mergeForm.addPostAction(mergeUsername);
