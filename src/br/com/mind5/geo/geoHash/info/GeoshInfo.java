@@ -18,8 +18,8 @@ public final class GeoshInfo extends InfoRecord implements Cloneable {
 	public GeoshInfo() {
 		super();
 		
-		longitude = DefaultValue.number();
-		latitude = DefaultValue.number();
+		longitude = DefaultValue.geo();
+		latitude = DefaultValue.geo();
 	}
 	
 	
