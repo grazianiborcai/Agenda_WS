@@ -29,6 +29,12 @@ class DaoWhereBuilderConcrete implements DaoWhereBuilder {
 		checkArgument(option);		
 		this.option = option;
 	}
+	
+	
+	
+	@Override public void addClauseEqualAnd(DaoColumn column, String value) {
+		addClauseAnd(column, value, DaoWhereCondition.EQUAL);
+	}
 		
 	
 	
@@ -38,20 +44,26 @@ class DaoWhereBuilderConcrete implements DaoWhereBuilder {
 	
 	
 	
-	@Override public void addClauseEqualAnd(DaoColumn column, String value) {
-		addClauseAnd(column, value, DaoWhereCondition.EQUAL);
+	@Override public void addClauseNullOr(DaoColumn column) {
+		addClauseOr(column, SPACE, DaoWhereCondition.IS_NULL);
+	}
+	
+	
+	
+	@Override public void addClauseNotNullAnd(DaoColumn column) {
+		addClauseAnd(column, SPACE, DaoWhereCondition.IS_NOT_NULL);
+	}
+	
+	
+	
+	@Override public void addClauseNotNullOr(DaoColumn column) {
+		addClauseOr(column, SPACE, DaoWhereCondition.IS_NOT_NULL);
 	}
 	
 	
 	
 	@Override public void addClauseAnd(DaoColumn column, String value, DaoWhereCondition condition) {
 		appendClause(column, value, DaoWhereOperator.AND.getSymbol(), condition);
-	}
-	
-	
-	
-	@Override public void addClauseNullOr(DaoColumn column) {
-		addClauseOr(column, SPACE, DaoWhereCondition.IS_NULL);
 	}
 	
 	

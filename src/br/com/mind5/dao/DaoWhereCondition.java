@@ -4,6 +4,7 @@ public enum DaoWhereCondition {
 	EQUAL("="), 
 	GREATER(">"), 
 	GREATER_OR_EQUAL(">="), 
+	IS_NOT_NULL("IS NOT NULL"),
 	IS_NULL("IS NULL"),
 	LESS("<"), 
 	LESS_OR_EQUAL("<="), 

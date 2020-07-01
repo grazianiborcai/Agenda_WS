@@ -6,26 +6,20 @@ public interface DaoWhereBuilder {
 	}
 	
 	
-	public void addClauseEqualAnd(DaoColumn column, String value);
-	
+	public void addClauseEqualAnd(DaoColumn column, String value);	
 	
 	public void addClauseNullAnd(DaoColumn column);
+	public void addClauseNullOr(DaoColumn column);	
 	
-	
-	public void addClauseNullOr(DaoColumn column);
-	
+	public void addClauseNotNullAnd(DaoColumn column);
+	public void addClauseNotNullOr(DaoColumn column);	
 	
 	public void addClauseAnd(DaoColumn column, String value, DaoWhereCondition condition);
-	
-	
 	public void addClauseOr(DaoColumn column, String value, DaoWhereCondition condition);
-
 	
-	public void mergeBuilder(DaoWhereBuilder builder, DaoWhereOperator operator);
-	
+	public void mergeBuilder(DaoWhereBuilder builder, DaoWhereOperator operator);	
 	
 	public String generateClause();
-
 	
 	public boolean checkBeforeGeneration();
 }
