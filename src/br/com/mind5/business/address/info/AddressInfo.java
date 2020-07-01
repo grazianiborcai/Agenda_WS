@@ -51,7 +51,7 @@ public final class AddressInfo extends InfoRecord implements Cloneable {
 	
 	
 	public AddressInfo() {
-		super(AddressInfo.class);
+		super();
 		
 		codOwner = DefaultValue.number();
 		codAddress = DefaultValue.number();
