@@ -3,11 +3,11 @@ package br.com.mind5.business.storeNearby.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.geo.geoHash.info.GeoshInfo;
+import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.info.InfoMergerVisitorV3;
 import br.com.mind5.info.InfoUniquifier;
 
-final class StorbyVisiMergeGeosh implements InfoMergerVisitorV3<StorbyInfo, GeoshInfo> {
+final class StorbyVisiMergeStolis implements InfoMergerVisitorV3<StorbyInfo, StolisInfo> {
 	
 	@Override public List<StorbyInfo> beforeMerge(List<StorbyInfo> baseInfos) {
 		return baseInfos;
@@ -15,16 +15,17 @@ final class StorbyVisiMergeGeosh implements InfoMergerVisitorV3<StorbyInfo, Geos
 	
 	
 	
-	@Override public boolean shouldMerge(StorbyInfo baseInfo, GeoshInfo selectedInfo) {
-		return true;
+	@Override public boolean shouldMerge(StorbyInfo baseInfo, StolisInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner	&&
+				baseInfo.codStore == selectedInfo.codStore);
 	}
 	
 	
 	
-	@Override public List<StorbyInfo> merge(StorbyInfo baseInfo, GeoshInfo selectedInfo) {
+	@Override public List<StorbyInfo> merge(StorbyInfo baseInfo, StolisInfo selectedInfo) {
 		List<StorbyInfo> results = new ArrayList<>();
 		
-		baseInfo.geoHash03 = selectedInfo.geoHash03;
+		baseInfo.stolisData = selectedInfo;
 		
 		results.add(baseInfo);
 		return results;

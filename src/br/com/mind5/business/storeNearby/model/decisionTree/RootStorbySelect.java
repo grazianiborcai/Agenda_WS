@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.storeNearby.info.StorbyInfo;
+import br.com.mind5.business.storeNearby.model.action.LazyStorbyMergeStolis;
 import br.com.mind5.business.storeNearby.model.action.LazyStorbyNodeDistrict;
 import br.com.mind5.business.storeNearby.model.checker.StorbyCheckLangu;
 import br.com.mind5.business.storeNearby.model.checker.StorbyCheckOwner;
@@ -60,8 +61,10 @@ public final class RootStorbySelect extends DeciTreeTemplateReadV2<StorbyInfo> {
 		
 		ActionStdV1<StorbyInfo> nodeHash = new NodeStorbyHash(option).toAction();
 		ActionLazyV1<StorbyInfo> nodeDistrict = new LazyStorbyNodeDistrict(option.conn, option.schemaName);
+		ActionLazyV1<StorbyInfo> mergeStolis = new LazyStorbyMergeStolis(option.conn, option.schemaName);
 		
 		nodeHash.addPostAction(nodeDistrict);
+		nodeDistrict.addPostAction(mergeStolis);
 		
 		actions.add(nodeHash);			
 		return actions;

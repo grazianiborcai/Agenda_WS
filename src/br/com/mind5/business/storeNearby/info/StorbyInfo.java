@@ -2,6 +2,8 @@ package br.com.mind5.business.storeNearby.info;
 
 import java.util.List;
 
+import br.com.mind5.business.storeList.info.StolisInfo;
+import br.com.mind5.common.CloneUtil;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
 
@@ -12,11 +14,9 @@ public final class StorbyInfo extends InfoRecord implements Cloneable {
 	public float longitude;
 	public float latitude;
 	public String geoHash03;
-	public String geoHash04;	
-	public String geoHash05;
-	public String geoHash12;
 	public String recordMode;
 	public String username;
+	public StolisInfo stolisData;
 	
 	
 	public StorbyInfo() {
@@ -27,6 +27,7 @@ public final class StorbyInfo extends InfoRecord implements Cloneable {
 		longitude = DefaultValue.geo();
 		latitude = DefaultValue.geo();
 		recordMode = DefaultValue.recordMode();
+		stolisData = DefaultValue.object();
 	}
 	
 	
@@ -44,7 +45,10 @@ public final class StorbyInfo extends InfoRecord implements Cloneable {
 	
 	
 	@Override public Object clone() throws CloneNotSupportedException {
-		return super.clone();
+		StorbyInfo deepCopy = (StorbyInfo) super.clone();
+		
+		deepCopy.stolisData = CloneUtil.cloneRecord(stolisData, this.getClass());
+		return deepCopy;
 	}
 	
 	
@@ -57,6 +61,9 @@ public final class StorbyInfo extends InfoRecord implements Cloneable {
 		
 		if (geoHash03 != null)
 			result = result * 31 + geoHash03.hashCode();
+		
+		if (districtSearch != null)
+			result = result * 31 + districtSearch.hashCode();
 		
 		return result;
 	}
@@ -73,8 +80,9 @@ public final class StorbyInfo extends InfoRecord implements Cloneable {
 		
 		
 		StorbyInfo obj = (StorbyInfo) o;		
-		return (codOwner 	== obj.codOwner && 
-				codStore	== obj.codStore &&
-				super.isStringEqual(geoHash03, obj.geoHash03));
+		return (codOwner == obj.codOwner && 
+				codStore == obj.codStore &&
+				super.isStringEqual(geoHash03, obj.geoHash03) &&
+				super.isStringEqual(districtSearch, obj.districtSearch));
 	}	
 }

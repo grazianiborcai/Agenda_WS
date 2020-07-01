@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.storeNearby.info.StorbyInfo;
 import br.com.mind5.business.storeNearby.model.action.LazyStorbyMergeToSelect;
+import br.com.mind5.business.storeNearby.model.action.LazyStorbyPruneEmpty;
 import br.com.mind5.business.storeNearby.model.action.StdStorbyEnforceDistrictKey;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
@@ -39,8 +40,10 @@ public final class NodeStorbyDistrict extends DeciTreeTemplateReadV2<StorbyInfo>
 		
 		ActionStdV1<StorbyInfo> enforceDistrictKey = new StdStorbyEnforceDistrictKey(option);
 		ActionLazyV1<StorbyInfo> select = new LazyStorbyMergeToSelect(option.conn, option.schemaName);
+		ActionLazyV1<StorbyInfo> pruneEmpty = new LazyStorbyPruneEmpty(option.conn, option.schemaName);
 		
 		enforceDistrictKey.addPostAction(select);
+		select.addPostAction(pruneEmpty);
 		
 		actions.add(enforceDistrictKey);			
 		return actions;

@@ -18,4 +18,10 @@ final class VisiStorbyEnforceHashKey extends ActionVisitorTemplateEnforceV2<Stor
 		InfoSetter<StorbyInfo> attrSetter = new StorbySetterHashKey();
 		return attrSetter.setAttr(recordInfo);
 	}
+	
+	
+	
+	@Override protected boolean shouldUniquifyResult() {
+		return super.UNIQUIFY_RESULTS;
+	}
 }

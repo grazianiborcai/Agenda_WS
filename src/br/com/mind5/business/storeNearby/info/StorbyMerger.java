@@ -2,11 +2,25 @@ package br.com.mind5.business.storeNearby.info;
 
 import java.util.List;
 
+import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.geo.geoHash.info.GeoshInfo;
 import br.com.mind5.info.InfoMergerBuilderV3;
 import br.com.mind5.info.InfoMergerV3;
 
 public final class StorbyMerger {	
+	public static List<StorbyInfo> mergeWithStolis(List<StorbyInfo> baseInfos, List<StolisInfo> selectedInfos) {
+		InfoMergerBuilderV3<StorbyInfo, StolisInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new StorbyVisiMergeStolis());
+		InfoMergerV3<StorbyInfo, StolisInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	
 	public static List<StorbyInfo> mergeWithGeosh(List<StorbyInfo> baseInfos, List<GeoshInfo> selectedInfos) {
 		InfoMergerBuilderV3<StorbyInfo, GeoshInfo> builder = new InfoMergerBuilderV3<>();
 		

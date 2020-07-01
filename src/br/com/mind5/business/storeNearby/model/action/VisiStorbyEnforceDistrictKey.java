@@ -18,4 +18,10 @@ final class VisiStorbyEnforceDistrictKey extends ActionVisitorTemplateEnforceV2<
 		InfoSetter<StorbyInfo> attrSetter = new StorbySetterDistrictKey();
 		return attrSetter.setAttr(recordInfo);
 	}
+	
+	
+	
+	@Override protected boolean shouldUniquifyResult() {
+		return super.UNIQUIFY_RESULTS;
+	}
 }

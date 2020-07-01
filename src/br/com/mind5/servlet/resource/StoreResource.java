@@ -29,6 +29,7 @@ import br.com.mind5.business.storeLeaveDate.model.StolateModelSearch;
 import br.com.mind5.business.storeLeaveDate.model.StolateModelSelect;
 import br.com.mind5.business.storeLeaveDate.model.StolateModelUpdate;
 import br.com.mind5.business.storeList.model.StolisModelSearch;
+import br.com.mind5.business.storeNearby.model.StorbyModelSelect;
 import br.com.mind5.business.storeWorkTime.info.StowotmInfo;
 import br.com.mind5.business.storeWorkTime.model.StowotmModelDelete;
 import br.com.mind5.business.storeWorkTime.model.StowotmModelInsert;
@@ -50,6 +51,7 @@ public class StoreResource {
 	private static final String DELETE_STORE = "/deleteStore";
 	private static final String SELECT_STORE = "/selectStore";
 	private static final String SEARCH_STORE = "/searchStore";
+	private static final String SELECT_STORE_NEARBY = "/selectStoreNearby";
 	private static final String SELECT_STORE_WTIME = "/selectStoreWorkTime";
 	private static final String SEARCH_STORE_WTIME = "/searchStoreWorkTime";
 	private static final String INSERT_STORE_WTIME = "/insertStoreWorkTime";
@@ -139,6 +141,22 @@ public class StoreResource {
 	public Response searchStore(@Context HttpServletRequest request, String incomingData) {
 		
 		Model model = new StolisModelSearch(incomingData, request);
+		model.executeRequest();
+		Response response = model.getResponse();
+		
+		model.close();
+		return response;
+	}
+	
+	
+	
+	@POST
+	@Path(SELECT_STORE_NEARBY)
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response selectStoreNearby(@Context HttpServletRequest request, String incomingData) {
+		
+		Model model = new StorbyModelSelect(incomingData, request);
 		model.executeRequest();
 		Response response = model.getResponse();
 		

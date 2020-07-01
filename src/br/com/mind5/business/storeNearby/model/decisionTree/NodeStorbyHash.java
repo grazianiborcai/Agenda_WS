@@ -6,6 +6,7 @@ import java.util.List;
 import br.com.mind5.business.storeNearby.info.StorbyInfo;
 import br.com.mind5.business.storeNearby.model.action.LazyStorbyEnforceHashKey;
 import br.com.mind5.business.storeNearby.model.action.LazyStorbyMergeToSelect;
+import br.com.mind5.business.storeNearby.model.action.LazyStorbyPruneEmpty;
 import br.com.mind5.business.storeNearby.model.action.StdStorbyGeoshGenerate;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
@@ -41,9 +42,11 @@ public final class NodeStorbyHash extends DeciTreeTemplateReadV2<StorbyInfo> {
 		ActionStdV1<StorbyInfo> geoshGenerate = new StdStorbyGeoshGenerate(option);
 		ActionLazyV1<StorbyInfo> enforceHashKey = new LazyStorbyEnforceHashKey(option.conn, option.schemaName);
 		ActionLazyV1<StorbyInfo> select = new LazyStorbyMergeToSelect(option.conn, option.schemaName);
+		ActionLazyV1<StorbyInfo> pruneEmpty = new LazyStorbyPruneEmpty(option.conn, option.schemaName);
 		
 		geoshGenerate.addPostAction(enforceHashKey);
 		enforceHashKey.addPostAction(select);
+		select.addPostAction(pruneEmpty);
 		
 		actions.add(geoshGenerate);			
 		return actions;
