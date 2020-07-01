@@ -4,10 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.storeNearby.info.StorbyInfo;
-import br.com.mind5.business.storeNearby.model.action.StdStorbyMergeToSelect;
+import br.com.mind5.business.storeNearby.model.action.LazyStorbyNodeDistrict;
 import br.com.mind5.business.storeNearby.model.checker.StorbyCheckLangu;
 import br.com.mind5.business.storeNearby.model.checker.StorbyCheckOwner;
 import br.com.mind5.business.storeNearby.model.checker.StorbyCheckRead;
+import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -57,9 +58,12 @@ public final class RootStorbySelect extends DeciTreeTemplateReadV2<StorbyInfo> {
 	@Override protected List<ActionStdV1<StorbyInfo>> buildActionsOnPassedHook(DeciTreeOption<StorbyInfo> option) {
 		List<ActionStdV1<StorbyInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV1<StorbyInfo> select = new StdStorbyMergeToSelect(option);	
+		ActionStdV1<StorbyInfo> nodeHash = new NodeStorbyHash(option).toAction();
+		ActionLazyV1<StorbyInfo> nodeDistrict = new LazyStorbyNodeDistrict(option.conn, option.schemaName);
 		
-		actions.add(select);			
+		nodeHash.addPostAction(nodeDistrict);
+		
+		actions.add(nodeHash);			
 		return actions;
 	}
 	

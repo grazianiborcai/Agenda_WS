@@ -3,6 +3,7 @@ package br.com.mind5.business.storeNearby.model.checker;
 import java.sql.Connection;
 
 import br.com.mind5.business.storeNearby.info.StorbyInfo;
+import br.com.mind5.common.DefaultValue;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
@@ -17,10 +18,15 @@ public final class StorbyCheckRead extends ModelCheckerTemplateSimpleV2<StorbyIn
 	
 	@Override protected boolean checkHook(StorbyInfo recordInfo, Connection conn, String schemaName) {	
 		if ( recordInfo.codOwner 	<= 0 	||
-			 recordInfo.codAddress 	<= 0 	||
 			 recordInfo.username	== null ||
 			 recordInfo.codLanguage	== null		)	
 			
+			return super.FAILED;
+		
+		
+		if ( recordInfo.latitude  == DefaultValue.geo() &&
+			 recordInfo.longitude == DefaultValue.geo()		)	
+				
 			return super.FAILED;
 		
 		
@@ -30,6 +36,6 @@ public final class StorbyCheckRead extends ModelCheckerTemplateSimpleV2<StorbyIn
 	
 	
 	@Override protected int getCodMsgOnResultFalseHook() {
-		return SystemCode.ADDRESS_MANDATORY_FIELD_EMPTY;
+		return SystemCode.STORE_NEARBY_MANDATORY_FIELD_EMPTY;
 	}
 }

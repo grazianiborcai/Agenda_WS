@@ -7,7 +7,6 @@ import br.com.mind5.info.InfoRecord;
 
 public final class StorbyInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
-	public long codAddress;
 	public long codStore;
 	public String districtSearch;
 	public float longitude;
@@ -24,7 +23,6 @@ public final class StorbyInfo extends InfoRecord implements Cloneable {
 		super();
 		
 		codOwner = DefaultValue.number();
-		codAddress = DefaultValue.number();
 		codStore = DefaultValue.number();
 		longitude = DefaultValue.geo();
 		latitude = DefaultValue.geo();
@@ -54,10 +52,11 @@ public final class StorbyInfo extends InfoRecord implements Cloneable {
 	@Override public int hashCode() {
 		int result = 17;
 		
-		result = result * 31 + (int) (codOwner 	 	^ (codOwner   	>>> 32));
-		result = result * 31 + (int) (codAddress 	^ (codAddress 	>>> 32));	
-		result = result * 31 + (int) (codStore 		^ (codStore 	>>> 32));
+		result = result * 31 + (int) (codOwner ^ (codOwner >>> 32));
+		result = result * 31 + (int) (codStore ^ (codStore >>> 32));
 		
+		if (geoHash03 != null)
+			result = result * 31 + geoHash03.hashCode();
 		
 		return result;
 	}
@@ -74,8 +73,8 @@ public final class StorbyInfo extends InfoRecord implements Cloneable {
 		
 		
 		StorbyInfo obj = (StorbyInfo) o;		
-		return (codOwner 	== obj.codOwner 	&& 
-				codAddress 	== obj.codAddress	&&
-				codStore	== obj.codStore			);
+		return (codOwner 	== obj.codOwner && 
+				codStore	== obj.codStore &&
+				super.isStringEqual(geoHash03, obj.geoHash03));
 	}	
 }

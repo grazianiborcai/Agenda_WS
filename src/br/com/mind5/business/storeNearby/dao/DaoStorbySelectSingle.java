@@ -7,13 +7,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.storeNearby.info.StorbyInfo;
-import br.com.mind5.dao.DaoFormatter;
+import br.com.mind5.dao.DaoJoin;
+import br.com.mind5.dao.DaoJoinBuilder;
 import br.com.mind5.dao.DaoOperation;
 import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
+import br.com.mind5.dao.common.DaoJoinStore;
 import br.com.mind5.dao.common.DaoOptionValue;
 
 public final class DaoStorbySelectSingle extends DaoStmtTemplate<StorbyInfo> {
@@ -29,6 +31,12 @@ public final class DaoStorbySelectSingle extends DaoStmtTemplate<StorbyInfo> {
 	@Override protected String getTableNameHook() {
 		return MAIN_TABLE;
 	}
+	
+	
+	
+	@Override protected String getLookupTableHook() {
+		return DaoDbTable.STORE_NEARBY_VIEW;
+	}	
 	
 	
 	
@@ -50,6 +58,17 @@ public final class DaoStorbySelectSingle extends DaoStmtTemplate<StorbyInfo> {
 	
 	
 	
+	@Override protected List<DaoJoin> getJoinsHook(StorbyInfo recordInfo) {
+		List<DaoJoin> joins = new ArrayList<>();
+		
+		DaoJoinBuilder joinStore = new DaoJoinStore(MAIN_TABLE);		
+		joins.add(joinStore.build());
+		
+		return joins;
+	}
+	
+	
+	
 	@Override protected DaoResultParser<StorbyInfo> getResultParserHook() {
 		return new DaoResultParser<StorbyInfo>() {
 			@Override public List<StorbyInfo> parseResult(StorbyInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
@@ -61,12 +80,10 @@ public final class DaoStorbySelectSingle extends DaoStmtTemplate<StorbyInfo> {
 				do {
 					StorbyInfo dataInfo = new StorbyInfo();
 					
-					dataInfo.codAddress = stmtResult.getLong(DaoStorbyDbTableColumn.COL_COD_ADDRESS);
 					dataInfo.codOwner = stmtResult.getLong(DaoStorbyDbTableColumn.COL_COD_OWNER);
+					dataInfo.codStore = stmtResult.getLong(DaoStorbyDbTableColumn.COL_COD_STORE);
 					dataInfo.districtSearch = stmtResult.getString(DaoStorbyDbTableColumn.COL_DISTRICT_SEARCH);
-					dataInfo.recordMode = stmtResult.getString(DaoStorbyDbTableColumn.COL_RECORD_MODE);
-					dataInfo.latitude = DaoFormatter.sqlToFloat(stmtResult, DaoStorbyDbTableColumn.COL_LATITUDE);
-					dataInfo.longitude = DaoFormatter.sqlToFloat(stmtResult, DaoStorbyDbTableColumn.COL_LONGITUDE);			
+					dataInfo.recordMode = stmtResult.getString(DaoStorbyDbTableColumn.COL_RECORD_MODE);	
 					dataInfo.geoHash03 = stmtResult.getString(DaoStorbyDbTableColumn.COL_GEO_HASH_03);
 					dataInfo.geoHash04 = stmtResult.getString(DaoStorbyDbTableColumn.COL_GEO_HASH_04);
 					dataInfo.geoHash05 = stmtResult.getString(DaoStorbyDbTableColumn.COL_GEO_HASH_05);
@@ -78,5 +95,11 @@ public final class DaoStorbySelectSingle extends DaoStmtTemplate<StorbyInfo> {
 				return finalResult;
 			}
 		};
+	}
+	
+	
+	
+	@Override public void executeStmt() throws SQLException {
+		super.executeStmt();
 	}
 }

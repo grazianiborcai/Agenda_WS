@@ -1367,4 +1367,7 @@ public final class SystemCode {
 	// Geo Coding
 	public static final int GEO_CODE_GENERATE_ERROR 					= 13400;
 	public static final int GEO_CODE_MANDATORY_FIELD_EMPTY				= 13401;
+	
+	//Store Nearby
+	public static final int STORE_NEARBY_MANDATORY_FIELD_EMPTY			= 13450;
 }

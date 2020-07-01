@@ -25,6 +25,8 @@ final class StorbyVisiMergeToSelect implements InfoMergerVisitorV3<StorbyInfo, S
 		
 		selectedInfo.username = baseInfo.username;
 		selectedInfo.codLanguage = baseInfo.codLanguage;
+		selectedInfo.latitude = baseInfo.latitude;
+		selectedInfo.longitude = baseInfo.longitude;
 		
 		results.add(selectedInfo);
 		return results;

@@ -31,8 +31,12 @@ final class DaoStorbyWhere implements DaoStmtWhere {
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;
 					
-				case DaoStorbyDbTableColumn.COL_COD_ADDRESS :
-					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codAddress));
+				case DaoStorbyDbTableColumn.COL_DISTRICT_SEARCH:
+					builder.addClauseEqualAnd(eachColumn, recordInfo.districtSearch);
+					break;
+					
+				case DaoStorbyDbTableColumn.COL_GEO_HASH_03:
+					builder.addClauseEqualAnd(eachColumn, recordInfo.geoHash03);
 					break;
 
 				case DaoStorbyDbTableColumn.COL_RECORD_MODE :
