@@ -2,6 +2,7 @@ package br.com.mind5.model.action;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import br.com.mind5.common.CloneUtil;
 import br.com.mind5.common.DefaultValue;
@@ -14,6 +15,9 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.common.DeciResultNotFound;
 
 public abstract class ActionVisitorTemplateEnforceV2<T extends InfoRecord> implements ActionVisitorV2<T> {
+	protected final boolean UNIQUIFY_RESULTS = true;
+	protected final boolean DONT_UNIQUIFY_RESULTS = false;
+	
 	private List<T> bases;
 	
 
@@ -38,6 +42,7 @@ public abstract class ActionVisitorTemplateEnforceV2<T extends InfoRecord> imple
 		if (checkEnforceds(enforcedInfos) == false)
 			return makeNotFoundResult();
 		
+		enforcedInfos = uniquify(enforcedInfos);
 		return makeSuccessResult(enforcedInfos);
 	}
 	
@@ -77,6 +82,22 @@ public abstract class ActionVisitorTemplateEnforceV2<T extends InfoRecord> imple
 		}
 		
 		return true;
+	}
+	
+	
+	
+	private List<T> uniquify(List<T> resultInfos) {
+		if(shouldUniquifyResult() == false)
+			return resultInfos;
+		
+		return resultInfos.stream().distinct().collect(Collectors.toList());
+	}
+	
+	
+	
+	protected boolean shouldUniquifyResult() {
+		//Template method: default behavior
+		return DONT_UNIQUIFY_RESULTS;
 	}
 	
 	
