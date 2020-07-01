@@ -1,0 +1,41 @@
+package br.com.mind5.business.storeNearby.info;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import br.com.mind5.geo.geoHash.info.GeoshInfo;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
+
+final class StorbyVisiMergeGeosh implements InfoMergerVisitorV3<StorbyInfo, GeoshInfo> {
+	
+	@Override public List<StorbyInfo> beforeMerge(List<StorbyInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(StorbyInfo baseInfo, GeoshInfo selectedInfo) {
+		return true;
+	}
+	
+	
+	
+	@Override public List<StorbyInfo> merge(StorbyInfo baseInfo, GeoshInfo selectedInfo) {
+		List<StorbyInfo> results = new ArrayList<>();
+		
+		baseInfo.geoHash03 = selectedInfo.geoHash03;
+		baseInfo.geoHash04 = selectedInfo.geoHash04;
+		baseInfo.geoHash05 = selectedInfo.geoHash05;
+		baseInfo.geoHash12 = selectedInfo.geoHash12;
+		
+		results.add(baseInfo);
+		return results;
+	}
+	
+	
+	
+	@Override public InfoUniquifier<StorbyInfo> getUniquifier() {
+		return null;
+	}
+}
