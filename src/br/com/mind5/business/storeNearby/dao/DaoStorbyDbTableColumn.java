@@ -14,6 +14,8 @@ public final class DaoStorbyDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;
 	public static final String COL_COD_STORE = DaoDbField.COL_COD_STORE;
 	public static final String COL_DISTRICT_SEARCH = DaoDbField.COL_DISTRICT_SEARCH; 
+	public static final String COL_GEO_HASH_01 = DaoDbField.COL_GEO_HASH_01;
+	public static final String COL_GEO_HASH_02 = DaoDbField.COL_GEO_HASH_02;
 	public static final String COL_GEO_HASH_03 = DaoDbField.COL_GEO_HASH_03;
 	public static final String COL_RECORD_MODE = DaoDbField.COL_RECORD_MODE; 
 	
@@ -49,6 +51,22 @@ public final class DaoStorbyDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_RECORD_MODE;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_GEO_HASH_01;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_GEO_HASH_02;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;

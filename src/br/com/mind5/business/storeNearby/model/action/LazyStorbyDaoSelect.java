@@ -9,9 +9,9 @@ import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyStorbyEnforceHashKey extends ActionLazyTemplateV2<StorbyInfo, StorbyInfo> {
+public final class LazyStorbyDaoSelect extends ActionLazyTemplateV2<StorbyInfo, StorbyInfo> {
 
-	public LazyStorbyEnforceHashKey(Connection conn, String schemaName) {
+	public LazyStorbyDaoSelect(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyStorbyEnforceHashKey extends ActionLazyTemplateV2<StorbyI
 	
 	
 	@Override protected ActionStdV1<StorbyInfo> getInstanceOfActionHook(DeciTreeOption<StorbyInfo> option) {
-		return new StdStorbyEnforceHashKey(option);
+		return new StdStorbyDaoSelect(option);
 	}
 	
 	

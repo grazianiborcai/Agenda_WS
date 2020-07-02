@@ -62,7 +62,7 @@ public final class RootStorbySelect extends DeciTreeTemplateReadV2<StorbyInfo> {
 	@Override protected List<ActionStdV1<StorbyInfo>> buildActionsOnPassedHook(DeciTreeOption<StorbyInfo> option) {
 		List<ActionStdV1<StorbyInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV1<StorbyInfo> nodeHash = new NodeStorbyHash(option).toAction();
+		ActionStdV1<StorbyInfo> nodeHash = new NodeStorbyHashL1(option).toAction();
 		ActionLazyV1<StorbyInfo> nodeDistrict = new LazyStorbyNodeDistrict(option.conn, option.schemaName);
 		ActionLazyV1<StorbyInfo> mergeComplis = new LazyStorbyMergeComplis(option.conn, option.schemaName);
 		ActionLazyV1<StorbyInfo> mergeAddress = new LazyStorbyMergeAddress(option.conn, option.schemaName);

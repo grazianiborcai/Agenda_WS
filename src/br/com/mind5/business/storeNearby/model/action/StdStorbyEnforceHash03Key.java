@@ -5,15 +5,15 @@ import br.com.mind5.model.action.ActionStdTemplateV2;
 import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdStorbyEnforceHashKey extends ActionStdTemplateV2<StorbyInfo> {
+public final class StdStorbyEnforceHash03Key extends ActionStdTemplateV2<StorbyInfo> {
 
-	public StdStorbyEnforceHashKey(DeciTreeOption<StorbyInfo> option) {
+	public StdStorbyEnforceHash03Key(DeciTreeOption<StorbyInfo> option) {
 		super(option);
 	}
 	
 	
 	
 	protected ActionVisitorV2<StorbyInfo> buildVisitorHook(DeciTreeOption<StorbyInfo> option) {
-		return new VisiStorbyEnforceHashKey(option);
+		return new VisiStorbyEnforceHash03Key(option);
 	}
 }

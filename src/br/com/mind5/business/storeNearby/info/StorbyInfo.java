@@ -16,6 +16,8 @@ public final class StorbyInfo extends InfoRecord implements Cloneable {
 	public String districtSearch;
 	public float longitude;
 	public float latitude;
+	public String geoHash01;
+	public String geoHash02;
 	public String geoHash03;
 	public double distanceKm;
 	public String recordMode;

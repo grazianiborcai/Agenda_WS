@@ -24,6 +24,8 @@ final class StorbyVisiMergeGeosh implements InfoMergerVisitorV3<StorbyInfo, Geos
 	@Override public List<StorbyInfo> merge(StorbyInfo baseInfo, GeoshInfo selectedInfo) {
 		List<StorbyInfo> results = new ArrayList<>();
 		
+		baseInfo.geoHash01 = selectedInfo.geoHash01;
+		baseInfo.geoHash02 = selectedInfo.geoHash02;
 		baseInfo.geoHash03 = selectedInfo.geoHash03;
 		
 		results.add(baseInfo);
