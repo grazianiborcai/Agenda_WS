@@ -3,7 +3,7 @@ package br.com.mind5.file.fileImageList.info;
 import br.com.mind5.business.employeeList.info.EmplisInfo;
 import br.com.mind5.info.InfoCopierTemplate;
 
-final class FimistCopyEmplis extends InfoCopierTemplate<FimistInfo, EmplisInfo>{
+final class FimistCopyEmplis extends InfoCopierTemplate<FimistInfo, EmplisInfo> {
 	
 	public FimistCopyEmplis() {
 		super();

@@ -3,7 +3,7 @@ package br.com.mind5.file.fileImageList.info;
 import br.com.mind5.business.material.info.MatInfo;
 import br.com.mind5.info.InfoCopierTemplate;
 
-final class FimistCopyMat extends InfoCopierTemplate<FimistInfo, MatInfo>{
+final class FimistCopyMat extends InfoCopierTemplate<FimistInfo, MatInfo> {
 	
 	public FimistCopyMat() {
 		super();

@@ -9,7 +9,7 @@ import br.com.mind5.file.fileImageList.info.FimistInfo;
 import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiFimistDaoSelect extends ActionVisitorTemplateStmtV2<FimistInfo>{
+final class VisiFimistDaoSelect extends ActionVisitorTemplateStmtV2<FimistInfo> {
 
 	public VisiFimistDaoSelect(DeciTreeOption<FimistInfo> option) {
 		super(option);

@@ -12,10 +12,25 @@ import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.business.owner.info.OwnerInfo;
 import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.business.storeList.info.StolisInfo;
+import br.com.mind5.business.storeNearby.info.StorbyInfo;
 import br.com.mind5.info.InfoCopier;
 import br.com.mind5.security.user.info.UserInfo;
 
 public final class FimistCopier {
+	public static FimistInfo copyFromStorby(StorbyInfo source) {
+		InfoCopier<FimistInfo, StorbyInfo> copier = new FimistCopyStorby();
+		return copier.makeCopy(source);
+	}
+	
+	
+	
+	public static List<FimistInfo> copyFromStorby(List<StorbyInfo> sources) {
+		InfoCopier<FimistInfo, StorbyInfo> copier = new FimistCopyStorby();
+		return copier.makeCopy(sources);
+	}
+	
+	
+	
 	public static FimistInfo copyFromUser(UserInfo source) {
 		InfoCopier<FimistInfo, UserInfo> copier = new FimistCopyUser();
 		return copier.makeCopy(source);

@@ -3,7 +3,7 @@ package br.com.mind5.file.fileImageList.info;
 import br.com.mind5.info.InfoCopierTemplate;
 import br.com.mind5.security.user.info.UserInfo;
 
-final class FimistCopyUser extends InfoCopierTemplate<FimistInfo, UserInfo>{
+final class FimistCopyUser extends InfoCopierTemplate<FimistInfo, UserInfo> {
 	
 	public FimistCopyUser() {
 		super();
