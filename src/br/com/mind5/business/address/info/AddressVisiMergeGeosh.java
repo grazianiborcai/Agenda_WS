@@ -24,6 +24,8 @@ final class AddressVisiMergeGeosh implements InfoMergerVisitorV3<AddressInfo, Ge
 	@Override public List<AddressInfo> merge(AddressInfo baseInfo, GeoshInfo selectedInfo) {
 		List<AddressInfo> results = new ArrayList<>();
 		
+		baseInfo.geoHash01 = selectedInfo.geoHash01;
+		baseInfo.geoHash02 = selectedInfo.geoHash02;
 		baseInfo.geoHash03 = selectedInfo.geoHash03;
 		baseInfo.geoHash04 = selectedInfo.geoHash04;
 		baseInfo.geoHash05 = selectedInfo.geoHash05;

@@ -139,6 +139,8 @@ public final class DaoDbField {
 	public static final String COL_FILE_URI = "file_img_uri";
 	public static final String COL_FILE_URI_EXTERNAL = "file_img_uri_external";
 	public static final String COL_FULL_NUMBER = "full_number";
+	public static final String COL_GEO_HASH_01 = "geo_hash_01";
+	public static final String COL_GEO_HASH_02 = "geo_hash_02";	
 	public static final String COL_GEO_HASH_03 = "geo_hash_03";
 	public static final String COL_GEO_HASH_04 = "geo_hash_04";
 	public static final String COL_GEO_HASH_05 = "geo_hash_05";

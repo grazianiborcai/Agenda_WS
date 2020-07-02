@@ -71,6 +71,8 @@ public final class DaoAddressInsertSingle extends DaoStmtTemplate<AddressInfo> {
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codSnapshot);			
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.createdBy);	
 				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.createdOn);
+				stmt.setString(i++, recordInfo.geoHash01);
+				stmt.setString(i++, recordInfo.geoHash02);
 				stmt.setString(i++, recordInfo.geoHash03);
 				stmt.setString(i++, recordInfo.geoHash04);
 				stmt.setString(i++, recordInfo.geoHash05);

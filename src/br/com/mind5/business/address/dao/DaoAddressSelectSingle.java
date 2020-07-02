@@ -91,7 +91,9 @@ public final class DaoAddressSelectSingle extends DaoStmtTemplate<AddressInfo> {
 					dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, DaoAddressDbTableColumn.COL_LAST_CHANGED_BY);
 					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, DaoAddressDbTableColumn.COL_COD_SNAPSHOT);		
 					dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, DaoAddressDbTableColumn.COL_CREATED_ON);
-					dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, DaoAddressDbTableColumn.COL_CREATED_BY);					
+					dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, DaoAddressDbTableColumn.COL_CREATED_BY);	
+					dataInfo.geoHash01 = stmtResult.getString(DaoAddressDbTableColumn.COL_GEO_HASH_01);
+					dataInfo.geoHash02 = stmtResult.getString(DaoAddressDbTableColumn.COL_GEO_HASH_02);					
 					dataInfo.geoHash03 = stmtResult.getString(DaoAddressDbTableColumn.COL_GEO_HASH_03);
 					dataInfo.geoHash04 = stmtResult.getString(DaoAddressDbTableColumn.COL_GEO_HASH_04);
 					dataInfo.geoHash05 = stmtResult.getString(DaoAddressDbTableColumn.COL_GEO_HASH_05);
