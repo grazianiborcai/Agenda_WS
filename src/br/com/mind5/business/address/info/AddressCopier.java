@@ -8,6 +8,7 @@ import br.com.mind5.business.employee.info.EmpInfo;
 import br.com.mind5.business.owner.info.OwnerInfo;
 import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.business.storeList.info.StolisInfo;
+import br.com.mind5.business.storeNearby.info.StorbyInfo;
 import br.com.mind5.info.InfoCopier;
 import br.com.mind5.info.InfoCopierOneToMany;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
@@ -15,6 +16,20 @@ import br.com.mind5.payment.customerPartner.info.CusparInfo;
 import br.com.mind5.security.user.info.UserInfo;
 
 public final class AddressCopier {
+	public static AddressInfo copyFromStorby(StorbyInfo source) {
+		InfoCopier<AddressInfo, StorbyInfo> copier = new AddressCopyStorby();
+		return copier.makeCopy(source);
+	}
+	
+	
+	
+	public static List<AddressInfo> copyFromStorby(List<StorbyInfo> sources) {
+		InfoCopier<AddressInfo, StorbyInfo> copier = new AddressCopyStorby();
+		return copier.makeCopy(sources);
+	}
+	
+	
+	
 	public static AddressInfo copyFromStore(StoreInfo source) {
 		InfoCopier<AddressInfo, StoreInfo> copier = new AddressCopyStore();
 		return copier.makeCopy(source);
