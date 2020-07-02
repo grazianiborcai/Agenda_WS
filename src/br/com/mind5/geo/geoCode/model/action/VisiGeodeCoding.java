@@ -7,7 +7,6 @@ import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -100,9 +99,11 @@ final class VisiGeodeCoding extends ActionVisitorTemplateSimpleV2<GeodeInfo> {
         StringBuilder result = new StringBuilder();
  
         for (Map.Entry<String, String> entry : params.entrySet()) {
-          result.append(URLEncoder.encode(entry.getKey(), "UTF-8"));
+        //result.append(URLEncoder.encode(entry.getKey(), "UTF-8"));
+          result.append(entry.getKey());
           result.append("=");
-          result.append(URLEncoder.encode(entry.getValue(), "UTF-8"));
+        //result.append(URLEncoder.encode(entry.getValue(), "UTF-8"));
+          result.append(entry.getValue());
           result.append("&");
         }
  
@@ -173,6 +174,9 @@ final class VisiGeodeCoding extends ActionVisitorTemplateSimpleV2<GeodeInfo> {
 			return false;
 		
 		if (contents.isEmpty())
+			return false;
+		
+		if (contents.size() == 1)
 			return false;
 		
 		return true;

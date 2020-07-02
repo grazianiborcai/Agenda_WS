@@ -1,5 +1,6 @@
 package br.com.mind5.geo.geoCode.info;
 
+import br.com.mind5.common.StringUtil;
 import br.com.mind5.info.InfoSetterTemplate;
 
 public final class GeodeSetterLocation extends InfoSetterTemplate<GeodeInfo> {
@@ -44,6 +45,7 @@ public final class GeodeSetterLocation extends InfoSetterTemplate<GeodeInfo> {
 		recordInfo.location = result.toString();
 		recordInfo.location = recordInfo.location.trim();
 		recordInfo.location = recordInfo.location.replaceAll("\\s+","+");
+		recordInfo.location = StringUtil.normalize(recordInfo.location);
 		
 		return recordInfo;
 	}
