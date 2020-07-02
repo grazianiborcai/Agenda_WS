@@ -30,6 +30,8 @@ final class VisiGeoshGenerate extends ActionVisitorTemplateSimpleV2<GeoshInfo> {
 			eachRecod.geoHash05  = response.substring(0, 5);
 			eachRecod.geoHash04  = response.substring(0, 4);
 			eachRecod.geoHash03  = response.substring(0, 3);
+			eachRecod.geoHash02  = response.substring(0, 2);
+			eachRecod.geoHash01  = response.substring(0, 1);
 			
 			results.add(eachRecod);
 		}

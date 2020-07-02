@@ -6,6 +6,8 @@ import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
 
 public final class GeoshInfo extends InfoRecord implements Cloneable {
+	public String geoHash01;
+	public String geoHash02;	
 	public String geoHash03;
 	public String geoHash04;	
 	public String geoHash05;
