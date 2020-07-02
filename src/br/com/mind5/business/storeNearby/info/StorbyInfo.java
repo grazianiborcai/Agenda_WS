@@ -2,21 +2,27 @@ package br.com.mind5.business.storeNearby.info;
 
 import java.util.List;
 
-import br.com.mind5.business.storeList.info.StolisInfo;
+import br.com.mind5.business.address.info.AddressInfo;
+import br.com.mind5.business.companyList.info.ComplisInfo;
 import br.com.mind5.common.CloneUtil;
 import br.com.mind5.common.DefaultValue;
+import br.com.mind5.file.fileImageList.info.FimistInfo;
 import br.com.mind5.info.InfoRecord;
 
 public final class StorbyInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codStore;
+	public long codCompany;
 	public String districtSearch;
 	public float longitude;
 	public float latitude;
 	public String geoHash03;
+	public double distanceKm;
 	public String recordMode;
 	public String username;
-	public StolisInfo stolisData;
+	public AddressInfo addressData;
+	public ComplisInfo complisData;
+	public List<FimistInfo> fimistes;
 	
 	
 	public StorbyInfo() {
@@ -24,10 +30,14 @@ public final class StorbyInfo extends InfoRecord implements Cloneable {
 		
 		codOwner = DefaultValue.number();
 		codStore = DefaultValue.number();
+		codCompany = DefaultValue.number();
 		longitude = DefaultValue.geo();
 		latitude = DefaultValue.geo();
+		distanceKm = DefaultValue.number();
 		recordMode = DefaultValue.recordMode();
-		stolisData = DefaultValue.object();
+		complisData = DefaultValue.object();
+		addressData = DefaultValue.object();
+		fimistes = DefaultValue.list();
 	}
 	
 	
@@ -47,7 +57,10 @@ public final class StorbyInfo extends InfoRecord implements Cloneable {
 	@Override public Object clone() throws CloneNotSupportedException {
 		StorbyInfo deepCopy = (StorbyInfo) super.clone();
 		
-		deepCopy.stolisData = CloneUtil.cloneRecord(stolisData, this.getClass());
+		deepCopy.fimistes = CloneUtil.cloneRecords(fimistes, this.getClass());
+		deepCopy.addressData = CloneUtil.cloneRecord(addressData, this.getClass());
+		deepCopy.complisData = CloneUtil.cloneRecord(complisData, this.getClass());
+		
 		return deepCopy;
 	}
 	

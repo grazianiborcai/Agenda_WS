@@ -82,6 +82,7 @@ public final class DaoStorbySelectSingle extends DaoStmtTemplate<StorbyInfo> {
 					
 					dataInfo.codOwner = stmtResult.getLong(DaoStorbyDbTableColumn.COL_COD_OWNER);
 					dataInfo.codStore = stmtResult.getLong(DaoStorbyDbTableColumn.COL_COD_STORE);
+					dataInfo.codCompany = stmtResult.getLong(DaoStorbyDbTableColumn.COL_COD_COMPANY);
 					dataInfo.districtSearch = stmtResult.getString(DaoStorbyDbTableColumn.COL_DISTRICT_SEARCH);
 					dataInfo.recordMode = stmtResult.getString(DaoStorbyDbTableColumn.COL_RECORD_MODE);	
 					dataInfo.geoHash03 = stmtResult.getString(DaoStorbyDbTableColumn.COL_GEO_HASH_03);

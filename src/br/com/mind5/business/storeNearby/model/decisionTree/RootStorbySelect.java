@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.storeNearby.info.StorbyInfo;
-import br.com.mind5.business.storeNearby.model.action.LazyStorbyMergeStolis;
+import br.com.mind5.business.storeNearby.model.action.LazyStorbyEnforceDistance;
+import br.com.mind5.business.storeNearby.model.action.LazyStorbyMergeAddress;
+import br.com.mind5.business.storeNearby.model.action.LazyStorbyMergeComplis;
+import br.com.mind5.business.storeNearby.model.action.LazyStorbyMergeFimist;
 import br.com.mind5.business.storeNearby.model.action.LazyStorbyNodeDistrict;
 import br.com.mind5.business.storeNearby.model.checker.StorbyCheckLangu;
 import br.com.mind5.business.storeNearby.model.checker.StorbyCheckOwner;
@@ -61,10 +64,16 @@ public final class RootStorbySelect extends DeciTreeTemplateReadV2<StorbyInfo> {
 		
 		ActionStdV1<StorbyInfo> nodeHash = new NodeStorbyHash(option).toAction();
 		ActionLazyV1<StorbyInfo> nodeDistrict = new LazyStorbyNodeDistrict(option.conn, option.schemaName);
-		ActionLazyV1<StorbyInfo> mergeStolis = new LazyStorbyMergeStolis(option.conn, option.schemaName);
+		ActionLazyV1<StorbyInfo> mergeComplis = new LazyStorbyMergeComplis(option.conn, option.schemaName);
+		ActionLazyV1<StorbyInfo> mergeAddress = new LazyStorbyMergeAddress(option.conn, option.schemaName);
+		ActionLazyV1<StorbyInfo> enforceDistance = new LazyStorbyEnforceDistance(option.conn, option.schemaName);
+		ActionLazyV1<StorbyInfo> mergeFimist = new LazyStorbyMergeFimist(option.conn, option.schemaName);
 		
 		nodeHash.addPostAction(nodeDistrict);
-		nodeDistrict.addPostAction(mergeStolis);
+		nodeDistrict.addPostAction(mergeComplis);
+		mergeComplis.addPostAction(mergeAddress);
+		mergeAddress.addPostAction(enforceDistance);
+		enforceDistance.addPostAction(mergeFimist);
 		
 		actions.add(nodeHash);			
 		return actions;

@@ -2,19 +2,47 @@ package br.com.mind5.business.storeNearby.info;
 
 import java.util.List;
 
-import br.com.mind5.business.storeList.info.StolisInfo;
+import br.com.mind5.business.address.info.AddressInfo;
+import br.com.mind5.business.companyList.info.ComplisInfo;
+import br.com.mind5.file.fileImageList.info.FimistInfo;
 import br.com.mind5.geo.geoHash.info.GeoshInfo;
 import br.com.mind5.info.InfoMergerBuilderV3;
 import br.com.mind5.info.InfoMergerV3;
 
 public final class StorbyMerger {	
-	public static List<StorbyInfo> mergeWithStolis(List<StorbyInfo> baseInfos, List<StolisInfo> selectedInfos) {
-		InfoMergerBuilderV3<StorbyInfo, StolisInfo> builder = new InfoMergerBuilderV3<>();
+	public static List<StorbyInfo> mergeWithFimist(List<StorbyInfo> baseInfos, List<FimistInfo> selectedInfos) {
+		InfoMergerBuilderV3<StorbyInfo, FimistInfo> builder = new InfoMergerBuilderV3<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StorbyVisiMergeStolis());
-		InfoMergerV3<StorbyInfo, StolisInfo> merger = builder.build();		
+		builder.addVisitor(new StorbyVisiMergeFimist());
+		InfoMergerV3<StorbyInfo, FimistInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	
+	public static List<StorbyInfo> mergeWithComplis(List<StorbyInfo> baseInfos, List<ComplisInfo> selectedInfos) {
+		InfoMergerBuilderV3<StorbyInfo, ComplisInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new StorbyVisiMergeComplis());
+		InfoMergerV3<StorbyInfo, ComplisInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	
+	public static List<StorbyInfo> mergeWithAddress(List<StorbyInfo> baseInfos, List<AddressInfo> selectedInfos) {
+		InfoMergerBuilderV3<StorbyInfo, AddressInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new StorbyVisiMergeAddress());
+		InfoMergerV3<StorbyInfo, AddressInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}

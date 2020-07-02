@@ -3,11 +3,11 @@ package br.com.mind5.business.storeNearby.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.business.storeList.info.StolisInfo;
+import br.com.mind5.file.fileImageList.info.FimistInfo;
 import br.com.mind5.info.InfoMergerVisitorV3;
 import br.com.mind5.info.InfoUniquifier;
 
-final class StorbyVisiMergeStolis implements InfoMergerVisitorV3<StorbyInfo, StolisInfo> {
+final class StorbyVisiMergeFimist implements InfoMergerVisitorV3<StorbyInfo, FimistInfo> {
 	
 	@Override public List<StorbyInfo> beforeMerge(List<StorbyInfo> baseInfos) {
 		return baseInfos;
@@ -15,17 +15,17 @@ final class StorbyVisiMergeStolis implements InfoMergerVisitorV3<StorbyInfo, Sto
 	
 	
 	
-	@Override public boolean shouldMerge(StorbyInfo baseInfo, StolisInfo selectedInfo) {
-		return (baseInfo.codOwner == selectedInfo.codOwner	&&
-				baseInfo.codStore == selectedInfo.codStore);
+	@Override public boolean shouldMerge(StorbyInfo baseInfo, FimistInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner &&
+				baseInfo.codStore == selectedInfo.codStore	);
 	}
 	
 	
 	
-	@Override public List<StorbyInfo> merge(StorbyInfo baseInfo, StolisInfo selectedInfo) {
+	@Override public List<StorbyInfo> merge(StorbyInfo baseInfo, FimistInfo selectedInfo) {
 		List<StorbyInfo> results = new ArrayList<>();
 		
-		baseInfo.stolisData = selectedInfo;
+		baseInfo.fimistes.add(selectedInfo);
 		
 		results.add(baseInfo);
 		return results;
