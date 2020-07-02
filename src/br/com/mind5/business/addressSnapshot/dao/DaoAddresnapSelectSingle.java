@@ -96,7 +96,9 @@ public final class DaoAddresnapSelectSingle extends DaoStmtTemplate<AddresnapInf
 					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, DaoAddresnapDbTableColumn.COL_LAST_CHANGED);
 					dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, DaoAddresnapDbTableColumn.COL_LAST_CHANGED_BY);		
 					dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, DaoAddresnapDbTableColumn.COL_CREATED_ON);
-					dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, DaoAddresnapDbTableColumn.COL_CREATED_BY);					
+					dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, DaoAddresnapDbTableColumn.COL_CREATED_BY);	
+					dataInfo.geoHash01 = stmtResult.getString(DaoAddresnapDbTableColumn.COL_GEO_HASH_01);
+					dataInfo.geoHash02 = stmtResult.getString(DaoAddresnapDbTableColumn.COL_GEO_HASH_02);					
 					dataInfo.geoHash03 = stmtResult.getString(DaoAddresnapDbTableColumn.COL_GEO_HASH_03);
 					dataInfo.geoHash04 = stmtResult.getString(DaoAddresnapDbTableColumn.COL_GEO_HASH_04);
 					dataInfo.geoHash05 = stmtResult.getString(DaoAddresnapDbTableColumn.COL_GEO_HASH_05);

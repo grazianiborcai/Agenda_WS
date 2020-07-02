@@ -34,6 +34,8 @@ public final class AddresnapInfo extends InfoRecord implements Cloneable {
 	public String postalCode;
 	public float longitude;
 	public float latitude;
+	public String geoHash01;
+	public String geoHash02;
 	public String geoHash03;
 	public String geoHash04;	
 	public String geoHash05;
