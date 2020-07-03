@@ -65,7 +65,8 @@ public final class DaoCompnapSelectSingle extends DaoStmtTemplate<CompnapInfo> {
 					dataInfo.codCompany = stmtResult.getLong(DaoCompnapDbTableColumn.COL_COD_COMPANY);
 					dataInfo.codSnapshot = stmtResult.getLong(DaoCompnapDbTableColumn.COL_COD_SNAPSHOT);
 					dataInfo.cnpj = stmtResult.getString(DaoCompnapDbTableColumn.COL_CNPJ);
-					dataInfo.name = stmtResult.getString(DaoCompnapDbTableColumn.COL_NAME);			
+					dataInfo.name = stmtResult.getString(DaoCompnapDbTableColumn.COL_NAME);
+					dataInfo.nameSearch = stmtResult.getString(DaoCompnapDbTableColumn.COL_NAME_SEARCH);	
 					dataInfo.email = stmtResult.getString(DaoCompnapDbTableColumn.COL_EMAIL);						
 					dataInfo.recordMode = stmtResult.getString(DaoCompnapDbTableColumn.COL_RECORD_MODE);
 					dataInfo.codEntityCateg = stmtResult.getString(DaoCompnapDbTableColumn.COL_COD_ENTITY_CATEG);

@@ -15,6 +15,7 @@ public final class CompnapInfo extends InfoRecord implements Cloneable {
 	public String inscrEst;
 	public String razaoSocial;	
 	public String name;
+	public String nameSearch;
 	public String codEntityCateg;
 	public String codCountryLegal;
 	public String txtCountryLegal;
