@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.company.info.CompInfo;
 import br.com.mind5.business.company.model.action.LazyCompEnforceLChanged;
+import br.com.mind5.business.company.model.action.LazyCompEnforceNameSearch;
 import br.com.mind5.business.company.model.action.LazyCompMergeUsername;
 import br.com.mind5.business.company.model.action.LazyCompNodeCnpjL1;
 import br.com.mind5.business.company.model.action.LazyCompNodeSnapshot;
@@ -16,9 +17,9 @@ import br.com.mind5.business.company.model.checker.CompCheckOwner;
 import br.com.mind5.business.company.model.checker.CompCheckUpdate;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
@@ -82,12 +83,14 @@ public final class RootCompUpdate extends DeciTreeTemplateWriteV2<CompInfo> {
 		ActionLazyV1<CompInfo> cnpj = new LazyCompNodeCnpjL1(option.conn, option.schemaName);	
 		ActionLazyV1<CompInfo> enforceLChanged = new LazyCompEnforceLChanged(option.conn, option.schemaName);
 		ActionLazyV1<CompInfo> enforceLChangedBy = new LazyCompMergeUsername(option.conn, option.schemaName);
+		ActionLazyV1<CompInfo> enforceNameSearch = new LazyCompEnforceNameSearch(option.conn, option.schemaName);
 		ActionLazyV1<CompInfo> snapshot = new LazyCompNodeSnapshot(option.conn, option.schemaName);
 		
 		mergeToUpdate.addPostAction(cnpj);
 		cnpj.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceLChangedBy);
-		enforceLChangedBy.addPostAction(snapshot);
+		enforceLChangedBy.addPostAction(enforceNameSearch);
+		enforceNameSearch.addPostAction(snapshot);
 		
 		actions.add(mergeToUpdate);
 		return actions;

@@ -64,7 +64,8 @@ public final class DaoCompSelectSingle extends DaoStmtTemplate<CompInfo> {
 					dataInfo.codOwner = stmtResult.getLong(DaoCompDbTableColumn.COL_COD_OWNER);
 					dataInfo.codCompany = stmtResult.getLong(DaoCompDbTableColumn.COL_COD_COMPANY);
 					dataInfo.cnpj = stmtResult.getString(DaoCompDbTableColumn.COL_CNPJ);
-					dataInfo.name = stmtResult.getString(DaoCompDbTableColumn.COL_NAME);			
+					dataInfo.name = stmtResult.getString(DaoCompDbTableColumn.COL_NAME);
+					dataInfo.nameSearch = stmtResult.getString(DaoCompDbTableColumn.COL_NAME_SEARCH);
 					dataInfo.email = stmtResult.getString(DaoCompDbTableColumn.COL_EMAIL);						
 					dataInfo.recordMode = stmtResult.getString(DaoCompDbTableColumn.COL_RECORD_MODE);
 					dataInfo.codEntityCateg = stmtResult.getString(DaoCompDbTableColumn.COL_COD_ENTITY_CATEG);
