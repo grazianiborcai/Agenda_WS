@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.customerSnapshot.info.CusnapInfo;
-import br.com.mind5.business.customerSnapshot.model.action.LazyCusnapInsert;
+import br.com.mind5.business.customerSnapshot.model.action.LazyCusnapDaoInsert;
 import br.com.mind5.business.customerSnapshot.model.action.LazyCusnapMergeUselis;
 import br.com.mind5.business.customerSnapshot.model.action.StdCusnapMergePerson;
 import br.com.mind5.business.customerSnapshot.model.checker.CusnapCheckLangu;
@@ -12,13 +12,13 @@ import br.com.mind5.business.customerSnapshot.model.checker.CusnapCheckOwner;
 import br.com.mind5.business.customerSnapshot.model.checker.CusnapCheckWrite;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class RootCusnapInsert extends DeciTreeTemplateWriteV1<CusnapInfo> {
+public final class RootCusnapInsert extends DeciTreeTemplateWriteV2<CusnapInfo> {
 
 	public RootCusnapInsert(DeciTreeOption<CusnapInfo> option) {
 		super(option);
@@ -62,7 +62,7 @@ public final class RootCusnapInsert extends DeciTreeTemplateWriteV1<CusnapInfo> 
 		
 		ActionStdV1<CusnapInfo> mergePerson = new StdCusnapMergePerson(option);
 		ActionLazyV1<CusnapInfo> mergeUselis = new LazyCusnapMergeUselis(option.conn, option.schemaName);
-		ActionLazyV1<CusnapInfo> insert = new LazyCusnapInsert(option.conn, option.schemaName);
+		ActionLazyV1<CusnapInfo> insert = new LazyCusnapDaoInsert(option.conn, option.schemaName);
 		
 		mergePerson.addPostAction(mergeUselis);
 		mergeUselis.addPostAction(insert);

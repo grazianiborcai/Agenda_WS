@@ -16,10 +16,10 @@ public final class CusnapCheckWrite extends ModelCheckerTemplateSimpleV2<CusnapI
 	
 	
 	@Override protected boolean checkHook(CusnapInfo recordInfo, Connection conn, String schemaName) {	
-		if (    recordInfo.codOwner 	<= 0 
-			 || recordInfo.codCustomer	<= 0
-			 || recordInfo.codLanguage  == null	
-			 || recordInfo.username 	== null	)
+		if ( recordInfo.codOwner 	<= 0	||
+			 recordInfo.codCustomer	<= 0	||
+			 recordInfo.codLanguage == null	||
+			 recordInfo.username 	== null		)
 			
 			return super.FAILED;
 		

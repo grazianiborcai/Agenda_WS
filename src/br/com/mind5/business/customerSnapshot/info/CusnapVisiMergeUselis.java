@@ -1,55 +1,39 @@
 package br.com.mind5.business.customerSnapshot.info;
 
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import java.util.ArrayList;
+import java.util.List;
+
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.security.userList.info.UselisInfo;
 
-final class CusnapVisiMergeUselis implements InfoMergerVisitor_<CusnapInfo, UselisInfo> {
-
-	@Override public CusnapInfo writeRecord(UselisInfo sourceOne, CusnapInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+final class CusnapVisiMergeUselis implements InfoMergerVisitorV3<CusnapInfo, UselisInfo> {
+	
+	@Override public List<CusnapInfo> beforeMerge(List<CusnapInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(CusnapInfo baseInfo, UselisInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner &&
+				baseInfo.codUser  == selectedInfo.codUser		);
+	}
+	
+	
+	
+	@Override public List<CusnapInfo> merge(CusnapInfo baseInfo, UselisInfo selectedInfo) {
+		List<CusnapInfo> results = new ArrayList<>();
 		
-		CusnapInfo clonedInfo = makeClone(sourceTwo);
-		return merge(sourceOne, clonedInfo);
+		baseInfo.codUserSnapshot = selectedInfo.codSnapshot;
+		
+		results.add(baseInfo);
+		return results;
 	}
 	
 	
 	
-	private void checkArgument(UselisInfo sourceOne, CusnapInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private CusnapInfo makeClone(CusnapInfo recordInfo) {
-		try {
-			return (CusnapInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	private CusnapInfo merge(UselisInfo sourceOne, CusnapInfo sourceTwo) {
-		sourceTwo.codUserSnapshot = sourceOne.codSnapshot;
-		return sourceTwo;
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(UselisInfo sourceOne, CusnapInfo sourceTwo) {
-		return (sourceOne.codOwner == sourceTwo.codOwner &&
-				sourceOne.codUser  == sourceTwo.codUser		);
-	}
-	
-	
-	
-	private void logException(Exception e) {
-		SystemLog.logError(this.getClass(), e);
+	@Override public InfoUniquifier<CusnapInfo> getUniquifier() {
+		return null;
 	}
 }

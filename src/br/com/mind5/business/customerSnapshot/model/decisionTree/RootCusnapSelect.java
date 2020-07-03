@@ -8,13 +8,13 @@ import br.com.mind5.business.customerSnapshot.model.action.StdCusnapMergeToSelec
 import br.com.mind5.business.customerSnapshot.model.checker.CusnapCheckLangu;
 import br.com.mind5.business.customerSnapshot.model.checker.CusnapCheckRead;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 
-public final class RootCusnapSelect extends DeciTreeTemplateReadV1<CusnapInfo> {
+public final class RootCusnapSelect extends DeciTreeTemplateReadV2<CusnapInfo> {
 	
 	public RootCusnapSelect(DeciTreeOption<CusnapInfo> option) {
 		super(option);

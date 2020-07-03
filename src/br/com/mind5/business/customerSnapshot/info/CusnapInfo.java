@@ -1,12 +1,12 @@
 package br.com.mind5.business.customerSnapshot.info;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.person.info.PersonInfo;
 import br.com.mind5.business.phone.info.PhoneInfo;
+import br.com.mind5.common.CloneUtil;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
 import br.com.mind5.security.user.info.UserInfo;
@@ -32,7 +32,7 @@ public final class CusnapInfo extends InfoRecord implements Cloneable {
 	
 	
 	public CusnapInfo() {
-		super(CusnapInfo.class);
+		super();
 		
 		codOwner = DefaultValue.number();
 		codCustomer = DefaultValue.number();
@@ -67,62 +67,12 @@ public final class CusnapInfo extends InfoRecord implements Cloneable {
 	@Override public Object clone() throws CloneNotSupportedException {
 		CusnapInfo deepCopy = (CusnapInfo) super.clone();
 		
-		deepCopy.addresses = cloneAddresses(deepCopy.addresses);
-		deepCopy.phones = clonePhones(deepCopy.phones);
-		deepCopy.personData = clonePerson(deepCopy.personData);
-		deepCopy.userData = cloneUser(deepCopy.userData);
+		deepCopy.addresses = CloneUtil.cloneRecords(deepCopy.addresses, this.getClass());
+		deepCopy.phones = CloneUtil.cloneRecords(deepCopy.phones, this.getClass());
+		deepCopy.personData = CloneUtil.cloneRecord(deepCopy.personData, this.getClass());
+		deepCopy.userData = CloneUtil.cloneRecord(deepCopy.userData, this.getClass());
 		
 		return deepCopy;
-	}
-	
-	
-	
-	private List<AddressInfo> cloneAddresses(List<AddressInfo> addresses) throws CloneNotSupportedException {
-		if (addresses == null)
-			return null;
-		
-		List<AddressInfo> deepAddresses = new ArrayList<>();
-		
-		for (AddressInfo eachAddress : addresses) {
-			AddressInfo clonedAddress = (AddressInfo) eachAddress.clone();
-			deepAddresses.add(clonedAddress);
-		}
-		
-		return deepAddresses;
-	}
-	
-	
-	
-	private List<PhoneInfo> clonePhones(List<PhoneInfo> recordInfos) throws CloneNotSupportedException {
-		if (recordInfos == null)
-			return null;
-		
-		List<PhoneInfo> deepPhones = new ArrayList<>();
-		
-		for (PhoneInfo eachPhone : recordInfos) {
-			PhoneInfo clonedPhone = (PhoneInfo) eachPhone.clone();
-			deepPhones.add(clonedPhone);
-		}
-		
-		return deepPhones;
-	}
-	
-	
-	
-	private PersonInfo clonePerson(PersonInfo recordInfos) throws CloneNotSupportedException {
-		if (recordInfos == null)
-			return null;
-		
-		return (PersonInfo) recordInfos.clone();
-	}
-	
-	
-	
-	private UserInfo cloneUser(UserInfo recordInfos) throws CloneNotSupportedException {
-		if (recordInfos == null)
-			return null;
-		
-		return (UserInfo) recordInfos.clone();
 	}
 	
 	
@@ -132,6 +82,7 @@ public final class CusnapInfo extends InfoRecord implements Cloneable {
 		
 		result = result * 31 + (int) (codOwner    ^ (codOwner    >>> 32));
 		result = result * 31 + (int) (codCustomer ^ (codCustomer >>> 32));
+		result = result * 31 + (int) (codSnapshot ^ (codSnapshot >>> 32));
 		
 		return result;
 	}
@@ -148,7 +99,8 @@ public final class CusnapInfo extends InfoRecord implements Cloneable {
 		
 		
 		CusnapInfo obj = (CusnapInfo) o;		
-		return (codOwner    == obj.codOwner && 
-				codCustomer == obj.codCustomer);
+		return (codOwner    == obj.codOwner    && 
+				codCustomer == obj.codCustomer && 
+				codSnapshot == obj.codSnapshot		);
 	}
 }

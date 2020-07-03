@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class CusnapDbTableColumn extends DaoDbTableColumnTemplate {
+public final class DaoCusnapDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_CUSTOMER = DaoDbField.COL_COD_CUSTOMER;
 	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;
 	public static final String COL_COD_PERSON = DaoDbField.COL_COD_PERSON;
@@ -24,24 +24,13 @@ public final class CusnapDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_RECORD_MODE = DaoDbField.COL_RECORD_MODE;	
 	
 	
-	private Hashtable<String, List<DaoColumn>> tableColumns;	
-	
-	
-	public CusnapDbTableColumn() {
-		super(CusnapDbTableColumn.class);
+	public DaoCusnapDbTableColumn() {
+		super();
 	}
 	
 	
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
-		tableColumns = new Hashtable<>();		
-		buildCustomerSnapshotTable();		
-		return tableColumns;
-	}
-	
-	
-	
-	private void buildCustomerSnapshotTable() {
 		final String TABLE_NAME = DaoDbTable.CUS_SNAPSHOT_TABLE;
 		
 		DaoColumn oneColumn;
@@ -143,6 +132,8 @@ public final class CusnapDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		tableColumns.put(TABLE_NAME, columns);
+		Hashtable<String, List<DaoColumn>> results = new Hashtable<>();
+		results.put(TABLE_NAME, columns);
+		return results;
 	}
 }

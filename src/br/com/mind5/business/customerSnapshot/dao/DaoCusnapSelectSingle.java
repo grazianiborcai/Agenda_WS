@@ -16,11 +16,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class CusnapSelectSingle extends DaoStmtTemplate<CusnapInfo> {
+public final class DaoCusnapSelectSingle extends DaoStmtTemplate<CusnapInfo> {
 	private final String MAIN_TABLE = DaoDbTable.CUS_SNAPSHOT_TABLE;
 	
 	
-	public CusnapSelectSingle(Connection conn, CusnapInfo recordInfo, String schemaName) {
+	public DaoCusnapSelectSingle(Connection conn, CusnapInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -44,7 +44,7 @@ public final class CusnapSelectSingle extends DaoStmtTemplate<CusnapInfo> {
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;
 		
-		DaoStmtWhere whereClause = new CusnapWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new DaoCusnapWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}	
 	
@@ -61,18 +61,18 @@ public final class CusnapSelectSingle extends DaoStmtTemplate<CusnapInfo> {
 				do {
 					CusnapInfo dataInfo = new CusnapInfo();
 					
-					dataInfo.codOwner = stmtResult.getLong(CusnapDbTableColumn.COL_COD_OWNER);
-					dataInfo.codCustomer = stmtResult.getLong(CusnapDbTableColumn.COL_COD_CUSTOMER);									
-					dataInfo.recordMode = stmtResult.getString(CusnapDbTableColumn.COL_RECORD_MODE);
-					dataInfo.codPerson = DaoFormatter.sqlToLong(stmtResult, CusnapDbTableColumn.COL_COD_PERSON);
-					dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, CusnapDbTableColumn.COL_COD_USER);
-					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, CusnapDbTableColumn.COL_LAST_CHANGED);
-					dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, CusnapDbTableColumn.COL_LAST_CHANGED_BY);
-					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, CusnapDbTableColumn.COL_COD_SNAPSHOT);
-					dataInfo.codUserSnapshot = DaoFormatter.sqlToLong(stmtResult, CusnapDbTableColumn.COL_COD_USER_SNAPSHOT);
-					dataInfo.codPersonSnapshot = DaoFormatter.sqlToLong(stmtResult, CusnapDbTableColumn.COL_COD_PERSON_SNAPSHOT);
-					dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, CusnapDbTableColumn.COL_CREATED_ON);
-					dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, CusnapDbTableColumn.COL_CREATED_BY);
+					dataInfo.codOwner = stmtResult.getLong(DaoCusnapDbTableColumn.COL_COD_OWNER);
+					dataInfo.codCustomer = stmtResult.getLong(DaoCusnapDbTableColumn.COL_COD_CUSTOMER);									
+					dataInfo.recordMode = stmtResult.getString(DaoCusnapDbTableColumn.COL_RECORD_MODE);
+					dataInfo.codPerson = DaoFormatter.sqlToLong(stmtResult, DaoCusnapDbTableColumn.COL_COD_PERSON);
+					dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, DaoCusnapDbTableColumn.COL_COD_USER);
+					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, DaoCusnapDbTableColumn.COL_LAST_CHANGED);
+					dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, DaoCusnapDbTableColumn.COL_LAST_CHANGED_BY);
+					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, DaoCusnapDbTableColumn.COL_COD_SNAPSHOT);
+					dataInfo.codUserSnapshot = DaoFormatter.sqlToLong(stmtResult, DaoCusnapDbTableColumn.COL_COD_USER_SNAPSHOT);
+					dataInfo.codPersonSnapshot = DaoFormatter.sqlToLong(stmtResult, DaoCusnapDbTableColumn.COL_COD_PERSON_SNAPSHOT);
+					dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, DaoCusnapDbTableColumn.COL_CREATED_ON);
+					dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, DaoCusnapDbTableColumn.COL_CREATED_BY);
 	
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());
