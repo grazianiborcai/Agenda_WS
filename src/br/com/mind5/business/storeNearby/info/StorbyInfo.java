@@ -14,6 +14,7 @@ public final class StorbyInfo extends InfoRecord implements Cloneable {
 	public long codStore;
 	public long codCompany;
 	public String districtSearch;
+	public String nameSearch;
 	public float longitude;
 	public float latitude;
 	public String geoHash01;

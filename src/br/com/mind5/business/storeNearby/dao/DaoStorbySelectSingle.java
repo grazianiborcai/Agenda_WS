@@ -15,11 +15,13 @@ import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
+import br.com.mind5.dao.common.DaoJoinComp;
 import br.com.mind5.dao.common.DaoJoinStore;
 import br.com.mind5.dao.common.DaoOptionValue;
 
 public final class DaoStorbySelectSingle extends DaoStmtTemplate<StorbyInfo> {
 	private final String MAIN_TABLE = DaoDbTable.ADDRESS_TABLE;	
+	private final String STORE_TABLE = DaoDbTable.STORE_TABLE;	
 	
 	
 	public DaoStorbySelectSingle(Connection conn, StorbyInfo recordInfo, String schemaName) {
@@ -64,6 +66,9 @@ public final class DaoStorbySelectSingle extends DaoStmtTemplate<StorbyInfo> {
 		DaoJoinBuilder joinStore = new DaoJoinStore(MAIN_TABLE);		
 		joins.add(joinStore.build());
 		
+		DaoJoinBuilder joinComp = new DaoJoinComp(STORE_TABLE);		
+		joins.add(joinComp.build());
+		
 		return joins;
 	}
 	
@@ -84,6 +89,7 @@ public final class DaoStorbySelectSingle extends DaoStmtTemplate<StorbyInfo> {
 					dataInfo.codStore = stmtResult.getLong(DaoStorbyDbTableColumn.COL_COD_STORE);
 					dataInfo.codCompany = stmtResult.getLong(DaoStorbyDbTableColumn.COL_COD_COMPANY);
 					dataInfo.districtSearch = stmtResult.getString(DaoStorbyDbTableColumn.COL_DISTRICT_SEARCH);
+					dataInfo.nameSearch = stmtResult.getString(DaoStorbyDbTableColumn.COL_NAME_SEARCH);
 					dataInfo.recordMode = stmtResult.getString(DaoStorbyDbTableColumn.COL_RECORD_MODE);	
 					dataInfo.geoHash01 = stmtResult.getString(DaoStorbyDbTableColumn.COL_GEO_HASH_01);
 					dataInfo.geoHash02 = stmtResult.getString(DaoStorbyDbTableColumn.COL_GEO_HASH_02);

@@ -5,15 +5,15 @@ import br.com.mind5.model.action.ActionStdTemplateV2;
 import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdStorbyMergeComplis extends ActionStdTemplateV2<StorbyInfo> {
+public final class StdStorbyEnforceNameKey extends ActionStdTemplateV2<StorbyInfo> {
 
-	public StdStorbyMergeComplis(DeciTreeOption<StorbyInfo> option) {
+	public StdStorbyEnforceNameKey(DeciTreeOption<StorbyInfo> option) {
 		super(option);
 	}
 	
 	
 	
 	protected ActionVisitorV2<StorbyInfo> buildVisitorHook(DeciTreeOption<StorbyInfo> option) {
-		return new VisiStorbyMergeComplis(option);
+		return new VisiStorbyEnforceNameKey(option);
 	}
 }
