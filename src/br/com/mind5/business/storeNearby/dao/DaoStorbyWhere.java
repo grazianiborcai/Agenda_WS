@@ -8,6 +8,7 @@ import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilder;
 import br.com.mind5.dao.DaoWhereBuilderOption;
+import br.com.mind5.dao.DaoWhereCondition;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 
 final class DaoStorbyWhere implements DaoStmtWhere {	
@@ -32,11 +33,11 @@ final class DaoStorbyWhere implements DaoStmtWhere {
 					break;
 					
 				case DaoStorbyDbTableColumn.COL_DISTRICT_SEARCH:
-					builder.addClauseEqualAnd(eachColumn, recordInfo.districtSearch);
+					builder.addClauseAnd(eachColumn, recordInfo.districtSearch, DaoWhereCondition.LIKE);
 					break;
 					
 				case DaoStorbyDbTableColumn.COL_NAME_SEARCH:
-					builder.addClauseEqualAnd(eachColumn, recordInfo.nameSearch);
+					builder.addClauseAnd(eachColumn, recordInfo.nameSearch, DaoWhereCondition.LIKE);
 					break;
 					
 				case DaoStorbyDbTableColumn.COL_GEO_HASH_01:
