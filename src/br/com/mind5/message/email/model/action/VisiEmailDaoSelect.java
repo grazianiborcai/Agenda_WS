@@ -9,7 +9,7 @@ import br.com.mind5.message.email.info.EmailInfo;
 import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiEmailDaoSelect extends ActionVisitorTemplateStmtV2<EmailInfo>{
+final class VisiEmailDaoSelect extends ActionVisitorTemplateStmtV2<EmailInfo> {
 
 	public VisiEmailDaoSelect(DeciTreeOption<EmailInfo> option) {
 		super(option);

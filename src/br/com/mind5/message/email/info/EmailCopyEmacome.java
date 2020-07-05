@@ -3,7 +3,7 @@ package br.com.mind5.message.email.info;
 import br.com.mind5.info.InfoCopierTemplate;
 import br.com.mind5.message.emailWelcome.info.EmacomeInfo;
 
-final class EmailCopyEmacome extends InfoCopierTemplate<EmailInfo, EmacomeInfo>{
+final class EmailCopyEmacome extends InfoCopierTemplate<EmailInfo, EmacomeInfo> {
 	
 	public EmailCopyEmacome() {
 		super();
