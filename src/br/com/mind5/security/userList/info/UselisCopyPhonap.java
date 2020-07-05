@@ -3,7 +3,7 @@ package br.com.mind5.security.userList.info;
 import br.com.mind5.business.phoneSnapshot.info.PhonapInfo;
 import br.com.mind5.info.InfoCopierTemplate;
 
-final class UselisCopyPhonap extends InfoCopierTemplate<UselisInfo, PhonapInfo>{
+final class UselisCopyPhonap extends InfoCopierTemplate<UselisInfo, PhonapInfo> {
 	
 	public UselisCopyPhonap() {
 		super();

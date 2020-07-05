@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import br.com.mind5.business.personList.info.PersolisInfo;
+import br.com.mind5.common.CloneUtil;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
 
@@ -51,18 +52,8 @@ public final class UselisInfo extends InfoRecord implements Cloneable {
 	@Override public Object clone() throws CloneNotSupportedException {
 		UselisInfo deepCopy = (UselisInfo) super.clone();
 		
-		deepCopy.persolisData = clonePersolis(deepCopy.persolisData);
-		
+		deepCopy.persolisData = CloneUtil.cloneRecord(deepCopy.persolisData, this.getClass());		
 		return deepCopy;
-	}
-	
-	
-	
-	private PersolisInfo clonePersolis(PersolisInfo recordInfo) throws CloneNotSupportedException {
-		if (recordInfo == null)
-			return null;
-		
-		return (PersolisInfo) recordInfo.clone();
 	}
 	
 	

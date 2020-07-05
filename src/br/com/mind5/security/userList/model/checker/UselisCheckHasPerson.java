@@ -7,18 +7,17 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 import br.com.mind5.security.userList.info.UselisInfo;
 
-public final class UselisCheckRead extends ModelCheckerTemplateSimpleV2<UselisInfo> {
+public final class UselisCheckHasPerson extends ModelCheckerTemplateSimpleV2<UselisInfo> {
 
-	public UselisCheckRead(ModelCheckerOption option) {
+	public UselisCheckHasPerson(ModelCheckerOption option) {
 		super(option);
 	}
 	
 	
 	
 	@Override protected boolean checkHook(UselisInfo recordInfo, Connection conn, String schemaName) {	
-		if ( recordInfo.codOwner 	<= 0 	||
-			 recordInfo.codUser 	<= 0 	||
-			 recordInfo.codLanguage == null		)		
+		if ( recordInfo.codOwner  <= 0 ||
+			 recordInfo.codPerson <= 0		)		
 			
 			return super.FAILED;	
 		

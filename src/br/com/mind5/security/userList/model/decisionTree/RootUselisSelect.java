@@ -11,7 +11,7 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 import br.com.mind5.security.userList.info.UselisInfo;
-import br.com.mind5.security.userList.model.action.LazyUselisMergePersolis;
+import br.com.mind5.security.userList.model.action.LazyUselisNodePerson;
 import br.com.mind5.security.userList.model.action.StdUselisMergeToSelect;
 import br.com.mind5.security.userList.model.checker.UselisCheckLangu;
 import br.com.mind5.security.userList.model.checker.UselisCheckOwner;
@@ -60,9 +60,9 @@ public final class RootUselisSelect extends DeciTreeTemplateReadV2<UselisInfo> {
 		List<ActionStdV1<UselisInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<UselisInfo> select = new StdUselisMergeToSelect(option);
-		ActionLazyV1<UselisInfo> mergePerson = new LazyUselisMergePersolis(option.conn, option.schemaName);
+		ActionLazyV1<UselisInfo> person = new LazyUselisNodePerson(option.conn, option.schemaName);
 		
-		select.addPostAction(mergePerson);
+		select.addPostAction(person);
 		
 		actions.add(select);
 		return actions;

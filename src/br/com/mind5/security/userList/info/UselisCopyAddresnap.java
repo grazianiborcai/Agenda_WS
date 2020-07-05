@@ -3,7 +3,7 @@ package br.com.mind5.security.userList.info;
 import br.com.mind5.business.addressSnapshot.info.AddresnapInfo;
 import br.com.mind5.info.InfoCopierTemplate;
 
-final class UselisCopyAddresnap extends InfoCopierTemplate<UselisInfo, AddresnapInfo>{
+final class UselisCopyAddresnap extends InfoCopierTemplate<UselisInfo, AddresnapInfo> {
 	
 	public UselisCopyAddresnap() {
 		super();

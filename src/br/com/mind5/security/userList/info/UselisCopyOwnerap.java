@@ -3,7 +3,7 @@ package br.com.mind5.security.userList.info;
 import br.com.mind5.business.ownerSnapshot.info.OwnerapInfo;
 import br.com.mind5.info.InfoCopierTemplate;
 
-final class UselisCopyOwnerap extends InfoCopierTemplate<UselisInfo, OwnerapInfo>{
+final class UselisCopyOwnerap extends InfoCopierTemplate<UselisInfo, OwnerapInfo> {
 	
 	public UselisCopyOwnerap() {
 		super();
