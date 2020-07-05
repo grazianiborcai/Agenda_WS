@@ -1,20 +1,21 @@
-package br.com.mind5.masterData.userCategory.info;
+package br.com.mind5.masterData.common;
 
 import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
 
-public enum Usereg {
-	OWNER('O', true), 
-	STORE('S', true), 
-	CUSTOMER('C', true), 
+public enum UserCategory {
+	ANONYMOUS('A', true),
+	CUSTOMER('C', true),
+	DAEMON('D', false),
 	EMPLOYEE('E', true),
-	DAEMON('D', false);
+	OWNER('O', true), 
+	STORE('S', true);
 	
 	private final char codCateg;
 	private final boolean isPasswordEnabled;
 	
 	
-	private Usereg(char cod, boolean isPassword) {
+	private UserCategory(char cod, boolean isPassword) {
 		codCateg = cod;
 		isPasswordEnabled = isPassword;
 	}
@@ -33,8 +34,8 @@ public enum Usereg {
 	
 	
 	
-	static public Usereg getUserCateg(char cod) {
-		for(Usereg eachElem : Usereg.values()) {
+	static public UserCategory getUserCateg(char cod) {
+		for(UserCategory eachElem : UserCategory.values()) {
 			if (eachElem.getCodUserCateg() == cod)
 				return eachElem;
 		}
@@ -46,6 +47,6 @@ public enum Usereg {
 	
 	
 	static private void logException(Exception e) {
-		SystemLog.logError(Usereg.class, e);
+		SystemLog.logError(UserCategory.class, e);
 	}
 }
