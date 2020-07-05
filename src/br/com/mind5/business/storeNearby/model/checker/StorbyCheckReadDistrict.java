@@ -31,6 +31,10 @@ public final class StorbyCheckReadDistrict extends ModelCheckerTemplateSimpleV2<
 			return super.FAILED;
 		
 		
+		if ( recordInfo.districtSearch.length() < 3	)					
+			return super.FAILED;
+		
+		
 		return super.SUCCESS;
 	}
 	

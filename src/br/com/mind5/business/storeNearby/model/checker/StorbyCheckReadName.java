@@ -31,6 +31,10 @@ public final class StorbyCheckReadName extends ModelCheckerTemplateSimpleV2<Stor
 			return super.FAILED;
 		
 		
+		if ( recordInfo.nameSearch.length() < 3	)					
+			return super.FAILED;
+		
+		
 		return super.SUCCESS;
 	}
 	
