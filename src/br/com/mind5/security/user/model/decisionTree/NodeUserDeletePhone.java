@@ -11,7 +11,7 @@ import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 import br.com.mind5.security.user.info.UserInfo;
-import br.com.mind5.security.user.model.action.LazyUserDeletePhone;
+import br.com.mind5.security.user.model.action.LazyUserPhoneDelete;
 import br.com.mind5.security.user.model.action.StdUserMergePhone;
 import br.com.mind5.security.user.model.action.StdUserSuccess;
 import br.com.mind5.security.user.model.checker.UserCheckPhonarch;
@@ -44,7 +44,7 @@ public final class NodeUserDeletePhone extends DeciTreeTemplateWriteV2<UserInfo>
 		List<ActionStdV1<UserInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<UserInfo> mergePhone = new StdUserMergePhone(option);
-		ActionLazyV1<UserInfo> deletePhone = new LazyUserDeletePhone(option.conn, option.schemaName);
+		ActionLazyV1<UserInfo> deletePhone = new LazyUserPhoneDelete(option.conn, option.schemaName);
 		
 		mergePhone.addPostAction(deletePhone);
 		

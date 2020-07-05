@@ -11,7 +11,7 @@ import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 import br.com.mind5.security.user.info.UserInfo;
-import br.com.mind5.security.user.model.action.LazyUserUpsertPhone;
+import br.com.mind5.security.user.model.action.LazyUserPhoneUpsert;
 import br.com.mind5.security.user.model.action.StdUserEnforcePhoneKey;
 import br.com.mind5.security.user.model.action.StdUserSuccess;
 import br.com.mind5.security.user.model.checker.UserCheckHasPhone;
@@ -45,7 +45,7 @@ public final class NodeUserUpsertPhone extends DeciTreeTemplateWriteV2<UserInfo>
 		List<ActionStdV1<UserInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<UserInfo> enforcePhoneKey = new StdUserEnforcePhoneKey(option);
-		ActionLazyV1<UserInfo> upsertPhone = new LazyUserUpsertPhone(option.conn, option.schemaName);	
+		ActionLazyV1<UserInfo> upsertPhone = new LazyUserPhoneUpsert(option.conn, option.schemaName);	
 		
 		enforcePhoneKey.addPostAction(upsertPhone);
 		

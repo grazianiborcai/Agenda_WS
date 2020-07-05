@@ -11,7 +11,7 @@ import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 import br.com.mind5.security.user.info.UserInfo;
-import br.com.mind5.security.user.model.action.LazyUserDeleteAddress;
+import br.com.mind5.security.user.model.action.LazyUserAddressDelete;
 import br.com.mind5.security.user.model.action.StdUserMergeAddress;
 import br.com.mind5.security.user.model.action.StdUserSuccess;
 import br.com.mind5.security.user.model.checker.UserCheckAddarch;
@@ -45,7 +45,7 @@ public final class NodeUserDeleteAddress extends DeciTreeTemplateWriteV2<UserInf
 		List<ActionStdV1<UserInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<UserInfo> mergeAddress = new StdUserMergeAddress(option);
-		ActionLazyV1<UserInfo> deleteAddress = new LazyUserDeleteAddress(option.conn, option.schemaName);
+		ActionLazyV1<UserInfo> deleteAddress = new LazyUserAddressDelete(option.conn, option.schemaName);
 		
 		mergeAddress.addPostAction(deleteAddress);
 		

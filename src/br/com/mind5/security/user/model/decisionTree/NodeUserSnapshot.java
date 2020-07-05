@@ -12,7 +12,7 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 import br.com.mind5.security.user.info.UserInfo;
 import br.com.mind5.security.user.model.action.LazyUserDaoUpdate;
-import br.com.mind5.security.user.model.action.StdUserInsertUserap;
+import br.com.mind5.security.user.model.action.StdUserUserapInsert;
 
 public final class NodeUserSnapshot extends DeciTreeTemplateWriteV2<UserInfo> {
 	
@@ -37,7 +37,7 @@ public final class NodeUserSnapshot extends DeciTreeTemplateWriteV2<UserInfo> {
 	@Override protected List<ActionStdV1<UserInfo>> buildActionsOnPassedHook(DeciTreeOption<UserInfo> option) {
 		List<ActionStdV1<UserInfo>> actions = new ArrayList<>();
 
-		ActionStdV1<UserInfo> insertSnapshot = new StdUserInsertUserap(option);		
+		ActionStdV1<UserInfo> insertSnapshot = new StdUserUserapInsert(option);		
 		ActionLazyV1<UserInfo> updateUser = new LazyUserDaoUpdate(option.conn, option.schemaName);
 		
 		insertSnapshot.addPostAction(updateUser);

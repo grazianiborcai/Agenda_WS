@@ -11,7 +11,7 @@ import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 import br.com.mind5.security.user.info.UserInfo;
-import br.com.mind5.security.user.model.action.LazyUserUpsertAddress;
+import br.com.mind5.security.user.model.action.LazyUserAddressUpsert;
 import br.com.mind5.security.user.model.action.StdUserEnforceAddressKey;
 import br.com.mind5.security.user.model.action.StdUserSuccess;
 import br.com.mind5.security.user.model.checker.UserCheckHasAddress;
@@ -45,7 +45,7 @@ public final class NodeUserUpsertAddress extends DeciTreeTemplateWriteV2<UserInf
 		List<ActionStdV1<UserInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<UserInfo> enforceAddressKey = new StdUserEnforceAddressKey(option);
-		ActionLazyV1<UserInfo> upsertAddress = new LazyUserUpsertAddress(option.conn, option.schemaName);	
+		ActionLazyV1<UserInfo> upsertAddress = new LazyUserAddressUpsert(option.conn, option.schemaName);	
 		
 		enforceAddressKey.addPostAction(upsertAddress);
 		

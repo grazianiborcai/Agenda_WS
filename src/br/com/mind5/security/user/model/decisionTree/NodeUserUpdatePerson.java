@@ -11,7 +11,7 @@ import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 import br.com.mind5.security.user.info.UserInfo;
-import br.com.mind5.security.user.model.action.LazyUserUpdatePerson;
+import br.com.mind5.security.user.model.action.LazyUserPersonUpdate;
 import br.com.mind5.security.user.model.action.StdUserEnforcePersonKey;
 import br.com.mind5.security.user.model.checker.UserCheckHasPersonData;
 
@@ -46,7 +46,7 @@ public final class NodeUserUpdatePerson extends DeciTreeTemplateWriteV2<UserInfo
 		List<ActionStdV1<UserInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<UserInfo> enforcePersonKey = new StdUserEnforcePersonKey(option);
-		ActionLazyV1<UserInfo> updatePerson = new LazyUserUpdatePerson(option.conn, option.schemaName);
+		ActionLazyV1<UserInfo> updatePerson = new LazyUserPersonUpdate(option.conn, option.schemaName);
 		
 		enforcePersonKey.addPostAction(updatePerson);
 		

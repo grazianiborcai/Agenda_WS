@@ -12,8 +12,8 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 import br.com.mind5.security.user.info.UserInfo;
 import br.com.mind5.security.user.model.action.LazyUserDaoDelete;
-import br.com.mind5.security.user.model.action.LazyUserDeletePerson;
-import br.com.mind5.security.user.model.action.LazyUserDeleteUpswd;
+import br.com.mind5.security.user.model.action.LazyUserPersonDelete;
+import br.com.mind5.security.user.model.action.LazyUserUpswdDelete;
 import br.com.mind5.security.user.model.action.LazyUserEnforceLChanged;
 import br.com.mind5.security.user.model.action.LazyUserMergeToDelete;
 import br.com.mind5.security.user.model.action.LazyUserNodeDeleteAddress;
@@ -73,8 +73,8 @@ public final class RootUserDelete extends DeciTreeTemplateWriteV2<UserInfo> {
 		ActionLazyV1<UserInfo> deleteAddress = new LazyUserNodeDeleteAddress(option.conn, option.schemaName);
 		ActionLazyV1<UserInfo> deletePhone = new LazyUserNodeDeletePhone(option.conn, option.schemaName);
 		ActionLazyV1<UserInfo> deleteUser = new LazyUserDaoDelete(option.conn, option.schemaName);	
-		ActionLazyV1<UserInfo> deletePassword = new LazyUserDeleteUpswd(option.conn, option.schemaName);	
-		ActionLazyV1<UserInfo> deletePerson = new LazyUserDeletePerson(option.conn, option.schemaName);
+		ActionLazyV1<UserInfo> deletePassword = new LazyUserUpswdDelete(option.conn, option.schemaName);	
+		ActionLazyV1<UserInfo> deletePerson = new LazyUserPersonDelete(option.conn, option.schemaName);
 		
 		enforceLChangedBy.addPostAction(mergeToDelete);
 		mergeToDelete.addPostAction(enforceLChanged);		

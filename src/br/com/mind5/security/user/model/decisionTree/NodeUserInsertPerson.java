@@ -12,7 +12,7 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 import br.com.mind5.security.user.info.UserInfo;
 import br.com.mind5.security.user.model.action.LazyUserDaoUpdate;
-import br.com.mind5.security.user.model.action.LazyUserInsertPerson;
+import br.com.mind5.security.user.model.action.LazyUserPersonInsert;
 import br.com.mind5.security.user.model.action.StdUserEnforcePersonKey;
 
 public final class NodeUserInsertPerson extends DeciTreeTemplateWriteV2<UserInfo> {
@@ -39,7 +39,7 @@ public final class NodeUserInsertPerson extends DeciTreeTemplateWriteV2<UserInfo
 		List<ActionStdV1<UserInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<UserInfo> enforcePersonKey = new StdUserEnforcePersonKey(option);	
-		ActionLazyV1<UserInfo> insertPerson = new LazyUserInsertPerson(option.conn, option.schemaName);
+		ActionLazyV1<UserInfo> insertPerson = new LazyUserPersonInsert(option.conn, option.schemaName);
 		ActionLazyV1<UserInfo> updateUser = new LazyUserDaoUpdate(option.conn, option.schemaName);
 		
 		enforcePersonKey.addPostAction(insertPerson);
