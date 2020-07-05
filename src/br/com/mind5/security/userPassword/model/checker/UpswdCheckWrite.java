@@ -16,9 +16,9 @@ public final class UpswdCheckWrite extends ModelCheckerTemplateSimpleV2<UpswdInf
 	
 	
 	@Override protected boolean checkHook(UpswdInfo recordInfo, Connection conn, String schemaName) {	
-		if (   recordInfo.codOwner 	<= 0 	
-			|| recordInfo.codUser 	<= 0
-			|| recordInfo.password	== null	)
+		if ( recordInfo.codOwner 	<= 0	||
+			 recordInfo.codUser 	<= 0	||
+			 recordInfo.password	== null		)
 			
 			return super.FAILED;
 		

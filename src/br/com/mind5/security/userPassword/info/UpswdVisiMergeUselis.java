@@ -16,9 +16,8 @@ final class UpswdVisiMergeUselis implements InfoMergerVisitorV3<UpswdInfo, Useli
 	
 	
 	@Override public boolean shouldMerge(UpswdInfo baseInfo, UselisInfo selectedInfo) {
-		return (baseInfo.codOwner 			== selectedInfo.codOwner &&
-			  //baseInfo.codUser  			== selectedInfo.codUser	 &&
-				selectedInfo.persolisData 	!= null						);
+		return (baseInfo.codOwner == selectedInfo.codOwner &&
+			    baseInfo.codUser  == selectedInfo.codUser		);
 	}
 	
 	
@@ -30,7 +29,6 @@ final class UpswdVisiMergeUselis implements InfoMergerVisitorV3<UpswdInfo, Useli
 		baseInfo.codOwner = selectedInfo.codOwner;
 		baseInfo.codUser = selectedInfo.codUser;		
 		baseInfo.codUserCategory = selectedInfo.codUserCategory;
-		baseInfo.persolisData = selectedInfo.persolisData;
 		
 		results.add(baseInfo);
 		return results;
