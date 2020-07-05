@@ -4,14 +4,15 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.message.emailWelcome.info.EmacomeInfo;
+import br.com.mind5.message.emailWelcome.model.decisionTree.NodeEmacomeSend;
 import br.com.mind5.model.action.ActionLazyTemplateV2;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyEmacomeEnforceEmabody extends ActionLazyTemplateV2<EmacomeInfo, EmacomeInfo> {
+public final class LazyEmacomeNodeSend extends ActionLazyTemplateV2<EmacomeInfo, EmacomeInfo> {
 
-	public LazyEmacomeEnforceEmabody(Connection conn, String schemaName) {
+	public LazyEmacomeNodeSend(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +25,7 @@ public final class LazyEmacomeEnforceEmabody extends ActionLazyTemplateV2<Emacom
 	
 	
 	@Override protected ActionStdV1<EmacomeInfo> getInstanceOfActionHook(DeciTreeOption<EmacomeInfo> option) {
-		return new StdEmacomeEnforceEmabody(option);
+		return new NodeEmacomeSend(option).toAction();
 	}
 	
 	

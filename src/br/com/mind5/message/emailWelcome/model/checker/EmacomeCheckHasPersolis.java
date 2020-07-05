@@ -7,20 +7,22 @@ import br.com.mind5.message.emailWelcome.info.EmacomeInfo;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class EmacomeCheckSend extends ModelCheckerTemplateSimpleV2<EmacomeInfo> {
+public final class EmacomeCheckHasPersolis extends ModelCheckerTemplateSimpleV2<EmacomeInfo> {
 
-	public EmacomeCheckSend(ModelCheckerOption option) {
+	public EmacomeCheckHasPersolis(ModelCheckerOption option) {
 		super(option);
 	}
 	
 	
 	
 	@Override protected boolean checkHook(EmacomeInfo recordInfo, Connection conn, String schemaName) {	
-		if ( recordInfo.codOwner	<= 0	||
-			 recordInfo.codUser		<= 0	||
-			 recordInfo.password	== null	||
-			 recordInfo.username	== null	||
-			 recordInfo.codLanguage	== null		)		
+		if ( recordInfo.persolisData == null )
+			
+			return super.FAILED;
+		
+		
+		if ( recordInfo.persolisData.name  == null ||
+			 recordInfo.persolisData.email == null		)
 			
 			return super.FAILED;
 		

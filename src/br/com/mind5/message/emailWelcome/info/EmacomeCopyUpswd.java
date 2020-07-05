@@ -3,7 +3,7 @@ package br.com.mind5.message.emailWelcome.info;
 import br.com.mind5.info.InfoCopierTemplate;
 import br.com.mind5.security.userPassword.info.UpswdInfo;
 
-final class EmacomeCopyUpswd extends InfoCopierTemplate<EmacomeInfo, UpswdInfo>{
+final class EmacomeCopyUpswd extends InfoCopierTemplate<EmacomeInfo, UpswdInfo> {
 	
 	public EmacomeCopyUpswd() {
 		super();
@@ -15,10 +15,10 @@ final class EmacomeCopyUpswd extends InfoCopierTemplate<EmacomeInfo, UpswdInfo>{
 		EmacomeInfo result = new EmacomeInfo();
 		
 		result.codOwner = source.codOwner;
+		result.codUser = source.codUser;
 		result.password = source.password;
 		result.username = source.username;
-		result.codLanguage = source.codLanguage;		
-		result.persolisData = source.persolisData;
+		result.codLanguage = source.codLanguage;
 		
 		return result;
 	}

@@ -11,6 +11,7 @@ import br.com.mind5.message.emailBody.info.EmabodyInfo;
 
 public final class EmacomeInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
+	public long codUser;
 	public String recipientAddr;
 	public String password;	
 	public String username;		
@@ -23,6 +24,7 @@ public final class EmacomeInfo extends InfoRecord implements Cloneable {
 		super();
 		
 		codOwner = DefaultValue.number();
+		codUser = DefaultValue.number();
 		bodyData = DefaultValue.object();
 		persolisData = DefaultValue.object();
 		ownelisData = DefaultValue.object();
