@@ -8,11 +8,11 @@ import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.userPassword.info.UpswdInfo;
-import br.com.mind5.security.userPassword.model.decisionTree.RootUpswdInsert;
+import br.com.mind5.security.userPassword.model.decisionTree.RootUpswdInsertSilent;
 
-public final class LazyUpswdRootInsert extends ActionLazyTemplateV2<UpswdInfo, UpswdInfo> {
+public final class LazyUpswdRootInsertSilent extends ActionLazyTemplateV2<UpswdInfo, UpswdInfo> {
 	
-	public LazyUpswdRootInsert(Connection conn, String schemaName) {
+	public LazyUpswdRootInsertSilent(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -25,7 +25,7 @@ public final class LazyUpswdRootInsert extends ActionLazyTemplateV2<UpswdInfo, U
 	
 	
 	@Override protected ActionStdV1<UpswdInfo> getInstanceOfActionHook(DeciTreeOption<UpswdInfo> option) {
-		return new RootUpswdInsert(option).toAction();
+		return new RootUpswdInsertSilent(option).toAction();
 	}
 	
 	
