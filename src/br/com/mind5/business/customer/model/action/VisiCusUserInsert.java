@@ -1,0 +1,36 @@
+package br.com.mind5.business.customer.model.action;
+
+import java.util.List;
+
+import br.com.mind5.business.customer.info.CusInfo;
+import br.com.mind5.business.customer.info.CusMerger;
+import br.com.mind5.model.action.ActionVisitorTemplateActionV2;
+import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
+import br.com.mind5.security.user.info.UserCopier;
+import br.com.mind5.security.user.info.UserInfo;
+import br.com.mind5.security.user.model.decisionTree.RootUserInsertCus;
+
+final class VisiCusUserInsert extends ActionVisitorTemplateActionV2<CusInfo, UserInfo> {
+	public VisiCusUserInsert(DeciTreeOption<CusInfo> option) {
+		super(option, CusInfo.class, UserInfo.class);
+	}
+	
+	
+	
+	@Override protected Class<? extends DeciTree<UserInfo>> getTreeClassHook() {
+		return RootUserInsertCus.class;
+	}
+	
+	
+	
+	@Override protected List<UserInfo> toActionClassHook(List<CusInfo> recordInfos) {
+		return UserCopier.copyFromCus(recordInfos);
+	}
+	
+	
+	
+	@Override protected List<CusInfo> toBaseClassHook(List<CusInfo> baseInfos, List<UserInfo> results) {
+		return CusMerger.mergeWithUser(baseInfos, results);
+	}
+}

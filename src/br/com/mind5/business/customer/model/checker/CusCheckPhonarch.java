@@ -1,57 +1,28 @@
 package br.com.mind5.business.customer.model.checker;
 
-import java.util.List;
-
 import br.com.mind5.business.customer.info.CusInfo;
 import br.com.mind5.business.phoneSearch.info.PhonarchCopier;
 import br.com.mind5.business.phoneSearch.info.PhonarchInfo;
 import br.com.mind5.business.phoneSearch.model.checker.PhonarchCheckExist;
-import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
+import br.com.mind5.model.checker.ModelCheckerV1;
 
-public final class CusCheckPhonarch implements ModelCheckerV1<CusInfo> {
-	private final boolean RESULT_FAILED = false;
-	private final boolean RESULT_SUCCESS = true;
-	
-	private ModelCheckerV1<PhonarchInfo> checker;
-	
+public final class CusCheckPhonarch extends ModelCheckerTemplateForwardV2<CusInfo, PhonarchInfo> {
 	
 	public CusCheckPhonarch(ModelCheckerOption option) {
-		checker = new PhonarchCheckExist(option);
-	}
-	
-	
-	
-	@Override public boolean check(List<CusInfo> recordInfos) {
-		for (CusInfo eachInfo : recordInfos) {
-			if (check(eachInfo) == RESULT_FAILED)
-				return RESULT_FAILED;
-		}
-		
-		return RESULT_SUCCESS;
+		super(option);
 	}
 
-	
-	
-	@Override public boolean check(CusInfo recordInfo) {
-		return checker.check(PhonarchCopier.copyFromCusKey(recordInfo));
-	}
 
 	
-	
-	@Override public boolean getResult() {
-		return checker.getResult();
+	@Override protected ModelCheckerV1<PhonarchInfo> getCheckerHook(ModelCheckerOption option) {
+		return new PhonarchCheckExist(option);
 	}
-
 	
 	
-	@Override public String getFailMessage() {
-		return checker.getFailMessage();
-	}
-
 	
-	
-	@Override public int getFailCode() {
-		return checker.getFailCode();
+	@Override protected PhonarchInfo toForwardClass(CusInfo baseRecord) {
+		return PhonarchCopier.copyFromCusKey(baseRecord);
 	}
 }

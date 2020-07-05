@@ -1,19 +1,19 @@
 package br.com.mind5.business.customer.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.customer.info.CusInfo;
 import br.com.mind5.business.customer.info.CusMerger;
 import br.com.mind5.business.person.info.PersonInfo;
 import br.com.mind5.business.person.model.decisionTree.RootPersonSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiCusMergePerson extends ActionVisitorTemplateMergeV1<CusInfo, PersonInfo> {
+final class VisiCusMergePerson extends ActionVisitorTemplateMergeV2<CusInfo, PersonInfo> {
 	
-	public VisiCusMergePerson(Connection conn, String schemaName) {
-		super(conn, schemaName, PersonInfo.class);
+	public VisiCusMergePerson(DeciTreeOption<CusInfo> option) {
+		super(option, PersonInfo.class);
 	}
 	
 	
@@ -24,13 +24,13 @@ final class VisiCusMergePerson extends ActionVisitorTemplateMergeV1<CusInfo, Per
 	
 	
 	
-	@Override protected List<CusInfo> mergeHook(List<CusInfo> recordInfos, List<PersonInfo> selectedInfos) {	
-		return CusMerger.mergeWithPerson(selectedInfos, recordInfos);
+	@Override protected List<CusInfo> mergeHook(List<CusInfo> baseInfos, List<PersonInfo> selectedInfos) {	
+		return CusMerger.mergeWithPerson(baseInfos, selectedInfos);
 	}
 	
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
+		return super.MERGE_WHEN_EMPTY;
 	}
 }

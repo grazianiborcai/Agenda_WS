@@ -4,12 +4,12 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.customer.info.CusInfo;
-import br.com.mind5.model.action.ActionLazyTemplateV1;
+import br.com.mind5.model.action.ActionLazyTemplateV2;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyCusEnforceCreatedOn extends ActionLazyTemplateV1<CusInfo, CusInfo> {
+public final class LazyCusEnforceCreatedOn extends ActionLazyTemplateV2<CusInfo, CusInfo> {
 	
 	public LazyCusEnforceCreatedOn(Connection conn, String schemaName) {
 		super(conn, schemaName);

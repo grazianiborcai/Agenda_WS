@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.customer.info.CusInfo;
-import br.com.mind5.business.customer.model.action.LazyCusUpdate;
-import br.com.mind5.business.customer.model.action.StdCusInsertUser;
+import br.com.mind5.business.customer.model.action.LazyCusDaoUpdate;
+import br.com.mind5.business.customer.model.action.StdCusUserInsert;
 import br.com.mind5.business.customer.model.action.StdCusSuccess;
 import br.com.mind5.business.customer.model.checker.CusCheckHasEmail;
 import br.com.mind5.model.action.ActionLazyV1;
@@ -14,9 +14,9 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class NodeCusInsertUser extends DeciTreeTemplateWriteV1<CusInfo> {
+public final class NodeCusInsertUser extends DeciTreeTemplateWriteV2<CusInfo> {
 
 	public NodeCusInsertUser(DeciTreeOption<CusInfo> option) {
 		super(option);
@@ -44,8 +44,8 @@ public final class NodeCusInsertUser extends DeciTreeTemplateWriteV1<CusInfo> {
 	@Override protected List<ActionStdV1<CusInfo>> buildActionsOnPassedHook(DeciTreeOption<CusInfo> option) {
 		List<ActionStdV1<CusInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<CusInfo> insertUser = new StdCusInsertUser(option);
-		ActionLazyV1<CusInfo> update = new LazyCusUpdate(option.conn, option.schemaName);
+		ActionStdV1<CusInfo> insertUser = new StdCusUserInsert(option);
+		ActionLazyV1<CusInfo> update = new LazyCusDaoUpdate(option.conn, option.schemaName);
 		
 		insertUser.addPostAction(update);
 		

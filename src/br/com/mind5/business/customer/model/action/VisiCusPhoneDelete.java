@@ -1,0 +1,36 @@
+package br.com.mind5.business.customer.model.action;
+
+import java.util.List;
+
+import br.com.mind5.business.customer.info.CusInfo;
+import br.com.mind5.business.phone.info.PhoneCopier;
+import br.com.mind5.business.phone.info.PhoneInfo;
+import br.com.mind5.business.phone.model.decisionTree.RootPhoneDelete;
+import br.com.mind5.model.action.ActionVisitorTemplateActionV2;
+import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
+
+final class VisiCusPhoneDelete extends ActionVisitorTemplateActionV2<CusInfo, PhoneInfo> {
+	
+	public VisiCusPhoneDelete(DeciTreeOption<CusInfo> option) {
+		super(option, CusInfo.class, PhoneInfo.class);
+	}
+	
+	
+	
+	@Override protected Class<? extends DeciTree<PhoneInfo>> getTreeClassHook() {
+		return RootPhoneDelete.class;
+	}
+	
+	
+	
+	@Override protected List<PhoneInfo> toActionClassHook(List<CusInfo> recordInfos) {
+		return PhoneCopier.copyFromCus(recordInfos);
+	}
+	
+	
+	
+	@Override protected List<CusInfo> toBaseClassHook(List<CusInfo> baseInfos, List<PhoneInfo> results) {
+		return baseInfos;
+	}
+}

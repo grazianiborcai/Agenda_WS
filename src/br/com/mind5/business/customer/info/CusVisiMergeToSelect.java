@@ -1,53 +1,38 @@
 package br.com.mind5.business.customer.info;
 
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import java.util.ArrayList;
+import java.util.List;
 
-final class CusVisiMergeToSelect implements InfoMergerVisitor_<CusInfo, CusInfo> {
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-	@Override public CusInfo writeRecord(CusInfo sourceOne, CusInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);		
-		return merge(sourceOne, sourceTwo);
+final class CusVisiMergeToSelect implements InfoMergerVisitorV3<CusInfo, CusInfo> {
+	
+	@Override public List<CusInfo> beforeMerge(List<CusInfo> baseInfos) {
+		return baseInfos;
 	}
 	
 	
 	
-	private void checkArgument(CusInfo sourceOne, CusInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
+	@Override public boolean shouldMerge(CusInfo baseInfo, CusInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner);
 	}
 	
 	
 	
-	private CusInfo merge(CusInfo sourceOne, CusInfo sourceTwo) {
-		CusInfo result = makeClone(sourceOne);		
-		result.username = sourceTwo.username;
-		result.codLanguage = sourceTwo.codLanguage;
-		return result;
+	@Override public List<CusInfo> merge(CusInfo baseInfo, CusInfo selectedInfo) {
+		List<CusInfo> results = new ArrayList<>();
+		
+		selectedInfo.codLanguage = baseInfo.codLanguage;
+		selectedInfo.username = baseInfo.username;
+		
+		results.add(selectedInfo);
+		return results;
 	}
 	
 	
 	
-	private CusInfo makeClone(CusInfo recordInfo) {
-		try {
-			return (CusInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(CusInfo sourceOne, CusInfo sourceTwo) {		
-		return (sourceOne.codOwner == sourceTwo.codOwner);
-	}
-	
-	
-	
-	private void logException(Exception e) {
-		SystemLog.logError(this.getClass(), e);
+	@Override public InfoUniquifier<CusInfo> getUniquifier() {
+		return null;
 	}
 }

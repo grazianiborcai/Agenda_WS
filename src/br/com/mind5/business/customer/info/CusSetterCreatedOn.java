@@ -1,31 +1,12 @@
 package br.com.mind5.business.customer.info;
 
 import br.com.mind5.common.DefaultValue;
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoSetter;
+import br.com.mind5.info.InfoSetterTemplate;
 
-public final class CusSetterCreatedOn implements InfoSetter<CusInfo> {
+public final class CusSetterCreatedOn extends InfoSetterTemplate<CusInfo> {
 	
-	public CusInfo setAttr(CusInfo recordInfo) {
-		checkArgument(recordInfo);
-		
+	@Override protected CusInfo setAttrHook(CusInfo recordInfo) {
 		recordInfo.createdOn = DefaultValue.localDateTimeNow();
 		return recordInfo;
 	}
-	
-	
-	
-	private void checkArgument(CusInfo recordInfo) {
-		if (recordInfo == null) {
-			logException(new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT));
-			throw new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT);
-		}
-	}
-	
-	
-	
-	private void logException(Exception e) {
-		SystemLog.logError(this.getClass(), e);
-	}	
 }

@@ -1,20 +1,20 @@
 package br.com.mind5.business.customer.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.customer.info.CusInfo;
 import br.com.mind5.business.customer.info.CusMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.user.info.UserCopier;
 import br.com.mind5.security.user.info.UserInfo;
 import br.com.mind5.security.user.model.decisionTree.RootUserSelectDaemon;
 
-final class VisiCusMergeDaemon extends ActionVisitorTemplateMergeV1<CusInfo, UserInfo> {
+final class VisiCusMergeDaemon extends ActionVisitorTemplateMergeV2<CusInfo, UserInfo> {
 	
-	public VisiCusMergeDaemon(Connection conn, String schemaName) {
-		super(conn, schemaName, UserInfo.class);
+	public VisiCusMergeDaemon(DeciTreeOption<CusInfo> option) {
+		super(option, UserInfo.class);
 	}
 	
 	
@@ -25,19 +25,19 @@ final class VisiCusMergeDaemon extends ActionVisitorTemplateMergeV1<CusInfo, Use
 	
 	
 	
-	@Override protected List<UserInfo> toActionClassHook(List<CusInfo> recordInfos) {
-		return UserCopier.copyFromCusDaemon(recordInfos);	
+	@Override protected List<UserInfo> toActionClassHook(List<CusInfo> baseInfos) {
+		return UserCopier.copyFromCusDaemon(baseInfos);	
 	}
 	
 	
 	
-	@Override protected List<CusInfo> mergeHook(List<CusInfo> recordInfos, List<UserInfo> selectedInfos) {	
-		return CusMerger.mergeWithDaemon(selectedInfos, recordInfos);
+	@Override protected List<CusInfo> mergeHook(List<CusInfo> baseInfos, List<UserInfo> selectedInfos) {	
+		return CusMerger.mergeWithDaemon(baseInfos, selectedInfos);
 	}
 	
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
+		return super.MERGE_WHEN_EMPTY;
 	}
 }

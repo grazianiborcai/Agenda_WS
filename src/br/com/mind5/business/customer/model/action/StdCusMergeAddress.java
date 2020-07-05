@@ -1,35 +1,19 @@
 package br.com.mind5.business.customer.model.action;
 
 import br.com.mind5.business.customer.info.CusInfo;
-import br.com.mind5.model.action.ActionLazyV1;
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionStdHelperMerge;
-import br.com.mind5.model.decisionTree.DeciResult;
+import br.com.mind5.model.action.ActionStdTemplateV2;
+import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdCusMergeAddress implements ActionStdV1<CusInfo> {
-	private ActionStdV1<CusInfo> actionHelper;	
-	
-	
-	public StdCusMergeAddress(DeciTreeOption<CusInfo> option) {			
-		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiCusMergeAddress(option.conn, option.schemaName));
+public final class StdCusMergeAddress extends ActionStdTemplateV2<CusInfo> {
+
+	public StdCusMergeAddress(DeciTreeOption<CusInfo> option) {
+		super(option);
 	}
 	
 	
 	
-	@Override public void addPostAction(ActionLazyV1<CusInfo> actionHandler) {
-		actionHelper.addPostAction(actionHandler);
-	}
-	
-	
-	
-	@Override public boolean executeAction() {			
-		return actionHelper.executeAction();
-	}
-	
-	
-	
-	@Override public DeciResult<CusInfo> getDecisionResult() {
-		return actionHelper.getDecisionResult();
+	protected ActionVisitorV2<CusInfo> buildVisitorHook(DeciTreeOption<CusInfo> option) {
+		return new VisiCusMergeAddress(option);
 	}
 }

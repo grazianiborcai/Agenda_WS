@@ -1,59 +1,39 @@
 package br.com.mind5.business.customer.info;
 
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import java.util.ArrayList;
+import java.util.List;
+
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.security.username.info.UsernameInfo;
 
-final class CusVisiMergeUsername implements InfoMergerVisitor_<CusInfo, UsernameInfo> {
+final class CusVisiMergeUsername implements InfoMergerVisitorV3<CusInfo, UsernameInfo> {
 
-	@Override public CusInfo writeRecord(UsernameInfo sourceOne, CusInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+	@Override public List<CusInfo> beforeMerge(List<CusInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(CusInfo baseInfo, UsernameInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner		&&
+				baseInfo.username.equals(selectedInfo.username)		);
+	}
+	
+	
+	
+	@Override public List<CusInfo> merge(CusInfo baseInfo, UsernameInfo selectedInfo) {
+		List<CusInfo> results = new ArrayList<>();
 		
-		CusInfo clonedInfo = makeClone(sourceTwo);
-		return merge(sourceOne, clonedInfo);
-	}
-	
-	
-	
-	private void checkArgument(UsernameInfo sourceOne, CusInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private CusInfo makeClone(CusInfo recordInfo) {
-		try {
-			return (CusInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	private CusInfo merge(UsernameInfo sourceOne, CusInfo sourceTwo) {
-		sourceTwo.lastChangedBy = sourceOne.codUser;
-		return sourceTwo;
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(UsernameInfo sourceOne, CusInfo sourceTwo) {
-		if (sourceOne.username == null ||
-			sourceTwo.username == null		)
-			return false;
+		baseInfo.lastChangedBy = selectedInfo.codUser;
 		
-		return (sourceOne.codOwner == sourceTwo.codOwner		&&
-				sourceOne.username.equals(sourceTwo.username)		);
+		results.add(baseInfo);
+		return results;
 	}
 	
 	
 	
-	private void logException(Exception e) {
-		SystemLog.logError(this.getClass(), e);
+	@Override public InfoUniquifier<CusInfo> getUniquifier() {
+		return null;
 	}
 }

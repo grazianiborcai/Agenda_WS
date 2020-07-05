@@ -1,54 +1,38 @@
 package br.com.mind5.business.customer.info;
 
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import java.util.ArrayList;
+import java.util.List;
+
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.security.user.info.UserInfo;
 
-final class CusVisiMergeDaemon implements InfoMergerVisitor_<CusInfo, UserInfo> {
-
-	@Override public CusInfo writeRecord(UserInfo sourceOne, CusInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+final class CusVisiMergeDaemon implements InfoMergerVisitorV3<CusInfo, UserInfo> {
+	
+	@Override public List<CusInfo> beforeMerge(List<CusInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(CusInfo baseInfo, UserInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner);
+	}
+	
+	
+	
+	@Override public List<CusInfo> merge(CusInfo baseInfo, UserInfo selectedInfo) {
+		List<CusInfo> results = new ArrayList<>();
 		
-		CusInfo clonedInfo = makeClone(sourceTwo);
-		return merge(sourceOne, clonedInfo);
+		baseInfo.username = selectedInfo.username;
+		
+		results.add(baseInfo);
+		return results;
 	}
 	
 	
 	
-	private void checkArgument(UserInfo sourceOne, CusInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private CusInfo makeClone(CusInfo recordInfo) {
-		try {
-			return (CusInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	private CusInfo merge(UserInfo sourceOne, CusInfo sourceTwo) {
-		sourceTwo.username = sourceOne.username;
-		return sourceTwo;
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(UserInfo sourceOne, CusInfo sourceTwo) {
-		return (sourceOne.codOwner == sourceTwo.codOwner);
-	}
-	
-	
-	
-	private void logException(Exception e) {
-		SystemLog.logError(this.getClass(), e);
+	@Override public InfoUniquifier<CusInfo> getUniquifier() {
+		return null;
 	}
 }

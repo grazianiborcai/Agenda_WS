@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.customer.info.CusInfo;
-import br.com.mind5.business.customer.model.action.LazyCusInsertPerson;
-import br.com.mind5.business.customer.model.action.LazyCusUpdate;
+import br.com.mind5.business.customer.model.action.LazyCusPersonInsert;
+import br.com.mind5.business.customer.model.action.LazyCusDaoUpdate;
 import br.com.mind5.business.customer.model.action.StdCusEnforcePersonKey;
 import br.com.mind5.business.customer.model.checker.CusCheckHasPerson;
 import br.com.mind5.model.action.ActionLazyV1;
@@ -14,9 +14,9 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class NodeCusInsertPerson extends DeciTreeTemplateWriteV1<CusInfo> {
+public final class NodeCusInsertPerson extends DeciTreeTemplateWriteV2<CusInfo> {
 	
 	public NodeCusInsertPerson(DeciTreeOption<CusInfo> option) {
 		super(option);
@@ -45,8 +45,8 @@ public final class NodeCusInsertPerson extends DeciTreeTemplateWriteV1<CusInfo> 
 		List<ActionStdV1<CusInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<CusInfo> enforcePersonKey = new StdCusEnforcePersonKey(option);
-		ActionLazyV1<CusInfo> insertPerson = new LazyCusInsertPerson(option.conn, option.schemaName);		
-		ActionLazyV1<CusInfo> update = new LazyCusUpdate(option.conn, option.schemaName);
+		ActionLazyV1<CusInfo> insertPerson = new LazyCusPersonInsert(option.conn, option.schemaName);		
+		ActionLazyV1<CusInfo> update = new LazyCusDaoUpdate(option.conn, option.schemaName);
 		
 		enforcePersonKey.addPostAction(insertPerson);
 		insertPerson.addPostAction(update);

@@ -1,6 +1,5 @@
 package br.com.mind5.business.customer.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.customer.info.CusInfo;
@@ -8,13 +7,14 @@ import br.com.mind5.business.customer.info.CusMerger;
 import br.com.mind5.file.fileImageList.info.FimistCopier;
 import br.com.mind5.file.fileImageList.info.FimistInfo;
 import br.com.mind5.file.fileImageList.model.decisionTree.RootFimistSearch;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiCusMergeFimist extends ActionVisitorTemplateMergeV1<CusInfo, FimistInfo> {
+final class VisiCusMergeFimist extends ActionVisitorTemplateMergeV2<CusInfo, FimistInfo> {
 	
-	public VisiCusMergeFimist(Connection conn, String schemaName) {
-		super(conn, schemaName, FimistInfo.class);
+	public VisiCusMergeFimist(DeciTreeOption<CusInfo> option) {
+		super(option, FimistInfo.class);
 	}
 	
 	
@@ -25,19 +25,19 @@ final class VisiCusMergeFimist extends ActionVisitorTemplateMergeV1<CusInfo, Fim
 	
 	
 	
-	@Override protected List<FimistInfo> toActionClassHook(List<CusInfo> recordInfos) {
-		return FimistCopier.copyFromCus(recordInfos);	
+	@Override protected List<FimistInfo> toActionClassHook(List<CusInfo> baseInfos) {
+		return FimistCopier.copyFromCus(baseInfos);	
 	}
 	
 	
 	
-	@Override protected List<CusInfo> mergeHook(List<CusInfo> recordInfos, List<FimistInfo> selectedInfos) {	
-		return CusMerger.mergeWithFimist(selectedInfos, recordInfos);
+	@Override protected List<CusInfo> mergeHook(List<CusInfo> baseInfos, List<FimistInfo> selectedInfos) {	
+		return CusMerger.mergeWithFimist(baseInfos, selectedInfos);
 	}
 	
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
+		return super.MERGE_WHEN_EMPTY;
 	}
 }
