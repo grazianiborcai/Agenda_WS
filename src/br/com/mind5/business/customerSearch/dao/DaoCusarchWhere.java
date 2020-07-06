@@ -11,11 +11,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.DaoWhereOperator;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 
-final class CusarchWhere implements DaoStmtWhere {
+final class DaoCusarchWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public CusarchWhere(DaoWhereBuilderOption whereOption, String tableName, CusarchInfo recordInfo) {
+	public DaoCusarchWhere(DaoWhereBuilderOption whereOption, String tableName, CusarchInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -60,19 +60,19 @@ final class CusarchWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {
 			switch(eachColumn.columnName) {
-			case CusarchDbTableColumn.COL_COD_OWNER :
+			case DaoCusarchDbTableColumn.COL_COD_OWNER :
 				builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 				break;
 				
-			case CusarchDbTableColumn.COL_COD_CUSTOMER :
+			case DaoCusarchDbTableColumn.COL_COD_CUSTOMER :
 				builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codCustomer));
 				break;
 				
-			case CusarchDbTableColumn.COL_COD_USER :
+			case DaoCusarchDbTableColumn.COL_COD_USER :
 				builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codUser));
 				break;
 				
-			case CusarchDbTableColumn.COL_RECORD_MODE :
+			case DaoCusarchDbTableColumn.COL_RECORD_MODE :
 				builder.addClauseEqualAnd(eachColumn, recordInfo.recordMode);
 				break;
 			}
@@ -89,15 +89,15 @@ final class CusarchWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {
 			switch(eachColumn.columnName) {
-				case CusarchDbTableColumn.COL_CPF :
+				case DaoCusarchDbTableColumn.COL_CPF :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.personData.cpf);
 					break;
 					
-				case CusarchDbTableColumn.COL_EMAIL :
+				case DaoCusarchDbTableColumn.COL_EMAIL :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.personData.email);
 					break;
 					
-				case CusarchDbTableColumn.COL_COD_ENTITY_CATEG :
+				case DaoCusarchDbTableColumn.COL_COD_ENTITY_CATEG :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codEntityCateg);
 					break;
 			}
@@ -114,11 +114,11 @@ final class CusarchWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {
 			switch(eachColumn.columnName) {
-				case CusarchDbTableColumn.COL_COUNTRY_PHONE :
+				case DaoCusarchDbTableColumn.COL_COUNTRY_PHONE :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.phoneData.codCountryPhone));
 					break;
 					
-				case CusarchDbTableColumn.COL_FULL_NUMBER :
+				case DaoCusarchDbTableColumn.COL_FULL_NUMBER :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.phoneData.fullNumber);
 					break;
 			}

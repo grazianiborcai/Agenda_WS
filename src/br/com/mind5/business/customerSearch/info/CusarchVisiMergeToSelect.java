@@ -1,54 +1,38 @@
 package br.com.mind5.business.customerSearch.info;
 
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import java.util.ArrayList;
+import java.util.List;
 
-final class CusarchVisiMergeToSelect implements InfoMergerVisitor_<CusarchInfo, CusarchInfo> {
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-	@Override public CusarchInfo writeRecord(CusarchInfo sourceOne, CusarchInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+final class CusarchVisiMergeToSelect implements InfoMergerVisitorV3<CusarchInfo, CusarchInfo> {
+
+	@Override public List<CusarchInfo> beforeMerge(List<CusarchInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(CusarchInfo baseInfo, CusarchInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner);
+	}
+	
+	
+	
+	@Override public List<CusarchInfo> merge(CusarchInfo baseInfo, CusarchInfo selectedInfo) {
+		List<CusarchInfo> results = new ArrayList<>();
 		
-		CusarchInfo clonedInfo = makeClone(sourceOne);
-		return merge(clonedInfo, sourceTwo);
+		selectedInfo.username = baseInfo.username;
+		selectedInfo.codLanguage = baseInfo.codLanguage;
+		
+		results.add(selectedInfo);
+		return results;
 	}
 	
 	
 	
-	private void checkArgument(CusarchInfo sourceOne, CusarchInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private CusarchInfo makeClone(CusarchInfo recordInfo) {
-		try {
-			return (CusarchInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	private CusarchInfo merge(CusarchInfo sourceOne, CusarchInfo sourceTwo) {
-		sourceOne.codLanguage = sourceTwo.codLanguage;
-		sourceOne.username = sourceTwo.username;
-		return sourceOne;
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(CusarchInfo sourceOne, CusarchInfo sourceTwo) {
-		return true;
-	}
-	
-	
-	
-	private void logException(Exception e) {
-		SystemLog.logError(this.getClass(), e);
+	@Override public InfoUniquifier<CusarchInfo> getUniquifier() {
+		return null;
 	}
 }

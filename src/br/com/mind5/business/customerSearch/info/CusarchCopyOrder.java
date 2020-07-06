@@ -3,7 +3,7 @@ package br.com.mind5.business.customerSearch.info;
 import br.com.mind5.business.order.info.OrderInfo;
 import br.com.mind5.info.InfoCopierTemplate;
 
-final class CusarchCopyOrder extends InfoCopierTemplate<CusarchInfo, OrderInfo>{
+final class CusarchCopyOrder extends InfoCopierTemplate<CusarchInfo, OrderInfo> {
 	
 	public CusarchCopyOrder() {
 		super();

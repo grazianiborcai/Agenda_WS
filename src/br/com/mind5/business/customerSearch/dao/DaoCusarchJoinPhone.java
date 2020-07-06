@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoJoinType;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class CusarchJoinPhone implements DaoJoinBuilder {
+public final class DaoCusarchJoinPhone implements DaoJoinBuilder {
 	private final String leftTable;
 	
 	
-	public CusarchJoinPhone(String leftTableName) {
+	public DaoCusarchJoinPhone(String leftTableName) {
 		leftTable = leftTableName;
 	}
 

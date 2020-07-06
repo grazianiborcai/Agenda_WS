@@ -5,6 +5,7 @@ import java.util.List;
 import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.person.info.PersonInfo;
 import br.com.mind5.business.phone.info.PhoneInfo;
+import br.com.mind5.common.CloneUtil;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
 
@@ -21,7 +22,7 @@ public final class CusarchInfo extends InfoRecord implements Cloneable {
 	
 	
 	public CusarchInfo() {
-		super(CusarchInfo.class);
+		super();
 		
 		codOwner = DefaultValue.number();
 		codCustomer = DefaultValue.number();
@@ -49,14 +50,9 @@ public final class CusarchInfo extends InfoRecord implements Cloneable {
 	@Override public Object clone() throws CloneNotSupportedException {
 		CusarchInfo deepCopy = (CusarchInfo) super.clone();
 		
-		if (deepCopy.addressData != null)
-			deepCopy.addressData = (AddressInfo) deepCopy.addressData.clone();
-		
-		if (deepCopy.phoneData != null)
-			deepCopy.phoneData = (PhoneInfo) deepCopy.phoneData.clone();
-		
-		if (deepCopy.personData != null)
-			deepCopy.personData = (PersonInfo) deepCopy.personData.clone();
+		deepCopy.addressData = CloneUtil.cloneRecord(addressData, this.getClass());
+		deepCopy.phoneData = CloneUtil.cloneRecord(phoneData, this.getClass());
+		deepCopy.personData = CloneUtil.cloneRecord(personData, this.getClass());
 		
 		return deepCopy;
 	}

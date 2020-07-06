@@ -4,7 +4,7 @@ import br.com.mind5.business.customer.info.CusInfo;
 import br.com.mind5.business.person.info.PersonInfo;
 import br.com.mind5.info.InfoCopierTemplate;
 
-final class CusarchCopyCusCpf extends InfoCopierTemplate<CusarchInfo, CusInfo>{
+final class CusarchCopyCusCpf extends InfoCopierTemplate<CusarchInfo, CusInfo> {
 	
 	public CusarchCopyCusCpf() {
 		super();

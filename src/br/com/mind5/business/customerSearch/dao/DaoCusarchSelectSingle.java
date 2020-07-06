@@ -19,11 +19,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoJoinPerson;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class CusarchSelectSingle extends DaoStmtTemplate<CusarchInfo> {
+public final class DaoCusarchSelectSingle extends DaoStmtTemplate<CusarchInfo> {
 	private final String MAIN_TABLE = DaoDbTable.CUS_TABLE;
 	
 	
-	public CusarchSelectSingle(Connection conn, CusarchInfo recordInfo, String schemaName) {
+	public DaoCusarchSelectSingle(Connection conn, CusarchInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -35,14 +35,14 @@ public final class CusarchSelectSingle extends DaoStmtTemplate<CusarchInfo> {
 	
 	
 	
-	@Override protected DaoOperation getOperationHook() {
-		return DaoOperation.SELECT;
+	@Override protected String getLookupTableHook() {
+		return DaoDbTable.CUS_SEARCH_VIEW;
 	}
 	
 	
 	
-	@Override protected String getLookupTableHook() {
-		return DaoDbTable.CUS_SEARCH_VIEW;
+	@Override protected DaoOperation getOperationHook() {
+		return DaoOperation.SELECT;
 	}
 	
 	
@@ -53,7 +53,7 @@ public final class CusarchSelectSingle extends DaoStmtTemplate<CusarchInfo> {
 		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;	
 		
-		DaoStmtWhere whereClause = new CusarchWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new DaoCusarchWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -65,7 +65,7 @@ public final class CusarchSelectSingle extends DaoStmtTemplate<CusarchInfo> {
 		DaoJoinBuilder joinPerson = new DaoJoinPerson(MAIN_TABLE);		
 		joins.add(joinPerson.build());
 		
-		DaoJoinBuilder joinPhone = new CusarchJoinPhone(MAIN_TABLE);		
+		DaoJoinBuilder joinPhone = new DaoCusarchJoinPhone(MAIN_TABLE);		
 		joins.add(joinPhone.build());
 		
 		return joins;
@@ -84,10 +84,10 @@ public final class CusarchSelectSingle extends DaoStmtTemplate<CusarchInfo> {
 				do {				
 					CusarchInfo dataInfo = new CusarchInfo();
 					
-					dataInfo.codOwner = stmtResult.getLong(CusarchDbTableColumn.COL_COD_OWNER);
-					dataInfo.codCustomer = stmtResult.getLong(CusarchDbTableColumn.COL_COD_CUSTOMER);	
-					dataInfo.recordMode = stmtResult.getString(CusarchDbTableColumn.COL_RECORD_MODE);
-					dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, CusarchDbTableColumn.COL_COD_USER);
+					dataInfo.codOwner = stmtResult.getLong(DaoCusarchDbTableColumn.COL_COD_OWNER);
+					dataInfo.codCustomer = stmtResult.getLong(DaoCusarchDbTableColumn.COL_COD_CUSTOMER);	
+					dataInfo.recordMode = stmtResult.getString(DaoCusarchDbTableColumn.COL_RECORD_MODE);
+					dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, DaoCusarchDbTableColumn.COL_COD_USER);
 					
 					finalResult.add(dataInfo);				
 				} while (stmtResult.next());

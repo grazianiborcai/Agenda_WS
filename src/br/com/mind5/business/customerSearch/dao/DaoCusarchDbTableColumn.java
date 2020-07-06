@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class CusarchDbTableColumn extends DaoDbTableColumnTemplate {
+public final class DaoCusarchDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_CUSTOMER = DaoDbField.COL_COD_CUSTOMER;
 	public static final String COL_COD_ENTITY_CATEG = DaoDbField.COL_COD_ENTITY_CATEG;
 	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;
@@ -19,27 +19,15 @@ public final class CusarchDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_EMAIL = DaoDbField.COL_EMAIL;
 	public static final String COL_FULL_NUMBER = DaoDbField.COL_FULL_NUMBER;
 	public static final String COL_RECORD_MODE = DaoDbField.COL_RECORD_MODE;	
-		
 	
 	
-	private Hashtable<String, List<DaoColumn>> tableColumns;	
-	
-	
-	public CusarchDbTableColumn() {
-		super(CusarchDbTableColumn.class);
+	public DaoCusarchDbTableColumn() {
+		super();
 	}
 	
 	
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
-		tableColumns = new Hashtable<>();		
-		buildCustomerSearchView();		
-		return tableColumns;
-	}
-	
-	
-	
-	private void buildCustomerSearchView() {
 		final String TABLE_NAME = DaoDbTable.CUS_TABLE;
 		
 		DaoColumn oneColumn;
@@ -117,6 +105,8 @@ public final class CusarchDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		tableColumns.put(DaoDbTable.CUS_SEARCH_VIEW, columns);
+		Hashtable<String, List<DaoColumn>> results = new Hashtable<>();
+		results.put(DaoDbTable.CUS_SEARCH_VIEW, columns);
+		return results;
 	}
 }
