@@ -29,7 +29,6 @@
 	<http pattern="/**/insertOtpUserPassword"			security="none"/>
 	<http pattern="/**/updateUserPassword"				security="none"/>
 	<http pattern="/**/MoipApp/**"  					security="none"/>	<!-- TODO: Somente para teste -->
-	<http pattern="/**/Test/insertAnonymous"  			security="none"/>	<!-- TODO: Somente para teste -->
 	
 	
 	
