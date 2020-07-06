@@ -8,6 +8,7 @@ import br.com.mind5.business.owner.model.action.LazyOwnerDaoInsert;
 import br.com.mind5.business.owner.model.action.LazyOwnerEnforceCreatedBy;
 import br.com.mind5.business.owner.model.action.LazyOwnerEnforceCreatedOn;
 import br.com.mind5.business.owner.model.action.LazyOwnerEnforceLChangedBy;
+import br.com.mind5.business.owner.model.action.LazyOwnerInsertUserAnonymous;
 import br.com.mind5.business.owner.model.action.LazyOwnerInsertUserDaemon;
 import br.com.mind5.business.owner.model.action.StdOwnerEnforceLChanged;
 import br.com.mind5.model.action.ActionLazyV1;
@@ -45,13 +46,15 @@ public final class NodeOwnerInsert extends DeciTreeTemplateWriteV2<OwnerInfo> {
 		ActionLazyV1<OwnerInfo> enforceCreatedOn = new LazyOwnerEnforceCreatedOn(option.conn, option.schemaName);
 		ActionLazyV1<OwnerInfo> insertOwner = new LazyOwnerDaoInsert(option.conn, option.schemaName);
 		ActionLazyV1<OwnerInfo> insertDaemon = new LazyOwnerInsertUserDaemon(option.conn, option.schemaName);	
+		ActionLazyV1<OwnerInfo> insertAnonymous = new LazyOwnerInsertUserAnonymous(option.conn, option.schemaName);
 		ActionLazyV1<OwnerInfo> enforceLChangedBy = new LazyOwnerEnforceLChangedBy(option.conn, option.schemaName);	
 		ActionLazyV1<OwnerInfo> enforceCreatedBy = new LazyOwnerEnforceCreatedBy(option.conn, option.schemaName);
 		
 		enforceLChanged.addPostAction(enforceCreatedOn);
 		enforceCreatedOn.addPostAction(insertOwner);
 		insertOwner.addPostAction(insertDaemon);
-		insertDaemon.addPostAction(enforceLChangedBy);	
+		insertDaemon.addPostAction(insertAnonymous);
+		insertAnonymous.addPostAction(enforceLChangedBy);
 		enforceLChangedBy.addPostAction(enforceCreatedBy);
 		
 		actions.add(enforceLChanged);	
