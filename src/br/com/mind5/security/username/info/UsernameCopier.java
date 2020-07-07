@@ -37,14 +37,14 @@ import br.com.mind5.paymentPartner.partnerMoip.tokenMoip.info.TokemoipInfo;
 import br.com.mind5.security.userPassword.info.UpswdInfo;
 
 public final class UsernameCopier {
-	public static UsernameInfo copyFromBNotes(NotesInfo source) {
+	public static UsernameInfo copyFromNotes(NotesInfo source) {
 		InfoCopier<UsernameInfo, NotesInfo> copier = new UsernameCopyNotes();
 		return copier.makeCopy(source);
 	}
 	
 	
 	
-	public static List<UsernameInfo> copyFromBNotes(List<NotesInfo> sources) {
+	public static List<UsernameInfo> copyFromNotes(List<NotesInfo> sources) {
 		InfoCopier<UsernameInfo, NotesInfo> copier = new UsernameCopyNotes();
 		return copier.makeCopy(sources);
 	}
