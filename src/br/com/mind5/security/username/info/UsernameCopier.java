@@ -15,6 +15,7 @@ import br.com.mind5.business.material.info.MatInfo;
 import br.com.mind5.business.materialMovement.info.MatmovInfo;
 import br.com.mind5.business.materialStore.info.MatoreInfo;
 import br.com.mind5.business.materialText.info.MatextInfo;
+import br.com.mind5.business.notes.info.NotesInfo;
 import br.com.mind5.business.orderList.info.OrdistInfo;
 import br.com.mind5.business.owner.info.OwnerInfo;
 import br.com.mind5.business.refundPolicyOwner.info.RefupownInfo;
@@ -36,6 +37,20 @@ import br.com.mind5.paymentPartner.partnerMoip.tokenMoip.info.TokemoipInfo;
 import br.com.mind5.security.userPassword.info.UpswdInfo;
 
 public final class UsernameCopier {
+	public static UsernameInfo copyFromBNotes(NotesInfo source) {
+		InfoCopier<UsernameInfo, NotesInfo> copier = new UsernameCopyNotes();
+		return copier.makeCopy(source);
+	}
+	
+	
+	
+	public static List<UsernameInfo> copyFromBNotes(List<NotesInfo> sources) {
+		InfoCopier<UsernameInfo, NotesInfo> copier = new UsernameCopyNotes();
+		return copier.makeCopy(sources);
+	}
+	
+	
+	
 	public static UsernameInfo copyFromBookice(BookiceInfo source) {
 		InfoCopier<UsernameInfo, BookiceInfo> copier = new UsernameCopyBookice();
 		return copier.makeCopy(source);
