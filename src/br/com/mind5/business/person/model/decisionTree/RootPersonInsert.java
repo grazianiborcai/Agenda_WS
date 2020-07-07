@@ -7,6 +7,7 @@ import br.com.mind5.business.person.info.PersonInfo;
 import br.com.mind5.business.person.model.action.LazyPersonNodeEmailL1;
 import br.com.mind5.business.person.model.action.LazyPersonNodeInsert;
 import br.com.mind5.business.person.model.action.LazyPersonNodeSnapshot;
+import br.com.mind5.business.person.model.checker.PersonCheckBirthdate;
 import br.com.mind5.business.person.model.checker.PersonCheckEntiteg;
 import br.com.mind5.business.person.model.checker.PersonCheckGender;
 import br.com.mind5.business.person.model.checker.PersonCheckInsert;
@@ -14,9 +15,9 @@ import br.com.mind5.business.person.model.checker.PersonCheckLangu;
 import br.com.mind5.business.person.model.checker.PersonCheckOwner;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
@@ -53,6 +54,13 @@ public final class RootPersonInsert extends DeciTreeTemplateWriteV2<PersonInfo> 
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new PersonCheckOwner(checkerOption);
 		queue.add(checker);	
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
+		checker = new PersonCheckBirthdate(checkerOption);
+		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
