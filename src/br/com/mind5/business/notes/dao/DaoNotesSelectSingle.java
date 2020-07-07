@@ -63,6 +63,7 @@ public final class DaoNotesSelectSingle extends DaoStmtTemplate<NotesInfo> {
 					
 					dataInfo.codOwner = stmtResult.getLong(DaoNotesDbTableColumn.COL_COD_OWNER);
 					dataInfo.codNote = stmtResult.getLong(DaoNotesDbTableColumn.COL_COD_NOTE);
+					dataInfo.codCustomer = stmtResult.getLong(DaoNotesDbTableColumn.COL_COD_CUSTOMER);
 					dataInfo.recordMode = stmtResult.getString(DaoNotesDbTableColumn.COL_RECORD_MODE);
 					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, DaoNotesDbTableColumn.COL_LAST_CHANGED);
 					dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, DaoNotesDbTableColumn.COL_LAST_CHANGED_BY);					

@@ -26,6 +26,7 @@ final class NotesVisiMergeToUpdate implements InfoMergerVisitorV3<NotesInfo, Not
 		
 		baseInfo.createdOn = selectedInfo.createdOn;
 		baseInfo.createdBy = selectedInfo.createdBy;
+		baseInfo.codCustomer = selectedInfo.codCustomer;
 		
 		results.add(baseInfo);
 		return results;

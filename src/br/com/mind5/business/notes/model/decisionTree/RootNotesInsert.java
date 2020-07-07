@@ -63,6 +63,7 @@ public final class RootNotesInsert extends DeciTreeTemplateWriteV2<NotesInfo> {
 	@Override protected List<ActionStdV1<NotesInfo>> buildActionsOnPassedHook(DeciTreeOption<NotesInfo> option) {
 		List<ActionStdV1<NotesInfo>> actions = new ArrayList<>();		
 		
+		ActionStdV1<NotesInfo> nodeCustomer = new NodeNotesCustomerL1(option).toAction();
 		ActionStdV1<NotesInfo> enforceLChanged = new StdNotesEnforceLChanged(option);	
 		ActionLazyV1<NotesInfo> enforceLChangedBy = new LazyNotesMergeUsername(option.conn, option.schemaName);		
 		ActionLazyV1<NotesInfo> enforceCreatedBy = new LazyNotesEnforceCreatedBy(option.conn, option.schemaName);	
@@ -76,6 +77,7 @@ public final class RootNotesInsert extends DeciTreeTemplateWriteV2<NotesInfo> {
 		enforceCreatedOn.addPostAction(insert);
 		insert.addPostAction(select);
 		
+		actions.add(nodeCustomer);
 		actions.add(enforceLChanged);
 		return actions;
 	}

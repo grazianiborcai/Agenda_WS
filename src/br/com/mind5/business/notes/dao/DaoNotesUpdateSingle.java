@@ -59,6 +59,7 @@ public final class DaoNotesUpdateSingle extends DaoStmtTemplate<NotesInfo> {
 				stmt.setString(i++, recordInfo.recordMode);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.createdBy);
 				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.createdOn);
+				stmt.setLong(i++, recordInfo.codCustomer);
 				
 				return stmt;
 			}		

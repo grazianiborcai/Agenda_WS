@@ -10,6 +10,7 @@ public final class NotesInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codNote;
 	public String note;
+	public long codCustomer;
 	public boolean isDeleted;
 	public String recordMode;
 	public LocalDateTime lastChanged;
@@ -24,6 +25,7 @@ public final class NotesInfo extends InfoRecord implements Cloneable {
 		
 		codOwner = DefaultValue.number();
 		codNote = DefaultValue.number();
+		codCustomer = DefaultValue.number();
 		isDeleted = DefaultValue.boole();
 		recordMode = DefaultValue.recordMode();	
 		lastChangedBy = DefaultValue.number();
