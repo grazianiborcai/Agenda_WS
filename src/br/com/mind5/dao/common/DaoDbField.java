@@ -57,6 +57,7 @@ public final class DaoDbField {
 	public static final String COL_COD_MATERIAL_SNAPSHOT = "cod_material_snapshot";
 	public static final String COL_COD_MESSAGE = "cod_message";
 	public static final String COL_COD_MOON_PHASE = "cod_moon_phase";	
+	public static final String COL_COD_NOTE = "cod_note";	
 	public static final String COL_COD_ORDER = "cod_order";
 	public static final String COL_COD_ORDER_EXTERNAL = "cod_order_external";
 	public static final String COL_COD_ORDER_ITEM = "cod_order_item";

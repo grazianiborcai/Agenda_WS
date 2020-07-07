@@ -73,6 +73,7 @@ public final class DaoDbTable {
 	public static final String MOON_CALENDAR_TABLE = "moon_calendar";
 	public static final String MOON_PHASE_TABLE = "moon_phase";
 	public static final String MOON_PHASE_TEXT_TABLE = "moon_phase_text";	
+	public static final String NOTES_TABLE = "notes";
 	public static final String ORDER_HDR_TABLE = "order_header";
 	public static final String ORDER_HDR_SNAPSHOT_TABLE = "order_header_snapshot";
 	public static final String ORDER_ITM_TABLE = "order_item";

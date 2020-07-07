@@ -1369,5 +1369,10 @@ public final class SystemCode {
 	public static final int GEO_CODE_MANDATORY_FIELD_EMPTY				= 13401;
 	
 	//Store Nearby
-	public static final int STORE_NEARBY_MANDATORY_FIELD_EMPTY			= 13450;
+	public static final int STORE_NEARBY_MANDATORY_FIELD_EMPTY			= 13450;	
+
+	//Notes
+	public static final int NOTES_MANDATORY_FIELD_EMPTY					= 13500;
+	public static final int NOTES_NOT_FOUND								= 13051;
+	public static final int NOTES_ALREADY_EXIST						= 13052;
 }
