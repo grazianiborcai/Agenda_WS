@@ -11,7 +11,7 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 import br.com.mind5.security.userPassword.info.UpswdInfo;
-import br.com.mind5.security.userPassword.model.action.LazyUpswdRootInsertSilent;
+import br.com.mind5.security.userPassword.model.action.LazyUpswdRootInsert;
 import br.com.mind5.security.userPassword.model.action.LazyUpswdSuccess;
 import br.com.mind5.security.userPassword.model.action.StdUpswdEnforcePasswordRandom;
 import br.com.mind5.security.userPassword.model.checker.UpswdCheckWriteRandom;
@@ -45,7 +45,7 @@ public final class RootUpswdInsertRandom extends DeciTreeTemplateWriteV2<UpswdIn
 		List<ActionStdV1<UpswdInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<UpswdInfo> enforcePassword = new StdUpswdEnforcePasswordRandom(option);
-		ActionLazyV1<UpswdInfo> insert = new LazyUpswdRootInsertSilent(option.conn, option.schemaName);
+		ActionLazyV1<UpswdInfo> insert = new LazyUpswdRootInsert(option.conn, option.schemaName);
 		ActionLazyV1<UpswdInfo> success = new LazyUpswdSuccess(option.conn, option.schemaName);
 		
 		enforcePassword.addPostAction(insert);
