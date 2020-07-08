@@ -93,19 +93,6 @@ public final class CusMerger {
 	
 	
 	
-	public static List<CusInfo> mergeWithDaemon(List<CusInfo> baseInfos, List<UserInfo> selectedInfos) {
-		InfoMergerBuilderV3<CusInfo, UserInfo> builder = new InfoMergerBuilderV3<>();
-		
-		builder.addBaseInfos(baseInfos);
-		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CusVisiMergeDaemon());
-		InfoMergerV3<CusInfo, UserInfo> merger = builder.build();		
-	
-		return merger.merge();
-	}
-	
-	
-	
 	public static List<CusInfo> mergeWithUser(List<CusInfo> baseInfos, List<UserInfo> selectedInfos) {
 		InfoMergerBuilderV3<CusInfo, UserInfo> builder = new InfoMergerBuilderV3<>();
 		

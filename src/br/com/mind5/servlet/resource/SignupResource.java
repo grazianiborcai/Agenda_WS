@@ -8,7 +8,6 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import br.com.mind5.business.customer.model.CusModelSignup;
 import br.com.mind5.business.owner.model.OwnerModelSignup;
 import br.com.mind5.model.Model;
 import br.com.mind5.security.user.model.UserModelSignup;
@@ -56,7 +55,7 @@ public class SignupResource {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response signupCustomer(@Context HttpServletRequest request, String incomingData) {		
 		
-		Model model = new CusModelSignup(incomingData, request);
+		Model model = new UserModelSignup(incomingData, request);
 		model.executeRequest();
 		Response result = model.getResponse();
 		model.close();
