@@ -5,15 +5,15 @@ import br.com.mind5.model.action.ActionStdTemplateV2;
 import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdCusEnforcePhoneCode extends ActionStdTemplateV2<CusInfo> {
+public final class StdCusEnforcePhoneCod extends ActionStdTemplateV2<CusInfo> {
 
-	public StdCusEnforcePhoneCode(DeciTreeOption<CusInfo> option) {
+	public StdCusEnforcePhoneCod(DeciTreeOption<CusInfo> option) {
 		super(option);
 	}
 	
 	
 	
 	protected ActionVisitorV2<CusInfo> buildVisitorHook(DeciTreeOption<CusInfo> option) {
-		return new VisiCusEnforcePhoneCode(option);
+		return new VisiCusEnforcePhoneCod(option);
 	}
 }

@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.customer.info.CusInfo;
 import br.com.mind5.business.customer.model.action.LazyCusNodeUpsertAddress;
-import br.com.mind5.business.customer.model.action.StdCusEnforceAddressCode;
+import br.com.mind5.business.customer.model.action.StdCusEnforceAddressCod;
 import br.com.mind5.business.customer.model.action.StdCusSuccess;
 import br.com.mind5.business.customer.model.checker.CusCheckHasAddress;
 import br.com.mind5.model.action.ActionLazyV1;
@@ -44,12 +44,12 @@ public final class NodeCusInsertAddress extends DeciTreeTemplateWriteV2<CusInfo>
 	@Override protected List<ActionStdV1<CusInfo>> buildActionsOnPassedHook(DeciTreeOption<CusInfo> option) {
 		List<ActionStdV1<CusInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<CusInfo> enforceAddressCode = new StdCusEnforceAddressCode(option);
+		ActionStdV1<CusInfo> enforceAddressCod = new StdCusEnforceAddressCod(option);
 		ActionLazyV1<CusInfo> upsertAddress = new LazyCusNodeUpsertAddress(option.conn, option.schemaName);
 		
-		enforceAddressCode.addPostAction(upsertAddress);
+		enforceAddressCod.addPostAction(upsertAddress);
 		
-		actions.add(enforceAddressCode);		
+		actions.add(enforceAddressCod);		
 		return actions;
 	}
 	

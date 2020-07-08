@@ -24,9 +24,13 @@ final class CusVisiMergeUser implements InfoMergerVisitorV3<CusInfo, UserInfo> {
 	@Override public List<CusInfo> merge(CusInfo baseInfo, UserInfo selectedInfo) {
 		List<CusInfo> results = new ArrayList<>();
 		
-		baseInfo.userData = selectedInfo;
 		baseInfo.codUser = selectedInfo.codUser;
 		baseInfo.username = selectedInfo.username;
+		
+		baseInfo.addressesUser = selectedInfo.addresses;
+		baseInfo.phonesUser = selectedInfo.phones;
+		baseInfo.personDataUser = selectedInfo.personData;
+		baseInfo.fimistDataUser = selectedInfo.fimistData;
 		
 		results.add(baseInfo);
 		return results;
