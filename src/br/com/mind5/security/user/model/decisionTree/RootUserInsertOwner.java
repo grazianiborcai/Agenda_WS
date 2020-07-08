@@ -6,14 +6,19 @@ import java.util.List;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 import br.com.mind5.security.user.info.UserInfo;
 import br.com.mind5.security.user.model.action.LazyUserEnforceAuthOwner;
+import br.com.mind5.security.user.model.action.LazyUserMergePerson;
 import br.com.mind5.security.user.model.action.LazyUserRootInsert;
 import br.com.mind5.security.user.model.action.StdUserEnforceCategOwner;
+import br.com.mind5.security.user.model.checker.UserCheckInsertOwner;
+import br.com.mind5.security.user.model.checker.UserCheckLangu;
+import br.com.mind5.security.user.model.checker.UserCheckOwner;
+import br.com.mind5.security.user.model.checker.UserCheckPerson;
 
 public final class RootUserInsertOwner extends DeciTreeTemplateWriteV2<UserInfo> {
 	
@@ -25,10 +30,36 @@ public final class RootUserInsertOwner extends DeciTreeTemplateWriteV2<UserInfo>
 	
 	@Override protected ModelCheckerV1<UserInfo> buildCheckerHook(DeciTreeOption<UserInfo> option) {
 		List<ModelCheckerV1<UserInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<UserInfo> checker;	
+		ModelCheckerV1<UserInfo> checker;
+		ModelCheckerOption checkerOption;	
 		
-		checker = new ModelCheckerDummy<>();
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
+		checker = new UserCheckInsertOwner(checkerOption);
 		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
+		checker = new UserCheckOwner(checkerOption);
+		queue.add(checker);	
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
+		checker = new UserCheckLangu(checkerOption);
+		queue.add(checker);	
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
+		checker = new UserCheckPerson(checkerOption);
+		queue.add(checker);	
 		
 		return new ModelCheckerHelperQueueV2<>(queue);
 	}
@@ -40,10 +71,12 @@ public final class RootUserInsertOwner extends DeciTreeTemplateWriteV2<UserInfo>
 
 		ActionStdV1<UserInfo> enforceCateg = new StdUserEnforceCategOwner(option);
 		ActionLazyV1<UserInfo> enforceAuthGroup = new LazyUserEnforceAuthOwner(option.conn, option.schemaName);
+		ActionLazyV1<UserInfo> mergePerson = new LazyUserMergePerson(option.conn, option.schemaName);
 		ActionLazyV1<UserInfo> insertUser = new LazyUserRootInsert(option.conn, option.schemaName);
 		
 		enforceCateg.addPostAction(enforceAuthGroup);			
-		enforceAuthGroup.addPostAction(insertUser);
+		enforceAuthGroup.addPostAction(mergePerson);
+		mergePerson.addPostAction(insertUser);
 		
 		actions.add(enforceCateg);	
 		return actions;

@@ -13,11 +13,13 @@ import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 import br.com.mind5.security.user.info.UserInfo;
 import br.com.mind5.security.user.model.action.LazyUserEnforceAuthAnonymous;
 import br.com.mind5.security.user.model.action.LazyUserEnforceCategAnonymous;
+import br.com.mind5.security.user.model.action.LazyUserEnforceUsernameAnonymous;
+import br.com.mind5.security.user.model.action.LazyUserMergeUsername;
 import br.com.mind5.security.user.model.action.LazyUserNodeInsert;
 import br.com.mind5.security.user.model.action.LazyUserNodeSnapshot;
 import br.com.mind5.security.user.model.action.LazyUserRootSelect;
 import br.com.mind5.security.user.model.action.LazyUserUpswdInsertAnonymous;
-import br.com.mind5.security.user.model.action.StdUserEnforceUsernameAnonymous;
+import br.com.mind5.security.user.model.action.StdUserEnforceUsernameDaemon;
 import br.com.mind5.security.user.model.checker.UserCheckInsertAnonymous;
 import br.com.mind5.security.user.model.checker.UserCheckOwner;
 
@@ -56,7 +58,9 @@ public final class RootUserInsertAnonymous extends DeciTreeTemplateWriteV2<UserI
 	@Override protected List<ActionStdV1<UserInfo>> buildActionsOnPassedHook(DeciTreeOption<UserInfo> option) {
 		List<ActionStdV1<UserInfo>> actions = new ArrayList<>();
 
-		ActionStdV1<UserInfo> enforceUsername = new StdUserEnforceUsernameAnonymous(option);
+		ActionStdV1<UserInfo> enforceDaemon = new StdUserEnforceUsernameDaemon(option);
+		ActionLazyV1<UserInfo> enforceLChangedBy = new LazyUserMergeUsername(option.conn, option.schemaName);
+		ActionLazyV1<UserInfo> enforceUsername = new LazyUserEnforceUsernameAnonymous(option.conn, option.schemaName);
 		ActionLazyV1<UserInfo> enforceCateg = new LazyUserEnforceCategAnonymous(option.conn, option.schemaName);
 		ActionLazyV1<UserInfo> enforceAuthGroup = new LazyUserEnforceAuthAnonymous(option.conn, option.schemaName);
 		ActionLazyV1<UserInfo> insertUser = new LazyUserNodeInsert(option.conn, option.schemaName);
@@ -64,6 +68,8 @@ public final class RootUserInsertAnonymous extends DeciTreeTemplateWriteV2<UserI
 		ActionLazyV1<UserInfo> insertPassword = new LazyUserUpswdInsertAnonymous(option.conn, option.schemaName);
 		ActionLazyV1<UserInfo> select = new LazyUserRootSelect(option.conn, option.schemaName);	
 		
+		enforceDaemon.addPostAction(enforceLChangedBy);
+		enforceLChangedBy.addPostAction(enforceUsername);
 		enforceUsername.addPostAction(enforceCateg);
 		enforceCateg.addPostAction(enforceAuthGroup);			
 		enforceAuthGroup.addPostAction(insertUser);
@@ -71,7 +77,7 @@ public final class RootUserInsertAnonymous extends DeciTreeTemplateWriteV2<UserI
 		snapshot.addPostAction(insertPassword);
 		insertPassword.addPostAction(select);
 		
-		actions.add(enforceUsername);	
+		actions.add(enforceDaemon);	
 		return actions;
 	}
 }

@@ -11,11 +11,13 @@ import javax.ws.rs.core.Response;
 import br.com.mind5.business.customer.model.CusModelSignup;
 import br.com.mind5.business.owner.model.OwnerModelSignup;
 import br.com.mind5.model.Model;
+import br.com.mind5.security.user.model.UserModelSignup;
 
 @Path("/Signup")
 public class SignupResource {
 
 	private static final String OWNER = "/owner";	
+	private static final String USER = "/user";
 	private static final String CUSTOMER = "/customer";	
 	
 	
@@ -26,7 +28,25 @@ public class SignupResource {
 		
 		Model model = new OwnerModelSignup(incomingData, request);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();
+		model.close();
+		
+		return result;
+	}
+	
+	
+	
+	@POST
+	@Path(USER)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response signupUser(@Context HttpServletRequest request, String incomingData) {		
+		
+		Model model = new UserModelSignup(incomingData, request);
+		model.executeRequest();
+		Response result = model.getResponse();
+		model.close();
+		
+		return result;
 	}
 	
 	
@@ -38,6 +58,9 @@ public class SignupResource {
 		
 		Model model = new CusModelSignup(incomingData, request);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();
+		model.close();
+		
+		return result;
 	}
 }

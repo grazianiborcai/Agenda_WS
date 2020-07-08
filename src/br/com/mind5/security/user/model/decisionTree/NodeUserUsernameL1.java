@@ -5,15 +5,14 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 import br.com.mind5.security.user.info.UserInfo;
 import br.com.mind5.security.user.model.action.LazyUserNodeUsernameL2;
-import br.com.mind5.security.user.model.action.StdUserMergePerson;
-import br.com.mind5.security.user.model.checker.UserCheckPerson;
+import br.com.mind5.security.user.model.action.StdUserEnforceUsername;
 
 public final class NodeUserUsernameL1 extends DeciTreeTemplateWriteV2<UserInfo> {
 	
@@ -26,13 +25,8 @@ public final class NodeUserUsernameL1 extends DeciTreeTemplateWriteV2<UserInfo> 
 	@Override protected ModelCheckerV1<UserInfo> buildCheckerHook(DeciTreeOption<UserInfo> option) {
 		List<ModelCheckerV1<UserInfo>> queue = new ArrayList<>();		
 		ModelCheckerV1<UserInfo> checker;
-		ModelCheckerOption checkerOption;	
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
-		checker = new UserCheckPerson(checkerOption);
+
+		checker = new ModelCheckerDummy<>();
 		queue.add(checker);	
 		
 		return new ModelCheckerHelperQueueV2<>(queue);
@@ -43,12 +37,12 @@ public final class NodeUserUsernameL1 extends DeciTreeTemplateWriteV2<UserInfo> 
 	@Override protected List<ActionStdV1<UserInfo>> buildActionsOnPassedHook(DeciTreeOption<UserInfo> option) {
 		List<ActionStdV1<UserInfo>> actions = new ArrayList<>();
 
-		ActionStdV1<UserInfo> mergePerson = new StdUserMergePerson(option);
+		ActionStdV1<UserInfo> enforceUsername = new StdUserEnforceUsername(option);
 		ActionLazyV1<UserInfo> nodeL2 = new LazyUserNodeUsernameL2(option.conn, option.schemaName);
 		
-		mergePerson.addPostAction(nodeL2);
+		enforceUsername.addPostAction(nodeL2);
 		
-		actions.add(mergePerson);	
+		actions.add(enforceUsername);	
 		return actions;
 	}
 }

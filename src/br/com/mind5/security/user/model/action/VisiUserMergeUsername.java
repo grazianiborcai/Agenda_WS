@@ -31,6 +31,6 @@ final class VisiUserMergeUsername extends ActionVisitorTemplateMergeV2<UserInfo,
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return super.MERGE_WHEN_EMPTY;
+		return super.DONT_MERGE_WHEN_EMPTY;
 	}
 }

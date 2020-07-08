@@ -11,7 +11,6 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 import br.com.mind5.security.user.info.UserInfo;
-import br.com.mind5.security.user.model.action.LazyUserUpswdInsertRandom;
 import br.com.mind5.security.user.model.action.LazyUserNodeInsert;
 import br.com.mind5.security.user.model.action.LazyUserNodeInsertPerson;
 import br.com.mind5.security.user.model.action.LazyUserNodeSnapshot;
@@ -19,9 +18,11 @@ import br.com.mind5.security.user.model.action.LazyUserNodeUpsertAddress;
 import br.com.mind5.security.user.model.action.LazyUserNodeUpsertPhone;
 import br.com.mind5.security.user.model.action.LazyUserNodeUsernameL1;
 import br.com.mind5.security.user.model.action.LazyUserRootSelect;
+import br.com.mind5.security.user.model.action.LazyUserUpswdInsertRandom;
 import br.com.mind5.security.user.model.action.StdUserMergeUsername;
 import br.com.mind5.security.user.model.checker.UserCheckAuthgroup;
 import br.com.mind5.security.user.model.checker.UserCheckInsert;
+import br.com.mind5.security.user.model.checker.UserCheckLangu;
 import br.com.mind5.security.user.model.checker.UserCheckOwner;
 import br.com.mind5.security.user.model.checker.UserCheckUsereg;
 
@@ -50,6 +51,13 @@ public final class RootUserInsert extends DeciTreeTemplateWriteV2<UserInfo> {
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new UserCheckOwner(checkerOption);
+		queue.add(checker);	
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
+		checker = new UserCheckLangu(checkerOption);
 		queue.add(checker);	
 		
 		checkerOption = new ModelCheckerOption();
