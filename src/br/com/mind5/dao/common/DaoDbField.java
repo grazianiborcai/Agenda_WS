@@ -228,6 +228,7 @@ public final class DaoDbField {
 	public static final String COL_STATUS_ORDER_PARTNER = "status_order_partner";	
 	public static final String COL_STATUS_PAYMENT_PARTNER = "status_payment_partner";
 	public static final String COL_STATUS_REFUND_PARTNER = "status_refund_partner";
+	public static final String COL_STORE_PARTITIONING = "store_partitioning";	
 	public static final String COL_STREET = "street";
 	public static final String COL_STREET_NUMBER = "street_number";	
 	public static final String COL_SUBJECT = "subject";	

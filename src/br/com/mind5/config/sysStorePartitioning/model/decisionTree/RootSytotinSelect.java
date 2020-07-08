@@ -1,0 +1,43 @@
+package br.com.mind5.config.sysStorePartitioning.model.decisionTree;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import br.com.mind5.config.sysStorePartitioning.info.SytotinInfo;
+import br.com.mind5.config.sysStorePartitioning.model.action.StdSytotinDaoSelect;
+import br.com.mind5.model.action.ActionStdV1;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.common.ModelCheckerDummy;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+
+public final class RootSytotinSelect extends DeciTreeTemplateReadV2<SytotinInfo> {
+	
+	public RootSytotinSelect(DeciTreeOption<SytotinInfo> option) {
+		super(option);
+	}
+	
+	
+	
+	@Override protected ModelCheckerV1<SytotinInfo> buildCheckerHook(DeciTreeOption<SytotinInfo> option) {
+		List<ModelCheckerV1<SytotinInfo>> queue = new ArrayList<>();		
+		ModelCheckerV1<SytotinInfo> checker;
+
+		checker = new ModelCheckerDummy<>();
+		queue.add(checker);
+		
+		return new ModelCheckerHelperQueueV2<>(queue);
+	}
+	
+	
+	
+	@Override protected List<ActionStdV1<SytotinInfo>> buildActionsOnPassedHook(DeciTreeOption<SytotinInfo> option) {
+		List<ActionStdV1<SytotinInfo>> actions = new ArrayList<>();
+		
+		ActionStdV1<SytotinInfo> select = new StdSytotinDaoSelect(option);
+		
+		actions.add(select);
+		return actions;
+	}
+}

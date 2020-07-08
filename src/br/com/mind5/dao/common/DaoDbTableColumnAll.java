@@ -111,6 +111,7 @@ import br.com.mind5.business.storeWorkTimeSearch.dao.DaoStowotarchDbTableColumn;
 import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.config.sysOwnerSignup.dao.DaoSysonupDbTableColumn;
+import br.com.mind5.config.sysStorePartitioning.dao.DaoSytotinDbTableColumn;
 import br.com.mind5.dao.DaoColumn;
 import br.com.mind5.dao.DaoDbTableColumn;
 import br.com.mind5.file.fileImage.dao.DaoFimgDbTableColumn;
@@ -424,6 +425,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new DaoSchedauthDbTableColumn());
 		addTable(new DaoStorbyDbTableColumn());
 		addTable(new DaoNotesDbTableColumn());
+		addTable(new DaoSytotinDbTableColumn());
 	}
 	
 	

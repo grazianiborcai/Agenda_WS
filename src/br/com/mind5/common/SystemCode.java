@@ -1311,7 +1311,7 @@ public final class SystemCode {
 	
 	// Sys Owner Signup
 	public static final int SYS_OWNER_SIGNUP_DISABLED					= 12700;
-	public static final int SYS_OWNER_SIGNUP_ENABLED					= 12710;
+	public static final int SYS_OWNER_SIGNUP_ENABLED					= 12701;
 	
 	// Order Search
 	public static final int OWNER_SEARCH_MANDATORY_FIELD_EMPTY 			= 12750;
@@ -1374,5 +1374,9 @@ public final class SystemCode {
 	//Notes
 	public static final int NOTES_MANDATORY_FIELD_EMPTY					= 13500;
 	public static final int NOTES_NOT_FOUND								= 13051;
-	public static final int NOTES_ALREADY_EXIST						= 13052;
+	public static final int NOTES_ALREADY_EXIST							= 13052;
+	
+	// Sys Store Partitioning
+	public static final int SYS_STORE_PARTITIONING_DISABLED				= 13550;
+	public static final int SYS_STORE_PARTITIONING_ENABLED				= 13551;
 }

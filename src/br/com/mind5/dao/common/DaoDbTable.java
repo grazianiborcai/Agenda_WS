@@ -240,6 +240,7 @@ public final class DaoDbTable {
 	public static final String STORE_WTIME_SEARCH_VIEW = "view_store_wtime_search";
 	public static final String SYS_OWNER_SIGNUP_VIEW = "view_sys_owner_signup";
 	public static final String SYS_PAY_PARTNER_SEARCH_VIEW = "view_sys_pay_partner_search";
+	public static final String SYS_STORE_PARTITIONING_VIEW = "view_sys_store_partitioning";
 	public static final String TIMEZONE_SEARCH_VIEW = "view_timezone_search";
 	public static final String USER_LIST_VIEW = "view_user_list";
 	public static final String USER_SEARCH_VIEW = "view_user_search";
