@@ -14,6 +14,6 @@ public final class StdCusEnforceUserCod extends ActionStdTemplateV2<CusInfo> {
 	
 	
 	protected ActionVisitorV2<CusInfo> buildVisitorHook(DeciTreeOption<CusInfo> option) {
-		return new VisiCusEnfoceUserCod(option);
+		return new VisiCusEnforceUserCod(option);
 	}
 }

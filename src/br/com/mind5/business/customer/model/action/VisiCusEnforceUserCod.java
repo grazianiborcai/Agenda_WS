@@ -6,9 +6,9 @@ import br.com.mind5.info.InfoSetter;
 import br.com.mind5.model.action.ActionVisitorTemplateEnforceV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiCusEnfoceUserCod extends ActionVisitorTemplateEnforceV2<CusInfo> {
+final class VisiCusEnforceUserCod extends ActionVisitorTemplateEnforceV2<CusInfo> {
 	
-	public VisiCusEnfoceUserCod(DeciTreeOption<CusInfo> option) {
+	public VisiCusEnforceUserCod(DeciTreeOption<CusInfo> option) {
 		super(option);	
 	}
 	
