@@ -4,8 +4,8 @@ package br.com.mind5.security.userSearch.info;
 import java.util.List;
 
 import br.com.mind5.authorization.customerAuthorization.info.CusauthInfo;
+import br.com.mind5.authorization.scheduleAuthorization.info.SchedauthInfo;
 import br.com.mind5.business.refundPolicy.info.RefupolInfo;
-import br.com.mind5.business.scheduleAuthorization.info.SchedauthInfo;
 import br.com.mind5.info.InfoCopier;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
 import br.com.mind5.payment.refundOrderItem.info.RefemInfo;

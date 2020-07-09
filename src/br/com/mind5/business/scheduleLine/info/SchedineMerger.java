@@ -2,13 +2,13 @@ package br.com.mind5.business.scheduleLine.info;
 
 import java.util.List;
 
+import br.com.mind5.authorization.scheduleAuthorization.info.SchedauthInfo;
 import br.com.mind5.business.calendarDate.info.CalateInfo;
 import br.com.mind5.business.customerList.info.CuslisInfo;
 import br.com.mind5.business.employeeList.info.EmplisInfo;
 import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.business.orderItemList.info.OrdemistInfo;
 import br.com.mind5.business.orderList.info.OrdistInfo;
-import br.com.mind5.business.scheduleAuthorization.info.SchedauthInfo;
 import br.com.mind5.business.scheduleLineSnapshot.info.SchedinapInfo;
 import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.info.InfoMergerBuilderV3;

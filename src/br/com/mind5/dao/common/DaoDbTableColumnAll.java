@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 
+import br.com.mind5.authorization.scheduleAuthorization.dao.DaoSchedauthDbTableColumn;
 import br.com.mind5.authorization.storeAuthorization.dao.DaoStorauthDbTableColumn;
 import br.com.mind5.business.address.dao.DaoAddressDbTableColumn;
 import br.com.mind5.business.addressSearch.dao.DaoAddarchDbTableColumn;
@@ -84,7 +85,6 @@ import br.com.mind5.business.planingData.dao.PlanataDbTableColumn;
 import br.com.mind5.business.refundPolicyOwner.dao.DaoRefupownDbTableColumn;
 import br.com.mind5.business.refundPolicyStore.dao.DaoRefuporeDbTableColumn;
 import br.com.mind5.business.refundPolicyStoreSearch.dao.DaoRefuporarchDbTableColumn;
-import br.com.mind5.business.scheduleAuthorization.dao.DaoSchedauthDbTableColumn;
 import br.com.mind5.business.scheduleDayData.dao.DaoSchedaytaDbTableColumn;
 import br.com.mind5.business.scheduleLine.dao.DaoSchedineDbTableColumn;
 import br.com.mind5.business.scheduleLineSnapshot.dao.DaoSchedinapDbTableColumn;

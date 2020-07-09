@@ -1,6 +1,6 @@
 package br.com.mind5.security.userSearch.info;
 
-import br.com.mind5.business.scheduleAuthorization.info.SchedauthInfo;
+import br.com.mind5.authorization.scheduleAuthorization.info.SchedauthInfo;
 import br.com.mind5.info.InfoCopierTemplate;
 
 final class UserarchCopySchedauth extends InfoCopierTemplate<UserarchInfo, SchedauthInfo> {
