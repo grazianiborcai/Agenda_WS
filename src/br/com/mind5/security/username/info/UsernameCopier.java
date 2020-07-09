@@ -22,6 +22,7 @@ import br.com.mind5.business.refundPolicyOwner.info.RefupownInfo;
 import br.com.mind5.business.refundPolicyStore.info.RefuporeInfo;
 import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.business.storeLeaveDate.info.StolateInfo;
+import br.com.mind5.business.storeSearch.info.SotarchInfo;
 import br.com.mind5.business.storeWorkTime.info.StowotmInfo;
 import br.com.mind5.file.fileImage.info.FimgInfo;
 import br.com.mind5.info.InfoCopier;
@@ -37,6 +38,20 @@ import br.com.mind5.paymentPartner.partnerMoip.tokenMoip.info.TokemoipInfo;
 import br.com.mind5.security.userPassword.info.UpswdInfo;
 
 public final class UsernameCopier {
+	public static UsernameInfo copyFromSotarch(SotarchInfo source) {
+		InfoCopier<UsernameInfo, SotarchInfo> copier = new UsernameCopySotarch();
+		return copier.makeCopy(source);
+	}
+	
+	
+	
+	public static List<UsernameInfo> copyFromSotarch(List<SotarchInfo> sources) {
+		InfoCopier<UsernameInfo, SotarchInfo> copier = new UsernameCopySotarch();
+		return copier.makeCopy(sources);
+	}
+	
+	
+	
 	public static UsernameInfo copyFromNotes(NotesInfo source) {
 		InfoCopier<UsernameInfo, NotesInfo> copier = new UsernameCopyNotes();
 		return copier.makeCopy(source);
