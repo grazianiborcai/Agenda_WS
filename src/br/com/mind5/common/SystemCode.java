@@ -1368,10 +1368,10 @@ public final class SystemCode {
 	public static final int GEO_CODE_GENERATE_ERROR 					= 13400;
 	public static final int GEO_CODE_MANDATORY_FIELD_EMPTY				= 13401;
 	
-	//Store Nearby
+	// Store Nearby
 	public static final int STORE_NEARBY_MANDATORY_FIELD_EMPTY			= 13450;	
 
-	//Notes
+	// Notes
 	public static final int NOTES_MANDATORY_FIELD_EMPTY					= 13500;
 	public static final int NOTES_NOT_FOUND								= 13051;
 	public static final int NOTES_ALREADY_EXIST							= 13052;
@@ -1379,4 +1379,7 @@ public final class SystemCode {
 	// Sys Store Partitioning
 	public static final int SYS_STORE_PARTITIONING_DISABLED				= 13550;
 	public static final int SYS_STORE_PARTITIONING_ENABLED				= 13551;
+	
+	// Customer Authorization
+	public static final int CUS_AUTH_MANDATORY_FIELD_EMPTY				= 13600;
 }
