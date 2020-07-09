@@ -26,7 +26,7 @@ public final class PerarchInfo extends InfoRecord implements Cloneable {
 	
 	
 	public PerarchInfo() {
-		super(PerarchInfo.class);
+		super();
 		
 		codOwner = DefaultValue.number();
 		codSnapshot = DefaultValue.number();
