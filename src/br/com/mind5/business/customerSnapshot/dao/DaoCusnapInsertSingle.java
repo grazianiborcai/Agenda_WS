@@ -53,6 +53,7 @@ public final class DaoCusnapInsertSingle extends DaoStmtTemplate<CusnapInfo> {
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codUserSnapshot);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.createdBy);
 				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.createdOn);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codStore);
 				
 				return stmt;
 			}
