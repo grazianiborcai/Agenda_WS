@@ -1,6 +1,6 @@
-package br.com.mind5.authorization.customerAuthorization.model.checker;
+package br.com.mind5.authorization.storePartitionAuthorization.model.checker;
 
-import br.com.mind5.authorization.customerAuthorization.info.CusauthInfo;
+import br.com.mind5.authorization.storePartitionAuthorization.info.SytotauhInfo;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -8,9 +8,9 @@ import br.com.mind5.security.userSearch.info.UserarchCopier;
 import br.com.mind5.security.userSearch.info.UserarchInfo;
 import br.com.mind5.security.userSearch.model.checker.UserarchCheckExistManager;
 
-public final class CusauthCheckAuthManager extends ModelCheckerTemplateForwardV2<CusauthInfo, UserarchInfo> {
+public final class SytotauhCheckAuthManager extends ModelCheckerTemplateForwardV2<SytotauhInfo, UserarchInfo> {
 	
-	public CusauthCheckAuthManager(ModelCheckerOption option) {
+	public SytotauhCheckAuthManager(ModelCheckerOption option) {
 		super(option);
 	}
 
@@ -22,7 +22,7 @@ public final class CusauthCheckAuthManager extends ModelCheckerTemplateForwardV2
 	
 	
 	
-	@Override protected UserarchInfo toForwardClass(CusauthInfo baseRecord) {
+	@Override protected UserarchInfo toForwardClass(SytotauhInfo baseRecord) {
 		return UserarchCopier.copyFromCusauth(baseRecord);
 	}
 }

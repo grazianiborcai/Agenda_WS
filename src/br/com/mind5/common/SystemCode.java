@@ -1380,6 +1380,6 @@ public final class SystemCode {
 	public static final int SYS_STORE_PARTITIONING_DISABLED				= 13550;
 	public static final int SYS_STORE_PARTITIONING_ENABLED				= 13551;
 	
-	// Customer Authorization
-	public static final int CUS_AUTH_MANDATORY_FIELD_EMPTY				= 13600;
+	// Store Partitioning Authorization
+	public static final int STORE_PART_AUTH_MANDATORY_FIELD_EMPTY		= 13600;
 }

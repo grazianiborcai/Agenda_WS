@@ -1,15 +1,15 @@
-package br.com.mind5.authorization.customerAuthorization.model.checker;
+package br.com.mind5.authorization.storePartitionAuthorization.model.checker;
 
-import br.com.mind5.authorization.customerAuthorization.info.CusauthInfo;
+import br.com.mind5.authorization.storePartitionAuthorization.info.SytotauhInfo;
 import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.business.store.model.checker.StoreCheckExist;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 
-public final class CusauthCheckStore extends ModelCheckerTemplateForwardV2<CusauthInfo, StoreInfo> {
+public final class SytotauhCheckStore extends ModelCheckerTemplateForwardV2<SytotauhInfo, StoreInfo> {
 	
-	public CusauthCheckStore(ModelCheckerOption option) {
+	public SytotauhCheckStore(ModelCheckerOption option) {
 		super(option);
 	}
 
@@ -21,7 +21,7 @@ public final class CusauthCheckStore extends ModelCheckerTemplateForwardV2<Cusau
 	
 	
 	
-	@Override protected StoreInfo toForwardClass(CusauthInfo baseRecord) {
+	@Override protected StoreInfo toForwardClass(SytotauhInfo baseRecord) {
 		return StoreInfo.copyFrom(baseRecord);
 	}
 }

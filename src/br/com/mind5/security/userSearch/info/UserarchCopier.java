@@ -3,8 +3,8 @@ package br.com.mind5.security.userSearch.info;
 
 import java.util.List;
 
-import br.com.mind5.authorization.customerAuthorization.info.CusauthInfo;
 import br.com.mind5.authorization.scheduleAuthorization.info.SchedauthInfo;
+import br.com.mind5.authorization.storePartitionAuthorization.info.SytotauhInfo;
 import br.com.mind5.business.refundPolicy.info.RefupolInfo;
 import br.com.mind5.info.InfoCopier;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
@@ -12,15 +12,15 @@ import br.com.mind5.payment.refundOrderItem.info.RefemInfo;
 import br.com.mind5.security.user.info.UserInfo;
 
 public final class UserarchCopier {
-	public static UserarchInfo copyFromCusauth(CusauthInfo source) {
-		InfoCopier<UserarchInfo, CusauthInfo> copier = new UserarchCopyCusauth();
+	public static UserarchInfo copyFromCusauth(SytotauhInfo source) {
+		InfoCopier<UserarchInfo, SytotauhInfo> copier = new UserarchCopyCusauth();
 		return copier.makeCopy(source);
 	}
 	
 	
 	
-	public static List<UserarchInfo> copyFromCusauth(List<CusauthInfo> sources) {
-		InfoCopier<UserarchInfo, CusauthInfo> copier = new UserarchCopyCusauth();
+	public static List<UserarchInfo> copyFromCusauth(List<SytotauhInfo> sources) {
+		InfoCopier<UserarchInfo, SytotauhInfo> copier = new UserarchCopyCusauth();
 		return copier.makeCopy(sources);
 	}
 	

@@ -1,9 +1,9 @@
 package br.com.mind5.security.userSearch.info;
 
-import br.com.mind5.authorization.customerAuthorization.info.CusauthInfo;
+import br.com.mind5.authorization.storePartitionAuthorization.info.SytotauhInfo;
 import br.com.mind5.info.InfoCopierTemplate;
 
-final class UserarchCopyCusauth extends InfoCopierTemplate<UserarchInfo, CusauthInfo> {
+final class UserarchCopyCusauth extends InfoCopierTemplate<UserarchInfo, SytotauhInfo> {
 	
 	public UserarchCopyCusauth() {
 		super();
@@ -11,7 +11,7 @@ final class UserarchCopyCusauth extends InfoCopierTemplate<UserarchInfo, Cusauth
 	
 	
 	
-	@Override protected UserarchInfo makeCopyHook(CusauthInfo source) {
+	@Override protected UserarchInfo makeCopyHook(SytotauhInfo source) {
 		UserarchInfo result = new UserarchInfo();
 		
 		result.codOwner = source.codOwner;

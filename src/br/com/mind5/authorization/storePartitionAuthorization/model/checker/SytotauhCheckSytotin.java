@@ -1,15 +1,15 @@
-package br.com.mind5.authorization.customerAuthorization.model.checker;
+package br.com.mind5.authorization.storePartitionAuthorization.model.checker;
 
-import br.com.mind5.authorization.customerAuthorization.info.CusauthInfo;
+import br.com.mind5.authorization.storePartitionAuthorization.info.SytotauhInfo;
 import br.com.mind5.config.sysStorePartitioning.info.SytotinInfo;
 import br.com.mind5.config.sysStorePartitioning.model.checker.SytotinCheckEnabled;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 
-public final class CusauthCheckSytotin extends ModelCheckerTemplateForwardV2<CusauthInfo, SytotinInfo> {
+public final class SytotauhCheckSytotin extends ModelCheckerTemplateForwardV2<SytotauhInfo, SytotinInfo> {
 	
-	public CusauthCheckSytotin(ModelCheckerOption option) {
+	public SytotauhCheckSytotin(ModelCheckerOption option) {
 		super(option);
 	}
 
@@ -21,7 +21,7 @@ public final class CusauthCheckSytotin extends ModelCheckerTemplateForwardV2<Cus
 	
 	
 	
-	@Override protected SytotinInfo toForwardClass(CusauthInfo baseRecord) {
+	@Override protected SytotinInfo toForwardClass(SytotauhInfo baseRecord) {
 		return SytotinInfo.copyFrom(baseRecord);
 	}
 }
