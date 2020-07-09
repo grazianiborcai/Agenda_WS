@@ -37,12 +37,12 @@ public final class RootPersonInsertStore extends DeciTreeTemplateWriteV2<PersonI
 	@Override protected List<ActionStdV1<PersonInfo>> buildActionsOnPassedHook(DeciTreeOption<PersonInfo> option) {
 		List<ActionStdV1<PersonInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<PersonInfo> enforceCategStore = new StdPersonEnforceCategStore(option);	
+		ActionStdV1<PersonInfo> enforceCateg = new StdPersonEnforceCategStore(option);	
 		ActionLazyV1<PersonInfo> insert = new LazyPersonRootInsert(option.conn, option.schemaName);
 		
-		enforceCategStore.addPostAction(insert);
+		enforceCateg.addPostAction(insert);
 		
-		actions.add(enforceCategStore);
+		actions.add(enforceCateg);
 		return actions;
 	}
 }

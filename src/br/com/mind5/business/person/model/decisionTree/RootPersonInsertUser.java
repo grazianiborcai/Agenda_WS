@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.person.info.PersonInfo;
-import br.com.mind5.business.person.model.action.LazyPersonMergeSytotauh;
+import br.com.mind5.business.person.model.action.LazyPersonEnforceStore;
 import br.com.mind5.business.person.model.action.LazyPersonRootInsert;
-import br.com.mind5.business.person.model.action.StdPersonEnforceCategCus;
+import br.com.mind5.business.person.model.action.StdPersonEnforceCategUser;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
@@ -15,9 +15,9 @@ import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class RootPersonInsertCus extends DeciTreeTemplateWriteV2<PersonInfo> {
+public final class RootPersonInsertUser extends DeciTreeTemplateWriteV2<PersonInfo> {
 	
-	public RootPersonInsertCus(DeciTreeOption<PersonInfo> option) {
+	public RootPersonInsertUser(DeciTreeOption<PersonInfo> option) {
 		super(option);
 	}
 	
@@ -38,12 +38,12 @@ public final class RootPersonInsertCus extends DeciTreeTemplateWriteV2<PersonInf
 	@Override protected List<ActionStdV1<PersonInfo>> buildActionsOnPassedHook(DeciTreeOption<PersonInfo> option) {
 		List<ActionStdV1<PersonInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<PersonInfo> enforceCateg = new StdPersonEnforceCategCus(option);	
-		ActionLazyV1<PersonInfo> MergeSytotauh = new LazyPersonMergeSytotauh(option.conn, option.schemaName);
+		ActionStdV1<PersonInfo> enforceCateg = new StdPersonEnforceCategUser(option);	
+		ActionLazyV1<PersonInfo> obfuscteStore = new LazyPersonEnforceStore(option.conn, option.schemaName);
 		ActionLazyV1<PersonInfo> insert = new LazyPersonRootInsert(option.conn, option.schemaName);
 		
-		enforceCateg.addPostAction(MergeSytotauh);
-		MergeSytotauh.addPostAction(insert);
+		enforceCateg.addPostAction(obfuscteStore);
+		obfuscteStore.addPostAction(insert);
 		
 		actions.add(enforceCateg);
 		return actions;

@@ -37,12 +37,12 @@ public final class RootPersonInsertEmp extends DeciTreeTemplateWriteV2<PersonInf
 	@Override protected List<ActionStdV1<PersonInfo>> buildActionsOnPassedHook(DeciTreeOption<PersonInfo> option) {
 		List<ActionStdV1<PersonInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<PersonInfo> enforceCategEmp = new StdPersonEnforceCategEmp(option);	
+		ActionStdV1<PersonInfo> enforceCateg = new StdPersonEnforceCategEmp(option);	
 		ActionLazyV1<PersonInfo> insert = new LazyPersonRootInsert(option.conn, option.schemaName);
 		
-		enforceCategEmp.addPostAction(insert);
+		enforceCateg.addPostAction(insert);
 		
-		actions.add(enforceCategEmp);
+		actions.add(enforceCateg);
 		return actions;
 	}
 }

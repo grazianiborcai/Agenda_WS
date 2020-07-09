@@ -2,6 +2,7 @@ package br.com.mind5.business.person.info;
 
 import java.util.List;
 
+import br.com.mind5.authorization.storePartitionAuthorization.info.SytotauhInfo;
 import br.com.mind5.business.personSnapshot.info.PersonapInfo;
 import br.com.mind5.info.InfoMergerBuilderV3;
 import br.com.mind5.info.InfoMergerV3;
@@ -9,6 +10,19 @@ import br.com.mind5.masterData.gender.info.GenderInfo;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class PersonMerger {
+	public static List<PersonInfo> mergeWithSytotauh(List<PersonInfo> baseInfos, List<SytotauhInfo> selectedInfos) {
+		InfoMergerBuilderV3<PersonInfo, SytotauhInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new PersonVisiMergeSytotauh());
+		InfoMergerV3<PersonInfo, SytotauhInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	
 	public static List<PersonInfo> mergeWithPersonap(List<PersonInfo> baseInfos, List<PersonapInfo> selectedInfos) {
 		InfoMergerBuilderV3<PersonInfo, PersonapInfo> builder = new InfoMergerBuilderV3<>();
 		
