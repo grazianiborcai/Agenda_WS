@@ -1,4 +1,4 @@
-package br.com.mind5.security.storeAuthorization.dao;
+package br.com.mind5.authorization.storeAuthorization.dao;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.mind5.authorization.storeAuthorization.info.StorauthInfo;
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoJoin;
 import br.com.mind5.dao.DaoJoinBuilder;
@@ -17,7 +18,6 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoJoinOwner;
 import br.com.mind5.dao.common.DaoOptionValue;
-import br.com.mind5.security.storeAuthorization.info.StorauthInfo;
 
 public final class DaoStorauthSelectSingle extends DaoStmtTemplate<StorauthInfo> {
 	private final String MAIN_TABLE = DaoDbTable.STORE_TABLE;	

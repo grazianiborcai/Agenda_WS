@@ -4,11 +4,11 @@ import java.util.List;
 
 import br.com.mind5.authorization.customerAuthorization.info.CusauthInfo;
 import br.com.mind5.authorization.customerAuthorization.info.CusauthMerger;
+import br.com.mind5.authorization.storeAuthorization.info.StorauthInfo;
+import br.com.mind5.authorization.storeAuthorization.model.decisionTree.RootStorauthSelect;
 import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.security.storeAuthorization.info.StorauthInfo;
-import br.com.mind5.security.storeAuthorization.model.decisionTree.RootStorauthSelect;
 
 final class VisiCusauthMergeStorauth extends ActionVisitorTemplateMergeV2<CusauthInfo, StorauthInfo> {
 	

@@ -1,12 +1,12 @@
-package br.com.mind5.security.storeAuthorization.dao;
+package br.com.mind5.authorization.storeAuthorization.dao;
 
 import java.sql.SQLException;
 import java.util.List;
 
+import br.com.mind5.authorization.storeAuthorization.info.StorauthInfo;
 import br.com.mind5.dao.DaoStmtExecHelperV2;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExecV2;
-import br.com.mind5.security.storeAuthorization.info.StorauthInfo;
 
 public final class DaoStorauthSelect implements DaoStmtExecV2<StorauthInfo> {
 	private DaoStmtExecV2<StorauthInfo> helper;

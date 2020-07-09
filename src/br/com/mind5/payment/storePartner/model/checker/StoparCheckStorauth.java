@@ -3,10 +3,10 @@ package br.com.mind5.payment.storePartner.model.checker;
 import java.util.List;
 
 import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.authorization.storeAuthorization.info.StorauthInfo;
+import br.com.mind5.authorization.storeAuthorization.model.checker.StorauthCheckExist;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.payment.storePartner.info.StoparInfo;
-import br.com.mind5.security.storeAuthorization.info.StorauthInfo;
-import br.com.mind5.security.storeAuthorization.model.checker.StorauthCheckExist;
 
 public final class StoparCheckStorauth implements ModelCheckerV1<StoparInfo> {
 	private final boolean FAILED = false;

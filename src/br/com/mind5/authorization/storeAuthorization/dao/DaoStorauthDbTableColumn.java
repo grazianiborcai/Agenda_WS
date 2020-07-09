@@ -1,4 +1,4 @@
-package br.com.mind5.security.storeAuthorization.dao;
+package br.com.mind5.authorization.storeAuthorization.dao;
 
 import java.util.ArrayList;
 import java.util.Hashtable;

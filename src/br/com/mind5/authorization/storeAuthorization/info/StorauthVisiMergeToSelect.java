@@ -1,4 +1,4 @@
-package br.com.mind5.security.storeAuthorization.info;
+package br.com.mind5.authorization.storeAuthorization.info;
 
 import java.util.ArrayList;
 import java.util.List;

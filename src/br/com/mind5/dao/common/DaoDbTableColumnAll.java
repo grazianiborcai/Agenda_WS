@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 
+import br.com.mind5.authorization.storeAuthorization.dao.DaoStorauthDbTableColumn;
 import br.com.mind5.business.address.dao.DaoAddressDbTableColumn;
 import br.com.mind5.business.addressSearch.dao.DaoAddarchDbTableColumn;
 import br.com.mind5.business.addressSnapshot.dao.DaoAddresnapDbTableColumn;
@@ -204,7 +205,6 @@ import br.com.mind5.payment.systemPartnerSearch.dao.SysparchDbTableColumn;
 import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.dao.PeresmoipDbTableColumn;
 import br.com.mind5.security.otpProspectStore.dao.DaoOtporeDbTableColumn;
 import br.com.mind5.security.otpUserPassword.dao.DaoOtperasDbTableColumn;
-import br.com.mind5.security.storeAuthorization.dao.DaoStorauthDbTableColumn;
 import br.com.mind5.security.user.dao.DaoUserDbTableColumn;
 import br.com.mind5.security.userList.dao.DaoUselisDbTableColumn;
 import br.com.mind5.security.userPassword.dao.DaoUpswdDbTableColumn;

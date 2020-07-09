@@ -1,11 +1,11 @@
-package br.com.mind5.security.storeAuthorization.model.checker;
+package br.com.mind5.authorization.storeAuthorization.model.checker;
 
 import java.sql.Connection;
 
+import br.com.mind5.authorization.storeAuthorization.info.StorauthInfo;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
-import br.com.mind5.security.storeAuthorization.info.StorauthInfo;
 
 public final class StorauthCheckRead extends ModelCheckerTemplateSimpleV2<StorauthInfo> {
 

@@ -1,8 +1,14 @@
-package br.com.mind5.security.storeAuthorization.model.decisionTree;
+package br.com.mind5.authorization.storeAuthorization.model.decisionTree;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.mind5.authorization.storeAuthorization.info.StorauthInfo;
+import br.com.mind5.authorization.storeAuthorization.model.action.LazyStorauthNodeSelect;
+import br.com.mind5.authorization.storeAuthorization.model.action.StdStorauthMergeUsername;
+import br.com.mind5.authorization.storeAuthorization.model.checker.StorauthCheckOwner;
+import br.com.mind5.authorization.storeAuthorization.model.checker.StorauthCheckRead;
+import br.com.mind5.authorization.storeAuthorization.model.checker.StorauthCheckStore;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -10,12 +16,6 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
-import br.com.mind5.security.storeAuthorization.info.StorauthInfo;
-import br.com.mind5.security.storeAuthorization.model.action.LazyStorauthNodeSelect;
-import br.com.mind5.security.storeAuthorization.model.action.StdStorauthMergeUsername;
-import br.com.mind5.security.storeAuthorization.model.checker.StorauthCheckOwner;
-import br.com.mind5.security.storeAuthorization.model.checker.StorauthCheckRead;
-import br.com.mind5.security.storeAuthorization.model.checker.StorauthCheckStore;
 
 public final class RootStorauthSelect extends DeciTreeTemplateWriteV2<StorauthInfo> {
 	

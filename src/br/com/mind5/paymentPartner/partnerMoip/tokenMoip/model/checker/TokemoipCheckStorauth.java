@@ -3,10 +3,10 @@ package br.com.mind5.paymentPartner.partnerMoip.tokenMoip.model.checker;
 import java.util.List;
 
 import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.authorization.storeAuthorization.info.StorauthInfo;
+import br.com.mind5.authorization.storeAuthorization.model.checker.StorauthCheckExist;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.paymentPartner.partnerMoip.tokenMoip.info.TokemoipInfo;
-import br.com.mind5.security.storeAuthorization.info.StorauthInfo;
-import br.com.mind5.security.storeAuthorization.model.checker.StorauthCheckExist;
 
 public final class TokemoipCheckStorauth implements ModelCheckerV1<TokemoipInfo> {
 	private final boolean FAILED = false;

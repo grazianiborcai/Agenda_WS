@@ -1,9 +1,9 @@
-package br.com.mind5.security.storeAuthorization.model.checker;
+package br.com.mind5.authorization.storeAuthorization.model.checker;
 
+import br.com.mind5.authorization.storeAuthorization.info.StorauthInfo;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.security.storeAuthorization.info.StorauthInfo;
 import br.com.mind5.security.userSearch.info.UserarchInfo;
 import br.com.mind5.security.userSearch.model.checker.UserarchCheckExistOwner;
 

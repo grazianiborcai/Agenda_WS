@@ -1,14 +1,14 @@
-package br.com.mind5.security.storeAuthorization.model.action;
+package br.com.mind5.authorization.storeAuthorization.model.action;
 
 import java.sql.Connection;
 import java.util.List;
 
+import br.com.mind5.authorization.storeAuthorization.info.StorauthInfo;
+import br.com.mind5.authorization.storeAuthorization.model.decisionTree.NodeStorauthSelect;
 import br.com.mind5.model.action.ActionLazyTemplateV2;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.security.storeAuthorization.info.StorauthInfo;
-import br.com.mind5.security.storeAuthorization.model.decisionTree.NodeStorauthSelect;
 
 public final class LazyStorauthNodeSelect extends ActionLazyTemplateV2<StorauthInfo, StorauthInfo> {
 	
