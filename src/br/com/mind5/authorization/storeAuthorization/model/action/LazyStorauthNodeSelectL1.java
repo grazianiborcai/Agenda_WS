@@ -4,15 +4,15 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.authorization.storeAuthorization.info.StorauthInfo;
-import br.com.mind5.authorization.storeAuthorization.model.decisionTree.NodeStorauthSelect;
+import br.com.mind5.authorization.storeAuthorization.model.decisionTree.NodeStorauthSelectL1;
 import br.com.mind5.model.action.ActionLazyTemplateV2;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyStorauthNodeSelect extends ActionLazyTemplateV2<StorauthInfo, StorauthInfo> {
+public final class LazyStorauthNodeSelectL1 extends ActionLazyTemplateV2<StorauthInfo, StorauthInfo> {
 	
-	public LazyStorauthNodeSelect(Connection conn, String schemaName) {
+	public LazyStorauthNodeSelectL1(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -25,7 +25,7 @@ public final class LazyStorauthNodeSelect extends ActionLazyTemplateV2<StorauthI
 	
 	
 	@Override protected ActionStdV1<StorauthInfo> getInstanceOfActionHook(DeciTreeOption<StorauthInfo> option) {
-		return new NodeStorauthSelect(option).toAction();
+		return new NodeStorauthSelectL1(option).toAction();
 	}
 	
 	

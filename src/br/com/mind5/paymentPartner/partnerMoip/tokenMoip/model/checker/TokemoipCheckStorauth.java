@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.authorization.storeAuthorization.info.StorauthInfo;
-import br.com.mind5.authorization.storeAuthorization.model.checker.StorauthCheckExist;
+import br.com.mind5.authorization.storeAuthorization.model.checker.StorauthCheckAuthorization;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.paymentPartner.partnerMoip.tokenMoip.info.TokemoipInfo;
 
@@ -16,7 +16,7 @@ public final class TokemoipCheckStorauth implements ModelCheckerV1<TokemoipInfo>
 	
 	
 	public TokemoipCheckStorauth(ModelCheckerOption option) {
-		checker = new StorauthCheckExist(option);
+		checker = new StorauthCheckAuthorization(option);
 	}
 	
 	

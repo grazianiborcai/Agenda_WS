@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.authorization.storeAuthorization.info.StorauthInfo;
-import br.com.mind5.authorization.storeAuthorization.model.checker.StorauthCheckExist;
+import br.com.mind5.authorization.storeAuthorization.model.checker.StorauthCheckAuthorization;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.payment.storePartner.info.StoparInfo;
 
@@ -16,7 +16,7 @@ public final class StoparCheckStorauth implements ModelCheckerV1<StoparInfo> {
 	
 	
 	public StoparCheckStorauth(ModelCheckerOption option) {
-		checker = new StorauthCheckExist(option);
+		checker = new StorauthCheckAuthorization(option);
 	}
 	
 	

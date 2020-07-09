@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.authorization.storePartitionAuthorization.info.SytotauhInfo;
-import br.com.mind5.authorization.storePartitionAuthorization.model.checker.SytotauhCheckHasStore;
-import br.com.mind5.authorization.storePartitionAuthorization.model.checker.SytotauhCheckStore;
+import br.com.mind5.authorization.storePartitionAuthorization.model.action.StdSytotauhSuccess;
+import br.com.mind5.authorization.storePartitionAuthorization.model.checker.SytotauhCheckAuthOwner;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -29,15 +29,8 @@ public final class NodeSytotauhSelectL2 extends DeciTreeTemplateWriteV2<Sytotauh
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;			
-		checker = new SytotauhCheckHasStore(checkerOption);
-		queue.add(checker);
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;			
-		checker = new SytotauhCheckStore(checkerOption);
+		checker = new SytotauhCheckAuthOwner(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueueV2<>(queue);
@@ -46,6 +39,17 @@ public final class NodeSytotauhSelectL2 extends DeciTreeTemplateWriteV2<Sytotauh
 	
 	
 	@Override protected List<ActionStdV1<SytotauhInfo>> buildActionsOnPassedHook(DeciTreeOption<SytotauhInfo> option) {
+		List<ActionStdV1<SytotauhInfo>> actions = new ArrayList<>();
+		
+		ActionStdV1<SytotauhInfo> success = new StdSytotauhSuccess(option);
+		
+		actions.add(success);
+		return actions;
+	}
+	
+	
+	
+	@Override protected List<ActionStdV1<SytotauhInfo>> buildActionsOnFailedHook(DeciTreeOption<SytotauhInfo> option) {
 		List<ActionStdV1<SytotauhInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<SytotauhInfo> nodeL3 = new NodeSytotauhSelectL3(option).toAction();

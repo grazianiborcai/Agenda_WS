@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.authorization.storePartitionAuthorization.info.SytotauhInfo;
-import br.com.mind5.authorization.storePartitionAuthorization.model.action.StdSytotauhSuccess;
-import br.com.mind5.authorization.storePartitionAuthorization.model.checker.SytotauhCheckAuthOwner;
+import br.com.mind5.authorization.storePartitionAuthorization.model.action.StdSytotauhMergeStorauth;
+import br.com.mind5.authorization.storePartitionAuthorization.model.checker.SytotauhCheckAuthManager;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -30,7 +30,7 @@ public final class NodeSytotauhSelectL3 extends DeciTreeTemplateWriteV2<Sytotauh
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;			
-		checker = new SytotauhCheckAuthOwner(checkerOption);
+		checker = new SytotauhCheckAuthManager(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueueV2<>(queue);
@@ -41,20 +41,9 @@ public final class NodeSytotauhSelectL3 extends DeciTreeTemplateWriteV2<Sytotauh
 	@Override protected List<ActionStdV1<SytotauhInfo>> buildActionsOnPassedHook(DeciTreeOption<SytotauhInfo> option) {
 		List<ActionStdV1<SytotauhInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<SytotauhInfo> success = new StdSytotauhSuccess(option);
+		ActionStdV1<SytotauhInfo> mergeStorauth = new StdSytotauhMergeStorauth(option);
 		
-		actions.add(success);
-		return actions;
-	}
-	
-	
-	
-	@Override protected List<ActionStdV1<SytotauhInfo>> buildActionsOnFailedHook(DeciTreeOption<SytotauhInfo> option) {
-		List<ActionStdV1<SytotauhInfo>> actions = new ArrayList<>();
-		
-		ActionStdV1<SytotauhInfo> nodeL4 = new NodeSytotauhSelectL4(option).toAction();
-		
-		actions.add(nodeL4);
+		actions.add(mergeStorauth);
 		return actions;
 	}
 }

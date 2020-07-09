@@ -4,21 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.authorization.storeAuthorization.info.StorauthInfo;
-import br.com.mind5.authorization.storeAuthorization.model.action.LazyStorauthNodeSelectL1;
+import br.com.mind5.authorization.storeAuthorization.model.action.LazyStorauthNodeAuthorization;
 import br.com.mind5.authorization.storeAuthorization.model.action.StdStorauthMergeUsername;
 import br.com.mind5.authorization.storeAuthorization.model.checker.StorauthCheckOwner;
-import br.com.mind5.authorization.storeAuthorization.model.checker.StorauthCheckReadSelect;
+import br.com.mind5.authorization.storeAuthorization.model.checker.StorauthCheckReadAuthorization;
+import br.com.mind5.authorization.storeAuthorization.model.checker.StorauthCheckStore;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class RootStorauthSelect extends DeciTreeTemplateWriteV2<StorauthInfo> {
+public final class RootStorauthAuthorization extends DeciTreeTemplateWriteV2<StorauthInfo> {
 	
-	public RootStorauthSelect(DeciTreeOption<StorauthInfo> option) {
+	public RootStorauthAuthorization(DeciTreeOption<StorauthInfo> option) {
 		super(option);
 	}
 	
@@ -33,7 +34,7 @@ public final class RootStorauthSelect extends DeciTreeTemplateWriteV2<StorauthIn
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;
-		checker = new StorauthCheckReadSelect(checkerOption);
+		checker = new StorauthCheckReadAuthorization(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
@@ -41,6 +42,13 @@ public final class RootStorauthSelect extends DeciTreeTemplateWriteV2<StorauthIn
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new StorauthCheckOwner(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
+		checker = new StorauthCheckStore(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueueV2<>(queue);
@@ -52,9 +60,9 @@ public final class RootStorauthSelect extends DeciTreeTemplateWriteV2<StorauthIn
 		List<ActionStdV1<StorauthInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<StorauthInfo> mergeUsername = new StdStorauthMergeUsername(option);	
-		ActionLazyV1<StorauthInfo> nodeL1 = new LazyStorauthNodeSelectL1(option.conn, option.schemaName);	
+		ActionLazyV1<StorauthInfo> select = new LazyStorauthNodeAuthorization(option.conn, option.schemaName);	
 		
-		mergeUsername.addPostAction(nodeL1);
+		mergeUsername.addPostAction(select);
 		
 		actions.add(mergeUsername);		
 		return actions;
