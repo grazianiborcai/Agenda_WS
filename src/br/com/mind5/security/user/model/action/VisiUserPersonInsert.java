@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.com.mind5.business.person.info.PersonCopier;
 import br.com.mind5.business.person.info.PersonInfo;
-import br.com.mind5.business.person.model.decisionTree.RootPersonInsert;
+import br.com.mind5.business.person.model.decisionTree.RootPersonInsertUser;
 import br.com.mind5.model.action.ActionVisitorTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -20,7 +20,7 @@ final class VisiUserPersonInsert extends ActionVisitorTemplateActionV2<UserInfo,
 	
 	
 	@Override protected Class<? extends DeciTree<PersonInfo>> getTreeClassHook() {
-		return RootPersonInsert.class;
+		return RootPersonInsertUser.class;
 	}
 	
 	
