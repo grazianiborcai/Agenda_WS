@@ -10,6 +10,7 @@ import br.com.mind5.info.InfoRecord;
 public final class PersonInfo extends InfoRecord implements Cloneable {
 	public long codOwner;	
 	public long codPerson;
+	public long codStore;
 	public long codSnapshot;
 	public String cpf;
 	public String name;
@@ -37,6 +38,7 @@ public final class PersonInfo extends InfoRecord implements Cloneable {
 		codOwner = DefaultValue.number();
 		codSnapshot = DefaultValue.number();
 		codPerson = DefaultValue.number();
+		codStore = DefaultValue.number();
 		codGender = DefaultValue.gender();	
 		birthYear = DefaultValue.number();
 		birthMonth = DefaultValue.number();

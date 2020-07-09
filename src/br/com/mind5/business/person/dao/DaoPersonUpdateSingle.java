@@ -3,6 +3,7 @@ package br.com.mind5.business.person.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+
 import br.com.mind5.business.person.info.PersonInfo;
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
@@ -70,6 +71,7 @@ public final class DaoPersonUpdateSingle extends DaoStmtTemplate<PersonInfo> {
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.birthMonth);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.birthDay);
 				stmt.setString(i++, recordInfo.nameDisplay);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codStore);
 				
 				return stmt;
 			}		

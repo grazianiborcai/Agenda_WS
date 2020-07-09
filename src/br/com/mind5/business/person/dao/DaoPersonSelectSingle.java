@@ -63,6 +63,7 @@ public final class DaoPersonSelectSingle extends DaoStmtTemplate<PersonInfo> {
 					
 					dataInfo.codOwner = stmtResult.getLong(DaoPersonDbTableColumn.COL_COD_OWNER);
 					dataInfo.codPerson = stmtResult.getLong(DaoPersonDbTableColumn.COL_COD_PERSON);
+					dataInfo.codStore = stmtResult.getLong(DaoPersonDbTableColumn.COL_COD_STORE);
 					dataInfo.cpf = stmtResult.getString(DaoPersonDbTableColumn.COL_CPF);
 					dataInfo.name = stmtResult.getString(DaoPersonDbTableColumn.COL_NAME);			
 					dataInfo.nameDisplay = stmtResult.getString(DaoPersonDbTableColumn.COL_NAME_DISPLAY);
