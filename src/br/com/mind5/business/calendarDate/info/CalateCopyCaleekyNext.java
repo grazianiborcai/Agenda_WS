@@ -4,7 +4,7 @@ package br.com.mind5.business.calendarDate.info;
 import br.com.mind5.business.calendarWeekYear.info.CaleekyInfo;
 import br.com.mind5.info.InfoCopierTemplate;
 
-final class CalateCopyCaleekyNext extends InfoCopierTemplate<CalateInfo, CaleekyInfo>{
+final class CalateCopyCaleekyNext extends InfoCopierTemplate<CalateInfo, CaleekyInfo> {
 	
 	public CalateCopyCaleekyNext() {
 		super();
