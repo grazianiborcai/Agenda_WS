@@ -4,7 +4,7 @@ import br.com.mind5.business.cart.info.CartInfo;
 import br.com.mind5.business.orderItem.info.OrderemCopier;
 import br.com.mind5.info.InfoCopierTemplate;
 
-final class OrderCopyCart extends InfoCopierTemplate<OrderInfo, CartInfo>{
+final class OrderCopyCart extends InfoCopierTemplate<OrderInfo, CartInfo> {
 	
 	public OrderCopyCart() {
 		super();

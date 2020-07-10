@@ -9,7 +9,7 @@ import br.com.mind5.masterData.country.info.CountryInfo;
 import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiCountryDaoSelect extends ActionVisitorTemplateStmtV2<CountryInfo>{
+final class VisiCountryDaoSelect extends ActionVisitorTemplateStmtV2<CountryInfo> {
 
 	public VisiCountryDaoSelect(DeciTreeOption<CountryInfo> option) {
 		super(option);

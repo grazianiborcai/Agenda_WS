@@ -7,7 +7,7 @@ import br.com.mind5.business.order.info.OrderInfo;
 import br.com.mind5.common.SystemLog;
 import br.com.mind5.info.InfoCopierOneToManyTemplate;
 
-final class OrderemCopyOrder extends InfoCopierOneToManyTemplate<OrderemInfo, OrderInfo>{
+final class OrderemCopyOrder extends InfoCopierOneToManyTemplate<OrderemInfo, OrderInfo> {
 	
 	public OrderemCopyOrder() {
 		super();

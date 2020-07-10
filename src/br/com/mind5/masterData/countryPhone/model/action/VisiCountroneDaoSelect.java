@@ -9,7 +9,7 @@ import br.com.mind5.masterData.countryPhone.info.CountroneInfo;
 import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiCountroneDaoSelect extends ActionVisitorTemplateStmtV2<CountroneInfo>{
+final class VisiCountroneDaoSelect extends ActionVisitorTemplateStmtV2<CountroneInfo> {
 
 	public VisiCountroneDaoSelect(DeciTreeOption<CountroneInfo> option) {
 		super(option);

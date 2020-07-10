@@ -3,7 +3,7 @@ package br.com.mind5.business.phoneSnapshot.info;
 import br.com.mind5.info.InfoCopierTemplate;
 import br.com.mind5.security.userSnapshot.info.UserapInfo;
 
-final class PhonapCopyUserapKey extends InfoCopierTemplate<PhonapInfo, UserapInfo>{
+final class PhonapCopyUserapKey extends InfoCopierTemplate<PhonapInfo, UserapInfo> {
 	
 	public PhonapCopyUserapKey() {
 		super();

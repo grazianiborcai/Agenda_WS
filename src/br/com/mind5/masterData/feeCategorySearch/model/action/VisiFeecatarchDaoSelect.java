@@ -9,7 +9,7 @@ import br.com.mind5.masterData.feeCategorySearch.info.FeecatarchInfo;
 import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiFeecatarchDaoSelect extends ActionVisitorTemplateStmtV2<FeecatarchInfo>{
+final class VisiFeecatarchDaoSelect extends ActionVisitorTemplateStmtV2<FeecatarchInfo> {
 
 	public VisiFeecatarchDaoSelect(DeciTreeOption<FeecatarchInfo> option) {
 		super(option);

@@ -3,7 +3,7 @@ package br.com.mind5.security.userSnapshot.info;
 import br.com.mind5.info.InfoCopierTemplate;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
 
-final class UserapCopyCuspar extends InfoCopierTemplate<UserapInfo, CusparInfo>{
+final class UserapCopyCuspar extends InfoCopierTemplate<UserapInfo, CusparInfo> {
 	
 	public UserapCopyCuspar() {
 		super();

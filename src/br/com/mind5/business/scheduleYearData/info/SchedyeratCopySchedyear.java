@@ -4,7 +4,7 @@ package br.com.mind5.business.scheduleYearData.info;
 import br.com.mind5.business.scheduleYear.info.SchedyearInfo;
 import br.com.mind5.info.InfoCopierTemplate;
 
-final class SchedyeratCopySchedyear extends InfoCopierTemplate<SchedyeratInfo, SchedyearInfo>{
+final class SchedyeratCopySchedyear extends InfoCopierTemplate<SchedyeratInfo, SchedyearInfo> {
 	
 	public SchedyeratCopySchedyear() {
 		super();

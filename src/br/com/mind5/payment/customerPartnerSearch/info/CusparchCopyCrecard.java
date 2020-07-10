@@ -3,7 +3,7 @@ package br.com.mind5.payment.customerPartnerSearch.info;
 import br.com.mind5.info.InfoCopierTemplate;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
 
-final class CusparchCopyCrecard extends InfoCopierTemplate<CusparchInfo, CrecardInfo>{
+final class CusparchCopyCrecard extends InfoCopierTemplate<CusparchInfo, CrecardInfo> {
 	
 	public CusparchCopyCrecard() {
 		super();

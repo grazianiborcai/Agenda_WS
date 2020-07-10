@@ -3,7 +3,7 @@ package br.com.mind5.payment.payOrderItem.info;
 import br.com.mind5.info.InfoCopierTemplate;
 import br.com.mind5.payment.statusPayOrderItem.info.PaytusemInfo;
 
-final class PayordemCopyPaytusem extends InfoCopierTemplate<PayordemInfo, PaytusemInfo>{
+final class PayordemCopyPaytusem extends InfoCopierTemplate<PayordemInfo, PaytusemInfo> {
 	
 	public PayordemCopyPaytusem() {
 		super();

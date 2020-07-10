@@ -9,7 +9,7 @@ import br.com.mind5.masterData.language.info.LanguInfo;
 import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiLanguDaoSelect extends ActionVisitorTemplateStmtV2<LanguInfo>{
+final class VisiLanguDaoSelect extends ActionVisitorTemplateStmtV2<LanguInfo> {
 
 	public VisiLanguDaoSelect(DeciTreeOption<LanguInfo> option) {
 		super(option);

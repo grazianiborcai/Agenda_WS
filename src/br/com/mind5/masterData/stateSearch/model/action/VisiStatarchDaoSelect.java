@@ -9,7 +9,7 @@ import br.com.mind5.masterData.stateSearch.info.StatarchInfo;
 import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiStatarchDaoSelect extends ActionVisitorTemplateStmtV2<StatarchInfo>{
+final class VisiStatarchDaoSelect extends ActionVisitorTemplateStmtV2<StatarchInfo> {
 
 	public VisiStatarchDaoSelect(DeciTreeOption<StatarchInfo> option) {
 		super(option);

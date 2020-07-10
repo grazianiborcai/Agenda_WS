@@ -3,7 +3,7 @@ package br.com.mind5.business.phoneSearch.info;
 import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.info.InfoCopierTemplate;
 
-final class PhonarchCopyPhoneRef extends InfoCopierTemplate<PhonarchInfo, PhoneInfo>{
+final class PhonarchCopyPhoneRef extends InfoCopierTemplate<PhonarchInfo, PhoneInfo> {
 	
 	public PhonarchCopyPhoneRef() {
 		super();

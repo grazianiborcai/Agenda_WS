@@ -9,7 +9,7 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.payOrder.dao.DaoPayordSelect;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
 
-final class VisiPayordDaoSelect extends ActionVisitorTemplateStmtV2<PayordInfo>{
+final class VisiPayordDaoSelect extends ActionVisitorTemplateStmtV2<PayordInfo> {
 
 	public VisiPayordDaoSelect(DeciTreeOption<PayordInfo> option) {
 		super(option);

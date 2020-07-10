@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoStmtExecV2;
 import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiMatextaultDaoSelect extends ActionVisitorTemplateStmtV2<MatextaultInfo>{
+final class VisiMatextaultDaoSelect extends ActionVisitorTemplateStmtV2<MatextaultInfo> {
 
 	public VisiMatextaultDaoSelect(DeciTreeOption<MatextaultInfo> option) {
 		super(option);

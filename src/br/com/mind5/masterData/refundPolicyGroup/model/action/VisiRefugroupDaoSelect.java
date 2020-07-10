@@ -9,7 +9,7 @@ import br.com.mind5.masterData.refundPolicyGroup.info.RefugroupInfo;
 import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiRefugroupDaoSelect extends ActionVisitorTemplateStmtV2<RefugroupInfo>{
+final class VisiRefugroupDaoSelect extends ActionVisitorTemplateStmtV2<RefugroupInfo> {
 
 	public VisiRefugroupDaoSelect(DeciTreeOption<RefugroupInfo> option) {
 		super(option);

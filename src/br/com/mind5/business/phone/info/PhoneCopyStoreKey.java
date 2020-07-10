@@ -3,7 +3,7 @@ package br.com.mind5.business.phone.info;
 import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.info.InfoCopierTemplate;
 
-final class PhoneCopyStoreKey extends InfoCopierTemplate<PhoneInfo, StoreInfo>{
+final class PhoneCopyStoreKey extends InfoCopierTemplate<PhoneInfo, StoreInfo> {
 	
 	public PhoneCopyStoreKey() {
 		super();

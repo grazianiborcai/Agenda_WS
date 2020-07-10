@@ -8,7 +8,7 @@ import br.com.mind5.business.scheduleMonth.info.SchedmonInfo;
 import br.com.mind5.business.scheduleMonthData.info.SchedonthatInfo;
 import br.com.mind5.info.InfoCopierOneToManyTemplate;
 
-final class MatCopySchedmon extends InfoCopierOneToManyTemplate<MatInfo, SchedmonInfo>{
+final class MatCopySchedmon extends InfoCopierOneToManyTemplate<MatInfo, SchedmonInfo> {
 	
 	public MatCopySchedmon() {
 		super();

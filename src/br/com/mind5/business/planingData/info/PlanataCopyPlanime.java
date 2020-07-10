@@ -13,7 +13,7 @@ import br.com.mind5.common.SystemLog;
 import br.com.mind5.info.InfoCopierOneToManyTemplate;
 import br.com.mind5.masterData.moonPhase.info.MoonaseInfo;
 
-final class PlanataCopyPlanime extends InfoCopierOneToManyTemplate<PlanataInfo, PlanimeInfo>{
+final class PlanataCopyPlanime extends InfoCopierOneToManyTemplate<PlanataInfo, PlanimeInfo> {
 	
 	public PlanataCopyPlanime() {
 		super();

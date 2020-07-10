@@ -3,7 +3,7 @@ package br.com.mind5.business.phoneSearch.info;
 import br.com.mind5.info.InfoCopierTemplate;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
 
-final class PhonarchCopyCrecard extends InfoCopierTemplate<PhonarchInfo, CrecardInfo>{
+final class PhonarchCopyCrecard extends InfoCopierTemplate<PhonarchInfo, CrecardInfo> {
 	
 	public PhonarchCopyCrecard() {
 		super();

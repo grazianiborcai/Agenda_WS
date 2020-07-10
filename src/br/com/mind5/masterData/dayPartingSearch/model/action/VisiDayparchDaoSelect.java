@@ -9,7 +9,7 @@ import br.com.mind5.masterData.dayPartingSearch.info.DayparchInfo;
 import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiDayparchDaoSelect extends ActionVisitorTemplateStmtV2<DayparchInfo>{
+final class VisiDayparchDaoSelect extends ActionVisitorTemplateStmtV2<DayparchInfo> {
 
 	public VisiDayparchDaoSelect(DeciTreeOption<DayparchInfo> option) {
 		super(option);

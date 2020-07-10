@@ -8,7 +8,7 @@ import br.com.mind5.business.scheduleWeek.info.SchedeekInfo;
 import br.com.mind5.business.scheduleWeekData.info.SchedeekdatInfo;
 import br.com.mind5.info.InfoCopierOneToManyTemplate;
 
-final class MatCopySchedeek extends InfoCopierOneToManyTemplate<MatInfo, SchedeekInfo>{
+final class MatCopySchedeek extends InfoCopierOneToManyTemplate<MatInfo, SchedeekInfo> {
 	
 	public MatCopySchedeek() {
 		super();

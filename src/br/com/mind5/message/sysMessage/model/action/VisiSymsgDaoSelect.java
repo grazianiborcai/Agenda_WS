@@ -9,7 +9,7 @@ import br.com.mind5.message.sysMessage.info.SymsgInfo;
 import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiSymsgDaoSelect extends ActionVisitorTemplateStmtV2<SymsgInfo>{
+final class VisiSymsgDaoSelect extends ActionVisitorTemplateStmtV2<SymsgInfo> {
 
 	public VisiSymsgDaoSelect(DeciTreeOption<SymsgInfo> option) {
 		super(option);

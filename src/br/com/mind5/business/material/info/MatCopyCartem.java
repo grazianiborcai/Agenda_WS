@@ -4,7 +4,7 @@ package br.com.mind5.business.material.info;
 import br.com.mind5.business.cartItem.info.CartemInfo;
 import br.com.mind5.info.InfoCopierTemplate;
 
-final class MatCopyCartem extends InfoCopierTemplate<MatInfo, CartemInfo>{
+final class MatCopyCartem extends InfoCopierTemplate<MatInfo, CartemInfo> {
 	
 	public MatCopyCartem() {
 		super();

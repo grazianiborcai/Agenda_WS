@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoStmtExecV2;
 import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiOrdemrapDaoSelect extends ActionVisitorTemplateStmtV2<OrdemrapInfo>{
+final class VisiOrdemrapDaoSelect extends ActionVisitorTemplateStmtV2<OrdemrapInfo> {
 
 	public VisiOrdemrapDaoSelect(DeciTreeOption<OrdemrapInfo> option) {
 		super(option);

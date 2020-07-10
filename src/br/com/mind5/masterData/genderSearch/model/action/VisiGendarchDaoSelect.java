@@ -9,7 +9,7 @@ import br.com.mind5.masterData.genderSearch.info.GendarchInfo;
 import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiGendarchDaoSelect extends ActionVisitorTemplateStmtV2<GendarchInfo>{
+final class VisiGendarchDaoSelect extends ActionVisitorTemplateStmtV2<GendarchInfo> {
 
 	public VisiGendarchDaoSelect(DeciTreeOption<GendarchInfo> option) {
 		super(option);

@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoStmtExecV2;
 import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiRefupownDaoUpdate extends ActionVisitorTemplateStmtV2<RefupownInfo>{
+final class VisiRefupownDaoUpdate extends ActionVisitorTemplateStmtV2<RefupownInfo> {
 
 	public VisiRefupownDaoUpdate(DeciTreeOption<RefupownInfo> option) {
 		super(option);

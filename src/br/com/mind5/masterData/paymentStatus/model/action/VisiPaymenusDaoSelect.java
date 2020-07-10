@@ -9,7 +9,7 @@ import br.com.mind5.masterData.paymentStatus.info.PaymenusInfo;
 import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiPaymenusDaoSelect extends ActionVisitorTemplateStmtV2<PaymenusInfo>{
+final class VisiPaymenusDaoSelect extends ActionVisitorTemplateStmtV2<PaymenusInfo> {
 
 	public VisiPaymenusDaoSelect(DeciTreeOption<PaymenusInfo> option) {
 		super(option);

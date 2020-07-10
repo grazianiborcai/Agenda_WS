@@ -3,7 +3,7 @@ package br.com.mind5.business.storeLeaveDateSearch.info;
 import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.info.InfoCopierTemplate;
 
-final class StolarchCopyStore extends InfoCopierTemplate<StolarchInfo, StoreInfo>{
+final class StolarchCopyStore extends InfoCopierTemplate<StolarchInfo, StoreInfo> {
 	
 	public StolarchCopyStore() {
 		super();

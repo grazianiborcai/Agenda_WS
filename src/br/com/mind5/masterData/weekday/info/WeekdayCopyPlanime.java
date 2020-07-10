@@ -10,7 +10,7 @@ import br.com.mind5.business.planingData.info.PlanataInfo;
 import br.com.mind5.business.planningTime.info.PlanimeInfo;
 import br.com.mind5.info.InfoCopierOneToManyTemplate;
 
-final class WeekdayCopyPlanime extends InfoCopierOneToManyTemplate<WeekdayInfo, PlanimeInfo>{
+final class WeekdayCopyPlanime extends InfoCopierOneToManyTemplate<WeekdayInfo, PlanimeInfo> {
 	
 	public WeekdayCopyPlanime() {
 		super();

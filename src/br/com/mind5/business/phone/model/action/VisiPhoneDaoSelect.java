@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoStmtExecV2;
 import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiPhoneDaoSelect extends ActionVisitorTemplateStmtV2<PhoneInfo>{
+final class VisiPhoneDaoSelect extends ActionVisitorTemplateStmtV2<PhoneInfo> {
 
 	public VisiPhoneDaoSelect(DeciTreeOption<PhoneInfo> option) {
 		super(option);

@@ -9,7 +9,7 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.creditCard.dao.DaoCrecardInsert;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
 
-final class VisiCrecardDaoInsert extends ActionVisitorTemplateStmtV2<CrecardInfo>{
+final class VisiCrecardDaoInsert extends ActionVisitorTemplateStmtV2<CrecardInfo> {
 
 	public VisiCrecardDaoInsert(DeciTreeOption<CrecardInfo> option) {
 		super(option);

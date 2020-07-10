@@ -3,7 +3,7 @@ package br.com.mind5.business.orderSearch.info;
 import br.com.mind5.info.InfoCopierTemplate;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
 
-final class OrdarchCopyPayord extends InfoCopierTemplate<OrdarchInfo, PayordInfo>{
+final class OrdarchCopyPayord extends InfoCopierTemplate<OrdarchInfo, PayordInfo> {
 	
 	public OrdarchCopyPayord() {
 		super();

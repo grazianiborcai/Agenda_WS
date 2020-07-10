@@ -9,7 +9,7 @@ import br.com.mind5.masterData.areaPhoneSearch.info.AreanarchInfo;
 import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiAreanarchDaoSelect extends ActionVisitorTemplateStmtV2<AreanarchInfo>{
+final class VisiAreanarchDaoSelect extends ActionVisitorTemplateStmtV2<AreanarchInfo> {
 
 	public VisiAreanarchDaoSelect(DeciTreeOption<AreanarchInfo> option) {
 		super(option);

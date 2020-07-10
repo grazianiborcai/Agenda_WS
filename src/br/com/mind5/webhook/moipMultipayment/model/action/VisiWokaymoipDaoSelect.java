@@ -9,7 +9,7 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.webhook.moipMultipayment.dao.DaoWokaymoipSelect;
 import br.com.mind5.webhook.moipMultipayment.info.WokaymoipInfo;
 
-final class VisiWokaymoipDaoSelect extends ActionVisitorTemplateStmtV2<WokaymoipInfo>{
+final class VisiWokaymoipDaoSelect extends ActionVisitorTemplateStmtV2<WokaymoipInfo> {
 
 	public VisiWokaymoipDaoSelect(DeciTreeOption<WokaymoipInfo> option) {
 		super(option);

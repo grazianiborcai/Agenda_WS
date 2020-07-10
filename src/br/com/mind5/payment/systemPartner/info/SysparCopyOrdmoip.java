@@ -3,7 +3,7 @@ package br.com.mind5.payment.systemPartner.info;
 import br.com.mind5.info.InfoCopierTemplate;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.info.OrdmoipInfo;
 
-final class SysparCopyOrdmoip extends InfoCopierTemplate<SysparInfo, OrdmoipInfo>{
+final class SysparCopyOrdmoip extends InfoCopierTemplate<SysparInfo, OrdmoipInfo> {
 	
 	public SysparCopyOrdmoip() {
 		super();

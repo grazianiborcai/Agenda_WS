@@ -7,7 +7,7 @@ import br.com.mind5.info.InfoCopierOneToManyTemplate;
 import br.com.mind5.payment.payOrderItemSearch.info.PayormarchInfo;
 import br.com.mind5.payment.refundOrder.info.RefuInfo;
 
-final class RefemCopyRefu extends InfoCopierOneToManyTemplate<RefemInfo, RefuInfo>{
+final class RefemCopyRefu extends InfoCopierOneToManyTemplate<RefemInfo, RefuInfo> {
 	
 	public RefemCopyRefu() {
 		super();

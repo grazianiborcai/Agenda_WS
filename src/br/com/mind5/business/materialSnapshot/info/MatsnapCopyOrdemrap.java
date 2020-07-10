@@ -4,7 +4,7 @@ package br.com.mind5.business.materialSnapshot.info;
 import br.com.mind5.business.orderItemSnapshot.info.OrdemrapInfo;
 import br.com.mind5.info.InfoCopierTemplate;
 
-final class MatsnapCopyOrdemrap extends InfoCopierTemplate<MatsnapInfo, OrdemrapInfo>{
+final class MatsnapCopyOrdemrap extends InfoCopierTemplate<MatsnapInfo, OrdemrapInfo> {
 	
 	public MatsnapCopyOrdemrap() {
 		super();

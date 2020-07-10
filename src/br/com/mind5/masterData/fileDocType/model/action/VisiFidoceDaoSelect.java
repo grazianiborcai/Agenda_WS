@@ -9,7 +9,7 @@ import br.com.mind5.masterData.fileDocType.info.FidoceInfo;
 import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiFidoceDaoSelect extends ActionVisitorTemplateStmtV2<FidoceInfo>{
+final class VisiFidoceDaoSelect extends ActionVisitorTemplateStmtV2<FidoceInfo> {
 
 	public VisiFidoceDaoSelect(DeciTreeOption<FidoceInfo> option) {
 		super(option);

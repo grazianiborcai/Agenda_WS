@@ -3,7 +3,7 @@ package br.com.mind5.business.materialStoreSearch.info;
 import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.info.InfoCopierTemplate;
 
-final class MatorarchCopyStore extends InfoCopierTemplate<MatorarchInfo, StoreInfo>{
+final class MatorarchCopyStore extends InfoCopierTemplate<MatorarchInfo, StoreInfo> {
 	
 	public MatorarchCopyStore() {
 		super();

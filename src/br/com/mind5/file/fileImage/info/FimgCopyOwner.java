@@ -3,7 +3,7 @@ package br.com.mind5.file.fileImage.info;
 import br.com.mind5.business.owner.info.OwnerInfo;
 import br.com.mind5.info.InfoCopierTemplate;
 
-final class FimgCopyOwner extends InfoCopierTemplate<FimgInfo, OwnerInfo>{
+final class FimgCopyOwner extends InfoCopierTemplate<FimgInfo, OwnerInfo> {
 	
 	public FimgCopyOwner() {
 		super();

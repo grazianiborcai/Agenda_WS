@@ -3,7 +3,7 @@ package br.com.mind5.security.userSnapshot.info;
 import br.com.mind5.info.InfoCopierTemplate;
 import br.com.mind5.paymentPartner.partnerMoip.customerMoip.info.CusmoipInfo;
 
-final class UserapCopyCusmoip extends InfoCopierTemplate<UserapInfo, CusmoipInfo>{
+final class UserapCopyCusmoip extends InfoCopierTemplate<UserapInfo, CusmoipInfo> {
 	
 	public UserapCopyCusmoip() {
 		super();

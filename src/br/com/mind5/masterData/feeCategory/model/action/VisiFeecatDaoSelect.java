@@ -9,7 +9,7 @@ import br.com.mind5.masterData.feeCategory.info.FeecatInfo;
 import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiFeecatDaoSelect extends ActionVisitorTemplateStmtV2<FeecatInfo>{
+final class VisiFeecatDaoSelect extends ActionVisitorTemplateStmtV2<FeecatInfo> {
 
 	public VisiFeecatDaoSelect(DeciTreeOption<FeecatInfo> option) {
 		super(option);

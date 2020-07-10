@@ -9,7 +9,7 @@ import br.com.mind5.masterData.authorizationGroupRole.info.AuthgroleInfo;
 import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiAuthgroleDaoSelect extends ActionVisitorTemplateStmtV2<AuthgroleInfo>{
+final class VisiAuthgroleDaoSelect extends ActionVisitorTemplateStmtV2<AuthgroleInfo> {
 
 	public VisiAuthgroleDaoSelect(DeciTreeOption<AuthgroleInfo> option) {
 		super(option);

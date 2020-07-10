@@ -9,7 +9,7 @@ import br.com.mind5.masterData.currencySearch.info.CurrarshInfo;
 import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiCurrarshDaoSelect extends ActionVisitorTemplateStmtV2<CurrarshInfo>{
+final class VisiCurrarshDaoSelect extends ActionVisitorTemplateStmtV2<CurrarshInfo> {
 
 	public VisiCurrarshDaoSelect(DeciTreeOption<CurrarshInfo> option) {
 		super(option);

@@ -3,7 +3,7 @@ package br.com.mind5.payment.creditCardSearch.info;
 import br.com.mind5.info.InfoCopierTemplate;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
 
-final class CrecarchCopyPayord extends InfoCopierTemplate<CrecarchInfo, PayordInfo>{
+final class CrecarchCopyPayord extends InfoCopierTemplate<CrecarchInfo, PayordInfo> {
 	
 	public CrecarchCopyPayord() {
 		super();

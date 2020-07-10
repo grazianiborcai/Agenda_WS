@@ -9,7 +9,7 @@ import br.com.mind5.form.formPhone.info.FormoneInfo;
 import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiFormoneDaoSelect extends ActionVisitorTemplateStmtV2<FormoneInfo>{
+final class VisiFormoneDaoSelect extends ActionVisitorTemplateStmtV2<FormoneInfo> {
 
 	public VisiFormoneDaoSelect(DeciTreeOption<FormoneInfo> option) {
 		super(option);

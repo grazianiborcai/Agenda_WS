@@ -9,7 +9,7 @@ import br.com.mind5.masterData.userCategory.info.UseregInfo;
 import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiUseregDaoSelect extends ActionVisitorTemplateStmtV2<UseregInfo>{
+final class VisiUseregDaoSelect extends ActionVisitorTemplateStmtV2<UseregInfo> {
 
 	public VisiUseregDaoSelect(DeciTreeOption<UseregInfo> option) {
 		super(option);

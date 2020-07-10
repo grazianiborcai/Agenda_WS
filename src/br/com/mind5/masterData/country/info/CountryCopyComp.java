@@ -3,7 +3,7 @@ package br.com.mind5.masterData.country.info;
 import br.com.mind5.business.company.info.CompInfo;
 import br.com.mind5.info.InfoCopierTemplate;
 
-final class CountryCopyComp extends InfoCopierTemplate<CountryInfo, CompInfo>{
+final class CountryCopyComp extends InfoCopierTemplate<CountryInfo, CompInfo> {
 	
 	public CountryCopyComp() {
 		super();

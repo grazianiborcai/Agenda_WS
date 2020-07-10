@@ -4,7 +4,7 @@ package br.com.mind5.business.materialSearch.info;
 import br.com.mind5.business.orderItem.info.OrderemInfo;
 import br.com.mind5.info.InfoCopierTemplate;
 
-final class MatarchCopyOrderem extends InfoCopierTemplate<MatarchInfo, OrderemInfo>{
+final class MatarchCopyOrderem extends InfoCopierTemplate<MatarchInfo, OrderemInfo> {
 	
 	public MatarchCopyOrderem() {
 		super();

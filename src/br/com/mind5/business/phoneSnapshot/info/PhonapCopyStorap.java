@@ -3,7 +3,7 @@ package br.com.mind5.business.phoneSnapshot.info;
 import br.com.mind5.business.storeSnapshot.info.StorapInfo;
 import br.com.mind5.info.InfoCopierTemplate;
 
-final class PhonapCopyStorap extends InfoCopierTemplate<PhonapInfo, StorapInfo>{
+final class PhonapCopyStorap extends InfoCopierTemplate<PhonapInfo, StorapInfo> {
 	
 	public PhonapCopyStorap() {
 		super();

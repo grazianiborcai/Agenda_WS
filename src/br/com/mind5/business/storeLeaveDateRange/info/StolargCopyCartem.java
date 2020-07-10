@@ -8,7 +8,7 @@ import br.com.mind5.business.cartItem.info.CartemInfo;
 import br.com.mind5.info.InfoCopierTemplate;
 import br.com.mind5.info.obsolete.InfoUniquifyHelper_;
 
-final class StolargCopyCartem extends InfoCopierTemplate<StolargInfo, CartemInfo>{
+final class StolargCopyCartem extends InfoCopierTemplate<StolargInfo, CartemInfo> {
 	
 	public StolargCopyCartem() {
 		super(new InfoUniquifyHelper_<StolargInfo>());

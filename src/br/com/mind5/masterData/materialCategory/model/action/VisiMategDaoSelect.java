@@ -9,7 +9,7 @@ import br.com.mind5.masterData.materialCategory.info.MategInfo;
 import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiMategDaoSelect extends ActionVisitorTemplateStmtV2<MategInfo>{
+final class VisiMategDaoSelect extends ActionVisitorTemplateStmtV2<MategInfo> {
 
 	public VisiMategDaoSelect(DeciTreeOption<MategInfo> option) {
 		super(option);

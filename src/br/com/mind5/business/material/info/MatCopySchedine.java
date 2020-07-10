@@ -4,7 +4,7 @@ package br.com.mind5.business.material.info;
 import br.com.mind5.business.scheduleLine.info.SchedineInfo;
 import br.com.mind5.info.InfoCopierTemplate;
 
-final class MatCopySchedine extends InfoCopierTemplate<MatInfo, SchedineInfo>{
+final class MatCopySchedine extends InfoCopierTemplate<MatInfo, SchedineInfo> {
 	
 	public MatCopySchedine() {
 		super();

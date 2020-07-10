@@ -9,7 +9,7 @@ import br.com.mind5.masterData.movimentType.info.MamovypeInfo;
 import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiMamovypeDaoSelect extends ActionVisitorTemplateStmtV2<MamovypeInfo>{
+final class VisiMamovypeDaoSelect extends ActionVisitorTemplateStmtV2<MamovypeInfo> {
 
 	public VisiMamovypeDaoSelect(DeciTreeOption<MamovypeInfo> option) {
 		super(option);

@@ -9,7 +9,7 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.otpProspectStore.dao.DaoOtporeInsert;
 import br.com.mind5.security.otpProspectStore.info.OtporeInfo;
 
-final class VisiOtporeDaoInsert extends ActionVisitorTemplateStmtV2<OtporeInfo>{
+final class VisiOtporeDaoInsert extends ActionVisitorTemplateStmtV2<OtporeInfo> {
 
 	public VisiOtporeDaoInsert(DeciTreeOption<OtporeInfo> option) {
 		super(option);

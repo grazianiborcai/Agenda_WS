@@ -3,7 +3,7 @@ package br.com.mind5.business.storeWorkTimeSearch.info;
 import br.com.mind5.business.employeeWorkTime.info.EmpwotmInfo;
 import br.com.mind5.info.InfoCopierTemplate;
 
-final class StowotarchCopyEmpwotm extends InfoCopierTemplate<StowotarchInfo, EmpwotmInfo>{
+final class StowotarchCopyEmpwotm extends InfoCopierTemplate<StowotarchInfo, EmpwotmInfo> {
 	
 	public StowotarchCopyEmpwotm() {
 		super();

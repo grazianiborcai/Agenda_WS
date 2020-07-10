@@ -9,7 +9,7 @@ import br.com.mind5.masterData.materialGroupSearch.info.MatouparchInfo;
 import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiMatouparchDaoSelect extends ActionVisitorTemplateStmtV2<MatouparchInfo>{
+final class VisiMatouparchDaoSelect extends ActionVisitorTemplateStmtV2<MatouparchInfo> {
 
 	public VisiMatouparchDaoSelect(DeciTreeOption<MatouparchInfo> option) {
 		super(option);

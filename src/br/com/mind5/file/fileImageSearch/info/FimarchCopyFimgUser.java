@@ -3,7 +3,7 @@ package br.com.mind5.file.fileImageSearch.info;
 import br.com.mind5.file.fileImage.info.FimgInfo;
 import br.com.mind5.info.InfoCopierTemplate;
 
-final class FimarchCopyFimgUser extends InfoCopierTemplate<FimarchInfo, FimgInfo>{
+final class FimarchCopyFimgUser extends InfoCopierTemplate<FimarchInfo, FimgInfo> {
 	
 	public FimarchCopyFimgUser() {
 		super();

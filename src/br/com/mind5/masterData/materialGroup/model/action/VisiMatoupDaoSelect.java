@@ -9,7 +9,7 @@ import br.com.mind5.masterData.materialGroup.info.MatoupInfo;
 import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiMatoupDaoSelect extends ActionVisitorTemplateStmtV2<MatoupInfo>{
+final class VisiMatoupDaoSelect extends ActionVisitorTemplateStmtV2<MatoupInfo> {
 
 	public VisiMatoupDaoSelect(DeciTreeOption<MatoupInfo> option) {
 		super(option);

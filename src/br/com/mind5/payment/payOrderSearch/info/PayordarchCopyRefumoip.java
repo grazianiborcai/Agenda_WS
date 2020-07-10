@@ -3,7 +3,7 @@ package br.com.mind5.payment.payOrderSearch.info;
 import br.com.mind5.info.InfoCopierTemplate;
 import br.com.mind5.paymentPartner.partnerMoip.refundMoip.info.RefumoipInfo;
 
-final class PayordarchCopyRefumoip extends InfoCopierTemplate<PayordarchInfo, RefumoipInfo>{
+final class PayordarchCopyRefumoip extends InfoCopierTemplate<PayordarchInfo, RefumoipInfo> {
 	
 	public PayordarchCopyRefumoip() {
 		super();

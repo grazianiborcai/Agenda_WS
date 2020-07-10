@@ -3,7 +3,7 @@ package br.com.mind5.payment.customerPartner.info;
 import br.com.mind5.info.InfoCopierTemplate;
 import br.com.mind5.payment.statusPayOrder.info.PaytusInfo;
 
-final class CusparCopyPaytus extends InfoCopierTemplate<CusparInfo, PaytusInfo>{
+final class CusparCopyPaytus extends InfoCopierTemplate<CusparInfo, PaytusInfo> {
 	
 	public CusparCopyPaytus() {
 		super();

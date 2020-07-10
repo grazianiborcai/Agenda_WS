@@ -3,7 +3,7 @@ package br.com.mind5.payment.payOrderItemSearch.info;
 import br.com.mind5.info.InfoCopierTemplate;
 import br.com.mind5.payment.refundOrder.info.RefuInfo;
 
-final class PayormarchCopyRefu extends InfoCopierTemplate<PayormarchInfo, RefuInfo>{
+final class PayormarchCopyRefu extends InfoCopierTemplate<PayormarchInfo, RefuInfo> {
 	
 	public PayormarchCopyRefu() {
 		super();

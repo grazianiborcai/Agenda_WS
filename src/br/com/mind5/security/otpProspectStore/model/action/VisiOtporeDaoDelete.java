@@ -9,7 +9,7 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.otpProspectStore.dao.DaoOtporeDelete;
 import br.com.mind5.security.otpProspectStore.info.OtporeInfo;
 
-final class VisiOtporeDaoDelete extends ActionVisitorTemplateStmtV2<OtporeInfo>{
+final class VisiOtporeDaoDelete extends ActionVisitorTemplateStmtV2<OtporeInfo> {
 
 	public VisiOtporeDaoDelete(DeciTreeOption<OtporeInfo> option) {
 		super(option);

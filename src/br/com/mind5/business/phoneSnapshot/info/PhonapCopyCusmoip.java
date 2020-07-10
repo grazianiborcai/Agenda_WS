@@ -3,7 +3,7 @@ package br.com.mind5.business.phoneSnapshot.info;
 import br.com.mind5.info.InfoCopierTemplate;
 import br.com.mind5.paymentPartner.partnerMoip.customerMoip.info.CusmoipInfo;
 
-final class PhonapCopyCusmoip extends InfoCopierTemplate<PhonapInfo, CusmoipInfo>{
+final class PhonapCopyCusmoip extends InfoCopierTemplate<PhonapInfo, CusmoipInfo> {
 	
 	public PhonapCopyCusmoip() {
 		super();

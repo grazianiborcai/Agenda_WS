@@ -9,7 +9,7 @@ import br.com.mind5.masterData.weekdaySearch.info.WeekdarchInfo;
 import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiWeekdarchDaoSelect extends ActionVisitorTemplateStmtV2<WeekdarchInfo>{
+final class VisiWeekdarchDaoSelect extends ActionVisitorTemplateStmtV2<WeekdarchInfo> {
 
 	public VisiWeekdarchDaoSelect(DeciTreeOption<WeekdarchInfo> option) {
 		super(option);

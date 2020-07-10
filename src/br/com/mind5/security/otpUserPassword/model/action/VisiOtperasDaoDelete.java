@@ -9,7 +9,7 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.otpUserPassword.dao.DaoOtperasDelete;
 import br.com.mind5.security.otpUserPassword.info.OtperasInfo;
 
-final class VisiOtperasDaoDelete extends ActionVisitorTemplateStmtV2<OtperasInfo>{
+final class VisiOtperasDaoDelete extends ActionVisitorTemplateStmtV2<OtperasInfo> {
 
 	public VisiOtperasDaoDelete(DeciTreeOption<OtperasInfo> option) {
 		super(option);

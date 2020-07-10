@@ -9,7 +9,7 @@ import br.com.mind5.config.sysOwnerSignup.info.SysonupInfo;
 import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiSysonupDaoSelect extends ActionVisitorTemplateStmtV2<SysonupInfo>{
+final class VisiSysonupDaoSelect extends ActionVisitorTemplateStmtV2<SysonupInfo> {
 
 	public VisiSysonupDaoSelect(DeciTreeOption<SysonupInfo> option) {
 		super(option);

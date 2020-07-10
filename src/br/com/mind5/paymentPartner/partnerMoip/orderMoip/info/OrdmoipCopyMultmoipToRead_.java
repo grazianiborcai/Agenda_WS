@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.info.InfoCopierOneToManyTemplate;
 import br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.info.MultmoipInfo;
 
-final class OrdmoipCopyMultmoipToRead_ extends InfoCopierOneToManyTemplate<OrdmoipInfo, MultmoipInfo>{
+final class OrdmoipCopyMultmoipToRead_ extends InfoCopierOneToManyTemplate<OrdmoipInfo, MultmoipInfo> {
 	
 	public OrdmoipCopyMultmoipToRead_() {
 		super();

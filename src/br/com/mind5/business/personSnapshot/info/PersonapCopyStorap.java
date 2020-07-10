@@ -3,7 +3,7 @@ package br.com.mind5.business.personSnapshot.info;
 import br.com.mind5.business.storeSnapshot.info.StorapInfo;
 import br.com.mind5.info.InfoCopierTemplate;
 
-final class PersonapCopyStorap extends InfoCopierTemplate<PersonapInfo, StorapInfo>{
+final class PersonapCopyStorap extends InfoCopierTemplate<PersonapInfo, StorapInfo> {
 	
 	public PersonapCopyStorap() {
 		super();

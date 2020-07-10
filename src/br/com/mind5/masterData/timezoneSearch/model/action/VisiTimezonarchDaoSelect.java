@@ -9,7 +9,7 @@ import br.com.mind5.masterData.timezoneSearch.info.TimezonarchInfo;
 import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiTimezonarchDaoSelect extends ActionVisitorTemplateStmtV2<TimezonarchInfo>{
+final class VisiTimezonarchDaoSelect extends ActionVisitorTemplateStmtV2<TimezonarchInfo> {
 
 	public VisiTimezonarchDaoSelect(DeciTreeOption<TimezonarchInfo> option) {
 		super(option);

@@ -3,7 +3,7 @@ package br.com.mind5.payment.creditCardSearch.info;
 import br.com.mind5.info.InfoCopierTemplate;
 import br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.info.PaymoipInfo;
 
-final class CrecarchCopyPaymoip extends InfoCopierTemplate<CrecarchInfo, PaymoipInfo>{
+final class CrecarchCopyPaymoip extends InfoCopierTemplate<CrecarchInfo, PaymoipInfo> {
 	
 	public CrecarchCopyPaymoip() {
 		super();

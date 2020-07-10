@@ -9,7 +9,7 @@ import br.com.mind5.masterData.fileDocTypeSearch.info.FidocarchInfo;
 import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiFidocarchDaoSelect extends ActionVisitorTemplateStmtV2<FidocarchInfo>{
+final class VisiFidocarchDaoSelect extends ActionVisitorTemplateStmtV2<FidocarchInfo> {
 
 	public VisiFidocarchDaoSelect(DeciTreeOption<FidocarchInfo> option) {
 		super(option);

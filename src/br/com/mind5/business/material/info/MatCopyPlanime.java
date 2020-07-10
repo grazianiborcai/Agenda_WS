@@ -8,7 +8,7 @@ import br.com.mind5.business.planingData.info.PlanataInfo;
 import br.com.mind5.business.planningTime.info.PlanimeInfo;
 import br.com.mind5.info.InfoCopierOneToManyTemplate;
 
-final class MatCopyPlanime extends InfoCopierOneToManyTemplate<MatInfo, PlanimeInfo>{
+final class MatCopyPlanime extends InfoCopierOneToManyTemplate<MatInfo, PlanimeInfo> {
 	
 	public MatCopyPlanime() {
 		super();

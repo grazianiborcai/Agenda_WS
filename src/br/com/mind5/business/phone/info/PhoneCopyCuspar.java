@@ -3,7 +3,7 @@ package br.com.mind5.business.phone.info;
 import br.com.mind5.info.InfoCopierTemplate;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
 
-final class PhoneCopyCuspar extends InfoCopierTemplate<PhoneInfo, CusparInfo>{
+final class PhoneCopyCuspar extends InfoCopierTemplate<PhoneInfo, CusparInfo> {
 	
 	public PhoneCopyCuspar() {
 		super();

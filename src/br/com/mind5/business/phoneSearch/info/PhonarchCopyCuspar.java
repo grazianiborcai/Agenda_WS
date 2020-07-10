@@ -3,7 +3,7 @@ package br.com.mind5.business.phoneSearch.info;
 import br.com.mind5.info.InfoCopierTemplate;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
 
-final class PhonarchCopyCuspar extends InfoCopierTemplate<PhonarchInfo, CusparInfo>{
+final class PhonarchCopyCuspar extends InfoCopierTemplate<PhonarchInfo, CusparInfo> {
 	
 	public PhonarchCopyCuspar() {
 		super();

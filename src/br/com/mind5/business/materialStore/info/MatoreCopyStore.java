@@ -2,7 +2,7 @@ package br.com.mind5.business.materialStore.info;
 import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.info.InfoCopierTemplate;
 
-final class MatoreCopyStore extends InfoCopierTemplate<MatoreInfo, StoreInfo>{
+final class MatoreCopyStore extends InfoCopierTemplate<MatoreInfo, StoreInfo> {
 	
 	public MatoreCopyStore() {
 		super();

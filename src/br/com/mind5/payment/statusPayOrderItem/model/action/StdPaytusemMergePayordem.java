@@ -5,7 +5,7 @@ import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.statusPayOrderItem.info.PaytusemInfo;
 
-public final class StdPaytusemMergePayordem extends ActionStdTemplateV2<PaytusemInfo>{
+public final class StdPaytusemMergePayordem extends ActionStdTemplateV2<PaytusemInfo> {
 
 	public StdPaytusemMergePayordem(DeciTreeOption<PaytusemInfo> option) {
 		super(option);

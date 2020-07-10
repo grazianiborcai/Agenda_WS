@@ -9,7 +9,7 @@ import br.com.mind5.masterData.businessAreaSearch.info.BusarearchInfo;
 import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiBusarearchDaoSelect extends ActionVisitorTemplateStmtV2<BusarearchInfo>{
+final class VisiBusarearchDaoSelect extends ActionVisitorTemplateStmtV2<BusarearchInfo> {
 
 	public VisiBusarearchDaoSelect(DeciTreeOption<BusarearchInfo> option) {
 		super(option);

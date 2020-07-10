@@ -3,7 +3,7 @@ package br.com.mind5.business.materialText.info;
 import br.com.mind5.business.material.info.MatInfo;
 import br.com.mind5.info.InfoCopierTemplate;
 
-final class MatextCopyMatKey extends InfoCopierTemplate<MatextInfo, MatInfo>{
+final class MatextCopyMatKey extends InfoCopierTemplate<MatextInfo, MatInfo> {
 	
 	public MatextCopyMatKey() {
 		super();

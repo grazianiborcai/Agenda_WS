@@ -9,7 +9,7 @@ import br.com.mind5.masterData.countrySearch.info.CountarchInfo;
 import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiCountarchDaoSelect extends ActionVisitorTemplateStmtV2<CountarchInfo>{
+final class VisiCountarchDaoSelect extends ActionVisitorTemplateStmtV2<CountarchInfo> {
 
 	public VisiCountarchDaoSelect(DeciTreeOption<CountarchInfo> option) {
 		super(option);

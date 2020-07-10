@@ -4,7 +4,7 @@ package br.com.mind5.business.materialSearch.info;
 import br.com.mind5.business.refundPolicy.info.RefupolInfo;
 import br.com.mind5.info.InfoCopierTemplate;
 
-final class MatarchCopyRefupol extends InfoCopierTemplate<MatarchInfo, RefupolInfo>{
+final class MatarchCopyRefupol extends InfoCopierTemplate<MatarchInfo, RefupolInfo> {
 	
 	public MatarchCopyRefupol() {
 		super();

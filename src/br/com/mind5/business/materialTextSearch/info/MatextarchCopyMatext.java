@@ -4,7 +4,7 @@ package br.com.mind5.business.materialTextSearch.info;
 import br.com.mind5.business.materialText.info.MatextInfo;
 import br.com.mind5.info.InfoCopierTemplate;
 
-final class MatextarchCopyMatext extends InfoCopierTemplate<MatextarchInfo, MatextInfo>{
+final class MatextarchCopyMatext extends InfoCopierTemplate<MatextarchInfo, MatextInfo> {
 	
 	public MatextarchCopyMatext() {
 		super();

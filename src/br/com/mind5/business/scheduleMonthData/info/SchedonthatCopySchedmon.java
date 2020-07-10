@@ -4,7 +4,7 @@ package br.com.mind5.business.scheduleMonthData.info;
 import br.com.mind5.business.scheduleMonth.info.SchedmonInfo;
 import br.com.mind5.info.InfoCopierTemplate;
 
-final class SchedonthatCopySchedmon extends InfoCopierTemplate<SchedonthatInfo, SchedmonInfo>{
+final class SchedonthatCopySchedmon extends InfoCopierTemplate<SchedonthatInfo, SchedmonInfo> {
 	
 	public SchedonthatCopySchedmon() {
 		super();

@@ -9,7 +9,7 @@ import br.com.mind5.masterData.materialUnitSearch.info.MatunitarchInfo;
 import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiMatunitarchDaoSelect extends ActionVisitorTemplateStmtV2<MatunitarchInfo>{
+final class VisiMatunitarchDaoSelect extends ActionVisitorTemplateStmtV2<MatunitarchInfo> {
 
 	public VisiMatunitarchDaoSelect(DeciTreeOption<MatunitarchInfo> option) {
 		super(option);

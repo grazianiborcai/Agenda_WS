@@ -8,7 +8,7 @@ import br.com.mind5.business.bookService.info.BookiceInfo;
 import br.com.mind5.info.InfoCopierTemplate;
 import br.com.mind5.info.obsolete.InfoUniquifyHelper_;
 
-final class EmplargCopyBookice extends InfoCopierTemplate<EmplargInfo, BookiceInfo>{
+final class EmplargCopyBookice extends InfoCopierTemplate<EmplargInfo, BookiceInfo> {
 	
 	public EmplargCopyBookice() {
 		super(new InfoUniquifyHelper_<EmplargInfo>());

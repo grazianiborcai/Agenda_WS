@@ -3,7 +3,7 @@ package br.com.mind5.payment.storePartner.info;
 import br.com.mind5.info.InfoCopierTemplate;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.info.OrdmoipInfo;
 
-final class StoparCopyOrdmoip extends InfoCopierTemplate<StoparInfo, OrdmoipInfo>{
+final class StoparCopyOrdmoip extends InfoCopierTemplate<StoparInfo, OrdmoipInfo> {
 	
 	public StoparCopyOrdmoip() {
 		super();

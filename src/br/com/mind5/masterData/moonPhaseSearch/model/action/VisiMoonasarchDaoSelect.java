@@ -9,7 +9,7 @@ import br.com.mind5.masterData.moonPhaseSearch.info.MoonasarchInfo;
 import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiMoonasarchDaoSelect extends ActionVisitorTemplateStmtV2<MoonasarchInfo>{
+final class VisiMoonasarchDaoSelect extends ActionVisitorTemplateStmtV2<MoonasarchInfo> {
 
 	public VisiMoonasarchDaoSelect(DeciTreeOption<MoonasarchInfo> option) {
 		super(option);

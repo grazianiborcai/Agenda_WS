@@ -3,7 +3,7 @@ package br.com.mind5.business.storeSearch.info;
 import br.com.mind5.authorization.scheduleAuthorization.info.SchedauthInfo;
 import br.com.mind5.info.InfoCopierTemplate;
 
-final class SotarchCopySchedauth extends InfoCopierTemplate<SotarchInfo, SchedauthInfo>{
+final class SotarchCopySchedauth extends InfoCopierTemplate<SotarchInfo, SchedauthInfo> {
 	
 	public SotarchCopySchedauth() {
 		super();

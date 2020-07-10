@@ -3,7 +3,7 @@ package br.com.mind5.payment.storePartner.info;
 import br.com.mind5.business.planingData.info.PlanataInfo;
 import br.com.mind5.info.InfoCopierTemplate;
 
-final class StoparCopyPlanata extends InfoCopierTemplate<StoparInfo, PlanataInfo>{
+final class StoparCopyPlanata extends InfoCopierTemplate<StoparInfo, PlanataInfo> {
 	
 	public StoparCopyPlanata() {
 		super();

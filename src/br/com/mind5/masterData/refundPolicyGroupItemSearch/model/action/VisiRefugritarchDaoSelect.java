@@ -9,7 +9,7 @@ import br.com.mind5.masterData.refundPolicyGroupItemSearch.info.RefugritarchInfo
 import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiRefugritarchDaoSelect extends ActionVisitorTemplateStmtV2<RefugritarchInfo>{
+final class VisiRefugritarchDaoSelect extends ActionVisitorTemplateStmtV2<RefugritarchInfo> {
 
 	public VisiRefugritarchDaoSelect(DeciTreeOption<RefugritarchInfo> option) {
 		super(option);

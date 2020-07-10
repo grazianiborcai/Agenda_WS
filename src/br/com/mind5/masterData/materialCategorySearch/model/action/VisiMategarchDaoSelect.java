@@ -9,7 +9,7 @@ import br.com.mind5.masterData.materialCategorySearch.info.MategarchInfo;
 import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiMategarchDaoSelect extends ActionVisitorTemplateStmtV2<MategarchInfo>{
+final class VisiMategarchDaoSelect extends ActionVisitorTemplateStmtV2<MategarchInfo> {
 
 	public VisiMategarchDaoSelect(DeciTreeOption<MategarchInfo> option) {
 		super(option);

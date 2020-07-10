@@ -9,7 +9,7 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.storePartnerList.dao.DaoStoplisSelect;
 import br.com.mind5.payment.storePartnerList.info.StoplisInfo;
 
-final class VisiStoplisDaoSelect extends ActionVisitorTemplateStmtV2<StoplisInfo>{
+final class VisiStoplisDaoSelect extends ActionVisitorTemplateStmtV2<StoplisInfo> {
 
 	public VisiStoplisDaoSelect(DeciTreeOption<StoplisInfo> option) {
 		super(option);

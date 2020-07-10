@@ -3,7 +3,7 @@ package br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.info;
 import br.com.mind5.info.InfoCopierTemplate;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
 
-final class CremoipCopyCrecard extends InfoCopierTemplate<CremoipInfo, CrecardInfo>{
+final class CremoipCopyCrecard extends InfoCopierTemplate<CremoipInfo, CrecardInfo> {
 	
 	public CremoipCopyCrecard() {
 		super();

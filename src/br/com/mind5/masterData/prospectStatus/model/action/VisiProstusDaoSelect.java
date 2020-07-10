@@ -9,7 +9,7 @@ import br.com.mind5.masterData.prospectStatus.info.ProstusInfo;
 import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiProstusDaoSelect extends ActionVisitorTemplateStmtV2<ProstusInfo>{
+final class VisiProstusDaoSelect extends ActionVisitorTemplateStmtV2<ProstusInfo> {
 
 	public VisiProstusDaoSelect(DeciTreeOption<ProstusInfo> option) {
 		super(option);

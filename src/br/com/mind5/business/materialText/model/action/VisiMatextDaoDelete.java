@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoStmtExecV2;
 import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiMatextDaoDelete extends ActionVisitorTemplateStmtV2<MatextInfo>{
+final class VisiMatextDaoDelete extends ActionVisitorTemplateStmtV2<MatextInfo> {
 
 	public VisiMatextDaoDelete(DeciTreeOption<MatextInfo> option) {
 		super(option);

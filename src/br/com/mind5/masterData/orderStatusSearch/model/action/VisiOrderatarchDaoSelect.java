@@ -9,7 +9,7 @@ import br.com.mind5.masterData.orderStatusSearch.info.OrderatarchInfo;
 import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiOrderatarchDaoSelect extends ActionVisitorTemplateStmtV2<OrderatarchInfo>{
+final class VisiOrderatarchDaoSelect extends ActionVisitorTemplateStmtV2<OrderatarchInfo> {
 
 	public VisiOrderatarchDaoSelect(DeciTreeOption<OrderatarchInfo> option) {
 		super(option);

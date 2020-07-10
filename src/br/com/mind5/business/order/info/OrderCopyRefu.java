@@ -3,7 +3,7 @@ package br.com.mind5.business.order.info;
 import br.com.mind5.info.InfoCopierTemplate;
 import br.com.mind5.payment.refundOrder.info.RefuInfo;
 
-final class OrderCopyRefu extends InfoCopierTemplate<OrderInfo, RefuInfo>{
+final class OrderCopyRefu extends InfoCopierTemplate<OrderInfo, RefuInfo> {
 	
 	public OrderCopyRefu() {
 		super();

@@ -7,7 +7,7 @@ import br.com.mind5.business.cartItem.info.CartemInfo;
 import br.com.mind5.info.InfoCopierTemplate;
 import br.com.mind5.info.obsolete.InfoUniquifyHelper_;
 
-final class StolateCopyCart extends InfoCopierTemplate<StolateInfo, CartemInfo>{
+final class StolateCopyCart extends InfoCopierTemplate<StolateInfo, CartemInfo> {
 	
 	public StolateCopyCart() {
 		super(new InfoUniquifyHelper_<StolateInfo>());

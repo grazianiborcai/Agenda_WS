@@ -9,7 +9,7 @@ import br.com.mind5.masterData.gender.info.GenderInfo;
 import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiGenderDaoSelect extends ActionVisitorTemplateStmtV2<GenderInfo>{
+final class VisiGenderDaoSelect extends ActionVisitorTemplateStmtV2<GenderInfo> {
 
 	public VisiGenderDaoSelect(DeciTreeOption<GenderInfo> option) {
 		super(option);

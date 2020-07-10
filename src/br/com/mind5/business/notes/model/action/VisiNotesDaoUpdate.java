@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoStmtExecV2;
 import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiNotesDaoUpdate extends ActionVisitorTemplateStmtV2<NotesInfo>{
+final class VisiNotesDaoUpdate extends ActionVisitorTemplateStmtV2<NotesInfo> {
 
 	public VisiNotesDaoUpdate(DeciTreeOption<NotesInfo> option) {
 		super(option);
