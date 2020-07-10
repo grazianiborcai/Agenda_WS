@@ -20,12 +20,12 @@ import br.com.mind5.dao.common.DaoJoinEmp;
 import br.com.mind5.dao.common.DaoJoinStore;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class EmplarchSelectSingle extends DaoStmtTemplate<EmplarchInfo> {	
+public final class DaoEmplarchSelectSingle extends DaoStmtTemplate<EmplarchInfo> {	
 	private final String MAIN_TABLE = DaoDbTable.EMP_LD_TABLE;	
 	
 	
 	
-	public EmplarchSelectSingle(Connection conn, EmplarchInfo recordInfo, String schemaName) {
+	public DaoEmplarchSelectSingle(Connection conn, EmplarchInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -54,7 +54,7 @@ public final class EmplarchSelectSingle extends DaoStmtTemplate<EmplarchInfo> {
 		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new EmplarchWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new DaoEmplarchWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -85,12 +85,12 @@ public final class EmplarchSelectSingle extends DaoStmtTemplate<EmplarchInfo> {
 				do {
 					EmplarchInfo dataInfo = new EmplarchInfo();
 					
-					dataInfo.codOwner = stmtResult.getLong(EmplarchDbTableColumn.COL_COD_OWNER);
-					dataInfo.codStore = stmtResult.getLong(EmplarchDbTableColumn.COL_COD_STORE);
-					dataInfo.codEmployee = stmtResult.getLong(EmplarchDbTableColumn.COL_COD_EMPLOYEE);
-					dataInfo.recordMode = stmtResult.getString(EmplarchDbTableColumn.COL_RECORD_MODE);	
-					dataInfo.timeValidFrom = DaoFormatter.sqlToLocalTime(stmtResult, EmplarchDbTableColumn.COL_TM_VALID_FROM);
-					dataInfo.dateValidFrom = DaoFormatter.sqlToLocalDate(stmtResult, EmplarchDbTableColumn.COL_DT_VALID_FROM);
+					dataInfo.codOwner = stmtResult.getLong(DaoEmplarchDbTableColumn.COL_COD_OWNER);
+					dataInfo.codStore = stmtResult.getLong(DaoEmplarchDbTableColumn.COL_COD_STORE);
+					dataInfo.codEmployee = stmtResult.getLong(DaoEmplarchDbTableColumn.COL_COD_EMPLOYEE);
+					dataInfo.recordMode = stmtResult.getString(DaoEmplarchDbTableColumn.COL_RECORD_MODE);	
+					dataInfo.timeValidFrom = DaoFormatter.sqlToLocalTime(stmtResult, DaoEmplarchDbTableColumn.COL_TM_VALID_FROM);
+					dataInfo.dateValidFrom = DaoFormatter.sqlToLocalDate(stmtResult, DaoEmplarchDbTableColumn.COL_DT_VALID_FROM);
 					
 					finalResult.add(dataInfo);		
 				} while (stmtResult.next());

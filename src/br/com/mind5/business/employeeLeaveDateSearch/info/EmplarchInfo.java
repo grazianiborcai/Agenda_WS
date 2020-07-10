@@ -19,7 +19,7 @@ public final class EmplarchInfo extends InfoRecord implements Cloneable {
 	
 	
 	public EmplarchInfo() {
-		super(EmplarchInfo.class);
+		super();
 		
 		codOwner = DefaultValue.number();
 		codStore = DefaultValue.number();
@@ -42,22 +42,7 @@ public final class EmplarchInfo extends InfoRecord implements Cloneable {
 	
 	
 	@Override public Object clone()throws CloneNotSupportedException{  
-		EmplarchInfo deepCopy = (EmplarchInfo) super.clone();  		
-		
-		LocalTime cloneTimeValidFrom = null;		
-		if (timeValidFrom != null) 
-			cloneTimeValidFrom = LocalTime.of(timeValidFrom.getHour(), timeValidFrom.getMinute(), timeValidFrom.getSecond());
-		
-		
-		LocalDate cloneDateValidFrom = null;	
-		if (dateValidFrom != null) 
-			cloneDateValidFrom = LocalDate.of(dateValidFrom.getYear(), dateValidFrom.getMonth(), dateValidFrom.getDayOfMonth());
-				
-		
-		deepCopy.timeValidFrom = cloneTimeValidFrom;
-		deepCopy.dateValidFrom = cloneDateValidFrom;
-				
-		return deepCopy;	
+		return super.clone(); 	
 	}  
 	
 	
