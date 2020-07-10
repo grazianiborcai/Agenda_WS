@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.com.mind5.authorization.scheduleAuthorization.info.SchedauthInfo;
 import br.com.mind5.authorization.storePartitionAuthorization.info.SytotauhInfo;
+import br.com.mind5.business.customer.info.CusInfo;
 import br.com.mind5.business.refundPolicy.info.RefupolInfo;
 import br.com.mind5.info.InfoCopier;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
@@ -12,6 +13,20 @@ import br.com.mind5.payment.refundOrderItem.info.RefemInfo;
 import br.com.mind5.security.user.info.UserInfo;
 
 public final class UserarchCopier {
+	public static UserarchInfo copyFromCus(CusInfo source) {
+		InfoCopier<UserarchInfo, CusInfo> copier = new UserarchCopyCus();
+		return copier.makeCopy(source);
+	}
+	
+	
+	
+	public static List<UserarchInfo> copyFromCus(List<CusInfo> sources) {
+		InfoCopier<UserarchInfo, CusInfo> copier = new UserarchCopyCus();
+		return copier.makeCopy(sources);
+	}
+	
+	
+	
 	public static UserarchInfo copyFromSytotauh(SytotauhInfo source) {
 		InfoCopier<UserarchInfo, SytotauhInfo> copier = new UserarchCopySytotauh();
 		return copier.makeCopy(source);
