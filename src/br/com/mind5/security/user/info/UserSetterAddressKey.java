@@ -1,6 +1,7 @@
 package br.com.mind5.security.user.info;
 
 import br.com.mind5.business.address.info.AddressInfo;
+import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoSetterTemplate;
 
 public final class UserSetterAddressKey extends InfoSetterTemplate<UserInfo> {
@@ -10,8 +11,12 @@ public final class UserSetterAddressKey extends InfoSetterTemplate<UserInfo> {
 			eachAddress.codOwner = recordInfo.codOwner;
 			eachAddress.codUser = recordInfo.codUser;
 			eachAddress.username = recordInfo.username;
-			eachAddress.lastChangedBy = recordInfo.lastChangedBy;	//TODO: remover
 			eachAddress.codLanguage = recordInfo.codLanguage;
+			
+			eachAddress.codCustomer = DefaultValue.number();
+			eachAddress.codStore = DefaultValue.number();
+			eachAddress.codEmployee = DefaultValue.number();
+			eachAddress.codOwnerRef = DefaultValue.number();
 		}
 		
 		return recordInfo;

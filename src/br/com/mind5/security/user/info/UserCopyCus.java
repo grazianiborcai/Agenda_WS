@@ -23,6 +23,7 @@ final class UserCopyCus extends InfoCopierTemplate<UserInfo, CusInfo> {
 		
 		result.addresses = CloneUtil.cloneRecords(source.addresses, this.getClass());
 		result.phones = CloneUtil.cloneRecords(source.phones, this.getClass());
+		result.personData = CloneUtil.cloneRecord(source.personData, this.getClass());
 		
 		return result;
 	}
