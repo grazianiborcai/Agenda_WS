@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoStmtExecV2;
 import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiCartemarchDaoSelect extends ActionVisitorTemplateStmtV2<CartemarchInfo>{
+final class VisiCartemarchDaoSelect extends ActionVisitorTemplateStmtV2<CartemarchInfo> {
 
 	public VisiCartemarchDaoSelect(DeciTreeOption<CartemarchInfo> option) {
 		super(option);

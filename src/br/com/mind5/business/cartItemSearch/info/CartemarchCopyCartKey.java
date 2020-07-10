@@ -3,7 +3,7 @@ package br.com.mind5.business.cartItemSearch.info;
 import br.com.mind5.business.cart.info.CartInfo;
 import br.com.mind5.info.InfoCopierTemplate;
 
-final class CartemarchCopyCartKey extends InfoCopierTemplate<CartemarchInfo, CartInfo>{
+final class CartemarchCopyCartKey extends InfoCopierTemplate<CartemarchInfo, CartInfo> {
 	
 	public CartemarchCopyCartKey() {
 		super();
