@@ -3,7 +3,7 @@ package br.com.mind5.business.companyList.info;
 import br.com.mind5.business.ownerSnapshot.info.OwnerapInfo;
 import br.com.mind5.info.InfoCopierTemplate;
 
-final class ComplisCopyOwnerap extends InfoCopierTemplate<ComplisInfo, OwnerapInfo>{
+final class ComplisCopyOwnerap extends InfoCopierTemplate<ComplisInfo, OwnerapInfo> {
 	
 	public ComplisCopyOwnerap() {
 		super();
