@@ -15,6 +15,7 @@ public final class CusInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codCustomer;
 	public long codSnapshot;
+	public long codStore;
 	public long codPerson;
 	public long codUser;
 	public String recordMode;
@@ -39,6 +40,7 @@ public final class CusInfo extends InfoRecord implements Cloneable {
 		codOwner = DefaultValue.number();
 		codCustomer = DefaultValue.number();
 		codSnapshot = DefaultValue.number();
+		codStore = DefaultValue.number();
 		codPerson = DefaultValue.number();
 		codUser = DefaultValue.number();
 		addresses = DefaultValue.list();

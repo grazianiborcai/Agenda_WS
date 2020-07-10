@@ -61,7 +61,8 @@ public final class DaoCusSelectSingle extends DaoStmtTemplate<CusInfo> {
 					CusInfo dataInfo = new CusInfo();
 					
 					dataInfo.codOwner = stmtResult.getLong(DaoCusDbTableColumn.COL_COD_OWNER);
-					dataInfo.codCustomer = stmtResult.getLong(DaoCusDbTableColumn.COL_COD_CUSTOMER);									
+					dataInfo.codCustomer = stmtResult.getLong(DaoCusDbTableColumn.COL_COD_CUSTOMER);
+					dataInfo.codStore = stmtResult.getLong(DaoCusDbTableColumn.COL_COD_STORE);
 					dataInfo.recordMode = stmtResult.getString(DaoCusDbTableColumn.COL_RECORD_MODE);
 					dataInfo.codPerson = DaoFormatter.sqlToLong(stmtResult, DaoCusDbTableColumn.COL_COD_PERSON);
 					dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, DaoCusDbTableColumn.COL_COD_USER);

@@ -8,7 +8,7 @@ import br.com.mind5.business.customer.model.action.LazyCusMergeAddress;
 import br.com.mind5.business.customer.model.action.LazyCusMergeFimist;
 import br.com.mind5.business.customer.model.action.LazyCusMergePerson;
 import br.com.mind5.business.customer.model.action.LazyCusMergePhone;
-import br.com.mind5.business.customer.model.action.LazyCusMergeUser;
+import br.com.mind5.business.customer.model.action.LazyCusNodeUser;
 import br.com.mind5.business.customer.model.action.StdCusMergeToSelect;
 import br.com.mind5.business.customer.model.checker.CusCheckLangu;
 import br.com.mind5.business.customer.model.checker.CusCheckOwner;
@@ -67,14 +67,14 @@ public final class RootCusSelect extends DeciTreeTemplateReadV2<CusInfo> {
 		ActionLazyV1<CusInfo> mergePerson = new LazyCusMergePerson(option.conn, option.schemaName);
 		ActionLazyV1<CusInfo> mergeAddress = new LazyCusMergeAddress(option.conn, option.schemaName);
 		ActionLazyV1<CusInfo> mergePhone = new LazyCusMergePhone(option.conn, option.schemaName);
-		ActionLazyV1<CusInfo> mergeUser = new LazyCusMergeUser(option.conn, option.schemaName);
+		ActionLazyV1<CusInfo> nodeUser = new LazyCusNodeUser(option.conn, option.schemaName);
 		ActionLazyV1<CusInfo> mergeFimist = new LazyCusMergeFimist(option.conn, option.schemaName);
 		
 		select.addPostAction(mergePerson);
 		mergePerson.addPostAction(mergeAddress);
 		mergeAddress.addPostAction(mergePhone);
-		mergePhone.addPostAction(mergeUser);
-		mergeUser.addPostAction(mergeFimist);
+		mergePhone.addPostAction(nodeUser);
+		nodeUser.addPostAction(mergeFimist);
 		
 		actions.add(select);
 		return actions;
