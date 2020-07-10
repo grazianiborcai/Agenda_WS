@@ -5,9 +5,8 @@ import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorV3;
 import br.com.mind5.info.InfoUniquifier;
-import br.com.mind5.masterData.gender.info.GenderInfo;
 
-final class PersonapVisiMergeGender implements InfoMergerVisitorV3<PersonapInfo, GenderInfo> {
+final class PersonapVisiMergeToSelect implements InfoMergerVisitorV3<PersonapInfo, PersonapInfo> {
 	
 	@Override public List<PersonapInfo> beforeMerge(List<PersonapInfo> baseInfos) {
 		return baseInfos;
@@ -15,18 +14,19 @@ final class PersonapVisiMergeGender implements InfoMergerVisitorV3<PersonapInfo,
 	
 	
 	
-	@Override public boolean shouldMerge(PersonapInfo baseInfo, GenderInfo selectedInfo) {
-		return (baseInfo.codGender == selectedInfo.codGender);
-	}
+	@Override public boolean shouldMerge(PersonapInfo baseInfo, PersonapInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner);
+	}	
 	
 	
 
-	@Override public List<PersonapInfo> merge(PersonapInfo baseInfo, GenderInfo selectedInfo) {
+	@Override public List<PersonapInfo> merge(PersonapInfo baseInfo, PersonapInfo selectedInfo) {
 		List<PersonapInfo> results = new ArrayList<>();
 		
-		baseInfo.txtGender = selectedInfo.txtGender;
+		selectedInfo.username = baseInfo.username;
+		selectedInfo.codLanguage = baseInfo.codLanguage;
 		
-		results.add(baseInfo);
+		results.add(selectedInfo);
 		return results;
 	}
 	

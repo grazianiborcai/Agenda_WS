@@ -1,19 +1,19 @@
 package br.com.mind5.business.personSnapshot.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.personSnapshot.info.PersonapInfo;
 import br.com.mind5.business.personSnapshot.info.PersonapMerger;
 import br.com.mind5.masterData.gender.info.GenderInfo;
 import br.com.mind5.masterData.gender.model.decisionTree.RootGenderSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiPersonapMergeGender extends ActionVisitorTemplateMergeV1<PersonapInfo, GenderInfo> {
+final class VisiPersonapMergeGender extends ActionVisitorTemplateMergeV2<PersonapInfo, GenderInfo> {
 	
-	public VisiPersonapMergeGender(Connection conn, String schemaName) {
-		super(conn, schemaName, GenderInfo.class);
+	public VisiPersonapMergeGender(DeciTreeOption<PersonapInfo> option) {
+		super(option, GenderInfo.class);
 	}
 	
 	
@@ -24,13 +24,13 @@ final class VisiPersonapMergeGender extends ActionVisitorTemplateMergeV1<Persona
 	
 	
 	
-	@Override protected List<PersonapInfo> mergeHook(List<PersonapInfo> recordInfos, List<GenderInfo> selectedInfos) {	
-		return PersonapMerger.mergeWithGender(selectedInfos, recordInfos);
+	@Override protected List<PersonapInfo> mergeHook(List<PersonapInfo> baseInfos, List<GenderInfo> selectedInfos) {	
+		return PersonapMerger.mergeWithGender(baseInfos, selectedInfos);
 	}
 	
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
+		return super.MERGE_WHEN_EMPTY;
 	}
 }

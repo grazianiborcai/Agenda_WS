@@ -11,6 +11,7 @@ public final class PersonapInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codSnapshot;
 	public long codPerson;
+	public long codStore;
 	public String cpf;
 	public String name;
 	public String nameSearch;
@@ -27,14 +28,16 @@ public final class PersonapInfo extends InfoRecord implements Cloneable {
 	public LocalDateTime createdOn;
 	public long createdBy;	
 	public long lastChangedBy;
+	public String username;
 	
 	
 	public PersonapInfo() {
-		super(PersonapInfo.class);
+		super();
 		
 		codOwner = DefaultValue.number();
 		codSnapshot = DefaultValue.number();
 		codPerson = DefaultValue.number();
+		codStore = DefaultValue.number();
 		codGender = DefaultValue.gender();
 		birthYear = DefaultValue.number();
 		birthMonth = DefaultValue.number();

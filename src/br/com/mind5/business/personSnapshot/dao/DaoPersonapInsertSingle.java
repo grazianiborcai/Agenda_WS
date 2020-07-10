@@ -15,11 +15,11 @@ import br.com.mind5.dao.DaoStmtParamTranslator;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class PersonapInsertSingle extends DaoStmtTemplate<PersonapInfo> {	
+public final class DaoPersonapInsertSingle extends DaoStmtTemplate<PersonapInfo> {	
 	private final String MAIN_TABLE = DaoDbTable.PERSON_SNAPSHOT_TABLE;
 	
 	
-	public PersonapInsertSingle(Connection conn, PersonapInfo recordInfo, String schemaName) {
+	public DaoPersonapInsertSingle(Connection conn, PersonapInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);		
 	}
 	
@@ -59,6 +59,7 @@ public final class PersonapInsertSingle extends DaoStmtTemplate<PersonapInfo> {
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.birthYear);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.birthMonth);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.birthDay);
+				stmt.setLong(i++, recordInfo.codStore);
 				
 				return stmt;
 			}		
