@@ -3,9 +3,9 @@ package br.com.mind5.security.userSearch.info;
 import br.com.mind5.authorization.storePartitionAuthorization.info.SytotauhInfo;
 import br.com.mind5.info.InfoCopierTemplate;
 
-final class UserarchCopyCusauth extends InfoCopierTemplate<UserarchInfo, SytotauhInfo> {
+final class UserarchCopySytotauh extends InfoCopierTemplate<UserarchInfo, SytotauhInfo> {
 	
-	public UserarchCopyCusauth() {
+	public UserarchCopySytotauh() {
 		super();
 	}
 	

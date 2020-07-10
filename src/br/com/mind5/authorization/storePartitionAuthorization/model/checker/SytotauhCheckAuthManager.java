@@ -23,6 +23,6 @@ public final class SytotauhCheckAuthManager extends ModelCheckerTemplateForwardV
 	
 	
 	@Override protected UserarchInfo toForwardClass(SytotauhInfo baseRecord) {
-		return UserarchCopier.copyFromCusauth(baseRecord);
+		return UserarchCopier.copyFromSytotauh(baseRecord);
 	}
 }

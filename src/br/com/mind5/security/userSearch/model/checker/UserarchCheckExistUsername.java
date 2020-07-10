@@ -6,18 +6,18 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.userSearch.info.UserarchInfo;
-import br.com.mind5.security.userSearch.model.decisionTree.RootUserarchSelectManager;
+import br.com.mind5.security.userSearch.model.decisionTree.RootUserarchSelectUsername;
 
-public final class UserarchCheckExistManager extends ModelCheckerTemplateActionV2<UserarchInfo, UserarchInfo> {
+public final class UserarchCheckExistUsername extends ModelCheckerTemplateActionV2<UserarchInfo, UserarchInfo> {
 	
-	public UserarchCheckExistManager(ModelCheckerOption option) {
+	public UserarchCheckExistUsername(ModelCheckerOption option) {
 		super(option, UserarchInfo.class);
 	}
 	
 
 	
 	@Override protected ActionStdV1<UserarchInfo> buildActionHook(DeciTreeOption<UserarchInfo> option) {
-		ActionStdV1<UserarchInfo> select = new RootUserarchSelectManager(option).toAction();
+		ActionStdV1<UserarchInfo> select = new RootUserarchSelectUsername(option).toAction();
 		return select;
 	}
 	

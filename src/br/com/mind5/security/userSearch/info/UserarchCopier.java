@@ -12,15 +12,15 @@ import br.com.mind5.payment.refundOrderItem.info.RefemInfo;
 import br.com.mind5.security.user.info.UserInfo;
 
 public final class UserarchCopier {
-	public static UserarchInfo copyFromCusauth(SytotauhInfo source) {
-		InfoCopier<UserarchInfo, SytotauhInfo> copier = new UserarchCopyCusauth();
+	public static UserarchInfo copyFromSytotauh(SytotauhInfo source) {
+		InfoCopier<UserarchInfo, SytotauhInfo> copier = new UserarchCopySytotauh();
 		return copier.makeCopy(source);
 	}
 	
 	
 	
-	public static List<UserarchInfo> copyFromCusauth(List<SytotauhInfo> sources) {
-		InfoCopier<UserarchInfo, SytotauhInfo> copier = new UserarchCopyCusauth();
+	public static List<UserarchInfo> copyFromSytotauh(List<SytotauhInfo> sources) {
+		InfoCopier<UserarchInfo, SytotauhInfo> copier = new UserarchCopySytotauh();
 		return copier.makeCopy(sources);
 	}
 	
