@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.info.InfoMergerVisitorV3;
 import br.com.mind5.info.InfoUniquifier;
 
-final class AddresnapVisiMergeToSelect implements InfoMergerVisitorV3<AddresnapInfo, AddresnapInfo>{
+final class AddresnapVisiMergeToSelect implements InfoMergerVisitorV3<AddresnapInfo, AddresnapInfo> {
 	
 	@Override public List<AddresnapInfo> beforeMerge(List<AddresnapInfo> baseInfos) {
 		return baseInfos;

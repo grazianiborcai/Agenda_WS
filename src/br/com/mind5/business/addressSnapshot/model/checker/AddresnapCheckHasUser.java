@@ -7,7 +7,7 @@ import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class AddresnapCheckHasUser extends ModelCheckerTemplateSimpleV2<AddresnapInfo>{
+public final class AddresnapCheckHasUser extends ModelCheckerTemplateSimpleV2<AddresnapInfo> {
 
 	public AddresnapCheckHasUser(ModelCheckerOption option) {
 		super(option);

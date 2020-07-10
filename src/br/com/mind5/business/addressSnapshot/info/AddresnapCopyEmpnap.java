@@ -7,7 +7,7 @@ import java.util.List;
 import br.com.mind5.business.employeeSnapshot.info.EmpnapInfo;
 import br.com.mind5.info.InfoCopierOneToManyTemplate;
 
-final class AddresnapCopyEmpnap extends InfoCopierOneToManyTemplate<AddresnapInfo, EmpnapInfo>{
+final class AddresnapCopyEmpnap extends InfoCopierOneToManyTemplate<AddresnapInfo, EmpnapInfo> {
 	
 	public AddresnapCopyEmpnap() {
 		super();

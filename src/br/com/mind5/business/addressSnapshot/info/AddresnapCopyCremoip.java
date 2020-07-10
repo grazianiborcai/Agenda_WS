@@ -3,7 +3,7 @@ package br.com.mind5.business.addressSnapshot.info;
 import br.com.mind5.info.InfoCopierTemplate;
 import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.info.CremoipInfo;
 
-final class AddresnapCopyCremoip extends InfoCopierTemplate<AddresnapInfo, CremoipInfo>{
+final class AddresnapCopyCremoip extends InfoCopierTemplate<AddresnapInfo, CremoipInfo> {
 	
 	public AddresnapCopyCremoip() {
 		super();

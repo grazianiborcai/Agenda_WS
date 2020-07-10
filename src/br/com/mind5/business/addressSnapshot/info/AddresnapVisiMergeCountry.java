@@ -7,7 +7,7 @@ import br.com.mind5.info.InfoMergerVisitorV3;
 import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.masterData.country.info.CountryInfo;
 
-final class AddresnapVisiMergeCountry implements InfoMergerVisitorV3<AddresnapInfo, CountryInfo>{
+final class AddresnapVisiMergeCountry implements InfoMergerVisitorV3<AddresnapInfo, CountryInfo> {
 	
 	@Override public List<AddresnapInfo> beforeMerge(List<AddresnapInfo> baseInfos) {
 		return baseInfos;

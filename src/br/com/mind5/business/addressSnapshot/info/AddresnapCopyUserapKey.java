@@ -3,7 +3,7 @@ package br.com.mind5.business.addressSnapshot.info;
 import br.com.mind5.info.InfoCopierTemplate;
 import br.com.mind5.security.userSnapshot.info.UserapInfo;
 
-final class AddresnapCopyUserapKey extends InfoCopierTemplate<AddresnapInfo, UserapInfo>{
+final class AddresnapCopyUserapKey extends InfoCopierTemplate<AddresnapInfo, UserapInfo> {
 	
 	public AddresnapCopyUserapKey() {
 		super();

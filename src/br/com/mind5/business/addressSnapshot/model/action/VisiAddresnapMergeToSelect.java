@@ -9,7 +9,7 @@ import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiAddresnapMergeToSelect extends ActionVisitorTemplateMergeV2<AddresnapInfo, AddresnapInfo>{
+final class VisiAddresnapMergeToSelect extends ActionVisitorTemplateMergeV2<AddresnapInfo, AddresnapInfo> {
 	
 	public VisiAddresnapMergeToSelect(DeciTreeOption<AddresnapInfo> option) {
 		super(option, AddresnapInfo.class);

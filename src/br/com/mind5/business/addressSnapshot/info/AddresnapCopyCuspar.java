@@ -3,7 +3,7 @@ package br.com.mind5.business.addressSnapshot.info;
 import br.com.mind5.info.InfoCopierTemplate;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
 
-final class AddresnapCopyCuspar extends InfoCopierTemplate<AddresnapInfo, CusparInfo>{
+final class AddresnapCopyCuspar extends InfoCopierTemplate<AddresnapInfo, CusparInfo> {
 	
 	public AddresnapCopyCuspar() {
 		super();

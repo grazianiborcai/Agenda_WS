@@ -12,7 +12,7 @@ import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiAddresnapMergeCuslis extends ActionVisitorTemplateMergeV2<AddresnapInfo, CuslisInfo>{
+final class VisiAddresnapMergeCuslis extends ActionVisitorTemplateMergeV2<AddresnapInfo, CuslisInfo> {
 	
 	public VisiAddresnapMergeCuslis(DeciTreeOption<AddresnapInfo> option) {
 		super(option, CuslisInfo.class);

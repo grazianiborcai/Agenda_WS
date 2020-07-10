@@ -7,7 +7,7 @@ import br.com.mind5.business.employeeList.info.EmplisInfo;
 import br.com.mind5.info.InfoMergerVisitorV3;
 import br.com.mind5.info.InfoUniquifier;
 
-final class AddresnapVisiMergeEmplis implements InfoMergerVisitorV3<AddresnapInfo, EmplisInfo>{
+final class AddresnapVisiMergeEmplis implements InfoMergerVisitorV3<AddresnapInfo, EmplisInfo> {
 	
 	@Override public List<AddresnapInfo> beforeMerge(List<AddresnapInfo> baseInfos) {
 		return baseInfos;

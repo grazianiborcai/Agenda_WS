@@ -10,7 +10,7 @@ import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyAddresnapRootSelect extends ActionLazyTemplateV2<AddresnapInfo, AddresnapInfo>{
+public final class LazyAddresnapRootSelect extends ActionLazyTemplateV2<AddresnapInfo, AddresnapInfo> {
 	
 	public LazyAddresnapRootSelect(Connection conn, String schemaName) {
 		super(conn, schemaName);

@@ -7,7 +7,7 @@ import br.com.mind5.info.InfoMergerVisitorV3;
 import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.security.userList.info.UselisInfo;
 
-final class AddresnapVisiMergeUselis implements InfoMergerVisitorV3<AddresnapInfo, UselisInfo>{
+final class AddresnapVisiMergeUselis implements InfoMergerVisitorV3<AddresnapInfo, UselisInfo> {
 	
 	@Override public List<AddresnapInfo> beforeMerge(List<AddresnapInfo> baseInfos) {
 		return baseInfos;

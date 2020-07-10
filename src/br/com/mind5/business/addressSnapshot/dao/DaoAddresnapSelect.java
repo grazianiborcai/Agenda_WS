@@ -8,7 +8,7 @@ import br.com.mind5.dao.DaoStmtExecHelperV2;
 import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.dao.DaoStmtExecV2;
 
-public final class DaoAddresnapSelect implements DaoStmtExecV2<AddresnapInfo>{
+public final class DaoAddresnapSelect implements DaoStmtExecV2<AddresnapInfo> {
 	private DaoStmtExecV2<AddresnapInfo> helper;
 	
 	

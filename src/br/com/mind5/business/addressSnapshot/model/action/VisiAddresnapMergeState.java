@@ -11,7 +11,7 @@ import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiAddresnapMergeState extends ActionVisitorTemplateMergeV2<AddresnapInfo, StateInfo>{
+final class VisiAddresnapMergeState extends ActionVisitorTemplateMergeV2<AddresnapInfo, StateInfo> {
 	
 	public VisiAddresnapMergeState(DeciTreeOption<AddresnapInfo> option) {
 		super(option, StateInfo.class);

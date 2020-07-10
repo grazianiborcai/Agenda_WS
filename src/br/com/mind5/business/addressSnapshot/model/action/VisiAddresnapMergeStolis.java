@@ -12,7 +12,7 @@ import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiAddresnapMergeStolis extends ActionVisitorTemplateMergeV2<AddresnapInfo, StolisInfo>{
+final class VisiAddresnapMergeStolis extends ActionVisitorTemplateMergeV2<AddresnapInfo, StolisInfo> {
 	
 	public VisiAddresnapMergeStolis(DeciTreeOption<AddresnapInfo> option) {
 		super(option, StolisInfo.class);

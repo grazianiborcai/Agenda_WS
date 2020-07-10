@@ -57,7 +57,7 @@ public final class AddresnapInfo extends InfoRecord implements Cloneable {
 	
 	
 	public AddresnapInfo() {
-		super(AddresnapInfo.class);
+		super();
 		
 		codOwner = DefaultValue.number();
 		codSnapshot = DefaultValue.number();

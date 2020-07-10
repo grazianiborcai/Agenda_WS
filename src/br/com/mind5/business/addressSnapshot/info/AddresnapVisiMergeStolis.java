@@ -7,7 +7,7 @@ import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.info.InfoMergerVisitorV3;
 import br.com.mind5.info.InfoUniquifier;
 
-final class AddresnapVisiMergeStolis implements InfoMergerVisitorV3<AddresnapInfo, StolisInfo>{
+final class AddresnapVisiMergeStolis implements InfoMergerVisitorV3<AddresnapInfo, StolisInfo> {
 	
 	@Override public List<AddresnapInfo> beforeMerge(List<AddresnapInfo> baseInfos) {
 		return baseInfos;
