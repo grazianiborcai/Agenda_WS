@@ -7,7 +7,7 @@ import br.com.mind5.business.cart.info.CartInfo;
 import br.com.mind5.common.SystemLog;
 import br.com.mind5.info.InfoCopierOneToManyTemplate;
 
-final class CartemCopyCart extends InfoCopierOneToManyTemplate<CartemInfo, CartInfo>{
+final class CartemCopyCart extends InfoCopierOneToManyTemplate<CartemInfo, CartInfo> {
 	
 	public CartemCopyCart() {
 		super();
