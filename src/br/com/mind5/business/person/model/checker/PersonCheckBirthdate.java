@@ -49,7 +49,7 @@ public final class PersonCheckBirthdate extends ModelCheckerTemplateSimpleV2<Per
 		LocalDate now = DefaultValue.localDateNow();
 		
 		Period period = Period.between(now, birthDate);
-	    int diff = period.getYears();
+	    int diff = Math.abs(period.getYears());
 	    
 	    if (diff > 120)
 	    	return super.FAILED;
