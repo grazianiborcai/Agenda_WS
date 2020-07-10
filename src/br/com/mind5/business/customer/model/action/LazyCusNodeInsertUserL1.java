@@ -4,15 +4,15 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.customer.info.CusInfo;
-import br.com.mind5.business.customer.model.decisionTree.NodeCusInsertUser;
+import br.com.mind5.business.customer.model.decisionTree.NodeCusInsertUserL1;
 import br.com.mind5.model.action.ActionLazyTemplateV2;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyCusNodeInsertUser extends ActionLazyTemplateV2<CusInfo, CusInfo> {
+public final class LazyCusNodeInsertUserL1 extends ActionLazyTemplateV2<CusInfo, CusInfo> {
 	
-	public LazyCusNodeInsertUser(Connection conn, String schemaName) {
+	public LazyCusNodeInsertUserL1(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -25,7 +25,7 @@ public final class LazyCusNodeInsertUser extends ActionLazyTemplateV2<CusInfo, C
 	
 	
 	@Override protected ActionStdV1<CusInfo> getInstanceOfActionHook(DeciTreeOption<CusInfo> option) {
-		return new NodeCusInsertUser(option).toAction();
+		return new NodeCusInsertUserL1(option).toAction();
 	}
 	
 	

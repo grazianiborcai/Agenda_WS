@@ -12,9 +12,23 @@ import br.com.mind5.file.fileImageList.info.FimistInfo;
 import br.com.mind5.info.InfoMergerBuilderV3;
 import br.com.mind5.info.InfoMergerV3;
 import br.com.mind5.security.user.info.UserInfo;
+import br.com.mind5.security.userSearch.info.UserarchInfo;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class CusMerger {
+	public static List<CusInfo> mergeWithUserarch(List<CusInfo> baseInfos, List<UserarchInfo> selectedInfos) {
+		InfoMergerBuilderV3<CusInfo, UserarchInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new CusVisiMergeUserarch());
+		InfoMergerV3<CusInfo, UserarchInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	
 	public static List<CusInfo> mergeWithFimist(List<CusInfo> baseInfos, List<FimistInfo> selectedInfos) {
 		InfoMergerBuilderV3<CusInfo, FimistInfo> builder = new InfoMergerBuilderV3<>();
 		

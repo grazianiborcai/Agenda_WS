@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.customer.info.CusInfo;
-import br.com.mind5.business.customer.model.action.LazyCusNodeInsertUser;
+import br.com.mind5.business.customer.model.action.LazyCusNodeInsertUserL1;
 import br.com.mind5.business.customer.model.action.LazyCusRootInsertSilent;
 import br.com.mind5.business.customer.model.action.LazyCusRootSelect;
 import br.com.mind5.business.customer.model.action.StdCusEnforceUserCod;
@@ -41,7 +41,7 @@ public final class RootCusInsert extends DeciTreeTemplateWriteV2<CusInfo> {
 		
 		ActionStdV1<CusInfo> obfuscateUser = new StdCusEnforceUserCod(option);
 		ActionLazyV1<CusInfo> insert = new LazyCusRootInsertSilent(option.conn, option.schemaName);
-		ActionLazyV1<CusInfo> insertUser = new LazyCusNodeInsertUser(option.conn, option.schemaName);				
+		ActionLazyV1<CusInfo> insertUser = new LazyCusNodeInsertUserL1(option.conn, option.schemaName);				
 		ActionLazyV1<CusInfo> select = new LazyCusRootSelect(option.conn, option.schemaName);	
 		
 		obfuscateUser.addPostAction(insert);
