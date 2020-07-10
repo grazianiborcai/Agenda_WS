@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoStmtExecV2;
 import br.com.mind5.model.action.ActionVisitorTemplateStmtV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiEmplateDaoDelete extends ActionVisitorTemplateStmtV2<EmplateInfo>{
+final class VisiEmplateDaoDelete extends ActionVisitorTemplateStmtV2<EmplateInfo> {
 
 	public VisiEmplateDaoDelete(DeciTreeOption<EmplateInfo> option) {
 		super(option);
