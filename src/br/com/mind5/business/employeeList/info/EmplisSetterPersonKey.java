@@ -1,34 +1,10 @@
 package br.com.mind5.business.employeeList.info;
 
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoSetter;
+import br.com.mind5.info.InfoSetterTemplate;
 
-public final class EmplisSetterPersonKey implements InfoSetter<EmplisInfo> {
+public final class EmplisSetterPersonKey extends InfoSetterTemplate<EmplisInfo> {
 	
-	public EmplisInfo setAttr(EmplisInfo recordInfo) {
-		checkArgument(recordInfo);
-		return setPersonKey(recordInfo);
-	}
-	
-	
-	
-	private void checkArgument(EmplisInfo recordInfo) {
-		if (recordInfo == null) {
-			logException(new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT));
-			throw new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT);
-		}
-		
-		
-		if (recordInfo.persolisData == null) {
-			logException(new NullPointerException("recordInfo.personData" + SystemMessage.NULL_ARGUMENT));
-			throw new NullPointerException("recordInfo.personData" + SystemMessage.NULL_ARGUMENT);
-		}
-	}
-	
-	
-	
-	private EmplisInfo setPersonKey(EmplisInfo recordInfo) {
+	@Override protected EmplisInfo setAttrHook(EmplisInfo recordInfo) {
 		recordInfo.persolisData.codOwner = recordInfo.codOwner;
 		recordInfo.persolisData.codPerson = recordInfo.codPerson;
 		recordInfo.persolisData.username = recordInfo.username;
@@ -36,10 +12,4 @@ public final class EmplisSetterPersonKey implements InfoSetter<EmplisInfo> {
 		
 		return recordInfo;
 	}
-	
-	
-	
-	private void logException(Exception e) {
-		SystemLog.logError(this.getClass(), e);
-	}	
 }

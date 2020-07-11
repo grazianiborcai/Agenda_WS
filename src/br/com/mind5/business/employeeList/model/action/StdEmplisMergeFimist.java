@@ -1,35 +1,19 @@
 package br.com.mind5.business.employeeList.model.action;
 
 import br.com.mind5.business.employeeList.info.EmplisInfo;
-import br.com.mind5.model.action.ActionLazyV1;
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionStdHelperMerge;
-import br.com.mind5.model.decisionTree.DeciResult;
+import br.com.mind5.model.action.ActionStdTemplateV2;
+import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class StdEmplisMergeFimist implements ActionStdV1<EmplisInfo> {
-	private ActionStdV1<EmplisInfo> actionHelper;	
-	
-	
-	public StdEmplisMergeFimist(DeciTreeOption<EmplisInfo> option) {			
-		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiEmplisMergeFimist(option.conn, option.schemaName));
+final class StdEmplisMergeFimist extends ActionStdTemplateV2<EmplisInfo> {
+
+	public StdEmplisMergeFimist(DeciTreeOption<EmplisInfo> option) {
+		super(option);
 	}
 	
 	
 	
-	@Override public void addPostAction(ActionLazyV1<EmplisInfo> actionHandler) {
-		actionHelper.addPostAction(actionHandler);
-	}
-	
-	
-	
-	@Override public boolean executeAction() {			
-		return actionHelper.executeAction();
-	}
-	
-	
-	
-	@Override public DeciResult<EmplisInfo> getDecisionResult() {
-		return actionHelper.getDecisionResult();
+	protected ActionVisitorV2<EmplisInfo> buildVisitorHook(DeciTreeOption<EmplisInfo> option) {
+		return new VisiEmplisMergeFimist(option);
 	}
 }

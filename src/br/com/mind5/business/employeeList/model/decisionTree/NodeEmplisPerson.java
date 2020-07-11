@@ -10,13 +10,13 @@ import br.com.mind5.business.employeeList.model.action.StdEmplisSuccess;
 import br.com.mind5.business.employeeList.model.checker.EmplisCheckHasPerson;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class NodeEmplisPerson extends DeciTreeTemplateReadV1<EmplisInfo> {
+public final class NodeEmplisPerson extends DeciTreeTemplateWriteV2<EmplisInfo> {
 	
 	public NodeEmplisPerson(DeciTreeOption<EmplisInfo> option) {
 		super(option);

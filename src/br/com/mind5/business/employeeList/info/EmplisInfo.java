@@ -3,6 +3,7 @@ package br.com.mind5.business.employeeList.info;
 import java.util.List;
 
 import br.com.mind5.business.personList.info.PersolisInfo;
+import br.com.mind5.common.CloneUtil;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.file.fileImageList.info.FimistInfo;
 import br.com.mind5.info.InfoRecord;
@@ -19,7 +20,7 @@ public final class EmplisInfo extends InfoRecord implements Cloneable {
 	
 	
 	public EmplisInfo() {
-		super(EmplisInfo.class);
+		super();
 		
 		codOwner = DefaultValue.number();
 		codEmployee = DefaultValue.number();
@@ -47,29 +48,11 @@ public final class EmplisInfo extends InfoRecord implements Cloneable {
 	@Override public Object clone() throws CloneNotSupportedException {  
 		EmplisInfo deepCopy = (EmplisInfo) super.clone(); 
 
-		deepCopy.persolisData = clonePerson(deepCopy.persolisData);
-		deepCopy.fimistData = cloneFimist(deepCopy.fimistData);
+		deepCopy.persolisData = CloneUtil.cloneRecord(deepCopy.persolisData, this.getClass());
+		deepCopy.fimistData = CloneUtil.cloneRecord(deepCopy.fimistData, this.getClass());
 		
 		return deepCopy;	
 	} 
-	
-	
-	
-	private PersolisInfo clonePerson(PersolisInfo recordInfo) throws CloneNotSupportedException {
-		if (recordInfo == null)
-			return null;
-		
-		return (PersolisInfo) recordInfo.clone();
-	}
-	
-	
-	
-	private FimistInfo cloneFimist(FimistInfo recordInfo) throws CloneNotSupportedException {
-		if (recordInfo == null)
-			return null;
-		
-		return (FimistInfo) recordInfo.clone();
-	}
 	
 	
 	

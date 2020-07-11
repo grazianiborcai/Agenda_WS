@@ -1,19 +1,19 @@
 package br.com.mind5.business.employeeList.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.employeeList.info.EmplisInfo;
 import br.com.mind5.business.employeeList.info.EmplisMerger;
 import br.com.mind5.business.personList.info.PersolisInfo;
 import br.com.mind5.business.personList.model.decisionTree.RootPersolisSelectRestricted;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiEmplisMergePersolis extends ActionVisitorTemplateMergeV1<EmplisInfo, PersolisInfo> {
+final class VisiEmplisMergePersolis extends ActionVisitorTemplateMergeV2<EmplisInfo, PersolisInfo> {
 	
-	public VisiEmplisMergePersolis(Connection conn, String schemaName) {
-		super(conn, schemaName, PersolisInfo.class);
+	public VisiEmplisMergePersolis(DeciTreeOption<EmplisInfo> option) {
+		super(option, PersolisInfo.class);
 	}
 	
 	
@@ -31,6 +31,6 @@ final class VisiEmplisMergePersolis extends ActionVisitorTemplateMergeV1<EmplisI
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
+		return super.MERGE_WHEN_EMPTY;
 	}
 }

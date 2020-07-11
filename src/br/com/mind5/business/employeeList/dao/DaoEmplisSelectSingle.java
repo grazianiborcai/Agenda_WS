@@ -16,11 +16,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class EmplisSelectSingle extends DaoStmtTemplate<EmplisInfo> {
+public final class DaoEmplisSelectSingle extends DaoStmtTemplate<EmplisInfo> {
 	private final String MAIN_TABLE = DaoDbTable.EMP_TABLE;
 	
 	
-	public EmplisSelectSingle(Connection conn, EmplisInfo recordInfo, String schemaName) {
+	public DaoEmplisSelectSingle(Connection conn, EmplisInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -50,7 +50,7 @@ public final class EmplisSelectSingle extends DaoStmtTemplate<EmplisInfo> {
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new EmplisWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new DaoEmplisWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -70,11 +70,11 @@ public final class EmplisSelectSingle extends DaoStmtTemplate<EmplisInfo> {
 				do {
 					EmplisInfo dataInfo = new EmplisInfo();
 					
-					dataInfo.codOwner = stmtResult.getLong(EmplisDbTableColumn.COL_COD_OWNER);
-					dataInfo.codEmployee = stmtResult.getLong(EmplisDbTableColumn.COL_COD_EMPLOYEE);
-					dataInfo.recordMode = stmtResult.getString(EmplisDbTableColumn.COL_RECORD_MODE);
-					dataInfo.codPerson = DaoFormatter.sqlToLong(stmtResult, EmplisDbTableColumn.COL_COD_PERSON);
-					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, EmplisDbTableColumn.COL_COD_SNAPSHOT);				
+					dataInfo.codOwner = stmtResult.getLong(DaoEmplisDbTableColumn.COL_COD_OWNER);
+					dataInfo.codEmployee = stmtResult.getLong(DaoEmplisDbTableColumn.COL_COD_EMPLOYEE);
+					dataInfo.recordMode = stmtResult.getString(DaoEmplisDbTableColumn.COL_RECORD_MODE);
+					dataInfo.codPerson = DaoFormatter.sqlToLong(stmtResult, DaoEmplisDbTableColumn.COL_COD_PERSON);
+					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, DaoEmplisDbTableColumn.COL_COD_SNAPSHOT);				
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

@@ -5,15 +5,15 @@ import br.com.mind5.model.action.ActionStdTemplateV2;
 import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class StdEmplisMergePersolis extends ActionStdTemplateV2<EmplisInfo> {
+public final class StdEmplisDaoSelect extends ActionStdTemplateV2<EmplisInfo> {
 
-	public StdEmplisMergePersolis(DeciTreeOption<EmplisInfo> option) {
+	public StdEmplisDaoSelect(DeciTreeOption<EmplisInfo> option) {
 		super(option);
 	}
 	
 	
 	
 	protected ActionVisitorV2<EmplisInfo> buildVisitorHook(DeciTreeOption<EmplisInfo> option) {
-		return new VisiEmplisMergePersolis(option);
+		return new VisiEmplisDaoSelect(option);
 	}
 }

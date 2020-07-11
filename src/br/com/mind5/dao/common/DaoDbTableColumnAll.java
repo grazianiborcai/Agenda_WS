@@ -30,7 +30,7 @@ import br.com.mind5.business.employee.dao.DaoEmpDbTableColumn;
 import br.com.mind5.business.employeeLeaveDate.dao.DaoEmplateDbTableColumn;
 import br.com.mind5.business.employeeLeaveDateRange.dao.DaoEmplargDbTableColumn;
 import br.com.mind5.business.employeeLeaveDateSearch.dao.DaoEmplarchDbTableColumn;
-import br.com.mind5.business.employeeList.dao.EmplisDbTableColumn;
+import br.com.mind5.business.employeeList.dao.DaoEmplisDbTableColumn;
 import br.com.mind5.business.employeeMaterial.dao.EmpmatDbTableColumn;
 import br.com.mind5.business.employeeMaterialSearch.dao.EmpmarchDbTableColumn;
 import br.com.mind5.business.employeePosition.dao.DaoEmposDbTableColumn;
@@ -237,7 +237,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new EmpwoutDbTableColumn());
 		addTable(new DaoEmpDbTableColumn());
 		addTable(new EmpnapDbTableColumn());
-		addTable(new EmplisDbTableColumn());
+		addTable(new DaoEmplisDbTableColumn());
 		addTable(new DaoCusDbTableColumn());
 		addTable(new DaoOwnerDbTableColumn());
 		addTable(new MatoreDbTableColumn());
