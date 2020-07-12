@@ -1382,4 +1382,6 @@ public final class SystemCode {
 	
 	// Store Partitioning Authorization
 	public static final int STORE_PART_AUTH_MANDATORY_FIELD_EMPTY		= 13600;
+	public static final int STORE_PART_AUTH_NOT_AUTHORIZED				= 13601;
+	public static final int STORE_PART_AUTH_AUTHORIZED					= 13602;
 }
