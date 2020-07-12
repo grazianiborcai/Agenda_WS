@@ -6,7 +6,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.mind5.config.sysOwnerSignup.dao.DaoSysonupDbTableColumn;
 import br.com.mind5.config.sysStorePartitioning.info.SytotinInfo;
+import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
 import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtTemplate;
@@ -46,9 +48,8 @@ public final class DaoSytotinSelectSingle extends DaoStmtTemplate<SytotinInfo> {
 	@Override protected String buildWhereClauseHook(String tableName, SytotinInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
 		
-		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
-		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;	
-		whereOption.dummyClauseWhenEmpty = DaoOptionValue.DUMMY_CLAUSE_ALLOWED;
+		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
+		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;	
 		
 		DaoStmtWhere whereClause = new DaoSytotinWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
@@ -67,6 +68,7 @@ public final class DaoSytotinSelectSingle extends DaoStmtTemplate<SytotinInfo> {
 				do {				
 					SytotinInfo dataInfo = new SytotinInfo();
 					
+					dataInfo.codOwner = DaoFormatter.sqlToLong(stmtResult, DaoSysonupDbTableColumn.COL_COD_OWNER);
 					dataInfo.storePartitioning = stmtResult.getString(DaoSytotinDbTableColumn.COL_STORE_PARTITIONING);	
 					
 					finalResult.add(dataInfo);				

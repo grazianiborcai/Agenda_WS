@@ -1378,8 +1378,9 @@ public final class SystemCode {
 	public static final int NOTES_ALREADY_EXIST							= 13052;
 	
 	// Sys Store Partitioning
-	public static final int SYS_STORE_PARTITIONING_DISABLED				= 13550;
-	public static final int SYS_STORE_PARTITIONING_ENABLED				= 13551;
+	public static final int SYS_STORE_PARTITION_DISABLED				= 13550;
+	public static final int SYS_STORE_PARTITION_ENABLED					= 13551;
+	public static final int SYS_STORE_PARTITION_MANDATORY_FIELD_EMPTY	= 13552;
 	
 	// Store Partitioning Authorization
 	public static final int STORE_PART_AUTH_MANDATORY_FIELD_EMPTY		= 13600;

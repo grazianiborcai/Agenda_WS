@@ -10,6 +10,7 @@ import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
 public final class DaoSytotinDbTableColumn extends DaoDbTableColumnTemplate {
+	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;
 	public static final String COL_STORE_PARTITIONING = DaoDbField.COL_STORE_PARTITIONING;
 	
 	
@@ -23,12 +24,20 @@ public final class DaoSytotinDbTableColumn extends DaoDbTableColumnTemplate {
 		final String TABLE_NAME = DaoDbTable.SYS_CONFIG_TABLE;
 		
 		DaoColumn oneColumn;
-		List<DaoColumn> columns = new ArrayList<>();			
+		List<DaoColumn> columns = new ArrayList<>();	
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_COD_OWNER;
+		oneColumn.isPK = IS_PRIMARY_KEY;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_STORE_PARTITIONING;
-		oneColumn.isPK = IS_PRIMARY_KEY;
+		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);

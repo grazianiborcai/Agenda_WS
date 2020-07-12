@@ -2,14 +2,18 @@ package br.com.mind5.config.sysStorePartitioning.info;
 
 import java.util.List;
 
+import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
 
 public final class SytotinInfo extends InfoRecord implements Cloneable {
+	public long codOwner;
 	public String storePartitioning;
 	
 	
 	public SytotinInfo() {
 		super();
+		
+		codOwner = DefaultValue.number();
 	}
 	
 	

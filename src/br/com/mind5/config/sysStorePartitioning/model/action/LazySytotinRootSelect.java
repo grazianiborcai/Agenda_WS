@@ -4,14 +4,15 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.config.sysStorePartitioning.info.SytotinInfo;
+import br.com.mind5.config.sysStorePartitioning.model.decisionTree.RootSytotinSelect;
 import br.com.mind5.model.action.ActionLazyTemplateV2;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazySytotinDaoSelect extends ActionLazyTemplateV2<SytotinInfo, SytotinInfo> {
+public final class LazySytotinRootSelect extends ActionLazyTemplateV2<SytotinInfo, SytotinInfo> {
 
-	public LazySytotinDaoSelect(Connection conn, String schemaName) {
+	public LazySytotinRootSelect(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +25,7 @@ public final class LazySytotinDaoSelect extends ActionLazyTemplateV2<SytotinInfo
 	
 	
 	@Override protected ActionStdV1<SytotinInfo> getInstanceOfActionHook(DeciTreeOption<SytotinInfo> option) {
-		return new StdSytotinDaoSelect(option);
+		return new RootSytotinSelect(option).toAction();
 	}
 	
 	
