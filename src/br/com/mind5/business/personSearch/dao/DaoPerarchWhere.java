@@ -36,6 +36,10 @@ public final class DaoPerarchWhere implements DaoStmtWhere {
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codPerson));
 					break;
 					
+				case DaoPerarchDbTableColumn.COL_COD_STORE :
+					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codStore));
+					break;
+					
 				case DaoPerarchDbTableColumn.COL_CPF :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.cpf);
 					break;

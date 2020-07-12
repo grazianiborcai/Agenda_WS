@@ -67,8 +67,9 @@ public final class DaoPerarchSelectSingle extends DaoStmtTemplate<PerarchInfo> {
 				do {
 					PerarchInfo dataInfo = new PerarchInfo();
 					
-					dataInfo.codOwner = stmtResult.getLong(DaoPerarchDbTableColumn.COL_COD_OWNER);
-					dataInfo.codPerson = stmtResult.getLong(DaoPerarchDbTableColumn.COL_COD_PERSON);
+					dataInfo.codOwner = DaoFormatter.sqlToLong(stmtResult, DaoPerarchDbTableColumn.COL_COD_OWNER);
+					dataInfo.codPerson = DaoFormatter.sqlToLong(stmtResult, DaoPerarchDbTableColumn.COL_COD_PERSON);
+					dataInfo.codStore = DaoFormatter.sqlToLong(stmtResult, DaoPerarchDbTableColumn.COL_COD_STORE);
 					dataInfo.cpf = stmtResult.getString(DaoPerarchDbTableColumn.COL_CPF);
 					dataInfo.name = stmtResult.getString(DaoPerarchDbTableColumn.COL_NAME);	
 					dataInfo.nameSearch = stmtResult.getString(DaoPerarchDbTableColumn.COL_NAME_SEARCH);

@@ -11,6 +11,7 @@ public final class PerarchInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codSnapshot;
 	public long codPerson;
+	public long codStore;
 	public String cpf;
 	public String name;
 	public String nameSearch;
@@ -31,6 +32,7 @@ public final class PerarchInfo extends InfoRecord implements Cloneable {
 		codOwner = DefaultValue.number();
 		codSnapshot = DefaultValue.number();
 		codPerson = DefaultValue.number();
+		codStore = DefaultValue.number();
 		codGender = DefaultValue.gender();	
 		recordMode = DefaultValue.recordMode();	
 		lastChangedBy = DefaultValue.number();

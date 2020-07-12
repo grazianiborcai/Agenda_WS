@@ -48,20 +48,6 @@ public final class PerarchCopier {
 	public static List<PerarchInfo> copyFromEmp(List<EmpInfo> sources) {
 		InfoCopier<PerarchInfo, EmpInfo> copier = new PerarchCopyEmp();
 		return copier.makeCopy(sources);
-	}
-	
-	
-	
-	public static PerarchInfo copyFromPersonEmail(PersonInfo source) {
-		InfoCopier<PerarchInfo, PersonInfo> copier = new PerarchCopyPersonEmail();
-		return copier.makeCopy(source);
-	}
-	
-	
-	
-	public static List<PerarchInfo> copyFromPersonEmail(List<PersonInfo> sources) {
-		InfoCopier<PerarchInfo, PersonInfo> copier = new PerarchCopyPersonEmail();
-		return copier.makeCopy(sources);
 	}	
 	
 	
