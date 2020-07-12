@@ -24,7 +24,7 @@ public final class NodePersonSytotauhL2 extends DeciTreeTemplateWriteV2<PersonIn
 	@Override protected ModelCheckerV1<PersonInfo> buildCheckerHook(DeciTreeOption<PersonInfo> option) {
 		List<ModelCheckerV1<PersonInfo>> queue = new ArrayList<>();		
 		ModelCheckerV1<PersonInfo> checker;
-		ModelCheckerOption checkerOption;
+		ModelCheckerOption checkerOption;	
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
