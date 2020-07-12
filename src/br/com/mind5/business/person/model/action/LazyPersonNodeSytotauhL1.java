@@ -4,14 +4,15 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.person.info.PersonInfo;
+import br.com.mind5.business.person.model.decisionTree.NodePersonSytotauhL1;
 import br.com.mind5.model.action.ActionLazyTemplateV2;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyPersonMergeSytotauh extends ActionLazyTemplateV2<PersonInfo, PersonInfo> {
-	
-	public LazyPersonMergeSytotauh(Connection conn, String schemaName) {
+public final class LazyPersonNodeSytotauhL1 extends ActionLazyTemplateV2<PersonInfo, PersonInfo> {
+
+	public LazyPersonNodeSytotauhL1(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +25,7 @@ public final class LazyPersonMergeSytotauh extends ActionLazyTemplateV2<PersonIn
 	
 	
 	@Override protected ActionStdV1<PersonInfo> getInstanceOfActionHook(DeciTreeOption<PersonInfo> option) {
-		return new StdPersonMergeSytotauh(option);
+		return new NodePersonSytotauhL1(option).toAction();
 	}
 	
 	

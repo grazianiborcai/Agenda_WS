@@ -5,7 +5,7 @@ import br.com.mind5.model.action.ActionStdTemplateV2;
 import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class StdPersonMergeSytotauh extends ActionStdTemplateV2<PersonInfo> {
+public final class StdPersonMergeSytotauh extends ActionStdTemplateV2<PersonInfo> {
 
 	public StdPersonMergeSytotauh(DeciTreeOption<PersonInfo> option) {
 		super(option);
