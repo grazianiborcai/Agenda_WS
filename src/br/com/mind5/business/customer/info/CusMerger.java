@@ -3,6 +3,7 @@ package br.com.mind5.business.customer.info;
 
 import java.util.List;
 
+import br.com.mind5.authorization.storePartitionAuthorization.info.SytotauhInfo;
 import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.customerSearch.info.CusarchInfo;
 import br.com.mind5.business.customerSnapshot.info.CusnapInfo;
@@ -16,6 +17,19 @@ import br.com.mind5.security.userSearch.info.UserarchInfo;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class CusMerger {
+	public static List<CusInfo> mergeWithSytotauh(List<CusInfo> baseInfos, List<SytotauhInfo> selectedInfos) {
+		InfoMergerBuilderV3<CusInfo, SytotauhInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new CusVisiMergeSytotauh());
+		InfoMergerV3<CusInfo, SytotauhInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	
 	public static List<CusInfo> mergeWithUserarch(List<CusInfo> baseInfos, List<UserarchInfo> selectedInfos) {
 		InfoMergerBuilderV3<CusInfo, UserarchInfo> builder = new InfoMergerBuilderV3<>();
 		
