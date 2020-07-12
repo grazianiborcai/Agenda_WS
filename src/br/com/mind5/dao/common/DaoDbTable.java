@@ -83,6 +83,7 @@ public final class DaoDbTable {
 	public static final String OTP_PROSPECT_STORE_TABLE = "otp_prospect_store";	
 	public static final String OTP_USER_PASSWORD_TABLE = "otp_user_password";	
 	public static final String OWNER_TABLE = "owner";
+	public static final String OWNER_CONFIG_TABLE = "owner_config";
 	public static final String OWNER_SNAPSHOT_TABLE = "owner_snapshot";
 	public static final String PAY_CUS_TABLE = "pay_customer";
 	public static final String PAY_ORDER_HDR_TABLE = "pay_order_header";
@@ -131,7 +132,7 @@ public final class DaoDbTable {
 	public static final String SYS_EMAIL_TABLE = "sys_email";
 	public static final String SYS_EMAIL_BODY_TABLE = "sys_email_body";
 	public static final String SYS_MESSAGE_TABLE = "sys_message";
-	public static final String SYS_CONFIG_TABLE = "owner_config";
+	public static final String SYS_CONFIG_TABLE = "sys_config";
 	public static final String SYS_PAY_PARTNER_TABLE = "sys_pay_partner";
 	public static final String SYS_ENVIRONMENT_TABLE = "sys_environment";
 	public static final String UNIT_TABLE = "measure_unit";

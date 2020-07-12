@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.config.sysOwnerSignup.dao.DaoSysonupDbTableColumn;
 import br.com.mind5.config.sysStorePartitioning.info.SytotinInfo;
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
@@ -18,7 +17,7 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
 public final class DaoSytotinSelectSingle extends DaoStmtTemplate<SytotinInfo> {
-	private final String MAIN_TABLE = DaoDbTable.SYS_CONFIG_TABLE;
+	private final String MAIN_TABLE = DaoDbTable.OWNER_CONFIG_TABLE;
 	
 	
 	public DaoSytotinSelectSingle(Connection conn, SytotinInfo recordInfo, String schemaName) {
@@ -68,7 +67,7 @@ public final class DaoSytotinSelectSingle extends DaoStmtTemplate<SytotinInfo> {
 				do {				
 					SytotinInfo dataInfo = new SytotinInfo();
 					
-					dataInfo.codOwner = DaoFormatter.sqlToLong(stmtResult, DaoSysonupDbTableColumn.COL_COD_OWNER);
+					dataInfo.codOwner = DaoFormatter.sqlToLong(stmtResult, DaoSytotinDbTableColumn.COL_COD_OWNER);
 					dataInfo.storePartitioning = stmtResult.getString(DaoSytotinDbTableColumn.COL_STORE_PARTITIONING);	
 					
 					finalResult.add(dataInfo);				
