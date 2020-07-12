@@ -61,9 +61,9 @@ public final class DaoCusnapSelectSingle extends DaoStmtTemplate<CusnapInfo> {
 				do {
 					CusnapInfo dataInfo = new CusnapInfo();
 					
-					dataInfo.codOwner = stmtResult.getLong(DaoCusnapDbTableColumn.COL_COD_OWNER);
-					dataInfo.codCustomer = stmtResult.getLong(DaoCusnapDbTableColumn.COL_COD_CUSTOMER);
-					dataInfo.codStore = stmtResult.getLong(DaoCusnapDbTableColumn.COL_COD_STORE);	
+					dataInfo.codOwner = DaoFormatter.sqlToLong(stmtResult, DaoCusnapDbTableColumn.COL_COD_OWNER);
+					dataInfo.codCustomer = DaoFormatter.sqlToLong(stmtResult, DaoCusnapDbTableColumn.COL_COD_CUSTOMER);
+					dataInfo.codStore = DaoFormatter.sqlToLong(stmtResult, DaoCusnapDbTableColumn.COL_COD_STORE);	
 					dataInfo.recordMode = stmtResult.getString(DaoCusnapDbTableColumn.COL_RECORD_MODE);
 					dataInfo.codPerson = DaoFormatter.sqlToLong(stmtResult, DaoCusnapDbTableColumn.COL_COD_PERSON);
 					dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, DaoCusnapDbTableColumn.COL_COD_USER);
