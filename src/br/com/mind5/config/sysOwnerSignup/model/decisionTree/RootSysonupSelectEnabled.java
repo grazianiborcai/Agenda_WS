@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.config.sysOwnerSignup.info.SysonupInfo;
-import br.com.mind5.config.sysOwnerSignup.model.action.LazySysonupDaoSelect;
+import br.com.mind5.config.sysOwnerSignup.model.action.LazySysonupRootSelect;
 import br.com.mind5.config.sysOwnerSignup.model.action.StdSysonupEnforceEnabled;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
@@ -38,7 +38,7 @@ public final class RootSysonupSelectEnabled extends DeciTreeTemplateReadV2<Syson
 		List<ActionStdV1<SysonupInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<SysonupInfo> enforceEnabled = new StdSysonupEnforceEnabled(option);
-		ActionLazyV1<SysonupInfo> select = new LazySysonupDaoSelect(option.conn, option.schemaName);
+		ActionLazyV1<SysonupInfo> select = new LazySysonupRootSelect(option.conn, option.schemaName);
 		
 		enforceEnabled.addPostAction(select);
 		
