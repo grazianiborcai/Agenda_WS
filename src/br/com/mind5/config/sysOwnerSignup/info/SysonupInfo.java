@@ -2,18 +2,14 @@ package br.com.mind5.config.sysOwnerSignup.info;
 
 import java.util.List;
 
-import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
 
 public final class SysonupInfo extends InfoRecord implements Cloneable {
-	public long codOwner;
 	public String ownerSignup;
 	
 	
 	public SysonupInfo() {
 		super();
-		
-		codOwner = DefaultValue.number();
 	}
 	
 	
