@@ -16,12 +16,12 @@ public final class PersonCheckUpdate extends ModelCheckerTemplateSimpleV2<Person
 	
 	
 	@Override protected boolean checkHook(PersonInfo recordInfo, Connection conn, String schemaName) {	
-		if (   recordInfo.codOwner 			<= 0  					
-			|| recordInfo.codGender 		<= 0	
-			|| recordInfo.codPerson			<= 0
-			|| recordInfo.username			== null
-			|| recordInfo.name 				== null
-			|| recordInfo.codLanguage		== null )
+		if ( recordInfo.codOwner 	<= 0	||  					
+			 recordInfo.codGender 	<= 0	||
+			 recordInfo.codPerson	<= 0	||
+			 recordInfo.username	== null	||
+			 recordInfo.name 		== null	||
+			 recordInfo.codLanguage	== null 	)
 			
 			return super.FAILED;
 		

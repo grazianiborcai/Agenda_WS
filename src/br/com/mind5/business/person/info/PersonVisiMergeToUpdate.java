@@ -24,6 +24,7 @@ final class PersonVisiMergeToUpdate implements InfoMergerVisitorV3<PersonInfo, P
 		List<PersonInfo> results = new ArrayList<>();
 		
 		baseInfo.codEntityCateg = selectedInfo.codEntityCateg;
+		baseInfo.codStore = selectedInfo.codStore;
 		baseInfo.createdBy = selectedInfo.createdBy;
 		baseInfo.createdOn = selectedInfo.createdOn;		
 		
