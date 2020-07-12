@@ -57,9 +57,9 @@ public final class RootPersolisSelect extends DeciTreeTemplateReadV2<PersolisInf
 	@Override protected List<ActionStdV1<PersolisInfo>> buildActionsOnPassedHook(DeciTreeOption<PersolisInfo> option) {
 		List<ActionStdV1<PersolisInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<PersolisInfo> select = new StdPersolisMergeToSelect(option);		
-		actions.add(select);
+		ActionStdV1<PersolisInfo> select = new StdPersolisMergeToSelect(option);	
 		
+		actions.add(select);		
 		return actions;
 	}
 }
