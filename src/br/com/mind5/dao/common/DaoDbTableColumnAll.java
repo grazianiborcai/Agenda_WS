@@ -111,6 +111,7 @@ import br.com.mind5.business.storeWorkTimeRange.dao.StoworgDbTableColumn;
 import br.com.mind5.business.storeWorkTimeSearch.dao.DaoStowotarchDbTableColumn;
 import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
+import br.com.mind5.config.sysConfig.dao.DaoSysonfigDbTableColumn;
 import br.com.mind5.config.sysOwnerSignup.dao.DaoSysonupDbTableColumn;
 import br.com.mind5.config.sysStorePartitioning.dao.DaoSytotinDbTableColumn;
 import br.com.mind5.dao.DaoColumn;
@@ -426,6 +427,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new DaoStorbyDbTableColumn());
 		addTable(new DaoNotesDbTableColumn());
 		addTable(new DaoSytotinDbTableColumn());
+		addTable(new DaoSysonfigDbTableColumn());
 	}
 	
 	
