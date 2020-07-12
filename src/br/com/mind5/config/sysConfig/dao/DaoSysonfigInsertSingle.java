@@ -11,7 +11,7 @@ import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.common.DaoDbTable;
 
 public final class DaoSysonfigInsertSingle extends DaoStmtTemplate<SysonfigInfo> {
-	private final String MAIN_TABLE = DaoDbTable.SYS_CONFIG_TABLE;		
+	private final String MAIN_TABLE = DaoDbTable.OWNER_CONFIG_TABLE;		
 	
 	
 	public DaoSysonfigInsertSingle(Connection conn, SysonfigInfo recordInfo, String schemaName) {
@@ -38,7 +38,6 @@ public final class DaoSysonfigInsertSingle extends DaoStmtTemplate<SysonfigInfo>
 				int i = 1;
 				
 				stmt.setLong(i++, recordInfo.codOwner);
-				stmt.setString(i++, recordInfo.ownerSignup);
 				stmt.setString(i++, recordInfo.storePartitioning);
 				
 				return stmt;

@@ -17,7 +17,7 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
 public final class DaoSysonfigSelectSingle extends DaoStmtTemplate<SysonfigInfo> {
-	private final String MAIN_TABLE = DaoDbTable.SYS_CONFIG_TABLE;
+	private final String MAIN_TABLE = DaoDbTable.OWNER_CONFIG_TABLE;
 	
 	
 	public DaoSysonfigSelectSingle(Connection conn, SysonfigInfo recordInfo, String schemaName) {
@@ -62,7 +62,6 @@ public final class DaoSysonfigSelectSingle extends DaoStmtTemplate<SysonfigInfo>
 					SysonfigInfo dataInfo = new SysonfigInfo();
 					
 					dataInfo.codOwner = DaoFormatter.sqlToLong(stmtResult, DaoSysonfigDbTableColumn.COL_COD_OWNER);
-					dataInfo.ownerSignup = stmtResult.getString(DaoSysonfigDbTableColumn.COL_OWNER_SIGNUP);	
 					dataInfo.storePartitioning = stmtResult.getString(DaoSysonfigDbTableColumn.COL_STORE_PARTITIONING);	
 					
 					finalResult.add(dataInfo);				

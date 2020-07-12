@@ -7,7 +7,6 @@ import br.com.mind5.info.InfoRecord;
 
 public final class SysonfigInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
-	public String ownerSignup;
 	public String storePartitioning;
 	
 	
@@ -38,10 +37,11 @@ public final class SysonfigInfo extends InfoRecord implements Cloneable {
 	
 	
 	@Override public int hashCode() {
-		if (ownerSignup == null)
-			return 0;
+		int result = 17;
 		
-		return ownerSignup.hashCode();
+		result = result * 31 + (int) (codOwner ^ (codOwner >>> 32));
+		
+		return result;
 	}
 	
 	
@@ -56,6 +56,6 @@ public final class SysonfigInfo extends InfoRecord implements Cloneable {
 		
 		
 		SysonfigInfo obj = (SysonfigInfo) o;		
-		return (isStringEqual(ownerSignup, obj.ownerSignup));
+		return (codOwner == obj.codOwner);
 	}
 }
