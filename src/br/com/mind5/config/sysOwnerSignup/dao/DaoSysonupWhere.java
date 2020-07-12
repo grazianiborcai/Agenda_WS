@@ -4,6 +4,7 @@ import java.util.List;
 
 import br.com.mind5.config.sysOwnerSignup.info.SysonupInfo;
 import br.com.mind5.dao.DaoColumn;
+import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilder;
 import br.com.mind5.dao.DaoWhereBuilderOption;
@@ -25,6 +26,10 @@ final class DaoSysonupWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {
 			switch(eachColumn.columnName) {
+				case DaoSysonupDbTableColumn.COL_COD_OWNER :
+					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
+					break;
+			
 				case DaoSysonupDbTableColumn.COL_OWNER_SIGNUP :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.ownerSignup);
 					break;

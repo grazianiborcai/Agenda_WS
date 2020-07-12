@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.config.sysOwnerSignup.info.SysonupInfo;
+import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
 import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtTemplate;
@@ -46,9 +47,8 @@ public final class DaoSysonupSelectSingle extends DaoStmtTemplate<SysonupInfo> {
 	@Override protected String buildWhereClauseHook(String tableName, SysonupInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
 		
-		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
-		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;	
-		whereOption.dummyClauseWhenEmpty = DaoOptionValue.DUMMY_CLAUSE_ALLOWED;
+		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
+		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;	
 		
 		DaoStmtWhere whereClause = new DaoSysonupWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
@@ -67,6 +67,7 @@ public final class DaoSysonupSelectSingle extends DaoStmtTemplate<SysonupInfo> {
 				do {				
 					SysonupInfo dataInfo = new SysonupInfo();
 					
+					dataInfo.codOwner = DaoFormatter.sqlToLong(stmtResult, DaoSysonupDbTableColumn.COL_COD_OWNER);
 					dataInfo.ownerSignup = stmtResult.getString(DaoSysonupDbTableColumn.COL_OWNER_SIGNUP);	
 					
 					finalResult.add(dataInfo);				

@@ -2,9 +2,7 @@ package br.com.mind5.config.sysOwnerSignup.model.checker;
 
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.config.sysOwnerSignup.info.SysonupInfo;
-import br.com.mind5.config.sysOwnerSignup.model.action.LazySysonupDaoSelect;
-import br.com.mind5.config.sysOwnerSignup.model.action.StdSysonupEnforceEnabled;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.config.sysOwnerSignup.model.decisionTree.RootSysonupSelectEnabled;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
@@ -19,12 +17,9 @@ public final class SysonupCheckEnabled extends ModelCheckerTemplateActionV2<Syso
 	
 	
 	@Override protected ActionStdV1<SysonupInfo> buildActionHook(DeciTreeOption<SysonupInfo> option) {
-		ActionStdV1<SysonupInfo> enforceEnabled = new StdSysonupEnforceEnabled(option);
-		ActionLazyV1<SysonupInfo> select = new LazySysonupDaoSelect(option.conn, option.schemaName);
+		ActionStdV1<SysonupInfo> select = new RootSysonupSelectEnabled(option).toAction();
 		
-		enforceEnabled.addPostAction(select);
-		
-		return enforceEnabled;
+		return select;
 	}
 	
 	

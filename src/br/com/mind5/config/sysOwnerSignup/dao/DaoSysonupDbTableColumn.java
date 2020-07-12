@@ -10,6 +10,7 @@ import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
 public final class DaoSysonupDbTableColumn extends DaoDbTableColumnTemplate {
+	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;
 	public static final String COL_OWNER_SIGNUP = DaoDbField.COL_OWNER_SIGNUP;
 	
 	
@@ -27,8 +28,16 @@ public final class DaoSysonupDbTableColumn extends DaoDbTableColumnTemplate {
 		
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
-		oneColumn.columnName = COL_OWNER_SIGNUP;
+		oneColumn.columnName = COL_COD_OWNER;
 		oneColumn.isPK = IS_PRIMARY_KEY;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_OWNER_SIGNUP;
+		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);

@@ -1312,6 +1312,7 @@ public final class SystemCode {
 	// Sys Owner Signup
 	public static final int SYS_OWNER_SIGNUP_DISABLED					= 12700;
 	public static final int SYS_OWNER_SIGNUP_ENABLED					= 12701;
+	public static final int SYS_OWNER_MANDATORY_FIELD_EMPTY				= 12702;
 	
 	// Order Search
 	public static final int OWNER_SEARCH_MANDATORY_FIELD_EMPTY 			= 12750;
