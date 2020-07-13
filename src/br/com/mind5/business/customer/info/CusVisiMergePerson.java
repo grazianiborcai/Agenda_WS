@@ -32,7 +32,6 @@ final class CusVisiMergePerson implements InfoMergerVisitorV3<CusInfo, PersonInf
 		
 		baseInfo.personData = selectedInfo;
 		baseInfo.codPerson = selectedInfo.codPerson;
-		baseInfo.codStore = selectedInfo.codStore;
 		
 		results.add(baseInfo);
 		return results;

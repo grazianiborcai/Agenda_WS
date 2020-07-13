@@ -15,7 +15,8 @@ final class CusVisiMergeToDelete implements InfoMergerVisitorV3<CusInfo, CusInfo
 	
 	
 	@Override public boolean shouldMerge(CusInfo baseInfo, CusInfo selectedInfo) {
-		return (baseInfo.codOwner == selectedInfo.codOwner);
+		return (baseInfo.codOwner    == selectedInfo.codOwner &&
+				baseInfo.codCustomer == selectedInfo.codCustomer	);
 	}
 	
 	

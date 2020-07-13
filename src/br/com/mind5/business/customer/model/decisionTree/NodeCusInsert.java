@@ -7,6 +7,7 @@ import br.com.mind5.business.customer.info.CusInfo;
 import br.com.mind5.business.customer.model.action.LazyCusDaoInsert;
 import br.com.mind5.business.customer.model.action.LazyCusEnforceCreatedBy;
 import br.com.mind5.business.customer.model.action.LazyCusEnforceCreatedOn;
+import br.com.mind5.business.customer.model.action.LazyCusMergeSytotauh;
 import br.com.mind5.business.customer.model.action.LazyCusMergeUsername;
 import br.com.mind5.business.customer.model.action.StdCusEnforceLChanged;
 import br.com.mind5.model.action.ActionLazyV1;
@@ -44,12 +45,14 @@ public final class NodeCusInsert extends DeciTreeTemplateWriteV2<CusInfo> {
 		ActionLazyV1<CusInfo> mergeLChangedBy = new LazyCusMergeUsername(option.conn, option.schemaName);	
 		ActionLazyV1<CusInfo> enforceCreatedBy = new LazyCusEnforceCreatedBy(option.conn, option.schemaName);
 		ActionLazyV1<CusInfo> enforceCreatedOn = new LazyCusEnforceCreatedOn(option.conn, option.schemaName);
+		ActionLazyV1<CusInfo> mergeSytotauh = new LazyCusMergeSytotauh(option.conn, option.schemaName);
 		ActionLazyV1<CusInfo> insertCustomer = new LazyCusDaoInsert(option.conn, option.schemaName);
 		
 		enforceLChanged.addPostAction(mergeLChangedBy);
 		mergeLChangedBy.addPostAction(enforceCreatedBy);
 		enforceCreatedBy.addPostAction(enforceCreatedOn);
-		enforceCreatedOn.addPostAction(insertCustomer);
+		enforceCreatedOn.addPostAction(mergeSytotauh);
+		mergeSytotauh.addPostAction(insertCustomer);
 		
 		actions.add(enforceLChanged);	
 		return actions;

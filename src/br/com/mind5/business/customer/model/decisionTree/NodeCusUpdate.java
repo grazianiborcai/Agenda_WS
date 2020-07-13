@@ -7,6 +7,7 @@ import br.com.mind5.business.customer.info.CusInfo;
 import br.com.mind5.business.customer.model.action.LazyCusDaoUpdate;
 import br.com.mind5.business.customer.model.action.LazyCusEnforceLChanged;
 import br.com.mind5.business.customer.model.action.LazyCusMergeUsername;
+import br.com.mind5.business.customer.model.action.LazyCusNodeSytotauh;
 import br.com.mind5.business.customer.model.action.StdCusMergeToUpdate;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
@@ -40,11 +41,13 @@ public final class NodeCusUpdate extends DeciTreeTemplateWriteV2<CusInfo> {
 		List<ActionStdV1<CusInfo>> actions = new ArrayList<>();
 
 		ActionStdV1<CusInfo> mergeToUpdate = new StdCusMergeToUpdate(option);
+		ActionLazyV1<CusInfo> nodeSytotauh = new LazyCusNodeSytotauh(option.conn, option.schemaName);
 		ActionLazyV1<CusInfo> enforceLChanged = new LazyCusEnforceLChanged(option.conn, option.schemaName);
 		ActionLazyV1<CusInfo> enforceLChangedBy = new LazyCusMergeUsername(option.conn, option.schemaName);
 		ActionLazyV1<CusInfo> updateCustomer = new LazyCusDaoUpdate(option.conn, option.schemaName);		
 		
-		mergeToUpdate.addPostAction(enforceLChanged);
+		mergeToUpdate.addPostAction(nodeSytotauh);
+		nodeSytotauh.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceLChangedBy);
 		enforceLChangedBy.addPostAction(updateCustomer);
 		

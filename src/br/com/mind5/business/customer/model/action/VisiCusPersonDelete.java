@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.com.mind5.business.customer.info.CusInfo;
 import br.com.mind5.business.person.info.PersonInfo;
-import br.com.mind5.business.person.model.decisionTree.RootPersonDelete;
+import br.com.mind5.business.person.model.decisionTree.RootPersonDeleteCus;
 import br.com.mind5.model.action.ActionVisitorTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -17,7 +17,7 @@ final class VisiCusPersonDelete extends ActionVisitorTemplateActionV2<CusInfo, P
 	
 	
 	@Override protected Class<? extends DeciTree<PersonInfo>> getTreeClassHook() {
-		return RootPersonDelete.class;
+		return RootPersonDeleteCus.class;
 	}
 	
 	

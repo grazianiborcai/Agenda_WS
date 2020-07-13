@@ -8,6 +8,7 @@ import br.com.mind5.business.customer.model.action.LazyCusMergeAddress;
 import br.com.mind5.business.customer.model.action.LazyCusMergeFimist;
 import br.com.mind5.business.customer.model.action.LazyCusMergePerson;
 import br.com.mind5.business.customer.model.action.LazyCusMergePhone;
+import br.com.mind5.business.customer.model.action.LazyCusNodeSytotauh;
 import br.com.mind5.business.customer.model.action.LazyCusNodeUser;
 import br.com.mind5.business.customer.model.action.StdCusMergeToSelect;
 import br.com.mind5.business.customer.model.checker.CusCheckLangu;
@@ -15,9 +16,9 @@ import br.com.mind5.business.customer.model.checker.CusCheckOwner;
 import br.com.mind5.business.customer.model.checker.CusCheckRead;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 
@@ -64,13 +65,15 @@ public final class RootCusSelect extends DeciTreeTemplateReadV2<CusInfo> {
 		List<ActionStdV1<CusInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<CusInfo> select = new StdCusMergeToSelect(option);
+		ActionLazyV1<CusInfo> nodeSytotauh = new LazyCusNodeSytotauh(option.conn, option.schemaName);
 		ActionLazyV1<CusInfo> mergePerson = new LazyCusMergePerson(option.conn, option.schemaName);
 		ActionLazyV1<CusInfo> mergeAddress = new LazyCusMergeAddress(option.conn, option.schemaName);
 		ActionLazyV1<CusInfo> mergePhone = new LazyCusMergePhone(option.conn, option.schemaName);
 		ActionLazyV1<CusInfo> nodeUser = new LazyCusNodeUser(option.conn, option.schemaName);
 		ActionLazyV1<CusInfo> mergeFimist = new LazyCusMergeFimist(option.conn, option.schemaName);
 		
-		select.addPostAction(mergePerson);
+		select.addPostAction(nodeSytotauh);
+		nodeSytotauh.addPostAction(mergePerson);
 		mergePerson.addPostAction(mergeAddress);
 		mergeAddress.addPostAction(mergePhone);
 		mergePhone.addPostAction(nodeUser);
