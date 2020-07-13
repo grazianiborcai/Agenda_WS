@@ -62,19 +62,6 @@ public final class PersonMerger {
 	
 	
 	
-	public static List<PersonInfo> mergeToDelete(List<PersonInfo> baseInfos, List<PersonInfo> selectedInfos) {
-		InfoMergerBuilderV3<PersonInfo, PersonInfo> builder = new InfoMergerBuilderV3<>();
-		
-		builder.addBaseInfos(baseInfos);
-		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new PersonVisiMergeToDelete());
-		InfoMergerV3<PersonInfo, PersonInfo> merger = builder.build();		
-	
-		return merger.merge();
-	}
-	
-	
-	
 	public static List<PersonInfo> mergeToSelect(List<PersonInfo> baseInfos, List<PersonInfo> selectedInfos) {
 		InfoMergerBuilderV3<PersonInfo, PersonInfo> builder = new InfoMergerBuilderV3<>();
 		

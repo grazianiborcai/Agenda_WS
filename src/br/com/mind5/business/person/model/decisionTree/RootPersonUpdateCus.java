@@ -4,15 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.person.info.PersonInfo;
-import br.com.mind5.business.person.model.action.LazyPersonDaoDelete;
-import br.com.mind5.business.person.model.action.LazyPersonDaoUpdate;
-import br.com.mind5.business.person.model.action.LazyPersonEnforceLChanged;
-import br.com.mind5.business.person.model.action.LazyPersonMergeUsername;
-import br.com.mind5.business.person.model.action.StdPersonMergeToSelect;
-import br.com.mind5.business.person.model.checker.PersonCheckDelete;
 import br.com.mind5.business.person.model.checker.PersonCheckExist;
 import br.com.mind5.business.person.model.checker.PersonCheckLangu;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.business.person.model.checker.PersonCheckPersonCus;
+import br.com.mind5.business.person.model.checker.PersonCheckSytotauh;
+import br.com.mind5.business.person.model.checker.PersonCheckUpdate;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -20,9 +16,9 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class RootPersonDelete extends DeciTreeTemplateWriteV2<PersonInfo> {
+public final class RootPersonUpdateCus extends DeciTreeTemplateWriteV2<PersonInfo> {
 	
-	public RootPersonDelete(DeciTreeOption<PersonInfo> option) {
+	public RootPersonUpdateCus(DeciTreeOption<PersonInfo> option) {
 		super(option);
 	}
 	
@@ -37,7 +33,7 @@ public final class RootPersonDelete extends DeciTreeTemplateWriteV2<PersonInfo> 
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
-		checker = new PersonCheckDelete(checkerOption);
+		checker = new PersonCheckUpdate(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
@@ -54,6 +50,20 @@ public final class RootPersonDelete extends DeciTreeTemplateWriteV2<PersonInfo> 
 		checker = new PersonCheckExist(checkerOption);
 		queue.add(checker);		
 		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
+		checker = new PersonCheckPersonCus(checkerOption);
+		queue.add(checker);	
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
+		checker = new PersonCheckSytotauh(checkerOption);
+		queue.add(checker);	
+		
 		 return new ModelCheckerHelperQueueV2<PersonInfo>(queue);
 	}
 	
@@ -62,19 +72,9 @@ public final class RootPersonDelete extends DeciTreeTemplateWriteV2<PersonInfo> 
 	@Override protected List<ActionStdV1<PersonInfo>> buildActionsOnPassedHook(DeciTreeOption<PersonInfo> option) {
 		List<ActionStdV1<PersonInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<PersonInfo> select = new StdPersonMergeToSelect(option);	
-		ActionLazyV1<PersonInfo> enforceLChanged = new LazyPersonEnforceLChanged(option.conn, option.schemaName);
-		ActionLazyV1<PersonInfo> enforceLChangedBy = new LazyPersonMergeUsername(option.conn, option.schemaName);
-		ActionLazyV1<PersonInfo> updatePerson = new LazyPersonDaoUpdate(option.conn, option.schemaName);
-		ActionLazyV1<PersonInfo> deletePerson = new LazyPersonDaoDelete(option.conn, option.schemaName);
+		ActionStdV1<PersonInfo> update = new RootPersonUpdate(option).toAction();
 		
-		select.addPostAction(enforceLChanged);
-		enforceLChanged.addPostAction(enforceLChangedBy);
-		enforceLChangedBy.addPostAction(updatePerson);
-		updatePerson.addPostAction(deletePerson);
-		
-		actions.add(select);
-		
+		actions.add(update);		
 		return actions;
 	}
 }
