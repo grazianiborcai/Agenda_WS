@@ -6,6 +6,7 @@ import java.util.List;
 import br.com.mind5.authorization.storePartitionAuthorization.info.SytotauhInfo;
 import br.com.mind5.authorization.storePartitionAuthorization.model.action.StdSytotauhSuccess;
 import br.com.mind5.authorization.storePartitionAuthorization.model.checker.SytotauhCheckHasStore;
+import br.com.mind5.authorization.storePartitionAuthorization.model.checker.SytotauhCheckStorauth;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -31,6 +32,13 @@ public final class NodeSytotauhAuthL2 extends DeciTreeTemplateWriteV2<SytotauhIn
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;			
 		checker = new SytotauhCheckHasStore(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;			
+		checker = new SytotauhCheckStorauth(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueueV2<>(queue);
