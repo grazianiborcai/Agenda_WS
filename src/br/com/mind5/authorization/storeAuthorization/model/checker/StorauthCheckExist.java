@@ -8,9 +8,9 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StorauthCheckAuthorization extends ModelCheckerTemplateActionV2<StorauthInfo, StorauthInfo> {
+public final class StorauthCheckExist extends ModelCheckerTemplateActionV2<StorauthInfo, StorauthInfo> {
 	
-	public StorauthCheckAuthorization(ModelCheckerOption option) {
+	public StorauthCheckExist(ModelCheckerOption option) {
 		super(option, StorauthInfo.class);
 	}
 	

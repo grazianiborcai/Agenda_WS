@@ -3,7 +3,7 @@ package br.com.mind5.business.refundPolicyStore.model.checker;
 import java.util.List;
 
 import br.com.mind5.authorization.storeAuthorization.info.StorauthInfo;
-import br.com.mind5.authorization.storeAuthorization.model.checker.StorauthCheckAuthorization;
+import br.com.mind5.authorization.storeAuthorization.model.checker.StorauthCheckExist;
 import br.com.mind5.business.refundPolicyStore.info.RefuporeInfo;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -16,7 +16,7 @@ public final class RefuporeCheckStorauth implements ModelCheckerV1<RefuporeInfo>
 	
 	
 	public RefuporeCheckStorauth(ModelCheckerOption option) {
-		checker = new StorauthCheckAuthorization(option);
+		checker = new StorauthCheckExist(option);
 	}
 	
 	

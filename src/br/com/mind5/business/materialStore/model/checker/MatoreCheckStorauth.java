@@ -3,7 +3,7 @@ package br.com.mind5.business.materialStore.model.checker;
 import java.util.List;
 
 import br.com.mind5.authorization.storeAuthorization.info.StorauthInfo;
-import br.com.mind5.authorization.storeAuthorization.model.checker.StorauthCheckAuthorization;
+import br.com.mind5.authorization.storeAuthorization.model.checker.StorauthCheckExist;
 import br.com.mind5.business.materialStore.info.MatoreInfo;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -16,7 +16,7 @@ public final class MatoreCheckStorauth implements ModelCheckerV1<MatoreInfo> {
 	
 	
 	public MatoreCheckStorauth(ModelCheckerOption option) {
-		checker = new StorauthCheckAuthorization(option);
+		checker = new StorauthCheckExist(option);
 	}
 	
 	

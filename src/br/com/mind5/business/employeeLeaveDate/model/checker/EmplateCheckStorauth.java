@@ -1,7 +1,7 @@
 package br.com.mind5.business.employeeLeaveDate.model.checker;
 
 import br.com.mind5.authorization.storeAuthorization.info.StorauthInfo;
-import br.com.mind5.authorization.storeAuthorization.model.checker.StorauthCheckAuthorization;
+import br.com.mind5.authorization.storeAuthorization.model.checker.StorauthCheckExist;
 import br.com.mind5.business.employeeLeaveDate.info.EmplateInfo;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
@@ -16,7 +16,7 @@ public final class EmplateCheckStorauth extends ModelCheckerTemplateForwardV2<Em
 
 	
 	@Override protected ModelCheckerV1<StorauthInfo> getCheckerHook(ModelCheckerOption option) {
-		return new StorauthCheckAuthorization(option);
+		return new StorauthCheckExist(option);
 	}
 	
 	
