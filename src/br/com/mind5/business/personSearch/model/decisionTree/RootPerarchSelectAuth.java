@@ -4,9 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.personSearch.info.PerarchInfo;
-import br.com.mind5.business.personSearch.model.action.LazyPerarchRootSelectAuth;
-import br.com.mind5.business.personSearch.model.action.StdPerarchEnforceEmail;
-import br.com.mind5.business.personSearch.model.checker.PerarchCheckReadEmail;
+import br.com.mind5.business.personSearch.model.action.LazyPerarchRootSelect;
+import br.com.mind5.business.personSearch.model.checker.PerarchCheckRead;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
@@ -15,9 +14,9 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 
-public final class RootPerarchSelectEmail extends DeciTreeTemplateReadV2<PerarchInfo> {
+public final class RootPerarchSelectAuth extends DeciTreeTemplateReadV2<PerarchInfo> {
 	
-	public RootPerarchSelectEmail(DeciTreeOption<PerarchInfo> option) {
+	public RootPerarchSelectAuth(DeciTreeOption<PerarchInfo> option) {
 		super(option);
 	}
 	
@@ -32,7 +31,7 @@ public final class RootPerarchSelectEmail extends DeciTreeTemplateReadV2<Perarch
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new PerarchCheckReadEmail(checkerOption);
+		checker = new PerarchCheckRead(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueueV2<>(queue);
@@ -43,12 +42,12 @@ public final class RootPerarchSelectEmail extends DeciTreeTemplateReadV2<Perarch
 	@Override protected List<ActionStdV1<PerarchInfo>> buildActionsOnPassedHook(DeciTreeOption<PerarchInfo> option) {
 		List<ActionStdV1<PerarchInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<PerarchInfo> enforceEmail = new StdPerarchEnforceEmail(option);	
-		ActionLazyV1<PerarchInfo> select = new LazyPerarchRootSelectAuth(option.conn, option.schemaName);
+		ActionStdV1<PerarchInfo> nodeSytotin = new NodePerarchSytotinL1(option).toAction();
+		ActionLazyV1<PerarchInfo> select = new LazyPerarchRootSelect(option.conn, option.schemaName);		
 		
-		enforceEmail.addPostAction(select);
+		nodeSytotin.addPostAction(select);
 
-		actions.add(enforceEmail);		
+		actions.add(nodeSytotin);		
 		return actions;
 	}
 }
