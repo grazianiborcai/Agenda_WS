@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.customer.info.CusInfo;
-import br.com.mind5.business.customer.model.action.LazyCusNodeInsert;
 import br.com.mind5.business.customer.model.action.LazyCusNodeInsertAddress;
 import br.com.mind5.business.customer.model.action.LazyCusNodeInsertPerson;
 import br.com.mind5.business.customer.model.action.LazyCusNodeInsertPhone;
@@ -62,23 +61,21 @@ public final class RootCusInsertSilent extends DeciTreeTemplateWriteV2<CusInfo> 
 	
 	@Override protected List<ActionStdV1<CusInfo>> buildActionsOnPassedHook(DeciTreeOption<CusInfo> option) {
 		List<ActionStdV1<CusInfo>> actions = new ArrayList<>();
-		
-		ActionStdV1<CusInfo> nodeSytotauh = new NodeCusSytotauhL1(option).toAction();
-		ActionLazyV1<CusInfo> insertCustomer = new LazyCusNodeInsert(option.conn, option.schemaName);
+
+		ActionStdV1<CusInfo> insertCustomer = new NodeCusInsert(option).toAction();		
 		ActionLazyV1<CusInfo> insertPerson = new LazyCusNodeInsertPerson(option.conn, option.schemaName);
 		ActionLazyV1<CusInfo> snapshot = new LazyCusNodeSnapshot(option.conn, option.schemaName);
 		ActionLazyV1<CusInfo> insertAddress = new LazyCusNodeInsertAddress(option.conn, option.schemaName);
 		ActionLazyV1<CusInfo> insertPhone = new LazyCusNodeInsertPhone(option.conn, option.schemaName);
 		ActionLazyV1<CusInfo> select = new LazyCusRootSelect(option.conn, option.schemaName);	
 		
-		nodeSytotauh.addPostAction(insertCustomer);
 		insertCustomer.addPostAction(insertPerson);
 		insertPerson.addPostAction(snapshot);
 		snapshot.addPostAction(insertAddress);
 		insertAddress.addPostAction(insertPhone);
 		insertPhone.addPostAction(select);
 		
-		actions.add(nodeSytotauh);	
+		actions.add(insertCustomer);	
 		return actions;
 	}
 }

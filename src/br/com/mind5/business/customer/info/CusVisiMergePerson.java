@@ -16,7 +16,13 @@ final class CusVisiMergePerson implements InfoMergerVisitorV3<CusInfo, PersonInf
 	
 	
 	@Override public boolean shouldMerge(CusInfo baseInfo, PersonInfo selectedInfo) {
-		return (baseInfo.codOwner == selectedInfo.codOwner);
+		if (baseInfo.codOwner != selectedInfo.codOwner)
+			return false;
+		
+		if (baseInfo.codPerson <= 0)
+			return true;
+		
+		return (baseInfo.codPerson == selectedInfo.codPerson);
 	}
 	
 	
@@ -26,6 +32,7 @@ final class CusVisiMergePerson implements InfoMergerVisitorV3<CusInfo, PersonInf
 		
 		baseInfo.personData = selectedInfo;
 		baseInfo.codPerson = selectedInfo.codPerson;
+		baseInfo.codStore = selectedInfo.codStore;
 		
 		results.add(baseInfo);
 		return results;

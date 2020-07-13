@@ -14,9 +14,9 @@ import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class NodeCusSytotauhL1 extends DeciTreeTemplateWriteV2<CusInfo> {
+public final class NodeCusSytotauhL1_ extends DeciTreeTemplateWriteV2<CusInfo> {
 	
-	public NodeCusSytotauhL1(DeciTreeOption<CusInfo> option) {
+	public NodeCusSytotauhL1_(DeciTreeOption<CusInfo> option) {
 		super(option);
 	}
 	
