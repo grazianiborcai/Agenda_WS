@@ -15,8 +15,9 @@ import br.com.mind5.security.user.info.UserInfo;
 public final class EmpInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codEmployee;
+	public long codStore;
 	public long codSnapshot;
-	public long codPerson;
+	public long codPerson;	
 	public long codUser;
 	public UserInfo userData;
 	public PersonInfo personData;
@@ -36,6 +37,7 @@ public final class EmpInfo extends InfoRecord implements Cloneable {
 		
 		codOwner = DefaultValue.number();
 		codEmployee = DefaultValue.number();
+		codStore = DefaultValue.number();
 		codSnapshot = DefaultValue.number();
 		codPerson = DefaultValue.number();
 		codUser = DefaultValue.number();

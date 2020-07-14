@@ -63,6 +63,7 @@ public final class DaoEmpSelectSingle extends DaoStmtTemplate<EmpInfo> {
 					
 					dataInfo.codOwner = stmtResult.getLong(DaoEmpDbTableColumn.COL_COD_OWNER);
 					dataInfo.codEmployee = stmtResult.getLong(DaoEmpDbTableColumn.COL_COD_EMPLOYEE);
+					dataInfo.codStore = stmtResult.getLong(DaoEmpDbTableColumn.COL_COD_STORE);
 					dataInfo.recordMode = stmtResult.getString(DaoEmpDbTableColumn.COL_RECORD_MODE);	
 					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, DaoEmpDbTableColumn.COL_COD_SNAPSHOT);
 					dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, DaoEmpDbTableColumn.COL_COD_USER);
