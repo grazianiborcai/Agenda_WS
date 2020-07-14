@@ -9,9 +9,9 @@ import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyPerarchEnforcePersonCus extends ActionLazyTemplateV2<PerarchInfo, PerarchInfo> {
+public final class LazyPerarchEnforcePerson extends ActionLazyTemplateV2<PerarchInfo, PerarchInfo> {
 	
-	public LazyPerarchEnforcePersonCus(Connection conn, String schemaName) {
+	public LazyPerarchEnforcePerson(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyPerarchEnforcePersonCus extends ActionLazyTemplateV2<Pera
 	
 	
 	@Override protected ActionStdV1<PerarchInfo> getInstanceOfActionHook(DeciTreeOption<PerarchInfo> option) {
-		return new StdPerarchEnforcePersonCus(option);
+		return new StdPerarchEnforcePerson(option);
 	}
 	
 	

@@ -880,7 +880,9 @@ public final class SystemCode {
 	public static final int PERSON_SEARCH_ALREADY_EXIST					= 6701;
 	public static final int PERSON_SEARCH_NOT_FOUND						= 6702;
 	public static final int PERSON_SEARCH_CUSTOMER_NOT_FOUND			= 6703;
-	public static final int PERSON_SEARCH_IS_CUSTOMER					= 6704;
+	public static final int PERSON_SEARCH_IS_CUSTOMER					= 6704;	
+	public static final int PERSON_SEARCH_EMPLOYEE_NOT_FOUND			= 6705;
+	public static final int PERSON_SEARCH_IS_EMPLOYEE					= 6706;
 	
 	// File Image Search
 	public static final int FILE_IMG_SEARCH_MANDATORY_FIELD_EMPTY 		= 6750;

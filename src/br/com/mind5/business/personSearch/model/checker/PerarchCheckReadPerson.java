@@ -7,9 +7,9 @@ import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class PerarchCheckReadPersonCus extends ModelCheckerTemplateSimpleV2<PerarchInfo> {
+public final class PerarchCheckReadPerson extends ModelCheckerTemplateSimpleV2<PerarchInfo> {
 
-	public PerarchCheckReadPersonCus(ModelCheckerOption option) {
+	public PerarchCheckReadPerson(ModelCheckerOption option) {
 		super(option);
 	}
 	

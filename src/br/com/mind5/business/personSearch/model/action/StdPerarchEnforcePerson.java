@@ -5,15 +5,15 @@ import br.com.mind5.model.action.ActionStdTemplateV2;
 import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdPerarchEnforcePersonCus extends ActionStdTemplateV2<PerarchInfo> {
+public final class StdPerarchEnforcePerson extends ActionStdTemplateV2<PerarchInfo> {
 
-	public StdPerarchEnforcePersonCus(DeciTreeOption<PerarchInfo> option) {
+	public StdPerarchEnforcePerson(DeciTreeOption<PerarchInfo> option) {
 		super(option);
 	}
 	
 	
 	
 	protected ActionVisitorV2<PerarchInfo> buildVisitorHook(DeciTreeOption<PerarchInfo> option) {
-		return new VisiPerarchEnforcePersonCus(option);
+		return new VisiPerarchEnforcePerson(option);
 	}
 }

@@ -2,7 +2,7 @@ package br.com.mind5.business.personSearch.info;
 
 import br.com.mind5.info.InfoSetterTemplate;
 
-public final class PerarchSetterPersonCus extends InfoSetterTemplate<PerarchInfo> {
+public final class PerarchSetterPerson extends InfoSetterTemplate<PerarchInfo> {
 	
 	@Override protected PerarchInfo setAttrHook(PerarchInfo recordInfo) {
 		PerarchInfo result = new PerarchInfo();
