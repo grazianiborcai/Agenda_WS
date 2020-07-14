@@ -1,34 +1,34 @@
 package br.com.mind5.business.employeeSnapshot.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.employeeSnapshot.info.EmpnapInfo;
 import br.com.mind5.business.employeeSnapshot.info.EmpnapMerger;
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiEmpnapMergeToSelect extends ActionVisitorTemplateMergeV1<EmpnapInfo, EmpnapInfo> {
+final class VisiEmpnapMergeToSelect extends ActionVisitorTemplateMergeV2<EmpnapInfo, EmpnapInfo> {
 	
-	public VisiEmpnapMergeToSelect(Connection conn, String schemaName) {
-		super(conn, schemaName, EmpnapInfo.class);
+	public VisiEmpnapMergeToSelect(DeciTreeOption<EmpnapInfo> option) {
+		super(option, EmpnapInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends ActionStdV1<EmpnapInfo>> getActionClassHook() {
-		return StdEmpnapSelect.class;
+	@Override protected Class<? extends ActionStdV2<EmpnapInfo>> getActionClassHook() {
+		return StdEmpnapDaoSelect.class;
 	}
 	
 	
 	
-	@Override protected List<EmpnapInfo> mergeHook(List<EmpnapInfo> recordInfos, List<EmpnapInfo> selectedInfos) {	
-		return EmpnapMerger.mergeToSelect(selectedInfos, recordInfos);
+	@Override protected List<EmpnapInfo> mergeHook(List<EmpnapInfo> baseInfos, List<EmpnapInfo> selectedInfos) {	
+		return EmpnapMerger.mergeToSelect(baseInfos, selectedInfos);
 	}
 	
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
+		return super.DONT_MERGE_WHEN_EMPTY;
 	}
 }

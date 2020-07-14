@@ -1,57 +1,40 @@
 package br.com.mind5.business.employeeSnapshot.info;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import br.com.mind5.business.phoneSnapshot.info.PhonapInfo;
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-final class EmpnapVisiMergePhonap implements InfoMergerVisitor_<EmpnapInfo, PhonapInfo> {
-
-	@Override public EmpnapInfo writeRecord(PhonapInfo sourceOne, EmpnapInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+final class EmpnapVisiMergePhonap implements InfoMergerVisitorV3<EmpnapInfo, PhonapInfo> {
+	
+	@Override public List<EmpnapInfo> beforeMerge(List<EmpnapInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(EmpnapInfo baseInfo, PhonapInfo selectedInfo) {
+		return (baseInfo.codOwner 	 == selectedInfo.codOwner 		&&
+				baseInfo.codEmployee == selectedInfo.codEmployee	&&
+				baseInfo.codSnapshot == selectedInfo.codEmployeeSnapshot	);
+	}
+	
+	
+	
+	@Override public List<EmpnapInfo> merge(EmpnapInfo baseInfo, PhonapInfo selectedInfo) {
+		List<EmpnapInfo> results = new ArrayList<>();
 		
-		EmpnapInfo clonedInfo = makeClone(sourceTwo);
-		return merge(sourceOne, clonedInfo);
+		baseInfo.phonaps.add(selectedInfo);
+		
+		results.add(baseInfo);
+		return results;
 	}
 	
 	
 	
-	private void checkArgument(PhonapInfo sourceOne, EmpnapInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private EmpnapInfo makeClone(EmpnapInfo recordInfo) {
-		try {
-			return (EmpnapInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	private EmpnapInfo merge(PhonapInfo sourceOne, EmpnapInfo sourceTwo) {
-		sourceTwo.phonaps.add(sourceOne);
-
-		return sourceTwo;
-	}
-
-
-	
-	@Override public boolean shouldWrite(PhonapInfo sourceOne, EmpnapInfo sourceTwo) {
-		return (sourceOne.codOwner 				== sourceTwo.codOwner 		&&
-				sourceOne.codEmployee 			== sourceTwo.codEmployee	&&
-				sourceOne.codEmployeeSnapshot 	== sourceTwo.codSnapshot		);
-	}		
-	
-	
-	
-	private void logException(Exception e) {
-		SystemLog.logError(this.getClass(), e);
+	@Override public InfoUniquifier<EmpnapInfo> getUniquifier() {
+		return new EmpnapUniquifier();
 	}
 }

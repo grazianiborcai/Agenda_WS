@@ -6,89 +6,84 @@ import br.com.mind5.business.addressSnapshot.info.AddresnapInfo;
 import br.com.mind5.business.personList.info.PersolisInfo;
 import br.com.mind5.business.personSnapshot.info.PersonapInfo;
 import br.com.mind5.business.phoneSnapshot.info.PhonapInfo;
-import br.com.mind5.info.obsolete.InfoMerger_;
+import br.com.mind5.info.InfoMergerBuilderV3;
+import br.com.mind5.info.InfoMergerV3;
 import br.com.mind5.security.userList.info.UselisInfo;
 
 public final class EmpnapMerger {
-	public static EmpnapInfo mergeWithUselis(UselisInfo sourceOne, EmpnapInfo sourceTwo) {
-		InfoMerger_<EmpnapInfo, UselisInfo> merger = new EmpnapMergerUselis();		
-		return merger.merge(sourceOne, sourceTwo);
+	public static List<EmpnapInfo> mergeWithUselis(List<EmpnapInfo> baseInfos, List<UselisInfo> selectedInfos) {
+		InfoMergerBuilderV3<EmpnapInfo, UselisInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new EmpnapVisiMergeUselis());
+		InfoMergerV3<EmpnapInfo, UselisInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static List<EmpnapInfo> mergeWithUselis(List<UselisInfo> sourceOnes, List<EmpnapInfo> sourceTwos) {
-		InfoMerger_<EmpnapInfo, UselisInfo> merger = new EmpnapMergerUselis();		
-		return merger.merge(sourceOnes, sourceTwos);
+	public static List<EmpnapInfo> mergeWithPersolis(List<EmpnapInfo> baseInfos, List<PersolisInfo> selectedInfos) {
+		InfoMergerBuilderV3<EmpnapInfo, PersolisInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new EmpnapVisiMergePersolis());
+		InfoMergerV3<EmpnapInfo, PersolisInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static EmpnapInfo mergeWithPersolis(PersolisInfo sourceOne, EmpnapInfo sourceTwo) {
-		InfoMerger_<EmpnapInfo, PersolisInfo> merger = new EmpnapMergerPersolis();		
-		return merger.merge(sourceOne, sourceTwo);
+	public static List<EmpnapInfo> mergeWithAddresnap(List<EmpnapInfo> baseInfos, List<AddresnapInfo> selectedInfos) {
+		InfoMergerBuilderV3<EmpnapInfo, AddresnapInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new EmpnapVisiMergeAddresnap());
+		InfoMergerV3<EmpnapInfo, AddresnapInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static List<EmpnapInfo> mergeWithPersolis(List<PersolisInfo> sourceOnes, List<EmpnapInfo> sourceTwos) {
-		InfoMerger_<EmpnapInfo, PersolisInfo> merger = new EmpnapMergerPersolis();		
-		return merger.merge(sourceOnes, sourceTwos);
+	public static List<EmpnapInfo> mergeWithPersonap(List<EmpnapInfo> baseInfos, List<PersonapInfo> selectedInfos) {
+		InfoMergerBuilderV3<EmpnapInfo, PersonapInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new EmpnapVisiMergePersonap());
+		InfoMergerV3<EmpnapInfo, PersonapInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static EmpnapInfo mergeWithAddresnap(AddresnapInfo sourceOne, EmpnapInfo sourceTwo) {
-		InfoMerger_<EmpnapInfo, AddresnapInfo> merger = new EmpnapMergerAddresnap();		
-		return merger.merge(sourceOne, sourceTwo);
+	public static List<EmpnapInfo> mergeWithPhonap(List<EmpnapInfo> baseInfos, List<PhonapInfo> selectedInfos) {
+		InfoMergerBuilderV3<EmpnapInfo, PhonapInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new EmpnapVisiMergePhonap());
+		InfoMergerV3<EmpnapInfo, PhonapInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static List<EmpnapInfo> mergeWithAddresnap(List<AddresnapInfo> sourceOnes, List<EmpnapInfo> sourceTwos) {
-		InfoMerger_<EmpnapInfo, AddresnapInfo> merger = new EmpnapMergerAddresnap();		
-		return merger.merge(sourceOnes, sourceTwos);
-	}
+	public static List<EmpnapInfo> mergeToSelect(List<EmpnapInfo> baseInfos, List<EmpnapInfo> selectedInfos) {
+		InfoMergerBuilderV3<EmpnapInfo, EmpnapInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new EmpnapVisiMergeToSelect());
+		InfoMergerV3<EmpnapInfo, EmpnapInfo> merger = builder.build();		
 	
-	
-	
-	public static EmpnapInfo mergeWithPersonap(PersonapInfo sourceOne, EmpnapInfo sourceTwo) {
-		InfoMerger_<EmpnapInfo, PersonapInfo> merger = new EmpnapMergerPersonap();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
-	
-	
-	
-	public static List<EmpnapInfo> mergeWithPersonap(List<PersonapInfo> sourceOnes, List<EmpnapInfo> sourceTwos) {
-		InfoMerger_<EmpnapInfo, PersonapInfo> merger = new EmpnapMergerPersonap();		
-		return merger.merge(sourceOnes, sourceTwos);
-	}
-	
-	
-	
-	public static EmpnapInfo mergeWithPhonap(PhonapInfo sourceOne, EmpnapInfo sourceTwo) {
-		InfoMerger_<EmpnapInfo, PhonapInfo> merger = new EmpnapMergerPhonap();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
-	
-	
-	
-	public static List<EmpnapInfo> mergeWithPhonap(List<PhonapInfo> sourceOnes, List<EmpnapInfo> sourceTwos) {
-		InfoMerger_<EmpnapInfo, PhonapInfo> merger = new EmpnapMergerPhonap();		
-		return merger.merge(sourceOnes, sourceTwos);
-	}
-	
-	
-	
-	public static EmpnapInfo mergeToSelect(EmpnapInfo sourceOne, EmpnapInfo sourceTwo) {
-		InfoMerger_<EmpnapInfo, EmpnapInfo> merger = new EmpnapMergerToSelect();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
-	
-	
-	
-	public static List<EmpnapInfo> mergeToSelect(List<EmpnapInfo> sourceOnes, List<EmpnapInfo> sourceTwos) {
-		InfoMerger_<EmpnapInfo, EmpnapInfo> merger = new EmpnapMergerToSelect();		
-		return merger.merge(sourceOnes, sourceTwos);
+		return merger.merge();
 	}
 }

@@ -1,68 +1,40 @@
 package br.com.mind5.business.employeeSnapshot.info;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import br.com.mind5.business.personSnapshot.info.PersonapInfo;
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-final class EmpnapVisiMergePersonap implements InfoMergerVisitor_<EmpnapInfo, PersonapInfo> {
-
-	@Override public EmpnapInfo writeRecord(PersonapInfo sourceOne, EmpnapInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+final class EmpnapVisiMergePersonap implements InfoMergerVisitorV3<EmpnapInfo, PersonapInfo> {
+	
+	@Override public List<EmpnapInfo> beforeMerge(List<EmpnapInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(EmpnapInfo baseInfo, PersonapInfo selectedInfo) {
+		return (baseInfo.codOwner    	   == selectedInfo.codOwner		&&
+				baseInfo.codPerson   	   == selectedInfo.codPerson	&&
+				baseInfo.codPersonSnapshot == selectedInfo.codSnapshot);
+	}
+	
+	
+	
+	@Override public List<EmpnapInfo> merge(EmpnapInfo baseInfo, PersonapInfo selectedInfo) {
+		List<EmpnapInfo> results = new ArrayList<>();
 		
-		EmpnapInfo clonedInfo = makeClone(sourceTwo);
-		return merge(sourceOne, clonedInfo);
+		baseInfo.personapData = PersonapInfo.copyFrom(selectedInfo);
+		
+		results.add(baseInfo);
+		return results;
 	}
 	
 	
 	
-	private void checkArgument(PersonapInfo sourceOne, EmpnapInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private EmpnapInfo makeClone(EmpnapInfo recordInfo) {
-		try {
-			return (EmpnapInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	private EmpnapInfo merge(PersonapInfo sourceOne, EmpnapInfo sourceTwo) {
-		sourceTwo.personapData = makeClone(sourceOne);
-		return sourceTwo;
-	}
-	
-	
-	
-	private PersonapInfo makeClone(PersonapInfo recordInfo) {
-		try {
-			return (PersonapInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}	
-	
-	
-	
-	@Override public boolean shouldWrite(PersonapInfo sourceOne, EmpnapInfo sourceTwo) {
-		return (sourceOne.codOwner    == sourceTwo.codOwner		&&
-				sourceOne.codPerson   == sourceTwo.codPerson	&&
-				sourceOne.codSnapshot == sourceTwo.codPersonSnapshot);
-	}
-	
-	
-	
-	private void logException(Exception e) {
-		SystemLog.logError(this.getClass(), e);
+	@Override public InfoUniquifier<EmpnapInfo> getUniquifier() {
+		return new EmpnapUniquifier();
 	}
 }

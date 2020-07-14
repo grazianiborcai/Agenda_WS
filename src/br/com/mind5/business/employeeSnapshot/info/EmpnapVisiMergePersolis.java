@@ -1,34 +1,39 @@
 package br.com.mind5.business.employeeSnapshot.info;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import br.com.mind5.business.personList.info.PersolisInfo;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-final class EmpnapVisiMergePersolis implements InfoMergerVisitor_<EmpnapInfo, PersolisInfo> {
-
-	@Override public EmpnapInfo writeRecord(PersolisInfo sourceOne, EmpnapInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
-		return merge(sourceOne, sourceTwo);
+final class EmpnapVisiMergePersolis implements InfoMergerVisitorV3<EmpnapInfo, PersolisInfo> {
+	
+	@Override public List<EmpnapInfo> beforeMerge(List<EmpnapInfo> baseInfos) {
+		return baseInfos;
 	}
 	
 	
 	
-	private void checkArgument(PersolisInfo sourceOne, EmpnapInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
+	@Override public boolean shouldMerge(EmpnapInfo baseInfo, PersolisInfo selectedInfo) {
+		return (baseInfo.codOwner  == selectedInfo.codOwner	&&
+				baseInfo.codPerson == selectedInfo.codPerson	);
 	}
 	
 	
 	
-	private EmpnapInfo merge(PersolisInfo sourceOne, EmpnapInfo sourceTwo) {
-		sourceTwo.codPersonSnapshot = sourceOne.codSnapshot;
-		return sourceTwo;
+	@Override public List<EmpnapInfo> merge(EmpnapInfo baseInfo, PersolisInfo selectedInfo) {
+		List<EmpnapInfo> results = new ArrayList<>();
+		
+		baseInfo.codPersonSnapshot = selectedInfo.codSnapshot;
+		
+		results.add(baseInfo);
+		return results;
 	}
 	
 	
 	
-	@Override public boolean shouldWrite(PersolisInfo sourceOne, EmpnapInfo sourceTwo) {
-		return (sourceOne.codOwner  == sourceTwo.codOwner &&
-				sourceOne.codPerson == sourceTwo.codPerson);
+	@Override public InfoUniquifier<EmpnapInfo> getUniquifier() {
+		return new EmpnapUniquifier();
 	}
 }

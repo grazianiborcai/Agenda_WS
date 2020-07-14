@@ -1,6 +1,5 @@
 package br.com.mind5.business.employeeSnapshot.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.addressSnapshot.info.AddresnapCopier;
@@ -8,13 +7,14 @@ import br.com.mind5.business.addressSnapshot.info.AddresnapInfo;
 import br.com.mind5.business.addressSnapshot.model.decisionTree.RootAddresnapSelect;
 import br.com.mind5.business.employeeSnapshot.info.EmpnapInfo;
 import br.com.mind5.business.employeeSnapshot.info.EmpnapMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiEmpapMergeAddresnap extends ActionVisitorTemplateMergeV1<EmpnapInfo, AddresnapInfo> {
+final class VisiEmpnapMergeAddresnap extends ActionVisitorTemplateMergeV2<EmpnapInfo, AddresnapInfo> {
 	
-	public VisiEmpapMergeAddresnap(Connection conn, String schemaName) {
-		super(conn, schemaName, AddresnapInfo.class);
+	public VisiEmpnapMergeAddresnap(DeciTreeOption<EmpnapInfo> option) {
+		super(option, AddresnapInfo.class);
 	}
 	
 	
@@ -25,19 +25,19 @@ final class VisiEmpapMergeAddresnap extends ActionVisitorTemplateMergeV1<EmpnapI
 	
 	
 	
-	@Override protected List<AddresnapInfo> toActionClassHook(List<EmpnapInfo> recordInfos) {
-		return AddresnapCopier.copyFromEmpnapKey(recordInfos);	
+	@Override protected List<AddresnapInfo> toActionClassHook(List<EmpnapInfo> baseInfos) {
+		return AddresnapCopier.copyFromEmpnapKey(baseInfos);	
 	}
 	
 	
 	
-	@Override protected List<EmpnapInfo> mergeHook(List<EmpnapInfo> recordInfos, List<AddresnapInfo> selectedInfos) {	
-		return EmpnapMerger.mergeWithAddresnap(selectedInfos, recordInfos);
+	@Override protected List<EmpnapInfo> mergeHook(List<EmpnapInfo> baseInfos, List<AddresnapInfo> selectedInfos) {	
+		return EmpnapMerger.mergeWithAddresnap(baseInfos, selectedInfos);
 	}
 	
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
+		return super.MERGE_WHEN_EMPTY;
 	}
 }

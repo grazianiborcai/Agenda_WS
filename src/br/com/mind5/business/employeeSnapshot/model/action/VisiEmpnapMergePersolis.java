@@ -1,6 +1,5 @@
 package br.com.mind5.business.employeeSnapshot.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.employeeSnapshot.info.EmpnapInfo;
@@ -8,13 +7,14 @@ import br.com.mind5.business.employeeSnapshot.info.EmpnapMerger;
 import br.com.mind5.business.personList.info.PersolisCopier;
 import br.com.mind5.business.personList.info.PersolisInfo;
 import br.com.mind5.business.personList.model.decisionTree.RootPersolisSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiEmpnapMergePersolis extends ActionVisitorTemplateMergeV1<EmpnapInfo, PersolisInfo> {
+final class VisiEmpnapMergePersolis extends ActionVisitorTemplateMergeV2<EmpnapInfo, PersolisInfo> {
 	
-	public VisiEmpnapMergePersolis(Connection conn, String schemaName) {
-		super(conn, schemaName, PersolisInfo.class);
+	public VisiEmpnapMergePersolis(DeciTreeOption<EmpnapInfo> option) {
+		super(option, PersolisInfo.class);
 	}
 	
 	
@@ -25,19 +25,19 @@ final class VisiEmpnapMergePersolis extends ActionVisitorTemplateMergeV1<EmpnapI
 	
 	
 	
-	@Override protected List<PersolisInfo> toActionClassHook(List<EmpnapInfo> recordInfos) {
-		return PersolisCopier.copyFromEmpnap(recordInfos);
+	@Override protected List<PersolisInfo> toActionClassHook(List<EmpnapInfo> baseInfos) {
+		return PersolisCopier.copyFromEmpnap(baseInfos);
 	}
 	
 	
 	
-	@Override protected List<EmpnapInfo> mergeHook(List<EmpnapInfo> recordInfos, List<PersolisInfo> selectedInfos) {	
-		return EmpnapMerger.mergeWithPersolis(selectedInfos, recordInfos);
+	@Override protected List<EmpnapInfo> mergeHook(List<EmpnapInfo> baseInfos, List<PersolisInfo> selectedInfos) {	
+		return EmpnapMerger.mergeWithPersolis(baseInfos, selectedInfos);
 	}
 	
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
+		return super.MERGE_WHEN_EMPTY;
 	}
 }

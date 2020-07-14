@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.employeeSnapshot.info.EmpnapInfo;
-import br.com.mind5.business.employeeSnapshot.model.action.LazyEmpnapInsert;
+import br.com.mind5.business.employeeSnapshot.model.action.LazyEmpnapDaoInsert;
 import br.com.mind5.business.employeeSnapshot.model.action.LazyEmpnapMergeUselis;
 import br.com.mind5.business.employeeSnapshot.model.action.StdEmpnapMergePersolis;
 import br.com.mind5.business.employeeSnapshot.model.checker.EmpnapCheckEmp;
@@ -13,13 +13,13 @@ import br.com.mind5.business.employeeSnapshot.model.checker.EmpnapCheckOwner;
 import br.com.mind5.business.employeeSnapshot.model.checker.EmpnapCheckWrite;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class RootEmpnapInsert extends DeciTreeTemplateWriteV1<EmpnapInfo> {	
+public final class RootEmpnapInsert extends DeciTreeTemplateWriteV2<EmpnapInfo> {	
 	
 	public RootEmpnapInsert(DeciTreeOption<EmpnapInfo> option) {
 		super(option);
@@ -70,7 +70,7 @@ public final class RootEmpnapInsert extends DeciTreeTemplateWriteV1<EmpnapInfo> 
 
 		ActionStdV1<EmpnapInfo> mergePersolis = new StdEmpnapMergePersolis(option);
 		ActionLazyV1<EmpnapInfo> mergeUselis = new LazyEmpnapMergeUselis(option.conn, option.schemaName);
-		ActionLazyV1<EmpnapInfo> insert = new LazyEmpnapInsert(option.conn, option.schemaName);
+		ActionLazyV1<EmpnapInfo> insert = new LazyEmpnapDaoInsert(option.conn, option.schemaName);
 		
 		mergePersolis.addPostAction(mergeUselis);
 		mergeUselis.addPostAction(insert);

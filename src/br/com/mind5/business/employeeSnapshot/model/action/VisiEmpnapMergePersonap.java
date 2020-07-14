@@ -1,6 +1,5 @@
 package br.com.mind5.business.employeeSnapshot.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.employeeSnapshot.info.EmpnapInfo;
@@ -8,13 +7,14 @@ import br.com.mind5.business.employeeSnapshot.info.EmpnapMerger;
 import br.com.mind5.business.personSnapshot.info.PersonapCopier;
 import br.com.mind5.business.personSnapshot.info.PersonapInfo;
 import br.com.mind5.business.personSnapshot.model.decisionTree.RootPersonapSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiEmpnapMergePersonap extends ActionVisitorTemplateMergeV1<EmpnapInfo, PersonapInfo> {
+final class VisiEmpnapMergePersonap extends ActionVisitorTemplateMergeV2<EmpnapInfo, PersonapInfo> {
 	
-	public VisiEmpnapMergePersonap(Connection conn, String schemaName) {
-		super(conn, schemaName, PersonapInfo.class);
+	public VisiEmpnapMergePersonap(DeciTreeOption<EmpnapInfo> option) {
+		super(option, PersonapInfo.class);
 	}
 	
 	
@@ -25,19 +25,19 @@ final class VisiEmpnapMergePersonap extends ActionVisitorTemplateMergeV1<EmpnapI
 	
 	
 	
-	@Override protected List<PersonapInfo> toActionClassHook(List<EmpnapInfo> recordInfos) {
-		return PersonapCopier.copyFromEmpnapKey(recordInfos);	
+	@Override protected List<PersonapInfo> toActionClassHook(List<EmpnapInfo> baseInfos) {
+		return PersonapCopier.copyFromEmpnapKey(baseInfos);	
 	}
 	
 	
 	
-	@Override protected List<EmpnapInfo> mergeHook(List<EmpnapInfo> recordInfos, List<PersonapInfo> selectedInfos) {	
-		return EmpnapMerger.mergeWithPersonap(selectedInfos, recordInfos);
+	@Override protected List<EmpnapInfo> mergeHook(List<EmpnapInfo> baseInfos, List<PersonapInfo> selectedInfos) {	
+		return EmpnapMerger.mergeWithPersonap(baseInfos, selectedInfos);
 	}
 	
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
+		return super.MERGE_WHEN_EMPTY;
 	}
 }

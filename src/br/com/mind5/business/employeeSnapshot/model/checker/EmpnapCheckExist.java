@@ -1,7 +1,7 @@
 package br.com.mind5.business.employeeSnapshot.model.checker;
 
 import br.com.mind5.business.employeeSnapshot.info.EmpnapInfo;
-import br.com.mind5.business.employeeSnapshot.model.action.StdEmpnapSelect;
+import br.com.mind5.business.employeeSnapshot.model.action.StdEmpnapDaoSelect;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -17,7 +17,7 @@ public final class EmpnapCheckExist extends ModelCheckerTemplateActionV2<EmpnapI
 	
 	
 	@Override protected ActionStdV1<EmpnapInfo> buildActionHook(DeciTreeOption<EmpnapInfo> option) {
-		ActionStdV1<EmpnapInfo> select = new StdEmpnapSelect(option);
+		ActionStdV1<EmpnapInfo> select = new StdEmpnapDaoSelect(option);
 		return select;
 	}
 	

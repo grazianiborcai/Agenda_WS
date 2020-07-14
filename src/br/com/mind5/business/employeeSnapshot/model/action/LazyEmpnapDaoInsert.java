@@ -4,14 +4,14 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.employeeSnapshot.info.EmpnapInfo;
-import br.com.mind5.model.action.ActionLazyTemplateV1;
+import br.com.mind5.model.action.ActionLazyTemplateV2;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyEmpnapInsert extends ActionLazyTemplateV1<EmpnapInfo, EmpnapInfo> {
+public final class LazyEmpnapDaoInsert extends ActionLazyTemplateV2<EmpnapInfo, EmpnapInfo> {
 	
-	public LazyEmpnapInsert(Connection conn, String schemaName) {
+	public LazyEmpnapDaoInsert(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyEmpnapInsert extends ActionLazyTemplateV1<EmpnapInfo, Emp
 	
 	
 	@Override protected ActionStdV1<EmpnapInfo> getInstanceOfActionHook(DeciTreeOption<EmpnapInfo> option) {
-		return new StdEmpnapInsert(option);
+		return new StdEmpnapDaoInsert(option);
 	}
 	
 	
