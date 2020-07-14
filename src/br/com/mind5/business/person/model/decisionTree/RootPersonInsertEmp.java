@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.person.info.PersonInfo;
+import br.com.mind5.business.person.model.action.LazyPersonNodeSytotauhL1;
 import br.com.mind5.business.person.model.action.LazyPersonRootInsert;
 import br.com.mind5.business.person.model.action.StdPersonEnforceCategEmp;
 import br.com.mind5.model.action.ActionLazyV1;
@@ -37,10 +38,12 @@ public final class RootPersonInsertEmp extends DeciTreeTemplateWriteV2<PersonInf
 	@Override protected List<ActionStdV1<PersonInfo>> buildActionsOnPassedHook(DeciTreeOption<PersonInfo> option) {
 		List<ActionStdV1<PersonInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<PersonInfo> enforceCateg = new StdPersonEnforceCategEmp(option);	
+		ActionStdV1<PersonInfo> enforceCateg = new StdPersonEnforceCategEmp(option);
+		ActionLazyV1<PersonInfo> nodeSytotauh = new LazyPersonNodeSytotauhL1(option.conn, option.schemaName);
 		ActionLazyV1<PersonInfo> insert = new LazyPersonRootInsert(option.conn, option.schemaName);
 		
-		enforceCateg.addPostAction(insert);
+		enforceCateg.addPostAction(nodeSytotauh);
+		nodeSytotauh.addPostAction(insert);
 		
 		actions.add(enforceCateg);
 		return actions;
