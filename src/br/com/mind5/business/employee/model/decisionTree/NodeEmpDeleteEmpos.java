@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.employee.info.EmpInfo;
-import br.com.mind5.business.employee.model.action.StdEmpDeleteEmpos;
+import br.com.mind5.business.employee.model.action.StdEmpEmposDelete;
 import br.com.mind5.business.employee.model.action.StdEmpSuccess;
 import br.com.mind5.business.employee.model.checker.EmpCheckEmposarch;
 import br.com.mind5.model.action.ActionStdV1;
@@ -42,7 +42,7 @@ public final class NodeEmpDeleteEmpos extends DeciTreeTemplateWriteV2<EmpInfo> {
 	@Override protected List<ActionStdV1<EmpInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpInfo> option) {
 		List<ActionStdV1<EmpInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<EmpInfo> deleteEmpos = new StdEmpDeleteEmpos(option);
+		ActionStdV1<EmpInfo> deleteEmpos = new StdEmpEmposDelete(option);
 		
 		actions.add(deleteEmpos);		
 		return actions;

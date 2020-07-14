@@ -11,9 +11,9 @@ import br.com.mind5.security.user.info.UserCopier;
 import br.com.mind5.security.user.info.UserInfo;
 import br.com.mind5.security.user.model.decisionTree.RootUserInsertEmp;
 
-final class VisiEmpInsertUser extends ActionVisitorTemplateActionV2<EmpInfo, UserInfo> {
+final class VisiEmpUserInsert extends ActionVisitorTemplateActionV2<EmpInfo, UserInfo> {
 	
-	public VisiEmpInsertUser(DeciTreeOption<EmpInfo> option) {
+	public VisiEmpUserInsert(DeciTreeOption<EmpInfo> option) {
 		super(option, EmpInfo.class, UserInfo.class);
 	}
 	

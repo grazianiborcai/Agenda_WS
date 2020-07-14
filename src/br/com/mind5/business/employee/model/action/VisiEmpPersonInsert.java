@@ -11,9 +11,9 @@ import br.com.mind5.model.action.ActionVisitorTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiEmpInsertPerson extends ActionVisitorTemplateActionV2<EmpInfo, PersonInfo> {
+final class VisiEmpPersonInsert extends ActionVisitorTemplateActionV2<EmpInfo, PersonInfo> {
 	
-	public VisiEmpInsertPerson(DeciTreeOption<EmpInfo> option) {
+	public VisiEmpPersonInsert(DeciTreeOption<EmpInfo> option) {
 		super(option, EmpInfo.class, PersonInfo.class);
 	}
 	

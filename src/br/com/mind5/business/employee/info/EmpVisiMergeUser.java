@@ -16,7 +16,13 @@ final class EmpVisiMergeUser implements InfoMergerVisitorV3<EmpInfo, UserInfo> {
 	
 	
 	@Override public boolean shouldMerge(EmpInfo baseInfo, UserInfo selectedInfo) {
-		return (baseInfo.codOwner == selectedInfo.codOwner);
+		if (baseInfo.codOwner != selectedInfo.codOwner)
+			return false;
+		
+		if (baseInfo.codUser <= 0)
+			return true;
+		
+		return (baseInfo.codUser == selectedInfo.codUser);
 	}
 	
 	
@@ -24,8 +30,11 @@ final class EmpVisiMergeUser implements InfoMergerVisitorV3<EmpInfo, UserInfo> {
 	@Override public List<EmpInfo> merge(EmpInfo baseInfo, UserInfo selectedInfo) {
 		List<EmpInfo> results = new ArrayList<>();
 		
-		baseInfo.userData = selectedInfo;
-		baseInfo.codUser = selectedInfo.codUser;
+		baseInfo.codUser = selectedInfo.codUser;		
+		baseInfo.addressesUser = selectedInfo.addresses;
+		baseInfo.phonesUser = selectedInfo.phones;
+		baseInfo.personDataUser = selectedInfo.personData;
+		baseInfo.fimistDataUser = selectedInfo.fimistData;
 		
 		results.add(baseInfo);
 		return results;

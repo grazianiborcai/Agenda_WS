@@ -5,15 +5,15 @@ import br.com.mind5.model.action.ActionStdTemplateV2;
 import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdEmpInsertEmpnap extends ActionStdTemplateV2<EmpInfo> {
+public final class StdEmpEmpnapInsert extends ActionStdTemplateV2<EmpInfo> {
 
-	public StdEmpInsertEmpnap(DeciTreeOption<EmpInfo> option) {
+	public StdEmpEmpnapInsert(DeciTreeOption<EmpInfo> option) {
 		super(option);
 	}
 	
 	
 	
 	protected ActionVisitorV2<EmpInfo> buildVisitorHook(DeciTreeOption<EmpInfo> option) {
-		return new VisiEmpInsertEmpnap(option);
+		return new VisiEmpEmpnapInsert(option);
 	}
 }

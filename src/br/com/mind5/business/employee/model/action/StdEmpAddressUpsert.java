@@ -5,15 +5,15 @@ import br.com.mind5.model.action.ActionStdTemplateV2;
 import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdEmpDeleteEmpmat extends ActionStdTemplateV2<EmpInfo> {
+public final class StdEmpAddressUpsert extends ActionStdTemplateV2<EmpInfo> {
 
-	public StdEmpDeleteEmpmat(DeciTreeOption<EmpInfo> option) {
+	public StdEmpAddressUpsert(DeciTreeOption<EmpInfo> option) {
 		super(option);
 	}
 	
 	
 	
 	protected ActionVisitorV2<EmpInfo> buildVisitorHook(DeciTreeOption<EmpInfo> option) {
-		return new VisiEmpDeleteEmpmat(option);
+		return new VisiEmpAddressUpsert(option);
 	}
 }

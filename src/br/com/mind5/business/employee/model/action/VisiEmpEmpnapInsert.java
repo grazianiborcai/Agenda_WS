@@ -10,9 +10,9 @@ import br.com.mind5.model.action.ActionVisitorTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiEmpInsertEmpnap extends ActionVisitorTemplateActionV2<EmpInfo, EmpnapInfo> {	
+final class VisiEmpEmpnapInsert extends ActionVisitorTemplateActionV2<EmpInfo, EmpnapInfo> {	
 	
-	public VisiEmpInsertEmpnap(DeciTreeOption<EmpInfo> option) {
+	public VisiEmpEmpnapInsert(DeciTreeOption<EmpInfo> option) {
 		super(option, EmpInfo.class, EmpnapInfo.class);
 	}
 	

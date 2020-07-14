@@ -10,26 +10,28 @@ import br.com.mind5.common.CloneUtil;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.file.fileImageList.info.FimistInfo;
 import br.com.mind5.info.InfoRecord;
-import br.com.mind5.security.user.info.UserInfo;
 
 public final class EmpInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codEmployee;
-	public long codStore;
 	public long codSnapshot;
+	public long codStore;	
 	public long codPerson;	
 	public long codUser;
-	public UserInfo userData;
 	public PersonInfo personData;
+	public PersonInfo personDataUser;
 	public FimistInfo fimistData;
+	public FimistInfo fimistDataUser;
 	public List<AddressInfo> addresses;
+	public List<AddressInfo> addressesUser;
 	public List<PhoneInfo> phones;
+	public List<PhoneInfo> phonesUser;	
 	public String recordMode;
+	public String username;
 	public LocalDateTime lastChanged;
 	public long lastChangedBy;
 	public LocalDateTime createdOn;
 	public long createdBy;
-	public String username;
 	
 	
 	public EmpInfo() {
@@ -40,13 +42,16 @@ public final class EmpInfo extends InfoRecord implements Cloneable {
 		codStore = DefaultValue.number();
 		codSnapshot = DefaultValue.number();
 		codPerson = DefaultValue.number();
+		personDataUser = DefaultValue.object();
 		codUser = DefaultValue.number();
-		userData = DefaultValue.object();
 		recordMode = DefaultValue.recordMode();
 		personData = DefaultValue.object();
 		fimistData = DefaultValue.object();
+		fimistDataUser = DefaultValue.object();
 		addresses = DefaultValue.list();
+		addressesUser = DefaultValue.list();
 		phones = DefaultValue.list();
+		phonesUser = DefaultValue.list();
 		lastChangedBy = DefaultValue.number();
 		createdBy = DefaultValue.number();
 	}
@@ -69,10 +74,13 @@ public final class EmpInfo extends InfoRecord implements Cloneable {
 		EmpInfo deepCopy = (EmpInfo) super.clone(); 
 		
 		deepCopy.addresses = CloneUtil.cloneRecords(deepCopy.addresses, this.getClass());
+		deepCopy.addressesUser = CloneUtil.cloneRecords(deepCopy.addressesUser, this.getClass());
 		deepCopy.phones = CloneUtil.cloneRecords(deepCopy.phones, this.getClass());
+		deepCopy.phonesUser = CloneUtil.cloneRecords(deepCopy.phonesUser, this.getClass());
 		deepCopy.personData = CloneUtil.cloneRecord(deepCopy.personData, this.getClass());
-		deepCopy.userData = CloneUtil.cloneRecord(deepCopy.userData, this.getClass());
+		deepCopy.personDataUser = CloneUtil.cloneRecord(deepCopy.personDataUser, this.getClass());
 		deepCopy.fimistData = CloneUtil.cloneRecord(deepCopy.fimistData, this.getClass());
+		deepCopy.fimistDataUser = CloneUtil.cloneRecord(deepCopy.fimistDataUser, this.getClass());
 
 		return deepCopy;	
 	}

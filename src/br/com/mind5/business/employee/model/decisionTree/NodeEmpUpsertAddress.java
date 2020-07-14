@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.employee.info.EmpInfo;
-import br.com.mind5.business.employee.model.action.LazyEmpUpsertAddress;
+import br.com.mind5.business.employee.model.action.LazyEmpAddressUpsert;
 import br.com.mind5.business.employee.model.action.StdEmpEnforceAddressKey;
 import br.com.mind5.business.employee.model.action.StdEmpSuccess;
 import br.com.mind5.business.employee.model.checker.EmpCheckHasAddress;
@@ -45,7 +45,7 @@ public final class NodeEmpUpsertAddress extends DeciTreeTemplateWriteV2<EmpInfo>
 		List<ActionStdV1<EmpInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<EmpInfo> enforceAddressKey = new StdEmpEnforceAddressKey(option);
-		ActionLazyV1<EmpInfo> upsertAddress = new LazyEmpUpsertAddress(option.conn, option.schemaName);
+		ActionLazyV1<EmpInfo> upsertAddress = new LazyEmpAddressUpsert(option.conn, option.schemaName);
 		
 		enforceAddressKey.addPostAction(upsertAddress);
 		

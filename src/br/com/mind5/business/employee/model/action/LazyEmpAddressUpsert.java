@@ -9,9 +9,9 @@ import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyEmpInsertEmpnap extends ActionLazyTemplateV2<EmpInfo, EmpInfo> {
+public final class LazyEmpAddressUpsert extends ActionLazyTemplateV2<EmpInfo, EmpInfo> {
 	
-	public LazyEmpInsertEmpnap(Connection conn, String schemaName) {
+	public LazyEmpAddressUpsert(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyEmpInsertEmpnap extends ActionLazyTemplateV2<EmpInfo, Emp
 	
 	
 	@Override protected ActionStdV1<EmpInfo> getInstanceOfActionHook(DeciTreeOption<EmpInfo> option) {
-		return new StdEmpInsertEmpnap(option);
+		return new StdEmpAddressUpsert(option);
 	}
 	
 	

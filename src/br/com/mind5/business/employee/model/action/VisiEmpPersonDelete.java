@@ -5,20 +5,20 @@ import java.util.List;
 
 import br.com.mind5.business.employee.info.EmpInfo;
 import br.com.mind5.business.person.info.PersonInfo;
-import br.com.mind5.business.person.model.decisionTree.RootPersonDelete;
+import br.com.mind5.business.person.model.decisionTree.RootPersonDeleteEmp;
 import br.com.mind5.model.action.ActionVisitorTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiEmpDeletePerson extends ActionVisitorTemplateActionV2<EmpInfo, PersonInfo> {
-	public VisiEmpDeletePerson(DeciTreeOption<EmpInfo> option) {
+final class VisiEmpPersonDelete extends ActionVisitorTemplateActionV2<EmpInfo, PersonInfo> {
+	public VisiEmpPersonDelete(DeciTreeOption<EmpInfo> option) {
 		super(option, EmpInfo.class, PersonInfo.class);
 	}
 	
 	
 	
 	@Override protected Class<? extends DeciTree<PersonInfo>> getTreeClassHook() {
-		return RootPersonDelete.class;
+		return RootPersonDeleteEmp.class;
 	}
 	
 	

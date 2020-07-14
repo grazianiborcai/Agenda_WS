@@ -10,8 +10,8 @@ import br.com.mind5.security.user.info.UserCopier;
 import br.com.mind5.security.user.info.UserInfo;
 import br.com.mind5.security.user.model.decisionTree.RootUserDelete;
 
-final class VisiEmpDeleteUser extends ActionVisitorTemplateActionV2<EmpInfo, UserInfo> {
-	public VisiEmpDeleteUser(DeciTreeOption<EmpInfo> option) {
+final class VisiEmpUserDelete extends ActionVisitorTemplateActionV2<EmpInfo, UserInfo> {
+	public VisiEmpUserDelete(DeciTreeOption<EmpInfo> option) {
 		super(option, EmpInfo.class, UserInfo.class);
 	}
 	

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.employee.info.EmpInfo;
-import br.com.mind5.business.employee.model.action.LazyEmpInsertPerson;
+import br.com.mind5.business.employee.model.action.LazyEmpPersonInsert;
 import br.com.mind5.business.employee.model.action.LazyEmpDaoUpdate;
 import br.com.mind5.business.employee.model.action.StdEmpEnforcePersonKey;
 import br.com.mind5.business.employee.model.checker.EmpCheckHasPerson;
@@ -45,7 +45,7 @@ public final class NodeEmpInsertPerson extends DeciTreeTemplateWriteV2<EmpInfo> 
 		List<ActionStdV1<EmpInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<EmpInfo> enforcePersonKey = new StdEmpEnforcePersonKey(option);
-		ActionLazyV1<EmpInfo> insertPerson = new LazyEmpInsertPerson(option.conn, option.schemaName);
+		ActionLazyV1<EmpInfo> insertPerson = new LazyEmpPersonInsert(option.conn, option.schemaName);
 		ActionLazyV1<EmpInfo> updateEmployee = new LazyEmpDaoUpdate(option.conn, option.schemaName);
 		
 		enforcePersonKey.addPostAction(insertPerson);

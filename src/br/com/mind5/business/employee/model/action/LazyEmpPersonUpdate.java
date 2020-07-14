@@ -9,9 +9,9 @@ import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyEmpDaoSelect extends ActionLazyTemplateV2<EmpInfo, EmpInfo> {
+public final class LazyEmpPersonUpdate extends ActionLazyTemplateV2<EmpInfo, EmpInfo> {
 	
-	public LazyEmpDaoSelect(Connection conn, String schemaName) {
+	public LazyEmpPersonUpdate(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyEmpDaoSelect extends ActionLazyTemplateV2<EmpInfo, EmpInf
 	
 	
 	@Override protected ActionStdV1<EmpInfo> getInstanceOfActionHook(DeciTreeOption<EmpInfo> option) {
-		return new StdEmpDaoSelect(option);
+		return new StdEmpPersonUpdate(option);
 	}
 	
 	

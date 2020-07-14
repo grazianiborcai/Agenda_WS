@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.employee.info.EmpInfo;
 import br.com.mind5.business.employee.model.action.LazyEmpDaoUpdate;
-import br.com.mind5.business.employee.model.action.StdEmpInsertUser;
+import br.com.mind5.business.employee.model.action.StdEmpUserInsert;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
@@ -37,7 +37,7 @@ public final class NodeEmpInsertUser extends DeciTreeTemplateWriteV2<EmpInfo> {
 	@Override protected List<ActionStdV1<EmpInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpInfo> option) {
 		List<ActionStdV1<EmpInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<EmpInfo> insertUser = new StdEmpInsertUser(option);
+		ActionStdV1<EmpInfo> insertUser = new StdEmpUserInsert(option);
 		ActionLazyV1<EmpInfo> updateEmployee = new LazyEmpDaoUpdate(option.conn, option.schemaName);
 		
 		insertUser.addPostAction(updateEmployee);

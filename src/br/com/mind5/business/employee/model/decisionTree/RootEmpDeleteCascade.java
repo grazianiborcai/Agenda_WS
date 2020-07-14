@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.employee.info.EmpInfo;
 import br.com.mind5.business.employee.model.action.LazyEmpDaoDelete;
-import br.com.mind5.business.employee.model.action.LazyEmpDeletePerson;
+import br.com.mind5.business.employee.model.action.LazyEmpPersonDelete;
 import br.com.mind5.business.employee.model.action.LazyEmpEnforceLChanged;
 import br.com.mind5.business.employee.model.action.LazyEmpMergeUsername;
 import br.com.mind5.business.employee.model.action.LazyEmpNodeDeleteAddress;
@@ -76,7 +76,7 @@ public final class RootEmpDeleteCascade extends DeciTreeTemplateWriteV2<EmpInfo>
 		ActionLazyV1<EmpInfo> deleteEmpmat = new LazyEmpNodeDeleteEmpmat(option.conn, option.schemaName);
 		ActionLazyV1<EmpInfo> deleteAddress = new LazyEmpNodeDeleteAddress(option.conn, option.schemaName);
 		ActionLazyV1<EmpInfo> deletePhone = new LazyEmpNodeDeletePhone(option.conn, option.schemaName);
-		ActionLazyV1<EmpInfo> deletePerson = new LazyEmpDeletePerson(option.conn, option.schemaName);
+		ActionLazyV1<EmpInfo> deletePerson = new LazyEmpPersonDelete(option.conn, option.schemaName);
 		ActionLazyV1<EmpInfo> deleteUser = new LazyEmpNodeDeleteUser(option.conn, option.schemaName);
 		ActionLazyV1<EmpInfo> deleteEmployee = new LazyEmpDaoDelete(option.conn, option.schemaName);	
 

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.employee.info.EmpInfo;
-import br.com.mind5.business.employee.model.action.LazyEmpUpsertPhone;
+import br.com.mind5.business.employee.model.action.LazyEmpPhoneUpsert;
 import br.com.mind5.business.employee.model.action.StdEmpEnforcePhoneKey;
 import br.com.mind5.business.employee.model.action.StdEmpSuccess;
 import br.com.mind5.business.employee.model.checker.EmpCheckHasPhone;
@@ -45,7 +45,7 @@ public final class NodeEmpUpsertPhone extends DeciTreeTemplateWriteV2<EmpInfo> {
 		List<ActionStdV1<EmpInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<EmpInfo> enforcePhoneKey = new StdEmpEnforcePhoneKey(option);
-		ActionLazyV1<EmpInfo> upsertPhone = new LazyEmpUpsertPhone(option.conn, option.schemaName);	
+		ActionLazyV1<EmpInfo> upsertPhone = new LazyEmpPhoneUpsert(option.conn, option.schemaName);	
 		
 		enforcePhoneKey.addPostAction(upsertPhone);
 		
