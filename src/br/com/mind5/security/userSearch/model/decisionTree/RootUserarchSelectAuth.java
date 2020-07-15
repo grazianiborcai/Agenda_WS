@@ -3,6 +3,7 @@ package br.com.mind5.security.userSearch.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -10,7 +11,8 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 import br.com.mind5.security.userSearch.info.UserarchInfo;
-import br.com.mind5.security.userSearch.model.action.StdUserarchMergeToSelect;
+import br.com.mind5.security.userSearch.model.action.LazyUserarchRootSelect;
+import br.com.mind5.security.userSearch.model.action.StdUserarchEnforceAuth;
 import br.com.mind5.security.userSearch.model.checker.UserarchCheckReadAuth;
 
 public final class RootUserarchSelectAuth extends DeciTreeTemplateReadV2<UserarchInfo> {
@@ -41,9 +43,12 @@ public final class RootUserarchSelectAuth extends DeciTreeTemplateReadV2<Userarc
 	@Override protected List<ActionStdV1<UserarchInfo>> buildActionsOnPassedHook(DeciTreeOption<UserarchInfo> option) {
 		List<ActionStdV1<UserarchInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<UserarchInfo> select = new StdUserarchMergeToSelect(option);
+		ActionStdV1<UserarchInfo> enforceAuth = new StdUserarchEnforceAuth(option);
+		ActionLazyV1<UserarchInfo> select = new LazyUserarchRootSelect(option.conn, option.schemaName);
 		
-		actions.add(select);
+		enforceAuth.addPostAction(select);
+		
+		actions.add(enforceAuth);
 		return actions;
 	}
 }
