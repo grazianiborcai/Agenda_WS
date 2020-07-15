@@ -11,12 +11,12 @@ import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 import br.com.mind5.security.user.info.UserInfo;
-import br.com.mind5.security.user.model.action.LazyUserDaoUpdate;
-import br.com.mind5.security.user.model.action.StdUserEnforceLChanged;
+import br.com.mind5.security.user.model.action.LazyUserNodeUpdate;
+import br.com.mind5.security.user.model.action.StdUserMergeToUpdate;
 
-public final class NodeUserUpdate extends DeciTreeTemplateWriteV2<UserInfo> {
+public final class NodeUserUpdateAuth extends DeciTreeTemplateWriteV2<UserInfo> {
 	
-	public NodeUserUpdate(DeciTreeOption<UserInfo> option) {
+	public NodeUserUpdateAuth(DeciTreeOption<UserInfo> option) {
 		super(option);
 	}
 	
@@ -37,12 +37,12 @@ public final class NodeUserUpdate extends DeciTreeTemplateWriteV2<UserInfo> {
 	@Override protected List<ActionStdV1<UserInfo>> buildActionsOnPassedHook(DeciTreeOption<UserInfo> option) {
 		List<ActionStdV1<UserInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<UserInfo> enforceLChanged = new StdUserEnforceLChanged(option);				
-		ActionLazyV1<UserInfo> updateUser = new LazyUserDaoUpdate(option.conn, option.schemaName);
+		ActionStdV1<UserInfo> mergeToUpdate = new StdUserMergeToUpdate(option);
+		ActionLazyV1<UserInfo> update = new LazyUserNodeUpdate(option.conn, option.schemaName);
 		
-		enforceLChanged.addPostAction(updateUser);
+		mergeToUpdate.addPostAction(update);
 		
-		actions.add(enforceLChanged);
+		actions.add(mergeToUpdate);
 		return actions;
 	}
 }

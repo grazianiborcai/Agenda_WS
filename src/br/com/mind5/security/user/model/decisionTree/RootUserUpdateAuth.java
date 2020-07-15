@@ -5,14 +5,14 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 import br.com.mind5.security.user.info.UserInfo;
 import br.com.mind5.security.user.model.action.LazyUserNodeSnapshot;
-import br.com.mind5.security.user.model.action.LazyUserNodeUpdate;
+import br.com.mind5.security.user.model.action.LazyUserNodeUpdateAuth;
 import br.com.mind5.security.user.model.action.LazyUserNodeUpdatePerson;
 import br.com.mind5.security.user.model.action.LazyUserNodeUpsertAddress;
 import br.com.mind5.security.user.model.action.LazyUserNodeUpsertPhone;
@@ -62,9 +62,9 @@ public final class RootUserUpdateAuth extends DeciTreeTemplateWriteV2<UserInfo> 
 	
 	@Override protected List<ActionStdV1<UserInfo>> buildActionsOnPassedHook(DeciTreeOption<UserInfo> option) {
 		List<ActionStdV1<UserInfo>> actions = new ArrayList<>();
-		//TODO: permitir alterar codAuthGroup por aqui ou criar um endpoint para isso ?
+
 		ActionStdV1<UserInfo> nodeAuth = new NodeUserAuth(option).toAction();
-		ActionLazyV1<UserInfo> updateUser = new LazyUserNodeUpdate(option.conn, option.schemaName);
+		ActionLazyV1<UserInfo> updateUser = new LazyUserNodeUpdateAuth(option.conn, option.schemaName);
 		ActionLazyV1<UserInfo> updatePerson = new LazyUserNodeUpdatePerson(option.conn, option.schemaName);
 		ActionLazyV1<UserInfo> snapshot = new LazyUserNodeSnapshot(option.conn, option.schemaName);		
 		ActionLazyV1<UserInfo> upsertAddress = new LazyUserNodeUpsertAddress(option.conn, option.schemaName);	
