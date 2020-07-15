@@ -6,6 +6,7 @@ import java.util.List;
 import br.com.mind5.authorization.scheduleAuthorization.info.SchedauthInfo;
 import br.com.mind5.authorization.storePartitionAuthorization.info.SytotauhInfo;
 import br.com.mind5.business.customer.info.CusInfo;
+import br.com.mind5.business.employee.info.EmpInfo;
 import br.com.mind5.business.refundPolicy.info.RefupolInfo;
 import br.com.mind5.info.InfoCopier;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
@@ -13,6 +14,20 @@ import br.com.mind5.payment.refundOrderItem.info.RefemInfo;
 import br.com.mind5.security.user.info.UserInfo;
 
 public final class UserarchCopier {
+	public static UserarchInfo copyFromEmp(EmpInfo source) {
+		InfoCopier<UserarchInfo, EmpInfo> copier = new UserarchCopyEmp();
+		return copier.makeCopy(source);
+	}
+	
+	
+	
+	public static List<UserarchInfo> copyFromEmp(List<EmpInfo> sources) {
+		InfoCopier<UserarchInfo, EmpInfo> copier = new UserarchCopyEmp();
+		return copier.makeCopy(sources);
+	}
+	
+	
+	
 	public static UserarchInfo copyFromCus(CusInfo source) {
 		InfoCopier<UserarchInfo, CusInfo> copier = new UserarchCopyCus();
 		return copier.makeCopy(source);
