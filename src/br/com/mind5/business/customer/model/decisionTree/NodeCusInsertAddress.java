@@ -10,9 +10,9 @@ import br.com.mind5.business.customer.model.action.StdCusSuccess;
 import br.com.mind5.business.customer.model.checker.CusCheckHasAddress;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
@@ -58,7 +58,9 @@ public final class NodeCusInsertAddress extends DeciTreeTemplateWriteV2<CusInfo>
 	@Override protected List<ActionStdV1<CusInfo>> buildActionsOnFailedHook(DeciTreeOption<CusInfo> option) {
 		List<ActionStdV1<CusInfo>> actions = new ArrayList<>();
 		
-		actions.add(new StdCusSuccess(option));		
+		ActionStdV1<CusInfo> success = new StdCusSuccess(option);
+		
+		actions.add(success);	
 		return actions;
 	}
 }
