@@ -42,8 +42,8 @@ public final class DaoEmpnapInsertSingle extends DaoStmtTemplate<EmpnapInfo> {
 			@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, EmpnapInfo recordInfo) throws SQLException {	
 				int i = 1;
 				
-				stmt.setLong(i++, recordInfo.codOwner);
-				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codEmployee);	
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codEmployee);
+				stmt.setLong(i++, recordInfo.codOwner);					
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPerson);
 				stmt.setString(i++, recordInfo.recordMode);
 				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.lastChanged);
