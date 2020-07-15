@@ -7,6 +7,7 @@ import br.com.mind5.business.employee.info.EmpInfo;
 import br.com.mind5.business.employee.model.action.LazyEmpDaoUpdate;
 import br.com.mind5.business.employee.model.action.LazyEmpEnforceLChanged;
 import br.com.mind5.business.employee.model.action.LazyEmpMergeUsername;
+import br.com.mind5.business.employee.model.action.LazyEmpNodeSytotauh;
 import br.com.mind5.business.employee.model.action.StdEmpMergeToUpdate;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
@@ -40,11 +41,13 @@ public final class NodeEmpUpdate extends DeciTreeTemplateWriteV2<EmpInfo> {
 		List<ActionStdV1<EmpInfo>> actions = new ArrayList<>();
 
 		ActionStdV1<EmpInfo> mergeToUpdate = new StdEmpMergeToUpdate(option);
+		ActionLazyV1<EmpInfo> nodeSytotauh = new LazyEmpNodeSytotauh(option.conn, option.schemaName);
 		ActionLazyV1<EmpInfo> enforceLChanged = new LazyEmpEnforceLChanged(option.conn, option.schemaName);
 		ActionLazyV1<EmpInfo> enforceLChangedBy = new LazyEmpMergeUsername(option.conn, option.schemaName);
 		ActionLazyV1<EmpInfo> updateEmployee = new LazyEmpDaoUpdate(option.conn, option.schemaName);
 		
-		mergeToUpdate.addPostAction(enforceLChanged);
+		mergeToUpdate.addPostAction(nodeSytotauh);
+		nodeSytotauh.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceLChangedBy);
 		enforceLChangedBy.addPostAction(updateEmployee);	
 		

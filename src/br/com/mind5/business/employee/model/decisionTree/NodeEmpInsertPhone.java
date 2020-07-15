@@ -4,11 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.employee.info.EmpInfo;
-import br.com.mind5.business.employee.model.action.LazyEmpDaoUpdate;
-import br.com.mind5.business.employee.model.action.LazyEmpUserPromote;
-import br.com.mind5.business.employee.model.action.StdEmpMergeUserarch;
-import br.com.mind5.business.employee.model.action.StdEmpUserInsert;
-import br.com.mind5.business.employee.model.checker.EmpCheckUserarch;
+import br.com.mind5.business.employee.model.action.LazyEmpNodeUpsertPhone;
+import br.com.mind5.business.employee.model.action.StdEmpEnforcePhoneCod;
+import br.com.mind5.business.employee.model.action.StdEmpSuccess;
+import br.com.mind5.business.employee.model.checker.EmpCheckHasPhone;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
@@ -17,9 +16,9 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class NodeEmpInsertUser extends DeciTreeTemplateWriteV2<EmpInfo> {
+public final class NodeEmpInsertPhone extends DeciTreeTemplateWriteV2<EmpInfo> {
 	
-	public NodeEmpInsertUser(DeciTreeOption<EmpInfo> option) {
+	public NodeEmpInsertPhone(DeciTreeOption<EmpInfo> option) {
 		super(option);
 	}
 	
@@ -27,15 +26,15 @@ public final class NodeEmpInsertUser extends DeciTreeTemplateWriteV2<EmpInfo> {
 	
 	@Override protected ModelCheckerV1<EmpInfo> buildCheckerHook(DeciTreeOption<EmpInfo> option) {
 		List<ModelCheckerV1<EmpInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<EmpInfo> checker;	
-		ModelCheckerOption checkerOption;		
+		ModelCheckerV1<EmpInfo> checker;
+		ModelCheckerOption checkerOption;	
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
-		checker = new EmpCheckUserarch(checkerOption);
-		queue.add(checker);
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;		
+		checker = new EmpCheckHasPhone(checkerOption);
+		queue.add(checker);	
 		
 		return new ModelCheckerHelperQueueV2<>(queue);
 	}
@@ -45,14 +44,12 @@ public final class NodeEmpInsertUser extends DeciTreeTemplateWriteV2<EmpInfo> {
 	@Override protected List<ActionStdV1<EmpInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpInfo> option) {
 		List<ActionStdV1<EmpInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<EmpInfo> mergeUserarch = new StdEmpMergeUserarch(option);
-		ActionLazyV1<EmpInfo> promoteUser = new LazyEmpUserPromote(option.conn, option.schemaName);
-		ActionLazyV1<EmpInfo> updateEmployee = new LazyEmpDaoUpdate(option.conn, option.schemaName);
+		ActionStdV1<EmpInfo> enforcePhoneCod = new StdEmpEnforcePhoneCod(option);
+		ActionLazyV1<EmpInfo> upsertPhone = new LazyEmpNodeUpsertPhone(option.conn, option.schemaName);	
 		
-		mergeUserarch.addPostAction(promoteUser);
-		promoteUser.addPostAction(updateEmployee);
+		enforcePhoneCod.addPostAction(upsertPhone);
 		
-		actions.add(mergeUserarch);	
+		actions.add(enforcePhoneCod);		
 		return actions;
 	}
 	
@@ -61,12 +58,9 @@ public final class NodeEmpInsertUser extends DeciTreeTemplateWriteV2<EmpInfo> {
 	@Override protected List<ActionStdV1<EmpInfo>> buildActionsOnFailedHook(DeciTreeOption<EmpInfo> option) {
 		List<ActionStdV1<EmpInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<EmpInfo> insertUser = new StdEmpUserInsert(option);
-		ActionLazyV1<EmpInfo> updateEmployee = new LazyEmpDaoUpdate(option.conn, option.schemaName);
+		ActionStdV1<EmpInfo> success = new StdEmpSuccess(option);
 		
-		insertUser.addPostAction(updateEmployee);
-		
-		actions.add(insertUser);	
+		actions.add(success);	
 		return actions;
 	}
 }

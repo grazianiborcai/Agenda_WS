@@ -2,6 +2,7 @@ package br.com.mind5.business.employee.info;
 
 import java.util.List;
 
+import br.com.mind5.authorization.storePartitionAuthorization.info.SytotauhInfo;
 import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.employeeSearch.info.EmparchInfo;
 import br.com.mind5.business.employeeSnapshot.info.EmpnapInfo;
@@ -12,9 +13,36 @@ import br.com.mind5.file.fileImageList.info.FimistInfo;
 import br.com.mind5.info.InfoMergerBuilderV3;
 import br.com.mind5.info.InfoMergerV3;
 import br.com.mind5.security.user.info.UserInfo;
+import br.com.mind5.security.userSearch.info.UserarchInfo;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class EmpMerger {
+	public static List<EmpInfo> mergeWithUserarch(List<EmpInfo> baseInfos, List<UserarchInfo> selectedInfos) {
+		InfoMergerBuilderV3<EmpInfo, UserarchInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new EmpVisiMergeUserarch());
+		InfoMergerV3<EmpInfo, UserarchInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	
+	public static List<EmpInfo> mergeWithSytotauh(List<EmpInfo> baseInfos, List<SytotauhInfo> selectedInfos) {
+		InfoMergerBuilderV3<EmpInfo, SytotauhInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new EmpVisiMergeSytotauh());
+		InfoMergerV3<EmpInfo, SytotauhInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	
 	public static List<EmpInfo> mergeWithEmparch(List<EmpInfo> baseInfos, List<EmparchInfo> selectedInfos) {
 		InfoMergerBuilderV3<EmpInfo, EmparchInfo> builder = new InfoMergerBuilderV3<>();
 		

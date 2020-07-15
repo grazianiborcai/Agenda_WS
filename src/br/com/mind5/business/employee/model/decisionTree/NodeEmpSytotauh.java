@@ -4,17 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.employee.info.EmpInfo;
-import br.com.mind5.business.employee.model.action.StdEmpUserDelete;
+import br.com.mind5.business.employee.model.action.StdEmpSuccess;
+import br.com.mind5.business.employee.model.checker.EmpCheckSytotauh;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class NodeEmpDeleteUser extends DeciTreeTemplateWriteV2<EmpInfo> {
+public final class NodeEmpSytotauh extends DeciTreeTemplateWriteV2<EmpInfo> {
 	
-	public NodeEmpDeleteUser(DeciTreeOption<EmpInfo> option) {
+	public NodeEmpSytotauh(DeciTreeOption<EmpInfo> option) {
 		super(option);
 	}
 	
@@ -23,8 +24,13 @@ public final class NodeEmpDeleteUser extends DeciTreeTemplateWriteV2<EmpInfo> {
 	@Override protected ModelCheckerV1<EmpInfo> buildCheckerHook(DeciTreeOption<EmpInfo> option) {
 		List<ModelCheckerV1<EmpInfo>> queue = new ArrayList<>();		
 		ModelCheckerV1<EmpInfo> checker;
-	
-		checker = new ModelCheckerDummy<>();
+		ModelCheckerOption checkerOption;	
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
+		checker = new EmpCheckSytotauh(checkerOption);
 		queue.add(checker);	
 		
 		return new ModelCheckerHelperQueueV2<>(queue);
@@ -35,9 +41,9 @@ public final class NodeEmpDeleteUser extends DeciTreeTemplateWriteV2<EmpInfo> {
 	@Override protected List<ActionStdV1<EmpInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpInfo> option) {
 		List<ActionStdV1<EmpInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<EmpInfo> deleteUser = new StdEmpUserDelete(option);
+		ActionStdV1<EmpInfo> success = new StdEmpSuccess(option);
 		
-		actions.add(deleteUser);		
+		actions.add(success);
 		return actions;
 	}
 }

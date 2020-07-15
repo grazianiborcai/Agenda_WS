@@ -17,6 +17,7 @@ public final class EmpCheckInsert extends ModelCheckerTemplateSimpleV2<EmpInfo> 
 	
 	@Override protected boolean checkHook(EmpInfo recordInfo, Connection conn, String schemaName) {	
 		if ( recordInfo.codOwner 	<= 0 	||
+			 recordInfo.personData  == null	||
 			 recordInfo.codLanguage == null	||
 			 recordInfo.username 	== null		)
 			
