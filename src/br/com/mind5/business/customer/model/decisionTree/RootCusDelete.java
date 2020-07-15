@@ -73,7 +73,7 @@ public final class RootCusDelete extends DeciTreeTemplateWriteV2<CusInfo> {
 	
 	@Override protected List<ActionStdV1<CusInfo>> buildActionsOnPassedHook(DeciTreeOption<CusInfo> option) {
 		List<ActionStdV1<CusInfo>> actions = new ArrayList<>();
-		//TODO: Eliminar usuario ? Podem ser criados criados em momentos diferentes
+		
 		ActionStdV1<CusInfo> mergeToDelete = new StdCusMergeToDelete(option);
 		ActionLazyV1<CusInfo> nodeSytotauh = new LazyCusNodeSytotauh(option.conn, option.schemaName);
 		ActionLazyV1<CusInfo> enforceLChanged = new LazyCusEnforceLChanged(option.conn, option.schemaName);
