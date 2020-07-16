@@ -5,23 +5,23 @@ import java.util.List;
 
 import br.com.mind5.business.materialSnapshot.info.MatsnapInfo;
 import br.com.mind5.business.materialSnapshot.model.action.LazyMatsnapMergeMateg;
-import br.com.mind5.business.materialSnapshot.model.action.LazyMatsnapMergeMatoup;
-import br.com.mind5.business.materialSnapshot.model.action.LazyMatsnapMergeMatype;
-import br.com.mind5.business.materialSnapshot.model.action.LazyMatsnapMergeMatunit;
 import br.com.mind5.business.materialSnapshot.model.action.LazyMatsnapMergeMatextsnap;
+import br.com.mind5.business.materialSnapshot.model.action.LazyMatsnapMergeMatoup;
+import br.com.mind5.business.materialSnapshot.model.action.LazyMatsnapMergeMatunit;
+import br.com.mind5.business.materialSnapshot.model.action.LazyMatsnapMergeMatype;
 import br.com.mind5.business.materialSnapshot.model.action.StdMatsnapMergeToSelect;
 import br.com.mind5.business.materialSnapshot.model.checker.MatsnapCheckMat;
 import br.com.mind5.business.materialSnapshot.model.checker.MatsnapCheckOwner;
 import br.com.mind5.business.materialSnapshot.model.checker.MatsnapCheckRead;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 
-public final class RootMatsnapSelect extends DeciTreeTemplateReadV1<MatsnapInfo> {
+public final class RootMatsnapSelect extends DeciTreeTemplateReadV2<MatsnapInfo> {
 	
 	public RootMatsnapSelect(DeciTreeOption<MatsnapInfo> option) {
 		super(option);

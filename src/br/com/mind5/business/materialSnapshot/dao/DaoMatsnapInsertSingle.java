@@ -15,11 +15,11 @@ import br.com.mind5.dao.DaoStmtParamTranslator;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class MatsnapInsertSingle extends DaoStmtTemplate<MatsnapInfo> {
+public final class DaoMatsnapInsertSingle extends DaoStmtTemplate<MatsnapInfo> {
 	private final String MAIN_TABLE = DaoDbTable.MAT_SNAPSHOT_TABLE;	
 	
 	
-	public MatsnapInsertSingle(Connection conn, MatsnapInfo recordInfo, String schemaName) {
+	public DaoMatsnapInsertSingle(Connection conn, MatsnapInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);	
 	}
 	
@@ -42,8 +42,8 @@ public final class MatsnapInsertSingle extends DaoStmtTemplate<MatsnapInfo> {
 			@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, MatsnapInfo recordInfo) throws SQLException {	
 				int i = 1;
 				
-				stmt.setLong(i++, recordInfo.codMat);
-				stmt.setLong(i++, recordInfo.codOwner);				
+				stmt.setLong(i++, recordInfo.codOwner);	
+				stmt.setLong(i++, recordInfo.codMat);							
 				stmt.setInt(i++, recordInfo.codType);
 				stmt.setInt(i++, recordInfo.codMatCateg);
 				stmt.setString(i++, recordInfo.codUnit);
@@ -55,6 +55,7 @@ public final class MatsnapInsertSingle extends DaoStmtTemplate<MatsnapInfo> {
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.lastChangedBy);	
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.createdBy);
 				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.createdOn);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codStore);
 				
 				return stmt;
 			}		

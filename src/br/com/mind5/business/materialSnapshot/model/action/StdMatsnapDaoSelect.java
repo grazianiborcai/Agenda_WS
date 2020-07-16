@@ -5,15 +5,15 @@ import br.com.mind5.model.action.ActionStdTemplateV2;
 import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdMatsnapMergeMateg extends ActionStdTemplateV2<MatsnapInfo> {
+public final class StdMatsnapDaoSelect extends ActionStdTemplateV2<MatsnapInfo> {
 
-	public StdMatsnapMergeMateg(DeciTreeOption<MatsnapInfo> option) {
+	public StdMatsnapDaoSelect(DeciTreeOption<MatsnapInfo> option) {
 		super(option);
 	}
 	
 	
 	
 	protected ActionVisitorV2<MatsnapInfo> buildVisitorHook(DeciTreeOption<MatsnapInfo> option) {
-		return new VisiMatsnapMergeMateg(option);
+		return new VisiMatsnapDaoSelect(option);
 	}
 }

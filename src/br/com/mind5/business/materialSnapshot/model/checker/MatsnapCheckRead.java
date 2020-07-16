@@ -16,11 +16,11 @@ public final class MatsnapCheckRead extends ModelCheckerTemplateSimpleV2<Matsnap
 	
 	
 	@Override protected boolean checkHook(MatsnapInfo recordInfo, Connection conn, String schemaName) {	
-		if (recordInfo.codOwner 	<= 0 		||
-			recordInfo.codSnapshot 	<= 0 		||
-			recordInfo.codMat 		<= 0 		||
-			recordInfo.codLanguage  == null		||
-			recordInfo.username  	== null			)		
+		if ( recordInfo.codOwner 	<= 0 	||
+			 recordInfo.codSnapshot <= 0 	||
+			 recordInfo.codMat 		<= 0 	||
+			 recordInfo.codLanguage == null	||
+			 recordInfo.username  	== null		)		
 			
 			return super.FAILED;		
 		

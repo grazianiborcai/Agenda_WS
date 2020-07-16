@@ -4,12 +4,12 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.materialSnapshot.info.MatsnapInfo;
-import br.com.mind5.model.action.ActionLazyTemplateV1;
+import br.com.mind5.model.action.ActionLazyTemplateV2;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyMatsnapMergeMatoup extends ActionLazyTemplateV1<MatsnapInfo, MatsnapInfo> {
+public final class LazyMatsnapMergeMatoup extends ActionLazyTemplateV2<MatsnapInfo, MatsnapInfo> {
 	
 	public LazyMatsnapMergeMatoup(Connection conn, String schemaName) {
 		super(conn, schemaName);

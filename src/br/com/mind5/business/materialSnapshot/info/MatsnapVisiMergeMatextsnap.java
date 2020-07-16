@@ -1,59 +1,41 @@
 package br.com.mind5.business.materialSnapshot.info;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import br.com.mind5.business.materialTextSnapshot.info.MatextsnapInfo;
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-final class MatsnapVisiMergeMatextsnap implements InfoMergerVisitor_<MatsnapInfo, MatextsnapInfo> {
-
-	@Override public MatsnapInfo writeRecord(MatextsnapInfo sourceOne, MatsnapInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+final class MatsnapVisiMergeMatextsnap implements InfoMergerVisitorV3<MatsnapInfo, MatextsnapInfo> {
+	
+	@Override public List<MatsnapInfo> beforeMerge(List<MatsnapInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(MatsnapInfo baseInfo, MatextsnapInfo selectedInfo) {
+		return (baseInfo.codOwner 	 == selectedInfo.codOwner		&&
+				baseInfo.codSnapshot == selectedInfo.codSnapshot	&&
+				baseInfo.codMat 	 == selectedInfo.codMat				);
+	}
+	
+	
+	
+	@Override public List<MatsnapInfo> merge(MatsnapInfo baseInfo, MatextsnapInfo selectedInfo) {
+		List<MatsnapInfo> results = new ArrayList<>();
 		
-		MatsnapInfo clonedInfo = makeClone(sourceTwo);
-		return merge(sourceOne, clonedInfo);
-	}
-	
-	
-	
-	private void checkArgument(MatextsnapInfo sourceOne, MatsnapInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private MatsnapInfo makeClone(MatsnapInfo recordInfo) {
-		try {
-			return (MatsnapInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	private MatsnapInfo merge(MatextsnapInfo sourceOne, MatsnapInfo sourceTwo) {
-		sourceTwo.txtMat = sourceOne.txtMat;
-		sourceTwo.description = sourceOne.description;
+		baseInfo.txtMat = selectedInfo.txtMat;
+		baseInfo.description = selectedInfo.description;
 		
-		return sourceTwo;
+		results.add(baseInfo);
+		return results;
 	}
 	
 	
 	
-	@Override public boolean shouldWrite(MatextsnapInfo sourceOne, MatsnapInfo sourceTwo) {
-		return (sourceOne.codOwner 		== sourceTwo.codOwner		&&
-				sourceOne.codSnapshot 	== sourceTwo.codSnapshot	&&
-				sourceOne.codMat 		== sourceTwo.codMat				);
-	}
-	
-	
-	
-	private void logException(Exception e) {
-		
-		SystemLog.logError(this.getClass(), e);
+	@Override public InfoUniquifier<MatsnapInfo> getUniquifier() {
+		return null;
 	}
 }

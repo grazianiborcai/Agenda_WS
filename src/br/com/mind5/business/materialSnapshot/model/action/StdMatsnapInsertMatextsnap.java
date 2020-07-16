@@ -1,35 +1,19 @@
 package br.com.mind5.business.materialSnapshot.model.action;
 
 import br.com.mind5.business.materialSnapshot.info.MatsnapInfo;
-import br.com.mind5.model.action.ActionLazyV1;
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionStdHelperAction;
-import br.com.mind5.model.decisionTree.DeciResult;
+import br.com.mind5.model.action.ActionStdTemplateV2;
+import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdMatsnapInsertMatextsnap implements ActionStdV1<MatsnapInfo> {
-	private ActionStdV1<MatsnapInfo> actionHelper;	
-	
-	
-	public StdMatsnapInsertMatextsnap(DeciTreeOption<MatsnapInfo> option) {			
-		actionHelper = new ActionStdHelperAction<>(option.recordInfos, new VisiMatsnapInsertMatextsnap(option.conn, option.schemaName));
+public final class StdMatsnapInsertMatextsnap extends ActionStdTemplateV2<MatsnapInfo> {
+
+	public StdMatsnapInsertMatextsnap(DeciTreeOption<MatsnapInfo> option) {
+		super(option);
 	}
 	
 	
 	
-	@Override public void addPostAction(ActionLazyV1<MatsnapInfo> actionHandler) {
-		actionHelper.addPostAction(actionHandler);
-	}
-	
-	
-	
-	@Override public boolean executeAction() {			
-		return actionHelper.executeAction();
-	}
-	
-	
-	
-	@Override public DeciResult<MatsnapInfo> getDecisionResult() {
-		return actionHelper.getDecisionResult();
+	protected ActionVisitorV2<MatsnapInfo> buildVisitorHook(DeciTreeOption<MatsnapInfo> option) {
+		return new VisiMatsnapInsertMatextsnap(option);
 	}
 }

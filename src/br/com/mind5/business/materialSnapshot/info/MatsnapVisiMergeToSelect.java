@@ -1,53 +1,38 @@
 package br.com.mind5.business.materialSnapshot.info;
 
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import java.util.ArrayList;
+import java.util.List;
 
-final class MatsnapVisiMergeToSelect implements InfoMergerVisitor_<MatsnapInfo, MatsnapInfo> {
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-	@Override public MatsnapInfo writeRecord(MatsnapInfo sourceOne, MatsnapInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);		
-		return merge(sourceOne, sourceTwo);
+final class MatsnapVisiMergeToSelect implements InfoMergerVisitorV3<MatsnapInfo, MatsnapInfo> {
+	
+	@Override public List<MatsnapInfo> beforeMerge(List<MatsnapInfo> baseInfos) {
+		return baseInfos;
 	}
 	
 	
 	
-	private void checkArgument(MatsnapInfo sourceOne, MatsnapInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
+	@Override public boolean shouldMerge(MatsnapInfo baseInfo, MatsnapInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner);
 	}
 	
 	
 	
-	private MatsnapInfo merge(MatsnapInfo sourceOne, MatsnapInfo sourceTwo) {
-		MatsnapInfo result = makeClone(sourceOne);		
-		result.username = sourceTwo.username;
-		return result;
-	}
-	
-	
-	
-	private MatsnapInfo makeClone(MatsnapInfo recordInfo) {
-		try {
-			return (MatsnapInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(MatsnapInfo sourceOne, MatsnapInfo sourceTwo) {	
-		return (sourceOne.codOwner == sourceTwo.codOwner);
-	}
-	
-	
-	
-	private void logException(Exception e) {
+	@Override public List<MatsnapInfo> merge(MatsnapInfo baseInfo, MatsnapInfo selectedInfo) {
+		List<MatsnapInfo> results = new ArrayList<>();
 		
-		SystemLog.logError(this.getClass(), e);
+		selectedInfo.codLanguage = baseInfo.codLanguage;
+		selectedInfo.username = baseInfo.username;
+		
+		results.add(selectedInfo);
+		return results;
+	}
+	
+	
+	
+	@Override public InfoUniquifier<MatsnapInfo> getUniquifier() {
+		return null;
 	}
 }

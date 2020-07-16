@@ -16,11 +16,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class MatsnapSelectSingle extends DaoStmtTemplate<MatsnapInfo> {
+public final class DaoMatsnapSelectSingle extends DaoStmtTemplate<MatsnapInfo> {
 	private final String MAIN_TABLE = DaoDbTable.MAT_SNAPSHOT_TABLE;
 	
 	
-	public MatsnapSelectSingle(Connection conn, MatsnapInfo recordInfo, String schemaName) {
+	public DaoMatsnapSelectSingle(Connection conn, MatsnapInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -40,10 +40,11 @@ public final class MatsnapSelectSingle extends DaoStmtTemplate<MatsnapInfo> {
 	
 	@Override protected String buildWhereClauseHook(String tableName, MatsnapInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
+		
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new MatsnapWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new DaoMatsnapWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}	
 	
@@ -59,20 +60,22 @@ public final class MatsnapSelectSingle extends DaoStmtTemplate<MatsnapInfo> {
 				
 				do {
 					MatsnapInfo dataInfo = new MatsnapInfo();
-					dataInfo.codOwner = stmtResult.getLong(MatsnapDbTableColumn.COL_COD_OWNER);
-					dataInfo.codSnapshot = stmtResult.getLong(MatsnapDbTableColumn.COL_COD_SNAPSHOT);
-					dataInfo.codMat = stmtResult.getLong(MatsnapDbTableColumn.COL_COD_MATERIAL);
-					dataInfo.codType = stmtResult.getInt(MatsnapDbTableColumn.COL_COD_TYPE);
-					dataInfo.codMatCateg = stmtResult.getInt(MatsnapDbTableColumn.COL_COD_CATEGORY);
-					dataInfo.priceUnit = stmtResult.getInt(MatsnapDbTableColumn.COL_PRICE_UNIT);	
-					dataInfo.codUnit = stmtResult.getString(MatsnapDbTableColumn.COL_COD_UNIT);	
-					dataInfo.codGroup = stmtResult.getInt(MatsnapDbTableColumn.COL_COD_GROUP);
-					dataInfo.isLocked = stmtResult.getBoolean(MatsnapDbTableColumn.COL_IS_LOCKED);	
-					dataInfo.recordMode = stmtResult.getString(MatsnapDbTableColumn.COL_RECORD_MODE);
-					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, MatsnapDbTableColumn.COL_LAST_CHANGED);
-					dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, MatsnapDbTableColumn.COL_LAST_CHANGED_BY);		
-					dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, MatsnapDbTableColumn.COL_CREATED_ON);
-					dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, MatsnapDbTableColumn.COL_CREATED_BY);
+					
+					dataInfo.codOwner = stmtResult.getLong(DaoMatsnapDbTableColumn.COL_COD_OWNER);
+					dataInfo.codSnapshot = stmtResult.getLong(DaoMatsnapDbTableColumn.COL_COD_SNAPSHOT);
+					dataInfo.codStore = DaoFormatter.sqlToLong(stmtResult, DaoMatsnapDbTableColumn.COL_COD_STORE);	
+					dataInfo.codMat = stmtResult.getLong(DaoMatsnapDbTableColumn.COL_COD_MATERIAL);
+					dataInfo.codType = stmtResult.getInt(DaoMatsnapDbTableColumn.COL_COD_TYPE);
+					dataInfo.codMatCateg = stmtResult.getInt(DaoMatsnapDbTableColumn.COL_COD_CATEGORY);
+					dataInfo.priceUnit = stmtResult.getInt(DaoMatsnapDbTableColumn.COL_PRICE_UNIT);	
+					dataInfo.codUnit = stmtResult.getString(DaoMatsnapDbTableColumn.COL_COD_UNIT);	
+					dataInfo.codGroup = stmtResult.getInt(DaoMatsnapDbTableColumn.COL_COD_GROUP);
+					dataInfo.isLocked = stmtResult.getBoolean(DaoMatsnapDbTableColumn.COL_IS_LOCKED);	
+					dataInfo.recordMode = stmtResult.getString(DaoMatsnapDbTableColumn.COL_RECORD_MODE);
+					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, DaoMatsnapDbTableColumn.COL_LAST_CHANGED);
+					dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, DaoMatsnapDbTableColumn.COL_LAST_CHANGED_BY);		
+					dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, DaoMatsnapDbTableColumn.COL_CREATED_ON);
+					dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, DaoMatsnapDbTableColumn.COL_CREATED_BY);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

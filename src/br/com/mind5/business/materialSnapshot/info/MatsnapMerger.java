@@ -3,92 +3,87 @@ package br.com.mind5.business.materialSnapshot.info;
 import java.util.List;
 
 import br.com.mind5.business.materialTextSnapshot.info.MatextsnapInfo;
-import br.com.mind5.info.obsolete.InfoMerger_;
+import br.com.mind5.info.InfoMergerBuilderV3;
+import br.com.mind5.info.InfoMergerV3;
 import br.com.mind5.masterData.materialCategory.info.MategInfo;
 import br.com.mind5.masterData.materialGroup.info.MatoupInfo;
 import br.com.mind5.masterData.materialType.info.MatypeInfo;
 import br.com.mind5.masterData.materialUnit.info.MatunitInfo;
 
 public final class MatsnapMerger {	
-	public static MatsnapInfo mergeWithMateg(MategInfo sourceOne, MatsnapInfo sourceTwo) {
-		InfoMerger_<MatsnapInfo, MategInfo> merger = new MatsnapMergerMateg();		
-		return merger.merge(sourceOne, sourceTwo);
+	public static List<MatsnapInfo> mergeWithMateg(List<MatsnapInfo> baseInfos, List<MategInfo> selectedInfos) {
+		InfoMergerBuilderV3<MatsnapInfo, MategInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new MatsnapVisiMergeMateg());
+		InfoMergerV3<MatsnapInfo, MategInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static List<MatsnapInfo> mergeWithMateg(List<MategInfo> sourceOnes, List<MatsnapInfo> sourceTwos) {
-		InfoMerger_<MatsnapInfo, MategInfo> merger = new MatsnapMergerMateg();		
-		return merger.merge(sourceOnes, sourceTwos);
+	public static List<MatsnapInfo> mergeWithMatoup(List<MatsnapInfo> baseInfos, List<MatoupInfo> selectedInfos) {
+		InfoMergerBuilderV3<MatsnapInfo, MatoupInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new MatsnapVisiMergeMatoup());
+		InfoMergerV3<MatsnapInfo, MatoupInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static MatsnapInfo mergeWithMatoup(MatoupInfo sourceOne, MatsnapInfo sourceTwo) {
-		InfoMerger_<MatsnapInfo, MatoupInfo> merger = new MatsnapMergerMatoup();		
-		return merger.merge(sourceOne, sourceTwo);
+	public static List<MatsnapInfo> mergeWithMatype(List<MatsnapInfo> baseInfos, List<MatypeInfo> selectedInfos) {
+		InfoMergerBuilderV3<MatsnapInfo, MatypeInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new MatsnapVisiMergeMatype());
+		InfoMergerV3<MatsnapInfo, MatypeInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static List<MatsnapInfo> mergeWithMatoup(List<MatoupInfo> sourceOnes, List<MatsnapInfo> sourceTwos) {
-		InfoMerger_<MatsnapInfo, MatoupInfo> merger = new MatsnapMergerMatoup();		
-		return merger.merge(sourceOnes, sourceTwos);
+	public static List<MatsnapInfo> mergeWithMatunit(List<MatsnapInfo> baseInfos, List<MatunitInfo> selectedInfos) {
+		InfoMergerBuilderV3<MatsnapInfo, MatunitInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new MatsnapVisiMergeMatunit());
+		InfoMergerV3<MatsnapInfo, MatunitInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static MatsnapInfo mergeWithMatype(MatypeInfo sourceOne, MatsnapInfo sourceTwo) {
-		InfoMerger_<MatsnapInfo, MatypeInfo> merger = new MatsnapMergerMatype();		
-		return merger.merge(sourceOne, sourceTwo);
+	public static List<MatsnapInfo> mergeWithMatextsnap(List<MatsnapInfo> baseInfos, List<MatextsnapInfo> selectedInfos) {
+		InfoMergerBuilderV3<MatsnapInfo, MatextsnapInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new MatsnapVisiMergeMatextsnap());
+		InfoMergerV3<MatsnapInfo, MatextsnapInfo> merger = builder.build();		
+	
+		return merger.merge();
 	}
 	
 	
 	
-	public static List<MatsnapInfo> mergeWithMatype(List<MatypeInfo> sourceOnes, List<MatsnapInfo> sourceTwos) {
-		InfoMerger_<MatsnapInfo, MatypeInfo> merger = new MatsnapMergerMatype();		
-		return merger.merge(sourceOnes, sourceTwos);
-	}
+	public static List<MatsnapInfo> mergeToSelect(List<MatsnapInfo> baseInfos, List<MatsnapInfo> selectedInfos) {
+		InfoMergerBuilderV3<MatsnapInfo, MatsnapInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new MatsnapVisiMergeToSelect());
+		InfoMergerV3<MatsnapInfo, MatsnapInfo> merger = builder.build();		
 	
-	
-	
-	public static MatsnapInfo mergeWithMatunit(MatunitInfo sourceOne, MatsnapInfo sourceTwo) {
-		InfoMerger_<MatsnapInfo, MatunitInfo> merger = new MatsnapMergerMatunit();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
-	
-	
-	
-	public static List<MatsnapInfo> mergeWithMatunit(List<MatunitInfo> sourceOnes, List<MatsnapInfo> sourceTwos) {
-		InfoMerger_<MatsnapInfo, MatunitInfo> merger = new MatsnapMergerMatunit();		
-		return merger.merge(sourceOnes, sourceTwos);
-	}
-	
-	
-	
-	public static MatsnapInfo mergeWithMatextsnap(MatextsnapInfo sourceOne, MatsnapInfo sourceTwo) {
-		InfoMerger_<MatsnapInfo, MatextsnapInfo> merger = new MatsnapMergerMatextsnap();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
-	
-	
-	
-	public static List<MatsnapInfo> mergeWithMatextsnap(List<MatextsnapInfo> sourceOnes, List<MatsnapInfo> sourceTwos) {
-		InfoMerger_<MatsnapInfo, MatextsnapInfo> merger = new MatsnapMergerMatextsnap();		
-		return merger.merge(sourceOnes, sourceTwos);
-	}
-	
-	
-	
-	public static MatsnapInfo mergeToSelect(MatsnapInfo sourceOne, MatsnapInfo sourceTwo) {
-		InfoMerger_<MatsnapInfo, MatsnapInfo> merger = new MatsnapMergerToSelect();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
-	
-	
-	
-	public static List<MatsnapInfo> mergeToSelect(List<MatsnapInfo> sourceOnes, List<MatsnapInfo> sourceTwos) {
-		InfoMerger_<MatsnapInfo, MatsnapInfo> merger = new MatsnapMergerToSelect();		
-		return merger.merge(sourceOnes, sourceTwos);
+		return merger.merge();
 	}
 }

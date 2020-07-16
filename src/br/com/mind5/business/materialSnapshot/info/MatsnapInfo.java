@@ -9,6 +9,7 @@ import br.com.mind5.info.InfoRecord;
 public final class MatsnapInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codSnapshot;
+	public long codStore;
 	public long codMat;
 	public String txtMat;
 	public String description;
@@ -33,10 +34,11 @@ public final class MatsnapInfo extends InfoRecord implements Cloneable {
 	
 	
 	public MatsnapInfo() {
-		super(MatsnapInfo.class);
+		super();
 		
 		codOwner = DefaultValue.number();
 		codSnapshot = DefaultValue.number();
+		codStore = DefaultValue.number();
 		codMat = DefaultValue.number();
 		codType = DefaultValue.number();
 		codMatCateg = DefaultValue.number();
