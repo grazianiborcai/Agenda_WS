@@ -1,10 +1,10 @@
 package br.com.mind5.business.material.info;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.materialText.info.MatextInfo;
+import br.com.mind5.common.CloneUtil;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.file.fileImageList.info.FimistInfo;
 import br.com.mind5.info.InfoRecord;
@@ -13,6 +13,7 @@ public final class MatInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codSnapshot;
 	public long codMat;
+	public long codStore;
 	public int codType;
 	public String txtType;
 	public int codMatCateg;
@@ -38,11 +39,12 @@ public final class MatInfo extends InfoRecord implements Cloneable {
 	
 	
 	public MatInfo() {
-		super(MatInfo.class);
+		super();
 		
 		codOwner = DefaultValue.number();
 		codSnapshot = DefaultValue.number();
 		codMat = DefaultValue.number();
+		codStore = DefaultValue.number();
 		codType = DefaultValue.number();
 		codMatCateg = DefaultValue.number();
 		priceUnit = 1;
@@ -73,42 +75,10 @@ public final class MatInfo extends InfoRecord implements Cloneable {
 	@Override public Object clone() throws CloneNotSupportedException {
 		MatInfo deepCopy = (MatInfo) super.clone();
 		
-		deepCopy.matextes = cloneMatextes(deepCopy.matextes);
-		deepCopy.fimistes = cloneFimistes(deepCopy.fimistes);
+		deepCopy.matextes = CloneUtil.cloneRecords(deepCopy.matextes, this.getClass());
+		deepCopy.fimistes = CloneUtil.cloneRecords(deepCopy.fimistes, this.getClass());
 		
 		return deepCopy;
-	}
-	
-	
-	
-	private List<FimistInfo> cloneFimistes(List<FimistInfo> recordInfos) throws CloneNotSupportedException {
-		if (recordInfos == null)
-			return null;
-		
-		List<FimistInfo> deepAddresses = new ArrayList<>();
-		
-		for (FimistInfo eachAddress : recordInfos) {
-			FimistInfo clonedAddress = (FimistInfo) eachAddress.clone();
-			deepAddresses.add(clonedAddress);
-		}
-		
-		return deepAddresses;
-	}
-	
-	
-	
-	private List<MatextInfo> cloneMatextes(List<MatextInfo> infoRecords) throws CloneNotSupportedException {
-		if (infoRecords == null)
-			return null;
-		
-		List<MatextInfo> deepCopies = new ArrayList<>();
-		
-		for (MatextInfo eachRecord : infoRecords) {
-			MatextInfo clonedAddress = (MatextInfo) eachRecord.clone();
-			deepCopies.add(clonedAddress);
-		}
-		
-		return deepCopies;
 	}
 	
 	

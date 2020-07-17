@@ -2,25 +2,24 @@ package br.com.mind5.business.material.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 import br.com.mind5.business.material.info.MatInfo;
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtParamTranslator;
 import br.com.mind5.dao.DaoStmtTemplate;
+import br.com.mind5.dao.DaoStmtWhere;
+import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
+import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class MatInsertSingle extends DaoStmtTemplate<MatInfo> {
-	private final String MAIN_TABLE = DaoDbTable.MAT_TABLE;		
+public final class DaoMatUpdateSingle extends DaoStmtTemplate<MatInfo> {
+	private final String MAIN_TABLE = DaoDbTable.MAT_TABLE;	
 	
 	
-	public MatInsertSingle(Connection conn, MatInfo recordInfo, String schemaName) {
-		super(conn, recordInfo, schemaName);		
+	public DaoMatUpdateSingle(Connection conn, MatInfo recordInfo, String schemaName) {
+		super(conn, recordInfo, schemaName);			
 	}
 	
 	
@@ -32,17 +31,29 @@ public final class MatInsertSingle extends DaoStmtTemplate<MatInfo> {
 	
 	
 	@Override protected DaoOperation getOperationHook() {
-		return DaoOperation.INSERT;
+		return DaoOperation.UPDATE;
+	}
+	
+	
+	
+	@Override protected String buildWhereClauseHook(String tableName, MatInfo recordInfo) {
+		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
+		
+		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
+		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;
+		whereOption.ignoreNonPrimaryKey = DaoOptionValue.IGNORE_NON_PK;
+		
+		DaoStmtWhere whereClause = new DaoMatWhere(whereOption, tableName, recordInfo);
+		return whereClause.getWhereClause();
 	}
 	
 	
 	
 	@Override protected DaoStmtParamTranslator<MatInfo> getParamTranslatorHook() {
-		return new DaoStmtParamTranslator<MatInfo>() {		
+		return new DaoStmtParamTranslator<MatInfo>() {	
 			@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, MatInfo recordInfo) throws SQLException {				
 				int i = 1;
 				
-				stmt.setLong(i++, recordInfo.codOwner);
 				stmt.setInt(i++, recordInfo.codType);
 				stmt.setInt(i++, recordInfo.codMatCateg);
 				stmt.setString(i++, recordInfo.codUnit);
@@ -52,25 +63,13 @@ public final class MatInsertSingle extends DaoStmtTemplate<MatInfo> {
 				stmt.setString(i++, recordInfo.recordMode);
 				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.lastChanged);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.lastChangedBy);
-				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codSnapshot);	
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codSnapshot);		
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.createdBy);
 				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.createdOn);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codStore);
 				
 				return stmt;
 			}		
-		};
-	}
-		
-	
-	
-	@Override protected DaoResultParser<MatInfo> getResultParserHook() {
-		return new DaoResultParser<MatInfo>() {		
-			@Override public List<MatInfo> parseResult(MatInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
-				List<MatInfo> finalResult = new ArrayList<>();
-				recordInfo.codMat = lastId;
-				finalResult.add(recordInfo);			
-				return finalResult;
-			}
 		};
 	}
 }

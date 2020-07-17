@@ -1,29 +1,14 @@
 package br.com.mind5.business.material.info;
 
 import br.com.mind5.business.materialText.info.MatextInfo;
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoSetter;
+import br.com.mind5.info.InfoSetterTemplate;
 
-public final class MatSetterMatextKey implements InfoSetter<MatInfo> {
+public final class MatSetterMatextKey extends InfoSetterTemplate<MatInfo> {
 	
-	public MatInfo setAttr(MatInfo recordInfo) {
-		checkArgument(recordInfo);
-		return setMatextKey(recordInfo);
-	}
-	
-	
-	
-	private void checkArgument(MatInfo recordInfo) {
-		if (recordInfo == null) {
-			logException(new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT));
-			throw new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT);
-		}
-	}
-	
-	
-	
-	private MatInfo setMatextKey(MatInfo recordInfo) {
+	@Override protected MatInfo setAttrHook(MatInfo recordInfo) {
+		if (recordInfo.matextes == null)
+			return recordInfo;
+		
 		for (MatextInfo eachMatext : recordInfo.matextes) {
 			eachMatext.codOwner = recordInfo.codOwner;
 			eachMatext.codMat = recordInfo.codMat;
@@ -32,11 +17,4 @@ public final class MatSetterMatextKey implements InfoSetter<MatInfo> {
 		
 		return recordInfo;
 	}
-	
-	
-	
-	private void logException(Exception e) {
-		
-		SystemLog.logError(this.getClass(), e);
-	}	
 }

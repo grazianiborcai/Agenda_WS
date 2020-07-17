@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilder;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 
-public final class MatWhere implements DaoStmtWhere {
+public final class DaoMatWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public MatWhere(DaoWhereBuilderOption whereOption, String tableName, MatInfo recordInfo) {
+	public DaoMatWhere(DaoWhereBuilderOption whereOption, String tableName, MatInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -27,11 +27,11 @@ public final class MatWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-				case MatDbTableColumn.COL_COD_OWNER :
+				case DaoMatDbTableColumn.COL_COD_OWNER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;
 					
-				case MatDbTableColumn.COL_COD_MATERIAL :
+				case DaoMatDbTableColumn.COL_COD_MATERIAL :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codMat));
 					break;
 					/*
@@ -47,7 +47,7 @@ public final class MatWhere implements DaoStmtWhere {
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codMatCateg));
 					break;
 					*/
-				case MatDbTableColumn.COL_RECORD_MODE :
+				case DaoMatDbTableColumn.COL_RECORD_MODE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.recordMode);
 					break;
 			}

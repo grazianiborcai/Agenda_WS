@@ -45,7 +45,7 @@ import br.com.mind5.business.employeeWorkTimeSearch.dao.DaoEmpwotarchDbTableColu
 import br.com.mind5.business.feeDefault.dao.FeedefDbTableColumn;
 import br.com.mind5.business.feeOwner.dao.FeewnerDbTableColumn;
 import br.com.mind5.business.masterData.dao.MasterDataDbTableColumn;
-import br.com.mind5.business.material.dao.MatDbTableColumn;
+import br.com.mind5.business.material.dao.DaoMatDbTableColumn;
 import br.com.mind5.business.materialList.dao.DaoMatlisDbTableColumn;
 import br.com.mind5.business.materialMovement.dao.MatmovDbTableColumn;
 import br.com.mind5.business.materialMovementSearch.dao.MatmarchDbTableColumn;
@@ -222,7 +222,7 @@ public final class DaoDbTableColumnAll {
 	static {
 		tableColumns = new Hashtable<>();
 		
-		addTable(new MatDbTableColumn());
+		addTable(new DaoMatDbTableColumn());
 		addTable(new DaoMatextDbTableColumn());
 		addTable(new EmpmatDbTableColumn());
 		addTable(new DaoMatsnapDbTableColumn());

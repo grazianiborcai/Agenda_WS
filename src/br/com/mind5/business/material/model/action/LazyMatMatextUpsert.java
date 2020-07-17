@@ -4,14 +4,14 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.material.info.MatInfo;
-import br.com.mind5.model.action.ActionLazyTemplateV1;
+import br.com.mind5.model.action.ActionLazyTemplateV2;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyMatUpdate extends ActionLazyTemplateV1<MatInfo, MatInfo> {
+public final class LazyMatMatextUpsert extends ActionLazyTemplateV2<MatInfo, MatInfo> {
 	
-	public LazyMatUpdate(Connection conn, String schemaName) {
+	public LazyMatMatextUpsert(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyMatUpdate extends ActionLazyTemplateV1<MatInfo, MatInfo> 
 	
 	
 	@Override protected ActionStdV1<MatInfo> getInstanceOfActionHook(DeciTreeOption<MatInfo> option) {
-		return new StdMatUpdate(option);
+		return new StdMatMatextUpsert(option);
 	}
 	
 	

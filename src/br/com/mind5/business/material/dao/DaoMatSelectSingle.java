@@ -16,11 +16,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class MatSelectSingle extends DaoStmtTemplate<MatInfo> {
+public final class DaoMatSelectSingle extends DaoStmtTemplate<MatInfo> {
 	private final String MAIN_TABLE = DaoDbTable.MAT_TABLE;	
 	
 	
-	public MatSelectSingle(Connection conn, MatInfo recordInfo, String schemaName) {
+	public DaoMatSelectSingle(Connection conn, MatInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -44,7 +44,7 @@ public final class MatSelectSingle extends DaoStmtTemplate<MatInfo> {
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new MatWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new DaoMatWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -61,20 +61,21 @@ public final class MatSelectSingle extends DaoStmtTemplate<MatInfo> {
 				do {
 					MatInfo dataInfo = new MatInfo();
 					
-					dataInfo.codOwner = stmtResult.getLong(MatDbTableColumn.COL_COD_OWNER);
-					dataInfo.codMat = stmtResult.getLong(MatDbTableColumn.COL_COD_MATERIAL);
-					dataInfo.codType = stmtResult.getInt(MatDbTableColumn.COL_COD_TYPE);
-					dataInfo.codMatCateg = stmtResult.getInt(MatDbTableColumn.COL_COD_CATEGORY);
-					dataInfo.priceUnit = stmtResult.getInt(MatDbTableColumn.COL_PRICE_UNIT);	
-					dataInfo.codUnit = stmtResult.getString(MatDbTableColumn.COL_COD_UNIT);	
-					dataInfo.codGroup = stmtResult.getInt(MatDbTableColumn.COL_COD_GROUP);
-					dataInfo.isLocked = stmtResult.getBoolean(MatDbTableColumn.COL_IS_LOCKED);	
-					dataInfo.recordMode = stmtResult.getString(MatDbTableColumn.COL_RECORD_MODE);
-					dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, MatDbTableColumn.COL_LAST_CHANGED_BY);
-					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, MatDbTableColumn.COL_LAST_CHANGED);
-					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, MatDbTableColumn.COL_COD_SNAPSHOT);		
-					dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, MatDbTableColumn.COL_CREATED_ON);
-					dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, MatDbTableColumn.COL_CREATED_BY);
+					dataInfo.codOwner = stmtResult.getLong(DaoMatDbTableColumn.COL_COD_OWNER);
+					dataInfo.codMat = stmtResult.getLong(DaoMatDbTableColumn.COL_COD_MATERIAL);
+					dataInfo.codStore = stmtResult.getLong(DaoMatDbTableColumn.COL_COD_STORE);
+					dataInfo.codType = stmtResult.getInt(DaoMatDbTableColumn.COL_COD_TYPE);
+					dataInfo.codMatCateg = stmtResult.getInt(DaoMatDbTableColumn.COL_COD_CATEGORY);
+					dataInfo.priceUnit = stmtResult.getInt(DaoMatDbTableColumn.COL_PRICE_UNIT);	
+					dataInfo.codUnit = stmtResult.getString(DaoMatDbTableColumn.COL_COD_UNIT);	
+					dataInfo.codGroup = stmtResult.getInt(DaoMatDbTableColumn.COL_COD_GROUP);
+					dataInfo.isLocked = stmtResult.getBoolean(DaoMatDbTableColumn.COL_IS_LOCKED);	
+					dataInfo.recordMode = stmtResult.getString(DaoMatDbTableColumn.COL_RECORD_MODE);
+					dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, DaoMatDbTableColumn.COL_LAST_CHANGED_BY);
+					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, DaoMatDbTableColumn.COL_LAST_CHANGED);
+					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, DaoMatDbTableColumn.COL_COD_SNAPSHOT);		
+					dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, DaoMatDbTableColumn.COL_CREATED_ON);
+					dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, DaoMatDbTableColumn.COL_CREATED_BY);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

@@ -1,20 +1,20 @@
 package br.com.mind5.business.material.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.material.info.MatInfo;
 import br.com.mind5.business.material.info.MatMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.username.info.UsernameCopier;
 import br.com.mind5.security.username.info.UsernameInfo;
 import br.com.mind5.security.username.model.decisionTree.RootUsernameSelect;
 
-final class VisiMatMergeUsername extends ActionVisitorTemplateMergeV1<MatInfo, UsernameInfo> {
+final class VisiMatMergeUsername extends ActionVisitorTemplateMergeV2<MatInfo, UsernameInfo> {
 	
-	public VisiMatMergeUsername(Connection conn, String schemaName) {
-		super(conn, schemaName, UsernameInfo.class);
+	public VisiMatMergeUsername(DeciTreeOption<MatInfo> option) {
+		super(option, UsernameInfo.class);
 	}
 	
 	
@@ -38,6 +38,6 @@ final class VisiMatMergeUsername extends ActionVisitorTemplateMergeV1<MatInfo, U
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
+		return super.MERGE_WHEN_EMPTY;
 	}
 }

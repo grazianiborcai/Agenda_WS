@@ -5,12 +5,12 @@ import java.util.List;
 
 import br.com.mind5.business.material.info.MatInfo;
 import br.com.mind5.business.material.model.decisionTree.NodeMatServiceL1;
-import br.com.mind5.model.action.ActionLazyTemplateV1;
+import br.com.mind5.model.action.ActionLazyTemplateV2;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyMatNodeServiceL1 extends ActionLazyTemplateV1<MatInfo, MatInfo> {
+public final class LazyMatNodeServiceL1 extends ActionLazyTemplateV2<MatInfo, MatInfo> {
 
 	public LazyMatNodeServiceL1(Connection conn, String schemaName) {
 		super(conn, schemaName);

@@ -1,26 +1,25 @@
 package br.com.mind5.business.material.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.material.info.MatInfo;
 import br.com.mind5.business.material.info.MatMerger;
 import br.com.mind5.business.materialSnapshot.info.MatsnapInfo;
 import br.com.mind5.business.materialSnapshot.model.decisionTree.RootMatsnapInsert;
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateActionV1;
+import br.com.mind5.model.action.ActionVisitorTemplateActionV2;
+import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiMatInsertMatsnap extends ActionVisitorTemplateActionV1<MatInfo, MatsnapInfo> {
+final class VisiMatMatsnapInsert extends ActionVisitorTemplateActionV2<MatInfo, MatsnapInfo> {
 
-	public VisiMatInsertMatsnap(Connection conn, String schemaName) {
-		super(conn, schemaName, MatInfo.class, MatsnapInfo.class);
+	public VisiMatMatsnapInsert(DeciTreeOption<MatInfo> option) {
+		super(option, MatInfo.class, MatsnapInfo.class);
 	}
 	
 	
 	
-	@Override protected ActionStdV1<MatsnapInfo> getActionHook(DeciTreeOption<MatsnapInfo> option) {
-		return new RootMatsnapInsert(option).toAction();
+	@Override protected Class<? extends DeciTree<MatsnapInfo>> getTreeClassHook() {
+		return RootMatsnapInsert.class;
 	}
 	
 	

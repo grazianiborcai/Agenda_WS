@@ -4,20 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.material.info.MatInfo;
+import br.com.mind5.business.material.model.action.LazyMatDaoInsert;
 import br.com.mind5.business.material.model.action.LazyMatEnforceCreatedBy;
 import br.com.mind5.business.material.model.action.LazyMatEnforceCreatedOn;
 import br.com.mind5.business.material.model.action.LazyMatEnforceLChanged;
-import br.com.mind5.business.material.model.action.LazyMatInsert;
 import br.com.mind5.business.material.model.action.LazyMatMergeUsername;
-import br.com.mind5.business.material.model.checker.MatCheckDummy;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class NodeMatInsert extends DeciTreeTemplateWriteV1<MatInfo> {
+public final class NodeMatInsert extends DeciTreeTemplateWriteV2<MatInfo> {
 	
 	public NodeMatInsert(DeciTreeOption<MatInfo> option) {
 		super(option);
@@ -29,7 +29,7 @@ public final class NodeMatInsert extends DeciTreeTemplateWriteV1<MatInfo> {
 		List<ModelCheckerV1<MatInfo>> queue = new ArrayList<>();		
 		ModelCheckerV1<MatInfo> checker;
 
-		checker = new MatCheckDummy();
+		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueueV2<>(queue);
@@ -45,7 +45,7 @@ public final class NodeMatInsert extends DeciTreeTemplateWriteV1<MatInfo> {
 		ActionLazyV1<MatInfo> enforceLChangedBy = new LazyMatMergeUsername(option.conn, option.schemaName);
 		ActionLazyV1<MatInfo> enforceCreatedOn = new LazyMatEnforceCreatedOn(option.conn, option.schemaName);	
 		ActionLazyV1<MatInfo> enforceCreatedBy = new LazyMatEnforceCreatedBy(option.conn, option.schemaName);
-		ActionLazyV1<MatInfo> insertMat = new LazyMatInsert(option.conn, option.schemaName);	
+		ActionLazyV1<MatInfo> insertMat = new LazyMatDaoInsert(option.conn, option.schemaName);	
 		
 		nodeService.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceLChangedBy);

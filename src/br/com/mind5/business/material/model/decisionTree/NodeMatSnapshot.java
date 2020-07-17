@@ -4,17 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.material.info.MatInfo;
-import br.com.mind5.business.material.model.action.LazyMatUpdate;
-import br.com.mind5.business.material.model.action.StdMatInsertMatsnap;
-import br.com.mind5.business.material.model.checker.MatCheckDummy;
+import br.com.mind5.business.material.model.action.LazyMatDaoUpdate;
+import br.com.mind5.business.material.model.action.StdMatMatsnapInsert;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class NodeMatSnapshot extends DeciTreeTemplateWriteV1<MatInfo> {
+public final class NodeMatSnapshot extends DeciTreeTemplateWriteV2<MatInfo> {
 	
 	public NodeMatSnapshot(DeciTreeOption<MatInfo> option) {
 		super(option);
@@ -26,7 +26,7 @@ public final class NodeMatSnapshot extends DeciTreeTemplateWriteV1<MatInfo> {
 		List<ModelCheckerV1<MatInfo>> queue = new ArrayList<>();		
 		ModelCheckerV1<MatInfo> checker;
 
-		checker = new MatCheckDummy();
+		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 
 		return new ModelCheckerHelperQueueV2<MatInfo>(queue);
@@ -37,8 +37,8 @@ public final class NodeMatSnapshot extends DeciTreeTemplateWriteV1<MatInfo> {
 	@Override protected List<ActionStdV1<MatInfo>> buildActionsOnPassedHook(DeciTreeOption<MatInfo> option) {
 		List<ActionStdV1<MatInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<MatInfo> insertMatsnap = new StdMatInsertMatsnap(option);
-		ActionLazyV1<MatInfo> update = new LazyMatUpdate(option.conn, option.schemaName);
+		ActionStdV1<MatInfo> insertMatsnap = new StdMatMatsnapInsert(option);
+		ActionLazyV1<MatInfo> update = new LazyMatDaoUpdate(option.conn, option.schemaName);
 		
 		insertMatsnap.addPostAction(update);
 		
