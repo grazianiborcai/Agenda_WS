@@ -1,6 +1,5 @@
 package br.com.mind5.business.materialTextSnapshot.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.materialText.info.MatextCopier;
@@ -8,13 +7,14 @@ import br.com.mind5.business.materialText.info.MatextInfo;
 import br.com.mind5.business.materialText.model.decisionTree.RootMatextSearch;
 import br.com.mind5.business.materialTextSnapshot.info.MatextsnapInfo;
 import br.com.mind5.business.materialTextSnapshot.info.MatextsnapMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiMatextsnapMergeMatext extends ActionVisitorTemplateMergeV1<MatextsnapInfo, MatextInfo> {
+final class VisiMatextsnapMergeMatext extends ActionVisitorTemplateMergeV2<MatextsnapInfo, MatextInfo> {
 	
-	public VisiMatextsnapMergeMatext(Connection conn, String schemaName) {
-		super(conn, schemaName, MatextInfo.class);
+	public VisiMatextsnapMergeMatext(DeciTreeOption<MatextsnapInfo> option) {
+		super(option, MatextInfo.class);
 	}
 	
 	
@@ -25,19 +25,19 @@ final class VisiMatextsnapMergeMatext extends ActionVisitorTemplateMergeV1<Matex
 	
 	
 	
-	@Override protected List<MatextInfo> toActionClassHook(List<MatextsnapInfo> recordInfos) {
-		return MatextCopier.copyFromMatextsnap(recordInfos);	
+	@Override protected List<MatextInfo> toActionClassHook(List<MatextsnapInfo> baseInfos) {
+		return MatextCopier.copyFromMatextsnap(baseInfos);	
 	}	
 	
 	
 	
-	@Override protected List<MatextsnapInfo> mergeHook(List<MatextsnapInfo> recordInfos, List<MatextInfo> selectedInfos) {	
-		return MatextsnapMerger.mergeWithMatext(selectedInfos, recordInfos);
+	@Override protected List<MatextsnapInfo> mergeHook(List<MatextsnapInfo> baseInfos, List<MatextInfo> selectedInfos) {	
+		return MatextsnapMerger.mergeWithMatext(baseInfos, selectedInfos);
 	}
 	
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
+		return super.DONT_MERGE_WHEN_EMPTY;
 	}
 }

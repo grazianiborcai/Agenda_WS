@@ -16,11 +16,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public class MatextsnapSelectSingle extends DaoStmtTemplate<MatextsnapInfo> {
+public class DaoMatextsnapSelectSingle extends DaoStmtTemplate<MatextsnapInfo> {
 	private final String MAIN_TABLE = DaoDbTable.MAT_TEXT_SNAPSHOT_TABLE;
 	
 	
-	public MatextsnapSelectSingle(Connection conn, MatextsnapInfo recordInfo, String schemaName) {
+	public DaoMatextsnapSelectSingle(Connection conn, MatextsnapInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -43,7 +43,7 @@ public class MatextsnapSelectSingle extends DaoStmtTemplate<MatextsnapInfo> {
 		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new MatextsnapWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new DaoMatextsnapWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -60,19 +60,19 @@ public class MatextsnapSelectSingle extends DaoStmtTemplate<MatextsnapInfo> {
 				
 				do {
 					MatextsnapInfo dataInfo = new MatextsnapInfo();
-					dataInfo.codOwner = stmtResult.getLong(MatextsnapDbTableColumn.COL_COD_OWNER);
-					dataInfo.codSnapshot = stmtResult.getLong(MatextsnapDbTableColumn.COL_COD_SNAPSHOT);
-					dataInfo.codMat = stmtResult.getLong(MatextsnapDbTableColumn.COL_COD_MATERIAL);
-					dataInfo.txtMat = stmtResult.getString(MatextsnapDbTableColumn.COL_NAME);
-					dataInfo.txtMatSearch = stmtResult.getString(MatextsnapDbTableColumn.COL_NAME_SEARCH);
-					dataInfo.description = stmtResult.getString(MatextsnapDbTableColumn.COL_DESCRIPTION);
-					dataInfo.codLanguage = stmtResult.getString(MatextsnapDbTableColumn.COL_COD_LANGUAGE);	
-					dataInfo.isDefault = stmtResult.getBoolean(MatextsnapDbTableColumn.COL_IS_DEFAULT);	
-					dataInfo.recordMode = stmtResult.getString(MatextsnapDbTableColumn.COL_RECORD_MODE);
-					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, MatextsnapDbTableColumn.COL_LAST_CHANGED);
-					dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, MatextsnapDbTableColumn.COL_LAST_CHANGED_BY);					
-					dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, MatextsnapDbTableColumn.COL_CREATED_ON);
-					dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, MatextsnapDbTableColumn.COL_CREATED_BY);
+					dataInfo.codOwner = stmtResult.getLong(DaoMatextsnapDbTableColumn.COL_COD_OWNER);
+					dataInfo.codSnapshot = stmtResult.getLong(DaoMatextsnapDbTableColumn.COL_COD_SNAPSHOT);
+					dataInfo.codMat = stmtResult.getLong(DaoMatextsnapDbTableColumn.COL_COD_MATERIAL);
+					dataInfo.txtMat = stmtResult.getString(DaoMatextsnapDbTableColumn.COL_NAME);
+					dataInfo.txtMatSearch = stmtResult.getString(DaoMatextsnapDbTableColumn.COL_NAME_SEARCH);
+					dataInfo.description = stmtResult.getString(DaoMatextsnapDbTableColumn.COL_DESCRIPTION);
+					dataInfo.codLanguage = stmtResult.getString(DaoMatextsnapDbTableColumn.COL_COD_LANGUAGE);	
+					dataInfo.isDefault = stmtResult.getBoolean(DaoMatextsnapDbTableColumn.COL_IS_DEFAULT);	
+					dataInfo.recordMode = stmtResult.getString(DaoMatextsnapDbTableColumn.COL_RECORD_MODE);
+					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, DaoMatextsnapDbTableColumn.COL_LAST_CHANGED);
+					dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, DaoMatextsnapDbTableColumn.COL_LAST_CHANGED_BY);					
+					dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, DaoMatextsnapDbTableColumn.COL_CREATED_ON);
+					dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, DaoMatextsnapDbTableColumn.COL_CREATED_BY);
 					
 					
 					finalResult.add(dataInfo);

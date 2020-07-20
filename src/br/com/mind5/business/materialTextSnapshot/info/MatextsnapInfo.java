@@ -23,7 +23,7 @@ public final class MatextsnapInfo extends InfoRecord implements Cloneable {
 	
 	
 	public MatextsnapInfo() {
-		super(MatextsnapInfo.class);
+		super();
 		
 		codOwner = DefaultValue.number();
 		codSnapshot = DefaultValue.number();

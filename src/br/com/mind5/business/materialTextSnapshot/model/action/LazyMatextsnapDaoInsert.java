@@ -4,14 +4,14 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.materialTextSnapshot.info.MatextsnapInfo;
-import br.com.mind5.model.action.ActionLazyTemplateV1;
+import br.com.mind5.model.action.ActionLazyTemplateV2;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyMatextsnapInsert extends ActionLazyTemplateV1<MatextsnapInfo, MatextsnapInfo> {
+public final class LazyMatextsnapDaoInsert extends ActionLazyTemplateV2<MatextsnapInfo, MatextsnapInfo> {
 	
-	public LazyMatextsnapInsert(Connection conn, String schemaName) {
+	public LazyMatextsnapDaoInsert(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyMatextsnapInsert extends ActionLazyTemplateV1<MatextsnapI
 	
 	
 	@Override protected ActionStdV1<MatextsnapInfo> getInstanceOfActionHook(DeciTreeOption<MatextsnapInfo> option) {
-		return new StdMatextsnapInsert(option);
+		return new StdMatextsnapDaoInsert(option);
 	}
 	
 	

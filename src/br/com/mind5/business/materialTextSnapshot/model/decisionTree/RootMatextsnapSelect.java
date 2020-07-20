@@ -9,13 +9,13 @@ import br.com.mind5.business.materialTextSnapshot.model.checker.MatextsnapCheckM
 import br.com.mind5.business.materialTextSnapshot.model.checker.MatextsnapCheckOwner;
 import br.com.mind5.business.materialTextSnapshot.model.checker.MatextsnapCheckRead;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 
-public final class RootMatextsnapSelect extends DeciTreeTemplateReadV1<MatextsnapInfo> {
+public final class RootMatextsnapSelect extends DeciTreeTemplateReadV2<MatextsnapInfo> {
 	
 	public RootMatextsnapSelect(DeciTreeOption<MatextsnapInfo> option) {
 		super(option);

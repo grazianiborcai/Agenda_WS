@@ -5,15 +5,15 @@ import br.com.mind5.model.action.ActionStdTemplateV2;
 import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdMatextsnapMergeMatext extends ActionStdTemplateV2<MatextsnapInfo> {
+public final class StdMatextsnapDaoSelect extends ActionStdTemplateV2<MatextsnapInfo> {
 
-	public StdMatextsnapMergeMatext(DeciTreeOption<MatextsnapInfo> option) {
+	public StdMatextsnapDaoSelect(DeciTreeOption<MatextsnapInfo> option) {
 		super(option);
 	}
 	
 	
 	
 	protected ActionVisitorV2<MatextsnapInfo> buildVisitorHook(DeciTreeOption<MatextsnapInfo> option) {
-		return new VisiMatextsnapMergeMatext(option);
+		return new VisiMatextsnapDaoSelect(option);
 	}
 }

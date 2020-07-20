@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class MatextsnapDbTableColumn extends DaoDbTableColumnTemplate {
+public final class DaoMatextsnapDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_LANGUAGE = DaoDbField.COL_COD_LANGUAGE;
 	public static final String COL_COD_MATERIAL = DaoDbField.COL_COD_MATERIAL;
 	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;
@@ -25,25 +25,13 @@ public final class MatextsnapDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_RECORD_MODE = DaoDbField.COL_RECORD_MODE;
 	
 	
-	private Hashtable<String, List<DaoColumn>> tableColumns;	
-	
-	public MatextsnapDbTableColumn() {
-		super(MatextsnapDbTableColumn.class);
+	public DaoMatextsnapDbTableColumn() {
+		super();
 	}
 	
 	
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
-		tableColumns = new Hashtable<>();
-			
-		buildMatextsnapTable();
-		
-		return tableColumns;
-	}
-	
-	
-	
-	private void buildMatextsnapTable() {
 		final String TABLE_NAME = DaoDbTable.MAT_TEXT_SNAPSHOT_TABLE;
 		
 		DaoColumn oneColumn;
@@ -153,6 +141,9 @@ public final class MatextsnapDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
+		Hashtable<String, List<DaoColumn>> tableColumns = new Hashtable<>();
 		tableColumns.put(TABLE_NAME, columns);
+		
+		return tableColumns;
 	}
 }

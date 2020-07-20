@@ -1,35 +1,40 @@
 package br.com.mind5.business.materialTextSnapshot.info;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import br.com.mind5.business.materialText.info.MatextInfo;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-final class MatextsnapVisiMergeMatext implements InfoMergerVisitor_<MatextsnapInfo, MatextInfo> {
-
-	@Override public MatextsnapInfo writeRecord(MatextInfo sourceOne, MatextsnapInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
-		return merge(sourceOne, sourceTwo);
+final class MatextsnapVisiMergeMatext implements InfoMergerVisitorV3<MatextsnapInfo, MatextInfo> {
+	
+	@Override public List<MatextsnapInfo> beforeMerge(List<MatextsnapInfo> baseInfos) {
+		return baseInfos;
 	}
 	
 	
 	
-	private void checkArgument(MatextInfo sourceOne, MatextsnapInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
+	@Override public boolean shouldMerge(MatextsnapInfo baseInfo, MatextInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner	&&
+				baseInfo.codMat   == selectedInfo.codMat		);
 	}
 	
 	
 	
-	private MatextsnapInfo merge(MatextInfo sourceOne, MatextsnapInfo sourceTwo) {
-		MatextsnapInfo result = MatextsnapInfo.copyFrom(sourceOne);		
-		result.codSnapshot = sourceTwo.codSnapshot;		
-		return result;
+	@Override public List<MatextsnapInfo> merge(MatextsnapInfo baseInfo, MatextInfo selectedInfo) {
+		List<MatextsnapInfo> results = new ArrayList<>();
+		
+		MatextsnapInfo result = MatextsnapInfo.copyFrom(selectedInfo);		
+		result.codSnapshot = baseInfo.codSnapshot;		
+		
+		results.add(result);
+		return results;
 	}
 	
 	
 	
-	@Override public boolean shouldWrite(MatextInfo sourceOne, MatextsnapInfo sourceTwo) {
-		return (sourceOne.codOwner == sourceTwo.codOwner	&&
-				sourceOne.codMat   == sourceTwo.codMat			);
+	@Override public InfoUniquifier<MatextsnapInfo> getUniquifier() {
+		return null;
 	}
 }

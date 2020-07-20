@@ -1,35 +1,19 @@
 package br.com.mind5.business.materialTextSnapshot.model.action;
 
 import br.com.mind5.business.materialTextSnapshot.info.MatextsnapInfo;
-import br.com.mind5.model.action.ActionLazyV1;
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionStdHelperMerge;
-import br.com.mind5.model.decisionTree.DeciResult;
+import br.com.mind5.model.action.ActionStdTemplateV2;
+import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdMatextsnapMergeToSelect implements ActionStdV1<MatextsnapInfo> {
-	private ActionStdV1<MatextsnapInfo> actionHelper;	
-	
-	
-	public StdMatextsnapMergeToSelect(DeciTreeOption<MatextsnapInfo> option) {			
-		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiMatextsnapMergeToSelect(option.conn, option.schemaName));
+public final class StdMatextsnapMergeToSelect extends ActionStdTemplateV2<MatextsnapInfo> {
+
+	public StdMatextsnapMergeToSelect(DeciTreeOption<MatextsnapInfo> option) {
+		super(option);
 	}
 	
 	
 	
-	@Override public void addPostAction(ActionLazyV1<MatextsnapInfo> actionHandler) {
-		actionHelper.addPostAction(actionHandler);
-	}
-	
-	
-	
-	@Override public boolean executeAction() {			
-		return actionHelper.executeAction();
-	}
-	
-	
-	
-	@Override public DeciResult<MatextsnapInfo> getDecisionResult() {
-		return actionHelper.getDecisionResult();
+	protected ActionVisitorV2<MatextsnapInfo> buildVisitorHook(DeciTreeOption<MatextsnapInfo> option) {
+		return new VisiMatextsnapMergeToSelect(option);
 	}
 }

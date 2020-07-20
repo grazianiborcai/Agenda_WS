@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilder;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 
-public final class MatextsnapWhere implements DaoStmtWhere {
+public final class DaoMatextsnapWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public MatextsnapWhere(DaoWhereBuilderOption whereOption, String tableName, MatextsnapInfo recordInfo) {
+	public DaoMatextsnapWhere(DaoWhereBuilderOption whereOption, String tableName, MatextsnapInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -27,23 +27,23 @@ public final class MatextsnapWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-				case MatextsnapDbTableColumn.COL_COD_OWNER :
+				case DaoMatextsnapDbTableColumn.COL_COD_OWNER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;
 					
-				case MatextsnapDbTableColumn.COL_COD_SNAPSHOT :
+				case DaoMatextsnapDbTableColumn.COL_COD_SNAPSHOT :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codSnapshot));
 					break;
 					
-				case MatextsnapDbTableColumn.COL_COD_MATERIAL :
+				case DaoMatextsnapDbTableColumn.COL_COD_MATERIAL :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codMat));
 					break;
 					
-				case MatextsnapDbTableColumn.COL_COD_LANGUAGE :
+				case DaoMatextsnapDbTableColumn.COL_COD_LANGUAGE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codLanguage);
 					break;
 					
-				case MatextsnapDbTableColumn.COL_RECORD_MODE :
+				case DaoMatextsnapDbTableColumn.COL_RECORD_MODE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.recordMode);
 					break;
 			}
