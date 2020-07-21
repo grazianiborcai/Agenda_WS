@@ -9,9 +9,9 @@ import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyOwnerInsertComp extends ActionLazyTemplateV2<OwnerInfo, OwnerInfo> {
+public final class LazyOwnerCompUpdate extends ActionLazyTemplateV2<OwnerInfo, OwnerInfo> {
 	
-	public LazyOwnerInsertComp(Connection conn, String schemaName) {
+	public LazyOwnerCompUpdate(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyOwnerInsertComp extends ActionLazyTemplateV2<OwnerInfo, O
 	
 	
 	@Override protected ActionStdV1<OwnerInfo> getInstanceOfActionHook(DeciTreeOption<OwnerInfo> option) {
-		return new StdOwnerInsertComp(option);
+		return new StdOwnerCompUpdate(option);
 	}
 	
 	

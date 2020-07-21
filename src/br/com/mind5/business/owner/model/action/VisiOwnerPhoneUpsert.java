@@ -10,9 +10,9 @@ import br.com.mind5.model.action.ActionVisitorTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiOwnerUpsertPhone extends ActionVisitorTemplateActionV2<OwnerInfo, PhoneInfo> {
+final class VisiOwnerPhoneUpsert extends ActionVisitorTemplateActionV2<OwnerInfo, PhoneInfo> {
 	
-	public VisiOwnerUpsertPhone(DeciTreeOption<OwnerInfo> option) {
+	public VisiOwnerPhoneUpsert(DeciTreeOption<OwnerInfo> option) {
 		super(option, OwnerInfo.class, PhoneInfo.class);
 	}
 	

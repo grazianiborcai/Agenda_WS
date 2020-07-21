@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.owner.info.OwnerInfo;
-import br.com.mind5.business.owner.model.action.LazyOwnerUpsertPhone;
+import br.com.mind5.business.owner.model.action.LazyOwnerPhoneUpsert;
 import br.com.mind5.business.owner.model.action.StdOwnerEnforcePhoneKey;
 import br.com.mind5.business.owner.model.action.StdOwnerSuccess;
 import br.com.mind5.business.owner.model.checker.OwnerCheckHasPhone;
@@ -45,7 +45,7 @@ public final class NodeOwnerUpsertPhone extends DeciTreeTemplateWriteV2<OwnerInf
 		List<ActionStdV1<OwnerInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<OwnerInfo> enforcePhoneKey = new StdOwnerEnforcePhoneKey(option);
-		ActionLazyV1<OwnerInfo> upsertPhone = new LazyOwnerUpsertPhone(option.conn, option.schemaName);	
+		ActionLazyV1<OwnerInfo> upsertPhone = new LazyOwnerPhoneUpsert(option.conn, option.schemaName);	
 		
 		enforcePhoneKey.addPostAction(upsertPhone);
 		

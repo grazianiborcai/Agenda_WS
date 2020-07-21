@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.owner.info.OwnerInfo;
-import br.com.mind5.business.owner.model.action.LazyOwnerUpsertAddress;
+import br.com.mind5.business.owner.model.action.LazyOwnerAddressUpsert;
 import br.com.mind5.business.owner.model.action.StdOwnerEnforceAddressKey;
 import br.com.mind5.business.owner.model.action.StdOwnerSuccess;
 import br.com.mind5.business.owner.model.checker.OwnerCheckHasAddress;
@@ -45,7 +45,7 @@ public final class NodeOwnerUpsertAddress extends DeciTreeTemplateWriteV2<OwnerI
 		List<ActionStdV1<OwnerInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<OwnerInfo> enforceAddressKey = new StdOwnerEnforceAddressKey(option);
-		ActionLazyV1<OwnerInfo> upsertAddress = new LazyOwnerUpsertAddress(option.conn, option.schemaName);
+		ActionLazyV1<OwnerInfo> upsertAddress = new LazyOwnerAddressUpsert(option.conn, option.schemaName);
 		
 		enforceAddressKey.addPostAction(upsertAddress);
 		

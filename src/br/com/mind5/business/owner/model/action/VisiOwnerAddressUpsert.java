@@ -10,9 +10,9 @@ import br.com.mind5.model.action.ActionVisitorTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiOwnerUpsertAddress extends ActionVisitorTemplateActionV2<OwnerInfo, AddressInfo> {
+final class VisiOwnerAddressUpsert extends ActionVisitorTemplateActionV2<OwnerInfo, AddressInfo> {
 	
-	public VisiOwnerUpsertAddress(DeciTreeOption<OwnerInfo> option) {
+	public VisiOwnerAddressUpsert(DeciTreeOption<OwnerInfo> option) {
 		super(option, OwnerInfo.class, AddressInfo.class);
 	}
 	

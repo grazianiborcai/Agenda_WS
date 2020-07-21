@@ -9,18 +9,18 @@ import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.user.info.UserCopier;
 import br.com.mind5.security.user.info.UserInfo;
-import br.com.mind5.security.user.model.decisionTree.RootUserInsertOwner;
+import br.com.mind5.security.user.model.decisionTree.RootUserInsertAnonymous;
 
-final class VisiOwnerInsertUser extends ActionVisitorTemplateActionV2<OwnerInfo, UserInfo> {
+final class VisiOwnerUserInsertAnonymous extends ActionVisitorTemplateActionV2<OwnerInfo, UserInfo> {
 	
-	public VisiOwnerInsertUser(DeciTreeOption<OwnerInfo> option) {
+	public VisiOwnerUserInsertAnonymous(DeciTreeOption<OwnerInfo> option) {
 		super(option, OwnerInfo.class, UserInfo.class);
 	}
 	
 	
 	
 	@Override protected Class<? extends DeciTree<UserInfo>> getTreeClassHook() {
-		return RootUserInsertOwner.class;
+		return RootUserInsertAnonymous.class;
 	}
 	
 	
@@ -32,6 +32,6 @@ final class VisiOwnerInsertUser extends ActionVisitorTemplateActionV2<OwnerInfo,
 	
 	
 	@Override protected List<OwnerInfo> toBaseClassHook(List<OwnerInfo> baseInfos, List<UserInfo> results) {
-		return OwnerMerger.mergeWithUser(baseInfos, results);
+		return OwnerMerger.mergeWithDaemon(baseInfos, results);
 	}
 }

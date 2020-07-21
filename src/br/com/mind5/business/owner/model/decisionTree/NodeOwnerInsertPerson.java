@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.owner.info.OwnerInfo;
-import br.com.mind5.business.owner.model.action.LazyOwnerInsertPerson;
+import br.com.mind5.business.owner.model.action.LazyOwnerPersonInsert;
 import br.com.mind5.business.owner.model.action.StdOwnerEnforcePersonKey;
 import br.com.mind5.business.owner.model.checker.OwnerCheckHasPerson;
 import br.com.mind5.model.action.ActionLazyV1;
@@ -44,7 +44,7 @@ public final class NodeOwnerInsertPerson extends DeciTreeTemplateWriteV2<OwnerIn
 		List<ActionStdV1<OwnerInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<OwnerInfo> enforcePersonKey = new StdOwnerEnforcePersonKey(option);
-		ActionLazyV1<OwnerInfo> insertPerson = new LazyOwnerInsertPerson(option.conn, option.schemaName);		
+		ActionLazyV1<OwnerInfo> insertPerson = new LazyOwnerPersonInsert(option.conn, option.schemaName);		
 		
 		enforcePersonKey.addPostAction(insertPerson);
 		

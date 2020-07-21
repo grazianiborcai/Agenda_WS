@@ -10,9 +10,9 @@ import br.com.mind5.model.action.ActionVisitorTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiOwnerInsertOwnerap extends ActionVisitorTemplateActionV2<OwnerInfo, OwnerapInfo> {
+final class VisiOwnerOwnerapInsert extends ActionVisitorTemplateActionV2<OwnerInfo, OwnerapInfo> {
 
-	public VisiOwnerInsertOwnerap(DeciTreeOption<OwnerInfo> option) {
+	public VisiOwnerOwnerapInsert(DeciTreeOption<OwnerInfo> option) {
 		super(option, OwnerInfo.class, OwnerapInfo.class);
 	}
 	

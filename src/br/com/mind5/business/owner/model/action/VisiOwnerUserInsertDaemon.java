@@ -9,18 +9,18 @@ import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.user.info.UserCopier;
 import br.com.mind5.security.user.info.UserInfo;
-import br.com.mind5.security.user.model.decisionTree.RootUserInsertAnonymous;
+import br.com.mind5.security.user.model.decisionTree.RootUserInsertDaemon;
 
-final class VisiOwnerInsertUserAnonymous extends ActionVisitorTemplateActionV2<OwnerInfo, UserInfo> {
+final class VisiOwnerUserInsertDaemon extends ActionVisitorTemplateActionV2<OwnerInfo, UserInfo> {
 	
-	public VisiOwnerInsertUserAnonymous(DeciTreeOption<OwnerInfo> option) {
+	public VisiOwnerUserInsertDaemon(DeciTreeOption<OwnerInfo> option) {
 		super(option, OwnerInfo.class, UserInfo.class);
 	}
 	
 	
 	
 	@Override protected Class<? extends DeciTree<UserInfo>> getTreeClassHook() {
-		return RootUserInsertAnonymous.class;
+		return RootUserInsertDaemon.class;
 	}
 	
 	

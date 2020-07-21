@@ -12,9 +12,9 @@ import br.com.mind5.model.action.ActionVisitorTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiOwnerUpdatePerson extends ActionVisitorTemplateActionV2<OwnerInfo, PersonInfo> {
+final class VisiOwnerPersonUpdate extends ActionVisitorTemplateActionV2<OwnerInfo, PersonInfo> {
 	
-	public VisiOwnerUpdatePerson(DeciTreeOption<OwnerInfo> option) {
+	public VisiOwnerPersonUpdate(DeciTreeOption<OwnerInfo> option) {
 		super(option, OwnerInfo.class, PersonInfo.class);
 	}
 	

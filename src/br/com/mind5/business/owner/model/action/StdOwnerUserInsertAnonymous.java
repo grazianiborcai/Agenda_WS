@@ -5,15 +5,15 @@ import br.com.mind5.model.action.ActionStdTemplateV2;
 import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdOwnerInsertPerson extends ActionStdTemplateV2<OwnerInfo> {
+public final class StdOwnerUserInsertAnonymous extends ActionStdTemplateV2<OwnerInfo> {
 
-	public StdOwnerInsertPerson(DeciTreeOption<OwnerInfo> option) {
+	public StdOwnerUserInsertAnonymous(DeciTreeOption<OwnerInfo> option) {
 		super(option);
 	}
 	
 	
 	
 	protected ActionVisitorV2<OwnerInfo> buildVisitorHook(DeciTreeOption<OwnerInfo> option) {
-		return new VisiOwnerInsertPerson(option);
+		return new VisiOwnerUserInsertAnonymous(option);
 	}
 }

@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.owner.info.OwnerInfo;
 import br.com.mind5.business.owner.model.action.LazyOwnerNodeInsertComp;
 import br.com.mind5.business.owner.model.action.LazyOwnerNodeInsertPerson;
-import br.com.mind5.business.owner.model.action.LazyOwnerInsertUser;
+import br.com.mind5.business.owner.model.action.LazyOwnerUserInsert;
 import br.com.mind5.business.owner.model.action.LazyOwnerNodeSnapshot;
 import br.com.mind5.business.owner.model.action.LazyOwnerNodeUpsertAddress;
 import br.com.mind5.business.owner.model.action.LazyOwnerNodeUpsertPhone;
@@ -59,7 +59,7 @@ public final class RootOwnerInsert extends DeciTreeTemplateWriteV2<OwnerInfo> {
 		ActionStdV1<OwnerInfo> insertOwner = new NodeOwnerInsert(option).toAction();
 		ActionLazyV1<OwnerInfo> insertPerson = new LazyOwnerNodeInsertPerson(option.conn, option.schemaName);			
 		ActionLazyV1<OwnerInfo> insertComp = new LazyOwnerNodeInsertComp(option.conn, option.schemaName);	
-		ActionLazyV1<OwnerInfo> insertUser = new LazyOwnerInsertUser(option.conn, option.schemaName);	
+		ActionLazyV1<OwnerInfo> insertUser = new LazyOwnerUserInsert(option.conn, option.schemaName);	
 		ActionLazyV1<OwnerInfo> snapshot = new LazyOwnerNodeSnapshot(option.conn, option.schemaName);
 		ActionLazyV1<OwnerInfo> upsertAddress = new LazyOwnerNodeUpsertAddress(option.conn, option.schemaName);
 		ActionLazyV1<OwnerInfo> upsertPhone = new LazyOwnerNodeUpsertPhone(option.conn, option.schemaName);	
