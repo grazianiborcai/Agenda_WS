@@ -8,6 +8,7 @@ import br.com.mind5.business.material.model.action.LazyMatDaoInsert;
 import br.com.mind5.business.material.model.action.LazyMatEnforceCreatedBy;
 import br.com.mind5.business.material.model.action.LazyMatEnforceCreatedOn;
 import br.com.mind5.business.material.model.action.LazyMatEnforceLChanged;
+import br.com.mind5.business.material.model.action.LazyMatMergeSytotauh;
 import br.com.mind5.business.material.model.action.LazyMatMergeUsername;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
@@ -45,13 +46,15 @@ public final class NodeMatInsert extends DeciTreeTemplateWriteV2<MatInfo> {
 		ActionLazyV1<MatInfo> enforceLChangedBy = new LazyMatMergeUsername(option.conn, option.schemaName);
 		ActionLazyV1<MatInfo> enforceCreatedOn = new LazyMatEnforceCreatedOn(option.conn, option.schemaName);	
 		ActionLazyV1<MatInfo> enforceCreatedBy = new LazyMatEnforceCreatedBy(option.conn, option.schemaName);
+		ActionLazyV1<MatInfo> mergeSytotauh = new LazyMatMergeSytotauh(option.conn, option.schemaName);
 		ActionLazyV1<MatInfo> insertMat = new LazyMatDaoInsert(option.conn, option.schemaName);	
 		
 		nodeService.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceLChangedBy);
 		enforceLChangedBy.addPostAction(enforceCreatedOn);
 		enforceCreatedOn.addPostAction(enforceCreatedBy);
-		enforceCreatedBy.addPostAction(insertMat);
+		enforceCreatedBy.addPostAction(mergeSytotauh);
+		mergeSytotauh.addPostAction(insertMat);
 		
 		actions.add(nodeService);		
 		return actions;

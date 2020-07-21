@@ -18,7 +18,7 @@ public final class MatCheckIsProduct extends ModelCheckerTemplateSimpleV2<MatInf
 	
 	@Override protected boolean checkHook(MatInfo recordInfo, Connection conn, String schemaName) {	
 		
-		if (Mateg.PRODUCT.getCodMatCateg() == recordInfo.codMatCateg )
+		if ( Mateg.PRODUCT.getCodMatCateg() == recordInfo.codMatCateg )
 			return super.SUCCESS;			
 			
 		

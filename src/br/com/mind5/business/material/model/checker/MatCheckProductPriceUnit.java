@@ -16,7 +16,7 @@ public final class MatCheckProductPriceUnit extends ModelCheckerTemplateSimpleV2
 	
 	
 	@Override protected boolean checkHook(MatInfo recordInfo, Connection conn, String schemaName) {	
-		if (recordInfo.priceUnit == 1)			
+		if ( recordInfo.priceUnit == 1 )			
 			return super.SUCCESS;		
 		
 		return super.FAILED;

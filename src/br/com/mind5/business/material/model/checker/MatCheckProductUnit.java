@@ -17,11 +17,11 @@ public final class MatCheckProductUnit extends ModelCheckerTemplateSimpleV2<MatI
 	
 	
 	@Override protected boolean checkHook(MatInfo recordInfo, Connection conn, String schemaName) {	
-		if (recordInfo.codUnit == null)
+		if ( recordInfo.codUnit == null )
 			return super.FAILED;
 		
 		
-		if (Matunit.EACH.getCodUnit().equals(recordInfo.codUnit))			
+		if ( Matunit.EACH.getCodUnit().equals(recordInfo.codUnit) )			
 			return super.SUCCESS;		
 		
 		

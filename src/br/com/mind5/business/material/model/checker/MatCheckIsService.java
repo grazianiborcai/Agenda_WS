@@ -18,7 +18,7 @@ public final class MatCheckIsService extends ModelCheckerTemplateSimpleV2<MatInf
 	
 	@Override protected boolean checkHook(MatInfo recordInfo, Connection conn, String schemaName) {	
 		
-		if (Mateg.SERVICE.getCodMatCateg() == recordInfo.codMatCateg )
+		if ( Mateg.SERVICE.getCodMatCateg() == recordInfo.codMatCateg )
 			return super.SUCCESS;			
 			
 		
