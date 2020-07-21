@@ -8,13 +8,13 @@ import br.com.mind5.business.ownerSnapshot.model.action.StdOwnerapMergeToSelect;
 import br.com.mind5.business.ownerSnapshot.model.checker.OwnerapCheckLangu;
 import br.com.mind5.business.ownerSnapshot.model.checker.OwnerapCheckRead;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 
-public final class RootOwnerapSelect extends DeciTreeTemplateReadV1<OwnerapInfo> {
+public final class RootOwnerapSelect extends DeciTreeTemplateReadV2<OwnerapInfo> {
 
 	public RootOwnerapSelect(DeciTreeOption<OwnerapInfo> option) {
 		super(option);

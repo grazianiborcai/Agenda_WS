@@ -16,9 +16,9 @@ public final class OwnerapCheckRead extends ModelCheckerTemplateSimpleV2<Ownerap
 	
 	
 	@Override protected boolean checkHook(OwnerapInfo recordInfo, Connection conn, String schemaName) {	
-		if ( recordInfo.codOwner 	<= 0		||
-			 recordInfo.codSnapshot <= 0		||	
-			 recordInfo.codLanguage == null)
+		if ( recordInfo.codOwner 	<= 0	||
+			 recordInfo.codSnapshot <= 0	||	
+			 recordInfo.codLanguage == null		)
 			
 			return super.FAILED;		
 		

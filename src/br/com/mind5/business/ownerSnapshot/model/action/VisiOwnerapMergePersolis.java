@@ -1,6 +1,5 @@
 package br.com.mind5.business.ownerSnapshot.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.ownerSnapshot.info.OwnerapInfo;
@@ -8,13 +7,14 @@ import br.com.mind5.business.ownerSnapshot.info.OwnerapMerger;
 import br.com.mind5.business.personList.info.PersolisCopier;
 import br.com.mind5.business.personList.info.PersolisInfo;
 import br.com.mind5.business.personList.model.decisionTree.RootPersolisSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiOwnerapMergePersolis extends ActionVisitorTemplateMergeV1<OwnerapInfo, PersolisInfo> {
+final class VisiOwnerapMergePersolis extends ActionVisitorTemplateMergeV2<OwnerapInfo, PersolisInfo> {
 	
-	public VisiOwnerapMergePersolis(Connection conn, String schemaName) {
-		super(conn, schemaName, PersolisInfo.class);
+	public VisiOwnerapMergePersolis(DeciTreeOption<OwnerapInfo> option) {
+		super(option, PersolisInfo.class);
 	}
 	
 	
@@ -25,19 +25,19 @@ final class VisiOwnerapMergePersolis extends ActionVisitorTemplateMergeV1<Ownera
 
 	
 
-	protected List<PersolisInfo> toActionClassHook(List<OwnerapInfo> recordInfos) {
-		return PersolisCopier.copyFromOwnerap(recordInfos);	
+	protected List<PersolisInfo> toActionClassHook(List<OwnerapInfo> baseInfos) {
+		return PersolisCopier.copyFromOwnerap(baseInfos);	
 	}
 	
 	
 	
-	@Override protected List<OwnerapInfo> mergeHook(List<OwnerapInfo> recordInfos, List<PersolisInfo> selectedInfos) {	
-		return OwnerapMerger.mergeWithPersolis(selectedInfos, recordInfos);
+	@Override protected List<OwnerapInfo> mergeHook(List<OwnerapInfo> baseInfos, List<PersolisInfo> selectedInfos) {	
+		return OwnerapMerger.mergeWithPersolis(baseInfos, selectedInfos);
 	}
 	
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
+		return super.MERGE_WHEN_EMPTY;
 	}
 }

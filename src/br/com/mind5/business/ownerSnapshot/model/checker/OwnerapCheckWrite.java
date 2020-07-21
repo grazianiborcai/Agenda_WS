@@ -21,7 +21,8 @@ public final class OwnerapCheckWrite extends ModelCheckerTemplateSimpleV2<Ownera
 			 recordInfo.codUser 	<= 0 	||
 			 recordInfo.codCompany 	<= 0 	||
 			 recordInfo.codLanguage == null ||
-			 recordInfo.username 	== null)
+			 recordInfo.username 	== null		)
+			
 			return super.FAILED;
 		
 		

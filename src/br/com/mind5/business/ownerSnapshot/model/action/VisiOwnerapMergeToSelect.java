@@ -1,34 +1,34 @@
 package br.com.mind5.business.ownerSnapshot.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.ownerSnapshot.info.OwnerapInfo;
 import br.com.mind5.business.ownerSnapshot.info.OwnerapMerger;
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiOwnerapMergeToSelect extends ActionVisitorTemplateMergeV1<OwnerapInfo, OwnerapInfo> {
+final class VisiOwnerapMergeToSelect extends ActionVisitorTemplateMergeV2<OwnerapInfo, OwnerapInfo> {
 	
-	public VisiOwnerapMergeToSelect(Connection conn, String schemaName) {
-		super(conn, schemaName, OwnerapInfo.class);
+	public VisiOwnerapMergeToSelect(DeciTreeOption<OwnerapInfo> option) {
+		super(option, OwnerapInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends ActionStdV1<OwnerapInfo>> getActionClassHook() {
-		return StdOwnerapSelect.class;
+	@Override protected Class<? extends ActionStdV2<OwnerapInfo>> getActionClassHook() {
+		return StdOwnerapDaoSelect.class;
 	}
 	
 	
 	
-	@Override protected List<OwnerapInfo> mergeHook(List<OwnerapInfo> recordInfos, List<OwnerapInfo> selectedInfos) {	
-		return OwnerapMerger.mergeToSelect(selectedInfos, recordInfos);
+	@Override protected List<OwnerapInfo> mergeHook(List<OwnerapInfo> baseInfos, List<OwnerapInfo> selectedInfos) {	
+		return OwnerapMerger.mergeToSelect(baseInfos, selectedInfos);
 	}
 	
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
+		return super.DONT_MERGE_WHEN_EMPTY;
 	}
 }

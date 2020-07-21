@@ -15,11 +15,11 @@ import br.com.mind5.dao.DaoStmtParamTranslator;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class OwnerapInsertSingle extends DaoStmtTemplate<OwnerapInfo> {	
+public final class DaoOwnerapInsertSingle extends DaoStmtTemplate<OwnerapInfo> {	
 	private final String MAIN_TABLE = DaoDbTable.OWNER_SNAPSHOT_TABLE;	
 	
 	
-	public OwnerapInsertSingle(Connection conn, OwnerapInfo recordInfo, String schemaName) {
+	public DaoOwnerapInsertSingle(Connection conn, OwnerapInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	

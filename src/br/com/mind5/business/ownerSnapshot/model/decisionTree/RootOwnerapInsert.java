@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.ownerSnapshot.info.OwnerapInfo;
-import br.com.mind5.business.ownerSnapshot.model.action.LazyOwnerapInsert;
+import br.com.mind5.business.ownerSnapshot.model.action.LazyOwnerapDaoInsert;
 import br.com.mind5.business.ownerSnapshot.model.action.LazyOwnerapMergeComplis;
 import br.com.mind5.business.ownerSnapshot.model.action.LazyOwnerapMergeUselis;
 import br.com.mind5.business.ownerSnapshot.model.action.StdOwnerapMergePersolis;
@@ -13,13 +13,13 @@ import br.com.mind5.business.ownerSnapshot.model.checker.OwnerapCheckOwner;
 import br.com.mind5.business.ownerSnapshot.model.checker.OwnerapCheckWrite;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class RootOwnerapInsert extends DeciTreeTemplateWriteV1<OwnerapInfo> {
+public final class RootOwnerapInsert extends DeciTreeTemplateWriteV2<OwnerapInfo> {
 	
 	public RootOwnerapInsert(DeciTreeOption<OwnerapInfo> option) {
 		super(option);
@@ -64,7 +64,7 @@ public final class RootOwnerapInsert extends DeciTreeTemplateWriteV1<OwnerapInfo
 		ActionStdV1<OwnerapInfo> mergePersolis = new StdOwnerapMergePersolis(option);
 		ActionLazyV1<OwnerapInfo> mergeUselis = new LazyOwnerapMergeUselis(option.conn, option.schemaName);
 		ActionLazyV1<OwnerapInfo> mergeComplis = new LazyOwnerapMergeComplis(option.conn, option.schemaName);
-		ActionLazyV1<OwnerapInfo> insert = new LazyOwnerapInsert(option.conn, option.schemaName);
+		ActionLazyV1<OwnerapInfo> insert = new LazyOwnerapDaoInsert(option.conn, option.schemaName);
 		
 		mergePersolis.addPostAction(mergeUselis);
 		mergeUselis.addPostAction(mergeComplis);

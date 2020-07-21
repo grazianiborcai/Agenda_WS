@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class OwnerapDbTableColumn extends DaoDbTableColumnTemplate {
+public final class DaoOwnerapDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_COMPANY = DaoDbField.COL_COD_COMPANY;
 	public static final String COL_COD_COMPANY_SNAPSHOT = DaoDbField.COL_COD_COMPANY_SNAPSHOT;
 	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;
@@ -24,23 +24,14 @@ public final class OwnerapDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_LAST_CHANGED_BY = DaoDbField.COL_LAST_CHANGED_BY;
 	public static final String COL_RECORD_MODE = DaoDbField.COL_RECORD_MODE;
 	
-	private Hashtable<String, List<DaoColumn>> tableColumns;	
 	
-	public OwnerapDbTableColumn() {
-		super(OwnerapDbTableColumn.class);
+	public DaoOwnerapDbTableColumn() {
+		super();
 	}
 	
 	
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
-		tableColumns = new Hashtable<>();		
-		buildOwnerSnapshotTable();		
-		return tableColumns;
-	}
-	
-	
-	
-	private void buildOwnerSnapshotTable() {
 		final String TABLE_NAME = DaoDbTable.OWNER_SNAPSHOT_TABLE;
 		
 		DaoColumn oneColumn;
@@ -150,6 +141,8 @@ public final class OwnerapDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);		
 		
-		tableColumns.put(TABLE_NAME, columns);
+		Hashtable<String, List<DaoColumn>> results = new Hashtable<>();
+		results.put(TABLE_NAME, columns);
+		return results;
 	}
 }

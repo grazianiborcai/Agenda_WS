@@ -1,56 +1,39 @@
 package br.com.mind5.business.ownerSnapshot.info;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import br.com.mind5.business.companyList.info.ComplisInfo;
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-final class OwnerapVisiMergeComplis implements InfoMergerVisitor_<OwnerapInfo, ComplisInfo> {
-
-	@Override public OwnerapInfo writeRecord(ComplisInfo sourceOne, OwnerapInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+final class OwnerapVisiMergeComplis implements InfoMergerVisitorV3<OwnerapInfo, ComplisInfo> {
+	
+	@Override public List<OwnerapInfo> beforeMerge(List<OwnerapInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(OwnerapInfo baseInfo, ComplisInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner	&&
+				baseInfo.codCompany == selectedInfo.codCompany	);
+	}
+	
+	
+	
+	@Override public List<OwnerapInfo> merge(OwnerapInfo baseInfo, ComplisInfo selectedInfo) {
+		List<OwnerapInfo> results = new ArrayList<>();
 		
-		OwnerapInfo clonedInfo = makeClone(sourceTwo);
-		return merge(sourceOne, clonedInfo);
-	}
-	
-	
-	
-	private void checkArgument(ComplisInfo sourceOne, OwnerapInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private OwnerapInfo makeClone(OwnerapInfo recordInfo) {
-		try {
-			return (OwnerapInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	private OwnerapInfo merge(ComplisInfo sourceOne, OwnerapInfo sourceTwo) {
-		sourceTwo.codCompanySnapshot = sourceOne.codSnapshot;
-		return sourceTwo;
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(ComplisInfo sourceOne, OwnerapInfo sourceTwo) {
-		return (sourceOne.codOwner  	== sourceTwo.codOwner	&&
-				sourceOne.codCompany 	== sourceTwo.codCompany);
-	}
-	
-	
-	
-	private void logException(Exception e) {
+		baseInfo.codCompanySnapshot = selectedInfo.codSnapshot;
 		
-		SystemLog.logError(this.getClass(), e);
+		results.add(baseInfo);
+		return results;
+	}
+	
+	
+	
+	@Override public InfoUniquifier<OwnerapInfo> getUniquifier() {
+		return null;
 	}
 }

@@ -1,20 +1,20 @@
 package br.com.mind5.business.ownerSnapshot.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.ownerSnapshot.info.OwnerapInfo;
 import br.com.mind5.business.ownerSnapshot.info.OwnerapMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.userList.info.UselisCopier;
 import br.com.mind5.security.userList.info.UselisInfo;
 import br.com.mind5.security.userList.model.decisionTree.RootUselisSelect;
 
-final class VisiOwnerapMergeUselis extends ActionVisitorTemplateMergeV1<OwnerapInfo, UselisInfo> {
+final class VisiOwnerapMergeUselis extends ActionVisitorTemplateMergeV2<OwnerapInfo, UselisInfo> {
 	
-	public VisiOwnerapMergeUselis(Connection conn, String schemaName) {
-		super(conn, schemaName, UselisInfo.class);
+	public VisiOwnerapMergeUselis(DeciTreeOption<OwnerapInfo> option) {
+		super(option, UselisInfo.class);
 	}
 	
 	
@@ -25,18 +25,18 @@ final class VisiOwnerapMergeUselis extends ActionVisitorTemplateMergeV1<OwnerapI
 
 	
 	
-	protected List<UselisInfo> toActionClassHook(List<OwnerapInfo> recordInfos) {
-		return UselisCopier.copyFromOwnerap(recordInfos);	
+	protected List<UselisInfo> toActionClassHook(List<OwnerapInfo> baseInfos) {
+		return UselisCopier.copyFromOwnerap(baseInfos);	
 	}	
 	
 	
-	@Override protected List<OwnerapInfo> mergeHook(List<OwnerapInfo> recordInfos, List<UselisInfo> selectedInfos) {	
-		return OwnerapMerger.mergeWithUselis(selectedInfos, recordInfos);
+	@Override protected List<OwnerapInfo> mergeHook(List<OwnerapInfo> baseInfos, List<UselisInfo> selectedInfos) {	
+		return OwnerapMerger.mergeWithUselis(baseInfos, selectedInfos);
 	}
 	
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
+		return super.MERGE_WHEN_EMPTY;
 	}
 }
