@@ -7,7 +7,7 @@ import java.util.Random;
 import br.com.mind5.info.InfoSetterTemplate;
 
 public final class OtpSetterRandom extends InfoSetterTemplate<OtpInfo> {
-    private static final String UPPER = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+ // private static final String UPPER = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     private static final String DIGITS = "0123456789";
     private static final int LENGTH = 6;
 	
@@ -24,7 +24,7 @@ public final class OtpSetterRandom extends InfoSetterTemplate<OtpInfo> {
         Random random = new Random(System.nanoTime());
 		
         List<String> charCategories = new ArrayList<>(4);
-        charCategories.add(UPPER);
+   //   charCategories.add(UPPER);
         charCategories.add(DIGITS);
         
         for (int i = 0; i < LENGTH; i++) {
