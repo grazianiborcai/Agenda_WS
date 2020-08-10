@@ -23,9 +23,7 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.util.Assert;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import br.com.mind5.model.decisionTree.DeciResult;
-import br.com.mind5.model.decisionTree.DeciTree;
-import br.com.mind5.security.jwtToken.info.JwtokenInfo;
+import br.com.mind5.servlet.filter.common.HeaderJwtToken;
 
 
 //Copy from org.springframework.security.web.authentication.www.BasicAuthenticationFilter
@@ -177,7 +175,7 @@ public final class AuthFilterPwrd extends OncePerRequestFilter {
 	
 	
 	protected HttpServletResponse onSuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response, Authentication authResult, AuthToken authRequest) throws IOException {
-		return customAddJwtToken(response, authRequest);
+		return HeaderJwtToken.addJwtToken(response, authRequest);
 	}
 
 	
@@ -271,47 +269,5 @@ public final class AuthFilterPwrd extends OncePerRequestFilter {
 			return null;
 		
 		return language.trim();
-	}
-	
-	
-	
-	private HttpServletResponse customAddJwtToken(HttpServletResponse response, AuthToken authToken) { 
-		String HEADER_STRING = "Authorization";
-		String TOKEN_PREFIX = "Bearer";
-		
-		String jwtToken = customGenerateJwtToken(authToken);
-		
-		response.addHeader(HEADER_STRING, TOKEN_PREFIX + " " + jwtToken);
-		return response;
-	}
-	
-	
-	
-	private String customGenerateJwtToken(AuthToken authToken) {
-		AuthToken customAuthToken = (AuthToken) authToken;
-		
-		JwtokenInfo jwtoken = new JwtokenInfo();
-		jwtoken.codOwner = customAuthToken.getCodOwner();
-		jwtoken.username = customAuthToken.getName();
-		jwtoken.codPlatform = customAuthToken.getCodPlatform();
-		
-		DeciTree<JwtokenInfo> jwtokenGenerate = new AuthJwtGenerate(jwtoken);	
-		jwtokenGenerate.makeDecision();
-		customCheckJwtTokenGeneration(jwtokenGenerate.getDecisionResult());
-		
-		
-		String result = jwtokenGenerate.getDecisionResult().getResultset().get(0).token;
-		jwtokenGenerate.close();
-		return result;
-	}
-	
-	
-	
-	private void customCheckJwtTokenGeneration(DeciResult<JwtokenInfo> deciResult) {
-		if (deciResult.isSuccess() == false)
-			throw new IllegalStateException("melhorar isso aqui"); 			//TODO: melhorar
-		
-		if (deciResult.hasResultset() == false)
-			throw new IllegalStateException("melhorar isso aqui"); 			//TODO: melhorar
 	}
 }

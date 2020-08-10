@@ -49,8 +49,6 @@ public final class AuthProviderPwrd implements AuthenticationProvider {
 		recordInfo.password = token.getCredentials().toString();
 		recordInfo.codLanguage = token.getCodLanguage();
 		
-		//System.out.println(recordInfo.codOwner + " - " + recordInfo.username + " - " + recordInfo.password + " - " + recordInfo.codLanguage);
-		
 		return recordInfo;
 	}
 	

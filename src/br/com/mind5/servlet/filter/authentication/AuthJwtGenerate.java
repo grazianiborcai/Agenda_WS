@@ -8,7 +8,7 @@ import br.com.mind5.model.decisionTree.common.DeciTreeOneCallTemplate;
 import br.com.mind5.security.jwtToken.info.JwtokenInfo;
 import br.com.mind5.security.jwtToken.model.decisionTree.RootJwtokenGenerate;
 
-final class AuthJwtGenerate extends DeciTreeOneCallTemplate<JwtokenInfo> {
+public final class AuthJwtGenerate extends DeciTreeOneCallTemplate<JwtokenInfo> {
 
 	public AuthJwtGenerate(JwtokenInfo recordInfo) {
 		super(recordInfo);

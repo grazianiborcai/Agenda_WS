@@ -46,8 +46,9 @@ public final class SystemMessage {
 	public static final String NO_IMPLEMENTATION = "There is no implementation for this method";	
 	public static final String NO_KEEPER_IMPLEMENTATION = "No Keeper implementation";
 	public static final String NO_RESPONSE = "Main operation was not executed";
+	public static final String NULL_ARGUMENT = " argument is null";	
 	public static final String NO_TEMPLATE_IMPLEMENTATION = "Template method not overwritten by subclass";
-	public static final String NULL_ARGUMENT = " argument is null";
+	public static final String NO_RESULTS_ADDED = "No results added";
 	public static final String NULL_COLUMNS = "Columns for this given builder were passed null";
 	public static final String NULL_CONN = "Conn is null";
 	public static final String NULL_SCHEMA = "Schema name is null";	
@@ -62,7 +63,6 @@ public final class SystemMessage {
 	public static final String RETURNED_SUCCESSFULLY = "The list was returned successfully";	
 	public static final String SUCCESS = "Success";			
 	public static final String TABLE_NOT_FOUND = "table was not found";	
-	public static final String TECH_FIELD_SHOULD_BE_EMPTY = "Technical fields shouldn't be filled";
 	public static final String WRONG_DATA_TYPE = "Wrong data type";	
 	public static final String OBJECT_IS_CLOSED = "Object has been closed";	
 
