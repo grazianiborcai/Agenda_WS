@@ -16,10 +16,4 @@ public final class ModelResponseStandard<T extends InfoRecord> extends ModelResp
 	@Override protected JsonResponseMaker getJsonReponseParserHook() {
 		return new JstdResponseMaker();
 	}
-	
-	
-	
-	@Override protected Class<?> getImplamentationClassHook() {
-		return this.getClass();
-	}
 }

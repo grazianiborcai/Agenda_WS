@@ -362,6 +362,7 @@ public abstract class ModelTemplate<T extends InfoRecord> implements Model {
 	
 	
 	protected ModelResponse<T> getModelResponseHook() {
+		//Template Method: default behavior
 		return new ModelResponseStandard<>();
 	}
 	

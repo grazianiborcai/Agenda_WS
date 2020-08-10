@@ -72,10 +72,31 @@ public abstract class ModelResponseTemplate<T extends InfoRecord> implements Mod
 	private Response buildResponseSuccess(List<DeciResult<T>> results) {
 		List<T> allResultsets = collectAllResultsets(results);		
 		
-		return buildResponse(SystemMessage.RETURNED_SUCCESSFULLY, 
-				             Response.Status.OK.getStatusCode(), 
-				             Response.Status.OK, 
-				             allResultsets);
+		Response response = buildResponse(SystemMessage.RETURNED_SUCCESSFULLY, 
+				             		      Response.Status.OK.getStatusCode(), 
+				            		      Response.Status.OK, 
+				            		      allResultsets);
+		
+		return addHeaderParam(response, results);
+	}
+	
+	
+	
+	private Response addHeaderParam(Response response, List<DeciResult<T>> results) {
+		DeciResult<T> lastResult = getLastResult(deciResults);
+		
+		List<T> resultset = lastResult.getResultset();		
+		int size = resultset.size();
+		T lastRecord = resultset.get(size - 1);
+		
+		return addHeaderParamHook(response, lastRecord);
+	}
+	
+	
+	
+	protected Response addHeaderParamHook(Response response, T lastRecord) {
+		//Template method: default behavior
+		return response;
 	}
 	
 	
@@ -110,7 +131,7 @@ public abstract class ModelResponseTemplate<T extends InfoRecord> implements Mod
 	
 	protected JsonResponseMaker getJsonReponseParserHook() {
 		//Template method to be overridden by subclasses
-		logExceptionWithSupperClass(new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION));
+		SystemLog.logError(this.getClass(), new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION));
 		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);
 	}
 	
@@ -125,7 +146,7 @@ public abstract class ModelResponseTemplate<T extends InfoRecord> implements Mod
 	
 	private void checkArgument(List<DeciResult<T>> results) {
 		if (results == null) {
-			logException(new NullPointerException("results" + SystemMessage.NULL_ARGUMENT));
+			SystemLog.logError(this.getClass(), new NullPointerException("results" + SystemMessage.NULL_ARGUMENT));
 			throw new NullPointerException("results" + SystemMessage.NULL_ARGUMENT);
 		}
 	}
@@ -134,38 +155,17 @@ public abstract class ModelResponseTemplate<T extends InfoRecord> implements Mod
 	
 	private void checkArgument(DeciResult<T> result) {
 		if (result == null) {
-			logException(new NullPointerException("result" + SystemMessage.NULL_ARGUMENT));
+			SystemLog.logError(this.getClass(), new NullPointerException("result" + SystemMessage.NULL_ARGUMENT));
 			throw new NullPointerException("result" + SystemMessage.NULL_ARGUMENT);
-		}	
+		}
 	}
 	
 	
 	
 	private void checkState() {
 		if (deciResults.isEmpty()) {
-			logException(new IllegalStateException("No results added"));
-			throw new IllegalStateException("No results added");
+			SystemLog.logError(this.getClass(), new IllegalStateException(SystemMessage.NO_RESULTS_ADDED));
+			throw new IllegalStateException(SystemMessage.NO_RESULTS_ADDED);
 		}
-	}
-	
-	
-	
-	protected Class<?> getImplamentationClassHook() {
-		//Template method to be overridden by subclasses
-		logExceptionWithSupperClass(new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION));
-		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);
-	}
-	
-	
-	
-	private void logException(Exception e) {
-		Class<?> clazz = getImplamentationClassHook();
-		SystemLog.logError(clazz, e);
-	}
-	
-	
-	
-	private void logExceptionWithSupperClass(Exception e) {		
-		SystemLog.logError(this.getClass(), e);
 	}
 }
