@@ -7,18 +7,16 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 import br.com.mind5.security.jwtToken.info.JwtokenInfo;
 
-public final class JwtokenCheckGenerate extends ModelCheckerTemplateSimpleV2<JwtokenInfo> {
+public final class JwtokenCheckHasPlatform extends ModelCheckerTemplateSimpleV2<JwtokenInfo> {
 
-	public JwtokenCheckGenerate(ModelCheckerOption option) {
+	public JwtokenCheckHasPlatform(ModelCheckerOption option) {
 		super(option);
 	}
 	
 	
 	
 	@Override protected boolean checkHook(JwtokenInfo recordInfo, Connection conn, String schemaName) {	
-		if (recordInfo.codOwner <= 0 	||
-			recordInfo.username == null		)		
-			
+		if ( recordInfo.codPlatform	== null	)				
 			return super.FAILED;	
 		
 		return super.SUCCESS;

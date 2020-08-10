@@ -10,12 +10,13 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 import br.com.mind5.security.jwtToken.info.JwtokenInfo;
-import br.com.mind5.security.jwtToken.model.action.StdJwtokenObfuscate;
-import br.com.mind5.security.jwtToken.model.checker.JwtokenCheckToken;
+import br.com.mind5.security.jwtToken.model.action.StdJwtokenEnforcePlatform;
+import br.com.mind5.security.jwtToken.model.action.StdJwtokenSuccess;
+import br.com.mind5.security.jwtToken.model.checker.JwtokenCheckHasPlatform;
 
-public final class NodeJwtokenValidate extends DeciTreeTemplateWriteV2<JwtokenInfo> {
+public final class NodeJwtokenPlatform extends DeciTreeTemplateWriteV2<JwtokenInfo> {
 	
-	public NodeJwtokenValidate(DeciTreeOption<JwtokenInfo> option) {
+	public NodeJwtokenPlatform(DeciTreeOption<JwtokenInfo> option) {
 		super(option);
 	}
 	
@@ -30,7 +31,7 @@ public final class NodeJwtokenValidate extends DeciTreeTemplateWriteV2<JwtokenIn
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new JwtokenCheckToken(checkerOption);
+		checker = new JwtokenCheckHasPlatform(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueueV2<>(queue);
@@ -41,9 +42,20 @@ public final class NodeJwtokenValidate extends DeciTreeTemplateWriteV2<JwtokenIn
 	@Override protected List<ActionStdV1<JwtokenInfo>> buildActionsOnPassedHook(DeciTreeOption<JwtokenInfo> option) {
 		List<ActionStdV1<JwtokenInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<JwtokenInfo> obfuscate = new StdJwtokenObfuscate(option);
+		ActionStdV1<JwtokenInfo> success = new StdJwtokenSuccess(option);
 		
-		actions.add(obfuscate);
+		actions.add(success);
+		return actions;
+	}
+	
+	
+	
+	@Override protected List<ActionStdV1<JwtokenInfo>> buildActionsOnFailedHook(DeciTreeOption<JwtokenInfo> option) {
+		List<ActionStdV1<JwtokenInfo>> actions = new ArrayList<>();
+		
+		ActionStdV1<JwtokenInfo> enforcePlatform = new StdJwtokenEnforcePlatform(option);
+		
+		actions.add(enforcePlatform);
 		return actions;
 	}
 }
