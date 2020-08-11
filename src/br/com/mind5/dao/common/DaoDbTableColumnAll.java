@@ -209,6 +209,7 @@ import br.com.mind5.security.otpUserPassword.dao.DaoOtperasDbTableColumn;
 import br.com.mind5.security.user.dao.DaoUserDbTableColumn;
 import br.com.mind5.security.userList.dao.DaoUselisDbTableColumn;
 import br.com.mind5.security.userPassword.dao.DaoUpswdDbTableColumn;
+import br.com.mind5.security.userPasswordSearch.dao.DaoUpswdarchDbTableColumn;
 import br.com.mind5.security.userSearch.dao.DaoUserarchDbTableColumn;
 import br.com.mind5.security.userSnapshot.dao.UserapDbTableColumn;
 import br.com.mind5.security.username.dao.DaoUsernameDbTableColumn;
@@ -428,6 +429,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new DaoNotesDbTableColumn());
 		addTable(new DaoSytotinDbTableColumn());
 		addTable(new DaoSysonfigDbTableColumn());
+		addTable(new DaoUpswdarchDbTableColumn());
 	}
 	
 	

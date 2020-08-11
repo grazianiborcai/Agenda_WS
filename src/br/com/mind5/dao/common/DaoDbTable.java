@@ -244,6 +244,7 @@ public final class DaoDbTable {
 	public static final String SYS_STORE_PARTITIONING_VIEW = "view_sys_store_partitioning";
 	public static final String TIMEZONE_SEARCH_VIEW = "view_timezone_search";
 	public static final String USER_LIST_VIEW = "view_user_list";
+	public static final String USER_PASSWORD_SEARCH_VIEW = "view_user_password_search";	
 	public static final String USER_SEARCH_VIEW = "view_user_search";
 	public static final String USERNAME_VIEW = "view_username";		
 	public static final String WEEKDAY_SEARCH_VIEW = "view_weekday_search";
