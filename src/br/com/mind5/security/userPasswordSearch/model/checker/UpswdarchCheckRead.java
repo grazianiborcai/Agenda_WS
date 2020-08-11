@@ -17,7 +17,7 @@ public final class UpswdarchCheckRead extends ModelCheckerTemplateSimpleV2<Upswd
 	
 	@Override protected boolean checkHook(UpswdarchInfo recordInfo, Connection conn, String schemaName) {	
 		if ( recordInfo.codOwner 	<= 0	|| 	
-			 recordInfo.codUser 	<= 0	||
+			 recordInfo.username 	== null	||
 			 recordInfo.codLanguage == null	||
 			 recordInfo.lastChanged == null		)
 			
