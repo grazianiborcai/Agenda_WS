@@ -8,11 +8,11 @@ import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.jwtToken.info.JwtokenInfo;
-import br.com.mind5.security.jwtToken.model.decisionTree.NodeJwtokenValidate;
+import br.com.mind5.security.jwtToken.model.decisionTree.NodeJwtokenValidateL2;
 
-public final class LazyJwtokenNodeValidate extends ActionLazyTemplateV2<JwtokenInfo, JwtokenInfo> {
+public final class LazyJwtokenNodeValidateL2 extends ActionLazyTemplateV2<JwtokenInfo, JwtokenInfo> {
 	
-	public LazyJwtokenNodeValidate(Connection conn, String schemaName) {
+	public LazyJwtokenNodeValidateL2(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -25,7 +25,7 @@ public final class LazyJwtokenNodeValidate extends ActionLazyTemplateV2<JwtokenI
 	
 	
 	@Override protected ActionStdV1<JwtokenInfo> getInstanceOfActionHook(DeciTreeOption<JwtokenInfo> option) {
-		return new NodeJwtokenValidate(option).toAction();
+		return new NodeJwtokenValidateL2(option).toAction();
 	}
 	
 	

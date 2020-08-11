@@ -11,11 +11,11 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 import br.com.mind5.security.jwtToken.info.JwtokenInfo;
 import br.com.mind5.security.jwtToken.model.action.StdJwtokenObfuscate;
-import br.com.mind5.security.jwtToken.model.checker.JwtokenCheckToken;
+import br.com.mind5.security.jwtToken.model.checker.JwtokenCheckUpswdarch;
 
-public final class NodeJwtokenValidate extends DeciTreeTemplateWriteV2<JwtokenInfo> {
+public final class NodeJwtokenValidateL2 extends DeciTreeTemplateWriteV2<JwtokenInfo> {
 	
-	public NodeJwtokenValidate(DeciTreeOption<JwtokenInfo> option) {
+	public NodeJwtokenValidateL2(DeciTreeOption<JwtokenInfo> option) {
 		super(option);
 	}
 	
@@ -29,8 +29,8 @@ public final class NodeJwtokenValidate extends DeciTreeTemplateWriteV2<JwtokenIn
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new JwtokenCheckToken(checkerOption);
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
+		checker = new JwtokenCheckUpswdarch(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueueV2<>(queue);

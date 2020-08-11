@@ -9,6 +9,7 @@ public final class JwtokenSetterToken extends InfoSetterTemplate<JwtokenInfo> {
 		recordInfo.token = Jwts.builder().claim("codPlatform", recordInfo.codPlatform)	
 										 .claim("codOwner", Long.toString(recordInfo.codOwner))			   
 										 .claim("username",recordInfo.username)	
+										 .claim("createdOn",recordInfo.createdOnStr)	
 										 .setExpiration(recordInfo.expirationTime)				               
 										 .signWith(recordInfo.algo, recordInfo.secret)
 										 .compact();

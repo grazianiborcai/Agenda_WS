@@ -1,5 +1,6 @@
 package br.com.mind5.security.jwtToken.info;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -12,6 +13,8 @@ public final class JwtokenInfo extends InfoRecord implements Cloneable {
 	public String username;
 	public String codPlatform;	
 	public Date expirationTime;
+	public LocalDateTime createdOn;
+	public String createdOnStr;
 	public String secret;
 	public SignatureAlgorithm algo;
 	public String token;

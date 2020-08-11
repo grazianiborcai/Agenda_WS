@@ -1,5 +1,8 @@
 package br.com.mind5.security.jwtToken.info;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.InfoSetterTemplate;
 import io.jsonwebtoken.Claims;
@@ -19,7 +22,12 @@ public final class JwtokenSetterParse extends InfoSetterTemplate<JwtokenInfo> {
 			recordInfo.codOwner = Long.valueOf((String) claim.get("codOwner"));
 			recordInfo.username = (String) claim.get("username");
 			recordInfo.codPlatform = (String) claim.get("codPlatform");
-			recordInfo.expirationTime = claim.getExpiration();			
+			recordInfo.createdOnStr = (String) claim.get("createdOn");
+			recordInfo.expirationTime = claim.getExpiration();
+			
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMddHHmmss"); 
+			recordInfo.createdOn = LocalDateTime.parse(recordInfo.createdOnStr, formatter);
+
 			
 			claim.clear();
 			return recordInfo;
