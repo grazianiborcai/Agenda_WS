@@ -20,7 +20,7 @@ public final class UpswdCheckUpdateAuth extends ModelCheckerTemplateSimpleV2<Ups
 			 recordInfo.password	== null	||
 			 recordInfo.username	== null	||
 			 recordInfo.otpPassword	== null	||
-			 recordInfo.codLanguage	== null)
+			 recordInfo.codLanguage	== null		)
 			
 			return super.FAILED;
 		
