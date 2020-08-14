@@ -10,10 +10,24 @@ import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.file.fileImageList.info.FimistInfo;
 import br.com.mind5.info.InfoMergerBuilderV3;
 import br.com.mind5.info.InfoMergerV3;
+import br.com.mind5.masterData.businessArea.info.BusareaInfo;
 import br.com.mind5.security.user.info.UserInfo;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class OwnerMerger {
+	public static List<OwnerInfo> mergeWithBusarea(List<OwnerInfo> baseInfos, List<BusareaInfo> selectedInfos) {
+		InfoMergerBuilderV3<OwnerInfo, BusareaInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new OwnerVisiMergeBusarea());
+		InfoMergerV3<OwnerInfo, BusareaInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}	
+	
+	
+	
 	public static List<OwnerInfo> mergeWithDaemon(List<OwnerInfo> baseInfos, List<UserInfo> selectedInfos) {
 		InfoMergerBuilderV3<OwnerInfo, UserInfo> builder = new InfoMergerBuilderV3<>();
 		

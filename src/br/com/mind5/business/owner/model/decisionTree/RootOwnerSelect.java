@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.owner.info.OwnerInfo;
 import br.com.mind5.business.owner.model.action.LazyOwnerMergeAddress;
+import br.com.mind5.business.owner.model.action.LazyOwnerMergeBusarea;
 import br.com.mind5.business.owner.model.action.LazyOwnerMergeComp;
 import br.com.mind5.business.owner.model.action.LazyOwnerMergeFimist;
 import br.com.mind5.business.owner.model.action.LazyOwnerMergePerson;
@@ -57,14 +58,16 @@ public final class RootOwnerSelect extends DeciTreeTemplateReadV2<OwnerInfo> {
 		List<ActionStdV1<OwnerInfo>> actions = new ArrayList<>();
 
 		ActionStdV1<OwnerInfo> select = new StdOwnerMergeToSelect(option);
+		ActionLazyV1<OwnerInfo> mergeBusarea = new LazyOwnerMergeBusarea(option.conn, option.schemaName);
 		ActionLazyV1<OwnerInfo> mergePerson = new LazyOwnerMergePerson(option.conn, option.schemaName);
 		ActionLazyV1<OwnerInfo> mergeComp = new LazyOwnerMergeComp(option.conn, option.schemaName);
 		ActionLazyV1<OwnerInfo> mergeAddress = new LazyOwnerMergeAddress(option.conn, option.schemaName);
 		ActionLazyV1<OwnerInfo> mergePhone = new LazyOwnerMergePhone(option.conn, option.schemaName);
 		ActionLazyV1<OwnerInfo> mergeUser = new LazyOwnerMergeUser(option.conn, option.schemaName);
-		ActionLazyV1<OwnerInfo> mergeFimist = new LazyOwnerMergeFimist(option.conn, option.schemaName);
+		ActionLazyV1<OwnerInfo> mergeFimist = new LazyOwnerMergeFimist(option.conn, option.schemaName);		
 		
-		select.addPostAction(mergePerson);
+		select.addPostAction(mergeBusarea);
+		mergeBusarea.addPostAction(mergePerson);
 		mergePerson.addPostAction(mergeComp);
 		mergeComp.addPostAction(mergeAddress);
 		mergeAddress.addPostAction(mergePhone);

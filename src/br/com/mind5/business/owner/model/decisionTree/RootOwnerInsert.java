@@ -6,18 +6,19 @@ import java.util.List;
 import br.com.mind5.business.owner.info.OwnerInfo;
 import br.com.mind5.business.owner.model.action.LazyOwnerNodeInsertComp;
 import br.com.mind5.business.owner.model.action.LazyOwnerNodeInsertPerson;
-import br.com.mind5.business.owner.model.action.LazyOwnerUserInsert;
 import br.com.mind5.business.owner.model.action.LazyOwnerNodeSnapshot;
 import br.com.mind5.business.owner.model.action.LazyOwnerNodeUpsertAddress;
 import br.com.mind5.business.owner.model.action.LazyOwnerNodeUpsertPhone;
 import br.com.mind5.business.owner.model.action.LazyOwnerRootSelect;
+import br.com.mind5.business.owner.model.action.LazyOwnerUserInsert;
+import br.com.mind5.business.owner.model.checker.OwnerCheckBusarea;
 import br.com.mind5.business.owner.model.checker.OwnerCheckInsert;
 import br.com.mind5.business.owner.model.checker.OwnerCheckLangu;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
@@ -46,6 +47,13 @@ public final class RootOwnerInsert extends DeciTreeTemplateWriteV2<OwnerInfo> {
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new OwnerCheckLangu(checkerOption);
+		queue.add(checker);	
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
+		checker = new OwnerCheckBusarea(checkerOption);
 		queue.add(checker);	
 		
 		return new ModelCheckerHelperQueueV2<>(queue);

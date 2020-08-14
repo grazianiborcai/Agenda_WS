@@ -16,7 +16,9 @@ public final class OwnerCheckInsert extends ModelCheckerTemplateSimpleV2<OwnerIn
 	
 	
 	@Override protected boolean checkHook(OwnerInfo recordInfo, Connection conn, String schemaName) {	
-		if ( recordInfo.personData 	== null ||
+		if ( recordInfo.codBusiness <= 0	||
+			 recordInfo.codLanguage == null ||
+			 recordInfo.personData 	== null ||
 			 recordInfo.companyData == null ||
 			 recordInfo.codLanguage == null 	)
 			return super.FAILED;

@@ -70,7 +70,8 @@ public final class DaoOwnerSelectSingle extends DaoStmtTemplate<OwnerInfo> {
 					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, DaoOwnerDbTableColumn.COL_LAST_CHANGED);				
 					dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, DaoOwnerDbTableColumn.COL_CREATED_BY);
 					dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, DaoOwnerDbTableColumn.COL_CREATED_ON);
-					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, DaoOwnerDbTableColumn.COL_COD_SNAPSHOT);				
+					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, DaoOwnerDbTableColumn.COL_COD_SNAPSHOT);
+					dataInfo.codBusiness = DaoFormatter.sqlToInt(stmtResult, DaoOwnerDbTableColumn.COL_COD_BUSINESS);	
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());
