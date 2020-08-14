@@ -10,6 +10,8 @@ import br.com.mind5.info.InfoRecord;
 public final class OwnelisInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codSnapshot;
+	public int codBusiness;
+	public String txtBusiness; 
 	public long codCompany;
 	public String username;
 	public String recordMode;
@@ -22,6 +24,7 @@ public final class OwnelisInfo extends InfoRecord implements Cloneable {
 		
 		codOwner = DefaultValue.number();
 		codSnapshot = DefaultValue.number();
+		codBusiness = DefaultValue.number();
 		codCompany = DefaultValue.number();
 		recordMode = DefaultValue.recordMode();	
 		complisData = DefaultValue.object();

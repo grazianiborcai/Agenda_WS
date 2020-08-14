@@ -70,7 +70,8 @@ public final class DaoOwnelisSelectSingle extends DaoStmtTemplate<OwnelisInfo> {
 					dataInfo.codOwner = stmtResult.getLong(DaoOwnelisDbTableColumn.COL_COD_OWNER);
 					dataInfo.recordMode = stmtResult.getString(DaoOwnelisDbTableColumn.COL_RECORD_MODE);
 					dataInfo.codCompany = DaoFormatter.sqlToLong(stmtResult, DaoOwnelisDbTableColumn.COL_COD_COMPANY);
-					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, DaoOwnelisDbTableColumn.COL_COD_SNAPSHOT);				
+					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, DaoOwnelisDbTableColumn.COL_COD_SNAPSHOT);
+					dataInfo.codBusiness = DaoFormatter.sqlToInt(stmtResult, DaoOwnelisDbTableColumn.COL_COD_BUSINESS);	
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());
