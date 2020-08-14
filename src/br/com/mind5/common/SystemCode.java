@@ -195,7 +195,9 @@ public final class SystemCode {
 	public static final int PROSP_STATUS_MANDATORY_FIELD_EMPTY 			= 11669;
 	public static final int PROSP_STATUS_ALREADY_EXIST					= 11670;
 	public static final int PROSP_STATUS_NOT_FOUND						= 11671;
-	public static final int PROSP_STATUS_SEARCH_MANDATORY_FIELD_EMPTY	= 11672;
+	public static final int PROSP_STATUS_SEARCH_MANDATORY_FIELD_EMPTY	= 11672;	
+	public static final int BUSINESS_ALREADY_EXIST						= 11673;
+	public static final int BUSINESS_NOT_FOUND							= 11674;
 	
 	// Material
 	public static final int MAT_ALREADY_EXIST							= 1200;
