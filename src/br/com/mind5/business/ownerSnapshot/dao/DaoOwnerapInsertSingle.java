@@ -54,6 +54,7 @@ public final class DaoOwnerapInsertSingle extends DaoStmtTemplate<OwnerapInfo> {
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPersonSnapshot);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codUserSnapshot);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codCompanySnapshot);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codBusiness);
 				
 				return stmt;
 			}		

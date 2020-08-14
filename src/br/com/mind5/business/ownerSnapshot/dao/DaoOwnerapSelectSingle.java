@@ -73,7 +73,8 @@ public final class DaoOwnerapSelectSingle extends DaoStmtTemplate<OwnerapInfo> {
 					dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, DaoOwnerapDbTableColumn.COL_LAST_CHANGED_BY);
 					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, DaoOwnerapDbTableColumn.COL_LAST_CHANGED);				
 					dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, DaoOwnerapDbTableColumn.COL_CREATED_BY);
-					dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, DaoOwnerapDbTableColumn.COL_CREATED_ON);								
+					dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, DaoOwnerapDbTableColumn.COL_CREATED_ON);	
+					dataInfo.codBusiness = DaoFormatter.sqlToInt(stmtResult, DaoOwnerapDbTableColumn.COL_COD_BUSINESS);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());
