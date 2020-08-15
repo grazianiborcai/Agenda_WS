@@ -22,6 +22,7 @@ import br.com.mind5.business.store.model.StoreModelDelete;
 import br.com.mind5.business.store.model.StoreModelInsert;
 import br.com.mind5.business.store.model.StoreModelSelect;
 import br.com.mind5.business.store.model.StoreModelUpdate;
+import br.com.mind5.business.storeCatalogue.model.StogueModelSelect;
 import br.com.mind5.business.storeLeaveDate.info.StolateInfo;
 import br.com.mind5.business.storeLeaveDate.model.StolateModelDelete;
 import br.com.mind5.business.storeLeaveDate.model.StolateModelInsert;
@@ -45,13 +46,13 @@ import br.com.mind5.paymentPartner.partnerMoip.accessMoip.model.AccemoipModelUrl
 @Path("/Store")
 @Produces(MediaType.APPLICATION_JSON)
 public class StoreResource {
-
 	private static final String INSERT_STORE = "/insertStore";
 	private static final String UPDATE_STORE = "/updateStore";
 	private static final String DELETE_STORE = "/deleteStore";
 	private static final String SELECT_STORE = "/selectStore";
 	private static final String SEARCH_STORE = "/searchStore";
-	private static final String SELECT_STORE_NEARBY = "/selectStoreNearby";
+	private static final String SELECT_STORE_CATALOGUE = "/selectStoreCatalog";
+	private static final String SELECT_STORE_NEARBY = "/selectStoreNearby";			//TODO: Remover
 	private static final String SELECT_STORE_WTIME = "/selectStoreWorkTime";
 	private static final String SEARCH_STORE_WTIME = "/searchStoreWorkTime";
 	private static final String INSERT_STORE_WTIME = "/insertStoreWorkTime";
@@ -141,6 +142,22 @@ public class StoreResource {
 	public Response searchStore(@Context HttpServletRequest request, String incomingData) {
 		
 		Model model = new StolisModelSearch(incomingData, request);
+		model.executeRequest();
+		Response response = model.getResponse();
+		
+		model.close();
+		return response;
+	}
+	
+	
+	
+	@POST
+	@Path(SELECT_STORE_CATALOGUE)
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response selectStogue(@Context HttpServletRequest request, String incomingData) {
+		
+		Model model = new StogueModelSelect(incomingData, request);
 		model.executeRequest();
 		Response response = model.getResponse();
 		

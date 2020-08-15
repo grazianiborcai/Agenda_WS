@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.storeCatalogue.info.StogueInfo;
+import br.com.mind5.business.storeCatalogue.model.action.LazyStogueMergeMatoup;
+import br.com.mind5.business.storeCatalogue.model.action.LazyStogueMergeOwnelis;
 import br.com.mind5.business.storeCatalogue.model.action.StdStogueMergeStorby;
+import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -36,6 +39,11 @@ public final class RootStogueSelect extends DeciTreeTemplateReadV2<StogueInfo> {
 		List<ActionStdV1<StogueInfo>> actions = new ArrayList<>();		
 		
 		ActionStdV1<StogueInfo> mergeStorby = new StdStogueMergeStorby(option);
+		ActionLazyV1<StogueInfo> mergeOwnelis = new LazyStogueMergeOwnelis(option.conn, option.schemaName);
+		ActionLazyV1<StogueInfo> mergeMatoup = new LazyStogueMergeMatoup(option.conn, option.schemaName);
+		
+		mergeStorby.addPostAction(mergeOwnelis);
+		mergeOwnelis.addPostAction(mergeMatoup);
 		
 		actions.add(mergeStorby);			
 		return actions;

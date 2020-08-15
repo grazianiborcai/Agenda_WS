@@ -6,6 +6,7 @@ import br.com.mind5.business.storeNearby.info.StorbyInfo;
 import br.com.mind5.common.CloneUtil;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
+import br.com.mind5.masterData.materialGroup.info.MatoupInfo;
 
 public final class StogueInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
@@ -13,8 +14,11 @@ public final class StogueInfo extends InfoRecord implements Cloneable {
 	public String nameSearch;
 	public float longitude;
 	public float latitude;
+	public int codBusiness;
+	public String txtBusiness; 
 	public String username;
 	public List<StorbyInfo> storbys;
+	public List<MatoupInfo> matoups;
 	
 	
 	public StogueInfo() {
@@ -23,7 +27,9 @@ public final class StogueInfo extends InfoRecord implements Cloneable {
 		codOwner = DefaultValue.number();
 		longitude = DefaultValue.geo();
 		latitude = DefaultValue.geo();
+		codBusiness = DefaultValue.number();
 		storbys = DefaultValue.list();
+		matoups = DefaultValue.list();
 	}
 	
 	
@@ -44,6 +50,7 @@ public final class StogueInfo extends InfoRecord implements Cloneable {
 		StogueInfo deepCopy = (StogueInfo) super.clone();
 		
 		deepCopy.storbys = CloneUtil.cloneRecords(storbys, this.getClass());
+		deepCopy.matoups = CloneUtil.cloneRecords(matoups, this.getClass());
 		
 		return deepCopy;
 	}

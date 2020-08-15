@@ -25,7 +25,7 @@ final class VisiStogueMergeStorby extends ActionVisitorTemplateMergeV2<StogueInf
 	
 	
 	@Override protected List<StogueInfo> mergeHook(List<StogueInfo> baseInfos, List<StorbyInfo> selectedInfos) {	
-		return StogueMerger.mergeStorby(baseInfos, selectedInfos);
+		return StogueMerger.mergeWithStorby(baseInfos, selectedInfos);
 	}
 	
 	
