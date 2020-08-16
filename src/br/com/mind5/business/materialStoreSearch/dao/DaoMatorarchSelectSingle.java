@@ -19,11 +19,11 @@ import br.com.mind5.dao.common.DaoJoinMat;
 import br.com.mind5.dao.common.DaoJoinStore;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class MatorarchSelectSingle extends DaoStmtTemplate<MatorarchInfo> {
+public final class DaoMatorarchSelectSingle extends DaoStmtTemplate<MatorarchInfo> {
 	private final String MAIN_TABLE = DaoDbTable.MAT_STORE_TABLE;	
 	
 	
-	public MatorarchSelectSingle(Connection conn, MatorarchInfo recordInfo, String schemaName) {
+	public DaoMatorarchSelectSingle(Connection conn, MatorarchInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -53,7 +53,7 @@ public final class MatorarchSelectSingle extends DaoStmtTemplate<MatorarchInfo> 
 		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new MatorarchWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new DaoMatorarchWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}	
 	
@@ -84,10 +84,10 @@ public final class MatorarchSelectSingle extends DaoStmtTemplate<MatorarchInfo> 
 				do {
 					MatorarchInfo dataInfo = new MatorarchInfo();
 					
-					dataInfo.codOwner = stmtResult.getLong(MatorarchDbTableColumn.COL_COD_OWNER);
-					dataInfo.codStore = stmtResult.getLong(MatorarchDbTableColumn.COL_COD_STORE);
-					dataInfo.codMat = stmtResult.getLong(MatorarchDbTableColumn.COL_COD_MATERIAL);
-					dataInfo.recordMode = stmtResult.getString(MatorarchDbTableColumn.COL_RECORD_MODE);
+					dataInfo.codOwner = stmtResult.getLong(DaoMatorarchDbTableColumn.COL_COD_OWNER);
+					dataInfo.codStore = stmtResult.getLong(DaoMatorarchDbTableColumn.COL_COD_STORE);
+					dataInfo.codMat = stmtResult.getLong(DaoMatorarchDbTableColumn.COL_COD_MATERIAL);
+					dataInfo.recordMode = stmtResult.getString(DaoMatorarchDbTableColumn.COL_RECORD_MODE);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

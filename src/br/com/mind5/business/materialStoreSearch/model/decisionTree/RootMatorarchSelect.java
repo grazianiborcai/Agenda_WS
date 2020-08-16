@@ -9,13 +9,13 @@ import br.com.mind5.business.materialStoreSearch.model.checker.MatorarchCheckLan
 import br.com.mind5.business.materialStoreSearch.model.checker.MatorarchCheckOwner;
 import br.com.mind5.business.materialStoreSearch.model.checker.MatorarchCheckRead;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 
-public final class RootMatorarchSelect extends DeciTreeTemplateReadV1<MatorarchInfo> {
+public final class RootMatorarchSelect extends DeciTreeTemplateReadV2<MatorarchInfo> {
 	
 	public RootMatorarchSelect(DeciTreeOption<MatorarchInfo> option) {
 		super(option);
