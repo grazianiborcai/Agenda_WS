@@ -16,10 +16,10 @@ public final class MatoreCheckDeleteByMat extends ModelCheckerTemplateSimpleV2<M
 	
 	
 	@Override protected boolean checkHook(MatoreInfo recordInfo, Connection conn, String schemaName) {	
-		if (   recordInfo.codOwner 			<= 0 	
-			|| recordInfo.codMat			<= 0
-			|| recordInfo.codLanguage		== null	
-			|| recordInfo.username			== null	)
+		if ( recordInfo.codOwner 	<= 0	|| 	
+			 recordInfo.codMat		<= 0	||
+			 recordInfo.codLanguage	== null	||
+			 recordInfo.username	== null		)
 			
 			return super.FAILED;
 		

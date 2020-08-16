@@ -4,14 +4,14 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.materialStore.info.MatoreInfo;
-import br.com.mind5.model.action.ActionLazyTemplateV1;
+import br.com.mind5.model.action.ActionLazyTemplateV2;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyMatoreInsert extends ActionLazyTemplateV1<MatoreInfo, MatoreInfo> {
+public final class LazyMatoreDaoSelect extends ActionLazyTemplateV2<MatoreInfo, MatoreInfo> {
 	
-	public LazyMatoreInsert(Connection conn, String schemaName) {
+	public LazyMatoreDaoSelect(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyMatoreInsert extends ActionLazyTemplateV1<MatoreInfo, Mat
 	
 	
 	@Override protected ActionStdV1<MatoreInfo> getInstanceOfActionHook(DeciTreeOption<MatoreInfo> option) {
-		return new StdMatoreInsert(option);
+		return new StdMatoreDaoSelect(option);
 	}
 	
 	

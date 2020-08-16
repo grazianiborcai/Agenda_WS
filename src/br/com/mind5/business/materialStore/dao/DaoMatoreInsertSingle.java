@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoStmtParamTranslator;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class MatoreInsertSingle extends DaoStmtTemplate<MatoreInfo> {
+public final class DaoMatoreInsertSingle extends DaoStmtTemplate<MatoreInfo> {
 	private final String MAIN_TABLE = DaoDbTable.MAT_STORE_TABLE;
 	
 	
-	public MatoreInsertSingle(Connection conn, MatoreInfo recordInfo, String schemaName) {
+	public DaoMatoreInsertSingle(Connection conn, MatoreInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	

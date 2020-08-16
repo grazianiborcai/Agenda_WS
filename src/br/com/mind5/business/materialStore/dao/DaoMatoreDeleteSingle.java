@@ -15,11 +15,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class MatoreDeleteSingle extends DaoStmtTemplate<MatoreInfo> {
+public final class DaoMatoreDeleteSingle extends DaoStmtTemplate<MatoreInfo> {
 	private final String MAIN_TABLE = DaoDbTable.MAT_STORE_TABLE;
 	
 	
-	public MatoreDeleteSingle(Connection conn, MatoreInfo recordInfo, String schemaName) {
+	public DaoMatoreDeleteSingle(Connection conn, MatoreInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);		
 	}
 	
@@ -44,7 +44,7 @@ public final class MatoreDeleteSingle extends DaoStmtTemplate<MatoreInfo> {
 		whereOption.ignoreNonPrimaryKey = DaoOptionValue.IGNORE_NON_PK;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;			
 		
-		DaoStmtWhere whereClause = new MatoreWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new DaoMatoreWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 		

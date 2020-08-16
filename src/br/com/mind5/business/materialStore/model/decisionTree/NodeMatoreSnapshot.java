@@ -4,17 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.materialStore.info.MatoreInfo;
-import br.com.mind5.business.materialStore.model.action.LazyMatoreUpdate;
+import br.com.mind5.business.materialStore.model.action.LazyMatoreDaoUpdate;
 import br.com.mind5.business.materialStore.model.action.StdMatoreInsertMatorap;
-import br.com.mind5.business.materialStore.model.checker.MatoreCheckDummy;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class NodeMatoreSnapshot extends DeciTreeTemplateWriteV1<MatoreInfo> {
+public final class NodeMatoreSnapshot extends DeciTreeTemplateWriteV2<MatoreInfo> {
 	
 	public NodeMatoreSnapshot(DeciTreeOption<MatoreInfo> option) {
 		super(option);
@@ -26,7 +26,7 @@ public final class NodeMatoreSnapshot extends DeciTreeTemplateWriteV1<MatoreInfo
 		List<ModelCheckerV1<MatoreInfo>> queue = new ArrayList<>();		
 		ModelCheckerV1<MatoreInfo> checker;
 
-		checker = new MatoreCheckDummy();
+		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 
 		return new ModelCheckerHelperQueueV2<MatoreInfo>(queue);
@@ -38,7 +38,7 @@ public final class NodeMatoreSnapshot extends DeciTreeTemplateWriteV1<MatoreInfo
 		List<ActionStdV1<MatoreInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<MatoreInfo> insertMatorap = new StdMatoreInsertMatorap(option);
-		ActionLazyV1<MatoreInfo> update = new LazyMatoreUpdate(option.conn, option.schemaName);
+		ActionLazyV1<MatoreInfo> update = new LazyMatoreDaoUpdate(option.conn, option.schemaName);
 		
 		insertMatorap.addPostAction(update);
 		

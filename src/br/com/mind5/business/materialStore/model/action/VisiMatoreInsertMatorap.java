@@ -1,26 +1,25 @@
 package br.com.mind5.business.materialStore.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.materialStore.info.MatoreInfo;
 import br.com.mind5.business.materialStore.info.MatoreMerger;
 import br.com.mind5.business.materialStoreSnapshot.info.MatorapInfo;
 import br.com.mind5.business.materialStoreSnapshot.model.decisionTree.RootMatorapInsert;
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateActionV1;
+import br.com.mind5.model.action.ActionVisitorTemplateActionV2;
+import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiMatoreInsertMatorap extends ActionVisitorTemplateActionV1<MatoreInfo, MatorapInfo> {
+final class VisiMatoreInsertMatorap extends ActionVisitorTemplateActionV2<MatoreInfo, MatorapInfo> {
 
-	public VisiMatoreInsertMatorap(Connection conn, String schemaName) {
-		super(conn, schemaName, MatoreInfo.class, MatorapInfo.class);
+	public VisiMatoreInsertMatorap(DeciTreeOption<MatoreInfo> option) {
+		super(option, MatoreInfo.class, MatorapInfo.class);
 	}
 	
 	
 	
-	@Override protected ActionStdV1<MatorapInfo> getActionHook(DeciTreeOption<MatorapInfo> option) {
-		return new RootMatorapInsert(option).toAction();
+	@Override protected Class<? extends DeciTree<MatorapInfo>> getTreeClassHook() {
+		return RootMatorapInsert.class;
 	}
 	
 	

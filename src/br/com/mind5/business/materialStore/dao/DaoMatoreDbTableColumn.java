@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public class MatoreDbTableColumn extends DaoDbTableColumnTemplate {
+public class DaoMatoreDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_MATERIAL = DaoDbField.COL_COD_MATERIAL;
 	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;	
 	public static final String COL_COD_SNAPSHOT = DaoDbField.COL_COD_SNAPSHOT;
@@ -28,25 +28,14 @@ public class MatoreDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_PRICE_STORE_7 = DaoDbField.COL_PRICE_STORE_7;		
 	public static final String COL_RECORD_MODE = DaoDbField.COL_RECORD_MODE;
 	
-	private Hashtable<String, List<DaoColumn>> tableColumns;	
 	
-	public MatoreDbTableColumn() {
-		super(MatoreDbTableColumn.class);
+	public DaoMatoreDbTableColumn() {
+		super();
 	}
 	
 	
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
-		tableColumns = new Hashtable<>();
-		
-		buildMatStoreTable();
-		
-		return tableColumns;
-	}
-	
-	
-	
-	private void buildMatStoreTable() {
 		final String TABLE_NAME = DaoDbTable.MAT_STORE_TABLE;
 		
 		DaoColumn oneColumn;
@@ -188,6 +177,8 @@ public class MatoreDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		tableColumns.put(TABLE_NAME, columns);
+		Hashtable<String, List<DaoColumn>> results = new Hashtable<>();
+		results.put(TABLE_NAME, columns);
+		return results;
 	}
 }

@@ -1,23 +1,23 @@
 package br.com.mind5.business.materialStore.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.materialStore.info.MatoreInfo;
 import br.com.mind5.business.materialStore.info.MatoreMerger;
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiMatoreMergeToSelect extends ActionVisitorTemplateMergeV1<MatoreInfo, MatoreInfo> {
+final class VisiMatoreMergeToSelect extends ActionVisitorTemplateMergeV2<MatoreInfo, MatoreInfo> {
 	
-	public VisiMatoreMergeToSelect(Connection conn, String schemaName) {
-		super(conn, schemaName, MatoreInfo.class);
+	public VisiMatoreMergeToSelect(DeciTreeOption<MatoreInfo> option) {
+		super(option, MatoreInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends ActionStdV1<MatoreInfo>> getActionClassHook() {
-		return StdMatoreSelect.class;
+	@Override protected Class<? extends ActionStdV2<MatoreInfo>> getActionClassHook() {
+		return StdMatoreDaoSelect.class;
 	}
 	
 	
@@ -29,6 +29,6 @@ final class VisiMatoreMergeToSelect extends ActionVisitorTemplateMergeV1<MatoreI
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
+		return super.DONT_MERGE_WHEN_EMPTY;
 	}
 }

@@ -21,13 +21,13 @@ public final class MatoreCheckPriceProduct extends ModelCheckerTemplateSimpleV2<
 			return super.FAILED;
 		
 		
-		if (   recordInfo.matPrice1 > 0
-			|| recordInfo.matPrice2 > 0
-			|| recordInfo.matPrice3 > 0
-			|| recordInfo.matPrice4 > 0
-			|| recordInfo.matPrice5 > 0
-			|| recordInfo.matPrice6 > 0
-			|| recordInfo.matPrice7 > 0	)			
+		if ( recordInfo.matPrice1 > 0	||
+			 recordInfo.matPrice2 > 0	||
+			 recordInfo.matPrice3 > 0	||
+			 recordInfo.matPrice4 > 0	||
+			 recordInfo.matPrice5 > 0	||
+			 recordInfo.matPrice6 > 0	||
+			 recordInfo.matPrice7 > 0		)			
 			return super.FAILED;
 		
 		

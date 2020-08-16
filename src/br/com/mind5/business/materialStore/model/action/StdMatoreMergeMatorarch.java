@@ -1,35 +1,19 @@
 package br.com.mind5.business.materialStore.model.action;
 
 import br.com.mind5.business.materialStore.info.MatoreInfo;
-import br.com.mind5.model.action.ActionLazyV1;
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionStdHelperMerge;
-import br.com.mind5.model.decisionTree.DeciResult;
+import br.com.mind5.model.action.ActionStdTemplateV2;
+import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdMatoreMergeMatorarch implements ActionStdV1<MatoreInfo> {
-	private ActionStdV1<MatoreInfo> actionHelper;	
-	
-	
-	public StdMatoreMergeMatorarch(DeciTreeOption<MatoreInfo> option) {			
-		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiMatoreMergeMatorarch(option.conn, option.schemaName));
+public final class StdMatoreMergeMatorarch extends ActionStdTemplateV2<MatoreInfo> {
+
+	public StdMatoreMergeMatorarch(DeciTreeOption<MatoreInfo> option) {
+		super(option);
 	}
 	
 	
 	
-	@Override public void addPostAction(ActionLazyV1<MatoreInfo> actionHandler) {
-		actionHelper.addPostAction(actionHandler);
-	}
-	
-	
-	
-	@Override public boolean executeAction() {			
-		return actionHelper.executeAction();
-	}
-	
-	
-	
-	@Override public DeciResult<MatoreInfo> getDecisionResult() {
-		return actionHelper.getDecisionResult();
+	protected ActionVisitorV2<MatoreInfo> buildVisitorHook(DeciTreeOption<MatoreInfo> option) {
+		return new VisiMatoreMergeMatorarch(option);
 	}
 }

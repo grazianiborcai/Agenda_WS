@@ -1,14 +1,10 @@
 package br.com.mind5.business.materialStore.info;
 
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoSetter;
+import br.com.mind5.info.InfoSetterTemplate;
 
-public final class MatoreSetterMatKey implements InfoSetter<MatoreInfo> {
+public final class MatoreSetterMatKey extends InfoSetterTemplate<MatoreInfo> {
 	
-	public MatoreInfo setAttr(MatoreInfo recordInfo) {
-		checkArgument(recordInfo);
-		
+	@Override protected MatoreInfo setAttrHook(MatoreInfo recordInfo) {	
 		MatoreInfo result = new MatoreInfo();
 		
 		result.codOwner = recordInfo.codOwner;
@@ -18,20 +14,4 @@ public final class MatoreSetterMatKey implements InfoSetter<MatoreInfo> {
 		
 		return result;
 	}
-	
-	
-	
-	private void checkArgument(MatoreInfo recordInfo) {
-		if (recordInfo == null) {
-			logException(new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT));
-			throw new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT);
-		}
-	}
-	
-	
-	
-	private void logException(Exception e) {
-		
-		SystemLog.logError(this.getClass(), e);
-	}	
 }

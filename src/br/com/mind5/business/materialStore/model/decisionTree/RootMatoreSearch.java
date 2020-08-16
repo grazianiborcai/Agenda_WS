@@ -6,15 +6,15 @@ import java.util.List;
 import br.com.mind5.business.materialStore.info.MatoreInfo;
 import br.com.mind5.business.materialStore.model.action.LazyMatoreRootSelect;
 import br.com.mind5.business.materialStore.model.action.StdMatoreMergeMatorarch;
-import br.com.mind5.business.materialStore.model.checker.MatoreCheckDummy;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 
-public final class RootMatoreSearch extends DeciTreeTemplateReadV1<MatoreInfo> {
+public final class RootMatoreSearch extends DeciTreeTemplateReadV2<MatoreInfo> {
 	
 	public RootMatoreSearch(DeciTreeOption<MatoreInfo> option) {
 		super(option);
@@ -26,7 +26,7 @@ public final class RootMatoreSearch extends DeciTreeTemplateReadV1<MatoreInfo> {
 		List<ModelCheckerV1<MatoreInfo>> queue = new ArrayList<>();		
 		ModelCheckerV1<MatoreInfo> checker;
 			
-		checker = new MatoreCheckDummy();
+		checker = new ModelCheckerDummy<>();
 		queue.add(checker);	
 		
 		return new ModelCheckerHelperQueueV2<>(queue);
