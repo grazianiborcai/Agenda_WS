@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.business.storeList.info.StolisInfo;
+import br.com.mind5.common.CloneUtil;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
 
@@ -33,7 +34,7 @@ public final class MatorapInfo extends InfoRecord implements Cloneable {
 	
 	
 	public MatorapInfo() {
-		super(MatorapInfo.class);
+		super();
 		
 		codOwner = DefaultValue.number();
 		codSnapshot = DefaultValue.number();
@@ -72,29 +73,11 @@ public final class MatorapInfo extends InfoRecord implements Cloneable {
 	@Override public Object clone() throws CloneNotSupportedException {
 		MatorapInfo deepCopy = (MatorapInfo) super.clone();
 		
-		deepCopy.matlisData = cloneMatlis(deepCopy.matlisData);
-		deepCopy.stolisData = cloneStolis(deepCopy.stolisData);
+		deepCopy.matlisData = CloneUtil.cloneRecord(deepCopy.matlisData, this.getClass());
+		deepCopy.stolisData = CloneUtil.cloneRecord(deepCopy.stolisData, this.getClass());
 		
 		return deepCopy;
 	}
-	
-	
-	
-	private MatlisInfo cloneMatlis(MatlisInfo recordInfo) throws CloneNotSupportedException {
-		if (recordInfo == null)
-			return null;
-		
-		return (MatlisInfo) recordInfo.clone();
-	}	
-	
-	
-	
-	private StolisInfo cloneStolis(StolisInfo recordInfo) throws CloneNotSupportedException {
-		if (recordInfo == null)
-			return null;
-		
-		return (StolisInfo) recordInfo.clone();
-	}	
 	
 	
 	

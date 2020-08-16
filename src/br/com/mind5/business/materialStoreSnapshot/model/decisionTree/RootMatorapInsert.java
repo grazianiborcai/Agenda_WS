@@ -4,19 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.materialStoreSnapshot.info.MatorapInfo;
-import br.com.mind5.business.materialStoreSnapshot.model.action.StdMatorapInsert;
+import br.com.mind5.business.materialStoreSnapshot.model.action.StdMatorapDaoInsert;
+import br.com.mind5.business.materialStoreSnapshot.model.checker.MatorapCheckInsert;
 import br.com.mind5.business.materialStoreSnapshot.model.checker.MatorapCheckLangu;
 import br.com.mind5.business.materialStoreSnapshot.model.checker.MatorapCheckMatore;
 import br.com.mind5.business.materialStoreSnapshot.model.checker.MatorapCheckOwner;
-import br.com.mind5.business.materialStoreSnapshot.model.checker.MatorapCheckInsert;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class RootMatorapInsert extends DeciTreeTemplateWriteV1<MatorapInfo> {
+public final class RootMatorapInsert extends DeciTreeTemplateWriteV2<MatorapInfo> {
 	
 	public RootMatorapInsert(DeciTreeOption<MatorapInfo> option) {
 		super(option);
@@ -65,7 +65,7 @@ public final class RootMatorapInsert extends DeciTreeTemplateWriteV1<MatorapInfo
 	@Override protected List<ActionStdV1<MatorapInfo>> buildActionsOnPassedHook(DeciTreeOption<MatorapInfo> option) {
 		List<ActionStdV1<MatorapInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<MatorapInfo> insert = new StdMatorapInsert(option);
+		ActionStdV1<MatorapInfo> insert = new StdMatorapDaoInsert(option);
 		
 		actions.add(insert);	
 		return actions;

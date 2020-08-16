@@ -1,54 +1,38 @@
 package br.com.mind5.business.materialStoreSnapshot.info;
 
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import java.util.ArrayList;
+import java.util.List;
 
-final class MatorapVisiMergeToSelect implements InfoMergerVisitor_<MatorapInfo, MatorapInfo> {
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-	@Override public MatorapInfo writeRecord(MatorapInfo sourceOne, MatorapInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);		
-		return merge(sourceOne, sourceTwo);
+final class MatorapVisiMergeToSelect implements InfoMergerVisitorV3<MatorapInfo, MatorapInfo> {
+	
+	@Override public List<MatorapInfo> beforeMerge(List<MatorapInfo> baseInfos) {
+		return baseInfos;
 	}
 	
 	
 	
-	private void checkArgument(MatorapInfo sourceOne, MatorapInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
+	@Override public boolean shouldMerge(MatorapInfo baseInfo, MatorapInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner);
 	}
 	
 	
 	
-	private MatorapInfo merge(MatorapInfo sourceOne, MatorapInfo sourceTwo) {
-		MatorapInfo result = makeClone(sourceOne);		
-		result.username = sourceTwo.username;
-		result.codLanguage = sourceTwo.codLanguage;
-		return result;
-	}
-	
-	
-	
-	private MatorapInfo makeClone(MatorapInfo recordInfo) {
-		try {
-			return (MatorapInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(MatorapInfo sourceOne, MatorapInfo sourceTwo) {		
-		return (sourceOne.codOwner == sourceTwo.codOwner);
-	}
-	
-	
-	
-	private void logException(Exception e) {
+	@Override public List<MatorapInfo> merge(MatorapInfo baseInfo, MatorapInfo selectedInfo) {
+		List<MatorapInfo> results = new ArrayList<>();
 		
-		SystemLog.logError(this.getClass(), e);
+		selectedInfo.username = baseInfo.username;
+		selectedInfo.codLanguage = baseInfo.codLanguage;
+		
+		results.add(selectedInfo);
+		return results;
+	}
+	
+	
+	
+	@Override public InfoUniquifier<MatorapInfo> getUniquifier() {
+		return null;
 	}
 }

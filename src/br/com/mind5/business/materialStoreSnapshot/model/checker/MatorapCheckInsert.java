@@ -16,11 +16,11 @@ public final class MatorapCheckInsert extends ModelCheckerTemplateSimpleV2<Mator
 	
 	
 	@Override protected boolean checkHook(MatorapInfo recordInfo, Connection conn, String schemaName) {	
-		if (   recordInfo.codOwner 			<= 0 	
-			|| recordInfo.codStore 			<= 0	
-			|| recordInfo.codMat			<= 0
-			|| recordInfo.codLanguage		== null	
-			|| recordInfo.username			== null	)
+		if ( recordInfo.codOwner 	<= 0 	||	
+			 recordInfo.codStore 	<= 0	||
+			 recordInfo.codMat		<= 0	||
+			 recordInfo.codLanguage	== null	||
+			 recordInfo.username	== null		)
 			
 			return super.FAILED;
 		

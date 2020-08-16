@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public class MatorapDbTableColumn extends DaoDbTableColumnTemplate {
+public class DaoMatorapDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_MATERIAL = DaoDbField.COL_COD_MATERIAL;
 	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;	
 	public static final String COL_COD_SNAPSHOT = DaoDbField.COL_COD_SNAPSHOT;
@@ -27,26 +27,15 @@ public class MatorapDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_PRICE_STORE_6 = DaoDbField.COL_PRICE_STORE_6;
 	public static final String COL_PRICE_STORE_7 = DaoDbField.COL_PRICE_STORE_7;		
 	public static final String COL_RECORD_MODE = DaoDbField.COL_RECORD_MODE;
+		
 	
-	private Hashtable<String, List<DaoColumn>> tableColumns;	
-	
-	public MatorapDbTableColumn() {
-		super(MatorapDbTableColumn.class);
+	public DaoMatorapDbTableColumn() {
+		super();
 	}
 	
 	
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
-		tableColumns = new Hashtable<>();
-		
-		buildTableList();
-		
-		return tableColumns;
-	}
-	
-	
-	
-	private void buildTableList() {
 		final String TABLE_NAME = DaoDbTable.MAT_STORE_SNAPSHOT_TABLE;
 		
 		DaoColumn oneColumn;
@@ -188,6 +177,8 @@ public class MatorapDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		tableColumns.put(TABLE_NAME, columns);
+		Hashtable<String, List<DaoColumn>> results = new Hashtable<>();
+		results.put(TABLE_NAME, columns);
+		return results;
 	}
 }

@@ -15,11 +15,11 @@ import br.com.mind5.dao.DaoStmtParamTranslator;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class MatorapInsertSingle extends DaoStmtTemplate<MatorapInfo> {
+public final class DaoMatorapInsertSingle extends DaoStmtTemplate<MatorapInfo> {
 	private final String MAIN_TABLE = DaoDbTable.MAT_STORE_SNAPSHOT_TABLE;
 	
 	
-	public MatorapInsertSingle(Connection conn, MatorapInfo recordInfo, String schemaName) {
+	public DaoMatorapInsertSingle(Connection conn, MatorapInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -41,6 +41,7 @@ public final class MatorapInsertSingle extends DaoStmtTemplate<MatorapInfo> {
 		return new DaoStmtParamTranslator<MatorapInfo>() {		
 			@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, MatorapInfo recordInfo) throws SQLException {					
 				int i = 1;
+				
 				stmt.setLong(i++, recordInfo.codOwner);
 				stmt.setLong(i++, recordInfo.codStore);
 				stmt.setLong(i++, recordInfo.codMat);				

@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilder;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 
-public final class MatorapWhere implements DaoStmtWhere {
+public final class DaoMatorapWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public MatorapWhere(DaoWhereBuilderOption whereOption, String tableName, MatorapInfo recordInfo) {
+	public DaoMatorapWhere(DaoWhereBuilderOption whereOption, String tableName, MatorapInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -27,15 +27,15 @@ public final class MatorapWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-				case MatorapDbTableColumn.COL_COD_OWNER :
+				case DaoMatorapDbTableColumn.COL_COD_OWNER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;
 					
-				case MatorapDbTableColumn.COL_COD_SNAPSHOT :
+				case DaoMatorapDbTableColumn.COL_COD_SNAPSHOT :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codSnapshot));
 					break;
 					
-				case MatorapDbTableColumn.COL_RECORD_MODE :
+				case DaoMatorapDbTableColumn.COL_RECORD_MODE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.recordMode);
 					break;
 			}
