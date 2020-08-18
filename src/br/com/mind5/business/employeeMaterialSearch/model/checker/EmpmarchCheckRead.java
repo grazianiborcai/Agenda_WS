@@ -18,13 +18,13 @@ public final class EmpmarchCheckRead extends ModelCheckerTemplateSimpleV2<Empmar
 	@Override protected boolean checkHook(EmpmarchInfo recordInfo, Connection conn, String schemaName) {	
 		if ( recordInfo.codOwner   	<= 0	||
 			 recordInfo.codLanguage == null	||
-			 recordInfo.username  	== null	)		
+			 recordInfo.username  	== null		)		
 			
 			return super.FAILED;
 		
 		
 		if ( recordInfo.codMat      <= 0	&&
-			 recordInfo.codEmployee <= 0	)		
+			 recordInfo.codEmployee <= 0		)		
 				
 			return super.FAILED;
 		

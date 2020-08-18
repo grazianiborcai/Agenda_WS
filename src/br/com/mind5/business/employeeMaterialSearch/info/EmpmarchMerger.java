@@ -2,18 +2,18 @@ package br.com.mind5.business.employeeMaterialSearch.info;
 
 import java.util.List;
 
-import br.com.mind5.info.obsolete.InfoMerger_;
+import br.com.mind5.info.InfoMergerBuilderV3;
+import br.com.mind5.info.InfoMergerV3;
 
 public final class EmpmarchMerger {
-	public static EmpmarchInfo mergeToSelect(EmpmarchInfo sourceOne, EmpmarchInfo sourceTwo) {
-		InfoMerger_<EmpmarchInfo, EmpmarchInfo> merger = new EmpmarchMergerToSelect();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
+	public static List<EmpmarchInfo> mergeToSelect(List<EmpmarchInfo> baseInfos, List<EmpmarchInfo> selectedInfos) {
+		InfoMergerBuilderV3<EmpmarchInfo, EmpmarchInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new EmpmarchVisiMergeToSelect());
+		InfoMergerV3<EmpmarchInfo, EmpmarchInfo> merger = builder.build();		
 	
-	
-	
-	public static List<EmpmarchInfo> mergeToSelect(List<EmpmarchInfo> sourceOnes, List<EmpmarchInfo> sourceTwos) {
-		InfoMerger_<EmpmarchInfo, EmpmarchInfo> merger = new EmpmarchMergerToSelect();		
-		return merger.merge(sourceOnes, sourceTwos);
+		return merger.merge();
 	}
 }

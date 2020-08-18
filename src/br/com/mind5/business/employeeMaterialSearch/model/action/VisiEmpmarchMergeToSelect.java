@@ -1,34 +1,34 @@
 package br.com.mind5.business.employeeMaterialSearch.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.employeeMaterialSearch.info.EmpmarchInfo;
 import br.com.mind5.business.employeeMaterialSearch.info.EmpmarchMerger;
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiEmpmarchMergeToSelect extends ActionVisitorTemplateMergeV1<EmpmarchInfo, EmpmarchInfo> {
+final class VisiEmpmarchMergeToSelect extends ActionVisitorTemplateMergeV2<EmpmarchInfo, EmpmarchInfo> {
 	
-	public VisiEmpmarchMergeToSelect(Connection conn, String schemaName) {
-		super(conn, schemaName, EmpmarchInfo.class);
+	public VisiEmpmarchMergeToSelect(DeciTreeOption<EmpmarchInfo> option) {
+		super(option, EmpmarchInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends ActionStdV1<EmpmarchInfo>> getActionClassHook() {
-		return StdEmpmarchSelect.class;
+	@Override protected Class<? extends ActionStdV2<EmpmarchInfo>> getActionClassHook() {
+		return StdEmpmarchDaoSelect.class;
 	}
 	
 	
 	
-	@Override protected List<EmpmarchInfo> mergeHook(List<EmpmarchInfo> recordInfos, List<EmpmarchInfo> selectedInfos) {	
-		return EmpmarchMerger.mergeToSelect(selectedInfos, recordInfos);
+	@Override protected List<EmpmarchInfo> mergeHook(List<EmpmarchInfo> baseInfos, List<EmpmarchInfo> selectedInfos) {	
+		return EmpmarchMerger.mergeToSelect(baseInfos, selectedInfos);
 	}
 	
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
+		return super.DONT_MERGE_WHEN_EMPTY;
 	}
 }
