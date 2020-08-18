@@ -15,9 +15,9 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class RootEmpmatDeleteByEmp extends DeciTreeTemplateWriteV1<EmpmatInfo> {
+public final class RootEmpmatDeleteByEmp extends DeciTreeTemplateWriteV2<EmpmatInfo> {
 	
 	public RootEmpmatDeleteByEmp(DeciTreeOption<EmpmatInfo> option) {
 		super(option);

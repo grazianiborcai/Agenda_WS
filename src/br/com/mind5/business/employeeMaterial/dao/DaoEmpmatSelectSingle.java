@@ -16,11 +16,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class EmpmatSelectSingle extends DaoStmtTemplate<EmpmatInfo> {
+public final class DaoEmpmatSelectSingle extends DaoStmtTemplate<EmpmatInfo> {
 	private final String MAIN_TABLE = DaoDbTable.EMP_MAT_TABLE;
 	
 	
-	public EmpmatSelectSingle(Connection conn, EmpmatInfo recordInfo, String schemaName) {
+	public DaoEmpmatSelectSingle(Connection conn, EmpmatInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -44,7 +44,7 @@ public final class EmpmatSelectSingle extends DaoStmtTemplate<EmpmatInfo> {
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new EmpmatWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new DaoEmpmatWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -61,14 +61,14 @@ public final class EmpmatSelectSingle extends DaoStmtTemplate<EmpmatInfo> {
 				do {
 					EmpmatInfo dataInfo = new EmpmatInfo();
 					
-					dataInfo.codOwner = stmtResult.getLong(EmpmatDbTableColumn.COL_COD_OWNER);
-					dataInfo.codEmployee = stmtResult.getLong(EmpmatDbTableColumn.COL_COD_EMPLOYEE);
-					dataInfo.codMat = stmtResult.getLong(EmpmatDbTableColumn.COL_COD_MATERIAL);
-					dataInfo.recordMode = stmtResult.getString(EmpmatDbTableColumn.COL_RECORD_MODE);	
-					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, EmpmatDbTableColumn.COL_LAST_CHANGED);
-					dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, EmpmatDbTableColumn.COL_LAST_CHANGED_BY);	
-					dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, EmpmatDbTableColumn.COL_CREATED_ON);
-					dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, EmpmatDbTableColumn.COL_CREATED_BY);
+					dataInfo.codOwner = stmtResult.getLong(DaoEmpmatDbTableColumn.COL_COD_OWNER);
+					dataInfo.codEmployee = stmtResult.getLong(DaoEmpmatDbTableColumn.COL_COD_EMPLOYEE);
+					dataInfo.codMat = stmtResult.getLong(DaoEmpmatDbTableColumn.COL_COD_MATERIAL);
+					dataInfo.recordMode = stmtResult.getString(DaoEmpmatDbTableColumn.COL_RECORD_MODE);	
+					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, DaoEmpmatDbTableColumn.COL_LAST_CHANGED);
+					dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, DaoEmpmatDbTableColumn.COL_LAST_CHANGED_BY);	
+					dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, DaoEmpmatDbTableColumn.COL_CREATED_ON);
+					dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, DaoEmpmatDbTableColumn.COL_CREATED_BY);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

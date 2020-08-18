@@ -1,19 +1,19 @@
 package br.com.mind5.business.employeeMaterial.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.employeeList.info.EmplisInfo;
 import br.com.mind5.business.employeeList.model.decisionTree.RootEmplisSelect;
 import br.com.mind5.business.employeeMaterial.info.EmpmatInfo;
 import br.com.mind5.business.employeeMaterial.info.EmpmatMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiEmpmatMergeEmplis extends ActionVisitorTemplateMergeV1<EmpmatInfo, EmplisInfo> {
+final class VisiEmpmatMergeEmplis extends ActionVisitorTemplateMergeV2<EmpmatInfo, EmplisInfo> {
 	
-	public VisiEmpmatMergeEmplis(Connection conn, String schemaName) {
-		super(conn, schemaName, EmplisInfo.class);
+	public VisiEmpmatMergeEmplis(DeciTreeOption<EmpmatInfo> option) {
+		super(option, EmplisInfo.class);
 	}
 	
 	
@@ -24,13 +24,13 @@ final class VisiEmpmatMergeEmplis extends ActionVisitorTemplateMergeV1<EmpmatInf
 	
 	
 	
-	@Override protected List<EmpmatInfo> mergeHook(List<EmpmatInfo> recordInfos, List<EmplisInfo> selectedInfos) {	
-		return EmpmatMerger.mergeWithEmplis(selectedInfos, recordInfos);
+	@Override protected List<EmpmatInfo> mergeHook(List<EmpmatInfo> baseInfos, List<EmplisInfo> selectedInfos) {	
+		return EmpmatMerger.mergeWithEmplis(baseInfos, selectedInfos);
 	}
 	
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
+		return super.DONT_MERGE_WHEN_EMPTY;
 	}
 }

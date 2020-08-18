@@ -1,35 +1,34 @@
 package br.com.mind5.business.employeeMaterial.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.employeeMaterial.info.EmpmatInfo;
 import br.com.mind5.business.employeeMaterial.info.EmpmatMerger;
-import br.com.mind5.business.employeeMaterial.model.decisionTree.RootEmpmatSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
-import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiEmpmatMergeToDelete extends ActionVisitorTemplateMergeV1<EmpmatInfo, EmpmatInfo> {
+final class VisiEmpmatMergeToDelete extends ActionVisitorTemplateMergeV2<EmpmatInfo, EmpmatInfo> {
 	
-	public VisiEmpmatMergeToDelete(Connection conn, String schemaName) {
-		super(conn, schemaName, EmpmatInfo.class);
+	public VisiEmpmatMergeToDelete(DeciTreeOption<EmpmatInfo> option) {
+		super(option, EmpmatInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends DeciTree<EmpmatInfo>> getTreeClassHook() {
-		return RootEmpmatSelect.class;
+	@Override protected Class<? extends ActionStdV2<EmpmatInfo>> getActionClassHook() {
+		return StdEmpmatDaoSelect.class;
 	}
 	
 	
 	
-	@Override protected List<EmpmatInfo> mergeHook(List<EmpmatInfo> recordInfos, List<EmpmatInfo> selectedInfos) {	
-		return EmpmatMerger.mergeToDelete(selectedInfos, recordInfos);
+	@Override protected List<EmpmatInfo> mergeHook(List<EmpmatInfo> baseInfos, List<EmpmatInfo> selectedInfos) {	
+		return EmpmatMerger.mergeToDelete(baseInfos, selectedInfos);
 	}
 	
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
+		return super.DONT_MERGE_WHEN_EMPTY;
 	}
 }

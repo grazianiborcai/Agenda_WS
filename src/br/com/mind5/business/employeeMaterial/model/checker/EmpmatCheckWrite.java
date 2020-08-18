@@ -16,11 +16,11 @@ public final class EmpmatCheckWrite extends ModelCheckerTemplateSimpleV2<EmpmatI
 	
 	
 	@Override protected boolean checkHook(EmpmatInfo recordInfo, Connection conn, String schemaName) {	
-		if (   recordInfo.codOwner 		<= 0 
-			|| recordInfo.codEmployee	<= 0  	
-			|| recordInfo.codMat		<= 0
-			|| recordInfo.username		== null
-			|| recordInfo.codLanguage	== null )
+		if ( recordInfo.codOwner 	<= 0 	||
+			 recordInfo.codEmployee	<= 0  	||
+			 recordInfo.codMat		<= 0	||
+			 recordInfo.username	== null	||
+			 recordInfo.codLanguage	== null 	)
 			
 			return super.FAILED;
 		

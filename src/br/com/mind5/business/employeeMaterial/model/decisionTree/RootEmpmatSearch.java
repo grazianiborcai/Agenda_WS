@@ -6,15 +6,15 @@ import java.util.List;
 import br.com.mind5.business.employeeMaterial.info.EmpmatInfo;
 import br.com.mind5.business.employeeMaterial.model.action.LazyEmpmatRootSelect;
 import br.com.mind5.business.employeeMaterial.model.action.StdEmpmatMergeEmpmarch;
-import br.com.mind5.business.employeeMaterial.model.checker.EmpmatCheckDummy;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 
-public final class RootEmpmatSearch extends DeciTreeTemplateReadV1<EmpmatInfo> {
+public final class RootEmpmatSearch extends DeciTreeTemplateReadV2<EmpmatInfo> {
 	
 	public RootEmpmatSearch(DeciTreeOption<EmpmatInfo> option) {
 		super(option);
@@ -26,7 +26,7 @@ public final class RootEmpmatSearch extends DeciTreeTemplateReadV1<EmpmatInfo> {
 		List<ModelCheckerV1<EmpmatInfo>> queue = new ArrayList<>();		
 		ModelCheckerV1<EmpmatInfo> checker;
 			
-		checker = new EmpmatCheckDummy();
+		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueueV2<>(queue);

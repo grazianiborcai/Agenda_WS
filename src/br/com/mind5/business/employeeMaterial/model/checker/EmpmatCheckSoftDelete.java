@@ -1,7 +1,7 @@
 package br.com.mind5.business.employeeMaterial.model.checker;
 
 import br.com.mind5.business.employeeMaterial.info.EmpmatInfo;
-import br.com.mind5.business.employeeMaterial.model.action.LazyEmpmatSelect;
+import br.com.mind5.business.employeeMaterial.model.action.LazyEmpmatDaoSelect;
 import br.com.mind5.business.employeeMaterial.model.action.StdEmpmatEnforceDel;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionLazyV1;
@@ -20,7 +20,7 @@ public final class EmpmatCheckSoftDelete extends ModelCheckerTemplateActionV2<Em
 	
 	@Override protected ActionStdV1<EmpmatInfo> buildActionHook(DeciTreeOption<EmpmatInfo> option) {		
 		ActionStdV1<EmpmatInfo> enforceDel = new StdEmpmatEnforceDel(option);
-		ActionLazyV1<EmpmatInfo> select = new LazyEmpmatSelect(option.conn, option.schemaName);
+		ActionLazyV1<EmpmatInfo> select = new LazyEmpmatDaoSelect(option.conn, option.schemaName);
 		
 		enforceDel.addPostAction(select);
 		return enforceDel;

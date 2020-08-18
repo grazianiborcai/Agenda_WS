@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.employeeMaterial.info.EmpmatInfo;
-import br.com.mind5.business.employeeMaterial.model.action.LazyEmpmatDelete;
+import br.com.mind5.business.employeeMaterial.model.action.LazyEmpmatDaoDelete;
 import br.com.mind5.business.employeeMaterial.model.action.LazyEmpmatEnforceLChanged;
 import br.com.mind5.business.employeeMaterial.model.action.LazyEmpmatMergeUsername;
-import br.com.mind5.business.employeeMaterial.model.action.LazyEmpmatUpdate;
+import br.com.mind5.business.employeeMaterial.model.action.LazyEmpmatDaoUpdate;
 import br.com.mind5.business.employeeMaterial.model.action.StdEmpmatMergeToDelete;
 import br.com.mind5.business.employeeMaterial.model.checker.EmpmatCheckExist;
 import br.com.mind5.business.employeeMaterial.model.checker.EmpmatCheckLangu;
@@ -19,9 +19,9 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class RootEmpmatDelete extends DeciTreeTemplateWriteV1<EmpmatInfo> {
+public final class RootEmpmatDelete extends DeciTreeTemplateWriteV2<EmpmatInfo> {
 	
 	public RootEmpmatDelete(DeciTreeOption<EmpmatInfo> option) {
 		super(option);
@@ -73,8 +73,8 @@ public final class RootEmpmatDelete extends DeciTreeTemplateWriteV1<EmpmatInfo> 
 		ActionStdV1<EmpmatInfo> mergeToDelete = new StdEmpmatMergeToDelete(option);
 		ActionLazyV1<EmpmatInfo> enforceLChanged = new LazyEmpmatEnforceLChanged(option.conn, option.schemaName);
 		ActionLazyV1<EmpmatInfo> enforceLChangedBy = new LazyEmpmatMergeUsername(option.conn, option.schemaName);
-		ActionLazyV1<EmpmatInfo> update = new LazyEmpmatUpdate(option.conn, option.schemaName);
-		ActionLazyV1<EmpmatInfo> deleteEmpmat = new LazyEmpmatDelete(option.conn, option.schemaName);
+		ActionLazyV1<EmpmatInfo> update = new LazyEmpmatDaoUpdate(option.conn, option.schemaName);
+		ActionLazyV1<EmpmatInfo> deleteEmpmat = new LazyEmpmatDaoDelete(option.conn, option.schemaName);
 		
 		mergeToDelete.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceLChangedBy);

@@ -1,28 +1,39 @@
 package br.com.mind5.business.employeeMaterial.info;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import br.com.mind5.business.employeeMaterialSearch.info.EmpmarchInfo;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-final class EmpmatVisiMergeEmpmarch implements InfoMergerVisitor_<EmpmatInfo, EmpmarchInfo> {
-
-	@Override public EmpmatInfo writeRecord(EmpmarchInfo sourceOne, EmpmatInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+final class EmpmatVisiMergeEmpmarch implements InfoMergerVisitorV3<EmpmatInfo, EmpmarchInfo> {
+	
+	@Override public List<EmpmatInfo> beforeMerge(List<EmpmatInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(EmpmatInfo baseInfo, EmpmarchInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner);
+	}
+	
+	
+	
+	@Override public List<EmpmatInfo> merge(EmpmatInfo baseInfo, EmpmarchInfo selectedInfo) {
+		List<EmpmatInfo> results = new ArrayList<>();
 		
-		return EmpmatInfo.copyFrom(sourceOne);
+		EmpmatInfo result = EmpmatInfo.copyFrom(selectedInfo);
+		
+		results.add(result);
+		return results;
 	}
 	
 	
 	
-	private void checkArgument(EmpmarchInfo sourceOne, EmpmatInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-
-
-
-	@Override public boolean shouldWrite(EmpmarchInfo sourceOne, EmpmatInfo sourceTwo) {
-		return (sourceOne.codOwner == sourceTwo.codOwner);
+	@Override public InfoUniquifier<EmpmatInfo> getUniquifier() {
+		return new EmpmatUniquifier();
 	}
 }

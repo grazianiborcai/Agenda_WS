@@ -1,7 +1,7 @@
 package br.com.mind5.business.employeeMaterial.model.checker;
 
 import br.com.mind5.business.employeeMaterial.info.EmpmatInfo;
-import br.com.mind5.business.employeeMaterial.model.action.StdEmpmatSelect;
+import br.com.mind5.business.employeeMaterial.model.action.StdEmpmatDaoSelect;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -17,7 +17,7 @@ public final class EmpmatCheckExist extends ModelCheckerTemplateActionV2<EmpmatI
 	
 	
 	@Override protected ActionStdV1<EmpmatInfo> buildActionHook(DeciTreeOption<EmpmatInfo> option) {
-		ActionStdV1<EmpmatInfo> select = new StdEmpmatSelect(option);
+		ActionStdV1<EmpmatInfo> select = new StdEmpmatDaoSelect(option);
 		return select;
 	}
 	

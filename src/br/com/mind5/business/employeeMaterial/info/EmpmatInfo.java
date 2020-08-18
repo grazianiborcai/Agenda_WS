@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.employeeList.info.EmplisInfo;
 import br.com.mind5.business.materialList.info.MatlisInfo;
+import br.com.mind5.common.CloneUtil;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
 
@@ -23,7 +24,7 @@ public final class EmpmatInfo extends InfoRecord implements Cloneable {
 	
 	
 	public EmpmatInfo() {
-		super(EmpmatInfo.class);
+		super();
 		
 		codOwner = DefaultValue.number();	
 		codEmployee = DefaultValue.number();
@@ -53,28 +54,10 @@ public final class EmpmatInfo extends InfoRecord implements Cloneable {
 	@Override public Object clone() throws CloneNotSupportedException {
 		EmpmatInfo deepCopy = (EmpmatInfo) super.clone();
 		
-		deepCopy.matlisData = cloneMatlis(deepCopy.matlisData);
-		deepCopy.emplisData = cloneEmplis(deepCopy.emplisData);
+		deepCopy.matlisData = CloneUtil.cloneRecord(deepCopy.matlisData, this.getClass());
+		deepCopy.emplisData = CloneUtil.cloneRecord(deepCopy.emplisData, this.getClass());
 		
 		return deepCopy;
-	}
-	
-	
-	
-	private MatlisInfo cloneMatlis(MatlisInfo recordInfo) throws CloneNotSupportedException {
-		if (recordInfo == null)
-			return null;
-		
-		return (MatlisInfo) recordInfo.clone();
-	}
-	
-	
-	
-	private EmplisInfo cloneEmplis(EmplisInfo recordInfo) throws CloneNotSupportedException {
-		if (recordInfo == null)
-			return null;
-		
-		return (EmplisInfo) recordInfo.clone();
 	}
 	
 	
