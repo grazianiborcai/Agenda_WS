@@ -1397,4 +1397,7 @@ public final class SystemCode {
 	public static final int USER_PASSWORD_SEARCH_MANDATORY_FIELD_EMPTY	= 13650;
 	public static final int USER_PASSWORD_SEARCH_CHANGED				= 13651;
 	public static final int USER_PASSWORD_SEARCH_NOT_CHANGED			= 13652;
+	
+	//Material Group Store
+	public static final int MAT_GRP_STORE_MANDATORY_FIELD_EMPTY			= 13700;
 }
