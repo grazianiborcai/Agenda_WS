@@ -4,12 +4,26 @@ import java.util.List;
 
 import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.companyList.info.ComplisInfo;
+import br.com.mind5.business.materialGroupStore.info.MatoporeInfo;
 import br.com.mind5.file.fileImageList.info.FimistInfo;
 import br.com.mind5.geo.geoHash.info.GeoshInfo;
 import br.com.mind5.info.InfoMergerBuilderV3;
 import br.com.mind5.info.InfoMergerV3;
 
 public final class StorbyMerger {	
+	public static List<StorbyInfo> mergeWithMatopore(List<StorbyInfo> baseInfos, List<MatoporeInfo> selectedInfos) {
+		InfoMergerBuilderV3<StorbyInfo, MatoporeInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new StorbyVisiMergeMatopore());
+		InfoMergerV3<StorbyInfo, MatoporeInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	
 	public static List<StorbyInfo> mergeWithFimist(List<StorbyInfo> baseInfos, List<FimistInfo> selectedInfos) {
 		InfoMergerBuilderV3<StorbyInfo, FimistInfo> builder = new InfoMergerBuilderV3<>();
 		

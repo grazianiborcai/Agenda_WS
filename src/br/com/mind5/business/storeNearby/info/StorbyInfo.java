@@ -4,6 +4,7 @@ import java.util.List;
 
 import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.companyList.info.ComplisInfo;
+import br.com.mind5.business.materialGroupStore.info.MatoporeInfo;
 import br.com.mind5.common.CloneUtil;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.file.fileImageList.info.FimistInfo;
@@ -26,6 +27,7 @@ public final class StorbyInfo extends InfoRecord implements Cloneable {
 	public AddressInfo addressData;
 	public ComplisInfo complisData;
 	public List<FimistInfo> fimistes;
+	public List<MatoporeInfo> matopores;
 	
 	
 	public StorbyInfo() {
@@ -41,6 +43,7 @@ public final class StorbyInfo extends InfoRecord implements Cloneable {
 		complisData = DefaultValue.object();
 		addressData = DefaultValue.object();
 		fimistes = DefaultValue.list();
+		matopores = DefaultValue.list();
 	}
 	
 	
@@ -63,6 +66,7 @@ public final class StorbyInfo extends InfoRecord implements Cloneable {
 		deepCopy.fimistes = CloneUtil.cloneRecords(fimistes, this.getClass());
 		deepCopy.addressData = CloneUtil.cloneRecord(addressData, this.getClass());
 		deepCopy.complisData = CloneUtil.cloneRecord(complisData, this.getClass());
+		deepCopy.matopores = CloneUtil.cloneRecords(matopores, this.getClass());
 		
 		return deepCopy;
 	}
@@ -74,9 +78,6 @@ public final class StorbyInfo extends InfoRecord implements Cloneable {
 		
 		result = result * 31 + (int) (codOwner ^ (codOwner >>> 32));
 		result = result * 31 + (int) (codStore ^ (codStore >>> 32));
-		
-		if (geoHash03 != null)
-			result = result * 31 + geoHash03.hashCode();
 		
 		if (districtSearch != null)
 			result = result * 31 + districtSearch.hashCode();
@@ -98,7 +99,6 @@ public final class StorbyInfo extends InfoRecord implements Cloneable {
 		StorbyInfo obj = (StorbyInfo) o;		
 		return (codOwner == obj.codOwner && 
 				codStore == obj.codStore &&
-				super.isStringEqual(geoHash03, obj.geoHash03) &&
 				super.isStringEqual(districtSearch, obj.districtSearch));
 	}	
 }
