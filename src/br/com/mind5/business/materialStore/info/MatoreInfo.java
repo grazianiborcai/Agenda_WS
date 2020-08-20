@@ -22,6 +22,7 @@ public final class MatoreInfo extends InfoRecord implements Cloneable {
 	public double matPrice5;
 	public double matPrice6;
 	public double matPrice7;
+	public String priceRange;
 	public int quantityStock;
 	public MatlisInfo matlisData;
 	public StolisInfo stolisData;
