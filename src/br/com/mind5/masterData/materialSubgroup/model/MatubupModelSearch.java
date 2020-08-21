@@ -6,9 +6,9 @@ import br.com.mind5.model.ModelTemplate;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class MatMatubupModelSearch extends ModelTemplate<MatubupInfo> {
+public final class MatubupModelSearch extends ModelTemplate<MatubupInfo> {
 
-	public MatMatubupModelSearch(MatubupInfo recordInfo) {
+	public MatubupModelSearch(MatubupInfo recordInfo) {
 		super(recordInfo);
 	}
 	

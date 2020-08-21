@@ -5,9 +5,9 @@ import java.util.List;
 
 import br.com.mind5.info.InfoMergerVisitorV3;
 import br.com.mind5.info.InfoUniquifier;
-import br.com.mind5.masterData.materialGroupSearch.info.MatouparchInfo;
+import br.com.mind5.masterData.materialSubgroupSearch.info.MatubuparchInfo;
 
-final class MatubupVisiMergeMatouparch implements InfoMergerVisitorV3<MatubupInfo, MatouparchInfo> {
+final class MatubupVisiMergeMatubuparch implements InfoMergerVisitorV3<MatubupInfo, MatubuparchInfo> {
 	
 	@Override public List<MatubupInfo> beforeMerge(List<MatubupInfo> baseInfos) {
 		return baseInfos;
@@ -15,13 +15,13 @@ final class MatubupVisiMergeMatouparch implements InfoMergerVisitorV3<MatubupInf
 	
 	
 	
-	@Override public boolean shouldMerge(MatubupInfo baseInfo, MatouparchInfo selectedInfo) {
+	@Override public boolean shouldMerge(MatubupInfo baseInfo, MatubuparchInfo selectedInfo) {
 		return true;
 	}
 	
 	
 	
-	@Override public List<MatubupInfo> merge(MatubupInfo baseInfo, MatouparchInfo selectedInfo) {
+	@Override public List<MatubupInfo> merge(MatubupInfo baseInfo, MatubuparchInfo selectedInfo) {
 		List<MatubupInfo> results = new ArrayList<>();
 		
 		MatubupInfo result = MatubupInfo.copyFrom(selectedInfo);

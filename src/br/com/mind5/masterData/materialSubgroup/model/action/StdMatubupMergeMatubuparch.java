@@ -5,15 +5,15 @@ import br.com.mind5.model.action.ActionStdTemplateV2;
 import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdMatubupMergeMatouparch extends ActionStdTemplateV2<MatubupInfo> {
+public final class StdMatubupMergeMatubuparch extends ActionStdTemplateV2<MatubupInfo> {
 
-	public StdMatubupMergeMatouparch(DeciTreeOption<MatubupInfo> option) {
+	public StdMatubupMergeMatubuparch(DeciTreeOption<MatubupInfo> option) {
 		super(option);
 	}
 	
 	
 	
 	protected ActionVisitorV2<MatubupInfo> buildVisitorHook(DeciTreeOption<MatubupInfo> option) {
-		return new VisiMatubupMergeMatouparch(option);
+		return new VisiMatubupMergeMatubuparch(option);
 	}
 }

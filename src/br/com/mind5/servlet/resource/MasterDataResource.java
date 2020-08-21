@@ -38,6 +38,8 @@ import br.com.mind5.masterData.materialCategorySearch.info.MategarchInfo;
 import br.com.mind5.masterData.materialCategorySearch.model.MategarchModelSelect;
 import br.com.mind5.masterData.materialGroup.info.MatoupInfo;
 import br.com.mind5.masterData.materialGroup.model.MatGroupModelSearch;
+import br.com.mind5.masterData.materialSubgroup.info.MatubupInfo;
+import br.com.mind5.masterData.materialSubgroup.model.MatubupModelSearch;
 import br.com.mind5.masterData.materialTypeSearch.info.MatyparchInfo;
 import br.com.mind5.masterData.materialTypeSearch.model.MatyparchModelSelect;
 import br.com.mind5.masterData.materialUnitSearch.info.MatunitarchInfo;
@@ -78,6 +80,7 @@ public final class MasterDataResource {
 	private static final String SELECT_MATERIAL_TYPE = "/selectMatType";
 	private static final String SELECT_MATERIAL_CATEG = "/selectMatCategory";
 	private static final String SELECT_MATERIAL_GROUP = "/selectMatGroup";
+	private static final String SELECT_MATERIAL_SUBGROUP = "/selectMatSubgroup";	
 	private static final String SELECT_BUSINESS_AREA = "/selectBusinessArea";
 	private static final String SELECT_CURRENCY = "/selectCurrency";
 	private static final String SELECT_LANGUAGE = "/selectLanguage";
@@ -188,9 +191,9 @@ public final class MasterDataResource {
 	@GET
 	@Path(SELECT_MATERIAL_GROUP)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response selectMatGroup(@HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage, 
-			                       @HeaderParam("codGroup")    @DefaultValue("-1") int codGroup,
-								   @HeaderParam("codBusiness") @DefaultValue("-1") int codBusiness){
+	public Response selectMatoup(@HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage, 
+			                     @HeaderParam("codGroup")    @DefaultValue("-1") int codGroup,
+								 @HeaderParam("codBusiness") @DefaultValue("-1") int codBusiness){
 		
 		MatoupInfo recordInfo = new MatoupInfo();
 		recordInfo.codLanguage = codLanguage;
@@ -198,6 +201,28 @@ public final class MasterDataResource {
 		recordInfo.codBusiness = codBusiness;
 		
 		Model model = new MatGroupModelSearch(recordInfo);
+		model.executeRequest();
+		Response result = model.getResponse();
+		model.close();
+		
+		return result;
+	}
+	
+	
+	
+	@GET
+	@Path(SELECT_MATERIAL_SUBGROUP)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response selectMatubup(@HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage, 
+			                      @HeaderParam("codGroup")    @DefaultValue("-1") int codGroup,
+								  @HeaderParam("codSubgroup") @DefaultValue("-1") int codSubgroup){
+		
+		MatubupInfo recordInfo = new MatubupInfo();
+		recordInfo.codLanguage = codLanguage;
+		recordInfo.codGroup = codGroup;
+		recordInfo.codSubgroup = codSubgroup;
+		
+		Model model = new MatubupModelSearch(recordInfo);
 		model.executeRequest();
 		Response result = model.getResponse();
 		model.close();
