@@ -1400,4 +1400,7 @@ public final class SystemCode {
 	
 	//Material Group Store
 	public static final int MAT_GRP_STORE_MANDATORY_FIELD_EMPTY			= 13700;
+	
+	// Material Catalogue
+	public static final int MAT_CATALOGUE_MANDATORY_FIELD_EMPTY			= 13750;
 }

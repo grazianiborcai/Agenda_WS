@@ -58,6 +58,7 @@
     	<security:intercept-url pattern="/**/Store/selectStoreLeaveDate" 			access="hasAuthority('STORE_READ')" 				/>
     	<security:intercept-url pattern="/**/Store/searchStoreLeaveDate" 			access="hasAuthority('STORE_READ')" 				/>
     	<security:intercept-url pattern="/**/Store/searchStore" 					access="isAuthenticated()" 							/>
+    	<security:intercept-url pattern="/**/Store/selectMatCatalogue" 				access="isAuthenticated()" 							/>    	
         <security:intercept-url pattern="/**/Store/selectPayPartnerList"			access="hasAuthority('STORE_PAY_READ')"				/> 	  
         <security:intercept-url pattern="/**/Store/grantMoip"						access="hasAuthority('STORE_PAY_WRITE')" 			/>    
         <security:intercept-url pattern="/**/Store/insertStore" 					access="hasAuthority('STORE_INSERT')" 				/>

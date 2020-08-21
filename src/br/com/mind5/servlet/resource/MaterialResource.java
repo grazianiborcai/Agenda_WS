@@ -18,6 +18,8 @@ import br.com.mind5.business.material.model.MatModelDelete;
 import br.com.mind5.business.material.model.MatModelInsert;
 import br.com.mind5.business.material.model.MatModelSelect;
 import br.com.mind5.business.material.model.MatModelUpdate;
+import br.com.mind5.business.materialCatalogue.info.MatogueInfo;
+import br.com.mind5.business.materialCatalogue.model.MatogueModelSelect;
 import br.com.mind5.business.materialList.model.MatlisModelSearch;
 import br.com.mind5.business.materialMovement.info.MatmovInfo;
 import br.com.mind5.business.materialMovement.model.MatmovModelInsert;
@@ -37,7 +39,7 @@ public class MaterialResource {
 	private static final String UPDATE_MATERIAL = "/updateMaterial";
 	private static final String DELETE_MATERIAL = "/deleteMaterial";
 	private static final String SELECT_MATERIAL = "/selectMaterial";	
-	private static final String SEARCH_MATERIAL = "/searchMaterial";
+	private static final String SEARCH_MATERIAL = "/searchMaterial";	
 	private static final String SELECT_MAT_STORE = "/selectMatStore";
 	private static final String SEARCH_MAT_STORE = "/searchMatStore";
 	private static final String INSERT_MAT_STORE = "/insertMatStore";
@@ -46,6 +48,7 @@ public class MaterialResource {
 	private static final String INSERT_MAT_MOV = "/insertMatmov";
 	private static final String SELECT_MAT_MOV = "/selectMatmov";	
 	private static final String SEARCH_MAT_MOV = "/searchMatmov";
+	private static final String SELECT_MAT_CATALOGUE = "/selectMatCatalogue";
 
 	
 	@POST
@@ -56,7 +59,10 @@ public class MaterialResource {
 		
 		Model model = new MatModelInsert(incomingData, request);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
 	}
 	
 	
@@ -69,7 +75,10 @@ public class MaterialResource {
 
 		Model model = new MatModelUpdate(incomingData, request);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
 	}
 	
 	
@@ -91,7 +100,10 @@ public class MaterialResource {
 		
 		Model model = new MatModelDelete(recordInfo);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
 	}
 	
 	
@@ -114,7 +126,10 @@ public class MaterialResource {
 		
 		Model model = new MatModelSelect(recordInfo);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
 	}
 	
 	
@@ -127,7 +142,10 @@ public class MaterialResource {
 		
 		Model model = new MatlisModelSearch(incomingData, request);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
 	}
 	
 	
@@ -151,7 +169,10 @@ public class MaterialResource {
 		
 		Model model = new MatoreModelSelect(recordInfo);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
 	}
 	
 	
@@ -164,7 +185,10 @@ public class MaterialResource {
 		
 		Model model = new MatoreModelSearch(incomingData, request);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
 	}
 	
 	
@@ -177,7 +201,10 @@ public class MaterialResource {
 		
 		Model model = new MatoreModelInsert(incomingData, request);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
 	}
 	
 	
@@ -190,7 +217,10 @@ public class MaterialResource {
 
 		Model model = new MatoreModelUpdate(incomingData, request);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
 	}	
 	
 	
@@ -214,7 +244,10 @@ public class MaterialResource {
 		
 		Model model = new MatoreModelDelete(recordInfo);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
 	}
 	
 	
@@ -227,7 +260,10 @@ public class MaterialResource {
 		
 		Model model = new MatmovModelInsert(incomingData, request);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
 	}
 	
 	
@@ -252,7 +288,10 @@ public class MaterialResource {
 		
 		Model model = new MatmovModelSelect(recordInfo);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
 	}
 	
 	
@@ -265,6 +304,34 @@ public class MaterialResource {
 		
 		Model model = new MatmovModelSearch(incomingData, request);
 		model.executeRequest();
-		return model.getResponse();
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
+	}
+	
+	
+	
+	@GET
+	@Path(SELECT_MAT_CATALOGUE)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response selectMatogue(@HeaderParam("TOKEN_OWNER") @DefaultValue("-1") long codOwner,
+			                      @HeaderParam("codStore")    @DefaultValue("-1") long codStore,
+								  @HeaderParam("TOKEN_USERNAME") String username,
+								  @HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage) {
+
+
+		MatogueInfo recordInfo = new MatogueInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.codStore = codStore;
+		recordInfo.username = username;
+		recordInfo.codLanguage = codLanguage;
+		
+		Model model = new MatogueModelSelect(recordInfo);
+		model.executeRequest();
+		Response result = model.getResponse();	
+		model.close();
+		
+		return result;
 	}
 }
