@@ -53,6 +53,7 @@ public final class DaoDbField {
 	public static final String COL_COD_MAT_MOV = "cod_mat_mov";
 	public static final String COL_COD_MAT_MOV_TYPE = "cod_mat_mov_type";
 	public static final String COL_COD_MAT_TYPE = "cod_type";
+	public static final String COL_COD_MAT_SUBGROUP = "cod_mat_subgroup";
 	public static final String COL_COD_MATERIAL = "cod_material";	
 	public static final String COL_COD_MATERIAL_SNAPSHOT = "cod_material_snapshot";
 	public static final String COL_COD_MESSAGE = "cod_message";
@@ -220,6 +221,7 @@ public final class DaoDbField {
 	public static final String COL_SCOPE = "scope";
 	public static final String COL_SECRET = "secret";
 	public static final String COL_SENDER_PASSWORD = "sender_password";
+	public static final String COL_SORT = "sort";
 	public static final String COL_SMTP_HOST_NAME = "smtp_host_name";
 	public static final String COL_SMTP_PORT = "smtp_port";	
 	public static final String COL_SORT_SATURDAY = "sort_saturday";
