@@ -14,6 +14,7 @@ public final class DaoMatubupDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_LANGUAGE = DaoDbField.COL_COD_LANGUAGE;
 	public static final String COL_COD_MAT_GROUP = DaoDbField.COL_COD_MAT_GROUP;
 	public static final String COL_NAME = DaoDbField.COL_NAME;
+	public static final String COL_SORT = DaoDbField.COL_SORT;
 	
 	
 	public DaoMatubupDbTableColumn() {
@@ -39,6 +40,14 @@ public final class DaoMatubupDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_COD_MAT_GROUP;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_SORT;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;

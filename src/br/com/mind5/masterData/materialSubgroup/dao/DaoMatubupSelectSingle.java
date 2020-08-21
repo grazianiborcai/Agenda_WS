@@ -74,7 +74,8 @@ public final class DaoMatubupSelectSingle extends DaoStmtTemplate<MatubupInfo> {
 					MatubupInfo dataInfo = new MatubupInfo();
 					
 					dataInfo.codSubgroup = stmtResult.getInt(DaoMatubupDbTableColumn.COL_COD_MAT_SUBGROUP);
-					dataInfo.codGroup = stmtResult.getInt(DaoMatubupDbTableColumn.COL_COD_MAT_GROUP);				
+					dataInfo.codGroup = stmtResult.getInt(DaoMatubupDbTableColumn.COL_COD_MAT_GROUP);	
+					dataInfo.sort = stmtResult.getInt(DaoMatubupDbTableColumn.COL_SORT);
 					dataInfo.txtSubgroup = stmtResult.getString(DaoMatubupDbTableColumn.COL_NAME);					
 					dataInfo.codLanguage = stmtResult.getString(DaoMatubupDbTableColumn.COL_COD_LANGUAGE);		
 					
