@@ -10,7 +10,7 @@ public class MatubupInfo extends InfoRecord implements Cloneable {
 	public String txtSubgroup;
 	public int codGroup;
 	public String txtGroup; 
-	public int sort;
+	public int sortSubgroup;
 	
 	
 	public MatubupInfo() {
@@ -18,7 +18,7 @@ public class MatubupInfo extends InfoRecord implements Cloneable {
 		
 		codGroup = DefaultValue.number();
 		codSubgroup = DefaultValue.number();
-		sort = DefaultValue.number();
+		sortSubgroup = DefaultValue.number();
 	}
 	
 	
