@@ -69,6 +69,7 @@ public final class DaoMatSelectSingle extends DaoStmtTemplate<MatInfo> {
 					dataInfo.priceUnit = stmtResult.getInt(DaoMatDbTableColumn.COL_PRICE_UNIT);	
 					dataInfo.codUnit = stmtResult.getString(DaoMatDbTableColumn.COL_COD_UNIT);	
 					dataInfo.codGroup = stmtResult.getInt(DaoMatDbTableColumn.COL_COD_GROUP);
+					dataInfo.codSubgroup = stmtResult.getInt(DaoMatDbTableColumn.COL_COD_MAT_SUBGROUP);					
 					dataInfo.isLocked = stmtResult.getBoolean(DaoMatDbTableColumn.COL_IS_LOCKED);	
 					dataInfo.recordMode = stmtResult.getString(DaoMatDbTableColumn.COL_RECORD_MODE);
 					dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, DaoMatDbTableColumn.COL_LAST_CHANGED_BY);

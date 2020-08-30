@@ -10,11 +10,25 @@ import br.com.mind5.info.InfoMergerBuilderV3;
 import br.com.mind5.info.InfoMergerV3;
 import br.com.mind5.masterData.materialCategory.info.MategInfo;
 import br.com.mind5.masterData.materialGroup.info.MatoupInfo;
+import br.com.mind5.masterData.materialSubgroup.info.MatubupInfo;
 import br.com.mind5.masterData.materialType.info.MatypeInfo;
 import br.com.mind5.masterData.materialUnit.info.MatunitInfo;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class MatMerger {
+	public static List<MatInfo> mergeWithMatubup(List<MatInfo> baseInfos, List<MatubupInfo> selectedInfos) {
+		InfoMergerBuilderV3<MatInfo, MatubupInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new MatVisiMergeMatubup());
+		InfoMergerV3<MatInfo, MatubupInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	
 	public static List<MatInfo> mergeWithSytotauh(List<MatInfo> baseInfos, List<SytotauhInfo> selectedInfos) {
 		InfoMergerBuilderV3<MatInfo, SytotauhInfo> builder = new InfoMergerBuilderV3<>();
 		

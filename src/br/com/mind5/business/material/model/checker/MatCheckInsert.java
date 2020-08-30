@@ -18,6 +18,7 @@ public final class MatCheckInsert extends ModelCheckerTemplateSimpleV2<MatInfo> 
 	@Override protected boolean checkHook(MatInfo recordInfo, Connection conn, String schemaName) {	
 		if ( recordInfo.codOwner 	<= 0 	||		
 			 recordInfo.codGroup	<= 0 	||
+			 recordInfo.codSubgroup	<= 0 	||
 			 recordInfo.codType 	<= 0 	||
 			 recordInfo.codMatCateg	<= 0 	||
 			 recordInfo.priceUnit	<= 0 	||

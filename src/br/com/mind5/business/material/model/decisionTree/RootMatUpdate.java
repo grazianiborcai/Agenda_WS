@@ -7,19 +7,20 @@ import br.com.mind5.business.material.info.MatInfo;
 import br.com.mind5.business.material.model.action.LazyMatNodeSnapshot;
 import br.com.mind5.business.material.model.action.LazyMatNodeUpsertMatext;
 import br.com.mind5.business.material.model.action.LazyMatRootSelect;
-import br.com.mind5.business.material.model.checker.MatCheckMateg;
 import br.com.mind5.business.material.model.checker.MatCheckExist;
-import br.com.mind5.business.material.model.checker.MatCheckMatoup;
 import br.com.mind5.business.material.model.checker.MatCheckLangu;
-import br.com.mind5.business.material.model.checker.MatCheckOwner;
-import br.com.mind5.business.material.model.checker.MatCheckMatype;
+import br.com.mind5.business.material.model.checker.MatCheckMateg;
+import br.com.mind5.business.material.model.checker.MatCheckMatoup;
+import br.com.mind5.business.material.model.checker.MatCheckMatubup;
 import br.com.mind5.business.material.model.checker.MatCheckMatunit;
+import br.com.mind5.business.material.model.checker.MatCheckMatype;
+import br.com.mind5.business.material.model.checker.MatCheckOwner;
 import br.com.mind5.business.material.model.checker.MatCheckUpdate;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
@@ -76,6 +77,13 @@ public final class RootMatUpdate extends DeciTreeTemplateWriteV2<MatInfo> {
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
 		checker = new MatCheckMatoup(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
+		checker = new MatCheckMatubup(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();

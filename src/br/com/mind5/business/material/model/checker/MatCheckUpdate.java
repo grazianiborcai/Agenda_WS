@@ -19,6 +19,7 @@ public final class MatCheckUpdate extends ModelCheckerTemplateSimpleV2<MatInfo> 
 		if ( recordInfo.codOwner 	<= 0 	||
 			 recordInfo.codMat 		<= 0 	||	
 			 recordInfo.codGroup	<= 0	||
+			 recordInfo.codSubgroup	<= 0	||
 			 recordInfo.codType 	<= 0	||
 			 recordInfo.codMatCateg	<= 0	||
 			 recordInfo.priceUnit	<= 0	||
