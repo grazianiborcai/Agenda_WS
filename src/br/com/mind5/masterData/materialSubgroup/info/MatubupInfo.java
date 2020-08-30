@@ -44,7 +44,8 @@ public class MatubupInfo extends InfoRecord implements Cloneable {
 	@Override public int hashCode() {
 		int result = 17;
 		
-		result = result * 31 + codSubgroup;
+		result = result * 31 + codGroup;
+		result = result * 31 + codSubgroup;		
 		
 		return result;
 	}
@@ -61,6 +62,7 @@ public class MatubupInfo extends InfoRecord implements Cloneable {
 		
 		
 		MatubupInfo obj = (MatubupInfo) o;		
-		return (codSubgroup == obj.codSubgroup);
+		return (codGroup    == obj.codGroup &&
+				codSubgroup == obj.codSubgroup);
 	}
 }
