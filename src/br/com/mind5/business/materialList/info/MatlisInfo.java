@@ -26,6 +26,7 @@ public final class MatlisInfo extends InfoRecord implements Cloneable {
 	public String txtGroup; 
 	public int codSubgroup;
 	public String txtSubgroup;
+	public int sortSubgroup;
 	public int codBusiness;
 	public String txtBusiness; 
 	public boolean isLocked;
@@ -45,6 +46,7 @@ public final class MatlisInfo extends InfoRecord implements Cloneable {
 		priceUnit = 1;
 		codGroup = DefaultValue.number();
 		codSubgroup = DefaultValue.number();
+		sortSubgroup = DefaultValue.number();
 		codBusiness = DefaultValue.number();
 		isLocked = DefaultValue.boole();
 		fimistes = DefaultValue.list();

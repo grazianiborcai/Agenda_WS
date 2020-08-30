@@ -25,6 +25,7 @@ final class MatlisVisiMergeMatubup implements InfoMergerVisitorV3<MatlisInfo, Ma
 		List<MatlisInfo> results = new ArrayList<>();
 		
 		baseInfo.txtSubgroup = selectedInfo.txtSubgroup;
+		baseInfo.sortSubgroup = selectedInfo.sortSubgroup;
 		
 		results.add(baseInfo);
 		return results;
