@@ -74,6 +74,7 @@ public final class DaoMatlisSelectSingle extends DaoStmtTemplate<MatlisInfo> {
 					dataInfo.priceUnit = stmtResult.getInt(DaoMatlisDbTableColumn.COL_PRICE_UNIT);	
 					dataInfo.codUnit = stmtResult.getString(DaoMatlisDbTableColumn.COL_COD_UNIT);	
 					dataInfo.codGroup = stmtResult.getInt(DaoMatlisDbTableColumn.COL_COD_GROUP);
+					dataInfo.codSubgroup = stmtResult.getInt(DaoMatlisDbTableColumn.COL_COD_MAT_SUBGROUP);					
 					dataInfo.isLocked = stmtResult.getBoolean(DaoMatlisDbTableColumn.COL_IS_LOCKED);	
 					dataInfo.recordMode = stmtResult.getString(DaoMatlisDbTableColumn.COL_RECORD_MODE);
 					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, DaoMatlisDbTableColumn.COL_COD_SNAPSHOT);				
