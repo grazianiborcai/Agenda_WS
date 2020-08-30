@@ -21,6 +21,7 @@ public final class DaoMatubupJoinTxt implements DaoJoinBuilder {
 		DaoJoinBuilderHelper helper = new DaoJoinBuilderHelper(this.getClass());
 		
 		helper.addColumn(DaoDbField.COL_COD_MAT_SUBGROUP);	
+		helper.addColumn(DaoDbField.COL_COD_MAT_GROUP);	
 		helper.addJoinType(DaoJoinType.INNER_JOIN);		
 		helper.addLeftTable(leftTable);
 		helper.addRightTable(DaoDbTable.MAT_SUBGROUP_TEXT_TABLE);

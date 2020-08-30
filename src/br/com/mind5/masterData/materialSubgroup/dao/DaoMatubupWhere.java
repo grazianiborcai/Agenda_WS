@@ -30,6 +30,10 @@ final class DaoMatubupWhere implements DaoStmtWhere {
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codSubgroup));
 					break;
 					
+				case DaoMatubupDbTableColumn.COL_COD_MAT_GROUP :
+					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codGroup));
+					break;
+					
 				case DaoMatubupDbTableColumn.COL_COD_LANGUAGE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codLanguage);
 					break;

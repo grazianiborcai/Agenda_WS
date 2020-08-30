@@ -17,6 +17,7 @@ public final class MatubupCheckRead extends ModelCheckerTemplateSimpleV2<Matubup
 	
 	@Override protected boolean checkHook(MatubupInfo recordInfo, Connection conn, String schemaName) {	
 		if ( recordInfo.codSubgroup <= 0 	||
+			 recordInfo.codGroup 	<= 0 	||
 			 recordInfo.codLanguage == null		)
 			
 			return super.FAILED;
