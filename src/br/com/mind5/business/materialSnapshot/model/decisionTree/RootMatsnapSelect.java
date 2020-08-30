@@ -7,6 +7,7 @@ import br.com.mind5.business.materialSnapshot.info.MatsnapInfo;
 import br.com.mind5.business.materialSnapshot.model.action.LazyMatsnapMergeMateg;
 import br.com.mind5.business.materialSnapshot.model.action.LazyMatsnapMergeMatextsnap;
 import br.com.mind5.business.materialSnapshot.model.action.LazyMatsnapMergeMatoup;
+import br.com.mind5.business.materialSnapshot.model.action.LazyMatsnapMergeMatubup;
 import br.com.mind5.business.materialSnapshot.model.action.LazyMatsnapMergeMatunit;
 import br.com.mind5.business.materialSnapshot.model.action.LazyMatsnapMergeMatype;
 import br.com.mind5.business.materialSnapshot.model.action.StdMatsnapMergeToSelect;
@@ -68,13 +69,15 @@ public final class RootMatsnapSelect extends DeciTreeTemplateReadV2<MatsnapInfo>
 		ActionLazyV1<MatsnapInfo> mergeMatype = new LazyMatsnapMergeMatype(option.conn, option.schemaName);
 		ActionLazyV1<MatsnapInfo> mergeMateg = new LazyMatsnapMergeMateg(option.conn, option.schemaName);
 		ActionLazyV1<MatsnapInfo> mergeMatoup = new LazyMatsnapMergeMatoup(option.conn, option.schemaName);
+		ActionLazyV1<MatsnapInfo> mergeMatubup = new LazyMatsnapMergeMatubup(option.conn, option.schemaName);
 		ActionLazyV1<MatsnapInfo> mergeMatunit = new LazyMatsnapMergeMatunit(option.conn, option.schemaName);
 		
 		select.addPostAction(mergeMatextsnap);
 		mergeMatextsnap.addPostAction(mergeMatype);
 		mergeMatype.addPostAction(mergeMateg);
 		mergeMateg.addPostAction(mergeMatoup);
-		mergeMatoup.addPostAction(mergeMatunit);
+		mergeMatoup.addPostAction(mergeMatubup);
+		mergeMatubup.addPostAction(mergeMatunit);
 		
 		actions.add(select);
 		return actions;

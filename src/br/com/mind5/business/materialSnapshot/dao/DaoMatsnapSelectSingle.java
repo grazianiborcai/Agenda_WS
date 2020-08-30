@@ -70,6 +70,7 @@ public final class DaoMatsnapSelectSingle extends DaoStmtTemplate<MatsnapInfo> {
 					dataInfo.priceUnit = stmtResult.getInt(DaoMatsnapDbTableColumn.COL_PRICE_UNIT);	
 					dataInfo.codUnit = stmtResult.getString(DaoMatsnapDbTableColumn.COL_COD_UNIT);	
 					dataInfo.codGroup = stmtResult.getInt(DaoMatsnapDbTableColumn.COL_COD_GROUP);
+					dataInfo.codSubgroup = stmtResult.getInt(DaoMatsnapDbTableColumn.COL_COD_MAT_SUBGROUP);					
 					dataInfo.isLocked = stmtResult.getBoolean(DaoMatsnapDbTableColumn.COL_IS_LOCKED);	
 					dataInfo.recordMode = stmtResult.getString(DaoMatsnapDbTableColumn.COL_RECORD_MODE);
 					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, DaoMatsnapDbTableColumn.COL_LAST_CHANGED);

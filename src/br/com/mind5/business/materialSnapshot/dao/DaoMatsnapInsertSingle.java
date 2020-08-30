@@ -56,6 +56,7 @@ public final class DaoMatsnapInsertSingle extends DaoStmtTemplate<MatsnapInfo> {
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.createdBy);
 				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.createdOn);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codStore);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codSubgroup);
 				
 				return stmt;
 			}		
