@@ -13,6 +13,7 @@ public final class MatoreInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codStore;	
 	public long codMat;
+	public int codGroup;
 	public long codSnapshot;
 	public double matPrice;
 	public double matPrice1;
@@ -40,6 +41,7 @@ public final class MatoreInfo extends InfoRecord implements Cloneable {
 		codOwner = DefaultValue.number();
 		codStore = DefaultValue.number();	
 		codMat = DefaultValue.number();
+		codGroup = DefaultValue.number();
 		codSnapshot = DefaultValue.number();
 		matPrice = DefaultValue.number();
 		matPrice1 = DefaultValue.number();

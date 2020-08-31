@@ -23,6 +23,7 @@ final class MatoreVisiMergeToSelect implements InfoMergerVisitorV3<MatoreInfo, M
 	@Override public List<MatoreInfo> merge(MatoreInfo baseInfo, MatoreInfo selectedInfo) {
 		List<MatoreInfo> results = new ArrayList<>();
 		
+		selectedInfo.codGroup = baseInfo.codGroup;
 		selectedInfo.username = baseInfo.username;
 		selectedInfo.codLanguage = baseInfo.codLanguage;
 		
