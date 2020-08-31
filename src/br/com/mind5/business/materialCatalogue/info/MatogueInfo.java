@@ -10,7 +10,8 @@ import br.com.mind5.masterData.materialSubgroup.info.MatubupInfo;
 
 public final class MatogueInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
-	public long codStore;	
+	public long codStore;
+	public int codGroup;
 	public String username;
 	public List<MatoreInfo> matores;
 	public List<MatubupInfo> matubupes;
@@ -20,7 +21,8 @@ public final class MatogueInfo extends InfoRecord implements Cloneable {
 		super();
 		
 		codOwner = DefaultValue.number();
-		codStore = DefaultValue.number();	
+		codStore = DefaultValue.number();
+		codGroup = DefaultValue.number();
 		matores = DefaultValue.list();
 		matubupes = DefaultValue.list();
 	}
