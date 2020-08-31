@@ -26,6 +26,7 @@ final class MatogueVisiMergeMatore implements InfoMergerVisitorV3<MatogueInfo, M
 		List<MatogueInfo> results = new ArrayList<>();
 		
 		baseInfo.matores.add(selectedInfo);
+		baseInfo.stolisData = selectedInfo.stolisData;
 		
 		results.add(baseInfo);
 		return results;

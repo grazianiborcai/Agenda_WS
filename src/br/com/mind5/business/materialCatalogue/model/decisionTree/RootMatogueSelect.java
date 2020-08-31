@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.materialCatalogue.info.MatogueInfo;
 import br.com.mind5.business.materialCatalogue.model.action.LazyMatogueEnforceMatubup;
+import br.com.mind5.business.materialCatalogue.model.action.LazyMatogueObfuscateStolis;
 import br.com.mind5.business.materialCatalogue.model.action.StdMatogueMergeMatore;
 import br.com.mind5.business.materialCatalogue.model.checker.MatogueCheckLangu;
 import br.com.mind5.business.materialCatalogue.model.checker.MatogueCheckOwner;
@@ -69,8 +70,10 @@ public final class RootMatogueSelect extends DeciTreeTemplateReadV2<MatogueInfo>
 		
 		ActionStdV1<MatogueInfo> mergeMatore = new StdMatogueMergeMatore(option);
 		ActionLazyV1<MatogueInfo> enforceMatubup = new LazyMatogueEnforceMatubup(option.conn, option.schemaName);
+		ActionLazyV1<MatogueInfo> obfuscateStolis = new LazyMatogueObfuscateStolis(option.conn, option.schemaName);
 		
 		mergeMatore.addPostAction(enforceMatubup);
+		enforceMatubup.addPostAction(obfuscateStolis);
 		
 		actions.add(mergeMatore);		
 		return actions;

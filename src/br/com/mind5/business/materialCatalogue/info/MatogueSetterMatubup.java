@@ -12,7 +12,6 @@ import br.com.mind5.masterData.materialSubgroup.info.MatubupInfo;
 public final class MatogueSetterMatubup extends InfoSetterTemplate<MatogueInfo> {
 	
 	@Override protected MatogueInfo setAttrHook(MatogueInfo recordInfo) {
-		
 		if ( shouldSkip(recordInfo) == true )
 			return recordInfo;
 		
