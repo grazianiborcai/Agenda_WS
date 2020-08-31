@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.materialStoreSearch.info.MatorarchInfo;
+import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoJoin;
 import br.com.mind5.dao.DaoJoinBuilder;
 import br.com.mind5.dao.DaoOperation;
@@ -87,6 +88,7 @@ public final class DaoMatorarchSelectSingle extends DaoStmtTemplate<MatorarchInf
 					dataInfo.codOwner = stmtResult.getLong(DaoMatorarchDbTableColumn.COL_COD_OWNER);
 					dataInfo.codStore = stmtResult.getLong(DaoMatorarchDbTableColumn.COL_COD_STORE);
 					dataInfo.codMat = stmtResult.getLong(DaoMatorarchDbTableColumn.COL_COD_MATERIAL);
+					dataInfo.codGroup = DaoFormatter.sqlToInt(stmtResult, DaoMatorarchDbTableColumn.COL_COD_GROUP);
 					dataInfo.recordMode = stmtResult.getString(DaoMatorarchDbTableColumn.COL_RECORD_MODE);
 					
 					finalResult.add(dataInfo);

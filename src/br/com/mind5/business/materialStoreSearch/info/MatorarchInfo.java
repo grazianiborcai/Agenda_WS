@@ -9,6 +9,7 @@ public final class MatorarchInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codStore;	
 	public long codMat;
+	public int codGroup;
 	public String username;
 	public String recordMode;
 	
@@ -19,6 +20,7 @@ public final class MatorarchInfo extends InfoRecord implements Cloneable {
 		codOwner = DefaultValue.number();
 		codStore = DefaultValue.number();	
 		codMat = DefaultValue.number();
+		codGroup = DefaultValue.number();
 		recordMode = DefaultValue.recordMode();
 	}
 	
