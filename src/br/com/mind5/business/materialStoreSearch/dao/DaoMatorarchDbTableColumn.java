@@ -62,10 +62,10 @@ public class DaoMatorarchDbTableColumn extends DaoDbTableColumnTemplate {
 		columns.add(oneColumn);
 		
 		oneColumn = new DaoColumn();
-		oneColumn.tableName = TABLE_NAME;
+		oneColumn.tableName = DaoDbTable.MAT_TABLE;
 		oneColumn.columnName = COL_COD_GROUP;
 		oneColumn.isPK = NEGATIVE;
-		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isLookUp = IS_LOOKUP_COLUMN;
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
