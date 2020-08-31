@@ -1,5 +1,7 @@
 package br.com.mind5.business.materialStore.info;
 
+import java.text.DecimalFormat;
+
 import br.com.mind5.info.InfoSetterTemplate;
 
 public final class MatoreSetterRange extends InfoSetterTemplate<MatoreInfo> {
@@ -17,32 +19,25 @@ public final class MatoreSetterRange extends InfoSetterTemplate<MatoreInfo> {
 	private double setPriceMin(MatoreInfo recordInfo) {
 		double priceMin = recordInfo.matPrice;
 		
-		if ( recordInfo.matPrice1 < priceMin	&&
-			 recordInfo.matPrice1 > 0				)
+		if ( recordInfo.matPrice1 < priceMin || priceMin <= 0 )
 			priceMin = recordInfo.matPrice1;
 		
-		if ( recordInfo.matPrice2 < priceMin	&&
-			 recordInfo.matPrice2 > 0				)
+		if ( recordInfo.matPrice2 < priceMin || priceMin <= 0 )
 			priceMin = recordInfo.matPrice2;
 		
-		if ( recordInfo.matPrice3 < priceMin	&&
-			 recordInfo.matPrice3 > 0				)
+		if ( recordInfo.matPrice3 < priceMin || priceMin <= 0 )
 			priceMin = recordInfo.matPrice3;
 		
-		if ( recordInfo.matPrice4 < priceMin	&&
-			 recordInfo.matPrice4 > 0				)
+		if ( recordInfo.matPrice4 < priceMin || priceMin <= 0 )
 			priceMin = recordInfo.matPrice4;
 		
-		if ( recordInfo.matPrice5 < priceMin	&&
-			 recordInfo.matPrice5 > 0				)
+		if ( recordInfo.matPrice5 < priceMin || priceMin <= 0 )
 			priceMin = recordInfo.matPrice5;
 		
-		if ( recordInfo.matPrice6 < priceMin	&&
-			 recordInfo.matPrice6 > 0				)
+		if ( recordInfo.matPrice6 < priceMin || priceMin <= 0 )
 			priceMin = recordInfo.matPrice6;
 		
-		if ( recordInfo.matPrice7 < priceMin	&&
-			 recordInfo.matPrice7 > 0				)
+		if ( recordInfo.matPrice7 < priceMin || priceMin <= 0 )
 			priceMin = recordInfo.matPrice7;
 		
 		return priceMin;
@@ -80,8 +75,10 @@ public final class MatoreSetterRange extends InfoSetterTemplate<MatoreInfo> {
 	
 	
 	private String setPriceRange(double priceMin, double priceMax) {
-		String min = String.format("%,%.0f", priceMin/100);
-		String max = String.format("%,%.0f", priceMax/100);		
+		DecimalFormat df = new DecimalFormat("0.##");
+		
+		String min = df.format(priceMin/100);
+		String max = df.format(priceMax/100);		
 		
 		if (min.equals(max))
 			return min;

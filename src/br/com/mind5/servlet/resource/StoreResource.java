@@ -51,7 +51,7 @@ public class StoreResource {
 	private static final String DELETE_STORE = "/deleteStore";
 	private static final String SELECT_STORE = "/selectStore";
 	private static final String SEARCH_STORE = "/searchStore";
-	private static final String SELECT_STORE_CATALOGUE = "/selectStoreCatalog";
+	private static final String SELECT_STORE_CATALOGUE = "/selectStoreCatalogue";
 	private static final String SELECT_STORE_NEARBY = "/selectStoreNearby";			//TODO: Remover
 	private static final String SELECT_STORE_WTIME = "/selectStoreWorkTime";
 	private static final String SEARCH_STORE_WTIME = "/searchStoreWorkTime";

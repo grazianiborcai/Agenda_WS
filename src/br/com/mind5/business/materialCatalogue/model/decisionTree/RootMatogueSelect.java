@@ -4,11 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.materialCatalogue.info.MatogueInfo;
+import br.com.mind5.business.materialCatalogue.model.action.LazyMatogueEnforceMatubup;
 import br.com.mind5.business.materialCatalogue.model.action.StdMatogueMergeMatore;
 import br.com.mind5.business.materialCatalogue.model.checker.MatogueCheckLangu;
 import br.com.mind5.business.materialCatalogue.model.checker.MatogueCheckOwner;
 import br.com.mind5.business.materialCatalogue.model.checker.MatogueCheckRead;
 import br.com.mind5.business.materialCatalogue.model.checker.MatogueCheckStore;
+import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -65,9 +67,12 @@ public final class RootMatogueSelect extends DeciTreeTemplateReadV2<MatogueInfo>
 	@Override protected List<ActionStdV1<MatogueInfo>> buildActionsOnPassedHook(DeciTreeOption<MatogueInfo> option) {
 		List<ActionStdV1<MatogueInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<MatogueInfo> MergeMatore = new StdMatogueMergeMatore(option);
+		ActionStdV1<MatogueInfo> mergeMatore = new StdMatogueMergeMatore(option);
+		ActionLazyV1<MatogueInfo> enforceMatubup = new LazyMatogueEnforceMatubup(option.conn, option.schemaName);
 		
-		actions.add(MergeMatore);		
+		mergeMatore.addPostAction(enforceMatubup);
+		
+		actions.add(mergeMatore);		
 		return actions;
 	}
 }

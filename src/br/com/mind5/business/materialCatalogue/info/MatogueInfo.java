@@ -6,12 +6,14 @@ import br.com.mind5.business.materialStore.info.MatoreInfo;
 import br.com.mind5.common.CloneUtil;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
+import br.com.mind5.masterData.materialSubgroup.info.MatubupInfo;
 
 public final class MatogueInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codStore;	
 	public String username;
 	public List<MatoreInfo> matores;
+	public List<MatubupInfo> matubupes;
 	
 	
 	public MatogueInfo() {
@@ -20,6 +22,7 @@ public final class MatogueInfo extends InfoRecord implements Cloneable {
 		codOwner = DefaultValue.number();
 		codStore = DefaultValue.number();	
 		matores = DefaultValue.list();
+		matubupes = DefaultValue.list();
 	}
 	
 	
@@ -40,6 +43,7 @@ public final class MatogueInfo extends InfoRecord implements Cloneable {
 		MatogueInfo deepCopy = (MatogueInfo) super.clone();
 		
 		deepCopy.matores = CloneUtil.cloneRecords(deepCopy.matores, this.getClass());
+		deepCopy.matubupes = CloneUtil.cloneRecords(deepCopy.matubupes, this.getClass());
 		
 		return deepCopy;
 	}

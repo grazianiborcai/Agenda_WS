@@ -57,8 +57,7 @@
     	<security:intercept-url pattern="/**/Store/deleteStoreLeaveDate" 			access="hasAuthority('STORE_UPDATE')" 				/>
     	<security:intercept-url pattern="/**/Store/selectStoreLeaveDate" 			access="hasAuthority('STORE_READ')" 				/>
     	<security:intercept-url pattern="/**/Store/searchStoreLeaveDate" 			access="hasAuthority('STORE_READ')" 				/>
-    	<security:intercept-url pattern="/**/Store/searchStore" 					access="isAuthenticated()" 							/>
-    	<security:intercept-url pattern="/**/Store/selectMatCatalogue" 				access="isAuthenticated()" 							/>    	
+    	<security:intercept-url pattern="/**/Store/searchStore" 					access="isAuthenticated()" 							/>    	   	
         <security:intercept-url pattern="/**/Store/selectPayPartnerList"			access="hasAuthority('STORE_PAY_READ')"				/> 	  
         <security:intercept-url pattern="/**/Store/grantMoip"						access="hasAuthority('STORE_PAY_WRITE')" 			/>    
         <security:intercept-url pattern="/**/Store/insertStore" 					access="hasAuthority('STORE_INSERT')" 				/>
@@ -66,7 +65,7 @@
         <security:intercept-url pattern="/**/Store/deleteStore" 					access="hasAuthority('STORE_DELETE')" 				/>
         <security:intercept-url pattern="/**/Store/selectStore" 					access="hasAuthority('STORE_READ')" 				/>   
         <security:intercept-url pattern="/**/Store/selectStoreNearby" 				access="isAuthenticated()" 							/>   
-        <security:intercept-url pattern="/**/Store/selectStoreCatalog" 				access="isAuthenticated()" 							/>                    
+        <security:intercept-url pattern="/**/Store/selectStoreCatalogue" 			access="isAuthenticated()" 							/>                    
         <security:intercept-url pattern="/**/Material/insertMatmov" 				access="hasAuthority('MAT_MOV_WRITE')"				/>
         <security:intercept-url pattern="/**/Material/selectMatmov" 				access="hasAuthority('MAT_MOV_READ')"				/>     
         <security:intercept-url pattern="/**/Material/searchMatmov" 				access="hasAuthority('MAT_MOV_READ')"				/>     
@@ -80,6 +79,7 @@
         <security:intercept-url pattern="/**/Material/deleteMaterial" 				access="hasAuthority('MATERIAL_WRITE')" 			/>
         <security:intercept-url pattern="/**/Material/selectMaterial" 				access="isAuthenticated()" 							/>  <!-- TODO: rever --> 
         <security:intercept-url pattern="/**/Material/searchMaterial" 				access="isAuthenticated()" 							/>
+        <security:intercept-url pattern="/**/Material/selectMaterialCatalogue" 		access="isAuthenticated()" 							/> 
         <security:intercept-url pattern="/**/Employee/selectEmployee" 				access="hasAuthority('EMPLOYEE_READ')" 				/>
         <security:intercept-url pattern="/**/Employee/searchEmployee" 				access="hasAuthority('EMPLOYEE_READ')" 				/>        
         <security:intercept-url pattern="/**/Employee/insertEmployee"				access="hasAuthority('EMPLOYEE_WRITE')"				/>

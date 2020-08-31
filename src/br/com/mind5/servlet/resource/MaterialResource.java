@@ -18,7 +18,6 @@ import br.com.mind5.business.material.model.MatModelDelete;
 import br.com.mind5.business.material.model.MatModelInsert;
 import br.com.mind5.business.material.model.MatModelSelect;
 import br.com.mind5.business.material.model.MatModelUpdate;
-import br.com.mind5.business.materialCatalogue.info.MatogueInfo;
 import br.com.mind5.business.materialCatalogue.model.MatogueModelSelect;
 import br.com.mind5.business.materialList.model.MatlisModelSearch;
 import br.com.mind5.business.materialMovement.info.MatmovInfo;
@@ -48,7 +47,7 @@ public class MaterialResource {
 	private static final String INSERT_MAT_MOV = "/insertMatmov";
 	private static final String SELECT_MAT_MOV = "/selectMatmov";	
 	private static final String SEARCH_MAT_MOV = "/searchMatmov";
-	private static final String SELECT_MAT_CATALOGUE = "/selectMatCatalogue";
+	private static final String SELECT_MAT_CATALOGUE = "/selectMaterialCatalogue";
 
 	
 	@POST
@@ -312,22 +311,13 @@ public class MaterialResource {
 	
 	
 	
-	@GET
+	@POST
 	@Path(SELECT_MAT_CATALOGUE)
+	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response selectMatogue(@HeaderParam("TOKEN_OWNER") @DefaultValue("-1") long codOwner,
-			                      @HeaderParam("codStore")    @DefaultValue("-1") long codStore,
-								  @HeaderParam("TOKEN_USERNAME") String username,
-								  @HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage) {
-
-
-		MatogueInfo recordInfo = new MatogueInfo();
-		recordInfo.codOwner = codOwner;
-		recordInfo.codStore = codStore;
-		recordInfo.username = username;
-		recordInfo.codLanguage = codLanguage;
+	public Response selectMatogue(@Context HttpServletRequest request, String incomingData) {
 		
-		Model model = new MatogueModelSelect(recordInfo);
+		Model model = new MatogueModelSelect(incomingData, request);
 		model.executeRequest();
 		Response result = model.getResponse();	
 		model.close();
