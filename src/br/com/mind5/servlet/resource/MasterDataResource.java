@@ -22,8 +22,8 @@ import br.com.mind5.masterData.countrySearch.info.CountarchInfo;
 import br.com.mind5.masterData.countrySearch.model.CountarchModelSelect;
 import br.com.mind5.masterData.currencySearch.info.CurrarshInfo;
 import br.com.mind5.masterData.currencySearch.model.CurrarshModelSelect;
-import br.com.mind5.masterData.dayPartingSearch.info.DayparchInfo;
-import br.com.mind5.masterData.dayPartingSearch.model.DayparchModelSelect;
+import br.com.mind5.masterData.dayParting.info.DaypartInfo;
+import br.com.mind5.masterData.dayParting.model.DaypartModelSearch;
 import br.com.mind5.masterData.entityCategory.info.EntitegInfo;
 import br.com.mind5.masterData.entityCategory.model.EntitegModelSelect;
 import br.com.mind5.masterData.feeCategorySearch.info.FeecatarchInfo;
@@ -316,11 +316,11 @@ public final class MasterDataResource {
 	public Response selectDaypart(@HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage,
 			                      @HeaderParam("codDaypart")  @DefaultValue("-1") int codDaypart){
 		
-		DayparchInfo recordInfo = new DayparchInfo();
+		DaypartInfo recordInfo = new DaypartInfo();
 		recordInfo.codDaypart = codDaypart;
 		recordInfo.codLanguage = codLanguage;
 		
-		Model model = new DayparchModelSelect(recordInfo);
+		Model model = new DaypartModelSearch(recordInfo);
 		model.executeRequest();
 		Response result = model.getResponse();
 		model.close();
