@@ -9,9 +9,23 @@ import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.info.InfoMergerBuilderV3;
 import br.com.mind5.info.InfoMergerV3;
 import br.com.mind5.masterData.dayParting.info.DaypartInfo;
+import br.com.mind5.masterData.moonPhase.info.MoonaseInfo;
 import br.com.mind5.masterData.weekday.info.WeekdayInfo;
 
 public final class CalgueMerger {
+	public static List<CalgueInfo> mergeWithMoonase(List<CalgueInfo> baseInfos, List<MoonaseInfo> selectedInfos) {
+		InfoMergerBuilderV3<CalgueInfo, MoonaseInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new CalgueVisiMergeMoonase());
+		InfoMergerV3<CalgueInfo, MoonaseInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	
 	public static List<CalgueInfo> mergeWithStolis(List<CalgueInfo> baseInfos, List<StolisInfo> selectedInfos) {
 		InfoMergerBuilderV3<CalgueInfo, StolisInfo> builder = new InfoMergerBuilderV3<>();
 		

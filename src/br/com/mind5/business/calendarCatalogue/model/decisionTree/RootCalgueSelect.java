@@ -7,6 +7,7 @@ import br.com.mind5.business.calendarCatalogue.info.CalgueInfo;
 import br.com.mind5.business.calendarCatalogue.model.action.LazyCalgueMergeCalate;
 import br.com.mind5.business.calendarCatalogue.model.action.LazyCalgueMergeDaypart;
 import br.com.mind5.business.calendarCatalogue.model.action.LazyCalgueMergeMatlis;
+import br.com.mind5.business.calendarCatalogue.model.action.LazyCalgueMergeMoonase;
 import br.com.mind5.business.calendarCatalogue.model.action.LazyCalgueMergeStolis;
 import br.com.mind5.business.calendarCatalogue.model.action.LazyCalgueMergeWeekday;
 import br.com.mind5.business.calendarCatalogue.model.action.StdCalgueMergeCalguata;
@@ -91,13 +92,15 @@ public final class RootCalgueSelect extends DeciTreeTemplateWriteV2<CalgueInfo> 
 		ActionLazyV1<CalgueInfo> mergeCalate = new LazyCalgueMergeCalate(option.conn, option.schemaName);
 		ActionLazyV1<CalgueInfo> mergeWeekday = new LazyCalgueMergeWeekday(option.conn, option.schemaName);
 		ActionLazyV1<CalgueInfo> mergeDaypart = new LazyCalgueMergeDaypart(option.conn, option.schemaName);		
+		ActionLazyV1<CalgueInfo> mergeMoonase = new LazyCalgueMergeMoonase(option.conn, option.schemaName);			
 		ActionLazyV1<CalgueInfo> mergeMatlis = new LazyCalgueMergeMatlis(option.conn, option.schemaName);
 		ActionLazyV1<CalgueInfo> mergeStolis = new LazyCalgueMergeStolis(option.conn, option.schemaName);
 		
 		mergeCalguata.addPostAction(mergeCalate);
 		mergeCalate.addPostAction(mergeWeekday);
 		mergeWeekday.addPostAction(mergeDaypart);
-		mergeDaypart.addPostAction(mergeMatlis);
+		mergeDaypart.addPostAction(mergeMoonase);
+		mergeMoonase.addPostAction(mergeMatlis);
 		mergeMatlis.addPostAction(mergeStolis);
 		
 		actions.add(mergeCalguata);			
