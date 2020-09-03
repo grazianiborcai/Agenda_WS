@@ -5,8 +5,16 @@ import java.util.List;
 
 import br.com.mind5.business.calendarCatalogue.info.CalgueInfo;
 import br.com.mind5.business.calendarCatalogue.model.action.LazyCalgueMergeCalate;
+import br.com.mind5.business.calendarCatalogue.model.action.LazyCalgueMergeDaypart;
+import br.com.mind5.business.calendarCatalogue.model.action.LazyCalgueMergeMatlis;
+import br.com.mind5.business.calendarCatalogue.model.action.LazyCalgueMergeStolis;
+import br.com.mind5.business.calendarCatalogue.model.action.LazyCalgueMergeWeekday;
 import br.com.mind5.business.calendarCatalogue.model.action.StdCalgueMergeCalguata;
+import br.com.mind5.business.calendarCatalogue.model.checker.CalgueCheckLangu;
+import br.com.mind5.business.calendarCatalogue.model.checker.CalgueCheckMat;
+import br.com.mind5.business.calendarCatalogue.model.checker.CalgueCheckOwner;
 import br.com.mind5.business.calendarCatalogue.model.checker.CalgueCheckRead;
+import br.com.mind5.business.calendarCatalogue.model.checker.CalgueCheckStore;
 import br.com.mind5.business.calendarCatalogue.model.checker.CalgueCheckYearMonth;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
@@ -43,6 +51,34 @@ public final class RootCalgueSelect extends DeciTreeTemplateWriteV2<CalgueInfo> 
 		checker = new CalgueCheckYearMonth(checkerOption);
 		queue.add(checker);
 		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
+		checker = new CalgueCheckLangu(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
+		checker = new CalgueCheckOwner(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
+		checker = new CalgueCheckMat(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
+		checker = new CalgueCheckStore(checkerOption);
+		queue.add(checker);
+		
 		return new ModelCheckerHelperQueueV2<>(queue);
 	}
 	
@@ -53,8 +89,16 @@ public final class RootCalgueSelect extends DeciTreeTemplateWriteV2<CalgueInfo> 
 		
 		ActionStdV1<CalgueInfo> mergeCalguata = new StdCalgueMergeCalguata(option);
 		ActionLazyV1<CalgueInfo> mergeCalate = new LazyCalgueMergeCalate(option.conn, option.schemaName);
+		ActionLazyV1<CalgueInfo> mergeWeekday = new LazyCalgueMergeWeekday(option.conn, option.schemaName);
+		ActionLazyV1<CalgueInfo> mergeDaypart = new LazyCalgueMergeDaypart(option.conn, option.schemaName);		
+		ActionLazyV1<CalgueInfo> mergeMatlis = new LazyCalgueMergeMatlis(option.conn, option.schemaName);
+		ActionLazyV1<CalgueInfo> mergeStolis = new LazyCalgueMergeStolis(option.conn, option.schemaName);
 		
 		mergeCalguata.addPostAction(mergeCalate);
+		mergeCalate.addPostAction(mergeWeekday);
+		mergeWeekday.addPostAction(mergeDaypart);
+		mergeDaypart.addPostAction(mergeMatlis);
+		mergeMatlis.addPostAction(mergeStolis);
 		
 		actions.add(mergeCalguata);			
 		return actions;

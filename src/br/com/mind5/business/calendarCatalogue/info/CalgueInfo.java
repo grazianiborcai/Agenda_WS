@@ -4,9 +4,13 @@ import java.util.List;
 
 import br.com.mind5.business.calendarCatalogueData.info.CalguataInfo;
 import br.com.mind5.business.calendarDate.info.CalateInfo;
+import br.com.mind5.business.materialList.info.MatlisInfo;
+import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.common.CloneUtil;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
+import br.com.mind5.masterData.dayParting.info.DaypartInfo;
+import br.com.mind5.masterData.weekday.info.WeekdayInfo;
 
 public final class CalgueInfo extends InfoRecord implements Cloneable {
 	public long codOwner;	
@@ -14,8 +18,12 @@ public final class CalgueInfo extends InfoRecord implements Cloneable {
 	public long codMat;
 	public int year;
 	public int month;
+	public StolisInfo stolisData;
+	public MatlisInfo matlisData;
 	public List<CalguataInfo> calguatas;
 	public List<CalateInfo> calates;
+	public List<WeekdayInfo> weekdays;
+	public List<DaypartInfo> dayparts;
 	public String username;
 	
 	
@@ -27,8 +35,12 @@ public final class CalgueInfo extends InfoRecord implements Cloneable {
 		year = DefaultValue.number();
 		month = DefaultValue.number();		
 		codStore = DefaultValue.number();
+		stolisData = DefaultValue.object();
+		matlisData = DefaultValue.object();
 		calguatas = DefaultValue.list();
 		calates = DefaultValue.list();
+		weekdays = DefaultValue.list();
+		dayparts = DefaultValue.list();
 	}
 	
 	
@@ -48,8 +60,12 @@ public final class CalgueInfo extends InfoRecord implements Cloneable {
 	@Override public Object clone()throws CloneNotSupportedException {  
 		CalgueInfo deepCopy = (CalgueInfo) super.clone();
 		
-		deepCopy.calguatas = CloneUtil.cloneRecords(calguatas, this.getClass());
-		deepCopy.calates   = CloneUtil.cloneRecords(calates, this.getClass());
+		deepCopy.stolisData = CloneUtil.cloneRecord(stolisData, this.getClass());
+		deepCopy.matlisData = CloneUtil.cloneRecord(matlisData, this.getClass());		
+		deepCopy.calguatas  = CloneUtil.cloneRecords(calguatas, this.getClass());
+		deepCopy.calates    = CloneUtil.cloneRecords(calates, this.getClass());
+		deepCopy.weekdays   = CloneUtil.cloneRecords(weekdays, this.getClass());
+		deepCopy.dayparts   = CloneUtil.cloneRecords(dayparts, this.getClass());
 		
 		return deepCopy;
 	}  
