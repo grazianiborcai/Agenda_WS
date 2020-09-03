@@ -13,6 +13,7 @@ import br.com.mind5.business.calendarCatalogue.model.action.LazyCalgueMergeWeekd
 import br.com.mind5.business.calendarCatalogue.model.action.StdCalgueMergeCalguata;
 import br.com.mind5.business.calendarCatalogue.model.checker.CalgueCheckLangu;
 import br.com.mind5.business.calendarCatalogue.model.checker.CalgueCheckMat;
+import br.com.mind5.business.calendarCatalogue.model.checker.CalgueCheckMonth;
 import br.com.mind5.business.calendarCatalogue.model.checker.CalgueCheckOwner;
 import br.com.mind5.business.calendarCatalogue.model.checker.CalgueCheckRead;
 import br.com.mind5.business.calendarCatalogue.model.checker.CalgueCheckStore;
@@ -57,6 +58,13 @@ public final class RootCalgueSelect extends DeciTreeTemplateWriteV2<CalgueInfo> 
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
 		checker = new CalgueCheckLangu(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
+		checker = new CalgueCheckMonth(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
