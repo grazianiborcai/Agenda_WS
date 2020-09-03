@@ -30,12 +30,12 @@ public final class CalguataCheckYearMonth extends ModelCheckerTemplateSimpleV2<C
 		LocalDate now = DefaultValue.localDateNow();
 		
 		if (recordInfo.year < now.getYear())
-			return false;
+			return true;
 		
 		if (recordInfo.month < now.getMonthValue())
-			return false;
+			return true;
 		
-		return true;
+		return false;
 	}
 	
 	
