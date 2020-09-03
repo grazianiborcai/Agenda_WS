@@ -68,8 +68,8 @@ import br.com.mind5.masterData.timezoneSearch.info.TimezonarchInfo;
 import br.com.mind5.masterData.timezoneSearch.model.TimezonarchModelSelect;
 import br.com.mind5.masterData.userCategory.info.UseregInfo;
 import br.com.mind5.masterData.userCategory.model.UseregModelSelect;
-import br.com.mind5.masterData.weekdaySearch.info.WeekdarchInfo;
-import br.com.mind5.masterData.weekdaySearch.model.WeekdarchModelSelect;
+import br.com.mind5.masterData.weekday.info.WeekdayInfo;
+import br.com.mind5.masterData.weekday.model.WeekdayModelSelect;
 import br.com.mind5.model.Model;
 
 
@@ -296,11 +296,11 @@ public final class MasterDataResource {
 	public Response selectWeekday(@HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage,
 			                      @HeaderParam("codWeekday")  @DefaultValue("-1") int codWeekday){
 		
-		WeekdarchInfo recordInfo = new WeekdarchInfo();
+		WeekdayInfo recordInfo = new WeekdayInfo();
 		recordInfo.codWeekday = codWeekday;
 		recordInfo.codLanguage = codLanguage;
 		
-		Model model = new WeekdarchModelSelect(recordInfo);
+		Model model = new WeekdayModelSelect(recordInfo);
 		model.executeRequest();
 		Response result = model.getResponse();
 		model.close();
