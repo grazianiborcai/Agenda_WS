@@ -6,9 +6,9 @@ import br.com.mind5.model.ModelTemplate;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class WeekdayModelSelect extends ModelTemplate<WeekdayInfo> {
+public final class WeekdayModelSearch extends ModelTemplate<WeekdayInfo> {
 
-	public WeekdayModelSelect(WeekdayInfo recordInfo) {
+	public WeekdayModelSearch(WeekdayInfo recordInfo) {
 		super(recordInfo);
 	}
 	

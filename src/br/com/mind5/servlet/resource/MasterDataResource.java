@@ -108,6 +108,7 @@ public final class MasterDataResource {
 	private static final String SELECT_PROSPECT_STATUS = "/selectProspectStatus";
 	
 	
+	
 	@GET
 	@Path(SELECT_POSTION)
 	@Produces(MediaType.APPLICATION_JSON)
