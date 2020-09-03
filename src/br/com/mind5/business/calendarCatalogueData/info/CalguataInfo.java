@@ -20,7 +20,6 @@ public final class CalguataInfo extends InfoRecord implements Cloneable {
 	public int codDaypart;
 	public int codMoonPhase;
 	public String username;
-	public String recordMode;
 	
 	
 	public CalguataInfo() {
@@ -36,7 +35,6 @@ public final class CalguataInfo extends InfoRecord implements Cloneable {
 		codStore = DefaultValue.number();
 		codDaypart = DefaultValue.number();
 		codMoonPhase = DefaultValue.number();
-		recordMode = DefaultValue.recordMode();
 	}
 	
 	
