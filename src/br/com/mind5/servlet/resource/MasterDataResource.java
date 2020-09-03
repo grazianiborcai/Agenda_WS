@@ -69,7 +69,7 @@ import br.com.mind5.masterData.timezoneSearch.model.TimezonarchModelSelect;
 import br.com.mind5.masterData.userCategory.info.UseregInfo;
 import br.com.mind5.masterData.userCategory.model.UseregModelSelect;
 import br.com.mind5.masterData.weekday.info.WeekdayInfo;
-import br.com.mind5.masterData.weekday.model.WeekdayModelSelect;
+import br.com.mind5.masterData.weekday.model.WeekdayModelSearch;
 import br.com.mind5.model.Model;
 
 
@@ -300,7 +300,7 @@ public final class MasterDataResource {
 		recordInfo.codWeekday = codWeekday;
 		recordInfo.codLanguage = codLanguage;
 		
-		Model model = new WeekdayModelSelect(recordInfo);
+		Model model = new WeekdayModelSearch(recordInfo);
 		model.executeRequest();
 		Response result = model.getResponse();
 		model.close();
