@@ -1411,4 +1411,8 @@ public final class SystemCode {
 	// Calendar Catalogue Data
 	public static final int CAL_CATALOGUE_DATA_MANDATORY_FIELD_EMPTY	= 13800;
 	public static final int CAL_CATALOGUE_DATA_AGED_DATE				= 13801;
+	
+	// Calendar Catalogue
+	public static final int CAL_CATALOGUE_MANDATORY_FIELD_EMPTY			= 13800;
+	public static final int CAL_CATALOGUE_AGED_DATE						= 13801;
 }
