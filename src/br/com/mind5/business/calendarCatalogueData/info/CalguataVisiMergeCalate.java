@@ -31,7 +31,6 @@ final class CalguataVisiMergeCalate implements InfoMergerVisitorV3<CalguataInfo,
 		baseCopy.date = selectedInfo.date;
 		baseCopy.day = selectedInfo.day;
 		baseCopy.codWeekday = selectedInfo.codWeekday;
-		baseCopy.codMoonPhase = selectedInfo.codMoonPhase;
 		
 		results.add(baseCopy);
 		return results;

@@ -17,8 +17,6 @@ public final class CalguataInfo extends InfoRecord implements Cloneable {
 	public int day;
 	public LocalDate date;
 	public boolean isAvailable;
-	public int codDaypart;
-	public int codMoonPhase;
 	public String username;
 	
 	
@@ -33,8 +31,6 @@ public final class CalguataInfo extends InfoRecord implements Cloneable {
 		day = DefaultValue.number();
 		isAvailable = DefaultValue.boole();
 		codStore = DefaultValue.number();
-		codDaypart = DefaultValue.number();
-		codMoonPhase = DefaultValue.number();
 	}
 	
 	
@@ -64,8 +60,6 @@ public final class CalguataInfo extends InfoRecord implements Cloneable {
 		result = result * 31 + (int) (codStore 	  ^ (codStore 	 >>> 32));
 		result = result * 31 + (int) (codMat 	  ^ (codMat 	 >>> 32));
 		result = result * 31 + codWeekday;
-		result = result * 31 + codDaypart;
-		result = result * 31 + codMoonPhase;
 		
 		if (date != null) {			
 			int numDate = Integer.valueOf(date.format(DateTimeFormatter.BASIC_ISO_DATE));
@@ -88,12 +82,10 @@ public final class CalguataInfo extends InfoRecord implements Cloneable {
 		
 		CalguataInfo obj = (CalguataInfo) o;		
 		
-		return (codOwner 	 == obj.codOwner 		&& 
-				codStore 	 == obj.codStore 		&& 
-				codMat 		 == obj.codMat 			&& 
-				codWeekday 	 == obj.codWeekday  	&&
-				codDaypart 	 == obj.codDaypart  	&&
-				codMoonPhase == obj.codMoonPhase  	&&
+		return (codOwner 	 == obj.codOwner 	&& 
+				codStore 	 == obj.codStore 	&& 
+				codMat 		 == obj.codMat 		&& 
+				codWeekday 	 == obj.codWeekday  &&
 				isDateEqual(date, obj.date));
 	}
 }

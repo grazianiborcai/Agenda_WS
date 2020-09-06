@@ -27,7 +27,6 @@ final class CalguataVisiMergePlanata implements InfoMergerVisitorV3<CalguataInfo
 	@Override public List<CalguataInfo> merge(CalguataInfo baseInfo, PlanataInfo selectedInfo) {
 		List<CalguataInfo> results = new ArrayList<>();
 		
-		baseInfo.codDaypart = selectedInfo.codDaypart;
 		baseInfo.isAvailable = true;
 		
 		results.add(baseInfo);
