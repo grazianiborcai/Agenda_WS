@@ -8,7 +8,6 @@ import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.info.InfoMergerBuilderV3;
 import br.com.mind5.info.InfoMergerV3;
-import br.com.mind5.masterData.dayParting.info.DaypartInfo;
 import br.com.mind5.masterData.moonPhase.info.MoonaseInfo;
 import br.com.mind5.masterData.weekday.info.WeekdayInfo;
 
@@ -46,19 +45,6 @@ public final class CalgueMerger {
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new CalgueVisiMergeMatlis());
 		InfoMergerV3<CalgueInfo, MatlisInfo> merger = builder.build();		
-	
-		return merger.merge();
-	}
-	
-	
-	
-	public static List<CalgueInfo> mergeWithDaypart(List<CalgueInfo> baseInfos, List<DaypartInfo> selectedInfos) {
-		InfoMergerBuilderV3<CalgueInfo, DaypartInfo> builder = new InfoMergerBuilderV3<>();
-		
-		builder.addBaseInfos(baseInfos);
-		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new CalgueVisiMergeDaypart());
-		InfoMergerV3<CalgueInfo, DaypartInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}

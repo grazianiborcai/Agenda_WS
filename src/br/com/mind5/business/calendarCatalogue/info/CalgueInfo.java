@@ -9,7 +9,6 @@ import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.common.CloneUtil;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
-import br.com.mind5.masterData.dayParting.info.DaypartInfo;
 import br.com.mind5.masterData.moonPhase.info.MoonaseInfo;
 import br.com.mind5.masterData.weekday.info.WeekdayInfo;
 
@@ -24,7 +23,6 @@ public final class CalgueInfo extends InfoRecord implements Cloneable {
 	public List<CalguataInfo> calguatas;
 	public List<CalateInfo> calates;
 	public List<WeekdayInfo> weekdays;
-	public List<DaypartInfo> dayparts;
 	public List<MoonaseInfo> moonases;
 	public String username;
 	
@@ -42,7 +40,6 @@ public final class CalgueInfo extends InfoRecord implements Cloneable {
 		calguatas = DefaultValue.list();
 		calates = DefaultValue.list();
 		weekdays = DefaultValue.list();
-		dayparts = DefaultValue.list();
 		moonases = DefaultValue.list();
 	}
 	
@@ -68,7 +65,6 @@ public final class CalgueInfo extends InfoRecord implements Cloneable {
 		deepCopy.calguatas  = CloneUtil.cloneRecords(calguatas, this.getClass());
 		deepCopy.calates    = CloneUtil.cloneRecords(calates, this.getClass());
 		deepCopy.weekdays   = CloneUtil.cloneRecords(weekdays, this.getClass());
-		deepCopy.dayparts   = CloneUtil.cloneRecords(dayparts, this.getClass());
 		deepCopy.moonases   = CloneUtil.cloneRecords(moonases, this.getClass());
 		
 		return deepCopy;
