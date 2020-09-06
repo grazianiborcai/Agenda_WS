@@ -77,8 +77,8 @@ public final class MatoreSetterRange extends InfoSetterTemplate<MatoreInfo> {
 	private String setPriceRange(double priceMin, double priceMax) {
 		DecimalFormat df = new DecimalFormat("0.##");
 		
-		String min = df.format(priceMin/100);
-		String max = df.format(priceMax/100);		
+		String min = df.format(priceMin);
+		String max = df.format(priceMax);		
 		
 		if (min.equals(max))
 			return min;
