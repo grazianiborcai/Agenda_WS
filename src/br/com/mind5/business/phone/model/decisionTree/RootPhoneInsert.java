@@ -9,6 +9,7 @@ import br.com.mind5.business.phone.model.action.LazyPhoneEnforceCreatedOn;
 import br.com.mind5.business.phone.model.action.LazyPhoneEnforceLChanged;
 import br.com.mind5.business.phone.model.action.LazyPhoneMergeFormone;
 import br.com.mind5.business.phone.model.action.LazyPhoneMergeUsername;
+import br.com.mind5.business.phone.model.action.LazyPhoneNodeDefaultL1;
 import br.com.mind5.business.phone.model.action.LazyPhoneNodeInsert;
 import br.com.mind5.business.phone.model.action.LazyPhoneNodeSnapshot;
 import br.com.mind5.business.phone.model.action.StdPhoneMergeCountrone;
@@ -22,9 +23,9 @@ import br.com.mind5.business.phone.model.checker.PhoneCheckRefMulti;
 import br.com.mind5.business.phone.model.checker.PhoneCheckRefWrite;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
@@ -112,7 +113,8 @@ public final class RootPhoneInsert extends DeciTreeTemplateWriteV2<PhoneInfo> {
 		ActionLazyV1<PhoneInfo> enforceCreatedOn = new LazyPhoneEnforceCreatedOn(option.conn, option.schemaName);	
 		ActionLazyV1<PhoneInfo> enforceCreatedBy = new LazyPhoneEnforceCreatedBy(option.conn, option.schemaName);	
 		ActionLazyV1<PhoneInfo> nodeInsert = new LazyPhoneNodeInsert(option.conn, option.schemaName);	
-		ActionLazyV1<PhoneInfo> nodeSnapshot = new LazyPhoneNodeSnapshot(option.conn, option.schemaName);	
+		ActionLazyV1<PhoneInfo> nodeDefault = new LazyPhoneNodeDefaultL1(option.conn, option.schemaName);
+		ActionLazyV1<PhoneInfo> nodeSnapshot = new LazyPhoneNodeSnapshot(option.conn, option.schemaName);
 		
 		mergeCountrone.addPostAction(mergeFormone);
 		mergeFormone.addPostAction(mergeUsername);		
@@ -120,7 +122,8 @@ public final class RootPhoneInsert extends DeciTreeTemplateWriteV2<PhoneInfo> {
 		enforceLChanged.addPostAction(enforceCreatedOn);
 		enforceCreatedOn.addPostAction(enforceCreatedBy);		
 		enforceCreatedBy.addPostAction(nodeInsert);
-		nodeInsert.addPostAction(nodeSnapshot);
+		nodeInsert.addPostAction(nodeDefault);
+		nodeDefault.addPostAction(nodeSnapshot);
 		
 		actions.add(mergeCountrone);		
 		return actions;

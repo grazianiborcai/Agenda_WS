@@ -8,6 +8,7 @@ import br.com.mind5.business.phone.model.action.LazyPhoneEnforceLChanged;
 import br.com.mind5.business.phone.model.action.LazyPhoneMergeCountrone;
 import br.com.mind5.business.phone.model.action.LazyPhoneMergeFormone;
 import br.com.mind5.business.phone.model.action.LazyPhoneMergeUsername;
+import br.com.mind5.business.phone.model.action.LazyPhoneNodeDefaultL1;
 import br.com.mind5.business.phone.model.action.LazyPhoneNodeSnapshot;
 import br.com.mind5.business.phone.model.action.LazyPhoneNodeUpdate;
 import br.com.mind5.business.phone.model.action.StdPhoneMergeToUpdate;
@@ -21,9 +22,9 @@ import br.com.mind5.business.phone.model.checker.PhoneCheckRefWrite;
 import br.com.mind5.business.phone.model.checker.PhoneCheckUpdate;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
@@ -110,6 +111,7 @@ public final class RootPhoneUpdate extends DeciTreeTemplateWriteV2<PhoneInfo> {
 		ActionLazyV1<PhoneInfo> mergeUsername = new LazyPhoneMergeUsername(option.conn, option.schemaName);	
 		ActionLazyV1<PhoneInfo> enforceLChanged = new LazyPhoneEnforceLChanged(option.conn, option.schemaName);	
 		ActionLazyV1<PhoneInfo> nodeUpdate = new LazyPhoneNodeUpdate(option.conn, option.schemaName);	
+		ActionLazyV1<PhoneInfo> nodeDefault = new LazyPhoneNodeDefaultL1(option.conn, option.schemaName);
 		ActionLazyV1<PhoneInfo> nodeSnapshot = new LazyPhoneNodeSnapshot(option.conn, option.schemaName);	
 		
 		mergeToUpdate.addPostAction(mergeCountrone);
@@ -117,7 +119,8 @@ public final class RootPhoneUpdate extends DeciTreeTemplateWriteV2<PhoneInfo> {
 		mergeFormone.addPostAction(mergeUsername);		
 		mergeUsername.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(nodeUpdate);
-		nodeUpdate.addPostAction(nodeSnapshot);
+		nodeUpdate.addPostAction(nodeDefault);
+		nodeDefault.addPostAction(nodeSnapshot);
 		
 		actions.add(mergeToUpdate);		
 		return actions;

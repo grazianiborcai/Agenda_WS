@@ -58,7 +58,9 @@ public final class DaoPhoneInsertSingle extends DaoStmtTemplate<PhoneInfo> {
 				stmt.setString(i++, recordInfo.number);
 				stmt.setString(i++, recordInfo.codArea);		
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.createdBy);	
-				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.createdOn);	
+				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.createdOn);				
+				stmt.setBoolean(i++, recordInfo.isDefault);
+				stmt.setString(i++, recordInfo.phoneName);
 	
 				return stmt;
 			}		

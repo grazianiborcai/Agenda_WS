@@ -15,6 +15,8 @@ public final class PhoneInfo extends InfoRecord implements Cloneable {
 	public long codEmployee;
 	public long codUser;
 	public long codOwnerRef;
+	public String phoneName;
+	public boolean isDefault;
 	public String codCountry;
 	public String fullNumber;
 	public int codCountryPhone;
@@ -41,6 +43,7 @@ public final class PhoneInfo extends InfoRecord implements Cloneable {
 		codCustomer = DefaultValue.number();
 		codEmployee = DefaultValue.number();
 		codUser = DefaultValue.number();
+		isDefault = DefaultValue.boole();
 		codCountryPhone = DefaultValue.number();
 		codOwnerRef = DefaultValue.number();
 		recordMode = DefaultValue.recordMode();

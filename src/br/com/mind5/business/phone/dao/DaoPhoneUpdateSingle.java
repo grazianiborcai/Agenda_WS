@@ -3,6 +3,7 @@ package br.com.mind5.business.phone.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+
 import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
@@ -68,7 +69,9 @@ public final class DaoPhoneUpdateSingle extends DaoStmtTemplate<PhoneInfo> {
 				stmt.setString(i++, recordInfo.number);
 				stmt.setString(i++, recordInfo.codArea);					
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.createdBy);	
-				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.createdOn);	
+				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.createdOn);
+				stmt.setBoolean(i++, recordInfo.isDefault);
+				stmt.setString(i++, recordInfo.phoneName);
 				
 				return stmt;
 			}		

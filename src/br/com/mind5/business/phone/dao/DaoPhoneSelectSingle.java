@@ -78,7 +78,9 @@ public final class DaoPhoneSelectSingle extends DaoStmtTemplate<PhoneInfo> {
 					dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, DaoPhoneDbTableColumn.COL_LAST_CHANGED_BY);
 					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, DaoPhoneDbTableColumn.COL_COD_SNAPSHOT);
 					dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, DaoPhoneDbTableColumn.COL_CREATED_ON);
-					dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, DaoPhoneDbTableColumn.COL_CREATED_BY);
+					dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, DaoPhoneDbTableColumn.COL_CREATED_BY);					
+					dataInfo.isDefault = stmtResult.getBoolean(DaoPhoneDbTableColumn.COL_IS_DEFAULT);
+					dataInfo.phoneName = stmtResult.getString(DaoPhoneDbTableColumn.COL_PHONE_NAME);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

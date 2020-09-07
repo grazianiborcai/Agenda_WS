@@ -2,6 +2,7 @@ package br.com.mind5.business.phone.info;
 
 import java.util.List;
 
+import br.com.mind5.business.phoneDefault.info.PhonaultInfo;
 import br.com.mind5.business.phoneSearch.info.PhonarchInfo;
 import br.com.mind5.business.phoneSnapshot.info.PhonapInfo;
 import br.com.mind5.form.formPhone.info.FormoneInfo;
@@ -11,6 +12,19 @@ import br.com.mind5.masterData.countryPhone.info.CountroneInfo;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class PhoneMerger {
+	public static List<PhoneInfo> mergeWithPhonault(List<PhoneInfo> baseInfos, List<PhonaultInfo> selectedInfos) {
+		InfoMergerBuilderV3<PhoneInfo, PhonaultInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new PhoneVisiMergePhonault());
+		InfoMergerV3<PhoneInfo, PhonaultInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	
 	public static List<PhoneInfo> mergeWithPhonarch(List<PhoneInfo> baseInfos, List<PhonarchInfo> selectedInfos) {
 		InfoMergerBuilderV3<PhoneInfo, PhonarchInfo> builder = new InfoMergerBuilderV3<>();
 		

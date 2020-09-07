@@ -330,6 +330,7 @@ public final class SystemCode {
 	public static final int PHONE_LIMIT_NOT_REACHED						= 1576;
 	public static final int PHONE_FORM_INVALID							= 1577;
 	public static final int PHONE_FORM_OK								= 1578;
+	public static final int PHONE_NOT_DEFAULT							= 1579;
 	
 	// Address
 	public static final int ADDRESS_IS_NULL								= 1600;
