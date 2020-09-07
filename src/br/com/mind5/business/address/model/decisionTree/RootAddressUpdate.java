@@ -8,8 +8,11 @@ import br.com.mind5.business.address.model.action.LazyAddressEnforceDistrictSear
 import br.com.mind5.business.address.model.action.LazyAddressEnforceLChanged;
 import br.com.mind5.business.address.model.action.LazyAddressMergeFormess;
 import br.com.mind5.business.address.model.action.LazyAddressMergeUsername;
+import br.com.mind5.business.address.model.action.LazyAddressNodeDefaultL1;
 import br.com.mind5.business.address.model.action.LazyAddressNodeGeoL1;
+import br.com.mind5.business.address.model.action.LazyAddressNodeSnapshot;
 import br.com.mind5.business.address.model.action.LazyAddressNodeUpdate;
+import br.com.mind5.business.address.model.action.LazyAddressRootSelect;
 import br.com.mind5.business.address.model.action.StdAddressMergeToUpdate;
 import br.com.mind5.business.address.model.checker.AddressCheckCountry;
 import br.com.mind5.business.address.model.checker.AddressCheckExist;
@@ -102,7 +105,10 @@ public final class RootAddressUpdate extends DeciTreeTemplateWriteV2<AddressInfo
 		ActionLazyV1<AddressInfo> enforceLChanged = new LazyAddressEnforceLChanged(option.conn, option.schemaName);
 		ActionLazyV1<AddressInfo> enforceDistrictSearch = new LazyAddressEnforceDistrictSearch(option.conn, option.schemaName);
 		ActionLazyV1<AddressInfo> nodeGeo = new LazyAddressNodeGeoL1(option.conn, option.schemaName);
-		ActionLazyV1<AddressInfo> nodeUpdate = new LazyAddressNodeUpdate(option.conn, option.schemaName);	
+		ActionLazyV1<AddressInfo> nodeUpdate = new LazyAddressNodeUpdate(option.conn, option.schemaName);
+		ActionLazyV1<AddressInfo> nodeDefault = new LazyAddressNodeDefaultL1(option.conn, option.schemaName);
+		ActionLazyV1<AddressInfo> snapshot = new LazyAddressNodeSnapshot(option.conn, option.schemaName);
+		ActionLazyV1<AddressInfo> select = new LazyAddressRootSelect(option.conn, option.schemaName);
 		
 		mergeToUpdate.addPostAction(mergeUsername);
 		mergeUsername.addPostAction(mergeForm);
@@ -110,6 +116,9 @@ public final class RootAddressUpdate extends DeciTreeTemplateWriteV2<AddressInfo
 		enforceLChanged.addPostAction(enforceDistrictSearch);
 		enforceDistrictSearch.addPostAction(nodeGeo);
 		nodeGeo.addPostAction(nodeUpdate);
+		nodeUpdate.addPostAction(nodeDefault);
+		nodeDefault.addPostAction(snapshot);
+		snapshot.addPostAction(select);
 		
 		actions.add(mergeToUpdate);		
 		return actions;

@@ -350,6 +350,7 @@ public final class SystemCode {
 	public static final int ADDRESS_LIMIT_NOT_REACHED					= 1615;
 	public static final int ADDRESS_HAS_STATE							= 1616;
 	public static final int ADDRESS_HAS_NO_STATE						= 1617;
+	public static final int ADDRESS_NOT_DEFAULT							= 1618;
 	
 	// Form Address
 	public static final int FORM_ADDRESS_ALREADY_EXIST					= 1700;

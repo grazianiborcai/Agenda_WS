@@ -2,6 +2,7 @@ package br.com.mind5.business.address.info;
 
 import java.util.List;
 
+import br.com.mind5.business.addressDefault.info.AddaultInfo;
 import br.com.mind5.business.addressSearch.info.AddarchInfo;
 import br.com.mind5.business.addressSnapshot.info.AddresnapInfo;
 import br.com.mind5.form.formAddress.info.FormessInfo;
@@ -14,6 +15,19 @@ import br.com.mind5.masterData.state.info.StateInfo;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class AddressMerger {
+	public static List<AddressInfo> mergeWithAddault(List<AddressInfo> baseInfos, List<AddaultInfo> selectedInfos) {
+		InfoMergerBuilderV3<AddressInfo, AddaultInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new AddressVisiMergeAddault());
+		InfoMergerV3<AddressInfo, AddaultInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	
 	public static List<AddressInfo> mergeWithGeode(List<AddressInfo> baseInfos, List<GeodeInfo> selectedInfos) {
 		InfoMergerBuilderV3<AddressInfo, GeodeInfo> builder = new InfoMergerBuilderV3<>();
 		

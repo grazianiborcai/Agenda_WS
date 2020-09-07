@@ -9,8 +9,11 @@ import br.com.mind5.business.address.model.action.LazyAddressEnforceCreatedOn;
 import br.com.mind5.business.address.model.action.LazyAddressEnforceDistrictSearch;
 import br.com.mind5.business.address.model.action.LazyAddressEnforceLChanged;
 import br.com.mind5.business.address.model.action.LazyAddressMergeUsername;
+import br.com.mind5.business.address.model.action.LazyAddressNodeDefaultL1;
 import br.com.mind5.business.address.model.action.LazyAddressNodeGeoL1;
 import br.com.mind5.business.address.model.action.LazyAddressNodeInsert;
+import br.com.mind5.business.address.model.action.LazyAddressNodeSnapshot;
+import br.com.mind5.business.address.model.action.LazyAddressRootSelect;
 import br.com.mind5.business.address.model.action.StdAddressMergeFormess;
 import br.com.mind5.business.address.model.checker.AddressCheckCountry;
 import br.com.mind5.business.address.model.checker.AddressCheckInsert;
@@ -105,6 +108,9 @@ public final class RootAddressInsert extends DeciTreeTemplateWriteV2<AddressInfo
 		ActionLazyV1<AddressInfo> enforceDistrictSearch = new LazyAddressEnforceDistrictSearch(option.conn, option.schemaName);
 		ActionLazyV1<AddressInfo> nodeGeo = new LazyAddressNodeGeoL1(option.conn, option.schemaName);	
 		ActionLazyV1<AddressInfo> nodeInsert = new LazyAddressNodeInsert(option.conn, option.schemaName);	
+		ActionLazyV1<AddressInfo> nodeDefault = new LazyAddressNodeDefaultL1(option.conn, option.schemaName);
+		ActionLazyV1<AddressInfo> snapshot = new LazyAddressNodeSnapshot(option.conn, option.schemaName);
+		ActionLazyV1<AddressInfo> select = new LazyAddressRootSelect(option.conn, option.schemaName);
 		
 		mergeForm.addPostAction(mergeUsername);
 		mergeUsername.addPostAction(enforceLChanged);
@@ -113,6 +119,9 @@ public final class RootAddressInsert extends DeciTreeTemplateWriteV2<AddressInfo
 		enforceCreatedBy.addPostAction(enforceDistrictSearch);
 		enforceDistrictSearch.addPostAction(nodeGeo);
 		nodeGeo.addPostAction(nodeInsert);
+		nodeInsert.addPostAction(nodeDefault);
+		nodeDefault.addPostAction(snapshot);
+		snapshot.addPostAction(select);
 		
 		actions.add(mergeForm);		
 		return actions;

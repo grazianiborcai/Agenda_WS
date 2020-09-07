@@ -98,6 +98,8 @@ public final class DaoAddressSelectSingle extends DaoStmtTemplate<AddressInfo> {
 					dataInfo.geoHash04 = stmtResult.getString(DaoAddressDbTableColumn.COL_GEO_HASH_04);
 					dataInfo.geoHash05 = stmtResult.getString(DaoAddressDbTableColumn.COL_GEO_HASH_05);
 					dataInfo.geoHash12 = stmtResult.getString(DaoAddressDbTableColumn.COL_GEO_HASH_12);
+					dataInfo.addressName = stmtResult.getString(DaoAddressDbTableColumn.COL_ADDRESS_NAME);
+					dataInfo.isDefault = stmtResult.getBoolean(DaoAddressDbTableColumn.COL_IS_DEFAULT);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

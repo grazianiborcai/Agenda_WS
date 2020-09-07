@@ -4,11 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.address.info.AddressInfo;
+import br.com.mind5.business.address.model.action.StdAddressSuccess;
 import br.com.mind5.business.address.model.checker.AddressCheckWriteA00;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
@@ -41,9 +42,9 @@ public final class NodeAddressUpdateA00 extends DeciTreeTemplateWriteV2<AddressI
 	@Override protected List<ActionStdV1<AddressInfo>> buildActionsOnPassedHook(DeciTreeOption<AddressInfo> option) {
 		List<ActionStdV1<AddressInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<AddressInfo> snapshot = new NodeAddressSnapshot(option).toAction();	
+		ActionStdV1<AddressInfo> success = new StdAddressSuccess(option);	
 		
-		actions.add(snapshot);		
+		actions.add(success);		
 		return actions;
 	}
 }

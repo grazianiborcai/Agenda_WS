@@ -4,15 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.address.info.AddressInfo;
-import br.com.mind5.business.address.model.action.LazyAddressNodeSnapshot;
 import br.com.mind5.business.address.model.action.StdAddressDaoInsert;
 import br.com.mind5.business.address.model.checker.AddressCheckState;
 import br.com.mind5.business.address.model.checker.AddressCheckWriteA01;
-import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
@@ -52,10 +50,7 @@ public final class NodeAddressInsertA01 extends DeciTreeTemplateWriteV2<AddressI
 	@Override protected List<ActionStdV1<AddressInfo>> buildActionsOnPassedHook(DeciTreeOption<AddressInfo> option) {
 		List<ActionStdV1<AddressInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<AddressInfo> insert = new StdAddressDaoInsert(option);	
-		ActionLazyV1<AddressInfo> snapshot = new LazyAddressNodeSnapshot(option.conn, option.schemaName);
-
-		insert.addPostAction(snapshot);
+		ActionStdV1<AddressInfo> insert = new StdAddressDaoInsert(option);
 		
 		actions.add(insert);		
 		return actions;
