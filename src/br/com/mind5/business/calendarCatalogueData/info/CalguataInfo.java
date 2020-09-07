@@ -16,7 +16,6 @@ public final class CalguataInfo extends InfoRecord implements Cloneable {
 	public int month;
 	public int day;
 	public LocalDate date;
-	public boolean isAvailable;
 	public String username;
 	
 	
@@ -29,7 +28,6 @@ public final class CalguataInfo extends InfoRecord implements Cloneable {
 		year = DefaultValue.number();
 		month = DefaultValue.number();		
 		day = DefaultValue.number();
-		isAvailable = DefaultValue.boole();
 		codStore = DefaultValue.number();
 	}
 	
