@@ -3,6 +3,7 @@ package br.com.mind5.dao.common;
 public final class DaoDbField {	
 	public static final String COL_ACCESS_TOKEN = "access_token";
 	public static final String COL_ACCOUNT_LINK = "account_link";
+	public static final String COL_ADDRESS_NAME = "address_name";	
 	public static final String COL_AMOUNT_CURRENCY_PARTNER = "amount_currency_partner";
 	public static final String COL_AMOUNT_TOTAL_PARTNER = "amount_total_partner";
 	public static final String COL_BASIC_KEY = "basic_key";
@@ -191,6 +192,7 @@ public final class DaoDbField {
 	public static final String COL_OAUTH_TOKEN = "oauth_token";
 	public static final String COL_OWN_ID = "own_id";
 	public static final String COL_OWNER_SIGNUP = "owner_signup";
+	public static final String COL_PHONE_NAME = "phone_name";
 	public static final String COL_PROSPECT_EMAIL = "prospect_email";	
 	public static final String COL_PROSPECT_NAME = "prospect_name";
 	public static final String COL_PROSPECT_PHONE = "prospect_phone";

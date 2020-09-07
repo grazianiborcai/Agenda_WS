@@ -1415,4 +1415,9 @@ public final class SystemCode {
 	// Calendar Catalogue
 	public static final int CAL_CATALOGUE_MANDATORY_FIELD_EMPTY			= 13800;
 	public static final int CAL_CATALOGUE_AGED_DATE						= 13801;
+	
+	// Address Default
+	public static final int ADDRESS_DEFAULT_MANDATORY_FIELD_EMPTY		= 13850;
+	public static final int ADDRESS_DEFAULT_ALREADY_EXIST 				= 13851;
+	public static final int ADDRESS_DEFAULT_NOT_FOUND 					= 13852;
 }
