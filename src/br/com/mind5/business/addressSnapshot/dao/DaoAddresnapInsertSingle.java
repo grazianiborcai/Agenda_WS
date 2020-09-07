@@ -83,6 +83,8 @@ public final class DaoAddresnapInsertSingle extends DaoStmtTemplate<AddresnapInf
 				stmt.setString(i++, recordInfo.geoHash05);
 				stmt.setString(i++, recordInfo.geoHash12);
 				stmt.setString(i++, recordInfo.districtSearch);
+				stmt.setString(i++, recordInfo.addressName);
+				stmt.setBoolean(i++, recordInfo.isDefault);
 	
 				return stmt;
 			}		

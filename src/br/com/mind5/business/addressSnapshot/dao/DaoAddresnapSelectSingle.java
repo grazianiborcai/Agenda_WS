@@ -103,6 +103,8 @@ public final class DaoAddresnapSelectSingle extends DaoStmtTemplate<AddresnapInf
 					dataInfo.geoHash04 = stmtResult.getString(DaoAddresnapDbTableColumn.COL_GEO_HASH_04);
 					dataInfo.geoHash05 = stmtResult.getString(DaoAddresnapDbTableColumn.COL_GEO_HASH_05);
 					dataInfo.geoHash12 = stmtResult.getString(DaoAddresnapDbTableColumn.COL_GEO_HASH_12);
+					dataInfo.addressName = stmtResult.getString(DaoAddresnapDbTableColumn.COL_ADDRESS_NAME);
+					dataInfo.isDefault = stmtResult.getBoolean(DaoAddresnapDbTableColumn.COL_IS_DEFAULT);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

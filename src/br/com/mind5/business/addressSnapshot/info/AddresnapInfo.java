@@ -20,6 +20,8 @@ public final class AddresnapInfo extends InfoRecord implements Cloneable {
 	public long codUserSnapshot;
 	public long codOwnerRef;
 	public long codOwnerRefSnapshot;
+	public String addressName;
+	public boolean isDefault;
 	public String codCountry;
 	public String codCountryAlpha3;
 	public String txtCountry;
@@ -71,6 +73,7 @@ public final class AddresnapInfo extends InfoRecord implements Cloneable {
 		codOwnerRef = DefaultValue.number();
 		codOwnerRefSnapshot = DefaultValue.number();
 		codUser = DefaultValue.number();
+		isDefault = DefaultValue.boole();
 		codUserSnapshot = DefaultValue.number();
 		longitude = DefaultValue.geo();
 		latitude = DefaultValue.geo();		

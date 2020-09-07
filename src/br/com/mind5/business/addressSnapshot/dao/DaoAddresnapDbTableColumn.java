@@ -10,6 +10,7 @@ import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
 public final class DaoAddresnapDbTableColumn extends DaoDbTableColumnTemplate {
+	public static final String COL_ADDRESS_NAME = DaoDbField.COL_ADDRESS_NAME; 
 	public static final String COL_CITY = DaoDbField.COL_CITY;
 	public static final String COL_COD_ADDRESS = DaoDbField.COL_COD_ADDRESS;
 	public static final String COL_COMPLEMENT = DaoDbField.COL_COMPLEMENT;
@@ -36,6 +37,7 @@ public final class DaoAddresnapDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_GEO_HASH_04 = DaoDbField.COL_GEO_HASH_04; 
 	public static final String COL_GEO_HASH_05 = DaoDbField.COL_GEO_HASH_05; 
 	public static final String COL_GEO_HASH_12 = DaoDbField.COL_GEO_HASH_12;
+	public static final String COL_IS_DEFAULT = DaoDbField.COL_IS_DEFAULT; 
 	public static final String COL_LATITUDE = DaoDbField.COL_LATITUDE;
 	public static final String COL_LAST_CHANGED = DaoDbField.COL_LAST_CHANGED;
 	public static final String COL_LAST_CHANGED_BY = DaoDbField.COL_LAST_CHANGED_BY;
@@ -397,6 +399,22 @@ public final class DaoAddresnapDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn = new DaoColumn();
 		oneColumn.tableName = TABLE_NAME;
 		oneColumn.columnName = COL_DISTRICT_SEARCH;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_ADDRESS_NAME;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_IS_DEFAULT;
 		oneColumn.isPK = NEGATIVE;
 		oneColumn.isLookUp = NEGATIVE;
 		oneColumn.isAutoIncremented = NEGATIVE;
