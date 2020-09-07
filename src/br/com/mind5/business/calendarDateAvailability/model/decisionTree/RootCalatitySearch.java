@@ -12,9 +12,9 @@ import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 
-public final class RootCalatitySelect extends DeciTreeTemplateReadV2<CalatityInfo> {
+public final class RootCalatitySearch extends DeciTreeTemplateReadV2<CalatityInfo> {
 	
-	public RootCalatitySelect(DeciTreeOption<CalatityInfo> option) {
+	public RootCalatitySearch(DeciTreeOption<CalatityInfo> option) {
 		super(option);
 	}
 	

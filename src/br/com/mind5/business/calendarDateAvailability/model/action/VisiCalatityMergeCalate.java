@@ -3,7 +3,7 @@ package br.com.mind5.business.calendarDateAvailability.model.action;
 import java.util.List;
 
 import br.com.mind5.business.calendarDate.info.CalateInfo;
-import br.com.mind5.business.calendarDate.model.decisionTree.RootCalateSelect;
+import br.com.mind5.business.calendarDate.model.decisionTree.RootCalateSearch;
 import br.com.mind5.business.calendarDateAvailability.info.CalatityInfo;
 import br.com.mind5.business.calendarDateAvailability.info.CalatityMerger;
 import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
@@ -19,7 +19,7 @@ final class VisiCalatityMergeCalate extends ActionVisitorTemplateMergeV2<Calatit
 	
 	
 	@Override protected Class<? extends DeciTree<CalateInfo>> getTreeClassHook() {
-		return RootCalateSelect.class;
+		return RootCalateSearch.class;
 	}
 	
 	
