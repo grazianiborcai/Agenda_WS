@@ -4,11 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.calendarCatalogue.info.CalgueInfo;
-import br.com.mind5.business.calendarCatalogue.model.action.LazyCalgueMergeCalate;
+import br.com.mind5.business.calendarCatalogue.model.action.LazyCalgueEnforceAvailable;
+import br.com.mind5.business.calendarCatalogue.model.action.LazyCalgueMergeCalatity;
 import br.com.mind5.business.calendarCatalogue.model.action.LazyCalgueMergeMatlis;
-import br.com.mind5.business.calendarCatalogue.model.action.LazyCalgueMergeMoonase;
 import br.com.mind5.business.calendarCatalogue.model.action.LazyCalgueMergeStolis;
-import br.com.mind5.business.calendarCatalogue.model.action.LazyCalgueMergeWeekday;
 import br.com.mind5.business.calendarCatalogue.model.action.StdCalgueMergeCalguata;
 import br.com.mind5.business.calendarCatalogue.model.checker.CalgueCheckLangu;
 import br.com.mind5.business.calendarCatalogue.model.checker.CalgueCheckMat;
@@ -96,17 +95,15 @@ public final class RootCalgueSelect extends DeciTreeTemplateWriteV2<CalgueInfo> 
 		List<ActionStdV1<CalgueInfo>> actions = new ArrayList<>();		
 		
 		ActionStdV1<CalgueInfo> mergeCalguata = new StdCalgueMergeCalguata(option);
-		ActionLazyV1<CalgueInfo> mergeCalate = new LazyCalgueMergeCalate(option.conn, option.schemaName);
-		ActionLazyV1<CalgueInfo> mergeWeekday = new LazyCalgueMergeWeekday(option.conn, option.schemaName);	
-		ActionLazyV1<CalgueInfo> mergeMoonase = new LazyCalgueMergeMoonase(option.conn, option.schemaName);			
+		ActionLazyV1<CalgueInfo> mergeCalatity = new LazyCalgueMergeCalatity(option.conn, option.schemaName);		
 		ActionLazyV1<CalgueInfo> mergeMatlis = new LazyCalgueMergeMatlis(option.conn, option.schemaName);
 		ActionLazyV1<CalgueInfo> mergeStolis = new LazyCalgueMergeStolis(option.conn, option.schemaName);
+		ActionLazyV1<CalgueInfo> enforceAvailable = new LazyCalgueEnforceAvailable(option.conn, option.schemaName);
 		
-		mergeCalguata.addPostAction(mergeCalate);
-		mergeCalate.addPostAction(mergeWeekday);
-		mergeWeekday.addPostAction(mergeMoonase);
-		mergeMoonase.addPostAction(mergeMatlis);
+		mergeCalguata.addPostAction(mergeCalatity);
+		mergeCalatity.addPostAction(mergeMatlis);
 		mergeMatlis.addPostAction(mergeStolis);
+		mergeStolis.addPostAction(enforceAvailable);
 		
 		actions.add(mergeCalguata);			
 		return actions;

@@ -3,14 +3,12 @@ package br.com.mind5.business.calendarCatalogue.info;
 import java.util.List;
 
 import br.com.mind5.business.calendarCatalogueData.info.CalguataInfo;
-import br.com.mind5.business.calendarDate.info.CalateInfo;
+import br.com.mind5.business.calendarDateAvailability.info.CalatityInfo;
 import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.common.CloneUtil;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
-import br.com.mind5.masterData.moonPhase.info.MoonaseInfo;
-import br.com.mind5.masterData.weekday.info.WeekdayInfo;
 
 public final class CalgueInfo extends InfoRecord implements Cloneable {
 	public long codOwner;	
@@ -21,9 +19,7 @@ public final class CalgueInfo extends InfoRecord implements Cloneable {
 	public StolisInfo stolisData;
 	public MatlisInfo matlisData;
 	public List<CalguataInfo> calguatas;
-	public List<CalateInfo> calates;
-	public List<WeekdayInfo> weekdays;
-	public List<MoonaseInfo> moonases;
+	public List<CalatityInfo> calatitys;
 	public String username;
 	
 	
@@ -38,9 +34,7 @@ public final class CalgueInfo extends InfoRecord implements Cloneable {
 		stolisData = DefaultValue.object();
 		matlisData = DefaultValue.object();
 		calguatas = DefaultValue.list();
-		calates = DefaultValue.list();
-		weekdays = DefaultValue.list();
-		moonases = DefaultValue.list();
+		calatitys = DefaultValue.list();
 	}
 	
 	
@@ -63,9 +57,7 @@ public final class CalgueInfo extends InfoRecord implements Cloneable {
 		deepCopy.stolisData = CloneUtil.cloneRecord(stolisData, this.getClass());
 		deepCopy.matlisData = CloneUtil.cloneRecord(matlisData, this.getClass());		
 		deepCopy.calguatas  = CloneUtil.cloneRecords(calguatas, this.getClass());
-		deepCopy.calates    = CloneUtil.cloneRecords(calates, this.getClass());
-		deepCopy.weekdays   = CloneUtil.cloneRecords(weekdays, this.getClass());
-		deepCopy.moonases   = CloneUtil.cloneRecords(moonases, this.getClass());
+		deepCopy.calatitys    = CloneUtil.cloneRecords(calatitys, this.getClass());
 		
 		return deepCopy;
 	}  

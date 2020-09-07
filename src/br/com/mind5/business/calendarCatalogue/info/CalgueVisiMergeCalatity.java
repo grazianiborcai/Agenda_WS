@@ -3,11 +3,11 @@ package br.com.mind5.business.calendarCatalogue.info;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.mind5.business.calendarDateAvailability.info.CalatityInfo;
 import br.com.mind5.info.InfoMergerVisitorV3;
 import br.com.mind5.info.InfoUniquifier;
-import br.com.mind5.masterData.moonPhase.info.MoonaseInfo;
 
-final class CalgueVisiMergeMoonase implements InfoMergerVisitorV3<CalgueInfo, MoonaseInfo> {
+final class CalgueVisiMergeCalatity implements InfoMergerVisitorV3<CalgueInfo, CalatityInfo> {
 	
 	@Override public List<CalgueInfo> beforeMerge(List<CalgueInfo> baseInfos) {
 		return baseInfos;
@@ -15,16 +15,17 @@ final class CalgueVisiMergeMoonase implements InfoMergerVisitorV3<CalgueInfo, Mo
 	
 	
 	
-	@Override public boolean shouldMerge(CalgueInfo baseInfo, MoonaseInfo selectedInfo) {
-		return true;
+	@Override public boolean shouldMerge(CalgueInfo baseInfo, CalatityInfo selectedInfo) {
+		return (baseInfo.year  == selectedInfo.year && 
+				baseInfo.month == selectedInfo.month	);
 	}
 	
 	
 	
-	@Override public List<CalgueInfo> merge(CalgueInfo baseInfo, MoonaseInfo selectedInfo) {
+	@Override public List<CalgueInfo> merge(CalgueInfo baseInfo, CalatityInfo selectedInfo) {
 		List<CalgueInfo> results = new ArrayList<>();
 		
-		baseInfo.moonases.add(selectedInfo);
+		baseInfo.calatitys.add(selectedInfo);
 		
 		results.add(baseInfo);
 		return results;

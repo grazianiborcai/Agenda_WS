@@ -9,9 +9,9 @@ import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyCalgueMergeMoonase extends ActionLazyTemplateV2<CalgueInfo, CalgueInfo> {
+public final class LazyCalgueMergeCalatity extends ActionLazyTemplateV2<CalgueInfo, CalgueInfo> {
 	
-	public LazyCalgueMergeMoonase(Connection conn, String schemaName) {
+	public LazyCalgueMergeCalatity(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyCalgueMergeMoonase extends ActionLazyTemplateV2<CalgueInf
 	
 	
 	@Override protected ActionStdV1<CalgueInfo> getInstanceOfActionHook(DeciTreeOption<CalgueInfo> option) {
-		return new StdCalgueMergeMoonase(option);
+		return new StdCalgueMergeCalatity(option);
 	}
 	
 	
