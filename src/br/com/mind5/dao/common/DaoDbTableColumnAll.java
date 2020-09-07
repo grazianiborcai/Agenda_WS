@@ -80,6 +80,7 @@ import br.com.mind5.business.personList.dao.DaoPersolisDbTableColumn;
 import br.com.mind5.business.personSearch.dao.DaoPerarchDbTableColumn;
 import br.com.mind5.business.personSnapshot.dao.DaoPersonapDbTableColumn;
 import br.com.mind5.business.phone.dao.DaoPhoneDbTableColumn;
+import br.com.mind5.business.phoneDefault.dao.DaoPhonaultDbTableColumn;
 import br.com.mind5.business.phoneSearch.dao.DaoPhonarchDbTableColumn;
 import br.com.mind5.business.phoneSnapshot.dao.DaoPhonapDbTableColumn;
 import br.com.mind5.business.planingData.dao.PlanataDbTableColumn;
@@ -436,6 +437,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new DaoMatubupDbTableColumn());
 		addTable(new DaoMatubuparchDbTableColumn());
 		addTable(new DaoAddaultDbTableColumn());
+		addTable(new DaoPhonaultDbTableColumn());
 	}
 	
 	

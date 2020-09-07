@@ -220,6 +220,7 @@ public final class DaoDbTable {
 	public static final String PAYMENT_STATUS_SEARCH_VIEW = "view_payment_status_search";
 	public static final String PERSON_LIST_VIEW = "view_person_list";	
 	public static final String PERSON_SEARCH_VIEW = "view_person_search";
+	public static final String PHONE_DEFAULT_VIEW = "view_phone_default";
 	public static final String PHONE_SEARCH_VIEW = "view_phone_search";
 	public static final String PLANING_DATA_VIEW = "planing_data_list";
 	public static final String PROSPECT_STATUS_SEARCH_VIEW = "view_prospect_status_search";

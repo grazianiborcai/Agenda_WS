@@ -1421,4 +1421,9 @@ public final class SystemCode {
 	public static final int ADDRESS_DEFAULT_MANDATORY_FIELD_EMPTY		= 13850;
 	public static final int ADDRESS_DEFAULT_ALREADY_EXIST 				= 13851;
 	public static final int ADDRESS_DEFAULT_NOT_FOUND 					= 13852;
+	
+	// Phone Default
+	public static final int PHONE_DEFAULT_MANDATORY_FIELD_EMPTY			= 13900;
+	public static final int PHONE_DEFAULT_ALREADY_EXIST 				= 13901;
+	public static final int PHONE_DEFAULT_NOT_FOUND 					= 13902;
 }
