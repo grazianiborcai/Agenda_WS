@@ -22,8 +22,7 @@ public final class AddaultCheckRead extends ModelCheckerTemplateSimpleV2<Addault
 			return super.FAILED;
 		
 		
-		if ( recordInfo.codAddress 	<= 0 	&&
-			 recordInfo.codCustomer <= 0	&&
+		if ( recordInfo.codCustomer <= 0	&&
 			 recordInfo.codStore 	<= 0	&& 
 			 recordInfo.codUser 	<= 0	&& 
 			 recordInfo.codOwnerRef <= 0	&&

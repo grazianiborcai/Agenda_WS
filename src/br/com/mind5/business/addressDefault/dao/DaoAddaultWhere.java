@@ -31,10 +31,6 @@ final class DaoAddaultWhere implements DaoStmtWhere {
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;
 					
-				case DaoAddaultDbTableColumn.COL_COD_ADDRESS :
-					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codAddress));
-					break;
-					
 				case DaoAddaultDbTableColumn.COL_COD_CUSTOMER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codCustomer));
 					break;
