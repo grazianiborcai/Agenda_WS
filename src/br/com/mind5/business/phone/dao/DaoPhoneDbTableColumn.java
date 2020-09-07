@@ -28,7 +28,7 @@ public final class DaoPhoneDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_NUMBER = DaoDbField.COL_NUMBER;
 	public static final String COL_LAST_CHANGED = DaoDbField.COL_LAST_CHANGED;
 	public static final String COL_LAST_CHANGED_BY = DaoDbField.COL_LAST_CHANGED_BY;
-	public static final String COL_PHONE_NAME= DaoDbField.COL_PHONE_NAME;
+	public static final String COL_PHONE_NAME = DaoDbField.COL_PHONE_NAME;
 	public static final String COL_RECORD_MODE = DaoDbField.COL_RECORD_MODE;
 	
 	

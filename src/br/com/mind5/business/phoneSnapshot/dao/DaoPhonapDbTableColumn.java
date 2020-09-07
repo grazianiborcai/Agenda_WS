@@ -28,10 +28,12 @@ public final class DaoPhonapDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COUNTRY_PHONE = DaoDbField.COL_COUNTRY_PHONE;
 	public static final String COL_CREATED_BY = DaoDbField.COL_CREATED_BY;
 	public static final String COL_CREATED_ON = DaoDbField.COL_CREATED_ON;
+	public static final String COL_IS_DEFAULT = DaoDbField.COL_IS_DEFAULT;
 	public static final String COL_FULL_NUMBER = DaoDbField.COL_FULL_NUMBER;
 	public static final String COL_NUMBER = DaoDbField.COL_NUMBER;
 	public static final String COL_LAST_CHANGED = DaoDbField.COL_LAST_CHANGED;
 	public static final String COL_LAST_CHANGED_BY = DaoDbField.COL_LAST_CHANGED_BY;
+	public static final String COL_PHONE_NAME = DaoDbField.COL_PHONE_NAME;
 	public static final String COL_RECORD_MODE = DaoDbField.COL_RECORD_MODE;
 	
 	
@@ -231,6 +233,21 @@ public final class DaoPhonapDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_IS_DEFAULT;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);
+		
+		oneColumn = new DaoColumn();
+		oneColumn.tableName = TABLE_NAME;
+		oneColumn.columnName = COL_PHONE_NAME;
+		oneColumn.isPK = NEGATIVE;
+		oneColumn.isLookUp = NEGATIVE;
+		oneColumn.isAutoIncremented = NEGATIVE;
+		columns.add(oneColumn);			
 		
 		Hashtable<String, List<DaoColumn>> results = new Hashtable<>();
 		results.put(TABLE_NAME, columns);

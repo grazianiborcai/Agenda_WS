@@ -83,7 +83,9 @@ public final class DaoPhonapSelectSingle extends DaoStmtTemplate<PhonapInfo> {
 					dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, DaoPhonapDbTableColumn.COL_LAST_CHANGED_BY);
 					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, DaoPhonapDbTableColumn.COL_LAST_CHANGED);
 					dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, DaoPhonapDbTableColumn.COL_CREATED_ON);
-					dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, DaoPhonapDbTableColumn.COL_CREATED_BY);					
+					dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, DaoPhonapDbTableColumn.COL_CREATED_BY);
+					dataInfo.isDefault = stmtResult.getBoolean(DaoPhonapDbTableColumn.COL_IS_DEFAULT);
+					dataInfo.phoneName = stmtResult.getString(DaoPhonapDbTableColumn.COL_PHONE_NAME);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());
