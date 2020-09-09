@@ -18,6 +18,7 @@ import br.com.mind5.model.action.ActionVisitorTemplateSimpleV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
 final class VisiGeodeCoding extends ActionVisitorTemplateSimpleV2<GeodeInfo> {
+	private String REGEX_SPLIT = ",+(?=\")";
 	
 	public VisiGeodeCoding(DeciTreeOption<GeodeInfo> option) {
 		super(option);
@@ -132,32 +133,84 @@ final class VisiGeodeCoding extends ActionVisitorTemplateSimpleV2<GeodeInfo> {
 	
 	private float getLatitute(List<String> contents) {
 		String lineData = getLineData(contents);
+		int latPos = getLatPosition(contents);
 		
-		String[] values = lineData.split(",+");
-		return stringToFloat(values[6]);
+		String[] values = lineData.split(REGEX_SPLIT);
+		return stringToFloat(values[latPos]);
 	}
 	
 	
 	
 	private float getLongitude(List<String> contents) {
 		String lineData = getLineData(contents);
+		int lngPos = getLngPosition(contents);
 		
-		String[] values = lineData.split(",+");
-		return stringToFloat(values[7]);
+		String[] values = lineData.split(REGEX_SPLIT);
+		return stringToFloat(values[lngPos]);
+	}
+	
+	
+	
+	private int getLatPosition(List<String> contents) {
+		String headerData = getHeaderData(contents);
+		
+		String[] values = headerData.split(REGEX_SPLIT);
+		int latPos = -1;
+		String latStr = "\"Lat\"";
+		
+		for(int i=0; i < values.length-1; i++) {
+			if (values[i].equals(latStr))
+				latPos = i;
+		}
+		
+		return latPos;
+	}
+	
+	
+	
+	private int getLngPosition(List<String> contents) {
+		String headerData = getHeaderData(contents);
+		
+		String[] values = headerData.split(REGEX_SPLIT);
+		int lngPos = -1;
+		String lngStr = "\"Lng\"";
+		
+		for(int i=0; i < values.length-1; i++) {
+			if (values[i].equals(lngStr))
+				lngPos = i;
+		}
+		
+		return lngPos;
+	}
+	
+	
+	
+	private String getHeaderData(List<String> contents) {
+		if (checkContents(contents) == false)
+			return null;		
+		
+		return contents.get(0);
 	}
 	
 	
 	
 	private String getLineData(List<String> contents) {
-		if (contents == null)
-			return null;
-		
-		
-		if (contents.isEmpty())
-			return null;
-		
+		if (checkContents(contents) == false)
+			return null;		
 		
 		return contents.get(1);
+	}
+	
+	
+	
+	private boolean checkContents(List<String> contents) {
+		if (contents == null)
+			return false;		
+		
+		if (contents.isEmpty())
+			return false;		
+		
+		return true;
 	}
 	
 	

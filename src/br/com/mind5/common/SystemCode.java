@@ -1415,16 +1415,16 @@ public final class SystemCode {
 	public static final int CAL_CATALOGUE_DATA_AGED_DATE				= 13801;
 	
 	// Calendar Catalogue
-	public static final int CAL_CATALOGUE_MANDATORY_FIELD_EMPTY			= 13800;
-	public static final int CAL_CATALOGUE_AGED_DATE						= 13801;
-	
-	// Address Default
-	public static final int ADDRESS_DEFAULT_MANDATORY_FIELD_EMPTY		= 13850;
-	public static final int ADDRESS_DEFAULT_ALREADY_EXIST 				= 13851;
-	public static final int ADDRESS_DEFAULT_NOT_FOUND 					= 13852;
+	public static final int CAL_CATALOGUE_MANDATORY_FIELD_EMPTY			= 13850;
+	public static final int CAL_CATALOGUE_AGED_DATE						= 13851;
 	
 	// Phone Default
 	public static final int PHONE_DEFAULT_MANDATORY_FIELD_EMPTY			= 13900;
 	public static final int PHONE_DEFAULT_ALREADY_EXIST 				= 13901;
 	public static final int PHONE_DEFAULT_NOT_FOUND 					= 13902;
+	
+	// Address Default
+	public static final int ADDRESS_DEFAULT_MANDATORY_FIELD_EMPTY		= 13950;
+	public static final int ADDRESS_DEFAULT_ALREADY_EXIST 				= 13951;
+	public static final int ADDRESS_DEFAULT_NOT_FOUND 					= 13952;
 }
