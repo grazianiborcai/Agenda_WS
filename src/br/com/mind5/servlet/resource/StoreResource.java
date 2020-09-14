@@ -23,6 +23,10 @@ import br.com.mind5.business.store.model.StoreModelInsert;
 import br.com.mind5.business.store.model.StoreModelSelect;
 import br.com.mind5.business.store.model.StoreModelUpdate;
 import br.com.mind5.business.storeCatalogue.model.StogueModelSelect;
+import br.com.mind5.business.storeFavorite.info.StoriteInfo;
+import br.com.mind5.business.storeFavorite.model.StoriteModelDeleteAuth;
+import br.com.mind5.business.storeFavorite.model.StoriteModelInsertAuth;
+import br.com.mind5.business.storeFavorite.model.StoriteModelSearchAuth;
 import br.com.mind5.business.storeLeaveDate.info.StolateInfo;
 import br.com.mind5.business.storeLeaveDate.model.StolateModelDelete;
 import br.com.mind5.business.storeLeaveDate.model.StolateModelInsert;
@@ -65,6 +69,9 @@ public class StoreResource {
 	private static final String DELETE_STORE_LDATE = "/deleteStoreLeaveDate";	
 	private static final String SELECT_STORE_PAY_PARTNER_LIST = "/selectPayPartnerList";
 	private static final String GRANT_MOIP = "/grantMoip";
+	private static final String INSERT_STORE_FAVORITE = "/insertStoreFavorite";
+	private static final String DELETE_STORE_FAVORITE = "/deleteStoreFavorite";
+	private static final String SEARCH_STORE_FAVORITE = "/searchStoreFavorite";	
 
 	
 	@POST
@@ -75,7 +82,10 @@ public class StoreResource {
 		
 		Model model = new StoreModelInsert(incomingData, request);
 		model.executeRequest();
-		return model.getResponse();
+		Response response = model.getResponse();
+		
+		model.close();
+		return response;
 	}
 	
 	
@@ -88,7 +98,10 @@ public class StoreResource {
 		
 		Model model = new StoreModelUpdate(incomingData, request);
 		model.executeRequest();
-		return model.getResponse();
+		Response response = model.getResponse();
+		
+		model.close();
+		return response;
 	}
 	
 
@@ -109,7 +122,10 @@ public class StoreResource {
 		
 		Model model = new StoreModelDelete(recordInfo);
 		model.executeRequest();
-		return model.getResponse();
+		Response response = model.getResponse();
+		
+		model.close();
+		return response;
 	}
 
 	
@@ -130,7 +146,10 @@ public class StoreResource {
 		
 		Model model = new StoreModelSelect(recordInfo);
 		model.executeRequest();
-		return model.getResponse();
+		Response response = model.getResponse();
+		
+		model.close();
+		return response;
 	}
 	
 	
@@ -407,5 +426,61 @@ public class StoreResource {
 		Model model = new AccemoipModelUrl(recordInfo);
 		model.executeRequest();
 		return model.getResponse();	
+	}
+	
+	
+	
+	@POST
+	@Path(INSERT_STORE_FAVORITE)
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response insertStorite(@Context HttpServletRequest request, String incomingData) {
+		
+		Model model = new StoriteModelInsertAuth(incomingData, request);
+		model.executeRequest();
+		Response response = model.getResponse();
+		
+		model.close();
+		return response;
+	}
+	
+	
+	
+	@DELETE
+	@Path(DELETE_STORE_FAVORITE)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response deleteStorite(@HeaderParam("TOKEN_OWNER")    	@DefaultValue("-1") long codOwner, 
+			                      @HeaderParam("codStore")       	@DefaultValue("-1") long codStore,
+			                      @HeaderParam("codLanguage")		@DefaultValue("EN") String codLanguage,
+			                      @HeaderParam("TOKEN_USERNAME") String username) {
+		
+		StoriteInfo recordInfo = new StoriteInfo();
+		recordInfo.codOwner = codOwner;
+		recordInfo.codStore = codStore;
+		recordInfo.codLanguage = codLanguage;
+		recordInfo.username = username;
+		
+		Model model = new StoriteModelDeleteAuth(recordInfo);
+		model.executeRequest();
+		Response response = model.getResponse();
+		
+		model.close();
+		return response;
+	}
+	
+	
+	
+	@POST
+	@Path(SEARCH_STORE_FAVORITE)
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response searchStorite(@Context HttpServletRequest request, String incomingData) {
+		
+		Model model = new StoriteModelSearchAuth(incomingData, request);
+		model.executeRequest();
+		Response response = model.getResponse();
+		
+		model.close();
+		return response;
 	}
 }

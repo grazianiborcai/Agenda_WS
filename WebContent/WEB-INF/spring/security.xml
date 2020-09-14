@@ -65,7 +65,10 @@
         <security:intercept-url pattern="/**/Store/deleteStore" 					access="hasAuthority('STORE_DELETE')" 				/>
         <security:intercept-url pattern="/**/Store/selectStore" 					access="hasAuthority('STORE_READ')" 				/>   
         <security:intercept-url pattern="/**/Store/selectStoreNearby" 				access="isAuthenticated()" 							/>   
-        <security:intercept-url pattern="/**/Store/selectStoreCatalogue" 			access="isAuthenticated()" 							/>                    
+        <security:intercept-url pattern="/**/Store/selectStoreCatalogue" 			access="isAuthenticated()" 							/>  
+        <security:intercept-url pattern="/**/Store/insertStoreFavorite" 			access="isAuthenticated()" 							/> 
+        <security:intercept-url pattern="/**/Store/deleteStoreFavorite" 			access="isAuthenticated()" 							/> 
+        <security:intercept-url pattern="/**/Store/searchStoreFavorite" 			access="isAuthenticated()" 							/> 
         <security:intercept-url pattern="/**/Material/insertMatmov" 				access="hasAuthority('MAT_MOV_WRITE')"				/>
         <security:intercept-url pattern="/**/Material/selectMatmov" 				access="hasAuthority('MAT_MOV_READ')"				/>     
         <security:intercept-url pattern="/**/Material/searchMatmov" 				access="hasAuthority('MAT_MOV_READ')"				/>     

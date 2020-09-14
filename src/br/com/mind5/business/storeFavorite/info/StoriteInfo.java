@@ -3,6 +3,8 @@ package br.com.mind5.business.storeFavorite.info;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import br.com.mind5.business.storeList.info.StolisInfo;
+import br.com.mind5.common.CloneUtil;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
 
@@ -13,6 +15,7 @@ public final class StoriteInfo extends InfoRecord implements Cloneable {
 	public String username;
 	public LocalDateTime lastChanged;
 	public LocalDateTime createdOn;
+	public StolisInfo stolisData;
 	
 	
 	public StoriteInfo() {
@@ -21,6 +24,7 @@ public final class StoriteInfo extends InfoRecord implements Cloneable {
 		codOwner = DefaultValue.number();
 		codUser = DefaultValue.number();
 		codStore = DefaultValue.number();
+		stolisData = DefaultValue.object();
 	}
 	
 	
@@ -38,7 +42,11 @@ public final class StoriteInfo extends InfoRecord implements Cloneable {
 	
 	
 	@Override public Object clone() throws CloneNotSupportedException {
-		return super.clone();
+		StoriteInfo deepCopy = (StoriteInfo) super.clone();
+		
+		deepCopy.stolisData = CloneUtil.cloneRecord(deepCopy.stolisData, this.getClass());
+		
+		return deepCopy;
 	}
 	
 	
