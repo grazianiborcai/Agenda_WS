@@ -127,6 +127,7 @@ public final class DaoDbTable {
 	public static final String STATE_TABLE = "state";
 	public static final String STATE_TEXT_TABLE = "state_text";
 	public static final String STORE_TABLE = "store";
+	public static final String STORE_FAVORITE_TABLE = "store_favorite";
 	public static final String STORE_PROSPECT_TABLE = "store_prospect";
 	public static final String STORE_SNAPSHOT_TABLE = "store_snapshot";
 	public static final String STORE_LD_TABLE = "store_leave_time";

@@ -1427,4 +1427,9 @@ public final class SystemCode {
 	public static final int ADDRESS_DEFAULT_MANDATORY_FIELD_EMPTY		= 13950;
 	public static final int ADDRESS_DEFAULT_ALREADY_EXIST 				= 13951;
 	public static final int ADDRESS_DEFAULT_NOT_FOUND 					= 13952;
+	
+	// Store Favorite
+	public static final int STORE_FAVORITE_MANDATORY_FIELD_EMPTY		= 14000;
+	public static final int STORE_FAVORITE_ALREADY_EXIST				= 14001;
+	public static final int STORE_FAVORITE_NOT_FOUND					= 14002;
 }
