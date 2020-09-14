@@ -1432,4 +1432,7 @@ public final class SystemCode {
 	public static final int STORE_FAVORITE_MANDATORY_FIELD_EMPTY		= 14000;
 	public static final int STORE_FAVORITE_ALREADY_EXIST				= 14001;
 	public static final int STORE_FAVORITE_NOT_FOUND					= 14002;
+	
+	// Store Favorite Search
+	public static final int STORE_FAVORITE_SEARCH_MANDATORY_FIELD_EMPTY	= 14050;
 }
