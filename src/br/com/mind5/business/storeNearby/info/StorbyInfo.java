@@ -22,6 +22,7 @@ public final class StorbyInfo extends InfoRecord implements Cloneable {
 	public String geoHash02;
 	public String geoHash03;
 	public double distanceKm;
+	public boolean isFavorite;
 	public String recordMode;
 	public String username;
 	public AddressInfo addressData;
@@ -39,6 +40,7 @@ public final class StorbyInfo extends InfoRecord implements Cloneable {
 		longitude = DefaultValue.geo();
 		latitude = DefaultValue.geo();
 		distanceKm = DefaultValue.number();
+		isFavorite = DefaultValue.boole();
 		recordMode = DefaultValue.recordMode();
 		complisData = DefaultValue.object();
 		addressData = DefaultValue.object();
