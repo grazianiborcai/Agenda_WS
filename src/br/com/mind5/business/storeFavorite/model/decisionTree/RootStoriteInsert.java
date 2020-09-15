@@ -4,15 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.storeFavorite.info.StoriteInfo;
-import br.com.mind5.business.storeFavorite.model.action.LazyStoriteDaoInsert;
-import br.com.mind5.business.storeFavorite.model.action.LazyStoriteEnforceLChanged;
-import br.com.mind5.business.storeFavorite.model.action.StdStoriteEnforceCreatedOn;
 import br.com.mind5.business.storeFavorite.model.checker.StoriteCheckLangu;
 import br.com.mind5.business.storeFavorite.model.checker.StoriteCheckOwner;
 import br.com.mind5.business.storeFavorite.model.checker.StoriteCheckStore;
 import br.com.mind5.business.storeFavorite.model.checker.StoriteCheckUser;
 import br.com.mind5.business.storeFavorite.model.checker.StoriteCheckWrite;
-import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -76,14 +72,9 @@ public final class RootStoriteInsert extends DeciTreeTemplateWriteV2<StoriteInfo
 	@Override protected List<ActionStdV1<StoriteInfo>> buildActionsOnPassedHook(DeciTreeOption<StoriteInfo> option) {
 		List<ActionStdV1<StoriteInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<StoriteInfo> enforceCreatedOn = new StdStoriteEnforceCreatedOn(option);
-		ActionLazyV1<StoriteInfo> enforceLChanged = new LazyStoriteEnforceLChanged(option.conn, option.schemaName);
-		ActionLazyV1<StoriteInfo> insert = new LazyStoriteDaoInsert(option.conn, option.schemaName);
+		ActionStdV1<StoriteInfo> nodeL1 = new NodeStoriteInsert(option).toAction();
 		
-		enforceCreatedOn.addPostAction(enforceLChanged);
-		enforceLChanged.addPostAction(insert);
-		
-		actions.add(enforceCreatedOn);	
+		actions.add(nodeL1);	
 		return actions;
 	}
 }
