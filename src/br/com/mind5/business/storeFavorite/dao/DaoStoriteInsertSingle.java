@@ -38,9 +38,9 @@ public final class DaoStoriteInsertSingle extends DaoStmtTemplate<StoriteInfo> {
 			@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, StoriteInfo recordInfo) throws SQLException {
 				int i = 1;
 				
-				stmt.setLong(i++, recordInfo.codOwner);
-				stmt.setLong(i++, recordInfo.codUser);
 				stmt.setLong(i++, recordInfo.codStore);
+				stmt.setLong(i++, recordInfo.codOwner);	
+				stmt.setLong(i++, recordInfo.codUser);
 				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.createdOn);
 				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.lastChanged);
 				

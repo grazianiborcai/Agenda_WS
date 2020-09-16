@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.storeFavorite.info.StoriteInfo;
-import br.com.mind5.business.storeFavorite.model.action.LazyStoriteRootSelect;
+import br.com.mind5.business.storeFavorite.model.action.LazyStoriteRootSearch;
 import br.com.mind5.business.storeFavorite.model.action.StdStoriteMergeUsername;
 import br.com.mind5.business.storeFavorite.model.checker.StoriteCheckSearchAuth;
 import br.com.mind5.model.action.ActionLazyV1;
@@ -44,9 +44,9 @@ public final class RootStoriteSearchAuth extends DeciTreeTemplateWriteV2<Storite
 		List<ActionStdV1<StoriteInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<StoriteInfo> mergeUsername = new StdStoriteMergeUsername(option);
-		ActionLazyV1<StoriteInfo> select = new LazyStoriteRootSelect(option.conn, option.schemaName);
+		ActionLazyV1<StoriteInfo> search = new LazyStoriteRootSearch(option.conn, option.schemaName);
 		
-		mergeUsername.addPostAction(select);
+		mergeUsername.addPostAction(search);
 		
 		actions.add(mergeUsername);	
 		return actions;

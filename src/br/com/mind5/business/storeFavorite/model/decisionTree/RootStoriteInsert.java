@@ -4,11 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.storeFavorite.info.StoriteInfo;
+import br.com.mind5.business.storeFavorite.model.action.LazyStoriteRootSelect;
 import br.com.mind5.business.storeFavorite.model.checker.StoriteCheckLangu;
 import br.com.mind5.business.storeFavorite.model.checker.StoriteCheckOwner;
 import br.com.mind5.business.storeFavorite.model.checker.StoriteCheckStore;
 import br.com.mind5.business.storeFavorite.model.checker.StoriteCheckUser;
 import br.com.mind5.business.storeFavorite.model.checker.StoriteCheckWrite;
+import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -73,6 +75,9 @@ public final class RootStoriteInsert extends DeciTreeTemplateWriteV2<StoriteInfo
 		List<ActionStdV1<StoriteInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<StoriteInfo> nodeL1 = new NodeStoriteInsert(option).toAction();
+		ActionLazyV1<StoriteInfo> select = new LazyStoriteRootSelect(option.conn, option.schemaName);
+		
+		nodeL1.addPostAction(select);
 		
 		actions.add(nodeL1);	
 		return actions;
