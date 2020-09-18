@@ -13,14 +13,15 @@ import br.com.mind5.business.materialText.model.action.LazyMatextNodeInsert;
 import br.com.mind5.business.materialText.model.action.LazyMatextRootSelect;
 import br.com.mind5.business.materialText.model.checker.MatextCheckExist;
 import br.com.mind5.business.materialText.model.checker.MatextCheckLangu;
+import br.com.mind5.business.materialText.model.checker.MatextCheckLength;
 import br.com.mind5.business.materialText.model.checker.MatextCheckMat;
 import br.com.mind5.business.materialText.model.checker.MatextCheckOwner;
 import br.com.mind5.business.materialText.model.checker.MatextCheckWrite;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
@@ -49,6 +50,13 @@ public final class RootMatextInsert extends DeciTreeTemplateWriteV2<MatextInfo> 
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
 		checker = new MatextCheckOwner(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
+		checker = new MatextCheckLength(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();

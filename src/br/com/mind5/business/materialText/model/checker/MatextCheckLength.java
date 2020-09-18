@@ -7,31 +7,28 @@ import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class MatextCheckWrite extends ModelCheckerTemplateSimpleV2<MatextInfo> {
+public final class MatextCheckLength extends ModelCheckerTemplateSimpleV2<MatextInfo> {
 
-	public MatextCheckWrite(ModelCheckerOption option) {
+	public MatextCheckLength(ModelCheckerOption option) {
 		super(option);
 	}
 	
 	
 	
 	@Override protected boolean checkHook(MatextInfo recordInfo, Connection conn, String schemaName) {	
-		if ( recordInfo.codOwner 	<= 0 	||
-			 recordInfo.codMat		<= 0	||
-			 recordInfo.txtMat		== null	||
-			 recordInfo.codLanguage	== null	||
-			 recordInfo.description	== null	||
-			 recordInfo.username	== null		)
-			
-			return super.FAILED;
+		if ( recordInfo.txtMat == null )			
+			return super.SUCCESS;
+		
+		if ( recordInfo.txtMat.length() <= 15 )			
+			return super.SUCCESS;
 		
 		
-		return super.SUCCESS;
+		return super.FAILED;
 	}
 	
 	
 	
 	@Override protected int getCodMsgOnResultFalseHook() {
-		return SystemCode.MAT_TEXT_MANDATORY_FIELD_EMPTY;
+		return SystemCode.MAT_TEXT_INVALID_LENGTH;
 	}
 }

@@ -1012,6 +1012,7 @@ public final class SystemCode {
 	public static final int MAT_TEXT_ALREADY_EXIST						= 7805;	//1202;
 	public static final int MAT_TEXT_NOT_FOUND							= 7806;	//1203;	
 	public static final int MAT_TEXT_DONT_HAVE_MAT						= 7807;
+	public static final int MAT_TEXT_INVALID_LENGTH						= 7808;
 	
 	// Material Text Snapshot
 	public static final int MAT_TEXT_SNAPSHOT_MANDATORY_FIELD_EMPTY		= 7850;

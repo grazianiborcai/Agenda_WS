@@ -16,10 +16,10 @@ public final class MatextCheckDelete extends ModelCheckerTemplateSimpleV2<Matext
 	
 	
 	@Override protected boolean checkHook(MatextInfo recordInfo, Connection conn, String schemaName) {	
-		if (   recordInfo.codOwner 		<= 0 	
-			|| recordInfo.codMat		<= 0
-			|| recordInfo.codLanguage	== null
-			|| recordInfo.username		== null	)
+		if ( recordInfo.codOwner 	<= 0	|| 	
+			 recordInfo.codMat		<= 0	||
+			 recordInfo.codLanguage	== null	||
+			 recordInfo.username	== null		)
 			
 			return super.FAILED;
 		
