@@ -3,6 +3,7 @@ package br.com.mind5.payment.creditCard.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
 import br.com.mind5.dao.DaoStmtParamTranslator;
@@ -65,6 +66,7 @@ public final class DaoCrecardUpdateSingle extends DaoStmtTemplate<CrecardInfo> {
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPhoneSnapshotHolder);		
 				stmt.setString(i++, recordInfo.expirationMonth);
 				stmt.setString(i++, recordInfo.expirationYear);
+				stmt.setString(i++, recordInfo.nameHolder);
 				
 				return stmt;
 			}		

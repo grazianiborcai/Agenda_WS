@@ -76,6 +76,7 @@ public final class DaoCrecardSelectSingle extends DaoStmtTemplate<CrecardInfo> {
 					dataInfo.codPhoneSnapshotHolder = DaoFormatter.sqlToLong(stmtResult, DaoCrecardDbTableColumn.COL_COD_PHONE_SNAPSHOT);	
 					dataInfo.expirationMonth = stmtResult.getString(DaoCrecardDbTableColumn.COL_EXPIRATION_MONTH);
 					dataInfo.expirationYear = stmtResult.getString(DaoCrecardDbTableColumn.COL_EXPIRATION_YEAR);
+					dataInfo.nameHolder = stmtResult.getString(DaoCrecardDbTableColumn.COL_NAME_HOLDER);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

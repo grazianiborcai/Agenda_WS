@@ -186,6 +186,7 @@ public final class DaoDbField {
 	public static final String COL_MOON_TIME = "moon_time";	
 	public static final String COL_NAME = "name";
 	public static final String COL_NAME_DISPLAY = "name_display";
+	public static final String COL_NAME_HOLDER = "name_holder";	
 	public static final String COL_NAME_SEARCH = "name_search";
 	public static final String COL_NOTES = "notes";	
 	public static final String COL_NUMBER = "number";
