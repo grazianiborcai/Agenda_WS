@@ -5,13 +5,14 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
 import br.com.mind5.payment.creditCard.model.action.LazyCrecardDaoInsert;
+import br.com.mind5.payment.creditCard.model.action.LazyCrecardEnforceUpperCase;
 import br.com.mind5.payment.creditCard.model.checker.CrecardCheckCrecarch;
 
 public final class NodeCrecardInsert extends DeciTreeTemplateWriteV2<CrecardInfo> {
@@ -43,9 +44,11 @@ public final class NodeCrecardInsert extends DeciTreeTemplateWriteV2<CrecardInfo
 		List<ActionStdV1<CrecardInfo>> actions = new ArrayList<>();	
 		
 		ActionStdV1<CrecardInfo> insertMoip = new NodeCrecardInsertMoip(option).toAction();
+		ActionLazyV1<CrecardInfo> enforceUpperCase = new LazyCrecardEnforceUpperCase(option.conn, option.schemaName);	
 		ActionLazyV1<CrecardInfo> insertCrecard = new LazyCrecardDaoInsert(option.conn, option.schemaName);	
 		
-		insertMoip.addPostAction(insertCrecard);
+		insertMoip.addPostAction(enforceUpperCase);
+		enforceUpperCase.addPostAction(insertCrecard);
 		
 		actions.add(insertMoip);		
 		return actions;
