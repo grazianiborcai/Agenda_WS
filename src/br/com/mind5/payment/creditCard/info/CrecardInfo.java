@@ -17,6 +17,7 @@ public final class CrecardInfo extends InfoRecord implements Cloneable {
 	public String creditCardLast4;	
 	public String expirationMonth;
 	public String expirationYear;
+	public boolean isExpired;
 	public String cardNumber;
 	public String cardCvc;
 	public String nameHolder;
@@ -38,6 +39,7 @@ public final class CrecardInfo extends InfoRecord implements Cloneable {
 		codOwner = DefaultValue.number();
 		codPayCustomer = DefaultValue.number();
 		codUser = DefaultValue.number();
+		isExpired = DefaultValue.boole();
 		codPayPartner = DefaultValue.number();
 		recordMode = DefaultValue.recordMode();	
 		lastChangedBy = DefaultValue.number();
