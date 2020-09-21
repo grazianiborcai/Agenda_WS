@@ -5,15 +5,15 @@ import br.com.mind5.model.action.ActionStdTemplateV2;
 import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdMatextMergeMatextarch extends ActionStdTemplateV2<StorextInfo> {
+public final class StdStorextMergeStorextarch extends ActionStdTemplateV2<StorextInfo> {
 
-	public StdMatextMergeMatextarch(DeciTreeOption<StorextInfo> option) {
+	public StdStorextMergeStorextarch(DeciTreeOption<StorextInfo> option) {
 		super(option);
 	}
 	
 	
 	
 	protected ActionVisitorV2<StorextInfo> buildVisitorHook(DeciTreeOption<StorextInfo> option) {
-		return new VisiMatextMergeMatextarch(option);
+		return new VisiStorextMergeStorextarch(option);
 	}
 }

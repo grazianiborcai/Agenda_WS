@@ -7,9 +7,9 @@ import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class MatextCheckSearch extends ModelCheckerTemplateSimpleV2<StorextInfo> {
+public final class StorextCheckSearch extends ModelCheckerTemplateSimpleV2<StorextInfo> {
 
-	public MatextCheckSearch(ModelCheckerOption option) {
+	public StorextCheckSearch(ModelCheckerOption option) {
 		super(option);
 	}
 	
@@ -17,7 +17,7 @@ public final class MatextCheckSearch extends ModelCheckerTemplateSimpleV2<Storex
 	
 	@Override protected boolean checkHook(StorextInfo recordInfo, Connection conn, String schemaName) {	
 		if ( recordInfo.codOwner 	<= 0	||
-			 recordInfo.codStore 		<= 0	||
+			 recordInfo.codStore 	<= 0	||
 			 recordInfo.username	== null		)
 			
 			return super.FAILED;
@@ -29,6 +29,6 @@ public final class MatextCheckSearch extends ModelCheckerTemplateSimpleV2<Storex
 	
 	
 	@Override protected int getCodMsgOnResultFalseHook() {
-		return SystemCode.MAT_TEXT_MANDATORY_FIELD_EMPTY;
+		return SystemCode.STORE_TEXT_MANDATORY_FIELD_EMPTY;
 	}
 }

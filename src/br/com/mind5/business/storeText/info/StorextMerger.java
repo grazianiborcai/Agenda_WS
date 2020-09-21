@@ -2,20 +2,20 @@ package br.com.mind5.business.storeText.info;
 
 import java.util.List;
 
-import br.com.mind5.business.materialTextSearch.info.MatextarchInfo;
 import br.com.mind5.business.storeTextDefault.info.StorextaultInfo;
+import br.com.mind5.business.storeTextSearch.info.StorextarchInfo;
 import br.com.mind5.info.InfoMergerBuilderV3;
 import br.com.mind5.info.InfoMergerV3;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class StorextMerger {
-	public static List<StorextInfo> mergeWithMatextarch(List<StorextInfo> baseInfos, List<MatextarchInfo> selectedInfos) {
-		InfoMergerBuilderV3<StorextInfo, MatextarchInfo> builder = new InfoMergerBuilderV3<>();
+	public static List<StorextInfo> mergeWithStorextarch(List<StorextInfo> baseInfos, List<StorextarchInfo> selectedInfos) {
+		InfoMergerBuilderV3<StorextInfo, StorextarchInfo> builder = new InfoMergerBuilderV3<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
-		builder.addVisitor(new StorextVisiMergeMatextarch());
-		InfoMergerV3<StorextInfo, MatextarchInfo> merger = builder.build();		
+		builder.addVisitor(new StorextVisiMergeStorextarch());
+		InfoMergerV3<StorextInfo, StorextarchInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}

@@ -3,9 +3,9 @@ package br.com.mind5.business.storeText.info;
 import br.com.mind5.business.materialTextSnapshot.info.MatextsnapInfo;
 import br.com.mind5.info.InfoCopierTemplate;
 
-final class MatextCopyMatextsnap extends InfoCopierTemplate<StorextInfo, MatextsnapInfo> {
+final class StorextCopyMatextsnap extends InfoCopierTemplate<StorextInfo, MatextsnapInfo> {
 	
-	public MatextCopyMatextsnap() {
+	public StorextCopyMatextsnap() {
 		super();
 	}
 	

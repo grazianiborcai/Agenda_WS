@@ -11,7 +11,7 @@ import br.com.mind5.business.storeText.model.action.LazyStorextMergeUsername;
 import br.com.mind5.business.storeText.model.action.LazyStorextDaoUpdate;
 import br.com.mind5.business.storeText.model.action.StdStorextMergeStorextault;
 import br.com.mind5.business.storeText.model.action.StdStorextSuccess;
-import br.com.mind5.business.storeText.model.checker.MatextCheckStorextault;
+import br.com.mind5.business.storeText.model.checker.StorextCheckStorextault;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -37,7 +37,7 @@ public final class NodeStorextDefaultL2 extends DeciTreeTemplateWriteV2<StorextI
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
-		checker = new MatextCheckStorextault(checkerOption);
+		checker = new StorextCheckStorextault(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueueV2<>(queue);

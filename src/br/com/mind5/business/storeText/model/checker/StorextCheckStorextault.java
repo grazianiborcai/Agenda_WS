@@ -7,9 +7,9 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 
-public final class MatextCheckStorextault extends ModelCheckerTemplateForwardV2<StorextInfo, StorextaultInfo> {
+public final class StorextCheckStorextault extends ModelCheckerTemplateForwardV2<StorextInfo, StorextaultInfo> {
 	
-	public MatextCheckStorextault(ModelCheckerOption option) {
+	public StorextCheckStorextault(ModelCheckerOption option) {
 		super(option);
 	}
 

@@ -7,9 +7,9 @@ import br.com.mind5.business.storeText.info.StorextInfo;
 import br.com.mind5.business.storeText.model.action.LazyStorextEnforceDefaultOn;
 import br.com.mind5.business.storeText.model.action.LazyStorextMergeToSelect;
 import br.com.mind5.business.storeText.model.action.LazyStorextRootUpdate;
-import br.com.mind5.business.storeText.model.action.StdMatextMergeMatextarch;
+import br.com.mind5.business.storeText.model.action.StdStorextMergeStorextarch;
 import br.com.mind5.business.storeText.model.action.StdStorextSuccess;
-import br.com.mind5.business.storeText.model.checker.MatextCheckMatextarch;
+import br.com.mind5.business.storeText.model.checker.StorextCheckStorextarch;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -35,7 +35,7 @@ public final class NodeStorextDeleteL3 extends DeciTreeTemplateWriteV2<StorextIn
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;
-		checker = new MatextCheckMatextarch(checkerOption);
+		checker = new StorextCheckStorextarch(checkerOption);
 		queue.add(checker);		
 
 		return new ModelCheckerHelperQueueV2<StorextInfo>(queue);
@@ -46,16 +46,16 @@ public final class NodeStorextDeleteL3 extends DeciTreeTemplateWriteV2<StorextIn
 	@Override protected List<ActionStdV1<StorextInfo>> buildActionsOnPassedHook(DeciTreeOption<StorextInfo> option) {
 		List<ActionStdV1<StorextInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<StorextInfo> mergeMatextarch = new StdMatextMergeMatextarch(option);
+		ActionStdV1<StorextInfo> mergeStorextarch = new StdStorextMergeStorextarch(option);
 		ActionLazyV1<StorextInfo> mergeToSelect = new LazyStorextMergeToSelect(option.conn, option.schemaName);
 		ActionLazyV1<StorextInfo> enforceDefaultOn = new LazyStorextEnforceDefaultOn(option.conn, option.schemaName); 
 		ActionLazyV1<StorextInfo> update = new LazyStorextRootUpdate(option.conn, option.schemaName); 
 		
-		mergeMatextarch.addPostAction(mergeToSelect);
+		mergeStorextarch.addPostAction(mergeToSelect);
 		mergeToSelect.addPostAction(enforceDefaultOn);
 		enforceDefaultOn.addPostAction(update);
 		
-		actions.add(mergeMatextarch);
+		actions.add(mergeStorextarch);
 		return actions;
 	}
 	

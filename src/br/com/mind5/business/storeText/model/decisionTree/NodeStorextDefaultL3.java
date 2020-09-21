@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.storeText.info.StorextInfo;
 import br.com.mind5.business.storeText.model.action.StdStorextEnforceDefaultOn;
 import br.com.mind5.business.storeText.model.action.StdStorextSuccess;
-import br.com.mind5.business.storeText.model.checker.MatextCheckStorextault;
+import br.com.mind5.business.storeText.model.checker.StorextCheckStorextault;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -31,7 +31,7 @@ public final class NodeStorextDefaultL3 extends DeciTreeTemplateWriteV2<StorextI
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.NOT_FOUND;	
-		checker = new MatextCheckStorextault(checkerOption);
+		checker = new StorextCheckStorextault(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueueV2<>(queue);

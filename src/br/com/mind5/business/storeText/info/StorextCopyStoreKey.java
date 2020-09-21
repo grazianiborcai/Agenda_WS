@@ -1,21 +1,21 @@
 package br.com.mind5.business.storeText.info;
 
-import br.com.mind5.business.material.info.MatInfo;
+import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.info.InfoCopierTemplate;
 
-final class MatextCopyMatKey extends InfoCopierTemplate<StorextInfo, MatInfo> {
+final class StorextCopyStoreKey extends InfoCopierTemplate<StorextInfo, StoreInfo> {
 	
-	public MatextCopyMatKey() {
+	public StorextCopyStoreKey() {
 		super();
 	}
 	
 	
 	
-	@Override protected StorextInfo makeCopyHook(MatInfo source) {
+	@Override protected StorextInfo makeCopyHook(StoreInfo source) {
 		StorextInfo result = new StorextInfo();
 		
 		result.codOwner = source.codOwner;
-		result.codStore = source.codMat;
+		result.codStore = source.codStore;
 		result.codLanguage = null;
 		result.username = source.username;
 		

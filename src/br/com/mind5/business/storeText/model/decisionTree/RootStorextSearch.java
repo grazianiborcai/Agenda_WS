@@ -5,10 +5,10 @@ import java.util.List;
 
 import br.com.mind5.business.storeText.info.StorextInfo;
 import br.com.mind5.business.storeText.model.action.LazyStorextRootSelect;
-import br.com.mind5.business.storeText.model.action.StdMatextMergeMatextarch;
+import br.com.mind5.business.storeText.model.action.StdStorextMergeStorextarch;
 import br.com.mind5.business.storeText.model.checker.StorextCheckStore;
 import br.com.mind5.business.storeText.model.checker.StorextCheckOwner;
-import br.com.mind5.business.storeText.model.checker.MatextCheckSearch;
+import br.com.mind5.business.storeText.model.checker.StorextCheckSearch;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -34,7 +34,7 @@ public final class RootStorextSearch extends DeciTreeTemplateWriteV2<StorextInfo
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new MatextCheckSearch(checkerOption);
+		checker = new StorextCheckSearch(checkerOption);
 		queue.add(checker);		
 		
 		checkerOption = new ModelCheckerOption();
@@ -59,12 +59,12 @@ public final class RootStorextSearch extends DeciTreeTemplateWriteV2<StorextInfo
 	@Override protected List<ActionStdV1<StorextInfo>> buildActionsOnPassedHook(DeciTreeOption<StorextInfo> option) {
 		List<ActionStdV1<StorextInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<StorextInfo> mergeMatextarch = new StdMatextMergeMatextarch(option);
+		ActionStdV1<StorextInfo> mergeStorextarch = new StdStorextMergeStorextarch(option);
 		ActionLazyV1<StorextInfo> select = new LazyStorextRootSelect(option.conn, option.schemaName);
 		
-		mergeMatextarch.addPostAction(select);
+		mergeStorextarch.addPostAction(select);
 		
-		actions.add(mergeMatextarch);
+		actions.add(mergeStorextarch);
 		return actions;
 	}
 }
