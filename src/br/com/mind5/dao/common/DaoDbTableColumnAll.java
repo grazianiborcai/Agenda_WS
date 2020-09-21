@@ -112,6 +112,7 @@ import br.com.mind5.business.storeSearch.dao.DaoSotarchDbTableColumn;
 import br.com.mind5.business.storeSnapshot.dao.DaoStorapDbTableColumn;
 import br.com.mind5.business.storeText.dao.DaoStorextDbTableColumn;
 import br.com.mind5.business.storeTextDefault.dao.DaoStorextaultDbTableColumn;
+import br.com.mind5.business.storeTextSearch.dao.DaoStorextarchDbTableColumn;
 import br.com.mind5.business.storeWorkTime.dao.StowotmDbTableColumn;
 import br.com.mind5.business.storeWorkTimeRange.dao.StoworgDbTableColumn;
 import br.com.mind5.business.storeWorkTimeSearch.dao.DaoStowotarchDbTableColumn;
@@ -446,6 +447,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new DaoStoritarchDbTableColumn());
 		addTable(new DaoStorextDbTableColumn());
 		addTable(new DaoStorextaultDbTableColumn());
+		addTable(new DaoStorextarchDbTableColumn());
 	}
 	
 	
