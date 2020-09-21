@@ -1436,4 +1436,12 @@ public final class SystemCode {
 	
 	// Store Favorite Search
 	public static final int STORE_FAVORITE_SEARCH_MANDATORY_FIELD_EMPTY	= 14050;
+	
+	// Store Text
+	public static final int STORE_TEXT_MANDATORY_FIELD_EMPTY			= 14100;
+	public static final int STORE_TEXT_NOT_DEFAULT						= 14101;
+	public static final int STORE_TEXT_FLAGGED_AS_DELETED 				= 14103;	
+	public static final int STORE_TEXT_NOT_FLAGGED_AS_DELETED 			= 14104;	
+	public static final int STORE_TEXT_ALREADY_EXIST					= 14105;
+	public static final int STORE_TEXT_NOT_FOUND						= 14106;	
 }
