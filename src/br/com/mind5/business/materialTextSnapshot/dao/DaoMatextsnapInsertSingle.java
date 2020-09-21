@@ -3,6 +3,7 @@ package br.com.mind5.business.materialTextSnapshot.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+
 import br.com.mind5.business.materialTextSnapshot.info.MatextsnapInfo;
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
@@ -36,6 +37,7 @@ public final class DaoMatextsnapInsertSingle extends DaoStmtTemplate<MatextsnapI
 		return new DaoStmtParamTranslator<MatextsnapInfo>() {		
 			@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, MatextsnapInfo recordInfo) throws SQLException {
 				int i = 1;
+				
 				stmt.setLong(i++, recordInfo.codMat);
 				stmt.setLong(i++, recordInfo.codOwner);
 				stmt.setString(i++, recordInfo.codLanguage);

@@ -60,6 +60,7 @@ public class DaoMatextsnapSelectSingle extends DaoStmtTemplate<MatextsnapInfo> {
 				
 				do {
 					MatextsnapInfo dataInfo = new MatextsnapInfo();
+					
 					dataInfo.codOwner = stmtResult.getLong(DaoMatextsnapDbTableColumn.COL_COD_OWNER);
 					dataInfo.codSnapshot = stmtResult.getLong(DaoMatextsnapDbTableColumn.COL_COD_SNAPSHOT);
 					dataInfo.codMat = stmtResult.getLong(DaoMatextsnapDbTableColumn.COL_COD_MATERIAL);
@@ -72,8 +73,7 @@ public class DaoMatextsnapSelectSingle extends DaoStmtTemplate<MatextsnapInfo> {
 					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, DaoMatextsnapDbTableColumn.COL_LAST_CHANGED);
 					dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, DaoMatextsnapDbTableColumn.COL_LAST_CHANGED_BY);					
 					dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, DaoMatextsnapDbTableColumn.COL_CREATED_ON);
-					dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, DaoMatextsnapDbTableColumn.COL_CREATED_BY);
-					
+					dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, DaoMatextsnapDbTableColumn.COL_CREATED_BY);					
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());
