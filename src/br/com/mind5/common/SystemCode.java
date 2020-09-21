@@ -1454,4 +1454,7 @@ public final class SystemCode {
 	public static final int STORE_TEXT_SEARCH_MANDATORY_FIELD_EMPTY		= 14200;
 	public static final int STORE_TEXT_SEARCH_ALREADY_EXIST				= 14201;
 	public static final int STORE_TEXT_SEARCH_NOT_FOUND					= 14202;
+	
+	// Store Text Snapshot
+	public static final int STORE_TEXT_SNAPSHOT_MANDATORY_FIELD_EMPTY	= 14250;
 }

@@ -2,8 +2,8 @@ package br.com.mind5.business.storeText.info;
 
 import java.util.List;
 
-import br.com.mind5.business.materialTextSnapshot.info.MatextsnapInfo;
 import br.com.mind5.business.store.info.StoreInfo;
+import br.com.mind5.business.storeTextSnapshot.info.StorextsnapInfo;
 import br.com.mind5.info.InfoCopier;
 import br.com.mind5.info.InfoCopierOneToMany;
 
@@ -36,15 +36,15 @@ public final class StorextCopier {
 	
 	
 	
-	public static StorextInfo copyFromMatextsnap(MatextsnapInfo source) {
-		InfoCopier<StorextInfo, MatextsnapInfo> copier = new StorextCopyMatextsnap();
+	public static StorextInfo copyFromStorextsnap(StorextsnapInfo source) {
+		InfoCopier<StorextInfo, StorextsnapInfo> copier = new StorextCopyStorextsnap();
 		return copier.makeCopy(source);
 	}
 	
 	
 	
-	public static List<StorextInfo> copyFromMatextsnap(List<MatextsnapInfo> sources) {
-		InfoCopier<StorextInfo, MatextsnapInfo> copier = new StorextCopyMatextsnap();
+	public static List<StorextInfo> copyFromStorextsnap(List<StorextsnapInfo> sources) {
+		InfoCopier<StorextInfo, StorextsnapInfo> copier = new StorextCopyStorextsnap();
 		return copier.makeCopy(sources);
 	}
 }
