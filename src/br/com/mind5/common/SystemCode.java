@@ -1443,5 +1443,10 @@ public final class SystemCode {
 	public static final int STORE_TEXT_FLAGGED_AS_DELETED 				= 14103;	
 	public static final int STORE_TEXT_NOT_FLAGGED_AS_DELETED 			= 14104;	
 	public static final int STORE_TEXT_ALREADY_EXIST					= 14105;
-	public static final int STORE_TEXT_NOT_FOUND						= 14106;	
+	public static final int STORE_TEXT_NOT_FOUND						= 14106;
+	
+	// Store Text Default
+	public static final int STORE_TEXT_DEFAULT_MANDATORY_FIELD_EMPTY	= 14150;
+	public static final int STORE_TEXT_DEFAULT_ALREADY_EXIST 			= 14151;
+	public static final int STORE_TEXT_DEFAULT_NOT_FOUND 				= 14152;
 }

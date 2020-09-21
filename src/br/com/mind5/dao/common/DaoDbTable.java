@@ -245,6 +245,7 @@ public final class DaoDbTable {
 	public static final String STORE_NEARBY_VIEW = "view_nearby_list";	
 	public static final String STORE_PROSPECT_SEARCH_VIEW = "view_store_prospect";	
 	public static final String STORE_SEARCH_VIEW = "view_store_search";	
+	public static final String STORE_TEXT_DEFAULT_VIEW = "view_store_text_default";	
 	public static final String STORE_WTIME_RANGE_VIEW = "view_store_wtime_range";
 	public static final String STORE_WTIME_SEARCH_VIEW = "view_store_wtime_search";
 	public static final String SYS_OWNER_SIGNUP_VIEW = "view_sys_owner_signup";
