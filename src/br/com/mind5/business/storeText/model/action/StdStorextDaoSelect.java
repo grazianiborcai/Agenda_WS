@@ -14,6 +14,6 @@ public final class StdStorextDaoSelect extends ActionStdTemplateV2<StorextInfo> 
 	
 	
 	protected ActionVisitorV2<StorextInfo> buildVisitorHook(DeciTreeOption<StorextInfo> option) {
-		return new VisiMatextDaoSelect(option);
+		return new VisiStorextDaoSelect(option);
 	}
 }

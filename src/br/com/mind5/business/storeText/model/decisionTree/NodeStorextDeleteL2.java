@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.storeText.info.StorextInfo;
 import br.com.mind5.business.storeText.model.action.StdStorextSuccess;
-import br.com.mind5.business.storeText.model.checker.MatextCheckMatextault;
+import br.com.mind5.business.storeText.model.checker.MatextCheckStorextault;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -30,7 +30,7 @@ public final class NodeStorextDeleteL2 extends DeciTreeTemplateWriteV2<StorextIn
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
-		checker = new MatextCheckMatextault(checkerOption);
+		checker = new MatextCheckStorextault(checkerOption);
 		queue.add(checker);		
 
 		return new ModelCheckerHelperQueueV2<StorextInfo>(queue);

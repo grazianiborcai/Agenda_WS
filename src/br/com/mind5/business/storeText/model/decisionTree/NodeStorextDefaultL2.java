@@ -9,9 +9,9 @@ import br.com.mind5.business.storeText.model.action.LazyStorextEnforceLChanged;
 import br.com.mind5.business.storeText.model.action.LazyStorextMergeToSelect;
 import br.com.mind5.business.storeText.model.action.LazyStorextMergeUsername;
 import br.com.mind5.business.storeText.model.action.LazyStorextDaoUpdate;
-import br.com.mind5.business.storeText.model.action.StdMatextMergeMatextault;
+import br.com.mind5.business.storeText.model.action.StdStorextMergeStorextault;
 import br.com.mind5.business.storeText.model.action.StdStorextSuccess;
-import br.com.mind5.business.storeText.model.checker.MatextCheckMatextault;
+import br.com.mind5.business.storeText.model.checker.MatextCheckStorextault;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
@@ -37,7 +37,7 @@ public final class NodeStorextDefaultL2 extends DeciTreeTemplateWriteV2<StorextI
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
-		checker = new MatextCheckMatextault(checkerOption);
+		checker = new MatextCheckStorextault(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueueV2<>(queue);
@@ -48,7 +48,7 @@ public final class NodeStorextDefaultL2 extends DeciTreeTemplateWriteV2<StorextI
 	@Override protected List<ActionStdV1<StorextInfo>> buildActionsOnPassedHook(DeciTreeOption<StorextInfo> option) {
 		List<ActionStdV1<StorextInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<StorextInfo> mergeMatextault = new StdMatextMergeMatextault(option);
+		ActionStdV1<StorextInfo> mergeStorextault = new StdStorextMergeStorextault(option);
 		ActionLazyV1<StorextInfo> mergeToSelect = new LazyStorextMergeToSelect(option.conn, option.schemaName);
 		ActionLazyV1<StorextInfo> enforceLChanged = new LazyStorextEnforceLChanged(option.conn, option.schemaName);	
 		ActionLazyV1<StorextInfo> enforceLChangedBy = new LazyStorextMergeUsername(option.conn, option.schemaName);
@@ -56,13 +56,13 @@ public final class NodeStorextDefaultL2 extends DeciTreeTemplateWriteV2<StorextI
 		ActionLazyV1<StorextInfo> update = new LazyStorextDaoUpdate(option.conn, option.schemaName);
 		ActionStdV1<StorextInfo> success = new StdStorextSuccess(option);	
 		
-		mergeMatextault.addPostAction(mergeToSelect);
+		mergeStorextault.addPostAction(mergeToSelect);
 		mergeToSelect.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceLChangedBy);
 		enforceLChangedBy.addPostAction(enforceDefaultOff);
 		enforceDefaultOff.addPostAction(update);
 		
-		actions.add(mergeMatextault);
+		actions.add(mergeStorextault);
 		actions.add(success);
 		return actions;
 	}
