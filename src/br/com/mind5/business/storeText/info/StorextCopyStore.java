@@ -14,6 +14,6 @@ final class StorextCopyStore extends InfoCopierOneToManyTemplate<StorextInfo, St
 	
 	
 	@Override protected List<StorextInfo> makeCopyHook(StoreInfo source) {
-		return source.matextes;
+		return source.storextes;
 	}
 }
