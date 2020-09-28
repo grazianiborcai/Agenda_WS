@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.store.info.StoreInfo;
-import br.com.mind5.business.store.model.action.LazyStoreInsertComp;
+import br.com.mind5.business.store.model.action.LazyStoreCompInsert;
 import br.com.mind5.business.store.model.action.StdStoreEnforceCompKey;
 import br.com.mind5.business.store.model.checker.StoreCheckHasComp;
 import br.com.mind5.model.action.ActionLazyV1;
@@ -44,7 +44,7 @@ public final class NodeStoreInsertComp extends DeciTreeTemplateWriteV2<StoreInfo
 		List<ActionStdV1<StoreInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<StoreInfo> enforceCompKey = new StdStoreEnforceCompKey(option);
-		ActionLazyV1<StoreInfo> insertComp = new LazyStoreInsertComp(option.conn, option.schemaName);
+		ActionLazyV1<StoreInfo> insertComp = new LazyStoreCompInsert(option.conn, option.schemaName);
 		
 		enforceCompKey.addPostAction(insertComp);
 		

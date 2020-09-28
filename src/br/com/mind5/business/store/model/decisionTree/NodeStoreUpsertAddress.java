@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.store.info.StoreInfo;
-import br.com.mind5.business.store.model.action.LazyStoreUpsertAddress;
+import br.com.mind5.business.store.model.action.LazyStoreAddressUpsert;
 import br.com.mind5.business.store.model.action.StdStoreEnforceAddressKey;
 import br.com.mind5.business.store.model.action.StdStoreSuccess;
 import br.com.mind5.business.store.model.checker.StoreCheckHasAddress;
@@ -45,7 +45,7 @@ public final class NodeStoreUpsertAddress extends DeciTreeTemplateWriteV2<StoreI
 		List<ActionStdV1<StoreInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<StoreInfo> enforceAddressKey = new StdStoreEnforceAddressKey(option);
-		ActionLazyV1<StoreInfo> upsertAddress = new LazyStoreUpsertAddress(option.conn, option.schemaName);
+		ActionLazyV1<StoreInfo> upsertAddress = new LazyStoreAddressUpsert(option.conn, option.schemaName);
 		
 		enforceAddressKey.addPostAction(upsertAddress);
 		

@@ -8,6 +8,7 @@ import br.com.mind5.business.store.model.action.LazyStoreNodeUpdateComp;
 import br.com.mind5.business.store.model.action.LazyStoreNodeUpdatePerson;
 import br.com.mind5.business.store.model.action.LazyStoreNodeUpsertAddress;
 import br.com.mind5.business.store.model.action.LazyStoreNodeUpsertPhone;
+import br.com.mind5.business.store.model.action.LazyStoreNodeUpsertStorext;
 import br.com.mind5.business.store.model.checker.StoreCheckCurrency;
 import br.com.mind5.business.store.model.checker.StoreCheckExist;
 import br.com.mind5.business.store.model.checker.StoreCheckLangu;
@@ -97,13 +98,15 @@ public final class RootStoreUpdate extends DeciTreeTemplateWriteV2<StoreInfo> {
 		ActionLazyV1<StoreInfo> updatePerson = new LazyStoreNodeUpdatePerson(option.conn, option.schemaName);
 		ActionLazyV1<StoreInfo> updateCompany = new LazyStoreNodeUpdateComp(option.conn, option.schemaName);
 		ActionLazyV1<StoreInfo> upsertAddress = new LazyStoreNodeUpsertAddress(option.conn, option.schemaName);
-		ActionLazyV1<StoreInfo> upsertPhone = new LazyStoreNodeUpsertPhone(option.conn, option.schemaName);		
+		ActionLazyV1<StoreInfo> upsertPhone = new LazyStoreNodeUpsertPhone(option.conn, option.schemaName);
+		ActionLazyV1<StoreInfo> upsertStorext = new LazyStoreNodeUpsertStorext(option.conn, option.schemaName);
 		ActionStdV1<StoreInfo> select = new RootStoreSelect(option).toAction();	
 			
 		updateStore.addPostAction(updatePerson);
 		updateStore.addPostAction(updateCompany);		
 		updateStore.addPostAction(upsertAddress);		
 		updateStore.addPostAction(upsertPhone);
+		updateStore.addPostAction(upsertStorext);
 		
 		actions.add(updateStore);
 		actions.add(select);

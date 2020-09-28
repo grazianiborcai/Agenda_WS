@@ -4,13 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.store.info.StoreInfo;
-import br.com.mind5.business.store.model.action.LazyStoreInsertUser;
 import br.com.mind5.business.store.model.action.LazyStoreNodeInsertComp;
 import br.com.mind5.business.store.model.action.LazyStoreNodeInsertPerson;
 import br.com.mind5.business.store.model.action.LazyStoreNodeInsertPhone;
+import br.com.mind5.business.store.model.action.LazyStoreNodeInsertStorext;
 import br.com.mind5.business.store.model.action.LazyStoreNodeSnapshot;
 import br.com.mind5.business.store.model.action.LazyStoreNodeUpsertAddress;
 import br.com.mind5.business.store.model.action.LazyStoreRootSelect;
+import br.com.mind5.business.store.model.action.LazyStoreUserInsert;
 import br.com.mind5.business.store.model.checker.StoreCheckCurrency;
 import br.com.mind5.business.store.model.checker.StoreCheckHasAddress;
 import br.com.mind5.business.store.model.checker.StoreCheckLangu;
@@ -92,10 +93,11 @@ public final class RootStoreInsert extends DeciTreeTemplateWriteV2<StoreInfo> {
 		ActionStdV1<StoreInfo> insertStore = new NodeStoreInsert(option).toAction();
 		ActionLazyV1<StoreInfo> insertPerson = new LazyStoreNodeInsertPerson(option.conn, option.schemaName);	
 		ActionLazyV1<StoreInfo> insertComp = new LazyStoreNodeInsertComp(option.conn, option.schemaName);
-		ActionLazyV1<StoreInfo> insertUser = new LazyStoreInsertUser(option.conn, option.schemaName);
+		ActionLazyV1<StoreInfo> insertUser = new LazyStoreUserInsert(option.conn, option.schemaName);
 		ActionLazyV1<StoreInfo> snapshot = new LazyStoreNodeSnapshot(option.conn, option.schemaName);
 		ActionLazyV1<StoreInfo> upsertAddress = new LazyStoreNodeUpsertAddress(option.conn, option.schemaName);		
-		ActionLazyV1<StoreInfo> insertPhone = new LazyStoreNodeInsertPhone(option.conn, option.schemaName);		
+		ActionLazyV1<StoreInfo> insertPhone = new LazyStoreNodeInsertPhone(option.conn, option.schemaName);
+		ActionLazyV1<StoreInfo> insertStorext = new LazyStoreNodeInsertStorext(option.conn, option.schemaName);	
 		ActionLazyV1<StoreInfo> selectStore = new LazyStoreRootSelect(option.conn, option.schemaName);	
 		
 		insertStore.addPostAction(insertPerson);		
@@ -104,7 +106,8 @@ public final class RootStoreInsert extends DeciTreeTemplateWriteV2<StoreInfo> {
 		insertUser.addPostAction(snapshot);		
 		
 		snapshot.addPostAction(upsertAddress);			
-		snapshot.addPostAction(insertPhone);			
+		snapshot.addPostAction(insertPhone);
+		snapshot.addPostAction(insertStorext);
 		snapshot.addPostAction(selectStore);
 		
 		actions.add(insertStore);	

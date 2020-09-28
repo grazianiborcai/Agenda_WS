@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.store.info.StoreInfo;
-import br.com.mind5.business.store.model.action.StdStoreDeleteMatore;
+import br.com.mind5.business.store.model.action.StdStoreMatoreDelete;
 import br.com.mind5.business.store.model.action.StdStoreSuccess;
 import br.com.mind5.business.store.model.checker.StoreCheckMatorarch;
 import br.com.mind5.model.action.ActionStdV1;
@@ -42,7 +42,7 @@ public final class NodeStoreDeleteMatore extends DeciTreeTemplateWriteV2<StoreIn
 	@Override protected List<ActionStdV1<StoreInfo>> buildActionsOnPassedHook(DeciTreeOption<StoreInfo> option) {
 		List<ActionStdV1<StoreInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<StoreInfo> deleteMatore = new StdStoreDeleteMatore(option);
+		ActionStdV1<StoreInfo> deleteMatore = new StdStoreMatoreDelete(option);
 		
 		actions.add(deleteMatore);		
 		return actions;

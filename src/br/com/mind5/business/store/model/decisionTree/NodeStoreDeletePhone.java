@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.store.info.StoreInfo;
-import br.com.mind5.business.store.model.action.LazyStoreDeletePhone;
+import br.com.mind5.business.store.model.action.LazyStorePhoneDelete;
 import br.com.mind5.business.store.model.action.StdStoreMergePhone;
 import br.com.mind5.business.store.model.action.StdStoreSuccess;
 import br.com.mind5.business.store.model.checker.StoreCheckPhonarch;
@@ -45,7 +45,7 @@ public final class NodeStoreDeletePhone extends DeciTreeTemplateWriteV2<StoreInf
 		List<ActionStdV1<StoreInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<StoreInfo> mergePhone = new StdStoreMergePhone(option);
-		ActionLazyV1<StoreInfo> deletePhone = new LazyStoreDeletePhone(option.conn, option.schemaName);
+		ActionLazyV1<StoreInfo> deletePhone = new LazyStorePhoneDelete(option.conn, option.schemaName);
 		
 		mergePhone.addPostAction(deletePhone);
 		

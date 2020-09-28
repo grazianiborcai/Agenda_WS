@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.business.store.model.action.LazyStoreDaoUpdate;
-import br.com.mind5.business.store.model.action.StdStoreInsertStorap;
+import br.com.mind5.business.store.model.action.StdStoreStorapInsert;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
@@ -37,7 +37,7 @@ public final class NodeStoreSnapshot extends DeciTreeTemplateWriteV2<StoreInfo> 
 	@Override protected List<ActionStdV1<StoreInfo>> buildActionsOnPassedHook(DeciTreeOption<StoreInfo> option) {
 		List<ActionStdV1<StoreInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<StoreInfo> insertSnapshot = new StdStoreInsertStorap(option);		
+		ActionStdV1<StoreInfo> insertSnapshot = new StdStoreStorapInsert(option);		
 		ActionLazyV1<StoreInfo> update = new LazyStoreDaoUpdate(option.conn, option.schemaName);	
 		
 		insertSnapshot.addPostAction(update);

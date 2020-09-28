@@ -7,6 +7,7 @@ import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.company.info.CompInfo;
 import br.com.mind5.business.person.info.PersonInfo;
 import br.com.mind5.business.phone.info.PhoneInfo;
+import br.com.mind5.business.storeText.info.StorextInfo;
 import br.com.mind5.common.CloneUtil;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.file.fileImageList.info.FimistInfo;
@@ -26,6 +27,7 @@ public final class StoreInfo extends InfoRecord implements Cloneable {
 	public AddressInfo addressData;
 	public List<PhoneInfo> phones;
 	public List<FimistInfo> fimistes;
+	public List<StorextInfo> storextes;
 	public CompInfo companyData;
 	public PersonInfo personData;
 	public LocalDateTime createdOn;
@@ -46,6 +48,7 @@ public final class StoreInfo extends InfoRecord implements Cloneable {
 		codPerson = DefaultValue.number();
 		codCompany = DefaultValue.number();
 		recordMode = DefaultValue.recordMode();
+		storextes = DefaultValue.list();
 		companyData = DefaultValue.object();
 		personData = DefaultValue.object();
 		addressData = DefaultValue.object();
@@ -72,6 +75,7 @@ public final class StoreInfo extends InfoRecord implements Cloneable {
 	@Override public Object clone() throws CloneNotSupportedException {
 		StoreInfo deepCopy = (StoreInfo) super.clone();
 		
+		deepCopy.storextes = CloneUtil.cloneRecords(deepCopy.storextes, this.getClass());
 		deepCopy.fimistes = CloneUtil.cloneRecords(deepCopy.fimistes, this.getClass());
 		deepCopy.addressData = CloneUtil.cloneRecord(deepCopy.addressData, this.getClass());
 		deepCopy.phones = CloneUtil.cloneRecords(deepCopy.phones, this.getClass());
