@@ -10,7 +10,6 @@ public final class StoreSetterStorextKey extends InfoSetterTemplate<StoreInfo> {
 			eachStorext.codOwner = recordInfo.codOwner;
 			eachStorext.codStore = recordInfo.codStore;
 			eachStorext.username = recordInfo.username;
-			eachStorext.codLanguage = recordInfo.codLanguage;
 		}
 		
 		return recordInfo;
