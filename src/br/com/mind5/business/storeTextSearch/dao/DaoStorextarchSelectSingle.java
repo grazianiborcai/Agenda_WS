@@ -68,7 +68,7 @@ public final class DaoStorextarchSelectSingle extends DaoStmtTemplate<Storextarc
 					dataInfo.codOwner = stmtResult.getLong(DaoStorextarchDbTableColumn.COL_COD_OWNER);
 					dataInfo.codStore = stmtResult.getLong(DaoStorextarchDbTableColumn.COL_COD_STORE);
 					dataInfo.codLanguage = stmtResult.getString(DaoStorextarchDbTableColumn.COL_COD_LANGUAGE);
-					dataInfo.recordMode = stmtResult.getString(DaoStorextarchDbTableColumn.COL_RECORD_MODE);				
+					dataInfo.recordMode = stmtResult.getString(DaoStorextarchDbTableColumn.COL_RECORD_MODE);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

@@ -65,7 +65,7 @@ public final class StorextarchInfo extends InfoRecord implements Cloneable {
 		
 		StorextarchInfo obj = (StorextarchInfo) o;		
 		return (codOwner == obj.codOwner 	&& 
-				codStore   == obj.codStore		&&
+				codStore == obj.codStore	&&
 				super.isStringEqual(codLanguage, obj.codLanguage));
 	}
 }
