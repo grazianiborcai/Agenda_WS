@@ -2,7 +2,6 @@ package br.com.mind5.business.storeTextDefault.dao;
 
 import java.util.List;
 
-import br.com.mind5.business.materialText.dao.DaoMatextDbTableColumn;
 import br.com.mind5.business.storeTextDefault.info.StorextaultInfo;
 import br.com.mind5.dao.DaoColumn;
 import br.com.mind5.dao.DaoFormatter;
@@ -36,7 +35,7 @@ public final class DaoStorextaultWhere implements DaoStmtWhere {
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codStore));
 					break;
 					
-				case DaoMatextDbTableColumn.COL_IS_DEFAULT :
+				case DaoStorextaultDbTableColumn.COL_IS_DEFAULT :
 					builder.addClauseEqualAnd(eachColumn, "1");
 					break;
 					
