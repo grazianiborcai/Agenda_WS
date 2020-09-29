@@ -4,19 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.storeText.info.StorextInfo;
+import br.com.mind5.business.storeText.model.action.LazyStorextDaoUpdate;
 import br.com.mind5.business.storeText.model.action.LazyStorextEnforceDefaultOff;
 import br.com.mind5.business.storeText.model.action.LazyStorextEnforceLChanged;
 import br.com.mind5.business.storeText.model.action.LazyStorextMergeToSelect;
 import br.com.mind5.business.storeText.model.action.LazyStorextMergeUsername;
-import br.com.mind5.business.storeText.model.action.LazyStorextDaoUpdate;
 import br.com.mind5.business.storeText.model.action.StdStorextMergeStorextault;
 import br.com.mind5.business.storeText.model.action.StdStorextSuccess;
 import br.com.mind5.business.storeText.model.checker.StorextCheckStorextault;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 

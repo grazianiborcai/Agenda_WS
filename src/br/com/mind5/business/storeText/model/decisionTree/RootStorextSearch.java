@@ -6,18 +6,18 @@ import java.util.List;
 import br.com.mind5.business.storeText.info.StorextInfo;
 import br.com.mind5.business.storeText.model.action.LazyStorextRootSelect;
 import br.com.mind5.business.storeText.model.action.StdStorextMergeStorextarch;
-import br.com.mind5.business.storeText.model.checker.StorextCheckStore;
 import br.com.mind5.business.storeText.model.checker.StorextCheckOwner;
 import br.com.mind5.business.storeText.model.checker.StorextCheckSearch;
+import br.com.mind5.business.storeText.model.checker.StorextCheckStore;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 
-public final class RootStorextSearch extends DeciTreeTemplateWriteV2<StorextInfo> {
+public final class RootStorextSearch extends DeciTreeTemplateReadV2<StorextInfo> {
 	
 	public RootStorextSearch(DeciTreeOption<StorextInfo> option) {
 		super(option);

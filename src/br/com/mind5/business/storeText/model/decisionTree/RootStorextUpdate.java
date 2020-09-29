@@ -4,10 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.storeText.info.StorextInfo;
-import br.com.mind5.business.storeText.model.action.LazyStorextNodeDefaultL1;
 import br.com.mind5.business.storeText.model.action.LazyStorextDaoUpdate;
 import br.com.mind5.business.storeText.model.action.LazyStorextEnforceLChanged;
 import br.com.mind5.business.storeText.model.action.LazyStorextMergeUsername;
+import br.com.mind5.business.storeText.model.action.LazyStorextNodeDefaultL1;
+import br.com.mind5.business.storeText.model.action.LazyStorextNodePostUpdate;
 import br.com.mind5.business.storeText.model.action.LazyStorextRootSelect;
 import br.com.mind5.business.storeText.model.action.StdStorextMergeToUpdate;
 import br.com.mind5.business.storeText.model.checker.StorextCheckExist;
@@ -84,13 +85,15 @@ public final class RootStorextUpdate extends DeciTreeTemplateWriteV2<StorextInfo
 		ActionLazyV1<StorextInfo> enforceLChanged = new LazyStorextEnforceLChanged(option.conn, option.schemaName);	
 		ActionLazyV1<StorextInfo> enforceLChangedBy = new LazyStorextMergeUsername(option.conn, option.schemaName);
 		ActionLazyV1<StorextInfo> update = new LazyStorextDaoUpdate(option.conn, option.schemaName);
+		ActionLazyV1<StorextInfo> postUpdate = new LazyStorextNodePostUpdate(option.conn, option.schemaName);
 		ActionLazyV1<StorextInfo> select = new LazyStorextRootSelect(option.conn, option.schemaName);	
 		
 		mergeToUpdate.addPostAction(nodeDefault);
 		nodeDefault.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceLChangedBy);
 		enforceLChangedBy.addPostAction(update);
-		update.addPostAction(select);
+		update.addPostAction(postUpdate);
+		postUpdate.addPostAction(select);
 		
 		actions.add(mergeToUpdate);
 		return actions;
