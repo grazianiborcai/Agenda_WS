@@ -9,9 +9,9 @@ import br.com.mind5.model.action.ActionVisitorTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiMatsnapInsertMatextsnap extends ActionVisitorTemplateActionV2<MatsnapInfo, MatextsnapInfo> {
+final class VisiMatsnapMatextsnapInsert extends ActionVisitorTemplateActionV2<MatsnapInfo, MatextsnapInfo> {
 
-	public VisiMatsnapInsertMatextsnap(DeciTreeOption<MatsnapInfo> option) {
+	public VisiMatsnapMatextsnapInsert(DeciTreeOption<MatsnapInfo> option) {
 		super(option, MatsnapInfo.class, MatextsnapInfo.class);
 	}
 	

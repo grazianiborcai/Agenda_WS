@@ -5,15 +5,15 @@ import br.com.mind5.model.action.ActionStdTemplateV2;
 import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdMatsnapInsertMatextsnap extends ActionStdTemplateV2<MatsnapInfo> {
+public final class StdMatsnapMatextsnapInsert extends ActionStdTemplateV2<MatsnapInfo> {
 
-	public StdMatsnapInsertMatextsnap(DeciTreeOption<MatsnapInfo> option) {
+	public StdMatsnapMatextsnapInsert(DeciTreeOption<MatsnapInfo> option) {
 		super(option);
 	}
 	
 	
 	
 	protected ActionVisitorV2<MatsnapInfo> buildVisitorHook(DeciTreeOption<MatsnapInfo> option) {
-		return new VisiMatsnapInsertMatextsnap(option);
+		return new VisiMatsnapMatextsnapInsert(option);
 	}
 }

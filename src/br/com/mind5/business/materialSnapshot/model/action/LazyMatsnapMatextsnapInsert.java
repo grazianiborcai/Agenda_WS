@@ -9,9 +9,9 @@ import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyMatsnapInsertMatextsnap extends ActionLazyTemplateV2<MatsnapInfo, MatsnapInfo> {
+public final class LazyMatsnapMatextsnapInsert extends ActionLazyTemplateV2<MatsnapInfo, MatsnapInfo> {
 
-	public LazyMatsnapInsertMatextsnap(Connection conn, String schemaName) {
+	public LazyMatsnapMatextsnapInsert(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyMatsnapInsertMatextsnap extends ActionLazyTemplateV2<Mats
 	
 	
 	@Override protected ActionStdV1<MatsnapInfo> getInstanceOfActionHook(DeciTreeOption<MatsnapInfo> option) {
-		return new StdMatsnapInsertMatextsnap(option);
+		return new StdMatsnapMatextsnapInsert(option);
 	}
 	
 	

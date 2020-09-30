@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.materialSnapshot.info.MatsnapInfo;
-import br.com.mind5.business.materialSnapshot.model.action.LazyMatsnapInsertMatextsnap;
+import br.com.mind5.business.materialSnapshot.model.action.LazyMatsnapMatextsnapInsert;
 import br.com.mind5.business.materialSnapshot.model.action.LazyMatsnapRootSelect;
 import br.com.mind5.business.materialSnapshot.model.action.StdMatsnapDaoInsert;
 import br.com.mind5.business.materialSnapshot.model.checker.MatsnapCheckMat;
@@ -61,7 +61,7 @@ public final class RootMatsnapInsert extends DeciTreeTemplateWriteV2<MatsnapInfo
 		List<ActionStdV1<MatsnapInfo>> actions = new ArrayList<>();	
 		
 		ActionStdV1<MatsnapInfo> insertMatsnap = new StdMatsnapDaoInsert(option);
-		ActionLazyV1<MatsnapInfo> insertMatextsnap = new LazyMatsnapInsertMatextsnap(option.conn, option.schemaName);	
+		ActionLazyV1<MatsnapInfo> insertMatextsnap = new LazyMatsnapMatextsnapInsert(option.conn, option.schemaName);	
 		ActionLazyV1<MatsnapInfo> select = new LazyMatsnapRootSelect(option.conn, option.schemaName);	
 		
 		insertMatsnap.addPostAction(insertMatextsnap);
