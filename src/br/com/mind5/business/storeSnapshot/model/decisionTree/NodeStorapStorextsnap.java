@@ -4,10 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.storeSnapshot.info.StorapInfo;
+import br.com.mind5.business.storeSnapshot.model.action.LazyStorapEnforceStorextsnapKey;
 import br.com.mind5.business.storeSnapshot.model.action.LazyStorextsnapInsert;
-import br.com.mind5.business.storeSnapshot.model.action.StdStorapEnforceStorextsnapKey;
+import br.com.mind5.business.storeSnapshot.model.action.StdStorapMergeStorext;
 import br.com.mind5.business.storeSnapshot.model.action.StdStorapSuccess;
-import br.com.mind5.business.storeSnapshot.model.checker.StorapCheckHasStorextsnap;
+import br.com.mind5.business.storeSnapshot.model.checker.StorapCheckStorextarch;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
@@ -33,7 +34,7 @@ public final class NodeStorapStorextsnap extends DeciTreeTemplateWriteV2<StorapI
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new StorapCheckHasStorextsnap(checkerOption);
+		checker = new StorapCheckStorextarch(checkerOption);
 		queue.add(checker);		
 		
 		return new ModelCheckerHelperQueueV2<>(queue);
@@ -44,12 +45,14 @@ public final class NodeStorapStorextsnap extends DeciTreeTemplateWriteV2<StorapI
 	@Override protected List<ActionStdV1<StorapInfo>> buildActionsOnPassedHook(DeciTreeOption<StorapInfo> option) {
 		List<ActionStdV1<StorapInfo>> actions = new ArrayList<>();
 
-		ActionStdV1<StorapInfo> enforceStorextsnapKey = new StdStorapEnforceStorextsnapKey(option);
+		ActionStdV1<StorapInfo> mergeStorext = new StdStorapMergeStorext(option);
+		ActionLazyV1<StorapInfo> enforceStorextsnapKey = new LazyStorapEnforceStorextsnapKey(option.conn, option.schemaName);
 		ActionLazyV1<StorapInfo> insertStorextsnap = new LazyStorextsnapInsert(option.conn, option.schemaName);
 		
+		mergeStorext.addPostAction(enforceStorextsnapKey);
 		enforceStorextsnapKey.addPostAction(insertStorextsnap);
 		
-		actions.add(enforceStorextsnapKey);	
+		actions.add(mergeStorext);	
 		return actions;
 	}
 	

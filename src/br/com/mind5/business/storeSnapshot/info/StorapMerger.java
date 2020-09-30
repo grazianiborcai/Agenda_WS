@@ -7,6 +7,7 @@ import br.com.mind5.business.companySnapshot.info.CompnapInfo;
 import br.com.mind5.business.personList.info.PersolisInfo;
 import br.com.mind5.business.personSnapshot.info.PersonapInfo;
 import br.com.mind5.business.phoneSnapshot.info.PhonapInfo;
+import br.com.mind5.business.storeText.info.StorextInfo;
 import br.com.mind5.info.InfoMergerBuilderV3;
 import br.com.mind5.info.InfoMergerV3;
 import br.com.mind5.masterData.currency.info.CurrencyInfo;
@@ -14,6 +15,19 @@ import br.com.mind5.masterData.timezone.info.TimezoneInfo;
 import br.com.mind5.security.userList.info.UselisInfo;
 
 public final class StorapMerger {	
+	public static List<StorapInfo> mergeWithStorext(List<StorapInfo> baseInfos, List<StorextInfo> selectedInfos) {
+		InfoMergerBuilderV3<StorapInfo, StorextInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new StorapVisiMergeStorext());
+		InfoMergerV3<StorapInfo, StorextInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	
 	public static List<StorapInfo> mergeWithComplis(List<StorapInfo> baseInfos, List<ComplisInfo> selectedInfos) {
 		InfoMergerBuilderV3<StorapInfo, ComplisInfo> builder = new InfoMergerBuilderV3<>();
 		
