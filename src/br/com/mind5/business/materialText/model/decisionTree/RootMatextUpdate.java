@@ -9,6 +9,7 @@ import br.com.mind5.business.materialText.model.action.LazyMatextEnforceLChanged
 import br.com.mind5.business.materialText.model.action.LazyMatextEnforceTxtSearch;
 import br.com.mind5.business.materialText.model.action.LazyMatextMergeUsername;
 import br.com.mind5.business.materialText.model.action.LazyMatextNodeDefaultL1;
+import br.com.mind5.business.materialText.model.action.LazyMatextNodePostUpdate;
 import br.com.mind5.business.materialText.model.action.LazyMatextRootSelect;
 import br.com.mind5.business.materialText.model.action.StdMatextMergeToUpdate;
 import br.com.mind5.business.materialText.model.checker.MatextCheckExist;
@@ -94,6 +95,7 @@ public final class RootMatextUpdate extends DeciTreeTemplateWriteV2<MatextInfo> 
 		ActionLazyV1<MatextInfo> enforceLChangedBy = new LazyMatextMergeUsername(option.conn, option.schemaName);
 		ActionLazyV1<MatextInfo> enforceTxtSearch = new LazyMatextEnforceTxtSearch(option.conn, option.schemaName);
 		ActionLazyV1<MatextInfo> update = new LazyMatextDaoUpdate(option.conn, option.schemaName);
+		ActionLazyV1<MatextInfo> postUpdate = new LazyMatextNodePostUpdate(option.conn, option.schemaName);
 		ActionLazyV1<MatextInfo> select = new LazyMatextRootSelect(option.conn, option.schemaName);	
 		
 		mergeToUpdate.addPostAction(nodeDefault);
@@ -101,7 +103,8 @@ public final class RootMatextUpdate extends DeciTreeTemplateWriteV2<MatextInfo> 
 		enforceLChanged.addPostAction(enforceLChangedBy);
 		enforceLChangedBy.addPostAction(enforceTxtSearch);
 		enforceTxtSearch.addPostAction(update);
-		update.addPostAction(select);
+		update.addPostAction(postUpdate);
+		postUpdate.addPostAction(select);
 		
 		actions.add(mergeToUpdate);
 		return actions;
