@@ -27,4 +27,10 @@ final class VisiStoreStorextUpsert extends ActionVisitorTemplateActionV2<StoreIn
 	@Override protected List<StorextInfo> toActionClassHook(List<StoreInfo> recordInfos) {
 		return StorextCopier.copyFromStore(recordInfos);
 	}
+	
+	
+	
+	@Override protected List<StoreInfo> toBaseClassHook(List<StoreInfo> baseInfos, List<StorextInfo> results) {
+		return baseInfos;
+	}
 }
