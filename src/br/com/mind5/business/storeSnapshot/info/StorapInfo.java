@@ -7,6 +7,7 @@ import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.company.info.CompInfo;
 import br.com.mind5.business.person.info.PersonInfo;
 import br.com.mind5.business.phone.info.PhoneInfo;
+import br.com.mind5.business.storeTextSnapshot.info.StorextsnapInfo;
 import br.com.mind5.common.CloneUtil;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
@@ -25,6 +26,7 @@ public final class StorapInfo extends InfoRecord implements Cloneable {
 	public String txtCurr;
 	public String codTimezone;
 	public String txtTimezone;
+	public List<StorextsnapInfo> storextsnapes;
 	public AddressInfo addressData;
 	public List<PhoneInfo> phones;
 	public CompInfo companyData;
@@ -50,6 +52,7 @@ public final class StorapInfo extends InfoRecord implements Cloneable {
 		codCompany = DefaultValue.number();
 		codCompanySnapshot = DefaultValue.number();		
 		recordMode = DefaultValue.recordMode();
+		storextsnapes = DefaultValue.list();
 		companyData = DefaultValue.object();
 		personData = DefaultValue.object();
 		addressData = DefaultValue.object();
@@ -75,6 +78,7 @@ public final class StorapInfo extends InfoRecord implements Cloneable {
 	@Override public Object clone() throws CloneNotSupportedException {
 		StorapInfo deepCopy = (StorapInfo) super.clone();
 		
+		deepCopy.storextsnapes = CloneUtil.cloneRecords(deepCopy.storextsnapes, this.getClass());
 		deepCopy.addressData = CloneUtil.cloneRecord(deepCopy.addressData, this.getClass());
 		deepCopy.phones = CloneUtil.cloneRecords(deepCopy.phones, this.getClass());
 		deepCopy.personData = CloneUtil.cloneRecord(deepCopy.personData, this.getClass());

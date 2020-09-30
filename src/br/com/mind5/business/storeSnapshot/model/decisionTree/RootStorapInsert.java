@@ -6,6 +6,7 @@ import java.util.List;
 import br.com.mind5.business.storeSnapshot.info.StorapInfo;
 import br.com.mind5.business.storeSnapshot.model.action.LazyStorapDaoInsert;
 import br.com.mind5.business.storeSnapshot.model.action.LazyStorapNodeComp;
+import br.com.mind5.business.storeSnapshot.model.action.LazyStorapNodeStorextsnap;
 import br.com.mind5.business.storeSnapshot.model.action.LazyStorapNodeUser;
 import br.com.mind5.business.storeSnapshot.model.checker.StorapCheckOwner;
 import br.com.mind5.business.storeSnapshot.model.checker.StorapCheckStore;
@@ -64,10 +65,12 @@ public final class RootStorapInsert extends DeciTreeTemplateWriteV2<StorapInfo> 
 		ActionLazyV1<StorapInfo> nodeComp = new LazyStorapNodeComp(option.conn, option.schemaName);
 		ActionLazyV1<StorapInfo> nodeUser = new LazyStorapNodeUser(option.conn, option.schemaName);
 		ActionLazyV1<StorapInfo> insert = new LazyStorapDaoInsert(option.conn, option.schemaName);
+		ActionLazyV1<StorapInfo> nodeStorextsnap = new LazyStorapNodeStorextsnap(option.conn, option.schemaName);
 		
 		nodePerson.addPostAction(nodeComp);
 		nodeComp.addPostAction(nodeUser);
 		nodeUser.addPostAction(insert);
+		insert.addPostAction(nodeStorextsnap);
 		
 		actions.add(nodePerson);	
 		return actions;
