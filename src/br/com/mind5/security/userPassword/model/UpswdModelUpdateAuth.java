@@ -30,8 +30,7 @@ public final class UpswdModelUpdateAuth extends ModelTemplate<UpswdInfo> {
 	
 	
 	
-	@Override protected ModelResponse<UpswdInfo> getModelResponseHook() {
-	
+	@Override protected ModelResponse<UpswdInfo> getModelResponseHook() {	
 		return new ModelResponseJwt<>();
 	}
 }

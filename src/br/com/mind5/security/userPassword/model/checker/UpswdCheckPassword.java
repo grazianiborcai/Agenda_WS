@@ -17,6 +17,8 @@ public final class UpswdCheckPassword extends ModelCheckerTemplateSimpleV2<Upswd
 	
 	
 	@Override protected boolean checkHook(UpswdInfo recordInfo, Connection conn, String schemaName) {	
+		if (recordInfo.password == null)
+			return super.FAILED;
 		
 		if (checkMinimunLength(recordInfo.password) == super.FAILED)
 			return super.FAILED;
