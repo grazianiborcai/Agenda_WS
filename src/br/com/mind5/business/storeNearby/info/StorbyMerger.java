@@ -6,12 +6,26 @@ import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.companyList.info.ComplisInfo;
 import br.com.mind5.business.materialGroupStore.info.MatoporeInfo;
 import br.com.mind5.business.storeFavorite.info.StoriteInfo;
+import br.com.mind5.business.storeText.info.StorextInfo;
 import br.com.mind5.file.fileImageList.info.FimistInfo;
 import br.com.mind5.geo.geoHash.info.GeoshInfo;
 import br.com.mind5.info.InfoMergerBuilderV3;
 import br.com.mind5.info.InfoMergerV3;
 
 public final class StorbyMerger {	
+	public static List<StorbyInfo> mergeWithStorext(List<StorbyInfo> baseInfos, List<StorextInfo> selectedInfos) {
+		InfoMergerBuilderV3<StorbyInfo, StorextInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new StorbyVisiMergeStorext());
+		InfoMergerV3<StorbyInfo, StorextInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	
 	public static List<StorbyInfo> mergeWithStorite(List<StorbyInfo> baseInfos, List<StoriteInfo> selectedInfos) {
 		InfoMergerBuilderV3<StorbyInfo, StoriteInfo> builder = new InfoMergerBuilderV3<>();
 		

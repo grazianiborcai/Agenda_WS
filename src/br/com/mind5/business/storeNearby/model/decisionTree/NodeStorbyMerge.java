@@ -8,6 +8,7 @@ import br.com.mind5.business.storeNearby.model.action.LazyStorbyEnforceDistance;
 import br.com.mind5.business.storeNearby.model.action.LazyStorbyMergeAddress;
 import br.com.mind5.business.storeNearby.model.action.LazyStorbyMergeFimist;
 import br.com.mind5.business.storeNearby.model.action.LazyStorbyMergeMatopore;
+import br.com.mind5.business.storeNearby.model.action.LazyStorbyMergeStorext;
 import br.com.mind5.business.storeNearby.model.action.LazyStorbyMergeStorite;
 import br.com.mind5.business.storeNearby.model.action.StdStorbyMergeComplis;
 import br.com.mind5.model.action.ActionLazyV1;
@@ -47,12 +48,14 @@ public final class NodeStorbyMerge extends DeciTreeTemplateWriteV2<StorbyInfo> {
 		ActionLazyV1<StorbyInfo> mergeFimist = new LazyStorbyMergeFimist(option.conn, option.schemaName);
 		ActionLazyV1<StorbyInfo> mergeMatopore = new LazyStorbyMergeMatopore(option.conn, option.schemaName);
 		ActionLazyV1<StorbyInfo> mergeStorite = new LazyStorbyMergeStorite(option.conn, option.schemaName);
+		ActionLazyV1<StorbyInfo> mergeStorext = new LazyStorbyMergeStorext(option.conn, option.schemaName);
 		
 		mergeComplis.addPostAction(mergeAddress);
 		mergeAddress.addPostAction(enforceDistance);
 		enforceDistance.addPostAction(mergeFimist);
 		mergeFimist.addPostAction(mergeMatopore);
 		mergeMatopore.addPostAction(mergeStorite);
+		mergeStorite.addPostAction(mergeStorext);
 		
 		actions.add(mergeComplis);			
 		return actions;

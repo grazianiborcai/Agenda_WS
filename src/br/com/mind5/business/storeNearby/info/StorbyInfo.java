@@ -5,6 +5,7 @@ import java.util.List;
 import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.companyList.info.ComplisInfo;
 import br.com.mind5.business.materialGroupStore.info.MatoporeInfo;
+import br.com.mind5.business.storeText.info.StorextInfo;
 import br.com.mind5.common.CloneUtil;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.file.fileImageList.info.FimistInfo;
@@ -25,6 +26,7 @@ public final class StorbyInfo extends InfoRecord implements Cloneable {
 	public boolean isFavorite;
 	public String recordMode;
 	public String username;
+	public StorextInfo storextData;
 	public AddressInfo addressData;
 	public ComplisInfo complisData;
 	public List<FimistInfo> fimistes;
@@ -42,6 +44,7 @@ public final class StorbyInfo extends InfoRecord implements Cloneable {
 		distanceKm = DefaultValue.number();
 		isFavorite = DefaultValue.boole();
 		recordMode = DefaultValue.recordMode();
+		storextData = DefaultValue.object();
 		complisData = DefaultValue.object();
 		addressData = DefaultValue.object();
 		fimistes = DefaultValue.list();
@@ -65,6 +68,7 @@ public final class StorbyInfo extends InfoRecord implements Cloneable {
 	@Override public Object clone() throws CloneNotSupportedException {
 		StorbyInfo deepCopy = (StorbyInfo) super.clone();
 		
+		deepCopy.storextData = CloneUtil.cloneRecord(storextData, this.getClass());
 		deepCopy.fimistes = CloneUtil.cloneRecords(fimistes, this.getClass());
 		deepCopy.addressData = CloneUtil.cloneRecord(addressData, this.getClass());
 		deepCopy.complisData = CloneUtil.cloneRecord(complisData, this.getClass());
