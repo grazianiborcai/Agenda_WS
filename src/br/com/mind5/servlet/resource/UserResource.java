@@ -125,6 +125,7 @@ public class UserResource {
 	@POST
 	@Path(UPDATE_USER_PASSWORD)
 	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
 	public Response updateUpswd(@Context HttpServletRequest request, String incomingData) {
 		
 		Model model = new UpswdModelUpdateAuth(incomingData, request);

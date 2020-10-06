@@ -220,7 +220,10 @@ public class StoreResource {
 		
 		Model model = new StowotmModelSelect(recordInfo);
 		model.executeRequest();
-		return model.getResponse();
+		Response response = model.getResponse();
+		
+		model.close();
+		return response;
 	}
 	
 	
@@ -233,7 +236,10 @@ public class StoreResource {
 		
 		Model model = new StowotmModelSearch(incomingData, request);
 		model.executeRequest();
-		return model.getResponse();
+		Response response = model.getResponse();
+		
+		model.close();
+		return response;
 	}
 	
 	
@@ -245,7 +251,10 @@ public class StoreResource {
 		
 		Model model = new StowotmModelInsert(incomingData, request);
 		model.executeRequest();
-		return model.getResponse();
+		Response response = model.getResponse();
+		
+		model.close();
+		return response;
 	}
 	
 	
@@ -268,7 +277,10 @@ public class StoreResource {
 		
 		Model model = new StowotmModelDelete(recordInfo);
 		model.executeRequest();
-		return model.getResponse();
+		Response response = model.getResponse();
+		
+		model.close();
+		return response;
 	}
 	
 	
@@ -281,7 +293,10 @@ public class StoreResource {
 
 		Model model = new StowotmModelUpdate(incomingData, request);
 		model.executeRequest();
-		return model.getResponse();
+		Response response = model.getResponse();
+		
+		model.close();
+		return response;
 	}
 	
 	
@@ -306,7 +321,10 @@ public class StoreResource {
 		
 		Model model = new StolateModelSelect(recordInfo);
 		model.executeRequest();
-		return model.getResponse();
+		Response response = model.getResponse();
+		
+		model.close();
+		return response;
 	}
 	
 	
@@ -331,7 +349,10 @@ public class StoreResource {
 		
 		Model model = new StolateModelSearch(recordInfo);
 		model.executeRequest();
-		return model.getResponse();
+		Response response = model.getResponse();
+		
+		model.close();
+		return response;
 	}
 	
 	
@@ -344,7 +365,10 @@ public class StoreResource {
 		
 		Model model = new StolateModelInsert(incomingData, request);
 		model.executeRequest();
-		return model.getResponse();
+		Response response = model.getResponse();
+		
+		model.close();
+		return response;
 	}
 	
 	
@@ -357,7 +381,10 @@ public class StoreResource {
 
 		Model model = new StolateModelUpdate(incomingData, request);
 		model.executeRequest();
-		return model.getResponse();
+		Response response = model.getResponse();
+		
+		model.close();
+		return response;
 	}
 	
 	
@@ -383,7 +410,10 @@ public class StoreResource {
 		
 		Model model = new StolateModelDelete(recordInfo);
 		model.executeRequest();
-		return model.getResponse();
+		Response response = model.getResponse();
+		
+		model.close();
+		return response;
 	}
 
 	
@@ -404,7 +434,10 @@ public class StoreResource {
 		
 		Model model = new StoplisModelSearch(recordInfo);
 		model.executeRequest();
-		return model.getResponse();
+		Response response = model.getResponse();
+		
+		model.close();
+		return response;
 	}
 	
 	
@@ -425,7 +458,10 @@ public class StoreResource {
 		
 		Model model = new AccemoipModelUrl(recordInfo);
 		model.executeRequest();
-		return model.getResponse();	
+		Response response = model.getResponse();
+		
+		model.close();
+		return response;
 	}
 	
 	
