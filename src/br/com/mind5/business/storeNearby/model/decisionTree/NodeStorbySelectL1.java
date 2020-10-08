@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.storeNearby.info.StorbyInfo;
-import br.com.mind5.business.storeNearby.model.checker.StorbyCheckExistHash02;
+import br.com.mind5.business.storeNearby.model.checker.StorbyCheckReadDistrict;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -12,9 +12,9 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class NodeStorbyHashL3 extends DeciTreeTemplateWriteV2<StorbyInfo> {
+public final class NodeStorbySelectL1 extends DeciTreeTemplateWriteV2<StorbyInfo> {
 	
-	public NodeStorbyHashL3(DeciTreeOption<StorbyInfo> option) {
+	public NodeStorbySelectL1(DeciTreeOption<StorbyInfo> option) {
 		super(option);
 	}
 	
@@ -29,7 +29,7 @@ public final class NodeStorbyHashL3 extends DeciTreeTemplateWriteV2<StorbyInfo> 
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new StorbyCheckExistHash02(checkerOption);
+		checker = new StorbyCheckReadDistrict(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueueV2<>(queue);
@@ -40,9 +40,9 @@ public final class NodeStorbyHashL3 extends DeciTreeTemplateWriteV2<StorbyInfo> 
 	@Override protected List<ActionStdV1<StorbyInfo>> buildActionsOnPassedHook(DeciTreeOption<StorbyInfo> option) {
 		List<ActionStdV1<StorbyInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV1<StorbyInfo> selectHash02 = new RootStorbySelectHash02(option).toAction();
+		ActionStdV1<StorbyInfo> selectName = new RootStorbySelectDistrict(option).toAction();
 		
-		actions.add(selectHash02);			
+		actions.add(selectName);			
 		return actions;
 	}
 	
@@ -51,9 +51,9 @@ public final class NodeStorbyHashL3 extends DeciTreeTemplateWriteV2<StorbyInfo> 
 	@Override protected List<ActionStdV1<StorbyInfo>> buildActionsOnFailedHook(DeciTreeOption<StorbyInfo> option) {
 		List<ActionStdV1<StorbyInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV1<StorbyInfo> selectHash01 = new RootStorbySelectHash01(option).toAction();
+		ActionStdV1<StorbyInfo> selectGeo = new RootStorbySelectGeo(option).toAction();
 		
-		actions.add(selectHash01);			
+		actions.add(selectGeo);			
 		return actions;
 	}
 	

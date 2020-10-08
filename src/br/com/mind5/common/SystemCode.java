@@ -1384,6 +1384,8 @@ public final class SystemCode {
 	
 	// Store Nearby
 	public static final int STORE_NEARBY_MANDATORY_FIELD_EMPTY			= 13450;	
+	public static final int STORE_NEARBY_NOT_FOUND						= 13451;
+	public static final int STORE_NEARBY_ALREADY_EXIST					= 13452;
 
 	// Notes
 	public static final int NOTES_MANDATORY_FIELD_EMPTY					= 13500;

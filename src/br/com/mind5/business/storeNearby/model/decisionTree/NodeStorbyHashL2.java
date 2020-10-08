@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.storeNearby.info.StorbyInfo;
-import br.com.mind5.business.storeNearby.model.action.StdStorbyEnforceHash03Key;
 import br.com.mind5.business.storeNearby.model.checker.StorbyCheckExistHash03;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
@@ -41,9 +40,9 @@ public final class NodeStorbyHashL2 extends DeciTreeTemplateWriteV2<StorbyInfo> 
 	@Override protected List<ActionStdV1<StorbyInfo>> buildActionsOnPassedHook(DeciTreeOption<StorbyInfo> option) {
 		List<ActionStdV1<StorbyInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV1<StorbyInfo> enforceHashKey = new StdStorbyEnforceHash03Key(option);
+		ActionStdV1<StorbyInfo> selectHash03 = new RootStorbySelectHash03(option).toAction();
 		
-		actions.add(enforceHashKey);			
+		actions.add(selectHash03);			
 		return actions;
 	}
 	

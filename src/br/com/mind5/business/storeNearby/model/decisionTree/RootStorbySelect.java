@@ -51,7 +51,7 @@ public final class RootStorbySelect extends DeciTreeTemplateWriteV2<StorbyInfo> 
 	@Override protected List<ActionStdV1<StorbyInfo>> buildActionsOnFailedHook(DeciTreeOption<StorbyInfo> option) {
 		List<ActionStdV1<StorbyInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV1<StorbyInfo> nodeL1 = new NodeStorbySelect(option).toAction();
+		ActionStdV1<StorbyInfo> nodeL1 = new NodeStorbySelectL1(option).toAction();
 		
 		actions.add(nodeL1);			
 		return actions;

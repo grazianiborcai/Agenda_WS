@@ -4,10 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.storeNearby.info.StorbyInfo;
-import br.com.mind5.business.storeNearby.model.action.LazyStorbyNodeGeoL1;
+import br.com.mind5.business.storeNearby.model.action.LazyStorbyMergeToSelect;
+import br.com.mind5.business.storeNearby.model.action.StdStorbyEnforceHash02Key;
 import br.com.mind5.business.storeNearby.model.checker.StorbyCheckLangu;
 import br.com.mind5.business.storeNearby.model.checker.StorbyCheckOwner;
-import br.com.mind5.business.storeNearby.model.checker.StorbyCheckReadGeo;
+import br.com.mind5.business.storeNearby.model.checker.StorbyCheckReadHash02;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
@@ -16,9 +17,9 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class RootStorbySelectGeo extends DeciTreeTemplateWriteV2<StorbyInfo> {
+public final class RootStorbySelectHash02 extends DeciTreeTemplateWriteV2<StorbyInfo> {
 	
-	public RootStorbySelectGeo(DeciTreeOption<StorbyInfo> option) {
+	public RootStorbySelectHash02(DeciTreeOption<StorbyInfo> option) {
 		super(option);
 	}
 	
@@ -33,7 +34,7 @@ public final class RootStorbySelectGeo extends DeciTreeTemplateWriteV2<StorbyInf
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new StorbyCheckReadGeo(checkerOption);
+		checker = new StorbyCheckReadHash02(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
@@ -58,12 +59,12 @@ public final class RootStorbySelectGeo extends DeciTreeTemplateWriteV2<StorbyInf
 	@Override protected List<ActionStdV1<StorbyInfo>> buildActionsOnPassedHook(DeciTreeOption<StorbyInfo> option) {
 		List<ActionStdV1<StorbyInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV1<StorbyInfo> nodeHash = new NodeStorbyHashL1(option).toAction();
-		ActionLazyV1<StorbyInfo> nodeL1 = new LazyStorbyNodeGeoL1(option.conn, option.schemaName);
+		ActionStdV1<StorbyInfo> enforceHash02Key = new StdStorbyEnforceHash02Key(option);
+		ActionLazyV1<StorbyInfo> select = new LazyStorbyMergeToSelect(option.conn, option.schemaName);
 		
-		nodeHash.addPostAction(nodeL1);
+		enforceHash02Key.addPostAction(select);
 		
-		actions.add(nodeHash);			
+		actions.add(enforceHash02Key);			
 		return actions;
 	}
 	

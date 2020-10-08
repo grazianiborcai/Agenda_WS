@@ -12,9 +12,9 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class NodeStorbySelect extends DeciTreeTemplateWriteV2<StorbyInfo> {
+public final class NodeStorbySelectGeoL1 extends DeciTreeTemplateWriteV2<StorbyInfo> {
 	
-	public NodeStorbySelect(DeciTreeOption<StorbyInfo> option) {
+	public NodeStorbySelectGeoL1(DeciTreeOption<StorbyInfo> option) {
 		super(option);
 	}
 	
@@ -40,9 +40,9 @@ public final class NodeStorbySelect extends DeciTreeTemplateWriteV2<StorbyInfo> 
 	@Override protected List<ActionStdV1<StorbyInfo>> buildActionsOnPassedHook(DeciTreeOption<StorbyInfo> option) {
 		List<ActionStdV1<StorbyInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV1<StorbyInfo> selectName = new RootStorbySelectDistrict(option).toAction();
+		ActionStdV1<StorbyInfo> selectDistrict = new RootStorbySelectDistrict(option).toAction();
 		
-		actions.add(selectName);			
+		actions.add(selectDistrict);			
 		return actions;
 	}
 	
@@ -51,9 +51,9 @@ public final class NodeStorbySelect extends DeciTreeTemplateWriteV2<StorbyInfo> 
 	@Override protected List<ActionStdV1<StorbyInfo>> buildActionsOnFailedHook(DeciTreeOption<StorbyInfo> option) {
 		List<ActionStdV1<StorbyInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV1<StorbyInfo> selectGeo = new RootStorbySelectGeo(option).toAction();
+		ActionStdV1<StorbyInfo> selectHash03 = new RootStorbySelectHash03(option).toAction();
 		
-		actions.add(selectGeo);			
+		actions.add(selectHash03);			
 		return actions;
 	}
 	
