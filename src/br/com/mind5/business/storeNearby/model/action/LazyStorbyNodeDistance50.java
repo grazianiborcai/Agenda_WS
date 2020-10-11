@@ -4,15 +4,15 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.storeNearby.info.StorbyInfo;
-import br.com.mind5.business.storeNearby.model.decisionTree.NodeStorbyHashL2;
+import br.com.mind5.business.storeNearby.model.decisionTree.NodeStorbyDistance50;
 import br.com.mind5.model.action.ActionLazyTemplateV2;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyStorbyNodeHashL2 extends ActionLazyTemplateV2<StorbyInfo, StorbyInfo> {
-
-	public LazyStorbyNodeHashL2(Connection conn, String schemaName) {
+public final class LazyStorbyNodeDistance50 extends ActionLazyTemplateV2<StorbyInfo, StorbyInfo> {
+	
+	public LazyStorbyNodeDistance50(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -25,7 +25,7 @@ public final class LazyStorbyNodeHashL2 extends ActionLazyTemplateV2<StorbyInfo,
 	
 	
 	@Override protected ActionStdV1<StorbyInfo> getInstanceOfActionHook(DeciTreeOption<StorbyInfo> option) {
-		return new NodeStorbyHashL2(option).toAction();
+		return new NodeStorbyDistance50(option).toAction();
 	}
 	
 	

@@ -17,9 +17,9 @@ import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 
-public final class NodeStorbyMerge extends DeciTreeTemplateWriteV2<StorbyInfo> {
+public final class NodeStorbyMerge extends DeciTreeTemplateReadV2<StorbyInfo> {
 	
 	public NodeStorbyMerge(DeciTreeOption<StorbyInfo> option) {
 		super(option);

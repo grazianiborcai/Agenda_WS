@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.storeNearby.info.StorbyInfo;
-import br.com.mind5.business.storeNearby.model.checker.StorbyCheckLangu;
-import br.com.mind5.business.storeNearby.model.checker.StorbyCheckOwner;
-import br.com.mind5.business.storeNearby.model.checker.StorbyCheckReadGeo;
+import br.com.mind5.business.storeNearby.model.action.LazyStorbyRootSelectGeoL4;
+import br.com.mind5.business.storeNearby.model.checker.StorbyCheckExistHash03;
+import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -14,9 +14,9 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 
-public final class RootStorbySelectGeo extends DeciTreeTemplateReadV2<StorbyInfo> {
+public final class NodeStorbySelectGeoL2 extends DeciTreeTemplateReadV2<StorbyInfo> {
 	
-	public RootStorbySelectGeo(DeciTreeOption<StorbyInfo> option) {
+	public NodeStorbySelectGeoL2(DeciTreeOption<StorbyInfo> option) {
 		super(option);
 	}
 	
@@ -31,21 +31,7 @@ public final class RootStorbySelectGeo extends DeciTreeTemplateReadV2<StorbyInfo
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new StorbyCheckReadGeo(checkerOption);
-		queue.add(checker);
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
-		checker = new StorbyCheckLangu(checkerOption);
-		queue.add(checker);
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
-		checker = new StorbyCheckOwner(checkerOption);
+		checker = new StorbyCheckExistHash03(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueueV2<>(queue);
@@ -56,9 +42,23 @@ public final class RootStorbySelectGeo extends DeciTreeTemplateReadV2<StorbyInfo
 	@Override protected List<ActionStdV1<StorbyInfo>> buildActionsOnPassedHook(DeciTreeOption<StorbyInfo> option) {
 		List<ActionStdV1<StorbyInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV1<StorbyInfo> nodeL1 = new NodeStorbySelectGeoL1(option).toAction();
+		ActionStdV1<StorbyInfo> selectHash03 = new RootStorbySelectHash03(option).toAction();
+		ActionLazyV1<StorbyInfo> nodeL4 = new LazyStorbyRootSelectGeoL4(option.conn, option.schemaName);
 		
-		actions.add(nodeL1);			
+		selectHash03.addPostAction(nodeL4);
+		
+		actions.add(selectHash03);			
+		return actions;
+	}
+	
+	
+	
+	@Override protected List<ActionStdV1<StorbyInfo>> buildActionsOnFailedHook(DeciTreeOption<StorbyInfo> option) {
+		List<ActionStdV1<StorbyInfo>> actions = new ArrayList<>();		
+		
+		ActionStdV1<StorbyInfo> nodeL3 = new NodeStorbySelectGeoL3(option).toAction();
+		
+		actions.add(nodeL3);			
 		return actions;
 	}
 	

@@ -4,17 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.storeNearby.info.StorbyInfo;
-import br.com.mind5.business.storeNearby.model.checker.StorbyCheckExistHash02;
+import br.com.mind5.business.storeNearby.model.action.StdStorbySuccess;
+import br.com.mind5.business.storeNearby.model.checker.StorbyCheckReadDistrict;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 
-public final class NodeStorbyHashL3 extends DeciTreeTemplateWriteV2<StorbyInfo> {
+public final class NodeStorbySelectGeoL4 extends DeciTreeTemplateReadV2<StorbyInfo> {
 	
-	public NodeStorbyHashL3(DeciTreeOption<StorbyInfo> option) {
+	public NodeStorbySelectGeoL4(DeciTreeOption<StorbyInfo> option) {
 		super(option);
 	}
 	
@@ -29,7 +30,7 @@ public final class NodeStorbyHashL3 extends DeciTreeTemplateWriteV2<StorbyInfo> 
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new StorbyCheckExistHash02(checkerOption);
+		checker = new StorbyCheckReadDistrict(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueueV2<>(queue);
@@ -40,9 +41,9 @@ public final class NodeStorbyHashL3 extends DeciTreeTemplateWriteV2<StorbyInfo> 
 	@Override protected List<ActionStdV1<StorbyInfo>> buildActionsOnPassedHook(DeciTreeOption<StorbyInfo> option) {
 		List<ActionStdV1<StorbyInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV1<StorbyInfo> selectHash02 = new RootStorbySelectHash02(option).toAction();
+		ActionStdV1<StorbyInfo> selectDistrict = new RootStorbySelectDistrict(option).toAction();
 		
-		actions.add(selectHash02);			
+		actions.add(selectDistrict);			
 		return actions;
 	}
 	
@@ -51,9 +52,9 @@ public final class NodeStorbyHashL3 extends DeciTreeTemplateWriteV2<StorbyInfo> 
 	@Override protected List<ActionStdV1<StorbyInfo>> buildActionsOnFailedHook(DeciTreeOption<StorbyInfo> option) {
 		List<ActionStdV1<StorbyInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV1<StorbyInfo> selectHash01 = new RootStorbySelectHash01(option).toAction();
+		ActionStdV1<StorbyInfo> success = new StdStorbySuccess(option);
 		
-		actions.add(selectHash01);			
+		actions.add(success);			
 		return actions;
 	}
 	

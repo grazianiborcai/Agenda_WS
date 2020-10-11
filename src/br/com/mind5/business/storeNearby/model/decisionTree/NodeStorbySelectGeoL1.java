@@ -4,15 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.storeNearby.info.StorbyInfo;
-import br.com.mind5.business.storeNearby.model.checker.StorbyCheckReadDistrict;
+import br.com.mind5.business.storeNearby.model.action.LazyStorbyNodeSelectGeoL2;
+import br.com.mind5.business.storeNearby.model.action.LazyStorbyPruneEmpty;
+import br.com.mind5.business.storeNearby.model.action.StdStorbyGeoshGenerate;
+import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 
-public final class NodeStorbySelectGeoL1 extends DeciTreeTemplateWriteV2<StorbyInfo> {
+public final class NodeStorbySelectGeoL1 extends DeciTreeTemplateReadV2<StorbyInfo> {
 	
 	public NodeStorbySelectGeoL1(DeciTreeOption<StorbyInfo> option) {
 		super(option);
@@ -23,13 +26,8 @@ public final class NodeStorbySelectGeoL1 extends DeciTreeTemplateWriteV2<StorbyI
 	@Override protected ModelCheckerV1<StorbyInfo> buildCheckerHook(DeciTreeOption<StorbyInfo> option) {
 		List<ModelCheckerV1<StorbyInfo>> queue = new ArrayList<>();		
 		ModelCheckerV1<StorbyInfo> checker;	
-		ModelCheckerOption checkerOption;
-		
-		checkerOption = new ModelCheckerOption();
-		checkerOption.conn = option.conn;
-		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new StorbyCheckReadDistrict(checkerOption);
+
+		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueueV2<>(queue);
@@ -40,20 +38,14 @@ public final class NodeStorbySelectGeoL1 extends DeciTreeTemplateWriteV2<StorbyI
 	@Override protected List<ActionStdV1<StorbyInfo>> buildActionsOnPassedHook(DeciTreeOption<StorbyInfo> option) {
 		List<ActionStdV1<StorbyInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV1<StorbyInfo> selectDistrict = new RootStorbySelectDistrict(option).toAction();
+		ActionStdV1<StorbyInfo> geoshGenerate = new StdStorbyGeoshGenerate(option);
+		ActionLazyV1<StorbyInfo> nodeL2 = new LazyStorbyNodeSelectGeoL2(option.conn, option.schemaName);
+		ActionLazyV1<StorbyInfo> pruneEmpty = new LazyStorbyPruneEmpty(option.conn, option.schemaName);
 		
-		actions.add(selectDistrict);			
-		return actions;
-	}
-	
-	
-	
-	@Override protected List<ActionStdV1<StorbyInfo>> buildActionsOnFailedHook(DeciTreeOption<StorbyInfo> option) {
-		List<ActionStdV1<StorbyInfo>> actions = new ArrayList<>();		
+		geoshGenerate.addPostAction(nodeL2);
+		nodeL2.addPostAction(pruneEmpty);
 		
-		ActionStdV1<StorbyInfo> selectHash03 = new RootStorbySelectHash03(option).toAction();
-		
-		actions.add(selectHash03);			
+		actions.add(geoshGenerate);			
 		return actions;
 	}
 	

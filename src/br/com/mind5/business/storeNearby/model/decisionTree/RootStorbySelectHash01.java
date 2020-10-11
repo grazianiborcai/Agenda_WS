@@ -5,6 +5,8 @@ import java.util.List;
 
 import br.com.mind5.business.storeNearby.info.StorbyInfo;
 import br.com.mind5.business.storeNearby.model.action.LazyStorbyMergeToSelect;
+import br.com.mind5.business.storeNearby.model.action.LazyStorbyNodeDistance50;
+import br.com.mind5.business.storeNearby.model.action.LazyStorbyNodeMerge;
 import br.com.mind5.business.storeNearby.model.action.StdStorbyEnforceHash01Key;
 import br.com.mind5.business.storeNearby.model.checker.StorbyCheckLangu;
 import br.com.mind5.business.storeNearby.model.checker.StorbyCheckOwner;
@@ -15,9 +17,9 @@ import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 
-public final class RootStorbySelectHash01 extends DeciTreeTemplateWriteV2<StorbyInfo> {
+public final class RootStorbySelectHash01 extends DeciTreeTemplateReadV2<StorbyInfo> {
 	
 	public RootStorbySelectHash01(DeciTreeOption<StorbyInfo> option) {
 		super(option);
@@ -61,8 +63,12 @@ public final class RootStorbySelectHash01 extends DeciTreeTemplateWriteV2<Storby
 		
 		ActionStdV1<StorbyInfo> enforceHash01Key = new StdStorbyEnforceHash01Key(option);
 		ActionLazyV1<StorbyInfo> select = new LazyStorbyMergeToSelect(option.conn, option.schemaName);
+		ActionLazyV1<StorbyInfo> nodeDistance = new LazyStorbyNodeDistance50(option.conn, option.schemaName);
+		ActionLazyV1<StorbyInfo> nodeMerge = new LazyStorbyNodeMerge(option.conn, option.schemaName);
 		
 		enforceHash01Key.addPostAction(select);
+		select.addPostAction(nodeDistance);
+		nodeDistance.addPostAction(nodeMerge);
 		
 		actions.add(enforceHash01Key);			
 		return actions;

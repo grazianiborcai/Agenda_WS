@@ -88,6 +88,18 @@ public final class StorbyInfo extends InfoRecord implements Cloneable {
 		if (districtSearch != null)
 			result = result * 31 + districtSearch.hashCode();
 		
+		if (nameSearch != null)
+			result = result * 31 + nameSearch.hashCode();
+		
+		if (geoHash01 != null)
+			result = result * 31 + geoHash01.hashCode();
+		
+		if (geoHash02 != null)
+			result = result * 31 + geoHash02.hashCode();
+		
+		if (geoHash03 != null)
+			result = result * 31 + geoHash03.hashCode();
+		
 		return result;
 	}
 	
@@ -105,6 +117,10 @@ public final class StorbyInfo extends InfoRecord implements Cloneable {
 		StorbyInfo obj = (StorbyInfo) o;		
 		return (codOwner == obj.codOwner && 
 				codStore == obj.codStore &&
-				super.isStringEqual(districtSearch, obj.districtSearch));
+				super.isStringEqual(districtSearch, obj.districtSearch) &&
+				super.isStringEqual(nameSearch, obj.nameSearch)			&&
+				super.isStringEqual(geoHash01, obj.geoHash01)			&&
+				super.isStringEqual(geoHash02, obj.geoHash02)			&&
+				super.isStringEqual(geoHash03, obj.geoHash03)				);
 	}	
 }

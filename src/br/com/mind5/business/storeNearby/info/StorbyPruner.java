@@ -16,4 +16,17 @@ public final class StorbyPruner {
 	
 		return pruner.prune();
 	}
+	
+	
+	
+	public static List<StorbyInfo> pruneDistance50(List<StorbyInfo> baseInfos) {
+		InfoPrunerBuilder<StorbyInfo, StorbyInfo> builder = new InfoPrunerBuilder<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(baseInfos);
+		builder.addVisitor(new StorbyVisiPruneDistance50());
+		InfoPruner<StorbyInfo, StorbyInfo> pruner = builder.build();		
+	
+		return pruner.prune();
+	}
 }
