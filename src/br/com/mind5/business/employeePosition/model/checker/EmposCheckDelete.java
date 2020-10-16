@@ -15,12 +15,12 @@ public final class EmposCheckDelete extends ModelCheckerTemplateSimpleV2<EmposIn
 	
 	
 	@Override protected boolean checkHook(EmposInfo recordInfo, Connection conn, String schemaName) {	
-		if (    recordInfo.codOwner 	<= 0 
-			 || recordInfo.codStore  	<= 0 
-			 || recordInfo.codEmployee	<= 0
-			 || recordInfo.codPosition	<= 0
-			 || recordInfo.username		== null
-			 || recordInfo.codLanguage	== null	)			
+		if ( recordInfo.codOwner 	<= 0	|| 
+			 recordInfo.codStore  	<= 0	|| 
+			 recordInfo.codEmployee	<= 0	||
+			 recordInfo.codPosition	<= 0	||
+			 recordInfo.username	== null	||
+			 recordInfo.codLanguage	== null		)			
 			return super.FAILED;		
 		
 		return super.SUCCESS;

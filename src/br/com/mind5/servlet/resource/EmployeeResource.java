@@ -35,10 +35,10 @@ import br.com.mind5.business.employeeMaterial.model.EmpmatModelInsert;
 import br.com.mind5.business.employeeMaterial.model.EmpmatModelSearch;
 import br.com.mind5.business.employeeMaterial.model.EmpmatModelSelect;
 import br.com.mind5.business.employeePosition.info.EmposInfo;
-import br.com.mind5.business.employeePosition.model.EmposModelDelete;
-import br.com.mind5.business.employeePosition.model.EmposModelInsert;
+import br.com.mind5.business.employeePosition.model.EmposModelDeleteProfessional;
+import br.com.mind5.business.employeePosition.model.EmposModelInsertProfessional;
 import br.com.mind5.business.employeePosition.model.EmposModelSearch;
-import br.com.mind5.business.employeePosition.model.EmposModelSelect;
+import br.com.mind5.business.employeePosition.model.EmposModelSelectProfessional;
 import br.com.mind5.business.employeeWorkTime.info.EmpwotmInfo;
 import br.com.mind5.business.employeeWorkTime.model.EmpwotmModelConflict;
 import br.com.mind5.business.employeeWorkTime.model.EmpwotmModelDelete;
@@ -413,7 +413,7 @@ public class EmployeeResource {
 		recordInfo.codLanguage = codLanguage;
 		recordInfo.username = username;
 		
-		Model model = new EmposModelSelect(recordInfo);
+		Model model = new EmposModelSelectProfessional(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	}
@@ -438,7 +438,7 @@ public class EmployeeResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response insertEmpos(@Context HttpServletRequest request, String incomingData) {
 		
-		Model model = new EmposModelInsert(incomingData, request);
+		Model model = new EmposModelInsertProfessional(incomingData, request);
 		model.executeRequest();
 		return model.getResponse();
 	}
@@ -463,7 +463,7 @@ public class EmployeeResource {
 		recordInfo.codLanguage = codLanguage;
 		recordInfo.username = username;
 		
-		Model model = new EmposModelDelete(recordInfo);
+		Model model = new EmposModelDeleteProfessional(recordInfo);
 		model.executeRequest();
 		return model.getResponse();
 	}

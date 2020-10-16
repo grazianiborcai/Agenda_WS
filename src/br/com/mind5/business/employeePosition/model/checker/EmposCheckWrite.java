@@ -16,12 +16,12 @@ public final class EmposCheckWrite extends ModelCheckerTemplateSimpleV2<EmposInf
 	
 	
 	@Override protected boolean checkHook(EmposInfo recordInfo, Connection conn, String schemaName) {	
-		if (   recordInfo.codOwner 		<= 0 	
-			|| recordInfo.codStore 		<= 0
-			|| recordInfo.codEmployee	<= 0  	
-			|| recordInfo.codPosition	<= 0
-			|| recordInfo.codLanguage	== null	
-			|| recordInfo.username		== null)
+		if ( recordInfo.codOwner 	<= 0 	||	
+			 recordInfo.codStore 	<= 0 	||
+			 recordInfo.codEmployee	<= 0	||  	
+			 recordInfo.codPosition	<= 0	||
+			 recordInfo.codLanguage	== null	||	
+			 recordInfo.username	== null		)
 			
 			return super.FAILED;
 		
