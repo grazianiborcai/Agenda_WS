@@ -63,7 +63,7 @@ public final class RootEmpInsert extends DeciTreeTemplateWriteV2<EmpInfo> {
 	@Override protected List<ActionStdV1<EmpInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpInfo> option) {
 		List<ActionStdV1<EmpInfo>> actions = new ArrayList<>();
 		//TODO: O que fazer se o CPF/e-mail ja tiver associado a um customer/owner/store manager ?
-		ActionStdV1<EmpInfo> insertEmployee = new NodeEmpInsert(option).toAction();	
+		ActionStdV1<EmpInfo> insertEmployee = new NodeEmpInsertL1(option).toAction();	
 		ActionLazyV1<EmpInfo> insertPerson = new LazyEmpNodeInsertPerson(option.conn, option.schemaName);	
 		ActionLazyV1<EmpInfo> insertUser = new LazyEmpNodeInsertUser(option.conn, option.schemaName);
 		ActionLazyV1<EmpInfo> snapshot = new LazyEmpNodeSnapshot(option.conn, option.schemaName);	
