@@ -2,14 +2,18 @@ package br.com.mind5.config.sysStoreSignup.info;
 
 import java.util.List;
 
+import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
 
 public final class SysotupInfo extends InfoRecord implements Cloneable {
+	public long codOwner;
 	public String storeSignup;
 	
 	
 	public SysotupInfo() {
 		super();
+		
+		codOwner = DefaultValue.number();
 	}
 	
 	
@@ -33,10 +37,11 @@ public final class SysotupInfo extends InfoRecord implements Cloneable {
 	
 	
 	@Override public int hashCode() {
-		if (storeSignup == null)
-			return 0;
+		int result = 17;
 		
-		return storeSignup.hashCode();
+		result = result * 31 + (int) (codOwner ^ (codOwner >>> 32));
+		
+		return result;
 	}
 	
 	
@@ -51,6 +56,6 @@ public final class SysotupInfo extends InfoRecord implements Cloneable {
 		
 		
 		SysotupInfo obj = (SysotupInfo) o;		
-		return (isStringEqual(storeSignup, obj.storeSignup));
+		return (codOwner == obj.codOwner);
 	}
 }

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.config.sysStoreSignup.info.SysotupInfo;
+import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
 import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtTemplate;
@@ -67,6 +68,7 @@ public final class DaoSysotupSelectSingle extends DaoStmtTemplate<SysotupInfo> {
 				do {				
 					SysotupInfo dataInfo = new SysotupInfo();
 					
+					dataInfo.codOwner = DaoFormatter.sqlToLong(stmtResult, DaoSysotupDbTableColumn.COL_COD_OWNER);
 					dataInfo.storeSignup = stmtResult.getString(DaoSysotupDbTableColumn.COL_STORE_SIGNUP);	
 					
 					finalResult.add(dataInfo);				
