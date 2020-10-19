@@ -15,6 +15,7 @@ import br.com.mind5.security.otpProspectStore.model.action.LazyOtporeSendEmail;
 import br.com.mind5.security.otpProspectStore.model.action.LazyOtporeSuccess;
 import br.com.mind5.security.otpProspectStore.model.checker.OtporeCheckInsert;
 import br.com.mind5.security.otpProspectStore.model.checker.OtporeCheckOwner;
+import br.com.mind5.security.otpProspectStore.model.checker.OtporeCheckSysotup;
 
 public final class RootOtporeInsert extends DeciTreeTemplateWriteV2<OtporeInfo> {
 	
@@ -41,6 +42,13 @@ public final class RootOtporeInsert extends DeciTreeTemplateWriteV2<OtporeInfo> 
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new OtporeCheckOwner(checkerOption);
+		queue.add(checker);	
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
+		checker = new OtporeCheckSysotup(checkerOption);
 		queue.add(checker);	
 		
 		return new ModelCheckerHelperQueueV2<>(queue);
