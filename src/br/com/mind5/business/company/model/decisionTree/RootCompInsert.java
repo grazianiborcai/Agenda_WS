@@ -10,12 +10,13 @@ import br.com.mind5.business.company.model.checker.CompCheckCountry;
 import br.com.mind5.business.company.model.checker.CompCheckEntiteg;
 import br.com.mind5.business.company.model.checker.CompCheckInsert;
 import br.com.mind5.business.company.model.checker.CompCheckLangu;
+import br.com.mind5.business.company.model.checker.CompCheckNameLength;
 import br.com.mind5.business.company.model.checker.CompCheckOwner;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
@@ -37,6 +38,13 @@ public final class RootCompInsert extends DeciTreeTemplateWriteV2<CompInfo> {
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;			
 		checker = new CompCheckInsert(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;			
+		checker = new CompCheckNameLength(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();

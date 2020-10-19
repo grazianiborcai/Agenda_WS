@@ -529,6 +529,7 @@ public final class SystemCode {
 	public static final int COMPANY_IS_FILLED							= 2515;
 	public static final int COMPANY_MISMATCH							= 2516;
 	public static final int COMPANY_MANDATORY_FIELD_EMPTY 				= 2517;
+	public static final int COMPANY_MANDATORY_MAX_LENGTH_EXCEEDED		= 2518;
 	
 	// Pay Partner-Owner
 	public static final int PAY_PARTNER_OWNER_COUNTRY_IS_NULL			= 2550;

@@ -7,27 +7,34 @@ import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class CompCheckRead extends ModelCheckerTemplateSimpleV2<CompInfo> {
+public final class CompCheckNameLength extends ModelCheckerTemplateSimpleV2<CompInfo> {
+	private int MAX_LENGTH = 30;
 
-	public CompCheckRead(ModelCheckerOption option) {
+	public CompCheckNameLength(ModelCheckerOption option) {
 		super(option);
 	}
 	
 	
 	
 	@Override protected boolean checkHook(CompInfo recordInfo, Connection conn, String schemaName) {	
-		if ( recordInfo.codOwner  	<= 0 	||
-			 recordInfo.codCompany 	<= 0	||
-			 recordInfo.codLanguage	== null ||
-			 recordInfo.username	== null		)			
+		if ( recordInfo.name == null)			
 			return super.FAILED;		
+		
+		if ( checkNameLength(recordInfo) == super.FAILED)			
+			return super.FAILED;	
 		
 		return super.SUCCESS;
 	}
 	
 	
 	
+	private boolean checkNameLength(CompInfo recordInfo) {
+		return recordInfo.name.length() <= MAX_LENGTH;
+	}
+	
+	
+	
 	@Override protected int getCodMsgOnResultFalseHook() {
-		return SystemCode.COMPANY_MANDATORY_FIELD_EMPTY;
+		return SystemCode.COMPANY_MANDATORY_MAX_LENGTH_EXCEEDED;
 	}
 }

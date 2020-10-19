@@ -13,6 +13,7 @@ import br.com.mind5.business.company.model.action.StdCompMergeToUpdate;
 import br.com.mind5.business.company.model.checker.CompCheckCountry;
 import br.com.mind5.business.company.model.checker.CompCheckExist;
 import br.com.mind5.business.company.model.checker.CompCheckLangu;
+import br.com.mind5.business.company.model.checker.CompCheckNameLength;
 import br.com.mind5.business.company.model.checker.CompCheckOwner;
 import br.com.mind5.business.company.model.checker.CompCheckUpdate;
 import br.com.mind5.model.action.ActionLazyV1;
@@ -41,6 +42,13 @@ public final class RootCompUpdate extends DeciTreeTemplateWriteV2<CompInfo> {
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
 		checker = new CompCheckUpdate(checkerOption);
+		queue.add(checker);
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;			
+		checker = new CompCheckNameLength(checkerOption);
 		queue.add(checker);
 		
 		checkerOption = new ModelCheckerOption();
