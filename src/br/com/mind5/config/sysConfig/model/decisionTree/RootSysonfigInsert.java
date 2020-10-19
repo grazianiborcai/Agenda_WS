@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.com.mind5.config.sysConfig.info.SysonfigInfo;
 import br.com.mind5.config.sysConfig.model.action.LazySysonfigDaoInsert;
+import br.com.mind5.config.sysConfig.model.action.LazySysonfigMergeSysotup;
 import br.com.mind5.config.sysConfig.model.action.StdSysonfigMergeSytotin;
 import br.com.mind5.config.sysConfig.model.checker.SysonfigCheckRead;
 import br.com.mind5.model.action.ActionLazyV1;
@@ -44,9 +45,11 @@ public final class RootSysonfigInsert extends DeciTreeTemplateReadV2<SysonfigInf
 		List<ActionStdV1<SysonfigInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<SysonfigInfo> mergeSytotin = new StdSysonfigMergeSytotin(option);
+		ActionLazyV1<SysonfigInfo> mergeSysotup = new LazySysonfigMergeSysotup(option.conn, option.schemaName);
 		ActionLazyV1<SysonfigInfo> insert = new LazySysonfigDaoInsert(option.conn, option.schemaName);
 		
-		mergeSytotin.addPostAction(insert);
+		mergeSytotin.addPostAction(mergeSysotup);
+		mergeSysotup.addPostAction(insert);
 		
 		actions.add(mergeSytotin);
 		return actions;

@@ -8,6 +8,7 @@ import br.com.mind5.info.InfoRecord;
 public final class SysonfigInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public String storePartitioning;
+	public String storeSignup;
 	
 	
 	public SysonfigInfo() {

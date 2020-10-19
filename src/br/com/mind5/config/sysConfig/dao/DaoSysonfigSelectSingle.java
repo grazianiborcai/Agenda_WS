@@ -63,6 +63,7 @@ public final class DaoSysonfigSelectSingle extends DaoStmtTemplate<SysonfigInfo>
 					
 					dataInfo.codOwner = DaoFormatter.sqlToLong(stmtResult, DaoSysonfigDbTableColumn.COL_COD_OWNER);
 					dataInfo.storePartitioning = stmtResult.getString(DaoSysonfigDbTableColumn.COL_STORE_PARTITIONING);	
+					dataInfo.storeSignup = stmtResult.getString(DaoSysonfigDbTableColumn.COL_STORE_SIGNUP);	
 					
 					finalResult.add(dataInfo);				
 				} while (stmtResult.next());

@@ -39,6 +39,7 @@ public final class DaoSysonfigInsertSingle extends DaoStmtTemplate<SysonfigInfo>
 				
 				stmt.setLong(i++, recordInfo.codOwner);
 				stmt.setString(i++, recordInfo.storePartitioning);
+				stmt.setString(i++, recordInfo.storeSignup);
 				
 				return stmt;
 			}		
