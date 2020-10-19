@@ -21,7 +21,7 @@ public final class DaoSysotupDbTableColumn extends DaoDbTableColumnTemplate {
 	
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
-		final String TABLE_NAME = DaoDbTable.SYS_CONFIG_TABLE;
+		final String TABLE_NAME = DaoDbTable.OWNER_CONFIG_TABLE;
 		
 		DaoColumn oneColumn;
 		List<DaoColumn> columns = new ArrayList<>();	

@@ -17,7 +17,7 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
 public final class DaoSysotupSelectSingle extends DaoStmtTemplate<SysotupInfo> {
-	private final String MAIN_TABLE = DaoDbTable.SYS_CONFIG_TABLE;
+	private final String MAIN_TABLE = DaoDbTable.OWNER_CONFIG_TABLE;
 	
 	
 	public DaoSysotupSelectSingle(Connection conn, SysotupInfo recordInfo, String schemaName) {
