@@ -225,6 +225,7 @@ public final class DaoDbField {
 	public static final String COL_SECRET = "secret";
 	public static final String COL_SENDER_PASSWORD = "sender_password";
 	public static final String COL_SORT = "sort";
+	public static final String COL_STORE_SIGNUP = "store_signup";
 	public static final String COL_SMTP_HOST_NAME = "smtp_host_name";
 	public static final String COL_SMTP_PORT = "smtp_port";	
 	public static final String COL_SORT_SATURDAY = "sort_saturday";
