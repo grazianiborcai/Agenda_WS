@@ -37,10 +37,11 @@ public final class SytotinInfo extends InfoRecord implements Cloneable {
 	
 	
 	@Override public int hashCode() {
-		if (storePartitioning == null)
-			return 0;
+		int result = 17;
 		
-		return storePartitioning.hashCode();
+		result = result * 31 + (int) (codOwner ^ (codOwner >>> 32));
+		
+		return result;
 	}
 	
 	
@@ -55,6 +56,6 @@ public final class SytotinInfo extends InfoRecord implements Cloneable {
 		
 		
 		SytotinInfo obj = (SytotinInfo) o;		
-		return (isStringEqual(storePartitioning, obj.storePartitioning));
+		return (codOwner == obj.codOwner);
 	}
 }
