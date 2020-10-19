@@ -47,9 +47,8 @@ public final class DaoSysotupSelectSingle extends DaoStmtTemplate<SysotupInfo> {
 	@Override protected String buildWhereClauseHook(String tableName, SysotupInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
 		
-		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
-		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;	
-		whereOption.dummyClauseWhenEmpty = DaoOptionValue.DUMMY_CLAUSE_ALLOWED;	
+		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
+		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;
 		
 		DaoStmtWhere whereClause = new DaoSysotupWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
