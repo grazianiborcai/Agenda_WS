@@ -25,6 +25,7 @@ final class OwnerVisiMergeComp implements InfoMergerVisitorV3<OwnerInfo, CompInf
 		List<OwnerInfo> results = new ArrayList<>();
 		
 		baseInfo.codCompany = selectedInfo.codCompany;
+		baseInfo.companyData = selectedInfo;
 		
 		results.add(baseInfo);
 		return results;
