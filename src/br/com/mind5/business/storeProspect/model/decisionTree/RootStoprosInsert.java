@@ -3,6 +3,7 @@ package br.com.mind5.business.storeProspect.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.mind5.business.storeProspect.info.StoprosCheckSysotup;
 import br.com.mind5.business.storeProspect.info.StoprosInfo;
 import br.com.mind5.business.storeProspect.model.action.LazyStoprosDaoInsert;
 import br.com.mind5.business.storeProspect.model.action.LazyStoprosEnforceCreated;
@@ -54,6 +55,13 @@ public final class RootStoprosInsert extends DeciTreeTemplateWriteV2<StoprosInfo
 		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
 		checker = new StoprosCheckOwner(checkerOption);
 		queue.add(checker);	
+		
+		checkerOption = new ModelCheckerOption();
+		checkerOption.conn = option.conn;
+		checkerOption.schemaName = option.schemaName;
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;		
+		checker = new StoprosCheckSysotup(checkerOption);
+		queue.add(checker);
 		
 		return new ModelCheckerHelperQueueV2<>(queue);
 	}
