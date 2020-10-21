@@ -6,6 +6,7 @@ import java.util.List;
 import br.com.mind5.business.ownerList.info.OwnelisInfo;
 import br.com.mind5.business.ownerList.model.action.LazyOwnelisMergeBusarea;
 import br.com.mind5.business.ownerList.model.action.LazyOwnelisMergeComplis;
+import br.com.mind5.business.ownerList.model.action.LazyOwnelisMergeFimist;
 import br.com.mind5.business.ownerList.model.action.StdOwnelisMergeToSelect;
 import br.com.mind5.business.ownerList.model.checker.OwnelisCheckRead;
 import br.com.mind5.model.action.ActionLazyV1;
@@ -47,9 +48,11 @@ public final class RootOwnelisSelect extends DeciTreeTemplateReadV2<OwnelisInfo>
 		ActionStdV1<OwnelisInfo> select = new StdOwnelisMergeToSelect(option);
 		ActionLazyV1<OwnelisInfo> mergeComplis = new LazyOwnelisMergeComplis(option.conn, option.schemaName);
 		ActionLazyV1<OwnelisInfo> mergeBusarea = new LazyOwnelisMergeBusarea(option.conn, option.schemaName);
+		ActionLazyV1<OwnelisInfo> mergeFimist = new LazyOwnelisMergeFimist(option.conn, option.schemaName);
 		
 		select.addPostAction(mergeComplis);
 		mergeComplis.addPostAction(mergeBusarea);
+		mergeBusarea.addPostAction(mergeFimist);
 		
 		actions.add(select);
 		return actions;

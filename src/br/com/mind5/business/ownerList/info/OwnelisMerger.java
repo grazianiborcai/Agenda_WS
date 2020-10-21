@@ -4,11 +4,25 @@ import java.util.List;
 
 import br.com.mind5.business.companyList.info.ComplisInfo;
 import br.com.mind5.business.ownerSearch.info.OwnarchInfo;
+import br.com.mind5.file.fileImageList.info.FimistInfo;
 import br.com.mind5.info.InfoMergerBuilderV3;
 import br.com.mind5.info.InfoMergerV3;
 import br.com.mind5.masterData.businessArea.info.BusareaInfo;
 
 public final class OwnelisMerger {
+	public static List<OwnelisInfo> mergeWithFimist(List<OwnelisInfo> baseInfos, List<FimistInfo> selectedInfos) {
+		InfoMergerBuilderV3<OwnelisInfo, FimistInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new OwnelisVisiMergeFimist());
+		InfoMergerV3<OwnelisInfo, FimistInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	
 	public static List<OwnelisInfo> mergeWithBusarea(List<OwnelisInfo> baseInfos, List<BusareaInfo> selectedInfos) {
 		InfoMergerBuilderV3<OwnelisInfo, BusareaInfo> builder = new InfoMergerBuilderV3<>();
 		

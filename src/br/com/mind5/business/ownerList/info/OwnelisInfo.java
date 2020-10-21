@@ -5,6 +5,7 @@ import java.util.List;
 import br.com.mind5.business.companyList.info.ComplisInfo;
 import br.com.mind5.common.CloneUtil;
 import br.com.mind5.common.DefaultValue;
+import br.com.mind5.file.fileImageList.info.FimistInfo;
 import br.com.mind5.info.InfoRecord;
 
 public final class OwnelisInfo extends InfoRecord implements Cloneable {
@@ -16,7 +17,7 @@ public final class OwnelisInfo extends InfoRecord implements Cloneable {
 	public String username;
 	public String recordMode;
 	public ComplisInfo complisData;
-	
+	public FimistInfo fimistData;
 	
 	
 	public OwnelisInfo() {
@@ -28,6 +29,7 @@ public final class OwnelisInfo extends InfoRecord implements Cloneable {
 		codCompany = DefaultValue.number();
 		recordMode = DefaultValue.recordMode();	
 		complisData = DefaultValue.object();
+		fimistData = DefaultValue.object();
 	}
 	
 	
@@ -48,6 +50,7 @@ public final class OwnelisInfo extends InfoRecord implements Cloneable {
 		OwnelisInfo deepCopy = (OwnelisInfo) super.clone();
 		
 		deepCopy.complisData = CloneUtil.cloneRecord(deepCopy.complisData, this.getClass());
+		deepCopy.fimistData = CloneUtil.cloneRecord(deepCopy.fimistData, this.getClass());
 		
 		return deepCopy;
 	}
