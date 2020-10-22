@@ -9,6 +9,7 @@ public final class MatarchInfo extends InfoRecord implements Cloneable {
 	public long codOwner;
 	public long codSnapshot;
 	public long codMat;
+	public long codStore;
 	public String txtMat;
 	public String txtMatSearch;
 	public int codType;
@@ -26,6 +27,7 @@ public final class MatarchInfo extends InfoRecord implements Cloneable {
 		codOwner = DefaultValue.number();
 		codSnapshot = DefaultValue.number();
 		codMat = DefaultValue.number();
+		codStore = DefaultValue.number();
 		codType = DefaultValue.number();
 		codMatCateg = DefaultValue.number();
 		codGroup = DefaultValue.number();		

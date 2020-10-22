@@ -78,6 +78,7 @@ public final class DaoMatarchSelectSingle extends DaoStmtTemplate<MatarchInfo> {
 					MatarchInfo dataInfo = new MatarchInfo();
 					dataInfo.codOwner = stmtResult.getLong(DaoMatarchDbTableColumn.COL_COD_OWNER);
 					dataInfo.codMat = stmtResult.getLong(DaoMatarchDbTableColumn.COL_COD_MATERIAL);
+					dataInfo.codStore = stmtResult.getLong(DaoMatarchDbTableColumn.COL_COD_STORE);
 					dataInfo.codType = stmtResult.getInt(DaoMatarchDbTableColumn.COL_COD_TYPE);
 					dataInfo.codMatCateg = stmtResult.getInt(DaoMatarchDbTableColumn.COL_COD_CATEGORY);
 					dataInfo.codGroup = stmtResult.getInt(DaoMatarchDbTableColumn.COL_COD_GROUP);

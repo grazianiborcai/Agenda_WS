@@ -35,6 +35,10 @@ public final class DaoMatarchWhere implements DaoStmtWhere {
 				case DaoMatarchDbTableColumn.COL_COD_MATERIAL :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codMat));
 					break;
+					
+				case DaoMatarchDbTableColumn.COL_COD_STORE :
+					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codStore));
+					break;
 
 				case DaoMatarchDbTableColumn.COL_COD_TYPE  :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codType));
