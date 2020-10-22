@@ -69,6 +69,7 @@ public final class DaoMatlisSelectSingle extends DaoStmtTemplate<MatlisInfo> {
 					
 					dataInfo.codOwner = stmtResult.getLong(DaoMatlisDbTableColumn.COL_COD_OWNER);
 					dataInfo.codMat = stmtResult.getLong(DaoMatlisDbTableColumn.COL_COD_MATERIAL);
+					dataInfo.codStore = stmtResult.getLong(DaoMatlisDbTableColumn.COL_COD_STORE);
 					dataInfo.codType = stmtResult.getInt(DaoMatlisDbTableColumn.COL_COD_TYPE);
 					dataInfo.codMatCateg = stmtResult.getInt(DaoMatlisDbTableColumn.COL_COD_CATEGORY);
 					dataInfo.priceUnit = stmtResult.getInt(DaoMatlisDbTableColumn.COL_PRICE_UNIT);	

@@ -2,6 +2,7 @@ package br.com.mind5.business.materialList.info;
 
 import java.util.List;
 
+import br.com.mind5.authorization.storePartitionAuthorization.info.SytotauhInfo;
 import br.com.mind5.business.materialSearch.info.MatarchInfo;
 import br.com.mind5.business.materialText.info.MatextInfo;
 import br.com.mind5.file.fileImageList.info.FimistInfo;
@@ -14,6 +15,19 @@ import br.com.mind5.masterData.materialType.info.MatypeInfo;
 import br.com.mind5.masterData.materialUnit.info.MatunitInfo;
 
 public final class MatlisMerger {
+	public static List<MatlisInfo> mergeWithSytotauh(List<MatlisInfo> baseInfos, List<SytotauhInfo> selectedInfos) {
+		InfoMergerBuilderV3<MatlisInfo, SytotauhInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new MatlisVisiMergeSytotauh());
+		InfoMergerV3<MatlisInfo, SytotauhInfo> merger = builder.build();		
+	
+		return merger.merge();
+	}
+	
+	
+	
 	public static List<MatlisInfo> mergeWithMatubup(List<MatlisInfo> baseInfos, List<MatubupInfo> selectedInfos) {
 		InfoMergerBuilderV3<MatlisInfo, MatubupInfo> builder = new InfoMergerBuilderV3<>();
 		

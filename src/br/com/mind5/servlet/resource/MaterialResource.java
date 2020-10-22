@@ -19,7 +19,7 @@ import br.com.mind5.business.material.model.MatModelInsert;
 import br.com.mind5.business.material.model.MatModelSelect;
 import br.com.mind5.business.material.model.MatModelUpdate;
 import br.com.mind5.business.materialCatalogue.model.MatogueModelSelect;
-import br.com.mind5.business.materialList.model.MatlisModelSearch;
+import br.com.mind5.business.materialList.model.MatlisModelSearchAuth;
 import br.com.mind5.business.materialMovement.info.MatmovInfo;
 import br.com.mind5.business.materialMovement.model.MatmovModelInsert;
 import br.com.mind5.business.materialMovement.model.MatmovModelSearch;
@@ -139,7 +139,7 @@ public class MaterialResource {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response searchMatlis(@Context HttpServletRequest request, String incomingData) {	
 		
-		Model model = new MatlisModelSearch(incomingData, request);
+		Model model = new MatlisModelSearchAuth(incomingData, request);
 		model.executeRequest();
 		Response result = model.getResponse();	
 		model.close();

@@ -7,9 +7,9 @@ import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
-public final class MatlisCheckRead extends ModelCheckerTemplateSimpleV2<MatlisInfo> {
+public final class MatlisCheckSearch extends ModelCheckerTemplateSimpleV2<MatlisInfo> {
 
-	public MatlisCheckRead(ModelCheckerOption option) {
+	public MatlisCheckSearch(ModelCheckerOption option) {
 		super(option);
 	}
 	
@@ -17,7 +17,6 @@ public final class MatlisCheckRead extends ModelCheckerTemplateSimpleV2<MatlisIn
 	
 	@Override protected boolean checkHook(MatlisInfo recordInfo, Connection conn, String schemaName) {	
 		if ( recordInfo.codOwner 	<= 0 	||
-			 recordInfo.codMat 		<= 0 	||
 			 recordInfo.username	== null ||
 			 recordInfo.codLanguage == null		)			
 			
