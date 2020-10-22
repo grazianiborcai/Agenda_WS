@@ -8,7 +8,8 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
 
 public final class MatextCheckLength extends ModelCheckerTemplateSimpleV2<MatextInfo> {
-
+	private int MAX_LENGTH = 30;
+	
 	public MatextCheckLength(ModelCheckerOption option) {
 		super(option);
 	}
@@ -19,7 +20,7 @@ public final class MatextCheckLength extends ModelCheckerTemplateSimpleV2<Matext
 		if ( recordInfo.txtMat == null )			
 			return super.SUCCESS;
 		
-		if ( recordInfo.txtMat.length() <= 15 )			
+		if ( recordInfo.txtMat.length() <= MAX_LENGTH )			
 			return super.SUCCESS;
 		
 		
