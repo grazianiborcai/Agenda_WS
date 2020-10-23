@@ -8,13 +8,13 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 import br.com.mind5.security.userSnapshot.info.UserapInfo;
 import br.com.mind5.security.userSnapshot.model.action.StdUserapMergePersolis;
 import br.com.mind5.security.userSnapshot.model.action.StdUserapSuccess;
 import br.com.mind5.security.userSnapshot.model.checker.UserapCheckHasPerson;
 
-public final class NodeUserapPerson extends DeciTreeTemplateWriteV1<UserapInfo> {
+public final class NodeUserapPerson extends DeciTreeTemplateWriteV2<UserapInfo> {
 	
 	public NodeUserapPerson(DeciTreeOption<UserapInfo> option) {
 		super(option);

@@ -9,7 +9,7 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 import br.com.mind5.security.userSnapshot.info.UserapInfo;
 import br.com.mind5.security.userSnapshot.model.action.LazyUserapMergeAddresnap;
 import br.com.mind5.security.userSnapshot.model.action.LazyUserapMergePersonap;
@@ -17,7 +17,7 @@ import br.com.mind5.security.userSnapshot.model.action.LazyUserapMergePhonap;
 import br.com.mind5.security.userSnapshot.model.action.StdUserapMergeToSelect;
 import br.com.mind5.security.userSnapshot.model.checker.UserapCheckRead;
 
-public final class RootUserapSelect extends DeciTreeTemplateReadV1<UserapInfo> {
+public final class RootUserapSelect extends DeciTreeTemplateReadV2<UserapInfo> {
 	
 	public RootUserapSelect(DeciTreeOption<UserapInfo> option) {
 		super(option);

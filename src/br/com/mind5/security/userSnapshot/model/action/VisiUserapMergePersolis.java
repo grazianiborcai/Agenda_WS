@@ -1,19 +1,19 @@
 package br.com.mind5.security.userSnapshot.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.personList.info.PersolisInfo;
 import br.com.mind5.business.personList.model.decisionTree.RootPersolisSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.userSnapshot.info.UserapInfo;
 import br.com.mind5.security.userSnapshot.info.UserapMerger;
 
-final class VisiUserapMergePersolis extends ActionVisitorTemplateMergeV1<UserapInfo, PersolisInfo> {
+final class VisiUserapMergePersolis extends ActionVisitorTemplateMergeV2<UserapInfo, PersolisInfo> {
 	
-	public VisiUserapMergePersolis(Connection conn, String schemaName) {
-		super(conn, schemaName, PersolisInfo.class);
+	public VisiUserapMergePersolis(DeciTreeOption<UserapInfo> option) {
+		super(option, PersolisInfo.class);
 	}
 	
 	
@@ -31,6 +31,6 @@ final class VisiUserapMergePersolis extends ActionVisitorTemplateMergeV1<UserapI
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
+		return super.MERGE_WHEN_EMPTY;
 	}
 }

@@ -24,16 +24,16 @@ public final class UserapMerger {
 	
 
 	public static List<UserapInfo> mergeWithAddresnap(List<UserapInfo> baseInfos, List<AddresnapInfo> selectedInfos) {
-	InfoMergerBuilderV3<UserapInfo, AddresnapInfo> builder = new InfoMergerBuilderV3<>();
+		InfoMergerBuilderV3<UserapInfo, AddresnapInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new UserapVisiMergeAddresnap());
+		InfoMergerV3<UserapInfo, AddresnapInfo> merger = builder.build();		
 	
-	builder.addBaseInfos(baseInfos);
-	builder.addSelectedInfos(selectedInfos);
-	builder.addVisitor(new UserapVisiMergeAddresnap());
-	InfoMergerV3<UserapInfo, AddresnapInfo> merger = builder.build();		
-
-	return merger.merge();
-}	
-	
+		return merger.merge();
+	}	
+		
 	
 	
 	public static List<UserapInfo> mergeWithPersonap(List<UserapInfo> baseInfos, List<PersonapInfo> selectedInfos) {

@@ -3,15 +3,15 @@ package br.com.mind5.security.userSnapshot.model.action;
 import java.sql.Connection;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazyTemplateV1;
+import br.com.mind5.model.action.ActionLazyTemplateV2;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.userSnapshot.info.UserapInfo;
 
-public final class LazyUserapInsert extends ActionLazyTemplateV1<UserapInfo, UserapInfo> {
+public final class LazyUserapDaoInsert extends ActionLazyTemplateV2<UserapInfo, UserapInfo> {
 	
-	public LazyUserapInsert(Connection conn, String schemaName) {
+	public LazyUserapDaoInsert(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyUserapInsert extends ActionLazyTemplateV1<UserapInfo, Use
 	
 	
 	@Override protected ActionStdV1<UserapInfo> getInstanceOfActionHook(DeciTreeOption<UserapInfo> option) {
-		return new StdUserapInsert(option);
+		return new StdUserapDaoInsert(option);
 	}
 	
 	

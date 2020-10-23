@@ -6,7 +6,7 @@ import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.userSnapshot.info.UserapInfo;
-import br.com.mind5.security.userSnapshot.model.action.StdUserapSelect;
+import br.com.mind5.security.userSnapshot.model.action.StdUserapDaoSelect;
 
 public final class UserapCheckExist extends ModelCheckerTemplateActionV2<UserapInfo, UserapInfo> {
 	
@@ -17,7 +17,7 @@ public final class UserapCheckExist extends ModelCheckerTemplateActionV2<UserapI
 	
 	
 	@Override protected ActionStdV1<UserapInfo> buildActionHook(DeciTreeOption<UserapInfo> option) {
-		ActionStdV1<UserapInfo> select = new StdUserapSelect(option);
+		ActionStdV1<UserapInfo> select = new StdUserapDaoSelect(option);
 		return select;
 	}
 	
