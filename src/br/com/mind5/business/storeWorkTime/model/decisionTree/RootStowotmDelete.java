@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.storeWorkTime.info.StowotmInfo;
-import br.com.mind5.business.storeWorkTime.model.action.LazyStowotmDelete;
+import br.com.mind5.business.storeWorkTime.model.action.LazyStowotmDaoDelete;
 import br.com.mind5.business.storeWorkTime.model.action.LazyStowotmEnforceLChanged;
 import br.com.mind5.business.storeWorkTime.model.action.LazyStowotmMergeUsername;
-import br.com.mind5.business.storeWorkTime.model.action.LazyStowotmUpdate;
+import br.com.mind5.business.storeWorkTime.model.action.LazyStowotmDaoUpdate;
 import br.com.mind5.business.storeWorkTime.model.action.StdStowotmMergeToDelete;
 import br.com.mind5.business.storeWorkTime.model.checker.StowotmCheckDelete;
 import br.com.mind5.business.storeWorkTime.model.checker.StowotmCheckEmpwotarch;
@@ -19,9 +19,9 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class RootStowotmDelete extends DeciTreeTemplateWriteV1<StowotmInfo> {
+public final class RootStowotmDelete extends DeciTreeTemplateWriteV2<StowotmInfo> {
 	
 	public RootStowotmDelete(DeciTreeOption<StowotmInfo> option) {
 		super(option);
@@ -73,8 +73,8 @@ public final class RootStowotmDelete extends DeciTreeTemplateWriteV1<StowotmInfo
 		ActionStdV1<StowotmInfo> mergeToDelete = new StdStowotmMergeToDelete(option);
 		ActionLazyV1<StowotmInfo> enforceLChanged = new LazyStowotmEnforceLChanged(option.conn, option.schemaName);
 		ActionLazyV1<StowotmInfo> enforceLChangedBy = new LazyStowotmMergeUsername(option.conn, option.schemaName);
-		ActionLazyV1<StowotmInfo> update = new LazyStowotmUpdate(option.conn, option.schemaName);
-		ActionLazyV1<StowotmInfo> delete = new LazyStowotmDelete(option.conn, option.schemaName);
+		ActionLazyV1<StowotmInfo> update = new LazyStowotmDaoUpdate(option.conn, option.schemaName);
+		ActionLazyV1<StowotmInfo> delete = new LazyStowotmDaoDelete(option.conn, option.schemaName);
 		
 		mergeToDelete.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceLChangedBy);

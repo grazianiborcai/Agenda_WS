@@ -16,11 +16,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class StowotmSelectSingle extends DaoStmtTemplate<StowotmInfo> {
+public final class DaoStowotmSelectSingle extends DaoStmtTemplate<StowotmInfo> {
 	private final String MAIN_TABLE = DaoDbTable.STORE_WT_TABLE;	
 	
 	
-	public StowotmSelectSingle(Connection conn, StowotmInfo recordInfo, String schemaName) {
+	public DaoStowotmSelectSingle(Connection conn, StowotmInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -44,7 +44,7 @@ public final class StowotmSelectSingle extends DaoStmtTemplate<StowotmInfo> {
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new StowotmWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new DaoStowotmWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}	
 	
@@ -61,16 +61,16 @@ public final class StowotmSelectSingle extends DaoStmtTemplate<StowotmInfo> {
 				do {
 					StowotmInfo dataInfo = new StowotmInfo();
 					
-					dataInfo.codOwner = stmtResult.getLong(StowotmDbTableColumn.COL_COD_OWNER);
-					dataInfo.codStore = stmtResult.getLong(StowotmDbTableColumn.COL_COD_STORE);
-					dataInfo.codWeekday = stmtResult.getInt(StowotmDbTableColumn.COL_COD_WEEKDAY);
-					dataInfo.recordMode = stmtResult.getString(StowotmDbTableColumn.COL_RECORD_MODE);	
-					dataInfo.beginTime = DaoFormatter.sqlToLocalTime(stmtResult, StowotmDbTableColumn.COL_BEGIN_TIME);
-					dataInfo.endTime = DaoFormatter.sqlToLocalTime(stmtResult, StowotmDbTableColumn.COL_END_TIME);
-					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, StowotmDbTableColumn.COL_LAST_CHANGED);
-					dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, StowotmDbTableColumn.COL_LAST_CHANGED_BY);				
-					dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, StowotmDbTableColumn.COL_CREATED_ON);
-					dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, StowotmDbTableColumn.COL_CREATED_BY);
+					dataInfo.codOwner = stmtResult.getLong(DaoStowotmDbTableColumn.COL_COD_OWNER);
+					dataInfo.codStore = stmtResult.getLong(DaoStowotmDbTableColumn.COL_COD_STORE);
+					dataInfo.codWeekday = stmtResult.getInt(DaoStowotmDbTableColumn.COL_COD_WEEKDAY);
+					dataInfo.recordMode = stmtResult.getString(DaoStowotmDbTableColumn.COL_RECORD_MODE);	
+					dataInfo.beginTime = DaoFormatter.sqlToLocalTime(stmtResult, DaoStowotmDbTableColumn.COL_BEGIN_TIME);
+					dataInfo.endTime = DaoFormatter.sqlToLocalTime(stmtResult, DaoStowotmDbTableColumn.COL_END_TIME);
+					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, DaoStowotmDbTableColumn.COL_LAST_CHANGED);
+					dataInfo.lastChangedBy = DaoFormatter.sqlToLong(stmtResult, DaoStowotmDbTableColumn.COL_LAST_CHANGED_BY);				
+					dataInfo.createdOn = DaoFormatter.sqlToLocalDateTime(stmtResult, DaoStowotmDbTableColumn.COL_CREATED_ON);
+					dataInfo.createdBy = DaoFormatter.sqlToLong(stmtResult, DaoStowotmDbTableColumn.COL_CREATED_BY);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

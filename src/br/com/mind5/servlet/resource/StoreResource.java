@@ -38,7 +38,7 @@ import br.com.mind5.business.storeNearby.model.StorbyModelSelect;
 import br.com.mind5.business.storeWorkTime.info.StowotmInfo;
 import br.com.mind5.business.storeWorkTime.model.StowotmModelDelete;
 import br.com.mind5.business.storeWorkTime.model.StowotmModelInsert;
-import br.com.mind5.business.storeWorkTime.model.StowotmModelSearch;
+import br.com.mind5.business.storeWorkTime.model.StowotmModelSearchAuth;
 import br.com.mind5.business.storeWorkTime.model.StowotmModelSelect;
 import br.com.mind5.business.storeWorkTime.model.StowotmModelUpdate;
 import br.com.mind5.model.Model;
@@ -234,7 +234,7 @@ public class StoreResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response searchStoreWTime(@Context HttpServletRequest request, String incomingData) {
 		
-		Model model = new StowotmModelSearch(incomingData, request);
+		Model model = new StowotmModelSearchAuth(incomingData, request);
 		model.executeRequest();
 		Response response = model.getResponse();
 		

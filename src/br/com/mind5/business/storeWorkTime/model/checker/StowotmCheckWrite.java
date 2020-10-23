@@ -16,13 +16,13 @@ public final class StowotmCheckWrite extends ModelCheckerTemplateSimpleV2<Stowot
 	
 	
 	@Override protected boolean checkHook(StowotmInfo recordInfo, Connection conn, String schemaName) {	
-		if (   recordInfo.codOwner 		<= 0 	
-			|| recordInfo.codStore 		<= 0
-			|| recordInfo.codWeekday	<= 0
-			|| recordInfo.codLanguage	== null
-			|| recordInfo.username		== null
-			|| recordInfo.beginTime		== null
-			|| recordInfo.endTime		== null	)
+		if ( recordInfo.codOwner 	<= 0 	||
+			 recordInfo.codStore 	<= 0	||
+			 recordInfo.codWeekday	<= 0	||
+			 recordInfo.codLanguage	== null	||
+			 recordInfo.username	== null	||
+			 recordInfo.beginTime	== null	||
+			 recordInfo.endTime		== null		)
 			
 			return super.FAILED;
 		

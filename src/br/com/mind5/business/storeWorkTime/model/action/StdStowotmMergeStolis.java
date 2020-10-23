@@ -1,35 +1,19 @@
 package br.com.mind5.business.storeWorkTime.model.action;
 
 import br.com.mind5.business.storeWorkTime.info.StowotmInfo;
-import br.com.mind5.model.action.ActionLazyV1;
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionStdHelperMerge;
-import br.com.mind5.model.decisionTree.DeciResult;
+import br.com.mind5.model.action.ActionStdTemplateV2;
+import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdStowotmMergeStolis implements ActionStdV1<StowotmInfo> {
-	private ActionStdV1<StowotmInfo> actionHelper;	
-	
+public final class StdStowotmMergeStolis extends ActionStdTemplateV2<StowotmInfo> {
 	
 	public StdStowotmMergeStolis(DeciTreeOption<StowotmInfo> option) {			
-		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiStowotmMergeStolis(option.conn, option.schemaName));
+		super(option);
 	}
 	
 	
 	
-	@Override public void addPostAction(ActionLazyV1<StowotmInfo> actionHandler) {
-		actionHelper.addPostAction(actionHandler);
-	}
-	
-	
-	
-	@Override public boolean executeAction() {			
-		return actionHelper.executeAction();
-	}
-	
-	
-	
-	@Override public DeciResult<StowotmInfo> getDecisionResult() {
-		return actionHelper.getDecisionResult();
+	protected ActionVisitorV2<StowotmInfo> buildVisitorHook(DeciTreeOption<StowotmInfo> option) {
+		return new VisiStowotmMergeStolis(option);
 	}
 }

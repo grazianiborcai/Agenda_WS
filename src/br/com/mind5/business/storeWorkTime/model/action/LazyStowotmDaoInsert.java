@@ -4,14 +4,14 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.storeWorkTime.info.StowotmInfo;
-import br.com.mind5.model.action.ActionLazyTemplateV1;
+import br.com.mind5.model.action.ActionLazyTemplateV2;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyStowotmSelect extends ActionLazyTemplateV1<StowotmInfo, StowotmInfo> {
+public final class LazyStowotmDaoInsert extends ActionLazyTemplateV2<StowotmInfo, StowotmInfo> {
 	
-	public LazyStowotmSelect(Connection conn, String schemaName) {
+	public LazyStowotmDaoInsert(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyStowotmSelect extends ActionLazyTemplateV1<StowotmInfo, S
 	
 	
 	@Override protected ActionStdV1<StowotmInfo> getInstanceOfActionHook(DeciTreeOption<StowotmInfo> option) {
-		return new StdStowotmSelect(option);
+		return new StdStowotmDaoInsert(option);
 	}
 	
 	

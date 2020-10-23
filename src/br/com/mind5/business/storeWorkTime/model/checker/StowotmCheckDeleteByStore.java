@@ -16,10 +16,10 @@ public final class StowotmCheckDeleteByStore extends ModelCheckerTemplateSimpleV
 	
 	
 	@Override protected boolean checkHook(StowotmInfo recordInfo, Connection conn, String schemaName) {	
-		if (   recordInfo.codOwner 		<= 0 	
-			|| recordInfo.codStore 		<= 0
-			|| recordInfo.username		== null
-			|| recordInfo.username		== null	)
+		if ( recordInfo.codOwner 	<= 0 	||
+			 recordInfo.codStore 	<= 0	||
+			 recordInfo.username	== null	||
+			 recordInfo.username	== null		)
 			
 			return super.FAILED;
 		

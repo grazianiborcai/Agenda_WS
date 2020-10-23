@@ -7,7 +7,7 @@ import br.com.mind5.business.storeWorkTime.info.StowotmInfo;
 import br.com.mind5.business.storeWorkTime.model.action.LazyStowotmEnforceLChanged;
 import br.com.mind5.business.storeWorkTime.model.action.LazyStowotmMergeUsername;
 import br.com.mind5.business.storeWorkTime.model.action.LazyStowotmRootSelect;
-import br.com.mind5.business.storeWorkTime.model.action.LazyStowotmUpdate;
+import br.com.mind5.business.storeWorkTime.model.action.LazyStowotmDaoUpdate;
 import br.com.mind5.business.storeWorkTime.model.action.StdStowotmMergeToUpdate;
 import br.com.mind5.business.storeWorkTime.model.checker.StowotmCheckEmpwout;
 import br.com.mind5.business.storeWorkTime.model.checker.StowotmCheckExist;
@@ -24,9 +24,9 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class RootStowotmUpdate extends DeciTreeTemplateWriteV1<StowotmInfo> {
+public final class RootStowotmUpdate extends DeciTreeTemplateWriteV2<StowotmInfo> {
 		
 	public RootStowotmUpdate(DeciTreeOption<StowotmInfo> option) {
 		super(option);
@@ -113,7 +113,7 @@ public final class RootStowotmUpdate extends DeciTreeTemplateWriteV1<StowotmInfo
 		ActionStdV1<StowotmInfo> mergeToUpdate = new StdStowotmMergeToUpdate(option);
 		ActionLazyV1<StowotmInfo> enforceLChanged = new LazyStowotmEnforceLChanged(option.conn, option.schemaName);
 		ActionLazyV1<StowotmInfo> enforceLChangedBy = new LazyStowotmMergeUsername(option.conn, option.schemaName);
-		ActionLazyV1<StowotmInfo> update = new LazyStowotmUpdate(option.conn, option.schemaName);
+		ActionLazyV1<StowotmInfo> update = new LazyStowotmDaoUpdate(option.conn, option.schemaName);
 		ActionLazyV1<StowotmInfo> select = new LazyStowotmRootSelect(option.conn, option.schemaName);
 		
 		mergeToUpdate.addPostAction(enforceLChanged);

@@ -15,11 +15,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class StowotmDeleteSingle extends DaoStmtTemplate<StowotmInfo> {
+public final class DaoStowotmDeleteSingle extends DaoStmtTemplate<StowotmInfo> {
 	private final String MAIN_TABLE = DaoDbTable.STORE_WT_TABLE;	
 	
 	
-	public StowotmDeleteSingle(Connection conn, StowotmInfo recordInfo, String schemaName) {
+	public DaoStowotmDeleteSingle(Connection conn, StowotmInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -43,7 +43,7 @@ public final class StowotmDeleteSingle extends DaoStmtTemplate<StowotmInfo> {
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;			
 		
-		DaoStmtWhere whereClause = new StowotmWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new DaoStowotmWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	

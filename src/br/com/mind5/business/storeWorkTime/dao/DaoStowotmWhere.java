@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilder;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 
-public final class StowotmWhere implements DaoStmtWhere {
+public final class DaoStowotmWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public StowotmWhere(DaoWhereBuilderOption whereOption, String tableName, StowotmInfo recordInfo) {
+	public DaoStowotmWhere(DaoWhereBuilderOption whereOption, String tableName, StowotmInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -27,19 +27,19 @@ public final class StowotmWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-				case StowotmDbTableColumn.COL_COD_OWNER :
+				case DaoStowotmDbTableColumn.COL_COD_OWNER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;
 					
-				case StowotmDbTableColumn.COL_COD_STORE :
+				case DaoStowotmDbTableColumn.COL_COD_STORE :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codStore));
 					break;
 					
-				case StowotmDbTableColumn.COL_COD_WEEKDAY :
+				case DaoStowotmDbTableColumn.COL_COD_WEEKDAY :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codWeekday));
 					break;
 					
-				case StowotmDbTableColumn.COL_RECORD_MODE :
+				case DaoStowotmDbTableColumn.COL_RECORD_MODE :
 					builder.addClauseEqualAnd(eachColumn,recordInfo.recordMode);
 					break;
 			}

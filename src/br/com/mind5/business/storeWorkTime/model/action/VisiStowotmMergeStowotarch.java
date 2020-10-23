@@ -1,19 +1,19 @@
 package br.com.mind5.business.storeWorkTime.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.storeWorkTime.info.StowotmInfo;
 import br.com.mind5.business.storeWorkTime.info.StowotmMerger;
 import br.com.mind5.business.storeWorkTimeSearch.info.StowotarchInfo;
 import br.com.mind5.business.storeWorkTimeSearch.model.decisionTree.RootStowotarchSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiStowotmMergeStowotarch extends ActionVisitorTemplateMergeV1<StowotmInfo, StowotarchInfo> {
+final class VisiStowotmMergeStowotarch extends ActionVisitorTemplateMergeV2<StowotmInfo, StowotarchInfo> {
 	
-	public VisiStowotmMergeStowotarch(Connection conn, String schemaName) {
-		super(conn, schemaName, StowotarchInfo.class);
+	public VisiStowotmMergeStowotarch(DeciTreeOption<StowotmInfo> option) {
+		super(option, StowotarchInfo.class);
 	}
 	
 	
@@ -31,6 +31,6 @@ final class VisiStowotmMergeStowotarch extends ActionVisitorTemplateMergeV1<Stow
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
+		return super.DONT_MERGE_WHEN_EMPTY;
 	}
 }

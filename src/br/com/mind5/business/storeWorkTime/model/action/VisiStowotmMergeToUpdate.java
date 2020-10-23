@@ -1,23 +1,23 @@
 package br.com.mind5.business.storeWorkTime.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.storeWorkTime.info.StowotmInfo;
 import br.com.mind5.business.storeWorkTime.info.StowotmMerger;
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiStowotmMergeToUpdate extends ActionVisitorTemplateMergeV1<StowotmInfo, StowotmInfo> {
+final class VisiStowotmMergeToUpdate extends ActionVisitorTemplateMergeV2<StowotmInfo, StowotmInfo> {
 	
-	public VisiStowotmMergeToUpdate(Connection conn, String schemaName) {
-		super(conn, schemaName, StowotmInfo.class);
+	public VisiStowotmMergeToUpdate(DeciTreeOption<StowotmInfo> option) {
+		super(option, StowotmInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends ActionStdV1<StowotmInfo>> getActionClassHook() {
-		return StdStowotmSelect.class;
+	@Override protected Class<? extends ActionStdV2<StowotmInfo>> getActionClassHook() {
+		return StdStowotmDaoSelect.class;
 	}
 	
 	
@@ -29,6 +29,6 @@ final class VisiStowotmMergeToUpdate extends ActionVisitorTemplateMergeV1<Stowot
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
+		return super.DONT_MERGE_WHEN_EMPTY;
 	}	
 }

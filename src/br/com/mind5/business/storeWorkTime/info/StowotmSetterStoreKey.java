@@ -1,28 +1,10 @@
 package br.com.mind5.business.storeWorkTime.info;
 
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoSetter;
+import br.com.mind5.info.InfoSetterTemplate;
 
-public final class StowotmSetterStoreKey implements InfoSetter<StowotmInfo> {
+public final class StowotmSetterStoreKey extends InfoSetterTemplate<StowotmInfo> {
 	
-	public StowotmInfo setAttr(StowotmInfo recordInfo) {
-		checkArgument(recordInfo);
-		return setStoreKey(recordInfo);
-	}
-	
-	
-	
-	private void checkArgument(StowotmInfo recordInfo) {
-		if (recordInfo == null) {
-			logException(new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT));
-			throw new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT);
-		}
-	}
-	
-	
-	
-	private StowotmInfo setStoreKey(StowotmInfo recordInfo) {
+	@Override protected StowotmInfo setAttrHook(StowotmInfo recordInfo) {
 		StowotmInfo result = new StowotmInfo();
 		
 		result.codOwner = recordInfo.codOwner;
@@ -32,11 +14,4 @@ public final class StowotmSetterStoreKey implements InfoSetter<StowotmInfo> {
 
 		return result;
 	}
-	
-	
-	
-	private void logException(Exception e) {
-		
-		SystemLog.logError(this.getClass(), e);
-	}	
 }

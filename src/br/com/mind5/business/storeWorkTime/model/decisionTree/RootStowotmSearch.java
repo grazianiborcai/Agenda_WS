@@ -6,15 +6,15 @@ import java.util.List;
 import br.com.mind5.business.storeWorkTime.info.StowotmInfo;
 import br.com.mind5.business.storeWorkTime.model.action.LazyStowotmRootSelect;
 import br.com.mind5.business.storeWorkTime.model.action.StdStowotmMergeStowotarch;
-import br.com.mind5.business.storeWorkTime.model.checker.StowotmCheckDummy;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 
-public final class RootStowotmSearch extends DeciTreeTemplateReadV1<StowotmInfo> {
+public final class RootStowotmSearch extends DeciTreeTemplateReadV2<StowotmInfo> {
 	
 	public RootStowotmSearch(DeciTreeOption<StowotmInfo> option) {
 		super(option);
@@ -26,7 +26,7 @@ public final class RootStowotmSearch extends DeciTreeTemplateReadV1<StowotmInfo>
 		List<ModelCheckerV1<StowotmInfo>> queue = new ArrayList<>();		
 		ModelCheckerV1<StowotmInfo> checker;
 
-		checker = new StowotmCheckDummy();
+		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueueV2<>(queue);

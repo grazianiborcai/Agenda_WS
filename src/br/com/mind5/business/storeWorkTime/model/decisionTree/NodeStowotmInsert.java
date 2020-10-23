@@ -6,10 +6,10 @@ import java.util.List;
 import br.com.mind5.business.storeWorkTime.info.StowotmInfo;
 import br.com.mind5.business.storeWorkTime.model.action.LazyStowotmEnforceCreatedBy;
 import br.com.mind5.business.storeWorkTime.model.action.LazyStowotmEnforceCreatedOn;
-import br.com.mind5.business.storeWorkTime.model.action.LazyStowotmInsert;
+import br.com.mind5.business.storeWorkTime.model.action.LazyStowotmDaoInsert;
 import br.com.mind5.business.storeWorkTime.model.action.LazyStowotmMergeUsername;
 import br.com.mind5.business.storeWorkTime.model.action.LazyStowotmRootSelect;
-import br.com.mind5.business.storeWorkTime.model.action.LazyStowotmUpdate;
+import br.com.mind5.business.storeWorkTime.model.action.LazyStowotmDaoUpdate;
 import br.com.mind5.business.storeWorkTime.model.action.StdStowotmEnforceLChanged;
 import br.com.mind5.business.storeWorkTime.model.checker.StowotmCheckSoftDelete;
 import br.com.mind5.model.action.ActionLazyV1;
@@ -18,9 +18,9 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-final class NodeStowotmInsert extends DeciTreeTemplateWriteV1<StowotmInfo> {
+final class NodeStowotmInsert extends DeciTreeTemplateWriteV2<StowotmInfo> {
 	
 	public NodeStowotmInsert(DeciTreeOption<StowotmInfo> option) {
 		super(option);
@@ -52,7 +52,7 @@ final class NodeStowotmInsert extends DeciTreeTemplateWriteV1<StowotmInfo> {
 		ActionLazyV1<StowotmInfo> enforceLChangedBy = new LazyStowotmMergeUsername(option.conn, option.schemaName);
 		ActionLazyV1<StowotmInfo> enforceCreatedOn = new LazyStowotmEnforceCreatedOn(option.conn, option.schemaName);
 		ActionLazyV1<StowotmInfo> enforceCreatedBy = new LazyStowotmEnforceCreatedBy(option.conn, option.schemaName);
-		ActionLazyV1<StowotmInfo> insert = new LazyStowotmInsert(option.conn, option.schemaName);
+		ActionLazyV1<StowotmInfo> insert = new LazyStowotmDaoInsert(option.conn, option.schemaName);
 		ActionLazyV1<StowotmInfo> select = new LazyStowotmRootSelect(option.conn, option.schemaName);
 		
 		enforceLChanged.addPostAction(enforceLChangedBy);
@@ -74,7 +74,7 @@ final class NodeStowotmInsert extends DeciTreeTemplateWriteV1<StowotmInfo> {
 		ActionLazyV1<StowotmInfo> enforceLChangedBy = new LazyStowotmMergeUsername(option.conn, option.schemaName);
 		ActionLazyV1<StowotmInfo> enforceCreatedOn = new LazyStowotmEnforceCreatedOn(option.conn, option.schemaName);
 		ActionLazyV1<StowotmInfo> enforceCreatedBy = new LazyStowotmEnforceCreatedBy(option.conn, option.schemaName);
-		ActionLazyV1<StowotmInfo> update = new LazyStowotmUpdate(option.conn, option.schemaName);
+		ActionLazyV1<StowotmInfo> update = new LazyStowotmDaoUpdate(option.conn, option.schemaName);
 		ActionLazyV1<StowotmInfo> select = new LazyStowotmRootSelect(option.conn, option.schemaName);
 		
 		enforceLChanged.addPostAction(enforceLChangedBy);
