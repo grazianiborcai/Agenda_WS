@@ -1465,4 +1465,9 @@ public final class SystemCode {
 	public static final int SYS_STORE_SIGNUP_DISABLED					= 14300;
 	public static final int SYS_STORE_SIGNUP_ENABLED					= 14301;
 	public static final int SYS_STORE_SIGNUP_MANDATORY_FIELD_EMPTY		= 14302;
+	
+	// Sys Store Business Content
+	public static final int SYS_STORE_BC_DISABLED						= 14350;
+	public static final int SYS_STORE_BC_ENABLED						= 14351;
+	public static final int SYS_STORE_BC_MANDATORY_FIELD_EMPTY			= 14352;
 }
