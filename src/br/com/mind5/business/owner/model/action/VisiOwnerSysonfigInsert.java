@@ -3,8 +3,8 @@ package br.com.mind5.business.owner.model.action;
 import java.util.List;
 
 import br.com.mind5.business.owner.info.OwnerInfo;
-import br.com.mind5.config.sysConfig.info.SysonfigInfo;
-import br.com.mind5.config.sysConfig.model.decisionTree.RootSysonfigInsert;
+import br.com.mind5.config.sysOwnerConfig.info.SysonfigInfo;
+import br.com.mind5.config.sysOwnerConfig.model.decisionTree.RootSysonfigInsert;
 import br.com.mind5.model.action.ActionVisitorTemplateActionV2;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
