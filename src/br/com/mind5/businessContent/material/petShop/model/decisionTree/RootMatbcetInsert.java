@@ -56,9 +56,9 @@ public final class RootMatbcetInsert extends DeciTreeTemplateWriteV2<MatbcetInfo
 	@Override protected List<ActionStdV1<MatbcetInfo>> buildActionsOnPassedHook(DeciTreeOption<MatbcetInfo> option) {
 		List<ActionStdV1<MatbcetInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV1<MatbcetInfo> nodeL1 = new NodeMatbcetInsertL1(option).toAction();	
+		ActionStdV1<MatbcetInfo> nodeL01 = new NodeMatbcetInsertL01(option).toAction();	
 		
-		actions.add(nodeL1);		
+		actions.add(nodeL01);		
 		return actions;
 	}
 }
