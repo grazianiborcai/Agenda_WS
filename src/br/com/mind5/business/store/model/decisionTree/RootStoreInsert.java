@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.store.info.StoreInfo;
+import br.com.mind5.business.store.model.action.LazyStoreMatbcinInsert;
 import br.com.mind5.business.store.model.action.LazyStoreNodeInsertComp;
 import br.com.mind5.business.store.model.action.LazyStoreNodeInsertPerson;
 import br.com.mind5.business.store.model.action.LazyStoreNodeInsertPhone;
@@ -97,17 +98,18 @@ public final class RootStoreInsert extends DeciTreeTemplateWriteV2<StoreInfo> {
 		ActionLazyV1<StoreInfo> snapshot = new LazyStoreNodeSnapshot(option.conn, option.schemaName);
 		ActionLazyV1<StoreInfo> upsertAddress = new LazyStoreNodeUpsertAddress(option.conn, option.schemaName);		
 		ActionLazyV1<StoreInfo> insertPhone = new LazyStoreNodeInsertPhone(option.conn, option.schemaName);
-		ActionLazyV1<StoreInfo> insertStorext = new LazyStoreNodeInsertStorext(option.conn, option.schemaName);	
+		ActionLazyV1<StoreInfo> insertStorext = new LazyStoreNodeInsertStorext(option.conn, option.schemaName);			
+		ActionLazyV1<StoreInfo> matbcinInsert = new LazyStoreMatbcinInsert(option.conn, option.schemaName);		
 		ActionLazyV1<StoreInfo> selectStore = new LazyStoreRootSelect(option.conn, option.schemaName);	
 		
 		insertStore.addPostAction(insertPerson);		
 		insertPerson.addPostAction(insertComp);		
 		insertComp.addPostAction(insertUser);
-		insertUser.addPostAction(snapshot);		
-		
+		insertUser.addPostAction(snapshot);
 		snapshot.addPostAction(upsertAddress);			
 		snapshot.addPostAction(insertPhone);
 		snapshot.addPostAction(insertStorext);
+		snapshot.addPostAction(matbcinInsert);
 		snapshot.addPostAction(selectStore);
 		
 		actions.add(insertStore);	
