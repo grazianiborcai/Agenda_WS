@@ -1470,4 +1470,7 @@ public final class SystemCode {
 	public static final int SYS_STORE_BC_DISABLED						= 14350;
 	public static final int SYS_STORE_BC_ENABLED						= 14351;
 	public static final int SYS_STORE_BC_MANDATORY_FIELD_EMPTY			= 14352;
+	
+	// BC Material Pet Shop
+	public static final int BC_MAT_PETSHOP_MANDATORY_FIELD_EMPTY 		= 14400;
 }
