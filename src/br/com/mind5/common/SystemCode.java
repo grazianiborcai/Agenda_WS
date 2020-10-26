@@ -1473,4 +1473,7 @@ public final class SystemCode {
 	
 	// BC Material Pet Shop
 	public static final int BC_MAT_PETSHOP_MANDATORY_FIELD_EMPTY 		= 14400;
+	
+	// BC Material Main
+	public static final int BC_MAT_MAIN_MANDATORY_FIELD_EMPTY 			= 14450;
 }
