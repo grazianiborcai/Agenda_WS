@@ -4,9 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.materialSearch.info.MatarchInfo;
-import br.com.mind5.business.materialSearch.model.action.LazyMatarchRootSelectAuth;
-import br.com.mind5.business.materialSearch.model.action.StdMatarchEnforceMatCategService;
-import br.com.mind5.business.materialSearch.model.checker.MatarchCheckReadMat;
+import br.com.mind5.business.materialSearch.model.action.LazyMatarchRootSelect;
+import br.com.mind5.business.materialSearch.model.checker.MatarchCheckRead;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
@@ -15,9 +14,9 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 
-public final class RootMatarchSelectService extends DeciTreeTemplateReadV2<MatarchInfo> {
+public final class RootMatarchSelectAuth extends DeciTreeTemplateReadV2<MatarchInfo> {
 	
-	public RootMatarchSelectService(DeciTreeOption<MatarchInfo> option) {
+	public RootMatarchSelectAuth(DeciTreeOption<MatarchInfo> option) {
 		super(option);
 	}
 	
@@ -32,7 +31,7 @@ public final class RootMatarchSelectService extends DeciTreeTemplateReadV2<Matar
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
 		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new MatarchCheckReadMat(checkerOption);
+		checker = new MatarchCheckRead(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueueV2<>(queue);
@@ -43,12 +42,12 @@ public final class RootMatarchSelectService extends DeciTreeTemplateReadV2<Matar
 	@Override protected List<ActionStdV1<MatarchInfo>> buildActionsOnPassedHook(DeciTreeOption<MatarchInfo> option) {
 		List<ActionStdV1<MatarchInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<MatarchInfo> enforceMatCategService = new StdMatarchEnforceMatCategService(option);
-		ActionLazyV1<MatarchInfo> select = new LazyMatarchRootSelectAuth(option.conn, option.schemaName);
+		ActionStdV1<MatarchInfo> nodeAuth = new NodeMatarchAuth(option).toAction();
+		ActionLazyV1<MatarchInfo> select = new LazyMatarchRootSelect(option.conn, option.schemaName);
 		
-		enforceMatCategService.addPostAction(select);
+		nodeAuth.addPostAction(select);
 		
-		actions.add(enforceMatCategService);
+		actions.add(nodeAuth);
 		return actions;
 	}
 }

@@ -4,10 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.materialSearch.info.MatarchInfo;
-import br.com.mind5.business.materialSearch.model.action.LazyMatarchRootSelectAuth;
-import br.com.mind5.business.materialSearch.model.action.StdMatarchEnforceMatCategService;
-import br.com.mind5.business.materialSearch.model.checker.MatarchCheckReadMat;
-import br.com.mind5.model.action.ActionLazyV1;
+import br.com.mind5.business.materialSearch.model.action.StdMatarchObfuscateCodStore;
+import br.com.mind5.business.materialSearch.model.action.StdMatarchSuccess;
+import br.com.mind5.business.materialSearch.model.checker.MatarchCheckSytotin;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -15,9 +14,9 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 
-public final class RootMatarchSelectService extends DeciTreeTemplateReadV2<MatarchInfo> {
+public final class NodeMatarchAuth extends DeciTreeTemplateReadV2<MatarchInfo> {
 	
-	public RootMatarchSelectService(DeciTreeOption<MatarchInfo> option) {
+	public NodeMatarchAuth(DeciTreeOption<MatarchInfo> option) {
 		super(option);
 	}
 	
@@ -31,8 +30,8 @@ public final class RootMatarchSelectService extends DeciTreeTemplateReadV2<Matar
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
 		checkerOption.schemaName = option.schemaName;
-		checkerOption.expectedResult = ModelCheckerOption.SUCCESS;	
-		checker = new MatarchCheckReadMat(checkerOption);
+		checkerOption.expectedResult = ModelCheckerOption.EXIST_ON_DB;	
+		checker = new MatarchCheckSytotin(checkerOption);
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueueV2<>(queue);
@@ -43,12 +42,20 @@ public final class RootMatarchSelectService extends DeciTreeTemplateReadV2<Matar
 	@Override protected List<ActionStdV1<MatarchInfo>> buildActionsOnPassedHook(DeciTreeOption<MatarchInfo> option) {
 		List<ActionStdV1<MatarchInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<MatarchInfo> enforceMatCategService = new StdMatarchEnforceMatCategService(option);
-		ActionLazyV1<MatarchInfo> select = new LazyMatarchRootSelectAuth(option.conn, option.schemaName);
+		ActionStdV1<MatarchInfo> success = new StdMatarchSuccess(option);
 		
-		enforceMatCategService.addPostAction(select);
+		actions.add(success);
+		return actions;
+	}
+	
+	
+	
+	@Override protected List<ActionStdV1<MatarchInfo>> buildActionsOnFailedHook(DeciTreeOption<MatarchInfo> option) {
+		List<ActionStdV1<MatarchInfo>> actions = new ArrayList<>();
 		
-		actions.add(enforceMatCategService);
+		ActionStdV1<MatarchInfo> obfuscateCodStore = new StdMatarchObfuscateCodStore(option);
+		
+		actions.add(obfuscateCodStore);
 		return actions;
 	}
 }

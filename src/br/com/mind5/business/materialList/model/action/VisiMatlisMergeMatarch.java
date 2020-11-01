@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.business.materialList.info.MatlisMerger;
 import br.com.mind5.business.materialSearch.info.MatarchInfo;
-import br.com.mind5.business.materialSearch.model.decisionTree.RootMatarchSelect;
+import br.com.mind5.business.materialSearch.model.decisionTree.RootMatarchSelectAuth;
 import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
 import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
@@ -20,7 +20,7 @@ final class VisiMatlisMergeMatarch extends ActionVisitorTemplateMergeV2<MatlisIn
 	
 	
 	@Override protected Class<? extends DeciTree<MatarchInfo>> getTreeClassHook() {
-		return RootMatarchSelect.class;
+		return RootMatarchSelectAuth.class;
 	}
 	
 	

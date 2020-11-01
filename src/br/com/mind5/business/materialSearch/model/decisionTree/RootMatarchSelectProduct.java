@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.materialSearch.info.MatarchInfo;
-import br.com.mind5.business.materialSearch.model.action.LazyMatarchRootSelect;
+import br.com.mind5.business.materialSearch.model.action.LazyMatarchRootSelectAuth;
 import br.com.mind5.business.materialSearch.model.action.StdMatarchEnforceMatCategProduct;
 import br.com.mind5.business.materialSearch.model.checker.MatarchCheckReadMat;
 import br.com.mind5.model.action.ActionLazyV1;
@@ -44,7 +44,7 @@ public final class RootMatarchSelectProduct extends DeciTreeTemplateReadV2<Matar
 		List<ActionStdV1<MatarchInfo>> actions = new ArrayList<>();
 		
 		ActionStdV1<MatarchInfo> enforceMatCategProduct = new StdMatarchEnforceMatCategProduct(option);
-		ActionLazyV1<MatarchInfo> select = new LazyMatarchRootSelect(option.conn, option.schemaName);
+		ActionLazyV1<MatarchInfo> select = new LazyMatarchRootSelectAuth(option.conn, option.schemaName);
 		
 		enforceMatCategProduct.addPostAction(select);
 		
