@@ -11,7 +11,7 @@ public final class FathInfo extends InfoRecord implements Cloneable {
 	
 	
 	public FathInfo() {
-		super(FathInfo.class);
+		super();
 	}
 	
 	

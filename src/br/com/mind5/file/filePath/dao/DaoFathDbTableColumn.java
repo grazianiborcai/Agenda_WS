@@ -9,32 +9,19 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class FathDbTableColumn extends DaoDbTableColumnTemplate {
+public final class DaoFathDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_FILE_PATH = DaoDbField.COL_COD_FILE_PATH;
 	public static final String COL_FILE_PATH = DaoDbField.COL_FILE_PATH;	
 	public static final String COL_FILE_PATH_EXTERNAL = DaoDbField.COL_FILE_PATH_EXTERNAL;	
 		
 	
-	
-	private Hashtable<String, List<DaoColumn>> tableColumns;	
-	
-	public FathDbTableColumn() {
-		super(FathDbTableColumn.class);
+	public DaoFathDbTableColumn() {
+		super();
 	}
 	
 	
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
-		tableColumns = new Hashtable<>();
-		
-		buildFilePathTable();	
-		
-		return tableColumns;
-	}
-	
-	
-	
-	private void buildFilePathTable() {
 		final String TABLE_NAME = DaoDbTable.FILE_PATH_TABLE;
 		
 		DaoColumn oneColumn;
@@ -64,6 +51,8 @@ public final class FathDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 
-		tableColumns.put(TABLE_NAME, columns);
+		Hashtable<String, List<DaoColumn>> results = new Hashtable<>();
+		results.put(TABLE_NAME, columns);
+		return results;
 	}
 }

@@ -6,15 +6,15 @@ import java.util.List;
 import br.com.mind5.file.filePath.info.FathInfo;
 import br.com.mind5.file.filePath.model.action.LazyFathRootSelect;
 import br.com.mind5.file.filePath.model.action.StdFathEnforceCodImage;
-import br.com.mind5.file.filePath.model.checker.FathCheckDummy;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 
-public final class RootFathSelectImage extends DeciTreeTemplateReadV1<FathInfo> {
+public final class RootFathSelectImage extends DeciTreeTemplateReadV2<FathInfo> {
 	
 	public RootFathSelectImage(DeciTreeOption<FathInfo> option) {
 		super(option);
@@ -26,7 +26,7 @@ public final class RootFathSelectImage extends DeciTreeTemplateReadV1<FathInfo> 
 		List<ModelCheckerV1<FathInfo>> queue = new ArrayList<>();		
 		ModelCheckerV1<FathInfo> checker;
 		
-		checker = new FathCheckDummy();
+		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueueV2<>(queue);
