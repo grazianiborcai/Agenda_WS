@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.employeeWorkTime.info.EmpwotmInfo;
 import br.com.mind5.business.employeeWorkTime.model.action.LazyEmpwotmMergeUsername;
-import br.com.mind5.business.employeeWorkTime.model.action.LazyEmpwotmUpdate;
+import br.com.mind5.business.employeeWorkTime.model.action.LazyEmpwotmDaoUpdate;
 import br.com.mind5.business.employeeWorkTime.model.action.StdEmpwotmEnforceLChanged;
 import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckEmp;
 import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckEmposarch;
@@ -26,9 +26,9 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class RootEmpwotmUpdate extends DeciTreeTemplateWriteV1<EmpwotmInfo> {
+public final class RootEmpwotmUpdate extends DeciTreeTemplateWriteV2<EmpwotmInfo> {
 	
 	public RootEmpwotmUpdate(DeciTreeOption<EmpwotmInfo> option) {
 		super(option);
@@ -142,7 +142,7 @@ public final class RootEmpwotmUpdate extends DeciTreeTemplateWriteV1<EmpwotmInfo
 		
 		ActionStdV1<EmpwotmInfo> enforceLChanged = new StdEmpwotmEnforceLChanged(option);
 		ActionLazyV1<EmpwotmInfo> enforceLChangedBy = new LazyEmpwotmMergeUsername(option.conn, option.schemaName);
-		ActionLazyV1<EmpwotmInfo> update = new LazyEmpwotmUpdate(option.conn, option.schemaName);
+		ActionLazyV1<EmpwotmInfo> update = new LazyEmpwotmDaoUpdate(option.conn, option.schemaName);
 		ActionStdV1<EmpwotmInfo> select = new RootEmpwotmSelect(option).toAction();
 		
 		enforceLChanged.addPostAction(enforceLChangedBy);

@@ -1,6 +1,5 @@
 package br.com.mind5.business.employeeWorkTime.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.employeeWorkTime.info.EmpwotmInfo;
@@ -8,13 +7,14 @@ import br.com.mind5.business.employeeWorkTime.info.EmpwotmMerger;
 import br.com.mind5.business.storeWorkTimeSearch.info.StowotarchCopier;
 import br.com.mind5.business.storeWorkTimeSearch.info.StowotarchInfo;
 import br.com.mind5.business.storeWorkTimeSearch.model.decisionTree.RootStowotarchSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiEmpwotmMergeStowotarch extends ActionVisitorTemplateMergeV1<EmpwotmInfo, StowotarchInfo> {
+final class VisiEmpwotmMergeStowotarch extends ActionVisitorTemplateMergeV2<EmpwotmInfo, StowotarchInfo> {
 	
-	public VisiEmpwotmMergeStowotarch(Connection conn, String schemaName) {
-		super(conn, schemaName, StowotarchInfo.class);
+	public VisiEmpwotmMergeStowotarch(DeciTreeOption<EmpwotmInfo> option) {
+		super(option, StowotarchInfo.class);
 	}
 	
 	
@@ -38,6 +38,6 @@ final class VisiEmpwotmMergeStowotarch extends ActionVisitorTemplateMergeV1<Empw
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
+		return super.MERGE_WHEN_EMPTY;
 	}
 }

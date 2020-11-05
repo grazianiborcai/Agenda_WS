@@ -9,36 +9,25 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class EmpwotmDbTableColumn extends DaoDbTableColumnTemplate {
+public final class DaoEmpwotmDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_BEGIN_TIME = DaoDbField.COL_BEGIN_TIME; 
 	public static final String COL_COD_EMPLOYEE = DaoDbField.COL_COD_EMPLOYEE;
 	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;
 	public static final String COL_COD_STORE =DaoDbField.COL_COD_STORE;
+	public static final String COL_COD_WEEKDAY = DaoDbField.COL_COD_WEEKDAY;
 	public static final String COL_END_TIME = DaoDbField.COL_END_TIME;
 	public static final String COL_LAST_CHANGED = DaoDbField.COL_LAST_CHANGED;
 	public static final String COL_LAST_CHANGED_BY = DaoDbField.COL_LAST_CHANGED_BY;	
-	public static final String COL_RECORD_MODE = DaoDbField.COL_RECORD_MODE;
-	public static final String COL_COD_WEEKDAY = DaoDbField.COL_COD_WEEKDAY;
+	public static final String COL_RECORD_MODE = DaoDbField.COL_RECORD_MODE;	
 	
-	private Hashtable<String, List<DaoColumn>> tableColumns;	
 	
-	public EmpwotmDbTableColumn() {
-		super(EmpwotmDbTableColumn.class);
+	public DaoEmpwotmDbTableColumn() {
+		super();
 	}
 	
 	
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
-		tableColumns = new Hashtable<>();
-		
-		employeeWorkTimeTable();
-		
-		return tableColumns;
-	}
-	
-	
-	
-	private void employeeWorkTimeTable() {
 		final String TABLE_NAME = DaoDbTable.EMP_WT_TABLE;
 		
 		DaoColumn oneColumn;
@@ -116,6 +105,8 @@ public final class EmpwotmDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		tableColumns.put(TABLE_NAME, columns);
+		Hashtable<String, List<DaoColumn>> results = new Hashtable<>();
+		results.put(TABLE_NAME, columns);
+		return results;
 	}
 }

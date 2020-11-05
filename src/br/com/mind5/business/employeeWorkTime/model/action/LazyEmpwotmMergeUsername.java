@@ -4,12 +4,12 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.employeeWorkTime.info.EmpwotmInfo;
-import br.com.mind5.model.action.ActionLazyTemplateV1;
+import br.com.mind5.model.action.ActionLazyTemplateV2;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyEmpwotmMergeUsername extends ActionLazyTemplateV1<EmpwotmInfo, EmpwotmInfo> {
+public final class LazyEmpwotmMergeUsername extends ActionLazyTemplateV2<EmpwotmInfo, EmpwotmInfo> {
 	
 	public LazyEmpwotmMergeUsername(Connection conn, String schemaName) {
 		super(conn, schemaName);

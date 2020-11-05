@@ -1,7 +1,7 @@
 package br.com.mind5.business.employeeWorkTime.model.checker;
 
 import br.com.mind5.business.employeeWorkTime.info.EmpwotmInfo;
-import br.com.mind5.business.employeeWorkTime.model.action.StdEmpwotmSelect;
+import br.com.mind5.business.employeeWorkTime.model.action.StdEmpwotmDaoSelect;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -17,7 +17,7 @@ public class EmpwotmCheckExist extends ModelCheckerTemplateActionV2<EmpwotmInfo,
 	
 	
 	@Override protected ActionStdV1<EmpwotmInfo> buildActionHook(DeciTreeOption<EmpwotmInfo> option) {
-		ActionStdV1<EmpwotmInfo> select = new StdEmpwotmSelect(option);
+		ActionStdV1<EmpwotmInfo> select = new StdEmpwotmDaoSelect(option);
 		
 		return select;
 	}

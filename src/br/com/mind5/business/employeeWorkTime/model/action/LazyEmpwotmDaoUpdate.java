@@ -4,14 +4,14 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.employeeWorkTime.info.EmpwotmInfo;
-import br.com.mind5.model.action.ActionLazyTemplateV1;
+import br.com.mind5.model.action.ActionLazyTemplateV2;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyEmpwotmUpdate extends ActionLazyTemplateV1<EmpwotmInfo, EmpwotmInfo> {
+public final class LazyEmpwotmDaoUpdate extends ActionLazyTemplateV2<EmpwotmInfo, EmpwotmInfo> {
 	
-	public LazyEmpwotmUpdate(Connection conn, String schemaName) {
+	public LazyEmpwotmDaoUpdate(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyEmpwotmUpdate extends ActionLazyTemplateV1<EmpwotmInfo, E
 	
 	
 	@Override protected ActionStdV1<EmpwotmInfo> getInstanceOfActionHook(DeciTreeOption<EmpwotmInfo> option) {
-		return new StdEmpwotmUpdate(option);
+		return new StdEmpwotmDaoUpdate(option);
 	}
 	
 	

@@ -1,7 +1,7 @@
 package br.com.mind5.business.employeeWorkTime.model.checker;
 
 import br.com.mind5.business.employeeWorkTime.info.EmpwotmInfo;
-import br.com.mind5.business.employeeWorkTime.model.action.LazyEmpwotmSelect;
+import br.com.mind5.business.employeeWorkTime.model.action.LazyEmpwotmDaoSelect;
 import br.com.mind5.business.employeeWorkTime.model.action.StdEmpwotmEnforceDel;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionLazyV1;
@@ -20,7 +20,7 @@ public final class EmpwotmCheckSoftDelete extends ModelCheckerTemplateActionV2<E
 	
 	@Override protected ActionStdV1<EmpwotmInfo> buildActionHook(DeciTreeOption<EmpwotmInfo> option) {
 		ActionStdV1<EmpwotmInfo> enforceDel = new StdEmpwotmEnforceDel(option);
-		ActionLazyV1<EmpwotmInfo> select = new LazyEmpwotmSelect(option.conn, option.schemaName);		
+		ActionLazyV1<EmpwotmInfo> select = new LazyEmpwotmDaoSelect(option.conn, option.schemaName);		
 		
 		enforceDel.addPostAction(select);
 		return enforceDel;

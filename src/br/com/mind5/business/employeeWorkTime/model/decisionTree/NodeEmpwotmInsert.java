@@ -4,17 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.employeeWorkTime.info.EmpwotmInfo;
-import br.com.mind5.business.employeeWorkTime.model.action.StdEmpwotmInsert;
-import br.com.mind5.business.employeeWorkTime.model.action.StdEmpwotmUpdate;
+import br.com.mind5.business.employeeWorkTime.model.action.StdEmpwotmDaoInsert;
+import br.com.mind5.business.employeeWorkTime.model.action.StdEmpwotmDaoUpdate;
 import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckSoftDelete;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class NodeEmpwotmInsert extends DeciTreeTemplateWriteV1<EmpwotmInfo> {
+public final class NodeEmpwotmInsert extends DeciTreeTemplateWriteV2<EmpwotmInfo> {
 	
 	public NodeEmpwotmInsert(DeciTreeOption<EmpwotmInfo> option) {
 		super(option);
@@ -41,7 +41,7 @@ public final class NodeEmpwotmInsert extends DeciTreeTemplateWriteV1<EmpwotmInfo
 	@Override protected List<ActionStdV1<EmpwotmInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpwotmInfo> option) {
 		List<ActionStdV1<EmpwotmInfo>> actions = new ArrayList<>();
 		
-		actions.add(new StdEmpwotmInsert(option));
+		actions.add(new StdEmpwotmDaoInsert(option));
 		return actions;
 	}
 	
@@ -50,7 +50,7 @@ public final class NodeEmpwotmInsert extends DeciTreeTemplateWriteV1<EmpwotmInfo
 	@Override protected List<ActionStdV1<EmpwotmInfo>> buildActionsOnFailedHook(DeciTreeOption<EmpwotmInfo> option) {
 		List<ActionStdV1<EmpwotmInfo>> actions = new ArrayList<>();
 		
-		actions.add(new StdEmpwotmUpdate(option));
+		actions.add(new StdEmpwotmDaoUpdate(option));
 		return actions;
 	}
 }

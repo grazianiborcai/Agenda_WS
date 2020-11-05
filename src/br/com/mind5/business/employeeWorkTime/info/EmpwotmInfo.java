@@ -24,7 +24,7 @@ public class EmpwotmInfo extends InfoRecord implements Cloneable {
 	
 	
 	public EmpwotmInfo() {
-		super(EmpwotmInfo.class);
+		super();
 		
 		codOwner = DefaultValue.number();
 		codStore = DefaultValue.number();
@@ -49,21 +49,7 @@ public class EmpwotmInfo extends InfoRecord implements Cloneable {
 	
 	
 	@Override public Object clone()throws CloneNotSupportedException {  
-		EmpwotmInfo deepCopy = (EmpwotmInfo) super.clone();  		
-		
-		LocalTime cloneBeginTime = null;		
-		if (beginTime != null) 
-			cloneBeginTime = LocalTime.of(beginTime.getHour(), beginTime.getMinute(), beginTime.getSecond());
-		
-		LocalTime cloneEndTime = null;		
-		if (endTime != null) 
-			cloneEndTime = LocalTime.of(endTime.getHour(), endTime.getMinute(), endTime.getSecond());
-				
-		
-		deepCopy.beginTime = cloneBeginTime;
-		deepCopy.endTime = cloneEndTime;
-				
-		return deepCopy;	
+		return super.clone(); 
 	}  
 	
 	

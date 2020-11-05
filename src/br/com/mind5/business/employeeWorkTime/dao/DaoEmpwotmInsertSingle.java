@@ -8,16 +8,13 @@ import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
 import br.com.mind5.dao.DaoStmtParamTranslator;
 import br.com.mind5.dao.DaoStmtTemplate;
-import br.com.mind5.dao.DaoStmtWhere;
-import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
-import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class EmpwotmUpdateSingle extends DaoStmtTemplate<EmpwotmInfo> {
-	private final String MAIN_TABLE = DaoDbTable.EMP_WT_TABLE;	
+public final class DaoEmpwotmInsertSingle extends DaoStmtTemplate<EmpwotmInfo> {
+	private final String MAIN_TABLE = DaoDbTable.EMP_WT_TABLE;		
 	
 	
-	public EmpwotmUpdateSingle(Connection conn, EmpwotmInfo recordInfo, String schemaName) {
+	public DaoEmpwotmInsertSingle(Connection conn, EmpwotmInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -30,29 +27,20 @@ public final class EmpwotmUpdateSingle extends DaoStmtTemplate<EmpwotmInfo> {
 	
 	
 	@Override protected DaoOperation getOperationHook() {
-		return DaoOperation.UPDATE;
-	}
-	
-	
-	
-	@Override protected String buildWhereClauseHook(String tableName, EmpwotmInfo recordInfo) {
-		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
-		
-		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
-		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;
-		whereOption.ignoreNonPrimaryKey = DaoOptionValue.IGNORE_NON_PK;
-		
-		DaoStmtWhere whereClause = new EmpwotmWhere(whereOption, tableName, recordInfo);
-		return whereClause.getWhereClause();
+		return DaoOperation.INSERT;
 	}
 	
 	
 	
 	@Override protected DaoStmtParamTranslator<EmpwotmInfo> getParamTranslatorHook() {
-		return new DaoStmtParamTranslator<EmpwotmInfo>() {		
+		return new DaoStmtParamTranslator<EmpwotmInfo>() {			
 			@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, EmpwotmInfo recordInfo) throws SQLException {				
 				int i = 1;
 				
+				stmt.setLong(i++, recordInfo.codOwner);
+				stmt.setLong(i++, recordInfo.codStore);
+				stmt.setLong(i++, recordInfo.codEmployee);
+				stmt.setInt(i++, recordInfo.codWeekday);
 				stmt = DaoFormatter.localTimeToStmt(stmt, i++, recordInfo.beginTime);
 				stmt = DaoFormatter.localTimeToStmt(stmt, i++, recordInfo.endTime);
 				stmt.setString(i++, recordInfo.recordMode);

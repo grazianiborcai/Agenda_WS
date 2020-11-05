@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.employeeWorkTime.info.EmpwotmInfo;
-import br.com.mind5.business.employeeWorkTime.model.action.LazyEmpwotmDelete;
+import br.com.mind5.business.employeeWorkTime.model.action.LazyEmpwotmDaoDelete;
 import br.com.mind5.business.employeeWorkTime.model.action.LazyEmpwotmEnforceLChanged;
 import br.com.mind5.business.employeeWorkTime.model.action.LazyEmpwotmMergeUsername;
-import br.com.mind5.business.employeeWorkTime.model.action.LazyEmpwotmUpdate;
+import br.com.mind5.business.employeeWorkTime.model.action.LazyEmpwotmDaoUpdate;
 import br.com.mind5.business.employeeWorkTime.model.action.StdEmpwotmMergeToDelete;
 import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckDelete;
 import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckExist;
@@ -20,9 +20,9 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class RootEmpwotmDelete extends DeciTreeTemplateWriteV1<EmpwotmInfo> {
+public final class RootEmpwotmDelete extends DeciTreeTemplateWriteV2<EmpwotmInfo> {
 	
 	public RootEmpwotmDelete(DeciTreeOption<EmpwotmInfo> option) {
 		super(option);
@@ -81,8 +81,8 @@ public final class RootEmpwotmDelete extends DeciTreeTemplateWriteV1<EmpwotmInfo
 		ActionStdV1<EmpwotmInfo> mergeToDelete = new StdEmpwotmMergeToDelete(option);
 		ActionLazyV1<EmpwotmInfo> enforceLChanged = new LazyEmpwotmEnforceLChanged(option.conn, option.schemaName);
 		ActionLazyV1<EmpwotmInfo> enforceLChangedBy = new LazyEmpwotmMergeUsername(option.conn, option.schemaName);
-		ActionLazyV1<EmpwotmInfo> update = new LazyEmpwotmUpdate(option.conn, option.schemaName);
-		ActionLazyV1<EmpwotmInfo> delete = new LazyEmpwotmDelete(option.conn, option.schemaName);
+		ActionLazyV1<EmpwotmInfo> update = new LazyEmpwotmDaoUpdate(option.conn, option.schemaName);
+		ActionLazyV1<EmpwotmInfo> delete = new LazyEmpwotmDaoDelete(option.conn, option.schemaName);
 		
 		mergeToDelete.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceLChangedBy);

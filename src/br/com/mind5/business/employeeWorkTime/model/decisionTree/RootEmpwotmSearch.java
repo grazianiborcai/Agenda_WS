@@ -6,15 +6,15 @@ import java.util.List;
 import br.com.mind5.business.employeeWorkTime.info.EmpwotmInfo;
 import br.com.mind5.business.employeeWorkTime.model.action.LazyEmpwotmRootSelect;
 import br.com.mind5.business.employeeWorkTime.model.action.StdEmpwotmMergeEmpwotarch;
-import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckDummy;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 
-public final class RootEmpwotmSearch extends DeciTreeTemplateReadV1<EmpwotmInfo> {
+public final class RootEmpwotmSearch extends DeciTreeTemplateReadV2<EmpwotmInfo> {
 	
 	public RootEmpwotmSearch(DeciTreeOption<EmpwotmInfo> option) {
 		super(option);
@@ -26,7 +26,7 @@ public final class RootEmpwotmSearch extends DeciTreeTemplateReadV1<EmpwotmInfo>
 		List<ModelCheckerV1<EmpwotmInfo>> queue = new ArrayList<>();		
 		ModelCheckerV1<EmpwotmInfo> checker;
 
-		checker = new EmpwotmCheckDummy();
+		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueueV2<>(queue);
