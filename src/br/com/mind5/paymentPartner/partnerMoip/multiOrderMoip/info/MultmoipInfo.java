@@ -1,9 +1,9 @@
 package br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.info;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import br.com.mind5.common.CloneUtil;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
@@ -40,7 +40,7 @@ public final class MultmoipInfo extends InfoRecord implements Cloneable {
 	
 	
 	public MultmoipInfo() {
-		super(MultmoipInfo.class);
+		super();
 		
 		codOwner = DefaultValue.number();
 		codPayOrder = DefaultValue.number();
@@ -70,64 +70,12 @@ public final class MultmoipInfo extends InfoRecord implements Cloneable {
 	@Override public Object clone() throws CloneNotSupportedException {
 		MultmoipInfo deepCopy = (MultmoipInfo) super.clone();
 		
-		deepCopy.payordemists = clonePayordemists(deepCopy.payordemists);
-		deepCopy.setuparData = cloneSetupar(deepCopy.setuparData);
-		deepCopy.crecardData = cloneCrecard(deepCopy.crecardData);
-		deepCopy.ordmoips = cloneOrdmoips(deepCopy.ordmoips);
+		deepCopy.payordemists = CloneUtil.cloneRecords(deepCopy.payordemists, this.getClass());
+		deepCopy.setuparData = CloneUtil.cloneRecord(deepCopy.setuparData, this.getClass());
+		deepCopy.crecardData = CloneUtil.cloneRecord(deepCopy.crecardData, this.getClass());
+		deepCopy.ordmoips = CloneUtil.cloneRecords(deepCopy.ordmoips, this.getClass());
 		
 		return deepCopy;
-	}
-	
-	
-	
-	private List<PayordemistInfo> clonePayordemists(List<PayordemistInfo> recordInfos) throws CloneNotSupportedException {
-		if (recordInfos == null)
-			return null;
-		
-		List<PayordemistInfo> results = new ArrayList<>();
-		
-		for (PayordemistInfo eachRecord : recordInfos) {
-			PayordemistInfo clonedOrdmoip = (PayordemistInfo) eachRecord.clone();
-			results.add(clonedOrdmoip);
-		}
-		
-		
-		return results;
-	}
-	
-	
-	
-	private SetuparInfo cloneSetupar(SetuparInfo recordInfo) throws CloneNotSupportedException {
-		if (recordInfo == null)
-			return null;
-		
-		return (SetuparInfo) recordInfo.clone();
-	}		
-	
-	
-	
-	private CrecardInfo cloneCrecard(CrecardInfo recordInfo) throws CloneNotSupportedException {
-		if (recordInfo == null)
-			return null;
-		
-		return (CrecardInfo) recordInfo.clone();
-	}		
-	
-	
-	
-	private List<OrdmoipInfo> cloneOrdmoips(List<OrdmoipInfo> recordInfos) throws CloneNotSupportedException {
-		if (recordInfos == null)
-			return null;
-		
-		List<OrdmoipInfo> results = new ArrayList<>();
-		
-		for (OrdmoipInfo eachRecord : recordInfos) {
-			OrdmoipInfo clonedOrdmoip = (OrdmoipInfo) eachRecord.clone();
-			results.add(clonedOrdmoip);
-		}
-		
-		
-		return results;
 	}
 	
 	

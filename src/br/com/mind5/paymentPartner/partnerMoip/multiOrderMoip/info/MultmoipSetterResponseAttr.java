@@ -3,30 +3,11 @@ package br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.info;
 import java.util.List;
 import java.util.Map;
 
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoSetter;
+import br.com.mind5.info.InfoSetterTemplate;
 
-public final class MultmoipSetterResponseAttr implements InfoSetter<MultmoipInfo> {
-	
-	public MultmoipInfo setAttr(MultmoipInfo recordInfo) {
-		checkArgument(recordInfo);
-		return setResponseAtt(recordInfo);
-	}
-	
-	
-	
-	private void checkArgument(MultmoipInfo recordInfo) {
-		if (recordInfo == null) {
-			logException(new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT));
-			throw new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT);
-		}
-	}
-	
-	
-	
+public final class MultmoipSetterResponseAttr extends InfoSetterTemplate<MultmoipInfo> {
 	@SuppressWarnings("unchecked")
-	private MultmoipInfo setResponseAtt(MultmoipInfo recordInfo) {
+	@Override protected MultmoipInfo setAttrHook(MultmoipInfo recordInfo) {
 		Map<String, Object> amounts = (Map<String, Object>) recordInfo.response.get("amount");	
 		Map<String, Object> links = (Map<String, Object>) recordInfo.response.get("_links");		
 		Map<String, Object> selfs = (Map<String, Object>) links.get("self");		
@@ -112,11 +93,4 @@ public final class MultmoipSetterResponseAttr implements InfoSetter<MultmoipInfo
 		
 		return true;
 	}
-	
-	
-	
-	private void logException(Exception e) {
-		
-		SystemLog.logError(this.getClass(), e);
-	}	
 }

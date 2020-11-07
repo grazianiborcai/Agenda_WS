@@ -1,33 +1,15 @@
 package br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.info;
 
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoSetter;
+import br.com.mind5.info.InfoSetterTemplate;
 import br.com.mind5.masterData.common.Environ;
 import br.com.moip.auth.Authentication;
 import br.com.moip.auth.OAuth;
 import br.com.moip.models.Setup;
 import br.com.moip.models.Setup.Environment;
 
-public final class MultmoipSetterSetup implements InfoSetter<MultmoipInfo> {
+public final class MultmoipSetterSetup extends InfoSetterTemplate<MultmoipInfo> {
 	
-	public MultmoipInfo setAttr(MultmoipInfo recordInfo) {
-		checkArgument(recordInfo);
-		return setSetup(recordInfo);
-	}
-	
-	
-	
-	private void checkArgument(MultmoipInfo recordInfo) {
-		if (recordInfo == null) {
-			logException(new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT));
-			throw new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT);
-		}
-	}
-	
-	
-	
-	private MultmoipInfo setSetup(MultmoipInfo recordInfo) {
+	@Override protected MultmoipInfo setAttrHook(MultmoipInfo recordInfo) {
 		Authentication auth = getAuthentication(recordInfo);
 		Environment environment = getEnvironment(recordInfo);
 		
@@ -55,11 +37,4 @@ public final class MultmoipSetterSetup implements InfoSetter<MultmoipInfo> {
 		
 		return Environment.SANDBOX;
 	}
-	
-	
-	
-	private void logException(Exception e) {
-		
-		SystemLog.logError(this.getClass(), e);
-	}	
 }

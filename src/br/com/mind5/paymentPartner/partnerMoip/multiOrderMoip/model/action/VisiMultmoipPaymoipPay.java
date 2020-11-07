@@ -1,10 +1,9 @@
 package br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateActionV1;
+import br.com.mind5.model.action.ActionVisitorTemplateActionV2;
+import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.info.MultmoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.info.MultmoipMerger;
@@ -12,15 +11,16 @@ import br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.info.PaymoipCopier;
 import br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.info.PaymoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.model.decisionTree.RootPaymoipPay;
 
-final class VisiMultmoipPaymoipPay extends ActionVisitorTemplateActionV1<MultmoipInfo, PaymoipInfo> {
-	public VisiMultmoipPaymoipPay(Connection conn, String schemaName) {
-		super(conn, schemaName, MultmoipInfo.class, PaymoipInfo.class);
+final class VisiMultmoipPaymoipPay extends ActionVisitorTemplateActionV2<MultmoipInfo, PaymoipInfo> {
+
+	public VisiMultmoipPaymoipPay(DeciTreeOption<MultmoipInfo> option) {
+		super(option, MultmoipInfo.class, PaymoipInfo.class);
 	}
 	
 	
 	
-	@Override protected ActionStdV1<PaymoipInfo> getActionHook(DeciTreeOption<PaymoipInfo> option) {
-		return new RootPaymoipPay(option).toAction();
+	@Override protected Class<? extends DeciTree<PaymoipInfo>> getTreeClassHook() {
+		return RootPaymoipPay.class;
 	}
 	
 	

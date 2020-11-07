@@ -5,10 +5,11 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 import br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.info.MultmoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.model.action.LazyMultmoipCreate;
 import br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.model.action.LazyMultmoipEnforceOwnId;
@@ -19,9 +20,8 @@ import br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.model.action.LazyM
 import br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.model.action.LazyMultmoipMergeSetupar;
 import br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.model.action.LazyMultmoipMergeSysenv;
 import br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.model.action.StdMultmoipEnforceMultiorder;
-import br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.model.checker.MultmoipCheckDummy;
 
-public final class NodeMultmoipPlace extends DeciTreeTemplateReadV1<MultmoipInfo> {
+public final class NodeMultmoipPlace extends DeciTreeTemplateReadV2<MultmoipInfo> {
 	
 	public NodeMultmoipPlace(DeciTreeOption<MultmoipInfo> option) {
 		super(option);
@@ -33,7 +33,7 @@ public final class NodeMultmoipPlace extends DeciTreeTemplateReadV1<MultmoipInfo
 		List<ModelCheckerV1<MultmoipInfo>> queue = new ArrayList<>();		
 		ModelCheckerV1<MultmoipInfo> checker;
 
-		checker = new MultmoipCheckDummy();
+		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 
 		return new ModelCheckerHelperQueueV2<>(queue);

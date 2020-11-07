@@ -1,57 +1,28 @@
 package br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.model.checker;
 
-import java.util.List;
-
-import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.payment.payOrderItemSearch.info.PayormarchCopier;
 import br.com.mind5.payment.payOrderItemSearch.info.PayormarchInfo;
 import br.com.mind5.payment.payOrderItemSearch.model.checker.PayormarchCheckExist;
 import br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.info.MultmoipInfo;
 
-public final class MultmoipCheckPayormarch implements ModelCheckerV1<MultmoipInfo> {
-	private final boolean FAILED = false;
-	private final boolean SUCCESS = true;
-	
-	private ModelCheckerV1<PayormarchInfo> checker;
-	
+public final class MultmoipCheckPayormarch extends ModelCheckerTemplateForwardV2<MultmoipInfo, PayormarchInfo> {
 	
 	public MultmoipCheckPayormarch(ModelCheckerOption option) {
-		checker = new PayormarchCheckExist(option);
-	}
-	
-	
-	
-	@Override public boolean check(List<MultmoipInfo> recordInfos) {
-		for (MultmoipInfo eachInfo : recordInfos) {
-			if (check(eachInfo) == FAILED)
-				return FAILED;
-		}
-		
-		return SUCCESS;
+		super(option);
 	}
 
-	
-	
-	@Override public boolean check(MultmoipInfo recordInfo) {
-		return checker.check(PayormarchCopier.copyFromMultmoip(recordInfo));
-	}
 
 	
-	
-	@Override public boolean getResult() {
-		return checker.getResult();
+	@Override protected ModelCheckerV1<PayormarchInfo> getCheckerHook(ModelCheckerOption option) {
+		return new PayormarchCheckExist(option);
 	}
-
 	
 	
-	@Override public String getFailMessage() {
-		return checker.getFailMessage();
-	}
-
 	
-	
-	@Override public int getFailCode() {
-		return checker.getFailCode();
+	@Override protected PayormarchInfo toForwardClass(MultmoipInfo baseRecord) {
+		return PayormarchCopier.copyFromMultmoip(baseRecord);
 	}
 }

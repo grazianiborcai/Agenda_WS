@@ -5,14 +5,21 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.model.action.ActionVisitorV1;
+import br.com.mind5.common.SystemCode;
+import br.com.mind5.model.action.ActionVisitorTemplateSimpleV2;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.info.MultmoipInfo;
 import br.com.moip.Moip;
 
-final class VisiMultmoipRead implements ActionVisitorV1<MultmoipInfo> {
+final class VisiMultmoipRead extends ActionVisitorTemplateSimpleV2<MultmoipInfo> {
 	
-	@Override public List<MultmoipInfo> executeTransformation(List<MultmoipInfo> recordInfos) {
+	public VisiMultmoipRead(DeciTreeOption<MultmoipInfo> option) {
+		super(option);
+	}
+	
+	
+	
+	@Override public List<MultmoipInfo> executeTransformationHook(List<MultmoipInfo> recordInfos) {
 		List<MultmoipInfo> results = new ArrayList<>();
 		
 		for(MultmoipInfo eachRecod : recordInfos) {
@@ -44,8 +51,7 @@ final class VisiMultmoipRead implements ActionVisitorV1<MultmoipInfo> {
 	
 	
 	
-	private void logException(Exception e) {
-		
-		SystemLog.logError(this.getClass(), e);
+	@Override protected int getErrorCodeHook() {
+		return SystemCode.MULT_MOIP_READ_ERROR;
 	}
 }

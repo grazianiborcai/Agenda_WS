@@ -7,31 +7,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoSetter;
+import br.com.mind5.info.InfoSetterTemplate;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.info.OrdmoipInfo;
 
 
-public final class MultmoipSetterMultiorder implements InfoSetter<MultmoipInfo> {
+public final class MultmoipSetterMultiorder extends InfoSetterTemplate<MultmoipInfo> {
 	
-	public MultmoipInfo setAttr(MultmoipInfo recordInfo) {
-		checkArgument(recordInfo);
-		return setSetup(recordInfo);
-	}
-	
-	
-	
-	private void checkArgument(MultmoipInfo recordInfo) {
-		if (recordInfo == null) {
-			logException(new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT));
-			throw new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT);
-		}
-	}
-	
-	
-	
-	private MultmoipInfo setSetup(MultmoipInfo recordInfo) {
+	@Override protected MultmoipInfo setAttrHook(MultmoipInfo recordInfo) {
 		List<Map<String, Object>> allOrders = collectOrdmoip(recordInfo.ordmoips);		
 		
 		
@@ -55,11 +37,4 @@ public final class MultmoipSetterMultiorder implements InfoSetter<MultmoipInfo> 
 		
 		return results;
 	}
-	
-	
-	
-	private void logException(Exception e) {
-		
-		SystemLog.logError(this.getClass(), e);
-	}	
 }
