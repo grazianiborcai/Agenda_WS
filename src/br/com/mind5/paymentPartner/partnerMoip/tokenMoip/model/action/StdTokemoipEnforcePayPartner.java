@@ -1,35 +1,19 @@
 package br.com.mind5.paymentPartner.partnerMoip.tokenMoip.model.action;
 
-import br.com.mind5.model.action.ActionLazyV1;
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionStdHelperEnforce;
-import br.com.mind5.model.decisionTree.DeciResult;
+import br.com.mind5.model.action.ActionStdTemplateV2;
+import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.paymentPartner.partnerMoip.tokenMoip.info.TokemoipInfo;
 
-public final class StdTokemoipEnforcePayPartner implements ActionStdV1<TokemoipInfo> {
-	private ActionStdV1<TokemoipInfo> actionHelper;	
-	
-	
-	public StdTokemoipEnforcePayPartner(DeciTreeOption<TokemoipInfo> option) {			
-		actionHelper = new ActionStdHelperEnforce<>(option.recordInfos, new VisiTokemoipEnforcePayPartner());
+public final class StdTokemoipEnforcePayPartner extends ActionStdTemplateV2<TokemoipInfo> {
+
+	public StdTokemoipEnforcePayPartner(DeciTreeOption<TokemoipInfo> option) {
+		super(option);
 	}
 	
 	
 	
-	@Override public void addPostAction(ActionLazyV1<TokemoipInfo> actionHandler) {
-		actionHelper.addPostAction(actionHandler);
-	}
-	
-	
-	
-	@Override public boolean executeAction() {			
-		return actionHelper.executeAction();
-	}
-	
-	
-	
-	@Override public DeciResult<TokemoipInfo> getDecisionResult() {
-		return actionHelper.getDecisionResult();
+	protected ActionVisitorV2<TokemoipInfo> buildVisitorHook(DeciTreeOption<TokemoipInfo> option) {
+		return new VisiTokemoipEnforcePayPartner(option);
 	}
 }

@@ -1,67 +1,38 @@
 package br.com.mind5.paymentPartner.partnerMoip.tokenMoip.info;
 
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import java.util.ArrayList;
+import java.util.List;
+
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.payment.setupPartner.info.SetuparInfo;
 
-final class TokemoipVisiMergeSetupar implements InfoMergerVisitor_<TokemoipInfo, SetuparInfo> {
-
-	@Override public TokemoipInfo writeRecord(SetuparInfo sourceOne, TokemoipInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+final class TokemoipVisiMergeSetupar implements InfoMergerVisitorV3<TokemoipInfo, SetuparInfo> {
+	
+	@Override public List<TokemoipInfo> beforeMerge(List<TokemoipInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(TokemoipInfo baseInfo, SetuparInfo selectedInfo) {
+		return (baseInfo.codPayPartner == selectedInfo.codPayPartner);
+	}
+	
+	
+	
+	@Override public List<TokemoipInfo> merge(TokemoipInfo baseInfo, SetuparInfo selectedInfo) {
+		List<TokemoipInfo> results = new ArrayList<>();
 		
-		TokemoipInfo clonedInfo = makeClone(sourceTwo);
-		return merge(sourceOne, clonedInfo);
-	}
-	
-	
-	
-	private void checkArgument(SetuparInfo sourceOne, TokemoipInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private TokemoipInfo makeClone(TokemoipInfo recordInfo) {
-		try {
-			return (TokemoipInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	private TokemoipInfo merge(SetuparInfo sourceOne, TokemoipInfo sourceTwo) {
-		sourceTwo.setuparData = makeClone(sourceOne);
-		return sourceTwo;
-	}
-	
-	
-	
-	private SetuparInfo makeClone(SetuparInfo recordInfo) {
-		try {
-			return (SetuparInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}	
-	
-	
-	
-	@Override public boolean shouldWrite(SetuparInfo sourceOne, TokemoipInfo sourceTwo) {		
-		return (sourceOne.codPayPartner == sourceTwo.codPayPartner);
-	}
-	
-	
-	
-	private void logException(Exception e) {
+		baseInfo.setuparData = selectedInfo;
 		
-		SystemLog.logError(this.getClass(), e);
+		results.add(baseInfo);
+		return results;
+	}
+	
+	
+	
+	@Override public InfoUniquifier<TokemoipInfo> getUniquifier() {
+		return null;
 	}
 }

@@ -1,56 +1,27 @@
 package br.com.mind5.paymentPartner.partnerMoip.tokenMoip.model.checker;
 
-import java.util.List;
-
 import br.com.mind5.masterData.language.info.LanguInfo;
 import br.com.mind5.masterData.language.model.checker.LanguCheckExist;
-import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.paymentPartner.partnerMoip.tokenMoip.info.TokemoipInfo;
 
-public final class TokemoipCheckLangu implements ModelCheckerV1<TokemoipInfo> {
-	private final boolean FAILED = false;
-	private final boolean SUCCESS = true;
-	
-	private ModelCheckerV1<LanguInfo> checker;
-	
+public final class TokemoipCheckLangu extends ModelCheckerTemplateForwardV2<TokemoipInfo, LanguInfo> {
 	
 	public TokemoipCheckLangu(ModelCheckerOption option) {
-		checker = new LanguCheckExist(option);
-	}
-	
-	
-	
-	@Override public boolean check(List<TokemoipInfo> recordInfos) {
-		for (TokemoipInfo eachInfo : recordInfos) {
-			if (check(eachInfo) == FAILED)
-				return FAILED;
-		}
-		
-		return SUCCESS;
+		super(option);
 	}
 
-	
-	
-	@Override public boolean check(TokemoipInfo recordInfo) {
-		return checker.check(LanguInfo.copyFrom(recordInfo));
-	}
 
 	
-	
-	@Override public boolean getResult() {
-		return checker.getResult();
+	@Override protected ModelCheckerV1<LanguInfo> getCheckerHook(ModelCheckerOption option) {
+		return new LanguCheckExist(option);
 	}
-
 	
 	
-	@Override public String getFailMessage() {
-		return checker.getFailMessage();
-	}
-
 	
-	
-	@Override public int getFailCode() {
-		return checker.getFailCode();
+	@Override protected LanguInfo toForwardClass(TokemoipInfo baseRecord) {
+		return LanguInfo.copyFrom(baseRecord);
 	}
 }

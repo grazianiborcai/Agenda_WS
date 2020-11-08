@@ -5,11 +5,11 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 import br.com.mind5.paymentPartner.partnerMoip.tokenMoip.info.TokemoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.tokenMoip.model.action.LazyTokemoipNodeGenerate;
 import br.com.mind5.paymentPartner.partnerMoip.tokenMoip.model.action.StdTokemoipEnforcePayPartner;
@@ -20,7 +20,7 @@ import br.com.mind5.paymentPartner.partnerMoip.tokenMoip.model.checker.TokemoipC
 import br.com.mind5.paymentPartner.partnerMoip.tokenMoip.model.checker.TokemoipCheckUsername;
 import br.com.mind5.paymentPartner.partnerMoip.tokenMoip.model.checker.TokemoipCheckWrite;
 
-public final class RootTokemoipGenerate extends DeciTreeTemplateWriteV1<TokemoipInfo> {
+public final class RootTokemoipGenerate extends DeciTreeTemplateWriteV2<TokemoipInfo> {
 	
 	public RootTokemoipGenerate(DeciTreeOption<TokemoipInfo> option) {
 		super(option);

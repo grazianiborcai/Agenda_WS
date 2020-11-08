@@ -10,15 +10,22 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.model.action.ActionVisitorV1;
+import br.com.mind5.common.SystemCode;
+import br.com.mind5.model.action.ActionVisitorTemplateSimpleV2;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.paymentPartner.partnerMoip.tokenMoip.info.TokemoipInfo;
 import br.com.moip.Moip;
 import br.com.moip.models.Setup;
 
-final class VisiTokemoipGenerate implements ActionVisitorV1<TokemoipInfo> {
+final class VisiTokemoipGenerate extends ActionVisitorTemplateSimpleV2<TokemoipInfo> {
 	
-	@Override public List<TokemoipInfo> executeTransformation(List<TokemoipInfo> recordInfos) {
+	public VisiTokemoipGenerate(DeciTreeOption<TokemoipInfo> option) {
+		super(option);
+	}
+	
+	
+	
+	@Override public List<TokemoipInfo> executeTransformationHook(List<TokemoipInfo> recordInfos) {
 		List<TokemoipInfo> results = new ArrayList<>();
 		
 		for(TokemoipInfo eachRecod : recordInfos) {
@@ -84,8 +91,7 @@ final class VisiTokemoipGenerate implements ActionVisitorV1<TokemoipInfo> {
 	
 	
 	
-	private void logException(Exception e) {
-		
-		SystemLog.logError(this.getClass(), e);
+	@Override protected int getErrorCodeHook() {
+		return SystemCode.PAY_CUS_MOIP_CREATION_ERROR;
 	}
 }

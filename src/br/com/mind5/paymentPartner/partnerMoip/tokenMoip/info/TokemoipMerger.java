@@ -2,49 +2,47 @@ package br.com.mind5.paymentPartner.partnerMoip.tokenMoip.info;
 
 import java.util.List;
 
-import br.com.mind5.info.obsolete.InfoMerger_;
+import br.com.mind5.info.InfoMergerBuilderV3;
+import br.com.mind5.info.InfoMergerV3;
 import br.com.mind5.masterData.sysEnvironment.info.SysenvInfo;
 import br.com.mind5.payment.setupPartner.info.SetuparInfo;
 import br.com.mind5.payment.systemPartner.info.SysparInfo;
 
 public final class TokemoipMerger {	
-	public static TokemoipInfo mergeWithSysenv(SysenvInfo sourceOne, TokemoipInfo sourceTwo) {
-		InfoMerger_<TokemoipInfo, SysenvInfo> merger = new TokemoipMergerSysenv();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
+	public static List<TokemoipInfo> mergeWithSysenv(List<TokemoipInfo> baseInfos, List<SysenvInfo> selectedInfos) {
+		InfoMergerBuilderV3<TokemoipInfo, SysenvInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new TokemoipVisiMergeSysenv());
+		InfoMergerV3<TokemoipInfo, SysenvInfo> merger = builder.build();		
 	
-	
-	
-	public static List<TokemoipInfo> mergeWithSysenv(List<SysenvInfo> sourceOnes, List<TokemoipInfo> sourceTwos) {
-		InfoMerger_<TokemoipInfo, SysenvInfo> merger = new TokemoipMergerSysenv();		
-		return merger.merge(sourceOnes, sourceTwos);
+		return merger.merge();
 	}	
 	
 	
 	
-	public static TokemoipInfo mergeWithSetupar(SetuparInfo sourceOne, TokemoipInfo sourceTwo) {
-		InfoMerger_<TokemoipInfo, SetuparInfo> merger = new TokemoipMergerSetupar();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
+	public static List<TokemoipInfo> mergeWithSetupar(List<TokemoipInfo> baseInfos, List<SetuparInfo> selectedInfos) {
+		InfoMergerBuilderV3<TokemoipInfo, SetuparInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new TokemoipVisiMergeSetupar());
+		InfoMergerV3<TokemoipInfo, SetuparInfo> merger = builder.build();		
 	
-	
-	
-	public static List<TokemoipInfo> mergeWithSetupar(List<SetuparInfo> sourceOnes, List<TokemoipInfo> sourceTwos) {
-		InfoMerger_<TokemoipInfo, SetuparInfo> merger = new TokemoipMergerSetupar();		
-		return merger.merge(sourceOnes, sourceTwos);
+		return merger.merge();
 	}	
 	
 	
 	
-	public static TokemoipInfo mergeWithSyspar(SysparInfo sourceOne, TokemoipInfo sourceTwo) {
-		InfoMerger_<TokemoipInfo, SysparInfo> merger = new TokemoipMergerSyspar();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
+	public static List<TokemoipInfo> mergeWithSyspar(List<TokemoipInfo> baseInfos, List<SysparInfo> selectedInfos) {
+		InfoMergerBuilderV3<TokemoipInfo, SysparInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new TokemoipVisiMergeSyspar());
+		InfoMergerV3<TokemoipInfo, SysparInfo> merger = builder.build();		
 	
-	
-	
-	public static List<TokemoipInfo> mergeWithSyspar(List<SysparInfo> sourceOnes, List<TokemoipInfo> sourceTwos) {
-		InfoMerger_<TokemoipInfo, SysparInfo> merger = new TokemoipMergerSyspar();		
-		return merger.merge(sourceOnes, sourceTwos);
+		return merger.merge();
 	}	
 }

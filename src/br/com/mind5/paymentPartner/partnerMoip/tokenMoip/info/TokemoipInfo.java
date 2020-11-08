@@ -3,6 +3,7 @@ package br.com.mind5.paymentPartner.partnerMoip.tokenMoip.info;
 import java.time.LocalDate;
 import java.util.List;
 
+import br.com.mind5.common.CloneUtil;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
 import br.com.mind5.payment.setupPartner.info.SetuparInfo;
@@ -28,7 +29,7 @@ public final class TokemoipInfo extends InfoRecord implements Cloneable {
 	
 	
 	public TokemoipInfo() {
-		super(TokemoipInfo.class);
+		super();
 		
 		codOwner = DefaultValue.number();
 		codStore = DefaultValue.number();
@@ -56,28 +57,10 @@ public final class TokemoipInfo extends InfoRecord implements Cloneable {
 	@Override public Object clone() throws CloneNotSupportedException {
 		TokemoipInfo deepCopy = (TokemoipInfo) super.clone();
 		
-		deepCopy.sysparData = cloneSyspar(deepCopy.sysparData);
-		deepCopy.setuparData = cloneSetupar(deepCopy.setuparData);
+		deepCopy.sysparData = CloneUtil.cloneRecord(deepCopy.sysparData, this.getClass());
+		deepCopy.setuparData = CloneUtil.cloneRecord(deepCopy.setuparData, this.getClass());
 		
 		return deepCopy;
-	}
-	
-	
-	
-	private SysparInfo cloneSyspar(SysparInfo syspar) throws CloneNotSupportedException {
-		if (syspar == null)
-			return null;
-		
-		return (SysparInfo) syspar.clone();
-	}
-	
-	
-	
-	private SetuparInfo cloneSetupar(SetuparInfo setupar) throws CloneNotSupportedException {
-		if (setupar == null)
-			return null;
-		
-		return (SetuparInfo) setupar.clone();
 	}
 	
 	

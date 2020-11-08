@@ -1,35 +1,19 @@
 package br.com.mind5.paymentPartner.partnerMoip.tokenMoip.model.action;
 
-import br.com.mind5.model.action.ActionLazyV1;
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionStdHelperMerge;
-import br.com.mind5.model.decisionTree.DeciResult;
+import br.com.mind5.model.action.ActionStdTemplateV2;
+import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.paymentPartner.partnerMoip.tokenMoip.info.TokemoipInfo;
 
-public final class StdTokemoipMergeSysenv implements ActionStdV1<TokemoipInfo> {
-	private ActionStdV1<TokemoipInfo> actionHelper;	
-	
-	
-	public StdTokemoipMergeSysenv(DeciTreeOption<TokemoipInfo> option) {			
-		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiTokemoipMergeSysenv(option.conn, option.schemaName));
+public final class StdTokemoipMergeSysenv extends ActionStdTemplateV2<TokemoipInfo> {
+
+	public StdTokemoipMergeSysenv(DeciTreeOption<TokemoipInfo> option) {
+		super(option);
 	}
 	
 	
 	
-	@Override public void addPostAction(ActionLazyV1<TokemoipInfo> actionHandler) {
-		actionHelper.addPostAction(actionHandler);
-	}
-	
-	
-	
-	@Override public boolean executeAction() {			
-		return actionHelper.executeAction();
-	}
-	
-	
-	
-	@Override public DeciResult<TokemoipInfo> getDecisionResult() {
-		return actionHelper.getDecisionResult();
+	protected ActionVisitorV2<TokemoipInfo> buildVisitorHook(DeciTreeOption<TokemoipInfo> option) {
+		return new VisiTokemoipMergeSysenv(option);
 	}
 }

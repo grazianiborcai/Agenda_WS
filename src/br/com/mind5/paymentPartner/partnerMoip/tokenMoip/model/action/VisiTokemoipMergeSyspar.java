@@ -1,19 +1,19 @@
 package br.com.mind5.paymentPartner.partnerMoip.tokenMoip.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.systemPartner.info.SysparInfo;
 import br.com.mind5.payment.systemPartner.model.decisionTree.RootSysparSelect;
 import br.com.mind5.paymentPartner.partnerMoip.tokenMoip.info.TokemoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.tokenMoip.info.TokemoipMerger;
 
-final class VisiTokemoipMergeSyspar extends ActionVisitorTemplateMergeV1<TokemoipInfo, SysparInfo> {
+final class VisiTokemoipMergeSyspar extends ActionVisitorTemplateMergeV2<TokemoipInfo, SysparInfo> {
 	
-	public VisiTokemoipMergeSyspar(Connection conn, String schemaName) {
-		super(conn, schemaName, SysparInfo.class);
+	public VisiTokemoipMergeSyspar(DeciTreeOption<TokemoipInfo> option) {
+		super(option, SysparInfo.class);
 	}
 	
 	
@@ -24,13 +24,13 @@ final class VisiTokemoipMergeSyspar extends ActionVisitorTemplateMergeV1<Tokemoi
 	
 	
 	
-	@Override protected List<TokemoipInfo> mergeHook(List<TokemoipInfo> recordInfos, List<SysparInfo> selectedInfos) {	
-		return TokemoipMerger.mergeWithSyspar(selectedInfos, recordInfos);
+	@Override protected List<TokemoipInfo> mergeHook(List<TokemoipInfo> baseInfos, List<SysparInfo> selectedInfos) {	
+		return TokemoipMerger.mergeWithSyspar(baseInfos, selectedInfos);
 	}
 	
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
+		return super.DONT_MERGE_WHEN_EMPTY;
 	}
 }

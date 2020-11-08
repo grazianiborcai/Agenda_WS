@@ -1,56 +1,27 @@
 package br.com.mind5.paymentPartner.partnerMoip.tokenMoip.model.checker;
 
-import java.util.List;
-
-import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.authorization.storeAuthorization.info.StorauthInfo;
 import br.com.mind5.authorization.storeAuthorization.model.checker.StorauthCheckExist;
 import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.paymentPartner.partnerMoip.tokenMoip.info.TokemoipInfo;
 
-public final class TokemoipCheckStorauth implements ModelCheckerV1<TokemoipInfo> {
-	private final boolean FAILED = false;
-	private final boolean SUCCESS = true;
-	
-	private ModelCheckerV1<StorauthInfo> checker;
-	
+public final class TokemoipCheckStorauth extends ModelCheckerTemplateForwardV2<TokemoipInfo, StorauthInfo> {
 	
 	public TokemoipCheckStorauth(ModelCheckerOption option) {
-		checker = new StorauthCheckExist(option);
-	}
-	
-	
-	
-	@Override public boolean check(List<TokemoipInfo> recordInfos) {
-		for (TokemoipInfo eachInfo : recordInfos) {
-			if (check(eachInfo) == FAILED)
-				return FAILED;
-		}
-		
-		return SUCCESS;
+		super(option);
 	}
 
-	
-	
-	@Override public boolean check(TokemoipInfo recordInfo) {
-		return checker.check(StorauthInfo.copyFrom(recordInfo));
-	}
 
 	
-	
-	@Override public boolean getResult() {
-		return checker.getResult();
+	@Override protected ModelCheckerV1<StorauthInfo> getCheckerHook(ModelCheckerOption option) {
+		return new StorauthCheckExist(option);
 	}
-
 	
 	
-	@Override public String getFailMessage() {
-		return checker.getFailMessage();
-	}
-
 	
-	
-	@Override public int getFailCode() {
-		return checker.getFailCode();
+	@Override protected StorauthInfo toForwardClass(TokemoipInfo baseRecord) {
+		return StorauthInfo.copyFrom(baseRecord);
 	}
 }
