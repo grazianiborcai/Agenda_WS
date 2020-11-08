@@ -1,57 +1,28 @@
 package br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.model.checker;
 
-import java.util.List;
-
-import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.payment.creditCardSearch.info.CrecarchCopier;
 import br.com.mind5.payment.creditCardSearch.info.CrecarchInfo;
 import br.com.mind5.payment.creditCardSearch.model.checker.CrecarchCheckExist;
 import br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.info.PaymoipInfo;
 
-public final class PaymoipCheckCrecarch implements ModelCheckerV1<PaymoipInfo> {
-	private final boolean FAILED = false;
-	private final boolean SUCCESS = true;
-	
-	private ModelCheckerV1<CrecarchInfo> checker;
-	
+public final class PaymoipCheckCrecarch extends ModelCheckerTemplateForwardV2<PaymoipInfo, CrecarchInfo> {
 	
 	public PaymoipCheckCrecarch(ModelCheckerOption option) {
-		checker = new CrecarchCheckExist(option);
-	}
-	
-	
-	
-	@Override public boolean check(List<PaymoipInfo> recordInfos) {
-		for (PaymoipInfo eachInfo : recordInfos) {
-			if (check(eachInfo) == FAILED)
-				return FAILED;
-		}
-		
-		return SUCCESS;
+		super(option);
 	}
 
-	
-	
-	@Override public boolean check(PaymoipInfo recordInfo) {
-		return checker.check(CrecarchCopier.copyFromPaymoip(recordInfo));
-	}
 
 	
-	
-	@Override public boolean getResult() {
-		return checker.getResult();
+	@Override protected ModelCheckerV1<CrecarchInfo> getCheckerHook(ModelCheckerOption option) {
+		return new CrecarchCheckExist(option);
 	}
-
 	
 	
-	@Override public String getFailMessage() {
-		return checker.getFailMessage();
-	}
-
 	
-	
-	@Override public int getFailCode() {
-		return checker.getFailCode();
+	@Override protected CrecarchInfo toForwardClass(PaymoipInfo baseRecord) {
+		return CrecarchCopier.copyFromPaymoip(baseRecord);
 	}
 }

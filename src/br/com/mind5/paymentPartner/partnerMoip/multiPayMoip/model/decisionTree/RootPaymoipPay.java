@@ -9,7 +9,7 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 import br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.info.PaymoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.model.action.LazyPaymoipCard;
 import br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.model.action.LazyPaymoipEnforceCard;
@@ -24,7 +24,7 @@ import br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.model.action.LazyPay
 import br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.model.action.StdPaymoipEnforcePaypar;
 import br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.model.checker.PaymoipCheckPay;
 
-public final class RootPaymoipPay extends DeciTreeTemplateWriteV1<PaymoipInfo> {
+public final class RootPaymoipPay extends DeciTreeTemplateWriteV2<PaymoipInfo> {
 	
 	public RootPaymoipPay(DeciTreeOption<PaymoipInfo> option) {
 		super(option);

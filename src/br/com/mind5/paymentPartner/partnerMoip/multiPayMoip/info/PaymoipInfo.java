@@ -3,6 +3,7 @@ package br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.info;
 import java.util.List;
 import java.util.Map;
 
+import br.com.mind5.common.CloneUtil;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
@@ -31,7 +32,7 @@ public final class PaymoipInfo extends InfoRecord implements Cloneable {
 	
 	
 	public PaymoipInfo() {
-		super(PaymoipInfo.class);
+		super();
 		
 		codOwner = DefaultValue.number();
 		codCreditCard = DefaultValue.number();
@@ -59,30 +60,12 @@ public final class PaymoipInfo extends InfoRecord implements Cloneable {
 	@Override public Object clone() throws CloneNotSupportedException {
 		PaymoipInfo deepCopy = (PaymoipInfo) super.clone();
 		
-		deepCopy.crecardData = cloneCrecard(deepCopy.crecardData);
-		deepCopy.sysparData = cloneSyspar(deepCopy.sysparData);
-		deepCopy.setuparData = cloneSetupar(deepCopy.setuparData);
+		deepCopy.crecardData = CloneUtil.cloneRecord(deepCopy.crecardData, this.getClass());
+		deepCopy.sysparData = CloneUtil.cloneRecord(deepCopy.sysparData, this.getClass());
+		deepCopy.setuparData = CloneUtil.cloneRecord(deepCopy.setuparData, this.getClass());
 		
 		return deepCopy;
 	}
-	
-	
-	
-	private CrecardInfo cloneCrecard(CrecardInfo recordInfo) throws CloneNotSupportedException {
-		if (recordInfo == null)
-			return null;
-		
-		return (CrecardInfo) recordInfo.clone();
-	}		
-	
-	
-	
-	private SysparInfo cloneSyspar(SysparInfo recordInfo) throws CloneNotSupportedException {
-		if (recordInfo == null)
-			return null;
-		
-		return (SysparInfo) recordInfo.clone();
-	}		
 	
 	
 	
@@ -93,16 +76,7 @@ public final class PaymoipInfo extends InfoRecord implements Cloneable {
 			result = result * 31 + (int) (idOrderPartner.hashCode() ^ (idOrderPartner.hashCode() >>> 32));
 		
 		return result;
-	}	
-	
-	
-	
-	private SetuparInfo cloneSetupar(SetuparInfo recordInfo) throws CloneNotSupportedException {
-		if (recordInfo == null)
-			return null;
-		
-		return (SetuparInfo) recordInfo.clone();
-	}	
+	}
 	
 	
 	

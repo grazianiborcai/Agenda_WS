@@ -1,19 +1,19 @@
 package br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.masterData.sysEnvironment.info.SysenvInfo;
 import br.com.mind5.masterData.sysEnvironment.model.decisionTree.RootSysenvSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.info.PaymoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.info.PaymoipMerger;
 
-final class VisiPaymoipMergeSysenv extends ActionVisitorTemplateMergeV1<PaymoipInfo, SysenvInfo> {
+final class VisiPaymoipMergeSysenv extends ActionVisitorTemplateMergeV2<PaymoipInfo, SysenvInfo> {
 	
-	public VisiPaymoipMergeSysenv(Connection conn, String schemaName) {
-		super(conn, schemaName, SysenvInfo.class);
+	public VisiPaymoipMergeSysenv(DeciTreeOption<PaymoipInfo> option) {
+		super(option, SysenvInfo.class);
 	}
 	
 	
@@ -31,6 +31,6 @@ final class VisiPaymoipMergeSysenv extends ActionVisitorTemplateMergeV1<PaymoipI
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
+		return super.MERGE_WHEN_EMPTY;
 	}
 }

@@ -5,14 +5,21 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.model.action.ActionVisitorV1;
+import br.com.mind5.common.SystemCode;
+import br.com.mind5.model.action.ActionVisitorTemplateSimpleV2;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.info.PaymoipInfo;
 import br.com.moip.Moip;
 
-final class VisiPaymoipCard implements ActionVisitorV1<PaymoipInfo> {
+final class VisiPaymoipCard extends ActionVisitorTemplateSimpleV2<PaymoipInfo> {
 	
-	@Override public List<PaymoipInfo> executeTransformation(List<PaymoipInfo> recordInfos) {
+	public VisiPaymoipCard(DeciTreeOption<PaymoipInfo> option) {
+		super(option);
+	}
+	
+	
+	
+	@Override public List<PaymoipInfo> executeTransformationHook(List<PaymoipInfo> recordInfos) {
 		List<PaymoipInfo> results = new ArrayList<>();
 		
 		for(PaymoipInfo eachRecod : recordInfos) {
@@ -44,8 +51,7 @@ final class VisiPaymoipCard implements ActionVisitorV1<PaymoipInfo> {
 	
 	
 	
-	private void logException(Exception e) {
-		
-		SystemLog.logError(this.getClass(), e);
+	@Override protected int getErrorCodeHook() {
+		return SystemCode.PAY_MOIP_CREATION_ERROR;
 	}
 }
