@@ -24,7 +24,7 @@ public final class PayordemistInfo extends InfoRecord implements Cloneable, Comp
 	
 	
 	public PayordemistInfo() {
-		super(PayordemistInfo.class);
+		super();
 		
 		codOwner = DefaultValue.number();	
 		codPayOrderItem = DefaultValue.number();	

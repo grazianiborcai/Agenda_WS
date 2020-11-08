@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class PayordemistDbTableColumn extends DaoDbTableColumnTemplate {
+public final class DaoPayordemistDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_PAY_ORDER = DaoDbField.COL_COD_PAY_ORDER;	
 	public static final String COL_COD_PAY_ORDER_ITEM = DaoDbField.COL_COD_PAY_ORDER_ITEM;
 	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;
@@ -24,24 +24,14 @@ public final class PayordemistDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_STATUS_REFUND_PARTNER = DaoDbField.COL_STATUS_REFUND_PARTNER;
 	
 	
-	private Hashtable<String, List<DaoColumn>> tableColumns;
 	
-	
-	public PayordemistDbTableColumn() {
-		super(PayordemistDbTableColumn.class);
+	public DaoPayordemistDbTableColumn() {
+		super();
 	}
 	
 	
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
-		tableColumns = new Hashtable<>();	
-		buildPayordemTable();
-		return tableColumns;
-	}
-	
-	
-	
-	private void buildPayordemTable() {
 		final String TABLE_NAME = DaoDbTable.PAY_ORDER_ITM_TABLE;
 		
 		DaoColumn oneColumn;
@@ -143,6 +133,8 @@ public final class PayordemistDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);	
 		
-		tableColumns.put(DaoDbTable.PAY_ORDER_ITM_LIST_VIEW, columns);
+		Hashtable<String, List<DaoColumn>> results = new Hashtable<>();
+		results.put(DaoDbTable.PAY_ORDER_ITM_LIST_VIEW, columns);
+		return results;
 	}
 }
