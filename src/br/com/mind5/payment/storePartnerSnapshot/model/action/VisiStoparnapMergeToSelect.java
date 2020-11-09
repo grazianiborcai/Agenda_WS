@@ -1,23 +1,23 @@
 package br.com.mind5.payment.storePartnerSnapshot.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.storePartnerSnapshot.info.StoparnapInfo;
 import br.com.mind5.payment.storePartnerSnapshot.info.StoparnapMerger;
 
-final class VisiStoparnapMergeToSelect extends ActionVisitorTemplateMergeV1<StoparnapInfo, StoparnapInfo> {
+final class VisiStoparnapMergeToSelect extends ActionVisitorTemplateMergeV2<StoparnapInfo, StoparnapInfo> {
 	
-	public VisiStoparnapMergeToSelect(Connection conn, String schemaName) {
-		super(conn, schemaName, StoparnapInfo.class);
+	public VisiStoparnapMergeToSelect(DeciTreeOption<StoparnapInfo> option) {
+		super(option, StoparnapInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends ActionStdV1<StoparnapInfo>> getActionClassHook() {
-		return StdStoparnapSelect.class;
+	@Override protected Class<? extends ActionStdV2<StoparnapInfo>> getActionClassHook() {
+		return StdStoparnapDaoSelect.class;
 	}
 	
 	
@@ -29,6 +29,6 @@ final class VisiStoparnapMergeToSelect extends ActionVisitorTemplateMergeV1<Stop
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
+		return super.DONT_MERGE_WHEN_EMPTY;
 	}
 }

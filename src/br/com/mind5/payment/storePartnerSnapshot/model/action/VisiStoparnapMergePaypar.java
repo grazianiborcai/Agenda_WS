@@ -1,19 +1,19 @@
 package br.com.mind5.payment.storePartnerSnapshot.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.masterData.paymentPartner.info.PayparInfo;
 import br.com.mind5.masterData.paymentPartner.model.decisionTree.RootPayparSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.storePartnerSnapshot.info.StoparnapInfo;
 import br.com.mind5.payment.storePartnerSnapshot.info.StoparnapMerger;
 
-final class VisiStoparnapMergePaypar extends ActionVisitorTemplateMergeV1<StoparnapInfo, PayparInfo> {
+final class VisiStoparnapMergePaypar extends ActionVisitorTemplateMergeV2<StoparnapInfo, PayparInfo> {
 	
-	public VisiStoparnapMergePaypar(Connection conn, String schemaName) {
-		super(conn, schemaName, PayparInfo.class);
+	public VisiStoparnapMergePaypar(DeciTreeOption<StoparnapInfo> option) {
+		super(option, PayparInfo.class);
 	}
 	
 	
@@ -31,6 +31,6 @@ final class VisiStoparnapMergePaypar extends ActionVisitorTemplateMergeV1<Stopar
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
+		return super.DONT_MERGE_WHEN_EMPTY;
 	}
 }

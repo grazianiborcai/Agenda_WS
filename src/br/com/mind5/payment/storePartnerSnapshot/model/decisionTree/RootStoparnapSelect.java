@@ -5,18 +5,18 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 import br.com.mind5.payment.storePartnerSnapshot.info.StoparnapInfo;
 import br.com.mind5.payment.storePartnerSnapshot.model.action.LazyStoparnapMergePaypar;
 import br.com.mind5.payment.storePartnerSnapshot.model.action.StdStoparnapMergeToSelect;
 import br.com.mind5.payment.storePartnerSnapshot.model.checker.StoparnapCheckOwner;
 import br.com.mind5.payment.storePartnerSnapshot.model.checker.StoparnapCheckRead;
 
-public final class RootStoparnapSelect extends DeciTreeTemplateReadV1<StoparnapInfo> {
+public final class RootStoparnapSelect extends DeciTreeTemplateReadV2<StoparnapInfo> {
 	
 	public RootStoparnapSelect(DeciTreeOption<StoparnapInfo> option) {
 		super(option);

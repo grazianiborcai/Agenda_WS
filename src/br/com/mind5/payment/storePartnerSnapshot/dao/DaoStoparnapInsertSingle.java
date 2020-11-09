@@ -15,11 +15,11 @@ import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.payment.storePartnerSnapshot.info.StoparnapInfo;
 
-public final class StoparnapInsertSingle extends DaoStmtTemplate<StoparnapInfo> {
+public final class DaoStoparnapInsertSingle extends DaoStmtTemplate<StoparnapInfo> {
 	private final String MAIN_TABLE = DaoDbTable.PAY_PARTNER_STORE_SNAPSHOT_TABLE;
 	
 	
-	public StoparnapInsertSingle(Connection conn, StoparnapInfo recordInfo, String schemaName) {
+	public DaoStoparnapInsertSingle(Connection conn, StoparnapInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	

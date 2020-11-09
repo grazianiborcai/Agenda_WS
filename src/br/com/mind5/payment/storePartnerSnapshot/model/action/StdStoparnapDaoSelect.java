@@ -5,9 +5,9 @@ import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.storePartnerSnapshot.info.StoparnapInfo;
 
-public final class StdStoparnapMergeToSelect extends ActionStdTemplateV2<StoparnapInfo> {
+public final class StdStoparnapDaoSelect extends ActionStdTemplateV2<StoparnapInfo> {
 
-	public StdStoparnapMergeToSelect(DeciTreeOption<StoparnapInfo> option) {
+	public StdStoparnapDaoSelect(DeciTreeOption<StoparnapInfo> option) {
 		super(option);
 	}
 	
