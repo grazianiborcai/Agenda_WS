@@ -9,7 +9,7 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.info.PeresmoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.model.action.LazyPeresmoipEnforceExpected;
 import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.model.action.LazyPeresmoipEnforcePaypar;
@@ -21,7 +21,7 @@ import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.model.checker.Pere
 import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.model.checker.PeresmoipCheckUsername;
 import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.model.checker.PeresmoipCheckWrite;
 
-public final class RootPeresmoipInsert extends DeciTreeTemplateWriteV1<PeresmoipInfo> {
+public final class RootPeresmoipInsert extends DeciTreeTemplateWriteV2<PeresmoipInfo> {
 	
 	public RootPeresmoipInsert(DeciTreeOption<PeresmoipInfo> option) {
 		super(option);

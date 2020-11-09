@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.info.PeresmoipInfo;
 
-public final class PeresmoipInsertSingle extends DaoStmtTemplate<PeresmoipInfo> {
+public final class DaoPeresmoipInsertSingle extends DaoStmtTemplate<PeresmoipInfo> {
 	private final String MAIN_TABLE = DaoDbTable.MOIP_PERMISSION_RESPONSE_TABLE;
 	
 	
-	public PeresmoipInsertSingle(Connection conn, PeresmoipInfo recordInfo, String schemaName) {
+	public DaoPeresmoipInsertSingle(Connection conn, PeresmoipInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	

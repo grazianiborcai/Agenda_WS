@@ -8,13 +8,13 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.info.PeresmoipInfo;
-import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.model.action.StdPeresmoipInsert;
+import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.model.action.StdPeresmoipDaoInsert;
 import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.model.action.StdPeresmoipSuccess;
 import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.model.checker.PeresmoipCheckExist;
 
-public final class NodePeresmoipInsertL2 extends DeciTreeTemplateWriteV1<PeresmoipInfo> {
+public final class NodePeresmoipInsertL2 extends DeciTreeTemplateWriteV2<PeresmoipInfo> {
 	
 	public NodePeresmoipInsertL2(DeciTreeOption<PeresmoipInfo> option) {
 		super(option);
@@ -42,7 +42,7 @@ public final class NodePeresmoipInsertL2 extends DeciTreeTemplateWriteV1<Peresmo
 	@Override protected List<ActionStdV1<PeresmoipInfo>> buildActionsOnPassedHook(DeciTreeOption<PeresmoipInfo> option) {
 		List<ActionStdV1<PeresmoipInfo>> actions = new ArrayList<>();		
 
-		ActionStdV1<PeresmoipInfo> insert = new StdPeresmoipInsert(option);	
+		ActionStdV1<PeresmoipInfo> insert = new StdPeresmoipDaoInsert(option);	
 		
 		actions.add(insert);		
 		return actions;

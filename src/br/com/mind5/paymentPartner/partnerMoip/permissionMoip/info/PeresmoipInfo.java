@@ -3,6 +3,7 @@ package br.com.mind5.paymentPartner.partnerMoip.permissionMoip.info;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import br.com.mind5.common.CloneUtil;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
 import br.com.mind5.paymentPartner.partnerMoip.tokenMoip.info.TokemoipInfo;
@@ -19,7 +20,7 @@ public final class PeresmoipInfo extends InfoRecord implements Cloneable {
 	
 	
 	public PeresmoipInfo() {
-		super(PeresmoipInfo.class);
+		super();
 		
 		codOwner = DefaultValue.number();
 		codStore = DefaultValue.number();
@@ -44,18 +45,10 @@ public final class PeresmoipInfo extends InfoRecord implements Cloneable {
 	
 	@Override public Object clone() throws CloneNotSupportedException {
 		PeresmoipInfo deepCopy = (PeresmoipInfo) super.clone();		
-		deepCopy.tokemoipData = cloneTokemoip(tokemoipData);
+		
+		deepCopy.tokemoipData = CloneUtil.cloneRecord(tokemoipData, this.getClass());
 		
 		return deepCopy;
-	}
-	
-	
-	
-	private TokemoipInfo cloneTokemoip(TokemoipInfo recordInfo) throws CloneNotSupportedException {
-		if (recordInfo == null)
-			return null;
-		
-		return (TokemoipInfo) recordInfo.clone();
 	}
 	
 	

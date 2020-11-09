@@ -1,25 +1,25 @@
 package br.com.mind5.paymentPartner.partnerMoip.permissionMoip.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateActionV1;
+import br.com.mind5.model.action.ActionVisitorTemplateActionV2;
+import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.storePartner.info.StoparCopier;
 import br.com.mind5.payment.storePartner.info.StoparInfo;
 import br.com.mind5.payment.storePartner.model.decisionTree.RootStoparInsert;
 import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.info.PeresmoipInfo;
 
-final class VisiPeresmoipInsertStopar extends ActionVisitorTemplateActionV1<PeresmoipInfo, StoparInfo> {
-	public VisiPeresmoipInsertStopar(Connection conn, String schemaName) {
-		super(conn, schemaName, PeresmoipInfo.class, StoparInfo.class);
+final class VisiPeresmoipStoparInsert extends ActionVisitorTemplateActionV2<PeresmoipInfo, StoparInfo> {
+	
+	public VisiPeresmoipStoparInsert(DeciTreeOption<PeresmoipInfo> option) {
+		super(option, PeresmoipInfo.class, StoparInfo.class);
 	}
 	
 	
 	
-	@Override protected ActionStdV1<StoparInfo> getActionHook(DeciTreeOption<StoparInfo> option) {
-		return new RootStoparInsert(option).toAction();
+	@Override protected Class<? extends DeciTree<StoparInfo>> getTreeClassHook() {
+		return RootStoparInsert.class;
 	}
 	
 	

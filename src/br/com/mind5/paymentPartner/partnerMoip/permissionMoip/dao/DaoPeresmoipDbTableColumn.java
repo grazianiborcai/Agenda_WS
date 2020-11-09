@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class PeresmoipDbTableColumn extends DaoDbTableColumnTemplate {
+public final class DaoPeresmoipDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;	
 	public static final String COL_COD_STORE = DaoDbField.COL_COD_STORE;
 	public static final String COL_IS_EXPECTED = DaoDbField.COL_IS_EXPECTED;
@@ -17,24 +17,13 @@ public final class PeresmoipDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_USERNAME = DaoDbField.COL_USERNAME;
 	
 	
-	private Hashtable<String, List<DaoColumn>> tableColumns;
-	
-	
-	public PeresmoipDbTableColumn() {
-		super(PeresmoipDbTableColumn.class);
+	public DaoPeresmoipDbTableColumn() {
+		super();
 	}
 	
 	
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
-		tableColumns = new Hashtable<>();		
-		buildMoipPermissionResponseTable();	
-		return tableColumns;
-	}
-	
-	
-	
-	private void buildMoipPermissionResponseTable() {
 		final String TABLE_NAME = DaoDbTable.MOIP_PERMISSION_RESPONSE_TABLE;
 		
 		DaoColumn oneColumn;
@@ -80,6 +69,8 @@ public final class PeresmoipDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 
-		tableColumns.put(TABLE_NAME, columns);
+		Hashtable<String, List<DaoColumn>> results = new Hashtable<>();
+		results.put(TABLE_NAME, columns);
+		return results;
 	}
 }

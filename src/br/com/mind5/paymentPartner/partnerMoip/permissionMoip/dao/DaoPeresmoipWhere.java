@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.info.PeresmoipInfo;
 
-final class PeresmoipWhere implements DaoStmtWhere {
+final class DaoPeresmoipWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public PeresmoipWhere(DaoWhereBuilderOption whereOption, String tableName, PeresmoipInfo recordInfo) {
+	public DaoPeresmoipWhere(DaoWhereBuilderOption whereOption, String tableName, PeresmoipInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -27,11 +27,11 @@ final class PeresmoipWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-				case PeresmoipDbTableColumn.COL_COD_OWNER :
+				case DaoPeresmoipDbTableColumn.COL_COD_OWNER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;
 					
-				case PeresmoipDbTableColumn.COL_COD_STORE :
+				case DaoPeresmoipDbTableColumn.COL_COD_STORE :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codStore));
 			}
 		}		

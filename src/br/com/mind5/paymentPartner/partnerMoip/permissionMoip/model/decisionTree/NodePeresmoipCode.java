@@ -9,16 +9,16 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.info.PeresmoipInfo;
-import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.model.action.LazyPeresmoipDelete;
+import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.model.action.LazyPeresmoipDaoDelete;
 import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.model.action.LazyPeresmoipEnforcePaypar;
-import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.model.action.LazyPeresmoipGenerateTokemoip;
-import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.model.action.LazyPeresmoipInsertStopar;
+import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.model.action.LazyPeresmoipTokemoipGenerate;
+import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.model.action.LazyPeresmoipStoparInsert;
 import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.model.action.StdPeresmoipEnforceExpected;
 import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.model.checker.PeresmoipCheckIsExpected;
 
-public final class NodePeresmoipCode extends DeciTreeTemplateWriteV1<PeresmoipInfo> {
+public final class NodePeresmoipCode extends DeciTreeTemplateWriteV2<PeresmoipInfo> {
 	
 	public NodePeresmoipCode(DeciTreeOption<PeresmoipInfo> option) {
 		super(option);
@@ -48,9 +48,9 @@ public final class NodePeresmoipCode extends DeciTreeTemplateWriteV1<PeresmoipIn
 
 		ActionStdV1<PeresmoipInfo> enforceExpected = new StdPeresmoipEnforceExpected(option);
 		ActionLazyV1<PeresmoipInfo> enforcePaypar = new LazyPeresmoipEnforcePaypar(option.conn, option.schemaName);
-		ActionLazyV1<PeresmoipInfo> generateTokemoip = new LazyPeresmoipGenerateTokemoip(option.conn, option.schemaName);	
-		ActionLazyV1<PeresmoipInfo> insertStopar = new LazyPeresmoipInsertStopar(option.conn, option.schemaName);	
-		ActionLazyV1<PeresmoipInfo> delete = new LazyPeresmoipDelete(option.conn, option.schemaName);	
+		ActionLazyV1<PeresmoipInfo> generateTokemoip = new LazyPeresmoipTokemoipGenerate(option.conn, option.schemaName);	
+		ActionLazyV1<PeresmoipInfo> insertStopar = new LazyPeresmoipStoparInsert(option.conn, option.schemaName);	
+		ActionLazyV1<PeresmoipInfo> delete = new LazyPeresmoipDaoDelete(option.conn, option.schemaName);	
 		
 		enforceExpected.addPostAction(enforcePaypar);
 		enforcePaypar.addPostAction(generateTokemoip);

@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
 import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtTemplate;
@@ -16,11 +15,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.info.PeresmoipInfo;
 
-public final class PeresmoipSelectSingle extends DaoStmtTemplate<PeresmoipInfo> {
-	private final String MAIN_TABLE = DaoDbTable.MOIP_PERMISSION_RESPONSE_TABLE;
+public final class DaoPeresmoipDeleteSingle extends DaoStmtTemplate<PeresmoipInfo> {
+	private final String MAIN_TABLE = DaoDbTable.MOIP_PERMISSION_RESPONSE_TABLE;	
 	
 	
-	public PeresmoipSelectSingle(Connection conn, PeresmoipInfo recordInfo, String schemaName) {
+	public DaoPeresmoipDeleteSingle(Connection conn, PeresmoipInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -33,7 +32,7 @@ public final class PeresmoipSelectSingle extends DaoStmtTemplate<PeresmoipInfo> 
 	
 	
 	@Override protected DaoOperation getOperationHook() {
-		return DaoOperation.SELECT;
+		return DaoOperation.HARD_DELETE;
 	}
 	
 	
@@ -42,11 +41,12 @@ public final class PeresmoipSelectSingle extends DaoStmtTemplate<PeresmoipInfo> 
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
 		
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
-		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;		
+		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;	
+		whereOption.ignoreNonPrimaryKey = DaoOptionValue.IGNORE_NON_PK;		
 		
-		DaoStmtWhere whereClause = new PeresmoipWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new DaoPeresmoipWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
-	}	
+	}
 	
 	
 	
@@ -54,22 +54,8 @@ public final class PeresmoipSelectSingle extends DaoStmtTemplate<PeresmoipInfo> 
 		return new DaoResultParser<PeresmoipInfo>() {
 			@Override public List<PeresmoipInfo> parseResult(PeresmoipInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
 				List<PeresmoipInfo> finalResult = new ArrayList<>();
-				
-				if (stmtResult.next() == false)				
-					return finalResult;
-				
-				do {
-					PeresmoipInfo dataInfo = new PeresmoipInfo();
-					
-					dataInfo.codOwner = stmtResult.getLong(PeresmoipDbTableColumn.COL_COD_OWNER);
-					dataInfo.codStore = stmtResult.getLong(PeresmoipDbTableColumn.COL_COD_STORE);
-					dataInfo.isExpected = stmtResult.getBoolean(PeresmoipDbTableColumn.COL_IS_EXPECTED);
-					dataInfo.username = stmtResult.getString(PeresmoipDbTableColumn.COL_USERNAME);
-					dataInfo.lastChanged = DaoFormatter.sqlToLocalDateTime(stmtResult, PeresmoipDbTableColumn.COL_LAST_CHANGED);
-					
-					finalResult.add(dataInfo);
-				} while (stmtResult.next());
-				
+				PeresmoipInfo emptyInfo = new PeresmoipInfo();
+				finalResult.add(emptyInfo);			
 				return finalResult;
 			}
 		};
