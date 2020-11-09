@@ -1,33 +1,15 @@
 package br.com.mind5.paymentPartner.partnerMoip.accessMoip.info;
 
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoSetter;
+import br.com.mind5.info.InfoSetterTemplate;
 import br.com.mind5.masterData.common.Environ;
 import br.com.moip.auth.Authentication;
 import br.com.moip.auth.BasicAuth;
 import br.com.moip.models.Setup;
 import br.com.moip.models.Setup.Environment;
 
-public final class AccemoipSetterSetup implements InfoSetter<AccemoipInfo> {
+public final class AccemoipSetterSetup extends InfoSetterTemplate<AccemoipInfo> {
 	
-	public AccemoipInfo setAttr(AccemoipInfo recordInfo) {
-		checkArgument(recordInfo);
-		return setSetup(recordInfo);
-	}
-	
-	
-	
-	private void checkArgument(AccemoipInfo recordInfo) {
-		if (recordInfo == null) {
-			logException(new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT));
-			throw new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT);
-		}
-	}
-	
-	
-	
-	private AccemoipInfo setSetup(AccemoipInfo recordInfo) {
+	@Override protected AccemoipInfo setAttrHook(AccemoipInfo recordInfo) {
 		Authentication auth = getAuthentication(recordInfo);
 		Environment environment = getEnvironment(recordInfo);
 		
@@ -54,12 +36,5 @@ public final class AccemoipSetterSetup implements InfoSetter<AccemoipInfo> {
 		
 		
 		return Environment.CONNECT_SANDBOX;
-	}
-	
-	
-	
-	private void logException(Exception e) {
-		
-		SystemLog.logError(this.getClass(), e);
 	}	
 }

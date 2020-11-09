@@ -2,6 +2,7 @@ package br.com.mind5.paymentPartner.partnerMoip.accessMoip.info;
 
 import java.util.List;
 
+import br.com.mind5.common.CloneUtil;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
 import br.com.mind5.payment.setupPartner.info.SetuparInfo;
@@ -23,7 +24,7 @@ public final class AccemoipInfo extends InfoRecord implements Cloneable {
 	
 	
 	public AccemoipInfo() {
-		super(AccemoipInfo.class);
+		super();
 		
 		codOwner = DefaultValue.number();
 		codStore = DefaultValue.number();
@@ -51,28 +52,10 @@ public final class AccemoipInfo extends InfoRecord implements Cloneable {
 	@Override public Object clone() throws CloneNotSupportedException {
 		AccemoipInfo deepCopy = (AccemoipInfo) super.clone();
 		
-		deepCopy.sysparData = cloneSyspar(deepCopy.sysparData);
-		deepCopy.setuparData = cloneSetupar(deepCopy.setuparData);
+		deepCopy.sysparData = CloneUtil.cloneRecord(deepCopy.sysparData, this.getClass());
+		deepCopy.setuparData = CloneUtil.cloneRecord(deepCopy.setuparData, this.getClass());
 		
 		return deepCopy;
-	}
-	
-	
-	
-	private SysparInfo cloneSyspar(SysparInfo recordInfo) throws CloneNotSupportedException {
-		if (recordInfo == null)
-			return null;
-		
-		return (SysparInfo) recordInfo.clone();
-	}
-	
-	
-	
-	private SetuparInfo cloneSetupar(SetuparInfo recordInfo) throws CloneNotSupportedException {
-		if (recordInfo == null)
-			return null;
-		
-		return (SetuparInfo) recordInfo.clone();
 	}
 	
 	

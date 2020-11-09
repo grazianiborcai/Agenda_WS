@@ -5,24 +5,24 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 import br.com.mind5.paymentPartner.partnerMoip.accessMoip.info.AccemoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.accessMoip.model.action.LazyAccemoipEnforceObfuscate;
 import br.com.mind5.paymentPartner.partnerMoip.accessMoip.model.action.LazyAccemoipEnforceScopes;
 import br.com.mind5.paymentPartner.partnerMoip.accessMoip.model.action.LazyAccemoipEnforceSetup;
-import br.com.mind5.paymentPartner.partnerMoip.accessMoip.model.action.LazyAccemoipInsertPeresmoip;
 import br.com.mind5.paymentPartner.partnerMoip.accessMoip.model.action.LazyAccemoipMergeSetupar;
 import br.com.mind5.paymentPartner.partnerMoip.accessMoip.model.action.LazyAccemoipMergeSysenv;
+import br.com.mind5.paymentPartner.partnerMoip.accessMoip.model.action.LazyAccemoipPeresmoipInsert;
 import br.com.mind5.paymentPartner.partnerMoip.accessMoip.model.action.LazyAccemoipUrl;
 import br.com.mind5.paymentPartner.partnerMoip.accessMoip.model.action.StdAccemoipMergeSyspar;
 import br.com.mind5.paymentPartner.partnerMoip.accessMoip.model.checker.AccemoipCheckSetupar;
 import br.com.mind5.paymentPartner.partnerMoip.accessMoip.model.checker.AccemoipCheckSyspar;
 
-public final class NodeAccemoipUrl extends DeciTreeTemplateWriteV1<AccemoipInfo> {
+public final class NodeAccemoipUrl extends DeciTreeTemplateWriteV2<AccemoipInfo> {
 	
 	public NodeAccemoipUrl(DeciTreeOption<AccemoipInfo> option) {
 		super(option);
@@ -63,7 +63,7 @@ public final class NodeAccemoipUrl extends DeciTreeTemplateWriteV1<AccemoipInfo>
 		ActionLazyV1<AccemoipInfo> enforceSetup = new LazyAccemoipEnforceSetup(option.conn, option.schemaName);		
 		ActionLazyV1<AccemoipInfo> enforceScopes = new LazyAccemoipEnforceScopes(option.conn, option.schemaName);
 		ActionLazyV1<AccemoipInfo> enforceUrl = new LazyAccemoipUrl(option.conn, option.schemaName);
-		ActionLazyV1<AccemoipInfo> insertPeresmoip = new LazyAccemoipInsertPeresmoip(option.conn, option.schemaName);
+		ActionLazyV1<AccemoipInfo> insertPeresmoip = new LazyAccemoipPeresmoipInsert(option.conn, option.schemaName);
 		ActionLazyV1<AccemoipInfo> obfuscate = new LazyAccemoipEnforceObfuscate(option.conn, option.schemaName);
 		
 		mergeSyspar.addPostAction(mergeSetupar);

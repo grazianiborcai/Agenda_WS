@@ -7,14 +7,21 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.model.action.ActionVisitorV1;
+import br.com.mind5.common.SystemCode;
+import br.com.mind5.model.action.ActionVisitorTemplateSimpleV2;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.paymentPartner.partnerMoip.accessMoip.info.AccemoipInfo;
 import br.com.moip.Moip;
 
-final class VisiAccemoipUrl implements ActionVisitorV1<AccemoipInfo> {
+final class VisiAccemoipUrl extends ActionVisitorTemplateSimpleV2<AccemoipInfo> {
 	
-	@Override public List<AccemoipInfo> executeTransformation(List<AccemoipInfo> recordInfos) {
+	public VisiAccemoipUrl(DeciTreeOption<AccemoipInfo> option) {
+		super(option);
+	}
+	
+	
+	
+	@Override public List<AccemoipInfo> executeTransformationHook(List<AccemoipInfo> recordInfos) {
 		List<AccemoipInfo> results = new ArrayList<>();
 		
 		for(AccemoipInfo eachRecod : recordInfos) {
@@ -82,8 +89,7 @@ final class VisiAccemoipUrl implements ActionVisitorV1<AccemoipInfo> {
 	
 	
 	
-	private void logException(Exception e) {
-		
-		SystemLog.logError(this.getClass(), e);
+	@Override protected int getErrorCodeHook() {
+		return SystemCode.PAY_CUS_MOIP_CREATION_ERROR;
 	}
 }

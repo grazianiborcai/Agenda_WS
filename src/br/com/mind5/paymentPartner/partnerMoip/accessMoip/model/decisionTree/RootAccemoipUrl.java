@@ -5,11 +5,11 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 import br.com.mind5.paymentPartner.partnerMoip.accessMoip.info.AccemoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.accessMoip.model.action.LazyAccemoipNodeUrl;
 import br.com.mind5.paymentPartner.partnerMoip.accessMoip.model.action.StdAccemoipEnforcePayPartner;
@@ -20,7 +20,7 @@ import br.com.mind5.paymentPartner.partnerMoip.accessMoip.model.checker.Accemoip
 import br.com.mind5.paymentPartner.partnerMoip.accessMoip.model.checker.AccemoipCheckUsername;
 import br.com.mind5.paymentPartner.partnerMoip.accessMoip.model.checker.AccemoipCheckWrite;
 
-public final class RootAccemoipUrl extends DeciTreeTemplateWriteV1<AccemoipInfo> {
+public final class RootAccemoipUrl extends DeciTreeTemplateWriteV2<AccemoipInfo> {
 	
 	public RootAccemoipUrl(DeciTreeOption<AccemoipInfo> option) {
 		super(option);
