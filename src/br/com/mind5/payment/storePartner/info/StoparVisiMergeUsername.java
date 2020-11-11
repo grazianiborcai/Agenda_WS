@@ -1,60 +1,39 @@
 package br.com.mind5.payment.storePartner.info;
 
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import java.util.ArrayList;
+import java.util.List;
+
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.security.username.info.UsernameInfo;
 
-final class StoparVisiMergeUsername implements InfoMergerVisitor_<StoparInfo, UsernameInfo> {
-
-	@Override public StoparInfo writeRecord(UsernameInfo sourceOne, StoparInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+final class StoparVisiMergeUsername implements InfoMergerVisitorV3<StoparInfo, UsernameInfo> {
+	
+	@Override public List<StoparInfo> beforeMerge(List<StoparInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(StoparInfo baseInfo, UsernameInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner		&&
+				baseInfo.username.equals(selectedInfo.username)		);
+	}
+	
+	
+	
+	@Override public List<StoparInfo> merge(StoparInfo baseInfo, UsernameInfo selectedInfo) {
+		List<StoparInfo> results = new ArrayList<>();
 		
-		StoparInfo clonedInfo = makeClone(sourceTwo);
-		return merge(sourceOne, clonedInfo);
-	}
-	
-	
-	
-	private void checkArgument(UsernameInfo sourceOne, StoparInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private StoparInfo makeClone(StoparInfo recordInfo) {
-		try {
-			return (StoparInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	private StoparInfo merge(UsernameInfo sourceOne, StoparInfo sourceTwo) {
-		sourceTwo.lastChangedBy = sourceOne.codUser;
-		return sourceTwo;
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(UsernameInfo sourceOne, StoparInfo sourceTwo) {
-		if (sourceOne.username == null ||
-			sourceTwo.username == null		)
-			return false;
+		baseInfo.lastChangedBy = selectedInfo.codUser;
 		
-		return (sourceOne.codOwner == sourceTwo.codOwner		&&
-				sourceOne.username.equals(sourceTwo.username)		);
+		results.add(baseInfo);
+		return results;
 	}
 	
 	
 	
-	private void logException(Exception e) {
-		
-		SystemLog.logError(this.getClass(), e);
+	@Override public InfoUniquifier<StoparInfo> getUniquifier() {
+		return null;
 	}
 }

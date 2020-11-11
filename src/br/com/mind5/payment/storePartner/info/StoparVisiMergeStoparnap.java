@@ -1,57 +1,40 @@
 package br.com.mind5.payment.storePartner.info;
 
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import java.util.ArrayList;
+import java.util.List;
+
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.payment.storePartnerSnapshot.info.StoparnapInfo;
 
-final class StoparVisiMergeStoparnap implements InfoMergerVisitor_<StoparInfo, StoparnapInfo> {
-
-	@Override public StoparInfo writeRecord(StoparnapInfo sourceOne, StoparInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+final class StoparVisiMergeStoparnap implements InfoMergerVisitorV3<StoparInfo, StoparnapInfo> {
+	
+	@Override public List<StoparInfo> beforeMerge(List<StoparInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(StoparInfo baseInfo, StoparnapInfo selectedInfo) {
+		return (baseInfo.codOwner 	  	== selectedInfo.codOwner		&&
+				baseInfo.codStore 		== selectedInfo.codStore		&&
+				baseInfo.codPayPartner 	== selectedInfo.codPayPartner);
+	}
+	
+	
+	
+	@Override public List<StoparInfo> merge(StoparInfo baseInfo, StoparnapInfo selectedInfo) {
+		List<StoparInfo> results = new ArrayList<>();
 		
-		StoparInfo clonedInfo = makeClone(sourceTwo);
-		return merge(sourceOne, clonedInfo);
-	}
-	
-	
-	
-	private void checkArgument(StoparnapInfo sourceOne, StoparInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private StoparInfo makeClone(StoparInfo recordInfo) {
-		try {
-			return (StoparInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	private StoparInfo merge(StoparnapInfo sourceOne, StoparInfo sourceTwo) {
-		sourceTwo.codSnapshot = sourceOne.codSnapshot;
-		return sourceTwo;
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(StoparnapInfo sourceOne, StoparInfo sourceTwo) {		
-		return (sourceOne.codOwner 	  	== sourceTwo.codOwner		&&
-				sourceOne.codStore 		== sourceTwo.codStore		&&
-				sourceOne.codPayPartner == sourceTwo.codPayPartner);
-	}
-	
-	
-	
-	private void logException(Exception e) {
+		baseInfo.codSnapshot = selectedInfo.codSnapshot;
 		
-		SystemLog.logError(this.getClass(), e);
+		results.add(baseInfo);
+		return results;
+	}
+	
+	
+	
+	@Override public InfoUniquifier<StoparInfo> getUniquifier() {
+		return null;
 	}
 }

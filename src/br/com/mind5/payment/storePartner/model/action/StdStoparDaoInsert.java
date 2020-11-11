@@ -5,15 +5,15 @@ import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.storePartner.info.StoparInfo;
 
-public final class StdStoparMergeToDelete extends ActionStdTemplateV2<StoparInfo> {
+public final class StdStoparDaoInsert extends ActionStdTemplateV2<StoparInfo> {
 
-	public StdStoparMergeToDelete(DeciTreeOption<StoparInfo> option) {
+	public StdStoparDaoInsert(DeciTreeOption<StoparInfo> option) {
 		super(option);
 	}
 	
 	
 	
 	protected ActionVisitorV2<StoparInfo> buildVisitorHook(DeciTreeOption<StoparInfo> option) {
-		return new VisiStoparMergeToDelete(option);
+		return new VisiStoparDaoInsert(option);
 	}
 }

@@ -9,12 +9,12 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 import br.com.mind5.payment.storePartner.info.StoparInfo;
 import br.com.mind5.payment.storePartner.model.action.LazyStoparMergeUsername;
 import br.com.mind5.payment.storePartner.model.action.LazyStoparNodeSnapshot;
 import br.com.mind5.payment.storePartner.model.action.LazyStoparRootSelect;
-import br.com.mind5.payment.storePartner.model.action.LazyStoparUpdate;
+import br.com.mind5.payment.storePartner.model.action.LazyStoparDaoUpdate;
 import br.com.mind5.payment.storePartner.model.action.StdStoparEnforceLChanged;
 import br.com.mind5.payment.storePartner.model.checker.StoparCheckExist;
 import br.com.mind5.payment.storePartner.model.checker.StoparCheckLangu;
@@ -24,7 +24,7 @@ import br.com.mind5.payment.storePartner.model.checker.StoparCheckStorauth;
 import br.com.mind5.payment.storePartner.model.checker.StoparCheckStore;
 import br.com.mind5.payment.storePartner.model.checker.StoparCheckWrite;
 
-public final class RootStoparUpdate extends DeciTreeTemplateWriteV1<StoparInfo> {
+public final class RootStoparUpdate extends DeciTreeTemplateWriteV2<StoparInfo> {
 	
 	public RootStoparUpdate(DeciTreeOption<StoparInfo> option) {
 		super(option);
@@ -103,7 +103,7 @@ public final class RootStoparUpdate extends DeciTreeTemplateWriteV1<StoparInfo> 
 		//TODO: ID obrigatorio ?		
 		ActionStdV1<StoparInfo> enforceLChanged = new StdStoparEnforceLChanged(option);
 		ActionLazyV1<StoparInfo> enforceLChangedBy = new LazyStoparMergeUsername(option.conn, option.schemaName);
-		ActionLazyV1<StoparInfo> update = new LazyStoparUpdate(option.conn, option.schemaName);
+		ActionLazyV1<StoparInfo> update = new LazyStoparDaoUpdate(option.conn, option.schemaName);
 		ActionLazyV1<StoparInfo> snapshot = new LazyStoparNodeSnapshot(option.conn, option.schemaName);
 		ActionLazyV1<StoparInfo> select = new LazyStoparRootSelect(option.conn, option.schemaName);
 		

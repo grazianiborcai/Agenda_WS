@@ -1,35 +1,19 @@
 package br.com.mind5.payment.storePartner.model.action;
 
-import br.com.mind5.model.action.ActionLazyV1;
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionStdHelperMerge;
-import br.com.mind5.model.decisionTree.DeciResult;
+import br.com.mind5.model.action.ActionStdTemplateV2;
+import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.storePartner.info.StoparInfo;
 
-public final class StdStoparMergeUsername implements ActionStdV1<StoparInfo> {
-	private ActionStdV1<StoparInfo> actionHelper;	
-	
-	
-	public StdStoparMergeUsername(DeciTreeOption<StoparInfo> option) {			
-		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiStoparMergeUsername(option.conn, option.schemaName));
+public final class StdStoparMergeUsername extends ActionStdTemplateV2<StoparInfo> {
+
+	public StdStoparMergeUsername(DeciTreeOption<StoparInfo> option) {
+		super(option);
 	}
 	
 	
 	
-	@Override public void addPostAction(ActionLazyV1<StoparInfo> actionHandler) {
-		actionHelper.addPostAction(actionHandler);
-	}
-	
-	
-	
-	@Override public boolean executeAction() {			
-		return actionHelper.executeAction();
-	}
-	
-	
-	
-	@Override public DeciResult<StoparInfo> getDecisionResult() {
-		return actionHelper.getDecisionResult();
+	protected ActionVisitorV2<StoparInfo> buildVisitorHook(DeciTreeOption<StoparInfo> option) {
+		return new VisiStoparMergeUsername(option);
 	}
 }

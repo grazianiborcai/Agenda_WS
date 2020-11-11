@@ -1,35 +1,34 @@
 package br.com.mind5.payment.storePartner.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
-import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.storePartner.info.StoparInfo;
 import br.com.mind5.payment.storePartner.info.StoparMerger;
-import br.com.mind5.payment.storePartner.model.decisionTree.RootStoparSelect;
 
-final class VisiStoparMergeToDelete extends ActionVisitorTemplateMergeV1<StoparInfo, StoparInfo> {
+final class VisiStoparMergeToDelete extends ActionVisitorTemplateMergeV2<StoparInfo, StoparInfo> {
 	
-	public VisiStoparMergeToDelete(Connection conn, String schemaName) {
-		super(conn, schemaName, StoparInfo.class);
+	public VisiStoparMergeToDelete(DeciTreeOption<StoparInfo> option) {
+		super(option, StoparInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends DeciTree<StoparInfo>> getTreeClassHook() {
-		return RootStoparSelect.class;
+	@Override protected Class<? extends ActionStdV2<StoparInfo>> getActionClassHook() {
+		return StdStoparDaoSelect.class;
 	}
 	
 	
 	
-	@Override protected List<StoparInfo> mergeHook(List<StoparInfo> recordInfos, List<StoparInfo> selectedInfos) {	
-		return StoparMerger.mergeToDelete(selectedInfos, recordInfos);
+	@Override protected List<StoparInfo> mergeHook(List<StoparInfo> baseInfos, List<StoparInfo> selectedInfos) {	
+		return StoparMerger.mergeToDelete(baseInfos, selectedInfos);
 	}
 	
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
+		return super.DONT_MERGE_WHEN_EMPTY;
 	}	
 }

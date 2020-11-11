@@ -7,17 +7,14 @@ import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
 import br.com.mind5.dao.DaoStmtParamTranslator;
 import br.com.mind5.dao.DaoStmtTemplate;
-import br.com.mind5.dao.DaoStmtWhere;
-import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
-import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.payment.storePartner.info.StoparInfo;
 
-public final class StoparUpdateSingle extends DaoStmtTemplate<StoparInfo> {
+public final class DaoStoparInsertSingle extends DaoStmtTemplate<StoparInfo> {
 	private final String MAIN_TABLE = DaoDbTable.PAY_PARTNER_STORE_TABLE;	
 	
 	
-	public StoparUpdateSingle(Connection conn, StoparInfo recordInfo, String schemaName) {
+	public DaoStoparInsertSingle(Connection conn, StoparInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -30,30 +27,20 @@ public final class StoparUpdateSingle extends DaoStmtTemplate<StoparInfo> {
 	
 	
 	@Override protected DaoOperation getOperationHook() {
-		return DaoOperation.UPDATE;
-	}
-	
-	
-	
-	@Override protected String buildWhereClauseHook(String tableName, StoparInfo recordInfo) {
-		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
-		
-		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
-		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;
-		whereOption.ignoreNonPrimaryKey = DaoOptionValue.IGNORE_NON_PK;
-		
-		DaoStmtWhere whereClause = new StoparWhere(whereOption, tableName, recordInfo);
-		return whereClause.getWhereClause();
+		return DaoOperation.INSERT;
 	}
 	
 	
 	
 	@Override protected DaoStmtParamTranslator<StoparInfo> getParamTranslatorHook() {
-		return new DaoStmtParamTranslator<StoparInfo>() {		
+		return new DaoStmtParamTranslator<StoparInfo>() {			
 			@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, StoparInfo recordInfo) throws SQLException {					
 				int i = 1;
 				
-				stmt.setString(i++, recordInfo.recordMode);			
+				stmt.setLong(i++, recordInfo.codOwner);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codStore);
+				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codPayPartner);
+				stmt.setString(i++, recordInfo.recordMode);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.codSnapshot);
 				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.lastChanged);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.lastChangedBy);
@@ -65,7 +52,7 @@ public final class StoparUpdateSingle extends DaoStmtTemplate<StoparInfo> {
 				stmt = DaoFormatter.localDateToStmt(stmt, i++, recordInfo.tokenExpiresIn);				
 				
 				return stmt;
-			}	
+			}		
 		};
 	}
 }

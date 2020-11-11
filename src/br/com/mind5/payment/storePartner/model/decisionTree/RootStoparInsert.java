@@ -9,7 +9,7 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 import br.com.mind5.payment.storePartner.info.StoparInfo;
 import br.com.mind5.payment.storePartner.model.action.LazyStoparMergeUsername;
 import br.com.mind5.payment.storePartner.model.action.LazyStoparNodeInsert;
@@ -24,7 +24,7 @@ import br.com.mind5.payment.storePartner.model.checker.StoparCheckStorauth;
 import br.com.mind5.payment.storePartner.model.checker.StoparCheckStore;
 import br.com.mind5.payment.storePartner.model.checker.StoparCheckWrite;
 
-public final class RootStoparInsert extends DeciTreeTemplateWriteV1<StoparInfo> {
+public final class RootStoparInsert extends DeciTreeTemplateWriteV2<StoparInfo> {
 	
 	public RootStoparInsert(DeciTreeOption<StoparInfo> option) {
 		super(option);

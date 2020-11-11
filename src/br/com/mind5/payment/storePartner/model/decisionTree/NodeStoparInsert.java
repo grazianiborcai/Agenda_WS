@@ -8,13 +8,13 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 import br.com.mind5.payment.storePartner.info.StoparInfo;
-import br.com.mind5.payment.storePartner.model.action.StdStoparInsert;
-import br.com.mind5.payment.storePartner.model.action.StdStoparUpdate;
+import br.com.mind5.payment.storePartner.model.action.StdStoparDaoInsert;
+import br.com.mind5.payment.storePartner.model.action.StdStoparDaoUpdate;
 import br.com.mind5.payment.storePartner.model.checker.StoparCheckSoftDelete;
 
-public final class NodeStoparInsert extends DeciTreeTemplateWriteV1<StoparInfo> {
+public final class NodeStoparInsert extends DeciTreeTemplateWriteV2<StoparInfo> {
 	
 	public NodeStoparInsert(DeciTreeOption<StoparInfo> option) {
 		super(option);
@@ -44,7 +44,7 @@ public final class NodeStoparInsert extends DeciTreeTemplateWriteV1<StoparInfo> 
 	@Override protected List<ActionStdV1<StoparInfo>> buildActionsOnPassedHook(DeciTreeOption<StoparInfo> option) {
 		List<ActionStdV1<StoparInfo>> actions = new ArrayList<>();
 		
-		actions.add(new StdStoparInsert(option));
+		actions.add(new StdStoparDaoInsert(option));
 		return actions;
 	}
 	
@@ -53,7 +53,7 @@ public final class NodeStoparInsert extends DeciTreeTemplateWriteV1<StoparInfo> 
 	@Override protected List<ActionStdV1<StoparInfo>> buildActionsOnFailedHook(DeciTreeOption<StoparInfo> option) {
 		List<ActionStdV1<StoparInfo>> actions = new ArrayList<>();
 		
-		actions.add(new StdStoparUpdate(option));	
+		actions.add(new StdStoparDaoUpdate(option));	
 		return actions;
 	}
 }

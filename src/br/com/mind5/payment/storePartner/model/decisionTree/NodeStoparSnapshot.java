@@ -9,13 +9,13 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 import br.com.mind5.payment.storePartner.info.StoparInfo;
-import br.com.mind5.payment.storePartner.model.action.LazyStoparUpdate;
-import br.com.mind5.payment.storePartner.model.action.StdStoparInsertStoparnap;
+import br.com.mind5.payment.storePartner.model.action.LazyStoparDaoUpdate;
+import br.com.mind5.payment.storePartner.model.action.StdStoparStoparnapInsert;
 import br.com.mind5.payment.storePartner.model.checker.StoparCheckWrite;
 
-public final class NodeStoparSnapshot extends DeciTreeTemplateWriteV1<StoparInfo> {
+public final class NodeStoparSnapshot extends DeciTreeTemplateWriteV2<StoparInfo> {
 	
 	public NodeStoparSnapshot(DeciTreeOption<StoparInfo> option) {
 		super(option);
@@ -43,8 +43,8 @@ public final class NodeStoparSnapshot extends DeciTreeTemplateWriteV1<StoparInfo
 	@Override protected List<ActionStdV1<StoparInfo>> buildActionsOnPassedHook(DeciTreeOption<StoparInfo> option) {
 		List<ActionStdV1<StoparInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<StoparInfo> InsertStoparnap = new StdStoparInsertStoparnap(option); 
-		ActionLazyV1<StoparInfo> updateStopar = new LazyStoparUpdate(option.conn, option.schemaName); 
+		ActionStdV1<StoparInfo> InsertStoparnap = new StdStoparStoparnapInsert(option); 
+		ActionLazyV1<StoparInfo> updateStopar = new LazyStoparDaoUpdate(option.conn, option.schemaName); 
 		
 		InsertStoparnap.addPostAction(updateStopar);
 		

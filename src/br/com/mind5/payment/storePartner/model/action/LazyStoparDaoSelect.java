@@ -3,15 +3,15 @@ package br.com.mind5.payment.storePartner.model.action;
 import java.sql.Connection;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionLazyTemplateV1;
+import br.com.mind5.model.action.ActionLazyTemplateV2;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.storePartner.info.StoparInfo;
 
-public final class LazyStoparUpdate extends ActionLazyTemplateV1<StoparInfo, StoparInfo> {
+public final class LazyStoparDaoSelect extends ActionLazyTemplateV2<StoparInfo, StoparInfo> {
 	
-	public LazyStoparUpdate(Connection conn, String schemaName) {
+	public LazyStoparDaoSelect(Connection conn, String schemaName) {
 		super(conn, schemaName);
 	}
 	
@@ -24,7 +24,7 @@ public final class LazyStoparUpdate extends ActionLazyTemplateV1<StoparInfo, Sto
 	
 	
 	@Override protected ActionStdV1<StoparInfo> getInstanceOfActionHook(DeciTreeOption<StoparInfo> option) {
-		return new StdStoparUpdate(option);
+		return new StdStoparDaoSelect(option);
 	}
 	
 	

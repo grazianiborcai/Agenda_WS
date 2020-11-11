@@ -15,11 +15,11 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.payment.storePartner.info.StoparInfo;
 
-public final class StoparDeleteSingle extends DaoStmtTemplate<StoparInfo> {
+public final class DaoStoparDeleteSingle extends DaoStmtTemplate<StoparInfo> {
 	private final String MAIN_TABLE = DaoDbTable.PAY_PARTNER_STORE_TABLE;	
 	
 	
-	public StoparDeleteSingle(Connection conn, StoparInfo recordInfo, String schemaName) {
+	public DaoStoparDeleteSingle(Connection conn, StoparInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -44,7 +44,7 @@ public final class StoparDeleteSingle extends DaoStmtTemplate<StoparInfo> {
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;	
 		whereOption.ignoreNonPrimaryKey = DaoOptionValue.IGNORE_NON_PK;		
 		
-		DaoStmtWhere whereClause = new StoparWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new DaoStoparWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	

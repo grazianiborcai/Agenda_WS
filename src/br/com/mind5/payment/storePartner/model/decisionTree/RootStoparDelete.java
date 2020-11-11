@@ -9,12 +9,12 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 import br.com.mind5.payment.storePartner.info.StoparInfo;
-import br.com.mind5.payment.storePartner.model.action.LazyStoparDelete;
+import br.com.mind5.payment.storePartner.model.action.LazyStoparDaoDelete;
 import br.com.mind5.payment.storePartner.model.action.LazyStoparEnforceLChanged;
 import br.com.mind5.payment.storePartner.model.action.LazyStoparMergeUsername;
-import br.com.mind5.payment.storePartner.model.action.LazyStoparUpdate;
+import br.com.mind5.payment.storePartner.model.action.LazyStoparDaoUpdate;
 import br.com.mind5.payment.storePartner.model.action.StdStoparMergeToDelete;
 import br.com.mind5.payment.storePartner.model.checker.StoparCheckExist;
 import br.com.mind5.payment.storePartner.model.checker.StoparCheckLangu;
@@ -22,7 +22,7 @@ import br.com.mind5.payment.storePartner.model.checker.StoparCheckOwner;
 import br.com.mind5.payment.storePartner.model.checker.StoparCheckStorauth;
 import br.com.mind5.payment.storePartner.model.checker.StoparCheckWrite;
 
-public final class RootStoparDelete extends DeciTreeTemplateWriteV1<StoparInfo> {
+public final class RootStoparDelete extends DeciTreeTemplateWriteV2<StoparInfo> {
 	
 	public RootStoparDelete(DeciTreeOption<StoparInfo> option) {
 		super(option);
@@ -81,8 +81,8 @@ public final class RootStoparDelete extends DeciTreeTemplateWriteV1<StoparInfo> 
 		ActionStdV1<StoparInfo> mergeToDelete = new StdStoparMergeToDelete(option);
 		ActionLazyV1<StoparInfo> enforceLChanged = new LazyStoparEnforceLChanged(option.conn, option.schemaName);
 		ActionLazyV1<StoparInfo> enforceLChangedBy = new LazyStoparMergeUsername(option.conn, option.schemaName);
-		ActionLazyV1<StoparInfo> update = new LazyStoparUpdate(option.conn, option.schemaName);
-		ActionLazyV1<StoparInfo> delete = new LazyStoparDelete(option.conn, option.schemaName);
+		ActionLazyV1<StoparInfo> update = new LazyStoparDaoUpdate(option.conn, option.schemaName);
+		ActionLazyV1<StoparInfo> delete = new LazyStoparDaoDelete(option.conn, option.schemaName);
 		
 		mergeToDelete.addPostAction(enforceLChanged);
 		enforceLChanged.addPostAction(enforceLChangedBy);
