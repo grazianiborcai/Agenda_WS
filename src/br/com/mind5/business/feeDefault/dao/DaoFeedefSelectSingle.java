@@ -44,7 +44,7 @@ public final class DaoFeedefSelectSingle extends DaoStmtTemplate<FeedefInfo> {
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new FeedefWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new DaoFeedefWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}	
 	

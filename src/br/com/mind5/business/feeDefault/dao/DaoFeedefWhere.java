@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilder;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 
-final class FeedefWhere implements DaoStmtWhere {
+final class DaoFeedefWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public FeedefWhere(DaoWhereBuilderOption whereOption, String tableName, FeedefInfo recordInfo) {
+	public DaoFeedefWhere(DaoWhereBuilderOption whereOption, String tableName, FeedefInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
