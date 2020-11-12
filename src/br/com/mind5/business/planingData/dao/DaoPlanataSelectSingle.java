@@ -107,16 +107,16 @@ public final class DaoPlanataSelectSingle extends DaoStmtTemplate<PlanataInfo> {
 				do {
 					PlanataInfo dataInfo = new PlanataInfo();
 					
-					dataInfo.codOwner = stmtResult.getLong(PlanataDbTableColumn.COL_COD_OWNER);
-					dataInfo.codStore = stmtResult.getLong(PlanataDbTableColumn.COL_COD_STORE);
-					dataInfo.recordMode = stmtResult.getString(PlanataDbTableColumn.COL_RECORD_MODE);
-					dataInfo.codWeekday = stmtResult.getInt(PlanataDbTableColumn.COL_COD_WEEKDAY);
-					dataInfo.codEmployee = stmtResult.getLong(PlanataDbTableColumn.COL_COD_EMPLOYEE);
-					dataInfo.codMat = stmtResult.getLong(PlanataDbTableColumn.COL_COD_MATERIAL);
-					dataInfo.beginTime = DaoFormatter.sqlToLocalTime(stmtResult, PlanataDbTableColumn.COL_BEGIN_TIME);
-					dataInfo.endTime = DaoFormatter.sqlToLocalTime(stmtResult, PlanataDbTableColumn.COL_END_TIME);		
-					dataInfo.date = DaoFormatter.sqlToLocalDate(stmtResult, PlanataDbTableColumn.COL_DATE);
-					dataInfo.codMoonPhase = DaoFormatter.sqlToInt(stmtResult, PlanataDbTableColumn.COL_COD_MOON_PHASE);
+					dataInfo.codOwner = stmtResult.getLong(DaoPlanataDbTableColumn.COL_COD_OWNER);
+					dataInfo.codStore = stmtResult.getLong(DaoPlanataDbTableColumn.COL_COD_STORE);
+					dataInfo.recordMode = stmtResult.getString(DaoPlanataDbTableColumn.COL_RECORD_MODE);
+					dataInfo.codWeekday = stmtResult.getInt(DaoPlanataDbTableColumn.COL_COD_WEEKDAY);
+					dataInfo.codEmployee = stmtResult.getLong(DaoPlanataDbTableColumn.COL_COD_EMPLOYEE);
+					dataInfo.codMat = stmtResult.getLong(DaoPlanataDbTableColumn.COL_COD_MATERIAL);
+					dataInfo.beginTime = DaoFormatter.sqlToLocalTime(stmtResult, DaoPlanataDbTableColumn.COL_BEGIN_TIME);
+					dataInfo.endTime = DaoFormatter.sqlToLocalTime(stmtResult, DaoPlanataDbTableColumn.COL_END_TIME);		
+					dataInfo.date = DaoFormatter.sqlToLocalDate(stmtResult, DaoPlanataDbTableColumn.COL_DATE);
+					dataInfo.codMoonPhase = DaoFormatter.sqlToInt(stmtResult, DaoPlanataDbTableColumn.COL_COD_MOON_PHASE);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

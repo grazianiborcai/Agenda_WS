@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class PlanataDbTableColumn extends DaoDbTableColumnTemplate {
+public final class DaoPlanataDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_BEGIN_TIME = DaoDbField.COL_BEGIN_TIME;
 	public static final String COL_COD_EMPLOYEE = DaoDbField.COL_COD_EMPLOYEE;
 	public static final String COL_COD_MATERIAL = DaoDbField.COL_COD_MATERIAL;
@@ -22,7 +22,7 @@ public final class PlanataDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_RECORD_MODE = DaoDbField.COL_RECORD_MODE;	
 	
 	
-	public PlanataDbTableColumn() {
+	public DaoPlanataDbTableColumn() {
 		super();
 	}
 	

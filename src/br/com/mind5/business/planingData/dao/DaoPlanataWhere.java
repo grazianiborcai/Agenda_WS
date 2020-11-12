@@ -27,35 +27,35 @@ final class DaoPlanataWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-			case PlanataDbTableColumn.COL_COD_OWNER :
+			case DaoPlanataDbTableColumn.COL_COD_OWNER :
 				builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 				break;
 				
-			case PlanataDbTableColumn.COL_COD_STORE :
+			case DaoPlanataDbTableColumn.COL_COD_STORE :
 				builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codStore));
 				break;
 				
-			case PlanataDbTableColumn.COL_COD_EMPLOYEE :
+			case DaoPlanataDbTableColumn.COL_COD_EMPLOYEE :
 				builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codEmployee));
 				break;
 				
-			case PlanataDbTableColumn.COL_COD_WEEKDAY :
+			case DaoPlanataDbTableColumn.COL_COD_WEEKDAY :
 				builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codWeekday));
 				break;
 				
-			case PlanataDbTableColumn.COL_COD_MATERIAL :
+			case DaoPlanataDbTableColumn.COL_COD_MATERIAL :
 				builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codMat));
 				break;
 				
-			case PlanataDbTableColumn.COL_DATE :
+			case DaoPlanataDbTableColumn.COL_DATE :
 				builder.addClauseEqualAnd(eachColumn, DaoFormatter.dateToString(recordInfo.date));
 				break;
 				
-			case PlanataDbTableColumn.COL_COD_MOON_PHASE :
+			case DaoPlanataDbTableColumn.COL_COD_MOON_PHASE :
 				builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codMoonPhase));
 				break;
 
-			case PlanataDbTableColumn.COL_RECORD_MODE :
+			case DaoPlanataDbTableColumn.COL_RECORD_MODE :
 				builder.addClauseEqualAnd(eachColumn, recordInfo.recordMode);
 				break;
 			}

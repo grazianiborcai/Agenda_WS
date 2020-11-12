@@ -82,7 +82,7 @@ import br.com.mind5.business.phone.dao.DaoPhoneDbTableColumn;
 import br.com.mind5.business.phoneDefault.dao.DaoPhonaultDbTableColumn;
 import br.com.mind5.business.phoneSearch.dao.DaoPhonarchDbTableColumn;
 import br.com.mind5.business.phoneSnapshot.dao.DaoPhonapDbTableColumn;
-import br.com.mind5.business.planingData.dao.PlanataDbTableColumn;
+import br.com.mind5.business.planingData.dao.DaoPlanataDbTableColumn;
 import br.com.mind5.business.refundPolicyOwner.dao.DaoRefupownDbTableColumn;
 import br.com.mind5.business.refundPolicyStore.dao.DaoRefuporeDbTableColumn;
 import br.com.mind5.business.refundPolicyStoreSearch.dao.DaoRefuporarchDbTableColumn;
@@ -283,7 +283,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new MatmovDbTableColumn());
 		addTable(new MatockDbTableColumn());
 		addTable(new DaoCusarchDbTableColumn());
-		addTable(new PlanataDbTableColumn());
+		addTable(new DaoPlanataDbTableColumn());
 		addTable(new DaoMatextsnapDbTableColumn());
 		addTable(new DaoCartemDbTableColumn());
 		addTable(new DaoOrderveDbTableColumn());
