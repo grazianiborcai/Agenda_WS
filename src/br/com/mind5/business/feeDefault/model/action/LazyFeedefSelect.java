@@ -4,12 +4,12 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.feeDefault.info.FeedefInfo;
-import br.com.mind5.model.action.ActionLazyTemplateV1;
+import br.com.mind5.model.action.ActionLazyTemplateV2;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyFeedefSelect extends ActionLazyTemplateV1<FeedefInfo, FeedefInfo> {
+public final class LazyFeedefSelect extends ActionLazyTemplateV2<FeedefInfo, FeedefInfo> {
 
 	public LazyFeedefSelect(Connection conn, String schemaName) {
 		super(conn, schemaName);
@@ -24,7 +24,7 @@ public final class LazyFeedefSelect extends ActionLazyTemplateV1<FeedefInfo, Fee
 	
 	
 	@Override protected ActionStdV1<FeedefInfo> getInstanceOfActionHook(DeciTreeOption<FeedefInfo> option) {
-		return new StdFeedefSelect(option);
+		return new StdFeedefDaoSelect(option);
 	}
 	
 	

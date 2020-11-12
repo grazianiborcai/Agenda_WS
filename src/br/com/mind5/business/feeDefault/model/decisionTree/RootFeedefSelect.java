@@ -4,16 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.feeDefault.info.FeedefInfo;
-import br.com.mind5.business.feeDefault.model.action.StdFeedefSelect;
+import br.com.mind5.business.feeDefault.model.action.StdFeedefDaoSelect;
 import br.com.mind5.business.feeDefault.model.checker.FeedefCheckRead;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 
-public final class RootFeedefSelect extends DeciTreeTemplateReadV1<FeedefInfo> {
+public final class RootFeedefSelect extends DeciTreeTemplateReadV2<FeedefInfo> {
 	
 	public RootFeedefSelect(DeciTreeOption<FeedefInfo> option) {
 		super(option);
@@ -41,7 +41,7 @@ public final class RootFeedefSelect extends DeciTreeTemplateReadV1<FeedefInfo> {
 	@Override protected List<ActionStdV1<FeedefInfo>> buildActionsOnPassedHook(DeciTreeOption<FeedefInfo> option) {
 		List<ActionStdV1<FeedefInfo>> actions = new ArrayList<>();
 		
-		actions.add(new StdFeedefSelect(option));
+		actions.add(new StdFeedefDaoSelect(option));
 		return actions;
 	}
 }

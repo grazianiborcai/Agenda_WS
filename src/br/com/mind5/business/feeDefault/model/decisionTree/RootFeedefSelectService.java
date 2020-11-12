@@ -9,13 +9,13 @@ import br.com.mind5.business.feeDefault.model.action.StdFeedefEnforceCategServ;
 import br.com.mind5.business.feeDefault.model.checker.FeedefCheckReadService;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 
-public final class RootFeedefSelectService extends DeciTreeTemplateReadV1<FeedefInfo> {
+public final class RootFeedefSelectService extends DeciTreeTemplateReadV2<FeedefInfo> {
 	
 	public RootFeedefSelectService(DeciTreeOption<FeedefInfo> option) {
 		super(option);

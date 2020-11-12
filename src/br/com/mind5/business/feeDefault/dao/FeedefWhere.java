@@ -27,11 +27,11 @@ final class FeedefWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {					
-				case FeedefDbTableColumn.COL_COD_FEE_CATEG :
+				case DaoFeedefDbTableColumn.COL_COD_FEE_CATEG :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.charToString(recordInfo.codFeeCateg));
 					break;
 					
-				case FeedefDbTableColumn.COL_COD_CURRENCY :
+				case DaoFeedefDbTableColumn.COL_COD_CURRENCY :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codCurr);
 					break;
 			}
