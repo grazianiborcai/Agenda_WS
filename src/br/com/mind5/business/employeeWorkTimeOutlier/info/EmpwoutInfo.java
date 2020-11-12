@@ -18,7 +18,7 @@ public final class EmpwoutInfo extends InfoRecord implements Cloneable {
 	
 	
 	public EmpwoutInfo() {
-		super(EmpwoutInfo.class);
+		super();
 		
 		codOwner = DefaultValue.number();
 		codStore = DefaultValue.number();

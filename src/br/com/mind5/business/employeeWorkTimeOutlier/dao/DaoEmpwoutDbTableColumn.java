@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class EmpwoutDbTableColumn extends DaoDbTableColumnTemplate {
+public final class DaoEmpwoutDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_BEGIN_TIME = DaoDbField.COL_BEGIN_TIME;
 	public static final String COL_COD_EMPLOYEE = DaoDbField.COL_COD_EMPLOYEE;
 	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;
@@ -17,27 +17,15 @@ public final class EmpwoutDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_WEEKDAY = DaoDbField.COL_COD_WEEKDAY;
 	public static final String COL_END_TIME = DaoDbField.COL_END_TIME;
 	public static final String COL_RECORD_MODE = DaoDbField.COL_RECORD_MODE;
+
 	
-	
-	private Hashtable<String, List<DaoColumn>> tableColumns;	
-	
-	public EmpwoutDbTableColumn() {
-		super(EmpwoutDbTableColumn.class);
+	public DaoEmpwoutDbTableColumn() {
+		super();
 	}
 	
 	
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
-		tableColumns = new Hashtable<>();
-		
-		empWorkTimeSearchTable();
-		
-		return tableColumns;
-	}
-	
-	
-	
-	private void empWorkTimeSearchTable() {
 		final String TABLE_NAME = DaoDbTable.EMP_WT_TABLE;
 		
 		DaoColumn oneColumn;
@@ -99,6 +87,8 @@ public final class EmpwoutDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		tableColumns.put(DaoDbTable.EMP_WT_OUTLIER_VIEW, columns);
+		Hashtable<String, List<DaoColumn>> results = new Hashtable<>();
+		results.put(DaoDbTable.EMP_WT_OUTLIER_VIEW, columns);
+		return results;
 	}
 }

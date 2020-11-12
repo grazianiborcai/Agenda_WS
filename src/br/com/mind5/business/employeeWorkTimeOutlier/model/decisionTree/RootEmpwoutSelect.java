@@ -10,13 +10,13 @@ import br.com.mind5.business.employeeWorkTimeOutlier.model.checker.EmpwoutCheckO
 import br.com.mind5.business.employeeWorkTimeOutlier.model.checker.EmpwoutCheckRead;
 import br.com.mind5.business.employeeWorkTimeOutlier.model.checker.EmpwoutCheckStore;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 
-public final class RootEmpwoutSelect extends DeciTreeTemplateReadV1<EmpwoutInfo> {
+public final class RootEmpwoutSelect extends DeciTreeTemplateReadV2<EmpwoutInfo> {
 	
 	public RootEmpwoutSelect(DeciTreeOption<EmpwoutInfo> option) {
 		super(option);
