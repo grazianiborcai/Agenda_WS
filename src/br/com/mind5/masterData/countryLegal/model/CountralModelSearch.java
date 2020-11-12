@@ -1,4 +1,4 @@
-package br.com.mind5.masterData.countryLegal;
+package br.com.mind5.masterData.countryLegal.model;
 
 import br.com.mind5.masterData.countryLegal.info.CountralInfo;
 import br.com.mind5.masterData.countryLegal.model.decisionTree.RootCountralSearch;
