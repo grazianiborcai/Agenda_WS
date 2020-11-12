@@ -45,7 +45,6 @@ import br.com.mind5.business.employeeWorkTimeRange.dao.DaoEmpworgDbTableColumn;
 import br.com.mind5.business.employeeWorkTimeSearch.dao.DaoEmpwotarchDbTableColumn;
 import br.com.mind5.business.feeDefault.dao.DaoFeedefDbTableColumn;
 import br.com.mind5.business.feeOwner.dao.DaoFeewnerDbTableColumn;
-import br.com.mind5.business.masterData.dao.MasterDataDbTableColumn;
 import br.com.mind5.business.material.dao.DaoMatDbTableColumn;
 import br.com.mind5.business.materialList.dao.DaoMatlisDbTableColumn;
 import br.com.mind5.business.materialMovement.dao.MatmovDbTableColumn;
@@ -138,6 +137,8 @@ import br.com.mind5.masterData.authorizationGroup.dao.DaoAuthgroupDbTableColumn;
 import br.com.mind5.masterData.authorizationGroupRole.dao.DaoAuthgroleDbTableColumn;
 import br.com.mind5.masterData.businessArea.dao.DaoBusareaDbTableColumn;
 import br.com.mind5.masterData.businessAreaSearch.dao.DaoBusarearchDbTableColumn;
+import br.com.mind5.masterData.cartItemCategory.dao.DaoCaritegDbTableColumn;
+import br.com.mind5.masterData.cartItemCategorySearch.dao.DaoCaritegarchDbTableColumn;
 import br.com.mind5.masterData.country.dao.DaoCountryDbTableColumn;
 import br.com.mind5.masterData.countryLegal.dao.DaoCountralDbTableColumn;
 import br.com.mind5.masterData.countryLegalSearch.dao.DaoCountrarchDbTableColumn;
@@ -244,7 +245,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new DaoStoreDbTableColumn());
 		addTable(new DaoStolisDbTableColumn());
 		addTable(new DaoEmposDbTableColumn());
-		addTable(new MasterDataDbTableColumn());
+		addTable(new DaoCaritegDbTableColumn());
 		addTable(new DaoStowotmDbTableColumn());
 		addTable(new DaoStolateDbTableColumn());
 		addTable(new DaoEmpwotmDbTableColumn());
@@ -458,6 +459,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new DaoSytorbcDbTableColumn());
 		addTable(new DaoCountralDbTableColumn());
 		addTable(new DaoCountrarchDbTableColumn());
+		addTable(new DaoCaritegarchDbTableColumn());
 	}
 	
 	

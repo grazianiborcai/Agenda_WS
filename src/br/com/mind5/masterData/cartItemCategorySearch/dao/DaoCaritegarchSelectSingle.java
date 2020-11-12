@@ -1,4 +1,4 @@
-package br.com.mind5.business.masterData.dao;
+package br.com.mind5.masterData.cartItemCategorySearch.dao;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.business.masterData.info.CartCategInfo;
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
 import br.com.mind5.dao.DaoResultParser;
@@ -15,12 +14,13 @@ import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
+import br.com.mind5.masterData.cartItemCategorySearch.info.CaritegarchInfo;
 
-public final class CartCategSelectSingle extends DaoStmtTemplate<CartCategInfo> {
+public final class DaoCaritegarchSelectSingle extends DaoStmtTemplate<CaritegarchInfo> {
 	private final String MAIN_TABLE = DaoDbTable.CART_ITM_CATEG_TABLE;
 	
 	
-	public CartCategSelectSingle(Connection conn, CartCategInfo recordInfo, String schemaName) {
+	public DaoCaritegarchSelectSingle(Connection conn, CaritegarchInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -32,39 +32,45 @@ public final class CartCategSelectSingle extends DaoStmtTemplate<CartCategInfo> 
 	
 	
 	
+	@Override protected String getLookupTableHook() {
+		return DaoDbTable.CART_ITM_CATEG_SEARCH_VIEW;
+	}
+	
+	
+	
 	@Override protected DaoOperation getOperationHook() {
 		return DaoOperation.SELECT;
 	}
 	
 	
 	
-	@Override protected String buildWhereClauseHook(String tableName, CartCategInfo recordInfo) {
+	@Override protected String buildWhereClauseHook(String tableName, CaritegarchInfo recordInfo) {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
 		
 		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;	
 		whereOption.dummyClauseWhenEmpty = DaoOptionValue.DUMMY_CLAUSE_ALLOWED;
 		
-		DaoStmtWhere whereClause = new CartCategWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new DaoCaritegarchWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
 	
 	
-	@Override protected DaoResultParser<CartCategInfo> getResultParserHook() {
-		return new DaoResultParser<CartCategInfo>() {
-			@Override public List<CartCategInfo> parseResult(CartCategInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
-				List<CartCategInfo> finalResult = new ArrayList<>();
+	@Override protected DaoResultParser<CaritegarchInfo> getResultParserHook() {
+		return new DaoResultParser<CaritegarchInfo>() {
+			@Override public List<CaritegarchInfo> parseResult(CaritegarchInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
+				List<CaritegarchInfo> finalResult = new ArrayList<>();
 				
 				if (stmtResult.next() == false)				
 					return finalResult;
 			
 				do {				
-					CartCategInfo dataInfo = new CartCategInfo();
+					CaritegarchInfo dataInfo = new CaritegarchInfo();
 					
-					dataInfo.codItemCateg = DaoFormatter.sqlToChar(stmtResult, MasterDataDbTableColumn.COL_COD_ITEM_CATEG);
-					dataInfo.txtItemCateg = stmtResult.getString(MasterDataDbTableColumn.COL_NAME);
-					dataInfo.codLanguage = stmtResult.getString(MasterDataDbTableColumn.COL_COD_LANGUAGE);		
+					dataInfo.codItemCateg = DaoFormatter.sqlToChar(stmtResult, DaoCaritegarchDbTableColumn.COL_COD_ITEM_CATEG);
+					dataInfo.txtItemCateg = stmtResult.getString(DaoCaritegarchDbTableColumn.COL_NAME);
+					dataInfo.codLanguage = stmtResult.getString(DaoCaritegarchDbTableColumn.COL_COD_LANGUAGE);		
 					
 					finalResult.add(dataInfo);				
 				} while (stmtResult.next());

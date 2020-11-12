@@ -8,12 +8,12 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import br.com.mind5.business.masterData.info.CartCategInfo;
-import br.com.mind5.business.masterData.model.CartCategModelSelect;
 import br.com.mind5.masterData.areaPhoneSearch.info.AreanarchInfo;
 import br.com.mind5.masterData.areaPhoneSearch.model.AreanarchModelSelect;
 import br.com.mind5.masterData.businessAreaSearch.info.BusarearchInfo;
 import br.com.mind5.masterData.businessAreaSearch.model.BusarearchModelSelect;
+import br.com.mind5.masterData.cartItemCategorySearch.info.CaritegarchInfo;
+import br.com.mind5.masterData.cartItemCategorySearch.model.CaritegarchModelSelect;
 import br.com.mind5.masterData.countryLegal.CountralModelSearch;
 import br.com.mind5.masterData.countryLegal.info.CountralInfo;
 import br.com.mind5.masterData.countryPhoneSearch.info.CountronarchInfo;
@@ -377,14 +377,14 @@ public final class MasterDataResource {
 	public Response selectCartItemCateg(@HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage,
 			                            @HeaderParam("codItemCateg") String codItemCateg){
 		
-		CartCategInfo recordInfo = new CartCategInfo();		
+		CaritegarchInfo recordInfo = new CaritegarchInfo();		
 		recordInfo.codLanguage = codLanguage;
 		
 		if (codItemCateg != null)
 			recordInfo.codItemCateg = codItemCateg.charAt(0);
 		
 		
-		Model model = new CartCategModelSelect(recordInfo);
+		Model model = new CaritegarchModelSelect(recordInfo);
 		model.executeRequest();
 		Response result = model.getResponse();
 		model.close();

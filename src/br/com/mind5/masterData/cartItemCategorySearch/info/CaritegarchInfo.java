@@ -1,31 +1,31 @@
-package br.com.mind5.business.masterData.info;
+package br.com.mind5.masterData.cartItemCategorySearch.info;
 
 import java.util.List;
 
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
 
-public final class CartCategInfo extends InfoRecord implements Cloneable {
+public final class CaritegarchInfo extends InfoRecord implements Cloneable {
 	public char codItemCateg;
 	public String txtItemCateg;
 	
 	
-	public CartCategInfo() {
-		super(CartCategInfo.class);
+	public CaritegarchInfo() {
+		super();
 		
 		codItemCateg = DefaultValue.character();
 	}
 	
 	
 	
-	public static CartCategInfo copyFrom(Object sourceObj) {
-		return copyFrom(sourceObj, CartCategInfo.class);
+	public static CaritegarchInfo copyFrom(Object sourceObj) {
+		return copyFrom(sourceObj, CaritegarchInfo.class);
 	}
 	
 	
 	
-	public static List<CartCategInfo> copyFrom(List<?> sourceObjs) {
-		return copyFrom(sourceObjs, CartCategInfo.class);
+	public static List<CaritegarchInfo> copyFrom(List<?> sourceObjs) {
+		return copyFrom(sourceObjs, CaritegarchInfo.class);
 	}
 	
 	
@@ -50,11 +50,11 @@ public final class CartCategInfo extends InfoRecord implements Cloneable {
 			return true;
 		
 		
-		if (!(o instanceof CartCategInfo))
+		if (!(o instanceof CaritegarchInfo))
 			return false;
 		
 		
-		CartCategInfo obj = (CartCategInfo) o;		
+		CaritegarchInfo obj = (CaritegarchInfo) o;		
 		return codItemCateg == obj.codItemCateg;
 	}
 }
