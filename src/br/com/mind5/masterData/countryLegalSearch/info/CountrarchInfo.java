@@ -6,8 +6,6 @@ import br.com.mind5.info.InfoRecord;
 
 public final class CountrarchInfo extends InfoRecord implements Cloneable {
 	public String codCountry;
-	public String codCountryAlpha3;
-	public String txtCountry;
 	public String recordMode;
 	
 	
