@@ -2,18 +2,18 @@ package br.com.mind5.business.employeeWorkTimeConflict.info;
 
 import java.util.List;
 
-import br.com.mind5.info.obsolete.InfoMerger_;
+import br.com.mind5.info.InfoMergerBuilderV3;
+import br.com.mind5.info.InfoMergerV3;
 
 public final class EmpwocoMerger {
-	public static EmpwocoInfo mergeToSelect(EmpwocoInfo sourceOne, EmpwocoInfo sourceTwo) {
-		InfoMerger_<EmpwocoInfo, EmpwocoInfo> merger = new EmpwocoMergerToSelect();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
+	public static List<EmpwocoInfo> mergeToSelect(List<EmpwocoInfo> baseInfos, List<EmpwocoInfo> selectedInfos) {
+		InfoMergerBuilderV3<EmpwocoInfo, EmpwocoInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new EmpwocoVisiMergeToSelect());
+		InfoMergerV3<EmpwocoInfo, EmpwocoInfo> merger = builder.build();		
 	
-	
-	
-	public static List<EmpwocoInfo> mergeToSelect(List<EmpwocoInfo> sourceOnes, List<EmpwocoInfo> sourceTwos) {
-		InfoMerger_<EmpwocoInfo, EmpwocoInfo> merger = new EmpwocoMergerToSelect();		
-		return merger.merge(sourceOnes, sourceTwos);
+		return merger.merge();
 	}
 }

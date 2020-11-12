@@ -11,13 +11,13 @@ import br.com.mind5.business.employeeWorkTimeConflict.model.checker.EmpwocoCheck
 import br.com.mind5.business.employeeWorkTimeConflict.model.checker.EmpwocoCheckRead;
 import br.com.mind5.business.employeeWorkTimeConflict.model.checker.EmpwocoCheckStore;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 
-public final class RootEmpwocoSelect extends DeciTreeTemplateReadV1<EmpwocoInfo> {
+public final class RootEmpwocoSelect extends DeciTreeTemplateReadV2<EmpwocoInfo> {
 	
 	public RootEmpwocoSelect(DeciTreeOption<EmpwocoInfo> option) {
 		super(option);
