@@ -36,7 +36,7 @@ public final class SchedistInfo extends InfoRecord implements Cloneable, Compara
 	
 	
 	public SchedistInfo() {
-		super(SchedistInfo.class);
+		super();
 		
 		codOwner = DefaultValue.number();	
 		codSchedule = DefaultValue.number();

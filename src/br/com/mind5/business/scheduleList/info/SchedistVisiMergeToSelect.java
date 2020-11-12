@@ -1,54 +1,38 @@
 package br.com.mind5.business.scheduleList.info;
 
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import java.util.ArrayList;
+import java.util.List;
 
-final class SchedistVisiMergeToSelect implements InfoMergerVisitor_<SchedistInfo, SchedistInfo> {
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-	@Override public SchedistInfo writeRecord(SchedistInfo sourceOne, SchedistInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);		
-		return merge(sourceOne, sourceTwo);
+final class SchedistVisiMergeToSelect implements InfoMergerVisitorV3<SchedistInfo, SchedistInfo> {
+	
+	@Override public List<SchedistInfo> beforeMerge(List<SchedistInfo> baseInfos) {
+		return baseInfos;
 	}
 	
 	
 	
-	private void checkArgument(SchedistInfo sourceOne, SchedistInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
+	@Override public boolean shouldMerge(SchedistInfo baseInfo, SchedistInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner);
 	}
 	
 	
 	
-	private SchedistInfo merge(SchedistInfo sourceOne, SchedistInfo sourceTwo) {
-		SchedistInfo result = makeClone(sourceOne);		
-		result.username = sourceTwo.username;
-		result.codLanguage = sourceTwo.codLanguage;
-		return result;
-	}
-	
-	
-	
-	private SchedistInfo makeClone(SchedistInfo recordInfo) {
-		try {
-			return (SchedistInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(SchedistInfo sourceOne, SchedistInfo sourceTwo) {		
-		return (sourceOne.codOwner == sourceTwo.codOwner);
-	}
-	
-	
-	
-	private void logException(Exception e) {
+	@Override public List<SchedistInfo> merge(SchedistInfo baseInfo, SchedistInfo selectedInfo) {
+		List<SchedistInfo> results = new ArrayList<>();
 		
-		SystemLog.logError(this.getClass(), e);
+		selectedInfo.username = baseInfo.username;
+		selectedInfo.codLanguage = baseInfo.codLanguage;
+		
+		results.add(selectedInfo);
+		return results;
+	}
+	
+	
+	
+	@Override public InfoUniquifier<SchedistInfo> getUniquifier() {
+		return null;
 	}
 }

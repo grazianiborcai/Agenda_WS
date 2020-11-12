@@ -9,13 +9,13 @@ import br.com.mind5.business.scheduleList.model.checker.SchedistCheckLangu;
 import br.com.mind5.business.scheduleList.model.checker.SchedistCheckOwner;
 import br.com.mind5.business.scheduleList.model.checker.SchedistCheckRead;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class RootSchedistSelect extends DeciTreeTemplateWriteV1<SchedistInfo> {
+public final class RootSchedistSelect extends DeciTreeTemplateWriteV2<SchedistInfo> {
 	
 	public RootSchedistSelect(DeciTreeOption<SchedistInfo> option) {
 		super(option);
