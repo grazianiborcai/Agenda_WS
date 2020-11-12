@@ -5,17 +5,17 @@ import java.util.List;
 
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 import br.com.mind5.payment.countryPartner.info.CounparInfo;
 import br.com.mind5.payment.countryPartner.model.action.LazyCounparMergePaypar;
-import br.com.mind5.payment.countryPartner.model.action.StdCounparSelect;
+import br.com.mind5.payment.countryPartner.model.action.StdCounparDaoSelect;
 import br.com.mind5.payment.countryPartner.model.checker.CounparCheckRead;
 
-public final class RootCounparSelect extends DeciTreeTemplateReadV1<CounparInfo> {
+public final class RootCounparSelect extends DeciTreeTemplateReadV2<CounparInfo> {
 	
 	public RootCounparSelect(DeciTreeOption<CounparInfo> option) {
 		super(option);
@@ -43,7 +43,7 @@ public final class RootCounparSelect extends DeciTreeTemplateReadV1<CounparInfo>
 	@Override protected List<ActionStdV1<CounparInfo>> buildActionsOnPassedHook(DeciTreeOption<CounparInfo> option) {
 		List<ActionStdV1<CounparInfo>> actions = new ArrayList<>();
 		
-		ActionStdV1<CounparInfo> select = new StdCounparSelect(option);
+		ActionStdV1<CounparInfo> select = new StdCounparDaoSelect(option);
 		ActionLazyV1<CounparInfo> mergePayPartner = new LazyCounparMergePaypar(option.conn, option.schemaName);
 		
 		select.addPostAction(mergePayPartner);
