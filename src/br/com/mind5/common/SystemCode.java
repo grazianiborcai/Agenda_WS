@@ -202,6 +202,7 @@ public final class SystemCode {
 	public static final int MAT_SUBGROUP_ALREADY_EXIST					= 11676;
 	public static final int MAT_SUBGROUP_NOT_FOUND						= 11677;
 	public static final int MAT_SUBGROUP_SEARCH_MANDATORY_FIELD_EMPTY 	= 11678;
+	public static final int COUNTRY_LEGAL_SEARCH_MANDATORY_FIELD_EMPTY 	= 11679;
 	
 	// Material
 	public static final int MAT_ALREADY_EXIST							= 1200;

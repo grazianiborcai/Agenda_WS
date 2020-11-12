@@ -139,6 +139,8 @@ import br.com.mind5.masterData.authorizationGroupRole.dao.DaoAuthgroleDbTableCol
 import br.com.mind5.masterData.businessArea.dao.DaoBusareaDbTableColumn;
 import br.com.mind5.masterData.businessAreaSearch.dao.DaoBusarearchDbTableColumn;
 import br.com.mind5.masterData.country.dao.DaoCountryDbTableColumn;
+import br.com.mind5.masterData.countryLegal.dao.DaoCountralDbTableColumn;
+import br.com.mind5.masterData.countryLegalSearch.dao.DaoCountrarchDbTableColumn;
 import br.com.mind5.masterData.countryPhone.dao.DaoCountroneDbTableColumn;
 import br.com.mind5.masterData.countryPhoneSearch.dao.DaoCountronarchDbTableColumn;
 import br.com.mind5.masterData.countrySearch.dao.DaoCountarchDbTableColumn;
@@ -454,6 +456,8 @@ public final class DaoDbTableColumnAll {
 		addTable(new DaoStorextsnapDbTableColumn());
 		addTable(new DaoSysotupDbTableColumn());
 		addTable(new DaoSytorbcDbTableColumn());
+		addTable(new DaoCountralDbTableColumn());
+		addTable(new DaoCountrarchDbTableColumn());
 	}
 	
 	

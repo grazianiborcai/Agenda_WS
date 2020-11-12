@@ -1,30 +1,30 @@
-package br.com.mind5.business.masterData.info;
+package br.com.mind5.masterData.countryLegal.info;
 
 import java.util.List;
 
 import br.com.mind5.info.InfoRecord;
 
-public final class CountryLegalInfo extends InfoRecord implements Cloneable {
+public final class CountralInfo extends InfoRecord implements Cloneable {
 	public String codCountry;
 	public String codCountryAlpha3;
 	public String txtCountry;
 	public String recordMode;
 	
 	
-	public CountryLegalInfo() {
-		super(CountryLegalInfo.class);
+	public CountralInfo() {
+		super();
 	}
 	
 	
 	
-	public static CountryLegalInfo copyFrom(Object sourceObj) {
-		return copyFrom(sourceObj, CountryLegalInfo.class);
+	public static CountralInfo copyFrom(Object sourceObj) {
+		return copyFrom(sourceObj, CountralInfo.class);
 	}
 	
 	
 	
-	public static List<CountryLegalInfo> copyFrom(List<?> sourceObjs) {
-		return copyFrom(sourceObjs, CountryLegalInfo.class);
+	public static List<CountralInfo> copyFrom(List<?> sourceObjs) {
+		return copyFrom(sourceObjs, CountralInfo.class);
 	}
 	
 	
@@ -49,11 +49,11 @@ public final class CountryLegalInfo extends InfoRecord implements Cloneable {
 			return true;
 		
 		
-		if (!(o instanceof CountryLegalInfo))
+		if (!(o instanceof CountralInfo))
 			return false;
 		
 		
-		CountryLegalInfo obj = (CountryLegalInfo) o;		
+		CountralInfo obj = (CountralInfo) o;		
 		return (isStringEqual(codCountry, obj.codCountry));
 	}
 }

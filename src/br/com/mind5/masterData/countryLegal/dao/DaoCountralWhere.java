@@ -1,39 +1,34 @@
-package br.com.mind5.business.masterData.dao;
+package br.com.mind5.masterData.countryLegal.dao;
 
 import java.util.List;
 
-import br.com.mind5.business.masterData.info.CountryLegalInfo;
 import br.com.mind5.dao.DaoColumn;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilder;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
+import br.com.mind5.masterData.countryLegal.info.CountralInfo;
 
-final class CountryLegalWhere implements DaoStmtWhere {
+final class DaoCountralWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public CountryLegalWhere(DaoWhereBuilderOption whereOption, String tableName, CountryLegalInfo recordInfo) {
+	public DaoCountralWhere(DaoWhereBuilderOption whereOption, String tableName, CountralInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
 	
 	
-	private void generateWhereClause(DaoWhereBuilderOption whereOption, String tableName, CountryLegalInfo recordInfo) {
+	private void generateWhereClause(DaoWhereBuilderOption whereOption, String tableName, CountralInfo recordInfo) {
 		DaoWhereBuilder builder = DaoWhereBuilder.factory(whereOption);		
 		List<DaoColumn> columns = DaoDbTableColumnAll.getTableColumnsAsList(tableName);
 		
 		for (DaoColumn eachColumn : columns) {
 			switch(eachColumn.columnName) {
-				case MasterDataDbTableColumn.COL_COD_COUNTRY :
+				case DaoCountralDbTableColumn.COL_COD_COUNTRY :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.codCountry);
-					break;					
 					
-				case MasterDataDbTableColumn.COL_COD_LANGUAGE :
-					builder.addClauseEqualAnd(eachColumn, recordInfo.codLanguage);
-					break;
-					
-				case MasterDataDbTableColumn.COL_RECORD_MODE :
+				case DaoCountralDbTableColumn.COL_RECORD_MODE :
 					builder.addClauseEqualAnd(eachColumn, recordInfo.recordMode);
 					break;
 			}

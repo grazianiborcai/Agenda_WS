@@ -165,6 +165,7 @@ public final class DaoDbTable {
 	public static final String COMPANY_LIST_VIEW = "view_company_list";	
 	public static final String COMP_CONFLICT_VIEW = "view_company_conflict";	
 	public static final String COMP_SEARCH_VIEW = "view_company_search";
+	public static final String COUNTRY_LEGAL_SEARCH_VIEW = "view_country_legal_search";	
 	public static final String COUNTRY_PHONE_SEARCH_VIEW = "view_country_phone_search";
 	public static final String COUNTRY_SEARCH_VIEW = "view_country_search";
 	public static final String CREDIT_CARD_SEARCH_VIEW = "view_pay_credit_card_search";

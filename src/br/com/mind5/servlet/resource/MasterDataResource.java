@@ -9,13 +9,13 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import br.com.mind5.business.masterData.info.CartCategInfo;
-import br.com.mind5.business.masterData.info.CountryLegalInfo;
 import br.com.mind5.business.masterData.model.CartCategModelSelect;
-import br.com.mind5.business.masterData.model.CountryLegalModelSelect;
 import br.com.mind5.masterData.areaPhoneSearch.info.AreanarchInfo;
 import br.com.mind5.masterData.areaPhoneSearch.model.AreanarchModelSelect;
 import br.com.mind5.masterData.businessAreaSearch.info.BusarearchInfo;
 import br.com.mind5.masterData.businessAreaSearch.model.BusarearchModelSelect;
+import br.com.mind5.masterData.countryLegal.CountralModelSearch;
+import br.com.mind5.masterData.countryLegal.info.CountralInfo;
 import br.com.mind5.masterData.countryPhoneSearch.info.CountronarchInfo;
 import br.com.mind5.masterData.countryPhoneSearch.model.CountronarchModelSelect;
 import br.com.mind5.masterData.countrySearch.info.CountarchInfo;
@@ -421,12 +421,12 @@ public final class MasterDataResource {
 	public Response selectCountryLegal(@HeaderParam("codLanguage") @DefaultValue("EN") String codLanguage,
 			                           @HeaderParam("codCountry") String codCountry){
 		
-		CountryLegalInfo recordInfo = new CountryLegalInfo();		
+		CountralInfo recordInfo = new CountralInfo();		
 		recordInfo.codLanguage = codLanguage;
 		recordInfo.codCountry = codCountry;
 		
 		
-		Model model = new CountryLegalModelSelect(recordInfo);
+		Model model = new CountralModelSearch(recordInfo);
 		model.executeRequest();
 		Response result = model.getResponse();
 		model.close();
