@@ -1,34 +1,34 @@
 package br.com.mind5.business.scheduleRange.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.scheduleRange.info.SchedageInfo;
 import br.com.mind5.business.scheduleRange.info.SchedageMerger;
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiSchedageMergeToSelect extends ActionVisitorTemplateMergeV1<SchedageInfo, SchedageInfo> {
+final class VisiSchedageMergeToSelect extends ActionVisitorTemplateMergeV2<SchedageInfo, SchedageInfo> {
 	
-	public VisiSchedageMergeToSelect(Connection conn, String schemaName) {
-		super(conn, schemaName, SchedageInfo.class);
+	public VisiSchedageMergeToSelect(DeciTreeOption<SchedageInfo> option) {
+		super(option, SchedageInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends ActionStdV1<SchedageInfo>> getActionClassHook() {
-		return StdSchedageSelect.class;
+	@Override protected Class<? extends ActionStdV2<SchedageInfo>> getActionClassHook() {
+		return StdSchedageDaoSelect.class;
 	}
 	
 	
 	
-	@Override protected List<SchedageInfo> mergeHook(List<SchedageInfo> recordInfos, List<SchedageInfo> selectedInfos) {	
-		return SchedageMerger.mergeToSelect(selectedInfos, recordInfos);
+	@Override protected List<SchedageInfo> mergeHook(List<SchedageInfo> baseInfos, List<SchedageInfo> selectedInfos) {	
+		return SchedageMerger.mergeToSelect(baseInfos, selectedInfos);
 	}
 	
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
+		return super.DONT_MERGE_WHEN_EMPTY;
 	}
 }

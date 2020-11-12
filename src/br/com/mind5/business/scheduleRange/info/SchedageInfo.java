@@ -38,7 +38,7 @@ public final class SchedageInfo extends InfoRecord implements Cloneable, Compara
 	
 	
 	public SchedageInfo() {
-		super(SchedageInfo.class);
+		super();
 		
 		codOwner = DefaultValue.number();	
 		codSchedule = DefaultValue.number();

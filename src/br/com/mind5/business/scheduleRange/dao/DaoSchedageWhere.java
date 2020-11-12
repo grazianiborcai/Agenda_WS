@@ -13,11 +13,11 @@ import br.com.mind5.dao.DaoWhereOperator;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.masterData.scheduleStatus.info.Schedatus;
 
-public final class SchedageWhere implements DaoStmtWhere {	
+public final class DaoSchedageWhere implements DaoStmtWhere {	
 	private String whereClause;	
 	
 	
-	public SchedageWhere(DaoWhereBuilderOption whereOption, String tableName, SchedageInfo recordInfo) {
+	public DaoSchedageWhere(DaoWhereBuilderOption whereOption, String tableName, SchedageInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -59,24 +59,24 @@ public final class SchedageWhere implements DaoStmtWhere {
 	
 	private DaoWhereBuilder generateKey(DaoColumn column, SchedageInfo recordInfo, DaoWhereBuilder builderKey) {
 		switch(column.columnName) {
-		case SchedageDbTableColumn.COL_COD_OWNER :
+		case DaoSchedageDbTableColumn.COL_COD_OWNER :
 			builderKey.addClauseEqualAnd(column, DaoFormatter.numberToString(recordInfo.codOwner));
 			break;
 			
-		case SchedageDbTableColumn.COL_COD_STORE :
+		case DaoSchedageDbTableColumn.COL_COD_STORE :
 			builderKey.addClauseEqualAnd(column, DaoFormatter.numberToString(recordInfo.codStore));
 			break;
 			
-		case SchedageDbTableColumn.COL_COD_EMPLOYEE :
+		case DaoSchedageDbTableColumn.COL_COD_EMPLOYEE :
 			builderKey.addClauseEqualAnd(column, DaoFormatter.numberToString(recordInfo.codEmployee));
 			break;
 			
-		case SchedageDbTableColumn.COL_DATE :
+		case DaoSchedageDbTableColumn.COL_DATE :
 			builderKey.addClauseAnd(column, DaoFormatter.dateToString(recordInfo.dateValidFrom), DaoWhereCondition.GREATER_OR_EQUAL);
 			builderKey.addClauseAnd(column, DaoFormatter.dateToString(recordInfo.dateValidTo), DaoWhereCondition.LESS_OR_EQUAL);
 			break;
 			
-		case SchedageDbTableColumn.COL_COD_SCHEDULE_STATUS :
+		case DaoSchedageDbTableColumn.COL_COD_SCHEDULE_STATUS :
 			builderKey.addClauseAnd(column, Schedatus.CANCELLED.getCodStatus(), DaoWhereCondition.NOT_EQUAL);
 			break;
 		}
@@ -89,13 +89,13 @@ public final class SchedageWhere implements DaoStmtWhere {
 	
 	private DaoWhereBuilder generateBeginTime(DaoColumn column, SchedageInfo recordInfo, DaoWhereBuilder builderBeginTime) {
 		switch(column.columnName) {
-		case SchedageDbTableColumn.COL_DATE :
+		case DaoSchedageDbTableColumn.COL_DATE :
 			builderBeginTime.addClauseEqualAnd(column, DaoFormatter.dateToString(recordInfo.dateValidFrom));
 			builderBeginTime.addClauseAnd(column, DaoFormatter.dateToString(recordInfo.dateValidTo), DaoWhereCondition.NOT_EQUAL);
 			break;
 				
 		
-		case SchedageDbTableColumn.COL_END_TIME :
+		case DaoSchedageDbTableColumn.COL_END_TIME :
 			builderBeginTime.addClauseAnd(column, DaoFormatter.timeToString(recordInfo.timeValidFrom), DaoWhereCondition.GREATER_OR_EQUAL);
 			break;
 		}	
@@ -107,12 +107,12 @@ public final class SchedageWhere implements DaoStmtWhere {
 	
 	private DaoWhereBuilder generateEndTime(DaoColumn column, SchedageInfo recordInfo, DaoWhereBuilder builderEndTime) {
 		switch(column.columnName) {		
-		case SchedageDbTableColumn.COL_DATE :
+		case DaoSchedageDbTableColumn.COL_DATE :
 			builderEndTime.addClauseEqualAnd(column, DaoFormatter.dateToString(recordInfo.dateValidTo));
 			builderEndTime.addClauseAnd(column, DaoFormatter.dateToString(recordInfo.dateValidFrom), DaoWhereCondition.NOT_EQUAL);
 			break;
 			
-		case SchedageDbTableColumn.COL_BEGIN_TIME :
+		case DaoSchedageDbTableColumn.COL_BEGIN_TIME :
 			builderEndTime.addClauseAnd(column, DaoFormatter.timeToString(recordInfo.timeValidTo), DaoWhereCondition.LESS_OR_EQUAL);
 			break;
 		}		
@@ -124,7 +124,7 @@ public final class SchedageWhere implements DaoStmtWhere {
 	
 	private DaoWhereBuilder generateBeginDate(DaoColumn column, SchedageInfo recordInfo, DaoWhereBuilder builderBeginDate) {
 		switch(column.columnName) {		
-		case SchedageDbTableColumn.COL_DATE :
+		case DaoSchedageDbTableColumn.COL_DATE :
 			builderBeginDate.addClauseAnd(column, DaoFormatter.dateToString(recordInfo.dateValidFrom), DaoWhereCondition.GREATER);
 			builderBeginDate.addClauseAnd(column, DaoFormatter.dateToString(recordInfo.dateValidTo), DaoWhereCondition.NOT_EQUAL);
 			break;
@@ -137,7 +137,7 @@ public final class SchedageWhere implements DaoStmtWhere {
 	
 	private DaoWhereBuilder generateEndDate(DaoColumn column, SchedageInfo recordInfo, DaoWhereBuilder builderEndDate) {
 		switch(column.columnName) {		
-		case SchedageDbTableColumn.COL_DATE :
+		case DaoSchedageDbTableColumn.COL_DATE :
 			builderEndDate.addClauseAnd(column, DaoFormatter.dateToString(recordInfo.dateValidFrom), DaoWhereCondition.NOT_EQUAL);
 			builderEndDate.addClauseAnd(column, DaoFormatter.dateToString(recordInfo.dateValidTo), DaoWhereCondition.LESS);
 			break;
@@ -150,12 +150,12 @@ public final class SchedageWhere implements DaoStmtWhere {
 	
 	private DaoWhereBuilder generateBeginDay(DaoColumn column, SchedageInfo recordInfo, DaoWhereBuilder builderBeginDay) {
 		switch(column.columnName) {		
-		case SchedageDbTableColumn.COL_DATE :
+		case DaoSchedageDbTableColumn.COL_DATE :
 			builderBeginDay.addClauseEqualAnd(column, DaoFormatter.dateToString(recordInfo.dateValidFrom));
 			builderBeginDay.addClauseEqualAnd(column, DaoFormatter.dateToString(recordInfo.dateValidTo));
 			break;
 			
-		case SchedageDbTableColumn.COL_BEGIN_TIME :
+		case DaoSchedageDbTableColumn.COL_BEGIN_TIME :
 			builderBeginDay.addClauseAnd(column, DaoFormatter.timeToString(recordInfo.timeValidFrom), DaoWhereCondition.GREATER_OR_EQUAL);	
 			builderBeginDay.addClauseAnd(column, DaoFormatter.timeToString(recordInfo.timeValidTo), DaoWhereCondition.LESS_OR_EQUAL);
 			break;
@@ -168,12 +168,12 @@ public final class SchedageWhere implements DaoStmtWhere {
 	
 	private DaoWhereBuilder generateEndDay(DaoColumn column, SchedageInfo recordInfo, DaoWhereBuilder builderEndDay) {
 		switch(column.columnName) {		
-		case SchedageDbTableColumn.COL_DATE :
+		case DaoSchedageDbTableColumn.COL_DATE :
 			builderEndDay.addClauseEqualAnd(column, DaoFormatter.dateToString(recordInfo.dateValidFrom));
 			builderEndDay.addClauseEqualAnd(column, DaoFormatter.dateToString(recordInfo.dateValidTo));
 			break;
 			
-		case SchedageDbTableColumn.COL_END_TIME :
+		case DaoSchedageDbTableColumn.COL_END_TIME :
 			builderEndDay.addClauseAnd(column, DaoFormatter.timeToString(recordInfo.timeValidFrom), DaoWhereCondition.GREATER_OR_EQUAL);
 			builderEndDay.addClauseAnd(column, DaoFormatter.timeToString(recordInfo.timeValidTo), DaoWhereCondition.LESS_OR_EQUAL);
 			break;

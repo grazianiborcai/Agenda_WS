@@ -2,18 +2,18 @@ package br.com.mind5.business.scheduleRange.info;
 
 import java.util.List;
 
-import br.com.mind5.info.obsolete.InfoMerger_;
+import br.com.mind5.info.InfoMergerBuilderV3;
+import br.com.mind5.info.InfoMergerV3;
 
 public final class SchedageMerger {
-	public static SchedageInfo mergeToSelect(SchedageInfo sourceOne, SchedageInfo sourceTwo) {
-		InfoMerger_<SchedageInfo, SchedageInfo> merger = new SchedageMergerToSelect();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
+	public static List<SchedageInfo> mergeToSelect(List<SchedageInfo> baseInfos, List<SchedageInfo> selectedInfos) {
+		InfoMergerBuilderV3<SchedageInfo, SchedageInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new SchedageVisiMergeToSelect());
+		InfoMergerV3<SchedageInfo, SchedageInfo> merger = builder.build();		
 	
-	
-	
-	public static List<SchedageInfo> mergeToSelect(List<SchedageInfo> sourceOnes, List<SchedageInfo> sourceTwos) {
-		InfoMerger_<SchedageInfo, SchedageInfo> merger = new SchedageMergerToSelect();		
-		return merger.merge(sourceOnes, sourceTwos);
-	}		
+		return merger.merge();
+	}	
 }

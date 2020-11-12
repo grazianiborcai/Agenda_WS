@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class SchedageDbTableColumn extends DaoDbTableColumnTemplate {
+public final class DaoSchedageDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_BEGIN_TIME = DaoDbField.COL_BEGIN_TIME;	
 	public static final String COL_COD_CUSTOMER = DaoDbField.COL_COD_CUSTOMER;	
 	public static final String COL_COD_EMPLOYEE = DaoDbField.COL_COD_EMPLOYEE;	
@@ -33,24 +33,13 @@ public final class SchedageDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_WEEK_YEAR = DaoDbField.COL_WEEK_YEAR;
 	
 	
-	private Hashtable<String, List<DaoColumn>> tableColumns;
-	
-	
-	public SchedageDbTableColumn() {
-		super(SchedageDbTableColumn.class);
+	public DaoSchedageDbTableColumn() {
+		super();
 	}
 	
 	
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
-		tableColumns = new Hashtable<>();	
-		buildScheduleRangeTable();
-		return tableColumns;
-	}
-	
-	
-	
-	private void buildScheduleRangeTable() {
 		final String TABLE_NAME = DaoDbTable.SCHEDULE_TABLE;
 		
 		DaoColumn oneColumn;
@@ -216,6 +205,8 @@ public final class SchedageDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);			
 		
-		tableColumns.put(DaoDbTable.SCHEDULE_RANGE_VIEW, columns);
+		Hashtable<String, List<DaoColumn>> results = new Hashtable<>();
+		results.put(DaoDbTable.SCHEDULE_RANGE_VIEW, columns);
+		return results;
 	}
 }

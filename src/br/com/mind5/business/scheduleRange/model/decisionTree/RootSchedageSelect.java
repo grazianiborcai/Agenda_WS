@@ -10,13 +10,13 @@ import br.com.mind5.business.scheduleRange.model.checker.SchedageCheckOwner;
 import br.com.mind5.business.scheduleRange.model.checker.SchedageCheckRead;
 import br.com.mind5.business.scheduleRange.model.checker.SchedageCheckStore;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class RootSchedageSelect extends DeciTreeTemplateWriteV1<SchedageInfo> {
+public final class RootSchedageSelect extends DeciTreeTemplateWriteV2<SchedageInfo> {
 	
 	public RootSchedageSelect(DeciTreeOption<SchedageInfo> option) {
 		super(option);

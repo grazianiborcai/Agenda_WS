@@ -1,58 +1,42 @@
 package br.com.mind5.business.scheduleRange.info;
 
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import java.util.ArrayList;
+import java.util.List;
 
-final class SchedageVisiMergeToSelect implements InfoMergerVisitor_<SchedageInfo, SchedageInfo> {
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-	@Override public SchedageInfo writeRecord(SchedageInfo sourceOne, SchedageInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);		
-		return merge(sourceOne, sourceTwo);
+final class SchedageVisiMergeToSelect implements InfoMergerVisitorV3<SchedageInfo, SchedageInfo> {
+	
+	@Override public List<SchedageInfo> beforeMerge(List<SchedageInfo> baseInfos) {
+		return baseInfos;
 	}
 	
 	
 	
-	private void checkArgument(SchedageInfo sourceOne, SchedageInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
+	@Override public boolean shouldMerge(SchedageInfo baseInfo, SchedageInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner);
 	}
 	
 	
 	
-	private SchedageInfo merge(SchedageInfo sourceOne, SchedageInfo sourceTwo) {
-		SchedageInfo result = makeClone(sourceOne);		
-		result.username = sourceTwo.username;
-		result.codLanguage = sourceTwo.codLanguage;
-		result.dateValidFrom = sourceTwo.dateValidFrom;
-		result.dateValidTo = sourceTwo.dateValidTo;
-		result.timeValidFrom = sourceTwo.timeValidFrom;
-		result.timeValidTo = sourceTwo.timeValidTo;
-		return result;
-	}
-	
-	
-	
-	private SchedageInfo makeClone(SchedageInfo recordInfo) {
-		try {
-			return (SchedageInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(SchedageInfo sourceOne, SchedageInfo sourceTwo) {		
-		return (sourceOne.codOwner == sourceTwo.codOwner);
-	}
-	
-	
-	
-	private void logException(Exception e) {
+	@Override public List<SchedageInfo> merge(SchedageInfo baseInfo, SchedageInfo selectedInfo) {
+		List<SchedageInfo> results = new ArrayList<>();
 		
-		SystemLog.logError(this.getClass(), e);
+		selectedInfo.username = baseInfo.username;
+		selectedInfo.codLanguage = baseInfo.codLanguage;
+		selectedInfo.dateValidFrom = baseInfo.dateValidFrom;
+		selectedInfo.dateValidTo = baseInfo.dateValidTo;
+		selectedInfo.timeValidFrom = baseInfo.timeValidFrom;
+		selectedInfo.timeValidTo = baseInfo.timeValidTo;
+		
+		results.add(selectedInfo);
+		return results;
+	}
+	
+	
+	
+	@Override public InfoUniquifier<SchedageInfo> getUniquifier() {
+		return null;
 	}
 }
