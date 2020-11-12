@@ -1,7 +1,7 @@
 package br.com.mind5.business.feeOwner.model.checker;
 
 import br.com.mind5.business.feeOwner.info.FeewnerInfo;
-import br.com.mind5.business.feeOwner.model.action.StdFeewnerSelect;
+import br.com.mind5.business.feeOwner.model.action.StdFeewnerDaoSelect;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -17,7 +17,7 @@ public final class FeewnerCheckExist extends ModelCheckerTemplateActionV2<Feewne
 
 	
 	@Override protected ActionStdV1<FeewnerInfo> buildActionHook(DeciTreeOption<FeewnerInfo> option) {
-		ActionStdV1<FeewnerInfo> select = new StdFeewnerSelect(option);
+		ActionStdV1<FeewnerInfo> select = new StdFeewnerDaoSelect(option);
 		return select;
 	}
 	

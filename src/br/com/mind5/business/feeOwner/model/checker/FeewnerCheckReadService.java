@@ -16,8 +16,8 @@ public final class FeewnerCheckReadService extends ModelCheckerTemplateSimpleV2<
 	
 	
 	@Override protected boolean checkHook(FeewnerInfo recordInfo, Connection conn, String schemaName) {	
-		if (   recordInfo.codOwner <= 0
-			|| recordInfo.codCurr  == null )			
+		if ( recordInfo.codOwner <= 0		||
+			 recordInfo.codCurr  == null 		)			
 			return super.FAILED;
 		
 		

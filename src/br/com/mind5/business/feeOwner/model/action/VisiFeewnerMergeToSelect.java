@@ -1,34 +1,34 @@
 package br.com.mind5.business.feeOwner.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.feeOwner.info.FeewnerInfo;
 import br.com.mind5.business.feeOwner.info.FeewnerMerger;
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiFeewnerMergeToSelect extends ActionVisitorTemplateMergeV1<FeewnerInfo, FeewnerInfo> {
+final class VisiFeewnerMergeToSelect extends ActionVisitorTemplateMergeV2<FeewnerInfo, FeewnerInfo> {
 
-	public VisiFeewnerMergeToSelect(Connection conn, String schemaName) {
-		super(conn, schemaName, FeewnerInfo.class);
+	public VisiFeewnerMergeToSelect(DeciTreeOption<FeewnerInfo> option) {
+		super(option, FeewnerInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends ActionStdV1<FeewnerInfo>> getActionClassHook() {
-		return StdFeewnerSelect.class;
+	@Override protected Class<? extends ActionStdV2<FeewnerInfo>> getActionClassHook() {
+		return StdFeewnerDaoSelect.class;
 	}
 	
 	
 	
-	@Override protected List<FeewnerInfo> mergeHook(List<FeewnerInfo> recordInfos, List<FeewnerInfo> selectedInfos) {	
-		return FeewnerMerger.mergeToSelect(selectedInfos, recordInfos);
+	@Override protected List<FeewnerInfo> mergeHook(List<FeewnerInfo> baseInfos, List<FeewnerInfo> selectedInfos) {	
+		return FeewnerMerger.mergeToSelect(baseInfos, selectedInfos);
 	}
 	
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
+		return super.DONT_MERGE_WHEN_EMPTY;
 	}
 }

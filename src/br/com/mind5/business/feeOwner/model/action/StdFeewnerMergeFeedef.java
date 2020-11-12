@@ -1,35 +1,19 @@
 package br.com.mind5.business.feeOwner.model.action;
 
 import br.com.mind5.business.feeOwner.info.FeewnerInfo;
-import br.com.mind5.model.action.ActionLazyV1;
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionStdHelperMerge;
-import br.com.mind5.model.decisionTree.DeciResult;
+import br.com.mind5.model.action.ActionStdTemplateV2;
+import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdFeewnerMergeFeedef implements ActionStdV1<FeewnerInfo> {
-	private ActionStdV1<FeewnerInfo> actionHelper;	
-	
-	
-	public StdFeewnerMergeFeedef(DeciTreeOption<FeewnerInfo> option) {			
-		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiFeewnerMergeFeedef(option.conn, option.schemaName));
+public final class StdFeewnerMergeFeedef extends ActionStdTemplateV2<FeewnerInfo> {
+
+	public StdFeewnerMergeFeedef(DeciTreeOption<FeewnerInfo> option) {
+		super(option);
 	}
 	
 	
 	
-	@Override public void addPostAction(ActionLazyV1<FeewnerInfo> actionHandler) {
-		actionHelper.addPostAction(actionHandler);
-	}
-	
-	
-	
-	@Override public boolean executeAction() {			
-		return actionHelper.executeAction();
-	}
-	
-	
-	
-	@Override public DeciResult<FeewnerInfo> getDecisionResult() {
-		return actionHelper.getDecisionResult();
+	protected ActionVisitorV2<FeewnerInfo> buildVisitorHook(DeciTreeOption<FeewnerInfo> option) {
+		return new VisiFeewnerMergeFeedef(option);
 	}
 }

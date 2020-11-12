@@ -1,54 +1,38 @@
 package br.com.mind5.business.feeOwner.info;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import br.com.mind5.business.feeDefault.info.FeedefInfo;
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-final class FeewnerVisiMergeFeedef implements InfoMergerVisitor_<FeewnerInfo, FeedefInfo> {
-
-	@Override public FeewnerInfo writeRecord(FeedefInfo sourceOne, FeewnerInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+final class FeewnerVisiMergeFeedef implements InfoMergerVisitorV3<FeewnerInfo, FeedefInfo> {
+	
+	@Override public List<FeewnerInfo> beforeMerge(List<FeewnerInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(FeewnerInfo baseInfo, FeedefInfo selectedInfo) {
+		return (baseInfo.codCurr.equals(selectedInfo.codCurr));
+	}
+	
+	
+	
+	@Override public List<FeewnerInfo> merge(FeewnerInfo baseInfo, FeedefInfo selectedInfo) {
+		List<FeewnerInfo> results = new ArrayList<>();
 		
-		FeewnerInfo clonedInfo = makeClone(sourceTwo);
-		return merge(sourceOne, clonedInfo);
+		baseInfo.price = selectedInfo.price;
+		
+		results.add(baseInfo);
+		return results;
 	}
 	
 	
 	
-	private void checkArgument(FeedefInfo sourceOne, FeewnerInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private FeewnerInfo makeClone(FeewnerInfo recordInfo) {
-		try {
-			return (FeewnerInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	private FeewnerInfo merge(FeedefInfo sourceOne, FeewnerInfo sourceTwo) {
-		sourceTwo.price = sourceOne.price;
-		return sourceTwo;
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(FeedefInfo sourceOne, FeewnerInfo sourceTwo) {
-		return (sourceOne.codCurr.equals(sourceTwo.codCurr));
-	}	
-	
-	
-	
-	private void logException(Exception e) {
-		SystemLog.logError(this.getClass(), e);
+	@Override public InfoUniquifier<FeewnerInfo> getUniquifier() {
+		return null;
 	}
 }

@@ -1,49 +1,38 @@
 package br.com.mind5.business.feeOwner.info;
 
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import java.util.ArrayList;
+import java.util.List;
 
-final class FeewnerVisiMergeToSelect implements InfoMergerVisitor_<FeewnerInfo, FeewnerInfo> {
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-	@Override public FeewnerInfo writeRecord(FeewnerInfo sourceOne, FeewnerInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+final class FeewnerVisiMergeToSelect implements InfoMergerVisitorV3<FeewnerInfo, FeewnerInfo> {
+	
+	@Override public List<FeewnerInfo> beforeMerge(List<FeewnerInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(FeewnerInfo baseInfo, FeewnerInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner);
+	}
+	
+	
+	
+	@Override public List<FeewnerInfo> merge(FeewnerInfo baseInfo, FeewnerInfo selectedInfo) {
+		List<FeewnerInfo> results = new ArrayList<>();
 		
-		FeewnerInfo resultInfo = makeClone(sourceOne);
-		resultInfo.codLanguage = sourceTwo.codLanguage;
-		resultInfo.username = sourceTwo.username;
-
-		return resultInfo;
+		selectedInfo.username = baseInfo.username;
+		selectedInfo.codLanguage = baseInfo.codLanguage;
+		
+		results.add(selectedInfo);
+		return results;
 	}
 	
 	
 	
-	private void checkArgument(FeewnerInfo sourceOne, FeewnerInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private FeewnerInfo makeClone(FeewnerInfo recordInfo) {
-		try {
-			return (FeewnerInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-
-
-
-	@Override public boolean shouldWrite(FeewnerInfo sourceOne, FeewnerInfo sourceTwo) {
-		return (sourceOne.codOwner == sourceTwo.codOwner);
-	}
-	
-	
-	
-	private void logException(Exception e) {
-		SystemLog.logError(this.getClass(), e);
+	@Override public InfoUniquifier<FeewnerInfo> getUniquifier() {
+		return null;
 	}
 }

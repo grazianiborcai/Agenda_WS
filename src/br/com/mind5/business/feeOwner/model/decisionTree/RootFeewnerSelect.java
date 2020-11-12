@@ -8,13 +8,13 @@ import br.com.mind5.business.feeOwner.model.checker.FeewnerCheckFeecat;
 import br.com.mind5.business.feeOwner.model.checker.FeewnerCheckOwner;
 import br.com.mind5.business.feeOwner.model.checker.FeewnerCheckRead;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 
-public final class RootFeewnerSelect extends DeciTreeTemplateReadV1<FeewnerInfo> {
+public final class RootFeewnerSelect extends DeciTreeTemplateReadV2<FeewnerInfo> {
 	
 	public RootFeewnerSelect(DeciTreeOption<FeewnerInfo> option) {
 		super(option);
