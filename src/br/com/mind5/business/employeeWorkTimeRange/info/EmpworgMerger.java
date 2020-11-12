@@ -2,18 +2,18 @@ package br.com.mind5.business.employeeWorkTimeRange.info;
 
 import java.util.List;
 
-import br.com.mind5.info.obsolete.InfoMerger_;
+import br.com.mind5.info.InfoMergerBuilderV3;
+import br.com.mind5.info.InfoMergerV3;
 
 public final class EmpworgMerger {
-	public static EmpworgInfo mergeToSelect(EmpworgInfo sourceOne, EmpworgInfo sourceTwo) {
-		InfoMerger_<EmpworgInfo, EmpworgInfo> merger = new EmpworgMergerToSelect();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
+	public static List<EmpworgInfo> mergeToSelect(List<EmpworgInfo> baseInfos, List<EmpworgInfo> selectedInfos) {
+		InfoMergerBuilderV3<EmpworgInfo, EmpworgInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new EmpworgVisiMergeToSelect());
+		InfoMergerV3<EmpworgInfo, EmpworgInfo> merger = builder.build();		
 	
-	
-	
-	public static List<EmpworgInfo> mergeToSelect(List<EmpworgInfo> sourceOnes, List<EmpworgInfo> sourceTwos) {
-		InfoMerger_<EmpworgInfo, EmpworgInfo> merger = new EmpworgMergerToSelect();		
-		return merger.merge(sourceOnes, sourceTwos);
+		return merger.merge();
 	}
 }

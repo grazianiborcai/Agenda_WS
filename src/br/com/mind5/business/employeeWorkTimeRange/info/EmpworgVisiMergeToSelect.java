@@ -1,53 +1,38 @@
 package br.com.mind5.business.employeeWorkTimeRange.info;
 
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import java.util.ArrayList;
+import java.util.List;
 
-final class EmpworgVisiMergeToSelect implements InfoMergerVisitor_<EmpworgInfo, EmpworgInfo> {
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-	@Override public EmpworgInfo writeRecord(EmpworgInfo sourceOne, EmpworgInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);		
-		return merge(sourceOne, sourceTwo);
+final class EmpworgVisiMergeToSelect implements InfoMergerVisitorV3<EmpworgInfo, EmpworgInfo> {
+	
+	@Override public List<EmpworgInfo> beforeMerge(List<EmpworgInfo> baseInfos) {
+		return baseInfos;
 	}
 	
 	
 	
-	private void checkArgument(EmpworgInfo sourceOne, EmpworgInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
+	@Override public boolean shouldMerge(EmpworgInfo baseInfo, EmpworgInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner);
 	}
 	
 	
 	
-	private EmpworgInfo merge(EmpworgInfo sourceOne, EmpworgInfo sourceTwo) {
-		EmpworgInfo result = makeClone(sourceOne);		
-		result.username = sourceTwo.username;
-		result.codLanguage = sourceTwo.codLanguage;
-		return result;
+	@Override public List<EmpworgInfo> merge(EmpworgInfo baseInfo, EmpworgInfo selectedInfo) {
+		List<EmpworgInfo> results = new ArrayList<>();
+		
+		selectedInfo.username = baseInfo.username;
+		selectedInfo.codLanguage = baseInfo.codLanguage;
+		
+		results.add(selectedInfo);
+		return results;
 	}
 	
 	
 	
-	private EmpworgInfo makeClone(EmpworgInfo recordInfo) {
-		try {
-			return (EmpworgInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(EmpworgInfo sourceOne, EmpworgInfo sourceTwo) {		
-		return (sourceOne.codOwner == sourceTwo.codOwner);
-	}
-	
-	
-	
-	private void logException(Exception e) {
-		SystemLog.logError(this.getClass(), e);
+	@Override public InfoUniquifier<EmpworgInfo> getUniquifier() {
+		return null;
 	}
 }

@@ -11,11 +11,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.DaoWhereCondition;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 
-final class EmpworgWhere implements DaoStmtWhere {
+final class DaoEmpworgWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public EmpworgWhere(DaoWhereBuilderOption whereOption, String tableName, EmpworgInfo recordInfo) {
+	public DaoEmpworgWhere(DaoWhereBuilderOption whereOption, String tableName, EmpworgInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -28,31 +28,31 @@ final class EmpworgWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-				case EmpworgDbTableColumn.COL_COD_OWNER :
+				case DaoEmpworgDbTableColumn.COL_COD_OWNER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;
 					
-				case EmpworgDbTableColumn.COL_COD_STORE :
+				case DaoEmpworgDbTableColumn.COL_COD_STORE :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codStore));
 					break;
 					
-				case EmpworgDbTableColumn.COL_COD_EMPLOYEE :
+				case DaoEmpworgDbTableColumn.COL_COD_EMPLOYEE :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codEmployee));
 					break;
 					
-				case EmpworgDbTableColumn.COL_COD_WEEKDAY :
+				case DaoEmpworgDbTableColumn.COL_COD_WEEKDAY :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codWeekday));
 					break;
 					
-				case EmpworgDbTableColumn.COL_BEGIN_TIME :
+				case DaoEmpworgDbTableColumn.COL_BEGIN_TIME :
 					builder.addClauseAnd(eachColumn, DaoFormatter.timeToString(recordInfo.beginTime), DaoWhereCondition.LESS_OR_EQUAL);
 					break;
 					
-				case EmpworgDbTableColumn.COL_END_TIME :
+				case DaoEmpworgDbTableColumn.COL_END_TIME :
 					builder.addClauseAnd(eachColumn, DaoFormatter.timeToString(recordInfo.endTime), DaoWhereCondition.GREATER_OR_EQUAL);
 					break;
 					
-				case EmpworgDbTableColumn.COL_RECORD_MODE :
+				case DaoEmpworgDbTableColumn.COL_RECORD_MODE :
 					builder.addClauseEqualAnd(eachColumn,recordInfo.recordMode);
 					break;
 			}
