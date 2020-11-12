@@ -1,58 +1,40 @@
 package br.com.mind5.payment.ownerPartner.info;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import br.com.mind5.business.owner.info.OwnerInfo;
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-final class OwnparVisiMergeOwner implements InfoMergerVisitor_<OwnparInfo, OwnerInfo> {
-
-	@Override public OwnparInfo writeRecord(OwnerInfo sourceOne, OwnparInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+final class OwnparVisiMergeOwner implements InfoMergerVisitorV3<OwnparInfo, OwnerInfo> {
+	
+	@Override public List<OwnparInfo> beforeMerge(List<OwnparInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(OwnparInfo baseInfo, OwnerInfo selectedInfo) {
+		return (selectedInfo != null && selectedInfo.companyData != null );
+	}
+	
+	
+	
+	@Override public List<OwnparInfo> merge(OwnparInfo baseInfo, OwnerInfo selectedInfo) {
+		List<OwnparInfo> results = new ArrayList<>();
 		
-		OwnparInfo clonedInfo = makeClone(sourceTwo);
-		return merge(sourceOne, clonedInfo);
-	}
-	
-	
-	
-	private void checkArgument(OwnerInfo sourceOne, OwnparInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private OwnparInfo makeClone(OwnparInfo recordInfo) {
-		try {
-			return (OwnparInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	private OwnparInfo merge(OwnerInfo sourceOne, OwnparInfo sourceTwo) {
-		sourceTwo.codOwner = sourceOne.codOwner;
-		sourceTwo.codCountry = sourceOne.companyData.codCountryLegal;
-		sourceTwo.txtCountry = sourceOne.companyData.txtCountryLegal;
+		baseInfo.codOwner = selectedInfo.codOwner;
+		baseInfo.codCountry = selectedInfo.companyData.codCountryLegal;
+		baseInfo.txtCountry = selectedInfo.companyData.txtCountryLegal;
 		
-		return sourceTwo;
+		results.add(baseInfo);
+		return results;
 	}
 	
 	
 	
-	@Override public boolean shouldWrite(OwnerInfo sourceOne, OwnparInfo sourceTwo) {
-		return (sourceOne != null && sourceOne.companyData != null );
-	}
-	
-	
-	
-	private void logException(Exception e) {
-		
-		SystemLog.logError(this.getClass(), e);
+	@Override public InfoUniquifier<OwnparInfo> getUniquifier() {
+		return null;
 	}
 }

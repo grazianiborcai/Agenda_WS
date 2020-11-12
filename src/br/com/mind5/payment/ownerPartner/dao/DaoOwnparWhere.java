@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 import br.com.mind5.payment.ownerPartner.info.OwnparInfo;
 
-final class OwnparWhere implements DaoStmtWhere {
+final class DaoOwnparWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public OwnparWhere(DaoWhereBuilderOption whereOption, String tableName, OwnparInfo recordInfo) {
+	public DaoOwnparWhere(DaoWhereBuilderOption whereOption, String tableName, OwnparInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -27,11 +27,11 @@ final class OwnparWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-				case OwnparDbTableColumn.COL_COD_OWNER :
+				case DaoOwnparDbTableColumn.COL_COD_OWNER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;					
 					
-				case OwnparDbTableColumn.COL_IS_DEFAULT :
+				case DaoOwnparDbTableColumn.COL_IS_DEFAULT :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.booleanTrueToString(recordInfo.isDefault));
 					break;
 			}

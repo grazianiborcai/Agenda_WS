@@ -1,35 +1,19 @@
 package br.com.mind5.payment.ownerPartner.model.action;
 
-import br.com.mind5.model.action.ActionLazyV1;
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionStdHelperMerge;
-import br.com.mind5.model.decisionTree.DeciResult;
+import br.com.mind5.model.action.ActionStdTemplateV2;
+import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.ownerPartner.info.OwnparInfo;
 
-public final class StdOwnparMergeCounpar implements ActionStdV1<OwnparInfo> {
-	private ActionStdV1<OwnparInfo> actionHelper;	
-	
-	
-	public StdOwnparMergeCounpar(DeciTreeOption<OwnparInfo> option) {			
-		actionHelper = new ActionStdHelperMerge<>(option.recordInfos, new VisiOwnparMergeCounpar(option.conn, option.schemaName));
+public final class StdOwnparMergeCounpar extends ActionStdTemplateV2<OwnparInfo> {
+
+	public StdOwnparMergeCounpar(DeciTreeOption<OwnparInfo> option) {
+		super(option);
 	}
 	
 	
 	
-	@Override public void addPostAction(ActionLazyV1<OwnparInfo> actionHandler) {
-		actionHelper.addPostAction(actionHandler);
-	}
-	
-	
-	
-	@Override public boolean executeAction() {			
-		return actionHelper.executeAction();
-	}
-	
-	
-	
-	@Override public DeciResult<OwnparInfo> getDecisionResult() {
-		return actionHelper.getDecisionResult();
+	protected ActionVisitorV2<OwnparInfo> buildVisitorHook(DeciTreeOption<OwnparInfo> option) {
+		return new VisiOwnparMergeCounpar(option);
 	}
 }

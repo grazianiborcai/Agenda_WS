@@ -16,12 +16,12 @@ import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.payment.ownerPartner.info.OwnparInfo;
 
-public final class OwnparSelectSingle extends DaoStmtTemplate<OwnparInfo> {
+public final class DaoOwnparSelectSingle extends DaoStmtTemplate<OwnparInfo> {
 	private final String MAIN_TABLE = DaoDbTable.PAY_PARTNER_OWNER_TABLE;
 	
 	
 	
-	public OwnparSelectSingle(Connection conn, OwnparInfo recordInfo, String schemaName) {
+	public DaoOwnparSelectSingle(Connection conn, OwnparInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -45,7 +45,7 @@ public final class OwnparSelectSingle extends DaoStmtTemplate<OwnparInfo> {
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new OwnparWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new DaoOwnparWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}	
 	
@@ -62,9 +62,9 @@ public final class OwnparSelectSingle extends DaoStmtTemplate<OwnparInfo> {
 				do {
 					OwnparInfo dataInfo = new OwnparInfo();
 					
-					dataInfo.codOwner = stmtResult.getLong(OwnparDbTableColumn.COL_COD_OWNER);
-					dataInfo.codPayPartner = stmtResult.getInt(OwnparDbTableColumn.COL_COD_PAY_PARTNER);
-					dataInfo.isDefault = DaoFormatter.sqlToBoole(stmtResult, OwnparDbTableColumn.COL_IS_DEFAULT);
+					dataInfo.codOwner = stmtResult.getLong(DaoOwnparDbTableColumn.COL_COD_OWNER);
+					dataInfo.codPayPartner = stmtResult.getInt(DaoOwnparDbTableColumn.COL_COD_PAY_PARTNER);
+					dataInfo.isDefault = DaoFormatter.sqlToBoole(stmtResult, DaoOwnparDbTableColumn.COL_IS_DEFAULT);
 					
 					
 					finalResult.add(dataInfo);

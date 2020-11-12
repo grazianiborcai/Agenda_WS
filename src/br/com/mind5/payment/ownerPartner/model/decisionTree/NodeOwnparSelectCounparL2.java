@@ -8,13 +8,13 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 import br.com.mind5.payment.ownerPartner.info.OwnparInfo;
 import br.com.mind5.payment.ownerPartner.model.action.StdOwnparMergeCounpar;
 import br.com.mind5.payment.ownerPartner.model.checker.OwnparCheckCounpar;
 import br.com.mind5.payment.ownerPartner.model.checker.OwnparCheckHasCountry;
 
-public final class NodeOwnparSelectCounparL2 extends DeciTreeTemplateReadV1<OwnparInfo> {
+public final class NodeOwnparSelectCounparL2 extends DeciTreeTemplateReadV2<OwnparInfo> {
 	
 	public NodeOwnparSelectCounparL2(DeciTreeOption<OwnparInfo> option) {
 		super(option);

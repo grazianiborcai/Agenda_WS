@@ -3,47 +3,45 @@ package br.com.mind5.payment.ownerPartner.info;
 import java.util.List;
 
 import br.com.mind5.business.owner.info.OwnerInfo;
-import br.com.mind5.info.obsolete.InfoMerger_;
+import br.com.mind5.info.InfoMergerBuilderV3;
+import br.com.mind5.info.InfoMergerV3;
 import br.com.mind5.payment.countryPartner.info.CounparInfo;
 
 public final class OwnparMerger {	
-	public static OwnparInfo mergeWithCounpar(CounparInfo sourceOne, OwnparInfo sourceTwo) {
-		InfoMerger_<OwnparInfo, CounparInfo> merger = new OwnparMergerCounpar();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
+	public static List<OwnparInfo> mergeWithCounpar(List<OwnparInfo> baseInfos, List<CounparInfo> selectedInfos) {
+		InfoMergerBuilderV3<OwnparInfo, CounparInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new OwnparVisiMergeCounpar());
+		InfoMergerV3<OwnparInfo, CounparInfo> merger = builder.build();		
 	
-	
-	
-	public static List<OwnparInfo> mergeWithCounpar(List<CounparInfo> sourceOnes, List<OwnparInfo> sourceTwos) {
-		InfoMerger_<OwnparInfo, CounparInfo> merger = new OwnparMergerCounpar();		
-		return merger.merge(sourceOnes, sourceTwos);
+		return merger.merge();
 	}	
 	
 	
 	
-	public static OwnparInfo mergeWithOwner(OwnerInfo sourceOne, OwnparInfo sourceTwo) {
-		InfoMerger_<OwnparInfo, OwnerInfo> merger = new OwnparMergerOwner();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
+	public static List<OwnparInfo> mergeWithOwner(List<OwnparInfo> baseInfos, List<OwnerInfo> selectedInfos) {
+		InfoMergerBuilderV3<OwnparInfo, OwnerInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new OwnparVisiMergeOwner());
+		InfoMergerV3<OwnparInfo, OwnerInfo> merger = builder.build();		
 	
-	
-	
-	public static List<OwnparInfo> mergeWithOwner(List<OwnerInfo> sourceOnes, List<OwnparInfo> sourceTwos) {
-		InfoMerger_<OwnparInfo, OwnerInfo> merger = new OwnparMergerOwner();		
-		return merger.merge(sourceOnes, sourceTwos);
+		return merger.merge();
 	}	
 	
 	
 	
-	public static OwnparInfo mergeToSelect(OwnparInfo sourceOne, OwnparInfo sourceTwo) {
-		InfoMerger_<OwnparInfo, OwnparInfo> merger = new OwnparMergerToSelect();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
+	public static List<OwnparInfo> mergeToSelect(List<OwnparInfo> baseInfos, List<OwnparInfo> selectedInfos) {
+		InfoMergerBuilderV3<OwnparInfo, OwnparInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new OwnparVisiMergeToSelect());
+		InfoMergerV3<OwnparInfo, OwnparInfo> merger = builder.build();		
 	
-	
-	
-	public static List<OwnparInfo> mergeToSelect(List<OwnparInfo> sourceOnes, List<OwnparInfo> sourceTwos) {
-		InfoMerger_<OwnparInfo, OwnparInfo> merger = new OwnparMergerToSelect();		
-		return merger.merge(sourceOnes, sourceTwos);
+		return merger.merge();
 	}	
 }

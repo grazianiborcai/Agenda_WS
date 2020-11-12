@@ -8,11 +8,11 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 import br.com.mind5.payment.ownerPartner.info.OwnparInfo;
 import br.com.mind5.payment.ownerPartner.model.checker.OwnparCheckExist;
 
-public final class NodeOwnparSelect extends DeciTreeTemplateReadV1<OwnparInfo> {
+public final class NodeOwnparSelect extends DeciTreeTemplateReadV2<OwnparInfo> {
 	
 	public NodeOwnparSelect(DeciTreeOption<OwnparInfo> option) {
 		super(option);

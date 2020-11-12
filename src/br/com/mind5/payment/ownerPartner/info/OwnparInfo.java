@@ -17,7 +17,7 @@ public final class OwnparInfo extends InfoRecord implements Cloneable {
 	
 	
 	public OwnparInfo() {
-		super(OwnparInfo.class);
+		super();
 		
 		codOwner = DefaultValue.number();
 		codPayPartner = DefaultValue.number();
