@@ -1,8 +1,8 @@
 package br.com.mind5.payment.statusPayOrder.info;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import br.com.mind5.common.CloneUtil;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
 import br.com.mind5.payment.statusPayOrderItem.info.PaytusemInfo;
@@ -24,7 +24,7 @@ public final class PaytusInfo extends InfoRecord implements Cloneable {
 	
 	
 	public PaytusInfo() {
-		super(PaytusInfo.class);
+		super();
 		
 		codOwner = DefaultValue.number();	
 		codPayOrder = DefaultValue.number();
@@ -51,26 +51,10 @@ public final class PaytusInfo extends InfoRecord implements Cloneable {
 	@Override public Object clone() throws CloneNotSupportedException {
 		PaytusInfo deepCopy = (PaytusInfo) super.clone();
 		
-		deepCopy.paytusems = clonePaytusems(deepCopy.paytusems);
+		deepCopy.paytusems = CloneUtil.cloneRecords(deepCopy.paytusems, this.getClass());
 		
 		return deepCopy;
 	}
-	
-	
-	
-	private List<PaytusemInfo> clonePaytusems(List<PaytusemInfo> recordInfos) throws CloneNotSupportedException {
-		if (recordInfos == null)
-			return null;
-		
-		List<PaytusemInfo> results = new ArrayList<>();
-		
-		for(PaytusemInfo eachRecord : recordInfos) {
-			PaytusemInfo cloned = (PaytusemInfo) eachRecord.clone();
-			results.add(cloned);
-		}
-		
-		return results;
-	}	
 	
 	
 	
