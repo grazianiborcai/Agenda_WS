@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilder;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 
-final class EmparchWhere implements DaoStmtWhere {	
+final class DaoEmparchWhere implements DaoStmtWhere {	
 	private String whereClause;	
 	
 	
-	public EmparchWhere(DaoWhereBuilderOption whereOption, String tableName, EmparchInfo recordInfo) {
+	public DaoEmparchWhere(DaoWhereBuilderOption whereOption, String tableName, EmparchInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -27,19 +27,19 @@ final class EmparchWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-			case EmparchDbTableColumn.COL_COD_OWNER :
+			case DaoEmparchDbTableColumn.COL_COD_OWNER :
 				builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 				break;
 				
-			case EmparchDbTableColumn.COL_COD_EMPLOYEE :
+			case DaoEmparchDbTableColumn.COL_COD_EMPLOYEE :
 				builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codEmployee));
 				break;
 				
-			case EmparchDbTableColumn.COL_COD_USER :
+			case DaoEmparchDbTableColumn.COL_COD_USER :
 				builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codUser));
 				break;
 				
-			case EmparchDbTableColumn.COL_RECORD_MODE :
+			case DaoEmparchDbTableColumn.COL_RECORD_MODE :
 				builder.addClauseEqualAnd(eachColumn, recordInfo.recordMode);
 				break;
 			}

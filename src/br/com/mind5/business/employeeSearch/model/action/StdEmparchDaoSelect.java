@@ -5,15 +5,15 @@ import br.com.mind5.model.action.ActionStdTemplateV2;
 import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdEmparchMergeToSelect extends ActionStdTemplateV2<EmparchInfo> {
+public final class StdEmparchDaoSelect extends ActionStdTemplateV2<EmparchInfo> {
 
-	public StdEmparchMergeToSelect(DeciTreeOption<EmparchInfo> option) {
+	public StdEmparchDaoSelect(DeciTreeOption<EmparchInfo> option) {
 		super(option);
 	}
 	
 	
 	
 	protected ActionVisitorV2<EmparchInfo> buildVisitorHook(DeciTreeOption<EmparchInfo> option) {
-		return new VisiEmparchMergeToSelect(option);
+		return new VisiEmparchDaoSelect(option);
 	}
 }

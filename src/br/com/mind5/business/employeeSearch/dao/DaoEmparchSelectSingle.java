@@ -20,11 +20,11 @@ import br.com.mind5.dao.common.DaoJoinPerson;
 import br.com.mind5.dao.common.DaoJoinUser;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class EmparchSelectSingle extends DaoStmtTemplate<EmparchInfo> {
+public final class DaoEmparchSelectSingle extends DaoStmtTemplate<EmparchInfo> {
 	private final String MAIN_TABLE = DaoDbTable.EMP_TABLE;
 	
 	
-	public EmparchSelectSingle(Connection conn, EmparchInfo recordInfo, String schemaName) {
+	public DaoEmparchSelectSingle(Connection conn, EmparchInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -54,7 +54,7 @@ public final class EmparchSelectSingle extends DaoStmtTemplate<EmparchInfo> {
 		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new EmparchWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new DaoEmparchWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -85,12 +85,12 @@ public final class EmparchSelectSingle extends DaoStmtTemplate<EmparchInfo> {
 				do {
 					EmparchInfo dataInfo = new EmparchInfo();
 					
-					dataInfo.codOwner = stmtResult.getLong(EmparchDbTableColumn.COL_COD_OWNER);
-					dataInfo.codEmployee = stmtResult.getLong(EmparchDbTableColumn.COL_COD_EMPLOYEE);
-					dataInfo.recordMode = stmtResult.getString(EmparchDbTableColumn.COL_RECORD_MODE);
-					dataInfo.codPerson = DaoFormatter.sqlToLong(stmtResult, EmparchDbTableColumn.COL_COD_PERSON);
-					dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, EmparchDbTableColumn.COL_COD_USER);
-					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, EmparchDbTableColumn.COL_COD_SNAPSHOT);				
+					dataInfo.codOwner = stmtResult.getLong(DaoEmparchDbTableColumn.COL_COD_OWNER);
+					dataInfo.codEmployee = stmtResult.getLong(DaoEmparchDbTableColumn.COL_COD_EMPLOYEE);
+					dataInfo.recordMode = stmtResult.getString(DaoEmparchDbTableColumn.COL_RECORD_MODE);
+					dataInfo.codPerson = DaoFormatter.sqlToLong(stmtResult, DaoEmparchDbTableColumn.COL_COD_PERSON);
+					dataInfo.codUser = DaoFormatter.sqlToLong(stmtResult, DaoEmparchDbTableColumn.COL_COD_USER);
+					dataInfo.codSnapshot = DaoFormatter.sqlToLong(stmtResult, DaoEmparchDbTableColumn.COL_COD_SNAPSHOT);				
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

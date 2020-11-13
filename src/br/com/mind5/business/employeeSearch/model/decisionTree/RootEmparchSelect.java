@@ -9,13 +9,13 @@ import br.com.mind5.business.employeeSearch.model.checker.EmparchCheckLangu;
 import br.com.mind5.business.employeeSearch.model.checker.EmparchCheckOwner;
 import br.com.mind5.business.employeeSearch.model.checker.EmparchCheckRead;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 
-public final class RootEmparchSelect extends DeciTreeTemplateReadV1<EmparchInfo> {
+public final class RootEmparchSelect extends DeciTreeTemplateReadV2<EmparchInfo> {
 	
 	public RootEmparchSelect(DeciTreeOption<EmparchInfo> option) {
 		super(option);
