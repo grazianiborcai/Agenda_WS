@@ -5,15 +5,15 @@ import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.creditCardSearch.info.CrecarchInfo;
 
-public final class StdCrecarchMergeToSelect extends ActionStdTemplateV2<CrecarchInfo> {
+public final class StdCrecarchDaoSelect extends ActionStdTemplateV2<CrecarchInfo> {
 
-	public StdCrecarchMergeToSelect(DeciTreeOption<CrecarchInfo> option) {
+	public StdCrecarchDaoSelect(DeciTreeOption<CrecarchInfo> option) {
 		super(option);
 	}
 	
 	
 	
 	protected ActionVisitorV2<CrecarchInfo> buildVisitorHook(DeciTreeOption<CrecarchInfo> option) {
-		return new VisiCrecarchMergeToSelect(option);
+		return new VisiCrecarchDaoSelect(option);
 	}
 }

@@ -18,11 +18,11 @@ import br.com.mind5.dao.common.DaoJoinCuspar;
 import br.com.mind5.dao.common.DaoOptionValue;
 import br.com.mind5.payment.creditCardSearch.info.CrecarchInfo;
 
-public final class CrecarchSelectSingle extends DaoStmtTemplate<CrecarchInfo> {
+public final class DaoCrecarchSelectSingle extends DaoStmtTemplate<CrecarchInfo> {
 	private final String MAIN_TABLE = DaoDbTable.CREDIT_CARD_TABLE;	
 	
 	
-	public CrecarchSelectSingle(Connection conn, CrecarchInfo recordInfo, String schemaName) {
+	public DaoCrecarchSelectSingle(Connection conn, CrecarchInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -52,7 +52,7 @@ public final class CrecarchSelectSingle extends DaoStmtTemplate<CrecarchInfo> {
 		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new CrecarchWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new DaoCrecarchWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -76,12 +76,12 @@ public final class CrecarchSelectSingle extends DaoStmtTemplate<CrecarchInfo> {
 				do {
 					CrecarchInfo dataInfo = new CrecarchInfo();
 					
-					dataInfo.codOwner = stmtResult.getLong(CrecarchDbTableColumn.COL_COD_OWNER);
-					dataInfo.codCreditCard = stmtResult.getLong(CrecarchDbTableColumn.COL_COD_CREDIT_CARD);
-					dataInfo.codPayCustomer = stmtResult.getLong(CrecarchDbTableColumn.COL_COD_PAY_CUSTOMER);
-					dataInfo.codPayPartner = stmtResult.getInt(CrecarchDbTableColumn.COL_COD_PAY_PARTNER);
-					dataInfo.creditCardId = stmtResult.getString(CrecarchDbTableColumn.COL_CREDIT_CARD_ID);
-					dataInfo.recordMode = stmtResult.getString(CrecarchDbTableColumn.COL_RECORD_MODE);			
+					dataInfo.codOwner = stmtResult.getLong(DaoCrecarchDbTableColumn.COL_COD_OWNER);
+					dataInfo.codCreditCard = stmtResult.getLong(DaoCrecarchDbTableColumn.COL_COD_CREDIT_CARD);
+					dataInfo.codPayCustomer = stmtResult.getLong(DaoCrecarchDbTableColumn.COL_COD_PAY_CUSTOMER);
+					dataInfo.codPayPartner = stmtResult.getInt(DaoCrecarchDbTableColumn.COL_COD_PAY_PARTNER);
+					dataInfo.creditCardId = stmtResult.getString(DaoCrecarchDbTableColumn.COL_CREDIT_CARD_ID);
+					dataInfo.recordMode = stmtResult.getString(DaoCrecarchDbTableColumn.COL_RECORD_MODE);			
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

@@ -19,7 +19,7 @@ public final class CrecarchInfo extends InfoRecord implements Cloneable {
 	
 	
 	public CrecarchInfo() {
-		super(CrecarchInfo.class);
+		super();
 		
 		codOwner = DefaultValue.number();
 		codPayCustomer = DefaultValue.number();
