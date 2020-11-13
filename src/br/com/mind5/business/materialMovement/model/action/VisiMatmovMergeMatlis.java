@@ -1,19 +1,19 @@
 package br.com.mind5.business.materialMovement.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.business.materialList.model.decisionTree.RootMatlisSelect;
 import br.com.mind5.business.materialMovement.info.MatmovInfo;
 import br.com.mind5.business.materialMovement.info.MatmovMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiMatmovMergeMatlis extends ActionVisitorTemplateMergeV1<MatmovInfo, MatlisInfo> {
+final class VisiMatmovMergeMatlis extends ActionVisitorTemplateMergeV2<MatmovInfo, MatlisInfo> {
 	
-	public VisiMatmovMergeMatlis(Connection conn, String schemaName) {
-		super(conn, schemaName, MatlisInfo.class);
+	public VisiMatmovMergeMatlis(DeciTreeOption<MatmovInfo> option) {
+		super(option, MatlisInfo.class);
 	}
 	
 	
@@ -24,13 +24,13 @@ final class VisiMatmovMergeMatlis extends ActionVisitorTemplateMergeV1<MatmovInf
 	
 	
 	
-	@Override protected List<MatmovInfo> mergeHook(List<MatmovInfo> recordInfos, List<MatlisInfo> selectedInfos) {	
-		return MatmovMerger.mergeWithMatlis(selectedInfos, recordInfos);
+	@Override protected List<MatmovInfo> mergeHook(List<MatmovInfo> baseInfos, List<MatlisInfo> selectedInfos) {	
+		return MatmovMerger.mergeWithMatlis(baseInfos, selectedInfos);
 	}
 	
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
+		return super.MERGE_WHEN_EMPTY;
 	}
 }

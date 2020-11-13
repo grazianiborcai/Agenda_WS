@@ -1,56 +1,39 @@
 package br.com.mind5.business.materialMovement.info;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import br.com.mind5.business.materialList.info.MatlisInfo;
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-final class MatmovVisiMergeMatlis implements InfoMergerVisitor_<MatmovInfo, MatlisInfo> {
-
-	@Override public MatmovInfo writeRecord(MatlisInfo sourceOne, MatmovInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+final class MatmovVisiMergeMatlis implements InfoMergerVisitorV3<MatmovInfo, MatlisInfo> {
+	
+	@Override public List<MatmovInfo> beforeMerge(List<MatmovInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(MatmovInfo baseInfo, MatlisInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner	&&
+				baseInfo.codMat   == selectedInfo.codMat			);
+	}
+	
+	
+	
+	@Override public List<MatmovInfo> merge(MatmovInfo baseInfo, MatlisInfo selectedInfo) {
+		List<MatmovInfo> results = new ArrayList<>();
 		
-		MatmovInfo clonedInfo = makeClone(sourceTwo);
-		return merge(sourceOne, clonedInfo);
-	}
-	
-	
-	
-	private void checkArgument(MatlisInfo sourceOne, MatmovInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private MatmovInfo makeClone(MatmovInfo recordInfo) {
-		try {
-			return (MatmovInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	private MatmovInfo merge(MatlisInfo sourceOne, MatmovInfo sourceTwo) {
-		sourceTwo.matlisData = sourceOne;
-		return sourceTwo;
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(MatlisInfo sourceOne, MatmovInfo sourceTwo) {
-		return (sourceOne.codOwner == sourceTwo.codOwner	&&
-				sourceOne.codMat   == sourceTwo.codMat			);
-	}
-	
-	
-	
-	private void logException(Exception e) {
+		baseInfo.matlisData = selectedInfo;
 		
-		SystemLog.logError(this.getClass(), e);
+		results.add(baseInfo);
+		return results;
+	}
+	
+	
+	
+	@Override public InfoUniquifier<MatmovInfo> getUniquifier() {
+		return null;
 	}
 }

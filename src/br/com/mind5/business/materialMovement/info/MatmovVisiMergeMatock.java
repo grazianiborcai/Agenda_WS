@@ -1,57 +1,40 @@
 package br.com.mind5.business.materialMovement.info;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import br.com.mind5.business.materialStock.info.MatockInfo;
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-final class MatmovVisiMergeMatock implements InfoMergerVisitor_<MatmovInfo, MatockInfo> {
-
-	@Override public MatmovInfo writeRecord(MatockInfo sourceOne, MatmovInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+final class MatmovVisiMergeMatock implements InfoMergerVisitorV3<MatmovInfo, MatockInfo> {
+	
+	@Override public List<MatmovInfo> beforeMerge(List<MatmovInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(MatmovInfo baseInfo, MatockInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner	&&
+				baseInfo.codMat   == selectedInfo.codMat	&&
+				baseInfo.codStore == selectedInfo.codStore		);
+	}
+	
+	
+	
+	@Override public List<MatmovInfo> merge(MatmovInfo baseInfo, MatockInfo selectedInfo) {
+		List<MatmovInfo> results = new ArrayList<>();
 		
-		MatmovInfo clonedInfo = makeClone(sourceTwo);
-		return merge(sourceOne, clonedInfo);
-	}
-	
-	
-	
-	private void checkArgument(MatockInfo sourceOne, MatmovInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private MatmovInfo makeClone(MatmovInfo recordInfo) {
-		try {
-			return (MatmovInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	private MatmovInfo merge(MatockInfo sourceOne, MatmovInfo sourceTwo) {
-		sourceTwo.quantityStock = sourceOne.quantityStock;
-		return sourceTwo;
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(MatockInfo sourceOne, MatmovInfo sourceTwo) {		
-		return (sourceOne.codOwner == sourceTwo.codOwner	&&
-				sourceOne.codMat   == sourceTwo.codMat		&&
-				sourceOne.codStore == sourceTwo.codStore		);
-	}
-	
-	
-	
-	private void logException(Exception e) {
+		baseInfo.quantityStock = selectedInfo.quantityStock;
 		
-		SystemLog.logError(this.getClass(), e);
+		results.add(baseInfo);
+		return results;
+	}
+	
+	
+	
+	@Override public InfoUniquifier<MatmovInfo> getUniquifier() {
+		return null;
 	}
 }

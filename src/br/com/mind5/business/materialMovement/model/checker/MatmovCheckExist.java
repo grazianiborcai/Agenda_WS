@@ -1,7 +1,7 @@
 package br.com.mind5.business.materialMovement.model.checker;
 
 import br.com.mind5.business.materialMovement.info.MatmovInfo;
-import br.com.mind5.business.materialMovement.model.action.StdMatmovSelect;
+import br.com.mind5.business.materialMovement.model.action.StdMatmovDaoSelect;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -17,7 +17,7 @@ public final class MatmovCheckExist extends ModelCheckerTemplateActionV2<MatmovI
 	
 	
 	@Override protected ActionStdV1<MatmovInfo> buildActionHook(DeciTreeOption<MatmovInfo> option) {
-		ActionStdV1<MatmovInfo> select = new StdMatmovSelect(option);
+		ActionStdV1<MatmovInfo> select = new StdMatmovDaoSelect(option);
 		
 		return select;
 	}

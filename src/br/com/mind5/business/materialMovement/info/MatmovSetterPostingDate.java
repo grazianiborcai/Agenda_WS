@@ -3,30 +3,17 @@ package br.com.mind5.business.materialMovement.info;
 import java.time.LocalDate;
 
 import br.com.mind5.common.DefaultValue;
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.InfoSetter;
+import br.com.mind5.info.InfoSetterTemplate;
 
-public final class MatmovSetterPostingDate implements InfoSetter<MatmovInfo> {
+public final class MatmovSetterPostingDate extends InfoSetterTemplate<MatmovInfo> {
 	
-	public MatmovInfo setAttr(MatmovInfo recordInfo) {
-		checkArgument(recordInfo);
-		
+	@Override protected MatmovInfo setAttrHook(MatmovInfo recordInfo) {
 		recordInfo.postingDate = DefaultValue.localDateNow();		
 		recordInfo.postingYearMonth = getYearMonth(recordInfo.postingDate);
 		recordInfo.postingYear = recordInfo.postingDate.getYear();
 		recordInfo.postingMonth = Integer.valueOf(getMonth(recordInfo.postingDate));	
 		
 		return recordInfo;
-	}
-	
-	
-	
-	private void checkArgument(MatmovInfo recordInfo) {
-		if (recordInfo == null) {
-			logException(new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT));
-			throw new NullPointerException("recordInfo" + SystemMessage.NULL_ARGUMENT);
-		}
 	}
 	
 	
@@ -45,11 +32,4 @@ public final class MatmovSetterPostingDate implements InfoSetter<MatmovInfo> {
 		String month = "0" + String.valueOf(postingDate.getMonthValue());		
 		return month.substring(month.length()-2, month.length());
 	}
-	
-	
-	
-	private void logException(Exception e) {
-		
-		SystemLog.logError(this.getClass(), e);
-	}	
 }

@@ -1,54 +1,39 @@
 package br.com.mind5.business.materialMovement.info;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import br.com.mind5.business.materialMovementSearch.info.MatmarchInfo;
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-final class MatmovVisiMergeMatmarch implements InfoMergerVisitor_<MatmovInfo, MatmarchInfo> {
-
-	@Override public MatmovInfo writeRecord(MatmarchInfo sourceOne, MatmovInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+final class MatmovVisiMergeMatmarch implements InfoMergerVisitorV3<MatmovInfo, MatmarchInfo> {
+	
+	@Override public List<MatmovInfo> beforeMerge(List<MatmovInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(MatmovInfo baseInfo, MatmarchInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner);
+	}
+	
+	
+	
+	@Override public List<MatmovInfo> merge(MatmovInfo baseInfo, MatmarchInfo selectedInfo) {
+		List<MatmovInfo> results = new ArrayList<>();
+		MatmovInfo result;
 		
-		MatmovInfo clonedInfo = makeClone(sourceTwo);
-		return merge(sourceOne, clonedInfo);
-	}
-	
-	
-	
-	private void checkArgument(MatmarchInfo sourceOne, MatmovInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private MatmovInfo makeClone(MatmovInfo recordInfo) {
-		try {
-			return (MatmovInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	private MatmovInfo merge(MatmarchInfo sourceOne, MatmovInfo sourceTwo) {
-		return MatmovInfo.copyFrom(sourceOne);
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(MatmarchInfo sourceOne, MatmovInfo sourceTwo) {
-		return (sourceOne.codOwner == sourceTwo.codOwner);
-	}
-	
-	
-	
-	private void logException(Exception e) {
+		result = MatmovInfo.copyFrom(selectedInfo);
 		
-		SystemLog.logError(this.getClass(), e);
+		results.add(result);
+		return results;
+	}
+	
+	
+	
+	@Override public InfoUniquifier<MatmovInfo> getUniquifier() {
+		return null;
 	}
 }

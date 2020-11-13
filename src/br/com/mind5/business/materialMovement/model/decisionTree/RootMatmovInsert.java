@@ -4,26 +4,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.materialMovement.info.MatmovInfo;
-import br.com.mind5.business.materialMovement.model.action.LazyMatmovRootSelect;
 import br.com.mind5.business.materialMovement.model.action.LazyMatmovNodeMatock;
+import br.com.mind5.business.materialMovement.model.action.LazyMatmovRootSelect;
 import br.com.mind5.business.materialMovement.model.checker.MatmovCheckInsert;
 import br.com.mind5.business.materialMovement.model.checker.MatmovCheckLangu;
+import br.com.mind5.business.materialMovement.model.checker.MatmovCheckMamovype;
 import br.com.mind5.business.materialMovement.model.checker.MatmovCheckMat;
 import br.com.mind5.business.materialMovement.model.checker.MatmovCheckMatarchProduct;
-import br.com.mind5.business.materialMovement.model.checker.MatmovCheckMamovype;
 import br.com.mind5.business.materialMovement.model.checker.MatmovCheckMatore;
 import br.com.mind5.business.materialMovement.model.checker.MatmovCheckOwner;
 import br.com.mind5.business.materialMovement.model.checker.MatmovCheckStorauth;
 import br.com.mind5.business.materialMovement.model.checker.MatmovCheckStore;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class RootMatmovInsert extends DeciTreeTemplateWriteV1<MatmovInfo> {
+public final class RootMatmovInsert extends DeciTreeTemplateWriteV2<MatmovInfo> {
 	
 	public RootMatmovInsert(DeciTreeOption<MatmovInfo> option) {
 		super(option);

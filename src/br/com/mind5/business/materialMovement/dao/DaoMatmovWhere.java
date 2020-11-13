@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilder;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 
-public final class MatmovWhere implements DaoStmtWhere {
+public final class DaoMatmovWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public MatmovWhere(DaoWhereBuilderOption whereOption, String tableName, MatmovInfo recordInfo) {
+	public DaoMatmovWhere(DaoWhereBuilderOption whereOption, String tableName, MatmovInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -27,19 +27,19 @@ public final class MatmovWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-				case MatmovDbTableColumn.COL_COD_OWNER :
+				case DaoMatmovDbTableColumn.COL_COD_OWNER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;
 					
-				case MatmovDbTableColumn.COL_COD_STORE :
+				case DaoMatmovDbTableColumn.COL_COD_STORE :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codStore));
 					break;
 					
-				case MatmovDbTableColumn.COL_COD_MATERIAL :
+				case DaoMatmovDbTableColumn.COL_COD_MATERIAL :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codMat));
 					break;
 					
-				case MatmovDbTableColumn.COL_COD_MAT_MOV :
+				case DaoMatmovDbTableColumn.COL_COD_MAT_MOV :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codMatmov));
 					break;
 			}

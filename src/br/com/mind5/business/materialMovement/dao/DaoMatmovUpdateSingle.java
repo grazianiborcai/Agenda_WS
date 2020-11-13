@@ -2,25 +2,24 @@ package br.com.mind5.business.materialMovement.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 import br.com.mind5.business.materialMovement.info.MatmovInfo;
 import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParser;
 import br.com.mind5.dao.DaoStmtParamTranslator;
 import br.com.mind5.dao.DaoStmtTemplate;
+import br.com.mind5.dao.DaoStmtWhere;
+import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
+import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class MatmovInsertSingle extends DaoStmtTemplate<MatmovInfo> {
-	private final String MAIN_TABLE = DaoDbTable.MAT_MOVEMENT_TABLE;		
+public final class DaoMatmovUpdateSingle extends DaoStmtTemplate<MatmovInfo> {
+	private final String MAIN_TABLE = DaoDbTable.MAT_MOVEMENT_TABLE;	
 	
 	
-	public MatmovInsertSingle(Connection conn, MatmovInfo recordInfo, String schemaName) {
-		super(conn, recordInfo, schemaName);			
+	public DaoMatmovUpdateSingle(Connection conn, MatmovInfo recordInfo, String schemaName) {
+		super(conn, recordInfo, schemaName);	
 	}
 	
 	
@@ -32,18 +31,30 @@ public final class MatmovInsertSingle extends DaoStmtTemplate<MatmovInfo> {
 	
 	
 	@Override protected DaoOperation getOperationHook() {
-		return DaoOperation.INSERT;
+		return DaoOperation.UPDATE;
+	}
+	
+	
+	
+	@Override protected String buildWhereClauseHook(String tableName, MatmovInfo recordInfo) {
+		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
+		
+		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
+		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;
+		whereOption.ignoreNonPrimaryKey = DaoOptionValue.IGNORE_NON_PK;
+		
+		DaoStmtWhere whereClause = new DaoMatmovWhere(whereOption, tableName, recordInfo);
+		return whereClause.getWhereClause();
 	}
 	
 	
 	
 	@Override protected DaoStmtParamTranslator<MatmovInfo> getParamTranslatorHook() {
-		return new DaoStmtParamTranslator<MatmovInfo>() {		
-			@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, MatmovInfo recordInfo) throws SQLException {				
+		return new DaoStmtParamTranslator<MatmovInfo>() {	
+			@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, MatmovInfo recordInfo) throws SQLException {	
 				
 				int i = 1;
 				
-				stmt.setLong(i++, recordInfo.codOwner);
 				stmt = DaoFormatter.charToStmt(stmt, i++, recordInfo.codMatmovType);
 				stmt.setLong(i++, recordInfo.codMat);
 				stmt.setLong(i++, recordInfo.codStore);
@@ -52,7 +63,7 @@ public final class MatmovInsertSingle extends DaoStmtTemplate<MatmovInfo> {
 				stmt.setInt(i++, recordInfo.quantity);	
 				stmt = DaoFormatter.localDateToStmt(stmt, i++, recordInfo.postingDate);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.createdBy);
-				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.createdOn);				
+				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.createdOn);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.postingMonth);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.postingYear);
 				stmt = DaoFormatter.numberToStmt(stmt, i++, recordInfo.postingYearMonth);
@@ -60,19 +71,6 @@ public final class MatmovInsertSingle extends DaoStmtTemplate<MatmovInfo> {
 				
 				return stmt;
 			}		
-		};
-	}
-	
-	
-	
-	@Override protected DaoResultParser<MatmovInfo> getResultParserHook() {
-		return new DaoResultParser<MatmovInfo>() {		
-			@Override public List<MatmovInfo> parseResult(MatmovInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {		
-				List<MatmovInfo> finalResult = new ArrayList<>();
-				recordInfo.codMatmov = lastId;
-				finalResult.add(recordInfo);			
-				return finalResult;
-			}
 		};
 	}
 }

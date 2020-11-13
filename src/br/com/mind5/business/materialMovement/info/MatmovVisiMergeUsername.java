@@ -1,60 +1,39 @@
 package br.com.mind5.business.materialMovement.info;
 
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import java.util.ArrayList;
+import java.util.List;
+
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.security.username.info.UsernameInfo;
 
-final class MatmovVisiMergeUsername implements InfoMergerVisitor_<MatmovInfo, UsernameInfo> {
+final class MatmovVisiMergeUsername implements InfoMergerVisitorV3<MatmovInfo, UsernameInfo> {
 
-	@Override public MatmovInfo writeRecord(UsernameInfo sourceOne, MatmovInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);
+	@Override public List<MatmovInfo> beforeMerge(List<MatmovInfo> baseInfos) {
+		return baseInfos;
+	}
+	
+	
+	
+	@Override public boolean shouldMerge(MatmovInfo baseInfo, UsernameInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner		&&
+				baseInfo.username.equals(selectedInfo.username)		);
+	}
+	
+	
+	
+	@Override public List<MatmovInfo> merge(MatmovInfo baseInfo, UsernameInfo selectedInfo) {
+		List<MatmovInfo> results = new ArrayList<>();
 		
-		MatmovInfo clonedInfo = makeClone(sourceTwo);
-		return merge(sourceOne, clonedInfo);
-	}
-	
-	
-	
-	private void checkArgument(UsernameInfo sourceOne, MatmovInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private MatmovInfo makeClone(MatmovInfo recordInfo) {
-		try {
-			return (MatmovInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	private MatmovInfo merge(UsernameInfo sourceOne, MatmovInfo sourceTwo) {
-		sourceTwo.lastChangedBy = sourceOne.codUser;
-		return sourceTwo;
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(UsernameInfo sourceOne, MatmovInfo sourceTwo) {
-		if (sourceOne.username == null ||
-			sourceTwo.username == null		)
-			return false;
+		baseInfo.lastChangedBy = selectedInfo.codUser;
 		
-		return (sourceOne.codOwner == sourceTwo.codOwner		&&
-				sourceOne.username.equals(sourceTwo.username)		);
+		results.add(baseInfo);
+		return results;
 	}
 	
 	
 	
-	private void logException(Exception e) {
-		
-		SystemLog.logError(this.getClass(), e);
+	@Override public InfoUniquifier<MatmovInfo> getUniquifier() {
+		return null;
 	}
 }

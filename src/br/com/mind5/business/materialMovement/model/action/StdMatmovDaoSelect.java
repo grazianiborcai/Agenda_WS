@@ -5,15 +5,15 @@ import br.com.mind5.model.action.ActionStdTemplateV2;
 import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdMatmovMergeMatlis extends ActionStdTemplateV2<MatmovInfo> {
+public final class StdMatmovDaoSelect extends ActionStdTemplateV2<MatmovInfo> {
 
-	public StdMatmovMergeMatlis(DeciTreeOption<MatmovInfo> option) {
+	public StdMatmovDaoSelect(DeciTreeOption<MatmovInfo> option) {
 		super(option);
 	}
 	
 	
 	
 	protected ActionVisitorV2<MatmovInfo> buildVisitorHook(DeciTreeOption<MatmovInfo> option) {
-		return new VisiMatmovMergeMatlis(option);
+		return new VisiMatmovDaoSelect(option);
 	}
 }

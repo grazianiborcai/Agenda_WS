@@ -1,20 +1,20 @@
 package br.com.mind5.business.materialMovement.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.materialMovement.info.MatmovInfo;
 import br.com.mind5.business.materialMovement.info.MatmovMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.username.info.UsernameCopier;
 import br.com.mind5.security.username.info.UsernameInfo;
 import br.com.mind5.security.username.model.decisionTree.RootUsernameSelect;
 
-final class VisiMatmovMergeUsername extends ActionVisitorTemplateMergeV1<MatmovInfo, UsernameInfo> {
+final class VisiMatmovMergeUsername extends ActionVisitorTemplateMergeV2<MatmovInfo, UsernameInfo> {
 	
-	public VisiMatmovMergeUsername(Connection conn, String schemaName) {
-		super(conn, schemaName, UsernameInfo.class);
+	public VisiMatmovMergeUsername(DeciTreeOption<MatmovInfo> option) {
+		super(option, UsernameInfo.class);
 	}
 	
 	
@@ -25,19 +25,19 @@ final class VisiMatmovMergeUsername extends ActionVisitorTemplateMergeV1<MatmovI
 	
 	
 	
-	@Override protected List<UsernameInfo> toActionClassHook(List<MatmovInfo> recordInfos) {
-		return UsernameCopier.copyFromMatmov(recordInfos);	
+	@Override protected List<UsernameInfo> toActionClassHook(List<MatmovInfo> baseInfos) {
+		return UsernameCopier.copyFromMatmov(baseInfos);	
 	}
 	
 	
 	
-	@Override protected List<MatmovInfo> mergeHook(List<MatmovInfo> recordInfos, List<UsernameInfo> selectedInfos) {	
-		return MatmovMerger.mergeWithUsername(selectedInfos, recordInfos);
+	@Override protected List<MatmovInfo> mergeHook(List<MatmovInfo> baseInfos, List<UsernameInfo> selectedInfos) {	
+		return MatmovMerger.mergeWithUsername(baseInfos, selectedInfos);
 	}
 	
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
+		return super.MERGE_WHEN_EMPTY;
 	}
 }

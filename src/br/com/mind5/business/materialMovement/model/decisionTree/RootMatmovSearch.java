@@ -6,16 +6,16 @@ import java.util.List;
 import br.com.mind5.business.materialMovement.info.MatmovInfo;
 import br.com.mind5.business.materialMovement.model.action.LazyMatmovRootSelect;
 import br.com.mind5.business.materialMovement.model.action.StdMatmovMergeMatmarch;
-import br.com.mind5.business.materialMovement.model.checker.MatmovCheckDummy;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 
 
-public final class RootMatmovSearch extends DeciTreeTemplateReadV1<MatmovInfo> {
+public final class RootMatmovSearch extends DeciTreeTemplateReadV2<MatmovInfo> {
 	
 	public RootMatmovSearch(DeciTreeOption<MatmovInfo> option) {
 		super(option);
@@ -27,7 +27,7 @@ public final class RootMatmovSearch extends DeciTreeTemplateReadV1<MatmovInfo> {
 		List<ModelCheckerV1<MatmovInfo>> queue = new ArrayList<>();		
 		ModelCheckerV1<MatmovInfo> checker;
 	
-		checker = new MatmovCheckDummy();
+		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 		
 		return new ModelCheckerHelperQueueV2<>(queue);

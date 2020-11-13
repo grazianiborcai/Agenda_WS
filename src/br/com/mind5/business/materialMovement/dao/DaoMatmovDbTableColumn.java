@@ -9,7 +9,7 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class MatmovDbTableColumn extends DaoDbTableColumnTemplate {
+public final class DaoMatmovDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_MAT_MOV = DaoDbField.COL_COD_MAT_MOV;
 	public static final String COL_COD_MAT_MOV_TYPE = DaoDbField.COL_COD_MAT_MOV_TYPE;
 	public static final String COL_COD_MATERIAL = DaoDbField.COL_COD_MATERIAL;
@@ -27,26 +27,13 @@ public final class MatmovDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_QUANTITY_STOCK = DaoDbField.COL_QUANTITY_STOCK;
 
 	
-	
-	private Hashtable<String, List<DaoColumn>> tableColumns;	
-	
-	public MatmovDbTableColumn() {
-		super(MatmovDbTableColumn.class);
+	public DaoMatmovDbTableColumn() {
+		super();
 	}
 	
 	
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
-		tableColumns = new Hashtable<>();
-		
-		buildMatmovTable();
-		
-		return tableColumns;
-	}
-	
-	
-	
-	private void buildMatmovTable() {
 		final String TABLE_NAME = DaoDbTable.MAT_MOVEMENT_TABLE;
 		
 		DaoColumn oneColumn;
@@ -172,6 +159,8 @@ public final class MatmovDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		tableColumns.put(TABLE_NAME, columns);
+		Hashtable<String, List<DaoColumn>> results = new Hashtable<>();
+		results.put(TABLE_NAME, columns);
+		return results;
 	}
 }
