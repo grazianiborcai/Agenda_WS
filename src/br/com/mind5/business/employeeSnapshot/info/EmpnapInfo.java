@@ -1,12 +1,12 @@
 package br.com.mind5.business.employeeSnapshot.info;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.addressSnapshot.info.AddresnapInfo;
 import br.com.mind5.business.personSnapshot.info.PersonapInfo;
 import br.com.mind5.business.phoneSnapshot.info.PhonapInfo;
+import br.com.mind5.common.CloneUtil;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.info.InfoRecord;
 
@@ -34,7 +34,7 @@ public final class EmpnapInfo extends InfoRecord implements Cloneable {
 	
 	
 	public EmpnapInfo() {
-		super(EmpnapInfo.class);
+		super();
 		
 		codOwner = DefaultValue.number();
 		codEmployee = DefaultValue.number();
@@ -70,52 +70,11 @@ public final class EmpnapInfo extends InfoRecord implements Cloneable {
 	@Override public Object clone() throws CloneNotSupportedException {  
 		EmpnapInfo deepCopy = (EmpnapInfo) super.clone(); 
 		
-		deepCopy.addresnaps = cloneAddresnaps(deepCopy.addresnaps);
-		deepCopy.phonaps = clonePhonaps(deepCopy.phonaps);
-		deepCopy.personapData = clonePersonap(deepCopy.personapData);
+		deepCopy.addresnaps = CloneUtil.cloneRecords(deepCopy.addresnaps, this.getClass());
+		deepCopy.phonaps = CloneUtil.cloneRecords(deepCopy.phonaps, this.getClass());
+		deepCopy.personapData = CloneUtil.cloneRecord(deepCopy.personapData, this.getClass());
 
 		return deepCopy;	
-	}  
-	
-	
-	
-	private List<AddresnapInfo> cloneAddresnaps(List<AddresnapInfo> addressesToClone) throws CloneNotSupportedException {
-		if (addressesToClone == null)
-			return null;
-		
-		List<AddresnapInfo> deepAddresses = new ArrayList<>();
-		
-		for (AddresnapInfo eachAddress : addressesToClone) {
-			AddresnapInfo clonedAddress = (AddresnapInfo) eachAddress.clone();
-			deepAddresses.add(clonedAddress);
-		}
-		
-		return deepAddresses;
-	}
-	
-	
-	
-	private List<PhonapInfo> clonePhonaps(List<PhonapInfo> phonesToClone) throws CloneNotSupportedException {
-		if (phonesToClone == null)
-			return null;
-		
-		List<PhonapInfo> deepPhones = new ArrayList<>();
-		
-		for (PhonapInfo eachPhone : phonesToClone) {
-			PhonapInfo clonedPhone = (PhonapInfo) eachPhone.clone();
-			deepPhones.add(clonedPhone);
-		}
-		
-		return deepPhones;
-	}
-	
-	
-	
-	private PersonapInfo clonePersonap(PersonapInfo personToClone) throws CloneNotSupportedException {
-		if (personToClone == null)
-			return null;
-		
-		return (PersonapInfo) personToClone.clone();
 	}
 	
 	
