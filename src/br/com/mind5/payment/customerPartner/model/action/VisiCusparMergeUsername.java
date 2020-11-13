@@ -2,7 +2,7 @@ package br.com.mind5.payment.customerPartner.model.action;
 
 import java.util.List;
 
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
@@ -11,7 +11,7 @@ import br.com.mind5.security.username.info.UsernameCopier;
 import br.com.mind5.security.username.info.UsernameInfo;
 import br.com.mind5.security.username.model.decisionTree.RootUsernameSelect;
 
-final class VisiCusparMergeUsername extends ActionVisitorTemplateMergeV2<CusparInfo, UsernameInfo> {
+final class VisiCusparMergeUsername extends ActionVisitorTemplateMerge<CusparInfo, UsernameInfo> {
 	
 	public VisiCusparMergeUsername(DeciTreeOption<CusparInfo> option) {
 		super(option, UsernameInfo.class);

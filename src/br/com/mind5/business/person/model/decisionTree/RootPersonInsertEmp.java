@@ -8,14 +8,14 @@ import br.com.mind5.business.person.model.action.LazyPersonNodeSytotauhL1;
 import br.com.mind5.business.person.model.action.LazyPersonRootInsert;
 import br.com.mind5.business.person.model.action.StdPersonEnforceCategEmp;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootPersonInsertEmp extends DeciTreeTemplateWriteV2<PersonInfo> {
+public final class RootPersonInsertEmp extends DeciTreeTemplateWrite<PersonInfo> {
 	
 	public RootPersonInsertEmp(DeciTreeOption<PersonInfo> option) {
 		super(option);
@@ -23,22 +23,22 @@ public final class RootPersonInsertEmp extends DeciTreeTemplateWriteV2<PersonInf
 	
 	
 	
-	@Override protected ModelCheckerV1<PersonInfo> buildCheckerHook(DeciTreeOption<PersonInfo> option) {
-		List<ModelCheckerV1<PersonInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<PersonInfo> checker;	
+	@Override protected ModelChecker<PersonInfo> buildCheckerHook(DeciTreeOption<PersonInfo> option) {
+		List<ModelChecker<PersonInfo>> queue = new ArrayList<>();		
+		ModelChecker<PersonInfo> checker;	
 		
 		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 			
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<PersonInfo>> buildActionsOnPassedHook(DeciTreeOption<PersonInfo> option) {
-		List<ActionStdV2<PersonInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<PersonInfo>> buildActionsOnPassedHook(DeciTreeOption<PersonInfo> option) {
+		List<ActionStd<PersonInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<PersonInfo> enforceCateg = new StdPersonEnforceCategEmp(option);
+		ActionStd<PersonInfo> enforceCateg = new StdPersonEnforceCategEmp(option);
 		ActionLazy<PersonInfo> nodeSytotauh = new LazyPersonNodeSytotauhL1(option.conn, option.schemaName);
 		ActionLazy<PersonInfo> insert = new LazyPersonRootInsert(option.conn, option.schemaName);
 		

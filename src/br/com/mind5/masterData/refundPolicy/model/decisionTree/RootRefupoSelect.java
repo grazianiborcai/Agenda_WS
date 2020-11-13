@@ -6,14 +6,14 @@ import java.util.List;
 import br.com.mind5.masterData.refundPolicy.info.RefupoInfo;
 import br.com.mind5.masterData.refundPolicy.model.action.StdRefupoDaoSelect;
 import br.com.mind5.masterData.refundPolicy.model.checker.RefupoCheckRead;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootRefupoSelect extends DeciTreeTemplateReadV2<RefupoInfo> {
+public final class RootRefupoSelect extends DeciTreeTemplateRead<RefupoInfo> {
 	
 	public RootRefupoSelect(DeciTreeOption<RefupoInfo> option) {
 		super(option);
@@ -21,9 +21,9 @@ public final class RootRefupoSelect extends DeciTreeTemplateReadV2<RefupoInfo> {
 	
 	
 	
-	@Override protected ModelCheckerV1<RefupoInfo> buildCheckerHook(DeciTreeOption<RefupoInfo> option) {
-		List<ModelCheckerV1<RefupoInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<RefupoInfo> checker;
+	@Override protected ModelChecker<RefupoInfo> buildCheckerHook(DeciTreeOption<RefupoInfo> option) {
+		List<ModelChecker<RefupoInfo>> queue = new ArrayList<>();		
+		ModelChecker<RefupoInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
 		checkerOption = new ModelCheckerOption();
@@ -33,15 +33,15 @@ public final class RootRefupoSelect extends DeciTreeTemplateReadV2<RefupoInfo> {
 		checker = new RefupoCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<RefupoInfo>> buildActionsOnPassedHook(DeciTreeOption<RefupoInfo> option) {
-		List<ActionStdV2<RefupoInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<RefupoInfo>> buildActionsOnPassedHook(DeciTreeOption<RefupoInfo> option) {
+		List<ActionStd<RefupoInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<RefupoInfo> select = new StdRefupoDaoSelect(option);
+		ActionStd<RefupoInfo> select = new StdRefupoDaoSelect(option);
 		
 		actions.add(select);
 		return actions;

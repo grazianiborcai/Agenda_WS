@@ -6,14 +6,14 @@ import java.util.List;
 import br.com.mind5.masterData.entityCategory.info.EntitegInfo;
 import br.com.mind5.masterData.entityCategory.model.action.StdEntitegDaoSelect;
 import br.com.mind5.masterData.entityCategory.model.checker.EntitegCheckRead;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootEntitegSelect extends DeciTreeTemplateReadV2<EntitegInfo> {
+public final class RootEntitegSelect extends DeciTreeTemplateRead<EntitegInfo> {
 	
 	public RootEntitegSelect(DeciTreeOption<EntitegInfo> option) {
 		super(option);
@@ -21,9 +21,9 @@ public final class RootEntitegSelect extends DeciTreeTemplateReadV2<EntitegInfo>
 	
 	
 	
-	@Override protected ModelCheckerV1<EntitegInfo> buildCheckerHook(DeciTreeOption<EntitegInfo> option) {
-		List<ModelCheckerV1<EntitegInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<EntitegInfo> checker;
+	@Override protected ModelChecker<EntitegInfo> buildCheckerHook(DeciTreeOption<EntitegInfo> option) {
+		List<ModelChecker<EntitegInfo>> queue = new ArrayList<>();		
+		ModelChecker<EntitegInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
 		checkerOption = new ModelCheckerOption();
@@ -33,15 +33,15 @@ public final class RootEntitegSelect extends DeciTreeTemplateReadV2<EntitegInfo>
 		checker = new EntitegCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 
 		
 	
-	@Override protected List<ActionStdV2<EntitegInfo>> buildActionsOnPassedHook(DeciTreeOption<EntitegInfo> option) {
-		List<ActionStdV2<EntitegInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<EntitegInfo>> buildActionsOnPassedHook(DeciTreeOption<EntitegInfo> option) {
+		List<ActionStd<EntitegInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<EntitegInfo> select = new StdEntitegDaoSelect(option);
+		ActionStd<EntitegInfo> select = new StdEntitegDaoSelect(option);
 		
 		actions.add(select);
 		return actions;

@@ -7,11 +7,11 @@ import br.com.mind5.business.material.info.MatMerger;
 import br.com.mind5.file.fileImageList.info.FimistCopier;
 import br.com.mind5.file.fileImageList.info.FimistInfo;
 import br.com.mind5.file.fileImageList.model.decisionTree.RootFimistSearch;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiMatMergeFimist extends ActionVisitorTemplateMergeV2<MatInfo, FimistInfo> {
+final class VisiMatMergeFimist extends ActionVisitorTemplateMerge<MatInfo, FimistInfo> {
 	
 	public VisiMatMergeFimist(DeciTreeOption<MatInfo> option) {
 		super(option, FimistInfo.class);

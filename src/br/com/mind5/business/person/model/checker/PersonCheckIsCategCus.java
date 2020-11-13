@@ -6,9 +6,9 @@ import br.com.mind5.business.person.info.PersonInfo;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.masterData.entityCategory.info.Entiteg;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 
-public final class PersonCheckIsCategCus extends ModelCheckerTemplateSimpleV2<PersonInfo> {
+public final class PersonCheckIsCategCus extends ModelCheckerTemplateSimple<PersonInfo> {
 
 	public PersonCheckIsCategCus(ModelCheckerOption option) {
 		super(option);

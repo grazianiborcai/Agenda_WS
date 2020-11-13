@@ -3,10 +3,10 @@ package br.com.mind5.business.storeProspect.info;
 import br.com.mind5.config.sysStoreSignup.info.SysotupInfo;
 import br.com.mind5.config.sysStoreSignup.model.checker.SysotupCheckEnabled;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.model.checker.ModelChecker;
 
-public final class StoprosCheckSysotup extends ModelCheckerTemplateForwardV2<StoprosInfo, SysotupInfo> {
+public final class StoprosCheckSysotup extends ModelCheckerTemplateForward<StoprosInfo, SysotupInfo> {
 	
 	public StoprosCheckSysotup(ModelCheckerOption option) {
 		super(option);
@@ -14,7 +14,7 @@ public final class StoprosCheckSysotup extends ModelCheckerTemplateForwardV2<Sto
 
 
 	
-	@Override protected ModelCheckerV1<SysotupInfo> getCheckerHook(ModelCheckerOption option) {
+	@Override protected ModelChecker<SysotupInfo> getCheckerHook(ModelCheckerOption option) {
 		return new SysotupCheckEnabled(option);
 	}
 	

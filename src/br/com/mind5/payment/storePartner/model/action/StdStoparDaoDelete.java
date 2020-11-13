@@ -1,11 +1,11 @@
 package br.com.mind5.payment.storePartner.model.action;
 
-import br.com.mind5.model.action.ActionStdTemplateV2;
-import br.com.mind5.model.action.ActionVisitorV2;
+import br.com.mind5.model.action.ActionStdTemplate;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.storePartner.info.StoparInfo;
 
-public final class StdStoparDaoDelete extends ActionStdTemplateV2<StoparInfo> {
+public final class StdStoparDaoDelete extends ActionStdTemplate<StoparInfo> {
 
 	public StdStoparDaoDelete(DeciTreeOption<StoparInfo> option) {
 		super(option);
@@ -13,7 +13,7 @@ public final class StdStoparDaoDelete extends ActionStdTemplateV2<StoparInfo> {
 	
 	
 	
-	protected ActionVisitorV2<StoparInfo> buildVisitorHook(DeciTreeOption<StoparInfo> option) {
+	protected ActionVisitor<StoparInfo> buildVisitorHook(DeciTreeOption<StoparInfo> option) {
 		return new VisiStoparDaoDelete(option);
 	}
 }

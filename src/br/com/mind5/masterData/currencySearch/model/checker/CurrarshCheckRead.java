@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.masterData.currencySearch.info.CurrarshInfo;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 
-public class CurrarshCheckRead extends ModelCheckerTemplateSimpleV2<CurrarshInfo> {
+public class CurrarshCheckRead extends ModelCheckerTemplateSimple<CurrarshInfo> {
 
 	public CurrarshCheckRead(ModelCheckerOption option) {
 		super(option);

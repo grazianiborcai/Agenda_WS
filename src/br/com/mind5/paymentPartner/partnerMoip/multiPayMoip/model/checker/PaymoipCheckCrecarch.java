@@ -1,14 +1,14 @@
 package br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.model.checker;
 
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.payment.creditCardSearch.info.CrecarchCopier;
 import br.com.mind5.payment.creditCardSearch.info.CrecarchInfo;
 import br.com.mind5.payment.creditCardSearch.model.checker.CrecarchCheckExist;
 import br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.info.PaymoipInfo;
 
-public final class PaymoipCheckCrecarch extends ModelCheckerTemplateForwardV2<PaymoipInfo, CrecarchInfo> {
+public final class PaymoipCheckCrecarch extends ModelCheckerTemplateForward<PaymoipInfo, CrecarchInfo> {
 	
 	public PaymoipCheckCrecarch(ModelCheckerOption option) {
 		super(option);
@@ -16,7 +16,7 @@ public final class PaymoipCheckCrecarch extends ModelCheckerTemplateForwardV2<Pa
 
 
 	
-	@Override protected ModelCheckerV1<CrecarchInfo> getCheckerHook(ModelCheckerOption option) {
+	@Override protected ModelChecker<CrecarchInfo> getCheckerHook(ModelCheckerOption option) {
 		return new CrecarchCheckExist(option);
 	}
 	

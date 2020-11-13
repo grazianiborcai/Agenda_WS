@@ -1,11 +1,11 @@
 package br.com.mind5.masterData.refundPolicyGroup.model.action;
 
 import br.com.mind5.masterData.refundPolicyGroup.info.RefugroupInfo;
-import br.com.mind5.model.action.ActionStdTemplateV2;
-import br.com.mind5.model.action.ActionVisitorV2;
+import br.com.mind5.model.action.ActionStdTemplate;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdRefugroupMergeRefugritem extends ActionStdTemplateV2<RefugroupInfo> {
+public final class StdRefugroupMergeRefugritem extends ActionStdTemplate<RefugroupInfo> {
 
 	public StdRefugroupMergeRefugritem(DeciTreeOption<RefugroupInfo> option) {
 		super(option);
@@ -13,7 +13,7 @@ public final class StdRefugroupMergeRefugritem extends ActionStdTemplateV2<Refug
 	
 	
 	
-	protected ActionVisitorV2<RefugroupInfo> buildVisitorHook(DeciTreeOption<RefugroupInfo> option) {
+	protected ActionVisitor<RefugroupInfo> buildVisitorHook(DeciTreeOption<RefugroupInfo> option) {
 		return new VisiRefugroupMergeRefugritem(option);
 	}
 }

@@ -6,10 +6,10 @@ import java.time.LocalDateTime;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 import br.com.mind5.security.otp.info.OtpInfo;
 
-public final class OtpCheckExpiry extends ModelCheckerTemplateSimpleV2<OtpInfo> {
+public final class OtpCheckExpiry extends ModelCheckerTemplateSimple<OtpInfo> {
 
 	public OtpCheckExpiry(ModelCheckerOption option) {
 		super(option);

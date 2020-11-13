@@ -9,14 +9,14 @@ import br.com.mind5.file.fileImage.model.action.LazyFimgNodeUpsertUser;
 import br.com.mind5.file.fileImage.model.checker.FimgCheckInsertUser;
 import br.com.mind5.file.fileImage.model.checker.FimgCheckUsername;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootFimgInsertUserAuth extends DeciTreeTemplateWriteV2<FimgInfo> {
+public final class RootFimgInsertUserAuth extends DeciTreeTemplateWrite<FimgInfo> {
 	
 	public RootFimgInsertUserAuth(DeciTreeOption<FimgInfo> option) {
 		super(option);
@@ -24,9 +24,9 @@ public final class RootFimgInsertUserAuth extends DeciTreeTemplateWriteV2<FimgIn
 	
 	
 	
-	@Override protected ModelCheckerV1<FimgInfo> buildCheckerHook(DeciTreeOption<FimgInfo> option) {
-		List<ModelCheckerV1<FimgInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<FimgInfo> checker;	
+	@Override protected ModelChecker<FimgInfo> buildCheckerHook(DeciTreeOption<FimgInfo> option) {
+		List<ModelChecker<FimgInfo>> queue = new ArrayList<>();		
+		ModelChecker<FimgInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -43,15 +43,15 @@ public final class RootFimgInsertUserAuth extends DeciTreeTemplateWriteV2<FimgIn
 		checker = new FimgCheckUsername(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<FimgInfo>> buildActionsOnPassedHook(DeciTreeOption<FimgInfo> option) {
-		List<ActionStdV2<FimgInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStd<FimgInfo>> buildActionsOnPassedHook(DeciTreeOption<FimgInfo> option) {
+		List<ActionStd<FimgInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV2<FimgInfo> nodeUser = new NodeFimgUser(option).toAction();
+		ActionStd<FimgInfo> nodeUser = new NodeFimgUser(option).toAction();
 		ActionLazy<FimgInfo> enforceUser = new LazyFimgEnforceUser(option.conn, option.schemaName);	
 		ActionLazy<FimgInfo> upsert = new LazyFimgNodeUpsertUser(option.conn, option.schemaName);
 		

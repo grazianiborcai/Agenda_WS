@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 import br.com.mind5.security.userSnapshot.info.UserapInfo;
 import br.com.mind5.security.userSnapshot.model.action.LazyUserapMergeAddresnap;
 import br.com.mind5.security.userSnapshot.model.action.LazyUserapMergePersonap;
@@ -17,7 +17,7 @@ import br.com.mind5.security.userSnapshot.model.action.LazyUserapMergePhonap;
 import br.com.mind5.security.userSnapshot.model.action.StdUserapMergeToSelect;
 import br.com.mind5.security.userSnapshot.model.checker.UserapCheckRead;
 
-public final class RootUserapSelect extends DeciTreeTemplateReadV2<UserapInfo> {
+public final class RootUserapSelect extends DeciTreeTemplateRead<UserapInfo> {
 	
 	public RootUserapSelect(DeciTreeOption<UserapInfo> option) {
 		super(option);
@@ -25,9 +25,9 @@ public final class RootUserapSelect extends DeciTreeTemplateReadV2<UserapInfo> {
 	
 	
 	
-	@Override protected ModelCheckerV1<UserapInfo> buildCheckerHook(DeciTreeOption<UserapInfo> option) {
-		List<ModelCheckerV1<UserapInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<UserapInfo> checker;
+	@Override protected ModelChecker<UserapInfo> buildCheckerHook(DeciTreeOption<UserapInfo> option) {
+		List<ModelChecker<UserapInfo>> queue = new ArrayList<>();		
+		ModelChecker<UserapInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -37,15 +37,15 @@ public final class RootUserapSelect extends DeciTreeTemplateReadV2<UserapInfo> {
 		checker = new UserapCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<UserapInfo>> buildActionsOnPassedHook(DeciTreeOption<UserapInfo> option) {
-		List<ActionStdV2<UserapInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<UserapInfo>> buildActionsOnPassedHook(DeciTreeOption<UserapInfo> option) {
+		List<ActionStd<UserapInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<UserapInfo> select = new StdUserapMergeToSelect(option);
+		ActionStd<UserapInfo> select = new StdUserapMergeToSelect(option);
 		ActionLazy<UserapInfo> mergePerson = new LazyUserapMergePersonap(option.conn, option.schemaName);
 		ActionLazy<UserapInfo> mergeAddress = new LazyUserapMergeAddresnap(option.conn, option.schemaName);
 		ActionLazy<UserapInfo> mergePhone = new LazyUserapMergePhonap(option.conn, option.schemaName);

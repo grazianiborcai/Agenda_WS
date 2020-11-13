@@ -4,10 +4,10 @@ import br.com.mind5.business.employeeMaterial.info.EmpmatInfo;
 import br.com.mind5.business.employeeMaterial.model.checker.EmpmatCheckExist;
 import br.com.mind5.business.orderItem.info.OrderemInfo;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.model.checker.ModelChecker;
 
-public final class OrderemCheckEmpmat extends ModelCheckerTemplateForwardV2<OrderemInfo, EmpmatInfo> {
+public final class OrderemCheckEmpmat extends ModelCheckerTemplateForward<OrderemInfo, EmpmatInfo> {
 	
 	public OrderemCheckEmpmat(ModelCheckerOption option) {
 		super(option);
@@ -15,7 +15,7 @@ public final class OrderemCheckEmpmat extends ModelCheckerTemplateForwardV2<Orde
 
 
 	
-	@Override protected ModelCheckerV1<EmpmatInfo> getCheckerHook(ModelCheckerOption option) {
+	@Override protected ModelChecker<EmpmatInfo> getCheckerHook(ModelCheckerOption option) {
 		return new EmpmatCheckExist(option);
 	}
 	

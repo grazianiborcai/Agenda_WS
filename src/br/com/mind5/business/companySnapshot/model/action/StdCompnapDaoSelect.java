@@ -1,11 +1,11 @@
 package br.com.mind5.business.companySnapshot.model.action;
 
 import br.com.mind5.business.companySnapshot.info.CompnapInfo;
-import br.com.mind5.model.action.ActionStdTemplateV2;
-import br.com.mind5.model.action.ActionVisitorV2;
+import br.com.mind5.model.action.ActionStdTemplate;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdCompnapDaoSelect extends ActionStdTemplateV2<CompnapInfo> {
+public final class StdCompnapDaoSelect extends ActionStdTemplate<CompnapInfo> {
 
 	public StdCompnapDaoSelect(DeciTreeOption<CompnapInfo> option) {
 		super(option);
@@ -13,7 +13,7 @@ public final class StdCompnapDaoSelect extends ActionStdTemplateV2<CompnapInfo> 
 	
 	
 	
-	protected ActionVisitorV2<CompnapInfo> buildVisitorHook(DeciTreeOption<CompnapInfo> option) {
+	protected ActionVisitor<CompnapInfo> buildVisitorHook(DeciTreeOption<CompnapInfo> option) {
 		return new VisiCompnapDaoSelect(option);
 	}
 }

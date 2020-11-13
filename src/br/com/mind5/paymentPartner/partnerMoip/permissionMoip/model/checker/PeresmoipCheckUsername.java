@@ -1,13 +1,13 @@
 package br.com.mind5.paymentPartner.partnerMoip.permissionMoip.model.checker;
 
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.info.PeresmoipInfo;
 import br.com.mind5.security.username.info.UsernameInfo;
 import br.com.mind5.security.username.model.checker.UsernameCheckExist;
 
-public final class PeresmoipCheckUsername extends ModelCheckerTemplateForwardV2<PeresmoipInfo, UsernameInfo> {
+public final class PeresmoipCheckUsername extends ModelCheckerTemplateForward<PeresmoipInfo, UsernameInfo> {
 	
 	public PeresmoipCheckUsername(ModelCheckerOption option) {
 		super(option);
@@ -15,7 +15,7 @@ public final class PeresmoipCheckUsername extends ModelCheckerTemplateForwardV2<
 
 
 	
-	@Override protected ModelCheckerV1<UsernameInfo> getCheckerHook(ModelCheckerOption option) {
+	@Override protected ModelChecker<UsernameInfo> getCheckerHook(ModelCheckerOption option) {
 		return new UsernameCheckExist(option);
 	}
 	

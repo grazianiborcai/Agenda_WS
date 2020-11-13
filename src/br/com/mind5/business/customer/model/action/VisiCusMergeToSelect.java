@@ -4,11 +4,11 @@ import java.util.List;
 
 import br.com.mind5.business.customer.info.CusInfo;
 import br.com.mind5.business.customer.info.CusMerger;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiCusMergeToSelect extends ActionVisitorTemplateMergeV2<CusInfo, CusInfo> {
+final class VisiCusMergeToSelect extends ActionVisitorTemplateMerge<CusInfo, CusInfo> {
 	
 	public VisiCusMergeToSelect(DeciTreeOption<CusInfo> option) {
 		super(option, CusInfo.class);
@@ -16,7 +16,7 @@ final class VisiCusMergeToSelect extends ActionVisitorTemplateMergeV2<CusInfo, C
 	
 	
 	
-	@Override protected Class<? extends ActionStdV2<CusInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStd<CusInfo>> getActionClassHook() {
 		return StdCusDaoSelect.class;
 	}
 	

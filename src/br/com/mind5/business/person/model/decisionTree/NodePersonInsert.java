@@ -12,14 +12,14 @@ import br.com.mind5.business.person.model.action.LazyPersonMergeUsername;
 import br.com.mind5.business.person.model.action.LazyPersonNodeName;
 import br.com.mind5.business.person.model.action.StdPersonEnforceLChanged;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodePersonInsert extends DeciTreeTemplateWriteV2<PersonInfo> {
+public final class NodePersonInsert extends DeciTreeTemplateWrite<PersonInfo> {
 	
 	public NodePersonInsert(DeciTreeOption<PersonInfo> option) {
 		super(option);
@@ -27,22 +27,22 @@ public final class NodePersonInsert extends DeciTreeTemplateWriteV2<PersonInfo> 
 	
 	
 	
-	@Override protected ModelCheckerV1<PersonInfo> buildCheckerHook(DeciTreeOption<PersonInfo> option) {
-		List<ModelCheckerV1<PersonInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<PersonInfo> checker;
+	@Override protected ModelChecker<PersonInfo> buildCheckerHook(DeciTreeOption<PersonInfo> option) {
+		List<ModelChecker<PersonInfo>> queue = new ArrayList<>();		
+		ModelChecker<PersonInfo> checker;
 	
 		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 			
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<PersonInfo>> buildActionsOnPassedHook(DeciTreeOption<PersonInfo> option) {
-		List<ActionStdV2<PersonInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<PersonInfo>> buildActionsOnPassedHook(DeciTreeOption<PersonInfo> option) {
+		List<ActionStd<PersonInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<PersonInfo> enforceLChanged = new StdPersonEnforceLChanged(option);
+		ActionStd<PersonInfo> enforceLChanged = new StdPersonEnforceLChanged(option);
 		ActionLazy<PersonInfo> enforceLChangedBy = new LazyPersonMergeUsername(option.conn, option.schemaName);
 		ActionLazy<PersonInfo> enforceCreatedOn = new LazyPersonEnforceCreatedOn(option.conn, option.schemaName);	
 		ActionLazy<PersonInfo> enforceCreatedBy = new LazyPersonEnforceCreatedBy(option.conn, option.schemaName);

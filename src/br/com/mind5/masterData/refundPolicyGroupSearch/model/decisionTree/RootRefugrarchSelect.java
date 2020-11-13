@@ -6,14 +6,14 @@ import java.util.List;
 import br.com.mind5.masterData.refundPolicyGroupSearch.info.RefugrarchInfo;
 import br.com.mind5.masterData.refundPolicyGroupSearch.model.action.StdRefugrarchDaoSelect;
 import br.com.mind5.masterData.refundPolicyGroupSearch.model.checker.RefugrarchCheckRead;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootRefugrarchSelect extends DeciTreeTemplateReadV2<RefugrarchInfo> {
+public final class RootRefugrarchSelect extends DeciTreeTemplateRead<RefugrarchInfo> {
 	
 	public RootRefugrarchSelect(DeciTreeOption<RefugrarchInfo> option) {
 		super(option);
@@ -21,9 +21,9 @@ public final class RootRefugrarchSelect extends DeciTreeTemplateReadV2<Refugrarc
 	
 	
 	
-	@Override protected ModelCheckerV1<RefugrarchInfo> buildCheckerHook(DeciTreeOption<RefugrarchInfo> option) {
-		List<ModelCheckerV1<RefugrarchInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<RefugrarchInfo> checker;
+	@Override protected ModelChecker<RefugrarchInfo> buildCheckerHook(DeciTreeOption<RefugrarchInfo> option) {
+		List<ModelChecker<RefugrarchInfo>> queue = new ArrayList<>();		
+		ModelChecker<RefugrarchInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
 		checkerOption = new ModelCheckerOption();
@@ -33,15 +33,15 @@ public final class RootRefugrarchSelect extends DeciTreeTemplateReadV2<Refugrarc
 		checker = new RefugrarchCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<RefugrarchInfo>> buildActionsOnPassedHook(DeciTreeOption<RefugrarchInfo> option) {
-		List<ActionStdV2<RefugrarchInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<RefugrarchInfo>> buildActionsOnPassedHook(DeciTreeOption<RefugrarchInfo> option) {
+		List<ActionStd<RefugrarchInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<RefugrarchInfo> select = new StdRefugrarchDaoSelect(option);
+		ActionStd<RefugrarchInfo> select = new StdRefugrarchDaoSelect(option);
 		
 		actions.add(select);
 		return actions;

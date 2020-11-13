@@ -1,11 +1,11 @@
 package br.com.mind5.masterData.businessArea.model.action;
 
 import br.com.mind5.masterData.businessArea.info.BusareaInfo;
-import br.com.mind5.model.action.ActionStdTemplateV2;
-import br.com.mind5.model.action.ActionVisitorV2;
+import br.com.mind5.model.action.ActionStdTemplate;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdBusareaDaoSelect extends ActionStdTemplateV2<BusareaInfo> {
+public final class StdBusareaDaoSelect extends ActionStdTemplate<BusareaInfo> {
 
 	public StdBusareaDaoSelect(DeciTreeOption<BusareaInfo> option) {
 		super(option);
@@ -13,7 +13,7 @@ public final class StdBusareaDaoSelect extends ActionStdTemplateV2<BusareaInfo> 
 	
 	
 	
-	protected ActionVisitorV2<BusareaInfo> buildVisitorHook(DeciTreeOption<BusareaInfo> option) {
+	protected ActionVisitor<BusareaInfo> buildVisitorHook(DeciTreeOption<BusareaInfo> option) {
 		return new VisiBusareaDaoSelect(option);
 	}
 }

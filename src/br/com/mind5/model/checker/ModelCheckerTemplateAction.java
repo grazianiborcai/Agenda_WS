@@ -12,11 +12,11 @@ import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.InfoRecord;
 import br.com.mind5.message.sysMessage.info.SymsgInfo;
 import br.com.mind5.message.sysMessage.model.decisionTree.RootSymsgSelect;
-import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public abstract class ModelCheckerTemplateActionV2<T extends InfoRecord, S extends InfoRecord> implements ModelCheckerV2<T> {
+public abstract class ModelCheckerTemplateAction<T extends InfoRecord, S extends InfoRecord> implements ModelChecker<T> {
 	private final boolean SUCCESS = ModelCheckerOption.SUCCESS;
 	private final boolean FAILED = ModelCheckerOption.FAILED;
 	private final boolean NOT_FOUND = ModelCheckerOption.FAILED;
@@ -30,7 +30,7 @@ public abstract class ModelCheckerTemplateActionV2<T extends InfoRecord, S exten
 	private Class<S> sClazz;
 	
 	
-	protected ModelCheckerTemplateActionV2(ModelCheckerOption option, Class<S> clazz) {
+	protected ModelCheckerTemplateAction(ModelCheckerOption option, Class<S> clazz) {
 		checkArgument(option, clazz);
 		init(option, clazz);
 	}
@@ -91,7 +91,7 @@ public abstract class ModelCheckerTemplateActionV2<T extends InfoRecord, S exten
 	
 	private boolean executeAction(T recordInfo, Connection dbConn, String dbSchema) {
 		DeciTreeOption<S> option = buildActionOption(recordInfo, dbConn, dbSchema);
-		ActionStdV2<S> action = buildActionHook(option);
+		ActionStd<S> action = buildActionHook(option);
 		
 		DeciResult<S> actionResult = execute(action);	
 		return evaluateResult(actionResult);		
@@ -111,7 +111,7 @@ public abstract class ModelCheckerTemplateActionV2<T extends InfoRecord, S exten
 	
 	
 	
-	protected ActionStdV2<S> buildActionHook(DeciTreeOption<S> option) {
+	protected ActionStd<S> buildActionHook(DeciTreeOption<S> option) {
 		//Template method: to be overwritten by subclasses
 		logException(new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION));
 		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);	
@@ -119,7 +119,7 @@ public abstract class ModelCheckerTemplateActionV2<T extends InfoRecord, S exten
 	
 	
 	
-	private DeciResult<S> execute(ActionStdV2<S> action) {
+	private DeciResult<S> execute(ActionStd<S> action) {
 		 checkArgument(action);
 		 
 		 action.executeAction();
@@ -262,7 +262,7 @@ public abstract class ModelCheckerTemplateActionV2<T extends InfoRecord, S exten
 	
 	
 	private SymsgInfo readSymsg(DeciTreeOption<SymsgInfo> option) {
-		ActionStdV2<SymsgInfo> select = new RootSymsgSelect(option).toAction();
+		ActionStd<SymsgInfo> select = new RootSymsgSelect(option).toAction();
 		select.executeAction();		
 		
 		return select.getDecisionResult().getResultset().get(0);
@@ -356,12 +356,12 @@ public abstract class ModelCheckerTemplateActionV2<T extends InfoRecord, S exten
 	
 	
 	
-	private void closeAction(ActionStdV2<S> action) {
+	private void closeAction(ActionStd<S> action) {
 		if (action == null)
 			return;
 		
-		if(action instanceof ActionStdV2)
-			((ActionStdV2<S>) action).close();
+		if(action instanceof ActionStd)
+			((ActionStd<S>) action).close();
 	}
 	
 	
@@ -438,7 +438,7 @@ public abstract class ModelCheckerTemplateActionV2<T extends InfoRecord, S exten
 	
 	
 	
-	private void checkArgument(ActionStdV2<S> action) {
+	private void checkArgument(ActionStd<S> action) {
 		if (action == null) {
 			logException(new NullPointerException("action" + SystemMessage.NULL_ARGUMENT));
 			throw new NullPointerException("action" + SystemMessage.NULL_ARGUMENT);

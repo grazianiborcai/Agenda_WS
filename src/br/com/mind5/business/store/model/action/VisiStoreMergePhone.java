@@ -7,11 +7,11 @@ import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.business.phone.model.decisionTree.RootPhoneSearch;
 import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.business.store.info.StoreMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiStoreMergePhone extends ActionVisitorTemplateMergeV2<StoreInfo, PhoneInfo> {
+final class VisiStoreMergePhone extends ActionVisitorTemplateMerge<StoreInfo, PhoneInfo> {
 	
 	public VisiStoreMergePhone(DeciTreeOption<StoreInfo> option) {
 		super(option, PhoneInfo.class);

@@ -5,12 +5,12 @@ import java.util.List;
 import br.com.mind5.business.storeTextSearch.info.StorextarchInfo;
 import br.com.mind5.business.storeTextSearch.model.decisionTree.RootStorextarchSelect;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StorextarchCheckExist extends ModelCheckerTemplateActionV2<StorextarchInfo, StorextarchInfo> {	
+public final class StorextarchCheckExist extends ModelCheckerTemplateAction<StorextarchInfo, StorextarchInfo> {	
 	
 	public StorextarchCheckExist(ModelCheckerOption option) {
 		super(option, StorextarchInfo.class);
@@ -18,8 +18,8 @@ public final class StorextarchCheckExist extends ModelCheckerTemplateActionV2<St
 	
 	
 	
-	@Override protected ActionStdV2<StorextarchInfo> buildActionHook(DeciTreeOption<StorextarchInfo> option) {
-		ActionStdV2<StorextarchInfo> select = new RootStorextarchSelect(option).toAction();
+	@Override protected ActionStd<StorextarchInfo> buildActionHook(DeciTreeOption<StorextarchInfo> option) {
+		ActionStd<StorextarchInfo> select = new RootStorextarchSelect(option).toAction();
 		return select;
 	}
 	

@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.bookService.info.BookiceInfo;
 import br.com.mind5.business.bookService.model.decisionTree.NodeBookiceSchedineL2;
 import br.com.mind5.model.action.ActionLazyTemplate;
-import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -24,7 +24,7 @@ public final class LazyBookiceNodeSchedineL2 extends ActionLazyTemplate<BookiceI
 	
 	
 	
-	@Override protected ActionStdV2<BookiceInfo> getInstanceOfActionHook(DeciTreeOption<BookiceInfo> option) {
+	@Override protected ActionStd<BookiceInfo> getInstanceOfActionHook(DeciTreeOption<BookiceInfo> option) {
 		return new NodeBookiceSchedineL2(option).toAction();
 	}
 	

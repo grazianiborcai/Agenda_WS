@@ -1,11 +1,11 @@
 package br.com.mind5.business.scheduleMoviment.model.action;
 
 import br.com.mind5.business.scheduleMoviment.info.SchedovmInfo;
-import br.com.mind5.model.action.ActionStdTemplateV2;
-import br.com.mind5.model.action.ActionVisitorV2;
+import br.com.mind5.model.action.ActionStdTemplate;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdSchedovmEnforceReverse extends ActionStdTemplateV2<SchedovmInfo> {
+public final class StdSchedovmEnforceReverse extends ActionStdTemplate<SchedovmInfo> {
 
 	public StdSchedovmEnforceReverse(DeciTreeOption<SchedovmInfo> option) {
 		super(option);
@@ -13,7 +13,7 @@ public final class StdSchedovmEnforceReverse extends ActionStdTemplateV2<Schedov
 	
 	
 	
-	protected ActionVisitorV2<SchedovmInfo> buildVisitorHook(DeciTreeOption<SchedovmInfo> option) {
+	protected ActionVisitor<SchedovmInfo> buildVisitorHook(DeciTreeOption<SchedovmInfo> option) {
 		return new VisiSchedovmEnforceReverse(option);
 	}
 }

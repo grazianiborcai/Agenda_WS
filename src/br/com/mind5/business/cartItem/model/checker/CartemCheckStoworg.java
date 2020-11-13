@@ -4,10 +4,10 @@ import br.com.mind5.business.cartItem.info.CartemInfo;
 import br.com.mind5.business.storeWorkTimeRange.info.StoworgInfo;
 import br.com.mind5.business.storeWorkTimeRange.model.checker.StoworgCheckExist;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.model.checker.ModelChecker;
 
-public final class CartemCheckStoworg extends ModelCheckerTemplateForwardV2<CartemInfo, StoworgInfo> {
+public final class CartemCheckStoworg extends ModelCheckerTemplateForward<CartemInfo, StoworgInfo> {
 	
 	public CartemCheckStoworg(ModelCheckerOption option) {
 		super(option);
@@ -15,7 +15,7 @@ public final class CartemCheckStoworg extends ModelCheckerTemplateForwardV2<Cart
 
 
 	
-	@Override protected ModelCheckerV1<StoworgInfo> getCheckerHook(ModelCheckerOption option) {
+	@Override protected ModelChecker<StoworgInfo> getCheckerHook(ModelCheckerOption option) {
 		return new StoworgCheckExist(option);
 	}
 	

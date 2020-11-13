@@ -4,10 +4,10 @@ import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.business.store.model.checker.StoreCheckExist;
 import br.com.mind5.business.storeFavorite.info.StoriteInfo;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.model.checker.ModelChecker;
 
-public final class StoriteCheckStore extends ModelCheckerTemplateForwardV2<StoriteInfo, StoreInfo> {
+public final class StoriteCheckStore extends ModelCheckerTemplateForward<StoriteInfo, StoreInfo> {
 	
 	public StoriteCheckStore(ModelCheckerOption option) {
 		super(option);
@@ -15,7 +15,7 @@ public final class StoriteCheckStore extends ModelCheckerTemplateForwardV2<Stori
 
 
 	
-	@Override protected ModelCheckerV1<StoreInfo> getCheckerHook(ModelCheckerOption option) {
+	@Override protected ModelChecker<StoreInfo> getCheckerHook(ModelCheckerOption option) {
 		return new StoreCheckExist(option);
 	}
 	

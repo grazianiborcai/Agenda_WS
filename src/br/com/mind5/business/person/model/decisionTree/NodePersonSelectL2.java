@@ -6,14 +6,14 @@ import java.util.List;
 import br.com.mind5.business.person.info.PersonInfo;
 import br.com.mind5.business.person.model.action.StdPersonSuccess;
 import br.com.mind5.business.person.model.checker.PersonCheckSytotin;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class NodePersonSelectL2 extends DeciTreeTemplateReadV2<PersonInfo> {
+public final class NodePersonSelectL2 extends DeciTreeTemplateRead<PersonInfo> {
 	
 	public NodePersonSelectL2(DeciTreeOption<PersonInfo> option) {
 		super(option);
@@ -21,9 +21,9 @@ public final class NodePersonSelectL2 extends DeciTreeTemplateReadV2<PersonInfo>
 	
 	
 	
-	@Override protected ModelCheckerV1<PersonInfo> buildCheckerHook(DeciTreeOption<PersonInfo> option) {
-		List<ModelCheckerV1<PersonInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<PersonInfo> checker;
+	@Override protected ModelChecker<PersonInfo> buildCheckerHook(DeciTreeOption<PersonInfo> option) {
+		List<ModelChecker<PersonInfo>> queue = new ArrayList<>();		
+		ModelChecker<PersonInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
 		checkerOption = new ModelCheckerOption();
@@ -33,15 +33,15 @@ public final class NodePersonSelectL2 extends DeciTreeTemplateReadV2<PersonInfo>
 		checker = new PersonCheckSytotin(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<PersonInfo>> buildActionsOnPassedHook(DeciTreeOption<PersonInfo> option) {
-		List<ActionStdV2<PersonInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<PersonInfo>> buildActionsOnPassedHook(DeciTreeOption<PersonInfo> option) {
+		List<ActionStd<PersonInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<PersonInfo> nodeL3 = new NodePersonSelectL3(option).toAction();
+		ActionStd<PersonInfo> nodeL3 = new NodePersonSelectL3(option).toAction();
 		
 		actions.add(nodeL3);
 		return actions;
@@ -49,10 +49,10 @@ public final class NodePersonSelectL2 extends DeciTreeTemplateReadV2<PersonInfo>
 	
 	
 	
-	@Override protected List<ActionStdV2<PersonInfo>> buildActionsOnFailedHook(DeciTreeOption<PersonInfo> option) {
-		List<ActionStdV2<PersonInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<PersonInfo>> buildActionsOnFailedHook(DeciTreeOption<PersonInfo> option) {
+		List<ActionStd<PersonInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<PersonInfo> success = new StdPersonSuccess(option);
+		ActionStd<PersonInfo> success = new StdPersonSuccess(option);
 		
 		actions.add(success);
 		return actions;

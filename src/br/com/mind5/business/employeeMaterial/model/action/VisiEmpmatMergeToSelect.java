@@ -4,11 +4,11 @@ import java.util.List;
 
 import br.com.mind5.business.employeeMaterial.info.EmpmatInfo;
 import br.com.mind5.business.employeeMaterial.info.EmpmatMerger;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiEmpmatMergeToSelect extends ActionVisitorTemplateMergeV2<EmpmatInfo, EmpmatInfo> {
+final class VisiEmpmatMergeToSelect extends ActionVisitorTemplateMerge<EmpmatInfo, EmpmatInfo> {
 	
 	public VisiEmpmatMergeToSelect(DeciTreeOption<EmpmatInfo> option) {
 		super(option, EmpmatInfo.class);
@@ -16,7 +16,7 @@ final class VisiEmpmatMergeToSelect extends ActionVisitorTemplateMergeV2<EmpmatI
 	
 	
 	
-	@Override protected Class<? extends ActionStdV2<EmpmatInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStd<EmpmatInfo>> getActionClassHook() {
 		return StdEmpmatDaoSelect.class;
 	}
 	

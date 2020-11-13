@@ -5,10 +5,10 @@ import br.com.mind5.business.materialTextSearch.info.MatextarchCopier;
 import br.com.mind5.business.materialTextSearch.info.MatextarchInfo;
 import br.com.mind5.business.materialTextSearch.model.checker.MatextarchCheckExist;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.model.checker.ModelChecker;
 
-public final class MatextCheckMatextarch extends ModelCheckerTemplateForwardV2<MatextInfo, MatextarchInfo> {
+public final class MatextCheckMatextarch extends ModelCheckerTemplateForward<MatextInfo, MatextarchInfo> {
 	
 	public MatextCheckMatextarch(ModelCheckerOption option) {
 		super(option);
@@ -16,7 +16,7 @@ public final class MatextCheckMatextarch extends ModelCheckerTemplateForwardV2<M
 
 
 	
-	@Override protected ModelCheckerV1<MatextarchInfo> getCheckerHook(ModelCheckerOption option) {
+	@Override protected ModelChecker<MatextarchInfo> getCheckerHook(ModelCheckerOption option) {
 		return new MatextarchCheckExist(option);
 	}
 	

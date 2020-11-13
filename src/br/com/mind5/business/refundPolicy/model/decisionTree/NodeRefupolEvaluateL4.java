@@ -10,14 +10,14 @@ import br.com.mind5.business.refundPolicy.model.action.LazyRefupolNodeEvaluateL5
 import br.com.mind5.business.refundPolicy.model.action.StdRefupolMergeRefupore;
 import br.com.mind5.business.refundPolicy.model.checker.RefupolCheckEvaluateService;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodeRefupolEvaluateL4 extends DeciTreeTemplateWriteV2<RefupolInfo> {
+public final class NodeRefupolEvaluateL4 extends DeciTreeTemplateWrite<RefupolInfo> {
 	
 	public NodeRefupolEvaluateL4(DeciTreeOption<RefupolInfo> option) {
 		super(option);
@@ -25,9 +25,9 @@ public final class NodeRefupolEvaluateL4 extends DeciTreeTemplateWriteV2<Refupol
 	
 	
 	
-	@Override protected ModelCheckerV1<RefupolInfo> buildCheckerHook(DeciTreeOption<RefupolInfo> option) {
-		List<ModelCheckerV1<RefupolInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<RefupolInfo> checker;	
+	@Override protected ModelChecker<RefupolInfo> buildCheckerHook(DeciTreeOption<RefupolInfo> option) {
+		List<ModelChecker<RefupolInfo>> queue = new ArrayList<>();		
+		ModelChecker<RefupolInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -37,15 +37,15 @@ public final class NodeRefupolEvaluateL4 extends DeciTreeTemplateWriteV2<Refupol
 		checker = new RefupolCheckEvaluateService(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<RefupolInfo>> buildActionsOnPassedHook(DeciTreeOption<RefupolInfo> option) {
-		List<ActionStdV2<RefupolInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<RefupolInfo>> buildActionsOnPassedHook(DeciTreeOption<RefupolInfo> option) {
+		List<ActionStd<RefupolInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<RefupolInfo> mergeRefupore = new StdRefupolMergeRefupore(option);
+		ActionStd<RefupolInfo> mergeRefupore = new StdRefupolMergeRefupore(option);
 		ActionLazy<RefupolInfo> enforceRHour = new LazyRefupolEnforceRHour(option.conn, option.schemaName);
 		ActionLazy<RefupolInfo> enfoerceHasPassed = new LazyRefupolEnforceHasPassed(option.conn, option.schemaName);
 		ActionLazy<RefupolInfo> nodeL5 = new LazyRefupolNodeEvaluateL5(option.conn, option.schemaName);

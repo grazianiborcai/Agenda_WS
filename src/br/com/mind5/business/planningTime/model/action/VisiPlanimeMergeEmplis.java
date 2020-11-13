@@ -7,12 +7,12 @@ import br.com.mind5.business.employeeList.info.EmplisInfo;
 import br.com.mind5.business.employeeList.model.decisionTree.RootEmplisSelect;
 import br.com.mind5.business.planningTime.info.PlanimeInfo;
 import br.com.mind5.business.planningTime.info.PlanimeMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiPlanimeMergeEmplis extends ActionVisitorTemplateMergeV2<PlanimeInfo, EmplisInfo> {
+final class VisiPlanimeMergeEmplis extends ActionVisitorTemplateMerge<PlanimeInfo, EmplisInfo> {
 	
 	public VisiPlanimeMergeEmplis(DeciTreeOption<PlanimeInfo> option) {
 		super(option, EmplisInfo.class);
@@ -39,6 +39,6 @@ final class VisiPlanimeMergeEmplis extends ActionVisitorTemplateMergeV2<PlanimeI
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
+		return super.MERGE_WHEN_EMPTY;
 	}
 }

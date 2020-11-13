@@ -13,7 +13,7 @@ import br.com.mind5.message.sysMessage.model.decisionTree.RootSymsgSelect;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public abstract class ModelCheckerTemplateSimpleV2<T extends InfoRecord> implements ModelCheckerV2<T> {
+public abstract class ModelCheckerTemplateSimple<T extends InfoRecord> implements ModelChecker<T> {
 	private final int STATE_INIT = 0;
 	private final int STATE_CLOSED = 1;
 	private final int STATE_EXECUTED = 2;
@@ -30,7 +30,7 @@ public abstract class ModelCheckerTemplateSimpleV2<T extends InfoRecord> impleme
 	
 	
 	
-	protected ModelCheckerTemplateSimpleV2(ModelCheckerOption option) {
+	protected ModelCheckerTemplateSimple(ModelCheckerOption option) {
 		checkArgument(option);
 		init(option);
 	} 

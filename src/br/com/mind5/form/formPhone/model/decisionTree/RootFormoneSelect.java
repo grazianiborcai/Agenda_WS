@@ -6,14 +6,14 @@ import java.util.List;
 import br.com.mind5.form.formPhone.info.FormoneInfo;
 import br.com.mind5.form.formPhone.model.checker.FormoneCheckCountry;
 import br.com.mind5.form.formPhone.model.checker.FormoneCheckRead;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootFormoneSelect extends DeciTreeTemplateReadV2<FormoneInfo> {
+public final class RootFormoneSelect extends DeciTreeTemplateRead<FormoneInfo> {
 	
 	public RootFormoneSelect(DeciTreeOption<FormoneInfo> option) {
 		super(option);
@@ -21,9 +21,9 @@ public final class RootFormoneSelect extends DeciTreeTemplateReadV2<FormoneInfo>
 	
 	
 	
-	@Override protected ModelCheckerV1<FormoneInfo> buildCheckerHook(DeciTreeOption<FormoneInfo> option) {
-		List<ModelCheckerV1<FormoneInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<FormoneInfo> checker;	
+	@Override protected ModelChecker<FormoneInfo> buildCheckerHook(DeciTreeOption<FormoneInfo> option) {
+		List<ModelChecker<FormoneInfo>> queue = new ArrayList<>();		
+		ModelChecker<FormoneInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -41,15 +41,15 @@ public final class RootFormoneSelect extends DeciTreeTemplateReadV2<FormoneInfo>
 		queue.add(checker);
 		
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<FormoneInfo>> buildActionsOnPassedHook(DeciTreeOption<FormoneInfo> option) {
-		List<ActionStdV2<FormoneInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<FormoneInfo>> buildActionsOnPassedHook(DeciTreeOption<FormoneInfo> option) {
+		List<ActionStd<FormoneInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<FormoneInfo> nodeSelect = new NodeFormoneSelect(option).toAction();
+		ActionStd<FormoneInfo> nodeSelect = new NodeFormoneSelect(option).toAction();
 		
 		actions.add(nodeSelect);
 		return actions;

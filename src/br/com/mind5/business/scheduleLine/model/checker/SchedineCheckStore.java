@@ -4,10 +4,10 @@ import br.com.mind5.business.scheduleLine.info.SchedineInfo;
 import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.business.store.model.checker.StoreCheckExist;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.model.checker.ModelChecker;
 
-public final class SchedineCheckStore extends ModelCheckerTemplateForwardV2<SchedineInfo, StoreInfo> {
+public final class SchedineCheckStore extends ModelCheckerTemplateForward<SchedineInfo, StoreInfo> {
 	
 	public SchedineCheckStore(ModelCheckerOption option) {
 		super(option);
@@ -15,7 +15,7 @@ public final class SchedineCheckStore extends ModelCheckerTemplateForwardV2<Sche
 
 
 	
-	@Override protected ModelCheckerV1<StoreInfo> getCheckerHook(ModelCheckerOption option) {
+	@Override protected ModelChecker<StoreInfo> getCheckerHook(ModelCheckerOption option) {
 		return new StoreCheckExist(option);
 	}
 	

@@ -4,12 +4,11 @@ import java.util.List;
 
 import br.com.mind5.business.addressSnapshot.info.AddresnapInfo;
 import br.com.mind5.business.addressSnapshot.info.AddresnapMerger;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiAddresnapMergeToSelect extends ActionVisitorTemplateMergeV2<AddresnapInfo, AddresnapInfo> {
+final class VisiAddresnapMergeToSelect extends ActionVisitorTemplateMerge<AddresnapInfo, AddresnapInfo> {
 	
 	public VisiAddresnapMergeToSelect(DeciTreeOption<AddresnapInfo> option) {
 		super(option, AddresnapInfo.class);
@@ -17,7 +16,7 @@ final class VisiAddresnapMergeToSelect extends ActionVisitorTemplateMergeV2<Addr
 	
 	
 	
-	@Override protected Class<? extends ActionStdV2<AddresnapInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStd<AddresnapInfo>> getActionClassHook() {
 		return StdAddresnapDaoSelect.class;
 	}
 	
@@ -30,6 +29,6 @@ final class VisiAddresnapMergeToSelect extends ActionVisitorTemplateMergeV2<Addr
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
+		return super.DONT_MERGE_WHEN_EMPTY;
 	}
 }

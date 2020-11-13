@@ -9,14 +9,14 @@ import br.com.mind5.business.owner.model.action.StdOwnerEnforceAddressKey;
 import br.com.mind5.business.owner.model.action.StdOwnerSuccess;
 import br.com.mind5.business.owner.model.checker.OwnerCheckHasAddress;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodeOwnerUpsertAddress extends DeciTreeTemplateWriteV2<OwnerInfo> {
+public final class NodeOwnerUpsertAddress extends DeciTreeTemplateWrite<OwnerInfo> {
 	
 	public NodeOwnerUpsertAddress(DeciTreeOption<OwnerInfo> option) {
 		super(option);
@@ -24,9 +24,9 @@ public final class NodeOwnerUpsertAddress extends DeciTreeTemplateWriteV2<OwnerI
 	
 	
 	
-	@Override protected ModelCheckerV1<OwnerInfo> buildCheckerHook(DeciTreeOption<OwnerInfo> option) {
-		List<ModelCheckerV1<OwnerInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<OwnerInfo> checker;
+	@Override protected ModelChecker<OwnerInfo> buildCheckerHook(DeciTreeOption<OwnerInfo> option) {
+		List<ModelChecker<OwnerInfo>> queue = new ArrayList<>();		
+		ModelChecker<OwnerInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
 		checkerOption = new ModelCheckerOption();
@@ -36,15 +36,15 @@ public final class NodeOwnerUpsertAddress extends DeciTreeTemplateWriteV2<OwnerI
 		checker = new OwnerCheckHasAddress(checkerOption);
 		queue.add(checker);	
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<OwnerInfo>> buildActionsOnPassedHook(DeciTreeOption<OwnerInfo> option) {
-		List<ActionStdV2<OwnerInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<OwnerInfo>> buildActionsOnPassedHook(DeciTreeOption<OwnerInfo> option) {
+		List<ActionStd<OwnerInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<OwnerInfo> enforceAddressKey = new StdOwnerEnforceAddressKey(option);
+		ActionStd<OwnerInfo> enforceAddressKey = new StdOwnerEnforceAddressKey(option);
 		ActionLazy<OwnerInfo> upsertAddress = new LazyOwnerAddressUpsert(option.conn, option.schemaName);
 		
 		enforceAddressKey.addPostAction(upsertAddress);
@@ -55,8 +55,8 @@ public final class NodeOwnerUpsertAddress extends DeciTreeTemplateWriteV2<OwnerI
 	
 	
 	
-	@Override protected List<ActionStdV2<OwnerInfo>> buildActionsOnFailedHook(DeciTreeOption<OwnerInfo> option) {
-		List<ActionStdV2<OwnerInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<OwnerInfo>> buildActionsOnFailedHook(DeciTreeOption<OwnerInfo> option) {
+		List<ActionStd<OwnerInfo>> actions = new ArrayList<>();
 		
 		actions.add(new StdOwnerSuccess(option));		
 		return actions;

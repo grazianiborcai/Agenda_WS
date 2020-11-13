@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.security.otpUserPassword.info.OtperasInfo;
 import br.com.mind5.security.otpUserPassword.model.action.LazyOtperasOptValidate;
 import br.com.mind5.security.otpUserPassword.model.action.StdOtperasDaoDelete;
@@ -17,7 +17,7 @@ import br.com.mind5.security.otpUserPassword.model.action.StdOtperasMergeToAuthe
 import br.com.mind5.security.otpUserPassword.model.checker.OtperasCheckAuthenticate;
 import br.com.mind5.security.otpUserPassword.model.checker.OtperasCheckExist;
 
-public final class RootOtperasAuthenticate extends DeciTreeTemplateWriteV2<OtperasInfo> {
+public final class RootOtperasAuthenticate extends DeciTreeTemplateWrite<OtperasInfo> {
 	
 	public RootOtperasAuthenticate(DeciTreeOption<OtperasInfo> option) {
 		super(option);
@@ -25,9 +25,9 @@ public final class RootOtperasAuthenticate extends DeciTreeTemplateWriteV2<Otper
 	
 	
 	
-	@Override protected ModelCheckerV1<OtperasInfo> buildCheckerHook(DeciTreeOption<OtperasInfo> option) {
-		List<ModelCheckerV1<OtperasInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<OtperasInfo> checker;
+	@Override protected ModelChecker<OtperasInfo> buildCheckerHook(DeciTreeOption<OtperasInfo> option) {
+		List<ModelChecker<OtperasInfo>> queue = new ArrayList<>();		
+		ModelChecker<OtperasInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -44,17 +44,17 @@ public final class RootOtperasAuthenticate extends DeciTreeTemplateWriteV2<Otper
 		checker = new OtperasCheckExist(checkerOption);
 		queue.add(checker);	
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<OtperasInfo>> buildActionsOnPassedHook(DeciTreeOption<OtperasInfo> option) {
-		List<ActionStdV2<OtperasInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<OtperasInfo>> buildActionsOnPassedHook(DeciTreeOption<OtperasInfo> option) {
+		List<ActionStd<OtperasInfo>> actions = new ArrayList<>();
 
-		ActionStdV2<OtperasInfo> mergeToAuthenticate = new StdOtperasMergeToAuthenticate(option);
+		ActionStd<OtperasInfo> mergeToAuthenticate = new StdOtperasMergeToAuthenticate(option);
 		ActionLazy<OtperasInfo> optValidate = new LazyOtperasOptValidate(option.conn, option.schemaName);
-		ActionStdV2<OtperasInfo> delete = new StdOtperasDaoDelete(option);
+		ActionStd<OtperasInfo> delete = new StdOtperasDaoDelete(option);
 		
 		mergeToAuthenticate.addPostAction(optValidate);
 		

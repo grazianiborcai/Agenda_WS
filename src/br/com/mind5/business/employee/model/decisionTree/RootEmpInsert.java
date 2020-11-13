@@ -14,14 +14,14 @@ import br.com.mind5.business.employee.model.checker.EmpCheckInsert;
 import br.com.mind5.business.employee.model.checker.EmpCheckLangu;
 import br.com.mind5.business.employee.model.checker.EmpCheckOwner;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootEmpInsert extends DeciTreeTemplateWriteV2<EmpInfo> {	
+public final class RootEmpInsert extends DeciTreeTemplateWrite<EmpInfo> {	
 	
 	public RootEmpInsert(DeciTreeOption<EmpInfo> option) {
 		super(option);
@@ -29,9 +29,9 @@ public final class RootEmpInsert extends DeciTreeTemplateWriteV2<EmpInfo> {
 	
 	
 	
-	@Override protected ModelCheckerV1<EmpInfo> buildCheckerHook(DeciTreeOption<EmpInfo> option) {
-		List<ModelCheckerV1<EmpInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<EmpInfo> checker;
+	@Override protected ModelChecker<EmpInfo> buildCheckerHook(DeciTreeOption<EmpInfo> option) {
+		List<ModelChecker<EmpInfo>> queue = new ArrayList<>();		
+		ModelChecker<EmpInfo> checker;
 		ModelCheckerOption checkerOption;		
 		
 		checkerOption = new ModelCheckerOption();
@@ -55,15 +55,15 @@ public final class RootEmpInsert extends DeciTreeTemplateWriteV2<EmpInfo> {
 		checker = new EmpCheckOwner(checkerOption);
 		queue.add(checker);	
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<EmpInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpInfo> option) {
-		List<ActionStdV2<EmpInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<EmpInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpInfo> option) {
+		List<ActionStd<EmpInfo>> actions = new ArrayList<>();
 		//TODO: O que fazer se o CPF/e-mail ja tiver associado a um customer/owner/store manager ?
-		ActionStdV2<EmpInfo> insertEmployee = new NodeEmpInsertL1(option).toAction();	
+		ActionStd<EmpInfo> insertEmployee = new NodeEmpInsertL1(option).toAction();	
 		ActionLazy<EmpInfo> insertPerson = new LazyEmpNodeInsertPerson(option.conn, option.schemaName);	
 		ActionLazy<EmpInfo> insertUser = new LazyEmpNodeInsertUser(option.conn, option.schemaName);
 		ActionLazy<EmpInfo> snapshot = new LazyEmpNodeSnapshot(option.conn, option.schemaName);	

@@ -1,11 +1,11 @@
 package br.com.mind5.business.orderReserve.model.action;
 
 import br.com.mind5.business.orderReserve.info.OrderveInfo;
-import br.com.mind5.model.action.ActionStdTemplateV2;
-import br.com.mind5.model.action.ActionVisitorV2;
+import br.com.mind5.model.action.ActionStdTemplate;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdOrderveMergeToSelect extends ActionStdTemplateV2<OrderveInfo> {
+public final class StdOrderveMergeToSelect extends ActionStdTemplate<OrderveInfo> {
 
 	public StdOrderveMergeToSelect(DeciTreeOption<OrderveInfo> option) {
 		super(option);
@@ -13,7 +13,7 @@ public final class StdOrderveMergeToSelect extends ActionStdTemplateV2<OrderveIn
 	
 	
 	
-	protected ActionVisitorV2<OrderveInfo> buildVisitorHook(DeciTreeOption<OrderveInfo> option) {
+	protected ActionVisitor<OrderveInfo> buildVisitorHook(DeciTreeOption<OrderveInfo> option) {
 		return new VisiOrderveMergeToSelect(option);
 	}
 }

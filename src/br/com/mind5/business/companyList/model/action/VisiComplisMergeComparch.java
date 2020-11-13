@@ -6,12 +6,11 @@ import br.com.mind5.business.companyList.info.ComplisInfo;
 import br.com.mind5.business.companyList.info.ComplisMerger;
 import br.com.mind5.business.companySearch.info.ComparchInfo;
 import br.com.mind5.business.companySearch.model.decisionTree.RootComparchSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiComplisMergeComparch extends ActionVisitorTemplateMergeV2<ComplisInfo, ComparchInfo> {
+final class VisiComplisMergeComparch extends ActionVisitorTemplateMerge<ComplisInfo, ComparchInfo> {
 	
 	public VisiComplisMergeComparch(DeciTreeOption<ComplisInfo> option) {
 		super(option, ComparchInfo.class);
@@ -32,6 +31,6 @@ final class VisiComplisMergeComparch extends ActionVisitorTemplateMergeV2<Compli
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
+		return super.DONT_MERGE_WHEN_EMPTY;
 	}
 }

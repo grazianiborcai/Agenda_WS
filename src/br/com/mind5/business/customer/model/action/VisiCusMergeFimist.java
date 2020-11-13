@@ -7,11 +7,11 @@ import br.com.mind5.business.customer.info.CusMerger;
 import br.com.mind5.file.fileImageList.info.FimistCopier;
 import br.com.mind5.file.fileImageList.info.FimistInfo;
 import br.com.mind5.file.fileImageList.model.decisionTree.RootFimistSearch;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiCusMergeFimist extends ActionVisitorTemplateMergeV2<CusInfo, FimistInfo> {
+final class VisiCusMergeFimist extends ActionVisitorTemplateMerge<CusInfo, FimistInfo> {
 	
 	public VisiCusMergeFimist(DeciTreeOption<CusInfo> option) {
 		super(option, FimistInfo.class);

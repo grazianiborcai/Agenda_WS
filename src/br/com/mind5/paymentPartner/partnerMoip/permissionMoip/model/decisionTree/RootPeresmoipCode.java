@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.info.PeresmoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.model.action.LazyPeresmoipNodeCode;
 import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.model.action.StdPeresmoipMergeToSelect;
@@ -19,7 +19,7 @@ import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.model.checker.Pere
 import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.model.checker.PeresmoipCheckOwner;
 import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.model.checker.PeresmoipCheckUsername;
 
-public final class RootPeresmoipCode extends DeciTreeTemplateWriteV2<PeresmoipInfo> {
+public final class RootPeresmoipCode extends DeciTreeTemplateWrite<PeresmoipInfo> {
 	
 	public RootPeresmoipCode(DeciTreeOption<PeresmoipInfo> option) {
 		super(option);
@@ -27,9 +27,9 @@ public final class RootPeresmoipCode extends DeciTreeTemplateWriteV2<PeresmoipIn
 	
 	
 	
-	@Override protected ModelCheckerV1<PeresmoipInfo> buildCheckerHook(DeciTreeOption<PeresmoipInfo> option) {
-		List<ModelCheckerV1<PeresmoipInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<PeresmoipInfo> checker;	
+	@Override protected ModelChecker<PeresmoipInfo> buildCheckerHook(DeciTreeOption<PeresmoipInfo> option) {
+		List<ModelChecker<PeresmoipInfo>> queue = new ArrayList<>();		
+		ModelChecker<PeresmoipInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -67,15 +67,15 @@ public final class RootPeresmoipCode extends DeciTreeTemplateWriteV2<PeresmoipIn
 		checker = new PeresmoipCheckUsername(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<PeresmoipInfo>> buildActionsOnPassedHook(DeciTreeOption<PeresmoipInfo> option) {
-		List<ActionStdV2<PeresmoipInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStd<PeresmoipInfo>> buildActionsOnPassedHook(DeciTreeOption<PeresmoipInfo> option) {
+		List<ActionStd<PeresmoipInfo>> actions = new ArrayList<>();		
 
-		ActionStdV2<PeresmoipInfo> mergeToSelect = new StdPeresmoipMergeToSelect(option);	
+		ActionStd<PeresmoipInfo> mergeToSelect = new StdPeresmoipMergeToSelect(option);	
 		ActionLazy<PeresmoipInfo> nodeCode = new LazyPeresmoipNodeCode(option.conn, option.schemaName);
 		
 		mergeToSelect.addPostAction(nodeCode);

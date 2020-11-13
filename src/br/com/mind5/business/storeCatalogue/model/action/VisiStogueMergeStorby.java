@@ -6,11 +6,11 @@ import br.com.mind5.business.storeCatalogue.info.StogueInfo;
 import br.com.mind5.business.storeCatalogue.info.StogueMerger;
 import br.com.mind5.business.storeNearby.info.StorbyInfo;
 import br.com.mind5.business.storeNearby.model.decisionTree.RootStorbySelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiStogueMergeStorby extends ActionVisitorTemplateMergeV2<StogueInfo, StorbyInfo> {
+final class VisiStogueMergeStorby extends ActionVisitorTemplateMerge<StogueInfo, StorbyInfo> {
 	
 	public VisiStogueMergeStorby(DeciTreeOption<StogueInfo> option) {
 		super(option, StorbyInfo.class);

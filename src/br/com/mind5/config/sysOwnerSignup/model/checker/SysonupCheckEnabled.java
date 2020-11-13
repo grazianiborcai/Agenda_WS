@@ -3,12 +3,12 @@ package br.com.mind5.config.sysOwnerSignup.model.checker;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.config.sysOwnerSignup.info.SysonupInfo;
 import br.com.mind5.config.sysOwnerSignup.model.decisionTree.RootSysonupSelectEnabled;
-import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class SysonupCheckEnabled extends ModelCheckerTemplateActionV2<SysonupInfo, SysonupInfo> {
+public final class SysonupCheckEnabled extends ModelCheckerTemplateAction<SysonupInfo, SysonupInfo> {
 	
 	public SysonupCheckEnabled(ModelCheckerOption option) {
 		super(option, SysonupInfo.class);
@@ -16,8 +16,8 @@ public final class SysonupCheckEnabled extends ModelCheckerTemplateActionV2<Syso
 	
 	
 	
-	@Override protected ActionStdV2<SysonupInfo> buildActionHook(DeciTreeOption<SysonupInfo> option) {
-		ActionStdV2<SysonupInfo> select = new RootSysonupSelectEnabled(option).toAction();
+	@Override protected ActionStd<SysonupInfo> buildActionHook(DeciTreeOption<SysonupInfo> option) {
+		ActionStd<SysonupInfo> select = new RootSysonupSelectEnabled(option).toAction();
 		
 		return select;
 	}

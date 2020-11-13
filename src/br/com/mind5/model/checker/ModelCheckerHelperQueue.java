@@ -8,15 +8,15 @@ import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.InfoRecord;
 
 
-public final class ModelCheckerHelperQueueV2<T extends InfoRecord> implements ModelCheckerV2<T> {
+public final class ModelCheckerHelperQueue<T extends InfoRecord> implements ModelChecker<T> {
 	protected final boolean SUCCESS = true;
 	protected final boolean FAILED = false;
 	
-	private List<ModelCheckerV1<T>> checkers;
-	private ModelCheckerV1<T> currentChecker;
+	private List<ModelChecker<T>> checkers;
+	private ModelChecker<T> currentChecker;
 	
 	
-	public ModelCheckerHelperQueueV2(List<ModelCheckerV1<T>> queue) {
+	public ModelCheckerHelperQueue(List<ModelChecker<T>> queue) {
 		checkQueue(queue);
 		checkers = queue;
 	}
@@ -44,7 +44,7 @@ public final class ModelCheckerHelperQueueV2<T extends InfoRecord> implements Mo
 		boolean checkResult = SUCCESS;
 		
 		
-		for (ModelCheckerV1<T> eachChecker : checkers) {
+		for (ModelChecker<T> eachChecker : checkers) {
 			currentChecker = eachChecker;
 			checkResult = eachChecker.check(recordInfo);
 			
@@ -89,31 +89,31 @@ public final class ModelCheckerHelperQueueV2<T extends InfoRecord> implements Mo
 	
 	
 	
-	private void closeQueue(List<ModelCheckerV1<T>> queue) {
+	private void closeQueue(List<ModelChecker<T>> queue) {
 		if (queue == null)
 			return;
 		
 		if (queue.isEmpty())
 			return;
 		
-		for (ModelCheckerV1<T> eachChecker : queue) {
+		for (ModelChecker<T> eachChecker : queue) {
 			closeChecker(eachChecker);
 		}
 	}
 	
 	
 	
-	private void closeChecker(ModelCheckerV1<T> checker) {
+	private void closeChecker(ModelChecker<T> checker) {
 		if (checker == null)
 			return;
 		
-		if (checker instanceof ModelCheckerV2)
-			((ModelCheckerV2<T>) checker).close();
+		if (checker instanceof ModelChecker)
+			((ModelChecker<T>) checker).close();
 	}
 	
 	
 	
-	private void checkQueue(List<ModelCheckerV1<T>> queue) {
+	private void checkQueue(List<ModelChecker<T>> queue) {
 		if (queue == null) {
 			logException(new NullPointerException("queue" + SystemMessage.NULL_ARGUMENT));
 			throw new NullPointerException("queue" + SystemMessage.NULL_ARGUMENT);
@@ -168,7 +168,7 @@ public final class ModelCheckerHelperQueueV2<T extends InfoRecord> implements Mo
 	
 	
 	
-	private void checkLastChecker(ModelCheckerV1<T> checker) {
+	private void checkLastChecker(ModelChecker<T> checker) {
 		if (checker == null) {
 			logException(new IllegalStateException(SystemMessage.NO_CHECK_PERFORMED));
 			throw new IllegalStateException(SystemMessage.NO_CHECK_PERFORMED);

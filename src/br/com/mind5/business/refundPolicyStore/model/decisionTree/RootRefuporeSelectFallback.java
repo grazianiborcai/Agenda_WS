@@ -5,14 +5,14 @@ import java.util.List;
 
 import br.com.mind5.business.refundPolicyStore.info.RefuporeInfo;
 import br.com.mind5.business.refundPolicyStore.model.checker.RefuporeCheckRead;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootRefuporeSelectFallback extends DeciTreeTemplateReadV2<RefuporeInfo> {
+public final class RootRefuporeSelectFallback extends DeciTreeTemplateRead<RefuporeInfo> {
 	
 	public RootRefuporeSelectFallback(DeciTreeOption<RefuporeInfo> option) {
 		super(option);
@@ -20,9 +20,9 @@ public final class RootRefuporeSelectFallback extends DeciTreeTemplateReadV2<Ref
 	
 	
 	
-	@Override protected ModelCheckerV1<RefuporeInfo> buildCheckerHook(DeciTreeOption<RefuporeInfo> option) {
-		List<ModelCheckerV1<RefuporeInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<RefuporeInfo> checker;
+	@Override protected ModelChecker<RefuporeInfo> buildCheckerHook(DeciTreeOption<RefuporeInfo> option) {
+		List<ModelChecker<RefuporeInfo>> queue = new ArrayList<>();		
+		ModelChecker<RefuporeInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
 		checkerOption = new ModelCheckerOption();
@@ -32,15 +32,15 @@ public final class RootRefuporeSelectFallback extends DeciTreeTemplateReadV2<Ref
 		checker = new RefuporeCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<RefuporeInfo>> buildActionsOnPassedHook(DeciTreeOption<RefuporeInfo> option) {
-		List<ActionStdV2<RefuporeInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<RefuporeInfo>> buildActionsOnPassedHook(DeciTreeOption<RefuporeInfo> option) {
+		List<ActionStd<RefuporeInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<RefuporeInfo> select = new NodeRefuporeFallback(option).toAction();
+		ActionStd<RefuporeInfo> select = new NodeRefuporeFallback(option).toAction();
 		
 		actions.add(select);
 		return actions;

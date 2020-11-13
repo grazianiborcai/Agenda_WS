@@ -3,12 +3,12 @@ package br.com.mind5.config.sysStorePartitioning.model.checker;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.config.sysStorePartitioning.info.SytotinInfo;
 import br.com.mind5.config.sysStorePartitioning.model.decisionTree.RootSytotinSelectEnabled;
-import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class SytotinCheckEnabled extends ModelCheckerTemplateActionV2<SytotinInfo, SytotinInfo> {
+public final class SytotinCheckEnabled extends ModelCheckerTemplateAction<SytotinInfo, SytotinInfo> {
 	
 	public SytotinCheckEnabled(ModelCheckerOption option) {
 		super(option, SytotinInfo.class);
@@ -16,8 +16,8 @@ public final class SytotinCheckEnabled extends ModelCheckerTemplateActionV2<Syto
 	
 	
 	
-	@Override protected ActionStdV2<SytotinInfo> buildActionHook(DeciTreeOption<SytotinInfo> option) {
-		ActionStdV2<SytotinInfo> select = new RootSytotinSelectEnabled(option).toAction();		
+	@Override protected ActionStd<SytotinInfo> buildActionHook(DeciTreeOption<SytotinInfo> option) {
+		ActionStd<SytotinInfo> select = new RootSytotinSelectEnabled(option).toAction();		
 		return select;
 	}
 	

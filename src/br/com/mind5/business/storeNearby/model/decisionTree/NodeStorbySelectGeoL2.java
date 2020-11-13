@@ -7,14 +7,14 @@ import br.com.mind5.business.storeNearby.info.StorbyInfo;
 import br.com.mind5.business.storeNearby.model.action.LazyStorbyRootSelectGeoL4;
 import br.com.mind5.business.storeNearby.model.checker.StorbyCheckExistHash03;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class NodeStorbySelectGeoL2 extends DeciTreeTemplateReadV2<StorbyInfo> {
+public final class NodeStorbySelectGeoL2 extends DeciTreeTemplateRead<StorbyInfo> {
 	
 	public NodeStorbySelectGeoL2(DeciTreeOption<StorbyInfo> option) {
 		super(option);
@@ -22,9 +22,9 @@ public final class NodeStorbySelectGeoL2 extends DeciTreeTemplateReadV2<StorbyIn
 	
 	
 	
-	@Override protected ModelCheckerV1<StorbyInfo> buildCheckerHook(DeciTreeOption<StorbyInfo> option) {
-		List<ModelCheckerV1<StorbyInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<StorbyInfo> checker;	
+	@Override protected ModelChecker<StorbyInfo> buildCheckerHook(DeciTreeOption<StorbyInfo> option) {
+		List<ModelChecker<StorbyInfo>> queue = new ArrayList<>();		
+		ModelChecker<StorbyInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -34,15 +34,15 @@ public final class NodeStorbySelectGeoL2 extends DeciTreeTemplateReadV2<StorbyIn
 		checker = new StorbyCheckExistHash03(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<StorbyInfo>> buildActionsOnPassedHook(DeciTreeOption<StorbyInfo> option) {
-		List<ActionStdV2<StorbyInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStd<StorbyInfo>> buildActionsOnPassedHook(DeciTreeOption<StorbyInfo> option) {
+		List<ActionStd<StorbyInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV2<StorbyInfo> selectHash03 = new RootStorbySelectHash03(option).toAction();
+		ActionStd<StorbyInfo> selectHash03 = new RootStorbySelectHash03(option).toAction();
 		ActionLazy<StorbyInfo> nodeL4 = new LazyStorbyRootSelectGeoL4(option.conn, option.schemaName);
 		
 		selectHash03.addPostAction(nodeL4);
@@ -53,10 +53,10 @@ public final class NodeStorbySelectGeoL2 extends DeciTreeTemplateReadV2<StorbyIn
 	
 	
 	
-	@Override protected List<ActionStdV2<StorbyInfo>> buildActionsOnFailedHook(DeciTreeOption<StorbyInfo> option) {
-		List<ActionStdV2<StorbyInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStd<StorbyInfo>> buildActionsOnFailedHook(DeciTreeOption<StorbyInfo> option) {
+		List<ActionStd<StorbyInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV2<StorbyInfo> nodeL3 = new NodeStorbySelectGeoL3(option).toAction();
+		ActionStd<StorbyInfo> nodeL3 = new NodeStorbySelectGeoL3(option).toAction();
 		
 		actions.add(nodeL3);			
 		return actions;

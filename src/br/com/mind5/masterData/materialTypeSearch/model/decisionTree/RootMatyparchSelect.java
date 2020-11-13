@@ -6,14 +6,14 @@ import java.util.List;
 import br.com.mind5.masterData.materialTypeSearch.info.MatyparchInfo;
 import br.com.mind5.masterData.materialTypeSearch.model.action.StdMatyparchDaoSelect;
 import br.com.mind5.masterData.materialTypeSearch.model.checker.MatyparchCheckRead;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootMatyparchSelect extends DeciTreeTemplateReadV2<MatyparchInfo> {
+public final class RootMatyparchSelect extends DeciTreeTemplateRead<MatyparchInfo> {
 	
 	public RootMatyparchSelect(DeciTreeOption<MatyparchInfo> option) {
 		super(option);
@@ -21,9 +21,9 @@ public final class RootMatyparchSelect extends DeciTreeTemplateReadV2<MatyparchI
 	
 	
 	
-	@Override protected ModelCheckerV1<MatyparchInfo> buildCheckerHook(DeciTreeOption<MatyparchInfo> option) {
-		List<ModelCheckerV1<MatyparchInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<MatyparchInfo> checker;
+	@Override protected ModelChecker<MatyparchInfo> buildCheckerHook(DeciTreeOption<MatyparchInfo> option) {
+		List<ModelChecker<MatyparchInfo>> queue = new ArrayList<>();		
+		ModelChecker<MatyparchInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
 		checkerOption = new ModelCheckerOption();
@@ -33,15 +33,15 @@ public final class RootMatyparchSelect extends DeciTreeTemplateReadV2<MatyparchI
 		checker = new MatyparchCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<MatyparchInfo>> buildActionsOnPassedHook(DeciTreeOption<MatyparchInfo> option) {
-		List<ActionStdV2<MatyparchInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<MatyparchInfo>> buildActionsOnPassedHook(DeciTreeOption<MatyparchInfo> option) {
+		List<ActionStd<MatyparchInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<MatyparchInfo> select = new StdMatyparchDaoSelect(option);
+		ActionStd<MatyparchInfo> select = new StdMatyparchDaoSelect(option);
 		
 		actions.add(select);
 		return actions;

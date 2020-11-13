@@ -3,12 +3,12 @@ package br.com.mind5.masterData.scheduleStatus.model.checker;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.masterData.scheduleStatus.info.SchedatusInfo;
 import br.com.mind5.masterData.scheduleStatus.model.action.StdSchedatusDaoSelect;
-import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class SchedatusCheckExist extends ModelCheckerTemplateActionV2<SchedatusInfo, SchedatusInfo> {
+public final class SchedatusCheckExist extends ModelCheckerTemplateAction<SchedatusInfo, SchedatusInfo> {
 	
 	public SchedatusCheckExist(ModelCheckerOption option) {
 		super(option, SchedatusInfo.class);
@@ -16,8 +16,8 @@ public final class SchedatusCheckExist extends ModelCheckerTemplateActionV2<Sche
 	
 	
 	
-	@Override protected ActionStdV2<SchedatusInfo> buildActionHook(DeciTreeOption<SchedatusInfo> option) {
-		ActionStdV2<SchedatusInfo> select = new StdSchedatusDaoSelect(option);
+	@Override protected ActionStd<SchedatusInfo> buildActionHook(DeciTreeOption<SchedatusInfo> option) {
+		ActionStd<SchedatusInfo> select = new StdSchedatusDaoSelect(option);
 		return select;
 	}
 	

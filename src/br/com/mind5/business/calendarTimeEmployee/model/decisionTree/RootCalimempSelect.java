@@ -11,14 +11,14 @@ import br.com.mind5.business.calendarTimeEmployee.model.checker.CalimempCheckOwn
 import br.com.mind5.business.calendarTimeEmployee.model.checker.CalimempCheckRead;
 import br.com.mind5.business.calendarTimeEmployee.model.checker.CalimempCheckStore;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootCalimempSelect extends DeciTreeTemplateWriteV2<CalimempInfo> {
+public final class RootCalimempSelect extends DeciTreeTemplateWrite<CalimempInfo> {
 	
 	public RootCalimempSelect(DeciTreeOption<CalimempInfo> option) {
 		super(option);
@@ -26,9 +26,9 @@ public final class RootCalimempSelect extends DeciTreeTemplateWriteV2<CalimempIn
 	
 	
 	
-	@Override protected ModelCheckerV1<CalimempInfo> buildCheckerHook(DeciTreeOption<CalimempInfo> option) {
-		List<ModelCheckerV1<CalimempInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<CalimempInfo> checker;	
+	@Override protected ModelChecker<CalimempInfo> buildCheckerHook(DeciTreeOption<CalimempInfo> option) {
+		List<ModelChecker<CalimempInfo>> queue = new ArrayList<>();		
+		ModelChecker<CalimempInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -59,15 +59,15 @@ public final class RootCalimempSelect extends DeciTreeTemplateWriteV2<CalimempIn
 		checker = new CalimempCheckEmp(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<CalimempInfo>> buildActionsOnPassedHook(DeciTreeOption<CalimempInfo> option) {
-		List<ActionStdV2<CalimempInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<CalimempInfo>> buildActionsOnPassedHook(DeciTreeOption<CalimempInfo> option) {
+		List<ActionStd<CalimempInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<CalimempInfo> mergeCalate = new StdCalimempMergeCalate(option);
+		ActionStd<CalimempInfo> mergeCalate = new StdCalimempMergeCalate(option);
 		ActionLazy<CalimempInfo> select = new LazyCalimempNodeSelect(option.conn, option.schemaName);
 		
 		mergeCalate.addPostAction(select);

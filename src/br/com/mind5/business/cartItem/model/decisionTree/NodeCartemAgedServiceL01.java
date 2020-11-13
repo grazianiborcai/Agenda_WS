@@ -9,14 +9,14 @@ import br.com.mind5.business.cartItem.model.action.LazyCartemMergeSymsg;
 import br.com.mind5.business.cartItem.model.action.StdCartemEnforceSymsgL01;
 import br.com.mind5.business.cartItem.model.checker.CartemCheckIsTimeAged;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodeCartemAgedServiceL01 extends DeciTreeTemplateWriteV2<CartemInfo> {
+public final class NodeCartemAgedServiceL01 extends DeciTreeTemplateWrite<CartemInfo> {
 	
 	public NodeCartemAgedServiceL01(DeciTreeOption<CartemInfo> option) {
 		super(option);
@@ -24,9 +24,9 @@ public final class NodeCartemAgedServiceL01 extends DeciTreeTemplateWriteV2<Cart
 	
 	
 	
-	@Override protected ModelCheckerV1<CartemInfo> buildCheckerHook(DeciTreeOption<CartemInfo> option) {
-		List<ModelCheckerV1<CartemInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<CartemInfo> checker;	
+	@Override protected ModelChecker<CartemInfo> buildCheckerHook(DeciTreeOption<CartemInfo> option) {
+		List<ModelChecker<CartemInfo>> queue = new ArrayList<>();		
+		ModelChecker<CartemInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -39,15 +39,15 @@ public final class NodeCartemAgedServiceL01 extends DeciTreeTemplateWriteV2<Cart
 		//TODO: is valid? Pode ter mudado apos ser inserido no carrinho
 		//TODO: tempo pode ser maior 
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<CartemInfo>> buildActionsOnPassedHook(DeciTreeOption<CartemInfo> option) {
-		List<ActionStdV2<CartemInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<CartemInfo>> buildActionsOnPassedHook(DeciTreeOption<CartemInfo> option) {
+		List<ActionStd<CartemInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<CartemInfo> nodeL02 = new NodeCartemAgedServiceL02(option).toAction();	
+		ActionStd<CartemInfo> nodeL02 = new NodeCartemAgedServiceL02(option).toAction();	
 		
 		actions.add(nodeL02);		
 		return actions;
@@ -55,10 +55,10 @@ public final class NodeCartemAgedServiceL01 extends DeciTreeTemplateWriteV2<Cart
 	
 	
 	
-	@Override protected List<ActionStdV2<CartemInfo>> buildActionsOnFailedHook(DeciTreeOption<CartemInfo> option) {
-		List<ActionStdV2<CartemInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<CartemInfo>> buildActionsOnFailedHook(DeciTreeOption<CartemInfo> option) {
+		List<ActionStd<CartemInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<CartemInfo> enforceSymsg = new StdCartemEnforceSymsgL01(option);	
+		ActionStd<CartemInfo> enforceSymsg = new StdCartemEnforceSymsgL01(option);	
 		ActionLazy<CartemInfo> mergeSymsg = new LazyCartemMergeSymsg(option.conn, option.schemaName);
 		ActionLazy<CartemInfo> enforceAged = new LazyCartemEnforceAged(option.conn, option.schemaName);
 		

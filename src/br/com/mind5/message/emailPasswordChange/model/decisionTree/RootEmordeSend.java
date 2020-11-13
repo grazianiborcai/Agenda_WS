@@ -10,14 +10,14 @@ import br.com.mind5.message.emailPasswordChange.model.action.StdEmordeMergeUseli
 import br.com.mind5.message.emailPasswordChange.model.checker.EmordeCheckSend;
 import br.com.mind5.message.emailPasswordChange.model.checker.EmordeCheckUser;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootEmordeSend extends DeciTreeTemplateWriteV2<EmordeInfo> {
+public final class RootEmordeSend extends DeciTreeTemplateWrite<EmordeInfo> {
 	
 	public RootEmordeSend(DeciTreeOption<EmordeInfo> option) {
 		super(option);
@@ -25,9 +25,9 @@ public final class RootEmordeSend extends DeciTreeTemplateWriteV2<EmordeInfo> {
 	
 	
 	
-	@Override protected ModelCheckerV1<EmordeInfo> buildCheckerHook(DeciTreeOption<EmordeInfo> option) {		
-		List<ModelCheckerV1<EmordeInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<EmordeInfo> checker;	
+	@Override protected ModelChecker<EmordeInfo> buildCheckerHook(DeciTreeOption<EmordeInfo> option) {		
+		List<ModelChecker<EmordeInfo>> queue = new ArrayList<>();		
+		ModelChecker<EmordeInfo> checker;	
 		ModelCheckerOption checkerOption;		
 		
 		checkerOption = new ModelCheckerOption();
@@ -44,15 +44,15 @@ public final class RootEmordeSend extends DeciTreeTemplateWriteV2<EmordeInfo> {
 		checker = new EmordeCheckUser(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<EmordeInfo>> buildActionsOnPassedHook(DeciTreeOption<EmordeInfo> option) {
-		List<ActionStdV2<EmordeInfo>> actions = new ArrayList<>();	
+	@Override protected List<ActionStd<EmordeInfo>> buildActionsOnPassedHook(DeciTreeOption<EmordeInfo> option) {
+		List<ActionStd<EmordeInfo>> actions = new ArrayList<>();	
 		
-		ActionStdV2<EmordeInfo> mergeUselis = new StdEmordeMergeUselis(option);
+		ActionStd<EmordeInfo> mergeUselis = new StdEmordeMergeUselis(option);
 		ActionLazy<EmordeInfo> enforceEmabody = new LazyEmordeEnforceEmabody(option.conn, option.schemaName);
 		ActionLazy<EmordeInfo> send = new LazyEmordeSendEmail(option.conn, option.schemaName);
 		

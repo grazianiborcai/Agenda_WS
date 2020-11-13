@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.security.userPasswordSearch.info.UpswdarchInfo;
 import br.com.mind5.security.userPasswordSearch.model.action.LazyUpswdarchMergeToSelect;
 import br.com.mind5.security.userPasswordSearch.model.action.StdUpswdarchMergeUsername;
@@ -17,7 +17,7 @@ import br.com.mind5.security.userPasswordSearch.model.checker.UpswdarchCheckOwne
 import br.com.mind5.security.userPasswordSearch.model.checker.UpswdarchCheckRead;
 import br.com.mind5.security.userPasswordSearch.model.checker.UpswdarchCheckUsername;
 
-public final class RootUpswdarchChangedBefore extends DeciTreeTemplateWriteV2<UpswdarchInfo> {
+public final class RootUpswdarchChangedBefore extends DeciTreeTemplateWrite<UpswdarchInfo> {
 	
 	public RootUpswdarchChangedBefore(DeciTreeOption<UpswdarchInfo> option) {
 		super(option);
@@ -25,9 +25,9 @@ public final class RootUpswdarchChangedBefore extends DeciTreeTemplateWriteV2<Up
 	
 	
 	
-	@Override protected ModelCheckerV1<UpswdarchInfo> buildCheckerHook(DeciTreeOption<UpswdarchInfo> option) {
-		List<ModelCheckerV1<UpswdarchInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<UpswdarchInfo> checker;
+	@Override protected ModelChecker<UpswdarchInfo> buildCheckerHook(DeciTreeOption<UpswdarchInfo> option) {
+		List<ModelChecker<UpswdarchInfo>> queue = new ArrayList<>();		
+		ModelChecker<UpswdarchInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -51,15 +51,15 @@ public final class RootUpswdarchChangedBefore extends DeciTreeTemplateWriteV2<Up
 		checker = new UpswdarchCheckUsername(checkerOption);
 		queue.add(checker);
 		
-		 return new ModelCheckerHelperQueueV2<UpswdarchInfo>(queue);
+		 return new ModelCheckerHelperQueue<UpswdarchInfo>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<UpswdarchInfo>> buildActionsOnPassedHook(DeciTreeOption<UpswdarchInfo> option) {
-		List<ActionStdV2<UpswdarchInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<UpswdarchInfo>> buildActionsOnPassedHook(DeciTreeOption<UpswdarchInfo> option) {
+		List<ActionStd<UpswdarchInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<UpswdarchInfo> mergeUsername = new StdUpswdarchMergeUsername(option);	
+		ActionStd<UpswdarchInfo> mergeUsername = new StdUpswdarchMergeUsername(option);	
 		ActionLazy<UpswdarchInfo> select = new LazyUpswdarchMergeToSelect(option.conn, option.schemaName);
 		
 		mergeUsername.addPostAction(select);

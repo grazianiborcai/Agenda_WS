@@ -6,12 +6,11 @@ import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.business.materialList.info.MatlisMerger;
 import br.com.mind5.masterData.materialUnit.info.MatunitInfo;
 import br.com.mind5.masterData.materialUnit.model.decisionTree.RootMatunitSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiMatlisMergeMatunit extends ActionVisitorTemplateMergeV2<MatlisInfo, MatunitInfo> {
+final class VisiMatlisMergeMatunit extends ActionVisitorTemplateMerge<MatlisInfo, MatunitInfo> {
 	
 	public VisiMatlisMergeMatunit(DeciTreeOption<MatlisInfo> option) {
 		super(option, MatunitInfo.class);
@@ -32,6 +31,6 @@ final class VisiMatlisMergeMatunit extends ActionVisitorTemplateMergeV2<MatlisIn
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
+		return super.MERGE_WHEN_EMPTY;
 	}
 }

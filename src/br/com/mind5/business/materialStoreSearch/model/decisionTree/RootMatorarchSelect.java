@@ -8,14 +8,14 @@ import br.com.mind5.business.materialStoreSearch.model.action.StdMatorarchMergeT
 import br.com.mind5.business.materialStoreSearch.model.checker.MatorarchCheckLangu;
 import br.com.mind5.business.materialStoreSearch.model.checker.MatorarchCheckOwner;
 import br.com.mind5.business.materialStoreSearch.model.checker.MatorarchCheckRead;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootMatorarchSelect extends DeciTreeTemplateReadV2<MatorarchInfo> {
+public final class RootMatorarchSelect extends DeciTreeTemplateRead<MatorarchInfo> {
 	
 	public RootMatorarchSelect(DeciTreeOption<MatorarchInfo> option) {
 		super(option);
@@ -23,10 +23,10 @@ public final class RootMatorarchSelect extends DeciTreeTemplateReadV2<MatorarchI
 	
 	
 	
-	@Override protected ModelCheckerV1<MatorarchInfo> buildCheckerHook(DeciTreeOption<MatorarchInfo> option) {
+	@Override protected ModelChecker<MatorarchInfo> buildCheckerHook(DeciTreeOption<MatorarchInfo> option) {
 		ModelCheckerOption checkerOption;
-		List<ModelCheckerV1<MatorarchInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<MatorarchInfo> checker;
+		List<ModelChecker<MatorarchInfo>> queue = new ArrayList<>();		
+		ModelChecker<MatorarchInfo> checker;
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
@@ -49,15 +49,15 @@ public final class RootMatorarchSelect extends DeciTreeTemplateReadV2<MatorarchI
 		checker = new MatorarchCheckLangu(checkerOption);
 		queue.add(checker);	
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<MatorarchInfo>> buildActionsOnPassedHook(DeciTreeOption<MatorarchInfo> option) {
-		List<ActionStdV2<MatorarchInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<MatorarchInfo>> buildActionsOnPassedHook(DeciTreeOption<MatorarchInfo> option) {
+		List<ActionStd<MatorarchInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<MatorarchInfo> select = new StdMatorarchMergeToSelect(option);
+		ActionStd<MatorarchInfo> select = new StdMatorarchMergeToSelect(option);
 		actions.add(select);
 		
 		return actions;

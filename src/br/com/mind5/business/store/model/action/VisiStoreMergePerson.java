@@ -6,11 +6,11 @@ import br.com.mind5.business.person.info.PersonInfo;
 import br.com.mind5.business.person.model.decisionTree.RootPersonSelect;
 import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.business.store.info.StoreMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiStoreMergePerson extends ActionVisitorTemplateMergeV2<StoreInfo, PersonInfo> {
+final class VisiStoreMergePerson extends ActionVisitorTemplateMerge<StoreInfo, PersonInfo> {
 	
 	public VisiStoreMergePerson(DeciTreeOption<StoreInfo> option) {
 		super(option, PersonInfo.class);

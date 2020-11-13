@@ -7,11 +7,11 @@ import br.com.mind5.business.materialSnapshot.info.MatsnapInfo;
 import br.com.mind5.business.materialSnapshot.model.decisionTree.RootMatsnapSelect;
 import br.com.mind5.business.scheduleLineSnapshot.info.SchedinapInfo;
 import br.com.mind5.business.scheduleLineSnapshot.info.SchedinapMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiSchedinapMergeMatsnap extends ActionVisitorTemplateMergeV2<SchedinapInfo, MatsnapInfo> {
+final class VisiSchedinapMergeMatsnap extends ActionVisitorTemplateMerge<SchedinapInfo, MatsnapInfo> {
 	
 	public VisiSchedinapMergeMatsnap(DeciTreeOption<SchedinapInfo> option) {
 		super(option, MatsnapInfo.class);

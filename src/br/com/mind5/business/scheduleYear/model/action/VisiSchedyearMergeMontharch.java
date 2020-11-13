@@ -7,11 +7,11 @@ import br.com.mind5.business.scheduleYear.info.SchedyearMerger;
 import br.com.mind5.masterData.monthSearch.info.MontharchCopier;
 import br.com.mind5.masterData.monthSearch.info.MontharchInfo;
 import br.com.mind5.masterData.monthSearch.model.decisionTree.RootMontharchSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiSchedyearMergeMontharch extends ActionVisitorTemplateMergeV2<SchedyearInfo, MontharchInfo> {
+final class VisiSchedyearMergeMontharch extends ActionVisitorTemplateMerge<SchedyearInfo, MontharchInfo> {
 	
 	public VisiSchedyearMergeMontharch(DeciTreeOption<SchedyearInfo> option) {
 		super(option, MontharchInfo.class);

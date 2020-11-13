@@ -6,12 +6,12 @@ import br.com.mind5.business.companyList.info.ComplisInfo;
 import br.com.mind5.business.companyList.model.decisionTree.RootComplisSelect;
 import br.com.mind5.business.storeNearby.info.StorbyInfo;
 import br.com.mind5.business.storeNearby.info.StorbyMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiStorbyMergeComplis extends ActionVisitorTemplateMergeV2<StorbyInfo, ComplisInfo> {
+final class VisiStorbyMergeComplis extends ActionVisitorTemplateMerge<StorbyInfo, ComplisInfo> {
 	
 	public VisiStorbyMergeComplis(DeciTreeOption<StorbyInfo> option) {
 		super(option, ComplisInfo.class);
@@ -32,6 +32,6 @@ final class VisiStorbyMergeComplis extends ActionVisitorTemplateMergeV2<StorbyIn
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
+		return super.MERGE_WHEN_EMPTY;
 	}
 }

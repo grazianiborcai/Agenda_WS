@@ -6,11 +6,11 @@ import br.com.mind5.business.employeeLeaveDate.info.EmplateInfo;
 import br.com.mind5.business.employeeLeaveDate.info.EmplateMerger;
 import br.com.mind5.business.employeeLeaveDateSearch.info.EmplarchInfo;
 import br.com.mind5.business.employeeLeaveDateSearch.model.decisionTree.RootEmplarchSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiEmplateMergeEmplarch extends ActionVisitorTemplateMergeV2<EmplateInfo, EmplarchInfo> {
+final class VisiEmplateMergeEmplarch extends ActionVisitorTemplateMerge<EmplateInfo, EmplarchInfo> {
 	
 	public VisiEmplateMergeEmplarch(DeciTreeOption<EmplateInfo> option) {
 		super(option, EmplarchInfo.class);

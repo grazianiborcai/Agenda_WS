@@ -7,12 +7,12 @@ import br.com.mind5.business.planningTime.info.PlanimeMerger;
 import br.com.mind5.masterData.moonPhase.info.MoonaseCopier;
 import br.com.mind5.masterData.moonPhase.info.MoonaseInfo;
 import br.com.mind5.masterData.moonPhase.model.decisionTree.RootMoonaseSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiPlanimeMergeMoonase extends ActionVisitorTemplateMergeV2<PlanimeInfo, MoonaseInfo> {
+final class VisiPlanimeMergeMoonase extends ActionVisitorTemplateMerge<PlanimeInfo, MoonaseInfo> {
 	
 	public VisiPlanimeMergeMoonase(DeciTreeOption<PlanimeInfo> option) {
 		super(option, MoonaseInfo.class);
@@ -39,6 +39,6 @@ final class VisiPlanimeMergeMoonase extends ActionVisitorTemplateMergeV2<Planime
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
+		return super.MERGE_WHEN_EMPTY;
 	}
 }

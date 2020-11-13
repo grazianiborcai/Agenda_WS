@@ -5,11 +5,11 @@ import java.util.List;
 import br.com.mind5.business.materialStore.info.MatoreInfo;
 import br.com.mind5.business.materialStore.info.MatoreMerger;
 import br.com.mind5.business.materialStore.model.decisionTree.RootMatoreSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiMatoreMergeToDelete extends ActionVisitorTemplateMergeV2<MatoreInfo, MatoreInfo> {
+final class VisiMatoreMergeToDelete extends ActionVisitorTemplateMerge<MatoreInfo, MatoreInfo> {
 	
 	public VisiMatoreMergeToDelete(DeciTreeOption<MatoreInfo> option) {
 		super(option, MatoreInfo.class);

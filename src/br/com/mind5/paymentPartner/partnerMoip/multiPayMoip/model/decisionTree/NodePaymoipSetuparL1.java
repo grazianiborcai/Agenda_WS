@@ -4,17 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.info.PaymoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.model.action.LazyPaymoipNodeSetuparL2;
 import br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.model.action.StdPaymoipMergeSetupar;
 
-public final class NodePaymoipSetuparL1 extends DeciTreeTemplateWriteV2<PaymoipInfo> {
+public final class NodePaymoipSetuparL1 extends DeciTreeTemplateWrite<PaymoipInfo> {
 	
 	public NodePaymoipSetuparL1(DeciTreeOption<PaymoipInfo> option) {
 		super(option);
@@ -22,22 +22,22 @@ public final class NodePaymoipSetuparL1 extends DeciTreeTemplateWriteV2<PaymoipI
 	
 	
 	
-	@Override protected ModelCheckerV1<PaymoipInfo> buildCheckerHook(DeciTreeOption<PaymoipInfo> option) {	
-		List<ModelCheckerV1<PaymoipInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<PaymoipInfo> checker;
+	@Override protected ModelChecker<PaymoipInfo> buildCheckerHook(DeciTreeOption<PaymoipInfo> option) {	
+		List<ModelChecker<PaymoipInfo>> queue = new ArrayList<>();		
+		ModelChecker<PaymoipInfo> checker;
 
 		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<PaymoipInfo>> buildActionsOnPassedHook(DeciTreeOption<PaymoipInfo> option) {
-		List<ActionStdV2<PaymoipInfo>> actions = new ArrayList<>();	
+	@Override protected List<ActionStd<PaymoipInfo>> buildActionsOnPassedHook(DeciTreeOption<PaymoipInfo> option) {
+		List<ActionStd<PaymoipInfo>> actions = new ArrayList<>();	
 		
-		ActionStdV2<PaymoipInfo> mergeSetupar = new StdPaymoipMergeSetupar(option);
+		ActionStd<PaymoipInfo> mergeSetupar = new StdPaymoipMergeSetupar(option);
 		ActionLazy<PaymoipInfo> nodeL2 = new LazyPaymoipNodeSetuparL2(option.conn, option.schemaName);
 		
 		mergeSetupar.addPostAction(nodeL2);

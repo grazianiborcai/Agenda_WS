@@ -6,11 +6,11 @@ import br.com.mind5.business.customerList.info.CuslisInfo;
 import br.com.mind5.business.customerList.model.decisionTree.RootCuslisSelect;
 import br.com.mind5.message.emailScheduleConfirmation.info.EmulonInfo;
 import br.com.mind5.message.emailScheduleConfirmation.info.EmulonMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiEmulonMergeCuslis extends ActionVisitorTemplateMergeV2<EmulonInfo, CuslisInfo> {
+final class VisiEmulonMergeCuslis extends ActionVisitorTemplateMerge<EmulonInfo, CuslisInfo> {
 	
 	public VisiEmulonMergeCuslis(DeciTreeOption<EmulonInfo> option) {
 		super(option, CuslisInfo.class);

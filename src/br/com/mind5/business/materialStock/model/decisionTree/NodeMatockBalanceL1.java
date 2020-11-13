@@ -7,14 +7,14 @@ import br.com.mind5.business.materialStock.info.MatockInfo;
 import br.com.mind5.business.materialStock.model.action.LazyMatockNodeBalanceL2;
 import br.com.mind5.business.materialStock.model.action.StdMatockEnforceBalance;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodeMatockBalanceL1 extends DeciTreeTemplateWriteV2<MatockInfo> {
+public final class NodeMatockBalanceL1 extends DeciTreeTemplateWrite<MatockInfo> {
 	
 	public NodeMatockBalanceL1(DeciTreeOption<MatockInfo> option) {
 		super(option);
@@ -22,22 +22,22 @@ public final class NodeMatockBalanceL1 extends DeciTreeTemplateWriteV2<MatockInf
 	
 	
 	
-	@Override protected ModelCheckerV1<MatockInfo> buildCheckerHook(DeciTreeOption<MatockInfo> option) {
-		List<ModelCheckerV1<MatockInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<MatockInfo> checker;
+	@Override protected ModelChecker<MatockInfo> buildCheckerHook(DeciTreeOption<MatockInfo> option) {
+		List<ModelChecker<MatockInfo>> queue = new ArrayList<>();		
+		ModelChecker<MatockInfo> checker;
 
 		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<MatockInfo>> buildActionsOnPassedHook(DeciTreeOption<MatockInfo> option) {
-		List<ActionStdV2<MatockInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<MatockInfo>> buildActionsOnPassedHook(DeciTreeOption<MatockInfo> option) {
+		List<ActionStd<MatockInfo>> actions = new ArrayList<>();
 
-		ActionStdV2<MatockInfo> enforceBalance = new StdMatockEnforceBalance(option);
+		ActionStd<MatockInfo> enforceBalance = new StdMatockEnforceBalance(option);
 		ActionLazy<MatockInfo> balanceL2 = new LazyMatockNodeBalanceL2(option.conn, option.schemaName);
 		
 		enforceBalance.addPostAction(balanceL2);

@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.mind5.business.notes.info.NotesInfo;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 
-public final class NotesCheckWrite extends ModelCheckerTemplateSimpleV2<NotesInfo> {
+public final class NotesCheckWrite extends ModelCheckerTemplateSimple<NotesInfo> {
 
 	public NotesCheckWrite(ModelCheckerOption option) {
 		super(option);

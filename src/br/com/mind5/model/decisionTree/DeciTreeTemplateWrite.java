@@ -8,16 +8,16 @@ import br.com.mind5.common.DefaultValue;
 import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.InfoRecord;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.common.DeciResultError;
 
-public abstract class DeciTreeTemplateWriteV2<T extends InfoRecord> implements DeciTree<T> {
+public abstract class DeciTreeTemplateWrite<T extends InfoRecord> implements DeciTree<T> {
 	private List<DeciTree<T>> trees;
 	private DeciResult<T> lastTreeResult;
 	
 	
-	public DeciTreeTemplateWriteV2(DeciTreeOption<T> option) {
+	public DeciTreeTemplateWrite(DeciTreeOption<T> option) {
 		checkArgument(option);
 		clear();
 		
@@ -70,7 +70,7 @@ public abstract class DeciTreeTemplateWriteV2<T extends InfoRecord> implements D
 	
 	
 	
-	protected ModelCheckerV1<T> buildCheckerHook(DeciTreeOption<T> option) {
+	protected ModelChecker<T> buildCheckerHook(DeciTreeOption<T> option) {
 		//Template method: to be overwritten by subclasses
 		logException(new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION));
 		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);	
@@ -78,7 +78,7 @@ public abstract class DeciTreeTemplateWriteV2<T extends InfoRecord> implements D
 	
 	
 	
-	protected List<ActionStdV2<T>> buildActionsOnPassedHook(DeciTreeOption<T> option) {
+	protected List<ActionStd<T>> buildActionsOnPassedHook(DeciTreeOption<T> option) {
 		//Template method: to be overwritten by subclasses
 		logException(new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION));
 		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);	
@@ -86,7 +86,7 @@ public abstract class DeciTreeTemplateWriteV2<T extends InfoRecord> implements D
 	
 	
 	
-	protected List<ActionStdV2<T>> buildActionsOnFailedHook(DeciTreeOption<T> option) {
+	protected List<ActionStd<T>> buildActionsOnFailedHook(DeciTreeOption<T> option) {
 		//Template method: to be overwritten by subclasses
 		return null;	
 	}
@@ -142,9 +142,9 @@ public abstract class DeciTreeTemplateWriteV2<T extends InfoRecord> implements D
 	
 	
 	
-	@Override public ActionStdV2<T> toAction() {
+	@Override public ActionStd<T> toAction() {
 		checkState();
-		return new DeciTreeAdapterV2<>(trees);
+		return new DeciTreeAdapter<>(trees);
 	}
 	
 	

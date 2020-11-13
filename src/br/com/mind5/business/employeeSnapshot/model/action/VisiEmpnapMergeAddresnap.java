@@ -7,11 +7,11 @@ import br.com.mind5.business.addressSnapshot.info.AddresnapInfo;
 import br.com.mind5.business.addressSnapshot.model.decisionTree.RootAddresnapSelect;
 import br.com.mind5.business.employeeSnapshot.info.EmpnapInfo;
 import br.com.mind5.business.employeeSnapshot.info.EmpnapMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiEmpnapMergeAddresnap extends ActionVisitorTemplateMergeV2<EmpnapInfo, AddresnapInfo> {
+final class VisiEmpnapMergeAddresnap extends ActionVisitorTemplateMerge<EmpnapInfo, AddresnapInfo> {
 	
 	public VisiEmpnapMergeAddresnap(DeciTreeOption<EmpnapInfo> option) {
 		super(option, AddresnapInfo.class);

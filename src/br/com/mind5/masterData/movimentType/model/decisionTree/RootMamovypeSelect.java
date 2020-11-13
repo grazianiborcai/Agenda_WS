@@ -6,14 +6,14 @@ import java.util.List;
 import br.com.mind5.masterData.movimentType.info.MamovypeInfo;
 import br.com.mind5.masterData.movimentType.model.action.StdMamovypeDaoSelect;
 import br.com.mind5.masterData.movimentType.model.checker.MamovypeCheckRead;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootMamovypeSelect extends DeciTreeTemplateReadV1<MamovypeInfo> {
+public final class RootMamovypeSelect extends DeciTreeTemplateRead<MamovypeInfo> {
 	
 	public RootMamovypeSelect(DeciTreeOption<MamovypeInfo> option) {
 		super(option);
@@ -21,9 +21,9 @@ public final class RootMamovypeSelect extends DeciTreeTemplateReadV1<MamovypeInf
 	
 	
 	
-	@Override protected ModelCheckerV1<MamovypeInfo> buildCheckerHook(DeciTreeOption<MamovypeInfo> option) {
-		List<ModelCheckerV1<MamovypeInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<MamovypeInfo> checker;
+	@Override protected ModelChecker<MamovypeInfo> buildCheckerHook(DeciTreeOption<MamovypeInfo> option) {
+		List<ModelChecker<MamovypeInfo>> queue = new ArrayList<>();		
+		ModelChecker<MamovypeInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
 		checkerOption = new ModelCheckerOption();
@@ -33,15 +33,15 @@ public final class RootMamovypeSelect extends DeciTreeTemplateReadV1<MamovypeInf
 		checker = new MamovypeCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 
 		
 	
-	@Override protected List<ActionStdV2<MamovypeInfo>> buildActionsOnPassedHook(DeciTreeOption<MamovypeInfo> option) {
-		List<ActionStdV2<MamovypeInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<MamovypeInfo>> buildActionsOnPassedHook(DeciTreeOption<MamovypeInfo> option) {
+		List<ActionStd<MamovypeInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<MamovypeInfo> select = new StdMamovypeDaoSelect(option);
+		ActionStd<MamovypeInfo> select = new StdMamovypeDaoSelect(option);
 		
 		actions.add(select);
 		return actions;

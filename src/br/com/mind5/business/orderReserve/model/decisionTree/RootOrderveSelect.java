@@ -8,14 +8,14 @@ import br.com.mind5.business.orderReserve.model.action.LazyOrderveMergeToSelect;
 import br.com.mind5.business.orderReserve.model.action.StdOrderveEnforceCancelled;
 import br.com.mind5.business.orderReserve.model.checker.OrderveCheckRead;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootOrderveSelect extends DeciTreeTemplateReadV2<OrderveInfo> {
+public final class RootOrderveSelect extends DeciTreeTemplateRead<OrderveInfo> {
 	
 	public RootOrderveSelect(DeciTreeOption<OrderveInfo> option) {
 		super(option);
@@ -23,9 +23,9 @@ public final class RootOrderveSelect extends DeciTreeTemplateReadV2<OrderveInfo>
 	
 	
 	
-	@Override protected ModelCheckerV1<OrderveInfo> buildCheckerHook(DeciTreeOption<OrderveInfo> option) {
-		List<ModelCheckerV1<OrderveInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<OrderveInfo> checker;	
+	@Override protected ModelChecker<OrderveInfo> buildCheckerHook(DeciTreeOption<OrderveInfo> option) {
+		List<ModelChecker<OrderveInfo>> queue = new ArrayList<>();		
+		ModelChecker<OrderveInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -35,15 +35,15 @@ public final class RootOrderveSelect extends DeciTreeTemplateReadV2<OrderveInfo>
 		checker = new OrderveCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<OrderveInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderveInfo> option) {
-		List<ActionStdV2<OrderveInfo>> actions = new ArrayList<>();	
+	@Override protected List<ActionStd<OrderveInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderveInfo> option) {
+		List<ActionStd<OrderveInfo>> actions = new ArrayList<>();	
 		
-		ActionStdV2<OrderveInfo> enforceStatus = new StdOrderveEnforceCancelled(option);
+		ActionStd<OrderveInfo> enforceStatus = new StdOrderveEnforceCancelled(option);
 		ActionLazy<OrderveInfo> select = new LazyOrderveMergeToSelect(option.conn, option.schemaName);
 		
 		enforceStatus.addPostAction(select);

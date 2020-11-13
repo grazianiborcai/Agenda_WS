@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.masterData.refundPolicyGroupSearch.info.RefugrarchInfo;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 
-public final class RefugrarchCheckRead extends ModelCheckerTemplateSimpleV2<RefugrarchInfo> {
+public final class RefugrarchCheckRead extends ModelCheckerTemplateSimple<RefugrarchInfo> {
 
 	public RefugrarchCheckRead(ModelCheckerOption option) {
 		super(option);

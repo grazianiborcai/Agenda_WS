@@ -4,10 +4,10 @@ import br.com.mind5.business.scheduleDay.info.SchedayInfo;
 import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.business.store.model.checker.StoreCheckExist;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.model.checker.ModelChecker;
 
-public final class SchedayCheckStore extends ModelCheckerTemplateForwardV2<SchedayInfo, StoreInfo> {
+public final class SchedayCheckStore extends ModelCheckerTemplateForward<SchedayInfo, StoreInfo> {
 	
 	public SchedayCheckStore(ModelCheckerOption option) {
 		super(option);
@@ -15,7 +15,7 @@ public final class SchedayCheckStore extends ModelCheckerTemplateForwardV2<Sched
 
 
 	
-	@Override protected ModelCheckerV1<StoreInfo> getCheckerHook(ModelCheckerOption option) {
+	@Override protected ModelChecker<StoreInfo> getCheckerHook(ModelCheckerOption option) {
 		return new StoreCheckExist(option);
 	}
 	

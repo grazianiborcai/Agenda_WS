@@ -8,14 +8,14 @@ import br.com.mind5.message.emailBody.model.action.LazyEmabodyEnforceBody;
 import br.com.mind5.message.emailBody.model.action.StdEmabodyMergeToSelect;
 import br.com.mind5.message.emailBody.model.checker.EmabodyCheckRead;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootEmabodySelect extends DeciTreeTemplateWriteV2<EmabodyInfo> {
+public final class RootEmabodySelect extends DeciTreeTemplateWrite<EmabodyInfo> {
 	
 	public RootEmabodySelect(DeciTreeOption<EmabodyInfo> option) {
 		super(option);
@@ -23,9 +23,9 @@ public final class RootEmabodySelect extends DeciTreeTemplateWriteV2<EmabodyInfo
 	
 	
 	
-	@Override protected ModelCheckerV1<EmabodyInfo> buildCheckerHook(DeciTreeOption<EmabodyInfo> option) {		
-		List<ModelCheckerV1<EmabodyInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<EmabodyInfo> checker;	
+	@Override protected ModelChecker<EmabodyInfo> buildCheckerHook(DeciTreeOption<EmabodyInfo> option) {		
+		List<ModelChecker<EmabodyInfo>> queue = new ArrayList<>();		
+		ModelChecker<EmabodyInfo> checker;	
 		ModelCheckerOption checkerOption;		
 		
 		checkerOption = new ModelCheckerOption();
@@ -35,15 +35,15 @@ public final class RootEmabodySelect extends DeciTreeTemplateWriteV2<EmabodyInfo
 		checker = new EmabodyCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<EmabodyInfo>> buildActionsOnPassedHook(DeciTreeOption<EmabodyInfo> option) {
-		List<ActionStdV2<EmabodyInfo>> actions = new ArrayList<>();	
+	@Override protected List<ActionStd<EmabodyInfo>> buildActionsOnPassedHook(DeciTreeOption<EmabodyInfo> option) {
+		List<ActionStd<EmabodyInfo>> actions = new ArrayList<>();	
 		
-		ActionStdV2<EmabodyInfo> select = new StdEmabodyMergeToSelect(option);
+		ActionStd<EmabodyInfo> select = new StdEmabodyMergeToSelect(option);
 		ActionLazy<EmabodyInfo> enforceBody = new LazyEmabodyEnforceBody(option.conn, option.schemaName);
 		
 		select.addPostAction(enforceBody);

@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
 import br.com.mind5.payment.creditCard.model.action.LazyCrecardNodeAuth;
 import br.com.mind5.payment.creditCard.model.action.LazyCrecardNodeDelete;
@@ -18,7 +18,7 @@ import br.com.mind5.payment.creditCard.model.checker.CrecardCheckDelete;
 import br.com.mind5.payment.creditCard.model.checker.CrecardCheckExist;
 import br.com.mind5.payment.creditCard.model.checker.CrecardCheckUsername;
 
-public final class RootCrecardDelete extends DeciTreeTemplateWriteV2<CrecardInfo> {
+public final class RootCrecardDelete extends DeciTreeTemplateWrite<CrecardInfo> {
 	
 	public RootCrecardDelete(DeciTreeOption<CrecardInfo> option) {
 		super(option);
@@ -26,9 +26,9 @@ public final class RootCrecardDelete extends DeciTreeTemplateWriteV2<CrecardInfo
 	
 	
 	
-	@Override protected ModelCheckerV1<CrecardInfo> buildCheckerHook(DeciTreeOption<CrecardInfo> option) {
-		List<ModelCheckerV1<CrecardInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<CrecardInfo> checker;
+	@Override protected ModelChecker<CrecardInfo> buildCheckerHook(DeciTreeOption<CrecardInfo> option) {
+		List<ModelChecker<CrecardInfo>> queue = new ArrayList<>();		
+		ModelChecker<CrecardInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -52,15 +52,15 @@ public final class RootCrecardDelete extends DeciTreeTemplateWriteV2<CrecardInfo
 		checker = new CrecardCheckUsername(checkerOption);
 		queue.add(checker);	
 
-		return new ModelCheckerHelperQueueV2<CrecardInfo>(queue);
+		return new ModelCheckerHelperQueue<CrecardInfo>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<CrecardInfo>> buildActionsOnPassedHook(DeciTreeOption<CrecardInfo> option) {
-		List<ActionStdV2<CrecardInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<CrecardInfo>> buildActionsOnPassedHook(DeciTreeOption<CrecardInfo> option) {
+		List<ActionStd<CrecardInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<CrecardInfo> mergeToDelete = new StdCrecardMergeToDelete(option);
+		ActionStd<CrecardInfo> mergeToDelete = new StdCrecardMergeToDelete(option);
 		ActionLazy<CrecardInfo> nodeAuth = new LazyCrecardNodeAuth(option.conn, option.schemaName);
 		ActionLazy<CrecardInfo> nodeDelete = new LazyCrecardNodeDelete(option.conn, option.schemaName);
 		

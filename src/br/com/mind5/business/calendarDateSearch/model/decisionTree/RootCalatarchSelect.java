@@ -6,14 +6,14 @@ import java.util.List;
 import br.com.mind5.business.calendarDateSearch.info.CalatarchInfo;
 import br.com.mind5.business.calendarDateSearch.model.action.StdCalatarchMergeToSelect;
 import br.com.mind5.business.calendarDateSearch.model.checker.CalatarchCheckRead;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootCalatarchSelect extends DeciTreeTemplateReadV2<CalatarchInfo> {
+public final class RootCalatarchSelect extends DeciTreeTemplateRead<CalatarchInfo> {
 	
 	public RootCalatarchSelect(DeciTreeOption<CalatarchInfo> option) {
 		super(option);
@@ -21,9 +21,9 @@ public final class RootCalatarchSelect extends DeciTreeTemplateReadV2<CalatarchI
 	
 	
 	
-	@Override protected ModelCheckerV1<CalatarchInfo> buildCheckerHook(DeciTreeOption<CalatarchInfo> option) {
-		List<ModelCheckerV1<CalatarchInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<CalatarchInfo> checker;
+	@Override protected ModelChecker<CalatarchInfo> buildCheckerHook(DeciTreeOption<CalatarchInfo> option) {
+		List<ModelChecker<CalatarchInfo>> queue = new ArrayList<>();		
+		ModelChecker<CalatarchInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
 		checkerOption = new ModelCheckerOption();
@@ -33,15 +33,15 @@ public final class RootCalatarchSelect extends DeciTreeTemplateReadV2<CalatarchI
 		checker = new CalatarchCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 
 		
 	
-	@Override protected List<ActionStdV2<CalatarchInfo>> buildActionsOnPassedHook(DeciTreeOption<CalatarchInfo> option) {
-		List<ActionStdV2<CalatarchInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<CalatarchInfo>> buildActionsOnPassedHook(DeciTreeOption<CalatarchInfo> option) {
+		List<ActionStd<CalatarchInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<CalatarchInfo> mergeToSelect = new StdCalatarchMergeToSelect(option);
+		ActionStd<CalatarchInfo> mergeToSelect = new StdCalatarchMergeToSelect(option);
 		
 		actions.add(mergeToSelect);
 		return actions;

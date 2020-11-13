@@ -5,10 +5,10 @@ import java.sql.Connection;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.masterData.paymentPartner.info.Paypar;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
 
-public final class CusparCheckIsMoip extends ModelCheckerTemplateSimpleV2<CusparInfo> {
+public final class CusparCheckIsMoip extends ModelCheckerTemplateSimple<CusparInfo> {
 
 	public CusparCheckIsMoip(ModelCheckerOption option) {
 		super(option);

@@ -9,14 +9,14 @@ import br.com.mind5.masterData.countryLegal.model.action.StdCountralMergeToSelec
 import br.com.mind5.masterData.countryLegal.model.checker.CountralCheckLangu;
 import br.com.mind5.masterData.countryLegal.model.checker.CountralCheckRead;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootCountralSelect extends DeciTreeTemplateReadV2<CountralInfo> {
+public final class RootCountralSelect extends DeciTreeTemplateRead<CountralInfo> {
 	
 	public RootCountralSelect(DeciTreeOption<CountralInfo> option) {
 		super(option);
@@ -24,9 +24,9 @@ public final class RootCountralSelect extends DeciTreeTemplateReadV2<CountralInf
 	
 	
 	
-	@Override protected ModelCheckerV1<CountralInfo> buildCheckerHook(DeciTreeOption<CountralInfo> option) {
-		List<ModelCheckerV1<CountralInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<CountralInfo> checker;
+	@Override protected ModelChecker<CountralInfo> buildCheckerHook(DeciTreeOption<CountralInfo> option) {
+		List<ModelChecker<CountralInfo>> queue = new ArrayList<>();		
+		ModelChecker<CountralInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
 		checkerOption = new ModelCheckerOption();
@@ -43,15 +43,15 @@ public final class RootCountralSelect extends DeciTreeTemplateReadV2<CountralInf
 		checker = new CountralCheckLangu(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<CountralInfo>> buildActionsOnPassedHook(DeciTreeOption<CountralInfo> option) {
-		List<ActionStdV2<CountralInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<CountralInfo>> buildActionsOnPassedHook(DeciTreeOption<CountralInfo> option) {
+		List<ActionStd<CountralInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<CountralInfo> select = new StdCountralMergeToSelect(option);
+		ActionStd<CountralInfo> select = new StdCountralMergeToSelect(option);
 		ActionLazy<CountralInfo> mergeCountry = new LazyCountralMergeCountry(option.conn, option.schemaName);
 		
 		select.addPostAction(mergeCountry);

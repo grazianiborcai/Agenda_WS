@@ -5,9 +5,9 @@ import java.util.List;
 import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.InfoRecord;
-import br.com.mind5.model.checker.ModelCheckerV2;
+import br.com.mind5.model.checker.ModelChecker;
 
-public final class ModelCheckerDummy<T extends InfoRecord> implements ModelCheckerV2<T> {
+public final class ModelCheckerDummy<T extends InfoRecord> implements ModelChecker<T> {
 	private final boolean RESULT_SUCCESS = true;	
 	
 	

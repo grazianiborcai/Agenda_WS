@@ -7,14 +7,14 @@ import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.InfoRecord;
 
-public abstract class ModelCheckerTemplateForwardV2<T extends InfoRecord, S extends InfoRecord> implements ModelCheckerV2<T> {
+public abstract class ModelCheckerTemplateForward<T extends InfoRecord, S extends InfoRecord> implements ModelChecker<T> {
 	private final boolean FAILED = false;
 	private final boolean SUCCESS = true;
 	
-	private ModelCheckerV1<S> helper;
+	private ModelChecker<S> helper;
 	
 	
-	public ModelCheckerTemplateForwardV2(ModelCheckerOption option) {
+	public ModelCheckerTemplateForward(ModelCheckerOption option) {
 		helper = getCheckerHook(option);
 	}
 	
@@ -73,12 +73,12 @@ public abstract class ModelCheckerTemplateForwardV2<T extends InfoRecord, S exte
 	
 	
 	@SuppressWarnings("unchecked")
-	private void closeHelper(ModelCheckerV1<S> checker) {
+	private void closeHelper(ModelChecker<S> checker) {
 		if (checker == null)
 			return;
 		
-		if (checker instanceof ModelCheckerV2)		
-			((ModelCheckerV2<T>) checker).close();
+		if (checker instanceof ModelChecker)		
+			((ModelChecker<T>) checker).close();
 	}
 	
 	
@@ -89,7 +89,7 @@ public abstract class ModelCheckerTemplateForwardV2<T extends InfoRecord, S exte
 	
 	
 	
-	protected ModelCheckerV1<S> getCheckerHook(ModelCheckerOption option) {
+	protected ModelChecker<S> getCheckerHook(ModelCheckerOption option) {
 		//Template method: to be overwritten by subclasses
 		logException(new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION));
 		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);

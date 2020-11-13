@@ -6,11 +6,11 @@ import br.com.mind5.business.employeeLeaveDate.info.EmplateInfo;
 import br.com.mind5.business.employeeLeaveDate.info.EmplateMerger;
 import br.com.mind5.masterData.timezone.info.TimezoneInfo;
 import br.com.mind5.masterData.timezone.model.decisionTree.RootTimezoneSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiEmplateMergeTimezone extends ActionVisitorTemplateMergeV2<EmplateInfo, TimezoneInfo> {
+final class VisiEmplateMergeTimezone extends ActionVisitorTemplateMerge<EmplateInfo, TimezoneInfo> {
 	
 	public VisiEmplateMergeTimezone(DeciTreeOption<EmplateInfo> option) {
 		super(option, TimezoneInfo.class);

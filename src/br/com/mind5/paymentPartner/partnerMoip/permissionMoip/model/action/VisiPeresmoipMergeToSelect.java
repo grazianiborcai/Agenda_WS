@@ -2,13 +2,13 @@ package br.com.mind5.paymentPartner.partnerMoip.permissionMoip.model.action;
 
 import java.util.List;
 
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.info.PeresmoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.info.PeresmoipMerger;
 
-final class VisiPeresmoipMergeToSelect extends ActionVisitorTemplateMergeV2<PeresmoipInfo, PeresmoipInfo> {
+final class VisiPeresmoipMergeToSelect extends ActionVisitorTemplateMerge<PeresmoipInfo, PeresmoipInfo> {
 	
 	public VisiPeresmoipMergeToSelect(DeciTreeOption<PeresmoipInfo> option) {
 		super(option, PeresmoipInfo.class);
@@ -16,7 +16,7 @@ final class VisiPeresmoipMergeToSelect extends ActionVisitorTemplateMergeV2<Pere
 	
 	
 	
-	@Override protected Class<? extends ActionStdV2<PeresmoipInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStd<PeresmoipInfo>> getActionClassHook() {
 		return StdPeresmoipDaoSelect.class;
 	}
 	

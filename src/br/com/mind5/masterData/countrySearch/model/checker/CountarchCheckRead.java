@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.masterData.countrySearch.info.CountarchInfo;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 
-public final class CountarchCheckRead extends ModelCheckerTemplateSimpleV2<CountarchInfo> {
+public final class CountarchCheckRead extends ModelCheckerTemplateSimple<CountarchInfo> {
 
 	public CountarchCheckRead(ModelCheckerOption option) {
 		super(option);

@@ -15,14 +15,14 @@ import br.com.mind5.business.storeProspect.model.checker.StoprosCheckInsert;
 import br.com.mind5.business.storeProspect.model.checker.StoprosCheckLangu;
 import br.com.mind5.business.storeProspect.model.checker.StoprosCheckOwner;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootStoprosInsert extends DeciTreeTemplateWriteV2<StoprosInfo> {
+public final class RootStoprosInsert extends DeciTreeTemplateWrite<StoprosInfo> {
 	
 	public RootStoprosInsert(DeciTreeOption<StoprosInfo> option) {
 		super(option);
@@ -30,9 +30,9 @@ public final class RootStoprosInsert extends DeciTreeTemplateWriteV2<StoprosInfo
 	
 	
 	
-	@Override protected ModelCheckerV1<StoprosInfo> buildCheckerHook(DeciTreeOption<StoprosInfo> option) {
-		List<ModelCheckerV1<StoprosInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<StoprosInfo> checker;
+	@Override protected ModelChecker<StoprosInfo> buildCheckerHook(DeciTreeOption<StoprosInfo> option) {
+		List<ModelChecker<StoprosInfo>> queue = new ArrayList<>();		
+		ModelChecker<StoprosInfo> checker;
 		ModelCheckerOption checkerOption;		
 		
 		checkerOption = new ModelCheckerOption();
@@ -63,15 +63,15 @@ public final class RootStoprosInsert extends DeciTreeTemplateWriteV2<StoprosInfo
 		checker = new StoprosCheckSysotup(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<StoprosInfo>> buildActionsOnPassedHook(DeciTreeOption<StoprosInfo> option) {
-		List<ActionStdV2<StoprosInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<StoprosInfo>> buildActionsOnPassedHook(DeciTreeOption<StoprosInfo> option) {
+		List<ActionStd<StoprosInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<StoprosInfo> otporeAuthenticate = new StdStoprosOtporeAuthenticate(option);
+		ActionStd<StoprosInfo> otporeAuthenticate = new StdStoprosOtporeAuthenticate(option);
 		ActionLazy<StoprosInfo> enforceCreated = new LazyStoprosEnforceCreated(option.conn, option.schemaName);
 		ActionLazy<StoprosInfo> enforceCreatedOn = new LazyStoprosEnforceCreatedOn(option.conn, option.schemaName);
 		ActionLazy<StoprosInfo> enforceLChanged = new LazyStoprosEnforceLChanged(option.conn, option.schemaName);

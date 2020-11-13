@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionLazyTemplate;
-import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.paymentPartner.partnerMoip.accessMoip.info.AccemoipInfo;
@@ -24,7 +24,7 @@ public final class LazyAccemoipNodeUrl extends ActionLazyTemplate<AccemoipInfo, 
 	
 	
 	
-	@Override protected ActionStdV2<AccemoipInfo> getInstanceOfActionHook(DeciTreeOption<AccemoipInfo> option) {
+	@Override protected ActionStd<AccemoipInfo> getInstanceOfActionHook(DeciTreeOption<AccemoipInfo> option) {
 		return new NodeAccemoipUrl(option).toAction();
 	}
 	

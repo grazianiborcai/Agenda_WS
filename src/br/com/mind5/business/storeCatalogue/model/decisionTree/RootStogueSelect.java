@@ -8,14 +8,14 @@ import br.com.mind5.business.storeCatalogue.model.action.LazyStogueMergeMatoup;
 import br.com.mind5.business.storeCatalogue.model.action.LazyStogueMergeOwnelis;
 import br.com.mind5.business.storeCatalogue.model.action.StdStogueMergeStorby;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootStogueSelect extends DeciTreeTemplateReadV2<StogueInfo> {
+public final class RootStogueSelect extends DeciTreeTemplateRead<StogueInfo> {
 	
 	public RootStogueSelect(DeciTreeOption<StogueInfo> option) {
 		super(option);
@@ -23,22 +23,22 @@ public final class RootStogueSelect extends DeciTreeTemplateReadV2<StogueInfo> {
 	
 	
 	
-	@Override protected ModelCheckerV1<StogueInfo> buildCheckerHook(DeciTreeOption<StogueInfo> option) {
-		List<ModelCheckerV1<StogueInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<StogueInfo> checker;	
+	@Override protected ModelChecker<StogueInfo> buildCheckerHook(DeciTreeOption<StogueInfo> option) {
+		List<ModelChecker<StogueInfo>> queue = new ArrayList<>();		
+		ModelChecker<StogueInfo> checker;	
 
 		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<StogueInfo>> buildActionsOnPassedHook(DeciTreeOption<StogueInfo> option) {
-		List<ActionStdV2<StogueInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStd<StogueInfo>> buildActionsOnPassedHook(DeciTreeOption<StogueInfo> option) {
+		List<ActionStd<StogueInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV2<StogueInfo> mergeStorby = new StdStogueMergeStorby(option);
+		ActionStd<StogueInfo> mergeStorby = new StdStogueMergeStorby(option);
 		ActionLazy<StogueInfo> mergeOwnelis = new LazyStogueMergeOwnelis(option.conn, option.schemaName);
 		ActionLazy<StogueInfo> mergeMatoup = new LazyStogueMergeMatoup(option.conn, option.schemaName);
 		

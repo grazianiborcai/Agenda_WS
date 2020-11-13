@@ -3,12 +3,12 @@ package br.com.mind5.business.cartReserveConflict.model.checker;
 import br.com.mind5.business.cartReserveConflict.info.CartercoInfo;
 import br.com.mind5.business.cartReserveConflict.model.decisionTree.RootCartercoSelect;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class CartercoCheckExist extends ModelCheckerTemplateActionV2<CartercoInfo, CartercoInfo> {
+public final class CartercoCheckExist extends ModelCheckerTemplateAction<CartercoInfo, CartercoInfo> {
 	
 	public CartercoCheckExist(ModelCheckerOption option) {
 		super(option, CartercoInfo.class);
@@ -16,8 +16,8 @@ public final class CartercoCheckExist extends ModelCheckerTemplateActionV2<Carte
 	
 
 	
-	@Override protected ActionStdV2<CartercoInfo> buildActionHook(DeciTreeOption<CartercoInfo> option) {
-		ActionStdV2<CartercoInfo> select = new RootCartercoSelect(option).toAction();
+	@Override protected ActionStd<CartercoInfo> buildActionHook(DeciTreeOption<CartercoInfo> option) {
+		ActionStd<CartercoInfo> select = new RootCartercoSelect(option).toAction();
 		return select;
 	}
 	

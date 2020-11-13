@@ -6,11 +6,11 @@ import br.com.mind5.business.materialSnapshot.info.MatsnapInfo;
 import br.com.mind5.business.materialSnapshot.info.MatsnapMerger;
 import br.com.mind5.masterData.materialCategory.info.MategInfo;
 import br.com.mind5.masterData.materialCategory.model.decisionTree.RootMategSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiMatsnapMergeMateg extends ActionVisitorTemplateMergeV2<MatsnapInfo, MategInfo> {
+final class VisiMatsnapMergeMateg extends ActionVisitorTemplateMerge<MatsnapInfo, MategInfo> {
 	
 	public VisiMatsnapMergeMateg(DeciTreeOption<MatsnapInfo> option) {
 		super(option, MategInfo.class);

@@ -13,14 +13,14 @@ import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckLangu;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckOwner;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckRead;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootSchedineMove extends DeciTreeTemplateWriteV2<SchedineInfo> {
+public final class RootSchedineMove extends DeciTreeTemplateWrite<SchedineInfo> {
 	
 	public RootSchedineMove(DeciTreeOption<SchedineInfo> option) {
 		super(option);
@@ -28,9 +28,9 @@ public final class RootSchedineMove extends DeciTreeTemplateWriteV2<SchedineInfo
 	
 	
 	
-	@Override protected ModelCheckerV1<SchedineInfo> buildCheckerHook(DeciTreeOption<SchedineInfo> option) {
-		List<ModelCheckerV1<SchedineInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<SchedineInfo> checker;	
+	@Override protected ModelChecker<SchedineInfo> buildCheckerHook(DeciTreeOption<SchedineInfo> option) {
+		List<ModelChecker<SchedineInfo>> queue = new ArrayList<>();		
+		ModelChecker<SchedineInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -68,15 +68,15 @@ public final class RootSchedineMove extends DeciTreeTemplateWriteV2<SchedineInfo
 		checker = new SchedineCheckExist(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<SchedineInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedineInfo> option) {
-		List<ActionStdV2<SchedineInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<SchedineInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedineInfo> option) {
+		List<ActionStd<SchedineInfo>> actions = new ArrayList<>();
 
-		ActionStdV2<SchedineInfo> mergeToMove = new StdSchedineMergeToMove(option);
+		ActionStd<SchedineInfo> mergeToMove = new StdSchedineMergeToMove(option);
 		ActionLazy<SchedineInfo> nodeL1 = new LazySchedineNodeMoveL1(option.conn, option.schemaName);
 		ActionLazy<SchedineInfo> nodeL2 = new LazySchedineNodeMoveL2(option.conn, option.schemaName);			
 		

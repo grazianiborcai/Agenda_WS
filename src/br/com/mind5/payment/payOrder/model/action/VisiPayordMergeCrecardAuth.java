@@ -2,7 +2,7 @@ package br.com.mind5.payment.payOrder.model.action;
 
 import java.util.List;
 
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.creditCard.info.CrecardCopier;
@@ -11,7 +11,7 @@ import br.com.mind5.payment.creditCard.model.decisionTree.RootCrecardSelectAuth;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
 import br.com.mind5.payment.payOrder.info.PayordMerger;
 
-final class VisiPayordMergeCrecardAuth extends ActionVisitorTemplateMergeV2<PayordInfo, CrecardInfo> {
+final class VisiPayordMergeCrecardAuth extends ActionVisitorTemplateMerge<PayordInfo, CrecardInfo> {
 	
 	public VisiPayordMergeCrecardAuth(DeciTreeOption<PayordInfo> option) {
 		super(option, CrecardInfo.class); 

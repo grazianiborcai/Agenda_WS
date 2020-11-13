@@ -4,12 +4,12 @@ import br.com.mind5.common.SystemCode;
 import br.com.mind5.file.fileImage.info.FimgInfo;
 import br.com.mind5.file.fileImageSearch.info.FimarchInfo;
 import br.com.mind5.file.fileImageSearch.model.decisionTree.RootFimarchSelectCus;
-import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class FimgCheckExistCus extends ModelCheckerTemplateActionV2<FimgInfo, FimarchInfo> {	
+public final class FimgCheckExistCus extends ModelCheckerTemplateAction<FimgInfo, FimarchInfo> {	
 	
 	public FimgCheckExistCus(ModelCheckerOption option) {
 		super(option, FimarchInfo.class);
@@ -17,8 +17,8 @@ public final class FimgCheckExistCus extends ModelCheckerTemplateActionV2<FimgIn
 	
 	
 	
-	@Override protected ActionStdV2<FimarchInfo> buildActionHook(DeciTreeOption<FimarchInfo> option) {
-		ActionStdV2<FimarchInfo> select = new RootFimarchSelectCus(option).toAction();
+	@Override protected ActionStd<FimarchInfo> buildActionHook(DeciTreeOption<FimarchInfo> option) {
+		ActionStd<FimarchInfo> select = new RootFimarchSelectCus(option).toAction();
 		return select;
 	}
 	

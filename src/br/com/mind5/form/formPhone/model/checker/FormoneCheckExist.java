@@ -3,12 +3,12 @@ package br.com.mind5.form.formPhone.model.checker;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.form.formPhone.info.FormoneInfo;
 import br.com.mind5.form.formPhone.model.action.StdFormoneDaoSelect;
-import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class FormoneCheckExist extends ModelCheckerTemplateActionV2<FormoneInfo, FormoneInfo> {
+public final class FormoneCheckExist extends ModelCheckerTemplateAction<FormoneInfo, FormoneInfo> {
 	
 	public FormoneCheckExist(ModelCheckerOption option) {
 		super(option, FormoneInfo.class);
@@ -16,8 +16,8 @@ public final class FormoneCheckExist extends ModelCheckerTemplateActionV2<Formon
 	
 	
 	
-	@Override protected ActionStdV2<FormoneInfo> buildActionHook(DeciTreeOption<FormoneInfo> option) {
-		ActionStdV2<FormoneInfo> select = new StdFormoneDaoSelect(option);
+	@Override protected ActionStd<FormoneInfo> buildActionHook(DeciTreeOption<FormoneInfo> option) {
+		ActionStd<FormoneInfo> select = new StdFormoneDaoSelect(option);
 		return select;
 	}
 	

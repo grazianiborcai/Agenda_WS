@@ -7,11 +7,11 @@ import br.com.mind5.business.employeeSnapshot.info.EmpnapMerger;
 import br.com.mind5.business.personSnapshot.info.PersonapCopier;
 import br.com.mind5.business.personSnapshot.info.PersonapInfo;
 import br.com.mind5.business.personSnapshot.model.decisionTree.RootPersonapSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiEmpnapMergePersonap extends ActionVisitorTemplateMergeV2<EmpnapInfo, PersonapInfo> {
+final class VisiEmpnapMergePersonap extends ActionVisitorTemplateMerge<EmpnapInfo, PersonapInfo> {
 	
 	public VisiEmpnapMergePersonap(DeciTreeOption<EmpnapInfo> option) {
 		super(option, PersonapInfo.class);

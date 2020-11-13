@@ -6,12 +6,12 @@ import br.com.mind5.masterData.materialSubgroup.info.MatubupInfo;
 import br.com.mind5.masterData.materialSubgroup.info.MatubupMerger;
 import br.com.mind5.masterData.materialSubgroupSearch.info.MatubuparchInfo;
 import br.com.mind5.masterData.materialSubgroupSearch.model.decisionTree.RootMatubuparchSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiMatubupMergeMatubuparch extends ActionVisitorTemplateMergeV2<MatubupInfo, MatubuparchInfo> {
+final class VisiMatubupMergeMatubuparch extends ActionVisitorTemplateMerge<MatubupInfo, MatubuparchInfo> {
 	
 	public VisiMatubupMergeMatubuparch(DeciTreeOption<MatubupInfo> option) {
 		super(option, MatubuparchInfo.class);
@@ -32,6 +32,6 @@ final class VisiMatubupMergeMatubuparch extends ActionVisitorTemplateMergeV2<Mat
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
+		return super.DONT_MERGE_WHEN_EMPTY;
 	}
 }

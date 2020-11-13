@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.mind5.business.storeFavorite.info.StoriteInfo;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 
-public final class StoriteCheckWrite extends ModelCheckerTemplateSimpleV2<StoriteInfo> {
+public final class StoriteCheckWrite extends ModelCheckerTemplateSimple<StoriteInfo> {
 
 	public StoriteCheckWrite(ModelCheckerOption option) {
 		super(option);

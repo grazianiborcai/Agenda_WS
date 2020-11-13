@@ -5,14 +5,14 @@ import java.util.List;
 
 import br.com.mind5.business.orderItem.info.OrderemInfo;
 import br.com.mind5.business.orderItem.model.checker.OrderemCheckMatarchService;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodeOrderemSelect extends DeciTreeTemplateWriteV2<OrderemInfo> {
+public final class NodeOrderemSelect extends DeciTreeTemplateWrite<OrderemInfo> {
 	
 	public NodeOrderemSelect(DeciTreeOption<OrderemInfo> option) {
 		super(option);
@@ -20,9 +20,9 @@ public final class NodeOrderemSelect extends DeciTreeTemplateWriteV2<OrderemInfo
 	
 	
 	
-	@Override protected ModelCheckerV1<OrderemInfo> buildCheckerHook(DeciTreeOption<OrderemInfo> option) {
-		List<ModelCheckerV1<OrderemInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<OrderemInfo> checker;	
+	@Override protected ModelChecker<OrderemInfo> buildCheckerHook(DeciTreeOption<OrderemInfo> option) {
+		List<ModelChecker<OrderemInfo>> queue = new ArrayList<>();		
+		ModelChecker<OrderemInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -32,15 +32,15 @@ public final class NodeOrderemSelect extends DeciTreeTemplateWriteV2<OrderemInfo
 		checker = new OrderemCheckMatarchService(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<OrderemInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderemInfo> option) {
-		List<ActionStdV2<OrderemInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<OrderemInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderemInfo> option) {
+		List<ActionStd<OrderemInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<OrderemInfo> selectService = new NodeOrderemSelectService(option).toAction();
+		ActionStd<OrderemInfo> selectService = new NodeOrderemSelectService(option).toAction();
 		
 		actions.add(selectService);
 		return actions;

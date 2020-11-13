@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.business.phone.model.decisionTree.NodePhoneUpdateT01;
 import br.com.mind5.model.action.ActionLazyTemplate;
-import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -24,7 +24,7 @@ public final class LazyPhoneNodeUpdateT01 extends ActionLazyTemplate<PhoneInfo, 
 	
 	
 	
-	@Override protected ActionStdV2<PhoneInfo> getInstanceOfActionHook(DeciTreeOption<PhoneInfo> option) {
+	@Override protected ActionStd<PhoneInfo> getInstanceOfActionHook(DeciTreeOption<PhoneInfo> option) {
 		return new NodePhoneUpdateT01(option).toAction();
 	}
 	

@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.masterData.countryPhone.info.CountroneInfo;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 
-public final class CountroneCheckRead extends ModelCheckerTemplateSimpleV2<CountroneInfo> {
+public final class CountroneCheckRead extends ModelCheckerTemplateSimple<CountroneInfo> {
 
 	public CountroneCheckRead(ModelCheckerOption option) {
 		super(option);

@@ -14,14 +14,14 @@ import br.com.mind5.geo.geoCode.model.checker.GeodeCheckLangu;
 import br.com.mind5.geo.geoCode.model.checker.GeodeCheckOwner;
 import br.com.mind5.geo.geoCode.model.checker.GeodeCheckState;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootGeodeCoding extends DeciTreeTemplateWriteV2<GeodeInfo> {
+public final class RootGeodeCoding extends DeciTreeTemplateWrite<GeodeInfo> {
 	
 	public RootGeodeCoding(DeciTreeOption<GeodeInfo> option) {
 		super(option);
@@ -29,9 +29,9 @@ public final class RootGeodeCoding extends DeciTreeTemplateWriteV2<GeodeInfo> {
 	
 	
 	
-	@Override protected ModelCheckerV1<GeodeInfo> buildCheckerHook(DeciTreeOption<GeodeInfo> option) {
-		List<ModelCheckerV1<GeodeInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<GeodeInfo> checker;	
+	@Override protected ModelChecker<GeodeInfo> buildCheckerHook(DeciTreeOption<GeodeInfo> option) {
+		List<ModelChecker<GeodeInfo>> queue = new ArrayList<>();		
+		ModelChecker<GeodeInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -69,15 +69,15 @@ public final class RootGeodeCoding extends DeciTreeTemplateWriteV2<GeodeInfo> {
 		checker = new GeodeCheckState(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<GeodeInfo>> buildActionsOnPassedHook(DeciTreeOption<GeodeInfo> option) {
-		List<ActionStdV2<GeodeInfo>> actions = new ArrayList<>();	
+	@Override protected List<ActionStd<GeodeInfo>> buildActionsOnPassedHook(DeciTreeOption<GeodeInfo> option) {
+		List<ActionStd<GeodeInfo>> actions = new ArrayList<>();	
 		
-		ActionStdV2<GeodeInfo> mergeState = new StdGeodeMergeState(option);		
+		ActionStd<GeodeInfo> mergeState = new StdGeodeMergeState(option);		
 		ActionLazy<GeodeInfo> mergeCountry = new LazyGeodeMergeCountry(option.conn, option.schemaName);
 		ActionLazy<GeodeInfo> enforceLocation = new LazyGeodeEnforceLocation(option.conn, option.schemaName);
 		ActionLazy<GeodeInfo> coding = new LazyGeodeCoding(option.conn, option.schemaName);	

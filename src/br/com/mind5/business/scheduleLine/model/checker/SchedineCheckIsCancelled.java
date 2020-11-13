@@ -6,9 +6,9 @@ import br.com.mind5.business.scheduleLine.info.SchedineInfo;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.masterData.scheduleStatus.info.Schedatus;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 
-public final class SchedineCheckIsCancelled extends ModelCheckerTemplateSimpleV2<SchedineInfo> {
+public final class SchedineCheckIsCancelled extends ModelCheckerTemplateSimple<SchedineInfo> {
 
 	public SchedineCheckIsCancelled(ModelCheckerOption option) {
 		super(option);

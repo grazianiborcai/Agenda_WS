@@ -7,15 +7,15 @@ import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.business.storeList.model.action.LazyStolisRootSelect;
 import br.com.mind5.business.storeList.model.action.StdStolisMergeSotarch;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
 
-public final class RootStolisSearch extends DeciTreeTemplateWriteV2<StolisInfo> {
+public final class RootStolisSearch extends DeciTreeTemplateWrite<StolisInfo> {
 	
 	public RootStolisSearch(DeciTreeOption<StolisInfo> option) {
 		super(option);
@@ -23,22 +23,22 @@ public final class RootStolisSearch extends DeciTreeTemplateWriteV2<StolisInfo> 
 	
 	
 	
-	@Override protected ModelCheckerV1<StolisInfo> buildCheckerHook(DeciTreeOption<StolisInfo> option) {
-		List<ModelCheckerV1<StolisInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<StolisInfo> checker;
+	@Override protected ModelChecker<StolisInfo> buildCheckerHook(DeciTreeOption<StolisInfo> option) {
+		List<ModelChecker<StolisInfo>> queue = new ArrayList<>();		
+		ModelChecker<StolisInfo> checker;
 		
 		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<StolisInfo>> buildActionsOnPassedHook(DeciTreeOption<StolisInfo> option) {
-		List<ActionStdV2<StolisInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<StolisInfo>> buildActionsOnPassedHook(DeciTreeOption<StolisInfo> option) {
+		List<ActionStd<StolisInfo>> actions = new ArrayList<>();
 
-		ActionStdV2<StolisInfo> mergeSotarch = new StdStolisMergeSotarch(option);
+		ActionStd<StolisInfo> mergeSotarch = new StdStolisMergeSotarch(option);
 		ActionLazy<StolisInfo> select = new LazyStolisRootSelect(option.conn, option.schemaName);
 		
 		mergeSotarch.addPostAction(select);

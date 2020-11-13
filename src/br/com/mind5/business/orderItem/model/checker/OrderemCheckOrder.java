@@ -4,10 +4,10 @@ import br.com.mind5.business.order.info.OrderInfo;
 import br.com.mind5.business.order.model.checker.OrderCheckExist;
 import br.com.mind5.business.orderItem.info.OrderemInfo;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.model.checker.ModelChecker;
 
-public final class OrderemCheckOrder extends ModelCheckerTemplateForwardV2<OrderemInfo, OrderInfo> {
+public final class OrderemCheckOrder extends ModelCheckerTemplateForward<OrderemInfo, OrderInfo> {
 	
 	public OrderemCheckOrder(ModelCheckerOption option) {
 		super(option);
@@ -15,7 +15,7 @@ public final class OrderemCheckOrder extends ModelCheckerTemplateForwardV2<Order
 
 
 	
-	@Override protected ModelCheckerV1<OrderInfo> getCheckerHook(ModelCheckerOption option) {
+	@Override protected ModelChecker<OrderInfo> getCheckerHook(ModelCheckerOption option) {
 		return new OrderCheckExist(option);
 	}
 	

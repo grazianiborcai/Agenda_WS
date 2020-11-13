@@ -6,11 +6,11 @@ import br.com.mind5.business.materialCatalogue.info.MatogueInfo;
 import br.com.mind5.business.materialCatalogue.info.MatogueMerger;
 import br.com.mind5.business.materialStore.info.MatoreInfo;
 import br.com.mind5.business.materialStore.model.decisionTree.RootMatoreSearch;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiMatogueMergeMatore extends ActionVisitorTemplateMergeV2<MatogueInfo, MatoreInfo> {
+final class VisiMatogueMergeMatore extends ActionVisitorTemplateMerge<MatogueInfo, MatoreInfo> {
 	
 	public VisiMatogueMergeMatore(DeciTreeOption<MatogueInfo> option) {
 		super(option, MatoreInfo.class);

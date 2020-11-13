@@ -4,14 +4,14 @@ import java.util.List;
 
 import br.com.mind5.business.employee.info.EmpInfo;
 import br.com.mind5.business.employee.info.EmpMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.userSearch.info.UserarchCopier;
 import br.com.mind5.security.userSearch.info.UserarchInfo;
 import br.com.mind5.security.userSearch.model.decisionTree.RootUserarchSelectUsername;
 
-final class VisiEmpMergeUserarch extends ActionVisitorTemplateMergeV2<EmpInfo, UserarchInfo> {
+final class VisiEmpMergeUserarch extends ActionVisitorTemplateMerge<EmpInfo, UserarchInfo> {
 	
 	public VisiEmpMergeUserarch(DeciTreeOption<EmpInfo> option) {
 		super(option, UserarchInfo.class);

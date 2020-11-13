@@ -4,12 +4,11 @@ import java.util.List;
 
 import br.com.mind5.business.companyList.info.ComplisInfo;
 import br.com.mind5.business.companyList.info.ComplisMerger;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiComplisMergeToSelect extends ActionVisitorTemplateMergeV2<ComplisInfo, ComplisInfo> {
+final class VisiComplisMergeToSelect extends ActionVisitorTemplateMerge<ComplisInfo, ComplisInfo> {
 	
 	public VisiComplisMergeToSelect(DeciTreeOption<ComplisInfo> option) {
 		super(option, ComplisInfo.class);
@@ -17,7 +16,7 @@ final class VisiComplisMergeToSelect extends ActionVisitorTemplateMergeV2<Compli
 	
 	
 	
-	@Override protected Class<? extends ActionStdV2<ComplisInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStd<ComplisInfo>> getActionClassHook() {
 		return StdComplisDaoSelect.class;
 	}
 	
@@ -30,6 +29,6 @@ final class VisiComplisMergeToSelect extends ActionVisitorTemplateMergeV2<Compli
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
+		return super.DONT_MERGE_WHEN_EMPTY;
 	}
 }

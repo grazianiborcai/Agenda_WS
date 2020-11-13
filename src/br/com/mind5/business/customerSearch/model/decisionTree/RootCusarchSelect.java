@@ -9,14 +9,14 @@ import br.com.mind5.business.customerSearch.model.action.StdCusarchEnforceEntity
 import br.com.mind5.business.customerSearch.model.checker.CusarchCheckOwner;
 import br.com.mind5.business.customerSearch.model.checker.CusarchCheckRead;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootCusarchSelect extends DeciTreeTemplateReadV2<CusarchInfo> {
+public final class RootCusarchSelect extends DeciTreeTemplateRead<CusarchInfo> {
 	
 	public RootCusarchSelect(DeciTreeOption<CusarchInfo> option) {
 		super(option);
@@ -24,9 +24,9 @@ public final class RootCusarchSelect extends DeciTreeTemplateReadV2<CusarchInfo>
 	
 	
 	
-	@Override protected ModelCheckerV1<CusarchInfo> buildCheckerHook(DeciTreeOption<CusarchInfo> option) {
-		List<ModelCheckerV1<CusarchInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<CusarchInfo> checker;
+	@Override protected ModelChecker<CusarchInfo> buildCheckerHook(DeciTreeOption<CusarchInfo> option) {
+		List<ModelChecker<CusarchInfo>> queue = new ArrayList<>();		
+		ModelChecker<CusarchInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
 		checkerOption = new ModelCheckerOption();
@@ -43,15 +43,15 @@ public final class RootCusarchSelect extends DeciTreeTemplateReadV2<CusarchInfo>
 		checker = new CusarchCheckOwner(checkerOption);
 		queue.add(checker);	
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<CusarchInfo>> buildActionsOnPassedHook(DeciTreeOption<CusarchInfo> option) {
-		List<ActionStdV2<CusarchInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<CusarchInfo>> buildActionsOnPassedHook(DeciTreeOption<CusarchInfo> option) {
+		List<ActionStd<CusarchInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<CusarchInfo> enforceEntityCateg = new StdCusarchEnforceEntityCateg(option);
+		ActionStd<CusarchInfo> enforceEntityCateg = new StdCusarchEnforceEntityCateg(option);
 		ActionLazy<CusarchInfo> select = new LazyCusarchMergeToSelect(option.conn, option.schemaName);
 		
 		enforceEntityCateg.addPostAction(select);

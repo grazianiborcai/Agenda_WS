@@ -13,16 +13,16 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.common.DeciResultError;
 import br.com.mind5.model.decisionTree.common.DeciResultNotFound;
 
-public abstract class ActionStdTemplateV2<T extends InfoRecord> implements ActionStdV2<T> {
+public abstract class ActionStdTemplate<T extends InfoRecord> implements ActionStd<T> {
 	private final boolean SUCCESS = true;
 	private final boolean FAILED = false;	
 	
-	private ActionVisitorV2<T> actionVisitor;
+	private ActionVisitor<T> actionVisitor;
 	private DeciResult<T> actionResult;
 	private List<ActionLazy<T>> postActions;
 	
 	
-	public ActionStdTemplateV2(DeciTreeOption<T> option) {
+	public ActionStdTemplate(DeciTreeOption<T> option) {
 		checkArgument(option);
 		clear();
 		
@@ -31,7 +31,7 @@ public abstract class ActionStdTemplateV2<T extends InfoRecord> implements Actio
 	
 	
 	
-	protected ActionVisitorV2<T> buildVisitorHook(DeciTreeOption<T> option) {
+	protected ActionVisitor<T> buildVisitorHook(DeciTreeOption<T> option) {
 		//Template method to be overridden by subclasses
 		logException(new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION));
 		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);
@@ -66,7 +66,7 @@ public abstract class ActionStdTemplateV2<T extends InfoRecord> implements Actio
 	
 	
 	
-	private DeciResult<T> executeBaseAction(ActionVisitorV2<T> visitor) {
+	private DeciResult<T> executeBaseAction(ActionVisitor<T> visitor) {
 		try {
 			DeciResult<T> deciResult = executeVisitor(visitor);
 			
@@ -83,7 +83,7 @@ public abstract class ActionStdTemplateV2<T extends InfoRecord> implements Actio
 	
 	
 	
-	protected DeciResult<T> executeVisitor(ActionVisitorV2<T> visitor) { 
+	protected DeciResult<T> executeVisitor(ActionVisitor<T> visitor) { 
 		return visitor.executeTransformation();
 	}
 	
@@ -162,7 +162,7 @@ public abstract class ActionStdTemplateV2<T extends InfoRecord> implements Actio
 	
 	
 	
-	private void closeVisitor(ActionVisitorV2<T> visitor) {
+	private void closeVisitor(ActionVisitor<T> visitor) {
 		if (visitor == null)
 			return;
 		

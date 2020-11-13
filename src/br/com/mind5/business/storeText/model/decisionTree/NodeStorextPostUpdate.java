@@ -9,14 +9,14 @@ import br.com.mind5.business.storeText.model.action.StdStorextEnforceDefaultOn;
 import br.com.mind5.business.storeText.model.action.StdStorextSuccess;
 import br.com.mind5.business.storeText.model.checker.StorextCheckStorextault;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodeStorextPostUpdate extends DeciTreeTemplateWriteV2<StorextInfo> {
+public final class NodeStorextPostUpdate extends DeciTreeTemplateWrite<StorextInfo> {
 	
 	public NodeStorextPostUpdate(DeciTreeOption<StorextInfo> option) {
 		super(option);
@@ -24,9 +24,9 @@ public final class NodeStorextPostUpdate extends DeciTreeTemplateWriteV2<Storext
 	
 	
 	
-	@Override protected ModelCheckerV1<StorextInfo> buildCheckerHook(DeciTreeOption<StorextInfo> option) {
-		List<ModelCheckerV1<StorextInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<StorextInfo> checker;
+	@Override protected ModelChecker<StorextInfo> buildCheckerHook(DeciTreeOption<StorextInfo> option) {
+		List<ModelChecker<StorextInfo>> queue = new ArrayList<>();		
+		ModelChecker<StorextInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -36,15 +36,15 @@ public final class NodeStorextPostUpdate extends DeciTreeTemplateWriteV2<Storext
 		checker = new StorextCheckStorextault(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<StorextInfo>> buildActionsOnPassedHook(DeciTreeOption<StorextInfo> option) {
-		List<ActionStdV2<StorextInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<StorextInfo>> buildActionsOnPassedHook(DeciTreeOption<StorextInfo> option) {
+		List<ActionStd<StorextInfo>> actions = new ArrayList<>();
 
-		ActionStdV2<StorextInfo> success = new StdStorextSuccess(option);
+		ActionStd<StorextInfo> success = new StdStorextSuccess(option);
 		
 		actions.add(success);
 		return actions;
@@ -52,10 +52,10 @@ public final class NodeStorextPostUpdate extends DeciTreeTemplateWriteV2<Storext
 	
 	
 	
-	@Override protected List<ActionStdV2<StorextInfo>> buildActionsOnFailedHook(DeciTreeOption<StorextInfo> option) {
-		List<ActionStdV2<StorextInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<StorextInfo>> buildActionsOnFailedHook(DeciTreeOption<StorextInfo> option) {
+		List<ActionStd<StorextInfo>> actions = new ArrayList<>();
 
-		ActionStdV2<StorextInfo> enforceDefaultOn = new StdStorextEnforceDefaultOn(option);
+		ActionStd<StorextInfo> enforceDefaultOn = new StdStorextEnforceDefaultOn(option);
 		ActionLazy<StorextInfo> update = new LazyStorextDaoUpdate(option.conn, option.schemaName);
 		
 		enforceDefaultOn.addPostAction(update);

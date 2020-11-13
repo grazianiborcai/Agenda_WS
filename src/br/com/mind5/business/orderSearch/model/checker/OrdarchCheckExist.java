@@ -3,12 +3,12 @@ package br.com.mind5.business.orderSearch.model.checker;
 import br.com.mind5.business.orderSearch.info.OrdarchInfo;
 import br.com.mind5.business.orderSearch.model.decisionTree.RootOrdarchSelect;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class OrdarchCheckExist extends ModelCheckerTemplateActionV2<OrdarchInfo, OrdarchInfo> {
+public final class OrdarchCheckExist extends ModelCheckerTemplateAction<OrdarchInfo, OrdarchInfo> {
 	
 	public OrdarchCheckExist(ModelCheckerOption option) {
 		super(option, OrdarchInfo.class);
@@ -16,8 +16,8 @@ public final class OrdarchCheckExist extends ModelCheckerTemplateActionV2<Ordarc
 	
 
 	
-	@Override protected ActionStdV2<OrdarchInfo> buildActionHook(DeciTreeOption<OrdarchInfo> option) {		
-		ActionStdV2<OrdarchInfo> select = new RootOrdarchSelect(option).toAction();			
+	@Override protected ActionStd<OrdarchInfo> buildActionHook(DeciTreeOption<OrdarchInfo> option) {		
+		ActionStd<OrdarchInfo> select = new RootOrdarchSelect(option).toAction();			
 		return select;
 	}
 	

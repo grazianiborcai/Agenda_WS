@@ -15,14 +15,14 @@ import br.com.mind5.business.scheduleLineSnapshot.model.checker.SchedinapCheckOw
 import br.com.mind5.business.scheduleLineSnapshot.model.checker.SchedinapCheckSchedine;
 import br.com.mind5.business.scheduleLineSnapshot.model.checker.SchedinapCheckWrite;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootSchedinapInsert extends DeciTreeTemplateWriteV2<SchedinapInfo> {
+public final class RootSchedinapInsert extends DeciTreeTemplateWrite<SchedinapInfo> {
 	
 	public RootSchedinapInsert(DeciTreeOption<SchedinapInfo> option) {
 		super(option);
@@ -30,9 +30,9 @@ public final class RootSchedinapInsert extends DeciTreeTemplateWriteV2<Schedinap
 	
 	
 	
-	@Override protected ModelCheckerV1<SchedinapInfo> buildCheckerHook(DeciTreeOption<SchedinapInfo> option) {
-		List<ModelCheckerV1<SchedinapInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<SchedinapInfo> checker;	
+	@Override protected ModelChecker<SchedinapInfo> buildCheckerHook(DeciTreeOption<SchedinapInfo> option) {
+		List<ModelChecker<SchedinapInfo>> queue = new ArrayList<>();		
+		ModelChecker<SchedinapInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -63,15 +63,15 @@ public final class RootSchedinapInsert extends DeciTreeTemplateWriteV2<Schedinap
 		checker = new SchedinapCheckSchedine(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<SchedinapInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedinapInfo> option) {
-		List<ActionStdV2<SchedinapInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<SchedinapInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedinapInfo> option) {
+		List<ActionStd<SchedinapInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<SchedinapInfo> nodeOrder = new NodeSchedinapOrder(option).toAction();
+		ActionStd<SchedinapInfo> nodeOrder = new NodeSchedinapOrder(option).toAction();
 		ActionLazy<SchedinapInfo> mergeMatlis = new LazySchedinapMergeMatlis(option.conn, option.schemaName);
 		ActionLazy<SchedinapInfo> mergeStolis = new LazySchedinapMergapStolis(option.conn, option.schemaName);
 		ActionLazy<SchedinapInfo> mergCuslis = new LazySchedinapMergeCuslis(option.conn, option.schemaName);

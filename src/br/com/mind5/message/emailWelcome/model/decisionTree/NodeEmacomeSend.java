@@ -9,14 +9,14 @@ import br.com.mind5.message.emailWelcome.model.action.StdEmacomeEnforceEmabody;
 import br.com.mind5.message.emailWelcome.model.checker.EmacomeCheckHasOwnelis;
 import br.com.mind5.message.emailWelcome.model.checker.EmacomeCheckHasPersolis;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodeEmacomeSend extends DeciTreeTemplateWriteV2<EmacomeInfo> {
+public final class NodeEmacomeSend extends DeciTreeTemplateWrite<EmacomeInfo> {
 	
 	public NodeEmacomeSend(DeciTreeOption<EmacomeInfo> option) {
 		super(option);
@@ -24,9 +24,9 @@ public final class NodeEmacomeSend extends DeciTreeTemplateWriteV2<EmacomeInfo> 
 	
 	
 	
-	@Override protected ModelCheckerV1<EmacomeInfo> buildCheckerHook(DeciTreeOption<EmacomeInfo> option) {		
-		List<ModelCheckerV1<EmacomeInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<EmacomeInfo> checker;	
+	@Override protected ModelChecker<EmacomeInfo> buildCheckerHook(DeciTreeOption<EmacomeInfo> option) {		
+		List<ModelChecker<EmacomeInfo>> queue = new ArrayList<>();		
+		ModelChecker<EmacomeInfo> checker;	
 		ModelCheckerOption checkerOption;		
 		
 		checkerOption = new ModelCheckerOption();
@@ -43,15 +43,15 @@ public final class NodeEmacomeSend extends DeciTreeTemplateWriteV2<EmacomeInfo> 
 		checker = new EmacomeCheckHasOwnelis(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<EmacomeInfo>> buildActionsOnPassedHook(DeciTreeOption<EmacomeInfo> option) {
-		List<ActionStdV2<EmacomeInfo>> actions = new ArrayList<>();	
+	@Override protected List<ActionStd<EmacomeInfo>> buildActionsOnPassedHook(DeciTreeOption<EmacomeInfo> option) {
+		List<ActionStd<EmacomeInfo>> actions = new ArrayList<>();	
 		
-		ActionStdV2<EmacomeInfo> enforceEmabody = new StdEmacomeEnforceEmabody(option);	
+		ActionStd<EmacomeInfo> enforceEmabody = new StdEmacomeEnforceEmabody(option);	
 		ActionLazy<EmacomeInfo> send = new LazyEmacomeSendEmail(option.conn, option.schemaName);
 		
 		enforceEmabody.addPostAction(send);

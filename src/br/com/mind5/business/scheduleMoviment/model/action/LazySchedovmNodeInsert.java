@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.scheduleMoviment.info.SchedovmInfo;
 import br.com.mind5.business.scheduleMoviment.model.decisionTree.NodeSchedovmInsert;
 import br.com.mind5.model.action.ActionLazyTemplate;
-import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -24,7 +24,7 @@ public final class LazySchedovmNodeInsert extends ActionLazyTemplate<SchedovmInf
 	
 	
 	
-	@Override protected ActionStdV2<SchedovmInfo> getInstanceOfActionHook(DeciTreeOption<SchedovmInfo> option) {
+	@Override protected ActionStd<SchedovmInfo> getInstanceOfActionHook(DeciTreeOption<SchedovmInfo> option) {
 		return new NodeSchedovmInsert(option).toAction();
 	}
 	

@@ -1,11 +1,11 @@
 package br.com.mind5.masterData.areaPhoneSearch.model.action;
 
 import br.com.mind5.masterData.areaPhoneSearch.info.AreanarchInfo;
-import br.com.mind5.model.action.ActionStdTemplateV2;
-import br.com.mind5.model.action.ActionVisitorV2;
+import br.com.mind5.model.action.ActionStdTemplate;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdAreanarchDaoSelect extends ActionStdTemplateV2<AreanarchInfo> {
+public final class StdAreanarchDaoSelect extends ActionStdTemplate<AreanarchInfo> {
 
 	public StdAreanarchDaoSelect(DeciTreeOption<AreanarchInfo> option) {
 		super(option);
@@ -13,7 +13,7 @@ public final class StdAreanarchDaoSelect extends ActionStdTemplateV2<AreanarchIn
 	
 	
 	
-	protected ActionVisitorV2<AreanarchInfo> buildVisitorHook(DeciTreeOption<AreanarchInfo> option) {
+	protected ActionVisitor<AreanarchInfo> buildVisitorHook(DeciTreeOption<AreanarchInfo> option) {
 		return new VisiAreanarchDaoSelect(option);
 	}
 }

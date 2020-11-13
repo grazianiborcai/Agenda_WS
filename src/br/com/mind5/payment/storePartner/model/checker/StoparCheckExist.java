@@ -1,14 +1,14 @@
 package br.com.mind5.payment.storePartner.model.checker;
 
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.storePartner.info.StoparInfo;
 import br.com.mind5.payment.storePartner.model.action.StdStoparDaoSelect;
 
-public final class StoparCheckExist extends ModelCheckerTemplateActionV2<StoparInfo, StoparInfo> {
+public final class StoparCheckExist extends ModelCheckerTemplateAction<StoparInfo, StoparInfo> {
 	
 	public StoparCheckExist(ModelCheckerOption option) {
 		super(option, StoparInfo.class);
@@ -16,8 +16,8 @@ public final class StoparCheckExist extends ModelCheckerTemplateActionV2<StoparI
 	
 
 	
-	@Override protected ActionStdV2<StoparInfo> buildActionHook(DeciTreeOption<StoparInfo> option) {
-		ActionStdV2<StoparInfo> select = new StdStoparDaoSelect(option);
+	@Override protected ActionStd<StoparInfo> buildActionHook(DeciTreeOption<StoparInfo> option) {
+		ActionStd<StoparInfo> select = new StdStoparDaoSelect(option);
 		return select;
 	}
 	

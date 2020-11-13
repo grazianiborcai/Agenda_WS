@@ -8,14 +8,14 @@ import br.com.mind5.masterData.refundPolicyGroupItem.model.action.LazyRefugritem
 import br.com.mind5.masterData.refundPolicyGroupItem.model.action.StdRefugritemDaoSelect;
 import br.com.mind5.masterData.refundPolicyGroupItem.model.checker.RefugritemCheckRead;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootRefugritemSelect extends DeciTreeTemplateReadV2<RefugritemInfo> {
+public final class RootRefugritemSelect extends DeciTreeTemplateRead<RefugritemInfo> {
 	
 	public RootRefugritemSelect(DeciTreeOption<RefugritemInfo> option) {
 		super(option);
@@ -23,9 +23,9 @@ public final class RootRefugritemSelect extends DeciTreeTemplateReadV2<Refugrite
 	
 	
 	
-	@Override protected ModelCheckerV1<RefugritemInfo> buildCheckerHook(DeciTreeOption<RefugritemInfo> option) {
-		List<ModelCheckerV1<RefugritemInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<RefugritemInfo> checker;
+	@Override protected ModelChecker<RefugritemInfo> buildCheckerHook(DeciTreeOption<RefugritemInfo> option) {
+		List<ModelChecker<RefugritemInfo>> queue = new ArrayList<>();		
+		ModelChecker<RefugritemInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
 		checkerOption = new ModelCheckerOption();
@@ -35,15 +35,15 @@ public final class RootRefugritemSelect extends DeciTreeTemplateReadV2<Refugrite
 		checker = new RefugritemCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<RefugritemInfo>> buildActionsOnPassedHook(DeciTreeOption<RefugritemInfo> option) {
-		List<ActionStdV2<RefugritemInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<RefugritemInfo>> buildActionsOnPassedHook(DeciTreeOption<RefugritemInfo> option) {
+		List<ActionStd<RefugritemInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<RefugritemInfo> select = new StdRefugritemDaoSelect(option);
+		ActionStd<RefugritemInfo> select = new StdRefugritemDaoSelect(option);
 		ActionLazy<RefugritemInfo> mergeRefupo = new LazyRefugritemMergeRefupo(option.conn, option.schemaName);
 		
 		select.addPostAction(mergeRefupo);

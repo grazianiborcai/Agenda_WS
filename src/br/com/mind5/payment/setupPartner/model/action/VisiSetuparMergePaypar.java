@@ -4,14 +4,14 @@ import java.util.List;
 
 import br.com.mind5.masterData.paymentPartner.info.PayparInfo;
 import br.com.mind5.masterData.paymentPartner.model.decisionTree.RootPayparSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.setupPartner.info.SetuparInfo;
 import br.com.mind5.payment.setupPartner.info.SetuparMerger;
 
-final class VisiSetuparMergePaypar extends ActionVisitorTemplateMergeV2<SetuparInfo, PayparInfo> {
+final class VisiSetuparMergePaypar extends ActionVisitorTemplateMerge<SetuparInfo, PayparInfo> {
 	
 	public VisiSetuparMergePaypar(DeciTreeOption<SetuparInfo> option) {
 		super(option, PayparInfo.class);
@@ -32,6 +32,6 @@ final class VisiSetuparMergePaypar extends ActionVisitorTemplateMergeV2<SetuparI
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
+		return super.MERGE_WHEN_EMPTY;
 	}
 }

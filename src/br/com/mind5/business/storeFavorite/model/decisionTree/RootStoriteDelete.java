@@ -7,14 +7,14 @@ import br.com.mind5.business.storeFavorite.info.StoriteInfo;
 import br.com.mind5.business.storeFavorite.model.action.StdStoriteDaoDelete;
 import br.com.mind5.business.storeFavorite.model.checker.StoriteCheckExist;
 import br.com.mind5.business.storeFavorite.model.checker.StoriteCheckWrite;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootStoriteDelete extends DeciTreeTemplateWriteV2<StoriteInfo> {
+public final class RootStoriteDelete extends DeciTreeTemplateWrite<StoriteInfo> {
 	
 	public RootStoriteDelete(DeciTreeOption<StoriteInfo> option) {
 		super(option);
@@ -22,9 +22,9 @@ public final class RootStoriteDelete extends DeciTreeTemplateWriteV2<StoriteInfo
 	
 	
 	
-	@Override protected ModelCheckerV1<StoriteInfo> buildCheckerHook(DeciTreeOption<StoriteInfo> option) {
-		List<ModelCheckerV1<StoriteInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<StoriteInfo> checker;
+	@Override protected ModelChecker<StoriteInfo> buildCheckerHook(DeciTreeOption<StoriteInfo> option) {
+		List<ModelChecker<StoriteInfo>> queue = new ArrayList<>();		
+		ModelChecker<StoriteInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -41,15 +41,15 @@ public final class RootStoriteDelete extends DeciTreeTemplateWriteV2<StoriteInfo
 		checker = new StoriteCheckExist(checkerOption);
 		queue.add(checker);	
 		
-		 return new ModelCheckerHelperQueueV2<StoriteInfo>(queue);
+		 return new ModelCheckerHelperQueue<StoriteInfo>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<StoriteInfo>> buildActionsOnPassedHook(DeciTreeOption<StoriteInfo> option) {
-		List<ActionStdV2<StoriteInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<StoriteInfo>> buildActionsOnPassedHook(DeciTreeOption<StoriteInfo> option) {
+		List<ActionStd<StoriteInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<StoriteInfo> delete = new StdStoriteDaoDelete(option);		
+		ActionStd<StoriteInfo> delete = new StdStoriteDaoDelete(option);		
 		actions.add(delete);
 		
 		return actions;

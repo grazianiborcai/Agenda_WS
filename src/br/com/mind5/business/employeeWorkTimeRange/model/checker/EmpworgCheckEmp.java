@@ -4,10 +4,10 @@ import br.com.mind5.business.employee.info.EmpInfo;
 import br.com.mind5.business.employee.model.checker.EmpCheckExist;
 import br.com.mind5.business.employeeWorkTimeRange.info.EmpworgInfo;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.model.checker.ModelChecker;
 
-public final class EmpworgCheckEmp extends ModelCheckerTemplateForwardV2<EmpworgInfo, EmpInfo> {
+public final class EmpworgCheckEmp extends ModelCheckerTemplateForward<EmpworgInfo, EmpInfo> {
 	
 	public EmpworgCheckEmp(ModelCheckerOption option) {
 		super(option);
@@ -15,7 +15,7 @@ public final class EmpworgCheckEmp extends ModelCheckerTemplateForwardV2<Empworg
 
 
 	
-	@Override protected ModelCheckerV1<EmpInfo> getCheckerHook(ModelCheckerOption option) {
+	@Override protected ModelChecker<EmpInfo> getCheckerHook(ModelCheckerOption option) {
 		return new EmpCheckExist(option);
 	}
 	

@@ -4,18 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 import br.com.mind5.payment.ownerPartner.info.OwnparInfo;
 import br.com.mind5.payment.ownerPartner.model.action.LazyOwnparNodeSelectCounparL2;
 import br.com.mind5.payment.ownerPartner.model.action.StdOwnparMergeOwner;
 import br.com.mind5.payment.ownerPartner.model.checker.OwnparCheckRead;
 
-public final class NodeOwnparSelectCounparL1 extends DeciTreeTemplateReadV2<OwnparInfo> {
+public final class NodeOwnparSelectCounparL1 extends DeciTreeTemplateRead<OwnparInfo> {
 	
 	public NodeOwnparSelectCounparL1(DeciTreeOption<OwnparInfo> option) {
 		super(option);
@@ -23,9 +23,9 @@ public final class NodeOwnparSelectCounparL1 extends DeciTreeTemplateReadV2<Ownp
 	
 	
 	
-	@Override protected ModelCheckerV1<OwnparInfo> buildCheckerHook(DeciTreeOption<OwnparInfo> option) {
-		List<ModelCheckerV1<OwnparInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<OwnparInfo> checker;
+	@Override protected ModelChecker<OwnparInfo> buildCheckerHook(DeciTreeOption<OwnparInfo> option) {
+		List<ModelChecker<OwnparInfo>> queue = new ArrayList<>();		
+		ModelChecker<OwnparInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -35,15 +35,15 @@ public final class NodeOwnparSelectCounparL1 extends DeciTreeTemplateReadV2<Ownp
 		checker = new OwnparCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<OwnparInfo>> buildActionsOnPassedHook(DeciTreeOption<OwnparInfo> option) {
-		List<ActionStdV2<OwnparInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<OwnparInfo>> buildActionsOnPassedHook(DeciTreeOption<OwnparInfo> option) {
+		List<ActionStd<OwnparInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<OwnparInfo> mergeOwner = new StdOwnparMergeOwner(option);
+		ActionStd<OwnparInfo> mergeOwner = new StdOwnparMergeOwner(option);
 		ActionLazy<OwnparInfo> nodeSelectL1 = new LazyOwnparNodeSelectCounparL2(option.conn, option.schemaName);
 		
 		mergeOwner.addPostAction(nodeSelectL1);

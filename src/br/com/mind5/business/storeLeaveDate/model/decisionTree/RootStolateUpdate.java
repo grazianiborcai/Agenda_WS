@@ -20,14 +20,14 @@ import br.com.mind5.business.storeLeaveDate.model.checker.StolateCheckStore;
 import br.com.mind5.business.storeLeaveDate.model.checker.StolateCheckTimeRange;
 import br.com.mind5.business.storeLeaveDate.model.checker.StolateCheckWrite;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootStolateUpdate extends DeciTreeTemplateWriteV2<StolateInfo> {
+public final class RootStolateUpdate extends DeciTreeTemplateWrite<StolateInfo> {
 	
 	public RootStolateUpdate(DeciTreeOption<StolateInfo> option) {
 		super(option);
@@ -35,9 +35,9 @@ public final class RootStolateUpdate extends DeciTreeTemplateWriteV2<StolateInfo
 	
 	
 	
-	@Override protected ModelCheckerV1<StolateInfo> buildCheckerHook(DeciTreeOption<StolateInfo> option) {
-		List<ModelCheckerV1<StolateInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<StolateInfo> checker;
+	@Override protected ModelChecker<StolateInfo> buildCheckerHook(DeciTreeOption<StolateInfo> option) {
+		List<ModelChecker<StolateInfo>> queue = new ArrayList<>();		
+		ModelChecker<StolateInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -96,15 +96,15 @@ public final class RootStolateUpdate extends DeciTreeTemplateWriteV2<StolateInfo
 		checker = new StolateCheckSchedage(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<StolateInfo>> buildActionsOnPassedHook(DeciTreeOption<StolateInfo> option) {
-		List<ActionStdV2<StolateInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<StolateInfo>> buildActionsOnPassedHook(DeciTreeOption<StolateInfo> option) {
+		List<ActionStd<StolateInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<StolateInfo> mergeToUpdate = new StdStolateMergeToUpdate(option);
+		ActionStd<StolateInfo> mergeToUpdate = new StdStolateMergeToUpdate(option);
 		ActionLazy<StolateInfo> enforceLChanged = new LazyStolateEnforceLChanged(option.conn, option.schemaName);
 		ActionLazy<StolateInfo> enforceLChangedBy = new LazyStolateMergeUsername(option.conn, option.schemaName);
 		ActionLazy<StolateInfo> enforceValidFrom = new LazyStolateEnforceValidFrom(option.conn, option.schemaName);

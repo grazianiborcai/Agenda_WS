@@ -9,14 +9,14 @@ import br.com.mind5.business.customer.model.action.StdCusEnforceAddressCod;
 import br.com.mind5.business.customer.model.action.StdCusSuccess;
 import br.com.mind5.business.customer.model.checker.CusCheckHasAddress;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodeCusInsertAddress extends DeciTreeTemplateWriteV2<CusInfo> {
+public final class NodeCusInsertAddress extends DeciTreeTemplateWrite<CusInfo> {
 	
 	public NodeCusInsertAddress(DeciTreeOption<CusInfo> option) {
 		super(option);
@@ -24,9 +24,9 @@ public final class NodeCusInsertAddress extends DeciTreeTemplateWriteV2<CusInfo>
 	
 	
 	
-	@Override protected ModelCheckerV1<CusInfo> buildCheckerHook(DeciTreeOption<CusInfo> option) {
-		List<ModelCheckerV1<CusInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<CusInfo> checker;
+	@Override protected ModelChecker<CusInfo> buildCheckerHook(DeciTreeOption<CusInfo> option) {
+		List<ModelChecker<CusInfo>> queue = new ArrayList<>();		
+		ModelChecker<CusInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
 		checkerOption = new ModelCheckerOption();
@@ -36,15 +36,15 @@ public final class NodeCusInsertAddress extends DeciTreeTemplateWriteV2<CusInfo>
 		checker = new CusCheckHasAddress(checkerOption);
 		queue.add(checker);	
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<CusInfo>> buildActionsOnPassedHook(DeciTreeOption<CusInfo> option) {
-		List<ActionStdV2<CusInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<CusInfo>> buildActionsOnPassedHook(DeciTreeOption<CusInfo> option) {
+		List<ActionStd<CusInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<CusInfo> enforceAddressCod = new StdCusEnforceAddressCod(option);
+		ActionStd<CusInfo> enforceAddressCod = new StdCusEnforceAddressCod(option);
 		ActionLazy<CusInfo> upsertAddress = new LazyCusNodeUpsertAddress(option.conn, option.schemaName);
 		
 		enforceAddressCod.addPostAction(upsertAddress);
@@ -55,10 +55,10 @@ public final class NodeCusInsertAddress extends DeciTreeTemplateWriteV2<CusInfo>
 	
 	
 	
-	@Override protected List<ActionStdV2<CusInfo>> buildActionsOnFailedHook(DeciTreeOption<CusInfo> option) {
-		List<ActionStdV2<CusInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<CusInfo>> buildActionsOnFailedHook(DeciTreeOption<CusInfo> option) {
+		List<ActionStd<CusInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<CusInfo> success = new StdCusSuccess(option);
+		ActionStd<CusInfo> success = new StdCusSuccess(option);
 		
 		actions.add(success);	
 		return actions;

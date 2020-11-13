@@ -1,11 +1,11 @@
 package br.com.mind5.payment.payOrderItemSearch.model.action;
 
-import br.com.mind5.model.action.ActionStdTemplateV2;
-import br.com.mind5.model.action.ActionVisitorV2;
+import br.com.mind5.model.action.ActionStdTemplate;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.payOrderItemSearch.info.PayormarchInfo;
 
-public final class StdPayormarchMergeToSelect extends ActionStdTemplateV2<PayormarchInfo> {
+public final class StdPayormarchMergeToSelect extends ActionStdTemplate<PayormarchInfo> {
 
 	public StdPayormarchMergeToSelect(DeciTreeOption<PayormarchInfo> option) {
 		super(option);
@@ -13,7 +13,7 @@ public final class StdPayormarchMergeToSelect extends ActionStdTemplateV2<Payorm
 	
 	
 	
-	protected ActionVisitorV2<PayormarchInfo> buildVisitorHook(DeciTreeOption<PayormarchInfo> option) {
+	protected ActionVisitor<PayormarchInfo> buildVisitorHook(DeciTreeOption<PayormarchInfo> option) {
 		return new VisiPayormarchMergeToSelect(option);
 	}
 }

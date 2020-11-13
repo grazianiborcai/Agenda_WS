@@ -8,14 +8,14 @@ import br.com.mind5.business.calendarMoon.model.action.LazyMooncalMergeMoonase;
 import br.com.mind5.business.calendarMoon.model.action.StdMooncalMergeToSelect;
 import br.com.mind5.business.calendarMoon.model.checker.MooncalCheckRead;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootMooncalSelect extends DeciTreeTemplateReadV2<MooncalInfo> {
+public final class RootMooncalSelect extends DeciTreeTemplateRead<MooncalInfo> {
 	
 	public RootMooncalSelect(DeciTreeOption<MooncalInfo> option) {
 		super(option);
@@ -23,9 +23,9 @@ public final class RootMooncalSelect extends DeciTreeTemplateReadV2<MooncalInfo>
 	
 	
 	
-	@Override protected ModelCheckerV1<MooncalInfo> buildCheckerHook(DeciTreeOption<MooncalInfo> option) {
-		List<ModelCheckerV1<MooncalInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<MooncalInfo> checker;
+	@Override protected ModelChecker<MooncalInfo> buildCheckerHook(DeciTreeOption<MooncalInfo> option) {
+		List<ModelChecker<MooncalInfo>> queue = new ArrayList<>();		
+		ModelChecker<MooncalInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
 		checkerOption = new ModelCheckerOption();
@@ -35,15 +35,15 @@ public final class RootMooncalSelect extends DeciTreeTemplateReadV2<MooncalInfo>
 		checker = new MooncalCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 
 		
 	
-	@Override protected List<ActionStdV2<MooncalInfo>> buildActionsOnPassedHook(DeciTreeOption<MooncalInfo> option) {
-		List<ActionStdV2<MooncalInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<MooncalInfo>> buildActionsOnPassedHook(DeciTreeOption<MooncalInfo> option) {
+		List<ActionStd<MooncalInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<MooncalInfo> mergeToSelect = new StdMooncalMergeToSelect(option);
+		ActionStd<MooncalInfo> mergeToSelect = new StdMooncalMergeToSelect(option);
 		ActionLazy<MooncalInfo>  mergeMoonase = new LazyMooncalMergeMoonase(option.conn, option.schemaName);
 		
 		mergeToSelect.addPostAction(mergeMoonase);

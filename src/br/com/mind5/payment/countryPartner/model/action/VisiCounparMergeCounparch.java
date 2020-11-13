@@ -2,7 +2,7 @@ package br.com.mind5.payment.countryPartner.model.action;
 
 import java.util.List;
 
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.countryPartner.info.CounparInfo;
@@ -10,7 +10,7 @@ import br.com.mind5.payment.countryPartner.info.CounparMerger;
 import br.com.mind5.payment.countryPartnerSearch.info.CounparchInfo;
 import br.com.mind5.payment.countryPartnerSearch.model.decisionTree.RootCounparchSelect;
 
-final class VisiCounparMergeCounparch extends ActionVisitorTemplateMergeV2<CounparInfo, CounparchInfo> {
+final class VisiCounparMergeCounparch extends ActionVisitorTemplateMerge<CounparInfo, CounparchInfo> {
 	
 	public VisiCounparMergeCounparch(DeciTreeOption<CounparInfo> option) {
 		super(option, CounparchInfo.class);

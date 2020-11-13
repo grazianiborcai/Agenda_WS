@@ -6,14 +6,14 @@ import java.util.List;
 import br.com.mind5.masterData.fileDocType.info.FidoceInfo;
 import br.com.mind5.masterData.fileDocType.model.action.StdFidoceDaoSelect;
 import br.com.mind5.masterData.fileDocType.model.checker.FidoceCheckRead;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootFidoceSelect extends DeciTreeTemplateReadV2<FidoceInfo> {
+public final class RootFidoceSelect extends DeciTreeTemplateRead<FidoceInfo> {
 	
 	public RootFidoceSelect(DeciTreeOption<FidoceInfo> option) {
 		super(option);
@@ -21,9 +21,9 @@ public final class RootFidoceSelect extends DeciTreeTemplateReadV2<FidoceInfo> {
 	
 	
 	
-	@Override protected ModelCheckerV1<FidoceInfo> buildCheckerHook(DeciTreeOption<FidoceInfo> option) {
-		List<ModelCheckerV1<FidoceInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<FidoceInfo> checker;
+	@Override protected ModelChecker<FidoceInfo> buildCheckerHook(DeciTreeOption<FidoceInfo> option) {
+		List<ModelChecker<FidoceInfo>> queue = new ArrayList<>();		
+		ModelChecker<FidoceInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
 		checkerOption = new ModelCheckerOption();
@@ -33,15 +33,15 @@ public final class RootFidoceSelect extends DeciTreeTemplateReadV2<FidoceInfo> {
 		checker = new FidoceCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<FidoceInfo>> buildActionsOnPassedHook(DeciTreeOption<FidoceInfo> option) {
-		List<ActionStdV2<FidoceInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<FidoceInfo>> buildActionsOnPassedHook(DeciTreeOption<FidoceInfo> option) {
+		List<ActionStd<FidoceInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<FidoceInfo> select = new StdFidoceDaoSelect(option);
+		ActionStd<FidoceInfo> select = new StdFidoceDaoSelect(option);
 		
 		actions.add(select);
 		return actions;

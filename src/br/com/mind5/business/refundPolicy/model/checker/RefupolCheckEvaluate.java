@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.mind5.business.refundPolicy.info.RefupolInfo;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 
-public final class RefupolCheckEvaluate extends ModelCheckerTemplateSimpleV2<RefupolInfo> {
+public final class RefupolCheckEvaluate extends ModelCheckerTemplateSimple<RefupolInfo> {
 
 	public RefupolCheckEvaluate(ModelCheckerOption option) {
 		super(option);

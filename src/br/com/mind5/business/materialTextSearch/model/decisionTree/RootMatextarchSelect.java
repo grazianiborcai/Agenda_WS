@@ -7,14 +7,14 @@ import br.com.mind5.business.materialTextSearch.info.MatextarchInfo;
 import br.com.mind5.business.materialTextSearch.model.action.StdMatextarchMergeToSelect;
 import br.com.mind5.business.materialTextSearch.model.checker.MatextarchCheckOwner;
 import br.com.mind5.business.materialTextSearch.model.checker.MatextarchCheckRead;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootMatextarchSelect extends DeciTreeTemplateReadV2<MatextarchInfo> {
+public final class RootMatextarchSelect extends DeciTreeTemplateRead<MatextarchInfo> {
 	
 	public RootMatextarchSelect(DeciTreeOption<MatextarchInfo> option) {
 		super(option);
@@ -22,9 +22,9 @@ public final class RootMatextarchSelect extends DeciTreeTemplateReadV2<Matextarc
 	
 	
 	
-	@Override protected ModelCheckerV1<MatextarchInfo> buildCheckerHook(DeciTreeOption<MatextarchInfo> option) {
-		List<ModelCheckerV1<MatextarchInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<MatextarchInfo> checker;
+	@Override protected ModelChecker<MatextarchInfo> buildCheckerHook(DeciTreeOption<MatextarchInfo> option) {
+		List<ModelChecker<MatextarchInfo>> queue = new ArrayList<>();		
+		ModelChecker<MatextarchInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -41,15 +41,15 @@ public final class RootMatextarchSelect extends DeciTreeTemplateReadV2<Matextarc
 		checker = new MatextarchCheckOwner(checkerOption);
 		queue.add(checker);			
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<MatextarchInfo>> buildActionsOnPassedHook(DeciTreeOption<MatextarchInfo> option) {
-		List<ActionStdV2<MatextarchInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<MatextarchInfo>> buildActionsOnPassedHook(DeciTreeOption<MatextarchInfo> option) {
+		List<ActionStd<MatextarchInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<MatextarchInfo> select = new StdMatextarchMergeToSelect(option);
+		ActionStd<MatextarchInfo> select = new StdMatextarchMergeToSelect(option);
 		
 		actions.add(select);
 		return actions;

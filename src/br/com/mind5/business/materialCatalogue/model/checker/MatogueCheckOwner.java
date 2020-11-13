@@ -4,10 +4,10 @@ import br.com.mind5.business.materialCatalogue.info.MatogueInfo;
 import br.com.mind5.business.owner.info.OwnerInfo;
 import br.com.mind5.business.owner.model.checker.OwnerCheckExist;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.model.checker.ModelChecker;
 
-public final class MatogueCheckOwner extends ModelCheckerTemplateForwardV2<MatogueInfo, OwnerInfo> {
+public final class MatogueCheckOwner extends ModelCheckerTemplateForward<MatogueInfo, OwnerInfo> {
 	
 	public MatogueCheckOwner(ModelCheckerOption option) {
 		super(option);
@@ -15,7 +15,7 @@ public final class MatogueCheckOwner extends ModelCheckerTemplateForwardV2<Matog
 
 
 	
-	@Override protected ModelCheckerV1<OwnerInfo> getCheckerHook(ModelCheckerOption option) {
+	@Override protected ModelChecker<OwnerInfo> getCheckerHook(ModelCheckerOption option) {
 		return new OwnerCheckExist(option);
 	}
 	

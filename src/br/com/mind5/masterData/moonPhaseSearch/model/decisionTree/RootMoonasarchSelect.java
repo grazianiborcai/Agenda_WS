@@ -6,14 +6,14 @@ import java.util.List;
 import br.com.mind5.masterData.moonPhaseSearch.info.MoonasarchInfo;
 import br.com.mind5.masterData.moonPhaseSearch.model.action.StdMoonasarchDaoSelect;
 import br.com.mind5.masterData.moonPhaseSearch.model.checker.MoonasarchCheckRead;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootMoonasarchSelect extends DeciTreeTemplateReadV2<MoonasarchInfo> {
+public final class RootMoonasarchSelect extends DeciTreeTemplateRead<MoonasarchInfo> {
 	
 	public RootMoonasarchSelect(DeciTreeOption<MoonasarchInfo> option) {
 		super(option);
@@ -21,9 +21,9 @@ public final class RootMoonasarchSelect extends DeciTreeTemplateReadV2<Moonasarc
 	
 	
 	
-	@Override protected ModelCheckerV1<MoonasarchInfo> buildCheckerHook(DeciTreeOption<MoonasarchInfo> option) {
-		List<ModelCheckerV1<MoonasarchInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<MoonasarchInfo> checker;
+	@Override protected ModelChecker<MoonasarchInfo> buildCheckerHook(DeciTreeOption<MoonasarchInfo> option) {
+		List<ModelChecker<MoonasarchInfo>> queue = new ArrayList<>();		
+		ModelChecker<MoonasarchInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
 		checkerOption = new ModelCheckerOption();
@@ -33,15 +33,15 @@ public final class RootMoonasarchSelect extends DeciTreeTemplateReadV2<Moonasarc
 		checker = new MoonasarchCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 
 		
 	
-	@Override protected List<ActionStdV2<MoonasarchInfo>> buildActionsOnPassedHook(DeciTreeOption<MoonasarchInfo> option) {
-		List<ActionStdV2<MoonasarchInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<MoonasarchInfo>> buildActionsOnPassedHook(DeciTreeOption<MoonasarchInfo> option) {
+		List<ActionStd<MoonasarchInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<MoonasarchInfo> select = new StdMoonasarchDaoSelect(option);
+		ActionStd<MoonasarchInfo> select = new StdMoonasarchDaoSelect(option);
 		
 		actions.add(select);
 		return actions;

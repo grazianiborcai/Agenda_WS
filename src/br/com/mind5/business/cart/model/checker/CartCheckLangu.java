@@ -4,10 +4,10 @@ import br.com.mind5.business.cart.info.CartInfo;
 import br.com.mind5.masterData.language.info.LanguInfo;
 import br.com.mind5.masterData.language.model.checker.LanguCheckExist;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.model.checker.ModelChecker;
 
-public final class CartCheckLangu extends ModelCheckerTemplateForwardV2<CartInfo, LanguInfo> {
+public final class CartCheckLangu extends ModelCheckerTemplateForward<CartInfo, LanguInfo> {
 	
 	public CartCheckLangu(ModelCheckerOption option) {
 		super(option);
@@ -15,7 +15,7 @@ public final class CartCheckLangu extends ModelCheckerTemplateForwardV2<CartInfo
 
 
 	
-	@Override protected ModelCheckerV1<LanguInfo> getCheckerHook(ModelCheckerOption option) {
+	@Override protected ModelChecker<LanguInfo> getCheckerHook(ModelCheckerOption option) {
 		return new LanguCheckExist(option);
 	}
 	

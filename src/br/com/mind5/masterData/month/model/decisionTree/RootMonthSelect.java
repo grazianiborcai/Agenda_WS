@@ -6,14 +6,14 @@ import java.util.List;
 import br.com.mind5.masterData.month.info.MonthInfo;
 import br.com.mind5.masterData.month.model.action.StdMonthDaoSelect;
 import br.com.mind5.masterData.month.model.checker.MonthCheckRead;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootMonthSelect extends DeciTreeTemplateReadV2<MonthInfo> {
+public final class RootMonthSelect extends DeciTreeTemplateRead<MonthInfo> {
 	
 	public RootMonthSelect(DeciTreeOption<MonthInfo> option) {
 		super(option);
@@ -21,9 +21,9 @@ public final class RootMonthSelect extends DeciTreeTemplateReadV2<MonthInfo> {
 	
 	
 	
-	@Override protected ModelCheckerV1<MonthInfo> buildCheckerHook(DeciTreeOption<MonthInfo> option) {
-		List<ModelCheckerV1<MonthInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<MonthInfo> checker;
+	@Override protected ModelChecker<MonthInfo> buildCheckerHook(DeciTreeOption<MonthInfo> option) {
+		List<ModelChecker<MonthInfo>> queue = new ArrayList<>();		
+		ModelChecker<MonthInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
 		checkerOption = new ModelCheckerOption();
@@ -33,15 +33,15 @@ public final class RootMonthSelect extends DeciTreeTemplateReadV2<MonthInfo> {
 		checker = new MonthCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<MonthInfo>> buildActionsOnPassedHook(DeciTreeOption<MonthInfo> option) {
-		List<ActionStdV2<MonthInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<MonthInfo>> buildActionsOnPassedHook(DeciTreeOption<MonthInfo> option) {
+		List<ActionStd<MonthInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<MonthInfo> select = new StdMonthDaoSelect(option);
+		ActionStd<MonthInfo> select = new StdMonthDaoSelect(option);
 		
 		actions.add(select);
 		return actions;

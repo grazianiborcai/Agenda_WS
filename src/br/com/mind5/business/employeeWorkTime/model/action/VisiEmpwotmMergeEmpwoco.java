@@ -6,11 +6,11 @@ import br.com.mind5.business.employeeWorkTime.info.EmpwotmInfo;
 import br.com.mind5.business.employeeWorkTime.info.EmpwotmMerger;
 import br.com.mind5.business.employeeWorkTimeConflict.info.EmpwocoInfo;
 import br.com.mind5.business.employeeWorkTimeConflict.model.decisionTree.RootEmpwocoSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiEmpwotmMergeEmpwoco extends ActionVisitorTemplateMergeV2<EmpwotmInfo, EmpwocoInfo> {
+final class VisiEmpwotmMergeEmpwoco extends ActionVisitorTemplateMerge<EmpwotmInfo, EmpwocoInfo> {
 	
 	public VisiEmpwotmMergeEmpwoco(DeciTreeOption<EmpwotmInfo> option) {
 		super(option, EmpwocoInfo.class);

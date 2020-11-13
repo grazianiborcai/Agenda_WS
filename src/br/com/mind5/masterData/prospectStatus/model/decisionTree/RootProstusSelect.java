@@ -6,14 +6,14 @@ import java.util.List;
 import br.com.mind5.masterData.prospectStatus.info.ProstusInfo;
 import br.com.mind5.masterData.prospectStatus.model.action.StdProstusDaoSelect;
 import br.com.mind5.masterData.prospectStatus.model.checker.ProstusCheckRead;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootProstusSelect extends DeciTreeTemplateWriteV2<ProstusInfo> {
+public final class RootProstusSelect extends DeciTreeTemplateWrite<ProstusInfo> {
 	
 	public RootProstusSelect(DeciTreeOption<ProstusInfo> option) {
 		super(option);
@@ -21,9 +21,9 @@ public final class RootProstusSelect extends DeciTreeTemplateWriteV2<ProstusInfo
 	
 	
 	
-	@Override protected ModelCheckerV1<ProstusInfo> buildCheckerHook(DeciTreeOption<ProstusInfo> option) {
-		List<ModelCheckerV1<ProstusInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<ProstusInfo> checker;
+	@Override protected ModelChecker<ProstusInfo> buildCheckerHook(DeciTreeOption<ProstusInfo> option) {
+		List<ModelChecker<ProstusInfo>> queue = new ArrayList<>();		
+		ModelChecker<ProstusInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
 		checkerOption = new ModelCheckerOption();
@@ -33,15 +33,15 @@ public final class RootProstusSelect extends DeciTreeTemplateWriteV2<ProstusInfo
 		checker = new ProstusCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<ProstusInfo>> buildActionsOnPassedHook(DeciTreeOption<ProstusInfo> option) {
-		List<ActionStdV2<ProstusInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<ProstusInfo>> buildActionsOnPassedHook(DeciTreeOption<ProstusInfo> option) {
+		List<ActionStd<ProstusInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<ProstusInfo> select = new StdProstusDaoSelect(option);
+		ActionStd<ProstusInfo> select = new StdProstusDaoSelect(option);
 		
 		actions.add(select);
 		return actions;

@@ -3,12 +3,12 @@ package br.com.mind5.masterData.moonPhase.model.checker;
 import br.com.mind5.masterData.moonPhase.info.MoonaseInfo;
 import br.com.mind5.masterData.moonPhase.model.action.StdMoonaseDaoSelect;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class MoonaseCheckExist extends ModelCheckerTemplateActionV2<MoonaseInfo, MoonaseInfo> {
+public final class MoonaseCheckExist extends ModelCheckerTemplateAction<MoonaseInfo, MoonaseInfo> {
 	
 	public MoonaseCheckExist(ModelCheckerOption option) {
 		super(option, MoonaseInfo.class);
@@ -16,8 +16,8 @@ public final class MoonaseCheckExist extends ModelCheckerTemplateActionV2<Moonas
 	
 	
 	
-	@Override protected ActionStdV2<MoonaseInfo> buildActionHook(DeciTreeOption<MoonaseInfo> option) {
-		ActionStdV2<MoonaseInfo> select = new StdMoonaseDaoSelect(option);
+	@Override protected ActionStd<MoonaseInfo> buildActionHook(DeciTreeOption<MoonaseInfo> option) {
+		ActionStd<MoonaseInfo> select = new StdMoonaseDaoSelect(option);
 		return select;
 	}
 	

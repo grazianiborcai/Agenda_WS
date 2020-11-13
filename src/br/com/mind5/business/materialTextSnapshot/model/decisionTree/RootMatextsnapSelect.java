@@ -8,14 +8,14 @@ import br.com.mind5.business.materialTextSnapshot.model.action.StdMatextsnapMerg
 import br.com.mind5.business.materialTextSnapshot.model.checker.MatextsnapCheckMat;
 import br.com.mind5.business.materialTextSnapshot.model.checker.MatextsnapCheckOwner;
 import br.com.mind5.business.materialTextSnapshot.model.checker.MatextsnapCheckRead;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootMatextsnapSelect extends DeciTreeTemplateReadV2<MatextsnapInfo> {
+public final class RootMatextsnapSelect extends DeciTreeTemplateRead<MatextsnapInfo> {
 	
 	public RootMatextsnapSelect(DeciTreeOption<MatextsnapInfo> option) {
 		super(option);
@@ -23,9 +23,9 @@ public final class RootMatextsnapSelect extends DeciTreeTemplateReadV2<Matextsna
 	
 	
 	
-	@Override protected ModelCheckerV1<MatextsnapInfo> buildCheckerHook(DeciTreeOption<MatextsnapInfo> option) {
-		List<ModelCheckerV1<MatextsnapInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<MatextsnapInfo> checker;
+	@Override protected ModelChecker<MatextsnapInfo> buildCheckerHook(DeciTreeOption<MatextsnapInfo> option) {
+		List<ModelChecker<MatextsnapInfo>> queue = new ArrayList<>();		
+		ModelChecker<MatextsnapInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -49,15 +49,15 @@ public final class RootMatextsnapSelect extends DeciTreeTemplateReadV2<Matextsna
 		checker = new MatextsnapCheckMat(checkerOption);
 		queue.add(checker);		
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<MatextsnapInfo>> buildActionsOnPassedHook(DeciTreeOption<MatextsnapInfo> option) {
-		List<ActionStdV2<MatextsnapInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<MatextsnapInfo>> buildActionsOnPassedHook(DeciTreeOption<MatextsnapInfo> option) {
+		List<ActionStd<MatextsnapInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<MatextsnapInfo> select = new StdMatextsnapMergeToSelect(option);
+		ActionStd<MatextsnapInfo> select = new StdMatextsnapMergeToSelect(option);
 		
 		actions.add(select);
 		return actions;

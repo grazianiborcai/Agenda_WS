@@ -4,18 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 import br.com.mind5.security.username.info.UsernameInfo;
 import br.com.mind5.security.username.model.action.LazyUsernameMergeAuthgrole;
 import br.com.mind5.security.username.model.action.StdUsernameMergeToSelect;
 import br.com.mind5.security.username.model.checker.UsernameCheckRead;
 
-public final class RootUsernameSelect extends DeciTreeTemplateReadV2<UsernameInfo> {
+public final class RootUsernameSelect extends DeciTreeTemplateRead<UsernameInfo> {
 	
 	public RootUsernameSelect(DeciTreeOption<UsernameInfo> option) {
 		super(option);
@@ -23,9 +23,9 @@ public final class RootUsernameSelect extends DeciTreeTemplateReadV2<UsernameInf
 	
 	
 	
-	@Override protected ModelCheckerV1<UsernameInfo> buildCheckerHook(DeciTreeOption<UsernameInfo> option) {
-		List<ModelCheckerV1<UsernameInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<UsernameInfo> checker;
+	@Override protected ModelChecker<UsernameInfo> buildCheckerHook(DeciTreeOption<UsernameInfo> option) {
+		List<ModelChecker<UsernameInfo>> queue = new ArrayList<>();		
+		ModelChecker<UsernameInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -35,15 +35,15 @@ public final class RootUsernameSelect extends DeciTreeTemplateReadV2<UsernameInf
 		checker = new UsernameCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<UsernameInfo>> buildActionsOnPassedHook(DeciTreeOption<UsernameInfo> option) {
-		List<ActionStdV2<UsernameInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<UsernameInfo>> buildActionsOnPassedHook(DeciTreeOption<UsernameInfo> option) {
+		List<ActionStd<UsernameInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<UsernameInfo> select = new StdUsernameMergeToSelect(option);
+		ActionStd<UsernameInfo> select = new StdUsernameMergeToSelect(option);
 		ActionLazy<UsernameInfo> mergeAuthgrole = new LazyUsernameMergeAuthgrole(option.conn, option.schemaName);
 		
 		select.addPostAction(mergeAuthgrole);

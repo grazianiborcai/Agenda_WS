@@ -6,11 +6,11 @@ import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.address.info.AddressMerger;
 import br.com.mind5.masterData.country.info.CountryInfo;
 import br.com.mind5.masterData.country.model.decisionTree.RootCountrySelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiAddressMergeCountry extends ActionVisitorTemplateMergeV2<AddressInfo, CountryInfo> {
+final class VisiAddressMergeCountry extends ActionVisitorTemplateMerge<AddressInfo, CountryInfo> {
 	
 	public VisiAddressMergeCountry(DeciTreeOption<AddressInfo> option) {
 		super(option, CountryInfo.class);

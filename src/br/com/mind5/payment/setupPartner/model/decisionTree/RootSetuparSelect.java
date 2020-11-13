@@ -4,18 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 import br.com.mind5.payment.setupPartner.info.SetuparInfo;
 import br.com.mind5.payment.setupPartner.model.action.LazySetuparMergePaypar;
 import br.com.mind5.payment.setupPartner.model.action.StdSetuparDaoSelect;
 import br.com.mind5.payment.setupPartner.model.checker.SetuparCheckRead;
 
-public final class RootSetuparSelect extends DeciTreeTemplateReadV2<SetuparInfo> {
+public final class RootSetuparSelect extends DeciTreeTemplateRead<SetuparInfo> {
 	
 	public RootSetuparSelect(DeciTreeOption<SetuparInfo> option) {
 		super(option);
@@ -23,9 +23,9 @@ public final class RootSetuparSelect extends DeciTreeTemplateReadV2<SetuparInfo>
 	
 	
 	
-	@Override protected ModelCheckerV1<SetuparInfo> buildCheckerHook(DeciTreeOption<SetuparInfo> option) {
-		List<ModelCheckerV1<SetuparInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<SetuparInfo> checker;
+	@Override protected ModelChecker<SetuparInfo> buildCheckerHook(DeciTreeOption<SetuparInfo> option) {
+		List<ModelChecker<SetuparInfo>> queue = new ArrayList<>();		
+		ModelChecker<SetuparInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -35,15 +35,15 @@ public final class RootSetuparSelect extends DeciTreeTemplateReadV2<SetuparInfo>
 		checker = new SetuparCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<SetuparInfo>> buildActionsOnPassedHook(DeciTreeOption<SetuparInfo> option) {
-		List<ActionStdV2<SetuparInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<SetuparInfo>> buildActionsOnPassedHook(DeciTreeOption<SetuparInfo> option) {
+		List<ActionStd<SetuparInfo>> actions = new ArrayList<>();
 		//TODO: esses dados devem ser movidos para outro lugar mais seguro
-		ActionStdV2<SetuparInfo> select = new StdSetuparDaoSelect(option);
+		ActionStd<SetuparInfo> select = new StdSetuparDaoSelect(option);
 		ActionLazy<SetuparInfo> mergePayPartner = new LazySetuparMergePaypar(option.conn, option.schemaName);
 		
 		select.addPostAction(mergePayPartner);

@@ -6,11 +6,11 @@ import br.com.mind5.business.storeProspect.info.StoprosInfo;
 import br.com.mind5.business.storeProspect.info.StoprosMerger;
 import br.com.mind5.business.storeProspectSearch.info.StoprarchInfo;
 import br.com.mind5.business.storeProspectSearch.model.decisionTree.RootStoprarchSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiStoprosMergeStoprarch extends ActionVisitorTemplateMergeV2<StoprosInfo, StoprarchInfo> {
+final class VisiStoprosMergeStoprarch extends ActionVisitorTemplateMerge<StoprosInfo, StoprarchInfo> {
 	
 	public VisiStoprosMergeStoprarch(DeciTreeOption<StoprosInfo> option) {
 		super(option, StoprarchInfo.class);

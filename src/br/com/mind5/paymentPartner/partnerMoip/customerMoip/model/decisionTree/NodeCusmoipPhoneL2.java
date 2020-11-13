@@ -3,18 +3,18 @@ package br.com.mind5.paymentPartner.partnerMoip.customerMoip.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.paymentPartner.partnerMoip.customerMoip.info.CusmoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.customerMoip.model.action.StdCusmoipEnforcePhone;
 import br.com.mind5.paymentPartner.partnerMoip.customerMoip.model.checker.CusmoipCheckPhoneBR;
 import br.com.mind5.paymentPartner.partnerMoip.customerMoip.model.checker.CusmoipCheckPhoneData;
 
-public final class NodeCusmoipPhoneL2 extends DeciTreeTemplateWriteV2<CusmoipInfo> {
+public final class NodeCusmoipPhoneL2 extends DeciTreeTemplateWrite<CusmoipInfo> {
 	
 	public NodeCusmoipPhoneL2(DeciTreeOption<CusmoipInfo> option) {
 		super(option);
@@ -22,9 +22,9 @@ public final class NodeCusmoipPhoneL2 extends DeciTreeTemplateWriteV2<CusmoipInf
 	
 	
 	
-	@Override protected ModelCheckerV1<CusmoipInfo> buildCheckerHook(DeciTreeOption<CusmoipInfo> option) {
-		List<ModelCheckerV1<CusmoipInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<CusmoipInfo> checker;	
+	@Override protected ModelChecker<CusmoipInfo> buildCheckerHook(DeciTreeOption<CusmoipInfo> option) {
+		List<ModelChecker<CusmoipInfo>> queue = new ArrayList<>();		
+		ModelChecker<CusmoipInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -41,15 +41,15 @@ public final class NodeCusmoipPhoneL2 extends DeciTreeTemplateWriteV2<CusmoipInf
 		checker = new CusmoipCheckPhoneData(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<CusmoipInfo>> buildActionsOnPassedHook(DeciTreeOption<CusmoipInfo> option) {
-		List<ActionStdV2<CusmoipInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<CusmoipInfo>> buildActionsOnPassedHook(DeciTreeOption<CusmoipInfo> option) {
+		List<ActionStd<CusmoipInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<CusmoipInfo> enforcePhone = new StdCusmoipEnforcePhone(option);
+		ActionStd<CusmoipInfo> enforcePhone = new StdCusmoipEnforcePhone(option);
 		
 		actions.add(enforcePhone);
 		return actions;

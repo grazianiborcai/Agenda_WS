@@ -6,14 +6,14 @@ import java.util.List;
 import br.com.mind5.masterData.businessAreaSearch.info.BusarearchInfo;
 import br.com.mind5.masterData.businessAreaSearch.model.action.StdBusarearchDaoSelect;
 import br.com.mind5.masterData.businessAreaSearch.model.checker.BusarearchCheckRead;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootBusarearchSelect extends DeciTreeTemplateReadV2<BusarearchInfo> {
+public final class RootBusarearchSelect extends DeciTreeTemplateRead<BusarearchInfo> {
 	
 	public RootBusarearchSelect(DeciTreeOption<BusarearchInfo> option) {
 		super(option);
@@ -21,9 +21,9 @@ public final class RootBusarearchSelect extends DeciTreeTemplateReadV2<Busarearc
 	
 	
 	
-	@Override protected ModelCheckerV1<BusarearchInfo> buildCheckerHook(DeciTreeOption<BusarearchInfo> option) {
-		List<ModelCheckerV1<BusarearchInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<BusarearchInfo> checker;
+	@Override protected ModelChecker<BusarearchInfo> buildCheckerHook(DeciTreeOption<BusarearchInfo> option) {
+		List<ModelChecker<BusarearchInfo>> queue = new ArrayList<>();		
+		ModelChecker<BusarearchInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
 		checkerOption = new ModelCheckerOption();
@@ -33,15 +33,15 @@ public final class RootBusarearchSelect extends DeciTreeTemplateReadV2<Busarearc
 		checker = new BusarearchCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 
 		
 	
-	@Override protected List<ActionStdV2<BusarearchInfo>> buildActionsOnPassedHook(DeciTreeOption<BusarearchInfo> option) {
-		List<ActionStdV2<BusarearchInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<BusarearchInfo>> buildActionsOnPassedHook(DeciTreeOption<BusarearchInfo> option) {
+		List<ActionStd<BusarearchInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<BusarearchInfo> select = new StdBusarearchDaoSelect(option);
+		ActionStd<BusarearchInfo> select = new StdBusarearchDaoSelect(option);
 		
 		actions.add(select);
 		return actions;

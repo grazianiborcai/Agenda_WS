@@ -4,10 +4,10 @@ import br.com.mind5.business.materialMovement.info.MatmovInfo;
 import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.business.store.model.checker.StoreCheckExist;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.model.checker.ModelChecker;
 
-public final class MatmovCheckStore extends ModelCheckerTemplateForwardV2<MatmovInfo, StoreInfo> {
+public final class MatmovCheckStore extends ModelCheckerTemplateForward<MatmovInfo, StoreInfo> {
 	
 	public MatmovCheckStore(ModelCheckerOption option) {
 		super(option);
@@ -15,7 +15,7 @@ public final class MatmovCheckStore extends ModelCheckerTemplateForwardV2<Matmov
 
 
 	
-	@Override protected ModelCheckerV1<StoreInfo> getCheckerHook(ModelCheckerOption option) {
+	@Override protected ModelChecker<StoreInfo> getCheckerHook(ModelCheckerOption option) {
 		return new StoreCheckExist(option);
 	}
 	

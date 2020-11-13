@@ -4,10 +4,10 @@ import br.com.mind5.business.materialTextDefault.info.MatextaultInfo;
 import br.com.mind5.business.owner.info.OwnerInfo;
 import br.com.mind5.business.owner.model.checker.OwnerCheckExist;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.model.checker.ModelChecker;
 
-public final class MatextaultCheckOwner extends ModelCheckerTemplateForwardV2<MatextaultInfo, OwnerInfo> {
+public final class MatextaultCheckOwner extends ModelCheckerTemplateForward<MatextaultInfo, OwnerInfo> {
 	
 	public MatextaultCheckOwner(ModelCheckerOption option) {
 		super(option);
@@ -15,7 +15,7 @@ public final class MatextaultCheckOwner extends ModelCheckerTemplateForwardV2<Ma
 
 
 	
-	@Override protected ModelCheckerV1<OwnerInfo> getCheckerHook(ModelCheckerOption option) {
+	@Override protected ModelChecker<OwnerInfo> getCheckerHook(ModelCheckerOption option) {
 		return new OwnerCheckExist(option);
 	}
 	

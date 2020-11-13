@@ -4,13 +4,13 @@ import java.util.List;
 
 import br.com.mind5.business.orderList.info.OrdistInfo;
 import br.com.mind5.business.orderList.model.decisionTree.RootOrdistSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.refundOrder.info.RefuInfo;
 import br.com.mind5.payment.refundOrder.info.RefuMerger;
 
-final class VisiRefuMergeOrdist extends ActionVisitorTemplateMergeV2<RefuInfo, OrdistInfo> {
+final class VisiRefuMergeOrdist extends ActionVisitorTemplateMerge<RefuInfo, OrdistInfo> {
 	
 	public VisiRefuMergeOrdist(DeciTreeOption<RefuInfo> option) {
 		super(option, OrdistInfo.class); 

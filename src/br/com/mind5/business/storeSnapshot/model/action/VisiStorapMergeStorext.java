@@ -6,11 +6,11 @@ import br.com.mind5.business.storeSnapshot.info.StorapInfo;
 import br.com.mind5.business.storeSnapshot.info.StorapMerger;
 import br.com.mind5.business.storeText.info.StorextInfo;
 import br.com.mind5.business.storeText.model.decisionTree.RootStorextSearch;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiStorapMergeStorext extends ActionVisitorTemplateMergeV2<StorapInfo, StorextInfo> {
+final class VisiStorapMergeStorext extends ActionVisitorTemplateMerge<StorapInfo, StorextInfo> {
 	
 	public VisiStorapMergeStorext(DeciTreeOption<StorapInfo> option) {
 		super(option, StorextInfo.class);

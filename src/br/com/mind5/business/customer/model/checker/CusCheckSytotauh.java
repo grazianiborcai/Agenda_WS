@@ -4,10 +4,10 @@ import br.com.mind5.authorization.storePartitionAuthorization.info.SytotauhInfo;
 import br.com.mind5.authorization.storePartitionAuthorization.model.checker.SytotauhCheckExist;
 import br.com.mind5.business.customer.info.CusInfo;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.model.checker.ModelChecker;
 
-public final class CusCheckSytotauh extends ModelCheckerTemplateForwardV2<CusInfo, SytotauhInfo> {
+public final class CusCheckSytotauh extends ModelCheckerTemplateForward<CusInfo, SytotauhInfo> {
 	
 	public CusCheckSytotauh(ModelCheckerOption option) {
 		super(option);
@@ -15,7 +15,7 @@ public final class CusCheckSytotauh extends ModelCheckerTemplateForwardV2<CusInf
 
 
 	
-	@Override protected ModelCheckerV1<SytotauhInfo> getCheckerHook(ModelCheckerOption option) {
+	@Override protected ModelChecker<SytotauhInfo> getCheckerHook(ModelCheckerOption option) {
 		return new SytotauhCheckExist(option);
 	}
 	

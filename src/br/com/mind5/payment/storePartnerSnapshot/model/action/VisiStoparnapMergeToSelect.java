@@ -2,13 +2,13 @@ package br.com.mind5.payment.storePartnerSnapshot.model.action;
 
 import java.util.List;
 
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.storePartnerSnapshot.info.StoparnapInfo;
 import br.com.mind5.payment.storePartnerSnapshot.info.StoparnapMerger;
 
-final class VisiStoparnapMergeToSelect extends ActionVisitorTemplateMergeV2<StoparnapInfo, StoparnapInfo> {
+final class VisiStoparnapMergeToSelect extends ActionVisitorTemplateMerge<StoparnapInfo, StoparnapInfo> {
 	
 	public VisiStoparnapMergeToSelect(DeciTreeOption<StoparnapInfo> option) {
 		super(option, StoparnapInfo.class);
@@ -16,7 +16,7 @@ final class VisiStoparnapMergeToSelect extends ActionVisitorTemplateMergeV2<Stop
 	
 	
 	
-	@Override protected Class<? extends ActionStdV2<StoparnapInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStd<StoparnapInfo>> getActionClassHook() {
 		return StdStoparnapDaoSelect.class;
 	}
 	

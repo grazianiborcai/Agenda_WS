@@ -7,14 +7,14 @@ import br.com.mind5.file.fileImageList.info.FimistInfo;
 import br.com.mind5.file.fileImageList.model.action.LazyFimistRootSelect;
 import br.com.mind5.file.fileImageList.model.action.StdFimistMergeFimarch;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootFimistSearch extends DeciTreeTemplateReadV2<FimistInfo> {
+public final class RootFimistSearch extends DeciTreeTemplateRead<FimistInfo> {
 	
 	public RootFimistSearch(DeciTreeOption<FimistInfo> option) {
 		super(option);
@@ -22,22 +22,22 @@ public final class RootFimistSearch extends DeciTreeTemplateReadV2<FimistInfo> {
 	
 	
 	
-	@Override protected ModelCheckerV1<FimistInfo> buildCheckerHook(DeciTreeOption<FimistInfo> option) {
-		List<ModelCheckerV1<FimistInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<FimistInfo> checker;	
+	@Override protected ModelChecker<FimistInfo> buildCheckerHook(DeciTreeOption<FimistInfo> option) {
+		List<ModelChecker<FimistInfo>> queue = new ArrayList<>();		
+		ModelChecker<FimistInfo> checker;	
 
 		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<FimistInfo>> buildActionsOnPassedHook(DeciTreeOption<FimistInfo> option) {
-		List<ActionStdV2<FimistInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<FimistInfo>> buildActionsOnPassedHook(DeciTreeOption<FimistInfo> option) {
+		List<ActionStd<FimistInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<FimistInfo> mergeFimarch = new StdFimistMergeFimarch(option);
+		ActionStd<FimistInfo> mergeFimarch = new StdFimistMergeFimarch(option);
 		ActionLazy<FimistInfo> select = new LazyFimistRootSelect(option.conn, option.schemaName);
 		
 		mergeFimarch.addPostAction(select);

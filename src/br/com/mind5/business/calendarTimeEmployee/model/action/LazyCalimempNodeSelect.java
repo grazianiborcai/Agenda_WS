@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.calendarTimeEmployee.info.CalimempInfo;
 import br.com.mind5.business.calendarTimeEmployee.model.decisionTree.NodeCalimempSelect;
 import br.com.mind5.model.action.ActionLazyTemplate;
-import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -24,7 +24,7 @@ public final class LazyCalimempNodeSelect extends ActionLazyTemplate<CalimempInf
 	
 	
 	
-	@Override protected ActionStdV2<CalimempInfo> getInstanceOfActionHook(DeciTreeOption<CalimempInfo> option) {
+	@Override protected ActionStd<CalimempInfo> getInstanceOfActionHook(DeciTreeOption<CalimempInfo> option) {
 		return new NodeCalimempSelect(option).toAction();
 	}
 	

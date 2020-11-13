@@ -4,10 +4,10 @@ import br.com.mind5.business.company.info.CompInfo;
 import br.com.mind5.business.company.model.checker.CompCheckExist;
 import br.com.mind5.business.companySnapshot.info.CompnapInfo;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.model.checker.ModelChecker;
 
-public final class CompnapCheckComp extends ModelCheckerTemplateForwardV2<CompnapInfo, CompInfo> {
+public final class CompnapCheckComp extends ModelCheckerTemplateForward<CompnapInfo, CompInfo> {
 	
 	public CompnapCheckComp(ModelCheckerOption option) {
 		super(option);
@@ -15,7 +15,7 @@ public final class CompnapCheckComp extends ModelCheckerTemplateForwardV2<Compna
 
 
 	
-	@Override protected ModelCheckerV1<CompInfo> getCheckerHook(ModelCheckerOption option) {
+	@Override protected ModelChecker<CompInfo> getCheckerHook(ModelCheckerOption option) {
 		return new CompCheckExist(option);
 	}
 	

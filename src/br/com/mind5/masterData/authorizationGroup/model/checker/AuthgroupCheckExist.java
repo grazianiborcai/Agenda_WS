@@ -3,12 +3,12 @@ package br.com.mind5.masterData.authorizationGroup.model.checker;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.masterData.authorizationGroup.info.AuthgroupInfo;
 import br.com.mind5.masterData.authorizationGroup.model.action.StdAuthgroupDaoSelect;
-import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class AuthgroupCheckExist extends ModelCheckerTemplateActionV2<AuthgroupInfo, AuthgroupInfo> {
+public final class AuthgroupCheckExist extends ModelCheckerTemplateAction<AuthgroupInfo, AuthgroupInfo> {
 	
 	public AuthgroupCheckExist(ModelCheckerOption option) {
 		super(option, AuthgroupInfo.class);
@@ -16,8 +16,8 @@ public final class AuthgroupCheckExist extends ModelCheckerTemplateActionV2<Auth
 	
 	
 	
-	@Override protected ActionStdV2<AuthgroupInfo> buildActionHook(DeciTreeOption<AuthgroupInfo> option) {
-		ActionStdV2<AuthgroupInfo> select = new StdAuthgroupDaoSelect(option);
+	@Override protected ActionStd<AuthgroupInfo> buildActionHook(DeciTreeOption<AuthgroupInfo> option) {
+		ActionStd<AuthgroupInfo> select = new StdAuthgroupDaoSelect(option);
 		return select;
 	}
 	

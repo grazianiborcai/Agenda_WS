@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.mind5.business.orderItemList.info.OrdemistInfo;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 
-public final class OrdemistCheckRead extends ModelCheckerTemplateSimpleV2<OrdemistInfo> {
+public final class OrdemistCheckRead extends ModelCheckerTemplateSimple<OrdemistInfo> {
 
 	public OrdemistCheckRead(ModelCheckerOption option) {
 		super(option);

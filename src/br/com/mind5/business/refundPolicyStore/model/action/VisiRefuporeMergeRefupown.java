@@ -6,11 +6,11 @@ import br.com.mind5.business.refundPolicyOwner.info.RefupownInfo;
 import br.com.mind5.business.refundPolicyOwner.model.decisionTree.RootRefupownSelectFallback;
 import br.com.mind5.business.refundPolicyStore.info.RefuporeInfo;
 import br.com.mind5.business.refundPolicyStore.info.RefuporeMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiRefuporeMergeRefupown extends ActionVisitorTemplateMergeV2<RefuporeInfo, RefupownInfo> {
+final class VisiRefuporeMergeRefupown extends ActionVisitorTemplateMerge<RefuporeInfo, RefupownInfo> {
 	
 	public VisiRefuporeMergeRefupown(DeciTreeOption<RefuporeInfo> option) {
 		super(option, RefupownInfo.class);

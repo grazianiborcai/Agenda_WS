@@ -1,11 +1,11 @@
 package br.com.mind5.security.user.model.action;
 
-import br.com.mind5.model.action.ActionStdTemplateV2;
-import br.com.mind5.model.action.ActionVisitorV2;
+import br.com.mind5.model.action.ActionStdTemplate;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.user.info.UserInfo;
 
-public final class StdUserEnforceAuthOwner extends ActionStdTemplateV2<UserInfo> {
+public final class StdUserEnforceAuthOwner extends ActionStdTemplate<UserInfo> {
 
 	public StdUserEnforceAuthOwner(DeciTreeOption<UserInfo> option) {
 		super(option);
@@ -13,7 +13,7 @@ public final class StdUserEnforceAuthOwner extends ActionStdTemplateV2<UserInfo>
 	
 	
 	
-	protected ActionVisitorV2<UserInfo> buildVisitorHook(DeciTreeOption<UserInfo> option) {
+	protected ActionVisitor<UserInfo> buildVisitorHook(DeciTreeOption<UserInfo> option) {
 		return new VisiUserEnforceAuthOwner(option);
 	}
 }

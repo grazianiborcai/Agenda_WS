@@ -3,11 +3,11 @@ package br.com.mind5.security.userSearch.model.checker;
 import br.com.mind5.business.owner.info.OwnerInfo;
 import br.com.mind5.business.owner.model.checker.OwnerCheckExist;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.security.userSearch.info.UserarchInfo;
 
-public final class UserarchCheckOwner extends ModelCheckerTemplateForwardV2<UserarchInfo, OwnerInfo> {
+public final class UserarchCheckOwner extends ModelCheckerTemplateForward<UserarchInfo, OwnerInfo> {
 	
 	public UserarchCheckOwner(ModelCheckerOption option) {
 		super(option);
@@ -15,7 +15,7 @@ public final class UserarchCheckOwner extends ModelCheckerTemplateForwardV2<User
 
 
 	
-	@Override protected ModelCheckerV1<OwnerInfo> getCheckerHook(ModelCheckerOption option) {
+	@Override protected ModelChecker<OwnerInfo> getCheckerHook(ModelCheckerOption option) {
 		return new OwnerCheckExist(option);
 	}
 	

@@ -1,56 +1,27 @@
 package br.com.mind5.business.storeWorkTime.model.checker;
 
-import java.util.List;
-
 import br.com.mind5.business.employeeWorkTimeOutlier.info.EmpwoutInfo;
 import br.com.mind5.business.employeeWorkTimeOutlier.model.checker.EmpwoutCheckExist;
 import br.com.mind5.business.storeWorkTime.info.StowotmInfo;
-import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.model.checker.ModelChecker;
 
-public class StowotmCheckEmpwout implements ModelCheckerV1<StowotmInfo> {
-	private final boolean FAILED = false;
-	private final boolean SUCCESS = true;
-	
-	private ModelCheckerV1<EmpwoutInfo> checker;
-	
+public class StowotmCheckEmpwout extends ModelCheckerTemplateForward<StowotmInfo, EmpwoutInfo> {
 	
 	public StowotmCheckEmpwout(ModelCheckerOption option) {
-		checker = new EmpwoutCheckExist(option);
-	}
-	
-	
-	
-	@Override public boolean check(List<StowotmInfo> recordInfos) {
-		for (StowotmInfo eachInfo : recordInfos) {
-			if (check(eachInfo) == FAILED)
-				return FAILED;
-		}
-		
-		return SUCCESS;
+		super(option);
 	}
 
-	
-	
-	@Override public boolean check(StowotmInfo recordInfo) {
-		return checker.check(EmpwoutInfo.copyFrom(recordInfo));
-	}
 
 	
-	
-	@Override public boolean getResult() {
-		return checker.getResult();
+	@Override protected ModelChecker<EmpwoutInfo> getCheckerHook(ModelCheckerOption option) {
+		return new EmpwoutCheckExist(option);
 	}
-
 	
 	
-	@Override public String getFailMessage() {
-		return checker.getFailMessage();
+	
+	@Override protected EmpwoutInfo toForwardClass(StowotmInfo baseRecord) {
+		return EmpwoutInfo.copyFrom(baseRecord);
 	}
-
-	
-	
-	@Override public int getFailCode() {
-		return checker.getFailCode();
-	}	
 }

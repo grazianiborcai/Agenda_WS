@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.file.fileImage.info.FimgInfo;
 import br.com.mind5.file.fileImage.model.decisionTree.RootFimgSelect;
 import br.com.mind5.model.action.ActionLazyTemplate;
-import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -24,7 +24,7 @@ public final class LazyFimgRootSelect extends ActionLazyTemplate<FimgInfo, FimgI
 	
 	
 	
-	@Override protected ActionStdV2<FimgInfo> getInstanceOfActionHook(DeciTreeOption<FimgInfo> option) {
+	@Override protected ActionStd<FimgInfo> getInstanceOfActionHook(DeciTreeOption<FimgInfo> option) {
 		return new RootFimgSelect(option).toAction();
 	}
 	

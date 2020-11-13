@@ -4,13 +4,13 @@ import java.util.List;
 
 import br.com.mind5.business.storeSnapshot.info.StorapInfo;
 import br.com.mind5.business.storeSnapshot.info.StorapMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.userList.info.UselisInfo;
 import br.com.mind5.security.userList.model.decisionTree.RootUselisSelect;
 
-final class VisiStorapMergeUselis extends ActionVisitorTemplateMergeV2<StorapInfo, UselisInfo> {
+final class VisiStorapMergeUselis extends ActionVisitorTemplateMerge<StorapInfo, UselisInfo> {
 	
 	public VisiStorapMergeUselis(DeciTreeOption<StorapInfo> option) {
 		super(option, UselisInfo.class);

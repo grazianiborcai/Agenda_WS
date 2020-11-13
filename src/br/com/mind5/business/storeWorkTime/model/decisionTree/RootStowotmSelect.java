@@ -12,14 +12,14 @@ import br.com.mind5.business.storeWorkTime.model.checker.StowotmCheckOwner;
 import br.com.mind5.business.storeWorkTime.model.checker.StowotmCheckRead;
 import br.com.mind5.business.storeWorkTime.model.checker.StowotmCheckStore;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootStowotmSelect extends DeciTreeTemplateReadV2<StowotmInfo> {
+public final class RootStowotmSelect extends DeciTreeTemplateRead<StowotmInfo> {
 	
 	public RootStowotmSelect(DeciTreeOption<StowotmInfo> option) {
 		super(option);
@@ -27,9 +27,9 @@ public final class RootStowotmSelect extends DeciTreeTemplateReadV2<StowotmInfo>
 	
 	
 	
-	@Override protected ModelCheckerV1<StowotmInfo> buildCheckerHook(DeciTreeOption<StowotmInfo> option) {
-		List<ModelCheckerV1<StowotmInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<StowotmInfo> checker;
+	@Override protected ModelChecker<StowotmInfo> buildCheckerHook(DeciTreeOption<StowotmInfo> option) {
+		List<ModelChecker<StowotmInfo>> queue = new ArrayList<>();		
+		ModelChecker<StowotmInfo> checker;
 		ModelCheckerOption checkerOption;		
 		
 		checkerOption = new ModelCheckerOption();
@@ -60,15 +60,15 @@ public final class RootStowotmSelect extends DeciTreeTemplateReadV2<StowotmInfo>
 		checker = new StowotmCheckLangu(checkerOption);
 		queue.add(checker);	
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<StowotmInfo>> buildActionsOnPassedHook(DeciTreeOption<StowotmInfo> option) {
-		List<ActionStdV2<StowotmInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<StowotmInfo>> buildActionsOnPassedHook(DeciTreeOption<StowotmInfo> option) {
+		List<ActionStd<StowotmInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<StowotmInfo> mergeToSelect = new StdStowotmMergeToSelect(option);
+		ActionStd<StowotmInfo> mergeToSelect = new StdStowotmMergeToSelect(option);
 		ActionLazy<StowotmInfo> mergeStolis = new LazyStowotmMergeStolis(option.conn, option.schemaName);
 		ActionLazy<StowotmInfo> mergeWeekday = new LazyStowotmMergeWeekday(option.conn, option.schemaName);
 		

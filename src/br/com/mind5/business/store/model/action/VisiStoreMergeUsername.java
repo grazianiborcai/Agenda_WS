@@ -4,14 +4,14 @@ import java.util.List;
 
 import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.business.store.info.StoreMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.username.info.UsernameCopier;
 import br.com.mind5.security.username.info.UsernameInfo;
 import br.com.mind5.security.username.model.decisionTree.RootUsernameSelect;
 
-final class VisiStoreMergeUsername extends ActionVisitorTemplateMergeV2<StoreInfo, UsernameInfo> {
+final class VisiStoreMergeUsername extends ActionVisitorTemplateMerge<StoreInfo, UsernameInfo> {
 	
 	public VisiStoreMergeUsername(DeciTreeOption<StoreInfo> option) {
 		super(option, UsernameInfo.class);

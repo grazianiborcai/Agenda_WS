@@ -8,15 +8,15 @@ import br.com.mind5.business.materialMovementSearch.model.action.StdMatmarchMerg
 import br.com.mind5.business.materialMovementSearch.model.checker.MatmarchCheckLangu;
 import br.com.mind5.business.materialMovementSearch.model.checker.MatmarchCheckOwner;
 import br.com.mind5.business.materialMovementSearch.model.checker.MatmarchCheckRead;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
 
-public final class RootMatmarchSelect extends DeciTreeTemplateReadV2<MatmarchInfo> {
+public final class RootMatmarchSelect extends DeciTreeTemplateRead<MatmarchInfo> {
 	
 	public RootMatmarchSelect(DeciTreeOption<MatmarchInfo> option) {
 		super(option);
@@ -24,9 +24,9 @@ public final class RootMatmarchSelect extends DeciTreeTemplateReadV2<MatmarchInf
 	
 	
 	
-	@Override protected ModelCheckerV1<MatmarchInfo> buildCheckerHook(DeciTreeOption<MatmarchInfo> option) {
-		List<ModelCheckerV1<MatmarchInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<MatmarchInfo> checker;
+	@Override protected ModelChecker<MatmarchInfo> buildCheckerHook(DeciTreeOption<MatmarchInfo> option) {
+		List<ModelChecker<MatmarchInfo>> queue = new ArrayList<>();		
+		ModelChecker<MatmarchInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -50,15 +50,15 @@ public final class RootMatmarchSelect extends DeciTreeTemplateReadV2<MatmarchInf
 		checker = new MatmarchCheckOwner(checkerOption);
 		queue.add(checker);	
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<MatmarchInfo>> buildActionsOnPassedHook(DeciTreeOption<MatmarchInfo> option) {
-		List<ActionStdV2<MatmarchInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<MatmarchInfo>> buildActionsOnPassedHook(DeciTreeOption<MatmarchInfo> option) {
+		List<ActionStd<MatmarchInfo>> actions = new ArrayList<>();
 
-		ActionStdV2<MatmarchInfo> select = new StdMatmarchMergeToSelect(option);
+		ActionStd<MatmarchInfo> select = new StdMatmarchMergeToSelect(option);
 		
 		actions.add(select);
 		return actions;

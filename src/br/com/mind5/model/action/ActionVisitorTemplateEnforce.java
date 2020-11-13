@@ -14,7 +14,7 @@ import br.com.mind5.model.decisionTree.DeciResultHelper;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.common.DeciResultNotFound;
 
-public abstract class ActionVisitorTemplateEnforce<T extends InfoRecord> implements ActionVisitorV2<T> {
+public abstract class ActionVisitorTemplateEnforce<T extends InfoRecord> implements ActionVisitor<T> {
 	protected final boolean UNIQUIFY_RESULTS = true;
 	protected final boolean DONT_UNIQUIFY_RESULTS = false;
 	

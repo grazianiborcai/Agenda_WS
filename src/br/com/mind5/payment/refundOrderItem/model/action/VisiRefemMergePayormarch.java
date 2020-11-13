@@ -2,7 +2,7 @@ package br.com.mind5.payment.refundOrderItem.model.action;
 
 import java.util.List;
 
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.payOrderItemSearch.info.PayormarchCopier;
@@ -11,7 +11,7 @@ import br.com.mind5.payment.payOrderItemSearch.model.decisionTree.RootPayormarch
 import br.com.mind5.payment.refundOrderItem.info.RefemInfo;
 import br.com.mind5.payment.refundOrderItem.info.RefemMerger;
 
-final class VisiRefemMergePayormarch extends ActionVisitorTemplateMergeV2<RefemInfo, PayormarchInfo> {
+final class VisiRefemMergePayormarch extends ActionVisitorTemplateMerge<RefemInfo, PayormarchInfo> {
 	
 	public VisiRefemMergePayormarch(DeciTreeOption<RefemInfo> option) {
 		super(option, PayormarchInfo.class); 

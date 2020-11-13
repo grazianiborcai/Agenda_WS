@@ -4,18 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.payment.payOrderItem.info.PayordemInfo;
 import br.com.mind5.payment.payOrderItem.model.action.LazyPayordemNodeRefresh;
 import br.com.mind5.payment.payOrderItem.model.action.LazyPayordemUpdate;
 import br.com.mind5.payment.payOrderItem.model.action.StdPayordemEnforceLChanged;
 
-public final class NodePayordemUpdate extends DeciTreeTemplateWriteV2<PayordemInfo> {
+public final class NodePayordemUpdate extends DeciTreeTemplateWrite<PayordemInfo> {
 	
 	public NodePayordemUpdate(DeciTreeOption<PayordemInfo> option) {
 		super(option);
@@ -23,22 +23,22 @@ public final class NodePayordemUpdate extends DeciTreeTemplateWriteV2<PayordemIn
 	
 	
 	
-	@Override protected ModelCheckerV1<PayordemInfo> buildCheckerHook(DeciTreeOption<PayordemInfo> option) {
-		List<ModelCheckerV1<PayordemInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<PayordemInfo> checker;	
+	@Override protected ModelChecker<PayordemInfo> buildCheckerHook(DeciTreeOption<PayordemInfo> option) {
+		List<ModelChecker<PayordemInfo>> queue = new ArrayList<>();		
+		ModelChecker<PayordemInfo> checker;	
 
 		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<PayordemInfo>> buildActionsOnPassedHook(DeciTreeOption<PayordemInfo> option) {
-		List<ActionStdV2<PayordemInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<PayordemInfo>> buildActionsOnPassedHook(DeciTreeOption<PayordemInfo> option) {
+		List<ActionStd<PayordemInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<PayordemInfo> enforceLChanged = new StdPayordemEnforceLChanged(option);
+		ActionStd<PayordemInfo> enforceLChanged = new StdPayordemEnforceLChanged(option);
 		ActionLazy<PayordemInfo> update = new LazyPayordemUpdate(option.conn, option.schemaName);
 		ActionLazy<PayordemInfo> refresh = new LazyPayordemNodeRefresh(option.conn, option.schemaName);
 		

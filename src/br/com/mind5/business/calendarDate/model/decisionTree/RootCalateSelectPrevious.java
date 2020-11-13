@@ -8,14 +8,14 @@ import br.com.mind5.business.calendarDate.model.action.LazyCalateRootSelect;
 import br.com.mind5.business.calendarDate.model.action.StdCalateEnforcePrevious;
 import br.com.mind5.business.calendarDate.model.checker.CalateCheckRead;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootCalateSelectPrevious extends DeciTreeTemplateReadV2<CalateInfo> {
+public final class RootCalateSelectPrevious extends DeciTreeTemplateRead<CalateInfo> {
 	
 	public RootCalateSelectPrevious(DeciTreeOption<CalateInfo> option) {
 		super(option);
@@ -23,9 +23,9 @@ public final class RootCalateSelectPrevious extends DeciTreeTemplateReadV2<Calat
 	
 	
 	
-	@Override protected ModelCheckerV1<CalateInfo> buildCheckerHook(DeciTreeOption<CalateInfo> option) {
-		List<ModelCheckerV1<CalateInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<CalateInfo> checker;
+	@Override protected ModelChecker<CalateInfo> buildCheckerHook(DeciTreeOption<CalateInfo> option) {
+		List<ModelChecker<CalateInfo>> queue = new ArrayList<>();		
+		ModelChecker<CalateInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
 		checkerOption = new ModelCheckerOption();
@@ -35,15 +35,15 @@ public final class RootCalateSelectPrevious extends DeciTreeTemplateReadV2<Calat
 		checker = new CalateCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 
 		
 	
-	@Override protected List<ActionStdV2<CalateInfo>> buildActionsOnPassedHook(DeciTreeOption<CalateInfo> option) {
-		List<ActionStdV2<CalateInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<CalateInfo>> buildActionsOnPassedHook(DeciTreeOption<CalateInfo> option) {
+		List<ActionStd<CalateInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<CalateInfo> enforcePrevious = new StdCalateEnforcePrevious(option);
+		ActionStd<CalateInfo> enforcePrevious = new StdCalateEnforcePrevious(option);
 		ActionLazy<CalateInfo> select = new LazyCalateRootSelect(option.conn, option.schemaName);
 		
 		enforcePrevious.addPostAction(select);

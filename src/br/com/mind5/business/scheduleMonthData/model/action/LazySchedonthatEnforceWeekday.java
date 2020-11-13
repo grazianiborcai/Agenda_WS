@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.scheduleMonthData.info.SchedonthatInfo;
 import br.com.mind5.model.action.ActionLazyTemplate;
-import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -23,7 +23,7 @@ public final class LazySchedonthatEnforceWeekday extends ActionLazyTemplate<Sche
 	
 	
 	
-	@Override protected ActionStdV2<SchedonthatInfo> getInstanceOfActionHook(DeciTreeOption<SchedonthatInfo> option) {
+	@Override protected ActionStd<SchedonthatInfo> getInstanceOfActionHook(DeciTreeOption<SchedonthatInfo> option) {
 		return new StdSchedonthatEnforceWeekday(option);
 	}
 	

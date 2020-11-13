@@ -4,10 +4,10 @@ import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.InfoRecord;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 
-public final class ActionStdDummy<T extends InfoRecord> implements ActionStdV2<T> {
+public final class ActionStdDummy<T extends InfoRecord> implements ActionStd<T> {
 	private DeciResult<T> deciResult;
 	
 	public ActionStdDummy(DeciResult<T> decisionResult) {

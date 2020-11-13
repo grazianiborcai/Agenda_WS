@@ -4,14 +4,14 @@ import java.util.List;
 
 import br.com.mind5.business.ownerSnapshot.info.OwnerapInfo;
 import br.com.mind5.business.ownerSnapshot.info.OwnerapMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.userList.info.UselisCopier;
 import br.com.mind5.security.userList.info.UselisInfo;
 import br.com.mind5.security.userList.model.decisionTree.RootUselisSelect;
 
-final class VisiOwnerapMergeUselis extends ActionVisitorTemplateMergeV2<OwnerapInfo, UselisInfo> {
+final class VisiOwnerapMergeUselis extends ActionVisitorTemplateMerge<OwnerapInfo, UselisInfo> {
 	
 	public VisiOwnerapMergeUselis(DeciTreeOption<OwnerapInfo> option) {
 		super(option, UselisInfo.class);

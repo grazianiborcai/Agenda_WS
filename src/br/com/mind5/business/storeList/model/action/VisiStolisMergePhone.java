@@ -7,12 +7,12 @@ import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.business.phone.model.decisionTree.RootPhoneSearch;
 import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.business.storeList.info.StolisMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiStolisMergePhone extends ActionVisitorTemplateMergeV2<StolisInfo, PhoneInfo> {
+final class VisiStolisMergePhone extends ActionVisitorTemplateMerge<StolisInfo, PhoneInfo> {
 	
 	public VisiStolisMergePhone(DeciTreeOption<StolisInfo> option) {
 		super(option, PhoneInfo.class);
@@ -39,6 +39,6 @@ final class VisiStolisMergePhone extends ActionVisitorTemplateMergeV2<StolisInfo
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
+		return super.MERGE_WHEN_EMPTY;
 	}
 }

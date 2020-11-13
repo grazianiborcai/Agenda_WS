@@ -14,14 +14,14 @@ import br.com.mind5.business.address.model.checker.AddressCheckExist;
 import br.com.mind5.business.address.model.checker.AddressCheckLangu;
 import br.com.mind5.business.address.model.checker.AddressCheckOwner;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootAddressDelete extends DeciTreeTemplateWriteV2<AddressInfo> {
+public final class RootAddressDelete extends DeciTreeTemplateWrite<AddressInfo> {
 	
 	public RootAddressDelete(DeciTreeOption<AddressInfo> option) {
 		super(option);
@@ -29,9 +29,9 @@ public final class RootAddressDelete extends DeciTreeTemplateWriteV2<AddressInfo
 	
 	
 	
-	@Override protected ModelCheckerV1<AddressInfo> buildCheckerHook(DeciTreeOption<AddressInfo> option) {	
-		List<ModelCheckerV1<AddressInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<AddressInfo> checker;	
+	@Override protected ModelChecker<AddressInfo> buildCheckerHook(DeciTreeOption<AddressInfo> option) {	
+		List<ModelChecker<AddressInfo>> queue = new ArrayList<>();		
+		ModelChecker<AddressInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -62,15 +62,15 @@ public final class RootAddressDelete extends DeciTreeTemplateWriteV2<AddressInfo
 		checker = new AddressCheckExist(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<AddressInfo>> buildActionsOnPassedHook(DeciTreeOption<AddressInfo> option) {
-		List<ActionStdV2<AddressInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStd<AddressInfo>> buildActionsOnPassedHook(DeciTreeOption<AddressInfo> option) {
+		List<ActionStd<AddressInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV2<AddressInfo> mergeToDelete = new StdAddressMergeToDelete(option);	
+		ActionStd<AddressInfo> mergeToDelete = new StdAddressMergeToDelete(option);	
 		ActionLazy<AddressInfo> enforceLChanged = new LazyAddressEnforceLChanged(option.conn, option.schemaName);
 		ActionLazy<AddressInfo> enforceChangedBy = new LazyAddressMergeUsername(option.conn, option.schemaName);
 		ActionLazy<AddressInfo> update = new LazyAddressDaoUpdate(option.conn, option.schemaName);

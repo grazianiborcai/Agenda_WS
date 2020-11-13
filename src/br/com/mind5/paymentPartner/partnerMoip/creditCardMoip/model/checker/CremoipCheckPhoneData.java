@@ -4,10 +4,10 @@ import java.sql.Connection;
 
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.info.CremoipInfo;
 
-public final class CremoipCheckPhoneData extends ModelCheckerTemplateSimpleV2<CremoipInfo> {
+public final class CremoipCheckPhoneData extends ModelCheckerTemplateSimple<CremoipInfo> {
 
 	public CremoipCheckPhoneData(ModelCheckerOption option) {
 		super(option);

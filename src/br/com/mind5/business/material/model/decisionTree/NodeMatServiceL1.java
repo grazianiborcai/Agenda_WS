@@ -5,14 +5,14 @@ import java.util.List;
 
 import br.com.mind5.business.material.info.MatInfo;
 import br.com.mind5.business.material.model.checker.MatCheckIsService;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodeMatServiceL1 extends DeciTreeTemplateWriteV2<MatInfo> {
+public final class NodeMatServiceL1 extends DeciTreeTemplateWrite<MatInfo> {
 	
 	public NodeMatServiceL1(DeciTreeOption<MatInfo> option) {
 		super(option);
@@ -20,9 +20,9 @@ public final class NodeMatServiceL1 extends DeciTreeTemplateWriteV2<MatInfo> {
 	
 	
 	
-	@Override protected ModelCheckerV1<MatInfo> buildCheckerHook(DeciTreeOption<MatInfo> option) {
-		List<ModelCheckerV1<MatInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<MatInfo> checker;
+	@Override protected ModelChecker<MatInfo> buildCheckerHook(DeciTreeOption<MatInfo> option) {
+		List<ModelChecker<MatInfo>> queue = new ArrayList<>();		
+		ModelChecker<MatInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -32,15 +32,15 @@ public final class NodeMatServiceL1 extends DeciTreeTemplateWriteV2<MatInfo> {
 		checker = new MatCheckIsService(checkerOption);
 		queue.add(checker);
 
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<MatInfo>> buildActionsOnPassedHook(DeciTreeOption<MatInfo> option) {
-		List<ActionStdV2<MatInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStd<MatInfo>> buildActionsOnPassedHook(DeciTreeOption<MatInfo> option) {
+		List<ActionStd<MatInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV2<MatInfo> nodeServiceL2 = new NodeMatServiceL2(option).toAction();	
+		ActionStd<MatInfo> nodeServiceL2 = new NodeMatServiceL2(option).toAction();	
 		
 		actions.add(nodeServiceL2);		
 		return actions;
@@ -48,10 +48,10 @@ public final class NodeMatServiceL1 extends DeciTreeTemplateWriteV2<MatInfo> {
 	
 	
 	
-	@Override protected List<ActionStdV2<MatInfo>> buildActionsOnFailedHook(DeciTreeOption<MatInfo> option) {
-		List<ActionStdV2<MatInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStd<MatInfo>> buildActionsOnFailedHook(DeciTreeOption<MatInfo> option) {
+		List<ActionStd<MatInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV2<MatInfo> nodeProductL1 = new NodeMatProductL1(option).toAction();	
+		ActionStd<MatInfo> nodeProductL1 = new NodeMatProductL1(option).toAction();	
 		
 		actions.add(nodeProductL1);		
 		return actions;

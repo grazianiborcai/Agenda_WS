@@ -1,13 +1,13 @@
 package br.com.mind5.payment.ownerPartner.model.checker;
 
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.payment.countryPartner.info.CounparInfo;
 import br.com.mind5.payment.countryPartner.model.checker.CounparCheckExist;
 import br.com.mind5.payment.ownerPartner.info.OwnparInfo;
 
-public final class OwnparCheckCounpar extends ModelCheckerTemplateForwardV2<OwnparInfo, CounparInfo> {
+public final class OwnparCheckCounpar extends ModelCheckerTemplateForward<OwnparInfo, CounparInfo> {
 	
 	public OwnparCheckCounpar(ModelCheckerOption option) {
 		super(option);
@@ -15,7 +15,7 @@ public final class OwnparCheckCounpar extends ModelCheckerTemplateForwardV2<Ownp
 
 
 	
-	@Override protected ModelCheckerV1<CounparInfo> getCheckerHook(ModelCheckerOption option) {
+	@Override protected ModelChecker<CounparInfo> getCheckerHook(ModelCheckerOption option) {
 		return new CounparCheckExist(option);
 	}
 	

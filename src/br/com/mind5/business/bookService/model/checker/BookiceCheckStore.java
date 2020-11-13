@@ -4,10 +4,10 @@ import br.com.mind5.business.bookService.info.BookiceInfo;
 import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.business.store.model.checker.StoreCheckExist;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.model.checker.ModelChecker;
 
-public final class BookiceCheckStore extends ModelCheckerTemplateForwardV2<BookiceInfo, StoreInfo> {
+public final class BookiceCheckStore extends ModelCheckerTemplateForward<BookiceInfo, StoreInfo> {
 	
 	public BookiceCheckStore(ModelCheckerOption option) {
 		super(option);
@@ -15,7 +15,7 @@ public final class BookiceCheckStore extends ModelCheckerTemplateForwardV2<Booki
 
 
 	
-	@Override protected ModelCheckerV1<StoreInfo> getCheckerHook(ModelCheckerOption option) {
+	@Override protected ModelChecker<StoreInfo> getCheckerHook(ModelCheckerOption option) {
 		return new StoreCheckExist(option);
 	}
 	

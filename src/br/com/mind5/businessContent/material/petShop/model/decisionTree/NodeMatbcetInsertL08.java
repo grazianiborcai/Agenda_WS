@@ -8,14 +8,14 @@ import br.com.mind5.businessContent.material.petShop.model.action.LazyMatbcetMat
 import br.com.mind5.businessContent.material.petShop.model.action.LazyMatbcetNodeInsertL09;
 import br.com.mind5.businessContent.material.petShop.model.action.StdMatbcetEnforceCatHaircutClipper;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodeMatbcetInsertL08 extends DeciTreeTemplateWriteV2<MatbcetInfo> {
+public final class NodeMatbcetInsertL08 extends DeciTreeTemplateWrite<MatbcetInfo> {
 	
 	public NodeMatbcetInsertL08(DeciTreeOption<MatbcetInfo> option) {
 		super(option);
@@ -23,22 +23,22 @@ public final class NodeMatbcetInsertL08 extends DeciTreeTemplateWriteV2<MatbcetI
 	
 	
 	
-	@Override protected ModelCheckerV1<MatbcetInfo> buildCheckerHook(DeciTreeOption<MatbcetInfo> option) {
-		List<ModelCheckerV1<MatbcetInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<MatbcetInfo> checker;
+	@Override protected ModelChecker<MatbcetInfo> buildCheckerHook(DeciTreeOption<MatbcetInfo> option) {
+		List<ModelChecker<MatbcetInfo>> queue = new ArrayList<>();		
+		ModelChecker<MatbcetInfo> checker;
 		
 		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<MatbcetInfo>> buildActionsOnPassedHook(DeciTreeOption<MatbcetInfo> option) {
-		List<ActionStdV2<MatbcetInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStd<MatbcetInfo>> buildActionsOnPassedHook(DeciTreeOption<MatbcetInfo> option) {
+		List<ActionStd<MatbcetInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV2<MatbcetInfo> enforceCatHaircutClipper = new StdMatbcetEnforceCatHaircutClipper(option);	
+		ActionStd<MatbcetInfo> enforceCatHaircutClipper = new StdMatbcetEnforceCatHaircutClipper(option);	
 		ActionLazy<MatbcetInfo> insertMat = new LazyMatbcetMatInsert(option.conn, option.schemaName);	
 		ActionLazy<MatbcetInfo> nodeL09 = new LazyMatbcetNodeInsertL09(option.conn, option.schemaName);
 		

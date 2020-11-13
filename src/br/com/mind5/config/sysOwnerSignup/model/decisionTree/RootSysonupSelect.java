@@ -5,14 +5,14 @@ import java.util.List;
 
 import br.com.mind5.config.sysOwnerSignup.info.SysonupInfo;
 import br.com.mind5.config.sysOwnerSignup.model.action.StdSysonupDaoSelect;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootSysonupSelect extends DeciTreeTemplateReadV2<SysonupInfo> {
+public final class RootSysonupSelect extends DeciTreeTemplateRead<SysonupInfo> {
 	
 	public RootSysonupSelect(DeciTreeOption<SysonupInfo> option) {
 		super(option);
@@ -20,22 +20,22 @@ public final class RootSysonupSelect extends DeciTreeTemplateReadV2<SysonupInfo>
 	
 	
 	
-	@Override protected ModelCheckerV1<SysonupInfo> buildCheckerHook(DeciTreeOption<SysonupInfo> option) {
-		List<ModelCheckerV1<SysonupInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<SysonupInfo> checker;
+	@Override protected ModelChecker<SysonupInfo> buildCheckerHook(DeciTreeOption<SysonupInfo> option) {
+		List<ModelChecker<SysonupInfo>> queue = new ArrayList<>();		
+		ModelChecker<SysonupInfo> checker;
 
 		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<SysonupInfo>> buildActionsOnPassedHook(DeciTreeOption<SysonupInfo> option) {
-		List<ActionStdV2<SysonupInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<SysonupInfo>> buildActionsOnPassedHook(DeciTreeOption<SysonupInfo> option) {
+		List<ActionStd<SysonupInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<SysonupInfo> select = new StdSysonupDaoSelect(option);
+		ActionStd<SysonupInfo> select = new StdSysonupDaoSelect(option);
 		
 		actions.add(select);
 		return actions;

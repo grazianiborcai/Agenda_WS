@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.mind5.business.storeTextSnapshot.info.StorextsnapInfo;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 
-public final class StorextsnapCheckWrite extends ModelCheckerTemplateSimpleV2<StorextsnapInfo> {
+public final class StorextsnapCheckWrite extends ModelCheckerTemplateSimple<StorextsnapInfo> {
 
 	public StorextsnapCheckWrite(ModelCheckerOption option) {
 		super(option);

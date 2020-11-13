@@ -11,14 +11,14 @@ import br.com.mind5.file.fileImage.model.checker.FimgCheckOwner;
 import br.com.mind5.file.fileImage.model.checker.FimgCheckReference;
 import br.com.mind5.file.fileImage.model.checker.FimgCheckInsert;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootFimgInsert extends DeciTreeTemplateWriteV2<FimgInfo> {
+public final class RootFimgInsert extends DeciTreeTemplateWrite<FimgInfo> {
 	
 	public RootFimgInsert(DeciTreeOption<FimgInfo> option) {
 		super(option);
@@ -26,9 +26,9 @@ public final class RootFimgInsert extends DeciTreeTemplateWriteV2<FimgInfo> {
 	
 	
 	
-	@Override protected ModelCheckerV1<FimgInfo> buildCheckerHook(DeciTreeOption<FimgInfo> option) {
-		List<ModelCheckerV1<FimgInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<FimgInfo> checker;	
+	@Override protected ModelChecker<FimgInfo> buildCheckerHook(DeciTreeOption<FimgInfo> option) {
+		List<ModelChecker<FimgInfo>> queue = new ArrayList<>();		
+		ModelChecker<FimgInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -59,16 +59,16 @@ public final class RootFimgInsert extends DeciTreeTemplateWriteV2<FimgInfo> {
 		checker = new FimgCheckLangu(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<FimgInfo>> buildActionsOnPassedHook(DeciTreeOption<FimgInfo> option) {
-		List<ActionStdV2<FimgInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStd<FimgInfo>> buildActionsOnPassedHook(DeciTreeOption<FimgInfo> option) {
+		List<ActionStd<FimgInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV2<FimgInfo> coverOff = new NodeFimgCoverOffL1(option).toAction();
-		ActionStdV2<FimgInfo> insert = new NodeFimgInsert(option).toAction();	
+		ActionStd<FimgInfo> coverOff = new NodeFimgCoverOffL1(option).toAction();
+		ActionStd<FimgInfo> insert = new NodeFimgInsert(option).toAction();	
 		ActionLazy<FimgInfo> writeOnDisk = new LazyFimgWriteOnDisk(option.conn, option.schemaName);
 		ActionLazy<FimgInfo> select = new LazyFimgRootSelect(option.conn, option.schemaName);
 		

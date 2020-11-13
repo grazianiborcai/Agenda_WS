@@ -3,12 +3,12 @@ package br.com.mind5.business.personSearch.model.checker;
 import br.com.mind5.business.personSearch.info.PerarchInfo;
 import br.com.mind5.business.personSearch.model.decisionTree.RootPerarchSelectPersonCus;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class PerarchCheckPersonCus extends ModelCheckerTemplateActionV2<PerarchInfo, PerarchInfo> {
+public final class PerarchCheckPersonCus extends ModelCheckerTemplateAction<PerarchInfo, PerarchInfo> {
 	
 	public PerarchCheckPersonCus(ModelCheckerOption option) {
 		super(option, PerarchInfo.class);
@@ -16,8 +16,8 @@ public final class PerarchCheckPersonCus extends ModelCheckerTemplateActionV2<Pe
 	
 
 	
-	@Override protected ActionStdV2<PerarchInfo> buildActionHook(DeciTreeOption<PerarchInfo> option) {		
-		ActionStdV2<PerarchInfo> select = new RootPerarchSelectPersonCus(option).toAction();			
+	@Override protected ActionStd<PerarchInfo> buildActionHook(DeciTreeOption<PerarchInfo> option) {		
+		ActionStd<PerarchInfo> select = new RootPerarchSelectPersonCus(option).toAction();			
 		return select;
 	}
 	

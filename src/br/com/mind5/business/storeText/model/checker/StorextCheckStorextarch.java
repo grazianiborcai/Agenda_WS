@@ -5,10 +5,10 @@ import br.com.mind5.business.storeTextSearch.info.StorextarchCopier;
 import br.com.mind5.business.storeTextSearch.info.StorextarchInfo;
 import br.com.mind5.business.storeTextSearch.model.checker.StorextarchCheckExist;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.model.checker.ModelChecker;
 
-public final class StorextCheckStorextarch extends ModelCheckerTemplateForwardV2<StorextInfo, StorextarchInfo> {
+public final class StorextCheckStorextarch extends ModelCheckerTemplateForward<StorextInfo, StorextarchInfo> {
 	
 	public StorextCheckStorextarch(ModelCheckerOption option) {
 		super(option);
@@ -16,7 +16,7 @@ public final class StorextCheckStorextarch extends ModelCheckerTemplateForwardV2
 
 
 	
-	@Override protected ModelCheckerV1<StorextarchInfo> getCheckerHook(ModelCheckerOption option) {
+	@Override protected ModelChecker<StorextarchInfo> getCheckerHook(ModelCheckerOption option) {
 		return new StorextarchCheckExist(option);
 	}
 	

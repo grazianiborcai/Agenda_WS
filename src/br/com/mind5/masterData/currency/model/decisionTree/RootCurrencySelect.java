@@ -6,14 +6,14 @@ import java.util.List;
 import br.com.mind5.masterData.currency.info.CurrencyInfo;
 import br.com.mind5.masterData.currency.model.action.StdCurrencyDaoSelect;
 import br.com.mind5.masterData.currency.model.checker.CurrencyCheckRead;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootCurrencySelect extends DeciTreeTemplateReadV2<CurrencyInfo> {
+public final class RootCurrencySelect extends DeciTreeTemplateRead<CurrencyInfo> {
 	
 	public RootCurrencySelect(DeciTreeOption<CurrencyInfo> option) {
 		super(option);
@@ -21,9 +21,9 @@ public final class RootCurrencySelect extends DeciTreeTemplateReadV2<CurrencyInf
 	
 	
 	
-	@Override protected ModelCheckerV1<CurrencyInfo> buildCheckerHook(DeciTreeOption<CurrencyInfo> option) {
-		List<ModelCheckerV1<CurrencyInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<CurrencyInfo> checker;
+	@Override protected ModelChecker<CurrencyInfo> buildCheckerHook(DeciTreeOption<CurrencyInfo> option) {
+		List<ModelChecker<CurrencyInfo>> queue = new ArrayList<>();		
+		ModelChecker<CurrencyInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
 		checkerOption = new ModelCheckerOption();
@@ -33,15 +33,15 @@ public final class RootCurrencySelect extends DeciTreeTemplateReadV2<CurrencyInf
 		checker = new CurrencyCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<CurrencyInfo>> buildActionsOnPassedHook(DeciTreeOption<CurrencyInfo> option) {
-		List<ActionStdV2<CurrencyInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<CurrencyInfo>> buildActionsOnPassedHook(DeciTreeOption<CurrencyInfo> option) {
+		List<ActionStd<CurrencyInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<CurrencyInfo> select = new StdCurrencyDaoSelect(option);
+		ActionStd<CurrencyInfo> select = new StdCurrencyDaoSelect(option);
 		
 		actions.add(select);
 		return actions;

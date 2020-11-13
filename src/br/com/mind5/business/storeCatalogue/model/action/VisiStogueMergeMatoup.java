@@ -6,11 +6,11 @@ import br.com.mind5.business.storeCatalogue.info.StogueInfo;
 import br.com.mind5.business.storeCatalogue.info.StogueMerger;
 import br.com.mind5.masterData.materialGroup.info.MatoupInfo;
 import br.com.mind5.masterData.materialGroup.model.decisionTree.RootMatoupSearch;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiStogueMergeMatoup extends ActionVisitorTemplateMergeV2<StogueInfo, MatoupInfo> {
+final class VisiStogueMergeMatoup extends ActionVisitorTemplateMerge<StogueInfo, MatoupInfo> {
 	
 	public VisiStogueMergeMatoup(DeciTreeOption<StogueInfo> option) {
 		super(option, MatoupInfo.class);

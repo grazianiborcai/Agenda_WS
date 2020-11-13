@@ -3,11 +3,11 @@ package br.com.mind5.payment.refundOrderItem.model.checker;
 import br.com.mind5.business.owner.info.OwnerInfo;
 import br.com.mind5.business.owner.model.checker.OwnerCheckExist;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.payment.refundOrderItem.info.RefemInfo;
 
-public final class RefemCheckOwner extends ModelCheckerTemplateForwardV2<RefemInfo, OwnerInfo> {
+public final class RefemCheckOwner extends ModelCheckerTemplateForward<RefemInfo, OwnerInfo> {
 	
 	public RefemCheckOwner(ModelCheckerOption option) {
 		super(option);
@@ -15,7 +15,7 @@ public final class RefemCheckOwner extends ModelCheckerTemplateForwardV2<RefemIn
 
 
 	
-	@Override protected ModelCheckerV1<OwnerInfo> getCheckerHook(ModelCheckerOption option) {
+	@Override protected ModelChecker<OwnerInfo> getCheckerHook(ModelCheckerOption option) {
 		return new OwnerCheckExist(option);
 	}
 	

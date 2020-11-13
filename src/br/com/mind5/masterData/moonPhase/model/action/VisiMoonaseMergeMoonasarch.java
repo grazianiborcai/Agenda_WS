@@ -6,12 +6,12 @@ import br.com.mind5.masterData.moonPhase.info.MoonaseInfo;
 import br.com.mind5.masterData.moonPhase.info.MoonaseMerger;
 import br.com.mind5.masterData.moonPhaseSearch.info.MoonasarchInfo;
 import br.com.mind5.masterData.moonPhaseSearch.model.decisionTree.RootMoonasarchSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiMoonaseMergeMoonasarch extends ActionVisitorTemplateMergeV2<MoonaseInfo, MoonasarchInfo> {
+final class VisiMoonaseMergeMoonasarch extends ActionVisitorTemplateMerge<MoonaseInfo, MoonasarchInfo> {
 	
 	public VisiMoonaseMergeMoonasarch(DeciTreeOption<MoonaseInfo> option) {
 		super(option, MoonasarchInfo.class);
@@ -32,6 +32,6 @@ final class VisiMoonaseMergeMoonasarch extends ActionVisitorTemplateMergeV2<Moon
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
+		return super.DONT_MERGE_WHEN_EMPTY;
 	}
 }

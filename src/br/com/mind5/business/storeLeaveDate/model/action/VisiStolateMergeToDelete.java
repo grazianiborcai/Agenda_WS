@@ -5,11 +5,11 @@ import java.util.List;
 import br.com.mind5.business.storeLeaveDate.info.StolateInfo;
 import br.com.mind5.business.storeLeaveDate.info.StolateMerger;
 import br.com.mind5.business.storeLeaveDate.model.decisionTree.RootStolateSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiStolateMergeToDelete extends ActionVisitorTemplateMergeV2<StolateInfo, StolateInfo> {
+final class VisiStolateMergeToDelete extends ActionVisitorTemplateMerge<StolateInfo, StolateInfo> {
 	
 	public VisiStolateMergeToDelete(DeciTreeOption<StolateInfo> option) {
 		super(option, StolateInfo.class);

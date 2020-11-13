@@ -1,11 +1,11 @@
 package br.com.mind5.business.storeText.model.action;
 
 import br.com.mind5.business.storeText.info.StorextInfo;
-import br.com.mind5.model.action.ActionStdTemplateV2;
-import br.com.mind5.model.action.ActionVisitorV2;
+import br.com.mind5.model.action.ActionStdTemplate;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdStorextEnforceDefaultOff extends ActionStdTemplateV2<StorextInfo> {
+public final class StdStorextEnforceDefaultOff extends ActionStdTemplate<StorextInfo> {
 
 	public StdStorextEnforceDefaultOff(DeciTreeOption<StorextInfo> option) {
 		super(option);
@@ -13,7 +13,7 @@ public final class StdStorextEnforceDefaultOff extends ActionStdTemplateV2<Store
 	
 	
 	
-	protected ActionVisitorV2<StorextInfo> buildVisitorHook(DeciTreeOption<StorextInfo> option) {
+	protected ActionVisitor<StorextInfo> buildVisitorHook(DeciTreeOption<StorextInfo> option) {
 		return new VisiStorextEnforceDefaultOff(option);
 	}
 }

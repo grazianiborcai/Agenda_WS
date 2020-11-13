@@ -3,12 +3,12 @@ package br.com.mind5.business.employeeWorkTime.model.checker;
 import br.com.mind5.business.employeeWorkTime.info.EmpwotmInfo;
 import br.com.mind5.business.employeeWorkTime.model.action.StdEmpwotmDaoSelect;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public class EmpwotmCheckExist extends ModelCheckerTemplateActionV2<EmpwotmInfo, EmpwotmInfo> {
+public class EmpwotmCheckExist extends ModelCheckerTemplateAction<EmpwotmInfo, EmpwotmInfo> {
 	
 	public EmpwotmCheckExist(ModelCheckerOption option) {
 		super(option, EmpwotmInfo.class);
@@ -16,8 +16,8 @@ public class EmpwotmCheckExist extends ModelCheckerTemplateActionV2<EmpwotmInfo,
 	
 	
 	
-	@Override protected ActionStdV2<EmpwotmInfo> buildActionHook(DeciTreeOption<EmpwotmInfo> option) {
-		ActionStdV2<EmpwotmInfo> select = new StdEmpwotmDaoSelect(option);
+	@Override protected ActionStd<EmpwotmInfo> buildActionHook(DeciTreeOption<EmpwotmInfo> option) {
+		ActionStd<EmpwotmInfo> select = new StdEmpwotmDaoSelect(option);
 		
 		return select;
 	}

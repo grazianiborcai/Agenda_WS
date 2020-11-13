@@ -1,11 +1,11 @@
 package br.com.mind5.business.materialStore.model.action;
 
 import br.com.mind5.business.materialStore.info.MatoreInfo;
-import br.com.mind5.model.action.ActionStdTemplateV2;
-import br.com.mind5.model.action.ActionVisitorV2;
+import br.com.mind5.model.action.ActionStdTemplate;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdMatoreEnforceLChanged extends ActionStdTemplateV2<MatoreInfo> {
+public final class StdMatoreEnforceLChanged extends ActionStdTemplate<MatoreInfo> {
 
 	public StdMatoreEnforceLChanged(DeciTreeOption<MatoreInfo> option) {
 		super(option);
@@ -13,7 +13,7 @@ public final class StdMatoreEnforceLChanged extends ActionStdTemplateV2<MatoreIn
 	
 	
 	
-	protected ActionVisitorV2<MatoreInfo> buildVisitorHook(DeciTreeOption<MatoreInfo> option) {
+	protected ActionVisitor<MatoreInfo> buildVisitorHook(DeciTreeOption<MatoreInfo> option) {
 		return new VisiMatoreEnforceLChanged(option);
 	}
 }

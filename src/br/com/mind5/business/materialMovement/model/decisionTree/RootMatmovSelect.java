@@ -13,15 +13,15 @@ import br.com.mind5.business.materialMovement.model.checker.MatmovCheckRead;
 import br.com.mind5.business.materialMovement.model.checker.MatmovCheckStorauth;
 import br.com.mind5.business.materialMovement.model.checker.MatmovCheckStore;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
 
-public final class RootMatmovSelect extends DeciTreeTemplateReadV2<MatmovInfo> {
+public final class RootMatmovSelect extends DeciTreeTemplateRead<MatmovInfo> {
 	
 	public RootMatmovSelect(DeciTreeOption<MatmovInfo> option) {
 		super(option);
@@ -29,9 +29,9 @@ public final class RootMatmovSelect extends DeciTreeTemplateReadV2<MatmovInfo> {
 	
 	
 	
-	@Override protected ModelCheckerV1<MatmovInfo> buildCheckerHook(DeciTreeOption<MatmovInfo> option) {
-		List<ModelCheckerV1<MatmovInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<MatmovInfo> checker;
+	@Override protected ModelChecker<MatmovInfo> buildCheckerHook(DeciTreeOption<MatmovInfo> option) {
+		List<ModelChecker<MatmovInfo>> queue = new ArrayList<>();		
+		ModelChecker<MatmovInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -76,15 +76,15 @@ public final class RootMatmovSelect extends DeciTreeTemplateReadV2<MatmovInfo> {
 		checker = new MatmovCheckStorauth(checkerOption);
 		queue.add(checker);	
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<MatmovInfo>> buildActionsOnPassedHook(DeciTreeOption<MatmovInfo> option) {
-		List<ActionStdV2<MatmovInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<MatmovInfo>> buildActionsOnPassedHook(DeciTreeOption<MatmovInfo> option) {
+		List<ActionStd<MatmovInfo>> actions = new ArrayList<>();
 
-		ActionStdV2<MatmovInfo> select = new StdMatmovMergeToSelect(option);
+		ActionStd<MatmovInfo> select = new StdMatmovMergeToSelect(option);
 		ActionLazy<MatmovInfo> mergeMatlis = new LazyMatmovMergeMatlis(option.conn, option.schemaName);
 		
 		select.addPostAction(mergeMatlis);

@@ -1,13 +1,13 @@
 package br.com.mind5.payment.payOrderItem.model.checker;
 
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
 import br.com.mind5.payment.payOrder.model.checker.PayordCheckExist;
 import br.com.mind5.payment.payOrderItem.info.PayordemInfo;
 
-public final class PayordemCheckPayord extends ModelCheckerTemplateForwardV2<PayordemInfo, PayordInfo> {
+public final class PayordemCheckPayord extends ModelCheckerTemplateForward<PayordemInfo, PayordInfo> {
 	
 	public PayordemCheckPayord(ModelCheckerOption option) {
 		super(option);
@@ -15,7 +15,7 @@ public final class PayordemCheckPayord extends ModelCheckerTemplateForwardV2<Pay
 
 
 	
-	@Override protected ModelCheckerV1<PayordInfo> getCheckerHook(ModelCheckerOption option) {
+	@Override protected ModelChecker<PayordInfo> getCheckerHook(ModelCheckerOption option) {
 		return new PayordCheckExist(option);
 	}
 	

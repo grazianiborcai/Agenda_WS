@@ -23,14 +23,14 @@ import br.com.mind5.business.employeeLeaveDate.model.checker.EmplateCheckStore;
 import br.com.mind5.business.employeeLeaveDate.model.checker.EmplateCheckTimeRange;
 import br.com.mind5.business.employeeLeaveDate.model.checker.EmplateCheckWrite;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootEmplateInsert extends DeciTreeTemplateWriteV2<EmplateInfo> {
+public final class RootEmplateInsert extends DeciTreeTemplateWrite<EmplateInfo> {
 
 	public RootEmplateInsert(DeciTreeOption<EmplateInfo> option) {
 		super(option);
@@ -38,9 +38,9 @@ public final class RootEmplateInsert extends DeciTreeTemplateWriteV2<EmplateInfo
 	
 	
 	
-	@Override protected ModelCheckerV1<EmplateInfo> buildCheckerHook(DeciTreeOption<EmplateInfo> option) {
-		List<ModelCheckerV1<EmplateInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<EmplateInfo> checker;
+	@Override protected ModelChecker<EmplateInfo> buildCheckerHook(DeciTreeOption<EmplateInfo> option) {
+		List<ModelChecker<EmplateInfo>> queue = new ArrayList<>();		
+		ModelChecker<EmplateInfo> checker;
 		ModelCheckerOption checkerOption;		
 		
 		checkerOption = new ModelCheckerOption();
@@ -113,15 +113,15 @@ public final class RootEmplateInsert extends DeciTreeTemplateWriteV2<EmplateInfo
 		checker = new EmplateCheckSchedage(checkerOption);
 		queue.add(checker);
 
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<EmplateInfo>> buildActionsOnPassedHook(DeciTreeOption<EmplateInfo> option) {
-		List<ActionStdV2<EmplateInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<EmplateInfo>> buildActionsOnPassedHook(DeciTreeOption<EmplateInfo> option) {
+		List<ActionStd<EmplateInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<EmplateInfo> enforceLChanged = new StdEmplateEnforceLChanged(option);
+		ActionStd<EmplateInfo> enforceLChanged = new StdEmplateEnforceLChanged(option);
 		ActionLazy<EmplateInfo> enforceLChangedBy = new LazyEmplateMergeUsername(option.conn, option.schemaName);
 		ActionLazy<EmplateInfo> enforceCreatedBy = new LazyEmplateEnforceCreatedBy(option.conn, option.schemaName);
 		ActionLazy<EmplateInfo> enforceCreatedOn = new LazyEmplateEnforceCreatedOn(option.conn, option.schemaName);

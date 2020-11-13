@@ -4,12 +4,11 @@ import java.util.List;
 
 import br.com.mind5.business.customerList.info.CuslisInfo;
 import br.com.mind5.business.customerList.info.CuslisMerger;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiCuslisMergeToSelect extends ActionVisitorTemplateMergeV2<CuslisInfo, CuslisInfo> {
+final class VisiCuslisMergeToSelect extends ActionVisitorTemplateMerge<CuslisInfo, CuslisInfo> {
 	
 	public VisiCuslisMergeToSelect(DeciTreeOption<CuslisInfo> option) {
 		super(option, CuslisInfo.class);
@@ -17,7 +16,7 @@ final class VisiCuslisMergeToSelect extends ActionVisitorTemplateMergeV2<CuslisI
 	
 	
 	
-	@Override protected Class<? extends ActionStdV2<CuslisInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStd<CuslisInfo>> getActionClassHook() {
 		return StdCuslisDaoSelect.class;
 	}
 	
@@ -30,6 +29,6 @@ final class VisiCuslisMergeToSelect extends ActionVisitorTemplateMergeV2<CuslisI
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
+		return super.DONT_MERGE_WHEN_EMPTY;
 	}
 }

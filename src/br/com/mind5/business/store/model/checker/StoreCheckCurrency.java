@@ -4,10 +4,10 @@ import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.masterData.currency.info.CurrencyInfo;
 import br.com.mind5.masterData.currency.model.checker.CurrencyCheckExist;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.model.checker.ModelChecker;
 
-public final class StoreCheckCurrency extends ModelCheckerTemplateForwardV2<StoreInfo, CurrencyInfo> {
+public final class StoreCheckCurrency extends ModelCheckerTemplateForward<StoreInfo, CurrencyInfo> {
 	
 	public StoreCheckCurrency(ModelCheckerOption option) {
 		super(option);
@@ -15,7 +15,7 @@ public final class StoreCheckCurrency extends ModelCheckerTemplateForwardV2<Stor
 
 
 	
-	@Override protected ModelCheckerV1<CurrencyInfo> getCheckerHook(ModelCheckerOption option) {
+	@Override protected ModelChecker<CurrencyInfo> getCheckerHook(ModelCheckerOption option) {
 		return new CurrencyCheckExist(option);
 	}
 	

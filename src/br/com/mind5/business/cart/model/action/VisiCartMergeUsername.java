@@ -4,13 +4,13 @@ import java.util.List;
 
 import br.com.mind5.business.cart.info.CartInfo;
 import br.com.mind5.business.cart.info.CartMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.username.info.UsernameInfo;
 import br.com.mind5.security.username.model.decisionTree.RootUsernameSelect;
 
-final class VisiCartMergeUsername extends ActionVisitorTemplateMergeV2<CartInfo, UsernameInfo> {
+final class VisiCartMergeUsername extends ActionVisitorTemplateMerge<CartInfo, UsernameInfo> {
 	
 	public VisiCartMergeUsername(DeciTreeOption<CartInfo> option) {
 		super(option, UsernameInfo.class);

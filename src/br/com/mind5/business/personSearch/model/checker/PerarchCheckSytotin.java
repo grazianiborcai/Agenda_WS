@@ -4,10 +4,10 @@ import br.com.mind5.business.personSearch.info.PerarchInfo;
 import br.com.mind5.config.sysStorePartitioning.info.SytotinInfo;
 import br.com.mind5.config.sysStorePartitioning.model.checker.SytotinCheckEnabled;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.model.checker.ModelChecker;
 
-public final class PerarchCheckSytotin extends ModelCheckerTemplateForwardV2<PerarchInfo, SytotinInfo> {
+public final class PerarchCheckSytotin extends ModelCheckerTemplateForward<PerarchInfo, SytotinInfo> {
 	
 	public PerarchCheckSytotin(ModelCheckerOption option) {
 		super(option);
@@ -15,7 +15,7 @@ public final class PerarchCheckSytotin extends ModelCheckerTemplateForwardV2<Per
 
 
 	
-	@Override protected ModelCheckerV1<SytotinInfo> getCheckerHook(ModelCheckerOption option) {
+	@Override protected ModelChecker<SytotinInfo> getCheckerHook(ModelCheckerOption option) {
 		return new SytotinCheckEnabled(option);
 	}
 	

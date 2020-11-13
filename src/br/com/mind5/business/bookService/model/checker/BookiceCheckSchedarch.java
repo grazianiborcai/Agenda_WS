@@ -4,10 +4,10 @@ import br.com.mind5.business.bookService.info.BookiceInfo;
 import br.com.mind5.business.scheduleSearch.info.SchedarchInfo;
 import br.com.mind5.business.scheduleSearch.model.checker.SchedarchCheckExist;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.model.checker.ModelChecker;
 
-public final class BookiceCheckSchedarch extends ModelCheckerTemplateForwardV2<BookiceInfo, SchedarchInfo> {
+public final class BookiceCheckSchedarch extends ModelCheckerTemplateForward<BookiceInfo, SchedarchInfo> {
 	
 	public BookiceCheckSchedarch(ModelCheckerOption option) {
 		super(option);
@@ -15,7 +15,7 @@ public final class BookiceCheckSchedarch extends ModelCheckerTemplateForwardV2<B
 
 
 	
-	@Override protected ModelCheckerV1<SchedarchInfo> getCheckerHook(ModelCheckerOption option) {
+	@Override protected ModelChecker<SchedarchInfo> getCheckerHook(ModelCheckerOption option) {
 		return new SchedarchCheckExist(option);
 	}
 	

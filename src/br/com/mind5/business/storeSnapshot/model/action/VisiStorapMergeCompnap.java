@@ -7,11 +7,11 @@ import br.com.mind5.business.companySnapshot.info.CompnapInfo;
 import br.com.mind5.business.companySnapshot.model.decisionTree.RootCompnapSelect;
 import br.com.mind5.business.storeSnapshot.info.StorapInfo;
 import br.com.mind5.business.storeSnapshot.info.StorapMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiStorapMergeCompnap extends ActionVisitorTemplateMergeV2<StorapInfo, CompnapInfo> {
+final class VisiStorapMergeCompnap extends ActionVisitorTemplateMerge<StorapInfo, CompnapInfo> {
 	
 	public VisiStorapMergeCompnap(DeciTreeOption<StorapInfo> option) {
 		super(option, CompnapInfo.class);

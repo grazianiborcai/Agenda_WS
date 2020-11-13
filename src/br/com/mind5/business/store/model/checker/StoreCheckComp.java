@@ -4,10 +4,10 @@ import br.com.mind5.business.company.info.CompInfo;
 import br.com.mind5.business.company.model.checker.CompCheckExist;
 import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.model.checker.ModelChecker;
 
-public final class StoreCheckComp extends ModelCheckerTemplateForwardV2<StoreInfo, CompInfo> {
+public final class StoreCheckComp extends ModelCheckerTemplateForward<StoreInfo, CompInfo> {
 	
 	public StoreCheckComp(ModelCheckerOption option) {
 		super(option);
@@ -15,7 +15,7 @@ public final class StoreCheckComp extends ModelCheckerTemplateForwardV2<StoreInf
 
 
 	
-	@Override protected ModelCheckerV1<CompInfo> getCheckerHook(ModelCheckerOption option) {
+	@Override protected ModelChecker<CompInfo> getCheckerHook(ModelCheckerOption option) {
 		return new CompCheckExist(option);
 	}
 	

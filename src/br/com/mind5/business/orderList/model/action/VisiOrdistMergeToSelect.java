@@ -4,11 +4,11 @@ import java.util.List;
 
 import br.com.mind5.business.orderList.info.OrdistInfo;
 import br.com.mind5.business.orderList.info.OrdistMerger;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiOrdistMergeToSelect extends ActionVisitorTemplateMergeV2<OrdistInfo, OrdistInfo> {
+final class VisiOrdistMergeToSelect extends ActionVisitorTemplateMerge<OrdistInfo, OrdistInfo> {
 	
 	public VisiOrdistMergeToSelect(DeciTreeOption<OrdistInfo> option) {
 		super(option, OrdistInfo.class); 
@@ -16,7 +16,7 @@ final class VisiOrdistMergeToSelect extends ActionVisitorTemplateMergeV2<OrdistI
 	
 	
 	
-	@Override protected Class<? extends ActionStdV2<OrdistInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStd<OrdistInfo>> getActionClassHook() {
 		return StdOrdistDaoSelect.class;
 	}
 	

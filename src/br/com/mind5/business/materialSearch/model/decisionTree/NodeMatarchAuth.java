@@ -7,14 +7,14 @@ import br.com.mind5.business.materialSearch.info.MatarchInfo;
 import br.com.mind5.business.materialSearch.model.action.StdMatarchObfuscateCodStore;
 import br.com.mind5.business.materialSearch.model.action.StdMatarchSuccess;
 import br.com.mind5.business.materialSearch.model.checker.MatarchCheckSytotin;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class NodeMatarchAuth extends DeciTreeTemplateReadV2<MatarchInfo> {
+public final class NodeMatarchAuth extends DeciTreeTemplateRead<MatarchInfo> {
 	
 	public NodeMatarchAuth(DeciTreeOption<MatarchInfo> option) {
 		super(option);
@@ -22,9 +22,9 @@ public final class NodeMatarchAuth extends DeciTreeTemplateReadV2<MatarchInfo> {
 	
 	
 	
-	@Override protected ModelCheckerV1<MatarchInfo> buildCheckerHook(DeciTreeOption<MatarchInfo> option) {
-		List<ModelCheckerV1<MatarchInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<MatarchInfo> checker;
+	@Override protected ModelChecker<MatarchInfo> buildCheckerHook(DeciTreeOption<MatarchInfo> option) {
+		List<ModelChecker<MatarchInfo>> queue = new ArrayList<>();		
+		ModelChecker<MatarchInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -34,15 +34,15 @@ public final class NodeMatarchAuth extends DeciTreeTemplateReadV2<MatarchInfo> {
 		checker = new MatarchCheckSytotin(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<MatarchInfo>> buildActionsOnPassedHook(DeciTreeOption<MatarchInfo> option) {
-		List<ActionStdV2<MatarchInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<MatarchInfo>> buildActionsOnPassedHook(DeciTreeOption<MatarchInfo> option) {
+		List<ActionStd<MatarchInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<MatarchInfo> success = new StdMatarchSuccess(option);
+		ActionStd<MatarchInfo> success = new StdMatarchSuccess(option);
 		
 		actions.add(success);
 		return actions;
@@ -50,10 +50,10 @@ public final class NodeMatarchAuth extends DeciTreeTemplateReadV2<MatarchInfo> {
 	
 	
 	
-	@Override protected List<ActionStdV2<MatarchInfo>> buildActionsOnFailedHook(DeciTreeOption<MatarchInfo> option) {
-		List<ActionStdV2<MatarchInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<MatarchInfo>> buildActionsOnFailedHook(DeciTreeOption<MatarchInfo> option) {
+		List<ActionStd<MatarchInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<MatarchInfo> obfuscateCodStore = new StdMatarchObfuscateCodStore(option);
+		ActionStd<MatarchInfo> obfuscateCodStore = new StdMatarchObfuscateCodStore(option);
 		
 		actions.add(obfuscateCodStore);
 		return actions;

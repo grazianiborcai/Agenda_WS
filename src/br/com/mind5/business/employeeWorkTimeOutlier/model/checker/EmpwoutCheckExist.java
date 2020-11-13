@@ -3,12 +3,12 @@ package br.com.mind5.business.employeeWorkTimeOutlier.model.checker;
 import br.com.mind5.business.employeeWorkTimeOutlier.info.EmpwoutInfo;
 import br.com.mind5.business.employeeWorkTimeOutlier.model.decisionTree.RootEmpwoutSelect;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class EmpwoutCheckExist extends ModelCheckerTemplateActionV2<EmpwoutInfo, EmpwoutInfo> {	
+public final class EmpwoutCheckExist extends ModelCheckerTemplateAction<EmpwoutInfo, EmpwoutInfo> {	
 
 	public EmpwoutCheckExist(ModelCheckerOption option) {
 		super(option, EmpwoutInfo.class);
@@ -16,8 +16,8 @@ public final class EmpwoutCheckExist extends ModelCheckerTemplateActionV2<Empwou
 	
 	
 	
-	@Override protected ActionStdV2<EmpwoutInfo> buildActionHook(DeciTreeOption<EmpwoutInfo> option) {
-		ActionStdV2<EmpwoutInfo> select = new RootEmpwoutSelect(option).toAction();
+	@Override protected ActionStd<EmpwoutInfo> buildActionHook(DeciTreeOption<EmpwoutInfo> option) {
+		ActionStd<EmpwoutInfo> select = new RootEmpwoutSelect(option).toAction();
 		return select;
 	}
 	

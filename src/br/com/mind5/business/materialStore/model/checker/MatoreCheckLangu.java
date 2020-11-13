@@ -4,10 +4,10 @@ import br.com.mind5.business.materialStore.info.MatoreInfo;
 import br.com.mind5.masterData.language.info.LanguInfo;
 import br.com.mind5.masterData.language.model.checker.LanguCheckExist;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.model.checker.ModelChecker;
 
-public final class MatoreCheckLangu extends ModelCheckerTemplateForwardV2<MatoreInfo, LanguInfo> {
+public final class MatoreCheckLangu extends ModelCheckerTemplateForward<MatoreInfo, LanguInfo> {
 	
 	public MatoreCheckLangu(ModelCheckerOption option) {
 		super(option);
@@ -15,7 +15,7 @@ public final class MatoreCheckLangu extends ModelCheckerTemplateForwardV2<Matore
 
 
 	
-	@Override protected ModelCheckerV1<LanguInfo> getCheckerHook(ModelCheckerOption option) {
+	@Override protected ModelChecker<LanguInfo> getCheckerHook(ModelCheckerOption option) {
 		return new LanguCheckExist(option);
 	}
 	

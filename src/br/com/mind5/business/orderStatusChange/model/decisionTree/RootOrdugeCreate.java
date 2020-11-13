@@ -5,14 +5,14 @@ import java.util.List;
 
 import br.com.mind5.business.orderStatusChange.info.OrdugeInfo;
 import br.com.mind5.business.orderStatusChange.model.action.StdOrdugeEnforceCreated;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootOrdugeCreate extends DeciTreeTemplateReadV2<OrdugeInfo> {
+public final class RootOrdugeCreate extends DeciTreeTemplateRead<OrdugeInfo> {
 	
 	public RootOrdugeCreate(DeciTreeOption<OrdugeInfo> option) {
 		super(option);
@@ -20,22 +20,22 @@ public final class RootOrdugeCreate extends DeciTreeTemplateReadV2<OrdugeInfo> {
 	
 	
 	
-	@Override protected ModelCheckerV1<OrdugeInfo> buildCheckerHook(DeciTreeOption<OrdugeInfo> option) {
-		List<ModelCheckerV1<OrdugeInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<OrdugeInfo> checker;
+	@Override protected ModelChecker<OrdugeInfo> buildCheckerHook(DeciTreeOption<OrdugeInfo> option) {
+		List<ModelChecker<OrdugeInfo>> queue = new ArrayList<>();		
+		ModelChecker<OrdugeInfo> checker;
 
 		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<OrdugeInfo>> buildActionsOnPassedHook(DeciTreeOption<OrdugeInfo> option) {
-		List<ActionStdV2<OrdugeInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStd<OrdugeInfo>> buildActionsOnPassedHook(DeciTreeOption<OrdugeInfo> option) {
+		List<ActionStd<OrdugeInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV2<OrdugeInfo> enforceStatus = new StdOrdugeEnforceCreated(option);
+		ActionStd<OrdugeInfo> enforceStatus = new StdOrdugeEnforceCreated(option);
 		
 		actions.add(enforceStatus);			
 		return actions;

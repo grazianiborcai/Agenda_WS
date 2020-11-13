@@ -5,14 +5,14 @@ import java.util.List;
 
 import br.com.mind5.business.bookService.info.BookiceInfo;
 import br.com.mind5.business.bookService.model.checker.BookiceCheckMatarchService;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodeBookiceAged extends DeciTreeTemplateWriteV2<BookiceInfo> {
+public final class NodeBookiceAged extends DeciTreeTemplateWrite<BookiceInfo> {
 	
 	public NodeBookiceAged(DeciTreeOption<BookiceInfo> option) {
 		super(option);
@@ -20,9 +20,9 @@ public final class NodeBookiceAged extends DeciTreeTemplateWriteV2<BookiceInfo> 
 	
 	
 	
-	@Override protected ModelCheckerV1<BookiceInfo> buildCheckerHook(DeciTreeOption<BookiceInfo> option) {
-		List<ModelCheckerV1<BookiceInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<BookiceInfo> checker;	
+	@Override protected ModelChecker<BookiceInfo> buildCheckerHook(DeciTreeOption<BookiceInfo> option) {
+		List<ModelChecker<BookiceInfo>> queue = new ArrayList<>();		
+		ModelChecker<BookiceInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -32,15 +32,15 @@ public final class NodeBookiceAged extends DeciTreeTemplateWriteV2<BookiceInfo> 
 		checker = new BookiceCheckMatarchService(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<BookiceInfo>> buildActionsOnPassedHook(DeciTreeOption<BookiceInfo> option) {
-		List<ActionStdV2<BookiceInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<BookiceInfo>> buildActionsOnPassedHook(DeciTreeOption<BookiceInfo> option) {
+		List<ActionStd<BookiceInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<BookiceInfo> service = new NodeBookiceAgedL01(option).toAction();
+		ActionStd<BookiceInfo> service = new NodeBookiceAgedL01(option).toAction();
 		
 		actions.add(service);
 		return actions;

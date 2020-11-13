@@ -6,14 +6,14 @@ import java.util.List;
 import br.com.mind5.form.formAddressSearch.info.FormesarchInfo;
 import br.com.mind5.form.formAddressSearch.model.action.StdFormesarchMergeToSelect;
 import br.com.mind5.form.formAddressSearch.model.checker.FormesarchCheckRead;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootFormesarchSelect extends DeciTreeTemplateReadV2<FormesarchInfo> {
+public final class RootFormesarchSelect extends DeciTreeTemplateRead<FormesarchInfo> {
 	
 	public RootFormesarchSelect(DeciTreeOption<FormesarchInfo> option) {
 		super(option);
@@ -21,9 +21,9 @@ public final class RootFormesarchSelect extends DeciTreeTemplateReadV2<Formesarc
 	
 	
 	
-	@Override protected ModelCheckerV1<FormesarchInfo> buildCheckerHook(DeciTreeOption<FormesarchInfo> option) {
-		List<ModelCheckerV1<FormesarchInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<FormesarchInfo> checker;	
+	@Override protected ModelChecker<FormesarchInfo> buildCheckerHook(DeciTreeOption<FormesarchInfo> option) {
+		List<ModelChecker<FormesarchInfo>> queue = new ArrayList<>();		
+		ModelChecker<FormesarchInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -34,15 +34,15 @@ public final class RootFormesarchSelect extends DeciTreeTemplateReadV2<Formesarc
 		queue.add(checker);
 		
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<FormesarchInfo>> buildActionsOnPassedHook(DeciTreeOption<FormesarchInfo> option) {
-		List<ActionStdV2<FormesarchInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<FormesarchInfo>> buildActionsOnPassedHook(DeciTreeOption<FormesarchInfo> option) {
+		List<ActionStd<FormesarchInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<FormesarchInfo> mergeToSelect = new StdFormesarchMergeToSelect(option);
+		ActionStd<FormesarchInfo> mergeToSelect = new StdFormesarchMergeToSelect(option);
 		
 		actions.add(mergeToSelect);
 		return actions;

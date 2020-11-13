@@ -7,11 +7,11 @@ import br.com.mind5.business.material.info.MatInfo;
 import br.com.mind5.business.material.model.decisionTree.RootMatSelect;
 import br.com.mind5.business.orderItemSnapshot.info.OrdemrapInfo;
 import br.com.mind5.business.orderItemSnapshot.info.OrdemrapMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiOrdemrapMergeMat extends ActionVisitorTemplateMergeV2<OrdemrapInfo, MatInfo> {
+final class VisiOrdemrapMergeMat extends ActionVisitorTemplateMerge<OrdemrapInfo, MatInfo> {
 	
 	public VisiOrdemrapMergeMat(DeciTreeOption<OrdemrapInfo> option) {
 		super(option, MatInfo.class); 

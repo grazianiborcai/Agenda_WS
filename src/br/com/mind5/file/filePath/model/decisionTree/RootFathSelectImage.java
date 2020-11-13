@@ -7,14 +7,14 @@ import br.com.mind5.file.filePath.info.FathInfo;
 import br.com.mind5.file.filePath.model.action.LazyFathRootSelect;
 import br.com.mind5.file.filePath.model.action.StdFathEnforceCodImage;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootFathSelectImage extends DeciTreeTemplateReadV2<FathInfo> {
+public final class RootFathSelectImage extends DeciTreeTemplateRead<FathInfo> {
 	
 	public RootFathSelectImage(DeciTreeOption<FathInfo> option) {
 		super(option);
@@ -22,22 +22,22 @@ public final class RootFathSelectImage extends DeciTreeTemplateReadV2<FathInfo> 
 	
 	
 	
-	@Override protected ModelCheckerV1<FathInfo> buildCheckerHook(DeciTreeOption<FathInfo> option) {
-		List<ModelCheckerV1<FathInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<FathInfo> checker;
+	@Override protected ModelChecker<FathInfo> buildCheckerHook(DeciTreeOption<FathInfo> option) {
+		List<ModelChecker<FathInfo>> queue = new ArrayList<>();		
+		ModelChecker<FathInfo> checker;
 		
 		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<FathInfo>> buildActionsOnPassedHook(DeciTreeOption<FathInfo> option) {
-		List<ActionStdV2<FathInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<FathInfo>> buildActionsOnPassedHook(DeciTreeOption<FathInfo> option) {
+		List<ActionStd<FathInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<FathInfo> enforceCodImage = new StdFathEnforceCodImage(option);
+		ActionStd<FathInfo> enforceCodImage = new StdFathEnforceCodImage(option);
 		ActionLazy<FathInfo> select = new LazyFathRootSelect(option.conn, option.schemaName);
 		
 		enforceCodImage.addPostAction(select);

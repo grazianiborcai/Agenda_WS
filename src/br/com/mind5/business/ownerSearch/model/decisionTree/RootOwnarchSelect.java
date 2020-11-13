@@ -6,14 +6,14 @@ import java.util.List;
 import br.com.mind5.business.ownerSearch.info.OwnarchInfo;
 import br.com.mind5.business.ownerSearch.model.action.StdOwnarchMergeToSelect;
 import br.com.mind5.business.ownerSearch.model.checker.OwnarchCheckRead;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootOwnarchSelect extends DeciTreeTemplateReadV2<OwnarchInfo> {
+public final class RootOwnarchSelect extends DeciTreeTemplateRead<OwnarchInfo> {
 
 	public RootOwnarchSelect(DeciTreeOption<OwnarchInfo> option) {
 		super(option);
@@ -21,9 +21,9 @@ public final class RootOwnarchSelect extends DeciTreeTemplateReadV2<OwnarchInfo>
 	
 	
 	
-	@Override protected ModelCheckerV1<OwnarchInfo> buildCheckerHook(DeciTreeOption<OwnarchInfo> option) {
-		List<ModelCheckerV1<OwnarchInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<OwnarchInfo> checker;
+	@Override protected ModelChecker<OwnarchInfo> buildCheckerHook(DeciTreeOption<OwnarchInfo> option) {
+		List<ModelChecker<OwnarchInfo>> queue = new ArrayList<>();		
+		ModelChecker<OwnarchInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -33,15 +33,15 @@ public final class RootOwnarchSelect extends DeciTreeTemplateReadV2<OwnarchInfo>
 		checker = new OwnarchCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<OwnarchInfo>> buildActionsOnPassedHook(DeciTreeOption<OwnarchInfo> option) {
-		List<ActionStdV2<OwnarchInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<OwnarchInfo>> buildActionsOnPassedHook(DeciTreeOption<OwnarchInfo> option) {
+		List<ActionStd<OwnarchInfo>> actions = new ArrayList<>();
 
-		ActionStdV2<OwnarchInfo> select = new StdOwnarchMergeToSelect(option);
+		ActionStd<OwnarchInfo> select = new StdOwnarchMergeToSelect(option);
 		
 		actions.add(select);
 		return actions;

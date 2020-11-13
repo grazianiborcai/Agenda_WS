@@ -3,12 +3,12 @@ package br.com.mind5.masterData.position.model.checker;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.masterData.position.info.PositionInfo;
 import br.com.mind5.masterData.position.model.action.StdPositionDaoSelect;
-import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class PositionCheckExist extends ModelCheckerTemplateActionV2<PositionInfo, PositionInfo> {
+public final class PositionCheckExist extends ModelCheckerTemplateAction<PositionInfo, PositionInfo> {
 	
 	public PositionCheckExist(ModelCheckerOption option) {
 		super(option, PositionInfo.class);
@@ -16,8 +16,8 @@ public final class PositionCheckExist extends ModelCheckerTemplateActionV2<Posit
 	
 	
 	
-	@Override protected ActionStdV2<PositionInfo> buildActionHook(DeciTreeOption<PositionInfo> option) {
-		ActionStdV2<PositionInfo> select = new StdPositionDaoSelect(option);
+	@Override protected ActionStd<PositionInfo> buildActionHook(DeciTreeOption<PositionInfo> option) {
+		ActionStd<PositionInfo> select = new StdPositionDaoSelect(option);
 		return select;
 	}
 	

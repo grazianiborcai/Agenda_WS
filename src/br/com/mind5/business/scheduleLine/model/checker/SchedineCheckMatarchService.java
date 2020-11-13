@@ -4,10 +4,10 @@ import br.com.mind5.business.materialSearch.info.MatarchInfo;
 import br.com.mind5.business.materialSearch.model.checker.MatarchCheckExistService;
 import br.com.mind5.business.scheduleLine.info.SchedineInfo;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.model.checker.ModelChecker;
 
-public final class SchedineCheckMatarchService extends ModelCheckerTemplateForwardV2<SchedineInfo, MatarchInfo> {
+public final class SchedineCheckMatarchService extends ModelCheckerTemplateForward<SchedineInfo, MatarchInfo> {
 	
 	public SchedineCheckMatarchService(ModelCheckerOption option) {
 		super(option);
@@ -15,7 +15,7 @@ public final class SchedineCheckMatarchService extends ModelCheckerTemplateForwa
 
 
 	
-	@Override protected ModelCheckerV1<MatarchInfo> getCheckerHook(ModelCheckerOption option) {
+	@Override protected ModelChecker<MatarchInfo> getCheckerHook(ModelCheckerOption option) {
 		return new MatarchCheckExistService(option);
 	}
 	

@@ -7,11 +7,11 @@ import br.com.mind5.business.bookService.info.BookiceMerger;
 import br.com.mind5.message.sysMessage.info.SymsgCopier;
 import br.com.mind5.message.sysMessage.info.SymsgInfo;
 import br.com.mind5.message.sysMessage.model.decisionTree.RootSymsgSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiBookiceMergeSymsg extends ActionVisitorTemplateMergeV2<BookiceInfo, SymsgInfo> {
+final class VisiBookiceMergeSymsg extends ActionVisitorTemplateMerge<BookiceInfo, SymsgInfo> {
 	
 	public VisiBookiceMergeSymsg(DeciTreeOption<BookiceInfo> option) {
 		super(option, SymsgInfo.class);

@@ -7,14 +7,14 @@ import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.address.model.action.StdAddressDaoInsert;
 import br.com.mind5.business.address.model.checker.AddressCheckState;
 import br.com.mind5.business.address.model.checker.AddressCheckWriteA01;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodeAddressInsertA01 extends DeciTreeTemplateWriteV2<AddressInfo> {
+public final class NodeAddressInsertA01 extends DeciTreeTemplateWrite<AddressInfo> {
 	
 	public NodeAddressInsertA01(DeciTreeOption<AddressInfo> option) {
 		super(option);
@@ -22,9 +22,9 @@ public final class NodeAddressInsertA01 extends DeciTreeTemplateWriteV2<AddressI
 	
 	
 	
-	@Override protected ModelCheckerV1<AddressInfo> buildCheckerHook(DeciTreeOption<AddressInfo> option) {
-		List<ModelCheckerV1<AddressInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<AddressInfo> checker;	
+	@Override protected ModelChecker<AddressInfo> buildCheckerHook(DeciTreeOption<AddressInfo> option) {
+		List<ModelChecker<AddressInfo>> queue = new ArrayList<>();		
+		ModelChecker<AddressInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -42,15 +42,15 @@ public final class NodeAddressInsertA01 extends DeciTreeTemplateWriteV2<AddressI
 		queue.add(checker);
 		
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<AddressInfo>> buildActionsOnPassedHook(DeciTreeOption<AddressInfo> option) {
-		List<ActionStdV2<AddressInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<AddressInfo>> buildActionsOnPassedHook(DeciTreeOption<AddressInfo> option) {
+		List<ActionStd<AddressInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<AddressInfo> insert = new StdAddressDaoInsert(option);
+		ActionStd<AddressInfo> insert = new StdAddressDaoInsert(option);
 		
 		actions.add(insert);		
 		return actions;

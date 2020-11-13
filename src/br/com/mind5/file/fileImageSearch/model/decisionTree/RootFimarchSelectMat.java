@@ -8,14 +8,14 @@ import br.com.mind5.file.fileImageSearch.model.action.LazyFimarchRootSelect;
 import br.com.mind5.file.fileImageSearch.model.action.StdFimarchEnforceMat;
 import br.com.mind5.file.fileImageSearch.model.checker.FimarchCheckReadMat;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootFimarchSelectMat extends DeciTreeTemplateReadV2<FimarchInfo> {
+public final class RootFimarchSelectMat extends DeciTreeTemplateRead<FimarchInfo> {
 	
 	public RootFimarchSelectMat(DeciTreeOption<FimarchInfo> option) {
 		super(option);
@@ -23,9 +23,9 @@ public final class RootFimarchSelectMat extends DeciTreeTemplateReadV2<FimarchIn
 	
 	
 	
-	@Override protected ModelCheckerV1<FimarchInfo> buildCheckerHook(DeciTreeOption<FimarchInfo> option) {
-		List<ModelCheckerV1<FimarchInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<FimarchInfo> checker;	
+	@Override protected ModelChecker<FimarchInfo> buildCheckerHook(DeciTreeOption<FimarchInfo> option) {
+		List<ModelChecker<FimarchInfo>> queue = new ArrayList<>();		
+		ModelChecker<FimarchInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -35,15 +35,15 @@ public final class RootFimarchSelectMat extends DeciTreeTemplateReadV2<FimarchIn
 		checker = new FimarchCheckReadMat(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<FimarchInfo>> buildActionsOnPassedHook(DeciTreeOption<FimarchInfo> option) {
-		List<ActionStdV2<FimarchInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<FimarchInfo>> buildActionsOnPassedHook(DeciTreeOption<FimarchInfo> option) {
+		List<ActionStd<FimarchInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<FimarchInfo> enforceMat = new StdFimarchEnforceMat(option);
+		ActionStd<FimarchInfo> enforceMat = new StdFimarchEnforceMat(option);
 		ActionLazy<FimarchInfo> select = new LazyFimarchRootSelect(option.conn, option.schemaName);
 		
 		enforceMat.addPostAction(select);

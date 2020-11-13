@@ -4,12 +4,12 @@ import java.util.List;
 
 import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.business.storeList.info.StolisMerger;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionStd;
+
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiStolisMergeToSelect extends ActionVisitorTemplateMergeV2<StolisInfo, StolisInfo> {
+final class VisiStolisMergeToSelect extends ActionVisitorTemplateMerge<StolisInfo, StolisInfo> {
 	
 	public VisiStolisMergeToSelect(DeciTreeOption<StolisInfo> option) {
 		super(option, StolisInfo.class);
@@ -17,7 +17,7 @@ final class VisiStolisMergeToSelect extends ActionVisitorTemplateMergeV2<StolisI
 	
 	
 	
-	@Override protected Class<? extends ActionStdV2<StolisInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStd<StolisInfo>> getActionClassHook() {
 		return StdStolisDaoSelect.class;
 	}
 	
@@ -30,6 +30,6 @@ final class VisiStolisMergeToSelect extends ActionVisitorTemplateMergeV2<StolisI
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
+		return super.DONT_MERGE_WHEN_EMPTY;
 	}
 }

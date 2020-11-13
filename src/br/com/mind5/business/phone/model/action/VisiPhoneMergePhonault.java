@@ -6,11 +6,11 @@ import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.business.phone.info.PhoneMerger;
 import br.com.mind5.business.phoneDefault.info.PhonaultInfo;
 import br.com.mind5.business.phoneDefault.model.decisionTree.RootPhonaultSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiPhoneMergePhonault extends ActionVisitorTemplateMergeV2<PhoneInfo, PhonaultInfo> {
+final class VisiPhoneMergePhonault extends ActionVisitorTemplateMerge<PhoneInfo, PhonaultInfo> {
 	
 	public VisiPhoneMergePhonault(DeciTreeOption<PhoneInfo> option) {
 		super(option, PhonaultInfo.class);

@@ -9,14 +9,14 @@ import br.com.mind5.business.storeLeaveDateRange.model.checker.StolargCheckLangu
 import br.com.mind5.business.storeLeaveDateRange.model.checker.StolargCheckOwner;
 import br.com.mind5.business.storeLeaveDateRange.model.checker.StolargCheckRead;
 import br.com.mind5.business.storeLeaveDateRange.model.checker.StolargCheckStore;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public class RootStolargSelect extends DeciTreeTemplateReadV2<StolargInfo> {
+public class RootStolargSelect extends DeciTreeTemplateRead<StolargInfo> {
 	
 	public RootStolargSelect(DeciTreeOption<StolargInfo> option) {
 		super(option);
@@ -24,9 +24,9 @@ public class RootStolargSelect extends DeciTreeTemplateReadV2<StolargInfo> {
 	
 	
 	
-	@Override protected ModelCheckerV1<StolargInfo> buildCheckerHook(DeciTreeOption<StolargInfo> option) {
-		List<ModelCheckerV1<StolargInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<StolargInfo> checker;
+	@Override protected ModelChecker<StolargInfo> buildCheckerHook(DeciTreeOption<StolargInfo> option) {
+		List<ModelChecker<StolargInfo>> queue = new ArrayList<>();		
+		ModelChecker<StolargInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -57,15 +57,15 @@ public class RootStolargSelect extends DeciTreeTemplateReadV2<StolargInfo> {
 		checker = new StolargCheckStore(checkerOption);
 		queue.add(checker);	
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<StolargInfo>> buildActionsOnPassedHook(DeciTreeOption<StolargInfo> option) {
-		List<ActionStdV2<StolargInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<StolargInfo>> buildActionsOnPassedHook(DeciTreeOption<StolargInfo> option) {
+		List<ActionStd<StolargInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<StolargInfo> select = new StdStolargMergeToSelect(option);
+		ActionStd<StolargInfo> select = new StdStolargMergeToSelect(option);
 		
 		actions.add(select);
 		return actions;

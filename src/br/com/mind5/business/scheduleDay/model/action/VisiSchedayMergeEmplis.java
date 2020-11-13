@@ -7,11 +7,11 @@ import br.com.mind5.business.employeeList.info.EmplisInfo;
 import br.com.mind5.business.employeeList.model.decisionTree.RootEmplisSelect;
 import br.com.mind5.business.scheduleDay.info.SchedayInfo;
 import br.com.mind5.business.scheduleDay.info.SchedayMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiSchedayMergeEmplis extends ActionVisitorTemplateMergeV2<SchedayInfo, EmplisInfo> {
+final class VisiSchedayMergeEmplis extends ActionVisitorTemplateMerge<SchedayInfo, EmplisInfo> {
 	
 	public VisiSchedayMergeEmplis(DeciTreeOption<SchedayInfo> option) {
 		super(option, EmplisInfo.class);

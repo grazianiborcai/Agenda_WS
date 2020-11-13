@@ -1,11 +1,11 @@
 package br.com.mind5.business.person.model.action;
 
 import br.com.mind5.business.person.info.PersonInfo;
-import br.com.mind5.model.action.ActionStdTemplateV2;
-import br.com.mind5.model.action.ActionVisitorV2;
+import br.com.mind5.model.action.ActionStdTemplate;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class StdPersonMergeGender extends ActionStdTemplateV2<PersonInfo> {
+final class StdPersonMergeGender extends ActionStdTemplate<PersonInfo> {
 
 	public StdPersonMergeGender(DeciTreeOption<PersonInfo> option) {
 		super(option);
@@ -13,7 +13,7 @@ final class StdPersonMergeGender extends ActionStdTemplateV2<PersonInfo> {
 	
 	
 	
-	protected ActionVisitorV2<PersonInfo> buildVisitorHook(DeciTreeOption<PersonInfo> option) {
+	protected ActionVisitor<PersonInfo> buildVisitorHook(DeciTreeOption<PersonInfo> option) {
 		return new VisiPersonMergeGender(option);
 	}
 }

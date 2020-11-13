@@ -4,11 +4,11 @@ import java.util.List;
 
 import br.com.mind5.business.orderItemSnapshot.info.OrdemrapInfo;
 import br.com.mind5.business.orderItemSnapshot.info.OrdemrapMerger;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiOrdemrapMergeToSelect extends ActionVisitorTemplateMergeV2<OrdemrapInfo, OrdemrapInfo> {
+final class VisiOrdemrapMergeToSelect extends ActionVisitorTemplateMerge<OrdemrapInfo, OrdemrapInfo> {
 	
 	public VisiOrdemrapMergeToSelect(DeciTreeOption<OrdemrapInfo> option) {
 		super(option, OrdemrapInfo.class); 
@@ -16,7 +16,7 @@ final class VisiOrdemrapMergeToSelect extends ActionVisitorTemplateMergeV2<Ordem
 	
 	
 	
-	@Override protected Class<? extends ActionStdV2<OrdemrapInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStd<OrdemrapInfo>> getActionClassHook() {
 		return StdOrdemrapDaoSelect.class;
 	}
 	

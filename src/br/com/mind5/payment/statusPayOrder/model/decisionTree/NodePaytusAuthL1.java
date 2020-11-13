@@ -4,17 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.payment.statusPayOrder.info.PaytusInfo;
 import br.com.mind5.payment.statusPayOrder.model.action.LazyPaytusNodeAuthL2;
 import br.com.mind5.payment.statusPayOrder.model.action.StdPaytusMergeUsername;
 
-public final class NodePaytusAuthL1 extends DeciTreeTemplateWriteV2<PaytusInfo> {
+public final class NodePaytusAuthL1 extends DeciTreeTemplateWrite<PaytusInfo> {
 	
 	public NodePaytusAuthL1(DeciTreeOption<PaytusInfo> option) {
 		super(option);
@@ -22,22 +22,22 @@ public final class NodePaytusAuthL1 extends DeciTreeTemplateWriteV2<PaytusInfo> 
 	
 	
 	
-	@Override protected ModelCheckerV1<PaytusInfo> buildCheckerHook(DeciTreeOption<PaytusInfo> option) {
-		List<ModelCheckerV1<PaytusInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<PaytusInfo> checker;	
+	@Override protected ModelChecker<PaytusInfo> buildCheckerHook(DeciTreeOption<PaytusInfo> option) {
+		List<ModelChecker<PaytusInfo>> queue = new ArrayList<>();		
+		ModelChecker<PaytusInfo> checker;	
 
 		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<PaytusInfo>> buildActionsOnPassedHook(DeciTreeOption<PaytusInfo> option) {
-		List<ActionStdV2<PaytusInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStd<PaytusInfo>> buildActionsOnPassedHook(DeciTreeOption<PaytusInfo> option) {
+		List<ActionStd<PaytusInfo>> actions = new ArrayList<>();		
 
-		ActionStdV2<PaytusInfo> mergeUsername = new StdPaytusMergeUsername(option);
+		ActionStd<PaytusInfo> mergeUsername = new StdPaytusMergeUsername(option);
 		ActionLazy<PaytusInfo> nodeL2 = new LazyPaytusNodeAuthL2(option.conn, option.schemaName);
 		
 		mergeUsername.addPostAction(nodeL2);

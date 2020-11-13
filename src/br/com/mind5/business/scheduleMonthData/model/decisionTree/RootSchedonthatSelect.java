@@ -8,14 +8,14 @@ import br.com.mind5.business.scheduleMonthData.model.action.LazySchedonthatEnfor
 import br.com.mind5.business.scheduleMonthData.model.action.StdSchedonthatMergeToSelect;
 import br.com.mind5.business.scheduleMonthData.model.checker.SchedonthatCheckRead;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootSchedonthatSelect extends DeciTreeTemplateWriteV2<SchedonthatInfo> {
+public final class RootSchedonthatSelect extends DeciTreeTemplateWrite<SchedonthatInfo> {
 	
 	public RootSchedonthatSelect(DeciTreeOption<SchedonthatInfo> option) {
 		super(option);
@@ -23,9 +23,9 @@ public final class RootSchedonthatSelect extends DeciTreeTemplateWriteV2<Schedon
 	
 	
 	
-	@Override protected ModelCheckerV1<SchedonthatInfo> buildCheckerHook(DeciTreeOption<SchedonthatInfo> option) {
-		List<ModelCheckerV1<SchedonthatInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<SchedonthatInfo> checker;	
+	@Override protected ModelChecker<SchedonthatInfo> buildCheckerHook(DeciTreeOption<SchedonthatInfo> option) {
+		List<ModelChecker<SchedonthatInfo>> queue = new ArrayList<>();		
+		ModelChecker<SchedonthatInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -35,15 +35,15 @@ public final class RootSchedonthatSelect extends DeciTreeTemplateWriteV2<Schedon
 		checker = new SchedonthatCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<SchedonthatInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedonthatInfo> option) {
-		List<ActionStdV2<SchedonthatInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<SchedonthatInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedonthatInfo> option) {
+		List<ActionStd<SchedonthatInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<SchedonthatInfo> mergeToSelect = new StdSchedonthatMergeToSelect(option);
+		ActionStd<SchedonthatInfo> mergeToSelect = new StdSchedonthatMergeToSelect(option);
 		ActionLazy<SchedonthatInfo> enforceWeekday = new LazySchedonthatEnforceWeekday(option.conn, option.schemaName);
 		
 		mergeToSelect.addPostAction(enforceWeekday);

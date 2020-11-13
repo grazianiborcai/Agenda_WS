@@ -7,12 +7,12 @@ import br.com.mind5.business.planningTime.info.PlanimeMerger;
 import br.com.mind5.business.storeList.info.StolisCopier;
 import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.business.storeList.model.decisionTree.RootStolisSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiPlanimeMergeStolis extends ActionVisitorTemplateMergeV2<PlanimeInfo, StolisInfo> {
+final class VisiPlanimeMergeStolis extends ActionVisitorTemplateMerge<PlanimeInfo, StolisInfo> {
 	
 	public VisiPlanimeMergeStolis(DeciTreeOption<PlanimeInfo> option) {
 		super(option, StolisInfo.class);
@@ -39,6 +39,6 @@ final class VisiPlanimeMergeStolis extends ActionVisitorTemplateMergeV2<PlanimeI
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
+		return super.MERGE_WHEN_EMPTY;
 	}
 }

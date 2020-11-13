@@ -5,12 +5,12 @@ import br.com.mind5.authorization.scheduleAuthorization.model.action.LazySchedau
 import br.com.mind5.authorization.scheduleAuthorization.model.action.StdSchedauthMergeUsername;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class SchedauthCheckExist extends ModelCheckerTemplateActionV2<SchedauthInfo, SchedauthInfo> {
+public final class SchedauthCheckExist extends ModelCheckerTemplateAction<SchedauthInfo, SchedauthInfo> {
 	
 	public SchedauthCheckExist(ModelCheckerOption option) {
 		super(option, SchedauthInfo.class);
@@ -18,8 +18,8 @@ public final class SchedauthCheckExist extends ModelCheckerTemplateActionV2<Sche
 	
 
 	
-	@Override protected ActionStdV2<SchedauthInfo> buildActionHook(DeciTreeOption<SchedauthInfo> option) {
-		ActionStdV2<SchedauthInfo> mergeUsername = new StdSchedauthMergeUsername(option);
+	@Override protected ActionStd<SchedauthInfo> buildActionHook(DeciTreeOption<SchedauthInfo> option) {
+		ActionStd<SchedauthInfo> mergeUsername = new StdSchedauthMergeUsername(option);
 		ActionLazy<SchedauthInfo> select = new LazySchedauthDaoSelect(option.conn, option.schemaName);
 		
 		mergeUsername.addPostAction(select);

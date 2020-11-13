@@ -12,14 +12,14 @@ import br.com.mind5.business.storeSnapshot.model.checker.StorapCheckOwner;
 import br.com.mind5.business.storeSnapshot.model.checker.StorapCheckStore;
 import br.com.mind5.business.storeSnapshot.model.checker.StorapCheckWrite;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootStorapInsert extends DeciTreeTemplateWriteV2<StorapInfo> {
+public final class RootStorapInsert extends DeciTreeTemplateWrite<StorapInfo> {
 	
 	public RootStorapInsert(DeciTreeOption<StorapInfo> option) {
 		super(option);
@@ -27,9 +27,9 @@ public final class RootStorapInsert extends DeciTreeTemplateWriteV2<StorapInfo> 
 	
 	
 	
-	@Override protected ModelCheckerV1<StorapInfo> buildCheckerHook(DeciTreeOption<StorapInfo> option) {
-		List<ModelCheckerV1<StorapInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<StorapInfo> checker;
+	@Override protected ModelChecker<StorapInfo> buildCheckerHook(DeciTreeOption<StorapInfo> option) {
+		List<ModelChecker<StorapInfo>> queue = new ArrayList<>();		
+		ModelChecker<StorapInfo> checker;
 		ModelCheckerOption checkerOption;		
 		
 		checkerOption = new ModelCheckerOption();
@@ -53,15 +53,15 @@ public final class RootStorapInsert extends DeciTreeTemplateWriteV2<StorapInfo> 
 		checker = new StorapCheckStore(checkerOption);
 		queue.add(checker);	
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<StorapInfo>> buildActionsOnPassedHook(DeciTreeOption<StorapInfo> option) {
-		List<ActionStdV2<StorapInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<StorapInfo>> buildActionsOnPassedHook(DeciTreeOption<StorapInfo> option) {
+		List<ActionStd<StorapInfo>> actions = new ArrayList<>();
 
-		ActionStdV2<StorapInfo> nodePerson = new NodeStorapPerson(option).toAction();
+		ActionStd<StorapInfo> nodePerson = new NodeStorapPerson(option).toAction();
 		ActionLazy<StorapInfo> nodeComp = new LazyStorapNodeComp(option.conn, option.schemaName);
 		ActionLazy<StorapInfo> nodeUser = new LazyStorapNodeUser(option.conn, option.schemaName);
 		ActionLazy<StorapInfo> insert = new LazyStorapDaoInsert(option.conn, option.schemaName);

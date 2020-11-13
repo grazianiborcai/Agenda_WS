@@ -4,12 +4,12 @@ import java.util.List;
 
 import br.com.mind5.form.formAddress.info.FormessInfo;
 import br.com.mind5.form.formAddress.info.FormessMerger;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionStd;
+
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiFormessMergeToSelect extends ActionVisitorTemplateMergeV2<FormessInfo, FormessInfo> {
+final class VisiFormessMergeToSelect extends ActionVisitorTemplateMerge<FormessInfo, FormessInfo> {
 	
 	public VisiFormessMergeToSelect(DeciTreeOption<FormessInfo> option) {
 		super(option, FormessInfo.class);
@@ -17,7 +17,7 @@ final class VisiFormessMergeToSelect extends ActionVisitorTemplateMergeV2<Formes
 	
 	
 	
-	@Override protected Class<? extends ActionStdV2<FormessInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStd<FormessInfo>> getActionClassHook() {
 		return StdFormessDaoSelect.class;
 	}
 	
@@ -30,6 +30,6 @@ final class VisiFormessMergeToSelect extends ActionVisitorTemplateMergeV2<Formes
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
+		return super.DONT_MERGE_WHEN_EMPTY;
 	}
 }

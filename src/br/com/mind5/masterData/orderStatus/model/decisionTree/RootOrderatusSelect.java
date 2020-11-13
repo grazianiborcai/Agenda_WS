@@ -6,14 +6,14 @@ import java.util.List;
 import br.com.mind5.masterData.orderStatus.info.OrderatusInfo;
 import br.com.mind5.masterData.orderStatus.model.action.StdOrderatusDaoSelect;
 import br.com.mind5.masterData.orderStatus.model.checker.OrderatusCheckRead;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootOrderatusSelect extends DeciTreeTemplateReadV2<OrderatusInfo> {
+public final class RootOrderatusSelect extends DeciTreeTemplateRead<OrderatusInfo> {
 	
 	public RootOrderatusSelect(DeciTreeOption<OrderatusInfo> option) {
 		super(option);
@@ -21,9 +21,9 @@ public final class RootOrderatusSelect extends DeciTreeTemplateReadV2<OrderatusI
 	
 	
 	
-	@Override protected ModelCheckerV1<OrderatusInfo> buildCheckerHook(DeciTreeOption<OrderatusInfo> option) {
-		List<ModelCheckerV1<OrderatusInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<OrderatusInfo> checker;
+	@Override protected ModelChecker<OrderatusInfo> buildCheckerHook(DeciTreeOption<OrderatusInfo> option) {
+		List<ModelChecker<OrderatusInfo>> queue = new ArrayList<>();		
+		ModelChecker<OrderatusInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
 		checkerOption = new ModelCheckerOption();
@@ -33,15 +33,15 @@ public final class RootOrderatusSelect extends DeciTreeTemplateReadV2<OrderatusI
 		checker = new OrderatusCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 
 		
 	
-	@Override protected List<ActionStdV2<OrderatusInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderatusInfo> option) {
-		List<ActionStdV2<OrderatusInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<OrderatusInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderatusInfo> option) {
+		List<ActionStd<OrderatusInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<OrderatusInfo> select = new StdOrderatusDaoSelect(option);
+		ActionStd<OrderatusInfo> select = new StdOrderatusDaoSelect(option);
 		
 		actions.add(select);
 		return actions;

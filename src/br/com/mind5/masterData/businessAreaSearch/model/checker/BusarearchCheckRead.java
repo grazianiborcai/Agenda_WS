@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.masterData.businessAreaSearch.info.BusarearchInfo;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 
-public final class BusarearchCheckRead extends ModelCheckerTemplateSimpleV2<BusarearchInfo> {
+public final class BusarearchCheckRead extends ModelCheckerTemplateSimple<BusarearchInfo> {
 	
 	public BusarearchCheckRead(ModelCheckerOption option) {
 		super(option);

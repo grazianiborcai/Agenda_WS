@@ -6,14 +6,14 @@ import java.util.List;
 import br.com.mind5.business.refundPolicyStoreSearch.info.RefuporarchInfo;
 import br.com.mind5.business.refundPolicyStoreSearch.model.action.StdRefupowarchMergeToSelect;
 import br.com.mind5.business.refundPolicyStoreSearch.model.checker.RefuporarchCheckRead;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootRefuporarchSelect extends DeciTreeTemplateReadV2<RefuporarchInfo> {
+public final class RootRefuporarchSelect extends DeciTreeTemplateRead<RefuporarchInfo> {
 	
 	public RootRefuporarchSelect(DeciTreeOption<RefuporarchInfo> option) {
 		super(option);
@@ -21,9 +21,9 @@ public final class RootRefuporarchSelect extends DeciTreeTemplateReadV2<Refupora
 	
 	
 	
-	@Override protected ModelCheckerV1<RefuporarchInfo> buildCheckerHook(DeciTreeOption<RefuporarchInfo> option) {
-		List<ModelCheckerV1<RefuporarchInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<RefuporarchInfo> checker;
+	@Override protected ModelChecker<RefuporarchInfo> buildCheckerHook(DeciTreeOption<RefuporarchInfo> option) {
+		List<ModelChecker<RefuporarchInfo>> queue = new ArrayList<>();		
+		ModelChecker<RefuporarchInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
 		checkerOption = new ModelCheckerOption();
@@ -33,15 +33,15 @@ public final class RootRefuporarchSelect extends DeciTreeTemplateReadV2<Refupora
 		checker = new RefuporarchCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<RefuporarchInfo>> buildActionsOnPassedHook(DeciTreeOption<RefuporarchInfo> option) {
-		List<ActionStdV2<RefuporarchInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<RefuporarchInfo>> buildActionsOnPassedHook(DeciTreeOption<RefuporarchInfo> option) {
+		List<ActionStd<RefuporarchInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<RefuporarchInfo> select = new StdRefupowarchMergeToSelect(option);
+		ActionStd<RefuporarchInfo> select = new StdRefupowarchMergeToSelect(option);
 		
 		actions.add(select);
 		return actions;

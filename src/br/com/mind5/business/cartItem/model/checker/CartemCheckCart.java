@@ -4,10 +4,10 @@ import br.com.mind5.business.cart.info.CartInfo;
 import br.com.mind5.business.cart.model.checker.CartCheckExist;
 import br.com.mind5.business.cartItem.info.CartemInfo;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.model.checker.ModelChecker;
 
-public final class CartemCheckCart extends ModelCheckerTemplateForwardV2<CartemInfo, CartInfo> {
+public final class CartemCheckCart extends ModelCheckerTemplateForward<CartemInfo, CartInfo> {
 	
 	public CartemCheckCart(ModelCheckerOption option) {
 		super(option);
@@ -15,7 +15,7 @@ public final class CartemCheckCart extends ModelCheckerTemplateForwardV2<CartemI
 
 
 	
-	@Override protected ModelCheckerV1<CartInfo> getCheckerHook(ModelCheckerOption option) {
+	@Override protected ModelChecker<CartInfo> getCheckerHook(ModelCheckerOption option) {
 		return new CartCheckExist(option);
 	}
 	

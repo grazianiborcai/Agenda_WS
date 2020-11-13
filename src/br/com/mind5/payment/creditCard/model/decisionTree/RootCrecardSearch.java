@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
 import br.com.mind5.payment.creditCard.model.action.LazyCrecardEnforceUserKey;
 import br.com.mind5.payment.creditCard.model.action.LazyCrecardMergeCrecarch;
@@ -17,7 +17,7 @@ import br.com.mind5.payment.creditCard.model.action.LazyCrecardRootSelect;
 import br.com.mind5.payment.creditCard.model.checker.CrecardCheckSearch;
 import br.com.mind5.payment.creditCard.model.checker.CrecardCheckUsername;
 
-public final class RootCrecardSearch extends DeciTreeTemplateReadV2<CrecardInfo> {
+public final class RootCrecardSearch extends DeciTreeTemplateRead<CrecardInfo> {
 	
 	public RootCrecardSearch(DeciTreeOption<CrecardInfo> option) {
 		super(option);
@@ -25,9 +25,9 @@ public final class RootCrecardSearch extends DeciTreeTemplateReadV2<CrecardInfo>
 	
 	
 	
-	@Override protected ModelCheckerV1<CrecardInfo> buildCheckerHook(DeciTreeOption<CrecardInfo> option) {
-		List<ModelCheckerV1<CrecardInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<CrecardInfo> checker;
+	@Override protected ModelChecker<CrecardInfo> buildCheckerHook(DeciTreeOption<CrecardInfo> option) {
+		List<ModelChecker<CrecardInfo>> queue = new ArrayList<>();		
+		ModelChecker<CrecardInfo> checker;
 		ModelCheckerOption checkerOption;
 
 		checkerOption = new ModelCheckerOption();
@@ -44,15 +44,15 @@ public final class RootCrecardSearch extends DeciTreeTemplateReadV2<CrecardInfo>
 		checker = new CrecardCheckUsername(checkerOption);
 		queue.add(checker);	
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<CrecardInfo>> buildActionsOnPassedHook(DeciTreeOption<CrecardInfo> option) {
-		List<ActionStdV2<CrecardInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<CrecardInfo>> buildActionsOnPassedHook(DeciTreeOption<CrecardInfo> option) {
+		List<ActionStd<CrecardInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<CrecardInfo> nodeUser = new NodeCrecardUser(option).toAction();
+		ActionStd<CrecardInfo> nodeUser = new NodeCrecardUser(option).toAction();
 		ActionLazy<CrecardInfo> enforceUserKey = new LazyCrecardEnforceUserKey(option.conn, option.schemaName);
 		ActionLazy<CrecardInfo> mergeCrecarch = new LazyCrecardMergeCrecarch(option.conn, option.schemaName);
 		ActionLazy<CrecardInfo> user = new LazyCrecardRootSelect(option.conn, option.schemaName);

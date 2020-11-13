@@ -4,10 +4,10 @@ import br.com.mind5.business.cartItem.info.CartemInfo;
 import br.com.mind5.business.scheduleReserve.info.SchederveInfo;
 import br.com.mind5.business.scheduleReserve.model.checker.SchederveCheckExist;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.model.checker.ModelChecker;
 
-public final class CartemCheckSchederve extends ModelCheckerTemplateForwardV2<CartemInfo, SchederveInfo> {
+public final class CartemCheckSchederve extends ModelCheckerTemplateForward<CartemInfo, SchederveInfo> {
 	
 	public CartemCheckSchederve(ModelCheckerOption option) {
 		super(option);
@@ -15,7 +15,7 @@ public final class CartemCheckSchederve extends ModelCheckerTemplateForwardV2<Ca
 
 
 	
-	@Override protected ModelCheckerV1<SchederveInfo> getCheckerHook(ModelCheckerOption option) {
+	@Override protected ModelChecker<SchederveInfo> getCheckerHook(ModelCheckerOption option) {
 		return new SchederveCheckExist(option);
 	}
 	

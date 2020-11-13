@@ -5,14 +5,14 @@ import java.util.List;
 import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.InfoRecord;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelChecker;
 
-public abstract class DeciTreeTemplateReadV1<T extends InfoRecord> implements DeciTree<T> {
+public abstract class DeciTreeTemplateRead<T extends InfoRecord> implements DeciTree<T> {
 	private DeciTree<T> tree;
 	
 	
-	public DeciTreeTemplateReadV1(DeciTreeOption<T> option) {
+	public DeciTreeTemplateRead(DeciTreeOption<T> option) {
 		checkArgument(option);
 		clear();
 		
@@ -36,7 +36,7 @@ public abstract class DeciTreeTemplateReadV1<T extends InfoRecord> implements De
 	
 	
 	
-	protected ModelCheckerV1<T> buildCheckerHook(DeciTreeOption<T> option) {
+	protected ModelChecker<T> buildCheckerHook(DeciTreeOption<T> option) {
 		//Template method: to be overwritten by subclasses
 		logException(new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION));
 		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);	
@@ -44,7 +44,7 @@ public abstract class DeciTreeTemplateReadV1<T extends InfoRecord> implements De
 	
 	
 	
-	protected List<ActionStdV2<T>> buildActionsOnPassedHook(DeciTreeOption<T> option) {
+	protected List<ActionStd<T>> buildActionsOnPassedHook(DeciTreeOption<T> option) {
 		//Template method: to be overwritten by subclasses
 		logException(new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION));
 		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);		
@@ -52,7 +52,7 @@ public abstract class DeciTreeTemplateReadV1<T extends InfoRecord> implements De
 	
 	
 	
-	protected List<ActionStdV2<T>> buildActionsOnFailedHook(DeciTreeOption<T> option) {
+	protected List<ActionStd<T>> buildActionsOnFailedHook(DeciTreeOption<T> option) {
 		//Template method: to be overwritten by subclasses
 		return null;	
 	}
@@ -73,7 +73,7 @@ public abstract class DeciTreeTemplateReadV1<T extends InfoRecord> implements De
 	
 	
 	
-	@Override public ActionStdV2<T> toAction() {
+	@Override public ActionStd<T> toAction() {
 		checkState();	
 		return tree.toAction();
 	}

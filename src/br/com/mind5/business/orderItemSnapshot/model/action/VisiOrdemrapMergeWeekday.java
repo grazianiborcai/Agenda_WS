@@ -6,11 +6,11 @@ import br.com.mind5.business.orderItemSnapshot.info.OrdemrapInfo;
 import br.com.mind5.business.orderItemSnapshot.info.OrdemrapMerger;
 import br.com.mind5.masterData.weekday.info.WeekdayInfo;
 import br.com.mind5.masterData.weekday.model.decisionTree.RootWeekdaySelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiOrdemrapMergeWeekday extends ActionVisitorTemplateMergeV2<OrdemrapInfo, WeekdayInfo> {
+final class VisiOrdemrapMergeWeekday extends ActionVisitorTemplateMerge<OrdemrapInfo, WeekdayInfo> {
 	
 	public VisiOrdemrapMergeWeekday(DeciTreeOption<OrdemrapInfo> option) {
 		super(option, WeekdayInfo.class); 

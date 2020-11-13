@@ -3,17 +3,17 @@ package br.com.mind5.security.otp.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.security.otp.info.OtpInfo;
 import br.com.mind5.security.otp.model.action.StdOtpSuccess;
 import br.com.mind5.security.otp.model.checker.OtpCheckHashToMatch;
 
-public final class NodeOtpMatch extends DeciTreeTemplateWriteV2<OtpInfo> {
+public final class NodeOtpMatch extends DeciTreeTemplateWrite<OtpInfo> {
 	
 	public NodeOtpMatch(DeciTreeOption<OtpInfo> option) {
 		super(option);
@@ -21,9 +21,9 @@ public final class NodeOtpMatch extends DeciTreeTemplateWriteV2<OtpInfo> {
 	
 	
 	
-	@Override protected ModelCheckerV1<OtpInfo> buildCheckerHook(DeciTreeOption<OtpInfo> option) {
-		List<ModelCheckerV1<OtpInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<OtpInfo> checker;
+	@Override protected ModelChecker<OtpInfo> buildCheckerHook(DeciTreeOption<OtpInfo> option) {
+		List<ModelChecker<OtpInfo>> queue = new ArrayList<>();		
+		ModelChecker<OtpInfo> checker;
 		ModelCheckerOption checkerOption;		
 		
 		checkerOption = new ModelCheckerOption();
@@ -33,15 +33,15 @@ public final class NodeOtpMatch extends DeciTreeTemplateWriteV2<OtpInfo> {
 		checker = new OtpCheckHashToMatch(checkerOption);
 		queue.add(checker);	
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<OtpInfo>> buildActionsOnPassedHook(DeciTreeOption<OtpInfo> option) {
-		List<ActionStdV2<OtpInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<OtpInfo>> buildActionsOnPassedHook(DeciTreeOption<OtpInfo> option) {
+		List<ActionStd<OtpInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<OtpInfo> success = new StdOtpSuccess(option);
+		ActionStd<OtpInfo> success = new StdOtpSuccess(option);
 		actions.add(success);
 		
 		return actions;

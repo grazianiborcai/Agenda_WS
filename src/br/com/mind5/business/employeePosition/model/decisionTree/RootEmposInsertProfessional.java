@@ -7,14 +7,14 @@ import br.com.mind5.business.employeePosition.info.EmposInfo;
 import br.com.mind5.business.employeePosition.model.action.LazyEmposRootInsert;
 import br.com.mind5.business.employeePosition.model.action.StdEmposEnforceProfessional;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootEmposInsertProfessional extends DeciTreeTemplateWriteV2<EmposInfo> {
+public final class RootEmposInsertProfessional extends DeciTreeTemplateWrite<EmposInfo> {
 	
 	public RootEmposInsertProfessional(DeciTreeOption<EmposInfo> option) {
 		super(option);
@@ -22,22 +22,22 @@ public final class RootEmposInsertProfessional extends DeciTreeTemplateWriteV2<E
 	
 	
 	
-	@Override protected ModelCheckerV1<EmposInfo> buildCheckerHook(DeciTreeOption<EmposInfo> option) {
-		List<ModelCheckerV1<EmposInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<EmposInfo> checker;
+	@Override protected ModelChecker<EmposInfo> buildCheckerHook(DeciTreeOption<EmposInfo> option) {
+		List<ModelChecker<EmposInfo>> queue = new ArrayList<>();		
+		ModelChecker<EmposInfo> checker;
 
 		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<EmposInfo>> buildActionsOnPassedHook(DeciTreeOption<EmposInfo> option) {
-		List<ActionStdV2<EmposInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<EmposInfo>> buildActionsOnPassedHook(DeciTreeOption<EmposInfo> option) {
+		List<ActionStd<EmposInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<EmposInfo> enforceProfessional = new StdEmposEnforceProfessional(option);
+		ActionStd<EmposInfo> enforceProfessional = new StdEmposEnforceProfessional(option);
 		ActionLazy<EmposInfo> insert = new LazyEmposRootInsert(option.conn, option.schemaName);
 		
 		enforceProfessional.addPostAction(insert);

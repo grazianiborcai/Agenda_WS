@@ -7,12 +7,12 @@ import br.com.mind5.business.scheduleRange.info.SchedageCopier;
 import br.com.mind5.business.scheduleRange.info.SchedageInfo;
 import br.com.mind5.business.scheduleRange.model.decisionTree.RootSchedageSelect;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class EmposCheckSchedage extends ModelCheckerTemplateActionV2<EmposInfo, SchedageInfo> {
+public final class EmposCheckSchedage extends ModelCheckerTemplateAction<EmposInfo, SchedageInfo> {
 	
 	public EmposCheckSchedage(ModelCheckerOption option) {
 		super(option, SchedageInfo.class);
@@ -20,8 +20,8 @@ public final class EmposCheckSchedage extends ModelCheckerTemplateActionV2<Empos
 	
 	
 	
-	@Override protected ActionStdV2<SchedageInfo> buildActionHook(DeciTreeOption<SchedageInfo> option) {
-		ActionStdV2<SchedageInfo> select = new RootSchedageSelect(option).toAction();
+	@Override protected ActionStd<SchedageInfo> buildActionHook(DeciTreeOption<SchedageInfo> option) {
+		ActionStd<SchedageInfo> select = new RootSchedageSelect(option).toAction();
 		return select;
 	}
 	

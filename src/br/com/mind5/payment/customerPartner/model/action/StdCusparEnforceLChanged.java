@@ -1,11 +1,11 @@
 package br.com.mind5.payment.customerPartner.model.action;
 
-import br.com.mind5.model.action.ActionStdTemplateV2;
-import br.com.mind5.model.action.ActionVisitorV2;
+import br.com.mind5.model.action.ActionStdTemplate;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
 
-public final class StdCusparEnforceLChanged extends ActionStdTemplateV2<CusparInfo> {
+public final class StdCusparEnforceLChanged extends ActionStdTemplate<CusparInfo> {
 
 	public StdCusparEnforceLChanged(DeciTreeOption<CusparInfo> option) {
 		super(option);
@@ -13,7 +13,7 @@ public final class StdCusparEnforceLChanged extends ActionStdTemplateV2<CusparIn
 	
 	
 	
-	protected ActionVisitorV2<CusparInfo> buildVisitorHook(DeciTreeOption<CusparInfo> option) {
+	protected ActionVisitor<CusparInfo> buildVisitorHook(DeciTreeOption<CusparInfo> option) {
 		return new VisiCusparEnforceLChanged(option);
 	}
 }

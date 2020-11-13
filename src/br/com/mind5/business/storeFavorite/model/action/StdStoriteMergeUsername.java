@@ -1,11 +1,11 @@
 package br.com.mind5.business.storeFavorite.model.action;
 
-import br.com.mind5.model.action.ActionStdTemplateV2;
-import br.com.mind5.model.action.ActionVisitorV2;
+import br.com.mind5.model.action.ActionStdTemplate;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.business.storeFavorite.info.StoriteInfo;
 
-public final class StdStoriteMergeUsername extends ActionStdTemplateV2<StoriteInfo> {
+public final class StdStoriteMergeUsername extends ActionStdTemplate<StoriteInfo> {
 
 	public StdStoriteMergeUsername(DeciTreeOption<StoriteInfo> option) {
 		super(option);
@@ -13,7 +13,7 @@ public final class StdStoriteMergeUsername extends ActionStdTemplateV2<StoriteIn
 	
 	
 	
-	protected ActionVisitorV2<StoriteInfo> buildVisitorHook(DeciTreeOption<StoriteInfo> option) {
+	protected ActionVisitor<StoriteInfo> buildVisitorHook(DeciTreeOption<StoriteInfo> option) {
 		return new VisiStoriteMergeUsername(option);
 	}
 }

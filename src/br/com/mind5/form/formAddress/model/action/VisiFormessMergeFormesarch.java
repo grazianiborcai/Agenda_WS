@@ -6,12 +6,12 @@ import br.com.mind5.form.formAddress.info.FormessInfo;
 import br.com.mind5.form.formAddress.info.FormessMerger;
 import br.com.mind5.form.formAddressSearch.info.FormesarchInfo;
 import br.com.mind5.form.formAddressSearch.model.decisionTree.RootFormesarchSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiFormessMergeFormesarch extends ActionVisitorTemplateMergeV2<FormessInfo, FormesarchInfo> {
+final class VisiFormessMergeFormesarch extends ActionVisitorTemplateMerge<FormessInfo, FormesarchInfo> {
 	
 	public VisiFormessMergeFormesarch(DeciTreeOption<FormessInfo> option) {
 		super(option, FormesarchInfo.class);
@@ -32,6 +32,6 @@ final class VisiFormessMergeFormesarch extends ActionVisitorTemplateMergeV2<Form
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
+		return super.DONT_MERGE_WHEN_EMPTY;
 	}
 }

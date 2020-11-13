@@ -4,19 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.security.userPassword.info.UpswdInfo;
 import br.com.mind5.security.userPassword.model.action.LazyUpswdRootAuth;
 import br.com.mind5.security.userPassword.model.action.StdUpswdMergeUsername;
 import br.com.mind5.security.userPassword.model.checker.UpswdCheckAuthUsername;
 import br.com.mind5.security.userPassword.model.checker.UpswdCheckUsername;
 
-public final class RootUpswdAuthUsername extends DeciTreeTemplateWriteV2<UpswdInfo> {
+public final class RootUpswdAuthUsername extends DeciTreeTemplateWrite<UpswdInfo> {
 	
 	public RootUpswdAuthUsername(DeciTreeOption<UpswdInfo> option) {
 		super(option);
@@ -24,9 +24,9 @@ public final class RootUpswdAuthUsername extends DeciTreeTemplateWriteV2<UpswdIn
 	
 	
 	
-	@Override protected ModelCheckerV1<UpswdInfo> buildCheckerHook(DeciTreeOption<UpswdInfo> option) {
-		List<ModelCheckerV1<UpswdInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<UpswdInfo> checker;
+	@Override protected ModelChecker<UpswdInfo> buildCheckerHook(DeciTreeOption<UpswdInfo> option) {
+		List<ModelChecker<UpswdInfo>> queue = new ArrayList<>();		
+		ModelChecker<UpswdInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -43,15 +43,15 @@ public final class RootUpswdAuthUsername extends DeciTreeTemplateWriteV2<UpswdIn
 		checker = new UpswdCheckUsername(checkerOption);
 		queue.add(checker);	
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<UpswdInfo>> buildActionsOnPassedHook(DeciTreeOption<UpswdInfo> option) {
-		List<ActionStdV2<UpswdInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<UpswdInfo>> buildActionsOnPassedHook(DeciTreeOption<UpswdInfo> option) {
+		List<ActionStd<UpswdInfo>> actions = new ArrayList<>();
 
-		ActionStdV2<UpswdInfo> mergeUsername = new StdUpswdMergeUsername(option);
+		ActionStd<UpswdInfo> mergeUsername = new StdUpswdMergeUsername(option);
 		ActionLazy<UpswdInfo> authenticate = new LazyUpswdRootAuth(option.conn, option.schemaName);		
 		
 		mergeUsername.addPostAction(authenticate);

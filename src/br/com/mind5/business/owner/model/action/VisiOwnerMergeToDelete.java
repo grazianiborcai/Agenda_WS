@@ -4,11 +4,11 @@ import java.util.List;
 
 import br.com.mind5.business.owner.info.OwnerInfo;
 import br.com.mind5.business.owner.info.OwnerMerger;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiOwnerMergeToDelete extends ActionVisitorTemplateMergeV2<OwnerInfo, OwnerInfo> {
+final class VisiOwnerMergeToDelete extends ActionVisitorTemplateMerge<OwnerInfo, OwnerInfo> {
 	
 	public VisiOwnerMergeToDelete(DeciTreeOption<OwnerInfo> option) {
 		super(option, OwnerInfo.class);
@@ -16,7 +16,7 @@ final class VisiOwnerMergeToDelete extends ActionVisitorTemplateMergeV2<OwnerInf
 	
 	
 	
-	@Override protected Class<? extends ActionStdV2<OwnerInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStd<OwnerInfo>> getActionClassHook() {
 		return StdOwnerDaoSelect.class;
 	}
 	

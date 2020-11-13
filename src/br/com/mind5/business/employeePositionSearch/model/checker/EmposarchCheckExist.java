@@ -3,12 +3,12 @@ package br.com.mind5.business.employeePositionSearch.model.checker;
 import br.com.mind5.business.employeePositionSearch.info.EmposarchInfo;
 import br.com.mind5.business.employeePositionSearch.model.decisionTree.RootEmposarchSelect;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class EmposarchCheckExist extends ModelCheckerTemplateActionV2<EmposarchInfo, EmposarchInfo> {
+public final class EmposarchCheckExist extends ModelCheckerTemplateAction<EmposarchInfo, EmposarchInfo> {
 	
 	public EmposarchCheckExist(ModelCheckerOption option) {
 		super(option, EmposarchInfo.class);
@@ -16,8 +16,8 @@ public final class EmposarchCheckExist extends ModelCheckerTemplateActionV2<Empo
 	
 	
 	
-	@Override protected ActionStdV2<EmposarchInfo> buildActionHook(DeciTreeOption<EmposarchInfo> option) {
-		ActionStdV2<EmposarchInfo> select = new RootEmposarchSelect(option).toAction();
+	@Override protected ActionStd<EmposarchInfo> buildActionHook(DeciTreeOption<EmposarchInfo> option) {
+		ActionStd<EmposarchInfo> select = new RootEmposarchSelect(option).toAction();
 		return select;
 	}
 	

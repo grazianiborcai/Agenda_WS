@@ -6,14 +6,14 @@ import java.util.List;
 import br.com.mind5.masterData.materialSubgroupSearch.info.MatubuparchInfo;
 import br.com.mind5.masterData.materialSubgroupSearch.model.action.StdMatubuparchDaoSelect;
 import br.com.mind5.masterData.materialSubgroupSearch.model.checker.MatubuparchCheckRead;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootMatubuparchSelect extends DeciTreeTemplateReadV1<MatubuparchInfo> {
+public final class RootMatubuparchSelect extends DeciTreeTemplateRead<MatubuparchInfo> {
 	
 	public RootMatubuparchSelect(DeciTreeOption<MatubuparchInfo> option) {
 		super(option);
@@ -21,9 +21,9 @@ public final class RootMatubuparchSelect extends DeciTreeTemplateReadV1<Matubupa
 	
 	
 	
-	@Override protected ModelCheckerV1<MatubuparchInfo> buildCheckerHook(DeciTreeOption<MatubuparchInfo> option) {
-		List<ModelCheckerV1<MatubuparchInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<MatubuparchInfo> checker;
+	@Override protected ModelChecker<MatubuparchInfo> buildCheckerHook(DeciTreeOption<MatubuparchInfo> option) {
+		List<ModelChecker<MatubuparchInfo>> queue = new ArrayList<>();		
+		ModelChecker<MatubuparchInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
 		checkerOption = new ModelCheckerOption();
@@ -33,15 +33,15 @@ public final class RootMatubuparchSelect extends DeciTreeTemplateReadV1<Matubupa
 		checker = new MatubuparchCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<MatubuparchInfo>> buildActionsOnPassedHook(DeciTreeOption<MatubuparchInfo> option) {
-		List<ActionStdV2<MatubuparchInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<MatubuparchInfo>> buildActionsOnPassedHook(DeciTreeOption<MatubuparchInfo> option) {
+		List<ActionStd<MatubuparchInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<MatubuparchInfo> select = new StdMatubuparchDaoSelect(option);
+		ActionStd<MatubuparchInfo> select = new StdMatubuparchDaoSelect(option);
 		
 		actions.add(select);
 		return actions;

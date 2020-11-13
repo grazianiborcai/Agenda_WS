@@ -6,14 +6,14 @@ import java.util.List;
 import br.com.mind5.config.sysOwnerConfig.info.SysonfigInfo;
 import br.com.mind5.config.sysOwnerConfig.model.action.StdSysonfigMergeToSelect;
 import br.com.mind5.config.sysOwnerConfig.model.checker.SysonfigCheckRead;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootSysonfigSelect extends DeciTreeTemplateReadV2<SysonfigInfo> {
+public final class RootSysonfigSelect extends DeciTreeTemplateRead<SysonfigInfo> {
 	
 	public RootSysonfigSelect(DeciTreeOption<SysonfigInfo> option) {
 		super(option);
@@ -21,9 +21,9 @@ public final class RootSysonfigSelect extends DeciTreeTemplateReadV2<SysonfigInf
 	
 	
 	
-	@Override protected ModelCheckerV1<SysonfigInfo> buildCheckerHook(DeciTreeOption<SysonfigInfo> option) {
-		List<ModelCheckerV1<SysonfigInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<SysonfigInfo> checker;	
+	@Override protected ModelChecker<SysonfigInfo> buildCheckerHook(DeciTreeOption<SysonfigInfo> option) {
+		List<ModelChecker<SysonfigInfo>> queue = new ArrayList<>();		
+		ModelChecker<SysonfigInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -33,15 +33,15 @@ public final class RootSysonfigSelect extends DeciTreeTemplateReadV2<SysonfigInf
 		checker = new SysonfigCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<SysonfigInfo>> buildActionsOnPassedHook(DeciTreeOption<SysonfigInfo> option) {
-		List<ActionStdV2<SysonfigInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<SysonfigInfo>> buildActionsOnPassedHook(DeciTreeOption<SysonfigInfo> option) {
+		List<ActionStd<SysonfigInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<SysonfigInfo> select = new StdSysonfigMergeToSelect(option);
+		ActionStd<SysonfigInfo> select = new StdSysonfigMergeToSelect(option);
 		
 		actions.add(select);
 		return actions;

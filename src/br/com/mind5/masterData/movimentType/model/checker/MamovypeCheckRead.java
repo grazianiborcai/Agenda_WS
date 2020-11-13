@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.masterData.movimentType.info.MamovypeInfo;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 
-public final class MamovypeCheckRead extends ModelCheckerTemplateSimpleV2<MamovypeInfo> {
+public final class MamovypeCheckRead extends ModelCheckerTemplateSimple<MamovypeInfo> {
 	
 	public MamovypeCheckRead(ModelCheckerOption option) {
 		super(option);

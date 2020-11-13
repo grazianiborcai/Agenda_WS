@@ -4,10 +4,10 @@ import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.masterData.country.info.CountryInfo;
 import br.com.mind5.masterData.country.model.checker.CountryCheckExist;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.model.checker.ModelChecker;
 
-public final class AddressCheckCountry extends ModelCheckerTemplateForwardV2<AddressInfo, CountryInfo> {
+public final class AddressCheckCountry extends ModelCheckerTemplateForward<AddressInfo, CountryInfo> {
 	
 	public AddressCheckCountry(ModelCheckerOption option) {
 		super(option);
@@ -15,7 +15,7 @@ public final class AddressCheckCountry extends ModelCheckerTemplateForwardV2<Add
 
 	
 
-	@Override protected ModelCheckerV1<CountryInfo> getCheckerHook(ModelCheckerOption option) {
+	@Override protected ModelChecker<CountryInfo> getCheckerHook(ModelCheckerOption option) {
 		return new CountryCheckExist(option);
 	}
 	

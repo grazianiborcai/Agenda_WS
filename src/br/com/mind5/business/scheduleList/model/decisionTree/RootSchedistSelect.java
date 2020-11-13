@@ -8,14 +8,14 @@ import br.com.mind5.business.scheduleList.model.action.StdSchedistMergeToSelect;
 import br.com.mind5.business.scheduleList.model.checker.SchedistCheckLangu;
 import br.com.mind5.business.scheduleList.model.checker.SchedistCheckOwner;
 import br.com.mind5.business.scheduleList.model.checker.SchedistCheckRead;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootSchedistSelect extends DeciTreeTemplateWriteV2<SchedistInfo> {
+public final class RootSchedistSelect extends DeciTreeTemplateWrite<SchedistInfo> {
 	
 	public RootSchedistSelect(DeciTreeOption<SchedistInfo> option) {
 		super(option);
@@ -23,9 +23,9 @@ public final class RootSchedistSelect extends DeciTreeTemplateWriteV2<SchedistIn
 	
 	
 	
-	@Override protected ModelCheckerV1<SchedistInfo> buildCheckerHook(DeciTreeOption<SchedistInfo> option) {
-		List<ModelCheckerV1<SchedistInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<SchedistInfo> checker;
+	@Override protected ModelChecker<SchedistInfo> buildCheckerHook(DeciTreeOption<SchedistInfo> option) {
+		List<ModelChecker<SchedistInfo>> queue = new ArrayList<>();		
+		ModelChecker<SchedistInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -49,15 +49,15 @@ public final class RootSchedistSelect extends DeciTreeTemplateWriteV2<SchedistIn
 		checker = new SchedistCheckOwner(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<SchedistInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedistInfo> option) {
-		List<ActionStdV2<SchedistInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<SchedistInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedistInfo> option) {
+		List<ActionStd<SchedistInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<SchedistInfo> select = new StdSchedistMergeToSelect(option);
+		ActionStd<SchedistInfo> select = new StdSchedistMergeToSelect(option);
 		
 		actions.add(select);
 		return actions;

@@ -4,13 +4,13 @@ import java.util.List;
 
 import br.com.mind5.masterData.authorizationGroupRole.info.AuthgroleInfo;
 import br.com.mind5.masterData.authorizationGroupRole.model.decisionTree.RootAuthgroleSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.user.info.UserInfo;
 import br.com.mind5.security.user.info.UserMerger;
 
-final class VisiUserMergeAuthgrole extends ActionVisitorTemplateMergeV2<UserInfo, AuthgroleInfo> {
+final class VisiUserMergeAuthgrole extends ActionVisitorTemplateMerge<UserInfo, AuthgroleInfo> {
 	
 	public VisiUserMergeAuthgrole(DeciTreeOption<UserInfo> option) {
 		super(option, AuthgroleInfo.class); 

@@ -3,17 +3,17 @@ package br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.info.PaymoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.model.action.StdPaymoipSuccess;
 import br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.model.checker.PaymoipCheckSysparData;
 
-public final class NodePaymoipSysparL2 extends DeciTreeTemplateWriteV2<PaymoipInfo> {
+public final class NodePaymoipSysparL2 extends DeciTreeTemplateWrite<PaymoipInfo> {
 	
 	public NodePaymoipSysparL2(DeciTreeOption<PaymoipInfo> option) {
 		super(option);
@@ -21,9 +21,9 @@ public final class NodePaymoipSysparL2 extends DeciTreeTemplateWriteV2<PaymoipIn
 	
 	
 	
-	@Override protected ModelCheckerV1<PaymoipInfo> buildCheckerHook(DeciTreeOption<PaymoipInfo> option) {	
-		List<ModelCheckerV1<PaymoipInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<PaymoipInfo> checker;
+	@Override protected ModelChecker<PaymoipInfo> buildCheckerHook(DeciTreeOption<PaymoipInfo> option) {	
+		List<ModelChecker<PaymoipInfo>> queue = new ArrayList<>();		
+		ModelChecker<PaymoipInfo> checker;
 		ModelCheckerOption checkerOption;
 
 		checkerOption = new ModelCheckerOption();
@@ -33,15 +33,15 @@ public final class NodePaymoipSysparL2 extends DeciTreeTemplateWriteV2<PaymoipIn
 		checker = new PaymoipCheckSysparData(checkerOption);
 		queue.add(checker);
 
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<PaymoipInfo>> buildActionsOnPassedHook(DeciTreeOption<PaymoipInfo> option) {
-		List<ActionStdV2<PaymoipInfo>> actions = new ArrayList<>();	
+	@Override protected List<ActionStd<PaymoipInfo>> buildActionsOnPassedHook(DeciTreeOption<PaymoipInfo> option) {
+		List<ActionStd<PaymoipInfo>> actions = new ArrayList<>();	
 		
-		ActionStdV2<PaymoipInfo> success = new StdPaymoipSuccess(option);
+		ActionStd<PaymoipInfo> success = new StdPaymoipSuccess(option);
 		
 		actions.add(success);		
 		return actions;

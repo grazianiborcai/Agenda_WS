@@ -4,10 +4,10 @@ import br.com.mind5.business.cartItem.info.CartemInfo;
 import br.com.mind5.business.employeePositionSearch.info.EmposarchInfo;
 import br.com.mind5.business.employeePositionSearch.model.checker.EmposarchCheckExist;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.model.checker.ModelChecker;
 
-public final class CartemCheckEmposarch extends ModelCheckerTemplateForwardV2<CartemInfo, EmposarchInfo> {
+public final class CartemCheckEmposarch extends ModelCheckerTemplateForward<CartemInfo, EmposarchInfo> {
 	
 	public CartemCheckEmposarch(ModelCheckerOption option) {
 		super(option);
@@ -15,7 +15,7 @@ public final class CartemCheckEmposarch extends ModelCheckerTemplateForwardV2<Ca
 
 
 	
-	@Override protected ModelCheckerV1<EmposarchInfo> getCheckerHook(ModelCheckerOption option) {
+	@Override protected ModelChecker<EmposarchInfo> getCheckerHook(ModelCheckerOption option) {
 		return new EmposarchCheckExist(option);
 	}
 	

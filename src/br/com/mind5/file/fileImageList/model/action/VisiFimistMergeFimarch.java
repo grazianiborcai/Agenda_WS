@@ -6,12 +6,12 @@ import br.com.mind5.file.fileImageList.info.FimistInfo;
 import br.com.mind5.file.fileImageList.info.FimistMerger;
 import br.com.mind5.file.fileImageSearch.info.FimarchInfo;
 import br.com.mind5.file.fileImageSearch.model.decisionTree.RootFimarchSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiFimistMergeFimarch extends ActionVisitorTemplateMergeV2<FimistInfo, FimarchInfo> {
+final class VisiFimistMergeFimarch extends ActionVisitorTemplateMerge<FimistInfo, FimarchInfo> {
 	
 	public VisiFimistMergeFimarch(DeciTreeOption<FimistInfo> option) {
 		super(option, FimarchInfo.class);
@@ -32,6 +32,6 @@ final class VisiFimistMergeFimarch extends ActionVisitorTemplateMergeV2<FimistIn
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
+		return super.DONT_MERGE_WHEN_EMPTY;
 	}
 }

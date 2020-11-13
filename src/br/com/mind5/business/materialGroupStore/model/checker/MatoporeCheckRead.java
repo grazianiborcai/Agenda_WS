@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.mind5.business.materialGroupStore.info.MatoporeInfo;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 
-public final class MatoporeCheckRead extends ModelCheckerTemplateSimpleV2<MatoporeInfo> {
+public final class MatoporeCheckRead extends ModelCheckerTemplateSimple<MatoporeInfo> {
 
 	public MatoporeCheckRead(ModelCheckerOption option) {
 		super(option);

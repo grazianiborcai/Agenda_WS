@@ -1,11 +1,11 @@
 package br.com.mind5.paymentPartner.partnerMoip.permissionMoip.model.action;
 
-import br.com.mind5.model.action.ActionStdTemplateV2;
-import br.com.mind5.model.action.ActionVisitorV2;
+import br.com.mind5.model.action.ActionStdTemplate;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.info.PeresmoipInfo;
 
-public final class StdPeresmoipDaoInsert extends ActionStdTemplateV2<PeresmoipInfo> {
+public final class StdPeresmoipDaoInsert extends ActionStdTemplate<PeresmoipInfo> {
 
 	public StdPeresmoipDaoInsert(DeciTreeOption<PeresmoipInfo> option) {
 		super(option);
@@ -13,7 +13,7 @@ public final class StdPeresmoipDaoInsert extends ActionStdTemplateV2<PeresmoipIn
 	
 	
 	
-	protected ActionVisitorV2<PeresmoipInfo> buildVisitorHook(DeciTreeOption<PeresmoipInfo> option) {
+	protected ActionVisitor<PeresmoipInfo> buildVisitorHook(DeciTreeOption<PeresmoipInfo> option) {
 		return new VisiPeresmoipDaoInsert(option);
 	}
 }

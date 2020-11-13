@@ -6,13 +6,13 @@ import br.com.mind5.business.addressSearch.info.AddarchCopier;
 import br.com.mind5.business.addressSearch.info.AddarchInfo;
 import br.com.mind5.business.addressSearch.model.decisionTree.RootAddarchSelect;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
 
-public final class CusparCheckAddarch extends ModelCheckerTemplateActionV2<CusparInfo, AddarchInfo> {	
+public final class CusparCheckAddarch extends ModelCheckerTemplateAction<CusparInfo, AddarchInfo> {	
 	
 	public CusparCheckAddarch(ModelCheckerOption option) {
 		super(option, AddarchInfo.class);
@@ -20,8 +20,8 @@ public final class CusparCheckAddarch extends ModelCheckerTemplateActionV2<Cuspa
 	
 	
 	
-	@Override protected ActionStdV2<AddarchInfo> buildActionHook(DeciTreeOption<AddarchInfo> option) {
-		ActionStdV2<AddarchInfo> select = new RootAddarchSelect(option).toAction();
+	@Override protected ActionStd<AddarchInfo> buildActionHook(DeciTreeOption<AddarchInfo> option) {
+		ActionStd<AddarchInfo> select = new RootAddarchSelect(option).toAction();
 		return select;
 	}
 	

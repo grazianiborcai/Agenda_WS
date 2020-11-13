@@ -4,10 +4,10 @@ import br.com.mind5.business.materialStock.info.MatockInfo;
 import br.com.mind5.masterData.movimentType.info.MamovypeInfo;
 import br.com.mind5.masterData.movimentType.model.checker.MamovypeCheckExist;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.model.checker.ModelChecker;
 
-public final class MatockCheckMamovype extends ModelCheckerTemplateForwardV2<MatockInfo, MamovypeInfo> {
+public final class MatockCheckMamovype extends ModelCheckerTemplateForward<MatockInfo, MamovypeInfo> {
 	
 	public MatockCheckMamovype(ModelCheckerOption option) {
 		super(option);
@@ -15,7 +15,7 @@ public final class MatockCheckMamovype extends ModelCheckerTemplateForwardV2<Mat
 
 
 	
-	@Override protected ModelCheckerV1<MamovypeInfo> getCheckerHook(ModelCheckerOption option) {
+	@Override protected ModelChecker<MamovypeInfo> getCheckerHook(ModelCheckerOption option) {
 		return new MamovypeCheckExist(option);
 	}
 	

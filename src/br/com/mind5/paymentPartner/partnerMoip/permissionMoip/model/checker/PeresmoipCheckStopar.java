@@ -1,13 +1,13 @@
 package br.com.mind5.paymentPartner.partnerMoip.permissionMoip.model.checker;
 
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.payment.storePartner.info.StoparInfo;
 import br.com.mind5.payment.storePartner.model.checker.StoparCheckExist;
 import br.com.mind5.paymentPartner.partnerMoip.permissionMoip.info.PeresmoipInfo;
 
-public final class PeresmoipCheckStopar extends ModelCheckerTemplateForwardV2<PeresmoipInfo, StoparInfo> {
+public final class PeresmoipCheckStopar extends ModelCheckerTemplateForward<PeresmoipInfo, StoparInfo> {
 	
 	public PeresmoipCheckStopar(ModelCheckerOption option) {
 		super(option);
@@ -15,7 +15,7 @@ public final class PeresmoipCheckStopar extends ModelCheckerTemplateForwardV2<Pe
 
 
 	
-	@Override protected ModelCheckerV1<StoparInfo> getCheckerHook(ModelCheckerOption option) {
+	@Override protected ModelChecker<StoparInfo> getCheckerHook(ModelCheckerOption option) {
 		return new StoparCheckExist(option);
 	}
 	

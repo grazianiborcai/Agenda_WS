@@ -2,13 +2,13 @@ package br.com.mind5.security.userPassword.model.action;
 
 import java.util.List;
 
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.userPassword.info.UpswdInfo;
 import br.com.mind5.security.userPassword.info.UpswdMerger;
 
-final class VisiUpswdMergeToAuth extends ActionVisitorTemplateMergeV2<UpswdInfo, UpswdInfo> {
+final class VisiUpswdMergeToAuth extends ActionVisitorTemplateMerge<UpswdInfo, UpswdInfo> {
 	
 	public VisiUpswdMergeToAuth(DeciTreeOption<UpswdInfo> option) {
 		super(option, UpswdInfo.class);
@@ -16,7 +16,7 @@ final class VisiUpswdMergeToAuth extends ActionVisitorTemplateMergeV2<UpswdInfo,
 	
 	
 	
-	@Override protected Class<? extends ActionStdV2<UpswdInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStd<UpswdInfo>> getActionClassHook() {
 		return StdUpswdDaoSelect.class;
 	}
 	

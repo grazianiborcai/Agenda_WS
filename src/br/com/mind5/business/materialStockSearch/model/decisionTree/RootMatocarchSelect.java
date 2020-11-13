@@ -8,15 +8,15 @@ import br.com.mind5.business.materialStockSearch.model.action.StdMatocarchMergeT
 import br.com.mind5.business.materialStockSearch.model.checker.MatocarchCheckLangu;
 import br.com.mind5.business.materialStockSearch.model.checker.MatocarchCheckOwner;
 import br.com.mind5.business.materialStockSearch.model.checker.MatocarchCheckRead;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
 
-public final class RootMatocarchSelect extends DeciTreeTemplateReadV2<MatocarchInfo> {
+public final class RootMatocarchSelect extends DeciTreeTemplateRead<MatocarchInfo> {
 	
 	public RootMatocarchSelect(DeciTreeOption<MatocarchInfo> option) {
 		super(option);
@@ -24,9 +24,9 @@ public final class RootMatocarchSelect extends DeciTreeTemplateReadV2<MatocarchI
 	
 	
 	
-	@Override protected ModelCheckerV1<MatocarchInfo> buildCheckerHook(DeciTreeOption<MatocarchInfo> option) {
-		List<ModelCheckerV1<MatocarchInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<MatocarchInfo> checker;
+	@Override protected ModelChecker<MatocarchInfo> buildCheckerHook(DeciTreeOption<MatocarchInfo> option) {
+		List<ModelChecker<MatocarchInfo>> queue = new ArrayList<>();		
+		ModelChecker<MatocarchInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -50,15 +50,15 @@ public final class RootMatocarchSelect extends DeciTreeTemplateReadV2<MatocarchI
 		checker = new MatocarchCheckOwner(checkerOption);
 		queue.add(checker);	
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<MatocarchInfo>> buildActionsOnPassedHook(DeciTreeOption<MatocarchInfo> option) {
-		List<ActionStdV2<MatocarchInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<MatocarchInfo>> buildActionsOnPassedHook(DeciTreeOption<MatocarchInfo> option) {
+		List<ActionStd<MatocarchInfo>> actions = new ArrayList<>();
 
-		ActionStdV2<MatocarchInfo> select = new StdMatocarchMergeToSelect(option);
+		ActionStd<MatocarchInfo> select = new StdMatocarchMergeToSelect(option);
 		
 		actions.add(select);
 		return actions;

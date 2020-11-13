@@ -4,10 +4,10 @@ import br.com.mind5.business.calendarCatalogue.info.CalgueInfo;
 import br.com.mind5.masterData.month.info.MonthInfo;
 import br.com.mind5.masterData.month.model.checker.MonthCheckExist;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.model.checker.ModelChecker;
 
-public final class CalgueCheckMonth extends ModelCheckerTemplateForwardV2<CalgueInfo, MonthInfo> {
+public final class CalgueCheckMonth extends ModelCheckerTemplateForward<CalgueInfo, MonthInfo> {
 	
 	public CalgueCheckMonth(ModelCheckerOption option) {
 		super(option);
@@ -15,7 +15,7 @@ public final class CalgueCheckMonth extends ModelCheckerTemplateForwardV2<Calgue
 
 
 	
-	@Override protected ModelCheckerV1<MonthInfo> getCheckerHook(ModelCheckerOption option) {
+	@Override protected ModelChecker<MonthInfo> getCheckerHook(ModelCheckerOption option) {
 		return new MonthCheckExist(option);
 	}
 	

@@ -1,11 +1,11 @@
 package br.com.mind5.business.scheduleMonthData.model.action;
 
 import br.com.mind5.business.scheduleMonthData.info.SchedonthatInfo;
-import br.com.mind5.model.action.ActionStdTemplateV2;
-import br.com.mind5.model.action.ActionVisitorV2;
+import br.com.mind5.model.action.ActionStdTemplate;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdSchedonthatEnforceWeekday extends ActionStdTemplateV2<SchedonthatInfo> {
+public final class StdSchedonthatEnforceWeekday extends ActionStdTemplate<SchedonthatInfo> {
 
 	public StdSchedonthatEnforceWeekday(DeciTreeOption<SchedonthatInfo> option) {
 		super(option);
@@ -13,7 +13,7 @@ public final class StdSchedonthatEnforceWeekday extends ActionStdTemplateV2<Sche
 	
 	
 	
-	protected ActionVisitorV2<SchedonthatInfo> buildVisitorHook(DeciTreeOption<SchedonthatInfo> option) {
+	protected ActionVisitor<SchedonthatInfo> buildVisitorHook(DeciTreeOption<SchedonthatInfo> option) {
 		return new VisiSchedonthatEnforceWeekday(option);
 	}
 }

@@ -4,14 +4,14 @@ import java.util.List;
 
 import br.com.mind5.business.owner.info.OwnerInfo;
 import br.com.mind5.business.owner.info.OwnerMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.user.info.UserCopier;
 import br.com.mind5.security.user.info.UserInfo;
 import br.com.mind5.security.user.model.decisionTree.RootUserSelect;
 
-final class VisiOwnerMergeUser extends ActionVisitorTemplateMergeV2<OwnerInfo, UserInfo> {
+final class VisiOwnerMergeUser extends ActionVisitorTemplateMerge<OwnerInfo, UserInfo> {
 	
 	public VisiOwnerMergeUser(DeciTreeOption<OwnerInfo> option) {
 		super(option, UserInfo.class);

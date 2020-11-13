@@ -4,18 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.paymentPartner.partnerMoip.customerMoip.info.CusmoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.customerMoip.model.action.LazyCusmoipEnforceSetup;
 import br.com.mind5.paymentPartner.partnerMoip.customerMoip.model.action.LazyCusmoipMergeSetupar;
 import br.com.mind5.paymentPartner.partnerMoip.customerMoip.model.action.StdCusmoipEnforcePaypar;
 
-public final class NodeCusmoipSetuparL1 extends DeciTreeTemplateWriteV2<CusmoipInfo> {
+public final class NodeCusmoipSetuparL1 extends DeciTreeTemplateWrite<CusmoipInfo> {
 	
 	public NodeCusmoipSetuparL1(DeciTreeOption<CusmoipInfo> option) {
 		super(option);
@@ -23,22 +23,22 @@ public final class NodeCusmoipSetuparL1 extends DeciTreeTemplateWriteV2<CusmoipI
 	
 	
 	
-	@Override protected ModelCheckerV1<CusmoipInfo> buildCheckerHook(DeciTreeOption<CusmoipInfo> option) {
-		List<ModelCheckerV1<CusmoipInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<CusmoipInfo> checker;	
+	@Override protected ModelChecker<CusmoipInfo> buildCheckerHook(DeciTreeOption<CusmoipInfo> option) {
+		List<ModelChecker<CusmoipInfo>> queue = new ArrayList<>();		
+		ModelChecker<CusmoipInfo> checker;	
 
 		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<CusmoipInfo>> buildActionsOnPassedHook(DeciTreeOption<CusmoipInfo> option) {
-		List<ActionStdV2<CusmoipInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<CusmoipInfo>> buildActionsOnPassedHook(DeciTreeOption<CusmoipInfo> option) {
+		List<ActionStd<CusmoipInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<CusmoipInfo> enforcePaypar = new StdCusmoipEnforcePaypar(option);
+		ActionStd<CusmoipInfo> enforcePaypar = new StdCusmoipEnforcePaypar(option);
 		ActionLazy<CusmoipInfo> mergeSetupar = new LazyCusmoipMergeSetupar(option.conn, option.schemaName);
 		ActionLazy<CusmoipInfo> enforceSetup = new LazyCusmoipEnforceSetup(option.conn, option.schemaName);
 		

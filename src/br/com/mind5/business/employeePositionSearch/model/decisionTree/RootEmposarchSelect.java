@@ -8,14 +8,14 @@ import br.com.mind5.business.employeePositionSearch.model.action.StdEmposarchMer
 import br.com.mind5.business.employeePositionSearch.model.checker.EmposarchCheckLangu;
 import br.com.mind5.business.employeePositionSearch.model.checker.EmposarchCheckOwner;
 import br.com.mind5.business.employeePositionSearch.model.checker.EmposarchCheckRead;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootEmposarchSelect extends DeciTreeTemplateReadV2<EmposarchInfo> {
+public final class RootEmposarchSelect extends DeciTreeTemplateRead<EmposarchInfo> {
 	
 	public RootEmposarchSelect(DeciTreeOption<EmposarchInfo> option) {
 		super(option);
@@ -23,9 +23,9 @@ public final class RootEmposarchSelect extends DeciTreeTemplateReadV2<EmposarchI
 	
 	
 	
-	@Override protected ModelCheckerV1<EmposarchInfo> buildCheckerHook(DeciTreeOption<EmposarchInfo> option) {
-		List<ModelCheckerV1<EmposarchInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<EmposarchInfo> checker;
+	@Override protected ModelChecker<EmposarchInfo> buildCheckerHook(DeciTreeOption<EmposarchInfo> option) {
+		List<ModelChecker<EmposarchInfo>> queue = new ArrayList<>();		
+		ModelChecker<EmposarchInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -49,15 +49,15 @@ public final class RootEmposarchSelect extends DeciTreeTemplateReadV2<EmposarchI
 		checker = new EmposarchCheckOwner(checkerOption);
 		queue.add(checker);	
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<EmposarchInfo>> buildActionsOnPassedHook(DeciTreeOption<EmposarchInfo> option) {
-		List<ActionStdV2<EmposarchInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<EmposarchInfo>> buildActionsOnPassedHook(DeciTreeOption<EmposarchInfo> option) {
+		List<ActionStd<EmposarchInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<EmposarchInfo> select = new StdEmposarchMergeToSelect(option);
+		ActionStd<EmposarchInfo> select = new StdEmposarchMergeToSelect(option);
 		
 		actions.add(select);
 		return actions;

@@ -7,11 +7,11 @@ import br.com.mind5.business.cartItem.info.CartemMerger;
 import br.com.mind5.business.materialList.info.MatlisCopier;
 import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.business.materialList.model.decisionTree.RootMatlisSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiCartemMergeMatlis extends ActionVisitorTemplateMergeV2<CartemInfo, MatlisInfo> {
+final class VisiCartemMergeMatlis extends ActionVisitorTemplateMerge<CartemInfo, MatlisInfo> {
 	
 	public VisiCartemMergeMatlis(DeciTreeOption<CartemInfo> option) {
 		super(option, MatlisInfo.class);

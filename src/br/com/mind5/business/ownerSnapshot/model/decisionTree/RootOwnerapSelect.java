@@ -7,14 +7,14 @@ import br.com.mind5.business.ownerSnapshot.info.OwnerapInfo;
 import br.com.mind5.business.ownerSnapshot.model.action.StdOwnerapMergeToSelect;
 import br.com.mind5.business.ownerSnapshot.model.checker.OwnerapCheckLangu;
 import br.com.mind5.business.ownerSnapshot.model.checker.OwnerapCheckRead;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootOwnerapSelect extends DeciTreeTemplateReadV2<OwnerapInfo> {
+public final class RootOwnerapSelect extends DeciTreeTemplateRead<OwnerapInfo> {
 
 	public RootOwnerapSelect(DeciTreeOption<OwnerapInfo> option) {
 		super(option);
@@ -22,9 +22,9 @@ public final class RootOwnerapSelect extends DeciTreeTemplateReadV2<OwnerapInfo>
 	
 	
 	
-	@Override protected ModelCheckerV1<OwnerapInfo> buildCheckerHook(DeciTreeOption<OwnerapInfo> option) {
-		List<ModelCheckerV1<OwnerapInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<OwnerapInfo> checker;
+	@Override protected ModelChecker<OwnerapInfo> buildCheckerHook(DeciTreeOption<OwnerapInfo> option) {
+		List<ModelChecker<OwnerapInfo>> queue = new ArrayList<>();		
+		ModelChecker<OwnerapInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -41,15 +41,15 @@ public final class RootOwnerapSelect extends DeciTreeTemplateReadV2<OwnerapInfo>
 		checker = new OwnerapCheckLangu(checkerOption);
 		queue.add(checker);	
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<OwnerapInfo>> buildActionsOnPassedHook(DeciTreeOption<OwnerapInfo> option) {
-		List<ActionStdV2<OwnerapInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<OwnerapInfo>> buildActionsOnPassedHook(DeciTreeOption<OwnerapInfo> option) {
+		List<ActionStd<OwnerapInfo>> actions = new ArrayList<>();
 
-		ActionStdV2<OwnerapInfo> select = new StdOwnerapMergeToSelect(option);
+		ActionStd<OwnerapInfo> select = new StdOwnerapMergeToSelect(option);
 		
 		actions.add(select);
 		return actions;

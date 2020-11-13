@@ -9,14 +9,14 @@ import br.com.mind5.business.calendarTimeStore.model.action.StdCalimoreEnforceFa
 import br.com.mind5.business.calendarTimeStore.model.action.StdCalimoreMergeStowotarch;
 import br.com.mind5.business.calendarTimeStore.model.checker.CalimoreCheckStowotarch;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodeCalimoreSelect extends DeciTreeTemplateWriteV2<CalimoreInfo> {
+public final class NodeCalimoreSelect extends DeciTreeTemplateWrite<CalimoreInfo> {
 	
 	public NodeCalimoreSelect(DeciTreeOption<CalimoreInfo> option) {
 		super(option);
@@ -24,9 +24,9 @@ public final class NodeCalimoreSelect extends DeciTreeTemplateWriteV2<CalimoreIn
 	
 	
 	
-	@Override protected ModelCheckerV1<CalimoreInfo> buildCheckerHook(DeciTreeOption<CalimoreInfo> option) {
-		List<ModelCheckerV1<CalimoreInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<CalimoreInfo> checker;	
+	@Override protected ModelChecker<CalimoreInfo> buildCheckerHook(DeciTreeOption<CalimoreInfo> option) {
+		List<ModelChecker<CalimoreInfo>> queue = new ArrayList<>();		
+		ModelChecker<CalimoreInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -36,15 +36,15 @@ public final class NodeCalimoreSelect extends DeciTreeTemplateWriteV2<CalimoreIn
 		checker = new CalimoreCheckStowotarch(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<CalimoreInfo>> buildActionsOnPassedHook(DeciTreeOption<CalimoreInfo> option) {
-		List<ActionStdV2<CalimoreInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<CalimoreInfo>> buildActionsOnPassedHook(DeciTreeOption<CalimoreInfo> option) {
+		List<ActionStd<CalimoreInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<CalimoreInfo> mergeStowotarch = new StdCalimoreMergeStowotarch(option);
+		ActionStd<CalimoreInfo> mergeStowotarch = new StdCalimoreMergeStowotarch(option);
 		ActionLazy<CalimoreInfo> mergeStolarg = new LazyCalimoreMergeStolarg(option.conn, option.schemaName);
 		
 		mergeStowotarch.addPostAction(mergeStolarg);
@@ -55,10 +55,10 @@ public final class NodeCalimoreSelect extends DeciTreeTemplateWriteV2<CalimoreIn
 	
 	
 	
-	@Override protected List<ActionStdV2<CalimoreInfo>> buildActionsOnFailedHook(DeciTreeOption<CalimoreInfo> option) {
-		List<ActionStdV2<CalimoreInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<CalimoreInfo>> buildActionsOnFailedHook(DeciTreeOption<CalimoreInfo> option) {
+		List<ActionStd<CalimoreInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<CalimoreInfo> enforceFallback = new StdCalimoreEnforceFallback(option);
+		ActionStd<CalimoreInfo> enforceFallback = new StdCalimoreEnforceFallback(option);
 		
 		actions.add(enforceFallback);
 		return actions;

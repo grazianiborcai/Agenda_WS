@@ -4,10 +4,10 @@ import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.business.phoneDefault.info.PhonaultInfo;
 import br.com.mind5.business.phoneDefault.model.checker.PhonaultCheckExist;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.model.checker.ModelChecker;
 
-public final class PhoneCheckPhonault extends ModelCheckerTemplateForwardV2<PhoneInfo, PhonaultInfo> {
+public final class PhoneCheckPhonault extends ModelCheckerTemplateForward<PhoneInfo, PhonaultInfo> {
 	
 	public PhoneCheckPhonault(ModelCheckerOption option) {
 		super(option);
@@ -15,7 +15,7 @@ public final class PhoneCheckPhonault extends ModelCheckerTemplateForwardV2<Phon
 
 
 	
-	@Override protected ModelCheckerV1<PhonaultInfo> getCheckerHook(ModelCheckerOption option) {
+	@Override protected ModelChecker<PhonaultInfo> getCheckerHook(ModelCheckerOption option) {
 		return new PhonaultCheckExist(option);
 	}
 	

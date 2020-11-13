@@ -5,12 +5,12 @@ import br.com.mind5.business.refundPolicyOwner.model.action.LazyRefupownDaoSelec
 import br.com.mind5.business.refundPolicyOwner.model.action.StdRefupownEnforceDel;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class RefupownCheckSoftDelete extends ModelCheckerTemplateActionV2<RefupownInfo, RefupownInfo> {
+public final class RefupownCheckSoftDelete extends ModelCheckerTemplateAction<RefupownInfo, RefupownInfo> {
 	
 	public RefupownCheckSoftDelete(ModelCheckerOption option) {
 		super(option, RefupownInfo.class);
@@ -18,8 +18,8 @@ public final class RefupownCheckSoftDelete extends ModelCheckerTemplateActionV2<
 	
 	
 	
-	@Override protected ActionStdV2<RefupownInfo> buildActionHook(DeciTreeOption<RefupownInfo> option) {
-		ActionStdV2<RefupownInfo> enforceDel = new StdRefupownEnforceDel(option);
+	@Override protected ActionStd<RefupownInfo> buildActionHook(DeciTreeOption<RefupownInfo> option) {
+		ActionStd<RefupownInfo> enforceDel = new StdRefupownEnforceDel(option);
 		ActionLazy<RefupownInfo> select = new LazyRefupownDaoSelect(option.conn, option.schemaName);
 		
 		enforceDel.addPostAction(select);

@@ -6,11 +6,11 @@ import br.com.mind5.business.personList.info.PersolisInfo;
 import br.com.mind5.business.personList.model.decisionTree.RootPersolisSelect;
 import br.com.mind5.business.storeSnapshot.info.StorapInfo;
 import br.com.mind5.business.storeSnapshot.info.StorapMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiStorapMergePersolis extends ActionVisitorTemplateMergeV2<StorapInfo, PersolisInfo> {
+final class VisiStorapMergePersolis extends ActionVisitorTemplateMerge<StorapInfo, PersolisInfo> {
 	
 	public VisiStorapMergePersolis(DeciTreeOption<StorapInfo> option) {
 		super(option, PersolisInfo.class);

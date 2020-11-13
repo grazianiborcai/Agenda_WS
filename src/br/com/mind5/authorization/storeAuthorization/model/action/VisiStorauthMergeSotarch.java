@@ -6,11 +6,11 @@ import br.com.mind5.authorization.storeAuthorization.info.StorauthInfo;
 import br.com.mind5.authorization.storeAuthorization.info.StorauthMerger;
 import br.com.mind5.business.storeSearch.info.SotarchInfo;
 import br.com.mind5.business.storeSearch.model.decisionTree.RootSotarchSelectUser;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiStorauthMergeSotarch extends ActionVisitorTemplateMergeV2<StorauthInfo, SotarchInfo> {
+final class VisiStorauthMergeSotarch extends ActionVisitorTemplateMerge<StorauthInfo, SotarchInfo> {
 	
 	public VisiStorauthMergeSotarch(DeciTreeOption<StorauthInfo> option) {
 		super(option, SotarchInfo.class);

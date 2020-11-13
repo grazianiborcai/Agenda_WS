@@ -4,10 +4,10 @@ import br.com.mind5.business.materialMovementSearch.info.MatmarchInfo;
 import br.com.mind5.business.owner.info.OwnerInfo;
 import br.com.mind5.business.owner.model.checker.OwnerCheckExist;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.model.checker.ModelChecker;
 
-public final class MatmarchCheckOwner extends ModelCheckerTemplateForwardV2<MatmarchInfo, OwnerInfo> {
+public final class MatmarchCheckOwner extends ModelCheckerTemplateForward<MatmarchInfo, OwnerInfo> {
 	
 	public MatmarchCheckOwner(ModelCheckerOption option) {
 		super(option);
@@ -15,7 +15,7 @@ public final class MatmarchCheckOwner extends ModelCheckerTemplateForwardV2<Matm
 
 
 	
-	@Override protected ModelCheckerV1<OwnerInfo> getCheckerHook(ModelCheckerOption option) {
+	@Override protected ModelChecker<OwnerInfo> getCheckerHook(ModelCheckerOption option) {
 		return new OwnerCheckExist(option);
 	}
 	

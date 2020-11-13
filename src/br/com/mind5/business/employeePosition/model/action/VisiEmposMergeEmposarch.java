@@ -6,11 +6,11 @@ import br.com.mind5.business.employeePosition.info.EmposInfo;
 import br.com.mind5.business.employeePosition.info.EmposMerger;
 import br.com.mind5.business.employeePositionSearch.info.EmposarchInfo;
 import br.com.mind5.business.employeePositionSearch.model.decisionTree.RootEmposarchSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiEmposMergeEmposarch extends ActionVisitorTemplateMergeV2<EmposInfo, EmposarchInfo> {
+final class VisiEmposMergeEmposarch extends ActionVisitorTemplateMerge<EmposInfo, EmposarchInfo> {
 	
 	public VisiEmposMergeEmposarch(DeciTreeOption<EmposInfo> option) {
 		super(option, EmposarchInfo.class);

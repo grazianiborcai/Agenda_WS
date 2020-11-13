@@ -7,12 +7,12 @@ import br.com.mind5.business.companySearch.info.ComparchCopier;
 import br.com.mind5.business.companySearch.info.ComparchInfo;
 import br.com.mind5.business.companySearch.model.decisionTree.RootComparchSelect;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class CompCheckCnpjExist extends ModelCheckerTemplateActionV2<CompInfo, ComparchInfo> {
+public final class CompCheckCnpjExist extends ModelCheckerTemplateAction<CompInfo, ComparchInfo> {
 	
 	public CompCheckCnpjExist(ModelCheckerOption option) {
 		super(option, ComparchInfo.class);
@@ -20,8 +20,8 @@ public final class CompCheckCnpjExist extends ModelCheckerTemplateActionV2<CompI
 	
 	
 	
-	@Override protected ActionStdV2<ComparchInfo> buildActionHook(DeciTreeOption<ComparchInfo> option) {
-		ActionStdV2<ComparchInfo> select = new RootComparchSelect(option).toAction();
+	@Override protected ActionStd<ComparchInfo> buildActionHook(DeciTreeOption<ComparchInfo> option) {
+		ActionStd<ComparchInfo> select = new RootComparchSelect(option).toAction();
 		return select;
 	}
 	

@@ -13,14 +13,14 @@ import br.com.mind5.business.store.model.checker.StoreCheckDelete;
 import br.com.mind5.business.store.model.checker.StoreCheckExist;
 import br.com.mind5.business.store.model.checker.StoreCheckLangu;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootStoreDelete extends DeciTreeTemplateWriteV2<StoreInfo> {	
+public final class RootStoreDelete extends DeciTreeTemplateWrite<StoreInfo> {	
 	
 	public RootStoreDelete(DeciTreeOption<StoreInfo> option) {
 		super(option);
@@ -28,9 +28,9 @@ public final class RootStoreDelete extends DeciTreeTemplateWriteV2<StoreInfo> {
 	
 	
 	
-	@Override protected ModelCheckerV1<StoreInfo> buildCheckerHook(DeciTreeOption<StoreInfo> option) {
-		List<ModelCheckerV1<StoreInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<StoreInfo> checker;
+	@Override protected ModelChecker<StoreInfo> buildCheckerHook(DeciTreeOption<StoreInfo> option) {
+		List<ModelChecker<StoreInfo>> queue = new ArrayList<>();		
+		ModelChecker<StoreInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -54,15 +54,15 @@ public final class RootStoreDelete extends DeciTreeTemplateWriteV2<StoreInfo> {
 		checker = new StoreCheckExist(checkerOption);
 		queue.add(checker);	
 		
-		 return new ModelCheckerHelperQueueV2<StoreInfo>(queue);
+		 return new ModelCheckerHelperQueue<StoreInfo>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<StoreInfo>> buildActionsOnPassedHook(DeciTreeOption<StoreInfo> option) {
-		List<ActionStdV2<StoreInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<StoreInfo>> buildActionsOnPassedHook(DeciTreeOption<StoreInfo> option) {
+		List<ActionStd<StoreInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<StoreInfo> mergeToDelete = new StdStoreMergeToDelete(option);
+		ActionStd<StoreInfo> mergeToDelete = new StdStoreMergeToDelete(option);
 		ActionLazy<StoreInfo> enforceLChanged = new LazyStoreEnforceLChanged(option.conn, option.schemaName);
 		ActionLazy<StoreInfo> enforceLChangedBy = new LazyStoreMergeUsername(option.conn, option.schemaName);
 		ActionLazy<StoreInfo> update = new LazyStoreDaoUpdate(option.conn, option.schemaName);

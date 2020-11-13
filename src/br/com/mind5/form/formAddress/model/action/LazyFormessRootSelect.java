@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.form.formAddress.info.FormessInfo;
 import br.com.mind5.form.formAddress.model.decisionTree.RootFormessSelect;
 import br.com.mind5.model.action.ActionLazyTemplate;
-import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -24,7 +24,7 @@ public final class LazyFormessRootSelect extends ActionLazyTemplate<FormessInfo,
 	
 	
 	
-	@Override protected ActionStdV2<FormessInfo> getInstanceOfActionHook(DeciTreeOption<FormessInfo> option) {
+	@Override protected ActionStd<FormessInfo> getInstanceOfActionHook(DeciTreeOption<FormessInfo> option) {
 		return new RootFormessSelect(option).toAction();
 	}
 	

@@ -4,12 +4,12 @@ import br.com.mind5.business.person.info.PersonInfo;
 import br.com.mind5.business.personSearch.info.PerarchInfo;
 import br.com.mind5.business.personSearch.model.decisionTree.RootPerarchSelectEmailPerson;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class PersonCheckEmailPerson extends ModelCheckerTemplateActionV2<PersonInfo, PerarchInfo> {
+public final class PersonCheckEmailPerson extends ModelCheckerTemplateAction<PersonInfo, PerarchInfo> {
 	
 	public PersonCheckEmailPerson(ModelCheckerOption option) {
 		super(option, PerarchInfo.class);
@@ -17,8 +17,8 @@ public final class PersonCheckEmailPerson extends ModelCheckerTemplateActionV2<P
 	
 	
 	
-	@Override protected ActionStdV2<PerarchInfo> buildActionHook(DeciTreeOption<PerarchInfo> option) {		
-		ActionStdV2<PerarchInfo> select = new RootPerarchSelectEmailPerson(option).toAction();		
+	@Override protected ActionStd<PerarchInfo> buildActionHook(DeciTreeOption<PerarchInfo> option) {		
+		ActionStd<PerarchInfo> select = new RootPerarchSelectEmailPerson(option).toAction();		
 		return select;
 	}
 	

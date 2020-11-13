@@ -3,12 +3,12 @@ package br.com.mind5.business.employeePosition.model.checker;
 import br.com.mind5.business.employeePosition.info.EmposInfo;
 import br.com.mind5.business.employeePosition.model.action.StdEmposDaoSelect;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class EmposCheckExist extends ModelCheckerTemplateActionV2<EmposInfo, EmposInfo> {
+public final class EmposCheckExist extends ModelCheckerTemplateAction<EmposInfo, EmposInfo> {
 	
 	public EmposCheckExist(ModelCheckerOption option) {
 		super(option, EmposInfo.class);
@@ -16,8 +16,8 @@ public final class EmposCheckExist extends ModelCheckerTemplateActionV2<EmposInf
 	
 	
 	
-	@Override protected ActionStdV2<EmposInfo> buildActionHook(DeciTreeOption<EmposInfo> option) {
-		ActionStdV2<EmposInfo> select = new StdEmposDaoSelect(option);
+	@Override protected ActionStd<EmposInfo> buildActionHook(DeciTreeOption<EmposInfo> option) {
+		ActionStd<EmposInfo> select = new StdEmposDaoSelect(option);
 		return select;
 	}
 	

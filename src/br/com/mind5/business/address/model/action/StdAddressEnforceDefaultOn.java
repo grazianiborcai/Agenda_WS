@@ -1,11 +1,11 @@
 package br.com.mind5.business.address.model.action;
 
 import br.com.mind5.business.address.info.AddressInfo;
-import br.com.mind5.model.action.ActionStdTemplateV2;
-import br.com.mind5.model.action.ActionVisitorV2;
+import br.com.mind5.model.action.ActionStdTemplate;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdAddressEnforceDefaultOn extends ActionStdTemplateV2<AddressInfo> {
+public final class StdAddressEnforceDefaultOn extends ActionStdTemplate<AddressInfo> {
 
 	public StdAddressEnforceDefaultOn(DeciTreeOption<AddressInfo> option) {
 		super(option);
@@ -13,7 +13,7 @@ public final class StdAddressEnforceDefaultOn extends ActionStdTemplateV2<Addres
 	
 	
 	
-	protected ActionVisitorV2<AddressInfo> buildVisitorHook(DeciTreeOption<AddressInfo> option) {
+	protected ActionVisitor<AddressInfo> buildVisitorHook(DeciTreeOption<AddressInfo> option) {
 		return new VisiAddressEnforceDefaultOn(option);
 	}
 }

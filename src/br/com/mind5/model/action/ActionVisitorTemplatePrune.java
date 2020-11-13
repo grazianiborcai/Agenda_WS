@@ -18,7 +18,7 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.common.DeciResultError;
 import br.com.mind5.model.decisionTree.common.DeciResultNotFound;
 
-public abstract class ActionVisitorTemplatePrune<T extends InfoRecord, S extends InfoRecord> implements ActionVisitorV2<T> {	
+public abstract class ActionVisitorTemplatePrune<T extends InfoRecord, S extends InfoRecord> implements ActionVisitor<T> {	
 	protected final boolean PRUNE_WHEN_EMPTY = true;
 	protected final boolean DONT_PRUNE_WHEN_EMPTY = false;
 	
@@ -95,7 +95,7 @@ public abstract class ActionVisitorTemplatePrune<T extends InfoRecord, S extends
 	
 	
 	private DeciResult<S> selectToPrune(DeciTreeOption<S> option) {
-		ActionStdV2<S> action = buildAction(option);
+		ActionStd<S> action = buildAction(option);
 		action.executeAction();
 		
 		DeciResult<S> actionResult = action.getDecisionResult();		
@@ -106,7 +106,7 @@ public abstract class ActionVisitorTemplatePrune<T extends InfoRecord, S extends
 	
 	
 	
-	private ActionStdV2<S> buildAction(DeciTreeOption<S> option) {
+	private ActionStd<S> buildAction(DeciTreeOption<S> option) {
 		if (hasTreeClass())
 			return buildActionTree(option);		
 		
@@ -119,11 +119,11 @@ public abstract class ActionVisitorTemplatePrune<T extends InfoRecord, S extends
 	
 	
 	
-	private ActionStdV2<S> buildActionTree(DeciTreeOption<S> option) {
+	private ActionStd<S> buildActionTree(DeciTreeOption<S> option) {
 		try {
 			Class<? extends DeciTree<S>> actionClass = getTreeClassHook();
 			Constructor<? extends DeciTree<S>> actionConstru = actionClass.getConstructor(new Class[]{DeciTreeOption.class});
-			return (ActionStdV2<S>) actionConstru.newInstance(option).toAction();
+			return (ActionStd<S>) actionConstru.newInstance(option).toAction();
 				
 			} catch (Exception e) {
 				logException(e);
@@ -133,11 +133,11 @@ public abstract class ActionVisitorTemplatePrune<T extends InfoRecord, S extends
 	
 	
 	
-	private ActionStdV2<S> buildActionStd(DeciTreeOption<S> option) {
+	private ActionStd<S> buildActionStd(DeciTreeOption<S> option) {
 		try {
-			Class<? extends ActionStdV2<S>> actionClass = getActionClassHook();
-			Constructor<? extends ActionStdV2<S>> actionConstru = actionClass.getConstructor(new Class[]{DeciTreeOption.class});
-			return (ActionStdV2<S>) actionConstru.newInstance(option);
+			Class<? extends ActionStd<S>> actionClass = getActionClassHook();
+			Constructor<? extends ActionStd<S>> actionConstru = actionClass.getConstructor(new Class[]{DeciTreeOption.class});
+			return (ActionStd<S>) actionConstru.newInstance(option);
 				
 			} catch (Exception e) {
 				logException(e);
@@ -172,7 +172,7 @@ public abstract class ActionVisitorTemplatePrune<T extends InfoRecord, S extends
 	
 	
 	
-	protected Class<? extends ActionStdV2<S>> getActionClassHook() {
+	protected Class<? extends ActionStd<S>> getActionClassHook() {
 		//Template method: default behavior
 		return null;
 	}
@@ -312,12 +312,12 @@ public abstract class ActionVisitorTemplatePrune<T extends InfoRecord, S extends
 	
 	
 	
-	private void closeAction(ActionStdV2<S> action) {
+	private void closeAction(ActionStd<S> action) {
 		if (action == null)
 			return;
 		
-		if (action instanceof ActionStdV2)
-			((ActionStdV2<S>) action).close();
+		if (action instanceof ActionStd)
+			((ActionStd<S>) action).close();
 	}
 	
 	

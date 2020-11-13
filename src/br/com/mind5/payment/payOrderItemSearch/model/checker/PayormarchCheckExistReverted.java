@@ -2,15 +2,15 @@ package br.com.mind5.payment.payOrderItemSearch.model.checker;
 
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.payOrderItemSearch.info.PayormarchInfo;
 import br.com.mind5.payment.payOrderItemSearch.model.action.LazyPayormarchRootSelect;
 import br.com.mind5.payment.payOrderItemSearch.model.action.StdPayormarchEnforceReverted;
 
-public final class PayormarchCheckExistReverted extends ModelCheckerTemplateActionV2<PayormarchInfo, PayormarchInfo> {
+public final class PayormarchCheckExistReverted extends ModelCheckerTemplateAction<PayormarchInfo, PayormarchInfo> {
 	
 	public PayormarchCheckExistReverted(ModelCheckerOption option) {
 		super(option, PayormarchInfo.class);
@@ -18,8 +18,8 @@ public final class PayormarchCheckExistReverted extends ModelCheckerTemplateActi
 	
 
 	
-	@Override protected ActionStdV2<PayormarchInfo> buildActionHook(DeciTreeOption<PayormarchInfo> option) {
-		ActionStdV2<PayormarchInfo> enforceReverted = new StdPayormarchEnforceReverted(option);
+	@Override protected ActionStd<PayormarchInfo> buildActionHook(DeciTreeOption<PayormarchInfo> option) {
+		ActionStd<PayormarchInfo> enforceReverted = new StdPayormarchEnforceReverted(option);
 		ActionLazy<PayormarchInfo> select = new LazyPayormarchRootSelect(option.conn, option.schemaName);
 		
 		enforceReverted.addPostAction(select);

@@ -1,13 +1,13 @@
 package br.com.mind5.payment.statusPayOrder.model.checker;
 
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.payment.payOrderSearch.info.PayordarchInfo;
 import br.com.mind5.payment.payOrderSearch.model.checker.PayordarchCheckExistAuth;
 import br.com.mind5.payment.statusPayOrder.info.PaytusInfo;
 
-public final class PaytusCheckPayordarch extends ModelCheckerTemplateForwardV2<PaytusInfo, PayordarchInfo> {
+public final class PaytusCheckPayordarch extends ModelCheckerTemplateForward<PaytusInfo, PayordarchInfo> {
 	
 	public PaytusCheckPayordarch(ModelCheckerOption option) {
 		super(option);
@@ -15,7 +15,7 @@ public final class PaytusCheckPayordarch extends ModelCheckerTemplateForwardV2<P
 
 
 	
-	@Override protected ModelCheckerV1<PayordarchInfo> getCheckerHook(ModelCheckerOption option) {
+	@Override protected ModelChecker<PayordarchInfo> getCheckerHook(ModelCheckerOption option) {
 		return new PayordarchCheckExistAuth(option);
 	}
 	

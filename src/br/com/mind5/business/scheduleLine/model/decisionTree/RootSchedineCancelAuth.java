@@ -8,14 +8,14 @@ import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckCancel;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckExist;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckLangu;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckOwner;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootSchedineCancelAuth extends DeciTreeTemplateWriteV2<SchedineInfo> {
+public final class RootSchedineCancelAuth extends DeciTreeTemplateWrite<SchedineInfo> {
 	
 	public RootSchedineCancelAuth(DeciTreeOption<SchedineInfo> option) {
 		super(option);
@@ -23,9 +23,9 @@ public final class RootSchedineCancelAuth extends DeciTreeTemplateWriteV2<Schedi
 	
 	
 	
-	@Override protected ModelCheckerV1<SchedineInfo> buildCheckerHook(DeciTreeOption<SchedineInfo> option) {
-		List<ModelCheckerV1<SchedineInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<SchedineInfo> checker;	
+	@Override protected ModelChecker<SchedineInfo> buildCheckerHook(DeciTreeOption<SchedineInfo> option) {
+		List<ModelChecker<SchedineInfo>> queue = new ArrayList<>();		
+		ModelChecker<SchedineInfo> checker;	
 		ModelCheckerOption checkerOption;
 
 		checkerOption = new ModelCheckerOption();
@@ -56,16 +56,16 @@ public final class RootSchedineCancelAuth extends DeciTreeTemplateWriteV2<Schedi
 		checker = new SchedineCheckExist(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<SchedineInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedineInfo> option) {
-		List<ActionStdV2<SchedineInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<SchedineInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedineInfo> option) {
+		List<ActionStd<SchedineInfo>> actions = new ArrayList<>();
 
-		ActionStdV2<SchedineInfo> auth = new NodeSchedineAuthCancel(option).toAction();
-		ActionStdV2<SchedineInfo> cancel = new RootSchedineCancel(option).toAction();
+		ActionStd<SchedineInfo> auth = new NodeSchedineAuthCancel(option).toAction();
+		ActionStd<SchedineInfo> cancel = new RootSchedineCancel(option).toAction();
 		
 		actions.add(auth);	
 		actions.add(cancel);

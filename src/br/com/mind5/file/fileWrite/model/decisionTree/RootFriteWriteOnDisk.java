@@ -6,14 +6,14 @@ import java.util.List;
 import br.com.mind5.file.fileWrite.info.FriteInfo;
 import br.com.mind5.file.fileWrite.model.action.StdFriteWriteOnDisk;
 import br.com.mind5.file.fileWrite.model.checker.FriteCheckWrite;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootFriteWriteOnDisk extends DeciTreeTemplateWriteV2<FriteInfo> {
+public final class RootFriteWriteOnDisk extends DeciTreeTemplateWrite<FriteInfo> {
 	
 	public RootFriteWriteOnDisk(DeciTreeOption<FriteInfo> option) {
 		super(option);
@@ -21,9 +21,9 @@ public final class RootFriteWriteOnDisk extends DeciTreeTemplateWriteV2<FriteInf
 	
 	
 	
-	@Override protected ModelCheckerV1<FriteInfo> buildCheckerHook(DeciTreeOption<FriteInfo> option) {
-		List<ModelCheckerV1<FriteInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<FriteInfo> checker;
+	@Override protected ModelChecker<FriteInfo> buildCheckerHook(DeciTreeOption<FriteInfo> option) {
+		List<ModelChecker<FriteInfo>> queue = new ArrayList<>();		
+		ModelChecker<FriteInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -33,15 +33,15 @@ public final class RootFriteWriteOnDisk extends DeciTreeTemplateWriteV2<FriteInf
 		checker = new FriteCheckWrite(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<FriteInfo>> buildActionsOnPassedHook(DeciTreeOption<FriteInfo> option) {
-		List<ActionStdV2<FriteInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStd<FriteInfo>> buildActionsOnPassedHook(DeciTreeOption<FriteInfo> option) {
+		List<ActionStd<FriteInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV2<FriteInfo> writeOnDisk = new StdFriteWriteOnDisk(option);	
+		ActionStd<FriteInfo> writeOnDisk = new StdFriteWriteOnDisk(option);	
 		
 		actions.add(writeOnDisk);		
 		return actions;

@@ -3,12 +3,12 @@ package br.com.mind5.business.cartItemSearch.model.checker;
 import br.com.mind5.business.cartItemSearch.info.CartemarchInfo;
 import br.com.mind5.business.cartItemSearch.model.decisionTree.RootCartemarchSelect;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class CartemarchCheckExist extends ModelCheckerTemplateActionV2<CartemarchInfo, CartemarchInfo> {
+public final class CartemarchCheckExist extends ModelCheckerTemplateAction<CartemarchInfo, CartemarchInfo> {
 	
 	public CartemarchCheckExist(ModelCheckerOption option) {
 		super(option, CartemarchInfo.class);
@@ -16,8 +16,8 @@ public final class CartemarchCheckExist extends ModelCheckerTemplateActionV2<Car
 	
 	
 	
-	@Override protected ActionStdV2<CartemarchInfo> buildActionHook(DeciTreeOption<CartemarchInfo> option) {
-		ActionStdV2<CartemarchInfo> select = new RootCartemarchSelect(option).toAction();
+	@Override protected ActionStd<CartemarchInfo> buildActionHook(DeciTreeOption<CartemarchInfo> option) {
+		ActionStd<CartemarchInfo> select = new RootCartemarchSelect(option).toAction();
 		return select;
 	}
 	

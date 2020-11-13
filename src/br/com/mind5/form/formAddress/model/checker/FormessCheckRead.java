@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.form.formAddress.info.FormessInfo;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 
-public final class FormessCheckRead extends ModelCheckerTemplateSimpleV2<FormessInfo> {
+public final class FormessCheckRead extends ModelCheckerTemplateSimple<FormessInfo> {
 
 	public FormessCheckRead(ModelCheckerOption option) {
 		super(option);

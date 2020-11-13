@@ -1,13 +1,13 @@
 package br.com.mind5.payment.customerPartner.model.checker;
 
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
 import br.com.mind5.security.user.info.UserInfo;
 import br.com.mind5.security.user.model.checker.UserCheckExist;
 
-public final class CusparCheckUser extends ModelCheckerTemplateForwardV2<CusparInfo, UserInfo> {
+public final class CusparCheckUser extends ModelCheckerTemplateForward<CusparInfo, UserInfo> {
 	
 	public CusparCheckUser(ModelCheckerOption option) {
 		super(option);
@@ -15,7 +15,7 @@ public final class CusparCheckUser extends ModelCheckerTemplateForwardV2<CusparI
 
 
 	
-	@Override protected ModelCheckerV1<UserInfo> getCheckerHook(ModelCheckerOption option) {
+	@Override protected ModelChecker<UserInfo> getCheckerHook(ModelCheckerOption option) {
 		return new UserCheckExist(option);
 	}
 	

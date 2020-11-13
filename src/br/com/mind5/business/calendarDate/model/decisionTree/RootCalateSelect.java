@@ -10,14 +10,14 @@ import br.com.mind5.business.calendarDate.model.action.LazyCalateMergeWeekday;
 import br.com.mind5.business.calendarDate.model.action.StdCalateMergeToSelect;
 import br.com.mind5.business.calendarDate.model.checker.CalateCheckRead;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootCalateSelect extends DeciTreeTemplateReadV2<CalateInfo> {
+public final class RootCalateSelect extends DeciTreeTemplateRead<CalateInfo> {
 	
 	public RootCalateSelect(DeciTreeOption<CalateInfo> option) {
 		super(option);
@@ -25,9 +25,9 @@ public final class RootCalateSelect extends DeciTreeTemplateReadV2<CalateInfo> {
 	
 	
 	
-	@Override protected ModelCheckerV1<CalateInfo> buildCheckerHook(DeciTreeOption<CalateInfo> option) {
-		List<ModelCheckerV1<CalateInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<CalateInfo> checker;
+	@Override protected ModelChecker<CalateInfo> buildCheckerHook(DeciTreeOption<CalateInfo> option) {
+		List<ModelChecker<CalateInfo>> queue = new ArrayList<>();		
+		ModelChecker<CalateInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
 		checkerOption = new ModelCheckerOption();
@@ -37,15 +37,15 @@ public final class RootCalateSelect extends DeciTreeTemplateReadV2<CalateInfo> {
 		checker = new CalateCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 
 		
 	
-	@Override protected List<ActionStdV2<CalateInfo>> buildActionsOnPassedHook(DeciTreeOption<CalateInfo> option) {
-		List<ActionStdV2<CalateInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<CalateInfo>> buildActionsOnPassedHook(DeciTreeOption<CalateInfo> option) {
+		List<ActionStd<CalateInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<CalateInfo> mergeToSelect = new StdCalateMergeToSelect(option);
+		ActionStd<CalateInfo> mergeToSelect = new StdCalateMergeToSelect(option);
 		ActionLazy<CalateInfo> mergeWeekday = new LazyCalateMergeWeekday(option.conn, option.schemaName);
 		ActionLazy<CalateInfo> mergeMonth = new LazyCalateMergeMonth(option.conn, option.schemaName);
 		ActionLazy<CalateInfo> mergeMooncal = new LazyCalateMergeMooncal(option.conn, option.schemaName);

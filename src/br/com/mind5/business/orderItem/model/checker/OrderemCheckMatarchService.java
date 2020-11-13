@@ -5,10 +5,10 @@ import br.com.mind5.business.materialSearch.info.MatarchInfo;
 import br.com.mind5.business.materialSearch.model.checker.MatarchCheckExistService;
 import br.com.mind5.business.orderItem.info.OrderemInfo;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.model.checker.ModelChecker;
 
-public final class OrderemCheckMatarchService extends ModelCheckerTemplateForwardV2<OrderemInfo, MatarchInfo> {
+public final class OrderemCheckMatarchService extends ModelCheckerTemplateForward<OrderemInfo, MatarchInfo> {
 	
 	public OrderemCheckMatarchService(ModelCheckerOption option) {
 		super(option);
@@ -16,7 +16,7 @@ public final class OrderemCheckMatarchService extends ModelCheckerTemplateForwar
 
 
 	
-	@Override protected ModelCheckerV1<MatarchInfo> getCheckerHook(ModelCheckerOption option) {
+	@Override protected ModelChecker<MatarchInfo> getCheckerHook(ModelCheckerOption option) {
 		return new MatarchCheckExistService(option);
 	}
 	

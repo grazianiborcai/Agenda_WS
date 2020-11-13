@@ -6,14 +6,14 @@ import java.util.List;
 import br.com.mind5.masterData.weekday.info.WeekdayInfo;
 import br.com.mind5.masterData.weekday.model.action.StdWeekdayDaoSelect;
 import br.com.mind5.masterData.weekday.model.checker.WeekdayCheckRead;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootWeekdaySelect extends DeciTreeTemplateReadV2<WeekdayInfo> {
+public final class RootWeekdaySelect extends DeciTreeTemplateRead<WeekdayInfo> {
 	
 	public RootWeekdaySelect(DeciTreeOption<WeekdayInfo> option) {
 		super(option);
@@ -21,9 +21,9 @@ public final class RootWeekdaySelect extends DeciTreeTemplateReadV2<WeekdayInfo>
 	
 	
 	
-	@Override protected ModelCheckerV1<WeekdayInfo> buildCheckerHook(DeciTreeOption<WeekdayInfo> option) {
-		List<ModelCheckerV1<WeekdayInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<WeekdayInfo> checker;
+	@Override protected ModelChecker<WeekdayInfo> buildCheckerHook(DeciTreeOption<WeekdayInfo> option) {
+		List<ModelChecker<WeekdayInfo>> queue = new ArrayList<>();		
+		ModelChecker<WeekdayInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
 		checkerOption = new ModelCheckerOption();
@@ -33,15 +33,15 @@ public final class RootWeekdaySelect extends DeciTreeTemplateReadV2<WeekdayInfo>
 		checker = new WeekdayCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 
 		
 	
-	@Override protected List<ActionStdV2<WeekdayInfo>> buildActionsOnPassedHook(DeciTreeOption<WeekdayInfo> option) {
-		List<ActionStdV2<WeekdayInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<WeekdayInfo>> buildActionsOnPassedHook(DeciTreeOption<WeekdayInfo> option) {
+		List<ActionStd<WeekdayInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<WeekdayInfo> select = new StdWeekdayDaoSelect(option);
+		ActionStd<WeekdayInfo> select = new StdWeekdayDaoSelect(option);
 		
 		actions.add(select);
 		return actions;

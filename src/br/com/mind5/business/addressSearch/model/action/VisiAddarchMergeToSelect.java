@@ -4,12 +4,11 @@ import java.util.List;
 
 import br.com.mind5.business.addressSearch.info.AddarchInfo;
 import br.com.mind5.business.addressSearch.info.AddarchMerger;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiAddarchMergeToSelect extends ActionVisitorTemplateMergeV2<AddarchInfo, AddarchInfo> {
+final class VisiAddarchMergeToSelect extends ActionVisitorTemplateMerge<AddarchInfo, AddarchInfo> {
 	
 	public VisiAddarchMergeToSelect(DeciTreeOption<AddarchInfo> option) {
 		super(option, AddarchInfo.class);
@@ -17,7 +16,7 @@ final class VisiAddarchMergeToSelect extends ActionVisitorTemplateMergeV2<Addarc
 	
 	
 	
-	@Override protected Class<? extends ActionStdV2<AddarchInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStd<AddarchInfo>> getActionClassHook() {
 		return StdAddarchDaoSelect.class;
 	}
 	
@@ -30,6 +29,6 @@ final class VisiAddarchMergeToSelect extends ActionVisitorTemplateMergeV2<Addarc
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
+		return super.DONT_MERGE_WHEN_EMPTY;
 	}
 }

@@ -4,12 +4,11 @@ import java.util.List;
 
 import br.com.mind5.business.cartItemSearch.info.CartemarchInfo;
 import br.com.mind5.business.cartItemSearch.info.CartemarchMerger;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiCartemarchMergeToSelect extends ActionVisitorTemplateMergeV2<CartemarchInfo, CartemarchInfo> {
+final class VisiCartemarchMergeToSelect extends ActionVisitorTemplateMerge<CartemarchInfo, CartemarchInfo> {
 	
 	public VisiCartemarchMergeToSelect(DeciTreeOption<CartemarchInfo> option) {
 		super(option, CartemarchInfo.class);
@@ -17,7 +16,7 @@ final class VisiCartemarchMergeToSelect extends ActionVisitorTemplateMergeV2<Car
 	
 	
 	
-	@Override protected Class<? extends ActionStdV2<CartemarchInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStd<CartemarchInfo>> getActionClassHook() {
 		return StdCartemarchDaoSelect.class;
 	}
 	
@@ -30,6 +29,6 @@ final class VisiCartemarchMergeToSelect extends ActionVisitorTemplateMergeV2<Car
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
+		return super.DONT_MERGE_WHEN_EMPTY;
 	}
 }

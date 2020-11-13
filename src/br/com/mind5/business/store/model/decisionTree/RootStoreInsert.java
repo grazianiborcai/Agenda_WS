@@ -20,14 +20,14 @@ import br.com.mind5.business.store.model.checker.StoreCheckOwner;
 import br.com.mind5.business.store.model.checker.StoreCheckTimezone;
 import br.com.mind5.business.store.model.checker.StoreCheckWrite;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootStoreInsert extends DeciTreeTemplateWriteV2<StoreInfo> {
+public final class RootStoreInsert extends DeciTreeTemplateWrite<StoreInfo> {
 	
 	public RootStoreInsert(DeciTreeOption<StoreInfo> option) {
 		super(option);
@@ -35,9 +35,9 @@ public final class RootStoreInsert extends DeciTreeTemplateWriteV2<StoreInfo> {
 	
 	
 	
-	@Override protected ModelCheckerV1<StoreInfo> buildCheckerHook(DeciTreeOption<StoreInfo> option) {
-		List<ModelCheckerV1<StoreInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<StoreInfo> checker;
+	@Override protected ModelChecker<StoreInfo> buildCheckerHook(DeciTreeOption<StoreInfo> option) {
+		List<ModelChecker<StoreInfo>> queue = new ArrayList<>();		
+		ModelChecker<StoreInfo> checker;
 		ModelCheckerOption checkerOption;		
 		
 		checkerOption = new ModelCheckerOption();
@@ -82,16 +82,16 @@ public final class RootStoreInsert extends DeciTreeTemplateWriteV2<StoreInfo> {
 		checker = new StoreCheckCurrency(checkerOption);
 		queue.add(checker);	
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<StoreInfo>> buildActionsOnPassedHook(DeciTreeOption<StoreInfo> option) {
-		List<ActionStdV2<StoreInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<StoreInfo>> buildActionsOnPassedHook(DeciTreeOption<StoreInfo> option) {
+		List<ActionStd<StoreInfo>> actions = new ArrayList<>();
 		//TODO: permitir que outro usuario seja associado ou inves de sempre criar um novo ?
 		//TODO: O que fazer se o CPF/e-mail ja tiver associado a um customer/owner/store manager ?
-		ActionStdV2<StoreInfo> insertStore = new NodeStoreInsert(option).toAction();
+		ActionStd<StoreInfo> insertStore = new NodeStoreInsert(option).toAction();
 		ActionLazy<StoreInfo> insertPerson = new LazyStoreNodeInsertPerson(option.conn, option.schemaName);	
 		ActionLazy<StoreInfo> insertComp = new LazyStoreNodeInsertComp(option.conn, option.schemaName);
 		ActionLazy<StoreInfo> insertUser = new LazyStoreUserInsert(option.conn, option.schemaName);

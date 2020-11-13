@@ -4,12 +4,12 @@ import java.util.List;
 
 import br.com.mind5.message.sysMessage.info.SymsgInfo;
 import br.com.mind5.message.sysMessage.info.SymsgMerger;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionStd;
+
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiSymsgMergeToSelect extends ActionVisitorTemplateMergeV2<SymsgInfo, SymsgInfo> {
+final class VisiSymsgMergeToSelect extends ActionVisitorTemplateMerge<SymsgInfo, SymsgInfo> {
 	
 	public VisiSymsgMergeToSelect(DeciTreeOption<SymsgInfo> option) {
 		super(option, SymsgInfo.class);
@@ -17,7 +17,7 @@ final class VisiSymsgMergeToSelect extends ActionVisitorTemplateMergeV2<SymsgInf
 	
 	
 	
-	@Override protected Class<? extends ActionStdV2<SymsgInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStd<SymsgInfo>> getActionClassHook() {
 		return StdSymsgDaoSelect.class;
 	}
 	
@@ -30,6 +30,6 @@ final class VisiSymsgMergeToSelect extends ActionVisitorTemplateMergeV2<SymsgInf
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
+		return super.MERGE_WHEN_EMPTY;
 	}
 }

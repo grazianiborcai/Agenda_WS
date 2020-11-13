@@ -6,14 +6,14 @@ import java.util.List;
 import br.com.mind5.masterData.areaPhone.info.AreaneInfo;
 import br.com.mind5.masterData.areaPhone.model.action.StdAreaneDaoSelect;
 import br.com.mind5.masterData.areaPhone.model.checker.AreaneCheckRead;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootAreaneSelect extends DeciTreeTemplateReadV2<AreaneInfo> {
+public final class RootAreaneSelect extends DeciTreeTemplateRead<AreaneInfo> {
 	
 	public RootAreaneSelect(DeciTreeOption<AreaneInfo> option) {
 		super(option);
@@ -21,9 +21,9 @@ public final class RootAreaneSelect extends DeciTreeTemplateReadV2<AreaneInfo> {
 	
 	
 	
-	@Override protected ModelCheckerV1<AreaneInfo> buildCheckerHook(DeciTreeOption<AreaneInfo> option) {
-		List<ModelCheckerV1<AreaneInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<AreaneInfo> checker;
+	@Override protected ModelChecker<AreaneInfo> buildCheckerHook(DeciTreeOption<AreaneInfo> option) {
+		List<ModelChecker<AreaneInfo>> queue = new ArrayList<>();		
+		ModelChecker<AreaneInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
 		checkerOption = new ModelCheckerOption();
@@ -33,15 +33,15 @@ public final class RootAreaneSelect extends DeciTreeTemplateReadV2<AreaneInfo> {
 		checker = new AreaneCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 
 		
 	
-	@Override protected List<ActionStdV2<AreaneInfo>> buildActionsOnPassedHook(DeciTreeOption<AreaneInfo> option) {
-		List<ActionStdV2<AreaneInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<AreaneInfo>> buildActionsOnPassedHook(DeciTreeOption<AreaneInfo> option) {
+		List<ActionStd<AreaneInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<AreaneInfo> select = new StdAreaneDaoSelect(option);
+		ActionStd<AreaneInfo> select = new StdAreaneDaoSelect(option);
 		
 		actions.add(select);
 		return actions;

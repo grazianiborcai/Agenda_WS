@@ -4,10 +4,10 @@ import br.com.mind5.authorization.storeAuthorization.info.StorauthInfo;
 import br.com.mind5.authorization.storeAuthorization.model.checker.StorauthCheckExist;
 import br.com.mind5.business.employeeLeaveDate.info.EmplateInfo;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.model.checker.ModelChecker;
 
-public final class EmplateCheckStorauth extends ModelCheckerTemplateForwardV2<EmplateInfo, StorauthInfo> {
+public final class EmplateCheckStorauth extends ModelCheckerTemplateForward<EmplateInfo, StorauthInfo> {
 	
 	public EmplateCheckStorauth(ModelCheckerOption option) {
 		super(option);
@@ -15,7 +15,7 @@ public final class EmplateCheckStorauth extends ModelCheckerTemplateForwardV2<Em
 
 
 	
-	@Override protected ModelCheckerV1<StorauthInfo> getCheckerHook(ModelCheckerOption option) {
+	@Override protected ModelChecker<StorauthInfo> getCheckerHook(ModelCheckerOption option) {
 		return new StorauthCheckExist(option);
 	}
 	

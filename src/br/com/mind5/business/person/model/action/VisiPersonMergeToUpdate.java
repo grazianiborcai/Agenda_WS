@@ -4,11 +4,11 @@ import java.util.List;
 
 import br.com.mind5.business.person.info.PersonInfo;
 import br.com.mind5.business.person.info.PersonMerger;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiPersonMergeToUpdate extends ActionVisitorTemplateMergeV2<PersonInfo, PersonInfo> {
+final class VisiPersonMergeToUpdate extends ActionVisitorTemplateMerge<PersonInfo, PersonInfo> {
 	
 	public VisiPersonMergeToUpdate(DeciTreeOption<PersonInfo> option) {
 		super(option, PersonInfo.class);
@@ -16,7 +16,7 @@ final class VisiPersonMergeToUpdate extends ActionVisitorTemplateMergeV2<PersonI
 	
 	
 	
-	@Override protected Class<? extends ActionStdV2<PersonInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStd<PersonInfo>> getActionClassHook() {
 		return StdPersonDaoSelect.class;
 	}
 	

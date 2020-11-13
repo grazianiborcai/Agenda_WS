@@ -10,14 +10,14 @@ import br.com.mind5.message.email.model.action.LazyEmailNodeSend;
 import br.com.mind5.message.email.model.action.StdEmailEnforceEmabody;
 import br.com.mind5.message.email.model.checker.EmailCheckUserOtp;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootEmailUserOtp extends DeciTreeTemplateWriteV2<EmailInfo> {
+public final class RootEmailUserOtp extends DeciTreeTemplateWrite<EmailInfo> {
 	
 	public RootEmailUserOtp(DeciTreeOption<EmailInfo> option) {
 		super(option);
@@ -25,9 +25,9 @@ public final class RootEmailUserOtp extends DeciTreeTemplateWriteV2<EmailInfo> {
 	
 	
 	
-	@Override protected ModelCheckerV1<EmailInfo> buildCheckerHook(DeciTreeOption<EmailInfo> option) {		
-		List<ModelCheckerV1<EmailInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<EmailInfo> checker;	
+	@Override protected ModelChecker<EmailInfo> buildCheckerHook(DeciTreeOption<EmailInfo> option) {		
+		List<ModelChecker<EmailInfo>> queue = new ArrayList<>();		
+		ModelChecker<EmailInfo> checker;	
 		ModelCheckerOption checkerOption;		
 		
 		checkerOption = new ModelCheckerOption();
@@ -37,15 +37,15 @@ public final class RootEmailUserOtp extends DeciTreeTemplateWriteV2<EmailInfo> {
 		checker = new EmailCheckUserOtp(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<EmailInfo>> buildActionsOnPassedHook(DeciTreeOption<EmailInfo> option) {
-		List<ActionStdV2<EmailInfo>> actions = new ArrayList<>();	
+	@Override protected List<ActionStd<EmailInfo>> buildActionsOnPassedHook(DeciTreeOption<EmailInfo> option) {
+		List<ActionStd<EmailInfo>> actions = new ArrayList<>();	
 		
-		ActionStdV2<EmailInfo> enforceEmabody = new StdEmailEnforceEmabody(option);
+		ActionStd<EmailInfo> enforceEmabody = new StdEmailEnforceEmabody(option);
 		ActionLazy<EmailInfo> enforceUserOtp = new LazyEmailEnforceUserOtp(option.conn, option.schemaName);
 		ActionLazy<EmailInfo> mergeEmabody = new LazyEmailMergeEmabody(option.conn, option.schemaName);
 		ActionLazy<EmailInfo> send = new LazyEmailNodeSend(option.conn, option.schemaName);

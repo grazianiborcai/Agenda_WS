@@ -5,10 +5,10 @@ import br.com.mind5.business.customerSearch.info.CusarchInfo;
 import br.com.mind5.business.customerSearch.model.checker.CusarchCheckExist;
 import br.com.mind5.business.order.info.OrderInfo;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.model.checker.ModelChecker;
 
-public final class OrderCheckCusarch extends ModelCheckerTemplateForwardV2<OrderInfo, CusarchInfo> {
+public final class OrderCheckCusarch extends ModelCheckerTemplateForward<OrderInfo, CusarchInfo> {
 	
 	public OrderCheckCusarch(ModelCheckerOption option) {
 		super(option);
@@ -16,7 +16,7 @@ public final class OrderCheckCusarch extends ModelCheckerTemplateForwardV2<Order
 
 
 	
-	@Override protected ModelCheckerV1<CusarchInfo> getCheckerHook(ModelCheckerOption option) {
+	@Override protected ModelChecker<CusarchInfo> getCheckerHook(ModelCheckerOption option) {
 		return new CusarchCheckExist(option);
 	}
 	

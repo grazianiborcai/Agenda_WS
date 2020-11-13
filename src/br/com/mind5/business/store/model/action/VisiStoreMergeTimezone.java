@@ -6,11 +6,11 @@ import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.business.store.info.StoreMerger;
 import br.com.mind5.masterData.timezone.info.TimezoneInfo;
 import br.com.mind5.masterData.timezone.model.decisionTree.RootTimezoneSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiStoreMergeTimezone extends ActionVisitorTemplateMergeV2<StoreInfo, TimezoneInfo> {
+final class VisiStoreMergeTimezone extends ActionVisitorTemplateMerge<StoreInfo, TimezoneInfo> {
 	
 	public VisiStoreMergeTimezone(DeciTreeOption<StoreInfo> option) {
 		super(option, TimezoneInfo.class);

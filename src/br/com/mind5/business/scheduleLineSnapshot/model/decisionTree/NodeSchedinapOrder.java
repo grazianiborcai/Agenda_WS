@@ -6,14 +6,14 @@ import java.util.List;
 import br.com.mind5.business.scheduleLineSnapshot.info.SchedinapInfo;
 import br.com.mind5.business.scheduleLineSnapshot.model.action.StdSchedinapSuccess;
 import br.com.mind5.business.scheduleLineSnapshot.model.checker.SchedinapCheckHasOrder;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodeSchedinapOrder extends DeciTreeTemplateWriteV2<SchedinapInfo> {
+public final class NodeSchedinapOrder extends DeciTreeTemplateWrite<SchedinapInfo> {
 	
 	public NodeSchedinapOrder(DeciTreeOption<SchedinapInfo> option) {
 		super(option);
@@ -21,9 +21,9 @@ public final class NodeSchedinapOrder extends DeciTreeTemplateWriteV2<SchedinapI
 	
 	
 	
-	@Override protected ModelCheckerV1<SchedinapInfo> buildCheckerHook(DeciTreeOption<SchedinapInfo> option) {
-		List<ModelCheckerV1<SchedinapInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<SchedinapInfo> checker;	
+	@Override protected ModelChecker<SchedinapInfo> buildCheckerHook(DeciTreeOption<SchedinapInfo> option) {
+		List<ModelChecker<SchedinapInfo>> queue = new ArrayList<>();		
+		ModelChecker<SchedinapInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -33,15 +33,15 @@ public final class NodeSchedinapOrder extends DeciTreeTemplateWriteV2<SchedinapI
 		checker = new SchedinapCheckHasOrder(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<SchedinapInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedinapInfo> option) {
-		List<ActionStdV2<SchedinapInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<SchedinapInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedinapInfo> option) {
+		List<ActionStd<SchedinapInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<SchedinapInfo> success = new StdSchedinapSuccess(option);
+		ActionStd<SchedinapInfo> success = new StdSchedinapSuccess(option);
 		
 		actions.add(success);
 		return actions;
@@ -49,10 +49,10 @@ public final class NodeSchedinapOrder extends DeciTreeTemplateWriteV2<SchedinapI
 	
 	
 	
-	@Override protected List<ActionStdV2<SchedinapInfo>> buildActionsOnFailedHook(DeciTreeOption<SchedinapInfo> option) {
-		List<ActionStdV2<SchedinapInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<SchedinapInfo>> buildActionsOnFailedHook(DeciTreeOption<SchedinapInfo> option) {
+		List<ActionStd<SchedinapInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<SchedinapInfo> success = new StdSchedinapSuccess(option);
+		ActionStd<SchedinapInfo> success = new StdSchedinapSuccess(option);
 		
 		actions.add(success);
 		return actions;

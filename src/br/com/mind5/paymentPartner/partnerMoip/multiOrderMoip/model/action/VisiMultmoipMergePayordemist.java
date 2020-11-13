@@ -2,7 +2,7 @@ package br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.model.action;
 
 import java.util.List;
 
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.payOrderItemList.info.PayordemistInfo;
@@ -10,7 +10,7 @@ import br.com.mind5.payment.payOrderItemList.model.decisionTree.RootPayordemistS
 import br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.info.MultmoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.multiOrderMoip.info.MultmoipMerger;
 
-final class VisiMultmoipMergePayordemist extends ActionVisitorTemplateMergeV2<MultmoipInfo, PayordemistInfo> {
+final class VisiMultmoipMergePayordemist extends ActionVisitorTemplateMerge<MultmoipInfo, PayordemistInfo> {
 	
 	public VisiMultmoipMergePayordemist(DeciTreeOption<MultmoipInfo> option) {
 		super(option, PayordemistInfo.class);

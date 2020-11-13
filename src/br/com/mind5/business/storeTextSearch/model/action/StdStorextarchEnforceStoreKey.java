@@ -1,11 +1,11 @@
 package br.com.mind5.business.storeTextSearch.model.action;
 
 import br.com.mind5.business.storeTextSearch.info.StorextarchInfo;
-import br.com.mind5.model.action.ActionStdTemplateV2;
-import br.com.mind5.model.action.ActionVisitorV2;
+import br.com.mind5.model.action.ActionStdTemplate;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdStorextarchEnforceStoreKey extends ActionStdTemplateV2<StorextarchInfo> {
+public final class StdStorextarchEnforceStoreKey extends ActionStdTemplate<StorextarchInfo> {
 
 	public StdStorextarchEnforceStoreKey(DeciTreeOption<StorextarchInfo> option) {
 		super(option);
@@ -13,7 +13,7 @@ public final class StdStorextarchEnforceStoreKey extends ActionStdTemplateV2<Sto
 	
 	
 	
-	protected ActionVisitorV2<StorextarchInfo> buildVisitorHook(DeciTreeOption<StorextarchInfo> option) {
+	protected ActionVisitor<StorextarchInfo> buildVisitorHook(DeciTreeOption<StorextarchInfo> option) {
 		return new VisiStorextarchEnforceStoreKey(option);
 	}
 }

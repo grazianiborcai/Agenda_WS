@@ -1,11 +1,11 @@
 package br.com.mind5.business.storeSnapshot.model.action;
 
 import br.com.mind5.business.storeSnapshot.info.StorapInfo;
-import br.com.mind5.model.action.ActionStdTemplateV2;
-import br.com.mind5.model.action.ActionVisitorV2;
+import br.com.mind5.model.action.ActionStdTemplate;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class StdStorapMergeCurrency extends ActionStdTemplateV2<StorapInfo> {
+final class StdStorapMergeCurrency extends ActionStdTemplate<StorapInfo> {
 
 	public StdStorapMergeCurrency(DeciTreeOption<StorapInfo> option) {
 		super(option);
@@ -13,7 +13,7 @@ final class StdStorapMergeCurrency extends ActionStdTemplateV2<StorapInfo> {
 	
 	
 	
-	protected ActionVisitorV2<StorapInfo> buildVisitorHook(DeciTreeOption<StorapInfo> option) {
+	protected ActionVisitor<StorapInfo> buildVisitorHook(DeciTreeOption<StorapInfo> option) {
 		return new VisiStorapMergeCurrency(option);
 	}
 }

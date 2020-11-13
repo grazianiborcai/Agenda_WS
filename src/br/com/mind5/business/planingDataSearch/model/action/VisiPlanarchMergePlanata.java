@@ -6,12 +6,12 @@ import br.com.mind5.business.planingData.info.PlanataInfo;
 import br.com.mind5.business.planingData.model.decisionTree.RootPlanataSelectNoReserve;
 import br.com.mind5.business.planingDataSearch.info.PlanarchInfo;
 import br.com.mind5.business.planingDataSearch.info.PlanarchMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiPlanarchMergePlanata extends ActionVisitorTemplateMergeV2<PlanarchInfo, PlanataInfo> {
+final class VisiPlanarchMergePlanata extends ActionVisitorTemplateMerge<PlanarchInfo, PlanataInfo> {
 	
 	public VisiPlanarchMergePlanata(DeciTreeOption<PlanarchInfo> option) {
 		super(option, PlanataInfo.class);
@@ -32,6 +32,6 @@ final class VisiPlanarchMergePlanata extends ActionVisitorTemplateMergeV2<Planar
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
+		return super.DONT_MERGE_WHEN_EMPTY;
 	}
 }

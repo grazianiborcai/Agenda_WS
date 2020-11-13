@@ -6,14 +6,14 @@ import java.util.List;
 import br.com.mind5.masterData.weekdaySearch.info.WeekdarchInfo;
 import br.com.mind5.masterData.weekdaySearch.model.action.StdWeekdarchDaoSelect;
 import br.com.mind5.masterData.weekdaySearch.model.checker.WeekdarchCheckRead;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootWeekdarchSelect extends DeciTreeTemplateReadV2<WeekdarchInfo> {
+public final class RootWeekdarchSelect extends DeciTreeTemplateRead<WeekdarchInfo> {
 	
 	public RootWeekdarchSelect(DeciTreeOption<WeekdarchInfo> option) {
 		super(option);
@@ -21,9 +21,9 @@ public final class RootWeekdarchSelect extends DeciTreeTemplateReadV2<WeekdarchI
 	
 	
 	
-	@Override protected ModelCheckerV1<WeekdarchInfo> buildCheckerHook(DeciTreeOption<WeekdarchInfo> option) {
-		List<ModelCheckerV1<WeekdarchInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<WeekdarchInfo> checker;
+	@Override protected ModelChecker<WeekdarchInfo> buildCheckerHook(DeciTreeOption<WeekdarchInfo> option) {
+		List<ModelChecker<WeekdarchInfo>> queue = new ArrayList<>();		
+		ModelChecker<WeekdarchInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
 		checkerOption = new ModelCheckerOption();
@@ -33,15 +33,15 @@ public final class RootWeekdarchSelect extends DeciTreeTemplateReadV2<WeekdarchI
 		checker = new WeekdarchCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 
 		
 	
-	@Override protected List<ActionStdV2<WeekdarchInfo>> buildActionsOnPassedHook(DeciTreeOption<WeekdarchInfo> option) {
-		List<ActionStdV2<WeekdarchInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<WeekdarchInfo>> buildActionsOnPassedHook(DeciTreeOption<WeekdarchInfo> option) {
+		List<ActionStd<WeekdarchInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<WeekdarchInfo> select = new StdWeekdarchDaoSelect(option);
+		ActionStd<WeekdarchInfo> select = new StdWeekdarchDaoSelect(option);
 		
 		actions.add(select);
 		return actions;

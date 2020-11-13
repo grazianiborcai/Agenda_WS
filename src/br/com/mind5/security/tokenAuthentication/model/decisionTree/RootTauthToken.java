@@ -4,19 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.security.tokenAuthentication.info.TauthInfo;
 import br.com.mind5.security.tokenAuthentication.model.action.LazyTauthMergeUsername;
 import br.com.mind5.security.tokenAuthentication.model.action.StdTauthMergeJwtoken;
 import br.com.mind5.security.tokenAuthentication.model.action.StdTauthValidateJwtoken;
 import br.com.mind5.security.tokenAuthentication.model.checker.TauthCheckRead;
 
-public final class RootTauthToken extends DeciTreeTemplateWriteV2<TauthInfo> {
+public final class RootTauthToken extends DeciTreeTemplateWrite<TauthInfo> {
 	
 	public RootTauthToken(DeciTreeOption<TauthInfo> option) {
 		super(option);
@@ -24,9 +24,9 @@ public final class RootTauthToken extends DeciTreeTemplateWriteV2<TauthInfo> {
 	
 	
 	
-	@Override protected ModelCheckerV1<TauthInfo> buildCheckerHook(DeciTreeOption<TauthInfo> option) {
-		List<ModelCheckerV1<TauthInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<TauthInfo> checker;	
+	@Override protected ModelChecker<TauthInfo> buildCheckerHook(DeciTreeOption<TauthInfo> option) {
+		List<ModelChecker<TauthInfo>> queue = new ArrayList<>();		
+		ModelChecker<TauthInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -36,16 +36,16 @@ public final class RootTauthToken extends DeciTreeTemplateWriteV2<TauthInfo> {
 		checker = new TauthCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<TauthInfo>> buildActionsOnPassedHook(DeciTreeOption<TauthInfo> option) {
-		List<ActionStdV2<TauthInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<TauthInfo>> buildActionsOnPassedHook(DeciTreeOption<TauthInfo> option) {
+		List<ActionStd<TauthInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<TauthInfo> validateJwtoken = new StdTauthValidateJwtoken(option);
-		ActionStdV2<TauthInfo> mergeJwtoken = new StdTauthMergeJwtoken(option);
+		ActionStd<TauthInfo> validateJwtoken = new StdTauthValidateJwtoken(option);
+		ActionStd<TauthInfo> mergeJwtoken = new StdTauthMergeJwtoken(option);
 		ActionLazy<TauthInfo> mergeUsername = new LazyTauthMergeUsername(option.conn, option.schemaName);
 		
 		mergeJwtoken.addPostAction(mergeUsername);

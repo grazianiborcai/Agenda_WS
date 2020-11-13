@@ -6,11 +6,11 @@ import br.com.mind5.masterData.countryLegal.info.CountralInfo;
 import br.com.mind5.masterData.countryLegal.info.CountralMerger;
 import br.com.mind5.masterData.countryLegalSearch.info.CountrarchInfo;
 import br.com.mind5.masterData.countryLegalSearch.model.decisionTree.RootCountrarchSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiCountralMergeCountrarch extends ActionVisitorTemplateMergeV2<CountralInfo, CountrarchInfo> {
+final class VisiCountralMergeCountrarch extends ActionVisitorTemplateMerge<CountralInfo, CountrarchInfo> {
 	
 	public VisiCountralMergeCountrarch(DeciTreeOption<CountralInfo> option) {
 		super(option, CountrarchInfo.class);

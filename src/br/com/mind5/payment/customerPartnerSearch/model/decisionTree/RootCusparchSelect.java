@@ -3,18 +3,18 @@ package br.com.mind5.payment.customerPartnerSearch.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 import br.com.mind5.payment.customerPartnerSearch.info.CusparchInfo;
 import br.com.mind5.payment.customerPartnerSearch.model.action.StdCusparchMergeToSelect;
 import br.com.mind5.payment.customerPartnerSearch.model.checker.CusparchCheckOwner;
 import br.com.mind5.payment.customerPartnerSearch.model.checker.CusparchCheckRead;
 
-public final class RootCusparchSelect extends DeciTreeTemplateReadV2<CusparchInfo> {
+public final class RootCusparchSelect extends DeciTreeTemplateRead<CusparchInfo> {
 	
 	public RootCusparchSelect(DeciTreeOption<CusparchInfo> option) {
 		super(option);
@@ -22,9 +22,9 @@ public final class RootCusparchSelect extends DeciTreeTemplateReadV2<CusparchInf
 	
 	
 	
-	@Override protected ModelCheckerV1<CusparchInfo> buildCheckerHook(DeciTreeOption<CusparchInfo> option) {
-		List<ModelCheckerV1<CusparchInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<CusparchInfo> checker;	
+	@Override protected ModelChecker<CusparchInfo> buildCheckerHook(DeciTreeOption<CusparchInfo> option) {
+		List<ModelChecker<CusparchInfo>> queue = new ArrayList<>();		
+		ModelChecker<CusparchInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -42,15 +42,15 @@ public final class RootCusparchSelect extends DeciTreeTemplateReadV2<CusparchInf
 		queue.add(checker);
 		
 
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<CusparchInfo>> buildActionsOnPassedHook(DeciTreeOption<CusparchInfo> option) {
-		List<ActionStdV2<CusparchInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStd<CusparchInfo>> buildActionsOnPassedHook(DeciTreeOption<CusparchInfo> option) {
+		List<ActionStd<CusparchInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV2<CusparchInfo> select = new StdCusparchMergeToSelect(option);
+		ActionStd<CusparchInfo> select = new StdCusparchMergeToSelect(option);
 		
 		actions.add(select);			
 		return actions;

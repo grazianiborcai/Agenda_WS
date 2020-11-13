@@ -3,12 +3,12 @@ package br.com.mind5.masterData.weekday.model.checker;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.masterData.weekday.info.WeekdayInfo;
 import br.com.mind5.masterData.weekday.model.action.StdWeekdayDaoSelect;
-import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class WeekdayCheckExist extends ModelCheckerTemplateActionV2<WeekdayInfo, WeekdayInfo> {
+public final class WeekdayCheckExist extends ModelCheckerTemplateAction<WeekdayInfo, WeekdayInfo> {
 	
 	public WeekdayCheckExist(ModelCheckerOption option) {
 		super(option, WeekdayInfo.class);
@@ -16,8 +16,8 @@ public final class WeekdayCheckExist extends ModelCheckerTemplateActionV2<Weekda
 	
 	
 	
-	@Override protected ActionStdV2<WeekdayInfo> buildActionHook(DeciTreeOption<WeekdayInfo> option) {
-		ActionStdV2<WeekdayInfo> select = new StdWeekdayDaoSelect(option);
+	@Override protected ActionStd<WeekdayInfo> buildActionHook(DeciTreeOption<WeekdayInfo> option) {
+		ActionStd<WeekdayInfo> select = new StdWeekdayDaoSelect(option);
 		return select;
 	}
 	

@@ -12,14 +12,14 @@ import br.com.mind5.message.emailScheduleConfirmation.model.action.LazyEmulonSen
 import br.com.mind5.message.emailScheduleConfirmation.model.action.StdEmulonMergeStolis;
 import br.com.mind5.message.emailScheduleConfirmation.model.checker.EmulonCheckSend;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootEmulonSend extends DeciTreeTemplateWriteV2<EmulonInfo> {
+public final class RootEmulonSend extends DeciTreeTemplateWrite<EmulonInfo> {
 	
 	public RootEmulonSend(DeciTreeOption<EmulonInfo> option) {
 		super(option);
@@ -27,9 +27,9 @@ public final class RootEmulonSend extends DeciTreeTemplateWriteV2<EmulonInfo> {
 	
 	
 	
-	@Override protected ModelCheckerV1<EmulonInfo> buildCheckerHook(DeciTreeOption<EmulonInfo> option) {		
-		List<ModelCheckerV1<EmulonInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<EmulonInfo> checker;	
+	@Override protected ModelChecker<EmulonInfo> buildCheckerHook(DeciTreeOption<EmulonInfo> option) {		
+		List<ModelChecker<EmulonInfo>> queue = new ArrayList<>();		
+		ModelChecker<EmulonInfo> checker;	
 		ModelCheckerOption checkerOption;		
 		
 		checkerOption = new ModelCheckerOption();
@@ -39,15 +39,15 @@ public final class RootEmulonSend extends DeciTreeTemplateWriteV2<EmulonInfo> {
 		checker = new EmulonCheckSend(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<EmulonInfo>> buildActionsOnPassedHook(DeciTreeOption<EmulonInfo> option) {
-		List<ActionStdV2<EmulonInfo>> actions = new ArrayList<>();	
+	@Override protected List<ActionStd<EmulonInfo>> buildActionsOnPassedHook(DeciTreeOption<EmulonInfo> option) {
+		List<ActionStd<EmulonInfo>> actions = new ArrayList<>();	
 		
-		ActionStdV2<EmulonInfo> mergeStolis = new StdEmulonMergeStolis(option);
+		ActionStd<EmulonInfo> mergeStolis = new StdEmulonMergeStolis(option);
 		ActionLazy<EmulonInfo> mergeCuslis = new LazyEmulonMergeCuslis(option.conn, option.schemaName);	
 		ActionLazy<EmulonInfo> mergeMatlis = new LazyEmulonMergeMatlis(option.conn, option.schemaName);	
 		ActionLazy<EmulonInfo> mergeEmplis = new LazyEmulonMergeEmplis(option.conn, option.schemaName);	

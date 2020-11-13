@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.masterData.materialSubgroupSearch.info.MatubuparchInfo;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 
-public final class MatubuparchCheckRead extends ModelCheckerTemplateSimpleV2<MatubuparchInfo> {
+public final class MatubuparchCheckRead extends ModelCheckerTemplateSimple<MatubuparchInfo> {
 
 	public MatubuparchCheckRead(ModelCheckerOption option) {
 		super(option);

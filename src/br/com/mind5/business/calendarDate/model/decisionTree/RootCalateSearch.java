@@ -7,14 +7,14 @@ import br.com.mind5.business.calendarDate.info.CalateInfo;
 import br.com.mind5.business.calendarDate.model.action.LazyCalateRootSelect;
 import br.com.mind5.business.calendarDate.model.action.StdCalateMergeCalatarch;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootCalateSearch extends DeciTreeTemplateReadV2<CalateInfo> {
+public final class RootCalateSearch extends DeciTreeTemplateRead<CalateInfo> {
 	
 	public RootCalateSearch(DeciTreeOption<CalateInfo> option) {
 		super(option);
@@ -22,22 +22,22 @@ public final class RootCalateSearch extends DeciTreeTemplateReadV2<CalateInfo> {
 	
 	
 	
-	@Override protected ModelCheckerV1<CalateInfo> buildCheckerHook(DeciTreeOption<CalateInfo> option) {
-		List<ModelCheckerV1<CalateInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<CalateInfo> checker;
+	@Override protected ModelChecker<CalateInfo> buildCheckerHook(DeciTreeOption<CalateInfo> option) {
+		List<ModelChecker<CalateInfo>> queue = new ArrayList<>();		
+		ModelChecker<CalateInfo> checker;
 
 		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 
 		
 	
-	@Override protected List<ActionStdV2<CalateInfo>> buildActionsOnPassedHook(DeciTreeOption<CalateInfo> option) {
-		List<ActionStdV2<CalateInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<CalateInfo>> buildActionsOnPassedHook(DeciTreeOption<CalateInfo> option) {
+		List<ActionStd<CalateInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<CalateInfo> mergeCalatarch = new StdCalateMergeCalatarch(option);
+		ActionStd<CalateInfo> mergeCalatarch = new StdCalateMergeCalatarch(option);
 		ActionLazy<CalateInfo> select = new LazyCalateRootSelect(option.conn, option.schemaName);
 		
 		mergeCalatarch.addPostAction(select);

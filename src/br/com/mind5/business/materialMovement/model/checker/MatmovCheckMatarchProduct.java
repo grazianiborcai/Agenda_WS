@@ -4,10 +4,10 @@ import br.com.mind5.business.materialMovement.info.MatmovInfo;
 import br.com.mind5.business.materialSearch.info.MatarchInfo;
 import br.com.mind5.business.materialSearch.model.checker.MatarchCheckExistProduct;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.model.checker.ModelChecker;
 
-public final class MatmovCheckMatarchProduct extends ModelCheckerTemplateForwardV2<MatmovInfo, MatarchInfo> {
+public final class MatmovCheckMatarchProduct extends ModelCheckerTemplateForward<MatmovInfo, MatarchInfo> {
 	
 	public MatmovCheckMatarchProduct(ModelCheckerOption option) {
 		super(option);
@@ -15,7 +15,7 @@ public final class MatmovCheckMatarchProduct extends ModelCheckerTemplateForward
 
 
 	
-	@Override protected ModelCheckerV1<MatarchInfo> getCheckerHook(ModelCheckerOption option) {
+	@Override protected ModelChecker<MatarchInfo> getCheckerHook(ModelCheckerOption option) {
 		return new MatarchCheckExistProduct(option);
 	}
 	

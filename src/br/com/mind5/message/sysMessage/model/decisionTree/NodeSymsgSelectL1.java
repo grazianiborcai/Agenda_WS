@@ -7,14 +7,14 @@ import br.com.mind5.message.sysMessage.info.SymsgInfo;
 import br.com.mind5.message.sysMessage.model.action.LazySymsgNodeSelectL2;
 import br.com.mind5.message.sysMessage.model.action.StdSymsgMergeToSelect;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodeSymsgSelectL1 extends DeciTreeTemplateWriteV2<SymsgInfo> {
+public final class NodeSymsgSelectL1 extends DeciTreeTemplateWrite<SymsgInfo> {
 	
 	public NodeSymsgSelectL1(DeciTreeOption<SymsgInfo> option) {
 		super(option);
@@ -22,22 +22,22 @@ public final class NodeSymsgSelectL1 extends DeciTreeTemplateWriteV2<SymsgInfo> 
 	
 	
 	
-	@Override protected ModelCheckerV1<SymsgInfo> buildCheckerHook(DeciTreeOption<SymsgInfo> option) {	
-		List<ModelCheckerV1<SymsgInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<SymsgInfo> checker;	
+	@Override protected ModelChecker<SymsgInfo> buildCheckerHook(DeciTreeOption<SymsgInfo> option) {	
+		List<ModelChecker<SymsgInfo>> queue = new ArrayList<>();		
+		ModelChecker<SymsgInfo> checker;	
 
 		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<SymsgInfo>> buildActionsOnPassedHook(DeciTreeOption<SymsgInfo> option) {
-		List<ActionStdV2<SymsgInfo>> actions = new ArrayList<>();	
+	@Override protected List<ActionStd<SymsgInfo>> buildActionsOnPassedHook(DeciTreeOption<SymsgInfo> option) {
+		List<ActionStd<SymsgInfo>> actions = new ArrayList<>();	
 		
-		ActionStdV2<SymsgInfo> mergeToSelect = new StdSymsgMergeToSelect(option);
+		ActionStd<SymsgInfo> mergeToSelect = new StdSymsgMergeToSelect(option);
 		ActionLazy<SymsgInfo> nodeL2 = new LazySymsgNodeSelectL2(option.conn, option.schemaName);
 		
 		mergeToSelect.addPostAction(nodeL2);

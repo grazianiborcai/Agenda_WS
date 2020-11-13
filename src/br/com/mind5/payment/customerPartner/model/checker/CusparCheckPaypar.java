@@ -3,11 +3,11 @@ package br.com.mind5.payment.customerPartner.model.checker;
 import br.com.mind5.masterData.paymentPartner.info.PayparInfo;
 import br.com.mind5.masterData.paymentPartner.model.checker.PayparCheckExist;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
 
-public final class CusparCheckPaypar extends ModelCheckerTemplateForwardV2<CusparInfo, PayparInfo> {
+public final class CusparCheckPaypar extends ModelCheckerTemplateForward<CusparInfo, PayparInfo> {
 	
 	public CusparCheckPaypar(ModelCheckerOption option) {
 		super(option);
@@ -15,7 +15,7 @@ public final class CusparCheckPaypar extends ModelCheckerTemplateForwardV2<Cuspa
 
 
 	
-	@Override protected ModelCheckerV1<PayparInfo> getCheckerHook(ModelCheckerOption option) {
+	@Override protected ModelChecker<PayparInfo> getCheckerHook(ModelCheckerOption option) {
 		return new PayparCheckExist(option);
 	}
 	

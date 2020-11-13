@@ -7,9 +7,9 @@ import br.com.mind5.business.calendarCatalogue.info.CalgueInfo;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 
-public final class CalgueCheckYearMonth extends ModelCheckerTemplateSimpleV2<CalgueInfo> {
+public final class CalgueCheckYearMonth extends ModelCheckerTemplateSimple<CalgueInfo> {
 
 	public CalgueCheckYearMonth(ModelCheckerOption option) {
 		super(option);

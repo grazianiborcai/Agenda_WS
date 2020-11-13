@@ -4,11 +4,11 @@ import java.util.List;
 
 import br.com.mind5.business.employeeLeaveDate.info.EmplateInfo;
 import br.com.mind5.business.employeeLeaveDate.info.EmplateMerger;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiEmplateMergeToUpdate extends ActionVisitorTemplateMergeV2<EmplateInfo, EmplateInfo> {
+final class VisiEmplateMergeToUpdate extends ActionVisitorTemplateMerge<EmplateInfo, EmplateInfo> {
 	
 	public VisiEmplateMergeToUpdate(DeciTreeOption<EmplateInfo> option) {
 		super(option, EmplateInfo.class);
@@ -16,7 +16,7 @@ final class VisiEmplateMergeToUpdate extends ActionVisitorTemplateMergeV2<Emplat
 	
 	
 	
-	@Override protected Class<? extends ActionStdV2<EmplateInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStd<EmplateInfo>> getActionClassHook() {
 		return StdEmplateDaoSelect.class;
 	}
 	

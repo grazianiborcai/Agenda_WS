@@ -6,11 +6,11 @@ import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.address.info.AddressMerger;
 import br.com.mind5.masterData.state.info.StateInfo;
 import br.com.mind5.masterData.state.model.decisionTree.RootStateSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiAddressMergeState extends ActionVisitorTemplateMergeV2<AddressInfo, StateInfo> {
+final class VisiAddressMergeState extends ActionVisitorTemplateMerge<AddressInfo, StateInfo> {
 	
 	public VisiAddressMergeState(DeciTreeOption<AddressInfo> option) {
 		super(option, StateInfo.class);

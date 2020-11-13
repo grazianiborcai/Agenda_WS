@@ -4,11 +4,11 @@ import java.util.List;
 
 import br.com.mind5.business.storeTextSnapshot.info.StorextsnapInfo;
 import br.com.mind5.business.storeTextSnapshot.info.StorextsnapMerger;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiStorextsnapMergeToSelect extends ActionVisitorTemplateMergeV2<StorextsnapInfo, StorextsnapInfo> {
+final class VisiStorextsnapMergeToSelect extends ActionVisitorTemplateMerge<StorextsnapInfo, StorextsnapInfo> {
 	
 	public VisiStorextsnapMergeToSelect(DeciTreeOption<StorextsnapInfo> option) {
 		super(option, StorextsnapInfo.class);
@@ -16,7 +16,7 @@ final class VisiStorextsnapMergeToSelect extends ActionVisitorTemplateMergeV2<St
 	
 	
 	
-	@Override protected Class<? extends ActionStdV2<StorextsnapInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStd<StorextsnapInfo>> getActionClassHook() {
 		return StdStorextsnapDaoSelect.class;
 	}
 	

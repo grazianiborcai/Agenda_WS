@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.customer.info.CusInfo;
 import br.com.mind5.model.action.ActionLazyTemplate;
-import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -23,7 +23,7 @@ public final class LazyCusPersonInsert extends ActionLazyTemplate<CusInfo, CusIn
 	
 	
 	
-	@Override protected ActionStdV2<CusInfo> getInstanceOfActionHook(DeciTreeOption<CusInfo> option) {
+	@Override protected ActionStd<CusInfo> getInstanceOfActionHook(DeciTreeOption<CusInfo> option) {
 		return new StdCusPersonInsert(option);
 	}
 	

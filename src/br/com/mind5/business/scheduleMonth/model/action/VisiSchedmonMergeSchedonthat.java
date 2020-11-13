@@ -7,11 +7,11 @@ import br.com.mind5.business.scheduleMonth.info.SchedmonMerger;
 import br.com.mind5.business.scheduleMonthData.info.SchedonthatCopier;
 import br.com.mind5.business.scheduleMonthData.info.SchedonthatInfo;
 import br.com.mind5.business.scheduleMonthData.model.decisionTree.RootSchedonthatSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiSchedmonMergeSchedonthat extends ActionVisitorTemplateMergeV2<SchedmonInfo, SchedonthatInfo> {
+final class VisiSchedmonMergeSchedonthat extends ActionVisitorTemplateMerge<SchedmonInfo, SchedonthatInfo> {
 	
 	public VisiSchedmonMergeSchedonthat(DeciTreeOption<SchedmonInfo> option) {
 		super(option, SchedonthatInfo.class);

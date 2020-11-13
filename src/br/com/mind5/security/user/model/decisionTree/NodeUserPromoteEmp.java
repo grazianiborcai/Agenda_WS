@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.security.user.info.UserInfo;
 import br.com.mind5.security.user.model.action.LazyUserEnforceAuthEmp;
 import br.com.mind5.security.user.model.action.LazyUserNodeSnapshot;
@@ -19,7 +19,7 @@ import br.com.mind5.security.user.model.action.StdUserEnforceCategEmp;
 import br.com.mind5.security.user.model.action.StdUserSuccess;
 import br.com.mind5.security.user.model.checker.UserCheckAuthCustomer;
 
-public final class NodeUserPromoteEmp extends DeciTreeTemplateWriteV2<UserInfo> {
+public final class NodeUserPromoteEmp extends DeciTreeTemplateWrite<UserInfo> {
 	
 	public NodeUserPromoteEmp(DeciTreeOption<UserInfo> option) {
 		super(option);
@@ -27,9 +27,9 @@ public final class NodeUserPromoteEmp extends DeciTreeTemplateWriteV2<UserInfo> 
 	
 	
 	
-	@Override protected ModelCheckerV1<UserInfo> buildCheckerHook(DeciTreeOption<UserInfo> option) {
-		List<ModelCheckerV1<UserInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<UserInfo> checker;
+	@Override protected ModelChecker<UserInfo> buildCheckerHook(DeciTreeOption<UserInfo> option) {
+		List<ModelChecker<UserInfo>> queue = new ArrayList<>();		
+		ModelChecker<UserInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
 		checkerOption = new ModelCheckerOption();
@@ -39,15 +39,15 @@ public final class NodeUserPromoteEmp extends DeciTreeTemplateWriteV2<UserInfo> 
 		checker = new UserCheckAuthCustomer(checkerOption);
 		queue.add(checker);	
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<UserInfo>> buildActionsOnPassedHook(DeciTreeOption<UserInfo> option) {
-		List<ActionStdV2<UserInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<UserInfo>> buildActionsOnPassedHook(DeciTreeOption<UserInfo> option) {
+		List<ActionStd<UserInfo>> actions = new ArrayList<>();
 
-		ActionStdV2<UserInfo> enforceCateg = new StdUserEnforceCategEmp(option);
+		ActionStd<UserInfo> enforceCateg = new StdUserEnforceCategEmp(option);
 		ActionLazy<UserInfo> enforceAuthGroup = new LazyUserEnforceAuthEmp(option.conn, option.schemaName);
 		ActionLazy<UserInfo> update = new LazyUserNodeUpdate(option.conn, option.schemaName);
 		ActionLazy<UserInfo> snapshot = new LazyUserNodeSnapshot(option.conn, option.schemaName);
@@ -64,10 +64,10 @@ public final class NodeUserPromoteEmp extends DeciTreeTemplateWriteV2<UserInfo> 
 	
 	
 	
-	@Override protected List<ActionStdV2<UserInfo>> buildActionsOnFailedHook(DeciTreeOption<UserInfo> option) {
-		List<ActionStdV2<UserInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<UserInfo>> buildActionsOnFailedHook(DeciTreeOption<UserInfo> option) {
+		List<ActionStd<UserInfo>> actions = new ArrayList<>();
 
-		ActionStdV2<UserInfo> success = new StdUserSuccess(option);
+		ActionStd<UserInfo> success = new StdUserSuccess(option);
 		
 		actions.add(success);	
 		return actions;

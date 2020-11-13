@@ -6,11 +6,11 @@ import br.com.mind5.business.order.info.OrderInfo;
 import br.com.mind5.business.order.info.OrderMerger;
 import br.com.mind5.masterData.currency.info.CurrencyInfo;
 import br.com.mind5.masterData.currency.model.decisionTree.RootCurrencySelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiOrderMergeCurrency extends ActionVisitorTemplateMergeV2<OrderInfo, CurrencyInfo> {
+final class VisiOrderMergeCurrency extends ActionVisitorTemplateMerge<OrderInfo, CurrencyInfo> {
 	
 	public VisiOrderMergeCurrency(DeciTreeOption<OrderInfo> option) { 
 		super(option, CurrencyInfo.class);

@@ -3,17 +3,17 @@ package br.com.mind5.payment.countryPartnerSearch.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 import br.com.mind5.payment.countryPartnerSearch.info.CounparchInfo;
 import br.com.mind5.payment.countryPartnerSearch.model.action.StdCounparchDaoSelect;
 import br.com.mind5.payment.countryPartnerSearch.model.checker.CounparchCheckRead;
 
-public final class RootCounparchSelect extends DeciTreeTemplateReadV2<CounparchInfo> {
+public final class RootCounparchSelect extends DeciTreeTemplateRead<CounparchInfo> {
 	
 	public RootCounparchSelect(DeciTreeOption<CounparchInfo> option) {
 		super(option);
@@ -21,9 +21,9 @@ public final class RootCounparchSelect extends DeciTreeTemplateReadV2<CounparchI
 	
 	
 	
-	@Override protected ModelCheckerV1<CounparchInfo> buildCheckerHook(DeciTreeOption<CounparchInfo> option) {
-		List<ModelCheckerV1<CounparchInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<CounparchInfo> checker;
+	@Override protected ModelChecker<CounparchInfo> buildCheckerHook(DeciTreeOption<CounparchInfo> option) {
+		List<ModelChecker<CounparchInfo>> queue = new ArrayList<>();		
+		ModelChecker<CounparchInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -33,15 +33,15 @@ public final class RootCounparchSelect extends DeciTreeTemplateReadV2<CounparchI
 		checker = new CounparchCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<CounparchInfo>> buildActionsOnPassedHook(DeciTreeOption<CounparchInfo> option) {
-		List<ActionStdV2<CounparchInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<CounparchInfo>> buildActionsOnPassedHook(DeciTreeOption<CounparchInfo> option) {
+		List<ActionStd<CounparchInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<CounparchInfo> select = new StdCounparchDaoSelect(option);
+		ActionStd<CounparchInfo> select = new StdCounparchDaoSelect(option);
 		
 		actions.add(select);
 		return actions;

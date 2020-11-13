@@ -1,11 +1,11 @@
 package br.com.mind5.masterData.timezone.model.action;
 
 import br.com.mind5.masterData.timezone.info.TimezoneInfo;
-import br.com.mind5.model.action.ActionStdTemplateV2;
-import br.com.mind5.model.action.ActionVisitorV2;
+import br.com.mind5.model.action.ActionStdTemplate;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdTimezoneDaoSelect extends ActionStdTemplateV2<TimezoneInfo> {
+public final class StdTimezoneDaoSelect extends ActionStdTemplate<TimezoneInfo> {
 
 	public StdTimezoneDaoSelect(DeciTreeOption<TimezoneInfo> option) {
 		super(option);
@@ -13,7 +13,7 @@ public final class StdTimezoneDaoSelect extends ActionStdTemplateV2<TimezoneInfo
 	
 	
 	
-	protected ActionVisitorV2<TimezoneInfo> buildVisitorHook(DeciTreeOption<TimezoneInfo> option) {
+	protected ActionVisitor<TimezoneInfo> buildVisitorHook(DeciTreeOption<TimezoneInfo> option) {
 		return new VisiTimezoneDaoSelect(option);
 	}
 }

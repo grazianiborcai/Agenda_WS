@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.message.email.info.EmailInfo;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 
-public final class EmailCheckPasswordChange extends ModelCheckerTemplateSimpleV2<EmailInfo> {
+public final class EmailCheckPasswordChange extends ModelCheckerTemplateSimple<EmailInfo> {
 
 	public EmailCheckPasswordChange(ModelCheckerOption option) {
 		super(option);

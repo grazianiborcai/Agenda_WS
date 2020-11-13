@@ -12,14 +12,14 @@ import br.com.mind5.business.storeNearby.model.checker.StorbyCheckLangu;
 import br.com.mind5.business.storeNearby.model.checker.StorbyCheckOwner;
 import br.com.mind5.business.storeNearby.model.checker.StorbyCheckReadName;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootStorbySelectName extends DeciTreeTemplateReadV2<StorbyInfo> {
+public final class RootStorbySelectName extends DeciTreeTemplateRead<StorbyInfo> {
 	
 	public RootStorbySelectName(DeciTreeOption<StorbyInfo> option) {
 		super(option);
@@ -27,9 +27,9 @@ public final class RootStorbySelectName extends DeciTreeTemplateReadV2<StorbyInf
 	
 	
 	
-	@Override protected ModelCheckerV1<StorbyInfo> buildCheckerHook(DeciTreeOption<StorbyInfo> option) {
-		List<ModelCheckerV1<StorbyInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<StorbyInfo> checker;	
+	@Override protected ModelChecker<StorbyInfo> buildCheckerHook(DeciTreeOption<StorbyInfo> option) {
+		List<ModelChecker<StorbyInfo>> queue = new ArrayList<>();		
+		ModelChecker<StorbyInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -53,15 +53,15 @@ public final class RootStorbySelectName extends DeciTreeTemplateReadV2<StorbyInf
 		checker = new StorbyCheckOwner(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<StorbyInfo>> buildActionsOnPassedHook(DeciTreeOption<StorbyInfo> option) {
-		List<ActionStdV2<StorbyInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStd<StorbyInfo>> buildActionsOnPassedHook(DeciTreeOption<StorbyInfo> option) {
+		List<ActionStd<StorbyInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV2<StorbyInfo> enforceNameKey = new StdStorbyEnforceNameKey(option);
+		ActionStd<StorbyInfo> enforceNameKey = new StdStorbyEnforceNameKey(option);
 		ActionLazy<StorbyInfo> enforceNameSearch = new LazyStorbyEnforceNameSearch(option.conn, option.schemaName);
 		ActionLazy<StorbyInfo> select = new LazyStorbyMergeToSelect(option.conn, option.schemaName);
 		ActionLazy<StorbyInfo> nodeMerge = new LazyStorbyNodeMerge(option.conn, option.schemaName);

@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.orderItem.info.OrderemInfo;
 import br.com.mind5.business.orderItem.model.decisionTree.NodeOrderemRefunding;
 import br.com.mind5.model.action.ActionLazyTemplate;
-import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -24,7 +24,7 @@ public final class LazyOrderemNodeRefunding extends ActionLazyTemplate<OrderemIn
 	
 	
 	
-	@Override protected ActionStdV2<OrderemInfo> getInstanceOfActionHook(DeciTreeOption<OrderemInfo> option) {
+	@Override protected ActionStd<OrderemInfo> getInstanceOfActionHook(DeciTreeOption<OrderemInfo> option) {
 		return new NodeOrderemRefunding(option).toAction();
 	}
 	

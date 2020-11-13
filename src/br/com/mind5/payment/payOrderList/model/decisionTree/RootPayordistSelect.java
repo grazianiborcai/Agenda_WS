@@ -3,19 +3,19 @@ package br.com.mind5.payment.payOrderList.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 import br.com.mind5.payment.payOrderList.info.PayordistInfo;
 import br.com.mind5.payment.payOrderList.model.action.StdPayordistMergeToSelect;
 import br.com.mind5.payment.payOrderList.model.checker.PayordistCheckLangu;
 import br.com.mind5.payment.payOrderList.model.checker.PayordistCheckOwner;
 import br.com.mind5.payment.payOrderList.model.checker.PayordistCheckRead;
 
-public final class RootPayordistSelect extends DeciTreeTemplateReadV2<PayordistInfo> {
+public final class RootPayordistSelect extends DeciTreeTemplateRead<PayordistInfo> {
 	
 	public RootPayordistSelect(DeciTreeOption<PayordistInfo> option) {
 		super(option);
@@ -23,9 +23,9 @@ public final class RootPayordistSelect extends DeciTreeTemplateReadV2<PayordistI
 	
 	
 	
-	@Override protected ModelCheckerV1<PayordistInfo> buildCheckerHook(DeciTreeOption<PayordistInfo> option) {
-		List<ModelCheckerV1<PayordistInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<PayordistInfo> checker;	
+	@Override protected ModelChecker<PayordistInfo> buildCheckerHook(DeciTreeOption<PayordistInfo> option) {
+		List<ModelChecker<PayordistInfo>> queue = new ArrayList<>();		
+		ModelChecker<PayordistInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -49,15 +49,15 @@ public final class RootPayordistSelect extends DeciTreeTemplateReadV2<PayordistI
 		checker = new PayordistCheckOwner(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<PayordistInfo>> buildActionsOnPassedHook(DeciTreeOption<PayordistInfo> option) {
-		List<ActionStdV2<PayordistInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStd<PayordistInfo>> buildActionsOnPassedHook(DeciTreeOption<PayordistInfo> option) {
+		List<ActionStd<PayordistInfo>> actions = new ArrayList<>();		
 
-		ActionStdV2<PayordistInfo> mergeToSelect = new StdPayordistMergeToSelect(option);
+		ActionStd<PayordistInfo> mergeToSelect = new StdPayordistMergeToSelect(option);
 		
 		actions.add(mergeToSelect);		
 		return actions;

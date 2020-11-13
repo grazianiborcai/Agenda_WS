@@ -3,12 +3,12 @@ package br.com.mind5.business.materialStoreSearch.model.checker;
 import br.com.mind5.business.materialStoreSearch.info.MatorarchInfo;
 import br.com.mind5.business.materialStoreSearch.model.decisionTree.RootMatorarchSelect;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class MatorarchCheckExist extends ModelCheckerTemplateActionV2<MatorarchInfo, MatorarchInfo> {
+public final class MatorarchCheckExist extends ModelCheckerTemplateAction<MatorarchInfo, MatorarchInfo> {
 	
 	public MatorarchCheckExist(ModelCheckerOption option) {
 		super(option, MatorarchInfo.class);
@@ -16,8 +16,8 @@ public final class MatorarchCheckExist extends ModelCheckerTemplateActionV2<Mato
 	
 	
 	
-	@Override protected ActionStdV2<MatorarchInfo> buildActionHook(DeciTreeOption<MatorarchInfo> option) {
-		ActionStdV2<MatorarchInfo> select = new RootMatorarchSelect(option).toAction();
+	@Override protected ActionStd<MatorarchInfo> buildActionHook(DeciTreeOption<MatorarchInfo> option) {
+		ActionStd<MatorarchInfo> select = new RootMatorarchSelect(option).toAction();
 		return select;
 	}
 	

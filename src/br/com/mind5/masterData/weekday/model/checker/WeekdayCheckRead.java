@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.masterData.weekday.info.WeekdayInfo;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 
-public final class WeekdayCheckRead extends ModelCheckerTemplateSimpleV2<WeekdayInfo> {
+public final class WeekdayCheckRead extends ModelCheckerTemplateSimple<WeekdayInfo> {
 	
 	public WeekdayCheckRead(ModelCheckerOption option) {
 		super(option);

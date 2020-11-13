@@ -4,10 +4,10 @@ import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.addressSearch.info.AddarchInfo;
 import br.com.mind5.business.addressSearch.model.checker.AddarchCheckExistStore;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.model.checker.ModelChecker;
 
-public final class AddressCheckExistStore extends ModelCheckerTemplateForwardV2<AddressInfo, AddarchInfo> {
+public final class AddressCheckExistStore extends ModelCheckerTemplateForward<AddressInfo, AddarchInfo> {
 	
 	public AddressCheckExistStore(ModelCheckerOption option) {
 		super(option);
@@ -15,7 +15,7 @@ public final class AddressCheckExistStore extends ModelCheckerTemplateForwardV2<
 
 	
 
-	@Override protected ModelCheckerV1<AddarchInfo> getCheckerHook(ModelCheckerOption option) {
+	@Override protected ModelChecker<AddarchInfo> getCheckerHook(ModelCheckerOption option) {
 		return new AddarchCheckExistStore(option);
 	}
 	

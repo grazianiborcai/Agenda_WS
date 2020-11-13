@@ -2,7 +2,7 @@ package br.com.mind5.payment.creditCard.model.action;
 
 import java.util.List;
 
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
@@ -11,7 +11,7 @@ import br.com.mind5.payment.customerPartnerSearch.info.CusparchCopier;
 import br.com.mind5.payment.customerPartnerSearch.info.CusparchInfo;
 import br.com.mind5.payment.customerPartnerSearch.model.decisionTree.RootCusparchSelect;
 
-final class VisiCrecardMergeCusparch extends ActionVisitorTemplateMergeV2<CrecardInfo, CusparchInfo> {
+final class VisiCrecardMergeCusparch extends ActionVisitorTemplateMerge<CrecardInfo, CusparchInfo> {
 	
 	public VisiCrecardMergeCusparch(DeciTreeOption<CrecardInfo> option) {
 		super(option, CusparchInfo.class); 

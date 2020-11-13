@@ -3,18 +3,18 @@ package br.com.mind5.security.userSnapshot.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.security.userSnapshot.info.UserapInfo;
 import br.com.mind5.security.userSnapshot.model.action.StdUserapMergePersolis;
 import br.com.mind5.security.userSnapshot.model.action.StdUserapSuccess;
 import br.com.mind5.security.userSnapshot.model.checker.UserapCheckHasPerson;
 
-public final class NodeUserapPerson extends DeciTreeTemplateWriteV2<UserapInfo> {
+public final class NodeUserapPerson extends DeciTreeTemplateWrite<UserapInfo> {
 	
 	public NodeUserapPerson(DeciTreeOption<UserapInfo> option) {
 		super(option);
@@ -22,9 +22,9 @@ public final class NodeUserapPerson extends DeciTreeTemplateWriteV2<UserapInfo> 
 	
 	
 	
-	@Override protected ModelCheckerV1<UserapInfo> buildCheckerHook(DeciTreeOption<UserapInfo> option) {
-		List<ModelCheckerV1<UserapInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<UserapInfo> checker;	
+	@Override protected ModelChecker<UserapInfo> buildCheckerHook(DeciTreeOption<UserapInfo> option) {
+		List<ModelChecker<UserapInfo>> queue = new ArrayList<>();		
+		ModelChecker<UserapInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -34,15 +34,15 @@ public final class NodeUserapPerson extends DeciTreeTemplateWriteV2<UserapInfo> 
 		checker = new UserapCheckHasPerson(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<UserapInfo>> buildActionsOnPassedHook(DeciTreeOption<UserapInfo> option) {
-		List<ActionStdV2<UserapInfo>> actions = new ArrayList<>();	
+	@Override protected List<ActionStd<UserapInfo>> buildActionsOnPassedHook(DeciTreeOption<UserapInfo> option) {
+		List<ActionStd<UserapInfo>> actions = new ArrayList<>();	
 		
-		ActionStdV2<UserapInfo> mergePersolis = new StdUserapMergePersolis(option);
+		ActionStd<UserapInfo> mergePersolis = new StdUserapMergePersolis(option);
 		
 		actions.add(mergePersolis);	
 		return actions;
@@ -50,10 +50,10 @@ public final class NodeUserapPerson extends DeciTreeTemplateWriteV2<UserapInfo> 
 	
 	
 	
-	@Override protected List<ActionStdV2<UserapInfo>> buildActionsOnFailedHook(DeciTreeOption<UserapInfo> option) {
-		List<ActionStdV2<UserapInfo>> actions = new ArrayList<>();	
+	@Override protected List<ActionStd<UserapInfo>> buildActionsOnFailedHook(DeciTreeOption<UserapInfo> option) {
+		List<ActionStd<UserapInfo>> actions = new ArrayList<>();	
 		
-		ActionStdV2<UserapInfo> success = new StdUserapSuccess(option);
+		ActionStd<UserapInfo> success = new StdUserapSuccess(option);
 		
 		actions.add(success);	
 		return actions;

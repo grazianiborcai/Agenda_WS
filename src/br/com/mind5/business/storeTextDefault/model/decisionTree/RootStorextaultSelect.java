@@ -8,14 +8,14 @@ import br.com.mind5.business.storeTextDefault.model.action.StdStorextaultMergeTo
 import br.com.mind5.business.storeTextDefault.model.checker.StorextaultCheckStore;
 import br.com.mind5.business.storeTextDefault.model.checker.StorextaultCheckOwner;
 import br.com.mind5.business.storeTextDefault.model.checker.StorextaultCheckRead;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootStorextaultSelect extends DeciTreeTemplateReadV2<StorextaultInfo> {
+public final class RootStorextaultSelect extends DeciTreeTemplateRead<StorextaultInfo> {
 	
 	public RootStorextaultSelect(DeciTreeOption<StorextaultInfo> option) {
 		super(option);
@@ -23,9 +23,9 @@ public final class RootStorextaultSelect extends DeciTreeTemplateReadV2<Storexta
 	
 	
 	
-	@Override protected ModelCheckerV1<StorextaultInfo> buildCheckerHook(DeciTreeOption<StorextaultInfo> option) {
-		List<ModelCheckerV1<StorextaultInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<StorextaultInfo> checker;
+	@Override protected ModelChecker<StorextaultInfo> buildCheckerHook(DeciTreeOption<StorextaultInfo> option) {
+		List<ModelChecker<StorextaultInfo>> queue = new ArrayList<>();		
+		ModelChecker<StorextaultInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -49,15 +49,15 @@ public final class RootStorextaultSelect extends DeciTreeTemplateReadV2<Storexta
 		checker = new StorextaultCheckStore(checkerOption);
 		queue.add(checker);	
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<StorextaultInfo>> buildActionsOnPassedHook(DeciTreeOption<StorextaultInfo> option) {
-		List<ActionStdV2<StorextaultInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<StorextaultInfo>> buildActionsOnPassedHook(DeciTreeOption<StorextaultInfo> option) {
+		List<ActionStd<StorextaultInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<StorextaultInfo> select = new StdStorextaultMergeToSelect(option);
+		ActionStd<StorextaultInfo> select = new StdStorextaultMergeToSelect(option);
 		
 		actions.add(select);
 		return actions;

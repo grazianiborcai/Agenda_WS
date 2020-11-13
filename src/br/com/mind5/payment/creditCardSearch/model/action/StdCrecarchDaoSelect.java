@@ -1,11 +1,11 @@
 package br.com.mind5.payment.creditCardSearch.model.action;
 
-import br.com.mind5.model.action.ActionStdTemplateV2;
-import br.com.mind5.model.action.ActionVisitorV2;
+import br.com.mind5.model.action.ActionStdTemplate;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.creditCardSearch.info.CrecarchInfo;
 
-public final class StdCrecarchDaoSelect extends ActionStdTemplateV2<CrecarchInfo> {
+public final class StdCrecarchDaoSelect extends ActionStdTemplate<CrecarchInfo> {
 
 	public StdCrecarchDaoSelect(DeciTreeOption<CrecarchInfo> option) {
 		super(option);
@@ -13,7 +13,7 @@ public final class StdCrecarchDaoSelect extends ActionStdTemplateV2<CrecarchInfo
 	
 	
 	
-	protected ActionVisitorV2<CrecarchInfo> buildVisitorHook(DeciTreeOption<CrecarchInfo> option) {
+	protected ActionVisitor<CrecarchInfo> buildVisitorHook(DeciTreeOption<CrecarchInfo> option) {
 		return new VisiCrecarchDaoSelect(option);
 	}
 }

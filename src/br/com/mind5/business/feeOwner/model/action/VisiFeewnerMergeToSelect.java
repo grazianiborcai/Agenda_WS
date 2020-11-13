@@ -4,11 +4,11 @@ import java.util.List;
 
 import br.com.mind5.business.feeOwner.info.FeewnerInfo;
 import br.com.mind5.business.feeOwner.info.FeewnerMerger;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiFeewnerMergeToSelect extends ActionVisitorTemplateMergeV2<FeewnerInfo, FeewnerInfo> {
+final class VisiFeewnerMergeToSelect extends ActionVisitorTemplateMerge<FeewnerInfo, FeewnerInfo> {
 
 	public VisiFeewnerMergeToSelect(DeciTreeOption<FeewnerInfo> option) {
 		super(option, FeewnerInfo.class);
@@ -16,7 +16,7 @@ final class VisiFeewnerMergeToSelect extends ActionVisitorTemplateMergeV2<Feewne
 	
 	
 	
-	@Override protected Class<? extends ActionStdV2<FeewnerInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStd<FeewnerInfo>> getActionClassHook() {
 		return StdFeewnerDaoSelect.class;
 	}
 	

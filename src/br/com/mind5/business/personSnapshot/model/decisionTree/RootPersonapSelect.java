@@ -9,14 +9,14 @@ import br.com.mind5.business.personSnapshot.model.action.StdPersonapMergeToSelec
 import br.com.mind5.business.personSnapshot.model.checker.PersonapCheckOwner;
 import br.com.mind5.business.personSnapshot.model.checker.PersonapCheckRead;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootPersonapSelect extends DeciTreeTemplateReadV2<PersonapInfo> {
+public final class RootPersonapSelect extends DeciTreeTemplateRead<PersonapInfo> {
 	
 	public RootPersonapSelect(DeciTreeOption<PersonapInfo> option) {
 		super(option);
@@ -24,9 +24,9 @@ public final class RootPersonapSelect extends DeciTreeTemplateReadV2<PersonapInf
 	
 	
 	
-	@Override protected ModelCheckerV1<PersonapInfo> buildCheckerHook(DeciTreeOption<PersonapInfo> option) {
-		List<ModelCheckerV1<PersonapInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<PersonapInfo> checker;
+	@Override protected ModelChecker<PersonapInfo> buildCheckerHook(DeciTreeOption<PersonapInfo> option) {
+		List<ModelChecker<PersonapInfo>> queue = new ArrayList<>();		
+		ModelChecker<PersonapInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -43,15 +43,15 @@ public final class RootPersonapSelect extends DeciTreeTemplateReadV2<PersonapInf
 		checker = new PersonapCheckOwner(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<PersonapInfo>> buildActionsOnPassedHook(DeciTreeOption<PersonapInfo> option) {
-		List<ActionStdV2<PersonapInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<PersonapInfo>> buildActionsOnPassedHook(DeciTreeOption<PersonapInfo> option) {
+		List<ActionStd<PersonapInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<PersonapInfo> select = new StdPersonapMergeToSelect(option);		
+		ActionStd<PersonapInfo> select = new StdPersonapMergeToSelect(option);		
 		ActionLazy<PersonapInfo> mergeGender = new LazyPersonapMergeGender(option.conn, option.schemaName);
 		
 		select.addPostAction(mergeGender);		

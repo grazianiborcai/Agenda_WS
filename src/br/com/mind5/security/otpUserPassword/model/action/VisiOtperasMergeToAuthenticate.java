@@ -2,13 +2,13 @@ package br.com.mind5.security.otpUserPassword.model.action;
 
 import java.util.List;
 
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.otpUserPassword.info.OtperasInfo;
 import br.com.mind5.security.otpUserPassword.info.OtperasMerger;
 
-final class VisiOtperasMergeToAuthenticate extends ActionVisitorTemplateMergeV2<OtperasInfo, OtperasInfo> {
+final class VisiOtperasMergeToAuthenticate extends ActionVisitorTemplateMerge<OtperasInfo, OtperasInfo> {
 	
 	public VisiOtperasMergeToAuthenticate(DeciTreeOption<OtperasInfo> option) {
 		super(option, OtperasInfo.class);
@@ -16,7 +16,7 @@ final class VisiOtperasMergeToAuthenticate extends ActionVisitorTemplateMergeV2<
 	
 	
 	
-	@Override protected Class<? extends ActionStdV2<OtperasInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStd<OtperasInfo>> getActionClassHook() {
 		return StdOtperasDaoSelect.class;
 	}
 	

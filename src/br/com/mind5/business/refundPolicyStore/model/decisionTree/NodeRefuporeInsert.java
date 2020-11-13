@@ -7,14 +7,14 @@ import br.com.mind5.business.refundPolicyStore.info.RefuporeInfo;
 import br.com.mind5.business.refundPolicyStore.model.action.StdRefuporeDaoInsert;
 import br.com.mind5.business.refundPolicyStore.model.action.StdRefuporeDaoUpdate;
 import br.com.mind5.business.refundPolicyStore.model.checker.RefuporeCheckSoftDelete;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodeRefuporeInsert extends DeciTreeTemplateWriteV2<RefuporeInfo> {
+public final class NodeRefuporeInsert extends DeciTreeTemplateWrite<RefuporeInfo> {
 	
 	public NodeRefuporeInsert(DeciTreeOption<RefuporeInfo> option) {
 		super(option);
@@ -22,9 +22,9 @@ public final class NodeRefuporeInsert extends DeciTreeTemplateWriteV2<RefuporeIn
 	
 	
 	
-	@Override protected ModelCheckerV1<RefuporeInfo> buildCheckerHook(DeciTreeOption<RefuporeInfo> option) {
-		List<ModelCheckerV1<RefuporeInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<RefuporeInfo> checker;	
+	@Override protected ModelChecker<RefuporeInfo> buildCheckerHook(DeciTreeOption<RefuporeInfo> option) {
+		List<ModelChecker<RefuporeInfo>> queue = new ArrayList<>();		
+		ModelChecker<RefuporeInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -34,15 +34,15 @@ public final class NodeRefuporeInsert extends DeciTreeTemplateWriteV2<RefuporeIn
 		checker = new RefuporeCheckSoftDelete(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<RefuporeInfo>> buildActionsOnPassedHook(DeciTreeOption<RefuporeInfo> option) {
-		List<ActionStdV2<RefuporeInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStd<RefuporeInfo>> buildActionsOnPassedHook(DeciTreeOption<RefuporeInfo> option) {
+		List<ActionStd<RefuporeInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV2<RefuporeInfo> update = new StdRefuporeDaoUpdate(option);	
+		ActionStd<RefuporeInfo> update = new StdRefuporeDaoUpdate(option);	
 		
 		actions.add(update);
 		return actions;
@@ -50,10 +50,10 @@ public final class NodeRefuporeInsert extends DeciTreeTemplateWriteV2<RefuporeIn
 	
 	
 	
-	@Override protected List<ActionStdV2<RefuporeInfo>> buildActionsOnFailedHook(DeciTreeOption<RefuporeInfo> option) {
-		List<ActionStdV2<RefuporeInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStd<RefuporeInfo>> buildActionsOnFailedHook(DeciTreeOption<RefuporeInfo> option) {
+		List<ActionStd<RefuporeInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV2<RefuporeInfo> insert = new StdRefuporeDaoInsert(option);	
+		ActionStd<RefuporeInfo> insert = new StdRefuporeDaoInsert(option);	
 		
 		actions.add(insert);
 		return actions;

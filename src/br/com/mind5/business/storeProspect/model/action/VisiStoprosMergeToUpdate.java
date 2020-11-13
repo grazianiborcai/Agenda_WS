@@ -4,12 +4,12 @@ import java.util.List;
 
 import br.com.mind5.business.storeProspect.info.StoprosInfo;
 import br.com.mind5.business.storeProspect.info.StoprosMerger;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionStd;
+
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiStoprosMergeToUpdate extends ActionVisitorTemplateMergeV2<StoprosInfo, StoprosInfo> {
+final class VisiStoprosMergeToUpdate extends ActionVisitorTemplateMerge<StoprosInfo, StoprosInfo> {
 	
 	public VisiStoprosMergeToUpdate(DeciTreeOption<StoprosInfo> option) {
 		super(option, StoprosInfo.class);
@@ -17,7 +17,7 @@ final class VisiStoprosMergeToUpdate extends ActionVisitorTemplateMergeV2<Stopro
 	
 	
 	
-	@Override protected Class<? extends ActionStdV2<StoprosInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStd<StoprosInfo>> getActionClassHook() {
 		return StdStoprosDaoSelect.class;
 	}
 	
@@ -30,6 +30,6 @@ final class VisiStoprosMergeToUpdate extends ActionVisitorTemplateMergeV2<Stopro
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
+		return super.DONT_MERGE_WHEN_EMPTY;
 	}	
 }

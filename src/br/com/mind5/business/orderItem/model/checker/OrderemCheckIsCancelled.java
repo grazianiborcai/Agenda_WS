@@ -6,9 +6,9 @@ import br.com.mind5.business.orderItem.info.OrderemInfo;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.masterData.orderStatus.info.Orderatus;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 
-public final class OrderemCheckIsCancelled extends ModelCheckerTemplateSimpleV2<OrderemInfo> {
+public final class OrderemCheckIsCancelled extends ModelCheckerTemplateSimple<OrderemInfo> {
 
 	public OrderemCheckIsCancelled(ModelCheckerOption option) {
 		super(option);

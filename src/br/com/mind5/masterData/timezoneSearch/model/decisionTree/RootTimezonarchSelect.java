@@ -6,14 +6,14 @@ import java.util.List;
 import br.com.mind5.masterData.timezoneSearch.info.TimezonarchInfo;
 import br.com.mind5.masterData.timezoneSearch.model.action.StdTimezonarchDaoSelect;
 import br.com.mind5.masterData.timezoneSearch.model.checker.TimezonarchCheckRead;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootTimezonarchSelect extends DeciTreeTemplateReadV2<TimezonarchInfo> {
+public final class RootTimezonarchSelect extends DeciTreeTemplateRead<TimezonarchInfo> {
 	
 	public RootTimezonarchSelect(DeciTreeOption<TimezonarchInfo> option) {
 		super(option);
@@ -21,9 +21,9 @@ public final class RootTimezonarchSelect extends DeciTreeTemplateReadV2<Timezona
 	
 	
 	
-	@Override protected ModelCheckerV1<TimezonarchInfo> buildCheckerHook(DeciTreeOption<TimezonarchInfo> option) {
-		List<ModelCheckerV1<TimezonarchInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<TimezonarchInfo> checker;
+	@Override protected ModelChecker<TimezonarchInfo> buildCheckerHook(DeciTreeOption<TimezonarchInfo> option) {
+		List<ModelChecker<TimezonarchInfo>> queue = new ArrayList<>();		
+		ModelChecker<TimezonarchInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
 		checkerOption = new ModelCheckerOption();
@@ -33,15 +33,15 @@ public final class RootTimezonarchSelect extends DeciTreeTemplateReadV2<Timezona
 		checker = new TimezonarchCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 
 		
 	
-	@Override protected List<ActionStdV2<TimezonarchInfo>> buildActionsOnPassedHook(DeciTreeOption<TimezonarchInfo> option) {
-		List<ActionStdV2<TimezonarchInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<TimezonarchInfo>> buildActionsOnPassedHook(DeciTreeOption<TimezonarchInfo> option) {
+		List<ActionStd<TimezonarchInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<TimezonarchInfo> select = new StdTimezonarchDaoSelect(option);
+		ActionStd<TimezonarchInfo> select = new StdTimezonarchDaoSelect(option);
 		
 		actions.add(select);
 		return actions;

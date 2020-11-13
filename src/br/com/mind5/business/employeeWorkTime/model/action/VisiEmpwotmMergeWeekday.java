@@ -6,11 +6,11 @@ import br.com.mind5.business.employeeWorkTime.info.EmpwotmInfo;
 import br.com.mind5.business.employeeWorkTime.info.EmpwotmMerger;
 import br.com.mind5.masterData.weekday.info.WeekdayInfo;
 import br.com.mind5.masterData.weekday.model.decisionTree.RootWeekdaySelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiEmpwotmMergeWeekday extends ActionVisitorTemplateMergeV2<EmpwotmInfo, WeekdayInfo> {
+final class VisiEmpwotmMergeWeekday extends ActionVisitorTemplateMerge<EmpwotmInfo, WeekdayInfo> {
 	
 	public VisiEmpwotmMergeWeekday(DeciTreeOption<EmpwotmInfo> option) {
 		super(option, WeekdayInfo.class);

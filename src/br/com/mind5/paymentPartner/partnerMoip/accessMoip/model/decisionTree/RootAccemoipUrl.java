@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.paymentPartner.partnerMoip.accessMoip.info.AccemoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.accessMoip.model.action.LazyAccemoipNodeUrl;
 import br.com.mind5.paymentPartner.partnerMoip.accessMoip.model.action.StdAccemoipEnforcePayPartner;
@@ -20,7 +20,7 @@ import br.com.mind5.paymentPartner.partnerMoip.accessMoip.model.checker.Accemoip
 import br.com.mind5.paymentPartner.partnerMoip.accessMoip.model.checker.AccemoipCheckUsername;
 import br.com.mind5.paymentPartner.partnerMoip.accessMoip.model.checker.AccemoipCheckWrite;
 
-public final class RootAccemoipUrl extends DeciTreeTemplateWriteV2<AccemoipInfo> {
+public final class RootAccemoipUrl extends DeciTreeTemplateWrite<AccemoipInfo> {
 	
 	public RootAccemoipUrl(DeciTreeOption<AccemoipInfo> option) {
 		super(option);
@@ -28,9 +28,9 @@ public final class RootAccemoipUrl extends DeciTreeTemplateWriteV2<AccemoipInfo>
 	
 	
 	
-	@Override protected ModelCheckerV1<AccemoipInfo> buildCheckerHook(DeciTreeOption<AccemoipInfo> option) {
-		List<ModelCheckerV1<AccemoipInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<AccemoipInfo> checker;	
+	@Override protected ModelChecker<AccemoipInfo> buildCheckerHook(DeciTreeOption<AccemoipInfo> option) {
+		List<ModelChecker<AccemoipInfo>> queue = new ArrayList<>();		
+		ModelChecker<AccemoipInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -75,15 +75,15 @@ public final class RootAccemoipUrl extends DeciTreeTemplateWriteV2<AccemoipInfo>
 		checker = new AccemoipCheckStorauth(checkerOption);
 		queue.add(checker);
 
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<AccemoipInfo>> buildActionsOnPassedHook(DeciTreeOption<AccemoipInfo> option) {
-		List<ActionStdV2<AccemoipInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStd<AccemoipInfo>> buildActionsOnPassedHook(DeciTreeOption<AccemoipInfo> option) {
+		List<ActionStd<AccemoipInfo>> actions = new ArrayList<>();		
 
-		ActionStdV2<AccemoipInfo> enforcePayPartner = new StdAccemoipEnforcePayPartner(option);	
+		ActionStd<AccemoipInfo> enforcePayPartner = new StdAccemoipEnforcePayPartner(option);	
 		ActionLazy<AccemoipInfo> nodeUrl = new LazyAccemoipNodeUrl(option.conn, option.schemaName);
 		
 		enforcePayPartner.addPostAction(nodeUrl);

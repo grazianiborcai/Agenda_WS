@@ -3,11 +3,11 @@ package br.com.mind5.payment.creditCard.model.checker;
 import br.com.mind5.business.owner.info.OwnerInfo;
 import br.com.mind5.business.owner.model.checker.OwnerCheckExist;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
 
-public final class CrecardCheckOwner extends ModelCheckerTemplateForwardV2<CrecardInfo, OwnerInfo> {
+public final class CrecardCheckOwner extends ModelCheckerTemplateForward<CrecardInfo, OwnerInfo> {
 	
 	public CrecardCheckOwner(ModelCheckerOption option) {
 		super(option);
@@ -15,7 +15,7 @@ public final class CrecardCheckOwner extends ModelCheckerTemplateForwardV2<Creca
 
 
 	
-	@Override protected ModelCheckerV1<OwnerInfo> getCheckerHook(ModelCheckerOption option) {
+	@Override protected ModelChecker<OwnerInfo> getCheckerHook(ModelCheckerOption option) {
 		return new OwnerCheckExist(option);
 	}
 	

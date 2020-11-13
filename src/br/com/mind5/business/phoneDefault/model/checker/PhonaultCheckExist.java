@@ -3,12 +3,12 @@ package br.com.mind5.business.phoneDefault.model.checker;
 import br.com.mind5.business.phoneDefault.info.PhonaultInfo;
 import br.com.mind5.business.phoneDefault.model.decisionTree.RootPhonaultSelect;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class PhonaultCheckExist extends ModelCheckerTemplateActionV2<PhonaultInfo, PhonaultInfo> {
+public final class PhonaultCheckExist extends ModelCheckerTemplateAction<PhonaultInfo, PhonaultInfo> {
 	
 	public PhonaultCheckExist(ModelCheckerOption option) {
 		super(option, PhonaultInfo.class);
@@ -16,8 +16,8 @@ public final class PhonaultCheckExist extends ModelCheckerTemplateActionV2<Phona
 	
 	
 	
-	@Override protected ActionStdV2<PhonaultInfo> buildActionHook(DeciTreeOption<PhonaultInfo> option) {
-		ActionStdV2<PhonaultInfo> select = new RootPhonaultSelect(option).toAction();
+	@Override protected ActionStd<PhonaultInfo> buildActionHook(DeciTreeOption<PhonaultInfo> option) {
+		ActionStd<PhonaultInfo> select = new RootPhonaultSelect(option).toAction();
 		return select;
 	}
 	

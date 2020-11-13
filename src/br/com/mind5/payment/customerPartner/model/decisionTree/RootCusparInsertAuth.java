@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
 import br.com.mind5.payment.customerPartner.model.action.LazyCusparRootInsert;
 import br.com.mind5.payment.customerPartner.model.action.StdCusparMergeUsername;
@@ -18,7 +18,7 @@ import br.com.mind5.payment.customerPartner.model.checker.CusparCheckLangu;
 import br.com.mind5.payment.customerPartner.model.checker.CusparCheckOwner;
 import br.com.mind5.payment.customerPartner.model.checker.CusparCheckUsername;
 
-public final class RootCusparInsertAuth extends DeciTreeTemplateWriteV2<CusparInfo> {
+public final class RootCusparInsertAuth extends DeciTreeTemplateWrite<CusparInfo> {
 	
 	public RootCusparInsertAuth(DeciTreeOption<CusparInfo> option) {
 		super(option);
@@ -26,9 +26,9 @@ public final class RootCusparInsertAuth extends DeciTreeTemplateWriteV2<CusparIn
 	
 	
 	
-	@Override protected ModelCheckerV1<CusparInfo> buildCheckerHook(DeciTreeOption<CusparInfo> option) {
-		List<ModelCheckerV1<CusparInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<CusparInfo> checker;	
+	@Override protected ModelChecker<CusparInfo> buildCheckerHook(DeciTreeOption<CusparInfo> option) {
+		List<ModelChecker<CusparInfo>> queue = new ArrayList<>();		
+		ModelChecker<CusparInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -59,15 +59,15 @@ public final class RootCusparInsertAuth extends DeciTreeTemplateWriteV2<CusparIn
 		checker = new CusparCheckUsername(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<CusparInfo>> buildActionsOnPassedHook(DeciTreeOption<CusparInfo> option) {
-		List<ActionStdV2<CusparInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<CusparInfo>> buildActionsOnPassedHook(DeciTreeOption<CusparInfo> option) {
+		List<ActionStd<CusparInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<CusparInfo> mergeUsername = new StdCusparMergeUsername(option);
+		ActionStd<CusparInfo> mergeUsername = new StdCusparMergeUsername(option);
 		ActionLazy<CusparInfo> insert = new LazyCusparRootInsert(option.conn, option.schemaName);
 		
 		mergeUsername.addPostAction(insert);

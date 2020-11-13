@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.file.fileImageList.info.FimistInfo;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 
-public final class FimistCheckRead extends ModelCheckerTemplateSimpleV2<FimistInfo> {
+public final class FimistCheckRead extends ModelCheckerTemplateSimple<FimistInfo> {
 
 	public FimistCheckRead(ModelCheckerOption option) {
 		super(option);

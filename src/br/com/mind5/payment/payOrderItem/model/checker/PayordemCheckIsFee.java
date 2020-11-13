@@ -5,10 +5,10 @@ import java.sql.Connection;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 import br.com.mind5.payment.payOrderItem.info.PayordemInfo;
 
-public final class PayordemCheckIsFee extends ModelCheckerTemplateSimpleV2<PayordemInfo> {
+public final class PayordemCheckIsFee extends ModelCheckerTemplateSimple<PayordemInfo> {
 
 	public PayordemCheckIsFee(ModelCheckerOption option) {
 		super(option);

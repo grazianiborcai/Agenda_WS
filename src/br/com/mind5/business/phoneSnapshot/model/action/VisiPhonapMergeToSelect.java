@@ -4,12 +4,12 @@ import java.util.List;
 
 import br.com.mind5.business.phoneSnapshot.info.PhonapInfo;
 import br.com.mind5.business.phoneSnapshot.info.PhonapMerger;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionStd;
+
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiPhonapMergeToSelect extends ActionVisitorTemplateMergeV2<PhonapInfo, PhonapInfo> {
+final class VisiPhonapMergeToSelect extends ActionVisitorTemplateMerge<PhonapInfo, PhonapInfo> {
 	
 	public VisiPhonapMergeToSelect(DeciTreeOption<PhonapInfo> option) {
 		super(option, PhonapInfo.class);
@@ -17,7 +17,7 @@ final class VisiPhonapMergeToSelect extends ActionVisitorTemplateMergeV2<PhonapI
 	
 	
 	
-	@Override protected Class<? extends ActionStdV2<PhonapInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStd<PhonapInfo>> getActionClassHook() {
 		return StdPhonapDaoSelect.class;
 	}
 	
@@ -30,6 +30,6 @@ final class VisiPhonapMergeToSelect extends ActionVisitorTemplateMergeV2<PhonapI
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
+		return super.DONT_MERGE_WHEN_EMPTY;
 	}
 }

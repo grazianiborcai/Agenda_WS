@@ -6,14 +6,14 @@ import java.util.List;
 import br.com.mind5.business.scheduleReserve.info.SchederveInfo;
 import br.com.mind5.business.scheduleReserve.model.action.StdSchederveMergeToSelect;
 import br.com.mind5.business.scheduleReserve.model.checker.SchederveCheckRead;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootSchederveSelect extends DeciTreeTemplateReadV2<SchederveInfo> {
+public final class RootSchederveSelect extends DeciTreeTemplateRead<SchederveInfo> {
 	
 	public RootSchederveSelect(DeciTreeOption<SchederveInfo> option) {
 		super(option);
@@ -21,9 +21,9 @@ public final class RootSchederveSelect extends DeciTreeTemplateReadV2<SchederveI
 	
 	
 	
-	@Override protected ModelCheckerV1<SchederveInfo> buildCheckerHook(DeciTreeOption<SchederveInfo> option) {
-		List<ModelCheckerV1<SchederveInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<SchederveInfo> checker;	
+	@Override protected ModelChecker<SchederveInfo> buildCheckerHook(DeciTreeOption<SchederveInfo> option) {
+		List<ModelChecker<SchederveInfo>> queue = new ArrayList<>();		
+		ModelChecker<SchederveInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -33,15 +33,15 @@ public final class RootSchederveSelect extends DeciTreeTemplateReadV2<SchederveI
 		checker = new SchederveCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<SchederveInfo>> buildActionsOnPassedHook(DeciTreeOption<SchederveInfo> option) {
-		List<ActionStdV2<SchederveInfo>> actions = new ArrayList<>();	
+	@Override protected List<ActionStd<SchederveInfo>> buildActionsOnPassedHook(DeciTreeOption<SchederveInfo> option) {
+		List<ActionStd<SchederveInfo>> actions = new ArrayList<>();	
 		
-		ActionStdV2<SchederveInfo> select = new StdSchederveMergeToSelect(option);
+		ActionStd<SchederveInfo> select = new StdSchederveMergeToSelect(option);
 
 		actions.add(select);			
 		return actions;

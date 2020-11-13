@@ -3,11 +3,11 @@ package br.com.mind5.payment.storePartner.model.checker;
 import br.com.mind5.business.owner.info.OwnerInfo;
 import br.com.mind5.business.owner.model.checker.OwnerCheckExist;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.payment.storePartner.info.StoparInfo;
 
-public final class StoparCheckOwner extends ModelCheckerTemplateForwardV2<StoparInfo, OwnerInfo> {
+public final class StoparCheckOwner extends ModelCheckerTemplateForward<StoparInfo, OwnerInfo> {
 	
 	public StoparCheckOwner(ModelCheckerOption option) {
 		super(option);
@@ -15,7 +15,7 @@ public final class StoparCheckOwner extends ModelCheckerTemplateForwardV2<Stopar
 
 
 	
-	@Override protected ModelCheckerV1<OwnerInfo> getCheckerHook(ModelCheckerOption option) {
+	@Override protected ModelChecker<OwnerInfo> getCheckerHook(ModelCheckerOption option) {
 		return new OwnerCheckExist(option);
 	}
 	

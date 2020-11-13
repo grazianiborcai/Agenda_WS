@@ -3,12 +3,12 @@ package br.com.mind5.business.personList.model.checker;
 import br.com.mind5.business.personList.info.PersolisInfo;
 import br.com.mind5.business.personList.model.decisionTree.RootPersolisSelect;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class PersolisCheckExist extends ModelCheckerTemplateActionV2<PersolisInfo, PersolisInfo> {
+public final class PersolisCheckExist extends ModelCheckerTemplateAction<PersolisInfo, PersolisInfo> {
 	
 	public PersolisCheckExist(ModelCheckerOption option) {
 		super(option, PersolisInfo.class);
@@ -16,8 +16,8 @@ public final class PersolisCheckExist extends ModelCheckerTemplateActionV2<Perso
 	
 	
 	
-	@Override protected ActionStdV2<PersolisInfo> buildActionHook(DeciTreeOption<PersolisInfo> option) {
-		ActionStdV2<PersolisInfo> select = new RootPersolisSelect(option).toAction();
+	@Override protected ActionStd<PersolisInfo> buildActionHook(DeciTreeOption<PersolisInfo> option) {
+		ActionStd<PersolisInfo> select = new RootPersolisSelect(option).toAction();
 		return select;
 	}
 	

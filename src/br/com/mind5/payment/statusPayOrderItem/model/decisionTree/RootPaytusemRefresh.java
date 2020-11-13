@@ -4,18 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.payment.statusPayOrderItem.info.PaytusemInfo;
 import br.com.mind5.payment.statusPayOrderItem.model.action.LazyPaytusemNodeRefresh;
 import br.com.mind5.payment.statusPayOrderItem.model.checker.PaytusemCheckOwner;
 import br.com.mind5.payment.statusPayOrderItem.model.checker.PaytusemCheckRefresh;
 
-public final class RootPaytusemRefresh extends DeciTreeTemplateWriteV2<PaytusemInfo> {
+public final class RootPaytusemRefresh extends DeciTreeTemplateWrite<PaytusemInfo> {
 	
 	public RootPaytusemRefresh(DeciTreeOption<PaytusemInfo> option) {
 		super(option);
@@ -23,9 +23,9 @@ public final class RootPaytusemRefresh extends DeciTreeTemplateWriteV2<PaytusemI
 	
 	
 	
-	@Override protected ModelCheckerV1<PaytusemInfo> buildCheckerHook(DeciTreeOption<PaytusemInfo> option) {
-		List<ModelCheckerV1<PaytusemInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<PaytusemInfo> checker;	
+	@Override protected ModelChecker<PaytusemInfo> buildCheckerHook(DeciTreeOption<PaytusemInfo> option) {
+		List<ModelChecker<PaytusemInfo>> queue = new ArrayList<>();		
+		ModelChecker<PaytusemInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -42,15 +42,15 @@ public final class RootPaytusemRefresh extends DeciTreeTemplateWriteV2<PaytusemI
 		checker = new PaytusemCheckOwner(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<PaytusemInfo>> buildActionsOnPassedHook(DeciTreeOption<PaytusemInfo> option) {
-		List<ActionStdV2<PaytusemInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStd<PaytusemInfo>> buildActionsOnPassedHook(DeciTreeOption<PaytusemInfo> option) {
+		List<ActionStd<PaytusemInfo>> actions = new ArrayList<>();		
 
-		ActionStdV2<PaytusemInfo> select = new RootPaytusemSelect(option).toAction();	
+		ActionStd<PaytusemInfo> select = new RootPaytusemSelect(option).toAction();	
 		ActionLazy<PaytusemInfo> nodeRefresh = new LazyPaytusemNodeRefresh(option.conn, option.schemaName);
 		
 		select.addPostAction(nodeRefresh);

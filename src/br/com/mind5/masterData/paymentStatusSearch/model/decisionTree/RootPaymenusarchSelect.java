@@ -6,14 +6,14 @@ import java.util.List;
 import br.com.mind5.masterData.paymentStatusSearch.info.PaymenusarchInfo;
 import br.com.mind5.masterData.paymentStatusSearch.model.action.StdPaymenusarchDaoSelect;
 import br.com.mind5.masterData.paymentStatusSearch.model.checker.PaymenusarchCheckRead;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootPaymenusarchSelect extends DeciTreeTemplateReadV1<PaymenusarchInfo> {
+public final class RootPaymenusarchSelect extends DeciTreeTemplateRead<PaymenusarchInfo> {
 	
 	public RootPaymenusarchSelect(DeciTreeOption<PaymenusarchInfo> option) {
 		super(option);
@@ -21,9 +21,9 @@ public final class RootPaymenusarchSelect extends DeciTreeTemplateReadV1<Paymenu
 	
 	
 	
-	@Override protected ModelCheckerV1<PaymenusarchInfo> buildCheckerHook(DeciTreeOption<PaymenusarchInfo> option) {
-		List<ModelCheckerV1<PaymenusarchInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<PaymenusarchInfo> checker;
+	@Override protected ModelChecker<PaymenusarchInfo> buildCheckerHook(DeciTreeOption<PaymenusarchInfo> option) {
+		List<ModelChecker<PaymenusarchInfo>> queue = new ArrayList<>();		
+		ModelChecker<PaymenusarchInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
 		checkerOption = new ModelCheckerOption();
@@ -33,15 +33,15 @@ public final class RootPaymenusarchSelect extends DeciTreeTemplateReadV1<Paymenu
 		checker = new PaymenusarchCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 
 		
 	
-	@Override protected List<ActionStdV2<PaymenusarchInfo>> buildActionsOnPassedHook(DeciTreeOption<PaymenusarchInfo> option) {
-		List<ActionStdV2<PaymenusarchInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<PaymenusarchInfo>> buildActionsOnPassedHook(DeciTreeOption<PaymenusarchInfo> option) {
+		List<ActionStd<PaymenusarchInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<PaymenusarchInfo> select = new StdPaymenusarchDaoSelect(option);
+		ActionStd<PaymenusarchInfo> select = new StdPaymenusarchDaoSelect(option);
 		
 		actions.add(select);
 		return actions;

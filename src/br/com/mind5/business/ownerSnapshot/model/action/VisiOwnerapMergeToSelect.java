@@ -4,11 +4,11 @@ import java.util.List;
 
 import br.com.mind5.business.ownerSnapshot.info.OwnerapInfo;
 import br.com.mind5.business.ownerSnapshot.info.OwnerapMerger;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiOwnerapMergeToSelect extends ActionVisitorTemplateMergeV2<OwnerapInfo, OwnerapInfo> {
+final class VisiOwnerapMergeToSelect extends ActionVisitorTemplateMerge<OwnerapInfo, OwnerapInfo> {
 	
 	public VisiOwnerapMergeToSelect(DeciTreeOption<OwnerapInfo> option) {
 		super(option, OwnerapInfo.class);
@@ -16,7 +16,7 @@ final class VisiOwnerapMergeToSelect extends ActionVisitorTemplateMergeV2<Ownera
 	
 	
 	
-	@Override protected Class<? extends ActionStdV2<OwnerapInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStd<OwnerapInfo>> getActionClassHook() {
 		return StdOwnerapDaoSelect.class;
 	}
 	

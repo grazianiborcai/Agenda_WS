@@ -5,14 +5,14 @@ import java.util.List;
 
 import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.business.store.model.action.StdStoreDaoDelete;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodeStoreDeleteCascade extends DeciTreeTemplateWriteV2<StoreInfo> {	
+public final class NodeStoreDeleteCascade extends DeciTreeTemplateWrite<StoreInfo> {	
 	
 	public NodeStoreDeleteCascade(DeciTreeOption<StoreInfo> option) {
 		super(option);
@@ -20,30 +20,30 @@ public final class NodeStoreDeleteCascade extends DeciTreeTemplateWriteV2<StoreI
 	
 	
 	
-	@Override protected ModelCheckerV1<StoreInfo> buildCheckerHook(DeciTreeOption<StoreInfo> option) {
-		List<ModelCheckerV1<StoreInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<StoreInfo> checker;
+	@Override protected ModelChecker<StoreInfo> buildCheckerHook(DeciTreeOption<StoreInfo> option) {
+		List<ModelChecker<StoreInfo>> queue = new ArrayList<>();		
+		ModelChecker<StoreInfo> checker;
 
 		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 		
-		 return new ModelCheckerHelperQueueV2<StoreInfo>(queue);
+		 return new ModelCheckerHelperQueue<StoreInfo>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<StoreInfo>> buildActionsOnPassedHook(DeciTreeOption<StoreInfo> option) {
-		List<ActionStdV2<StoreInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<StoreInfo>> buildActionsOnPassedHook(DeciTreeOption<StoreInfo> option) {
+		List<ActionStd<StoreInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<StoreInfo> deleteStowotm = new NodeStoreDeleteStowotm(option).toAction();
-		ActionStdV2<StoreInfo> deleteStolate = new NodeStoreDeleteStolate(option).toAction();
-		ActionStdV2<StoreInfo> deleteMatore = new NodeStoreDeleteMatore(option).toAction();
-		ActionStdV2<StoreInfo> deleteAddress = new NodeStoreDeleteAddress(option).toAction();
-		ActionStdV2<StoreInfo> deletePhone = new NodeStoreDeletePhone(option).toAction();
-		ActionStdV2<StoreInfo> deletePerson = new NodeStoreDeletePerson(option).toAction();
-		ActionStdV2<StoreInfo> deleteCompany = new NodeStoreDeleteComp(option).toAction();
-		ActionStdV2<StoreInfo> deleteUser = new NodeStoreDeleteUser(option).toAction();
-		ActionStdV2<StoreInfo> deleteStore = new StdStoreDaoDelete(option);
+		ActionStd<StoreInfo> deleteStowotm = new NodeStoreDeleteStowotm(option).toAction();
+		ActionStd<StoreInfo> deleteStolate = new NodeStoreDeleteStolate(option).toAction();
+		ActionStd<StoreInfo> deleteMatore = new NodeStoreDeleteMatore(option).toAction();
+		ActionStd<StoreInfo> deleteAddress = new NodeStoreDeleteAddress(option).toAction();
+		ActionStd<StoreInfo> deletePhone = new NodeStoreDeletePhone(option).toAction();
+		ActionStd<StoreInfo> deletePerson = new NodeStoreDeletePerson(option).toAction();
+		ActionStd<StoreInfo> deleteCompany = new NodeStoreDeleteComp(option).toAction();
+		ActionStd<StoreInfo> deleteUser = new NodeStoreDeleteUser(option).toAction();
+		ActionStd<StoreInfo> deleteStore = new StdStoreDaoDelete(option);
 
 		actions.add(deleteStowotm);		
 		actions.add(deleteStolate);			

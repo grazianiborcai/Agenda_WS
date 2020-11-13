@@ -7,15 +7,15 @@ import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.business.store.model.action.LazyStoreRootSelect;
 import br.com.mind5.business.store.model.action.StdStoreMergeSotarch;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
 
-public final class RootStoreSearch extends DeciTreeTemplateReadV2<StoreInfo> {
+public final class RootStoreSearch extends DeciTreeTemplateRead<StoreInfo> {
 	
 	public RootStoreSearch(DeciTreeOption<StoreInfo> option) {
 		super(option);
@@ -23,22 +23,22 @@ public final class RootStoreSearch extends DeciTreeTemplateReadV2<StoreInfo> {
 	
 	
 	
-	@Override protected ModelCheckerV1<StoreInfo> buildCheckerHook(DeciTreeOption<StoreInfo> option) {
-		List<ModelCheckerV1<StoreInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<StoreInfo> checker;
+	@Override protected ModelChecker<StoreInfo> buildCheckerHook(DeciTreeOption<StoreInfo> option) {
+		List<ModelChecker<StoreInfo>> queue = new ArrayList<>();		
+		ModelChecker<StoreInfo> checker;
 		
 		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<StoreInfo>> buildActionsOnPassedHook(DeciTreeOption<StoreInfo> option) {
-		List<ActionStdV2<StoreInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<StoreInfo>> buildActionsOnPassedHook(DeciTreeOption<StoreInfo> option) {
+		List<ActionStd<StoreInfo>> actions = new ArrayList<>();
 
-		ActionStdV2<StoreInfo> mergeSotarch = new StdStoreMergeSotarch(option);
+		ActionStd<StoreInfo> mergeSotarch = new StdStoreMergeSotarch(option);
 		ActionLazy<StoreInfo> select = new LazyStoreRootSelect(option.conn, option.schemaName);
 		
 		mergeSotarch.addPostAction(select);

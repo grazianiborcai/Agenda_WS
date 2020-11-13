@@ -5,11 +5,11 @@ import java.util.List;
 import br.com.mind5.business.employeeWorkTime.info.EmpwotmInfo;
 import br.com.mind5.business.employeeWorkTime.info.EmpwotmMerger;
 import br.com.mind5.business.employeeWorkTime.model.decisionTree.RootEmpwotmSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiEmpwotmMergeToDelete extends ActionVisitorTemplateMergeV2<EmpwotmInfo, EmpwotmInfo> {
+final class VisiEmpwotmMergeToDelete extends ActionVisitorTemplateMerge<EmpwotmInfo, EmpwotmInfo> {
 	
 	public VisiEmpwotmMergeToDelete(DeciTreeOption<EmpwotmInfo> option) {
 		super(option, EmpwotmInfo.class);

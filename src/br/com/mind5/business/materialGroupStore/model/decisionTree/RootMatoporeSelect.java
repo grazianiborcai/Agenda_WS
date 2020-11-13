@@ -9,14 +9,14 @@ import br.com.mind5.business.materialGroupStore.model.checker.MatoporeCheckLangu
 import br.com.mind5.business.materialGroupStore.model.checker.MatoporeCheckOwner;
 import br.com.mind5.business.materialGroupStore.model.checker.MatoporeCheckRead;
 import br.com.mind5.business.materialGroupStore.model.checker.MatoporeCheckStore;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootMatoporeSelect extends DeciTreeTemplateReadV2<MatoporeInfo> {
+public final class RootMatoporeSelect extends DeciTreeTemplateRead<MatoporeInfo> {
 	
 	public RootMatoporeSelect(DeciTreeOption<MatoporeInfo> option) {
 		super(option);
@@ -24,10 +24,10 @@ public final class RootMatoporeSelect extends DeciTreeTemplateReadV2<MatoporeInf
 	
 	
 	
-	@Override protected ModelCheckerV1<MatoporeInfo> buildCheckerHook(DeciTreeOption<MatoporeInfo> option) {
+	@Override protected ModelChecker<MatoporeInfo> buildCheckerHook(DeciTreeOption<MatoporeInfo> option) {
 		ModelCheckerOption checkerOption;
-		List<ModelCheckerV1<MatoporeInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<MatoporeInfo> checker;
+		List<ModelChecker<MatoporeInfo>> queue = new ArrayList<>();		
+		ModelChecker<MatoporeInfo> checker;
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
@@ -57,15 +57,15 @@ public final class RootMatoporeSelect extends DeciTreeTemplateReadV2<MatoporeInf
 		checker = new MatoporeCheckStore(checkerOption);
 		queue.add(checker);	
 
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<MatoporeInfo>> buildActionsOnPassedHook(DeciTreeOption<MatoporeInfo> option) {
-		List<ActionStdV2<MatoporeInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<MatoporeInfo>> buildActionsOnPassedHook(DeciTreeOption<MatoporeInfo> option) {
+		List<ActionStd<MatoporeInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<MatoporeInfo> mergeMatore = new StdMatoporeMergeMatore(option);
+		ActionStd<MatoporeInfo> mergeMatore = new StdMatoporeMergeMatore(option);
 		
 		actions.add(mergeMatore);		
 		return actions;

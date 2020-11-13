@@ -6,11 +6,11 @@ import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.address.info.AddressMerger;
 import br.com.mind5.business.addressSearch.info.AddarchInfo;
 import br.com.mind5.business.addressSearch.model.decisionTree.RootAddarchSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiAddressMergeAddarch extends ActionVisitorTemplateMergeV2<AddressInfo, AddarchInfo> {
+final class VisiAddressMergeAddarch extends ActionVisitorTemplateMerge<AddressInfo, AddarchInfo> {
 	
 	public VisiAddressMergeAddarch(DeciTreeOption<AddressInfo> option) {
 		super(option, AddarchInfo.class);

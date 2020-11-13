@@ -7,11 +7,11 @@ import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.business.materialList.model.decisionTree.RootMatlisSelect;
 import br.com.mind5.business.scheduleLineSnapshot.info.SchedinapInfo;
 import br.com.mind5.business.scheduleLineSnapshot.info.SchedinapMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiSchedinapMergeMatlis extends ActionVisitorTemplateMergeV2<SchedinapInfo, MatlisInfo> {
+final class VisiSchedinapMergeMatlis extends ActionVisitorTemplateMerge<SchedinapInfo, MatlisInfo> {
 	
 	public VisiSchedinapMergeMatlis(DeciTreeOption<SchedinapInfo> option) {
 		super(option, MatlisInfo.class);

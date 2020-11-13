@@ -4,14 +4,14 @@ import java.util.List;
 
 import br.com.mind5.business.customer.info.CusInfo;
 import br.com.mind5.business.customer.info.CusMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.userSearch.info.UserarchCopier;
 import br.com.mind5.security.userSearch.info.UserarchInfo;
 import br.com.mind5.security.userSearch.model.decisionTree.RootUserarchSelectUsername;
 
-final class VisiCusMergeUserarch extends ActionVisitorTemplateMergeV2<CusInfo, UserarchInfo> {
+final class VisiCusMergeUserarch extends ActionVisitorTemplateMerge<CusInfo, UserarchInfo> {
 	
 	public VisiCusMergeUserarch(DeciTreeOption<CusInfo> option) {
 		super(option, UserarchInfo.class);

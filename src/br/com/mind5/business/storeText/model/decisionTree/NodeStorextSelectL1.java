@@ -6,14 +6,14 @@ import java.util.List;
 import br.com.mind5.business.storeText.info.StorextInfo;
 import br.com.mind5.business.storeText.model.action.StdStorextMergeToSelect;
 import br.com.mind5.business.storeText.model.checker.StorextCheckExist;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodeStorextSelectL1 extends DeciTreeTemplateWriteV2<StorextInfo> {
+public final class NodeStorextSelectL1 extends DeciTreeTemplateWrite<StorextInfo> {
 	
 	public NodeStorextSelectL1(DeciTreeOption<StorextInfo> option) {
 		super(option);
@@ -21,9 +21,9 @@ public final class NodeStorextSelectL1 extends DeciTreeTemplateWriteV2<StorextIn
 	
 	
 	
-	@Override protected ModelCheckerV1<StorextInfo> buildCheckerHook(DeciTreeOption<StorextInfo> option) {
-		List<ModelCheckerV1<StorextInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<StorextInfo> checker;
+	@Override protected ModelChecker<StorextInfo> buildCheckerHook(DeciTreeOption<StorextInfo> option) {
+		List<ModelChecker<StorextInfo>> queue = new ArrayList<>();		
+		ModelChecker<StorextInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -33,15 +33,15 @@ public final class NodeStorextSelectL1 extends DeciTreeTemplateWriteV2<StorextIn
 		checker = new StorextCheckExist(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<StorextInfo>> buildActionsOnPassedHook(DeciTreeOption<StorextInfo> option) {
-		List<ActionStdV2<StorextInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<StorextInfo>> buildActionsOnPassedHook(DeciTreeOption<StorextInfo> option) {
+		List<ActionStd<StorextInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<StorextInfo> mergeToSelect = new StdStorextMergeToSelect(option);
+		ActionStd<StorextInfo> mergeToSelect = new StdStorextMergeToSelect(option);
 		
 		actions.add(mergeToSelect);
 		return actions;
@@ -49,10 +49,10 @@ public final class NodeStorextSelectL1 extends DeciTreeTemplateWriteV2<StorextIn
 	
 	
 	
-	@Override protected List<ActionStdV2<StorextInfo>> buildActionsOnFailedHook(DeciTreeOption<StorextInfo> option) {
-		List<ActionStdV2<StorextInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<StorextInfo>> buildActionsOnFailedHook(DeciTreeOption<StorextInfo> option) {
+		List<ActionStd<StorextInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<StorextInfo> nodeL2 = new NodeStorextSelectL2(option).toAction();
+		ActionStd<StorextInfo> nodeL2 = new NodeStorextSelectL2(option).toAction();
 		
 		actions.add(nodeL2);
 		return actions;

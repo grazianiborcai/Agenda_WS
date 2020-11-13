@@ -1,11 +1,11 @@
 package br.com.mind5.business.refundPolicyOwner.model.action;
 
 import br.com.mind5.business.refundPolicyOwner.info.RefupownInfo;
-import br.com.mind5.model.action.ActionStdTemplateV2;
-import br.com.mind5.model.action.ActionVisitorV2;
+import br.com.mind5.model.action.ActionStdTemplate;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdRefupownMergeToSelect extends ActionStdTemplateV2<RefupownInfo> {
+public final class StdRefupownMergeToSelect extends ActionStdTemplate<RefupownInfo> {
 	
 	public StdRefupownMergeToSelect(DeciTreeOption<RefupownInfo> option) {			
 		super(option);
@@ -13,7 +13,7 @@ public final class StdRefupownMergeToSelect extends ActionStdTemplateV2<Refupown
 	
 	
 	
-	protected ActionVisitorV2<RefupownInfo> buildVisitorHook(DeciTreeOption<RefupownInfo> option) {
+	protected ActionVisitor<RefupownInfo> buildVisitorHook(DeciTreeOption<RefupownInfo> option) {
 		return new VisiRefupownMergeToSelect(option);
 	}
 }

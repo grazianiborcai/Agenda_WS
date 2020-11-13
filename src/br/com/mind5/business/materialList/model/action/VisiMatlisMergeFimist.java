@@ -7,12 +7,11 @@ import br.com.mind5.business.materialList.info.MatlisMerger;
 import br.com.mind5.file.fileImageList.info.FimistCopier;
 import br.com.mind5.file.fileImageList.info.FimistInfo;
 import br.com.mind5.file.fileImageList.model.decisionTree.RootFimistSearch;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiMatlisMergeFimist extends ActionVisitorTemplateMergeV2<MatlisInfo, FimistInfo> {
+final class VisiMatlisMergeFimist extends ActionVisitorTemplateMerge<MatlisInfo, FimistInfo> {
 	
 	public VisiMatlisMergeFimist(DeciTreeOption<MatlisInfo> option) {
 		super(option, FimistInfo.class);
@@ -39,6 +38,6 @@ final class VisiMatlisMergeFimist extends ActionVisitorTemplateMergeV2<MatlisInf
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
+		return super.MERGE_WHEN_EMPTY;
 	}
 }

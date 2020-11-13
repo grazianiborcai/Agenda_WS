@@ -6,11 +6,11 @@ import br.com.mind5.authorization.storePartitionAuthorization.info.SytotauhInfo;
 import br.com.mind5.authorization.storePartitionAuthorization.model.decisionTree.RootSytotauhSelect;
 import br.com.mind5.business.material.info.MatInfo;
 import br.com.mind5.business.material.info.MatMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiMatMergeSytotauh extends ActionVisitorTemplateMergeV2<MatInfo, SytotauhInfo> {
+final class VisiMatMergeSytotauh extends ActionVisitorTemplateMerge<MatInfo, SytotauhInfo> {
 	
 	public VisiMatMergeSytotauh(DeciTreeOption<MatInfo> option) {
 		super(option, SytotauhInfo.class);

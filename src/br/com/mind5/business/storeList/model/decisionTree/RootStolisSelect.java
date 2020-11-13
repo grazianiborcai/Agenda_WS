@@ -16,15 +16,15 @@ import br.com.mind5.business.storeList.model.checker.StolisCheckLangu;
 import br.com.mind5.business.storeList.model.checker.StolisCheckOwner;
 import br.com.mind5.business.storeList.model.checker.StolisCheckRead;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
 
-public final class RootStolisSelect extends DeciTreeTemplateWriteV2<StolisInfo> {
+public final class RootStolisSelect extends DeciTreeTemplateWrite<StolisInfo> {
 	
 	public RootStolisSelect(DeciTreeOption<StolisInfo> option) {
 		super(option);
@@ -32,9 +32,9 @@ public final class RootStolisSelect extends DeciTreeTemplateWriteV2<StolisInfo> 
 	
 	
 	
-	@Override protected ModelCheckerV1<StolisInfo> buildCheckerHook(DeciTreeOption<StolisInfo> option) {
-		List<ModelCheckerV1<StolisInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<StolisInfo> checker;
+	@Override protected ModelChecker<StolisInfo> buildCheckerHook(DeciTreeOption<StolisInfo> option) {
+		List<ModelChecker<StolisInfo>> queue = new ArrayList<>();		
+		ModelChecker<StolisInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -58,15 +58,15 @@ public final class RootStolisSelect extends DeciTreeTemplateWriteV2<StolisInfo> 
 		checker = new StolisCheckOwner(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<StolisInfo>> buildActionsOnPassedHook(DeciTreeOption<StolisInfo> option) {
-		List<ActionStdV2<StolisInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<StolisInfo>> buildActionsOnPassedHook(DeciTreeOption<StolisInfo> option) {
+		List<ActionStd<StolisInfo>> actions = new ArrayList<>();
 
-		ActionStdV2<StolisInfo> select = new StdStolisMergeToSelect(option);
+		ActionStd<StolisInfo> select = new StdStolisMergeToSelect(option);
 		ActionLazy<StolisInfo> mergeCurrency = new LazyStolisMergeCurrency(option.conn, option.schemaName);
 		ActionLazy<StolisInfo> mergeTimezone = new LazyStolisMergeTimezone(option.conn, option.schemaName);
 		ActionLazy<StolisInfo> mergeComplis = new LazyStolisMergeComplis(option.conn, option.schemaName);

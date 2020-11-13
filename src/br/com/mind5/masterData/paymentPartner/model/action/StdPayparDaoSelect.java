@@ -1,11 +1,11 @@
 package br.com.mind5.masterData.paymentPartner.model.action;
 
 import br.com.mind5.masterData.paymentPartner.info.PayparInfo;
-import br.com.mind5.model.action.ActionStdTemplateV2;
-import br.com.mind5.model.action.ActionVisitorV2;
+import br.com.mind5.model.action.ActionStdTemplate;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdPayparDaoSelect extends ActionStdTemplateV2<PayparInfo> {
+public final class StdPayparDaoSelect extends ActionStdTemplate<PayparInfo> {
 
 	public StdPayparDaoSelect(DeciTreeOption<PayparInfo> option) {
 		super(option);
@@ -13,7 +13,7 @@ public final class StdPayparDaoSelect extends ActionStdTemplateV2<PayparInfo> {
 	
 	
 	
-	protected ActionVisitorV2<PayparInfo> buildVisitorHook(DeciTreeOption<PayparInfo> option) {
+	protected ActionVisitor<PayparInfo> buildVisitorHook(DeciTreeOption<PayparInfo> option) {
 		return new VisiPayparDaoSelect(option);
 	}
 }

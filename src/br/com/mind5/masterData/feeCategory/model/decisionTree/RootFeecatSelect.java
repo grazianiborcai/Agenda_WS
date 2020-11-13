@@ -6,14 +6,14 @@ import java.util.List;
 import br.com.mind5.masterData.feeCategory.info.FeecatInfo;
 import br.com.mind5.masterData.feeCategory.model.action.StdFeecatDaoSelect;
 import br.com.mind5.masterData.feeCategory.model.checker.FeecatCheckRead;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootFeecatSelect extends DeciTreeTemplateReadV2<FeecatInfo> {
+public final class RootFeecatSelect extends DeciTreeTemplateRead<FeecatInfo> {
 	
 	public RootFeecatSelect(DeciTreeOption<FeecatInfo> option) {
 		super(option);
@@ -21,9 +21,9 @@ public final class RootFeecatSelect extends DeciTreeTemplateReadV2<FeecatInfo> {
 	
 	
 	
-	@Override protected ModelCheckerV1<FeecatInfo> buildCheckerHook(DeciTreeOption<FeecatInfo> option) {
-		List<ModelCheckerV1<FeecatInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<FeecatInfo> checker;
+	@Override protected ModelChecker<FeecatInfo> buildCheckerHook(DeciTreeOption<FeecatInfo> option) {
+		List<ModelChecker<FeecatInfo>> queue = new ArrayList<>();		
+		ModelChecker<FeecatInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
 		checkerOption = new ModelCheckerOption();
@@ -33,15 +33,15 @@ public final class RootFeecatSelect extends DeciTreeTemplateReadV2<FeecatInfo> {
 		checker = new FeecatCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 
 		
 	
-	@Override protected List<ActionStdV2<FeecatInfo>> buildActionsOnPassedHook(DeciTreeOption<FeecatInfo> option) {
-		List<ActionStdV2<FeecatInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<FeecatInfo>> buildActionsOnPassedHook(DeciTreeOption<FeecatInfo> option) {
+		List<ActionStd<FeecatInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<FeecatInfo> select = new StdFeecatDaoSelect(option);
+		ActionStd<FeecatInfo> select = new StdFeecatDaoSelect(option);
 		
 		actions.add(select);
 		return actions;

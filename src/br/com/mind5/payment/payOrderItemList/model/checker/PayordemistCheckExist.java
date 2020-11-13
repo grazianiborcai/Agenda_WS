@@ -1,14 +1,14 @@
 package br.com.mind5.payment.payOrderItemList.model.checker;
 
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.payOrderItemList.info.PayordemistInfo;
 import br.com.mind5.payment.payOrderItemList.model.decisionTree.RootPayordemistSelect;
 
-public final class PayordemistCheckExist extends ModelCheckerTemplateActionV2<PayordemistInfo, PayordemistInfo> {
+public final class PayordemistCheckExist extends ModelCheckerTemplateAction<PayordemistInfo, PayordemistInfo> {
 	
 	public PayordemistCheckExist(ModelCheckerOption option) {
 		super(option, PayordemistInfo.class);
@@ -16,8 +16,8 @@ public final class PayordemistCheckExist extends ModelCheckerTemplateActionV2<Pa
 	
 
 	
-	@Override protected ActionStdV2<PayordemistInfo> buildActionHook(DeciTreeOption<PayordemistInfo> option) {
-		ActionStdV2<PayordemistInfo> select = new RootPayordemistSelect(option).toAction();
+	@Override protected ActionStd<PayordemistInfo> buildActionHook(DeciTreeOption<PayordemistInfo> option) {
+		ActionStd<PayordemistInfo> select = new RootPayordemistSelect(option).toAction();
 		return select;
 	}
 	

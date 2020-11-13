@@ -1,11 +1,11 @@
 package br.com.mind5.business.storeList.model.action;
 
 import br.com.mind5.business.storeList.info.StolisInfo;
-import br.com.mind5.model.action.ActionStdTemplateV2;
-import br.com.mind5.model.action.ActionVisitorV2;
+import br.com.mind5.model.action.ActionStdTemplate;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class StdStolisMergeComplis extends ActionStdTemplateV2<StolisInfo> {
+final class StdStolisMergeComplis extends ActionStdTemplate<StolisInfo> {
 
 	public StdStolisMergeComplis(DeciTreeOption<StolisInfo> option) {
 		super(option);
@@ -13,7 +13,7 @@ final class StdStolisMergeComplis extends ActionStdTemplateV2<StolisInfo> {
 	
 	
 	
-	protected ActionVisitorV2<StolisInfo> buildVisitorHook(DeciTreeOption<StolisInfo> option) {
+	protected ActionVisitor<StolisInfo> buildVisitorHook(DeciTreeOption<StolisInfo> option) {
 		return new VisiStolisMergeComplis(option);
 	}
 }

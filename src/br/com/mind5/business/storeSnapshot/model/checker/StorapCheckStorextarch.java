@@ -4,10 +4,10 @@ import br.com.mind5.business.storeSnapshot.info.StorapInfo;
 import br.com.mind5.business.storeTextSearch.info.StorextarchInfo;
 import br.com.mind5.business.storeTextSearch.model.checker.StorextarchCheckExist;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.model.checker.ModelChecker;
 
-public final class StorapCheckStorextarch extends ModelCheckerTemplateForwardV2<StorapInfo, StorextarchInfo> {
+public final class StorapCheckStorextarch extends ModelCheckerTemplateForward<StorapInfo, StorextarchInfo> {
 	
 	public StorapCheckStorextarch(ModelCheckerOption option) {
 		super(option);
@@ -15,7 +15,7 @@ public final class StorapCheckStorextarch extends ModelCheckerTemplateForwardV2<
 
 
 	
-	@Override protected ModelCheckerV1<StorextarchInfo> getCheckerHook(ModelCheckerOption option) {
+	@Override protected ModelChecker<StorextarchInfo> getCheckerHook(ModelCheckerOption option) {
 		return new StorextarchCheckExist(option);
 	}
 	

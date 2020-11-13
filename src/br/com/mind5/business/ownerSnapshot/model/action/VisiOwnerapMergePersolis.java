@@ -7,11 +7,11 @@ import br.com.mind5.business.ownerSnapshot.info.OwnerapMerger;
 import br.com.mind5.business.personList.info.PersolisCopier;
 import br.com.mind5.business.personList.info.PersolisInfo;
 import br.com.mind5.business.personList.model.decisionTree.RootPersolisSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiOwnerapMergePersolis extends ActionVisitorTemplateMergeV2<OwnerapInfo, PersolisInfo> {
+final class VisiOwnerapMergePersolis extends ActionVisitorTemplateMerge<OwnerapInfo, PersolisInfo> {
 	
 	public VisiOwnerapMergePersolis(DeciTreeOption<OwnerapInfo> option) {
 		super(option, PersolisInfo.class);

@@ -3,11 +3,11 @@ package br.com.mind5.payment.refundOrderItem.model.checker;
 import br.com.mind5.authorization.storeAuthorization.info.StorauthInfo;
 import br.com.mind5.authorization.storeAuthorization.model.checker.StorauthCheckExist;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.payment.refundOrderItem.info.RefemInfo;
 
-public final class RefemCheckStorauth extends ModelCheckerTemplateForwardV2<RefemInfo, StorauthInfo> {
+public final class RefemCheckStorauth extends ModelCheckerTemplateForward<RefemInfo, StorauthInfo> {
 	
 	public RefemCheckStorauth(ModelCheckerOption option) {
 		super(option);
@@ -15,7 +15,7 @@ public final class RefemCheckStorauth extends ModelCheckerTemplateForwardV2<Refe
 
 
 	
-	@Override protected ModelCheckerV1<StorauthInfo> getCheckerHook(ModelCheckerOption option) {
+	@Override protected ModelChecker<StorauthInfo> getCheckerHook(ModelCheckerOption option) {
 		return new StorauthCheckExist(option);
 	}
 	

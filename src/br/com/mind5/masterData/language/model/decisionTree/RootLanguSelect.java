@@ -6,14 +6,14 @@ import java.util.List;
 import br.com.mind5.masterData.language.info.LanguInfo;
 import br.com.mind5.masterData.language.model.action.StdLanguDaoSelect;
 import br.com.mind5.masterData.language.model.checker.LanguCheckRead;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootLanguSelect extends DeciTreeTemplateReadV2<LanguInfo> {
+public final class RootLanguSelect extends DeciTreeTemplateRead<LanguInfo> {
 	
 	public RootLanguSelect(DeciTreeOption<LanguInfo> option) {
 		super(option);
@@ -21,9 +21,9 @@ public final class RootLanguSelect extends DeciTreeTemplateReadV2<LanguInfo> {
 	
 	
 	
-	@Override protected ModelCheckerV1<LanguInfo> buildCheckerHook(DeciTreeOption<LanguInfo> option) {
-		List<ModelCheckerV1<LanguInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<LanguInfo> checker;
+	@Override protected ModelChecker<LanguInfo> buildCheckerHook(DeciTreeOption<LanguInfo> option) {
+		List<ModelChecker<LanguInfo>> queue = new ArrayList<>();		
+		ModelChecker<LanguInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
 		checkerOption = new ModelCheckerOption();
@@ -33,15 +33,15 @@ public final class RootLanguSelect extends DeciTreeTemplateReadV2<LanguInfo> {
 		checker = new LanguCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<LanguInfo>> buildActionsOnPassedHook(DeciTreeOption<LanguInfo> option) {
-		List<ActionStdV2<LanguInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<LanguInfo>> buildActionsOnPassedHook(DeciTreeOption<LanguInfo> option) {
+		List<ActionStd<LanguInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<LanguInfo> select = new StdLanguDaoSelect(option);
+		ActionStd<LanguInfo> select = new StdLanguDaoSelect(option);
 		
 		actions.add(select);
 		return actions;

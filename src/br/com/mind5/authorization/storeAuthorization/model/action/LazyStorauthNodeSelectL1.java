@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.authorization.storeAuthorization.info.StorauthInfo;
 import br.com.mind5.authorization.storeAuthorization.model.decisionTree.NodeStorauthSelectL1;
 import br.com.mind5.model.action.ActionLazyTemplate;
-import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -24,7 +24,7 @@ public final class LazyStorauthNodeSelectL1 extends ActionLazyTemplate<StorauthI
 	
 	
 	
-	@Override protected ActionStdV2<StorauthInfo> getInstanceOfActionHook(DeciTreeOption<StorauthInfo> option) {
+	@Override protected ActionStd<StorauthInfo> getInstanceOfActionHook(DeciTreeOption<StorauthInfo> option) {
 		return new NodeStorauthSelectL1(option).toAction();
 	}
 	

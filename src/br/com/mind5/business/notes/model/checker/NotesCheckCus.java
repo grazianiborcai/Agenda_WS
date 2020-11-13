@@ -4,10 +4,10 @@ import br.com.mind5.business.customer.info.CusInfo;
 import br.com.mind5.business.customer.model.checker.CusCheckExist;
 import br.com.mind5.business.notes.info.NotesInfo;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.model.checker.ModelChecker;
 
-public final class NotesCheckCus extends ModelCheckerTemplateForwardV2<NotesInfo, CusInfo> {
+public final class NotesCheckCus extends ModelCheckerTemplateForward<NotesInfo, CusInfo> {
 	
 	public NotesCheckCus(ModelCheckerOption option) {
 		super(option);
@@ -15,7 +15,7 @@ public final class NotesCheckCus extends ModelCheckerTemplateForwardV2<NotesInfo
 
 
 	
-	@Override protected ModelCheckerV1<CusInfo> getCheckerHook(ModelCheckerOption option) {
+	@Override protected ModelChecker<CusInfo> getCheckerHook(ModelCheckerOption option) {
 		return new CusCheckExist(option);
 	}
 	

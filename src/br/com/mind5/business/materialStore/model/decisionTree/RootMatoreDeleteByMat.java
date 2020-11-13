@@ -9,14 +9,14 @@ import br.com.mind5.business.materialStore.model.action.LazyMatoreRootDelete;
 import br.com.mind5.business.materialStore.model.action.StdMatoreEnforceMatKey;
 import br.com.mind5.business.materialStore.model.checker.MatoreCheckDeleteByMat;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootMatoreDeleteByMat extends DeciTreeTemplateWriteV2<MatoreInfo> {
+public final class RootMatoreDeleteByMat extends DeciTreeTemplateWrite<MatoreInfo> {
 	
 	public RootMatoreDeleteByMat(DeciTreeOption<MatoreInfo> option) {
 		super(option);
@@ -24,9 +24,9 @@ public final class RootMatoreDeleteByMat extends DeciTreeTemplateWriteV2<MatoreI
 	
 	
 	
-	@Override protected ModelCheckerV1<MatoreInfo> buildCheckerHook(DeciTreeOption<MatoreInfo> option) {
-		List<ModelCheckerV1<MatoreInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<MatoreInfo> checker;
+	@Override protected ModelChecker<MatoreInfo> buildCheckerHook(DeciTreeOption<MatoreInfo> option) {
+		List<ModelChecker<MatoreInfo>> queue = new ArrayList<>();		
+		ModelChecker<MatoreInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -36,15 +36,15 @@ public final class RootMatoreDeleteByMat extends DeciTreeTemplateWriteV2<MatoreI
 		checker = new MatoreCheckDeleteByMat(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<MatoreInfo>(queue);
+		return new ModelCheckerHelperQueue<MatoreInfo>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<MatoreInfo>> buildActionsOnPassedHook(DeciTreeOption<MatoreInfo> option) {
-		List<ActionStdV2<MatoreInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStd<MatoreInfo>> buildActionsOnPassedHook(DeciTreeOption<MatoreInfo> option) {
+		List<ActionStd<MatoreInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV2<MatoreInfo> enforceMatKey = new StdMatoreEnforceMatKey(option);
+		ActionStd<MatoreInfo> enforceMatKey = new StdMatoreEnforceMatKey(option);
 		ActionLazy<MatoreInfo> mergeMatorarch = new LazyMatoreMergeMatorarch(option.conn, option.schemaName);
 		ActionLazy<MatoreInfo> delete = new LazyMatoreRootDelete(option.conn, option.schemaName);
 		

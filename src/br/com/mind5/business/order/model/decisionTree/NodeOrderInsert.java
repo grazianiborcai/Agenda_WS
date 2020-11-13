@@ -14,14 +14,14 @@ import br.com.mind5.business.order.model.action.LazyOrderMergeRefupown;
 import br.com.mind5.business.order.model.action.LazyOrderNodeCusL1;
 import br.com.mind5.business.order.model.action.StdOrderMergeUsername;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodeOrderInsert extends DeciTreeTemplateWriteV2<OrderInfo> {
+public final class NodeOrderInsert extends DeciTreeTemplateWrite<OrderInfo> {
 	
 	public NodeOrderInsert(DeciTreeOption<OrderInfo> option) {
 		super(option);
@@ -29,22 +29,22 @@ public final class NodeOrderInsert extends DeciTreeTemplateWriteV2<OrderInfo> {
 	
 	
 	
-	@Override protected ModelCheckerV1<OrderInfo> buildCheckerHook(DeciTreeOption<OrderInfo> option) {
-		List<ModelCheckerV1<OrderInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<OrderInfo> checker;
+	@Override protected ModelChecker<OrderInfo> buildCheckerHook(DeciTreeOption<OrderInfo> option) {
+		List<ModelChecker<OrderInfo>> queue = new ArrayList<>();		
+		ModelChecker<OrderInfo> checker;
 		
 		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<OrderInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderInfo> option) {
-		List<ActionStdV2<OrderInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<OrderInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderInfo> option) {
+		List<ActionStd<OrderInfo>> actions = new ArrayList<>();
 		//TODO: zerar Address e Phone - Somente aceitar no Place
-		ActionStdV2<OrderInfo> mergeUsername = new StdOrderMergeUsername(option);	
+		ActionStd<OrderInfo> mergeUsername = new StdOrderMergeUsername(option);	
 		ActionLazy<OrderInfo> nodeCus = new LazyOrderNodeCusL1(option.conn, option.schemaName);
 		ActionLazy<OrderInfo> enforceCreatedOn = new LazyOrderEnforceCreatedOn(option.conn, option.schemaName);			
 		ActionLazy<OrderInfo> enforceCreatedBy = new LazyOrderEnforceCreatedBy(option.conn, option.schemaName);	

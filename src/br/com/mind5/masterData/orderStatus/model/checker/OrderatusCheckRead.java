@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.masterData.orderStatus.info.OrderatusInfo;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 
-public final class OrderatusCheckRead extends ModelCheckerTemplateSimpleV2<OrderatusInfo> {
+public final class OrderatusCheckRead extends ModelCheckerTemplateSimple<OrderatusInfo> {
 	
 	public OrderatusCheckRead(ModelCheckerOption option) {
 		super(option);

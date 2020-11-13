@@ -6,12 +6,12 @@ import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.business.storeList.info.StolisMerger;
 import br.com.mind5.masterData.currency.info.CurrencyInfo;
 import br.com.mind5.masterData.currency.model.decisionTree.RootCurrencySelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiStolisMergeCurrency extends ActionVisitorTemplateMergeV2<StolisInfo, CurrencyInfo> {
+final class VisiStolisMergeCurrency extends ActionVisitorTemplateMerge<StolisInfo, CurrencyInfo> {
 	
 	public VisiStolisMergeCurrency(DeciTreeOption<StolisInfo> option) {
 		super(option, CurrencyInfo.class);
@@ -32,6 +32,6 @@ final class VisiStolisMergeCurrency extends ActionVisitorTemplateMergeV2<StolisI
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
+		return super.MERGE_WHEN_EMPTY;
 	}
 }

@@ -6,11 +6,11 @@ import br.com.mind5.business.calendarDate.info.CalateInfo;
 import br.com.mind5.business.calendarDate.model.decisionTree.RootCalateSearch;
 import br.com.mind5.business.calendarDateAvailability.info.CalatityInfo;
 import br.com.mind5.business.calendarDateAvailability.info.CalatityMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiCalatityMergeCalate extends ActionVisitorTemplateMergeV2<CalatityInfo, CalateInfo> {
+final class VisiCalatityMergeCalate extends ActionVisitorTemplateMerge<CalatityInfo, CalateInfo> {
 	
 	public VisiCalatityMergeCalate(DeciTreeOption<CalatityInfo> option) {
 		super(option, CalateInfo.class);

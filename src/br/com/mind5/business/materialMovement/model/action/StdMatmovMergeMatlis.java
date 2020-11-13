@@ -1,11 +1,11 @@
 package br.com.mind5.business.materialMovement.model.action;
 
 import br.com.mind5.business.materialMovement.info.MatmovInfo;
-import br.com.mind5.model.action.ActionStdTemplateV2;
-import br.com.mind5.model.action.ActionVisitorV2;
+import br.com.mind5.model.action.ActionStdTemplate;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdMatmovMergeMatlis extends ActionStdTemplateV2<MatmovInfo> {
+public final class StdMatmovMergeMatlis extends ActionStdTemplate<MatmovInfo> {
 
 	public StdMatmovMergeMatlis(DeciTreeOption<MatmovInfo> option) {
 		super(option);
@@ -13,7 +13,7 @@ public final class StdMatmovMergeMatlis extends ActionStdTemplateV2<MatmovInfo> 
 	
 	
 	
-	protected ActionVisitorV2<MatmovInfo> buildVisitorHook(DeciTreeOption<MatmovInfo> option) {
+	protected ActionVisitor<MatmovInfo> buildVisitorHook(DeciTreeOption<MatmovInfo> option) {
 		return new VisiMatmovMergeMatlis(option);
 	}
 }

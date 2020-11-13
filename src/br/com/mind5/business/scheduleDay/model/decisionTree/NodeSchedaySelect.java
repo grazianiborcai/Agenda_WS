@@ -15,14 +15,14 @@ import br.com.mind5.business.scheduleDay.model.action.StdSchedayMergeCalate;
 import br.com.mind5.business.scheduleDay.model.action.StdSchedayMergeSchedayta;
 import br.com.mind5.business.scheduleDay.model.checker.SchedayCheckSchedayta;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodeSchedaySelect extends DeciTreeTemplateWriteV2<SchedayInfo> {
+public final class NodeSchedaySelect extends DeciTreeTemplateWrite<SchedayInfo> {
 	
 	public NodeSchedaySelect(DeciTreeOption<SchedayInfo> option) {
 		super(option);
@@ -30,9 +30,9 @@ public final class NodeSchedaySelect extends DeciTreeTemplateWriteV2<SchedayInfo
 	
 	
 	
-	@Override protected ModelCheckerV1<SchedayInfo> buildCheckerHook(DeciTreeOption<SchedayInfo> option) {
-		List<ModelCheckerV1<SchedayInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<SchedayInfo> checker;	
+	@Override protected ModelChecker<SchedayInfo> buildCheckerHook(DeciTreeOption<SchedayInfo> option) {
+		List<ModelChecker<SchedayInfo>> queue = new ArrayList<>();		
+		ModelChecker<SchedayInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -42,15 +42,15 @@ public final class NodeSchedaySelect extends DeciTreeTemplateWriteV2<SchedayInfo
 		checker = new SchedayCheckSchedayta(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<SchedayInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedayInfo> option) {
-		List<ActionStdV2<SchedayInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<SchedayInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedayInfo> option) {
+		List<ActionStd<SchedayInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<SchedayInfo> mergeSchedayta = new StdSchedayMergeSchedayta(option);
+		ActionStd<SchedayInfo> mergeSchedayta = new StdSchedayMergeSchedayta(option);
 		ActionLazy<SchedayInfo> mergeStolis = new LazySchedayMergeStolis(option.conn, option.schemaName);
 		ActionLazy<SchedayInfo> mergeMatlis = new LazySchedayMergeMatlis(option.conn, option.schemaName);
 		ActionLazy<SchedayInfo> mergeEmplis = new LazySchedayMergeEmplis(option.conn, option.schemaName);
@@ -73,10 +73,10 @@ public final class NodeSchedaySelect extends DeciTreeTemplateWriteV2<SchedayInfo
 	
 	
 	
-	@Override protected List<ActionStdV2<SchedayInfo>> buildActionsOnFailedHook(DeciTreeOption<SchedayInfo> option) {
-		List<ActionStdV2<SchedayInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<SchedayInfo>> buildActionsOnFailedHook(DeciTreeOption<SchedayInfo> option) {
+		List<ActionStd<SchedayInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<SchedayInfo> mergeCalate = new StdSchedayMergeCalate(option);
+		ActionStd<SchedayInfo> mergeCalate = new StdSchedayMergeCalate(option);
 		ActionLazy<SchedayInfo> mergeCalimore = new LazySchedayMergeCalimore(option.conn, option.schemaName);
 		
 		mergeCalate.addPostAction(mergeCalimore);

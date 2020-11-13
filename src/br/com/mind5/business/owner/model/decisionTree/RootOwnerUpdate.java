@@ -16,14 +16,14 @@ import br.com.mind5.business.owner.model.action.StdOwnerMergeToUpdate;
 import br.com.mind5.business.owner.model.checker.OwnerCheckExist;
 import br.com.mind5.business.owner.model.checker.OwnerCheckUpdate;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootOwnerUpdate extends DeciTreeTemplateWriteV2<OwnerInfo> {	
+public final class RootOwnerUpdate extends DeciTreeTemplateWrite<OwnerInfo> {	
 	
 	public RootOwnerUpdate(DeciTreeOption<OwnerInfo> option) {
 		super(option);
@@ -31,9 +31,9 @@ public final class RootOwnerUpdate extends DeciTreeTemplateWriteV2<OwnerInfo> {
 	
 	
 	
-	@Override protected ModelCheckerV1<OwnerInfo> buildCheckerHook(DeciTreeOption<OwnerInfo> option) {
-		List<ModelCheckerV1<OwnerInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<OwnerInfo> checker;
+	@Override protected ModelChecker<OwnerInfo> buildCheckerHook(DeciTreeOption<OwnerInfo> option) {
+		List<ModelChecker<OwnerInfo>> queue = new ArrayList<>();		
+		ModelChecker<OwnerInfo> checker;
 		ModelCheckerOption checkerOption;		
 		
 		checkerOption = new ModelCheckerOption();
@@ -50,15 +50,15 @@ public final class RootOwnerUpdate extends DeciTreeTemplateWriteV2<OwnerInfo> {
 		checker = new OwnerCheckExist(checkerOption);
 		queue.add(checker);	
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<OwnerInfo>> buildActionsOnPassedHook(DeciTreeOption<OwnerInfo> option) {
-		List<ActionStdV2<OwnerInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<OwnerInfo>> buildActionsOnPassedHook(DeciTreeOption<OwnerInfo> option) {
+		List<ActionStd<OwnerInfo>> actions = new ArrayList<>();
 
-		ActionStdV2<OwnerInfo> mergeToUpdate = new StdOwnerMergeToUpdate(option);
+		ActionStd<OwnerInfo> mergeToUpdate = new StdOwnerMergeToUpdate(option);
 		ActionLazy<OwnerInfo> enforceLChanged = new LazyOwnerEnforceLChanged(option.conn, option.schemaName);
 		ActionLazy<OwnerInfo> mergeUsername = new LazyOwnerMergeUsername(option.conn, option.schemaName);	
 		ActionLazy<OwnerInfo> updatePerson = new LazyOwnerNodeUpdatePerson(option.conn, option.schemaName);

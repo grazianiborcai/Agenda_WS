@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.mind5.business.orderStatusChange.info.OrdugeInfo;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 
-public final class OrdugeCheckWrite extends ModelCheckerTemplateSimpleV2<OrdugeInfo> {
+public final class OrdugeCheckWrite extends ModelCheckerTemplateSimple<OrdugeInfo> {
 
 	public OrdugeCheckWrite(ModelCheckerOption option) {
 		super(option);

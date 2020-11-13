@@ -4,10 +4,10 @@ import br.com.mind5.business.bookService.info.BookiceInfo;
 import br.com.mind5.business.material.info.MatInfo;
 import br.com.mind5.business.material.model.checker.MatCheckExist;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.model.checker.ModelChecker;
 
-public final class BookiceCheckMat extends ModelCheckerTemplateForwardV2<BookiceInfo, MatInfo> {
+public final class BookiceCheckMat extends ModelCheckerTemplateForward<BookiceInfo, MatInfo> {
 	
 	public BookiceCheckMat(ModelCheckerOption option) {
 		super(option);
@@ -15,7 +15,7 @@ public final class BookiceCheckMat extends ModelCheckerTemplateForwardV2<Bookice
 
 
 	
-	@Override protected ModelCheckerV1<MatInfo> getCheckerHook(ModelCheckerOption option) {
+	@Override protected ModelChecker<MatInfo> getCheckerHook(ModelCheckerOption option) {
 		return new MatCheckExist(option);
 	}
 	

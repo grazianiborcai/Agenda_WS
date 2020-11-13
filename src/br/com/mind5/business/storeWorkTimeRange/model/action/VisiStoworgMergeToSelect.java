@@ -4,11 +4,11 @@ import java.util.List;
 
 import br.com.mind5.business.storeWorkTimeRange.info.StoworgInfo;
 import br.com.mind5.business.storeWorkTimeRange.info.StoworgMerger;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiStoworgMergeToSelect extends ActionVisitorTemplateMergeV2<StoworgInfo, StoworgInfo> {
+final class VisiStoworgMergeToSelect extends ActionVisitorTemplateMerge<StoworgInfo, StoworgInfo> {
 	
 	public VisiStoworgMergeToSelect(DeciTreeOption<StoworgInfo> option) {
 		super(option, StoworgInfo.class);
@@ -16,7 +16,7 @@ final class VisiStoworgMergeToSelect extends ActionVisitorTemplateMergeV2<Stowor
 	
 	
 	
-	@Override protected Class<? extends ActionStdV2<StoworgInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStd<StoworgInfo>> getActionClassHook() {
 		return StdStoworgDaoSelect.class;
 	}
 	

@@ -6,14 +6,14 @@ import java.util.List;
 import br.com.mind5.authorization.scheduleAuthorization.info.SchedauthInfo;
 import br.com.mind5.authorization.scheduleAuthorization.model.action.StdSchedauthSuccess;
 import br.com.mind5.authorization.scheduleAuthorization.model.checker.SchedauthCheckExist;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodeSchedauthMoveL3 extends DeciTreeTemplateWriteV2<SchedauthInfo> {
+public final class NodeSchedauthMoveL3 extends DeciTreeTemplateWrite<SchedauthInfo> {
 	
 	public NodeSchedauthMoveL3(DeciTreeOption<SchedauthInfo> option) {
 		super(option);
@@ -21,9 +21,9 @@ public final class NodeSchedauthMoveL3 extends DeciTreeTemplateWriteV2<Schedauth
 	
 	
 	
-	@Override protected ModelCheckerV1<SchedauthInfo> buildCheckerHook(DeciTreeOption<SchedauthInfo> option) {
-		List<ModelCheckerV1<SchedauthInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<SchedauthInfo> checker;	
+	@Override protected ModelChecker<SchedauthInfo> buildCheckerHook(DeciTreeOption<SchedauthInfo> option) {
+		List<ModelChecker<SchedauthInfo>> queue = new ArrayList<>();		
+		ModelChecker<SchedauthInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -33,15 +33,15 @@ public final class NodeSchedauthMoveL3 extends DeciTreeTemplateWriteV2<Schedauth
 		checker = new SchedauthCheckExist(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<SchedauthInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedauthInfo> option) {
-		List<ActionStdV2<SchedauthInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStd<SchedauthInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedauthInfo> option) {
+		List<ActionStd<SchedauthInfo>> actions = new ArrayList<>();		
 
-		ActionStdV2<SchedauthInfo> success = new StdSchedauthSuccess(option);	
+		ActionStd<SchedauthInfo> success = new StdSchedauthSuccess(option);	
 		
 		actions.add(success);		
 		return actions;

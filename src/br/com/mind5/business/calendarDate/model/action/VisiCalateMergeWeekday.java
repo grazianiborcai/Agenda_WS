@@ -6,11 +6,11 @@ import br.com.mind5.business.calendarDate.info.CalateInfo;
 import br.com.mind5.business.calendarDate.info.CalateMerger;
 import br.com.mind5.masterData.weekday.info.WeekdayInfo;
 import br.com.mind5.masterData.weekday.model.decisionTree.RootWeekdaySelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiCalateMergeWeekday extends ActionVisitorTemplateMergeV2<CalateInfo, WeekdayInfo> {
+final class VisiCalateMergeWeekday extends ActionVisitorTemplateMerge<CalateInfo, WeekdayInfo> {
 	
 	public VisiCalateMergeWeekday(DeciTreeOption<CalateInfo> option) {
 		super(option, WeekdayInfo.class);

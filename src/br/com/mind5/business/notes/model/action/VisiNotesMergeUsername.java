@@ -4,14 +4,14 @@ import java.util.List;
 
 import br.com.mind5.business.notes.info.NotesInfo;
 import br.com.mind5.business.notes.info.NotesMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.username.info.UsernameCopier;
 import br.com.mind5.security.username.info.UsernameInfo;
 import br.com.mind5.security.username.model.decisionTree.RootUsernameSelect;
 
-final class VisiNotesMergeUsername extends ActionVisitorTemplateMergeV2<NotesInfo, UsernameInfo> {
+final class VisiNotesMergeUsername extends ActionVisitorTemplateMerge<NotesInfo, UsernameInfo> {
 	
 	public VisiNotesMergeUsername(DeciTreeOption<NotesInfo> option) {
 		super(option, UsernameInfo.class);

@@ -7,14 +7,14 @@ import br.com.mind5.business.employeeWorkTime.info.EmpwotmInfo;
 import br.com.mind5.business.employeeWorkTime.model.action.LazyEmpwotmRootSelect;
 import br.com.mind5.business.employeeWorkTime.model.action.StdEmpwotmMergeEmpwoco;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootEmpwotmConflict extends DeciTreeTemplateReadV2<EmpwotmInfo> {
+public final class RootEmpwotmConflict extends DeciTreeTemplateRead<EmpwotmInfo> {
 	
 	public RootEmpwotmConflict(DeciTreeOption<EmpwotmInfo> option) {
 		super(option);
@@ -22,22 +22,22 @@ public final class RootEmpwotmConflict extends DeciTreeTemplateReadV2<EmpwotmInf
 	
 	
 	
-	@Override protected ModelCheckerV1<EmpwotmInfo> buildCheckerHook(DeciTreeOption<EmpwotmInfo> option) {
-		List<ModelCheckerV1<EmpwotmInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<EmpwotmInfo> checker;
+	@Override protected ModelChecker<EmpwotmInfo> buildCheckerHook(DeciTreeOption<EmpwotmInfo> option) {
+		List<ModelChecker<EmpwotmInfo>> queue = new ArrayList<>();		
+		ModelChecker<EmpwotmInfo> checker;
 
 		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<EmpwotmInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpwotmInfo> option) {
-		List<ActionStdV2<EmpwotmInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<EmpwotmInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpwotmInfo> option) {
+		List<ActionStd<EmpwotmInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<EmpwotmInfo> mergeEmpwoco = new StdEmpwotmMergeEmpwoco(option);
+		ActionStd<EmpwotmInfo> mergeEmpwoco = new StdEmpwotmMergeEmpwoco(option);
 		ActionLazy<EmpwotmInfo> select = new LazyEmpwotmRootSelect(option.conn, option.schemaName);
 		
 		mergeEmpwoco.addPostAction(select);

@@ -11,14 +11,14 @@ import br.com.mind5.business.storeText.model.action.StdStorextMergeStorextarch;
 import br.com.mind5.business.storeText.model.action.StdStorextSuccess;
 import br.com.mind5.business.storeText.model.checker.StorextCheckStorextarch;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodeStorextDeleteL3 extends DeciTreeTemplateWriteV2<StorextInfo> {
+public final class NodeStorextDeleteL3 extends DeciTreeTemplateWrite<StorextInfo> {
 
 	public NodeStorextDeleteL3(DeciTreeOption<StorextInfo> option) {
 		super(option);
@@ -26,9 +26,9 @@ public final class NodeStorextDeleteL3 extends DeciTreeTemplateWriteV2<StorextIn
 	
 	
 	
-	@Override protected ModelCheckerV1<StorextInfo> buildCheckerHook(DeciTreeOption<StorextInfo> option) {
-		List<ModelCheckerV1<StorextInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<StorextInfo> checker;
+	@Override protected ModelChecker<StorextInfo> buildCheckerHook(DeciTreeOption<StorextInfo> option) {
+		List<ModelChecker<StorextInfo>> queue = new ArrayList<>();		
+		ModelChecker<StorextInfo> checker;
 		ModelCheckerOption checkerOption;
 			
 		checkerOption = new ModelCheckerOption();
@@ -38,15 +38,15 @@ public final class NodeStorextDeleteL3 extends DeciTreeTemplateWriteV2<StorextIn
 		checker = new StorextCheckStorextarch(checkerOption);
 		queue.add(checker);		
 
-		return new ModelCheckerHelperQueueV2<StorextInfo>(queue);
+		return new ModelCheckerHelperQueue<StorextInfo>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<StorextInfo>> buildActionsOnPassedHook(DeciTreeOption<StorextInfo> option) {
-		List<ActionStdV2<StorextInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<StorextInfo>> buildActionsOnPassedHook(DeciTreeOption<StorextInfo> option) {
+		List<ActionStd<StorextInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<StorextInfo> mergeStorextarch = new StdStorextMergeStorextarch(option);
+		ActionStd<StorextInfo> mergeStorextarch = new StdStorextMergeStorextarch(option);
 		ActionLazy<StorextInfo> mergeToSelect = new LazyStorextMergeToSelect(option.conn, option.schemaName);
 		ActionLazy<StorextInfo> enforceDefaultOn = new LazyStorextEnforceDefaultOn(option.conn, option.schemaName); 
 		ActionLazy<StorextInfo> update = new LazyStorextRootUpdate(option.conn, option.schemaName); 
@@ -61,10 +61,10 @@ public final class NodeStorextDeleteL3 extends DeciTreeTemplateWriteV2<StorextIn
 	
 	
 	
-	@Override protected List<ActionStdV2<StorextInfo>> buildActionsOnFailedHook(DeciTreeOption<StorextInfo> option) {
-		List<ActionStdV2<StorextInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<StorextInfo>> buildActionsOnFailedHook(DeciTreeOption<StorextInfo> option) {
+		List<ActionStd<StorextInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<StorextInfo> success = new StdStorextSuccess(option);
+		ActionStd<StorextInfo> success = new StdStorextSuccess(option);
 		
 		actions.add(success);
 		return actions;

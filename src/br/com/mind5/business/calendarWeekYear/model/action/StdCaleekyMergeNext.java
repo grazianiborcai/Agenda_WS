@@ -1,11 +1,11 @@
 package br.com.mind5.business.calendarWeekYear.model.action;
 
 import br.com.mind5.business.calendarWeekYear.info.CaleekyInfo;
-import br.com.mind5.model.action.ActionStdTemplateV2;
-import br.com.mind5.model.action.ActionVisitorV2;
+import br.com.mind5.model.action.ActionStdTemplate;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdCaleekyMergeNext extends ActionStdTemplateV2<CaleekyInfo> {
+public final class StdCaleekyMergeNext extends ActionStdTemplate<CaleekyInfo> {
 
 	public StdCaleekyMergeNext(DeciTreeOption<CaleekyInfo> option) {
 		super(option);
@@ -13,7 +13,7 @@ public final class StdCaleekyMergeNext extends ActionStdTemplateV2<CaleekyInfo> 
 	
 	
 	
-	protected ActionVisitorV2<CaleekyInfo> buildVisitorHook(DeciTreeOption<CaleekyInfo> option) {
+	protected ActionVisitor<CaleekyInfo> buildVisitorHook(DeciTreeOption<CaleekyInfo> option) {
 		return new VisiCaleekyMergeNext(option);
 	}
 }

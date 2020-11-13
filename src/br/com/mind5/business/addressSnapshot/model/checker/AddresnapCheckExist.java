@@ -3,12 +3,12 @@ package br.com.mind5.business.addressSnapshot.model.checker;
 import br.com.mind5.business.addressSnapshot.info.AddresnapInfo;
 import br.com.mind5.business.addressSnapshot.model.action.StdAddresnapDaoSelect;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class AddresnapCheckExist extends ModelCheckerTemplateActionV2<AddresnapInfo, AddresnapInfo> {
+public final class AddresnapCheckExist extends ModelCheckerTemplateAction<AddresnapInfo, AddresnapInfo> {
 	
 	public AddresnapCheckExist(ModelCheckerOption option) {
 		super(option, AddresnapInfo.class);
@@ -16,8 +16,8 @@ public final class AddresnapCheckExist extends ModelCheckerTemplateActionV2<Addr
 	
 	
 	
-	@Override protected ActionStdV2<AddresnapInfo> buildActionHook(DeciTreeOption<AddresnapInfo> option) {
-		ActionStdV2<AddresnapInfo> select = new StdAddresnapDaoSelect(option);
+	@Override protected ActionStd<AddresnapInfo> buildActionHook(DeciTreeOption<AddresnapInfo> option) {
+		ActionStd<AddresnapInfo> select = new StdAddresnapDaoSelect(option);
 		return select;
 	}
 	

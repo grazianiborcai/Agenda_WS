@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.message.email.info.EmailInfo;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 
-public final class EmailCheckScheduleCancellation extends ModelCheckerTemplateSimpleV2<EmailInfo> {
+public final class EmailCheckScheduleCancellation extends ModelCheckerTemplateSimple<EmailInfo> {
 
 	public EmailCheckScheduleCancellation(ModelCheckerOption option) {
 		super(option);

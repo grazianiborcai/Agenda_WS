@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.mind5.business.person.info.PersonInfo;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 
-public final class PersonCheckCpfNumber extends ModelCheckerTemplateSimpleV2<PersonInfo> {
+public final class PersonCheckCpfNumber extends ModelCheckerTemplateSimple<PersonInfo> {
 
 	public PersonCheckCpfNumber(ModelCheckerOption option) {
 		super(option);

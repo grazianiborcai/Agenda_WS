@@ -8,14 +8,14 @@ import br.com.mind5.message.emailUserOtp.model.action.LazyEmusotpSendEmail;
 import br.com.mind5.message.emailUserOtp.model.action.StdEmusotpEnforceEmabody;
 import br.com.mind5.message.emailUserOtp.model.checker.EmusotpCheckSend;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootEmusotpSend extends DeciTreeTemplateWriteV2<EmusotpInfo> {
+public final class RootEmusotpSend extends DeciTreeTemplateWrite<EmusotpInfo> {
 	
 	public RootEmusotpSend(DeciTreeOption<EmusotpInfo> option) {
 		super(option);
@@ -23,9 +23,9 @@ public final class RootEmusotpSend extends DeciTreeTemplateWriteV2<EmusotpInfo> 
 	
 	
 	
-	@Override protected ModelCheckerV1<EmusotpInfo> buildCheckerHook(DeciTreeOption<EmusotpInfo> option) {		
-		List<ModelCheckerV1<EmusotpInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<EmusotpInfo> checker;	
+	@Override protected ModelChecker<EmusotpInfo> buildCheckerHook(DeciTreeOption<EmusotpInfo> option) {		
+		List<ModelChecker<EmusotpInfo>> queue = new ArrayList<>();		
+		ModelChecker<EmusotpInfo> checker;	
 		ModelCheckerOption checkerOption;		
 		
 		checkerOption = new ModelCheckerOption();
@@ -35,15 +35,15 @@ public final class RootEmusotpSend extends DeciTreeTemplateWriteV2<EmusotpInfo> 
 		checker = new EmusotpCheckSend(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<EmusotpInfo>> buildActionsOnPassedHook(DeciTreeOption<EmusotpInfo> option) {
-		List<ActionStdV2<EmusotpInfo>> actions = new ArrayList<>();	
+	@Override protected List<ActionStd<EmusotpInfo>> buildActionsOnPassedHook(DeciTreeOption<EmusotpInfo> option) {
+		List<ActionStd<EmusotpInfo>> actions = new ArrayList<>();	
 		
-		ActionStdV2<EmusotpInfo> enforceEmabody = new StdEmusotpEnforceEmabody(option);
+		ActionStd<EmusotpInfo> enforceEmabody = new StdEmusotpEnforceEmabody(option);
 		ActionLazy<EmusotpInfo> send = new LazyEmusotpSendEmail(option.conn, option.schemaName);
 		
 		enforceEmabody.addPostAction(send);

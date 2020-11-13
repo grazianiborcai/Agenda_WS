@@ -1,13 +1,13 @@
 package br.com.mind5.security.userSnapshot.model.checker;
 
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.security.user.info.UserInfo;
 import br.com.mind5.security.user.model.checker.UserCheckExist;
 import br.com.mind5.security.userSnapshot.info.UserapInfo;
 
-public final class UserapCheckUser extends ModelCheckerTemplateForwardV2<UserapInfo, UserInfo> {
+public final class UserapCheckUser extends ModelCheckerTemplateForward<UserapInfo, UserInfo> {
 	
 	public UserapCheckUser(ModelCheckerOption option) {
 		super(option);
@@ -15,7 +15,7 @@ public final class UserapCheckUser extends ModelCheckerTemplateForwardV2<UserapI
 
 
 	
-	@Override protected ModelCheckerV1<UserInfo> getCheckerHook(ModelCheckerOption option) {
+	@Override protected ModelChecker<UserInfo> getCheckerHook(ModelCheckerOption option) {
 		return new UserCheckExist(option);
 	}
 	

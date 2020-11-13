@@ -3,18 +3,18 @@ package br.com.mind5.security.otpUserPassword.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.security.otpUserPassword.info.OtperasInfo;
 import br.com.mind5.security.otpUserPassword.model.action.StdOtperasDaoInsert;
 import br.com.mind5.security.otpUserPassword.model.action.StdOtperasDaoUpdate;
 import br.com.mind5.security.otpUserPassword.model.checker.OtperasCheckExist;
 
-public final class NodeOtperasUpsertL2 extends DeciTreeTemplateWriteV2<OtperasInfo> {
+public final class NodeOtperasUpsertL2 extends DeciTreeTemplateWrite<OtperasInfo> {
 	
 	public NodeOtperasUpsertL2(DeciTreeOption<OtperasInfo> option) {
 		super(option);
@@ -22,9 +22,9 @@ public final class NodeOtperasUpsertL2 extends DeciTreeTemplateWriteV2<OtperasIn
 	
 	
 	
-	@Override protected ModelCheckerV1<OtperasInfo> buildCheckerHook(DeciTreeOption<OtperasInfo> option) {
-		List<ModelCheckerV1<OtperasInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<OtperasInfo> checker;
+	@Override protected ModelChecker<OtperasInfo> buildCheckerHook(DeciTreeOption<OtperasInfo> option) {
+		List<ModelChecker<OtperasInfo>> queue = new ArrayList<>();		
+		ModelChecker<OtperasInfo> checker;
 		ModelCheckerOption checkerOption;	
 
 		checkerOption = new ModelCheckerOption();
@@ -34,15 +34,15 @@ public final class NodeOtperasUpsertL2 extends DeciTreeTemplateWriteV2<OtperasIn
 		checker = new OtperasCheckExist(checkerOption);
 		queue.add(checker);	
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<OtperasInfo>> buildActionsOnPassedHook(DeciTreeOption<OtperasInfo> option) {
-		List<ActionStdV2<OtperasInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<OtperasInfo>> buildActionsOnPassedHook(DeciTreeOption<OtperasInfo> option) {
+		List<ActionStd<OtperasInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<OtperasInfo> insert = new StdOtperasDaoInsert(option);
+		ActionStd<OtperasInfo> insert = new StdOtperasDaoInsert(option);
 		
 		actions.add(insert);	
 		return actions;
@@ -50,10 +50,10 @@ public final class NodeOtperasUpsertL2 extends DeciTreeTemplateWriteV2<OtperasIn
 	
 	
 	
-	@Override protected List<ActionStdV2<OtperasInfo>> buildActionsOnFailedHook(DeciTreeOption<OtperasInfo> option) {
-		List<ActionStdV2<OtperasInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<OtperasInfo>> buildActionsOnFailedHook(DeciTreeOption<OtperasInfo> option) {
+		List<ActionStd<OtperasInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<OtperasInfo> update = new StdOtperasDaoUpdate(option);
+		ActionStd<OtperasInfo> update = new StdOtperasDaoUpdate(option);
 		
 		actions.add(update);	
 		return actions;

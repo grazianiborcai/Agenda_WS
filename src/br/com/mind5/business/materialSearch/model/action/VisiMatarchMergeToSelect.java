@@ -4,12 +4,11 @@ import java.util.List;
 
 import br.com.mind5.business.materialSearch.info.MatarchInfo;
 import br.com.mind5.business.materialSearch.info.MatarchMerger;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiMatarchMergeToSelect extends ActionVisitorTemplateMergeV2<MatarchInfo, MatarchInfo> {
+final class VisiMatarchMergeToSelect extends ActionVisitorTemplateMerge<MatarchInfo, MatarchInfo> {
 	
 	public VisiMatarchMergeToSelect(DeciTreeOption<MatarchInfo> option) {
 		super(option, MatarchInfo.class);
@@ -17,7 +16,7 @@ final class VisiMatarchMergeToSelect extends ActionVisitorTemplateMergeV2<Matarc
 	
 	
 	
-	@Override protected Class<? extends ActionStdV2<MatarchInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStd<MatarchInfo>> getActionClassHook() {
 		return StdMatarchDaoSelect.class;
 	}
 	
@@ -30,6 +29,6 @@ final class VisiMatarchMergeToSelect extends ActionVisitorTemplateMergeV2<Matarc
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
+		return super.DONT_MERGE_WHEN_EMPTY;
 	}
 }

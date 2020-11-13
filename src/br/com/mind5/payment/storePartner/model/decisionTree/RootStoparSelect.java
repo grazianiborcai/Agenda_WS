@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 import br.com.mind5.payment.storePartner.info.StoparInfo;
 import br.com.mind5.payment.storePartner.model.action.LazyStoparMergePaypar;
 import br.com.mind5.payment.storePartner.model.action.StdStoparMergeToSelect;
@@ -17,7 +17,7 @@ import br.com.mind5.payment.storePartner.model.checker.StoparCheckOwner;
 import br.com.mind5.payment.storePartner.model.checker.StoparCheckRead;
 import br.com.mind5.payment.storePartner.model.checker.StoparCheckStore;
 
-public final class RootStoparSelect extends DeciTreeTemplateReadV2<StoparInfo> {
+public final class RootStoparSelect extends DeciTreeTemplateRead<StoparInfo> {
 	
 	public RootStoparSelect(DeciTreeOption<StoparInfo> option) {
 		super(option);
@@ -25,9 +25,9 @@ public final class RootStoparSelect extends DeciTreeTemplateReadV2<StoparInfo> {
 	
 	
 	
-	@Override protected ModelCheckerV1<StoparInfo> buildCheckerHook(DeciTreeOption<StoparInfo> option) {
-		List<ModelCheckerV1<StoparInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<StoparInfo> checker;
+	@Override protected ModelChecker<StoparInfo> buildCheckerHook(DeciTreeOption<StoparInfo> option) {
+		List<ModelChecker<StoparInfo>> queue = new ArrayList<>();		
+		ModelChecker<StoparInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -51,15 +51,15 @@ public final class RootStoparSelect extends DeciTreeTemplateReadV2<StoparInfo> {
 		checker = new StoparCheckStore(checkerOption);
 		queue.add(checker);	
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<StoparInfo>> buildActionsOnPassedHook(DeciTreeOption<StoparInfo> option) {
-		List<ActionStdV2<StoparInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<StoparInfo>> buildActionsOnPassedHook(DeciTreeOption<StoparInfo> option) {
+		List<ActionStd<StoparInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<StoparInfo> select = new StdStoparMergeToSelect(option);
+		ActionStd<StoparInfo> select = new StdStoparMergeToSelect(option);
 		ActionLazy<StoparInfo> mergePayPartner = new LazyStoparMergePaypar(option.conn, option.schemaName);
 		
 		select.addPostAction(mergePayPartner);

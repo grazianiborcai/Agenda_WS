@@ -1,11 +1,11 @@
 package br.com.mind5.business.materialStock.model.action;
 
 import br.com.mind5.business.materialStock.info.MatockInfo;
-import br.com.mind5.model.action.ActionStdTemplateV2;
-import br.com.mind5.model.action.ActionVisitorV2;
+import br.com.mind5.model.action.ActionStdTemplate;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdMatockDaoInsert extends ActionStdTemplateV2<MatockInfo> {
+public final class StdMatockDaoInsert extends ActionStdTemplate<MatockInfo> {
 
 	public StdMatockDaoInsert(DeciTreeOption<MatockInfo> option) {
 		super(option);
@@ -13,7 +13,7 @@ public final class StdMatockDaoInsert extends ActionStdTemplateV2<MatockInfo> {
 	
 	
 	
-	protected ActionVisitorV2<MatockInfo> buildVisitorHook(DeciTreeOption<MatockInfo> option) {
+	protected ActionVisitor<MatockInfo> buildVisitorHook(DeciTreeOption<MatockInfo> option) {
 		return new VisiMatockDaoInsert(option);
 	}
 }

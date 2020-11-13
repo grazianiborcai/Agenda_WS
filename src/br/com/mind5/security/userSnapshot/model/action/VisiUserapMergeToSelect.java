@@ -2,13 +2,13 @@ package br.com.mind5.security.userSnapshot.model.action;
 
 import java.util.List;
 
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.userSnapshot.info.UserapInfo;
 import br.com.mind5.security.userSnapshot.info.UserapMerger;
 
-final class VisiUserapMergeToSelect extends ActionVisitorTemplateMergeV2<UserapInfo, UserapInfo> {
+final class VisiUserapMergeToSelect extends ActionVisitorTemplateMerge<UserapInfo, UserapInfo> {
 	
 	public VisiUserapMergeToSelect(DeciTreeOption<UserapInfo> option) {
 		super(option, UserapInfo.class);
@@ -16,7 +16,7 @@ final class VisiUserapMergeToSelect extends ActionVisitorTemplateMergeV2<UserapI
 	
 	
 	
-	@Override protected Class<? extends ActionStdV2<UserapInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStd<UserapInfo>> getActionClassHook() {
 		return StdUserapDaoSelect.class;
 	}
 	

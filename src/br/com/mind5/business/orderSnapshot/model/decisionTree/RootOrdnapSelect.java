@@ -8,14 +8,14 @@ import br.com.mind5.business.orderSnapshot.model.action.StdOrdnapMergeToSelect;
 import br.com.mind5.business.orderSnapshot.model.checker.OrdnapCheckLangu;
 import br.com.mind5.business.orderSnapshot.model.checker.OrdnapCheckOwner;
 import br.com.mind5.business.orderSnapshot.model.checker.OrdnapCheckRead;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootOrdnapSelect extends DeciTreeTemplateReadV2<OrdnapInfo> {
+public final class RootOrdnapSelect extends DeciTreeTemplateRead<OrdnapInfo> {
 	
 	public RootOrdnapSelect(DeciTreeOption<OrdnapInfo> option) {
 		super(option);
@@ -23,9 +23,9 @@ public final class RootOrdnapSelect extends DeciTreeTemplateReadV2<OrdnapInfo> {
 	
 	
 	
-	@Override protected ModelCheckerV1<OrdnapInfo> buildCheckerHook(DeciTreeOption<OrdnapInfo> option) {
-		List<ModelCheckerV1<OrdnapInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<OrdnapInfo> checker;	
+	@Override protected ModelChecker<OrdnapInfo> buildCheckerHook(DeciTreeOption<OrdnapInfo> option) {
+		List<ModelChecker<OrdnapInfo>> queue = new ArrayList<>();		
+		ModelChecker<OrdnapInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -49,15 +49,15 @@ public final class RootOrdnapSelect extends DeciTreeTemplateReadV2<OrdnapInfo> {
 		checker = new OrdnapCheckOwner(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<OrdnapInfo>> buildActionsOnPassedHook(DeciTreeOption<OrdnapInfo> option) {
-		List<ActionStdV2<OrdnapInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStd<OrdnapInfo>> buildActionsOnPassedHook(DeciTreeOption<OrdnapInfo> option) {
+		List<ActionStd<OrdnapInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV2<OrdnapInfo> select = new StdOrdnapMergeToSelect(option);
+		ActionStd<OrdnapInfo> select = new StdOrdnapMergeToSelect(option);
 		
 		actions.add(select);			
 		return actions;

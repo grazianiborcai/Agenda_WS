@@ -4,11 +4,11 @@ import java.util.List;
 
 import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.business.store.info.StoreMerger;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiStoreMergeToUpdate extends ActionVisitorTemplateMergeV2<StoreInfo, StoreInfo> {
+final class VisiStoreMergeToUpdate extends ActionVisitorTemplateMerge<StoreInfo, StoreInfo> {
 	
 	public VisiStoreMergeToUpdate(DeciTreeOption<StoreInfo> option) {
 		super(option, StoreInfo.class);
@@ -16,7 +16,7 @@ final class VisiStoreMergeToUpdate extends ActionVisitorTemplateMergeV2<StoreInf
 	
 	
 	
-	@Override protected Class<? extends ActionStdV2<StoreInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStd<StoreInfo>> getActionClassHook() {
 		return StdStoreDaoSelect.class;
 	}
 	

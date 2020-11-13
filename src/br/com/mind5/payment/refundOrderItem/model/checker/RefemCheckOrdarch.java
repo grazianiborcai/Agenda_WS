@@ -4,11 +4,11 @@ import br.com.mind5.business.orderSearch.info.OrdarchCopier;
 import br.com.mind5.business.orderSearch.info.OrdarchInfo;
 import br.com.mind5.business.orderSearch.model.checker.OrdarchCheckExistAuth;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.payment.refundOrderItem.info.RefemInfo;
 
-public final class RefemCheckOrdarch extends ModelCheckerTemplateForwardV2<RefemInfo, OrdarchInfo> {
+public final class RefemCheckOrdarch extends ModelCheckerTemplateForward<RefemInfo, OrdarchInfo> {
 	
 	public RefemCheckOrdarch(ModelCheckerOption option) {
 		super(option);
@@ -16,7 +16,7 @@ public final class RefemCheckOrdarch extends ModelCheckerTemplateForwardV2<Refem
 
 
 	
-	@Override protected ModelCheckerV1<OrdarchInfo> getCheckerHook(ModelCheckerOption option) {
+	@Override protected ModelChecker<OrdarchInfo> getCheckerHook(ModelCheckerOption option) {
 		return new OrdarchCheckExistAuth(option);
 	}
 	

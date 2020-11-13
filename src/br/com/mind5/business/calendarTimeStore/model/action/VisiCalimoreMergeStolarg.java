@@ -7,11 +7,11 @@ import br.com.mind5.business.calendarTimeStore.info.CalimoreMerger;
 import br.com.mind5.business.storeLeaveDateRange.info.StolargCopier;
 import br.com.mind5.business.storeLeaveDateRange.info.StolargInfo;
 import br.com.mind5.business.storeLeaveDateRange.model.decisionTree.RootStolargSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiCalimoreMergeStolarg extends ActionVisitorTemplateMergeV2<CalimoreInfo, StolargInfo> {
+final class VisiCalimoreMergeStolarg extends ActionVisitorTemplateMerge<CalimoreInfo, StolargInfo> {
 	
 	public VisiCalimoreMergeStolarg(DeciTreeOption<CalimoreInfo> option) {
 		super(option, StolargInfo.class);

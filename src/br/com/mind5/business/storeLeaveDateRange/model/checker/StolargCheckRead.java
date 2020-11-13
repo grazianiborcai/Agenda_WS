@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.mind5.business.storeLeaveDateRange.info.StolargInfo;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 
-public final class StolargCheckRead extends ModelCheckerTemplateSimpleV2<StolargInfo> {
+public final class StolargCheckRead extends ModelCheckerTemplateSimple<StolargInfo> {
 
 	public StolargCheckRead(ModelCheckerOption option) {
 		super(option);

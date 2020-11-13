@@ -9,14 +9,14 @@ import br.com.mind5.business.storeWorkTimeSearch.model.checker.StowotarchCheckLa
 import br.com.mind5.business.storeWorkTimeSearch.model.checker.StowotarchCheckOwner;
 import br.com.mind5.business.storeWorkTimeSearch.model.checker.StowotarchCheckRead;
 import br.com.mind5.business.storeWorkTimeSearch.model.checker.StowotarchCheckStore;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootStowotarchSelect extends DeciTreeTemplateReadV2<StowotarchInfo> {
+public final class RootStowotarchSelect extends DeciTreeTemplateRead<StowotarchInfo> {
 	
 	public RootStowotarchSelect(DeciTreeOption<StowotarchInfo> option) {
 		super(option);
@@ -24,9 +24,9 @@ public final class RootStowotarchSelect extends DeciTreeTemplateReadV2<Stowotarc
 	
 	
 	
-	@Override protected ModelCheckerV1<StowotarchInfo> buildCheckerHook(DeciTreeOption<StowotarchInfo> option) {
-		List<ModelCheckerV1<StowotarchInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<StowotarchInfo> checker;
+	@Override protected ModelChecker<StowotarchInfo> buildCheckerHook(DeciTreeOption<StowotarchInfo> option) {
+		List<ModelChecker<StowotarchInfo>> queue = new ArrayList<>();		
+		ModelChecker<StowotarchInfo> checker;
 		ModelCheckerOption checkerOption;		
 		
 		checkerOption = new ModelCheckerOption();
@@ -57,15 +57,15 @@ public final class RootStowotarchSelect extends DeciTreeTemplateReadV2<Stowotarc
 		checker = new StowotarchCheckStore(checkerOption);
 		queue.add(checker);	
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<StowotarchInfo>> buildActionsOnPassedHook(DeciTreeOption<StowotarchInfo> option) {
-		List<ActionStdV2<StowotarchInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<StowotarchInfo>> buildActionsOnPassedHook(DeciTreeOption<StowotarchInfo> option) {
+		List<ActionStd<StowotarchInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<StowotarchInfo> select = new StdStowotarchMergeToSelect(option);
+		ActionStd<StowotarchInfo> select = new StdStowotarchMergeToSelect(option);
 		
 		actions.add(select);		
 		return actions; 

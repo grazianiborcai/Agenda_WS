@@ -7,12 +7,12 @@ import br.com.mind5.business.addressSearch.info.AddarchCopier;
 import br.com.mind5.business.addressSearch.info.AddarchInfo;
 import br.com.mind5.business.addressSearch.model.decisionTree.RootAddarchSelect;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class AddressCheckLimit extends ModelCheckerTemplateActionV2<AddressInfo, AddarchInfo> {
+public final class AddressCheckLimit extends ModelCheckerTemplateAction<AddressInfo, AddarchInfo> {
 	private final int MAX_RECORD_COUNT = 10;
 	
 	
@@ -22,8 +22,8 @@ public final class AddressCheckLimit extends ModelCheckerTemplateActionV2<Addres
 	
 	
 	
-	@Override protected ActionStdV2<AddarchInfo> buildActionHook(DeciTreeOption<AddarchInfo> option) {
-		ActionStdV2<AddarchInfo> select = new RootAddarchSelect(option).toAction();
+	@Override protected ActionStd<AddarchInfo> buildActionHook(DeciTreeOption<AddarchInfo> option) {
+		ActionStd<AddarchInfo> select = new RootAddarchSelect(option).toAction();
 		return select;
 	}
 	

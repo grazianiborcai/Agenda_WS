@@ -4,19 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 import br.com.mind5.security.user.info.UserInfo;
 import br.com.mind5.security.user.model.action.LazyUserRootSelect;
 import br.com.mind5.security.user.model.checker.UserCheckOwner;
 import br.com.mind5.security.user.model.checker.UserCheckReadAuth;
 import br.com.mind5.security.user.model.checker.UserCheckUsername;
 
-public final class RootUserSelectAuth extends DeciTreeTemplateReadV2<UserInfo> {
+public final class RootUserSelectAuth extends DeciTreeTemplateRead<UserInfo> {
 	
 	public RootUserSelectAuth(DeciTreeOption<UserInfo> option) {
 		super(option);
@@ -24,9 +24,9 @@ public final class RootUserSelectAuth extends DeciTreeTemplateReadV2<UserInfo> {
 	
 	
 	
-	@Override protected ModelCheckerV1<UserInfo> buildCheckerHook(DeciTreeOption<UserInfo> option) {
-		List<ModelCheckerV1<UserInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<UserInfo> checker;
+	@Override protected ModelChecker<UserInfo> buildCheckerHook(DeciTreeOption<UserInfo> option) {
+		List<ModelChecker<UserInfo>> queue = new ArrayList<>();		
+		ModelChecker<UserInfo> checker;
 		ModelCheckerOption checkerOption;		
 		
 		checkerOption = new ModelCheckerOption();
@@ -50,15 +50,15 @@ public final class RootUserSelectAuth extends DeciTreeTemplateReadV2<UserInfo> {
 		checker = new UserCheckUsername(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<UserInfo>> buildActionsOnPassedHook(DeciTreeOption<UserInfo> option) {
-		List<ActionStdV2<UserInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<UserInfo>> buildActionsOnPassedHook(DeciTreeOption<UserInfo> option) {
+		List<ActionStd<UserInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<UserInfo> nodeAuth = new NodeUserAuth(option).toAction();
+		ActionStd<UserInfo> nodeAuth = new NodeUserAuth(option).toAction();
 		ActionLazy<UserInfo> select = new LazyUserRootSelect(option.conn, option.schemaName);
 		
 		nodeAuth.addPostAction(select);

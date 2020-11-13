@@ -1,11 +1,11 @@
 package br.com.mind5.business.notes.model.action;
 
 import br.com.mind5.business.notes.info.NotesInfo;
-import br.com.mind5.model.action.ActionStdTemplateV2;
-import br.com.mind5.model.action.ActionVisitorV2;
+import br.com.mind5.model.action.ActionStdTemplate;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdNotesDaoUpdate extends ActionStdTemplateV2<NotesInfo> {
+public final class StdNotesDaoUpdate extends ActionStdTemplate<NotesInfo> {
 
 	public StdNotesDaoUpdate(DeciTreeOption<NotesInfo> option) {
 		super(option);
@@ -13,7 +13,7 @@ public final class StdNotesDaoUpdate extends ActionStdTemplateV2<NotesInfo> {
 	
 	
 	
-	protected ActionVisitorV2<NotesInfo> buildVisitorHook(DeciTreeOption<NotesInfo> option) {
+	protected ActionVisitor<NotesInfo> buildVisitorHook(DeciTreeOption<NotesInfo> option) {
 		return new VisiNotesDaoUpdate(option);
 	}
 }

@@ -6,11 +6,11 @@ import br.com.mind5.business.storeProspect.info.StoprosInfo;
 import br.com.mind5.business.storeProspect.info.StoprosMerger;
 import br.com.mind5.masterData.prospectStatus.info.ProstusInfo;
 import br.com.mind5.masterData.prospectStatus.model.decisionTree.RootProstusSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiStoprosMergeProstus extends ActionVisitorTemplateMergeV2<StoprosInfo, ProstusInfo> {
+final class VisiStoprosMergeProstus extends ActionVisitorTemplateMerge<StoprosInfo, ProstusInfo> {
 	
 	public VisiStoprosMergeProstus(DeciTreeOption<StoprosInfo> option) {
 		super(option, ProstusInfo.class);

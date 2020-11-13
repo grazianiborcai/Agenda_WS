@@ -4,10 +4,10 @@ import br.com.mind5.business.employeePositionSearch.info.EmposarchInfo;
 import br.com.mind5.business.employeePositionSearch.model.checker.EmposarchCheckExist;
 import br.com.mind5.business.employeeWorkTime.info.EmpwotmInfo;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.model.checker.ModelChecker;
 
-public final class EmpwotmCheckEmposarch extends ModelCheckerTemplateForwardV2<EmpwotmInfo, EmposarchInfo> {
+public final class EmpwotmCheckEmposarch extends ModelCheckerTemplateForward<EmpwotmInfo, EmposarchInfo> {
 	
 	public EmpwotmCheckEmposarch(ModelCheckerOption option) {
 		super(option);
@@ -15,7 +15,7 @@ public final class EmpwotmCheckEmposarch extends ModelCheckerTemplateForwardV2<E
 
 
 	
-	@Override protected ModelCheckerV1<EmposarchInfo> getCheckerHook(ModelCheckerOption option) {
+	@Override protected ModelChecker<EmposarchInfo> getCheckerHook(ModelCheckerOption option) {
 		return new EmposarchCheckExist(option);
 	}
 	

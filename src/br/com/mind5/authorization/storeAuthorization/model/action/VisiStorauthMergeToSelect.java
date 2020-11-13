@@ -4,11 +4,11 @@ import java.util.List;
 
 import br.com.mind5.authorization.storeAuthorization.info.StorauthInfo;
 import br.com.mind5.authorization.storeAuthorization.info.StorauthMerger;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiStorauthMergeToSelect extends ActionVisitorTemplateMergeV2<StorauthInfo, StorauthInfo> {
+final class VisiStorauthMergeToSelect extends ActionVisitorTemplateMerge<StorauthInfo, StorauthInfo> {
 	
 	public VisiStorauthMergeToSelect(DeciTreeOption<StorauthInfo> option) {
 		super(option, StorauthInfo.class);
@@ -16,7 +16,7 @@ final class VisiStorauthMergeToSelect extends ActionVisitorTemplateMergeV2<Stora
 	
 	
 	
-	@Override protected Class<? extends ActionStdV2<StorauthInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStd<StorauthInfo>> getActionClassHook() {
 		return StdStorauthDaoSelect.class;
 	}
 	

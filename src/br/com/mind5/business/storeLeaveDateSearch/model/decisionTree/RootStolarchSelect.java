@@ -9,23 +9,23 @@ import br.com.mind5.business.storeLeaveDateSearch.model.checker.StolarchCheckLan
 import br.com.mind5.business.storeLeaveDateSearch.model.checker.StolarchCheckOwner;
 import br.com.mind5.business.storeLeaveDateSearch.model.checker.StolarchCheckRead;
 import br.com.mind5.business.storeLeaveDateSearch.model.checker.StolarchCheckStore;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootStolarchSelect extends DeciTreeTemplateReadV2<StolarchInfo> {
+public final class RootStolarchSelect extends DeciTreeTemplateRead<StolarchInfo> {
 	
 	public RootStolarchSelect(DeciTreeOption<StolarchInfo> option) {
 		super(option);
 	}	
 	
 	
-	@Override protected ModelCheckerV1<StolarchInfo> buildCheckerHook(DeciTreeOption<StolarchInfo> option) {
-		List<ModelCheckerV1<StolarchInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<StolarchInfo> checker;
+	@Override protected ModelChecker<StolarchInfo> buildCheckerHook(DeciTreeOption<StolarchInfo> option) {
+		List<ModelChecker<StolarchInfo>> queue = new ArrayList<>();		
+		ModelChecker<StolarchInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -56,13 +56,13 @@ public final class RootStolarchSelect extends DeciTreeTemplateReadV2<StolarchInf
 		checker = new StolarchCheckStore(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<StolarchInfo>> buildActionsOnPassedHook(DeciTreeOption<StolarchInfo> option) {
-		List<ActionStdV2<StolarchInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<StolarchInfo>> buildActionsOnPassedHook(DeciTreeOption<StolarchInfo> option) {
+		List<ActionStd<StolarchInfo>> actions = new ArrayList<>();
 		
 		actions.add(new StdStolarchMergeToSelect(option));
 		return actions;

@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.cartItem.info.CartemInfo;
 import br.com.mind5.model.action.ActionLazyTemplate;
-import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -23,7 +23,7 @@ public final class LazyCartemDaoInsert extends ActionLazyTemplate<CartemInfo, Ca
 	
 	
 	
-	@Override protected ActionStdV2<CartemInfo> getInstanceOfActionHook(DeciTreeOption<CartemInfo> option) {
+	@Override protected ActionStd<CartemInfo> getInstanceOfActionHook(DeciTreeOption<CartemInfo> option) {
 		return new StdCartemDaoInsert(option);
 	}
 	

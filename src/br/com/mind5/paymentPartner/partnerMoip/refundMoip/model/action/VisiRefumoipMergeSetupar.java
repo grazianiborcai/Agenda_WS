@@ -2,7 +2,7 @@ package br.com.mind5.paymentPartner.partnerMoip.refundMoip.model.action;
 
 import java.util.List;
 
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.setupPartner.info.SetuparInfo;
@@ -10,7 +10,7 @@ import br.com.mind5.payment.setupPartner.model.decisionTree.RootSetuparSelect;
 import br.com.mind5.paymentPartner.partnerMoip.refundMoip.info.RefumoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.refundMoip.info.RefumoipMerger;
 
-final class VisiRefumoipMergeSetupar extends ActionVisitorTemplateMergeV2<RefumoipInfo, SetuparInfo> {
+final class VisiRefumoipMergeSetupar extends ActionVisitorTemplateMerge<RefumoipInfo, SetuparInfo> {
 	
 	public VisiRefumoipMergeSetupar(DeciTreeOption<RefumoipInfo> option) {
 		super(option, SetuparInfo.class);

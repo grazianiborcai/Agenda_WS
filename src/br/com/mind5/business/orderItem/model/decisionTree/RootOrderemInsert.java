@@ -16,14 +16,14 @@ import br.com.mind5.business.orderItem.model.checker.OrderemCheckMat;
 import br.com.mind5.business.orderItem.model.checker.OrderemCheckOrder;
 import br.com.mind5.business.orderItem.model.checker.OrderemCheckOwner;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootOrderemInsert extends DeciTreeTemplateWriteV2<OrderemInfo> {
+public final class RootOrderemInsert extends DeciTreeTemplateWrite<OrderemInfo> {
 	
 	public RootOrderemInsert(DeciTreeOption<OrderemInfo> option) {
 		super(option);
@@ -31,9 +31,9 @@ public final class RootOrderemInsert extends DeciTreeTemplateWriteV2<OrderemInfo
 	
 	
 	
-	@Override protected ModelCheckerV1<OrderemInfo> buildCheckerHook(DeciTreeOption<OrderemInfo> option) {
-		List<ModelCheckerV1<OrderemInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<OrderemInfo> checker;	
+	@Override protected ModelChecker<OrderemInfo> buildCheckerHook(DeciTreeOption<OrderemInfo> option) {
+		List<ModelChecker<OrderemInfo>> queue = new ArrayList<>();		
+		ModelChecker<OrderemInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -78,15 +78,15 @@ public final class RootOrderemInsert extends DeciTreeTemplateWriteV2<OrderemInfo
 		checker = new OrderemCheckExist(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<OrderemInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderemInfo> option) {
-		List<ActionStdV2<OrderemInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<OrderemInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderemInfo> option) {
+		List<ActionStd<OrderemInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<OrderemInfo> enforceLChanged = new StdOrderemEnforceLChanged(option);
+		ActionStd<OrderemInfo> enforceLChanged = new StdOrderemEnforceLChanged(option);
 		ActionLazy<OrderemInfo> mergeUsername = new LazyOrderemMergeUsername(option.conn, option.schemaName);
 		ActionLazy<OrderemInfo> statusChange = new LazyOrderemMergeOrdugeCreate(option.conn, option.schemaName);
 		ActionLazy<OrderemInfo> nodeInsert = new LazyOrderemNodeInsert(option.conn, option.schemaName);

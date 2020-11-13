@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 
-public final class PhoneCheckFlagDel extends ModelCheckerTemplateSimpleV2<PhoneInfo> {
+public final class PhoneCheckFlagDel extends ModelCheckerTemplateSimple<PhoneInfo> {
 
 	public PhoneCheckFlagDel(ModelCheckerOption option) {
 		super(option);

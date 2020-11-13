@@ -5,14 +5,14 @@ import java.util.List;
 
 import br.com.mind5.business.scheduleLine.info.SchedineInfo;
 import br.com.mind5.business.scheduleLine.model.action.StdSchedineSchedauthInsert;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodeSchedineAuthInsert extends DeciTreeTemplateWriteV2<SchedineInfo> {
+public final class NodeSchedineAuthInsert extends DeciTreeTemplateWrite<SchedineInfo> {
 	
 	public NodeSchedineAuthInsert(DeciTreeOption<SchedineInfo> option) {
 		super(option);
@@ -20,22 +20,22 @@ public final class NodeSchedineAuthInsert extends DeciTreeTemplateWriteV2<Schedi
 	
 	
 	
-	@Override protected ModelCheckerV1<SchedineInfo> buildCheckerHook(DeciTreeOption<SchedineInfo> option) {
-		List<ModelCheckerV1<SchedineInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<SchedineInfo> checker;	
+	@Override protected ModelChecker<SchedineInfo> buildCheckerHook(DeciTreeOption<SchedineInfo> option) {
+		List<ModelChecker<SchedineInfo>> queue = new ArrayList<>();		
+		ModelChecker<SchedineInfo> checker;	
 
 		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<SchedineInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedineInfo> option) {
-		List<ActionStdV2<SchedineInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<SchedineInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedineInfo> option) {
+		List<ActionStd<SchedineInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<SchedineInfo> auth = new StdSchedineSchedauthInsert(option);
+		ActionStd<SchedineInfo> auth = new StdSchedineSchedauthInsert(option);
 		
 		actions.add(auth);
 		return actions;

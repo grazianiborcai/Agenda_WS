@@ -1,11 +1,11 @@
 package br.com.mind5.masterData.refundPolicyGroupItemSearch.model.action;
 
 import br.com.mind5.masterData.refundPolicyGroupItemSearch.info.RefugritarchInfo;
-import br.com.mind5.model.action.ActionStdTemplateV2;
-import br.com.mind5.model.action.ActionVisitorV2;
+import br.com.mind5.model.action.ActionStdTemplate;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdRefugritarchDaoSelect extends ActionStdTemplateV2<RefugritarchInfo> {
+public final class StdRefugritarchDaoSelect extends ActionStdTemplate<RefugritarchInfo> {
 
 	public StdRefugritarchDaoSelect(DeciTreeOption<RefugritarchInfo> option) {
 		super(option);
@@ -13,7 +13,7 @@ public final class StdRefugritarchDaoSelect extends ActionStdTemplateV2<Refugrit
 	
 	
 	
-	protected ActionVisitorV2<RefugritarchInfo> buildVisitorHook(DeciTreeOption<RefugritarchInfo> option) {
+	protected ActionVisitor<RefugritarchInfo> buildVisitorHook(DeciTreeOption<RefugritarchInfo> option) {
 		return new VisiRefugritarchDaoSelect(option);
 	}
 }

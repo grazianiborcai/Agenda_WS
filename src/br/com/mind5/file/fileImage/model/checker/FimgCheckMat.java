@@ -4,10 +4,10 @@ import br.com.mind5.business.material.info.MatInfo;
 import br.com.mind5.business.material.model.checker.MatCheckExist;
 import br.com.mind5.file.fileImage.info.FimgInfo;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.model.checker.ModelChecker;
 
-public final class FimgCheckMat extends ModelCheckerTemplateForwardV2<FimgInfo, MatInfo> {
+public final class FimgCheckMat extends ModelCheckerTemplateForward<FimgInfo, MatInfo> {
 	
 	public FimgCheckMat(ModelCheckerOption option) {
 		super(option);
@@ -15,7 +15,7 @@ public final class FimgCheckMat extends ModelCheckerTemplateForwardV2<FimgInfo, 
 
 
 	
-	@Override protected ModelCheckerV1<MatInfo> getCheckerHook(ModelCheckerOption option) {
+	@Override protected ModelChecker<MatInfo> getCheckerHook(ModelCheckerOption option) {
 		return new MatCheckExist(option);
 	}
 	

@@ -3,12 +3,12 @@ package br.com.mind5.business.storeLeaveDateSearch.model.checker;
 import br.com.mind5.business.storeLeaveDateSearch.info.StolarchInfo;
 import br.com.mind5.business.storeLeaveDateSearch.model.decisionTree.RootStolarchSelect;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StolarchCheckExist extends ModelCheckerTemplateActionV2<StolarchInfo, StolarchInfo> {
+public final class StolarchCheckExist extends ModelCheckerTemplateAction<StolarchInfo, StolarchInfo> {
 	
 	public StolarchCheckExist(ModelCheckerOption option) {
 		super(option, StolarchInfo.class);
@@ -16,8 +16,8 @@ public final class StolarchCheckExist extends ModelCheckerTemplateActionV2<Stola
 	
 	
 	
-	@Override protected ActionStdV2<StolarchInfo> buildActionHook(DeciTreeOption<StolarchInfo> option) {
-		ActionStdV2<StolarchInfo> select = new RootStolarchSelect(option).toAction();
+	@Override protected ActionStd<StolarchInfo> buildActionHook(DeciTreeOption<StolarchInfo> option) {
+		ActionStd<StolarchInfo> select = new RootStolarchSelect(option).toAction();
 		return select;
 	}
 	

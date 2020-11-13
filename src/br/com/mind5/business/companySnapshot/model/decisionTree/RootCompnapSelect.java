@@ -7,14 +7,14 @@ import br.com.mind5.business.companySnapshot.info.CompnapInfo;
 import br.com.mind5.business.companySnapshot.model.action.StdCompnapMergeToSelect;
 import br.com.mind5.business.companySnapshot.model.checker.CompnapCheckOwner;
 import br.com.mind5.business.companySnapshot.model.checker.CompnapCheckRead;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootCompnapSelect extends DeciTreeTemplateReadV2<CompnapInfo> {
+public final class RootCompnapSelect extends DeciTreeTemplateRead<CompnapInfo> {
 	
 	public RootCompnapSelect(DeciTreeOption<CompnapInfo> option) {
 		super(option);
@@ -22,9 +22,9 @@ public final class RootCompnapSelect extends DeciTreeTemplateReadV2<CompnapInfo>
 	
 	
 	
-	@Override protected ModelCheckerV1<CompnapInfo> buildCheckerHook(DeciTreeOption<CompnapInfo> option) {
-		List<ModelCheckerV1<CompnapInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<CompnapInfo> checker;
+	@Override protected ModelChecker<CompnapInfo> buildCheckerHook(DeciTreeOption<CompnapInfo> option) {
+		List<ModelChecker<CompnapInfo>> queue = new ArrayList<>();		
+		ModelChecker<CompnapInfo> checker;
 		ModelCheckerOption checkerOption;		
 		
 		checkerOption = new ModelCheckerOption();
@@ -41,15 +41,15 @@ public final class RootCompnapSelect extends DeciTreeTemplateReadV2<CompnapInfo>
 		checker = new CompnapCheckOwner(checkerOption);
 		queue.add(checker);	
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<CompnapInfo>> buildActionsOnPassedHook(DeciTreeOption<CompnapInfo> option) {
-		List<ActionStdV2<CompnapInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<CompnapInfo>> buildActionsOnPassedHook(DeciTreeOption<CompnapInfo> option) {
+		List<ActionStd<CompnapInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<CompnapInfo> select = new StdCompnapMergeToSelect(option);	
+		ActionStd<CompnapInfo> select = new StdCompnapMergeToSelect(option);	
 		actions.add(select);
 		
 		return actions;

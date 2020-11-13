@@ -3,18 +3,18 @@ package br.com.mind5.security.userList.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 import br.com.mind5.security.userList.info.UselisInfo;
 import br.com.mind5.security.userList.model.action.StdUselisMergePersolis;
 import br.com.mind5.security.userList.model.action.StdUselisSuccess;
 import br.com.mind5.security.userList.model.checker.UselisCheckHasPerson;
 
-public final class NodeUselisPerson extends DeciTreeTemplateReadV2<UselisInfo> {
+public final class NodeUselisPerson extends DeciTreeTemplateRead<UselisInfo> {
 	
 	public NodeUselisPerson(DeciTreeOption<UselisInfo> option) {
 		super(option);
@@ -22,9 +22,9 @@ public final class NodeUselisPerson extends DeciTreeTemplateReadV2<UselisInfo> {
 	
 	
 	
-	@Override protected ModelCheckerV1<UselisInfo> buildCheckerHook(DeciTreeOption<UselisInfo> option) {
-		List<ModelCheckerV1<UselisInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<UselisInfo> checker;
+	@Override protected ModelChecker<UselisInfo> buildCheckerHook(DeciTreeOption<UselisInfo> option) {
+		List<ModelChecker<UselisInfo>> queue = new ArrayList<>();		
+		ModelChecker<UselisInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
 		checkerOption = new ModelCheckerOption();
@@ -34,15 +34,15 @@ public final class NodeUselisPerson extends DeciTreeTemplateReadV2<UselisInfo> {
 		checker = new UselisCheckHasPerson(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<UselisInfo>> buildActionsOnPassedHook(DeciTreeOption<UselisInfo> option) {
-		List<ActionStdV2<UselisInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<UselisInfo>> buildActionsOnPassedHook(DeciTreeOption<UselisInfo> option) {
+		List<ActionStd<UselisInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<UselisInfo> mergePersolis = new StdUselisMergePersolis(option);
+		ActionStd<UselisInfo> mergePersolis = new StdUselisMergePersolis(option);
 		
 		actions.add(mergePersolis);
 		return actions;
@@ -50,10 +50,10 @@ public final class NodeUselisPerson extends DeciTreeTemplateReadV2<UselisInfo> {
 	
 	
 	
-	@Override protected List<ActionStdV2<UselisInfo>> buildActionsOnFailedHook(DeciTreeOption<UselisInfo> option) {
-		List<ActionStdV2<UselisInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<UselisInfo>> buildActionsOnFailedHook(DeciTreeOption<UselisInfo> option) {
+		List<ActionStd<UselisInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<UselisInfo> success = new StdUselisSuccess(option);
+		ActionStd<UselisInfo> success = new StdUselisSuccess(option);
 		
 		actions.add(success);
 		return actions;

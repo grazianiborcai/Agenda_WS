@@ -6,14 +6,14 @@ import java.util.List;
 import br.com.mind5.masterData.materialUnit.info.MatunitInfo;
 import br.com.mind5.masterData.materialUnit.model.action.StdMatunitDaoSelect;
 import br.com.mind5.masterData.materialUnit.model.checker.MatunitCheckRead;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootMatunitSelect extends DeciTreeTemplateReadV2<MatunitInfo> {
+public final class RootMatunitSelect extends DeciTreeTemplateRead<MatunitInfo> {
 	
 	public RootMatunitSelect(DeciTreeOption<MatunitInfo> option) {
 		super(option);
@@ -21,9 +21,9 @@ public final class RootMatunitSelect extends DeciTreeTemplateReadV2<MatunitInfo>
 	
 	
 	
-	@Override protected ModelCheckerV1<MatunitInfo> buildCheckerHook(DeciTreeOption<MatunitInfo> option) {
-		List<ModelCheckerV1<MatunitInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<MatunitInfo> checker;
+	@Override protected ModelChecker<MatunitInfo> buildCheckerHook(DeciTreeOption<MatunitInfo> option) {
+		List<ModelChecker<MatunitInfo>> queue = new ArrayList<>();		
+		ModelChecker<MatunitInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
 		checkerOption = new ModelCheckerOption();
@@ -33,15 +33,15 @@ public final class RootMatunitSelect extends DeciTreeTemplateReadV2<MatunitInfo>
 		checker = new MatunitCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<MatunitInfo>> buildActionsOnPassedHook(DeciTreeOption<MatunitInfo> option) {
-		List<ActionStdV2<MatunitInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<MatunitInfo>> buildActionsOnPassedHook(DeciTreeOption<MatunitInfo> option) {
+		List<ActionStd<MatunitInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<MatunitInfo> select = new StdMatunitDaoSelect(option);
+		ActionStd<MatunitInfo> select = new StdMatunitDaoSelect(option);
 		
 		actions.add(select);
 		return actions;

@@ -7,15 +7,15 @@ import br.com.mind5.business.storeProspect.info.StoprosInfo;
 import br.com.mind5.business.storeProspect.model.action.LazyStoprosRootSelect;
 import br.com.mind5.business.storeProspect.model.action.StdStoprosMergeStoprarch;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
 
-public final class RootStoprosSearch extends DeciTreeTemplateReadV2<StoprosInfo> {
+public final class RootStoprosSearch extends DeciTreeTemplateRead<StoprosInfo> {
 	
 	public RootStoprosSearch(DeciTreeOption<StoprosInfo> option) {
 		super(option);
@@ -23,22 +23,22 @@ public final class RootStoprosSearch extends DeciTreeTemplateReadV2<StoprosInfo>
 	
 	
 	
-	@Override protected ModelCheckerV1<StoprosInfo> buildCheckerHook(DeciTreeOption<StoprosInfo> option) {
-		List<ModelCheckerV1<StoprosInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<StoprosInfo> checker;
+	@Override protected ModelChecker<StoprosInfo> buildCheckerHook(DeciTreeOption<StoprosInfo> option) {
+		List<ModelChecker<StoprosInfo>> queue = new ArrayList<>();		
+		ModelChecker<StoprosInfo> checker;
 	
 		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<StoprosInfo>> buildActionsOnPassedHook(DeciTreeOption<StoprosInfo> option) {
-		List<ActionStdV2<StoprosInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<StoprosInfo>> buildActionsOnPassedHook(DeciTreeOption<StoprosInfo> option) {
+		List<ActionStd<StoprosInfo>> actions = new ArrayList<>();
 
-		ActionStdV2<StoprosInfo> mergeStoprarch = new StdStoprosMergeStoprarch(option);
+		ActionStd<StoprosInfo> mergeStoprarch = new StdStoprosMergeStoprarch(option);
 		ActionLazy<StoprosInfo> select = new LazyStoprosRootSelect(option.conn, option.schemaName);
 		
 		mergeStoprarch.addPostAction(select);

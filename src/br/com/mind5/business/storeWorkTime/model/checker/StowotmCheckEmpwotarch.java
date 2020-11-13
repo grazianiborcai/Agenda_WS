@@ -4,10 +4,10 @@ import br.com.mind5.business.employeeWorkTimeSearch.info.EmpwotarchInfo;
 import br.com.mind5.business.employeeWorkTimeSearch.model.checker.EmpwotarchCheckExist;
 import br.com.mind5.business.storeWorkTime.info.StowotmInfo;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.model.checker.ModelChecker;
 
-public final class StowotmCheckEmpwotarch extends ModelCheckerTemplateForwardV2<StowotmInfo, EmpwotarchInfo> {
+public final class StowotmCheckEmpwotarch extends ModelCheckerTemplateForward<StowotmInfo, EmpwotarchInfo> {
 	
 	public StowotmCheckEmpwotarch(ModelCheckerOption option) {
 		super(option);
@@ -15,7 +15,7 @@ public final class StowotmCheckEmpwotarch extends ModelCheckerTemplateForwardV2<
 	
 	
 	
-	@Override protected ModelCheckerV1<EmpwotarchInfo> getCheckerHook(ModelCheckerOption option) {
+	@Override protected ModelChecker<EmpwotarchInfo> getCheckerHook(ModelCheckerOption option) {
 		return new EmpwotarchCheckExist(option);
 	}
 	

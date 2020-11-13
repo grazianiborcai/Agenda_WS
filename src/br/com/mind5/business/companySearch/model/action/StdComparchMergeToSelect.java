@@ -1,11 +1,11 @@
 package br.com.mind5.business.companySearch.model.action;
 
 import br.com.mind5.business.companySearch.info.ComparchInfo;
-import br.com.mind5.model.action.ActionStdTemplateV2;
-import br.com.mind5.model.action.ActionVisitorV2;
+import br.com.mind5.model.action.ActionStdTemplate;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdComparchMergeToSelect extends ActionStdTemplateV2<ComparchInfo> {
+public final class StdComparchMergeToSelect extends ActionStdTemplate<ComparchInfo> {
 
 	public StdComparchMergeToSelect(DeciTreeOption<ComparchInfo> option) {
 		super(option);
@@ -13,7 +13,7 @@ public final class StdComparchMergeToSelect extends ActionStdTemplateV2<Comparch
 	
 	
 	
-	protected ActionVisitorV2<ComparchInfo> buildVisitorHook(DeciTreeOption<ComparchInfo> option) {
+	protected ActionVisitor<ComparchInfo> buildVisitorHook(DeciTreeOption<ComparchInfo> option) {
 		return new VisiComparchMergeToSelect(option);
 	}
 }

@@ -12,14 +12,14 @@ import br.com.mind5.business.employeeSnapshot.model.checker.EmpnapCheckLangu;
 import br.com.mind5.business.employeeSnapshot.model.checker.EmpnapCheckOwner;
 import br.com.mind5.business.employeeSnapshot.model.checker.EmpnapCheckWrite;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootEmpnapInsert extends DeciTreeTemplateWriteV2<EmpnapInfo> {	
+public final class RootEmpnapInsert extends DeciTreeTemplateWrite<EmpnapInfo> {	
 	
 	public RootEmpnapInsert(DeciTreeOption<EmpnapInfo> option) {
 		super(option);
@@ -27,9 +27,9 @@ public final class RootEmpnapInsert extends DeciTreeTemplateWriteV2<EmpnapInfo> 
 	
 	
 	
-	@Override protected ModelCheckerV1<EmpnapInfo> buildCheckerHook(DeciTreeOption<EmpnapInfo> option) {
-		List<ModelCheckerV1<EmpnapInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<EmpnapInfo> checker;
+	@Override protected ModelChecker<EmpnapInfo> buildCheckerHook(DeciTreeOption<EmpnapInfo> option) {
+		List<ModelChecker<EmpnapInfo>> queue = new ArrayList<>();		
+		ModelChecker<EmpnapInfo> checker;
 		ModelCheckerOption checkerOption;		
 
 		checkerOption = new ModelCheckerOption();
@@ -60,15 +60,15 @@ public final class RootEmpnapInsert extends DeciTreeTemplateWriteV2<EmpnapInfo> 
 		checker = new EmpnapCheckEmp(checkerOption);
 		queue.add(checker);	
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<EmpnapInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpnapInfo> option) {
-		List<ActionStdV2<EmpnapInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<EmpnapInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpnapInfo> option) {
+		List<ActionStd<EmpnapInfo>> actions = new ArrayList<>();
 
-		ActionStdV2<EmpnapInfo> mergePersolis = new StdEmpnapMergePersolis(option);
+		ActionStd<EmpnapInfo> mergePersolis = new StdEmpnapMergePersolis(option);
 		ActionLazy<EmpnapInfo> mergeUselis = new LazyEmpnapMergeUselis(option.conn, option.schemaName);
 		ActionLazy<EmpnapInfo> insert = new LazyEmpnapDaoInsert(option.conn, option.schemaName);
 		

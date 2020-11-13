@@ -4,11 +4,11 @@ import java.util.List;
 
 import br.com.mind5.business.cartItem.info.CartemInfo;
 import br.com.mind5.business.cartItem.info.CartemMerger;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiCartemMergeToUpdate extends ActionVisitorTemplateMergeV2<CartemInfo, CartemInfo> {
+final class VisiCartemMergeToUpdate extends ActionVisitorTemplateMerge<CartemInfo, CartemInfo> {
 	
 	public VisiCartemMergeToUpdate(DeciTreeOption<CartemInfo> option) {
 		super(option, CartemInfo.class);
@@ -16,7 +16,7 @@ final class VisiCartemMergeToUpdate extends ActionVisitorTemplateMergeV2<CartemI
 	
 	
 	
-	@Override protected Class<? extends ActionStdV2<CartemInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStd<CartemInfo>> getActionClassHook() {
 		return StdCartemDaoSelect.class;
 	}
 	

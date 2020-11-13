@@ -3,18 +3,18 @@ package br.com.mind5.payment.statusPayOrderItem.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 import br.com.mind5.payment.statusPayOrderItem.info.PaytusemInfo;
 import br.com.mind5.payment.statusPayOrderItem.model.action.StdPaytusemMergePayordem;
 import br.com.mind5.payment.statusPayOrderItem.model.checker.PaytusemCheckLangu;
 import br.com.mind5.payment.statusPayOrderItem.model.checker.PaytusemCheckRead;
 
-public final class RootPaytusemSelect extends DeciTreeTemplateReadV2<PaytusemInfo> {
+public final class RootPaytusemSelect extends DeciTreeTemplateRead<PaytusemInfo> {
 	
 	public RootPaytusemSelect(DeciTreeOption<PaytusemInfo> option) {
 		super(option);
@@ -22,9 +22,9 @@ public final class RootPaytusemSelect extends DeciTreeTemplateReadV2<PaytusemInf
 	
 	
 	
-	@Override protected ModelCheckerV1<PaytusemInfo> buildCheckerHook(DeciTreeOption<PaytusemInfo> option) {
-		List<ModelCheckerV1<PaytusemInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<PaytusemInfo> checker;	
+	@Override protected ModelChecker<PaytusemInfo> buildCheckerHook(DeciTreeOption<PaytusemInfo> option) {
+		List<ModelChecker<PaytusemInfo>> queue = new ArrayList<>();		
+		ModelChecker<PaytusemInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -41,15 +41,15 @@ public final class RootPaytusemSelect extends DeciTreeTemplateReadV2<PaytusemInf
 		checker = new PaytusemCheckLangu(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<PaytusemInfo>> buildActionsOnPassedHook(DeciTreeOption<PaytusemInfo> option) {
-		List<ActionStdV2<PaytusemInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStd<PaytusemInfo>> buildActionsOnPassedHook(DeciTreeOption<PaytusemInfo> option) {
+		List<ActionStd<PaytusemInfo>> actions = new ArrayList<>();		
 
-		ActionStdV2<PaytusemInfo> mergePayordem = new StdPaytusemMergePayordem(option);	
+		ActionStd<PaytusemInfo> mergePayordem = new StdPaytusemMergePayordem(option);	
 		
 		actions.add(mergePayordem);		
 		return actions;

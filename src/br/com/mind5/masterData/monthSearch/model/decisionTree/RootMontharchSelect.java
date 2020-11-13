@@ -6,14 +6,14 @@ import java.util.List;
 import br.com.mind5.masterData.monthSearch.info.MontharchInfo;
 import br.com.mind5.masterData.monthSearch.model.action.StdMontharchDaoSelect;
 import br.com.mind5.masterData.monthSearch.model.checker.MontharchCheckRead;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootMontharchSelect extends DeciTreeTemplateReadV2<MontharchInfo> {
+public final class RootMontharchSelect extends DeciTreeTemplateRead<MontharchInfo> {
 	
 	public RootMontharchSelect(DeciTreeOption<MontharchInfo> option) {
 		super(option);
@@ -21,9 +21,9 @@ public final class RootMontharchSelect extends DeciTreeTemplateReadV2<MontharchI
 	
 	
 	
-	@Override protected ModelCheckerV1<MontharchInfo> buildCheckerHook(DeciTreeOption<MontharchInfo> option) {
-		List<ModelCheckerV1<MontharchInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<MontharchInfo> checker;
+	@Override protected ModelChecker<MontharchInfo> buildCheckerHook(DeciTreeOption<MontharchInfo> option) {
+		List<ModelChecker<MontharchInfo>> queue = new ArrayList<>();		
+		ModelChecker<MontharchInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
 		checkerOption = new ModelCheckerOption();
@@ -33,15 +33,15 @@ public final class RootMontharchSelect extends DeciTreeTemplateReadV2<MontharchI
 		checker = new MontharchCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<MontharchInfo>> buildActionsOnPassedHook(DeciTreeOption<MontharchInfo> option) {
-		List<ActionStdV2<MontharchInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<MontharchInfo>> buildActionsOnPassedHook(DeciTreeOption<MontharchInfo> option) {
+		List<ActionStd<MontharchInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<MontharchInfo> select = new StdMontharchDaoSelect(option);
+		ActionStd<MontharchInfo> select = new StdMontharchDaoSelect(option);
 		
 		actions.add(select);
 		return actions;

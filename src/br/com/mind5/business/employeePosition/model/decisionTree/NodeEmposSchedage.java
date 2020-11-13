@@ -6,14 +6,14 @@ import java.util.List;
 import br.com.mind5.business.employeePosition.info.EmposInfo;
 import br.com.mind5.business.employeePosition.model.action.StdEmposSuccess;
 import br.com.mind5.business.employeePosition.model.checker.EmposCheckSchedage;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodeEmposSchedage extends DeciTreeTemplateWriteV2<EmposInfo> {
+public final class NodeEmposSchedage extends DeciTreeTemplateWrite<EmposInfo> {
 	
 	public NodeEmposSchedage(DeciTreeOption<EmposInfo> option) {
 		super(option);
@@ -21,9 +21,9 @@ public final class NodeEmposSchedage extends DeciTreeTemplateWriteV2<EmposInfo> 
 	
 	
 	
-	@Override protected ModelCheckerV1<EmposInfo> buildCheckerHook(DeciTreeOption<EmposInfo> option) {
-		List<ModelCheckerV1<EmposInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<EmposInfo> checker;
+	@Override protected ModelChecker<EmposInfo> buildCheckerHook(DeciTreeOption<EmposInfo> option) {
+		List<ModelChecker<EmposInfo>> queue = new ArrayList<>();		
+		ModelChecker<EmposInfo> checker;
 		ModelCheckerOption checkerOption;
 			
 		checkerOption = new ModelCheckerOption();
@@ -33,15 +33,15 @@ public final class NodeEmposSchedage extends DeciTreeTemplateWriteV2<EmposInfo> 
 		checker = new EmposCheckSchedage(checkerOption);
 		queue.add(checker);	
 		
-		return new ModelCheckerHelperQueueV2<EmposInfo>(queue);
+		return new ModelCheckerHelperQueue<EmposInfo>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<EmposInfo>> buildActionsOnPassedHook(DeciTreeOption<EmposInfo> option) {
-		List<ActionStdV2<EmposInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<EmposInfo>> buildActionsOnPassedHook(DeciTreeOption<EmposInfo> option) {
+		List<ActionStd<EmposInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<EmposInfo> success = new StdEmposSuccess(option);
+		ActionStd<EmposInfo> success = new StdEmposSuccess(option);
 		
 		actions.add(success);
 		return actions;		

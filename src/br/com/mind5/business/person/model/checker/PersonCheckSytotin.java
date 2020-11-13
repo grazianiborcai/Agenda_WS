@@ -4,10 +4,10 @@ import br.com.mind5.business.person.info.PersonInfo;
 import br.com.mind5.config.sysStorePartitioning.info.SytotinInfo;
 import br.com.mind5.config.sysStorePartitioning.model.checker.SytotinCheckEnabled;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.model.checker.ModelChecker;
 
-public final class PersonCheckSytotin extends ModelCheckerTemplateForwardV2<PersonInfo, SytotinInfo> {
+public final class PersonCheckSytotin extends ModelCheckerTemplateForward<PersonInfo, SytotinInfo> {
 	
 	public PersonCheckSytotin(ModelCheckerOption option) {
 		super(option);
@@ -15,7 +15,7 @@ public final class PersonCheckSytotin extends ModelCheckerTemplateForwardV2<Pers
 
 
 	
-	@Override protected ModelCheckerV1<SytotinInfo> getCheckerHook(ModelCheckerOption option) {
+	@Override protected ModelChecker<SytotinInfo> getCheckerHook(ModelCheckerOption option) {
 		return new SytotinCheckEnabled(option);
 	}
 	

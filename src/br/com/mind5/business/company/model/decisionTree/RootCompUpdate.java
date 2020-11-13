@@ -17,14 +17,14 @@ import br.com.mind5.business.company.model.checker.CompCheckNameLength;
 import br.com.mind5.business.company.model.checker.CompCheckOwner;
 import br.com.mind5.business.company.model.checker.CompCheckUpdate;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootCompUpdate extends DeciTreeTemplateWriteV2<CompInfo> {
+public final class RootCompUpdate extends DeciTreeTemplateWrite<CompInfo> {
 	
 	public RootCompUpdate(DeciTreeOption<CompInfo> option) {
 		super(option);
@@ -32,9 +32,9 @@ public final class RootCompUpdate extends DeciTreeTemplateWriteV2<CompInfo> {
 	
 	
 	
-	@Override protected ModelCheckerV1<CompInfo> buildCheckerHook(DeciTreeOption<CompInfo> option) {
-		List<ModelCheckerV1<CompInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<CompInfo> checker;
+	@Override protected ModelChecker<CompInfo> buildCheckerHook(DeciTreeOption<CompInfo> option) {
+		List<ModelChecker<CompInfo>> queue = new ArrayList<>();		
+		ModelChecker<CompInfo> checker;
 		ModelCheckerOption checkerOption;		
 		
 		checkerOption = new ModelCheckerOption();
@@ -79,15 +79,15 @@ public final class RootCompUpdate extends DeciTreeTemplateWriteV2<CompInfo> {
 		checker = new CompCheckExist(checkerOption);
 		queue.add(checker);	
 			
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<CompInfo>> buildActionsOnPassedHook(DeciTreeOption<CompInfo> option) {
-		List<ActionStdV2<CompInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<CompInfo>> buildActionsOnPassedHook(DeciTreeOption<CompInfo> option) {
+		List<ActionStd<CompInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<CompInfo> mergeToUpdate = new StdCompMergeToUpdate(option);	
+		ActionStd<CompInfo> mergeToUpdate = new StdCompMergeToUpdate(option);	
 		ActionLazy<CompInfo> cnpj = new LazyCompNodeCnpjL1(option.conn, option.schemaName);	
 		ActionLazy<CompInfo> enforceLChanged = new LazyCompEnforceLChanged(option.conn, option.schemaName);
 		ActionLazy<CompInfo> enforceLChangedBy = new LazyCompMergeUsername(option.conn, option.schemaName);

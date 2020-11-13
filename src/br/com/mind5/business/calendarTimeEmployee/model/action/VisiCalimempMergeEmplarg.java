@@ -7,11 +7,11 @@ import br.com.mind5.business.calendarTimeEmployee.info.CalimempMerger;
 import br.com.mind5.business.employeeLeaveDateRange.info.EmplargCopier;
 import br.com.mind5.business.employeeLeaveDateRange.info.EmplargInfo;
 import br.com.mind5.business.employeeLeaveDateRange.model.decisionTree.RootEmplargSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiCalimempMergeEmplarg extends ActionVisitorTemplateMergeV2<CalimempInfo, EmplargInfo> {
+final class VisiCalimempMergeEmplarg extends ActionVisitorTemplateMerge<CalimempInfo, EmplargInfo> {
 	
 	public VisiCalimempMergeEmplarg(DeciTreeOption<CalimempInfo> option) {
 		super(option, EmplargInfo.class);

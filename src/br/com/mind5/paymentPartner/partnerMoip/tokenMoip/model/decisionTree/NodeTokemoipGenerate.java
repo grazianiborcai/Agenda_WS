@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.paymentPartner.partnerMoip.tokenMoip.info.TokemoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.tokenMoip.model.action.LazyTokemoipEnforceSetup;
 import br.com.mind5.paymentPartner.partnerMoip.tokenMoip.model.action.LazyTokemoipGenerate;
@@ -19,7 +19,7 @@ import br.com.mind5.paymentPartner.partnerMoip.tokenMoip.model.action.StdTokemoi
 import br.com.mind5.paymentPartner.partnerMoip.tokenMoip.model.checker.TokemoipCheckSetupar;
 import br.com.mind5.paymentPartner.partnerMoip.tokenMoip.model.checker.TokemoipCheckSyspar;
 
-public final class NodeTokemoipGenerate extends DeciTreeTemplateWriteV2<TokemoipInfo> {
+public final class NodeTokemoipGenerate extends DeciTreeTemplateWrite<TokemoipInfo> {
 	
 	public NodeTokemoipGenerate(DeciTreeOption<TokemoipInfo> option) {
 		super(option);
@@ -27,9 +27,9 @@ public final class NodeTokemoipGenerate extends DeciTreeTemplateWriteV2<Tokemoip
 	
 	
 	
-	@Override protected ModelCheckerV1<TokemoipInfo> buildCheckerHook(DeciTreeOption<TokemoipInfo> option) {
-		List<ModelCheckerV1<TokemoipInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<TokemoipInfo> checker;	
+	@Override protected ModelChecker<TokemoipInfo> buildCheckerHook(DeciTreeOption<TokemoipInfo> option) {
+		List<ModelChecker<TokemoipInfo>> queue = new ArrayList<>();		
+		ModelChecker<TokemoipInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -46,15 +46,15 @@ public final class NodeTokemoipGenerate extends DeciTreeTemplateWriteV2<Tokemoip
 		checker = new TokemoipCheckSyspar(checkerOption);
 		queue.add(checker);
 
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<TokemoipInfo>> buildActionsOnPassedHook(DeciTreeOption<TokemoipInfo> option) {
-		List<ActionStdV2<TokemoipInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStd<TokemoipInfo>> buildActionsOnPassedHook(DeciTreeOption<TokemoipInfo> option) {
+		List<ActionStd<TokemoipInfo>> actions = new ArrayList<>();		
 
-		ActionStdV2<TokemoipInfo> mergeSyspar = new StdTokemoipMergeSyspar(option);	
+		ActionStd<TokemoipInfo> mergeSyspar = new StdTokemoipMergeSyspar(option);	
 		ActionLazy<TokemoipInfo> mergeSetupar = new LazyTokemoipMergeSetupar(option.conn, option.schemaName);
 		ActionLazy<TokemoipInfo> mergeSysenv = new LazyTokemoipMergeSysenv(option.conn, option.schemaName);
 		ActionLazy<TokemoipInfo> enforceSetup = new LazyTokemoipEnforceSetup(option.conn, option.schemaName);

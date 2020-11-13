@@ -6,11 +6,11 @@ import br.com.mind5.business.orderList.info.OrdistInfo;
 import br.com.mind5.business.orderList.model.decisionTree.RootOrdistSelect;
 import br.com.mind5.business.scheduleLine.info.SchedineInfo;
 import br.com.mind5.business.scheduleLine.info.SchedineMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiSchedineMergeOrdist extends ActionVisitorTemplateMergeV2<SchedineInfo, OrdistInfo> {
+final class VisiSchedineMergeOrdist extends ActionVisitorTemplateMerge<SchedineInfo, OrdistInfo> {
 	
 	public VisiSchedineMergeOrdist(DeciTreeOption<SchedineInfo> option) {
 		super(option, OrdistInfo.class); 

@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.message.emailUserOtp.info.EmusotpInfo;
 import br.com.mind5.model.action.ActionLazyTemplate;
-import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -23,7 +23,7 @@ public final class LazyEmusotpSendEmail extends ActionLazyTemplate<EmusotpInfo, 
 	
 	
 	
-	@Override protected ActionStdV2<EmusotpInfo> getInstanceOfActionHook(DeciTreeOption<EmusotpInfo> option) {
+	@Override protected ActionStd<EmusotpInfo> getInstanceOfActionHook(DeciTreeOption<EmusotpInfo> option) {
 		return new StdEmusotpSendEmail(option);
 	}
 	

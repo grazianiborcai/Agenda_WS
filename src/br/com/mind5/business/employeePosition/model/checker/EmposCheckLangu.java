@@ -4,10 +4,10 @@ import br.com.mind5.business.employeePosition.info.EmposInfo;
 import br.com.mind5.masterData.language.info.LanguInfo;
 import br.com.mind5.masterData.language.model.checker.LanguCheckExist;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.model.checker.ModelChecker;
 
-public final class EmposCheckLangu extends ModelCheckerTemplateForwardV2<EmposInfo, LanguInfo> {
+public final class EmposCheckLangu extends ModelCheckerTemplateForward<EmposInfo, LanguInfo> {
 	
 	public EmposCheckLangu(ModelCheckerOption option) {
 		super(option);
@@ -15,7 +15,7 @@ public final class EmposCheckLangu extends ModelCheckerTemplateForwardV2<EmposIn
 
 
 	
-	@Override protected ModelCheckerV1<LanguInfo> getCheckerHook(ModelCheckerOption option) {
+	@Override protected ModelChecker<LanguInfo> getCheckerHook(ModelCheckerOption option) {
 		return new LanguCheckExist(option);
 	}
 	

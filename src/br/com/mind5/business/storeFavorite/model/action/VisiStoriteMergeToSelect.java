@@ -4,11 +4,11 @@ import java.util.List;
 
 import br.com.mind5.business.storeFavorite.info.StoriteInfo;
 import br.com.mind5.business.storeFavorite.info.StoriteMerger;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiStoriteMergeToSelect extends ActionVisitorTemplateMergeV2<StoriteInfo, StoriteInfo> {
+final class VisiStoriteMergeToSelect extends ActionVisitorTemplateMerge<StoriteInfo, StoriteInfo> {
 	
 	public VisiStoriteMergeToSelect(DeciTreeOption<StoriteInfo> option) {
 		super(option, StoriteInfo.class);
@@ -16,7 +16,7 @@ final class VisiStoriteMergeToSelect extends ActionVisitorTemplateMergeV2<Storit
 	
 	
 	
-	@Override protected Class<? extends ActionStdV2<StoriteInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStd<StoriteInfo>> getActionClassHook() {
 		return StdStoriteDaoSelect.class;
 	}
 	

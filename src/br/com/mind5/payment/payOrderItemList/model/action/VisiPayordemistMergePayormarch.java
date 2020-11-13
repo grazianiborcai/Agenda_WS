@@ -2,7 +2,7 @@ package br.com.mind5.payment.payOrderItemList.model.action;
 
 import java.util.List;
 
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.payOrderItemList.info.PayordemistInfo;
@@ -10,7 +10,7 @@ import br.com.mind5.payment.payOrderItemList.info.PayordemistMerger;
 import br.com.mind5.payment.payOrderItemSearch.info.PayormarchInfo;
 import br.com.mind5.payment.payOrderItemSearch.model.decisionTree.RootPayormarchSelect;
 
-final class VisiPayordemistMergePayormarch extends ActionVisitorTemplateMergeV2<PayordemistInfo, PayormarchInfo> {
+final class VisiPayordemistMergePayormarch extends ActionVisitorTemplateMerge<PayordemistInfo, PayormarchInfo> {
 	
 	public VisiPayordemistMergePayormarch(DeciTreeOption<PayordemistInfo> option) {
 		super(option, PayormarchInfo.class);

@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.mind5.business.storeSearch.info.SotarchInfo;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 
-public final class SotarchCheckReadUsername extends ModelCheckerTemplateSimpleV2<SotarchInfo> {
+public final class SotarchCheckReadUsername extends ModelCheckerTemplateSimple<SotarchInfo> {
 
 	public SotarchCheckReadUsername(ModelCheckerOption option) {
 		super(option);

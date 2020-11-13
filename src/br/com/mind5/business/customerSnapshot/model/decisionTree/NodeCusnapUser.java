@@ -7,14 +7,14 @@ import br.com.mind5.business.customerSnapshot.info.CusnapInfo;
 import br.com.mind5.business.customerSnapshot.model.action.StdCusnapMergeUselis;
 import br.com.mind5.business.customerSnapshot.model.action.StdCusnapSuccess;
 import br.com.mind5.business.customerSnapshot.model.checker.CusnapCheckHasUser;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class NodeCusnapUser extends DeciTreeTemplateReadV2<CusnapInfo> {
+public final class NodeCusnapUser extends DeciTreeTemplateRead<CusnapInfo> {
 	
 	public NodeCusnapUser(DeciTreeOption<CusnapInfo> option) {
 		super(option);
@@ -22,9 +22,9 @@ public final class NodeCusnapUser extends DeciTreeTemplateReadV2<CusnapInfo> {
 	
 	
 	
-	@Override protected ModelCheckerV1<CusnapInfo> buildCheckerHook(DeciTreeOption<CusnapInfo> option) {
-		List<ModelCheckerV1<CusnapInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<CusnapInfo> checker;
+	@Override protected ModelChecker<CusnapInfo> buildCheckerHook(DeciTreeOption<CusnapInfo> option) {
+		List<ModelChecker<CusnapInfo>> queue = new ArrayList<>();		
+		ModelChecker<CusnapInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
 		checkerOption = new ModelCheckerOption();
@@ -34,15 +34,15 @@ public final class NodeCusnapUser extends DeciTreeTemplateReadV2<CusnapInfo> {
 		checker = new CusnapCheckHasUser(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<CusnapInfo>> buildActionsOnPassedHook(DeciTreeOption<CusnapInfo> option) {
-		List<ActionStdV2<CusnapInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<CusnapInfo>> buildActionsOnPassedHook(DeciTreeOption<CusnapInfo> option) {
+		List<ActionStd<CusnapInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<CusnapInfo> mergeUselis = new StdCusnapMergeUselis(option);
+		ActionStd<CusnapInfo> mergeUselis = new StdCusnapMergeUselis(option);
 		
 		actions.add(mergeUselis);
 		return actions;
@@ -50,10 +50,10 @@ public final class NodeCusnapUser extends DeciTreeTemplateReadV2<CusnapInfo> {
 	
 	
 	
-	@Override protected List<ActionStdV2<CusnapInfo>> buildActionsOnFailedHook(DeciTreeOption<CusnapInfo> option) {
-		List<ActionStdV2<CusnapInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<CusnapInfo>> buildActionsOnFailedHook(DeciTreeOption<CusnapInfo> option) {
+		List<ActionStd<CusnapInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<CusnapInfo> success = new StdCusnapSuccess(option);
+		ActionStd<CusnapInfo> success = new StdCusnapSuccess(option);
 		
 		actions.add(success);
 		return actions;

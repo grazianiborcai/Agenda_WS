@@ -18,15 +18,15 @@ import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.common.DeciResultError;
 import br.com.mind5.model.decisionTree.common.DeciResultNotFound;
 
-public abstract class ActionVisitorTemplateMergeV2<T extends InfoRecord, S extends InfoRecord> implements ActionVisitorV2<T> {
+public abstract class ActionVisitorTemplateMerge<T extends InfoRecord, S extends InfoRecord> implements ActionVisitor<T> {
 	protected boolean MERGE_WHEN_EMPTY = true;
 	protected boolean DONT_MERGE_WHEN_EMPTY = false;
 	
 	private List<T> bases;
-	private ActionStdV2<S> actionSelect;
+	private ActionStd<S> actionSelect;
 	
 
-	public ActionVisitorTemplateMergeV2(DeciTreeOption<T> option, Class<S> clazz) {
+	public ActionVisitorTemplateMerge(DeciTreeOption<T> option, Class<S> clazz) {
 		checkArgument(option, clazz);	
 		clear();
 		
@@ -43,7 +43,7 @@ public abstract class ActionVisitorTemplateMergeV2<T extends InfoRecord, S exten
 	
 	
 	
-	private ActionStdV2<S> buildActionToSelect(DeciTreeOption<T> option, Class<S> sClazz) {
+	private ActionStd<S> buildActionToSelect(DeciTreeOption<T> option, Class<S> sClazz) {
 		DeciTreeOption<S> actionOption = translateOption(option, sClazz);
 		return buildAction(actionOption);
 	}
@@ -76,7 +76,7 @@ public abstract class ActionVisitorTemplateMergeV2<T extends InfoRecord, S exten
 	
 	
 	
-	private ActionStdV2<S> buildAction(DeciTreeOption<S> option) {
+	private ActionStd<S> buildAction(DeciTreeOption<S> option) {
 		if (option == null)
 			return null;
 		
@@ -92,11 +92,11 @@ public abstract class ActionVisitorTemplateMergeV2<T extends InfoRecord, S exten
 	
 	
 	
-	private ActionStdV2<S> buildActionTree(DeciTreeOption<S> option) {
+	private ActionStd<S> buildActionTree(DeciTreeOption<S> option) {
 		try {
 			Class<? extends DeciTree<S>> actionClass = getTreeClassHook();
 			Constructor<? extends DeciTree<S>> actionConstru = actionClass.getConstructor(new Class[]{DeciTreeOption.class});
-			return (ActionStdV2<S>) actionConstru.newInstance(option).toAction();
+			return (ActionStd<S>) actionConstru.newInstance(option).toAction();
 				
 			} catch (Exception e) {
 				logException(e);
@@ -106,11 +106,11 @@ public abstract class ActionVisitorTemplateMergeV2<T extends InfoRecord, S exten
 	
 	
 	
-	private ActionStdV2<S> buildActionStd(DeciTreeOption<S> option) {
+	private ActionStd<S> buildActionStd(DeciTreeOption<S> option) {
 		try {
-			Class<? extends ActionStdV2<S>> actionClass = getActionClassHook();
-			Constructor<? extends ActionStdV2<S>> actionConstru = actionClass.getConstructor(new Class[]{DeciTreeOption.class});
-			return (ActionStdV2<S>) actionConstru.newInstance(option);
+			Class<? extends ActionStd<S>> actionClass = getActionClassHook();
+			Constructor<? extends ActionStd<S>> actionConstru = actionClass.getConstructor(new Class[]{DeciTreeOption.class});
+			return (ActionStd<S>) actionConstru.newInstance(option);
 				
 			} catch (Exception e) {
 				logException(e);
@@ -138,7 +138,7 @@ public abstract class ActionVisitorTemplateMergeV2<T extends InfoRecord, S exten
 	
 	
 	
-	private DeciResult<S> executeAction(ActionStdV2<S> action) {
+	private DeciResult<S> executeAction(ActionStd<S> action) {
 		if (checkAction(action) == false)
 			return makeNotFoundResult();
 		
@@ -228,7 +228,7 @@ public abstract class ActionVisitorTemplateMergeV2<T extends InfoRecord, S exten
 	
 	
 	
-	private boolean checkAction(ActionStdV2<S> action) {
+	private boolean checkAction(ActionStd<S> action) {
 		if (action == null)
 			return false;
 		
@@ -356,7 +356,7 @@ public abstract class ActionVisitorTemplateMergeV2<T extends InfoRecord, S exten
 	
 	
 	
-	protected Class<? extends ActionStdV2<S>> getActionClassHook() {
+	protected Class<? extends ActionStd<S>> getActionClassHook() {
 		//Template method: default behavior
 		return null;
 	}
@@ -387,12 +387,12 @@ public abstract class ActionVisitorTemplateMergeV2<T extends InfoRecord, S exten
 	
 	
 	@SuppressWarnings("unchecked")
-	private void closeAction(ActionStdV2<S> action) {
+	private void closeAction(ActionStd<S> action) {
 		if (action == null)
 			return;
 		
-		if (action instanceof ActionStdV2)		
-			((ActionStdV2<T>) action).close();
+		if (action instanceof ActionStd)		
+			((ActionStd<T>) action).close();
 	}
 	
 	

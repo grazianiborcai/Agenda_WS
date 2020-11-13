@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.masterData.dayParting.info.DaypartInfo;
 import br.com.mind5.masterData.dayParting.model.decisionTree.RootDaypartSelect;
 import br.com.mind5.model.action.ActionLazyTemplate;
-import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -24,7 +24,7 @@ public final class LazyDaypartRootSelect extends ActionLazyTemplate<DaypartInfo,
 	
 	
 	
-	@Override protected ActionStdV2<DaypartInfo> getInstanceOfActionHook(DeciTreeOption<DaypartInfo> option) {
+	@Override protected ActionStd<DaypartInfo> getInstanceOfActionHook(DeciTreeOption<DaypartInfo> option) {
 		return new RootDaypartSelect(option).toAction();
 	}
 	

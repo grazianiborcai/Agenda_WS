@@ -6,9 +6,9 @@ import br.com.mind5.common.DefaultValue;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.masterData.cartItemCategory.info.CaritegInfo;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 
-public final class CaritegCheckRead extends ModelCheckerTemplateSimpleV2<CaritegInfo> {
+public final class CaritegCheckRead extends ModelCheckerTemplateSimple<CaritegInfo> {
 	
 	public CaritegCheckRead(ModelCheckerOption option) {
 		super(option);

@@ -1,11 +1,11 @@
 package br.com.mind5.business.scheduleWeek.model.action;
 
 import br.com.mind5.business.scheduleWeek.info.SchedeekInfo;
-import br.com.mind5.model.action.ActionStdTemplateV2;
-import br.com.mind5.model.action.ActionVisitorV2;
+import br.com.mind5.model.action.ActionStdTemplate;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class StdSchedeekMergeStolis extends ActionStdTemplateV2<SchedeekInfo> {
+final class StdSchedeekMergeStolis extends ActionStdTemplate<SchedeekInfo> {
 
 	public StdSchedeekMergeStolis(DeciTreeOption<SchedeekInfo> option) {
 		super(option);
@@ -13,7 +13,7 @@ final class StdSchedeekMergeStolis extends ActionStdTemplateV2<SchedeekInfo> {
 	
 	
 	
-	protected ActionVisitorV2<SchedeekInfo> buildVisitorHook(DeciTreeOption<SchedeekInfo> option) {
+	protected ActionVisitor<SchedeekInfo> buildVisitorHook(DeciTreeOption<SchedeekInfo> option) {
 		return new VisiSchedeekMergeStolis(option);
 	}
 }

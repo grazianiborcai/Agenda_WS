@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.phoneSnapshot.info.PhonapInfo;
 import br.com.mind5.business.phoneSnapshot.model.decisionTree.RootPhonapSelect;
 import br.com.mind5.model.action.ActionLazyTemplate;
-import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -24,7 +24,7 @@ public final class LazyPhonapRootSelect extends ActionLazyTemplate<PhonapInfo, P
 	
 	
 	
-	@Override protected ActionStdV2<PhonapInfo> getInstanceOfActionHook(DeciTreeOption<PhonapInfo> option) {
+	@Override protected ActionStd<PhonapInfo> getInstanceOfActionHook(DeciTreeOption<PhonapInfo> option) {
 		return new RootPhonapSelect(option).toAction();
 	}
 	

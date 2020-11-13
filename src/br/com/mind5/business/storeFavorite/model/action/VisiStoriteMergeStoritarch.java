@@ -6,11 +6,11 @@ import br.com.mind5.business.storeFavorite.info.StoriteInfo;
 import br.com.mind5.business.storeFavorite.info.StoriteMerger;
 import br.com.mind5.business.storeFavoriteSearch.info.StoritarchInfo;
 import br.com.mind5.business.storeFavoriteSearch.model.decisionTree.RootStoritarchSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiStoriteMergeStoritarch extends ActionVisitorTemplateMergeV2<StoriteInfo, StoritarchInfo> {
+final class VisiStoriteMergeStoritarch extends ActionVisitorTemplateMerge<StoriteInfo, StoritarchInfo> {
 	
 	public VisiStoriteMergeStoritarch(DeciTreeOption<StoriteInfo> option) {
 		super(option, StoritarchInfo.class);

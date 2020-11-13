@@ -6,14 +6,14 @@ import java.util.List;
 import br.com.mind5.masterData.gender.info.GenderInfo;
 import br.com.mind5.masterData.gender.model.action.StdGenderDaoSelect;
 import br.com.mind5.masterData.gender.model.checker.GenderCheckRead;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootGenderSelect extends DeciTreeTemplateReadV2<GenderInfo> {
+public final class RootGenderSelect extends DeciTreeTemplateRead<GenderInfo> {
 	
 	public RootGenderSelect(DeciTreeOption<GenderInfo> option) {
 		super(option);
@@ -21,9 +21,9 @@ public final class RootGenderSelect extends DeciTreeTemplateReadV2<GenderInfo> {
 	
 	
 	
-	@Override protected ModelCheckerV1<GenderInfo> buildCheckerHook(DeciTreeOption<GenderInfo> option) {
-		List<ModelCheckerV1<GenderInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<GenderInfo> checker;
+	@Override protected ModelChecker<GenderInfo> buildCheckerHook(DeciTreeOption<GenderInfo> option) {
+		List<ModelChecker<GenderInfo>> queue = new ArrayList<>();		
+		ModelChecker<GenderInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
 		checkerOption = new ModelCheckerOption();
@@ -33,15 +33,15 @@ public final class RootGenderSelect extends DeciTreeTemplateReadV2<GenderInfo> {
 		checker = new GenderCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<GenderInfo>> buildActionsOnPassedHook(DeciTreeOption<GenderInfo> option) {
-		List<ActionStdV2<GenderInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<GenderInfo>> buildActionsOnPassedHook(DeciTreeOption<GenderInfo> option) {
+		List<ActionStd<GenderInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<GenderInfo> select = new StdGenderDaoSelect(option);
+		ActionStd<GenderInfo> select = new StdGenderDaoSelect(option);
 		
 		actions.add(select);
 		return actions;

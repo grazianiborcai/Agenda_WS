@@ -7,12 +7,12 @@ import br.com.mind5.business.planningTime.info.PlanimeMerger;
 import br.com.mind5.masterData.weekday.info.WeekdayCopier;
 import br.com.mind5.masterData.weekday.info.WeekdayInfo;
 import br.com.mind5.masterData.weekday.model.decisionTree.RootWeekdaySelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiPlanimeMergeWeekday extends ActionVisitorTemplateMergeV2<PlanimeInfo, WeekdayInfo> {
+final class VisiPlanimeMergeWeekday extends ActionVisitorTemplateMerge<PlanimeInfo, WeekdayInfo> {
 	
 	public VisiPlanimeMergeWeekday(DeciTreeOption<PlanimeInfo> option) {
 		super(option, WeekdayInfo.class);
@@ -39,6 +39,6 @@ final class VisiPlanimeMergeWeekday extends ActionVisitorTemplateMergeV2<Planime
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
+		return super.MERGE_WHEN_EMPTY;
 	}
 }

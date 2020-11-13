@@ -7,12 +7,12 @@ import br.com.mind5.business.customerList.info.CuslisInfo;
 import br.com.mind5.business.customerList.model.decisionTree.RootCuslisSelect;
 import br.com.mind5.business.phoneSnapshot.info.PhonapInfo;
 import br.com.mind5.business.phoneSnapshot.info.PhonapMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiPhonapMergeCuslis extends ActionVisitorTemplateMergeV2<PhonapInfo, CuslisInfo> {
+final class VisiPhonapMergeCuslis extends ActionVisitorTemplateMerge<PhonapInfo, CuslisInfo> {
 	
 	public VisiPhonapMergeCuslis(DeciTreeOption<PhonapInfo> option) {
 		super(option, CuslisInfo.class);
@@ -38,6 +38,6 @@ final class VisiPhonapMergeCuslis extends ActionVisitorTemplateMergeV2<PhonapInf
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
+		return super.MERGE_WHEN_EMPTY;
 	}
 }

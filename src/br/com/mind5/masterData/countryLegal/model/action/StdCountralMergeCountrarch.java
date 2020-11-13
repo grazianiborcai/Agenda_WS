@@ -1,11 +1,11 @@
 package br.com.mind5.masterData.countryLegal.model.action;
 
 import br.com.mind5.masterData.countryLegal.info.CountralInfo;
-import br.com.mind5.model.action.ActionStdTemplateV2;
-import br.com.mind5.model.action.ActionVisitorV2;
+import br.com.mind5.model.action.ActionStdTemplate;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdCountralMergeCountrarch extends ActionStdTemplateV2<CountralInfo> {
+public final class StdCountralMergeCountrarch extends ActionStdTemplate<CountralInfo> {
 
 	public StdCountralMergeCountrarch(DeciTreeOption<CountralInfo> option) {
 		super(option);
@@ -13,7 +13,7 @@ public final class StdCountralMergeCountrarch extends ActionStdTemplateV2<Countr
 	
 	
 	
-	protected ActionVisitorV2<CountralInfo> buildVisitorHook(DeciTreeOption<CountralInfo> option) {
+	protected ActionVisitor<CountralInfo> buildVisitorHook(DeciTreeOption<CountralInfo> option) {
 		return new VisiCountralMergeCountrarch(option);
 	}
 }

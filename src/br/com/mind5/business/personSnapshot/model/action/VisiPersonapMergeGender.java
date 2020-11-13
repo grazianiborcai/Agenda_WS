@@ -6,11 +6,11 @@ import br.com.mind5.business.personSnapshot.info.PersonapInfo;
 import br.com.mind5.business.personSnapshot.info.PersonapMerger;
 import br.com.mind5.masterData.gender.info.GenderInfo;
 import br.com.mind5.masterData.gender.model.decisionTree.RootGenderSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiPersonapMergeGender extends ActionVisitorTemplateMergeV2<PersonapInfo, GenderInfo> {
+final class VisiPersonapMergeGender extends ActionVisitorTemplateMerge<PersonapInfo, GenderInfo> {
 	
 	public VisiPersonapMergeGender(DeciTreeOption<PersonapInfo> option) {
 		super(option, GenderInfo.class);

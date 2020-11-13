@@ -4,12 +4,11 @@ import java.util.List;
 
 import br.com.mind5.business.calendarMoon.info.MooncalInfo;
 import br.com.mind5.business.calendarMoon.info.MooncalMerger;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiMooncalMergeToSelect extends ActionVisitorTemplateMergeV2<MooncalInfo, MooncalInfo> {
+final class VisiMooncalMergeToSelect extends ActionVisitorTemplateMerge<MooncalInfo, MooncalInfo> {
 	
 	public VisiMooncalMergeToSelect(DeciTreeOption<MooncalInfo> option) {
 		super(option, MooncalInfo.class);
@@ -17,7 +16,7 @@ final class VisiMooncalMergeToSelect extends ActionVisitorTemplateMergeV2<Moonca
 	
 	
 	
-	@Override protected Class<? extends ActionStdV2<MooncalInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStd<MooncalInfo>> getActionClassHook() {
 		return StdMooncalDaoSelect.class;
 	}
 	
@@ -30,6 +29,6 @@ final class VisiMooncalMergeToSelect extends ActionVisitorTemplateMergeV2<Moonca
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
+		return super.DONT_MERGE_WHEN_EMPTY;
 	}
 }

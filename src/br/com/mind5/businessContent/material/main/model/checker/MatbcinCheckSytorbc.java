@@ -4,10 +4,10 @@ import br.com.mind5.businessContent.material.main.info.MatbcinInfo;
 import br.com.mind5.config.sysStoreBusinessContent.info.SytorbcInfo;
 import br.com.mind5.config.sysStoreBusinessContent.model.checker.SytorbcCheckEnabled;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.model.checker.ModelChecker;
 
-public final class MatbcinCheckSytorbc extends ModelCheckerTemplateForwardV2<MatbcinInfo, SytorbcInfo> {
+public final class MatbcinCheckSytorbc extends ModelCheckerTemplateForward<MatbcinInfo, SytorbcInfo> {
 	
 	public MatbcinCheckSytorbc(ModelCheckerOption option) {
 		super(option);
@@ -15,7 +15,7 @@ public final class MatbcinCheckSytorbc extends ModelCheckerTemplateForwardV2<Mat
 
 
 	
-	@Override protected ModelCheckerV1<SytorbcInfo> getCheckerHook(ModelCheckerOption option) {
+	@Override protected ModelChecker<SytorbcInfo> getCheckerHook(ModelCheckerOption option) {
 		return new SytorbcCheckEnabled(option);
 	}
 	

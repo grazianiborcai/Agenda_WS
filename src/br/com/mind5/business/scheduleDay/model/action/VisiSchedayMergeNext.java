@@ -6,11 +6,11 @@ import br.com.mind5.business.calendarDate.info.CalateInfo;
 import br.com.mind5.business.calendarDate.model.decisionTree.RootCalateSelectNext;
 import br.com.mind5.business.scheduleDay.info.SchedayInfo;
 import br.com.mind5.business.scheduleDay.info.SchedayMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiSchedayMergeNext extends ActionVisitorTemplateMergeV2<SchedayInfo, CalateInfo> {
+final class VisiSchedayMergeNext extends ActionVisitorTemplateMerge<SchedayInfo, CalateInfo> {
 	
 	public VisiSchedayMergeNext(DeciTreeOption<SchedayInfo> option) {
 		super(option, CalateInfo.class);

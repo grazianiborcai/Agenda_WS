@@ -4,12 +4,11 @@ import java.util.List;
 
 import br.com.mind5.business.cartReserve.info.CarterveInfo;
 import br.com.mind5.business.cartReserve.info.CarterveMerger;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiCarterveMergeToSelect extends ActionVisitorTemplateMergeV2<CarterveInfo, CarterveInfo> {
+final class VisiCarterveMergeToSelect extends ActionVisitorTemplateMerge<CarterveInfo, CarterveInfo> {
 	
 	public VisiCarterveMergeToSelect(DeciTreeOption<CarterveInfo> option) {
 		super(option, CarterveInfo.class);
@@ -17,7 +16,7 @@ final class VisiCarterveMergeToSelect extends ActionVisitorTemplateMergeV2<Carte
 	
 	
 	
-	@Override protected Class<? extends ActionStdV2<CarterveInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStd<CarterveInfo>> getActionClassHook() {
 		return StdCarterveDaoSelect.class;
 	}
 	
@@ -30,6 +29,6 @@ final class VisiCarterveMergeToSelect extends ActionVisitorTemplateMergeV2<Carte
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
+		return super.DONT_MERGE_WHEN_EMPTY;
 	}
 }

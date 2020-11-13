@@ -16,7 +16,7 @@ import br.com.mind5.model.decisionTree.DeciResultHelper;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public abstract class ActionVisitorTemplateSimple<T extends InfoRecord> implements ActionVisitorV2<T> {
+public abstract class ActionVisitorTemplateSimple<T extends InfoRecord> implements ActionVisitor<T> {
 	private List<T> bases;
 	private String codLanguage;
 	private Connection conn;

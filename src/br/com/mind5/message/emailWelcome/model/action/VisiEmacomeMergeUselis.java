@@ -4,13 +4,13 @@ import java.util.List;
 
 import br.com.mind5.message.emailWelcome.info.EmacomeInfo;
 import br.com.mind5.message.emailWelcome.info.EmacomeMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.userList.info.UselisInfo;
 import br.com.mind5.security.userList.model.decisionTree.RootUselisSelect;
 
-final class VisiEmacomeMergeUselis extends ActionVisitorTemplateMergeV2<EmacomeInfo, UselisInfo> {
+final class VisiEmacomeMergeUselis extends ActionVisitorTemplateMerge<EmacomeInfo, UselisInfo> {
 	
 	public VisiEmacomeMergeUselis(DeciTreeOption<EmacomeInfo> option) {
 		super(option, UselisInfo.class);

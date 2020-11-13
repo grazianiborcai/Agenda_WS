@@ -5,13 +5,13 @@ import java.util.List;
 import br.com.mind5.business.addressSnapshot.info.AddresnapCopier;
 import br.com.mind5.business.addressSnapshot.info.AddresnapInfo;
 import br.com.mind5.business.addressSnapshot.model.decisionTree.RootAddresnapSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.paymentPartner.partnerMoip.customerMoip.info.CusmoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.customerMoip.info.CusmoipMerger;
 
-final class VisiCusmoipMergeAddresnap extends ActionVisitorTemplateMergeV2<CusmoipInfo, AddresnapInfo> {
+final class VisiCusmoipMergeAddresnap extends ActionVisitorTemplateMerge<CusmoipInfo, AddresnapInfo> {
 	
 	public VisiCusmoipMergeAddresnap(DeciTreeOption<CusmoipInfo> option) {
 		super(option, AddresnapInfo.class); 

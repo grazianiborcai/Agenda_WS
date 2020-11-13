@@ -4,13 +4,13 @@ import java.util.List;
 
 import br.com.mind5.masterData.paymentPartner.info.PayparInfo;
 import br.com.mind5.masterData.paymentPartner.model.decisionTree.RootPayparSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.countryPartner.info.CounparInfo;
 import br.com.mind5.payment.countryPartner.info.CounparMerger;
 
-final class VisiCounparMergePaypar extends ActionVisitorTemplateMergeV2<CounparInfo, PayparInfo> {
+final class VisiCounparMergePaypar extends ActionVisitorTemplateMerge<CounparInfo, PayparInfo> {
 	
 	public VisiCounparMergePaypar(DeciTreeOption<CounparInfo> option) {
 		super(option, PayparInfo.class);

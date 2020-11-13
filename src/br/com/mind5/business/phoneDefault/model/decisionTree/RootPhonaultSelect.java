@@ -7,14 +7,14 @@ import br.com.mind5.business.phoneDefault.info.PhonaultInfo;
 import br.com.mind5.business.phoneDefault.model.action.StdPhonaultMergeToSelect;
 import br.com.mind5.business.phoneDefault.model.checker.PhonaultCheckLangu;
 import br.com.mind5.business.phoneDefault.model.checker.PhonaultCheckRead;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootPhonaultSelect extends DeciTreeTemplateWriteV2<PhonaultInfo> {
+public final class RootPhonaultSelect extends DeciTreeTemplateWrite<PhonaultInfo> {
 	
 	public RootPhonaultSelect(DeciTreeOption<PhonaultInfo> option) {
 		super(option);
@@ -22,9 +22,9 @@ public final class RootPhonaultSelect extends DeciTreeTemplateWriteV2<PhonaultIn
 	
 	
 	
-	@Override protected ModelCheckerV1<PhonaultInfo> buildCheckerHook(DeciTreeOption<PhonaultInfo> option) {
-		List<ModelCheckerV1<PhonaultInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<PhonaultInfo> checker;	
+	@Override protected ModelChecker<PhonaultInfo> buildCheckerHook(DeciTreeOption<PhonaultInfo> option) {
+		List<ModelChecker<PhonaultInfo>> queue = new ArrayList<>();		
+		ModelChecker<PhonaultInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -41,15 +41,15 @@ public final class RootPhonaultSelect extends DeciTreeTemplateWriteV2<PhonaultIn
 		checker = new PhonaultCheckLangu(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<PhonaultInfo>> buildActionsOnPassedHook(DeciTreeOption<PhonaultInfo> option) {
-		List<ActionStdV2<PhonaultInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStd<PhonaultInfo>> buildActionsOnPassedHook(DeciTreeOption<PhonaultInfo> option) {
+		List<ActionStd<PhonaultInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV2<PhonaultInfo> select = new StdPhonaultMergeToSelect(option);
+		ActionStd<PhonaultInfo> select = new StdPhonaultMergeToSelect(option);
 		
 		actions.add(select);			
 		return actions;

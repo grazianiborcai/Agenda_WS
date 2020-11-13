@@ -16,14 +16,14 @@ import br.com.mind5.business.planingData.model.action.StdPlanataEnforceWeekday;
 import br.com.mind5.business.planingData.model.checker.PlanataCheckDate;
 import br.com.mind5.business.planingData.model.checker.PlanataCheckRead;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public class RootPlanataSelectNoReserve extends DeciTreeTemplateReadV1<PlanataInfo> {
+public class RootPlanataSelectNoReserve extends DeciTreeTemplateRead<PlanataInfo> {
 	
 	public RootPlanataSelectNoReserve(DeciTreeOption<PlanataInfo> option) {
 		super(option);
@@ -31,9 +31,9 @@ public class RootPlanataSelectNoReserve extends DeciTreeTemplateReadV1<PlanataIn
 	
 	
 	
-	@Override protected ModelCheckerV1<PlanataInfo> buildCheckerHook(DeciTreeOption<PlanataInfo> option) {
-		List<ModelCheckerV1<PlanataInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<PlanataInfo> checker;
+	@Override protected ModelChecker<PlanataInfo> buildCheckerHook(DeciTreeOption<PlanataInfo> option) {
+		List<ModelChecker<PlanataInfo>> queue = new ArrayList<>();		
+		ModelChecker<PlanataInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -50,15 +50,15 @@ public class RootPlanataSelectNoReserve extends DeciTreeTemplateReadV1<PlanataIn
 		checker = new PlanataCheckDate(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<PlanataInfo>> buildActionsOnPassedHook(DeciTreeOption<PlanataInfo> option) {
-		List<ActionStdV2<PlanataInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStd<PlanataInfo>> buildActionsOnPassedHook(DeciTreeOption<PlanataInfo> option) {
+		List<ActionStd<PlanataInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV2<PlanataInfo> enforceWeekday = new StdPlanataEnforceWeekday(option);		
+		ActionStd<PlanataInfo> enforceWeekday = new StdPlanataEnforceWeekday(option);		
 		ActionLazy<PlanataInfo> select = new LazyPlanataMergeToSelect(option.conn, option.schemaName);	
 		ActionLazy<PlanataInfo> mergeMooncal = new LazyPlanataMergeMooncal(option.conn, option.schemaName);	
 		ActionLazy<PlanataInfo> mergeMatlis = new LazyPlanataMergeMatlis(option.conn, option.schemaName);	

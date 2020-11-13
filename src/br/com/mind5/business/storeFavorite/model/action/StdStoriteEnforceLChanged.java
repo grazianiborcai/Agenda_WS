@@ -1,11 +1,11 @@
 package br.com.mind5.business.storeFavorite.model.action;
 
 import br.com.mind5.business.storeFavorite.info.StoriteInfo;
-import br.com.mind5.model.action.ActionStdTemplateV2;
-import br.com.mind5.model.action.ActionVisitorV2;
+import br.com.mind5.model.action.ActionStdTemplate;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdStoriteEnforceLChanged extends ActionStdTemplateV2<StoriteInfo> {
+public final class StdStoriteEnforceLChanged extends ActionStdTemplate<StoriteInfo> {
 
 	public StdStoriteEnforceLChanged(DeciTreeOption<StoriteInfo> option) {
 		super(option);
@@ -13,7 +13,7 @@ public final class StdStoriteEnforceLChanged extends ActionStdTemplateV2<Storite
 	
 	
 	
-	protected ActionVisitorV2<StoriteInfo> buildVisitorHook(DeciTreeOption<StoriteInfo> option) {
+	protected ActionVisitor<StoriteInfo> buildVisitorHook(DeciTreeOption<StoriteInfo> option) {
 		return new VisiStoriteEnforceLChanged(option);
 	}
 }

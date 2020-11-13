@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionLazyTemplate;
-import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
@@ -24,7 +24,7 @@ public final class LazyPayordNodePay extends ActionLazyTemplate<PayordInfo, Payo
 	
 	
 	
-	@Override protected ActionStdV2<PayordInfo> getInstanceOfActionHook(DeciTreeOption<PayordInfo> option) {
+	@Override protected ActionStd<PayordInfo> getInstanceOfActionHook(DeciTreeOption<PayordInfo> option) {
 		return new NodePayordPay(option).toAction();
 	}
 	

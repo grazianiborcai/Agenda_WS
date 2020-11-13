@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionLazyTemplate;
-import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.jwtToken.info.JwtokenInfo;
@@ -23,7 +23,7 @@ public final class LazyJwtokenEnforceCreatedOn extends ActionLazyTemplate<Jwtoke
 	
 	
 	
-	@Override protected ActionStdV2<JwtokenInfo> getInstanceOfActionHook(DeciTreeOption<JwtokenInfo> option) {
+	@Override protected ActionStd<JwtokenInfo> getInstanceOfActionHook(DeciTreeOption<JwtokenInfo> option) {
 		return new StdJwtokenEnforceCreatedOn(option);
 	}
 	

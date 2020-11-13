@@ -6,12 +6,12 @@ import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.business.phone.info.PhoneMerger;
 import br.com.mind5.form.formPhone.info.FormoneInfo;
 import br.com.mind5.form.formPhone.model.decisionTree.RootFormoneSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiPhoneMergeFormone extends ActionVisitorTemplateMergeV2<PhoneInfo, FormoneInfo> {
+final class VisiPhoneMergeFormone extends ActionVisitorTemplateMerge<PhoneInfo, FormoneInfo> {
 	
 	public VisiPhoneMergeFormone(DeciTreeOption<PhoneInfo> option) {
 		super(option, FormoneInfo.class);
@@ -32,6 +32,6 @@ final class VisiPhoneMergeFormone extends ActionVisitorTemplateMergeV2<PhoneInfo
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
+		return super.MERGE_WHEN_EMPTY;
 	}
 }

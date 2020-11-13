@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.businessContent.material.petShop.info.MatbcetInfo;
 import br.com.mind5.businessContent.material.petShop.model.decisionTree.NodeMatbcetInsertL10;
 import br.com.mind5.model.action.ActionLazyTemplate;
-import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -24,7 +24,7 @@ public final class LazyMatbcetNodeInsertL10 extends ActionLazyTemplate<MatbcetIn
 	
 	
 	
-	@Override protected ActionStdV2<MatbcetInfo> getInstanceOfActionHook(DeciTreeOption<MatbcetInfo> option) {
+	@Override protected ActionStd<MatbcetInfo> getInstanceOfActionHook(DeciTreeOption<MatbcetInfo> option) {
 		return new NodeMatbcetInsertL10(option).toAction();
 	}
 	

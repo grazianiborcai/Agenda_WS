@@ -7,11 +7,11 @@ import br.com.mind5.business.employeeSnapshot.info.EmpnapMerger;
 import br.com.mind5.business.phoneSnapshot.info.PhonapCopier;
 import br.com.mind5.business.phoneSnapshot.info.PhonapInfo;
 import br.com.mind5.business.phoneSnapshot.model.decisionTree.RootPhonapSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiEmpnapMergePhonap extends ActionVisitorTemplateMergeV2<EmpnapInfo, PhonapInfo> {
+final class VisiEmpnapMergePhonap extends ActionVisitorTemplateMerge<EmpnapInfo, PhonapInfo> {
 	
 	public VisiEmpnapMergePhonap(DeciTreeOption<EmpnapInfo> option) {
 		super(option, PhonapInfo.class);

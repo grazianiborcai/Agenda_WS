@@ -8,14 +8,14 @@ import br.com.mind5.business.phoneSearch.model.action.StdPhonarchMergeToSelect;
 import br.com.mind5.business.phoneSearch.model.checker.PhonarchCheckLangu;
 import br.com.mind5.business.phoneSearch.model.checker.PhonarchCheckOwner;
 import br.com.mind5.business.phoneSearch.model.checker.PhonarchCheckRead;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootPhonarchSelect extends DeciTreeTemplateWriteV2<PhonarchInfo> {
+public final class RootPhonarchSelect extends DeciTreeTemplateWrite<PhonarchInfo> {
 	
 	public RootPhonarchSelect(DeciTreeOption<PhonarchInfo> option) {
 		super(option);
@@ -23,9 +23,9 @@ public final class RootPhonarchSelect extends DeciTreeTemplateWriteV2<PhonarchIn
 	
 	
 	
-	@Override protected ModelCheckerV1<PhonarchInfo> buildCheckerHook(DeciTreeOption<PhonarchInfo> option) {
-		List<ModelCheckerV1<PhonarchInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<PhonarchInfo> checker;	
+	@Override protected ModelChecker<PhonarchInfo> buildCheckerHook(DeciTreeOption<PhonarchInfo> option) {
+		List<ModelChecker<PhonarchInfo>> queue = new ArrayList<>();		
+		ModelChecker<PhonarchInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -49,15 +49,15 @@ public final class RootPhonarchSelect extends DeciTreeTemplateWriteV2<PhonarchIn
 		checker = new PhonarchCheckLangu(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<PhonarchInfo>> buildActionsOnPassedHook(DeciTreeOption<PhonarchInfo> option) {
-		List<ActionStdV2<PhonarchInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStd<PhonarchInfo>> buildActionsOnPassedHook(DeciTreeOption<PhonarchInfo> option) {
+		List<ActionStd<PhonarchInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV2<PhonarchInfo> select = new StdPhonarchMergeToSelect(option);	
+		ActionStd<PhonarchInfo> select = new StdPhonarchMergeToSelect(option);	
 		
 		actions.add(select);		
 		return actions;

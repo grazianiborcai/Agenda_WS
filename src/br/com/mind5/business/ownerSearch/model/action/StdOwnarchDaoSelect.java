@@ -1,11 +1,11 @@
 package br.com.mind5.business.ownerSearch.model.action;
 
 import br.com.mind5.business.ownerSearch.info.OwnarchInfo;
-import br.com.mind5.model.action.ActionStdTemplateV2;
-import br.com.mind5.model.action.ActionVisitorV2;
+import br.com.mind5.model.action.ActionStdTemplate;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdOwnarchDaoSelect extends ActionStdTemplateV2<OwnarchInfo> {
+public final class StdOwnarchDaoSelect extends ActionStdTemplate<OwnarchInfo> {
 
 	public StdOwnarchDaoSelect(DeciTreeOption<OwnarchInfo> option) {
 		super(option);
@@ -13,7 +13,7 @@ public final class StdOwnarchDaoSelect extends ActionStdTemplateV2<OwnarchInfo> 
 	
 	
 	
-	protected ActionVisitorV2<OwnarchInfo> buildVisitorHook(DeciTreeOption<OwnarchInfo> option) {
+	protected ActionVisitor<OwnarchInfo> buildVisitorHook(DeciTreeOption<OwnarchInfo> option) {
 		return new VisiOwnarchDaoSelect(option);
 	}
 }

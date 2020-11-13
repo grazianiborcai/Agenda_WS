@@ -1,11 +1,11 @@
 package br.com.mind5.business.refundPolicy.model.action;
 
 import br.com.mind5.business.refundPolicy.info.RefupolInfo;
-import br.com.mind5.model.action.ActionStdTemplateV2;
-import br.com.mind5.model.action.ActionVisitorV2;
+import br.com.mind5.model.action.ActionStdTemplate;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdRefupolEnforceHasPassed extends ActionStdTemplateV2<RefupolInfo> {
+public final class StdRefupolEnforceHasPassed extends ActionStdTemplate<RefupolInfo> {
 
 	public StdRefupolEnforceHasPassed(DeciTreeOption<RefupolInfo> option) {
 		super(option);
@@ -13,7 +13,7 @@ public final class StdRefupolEnforceHasPassed extends ActionStdTemplateV2<Refupo
 	
 	
 	
-	protected ActionVisitorV2<RefupolInfo> buildVisitorHook(DeciTreeOption<RefupolInfo> option) {
+	protected ActionVisitor<RefupolInfo> buildVisitorHook(DeciTreeOption<RefupolInfo> option) {
 		return new VisiRefupolEnforceHasPassed(option);
 	}
 }

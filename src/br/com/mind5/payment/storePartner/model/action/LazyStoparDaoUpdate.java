@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionLazyTemplate;
-import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.storePartner.info.StoparInfo;
@@ -23,7 +23,7 @@ public final class LazyStoparDaoUpdate extends ActionLazyTemplate<StoparInfo, St
 	
 	
 	
-	@Override protected ActionStdV2<StoparInfo> getInstanceOfActionHook(DeciTreeOption<StoparInfo> option) {
+	@Override protected ActionStd<StoparInfo> getInstanceOfActionHook(DeciTreeOption<StoparInfo> option) {
 		return new StdStoparDaoUpdate(option);
 	}
 	

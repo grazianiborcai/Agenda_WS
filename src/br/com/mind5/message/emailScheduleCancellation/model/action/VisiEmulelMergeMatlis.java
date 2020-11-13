@@ -6,11 +6,11 @@ import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.business.materialList.model.decisionTree.RootMatlisSelect;
 import br.com.mind5.message.emailScheduleCancellation.info.EmulelInfo;
 import br.com.mind5.message.emailScheduleCancellation.info.EmulelMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiEmulelMergeMatlis extends ActionVisitorTemplateMergeV2<EmulelInfo, MatlisInfo> {
+final class VisiEmulelMergeMatlis extends ActionVisitorTemplateMerge<EmulelInfo, MatlisInfo> {
 	
 	public VisiEmulelMergeMatlis(DeciTreeOption<EmulelInfo> option) {
 		super(option, MatlisInfo.class);

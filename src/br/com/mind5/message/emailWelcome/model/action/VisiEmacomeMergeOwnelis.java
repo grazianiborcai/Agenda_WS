@@ -6,11 +6,11 @@ import br.com.mind5.business.ownerList.info.OwnelisInfo;
 import br.com.mind5.business.ownerList.model.decisionTree.RootOwnelisSelect;
 import br.com.mind5.message.emailWelcome.info.EmacomeInfo;
 import br.com.mind5.message.emailWelcome.info.EmacomeMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiEmacomeMergeOwnelis extends ActionVisitorTemplateMergeV2<EmacomeInfo, OwnelisInfo> {
+final class VisiEmacomeMergeOwnelis extends ActionVisitorTemplateMerge<EmacomeInfo, OwnelisInfo> {
 	
 	public VisiEmacomeMergeOwnelis(DeciTreeOption<EmacomeInfo> option) {
 		super(option, OwnelisInfo.class);

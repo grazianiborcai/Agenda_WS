@@ -6,11 +6,11 @@ import br.com.mind5.config.sysOwnerConfig.info.SysonfigInfo;
 import br.com.mind5.config.sysOwnerConfig.info.SysonfigMerger;
 import br.com.mind5.config.sysStorePartitioning.info.SytotinInfo;
 import br.com.mind5.config.sysStorePartitioning.model.decisionTree.RootSytotinSelectDefault;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiSysonfigMergeSytotin extends ActionVisitorTemplateMergeV2<SysonfigInfo, SytotinInfo> {
+final class VisiSysonfigMergeSytotin extends ActionVisitorTemplateMerge<SysonfigInfo, SytotinInfo> {
 	
 	public VisiSysonfigMergeSytotin(DeciTreeOption<SysonfigInfo> option) {
 		super(option, SytotinInfo.class);

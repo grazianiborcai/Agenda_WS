@@ -1,14 +1,14 @@
 package br.com.mind5.payment.payOrder.model.checker;
 
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
 import br.com.mind5.payment.payOrder.model.action.StdPayordDaoSelect;
 
-public final class PayordCheckExist extends ModelCheckerTemplateActionV2<PayordInfo, PayordInfo> {
+public final class PayordCheckExist extends ModelCheckerTemplateAction<PayordInfo, PayordInfo> {
 	
 	public PayordCheckExist(ModelCheckerOption option) {
 		super(option, PayordInfo.class);
@@ -16,8 +16,8 @@ public final class PayordCheckExist extends ModelCheckerTemplateActionV2<PayordI
 	
 
 	
-	@Override protected ActionStdV2<PayordInfo> buildActionHook(DeciTreeOption<PayordInfo> option) {
-		ActionStdV2<PayordInfo> select = new StdPayordDaoSelect(option);
+	@Override protected ActionStd<PayordInfo> buildActionHook(DeciTreeOption<PayordInfo> option) {
+		ActionStd<PayordInfo> select = new StdPayordDaoSelect(option);
 		return select;
 	}
 	

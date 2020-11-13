@@ -7,14 +7,14 @@ import br.com.mind5.business.order.info.OrderInfo;
 import br.com.mind5.business.order.model.action.StdOrderMergeRefugroup;
 import br.com.mind5.business.order.model.action.StdOrderMergeRefupown;
 import br.com.mind5.business.order.model.checker.OrderCheckHasRefugroup;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodeOrderRefugroupL1 extends DeciTreeTemplateWriteV2<OrderInfo> {
+public final class NodeOrderRefugroupL1 extends DeciTreeTemplateWrite<OrderInfo> {
 	
 	public NodeOrderRefugroupL1(DeciTreeOption<OrderInfo> option) {
 		super(option);
@@ -22,9 +22,9 @@ public final class NodeOrderRefugroupL1 extends DeciTreeTemplateWriteV2<OrderInf
 	
 	
 	
-	@Override protected ModelCheckerV1<OrderInfo> buildCheckerHook(DeciTreeOption<OrderInfo> option) {
-		List<ModelCheckerV1<OrderInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<OrderInfo> checker;	
+	@Override protected ModelChecker<OrderInfo> buildCheckerHook(DeciTreeOption<OrderInfo> option) {
+		List<ModelChecker<OrderInfo>> queue = new ArrayList<>();		
+		ModelChecker<OrderInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -34,15 +34,15 @@ public final class NodeOrderRefugroupL1 extends DeciTreeTemplateWriteV2<OrderInf
 		checker = new OrderCheckHasRefugroup(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<OrderInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderInfo> option) {
-		List<ActionStdV2<OrderInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStd<OrderInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderInfo> option) {
+		List<ActionStd<OrderInfo>> actions = new ArrayList<>();		
 
-		ActionStdV2<OrderInfo> mergeRefugroup = new StdOrderMergeRefugroup(option);
+		ActionStd<OrderInfo> mergeRefugroup = new StdOrderMergeRefugroup(option);
 		
 		actions.add(mergeRefugroup);
 		return actions;
@@ -50,10 +50,10 @@ public final class NodeOrderRefugroupL1 extends DeciTreeTemplateWriteV2<OrderInf
 	
 	
 	
-	@Override protected List<ActionStdV2<OrderInfo>> buildActionsOnFailedHook(DeciTreeOption<OrderInfo> option) {
-		List<ActionStdV2<OrderInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStd<OrderInfo>> buildActionsOnFailedHook(DeciTreeOption<OrderInfo> option) {
+		List<ActionStd<OrderInfo>> actions = new ArrayList<>();		
 
-		ActionStdV2<OrderInfo> mergeRefupown = new StdOrderMergeRefupown(option);
+		ActionStd<OrderInfo> mergeRefupown = new StdOrderMergeRefupown(option);
 		
 		actions.add(mergeRefupown);
 		return actions;

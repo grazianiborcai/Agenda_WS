@@ -1,11 +1,11 @@
 package br.com.mind5.business.scheduleRange.model.action;
 
 import br.com.mind5.business.scheduleRange.info.SchedageInfo;
-import br.com.mind5.model.action.ActionStdTemplateV2;
-import br.com.mind5.model.action.ActionVisitorV2;
+import br.com.mind5.model.action.ActionStdTemplate;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdSchedageMergeToSelect extends ActionStdTemplateV2<SchedageInfo> {
+public final class StdSchedageMergeToSelect extends ActionStdTemplate<SchedageInfo> {
 
 	public StdSchedageMergeToSelect(DeciTreeOption<SchedageInfo> option) {
 		super(option);
@@ -13,7 +13,7 @@ public final class StdSchedageMergeToSelect extends ActionStdTemplateV2<Schedage
 	
 	
 	
-	protected ActionVisitorV2<SchedageInfo> buildVisitorHook(DeciTreeOption<SchedageInfo> option) {
+	protected ActionVisitor<SchedageInfo> buildVisitorHook(DeciTreeOption<SchedageInfo> option) {
 		return new VisiSchedageMergeToSelect(option);
 	}
 }

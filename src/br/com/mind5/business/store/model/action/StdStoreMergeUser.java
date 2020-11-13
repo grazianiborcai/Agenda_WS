@@ -1,11 +1,11 @@
 package br.com.mind5.business.store.model.action;
 
 import br.com.mind5.business.store.info.StoreInfo;
-import br.com.mind5.model.action.ActionStdTemplateV2;
-import br.com.mind5.model.action.ActionVisitorV2;
+import br.com.mind5.model.action.ActionStdTemplate;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class StdStoreMergeUser extends ActionStdTemplateV2<StoreInfo> {
+final class StdStoreMergeUser extends ActionStdTemplate<StoreInfo> {
 
 	public StdStoreMergeUser(DeciTreeOption<StoreInfo> option) {
 		super(option);
@@ -13,7 +13,7 @@ final class StdStoreMergeUser extends ActionStdTemplateV2<StoreInfo> {
 	
 	
 	
-	protected ActionVisitorV2<StoreInfo> buildVisitorHook(DeciTreeOption<StoreInfo> option) {
+	protected ActionVisitor<StoreInfo> buildVisitorHook(DeciTreeOption<StoreInfo> option) {
 		return new VisiStoreMergeUser(option);
 	}
 }

@@ -4,10 +4,10 @@ import br.com.mind5.business.customer.info.CusInfo;
 import br.com.mind5.business.owner.info.OwnerInfo;
 import br.com.mind5.business.owner.model.checker.OwnerCheckExist;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.model.checker.ModelChecker;
 
-public final class CusCheckOwner extends ModelCheckerTemplateForwardV2<CusInfo, OwnerInfo> {
+public final class CusCheckOwner extends ModelCheckerTemplateForward<CusInfo, OwnerInfo> {
 	
 	public CusCheckOwner(ModelCheckerOption option) {
 		super(option);
@@ -15,7 +15,7 @@ public final class CusCheckOwner extends ModelCheckerTemplateForwardV2<CusInfo, 
 
 
 	
-	@Override protected ModelCheckerV1<OwnerInfo> getCheckerHook(ModelCheckerOption option) {
+	@Override protected ModelChecker<OwnerInfo> getCheckerHook(ModelCheckerOption option) {
 		return new OwnerCheckExist(option);
 	}
 	

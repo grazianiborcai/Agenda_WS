@@ -6,14 +6,14 @@ import java.util.List;
 import br.com.mind5.masterData.authorizationGroup.info.AuthgroupInfo;
 import br.com.mind5.masterData.authorizationGroup.model.action.StdAuthgroupDaoSelect;
 import br.com.mind5.masterData.authorizationGroup.model.checker.AuthgroupCheckRead;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootAuthgroupSelect extends DeciTreeTemplateReadV1<AuthgroupInfo> {
+public final class RootAuthgroupSelect extends DeciTreeTemplateRead<AuthgroupInfo> {
 	
 	public RootAuthgroupSelect(DeciTreeOption<AuthgroupInfo> option) {
 		super(option);
@@ -21,9 +21,9 @@ public final class RootAuthgroupSelect extends DeciTreeTemplateReadV1<AuthgroupI
 	
 	
 	
-	@Override protected ModelCheckerV1<AuthgroupInfo> buildCheckerHook(DeciTreeOption<AuthgroupInfo> option) {
-		List<ModelCheckerV1<AuthgroupInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<AuthgroupInfo> checker;
+	@Override protected ModelChecker<AuthgroupInfo> buildCheckerHook(DeciTreeOption<AuthgroupInfo> option) {
+		List<ModelChecker<AuthgroupInfo>> queue = new ArrayList<>();		
+		ModelChecker<AuthgroupInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
 		checkerOption = new ModelCheckerOption();
@@ -33,15 +33,15 @@ public final class RootAuthgroupSelect extends DeciTreeTemplateReadV1<AuthgroupI
 		checker = new AuthgroupCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<AuthgroupInfo>> buildActionsOnPassedHook(DeciTreeOption<AuthgroupInfo> option) {
-		List<ActionStdV2<AuthgroupInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<AuthgroupInfo>> buildActionsOnPassedHook(DeciTreeOption<AuthgroupInfo> option) {
+		List<ActionStd<AuthgroupInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<AuthgroupInfo> select = new StdAuthgroupDaoSelect(option);
+		ActionStd<AuthgroupInfo> select = new StdAuthgroupDaoSelect(option);
 		
 		actions.add(select);		
 		return actions;

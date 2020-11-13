@@ -7,11 +7,11 @@ import br.com.mind5.authorization.scheduleAuthorization.info.SchedauthMerger;
 import br.com.mind5.business.storeSearch.info.SotarchCopier;
 import br.com.mind5.business.storeSearch.info.SotarchInfo;
 import br.com.mind5.business.storeSearch.model.decisionTree.RootSotarchSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiSchedauthMergeSotarch extends ActionVisitorTemplateMergeV2<SchedauthInfo, SotarchInfo> {
+final class VisiSchedauthMergeSotarch extends ActionVisitorTemplateMerge<SchedauthInfo, SotarchInfo> {
 	
 	public VisiSchedauthMergeSotarch(DeciTreeOption<SchedauthInfo> option) {
 		super(option, SotarchInfo.class);

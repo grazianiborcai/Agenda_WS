@@ -4,17 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.payment.payOrderItemList.info.PayordemistInfo;
 import br.com.mind5.payment.payOrderItemList.model.action.LazyPayordemistRootSelect;
 import br.com.mind5.payment.payOrderItemList.model.action.StdPayordemistMergePayormarch;
 
-public final class RootPayordemistSearch extends DeciTreeTemplateWriteV2<PayordemistInfo> {
+public final class RootPayordemistSearch extends DeciTreeTemplateWrite<PayordemistInfo> {
 	
 	public RootPayordemistSearch(DeciTreeOption<PayordemistInfo> option) {
 		super(option);
@@ -22,22 +22,22 @@ public final class RootPayordemistSearch extends DeciTreeTemplateWriteV2<Payorde
 	
 	
 	
-	@Override protected ModelCheckerV1<PayordemistInfo> buildCheckerHook(DeciTreeOption<PayordemistInfo> option) {
-		List<ModelCheckerV1<PayordemistInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<PayordemistInfo> checker;	
+	@Override protected ModelChecker<PayordemistInfo> buildCheckerHook(DeciTreeOption<PayordemistInfo> option) {
+		List<ModelChecker<PayordemistInfo>> queue = new ArrayList<>();		
+		ModelChecker<PayordemistInfo> checker;	
 
 		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<PayordemistInfo>> buildActionsOnPassedHook(DeciTreeOption<PayordemistInfo> option) {
-		List<ActionStdV2<PayordemistInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<PayordemistInfo>> buildActionsOnPassedHook(DeciTreeOption<PayordemistInfo> option) {
+		List<ActionStd<PayordemistInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<PayordemistInfo> mergePayormarch = new StdPayordemistMergePayormarch(option);
+		ActionStd<PayordemistInfo> mergePayormarch = new StdPayordemistMergePayormarch(option);
 		ActionLazy<PayordemistInfo> select = new LazyPayordemistRootSelect(option.conn, option.schemaName);
 		
 		mergePayormarch.addPostAction(select);

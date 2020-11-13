@@ -9,14 +9,14 @@ import br.com.mind5.business.materialText.model.action.LazyMatextDaoUpdate;
 import br.com.mind5.business.materialText.model.action.LazyMatextMergeUsername;
 import br.com.mind5.business.materialText.model.action.StdMatextEnforceLChanged;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodeMatextDeleteL1 extends DeciTreeTemplateWriteV2<MatextInfo> {
+public final class NodeMatextDeleteL1 extends DeciTreeTemplateWrite<MatextInfo> {
 
 	public NodeMatextDeleteL1(DeciTreeOption<MatextInfo> option) {
 		super(option);
@@ -24,22 +24,22 @@ public final class NodeMatextDeleteL1 extends DeciTreeTemplateWriteV2<MatextInfo
 	
 	
 	
-	@Override protected ModelCheckerV1<MatextInfo> buildCheckerHook(DeciTreeOption<MatextInfo> option) {
-		List<ModelCheckerV1<MatextInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<MatextInfo> checker;
+	@Override protected ModelChecker<MatextInfo> buildCheckerHook(DeciTreeOption<MatextInfo> option) {
+		List<ModelChecker<MatextInfo>> queue = new ArrayList<>();		
+		ModelChecker<MatextInfo> checker;
 			
 		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 
-		return new ModelCheckerHelperQueueV2<MatextInfo>(queue);
+		return new ModelCheckerHelperQueue<MatextInfo>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<MatextInfo>> buildActionsOnPassedHook(DeciTreeOption<MatextInfo> option) {
-		List<ActionStdV2<MatextInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<MatextInfo>> buildActionsOnPassedHook(DeciTreeOption<MatextInfo> option) {
+		List<ActionStd<MatextInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<MatextInfo> enforceLChanged = new StdMatextEnforceLChanged(option);
+		ActionStd<MatextInfo> enforceLChanged = new StdMatextEnforceLChanged(option);
 		ActionLazy<MatextInfo> enforceLChangedBy = new LazyMatextMergeUsername(option.conn, option.schemaName);
 		ActionLazy<MatextInfo> update = new LazyMatextDaoUpdate(option.conn, option.schemaName);
 		ActionLazy<MatextInfo> delete = new LazyMatextDaoDelete(option.conn, option.schemaName);

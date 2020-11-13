@@ -8,14 +8,14 @@ import br.com.mind5.business.materialSearch.model.action.LazyMatarchRootSelectAu
 import br.com.mind5.business.materialSearch.model.action.StdMatarchEnforceMatCategProduct;
 import br.com.mind5.business.materialSearch.model.checker.MatarchCheckReadMat;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootMatarchSelectProduct extends DeciTreeTemplateReadV2<MatarchInfo> {
+public final class RootMatarchSelectProduct extends DeciTreeTemplateRead<MatarchInfo> {
 	
 	public RootMatarchSelectProduct(DeciTreeOption<MatarchInfo> option) {
 		super(option);
@@ -23,9 +23,9 @@ public final class RootMatarchSelectProduct extends DeciTreeTemplateReadV2<Matar
 	
 	
 	
-	@Override protected ModelCheckerV1<MatarchInfo> buildCheckerHook(DeciTreeOption<MatarchInfo> option) {
-		List<ModelCheckerV1<MatarchInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<MatarchInfo> checker;
+	@Override protected ModelChecker<MatarchInfo> buildCheckerHook(DeciTreeOption<MatarchInfo> option) {
+		List<ModelChecker<MatarchInfo>> queue = new ArrayList<>();		
+		ModelChecker<MatarchInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -35,15 +35,15 @@ public final class RootMatarchSelectProduct extends DeciTreeTemplateReadV2<Matar
 		checker = new MatarchCheckReadMat(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<MatarchInfo>> buildActionsOnPassedHook(DeciTreeOption<MatarchInfo> option) {
-		List<ActionStdV2<MatarchInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<MatarchInfo>> buildActionsOnPassedHook(DeciTreeOption<MatarchInfo> option) {
+		List<ActionStd<MatarchInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<MatarchInfo> enforceMatCategProduct = new StdMatarchEnforceMatCategProduct(option);
+		ActionStd<MatarchInfo> enforceMatCategProduct = new StdMatarchEnforceMatCategProduct(option);
 		ActionLazy<MatarchInfo> select = new LazyMatarchRootSelectAuth(option.conn, option.schemaName);
 		
 		enforceMatCategProduct.addPostAction(select);

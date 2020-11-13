@@ -6,11 +6,11 @@ import br.com.mind5.business.cart.info.CartInfo;
 import br.com.mind5.business.cart.info.CartMerger;
 import br.com.mind5.masterData.currency.info.CurrencyInfo;
 import br.com.mind5.masterData.currency.model.decisionTree.RootCurrencySelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiCartMergeCurrency extends ActionVisitorTemplateMergeV2<CartInfo, CurrencyInfo> {
+final class VisiCartMergeCurrency extends ActionVisitorTemplateMerge<CartInfo, CurrencyInfo> {
 	
 	public VisiCartMergeCurrency(DeciTreeOption<CartInfo> option) {
 		super(option, CurrencyInfo.class);

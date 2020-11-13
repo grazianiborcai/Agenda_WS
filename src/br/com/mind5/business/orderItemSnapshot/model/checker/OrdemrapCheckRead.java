@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.mind5.business.orderItemSnapshot.info.OrdemrapInfo;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 
-public final class OrdemrapCheckRead extends ModelCheckerTemplateSimpleV2<OrdemrapInfo> {
+public final class OrdemrapCheckRead extends ModelCheckerTemplateSimple<OrdemrapInfo> {
 
 	public OrdemrapCheckRead(ModelCheckerOption option) {
 		super(option);

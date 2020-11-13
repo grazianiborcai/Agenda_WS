@@ -5,12 +5,12 @@ import br.com.mind5.business.storeLeaveDate.model.action.LazyStolateDaoSelect;
 import br.com.mind5.business.storeLeaveDate.model.action.StdStolateEnforceDel;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StolateCheckSoftDelete extends ModelCheckerTemplateActionV2<StolateInfo, StolateInfo> {
+public final class StolateCheckSoftDelete extends ModelCheckerTemplateAction<StolateInfo, StolateInfo> {
 	
 	public StolateCheckSoftDelete(ModelCheckerOption option) {
 		super(option, StolateInfo.class);
@@ -18,8 +18,8 @@ public final class StolateCheckSoftDelete extends ModelCheckerTemplateActionV2<S
 	
 	
 	
-	@Override protected ActionStdV2<StolateInfo> buildActionHook(DeciTreeOption<StolateInfo> option) {
-		ActionStdV2<StolateInfo> enforceDel = new StdStolateEnforceDel(option);
+	@Override protected ActionStd<StolateInfo> buildActionHook(DeciTreeOption<StolateInfo> option) {
+		ActionStd<StolateInfo> enforceDel = new StdStolateEnforceDel(option);
 		ActionLazy<StolateInfo> selectKey = new LazyStolateDaoSelect(option.conn, option.schemaName);		
 		
 		enforceDel.addPostAction(selectKey);		

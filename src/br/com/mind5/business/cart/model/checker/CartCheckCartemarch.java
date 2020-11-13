@@ -5,10 +5,10 @@ import br.com.mind5.business.cartItemSearch.info.CartemarchCopier;
 import br.com.mind5.business.cartItemSearch.info.CartemarchInfo;
 import br.com.mind5.business.cartItemSearch.model.checker.CartemarchCheckExist;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.model.checker.ModelChecker;
 
-public final class CartCheckCartemarch extends ModelCheckerTemplateForwardV2<CartInfo, CartemarchInfo> {
+public final class CartCheckCartemarch extends ModelCheckerTemplateForward<CartInfo, CartemarchInfo> {
 	
 	public CartCheckCartemarch(ModelCheckerOption option) {
 		super(option);
@@ -16,7 +16,7 @@ public final class CartCheckCartemarch extends ModelCheckerTemplateForwardV2<Car
 
 
 	
-	@Override protected ModelCheckerV1<CartemarchInfo> getCheckerHook(ModelCheckerOption option) {
+	@Override protected ModelChecker<CartemarchInfo> getCheckerHook(ModelCheckerOption option) {
 		return new CartemarchCheckExist(option);
 	}
 	

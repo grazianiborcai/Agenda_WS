@@ -1,14 +1,14 @@
 package br.com.mind5.security.otpUserPassword.model.checker;
 
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.otpUserPassword.info.OtperasInfo;
 import br.com.mind5.security.otpUserPassword.model.action.StdOtperasDaoSelect;
 
-public final class OtperasCheckExist extends ModelCheckerTemplateActionV2<OtperasInfo, OtperasInfo> {
+public final class OtperasCheckExist extends ModelCheckerTemplateAction<OtperasInfo, OtperasInfo> {
 	
 	public OtperasCheckExist(ModelCheckerOption option) {
 		super(option, OtperasInfo.class);
@@ -16,8 +16,8 @@ public final class OtperasCheckExist extends ModelCheckerTemplateActionV2<Otpera
 	
 	
 	
-	@Override protected ActionStdV2<OtperasInfo> buildActionHook(DeciTreeOption<OtperasInfo> option) {
-		ActionStdV2<OtperasInfo> select = new StdOtperasDaoSelect(option);
+	@Override protected ActionStd<OtperasInfo> buildActionHook(DeciTreeOption<OtperasInfo> option) {
+		ActionStd<OtperasInfo> select = new StdOtperasDaoSelect(option);
 		return select;
 	}
 	

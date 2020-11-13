@@ -6,14 +6,14 @@ import java.util.List;
 import br.com.mind5.business.refundPolicy.info.RefupolInfo;
 import br.com.mind5.business.refundPolicy.model.action.StdRefupolSuccess;
 import br.com.mind5.business.refundPolicy.model.checker.RefupolCheckAuthOwner;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodeRefupolEvaluateL2 extends DeciTreeTemplateWriteV2<RefupolInfo> {
+public final class NodeRefupolEvaluateL2 extends DeciTreeTemplateWrite<RefupolInfo> {
 	
 	public NodeRefupolEvaluateL2(DeciTreeOption<RefupolInfo> option) {
 		super(option);
@@ -21,9 +21,9 @@ public final class NodeRefupolEvaluateL2 extends DeciTreeTemplateWriteV2<Refupol
 	
 	
 	
-	@Override protected ModelCheckerV1<RefupolInfo> buildCheckerHook(DeciTreeOption<RefupolInfo> option) {
-		List<ModelCheckerV1<RefupolInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<RefupolInfo> checker;	
+	@Override protected ModelChecker<RefupolInfo> buildCheckerHook(DeciTreeOption<RefupolInfo> option) {
+		List<ModelChecker<RefupolInfo>> queue = new ArrayList<>();		
+		ModelChecker<RefupolInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -33,15 +33,15 @@ public final class NodeRefupolEvaluateL2 extends DeciTreeTemplateWriteV2<Refupol
 		checker = new RefupolCheckAuthOwner(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<RefupolInfo>> buildActionsOnPassedHook(DeciTreeOption<RefupolInfo> option) {
-		List<ActionStdV2<RefupolInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<RefupolInfo>> buildActionsOnPassedHook(DeciTreeOption<RefupolInfo> option) {
+		List<ActionStd<RefupolInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<RefupolInfo> success = new StdRefupolSuccess(option);
+		ActionStd<RefupolInfo> success = new StdRefupolSuccess(option);
 		
 		actions.add(success);
 		return actions;
@@ -49,10 +49,10 @@ public final class NodeRefupolEvaluateL2 extends DeciTreeTemplateWriteV2<Refupol
 	
 	
 	
-	@Override protected List<ActionStdV2<RefupolInfo>> buildActionsOnFailedHook(DeciTreeOption<RefupolInfo> option) {
-		List<ActionStdV2<RefupolInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<RefupolInfo>> buildActionsOnFailedHook(DeciTreeOption<RefupolInfo> option) {
+		List<ActionStd<RefupolInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<RefupolInfo> nodeL3 = new NodeRefupolEvaluateL3(option).toAction();
+		ActionStd<RefupolInfo> nodeL3 = new NodeRefupolEvaluateL3(option).toAction();
 		
 		actions.add(nodeL3);
 		return actions;

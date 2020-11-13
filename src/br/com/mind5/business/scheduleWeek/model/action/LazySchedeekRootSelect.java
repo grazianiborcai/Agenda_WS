@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.scheduleWeek.info.SchedeekInfo;
 import br.com.mind5.business.scheduleWeek.model.decisionTree.RootSchedeekSelect;
 import br.com.mind5.model.action.ActionLazyTemplate;
-import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -24,7 +24,7 @@ public final class LazySchedeekRootSelect extends ActionLazyTemplate<SchedeekInf
 	
 	
 	
-	@Override protected ActionStdV2<SchedeekInfo> getInstanceOfActionHook(DeciTreeOption<SchedeekInfo> option) {
+	@Override protected ActionStd<SchedeekInfo> getInstanceOfActionHook(DeciTreeOption<SchedeekInfo> option) {
 		return new RootSchedeekSelect(option).toAction();
 	}
 	

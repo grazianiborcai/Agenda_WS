@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionLazyTemplate;
-import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.userList.info.UselisInfo;
@@ -24,7 +24,7 @@ public final class LazyUselisNodePerson extends ActionLazyTemplate<UselisInfo, U
 	
 	
 	
-	@Override protected ActionStdV2<UselisInfo> getInstanceOfActionHook(DeciTreeOption<UselisInfo> option) {
+	@Override protected ActionStd<UselisInfo> getInstanceOfActionHook(DeciTreeOption<UselisInfo> option) {
 		return new NodeUselisPerson(option).toAction();
 	}
 	

@@ -7,14 +7,14 @@ import br.com.mind5.masterData.materialGroup.info.MatoupInfo;
 import br.com.mind5.masterData.materialGroup.model.action.LazyMatoupRootSelect;
 import br.com.mind5.masterData.materialGroup.model.action.StdMatoupMergeMatouparch;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootMatoupSearch extends DeciTreeTemplateReadV1<MatoupInfo> {
+public final class RootMatoupSearch extends DeciTreeTemplateRead<MatoupInfo> {
 	
 	public RootMatoupSearch(DeciTreeOption<MatoupInfo> option) {
 		super(option);
@@ -22,22 +22,22 @@ public final class RootMatoupSearch extends DeciTreeTemplateReadV1<MatoupInfo> {
 	
 	
 	
-	@Override protected ModelCheckerV1<MatoupInfo> buildCheckerHook(DeciTreeOption<MatoupInfo> option) {
-		List<ModelCheckerV1<MatoupInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<MatoupInfo> checker;
+	@Override protected ModelChecker<MatoupInfo> buildCheckerHook(DeciTreeOption<MatoupInfo> option) {
+		List<ModelChecker<MatoupInfo>> queue = new ArrayList<>();		
+		ModelChecker<MatoupInfo> checker;
 
 		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<MatoupInfo>> buildActionsOnPassedHook(DeciTreeOption<MatoupInfo> option) {
-		List<ActionStdV2<MatoupInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<MatoupInfo>> buildActionsOnPassedHook(DeciTreeOption<MatoupInfo> option) {
+		List<ActionStd<MatoupInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<MatoupInfo> mergeMatouparch = new StdMatoupMergeMatouparch(option);
+		ActionStd<MatoupInfo> mergeMatouparch = new StdMatoupMergeMatouparch(option);
 		ActionLazy<MatoupInfo> select = new LazyMatoupRootSelect(option.conn, option.schemaName);
 		
 		mergeMatouparch.addPostAction(select);

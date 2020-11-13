@@ -1,11 +1,11 @@
 package br.com.mind5.business.scheduleLineSnapshot.model.action;
 
 import br.com.mind5.business.scheduleLineSnapshot.info.SchedinapInfo;
-import br.com.mind5.model.action.ActionStdTemplateV2;
-import br.com.mind5.model.action.ActionVisitorV2;
+import br.com.mind5.model.action.ActionStdTemplate;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdSchedinapDaoInsert extends ActionStdTemplateV2<SchedinapInfo> {
+public final class StdSchedinapDaoInsert extends ActionStdTemplate<SchedinapInfo> {
 
 	public StdSchedinapDaoInsert(DeciTreeOption<SchedinapInfo> option) {
 		super(option);
@@ -13,7 +13,7 @@ public final class StdSchedinapDaoInsert extends ActionStdTemplateV2<SchedinapIn
 	
 	
 	
-	protected ActionVisitorV2<SchedinapInfo> buildVisitorHook(DeciTreeOption<SchedinapInfo> option) {
+	protected ActionVisitor<SchedinapInfo> buildVisitorHook(DeciTreeOption<SchedinapInfo> option) {
 		return new VisiSchedinapDaoInsert(option);
 	}
 }

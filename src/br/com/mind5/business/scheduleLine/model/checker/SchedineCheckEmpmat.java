@@ -4,10 +4,10 @@ import br.com.mind5.business.employeeMaterial.info.EmpmatInfo;
 import br.com.mind5.business.employeeMaterial.model.checker.EmpmatCheckExist;
 import br.com.mind5.business.scheduleLine.info.SchedineInfo;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.model.checker.ModelChecker;
 
-public final class SchedineCheckEmpmat extends ModelCheckerTemplateForwardV2<SchedineInfo, EmpmatInfo> {
+public final class SchedineCheckEmpmat extends ModelCheckerTemplateForward<SchedineInfo, EmpmatInfo> {
 	
 	public SchedineCheckEmpmat(ModelCheckerOption option) {
 		super(option);
@@ -15,7 +15,7 @@ public final class SchedineCheckEmpmat extends ModelCheckerTemplateForwardV2<Sch
 
 
 	
-	@Override protected ModelCheckerV1<EmpmatInfo> getCheckerHook(ModelCheckerOption option) {
+	@Override protected ModelChecker<EmpmatInfo> getCheckerHook(ModelCheckerOption option) {
 		return new EmpmatCheckExist(option);
 	}
 	

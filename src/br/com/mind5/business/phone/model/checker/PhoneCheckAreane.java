@@ -4,10 +4,10 @@ import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.masterData.areaPhone.info.AreaneInfo;
 import br.com.mind5.masterData.areaPhone.model.checker.AreaneCheckExist;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.model.checker.ModelChecker;
 
-public final class PhoneCheckAreane extends ModelCheckerTemplateForwardV2<PhoneInfo, AreaneInfo> {
+public final class PhoneCheckAreane extends ModelCheckerTemplateForward<PhoneInfo, AreaneInfo> {
 	
 	public PhoneCheckAreane(ModelCheckerOption option) {
 		super(option);
@@ -15,7 +15,7 @@ public final class PhoneCheckAreane extends ModelCheckerTemplateForwardV2<PhoneI
 
 
 	
-	@Override protected ModelCheckerV1<AreaneInfo> getCheckerHook(ModelCheckerOption option) {
+	@Override protected ModelChecker<AreaneInfo> getCheckerHook(ModelCheckerOption option) {
 		return new AreaneCheckExist(option);
 	}
 	

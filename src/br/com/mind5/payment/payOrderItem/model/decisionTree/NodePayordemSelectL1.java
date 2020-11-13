@@ -3,17 +3,17 @@ package br.com.mind5.payment.payOrderItem.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.payment.payOrderItem.info.PayordemInfo;
 import br.com.mind5.payment.payOrderItem.model.action.StdPayordemMergeFeecat;
 import br.com.mind5.payment.payOrderItem.model.checker.PayordemCheckIsFee;
 
-public final class NodePayordemSelectL1 extends DeciTreeTemplateWriteV2<PayordemInfo> {
+public final class NodePayordemSelectL1 extends DeciTreeTemplateWrite<PayordemInfo> {
 	
 	public NodePayordemSelectL1(DeciTreeOption<PayordemInfo> option) {
 		super(option);
@@ -21,9 +21,9 @@ public final class NodePayordemSelectL1 extends DeciTreeTemplateWriteV2<Payordem
 	
 	
 	
-	@Override protected ModelCheckerV1<PayordemInfo> buildCheckerHook(DeciTreeOption<PayordemInfo> option) {
-		List<ModelCheckerV1<PayordemInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<PayordemInfo> checker;	
+	@Override protected ModelChecker<PayordemInfo> buildCheckerHook(DeciTreeOption<PayordemInfo> option) {
+		List<ModelChecker<PayordemInfo>> queue = new ArrayList<>();		
+		ModelChecker<PayordemInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -33,15 +33,15 @@ public final class NodePayordemSelectL1 extends DeciTreeTemplateWriteV2<Payordem
 		checker = new PayordemCheckIsFee(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<PayordemInfo>> buildActionsOnPassedHook(DeciTreeOption<PayordemInfo> option) {
-		List<ActionStdV2<PayordemInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<PayordemInfo>> buildActionsOnPassedHook(DeciTreeOption<PayordemInfo> option) {
+		List<ActionStd<PayordemInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<PayordemInfo> mergeFeecat = new StdPayordemMergeFeecat(option);
+		ActionStd<PayordemInfo> mergeFeecat = new StdPayordemMergeFeecat(option);
 		
 		actions.add(mergeFeecat);
 		return actions;
@@ -49,10 +49,10 @@ public final class NodePayordemSelectL1 extends DeciTreeTemplateWriteV2<Payordem
 	
 	
 	
-	@Override protected List<ActionStdV2<PayordemInfo>> buildActionsOnFailedHook(DeciTreeOption<PayordemInfo> option) {
-		List<ActionStdV2<PayordemInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<PayordemInfo>> buildActionsOnFailedHook(DeciTreeOption<PayordemInfo> option) {
+		List<ActionStd<PayordemInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<PayordemInfo> nodeL2 = new NodePayordemSelectL2(option).toAction();
+		ActionStd<PayordemInfo> nodeL2 = new NodePayordemSelectL2(option).toAction();
 		
 		actions.add(nodeL2);
 		return actions;

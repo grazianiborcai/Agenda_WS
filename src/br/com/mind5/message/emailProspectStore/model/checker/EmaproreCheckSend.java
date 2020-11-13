@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.message.emailProspectStore.info.EmaproreInfo;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 
-public final class EmaproreCheckSend extends ModelCheckerTemplateSimpleV2<EmaproreInfo> {
+public final class EmaproreCheckSend extends ModelCheckerTemplateSimple<EmaproreInfo> {
 
 	public EmaproreCheckSend(ModelCheckerOption option) {
 		super(option);

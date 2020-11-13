@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.info.PaymoipInfo;
 import br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.model.action.LazyPaymoipCard;
 import br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.model.action.LazyPaymoipEnforceCard;
@@ -24,7 +24,7 @@ import br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.model.action.LazyPay
 import br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.model.action.StdPaymoipEnforcePaypar;
 import br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.model.checker.PaymoipCheckPay;
 
-public final class RootPaymoipPay extends DeciTreeTemplateWriteV2<PaymoipInfo> {
+public final class RootPaymoipPay extends DeciTreeTemplateWrite<PaymoipInfo> {
 	
 	public RootPaymoipPay(DeciTreeOption<PaymoipInfo> option) {
 		super(option);
@@ -32,9 +32,9 @@ public final class RootPaymoipPay extends DeciTreeTemplateWriteV2<PaymoipInfo> {
 	
 	
 	
-	@Override protected ModelCheckerV1<PaymoipInfo> buildCheckerHook(DeciTreeOption<PaymoipInfo> option) {	
-		List<ModelCheckerV1<PaymoipInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<PaymoipInfo> checker;
+	@Override protected ModelChecker<PaymoipInfo> buildCheckerHook(DeciTreeOption<PaymoipInfo> option) {	
+		List<ModelChecker<PaymoipInfo>> queue = new ArrayList<>();		
+		ModelChecker<PaymoipInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -44,15 +44,15 @@ public final class RootPaymoipPay extends DeciTreeTemplateWriteV2<PaymoipInfo> {
 		checker = new PaymoipCheckPay(checkerOption);
 		queue.add(checker);
 
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<PaymoipInfo>> buildActionsOnPassedHook(DeciTreeOption<PaymoipInfo> option) {
-		List<ActionStdV2<PaymoipInfo>> actions = new ArrayList<>();	
+	@Override protected List<ActionStd<PaymoipInfo>> buildActionsOnPassedHook(DeciTreeOption<PaymoipInfo> option) {
+		List<ActionStd<PaymoipInfo>> actions = new ArrayList<>();	
 		
-		ActionStdV2<PaymoipInfo> enforcePaypar = new StdPaymoipEnforcePaypar(option);
+		ActionStd<PaymoipInfo> enforcePaypar = new StdPaymoipEnforcePaypar(option);
 		ActionLazy<PaymoipInfo> nodeCrecard = new LazyPaymoipNodeCrecardL1(option.conn, option.schemaName);
 		ActionLazy<PaymoipInfo> nodeSyspar = new LazyPaymoipNodeSysparL1(option.conn, option.schemaName);
 		ActionLazy<PaymoipInfo> nodeSetupar = new LazyPaymoipNodeSetuparL1(option.conn, option.schemaName);

@@ -6,14 +6,14 @@ import java.util.List;
 import br.com.mind5.masterData.areaPhoneSearch.info.AreanarchInfo;
 import br.com.mind5.masterData.areaPhoneSearch.model.action.StdAreanarchDaoSelect;
 import br.com.mind5.masterData.areaPhoneSearch.model.checker.AreanarchCheckRead;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootAreanarchSelect extends DeciTreeTemplateReadV2<AreanarchInfo> {
+public final class RootAreanarchSelect extends DeciTreeTemplateRead<AreanarchInfo> {
 	
 	public RootAreanarchSelect(DeciTreeOption<AreanarchInfo> option) {
 		super(option);
@@ -21,9 +21,9 @@ public final class RootAreanarchSelect extends DeciTreeTemplateReadV2<AreanarchI
 	
 	
 	
-	@Override protected ModelCheckerV1<AreanarchInfo> buildCheckerHook(DeciTreeOption<AreanarchInfo> option) {
-		List<ModelCheckerV1<AreanarchInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<AreanarchInfo> checker;
+	@Override protected ModelChecker<AreanarchInfo> buildCheckerHook(DeciTreeOption<AreanarchInfo> option) {
+		List<ModelChecker<AreanarchInfo>> queue = new ArrayList<>();		
+		ModelChecker<AreanarchInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
 		checkerOption = new ModelCheckerOption();
@@ -33,15 +33,15 @@ public final class RootAreanarchSelect extends DeciTreeTemplateReadV2<AreanarchI
 		checker = new AreanarchCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 
 		
 	
-	@Override protected List<ActionStdV2<AreanarchInfo>> buildActionsOnPassedHook(DeciTreeOption<AreanarchInfo> option) {
-		List<ActionStdV2<AreanarchInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<AreanarchInfo>> buildActionsOnPassedHook(DeciTreeOption<AreanarchInfo> option) {
+		List<ActionStd<AreanarchInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<AreanarchInfo> select = new StdAreanarchDaoSelect(option);
+		ActionStd<AreanarchInfo> select = new StdAreanarchDaoSelect(option);
 		
 		actions.add(select);
 		return actions;

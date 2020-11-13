@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.file.fileImageList.info.FimistInfo;
 import br.com.mind5.file.fileImageList.model.decisionTree.RootFimistSelect;
 import br.com.mind5.model.action.ActionLazyTemplate;
-import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -24,7 +24,7 @@ public final class LazyFimistRootSelect extends ActionLazyTemplate<FimistInfo, F
 	
 	
 	
-	@Override protected ActionStdV2<FimistInfo> getInstanceOfActionHook(DeciTreeOption<FimistInfo> option) {
+	@Override protected ActionStd<FimistInfo> getInstanceOfActionHook(DeciTreeOption<FimistInfo> option) {
 		return new RootFimistSelect(option).toAction();
 	}
 	

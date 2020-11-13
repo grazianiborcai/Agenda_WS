@@ -4,10 +4,10 @@ import br.com.mind5.business.material.info.MatInfo;
 import br.com.mind5.business.material.model.checker.MatCheckExist;
 import br.com.mind5.business.materialTextDefault.info.MatextaultInfo;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.model.checker.ModelChecker;
 
-public final class MatextaultCheckMat extends ModelCheckerTemplateForwardV2<MatextaultInfo, MatInfo> {
+public final class MatextaultCheckMat extends ModelCheckerTemplateForward<MatextaultInfo, MatInfo> {
 	
 	public MatextaultCheckMat(ModelCheckerOption option) {
 		super(option);
@@ -15,7 +15,7 @@ public final class MatextaultCheckMat extends ModelCheckerTemplateForwardV2<Mate
 
 
 	
-	@Override protected ModelCheckerV1<MatInfo> getCheckerHook(ModelCheckerOption option) {
+	@Override protected ModelChecker<MatInfo> getCheckerHook(ModelCheckerOption option) {
 		return new MatCheckExist(option);
 	}
 	

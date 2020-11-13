@@ -1,15 +1,15 @@
 package br.com.mind5.business.storeFavorite.model.checker;
 
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.business.storeFavorite.info.StoriteInfo;
 import br.com.mind5.security.username.info.UsernameInfo;
 import br.com.mind5.security.username.model.decisionTree.RootUsernameSelect;
 
-public final class StoriteCheckUsername extends ModelCheckerTemplateActionV2<StoriteInfo, UsernameInfo> {
+public final class StoriteCheckUsername extends ModelCheckerTemplateAction<StoriteInfo, UsernameInfo> {
 	
 	public StoriteCheckUsername(ModelCheckerOption option) {
 		super(option, UsernameInfo.class);
@@ -17,8 +17,8 @@ public final class StoriteCheckUsername extends ModelCheckerTemplateActionV2<Sto
 	
 	
 	
-	@Override protected ActionStdV2<UsernameInfo> buildActionHook(DeciTreeOption<UsernameInfo> option) {
-		ActionStdV2<UsernameInfo> select = new RootUsernameSelect(option).toAction();
+	@Override protected ActionStd<UsernameInfo> buildActionHook(DeciTreeOption<UsernameInfo> option) {
+		ActionStd<UsernameInfo> select = new RootUsernameSelect(option).toAction();
 		return select;
 	}
 	

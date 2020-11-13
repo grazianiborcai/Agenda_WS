@@ -4,10 +4,10 @@ import br.com.mind5.business.cartItem.info.CartemInfo;
 import br.com.mind5.business.orderReserve.info.OrderveInfo;
 import br.com.mind5.business.orderReserve.model.checker.OrderveCheckExist;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.model.checker.ModelChecker;
 
-public final class CartemCheckOrderve extends ModelCheckerTemplateForwardV2<CartemInfo, OrderveInfo> {
+public final class CartemCheckOrderve extends ModelCheckerTemplateForward<CartemInfo, OrderveInfo> {
 	
 	public CartemCheckOrderve(ModelCheckerOption option) {
 		super(option);
@@ -15,7 +15,7 @@ public final class CartemCheckOrderve extends ModelCheckerTemplateForwardV2<Cart
 
 
 	
-	@Override protected ModelCheckerV1<OrderveInfo> getCheckerHook(ModelCheckerOption option) {
+	@Override protected ModelChecker<OrderveInfo> getCheckerHook(ModelCheckerOption option) {
 		return new OrderveCheckExist(option);
 	}
 	

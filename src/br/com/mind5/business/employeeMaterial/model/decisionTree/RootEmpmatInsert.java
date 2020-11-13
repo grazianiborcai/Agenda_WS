@@ -18,14 +18,14 @@ import br.com.mind5.business.employeeMaterial.model.checker.EmpmatCheckMatarchSe
 import br.com.mind5.business.employeeMaterial.model.checker.EmpmatCheckOwner;
 import br.com.mind5.business.employeeMaterial.model.checker.EmpmatCheckWrite;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootEmpmatInsert extends DeciTreeTemplateWriteV2<EmpmatInfo> {
+public final class RootEmpmatInsert extends DeciTreeTemplateWrite<EmpmatInfo> {
 	
 	public RootEmpmatInsert(DeciTreeOption<EmpmatInfo> option) {
 		super(option);
@@ -33,9 +33,9 @@ public final class RootEmpmatInsert extends DeciTreeTemplateWriteV2<EmpmatInfo> 
 	
 	
 	
-	@Override protected ModelCheckerV1<EmpmatInfo> buildCheckerHook(DeciTreeOption<EmpmatInfo> option) {		
-		List<ModelCheckerV1<EmpmatInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<EmpmatInfo> checker;
+	@Override protected ModelChecker<EmpmatInfo> buildCheckerHook(DeciTreeOption<EmpmatInfo> option) {		
+		List<ModelChecker<EmpmatInfo>> queue = new ArrayList<>();		
+		ModelChecker<EmpmatInfo> checker;
 		ModelCheckerOption checkerOption;		
 		
 		checkerOption = new ModelCheckerOption();
@@ -87,15 +87,15 @@ public final class RootEmpmatInsert extends DeciTreeTemplateWriteV2<EmpmatInfo> 
 		checker = new EmpmatCheckExist(checkerOption);
 		queue.add(checker);	
 
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<EmpmatInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpmatInfo> option) {
-		List<ActionStdV2<EmpmatInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<EmpmatInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpmatInfo> option) {
+		List<ActionStd<EmpmatInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<EmpmatInfo> enforceLChanged = new StdEmpmatEnforceLChanged(option);
+		ActionStd<EmpmatInfo> enforceLChanged = new StdEmpmatEnforceLChanged(option);
 		ActionLazy<EmpmatInfo> enforceLChangedBy = new LazyEmpmatMergeUsername(option.conn, option.schemaName);		
 		ActionLazy<EmpmatInfo> enforceCreatedBy = new LazyEmpmatEnforceCreatedBy(option.conn, option.schemaName);
 		ActionLazy<EmpmatInfo> enforceCreatedOn = new LazyEmpmatEnforceCreatedOn(option.conn, option.schemaName);		

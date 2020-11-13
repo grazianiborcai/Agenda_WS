@@ -13,14 +13,14 @@ import br.com.mind5.business.customer.model.checker.CusCheckInsert;
 import br.com.mind5.business.customer.model.checker.CusCheckLangu;
 import br.com.mind5.business.customer.model.checker.CusCheckOwner;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootCusInsertSilent extends DeciTreeTemplateWriteV2<CusInfo> {
+public final class RootCusInsertSilent extends DeciTreeTemplateWrite<CusInfo> {
 
 	public RootCusInsertSilent(DeciTreeOption<CusInfo> option) {
 		super(option);
@@ -28,9 +28,9 @@ public final class RootCusInsertSilent extends DeciTreeTemplateWriteV2<CusInfo> 
 	
 	
 	
-	@Override protected ModelCheckerV1<CusInfo> buildCheckerHook(DeciTreeOption<CusInfo> option) {		
-		List<ModelCheckerV1<CusInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<CusInfo> checker;		
+	@Override protected ModelChecker<CusInfo> buildCheckerHook(DeciTreeOption<CusInfo> option) {		
+		List<ModelChecker<CusInfo>> queue = new ArrayList<>();		
+		ModelChecker<CusInfo> checker;		
 		ModelCheckerOption checkerOption;		
 		
 		checkerOption = new ModelCheckerOption();
@@ -54,15 +54,15 @@ public final class RootCusInsertSilent extends DeciTreeTemplateWriteV2<CusInfo> 
 		checker = new CusCheckOwner(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<CusInfo>> buildActionsOnPassedHook(DeciTreeOption<CusInfo> option) {
-		List<ActionStdV2<CusInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<CusInfo>> buildActionsOnPassedHook(DeciTreeOption<CusInfo> option) {
+		List<ActionStd<CusInfo>> actions = new ArrayList<>();
 
-		ActionStdV2<CusInfo> insertCustomer = new NodeCusInsert(option).toAction();		
+		ActionStd<CusInfo> insertCustomer = new NodeCusInsert(option).toAction();		
 		ActionLazy<CusInfo> insertPerson = new LazyCusNodeInsertPerson(option.conn, option.schemaName);
 		ActionLazy<CusInfo> snapshot = new LazyCusNodeSnapshot(option.conn, option.schemaName);
 		ActionLazy<CusInfo> insertAddress = new LazyCusNodeInsertAddress(option.conn, option.schemaName);

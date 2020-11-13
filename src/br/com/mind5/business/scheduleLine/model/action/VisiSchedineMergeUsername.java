@@ -4,13 +4,13 @@ import java.util.List;
 
 import br.com.mind5.business.scheduleLine.info.SchedineInfo;
 import br.com.mind5.business.scheduleLine.info.SchedineMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.username.info.UsernameInfo;
 import br.com.mind5.security.username.model.decisionTree.RootUsernameSelect;
 
-final class VisiSchedineMergeUsername extends ActionVisitorTemplateMergeV2<SchedineInfo, UsernameInfo> {
+final class VisiSchedineMergeUsername extends ActionVisitorTemplateMerge<SchedineInfo, UsernameInfo> {
 	
 	public VisiSchedineMergeUsername(DeciTreeOption<SchedineInfo> option) {
 		super(option, UsernameInfo.class); 

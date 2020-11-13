@@ -1,11 +1,11 @@
 package br.com.mind5.config.sysOwnerConfig.model.action;
 
 import br.com.mind5.config.sysOwnerConfig.info.SysonfigInfo;
-import br.com.mind5.model.action.ActionStdTemplateV2;
-import br.com.mind5.model.action.ActionVisitorV2;
+import br.com.mind5.model.action.ActionStdTemplate;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdSysonfigMergeSysotup extends ActionStdTemplateV2<SysonfigInfo> {
+public final class StdSysonfigMergeSysotup extends ActionStdTemplate<SysonfigInfo> {
 
 	public StdSysonfigMergeSysotup(DeciTreeOption<SysonfigInfo> option) {
 		super(option);
@@ -13,7 +13,7 @@ public final class StdSysonfigMergeSysotup extends ActionStdTemplateV2<SysonfigI
 	
 	
 	
-	protected ActionVisitorV2<SysonfigInfo> buildVisitorHook(DeciTreeOption<SysonfigInfo> option) {
+	protected ActionVisitor<SysonfigInfo> buildVisitorHook(DeciTreeOption<SysonfigInfo> option) {
 		return new VisiSysonfigMergeSysotup(option);
 	}
 }

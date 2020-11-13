@@ -6,9 +6,9 @@ import br.com.mind5.business.orderStatusChange.info.OrdugeInfo;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.masterData.orderStatus.info.Orderatus;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 
-public final class OrdugeCheckRefunding extends ModelCheckerTemplateSimpleV2<OrdugeInfo> {
+public final class OrdugeCheckRefunding extends ModelCheckerTemplateSimple<OrdugeInfo> {
 
 	public OrdugeCheckRefunding(ModelCheckerOption option) {
 		super(option);

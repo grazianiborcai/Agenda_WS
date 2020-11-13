@@ -13,14 +13,14 @@ import br.com.mind5.business.owner.model.action.LazyOwnerUserInsertDaemon;
 import br.com.mind5.business.owner.model.action.LazyOwnerSysonfigInsert;
 import br.com.mind5.business.owner.model.action.StdOwnerEnforceLChanged;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodeOwnerInsert extends DeciTreeTemplateWriteV2<OwnerInfo> {
+public final class NodeOwnerInsert extends DeciTreeTemplateWrite<OwnerInfo> {
 	
 	public NodeOwnerInsert(DeciTreeOption<OwnerInfo> option) {
 		super(option);
@@ -28,22 +28,22 @@ public final class NodeOwnerInsert extends DeciTreeTemplateWriteV2<OwnerInfo> {
 	
 	
 	
-	@Override protected ModelCheckerV1<OwnerInfo> buildCheckerHook(DeciTreeOption<OwnerInfo> option) {
-		List<ModelCheckerV1<OwnerInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<OwnerInfo> checker;
+	@Override protected ModelChecker<OwnerInfo> buildCheckerHook(DeciTreeOption<OwnerInfo> option) {
+		List<ModelChecker<OwnerInfo>> queue = new ArrayList<>();		
+		ModelChecker<OwnerInfo> checker;
 
 		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<OwnerInfo>> buildActionsOnPassedHook(DeciTreeOption<OwnerInfo> option) {
-		List<ActionStdV2<OwnerInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<OwnerInfo>> buildActionsOnPassedHook(DeciTreeOption<OwnerInfo> option) {
+		List<ActionStd<OwnerInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<OwnerInfo> enforceLChanged = new StdOwnerEnforceLChanged(option);
+		ActionStd<OwnerInfo> enforceLChanged = new StdOwnerEnforceLChanged(option);
 		ActionLazy<OwnerInfo> enforceCreatedOn = new LazyOwnerEnforceCreatedOn(option.conn, option.schemaName);
 		ActionLazy<OwnerInfo> insertOwner = new LazyOwnerDaoInsert(option.conn, option.schemaName);
 		ActionLazy<OwnerInfo> insertDaemon = new LazyOwnerUserInsertDaemon(option.conn, option.schemaName);	

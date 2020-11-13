@@ -12,14 +12,14 @@ import br.com.mind5.business.orderItem.model.checker.OrderemCheckLangu;
 import br.com.mind5.business.orderItem.model.checker.OrderemCheckOwner;
 import br.com.mind5.business.orderItem.model.checker.OrderemCheckWrite;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootOrderemCancel extends DeciTreeTemplateReadV2<OrderemInfo> {
+public final class RootOrderemCancel extends DeciTreeTemplateRead<OrderemInfo> {
 	
 	public RootOrderemCancel(DeciTreeOption<OrderemInfo> option) {
 		super(option);
@@ -27,9 +27,9 @@ public final class RootOrderemCancel extends DeciTreeTemplateReadV2<OrderemInfo>
 	
 	
 	
-	@Override protected ModelCheckerV1<OrderemInfo> buildCheckerHook(DeciTreeOption<OrderemInfo> option) {
-		List<ModelCheckerV1<OrderemInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<OrderemInfo> checker;	
+	@Override protected ModelChecker<OrderemInfo> buildCheckerHook(DeciTreeOption<OrderemInfo> option) {
+		List<ModelChecker<OrderemInfo>> queue = new ArrayList<>();		
+		ModelChecker<OrderemInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -60,15 +60,15 @@ public final class RootOrderemCancel extends DeciTreeTemplateReadV2<OrderemInfo>
 		checker = new OrderemCheckExist(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<OrderemInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderemInfo> option) {
-		List<ActionStdV2<OrderemInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<OrderemInfo>> buildActionsOnPassedHook(DeciTreeOption<OrderemInfo> option) {
+		List<ActionStd<OrderemInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<OrderemInfo> mergeToSelect = new StdOrderemMergeToSelect(option);
+		ActionStd<OrderemInfo> mergeToSelect = new StdOrderemMergeToSelect(option);
 		ActionLazy<OrderemInfo> cancel = new LazyOrderemNodeCancel(option.conn, option.schemaName);
 		ActionLazy<OrderemInfo> select = new LazyOrderemRootSelect(option.conn, option.schemaName);		
 		

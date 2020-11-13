@@ -12,14 +12,14 @@ import br.com.mind5.business.employee.model.action.LazyEmpMergeUsername;
 import br.com.mind5.business.employee.model.action.LazyEmpNodeInsertL2;
 import br.com.mind5.business.employee.model.action.StdEmpEnforceLChanged;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodeEmpInsertL1 extends DeciTreeTemplateWriteV2<EmpInfo> {	
+public final class NodeEmpInsertL1 extends DeciTreeTemplateWrite<EmpInfo> {	
 	
 	public NodeEmpInsertL1(DeciTreeOption<EmpInfo> option) {
 		super(option);
@@ -27,22 +27,22 @@ public final class NodeEmpInsertL1 extends DeciTreeTemplateWriteV2<EmpInfo> {
 	
 	
 	
-	@Override protected ModelCheckerV1<EmpInfo> buildCheckerHook(DeciTreeOption<EmpInfo> option) {		
-		List<ModelCheckerV1<EmpInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<EmpInfo> checker;	
+	@Override protected ModelChecker<EmpInfo> buildCheckerHook(DeciTreeOption<EmpInfo> option) {		
+		List<ModelChecker<EmpInfo>> queue = new ArrayList<>();		
+		ModelChecker<EmpInfo> checker;	
 		
 		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<EmpInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpInfo> option) {
-		List<ActionStdV2<EmpInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStd<EmpInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpInfo> option) {
+		List<ActionStd<EmpInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV2<EmpInfo> enforceLChanged = new StdEmpEnforceLChanged(option);
+		ActionStd<EmpInfo> enforceLChanged = new StdEmpEnforceLChanged(option);
 		ActionLazy<EmpInfo> enforceLChangedBy = new LazyEmpMergeUsername(option.conn, option.schemaName);
 		ActionLazy<EmpInfo> enforceCreatedBy = new LazyEmpEnforceCreatedBy(option.conn, option.schemaName);
 		ActionLazy<EmpInfo> enforceCreatedOn = new LazyEmpEnforceCreatedOn(option.conn, option.schemaName);

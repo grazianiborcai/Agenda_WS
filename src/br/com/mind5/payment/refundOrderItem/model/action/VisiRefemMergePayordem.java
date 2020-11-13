@@ -2,7 +2,7 @@ package br.com.mind5.payment.refundOrderItem.model.action;
 
 import java.util.List;
 
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.payOrderItem.info.PayordemInfo;
@@ -10,7 +10,7 @@ import br.com.mind5.payment.payOrderItem.model.decisionTree.RootPayordemSelect;
 import br.com.mind5.payment.refundOrderItem.info.RefemInfo;
 import br.com.mind5.payment.refundOrderItem.info.RefemMerger;
 
-final class VisiRefemMergePayordem extends ActionVisitorTemplateMergeV2<RefemInfo, PayordemInfo> {
+final class VisiRefemMergePayordem extends ActionVisitorTemplateMerge<RefemInfo, PayordemInfo> {
 	
 	public VisiRefemMergePayordem(DeciTreeOption<RefemInfo> option) {
 		super(option, PayordemInfo.class); 

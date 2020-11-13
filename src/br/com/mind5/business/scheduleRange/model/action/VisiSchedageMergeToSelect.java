@@ -4,11 +4,11 @@ import java.util.List;
 
 import br.com.mind5.business.scheduleRange.info.SchedageInfo;
 import br.com.mind5.business.scheduleRange.info.SchedageMerger;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiSchedageMergeToSelect extends ActionVisitorTemplateMergeV2<SchedageInfo, SchedageInfo> {
+final class VisiSchedageMergeToSelect extends ActionVisitorTemplateMerge<SchedageInfo, SchedageInfo> {
 	
 	public VisiSchedageMergeToSelect(DeciTreeOption<SchedageInfo> option) {
 		super(option, SchedageInfo.class);
@@ -16,7 +16,7 @@ final class VisiSchedageMergeToSelect extends ActionVisitorTemplateMergeV2<Sched
 	
 	
 	
-	@Override protected Class<? extends ActionStdV2<SchedageInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStd<SchedageInfo>> getActionClassHook() {
 		return StdSchedageDaoSelect.class;
 	}
 	

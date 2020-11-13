@@ -6,14 +6,14 @@ import java.util.List;
 import br.com.mind5.masterData.cartItemCategorySearch.info.CaritegarchInfo;
 import br.com.mind5.masterData.cartItemCategorySearch.model.action.StdCaritegarchDaoSelect;
 import br.com.mind5.masterData.cartItemCategorySearch.model.checker.CaritegarchCheckRead;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootCaritegarchSelect extends DeciTreeTemplateReadV2<CaritegarchInfo> {
+public final class RootCaritegarchSelect extends DeciTreeTemplateRead<CaritegarchInfo> {
 	
 	public RootCaritegarchSelect(DeciTreeOption<CaritegarchInfo> option) {
 		super(option);
@@ -21,9 +21,9 @@ public final class RootCaritegarchSelect extends DeciTreeTemplateReadV2<Caritega
 	
 	
 	
-	@Override protected ModelCheckerV1<CaritegarchInfo> buildCheckerHook(DeciTreeOption<CaritegarchInfo> option) {
-		List<ModelCheckerV1<CaritegarchInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<CaritegarchInfo> checker;
+	@Override protected ModelChecker<CaritegarchInfo> buildCheckerHook(DeciTreeOption<CaritegarchInfo> option) {
+		List<ModelChecker<CaritegarchInfo>> queue = new ArrayList<>();		
+		ModelChecker<CaritegarchInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
 		checkerOption = new ModelCheckerOption();
@@ -33,15 +33,15 @@ public final class RootCaritegarchSelect extends DeciTreeTemplateReadV2<Caritega
 		checker = new CaritegarchCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 
 		
 	
-	@Override protected List<ActionStdV2<CaritegarchInfo>> buildActionsOnPassedHook(DeciTreeOption<CaritegarchInfo> option) {
-		List<ActionStdV2<CaritegarchInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<CaritegarchInfo>> buildActionsOnPassedHook(DeciTreeOption<CaritegarchInfo> option) {
+		List<ActionStd<CaritegarchInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<CaritegarchInfo> select = new StdCaritegarchDaoSelect(option);
+		ActionStd<CaritegarchInfo> select = new StdCaritegarchDaoSelect(option);
 		
 		actions.add(select);
 		return actions;

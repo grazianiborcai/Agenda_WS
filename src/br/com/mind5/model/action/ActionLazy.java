@@ -12,7 +12,7 @@ public interface ActionLazy<T extends InfoRecord> {
 	
 	public DeciResult<T> getDecisionResult(); 	
 	
-	public ActionStdV2<T> toAction(List<T> recordInfos);
+	public ActionStd<T> toAction(List<T> recordInfos);
 	
 	public void addPostAction(ActionLazy<T> actionHandler);
 	

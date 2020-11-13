@@ -7,11 +7,11 @@ import br.com.mind5.business.employeeSnapshot.info.EmpnapMerger;
 import br.com.mind5.business.personList.info.PersolisCopier;
 import br.com.mind5.business.personList.info.PersolisInfo;
 import br.com.mind5.business.personList.model.decisionTree.RootPersolisSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiEmpnapMergePersolis extends ActionVisitorTemplateMergeV2<EmpnapInfo, PersolisInfo> {
+final class VisiEmpnapMergePersolis extends ActionVisitorTemplateMerge<EmpnapInfo, PersolisInfo> {
 	
 	public VisiEmpnapMergePersolis(DeciTreeOption<EmpnapInfo> option) {
 		super(option, PersolisInfo.class);

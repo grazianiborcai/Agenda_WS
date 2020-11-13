@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.payment.refundOrderItem.info.RefemInfo;
 import br.com.mind5.payment.refundOrderItem.model.action.LazyRefemMergeUsername;
 import br.com.mind5.payment.refundOrderItem.model.action.LazyRefemNodeAuthL1;
@@ -22,7 +22,7 @@ import br.com.mind5.payment.refundOrderItem.model.checker.RefemCheckOwner;
 import br.com.mind5.payment.refundOrderItem.model.checker.RefemCheckRefundAuth;
 import br.com.mind5.payment.refundOrderItem.model.checker.RefemCheckUsername;
 
-public final class RootRefemRefundAuth extends DeciTreeTemplateWriteV2<RefemInfo> {
+public final class RootRefemRefundAuth extends DeciTreeTemplateWrite<RefemInfo> {
 	
 	public RootRefemRefundAuth(DeciTreeOption<RefemInfo> option) {
 		super(option);
@@ -30,9 +30,9 @@ public final class RootRefemRefundAuth extends DeciTreeTemplateWriteV2<RefemInfo
 	
 	
 	
-	@Override protected ModelCheckerV1<RefemInfo> buildCheckerHook(DeciTreeOption<RefemInfo> option) {
-		List<ModelCheckerV1<RefemInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<RefemInfo> checker;	
+	@Override protected ModelChecker<RefemInfo> buildCheckerHook(DeciTreeOption<RefemInfo> option) {
+		List<ModelChecker<RefemInfo>> queue = new ArrayList<>();		
+		ModelChecker<RefemInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -77,15 +77,15 @@ public final class RootRefemRefundAuth extends DeciTreeTemplateWriteV2<RefemInfo
 		checker = new RefemCheckOrderem(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<RefemInfo>> buildActionsOnPassedHook(DeciTreeOption<RefemInfo> option) {
-		List<ActionStdV2<RefemInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStd<RefemInfo>> buildActionsOnPassedHook(DeciTreeOption<RefemInfo> option) {
+		List<ActionStd<RefemInfo>> actions = new ArrayList<>();		
 
-		ActionStdV2<RefemInfo> mergePayormarch = new StdRefemMergePayormarch(option);	
+		ActionStd<RefemInfo> mergePayormarch = new StdRefemMergePayormarch(option);	
 		ActionLazy<RefemInfo> mergeUsername = new LazyRefemMergeUsername(option.conn, option.schemaName);
 		ActionLazy<RefemInfo> nodeAuth = new LazyRefemNodeAuthL1(option.conn, option.schemaName);
 		ActionLazy<RefemInfo> refund = new LazyRefemRootRefund(option.conn, option.schemaName);

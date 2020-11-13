@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.payment.refundOrder.info.RefuInfo;
 import br.com.mind5.payment.refundOrder.model.action.LazyRefuNodeRefund;
 import br.com.mind5.payment.refundOrder.model.checker.RefuCheckLangu;
@@ -18,7 +18,7 @@ import br.com.mind5.payment.refundOrder.model.checker.RefuCheckOwner;
 import br.com.mind5.payment.refundOrder.model.checker.RefuCheckRefund;
 import br.com.mind5.payment.refundOrder.model.checker.RefuCheckUsername;
 
-public final class RootRefuRefund extends DeciTreeTemplateWriteV2<RefuInfo> {
+public final class RootRefuRefund extends DeciTreeTemplateWrite<RefuInfo> {
 	
 	public RootRefuRefund(DeciTreeOption<RefuInfo> option) {
 		super(option);
@@ -26,9 +26,9 @@ public final class RootRefuRefund extends DeciTreeTemplateWriteV2<RefuInfo> {
 	
 	
 	
-	@Override protected ModelCheckerV1<RefuInfo> buildCheckerHook(DeciTreeOption<RefuInfo> option) {
-		List<ModelCheckerV1<RefuInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<RefuInfo> checker;	
+	@Override protected ModelChecker<RefuInfo> buildCheckerHook(DeciTreeOption<RefuInfo> option) {
+		List<ModelChecker<RefuInfo>> queue = new ArrayList<>();		
+		ModelChecker<RefuInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -66,15 +66,15 @@ public final class RootRefuRefund extends DeciTreeTemplateWriteV2<RefuInfo> {
 		checker = new RefuCheckOrder(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<RefuInfo>> buildActionsOnPassedHook(DeciTreeOption<RefuInfo> option) {
-		List<ActionStdV2<RefuInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStd<RefuInfo>> buildActionsOnPassedHook(DeciTreeOption<RefuInfo> option) {
+		List<ActionStd<RefuInfo>> actions = new ArrayList<>();		
 
-		ActionStdV2<RefuInfo> nodeOrder = new NodeRefuOrder(option).toAction();
+		ActionStd<RefuInfo> nodeOrder = new NodeRefuOrder(option).toAction();
 		ActionLazy<RefuInfo> nodeRefund = new LazyRefuNodeRefund(option.conn, option.schemaName);
 		
 		nodeOrder.addPostAction(nodeRefund);

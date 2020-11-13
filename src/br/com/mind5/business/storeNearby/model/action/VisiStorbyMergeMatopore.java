@@ -6,11 +6,11 @@ import br.com.mind5.business.materialGroupStore.info.MatoporeInfo;
 import br.com.mind5.business.materialGroupStore.model.decisionTree.RootMatoporeSelect;
 import br.com.mind5.business.storeNearby.info.StorbyInfo;
 import br.com.mind5.business.storeNearby.info.StorbyMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiStorbyMergeMatopore extends ActionVisitorTemplateMergeV2<StorbyInfo, MatoporeInfo> {
+final class VisiStorbyMergeMatopore extends ActionVisitorTemplateMerge<StorbyInfo, MatoporeInfo> {
 	
 	public VisiStorbyMergeMatopore(DeciTreeOption<StorbyInfo> option) {
 		super(option, MatoporeInfo.class);

@@ -7,11 +7,11 @@ import br.com.mind5.business.scheduleYear.info.SchedyearMerger;
 import br.com.mind5.business.scheduleYearData.info.SchedyeratCopier;
 import br.com.mind5.business.scheduleYearData.info.SchedyeratInfo;
 import br.com.mind5.business.scheduleYearData.model.decisionTree.RootSchedyeratSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiSchedyearMergeSchedyerat extends ActionVisitorTemplateMergeV2<SchedyearInfo, SchedyeratInfo> {
+final class VisiSchedyearMergeSchedyerat extends ActionVisitorTemplateMerge<SchedyearInfo, SchedyeratInfo> {
 	
 	public VisiSchedyearMergeSchedyerat(DeciTreeOption<SchedyearInfo> option) {
 		super(option, SchedyeratInfo.class);

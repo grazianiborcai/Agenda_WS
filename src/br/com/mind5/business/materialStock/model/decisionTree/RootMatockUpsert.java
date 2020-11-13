@@ -6,14 +6,14 @@ import java.util.List;
 import br.com.mind5.business.materialStock.info.MatockInfo;
 import br.com.mind5.business.materialStock.model.checker.MatockCheckExist;
 import br.com.mind5.business.materialStock.model.checker.MatockCheckWrite;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootMatockUpsert extends DeciTreeTemplateWriteV2<MatockInfo> {
+public final class RootMatockUpsert extends DeciTreeTemplateWrite<MatockInfo> {
 	
 	public RootMatockUpsert(DeciTreeOption<MatockInfo> option) {
 		super(option);
@@ -21,9 +21,9 @@ public final class RootMatockUpsert extends DeciTreeTemplateWriteV2<MatockInfo> 
 	
 	
 	
-	@Override protected ModelCheckerV1<MatockInfo> buildCheckerHook(DeciTreeOption<MatockInfo> option) {
-		List<ModelCheckerV1<MatockInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<MatockInfo> checker;
+	@Override protected ModelChecker<MatockInfo> buildCheckerHook(DeciTreeOption<MatockInfo> option) {
+		List<ModelChecker<MatockInfo>> queue = new ArrayList<>();		
+		ModelChecker<MatockInfo> checker;
 		ModelCheckerOption checkerOption;		
 		
 		checkerOption = new ModelCheckerOption();
@@ -40,14 +40,14 @@ public final class RootMatockUpsert extends DeciTreeTemplateWriteV2<MatockInfo> 
 		checker = new MatockCheckExist(checkerOption);
 		queue.add(checker);	
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<MatockInfo>> buildActionsOnPassedHook(DeciTreeOption<MatockInfo> option) {
-		List<ActionStdV2<MatockInfo>> actions = new ArrayList<>();	
-		ActionStdV2<MatockInfo> update = new RootMatockUpdate(option).toAction();	
+	@Override protected List<ActionStd<MatockInfo>> buildActionsOnPassedHook(DeciTreeOption<MatockInfo> option) {
+		List<ActionStd<MatockInfo>> actions = new ArrayList<>();	
+		ActionStd<MatockInfo> update = new RootMatockUpdate(option).toAction();	
 
 		actions.add(update);
 		return actions;
@@ -55,9 +55,9 @@ public final class RootMatockUpsert extends DeciTreeTemplateWriteV2<MatockInfo> 
 	
 	
 	
-	@Override protected List<ActionStdV2<MatockInfo>> buildActionsOnFailedHook(DeciTreeOption<MatockInfo> option) {
-		List<ActionStdV2<MatockInfo>> actions = new ArrayList<>();	
-		ActionStdV2<MatockInfo> insert = new RootMatockInsert(option).toAction();	
+	@Override protected List<ActionStd<MatockInfo>> buildActionsOnFailedHook(DeciTreeOption<MatockInfo> option) {
+		List<ActionStd<MatockInfo>> actions = new ArrayList<>();	
+		ActionStd<MatockInfo> insert = new RootMatockInsert(option).toAction();	
 
 		actions.add(insert);
 		return actions;

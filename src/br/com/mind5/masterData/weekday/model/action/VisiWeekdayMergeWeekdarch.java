@@ -6,12 +6,12 @@ import br.com.mind5.masterData.weekday.info.WeekdayInfo;
 import br.com.mind5.masterData.weekday.info.WeekdayMerger;
 import br.com.mind5.masterData.weekdaySearch.info.WeekdarchInfo;
 import br.com.mind5.masterData.weekdaySearch.model.decisionTree.RootWeekdarchSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiWeekdayMergeWeekdarch extends ActionVisitorTemplateMergeV2<WeekdayInfo, WeekdarchInfo> {
+final class VisiWeekdayMergeWeekdarch extends ActionVisitorTemplateMerge<WeekdayInfo, WeekdarchInfo> {
 	
 	public VisiWeekdayMergeWeekdarch(DeciTreeOption<WeekdayInfo> option) {
 		super(option, WeekdarchInfo.class);
@@ -32,6 +32,6 @@ final class VisiWeekdayMergeWeekdarch extends ActionVisitorTemplateMergeV2<Weekd
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
+		return super.DONT_MERGE_WHEN_EMPTY;
 	}
 }

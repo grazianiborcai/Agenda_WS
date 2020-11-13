@@ -6,12 +6,12 @@ import br.com.mind5.business.phoneSnapshot.info.PhonapInfo;
 import br.com.mind5.business.phoneSnapshot.info.PhonapMerger;
 import br.com.mind5.masterData.countryPhone.info.CountroneInfo;
 import br.com.mind5.masterData.countryPhone.model.decisionTree.RootCountroneSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiPhonapMergeCountrone extends ActionVisitorTemplateMergeV2<PhonapInfo, CountroneInfo> {
+final class VisiPhonapMergeCountrone extends ActionVisitorTemplateMerge<PhonapInfo, CountroneInfo> {
 	
 	public VisiPhonapMergeCountrone(DeciTreeOption<PhonapInfo> option) {
 		super(option, CountroneInfo.class);
@@ -32,6 +32,6 @@ final class VisiPhonapMergeCountrone extends ActionVisitorTemplateMergeV2<Phonap
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
+		return super.MERGE_WHEN_EMPTY;
 	}
 }

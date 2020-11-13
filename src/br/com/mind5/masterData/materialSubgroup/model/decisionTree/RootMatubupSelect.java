@@ -8,14 +8,14 @@ import br.com.mind5.masterData.materialSubgroup.model.action.LazyMatubupMergeMat
 import br.com.mind5.masterData.materialSubgroup.model.action.StdMatubupDaoSelect;
 import br.com.mind5.masterData.materialSubgroup.model.checker.MatubupCheckRead;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootMatubupSelect extends DeciTreeTemplateReadV1<MatubupInfo> {
+public final class RootMatubupSelect extends DeciTreeTemplateRead<MatubupInfo> {
 	
 	public RootMatubupSelect(DeciTreeOption<MatubupInfo> option) {
 		super(option);
@@ -23,9 +23,9 @@ public final class RootMatubupSelect extends DeciTreeTemplateReadV1<MatubupInfo>
 	
 	
 	
-	@Override protected ModelCheckerV1<MatubupInfo> buildCheckerHook(DeciTreeOption<MatubupInfo> option) {
-		List<ModelCheckerV1<MatubupInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<MatubupInfo> checker;
+	@Override protected ModelChecker<MatubupInfo> buildCheckerHook(DeciTreeOption<MatubupInfo> option) {
+		List<ModelChecker<MatubupInfo>> queue = new ArrayList<>();		
+		ModelChecker<MatubupInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
 		checkerOption = new ModelCheckerOption();
@@ -35,15 +35,15 @@ public final class RootMatubupSelect extends DeciTreeTemplateReadV1<MatubupInfo>
 		checker = new MatubupCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<MatubupInfo>> buildActionsOnPassedHook(DeciTreeOption<MatubupInfo> option) {
-		List<ActionStdV2<MatubupInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<MatubupInfo>> buildActionsOnPassedHook(DeciTreeOption<MatubupInfo> option) {
+		List<ActionStd<MatubupInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<MatubupInfo> select = new StdMatubupDaoSelect(option);
+		ActionStd<MatubupInfo> select = new StdMatubupDaoSelect(option);
 		ActionLazy<MatubupInfo> mergeMatoup = new LazyMatubupMergeMatoup(option.conn, option.schemaName);
 		
 		select.addPostAction(mergeMatoup);

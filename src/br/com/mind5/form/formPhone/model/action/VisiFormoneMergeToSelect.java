@@ -4,12 +4,12 @@ import java.util.List;
 
 import br.com.mind5.form.formPhone.info.FormoneInfo;
 import br.com.mind5.form.formPhone.info.FormoneMerger;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionStd;
+
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiFormoneMergeToSelect extends ActionVisitorTemplateMergeV2<FormoneInfo, FormoneInfo> {
+final class VisiFormoneMergeToSelect extends ActionVisitorTemplateMerge<FormoneInfo, FormoneInfo> {
 	
 	public VisiFormoneMergeToSelect(DeciTreeOption<FormoneInfo> option) {
 		super(option, FormoneInfo.class);
@@ -17,7 +17,7 @@ final class VisiFormoneMergeToSelect extends ActionVisitorTemplateMergeV2<Formon
 	
 	
 	
-	@Override protected Class<? extends ActionStdV2<FormoneInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStd<FormoneInfo>> getActionClassHook() {
 		return StdFormoneDaoSelect.class;
 	}
 	
@@ -30,6 +30,6 @@ final class VisiFormoneMergeToSelect extends ActionVisitorTemplateMergeV2<Formon
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
+		return super.DONT_MERGE_WHEN_EMPTY;
 	}
 }

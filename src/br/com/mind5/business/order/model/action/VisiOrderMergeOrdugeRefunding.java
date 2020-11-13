@@ -7,11 +7,11 @@ import br.com.mind5.business.order.info.OrderMerger;
 import br.com.mind5.business.orderStatusChange.info.OrdugeCopier;
 import br.com.mind5.business.orderStatusChange.info.OrdugeInfo;
 import br.com.mind5.business.orderStatusChange.model.decisionTree.RootOrdugeRefunding;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiOrderMergeOrdugeRefunding extends ActionVisitorTemplateMergeV2<OrderInfo, OrdugeInfo> {
+final class VisiOrderMergeOrdugeRefunding extends ActionVisitorTemplateMerge<OrderInfo, OrdugeInfo> {
 	
 	public VisiOrderMergeOrdugeRefunding(DeciTreeOption<OrderInfo> option) { 
 		super(option, OrdugeInfo.class);

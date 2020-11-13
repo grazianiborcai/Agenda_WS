@@ -4,10 +4,10 @@ import br.com.mind5.business.bookService.info.BookiceInfo;
 import br.com.mind5.business.cartReserve.info.CarterveInfo;
 import br.com.mind5.business.cartReserve.model.checker.CarterveCheckExist;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.model.checker.ModelChecker;
 
-public final class BookiceCheckCarterve extends ModelCheckerTemplateForwardV2<BookiceInfo, CarterveInfo> {
+public final class BookiceCheckCarterve extends ModelCheckerTemplateForward<BookiceInfo, CarterveInfo> {
 	
 	public BookiceCheckCarterve(ModelCheckerOption option) {
 		super(option);
@@ -15,7 +15,7 @@ public final class BookiceCheckCarterve extends ModelCheckerTemplateForwardV2<Bo
 
 
 	
-	@Override protected ModelCheckerV1<CarterveInfo> getCheckerHook(ModelCheckerOption option) {
+	@Override protected ModelChecker<CarterveInfo> getCheckerHook(ModelCheckerOption option) {
 		return new CarterveCheckExist(option);
 	}
 	

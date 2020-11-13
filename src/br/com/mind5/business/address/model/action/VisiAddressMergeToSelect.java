@@ -4,11 +4,11 @@ import java.util.List;
 
 import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.address.info.AddressMerger;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiAddressMergeToSelect extends ActionVisitorTemplateMergeV2<AddressInfo, AddressInfo> {
+final class VisiAddressMergeToSelect extends ActionVisitorTemplateMerge<AddressInfo, AddressInfo> {
 	
 	public VisiAddressMergeToSelect(DeciTreeOption<AddressInfo> option) {
 		super(option, AddressInfo.class);
@@ -16,7 +16,7 @@ final class VisiAddressMergeToSelect extends ActionVisitorTemplateMergeV2<Addres
 	
 	
 	
-	@Override protected Class<? extends ActionStdV2<AddressInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStd<AddressInfo>> getActionClassHook() {
 		return StdAddressDaoSelect.class;
 	}
 	

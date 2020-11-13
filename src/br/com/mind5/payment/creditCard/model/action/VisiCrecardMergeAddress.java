@@ -5,13 +5,13 @@ import java.util.List;
 import br.com.mind5.business.address.info.AddressCopier;
 import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.address.model.decisionTree.RootAddressSearch;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
 import br.com.mind5.payment.creditCard.info.CrecardMerger;
 
-final class VisiCrecardMergeAddress extends ActionVisitorTemplateMergeV2<CrecardInfo, AddressInfo> {
+final class VisiCrecardMergeAddress extends ActionVisitorTemplateMerge<CrecardInfo, AddressInfo> {
 	
 	public VisiCrecardMergeAddress(DeciTreeOption<CrecardInfo> option) {
 		super(option, AddressInfo.class); 

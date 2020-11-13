@@ -6,11 +6,11 @@ import br.com.mind5.business.calendarCatalogue.info.CalgueInfo;
 import br.com.mind5.business.calendarCatalogue.info.CalgueMerger;
 import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.business.materialList.model.decisionTree.RootMatlisSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiCalgueMergeMatlis extends ActionVisitorTemplateMergeV2<CalgueInfo, MatlisInfo> {
+final class VisiCalgueMergeMatlis extends ActionVisitorTemplateMerge<CalgueInfo, MatlisInfo> {
 	
 	public VisiCalgueMergeMatlis(DeciTreeOption<CalgueInfo> option) {
 		super(option, MatlisInfo.class);

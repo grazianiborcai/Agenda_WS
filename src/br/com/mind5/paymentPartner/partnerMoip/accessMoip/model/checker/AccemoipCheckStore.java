@@ -3,11 +3,11 @@ package br.com.mind5.paymentPartner.partnerMoip.accessMoip.model.checker;
 import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.business.store.model.checker.StoreCheckExist;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.paymentPartner.partnerMoip.accessMoip.info.AccemoipInfo;
 
-public final class AccemoipCheckStore extends ModelCheckerTemplateForwardV2<AccemoipInfo, StoreInfo> {
+public final class AccemoipCheckStore extends ModelCheckerTemplateForward<AccemoipInfo, StoreInfo> {
 	
 	public AccemoipCheckStore(ModelCheckerOption option) {
 		super(option);
@@ -15,7 +15,7 @@ public final class AccemoipCheckStore extends ModelCheckerTemplateForwardV2<Acce
 
 
 	
-	@Override protected ModelCheckerV1<StoreInfo> getCheckerHook(ModelCheckerOption option) {
+	@Override protected ModelChecker<StoreInfo> getCheckerHook(ModelCheckerOption option) {
 		return new StoreCheckExist(option);
 	}
 	

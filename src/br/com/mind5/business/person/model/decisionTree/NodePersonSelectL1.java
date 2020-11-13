@@ -7,14 +7,14 @@ import br.com.mind5.business.person.info.PersonInfo;
 import br.com.mind5.business.person.model.action.LazyPersonNodeSelectL2;
 import br.com.mind5.business.person.model.action.StdPersonMergeToSelect;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class NodePersonSelectL1 extends DeciTreeTemplateReadV2<PersonInfo> {
+public final class NodePersonSelectL1 extends DeciTreeTemplateRead<PersonInfo> {
 	
 	public NodePersonSelectL1(DeciTreeOption<PersonInfo> option) {
 		super(option);
@@ -22,22 +22,22 @@ public final class NodePersonSelectL1 extends DeciTreeTemplateReadV2<PersonInfo>
 	
 	
 	
-	@Override protected ModelCheckerV1<PersonInfo> buildCheckerHook(DeciTreeOption<PersonInfo> option) {
-		List<ModelCheckerV1<PersonInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<PersonInfo> checker;
+	@Override protected ModelChecker<PersonInfo> buildCheckerHook(DeciTreeOption<PersonInfo> option) {
+		List<ModelChecker<PersonInfo>> queue = new ArrayList<>();		
+		ModelChecker<PersonInfo> checker;
 
 		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<PersonInfo>> buildActionsOnPassedHook(DeciTreeOption<PersonInfo> option) {
-		List<ActionStdV2<PersonInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<PersonInfo>> buildActionsOnPassedHook(DeciTreeOption<PersonInfo> option) {
+		List<ActionStd<PersonInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<PersonInfo> select = new StdPersonMergeToSelect(option);
+		ActionStd<PersonInfo> select = new StdPersonMergeToSelect(option);
 		ActionLazy<PersonInfo> nodeL2 = new LazyPersonNodeSelectL2(option.conn, option.schemaName);
 		
 		select.addPostAction(nodeL2);

@@ -6,11 +6,11 @@ import br.com.mind5.file.fileImage.info.FimgInfo;
 import br.com.mind5.file.fileImage.info.FimgMerger;
 import br.com.mind5.file.fileImageSearch.info.FimarchInfo;
 import br.com.mind5.file.fileImageSearch.model.decisionTree.RootFimarchSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiFimgMergeFimarch extends ActionVisitorTemplateMergeV2<FimgInfo, FimarchInfo> {
+final class VisiFimgMergeFimarch extends ActionVisitorTemplateMerge<FimgInfo, FimarchInfo> {
 	
 	public VisiFimgMergeFimarch(DeciTreeOption<FimgInfo> option) {
 		super(option, FimarchInfo.class);

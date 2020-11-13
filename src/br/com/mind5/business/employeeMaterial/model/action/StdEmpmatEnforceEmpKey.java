@@ -1,11 +1,11 @@
 package br.com.mind5.business.employeeMaterial.model.action;
 
 import br.com.mind5.business.employeeMaterial.info.EmpmatInfo;
-import br.com.mind5.model.action.ActionStdTemplateV2;
-import br.com.mind5.model.action.ActionVisitorV2;
+import br.com.mind5.model.action.ActionStdTemplate;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdEmpmatEnforceEmpKey extends ActionStdTemplateV2<EmpmatInfo> {
+public final class StdEmpmatEnforceEmpKey extends ActionStdTemplate<EmpmatInfo> {
 
 	public StdEmpmatEnforceEmpKey(DeciTreeOption<EmpmatInfo> option) {
 		super(option);
@@ -13,7 +13,7 @@ public final class StdEmpmatEnforceEmpKey extends ActionStdTemplateV2<EmpmatInfo
 	
 	
 	
-	protected ActionVisitorV2<EmpmatInfo> buildVisitorHook(DeciTreeOption<EmpmatInfo> option) {
+	protected ActionVisitor<EmpmatInfo> buildVisitorHook(DeciTreeOption<EmpmatInfo> option) {
 		return new VisiEmpmatEnforceEmpKey(option);
 	}
 }

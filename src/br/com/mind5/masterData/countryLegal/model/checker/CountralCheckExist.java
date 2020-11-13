@@ -3,12 +3,12 @@ package br.com.mind5.masterData.countryLegal.model.checker;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.masterData.countryLegal.info.CountralInfo;
 import br.com.mind5.masterData.countryLegal.model.action.StdCountralDaoSelect;
-import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class CountralCheckExist extends ModelCheckerTemplateActionV2<CountralInfo, CountralInfo> {
+public final class CountralCheckExist extends ModelCheckerTemplateAction<CountralInfo, CountralInfo> {
 	
 	public CountralCheckExist(ModelCheckerOption option) {
 		super(option, CountralInfo.class);
@@ -16,8 +16,8 @@ public final class CountralCheckExist extends ModelCheckerTemplateActionV2<Count
 	
 	
 	
-	@Override protected ActionStdV2<CountralInfo> buildActionHook(DeciTreeOption<CountralInfo> option) {
-		ActionStdV2<CountralInfo> select = new StdCountralDaoSelect(option);
+	@Override protected ActionStd<CountralInfo> buildActionHook(DeciTreeOption<CountralInfo> option) {
+		ActionStd<CountralInfo> select = new StdCountralDaoSelect(option);
 		return select;
 	}
 	

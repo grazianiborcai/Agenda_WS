@@ -7,12 +7,12 @@ import br.com.mind5.business.planningTime.info.PlanimeMerger;
 import br.com.mind5.masterData.dayParting.info.DaypartCopier;
 import br.com.mind5.masterData.dayParting.info.DaypartInfo;
 import br.com.mind5.masterData.dayParting.model.decisionTree.RootDaypartSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiPlanimeMergeDaypart extends ActionVisitorTemplateMergeV2<PlanimeInfo, DaypartInfo> {
+final class VisiPlanimeMergeDaypart extends ActionVisitorTemplateMerge<PlanimeInfo, DaypartInfo> {
 	
 	public VisiPlanimeMergeDaypart(DeciTreeOption<PlanimeInfo> option) {
 		super(option, DaypartInfo.class);
@@ -39,6 +39,6 @@ final class VisiPlanimeMergeDaypart extends ActionVisitorTemplateMergeV2<Planime
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
+		return super.MERGE_WHEN_EMPTY;
 	}
 }

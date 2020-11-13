@@ -6,14 +6,14 @@ import java.util.List;
 import br.com.mind5.business.companyList.info.ComplisInfo;
 import br.com.mind5.business.companyList.model.action.StdComplisMergeToSelect;
 import br.com.mind5.business.companyList.model.checker.ComplisCheckRead;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootComplisSelect extends DeciTreeTemplateReadV2<ComplisInfo> {
+public final class RootComplisSelect extends DeciTreeTemplateRead<ComplisInfo> {
 	
 	public RootComplisSelect(DeciTreeOption<ComplisInfo> option) {
 		super(option);
@@ -21,9 +21,9 @@ public final class RootComplisSelect extends DeciTreeTemplateReadV2<ComplisInfo>
 	
 	
 	
-	@Override protected ModelCheckerV1<ComplisInfo> buildCheckerHook(DeciTreeOption<ComplisInfo> option) {
-		List<ModelCheckerV1<ComplisInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<ComplisInfo> checker;
+	@Override protected ModelChecker<ComplisInfo> buildCheckerHook(DeciTreeOption<ComplisInfo> option) {
+		List<ModelChecker<ComplisInfo>> queue = new ArrayList<>();		
+		ModelChecker<ComplisInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -33,15 +33,15 @@ public final class RootComplisSelect extends DeciTreeTemplateReadV2<ComplisInfo>
 		checker = new ComplisCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<ComplisInfo>> buildActionsOnPassedHook(DeciTreeOption<ComplisInfo> option) {
-		List<ActionStdV2<ComplisInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<ComplisInfo>> buildActionsOnPassedHook(DeciTreeOption<ComplisInfo> option) {
+		List<ActionStd<ComplisInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<ComplisInfo> select = new StdComplisMergeToSelect(option);	
+		ActionStd<ComplisInfo> select = new StdComplisMergeToSelect(option);	
 		actions.add(select);
 		
 		return actions;

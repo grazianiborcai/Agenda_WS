@@ -2,7 +2,7 @@ package br.com.mind5.payment.customerPartner.model.action;
 
 import java.util.List;
 
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
@@ -10,7 +10,7 @@ import br.com.mind5.payment.customerPartner.info.CusparMerger;
 import br.com.mind5.payment.customerPartnerSearch.info.CusparchInfo;
 import br.com.mind5.payment.customerPartnerSearch.model.decisionTree.RootCusparchSelect;
 
-final class VisiCusparMergeCusparch extends ActionVisitorTemplateMergeV2<CusparInfo, CusparchInfo> {
+final class VisiCusparMergeCusparch extends ActionVisitorTemplateMerge<CusparInfo, CusparchInfo> {
 	
 	public VisiCusparMergeCusparch(DeciTreeOption<CusparInfo> option) {
 		super(option, CusparchInfo.class);

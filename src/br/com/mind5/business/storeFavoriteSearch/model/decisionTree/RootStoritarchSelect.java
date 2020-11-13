@@ -8,14 +8,14 @@ import br.com.mind5.business.storeFavoriteSearch.model.action.StdStoritarchMerge
 import br.com.mind5.business.storeFavoriteSearch.model.checker.StoritarchCheckLangu;
 import br.com.mind5.business.storeFavoriteSearch.model.checker.StoritarchCheckOwner;
 import br.com.mind5.business.storeFavoriteSearch.model.checker.StoritarchCheckRead;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootStoritarchSelect extends DeciTreeTemplateWriteV2<StoritarchInfo> {
+public final class RootStoritarchSelect extends DeciTreeTemplateWrite<StoritarchInfo> {
 	
 	public RootStoritarchSelect(DeciTreeOption<StoritarchInfo> option) {
 		super(option);
@@ -23,9 +23,9 @@ public final class RootStoritarchSelect extends DeciTreeTemplateWriteV2<Storitar
 	
 	
 	
-	@Override protected ModelCheckerV1<StoritarchInfo> buildCheckerHook(DeciTreeOption<StoritarchInfo> option) {
-		List<ModelCheckerV1<StoritarchInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<StoritarchInfo> checker;
+	@Override protected ModelChecker<StoritarchInfo> buildCheckerHook(DeciTreeOption<StoritarchInfo> option) {
+		List<ModelChecker<StoritarchInfo>> queue = new ArrayList<>();		
+		ModelChecker<StoritarchInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -49,15 +49,15 @@ public final class RootStoritarchSelect extends DeciTreeTemplateWriteV2<Storitar
 		checker = new StoritarchCheckOwner(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<StoritarchInfo>> buildActionsOnPassedHook(DeciTreeOption<StoritarchInfo> option) {
-		List<ActionStdV2<StoritarchInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<StoritarchInfo>> buildActionsOnPassedHook(DeciTreeOption<StoritarchInfo> option) {
+		List<ActionStd<StoritarchInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<StoritarchInfo> select = new StdStoritarchMergeToSelect(option);
+		ActionStd<StoritarchInfo> select = new StdStoritarchMergeToSelect(option);
 		
 		actions.add(select);	
 		return actions;

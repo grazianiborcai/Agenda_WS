@@ -3,12 +3,12 @@ package br.com.mind5.business.companyConflict.model.checker;
 import br.com.mind5.business.companyConflict.info.CompcoInfo;
 import br.com.mind5.business.companyConflict.model.action.StdCompcoDaoSelect;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class CompcoCheckExist extends ModelCheckerTemplateActionV2<CompcoInfo, CompcoInfo> {
+public final class CompcoCheckExist extends ModelCheckerTemplateAction<CompcoInfo, CompcoInfo> {
 	
 	public CompcoCheckExist(ModelCheckerOption option) {
 		super(option, CompcoInfo.class);
@@ -16,8 +16,8 @@ public final class CompcoCheckExist extends ModelCheckerTemplateActionV2<CompcoI
 	
 	
 	
-	@Override protected ActionStdV2<CompcoInfo> buildActionHook(DeciTreeOption<CompcoInfo> option) {
-		ActionStdV2<CompcoInfo> select = new StdCompcoDaoSelect(option);
+	@Override protected ActionStd<CompcoInfo> buildActionHook(DeciTreeOption<CompcoInfo> option) {
+		ActionStd<CompcoInfo> select = new StdCompcoDaoSelect(option);
 		return select;
 	}
 	

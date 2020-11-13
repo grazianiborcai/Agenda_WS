@@ -12,14 +12,14 @@ import br.com.mind5.business.materialCatalogue.model.checker.MatogueCheckOwner;
 import br.com.mind5.business.materialCatalogue.model.checker.MatogueCheckRead;
 import br.com.mind5.business.materialCatalogue.model.checker.MatogueCheckStore;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootMatogueSelect extends DeciTreeTemplateReadV2<MatogueInfo> {
+public final class RootMatogueSelect extends DeciTreeTemplateRead<MatogueInfo> {
 	
 	public RootMatogueSelect(DeciTreeOption<MatogueInfo> option) {
 		super(option);
@@ -27,10 +27,10 @@ public final class RootMatogueSelect extends DeciTreeTemplateReadV2<MatogueInfo>
 	
 	
 	
-	@Override protected ModelCheckerV1<MatogueInfo> buildCheckerHook(DeciTreeOption<MatogueInfo> option) {
+	@Override protected ModelChecker<MatogueInfo> buildCheckerHook(DeciTreeOption<MatogueInfo> option) {
 		ModelCheckerOption checkerOption;
-		List<ModelCheckerV1<MatogueInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<MatogueInfo> checker;
+		List<ModelChecker<MatogueInfo>> queue = new ArrayList<>();		
+		ModelChecker<MatogueInfo> checker;
 		
 		checkerOption = new ModelCheckerOption();
 		checkerOption.conn = option.conn;
@@ -60,15 +60,15 @@ public final class RootMatogueSelect extends DeciTreeTemplateReadV2<MatogueInfo>
 		checker = new MatogueCheckStore(checkerOption);
 		queue.add(checker);	
 
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<MatogueInfo>> buildActionsOnPassedHook(DeciTreeOption<MatogueInfo> option) {
-		List<ActionStdV2<MatogueInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<MatogueInfo>> buildActionsOnPassedHook(DeciTreeOption<MatogueInfo> option) {
+		List<ActionStd<MatogueInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<MatogueInfo> mergeMatore = new StdMatogueMergeMatore(option);
+		ActionStd<MatogueInfo> mergeMatore = new StdMatogueMergeMatore(option);
 		ActionLazy<MatogueInfo> enforceMatubup = new LazyMatogueEnforceMatubup(option.conn, option.schemaName);
 		ActionLazy<MatogueInfo> obfuscateStolis = new LazyMatogueObfuscateStolis(option.conn, option.schemaName);
 		

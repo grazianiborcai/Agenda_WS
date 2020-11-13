@@ -6,12 +6,11 @@ import br.com.mind5.business.customerList.info.CuslisInfo;
 import br.com.mind5.business.customerList.model.decisionTree.RootCuslisSelect;
 import br.com.mind5.business.orderSnapshot.info.OrdnapInfo;
 import br.com.mind5.business.orderSnapshot.info.OrdnapMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiOrdnapMergeCuslis extends ActionVisitorTemplateMergeV2<OrdnapInfo, CuslisInfo> {
+final class VisiOrdnapMergeCuslis extends ActionVisitorTemplateMerge<OrdnapInfo, CuslisInfo> {
 	
 	public VisiOrdnapMergeCuslis(DeciTreeOption<OrdnapInfo> option) {
 		super(option, CuslisInfo.class); 
@@ -32,6 +31,6 @@ final class VisiOrdnapMergeCuslis extends ActionVisitorTemplateMergeV2<OrdnapInf
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
+		return super.DONT_MERGE_WHEN_EMPTY;
 	}
 }

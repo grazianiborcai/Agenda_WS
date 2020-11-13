@@ -11,14 +11,14 @@ import br.com.mind5.business.company.model.action.LazyCompEnforceNameSearch;
 import br.com.mind5.business.company.model.action.LazyCompMergeUsername;
 import br.com.mind5.business.company.model.action.StdCompEnforceLChanged;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodeCompInsert extends DeciTreeTemplateWriteV2<CompInfo> {
+public final class NodeCompInsert extends DeciTreeTemplateWrite<CompInfo> {
 	
 	public NodeCompInsert(DeciTreeOption<CompInfo> option) {
 		super(option);
@@ -26,22 +26,22 @@ public final class NodeCompInsert extends DeciTreeTemplateWriteV2<CompInfo> {
 	
 	
 	
-	@Override protected ModelCheckerV1<CompInfo> buildCheckerHook(DeciTreeOption<CompInfo> option) {
-		List<ModelCheckerV1<CompInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<CompInfo> checker;
+	@Override protected ModelChecker<CompInfo> buildCheckerHook(DeciTreeOption<CompInfo> option) {
+		List<ModelChecker<CompInfo>> queue = new ArrayList<>();		
+		ModelChecker<CompInfo> checker;
 		
 		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 			
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<CompInfo>> buildActionsOnPassedHook(DeciTreeOption<CompInfo> option) {
-		List<ActionStdV2<CompInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<CompInfo>> buildActionsOnPassedHook(DeciTreeOption<CompInfo> option) {
+		List<ActionStd<CompInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<CompInfo> enforceLChanged = new StdCompEnforceLChanged(option);
+		ActionStd<CompInfo> enforceLChanged = new StdCompEnforceLChanged(option);
 		ActionLazy<CompInfo> enforceLChangedBy = new LazyCompMergeUsername(option.conn, option.schemaName);
 		ActionLazy<CompInfo> enforceCreatedOn = new LazyCompEnforceCreatedOn(option.conn, option.schemaName);	
 		ActionLazy<CompInfo> enforceCreatedBy = new LazyCompEnforceCreatedBy(option.conn, option.schemaName);

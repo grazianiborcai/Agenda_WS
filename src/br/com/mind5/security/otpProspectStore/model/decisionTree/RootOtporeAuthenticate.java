@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.security.otpProspectStore.info.OtporeInfo;
 import br.com.mind5.security.otpProspectStore.model.action.LazyOtporeOptValidate;
 import br.com.mind5.security.otpProspectStore.model.action.StdOtporeDaoDelete;
@@ -17,7 +17,7 @@ import br.com.mind5.security.otpProspectStore.model.action.StdOtporeMergeToAuthe
 import br.com.mind5.security.otpProspectStore.model.checker.OtporeCheckAuthenticate;
 import br.com.mind5.security.otpProspectStore.model.checker.OtporeCheckExist;
 
-public final class RootOtporeAuthenticate extends DeciTreeTemplateWriteV2<OtporeInfo> {
+public final class RootOtporeAuthenticate extends DeciTreeTemplateWrite<OtporeInfo> {
 	
 	public RootOtporeAuthenticate(DeciTreeOption<OtporeInfo> option) {
 		super(option);
@@ -25,9 +25,9 @@ public final class RootOtporeAuthenticate extends DeciTreeTemplateWriteV2<Otpore
 	
 	
 	
-	@Override protected ModelCheckerV1<OtporeInfo> buildCheckerHook(DeciTreeOption<OtporeInfo> option) {
-		List<ModelCheckerV1<OtporeInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<OtporeInfo> checker;
+	@Override protected ModelChecker<OtporeInfo> buildCheckerHook(DeciTreeOption<OtporeInfo> option) {
+		List<ModelChecker<OtporeInfo>> queue = new ArrayList<>();		
+		ModelChecker<OtporeInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -44,17 +44,17 @@ public final class RootOtporeAuthenticate extends DeciTreeTemplateWriteV2<Otpore
 		checker = new OtporeCheckExist(checkerOption);
 		queue.add(checker);	
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<OtporeInfo>> buildActionsOnPassedHook(DeciTreeOption<OtporeInfo> option) {
-		List<ActionStdV2<OtporeInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<OtporeInfo>> buildActionsOnPassedHook(DeciTreeOption<OtporeInfo> option) {
+		List<ActionStd<OtporeInfo>> actions = new ArrayList<>();
 
-		ActionStdV2<OtporeInfo> mergeToAuthenticate = new StdOtporeMergeToAuthenticate(option);
+		ActionStd<OtporeInfo> mergeToAuthenticate = new StdOtporeMergeToAuthenticate(option);
 		ActionLazy<OtporeInfo> optValidate = new LazyOtporeOptValidate(option.conn, option.schemaName);
-		ActionStdV2<OtporeInfo> delete = new StdOtporeDaoDelete(option);
+		ActionStd<OtporeInfo> delete = new StdOtporeDaoDelete(option);
 		
 		mergeToAuthenticate.addPostAction(optValidate);
 		

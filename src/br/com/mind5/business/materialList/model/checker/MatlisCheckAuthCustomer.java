@@ -2,12 +2,12 @@ package br.com.mind5.business.materialList.model.checker;
 
 import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.security.userSearch.info.UserarchInfo;
 import br.com.mind5.security.userSearch.model.checker.UserarchCheckExistCustomer;
 
-public final class MatlisCheckAuthCustomer extends ModelCheckerTemplateForwardV2<MatlisInfo, UserarchInfo> {
+public final class MatlisCheckAuthCustomer extends ModelCheckerTemplateForward<MatlisInfo, UserarchInfo> {
 	
 	public MatlisCheckAuthCustomer(ModelCheckerOption option) {
 		super(option);
@@ -15,7 +15,7 @@ public final class MatlisCheckAuthCustomer extends ModelCheckerTemplateForwardV2
 
 
 	
-	@Override protected ModelCheckerV1<UserarchInfo> getCheckerHook(ModelCheckerOption option) {
+	@Override protected ModelChecker<UserarchInfo> getCheckerHook(ModelCheckerOption option) {
 		return new UserarchCheckExistCustomer(option);
 	}
 	

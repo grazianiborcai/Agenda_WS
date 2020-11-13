@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.employeeLeaveDate.info.EmplateInfo;
 import br.com.mind5.business.employeeLeaveDate.model.decisionTree.RootEmplateDelete;
 import br.com.mind5.model.action.ActionLazyTemplate;
-import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -24,7 +24,7 @@ public final class LazyEmplateRootDelete extends ActionLazyTemplate<EmplateInfo,
 	
 	
 	
-	@Override protected ActionStdV2<EmplateInfo> getInstanceOfActionHook(DeciTreeOption<EmplateInfo> option) {
+	@Override protected ActionStd<EmplateInfo> getInstanceOfActionHook(DeciTreeOption<EmplateInfo> option) {
 		return new RootEmplateDelete(option).toAction();
 	}
 	

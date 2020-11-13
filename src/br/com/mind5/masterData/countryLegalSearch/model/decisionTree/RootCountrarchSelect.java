@@ -6,14 +6,14 @@ import java.util.List;
 import br.com.mind5.masterData.countryLegalSearch.info.CountrarchInfo;
 import br.com.mind5.masterData.countryLegalSearch.model.action.StdCountrarchMergeToSelect;
 import br.com.mind5.masterData.countryLegalSearch.model.checker.CountrarchCheckRead;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootCountrarchSelect extends DeciTreeTemplateReadV2<CountrarchInfo> {
+public final class RootCountrarchSelect extends DeciTreeTemplateRead<CountrarchInfo> {
 	
 	public RootCountrarchSelect(DeciTreeOption<CountrarchInfo> option) {
 		super(option);
@@ -21,9 +21,9 @@ public final class RootCountrarchSelect extends DeciTreeTemplateReadV2<Countrarc
 	
 	
 	
-	@Override protected ModelCheckerV1<CountrarchInfo> buildCheckerHook(DeciTreeOption<CountrarchInfo> option) {
-		List<ModelCheckerV1<CountrarchInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<CountrarchInfo> checker;
+	@Override protected ModelChecker<CountrarchInfo> buildCheckerHook(DeciTreeOption<CountrarchInfo> option) {
+		List<ModelChecker<CountrarchInfo>> queue = new ArrayList<>();		
+		ModelChecker<CountrarchInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
 		checkerOption = new ModelCheckerOption();
@@ -33,15 +33,15 @@ public final class RootCountrarchSelect extends DeciTreeTemplateReadV2<Countrarc
 		checker = new CountrarchCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<CountrarchInfo>> buildActionsOnPassedHook(DeciTreeOption<CountrarchInfo> option) {
-		List<ActionStdV2<CountrarchInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<CountrarchInfo>> buildActionsOnPassedHook(DeciTreeOption<CountrarchInfo> option) {
+		List<ActionStd<CountrarchInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<CountrarchInfo> select = new StdCountrarchMergeToSelect(option);
+		ActionStd<CountrarchInfo> select = new StdCountrarchMergeToSelect(option);
 		
 		actions.add(select);
 		return actions;

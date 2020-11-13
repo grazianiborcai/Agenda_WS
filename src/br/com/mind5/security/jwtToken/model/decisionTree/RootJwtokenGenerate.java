@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.security.jwtToken.info.JwtokenInfo;
 import br.com.mind5.security.jwtToken.model.action.LazyJwtokenEnforceAlgo;
 import br.com.mind5.security.jwtToken.model.action.LazyJwtokenEnforceCreatedOn;
@@ -18,7 +18,7 @@ import br.com.mind5.security.jwtToken.model.action.LazyJwtokenEnforceSecret;
 import br.com.mind5.security.jwtToken.model.action.LazyJwtokenEnforceToken;
 import br.com.mind5.security.jwtToken.model.checker.JwtokenCheckGenerate;
 
-public final class RootJwtokenGenerate extends DeciTreeTemplateWriteV2<JwtokenInfo> {
+public final class RootJwtokenGenerate extends DeciTreeTemplateWrite<JwtokenInfo> {
 	
 	public RootJwtokenGenerate(DeciTreeOption<JwtokenInfo> option) {
 		super(option);
@@ -26,9 +26,9 @@ public final class RootJwtokenGenerate extends DeciTreeTemplateWriteV2<JwtokenIn
 	
 	
 	
-	@Override protected ModelCheckerV1<JwtokenInfo> buildCheckerHook(DeciTreeOption<JwtokenInfo> option) {
-		List<ModelCheckerV1<JwtokenInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<JwtokenInfo> checker;	
+	@Override protected ModelChecker<JwtokenInfo> buildCheckerHook(DeciTreeOption<JwtokenInfo> option) {
+		List<ModelChecker<JwtokenInfo>> queue = new ArrayList<>();		
+		ModelChecker<JwtokenInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -38,15 +38,15 @@ public final class RootJwtokenGenerate extends DeciTreeTemplateWriteV2<JwtokenIn
 		checker = new JwtokenCheckGenerate(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<JwtokenInfo>> buildActionsOnPassedHook(DeciTreeOption<JwtokenInfo> option) {
-		List<ActionStdV2<JwtokenInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<JwtokenInfo>> buildActionsOnPassedHook(DeciTreeOption<JwtokenInfo> option) {
+		List<ActionStd<JwtokenInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<JwtokenInfo> nodePlatform = new  NodeJwtokenPlatform(option).toAction();
+		ActionStd<JwtokenInfo> nodePlatform = new  NodeJwtokenPlatform(option).toAction();
 		ActionLazy<JwtokenInfo> enforceCreatedOn = new LazyJwtokenEnforceCreatedOn(option.conn, option.schemaName);
 		ActionLazy<JwtokenInfo> enforceSecret = new LazyJwtokenEnforceSecret(option.conn, option.schemaName);
 		ActionLazy<JwtokenInfo> enforceExpiration = new LazyJwtokenEnforceExpiration(option.conn, option.schemaName);

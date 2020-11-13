@@ -4,11 +4,11 @@ import java.util.List;
 
 import br.com.mind5.business.companySnapshot.info.CompnapInfo;
 import br.com.mind5.business.companySnapshot.info.CompnapMerger;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiCompnapMergeToSelect extends ActionVisitorTemplateMergeV2<CompnapInfo, CompnapInfo> {
+final class VisiCompnapMergeToSelect extends ActionVisitorTemplateMerge<CompnapInfo, CompnapInfo> {
 	
 	public VisiCompnapMergeToSelect(DeciTreeOption<CompnapInfo> option) {
 		super(option, CompnapInfo.class);
@@ -16,7 +16,7 @@ final class VisiCompnapMergeToSelect extends ActionVisitorTemplateMergeV2<Compna
 	
 	
 	
-	@Override protected Class<? extends ActionStdV2<CompnapInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStd<CompnapInfo>> getActionClassHook() {
 		return StdCompnapDaoSelect.class;
 	}
 	

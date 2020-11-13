@@ -8,14 +8,14 @@ import br.com.mind5.business.employee.model.action.LazyEmpDaoUpdate;
 import br.com.mind5.business.employee.model.action.LazyEmpPersonInsert;
 import br.com.mind5.business.employee.model.action.StdEmpEnforcePersonKey;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodeEmpInsertPerson extends DeciTreeTemplateWriteV2<EmpInfo> {
+public final class NodeEmpInsertPerson extends DeciTreeTemplateWrite<EmpInfo> {
 	
 	public NodeEmpInsertPerson(DeciTreeOption<EmpInfo> option) {
 		super(option);
@@ -23,22 +23,22 @@ public final class NodeEmpInsertPerson extends DeciTreeTemplateWriteV2<EmpInfo> 
 	
 	
 	
-	@Override protected ModelCheckerV1<EmpInfo> buildCheckerHook(DeciTreeOption<EmpInfo> option) {
-		List<ModelCheckerV1<EmpInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<EmpInfo> checker;	
+	@Override protected ModelChecker<EmpInfo> buildCheckerHook(DeciTreeOption<EmpInfo> option) {
+		List<ModelChecker<EmpInfo>> queue = new ArrayList<>();		
+		ModelChecker<EmpInfo> checker;	
 		
 		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<EmpInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpInfo> option) {
-		List<ActionStdV2<EmpInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<EmpInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpInfo> option) {
+		List<ActionStd<EmpInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<EmpInfo> enforcePersonKey = new StdEmpEnforcePersonKey(option);
+		ActionStd<EmpInfo> enforcePersonKey = new StdEmpEnforcePersonKey(option);
 		ActionLazy<EmpInfo> insertPerson = new LazyEmpPersonInsert(option.conn, option.schemaName);
 		ActionLazy<EmpInfo> updateEmployee = new LazyEmpDaoUpdate(option.conn, option.schemaName);
 		

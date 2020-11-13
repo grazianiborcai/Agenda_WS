@@ -3,12 +3,12 @@ package br.com.mind5.business.customer.model.checker;
 import br.com.mind5.business.customer.info.CusInfo;
 import br.com.mind5.business.customer.model.action.StdCusDaoSelect;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class CusCheckExist extends ModelCheckerTemplateActionV2<CusInfo, CusInfo> {
+public final class CusCheckExist extends ModelCheckerTemplateAction<CusInfo, CusInfo> {
 	
 	public CusCheckExist(ModelCheckerOption option) {
 		super(option, CusInfo.class);
@@ -16,8 +16,8 @@ public final class CusCheckExist extends ModelCheckerTemplateActionV2<CusInfo, C
 	
 
 	
-	@Override protected ActionStdV2<CusInfo> buildActionHook(DeciTreeOption<CusInfo> option) {
-		ActionStdV2<CusInfo> select = new StdCusDaoSelect(option);
+	@Override protected ActionStd<CusInfo> buildActionHook(DeciTreeOption<CusInfo> option) {
+		ActionStd<CusInfo> select = new StdCusDaoSelect(option);
 		return select;
 	}
 	

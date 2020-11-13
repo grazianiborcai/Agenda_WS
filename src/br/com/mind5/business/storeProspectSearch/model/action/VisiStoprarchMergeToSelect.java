@@ -4,11 +4,11 @@ import java.util.List;
 
 import br.com.mind5.business.storeProspectSearch.info.StoprarchInfo;
 import br.com.mind5.business.storeProspectSearch.info.StoprarchMerger;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiStoprarchMergeToSelect extends ActionVisitorTemplateMergeV2<StoprarchInfo, StoprarchInfo> {
+final class VisiStoprarchMergeToSelect extends ActionVisitorTemplateMerge<StoprarchInfo, StoprarchInfo> {
 	
 	public VisiStoprarchMergeToSelect(DeciTreeOption<StoprarchInfo> option) {
 		super(option, StoprarchInfo.class);
@@ -16,7 +16,7 @@ final class VisiStoprarchMergeToSelect extends ActionVisitorTemplateMergeV2<Stop
 	
 	
 	
-	@Override protected Class<? extends ActionStdV2<StoprarchInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStd<StoprarchInfo>> getActionClassHook() {
 		return StdStoprarchDaoSelect.class;
 	}
 	

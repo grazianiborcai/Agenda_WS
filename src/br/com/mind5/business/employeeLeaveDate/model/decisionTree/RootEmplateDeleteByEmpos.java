@@ -8,14 +8,14 @@ import br.com.mind5.business.employeeLeaveDate.model.action.LazyEmplateRootDelet
 import br.com.mind5.business.employeeLeaveDate.model.action.StdEmplateMergeEmplarch;
 import br.com.mind5.business.employeeLeaveDate.model.checker.EmplateCheckDeleteByEmpos;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootEmplateDeleteByEmpos extends DeciTreeTemplateWriteV2<EmplateInfo> {
+public final class RootEmplateDeleteByEmpos extends DeciTreeTemplateWrite<EmplateInfo> {
 	
 	public RootEmplateDeleteByEmpos(DeciTreeOption<EmplateInfo> option) {
 		super(option);
@@ -23,9 +23,9 @@ public final class RootEmplateDeleteByEmpos extends DeciTreeTemplateWriteV2<Empl
 	
 	
 	
-	@Override protected ModelCheckerV1<EmplateInfo> buildCheckerHook(DeciTreeOption<EmplateInfo> option) {
-		List<ModelCheckerV1<EmplateInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<EmplateInfo> checker;
+	@Override protected ModelChecker<EmplateInfo> buildCheckerHook(DeciTreeOption<EmplateInfo> option) {
+		List<ModelChecker<EmplateInfo>> queue = new ArrayList<>();		
+		ModelChecker<EmplateInfo> checker;
 		ModelCheckerOption checkerOption = new ModelCheckerOption();
 		
 		checkerOption = new ModelCheckerOption();
@@ -35,15 +35,15 @@ public final class RootEmplateDeleteByEmpos extends DeciTreeTemplateWriteV2<Empl
 		checker = new EmplateCheckDeleteByEmpos(checkerOption);
 		queue.add(checker);
 		
-		 return new ModelCheckerHelperQueueV2<EmplateInfo>(queue);
+		 return new ModelCheckerHelperQueue<EmplateInfo>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<EmplateInfo>> buildActionsOnPassedHook(DeciTreeOption<EmplateInfo> option) {
-		List<ActionStdV2<EmplateInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<EmplateInfo>> buildActionsOnPassedHook(DeciTreeOption<EmplateInfo> option) {
+		List<ActionStd<EmplateInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<EmplateInfo> mergeEmplarch = new StdEmplateMergeEmplarch(option);
+		ActionStd<EmplateInfo> mergeEmplarch = new StdEmplateMergeEmplarch(option);
 		ActionLazy<EmplateInfo> delete = new LazyEmplateRootDelete(option.conn, option.schemaName);
 		
 		mergeEmplarch.addPostAction(delete);

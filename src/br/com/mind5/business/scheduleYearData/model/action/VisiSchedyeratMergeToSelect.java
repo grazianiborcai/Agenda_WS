@@ -4,11 +4,11 @@ import java.util.List;
 
 import br.com.mind5.business.scheduleYearData.info.SchedyeratInfo;
 import br.com.mind5.business.scheduleYearData.info.SchedyeratMerger;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiSchedyeratMergeToSelect extends ActionVisitorTemplateMergeV2<SchedyeratInfo, SchedyeratInfo> {
+final class VisiSchedyeratMergeToSelect extends ActionVisitorTemplateMerge<SchedyeratInfo, SchedyeratInfo> {
 	
 	public VisiSchedyeratMergeToSelect(DeciTreeOption<SchedyeratInfo> option) {
 		super(option, SchedyeratInfo.class);
@@ -16,7 +16,7 @@ final class VisiSchedyeratMergeToSelect extends ActionVisitorTemplateMergeV2<Sch
 	
 	
 	
-	@Override protected Class<? extends ActionStdV2<SchedyeratInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStd<SchedyeratInfo>> getActionClassHook() {
 		return StdSchedyeratDaoSelect.class;
 	}
 	

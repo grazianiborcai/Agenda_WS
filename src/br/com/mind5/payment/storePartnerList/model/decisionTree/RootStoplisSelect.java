@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 import br.com.mind5.payment.storePartnerList.info.StoplisInfo;
 import br.com.mind5.payment.storePartnerList.model.action.LazyStoplisMergePaypar;
 import br.com.mind5.payment.storePartnerList.model.action.StdStoplisMergeToSelect;
@@ -17,7 +17,7 @@ import br.com.mind5.payment.storePartnerList.model.checker.StoplisCheckOwner;
 import br.com.mind5.payment.storePartnerList.model.checker.StoplisCheckRead;
 import br.com.mind5.payment.storePartnerList.model.checker.StoplisCheckStore;
 
-public final class RootStoplisSelect extends DeciTreeTemplateReadV2<StoplisInfo> {
+public final class RootStoplisSelect extends DeciTreeTemplateRead<StoplisInfo> {
 	
 	public RootStoplisSelect(DeciTreeOption<StoplisInfo> option) {
 		super(option);
@@ -25,9 +25,9 @@ public final class RootStoplisSelect extends DeciTreeTemplateReadV2<StoplisInfo>
 	
 	
 	
-	@Override protected ModelCheckerV1<StoplisInfo> buildCheckerHook(DeciTreeOption<StoplisInfo> option) {
-		List<ModelCheckerV1<StoplisInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<StoplisInfo> checker;
+	@Override protected ModelChecker<StoplisInfo> buildCheckerHook(DeciTreeOption<StoplisInfo> option) {
+		List<ModelChecker<StoplisInfo>> queue = new ArrayList<>();		
+		ModelChecker<StoplisInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -51,15 +51,15 @@ public final class RootStoplisSelect extends DeciTreeTemplateReadV2<StoplisInfo>
 		checker = new StoplisCheckStore(checkerOption);
 		queue.add(checker);	
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<StoplisInfo>> buildActionsOnPassedHook(DeciTreeOption<StoplisInfo> option) {
-		List<ActionStdV2<StoplisInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<StoplisInfo>> buildActionsOnPassedHook(DeciTreeOption<StoplisInfo> option) {
+		List<ActionStd<StoplisInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<StoplisInfo> select = new StdStoplisMergeToSelect(option);
+		ActionStd<StoplisInfo> select = new StdStoplisMergeToSelect(option);
 		ActionLazy<StoplisInfo> mergePayPartner = new LazyStoplisMergePaypar(option.conn, option.schemaName);
 		
 		select.addPostAction(mergePayPartner);

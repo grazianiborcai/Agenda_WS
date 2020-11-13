@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
 import br.com.mind5.payment.payOrder.model.action.LazyPayordMergeCrecard;
 import br.com.mind5.payment.payOrder.model.action.LazyPayordMergePayordem;
@@ -19,7 +19,7 @@ import br.com.mind5.payment.payOrder.model.checker.PayordCheckLangu;
 import br.com.mind5.payment.payOrder.model.checker.PayordCheckRead;
 import br.com.mind5.payment.payOrder.model.checker.PayordCheckUsername;
 
-public final class RootPayordSelect extends DeciTreeTemplateReadV2<PayordInfo> {
+public final class RootPayordSelect extends DeciTreeTemplateRead<PayordInfo> {
 	
 	public RootPayordSelect(DeciTreeOption<PayordInfo> option) {
 		super(option);
@@ -27,9 +27,9 @@ public final class RootPayordSelect extends DeciTreeTemplateReadV2<PayordInfo> {
 	
 	
 	
-	@Override protected ModelCheckerV1<PayordInfo> buildCheckerHook(DeciTreeOption<PayordInfo> option) {
-		List<ModelCheckerV1<PayordInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<PayordInfo> checker;	
+	@Override protected ModelChecker<PayordInfo> buildCheckerHook(DeciTreeOption<PayordInfo> option) {
+		List<ModelChecker<PayordInfo>> queue = new ArrayList<>();		
+		ModelChecker<PayordInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -53,15 +53,15 @@ public final class RootPayordSelect extends DeciTreeTemplateReadV2<PayordInfo> {
 		checker = new PayordCheckUsername(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<PayordInfo>> buildActionsOnPassedHook(DeciTreeOption<PayordInfo> option) {
-		List<ActionStdV2<PayordInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStd<PayordInfo>> buildActionsOnPassedHook(DeciTreeOption<PayordInfo> option) {
+		List<ActionStd<PayordInfo>> actions = new ArrayList<>();		
 
-		ActionStdV2<PayordInfo> mergeToSelect = new StdPayordMergeToSelect(option);
+		ActionStd<PayordInfo> mergeToSelect = new StdPayordMergeToSelect(option);
 		ActionLazy<PayordInfo> mergeCrecard = new LazyPayordMergeCrecard(option.conn, option.schemaName);
 		ActionLazy<PayordInfo> mergePaypar = new LazyPayordMergePaypar(option.conn, option.schemaName);
 		ActionLazy<PayordInfo> mergePayordem = new LazyPayordMergePayordem(option.conn, option.schemaName);

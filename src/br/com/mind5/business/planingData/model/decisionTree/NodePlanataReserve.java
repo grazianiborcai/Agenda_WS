@@ -9,14 +9,14 @@ import br.com.mind5.business.planingData.model.action.LazyPlanataPruneSchederve;
 import br.com.mind5.business.planingData.model.action.StdPlanataPruneCarterve;
 import br.com.mind5.business.planingData.model.checker.PlanataCheckRead;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public class NodePlanataReserve extends DeciTreeTemplateReadV2<PlanataInfo> {
+public class NodePlanataReserve extends DeciTreeTemplateRead<PlanataInfo> {
 	
 	public NodePlanataReserve(DeciTreeOption<PlanataInfo> option) {
 		super(option);
@@ -24,9 +24,9 @@ public class NodePlanataReserve extends DeciTreeTemplateReadV2<PlanataInfo> {
 	
 	
 	
-	@Override protected ModelCheckerV1<PlanataInfo> buildCheckerHook(DeciTreeOption<PlanataInfo> option) {
-		List<ModelCheckerV1<PlanataInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<PlanataInfo> checker;
+	@Override protected ModelChecker<PlanataInfo> buildCheckerHook(DeciTreeOption<PlanataInfo> option) {
+		List<ModelChecker<PlanataInfo>> queue = new ArrayList<>();		
+		ModelChecker<PlanataInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -36,15 +36,15 @@ public class NodePlanataReserve extends DeciTreeTemplateReadV2<PlanataInfo> {
 		checker = new PlanataCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<PlanataInfo>> buildActionsOnPassedHook(DeciTreeOption<PlanataInfo> option) {
-		List<ActionStdV2<PlanataInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStd<PlanataInfo>> buildActionsOnPassedHook(DeciTreeOption<PlanataInfo> option) {
+		List<ActionStd<PlanataInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV2<PlanataInfo> pruneCarteve = new StdPlanataPruneCarterve(option);
+		ActionStd<PlanataInfo> pruneCarteve = new StdPlanataPruneCarterve(option);
 		ActionLazy<PlanataInfo> pruneOrderve = new LazyPlanataPruneOrderve(option.conn, option.schemaName);
 		ActionLazy<PlanataInfo> pruneSchederve = new LazyPlanataPruneSchederve(option.conn, option.schemaName);
 		

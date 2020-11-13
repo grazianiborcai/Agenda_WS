@@ -8,14 +8,14 @@ import br.com.mind5.business.cartItem.model.action.LazyCartemDaoInsert;
 import br.com.mind5.business.cartItem.model.action.StdCartemEnforceCreatedOn;
 import br.com.mind5.business.cartItem.model.checker.CartemCheckLimit;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodeCartemInsert extends DeciTreeTemplateWriteV2<CartemInfo> {
+public final class NodeCartemInsert extends DeciTreeTemplateWrite<CartemInfo> {
 	
 	public NodeCartemInsert(DeciTreeOption<CartemInfo> option) {
 		super(option);
@@ -23,9 +23,9 @@ public final class NodeCartemInsert extends DeciTreeTemplateWriteV2<CartemInfo> 
 	
 	
 	
-	@Override protected ModelCheckerV1<CartemInfo> buildCheckerHook(DeciTreeOption<CartemInfo> option) {
-		List<ModelCheckerV1<CartemInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<CartemInfo> checker;	
+	@Override protected ModelChecker<CartemInfo> buildCheckerHook(DeciTreeOption<CartemInfo> option) {
+		List<ModelChecker<CartemInfo>> queue = new ArrayList<>();		
+		ModelChecker<CartemInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -35,15 +35,15 @@ public final class NodeCartemInsert extends DeciTreeTemplateWriteV2<CartemInfo> 
 		checker = new CartemCheckLimit(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<CartemInfo>> buildActionsOnPassedHook(DeciTreeOption<CartemInfo> option) {
-		List<ActionStdV2<CartemInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<CartemInfo>> buildActionsOnPassedHook(DeciTreeOption<CartemInfo> option) {
+		List<ActionStd<CartemInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<CartemInfo> enforceCreatedOn = new StdCartemEnforceCreatedOn(option);	
+		ActionStd<CartemInfo> enforceCreatedOn = new StdCartemEnforceCreatedOn(option);	
 		ActionLazy<CartemInfo> insert = new LazyCartemDaoInsert(option.conn, option.schemaName);	
 		
 		enforceCreatedOn.addPostAction(insert);

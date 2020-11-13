@@ -4,11 +4,11 @@ import java.util.List;
 
 import br.com.mind5.business.employeeSearch.info.EmparchInfo;
 import br.com.mind5.business.employeeSearch.info.EmparchMerger;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiEmparchMergeToSelect extends ActionVisitorTemplateMergeV2<EmparchInfo, EmparchInfo> {
+final class VisiEmparchMergeToSelect extends ActionVisitorTemplateMerge<EmparchInfo, EmparchInfo> {
 	
 	public VisiEmparchMergeToSelect(DeciTreeOption<EmparchInfo> option) {
 		super(option, EmparchInfo.class);
@@ -16,7 +16,7 @@ final class VisiEmparchMergeToSelect extends ActionVisitorTemplateMergeV2<Emparc
 	
 	
 	
-	@Override protected Class<? extends ActionStdV2<EmparchInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStd<EmparchInfo>> getActionClassHook() {
 		return StdEmparchDaoSelect.class;
 	}
 	

@@ -6,11 +6,11 @@ import br.com.mind5.business.order.info.OrderInfo;
 import br.com.mind5.business.order.info.OrderMerger;
 import br.com.mind5.masterData.refundPolicyGroup.info.RefugroupInfo;
 import br.com.mind5.masterData.refundPolicyGroup.model.decisionTree.RootRefugroupSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiOrderMergeRefugroup extends ActionVisitorTemplateMergeV2<OrderInfo, RefugroupInfo> {
+final class VisiOrderMergeRefugroup extends ActionVisitorTemplateMerge<OrderInfo, RefugroupInfo> {
 	
 	public VisiOrderMergeRefugroup(DeciTreeOption<OrderInfo> option) {
 		super(option, RefugroupInfo.class); 

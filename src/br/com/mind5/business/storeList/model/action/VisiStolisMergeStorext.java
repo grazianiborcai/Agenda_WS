@@ -6,11 +6,11 @@ import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.business.storeList.info.StolisMerger;
 import br.com.mind5.business.storeText.info.StorextInfo;
 import br.com.mind5.business.storeText.model.decisionTree.RootStorextSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiStolisMergeStorext extends ActionVisitorTemplateMergeV2<StolisInfo, StorextInfo> {
+final class VisiStolisMergeStorext extends ActionVisitorTemplateMerge<StolisInfo, StorextInfo> {
 	
 	public VisiStolisMergeStorext(DeciTreeOption<StolisInfo> option) {
 		super(option, StorextInfo.class);

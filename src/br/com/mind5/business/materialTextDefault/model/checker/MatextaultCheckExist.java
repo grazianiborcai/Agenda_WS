@@ -3,12 +3,12 @@ package br.com.mind5.business.materialTextDefault.model.checker;
 import br.com.mind5.business.materialTextDefault.info.MatextaultInfo;
 import br.com.mind5.business.materialTextDefault.model.action.StdMatextaultDaoSelect;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class MatextaultCheckExist extends ModelCheckerTemplateActionV2<MatextaultInfo, MatextaultInfo> {
+public final class MatextaultCheckExist extends ModelCheckerTemplateAction<MatextaultInfo, MatextaultInfo> {
 	
 	public MatextaultCheckExist(ModelCheckerOption option) {
 		super(option, MatextaultInfo.class);
@@ -16,8 +16,8 @@ public final class MatextaultCheckExist extends ModelCheckerTemplateActionV2<Mat
 	
 	
 	
-	@Override protected ActionStdV2<MatextaultInfo> buildActionHook(DeciTreeOption<MatextaultInfo> option) {
-		ActionStdV2<MatextaultInfo> select = new StdMatextaultDaoSelect(option);
+	@Override protected ActionStd<MatextaultInfo> buildActionHook(DeciTreeOption<MatextaultInfo> option) {
+		ActionStd<MatextaultInfo> select = new StdMatextaultDaoSelect(option);
 		return select;
 	}
 	

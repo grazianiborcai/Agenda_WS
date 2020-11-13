@@ -4,12 +4,11 @@ import java.util.List;
 
 import br.com.mind5.business.orderSnapshot.info.OrdnapInfo;
 import br.com.mind5.business.orderSnapshot.info.OrdnapMerger;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiOrdnapMergeToSelect extends ActionVisitorTemplateMergeV2<OrdnapInfo, OrdnapInfo> {
+final class VisiOrdnapMergeToSelect extends ActionVisitorTemplateMerge<OrdnapInfo, OrdnapInfo> {
 	
 	public VisiOrdnapMergeToSelect(DeciTreeOption<OrdnapInfo> option) {
 		super(option, OrdnapInfo.class);
@@ -17,7 +16,7 @@ final class VisiOrdnapMergeToSelect extends ActionVisitorTemplateMergeV2<OrdnapI
 	
 	
 	
-	@Override protected Class<? extends ActionStdV2<OrdnapInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStd<OrdnapInfo>> getActionClassHook() {
 		return StdOrdnapDaoSelect.class;
 	}
 	
@@ -30,6 +29,6 @@ final class VisiOrdnapMergeToSelect extends ActionVisitorTemplateMergeV2<OrdnapI
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
+		return super.DONT_MERGE_WHEN_EMPTY;
 	}
 }

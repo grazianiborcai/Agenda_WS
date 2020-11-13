@@ -4,11 +4,11 @@ import java.util.List;
 
 import br.com.mind5.business.scheduleLineSnapshot.info.SchedinapInfo;
 import br.com.mind5.business.scheduleLineSnapshot.info.SchedinapMerger;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiSchedinapMergeToSelect extends ActionVisitorTemplateMergeV2<SchedinapInfo, SchedinapInfo> {
+final class VisiSchedinapMergeToSelect extends ActionVisitorTemplateMerge<SchedinapInfo, SchedinapInfo> {
 	
 	public VisiSchedinapMergeToSelect(DeciTreeOption<SchedinapInfo> option) {
 		super(option, SchedinapInfo.class);
@@ -16,7 +16,7 @@ final class VisiSchedinapMergeToSelect extends ActionVisitorTemplateMergeV2<Sche
 	
 	
 	
-	@Override protected Class<? extends ActionStdV2<SchedinapInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStd<SchedinapInfo>> getActionClassHook() {
 		return StdSchedinapDaoSelect.class;
 	}
 	

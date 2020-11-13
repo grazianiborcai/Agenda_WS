@@ -12,14 +12,14 @@ import br.com.mind5.business.storeWorkTime.model.checker.StowotmCheckStorauth;
 import br.com.mind5.business.storeWorkTime.model.checker.StowotmCheckStore;
 import br.com.mind5.business.storeWorkTime.model.checker.StowotmCheckWeekday;
 import br.com.mind5.business.storeWorkTime.model.checker.StowotmCheckWrite;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootStowotmInsert extends DeciTreeTemplateWriteV2<StowotmInfo> {
+public final class RootStowotmInsert extends DeciTreeTemplateWrite<StowotmInfo> {
 	
 	public RootStowotmInsert(DeciTreeOption<StowotmInfo> option) {
 		super(option);
@@ -27,9 +27,9 @@ public final class RootStowotmInsert extends DeciTreeTemplateWriteV2<StowotmInfo
 	
 	
 	
-	@Override protected ModelCheckerV1<StowotmInfo> buildCheckerHook(DeciTreeOption<StowotmInfo> option) {
-		List<ModelCheckerV1<StowotmInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<StowotmInfo> checker;
+	@Override protected ModelChecker<StowotmInfo> buildCheckerHook(DeciTreeOption<StowotmInfo> option) {
+		List<ModelChecker<StowotmInfo>> queue = new ArrayList<>();		
+		ModelChecker<StowotmInfo> checker;
 		ModelCheckerOption checkerOption;		
 		
 		checkerOption = new ModelCheckerOption();
@@ -88,15 +88,15 @@ public final class RootStowotmInsert extends DeciTreeTemplateWriteV2<StowotmInfo
 		checker = new StowotmCheckStorauth(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<StowotmInfo>> buildActionsOnPassedHook(DeciTreeOption<StowotmInfo> option) {
-		List<ActionStdV2<StowotmInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<StowotmInfo>> buildActionsOnPassedHook(DeciTreeOption<StowotmInfo> option) {
+		List<ActionStd<StowotmInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<StowotmInfo> nodeInsert = new NodeStowotmInsert(option).toAction();
+		ActionStd<StowotmInfo> nodeInsert = new NodeStowotmInsert(option).toAction();
 		
 		actions.add(nodeInsert);
 		return actions;

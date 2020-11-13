@@ -9,14 +9,14 @@ import br.com.mind5.authorization.scheduleAuthorization.model.action.LazySchedau
 import br.com.mind5.authorization.scheduleAuthorization.model.action.StdSchedauthMergeUsername;
 import br.com.mind5.authorization.scheduleAuthorization.model.checker.SchedauthCheckAuthManager;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodeSchedauthSearchL2 extends DeciTreeTemplateWriteV2<SchedauthInfo> {
+public final class NodeSchedauthSearchL2 extends DeciTreeTemplateWrite<SchedauthInfo> {
 	
 	public NodeSchedauthSearchL2(DeciTreeOption<SchedauthInfo> option) {
 		super(option);
@@ -24,9 +24,9 @@ public final class NodeSchedauthSearchL2 extends DeciTreeTemplateWriteV2<Schedau
 	
 	
 	
-	@Override protected ModelCheckerV1<SchedauthInfo> buildCheckerHook(DeciTreeOption<SchedauthInfo> option) {
-		List<ModelCheckerV1<SchedauthInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<SchedauthInfo> checker;	
+	@Override protected ModelChecker<SchedauthInfo> buildCheckerHook(DeciTreeOption<SchedauthInfo> option) {
+		List<ModelChecker<SchedauthInfo>> queue = new ArrayList<>();		
+		ModelChecker<SchedauthInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -36,15 +36,15 @@ public final class NodeSchedauthSearchL2 extends DeciTreeTemplateWriteV2<Schedau
 		checker = new SchedauthCheckAuthManager(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<SchedauthInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedauthInfo> option) {
-		List<ActionStdV2<SchedauthInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStd<SchedauthInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedauthInfo> option) {
+		List<ActionStd<SchedauthInfo>> actions = new ArrayList<>();		
 
-		ActionStdV2<SchedauthInfo> mergeUsername = new StdSchedauthMergeUsername(option);
+		ActionStd<SchedauthInfo> mergeUsername = new StdSchedauthMergeUsername(option);
 		ActionLazy<SchedauthInfo> mergeSotarch = new LazySchedauthMergeSotarch(option.conn, option.schemaName);
 		ActionLazy<SchedauthInfo> obfuscateUser = new LazySchedauthObfuscateUser(option.conn, option.schemaName);
 		
@@ -57,10 +57,10 @@ public final class NodeSchedauthSearchL2 extends DeciTreeTemplateWriteV2<Schedau
 	
 	
 	
-	@Override protected List<ActionStdV2<SchedauthInfo>> buildActionsOnFailedHook(DeciTreeOption<SchedauthInfo> option) {
-		List<ActionStdV2<SchedauthInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStd<SchedauthInfo>> buildActionsOnFailedHook(DeciTreeOption<SchedauthInfo> option) {
+		List<ActionStd<SchedauthInfo>> actions = new ArrayList<>();		
 	
-		ActionStdV2<SchedauthInfo> nodeL3 = new NodeSchedauthSearchL3(option).toAction();	
+		ActionStd<SchedauthInfo> nodeL3 = new NodeSchedauthSearchL3(option).toAction();	
 		
 		actions.add(nodeL3);		
 		return actions;

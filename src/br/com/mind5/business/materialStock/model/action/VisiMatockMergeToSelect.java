@@ -4,11 +4,11 @@ import java.util.List;
 
 import br.com.mind5.business.materialStock.info.MatockInfo;
 import br.com.mind5.business.materialStock.info.MatockMerger;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiMatockMergeToSelect extends ActionVisitorTemplateMergeV2<MatockInfo, MatockInfo> {
+final class VisiMatockMergeToSelect extends ActionVisitorTemplateMerge<MatockInfo, MatockInfo> {
 	
 	public VisiMatockMergeToSelect(DeciTreeOption<MatockInfo> option) {
 		super(option, MatockInfo.class);
@@ -16,7 +16,7 @@ final class VisiMatockMergeToSelect extends ActionVisitorTemplateMergeV2<MatockI
 	
 	
 	
-	@Override protected Class<? extends ActionStdV2<MatockInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStd<MatockInfo>> getActionClassHook() {
 		return StdMatockDaoSelect.class;
 	}
 	

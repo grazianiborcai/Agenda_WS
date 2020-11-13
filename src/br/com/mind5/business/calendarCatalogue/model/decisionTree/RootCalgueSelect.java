@@ -17,14 +17,14 @@ import br.com.mind5.business.calendarCatalogue.model.checker.CalgueCheckRead;
 import br.com.mind5.business.calendarCatalogue.model.checker.CalgueCheckStore;
 import br.com.mind5.business.calendarCatalogue.model.checker.CalgueCheckYearMonth;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootCalgueSelect extends DeciTreeTemplateWriteV2<CalgueInfo> {
+public final class RootCalgueSelect extends DeciTreeTemplateWrite<CalgueInfo> {
 	
 	public RootCalgueSelect(DeciTreeOption<CalgueInfo> option) {
 		super(option);
@@ -32,9 +32,9 @@ public final class RootCalgueSelect extends DeciTreeTemplateWriteV2<CalgueInfo> 
 	
 	
 	
-	@Override protected ModelCheckerV1<CalgueInfo> buildCheckerHook(DeciTreeOption<CalgueInfo> option) {
-		List<ModelCheckerV1<CalgueInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<CalgueInfo> checker;	
+	@Override protected ModelChecker<CalgueInfo> buildCheckerHook(DeciTreeOption<CalgueInfo> option) {
+		List<ModelChecker<CalgueInfo>> queue = new ArrayList<>();		
+		ModelChecker<CalgueInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -86,15 +86,15 @@ public final class RootCalgueSelect extends DeciTreeTemplateWriteV2<CalgueInfo> 
 		checker = new CalgueCheckStore(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<CalgueInfo>> buildActionsOnPassedHook(DeciTreeOption<CalgueInfo> option) {
-		List<ActionStdV2<CalgueInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStd<CalgueInfo>> buildActionsOnPassedHook(DeciTreeOption<CalgueInfo> option) {
+		List<ActionStd<CalgueInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV2<CalgueInfo> mergeCalguata = new StdCalgueMergeCalguata(option);
+		ActionStd<CalgueInfo> mergeCalguata = new StdCalgueMergeCalguata(option);
 		ActionLazy<CalgueInfo> mergeCalatity = new LazyCalgueMergeCalatity(option.conn, option.schemaName);		
 		ActionLazy<CalgueInfo> mergeMatlis = new LazyCalgueMergeMatlis(option.conn, option.schemaName);
 		ActionLazy<CalgueInfo> mergeStolis = new LazyCalgueMergeStolis(option.conn, option.schemaName);

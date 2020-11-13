@@ -4,10 +4,10 @@ import br.com.mind5.business.material.info.MatInfo;
 import br.com.mind5.masterData.materialGroup.info.MatoupInfo;
 import br.com.mind5.masterData.materialGroup.model.checker.MatoupCheckExist;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.model.checker.ModelChecker;
 
-public final class MatCheckMatoup extends ModelCheckerTemplateForwardV2<MatInfo, MatoupInfo> {
+public final class MatCheckMatoup extends ModelCheckerTemplateForward<MatInfo, MatoupInfo> {
 	
 	public MatCheckMatoup(ModelCheckerOption option) {
 		super(option);
@@ -15,7 +15,7 @@ public final class MatCheckMatoup extends ModelCheckerTemplateForwardV2<MatInfo,
 
 
 	
-	@Override protected ModelCheckerV1<MatoupInfo> getCheckerHook(ModelCheckerOption option) {
+	@Override protected ModelChecker<MatoupInfo> getCheckerHook(ModelCheckerOption option) {
 		return new MatoupCheckExist(option);
 	}
 	

@@ -10,14 +10,14 @@ import br.com.mind5.business.employeeList.model.checker.EmplisCheckLangu;
 import br.com.mind5.business.employeeList.model.checker.EmplisCheckOwner;
 import br.com.mind5.business.employeeList.model.checker.EmplisCheckSearch;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootEmplisSearch extends DeciTreeTemplateReadV2<EmplisInfo> {
+public final class RootEmplisSearch extends DeciTreeTemplateRead<EmplisInfo> {
 	
 	public RootEmplisSearch(DeciTreeOption<EmplisInfo> option) {
 		super(option);
@@ -25,9 +25,9 @@ public final class RootEmplisSearch extends DeciTreeTemplateReadV2<EmplisInfo> {
 	
 	
 	
-	@Override protected ModelCheckerV1<EmplisInfo> buildCheckerHook(DeciTreeOption<EmplisInfo> option) {
-		List<ModelCheckerV1<EmplisInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<EmplisInfo> checker;
+	@Override protected ModelChecker<EmplisInfo> buildCheckerHook(DeciTreeOption<EmplisInfo> option) {
+		List<ModelChecker<EmplisInfo>> queue = new ArrayList<>();		
+		ModelChecker<EmplisInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
 		checkerOption = new ModelCheckerOption();
@@ -51,15 +51,15 @@ public final class RootEmplisSearch extends DeciTreeTemplateReadV2<EmplisInfo> {
 		checker = new EmplisCheckOwner(checkerOption);
 		queue.add(checker);	
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<EmplisInfo>> buildActionsOnPassedHook(DeciTreeOption<EmplisInfo> option) {
-		List<ActionStdV2<EmplisInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<EmplisInfo>> buildActionsOnPassedHook(DeciTreeOption<EmplisInfo> option) {
+		List<ActionStd<EmplisInfo>> actions = new ArrayList<>();
 
-		ActionStdV2<EmplisInfo> nodePerson = new NodeEmplisPerson(option).toAction();
+		ActionStd<EmplisInfo> nodePerson = new NodeEmplisPerson(option).toAction();
 		ActionLazy<EmplisInfo> mergeEmparch = new LazyEmplisMergeEmparch(option.conn, option.schemaName);
 		ActionLazy<EmplisInfo> select = new LazyEmplisRootSelect(option.conn, option.schemaName);
 		

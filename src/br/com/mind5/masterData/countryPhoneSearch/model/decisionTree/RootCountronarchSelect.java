@@ -6,14 +6,14 @@ import java.util.List;
 import br.com.mind5.masterData.countryPhoneSearch.info.CountronarchInfo;
 import br.com.mind5.masterData.countryPhoneSearch.model.action.StdCountronarchDaoSelect;
 import br.com.mind5.masterData.countryPhoneSearch.model.checker.CountronarchCheckRead;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootCountronarchSelect extends DeciTreeTemplateReadV2<CountronarchInfo> {
+public final class RootCountronarchSelect extends DeciTreeTemplateRead<CountronarchInfo> {
 	
 	public RootCountronarchSelect(DeciTreeOption<CountronarchInfo> option) {
 		super(option);
@@ -21,9 +21,9 @@ public final class RootCountronarchSelect extends DeciTreeTemplateReadV2<Countro
 	
 	
 	
-	@Override protected ModelCheckerV1<CountronarchInfo> buildCheckerHook(DeciTreeOption<CountronarchInfo> option) {
-		List<ModelCheckerV1<CountronarchInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<CountronarchInfo> checker;
+	@Override protected ModelChecker<CountronarchInfo> buildCheckerHook(DeciTreeOption<CountronarchInfo> option) {
+		List<ModelChecker<CountronarchInfo>> queue = new ArrayList<>();		
+		ModelChecker<CountronarchInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
 		checkerOption = new ModelCheckerOption();
@@ -33,15 +33,15 @@ public final class RootCountronarchSelect extends DeciTreeTemplateReadV2<Countro
 		checker = new CountronarchCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<CountronarchInfo>> buildActionsOnPassedHook(DeciTreeOption<CountronarchInfo> option) {
-		List<ActionStdV2<CountronarchInfo>> actions = new ArrayList<>(); 
+	@Override protected List<ActionStd<CountronarchInfo>> buildActionsOnPassedHook(DeciTreeOption<CountronarchInfo> option) {
+		List<ActionStd<CountronarchInfo>> actions = new ArrayList<>(); 
 		
-		ActionStdV2<CountronarchInfo> select = new StdCountronarchDaoSelect(option);
+		ActionStd<CountronarchInfo> select = new StdCountronarchDaoSelect(option);
 		
 		actions.add(select);
 		return actions;

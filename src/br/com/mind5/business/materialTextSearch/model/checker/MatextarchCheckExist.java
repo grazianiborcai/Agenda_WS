@@ -5,12 +5,12 @@ import java.util.List;
 import br.com.mind5.business.materialTextSearch.info.MatextarchInfo;
 import br.com.mind5.business.materialTextSearch.model.decisionTree.RootMatextarchSelect;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class MatextarchCheckExist extends ModelCheckerTemplateActionV2<MatextarchInfo, MatextarchInfo> {	
+public final class MatextarchCheckExist extends ModelCheckerTemplateAction<MatextarchInfo, MatextarchInfo> {	
 	
 	public MatextarchCheckExist(ModelCheckerOption option) {
 		super(option, MatextarchInfo.class);
@@ -18,8 +18,8 @@ public final class MatextarchCheckExist extends ModelCheckerTemplateActionV2<Mat
 	
 	
 	
-	@Override protected ActionStdV2<MatextarchInfo> buildActionHook(DeciTreeOption<MatextarchInfo> option) {
-		ActionStdV2<MatextarchInfo> select = new RootMatextarchSelect(option).toAction();
+	@Override protected ActionStd<MatextarchInfo> buildActionHook(DeciTreeOption<MatextarchInfo> option) {
+		ActionStd<MatextarchInfo> select = new RootMatextarchSelect(option).toAction();
 		return select;
 	}
 	

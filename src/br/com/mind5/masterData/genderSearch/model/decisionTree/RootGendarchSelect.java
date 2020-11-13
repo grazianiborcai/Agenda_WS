@@ -6,14 +6,14 @@ import java.util.List;
 import br.com.mind5.masterData.genderSearch.info.GendarchInfo;
 import br.com.mind5.masterData.genderSearch.model.action.StdGendarchDaoSelect;
 import br.com.mind5.masterData.genderSearch.model.checker.GendarchCheckRead;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootGendarchSelect extends DeciTreeTemplateReadV2<GendarchInfo> {
+public final class RootGendarchSelect extends DeciTreeTemplateRead<GendarchInfo> {
 	
 	public RootGendarchSelect(DeciTreeOption<GendarchInfo> option) {
 		super(option);
@@ -21,9 +21,9 @@ public final class RootGendarchSelect extends DeciTreeTemplateReadV2<GendarchInf
 	
 	
 	
-	@Override protected ModelCheckerV1<GendarchInfo> buildCheckerHook(DeciTreeOption<GendarchInfo> option) {
-		List<ModelCheckerV1<GendarchInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<GendarchInfo> checker;
+	@Override protected ModelChecker<GendarchInfo> buildCheckerHook(DeciTreeOption<GendarchInfo> option) {
+		List<ModelChecker<GendarchInfo>> queue = new ArrayList<>();		
+		ModelChecker<GendarchInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
 		checkerOption = new ModelCheckerOption();
@@ -33,15 +33,15 @@ public final class RootGendarchSelect extends DeciTreeTemplateReadV2<GendarchInf
 		checker = new GendarchCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<GendarchInfo>> buildActionsOnPassedHook(DeciTreeOption<GendarchInfo> option) {
-		List<ActionStdV2<GendarchInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<GendarchInfo>> buildActionsOnPassedHook(DeciTreeOption<GendarchInfo> option) {
+		List<ActionStd<GendarchInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<GendarchInfo> select = new StdGendarchDaoSelect(option);
+		ActionStd<GendarchInfo> select = new StdGendarchDaoSelect(option);
 		
 		actions.add(select);
 		return actions;

@@ -1,11 +1,11 @@
 package br.com.mind5.masterData.moonPhase.model.action;
 
 import br.com.mind5.masterData.moonPhase.info.MoonaseInfo;
-import br.com.mind5.model.action.ActionStdTemplateV2;
-import br.com.mind5.model.action.ActionVisitorV2;
+import br.com.mind5.model.action.ActionStdTemplate;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdMoonaseDaoSelect extends ActionStdTemplateV2<MoonaseInfo> {
+public final class StdMoonaseDaoSelect extends ActionStdTemplate<MoonaseInfo> {
 
 	public StdMoonaseDaoSelect(DeciTreeOption<MoonaseInfo> option) {
 		super(option);
@@ -13,7 +13,7 @@ public final class StdMoonaseDaoSelect extends ActionStdTemplateV2<MoonaseInfo> 
 	
 	
 	
-	protected ActionVisitorV2<MoonaseInfo> buildVisitorHook(DeciTreeOption<MoonaseInfo> option) {
+	protected ActionVisitor<MoonaseInfo> buildVisitorHook(DeciTreeOption<MoonaseInfo> option) {
 		return new VisiMoonaseDaoSelect(option);
 	}
 }

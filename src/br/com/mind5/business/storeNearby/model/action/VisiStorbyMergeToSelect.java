@@ -4,11 +4,11 @@ import java.util.List;
 
 import br.com.mind5.business.storeNearby.info.StorbyInfo;
 import br.com.mind5.business.storeNearby.info.StorbyMerger;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiStorbyMergeToSelect extends ActionVisitorTemplateMergeV2<StorbyInfo, StorbyInfo> {
+final class VisiStorbyMergeToSelect extends ActionVisitorTemplateMerge<StorbyInfo, StorbyInfo> {
 	
 	public VisiStorbyMergeToSelect(DeciTreeOption<StorbyInfo> option) {
 		super(option, StorbyInfo.class);
@@ -16,7 +16,7 @@ final class VisiStorbyMergeToSelect extends ActionVisitorTemplateMergeV2<StorbyI
 	
 	
 	
-	@Override protected Class<? extends ActionStdV2<StorbyInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStd<StorbyInfo>> getActionClassHook() {
 		return StdStorbyDaoSelect.class;
 	}
 	

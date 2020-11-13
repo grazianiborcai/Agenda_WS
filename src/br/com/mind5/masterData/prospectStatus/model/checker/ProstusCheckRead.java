@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.masterData.prospectStatus.info.ProstusInfo;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 
-public final class ProstusCheckRead extends ModelCheckerTemplateSimpleV2<ProstusInfo> {
+public final class ProstusCheckRead extends ModelCheckerTemplateSimple<ProstusInfo> {
 
 	public ProstusCheckRead(ModelCheckerOption option) {
 		super(option);

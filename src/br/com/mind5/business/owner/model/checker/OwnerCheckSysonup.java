@@ -4,10 +4,10 @@ import br.com.mind5.business.owner.info.OwnerInfo;
 import br.com.mind5.config.sysOwnerSignup.info.SysonupInfo;
 import br.com.mind5.config.sysOwnerSignup.model.checker.SysonupCheckEnabled;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.model.checker.ModelChecker;
 
-public final class OwnerCheckSysonup extends ModelCheckerTemplateForwardV2<OwnerInfo, SysonupInfo> {
+public final class OwnerCheckSysonup extends ModelCheckerTemplateForward<OwnerInfo, SysonupInfo> {
 	
 	public OwnerCheckSysonup(ModelCheckerOption option) {
 		super(option);
@@ -15,7 +15,7 @@ public final class OwnerCheckSysonup extends ModelCheckerTemplateForwardV2<Owner
 
 
 	
-	@Override protected ModelCheckerV1<SysonupInfo> getCheckerHook(ModelCheckerOption option) {
+	@Override protected ModelChecker<SysonupInfo> getCheckerHook(ModelCheckerOption option) {
 		return new SysonupCheckEnabled(option);
 	}
 	

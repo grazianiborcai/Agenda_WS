@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.payment.storePartnerSnapshot.info.StoparnapInfo;
 import br.com.mind5.payment.storePartnerSnapshot.model.action.LazyStoparnapRootSelect;
 import br.com.mind5.payment.storePartnerSnapshot.model.action.StdStoparnapDaoInsert;
@@ -17,7 +17,7 @@ import br.com.mind5.payment.storePartnerSnapshot.model.checker.StoparnapCheckLan
 import br.com.mind5.payment.storePartnerSnapshot.model.checker.StoparnapCheckOwner;
 import br.com.mind5.payment.storePartnerSnapshot.model.checker.StoparnapCheckWrite;
 
-public final class RootStoparnapInsert extends DeciTreeTemplateWriteV2<StoparnapInfo> {
+public final class RootStoparnapInsert extends DeciTreeTemplateWrite<StoparnapInfo> {
 	
 	public RootStoparnapInsert(DeciTreeOption<StoparnapInfo> option) {
 		super(option);
@@ -25,9 +25,9 @@ public final class RootStoparnapInsert extends DeciTreeTemplateWriteV2<Stoparnap
 	
 	
 	
-	@Override protected ModelCheckerV1<StoparnapInfo> buildCheckerHook(DeciTreeOption<StoparnapInfo> option) {
-		List<ModelCheckerV1<StoparnapInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<StoparnapInfo> checker;	
+	@Override protected ModelChecker<StoparnapInfo> buildCheckerHook(DeciTreeOption<StoparnapInfo> option) {
+		List<ModelChecker<StoparnapInfo>> queue = new ArrayList<>();		
+		ModelChecker<StoparnapInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -51,15 +51,15 @@ public final class RootStoparnapInsert extends DeciTreeTemplateWriteV2<Stoparnap
 		checker = new StoparnapCheckLangu(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<StoparnapInfo>> buildActionsOnPassedHook(DeciTreeOption<StoparnapInfo> option) {
-		List<ActionStdV2<StoparnapInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStd<StoparnapInfo>> buildActionsOnPassedHook(DeciTreeOption<StoparnapInfo> option) {
+		List<ActionStd<StoparnapInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV2<StoparnapInfo> insert = new StdStoparnapDaoInsert(option);	
+		ActionStd<StoparnapInfo> insert = new StdStoparnapDaoInsert(option);	
 		ActionLazy<StoparnapInfo> select = new LazyStoparnapRootSelect(option.conn, option.schemaName);	
 		
 		insert.addPostAction(select);

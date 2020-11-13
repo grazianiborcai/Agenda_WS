@@ -4,10 +4,10 @@ import br.com.mind5.business.cartItem.info.CartemInfo;
 import br.com.mind5.business.materialStore.info.MatoreInfo;
 import br.com.mind5.business.materialStore.model.checker.MatoreCheckExist;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.model.checker.ModelChecker;
 
-public final class CartemCheckMatore extends ModelCheckerTemplateForwardV2<CartemInfo, MatoreInfo> {
+public final class CartemCheckMatore extends ModelCheckerTemplateForward<CartemInfo, MatoreInfo> {
 	
 	public CartemCheckMatore(ModelCheckerOption option) {
 		super(option);
@@ -15,7 +15,7 @@ public final class CartemCheckMatore extends ModelCheckerTemplateForwardV2<Carte
 
 
 	
-	@Override protected ModelCheckerV1<MatoreInfo> getCheckerHook(ModelCheckerOption option) {
+	@Override protected ModelChecker<MatoreInfo> getCheckerHook(ModelCheckerOption option) {
 		return new MatoreCheckExist(option);
 	}
 	

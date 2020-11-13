@@ -15,14 +15,14 @@ import br.com.mind5.business.materialSnapshot.model.checker.MatsnapCheckMat;
 import br.com.mind5.business.materialSnapshot.model.checker.MatsnapCheckOwner;
 import br.com.mind5.business.materialSnapshot.model.checker.MatsnapCheckRead;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootMatsnapSelect extends DeciTreeTemplateReadV2<MatsnapInfo> {
+public final class RootMatsnapSelect extends DeciTreeTemplateRead<MatsnapInfo> {
 	
 	public RootMatsnapSelect(DeciTreeOption<MatsnapInfo> option) {
 		super(option);
@@ -30,9 +30,9 @@ public final class RootMatsnapSelect extends DeciTreeTemplateReadV2<MatsnapInfo>
 	
 	
 	
-	@Override protected ModelCheckerV1<MatsnapInfo> buildCheckerHook(DeciTreeOption<MatsnapInfo> option) {
-		List<ModelCheckerV1<MatsnapInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<MatsnapInfo> checker;
+	@Override protected ModelChecker<MatsnapInfo> buildCheckerHook(DeciTreeOption<MatsnapInfo> option) {
+		List<ModelChecker<MatsnapInfo>> queue = new ArrayList<>();		
+		ModelChecker<MatsnapInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -56,15 +56,15 @@ public final class RootMatsnapSelect extends DeciTreeTemplateReadV2<MatsnapInfo>
 		checker = new MatsnapCheckMat(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<MatsnapInfo>> buildActionsOnPassedHook(DeciTreeOption<MatsnapInfo> option) {
-		List<ActionStdV2<MatsnapInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<MatsnapInfo>> buildActionsOnPassedHook(DeciTreeOption<MatsnapInfo> option) {
+		List<ActionStd<MatsnapInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<MatsnapInfo> select = new StdMatsnapMergeToSelect(option);
+		ActionStd<MatsnapInfo> select = new StdMatsnapMergeToSelect(option);
 		ActionLazy<MatsnapInfo> mergeMatextsnap = new LazyMatsnapMergeMatextsnap(option.conn, option.schemaName);
 		ActionLazy<MatsnapInfo> mergeMatype = new LazyMatsnapMergeMatype(option.conn, option.schemaName);
 		ActionLazy<MatsnapInfo> mergeMateg = new LazyMatsnapMergeMateg(option.conn, option.schemaName);

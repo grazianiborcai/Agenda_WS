@@ -6,14 +6,14 @@ import java.util.List;
 import br.com.mind5.business.orderItemList.info.OrdemistInfo;
 import br.com.mind5.business.orderItemList.model.action.StdOrdemistMergeToSelect;
 import br.com.mind5.business.orderItemList.model.checker.OrdemistCheckRead;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootOrdemistSelect extends DeciTreeTemplateWriteV2<OrdemistInfo> {
+public final class RootOrdemistSelect extends DeciTreeTemplateWrite<OrdemistInfo> {
 	
 	public RootOrdemistSelect(DeciTreeOption<OrdemistInfo> option) {
 		super(option);
@@ -21,9 +21,9 @@ public final class RootOrdemistSelect extends DeciTreeTemplateWriteV2<OrdemistIn
 	
 	
 	
-	@Override protected ModelCheckerV1<OrdemistInfo> buildCheckerHook(DeciTreeOption<OrdemistInfo> option) {
-		List<ModelCheckerV1<OrdemistInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<OrdemistInfo> checker;	
+	@Override protected ModelChecker<OrdemistInfo> buildCheckerHook(DeciTreeOption<OrdemistInfo> option) {
+		List<ModelChecker<OrdemistInfo>> queue = new ArrayList<>();		
+		ModelChecker<OrdemistInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -33,15 +33,15 @@ public final class RootOrdemistSelect extends DeciTreeTemplateWriteV2<OrdemistIn
 		checker = new OrdemistCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<OrdemistInfo>> buildActionsOnPassedHook(DeciTreeOption<OrdemistInfo> option) {
-		List<ActionStdV2<OrdemistInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<OrdemistInfo>> buildActionsOnPassedHook(DeciTreeOption<OrdemistInfo> option) {
+		List<ActionStd<OrdemistInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<OrdemistInfo> select = new StdOrdemistMergeToSelect(option);
+		ActionStd<OrdemistInfo> select = new StdOrdemistMergeToSelect(option);
 		
 		actions.add(select);
 		return actions;

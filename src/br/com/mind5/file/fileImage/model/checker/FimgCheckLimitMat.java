@@ -4,12 +4,12 @@ import br.com.mind5.common.SystemCode;
 import br.com.mind5.file.fileImage.info.FimgInfo;
 import br.com.mind5.file.fileImageSearch.info.FimarchInfo;
 import br.com.mind5.file.fileImageSearch.model.decisionTree.RootFimarchSelectMat;
-import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class FimgCheckLimitMat extends ModelCheckerTemplateActionV2<FimgInfo, FimarchInfo> {
+public final class FimgCheckLimitMat extends ModelCheckerTemplateAction<FimgInfo, FimarchInfo> {
 	private final int MAX_RECORD_COUNT = 10;
 	
 	
@@ -19,8 +19,8 @@ public final class FimgCheckLimitMat extends ModelCheckerTemplateActionV2<FimgIn
 	
 	
 	
-	@Override protected ActionStdV2<FimarchInfo> buildActionHook(DeciTreeOption<FimarchInfo> option) {
-		ActionStdV2<FimarchInfo> select = new RootFimarchSelectMat(option).toAction();
+	@Override protected ActionStd<FimarchInfo> buildActionHook(DeciTreeOption<FimarchInfo> option) {
+		ActionStd<FimarchInfo> select = new RootFimarchSelectMat(option).toAction();
 		return select;
 	}
 	

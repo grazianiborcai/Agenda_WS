@@ -4,19 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
 import br.com.mind5.payment.customerPartner.model.action.LazyCusparEnforceCompoundId;
 import br.com.mind5.payment.customerPartner.model.action.LazyCusparNodeCreateMoip;
 import br.com.mind5.payment.customerPartner.model.action.LazyCusparUpdate;
 import br.com.mind5.payment.customerPartner.model.action.StdCusparDaoInsert;
 
-public final class NodeCusparInsert extends DeciTreeTemplateWriteV2<CusparInfo> {
+public final class NodeCusparInsert extends DeciTreeTemplateWrite<CusparInfo> {
 	
 	public NodeCusparInsert(DeciTreeOption<CusparInfo> option) {
 		super(option);
@@ -24,22 +24,22 @@ public final class NodeCusparInsert extends DeciTreeTemplateWriteV2<CusparInfo> 
 	
 	
 	
-	@Override protected ModelCheckerV1<CusparInfo> buildCheckerHook(DeciTreeOption<CusparInfo> option) {
-		List<ModelCheckerV1<CusparInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<CusparInfo> checker;	
+	@Override protected ModelChecker<CusparInfo> buildCheckerHook(DeciTreeOption<CusparInfo> option) {
+		List<ModelChecker<CusparInfo>> queue = new ArrayList<>();		
+		ModelChecker<CusparInfo> checker;	
 
 		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<CusparInfo>> buildActionsOnPassedHook(DeciTreeOption<CusparInfo> option) {
-		List<ActionStdV2<CusparInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<CusparInfo>> buildActionsOnPassedHook(DeciTreeOption<CusparInfo> option) {
+		List<ActionStd<CusparInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<CusparInfo> insert = new StdCusparDaoInsert(option);
+		ActionStd<CusparInfo> insert = new StdCusparDaoInsert(option);
 		ActionLazy<CusparInfo> enforceCompoundId = new LazyCusparEnforceCompoundId(option.conn, option.schemaName);	
 		ActionLazy<CusparInfo> createMoip = new LazyCusparNodeCreateMoip(option.conn, option.schemaName);
 		ActionLazy<CusparInfo> update = new LazyCusparUpdate(option.conn, option.schemaName);

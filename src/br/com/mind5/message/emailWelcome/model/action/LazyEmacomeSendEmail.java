@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.message.emailWelcome.info.EmacomeInfo;
 import br.com.mind5.model.action.ActionLazyTemplate;
-import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -23,7 +23,7 @@ public final class LazyEmacomeSendEmail extends ActionLazyTemplate<EmacomeInfo, 
 	
 	
 	
-	@Override protected ActionStdV2<EmacomeInfo> getInstanceOfActionHook(DeciTreeOption<EmacomeInfo> option) {
+	@Override protected ActionStd<EmacomeInfo> getInstanceOfActionHook(DeciTreeOption<EmacomeInfo> option) {
 		return new StdEmacomeSendEmail(option);
 	}
 	

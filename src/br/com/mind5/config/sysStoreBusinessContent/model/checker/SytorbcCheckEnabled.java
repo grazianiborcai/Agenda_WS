@@ -3,12 +3,12 @@ package br.com.mind5.config.sysStoreBusinessContent.model.checker;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.config.sysStoreBusinessContent.info.SytorbcInfo;
 import br.com.mind5.config.sysStoreBusinessContent.model.decisionTree.RootSytorbcSelectEnabled;
-import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class SytorbcCheckEnabled extends ModelCheckerTemplateActionV2<SytorbcInfo, SytorbcInfo> {
+public final class SytorbcCheckEnabled extends ModelCheckerTemplateAction<SytorbcInfo, SytorbcInfo> {
 	
 	public SytorbcCheckEnabled(ModelCheckerOption option) {
 		super(option, SytorbcInfo.class);
@@ -16,8 +16,8 @@ public final class SytorbcCheckEnabled extends ModelCheckerTemplateActionV2<Syto
 	
 	
 	
-	@Override protected ActionStdV2<SytorbcInfo> buildActionHook(DeciTreeOption<SytorbcInfo> option) {
-		ActionStdV2<SytorbcInfo> select = new RootSytorbcSelectEnabled(option).toAction();		
+	@Override protected ActionStd<SytorbcInfo> buildActionHook(DeciTreeOption<SytorbcInfo> option) {
+		ActionStd<SytorbcInfo> select = new RootSytorbcSelectEnabled(option).toAction();		
 		return select;
 	}
 	

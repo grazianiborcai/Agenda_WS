@@ -6,14 +6,14 @@ import java.util.List;
 import br.com.mind5.masterData.materialCategorySearch.info.MategarchInfo;
 import br.com.mind5.masterData.materialCategorySearch.model.action.StdMategarchDaoSelect;
 import br.com.mind5.masterData.materialCategorySearch.model.checker.MategarchCheckRead;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootMategarchSelect extends DeciTreeTemplateReadV2<MategarchInfo> {
+public final class RootMategarchSelect extends DeciTreeTemplateRead<MategarchInfo> {
 	
 	public RootMategarchSelect(DeciTreeOption<MategarchInfo> option) {
 		super(option);
@@ -21,9 +21,9 @@ public final class RootMategarchSelect extends DeciTreeTemplateReadV2<MategarchI
 	
 	
 	
-	@Override protected ModelCheckerV1<MategarchInfo> buildCheckerHook(DeciTreeOption<MategarchInfo> option) {
-		List<ModelCheckerV1<MategarchInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<MategarchInfo> checker;
+	@Override protected ModelChecker<MategarchInfo> buildCheckerHook(DeciTreeOption<MategarchInfo> option) {
+		List<ModelChecker<MategarchInfo>> queue = new ArrayList<>();		
+		ModelChecker<MategarchInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
 		checkerOption = new ModelCheckerOption();
@@ -33,15 +33,15 @@ public final class RootMategarchSelect extends DeciTreeTemplateReadV2<MategarchI
 		checker = new MategarchCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<MategarchInfo>> buildActionsOnPassedHook(DeciTreeOption<MategarchInfo> option) {
-		List<ActionStdV2<MategarchInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<MategarchInfo>> buildActionsOnPassedHook(DeciTreeOption<MategarchInfo> option) {
+		List<ActionStd<MategarchInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<MategarchInfo> select = new StdMategarchDaoSelect(option);
+		ActionStd<MategarchInfo> select = new StdMategarchDaoSelect(option);
 		
 		actions.add(select);
 		return actions;

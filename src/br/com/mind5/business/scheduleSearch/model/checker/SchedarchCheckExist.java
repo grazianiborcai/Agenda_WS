@@ -3,12 +3,12 @@ package br.com.mind5.business.scheduleSearch.model.checker;
 import br.com.mind5.business.scheduleSearch.info.SchedarchInfo;
 import br.com.mind5.business.scheduleSearch.model.decisionTree.RootSchedarchSelect;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class SchedarchCheckExist extends ModelCheckerTemplateActionV2<SchedarchInfo, SchedarchInfo> {
+public final class SchedarchCheckExist extends ModelCheckerTemplateAction<SchedarchInfo, SchedarchInfo> {
 	
 	public SchedarchCheckExist(ModelCheckerOption option) {
 		super(option, SchedarchInfo.class);
@@ -16,8 +16,8 @@ public final class SchedarchCheckExist extends ModelCheckerTemplateActionV2<Sche
 	
 	
 	
-	@Override protected ActionStdV2<SchedarchInfo> buildActionHook(DeciTreeOption<SchedarchInfo> option) {
-		ActionStdV2<SchedarchInfo> select = new RootSchedarchSelect(option).toAction();
+	@Override protected ActionStd<SchedarchInfo> buildActionHook(DeciTreeOption<SchedarchInfo> option) {
+		ActionStd<SchedarchInfo> select = new RootSchedarchSelect(option).toAction();
 		return select;
 	}
 	

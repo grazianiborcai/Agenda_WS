@@ -1,11 +1,11 @@
 package br.com.mind5.config.sysStorePartitioning.model.action;
 
 import br.com.mind5.config.sysStorePartitioning.info.SytotinInfo;
-import br.com.mind5.model.action.ActionStdTemplateV2;
-import br.com.mind5.model.action.ActionVisitorV2;
+import br.com.mind5.model.action.ActionStdTemplate;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdSytotinDaoSelect extends ActionStdTemplateV2<SytotinInfo> {
+public final class StdSytotinDaoSelect extends ActionStdTemplate<SytotinInfo> {
 
 	public StdSytotinDaoSelect(DeciTreeOption<SytotinInfo> option) {
 		super(option);
@@ -13,7 +13,7 @@ public final class StdSytotinDaoSelect extends ActionStdTemplateV2<SytotinInfo> 
 	
 	
 	
-	protected ActionVisitorV2<SytotinInfo> buildVisitorHook(DeciTreeOption<SytotinInfo> option) {
+	protected ActionVisitor<SytotinInfo> buildVisitorHook(DeciTreeOption<SytotinInfo> option) {
 		return new VisiSytotinDaoSelect(option);
 	}
 }

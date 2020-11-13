@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.scheduleLineSnapshot.info.SchedinapInfo;
 import br.com.mind5.model.action.ActionLazyTemplate;
-import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -23,7 +23,7 @@ public final class LazySchedinapDaoInsert extends ActionLazyTemplate<SchedinapIn
 	
 	
 	
-	@Override protected ActionStdV2<SchedinapInfo> getInstanceOfActionHook(DeciTreeOption<SchedinapInfo> option) {
+	@Override protected ActionStd<SchedinapInfo> getInstanceOfActionHook(DeciTreeOption<SchedinapInfo> option) {
 		return new StdSchedinapDaoInsert(option);
 	}
 	

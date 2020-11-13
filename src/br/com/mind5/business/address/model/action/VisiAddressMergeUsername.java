@@ -4,13 +4,13 @@ import java.util.List;
 
 import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.address.info.AddressMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.username.info.UsernameInfo;
 import br.com.mind5.security.username.model.decisionTree.RootUsernameSelect;
 
-final class VisiAddressMergeUsername extends ActionVisitorTemplateMergeV2<AddressInfo, UsernameInfo> {
+final class VisiAddressMergeUsername extends ActionVisitorTemplateMerge<AddressInfo, UsernameInfo> {
 	
 	public VisiAddressMergeUsername(DeciTreeOption<AddressInfo> option) {
 		super(option, UsernameInfo.class);

@@ -1,14 +1,14 @@
 package br.com.mind5.security.userPasswordSearch.model.checker;
 
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.userPasswordSearch.info.UpswdarchInfo;
 import br.com.mind5.security.userPasswordSearch.model.decisionTree.RootUpswdarchChangedBefore;
 
-public final class UpswdarchCheckChangedBefore extends ModelCheckerTemplateActionV2<UpswdarchInfo, UpswdarchInfo> {
+public final class UpswdarchCheckChangedBefore extends ModelCheckerTemplateAction<UpswdarchInfo, UpswdarchInfo> {
 	
 	public UpswdarchCheckChangedBefore(ModelCheckerOption option) {
 		super(option, UpswdarchInfo.class);
@@ -16,8 +16,8 @@ public final class UpswdarchCheckChangedBefore extends ModelCheckerTemplateActio
 	
 	
 	
-	@Override protected ActionStdV2<UpswdarchInfo> buildActionHook(DeciTreeOption<UpswdarchInfo> option) {
-		ActionStdV2<UpswdarchInfo> select = new RootUpswdarchChangedBefore(option).toAction();
+	@Override protected ActionStd<UpswdarchInfo> buildActionHook(DeciTreeOption<UpswdarchInfo> option) {
+		ActionStd<UpswdarchInfo> select = new RootUpswdarchChangedBefore(option).toAction();
 		return select;
 	}
 	

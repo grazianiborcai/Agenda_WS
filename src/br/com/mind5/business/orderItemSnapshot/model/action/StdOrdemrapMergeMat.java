@@ -1,11 +1,11 @@
 package br.com.mind5.business.orderItemSnapshot.model.action;
 
 import br.com.mind5.business.orderItemSnapshot.info.OrdemrapInfo;
-import br.com.mind5.model.action.ActionStdTemplateV2;
-import br.com.mind5.model.action.ActionVisitorV2;
+import br.com.mind5.model.action.ActionStdTemplate;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdOrdemrapMergeMat extends ActionStdTemplateV2<OrdemrapInfo> {
+public final class StdOrdemrapMergeMat extends ActionStdTemplate<OrdemrapInfo> {
 
 	public StdOrdemrapMergeMat(DeciTreeOption<OrdemrapInfo> option) {
 		super(option);
@@ -13,7 +13,7 @@ public final class StdOrdemrapMergeMat extends ActionStdTemplateV2<OrdemrapInfo>
 	
 	
 	
-	protected ActionVisitorV2<OrdemrapInfo> buildVisitorHook(DeciTreeOption<OrdemrapInfo> option) {
+	protected ActionVisitor<OrdemrapInfo> buildVisitorHook(DeciTreeOption<OrdemrapInfo> option) {
 		return new VisiOrdemrapMergeMat(option);
 	}
 }

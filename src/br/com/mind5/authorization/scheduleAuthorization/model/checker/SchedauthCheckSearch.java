@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.mind5.authorization.scheduleAuthorization.info.SchedauthInfo;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 
-public final class SchedauthCheckSearch extends ModelCheckerTemplateSimpleV2<SchedauthInfo> {
+public final class SchedauthCheckSearch extends ModelCheckerTemplateSimple<SchedauthInfo> {
 
 	public SchedauthCheckSearch(ModelCheckerOption option) {
 		super(option);

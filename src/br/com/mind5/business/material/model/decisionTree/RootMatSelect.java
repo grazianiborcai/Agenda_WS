@@ -15,14 +15,14 @@ import br.com.mind5.business.material.model.action.LazyMatNodeSytotauh;
 import br.com.mind5.business.material.model.action.StdMatMergeToSelect;
 import br.com.mind5.business.material.model.checker.MatCheckRead;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootMatSelect extends DeciTreeTemplateReadV2<MatInfo> {
+public final class RootMatSelect extends DeciTreeTemplateRead<MatInfo> {
 	
 	public RootMatSelect(DeciTreeOption<MatInfo> option) {
 		super(option);
@@ -30,9 +30,9 @@ public final class RootMatSelect extends DeciTreeTemplateReadV2<MatInfo> {
 	
 	
 	
-	@Override protected ModelCheckerV1<MatInfo> buildCheckerHook(DeciTreeOption<MatInfo> option) {
-		List<ModelCheckerV1<MatInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<MatInfo> checker;
+	@Override protected ModelChecker<MatInfo> buildCheckerHook(DeciTreeOption<MatInfo> option) {
+		List<ModelChecker<MatInfo>> queue = new ArrayList<>();		
+		ModelChecker<MatInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -42,15 +42,15 @@ public final class RootMatSelect extends DeciTreeTemplateReadV2<MatInfo> {
 		checker = new MatCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<MatInfo>> buildActionsOnPassedHook(DeciTreeOption<MatInfo> option) {
-		List<ActionStdV2<MatInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<MatInfo>> buildActionsOnPassedHook(DeciTreeOption<MatInfo> option) {
+		List<ActionStd<MatInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<MatInfo> select = new StdMatMergeToSelect(option);
+		ActionStd<MatInfo> select = new StdMatMergeToSelect(option);
 		ActionLazy<MatInfo> nodeSytotauh = new LazyMatNodeSytotauh(option.conn, option.schemaName);
 		ActionLazy<MatInfo> mergeMatype = new LazyMatMergeMatype(option.conn, option.schemaName);
 		ActionLazy<MatInfo> mergeMateg = new LazyMatMergeMateg(option.conn, option.schemaName);

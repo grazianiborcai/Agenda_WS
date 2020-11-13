@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.message.emailPasswordChange.info.EmordeInfo;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 
-public final class EmordeCheckSend extends ModelCheckerTemplateSimpleV2<EmordeInfo> {
+public final class EmordeCheckSend extends ModelCheckerTemplateSimple<EmordeInfo> {
 
 	public EmordeCheckSend(ModelCheckerOption option) {
 		super(option);

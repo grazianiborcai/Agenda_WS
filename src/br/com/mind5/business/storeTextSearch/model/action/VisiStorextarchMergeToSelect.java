@@ -4,12 +4,12 @@ import java.util.List;
 
 import br.com.mind5.business.storeTextSearch.info.StorextarchInfo;
 import br.com.mind5.business.storeTextSearch.info.StorextarchMerger;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionStd;
+
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiStorextarchMergeToSelect extends ActionVisitorTemplateMergeV2<StorextarchInfo, StorextarchInfo> {
+final class VisiStorextarchMergeToSelect extends ActionVisitorTemplateMerge<StorextarchInfo, StorextarchInfo> {
 	
 	public VisiStorextarchMergeToSelect(DeciTreeOption<StorextarchInfo> option) {
 		super(option, StorextarchInfo.class);
@@ -17,7 +17,7 @@ final class VisiStorextarchMergeToSelect extends ActionVisitorTemplateMergeV2<St
 	
 	
 	
-	@Override protected Class<? extends ActionStdV2<StorextarchInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStd<StorextarchInfo>> getActionClassHook() {
 		return StdStorextarchDaoSelect.class;
 	}
 	
@@ -36,6 +36,6 @@ final class VisiStorextarchMergeToSelect extends ActionVisitorTemplateMergeV2<St
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
+		return super.DONT_MERGE_WHEN_EMPTY;
 	}
 }

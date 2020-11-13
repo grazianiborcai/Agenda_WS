@@ -7,14 +7,14 @@ import br.com.mind5.business.refundPolicyOwner.info.RefupownInfo;
 import br.com.mind5.business.refundPolicyOwner.model.action.LazyRefupownMergeRefugroup;
 import br.com.mind5.business.refundPolicyOwner.model.action.StdRefupownMergeToSelect;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class NodeRefupownSelect extends DeciTreeTemplateReadV2<RefupownInfo> {
+public final class NodeRefupownSelect extends DeciTreeTemplateRead<RefupownInfo> {
 	
 	public NodeRefupownSelect(DeciTreeOption<RefupownInfo> option) {
 		super(option);
@@ -22,22 +22,22 @@ public final class NodeRefupownSelect extends DeciTreeTemplateReadV2<RefupownInf
 	
 	
 	
-	@Override protected ModelCheckerV1<RefupownInfo> buildCheckerHook(DeciTreeOption<RefupownInfo> option) {
-		List<ModelCheckerV1<RefupownInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<RefupownInfo> checker;
+	@Override protected ModelChecker<RefupownInfo> buildCheckerHook(DeciTreeOption<RefupownInfo> option) {
+		List<ModelChecker<RefupownInfo>> queue = new ArrayList<>();		
+		ModelChecker<RefupownInfo> checker;
 
 		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<RefupownInfo>> buildActionsOnPassedHook(DeciTreeOption<RefupownInfo> option) {
-		List<ActionStdV2<RefupownInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<RefupownInfo>> buildActionsOnPassedHook(DeciTreeOption<RefupownInfo> option) {
+		List<ActionStd<RefupownInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<RefupownInfo> select = new StdRefupownMergeToSelect(option);
+		ActionStd<RefupownInfo> select = new StdRefupownMergeToSelect(option);
 		ActionLazy<RefupownInfo> mergeRefugroup = new LazyRefupownMergeRefugroup(option.conn, option.schemaName);
 		
 		select.addPostAction(mergeRefugroup);

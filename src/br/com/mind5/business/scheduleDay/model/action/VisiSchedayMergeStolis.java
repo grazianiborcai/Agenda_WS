@@ -7,11 +7,11 @@ import br.com.mind5.business.scheduleDay.info.SchedayMerger;
 import br.com.mind5.business.storeList.info.StolisCopier;
 import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.business.storeList.model.decisionTree.RootStolisSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiSchedayMergeStolis extends ActionVisitorTemplateMergeV2<SchedayInfo, StolisInfo> {
+final class VisiSchedayMergeStolis extends ActionVisitorTemplateMerge<SchedayInfo, StolisInfo> {
 	
 	public VisiSchedayMergeStolis(DeciTreeOption<SchedayInfo> option) {
 		super(option, StolisInfo.class);

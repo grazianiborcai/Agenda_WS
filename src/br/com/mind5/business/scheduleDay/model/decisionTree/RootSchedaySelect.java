@@ -8,14 +8,14 @@ import br.com.mind5.business.scheduleDay.model.checker.SchedayCheckCalate;
 import br.com.mind5.business.scheduleDay.model.checker.SchedayCheckOwner;
 import br.com.mind5.business.scheduleDay.model.checker.SchedayCheckRead;
 import br.com.mind5.business.scheduleDay.model.checker.SchedayCheckStore;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootSchedaySelect extends DeciTreeTemplateWriteV2<SchedayInfo> {
+public final class RootSchedaySelect extends DeciTreeTemplateWrite<SchedayInfo> {
 	
 	public RootSchedaySelect(DeciTreeOption<SchedayInfo> option) {
 		super(option);
@@ -23,9 +23,9 @@ public final class RootSchedaySelect extends DeciTreeTemplateWriteV2<SchedayInfo
 	
 	
 	
-	@Override protected ModelCheckerV1<SchedayInfo> buildCheckerHook(DeciTreeOption<SchedayInfo> option) {
-		List<ModelCheckerV1<SchedayInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<SchedayInfo> checker;	
+	@Override protected ModelChecker<SchedayInfo> buildCheckerHook(DeciTreeOption<SchedayInfo> option) {
+		List<ModelChecker<SchedayInfo>> queue = new ArrayList<>();		
+		ModelChecker<SchedayInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -56,15 +56,15 @@ public final class RootSchedaySelect extends DeciTreeTemplateWriteV2<SchedayInfo
 		checker = new SchedayCheckCalate(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<SchedayInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedayInfo> option) {
-		List<ActionStdV2<SchedayInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<SchedayInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedayInfo> option) {
+		List<ActionStd<SchedayInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<SchedayInfo> nodeSelect = new NodeSchedaySelect(option).toAction();
+		ActionStd<SchedayInfo> nodeSelect = new NodeSchedaySelect(option).toAction();
 		
 		actions.add(nodeSelect);
 		return actions;

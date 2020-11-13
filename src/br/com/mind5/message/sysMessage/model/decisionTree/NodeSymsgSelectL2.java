@@ -6,14 +6,14 @@ import java.util.List;
 import br.com.mind5.message.sysMessage.info.SymsgInfo;
 import br.com.mind5.message.sysMessage.model.action.StdSymsgSuccess;
 import br.com.mind5.message.sysMessage.model.checker.SymsgCheckNotFound;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodeSymsgSelectL2 extends DeciTreeTemplateWriteV2<SymsgInfo> {
+public final class NodeSymsgSelectL2 extends DeciTreeTemplateWrite<SymsgInfo> {
 	
 	public NodeSymsgSelectL2(DeciTreeOption<SymsgInfo> option) {
 		super(option);
@@ -21,9 +21,9 @@ public final class NodeSymsgSelectL2 extends DeciTreeTemplateWriteV2<SymsgInfo> 
 	
 	
 	
-	@Override protected ModelCheckerV1<SymsgInfo> buildCheckerHook(DeciTreeOption<SymsgInfo> option) {	
-		List<ModelCheckerV1<SymsgInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<SymsgInfo> checker;	
+	@Override protected ModelChecker<SymsgInfo> buildCheckerHook(DeciTreeOption<SymsgInfo> option) {	
+		List<ModelChecker<SymsgInfo>> queue = new ArrayList<>();		
+		ModelChecker<SymsgInfo> checker;	
 		ModelCheckerOption checkerOption;	
 		
 		checkerOption = new ModelCheckerOption();
@@ -33,15 +33,15 @@ public final class NodeSymsgSelectL2 extends DeciTreeTemplateWriteV2<SymsgInfo> 
 		checker = new SymsgCheckNotFound(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<SymsgInfo>> buildActionsOnPassedHook(DeciTreeOption<SymsgInfo> option) {
-		List<ActionStdV2<SymsgInfo>> actions = new ArrayList<>();	
+	@Override protected List<ActionStd<SymsgInfo>> buildActionsOnPassedHook(DeciTreeOption<SymsgInfo> option) {
+		List<ActionStd<SymsgInfo>> actions = new ArrayList<>();	
 		
-		ActionStdV2<SymsgInfo> nodeFallback = new NodeSymsgFallback(option).toAction();
+		ActionStd<SymsgInfo> nodeFallback = new NodeSymsgFallback(option).toAction();
 		
 		actions.add(nodeFallback);		
 		return actions;
@@ -49,10 +49,10 @@ public final class NodeSymsgSelectL2 extends DeciTreeTemplateWriteV2<SymsgInfo> 
 	
 	
 	
-	@Override protected List<ActionStdV2<SymsgInfo>> buildActionsOnFailedHook(DeciTreeOption<SymsgInfo> option) {
-		List<ActionStdV2<SymsgInfo>> actions = new ArrayList<>();	
+	@Override protected List<ActionStd<SymsgInfo>> buildActionsOnFailedHook(DeciTreeOption<SymsgInfo> option) {
+		List<ActionStd<SymsgInfo>> actions = new ArrayList<>();	
 		
-		ActionStdV2<SymsgInfo> success = new StdSymsgSuccess(option);
+		ActionStd<SymsgInfo> success = new StdSymsgSuccess(option);
 		
 		actions.add(success);		
 		return actions;

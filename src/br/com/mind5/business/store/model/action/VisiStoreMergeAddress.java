@@ -7,11 +7,11 @@ import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.address.model.decisionTree.RootAddressSearch;
 import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.business.store.info.StoreMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiStoreMergeAddress extends ActionVisitorTemplateMergeV2<StoreInfo, AddressInfo> {
+final class VisiStoreMergeAddress extends ActionVisitorTemplateMerge<StoreInfo, AddressInfo> {
 	
 	public VisiStoreMergeAddress(DeciTreeOption<StoreInfo> option) {
 		super(option, AddressInfo.class);

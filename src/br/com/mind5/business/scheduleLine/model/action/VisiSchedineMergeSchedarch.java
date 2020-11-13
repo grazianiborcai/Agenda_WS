@@ -5,11 +5,11 @@ import java.util.List;
 import br.com.mind5.business.scheduleLine.info.SchedineInfo;
 import br.com.mind5.business.scheduleSearch.info.SchedarchInfo;
 import br.com.mind5.business.scheduleSearch.model.decisionTree.RootSchedarchSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiSchedineMergeSchedarch extends ActionVisitorTemplateMergeV2<SchedineInfo, SchedarchInfo> {
+final class VisiSchedineMergeSchedarch extends ActionVisitorTemplateMerge<SchedineInfo, SchedarchInfo> {
 	
 	public VisiSchedineMergeSchedarch(DeciTreeOption<SchedineInfo> option) {
 		super(option, SchedarchInfo.class); 

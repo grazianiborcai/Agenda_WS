@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.mind5.authorization.storePartitionAuthorization.info.SytotauhInfo;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 
-public final class SytotauhCheckRead extends ModelCheckerTemplateSimpleV2<SytotauhInfo> {
+public final class SytotauhCheckRead extends ModelCheckerTemplateSimple<SytotauhInfo> {
 
 	public SytotauhCheckRead(ModelCheckerOption option) {
 		super(option);

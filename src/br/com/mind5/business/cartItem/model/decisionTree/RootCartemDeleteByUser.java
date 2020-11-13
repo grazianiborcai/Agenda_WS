@@ -10,14 +10,14 @@ import br.com.mind5.business.cartItem.model.action.LazyCartemRootDelete;
 import br.com.mind5.business.cartItem.model.action.StdCartemEnforceUserKey;
 import br.com.mind5.business.cartItem.model.checker.CartemCheckDeleteByUser;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootCartemDeleteByUser extends DeciTreeTemplateWriteV2<CartemInfo> {
+public final class RootCartemDeleteByUser extends DeciTreeTemplateWrite<CartemInfo> {
 	
 	public RootCartemDeleteByUser(DeciTreeOption<CartemInfo> option) {
 		super(option);
@@ -25,9 +25,9 @@ public final class RootCartemDeleteByUser extends DeciTreeTemplateWriteV2<Cartem
 	
 	
 	
-	@Override protected ModelCheckerV1<CartemInfo> buildCheckerHook(DeciTreeOption<CartemInfo> option) {
-		List<ModelCheckerV1<CartemInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<CartemInfo> checker;
+	@Override protected ModelChecker<CartemInfo> buildCheckerHook(DeciTreeOption<CartemInfo> option) {
+		List<ModelChecker<CartemInfo>> queue = new ArrayList<>();		
+		ModelChecker<CartemInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -37,15 +37,15 @@ public final class RootCartemDeleteByUser extends DeciTreeTemplateWriteV2<Cartem
 		checker = new CartemCheckDeleteByUser(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<CartemInfo>> buildActionsOnPassedHook(DeciTreeOption<CartemInfo> option) {
-		List<ActionStdV2<CartemInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<CartemInfo>> buildActionsOnPassedHook(DeciTreeOption<CartemInfo> option) {
+		List<ActionStd<CartemInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<CartemInfo> enforceUserKey = new StdCartemEnforceUserKey(option);
+		ActionStd<CartemInfo> enforceUserKey = new StdCartemEnforceUserKey(option);
 		ActionLazy<CartemInfo> mergeCartemarch = new LazyCartemMergeCartemarch(option.conn, option.schemaName);
 		ActionLazy<CartemInfo> select = new LazyCartemMergeToSelect(option.conn, option.schemaName);
 		ActionLazy<CartemInfo> delete = new LazyCartemRootDelete(option.conn, option.schemaName);

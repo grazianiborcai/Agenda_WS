@@ -6,11 +6,11 @@ import br.com.mind5.business.calendarDate.info.CalateInfo;
 import br.com.mind5.business.calendarDate.model.decisionTree.RootCalateSelectNow;
 import br.com.mind5.business.calendarWeekYear.info.CaleekyInfo;
 import br.com.mind5.business.calendarWeekYear.info.CaleekyMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiCaleekyMergeNow extends ActionVisitorTemplateMergeV2<CaleekyInfo, CalateInfo> {
+final class VisiCaleekyMergeNow extends ActionVisitorTemplateMerge<CaleekyInfo, CalateInfo> {
 	
 	public VisiCaleekyMergeNow(DeciTreeOption<CaleekyInfo> option) {
 		super(option, CalateInfo.class);

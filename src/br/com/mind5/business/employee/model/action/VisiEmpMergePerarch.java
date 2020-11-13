@@ -7,11 +7,11 @@ import br.com.mind5.business.employee.info.EmpMerger;
 import br.com.mind5.business.personSearch.info.PerarchCopier;
 import br.com.mind5.business.personSearch.info.PerarchInfo;
 import br.com.mind5.business.personSearch.model.decisionTree.RootPerarchSelectEmp;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiEmpMergePerarch extends ActionVisitorTemplateMergeV2<EmpInfo, PerarchInfo> {
+final class VisiEmpMergePerarch extends ActionVisitorTemplateMerge<EmpInfo, PerarchInfo> {
 	
 	public VisiEmpMergePerarch(DeciTreeOption<EmpInfo> option) {
 		super(option, PerarchInfo.class);

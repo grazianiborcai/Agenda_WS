@@ -1,11 +1,11 @@
 package br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.model.action;
 
-import br.com.mind5.model.action.ActionStdTemplateV2;
-import br.com.mind5.model.action.ActionVisitorV2;
+import br.com.mind5.model.action.ActionStdTemplate;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.paymentPartner.partnerMoip.multiPayMoip.info.PaymoipInfo;
 
-public final class StdPaymoipMergeSetupar extends ActionStdTemplateV2<PaymoipInfo> {
+public final class StdPaymoipMergeSetupar extends ActionStdTemplate<PaymoipInfo> {
 
 	public StdPaymoipMergeSetupar(DeciTreeOption<PaymoipInfo> option) {
 		super(option);
@@ -13,7 +13,7 @@ public final class StdPaymoipMergeSetupar extends ActionStdTemplateV2<PaymoipInf
 	
 	
 	
-	protected ActionVisitorV2<PaymoipInfo> buildVisitorHook(DeciTreeOption<PaymoipInfo> option) {
+	protected ActionVisitor<PaymoipInfo> buildVisitorHook(DeciTreeOption<PaymoipInfo> option) {
 		return new VisiPaymoipMergeSetupar(option);
 	}
 }

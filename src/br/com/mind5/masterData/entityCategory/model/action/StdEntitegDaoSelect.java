@@ -1,11 +1,11 @@
 package br.com.mind5.masterData.entityCategory.model.action;
 
 import br.com.mind5.masterData.entityCategory.info.EntitegInfo;
-import br.com.mind5.model.action.ActionStdTemplateV2;
-import br.com.mind5.model.action.ActionVisitorV2;
+import br.com.mind5.model.action.ActionStdTemplate;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdEntitegDaoSelect extends ActionStdTemplateV2<EntitegInfo> {
+public final class StdEntitegDaoSelect extends ActionStdTemplate<EntitegInfo> {
 
 	public StdEntitegDaoSelect(DeciTreeOption<EntitegInfo> option) {
 		super(option);
@@ -13,7 +13,7 @@ public final class StdEntitegDaoSelect extends ActionStdTemplateV2<EntitegInfo> 
 	
 	
 	
-	protected ActionVisitorV2<EntitegInfo> buildVisitorHook(DeciTreeOption<EntitegInfo> option) {
+	protected ActionVisitor<EntitegInfo> buildVisitorHook(DeciTreeOption<EntitegInfo> option) {
 		return new VisiEntitegDaoSelect(option);
 	}
 }

@@ -4,10 +4,10 @@ import java.sql.Connection;
 
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 import br.com.mind5.security.jwtToken.info.JwtokenInfo;
 
-public final class JwtokenCheckValidate extends ModelCheckerTemplateSimpleV2<JwtokenInfo> {
+public final class JwtokenCheckValidate extends ModelCheckerTemplateSimple<JwtokenInfo> {
 
 	public JwtokenCheckValidate(ModelCheckerOption option) {
 		super(option);

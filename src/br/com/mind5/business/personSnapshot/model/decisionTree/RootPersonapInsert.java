@@ -9,14 +9,14 @@ import br.com.mind5.business.personSnapshot.model.action.StdPersonapDaoInsert;
 import br.com.mind5.business.personSnapshot.model.checker.PersonapCheckOwner;
 import br.com.mind5.business.personSnapshot.model.checker.PersonapCheckWrite;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootPersonapInsert extends DeciTreeTemplateWriteV2<PersonapInfo> {
+public final class RootPersonapInsert extends DeciTreeTemplateWrite<PersonapInfo> {
 	
 	public RootPersonapInsert(DeciTreeOption<PersonapInfo> option) {
 		super(option);
@@ -24,9 +24,9 @@ public final class RootPersonapInsert extends DeciTreeTemplateWriteV2<PersonapIn
 	
 	
 	
-	@Override protected ModelCheckerV1<PersonapInfo> buildCheckerHook(DeciTreeOption<PersonapInfo> option) {
-		List<ModelCheckerV1<PersonapInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<PersonapInfo> checker;
+	@Override protected ModelChecker<PersonapInfo> buildCheckerHook(DeciTreeOption<PersonapInfo> option) {
+		List<ModelChecker<PersonapInfo>> queue = new ArrayList<>();		
+		ModelChecker<PersonapInfo> checker;
 		ModelCheckerOption checkerOption;		
 		
 		checkerOption = new ModelCheckerOption();
@@ -43,15 +43,15 @@ public final class RootPersonapInsert extends DeciTreeTemplateWriteV2<PersonapIn
 		checker = new PersonapCheckOwner(checkerOption);
 		queue.add(checker);
 			
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<PersonapInfo>> buildActionsOnPassedHook(DeciTreeOption<PersonapInfo> option) {
-		List<ActionStdV2<PersonapInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<PersonapInfo>> buildActionsOnPassedHook(DeciTreeOption<PersonapInfo> option) {
+		List<ActionStd<PersonapInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<PersonapInfo> insert = new StdPersonapDaoInsert(option);	
+		ActionStd<PersonapInfo> insert = new StdPersonapDaoInsert(option);	
 		ActionLazy<PersonapInfo> select = new LazyPersonapRootSelect(option.conn, option.schemaName);	
 		
 		insert.addPostAction(select);		

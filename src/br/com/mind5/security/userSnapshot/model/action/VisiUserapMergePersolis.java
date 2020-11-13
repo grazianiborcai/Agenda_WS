@@ -4,13 +4,13 @@ import java.util.List;
 
 import br.com.mind5.business.personList.info.PersolisInfo;
 import br.com.mind5.business.personList.model.decisionTree.RootPersolisSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.userSnapshot.info.UserapInfo;
 import br.com.mind5.security.userSnapshot.info.UserapMerger;
 
-final class VisiUserapMergePersolis extends ActionVisitorTemplateMergeV2<UserapInfo, PersolisInfo> {
+final class VisiUserapMergePersolis extends ActionVisitorTemplateMerge<UserapInfo, PersolisInfo> {
 	
 	public VisiUserapMergePersolis(DeciTreeOption<UserapInfo> option) {
 		super(option, PersolisInfo.class);

@@ -3,12 +3,12 @@ package br.com.mind5.masterData.businessArea.model.checker;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.masterData.businessArea.info.BusareaInfo;
 import br.com.mind5.masterData.businessArea.model.action.StdBusareaDaoSelect;
-import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class BusareaCheckExist extends ModelCheckerTemplateActionV2<BusareaInfo, BusareaInfo> {
+public final class BusareaCheckExist extends ModelCheckerTemplateAction<BusareaInfo, BusareaInfo> {
 	
 	public BusareaCheckExist(ModelCheckerOption option) {
 		super(option, BusareaInfo.class);
@@ -16,8 +16,8 @@ public final class BusareaCheckExist extends ModelCheckerTemplateActionV2<Busare
 	
 	
 	
-	@Override protected ActionStdV2<BusareaInfo> buildActionHook(DeciTreeOption<BusareaInfo> option) {
-		ActionStdV2<BusareaInfo> select = new StdBusareaDaoSelect(option);
+	@Override protected ActionStd<BusareaInfo> buildActionHook(DeciTreeOption<BusareaInfo> option) {
+		ActionStd<BusareaInfo> select = new StdBusareaDaoSelect(option);
 		return select;
 	}
 	

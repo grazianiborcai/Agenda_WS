@@ -6,11 +6,11 @@ import br.com.mind5.business.cart.info.CartInfo;
 import br.com.mind5.business.cart.info.CartMerger;
 import br.com.mind5.business.feeOwner.info.FeewnerInfo;
 import br.com.mind5.business.feeOwner.model.decisionTree.RootFeewnerSelectService;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiCartMergeFeewner extends ActionVisitorTemplateMergeV2<CartInfo, FeewnerInfo> {
+final class VisiCartMergeFeewner extends ActionVisitorTemplateMerge<CartInfo, FeewnerInfo> {
 	
 	public VisiCartMergeFeewner(DeciTreeOption<CartInfo> option) {
 		super(option, FeewnerInfo.class);

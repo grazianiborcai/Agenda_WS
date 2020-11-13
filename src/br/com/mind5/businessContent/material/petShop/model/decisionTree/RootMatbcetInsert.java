@@ -7,14 +7,14 @@ import br.com.mind5.businessContent.material.petShop.info.MatbcetInfo;
 import br.com.mind5.businessContent.material.petShop.model.checker.MatbcetCheckOwner;
 import br.com.mind5.businessContent.material.petShop.model.checker.MatbcetCheckStore;
 import br.com.mind5.businessContent.material.petShop.model.checker.MatbcetCheckWrite;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootMatbcetInsert extends DeciTreeTemplateWriteV2<MatbcetInfo> {
+public final class RootMatbcetInsert extends DeciTreeTemplateWrite<MatbcetInfo> {
 	
 	public RootMatbcetInsert(DeciTreeOption<MatbcetInfo> option) {
 		super(option);
@@ -22,9 +22,9 @@ public final class RootMatbcetInsert extends DeciTreeTemplateWriteV2<MatbcetInfo
 	
 	
 	
-	@Override protected ModelCheckerV1<MatbcetInfo> buildCheckerHook(DeciTreeOption<MatbcetInfo> option) {
-		List<ModelCheckerV1<MatbcetInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<MatbcetInfo> checker;
+	@Override protected ModelChecker<MatbcetInfo> buildCheckerHook(DeciTreeOption<MatbcetInfo> option) {
+		List<ModelChecker<MatbcetInfo>> queue = new ArrayList<>();		
+		ModelChecker<MatbcetInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -48,15 +48,15 @@ public final class RootMatbcetInsert extends DeciTreeTemplateWriteV2<MatbcetInfo
 		checker = new MatbcetCheckStore(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<MatbcetInfo>> buildActionsOnPassedHook(DeciTreeOption<MatbcetInfo> option) {
-		List<ActionStdV2<MatbcetInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStd<MatbcetInfo>> buildActionsOnPassedHook(DeciTreeOption<MatbcetInfo> option) {
+		List<ActionStd<MatbcetInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV2<MatbcetInfo> nodeL01 = new NodeMatbcetInsertL01(option).toAction();	
+		ActionStd<MatbcetInfo> nodeL01 = new NodeMatbcetInsertL01(option).toAction();	
 		
 		actions.add(nodeL01);		
 		return actions;

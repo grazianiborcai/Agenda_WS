@@ -6,11 +6,11 @@ import br.com.mind5.geo.geoCode.info.GeodeInfo;
 import br.com.mind5.geo.geoCode.info.GeodeMerger;
 import br.com.mind5.masterData.state.info.StateInfo;
 import br.com.mind5.masterData.state.model.decisionTree.RootStateSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiGeodeMergeState extends ActionVisitorTemplateMergeV2<GeodeInfo, StateInfo> {
+final class VisiGeodeMergeState extends ActionVisitorTemplateMerge<GeodeInfo, StateInfo> {
 	
 	public VisiGeodeMergeState(DeciTreeOption<GeodeInfo> option) {
 		super(option, StateInfo.class);

@@ -1,11 +1,11 @@
 package br.com.mind5.business.storeFavoriteSearch.model.action;
 
-import br.com.mind5.model.action.ActionStdTemplateV2;
-import br.com.mind5.model.action.ActionVisitorV2;
+import br.com.mind5.model.action.ActionStdTemplate;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.business.storeFavoriteSearch.info.StoritarchInfo;
 
-public final class StdStoritarchDaoSelect extends ActionStdTemplateV2<StoritarchInfo> {
+public final class StdStoritarchDaoSelect extends ActionStdTemplate<StoritarchInfo> {
 
 	public StdStoritarchDaoSelect(DeciTreeOption<StoritarchInfo> option) {
 		super(option);
@@ -13,7 +13,7 @@ public final class StdStoritarchDaoSelect extends ActionStdTemplateV2<Storitarch
 	
 	
 	
-	protected ActionVisitorV2<StoritarchInfo> buildVisitorHook(DeciTreeOption<StoritarchInfo> option) {
+	protected ActionVisitor<StoritarchInfo> buildVisitorHook(DeciTreeOption<StoritarchInfo> option) {
 		return new VisiStoritarchDaoSelect(option);
 	}
 }

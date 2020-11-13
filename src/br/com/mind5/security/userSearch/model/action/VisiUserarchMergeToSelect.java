@@ -2,13 +2,13 @@ package br.com.mind5.security.userSearch.model.action;
 
 import java.util.List;
 
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.userSearch.info.UserarchInfo;
 import br.com.mind5.security.userSearch.info.UserarchMerger;
 
-final class VisiUserarchMergeToSelect extends ActionVisitorTemplateMergeV2<UserarchInfo, UserarchInfo> {
+final class VisiUserarchMergeToSelect extends ActionVisitorTemplateMerge<UserarchInfo, UserarchInfo> {
 	
 	public VisiUserarchMergeToSelect(DeciTreeOption<UserarchInfo> option) {
 		super(option, UserarchInfo.class);
@@ -16,7 +16,7 @@ final class VisiUserarchMergeToSelect extends ActionVisitorTemplateMergeV2<Usera
 	
 	
 	
-	@Override protected Class<? extends ActionStdV2<UserarchInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStd<UserarchInfo>> getActionClassHook() {
 		return StdUserarchDaoSelect.class;
 	}
 	

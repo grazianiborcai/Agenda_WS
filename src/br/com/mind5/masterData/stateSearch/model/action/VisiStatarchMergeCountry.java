@@ -6,12 +6,12 @@ import br.com.mind5.masterData.country.info.CountryInfo;
 import br.com.mind5.masterData.country.model.decisionTree.RootCountrySelect;
 import br.com.mind5.masterData.stateSearch.info.StatarchInfo;
 import br.com.mind5.masterData.stateSearch.info.StatarchMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiStatarchMergeCountry extends ActionVisitorTemplateMergeV2<StatarchInfo, CountryInfo> {
+final class VisiStatarchMergeCountry extends ActionVisitorTemplateMerge<StatarchInfo, CountryInfo> {
 	
 	public VisiStatarchMergeCountry(DeciTreeOption<StatarchInfo> option) {
 		super(option, CountryInfo.class);
@@ -32,6 +32,6 @@ final class VisiStatarchMergeCountry extends ActionVisitorTemplateMergeV2<Statar
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
+		return super.MERGE_WHEN_EMPTY;
 	}
 }

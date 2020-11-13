@@ -11,14 +11,14 @@ import br.com.mind5.business.material.model.action.LazyMatNodeServiceL1;
 import br.com.mind5.business.material.model.action.LazyMatNodeSytotauh;
 import br.com.mind5.business.material.model.action.StdMatMergeToUpdate;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodeMatUpdate extends DeciTreeTemplateWriteV2<MatInfo> {
+public final class NodeMatUpdate extends DeciTreeTemplateWrite<MatInfo> {
 	
 	public NodeMatUpdate(DeciTreeOption<MatInfo> option) {
 		super(option);
@@ -26,22 +26,22 @@ public final class NodeMatUpdate extends DeciTreeTemplateWriteV2<MatInfo> {
 	
 	
 	
-	@Override protected ModelCheckerV1<MatInfo> buildCheckerHook(DeciTreeOption<MatInfo> option) {
-		List<ModelCheckerV1<MatInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<MatInfo> checker;
+	@Override protected ModelChecker<MatInfo> buildCheckerHook(DeciTreeOption<MatInfo> option) {
+		List<ModelChecker<MatInfo>> queue = new ArrayList<>();		
+		ModelChecker<MatInfo> checker;
 
 		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<MatInfo>> buildActionsOnPassedHook(DeciTreeOption<MatInfo> option) {
-		List<ActionStdV2<MatInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<MatInfo>> buildActionsOnPassedHook(DeciTreeOption<MatInfo> option) {
+		List<ActionStd<MatInfo>> actions = new ArrayList<>();
 
-		ActionStdV2<MatInfo> mergeToUpdate = new StdMatMergeToUpdate(option);
+		ActionStd<MatInfo> mergeToUpdate = new StdMatMergeToUpdate(option);
 		ActionLazy<MatInfo> nodeSytotauh = new LazyMatNodeSytotauh(option.conn, option.schemaName);
 		ActionLazy<MatInfo> nodeService = new LazyMatNodeServiceL1(option.conn, option.schemaName);	
 		ActionLazy<MatInfo> enforceLChanged = new LazyMatEnforceLChanged(option.conn, option.schemaName);	

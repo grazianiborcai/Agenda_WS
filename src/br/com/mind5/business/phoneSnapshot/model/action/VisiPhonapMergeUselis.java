@@ -4,15 +4,15 @@ import java.util.List;
 
 import br.com.mind5.business.phoneSnapshot.info.PhonapInfo;
 import br.com.mind5.business.phoneSnapshot.info.PhonapMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.userList.info.UselisCopier;
 import br.com.mind5.security.userList.info.UselisInfo;
 import br.com.mind5.security.userList.model.decisionTree.RootUselisSelect;
 
-final class VisiPhonapMergeUselis extends ActionVisitorTemplateMergeV2<PhonapInfo, UselisInfo> {
+final class VisiPhonapMergeUselis extends ActionVisitorTemplateMerge<PhonapInfo, UselisInfo> {
 	
 	public VisiPhonapMergeUselis(DeciTreeOption<PhonapInfo> option) {
 		super(option, UselisInfo.class);
@@ -38,6 +38,6 @@ final class VisiPhonapMergeUselis extends ActionVisitorTemplateMergeV2<PhonapInf
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
+		return super.MERGE_WHEN_EMPTY;
 	}
 }

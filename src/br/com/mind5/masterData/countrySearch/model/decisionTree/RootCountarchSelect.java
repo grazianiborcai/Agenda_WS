@@ -6,14 +6,14 @@ import java.util.List;
 import br.com.mind5.masterData.countrySearch.info.CountarchInfo;
 import br.com.mind5.masterData.countrySearch.model.action.StdCountarchDaoSelect;
 import br.com.mind5.masterData.countrySearch.model.checker.CountarchCheckRead;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootCountarchSelect extends DeciTreeTemplateReadV2<CountarchInfo> {
+public final class RootCountarchSelect extends DeciTreeTemplateRead<CountarchInfo> {
 	
 	public RootCountarchSelect(DeciTreeOption<CountarchInfo> option) {
 		super(option);
@@ -21,9 +21,9 @@ public final class RootCountarchSelect extends DeciTreeTemplateReadV2<CountarchI
 	
 	
 	
-	@Override protected ModelCheckerV1<CountarchInfo> buildCheckerHook(DeciTreeOption<CountarchInfo> option) {
-		List<ModelCheckerV1<CountarchInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<CountarchInfo> checker;
+	@Override protected ModelChecker<CountarchInfo> buildCheckerHook(DeciTreeOption<CountarchInfo> option) {
+		List<ModelChecker<CountarchInfo>> queue = new ArrayList<>();		
+		ModelChecker<CountarchInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
 		checkerOption = new ModelCheckerOption();
@@ -33,15 +33,15 @@ public final class RootCountarchSelect extends DeciTreeTemplateReadV2<CountarchI
 		checker = new CountarchCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<CountarchInfo>> buildActionsOnPassedHook(DeciTreeOption<CountarchInfo> option) {
-		List<ActionStdV2<CountarchInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<CountarchInfo>> buildActionsOnPassedHook(DeciTreeOption<CountarchInfo> option) {
+		List<ActionStd<CountarchInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<CountarchInfo> select = new StdCountarchDaoSelect(option);
+		ActionStd<CountarchInfo> select = new StdCountarchDaoSelect(option);
 		
 		actions.add(select);
 		return actions;

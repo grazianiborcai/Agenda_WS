@@ -6,14 +6,14 @@ import java.util.List;
 import br.com.mind5.form.formAddress.info.FormessInfo;
 import br.com.mind5.form.formAddress.model.checker.FormessCheckCountry;
 import br.com.mind5.form.formAddress.model.checker.FormessCheckRead;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootFormessSelect extends DeciTreeTemplateWriteV2<FormessInfo> {
+public final class RootFormessSelect extends DeciTreeTemplateWrite<FormessInfo> {
 	
 	public RootFormessSelect(DeciTreeOption<FormessInfo> option) {
 		super(option);
@@ -21,9 +21,9 @@ public final class RootFormessSelect extends DeciTreeTemplateWriteV2<FormessInfo
 	
 	
 	
-	@Override protected ModelCheckerV1<FormessInfo> buildCheckerHook(DeciTreeOption<FormessInfo> option) {
-		List<ModelCheckerV1<FormessInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<FormessInfo> checker;	
+	@Override protected ModelChecker<FormessInfo> buildCheckerHook(DeciTreeOption<FormessInfo> option) {
+		List<ModelChecker<FormessInfo>> queue = new ArrayList<>();		
+		ModelChecker<FormessInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -40,15 +40,15 @@ public final class RootFormessSelect extends DeciTreeTemplateWriteV2<FormessInfo
 		checker = new FormessCheckCountry(checkerOption);
 		queue.add(checker);		
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<FormessInfo>> buildActionsOnPassedHook(DeciTreeOption<FormessInfo> option) {
-		List<ActionStdV2<FormessInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<FormessInfo>> buildActionsOnPassedHook(DeciTreeOption<FormessInfo> option) {
+		List<ActionStd<FormessInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<FormessInfo> nodeSelect = new NodeFormessSelect(option).toAction();
+		ActionStd<FormessInfo> nodeSelect = new NodeFormessSelect(option).toAction();
 		
 		actions.add(nodeSelect);
 		return actions;

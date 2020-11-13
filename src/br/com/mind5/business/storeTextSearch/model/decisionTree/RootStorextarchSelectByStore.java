@@ -7,14 +7,14 @@ import br.com.mind5.business.storeTextSearch.info.StorextarchInfo;
 import br.com.mind5.business.storeTextSearch.model.action.LazyStorextarchRootSelect;
 import br.com.mind5.business.storeTextSearch.model.action.StdStorextarchEnforceStoreKey;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootStorextarchSelectByStore extends DeciTreeTemplateReadV2<StorextarchInfo> {
+public final class RootStorextarchSelectByStore extends DeciTreeTemplateRead<StorextarchInfo> {
 	
 	public RootStorextarchSelectByStore(DeciTreeOption<StorextarchInfo> option) {
 		super(option);
@@ -22,22 +22,22 @@ public final class RootStorextarchSelectByStore extends DeciTreeTemplateReadV2<S
 	
 	
 	
-	@Override protected ModelCheckerV1<StorextarchInfo> buildCheckerHook(DeciTreeOption<StorextarchInfo> option) {
-		List<ModelCheckerV1<StorextarchInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<StorextarchInfo> checker;
+	@Override protected ModelChecker<StorextarchInfo> buildCheckerHook(DeciTreeOption<StorextarchInfo> option) {
+		List<ModelChecker<StorextarchInfo>> queue = new ArrayList<>();		
+		ModelChecker<StorextarchInfo> checker;
 
 		checker = new ModelCheckerDummy<>();
 		queue.add(checker);			
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<StorextarchInfo>> buildActionsOnPassedHook(DeciTreeOption<StorextarchInfo> option) {
-		List<ActionStdV2<StorextarchInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<StorextarchInfo>> buildActionsOnPassedHook(DeciTreeOption<StorextarchInfo> option) {
+		List<ActionStd<StorextarchInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<StorextarchInfo> enforceStoreKey = new StdStorextarchEnforceStoreKey(option);
+		ActionStd<StorextarchInfo> enforceStoreKey = new StdStorextarchEnforceStoreKey(option);
 		ActionLazy<StorextarchInfo> select = new LazyStorextarchRootSelect(option.conn, option.schemaName);
 		
 		enforceStoreKey.addPostAction(select);

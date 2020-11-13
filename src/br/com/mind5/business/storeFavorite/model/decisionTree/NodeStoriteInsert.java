@@ -10,14 +10,14 @@ import br.com.mind5.business.storeFavorite.model.action.StdStoriteEnforceCreated
 import br.com.mind5.business.storeFavorite.model.action.StdStoriteSuccess;
 import br.com.mind5.business.storeFavorite.model.checker.StoriteCheckExist;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodeStoriteInsert extends DeciTreeTemplateWriteV2<StoriteInfo> {
+public final class NodeStoriteInsert extends DeciTreeTemplateWrite<StoriteInfo> {
 	
 	public NodeStoriteInsert(DeciTreeOption<StoriteInfo> option) {
 		super(option);
@@ -25,9 +25,9 @@ public final class NodeStoriteInsert extends DeciTreeTemplateWriteV2<StoriteInfo
 	
 	
 	
-	@Override protected ModelCheckerV1<StoriteInfo> buildCheckerHook(DeciTreeOption<StoriteInfo> option) {
-		List<ModelCheckerV1<StoriteInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<StoriteInfo> checker;
+	@Override protected ModelChecker<StoriteInfo> buildCheckerHook(DeciTreeOption<StoriteInfo> option) {
+		List<ModelChecker<StoriteInfo>> queue = new ArrayList<>();		
+		ModelChecker<StoriteInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -37,15 +37,15 @@ public final class NodeStoriteInsert extends DeciTreeTemplateWriteV2<StoriteInfo
 		checker = new StoriteCheckExist(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<StoriteInfo>> buildActionsOnPassedHook(DeciTreeOption<StoriteInfo> option) {
-		List<ActionStdV2<StoriteInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<StoriteInfo>> buildActionsOnPassedHook(DeciTreeOption<StoriteInfo> option) {
+		List<ActionStd<StoriteInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<StoriteInfo> success = new StdStoriteSuccess(option);
+		ActionStd<StoriteInfo> success = new StdStoriteSuccess(option);
 		
 		actions.add(success);	
 		return actions;
@@ -53,10 +53,10 @@ public final class NodeStoriteInsert extends DeciTreeTemplateWriteV2<StoriteInfo
 	
 	
 	
-	@Override protected List<ActionStdV2<StoriteInfo>> buildActionsOnFailedHook(DeciTreeOption<StoriteInfo> option) {
-		List<ActionStdV2<StoriteInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<StoriteInfo>> buildActionsOnFailedHook(DeciTreeOption<StoriteInfo> option) {
+		List<ActionStd<StoriteInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<StoriteInfo> enforceCreatedOn = new StdStoriteEnforceCreatedOn(option);
+		ActionStd<StoriteInfo> enforceCreatedOn = new StdStoriteEnforceCreatedOn(option);
 		ActionLazy<StoriteInfo> enforceLChanged = new LazyStoriteEnforceLChanged(option.conn, option.schemaName);
 		ActionLazy<StoriteInfo> insert = new LazyStoriteDaoInsert(option.conn, option.schemaName);
 		

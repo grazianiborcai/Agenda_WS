@@ -4,13 +4,13 @@ import java.util.List;
 
 import br.com.mind5.business.order.info.OrderInfo;
 import br.com.mind5.business.order.info.OrderMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.username.info.UsernameInfo;
 import br.com.mind5.security.username.model.decisionTree.RootUsernameSelect;
 
-final class VisiOrderMergeUsername extends ActionVisitorTemplateMergeV2<OrderInfo, UsernameInfo> {
+final class VisiOrderMergeUsername extends ActionVisitorTemplateMerge<OrderInfo, UsernameInfo> {
 	
 	public VisiOrderMergeUsername(DeciTreeOption<OrderInfo> option) {
 		super(option, UsernameInfo.class);

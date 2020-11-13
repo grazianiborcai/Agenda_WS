@@ -1,14 +1,14 @@
 package br.com.mind5.paymentPartner.partnerMoip.tokenMoip.model.checker;
 
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.paymentPartner.partnerMoip.tokenMoip.info.TokemoipInfo;
 import br.com.mind5.security.username.info.UsernameCopier;
 import br.com.mind5.security.username.info.UsernameInfo;
 import br.com.mind5.security.username.model.checker.UsernameCheckExist;
 
-public final class TokemoipCheckUsername extends ModelCheckerTemplateForwardV2<TokemoipInfo, UsernameInfo> {
+public final class TokemoipCheckUsername extends ModelCheckerTemplateForward<TokemoipInfo, UsernameInfo> {
 	
 	public TokemoipCheckUsername(ModelCheckerOption option) {
 		super(option);
@@ -16,7 +16,7 @@ public final class TokemoipCheckUsername extends ModelCheckerTemplateForwardV2<T
 
 
 	
-	@Override protected ModelCheckerV1<UsernameInfo> getCheckerHook(ModelCheckerOption option) {
+	@Override protected ModelChecker<UsernameInfo> getCheckerHook(ModelCheckerOption option) {
 		return new UsernameCheckExist(option);
 	}
 	

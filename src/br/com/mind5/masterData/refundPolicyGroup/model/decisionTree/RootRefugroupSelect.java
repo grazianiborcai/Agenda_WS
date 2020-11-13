@@ -8,14 +8,14 @@ import br.com.mind5.masterData.refundPolicyGroup.model.action.LazyRefugroupMerge
 import br.com.mind5.masterData.refundPolicyGroup.model.action.StdRefugroupDaoSelect;
 import br.com.mind5.masterData.refundPolicyGroup.model.checker.RefugroupCheckRead;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootRefugroupSelect extends DeciTreeTemplateReadV2<RefugroupInfo> {
+public final class RootRefugroupSelect extends DeciTreeTemplateRead<RefugroupInfo> {
 	
 	public RootRefugroupSelect(DeciTreeOption<RefugroupInfo> option) {
 		super(option);
@@ -23,9 +23,9 @@ public final class RootRefugroupSelect extends DeciTreeTemplateReadV2<RefugroupI
 	
 	
 	
-	@Override protected ModelCheckerV1<RefugroupInfo> buildCheckerHook(DeciTreeOption<RefugroupInfo> option) {
-		List<ModelCheckerV1<RefugroupInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<RefugroupInfo> checker;
+	@Override protected ModelChecker<RefugroupInfo> buildCheckerHook(DeciTreeOption<RefugroupInfo> option) {
+		List<ModelChecker<RefugroupInfo>> queue = new ArrayList<>();		
+		ModelChecker<RefugroupInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
 		checkerOption = new ModelCheckerOption();
@@ -35,15 +35,15 @@ public final class RootRefugroupSelect extends DeciTreeTemplateReadV2<RefugroupI
 		checker = new RefugroupCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<RefugroupInfo>> buildActionsOnPassedHook(DeciTreeOption<RefugroupInfo> option) {
-		List<ActionStdV2<RefugroupInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<RefugroupInfo>> buildActionsOnPassedHook(DeciTreeOption<RefugroupInfo> option) {
+		List<ActionStd<RefugroupInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<RefugroupInfo> select = new StdRefugroupDaoSelect(option);
+		ActionStd<RefugroupInfo> select = new StdRefugroupDaoSelect(option);
 		ActionLazy<RefugroupInfo> mergeRefugritem = new LazyRefugroupMergeRefugritem(option.conn, option.schemaName);
 		
 		select.addPostAction(mergeRefugritem);

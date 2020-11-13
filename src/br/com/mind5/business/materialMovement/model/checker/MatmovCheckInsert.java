@@ -6,9 +6,9 @@ import br.com.mind5.business.materialMovement.info.MatmovInfo;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 
-public final class MatmovCheckInsert extends ModelCheckerTemplateSimpleV2<MatmovInfo> {
+public final class MatmovCheckInsert extends ModelCheckerTemplateSimple<MatmovInfo> {
 
 	public MatmovCheckInsert(ModelCheckerOption option) {
 		super(option);

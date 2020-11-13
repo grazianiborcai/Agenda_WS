@@ -4,12 +4,11 @@ import java.util.List;
 
 import br.com.mind5.business.materialTextDefault.info.MatextaultInfo;
 import br.com.mind5.business.materialTextDefault.info.MatextaultMerger;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiMatextaultMergeToSelect extends ActionVisitorTemplateMergeV2<MatextaultInfo, MatextaultInfo> {
+final class VisiMatextaultMergeToSelect extends ActionVisitorTemplateMerge<MatextaultInfo, MatextaultInfo> {
 	
 	public VisiMatextaultMergeToSelect(DeciTreeOption<MatextaultInfo> option) {
 		super(option, MatextaultInfo.class);
@@ -17,7 +16,7 @@ final class VisiMatextaultMergeToSelect extends ActionVisitorTemplateMergeV2<Mat
 	
 	
 	
-	@Override protected Class<? extends ActionStdV2<MatextaultInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStd<MatextaultInfo>> getActionClassHook() {
 		return StdMatextaultDaoSelect.class;
 	}
 	
@@ -36,6 +35,6 @@ final class VisiMatextaultMergeToSelect extends ActionVisitorTemplateMergeV2<Mat
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
+		return super.DONT_MERGE_WHEN_EMPTY;
 	}
 }

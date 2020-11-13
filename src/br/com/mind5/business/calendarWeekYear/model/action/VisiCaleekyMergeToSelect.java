@@ -4,11 +4,11 @@ import java.util.List;
 
 import br.com.mind5.business.calendarWeekYear.info.CaleekyInfo;
 import br.com.mind5.business.calendarWeekYear.info.CaleekyMerger;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiCaleekyMergeToSelect extends ActionVisitorTemplateMergeV2<CaleekyInfo, CaleekyInfo> {
+final class VisiCaleekyMergeToSelect extends ActionVisitorTemplateMerge<CaleekyInfo, CaleekyInfo> {
 	
 	public VisiCaleekyMergeToSelect(DeciTreeOption<CaleekyInfo> option) {
 		super(option, CaleekyInfo.class);
@@ -16,7 +16,7 @@ final class VisiCaleekyMergeToSelect extends ActionVisitorTemplateMergeV2<Caleek
 	
 	
 	
-	@Override protected Class<? extends ActionStdV2<CaleekyInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStd<CaleekyInfo>> getActionClassHook() {
 		return StdCaleekyDaoSelect.class;
 	}
 	

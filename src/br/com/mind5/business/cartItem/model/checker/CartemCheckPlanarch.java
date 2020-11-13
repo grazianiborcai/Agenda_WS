@@ -5,10 +5,10 @@ import br.com.mind5.business.planingDataSearch.info.PlanarchCopier;
 import br.com.mind5.business.planingDataSearch.info.PlanarchInfo;
 import br.com.mind5.business.planingDataSearch.model.checker.PlanarchCheckExist;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.model.checker.ModelChecker;
 
-public final class CartemCheckPlanarch extends ModelCheckerTemplateForwardV2<CartemInfo, PlanarchInfo> {
+public final class CartemCheckPlanarch extends ModelCheckerTemplateForward<CartemInfo, PlanarchInfo> {
 	
 	public CartemCheckPlanarch(ModelCheckerOption option) {
 		super(option);
@@ -16,7 +16,7 @@ public final class CartemCheckPlanarch extends ModelCheckerTemplateForwardV2<Car
 
 
 	
-	@Override protected ModelCheckerV1<PlanarchInfo> getCheckerHook(ModelCheckerOption option) {
+	@Override protected ModelChecker<PlanarchInfo> getCheckerHook(ModelCheckerOption option) {
 		return new PlanarchCheckExist(option);
 	}
 	

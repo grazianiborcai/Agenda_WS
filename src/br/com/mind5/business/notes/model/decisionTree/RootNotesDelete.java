@@ -12,14 +12,14 @@ import br.com.mind5.business.notes.model.checker.NotesCheckExist;
 import br.com.mind5.business.notes.model.checker.NotesCheckLangu;
 import br.com.mind5.business.notes.model.checker.NotesCheckOwner;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootNotesDelete extends DeciTreeTemplateWriteV2<NotesInfo> {
+public final class RootNotesDelete extends DeciTreeTemplateWrite<NotesInfo> {
 	
 	public RootNotesDelete(DeciTreeOption<NotesInfo> option) {
 		super(option);
@@ -27,9 +27,9 @@ public final class RootNotesDelete extends DeciTreeTemplateWriteV2<NotesInfo> {
 	
 	
 	
-	@Override protected ModelCheckerV1<NotesInfo> buildCheckerHook(DeciTreeOption<NotesInfo> option) {
-		List<ModelCheckerV1<NotesInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<NotesInfo> checker;
+	@Override protected ModelChecker<NotesInfo> buildCheckerHook(DeciTreeOption<NotesInfo> option) {
+		List<ModelChecker<NotesInfo>> queue = new ArrayList<>();		
+		ModelChecker<NotesInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -60,15 +60,15 @@ public final class RootNotesDelete extends DeciTreeTemplateWriteV2<NotesInfo> {
 		checker = new NotesCheckExist(checkerOption);
 		queue.add(checker);		
 
-		return new ModelCheckerHelperQueueV2<NotesInfo>(queue);
+		return new ModelCheckerHelperQueue<NotesInfo>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<NotesInfo>> buildActionsOnPassedHook(DeciTreeOption<NotesInfo> option) {
-		List<ActionStdV2<NotesInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<NotesInfo>> buildActionsOnPassedHook(DeciTreeOption<NotesInfo> option) {
+		List<ActionStd<NotesInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<NotesInfo> select = new StdNotesMergeToSelect(option);
+		ActionStd<NotesInfo> select = new StdNotesMergeToSelect(option);
 		ActionLazy<NotesInfo> update = new LazyNotesRootUpdate(option.conn, option.schemaName);
 		ActionLazy<NotesInfo> delete = new LazyNotesDaoDelete(option.conn, option.schemaName);
 		

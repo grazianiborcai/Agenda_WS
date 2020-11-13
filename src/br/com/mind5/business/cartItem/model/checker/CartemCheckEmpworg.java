@@ -4,10 +4,10 @@ import br.com.mind5.business.cartItem.info.CartemInfo;
 import br.com.mind5.business.employeeWorkTimeRange.info.EmpworgInfo;
 import br.com.mind5.business.employeeWorkTimeRange.model.checker.EmpworgCheckExist;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.model.checker.ModelChecker;
 
-public final class CartemCheckEmpworg extends ModelCheckerTemplateForwardV2<CartemInfo, EmpworgInfo> {
+public final class CartemCheckEmpworg extends ModelCheckerTemplateForward<CartemInfo, EmpworgInfo> {
 	
 	public CartemCheckEmpworg(ModelCheckerOption option) {
 		super(option);
@@ -15,7 +15,7 @@ public final class CartemCheckEmpworg extends ModelCheckerTemplateForwardV2<Cart
 
 
 	
-	@Override protected ModelCheckerV1<EmpworgInfo> getCheckerHook(ModelCheckerOption option) {
+	@Override protected ModelChecker<EmpworgInfo> getCheckerHook(ModelCheckerOption option) {
 		return new EmpworgCheckExist(option);
 	}
 	

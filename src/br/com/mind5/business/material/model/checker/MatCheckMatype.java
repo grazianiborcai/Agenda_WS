@@ -4,10 +4,10 @@ import br.com.mind5.business.material.info.MatInfo;
 import br.com.mind5.masterData.materialType.info.MatypeInfo;
 import br.com.mind5.masterData.materialType.model.checker.MatypeCheckExist;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.model.checker.ModelChecker;
 
-public final class MatCheckMatype extends ModelCheckerTemplateForwardV2<MatInfo, MatypeInfo> {
+public final class MatCheckMatype extends ModelCheckerTemplateForward<MatInfo, MatypeInfo> {
 	
 	public MatCheckMatype(ModelCheckerOption option) {
 		super(option);
@@ -15,7 +15,7 @@ public final class MatCheckMatype extends ModelCheckerTemplateForwardV2<MatInfo,
 
 
 	
-	@Override protected ModelCheckerV1<MatypeInfo> getCheckerHook(ModelCheckerOption option) {
+	@Override protected ModelChecker<MatypeInfo> getCheckerHook(ModelCheckerOption option) {
 		return new MatypeCheckExist(option);
 	}
 	

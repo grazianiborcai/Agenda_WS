@@ -1,11 +1,11 @@
 package br.com.mind5.business.orderItemSearch.model.action;
 
 import br.com.mind5.business.orderItemSearch.info.OrdemarchInfo;
-import br.com.mind5.model.action.ActionStdTemplateV2;
-import br.com.mind5.model.action.ActionVisitorV2;
+import br.com.mind5.model.action.ActionStdTemplate;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdOrdemarchDaoSelect extends ActionStdTemplateV2<OrdemarchInfo> {
+public final class StdOrdemarchDaoSelect extends ActionStdTemplate<OrdemarchInfo> {
 
 	public StdOrdemarchDaoSelect(DeciTreeOption<OrdemarchInfo> option) {
 		super(option);
@@ -13,7 +13,7 @@ public final class StdOrdemarchDaoSelect extends ActionStdTemplateV2<OrdemarchIn
 	
 	
 	
-	protected ActionVisitorV2<OrdemarchInfo> buildVisitorHook(DeciTreeOption<OrdemarchInfo> option) {
+	protected ActionVisitor<OrdemarchInfo> buildVisitorHook(DeciTreeOption<OrdemarchInfo> option) {
 		return new VisiOrdemarchDaoSelect(option);
 	}
 }

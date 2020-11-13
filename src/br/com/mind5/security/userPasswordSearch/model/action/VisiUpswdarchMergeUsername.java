@@ -2,7 +2,7 @@ package br.com.mind5.security.userPasswordSearch.model.action;
 
 import java.util.List;
 
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.userPasswordSearch.info.UpswdarchInfo;
@@ -10,7 +10,7 @@ import br.com.mind5.security.userPasswordSearch.info.UpswdarchMerger;
 import br.com.mind5.security.username.info.UsernameInfo;
 import br.com.mind5.security.username.model.decisionTree.RootUsernameSelect;
 
-final class VisiUpswdarchMergeUsername extends ActionVisitorTemplateMergeV2<UpswdarchInfo, UsernameInfo> {
+final class VisiUpswdarchMergeUsername extends ActionVisitorTemplateMerge<UpswdarchInfo, UsernameInfo> {
 	
 	public VisiUpswdarchMergeUsername(DeciTreeOption<UpswdarchInfo> option) {
 		super(option, UsernameInfo.class);

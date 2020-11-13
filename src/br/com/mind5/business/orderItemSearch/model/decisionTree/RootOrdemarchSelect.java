@@ -7,14 +7,14 @@ import br.com.mind5.business.orderItemSearch.info.OrdemarchInfo;
 import br.com.mind5.business.orderItemSearch.model.action.StdOrdemarchMergeToSelect;
 import br.com.mind5.business.orderItemSearch.model.checker.OrdemarchCheckOwner;
 import br.com.mind5.business.orderItemSearch.model.checker.OrdemarchCheckRead;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootOrdemarchSelect extends DeciTreeTemplateWriteV1<OrdemarchInfo> {
+public final class RootOrdemarchSelect extends DeciTreeTemplateWrite<OrdemarchInfo> {
 	
 	public RootOrdemarchSelect(DeciTreeOption<OrdemarchInfo> option) {
 		super(option);
@@ -22,9 +22,9 @@ public final class RootOrdemarchSelect extends DeciTreeTemplateWriteV1<Ordemarch
 	
 	
 	
-	@Override protected ModelCheckerV1<OrdemarchInfo> buildCheckerHook(DeciTreeOption<OrdemarchInfo> option) {
-		List<ModelCheckerV1<OrdemarchInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<OrdemarchInfo> checker;	
+	@Override protected ModelChecker<OrdemarchInfo> buildCheckerHook(DeciTreeOption<OrdemarchInfo> option) {
+		List<ModelChecker<OrdemarchInfo>> queue = new ArrayList<>();		
+		ModelChecker<OrdemarchInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -41,15 +41,15 @@ public final class RootOrdemarchSelect extends DeciTreeTemplateWriteV1<Ordemarch
 		checker = new OrdemarchCheckOwner(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<OrdemarchInfo>> buildActionsOnPassedHook(DeciTreeOption<OrdemarchInfo> option) {
-		List<ActionStdV2<OrdemarchInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<OrdemarchInfo>> buildActionsOnPassedHook(DeciTreeOption<OrdemarchInfo> option) {
+		List<ActionStd<OrdemarchInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<OrdemarchInfo> select = new StdOrdemarchMergeToSelect(option);
+		ActionStd<OrdemarchInfo> select = new StdOrdemarchMergeToSelect(option);
 		
 		actions.add(select);
 		return actions;

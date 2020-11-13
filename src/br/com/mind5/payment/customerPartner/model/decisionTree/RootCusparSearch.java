@@ -4,17 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
 import br.com.mind5.payment.customerPartner.model.action.LazyCusparRootSelect;
 import br.com.mind5.payment.customerPartner.model.action.StdCusparMergeCusparch;
 
-public final class RootCusparSearch extends DeciTreeTemplateReadV2<CusparInfo> {
+public final class RootCusparSearch extends DeciTreeTemplateRead<CusparInfo> {
 	
 	public RootCusparSearch(DeciTreeOption<CusparInfo> option) {
 		super(option);
@@ -22,22 +22,22 @@ public final class RootCusparSearch extends DeciTreeTemplateReadV2<CusparInfo> {
 	
 	
 	
-	@Override protected ModelCheckerV1<CusparInfo> buildCheckerHook(DeciTreeOption<CusparInfo> option) {
-		List<ModelCheckerV1<CusparInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<CusparInfo> checker;	
+	@Override protected ModelChecker<CusparInfo> buildCheckerHook(DeciTreeOption<CusparInfo> option) {
+		List<ModelChecker<CusparInfo>> queue = new ArrayList<>();		
+		ModelChecker<CusparInfo> checker;	
 
 		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<CusparInfo>> buildActionsOnPassedHook(DeciTreeOption<CusparInfo> option) {
-		List<ActionStdV2<CusparInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStd<CusparInfo>> buildActionsOnPassedHook(DeciTreeOption<CusparInfo> option) {
+		List<ActionStd<CusparInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV2<CusparInfo> mergeCusparch = new StdCusparMergeCusparch(option);
+		ActionStd<CusparInfo> mergeCusparch = new StdCusparMergeCusparch(option);
 		ActionLazy<CusparInfo> select = new LazyCusparRootSelect(option.conn, option.schemaName);
 		
 		mergeCusparch.addPostAction(select);

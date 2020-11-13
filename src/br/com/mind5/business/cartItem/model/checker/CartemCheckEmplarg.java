@@ -5,10 +5,10 @@ import br.com.mind5.business.employeeLeaveDateRange.info.EmplargCopier;
 import br.com.mind5.business.employeeLeaveDateRange.info.EmplargInfo;
 import br.com.mind5.business.employeeLeaveDateRange.model.checker.EmplargCheckExist;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.model.checker.ModelChecker;
 
-public final class CartemCheckEmplarg extends ModelCheckerTemplateForwardV2<CartemInfo, EmplargInfo> {
+public final class CartemCheckEmplarg extends ModelCheckerTemplateForward<CartemInfo, EmplargInfo> {
 	
 	public CartemCheckEmplarg(ModelCheckerOption option) {
 		super(option);
@@ -16,7 +16,7 @@ public final class CartemCheckEmplarg extends ModelCheckerTemplateForwardV2<Cart
 
 
 	
-	@Override protected ModelCheckerV1<EmplargInfo> getCheckerHook(ModelCheckerOption option) {
+	@Override protected ModelChecker<EmplargInfo> getCheckerHook(ModelCheckerOption option) {
 		return new EmplargCheckExist(option);
 	}
 	

@@ -4,12 +4,11 @@ import java.util.List;
 
 import br.com.mind5.business.materialText.info.MatextInfo;
 import br.com.mind5.business.materialText.info.MatextMerger;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiMatextMergeToDelete extends ActionVisitorTemplateMergeV2<MatextInfo, MatextInfo> {
+final class VisiMatextMergeToDelete extends ActionVisitorTemplateMerge<MatextInfo, MatextInfo> {
 	
 	public VisiMatextMergeToDelete(DeciTreeOption<MatextInfo> option) {
 		super(option, MatextInfo.class);
@@ -17,7 +16,7 @@ final class VisiMatextMergeToDelete extends ActionVisitorTemplateMergeV2<MatextI
 	
 	
 	
-	@Override protected Class<? extends ActionStdV2<MatextInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStd<MatextInfo>> getActionClassHook() {
 		return StdMatextDaoSelect.class;
 	}
 	
@@ -30,6 +29,6 @@ final class VisiMatextMergeToDelete extends ActionVisitorTemplateMergeV2<MatextI
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
+		return super.DONT_MERGE_WHEN_EMPTY;
 	}
 }

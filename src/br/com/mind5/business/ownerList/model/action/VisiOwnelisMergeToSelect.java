@@ -4,11 +4,11 @@ import java.util.List;
 
 import br.com.mind5.business.ownerList.info.OwnelisInfo;
 import br.com.mind5.business.ownerList.info.OwnelisMerger;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiOwnelisMergeToSelect extends ActionVisitorTemplateMergeV2<OwnelisInfo, OwnelisInfo> {
+final class VisiOwnelisMergeToSelect extends ActionVisitorTemplateMerge<OwnelisInfo, OwnelisInfo> {
 	
 	public VisiOwnelisMergeToSelect(DeciTreeOption<OwnelisInfo> option) {
 		super(option, OwnelisInfo.class);
@@ -16,7 +16,7 @@ final class VisiOwnelisMergeToSelect extends ActionVisitorTemplateMergeV2<Owneli
 	
 	
 	
-	@Override protected Class<? extends ActionStdV2<OwnelisInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStd<OwnelisInfo>> getActionClassHook() {
 		return StdOwnelisDaoSelect.class;
 	}
 	

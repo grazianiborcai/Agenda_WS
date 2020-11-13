@@ -6,14 +6,14 @@ import java.util.List;
 import br.com.mind5.config.sysStoreBusinessContent.info.SytorbcInfo;
 import br.com.mind5.config.sysStoreBusinessContent.model.action.StdSytorbcDaoSelect;
 import br.com.mind5.config.sysStoreBusinessContent.model.checker.SytorbcCheckRead;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootSytorbcSelect extends DeciTreeTemplateReadV2<SytorbcInfo> {
+public final class RootSytorbcSelect extends DeciTreeTemplateRead<SytorbcInfo> {
 	
 	public RootSytorbcSelect(DeciTreeOption<SytorbcInfo> option) {
 		super(option);
@@ -21,9 +21,9 @@ public final class RootSytorbcSelect extends DeciTreeTemplateReadV2<SytorbcInfo>
 	
 	
 	
-	@Override protected ModelCheckerV1<SytorbcInfo> buildCheckerHook(DeciTreeOption<SytorbcInfo> option) {
-		List<ModelCheckerV1<SytorbcInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<SytorbcInfo> checker;	
+	@Override protected ModelChecker<SytorbcInfo> buildCheckerHook(DeciTreeOption<SytorbcInfo> option) {
+		List<ModelChecker<SytorbcInfo>> queue = new ArrayList<>();		
+		ModelChecker<SytorbcInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -33,15 +33,15 @@ public final class RootSytorbcSelect extends DeciTreeTemplateReadV2<SytorbcInfo>
 		checker = new SytorbcCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<SytorbcInfo>> buildActionsOnPassedHook(DeciTreeOption<SytorbcInfo> option) {
-		List<ActionStdV2<SytorbcInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<SytorbcInfo>> buildActionsOnPassedHook(DeciTreeOption<SytorbcInfo> option) {
+		List<ActionStd<SytorbcInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<SytorbcInfo> select = new StdSytorbcDaoSelect(option);
+		ActionStd<SytorbcInfo> select = new StdSytorbcDaoSelect(option);
 		
 		actions.add(select);
 		return actions;

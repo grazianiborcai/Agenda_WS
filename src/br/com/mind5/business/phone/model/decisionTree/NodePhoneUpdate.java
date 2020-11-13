@@ -11,14 +11,14 @@ import br.com.mind5.business.phone.model.action.StdPhoneEnforceNumberT00;
 import br.com.mind5.business.phone.model.action.StdPhoneEnforceNumberT01;
 import br.com.mind5.business.phone.model.checker.PhoneCheckFormT01;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodePhoneUpdate extends DeciTreeTemplateWriteV2<PhoneInfo> {
+public final class NodePhoneUpdate extends DeciTreeTemplateWrite<PhoneInfo> {
 	
 	public NodePhoneUpdate(DeciTreeOption<PhoneInfo> option) {
 		super(option);
@@ -26,9 +26,9 @@ public final class NodePhoneUpdate extends DeciTreeTemplateWriteV2<PhoneInfo> {
 	
 	
 	
-	@Override protected ModelCheckerV1<PhoneInfo> buildCheckerHook(DeciTreeOption<PhoneInfo> option) {
-		List<ModelCheckerV1<PhoneInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<PhoneInfo> checker;	
+	@Override protected ModelChecker<PhoneInfo> buildCheckerHook(DeciTreeOption<PhoneInfo> option) {
+		List<ModelChecker<PhoneInfo>> queue = new ArrayList<>();		
+		ModelChecker<PhoneInfo> checker;	
 		ModelCheckerOption checkerOption;
 
 		checkerOption = new ModelCheckerOption();
@@ -38,15 +38,15 @@ public final class NodePhoneUpdate extends DeciTreeTemplateWriteV2<PhoneInfo> {
 		checker = new PhoneCheckFormT01(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<PhoneInfo>> buildActionsOnPassedHook(DeciTreeOption<PhoneInfo> option) {
-		List<ActionStdV2<PhoneInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<PhoneInfo>> buildActionsOnPassedHook(DeciTreeOption<PhoneInfo> option) {
+		List<ActionStd<PhoneInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<PhoneInfo> enforceNumberT01 = new StdPhoneEnforceNumberT01(option);
+		ActionStd<PhoneInfo> enforceNumberT01 = new StdPhoneEnforceNumberT01(option);
 		ActionLazy<PhoneInfo> enforceAreaT01 = new LazyPhoneEnforceAreaT01(option.conn, option.schemaName);
 		ActionLazy<PhoneInfo> nodeUpdateT01 = new LazyPhoneNodeUpdateT01(option.conn, option.schemaName);
 		
@@ -59,10 +59,10 @@ public final class NodePhoneUpdate extends DeciTreeTemplateWriteV2<PhoneInfo> {
 	
 	
 	
-	@Override protected List<ActionStdV2<PhoneInfo>> buildActionsOnFailedHook(DeciTreeOption<PhoneInfo> option) {
-		List<ActionStdV2<PhoneInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<PhoneInfo>> buildActionsOnFailedHook(DeciTreeOption<PhoneInfo> option) {
+		List<ActionStd<PhoneInfo>> actions = new ArrayList<>();
 
-		ActionStdV2<PhoneInfo> enforceNumberT00 = new StdPhoneEnforceNumberT00(option);
+		ActionStd<PhoneInfo> enforceNumberT00 = new StdPhoneEnforceNumberT00(option);
 		ActionLazy<PhoneInfo> nodeUpdateT00 = new LazyPhoneNodeUpdateT00(option.conn, option.schemaName);
 		
 		enforceNumberT00.addPostAction(nodeUpdateT00);

@@ -3,16 +3,16 @@ package br.com.mind5.payment.refundOrderItem.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.payment.refundOrderItem.info.RefemInfo;
 import br.com.mind5.payment.refundOrderItem.model.checker.RefemCheckAuthManager;
 
-public final class NodeRefemAuthL2 extends DeciTreeTemplateWriteV2<RefemInfo> {
+public final class NodeRefemAuthL2 extends DeciTreeTemplateWrite<RefemInfo> {
 	
 	public NodeRefemAuthL2(DeciTreeOption<RefemInfo> option) {
 		super(option);
@@ -20,9 +20,9 @@ public final class NodeRefemAuthL2 extends DeciTreeTemplateWriteV2<RefemInfo> {
 	
 	
 	
-	@Override protected ModelCheckerV1<RefemInfo> buildCheckerHook(DeciTreeOption<RefemInfo> option) {
-		List<ModelCheckerV1<RefemInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<RefemInfo> checker;	
+	@Override protected ModelChecker<RefemInfo> buildCheckerHook(DeciTreeOption<RefemInfo> option) {
+		List<ModelChecker<RefemInfo>> queue = new ArrayList<>();		
+		ModelChecker<RefemInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -32,15 +32,15 @@ public final class NodeRefemAuthL2 extends DeciTreeTemplateWriteV2<RefemInfo> {
 		checker = new RefemCheckAuthManager(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<RefemInfo>> buildActionsOnPassedHook(DeciTreeOption<RefemInfo> option) {
-		List<ActionStdV2<RefemInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStd<RefemInfo>> buildActionsOnPassedHook(DeciTreeOption<RefemInfo> option) {
+		List<ActionStd<RefemInfo>> actions = new ArrayList<>();		
 
-		ActionStdV2<RefemInfo> nodeL4 = new NodeRefemAuthL4(option).toAction();
+		ActionStd<RefemInfo> nodeL4 = new NodeRefemAuthL4(option).toAction();
 		
 		actions.add(nodeL4);		
 		return actions;
@@ -48,10 +48,10 @@ public final class NodeRefemAuthL2 extends DeciTreeTemplateWriteV2<RefemInfo> {
 	
 	
 	
-	@Override protected List<ActionStdV2<RefemInfo>> buildActionsOnFailedHook(DeciTreeOption<RefemInfo> option) {
-		List<ActionStdV2<RefemInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStd<RefemInfo>> buildActionsOnFailedHook(DeciTreeOption<RefemInfo> option) {
+		List<ActionStd<RefemInfo>> actions = new ArrayList<>();		
 	
-		ActionStdV2<RefemInfo> nodeL3 = new NodeRefemAuthL3(option).toAction();	
+		ActionStd<RefemInfo> nodeL3 = new NodeRefemAuthL3(option).toAction();	
 		
 		actions.add(nodeL3);		
 		return actions;

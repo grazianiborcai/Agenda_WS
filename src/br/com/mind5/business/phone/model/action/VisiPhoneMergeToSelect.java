@@ -4,12 +4,12 @@ import java.util.List;
 
 import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.business.phone.info.PhoneMerger;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionStd;
+
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiPhoneMergeToSelect extends ActionVisitorTemplateMergeV2<PhoneInfo, PhoneInfo> {
+final class VisiPhoneMergeToSelect extends ActionVisitorTemplateMerge<PhoneInfo, PhoneInfo> {
 	
 	public VisiPhoneMergeToSelect(DeciTreeOption<PhoneInfo> option) {
 		super(option, PhoneInfo.class);
@@ -17,7 +17,7 @@ final class VisiPhoneMergeToSelect extends ActionVisitorTemplateMergeV2<PhoneInf
 	
 	
 	
-	@Override protected Class<? extends ActionStdV2<PhoneInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStd<PhoneInfo>> getActionClassHook() {
 		return StdPhoneDaoSelect.class;
 	}
 	
@@ -30,6 +30,6 @@ final class VisiPhoneMergeToSelect extends ActionVisitorTemplateMergeV2<PhoneInf
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
+		return super.DONT_MERGE_WHEN_EMPTY;
 	}
 }

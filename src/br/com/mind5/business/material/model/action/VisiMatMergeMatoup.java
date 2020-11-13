@@ -6,11 +6,11 @@ import br.com.mind5.business.material.info.MatInfo;
 import br.com.mind5.business.material.info.MatMerger;
 import br.com.mind5.masterData.materialGroup.info.MatoupInfo;
 import br.com.mind5.masterData.materialGroup.model.decisionTree.RootMatoupSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiMatMergeMatoup extends ActionVisitorTemplateMergeV2<MatInfo, MatoupInfo> {
+final class VisiMatMergeMatoup extends ActionVisitorTemplateMerge<MatInfo, MatoupInfo> {
 	
 	public VisiMatMergeMatoup(DeciTreeOption<MatInfo> option) {
 		super(option, MatoupInfo.class);

@@ -3,16 +3,16 @@ package br.com.mind5.payment.payOrder.model.checker;
 import java.util.List;
 
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.creditCardSearch.info.CrecarchCopier;
 import br.com.mind5.payment.creditCardSearch.info.CrecarchInfo;
 import br.com.mind5.payment.creditCardSearch.model.decisionTree.RootCrecarchSelect;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
 
-public final class PayordCheckCrecarch extends ModelCheckerTemplateActionV2<PayordInfo, CrecarchInfo> {
+public final class PayordCheckCrecarch extends ModelCheckerTemplateAction<PayordInfo, CrecarchInfo> {
 	
 	public PayordCheckCrecarch(ModelCheckerOption option) {
 		super(option, CrecarchInfo.class);
@@ -20,8 +20,8 @@ public final class PayordCheckCrecarch extends ModelCheckerTemplateActionV2<Payo
 	
 
 	
-	@Override protected ActionStdV2<CrecarchInfo> buildActionHook(DeciTreeOption<CrecarchInfo> option) {
-		ActionStdV2<CrecarchInfo> select = new RootCrecarchSelect(option).toAction();
+	@Override protected ActionStd<CrecarchInfo> buildActionHook(DeciTreeOption<CrecarchInfo> option) {
+		ActionStd<CrecarchInfo> select = new RootCrecarchSelect(option).toAction();
 		return select;
 	}
 	

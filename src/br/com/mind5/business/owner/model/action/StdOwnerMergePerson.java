@@ -1,11 +1,11 @@
 package br.com.mind5.business.owner.model.action;
 
 import br.com.mind5.business.owner.info.OwnerInfo;
-import br.com.mind5.model.action.ActionStdTemplateV2;
-import br.com.mind5.model.action.ActionVisitorV2;
+import br.com.mind5.model.action.ActionStdTemplate;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class StdOwnerMergePerson extends ActionStdTemplateV2<OwnerInfo> {
+final class StdOwnerMergePerson extends ActionStdTemplate<OwnerInfo> {
 
 	public StdOwnerMergePerson(DeciTreeOption<OwnerInfo> option) {
 		super(option);
@@ -13,7 +13,7 @@ final class StdOwnerMergePerson extends ActionStdTemplateV2<OwnerInfo> {
 	
 	
 	
-	protected ActionVisitorV2<OwnerInfo> buildVisitorHook(DeciTreeOption<OwnerInfo> option) {
+	protected ActionVisitor<OwnerInfo> buildVisitorHook(DeciTreeOption<OwnerInfo> option) {
 		return new VisiOwnerMergePerson(option);
 	}
 }

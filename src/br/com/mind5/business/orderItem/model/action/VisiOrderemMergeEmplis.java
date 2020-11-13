@@ -6,11 +6,11 @@ import br.com.mind5.business.employeeList.info.EmplisInfo;
 import br.com.mind5.business.employeeList.model.decisionTree.RootEmplisSelect;
 import br.com.mind5.business.orderItem.info.OrderemInfo;
 import br.com.mind5.business.orderItem.info.OrderemMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiOrderemMergeEmplis extends ActionVisitorTemplateMergeV2<OrderemInfo, EmplisInfo> {
+final class VisiOrderemMergeEmplis extends ActionVisitorTemplateMerge<OrderemInfo, EmplisInfo> {
 	
 	public VisiOrderemMergeEmplis(DeciTreeOption<OrderemInfo> option) {
 		super(option, EmplisInfo.class);

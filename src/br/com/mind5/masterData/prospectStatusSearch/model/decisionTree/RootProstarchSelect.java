@@ -6,14 +6,14 @@ import java.util.List;
 import br.com.mind5.masterData.prospectStatusSearch.info.ProstarchInfo;
 import br.com.mind5.masterData.prospectStatusSearch.model.action.StdProstarchDaoSelect;
 import br.com.mind5.masterData.prospectStatusSearch.model.checker.ProstarchCheckRead;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootProstarchSelect extends DeciTreeTemplateWriteV2<ProstarchInfo> {
+public final class RootProstarchSelect extends DeciTreeTemplateWrite<ProstarchInfo> {
 	
 	public RootProstarchSelect(DeciTreeOption<ProstarchInfo> option) {
 		super(option);
@@ -21,9 +21,9 @@ public final class RootProstarchSelect extends DeciTreeTemplateWriteV2<Prostarch
 	
 	
 	
-	@Override protected ModelCheckerV1<ProstarchInfo> buildCheckerHook(DeciTreeOption<ProstarchInfo> option) {
-		List<ModelCheckerV1<ProstarchInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<ProstarchInfo> checker;
+	@Override protected ModelChecker<ProstarchInfo> buildCheckerHook(DeciTreeOption<ProstarchInfo> option) {
+		List<ModelChecker<ProstarchInfo>> queue = new ArrayList<>();		
+		ModelChecker<ProstarchInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
 		checkerOption = new ModelCheckerOption();
@@ -33,15 +33,15 @@ public final class RootProstarchSelect extends DeciTreeTemplateWriteV2<Prostarch
 		checker = new ProstarchCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<ProstarchInfo>> buildActionsOnPassedHook(DeciTreeOption<ProstarchInfo> option) {
-		List<ActionStdV2<ProstarchInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<ProstarchInfo>> buildActionsOnPassedHook(DeciTreeOption<ProstarchInfo> option) {
+		List<ActionStd<ProstarchInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<ProstarchInfo> select = new StdProstarchDaoSelect(option);
+		ActionStd<ProstarchInfo> select = new StdProstarchDaoSelect(option);
 		
 		actions.add(select);
 		return actions;

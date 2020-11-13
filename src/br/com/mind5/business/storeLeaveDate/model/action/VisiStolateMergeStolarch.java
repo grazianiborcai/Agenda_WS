@@ -6,11 +6,11 @@ import br.com.mind5.business.storeLeaveDate.info.StolateInfo;
 import br.com.mind5.business.storeLeaveDate.info.StolateMerger;
 import br.com.mind5.business.storeLeaveDateSearch.info.StolarchInfo;
 import br.com.mind5.business.storeLeaveDateSearch.model.decisionTree.RootStolarchSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiStolateMergeStolarch extends ActionVisitorTemplateMergeV2<StolateInfo, StolarchInfo> {
+final class VisiStolateMergeStolarch extends ActionVisitorTemplateMerge<StolateInfo, StolarchInfo> {
 	
 	public VisiStolateMergeStolarch(DeciTreeOption<StolateInfo> option) {
 		super(option, StolarchInfo.class);

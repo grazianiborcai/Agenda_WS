@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.materialMovement.info.MatmovInfo;
 import br.com.mind5.model.action.ActionLazyTemplate;
-import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -23,7 +23,7 @@ public final class LazyMatmovEnforceCreatedBy extends ActionLazyTemplate<MatmovI
 	
 	
 	
-	@Override protected ActionStdV2<MatmovInfo> getInstanceOfActionHook(DeciTreeOption<MatmovInfo> option) {
+	@Override protected ActionStd<MatmovInfo> getInstanceOfActionHook(DeciTreeOption<MatmovInfo> option) {
 		return new StdMatmovEnforceCreatedBy(option);
 	}
 	

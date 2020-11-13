@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.masterData.paymentStatusSearch.info.PaymenusarchInfo;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 
-public final class PaymenusarchCheckRead extends ModelCheckerTemplateSimpleV2<PaymenusarchInfo> {
+public final class PaymenusarchCheckRead extends ModelCheckerTemplateSimple<PaymenusarchInfo> {
 	
 	public PaymenusarchCheckRead(ModelCheckerOption option) {
 		super(option);

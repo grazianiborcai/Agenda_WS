@@ -4,11 +4,11 @@ import java.util.List;
 
 import br.com.mind5.business.materialStore.info.MatoreInfo;
 import br.com.mind5.business.materialStore.info.MatoreMerger;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiMatoreMergeToSelect extends ActionVisitorTemplateMergeV2<MatoreInfo, MatoreInfo> {
+final class VisiMatoreMergeToSelect extends ActionVisitorTemplateMerge<MatoreInfo, MatoreInfo> {
 	
 	public VisiMatoreMergeToSelect(DeciTreeOption<MatoreInfo> option) {
 		super(option, MatoreInfo.class);
@@ -16,7 +16,7 @@ final class VisiMatoreMergeToSelect extends ActionVisitorTemplateMergeV2<MatoreI
 	
 	
 	
-	@Override protected Class<? extends ActionStdV2<MatoreInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStd<MatoreInfo>> getActionClassHook() {
 		return StdMatoreDaoSelect.class;
 	}
 	

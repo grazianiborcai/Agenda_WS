@@ -1,14 +1,14 @@
 package br.com.mind5.payment.setupPartner.model.checker;
 
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.setupPartner.info.SetuparInfo;
 import br.com.mind5.payment.setupPartner.model.action.StdSetuparDaoSelect;
 
-public final class SetuparCheckExist extends ModelCheckerTemplateActionV2<SetuparInfo, SetuparInfo> {
+public final class SetuparCheckExist extends ModelCheckerTemplateAction<SetuparInfo, SetuparInfo> {
 	
 	public SetuparCheckExist(ModelCheckerOption option) {
 		super(option, SetuparInfo.class);
@@ -16,8 +16,8 @@ public final class SetuparCheckExist extends ModelCheckerTemplateActionV2<Setupa
 	
 
 	
-	@Override protected ActionStdV2<SetuparInfo> buildActionHook(DeciTreeOption<SetuparInfo> option) {
-		ActionStdV2<SetuparInfo> select = new StdSetuparDaoSelect(option);
+	@Override protected ActionStd<SetuparInfo> buildActionHook(DeciTreeOption<SetuparInfo> option) {
+		ActionStd<SetuparInfo> select = new StdSetuparDaoSelect(option);
 		return select;
 	}
 	

@@ -8,7 +8,7 @@ import br.com.mind5.common.DbSchema;
 import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.InfoRecord;
-import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
@@ -103,7 +103,7 @@ public abstract class DeciTreeOneCallTemplate<T extends InfoRecord> implements D
 	
 	
 	
-	@Override public ActionStdV2<T> toAction() {
+	@Override public ActionStd<T> toAction() {
 		return helper.toAction();
 	}
 	

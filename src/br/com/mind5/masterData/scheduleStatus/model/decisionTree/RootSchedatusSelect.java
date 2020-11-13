@@ -6,14 +6,14 @@ import java.util.List;
 import br.com.mind5.masterData.scheduleStatus.info.SchedatusInfo;
 import br.com.mind5.masterData.scheduleStatus.model.action.StdSchedatusDaoSelect;
 import br.com.mind5.masterData.scheduleStatus.model.checker.SchedatusCheckRead;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootSchedatusSelect extends DeciTreeTemplateReadV1<SchedatusInfo> {
+public final class RootSchedatusSelect extends DeciTreeTemplateRead<SchedatusInfo> {
 	
 	public RootSchedatusSelect(DeciTreeOption<SchedatusInfo> option) {
 		super(option);
@@ -21,9 +21,9 @@ public final class RootSchedatusSelect extends DeciTreeTemplateReadV1<SchedatusI
 	
 	
 	
-	@Override protected ModelCheckerV1<SchedatusInfo> buildCheckerHook(DeciTreeOption<SchedatusInfo> option) {
-		List<ModelCheckerV1<SchedatusInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<SchedatusInfo> checker;
+	@Override protected ModelChecker<SchedatusInfo> buildCheckerHook(DeciTreeOption<SchedatusInfo> option) {
+		List<ModelChecker<SchedatusInfo>> queue = new ArrayList<>();		
+		ModelChecker<SchedatusInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
 		checkerOption = new ModelCheckerOption();
@@ -33,15 +33,15 @@ public final class RootSchedatusSelect extends DeciTreeTemplateReadV1<SchedatusI
 		checker = new SchedatusCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 
 		
 	
-	@Override protected List<ActionStdV2<SchedatusInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedatusInfo> option) {
-		List<ActionStdV2<SchedatusInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<SchedatusInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedatusInfo> option) {
+		List<ActionStd<SchedatusInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<SchedatusInfo> select = new StdSchedatusDaoSelect(option);
+		ActionStd<SchedatusInfo> select = new StdSchedatusDaoSelect(option);
 		
 		actions.add(select);
 		return actions;

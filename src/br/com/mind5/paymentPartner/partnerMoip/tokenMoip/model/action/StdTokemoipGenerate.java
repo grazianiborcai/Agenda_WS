@@ -1,11 +1,11 @@
 package br.com.mind5.paymentPartner.partnerMoip.tokenMoip.model.action;
 
-import br.com.mind5.model.action.ActionStdTemplateV2;
-import br.com.mind5.model.action.ActionVisitorV2;
+import br.com.mind5.model.action.ActionStdTemplate;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.paymentPartner.partnerMoip.tokenMoip.info.TokemoipInfo;
 
-public final class StdTokemoipGenerate extends ActionStdTemplateV2<TokemoipInfo> {
+public final class StdTokemoipGenerate extends ActionStdTemplate<TokemoipInfo> {
 
 	public StdTokemoipGenerate(DeciTreeOption<TokemoipInfo> option) {
 		super(option);
@@ -13,7 +13,7 @@ public final class StdTokemoipGenerate extends ActionStdTemplateV2<TokemoipInfo>
 	
 	
 	
-	protected ActionVisitorV2<TokemoipInfo> buildVisitorHook(DeciTreeOption<TokemoipInfo> option) {
+	protected ActionVisitor<TokemoipInfo> buildVisitorHook(DeciTreeOption<TokemoipInfo> option) {
 		return new VisiTokemoipGenerate(option);
 	}
 }

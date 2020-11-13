@@ -3,17 +3,17 @@ package br.com.mind5.payment.ownerPartner.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 import br.com.mind5.payment.ownerPartner.info.OwnparInfo;
 import br.com.mind5.payment.ownerPartner.model.checker.OwnparCheckOwner;
 import br.com.mind5.payment.ownerPartner.model.checker.OwnparCheckRead;
 
-public final class RootOwnparSelect extends DeciTreeTemplateReadV2<OwnparInfo> {
+public final class RootOwnparSelect extends DeciTreeTemplateRead<OwnparInfo> {
 	
 	public RootOwnparSelect(DeciTreeOption<OwnparInfo> option) {
 		super(option);
@@ -21,9 +21,9 @@ public final class RootOwnparSelect extends DeciTreeTemplateReadV2<OwnparInfo> {
 	
 	
 	
-	@Override protected ModelCheckerV1<OwnparInfo> buildCheckerHook(DeciTreeOption<OwnparInfo> option) {
-		List<ModelCheckerV1<OwnparInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<OwnparInfo> checker;
+	@Override protected ModelChecker<OwnparInfo> buildCheckerHook(DeciTreeOption<OwnparInfo> option) {
+		List<ModelChecker<OwnparInfo>> queue = new ArrayList<>();		
+		ModelChecker<OwnparInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -40,15 +40,15 @@ public final class RootOwnparSelect extends DeciTreeTemplateReadV2<OwnparInfo> {
 		checker = new OwnparCheckOwner(checkerOption);
 		queue.add(checker);	
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<OwnparInfo>> buildActionsOnPassedHook(DeciTreeOption<OwnparInfo> option) {
-		List<ActionStdV2<OwnparInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<OwnparInfo>> buildActionsOnPassedHook(DeciTreeOption<OwnparInfo> option) {
+		List<ActionStd<OwnparInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<OwnparInfo> nodeSelect = new NodeOwnparSelect(option).toAction();
+		ActionStd<OwnparInfo> nodeSelect = new NodeOwnparSelect(option).toAction();
 		
 		actions.add(nodeSelect);
 		return actions;

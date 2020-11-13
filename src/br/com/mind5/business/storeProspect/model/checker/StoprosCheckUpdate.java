@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.mind5.business.storeProspect.info.StoprosInfo;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 
-public final class StoprosCheckUpdate extends ModelCheckerTemplateSimpleV2<StoprosInfo> {
+public final class StoprosCheckUpdate extends ModelCheckerTemplateSimple<StoprosInfo> {
 
 	public StoprosCheckUpdate(ModelCheckerOption option) {
 		super(option);

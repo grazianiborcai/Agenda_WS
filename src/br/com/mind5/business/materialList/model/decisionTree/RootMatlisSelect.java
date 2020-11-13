@@ -16,14 +16,14 @@ import br.com.mind5.business.materialList.model.checker.MatlisCheckLangu;
 import br.com.mind5.business.materialList.model.checker.MatlisCheckOwner;
 import br.com.mind5.business.materialList.model.checker.MatlisCheckRead;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootMatlisSelect extends DeciTreeTemplateReadV2<MatlisInfo> {
+public final class RootMatlisSelect extends DeciTreeTemplateRead<MatlisInfo> {
 	
 	public RootMatlisSelect(DeciTreeOption<MatlisInfo> option) {
 		super(option);
@@ -31,9 +31,9 @@ public final class RootMatlisSelect extends DeciTreeTemplateReadV2<MatlisInfo> {
 	
 	
 	
-	@Override protected ModelCheckerV1<MatlisInfo> buildCheckerHook(DeciTreeOption<MatlisInfo> option) {
-		List<ModelCheckerV1<MatlisInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<MatlisInfo> checker;
+	@Override protected ModelChecker<MatlisInfo> buildCheckerHook(DeciTreeOption<MatlisInfo> option) {
+		List<ModelChecker<MatlisInfo>> queue = new ArrayList<>();		
+		ModelChecker<MatlisInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -57,15 +57,15 @@ public final class RootMatlisSelect extends DeciTreeTemplateReadV2<MatlisInfo> {
 		checker = new MatlisCheckOwner(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<MatlisInfo>> buildActionsOnPassedHook(DeciTreeOption<MatlisInfo> option) {
-		List<ActionStdV2<MatlisInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<MatlisInfo>> buildActionsOnPassedHook(DeciTreeOption<MatlisInfo> option) {
+		List<ActionStd<MatlisInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<MatlisInfo> select = new StdMatlisMergeToSelect(option);
+		ActionStd<MatlisInfo> select = new StdMatlisMergeToSelect(option);
 		ActionLazy<MatlisInfo> mergeMatype = new LazyMatlisMergeMatype(option.conn, option.schemaName);
 		ActionLazy<MatlisInfo> mergeMateg = new LazyMatlisMergeMateg(option.conn, option.schemaName);
 		ActionLazy<MatlisInfo> mergeMatoup = new LazyMatlisMergeMatoup(option.conn, option.schemaName);

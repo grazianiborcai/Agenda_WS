@@ -1,11 +1,11 @@
 package br.com.mind5.business.material.model.action;
 
 import br.com.mind5.business.material.info.MatInfo;
-import br.com.mind5.model.action.ActionStdTemplateV2;
-import br.com.mind5.model.action.ActionVisitorV2;
+import br.com.mind5.model.action.ActionStdTemplate;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdMatMergeFimist extends ActionStdTemplateV2<MatInfo> {
+public final class StdMatMergeFimist extends ActionStdTemplate<MatInfo> {
 
 	public StdMatMergeFimist(DeciTreeOption<MatInfo> option) {
 		super(option);
@@ -13,7 +13,7 @@ public final class StdMatMergeFimist extends ActionStdTemplateV2<MatInfo> {
 	
 	
 	
-	protected ActionVisitorV2<MatInfo> buildVisitorHook(DeciTreeOption<MatInfo> option) {
+	protected ActionVisitor<MatInfo> buildVisitorHook(DeciTreeOption<MatInfo> option) {
 		return new VisiMatMergeFimist(option);
 	}
 }

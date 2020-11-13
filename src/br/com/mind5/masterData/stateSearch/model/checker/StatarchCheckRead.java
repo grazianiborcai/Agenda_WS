@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.masterData.stateSearch.info.StatarchInfo;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 
-public final class StatarchCheckRead extends ModelCheckerTemplateSimpleV2<StatarchInfo> {
+public final class StatarchCheckRead extends ModelCheckerTemplateSimple<StatarchInfo> {
 
 	public StatarchCheckRead(ModelCheckerOption option) {
 		super(option);

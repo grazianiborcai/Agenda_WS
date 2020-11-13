@@ -4,11 +4,11 @@ import br.com.mind5.business.address.info.AddressCopier;
 import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.address.model.checker.AddressCheckExist;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
 
-public final class CusparCheckAddress extends ModelCheckerTemplateForwardV2<CusparInfo, AddressInfo> {
+public final class CusparCheckAddress extends ModelCheckerTemplateForward<CusparInfo, AddressInfo> {
 	
 	public CusparCheckAddress(ModelCheckerOption option) {
 		super(option);
@@ -16,7 +16,7 @@ public final class CusparCheckAddress extends ModelCheckerTemplateForwardV2<Cusp
 
 
 	
-	@Override protected ModelCheckerV1<AddressInfo> getCheckerHook(ModelCheckerOption option) {
+	@Override protected ModelChecker<AddressInfo> getCheckerHook(ModelCheckerOption option) {
 		return new AddressCheckExist(option);
 	}
 	

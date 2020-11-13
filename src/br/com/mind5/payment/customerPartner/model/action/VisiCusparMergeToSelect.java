@@ -2,13 +2,13 @@ package br.com.mind5.payment.customerPartner.model.action;
 
 import java.util.List;
 
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
 import br.com.mind5.payment.customerPartner.info.CusparMerger;
 
-final class VisiCusparMergeToSelect extends ActionVisitorTemplateMergeV2<CusparInfo, CusparInfo> {
+final class VisiCusparMergeToSelect extends ActionVisitorTemplateMerge<CusparInfo, CusparInfo> {
 	
 	public VisiCusparMergeToSelect(DeciTreeOption<CusparInfo> option) {
 		super(option, CusparInfo.class);
@@ -16,7 +16,7 @@ final class VisiCusparMergeToSelect extends ActionVisitorTemplateMergeV2<CusparI
 	
 	
 	
-	@Override protected Class<? extends ActionStdV2<CusparInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStd<CusparInfo>> getActionClassHook() {
 		return StdCusparDaoSelect.class;
 	}
 	

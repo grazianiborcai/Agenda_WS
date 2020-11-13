@@ -4,11 +4,11 @@ import java.util.List;
 
 import br.com.mind5.business.storeSnapshot.info.StorapInfo;
 import br.com.mind5.business.storeSnapshot.info.StorapMerger;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiStorapMergeToSelect extends ActionVisitorTemplateMergeV2<StorapInfo, StorapInfo> {
+final class VisiStorapMergeToSelect extends ActionVisitorTemplateMerge<StorapInfo, StorapInfo> {
 	
 	public VisiStorapMergeToSelect(DeciTreeOption<StorapInfo> option) {
 		super(option, StorapInfo.class);
@@ -16,7 +16,7 @@ final class VisiStorapMergeToSelect extends ActionVisitorTemplateMergeV2<StorapI
 	
 	
 	
-	@Override protected Class<? extends ActionStdV2<StorapInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStd<StorapInfo>> getActionClassHook() {
 		return StdStorapDaoSelect.class;
 	}
 	

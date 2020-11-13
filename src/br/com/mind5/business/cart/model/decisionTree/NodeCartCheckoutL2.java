@@ -8,14 +8,14 @@ import br.com.mind5.business.cart.model.action.LazyCartEmptfy;
 import br.com.mind5.business.cart.model.action.StdCartInsertOrder;
 import br.com.mind5.business.cart.model.checker.CartCheckAged;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodeCartCheckoutL2 extends DeciTreeTemplateWriteV2<CartInfo> {
+public final class NodeCartCheckoutL2 extends DeciTreeTemplateWrite<CartInfo> {
 	
 	public NodeCartCheckoutL2(DeciTreeOption<CartInfo> option) {
 		super(option);
@@ -23,9 +23,9 @@ public final class NodeCartCheckoutL2 extends DeciTreeTemplateWriteV2<CartInfo> 
 	
 	
 	
-	@Override protected ModelCheckerV1<CartInfo> buildCheckerHook(DeciTreeOption<CartInfo> option) {
-		List<ModelCheckerV1<CartInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<CartInfo> checker;	
+	@Override protected ModelChecker<CartInfo> buildCheckerHook(DeciTreeOption<CartInfo> option) {
+		List<ModelChecker<CartInfo>> queue = new ArrayList<>();		
+		ModelChecker<CartInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -35,15 +35,15 @@ public final class NodeCartCheckoutL2 extends DeciTreeTemplateWriteV2<CartInfo> 
 		checker = new CartCheckAged(checkerOption);
 		queue.add(checker);
 
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<CartInfo>> buildActionsOnPassedHook(DeciTreeOption<CartInfo> option) {
-		List<ActionStdV2<CartInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<CartInfo>> buildActionsOnPassedHook(DeciTreeOption<CartInfo> option) {
+		List<ActionStd<CartInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<CartInfo> insertOrder = new StdCartInsertOrder(option);	
+		ActionStd<CartInfo> insertOrder = new StdCartInsertOrder(option);	
 		ActionLazy<CartInfo> emptfy = new LazyCartEmptfy(option.conn, option.schemaName);
 		
 		insertOrder.addPostAction(emptfy);

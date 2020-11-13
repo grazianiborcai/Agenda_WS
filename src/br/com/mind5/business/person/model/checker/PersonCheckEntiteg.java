@@ -4,10 +4,10 @@ import br.com.mind5.business.person.info.PersonInfo;
 import br.com.mind5.masterData.entityCategory.info.EntitegInfo;
 import br.com.mind5.masterData.entityCategory.model.checker.EntitegCheckExist;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.model.checker.ModelChecker;
 
-public final class PersonCheckEntiteg extends ModelCheckerTemplateForwardV2<PersonInfo, EntitegInfo> {
+public final class PersonCheckEntiteg extends ModelCheckerTemplateForward<PersonInfo, EntitegInfo> {
 	
 	public PersonCheckEntiteg(ModelCheckerOption option) {
 		super(option);
@@ -15,7 +15,7 @@ public final class PersonCheckEntiteg extends ModelCheckerTemplateForwardV2<Pers
 
 
 	
-	@Override protected ModelCheckerV1<EntitegInfo> getCheckerHook(ModelCheckerOption option) {
+	@Override protected ModelChecker<EntitegInfo> getCheckerHook(ModelCheckerOption option) {
 		return new EntitegCheckExist(option);
 	}
 	

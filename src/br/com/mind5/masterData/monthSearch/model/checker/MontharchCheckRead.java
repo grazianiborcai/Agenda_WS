@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.masterData.monthSearch.info.MontharchInfo;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 
-public final class MontharchCheckRead extends ModelCheckerTemplateSimpleV2<MontharchInfo> {
+public final class MontharchCheckRead extends ModelCheckerTemplateSimple<MontharchInfo> {
 
 	public MontharchCheckRead(ModelCheckerOption option) {
 		super(option);

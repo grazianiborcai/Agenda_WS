@@ -7,14 +7,14 @@ import br.com.mind5.business.employee.info.EmpInfo;
 import br.com.mind5.business.employee.model.action.StdEmpEmposInsert;
 import br.com.mind5.business.employee.model.action.StdEmpSuccess;
 import br.com.mind5.business.employee.model.checker.EmpCheckSytotin;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodeEmpInsertL2 extends DeciTreeTemplateWriteV2<EmpInfo> {	
+public final class NodeEmpInsertL2 extends DeciTreeTemplateWrite<EmpInfo> {	
 	
 	public NodeEmpInsertL2(DeciTreeOption<EmpInfo> option) {
 		super(option);
@@ -22,9 +22,9 @@ public final class NodeEmpInsertL2 extends DeciTreeTemplateWriteV2<EmpInfo> {
 	
 	
 	
-	@Override protected ModelCheckerV1<EmpInfo> buildCheckerHook(DeciTreeOption<EmpInfo> option) {		
-		List<ModelCheckerV1<EmpInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<EmpInfo> checker;
+	@Override protected ModelChecker<EmpInfo> buildCheckerHook(DeciTreeOption<EmpInfo> option) {		
+		List<ModelChecker<EmpInfo>> queue = new ArrayList<>();		
+		ModelChecker<EmpInfo> checker;
 		ModelCheckerOption checkerOption;		
 		
 		checkerOption = new ModelCheckerOption();
@@ -34,15 +34,15 @@ public final class NodeEmpInsertL2 extends DeciTreeTemplateWriteV2<EmpInfo> {
 		checker = new EmpCheckSytotin(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<EmpInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpInfo> option) {
-		List<ActionStdV2<EmpInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStd<EmpInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpInfo> option) {
+		List<ActionStd<EmpInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV2<EmpInfo> insertEmpos = new StdEmpEmposInsert(option);
+		ActionStd<EmpInfo> insertEmpos = new StdEmpEmposInsert(option);
 		
 		actions.add(insertEmpos);	
 		return actions;
@@ -50,10 +50,10 @@ public final class NodeEmpInsertL2 extends DeciTreeTemplateWriteV2<EmpInfo> {
 	
 	
 	
-	@Override protected List<ActionStdV2<EmpInfo>> buildActionsOnFailedHook(DeciTreeOption<EmpInfo> option) {
-		List<ActionStdV2<EmpInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStd<EmpInfo>> buildActionsOnFailedHook(DeciTreeOption<EmpInfo> option) {
+		List<ActionStd<EmpInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV2<EmpInfo> success = new StdEmpSuccess(option);
+		ActionStd<EmpInfo> success = new StdEmpSuccess(option);
 		
 		actions.add(success);	
 		return actions;

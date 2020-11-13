@@ -6,11 +6,11 @@ import br.com.mind5.business.material.info.MatInfo;
 import br.com.mind5.business.material.info.MatMerger;
 import br.com.mind5.masterData.materialType.info.MatypeInfo;
 import br.com.mind5.masterData.materialType.model.decisionTree.RootMatypeSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiMatMergeMatype extends ActionVisitorTemplateMergeV2<MatInfo, MatypeInfo> {
+final class VisiMatMergeMatype extends ActionVisitorTemplateMerge<MatInfo, MatypeInfo> {
 	
 	public VisiMatMergeMatype(DeciTreeOption<MatInfo> option) {
 		super(option, MatypeInfo.class);

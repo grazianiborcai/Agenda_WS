@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 
-public final class MatlisCheckSearch extends ModelCheckerTemplateSimpleV2<MatlisInfo> {
+public final class MatlisCheckSearch extends ModelCheckerTemplateSimple<MatlisInfo> {
 
 	public MatlisCheckSearch(ModelCheckerOption option) {
 		super(option);

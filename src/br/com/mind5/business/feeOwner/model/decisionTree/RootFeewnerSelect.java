@@ -7,14 +7,14 @@ import br.com.mind5.business.feeOwner.info.FeewnerInfo;
 import br.com.mind5.business.feeOwner.model.checker.FeewnerCheckFeecat;
 import br.com.mind5.business.feeOwner.model.checker.FeewnerCheckOwner;
 import br.com.mind5.business.feeOwner.model.checker.FeewnerCheckRead;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootFeewnerSelect extends DeciTreeTemplateReadV2<FeewnerInfo> {
+public final class RootFeewnerSelect extends DeciTreeTemplateRead<FeewnerInfo> {
 	
 	public RootFeewnerSelect(DeciTreeOption<FeewnerInfo> option) {
 		super(option);
@@ -22,9 +22,9 @@ public final class RootFeewnerSelect extends DeciTreeTemplateReadV2<FeewnerInfo>
 	
 	
 	
-	@Override protected ModelCheckerV1<FeewnerInfo> buildCheckerHook(DeciTreeOption<FeewnerInfo> option) {
-		List<ModelCheckerV1<FeewnerInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<FeewnerInfo> checker;
+	@Override protected ModelChecker<FeewnerInfo> buildCheckerHook(DeciTreeOption<FeewnerInfo> option) {
+		List<ModelChecker<FeewnerInfo>> queue = new ArrayList<>();		
+		ModelChecker<FeewnerInfo> checker;
 		ModelCheckerOption checkerOption;
 
 		checkerOption = new ModelCheckerOption();
@@ -48,15 +48,15 @@ public final class RootFeewnerSelect extends DeciTreeTemplateReadV2<FeewnerInfo>
 		checker = new FeewnerCheckFeecat(checkerOption);
 		queue.add(checker);	
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<FeewnerInfo>> buildActionsOnPassedHook(DeciTreeOption<FeewnerInfo> option) {
-		List<ActionStdV2<FeewnerInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<FeewnerInfo>> buildActionsOnPassedHook(DeciTreeOption<FeewnerInfo> option) {
+		List<ActionStd<FeewnerInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<FeewnerInfo> select = new NodeFeewnerSelect(option).toAction();
+		ActionStd<FeewnerInfo> select = new NodeFeewnerSelect(option).toAction();
 		actions.add(select);
 		
 		return actions;

@@ -6,14 +6,14 @@ import java.util.List;
 import br.com.mind5.business.planingData.info.PlanataInfo;
 import br.com.mind5.business.planingData.model.action.LazyPlanataNodeReserve;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public class RootPlanataSelect extends DeciTreeTemplateReadV2<PlanataInfo> {
+public class RootPlanataSelect extends DeciTreeTemplateRead<PlanataInfo> {
 	
 	public RootPlanataSelect(DeciTreeOption<PlanataInfo> option) {
 		super(option);
@@ -21,22 +21,22 @@ public class RootPlanataSelect extends DeciTreeTemplateReadV2<PlanataInfo> {
 	
 	
 	
-	@Override protected ModelCheckerV1<PlanataInfo> buildCheckerHook(DeciTreeOption<PlanataInfo> option) {
-		List<ModelCheckerV1<PlanataInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<PlanataInfo> checker;
+	@Override protected ModelChecker<PlanataInfo> buildCheckerHook(DeciTreeOption<PlanataInfo> option) {
+		List<ModelChecker<PlanataInfo>> queue = new ArrayList<>();		
+		ModelChecker<PlanataInfo> checker;
 
 		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<PlanataInfo>> buildActionsOnPassedHook(DeciTreeOption<PlanataInfo> option) {
-		List<ActionStdV2<PlanataInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStd<PlanataInfo>> buildActionsOnPassedHook(DeciTreeOption<PlanataInfo> option) {
+		List<ActionStd<PlanataInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV2<PlanataInfo> select = new RootPlanataSelectNoReserve(option).toAction();	
+		ActionStd<PlanataInfo> select = new RootPlanataSelectNoReserve(option).toAction();	
 		ActionLazy<PlanataInfo> nodeReserve = new LazyPlanataNodeReserve(option.conn, option.schemaName);
 		
 		select.addPostAction(nodeReserve);

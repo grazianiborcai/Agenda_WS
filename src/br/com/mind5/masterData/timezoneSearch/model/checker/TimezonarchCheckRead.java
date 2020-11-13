@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.masterData.timezoneSearch.info.TimezonarchInfo;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 
-public final class TimezonarchCheckRead extends ModelCheckerTemplateSimpleV2<TimezonarchInfo> {
+public final class TimezonarchCheckRead extends ModelCheckerTemplateSimple<TimezonarchInfo> {
 
 	public TimezonarchCheckRead(ModelCheckerOption option) {
 		super(option);

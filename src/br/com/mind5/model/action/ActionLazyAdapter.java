@@ -8,7 +8,7 @@ import br.com.mind5.common.SystemMessage;
 import br.com.mind5.info.InfoRecord;
 import br.com.mind5.model.decisionTree.DeciResult;
 
-final class ActionLazyAdapter<T extends InfoRecord> implements ActionStdV2<T> {
+final class ActionLazyAdapter<T extends InfoRecord> implements ActionStd<T> {
 	private ActionLazy<T> handler;
 	private List<T> recordInfos;
 	

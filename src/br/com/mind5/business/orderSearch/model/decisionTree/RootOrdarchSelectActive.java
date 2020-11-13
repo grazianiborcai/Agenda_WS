@@ -6,14 +6,14 @@ import java.util.List;
 import br.com.mind5.business.orderSearch.info.OrdarchInfo;
 import br.com.mind5.business.orderSearch.model.action.LazyOrdarchPruneInactive;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootOrdarchSelectActive extends DeciTreeTemplateReadV2<OrdarchInfo> {
+public final class RootOrdarchSelectActive extends DeciTreeTemplateRead<OrdarchInfo> {
 	
 	public RootOrdarchSelectActive(DeciTreeOption<OrdarchInfo> option) {
 		super(option);
@@ -21,22 +21,22 @@ public final class RootOrdarchSelectActive extends DeciTreeTemplateReadV2<Ordarc
 	
 	
 	
-	@Override protected ModelCheckerV1<OrdarchInfo> buildCheckerHook(DeciTreeOption<OrdarchInfo> option) {
-		List<ModelCheckerV1<OrdarchInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<OrdarchInfo> checker;	
+	@Override protected ModelChecker<OrdarchInfo> buildCheckerHook(DeciTreeOption<OrdarchInfo> option) {
+		List<ModelChecker<OrdarchInfo>> queue = new ArrayList<>();		
+		ModelChecker<OrdarchInfo> checker;	
 		
 		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<OrdarchInfo>> buildActionsOnPassedHook(DeciTreeOption<OrdarchInfo> option) {
-		List<ActionStdV2<OrdarchInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStd<OrdarchInfo>> buildActionsOnPassedHook(DeciTreeOption<OrdarchInfo> option) {
+		List<ActionStd<OrdarchInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV2<OrdarchInfo> select = new RootOrdarchSelect(option).toAction();
+		ActionStd<OrdarchInfo> select = new RootOrdarchSelect(option).toAction();
 		ActionLazy<OrdarchInfo> pruneInactive = new LazyOrdarchPruneInactive(option.conn, option.schemaName);
 		
 		select.addPostAction(pruneInactive);

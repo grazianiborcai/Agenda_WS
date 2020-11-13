@@ -4,10 +4,10 @@ import br.com.mind5.business.storeText.info.StorextInfo;
 import br.com.mind5.business.storeText.model.checker.StorextCheckExist;
 import br.com.mind5.business.storeTextSnapshot.info.StorextsnapInfo;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.model.checker.ModelChecker;
 
-public final class StorextsnapCheckStorext extends ModelCheckerTemplateForwardV2<StorextsnapInfo, StorextInfo> {
+public final class StorextsnapCheckStorext extends ModelCheckerTemplateForward<StorextsnapInfo, StorextInfo> {
 	
 	public StorextsnapCheckStorext(ModelCheckerOption option) {
 		super(option);
@@ -15,7 +15,7 @@ public final class StorextsnapCheckStorext extends ModelCheckerTemplateForwardV2
 
 
 	
-	@Override protected ModelCheckerV1<StorextInfo> getCheckerHook(ModelCheckerOption option) {
+	@Override protected ModelChecker<StorextInfo> getCheckerHook(ModelCheckerOption option) {
 		return new StorextCheckExist(option);
 	}
 	

@@ -6,9 +6,9 @@ import br.com.mind5.business.storeNearby.info.StorbyInfo;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 
-public final class StorbyCheckReadDistrict extends ModelCheckerTemplateSimpleV2<StorbyInfo> {
+public final class StorbyCheckReadDistrict extends ModelCheckerTemplateSimple<StorbyInfo> {
 
 	public StorbyCheckReadDistrict(ModelCheckerOption option) {
 		super(option);

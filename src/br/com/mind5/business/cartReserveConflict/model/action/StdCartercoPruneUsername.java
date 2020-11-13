@@ -1,11 +1,11 @@
 package br.com.mind5.business.cartReserveConflict.model.action;
 
 import br.com.mind5.business.cartReserveConflict.info.CartercoInfo;
-import br.com.mind5.model.action.ActionStdTemplateV2;
-import br.com.mind5.model.action.ActionVisitorV2;
+import br.com.mind5.model.action.ActionStdTemplate;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdCartercoPruneUsername extends ActionStdTemplateV2<CartercoInfo> {
+public final class StdCartercoPruneUsername extends ActionStdTemplate<CartercoInfo> {
 
 	public StdCartercoPruneUsername(DeciTreeOption<CartercoInfo> option) {
 		super(option);
@@ -13,7 +13,7 @@ public final class StdCartercoPruneUsername extends ActionStdTemplateV2<Carterco
 	
 	
 	
-	protected ActionVisitorV2<CartercoInfo> buildVisitorHook(DeciTreeOption<CartercoInfo> option) {
+	protected ActionVisitor<CartercoInfo> buildVisitorHook(DeciTreeOption<CartercoInfo> option) {
 		return new VisiCartercoPruneUsername(option);
 	}
 }

@@ -8,14 +8,14 @@ import br.com.mind5.business.refundPolicyOwner.model.action.StdRefupownDaoDelete
 import br.com.mind5.business.refundPolicyOwner.model.checker.RefupownCheckDelete;
 import br.com.mind5.business.refundPolicyOwner.model.checker.RefupownCheckExist;
 import br.com.mind5.business.refundPolicyOwner.model.checker.RefupownCheckOwner;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootRefupownDelete extends DeciTreeTemplateWriteV2<RefupownInfo> {
+public final class RootRefupownDelete extends DeciTreeTemplateWrite<RefupownInfo> {
 	
 	public RootRefupownDelete(DeciTreeOption<RefupownInfo> option) {
 		super(option);
@@ -23,9 +23,9 @@ public final class RootRefupownDelete extends DeciTreeTemplateWriteV2<RefupownIn
 	
 	
 	
-	@Override protected ModelCheckerV1<RefupownInfo> buildCheckerHook(DeciTreeOption<RefupownInfo> option) {
-		List<ModelCheckerV1<RefupownInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<RefupownInfo> checker;	
+	@Override protected ModelChecker<RefupownInfo> buildCheckerHook(DeciTreeOption<RefupownInfo> option) {
+		List<ModelChecker<RefupownInfo>> queue = new ArrayList<>();		
+		ModelChecker<RefupownInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -49,15 +49,15 @@ public final class RootRefupownDelete extends DeciTreeTemplateWriteV2<RefupownIn
 		checker = new RefupownCheckExist(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<RefupownInfo>> buildActionsOnPassedHook(DeciTreeOption<RefupownInfo> option) {
-		List<ActionStdV2<RefupownInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStd<RefupownInfo>> buildActionsOnPassedHook(DeciTreeOption<RefupownInfo> option) {
+		List<ActionStd<RefupownInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV2<RefupownInfo> delete = new StdRefupownDaoDelete(option);
+		ActionStd<RefupownInfo> delete = new StdRefupownDaoDelete(option);
 		
 		actions.add(delete);
 		return actions;

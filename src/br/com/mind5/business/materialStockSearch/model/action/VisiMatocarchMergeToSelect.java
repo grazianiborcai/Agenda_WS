@@ -4,11 +4,11 @@ import java.util.List;
 
 import br.com.mind5.business.materialStockSearch.info.MatocarchInfo;
 import br.com.mind5.business.materialStockSearch.info.MatocarchMerger;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiMatocarchMergeToSelect extends ActionVisitorTemplateMergeV2<MatocarchInfo, MatocarchInfo> {
+final class VisiMatocarchMergeToSelect extends ActionVisitorTemplateMerge<MatocarchInfo, MatocarchInfo> {
 	
 	public VisiMatocarchMergeToSelect(DeciTreeOption<MatocarchInfo> option) {
 		super(option, MatocarchInfo.class);
@@ -16,7 +16,7 @@ final class VisiMatocarchMergeToSelect extends ActionVisitorTemplateMergeV2<Mato
 	
 	
 	
-	@Override protected Class<? extends ActionStdV2<MatocarchInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStd<MatocarchInfo>> getActionClassHook() {
 		return StdMatocarchDaoSelect.class;
 	}
 	

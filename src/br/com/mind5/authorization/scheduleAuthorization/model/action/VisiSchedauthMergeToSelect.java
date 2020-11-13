@@ -4,11 +4,11 @@ import java.util.List;
 
 import br.com.mind5.authorization.scheduleAuthorization.info.SchedauthInfo;
 import br.com.mind5.authorization.scheduleAuthorization.info.SchedauthMerger;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiSchedauthMergeToSelect extends ActionVisitorTemplateMergeV2<SchedauthInfo, SchedauthInfo> {
+final class VisiSchedauthMergeToSelect extends ActionVisitorTemplateMerge<SchedauthInfo, SchedauthInfo> {
 	
 	public VisiSchedauthMergeToSelect(DeciTreeOption<SchedauthInfo> option) {
 		super(option, SchedauthInfo.class);
@@ -16,7 +16,7 @@ final class VisiSchedauthMergeToSelect extends ActionVisitorTemplateMergeV2<Sche
 	
 	
 	
-	@Override protected Class<? extends ActionStdV2<SchedauthInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStd<SchedauthInfo>> getActionClassHook() {
 		return StdSchedauthDaoSelect.class;
 	}
 	

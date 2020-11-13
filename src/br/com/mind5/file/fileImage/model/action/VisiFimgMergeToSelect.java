@@ -4,11 +4,11 @@ import java.util.List;
 
 import br.com.mind5.file.fileImage.info.FimgInfo;
 import br.com.mind5.file.fileImage.info.FimgMerger;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiFimgMergeToSelect extends ActionVisitorTemplateMergeV2<FimgInfo, FimgInfo> {
+final class VisiFimgMergeToSelect extends ActionVisitorTemplateMerge<FimgInfo, FimgInfo> {
 	
 	public VisiFimgMergeToSelect(DeciTreeOption<FimgInfo> option) {
 		super(option, FimgInfo.class);
@@ -16,7 +16,7 @@ final class VisiFimgMergeToSelect extends ActionVisitorTemplateMergeV2<FimgInfo,
 	
 	
 	
-	@Override protected Class<? extends ActionStdV2<FimgInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStd<FimgInfo>> getActionClassHook() {
 		return StdFimgDaoSelect.class;
 	}
 	

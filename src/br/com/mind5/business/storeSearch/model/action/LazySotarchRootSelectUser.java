@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.storeSearch.info.SotarchInfo;
 import br.com.mind5.business.storeSearch.model.decisionTree.RootSotarchSelectUser;
 import br.com.mind5.model.action.ActionLazyTemplate;
-import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -24,7 +24,7 @@ public final class LazySotarchRootSelectUser extends ActionLazyTemplate<SotarchI
 	
 	
 	
-	@Override protected ActionStdV2<SotarchInfo> getInstanceOfActionHook(DeciTreeOption<SotarchInfo> option) {
+	@Override protected ActionStd<SotarchInfo> getInstanceOfActionHook(DeciTreeOption<SotarchInfo> option) {
 		return new RootSotarchSelectUser(option).toAction();
 	}
 	

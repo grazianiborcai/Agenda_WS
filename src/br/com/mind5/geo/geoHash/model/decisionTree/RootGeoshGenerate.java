@@ -6,14 +6,14 @@ import java.util.List;
 import br.com.mind5.geo.geoHash.info.GeoshInfo;
 import br.com.mind5.geo.geoHash.model.action.StdGeoshGenerate;
 import br.com.mind5.geo.geoHash.model.checker.GeoshCheckGenerate;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootGeoshGenerate extends DeciTreeTemplateWriteV2<GeoshInfo> {
+public final class RootGeoshGenerate extends DeciTreeTemplateWrite<GeoshInfo> {
 	
 	public RootGeoshGenerate(DeciTreeOption<GeoshInfo> option) {
 		super(option);
@@ -21,9 +21,9 @@ public final class RootGeoshGenerate extends DeciTreeTemplateWriteV2<GeoshInfo> 
 	
 	
 	
-	@Override protected ModelCheckerV1<GeoshInfo> buildCheckerHook(DeciTreeOption<GeoshInfo> option) {		
-		List<ModelCheckerV1<GeoshInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<GeoshInfo> checker;	
+	@Override protected ModelChecker<GeoshInfo> buildCheckerHook(DeciTreeOption<GeoshInfo> option) {		
+		List<ModelChecker<GeoshInfo>> queue = new ArrayList<>();		
+		ModelChecker<GeoshInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -33,15 +33,15 @@ public final class RootGeoshGenerate extends DeciTreeTemplateWriteV2<GeoshInfo> 
 		checker = new GeoshCheckGenerate(checkerOption);
 		queue.add(checker);
 
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<GeoshInfo>> buildActionsOnPassedHook(DeciTreeOption<GeoshInfo> option) {
-		List<ActionStdV2<GeoshInfo>> actions = new ArrayList<>();	
+	@Override protected List<ActionStd<GeoshInfo>> buildActionsOnPassedHook(DeciTreeOption<GeoshInfo> option) {
+		List<ActionStd<GeoshInfo>> actions = new ArrayList<>();	
 		
-		ActionStdV2<GeoshInfo> generate = new StdGeoshGenerate(option);
+		ActionStd<GeoshInfo> generate = new StdGeoshGenerate(option);
 		
 		actions.add(generate);		
 		return actions;

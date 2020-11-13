@@ -6,11 +6,11 @@ import br.com.mind5.business.customerList.info.CuslisInfo;
 import br.com.mind5.business.customerList.model.decisionTree.RootCuslisSelect;
 import br.com.mind5.business.scheduleLine.info.SchedineInfo;
 import br.com.mind5.business.scheduleLine.info.SchedineMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiSchedineMergeCuslis extends ActionVisitorTemplateMergeV2<SchedineInfo, CuslisInfo> {
+final class VisiSchedineMergeCuslis extends ActionVisitorTemplateMerge<SchedineInfo, CuslisInfo> {
 	
 	public VisiSchedineMergeCuslis(DeciTreeOption<SchedineInfo> option) {
 		super(option, CuslisInfo.class); 

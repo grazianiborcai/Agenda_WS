@@ -5,10 +5,10 @@ import br.com.mind5.business.materialSearch.info.MatarchInfo;
 import br.com.mind5.business.materialSearch.model.checker.MatarchCheckExistService;
 import br.com.mind5.business.refundPolicy.info.RefupolInfo;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.model.checker.ModelChecker;
 
-public final class RefupolCheckMatarchService extends ModelCheckerTemplateForwardV2<RefupolInfo, MatarchInfo> {
+public final class RefupolCheckMatarchService extends ModelCheckerTemplateForward<RefupolInfo, MatarchInfo> {
 	
 	public RefupolCheckMatarchService(ModelCheckerOption option) {
 		super(option);
@@ -16,7 +16,7 @@ public final class RefupolCheckMatarchService extends ModelCheckerTemplateForwar
 
 
 	
-	@Override protected ModelCheckerV1<MatarchInfo> getCheckerHook(ModelCheckerOption option) {
+	@Override protected ModelChecker<MatarchInfo> getCheckerHook(ModelCheckerOption option) {
 		return new MatarchCheckExistService(option);
 	}
 	

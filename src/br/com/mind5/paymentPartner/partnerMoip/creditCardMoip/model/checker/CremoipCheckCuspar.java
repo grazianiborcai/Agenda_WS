@@ -1,13 +1,13 @@
 package br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.model.checker;
 
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
 import br.com.mind5.payment.customerPartner.model.checker.CusparCheckExist;
 import br.com.mind5.paymentPartner.partnerMoip.creditCardMoip.info.CremoipInfo;
 
-public final class CremoipCheckCuspar extends ModelCheckerTemplateForwardV2<CremoipInfo, CusparInfo> {
+public final class CremoipCheckCuspar extends ModelCheckerTemplateForward<CremoipInfo, CusparInfo> {
 	
 	public CremoipCheckCuspar(ModelCheckerOption option) {
 		super(option);
@@ -15,7 +15,7 @@ public final class CremoipCheckCuspar extends ModelCheckerTemplateForwardV2<Crem
 
 
 	
-	@Override protected ModelCheckerV1<CusparInfo> getCheckerHook(ModelCheckerOption option) {
+	@Override protected ModelChecker<CusparInfo> getCheckerHook(ModelCheckerOption option) {
 		return new CusparCheckExist(option);
 	}
 	

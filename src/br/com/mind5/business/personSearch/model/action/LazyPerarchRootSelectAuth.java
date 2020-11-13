@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.personSearch.info.PerarchInfo;
 import br.com.mind5.business.personSearch.model.decisionTree.RootPerarchSelectAuth;
 import br.com.mind5.model.action.ActionLazyTemplate;
-import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -24,7 +24,7 @@ public final class LazyPerarchRootSelectAuth extends ActionLazyTemplate<PerarchI
 	
 	
 	
-	@Override protected ActionStdV2<PerarchInfo> getInstanceOfActionHook(DeciTreeOption<PerarchInfo> option) {
+	@Override protected ActionStd<PerarchInfo> getInstanceOfActionHook(DeciTreeOption<PerarchInfo> option) {
 		return new RootPerarchSelectAuth(option).toAction();
 	}
 	

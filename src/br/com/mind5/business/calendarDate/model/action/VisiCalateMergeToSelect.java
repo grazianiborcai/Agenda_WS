@@ -4,11 +4,11 @@ import java.util.List;
 
 import br.com.mind5.business.calendarDate.info.CalateInfo;
 import br.com.mind5.business.calendarDate.info.CalateMerger;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiCalateMergeToSelect extends ActionVisitorTemplateMergeV2<CalateInfo, CalateInfo> {
+final class VisiCalateMergeToSelect extends ActionVisitorTemplateMerge<CalateInfo, CalateInfo> {
 	
 	public VisiCalateMergeToSelect(DeciTreeOption<CalateInfo> option) {
 		super(option, CalateInfo.class);
@@ -16,7 +16,7 @@ final class VisiCalateMergeToSelect extends ActionVisitorTemplateMergeV2<CalateI
 	
 	
 	
-	@Override protected Class<? extends ActionStdV2<CalateInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStd<CalateInfo>> getActionClassHook() {
 		return StdCalateDaoSelect.class;
 	}
 	

@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.orderItemSnapshot.info.OrdemrapInfo;
 import br.com.mind5.business.orderItemSnapshot.model.decisionTree.NodeOrdemrapStore;
 import br.com.mind5.model.action.ActionLazyTemplate;
-import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -24,7 +24,7 @@ public final class LazyOrdemrapNodeStore extends ActionLazyTemplate<OrdemrapInfo
 	
 	
 	
-	@Override protected ActionStdV2<OrdemrapInfo> getInstanceOfActionHook(DeciTreeOption<OrdemrapInfo> option) {
+	@Override protected ActionStd<OrdemrapInfo> getInstanceOfActionHook(DeciTreeOption<OrdemrapInfo> option) {
 		return new NodeOrdemrapStore(option).toAction();
 	}
 	

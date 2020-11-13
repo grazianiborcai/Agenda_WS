@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.masterData.materialGroup.info.MatoupInfo;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 
-public final class MatoupCheckRead extends ModelCheckerTemplateSimpleV2<MatoupInfo> {
+public final class MatoupCheckRead extends ModelCheckerTemplateSimple<MatoupInfo> {
 
 	public MatoupCheckRead(ModelCheckerOption option) {
 		super(option);

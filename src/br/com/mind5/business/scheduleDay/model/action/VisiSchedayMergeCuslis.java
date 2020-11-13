@@ -7,11 +7,11 @@ import br.com.mind5.business.customerList.info.CuslisInfo;
 import br.com.mind5.business.customerList.model.decisionTree.RootCuslisSelect;
 import br.com.mind5.business.scheduleDay.info.SchedayInfo;
 import br.com.mind5.business.scheduleDay.info.SchedayMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiSchedayMergeCuslis extends ActionVisitorTemplateMergeV2<SchedayInfo, CuslisInfo> {
+final class VisiSchedayMergeCuslis extends ActionVisitorTemplateMerge<SchedayInfo, CuslisInfo> {
 	
 	public VisiSchedayMergeCuslis(DeciTreeOption<SchedayInfo> option) {
 		super(option, CuslisInfo.class);

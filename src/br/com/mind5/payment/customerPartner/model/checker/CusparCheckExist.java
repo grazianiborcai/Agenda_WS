@@ -1,14 +1,14 @@
 package br.com.mind5.payment.customerPartner.model.checker;
 
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
 import br.com.mind5.payment.customerPartner.model.action.StdCusparDaoSelect;
 
-public final class CusparCheckExist extends ModelCheckerTemplateActionV2<CusparInfo, CusparInfo> {
+public final class CusparCheckExist extends ModelCheckerTemplateAction<CusparInfo, CusparInfo> {
 	
 	public CusparCheckExist(ModelCheckerOption option) {
 		super(option, CusparInfo.class);
@@ -16,8 +16,8 @@ public final class CusparCheckExist extends ModelCheckerTemplateActionV2<CusparI
 	
 
 	
-	@Override protected ActionStdV2<CusparInfo> buildActionHook(DeciTreeOption<CusparInfo> option) {
-		ActionStdV2<CusparInfo> select = new StdCusparDaoSelect(option);
+	@Override protected ActionStd<CusparInfo> buildActionHook(DeciTreeOption<CusparInfo> option) {
+		ActionStd<CusparInfo> select = new StdCusparDaoSelect(option);
 		return select;
 	}
 	

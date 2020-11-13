@@ -4,11 +4,11 @@ import java.util.List;
 
 import br.com.mind5.business.companySearch.info.ComparchInfo;
 import br.com.mind5.business.companySearch.info.ComparchMerger;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiComparchMergeToSelect extends ActionVisitorTemplateMergeV2<ComparchInfo, ComparchInfo> {
+final class VisiComparchMergeToSelect extends ActionVisitorTemplateMerge<ComparchInfo, ComparchInfo> {
 	
 	public VisiComparchMergeToSelect(DeciTreeOption<ComparchInfo> option) {
 		super(option, ComparchInfo.class);
@@ -16,7 +16,7 @@ final class VisiComparchMergeToSelect extends ActionVisitorTemplateMergeV2<Compa
 	
 	
 	
-	@Override protected Class<? extends ActionStdV2<ComparchInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStd<ComparchInfo>> getActionClassHook() {
 		return StdComparchDaoSelect.class;
 	}
 	

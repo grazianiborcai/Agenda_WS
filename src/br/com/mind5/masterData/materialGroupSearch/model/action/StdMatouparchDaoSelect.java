@@ -1,11 +1,11 @@
 package br.com.mind5.masterData.materialGroupSearch.model.action;
 
 import br.com.mind5.masterData.materialGroupSearch.info.MatouparchInfo;
-import br.com.mind5.model.action.ActionStdTemplateV2;
-import br.com.mind5.model.action.ActionVisitorV2;
+import br.com.mind5.model.action.ActionStdTemplate;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdMatouparchDaoSelect extends ActionStdTemplateV2<MatouparchInfo> {
+public final class StdMatouparchDaoSelect extends ActionStdTemplate<MatouparchInfo> {
 
 	public StdMatouparchDaoSelect(DeciTreeOption<MatouparchInfo> option) {
 		super(option);
@@ -13,7 +13,7 @@ public final class StdMatouparchDaoSelect extends ActionStdTemplateV2<Matouparch
 	
 	
 	
-	protected ActionVisitorV2<MatouparchInfo> buildVisitorHook(DeciTreeOption<MatouparchInfo> option) {
+	protected ActionVisitor<MatouparchInfo> buildVisitorHook(DeciTreeOption<MatouparchInfo> option) {
 		return new VisiMatouparchDaoSelect(option);
 	}
 }

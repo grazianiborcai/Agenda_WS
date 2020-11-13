@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.mind5.business.bookService.info.BookiceInfo;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 
-public final class BookiceCheckBook extends ModelCheckerTemplateSimpleV2<BookiceInfo> {
+public final class BookiceCheckBook extends ModelCheckerTemplateSimple<BookiceInfo> {
 
 	public BookiceCheckBook(ModelCheckerOption option) {
 		super(option);

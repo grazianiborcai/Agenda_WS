@@ -7,12 +7,12 @@ import br.com.mind5.business.storeNearby.info.StorbyMerger;
 import br.com.mind5.file.fileImageList.info.FimistCopier;
 import br.com.mind5.file.fileImageList.info.FimistInfo;
 import br.com.mind5.file.fileImageList.model.decisionTree.RootFimistSearch;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiStorbyMergeFimist extends ActionVisitorTemplateMergeV2<StorbyInfo, FimistInfo> {
+final class VisiStorbyMergeFimist extends ActionVisitorTemplateMerge<StorbyInfo, FimistInfo> {
 	
 	public VisiStorbyMergeFimist(DeciTreeOption<StorbyInfo> option) {
 		super(option, FimistInfo.class);
@@ -39,6 +39,6 @@ final class VisiStorbyMergeFimist extends ActionVisitorTemplateMergeV2<StorbyInf
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
+		return super.MERGE_WHEN_EMPTY;
 	}
 }

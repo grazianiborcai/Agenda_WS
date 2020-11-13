@@ -7,11 +7,11 @@ import br.com.mind5.business.customer.info.CusMerger;
 import br.com.mind5.business.phone.info.PhoneCopier;
 import br.com.mind5.business.phone.info.PhoneInfo;
 import br.com.mind5.business.phone.model.decisionTree.RootPhoneSearch;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiCusMergePhone extends ActionVisitorTemplateMergeV2<CusInfo, PhoneInfo> {
+final class VisiCusMergePhone extends ActionVisitorTemplateMerge<CusInfo, PhoneInfo> {
 	
 	public VisiCusMergePhone(DeciTreeOption<CusInfo> option) {
 		super(option, PhoneInfo.class);

@@ -2,7 +2,7 @@ package br.com.mind5.payment.refundOrderItem.model.action;
 
 import java.util.List;
 
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.refundOrderItem.info.RefemInfo;
@@ -11,7 +11,7 @@ import br.com.mind5.security.username.info.UsernameCopier;
 import br.com.mind5.security.username.info.UsernameInfo;
 import br.com.mind5.security.username.model.decisionTree.RootUsernameSelect;
 
-final class VisiRefemMergeUsername extends ActionVisitorTemplateMergeV2<RefemInfo, UsernameInfo> {
+final class VisiRefemMergeUsername extends ActionVisitorTemplateMerge<RefemInfo, UsernameInfo> {
 	
 	public VisiRefemMergeUsername(DeciTreeOption<RefemInfo> option) {
 		super(option, UsernameInfo.class); 

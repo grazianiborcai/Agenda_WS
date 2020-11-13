@@ -4,10 +4,10 @@ import br.com.mind5.business.scheduleLine.info.SchedineInfo;
 import br.com.mind5.business.scheduleLine.model.checker.SchedineCheckExist;
 import br.com.mind5.business.scheduleLineSnapshot.info.SchedinapInfo;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.model.checker.ModelChecker;
 
-public final class SchedinapCheckSchedine extends ModelCheckerTemplateForwardV2<SchedinapInfo, SchedineInfo> {
+public final class SchedinapCheckSchedine extends ModelCheckerTemplateForward<SchedinapInfo, SchedineInfo> {
 	
 	public SchedinapCheckSchedine(ModelCheckerOption option) {
 		super(option);
@@ -15,7 +15,7 @@ public final class SchedinapCheckSchedine extends ModelCheckerTemplateForwardV2<
 
 
 	
-	@Override protected ModelCheckerV1<SchedineInfo> getCheckerHook(ModelCheckerOption option) {
+	@Override protected ModelChecker<SchedineInfo> getCheckerHook(ModelCheckerOption option) {
 		return new SchedineCheckExist(option);
 	}
 	

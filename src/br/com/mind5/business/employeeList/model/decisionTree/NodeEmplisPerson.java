@@ -9,14 +9,14 @@ import br.com.mind5.business.employeeList.model.action.StdEmplisEnforcePersonKey
 import br.com.mind5.business.employeeList.model.action.StdEmplisSuccess;
 import br.com.mind5.business.employeeList.model.checker.EmplisCheckHasPerson;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodeEmplisPerson extends DeciTreeTemplateWriteV2<EmplisInfo> {
+public final class NodeEmplisPerson extends DeciTreeTemplateWrite<EmplisInfo> {
 	
 	public NodeEmplisPerson(DeciTreeOption<EmplisInfo> option) {
 		super(option);
@@ -24,9 +24,9 @@ public final class NodeEmplisPerson extends DeciTreeTemplateWriteV2<EmplisInfo> 
 	
 	
 	
-	@Override protected ModelCheckerV1<EmplisInfo> buildCheckerHook(DeciTreeOption<EmplisInfo> option) {
-		List<ModelCheckerV1<EmplisInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<EmplisInfo> checker;
+	@Override protected ModelChecker<EmplisInfo> buildCheckerHook(DeciTreeOption<EmplisInfo> option) {
+		List<ModelChecker<EmplisInfo>> queue = new ArrayList<>();		
+		ModelChecker<EmplisInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
 		checkerOption = new ModelCheckerOption();
@@ -36,15 +36,15 @@ public final class NodeEmplisPerson extends DeciTreeTemplateWriteV2<EmplisInfo> 
 		checker = new EmplisCheckHasPerson(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<EmplisInfo>> buildActionsOnPassedHook(DeciTreeOption<EmplisInfo> option) {
-		List<ActionStdV2<EmplisInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<EmplisInfo>> buildActionsOnPassedHook(DeciTreeOption<EmplisInfo> option) {
+		List<ActionStd<EmplisInfo>> actions = new ArrayList<>();
 
-		ActionStdV2<EmplisInfo> enforcePersonKey = new StdEmplisEnforcePersonKey(option);
+		ActionStd<EmplisInfo> enforcePersonKey = new StdEmplisEnforcePersonKey(option);
 		ActionLazy<EmplisInfo> mergePerarch = new LazyEmplisMergePerarch(option.conn, option.schemaName);
 		
 		enforcePersonKey.addPostAction(mergePerarch);
@@ -55,10 +55,10 @@ public final class NodeEmplisPerson extends DeciTreeTemplateWriteV2<EmplisInfo> 
 	
 	
 	
-	@Override protected List<ActionStdV2<EmplisInfo>> buildActionsOnFailedHook(DeciTreeOption<EmplisInfo> option) {
-		List<ActionStdV2<EmplisInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<EmplisInfo>> buildActionsOnFailedHook(DeciTreeOption<EmplisInfo> option) {
+		List<ActionStd<EmplisInfo>> actions = new ArrayList<>();
 
-		ActionStdV2<EmplisInfo> success = new StdEmplisSuccess(option);
+		ActionStd<EmplisInfo> success = new StdEmplisSuccess(option);
 		
 		actions.add(success);
 		return actions;

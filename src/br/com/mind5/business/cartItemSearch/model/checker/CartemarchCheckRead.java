@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.mind5.business.cartItemSearch.info.CartemarchInfo;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 
-public final class CartemarchCheckRead extends ModelCheckerTemplateSimpleV2<CartemarchInfo> {
+public final class CartemarchCheckRead extends ModelCheckerTemplateSimple<CartemarchInfo> {
 
 	public CartemarchCheckRead(ModelCheckerOption option) {
 		super(option);

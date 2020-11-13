@@ -4,12 +4,11 @@ import java.util.List;
 
 import br.com.mind5.business.orderReserve.info.OrderveInfo;
 import br.com.mind5.business.orderReserve.info.OrderveMerger;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiOrderveMergeToSelect extends ActionVisitorTemplateMergeV2<OrderveInfo, OrderveInfo> {
+final class VisiOrderveMergeToSelect extends ActionVisitorTemplateMerge<OrderveInfo, OrderveInfo> {
 	
 	public VisiOrderveMergeToSelect(DeciTreeOption<OrderveInfo> option) {
 		super(option, OrderveInfo.class);
@@ -17,7 +16,7 @@ final class VisiOrderveMergeToSelect extends ActionVisitorTemplateMergeV2<Orderv
 	
 	
 	
-	@Override protected Class<? extends ActionStdV2<OrderveInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStd<OrderveInfo>> getActionClassHook() {
 		return StdOrderveDaoSelect.class;
 	}
 	
@@ -30,6 +29,6 @@ final class VisiOrderveMergeToSelect extends ActionVisitorTemplateMergeV2<Orderv
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
+		return super.DONT_MERGE_WHEN_EMPTY;
 	}
 }

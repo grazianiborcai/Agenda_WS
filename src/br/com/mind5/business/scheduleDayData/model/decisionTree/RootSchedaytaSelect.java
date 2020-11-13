@@ -9,14 +9,14 @@ import br.com.mind5.business.scheduleDayData.model.checker.SchedaytaCheckLangu;
 import br.com.mind5.business.scheduleDayData.model.checker.SchedaytaCheckOwner;
 import br.com.mind5.business.scheduleDayData.model.checker.SchedaytaCheckRead;
 import br.com.mind5.business.scheduleDayData.model.checker.SchedaytaCheckStore;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootSchedaytaSelect extends DeciTreeTemplateWriteV2<SchedaytaInfo> {
+public final class RootSchedaytaSelect extends DeciTreeTemplateWrite<SchedaytaInfo> {
 	
 	public RootSchedaytaSelect(DeciTreeOption<SchedaytaInfo> option) {
 		super(option);
@@ -24,9 +24,9 @@ public final class RootSchedaytaSelect extends DeciTreeTemplateWriteV2<Schedayta
 	
 	
 	
-	@Override protected ModelCheckerV1<SchedaytaInfo> buildCheckerHook(DeciTreeOption<SchedaytaInfo> option) {
-		List<ModelCheckerV1<SchedaytaInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<SchedaytaInfo> checker;
+	@Override protected ModelChecker<SchedaytaInfo> buildCheckerHook(DeciTreeOption<SchedaytaInfo> option) {
+		List<ModelChecker<SchedaytaInfo>> queue = new ArrayList<>();		
+		ModelChecker<SchedaytaInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -57,15 +57,15 @@ public final class RootSchedaytaSelect extends DeciTreeTemplateWriteV2<Schedayta
 		checker = new SchedaytaCheckStore(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<SchedaytaInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedaytaInfo> option) {
-		List<ActionStdV2<SchedaytaInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<SchedaytaInfo>> buildActionsOnPassedHook(DeciTreeOption<SchedaytaInfo> option) {
+		List<ActionStd<SchedaytaInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<SchedaytaInfo> select = new StdSchedaytaMergeToSelect(option);
+		ActionStd<SchedaytaInfo> select = new StdSchedaytaMergeToSelect(option);
 		
 		actions.add(select);
 		return actions;

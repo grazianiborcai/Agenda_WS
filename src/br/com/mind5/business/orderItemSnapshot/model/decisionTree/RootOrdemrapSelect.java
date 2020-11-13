@@ -8,14 +8,14 @@ import br.com.mind5.business.orderItemSnapshot.model.action.LazyOrdemrapMergeMat
 import br.com.mind5.business.orderItemSnapshot.model.action.StdOrdemrapMergeToSelect;
 import br.com.mind5.business.orderItemSnapshot.model.checker.OrdemrapCheckRead;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootOrdemrapSelect extends DeciTreeTemplateWriteV2<OrdemrapInfo> {
+public final class RootOrdemrapSelect extends DeciTreeTemplateWrite<OrdemrapInfo> {
 	
 	public RootOrdemrapSelect(DeciTreeOption<OrdemrapInfo> option) {
 		super(option);
@@ -23,9 +23,9 @@ public final class RootOrdemrapSelect extends DeciTreeTemplateWriteV2<OrdemrapIn
 	
 	
 	
-	@Override protected ModelCheckerV1<OrdemrapInfo> buildCheckerHook(DeciTreeOption<OrdemrapInfo> option) {
-		List<ModelCheckerV1<OrdemrapInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<OrdemrapInfo> checker;	
+	@Override protected ModelChecker<OrdemrapInfo> buildCheckerHook(DeciTreeOption<OrdemrapInfo> option) {
+		List<ModelChecker<OrdemrapInfo>> queue = new ArrayList<>();		
+		ModelChecker<OrdemrapInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -35,15 +35,15 @@ public final class RootOrdemrapSelect extends DeciTreeTemplateWriteV2<OrdemrapIn
 		checker = new OrdemrapCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<OrdemrapInfo>> buildActionsOnPassedHook(DeciTreeOption<OrdemrapInfo> option) {
-		List<ActionStdV2<OrdemrapInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<OrdemrapInfo>> buildActionsOnPassedHook(DeciTreeOption<OrdemrapInfo> option) {
+		List<ActionStd<OrdemrapInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<OrdemrapInfo> select = new StdOrdemrapMergeToSelect(option);
+		ActionStd<OrdemrapInfo> select = new StdOrdemrapMergeToSelect(option);
 		ActionLazy<OrdemrapInfo> mergeMatsnap = new LazyOrdemrapMergeMatsnap(option.conn, option.schemaName);
 		
 		select.addPostAction(mergeMatsnap);

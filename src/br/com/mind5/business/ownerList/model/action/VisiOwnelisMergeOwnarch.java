@@ -6,11 +6,11 @@ import br.com.mind5.business.ownerList.info.OwnelisInfo;
 import br.com.mind5.business.ownerList.info.OwnelisMerger;
 import br.com.mind5.business.ownerSearch.info.OwnarchInfo;
 import br.com.mind5.business.ownerSearch.model.decisionTree.RootOwnarchSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiOwnelisMergeOwnarch extends ActionVisitorTemplateMergeV2<OwnelisInfo, OwnarchInfo> {
+final class VisiOwnelisMergeOwnarch extends ActionVisitorTemplateMerge<OwnelisInfo, OwnarchInfo> {
 	
 	public VisiOwnelisMergeOwnarch(DeciTreeOption<OwnelisInfo> option) {
 		super(option, OwnarchInfo.class);

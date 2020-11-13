@@ -6,14 +6,14 @@ import java.util.List;
 import br.com.mind5.business.personList.info.PersolisInfo;
 import br.com.mind5.business.personList.model.action.LazyPersolisEnforceRestricted;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootPersolisSelectRestricted extends DeciTreeTemplateReadV2<PersolisInfo> {
+public final class RootPersolisSelectRestricted extends DeciTreeTemplateRead<PersolisInfo> {
 	
 	public RootPersolisSelectRestricted(DeciTreeOption<PersolisInfo> option) {
 		super(option);
@@ -21,22 +21,22 @@ public final class RootPersolisSelectRestricted extends DeciTreeTemplateReadV2<P
 	
 	
 	
-	@Override protected ModelCheckerV1<PersolisInfo> buildCheckerHook(DeciTreeOption<PersolisInfo> option) {
-		List<ModelCheckerV1<PersolisInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<PersolisInfo> checker;
+	@Override protected ModelChecker<PersolisInfo> buildCheckerHook(DeciTreeOption<PersolisInfo> option) {
+		List<ModelChecker<PersolisInfo>> queue = new ArrayList<>();		
+		ModelChecker<PersolisInfo> checker;
 
 		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<PersolisInfo>> buildActionsOnPassedHook(DeciTreeOption<PersolisInfo> option) {
-		List<ActionStdV2<PersolisInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<PersolisInfo>> buildActionsOnPassedHook(DeciTreeOption<PersolisInfo> option) {
+		List<ActionStd<PersolisInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<PersolisInfo> select = new RootPersolisSelect(option).toAction();		
+		ActionStd<PersolisInfo> select = new RootPersolisSelect(option).toAction();		
 		ActionLazy<PersolisInfo> enforceRestricted = new LazyPersolisEnforceRestricted(option.conn, option.schemaName);	
 		
 		select.addPostAction(enforceRestricted);		

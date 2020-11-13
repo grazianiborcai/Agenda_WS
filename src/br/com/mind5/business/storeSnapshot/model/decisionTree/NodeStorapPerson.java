@@ -7,14 +7,14 @@ import br.com.mind5.business.storeSnapshot.info.StorapInfo;
 import br.com.mind5.business.storeSnapshot.model.action.StdStorapMergePersolis;
 import br.com.mind5.business.storeSnapshot.model.action.StdStorapSuccess;
 import br.com.mind5.business.storeSnapshot.model.checker.StorapCheckHasPerson;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodeStorapPerson extends DeciTreeTemplateWriteV2<StorapInfo> {
+public final class NodeStorapPerson extends DeciTreeTemplateWrite<StorapInfo> {
 	
 	public NodeStorapPerson(DeciTreeOption<StorapInfo> option) {
 		super(option);
@@ -22,9 +22,9 @@ public final class NodeStorapPerson extends DeciTreeTemplateWriteV2<StorapInfo> 
 	
 	
 	
-	@Override protected ModelCheckerV1<StorapInfo> buildCheckerHook(DeciTreeOption<StorapInfo> option) {		
-		List<ModelCheckerV1<StorapInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<StorapInfo> checker;	
+	@Override protected ModelChecker<StorapInfo> buildCheckerHook(DeciTreeOption<StorapInfo> option) {		
+		List<ModelChecker<StorapInfo>> queue = new ArrayList<>();		
+		ModelChecker<StorapInfo> checker;	
 		ModelCheckerOption checkerOption;		
 		
 		checkerOption = new ModelCheckerOption();
@@ -34,15 +34,15 @@ public final class NodeStorapPerson extends DeciTreeTemplateWriteV2<StorapInfo> 
 		checker = new StorapCheckHasPerson(checkerOption);
 		queue.add(checker);		
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<StorapInfo>> buildActionsOnPassedHook(DeciTreeOption<StorapInfo> option) {
-		List<ActionStdV2<StorapInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<StorapInfo>> buildActionsOnPassedHook(DeciTreeOption<StorapInfo> option) {
+		List<ActionStd<StorapInfo>> actions = new ArrayList<>();
 
-		ActionStdV2<StorapInfo> mergePersolis = new StdStorapMergePersolis(option);
+		ActionStd<StorapInfo> mergePersolis = new StdStorapMergePersolis(option);
 		
 		actions.add(mergePersolis);	
 		return actions;
@@ -50,10 +50,10 @@ public final class NodeStorapPerson extends DeciTreeTemplateWriteV2<StorapInfo> 
 	
 	
 	
-	@Override protected List<ActionStdV2<StorapInfo>> buildActionsOnFailedHook(DeciTreeOption<StorapInfo> option) {
-		List<ActionStdV2<StorapInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<StorapInfo>> buildActionsOnFailedHook(DeciTreeOption<StorapInfo> option) {
+		List<ActionStd<StorapInfo>> actions = new ArrayList<>();
 
-		ActionStdV2<StorapInfo> success = new StdStorapSuccess(option);
+		ActionStd<StorapInfo> success = new StdStorapSuccess(option);
 		
 		actions.add(success);	
 		return actions;

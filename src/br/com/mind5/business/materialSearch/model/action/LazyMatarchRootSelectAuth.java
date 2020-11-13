@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.materialSearch.info.MatarchInfo;
 import br.com.mind5.business.materialSearch.model.decisionTree.RootMatarchSelectAuth;
 import br.com.mind5.model.action.ActionLazyTemplate;
-import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -24,7 +24,7 @@ public final class LazyMatarchRootSelectAuth extends ActionLazyTemplate<MatarchI
 	
 	
 	
-	@Override protected ActionStdV2<MatarchInfo> getInstanceOfActionHook(DeciTreeOption<MatarchInfo> option) {
+	@Override protected ActionStd<MatarchInfo> getInstanceOfActionHook(DeciTreeOption<MatarchInfo> option) {
 		return new RootMatarchSelectAuth(option).toAction();
 	}
 	

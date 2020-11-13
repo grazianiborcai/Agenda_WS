@@ -4,10 +4,10 @@ import br.com.mind5.business.person.info.PersonInfo;
 import br.com.mind5.business.personSearch.info.PerarchInfo;
 import br.com.mind5.business.personSearch.model.checker.PerarchCheckPersonCus;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.model.checker.ModelChecker;
 
-public final class PersonCheckPersonCus extends ModelCheckerTemplateForwardV2<PersonInfo, PerarchInfo> {
+public final class PersonCheckPersonCus extends ModelCheckerTemplateForward<PersonInfo, PerarchInfo> {
 	
 	public PersonCheckPersonCus(ModelCheckerOption option) {
 		super(option);
@@ -15,7 +15,7 @@ public final class PersonCheckPersonCus extends ModelCheckerTemplateForwardV2<Pe
 
 
 	
-	@Override protected ModelCheckerV1<PerarchInfo> getCheckerHook(ModelCheckerOption option) {
+	@Override protected ModelChecker<PerarchInfo> getCheckerHook(ModelCheckerOption option) {
 		return new PerarchCheckPersonCus(option);
 	}
 	

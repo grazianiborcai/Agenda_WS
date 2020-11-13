@@ -7,11 +7,11 @@ import br.com.mind5.business.materialText.info.MatextInfo;
 import br.com.mind5.business.materialText.model.decisionTree.RootMatextSearch;
 import br.com.mind5.business.materialTextSnapshot.info.MatextsnapInfo;
 import br.com.mind5.business.materialTextSnapshot.info.MatextsnapMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiMatextsnapMergeMatext extends ActionVisitorTemplateMergeV2<MatextsnapInfo, MatextInfo> {
+final class VisiMatextsnapMergeMatext extends ActionVisitorTemplateMerge<MatextsnapInfo, MatextInfo> {
 	
 	public VisiMatextsnapMergeMatext(DeciTreeOption<MatextsnapInfo> option) {
 		super(option, MatextInfo.class);

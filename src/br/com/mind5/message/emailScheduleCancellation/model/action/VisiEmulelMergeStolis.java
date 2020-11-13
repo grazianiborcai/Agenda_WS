@@ -6,11 +6,11 @@ import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.business.storeList.model.decisionTree.RootStolisSelect;
 import br.com.mind5.message.emailScheduleCancellation.info.EmulelInfo;
 import br.com.mind5.message.emailScheduleCancellation.info.EmulelMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiEmulelMergeStolis extends ActionVisitorTemplateMergeV2<EmulelInfo, StolisInfo> {
+final class VisiEmulelMergeStolis extends ActionVisitorTemplateMerge<EmulelInfo, StolisInfo> {
 	
 	public VisiEmulelMergeStolis(DeciTreeOption<EmulelInfo> option) {
 		super(option, StolisInfo.class);

@@ -6,14 +6,14 @@ import java.util.List;
 import br.com.mind5.masterData.paymentPartner.info.PayparInfo;
 import br.com.mind5.masterData.paymentPartner.model.action.StdPayparDaoSelect;
 import br.com.mind5.masterData.paymentPartner.model.checker.PayparCheckRead;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootPayparSelect extends DeciTreeTemplateReadV2<PayparInfo> {
+public final class RootPayparSelect extends DeciTreeTemplateRead<PayparInfo> {
 	
 	public RootPayparSelect(DeciTreeOption<PayparInfo> option) {
 		super(option);
@@ -21,9 +21,9 @@ public final class RootPayparSelect extends DeciTreeTemplateReadV2<PayparInfo> {
 	
 	
 	
-	@Override protected ModelCheckerV1<PayparInfo> buildCheckerHook(DeciTreeOption<PayparInfo> option) {
-		List<ModelCheckerV1<PayparInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<PayparInfo> checker;
+	@Override protected ModelChecker<PayparInfo> buildCheckerHook(DeciTreeOption<PayparInfo> option) {
+		List<ModelChecker<PayparInfo>> queue = new ArrayList<>();		
+		ModelChecker<PayparInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
 		checkerOption = new ModelCheckerOption();
@@ -33,15 +33,15 @@ public final class RootPayparSelect extends DeciTreeTemplateReadV2<PayparInfo> {
 		checker = new PayparCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 
 		
 	
-	@Override protected List<ActionStdV2<PayparInfo>> buildActionsOnPassedHook(DeciTreeOption<PayparInfo> option) {
-		List<ActionStdV2<PayparInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<PayparInfo>> buildActionsOnPassedHook(DeciTreeOption<PayparInfo> option) {
+		List<ActionStd<PayparInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<PayparInfo> select = new StdPayparDaoSelect(option);
+		ActionStd<PayparInfo> select = new StdPayparDaoSelect(option);
 		
 		actions.add(select);
 		return actions;

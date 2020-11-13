@@ -8,14 +8,14 @@ import br.com.mind5.business.employeeWorkTime.model.action.LazyEmpwotmRootDelete
 import br.com.mind5.business.employeeWorkTime.model.action.StdEmpwotmMergeEmpwotarch;
 import br.com.mind5.business.employeeWorkTime.model.checker.EmpwotmCheckDeleteByEmpos;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootEmpwotmDeleteByEmpos extends DeciTreeTemplateWriteV2<EmpwotmInfo> {
+public final class RootEmpwotmDeleteByEmpos extends DeciTreeTemplateWrite<EmpwotmInfo> {
 	
 	public RootEmpwotmDeleteByEmpos(DeciTreeOption<EmpwotmInfo> option) {
 		super(option);
@@ -23,9 +23,9 @@ public final class RootEmpwotmDeleteByEmpos extends DeciTreeTemplateWriteV2<Empw
 	
 	
 	
-	@Override protected ModelCheckerV1<EmpwotmInfo> buildCheckerHook(DeciTreeOption<EmpwotmInfo> option) {
-		List<ModelCheckerV1<EmpwotmInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<EmpwotmInfo> checker;		
+	@Override protected ModelChecker<EmpwotmInfo> buildCheckerHook(DeciTreeOption<EmpwotmInfo> option) {
+		List<ModelChecker<EmpwotmInfo>> queue = new ArrayList<>();		
+		ModelChecker<EmpwotmInfo> checker;		
 		ModelCheckerOption checkerOption = new ModelCheckerOption();
 		
 		checkerOption = new ModelCheckerOption();
@@ -35,15 +35,15 @@ public final class RootEmpwotmDeleteByEmpos extends DeciTreeTemplateWriteV2<Empw
 		checker = new EmpwotmCheckDeleteByEmpos(checkerOption);
 		queue.add(checker);
 		
-		 return new ModelCheckerHelperQueueV2<EmpwotmInfo>(queue);
+		 return new ModelCheckerHelperQueue<EmpwotmInfo>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<EmpwotmInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpwotmInfo> option) {
-		List<ActionStdV2<EmpwotmInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<EmpwotmInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpwotmInfo> option) {
+		List<ActionStd<EmpwotmInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<EmpwotmInfo> mergeEmpwotarch = new StdEmpwotmMergeEmpwotarch(option);
+		ActionStd<EmpwotmInfo> mergeEmpwotarch = new StdEmpwotmMergeEmpwotarch(option);
 		ActionLazy<EmpwotmInfo> delete = new LazyEmpwotmRootDelete(option.conn, option.schemaName);
 		
 		mergeEmpwotarch.addPostAction(delete);

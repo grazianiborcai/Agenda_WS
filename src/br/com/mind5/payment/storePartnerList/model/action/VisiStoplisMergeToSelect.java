@@ -2,14 +2,14 @@ package br.com.mind5.payment.storePartnerList.model.action;
 
 import java.util.List;
 
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionStd;
+
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.storePartnerList.info.StoplisInfo;
 import br.com.mind5.payment.storePartnerList.info.StoplisMerger;
 
-final class VisiStoplisMergeToSelect extends ActionVisitorTemplateMergeV2<StoplisInfo, StoplisInfo> {
+final class VisiStoplisMergeToSelect extends ActionVisitorTemplateMerge<StoplisInfo, StoplisInfo> {
 	
 	public VisiStoplisMergeToSelect(DeciTreeOption<StoplisInfo> option) {
 		super(option, StoplisInfo.class);
@@ -17,7 +17,7 @@ final class VisiStoplisMergeToSelect extends ActionVisitorTemplateMergeV2<Stopli
 	
 	
 	
-	@Override protected Class<? extends ActionStdV2<StoplisInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStd<StoplisInfo>> getActionClassHook() {
 		return StdStoplisDaoSelect.class;
 	}
 	
@@ -30,6 +30,6 @@ final class VisiStoplisMergeToSelect extends ActionVisitorTemplateMergeV2<Stopli
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
+		return super.DONT_MERGE_WHEN_EMPTY;
 	}
 }

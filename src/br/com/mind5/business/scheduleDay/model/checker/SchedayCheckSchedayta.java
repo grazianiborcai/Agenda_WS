@@ -4,10 +4,10 @@ import br.com.mind5.business.scheduleDay.info.SchedayInfo;
 import br.com.mind5.business.scheduleDayData.info.SchedaytaInfo;
 import br.com.mind5.business.scheduleDayData.model.checker.SchedaytaCheckExist;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.model.checker.ModelChecker;
 
-public final class SchedayCheckSchedayta extends ModelCheckerTemplateForwardV2<SchedayInfo, SchedaytaInfo> {
+public final class SchedayCheckSchedayta extends ModelCheckerTemplateForward<SchedayInfo, SchedaytaInfo> {
 	
 	public SchedayCheckSchedayta(ModelCheckerOption option) {
 		super(option);
@@ -15,7 +15,7 @@ public final class SchedayCheckSchedayta extends ModelCheckerTemplateForwardV2<S
 
 
 	
-	@Override protected ModelCheckerV1<SchedaytaInfo> getCheckerHook(ModelCheckerOption option) {
+	@Override protected ModelChecker<SchedaytaInfo> getCheckerHook(ModelCheckerOption option) {
 		return new SchedaytaCheckExist(option);
 	}
 	

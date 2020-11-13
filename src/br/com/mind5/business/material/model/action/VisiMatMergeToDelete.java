@@ -4,11 +4,11 @@ import java.util.List;
 
 import br.com.mind5.business.material.info.MatInfo;
 import br.com.mind5.business.material.info.MatMerger;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiMatMergeToDelete extends ActionVisitorTemplateMergeV2<MatInfo, MatInfo> {
+final class VisiMatMergeToDelete extends ActionVisitorTemplateMerge<MatInfo, MatInfo> {
 	
 	public VisiMatMergeToDelete(DeciTreeOption<MatInfo> option) {
 		super(option, MatInfo.class);
@@ -16,7 +16,7 @@ final class VisiMatMergeToDelete extends ActionVisitorTemplateMergeV2<MatInfo, M
 	
 	
 	
-	@Override protected Class<? extends ActionStdV2<MatInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStd<MatInfo>> getActionClassHook() {
 		return StdMatDaoSelect.class;
 	}
 	

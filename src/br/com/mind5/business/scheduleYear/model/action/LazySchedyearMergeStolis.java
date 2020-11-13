@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.scheduleYear.info.SchedyearInfo;
 import br.com.mind5.model.action.ActionLazyTemplate;
-import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -23,7 +23,7 @@ public final class LazySchedyearMergeStolis extends ActionLazyTemplate<Schedyear
 	
 	
 	
-	@Override protected ActionStdV2<SchedyearInfo> getInstanceOfActionHook(DeciTreeOption<SchedyearInfo> option) {
+	@Override protected ActionStd<SchedyearInfo> getInstanceOfActionHook(DeciTreeOption<SchedyearInfo> option) {
 		return new StdSchedyearMergeStolis(option);
 	}
 	

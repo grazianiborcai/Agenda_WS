@@ -6,11 +6,11 @@ import br.com.mind5.business.calendarTimeStore.info.CalimoreInfo;
 import br.com.mind5.business.calendarTimeStore.info.CalimoreMerger;
 import br.com.mind5.business.storeWorkTimeSearch.info.StowotarchInfo;
 import br.com.mind5.business.storeWorkTimeSearch.model.decisionTree.RootStowotarchSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiCalimoreMergeStowotarch extends ActionVisitorTemplateMergeV2<CalimoreInfo, StowotarchInfo> {
+final class VisiCalimoreMergeStowotarch extends ActionVisitorTemplateMerge<CalimoreInfo, StowotarchInfo> {
 	
 	public VisiCalimoreMergeStowotarch(DeciTreeOption<CalimoreInfo> option) {
 		super(option, StowotarchInfo.class);

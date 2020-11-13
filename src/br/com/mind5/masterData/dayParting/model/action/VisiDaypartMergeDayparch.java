@@ -6,12 +6,12 @@ import br.com.mind5.masterData.dayParting.info.DaypartInfo;
 import br.com.mind5.masterData.dayParting.info.DaypartMerger;
 import br.com.mind5.masterData.dayPartingSearch.info.DayparchInfo;
 import br.com.mind5.masterData.dayPartingSearch.model.decisionTree.RootDayparchSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiDaypartMergeDayparch extends ActionVisitorTemplateMergeV2<DaypartInfo, DayparchInfo> {
+final class VisiDaypartMergeDayparch extends ActionVisitorTemplateMerge<DaypartInfo, DayparchInfo> {
 	
 	public VisiDaypartMergeDayparch(DeciTreeOption<DaypartInfo> option) {
 		super(option, DayparchInfo.class);
@@ -32,6 +32,6 @@ final class VisiDaypartMergeDayparch extends ActionVisitorTemplateMergeV2<Daypar
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
+		return super.DONT_MERGE_WHEN_EMPTY;
 	}
 }

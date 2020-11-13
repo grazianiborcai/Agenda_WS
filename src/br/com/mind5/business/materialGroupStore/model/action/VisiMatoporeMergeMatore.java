@@ -7,11 +7,11 @@ import br.com.mind5.business.materialGroupStore.info.MatoporeMerger;
 import br.com.mind5.business.materialStore.info.MatoreCopier;
 import br.com.mind5.business.materialStore.info.MatoreInfo;
 import br.com.mind5.business.materialStore.model.decisionTree.RootMatoreSearch;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiMatoporeMergeMatore extends ActionVisitorTemplateMergeV2<MatoporeInfo, MatoreInfo> {
+final class VisiMatoporeMergeMatore extends ActionVisitorTemplateMerge<MatoporeInfo, MatoreInfo> {
 	
 	public VisiMatoporeMergeMatore(DeciTreeOption<MatoporeInfo> option) {
 		super(option, MatoreInfo.class);

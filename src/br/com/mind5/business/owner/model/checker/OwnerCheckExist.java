@@ -3,12 +3,12 @@ package br.com.mind5.business.owner.model.checker;
 import br.com.mind5.business.owner.info.OwnerInfo;
 import br.com.mind5.business.owner.model.action.StdOwnerDaoSelect;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class OwnerCheckExist extends ModelCheckerTemplateActionV2<OwnerInfo, OwnerInfo> {
+public final class OwnerCheckExist extends ModelCheckerTemplateAction<OwnerInfo, OwnerInfo> {
 	
 	public OwnerCheckExist(ModelCheckerOption option) {
 		super(option, OwnerInfo.class);
@@ -16,8 +16,8 @@ public final class OwnerCheckExist extends ModelCheckerTemplateActionV2<OwnerInf
 	
 	
 	
-	@Override protected ActionStdV2<OwnerInfo> buildActionHook(DeciTreeOption<OwnerInfo> option) {
-		ActionStdV2<OwnerInfo> select = new StdOwnerDaoSelect(option);
+	@Override protected ActionStd<OwnerInfo> buildActionHook(DeciTreeOption<OwnerInfo> option) {
+		ActionStd<OwnerInfo> select = new StdOwnerDaoSelect(option);
 		return select;
 	}
 	

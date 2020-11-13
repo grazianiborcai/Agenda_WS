@@ -3,11 +3,11 @@ package br.com.mind5.payment.storePartnerList.model.checker;
 import br.com.mind5.masterData.language.info.LanguInfo;
 import br.com.mind5.masterData.language.model.checker.LanguCheckExist;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.payment.storePartnerList.info.StoplisInfo;
 
-public final class StoplisCheckLangu extends ModelCheckerTemplateForwardV2<StoplisInfo, LanguInfo> {
+public final class StoplisCheckLangu extends ModelCheckerTemplateForward<StoplisInfo, LanguInfo> {
 	
 	public StoplisCheckLangu(ModelCheckerOption option) {
 		super(option);
@@ -15,7 +15,7 @@ public final class StoplisCheckLangu extends ModelCheckerTemplateForwardV2<Stopl
 
 
 	
-	@Override protected ModelCheckerV1<LanguInfo> getCheckerHook(ModelCheckerOption option) {
+	@Override protected ModelChecker<LanguInfo> getCheckerHook(ModelCheckerOption option) {
 		return new LanguCheckExist(option);
 	}
 	

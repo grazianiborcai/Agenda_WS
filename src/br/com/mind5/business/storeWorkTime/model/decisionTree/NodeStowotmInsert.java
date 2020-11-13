@@ -13,14 +13,14 @@ import br.com.mind5.business.storeWorkTime.model.action.LazyStowotmDaoUpdate;
 import br.com.mind5.business.storeWorkTime.model.action.StdStowotmEnforceLChanged;
 import br.com.mind5.business.storeWorkTime.model.checker.StowotmCheckSoftDelete;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-final class NodeStowotmInsert extends DeciTreeTemplateWriteV2<StowotmInfo> {
+final class NodeStowotmInsert extends DeciTreeTemplateWrite<StowotmInfo> {
 	
 	public NodeStowotmInsert(DeciTreeOption<StowotmInfo> option) {
 		super(option);
@@ -28,9 +28,9 @@ final class NodeStowotmInsert extends DeciTreeTemplateWriteV2<StowotmInfo> {
 	
 	
 	
-	@Override protected ModelCheckerV1<StowotmInfo> buildCheckerHook(DeciTreeOption<StowotmInfo> option) {
-		List<ModelCheckerV1<StowotmInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<StowotmInfo> checker;
+	@Override protected ModelChecker<StowotmInfo> buildCheckerHook(DeciTreeOption<StowotmInfo> option) {
+		List<ModelChecker<StowotmInfo>> queue = new ArrayList<>();		
+		ModelChecker<StowotmInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
 		checkerOption = new ModelCheckerOption();
@@ -40,15 +40,15 @@ final class NodeStowotmInsert extends DeciTreeTemplateWriteV2<StowotmInfo> {
 		checker = new StowotmCheckSoftDelete(checkerOption);
 		queue.add(checker);	
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<StowotmInfo>> buildActionsOnPassedHook(DeciTreeOption<StowotmInfo> option) {
-		List<ActionStdV2<StowotmInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<StowotmInfo>> buildActionsOnPassedHook(DeciTreeOption<StowotmInfo> option) {
+		List<ActionStd<StowotmInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<StowotmInfo> enforceLChanged = new StdStowotmEnforceLChanged(option);
+		ActionStd<StowotmInfo> enforceLChanged = new StdStowotmEnforceLChanged(option);
 		ActionLazy<StowotmInfo> enforceLChangedBy = new LazyStowotmMergeUsername(option.conn, option.schemaName);
 		ActionLazy<StowotmInfo> enforceCreatedOn = new LazyStowotmEnforceCreatedOn(option.conn, option.schemaName);
 		ActionLazy<StowotmInfo> enforceCreatedBy = new LazyStowotmEnforceCreatedBy(option.conn, option.schemaName);
@@ -67,10 +67,10 @@ final class NodeStowotmInsert extends DeciTreeTemplateWriteV2<StowotmInfo> {
 	
 	
 	
-	@Override protected List<ActionStdV2<StowotmInfo>> buildActionsOnFailedHook(DeciTreeOption<StowotmInfo> option) {
-		List<ActionStdV2<StowotmInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<StowotmInfo>> buildActionsOnFailedHook(DeciTreeOption<StowotmInfo> option) {
+		List<ActionStd<StowotmInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<StowotmInfo> enforceLChanged = new StdStowotmEnforceLChanged(option);
+		ActionStd<StowotmInfo> enforceLChanged = new StdStowotmEnforceLChanged(option);
 		ActionLazy<StowotmInfo> enforceLChangedBy = new LazyStowotmMergeUsername(option.conn, option.schemaName);
 		ActionLazy<StowotmInfo> enforceCreatedOn = new LazyStowotmEnforceCreatedOn(option.conn, option.schemaName);
 		ActionLazy<StowotmInfo> enforceCreatedBy = new LazyStowotmEnforceCreatedBy(option.conn, option.schemaName);

@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.file.fileWrite.info.FriteInfo;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 
-public final class FriteCheckWrite extends ModelCheckerTemplateSimpleV2<FriteInfo> {
+public final class FriteCheckWrite extends ModelCheckerTemplateSimple<FriteInfo> {
 
 	public FriteCheckWrite(ModelCheckerOption option) {
 		super(option);

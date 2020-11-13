@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.mind5.business.calendarTimeStore.info.CalimoreInfo;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 
-public final class CalimoreCheckRead extends ModelCheckerTemplateSimpleV2<CalimoreInfo> {
+public final class CalimoreCheckRead extends ModelCheckerTemplateSimple<CalimoreInfo> {
 
 	public CalimoreCheckRead(ModelCheckerOption option) {
 		super(option);

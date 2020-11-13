@@ -3,11 +3,11 @@ package br.com.mind5.payment.customerPartner.model.checker;
 import br.com.mind5.business.owner.info.OwnerInfo;
 import br.com.mind5.business.owner.model.checker.OwnerCheckExist;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
 
-public final class CusparCheckOwner extends ModelCheckerTemplateForwardV2<CusparInfo, OwnerInfo> {
+public final class CusparCheckOwner extends ModelCheckerTemplateForward<CusparInfo, OwnerInfo> {
 	
 	public CusparCheckOwner(ModelCheckerOption option) {
 		super(option);
@@ -15,7 +15,7 @@ public final class CusparCheckOwner extends ModelCheckerTemplateForwardV2<Cuspar
 
 
 	
-	@Override protected ModelCheckerV1<OwnerInfo> getCheckerHook(ModelCheckerOption option) {
+	@Override protected ModelChecker<OwnerInfo> getCheckerHook(ModelCheckerOption option) {
 		return new OwnerCheckExist(option);
 	}
 	

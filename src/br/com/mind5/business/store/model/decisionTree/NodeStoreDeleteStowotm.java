@@ -7,14 +7,14 @@ import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.business.store.model.action.StdStoreStowotmDelete;
 import br.com.mind5.business.store.model.action.StdStoreSuccess;
 import br.com.mind5.business.store.model.checker.StoreCheckStowotarch;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodeStoreDeleteStowotm extends DeciTreeTemplateWriteV2<StoreInfo> {
+public final class NodeStoreDeleteStowotm extends DeciTreeTemplateWrite<StoreInfo> {
 	
 	public NodeStoreDeleteStowotm(DeciTreeOption<StoreInfo> option) {
 		super(option);
@@ -22,9 +22,9 @@ public final class NodeStoreDeleteStowotm extends DeciTreeTemplateWriteV2<StoreI
 	
 	
 	
-	@Override protected ModelCheckerV1<StoreInfo> buildCheckerHook(DeciTreeOption<StoreInfo> option) {
-		List<ModelCheckerV1<StoreInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<StoreInfo> checker;
+	@Override protected ModelChecker<StoreInfo> buildCheckerHook(DeciTreeOption<StoreInfo> option) {
+		List<ModelChecker<StoreInfo>> queue = new ArrayList<>();		
+		ModelChecker<StoreInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
 		checkerOption = new ModelCheckerOption();
@@ -34,15 +34,15 @@ public final class NodeStoreDeleteStowotm extends DeciTreeTemplateWriteV2<StoreI
 		checker = new StoreCheckStowotarch(checkerOption);
 		queue.add(checker);	
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<StoreInfo>> buildActionsOnPassedHook(DeciTreeOption<StoreInfo> option) {
-		List<ActionStdV2<StoreInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<StoreInfo>> buildActionsOnPassedHook(DeciTreeOption<StoreInfo> option) {
+		List<ActionStd<StoreInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<StoreInfo> deleteStowotm = new StdStoreStowotmDelete(option);
+		ActionStd<StoreInfo> deleteStowotm = new StdStoreStowotmDelete(option);
 		
 		actions.add(deleteStowotm);		
 		return actions;
@@ -50,8 +50,8 @@ public final class NodeStoreDeleteStowotm extends DeciTreeTemplateWriteV2<StoreI
 	
 	
 	
-	@Override protected List<ActionStdV2<StoreInfo>> buildActionsOnFailedHook(DeciTreeOption<StoreInfo> option) {
-		List<ActionStdV2<StoreInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<StoreInfo>> buildActionsOnFailedHook(DeciTreeOption<StoreInfo> option) {
+		List<ActionStd<StoreInfo>> actions = new ArrayList<>();
 		
 		actions.add(new StdStoreSuccess(option));		
 		return actions;

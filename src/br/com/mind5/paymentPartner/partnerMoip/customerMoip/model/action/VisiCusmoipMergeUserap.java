@@ -2,7 +2,7 @@ package br.com.mind5.paymentPartner.partnerMoip.customerMoip.model.action;
 
 import java.util.List;
 
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.paymentPartner.partnerMoip.customerMoip.info.CusmoipInfo;
@@ -11,7 +11,7 @@ import br.com.mind5.security.userSnapshot.info.UserapCopier;
 import br.com.mind5.security.userSnapshot.info.UserapInfo;
 import br.com.mind5.security.userSnapshot.model.decisionTree.RootUserapSelect;
 
-final class VisiCusmoipMergeUserap extends ActionVisitorTemplateMergeV2<CusmoipInfo, UserapInfo> {
+final class VisiCusmoipMergeUserap extends ActionVisitorTemplateMerge<CusmoipInfo, UserapInfo> {
 	
 	public VisiCusmoipMergeUserap(DeciTreeOption<CusmoipInfo> option) {
 		super(option, UserapInfo.class); 

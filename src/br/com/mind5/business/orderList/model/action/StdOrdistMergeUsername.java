@@ -1,11 +1,11 @@
 package br.com.mind5.business.orderList.model.action;
 
 import br.com.mind5.business.orderList.info.OrdistInfo;
-import br.com.mind5.model.action.ActionStdTemplateV2;
-import br.com.mind5.model.action.ActionVisitorV2;
+import br.com.mind5.model.action.ActionStdTemplate;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdOrdistMergeUsername extends ActionStdTemplateV2<OrdistInfo> {
+public final class StdOrdistMergeUsername extends ActionStdTemplate<OrdistInfo> {
 
 	public StdOrdistMergeUsername(DeciTreeOption<OrdistInfo> option) {
 		super(option);
@@ -13,7 +13,7 @@ public final class StdOrdistMergeUsername extends ActionStdTemplateV2<OrdistInfo
 	
 	
 	
-	protected ActionVisitorV2<OrdistInfo> buildVisitorHook(DeciTreeOption<OrdistInfo> option) {
+	protected ActionVisitor<OrdistInfo> buildVisitorHook(DeciTreeOption<OrdistInfo> option) {
 		return new VisiOrdistMergeUsername(option);
 	}
 }

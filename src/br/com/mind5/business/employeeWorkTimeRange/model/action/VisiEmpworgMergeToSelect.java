@@ -4,11 +4,11 @@ import java.util.List;
 
 import br.com.mind5.business.employeeWorkTimeRange.info.EmpworgInfo;
 import br.com.mind5.business.employeeWorkTimeRange.info.EmpworgMerger;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiEmpworgMergeToSelect extends ActionVisitorTemplateMergeV2<EmpworgInfo, EmpworgInfo> {
+final class VisiEmpworgMergeToSelect extends ActionVisitorTemplateMerge<EmpworgInfo, EmpworgInfo> {
 	
 	public VisiEmpworgMergeToSelect(DeciTreeOption<EmpworgInfo> option) {
 		super(option, EmpworgInfo.class);
@@ -16,7 +16,7 @@ final class VisiEmpworgMergeToSelect extends ActionVisitorTemplateMergeV2<Empwor
 	
 	
 	
-	@Override protected Class<? extends ActionStdV2<EmpworgInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStd<EmpworgInfo>> getActionClassHook() {
 		return StdEmpworgDaoSelect.class;
 	}
 	

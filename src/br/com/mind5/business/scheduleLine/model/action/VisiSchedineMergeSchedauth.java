@@ -6,11 +6,11 @@ import br.com.mind5.authorization.scheduleAuthorization.info.SchedauthInfo;
 import br.com.mind5.authorization.scheduleAuthorization.model.decisionTree.RootSchedauthSearch;
 import br.com.mind5.business.scheduleLine.info.SchedineInfo;
 import br.com.mind5.business.scheduleLine.info.SchedineMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiSchedineMergeSchedauth extends ActionVisitorTemplateMergeV2<SchedineInfo, SchedauthInfo> {
+final class VisiSchedineMergeSchedauth extends ActionVisitorTemplateMerge<SchedineInfo, SchedauthInfo> {
 	
 	public VisiSchedineMergeSchedauth(DeciTreeOption<SchedineInfo> option) {
 		super(option, SchedauthInfo.class); 

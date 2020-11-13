@@ -3,12 +3,12 @@ package br.com.mind5.masterData.month.model.checker;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.masterData.month.info.MonthInfo;
 import br.com.mind5.masterData.month.model.action.StdMonthDaoSelect;
-import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class MonthCheckExist extends ModelCheckerTemplateActionV2<MonthInfo, MonthInfo> {
+public final class MonthCheckExist extends ModelCheckerTemplateAction<MonthInfo, MonthInfo> {
 	
 	public MonthCheckExist(ModelCheckerOption option) {
 		super(option, MonthInfo.class);
@@ -16,8 +16,8 @@ public final class MonthCheckExist extends ModelCheckerTemplateActionV2<MonthInf
 	
 	
 	
-	@Override protected ActionStdV2<MonthInfo> buildActionHook(DeciTreeOption<MonthInfo> option) {
-		ActionStdV2<MonthInfo> select = new StdMonthDaoSelect(option);
+	@Override protected ActionStd<MonthInfo> buildActionHook(DeciTreeOption<MonthInfo> option) {
+		ActionStd<MonthInfo> select = new StdMonthDaoSelect(option);
 		return select;
 	}
 	

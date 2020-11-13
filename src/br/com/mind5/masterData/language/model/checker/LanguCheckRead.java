@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.masterData.language.info.LanguInfo;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 
-public class LanguCheckRead extends ModelCheckerTemplateSimpleV2<LanguInfo> {
+public class LanguCheckRead extends ModelCheckerTemplateSimple<LanguInfo> {
 
 	public LanguCheckRead(ModelCheckerOption option) {
 		super(option);

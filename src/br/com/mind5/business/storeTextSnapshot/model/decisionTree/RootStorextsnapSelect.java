@@ -8,14 +8,14 @@ import br.com.mind5.business.storeTextSnapshot.model.action.StdStorextsnapMergeT
 import br.com.mind5.business.storeTextSnapshot.model.checker.StorextsnapCheckStorext;
 import br.com.mind5.business.storeTextSnapshot.model.checker.StorextsnapCheckOwner;
 import br.com.mind5.business.storeTextSnapshot.model.checker.StorextsnapCheckRead;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootStorextsnapSelect extends DeciTreeTemplateReadV2<StorextsnapInfo> {
+public final class RootStorextsnapSelect extends DeciTreeTemplateRead<StorextsnapInfo> {
 	
 	public RootStorextsnapSelect(DeciTreeOption<StorextsnapInfo> option) {
 		super(option);
@@ -23,9 +23,9 @@ public final class RootStorextsnapSelect extends DeciTreeTemplateReadV2<Storexts
 	
 	
 	
-	@Override protected ModelCheckerV1<StorextsnapInfo> buildCheckerHook(DeciTreeOption<StorextsnapInfo> option) {
-		List<ModelCheckerV1<StorextsnapInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<StorextsnapInfo> checker;
+	@Override protected ModelChecker<StorextsnapInfo> buildCheckerHook(DeciTreeOption<StorextsnapInfo> option) {
+		List<ModelChecker<StorextsnapInfo>> queue = new ArrayList<>();		
+		ModelChecker<StorextsnapInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -49,15 +49,15 @@ public final class RootStorextsnapSelect extends DeciTreeTemplateReadV2<Storexts
 		checker = new StorextsnapCheckStorext(checkerOption);
 		queue.add(checker);		
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<StorextsnapInfo>> buildActionsOnPassedHook(DeciTreeOption<StorextsnapInfo> option) {
-		List<ActionStdV2<StorextsnapInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<StorextsnapInfo>> buildActionsOnPassedHook(DeciTreeOption<StorextsnapInfo> option) {
+		List<ActionStd<StorextsnapInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<StorextsnapInfo> select = new StdStorextsnapMergeToSelect(option);
+		ActionStd<StorextsnapInfo> select = new StdStorextsnapMergeToSelect(option);
 		
 		actions.add(select);
 		return actions;

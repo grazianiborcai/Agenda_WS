@@ -4,10 +4,10 @@ import br.com.mind5.business.storeWorkTime.info.StowotmInfo;
 import br.com.mind5.masterData.weekday.info.WeekdayInfo;
 import br.com.mind5.masterData.weekday.model.checker.WeekdayCheckExist;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.model.checker.ModelChecker;
 
-public final class StowotmCheckWeekday extends ModelCheckerTemplateForwardV2<StowotmInfo, WeekdayInfo> {
+public final class StowotmCheckWeekday extends ModelCheckerTemplateForward<StowotmInfo, WeekdayInfo> {
 	
 	public StowotmCheckWeekday(ModelCheckerOption option) {
 		super(option);
@@ -15,7 +15,7 @@ public final class StowotmCheckWeekday extends ModelCheckerTemplateForwardV2<Sto
 
 
 	
-	@Override protected ModelCheckerV1<WeekdayInfo> getCheckerHook(ModelCheckerOption option) {
+	@Override protected ModelChecker<WeekdayInfo> getCheckerHook(ModelCheckerOption option) {
 		return new WeekdayCheckExist(option);
 	}
 	

@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.business.ownerList.info.OwnelisInfo;
 import br.com.mind5.model.action.ActionLazyTemplate;
-import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -23,7 +23,7 @@ public final class LazyOwnelisMergeBusarea extends ActionLazyTemplate<OwnelisInf
 	
 	
 	
-	@Override protected ActionStdV2<OwnelisInfo> getInstanceOfActionHook(DeciTreeOption<OwnelisInfo> option) {
+	@Override protected ActionStd<OwnelisInfo> getInstanceOfActionHook(DeciTreeOption<OwnelisInfo> option) {
 		return new StdOwnelisMergeBusarea(option);
 	}
 	

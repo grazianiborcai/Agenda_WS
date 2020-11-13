@@ -6,11 +6,11 @@ import br.com.mind5.business.materialMovement.info.MatmovInfo;
 import br.com.mind5.business.materialMovement.info.MatmovMerger;
 import br.com.mind5.business.materialMovementSearch.info.MatmarchInfo;
 import br.com.mind5.business.materialMovementSearch.model.decisionTree.RootMatmarchSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiMatmovMergeMatmarch extends ActionVisitorTemplateMergeV2<MatmovInfo, MatmarchInfo> {
+final class VisiMatmovMergeMatmarch extends ActionVisitorTemplateMerge<MatmovInfo, MatmarchInfo> {
 	
 	public VisiMatmovMergeMatmarch(DeciTreeOption<MatmovInfo> option) {
 		super(option, MatmarchInfo.class);

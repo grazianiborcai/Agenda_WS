@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.form.formPhone.info.FormoneInfo;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 
-public final class FormoneCheckRead extends ModelCheckerTemplateSimpleV2<FormoneInfo> {
+public final class FormoneCheckRead extends ModelCheckerTemplateSimple<FormoneInfo> {
 
 	public FormoneCheckRead(ModelCheckerOption option) {
 		super(option);

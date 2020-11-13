@@ -10,14 +10,14 @@ import br.com.mind5.business.employeeWorkTimeConflict.model.checker.EmpwocoCheck
 import br.com.mind5.business.employeeWorkTimeConflict.model.checker.EmpwocoCheckOwner;
 import br.com.mind5.business.employeeWorkTimeConflict.model.checker.EmpwocoCheckRead;
 import br.com.mind5.business.employeeWorkTimeConflict.model.checker.EmpwocoCheckStore;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootEmpwocoSelect extends DeciTreeTemplateReadV2<EmpwocoInfo> {
+public final class RootEmpwocoSelect extends DeciTreeTemplateRead<EmpwocoInfo> {
 	
 	public RootEmpwocoSelect(DeciTreeOption<EmpwocoInfo> option) {
 		super(option);
@@ -25,9 +25,9 @@ public final class RootEmpwocoSelect extends DeciTreeTemplateReadV2<EmpwocoInfo>
 	
 	
 	
-	@Override protected ModelCheckerV1<EmpwocoInfo> buildCheckerHook(DeciTreeOption<EmpwocoInfo> option) {
-		List<ModelCheckerV1<EmpwocoInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<EmpwocoInfo> checker;
+	@Override protected ModelChecker<EmpwocoInfo> buildCheckerHook(DeciTreeOption<EmpwocoInfo> option) {
+		List<ModelChecker<EmpwocoInfo>> queue = new ArrayList<>();		
+		ModelChecker<EmpwocoInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -65,15 +65,15 @@ public final class RootEmpwocoSelect extends DeciTreeTemplateReadV2<EmpwocoInfo>
 		checker = new EmpwocoCheckEmp(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<EmpwocoInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpwocoInfo> option) {
-		List<ActionStdV2<EmpwocoInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<EmpwocoInfo>> buildActionsOnPassedHook(DeciTreeOption<EmpwocoInfo> option) {
+		List<ActionStd<EmpwocoInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<EmpwocoInfo> select = new StdEmpwocoMergeToSelect(option);
+		ActionStd<EmpwocoInfo> select = new StdEmpwocoMergeToSelect(option);
 		
 		actions.add(select);
 		return actions;

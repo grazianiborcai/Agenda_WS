@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.payment.payOrder.info.PayordInfo;
 import br.com.mind5.payment.payOrder.model.action.LazyPayordEnforceLChanged;
 import br.com.mind5.payment.payOrder.model.action.LazyPayordOrderRefresh;
@@ -18,7 +18,7 @@ import br.com.mind5.payment.payOrder.model.action.StdPayordMergeToUpdate;
 import br.com.mind5.payment.payOrder.model.checker.PayordCheckExist;
 import br.com.mind5.payment.payOrder.model.checker.PayordCheckRefresh;
 
-public final class RootPayordRefresh extends DeciTreeTemplateWriteV2<PayordInfo> {
+public final class RootPayordRefresh extends DeciTreeTemplateWrite<PayordInfo> {
 	
 	public RootPayordRefresh(DeciTreeOption<PayordInfo> option) {
 		super(option);
@@ -26,9 +26,9 @@ public final class RootPayordRefresh extends DeciTreeTemplateWriteV2<PayordInfo>
 	
 	
 	
-	@Override protected ModelCheckerV1<PayordInfo> buildCheckerHook(DeciTreeOption<PayordInfo> option) {
-		List<ModelCheckerV1<PayordInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<PayordInfo> checker;	
+	@Override protected ModelChecker<PayordInfo> buildCheckerHook(DeciTreeOption<PayordInfo> option) {
+		List<ModelChecker<PayordInfo>> queue = new ArrayList<>();		
+		ModelChecker<PayordInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -45,15 +45,15 @@ public final class RootPayordRefresh extends DeciTreeTemplateWriteV2<PayordInfo>
 		checker = new PayordCheckExist(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<PayordInfo>> buildActionsOnPassedHook(DeciTreeOption<PayordInfo> option) {
-		List<ActionStdV2<PayordInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<PayordInfo>> buildActionsOnPassedHook(DeciTreeOption<PayordInfo> option) {
+		List<ActionStd<PayordInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<PayordInfo> select = new StdPayordMergeToUpdate(option);
+		ActionStd<PayordInfo> select = new StdPayordMergeToUpdate(option);
 		ActionLazy<PayordInfo> enforceLChanged = new LazyPayordEnforceLChanged(option.conn, option.schemaName);
 		ActionLazy<PayordInfo> updatePayord = new LazyPayordDaoUpdate(option.conn, option.schemaName);
 		ActionLazy<PayordInfo> refreshOrder = new LazyPayordOrderRefresh(option.conn, option.schemaName);

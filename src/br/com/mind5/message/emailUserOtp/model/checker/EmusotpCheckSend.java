@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.message.emailUserOtp.info.EmusotpInfo;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 
-public final class EmusotpCheckSend extends ModelCheckerTemplateSimpleV2<EmusotpInfo> {
+public final class EmusotpCheckSend extends ModelCheckerTemplateSimple<EmusotpInfo> {
 
 	public EmusotpCheckSend(ModelCheckerOption option) {
 		super(option);

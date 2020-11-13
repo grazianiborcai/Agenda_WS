@@ -4,11 +4,11 @@ import java.util.List;
 
 import br.com.mind5.business.materialTextSnapshot.info.MatextsnapInfo;
 import br.com.mind5.business.materialTextSnapshot.info.MatextsnapMerger;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiMatextsnapMergeToSelect extends ActionVisitorTemplateMergeV2<MatextsnapInfo, MatextsnapInfo> {
+final class VisiMatextsnapMergeToSelect extends ActionVisitorTemplateMerge<MatextsnapInfo, MatextsnapInfo> {
 	
 	public VisiMatextsnapMergeToSelect(DeciTreeOption<MatextsnapInfo> option) {
 		super(option, MatextsnapInfo.class);
@@ -16,7 +16,7 @@ final class VisiMatextsnapMergeToSelect extends ActionVisitorTemplateMergeV2<Mat
 	
 	
 	
-	@Override protected Class<? extends ActionStdV2<MatextsnapInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStd<MatextsnapInfo>> getActionClassHook() {
 		return StdMatextsnapDaoSelect.class;
 	}
 	

@@ -7,12 +7,11 @@ import br.com.mind5.business.addressSnapshot.info.AddresnapMerger;
 import br.com.mind5.business.storeList.info.StolisCopier;
 import br.com.mind5.business.storeList.info.StolisInfo;
 import br.com.mind5.business.storeList.model.decisionTree.RootStolisSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiAddresnapMergeStolis extends ActionVisitorTemplateMergeV2<AddresnapInfo, StolisInfo> {
+final class VisiAddresnapMergeStolis extends ActionVisitorTemplateMerge<AddresnapInfo, StolisInfo> {
 	
 	public VisiAddresnapMergeStolis(DeciTreeOption<AddresnapInfo> option) {
 		super(option, StolisInfo.class);
@@ -38,6 +37,6 @@ final class VisiAddresnapMergeStolis extends ActionVisitorTemplateMergeV2<Addres
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
+		return super.MERGE_WHEN_EMPTY;
 	}
 }

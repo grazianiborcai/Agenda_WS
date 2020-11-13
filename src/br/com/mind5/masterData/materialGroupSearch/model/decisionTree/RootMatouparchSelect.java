@@ -6,14 +6,14 @@ import java.util.List;
 import br.com.mind5.masterData.materialGroupSearch.info.MatouparchInfo;
 import br.com.mind5.masterData.materialGroupSearch.model.action.StdMatouparchDaoSelect;
 import br.com.mind5.masterData.materialGroupSearch.model.checker.MatouparchCheckRead;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootMatouparchSelect extends DeciTreeTemplateReadV1<MatouparchInfo> {
+public final class RootMatouparchSelect extends DeciTreeTemplateRead<MatouparchInfo> {
 	
 	public RootMatouparchSelect(DeciTreeOption<MatouparchInfo> option) {
 		super(option);
@@ -21,9 +21,9 @@ public final class RootMatouparchSelect extends DeciTreeTemplateReadV1<Matouparc
 	
 	
 	
-	@Override protected ModelCheckerV1<MatouparchInfo> buildCheckerHook(DeciTreeOption<MatouparchInfo> option) {
-		List<ModelCheckerV1<MatouparchInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<MatouparchInfo> checker;
+	@Override protected ModelChecker<MatouparchInfo> buildCheckerHook(DeciTreeOption<MatouparchInfo> option) {
+		List<ModelChecker<MatouparchInfo>> queue = new ArrayList<>();		
+		ModelChecker<MatouparchInfo> checker;
 		ModelCheckerOption checkerOption;	
 		
 		checkerOption = new ModelCheckerOption();
@@ -33,15 +33,15 @@ public final class RootMatouparchSelect extends DeciTreeTemplateReadV1<Matouparc
 		checker = new MatouparchCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<MatouparchInfo>> buildActionsOnPassedHook(DeciTreeOption<MatouparchInfo> option) {
-		List<ActionStdV2<MatouparchInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<MatouparchInfo>> buildActionsOnPassedHook(DeciTreeOption<MatouparchInfo> option) {
+		List<ActionStd<MatouparchInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<MatouparchInfo> select = new StdMatouparchDaoSelect(option);
+		ActionStd<MatouparchInfo> select = new StdMatouparchDaoSelect(option);
 		
 		actions.add(select);
 		return actions;

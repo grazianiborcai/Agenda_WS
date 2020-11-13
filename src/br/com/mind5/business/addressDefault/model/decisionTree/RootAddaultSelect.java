@@ -7,14 +7,14 @@ import br.com.mind5.business.addressDefault.info.AddaultInfo;
 import br.com.mind5.business.addressDefault.model.action.StdAddaultMergeToSelect;
 import br.com.mind5.business.addressDefault.model.checker.AddaultCheckLangu;
 import br.com.mind5.business.addressDefault.model.checker.AddaultCheckRead;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootAddaultSelect extends DeciTreeTemplateWriteV2<AddaultInfo> {
+public final class RootAddaultSelect extends DeciTreeTemplateWrite<AddaultInfo> {
 	
 	public RootAddaultSelect(DeciTreeOption<AddaultInfo> option) {
 		super(option);
@@ -22,9 +22,9 @@ public final class RootAddaultSelect extends DeciTreeTemplateWriteV2<AddaultInfo
 	
 	
 	
-	@Override protected ModelCheckerV1<AddaultInfo> buildCheckerHook(DeciTreeOption<AddaultInfo> option) {
-		List<ModelCheckerV1<AddaultInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<AddaultInfo> checker;	
+	@Override protected ModelChecker<AddaultInfo> buildCheckerHook(DeciTreeOption<AddaultInfo> option) {
+		List<ModelChecker<AddaultInfo>> queue = new ArrayList<>();		
+		ModelChecker<AddaultInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -41,15 +41,15 @@ public final class RootAddaultSelect extends DeciTreeTemplateWriteV2<AddaultInfo
 		checker = new AddaultCheckLangu(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<AddaultInfo>> buildActionsOnPassedHook(DeciTreeOption<AddaultInfo> option) {
-		List<ActionStdV2<AddaultInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStd<AddaultInfo>> buildActionsOnPassedHook(DeciTreeOption<AddaultInfo> option) {
+		List<ActionStd<AddaultInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV2<AddaultInfo> select = new StdAddaultMergeToSelect(option);
+		ActionStd<AddaultInfo> select = new StdAddaultMergeToSelect(option);
 		
 		actions.add(select);			
 		return actions;

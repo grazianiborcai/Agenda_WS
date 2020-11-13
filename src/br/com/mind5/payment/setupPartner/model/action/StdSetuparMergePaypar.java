@@ -1,11 +1,11 @@
 package br.com.mind5.payment.setupPartner.model.action;
 
-import br.com.mind5.model.action.ActionStdTemplateV2;
-import br.com.mind5.model.action.ActionVisitorV2;
+import br.com.mind5.model.action.ActionStdTemplate;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.setupPartner.info.SetuparInfo;
 
-public final class StdSetuparMergePaypar extends ActionStdTemplateV2<SetuparInfo> {
+public final class StdSetuparMergePaypar extends ActionStdTemplate<SetuparInfo> {
 
 	public StdSetuparMergePaypar(DeciTreeOption<SetuparInfo> option) {
 		super(option);
@@ -13,7 +13,7 @@ public final class StdSetuparMergePaypar extends ActionStdTemplateV2<SetuparInfo
 	
 	
 	
-	protected ActionVisitorV2<SetuparInfo> buildVisitorHook(DeciTreeOption<SetuparInfo> option) {
+	protected ActionVisitor<SetuparInfo> buildVisitorHook(DeciTreeOption<SetuparInfo> option) {
 		return new VisiSetuparMergePaypar(option);
 	}
 }

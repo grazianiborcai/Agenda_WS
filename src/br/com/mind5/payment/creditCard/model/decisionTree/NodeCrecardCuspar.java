@@ -3,18 +3,18 @@ package br.com.mind5.payment.creditCard.model.decisionTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 import br.com.mind5.payment.creditCard.info.CrecardInfo;
 import br.com.mind5.payment.creditCard.model.action.StdCrecardInsertCuspar;
 import br.com.mind5.payment.creditCard.model.action.StdCrecardMergeCusparch;
 import br.com.mind5.payment.creditCard.model.checker.CrecardCheckCusparch;
 
-public final class NodeCrecardCuspar extends DeciTreeTemplateWriteV2<CrecardInfo> {
+public final class NodeCrecardCuspar extends DeciTreeTemplateWrite<CrecardInfo> {
 	
 	public NodeCrecardCuspar(DeciTreeOption<CrecardInfo> option) {
 		super(option);
@@ -22,9 +22,9 @@ public final class NodeCrecardCuspar extends DeciTreeTemplateWriteV2<CrecardInfo
 	
 	
 	
-	@Override protected ModelCheckerV1<CrecardInfo> buildCheckerHook(DeciTreeOption<CrecardInfo> option) {
-		List<ModelCheckerV1<CrecardInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<CrecardInfo> checker;	
+	@Override protected ModelChecker<CrecardInfo> buildCheckerHook(DeciTreeOption<CrecardInfo> option) {
+		List<ModelChecker<CrecardInfo>> queue = new ArrayList<>();		
+		ModelChecker<CrecardInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -34,15 +34,15 @@ public final class NodeCrecardCuspar extends DeciTreeTemplateWriteV2<CrecardInfo
 		checker = new CrecardCheckCusparch(checkerOption);
 		queue.add(checker);
 
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<CrecardInfo>> buildActionsOnPassedHook(DeciTreeOption<CrecardInfo> option) {
-		List<ActionStdV2<CrecardInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStd<CrecardInfo>> buildActionsOnPassedHook(DeciTreeOption<CrecardInfo> option) {
+		List<ActionStd<CrecardInfo>> actions = new ArrayList<>();		
 
-		ActionStdV2<CrecardInfo> mergeCusparch = new  StdCrecardMergeCusparch(option);
+		ActionStd<CrecardInfo> mergeCusparch = new  StdCrecardMergeCusparch(option);
 		
 		actions.add(mergeCusparch);		
 		return actions;
@@ -50,10 +50,10 @@ public final class NodeCrecardCuspar extends DeciTreeTemplateWriteV2<CrecardInfo
 	
 	
 	
-	@Override protected List<ActionStdV2<CrecardInfo>> buildActionsOnFailedHook(DeciTreeOption<CrecardInfo> option) {
-		List<ActionStdV2<CrecardInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStd<CrecardInfo>> buildActionsOnFailedHook(DeciTreeOption<CrecardInfo> option) {
+		List<ActionStd<CrecardInfo>> actions = new ArrayList<>();		
 
-		ActionStdV2<CrecardInfo> insertCuspar = new  StdCrecardInsertCuspar(option);
+		ActionStd<CrecardInfo> insertCuspar = new  StdCrecardInsertCuspar(option);
 		
 		actions.add(insertCuspar);		
 		return actions;

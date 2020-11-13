@@ -9,14 +9,14 @@ import br.com.mind5.business.orderList.model.action.StdOrdistMergeUsername;
 import br.com.mind5.business.orderList.model.checker.OrdistCheckSearchAuth;
 import br.com.mind5.business.orderList.model.checker.OrdistCheckUsername;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootOrdistSearchAuth extends DeciTreeTemplateReadV2<OrdistInfo> {
+public final class RootOrdistSearchAuth extends DeciTreeTemplateRead<OrdistInfo> {
 	
 	public RootOrdistSearchAuth(DeciTreeOption<OrdistInfo> option) {
 		super(option);
@@ -24,9 +24,9 @@ public final class RootOrdistSearchAuth extends DeciTreeTemplateReadV2<OrdistInf
 	
 	
 	
-	@Override protected ModelCheckerV1<OrdistInfo> buildCheckerHook(DeciTreeOption<OrdistInfo> option) {
-		List<ModelCheckerV1<OrdistInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<OrdistInfo> checker;	
+	@Override protected ModelChecker<OrdistInfo> buildCheckerHook(DeciTreeOption<OrdistInfo> option) {
+		List<ModelChecker<OrdistInfo>> queue = new ArrayList<>();		
+		ModelChecker<OrdistInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -43,15 +43,15 @@ public final class RootOrdistSearchAuth extends DeciTreeTemplateReadV2<OrdistInf
 		checker = new OrdistCheckUsername(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<OrdistInfo>> buildActionsOnPassedHook(DeciTreeOption<OrdistInfo> option) {
-		List<ActionStdV2<OrdistInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStd<OrdistInfo>> buildActionsOnPassedHook(DeciTreeOption<OrdistInfo> option) {
+		List<ActionStd<OrdistInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV2<OrdistInfo> mergeUsername = new StdOrdistMergeUsername(option);
+		ActionStd<OrdistInfo> mergeUsername = new StdOrdistMergeUsername(option);
 		ActionLazy<OrdistInfo> search = new LazyOrdistRootSearch(option.conn, option.schemaName);
 		
 		mergeUsername.addPostAction(search);

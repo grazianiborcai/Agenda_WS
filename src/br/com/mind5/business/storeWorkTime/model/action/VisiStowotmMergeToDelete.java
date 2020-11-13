@@ -4,11 +4,11 @@ import java.util.List;
 
 import br.com.mind5.business.storeWorkTime.info.StowotmInfo;
 import br.com.mind5.business.storeWorkTime.info.StowotmMerger;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiStowotmMergeToDelete extends ActionVisitorTemplateMergeV2<StowotmInfo, StowotmInfo> {
+final class VisiStowotmMergeToDelete extends ActionVisitorTemplateMerge<StowotmInfo, StowotmInfo> {
 	
 	public VisiStowotmMergeToDelete(DeciTreeOption<StowotmInfo> option) {
 		super(option, StowotmInfo.class);
@@ -16,7 +16,7 @@ final class VisiStowotmMergeToDelete extends ActionVisitorTemplateMergeV2<Stowot
 	
 	
 	
-	@Override protected Class<? extends ActionStdV2<StowotmInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStd<StowotmInfo>> getActionClassHook() {
 		return StdStowotmDaoSelect.class;
 	}
 	

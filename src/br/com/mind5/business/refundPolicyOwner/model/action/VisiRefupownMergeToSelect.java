@@ -4,11 +4,11 @@ import java.util.List;
 
 import br.com.mind5.business.refundPolicyOwner.info.RefupownInfo;
 import br.com.mind5.business.refundPolicyOwner.info.RefupownMerger;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiRefupownMergeToSelect extends ActionVisitorTemplateMergeV2<RefupownInfo, RefupownInfo> {
+final class VisiRefupownMergeToSelect extends ActionVisitorTemplateMerge<RefupownInfo, RefupownInfo> {
 	
 	public VisiRefupownMergeToSelect(DeciTreeOption<RefupownInfo> option) {
 		super(option, RefupownInfo.class);
@@ -16,7 +16,7 @@ final class VisiRefupownMergeToSelect extends ActionVisitorTemplateMergeV2<Refup
 	
 	
 	
-	@Override protected Class<? extends ActionStdV2<RefupownInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStd<RefupownInfo>> getActionClassHook() {
 		return StdRefupownDaoSelect.class;
 	}
 	

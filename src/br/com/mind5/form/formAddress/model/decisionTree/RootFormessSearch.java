@@ -7,14 +7,14 @@ import br.com.mind5.form.formAddress.info.FormessInfo;
 import br.com.mind5.form.formAddress.model.action.LazyFormessRootSelect;
 import br.com.mind5.form.formAddress.model.action.StdFormessMergeFormesarch;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootFormessSearch extends DeciTreeTemplateReadV2<FormessInfo> {
+public final class RootFormessSearch extends DeciTreeTemplateRead<FormessInfo> {
 	
 	public RootFormessSearch(DeciTreeOption<FormessInfo> option) {
 		super(option);
@@ -22,22 +22,22 @@ public final class RootFormessSearch extends DeciTreeTemplateReadV2<FormessInfo>
 	
 	
 	
-	@Override protected ModelCheckerV1<FormessInfo> buildCheckerHook(DeciTreeOption<FormessInfo> option) {
-		List<ModelCheckerV1<FormessInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<FormessInfo> checker;
+	@Override protected ModelChecker<FormessInfo> buildCheckerHook(DeciTreeOption<FormessInfo> option) {
+		List<ModelChecker<FormessInfo>> queue = new ArrayList<>();		
+		ModelChecker<FormessInfo> checker;
 		
 		checker = new ModelCheckerDummy<>();
 		queue.add(checker);		
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<FormessInfo>> buildActionsOnPassedHook(DeciTreeOption<FormessInfo> option) {
-		List<ActionStdV2<FormessInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<FormessInfo>> buildActionsOnPassedHook(DeciTreeOption<FormessInfo> option) {
+		List<ActionStd<FormessInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<FormessInfo> mergeFormesarch = new StdFormessMergeFormesarch(option);
+		ActionStd<FormessInfo> mergeFormesarch = new StdFormessMergeFormesarch(option);
 		ActionLazy<FormessInfo> select = new LazyFormessRootSelect(option.conn, option.schemaName);
 		
 		mergeFormesarch.addPostAction(select);

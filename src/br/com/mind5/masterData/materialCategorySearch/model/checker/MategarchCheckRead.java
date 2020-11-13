@@ -5,9 +5,9 @@ import java.sql.Connection;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.masterData.materialCategorySearch.info.MategarchInfo;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 
-public final class MategarchCheckRead extends ModelCheckerTemplateSimpleV2<MategarchInfo> {
+public final class MategarchCheckRead extends ModelCheckerTemplateSimple<MategarchInfo> {
 	
 	public MategarchCheckRead(ModelCheckerOption option) {
 		super(option);

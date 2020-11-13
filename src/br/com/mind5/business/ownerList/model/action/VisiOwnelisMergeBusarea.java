@@ -6,11 +6,11 @@ import br.com.mind5.business.ownerList.info.OwnelisInfo;
 import br.com.mind5.business.ownerList.info.OwnelisMerger;
 import br.com.mind5.masterData.businessArea.info.BusareaInfo;
 import br.com.mind5.masterData.businessArea.model.decisionTree.RootBusareaSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiOwnelisMergeBusarea extends ActionVisitorTemplateMergeV2<OwnelisInfo, BusareaInfo> {
+final class VisiOwnelisMergeBusarea extends ActionVisitorTemplateMerge<OwnelisInfo, BusareaInfo> {
 	
 	public VisiOwnelisMergeBusarea(DeciTreeOption<OwnelisInfo> option) {
 		super(option, BusareaInfo.class);

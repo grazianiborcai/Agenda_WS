@@ -4,11 +4,11 @@ import java.util.List;
 
 import br.com.mind5.masterData.countryLegal.info.CountralInfo;
 import br.com.mind5.masterData.countryLegal.info.CountralMerger;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiCountralMergeToSelect extends ActionVisitorTemplateMergeV2<CountralInfo, CountralInfo> {
+final class VisiCountralMergeToSelect extends ActionVisitorTemplateMerge<CountralInfo, CountralInfo> {
 	
 	public VisiCountralMergeToSelect(DeciTreeOption<CountralInfo> option) {
 		super(option, CountralInfo.class);
@@ -16,7 +16,7 @@ final class VisiCountralMergeToSelect extends ActionVisitorTemplateMergeV2<Count
 	
 	
 	
-	@Override protected Class<? extends ActionStdV2<CountralInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStd<CountralInfo>> getActionClassHook() {
 		return StdCountralDaoSelect.class;
 	}
 	

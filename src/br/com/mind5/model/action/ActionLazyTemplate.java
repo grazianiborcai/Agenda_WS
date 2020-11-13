@@ -20,7 +20,7 @@ public abstract class ActionLazyTemplate<T extends InfoRecord, S extends InfoRec
 	
 	private Connection conn; 
 	private String schemaName;
-	private ActionStdV2<S> mainAction;
+	private ActionStd<S> mainAction;
 	private DeciResult<T> actionResult;
 	private List<ActionLazy<T>> postActions;
 	
@@ -59,14 +59,14 @@ public abstract class ActionLazyTemplate<T extends InfoRecord, S extends InfoRec
 	
 	
 	
-	private ActionStdV2<S> getMainAction(List<T> infoRecords) {
+	private ActionStd<S> getMainAction(List<T> infoRecords) {
 		DeciTreeOption<S> option = buildOption(infoRecords);		
 		return getInstanceOfActionHook(option);
 	}
 	
 	
 	
-	private DeciResult<T> executeMainAction(ActionStdV2<S> action) {
+	private DeciResult<T> executeMainAction(ActionStd<S> action) {
 		action.executeAction();
 		return translateResultHook(action.getDecisionResult());
 	}
@@ -126,7 +126,7 @@ public abstract class ActionLazyTemplate<T extends InfoRecord, S extends InfoRec
 	
 	
 	
-	@Override public ActionStdV2<T> toAction(List<T> recordInfos) {
+	@Override public ActionStd<T> toAction(List<T> recordInfos) {
 		checkStateClosed();
 		return new ActionLazyAdapter<>(this, recordInfos);
 	}
@@ -150,12 +150,12 @@ public abstract class ActionLazyTemplate<T extends InfoRecord, S extends InfoRec
 	
 	
 	
-	private void closeAction(ActionStdV2<S> action) {
+	private void closeAction(ActionStd<S> action) {
 		if (action == null)
 			return;
 		
-		if (action instanceof ActionStdV2)
-			((ActionStdV2<S>) action).close();
+		if (action instanceof ActionStd)
+			((ActionStd<S>) action).close();
 	}
 	
 	
@@ -201,7 +201,7 @@ public abstract class ActionLazyTemplate<T extends InfoRecord, S extends InfoRec
 	
 	
 	
-	protected  ActionStdV2<S> getInstanceOfActionHook(DeciTreeOption<S> option) {
+	protected  ActionStd<S> getInstanceOfActionHook(DeciTreeOption<S> option) {
 		//Template method to be overridden by subclasses
 		logException(new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION));
 		throw new IllegalStateException(SystemMessage.NO_TEMPLATE_IMPLEMENTATION);

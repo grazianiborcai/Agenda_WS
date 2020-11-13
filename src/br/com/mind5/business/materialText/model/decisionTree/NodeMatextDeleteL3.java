@@ -11,14 +11,14 @@ import br.com.mind5.business.materialText.model.action.StdMatextMergeMatextarch;
 import br.com.mind5.business.materialText.model.action.StdMatextSuccess;
 import br.com.mind5.business.materialText.model.checker.MatextCheckMatextarch;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class NodeMatextDeleteL3 extends DeciTreeTemplateWriteV2<MatextInfo> {
+public final class NodeMatextDeleteL3 extends DeciTreeTemplateWrite<MatextInfo> {
 
 	public NodeMatextDeleteL3(DeciTreeOption<MatextInfo> option) {
 		super(option);
@@ -26,9 +26,9 @@ public final class NodeMatextDeleteL3 extends DeciTreeTemplateWriteV2<MatextInfo
 	
 	
 	
-	@Override protected ModelCheckerV1<MatextInfo> buildCheckerHook(DeciTreeOption<MatextInfo> option) {
-		List<ModelCheckerV1<MatextInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<MatextInfo> checker;
+	@Override protected ModelChecker<MatextInfo> buildCheckerHook(DeciTreeOption<MatextInfo> option) {
+		List<ModelChecker<MatextInfo>> queue = new ArrayList<>();		
+		ModelChecker<MatextInfo> checker;
 		ModelCheckerOption checkerOption;
 			
 		checkerOption = new ModelCheckerOption();
@@ -38,15 +38,15 @@ public final class NodeMatextDeleteL3 extends DeciTreeTemplateWriteV2<MatextInfo
 		checker = new MatextCheckMatextarch(checkerOption);
 		queue.add(checker);		
 
-		return new ModelCheckerHelperQueueV2<MatextInfo>(queue);
+		return new ModelCheckerHelperQueue<MatextInfo>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<MatextInfo>> buildActionsOnPassedHook(DeciTreeOption<MatextInfo> option) {
-		List<ActionStdV2<MatextInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<MatextInfo>> buildActionsOnPassedHook(DeciTreeOption<MatextInfo> option) {
+		List<ActionStd<MatextInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<MatextInfo> mergeMatextarch = new StdMatextMergeMatextarch(option);
+		ActionStd<MatextInfo> mergeMatextarch = new StdMatextMergeMatextarch(option);
 		ActionLazy<MatextInfo> mergeToSelect = new LazyMatextMergeToSelect(option.conn, option.schemaName);
 		ActionLazy<MatextInfo> enforceDefaultOn = new LazyMatextEnforceDefaultOn(option.conn, option.schemaName); 
 		ActionLazy<MatextInfo> update = new LazyMatextRootUpdate(option.conn, option.schemaName); 
@@ -61,10 +61,10 @@ public final class NodeMatextDeleteL3 extends DeciTreeTemplateWriteV2<MatextInfo
 	
 	
 	
-	@Override protected List<ActionStdV2<MatextInfo>> buildActionsOnFailedHook(DeciTreeOption<MatextInfo> option) {
-		List<ActionStdV2<MatextInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<MatextInfo>> buildActionsOnFailedHook(DeciTreeOption<MatextInfo> option) {
+		List<ActionStd<MatextInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<MatextInfo> success = new StdMatextSuccess(option);
+		ActionStd<MatextInfo> success = new StdMatextSuccess(option);
 		
 		actions.add(success);
 		return actions;

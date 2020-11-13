@@ -9,14 +9,14 @@ import br.com.mind5.business.materialStoreSnapshot.model.checker.MatorapCheckIns
 import br.com.mind5.business.materialStoreSnapshot.model.checker.MatorapCheckLangu;
 import br.com.mind5.business.materialStoreSnapshot.model.checker.MatorapCheckMatore;
 import br.com.mind5.business.materialStoreSnapshot.model.checker.MatorapCheckOwner;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootMatorapInsert extends DeciTreeTemplateWriteV2<MatorapInfo> {
+public final class RootMatorapInsert extends DeciTreeTemplateWrite<MatorapInfo> {
 	
 	public RootMatorapInsert(DeciTreeOption<MatorapInfo> option) {
 		super(option);
@@ -24,9 +24,9 @@ public final class RootMatorapInsert extends DeciTreeTemplateWriteV2<MatorapInfo
 	
 	
 	
-	@Override protected ModelCheckerV1<MatorapInfo> buildCheckerHook(DeciTreeOption<MatorapInfo> option) {
-		List<ModelCheckerV1<MatorapInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<MatorapInfo> checker;
+	@Override protected ModelChecker<MatorapInfo> buildCheckerHook(DeciTreeOption<MatorapInfo> option) {
+		List<ModelChecker<MatorapInfo>> queue = new ArrayList<>();		
+		ModelChecker<MatorapInfo> checker;
 		ModelCheckerOption checkerOption;		
 		
 		checkerOption = new ModelCheckerOption();
@@ -57,15 +57,15 @@ public final class RootMatorapInsert extends DeciTreeTemplateWriteV2<MatorapInfo
 		checker = new MatorapCheckMatore(checkerOption);
 		queue.add(checker);	
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<MatorapInfo>> buildActionsOnPassedHook(DeciTreeOption<MatorapInfo> option) {
-		List<ActionStdV2<MatorapInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<MatorapInfo>> buildActionsOnPassedHook(DeciTreeOption<MatorapInfo> option) {
+		List<ActionStd<MatorapInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<MatorapInfo> insert = new StdMatorapDaoInsert(option);
+		ActionStd<MatorapInfo> insert = new StdMatorapDaoInsert(option);
 		
 		actions.add(insert);	
 		return actions;

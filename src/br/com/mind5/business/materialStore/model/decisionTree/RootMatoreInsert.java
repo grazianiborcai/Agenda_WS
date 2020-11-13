@@ -14,14 +14,14 @@ import br.com.mind5.business.materialStore.model.checker.MatoreCheckStorauth;
 import br.com.mind5.business.materialStore.model.checker.MatoreCheckStore;
 import br.com.mind5.business.materialStore.model.checker.MatoreCheckWrite;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootMatoreInsert extends DeciTreeTemplateWriteV2<MatoreInfo> {
+public final class RootMatoreInsert extends DeciTreeTemplateWrite<MatoreInfo> {
 	
 	public RootMatoreInsert(DeciTreeOption<MatoreInfo> option) {
 		super(option);
@@ -29,9 +29,9 @@ public final class RootMatoreInsert extends DeciTreeTemplateWriteV2<MatoreInfo> 
 	
 	
 	
-	@Override protected ModelCheckerV1<MatoreInfo> buildCheckerHook(DeciTreeOption<MatoreInfo> option) {
-		List<ModelCheckerV1<MatoreInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<MatoreInfo> checker;
+	@Override protected ModelChecker<MatoreInfo> buildCheckerHook(DeciTreeOption<MatoreInfo> option) {
+		List<ModelChecker<MatoreInfo>> queue = new ArrayList<>();		
+		ModelChecker<MatoreInfo> checker;
 		ModelCheckerOption checkerOption;		
 		
 		checkerOption = new ModelCheckerOption();
@@ -82,15 +82,15 @@ public final class RootMatoreInsert extends DeciTreeTemplateWriteV2<MatoreInfo> 
 		checker = new MatoreCheckStorauth(checkerOption);
 		queue.add(checker);	
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<MatoreInfo>> buildActionsOnPassedHook(DeciTreeOption<MatoreInfo> option) {
-		List<ActionStdV2<MatoreInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<MatoreInfo>> buildActionsOnPassedHook(DeciTreeOption<MatoreInfo> option) {
+		List<ActionStd<MatoreInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<MatoreInfo> mergeMatlis = new StdMatoreMergeMatlis(option);
+		ActionStd<MatoreInfo> mergeMatlis = new StdMatoreMergeMatlis(option);
 		ActionLazy<MatoreInfo> upsert = new LazyMatoreNodeUpsertL1(option.conn, option.schemaName);
 		
 		mergeMatlis.addPostAction(upsert);

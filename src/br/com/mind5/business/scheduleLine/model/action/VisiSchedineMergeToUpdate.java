@@ -4,11 +4,11 @@ import java.util.List;
 
 import br.com.mind5.business.scheduleLine.info.SchedineInfo;
 import br.com.mind5.business.scheduleLine.info.SchedineMerger;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiSchedineMergeToUpdate extends ActionVisitorTemplateMergeV2<SchedineInfo, SchedineInfo> {
+final class VisiSchedineMergeToUpdate extends ActionVisitorTemplateMerge<SchedineInfo, SchedineInfo> {
 	
 	public VisiSchedineMergeToUpdate(DeciTreeOption<SchedineInfo> option) {
 		super(option, SchedineInfo.class);
@@ -16,7 +16,7 @@ final class VisiSchedineMergeToUpdate extends ActionVisitorTemplateMergeV2<Sched
 	
 	
 	
-	@Override protected Class<? extends ActionStdV2<SchedineInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStd<SchedineInfo>> getActionClassHook() {
 		return StdSchedineDaoSelect.class;
 	}
 	

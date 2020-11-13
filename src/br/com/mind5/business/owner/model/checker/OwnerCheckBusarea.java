@@ -4,10 +4,10 @@ import br.com.mind5.business.owner.info.OwnerInfo;
 import br.com.mind5.masterData.businessArea.info.BusareaInfo;
 import br.com.mind5.masterData.businessArea.model.checker.BusareaCheckExist;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.model.checker.ModelChecker;
 
-public final class OwnerCheckBusarea extends ModelCheckerTemplateForwardV2<OwnerInfo, BusareaInfo> {
+public final class OwnerCheckBusarea extends ModelCheckerTemplateForward<OwnerInfo, BusareaInfo> {
 	
 	public OwnerCheckBusarea(ModelCheckerOption option) {
 		super(option);
@@ -15,7 +15,7 @@ public final class OwnerCheckBusarea extends ModelCheckerTemplateForwardV2<Owner
 
 
 	
-	@Override protected ModelCheckerV1<BusareaInfo> getCheckerHook(ModelCheckerOption option) {
+	@Override protected ModelChecker<BusareaInfo> getCheckerHook(ModelCheckerOption option) {
 		return new BusareaCheckExist(option);
 	}
 	

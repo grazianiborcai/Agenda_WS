@@ -7,11 +7,11 @@ import br.com.mind5.business.customerSearch.info.CusarchInfo;
 import br.com.mind5.business.customerSearch.model.decisionTree.RootCusarchSelect;
 import br.com.mind5.business.order.info.OrderInfo;
 import br.com.mind5.business.order.info.OrderMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiOrderMergeCusarch extends ActionVisitorTemplateMergeV2<OrderInfo, CusarchInfo> {
+final class VisiOrderMergeCusarch extends ActionVisitorTemplateMerge<OrderInfo, CusarchInfo> {
 	
 	public VisiOrderMergeCusarch(DeciTreeOption<OrderInfo> option) { 
 		super(option, CusarchInfo.class);

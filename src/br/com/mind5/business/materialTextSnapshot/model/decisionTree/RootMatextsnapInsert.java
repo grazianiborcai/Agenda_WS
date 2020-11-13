@@ -10,14 +10,14 @@ import br.com.mind5.business.materialTextSnapshot.model.checker.MatextsnapCheckM
 import br.com.mind5.business.materialTextSnapshot.model.checker.MatextsnapCheckOwner;
 import br.com.mind5.business.materialTextSnapshot.model.checker.MatextsnapCheckWrite;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootMatextsnapInsert extends DeciTreeTemplateWriteV2<MatextsnapInfo> {
+public final class RootMatextsnapInsert extends DeciTreeTemplateWrite<MatextsnapInfo> {
 	
 	public RootMatextsnapInsert(DeciTreeOption<MatextsnapInfo> option) {
 		super(option);
@@ -25,9 +25,9 @@ public final class RootMatextsnapInsert extends DeciTreeTemplateWriteV2<Matextsn
 	
 	
 	
-	@Override protected ModelCheckerV1<MatextsnapInfo> buildCheckerHook(DeciTreeOption<MatextsnapInfo> option) {		
-		List<ModelCheckerV1<MatextsnapInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<MatextsnapInfo> checker;
+	@Override protected ModelChecker<MatextsnapInfo> buildCheckerHook(DeciTreeOption<MatextsnapInfo> option) {		
+		List<ModelChecker<MatextsnapInfo>> queue = new ArrayList<>();		
+		ModelChecker<MatextsnapInfo> checker;
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -51,15 +51,15 @@ public final class RootMatextsnapInsert extends DeciTreeTemplateWriteV2<Matextsn
 		checker = new MatextsnapCheckMat(checkerOption);
 		queue.add(checker);	
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<MatextsnapInfo>> buildActionsOnPassedHook(DeciTreeOption<MatextsnapInfo> option) {
-		List<ActionStdV2<MatextsnapInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStd<MatextsnapInfo>> buildActionsOnPassedHook(DeciTreeOption<MatextsnapInfo> option) {
+		List<ActionStd<MatextsnapInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV2<MatextsnapInfo> mergeMatext = new StdMatextsnapMergeMatext(option);	
+		ActionStd<MatextsnapInfo> mergeMatext = new StdMatextsnapMergeMatext(option);	
 		ActionLazy<MatextsnapInfo> insert = new LazyMatextsnapDaoInsert(option.conn, option.schemaName);	
 		
 		mergeMatext.addPostAction(insert);

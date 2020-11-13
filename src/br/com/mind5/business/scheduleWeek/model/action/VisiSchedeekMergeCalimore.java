@@ -7,11 +7,11 @@ import br.com.mind5.business.calendarTimeStore.info.CalimoreInfo;
 import br.com.mind5.business.calendarTimeStore.model.decisionTree.RootCalimoreSelect;
 import br.com.mind5.business.scheduleWeek.info.SchedeekInfo;
 import br.com.mind5.business.scheduleWeek.info.SchedeekMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiSchedeekMergeCalimore extends ActionVisitorTemplateMergeV2<SchedeekInfo, CalimoreInfo> {
+final class VisiSchedeekMergeCalimore extends ActionVisitorTemplateMerge<SchedeekInfo, CalimoreInfo> {
 	
 	public VisiSchedeekMergeCalimore(DeciTreeOption<SchedeekInfo> option) {
 		super(option, CalimoreInfo.class);

@@ -5,10 +5,10 @@ import br.com.mind5.business.materialStoreSearch.info.MatorarchInfo;
 import br.com.mind5.business.materialStoreSearch.model.checker.MatorarchCheckExist;
 import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.model.checker.ModelChecker;
 
-public final class StoreCheckMatorarch extends ModelCheckerTemplateForwardV2<StoreInfo, MatorarchInfo> {
+public final class StoreCheckMatorarch extends ModelCheckerTemplateForward<StoreInfo, MatorarchInfo> {
 	
 	public StoreCheckMatorarch(ModelCheckerOption option) {
 		super(option);
@@ -16,7 +16,7 @@ public final class StoreCheckMatorarch extends ModelCheckerTemplateForwardV2<Sto
 
 
 	
-	@Override protected ModelCheckerV1<MatorarchInfo> getCheckerHook(ModelCheckerOption option) {
+	@Override protected ModelChecker<MatorarchInfo> getCheckerHook(ModelCheckerOption option) {
 		return new MatorarchCheckExist(option);
 	}
 	

@@ -12,7 +12,7 @@ import br.com.mind5.model.decisionTree.DeciResultHelper;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.model.decisionTree.common.DeciResultNotFound;
 
-public abstract class ActionVisitorTemplatePruneSelf<T extends InfoRecord> implements ActionVisitorV2<T> {	
+public abstract class ActionVisitorTemplatePruneSelf<T extends InfoRecord> implements ActionVisitor<T> {	
 	private List<T> bases;
 	
 	public ActionVisitorTemplatePruneSelf(DeciTreeOption<T> option) {

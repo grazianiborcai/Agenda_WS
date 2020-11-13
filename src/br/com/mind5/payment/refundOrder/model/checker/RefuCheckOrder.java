@@ -3,11 +3,11 @@ package br.com.mind5.payment.refundOrder.model.checker;
 import br.com.mind5.business.order.info.OrderInfo;
 import br.com.mind5.business.order.model.checker.OrderCheckExist;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.payment.refundOrder.info.RefuInfo;
 
-public final class RefuCheckOrder extends ModelCheckerTemplateForwardV2<RefuInfo, OrderInfo> {
+public final class RefuCheckOrder extends ModelCheckerTemplateForward<RefuInfo, OrderInfo> {
 	
 	public RefuCheckOrder(ModelCheckerOption option) {
 		super(option);
@@ -15,7 +15,7 @@ public final class RefuCheckOrder extends ModelCheckerTemplateForwardV2<RefuInfo
 
 
 	
-	@Override protected ModelCheckerV1<OrderInfo> getCheckerHook(ModelCheckerOption option) {
+	@Override protected ModelChecker<OrderInfo> getCheckerHook(ModelCheckerOption option) {
 		return new OrderCheckExist(option);
 	}
 	

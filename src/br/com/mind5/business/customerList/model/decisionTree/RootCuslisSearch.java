@@ -7,14 +7,14 @@ import br.com.mind5.business.customerList.info.CuslisInfo;
 import br.com.mind5.business.customerList.model.action.LazyCuslisRootSelect;
 import br.com.mind5.business.customerList.model.action.StdCuslisMergeCusarch;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootCuslisSearch extends DeciTreeTemplateReadV2<CuslisInfo> {
+public final class RootCuslisSearch extends DeciTreeTemplateRead<CuslisInfo> {
 	
 	public RootCuslisSearch(DeciTreeOption<CuslisInfo> option) {
 		super(option);
@@ -22,22 +22,22 @@ public final class RootCuslisSearch extends DeciTreeTemplateReadV2<CuslisInfo> {
 	
 	
 	
-	@Override protected ModelCheckerV1<CuslisInfo> buildCheckerHook(DeciTreeOption<CuslisInfo> option) {
-		List<ModelCheckerV1<CuslisInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<CuslisInfo> checker;
+	@Override protected ModelChecker<CuslisInfo> buildCheckerHook(DeciTreeOption<CuslisInfo> option) {
+		List<ModelChecker<CuslisInfo>> queue = new ArrayList<>();		
+		ModelChecker<CuslisInfo> checker;
 
 		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<CuslisInfo>> buildActionsOnPassedHook(DeciTreeOption<CuslisInfo> option) {
-		List<ActionStdV2<CuslisInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<CuslisInfo>> buildActionsOnPassedHook(DeciTreeOption<CuslisInfo> option) {
+		List<ActionStd<CuslisInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<CuslisInfo> mergeCusarch = new StdCuslisMergeCusarch(option);
+		ActionStd<CuslisInfo> mergeCusarch = new StdCuslisMergeCusarch(option);
 		ActionLazy<CuslisInfo> select = new LazyCuslisRootSelect(option.conn, option.schemaName);
 		
 		mergeCusarch.addPostAction(select);

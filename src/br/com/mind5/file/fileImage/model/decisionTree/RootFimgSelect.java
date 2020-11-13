@@ -6,14 +6,14 @@ import java.util.List;
 import br.com.mind5.file.fileImage.info.FimgInfo;
 import br.com.mind5.file.fileImage.model.action.StdFimgMergeToSelect;
 import br.com.mind5.file.fileImage.model.checker.FimgCheckRead;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootFimgSelect extends DeciTreeTemplateReadV2<FimgInfo> {
+public final class RootFimgSelect extends DeciTreeTemplateRead<FimgInfo> {
 	
 	public RootFimgSelect(DeciTreeOption<FimgInfo> option) {
 		super(option);
@@ -21,9 +21,9 @@ public final class RootFimgSelect extends DeciTreeTemplateReadV2<FimgInfo> {
 	
 	
 	
-	@Override protected ModelCheckerV1<FimgInfo> buildCheckerHook(DeciTreeOption<FimgInfo> option) {
-		List<ModelCheckerV1<FimgInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<FimgInfo> checker;	
+	@Override protected ModelChecker<FimgInfo> buildCheckerHook(DeciTreeOption<FimgInfo> option) {
+		List<ModelChecker<FimgInfo>> queue = new ArrayList<>();		
+		ModelChecker<FimgInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -33,15 +33,15 @@ public final class RootFimgSelect extends DeciTreeTemplateReadV2<FimgInfo> {
 		checker = new FimgCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<FimgInfo>> buildActionsOnPassedHook(DeciTreeOption<FimgInfo> option) {
-		List<ActionStdV2<FimgInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<FimgInfo>> buildActionsOnPassedHook(DeciTreeOption<FimgInfo> option) {
+		List<ActionStd<FimgInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<FimgInfo> select = new StdFimgMergeToSelect(option);
+		ActionStd<FimgInfo> select = new StdFimgMergeToSelect(option);
 		
 		actions.add(select);
 		return actions;

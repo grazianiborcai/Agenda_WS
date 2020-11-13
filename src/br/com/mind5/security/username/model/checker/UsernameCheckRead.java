@@ -4,10 +4,10 @@ import java.sql.Connection;
 
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateSimpleV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateSimple;
 import br.com.mind5.security.username.info.UsernameInfo;
 
-public final class UsernameCheckRead extends ModelCheckerTemplateSimpleV2<UsernameInfo> {
+public final class UsernameCheckRead extends ModelCheckerTemplateSimple<UsernameInfo> {
 
 	public UsernameCheckRead(ModelCheckerOption option) {
 		super(option);

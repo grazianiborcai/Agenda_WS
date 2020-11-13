@@ -1,11 +1,11 @@
 package br.com.mind5.paymentPartner.partnerMoip.orderMoip.model.action;
 
-import br.com.mind5.model.action.ActionStdTemplateV2;
-import br.com.mind5.model.action.ActionVisitorV2;
+import br.com.mind5.model.action.ActionStdTemplate;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.paymentPartner.partnerMoip.orderMoip.info.OrdmoipInfo;
 
-public final class StdOrdmoipEnforceFeeTxt extends ActionStdTemplateV2<OrdmoipInfo> {
+public final class StdOrdmoipEnforceFeeTxt extends ActionStdTemplate<OrdmoipInfo> {
 
 	public StdOrdmoipEnforceFeeTxt(DeciTreeOption<OrdmoipInfo> option) {
 		super(option);
@@ -13,7 +13,7 @@ public final class StdOrdmoipEnforceFeeTxt extends ActionStdTemplateV2<OrdmoipIn
 	
 	
 	
-	protected ActionVisitorV2<OrdmoipInfo> buildVisitorHook(DeciTreeOption<OrdmoipInfo> option) {
+	protected ActionVisitor<OrdmoipInfo> buildVisitorHook(DeciTreeOption<OrdmoipInfo> option) {
 		return new VisiOrdmoipEnforceFeeTxt(option);
 	}
 }

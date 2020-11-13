@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.file.filePath.info.FathInfo;
 import br.com.mind5.file.filePath.model.decisionTree.RootFathSelect;
 import br.com.mind5.model.action.ActionLazyTemplate;
-import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -24,7 +24,7 @@ public final class LazyFathRootSelect extends ActionLazyTemplate<FathInfo, FathI
 	
 	
 	
-	@Override protected ActionStdV2<FathInfo> getInstanceOfActionHook(DeciTreeOption<FathInfo> option) {
+	@Override protected ActionStd<FathInfo> getInstanceOfActionHook(DeciTreeOption<FathInfo> option) {
 		return new RootFathSelect(option).toAction();
 	}
 	

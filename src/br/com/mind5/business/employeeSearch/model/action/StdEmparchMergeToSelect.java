@@ -1,11 +1,11 @@
 package br.com.mind5.business.employeeSearch.model.action;
 
 import br.com.mind5.business.employeeSearch.info.EmparchInfo;
-import br.com.mind5.model.action.ActionStdTemplateV2;
-import br.com.mind5.model.action.ActionVisitorV2;
+import br.com.mind5.model.action.ActionStdTemplate;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdEmparchMergeToSelect extends ActionStdTemplateV2<EmparchInfo> {
+public final class StdEmparchMergeToSelect extends ActionStdTemplate<EmparchInfo> {
 
 	public StdEmparchMergeToSelect(DeciTreeOption<EmparchInfo> option) {
 		super(option);
@@ -13,7 +13,7 @@ public final class StdEmparchMergeToSelect extends ActionStdTemplateV2<EmparchIn
 	
 	
 	
-	protected ActionVisitorV2<EmparchInfo> buildVisitorHook(DeciTreeOption<EmparchInfo> option) {
+	protected ActionVisitor<EmparchInfo> buildVisitorHook(DeciTreeOption<EmparchInfo> option) {
 		return new VisiEmparchMergeToSelect(option);
 	}
 }

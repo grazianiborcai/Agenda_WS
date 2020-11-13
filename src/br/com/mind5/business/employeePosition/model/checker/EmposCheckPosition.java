@@ -4,10 +4,10 @@ import br.com.mind5.business.employeePosition.info.EmposInfo;
 import br.com.mind5.masterData.position.info.PositionInfo;
 import br.com.mind5.masterData.position.model.checker.PositionCheckExist;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.model.checker.ModelChecker;
 
-public final class EmposCheckPosition extends ModelCheckerTemplateForwardV2<EmposInfo, PositionInfo> {
+public final class EmposCheckPosition extends ModelCheckerTemplateForward<EmposInfo, PositionInfo> {
 	
 	public EmposCheckPosition(ModelCheckerOption option) {
 		super(option);
@@ -15,7 +15,7 @@ public final class EmposCheckPosition extends ModelCheckerTemplateForwardV2<Empo
 
 
 	
-	@Override protected ModelCheckerV1<PositionInfo> getCheckerHook(ModelCheckerOption option) {
+	@Override protected ModelChecker<PositionInfo> getCheckerHook(ModelCheckerOption option) {
 		return new PositionCheckExist(option);
 	}
 	

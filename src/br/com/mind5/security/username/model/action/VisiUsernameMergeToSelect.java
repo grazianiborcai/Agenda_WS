@@ -2,14 +2,14 @@ package br.com.mind5.security.username.model.action;
 
 import java.util.List;
 
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionStd;
+
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.username.info.UsernameInfo;
 import br.com.mind5.security.username.info.UsernameMerger;
 
-final class VisiUsernameMergeToSelect extends ActionVisitorTemplateMergeV2<UsernameInfo, UsernameInfo> {
+final class VisiUsernameMergeToSelect extends ActionVisitorTemplateMerge<UsernameInfo, UsernameInfo> {
 	
 	public VisiUsernameMergeToSelect(DeciTreeOption<UsernameInfo> option) {
 		super(option, UsernameInfo.class);
@@ -17,7 +17,7 @@ final class VisiUsernameMergeToSelect extends ActionVisitorTemplateMergeV2<Usern
 	
 	
 	
-	@Override protected Class<? extends ActionStdV2<UsernameInfo>> getActionClassHook() {
+	@Override protected Class<? extends ActionStd<UsernameInfo>> getActionClassHook() {
 		return StdUsernameDaoSelect.class;
 	}
 	
@@ -30,6 +30,6 @@ final class VisiUsernameMergeToSelect extends ActionVisitorTemplateMergeV2<Usern
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
+		return super.DONT_MERGE_WHEN_EMPTY;
 	}
 }

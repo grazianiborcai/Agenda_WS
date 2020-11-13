@@ -6,11 +6,11 @@ import br.com.mind5.business.order.info.OrderInfo;
 import br.com.mind5.business.order.info.OrderMerger;
 import br.com.mind5.business.orderItem.info.OrderemInfo;
 import br.com.mind5.business.orderItem.model.decisionTree.RootOrderemSearch;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiOrderMergeOrderem extends ActionVisitorTemplateMergeV2<OrderInfo, OrderemInfo> {
+final class VisiOrderMergeOrderem extends ActionVisitorTemplateMerge<OrderInfo, OrderemInfo> {
 	
 	public VisiOrderMergeOrderem(DeciTreeOption<OrderInfo> option) { 
 		super(option, OrderemInfo.class);

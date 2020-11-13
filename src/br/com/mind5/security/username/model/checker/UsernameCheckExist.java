@@ -1,14 +1,14 @@
 package br.com.mind5.security.username.model.checker;
 
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.security.username.info.UsernameInfo;
 import br.com.mind5.security.username.model.action.StdUsernameDaoSelect;
 
-public final class UsernameCheckExist extends ModelCheckerTemplateActionV2<UsernameInfo, UsernameInfo> {
+public final class UsernameCheckExist extends ModelCheckerTemplateAction<UsernameInfo, UsernameInfo> {
 	
 	public UsernameCheckExist(ModelCheckerOption option) {
 		super(option, UsernameInfo.class);
@@ -16,8 +16,8 @@ public final class UsernameCheckExist extends ModelCheckerTemplateActionV2<Usern
 	
 
 	
-	@Override protected ActionStdV2<UsernameInfo> buildActionHook(DeciTreeOption<UsernameInfo> option) {		
-		ActionStdV2<UsernameInfo> Select = new StdUsernameDaoSelect(option);
+	@Override protected ActionStd<UsernameInfo> buildActionHook(DeciTreeOption<UsernameInfo> option) {		
+		ActionStd<UsernameInfo> Select = new StdUsernameDaoSelect(option);
 		return Select;
 	}
 	

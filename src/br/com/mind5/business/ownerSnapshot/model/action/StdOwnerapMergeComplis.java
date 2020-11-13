@@ -1,11 +1,11 @@
 package br.com.mind5.business.ownerSnapshot.model.action;
 
 import br.com.mind5.business.ownerSnapshot.info.OwnerapInfo;
-import br.com.mind5.model.action.ActionStdTemplateV2;
-import br.com.mind5.model.action.ActionVisitorV2;
+import br.com.mind5.model.action.ActionStdTemplate;
+import br.com.mind5.model.action.ActionVisitor;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdOwnerapMergeComplis extends ActionStdTemplateV2<OwnerapInfo> {
+public final class StdOwnerapMergeComplis extends ActionStdTemplate<OwnerapInfo> {
 
 	public StdOwnerapMergeComplis(DeciTreeOption<OwnerapInfo> option) {
 		super(option);
@@ -13,7 +13,7 @@ public final class StdOwnerapMergeComplis extends ActionStdTemplateV2<OwnerapInf
 	
 	
 	
-	protected ActionVisitorV2<OwnerapInfo> buildVisitorHook(DeciTreeOption<OwnerapInfo> option) {
+	protected ActionVisitor<OwnerapInfo> buildVisitorHook(DeciTreeOption<OwnerapInfo> option) {
 		return new VisiOwnerapMergeComplis(option);
 	}
 }

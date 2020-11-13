@@ -8,14 +8,14 @@ import br.com.mind5.file.fileImageSearch.model.action.StdFimarchMergeToSelect;
 import br.com.mind5.file.fileImageSearch.model.checker.FimarchCheckLangu;
 import br.com.mind5.file.fileImageSearch.model.checker.FimarchCheckOwner;
 import br.com.mind5.file.fileImageSearch.model.checker.FimarchCheckRead;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootFimarchSelect extends DeciTreeTemplateReadV2<FimarchInfo> {
+public final class RootFimarchSelect extends DeciTreeTemplateRead<FimarchInfo> {
 	
 	public RootFimarchSelect(DeciTreeOption<FimarchInfo> option) {
 		super(option);
@@ -23,9 +23,9 @@ public final class RootFimarchSelect extends DeciTreeTemplateReadV2<FimarchInfo>
 	
 	
 	
-	@Override protected ModelCheckerV1<FimarchInfo> buildCheckerHook(DeciTreeOption<FimarchInfo> option) {
-		List<ModelCheckerV1<FimarchInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<FimarchInfo> checker;	
+	@Override protected ModelChecker<FimarchInfo> buildCheckerHook(DeciTreeOption<FimarchInfo> option) {
+		List<ModelChecker<FimarchInfo>> queue = new ArrayList<>();		
+		ModelChecker<FimarchInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -49,15 +49,15 @@ public final class RootFimarchSelect extends DeciTreeTemplateReadV2<FimarchInfo>
 		checker = new FimarchCheckOwner(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<FimarchInfo>> buildActionsOnPassedHook(DeciTreeOption<FimarchInfo> option) {
-		List<ActionStdV2<FimarchInfo>> actions = new ArrayList<>();
+	@Override protected List<ActionStd<FimarchInfo>> buildActionsOnPassedHook(DeciTreeOption<FimarchInfo> option) {
+		List<ActionStd<FimarchInfo>> actions = new ArrayList<>();
 		
-		ActionStdV2<FimarchInfo> select = new StdFimarchMergeToSelect(option);
+		ActionStd<FimarchInfo> select = new StdFimarchMergeToSelect(option);
 		
 		actions.add(select);
 		return actions;

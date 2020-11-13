@@ -3,12 +3,12 @@ package br.com.mind5.business.order.model.checker;
 import br.com.mind5.business.order.info.OrderInfo;
 import br.com.mind5.business.order.model.action.StdOrderDaoSelect;
 import br.com.mind5.common.SystemCode;
-import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateActionV2;
+import br.com.mind5.model.checker.ModelCheckerTemplateAction;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class OrderCheckExist extends ModelCheckerTemplateActionV2<OrderInfo, OrderInfo> {
+public final class OrderCheckExist extends ModelCheckerTemplateAction<OrderInfo, OrderInfo> {
 	
 	public OrderCheckExist(ModelCheckerOption option) {
 		super(option, OrderInfo.class);
@@ -16,8 +16,8 @@ public final class OrderCheckExist extends ModelCheckerTemplateActionV2<OrderInf
 	
 
 	
-	@Override protected ActionStdV2<OrderInfo> buildActionHook(DeciTreeOption<OrderInfo> option) {		
-		ActionStdV2<OrderInfo> select = new StdOrderDaoSelect(option);			
+	@Override protected ActionStd<OrderInfo> buildActionHook(DeciTreeOption<OrderInfo> option) {		
+		ActionStd<OrderInfo> select = new StdOrderDaoSelect(option);			
 		return select;
 	}
 	

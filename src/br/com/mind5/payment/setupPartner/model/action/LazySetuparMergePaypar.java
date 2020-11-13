@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.model.action.ActionLazyTemplate;
-import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.setupPartner.info.SetuparInfo;
@@ -23,7 +23,7 @@ public final class LazySetuparMergePaypar extends ActionLazyTemplate<SetuparInfo
 	
 	
 	
-	@Override protected ActionStdV2<SetuparInfo> getInstanceOfActionHook(DeciTreeOption<SetuparInfo> option) {
+	@Override protected ActionStd<SetuparInfo> getInstanceOfActionHook(DeciTreeOption<SetuparInfo> option) {
 		return new StdSetuparMergePaypar(option);
 	}
 	

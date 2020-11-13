@@ -8,14 +8,14 @@ import br.com.mind5.business.cartReserveConflict.model.action.LazyCartercoPruneU
 import br.com.mind5.business.cartReserveConflict.model.action.StdCartercoMergeCarterve;
 import br.com.mind5.business.cartReserveConflict.model.checker.CartercoCheckRead;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateRead;
 
-public final class RootCartercoSelect extends DeciTreeTemplateReadV2<CartercoInfo> {
+public final class RootCartercoSelect extends DeciTreeTemplateRead<CartercoInfo> {
 	
 	public RootCartercoSelect(DeciTreeOption<CartercoInfo> option) {
 		super(option);
@@ -23,9 +23,9 @@ public final class RootCartercoSelect extends DeciTreeTemplateReadV2<CartercoInf
 	
 	
 	
-	@Override protected ModelCheckerV1<CartercoInfo> buildCheckerHook(DeciTreeOption<CartercoInfo> option) {
-		List<ModelCheckerV1<CartercoInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<CartercoInfo> checker;	
+	@Override protected ModelChecker<CartercoInfo> buildCheckerHook(DeciTreeOption<CartercoInfo> option) {
+		List<ModelChecker<CartercoInfo>> queue = new ArrayList<>();		
+		ModelChecker<CartercoInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -35,15 +35,15 @@ public final class RootCartercoSelect extends DeciTreeTemplateReadV2<CartercoInf
 		checker = new CartercoCheckRead(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<CartercoInfo>> buildActionsOnPassedHook(DeciTreeOption<CartercoInfo> option) {
-		List<ActionStdV2<CartercoInfo>> actions = new ArrayList<>();	
+	@Override protected List<ActionStd<CartercoInfo>> buildActionsOnPassedHook(DeciTreeOption<CartercoInfo> option) {
+		List<ActionStd<CartercoInfo>> actions = new ArrayList<>();	
 		
-		ActionStdV2<CartercoInfo> mergeCarterve = new StdCartercoMergeCarterve(option);
+		ActionStd<CartercoInfo> mergeCarterve = new StdCartercoMergeCarterve(option);
 		ActionLazy<CartercoInfo> pruneUsername = new LazyCartercoPruneUsername(option.conn, option.schemaName);
 		
 		mergeCarterve.addPostAction(pruneUsername);

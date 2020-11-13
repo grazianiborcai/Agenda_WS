@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.storeWorkTime.info.StowotmInfo;
 import br.com.mind5.business.storeWorkTime.model.decisionTree.RootStowotmSearch;
 import br.com.mind5.model.action.ActionLazyTemplate;
-import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -24,7 +24,7 @@ public final class LazyStowotmRootSearch extends ActionLazyTemplate<StowotmInfo,
 	
 	
 	
-	@Override protected ActionStdV2<StowotmInfo> getInstanceOfActionHook(DeciTreeOption<StowotmInfo> option) {
+	@Override protected ActionStd<StowotmInfo> getInstanceOfActionHook(DeciTreeOption<StowotmInfo> option) {
 		return new RootStowotmSearch(option).toAction();
 	}
 	

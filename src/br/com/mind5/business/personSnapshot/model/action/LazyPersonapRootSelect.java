@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.mind5.business.personSnapshot.info.PersonapInfo;
 import br.com.mind5.business.personSnapshot.model.decisionTree.RootPersonapSelect;
 import br.com.mind5.model.action.ActionLazyTemplate;
-import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionStd;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -24,7 +24,7 @@ public final class LazyPersonapRootSelect extends ActionLazyTemplate<PersonapInf
 	
 	
 	
-	@Override protected ActionStdV2<PersonapInfo> getInstanceOfActionHook(DeciTreeOption<PersonapInfo> option) {
+	@Override protected ActionStd<PersonapInfo> getInstanceOfActionHook(DeciTreeOption<PersonapInfo> option) {
 		return new RootPersonapSelect(option).toAction();
 	}
 	

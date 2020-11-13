@@ -19,14 +19,14 @@ import br.com.mind5.file.fileImage.model.checker.FimgCheckLangu;
 import br.com.mind5.file.fileImage.model.checker.FimgCheckReference;
 import br.com.mind5.file.fileImage.model.checker.FimgCheckReplace;
 import br.com.mind5.model.action.ActionLazy;
-import br.com.mind5.model.action.ActionStdV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.action.ActionStd;
+import br.com.mind5.model.checker.ModelChecker;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerHelperQueue;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWrite;
 
-public final class RootFimgReplace extends DeciTreeTemplateWriteV2<FimgInfo> {
+public final class RootFimgReplace extends DeciTreeTemplateWrite<FimgInfo> {
 	
 	public RootFimgReplace(DeciTreeOption<FimgInfo> option) {
 		super(option);
@@ -34,9 +34,9 @@ public final class RootFimgReplace extends DeciTreeTemplateWriteV2<FimgInfo> {
 	
 	
 	
-	@Override protected ModelCheckerV1<FimgInfo> buildCheckerHook(DeciTreeOption<FimgInfo> option) {
-		List<ModelCheckerV1<FimgInfo>> queue = new ArrayList<>();		
-		ModelCheckerV1<FimgInfo> checker;	
+	@Override protected ModelChecker<FimgInfo> buildCheckerHook(DeciTreeOption<FimgInfo> option) {
+		List<ModelChecker<FimgInfo>> queue = new ArrayList<>();		
+		ModelChecker<FimgInfo> checker;	
 		ModelCheckerOption checkerOption;
 		
 		checkerOption = new ModelCheckerOption();
@@ -67,15 +67,15 @@ public final class RootFimgReplace extends DeciTreeTemplateWriteV2<FimgInfo> {
 		checker = new FimgCheckExist(checkerOption);
 		queue.add(checker);
 		
-		return new ModelCheckerHelperQueueV2<>(queue);
+		return new ModelCheckerHelperQueue<>(queue);
 	}
 	
 	
 	
-	@Override protected List<ActionStdV2<FimgInfo>> buildActionsOnPassedHook(DeciTreeOption<FimgInfo> option) {
-		List<ActionStdV2<FimgInfo>> actions = new ArrayList<>();		
+	@Override protected List<ActionStd<FimgInfo>> buildActionsOnPassedHook(DeciTreeOption<FimgInfo> option) {
+		List<ActionStd<FimgInfo>> actions = new ArrayList<>();		
 		
-		ActionStdV2<FimgInfo> mergeToReplace = new StdFimgMergeToReplace(option);	
+		ActionStd<FimgInfo> mergeToReplace = new StdFimgMergeToReplace(option);	
 		ActionLazy<FimgInfo> enforceLChanged = new LazyFimgEnforceLChanged(option.conn, option.schemaName);	
 		ActionLazy<FimgInfo> enforceLChangedBy = new LazyFimgMergeUsername(option.conn, option.schemaName);
 		ActionLazy<FimgInfo> enforceFilename = new LazyFimgEnforceFilename(option.conn, option.schemaName);

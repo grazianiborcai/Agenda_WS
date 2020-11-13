@@ -4,10 +4,10 @@ import br.com.mind5.business.scheduleWeek.info.SchedeekInfo;
 import br.com.mind5.business.scheduleWeekData.info.SchedeekdatInfo;
 import br.com.mind5.business.scheduleWeekData.model.checker.SchedeekdatCheckExist;
 import br.com.mind5.model.checker.ModelCheckerOption;
-import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
-import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.ModelCheckerTemplateForward;
+import br.com.mind5.model.checker.ModelChecker;
 
-public final class SchedeekCheckSchedeekdat extends ModelCheckerTemplateForwardV2<SchedeekInfo, SchedeekdatInfo> {
+public final class SchedeekCheckSchedeekdat extends ModelCheckerTemplateForward<SchedeekInfo, SchedeekdatInfo> {
 	
 	public SchedeekCheckSchedeekdat(ModelCheckerOption option) {
 		super(option);
@@ -15,7 +15,7 @@ public final class SchedeekCheckSchedeekdat extends ModelCheckerTemplateForwardV
 
 
 	
-	@Override protected ModelCheckerV1<SchedeekdatInfo> getCheckerHook(ModelCheckerOption option) {
+	@Override protected ModelChecker<SchedeekdatInfo> getCheckerHook(ModelCheckerOption option) {
 		return new SchedeekdatCheckExist(option);
 	}
 	

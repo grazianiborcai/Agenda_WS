@@ -7,12 +7,12 @@ import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.address.model.decisionTree.RootAddressSearch;
 import br.com.mind5.business.storeNearby.info.StorbyInfo;
 import br.com.mind5.business.storeNearby.info.StorbyMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiStorbyMergeAddress extends ActionVisitorTemplateMergeV2<StorbyInfo, AddressInfo> {
+final class VisiStorbyMergeAddress extends ActionVisitorTemplateMerge<StorbyInfo, AddressInfo> {
 	
 	public VisiStorbyMergeAddress(DeciTreeOption<StorbyInfo> option) {
 		super(option, AddressInfo.class);
@@ -39,6 +39,6 @@ final class VisiStorbyMergeAddress extends ActionVisitorTemplateMergeV2<StorbyIn
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.MERGE_WHEN_EMPTY;
+		return super.MERGE_WHEN_EMPTY;
 	}
 }

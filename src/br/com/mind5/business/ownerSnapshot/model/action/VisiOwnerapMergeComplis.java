@@ -7,11 +7,11 @@ import br.com.mind5.business.companyList.info.ComplisInfo;
 import br.com.mind5.business.companyList.model.decisionTree.RootComplisSelect;
 import br.com.mind5.business.ownerSnapshot.info.OwnerapInfo;
 import br.com.mind5.business.ownerSnapshot.info.OwnerapMerger;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMerge;
 import br.com.mind5.model.decisionTree.DeciTree;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiOwnerapMergeComplis extends ActionVisitorTemplateMergeV2<OwnerapInfo, ComplisInfo> {
+final class VisiOwnerapMergeComplis extends ActionVisitorTemplateMerge<OwnerapInfo, ComplisInfo> {
 	
 	public VisiOwnerapMergeComplis(DeciTreeOption<OwnerapInfo> option) {
 		super(option, ComplisInfo.class);
