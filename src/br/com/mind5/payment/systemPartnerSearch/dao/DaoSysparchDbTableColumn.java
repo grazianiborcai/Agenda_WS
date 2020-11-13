@@ -9,30 +9,19 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class SysparchDbTableColumn extends DaoDbTableColumnTemplate {
-	public static final String COL_ID_PAY_PARTNER_APP = DaoDbField.COL_ID_PAY_PARTNER_APP;	
-	public static final String COL_ID_PAY_PARTNER_SYSTEM = DaoDbField.COL_ID_PAY_PARTNER_SYSTEM;	
+public final class DaoSysparchDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_PAY_PARTNER = DaoDbField.COL_COD_PAY_PARTNER;
+	public static final String COL_ID_PAY_PARTNER_APP = DaoDbField.COL_ID_PAY_PARTNER_APP;	
+	public static final String COL_ID_PAY_PARTNER_SYSTEM = DaoDbField.COL_ID_PAY_PARTNER_SYSTEM;
 	
 	
-	private Hashtable<String, List<DaoColumn>> tableColumns;
-	
-	
-	public SysparchDbTableColumn() {
-		super(SysparchDbTableColumn.class);
+	public DaoSysparchDbTableColumn() {
+		super();
 	}
 	
 	
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
-		tableColumns = new Hashtable<>();		
-		buildPayPartnerSystemTable();	
-		return tableColumns;
-	}
-	
-	
-	
-	private void buildPayPartnerSystemTable() {
 		final String TABLE_NAME = DaoDbTable.SYS_PAY_PARTNER_TABLE;
 		
 		DaoColumn oneColumn;
@@ -62,6 +51,8 @@ public final class SysparchDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 
-		tableColumns.put(DaoDbTable.SYS_PAY_PARTNER_SEARCH_VIEW, columns);
+		Hashtable<String, List<DaoColumn>> results = new Hashtable<>();
+		results.put(DaoDbTable.SYS_PAY_PARTNER_SEARCH_VIEW, columns);
+		return results;
 	}
 }

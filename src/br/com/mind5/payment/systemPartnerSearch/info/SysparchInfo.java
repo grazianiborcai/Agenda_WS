@@ -15,7 +15,7 @@ public final class SysparchInfo extends InfoRecord implements Cloneable {
 	
 	
 	public SysparchInfo() {
-		super(SysparchInfo.class);
+		super();
 		
 		codPayPartner = DefaultValue.number();
 	}
