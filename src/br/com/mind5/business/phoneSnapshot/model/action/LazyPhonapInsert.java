@@ -24,7 +24,7 @@ public final class LazyPhonapInsert extends ActionLazyTemplate<PhonapInfo, Phona
 	
 	
 	@Override protected ActionStdV1<PhonapInfo> getInstanceOfActionHook(DeciTreeOption<PhonapInfo> option) {
-		return new StdPhonapInsert(option);
+		return new StdPhonapDaoInsert(option);
 	}
 	
 	
