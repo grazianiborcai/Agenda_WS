@@ -9,35 +9,22 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class StoworgDbTableColumn extends DaoDbTableColumnTemplate {
+public final class DaoStoworgDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_BEGIN_TIME = DaoDbField.COL_BEGIN_TIME;
 	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;	
 	public static final String COL_COD_STORE = DaoDbField.COL_COD_STORE;
 	public static final String COL_COD_WEEKDAY = DaoDbField.COL_COD_WEEKDAY;
 	public static final String COL_END_TIME = DaoDbField.COL_END_TIME;
 	public static final String COL_RECORD_MODE = DaoDbField.COL_RECORD_MODE;
+
 	
-	
-	
-	private Hashtable<String, List<DaoColumn>> tableColumns;	
-	
-	public StoworgDbTableColumn() {
-		super(StoworgDbTableColumn.class);
+	public DaoStoworgDbTableColumn() {
+		super();
 	}
 	
 	
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
-		tableColumns = new Hashtable<>();
-		
-		buildStoworgTable();
-		
-		return tableColumns;
-	}
-	
-	
-	
-	private void buildStoworgTable() {
 		final String TABLE_NAME = DaoDbTable.STORE_WT_TABLE;
 		
 		DaoColumn oneColumn;
@@ -91,6 +78,8 @@ public final class StoworgDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		tableColumns.put(DaoDbTable.STORE_WTIME_RANGE_VIEW, columns);
+		Hashtable<String, List<DaoColumn>> results = new Hashtable<>();
+		results.put(DaoDbTable.STORE_WTIME_RANGE_VIEW, columns);
+		return results;
 	}
 }

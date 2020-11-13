@@ -11,11 +11,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.DaoWhereCondition;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 
-final class StoworgWhere implements DaoStmtWhere {
+final class DaoStoworgWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public StoworgWhere(DaoWhereBuilderOption whereOption, String tableName, StoworgInfo recordInfo) {
+	public DaoStoworgWhere(DaoWhereBuilderOption whereOption, String tableName, StoworgInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -28,27 +28,27 @@ final class StoworgWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-				case StoworgDbTableColumn.COL_COD_OWNER :
+				case DaoStoworgDbTableColumn.COL_COD_OWNER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;
 					
-				case StoworgDbTableColumn.COL_COD_STORE :
+				case DaoStoworgDbTableColumn.COL_COD_STORE :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codStore));
 					break;
 					
-				case StoworgDbTableColumn.COL_COD_WEEKDAY :
+				case DaoStoworgDbTableColumn.COL_COD_WEEKDAY :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codWeekday));
 					break;
 					
-				case StoworgDbTableColumn.COL_BEGIN_TIME :
+				case DaoStoworgDbTableColumn.COL_BEGIN_TIME :
 					builder.addClauseAnd(eachColumn, DaoFormatter.timeToString(recordInfo.beginTime), DaoWhereCondition.LESS_OR_EQUAL);
 					break;
 					
-				case StoworgDbTableColumn.COL_END_TIME :
+				case DaoStoworgDbTableColumn.COL_END_TIME :
 					builder.addClauseAnd(eachColumn, DaoFormatter.timeToString(recordInfo.endTime), DaoWhereCondition.GREATER_OR_EQUAL);
 					break;
 					
-				case StoworgDbTableColumn.COL_RECORD_MODE :
+				case DaoStoworgDbTableColumn.COL_RECORD_MODE :
 					builder.addClauseEqualAnd(eachColumn,recordInfo.recordMode);
 					break;
 			}

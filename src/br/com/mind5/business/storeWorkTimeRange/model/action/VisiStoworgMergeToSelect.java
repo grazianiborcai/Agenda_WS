@@ -1,23 +1,23 @@
 package br.com.mind5.business.storeWorkTimeRange.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.storeWorkTimeRange.info.StoworgInfo;
 import br.com.mind5.business.storeWorkTimeRange.info.StoworgMerger;
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiStoworgMergeToSelect extends ActionVisitorTemplateMergeV1<StoworgInfo, StoworgInfo> {
+final class VisiStoworgMergeToSelect extends ActionVisitorTemplateMergeV2<StoworgInfo, StoworgInfo> {
 	
-	public VisiStoworgMergeToSelect(Connection conn, String schemaName) {
-		super(conn, schemaName, StoworgInfo.class);
+	public VisiStoworgMergeToSelect(DeciTreeOption<StoworgInfo> option) {
+		super(option, StoworgInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends ActionStdV1<StoworgInfo>> getActionClassHook() {
-		return StdStoworgSelect.class;
+	@Override protected Class<? extends ActionStdV2<StoworgInfo>> getActionClassHook() {
+		return StdStoworgDaoSelect.class;
 	}
 	
 	
@@ -29,6 +29,6 @@ final class VisiStoworgMergeToSelect extends ActionVisitorTemplateMergeV1<Stowor
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
+		return super.DONT_MERGE_WHEN_EMPTY;
 	}
 }

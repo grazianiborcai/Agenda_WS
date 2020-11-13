@@ -16,11 +16,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class StoworgSelectSingle extends DaoStmtTemplate<StoworgInfo> {
+public final class DaoStoworgSelectSingle extends DaoStmtTemplate<StoworgInfo> {
 	private final String MAIN_TABLE = DaoDbTable.STORE_WT_TABLE;
 	
 	
-	public StoworgSelectSingle(Connection conn, StoworgInfo recordInfo, String schemaName) {
+	public DaoStoworgSelectSingle(Connection conn, StoworgInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -32,14 +32,14 @@ public final class StoworgSelectSingle extends DaoStmtTemplate<StoworgInfo> {
 	
 	
 	
-	@Override protected DaoOperation getOperationHook() {
-		return DaoOperation.SELECT;
+	@Override protected String getLookupTableHook() {
+		return DaoDbTable.STORE_WTIME_RANGE_VIEW;
 	}	
 	
 	
 	
-	@Override protected String getLookupTableHook() {
-		return DaoDbTable.STORE_WTIME_RANGE_VIEW;
+	@Override protected DaoOperation getOperationHook() {
+		return DaoOperation.SELECT;
 	}	
 	
 	
@@ -50,7 +50,7 @@ public final class StoworgSelectSingle extends DaoStmtTemplate<StoworgInfo> {
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.DONT_IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new StoworgWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new DaoStoworgWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -67,12 +67,12 @@ public final class StoworgSelectSingle extends DaoStmtTemplate<StoworgInfo> {
 				do {
 					StoworgInfo dataInfo = new StoworgInfo();
 					
-					dataInfo.codOwner = stmtResult.getLong(StoworgDbTableColumn.COL_COD_OWNER);
-					dataInfo.codStore = stmtResult.getLong(StoworgDbTableColumn.COL_COD_STORE);
-					dataInfo.codWeekday = stmtResult.getInt(StoworgDbTableColumn.COL_COD_WEEKDAY);
-					dataInfo.recordMode = stmtResult.getString(StoworgDbTableColumn.COL_RECORD_MODE);	
-					dataInfo.beginTime = DaoFormatter.sqlToLocalTime(stmtResult, StoworgDbTableColumn.COL_BEGIN_TIME);
-					dataInfo.endTime = DaoFormatter.sqlToLocalTime(stmtResult, StoworgDbTableColumn.COL_END_TIME);
+					dataInfo.codOwner = stmtResult.getLong(DaoStoworgDbTableColumn.COL_COD_OWNER);
+					dataInfo.codStore = stmtResult.getLong(DaoStoworgDbTableColumn.COL_COD_STORE);
+					dataInfo.codWeekday = stmtResult.getInt(DaoStoworgDbTableColumn.COL_COD_WEEKDAY);
+					dataInfo.recordMode = stmtResult.getString(DaoStoworgDbTableColumn.COL_RECORD_MODE);	
+					dataInfo.beginTime = DaoFormatter.sqlToLocalTime(stmtResult, DaoStoworgDbTableColumn.COL_BEGIN_TIME);
+					dataInfo.endTime = DaoFormatter.sqlToLocalTime(stmtResult, DaoStoworgDbTableColumn.COL_END_TIME);
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

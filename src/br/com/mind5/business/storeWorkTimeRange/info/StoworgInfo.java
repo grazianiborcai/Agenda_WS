@@ -17,7 +17,7 @@ public final class StoworgInfo extends InfoRecord implements Cloneable {
 	
 	
 	public StoworgInfo() {
-		super(StoworgInfo.class);
+		super();
 		
 		codOwner = DefaultValue.number();
 		codStore = DefaultValue.number();

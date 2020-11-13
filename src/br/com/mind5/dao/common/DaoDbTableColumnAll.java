@@ -114,7 +114,7 @@ import br.com.mind5.business.storeTextDefault.dao.DaoStorextaultDbTableColumn;
 import br.com.mind5.business.storeTextSearch.dao.DaoStorextarchDbTableColumn;
 import br.com.mind5.business.storeTextSnapshot.dao.DaoStorextsnapDbTableColumn;
 import br.com.mind5.business.storeWorkTime.dao.DaoStowotmDbTableColumn;
-import br.com.mind5.business.storeWorkTimeRange.dao.StoworgDbTableColumn;
+import br.com.mind5.business.storeWorkTimeRange.dao.DaoStoworgDbTableColumn;
 import br.com.mind5.business.storeWorkTimeSearch.dao.DaoStowotarchDbTableColumn;
 import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
@@ -336,7 +336,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new DaoSchedageDbTableColumn());
 		addTable(new DaoStoplisDbTableColumn());
 		addTable(new DaoEmposarchDbTableColumn());
-		addTable(new StoworgDbTableColumn());
+		addTable(new DaoStoworgDbTableColumn());
 		addTable(new DaoStowotarchDbTableColumn());
 		addTable(new DaoEmpwotarchDbTableColumn());
 		addTable(new DaoEmplarchDbTableColumn());

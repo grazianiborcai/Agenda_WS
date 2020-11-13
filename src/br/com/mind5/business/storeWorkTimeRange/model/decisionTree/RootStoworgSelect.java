@@ -10,13 +10,13 @@ import br.com.mind5.business.storeWorkTimeRange.model.checker.StoworgCheckOwner;
 import br.com.mind5.business.storeWorkTimeRange.model.checker.StoworgCheckRead;
 import br.com.mind5.business.storeWorkTimeRange.model.checker.StoworgCheckStore;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 
-public final class RootStoworgSelect extends DeciTreeTemplateReadV1<StoworgInfo> {
+public final class RootStoworgSelect extends DeciTreeTemplateReadV2<StoworgInfo> {
 	
 	public RootStoworgSelect(DeciTreeOption<StoworgInfo> option) {
 		super(option);
