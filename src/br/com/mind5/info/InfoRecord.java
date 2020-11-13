@@ -20,12 +20,6 @@ public abstract class InfoRecord implements Cloneable {
 	
 	
 	
-	protected InfoRecord(Class<? extends InfoRecord> childClazz) {
-		codLanguage = DefaultValue.language();		//TODO: remover esse constructor
-	}
-	
-	
-	
 	protected static <T> List<T> copyFrom(List<?> sourceObjs, Class<T> targetClass) {
 		if (sourceObjs == null)
 			return null;
