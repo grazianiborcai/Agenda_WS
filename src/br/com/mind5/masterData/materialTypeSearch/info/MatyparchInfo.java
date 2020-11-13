@@ -11,7 +11,7 @@ public final class MatyparchInfo extends InfoRecord implements Cloneable {
 	
 	
 	public MatyparchInfo() {
-		super(MatyparchInfo.class);
+		super();
 		
 		codType = DefaultValue.number();
 	}
