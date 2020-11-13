@@ -12,7 +12,7 @@ public final class CounparchInfo extends InfoRecord implements Cloneable {
 	
 	
 	public CounparchInfo() {
-		super(CounparchInfo.class);
+		super();
 		
 		codPayPartner = DefaultValue.number();
 		isDefault = DefaultValue.boole();
