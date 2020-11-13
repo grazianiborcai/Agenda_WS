@@ -9,32 +9,21 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class SysparDbTableColumn extends DaoDbTableColumnTemplate {
+public final class DaoSysparDbTableColumn extends DaoDbTableColumnTemplate {
+	public static final String COL_COD_PAY_PARTNER = DaoDbField.COL_COD_PAY_PARTNER;
 	public static final String COL_ID_PAY_PARTNER_APP = DaoDbField.COL_ID_PAY_PARTNER_APP;	
 	public static final String COL_ID_PAY_PARTNER_SYSTEM = DaoDbField.COL_ID_PAY_PARTNER_SYSTEM;	
-	public static final String COL_COD_PAY_PARTNER = DaoDbField.COL_COD_PAY_PARTNER;
 	public static final String COL_PAY_PARTNER_NAME = DaoDbField.COL_PAY_PARTNER_NAME;
 	public static final String COL_URL_RETURN = DaoDbField.COL_URL_RETURN;
 	
 	
-	private Hashtable<String, List<DaoColumn>> tableColumns;
-	
-	
-	public SysparDbTableColumn() {
-		super(SysparDbTableColumn.class);
+	public DaoSysparDbTableColumn() {
+		super();
 	}
 	
 	
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
-		tableColumns = new Hashtable<>();		
-		buildPayPartnerSystemTable();	
-		return tableColumns;
-	}
-	
-	
-	
-	private void buildPayPartnerSystemTable() {
 		final String TABLE_NAME = DaoDbTable.SYS_PAY_PARTNER_TABLE;
 		
 		DaoColumn oneColumn;
@@ -80,6 +69,8 @@ public final class SysparDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 
-		tableColumns.put(TABLE_NAME, columns);
+		Hashtable<String, List<DaoColumn>> results = new Hashtable<>();
+		results.put(TABLE_NAME, columns);
+		return results;
 	}
 }
