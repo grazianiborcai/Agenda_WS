@@ -3,17 +3,17 @@ package br.com.mind5.masterData.countryLegalSearch.dao;
 import java.sql.SQLException;
 import java.util.List;
 
-import br.com.mind5.dao.DaoStmtExecHelperV2;
+import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.masterData.countryLegalSearch.info.CountrarchInfo;
 
-public final class DaoCountrarchSelect implements DaoStmtExecV2<CountrarchInfo> {
-	private DaoStmtExecV2<CountrarchInfo> helper;
+public final class DaoCountrarchSelect implements DaoStmtExec<CountrarchInfo> {
+	private DaoStmtExec<CountrarchInfo> helper;
 	
 	
 	public DaoCountrarchSelect(List<DaoStmtExecOption<CountrarchInfo>> options) {
-		helper = new DaoStmtExecHelperV2<>(options, DaoCountrarchSelectSingle.class, CountrarchInfo.class);
+		helper = new DaoStmtExecHelper<>(options, DaoCountrarchSelectSingle.class, CountrarchInfo.class);
 	}
 	
 	

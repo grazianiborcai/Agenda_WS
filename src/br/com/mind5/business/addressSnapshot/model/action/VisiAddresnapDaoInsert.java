@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.addressSnapshot.dao.DaoAddresnapInsert;
 import br.com.mind5.business.addressSnapshot.info.AddresnapInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -17,7 +17,7 @@ final class VisiAddresnapDaoInsert extends ActionVisitorTemplateStmt<AddresnapIn
 	
 	
 	
-	@Override protected DaoStmtExecV2<AddresnapInfo> buildStmtExecHook(List<DaoStmtExecOption<AddresnapInfo>> stmtOptions) {
+	@Override protected DaoStmtExec<AddresnapInfo> buildStmtExecHook(List<DaoStmtExecOption<AddresnapInfo>> stmtOptions) {
 		return new DaoAddresnapInsert(stmtOptions);
 	}
 }

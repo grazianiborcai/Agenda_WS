@@ -4,16 +4,16 @@ import java.sql.SQLException;
 import java.util.List;
 
 import br.com.mind5.business.employeeWorkTimeSearch.info.EmpwotarchInfo;
-import br.com.mind5.dao.DaoStmtExecHelperV2;
+import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.dao.DaoStmtExec;
 
-public final class DaoEmpwotarchSelect implements DaoStmtExecV2<EmpwotarchInfo> {
-	private DaoStmtExecV2<EmpwotarchInfo> helper;
+public final class DaoEmpwotarchSelect implements DaoStmtExec<EmpwotarchInfo> {
+	private DaoStmtExec<EmpwotarchInfo> helper;
 	
 	
 	public DaoEmpwotarchSelect(List<DaoStmtExecOption<EmpwotarchInfo>> options) {
-		helper = new DaoStmtExecHelperV2<>(options, DaoEmpwotarchSelectSingle.class, EmpwotarchInfo.class);
+		helper = new DaoStmtExecHelper<>(options, DaoEmpwotarchSelectSingle.class, EmpwotarchInfo.class);
 	}
 	
 	

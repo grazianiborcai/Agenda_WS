@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.employee.dao.DaoEmpDelete;
 import br.com.mind5.business.employee.info.EmpInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -17,7 +17,7 @@ final class VisiEmpDaoDelete extends ActionVisitorTemplateStmt<EmpInfo> {
 	
 	
 	
-	@Override protected DaoStmtExecV2<EmpInfo> buildStmtExecHook(List<DaoStmtExecOption<EmpInfo>> stmtOptions) {
+	@Override protected DaoStmtExec<EmpInfo> buildStmtExecHook(List<DaoStmtExecOption<EmpInfo>> stmtOptions) {
 		return new DaoEmpDelete(stmtOptions);
 	}
 }

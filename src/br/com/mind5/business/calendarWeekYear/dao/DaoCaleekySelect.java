@@ -4,16 +4,16 @@ import java.sql.SQLException;
 import java.util.List;
 
 import br.com.mind5.business.calendarWeekYear.info.CaleekyInfo;
-import br.com.mind5.dao.DaoStmtExecHelperV2;
+import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.dao.DaoStmtExec;
 
-public final class DaoCaleekySelect implements DaoStmtExecV2<CaleekyInfo> {
-	private DaoStmtExecV2<CaleekyInfo> helper;
+public final class DaoCaleekySelect implements DaoStmtExec<CaleekyInfo> {
+	private DaoStmtExec<CaleekyInfo> helper;
 	
 	
 	public DaoCaleekySelect(List<DaoStmtExecOption<CaleekyInfo>> options) {
-		helper = new DaoStmtExecHelperV2<>(options, DaoCaleekySelectSingle.class, CaleekyInfo.class);
+		helper = new DaoStmtExecHelper<>(options, DaoCaleekySelectSingle.class, CaleekyInfo.class);
 	}
 	
 	

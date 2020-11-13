@@ -4,16 +4,16 @@ import java.sql.SQLException;
 import java.util.List;
 
 import br.com.mind5.business.addressDefault.info.AddaultInfo;
-import br.com.mind5.dao.DaoStmtExecHelperV2;
+import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.dao.DaoStmtExec;
 
-public final class DaoAddaultSelect implements DaoStmtExecV2<AddaultInfo> {
-	private DaoStmtExecV2<AddaultInfo> helper;
+public final class DaoAddaultSelect implements DaoStmtExec<AddaultInfo> {
+	private DaoStmtExec<AddaultInfo> helper;
 	
 	
 	public DaoAddaultSelect(List<DaoStmtExecOption<AddaultInfo>> options) {
-		helper = new DaoStmtExecHelperV2<>(options, DaoAddaultSelectSingle.class, AddaultInfo.class);
+		helper = new DaoStmtExecHelper<>(options, DaoAddaultSelectSingle.class, AddaultInfo.class);
 	}
 	
 	

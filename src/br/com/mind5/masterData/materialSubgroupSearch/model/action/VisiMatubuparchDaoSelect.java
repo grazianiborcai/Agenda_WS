@@ -3,7 +3,7 @@ package br.com.mind5.masterData.materialSubgroupSearch.model.action;
 import java.util.List;
 
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.masterData.materialSubgroupSearch.dao.DaoMatubuparchSelect;
 import br.com.mind5.masterData.materialSubgroupSearch.info.MatubuparchInfo;
 import br.com.mind5.model.action.ActionVisitorTemplateStmt;
@@ -17,7 +17,7 @@ final class VisiMatubuparchDaoSelect extends ActionVisitorTemplateStmt<Matubupar
 	
 	
 	
-	@Override protected DaoStmtExecV2<MatubuparchInfo> buildStmtExecHook(List<DaoStmtExecOption<MatubuparchInfo>> stmtOptions) {
+	@Override protected DaoStmtExec<MatubuparchInfo> buildStmtExecHook(List<DaoStmtExecOption<MatubuparchInfo>> stmtOptions) {
 		return new DaoMatubuparchSelect(stmtOptions);
 	}
 }

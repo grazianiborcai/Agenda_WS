@@ -3,7 +3,7 @@ package br.com.mind5.masterData.sysEnvironment.model.action;
 import java.util.List;
 
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.masterData.sysEnvironment.dao.DaoSysenvSelect;
 import br.com.mind5.masterData.sysEnvironment.info.SysenvInfo;
 import br.com.mind5.model.action.ActionVisitorTemplateStmt;
@@ -17,7 +17,7 @@ final class VisiSysenvDaoSelect extends ActionVisitorTemplateStmt<SysenvInfo> {
 	
 	
 	
-	@Override protected DaoStmtExecV2<SysenvInfo> buildStmtExecHook(List<DaoStmtExecOption<SysenvInfo>> stmtOptions) {
+	@Override protected DaoStmtExec<SysenvInfo> buildStmtExecHook(List<DaoStmtExecOption<SysenvInfo>> stmtOptions) {
 		return new DaoSysenvSelect(stmtOptions);
 	}
 }

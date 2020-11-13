@@ -4,16 +4,16 @@ import java.sql.SQLException;
 import java.util.List;
 
 import br.com.mind5.business.refundPolicyStore.info.RefuporeInfo;
-import br.com.mind5.dao.DaoStmtExecHelperV2;
+import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.dao.DaoStmtExec;
 
-public final class DaoRefuporeUpdate implements DaoStmtExecV2<RefuporeInfo> {
-	private DaoStmtExecV2<RefuporeInfo> helper;
+public final class DaoRefuporeUpdate implements DaoStmtExec<RefuporeInfo> {
+	private DaoStmtExec<RefuporeInfo> helper;
 	
 	
 	public DaoRefuporeUpdate(List<DaoStmtExecOption<RefuporeInfo>> options) {
-		helper = new DaoStmtExecHelperV2<>(options, DaoRefuporeUpdateSingle.class, RefuporeInfo.class);
+		helper = new DaoStmtExecHelper<>(options, DaoRefuporeUpdateSingle.class, RefuporeInfo.class);
 	}
 	
 	

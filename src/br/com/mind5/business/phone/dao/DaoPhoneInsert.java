@@ -4,16 +4,16 @@ import java.sql.SQLException;
 import java.util.List;
 
 import br.com.mind5.business.phone.info.PhoneInfo;
-import br.com.mind5.dao.DaoStmtExecHelperV2;
+import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.dao.DaoStmtExec;
 
-public final class DaoPhoneInsert implements DaoStmtExecV2<PhoneInfo> {
-	private DaoStmtExecV2<PhoneInfo> helper;
+public final class DaoPhoneInsert implements DaoStmtExec<PhoneInfo> {
+	private DaoStmtExec<PhoneInfo> helper;
 	
 	
 	public DaoPhoneInsert(List<DaoStmtExecOption<PhoneInfo>> options) {
-		helper = new DaoStmtExecHelperV2<>(options, DaoPhoneInsertSingle.class, PhoneInfo.class);
+		helper = new DaoStmtExecHelper<>(options, DaoPhoneInsertSingle.class, PhoneInfo.class);
 	}
 	
 	

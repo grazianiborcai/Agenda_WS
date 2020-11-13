@@ -4,16 +4,16 @@ import java.sql.SQLException;
 import java.util.List;
 
 import br.com.mind5.business.materialTextSnapshot.info.MatextsnapInfo;
-import br.com.mind5.dao.DaoStmtExecHelperV2;
+import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.dao.DaoStmtExec;
 
-public final class DaoMatextsnapInsert implements DaoStmtExecV2<MatextsnapInfo> {
-	private DaoStmtExecV2<MatextsnapInfo> helper;
+public final class DaoMatextsnapInsert implements DaoStmtExec<MatextsnapInfo> {
+	private DaoStmtExec<MatextsnapInfo> helper;
 	
 	
 	public DaoMatextsnapInsert(List<DaoStmtExecOption<MatextsnapInfo>> options) {
-		helper = new DaoStmtExecHelperV2<>(options, DaoMatextsnapInsertSingle.class, MatextsnapInfo.class);
+		helper = new DaoStmtExecHelper<>(options, DaoMatextsnapInsertSingle.class, MatextsnapInfo.class);
 	}
 	
 	

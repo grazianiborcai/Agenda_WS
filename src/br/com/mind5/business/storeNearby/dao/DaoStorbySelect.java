@@ -4,16 +4,16 @@ import java.sql.SQLException;
 import java.util.List;
 
 import br.com.mind5.business.storeNearby.info.StorbyInfo;
-import br.com.mind5.dao.DaoStmtExecHelperV2;
+import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.dao.DaoStmtExec;
 
-public final class DaoStorbySelect implements DaoStmtExecV2<StorbyInfo> {
-	private DaoStmtExecV2<StorbyInfo> helper;
+public final class DaoStorbySelect implements DaoStmtExec<StorbyInfo> {
+	private DaoStmtExec<StorbyInfo> helper;
 	
 	
 	public DaoStorbySelect(List<DaoStmtExecOption<StorbyInfo>> options) {
-		helper = new DaoStmtExecHelperV2<>(options, DaoStorbySelectSingle.class, StorbyInfo.class);
+		helper = new DaoStmtExecHelper<>(options, DaoStorbySelectSingle.class, StorbyInfo.class);
 	}
 	
 	

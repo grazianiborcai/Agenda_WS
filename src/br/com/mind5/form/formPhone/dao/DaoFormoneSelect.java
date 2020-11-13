@@ -3,17 +3,17 @@ package br.com.mind5.form.formPhone.dao;
 import java.sql.SQLException;
 import java.util.List;
 
-import br.com.mind5.dao.DaoStmtExecHelperV2;
+import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.form.formPhone.info.FormoneInfo;
 
-public final class DaoFormoneSelect implements DaoStmtExecV2<FormoneInfo> {
-	private DaoStmtExecV2<FormoneInfo> helper;
+public final class DaoFormoneSelect implements DaoStmtExec<FormoneInfo> {
+	private DaoStmtExec<FormoneInfo> helper;
 	
 	
 	public DaoFormoneSelect(List<DaoStmtExecOption<FormoneInfo>> options) {
-		helper = new DaoStmtExecHelperV2<>(options, DaoFormoneSelectSingle.class, FormoneInfo.class);
+		helper = new DaoStmtExecHelper<>(options, DaoFormoneSelectSingle.class, FormoneInfo.class);
 	}
 	
 	

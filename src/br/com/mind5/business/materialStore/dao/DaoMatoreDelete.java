@@ -4,16 +4,16 @@ import java.sql.SQLException;
 import java.util.List;
 
 import br.com.mind5.business.materialStore.info.MatoreInfo;
-import br.com.mind5.dao.DaoStmtExecHelperV2;
+import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.dao.DaoStmtExec;
 
-public final class DaoMatoreDelete implements DaoStmtExecV2<MatoreInfo> {
-	private DaoStmtExecV2<MatoreInfo> helper;
+public final class DaoMatoreDelete implements DaoStmtExec<MatoreInfo> {
+	private DaoStmtExec<MatoreInfo> helper;
 	
 	
 	public DaoMatoreDelete(List<DaoStmtExecOption<MatoreInfo>> options) {
-		helper = new DaoStmtExecHelperV2<>(options, DaoMatoreDeleteSingle.class, MatoreInfo.class);
+		helper = new DaoStmtExecHelper<>(options, DaoMatoreDeleteSingle.class, MatoreInfo.class);
 	}
 	
 	

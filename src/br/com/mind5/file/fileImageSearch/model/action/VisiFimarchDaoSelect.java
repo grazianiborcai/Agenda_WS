@@ -3,7 +3,7 @@ package br.com.mind5.file.fileImageSearch.model.action;
 import java.util.List;
 
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.file.fileImageSearch.dao.DaoFimarchSelect;
 import br.com.mind5.file.fileImageSearch.info.FimarchInfo;
 import br.com.mind5.model.action.ActionVisitorTemplateStmt;
@@ -17,7 +17,7 @@ final class VisiFimarchDaoSelect extends ActionVisitorTemplateStmt<FimarchInfo> 
 	
 	
 	
-	@Override protected DaoStmtExecV2<FimarchInfo> buildStmtExecHook(List<DaoStmtExecOption<FimarchInfo>> stmtOptions) {
+	@Override protected DaoStmtExec<FimarchInfo> buildStmtExecHook(List<DaoStmtExecOption<FimarchInfo>> stmtOptions) {
 		return new DaoFimarchSelect(stmtOptions);
 	}
 }

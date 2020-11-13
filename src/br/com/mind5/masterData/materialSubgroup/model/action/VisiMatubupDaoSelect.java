@@ -3,7 +3,7 @@ package br.com.mind5.masterData.materialSubgroup.model.action;
 import java.util.List;
 
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.masterData.materialSubgroup.dao.DaoMatubupSelect;
 import br.com.mind5.masterData.materialSubgroup.info.MatubupInfo;
 import br.com.mind5.model.action.ActionVisitorTemplateStmt;
@@ -17,7 +17,7 @@ final class VisiMatubupDaoSelect extends ActionVisitorTemplateStmt<MatubupInfo> 
 	
 	
 	
-	@Override protected DaoStmtExecV2<MatubupInfo> buildStmtExecHook(List<DaoStmtExecOption<MatubupInfo>> stmtOptions) {
+	@Override protected DaoStmtExec<MatubupInfo> buildStmtExecHook(List<DaoStmtExecOption<MatubupInfo>> stmtOptions) {
 		return new DaoMatubupSelect(stmtOptions);
 	}
 }

@@ -4,16 +4,16 @@ import java.sql.SQLException;
 import java.util.List;
 
 import br.com.mind5.authorization.storeAuthorization.info.StorauthInfo;
-import br.com.mind5.dao.DaoStmtExecHelperV2;
+import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.dao.DaoStmtExec;
 
-public final class DaoStorauthSelect implements DaoStmtExecV2<StorauthInfo> {
-	private DaoStmtExecV2<StorauthInfo> helper;
+public final class DaoStorauthSelect implements DaoStmtExec<StorauthInfo> {
+	private DaoStmtExec<StorauthInfo> helper;
 	
 	
 	public DaoStorauthSelect(List<DaoStmtExecOption<StorauthInfo>> options) {
-		helper = new DaoStmtExecHelperV2<>(options, DaoStorauthSelectSingle.class, StorauthInfo.class);
+		helper = new DaoStmtExecHelper<>(options, DaoStorauthSelectSingle.class, StorauthInfo.class);
 	}
 	
 	

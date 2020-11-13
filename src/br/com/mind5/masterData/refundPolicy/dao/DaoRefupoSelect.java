@@ -3,17 +3,17 @@ package br.com.mind5.masterData.refundPolicy.dao;
 import java.sql.SQLException;
 import java.util.List;
 
-import br.com.mind5.dao.DaoStmtExecHelperV2;
+import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.masterData.refundPolicy.info.RefupoInfo;
 
-public final class DaoRefupoSelect implements DaoStmtExecV2<RefupoInfo> {
-	private DaoStmtExecV2<RefupoInfo> helper;
+public final class DaoRefupoSelect implements DaoStmtExec<RefupoInfo> {
+	private DaoStmtExec<RefupoInfo> helper;
 	
 	
 	public DaoRefupoSelect(List<DaoStmtExecOption<RefupoInfo>> options) {
-		helper = new DaoStmtExecHelperV2<>(options, DaoRefupoSelectSingle.class, RefupoInfo.class);
+		helper = new DaoStmtExecHelper<>(options, DaoRefupoSelectSingle.class, RefupoInfo.class);
 	}
 	
 	

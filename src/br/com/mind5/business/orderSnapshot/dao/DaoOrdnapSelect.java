@@ -4,16 +4,16 @@ import java.sql.SQLException;
 import java.util.List;
 
 import br.com.mind5.business.orderSnapshot.info.OrdnapInfo;
-import br.com.mind5.dao.DaoStmtExecHelperV2;
+import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.dao.DaoStmtExec;
 
-public final class DaoOrdnapSelect implements DaoStmtExecV2<OrdnapInfo> {
-	private DaoStmtExecV2<OrdnapInfo> helper;
+public final class DaoOrdnapSelect implements DaoStmtExec<OrdnapInfo> {
+	private DaoStmtExec<OrdnapInfo> helper;
 	
 	
 	public DaoOrdnapSelect(List<DaoStmtExecOption<OrdnapInfo>> options) {
-		helper = new DaoStmtExecHelperV2<>(options, DaoOrdnapSelectSingle.class, OrdnapInfo.class);
+		helper = new DaoStmtExecHelper<>(options, DaoOrdnapSelectSingle.class, OrdnapInfo.class);
 	}
 	
 	

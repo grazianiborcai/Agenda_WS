@@ -3,7 +3,7 @@ package br.com.mind5.payment.customerPartnerSearch.model.action;
 import java.util.List;
 
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.customerPartnerSearch.dao.DaoCusparchSelect;
@@ -17,7 +17,7 @@ final class VisiCusparchDaoSelect extends ActionVisitorTemplateStmt<CusparchInfo
 	
 	
 	
-	@Override protected DaoStmtExecV2<CusparchInfo> buildStmtExecHook(List<DaoStmtExecOption<CusparchInfo>> stmtOptions) {
+	@Override protected DaoStmtExec<CusparchInfo> buildStmtExecHook(List<DaoStmtExecOption<CusparchInfo>> stmtOptions) {
 		return new DaoCusparchSelect(stmtOptions);
 	}
 }

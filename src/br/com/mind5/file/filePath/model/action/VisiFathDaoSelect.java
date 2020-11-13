@@ -3,7 +3,7 @@ package br.com.mind5.file.filePath.model.action;
 import java.util.List;
 
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.file.filePath.dao.DaoFathSelect;
 import br.com.mind5.file.filePath.info.FathInfo;
 import br.com.mind5.model.action.ActionVisitorTemplateStmt;
@@ -17,7 +17,7 @@ final class VisiFathDaoSelect extends ActionVisitorTemplateStmt<FathInfo> {
 	
 	
 	
-	@Override protected DaoStmtExecV2<FathInfo> buildStmtExecHook(List<DaoStmtExecOption<FathInfo>> stmtOptions) {
+	@Override protected DaoStmtExec<FathInfo> buildStmtExecHook(List<DaoStmtExecOption<FathInfo>> stmtOptions) {
 		return new DaoFathSelect(stmtOptions);
 	}
 }

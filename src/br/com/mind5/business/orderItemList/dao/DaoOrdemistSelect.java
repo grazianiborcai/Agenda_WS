@@ -4,16 +4,16 @@ import java.sql.SQLException;
 import java.util.List;
 
 import br.com.mind5.business.orderItemList.info.OrdemistInfo;
-import br.com.mind5.dao.DaoStmtExecHelperV2;
+import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.dao.DaoStmtExec;
 
-public final class DaoOrdemistSelect implements DaoStmtExecV2<OrdemistInfo> {
-	private DaoStmtExecV2<OrdemistInfo> helper;
+public final class DaoOrdemistSelect implements DaoStmtExec<OrdemistInfo> {
+	private DaoStmtExec<OrdemistInfo> helper;
 	
 	
 	public DaoOrdemistSelect(List<DaoStmtExecOption<OrdemistInfo>> options) {
-		helper = new DaoStmtExecHelperV2<>(options, DaoOrdemistSelectSingle.class, OrdemistInfo.class);
+		helper = new DaoStmtExecHelper<>(options, DaoOrdemistSelectSingle.class, OrdemistInfo.class);
 	}
 	
 	

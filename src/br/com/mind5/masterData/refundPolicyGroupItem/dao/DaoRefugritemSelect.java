@@ -3,17 +3,17 @@ package br.com.mind5.masterData.refundPolicyGroupItem.dao;
 import java.sql.SQLException;
 import java.util.List;
 
-import br.com.mind5.dao.DaoStmtExecHelperV2;
+import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.masterData.refundPolicyGroupItem.info.RefugritemInfo;
 
-public final class DaoRefugritemSelect implements DaoStmtExecV2<RefugritemInfo> {
-	private DaoStmtExecV2<RefugritemInfo> helper;
+public final class DaoRefugritemSelect implements DaoStmtExec<RefugritemInfo> {
+	private DaoStmtExec<RefugritemInfo> helper;
 	
 	
 	public DaoRefugritemSelect(List<DaoStmtExecOption<RefugritemInfo>> options) {
-		helper = new DaoStmtExecHelperV2<>(options, DaoRefugritemSelectSingle.class, RefugritemInfo.class);
+		helper = new DaoStmtExecHelper<>(options, DaoRefugritemSelectSingle.class, RefugritemInfo.class);
 	}
 	
 	

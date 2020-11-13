@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.customer.dao.DaoCusUpdate;
 import br.com.mind5.business.customer.info.CusInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -17,7 +17,7 @@ final class VisiCusDaoUpdate extends ActionVisitorTemplateStmt<CusInfo> {
 	
 	
 	
-	@Override protected DaoStmtExecV2<CusInfo> buildStmtExecHook(List<DaoStmtExecOption<CusInfo>> stmtOptions) {
+	@Override protected DaoStmtExec<CusInfo> buildStmtExecHook(List<DaoStmtExecOption<CusInfo>> stmtOptions) {
 		return new DaoCusUpdate(stmtOptions);
 	}
 }

@@ -4,16 +4,16 @@ import java.sql.SQLException;
 import java.util.List;
 
 import br.com.mind5.business.cart.info.CartInfo;
-import br.com.mind5.dao.DaoStmtExecHelperV2;
+import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.dao.DaoStmtExec;
 
-public final class DaoCartUpdate implements DaoStmtExecV2<CartInfo> {
-	private DaoStmtExecV2<CartInfo> helper;
+public final class DaoCartUpdate implements DaoStmtExec<CartInfo> {
+	private DaoStmtExec<CartInfo> helper;
 	
 	
 	public DaoCartUpdate(List<DaoStmtExecOption<CartInfo>> options) {
-		helper = new DaoStmtExecHelperV2<>(options, DaoCartUpdateSingle.class, CartInfo.class);
+		helper = new DaoStmtExecHelper<>(options, DaoCartUpdateSingle.class, CartInfo.class);
 	}
 	
 	

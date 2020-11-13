@@ -4,16 +4,16 @@ import java.sql.SQLException;
 import java.util.List;
 
 import br.com.mind5.business.personSearch.info.PerarchInfo;
-import br.com.mind5.dao.DaoStmtExecHelperV2;
+import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.dao.DaoStmtExec;
 
-public final class DaoPerarchSelect implements DaoStmtExecV2<PerarchInfo> {
-	private DaoStmtExecV2<PerarchInfo> helper;
+public final class DaoPerarchSelect implements DaoStmtExec<PerarchInfo> {
+	private DaoStmtExec<PerarchInfo> helper;
 	
 	
 	public DaoPerarchSelect(List<DaoStmtExecOption<PerarchInfo>> options) {
-		helper = new DaoStmtExecHelperV2<>(options, DaoPerarchSelectSingle.class, PerarchInfo.class);
+		helper = new DaoStmtExecHelper<>(options, DaoPerarchSelectSingle.class, PerarchInfo.class);
 	}
 	
 	

@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.orderSnapshot.dao.DaoOrdnapInsert;
 import br.com.mind5.business.orderSnapshot.info.OrdnapInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -17,7 +17,7 @@ final class VisiOrdnapDaoInsert extends ActionVisitorTemplateStmt<OrdnapInfo> {
 	
 	
 	
-	@Override protected DaoStmtExecV2<OrdnapInfo> buildStmtExecHook(List<DaoStmtExecOption<OrdnapInfo>> stmtOptions) {
+	@Override protected DaoStmtExec<OrdnapInfo> buildStmtExecHook(List<DaoStmtExecOption<OrdnapInfo>> stmtOptions) {
 		return new DaoOrdnapInsert(stmtOptions);
 	}
 }

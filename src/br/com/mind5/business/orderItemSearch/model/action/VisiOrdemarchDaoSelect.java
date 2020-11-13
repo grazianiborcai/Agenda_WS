@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.orderItemSearch.dao.DaoOrdemarchSelect;
 import br.com.mind5.business.orderItemSearch.info.OrdemarchInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -17,7 +17,7 @@ final class VisiOrdemarchDaoSelect extends ActionVisitorTemplateStmt<OrdemarchIn
 	
 	
 	
-	@Override protected DaoStmtExecV2<OrdemarchInfo> buildStmtExecHook(List<DaoStmtExecOption<OrdemarchInfo>> stmtOptions) {
+	@Override protected DaoStmtExec<OrdemarchInfo> buildStmtExecHook(List<DaoStmtExecOption<OrdemarchInfo>> stmtOptions) {
 		return new DaoOrdemarchSelect(stmtOptions);
 	}
 }

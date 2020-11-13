@@ -3,7 +3,7 @@ package br.com.mind5.masterData.materialUnit.model.action;
 import java.util.List;
 
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.masterData.materialUnit.dao.DaoMatunitSelect;
 import br.com.mind5.masterData.materialUnit.info.MatunitInfo;
 import br.com.mind5.model.action.ActionVisitorTemplateStmt;
@@ -17,7 +17,7 @@ final class VisiMatunitDaoSelect extends ActionVisitorTemplateStmt<MatunitInfo> 
 	
 	
 	
-	@Override protected DaoStmtExecV2<MatunitInfo> buildStmtExecHook(List<DaoStmtExecOption<MatunitInfo>> stmtOptions) {
+	@Override protected DaoStmtExec<MatunitInfo> buildStmtExecHook(List<DaoStmtExecOption<MatunitInfo>> stmtOptions) {
 		return new DaoMatunitSelect(stmtOptions);
 	}
 }

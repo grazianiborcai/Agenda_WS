@@ -4,16 +4,16 @@ import java.sql.SQLException;
 import java.util.List;
 
 import br.com.mind5.business.addressSnapshot.info.AddresnapInfo;
-import br.com.mind5.dao.DaoStmtExecHelperV2;
+import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.dao.DaoStmtExec;
 
-public final class DaoAddresnapSelect implements DaoStmtExecV2<AddresnapInfo> {
-	private DaoStmtExecV2<AddresnapInfo> helper;
+public final class DaoAddresnapSelect implements DaoStmtExec<AddresnapInfo> {
+	private DaoStmtExec<AddresnapInfo> helper;
 	
 	
 	public DaoAddresnapSelect(List<DaoStmtExecOption<AddresnapInfo>> options) {
-		helper = new DaoStmtExecHelperV2<>(options, DaoAddresnapSelectSingle.class, AddresnapInfo.class);
+		helper = new DaoStmtExecHelper<>(options, DaoAddresnapSelectSingle.class, AddresnapInfo.class);
 	}
 	
 	

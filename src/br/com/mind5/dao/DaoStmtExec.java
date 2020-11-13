@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.mind5.info.InfoRecord;
 
-public interface DaoStmtExecV2<T extends InfoRecord> {
+public interface DaoStmtExec<T extends InfoRecord> {
 	public void executeStmt() throws SQLException;	
 	
 	public List<T> getResultset();

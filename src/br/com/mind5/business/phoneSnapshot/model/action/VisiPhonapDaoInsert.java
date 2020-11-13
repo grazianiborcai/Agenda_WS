@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.phoneSnapshot.dao.DaoPhonapInsert;
 import br.com.mind5.business.phoneSnapshot.info.PhonapInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -17,7 +17,7 @@ final class VisiPhonapDaoInsert extends ActionVisitorTemplateStmt<PhonapInfo> {
 	
 	
 	
-	@Override protected DaoStmtExecV2<PhonapInfo> buildStmtExecHook(List<DaoStmtExecOption<PhonapInfo>> stmtOptions) {
+	@Override protected DaoStmtExec<PhonapInfo> buildStmtExecHook(List<DaoStmtExecOption<PhonapInfo>> stmtOptions) {
 		return new DaoPhonapInsert(stmtOptions);
 	}
 }

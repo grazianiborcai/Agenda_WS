@@ -3,17 +3,17 @@ package br.com.mind5.file.fileImage.dao;
 import java.sql.SQLException;
 import java.util.List;
 
-import br.com.mind5.dao.DaoStmtExecHelperV2;
+import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.file.fileImage.info.FimgInfo;
 
-public final class DaoFimgUpdate implements DaoStmtExecV2<FimgInfo> {
-	private DaoStmtExecV2<FimgInfo> helper;
+public final class DaoFimgUpdate implements DaoStmtExec<FimgInfo> {
+	private DaoStmtExec<FimgInfo> helper;
 	
 	
 	public DaoFimgUpdate(List<DaoStmtExecOption<FimgInfo>> options) {
-		helper = new DaoStmtExecHelperV2<>(options, DaoFimgUpdateSingle.class, FimgInfo.class);
+		helper = new DaoStmtExecHelper<>(options, DaoFimgUpdateSingle.class, FimgInfo.class);
 	}
 	
 	

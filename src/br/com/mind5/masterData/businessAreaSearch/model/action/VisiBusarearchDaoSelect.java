@@ -3,7 +3,7 @@ package br.com.mind5.masterData.businessAreaSearch.model.action;
 import java.util.List;
 
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.masterData.businessAreaSearch.dao.DaoBusarearchSelect;
 import br.com.mind5.masterData.businessAreaSearch.info.BusarearchInfo;
 import br.com.mind5.model.action.ActionVisitorTemplateStmt;
@@ -17,7 +17,7 @@ final class VisiBusarearchDaoSelect extends ActionVisitorTemplateStmt<Busarearch
 	
 	
 	
-	@Override protected DaoStmtExecV2<BusarearchInfo> buildStmtExecHook(List<DaoStmtExecOption<BusarearchInfo>> stmtOptions) {
+	@Override protected DaoStmtExec<BusarearchInfo> buildStmtExecHook(List<DaoStmtExecOption<BusarearchInfo>> stmtOptions) {
 		return new DaoBusarearchSelect(stmtOptions);
 	}
 }

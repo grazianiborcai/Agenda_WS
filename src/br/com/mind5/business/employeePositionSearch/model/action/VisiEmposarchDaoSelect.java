@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.employeePositionSearch.dao.DaoEmposarchSelect;
 import br.com.mind5.business.employeePositionSearch.info.EmposarchInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -17,7 +17,7 @@ final class VisiEmposarchDaoSelect extends ActionVisitorTemplateStmt<EmposarchIn
 	
 	
 	
-	@Override protected DaoStmtExecV2<EmposarchInfo> buildStmtExecHook(List<DaoStmtExecOption<EmposarchInfo>> stmtOptions) {
+	@Override protected DaoStmtExec<EmposarchInfo> buildStmtExecHook(List<DaoStmtExecOption<EmposarchInfo>> stmtOptions) {
 		return new DaoEmposarchSelect(stmtOptions);
 	}
 }

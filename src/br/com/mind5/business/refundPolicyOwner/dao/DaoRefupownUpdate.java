@@ -4,16 +4,16 @@ import java.sql.SQLException;
 import java.util.List;
 
 import br.com.mind5.business.refundPolicyOwner.info.RefupownInfo;
-import br.com.mind5.dao.DaoStmtExecHelperV2;
+import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.dao.DaoStmtExec;
 
-public final class DaoRefupownUpdate implements DaoStmtExecV2<RefupownInfo> {
-	private DaoStmtExecV2<RefupownInfo> helper;
+public final class DaoRefupownUpdate implements DaoStmtExec<RefupownInfo> {
+	private DaoStmtExec<RefupownInfo> helper;
 	
 	
 	public DaoRefupownUpdate(List<DaoStmtExecOption<RefupownInfo>> options) {
-		helper = new DaoStmtExecHelperV2<>(options, DaoRefupownUpdateSingle.class, RefupownInfo.class);
+		helper = new DaoStmtExecHelper<>(options, DaoRefupownUpdateSingle.class, RefupownInfo.class);
 	}
 	
 	

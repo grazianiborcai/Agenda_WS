@@ -4,16 +4,16 @@ import java.sql.SQLException;
 import java.util.List;
 
 import br.com.mind5.business.scheduleDayData.info.SchedaytaInfo;
-import br.com.mind5.dao.DaoStmtExecHelperV2;
+import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.dao.DaoStmtExec;
 
-public final class DaoSchedaytaSelect implements DaoStmtExecV2<SchedaytaInfo> {
-	private DaoStmtExecV2<SchedaytaInfo> helper;
+public final class DaoSchedaytaSelect implements DaoStmtExec<SchedaytaInfo> {
+	private DaoStmtExec<SchedaytaInfo> helper;
 	
 	
 	public DaoSchedaytaSelect(List<DaoStmtExecOption<SchedaytaInfo>> options) {
-		helper = new DaoStmtExecHelperV2<>(options, DaoSchedaytaSelectSingle.class, SchedaytaInfo.class);
+		helper = new DaoStmtExecHelper<>(options, DaoSchedaytaSelectSingle.class, SchedaytaInfo.class);
 	}
 	
 	

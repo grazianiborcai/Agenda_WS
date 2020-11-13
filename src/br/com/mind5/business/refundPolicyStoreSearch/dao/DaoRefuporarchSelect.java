@@ -4,16 +4,16 @@ import java.sql.SQLException;
 import java.util.List;
 
 import br.com.mind5.business.refundPolicyStoreSearch.info.RefuporarchInfo;
-import br.com.mind5.dao.DaoStmtExecHelperV2;
+import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.dao.DaoStmtExec;
 
-public final class DaoRefuporarchSelect implements DaoStmtExecV2<RefuporarchInfo> {
-	private DaoStmtExecV2<RefuporarchInfo> helper;
+public final class DaoRefuporarchSelect implements DaoStmtExec<RefuporarchInfo> {
+	private DaoStmtExec<RefuporarchInfo> helper;
 	
 	
 	public DaoRefuporarchSelect(List<DaoStmtExecOption<RefuporarchInfo>> options) {
-		helper = new DaoStmtExecHelperV2<>(options, DaoRefuporarchSelectSingle.class, RefuporarchInfo.class);
+		helper = new DaoStmtExecHelper<>(options, DaoRefuporarchSelectSingle.class, RefuporarchInfo.class);
 	}
 	
 	

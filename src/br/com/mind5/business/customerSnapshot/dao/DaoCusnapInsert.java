@@ -4,16 +4,16 @@ import java.sql.SQLException;
 import java.util.List;
 
 import br.com.mind5.business.customerSnapshot.info.CusnapInfo;
-import br.com.mind5.dao.DaoStmtExecHelperV2;
+import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.dao.DaoStmtExec;
 
-public final class DaoCusnapInsert implements DaoStmtExecV2<CusnapInfo> {
-	private DaoStmtExecV2<CusnapInfo> helper;
+public final class DaoCusnapInsert implements DaoStmtExec<CusnapInfo> {
+	private DaoStmtExec<CusnapInfo> helper;
 	
 	
 	public DaoCusnapInsert(List<DaoStmtExecOption<CusnapInfo>> options) {
-		helper = new DaoStmtExecHelperV2<>(options, DaoCusnapInsertSingle.class, CusnapInfo.class);
+		helper = new DaoStmtExecHelper<>(options, DaoCusnapInsertSingle.class, CusnapInfo.class);
 	}
 	
 	

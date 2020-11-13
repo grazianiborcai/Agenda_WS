@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.employeeSnapshot.dao.DaoEmpnapInsert;
 import br.com.mind5.business.employeeSnapshot.info.EmpnapInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -17,7 +17,7 @@ final class VisiEmpnapDaoInsert extends ActionVisitorTemplateStmt<EmpnapInfo> {
 	
 	
 	
-	@Override protected DaoStmtExecV2<EmpnapInfo> buildStmtExecHook(List<DaoStmtExecOption<EmpnapInfo>> stmtOptions) {
+	@Override protected DaoStmtExec<EmpnapInfo> buildStmtExecHook(List<DaoStmtExecOption<EmpnapInfo>> stmtOptions) {
 		return new DaoEmpnapInsert(stmtOptions);
 	}
 }

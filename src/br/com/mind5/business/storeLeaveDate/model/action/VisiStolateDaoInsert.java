@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.storeLeaveDate.dao.DaoStolateInsert;
 import br.com.mind5.business.storeLeaveDate.info.StolateInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -17,7 +17,7 @@ final class VisiStolateDaoInsert extends ActionVisitorTemplateStmt<StolateInfo> 
 	
 	
 	
-	@Override protected DaoStmtExecV2<StolateInfo> buildStmtExecHook(List<DaoStmtExecOption<StolateInfo>> stmtOptions) {
+	@Override protected DaoStmtExec<StolateInfo> buildStmtExecHook(List<DaoStmtExecOption<StolateInfo>> stmtOptions) {
 		return new DaoStolateInsert(stmtOptions);
 	}
 }

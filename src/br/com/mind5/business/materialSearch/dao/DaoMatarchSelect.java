@@ -4,16 +4,16 @@ import java.sql.SQLException;
 import java.util.List;
 
 import br.com.mind5.business.materialSearch.info.MatarchInfo;
-import br.com.mind5.dao.DaoStmtExecHelperV2;
+import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.dao.DaoStmtExec;
 
-public final class DaoMatarchSelect implements DaoStmtExecV2<MatarchInfo> {
-	private DaoStmtExecV2<MatarchInfo> helper;
+public final class DaoMatarchSelect implements DaoStmtExec<MatarchInfo> {
+	private DaoStmtExec<MatarchInfo> helper;
 	
 	
 	public DaoMatarchSelect(List<DaoStmtExecOption<MatarchInfo>> options) {
-		helper = new DaoStmtExecHelperV2<>(options, DaoMatarchSelectSingle.class, MatarchInfo.class);
+		helper = new DaoStmtExecHelper<>(options, DaoMatarchSelectSingle.class, MatarchInfo.class);
 	}
 	
 	

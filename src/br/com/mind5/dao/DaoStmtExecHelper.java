@@ -1,4 +1,4 @@
-package br.com.mind5.dao.obsolete;
+package br.com.mind5.dao;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -10,17 +10,15 @@ import java.util.List;
 import br.com.mind5.common.DefaultValue;
 import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
-import br.com.mind5.dao.DaoStmt;
-import br.com.mind5.dao.DaoStmtExecOption;
 import br.com.mind5.info.InfoRecord;
 
-public final class DaoStmtExecHelper_<T extends InfoRecord> implements DaoStmtExec_<T> {
+public final class DaoStmtExecHelper<T extends InfoRecord> implements DaoStmtExec<T> {
 	private List<DaoStmt<T>> sqlStmts;
 	private List<T> resultset;
 	private Class<?> stmtClass;	
 	
 	
-	public DaoStmtExecHelper_(List<DaoStmtExecOption<T>> options, Class<? extends DaoStmt<T>> classOfStmt, Class<T> classOfT) {
+	public DaoStmtExecHelper(List<DaoStmtExecOption<T>> options, Class<? extends DaoStmt<T>> classOfStmt, Class<T> classOfT) {
 		checkArgument(options, classOfStmt, classOfT);		
 		clear();
 		
@@ -101,7 +99,7 @@ public final class DaoStmtExecHelper_<T extends InfoRecord> implements DaoStmtEx
 	
 	
 	
-	public void close() {
+	@Override public void close() {
 		closeStmts(sqlStmts);
 		clear();
 	}
@@ -135,12 +133,12 @@ public final class DaoStmtExecHelper_<T extends InfoRecord> implements DaoStmtEx
 	
 	
 	
+	@SuppressWarnings("unchecked")
 	private List<T> tryToGetResultset() throws CloneNotSupportedException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
 		List<T> results = new ArrayList<>();
 		
 		for (T eachResult : this.resultset) {
-			@SuppressWarnings("unchecked")
-			T resultCloned = (T) eachResult.getClass().getMethod("clone").invoke(eachResult);
+			T resultCloned = (T) eachResult.clone();
 			results.add(resultCloned);
 		}
 		

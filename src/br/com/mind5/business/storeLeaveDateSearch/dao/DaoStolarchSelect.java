@@ -4,16 +4,16 @@ import java.sql.SQLException;
 import java.util.List;
 
 import br.com.mind5.business.storeLeaveDateSearch.info.StolarchInfo;
-import br.com.mind5.dao.DaoStmtExecHelperV2;
+import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.dao.DaoStmtExec;
 
-public final class DaoStolarchSelect implements DaoStmtExecV2<StolarchInfo> {
-	private DaoStmtExecV2<StolarchInfo> helper;
+public final class DaoStolarchSelect implements DaoStmtExec<StolarchInfo> {
+	private DaoStmtExec<StolarchInfo> helper;
 	
 	
 	public DaoStolarchSelect(List<DaoStmtExecOption<StolarchInfo>> options) {
-		helper = new DaoStmtExecHelperV2<>(options, DaoStolarchSelectSingle.class, StolarchInfo.class);
+		helper = new DaoStmtExecHelper<>(options, DaoStolarchSelectSingle.class, StolarchInfo.class);
 	}
 	
 	

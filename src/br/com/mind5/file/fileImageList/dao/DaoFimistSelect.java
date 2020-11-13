@@ -3,17 +3,17 @@ package br.com.mind5.file.fileImageList.dao;
 import java.sql.SQLException;
 import java.util.List;
 
-import br.com.mind5.dao.DaoStmtExecHelperV2;
+import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.file.fileImageList.info.FimistInfo;
 
-public final class DaoFimistSelect implements DaoStmtExecV2<FimistInfo> {
-	private DaoStmtExecV2<FimistInfo> helper;
+public final class DaoFimistSelect implements DaoStmtExec<FimistInfo> {
+	private DaoStmtExec<FimistInfo> helper;
 	
 	
 	public DaoFimistSelect(List<DaoStmtExecOption<FimistInfo>> options) {
-		helper = new DaoStmtExecHelperV2<>(options, DaoFimistSelectSingle.class, FimistInfo.class);
+		helper = new DaoStmtExecHelper<>(options, DaoFimistSelectSingle.class, FimistInfo.class);
 	}
 	
 	

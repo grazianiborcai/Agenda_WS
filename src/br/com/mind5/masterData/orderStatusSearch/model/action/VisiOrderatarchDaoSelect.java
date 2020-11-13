@@ -3,7 +3,7 @@ package br.com.mind5.masterData.orderStatusSearch.model.action;
 import java.util.List;
 
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.masterData.orderStatusSearch.dao.DaoOrderatarchSelect;
 import br.com.mind5.masterData.orderStatusSearch.info.OrderatarchInfo;
 import br.com.mind5.model.action.ActionVisitorTemplateStmt;
@@ -17,7 +17,7 @@ final class VisiOrderatarchDaoSelect extends ActionVisitorTemplateStmt<Orderatar
 	
 	
 	
-	@Override protected DaoStmtExecV2<OrderatarchInfo> buildStmtExecHook(List<DaoStmtExecOption<OrderatarchInfo>> stmtOptions) {
+	@Override protected DaoStmtExec<OrderatarchInfo> buildStmtExecHook(List<DaoStmtExecOption<OrderatarchInfo>> stmtOptions) {
 		return new DaoOrderatarchSelect(stmtOptions);
 	}
 }

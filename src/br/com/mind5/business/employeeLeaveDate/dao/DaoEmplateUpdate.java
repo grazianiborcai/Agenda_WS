@@ -4,16 +4,16 @@ import java.sql.SQLException;
 import java.util.List;
 
 import br.com.mind5.business.employeeLeaveDate.info.EmplateInfo;
-import br.com.mind5.dao.DaoStmtExecHelperV2;
+import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.dao.DaoStmtExec;
 
-public final class DaoEmplateUpdate implements DaoStmtExecV2<EmplateInfo> {
-	private DaoStmtExecV2<EmplateInfo> helper;
+public final class DaoEmplateUpdate implements DaoStmtExec<EmplateInfo> {
+	private DaoStmtExec<EmplateInfo> helper;
 	
 	
 	public DaoEmplateUpdate(List<DaoStmtExecOption<EmplateInfo>> options) {
-		helper = new DaoStmtExecHelperV2<>(options, DaoEmplateUpdateSingle.class, EmplateInfo.class);
+		helper = new DaoStmtExecHelper<>(options, DaoEmplateUpdateSingle.class, EmplateInfo.class);
 	}
 	
 	

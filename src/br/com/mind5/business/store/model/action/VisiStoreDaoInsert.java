@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.store.dao.DaoStoreInsert;
 import br.com.mind5.business.store.info.StoreInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -17,7 +17,7 @@ final class VisiStoreDaoInsert extends ActionVisitorTemplateStmt<StoreInfo> {
 	
 	
 	
-	@Override protected DaoStmtExecV2<StoreInfo> buildStmtExecHook(List<DaoStmtExecOption<StoreInfo>> stmtOptions) {
+	@Override protected DaoStmtExec<StoreInfo> buildStmtExecHook(List<DaoStmtExecOption<StoreInfo>> stmtOptions) {
 		return new DaoStoreInsert(stmtOptions);
 	}
 }

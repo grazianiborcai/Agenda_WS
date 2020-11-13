@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.cart.dao.DaoCartInsert;
 import br.com.mind5.business.cart.info.CartInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -17,7 +17,7 @@ final class VisiCartDaoInsert extends ActionVisitorTemplateStmt<CartInfo> {
 	
 	
 	
-	@Override protected DaoStmtExecV2<CartInfo> buildStmtExecHook(List<DaoStmtExecOption<CartInfo>> stmtOptions) {
+	@Override protected DaoStmtExec<CartInfo> buildStmtExecHook(List<DaoStmtExecOption<CartInfo>> stmtOptions) {
 		return new DaoCartInsert(stmtOptions);
 	}
 }

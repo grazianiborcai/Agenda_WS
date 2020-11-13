@@ -3,7 +3,7 @@ package br.com.mind5.masterData.refundPolicy.model.action;
 import java.util.List;
 
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.masterData.refundPolicy.dao.DaoRefupoSelect;
 import br.com.mind5.masterData.refundPolicy.info.RefupoInfo;
 import br.com.mind5.model.action.ActionVisitorTemplateStmt;
@@ -17,7 +17,7 @@ final class VisiRefupoDaoSelect extends ActionVisitorTemplateStmt<RefupoInfo> {
 	
 	
 	
-	@Override protected DaoStmtExecV2<RefupoInfo> buildStmtExecHook(List<DaoStmtExecOption<RefupoInfo>> stmtOptions) {
+	@Override protected DaoStmtExec<RefupoInfo> buildStmtExecHook(List<DaoStmtExecOption<RefupoInfo>> stmtOptions) {
 		return new DaoRefupoSelect(stmtOptions);
 	}
 }

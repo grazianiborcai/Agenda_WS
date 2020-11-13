@@ -4,16 +4,16 @@ import java.sql.SQLException;
 import java.util.List;
 
 import br.com.mind5.business.personList.info.PersolisInfo;
-import br.com.mind5.dao.DaoStmtExecHelperV2;
+import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.dao.DaoStmtExec;
 
-public final class DaoPersolisSelect implements DaoStmtExecV2<PersolisInfo> {
-	private DaoStmtExecV2<PersolisInfo> helper;
+public final class DaoPersolisSelect implements DaoStmtExec<PersolisInfo> {
+	private DaoStmtExec<PersolisInfo> helper;
 	
 	
 	public DaoPersolisSelect(List<DaoStmtExecOption<PersolisInfo>> options) {
-		helper = new DaoStmtExecHelperV2<>(options, DaoPersolisSelectSingle.class, PersolisInfo.class);
+		helper = new DaoStmtExecHelper<>(options, DaoPersolisSelectSingle.class, PersolisInfo.class);
 	}
 	
 	

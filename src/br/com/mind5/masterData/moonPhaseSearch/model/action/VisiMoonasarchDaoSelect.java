@@ -3,7 +3,7 @@ package br.com.mind5.masterData.moonPhaseSearch.model.action;
 import java.util.List;
 
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.masterData.moonPhaseSearch.dao.DaoMoonasarchSelect;
 import br.com.mind5.masterData.moonPhaseSearch.info.MoonasarchInfo;
 import br.com.mind5.model.action.ActionVisitorTemplateStmt;
@@ -17,7 +17,7 @@ final class VisiMoonasarchDaoSelect extends ActionVisitorTemplateStmt<Moonasarch
 	
 	
 	
-	@Override protected DaoStmtExecV2<MoonasarchInfo> buildStmtExecHook(List<DaoStmtExecOption<MoonasarchInfo>> stmtOptions) {
+	@Override protected DaoStmtExec<MoonasarchInfo> buildStmtExecHook(List<DaoStmtExecOption<MoonasarchInfo>> stmtOptions) {
 		return new DaoMoonasarchSelect(stmtOptions);
 	}
 }

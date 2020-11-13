@@ -4,16 +4,16 @@ import java.sql.SQLException;
 import java.util.List;
 
 import br.com.mind5.business.employeeSnapshot.info.EmpnapInfo;
-import br.com.mind5.dao.DaoStmtExecHelperV2;
+import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.dao.DaoStmtExec;
 
-public final class DaoEmpnapSelect implements DaoStmtExecV2<EmpnapInfo> {
-	private DaoStmtExecV2<EmpnapInfo> helper;
+public final class DaoEmpnapSelect implements DaoStmtExec<EmpnapInfo> {
+	private DaoStmtExec<EmpnapInfo> helper;
 	
 	
 	public DaoEmpnapSelect(List<DaoStmtExecOption<EmpnapInfo>> options) {
-		helper = new DaoStmtExecHelperV2<>(options, DaoEmpnapSelectSingle.class, EmpnapInfo.class);
+		helper = new DaoStmtExecHelper<>(options, DaoEmpnapSelectSingle.class, EmpnapInfo.class);
 	}
 	
 	

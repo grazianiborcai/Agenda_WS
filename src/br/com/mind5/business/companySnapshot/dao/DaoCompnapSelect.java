@@ -4,16 +4,16 @@ import java.sql.SQLException;
 import java.util.List;
 
 import br.com.mind5.business.companySnapshot.info.CompnapInfo;
-import br.com.mind5.dao.DaoStmtExecHelperV2;
+import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.dao.DaoStmtExec;
 
-public final class DaoCompnapSelect implements DaoStmtExecV2<CompnapInfo> {
-	private DaoStmtExecV2<CompnapInfo> helper;
+public final class DaoCompnapSelect implements DaoStmtExec<CompnapInfo> {
+	private DaoStmtExec<CompnapInfo> helper;
 	
 	
 	public DaoCompnapSelect(List<DaoStmtExecOption<CompnapInfo>> options) {
-		helper = new DaoStmtExecHelperV2<>(options, DaoCompnapSelectSingle.class, CompnapInfo.class);
+		helper = new DaoStmtExecHelper<>(options, DaoCompnapSelectSingle.class, CompnapInfo.class);
 	}
 	
 	

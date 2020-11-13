@@ -4,16 +4,16 @@ import java.sql.SQLException;
 import java.util.List;
 
 import br.com.mind5.business.employeeMaterialSearch.info.EmpmarchInfo;
-import br.com.mind5.dao.DaoStmtExecHelperV2;
+import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.dao.DaoStmtExec;
 
-public final class DaoEmpmarchSelect implements DaoStmtExecV2<EmpmarchInfo> {
-	private DaoStmtExecV2<EmpmarchInfo> helper;
+public final class DaoEmpmarchSelect implements DaoStmtExec<EmpmarchInfo> {
+	private DaoStmtExec<EmpmarchInfo> helper;
 	
 	
 	public DaoEmpmarchSelect(List<DaoStmtExecOption<EmpmarchInfo>> options) {
-		helper = new DaoStmtExecHelperV2<>(options, DaoEmpmarchSelectSingle.class, EmpmarchInfo.class);
+		helper = new DaoStmtExecHelper<>(options, DaoEmpmarchSelectSingle.class, EmpmarchInfo.class);
 	}
 	
 	

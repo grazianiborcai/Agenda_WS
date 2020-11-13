@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.scheduleLineSnapshot.dao.DaoSchedinapSelect;
 import br.com.mind5.business.scheduleLineSnapshot.info.SchedinapInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -17,7 +17,7 @@ final class VisiSchedinapDaoSelect extends ActionVisitorTemplateStmt<SchedinapIn
 	
 	
 	
-	@Override protected DaoStmtExecV2<SchedinapInfo> buildStmtExecHook(List<DaoStmtExecOption<SchedinapInfo>> stmtOptions) {
+	@Override protected DaoStmtExec<SchedinapInfo> buildStmtExecHook(List<DaoStmtExecOption<SchedinapInfo>> stmtOptions) {
 		return new DaoSchedinapSelect(stmtOptions);
 	}
 }

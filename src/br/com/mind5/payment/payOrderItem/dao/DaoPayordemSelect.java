@@ -3,17 +3,17 @@ package br.com.mind5.payment.payOrderItem.dao;
 import java.sql.SQLException;
 import java.util.List;
 
-import br.com.mind5.dao.DaoStmtExecHelperV2;
+import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.payment.payOrderItem.info.PayordemInfo;
 
-public final class DaoPayordemSelect implements DaoStmtExecV2<PayordemInfo> {
-	private DaoStmtExecV2<PayordemInfo> helper;
+public final class DaoPayordemSelect implements DaoStmtExec<PayordemInfo> {
+	private DaoStmtExec<PayordemInfo> helper;
 	
 	
 	public DaoPayordemSelect(List<DaoStmtExecOption<PayordemInfo>> options) {
-		helper = new DaoStmtExecHelperV2<>(options, DaoPayordemSelectSingle.class, PayordemInfo.class);
+		helper = new DaoStmtExecHelper<>(options, DaoPayordemSelectSingle.class, PayordemInfo.class);
 	}
 	
 	

@@ -3,17 +3,17 @@ package br.com.mind5.masterData.timezone.dao;
 import java.sql.SQLException;
 import java.util.List;
 
-import br.com.mind5.dao.DaoStmtExecHelperV2;
+import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.masterData.timezone.info.TimezoneInfo;
 
-public final class DaoTimezoneSelect implements DaoStmtExecV2<TimezoneInfo> {
-	private DaoStmtExecV2<TimezoneInfo> helper;
+public final class DaoTimezoneSelect implements DaoStmtExec<TimezoneInfo> {
+	private DaoStmtExec<TimezoneInfo> helper;
 	
 	
 	public DaoTimezoneSelect(List<DaoStmtExecOption<TimezoneInfo>> options) {
-		helper = new DaoStmtExecHelperV2<>(options, DaoTimezoneSelectSingle.class, TimezoneInfo.class);
+		helper = new DaoStmtExecHelper<>(options, DaoTimezoneSelectSingle.class, TimezoneInfo.class);
 	}
 	
 	

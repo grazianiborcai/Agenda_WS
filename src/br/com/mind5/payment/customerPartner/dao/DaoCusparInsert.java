@@ -3,17 +3,17 @@ package br.com.mind5.payment.customerPartner.dao;
 import java.sql.SQLException;
 import java.util.List;
 
-import br.com.mind5.dao.DaoStmtExecHelperV2;
+import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.payment.customerPartner.info.CusparInfo;
 
-public final class DaoCusparInsert implements DaoStmtExecV2<CusparInfo> {
-	private DaoStmtExecV2<CusparInfo> helper;
+public final class DaoCusparInsert implements DaoStmtExec<CusparInfo> {
+	private DaoStmtExec<CusparInfo> helper;
 	
 	
 	public DaoCusparInsert(List<DaoStmtExecOption<CusparInfo>> options) {
-		helper = new DaoStmtExecHelperV2<>(options, DaoCusparInsertSingle.class, CusparInfo.class);
+		helper = new DaoStmtExecHelper<>(options, DaoCusparInsertSingle.class, CusparInfo.class);
 	}
 	
 	

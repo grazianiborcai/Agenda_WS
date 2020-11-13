@@ -3,7 +3,7 @@ package br.com.mind5.form.formAddressSearch.model.action;
 import java.util.List;
 
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.form.formAddressSearch.dao.DaoFormesarchSelect;
 import br.com.mind5.form.formAddressSearch.info.FormesarchInfo;
 import br.com.mind5.model.action.ActionVisitorTemplateStmt;
@@ -17,7 +17,7 @@ final class VisiFormesarchDaoSelect extends ActionVisitorTemplateStmt<Formesarch
 	
 	
 	
-	@Override protected DaoStmtExecV2<FormesarchInfo> buildStmtExecHook(List<DaoStmtExecOption<FormesarchInfo>> stmtOptions) {
+	@Override protected DaoStmtExec<FormesarchInfo> buildStmtExecHook(List<DaoStmtExecOption<FormesarchInfo>> stmtOptions) {
 		return new DaoFormesarchSelect(stmtOptions);
 	}
 }

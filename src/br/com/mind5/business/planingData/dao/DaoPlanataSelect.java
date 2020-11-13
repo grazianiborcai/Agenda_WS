@@ -4,16 +4,16 @@ import java.sql.SQLException;
 import java.util.List;
 
 import br.com.mind5.business.planingData.info.PlanataInfo;
-import br.com.mind5.dao.DaoStmtExecHelperV2;
+import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.dao.DaoStmtExec;
 
-public final class DaoPlanataSelect implements DaoStmtExecV2<PlanataInfo> {
-	private DaoStmtExecV2<PlanataInfo> helper;
+public final class DaoPlanataSelect implements DaoStmtExec<PlanataInfo> {
+	private DaoStmtExec<PlanataInfo> helper;
 	
 	
 	public DaoPlanataSelect(List<DaoStmtExecOption<PlanataInfo>> options) {
-		helper = new DaoStmtExecHelperV2<>(options, DaoPlanataSelectSingle.class, PlanataInfo.class);
+		helper = new DaoStmtExecHelper<>(options, DaoPlanataSelectSingle.class, PlanataInfo.class);
 	}
 	
 	

@@ -3,17 +3,17 @@ package br.com.mind5.masterData.authorizationGroup.dao;
 import java.sql.SQLException;
 import java.util.List;
 
-import br.com.mind5.dao.DaoStmtExecHelperV2;
+import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.masterData.authorizationGroup.info.AuthgroupInfo;
 
-public class DaoAuthgroupSelect implements DaoStmtExecV2<AuthgroupInfo> {
-	private DaoStmtExecV2<AuthgroupInfo> helper;
+public class DaoAuthgroupSelect implements DaoStmtExec<AuthgroupInfo> {
+	private DaoStmtExec<AuthgroupInfo> helper;
 	
 	
 	public DaoAuthgroupSelect(List<DaoStmtExecOption<AuthgroupInfo>> options) {
-		helper = new DaoStmtExecHelperV2<>(options, DaoAuthgroupSelectSingle.class, AuthgroupInfo.class);
+		helper = new DaoStmtExecHelper<>(options, DaoAuthgroupSelectSingle.class, AuthgroupInfo.class);
 	}
 	
 	

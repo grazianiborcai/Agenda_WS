@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.materialStoreSnapshot.dao.DaoMatorapInsert;
 import br.com.mind5.business.materialStoreSnapshot.info.MatorapInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -17,7 +17,7 @@ final class VisiMatorapDaoInsert extends ActionVisitorTemplateStmt<MatorapInfo> 
 	
 	
 	
-	@Override protected DaoStmtExecV2<MatorapInfo> buildStmtExecHook(List<DaoStmtExecOption<MatorapInfo>> stmtOptions) {
+	@Override protected DaoStmtExec<MatorapInfo> buildStmtExecHook(List<DaoStmtExecOption<MatorapInfo>> stmtOptions) {
 		return new DaoMatorapInsert(stmtOptions);
 	}
 }

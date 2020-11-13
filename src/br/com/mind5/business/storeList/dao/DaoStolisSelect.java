@@ -4,16 +4,16 @@ import java.sql.SQLException;
 import java.util.List;
 
 import br.com.mind5.business.storeList.info.StolisInfo;
-import br.com.mind5.dao.DaoStmtExecHelperV2;
+import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.dao.DaoStmtExec;
 
-public final class DaoStolisSelect implements DaoStmtExecV2<StolisInfo> {
-	private DaoStmtExecV2<StolisInfo> helper;
+public final class DaoStolisSelect implements DaoStmtExec<StolisInfo> {
+	private DaoStmtExec<StolisInfo> helper;
 	
 	
 	public DaoStolisSelect(List<DaoStmtExecOption<StolisInfo>> options) {
-		helper = new DaoStmtExecHelperV2<>(options, DaoStolisSelectSingle.class, StolisInfo.class);
+		helper = new DaoStmtExecHelper<>(options, DaoStolisSelectSingle.class, StolisInfo.class);
 	}
 	
 	

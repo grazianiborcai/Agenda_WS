@@ -4,16 +4,16 @@ import java.sql.SQLException;
 import java.util.List;
 
 import br.com.mind5.business.scheduleRange.info.SchedageInfo;
-import br.com.mind5.dao.DaoStmtExecHelperV2;
+import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.dao.DaoStmtExec;
 
-public final class DaoSchedageSelect implements DaoStmtExecV2<SchedageInfo> {
-	private DaoStmtExecV2<SchedageInfo> helper;
+public final class DaoSchedageSelect implements DaoStmtExec<SchedageInfo> {
+	private DaoStmtExec<SchedageInfo> helper;
 	
 	
 	public DaoSchedageSelect(List<DaoStmtExecOption<SchedageInfo>> options) {
-		helper = new DaoStmtExecHelperV2<>(options, DaoSchedageSelectSingle.class, SchedageInfo.class);
+		helper = new DaoStmtExecHelper<>(options, DaoSchedageSelectSingle.class, SchedageInfo.class);
 	}
 	
 	

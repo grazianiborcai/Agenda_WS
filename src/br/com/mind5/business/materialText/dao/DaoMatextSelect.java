@@ -4,16 +4,16 @@ import java.sql.SQLException;
 import java.util.List;
 
 import br.com.mind5.business.materialText.info.MatextInfo;
-import br.com.mind5.dao.DaoStmtExecHelperV2;
+import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.dao.DaoStmtExec;
 
-public final class DaoMatextSelect implements DaoStmtExecV2<MatextInfo> {
-	private DaoStmtExecV2<MatextInfo> helper;
+public final class DaoMatextSelect implements DaoStmtExec<MatextInfo> {
+	private DaoStmtExec<MatextInfo> helper;
 	
 	
 	public DaoMatextSelect(List<DaoStmtExecOption<MatextInfo>> options) {
-		helper = new DaoStmtExecHelperV2<>(options, DaoMatextSelectSingle.class, MatextInfo.class);
+		helper = new DaoStmtExecHelper<>(options, DaoMatextSelectSingle.class, MatextInfo.class);
 	}
 	
 	

@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.employeeWorkTimeRange.dao.DaoEmpworgSelect;
 import br.com.mind5.business.employeeWorkTimeRange.info.EmpworgInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -17,7 +17,7 @@ final class VisiEmpworgDaoSelect extends ActionVisitorTemplateStmt<EmpworgInfo> 
 	
 	
 	
-	@Override protected DaoStmtExecV2<EmpworgInfo> buildStmtExecHook(List<DaoStmtExecOption<EmpworgInfo>> stmtOptions) {
+	@Override protected DaoStmtExec<EmpworgInfo> buildStmtExecHook(List<DaoStmtExecOption<EmpworgInfo>> stmtOptions) {
 		return new DaoEmpworgSelect(stmtOptions);
 	}
 }

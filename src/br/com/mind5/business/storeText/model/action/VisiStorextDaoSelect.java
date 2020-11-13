@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.storeText.dao.DaoStorextSelect;
 import br.com.mind5.business.storeText.info.StorextInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -17,7 +17,7 @@ final class VisiStorextDaoSelect extends ActionVisitorTemplateStmt<StorextInfo> 
 	
 	
 	
-	@Override protected DaoStmtExecV2<StorextInfo> buildStmtExecHook(List<DaoStmtExecOption<StorextInfo>> stmtOptions) {
+	@Override protected DaoStmtExec<StorextInfo> buildStmtExecHook(List<DaoStmtExecOption<StorextInfo>> stmtOptions) {
 		return new DaoStorextSelect(stmtOptions);
 	}
 }

@@ -4,16 +4,16 @@ import java.sql.SQLException;
 import java.util.List;
 
 import br.com.mind5.business.address.info.AddressInfo;
-import br.com.mind5.dao.DaoStmtExecHelperV2;
+import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.dao.DaoStmtExec;
 
-public final class DaoAddressUpdate implements DaoStmtExecV2<AddressInfo> {
-	private DaoStmtExecV2<AddressInfo> helper;
+public final class DaoAddressUpdate implements DaoStmtExec<AddressInfo> {
+	private DaoStmtExec<AddressInfo> helper;
 	
 	
 	public DaoAddressUpdate(List<DaoStmtExecOption<AddressInfo>> options) {
-		helper = new DaoStmtExecHelperV2<>(options, DaoAddressUpdateSingle.class, AddressInfo.class);
+		helper = new DaoStmtExecHelper<>(options, DaoAddressUpdateSingle.class, AddressInfo.class);
 	}
 	
 	

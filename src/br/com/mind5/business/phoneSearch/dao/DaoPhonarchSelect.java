@@ -4,16 +4,16 @@ import java.sql.SQLException;
 import java.util.List;
 
 import br.com.mind5.business.phoneSearch.info.PhonarchInfo;
-import br.com.mind5.dao.DaoStmtExecHelperV2;
+import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.dao.DaoStmtExec;
 
-public final class DaoPhonarchSelect implements DaoStmtExecV2<PhonarchInfo> {
-	private DaoStmtExecV2<PhonarchInfo> helper;
+public final class DaoPhonarchSelect implements DaoStmtExec<PhonarchInfo> {
+	private DaoStmtExec<PhonarchInfo> helper;
 	
 	
 	public DaoPhonarchSelect(List<DaoStmtExecOption<PhonarchInfo>> options) {
-		helper = new DaoStmtExecHelperV2<>(options, DaoPhonarchSelectSingle.class, PhonarchInfo.class);
+		helper = new DaoStmtExecHelper<>(options, DaoPhonarchSelectSingle.class, PhonarchInfo.class);
 	}
 	
 	

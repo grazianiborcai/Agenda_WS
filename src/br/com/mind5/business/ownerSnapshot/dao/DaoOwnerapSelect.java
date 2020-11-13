@@ -4,16 +4,16 @@ import java.sql.SQLException;
 import java.util.List;
 
 import br.com.mind5.business.ownerSnapshot.info.OwnerapInfo;
-import br.com.mind5.dao.DaoStmtExecHelperV2;
+import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.dao.DaoStmtExec;
 
-public final class DaoOwnerapSelect implements DaoStmtExecV2<OwnerapInfo> {
-	private DaoStmtExecV2<OwnerapInfo> helper;
+public final class DaoOwnerapSelect implements DaoStmtExec<OwnerapInfo> {
+	private DaoStmtExec<OwnerapInfo> helper;
 	
 	
 	public DaoOwnerapSelect(List<DaoStmtExecOption<OwnerapInfo>> options) {
-		helper = new DaoStmtExecHelperV2<>(options, DaoOwnerapSelectSingle.class, OwnerapInfo.class);
+		helper = new DaoStmtExecHelper<>(options, DaoOwnerapSelectSingle.class, OwnerapInfo.class);
 	}
 	
 	

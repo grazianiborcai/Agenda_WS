@@ -3,7 +3,7 @@ package br.com.mind5.masterData.prospectStatusSearch.model.action;
 import java.util.List;
 
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.masterData.prospectStatusSearch.dao.DaoProstarchSelect;
 import br.com.mind5.masterData.prospectStatusSearch.info.ProstarchInfo;
 import br.com.mind5.model.action.ActionVisitorTemplateStmt;
@@ -17,7 +17,7 @@ final class VisiProstarchDaoSelect extends ActionVisitorTemplateStmt<ProstarchIn
 	
 	
 	
-	@Override protected DaoStmtExecV2<ProstarchInfo> buildStmtExecHook(List<DaoStmtExecOption<ProstarchInfo>> stmtOptions) {
+	@Override protected DaoStmtExec<ProstarchInfo> buildStmtExecHook(List<DaoStmtExecOption<ProstarchInfo>> stmtOptions) {
 		return new DaoProstarchSelect(stmtOptions);
 	}
 }

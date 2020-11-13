@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.addressSearch.dao.DaoAddarchSelect;
 import br.com.mind5.business.addressSearch.info.AddarchInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -17,7 +17,7 @@ final class VisiAddarchDaoSelect extends ActionVisitorTemplateStmt<AddarchInfo> 
 	
 	
 	
-	@Override protected DaoStmtExecV2<AddarchInfo> buildStmtExecHook(List<DaoStmtExecOption<AddarchInfo>> stmtOptions) {
+	@Override protected DaoStmtExec<AddarchInfo> buildStmtExecHook(List<DaoStmtExecOption<AddarchInfo>> stmtOptions) {
 		return new DaoAddarchSelect(stmtOptions);
 	}
 }

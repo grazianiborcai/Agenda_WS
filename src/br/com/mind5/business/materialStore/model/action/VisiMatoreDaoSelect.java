@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.materialStore.dao.DaoMatoreSelect;
 import br.com.mind5.business.materialStore.info.MatoreInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -17,7 +17,7 @@ final class VisiMatoreDaoSelect extends ActionVisitorTemplateStmt<MatoreInfo> {
 	
 	
 	
-	@Override protected DaoStmtExecV2<MatoreInfo> buildStmtExecHook(List<DaoStmtExecOption<MatoreInfo>> stmtOptions) {
+	@Override protected DaoStmtExec<MatoreInfo> buildStmtExecHook(List<DaoStmtExecOption<MatoreInfo>> stmtOptions) {
 		return new DaoMatoreSelect(stmtOptions);
 	}
 }

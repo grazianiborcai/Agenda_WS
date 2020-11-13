@@ -3,7 +3,7 @@ package br.com.mind5.masterData.country.model.action;
 import java.util.List;
 
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.masterData.country.dao.DaoCountrySelect;
 import br.com.mind5.masterData.country.info.CountryInfo;
 import br.com.mind5.model.action.ActionVisitorTemplateStmt;
@@ -17,7 +17,7 @@ final class VisiCountryDaoSelect extends ActionVisitorTemplateStmt<CountryInfo> 
 	
 	
 	
-	@Override protected DaoStmtExecV2<CountryInfo> buildStmtExecHook(List<DaoStmtExecOption<CountryInfo>> stmtOptions) {
+	@Override protected DaoStmtExec<CountryInfo> buildStmtExecHook(List<DaoStmtExecOption<CountryInfo>> stmtOptions) {
 		return new DaoCountrySelect(stmtOptions);
 	}
 }

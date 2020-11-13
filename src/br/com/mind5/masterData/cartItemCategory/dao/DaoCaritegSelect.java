@@ -3,17 +3,17 @@ package br.com.mind5.masterData.cartItemCategory.dao;
 import java.sql.SQLException;
 import java.util.List;
 
-import br.com.mind5.dao.DaoStmtExecHelperV2;
+import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.masterData.cartItemCategory.info.CaritegInfo;
 
-public final class DaoCaritegSelect implements DaoStmtExecV2<CaritegInfo> {
-	private DaoStmtExecV2<CaritegInfo> helper;
+public final class DaoCaritegSelect implements DaoStmtExec<CaritegInfo> {
+	private DaoStmtExec<CaritegInfo> helper;
 	
 	
 	public DaoCaritegSelect(List<DaoStmtExecOption<CaritegInfo>> options) {
-		helper = new DaoStmtExecHelperV2<>(options, DaoCaritegSelectSingle.class, CaritegInfo.class);
+		helper = new DaoStmtExecHelper<>(options, DaoCaritegSelectSingle.class, CaritegInfo.class);
 	}
 	
 	

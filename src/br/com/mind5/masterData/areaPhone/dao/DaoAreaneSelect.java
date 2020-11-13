@@ -3,17 +3,17 @@ package br.com.mind5.masterData.areaPhone.dao;
 import java.sql.SQLException;
 import java.util.List;
 
-import br.com.mind5.dao.DaoStmtExecHelperV2;
+import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.masterData.areaPhone.info.AreaneInfo;
 
-public final class DaoAreaneSelect implements DaoStmtExecV2<AreaneInfo> {
-	private DaoStmtExecV2<AreaneInfo> helper;
+public final class DaoAreaneSelect implements DaoStmtExec<AreaneInfo> {
+	private DaoStmtExec<AreaneInfo> helper;
 	
 	
 	public DaoAreaneSelect(List<DaoStmtExecOption<AreaneInfo>> options) {
-		helper = new DaoStmtExecHelperV2<>(options, DaoAreaneSelectSingle.class, AreaneInfo.class);
+		helper = new DaoStmtExecHelper<>(options, DaoAreaneSelectSingle.class, AreaneInfo.class);
 	}
 	
 	

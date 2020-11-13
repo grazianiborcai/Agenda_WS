@@ -3,17 +3,17 @@ package br.com.mind5.webhook.moipRefund.dao;
 import java.sql.SQLException;
 import java.util.List;
 
-import br.com.mind5.dao.DaoStmtExecHelperV2;
+import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.webhook.moipRefund.info.WokefumoipInfo;
 
-public final class DaoWokefumoipSelect implements DaoStmtExecV2<WokefumoipInfo> {
-	private DaoStmtExecV2<WokefumoipInfo> helper;
+public final class DaoWokefumoipSelect implements DaoStmtExec<WokefumoipInfo> {
+	private DaoStmtExec<WokefumoipInfo> helper;
 	
 	
 	public DaoWokefumoipSelect(List<DaoStmtExecOption<WokefumoipInfo>> options) {
-		helper = new DaoStmtExecHelperV2<>(options, DaoWokefumoipSelectSingle.class, WokefumoipInfo.class);
+		helper = new DaoStmtExecHelper<>(options, DaoWokefumoipSelectSingle.class, WokefumoipInfo.class);
 	}
 	
 	

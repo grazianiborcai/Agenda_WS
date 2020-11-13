@@ -3,7 +3,7 @@ package br.com.mind5.masterData.areaPhoneSearch.model.action;
 import java.util.List;
 
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.masterData.areaPhoneSearch.dao.DaoAreanarchSelect;
 import br.com.mind5.masterData.areaPhoneSearch.info.AreanarchInfo;
 import br.com.mind5.model.action.ActionVisitorTemplateStmt;
@@ -17,7 +17,7 @@ final class VisiAreanarchDaoSelect extends ActionVisitorTemplateStmt<AreanarchIn
 	
 	
 	
-	@Override protected DaoStmtExecV2<AreanarchInfo> buildStmtExecHook(List<DaoStmtExecOption<AreanarchInfo>> stmtOptions) {
+	@Override protected DaoStmtExec<AreanarchInfo> buildStmtExecHook(List<DaoStmtExecOption<AreanarchInfo>> stmtOptions) {
 		return new DaoAreanarchSelect(stmtOptions);
 	}
 }

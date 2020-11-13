@@ -3,17 +3,17 @@ package br.com.mind5.masterData.feeCategory.dao;
 import java.sql.SQLException;
 import java.util.List;
 
-import br.com.mind5.dao.DaoStmtExecHelperV2;
+import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.masterData.feeCategory.info.FeecatInfo;
 
-public final class DaoFeecatSelect implements DaoStmtExecV2<FeecatInfo> {
-	private DaoStmtExecV2<FeecatInfo> helper;
+public final class DaoFeecatSelect implements DaoStmtExec<FeecatInfo> {
+	private DaoStmtExec<FeecatInfo> helper;
 	
 	
 	public DaoFeecatSelect(List<DaoStmtExecOption<FeecatInfo>> options) {
-		helper = new DaoStmtExecHelperV2<>(options, DaoFeecatSelectSingle.class, FeecatInfo.class);
+		helper = new DaoStmtExecHelper<>(options, DaoFeecatSelectSingle.class, FeecatInfo.class);
 	}
 	
 	

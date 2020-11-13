@@ -3,7 +3,7 @@ package br.com.mind5.masterData.refundPolicyGroupItem.model.action;
 import java.util.List;
 
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.masterData.refundPolicyGroupItem.dao.DaoRefugritemSelect;
 import br.com.mind5.masterData.refundPolicyGroupItem.info.RefugritemInfo;
 import br.com.mind5.model.action.ActionVisitorTemplateStmt;
@@ -17,7 +17,7 @@ final class VisiRefugritemDaoSelect extends ActionVisitorTemplateStmt<Refugritem
 	
 	
 	
-	@Override protected DaoStmtExecV2<RefugritemInfo> buildStmtExecHook(List<DaoStmtExecOption<RefugritemInfo>> stmtOptions) {
+	@Override protected DaoStmtExec<RefugritemInfo> buildStmtExecHook(List<DaoStmtExecOption<RefugritemInfo>> stmtOptions) {
 		return new DaoRefugritemSelect(stmtOptions);
 	}
 }

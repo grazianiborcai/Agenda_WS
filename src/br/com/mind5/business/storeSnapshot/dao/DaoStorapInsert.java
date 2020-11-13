@@ -4,16 +4,16 @@ import java.sql.SQLException;
 import java.util.List;
 
 import br.com.mind5.business.storeSnapshot.info.StorapInfo;
-import br.com.mind5.dao.DaoStmtExecHelperV2;
+import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.dao.DaoStmtExec;
 
-public final class DaoStorapInsert implements DaoStmtExecV2<StorapInfo> {
-	private DaoStmtExecV2<StorapInfo> helper;
+public final class DaoStorapInsert implements DaoStmtExec<StorapInfo> {
+	private DaoStmtExec<StorapInfo> helper;
 	
 	
 	public DaoStorapInsert(List<DaoStmtExecOption<StorapInfo>> options) {
-		helper = new DaoStmtExecHelperV2<>(options, DaoStorapInsertSingle.class, StorapInfo.class);
+		helper = new DaoStmtExecHelper<>(options, DaoStorapInsertSingle.class, StorapInfo.class);
 	}
 	
 	

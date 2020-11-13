@@ -3,17 +3,17 @@ package br.com.mind5.payment.storePartnerSnapshot.dao;
 import java.sql.SQLException;
 import java.util.List;
 
-import br.com.mind5.dao.DaoStmtExecHelperV2;
+import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.payment.storePartnerSnapshot.info.StoparnapInfo;
 
-public final class DaoStoparnapSelect implements DaoStmtExecV2<StoparnapInfo> {
-	private DaoStmtExecV2<StoparnapInfo> helper;
+public final class DaoStoparnapSelect implements DaoStmtExec<StoparnapInfo> {
+	private DaoStmtExec<StoparnapInfo> helper;
 	
 	
 	public DaoStoparnapSelect(List<DaoStmtExecOption<StoparnapInfo>> options) {
-		helper = new DaoStmtExecHelperV2<>(options, DaoStoparnapSelectSingle.class, StoparnapInfo.class);
+		helper = new DaoStmtExecHelper<>(options, DaoStoparnapSelectSingle.class, StoparnapInfo.class);
 	}
 	
 	

@@ -3,7 +3,7 @@ package br.com.mind5.payment.systemPartnerSearch.model.action;
 import java.util.List;
 
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.systemPartnerSearch.dao.DaoSysparchSelect;
@@ -17,7 +17,7 @@ final class VisiSysparchDaoSelect extends ActionVisitorTemplateStmt<SysparchInfo
 	
 	
 	
-	@Override protected DaoStmtExecV2<SysparchInfo> buildStmtExecHook(List<DaoStmtExecOption<SysparchInfo>> stmtOptions) {
+	@Override protected DaoStmtExec<SysparchInfo> buildStmtExecHook(List<DaoStmtExecOption<SysparchInfo>> stmtOptions) {
 		return new DaoSysparchSelect(stmtOptions);
 	}
 }

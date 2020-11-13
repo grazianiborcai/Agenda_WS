@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.storeWorkTimeSearch.dao.DaoStowotarchSelect;
 import br.com.mind5.business.storeWorkTimeSearch.info.StowotarchInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -17,7 +17,7 @@ final class VisiStowotarchDaoSelect extends ActionVisitorTemplateStmt<Stowotarch
 	
 	
 	
-	@Override protected DaoStmtExecV2<StowotarchInfo> buildStmtExecHook(List<DaoStmtExecOption<StowotarchInfo>> stmtOptions) {
+	@Override protected DaoStmtExec<StowotarchInfo> buildStmtExecHook(List<DaoStmtExecOption<StowotarchInfo>> stmtOptions) {
 		return new DaoStowotarchSelect(stmtOptions);
 	}
 }

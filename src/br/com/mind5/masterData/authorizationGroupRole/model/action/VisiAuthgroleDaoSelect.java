@@ -3,7 +3,7 @@ package br.com.mind5.masterData.authorizationGroupRole.model.action;
 import java.util.List;
 
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.masterData.authorizationGroupRole.dao.DaoAuthgroleSelect;
 import br.com.mind5.masterData.authorizationGroupRole.info.AuthgroleInfo;
 import br.com.mind5.model.action.ActionVisitorTemplateStmt;
@@ -17,7 +17,7 @@ final class VisiAuthgroleDaoSelect extends ActionVisitorTemplateStmt<AuthgroleIn
 	
 	
 	
-	@Override protected DaoStmtExecV2<AuthgroleInfo> buildStmtExecHook(List<DaoStmtExecOption<AuthgroleInfo>> stmtOptions) {
+	@Override protected DaoStmtExec<AuthgroleInfo> buildStmtExecHook(List<DaoStmtExecOption<AuthgroleInfo>> stmtOptions) {
 		return new DaoAuthgroleSelect(stmtOptions);
 	}
 }

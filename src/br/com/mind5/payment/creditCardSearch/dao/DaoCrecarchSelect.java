@@ -3,17 +3,17 @@ package br.com.mind5.payment.creditCardSearch.dao;
 import java.sql.SQLException;
 import java.util.List;
 
-import br.com.mind5.dao.DaoStmtExecHelperV2;
+import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.payment.creditCardSearch.info.CrecarchInfo;
 
-public final class DaoCrecarchSelect implements DaoStmtExecV2<CrecarchInfo> {
-	private DaoStmtExecV2<CrecarchInfo> helper;
+public final class DaoCrecarchSelect implements DaoStmtExec<CrecarchInfo> {
+	private DaoStmtExec<CrecarchInfo> helper;
 	
 	
 	public DaoCrecarchSelect(List<DaoStmtExecOption<CrecarchInfo>> options) {
-		helper = new DaoStmtExecHelperV2<>(options, DaoCrecarchSelectSingle.class, CrecarchInfo.class);
+		helper = new DaoStmtExecHelper<>(options, DaoCrecarchSelectSingle.class, CrecarchInfo.class);
 	}
 	
 	

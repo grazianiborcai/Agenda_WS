@@ -3,7 +3,7 @@ package br.com.mind5.payment.creditCardSearch.model.action;
 import java.util.List;
 
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.creditCardSearch.dao.DaoCrecarchSelect;
@@ -17,7 +17,7 @@ final class VisiCrecarchDaoSelect extends ActionVisitorTemplateStmt<CrecarchInfo
 	
 	
 	
-	@Override protected DaoStmtExecV2<CrecarchInfo> buildStmtExecHook(List<DaoStmtExecOption<CrecarchInfo>> stmtOptions) {
+	@Override protected DaoStmtExec<CrecarchInfo> buildStmtExecHook(List<DaoStmtExecOption<CrecarchInfo>> stmtOptions) {
 		return new DaoCrecarchSelect(stmtOptions);
 	}
 }

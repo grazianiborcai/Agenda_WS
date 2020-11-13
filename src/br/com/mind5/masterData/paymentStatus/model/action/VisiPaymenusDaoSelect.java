@@ -3,7 +3,7 @@ package br.com.mind5.masterData.paymentStatus.model.action;
 import java.util.List;
 
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.masterData.paymentStatus.dao.DaoPaymenusSelect;
 import br.com.mind5.masterData.paymentStatus.info.PaymenusInfo;
 import br.com.mind5.model.action.ActionVisitorTemplateStmt;
@@ -17,7 +17,7 @@ final class VisiPaymenusDaoSelect extends ActionVisitorTemplateStmt<PaymenusInfo
 	
 	
 	
-	@Override protected DaoStmtExecV2<PaymenusInfo> buildStmtExecHook(List<DaoStmtExecOption<PaymenusInfo>> stmtOptions) {
+	@Override protected DaoStmtExec<PaymenusInfo> buildStmtExecHook(List<DaoStmtExecOption<PaymenusInfo>> stmtOptions) {
 		return new DaoPaymenusSelect(stmtOptions);
 	}
 }

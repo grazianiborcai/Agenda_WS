@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.scheduleRange.dao.DaoSchedageSelect;
 import br.com.mind5.business.scheduleRange.info.SchedageInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -17,7 +17,7 @@ final class VisiSchedageDaoSelect extends ActionVisitorTemplateStmt<SchedageInfo
 	
 	
 	
-	@Override protected DaoStmtExecV2<SchedageInfo> buildStmtExecHook(List<DaoStmtExecOption<SchedageInfo>> stmtOptions) {
+	@Override protected DaoStmtExec<SchedageInfo> buildStmtExecHook(List<DaoStmtExecOption<SchedageInfo>> stmtOptions) {
 		return new DaoSchedageSelect(stmtOptions);
 	}
 }

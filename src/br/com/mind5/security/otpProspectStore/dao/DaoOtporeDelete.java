@@ -3,17 +3,17 @@ package br.com.mind5.security.otpProspectStore.dao;
 import java.sql.SQLException;
 import java.util.List;
 
-import br.com.mind5.dao.DaoStmtExecHelperV2;
+import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.security.otpProspectStore.info.OtporeInfo;
 
-public final class DaoOtporeDelete implements DaoStmtExecV2<OtporeInfo> {
-	private DaoStmtExecV2<OtporeInfo> helper;
+public final class DaoOtporeDelete implements DaoStmtExec<OtporeInfo> {
+	private DaoStmtExec<OtporeInfo> helper;
 	
 	
 	public DaoOtporeDelete(List<DaoStmtExecOption<OtporeInfo>> options) {
-		helper = new DaoStmtExecHelperV2<>(options, DaoOtporeDeleteSingle.class, OtporeInfo.class);
+		helper = new DaoStmtExecHelper<>(options, DaoOtporeDeleteSingle.class, OtporeInfo.class);
 	}
 	
 	

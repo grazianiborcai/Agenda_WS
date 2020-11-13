@@ -4,16 +4,16 @@ import java.sql.SQLException;
 import java.util.List;
 
 import br.com.mind5.business.customerSearch.info.CusarchInfo;
-import br.com.mind5.dao.DaoStmtExecHelperV2;
+import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.dao.DaoStmtExec;
 
-public final class DaoCusarchSelect implements DaoStmtExecV2<CusarchInfo> {
-	private DaoStmtExecV2<CusarchInfo> helper;
+public final class DaoCusarchSelect implements DaoStmtExec<CusarchInfo> {
+	private DaoStmtExec<CusarchInfo> helper;
 	
 	
 	public DaoCusarchSelect(List<DaoStmtExecOption<CusarchInfo>> options) {
-		helper = new DaoStmtExecHelperV2<>(options, DaoCusarchSelectSingle.class, CusarchInfo.class);
+		helper = new DaoStmtExecHelper<>(options, DaoCusarchSelectSingle.class, CusarchInfo.class);
 	}
 	
 	

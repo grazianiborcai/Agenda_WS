@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.mind5.business.materialTextDefault.dao.DaoMatextaultSelect;
 import br.com.mind5.business.materialTextDefault.info.MatextaultInfo;
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
@@ -17,7 +17,7 @@ final class VisiMatextaultDaoSelect extends ActionVisitorTemplateStmt<Matextault
 	
 	
 	
-	@Override protected DaoStmtExecV2<MatextaultInfo> buildStmtExecHook(List<DaoStmtExecOption<MatextaultInfo>> stmtOptions) {
+	@Override protected DaoStmtExec<MatextaultInfo> buildStmtExecHook(List<DaoStmtExecOption<MatextaultInfo>> stmtOptions) {
 		return new DaoMatextaultSelect(stmtOptions);
 	}
 }

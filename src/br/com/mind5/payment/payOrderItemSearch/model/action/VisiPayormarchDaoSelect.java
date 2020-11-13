@@ -3,7 +3,7 @@ package br.com.mind5.payment.payOrderItemSearch.model.action;
 import java.util.List;
 
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.model.action.ActionVisitorTemplateStmt;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 import br.com.mind5.payment.payOrderItemSearch.dao.DaoPayormarchSelect;
@@ -17,7 +17,7 @@ final class VisiPayormarchDaoSelect extends ActionVisitorTemplateStmt<Payormarch
 	
 	
 	
-	@Override protected DaoStmtExecV2<PayormarchInfo> buildStmtExecHook(List<DaoStmtExecOption<PayormarchInfo>> stmtOptions) {
+	@Override protected DaoStmtExec<PayormarchInfo> buildStmtExecHook(List<DaoStmtExecOption<PayormarchInfo>> stmtOptions) {
 		return new DaoPayormarchSelect(stmtOptions);
 	}
 }

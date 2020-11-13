@@ -3,7 +3,7 @@ package br.com.mind5.masterData.weekday.model.action;
 import java.util.List;
 
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.dao.DaoStmtExec;
 import br.com.mind5.masterData.weekday.dao.DaoWeekdaySelect;
 import br.com.mind5.masterData.weekday.info.WeekdayInfo;
 import br.com.mind5.model.action.ActionVisitorTemplateStmt;
@@ -17,7 +17,7 @@ final class VisiWeekdayDaoSelect extends ActionVisitorTemplateStmt<WeekdayInfo> 
 	
 	
 	
-	@Override protected DaoStmtExecV2<WeekdayInfo> buildStmtExecHook(List<DaoStmtExecOption<WeekdayInfo>> stmtOptions) {
+	@Override protected DaoStmtExec<WeekdayInfo> buildStmtExecHook(List<DaoStmtExecOption<WeekdayInfo>> stmtOptions) {
 		return new DaoWeekdaySelect(stmtOptions);
 	}
 }

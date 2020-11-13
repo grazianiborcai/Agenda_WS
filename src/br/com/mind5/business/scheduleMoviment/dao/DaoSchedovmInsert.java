@@ -4,16 +4,16 @@ import java.sql.SQLException;
 import java.util.List;
 
 import br.com.mind5.business.scheduleMoviment.info.SchedovmInfo;
-import br.com.mind5.dao.DaoStmtExecHelperV2;
+import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.dao.DaoStmtExec;
 
-public final class DaoSchedovmInsert implements DaoStmtExecV2<SchedovmInfo> {
-	private DaoStmtExecV2<SchedovmInfo> helper;
+public final class DaoSchedovmInsert implements DaoStmtExec<SchedovmInfo> {
+	private DaoStmtExec<SchedovmInfo> helper;
 	
 	
 	public DaoSchedovmInsert(List<DaoStmtExecOption<SchedovmInfo>> options) {
-		helper = new DaoStmtExecHelperV2<>(options, SchedovmInsertSingle.class, SchedovmInfo.class);
+		helper = new DaoStmtExecHelper<>(options, SchedovmInsertSingle.class, SchedovmInfo.class);
 	}
 	
 	

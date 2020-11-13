@@ -4,16 +4,16 @@ import java.sql.SQLException;
 import java.util.List;
 
 import br.com.mind5.business.storeLeaveDate.info.StolateInfo;
-import br.com.mind5.dao.DaoStmtExecHelperV2;
+import br.com.mind5.dao.DaoStmtExecHelper;
 import br.com.mind5.dao.DaoStmtExecOption;
-import br.com.mind5.dao.DaoStmtExecV2;
+import br.com.mind5.dao.DaoStmtExec;
 
-public final class DaoStolateInsert implements DaoStmtExecV2<StolateInfo> {
-	private DaoStmtExecV2<StolateInfo> helper;
+public final class DaoStolateInsert implements DaoStmtExec<StolateInfo> {
+	private DaoStmtExec<StolateInfo> helper;
 	
 	
 	public DaoStolateInsert(List<DaoStmtExecOption<StolateInfo>> options) {
-		helper = new DaoStmtExecHelperV2<>(options, DaoStolateInsertSingle.class, StolateInfo.class);
+		helper = new DaoStmtExecHelper<>(options, DaoStolateInsertSingle.class, StolateInfo.class);
 	}
 	
 	
