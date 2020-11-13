@@ -1,54 +1,38 @@
 package br.com.mind5.business.materialStockSearch.info;
 
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import java.util.ArrayList;
+import java.util.List;
 
-final class MatocarchVisiMergeToSelect implements InfoMergerVisitor_<MatocarchInfo, MatocarchInfo> {
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-	@Override public MatocarchInfo writeRecord(MatocarchInfo sourceOne, MatocarchInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);		
-		return merge(sourceOne, sourceTwo);
+final class MatocarchVisiMergeToSelect implements InfoMergerVisitorV3<MatocarchInfo, MatocarchInfo> {
+
+	@Override public List<MatocarchInfo> beforeMerge(List<MatocarchInfo> baseInfos) {
+		return baseInfos;
 	}
 	
 	
 	
-	private void checkArgument(MatocarchInfo sourceOne, MatocarchInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
-	}
-	
-	
-	
-	private MatocarchInfo merge(MatocarchInfo sourceOne, MatocarchInfo sourceTwo) {
-		MatocarchInfo result = makeClone(sourceOne);
-		result.username = sourceTwo.username;
-		result.codLanguage = sourceTwo.codLanguage;
-		return result;
-	}
-	
-	
-	
-	private MatocarchInfo makeClone(MatocarchInfo recordInfo) {
-		try {
-			return (MatocarchInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(MatocarchInfo sourceOne, MatocarchInfo sourceTwo) {		
+	@Override public boolean shouldMerge(MatocarchInfo baseInfo, MatocarchInfo selectedInfo) {
 		return true;
 	}
 	
 	
 	
-	private void logException(Exception e) {
+	@Override public List<MatocarchInfo> merge(MatocarchInfo baseInfo, MatocarchInfo selectedInfo) {
+		List<MatocarchInfo> results = new ArrayList<>();
 		
-		SystemLog.logError(this.getClass(), e);
+		selectedInfo.username = baseInfo.username;
+		selectedInfo.codLanguage = baseInfo.codLanguage;
+		
+		results.add(selectedInfo);
+		return results;
+	}
+	
+	
+	
+	@Override public InfoUniquifier<MatocarchInfo> getUniquifier() {
+		return null;
 	}
 }

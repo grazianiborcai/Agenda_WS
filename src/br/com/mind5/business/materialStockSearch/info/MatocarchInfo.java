@@ -13,7 +13,7 @@ public final class MatocarchInfo extends InfoRecord implements Cloneable {
 	
 	
 	public MatocarchInfo() {
-		super(MatocarchInfo.class);
+		super();
 		
 		codOwner = DefaultValue.number();
 		codStore = DefaultValue.number();

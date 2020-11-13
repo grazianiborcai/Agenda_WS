@@ -52,7 +52,7 @@ import br.com.mind5.business.materialMovementSearch.dao.MatmarchDbTableColumn;
 import br.com.mind5.business.materialSearch.dao.DaoMatarchDbTableColumn;
 import br.com.mind5.business.materialSnapshot.dao.DaoMatsnapDbTableColumn;
 import br.com.mind5.business.materialStock.dao.MatockDbTableColumn;
-import br.com.mind5.business.materialStockSearch.dao.MatocarchDbTableColumn;
+import br.com.mind5.business.materialStockSearch.dao.DaoMatocarchDbTableColumn;
 import br.com.mind5.business.materialStore.dao.DaoMatoreDbTableColumn;
 import br.com.mind5.business.materialStoreSearch.dao.DaoMatorarchDbTableColumn;
 import br.com.mind5.business.materialStoreSnapshot.dao.DaoMatorapDbTableColumn;
@@ -348,7 +348,7 @@ public final class DaoDbTableColumnAll {
 		addTable(new DaoMatarchDbTableColumn());
 		addTable(new DaoMatorarchDbTableColumn());
 		addTable(new DaoMatorapDbTableColumn());
-		addTable(new MatocarchDbTableColumn());
+		addTable(new DaoMatocarchDbTableColumn());
 		addTable(new MatmarchDbTableColumn());
 		addTable(new DaoUserarchDbTableColumn());
 		addTable(new DaoStoparchDbTableColumn());

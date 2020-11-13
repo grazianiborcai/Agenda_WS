@@ -9,14 +9,14 @@ import br.com.mind5.business.materialStockSearch.model.checker.MatocarchCheckLan
 import br.com.mind5.business.materialStockSearch.model.checker.MatocarchCheckOwner;
 import br.com.mind5.business.materialStockSearch.model.checker.MatocarchCheckRead;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
-import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateReadV2;
 
 
-public final class RootMatocarchSelect extends DeciTreeTemplateReadV1<MatocarchInfo> {
+public final class RootMatocarchSelect extends DeciTreeTemplateReadV2<MatocarchInfo> {
 	
 	public RootMatocarchSelect(DeciTreeOption<MatocarchInfo> option) {
 		super(option);

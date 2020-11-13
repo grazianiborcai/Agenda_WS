@@ -1,34 +1,34 @@
 package br.com.mind5.business.materialStockSearch.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.materialStockSearch.info.MatocarchInfo;
 import br.com.mind5.business.materialStockSearch.info.MatocarchMerger;
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiMatocarchMergeToSelect extends ActionVisitorTemplateMergeV1<MatocarchInfo, MatocarchInfo> {
+final class VisiMatocarchMergeToSelect extends ActionVisitorTemplateMergeV2<MatocarchInfo, MatocarchInfo> {
 	
-	public VisiMatocarchMergeToSelect(Connection conn, String schemaName) {
-		super(conn, schemaName, MatocarchInfo.class);
+	public VisiMatocarchMergeToSelect(DeciTreeOption<MatocarchInfo> option) {
+		super(option, MatocarchInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends ActionStdV1<MatocarchInfo>> getActionClassHook() {
-		return StdMatocarchSelect.class;
+	@Override protected Class<? extends ActionStdV2<MatocarchInfo>> getActionClassHook() {
+		return StdMatocarchDaoSelect.class;
 	}
 	
 	
 	
-	@Override protected List<MatocarchInfo> mergeHook(List<MatocarchInfo> recordInfos, List<MatocarchInfo> selectedInfos) {	
-		return MatocarchMerger.mergeToSelect(selectedInfos, recordInfos);
+	@Override protected List<MatocarchInfo> mergeHook(List<MatocarchInfo> baseInfos, List<MatocarchInfo> selectedInfos) {	
+		return MatocarchMerger.mergeToSelect(baseInfos, selectedInfos);
 	}
 	
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
+		return super.DONT_MERGE_WHEN_EMPTY;
 	}
 }

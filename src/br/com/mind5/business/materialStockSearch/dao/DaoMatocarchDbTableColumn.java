@@ -9,32 +9,19 @@ import br.com.mind5.dao.DaoDbTableColumnTemplate;
 import br.com.mind5.dao.common.DaoDbField;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class MatocarchDbTableColumn extends DaoDbTableColumnTemplate {
+public final class DaoMatocarchDbTableColumn extends DaoDbTableColumnTemplate {
 	public static final String COL_COD_MATERIAL = DaoDbField.COL_COD_MATERIAL;
 	public static final String COL_COD_OWNER = DaoDbField.COL_COD_OWNER;	
 	public static final String COL_COD_STORE = DaoDbField.COL_COD_STORE;
 
 	
-	
-	private Hashtable<String, List<DaoColumn>> tableColumns;	
-	
-	public MatocarchDbTableColumn() {
-		super(MatocarchDbTableColumn.class);
+	public DaoMatocarchDbTableColumn() {
+		super();
 	}
 	
 	
 	
 	@Override protected Hashtable<String, List<DaoColumn>> buildTableColumnsHook() {
-		tableColumns = new Hashtable<>();
-		
-		buildMatockTable();
-		
-		return tableColumns;
-	}
-	
-	
-	
-	private void buildMatockTable() {
 		final String TABLE_NAME = DaoDbTable.MAT_STOCK_TABLE;
 		
 		DaoColumn oneColumn;
@@ -64,6 +51,8 @@ public final class MatocarchDbTableColumn extends DaoDbTableColumnTemplate {
 		oneColumn.isAutoIncremented = NEGATIVE;
 		columns.add(oneColumn);
 		
-		tableColumns.put(DaoDbTable.MAT_STOCK_SEARCH_VIEW, columns);
+		Hashtable<String, List<DaoColumn>> results = new Hashtable<>();
+		results.put(DaoDbTable.MAT_STOCK_SEARCH_VIEW, columns);
+		return results;
 	}
 }

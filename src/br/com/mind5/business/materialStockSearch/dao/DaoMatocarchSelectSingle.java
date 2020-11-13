@@ -15,11 +15,11 @@ import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class MatocarchSelectSingle extends DaoStmtTemplate<MatocarchInfo> {
+public final class DaoMatocarchSelectSingle extends DaoStmtTemplate<MatocarchInfo> {
 	private final String MAIN_TABLE = DaoDbTable.MAT_STOCK_TABLE;	
 	
 	
-	public MatocarchSelectSingle(Connection conn, MatocarchInfo recordInfo, String schemaName) {
+	public DaoMatocarchSelectSingle(Connection conn, MatocarchInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	
@@ -49,7 +49,7 @@ public final class MatocarchSelectSingle extends DaoStmtTemplate<MatocarchInfo> 
 		whereOption.ignoreNull = DaoOptionValue.IGNORE_NULL;
 		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new MatocarchWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new DaoMatocarchWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
@@ -65,9 +65,9 @@ public final class MatocarchSelectSingle extends DaoStmtTemplate<MatocarchInfo> 
 				
 				do {
 					MatocarchInfo dataInfo = new MatocarchInfo();
-					dataInfo.codOwner = stmtResult.getLong(MatocarchDbTableColumn.COL_COD_OWNER);
-					dataInfo.codStore = stmtResult.getLong(MatocarchDbTableColumn.COL_COD_STORE);
-					dataInfo.codMat = stmtResult.getLong(MatocarchDbTableColumn.COL_COD_MATERIAL);		
+					dataInfo.codOwner = stmtResult.getLong(DaoMatocarchDbTableColumn.COL_COD_OWNER);
+					dataInfo.codStore = stmtResult.getLong(DaoMatocarchDbTableColumn.COL_COD_STORE);
+					dataInfo.codMat = stmtResult.getLong(DaoMatocarchDbTableColumn.COL_COD_MATERIAL);		
 					
 					finalResult.add(dataInfo);
 				} while (stmtResult.next());

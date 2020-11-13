@@ -2,18 +2,18 @@ package br.com.mind5.business.materialStockSearch.info;
 
 import java.util.List;
 
-import br.com.mind5.info.obsolete.InfoMerger_;
+import br.com.mind5.info.InfoMergerBuilderV3;
+import br.com.mind5.info.InfoMergerV3;
 
 public final class MatocarchMerger {
-	public static MatocarchInfo mergeToSelect(MatocarchInfo sourceOne, MatocarchInfo sourceTwo) {
-		InfoMerger_<MatocarchInfo, MatocarchInfo> merger = new MatocarchMergerToSelect();		
-		return merger.merge(sourceOne, sourceTwo);
-	}
+	public static List<MatocarchInfo> mergeToSelect(List<MatocarchInfo> baseInfos, List<MatocarchInfo> selectedInfos) {
+		InfoMergerBuilderV3<MatocarchInfo, MatocarchInfo> builder = new InfoMergerBuilderV3<>();
+		
+		builder.addBaseInfos(baseInfos);
+		builder.addSelectedInfos(selectedInfos);
+		builder.addVisitor(new MatocarchVisiMergeToSelect());
+		InfoMergerV3<MatocarchInfo, MatocarchInfo> merger = builder.build();		
 	
-	
-	
-	public static List<MatocarchInfo> mergeToSelect(List<MatocarchInfo> sourceOnes, List<MatocarchInfo> sourceTwos) {
-		InfoMerger_<MatocarchInfo, MatocarchInfo> merger = new MatocarchMergerToSelect();		
-		return merger.merge(sourceOnes, sourceTwos);
+		return merger.merge();
 	}
 }
