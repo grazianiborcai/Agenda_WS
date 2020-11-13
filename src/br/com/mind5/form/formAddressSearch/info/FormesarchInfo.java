@@ -10,7 +10,7 @@ public final class FormesarchInfo extends InfoRecord implements Cloneable {
 	
 	
 	public FormesarchInfo() {
-		super(FormesarchInfo.class);
+		super();
 	}
 	
 	
