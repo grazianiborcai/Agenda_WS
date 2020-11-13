@@ -10,7 +10,7 @@ public final class FormoneInfo extends InfoRecord implements Cloneable {
 	
 	
 	public FormoneInfo() {
-		super(FormoneInfo.class);
+		super();
 	}
 	
 	
