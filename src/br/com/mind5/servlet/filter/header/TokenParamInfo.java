@@ -11,7 +11,7 @@ public final class TokenParamInfo extends InfoRecord implements Cloneable {
 	
 	
 	public TokenParamInfo() {
-		super(TokenParamInfo.class);
+		super();
 	}
 	
 	
