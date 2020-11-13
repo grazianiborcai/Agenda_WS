@@ -5,15 +5,15 @@ import br.com.mind5.model.action.ActionStdTemplateV2;
 import br.com.mind5.model.action.ActionVisitorV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class StdMatmarchMergeToSelect extends ActionStdTemplateV2<MatmarchInfo> {
+public final class StdMatmarchDaoSelect extends ActionStdTemplateV2<MatmarchInfo> {
 
-	public StdMatmarchMergeToSelect(DeciTreeOption<MatmarchInfo> option) {
+	public StdMatmarchDaoSelect(DeciTreeOption<MatmarchInfo> option) {
 		super(option);
 	}
 	
 	
 	
 	protected ActionVisitorV2<MatmarchInfo> buildVisitorHook(DeciTreeOption<MatmarchInfo> option) {
-		return new VisiMatmarchMergeToSelect(option);
+		return new VisiMatmarchDaoSelect(option);
 	}
 }

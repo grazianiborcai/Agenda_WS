@@ -1,34 +1,34 @@
 package br.com.mind5.business.materialMovementSearch.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.materialMovementSearch.info.MatmarchInfo;
 import br.com.mind5.business.materialMovementSearch.info.MatmarchMerger;
-import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionStdV2;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiMatmarchMergeToSelect extends ActionVisitorTemplateMergeV1<MatmarchInfo, MatmarchInfo> {
+final class VisiMatmarchMergeToSelect extends ActionVisitorTemplateMergeV2<MatmarchInfo, MatmarchInfo> {
 	
-	public VisiMatmarchMergeToSelect(Connection conn, String schemaName) {
-		super(conn, schemaName, MatmarchInfo.class);
+	public VisiMatmarchMergeToSelect(DeciTreeOption<MatmarchInfo> option) {
+		super(option, MatmarchInfo.class);
 	}
 	
 	
 	
-	@Override protected Class<? extends ActionStdV1<MatmarchInfo>> getActionClassHook() {
-		return StdMatmarchSelect.class;
+	@Override protected Class<? extends ActionStdV2<MatmarchInfo>> getActionClassHook() {
+		return StdMatmarchDaoSelect.class;
 	}
 	
 	
 	
-	@Override protected List<MatmarchInfo> mergeHook(List<MatmarchInfo> recordInfos, List<MatmarchInfo> selectedInfos) {	
-		return MatmarchMerger.mergeToSelect(selectedInfos, recordInfos);
+	@Override protected List<MatmarchInfo> mergeHook(List<MatmarchInfo> baseInfos, List<MatmarchInfo> selectedInfos) {	
+		return MatmarchMerger.mergeToSelect(baseInfos, selectedInfos);
 	}
 	
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
+		return super.DONT_MERGE_WHEN_EMPTY;
 	}
 }
