@@ -1,26 +1,25 @@
 package br.com.mind5.business.materialStock.dao;
 
 import java.sql.Connection;
-import java.sql.ResultSet;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 import br.com.mind5.business.materialStock.info.MatockInfo;
+import br.com.mind5.dao.DaoFormatter;
 import br.com.mind5.dao.DaoOperation;
-import br.com.mind5.dao.DaoResultParser;
+import br.com.mind5.dao.DaoStmtParamTranslator;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.DaoStmtWhere;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTable;
 import br.com.mind5.dao.common.DaoOptionValue;
 
-public final class MatockLockSingle extends DaoStmtTemplate<MatockInfo> {
+public final class DaoMatockUpdateSingle extends DaoStmtTemplate<MatockInfo> {
 	private final String MAIN_TABLE = DaoDbTable.MAT_STOCK_TABLE;	
 	
 	
-	public MatockLockSingle(Connection conn, MatockInfo recordInfo, String schemaName) {
-		super(conn, recordInfo, schemaName);
+	public DaoMatockUpdateSingle(Connection conn, MatockInfo recordInfo, String schemaName) {
+		super(conn, recordInfo, schemaName);	
 	}
 	
 	
@@ -32,7 +31,7 @@ public final class MatockLockSingle extends DaoStmtTemplate<MatockInfo> {
 	
 	
 	@Override protected DaoOperation getOperationHook() {
-		return DaoOperation.LOCK;
+		return DaoOperation.UPDATE;
 	}
 	
 	
@@ -41,23 +40,26 @@ public final class MatockLockSingle extends DaoStmtTemplate<MatockInfo> {
 		DaoWhereBuilderOption whereOption = new DaoWhereBuilderOption();
 		
 		whereOption.ignoreNull = DaoOptionValue.DONT_IGNORE_NULL;
+		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;
 		whereOption.ignoreNonPrimaryKey = DaoOptionValue.IGNORE_NON_PK;
-		whereOption.ignoreRecordMode = DaoOptionValue.IGNORE_RECORD_MODE;		
 		
-		DaoStmtWhere whereClause = new MatockWhere(whereOption, tableName, recordInfo);
+		DaoStmtWhere whereClause = new DaoMatockWhere(whereOption, tableName, recordInfo);
 		return whereClause.getWhereClause();
 	}
 	
 	
 	
-	@Override protected DaoResultParser<MatockInfo> getResultParserHook() {
-		return new DaoResultParser<MatockInfo>() {
-			@Override public List<MatockInfo> parseResult(MatockInfo recordInfo, ResultSet stmtResult, long lastId) throws SQLException {
-				List<MatockInfo> finalResult = new ArrayList<>();
-				finalResult.add(recordInfo);
+	@Override protected DaoStmtParamTranslator<MatockInfo> getParamTranslatorHook() {
+		return new DaoStmtParamTranslator<MatockInfo>() {	
+			@Override public PreparedStatement translateStmtParam(PreparedStatement stmt, MatockInfo recordInfo) throws SQLException {	
 				
-				return finalResult;
-			}
+				int i = 1;
+				
+				stmt = DaoFormatter.localDateTimeToStmt(stmt, i++, recordInfo.lastChanged);
+				stmt.setInt(i++, recordInfo.quantityStock);					
+				
+				return stmt;
+			}		
 		};
 	}
 	

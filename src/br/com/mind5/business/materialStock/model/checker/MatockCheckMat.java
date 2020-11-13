@@ -1,56 +1,27 @@
 package br.com.mind5.business.materialStock.model.checker;
 
-import java.util.List;
-
 import br.com.mind5.business.material.info.MatInfo;
 import br.com.mind5.business.material.model.checker.MatCheckExist;
 import br.com.mind5.business.materialStock.info.MatockInfo;
-import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
+import br.com.mind5.model.checker.ModelCheckerV1;
 
-public final class MatockCheckMat implements ModelCheckerV1<MatockInfo> {
-	private final boolean FAILED = false;
-	private final boolean SUCCESS = true;
-	
-	private ModelCheckerV1<MatInfo> checker;
-	
+public final class MatockCheckMat extends ModelCheckerTemplateForwardV2<MatockInfo, MatInfo> {
 	
 	public MatockCheckMat(ModelCheckerOption option) {
-		checker = new MatCheckExist(option);
-	}
-	
-	
-	
-	@Override public boolean check(List<MatockInfo> recordInfos) {
-		for (MatockInfo eachInfo : recordInfos) {
-			if (check(eachInfo) == FAILED)
-				return FAILED;
-		}
-		
-		return SUCCESS;
+		super(option);
 	}
 
-	
-	
-	@Override public boolean check(MatockInfo recordInfo) {
-		return checker.check(MatInfo.copyFrom(recordInfo));
-	}
 
 	
-	
-	@Override public boolean getResult() {
-		return checker.getResult();
+	@Override protected ModelCheckerV1<MatInfo> getCheckerHook(ModelCheckerOption option) {
+		return new MatCheckExist(option);
 	}
-
 	
 	
-	@Override public String getFailMessage() {
-		return checker.getFailMessage();
-	}
-
 	
-	
-	@Override public int getFailCode() {
-		return checker.getFailCode();
+	@Override protected MatInfo toForwardClass(MatockInfo baseRecord) {
+		return MatInfo.copyFrom(baseRecord);
 	}
 }

@@ -7,8 +7,8 @@ import br.com.mind5.business.materialStock.info.MatockInfo;
 import br.com.mind5.business.materialStock.model.action.LazyMatockEnforceLChanged;
 import br.com.mind5.business.materialStock.model.action.LazyMatockMergeToUpdate;
 import br.com.mind5.business.materialStock.model.action.LazyMatockNodeBalanceL1;
-import br.com.mind5.business.materialStock.model.action.LazyMatockUpdate;
-import br.com.mind5.business.materialStock.model.action.StdMatockLock;
+import br.com.mind5.business.materialStock.model.action.LazyMatockDaoUpdate;
+import br.com.mind5.business.materialStock.model.action.StdMatockDaoLock;
 import br.com.mind5.business.materialStock.model.checker.MatockCheckExist;
 import br.com.mind5.business.materialStock.model.checker.MatockCheckLangu;
 import br.com.mind5.business.materialStock.model.checker.MatockCheckMat;
@@ -23,9 +23,9 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class RootMatockUpdate extends DeciTreeTemplateWriteV1<MatockInfo> {
+public final class RootMatockUpdate extends DeciTreeTemplateWriteV2<MatockInfo> {
 	
 	public RootMatockUpdate(DeciTreeOption<MatockInfo> option) {
 		super(option);
@@ -102,11 +102,11 @@ public final class RootMatockUpdate extends DeciTreeTemplateWriteV1<MatockInfo> 
 	@Override protected List<ActionStdV1<MatockInfo>> buildActionsOnPassedHook(DeciTreeOption<MatockInfo> option) {
 		List<ActionStdV1<MatockInfo>> actions = new ArrayList<>();
 
-		ActionStdV1<MatockInfo> lockRecord = new StdMatockLock(option);
+		ActionStdV1<MatockInfo> lockRecord = new StdMatockDaoLock(option);
 		ActionLazyV1<MatockInfo> mergeToUpdate = new LazyMatockMergeToUpdate(option.conn, option.schemaName);
 		ActionLazyV1<MatockInfo> enforceLChanged = new LazyMatockEnforceLChanged(option.conn, option.schemaName);	
 		ActionLazyV1<MatockInfo> balance = new LazyMatockNodeBalanceL1(option.conn, option.schemaName);	
-		ActionLazyV1<MatockInfo> update = new LazyMatockUpdate(option.conn, option.schemaName);	
+		ActionLazyV1<MatockInfo> update = new LazyMatockDaoUpdate(option.conn, option.schemaName);	
 		
 		lockRecord.addPostAction(mergeToUpdate);
 		mergeToUpdate.addPostAction(enforceLChanged);

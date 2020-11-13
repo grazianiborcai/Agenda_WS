@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoWhereBuilder;
 import br.com.mind5.dao.DaoWhereBuilderOption;
 import br.com.mind5.dao.common.DaoDbTableColumnAll;
 
-public final class MatockWhere implements DaoStmtWhere {
+public final class DaoMatockWhere implements DaoStmtWhere {
 	private String whereClause;	
 	
 	
-	public MatockWhere(DaoWhereBuilderOption whereOption, String tableName, MatockInfo recordInfo) {
+	public DaoMatockWhere(DaoWhereBuilderOption whereOption, String tableName, MatockInfo recordInfo) {
 		generateWhereClause(whereOption, tableName, recordInfo);
 	}
 	
@@ -27,15 +27,15 @@ public final class MatockWhere implements DaoStmtWhere {
 		
 		for (DaoColumn eachColumn : columns) {			
 			switch(eachColumn.columnName) {
-				case MatockDbTableColumn.COL_COD_OWNER :
+				case DaoMatockDbTableColumn.COL_COD_OWNER :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codOwner));
 					break;
 					
-				case MatockDbTableColumn.COL_COD_STORE :
+				case DaoMatockDbTableColumn.COL_COD_STORE :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codStore));
 					break;
 					
-				case MatockDbTableColumn.COL_COD_MATERIAL :
+				case DaoMatockDbTableColumn.COL_COD_MATERIAL :
 					builder.addClauseEqualAnd(eachColumn, DaoFormatter.numberToString(recordInfo.codMat));
 					break;
 			}

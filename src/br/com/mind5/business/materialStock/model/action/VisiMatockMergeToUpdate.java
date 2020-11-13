@@ -1,18 +1,18 @@
 package br.com.mind5.business.materialStock.model.action;
 
-import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.materialStock.info.MatockInfo;
 import br.com.mind5.business.materialStock.info.MatockMerger;
 import br.com.mind5.business.materialStock.model.decisionTree.RootMatockSelect;
-import br.com.mind5.model.action.ActionVisitorTemplateMergeV1;
+import br.com.mind5.model.action.ActionVisitorTemplateMergeV2;
 import br.com.mind5.model.decisionTree.DeciTree;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiMatockMergeToUpdate extends ActionVisitorTemplateMergeV1<MatockInfo, MatockInfo> {
+final class VisiMatockMergeToUpdate extends ActionVisitorTemplateMergeV2<MatockInfo, MatockInfo> {
 	
-	public VisiMatockMergeToUpdate(Connection conn, String schemaName) {
-		super(conn, schemaName, MatockInfo.class);
+	public VisiMatockMergeToUpdate(DeciTreeOption<MatockInfo> option) {
+		super(option, MatockInfo.class);
 	}
 	
 	
@@ -23,13 +23,13 @@ final class VisiMatockMergeToUpdate extends ActionVisitorTemplateMergeV1<MatockI
 	
 	
 	
-	@Override protected List<MatockInfo> mergeHook(List<MatockInfo> recordInfos, List<MatockInfo> selectedInfos) {	
-		return MatockMerger.mergeToUpdate(selectedInfos, recordInfos);
+	@Override protected List<MatockInfo> mergeHook(List<MatockInfo> baseInfos, List<MatockInfo> selectedInfos) {	
+		return MatockMerger.mergeToUpdate(baseInfos, selectedInfos);
 	}
 	
 	
 	
 	@Override protected boolean shouldMergeWhenEmptyHook() {
-		return ActionVisitorTemplateMergeV1.DONT_MERGE_WHEN_EMPTY;
+		return super.DONT_MERGE_WHEN_EMPTY;
 	}
 }

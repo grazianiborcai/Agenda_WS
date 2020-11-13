@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.materialStock.info.MatockInfo;
-import br.com.mind5.business.materialStock.model.action.LazyMatockInsert;
+import br.com.mind5.business.materialStock.model.action.LazyMatockDaoInsert;
 import br.com.mind5.business.materialStock.model.action.LazyMatockNodeBalanceL1;
 import br.com.mind5.business.materialStock.model.action.StdMatockEnforceLChanged;
 import br.com.mind5.business.materialStock.model.checker.MatockCheckLangu;
@@ -20,9 +20,9 @@ import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class RootMatockInsert extends DeciTreeTemplateWriteV1<MatockInfo> {
+public final class RootMatockInsert extends DeciTreeTemplateWriteV2<MatockInfo> {
 	
 	public RootMatockInsert(DeciTreeOption<MatockInfo> option) {
 		super(option);
@@ -94,7 +94,7 @@ public final class RootMatockInsert extends DeciTreeTemplateWriteV1<MatockInfo> 
 
 		ActionStdV1<MatockInfo> enforceLChanged = new StdMatockEnforceLChanged(option);
 		ActionLazyV1<MatockInfo> balance = new LazyMatockNodeBalanceL1(option.conn, option.schemaName);
-		ActionLazyV1<MatockInfo> insert = new LazyMatockInsert(option.conn, option.schemaName);
+		ActionLazyV1<MatockInfo> insert = new LazyMatockDaoInsert(option.conn, option.schemaName);
 		
 		enforceLChanged.addPostAction(balance);
 		balance.addPostAction(insert);

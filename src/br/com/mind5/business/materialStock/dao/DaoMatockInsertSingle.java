@@ -10,11 +10,11 @@ import br.com.mind5.dao.DaoStmtParamTranslator;
 import br.com.mind5.dao.DaoStmtTemplate;
 import br.com.mind5.dao.common.DaoDbTable;
 
-public final class MatockInsertSingle extends DaoStmtTemplate<MatockInfo> {
+public final class DaoMatockInsertSingle extends DaoStmtTemplate<MatockInfo> {
 	private final String MAIN_TABLE = DaoDbTable.MAT_STOCK_TABLE;	
 	
 	
-	public MatockInsertSingle(Connection conn, MatockInfo recordInfo, String schemaName) {
+	public DaoMatockInsertSingle(Connection conn, MatockInfo recordInfo, String schemaName) {
 		super(conn, recordInfo, schemaName);
 	}
 	

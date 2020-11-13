@@ -4,12 +4,12 @@ import java.sql.Connection;
 import java.util.List;
 
 import br.com.mind5.business.materialStock.info.MatockInfo;
-import br.com.mind5.model.action.ActionLazyTemplateV1;
+import br.com.mind5.model.action.ActionLazyTemplateV2;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.decisionTree.DeciResult;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-public final class LazyMatockEnforceBalance extends ActionLazyTemplateV1<MatockInfo, MatockInfo> {
+public final class LazyMatockEnforceBalance extends ActionLazyTemplateV2<MatockInfo, MatockInfo> {
 	
 	public LazyMatockEnforceBalance(Connection conn, String schemaName) {
 		super(conn, schemaName);

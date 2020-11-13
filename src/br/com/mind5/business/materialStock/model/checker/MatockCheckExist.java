@@ -1,7 +1,7 @@
 package br.com.mind5.business.materialStock.model.checker;
 
 import br.com.mind5.business.materialStock.info.MatockInfo;
-import br.com.mind5.business.materialStock.model.action.StdMatockSelect;
+import br.com.mind5.business.materialStock.model.action.StdMatockDaoSelect;
 import br.com.mind5.common.SystemCode;
 import br.com.mind5.model.action.ActionStdV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
@@ -17,7 +17,7 @@ public final class MatockCheckExist extends ModelCheckerTemplateActionV2<MatockI
 	
 	
 	@Override protected ActionStdV1<MatockInfo> buildActionHook(DeciTreeOption<MatockInfo> option) {		
-		ActionStdV1<MatockInfo> select = new StdMatockSelect(option);
+		ActionStdV1<MatockInfo> select = new StdMatockDaoSelect(option);
 		return select;
 	}
 	

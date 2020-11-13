@@ -1,56 +1,27 @@
 package br.com.mind5.business.materialStock.model.checker;
 
-import java.util.List;
-
 import br.com.mind5.authorization.storeAuthorization.info.StorauthInfo;
 import br.com.mind5.authorization.storeAuthorization.model.checker.StorauthCheckExist;
 import br.com.mind5.business.materialStock.info.MatockInfo;
-import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerOption;
+import br.com.mind5.model.checker.ModelCheckerTemplateForwardV2;
+import br.com.mind5.model.checker.ModelCheckerV1;
 
-public final class MatockCheckStorauth implements ModelCheckerV1<MatockInfo> {
-	private final boolean FAILED = false;
-	private final boolean SUCCESS = true;
-	
-	private ModelCheckerV1<StorauthInfo> checker;
-	
+public final class MatockCheckStorauth extends ModelCheckerTemplateForwardV2<MatockInfo, StorauthInfo> {
 	
 	public MatockCheckStorauth(ModelCheckerOption option) {
-		checker = new StorauthCheckExist(option);
-	}
-	
-	
-	
-	@Override public boolean check(List<MatockInfo> recordInfos) {
-		for (MatockInfo eachInfo : recordInfos) {
-			if (check(eachInfo) == FAILED)
-				return FAILED;
-		}
-		
-		return SUCCESS;
+		super(option);
 	}
 
-	
-	
-	@Override public boolean check(MatockInfo recordInfo) {
-		return checker.check(StorauthInfo.copyFrom(recordInfo));
-	}
 
 	
-	
-	@Override public boolean getResult() {
-		return checker.getResult();
+	@Override protected ModelCheckerV1<StorauthInfo> getCheckerHook(ModelCheckerOption option) {
+		return new StorauthCheckExist(option);
 	}
-
 	
 	
-	@Override public String getFailMessage() {
-		return checker.getFailMessage();
-	}
-
 	
-	
-	@Override public int getFailCode() {
-		return checker.getFailCode();
+	@Override protected StorauthInfo toForwardClass(MatockInfo baseRecord) {
+		return StorauthInfo.copyFrom(baseRecord);
 	}
 }

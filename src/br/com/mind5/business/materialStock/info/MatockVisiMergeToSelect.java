@@ -1,54 +1,38 @@
 package br.com.mind5.business.materialStock.info;
 
-import br.com.mind5.common.SystemLog;
-import br.com.mind5.common.SystemMessage;
-import br.com.mind5.info.obsolete.InfoMergerVisitor_;
+import java.util.ArrayList;
+import java.util.List;
 
-final class MatockVisiMergeToSelect implements InfoMergerVisitor_<MatockInfo, MatockInfo> {
+import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoUniquifier;
 
-	@Override public MatockInfo writeRecord(MatockInfo sourceOne, MatockInfo sourceTwo) {
-		checkArgument(sourceOne, sourceTwo);		
-		return merge(sourceOne, sourceTwo);
+final class MatockVisiMergeToSelect implements InfoMergerVisitorV3<MatockInfo, MatockInfo> {
+
+	@Override public List<MatockInfo> beforeMerge(List<MatockInfo> baseInfos) {
+		return baseInfos;
 	}
 	
 	
 	
-	private void checkArgument(MatockInfo sourceOne, MatockInfo sourceTwo) {
-		if (shouldWrite(sourceOne, sourceTwo) == false)
-			throw new IllegalArgumentException(SystemMessage.MERGE_NOT_ALLOWED);
+	@Override public boolean shouldMerge(MatockInfo baseInfo, MatockInfo selectedInfo) {
+		return (baseInfo.codOwner == selectedInfo.codOwner);
 	}
 	
 	
 	
-	private MatockInfo merge(MatockInfo sourceOne, MatockInfo sourceTwo) {
-		MatockInfo result = makeClone(sourceOne);
-		result.username = sourceTwo.username;
-		result.codLanguage = sourceTwo.codLanguage;
-		return result;
-	}
-	
-	
-	
-	private MatockInfo makeClone(MatockInfo recordInfo) {
-		try {
-			return (MatockInfo) recordInfo.clone();
-			
-		} catch (Exception e) {
-			logException(e);
-			throw new IllegalStateException(e); 
-		}
-	}
-	
-	
-	
-	@Override public boolean shouldWrite(MatockInfo sourceOne, MatockInfo sourceTwo) {		
-		return true;
-	}
-	
-	
-	
-	private void logException(Exception e) {
+	@Override public List<MatockInfo> merge(MatockInfo baseInfo, MatockInfo selectedInfo) {
+		List<MatockInfo> results = new ArrayList<>();
 		
-		SystemLog.logError(this.getClass(), e);
+		selectedInfo.username = baseInfo.username;
+		selectedInfo.codLanguage = baseInfo.codLanguage;
+		
+		results.add(selectedInfo);
+		return results;
+	}
+	
+	
+	
+	@Override public InfoUniquifier<MatockInfo> getUniquifier() {
+		return null;
 	}
 }

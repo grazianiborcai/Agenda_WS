@@ -6,15 +6,15 @@ import java.util.List;
 import br.com.mind5.business.materialStock.info.MatockInfo;
 import br.com.mind5.business.materialStock.model.action.LazyMatockNodeBalanceL2;
 import br.com.mind5.business.materialStock.model.action.StdMatockEnforceBalance;
-import br.com.mind5.business.materialStock.model.checker.MatockCheckDummy;
 import br.com.mind5.model.action.ActionLazyV1;
 import br.com.mind5.model.action.ActionStdV1;
-import br.com.mind5.model.checker.ModelCheckerV1;
 import br.com.mind5.model.checker.ModelCheckerHelperQueueV2;
+import br.com.mind5.model.checker.ModelCheckerV1;
+import br.com.mind5.model.checker.common.ModelCheckerDummy;
 import br.com.mind5.model.decisionTree.DeciTreeOption;
-import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV1;
+import br.com.mind5.model.decisionTree.DeciTreeTemplateWriteV2;
 
-public final class NodeMatockBalanceL1 extends DeciTreeTemplateWriteV1<MatockInfo> {
+public final class NodeMatockBalanceL1 extends DeciTreeTemplateWriteV2<MatockInfo> {
 	
 	public NodeMatockBalanceL1(DeciTreeOption<MatockInfo> option) {
 		super(option);
@@ -26,7 +26,7 @@ public final class NodeMatockBalanceL1 extends DeciTreeTemplateWriteV1<MatockInf
 		List<ModelCheckerV1<MatockInfo>> queue = new ArrayList<>();		
 		ModelCheckerV1<MatockInfo> checker;
 
-		checker = new MatockCheckDummy();
+		checker = new ModelCheckerDummy<>();
 		queue.add(checker);
 
 		return new ModelCheckerHelperQueueV2<>(queue);
