@@ -6,14 +6,20 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.List;
 
-import br.com.mind5.common.SystemLog;
+import br.com.mind5.common.SystemCode;
 import br.com.mind5.file.fileWrite.info.FriteInfo;
-import br.com.mind5.model.action.ActionVisitorV1;
+import br.com.mind5.model.action.ActionVisitorTemplateSimpleV2;
+import br.com.mind5.model.decisionTree.DeciTreeOption;
 
-final class VisiFriteWriteOnDisk implements ActionVisitorV1<FriteInfo> {
+final class VisiFriteWriteOnDisk extends ActionVisitorTemplateSimpleV2<FriteInfo> {
+	
+	public VisiFriteWriteOnDisk(DeciTreeOption<FriteInfo> option) {
+		super(option);
+	}
+	
 
 	
-	@Override public List<FriteInfo> executeTransformation(List<FriteInfo> recordInfos) {
+	@Override public List<FriteInfo> executeTransformationHook(List<FriteInfo> recordInfos) {
 		for(FriteInfo eachRecord: recordInfos) {
 			FriteInfo result = tryToWriteOnDisk(eachRecord);
 			
@@ -57,8 +63,7 @@ final class VisiFriteWriteOnDisk implements ActionVisitorV1<FriteInfo> {
 	
 	
 	
-	private void logException(Exception e) {
-		
-		SystemLog.logError(this.getClass(), e);
-	}	
+	@Override protected int getErrorCodeHook() {
+		return SystemCode.FILE_WRITE_ERROR;
+	}
 }

@@ -11,7 +11,7 @@ public final class FriteInfo extends InfoRecord implements Cloneable {
 	
 	
 	public FriteInfo() {
-		super(FriteInfo.class);
+		super();
 	}
 	
 	
