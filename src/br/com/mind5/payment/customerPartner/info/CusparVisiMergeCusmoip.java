@@ -3,11 +3,11 @@ package br.com.mind5.payment.customerPartner.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.paymentPartner.partnerMoip.customerMoip.info.CusmoipInfo;
 
-final class CusparVisiMergeCusmoip implements InfoMergerVisitorV3<CusparInfo, CusmoipInfo> {
+final class CusparVisiMergeCusmoip implements InfoMergerVisitor<CusparInfo, CusmoipInfo> {
 	
 	@Override public List<CusparInfo> beforeMerge(List<CusparInfo> baseInfos) {
 		return baseInfos;

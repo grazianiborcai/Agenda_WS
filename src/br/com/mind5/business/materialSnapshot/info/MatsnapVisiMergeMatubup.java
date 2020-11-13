@@ -3,11 +3,11 @@ package br.com.mind5.business.materialSnapshot.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.masterData.materialSubgroup.info.MatubupInfo;
 
-final class MatsnapVisiMergeMatubup implements InfoMergerVisitorV3<MatsnapInfo, MatubupInfo> {
+final class MatsnapVisiMergeMatubup implements InfoMergerVisitor<MatsnapInfo, MatubupInfo> {
 	
 	@Override public List<MatsnapInfo> beforeMerge(List<MatsnapInfo> baseInfos) {
 		return baseInfos;

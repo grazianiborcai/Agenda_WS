@@ -6,12 +6,11 @@ import java.time.LocalTime;
 
 import br.com.mind5.business.calendarTimeEmployee.info.CalimempInfo;
 import br.com.mind5.info.InfoCopierTemplate;
-import br.com.mind5.info.obsolete.InfoUniquifyHelper_;
 
 final class EmplargCopyCalimemp extends InfoCopierTemplate<EmplargInfo, CalimempInfo> {
 	
 	public EmplargCopyCalimemp() {
-		super(new InfoUniquifyHelper_<EmplargInfo>());
+		super(new EmplargUniquifier());
 	}
 	
 	

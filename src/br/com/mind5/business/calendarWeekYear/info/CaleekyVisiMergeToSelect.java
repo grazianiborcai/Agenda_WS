@@ -3,10 +3,10 @@ package br.com.mind5.business.calendarWeekYear.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 
-final class CaleekyVisiMergeToSelect implements InfoMergerVisitorV3<CaleekyInfo, CaleekyInfo> {
+final class CaleekyVisiMergeToSelect implements InfoMergerVisitor<CaleekyInfo, CaleekyInfo> {
 	
 	@Override public List<CaleekyInfo> beforeMerge(List<CaleekyInfo> baseInfos) {
 		return baseInfos;

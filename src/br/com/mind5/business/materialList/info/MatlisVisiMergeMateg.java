@@ -3,11 +3,11 @@ package br.com.mind5.business.materialList.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.masterData.materialCategory.info.MategInfo;
 
-final class MatlisVisiMergeMateg implements InfoMergerVisitorV3<MatlisInfo, MategInfo> {
+final class MatlisVisiMergeMateg implements InfoMergerVisitor<MatlisInfo, MategInfo> {
 	
 	@Override public List<MatlisInfo> beforeMerge(List<MatlisInfo> baseInfos) {
 		return baseInfos;

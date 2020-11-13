@@ -3,10 +3,10 @@ package br.com.mind5.business.notes.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 
-final class NotesVisiMergeToUpdate implements InfoMergerVisitorV3<NotesInfo, NotesInfo> {
+final class NotesVisiMergeToUpdate implements InfoMergerVisitor<NotesInfo, NotesInfo> {
 	
 	@Override public List<NotesInfo> beforeMerge(List<NotesInfo> baseInfos) {
 		return baseInfos;

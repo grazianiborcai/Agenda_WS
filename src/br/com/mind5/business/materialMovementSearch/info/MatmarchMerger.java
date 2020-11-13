@@ -2,17 +2,17 @@ package br.com.mind5.business.materialMovementSearch.info;
 
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerBuilderV3;
-import br.com.mind5.info.InfoMergerV3;
+import br.com.mind5.info.InfoMergerBuilder;
+import br.com.mind5.info.InfoMerger;
 
 public final class MatmarchMerger {
 	public static List<MatmarchInfo> mergeToSelect(List<MatmarchInfo> baseInfos, List<MatmarchInfo> selectedInfos) {
-		InfoMergerBuilderV3<MatmarchInfo, MatmarchInfo> builder = new InfoMergerBuilderV3<>();
+		InfoMergerBuilder<MatmarchInfo, MatmarchInfo> builder = new InfoMergerBuilder<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new MatmarchVisiMergeToSelect());
-		InfoMergerV3<MatmarchInfo, MatmarchInfo> merger = builder.build();		
+		InfoMerger<MatmarchInfo, MatmarchInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}

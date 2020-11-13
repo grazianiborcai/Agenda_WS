@@ -3,11 +3,11 @@ package br.com.mind5.business.storeSnapshot.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.masterData.timezone.info.TimezoneInfo;
 
-final class StorapVisiMergeTimezone implements InfoMergerVisitorV3<StorapInfo, TimezoneInfo> {
+final class StorapVisiMergeTimezone implements InfoMergerVisitor<StorapInfo, TimezoneInfo> {
 
 	@Override public List<StorapInfo> beforeMerge(List<StorapInfo> baseInfos) {
 		return baseInfos;

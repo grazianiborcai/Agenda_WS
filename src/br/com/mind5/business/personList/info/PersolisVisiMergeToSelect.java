@@ -3,10 +3,10 @@ package br.com.mind5.business.personList.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 
-final class PersolisVisiMergeToSelect implements InfoMergerVisitorV3<PersolisInfo, PersolisInfo> {
+final class PersolisVisiMergeToSelect implements InfoMergerVisitor<PersolisInfo, PersolisInfo> {
 	
 	@Override public List<PersolisInfo> beforeMerge(List<PersolisInfo> baseInfos) {
 		return baseInfos;

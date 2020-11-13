@@ -3,10 +3,10 @@ package br.com.mind5.business.storeWorkTime.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 
-final class StowotmVisiMergeToSelect implements InfoMergerVisitorV3<StowotmInfo, StowotmInfo> {
+final class StowotmVisiMergeToSelect implements InfoMergerVisitor<StowotmInfo, StowotmInfo> {
 	
 	@Override public List<StowotmInfo> beforeMerge(List<StowotmInfo> baseInfos) {
 		return baseInfos;

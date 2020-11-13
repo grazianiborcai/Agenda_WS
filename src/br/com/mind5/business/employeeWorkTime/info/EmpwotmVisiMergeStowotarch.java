@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.storeWorkTimeSearch.info.StowotarchInfo;
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 
-final class EmpwotmVisiMergeStowotarch implements InfoMergerVisitorV3<EmpwotmInfo, StowotarchInfo> {
+final class EmpwotmVisiMergeStowotarch implements InfoMergerVisitor<EmpwotmInfo, StowotarchInfo> {
 	
 	@Override public List<EmpwotmInfo> beforeMerge(List<EmpwotmInfo> baseInfos) {
 		return baseInfos;

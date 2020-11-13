@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.materialStock.info.MatockInfo;
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 
-final class MatmovVisiMergeMatock implements InfoMergerVisitorV3<MatmovInfo, MatockInfo> {
+final class MatmovVisiMergeMatock implements InfoMergerVisitor<MatmovInfo, MatockInfo> {
 	
 	@Override public List<MatmovInfo> beforeMerge(List<MatmovInfo> baseInfos) {
 		return baseInfos;

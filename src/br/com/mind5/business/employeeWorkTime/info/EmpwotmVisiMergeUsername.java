@@ -3,11 +3,11 @@ package br.com.mind5.business.employeeWorkTime.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.security.username.info.UsernameInfo;
 
-final class EmpwotmVisiMergeUsername implements InfoMergerVisitorV3<EmpwotmInfo, UsernameInfo> {
+final class EmpwotmVisiMergeUsername implements InfoMergerVisitor<EmpwotmInfo, UsernameInfo> {
 	
 	@Override public List<EmpwotmInfo> beforeMerge(List<EmpwotmInfo> baseInfos) {
 		return baseInfos;

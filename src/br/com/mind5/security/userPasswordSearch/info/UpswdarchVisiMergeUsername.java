@@ -3,11 +3,11 @@ package br.com.mind5.security.userPasswordSearch.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.security.username.info.UsernameInfo;
 
-final class UpswdarchVisiMergeUsername implements InfoMergerVisitorV3<UpswdarchInfo, UsernameInfo> {
+final class UpswdarchVisiMergeUsername implements InfoMergerVisitor<UpswdarchInfo, UsernameInfo> {
 	
 	@Override public List<UpswdarchInfo> beforeMerge(List<UpswdarchInfo> baseInfos) {
 		return baseInfos;

@@ -3,11 +3,11 @@ package br.com.mind5.security.tokenAuthentication.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.security.jwtToken.info.JwtokenInfo;
 
-final class TauthVisiMergeJwtoken implements InfoMergerVisitorV3<TauthInfo, JwtokenInfo> {
+final class TauthVisiMergeJwtoken implements InfoMergerVisitor<TauthInfo, JwtokenInfo> {
 	
 	@Override public List<TauthInfo> beforeMerge(List<TauthInfo> baseInfos) {
 		return baseInfos;

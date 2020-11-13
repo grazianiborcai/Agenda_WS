@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.refundPolicyOwner.info.RefupownInfo;
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 
-final class OrderVisiMergeRefupown implements InfoMergerVisitorV3<OrderInfo, RefupownInfo> {
+final class OrderVisiMergeRefupown implements InfoMergerVisitor<OrderInfo, RefupownInfo> {
 
 	@Override public List<OrderInfo> beforeMerge(List<OrderInfo> baseInfos) {
 		return baseInfos;

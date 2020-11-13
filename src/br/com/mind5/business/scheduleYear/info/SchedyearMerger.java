@@ -4,18 +4,18 @@ import java.util.List;
 
 import br.com.mind5.business.scheduleYearData.info.SchedyeratInfo;
 import br.com.mind5.business.storeList.info.StolisInfo;
-import br.com.mind5.info.InfoMergerBuilderV3;
-import br.com.mind5.info.InfoMergerV3;
+import br.com.mind5.info.InfoMergerBuilder;
+import br.com.mind5.info.InfoMerger;
 import br.com.mind5.masterData.monthSearch.info.MontharchInfo;
 
 public final class SchedyearMerger {
 	public static List<SchedyearInfo> mergeWithStolis(List<SchedyearInfo> baseInfos, List<StolisInfo> selectedInfos) {
-		InfoMergerBuilderV3<SchedyearInfo, StolisInfo> builder = new InfoMergerBuilderV3<>();
+		InfoMergerBuilder<SchedyearInfo, StolisInfo> builder = new InfoMergerBuilder<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new SchedyearVisiMergeStolis());
-		InfoMergerV3<SchedyearInfo, StolisInfo> merger = builder.build();		
+		InfoMerger<SchedyearInfo, StolisInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}
@@ -23,12 +23,12 @@ public final class SchedyearMerger {
 	
 	
 	public static List<SchedyearInfo> mergeWithMontharch(List<SchedyearInfo> baseInfos, List<MontharchInfo> selectedInfos) {
-		InfoMergerBuilderV3<SchedyearInfo, MontharchInfo> builder = new InfoMergerBuilderV3<>();
+		InfoMergerBuilder<SchedyearInfo, MontharchInfo> builder = new InfoMergerBuilder<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new SchedyearVisiMergeMontharch());
-		InfoMergerV3<SchedyearInfo, MontharchInfo> merger = builder.build();		
+		InfoMerger<SchedyearInfo, MontharchInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}
@@ -36,12 +36,12 @@ public final class SchedyearMerger {
 	
 	
 	public static List<SchedyearInfo> mergeWithSchedyerat(List<SchedyearInfo> baseInfos, List<SchedyeratInfo> selectedInfos) {
-		InfoMergerBuilderV3<SchedyearInfo, SchedyeratInfo> builder = new InfoMergerBuilderV3<>();
+		InfoMergerBuilder<SchedyearInfo, SchedyeratInfo> builder = new InfoMergerBuilder<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new SchedyearVisiMergeSchedyerat());
-		InfoMergerV3<SchedyearInfo, SchedyeratInfo> merger = builder.build();		
+		InfoMerger<SchedyearInfo, SchedyeratInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}

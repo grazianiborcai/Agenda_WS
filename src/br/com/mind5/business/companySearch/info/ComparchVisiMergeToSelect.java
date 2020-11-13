@@ -3,10 +3,10 @@ package br.com.mind5.business.companySearch.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 
-final class ComparchVisiMergeToSelect implements InfoMergerVisitorV3<ComparchInfo, ComparchInfo> {
+final class ComparchVisiMergeToSelect implements InfoMergerVisitor<ComparchInfo, ComparchInfo> {
 
 	@Override public List<ComparchInfo> beforeMerge(List<ComparchInfo> baseInfos) {
 		return baseInfos;

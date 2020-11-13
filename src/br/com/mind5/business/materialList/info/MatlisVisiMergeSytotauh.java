@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.authorization.storePartitionAuthorization.info.SytotauhInfo;
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 
-final class MatlisVisiMergeSytotauh implements InfoMergerVisitorV3<MatlisInfo, SytotauhInfo> {
+final class MatlisVisiMergeSytotauh implements InfoMergerVisitor<MatlisInfo, SytotauhInfo> {
 	
 	@Override public List<MatlisInfo> beforeMerge(List<MatlisInfo> baseInfos) {
 		return baseInfos;

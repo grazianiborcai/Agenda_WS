@@ -3,10 +3,10 @@ package br.com.mind5.business.owner.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 
-final class OwnerVisiMergeToDelete implements InfoMergerVisitorV3<OwnerInfo, OwnerInfo> {
+final class OwnerVisiMergeToDelete implements InfoMergerVisitor<OwnerInfo, OwnerInfo> {
 	
 	@Override public List<OwnerInfo> beforeMerge(List<OwnerInfo> baseInfos) {
 		return baseInfos;

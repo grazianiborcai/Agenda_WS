@@ -2,17 +2,17 @@ package br.com.mind5.business.storeFavoriteSearch.info;
 
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerBuilderV3;
-import br.com.mind5.info.InfoMergerV3;
+import br.com.mind5.info.InfoMergerBuilder;
+import br.com.mind5.info.InfoMerger;
 
 public final class StoritarchMerger {
 	public static List<StoritarchInfo> mergeToSelect(List<StoritarchInfo> baseInfos, List<StoritarchInfo> selectedInfos) {
-		InfoMergerBuilderV3<StoritarchInfo, StoritarchInfo> builder = new InfoMergerBuilderV3<>();
+		InfoMergerBuilder<StoritarchInfo, StoritarchInfo> builder = new InfoMergerBuilder<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new StoritarchVisiMergeToSelect());
-		InfoMergerV3<StoritarchInfo, StoritarchInfo> merger = builder.build();		
+		InfoMerger<StoritarchInfo, StoritarchInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}

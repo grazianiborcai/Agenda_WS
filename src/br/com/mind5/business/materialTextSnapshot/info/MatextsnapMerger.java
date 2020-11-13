@@ -3,17 +3,17 @@ package br.com.mind5.business.materialTextSnapshot.info;
 import java.util.List;
 
 import br.com.mind5.business.materialText.info.MatextInfo;
-import br.com.mind5.info.InfoMergerBuilderV3;
-import br.com.mind5.info.InfoMergerV3;
+import br.com.mind5.info.InfoMergerBuilder;
+import br.com.mind5.info.InfoMerger;
 
 public final class MatextsnapMerger {
 	public static List<MatextsnapInfo> mergeWithMatext(List<MatextsnapInfo> baseInfos, List<MatextInfo> selectedInfos) {
-		InfoMergerBuilderV3<MatextsnapInfo, MatextInfo> builder = new InfoMergerBuilderV3<>();
+		InfoMergerBuilder<MatextsnapInfo, MatextInfo> builder = new InfoMergerBuilder<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new MatextsnapVisiMergeMatext());
-		InfoMergerV3<MatextsnapInfo, MatextInfo> merger = builder.build();		
+		InfoMerger<MatextsnapInfo, MatextInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}
@@ -22,12 +22,12 @@ public final class MatextsnapMerger {
 	
 	
 	public static List<MatextsnapInfo> mergeToSelect(List<MatextsnapInfo> baseInfos, List<MatextsnapInfo> selectedInfos) {
-		InfoMergerBuilderV3<MatextsnapInfo, MatextsnapInfo> builder = new InfoMergerBuilderV3<>();
+		InfoMergerBuilder<MatextsnapInfo, MatextsnapInfo> builder = new InfoMergerBuilder<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new MatextsnapVisiMergeToSelect());
-		InfoMergerV3<MatextsnapInfo, MatextsnapInfo> merger = builder.build();		
+		InfoMerger<MatextsnapInfo, MatextsnapInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}	

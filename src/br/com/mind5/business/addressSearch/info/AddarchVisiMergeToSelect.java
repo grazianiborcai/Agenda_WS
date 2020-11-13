@@ -3,10 +3,10 @@ package br.com.mind5.business.addressSearch.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 
-final class AddarchVisiMergeToSelect implements InfoMergerVisitorV3<AddarchInfo, AddarchInfo> {
+final class AddarchVisiMergeToSelect implements InfoMergerVisitor<AddarchInfo, AddarchInfo> {
 	
 	@Override public List<AddarchInfo> beforeMerge(List<AddarchInfo> baseInfos) {
 		return baseInfos;

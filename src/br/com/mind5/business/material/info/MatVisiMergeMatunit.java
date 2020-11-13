@@ -3,11 +3,11 @@ package br.com.mind5.business.material.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.masterData.materialUnit.info.MatunitInfo;
 
-final class MatVisiMergeMatunit implements InfoMergerVisitorV3<MatInfo, MatunitInfo> {
+final class MatVisiMergeMatunit implements InfoMergerVisitor<MatInfo, MatunitInfo> {
 	
 	@Override public List<MatInfo> beforeMerge(List<MatInfo> baseInfos) {
 		return baseInfos;

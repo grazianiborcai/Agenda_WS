@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.ownerList.info.OwnelisInfo;
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 
-final class StogueVisiMergeOwnelis implements InfoMergerVisitorV3<StogueInfo, OwnelisInfo> {
+final class StogueVisiMergeOwnelis implements InfoMergerVisitor<StogueInfo, OwnelisInfo> {
 	
 	@Override public List<StogueInfo> beforeMerge(List<StogueInfo> baseInfos) {
 		return baseInfos;

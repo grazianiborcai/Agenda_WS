@@ -3,10 +3,10 @@ package br.com.mind5.business.employeeSnapshot.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 
-final class EmpnapVisiMergeToSelect implements InfoMergerVisitorV3<EmpnapInfo, EmpnapInfo> {
+final class EmpnapVisiMergeToSelect implements InfoMergerVisitor<EmpnapInfo, EmpnapInfo> {
 	
 	@Override public List<EmpnapInfo> beforeMerge(List<EmpnapInfo> baseInfos) {
 		return baseInfos;

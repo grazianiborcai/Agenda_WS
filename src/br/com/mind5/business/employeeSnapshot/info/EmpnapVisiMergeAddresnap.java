@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.addressSnapshot.info.AddresnapInfo;
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 
-final class EmpnapVisiMergeAddresnap implements InfoMergerVisitorV3<EmpnapInfo, AddresnapInfo> {
+final class EmpnapVisiMergeAddresnap implements InfoMergerVisitor<EmpnapInfo, AddresnapInfo> {
 	
 	@Override public List<EmpnapInfo> beforeMerge(List<EmpnapInfo> baseInfos) {
 		return baseInfos;

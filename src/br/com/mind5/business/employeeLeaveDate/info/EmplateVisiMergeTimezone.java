@@ -3,11 +3,11 @@ package br.com.mind5.business.employeeLeaveDate.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.masterData.timezone.info.TimezoneInfo;
 
-final class EmplateVisiMergeTimezone implements InfoMergerVisitorV3<EmplateInfo, TimezoneInfo> {
+final class EmplateVisiMergeTimezone implements InfoMergerVisitor<EmplateInfo, TimezoneInfo> {
 	
 	@Override public List<EmplateInfo> beforeMerge(List<EmplateInfo> baseInfos) {
 		return baseInfos;

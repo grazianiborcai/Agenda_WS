@@ -3,11 +3,11 @@ package br.com.mind5.business.planningTime.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.masterData.dayParting.info.DaypartInfo;
 
-final class PlanimeVisiMergeDaypart implements InfoMergerVisitorV3<PlanimeInfo, DaypartInfo> {
+final class PlanimeVisiMergeDaypart implements InfoMergerVisitor<PlanimeInfo, DaypartInfo> {
 	
 	@Override public List<PlanimeInfo> beforeMerge(List<PlanimeInfo> baseInfos) {
 		for (PlanimeInfo eachBase : baseInfos) {

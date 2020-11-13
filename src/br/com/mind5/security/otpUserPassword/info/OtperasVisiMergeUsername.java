@@ -3,11 +3,11 @@ package br.com.mind5.security.otpUserPassword.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.security.username.info.UsernameInfo;
 
-final class OtperasVisiMergeUsername implements InfoMergerVisitorV3<OtperasInfo, UsernameInfo> {
+final class OtperasVisiMergeUsername implements InfoMergerVisitor<OtperasInfo, UsernameInfo> {
 	
 	@Override public List<OtperasInfo> beforeMerge(List<OtperasInfo> baseInfos) {
 		return baseInfos;

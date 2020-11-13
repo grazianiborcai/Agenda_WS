@@ -5,10 +5,10 @@ import java.util.List;
 
 import br.com.mind5.business.storeText.info.StorextInfo;
 import br.com.mind5.business.storeTextSnapshot.info.StorextsnapInfo;
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 
-final class StorapVisiMergeStorext implements InfoMergerVisitorV3<StorapInfo, StorextInfo> {
+final class StorapVisiMergeStorext implements InfoMergerVisitor<StorapInfo, StorextInfo> {
 	
 	
 	@Override public List<StorapInfo> beforeMerge(List<StorapInfo> baseInfos) {

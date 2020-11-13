@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.feeOwner.info.FeewnerInfo;
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 
-final class CartVisiMergeFeewner implements InfoMergerVisitorV3<CartInfo, FeewnerInfo> {
+final class CartVisiMergeFeewner implements InfoMergerVisitor<CartInfo, FeewnerInfo> {
 	
 	@Override public List<CartInfo> beforeMerge(List<CartInfo> baseInfos) {
 		return baseInfos;

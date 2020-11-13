@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.materialList.info.MatlisInfo;
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 
-final class EmulelVisiMergeMatlis implements InfoMergerVisitorV3<EmulelInfo, MatlisInfo> {
+final class EmulelVisiMergeMatlis implements InfoMergerVisitor<EmulelInfo, MatlisInfo> {
 	
 	@Override public List<EmulelInfo> beforeMerge(List<EmulelInfo> baseInfos) {
 		return baseInfos;

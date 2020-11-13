@@ -3,10 +3,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.planingData.info.PlanataInfo;
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 
-final class PlanimeVisiMergePlanata implements InfoMergerVisitorV3<PlanimeInfo, PlanataInfo> {
+final class PlanimeVisiMergePlanata implements InfoMergerVisitor<PlanimeInfo, PlanataInfo> {
 	
 	@Override public List<PlanimeInfo> beforeMerge(List<PlanimeInfo> baseInfos) {
 		for (PlanimeInfo eachBase : baseInfos) {

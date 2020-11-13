@@ -3,11 +3,11 @@ package br.com.mind5.payment.statusPayOrder.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.security.username.info.UsernameInfo;
 
-final class PaytusVisiMergeUsername implements InfoMergerVisitorV3<PaytusInfo, UsernameInfo> {
+final class PaytusVisiMergeUsername implements InfoMergerVisitor<PaytusInfo, UsernameInfo> {
 	
 	@Override public List<PaytusInfo> beforeMerge(List<PaytusInfo> baseInfos) {
 		return baseInfos;

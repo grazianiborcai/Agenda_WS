@@ -3,10 +3,10 @@ package br.com.mind5.business.storeLeaveDate.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 
-final class StolateVisiMergeToDelete implements InfoMergerVisitorV3<StolateInfo, StolateInfo> {
+final class StolateVisiMergeToDelete implements InfoMergerVisitor<StolateInfo, StolateInfo> {
 	
 	@Override public List<StolateInfo> beforeMerge(List<StolateInfo> baseInfos) {
 		return baseInfos;

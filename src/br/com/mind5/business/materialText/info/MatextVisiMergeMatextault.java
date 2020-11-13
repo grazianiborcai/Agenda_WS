@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.materialTextDefault.info.MatextaultInfo;
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 
 
-final class MatextVisiMergeMatextault implements InfoMergerVisitorV3<MatextInfo, MatextaultInfo> {
+final class MatextVisiMergeMatextault implements InfoMergerVisitor<MatextInfo, MatextaultInfo> {
 	
 	@Override public List<MatextInfo> beforeMerge(List<MatextInfo> baseInfos) {
 		return baseInfos;

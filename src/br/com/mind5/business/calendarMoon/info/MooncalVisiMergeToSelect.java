@@ -3,10 +3,10 @@ package br.com.mind5.business.calendarMoon.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 
-final class MooncalVisiMergeToSelect implements InfoMergerVisitorV3<MooncalInfo, MooncalInfo> {
+final class MooncalVisiMergeToSelect implements InfoMergerVisitor<MooncalInfo, MooncalInfo> {
 	
 	@Override public List<MooncalInfo> beforeMerge(List<MooncalInfo> baseInfos) {
 		return baseInfos;

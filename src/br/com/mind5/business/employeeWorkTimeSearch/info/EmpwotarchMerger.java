@@ -2,17 +2,17 @@ package br.com.mind5.business.employeeWorkTimeSearch.info;
 
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerBuilderV3;
-import br.com.mind5.info.InfoMergerV3;
+import br.com.mind5.info.InfoMergerBuilder;
+import br.com.mind5.info.InfoMerger;
 
 public final class EmpwotarchMerger {	
 	public static List<EmpwotarchInfo> mergeToSelect(List<EmpwotarchInfo> baseInfos, List<EmpwotarchInfo> selectedInfos) {
-		InfoMergerBuilderV3<EmpwotarchInfo, EmpwotarchInfo> builder = new InfoMergerBuilderV3<>();
+		InfoMergerBuilder<EmpwotarchInfo, EmpwotarchInfo> builder = new InfoMergerBuilder<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new EmpwotarchVisiMergeToSelect());
-		InfoMergerV3<EmpwotarchInfo, EmpwotarchInfo> merger = builder.build();		
+		InfoMerger<EmpwotarchInfo, EmpwotarchInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}

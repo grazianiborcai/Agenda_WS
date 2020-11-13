@@ -3,10 +3,10 @@ package br.com.mind5.business.planingData.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 
-final class PlanataVisiMergeToSelect implements InfoMergerVisitorV3<PlanataInfo, PlanataInfo> {
+final class PlanataVisiMergeToSelect implements InfoMergerVisitor<PlanataInfo, PlanataInfo> {
 	
 	@Override public List<PlanataInfo> beforeMerge(List<PlanataInfo> baseInfos) {
 		return baseInfos;

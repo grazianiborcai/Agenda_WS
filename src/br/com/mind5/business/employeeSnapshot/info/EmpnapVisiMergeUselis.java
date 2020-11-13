@@ -3,11 +3,11 @@ package br.com.mind5.business.employeeSnapshot.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.security.userList.info.UselisInfo;
 
-final class EmpnapVisiMergeUselis implements InfoMergerVisitorV3<EmpnapInfo, UselisInfo> {
+final class EmpnapVisiMergeUselis implements InfoMergerVisitor<EmpnapInfo, UselisInfo> {
 	
 	@Override public List<EmpnapInfo> beforeMerge(List<EmpnapInfo> baseInfos) {
 		return baseInfos;

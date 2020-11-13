@@ -2,12 +2,11 @@ package br.com.mind5.business.storeLeaveDate.info;
 
 import br.com.mind5.business.planingData.info.PlanataInfo;
 import br.com.mind5.info.InfoCopierTemplate;
-import br.com.mind5.info.obsolete.InfoUniquifyHelper_;
 
 final class StolateCopyPlanata extends InfoCopierTemplate<StolateInfo, PlanataInfo> {
 	
 	public StolateCopyPlanata() {
-		super(new InfoUniquifyHelper_<StolateInfo>());
+		super(new StolateUniquifier());
 	}
 	
 	

@@ -3,10 +3,10 @@ package br.com.mind5.business.storeTextSearch.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 
-final class StorextarchVisiMergeToSelect implements InfoMergerVisitorV3<StorextarchInfo, StorextarchInfo> {
+final class StorextarchVisiMergeToSelect implements InfoMergerVisitor<StorextarchInfo, StorextarchInfo> {
 	
 	@Override public List<StorextarchInfo> beforeMerge(List<StorextarchInfo> baseInfos) {
 		return baseInfos;

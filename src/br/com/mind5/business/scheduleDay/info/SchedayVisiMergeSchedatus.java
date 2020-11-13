@@ -3,11 +3,11 @@ package br.com.mind5.business.scheduleDay.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.masterData.scheduleStatus.info.SchedatusInfo;
 
-final class SchedayVisiMergeSchedatus implements InfoMergerVisitorV3<SchedayInfo, SchedatusInfo> {
+final class SchedayVisiMergeSchedatus implements InfoMergerVisitor<SchedayInfo, SchedatusInfo> {
 	
 	@Override public List<SchedayInfo> beforeMerge(List<SchedayInfo> baseInfos) {
 		return baseInfos;

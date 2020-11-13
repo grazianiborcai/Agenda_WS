@@ -7,17 +7,17 @@ import br.com.mind5.business.employeeList.info.EmplisInfo;
 import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.business.scheduleMonthData.info.SchedonthatInfo;
 import br.com.mind5.business.storeList.info.StolisInfo;
-import br.com.mind5.info.InfoMergerBuilderV3;
-import br.com.mind5.info.InfoMergerV3;
+import br.com.mind5.info.InfoMergerBuilder;
+import br.com.mind5.info.InfoMerger;
 
 public final class SchedmonMerger {
 	public static List<SchedmonInfo> mergeWithEmplis(List<SchedmonInfo> baseInfos, List<EmplisInfo> selectedInfos) {
-		InfoMergerBuilderV3<SchedmonInfo, EmplisInfo> builder = new InfoMergerBuilderV3<>();
+		InfoMergerBuilder<SchedmonInfo, EmplisInfo> builder = new InfoMergerBuilder<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new SchedmonVisiMergeEmplis());
-		InfoMergerV3<SchedmonInfo, EmplisInfo> merger = builder.build();		
+		InfoMerger<SchedmonInfo, EmplisInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}
@@ -25,12 +25,12 @@ public final class SchedmonMerger {
 	
 	
 	public static List<SchedmonInfo> mergeWithCalate(List<SchedmonInfo> baseInfos, List<CalateInfo> selectedInfos) {
-		InfoMergerBuilderV3<SchedmonInfo, CalateInfo> builder = new InfoMergerBuilderV3<>();
+		InfoMergerBuilder<SchedmonInfo, CalateInfo> builder = new InfoMergerBuilder<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new SchedmonVisiMergeCalate());
-		InfoMergerV3<SchedmonInfo, CalateInfo> merger = builder.build();		
+		InfoMerger<SchedmonInfo, CalateInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}
@@ -38,12 +38,12 @@ public final class SchedmonMerger {
 	
 	
 	public static List<SchedmonInfo> mergeWithMatlis(List<SchedmonInfo> baseInfos, List<MatlisInfo> selectedInfos) {
-		InfoMergerBuilderV3<SchedmonInfo, MatlisInfo> builder = new InfoMergerBuilderV3<>();
+		InfoMergerBuilder<SchedmonInfo, MatlisInfo> builder = new InfoMergerBuilder<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new SchedmonVisiMergeMatlis());
-		InfoMergerV3<SchedmonInfo, MatlisInfo> merger = builder.build();		
+		InfoMerger<SchedmonInfo, MatlisInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}	
@@ -51,12 +51,12 @@ public final class SchedmonMerger {
 	
 	
 	public static List<SchedmonInfo> mergeWithStolis(List<SchedmonInfo> baseInfos, List<StolisInfo> selectedInfos) {
-		InfoMergerBuilderV3<SchedmonInfo, StolisInfo> builder = new InfoMergerBuilderV3<>();
+		InfoMergerBuilder<SchedmonInfo, StolisInfo> builder = new InfoMergerBuilder<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new SchedmonVisiMergeStolis());
-		InfoMergerV3<SchedmonInfo, StolisInfo> merger = builder.build();		
+		InfoMerger<SchedmonInfo, StolisInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}
@@ -64,12 +64,12 @@ public final class SchedmonMerger {
 	
 	
 	public static List<SchedmonInfo> mergeWithSchedonthat(List<SchedmonInfo> baseInfos, List<SchedonthatInfo> selectedInfos) {
-		InfoMergerBuilderV3<SchedmonInfo, SchedonthatInfo> builder = new InfoMergerBuilderV3<>();
+		InfoMergerBuilder<SchedmonInfo, SchedonthatInfo> builder = new InfoMergerBuilder<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new SchedmonVisiMergeSchedonthat());
-		InfoMergerV3<SchedmonInfo, SchedonthatInfo> merger = builder.build();		
+		InfoMerger<SchedmonInfo, SchedonthatInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}

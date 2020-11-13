@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.authorization.storeAuthorization.info.StorauthInfo;
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 
-final class SytotauhVisiMergeStorauth implements InfoMergerVisitorV3<SytotauhInfo, StorauthInfo> {
+final class SytotauhVisiMergeStorauth implements InfoMergerVisitor<SytotauhInfo, StorauthInfo> {
 
 	@Override public List<SytotauhInfo> beforeMerge(List<SytotauhInfo> baseInfos) {
 		return baseInfos;

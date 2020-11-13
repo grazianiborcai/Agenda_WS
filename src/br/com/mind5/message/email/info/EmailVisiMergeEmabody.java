@@ -3,11 +3,11 @@ package br.com.mind5.message.email.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.message.emailBody.info.EmabodyInfo;
 
-final class EmailVisiMergeEmabody implements InfoMergerVisitorV3<EmailInfo, EmabodyInfo> {
+final class EmailVisiMergeEmabody implements InfoMergerVisitor<EmailInfo, EmabodyInfo> {
 	
 	@Override public List<EmailInfo> beforeMerge(List<EmailInfo> baseInfos) {
 		return baseInfos;

@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.calendarMoon.info.MooncalInfo;
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 
-final class PlanataVisiMergeMooncal implements InfoMergerVisitorV3<PlanataInfo, MooncalInfo> {
+final class PlanataVisiMergeMooncal implements InfoMergerVisitor<PlanataInfo, MooncalInfo> {
 	
 	@Override public List<PlanataInfo> beforeMerge(List<PlanataInfo> baseInfos) {
 		return baseInfos;

@@ -3,11 +3,11 @@ package br.com.mind5.business.storeList.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.masterData.currency.info.CurrencyInfo;
 
-final class StolisVisiMergeCurrency implements InfoMergerVisitorV3<StolisInfo, CurrencyInfo> {
+final class StolisVisiMergeCurrency implements InfoMergerVisitor<StolisInfo, CurrencyInfo> {
 	
 	@Override public List<StolisInfo> beforeMerge(List<StolisInfo> baseInfos) {
 		return baseInfos;

@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.personList.info.PersolisInfo;
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 
-final class UselisVisiMergePersolis implements InfoMergerVisitorV3<UselisInfo, PersolisInfo> {
+final class UselisVisiMergePersolis implements InfoMergerVisitor<UselisInfo, PersolisInfo> {
 	
 	@Override public List<UselisInfo> beforeMerge(List<UselisInfo> baseInfos) {
 		return baseInfos;

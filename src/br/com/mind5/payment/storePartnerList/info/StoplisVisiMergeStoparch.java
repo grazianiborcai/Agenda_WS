@@ -3,11 +3,11 @@ package br.com.mind5.payment.storePartnerList.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.payment.storePartnerSearch.info.StoparchInfo;
 
-final class StoplisVisiMergeStoparch implements InfoMergerVisitorV3<StoplisInfo, StoparchInfo> {
+final class StoplisVisiMergeStoparch implements InfoMergerVisitor<StoplisInfo, StoparchInfo> {
 	
 	@Override public List<StoplisInfo> beforeMerge(List<StoplisInfo> baseInfos) {
 		return baseInfos;

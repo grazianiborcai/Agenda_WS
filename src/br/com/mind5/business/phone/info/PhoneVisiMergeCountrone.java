@@ -3,11 +3,11 @@ package br.com.mind5.business.phone.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.masterData.countryPhone.info.CountroneInfo;
 
-final class PhoneVisiMergeCountrone implements InfoMergerVisitorV3<PhoneInfo, CountroneInfo> {
+final class PhoneVisiMergeCountrone implements InfoMergerVisitor<PhoneInfo, CountroneInfo> {
 	
 	@Override public List<PhoneInfo> beforeMerge(List<PhoneInfo> baseInfos) {
 		return baseInfos;

@@ -3,10 +3,10 @@ package br.com.mind5.business.scheduleLineSnapshot.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 
-final class SchedinapVisiMergeToSelect implements InfoMergerVisitorV3<SchedinapInfo, SchedinapInfo> {
+final class SchedinapVisiMergeToSelect implements InfoMergerVisitor<SchedinapInfo, SchedinapInfo> {
 	
 	@Override public List<SchedinapInfo> beforeMerge(List<SchedinapInfo> baseInfos) {
 		return baseInfos;

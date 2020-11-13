@@ -3,11 +3,11 @@ package br.com.mind5.business.cart.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.masterData.currency.info.CurrencyInfo;
 
-final class CartVisiMergeCurrency implements InfoMergerVisitorV3<CartInfo, CurrencyInfo> {
+final class CartVisiMergeCurrency implements InfoMergerVisitor<CartInfo, CurrencyInfo> {
 	
 	@Override public List<CartInfo> beforeMerge(List<CartInfo> baseInfos) {
 		return baseInfos;

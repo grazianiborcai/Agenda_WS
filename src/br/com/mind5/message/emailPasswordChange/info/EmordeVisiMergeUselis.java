@@ -3,11 +3,11 @@ package br.com.mind5.message.emailPasswordChange.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.security.userList.info.UselisInfo;
 
-final class EmordeVisiMergeUselis implements InfoMergerVisitorV3<EmordeInfo, UselisInfo> {
+final class EmordeVisiMergeUselis implements InfoMergerVisitor<EmordeInfo, UselisInfo> {
 	
 	@Override public List<EmordeInfo> beforeMerge(List<EmordeInfo> baseInfos) {
 		return baseInfos;

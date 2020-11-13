@@ -6,12 +6,11 @@ import java.time.LocalTime;
 
 import br.com.mind5.business.calendarTimeStore.info.CalimoreInfo;
 import br.com.mind5.info.InfoCopierTemplate;
-import br.com.mind5.info.obsolete.InfoUniquifyHelper_;
 
 final class StolargCopyCalimore extends InfoCopierTemplate<StolargInfo, CalimoreInfo> {
 	
 	public StolargCopyCalimore() {
-		super(new InfoUniquifyHelper_<StolargInfo>());
+		super(new StolargUniquifier());
 	}
 	
 	

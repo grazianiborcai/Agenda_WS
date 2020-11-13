@@ -3,10 +3,10 @@ package br.com.mind5.business.materialStockSearch.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 
-final class MatocarchVisiMergeToSelect implements InfoMergerVisitorV3<MatocarchInfo, MatocarchInfo> {
+final class MatocarchVisiMergeToSelect implements InfoMergerVisitor<MatocarchInfo, MatocarchInfo> {
 
 	@Override public List<MatocarchInfo> beforeMerge(List<MatocarchInfo> baseInfos) {
 		return baseInfos;

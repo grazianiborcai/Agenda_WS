@@ -3,11 +3,11 @@ package br.com.mind5.business.phoneSnapshot.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.security.userList.info.UselisInfo;
 
-final class PhonapVisiMergeUselis implements InfoMergerVisitorV3<PhonapInfo, UselisInfo> {
+final class PhonapVisiMergeUselis implements InfoMergerVisitor<PhonapInfo, UselisInfo> {
 	
 	@Override public List<PhonapInfo> beforeMerge(List<PhonapInfo> baseInfos) {
 		return baseInfos;

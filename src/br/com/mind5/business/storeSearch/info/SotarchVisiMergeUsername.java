@@ -3,11 +3,11 @@ package br.com.mind5.business.storeSearch.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.security.username.info.UsernameInfo;
 
-final class SotarchVisiMergeUsername implements InfoMergerVisitorV3<SotarchInfo, UsernameInfo> {
+final class SotarchVisiMergeUsername implements InfoMergerVisitor<SotarchInfo, UsernameInfo> {
 	
 	@Override public List<SotarchInfo> beforeMerge(List<SotarchInfo> baseInfos) {
 		return baseInfos;

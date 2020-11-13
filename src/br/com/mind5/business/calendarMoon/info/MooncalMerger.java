@@ -2,18 +2,18 @@ package br.com.mind5.business.calendarMoon.info;
 
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerBuilderV3;
-import br.com.mind5.info.InfoMergerV3;
+import br.com.mind5.info.InfoMergerBuilder;
+import br.com.mind5.info.InfoMerger;
 import br.com.mind5.masterData.moonPhase.info.MoonaseInfo;
 
 public final class MooncalMerger {
 	public static List<MooncalInfo> mergeWithMoonase(List<MooncalInfo> baseInfos, List<MoonaseInfo> selectedInfos) {
-		InfoMergerBuilderV3<MooncalInfo, MoonaseInfo> builder = new InfoMergerBuilderV3<>();
+		InfoMergerBuilder<MooncalInfo, MoonaseInfo> builder = new InfoMergerBuilder<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new MooncalVisiMergeMoonase());
-		InfoMergerV3<MooncalInfo, MoonaseInfo> merger = builder.build();		
+		InfoMerger<MooncalInfo, MoonaseInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}
@@ -21,12 +21,12 @@ public final class MooncalMerger {
 	
 	
 	public static List<MooncalInfo> mergeToSelect(List<MooncalInfo> baseInfos, List<MooncalInfo> selectedInfos) {
-		InfoMergerBuilderV3<MooncalInfo, MooncalInfo> builder = new InfoMergerBuilderV3<>();
+		InfoMergerBuilder<MooncalInfo, MooncalInfo> builder = new InfoMergerBuilder<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new MooncalVisiMergeToSelect());
-		InfoMergerV3<MooncalInfo, MooncalInfo> merger = builder.build();		
+		InfoMerger<MooncalInfo, MooncalInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}

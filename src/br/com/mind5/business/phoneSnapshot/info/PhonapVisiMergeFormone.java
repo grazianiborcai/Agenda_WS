@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.form.formPhone.info.FormoneInfo;
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 
-final class PhonapVisiMergeFormone implements InfoMergerVisitorV3<PhonapInfo, FormoneInfo> {
+final class PhonapVisiMergeFormone implements InfoMergerVisitor<PhonapInfo, FormoneInfo> {
 	
 	@Override public List<PhonapInfo> beforeMerge(List<PhonapInfo> baseInfos) {
 		return baseInfos;

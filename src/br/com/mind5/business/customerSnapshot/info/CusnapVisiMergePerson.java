@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.person.info.PersonInfo;
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 
-final class CusnapVisiMergePerson implements InfoMergerVisitorV3<CusnapInfo, PersonInfo> {
+final class CusnapVisiMergePerson implements InfoMergerVisitor<CusnapInfo, PersonInfo> {
 	
 	@Override public List<CusnapInfo> beforeMerge(List<CusnapInfo> baseInfos) {
 		return baseInfos;

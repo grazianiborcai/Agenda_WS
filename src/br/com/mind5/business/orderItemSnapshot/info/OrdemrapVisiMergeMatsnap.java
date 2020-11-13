@@ -5,10 +5,10 @@ import java.util.List;
 
 import br.com.mind5.business.material.info.MatInfo;
 import br.com.mind5.business.materialSnapshot.info.MatsnapInfo;
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 
-final class OrdemrapVisiMergeMatsnap implements InfoMergerVisitorV3<OrdemrapInfo, MatsnapInfo> {
+final class OrdemrapVisiMergeMatsnap implements InfoMergerVisitor<OrdemrapInfo, MatsnapInfo> {
 	
 	@Override public List<OrdemrapInfo> beforeMerge(List<OrdemrapInfo> baseInfos) {
 		return baseInfos;

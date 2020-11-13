@@ -3,10 +3,10 @@ package br.com.mind5.business.feeOwner.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 
-final class FeewnerVisiMergeToSelect implements InfoMergerVisitorV3<FeewnerInfo, FeewnerInfo> {
+final class FeewnerVisiMergeToSelect implements InfoMergerVisitor<FeewnerInfo, FeewnerInfo> {
 	
 	@Override public List<FeewnerInfo> beforeMerge(List<FeewnerInfo> baseInfos) {
 		return baseInfos;

@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.address.info.AddressInfo;
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 
-final class StolisVisiMergeAddress implements InfoMergerVisitorV3<StolisInfo, AddressInfo> {
+final class StolisVisiMergeAddress implements InfoMergerVisitor<StolisInfo, AddressInfo> {
 	
 	@Override public List<StolisInfo> beforeMerge(List<StolisInfo> baseInfos) {
 		return baseInfos;

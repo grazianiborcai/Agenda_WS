@@ -3,11 +3,11 @@ package br.com.mind5.business.bookService.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.message.sysMessage.info.SymsgInfo;
 
-final class BookiceVisiMergeSymsg implements InfoMergerVisitorV3<BookiceInfo, SymsgInfo> {
+final class BookiceVisiMergeSymsg implements InfoMergerVisitor<BookiceInfo, SymsgInfo> {
 	
 	@Override public List<BookiceInfo> beforeMerge(List<BookiceInfo> baseInfos) {
 		return baseInfos;

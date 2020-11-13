@@ -2,18 +2,18 @@ package br.com.mind5.security.userAuthentication.info;
 
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerBuilderV3;
-import br.com.mind5.info.InfoMergerV3;
+import br.com.mind5.info.InfoMergerBuilder;
+import br.com.mind5.info.InfoMerger;
 import br.com.mind5.security.userList.info.UselisInfo;
 
 public final class UauthMerger {
 	public static List<UauthInfo> mergeWithUselis(List<UauthInfo> baseInfos, List<UselisInfo> selectedInfos) {
-		InfoMergerBuilderV3<UauthInfo, UselisInfo> builder = new InfoMergerBuilderV3<>();
+		InfoMergerBuilder<UauthInfo, UselisInfo> builder = new InfoMergerBuilder<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new UauthVisiMergeUselis());
-		InfoMergerV3<UauthInfo, UselisInfo> merger = builder.build();		
+		InfoMerger<UauthInfo, UselisInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}

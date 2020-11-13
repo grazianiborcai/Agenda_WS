@@ -4,8 +4,8 @@ import java.util.List;
 
 import br.com.mind5.business.addressSnapshot.info.AddresnapInfo;
 import br.com.mind5.business.phoneSnapshot.info.PhonapInfo;
-import br.com.mind5.info.InfoMergerBuilderV3;
-import br.com.mind5.info.InfoMergerV3;
+import br.com.mind5.info.InfoMergerBuilder;
+import br.com.mind5.info.InfoMerger;
 import br.com.mind5.masterData.sysEnvironment.info.SysenvInfo;
 import br.com.mind5.payment.setupPartner.info.SetuparInfo;
 import br.com.mind5.security.userSnapshot.info.UserapInfo;
@@ -13,12 +13,12 @@ import br.com.mind5.security.userSnapshot.info.UserapInfo;
 public final class CusmoipMerger {
 	
 	public static List<CusmoipInfo> mergeWithUserap(List<CusmoipInfo> baseInfos, List<UserapInfo> selectedInfos) {
-		InfoMergerBuilderV3<CusmoipInfo, UserapInfo> builder = new InfoMergerBuilderV3<>();
+		InfoMergerBuilder<CusmoipInfo, UserapInfo> builder = new InfoMergerBuilder<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new CusmoipVisiMergeUserap());
-		InfoMergerV3<CusmoipInfo, UserapInfo> merger = builder.build();		
+		InfoMerger<CusmoipInfo, UserapInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}	
@@ -26,12 +26,12 @@ public final class CusmoipMerger {
 	
 	
 	public static List<CusmoipInfo> mergeWithSysenv(List<CusmoipInfo> baseInfos, List<SysenvInfo> selectedInfos) {
-		InfoMergerBuilderV3<CusmoipInfo, SysenvInfo> builder = new InfoMergerBuilderV3<>();
+		InfoMergerBuilder<CusmoipInfo, SysenvInfo> builder = new InfoMergerBuilder<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new CusmoipVisiMergeSysenv());
-		InfoMergerV3<CusmoipInfo, SysenvInfo> merger = builder.build();		
+		InfoMerger<CusmoipInfo, SysenvInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}		
@@ -39,12 +39,12 @@ public final class CusmoipMerger {
 	
 	
 	public static List<CusmoipInfo> mergeWithSetupar(List<CusmoipInfo> baseInfos, List<SetuparInfo> selectedInfos) {
-		InfoMergerBuilderV3<CusmoipInfo, SetuparInfo> builder = new InfoMergerBuilderV3<>();
+		InfoMergerBuilder<CusmoipInfo, SetuparInfo> builder = new InfoMergerBuilder<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new CusmoipVisiMergeSetupar());
-		InfoMergerV3<CusmoipInfo, SetuparInfo> merger = builder.build();		
+		InfoMerger<CusmoipInfo, SetuparInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}	
@@ -52,12 +52,12 @@ public final class CusmoipMerger {
 	
 	
 	public static List<CusmoipInfo> mergeWithAddresnap(List<CusmoipInfo> baseInfos, List<AddresnapInfo> selectedInfos) {
-		InfoMergerBuilderV3<CusmoipInfo, AddresnapInfo> builder = new InfoMergerBuilderV3<>();
+		InfoMergerBuilder<CusmoipInfo, AddresnapInfo> builder = new InfoMergerBuilder<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new CusmoipVisiMergeAddresnap());
-		InfoMergerV3<CusmoipInfo, AddresnapInfo> merger = builder.build();		
+		InfoMerger<CusmoipInfo, AddresnapInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}		
@@ -65,12 +65,12 @@ public final class CusmoipMerger {
 	
 	
 	public static List<CusmoipInfo> mergeWithPhonap(List<CusmoipInfo> baseInfos, List<PhonapInfo> selectedInfos) {
-		InfoMergerBuilderV3<CusmoipInfo, PhonapInfo> builder = new InfoMergerBuilderV3<>();
+		InfoMergerBuilder<CusmoipInfo, PhonapInfo> builder = new InfoMergerBuilder<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new CusmoipVisiMergePhonap());
-		InfoMergerV3<CusmoipInfo, PhonapInfo> merger = builder.build();		
+		InfoMerger<CusmoipInfo, PhonapInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}	

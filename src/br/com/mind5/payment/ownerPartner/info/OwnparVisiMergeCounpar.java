@@ -3,11 +3,11 @@ package br.com.mind5.payment.ownerPartner.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.payment.countryPartner.info.CounparInfo;
 
-final class OwnparVisiMergeCounpar implements InfoMergerVisitorV3<OwnparInfo, CounparInfo> {
+final class OwnparVisiMergeCounpar implements InfoMergerVisitor<OwnparInfo, CounparInfo> {
 	
 	@Override public List<OwnparInfo> beforeMerge(List<OwnparInfo> baseInfos) {
 		return baseInfos;

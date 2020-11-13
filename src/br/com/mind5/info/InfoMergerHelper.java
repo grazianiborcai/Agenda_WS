@@ -7,14 +7,14 @@ import java.util.stream.Collectors;
 import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
 
-public final class InfoMergerHelperV3<T extends InfoRecord, K extends InfoRecord> implements InfoMergerV3<T, K> {	
+public final class InfoMergerHelper<T extends InfoRecord, K extends InfoRecord> implements InfoMerger<T, K> {	
 	private final List<T> bases; 
 	private final List<K> seles;	
-	private final InfoMergerVisitorV3<T,K> merger;
+	private final InfoMergerVisitor<T,K> merger;
 	private final Class<?> mergerClazz;
 	
 	
-	public InfoMergerHelperV3 (List<T> baseInfos, List<K> selectedInfos, InfoMergerVisitorV3<T, K> visitor) {
+	public InfoMergerHelper (List<T> baseInfos, List<K> selectedInfos, InfoMergerVisitor<T, K> visitor) {
 		checkArgument(baseInfos, selectedInfos, visitor);
 		
 		bases = InfoUtil.copy(baseInfos);
@@ -37,7 +37,7 @@ public final class InfoMergerHelperV3<T extends InfoRecord, K extends InfoRecord
 
 
 	
-	private List<T> mergeWithVisitor(List<T> baseInfos, List<K> selectedInfos, InfoMergerVisitorV3<T,K> visitor) {
+	private List<T> mergeWithVisitor(List<T> baseInfos, List<K> selectedInfos, InfoMergerVisitor<T,K> visitor) {
 		baseInfos = visitor.beforeMerge(baseInfos);		
 		List<T> results = new ArrayList<>();
 		
@@ -66,7 +66,7 @@ public final class InfoMergerHelperV3<T extends InfoRecord, K extends InfoRecord
 	
 	
 	
-	private List<T> uniquify(List<T> results, InfoMergerVisitorV3<T,K> visitor) {
+	private List<T> uniquify(List<T> results, InfoMergerVisitor<T,K> visitor) {
 		InfoUniquifier<T> uniquifier = visitor.getUniquifier();
 		
 		if (uniquifier == null)
@@ -103,7 +103,7 @@ public final class InfoMergerHelperV3<T extends InfoRecord, K extends InfoRecord
 	
 	
 	
-	private void checkArgument(List<T> baseInfos, List<K> selectedInfos, InfoMergerVisitorV3<T, K> visitor) {
+	private void checkArgument(List<T> baseInfos, List<K> selectedInfos, InfoMergerVisitor<T, K> visitor) {
 		if (baseInfos == null) {
 			logException(new NullPointerException("baseInfos" + SystemMessage.NULL_ARGUMENT));
 			throw new NullPointerException("baseInfos" + SystemMessage.NULL_ARGUMENT);

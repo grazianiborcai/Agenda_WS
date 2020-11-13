@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.ownerList.info.OwnelisInfo;
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 
-final class EmacomeVisiMergeOwnelis implements InfoMergerVisitorV3<EmacomeInfo, OwnelisInfo> {
+final class EmacomeVisiMergeOwnelis implements InfoMergerVisitor<EmacomeInfo, OwnelisInfo> {
 	
 	@Override public List<EmacomeInfo> beforeMerge(List<EmacomeInfo> baseInfos) {
 		return baseInfos;

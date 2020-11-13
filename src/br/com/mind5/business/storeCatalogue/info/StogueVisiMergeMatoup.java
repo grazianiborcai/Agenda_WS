@@ -3,11 +3,11 @@ package br.com.mind5.business.storeCatalogue.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.masterData.materialGroup.info.MatoupInfo;
 
-final class StogueVisiMergeMatoup implements InfoMergerVisitorV3<StogueInfo, MatoupInfo> {
+final class StogueVisiMergeMatoup implements InfoMergerVisitor<StogueInfo, MatoupInfo> {
 	
 	@Override public List<StogueInfo> beforeMerge(List<StogueInfo> baseInfos) {
 		return baseInfos;

@@ -3,11 +3,11 @@ package br.com.mind5.business.order.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.masterData.currency.info.CurrencyInfo;
 
-final class OrderVisiMergeCurrency implements InfoMergerVisitorV3<OrderInfo, CurrencyInfo> {
+final class OrderVisiMergeCurrency implements InfoMergerVisitor<OrderInfo, CurrencyInfo> {
 
 	@Override public List<OrderInfo> beforeMerge(List<OrderInfo> baseInfos) {
 		return baseInfos;

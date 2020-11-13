@@ -2,18 +2,18 @@ package br.com.mind5.masterData.state.info;
 
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerBuilderV3;
-import br.com.mind5.info.InfoMergerV3;
+import br.com.mind5.info.InfoMergerBuilder;
+import br.com.mind5.info.InfoMerger;
 import br.com.mind5.masterData.country.info.CountryInfo;
 
 public final class StateMerger {	
 	public static List<StateInfo> mergeWithCountry(List<StateInfo> baseInfos, List<CountryInfo> selectedInfos) {
-		InfoMergerBuilderV3<StateInfo, CountryInfo> builder = new InfoMergerBuilderV3<>();
+		InfoMergerBuilder<StateInfo, CountryInfo> builder = new InfoMergerBuilder<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new StateVisiMergeCountry());
-		InfoMergerV3<StateInfo, CountryInfo> merger = builder.build();		
+		InfoMerger<StateInfo, CountryInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}

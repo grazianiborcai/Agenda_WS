@@ -3,11 +3,11 @@ package br.com.mind5.masterData.materialGroup.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.masterData.materialGroupSearch.info.MatouparchInfo;
 
-final class MatoupVisiMergeMatouparch implements InfoMergerVisitorV3<MatoupInfo, MatouparchInfo> {
+final class MatoupVisiMergeMatouparch implements InfoMergerVisitor<MatoupInfo, MatouparchInfo> {
 	
 	@Override public List<MatoupInfo> beforeMerge(List<MatoupInfo> baseInfos) {
 		return baseInfos;

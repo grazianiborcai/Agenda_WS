@@ -3,10 +3,10 @@ package br.com.mind5.business.employeePositionSearch.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 
-final class EmposarchVisiMergeToSelect implements InfoMergerVisitorV3<EmposarchInfo, EmposarchInfo> {
+final class EmposarchVisiMergeToSelect implements InfoMergerVisitor<EmposarchInfo, EmposarchInfo> {
 	
 	@Override public List<EmposarchInfo> beforeMerge(List<EmposarchInfo> baseInfos) {
 		return baseInfos;

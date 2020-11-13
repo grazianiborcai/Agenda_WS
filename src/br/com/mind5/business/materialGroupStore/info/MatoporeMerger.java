@@ -3,17 +3,17 @@ package br.com.mind5.business.materialGroupStore.info;
 import java.util.List;
 
 import br.com.mind5.business.materialStore.info.MatoreInfo;
-import br.com.mind5.info.InfoMergerBuilderV3;
-import br.com.mind5.info.InfoMergerV3;
+import br.com.mind5.info.InfoMergerBuilder;
+import br.com.mind5.info.InfoMerger;
 
 public final class MatoporeMerger {
 	public static List<MatoporeInfo> mergeWithMatore(List<MatoporeInfo> baseInfos, List<MatoreInfo> selectedInfos) {
-		InfoMergerBuilderV3<MatoporeInfo, MatoreInfo> builder = new InfoMergerBuilderV3<>();
+		InfoMergerBuilder<MatoporeInfo, MatoreInfo> builder = new InfoMergerBuilder<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new MatoporeVisiMergeMatore());
-		InfoMergerV3<MatoporeInfo, MatoreInfo> merger = builder.build();		
+		InfoMerger<MatoporeInfo, MatoreInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}

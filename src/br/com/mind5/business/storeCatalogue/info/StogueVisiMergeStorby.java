@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.storeNearby.info.StorbyInfo;
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 
-final class StogueVisiMergeStorby implements InfoMergerVisitorV3<StogueInfo, StorbyInfo> {
+final class StogueVisiMergeStorby implements InfoMergerVisitor<StogueInfo, StorbyInfo> {
 	
 	@Override public List<StogueInfo> beforeMerge(List<StogueInfo> baseInfos) {
 		return baseInfos;

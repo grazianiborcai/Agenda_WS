@@ -6,17 +6,17 @@ import br.com.mind5.business.addressSnapshot.info.AddresnapInfo;
 import br.com.mind5.business.personList.info.PersolisInfo;
 import br.com.mind5.business.personSnapshot.info.PersonapInfo;
 import br.com.mind5.business.phoneSnapshot.info.PhonapInfo;
-import br.com.mind5.info.InfoMergerBuilderV3;
-import br.com.mind5.info.InfoMergerV3;
+import br.com.mind5.info.InfoMergerBuilder;
+import br.com.mind5.info.InfoMerger;
 
 public final class UserapMerger {	
 	public static List<UserapInfo> mergeWithPersolis(List<UserapInfo> baseInfos, List<PersolisInfo> selectedInfos) {
-		InfoMergerBuilderV3<UserapInfo, PersolisInfo> builder = new InfoMergerBuilderV3<>();
+		InfoMergerBuilder<UserapInfo, PersolisInfo> builder = new InfoMergerBuilder<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new UserapVisiMergePersolis());
-		InfoMergerV3<UserapInfo, PersolisInfo> merger = builder.build();		
+		InfoMerger<UserapInfo, PersolisInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}	
@@ -24,12 +24,12 @@ public final class UserapMerger {
 	
 
 	public static List<UserapInfo> mergeWithAddresnap(List<UserapInfo> baseInfos, List<AddresnapInfo> selectedInfos) {
-		InfoMergerBuilderV3<UserapInfo, AddresnapInfo> builder = new InfoMergerBuilderV3<>();
+		InfoMergerBuilder<UserapInfo, AddresnapInfo> builder = new InfoMergerBuilder<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new UserapVisiMergeAddresnap());
-		InfoMergerV3<UserapInfo, AddresnapInfo> merger = builder.build();		
+		InfoMerger<UserapInfo, AddresnapInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}	
@@ -37,12 +37,12 @@ public final class UserapMerger {
 	
 	
 	public static List<UserapInfo> mergeWithPersonap(List<UserapInfo> baseInfos, List<PersonapInfo> selectedInfos) {
-		InfoMergerBuilderV3<UserapInfo, PersonapInfo> builder = new InfoMergerBuilderV3<>();
+		InfoMergerBuilder<UserapInfo, PersonapInfo> builder = new InfoMergerBuilder<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new UserapVisiMergePersonap());
-		InfoMergerV3<UserapInfo, PersonapInfo> merger = builder.build();		
+		InfoMerger<UserapInfo, PersonapInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}	
@@ -50,12 +50,12 @@ public final class UserapMerger {
 	
 	
 	public static List<UserapInfo> mergeWithPhonap(List<UserapInfo> baseInfos, List<PhonapInfo> selectedInfos) {
-		InfoMergerBuilderV3<UserapInfo, PhonapInfo> builder = new InfoMergerBuilderV3<>();
+		InfoMergerBuilder<UserapInfo, PhonapInfo> builder = new InfoMergerBuilder<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new UserapVisiMergePhonap());
-		InfoMergerV3<UserapInfo, PhonapInfo> merger = builder.build();		
+		InfoMerger<UserapInfo, PhonapInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}	
@@ -63,12 +63,12 @@ public final class UserapMerger {
 	
 	
 	public static List<UserapInfo> mergeToSelect(List<UserapInfo> baseInfos, List<UserapInfo> selectedInfos) {
-		InfoMergerBuilderV3<UserapInfo, UserapInfo> builder = new InfoMergerBuilderV3<>();
+		InfoMergerBuilder<UserapInfo, UserapInfo> builder = new InfoMergerBuilder<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new UserapVisiMergeToSelect());
-		InfoMergerV3<UserapInfo, UserapInfo> merger = builder.build();		
+		InfoMerger<UserapInfo, UserapInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}	

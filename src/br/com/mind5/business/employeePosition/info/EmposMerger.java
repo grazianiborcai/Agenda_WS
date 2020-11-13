@@ -4,19 +4,19 @@ import java.util.List;
 
 import br.com.mind5.business.employeeList.info.EmplisInfo;
 import br.com.mind5.business.employeePositionSearch.info.EmposarchInfo;
-import br.com.mind5.info.InfoMergerBuilderV3;
-import br.com.mind5.info.InfoMergerV3;
+import br.com.mind5.info.InfoMergerBuilder;
+import br.com.mind5.info.InfoMerger;
 import br.com.mind5.masterData.position.info.PositionInfo;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class EmposMerger {
 	public static List<EmposInfo> mergeWithEmplis(List<EmposInfo> baseInfos, List<EmplisInfo> selectedInfos) {
-		InfoMergerBuilderV3<EmposInfo, EmplisInfo> builder = new InfoMergerBuilderV3<>();
+		InfoMergerBuilder<EmposInfo, EmplisInfo> builder = new InfoMergerBuilder<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new EmposVisiMergeEmplis());
-		InfoMergerV3<EmposInfo, EmplisInfo> merger = builder.build();		
+		InfoMerger<EmposInfo, EmplisInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}
@@ -24,12 +24,12 @@ public final class EmposMerger {
 	
 	
 	public static List<EmposInfo> mergeWithEmposarch(List<EmposInfo> baseInfos, List<EmposarchInfo> selectedInfos) {
-		InfoMergerBuilderV3<EmposInfo, EmposarchInfo> builder = new InfoMergerBuilderV3<>();
+		InfoMergerBuilder<EmposInfo, EmposarchInfo> builder = new InfoMergerBuilder<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new EmposVisiMergeEmposarch());
-		InfoMergerV3<EmposInfo, EmposarchInfo> merger = builder.build();		
+		InfoMerger<EmposInfo, EmposarchInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}
@@ -37,12 +37,12 @@ public final class EmposMerger {
 	
 	
 	public static List<EmposInfo> mergeWithPosition(List<EmposInfo> baseInfos, List<PositionInfo> selectedInfos) {
-		InfoMergerBuilderV3<EmposInfo, PositionInfo> builder = new InfoMergerBuilderV3<>();
+		InfoMergerBuilder<EmposInfo, PositionInfo> builder = new InfoMergerBuilder<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new EmposVisiMergePosition());
-		InfoMergerV3<EmposInfo, PositionInfo> merger = builder.build();		
+		InfoMerger<EmposInfo, PositionInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}
@@ -50,12 +50,12 @@ public final class EmposMerger {
 	
 	
 	public static List<EmposInfo> mergeWithUsername(List<EmposInfo> baseInfos, List<UsernameInfo> selectedInfos) {
-		InfoMergerBuilderV3<EmposInfo, UsernameInfo> builder = new InfoMergerBuilderV3<>();
+		InfoMergerBuilder<EmposInfo, UsernameInfo> builder = new InfoMergerBuilder<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new EmposVisiMergeUsername());
-		InfoMergerV3<EmposInfo, UsernameInfo> merger = builder.build();		
+		InfoMerger<EmposInfo, UsernameInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}
@@ -63,12 +63,12 @@ public final class EmposMerger {
 	
 	
 	public static List<EmposInfo> mergeToDelete(List<EmposInfo> baseInfos, List<EmposInfo> selectedInfos) {
-		InfoMergerBuilderV3<EmposInfo, EmposInfo> builder = new InfoMergerBuilderV3<>();
+		InfoMergerBuilder<EmposInfo, EmposInfo> builder = new InfoMergerBuilder<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new EmposVisiMergeToDelete());
-		InfoMergerV3<EmposInfo, EmposInfo> merger = builder.build();		
+		InfoMerger<EmposInfo, EmposInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}
@@ -76,12 +76,12 @@ public final class EmposMerger {
 	
 	
 	public static List<EmposInfo> mergeToSelect(List<EmposInfo> baseInfos, List<EmposInfo> selectedInfos) {
-		InfoMergerBuilderV3<EmposInfo, EmposInfo> builder = new InfoMergerBuilderV3<>();
+		InfoMergerBuilder<EmposInfo, EmposInfo> builder = new InfoMergerBuilder<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new EmposVisiMergeToSelect());
-		InfoMergerV3<EmposInfo, EmposInfo> merger = builder.build();		
+		InfoMerger<EmposInfo, EmposInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}

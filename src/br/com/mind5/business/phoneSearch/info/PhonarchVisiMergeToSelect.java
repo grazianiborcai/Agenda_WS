@@ -3,10 +3,10 @@ package br.com.mind5.business.phoneSearch.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 
-final class PhonarchVisiMergeToSelect implements InfoMergerVisitorV3<PhonarchInfo, PhonarchInfo> {
+final class PhonarchVisiMergeToSelect implements InfoMergerVisitor<PhonarchInfo, PhonarchInfo> {
 	
 	@Override public List<PhonarchInfo> beforeMerge(List<PhonarchInfo> baseInfos) {
 		return baseInfos;

@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.file.fileImageList.info.FimistInfo;
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 
-final class EmpVisiMergeFimist implements InfoMergerVisitorV3<EmpInfo, FimistInfo> {
+final class EmpVisiMergeFimist implements InfoMergerVisitor<EmpInfo, FimistInfo> {
 	
 	@Override public List<EmpInfo> beforeMerge(List<EmpInfo> baseInfos) {
 		return baseInfos;

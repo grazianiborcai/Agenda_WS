@@ -6,12 +6,11 @@ import java.time.LocalTime;
 
 import br.com.mind5.business.cartItem.info.CartemInfo;
 import br.com.mind5.info.InfoCopierTemplate;
-import br.com.mind5.info.obsolete.InfoUniquifyHelper_;
 
 final class EmplargCopyCartem extends InfoCopierTemplate<EmplargInfo, CartemInfo> {
 	
 	public EmplargCopyCartem() {
-		super(new InfoUniquifyHelper_<EmplargInfo>());
+		super(new EmplargUniquifier());
 	}
 	
 	

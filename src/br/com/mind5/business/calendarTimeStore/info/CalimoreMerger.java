@@ -5,17 +5,17 @@ import java.util.List;
 import br.com.mind5.business.calendarDate.info.CalateInfo;
 import br.com.mind5.business.storeLeaveDateRange.info.StolargInfo;
 import br.com.mind5.business.storeWorkTimeSearch.info.StowotarchInfo;
-import br.com.mind5.info.InfoMergerBuilderV3;
-import br.com.mind5.info.InfoMergerV3;
+import br.com.mind5.info.InfoMergerBuilder;
+import br.com.mind5.info.InfoMerger;
 
 public final class CalimoreMerger {
 	public static List<CalimoreInfo> mergeWithStolarg(List<CalimoreInfo> baseInfos, List<StolargInfo> selectedInfos) {
-		InfoMergerBuilderV3<CalimoreInfo, StolargInfo> builder = new InfoMergerBuilderV3<>();
+		InfoMergerBuilder<CalimoreInfo, StolargInfo> builder = new InfoMergerBuilder<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new CalimoreVisiMergeStolarg());
-		InfoMergerV3<CalimoreInfo, StolargInfo> merger = builder.build();		
+		InfoMerger<CalimoreInfo, StolargInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}
@@ -23,12 +23,12 @@ public final class CalimoreMerger {
 	
 	
 	public static List<CalimoreInfo> mergeWithCalate(List<CalimoreInfo> baseInfos, List<CalateInfo> selectedInfos) {
-		InfoMergerBuilderV3<CalimoreInfo, CalateInfo> builder = new InfoMergerBuilderV3<>();
+		InfoMergerBuilder<CalimoreInfo, CalateInfo> builder = new InfoMergerBuilder<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new CalimoreVisiMergeCalate());
-		InfoMergerV3<CalimoreInfo, CalateInfo> merger = builder.build();		
+		InfoMerger<CalimoreInfo, CalateInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}
@@ -36,12 +36,12 @@ public final class CalimoreMerger {
 	
 	
 	public static List<CalimoreInfo> mergeWithStowotarch(List<CalimoreInfo> baseInfos, List<StowotarchInfo> selectedInfos) {
-		InfoMergerBuilderV3<CalimoreInfo, StowotarchInfo> builder = new InfoMergerBuilderV3<>();
+		InfoMergerBuilder<CalimoreInfo, StowotarchInfo> builder = new InfoMergerBuilder<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new CalimoreVisiMergeStowotarch());
-		InfoMergerV3<CalimoreInfo, StowotarchInfo> merger = builder.build();		
+		InfoMerger<CalimoreInfo, StowotarchInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}

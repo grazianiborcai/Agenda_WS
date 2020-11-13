@@ -3,10 +3,10 @@ package br.com.mind5.business.orderItemSnapshot.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 
-final class OrdemrapVisiMergeToSelect implements InfoMergerVisitorV3<OrdemrapInfo, OrdemrapInfo> {
+final class OrdemrapVisiMergeToSelect implements InfoMergerVisitor<OrdemrapInfo, OrdemrapInfo> {
 	
 	@Override public List<OrdemrapInfo> beforeMerge(List<OrdemrapInfo> baseInfos) {
 		return baseInfos;

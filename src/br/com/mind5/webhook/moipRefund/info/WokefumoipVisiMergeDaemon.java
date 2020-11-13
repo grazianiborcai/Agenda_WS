@@ -3,11 +3,11 @@ package br.com.mind5.webhook.moipRefund.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.security.user.info.UserInfo;
 
-final class WokefumoipVisiMergeDaemon implements InfoMergerVisitorV3<WokefumoipInfo, UserInfo> {
+final class WokefumoipVisiMergeDaemon implements InfoMergerVisitor<WokefumoipInfo, UserInfo> {
 	
 	@Override public List<WokefumoipInfo> beforeMerge(List<WokefumoipInfo> baseInfos) {
 		return baseInfos;

@@ -3,11 +3,11 @@ package br.com.mind5.masterData.moonPhase.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.masterData.moonPhaseSearch.info.MoonasarchInfo;
 
-final class MoonaseVisiMergeMoonasarch implements InfoMergerVisitorV3<MoonaseInfo, MoonasarchInfo> {
+final class MoonaseVisiMergeMoonasarch implements InfoMergerVisitor<MoonaseInfo, MoonasarchInfo> {
 	
 	@Override public List<MoonaseInfo> beforeMerge(List<MoonaseInfo> baseInfos) {
 		return baseInfos;

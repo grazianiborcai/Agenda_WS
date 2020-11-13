@@ -3,10 +3,10 @@ package br.com.mind5.business.customerList.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 
-final class CuslisVisiMergeToSelect implements InfoMergerVisitorV3<CuslisInfo, CuslisInfo> {
+final class CuslisVisiMergeToSelect implements InfoMergerVisitor<CuslisInfo, CuslisInfo> {
 	
 	@Override public List<CuslisInfo> beforeMerge(List<CuslisInfo> baseInfos) {
 		return baseInfos;

@@ -5,10 +5,10 @@ import java.util.List;
 
 import br.com.mind5.business.address.info.AddressInfo;
 import br.com.mind5.business.addressSearch.info.AddarchInfo;
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 
-final class AddressVisiMergeAddarch implements InfoMergerVisitorV3<AddressInfo, AddarchInfo> {
+final class AddressVisiMergeAddarch implements InfoMergerVisitor<AddressInfo, AddarchInfo> {
 	
 	@Override public List<AddressInfo> beforeMerge(List<AddressInfo> baseInfos) {
 		return baseInfos;

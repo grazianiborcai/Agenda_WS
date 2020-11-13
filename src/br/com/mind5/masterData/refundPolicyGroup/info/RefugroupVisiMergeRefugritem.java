@@ -3,11 +3,11 @@ package br.com.mind5.masterData.refundPolicyGroup.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.masterData.refundPolicyGroupItem.info.RefugritemInfo;
 
-final class RefugroupVisiMergeRefugritem implements InfoMergerVisitorV3<RefugroupInfo, RefugritemInfo> {
+final class RefugroupVisiMergeRefugritem implements InfoMergerVisitor<RefugroupInfo, RefugritemInfo> {
 	
 	@Override public List<RefugroupInfo> beforeMerge(List<RefugroupInfo> baseInfos) {
 		return baseInfos;

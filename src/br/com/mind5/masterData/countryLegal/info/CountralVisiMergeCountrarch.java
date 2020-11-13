@@ -3,11 +3,11 @@ package br.com.mind5.masterData.countryLegal.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.masterData.countryLegalSearch.info.CountrarchInfo;
 
-final class CountralVisiMergeCountrarch implements InfoMergerVisitorV3<CountralInfo, CountrarchInfo> {
+final class CountralVisiMergeCountrarch implements InfoMergerVisitor<CountralInfo, CountrarchInfo> {
 	
 	@Override public List<CountralInfo> beforeMerge(List<CountralInfo> baseInfos) {
 		return baseInfos;

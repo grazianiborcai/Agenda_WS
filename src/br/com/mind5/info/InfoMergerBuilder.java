@@ -5,10 +5,10 @@ import java.util.List;
 import br.com.mind5.common.SystemLog;
 import br.com.mind5.common.SystemMessage;
 
-public final class InfoMergerBuilderV3<T extends InfoRecord, K extends InfoRecord> {
+public final class InfoMergerBuilder<T extends InfoRecord, K extends InfoRecord> {
 	private List<T> bases; 
 	private List<K> seles;
-	private InfoMergerVisitorV3<T, K> merger;	
+	private InfoMergerVisitor<T, K> merger;	
 	
 	
 	public void addBaseInfo(T baseInfo) {
@@ -35,20 +35,20 @@ public final class InfoMergerBuilderV3<T extends InfoRecord, K extends InfoRecor
 	
 	
 	
-	public void addVisitor(InfoMergerVisitorV3<T, K> visitor) {
+	public void addVisitor(InfoMergerVisitor<T, K> visitor) {
 		merger = visitor;
 	}	
 	
 	
 	
-	public InfoMergerV3<T, K> build() {
+	public InfoMerger<T, K> build() {
 		checkArgument(bases, seles, merger);
-		return new InfoMergerHelperV3<T, K>(bases, seles, merger);
+		return new InfoMergerHelper<T, K>(bases, seles, merger);
 	}
 	
 	
 	
-	private void checkArgument(List<T> baseInfos, List<K> selectedInfos, InfoMergerVisitorV3<T, K> visitor) {
+	private void checkArgument(List<T> baseInfos, List<K> selectedInfos, InfoMergerVisitor<T, K> visitor) {
 		if (baseInfos == null) {
 			logException(new NullPointerException("baseInfos" + SystemMessage.NULL_ARGUMENT));
 			throw new NullPointerException("baseInfos" + SystemMessage.NULL_ARGUMENT);

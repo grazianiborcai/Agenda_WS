@@ -3,11 +3,11 @@ package br.com.mind5.authorization.storeAuthorization.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.security.username.info.UsernameInfo;
 
-final class StorauthVisiMergeUsername implements InfoMergerVisitorV3<StorauthInfo, UsernameInfo> {
+final class StorauthVisiMergeUsername implements InfoMergerVisitor<StorauthInfo, UsernameInfo> {
 	
 	@Override public List<StorauthInfo> beforeMerge(List<StorauthInfo> baseInfos) {
 		return baseInfos;

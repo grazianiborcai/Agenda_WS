@@ -2,17 +2,17 @@ package br.com.mind5.business.phoneSearch.info;
 
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerBuilderV3;
-import br.com.mind5.info.InfoMergerV3;
+import br.com.mind5.info.InfoMergerBuilder;
+import br.com.mind5.info.InfoMerger;
 
 public final class PhonarchMerger {	
 	public static List<PhonarchInfo> mergeToSelect(List<PhonarchInfo> baseInfos, List<PhonarchInfo> selectedInfos) {
-		InfoMergerBuilderV3<PhonarchInfo, PhonarchInfo> builder = new InfoMergerBuilderV3<>();
+		InfoMergerBuilder<PhonarchInfo, PhonarchInfo> builder = new InfoMergerBuilder<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new PhonarchVisiMergeToSelect());
-		InfoMergerV3<PhonarchInfo, PhonarchInfo> merger = builder.build();		
+		InfoMerger<PhonarchInfo, PhonarchInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}

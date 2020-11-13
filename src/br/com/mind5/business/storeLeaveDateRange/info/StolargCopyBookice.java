@@ -6,12 +6,11 @@ import java.time.LocalTime;
 
 import br.com.mind5.business.bookService.info.BookiceInfo;
 import br.com.mind5.info.InfoCopierTemplate;
-import br.com.mind5.info.obsolete.InfoUniquifyHelper_;
 
 final class StolargCopyBookice extends InfoCopierTemplate<StolargInfo, BookiceInfo> {
 	
 	public StolargCopyBookice() {
-		super(new InfoUniquifyHelper_<StolargInfo>());
+		super(new StolargUniquifier());
 	}
 	
 	

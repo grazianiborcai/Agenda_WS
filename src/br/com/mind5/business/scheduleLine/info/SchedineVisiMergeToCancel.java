@@ -3,10 +3,10 @@ package br.com.mind5.business.scheduleLine.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 
-final class SchedineVisiMergeToCancel implements InfoMergerVisitorV3<SchedineInfo, SchedineInfo> {
+final class SchedineVisiMergeToCancel implements InfoMergerVisitor<SchedineInfo, SchedineInfo> {
 	
 	@Override public List<SchedineInfo> beforeMerge(List<SchedineInfo> baseInfos) {
 		return baseInfos;

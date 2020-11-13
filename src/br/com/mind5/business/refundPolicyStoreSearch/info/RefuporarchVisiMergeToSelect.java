@@ -3,10 +3,10 @@ package br.com.mind5.business.refundPolicyStoreSearch.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 
-final class RefuporarchVisiMergeToSelect implements InfoMergerVisitorV3<RefuporarchInfo, RefuporarchInfo> {
+final class RefuporarchVisiMergeToSelect implements InfoMergerVisitor<RefuporarchInfo, RefuporarchInfo> {
 	
 	@Override public List<RefuporarchInfo> beforeMerge(List<RefuporarchInfo> baseInfos) {
 		return baseInfos;

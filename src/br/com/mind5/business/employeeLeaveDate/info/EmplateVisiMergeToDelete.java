@@ -3,10 +3,10 @@ package br.com.mind5.business.employeeLeaveDate.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 
-final class EmplateVisiMergeToDelete implements InfoMergerVisitorV3<EmplateInfo, EmplateInfo> {
+final class EmplateVisiMergeToDelete implements InfoMergerVisitor<EmplateInfo, EmplateInfo> {
 	
 	@Override public List<EmplateInfo> beforeMerge(List<EmplateInfo> baseInfos) {
 		return baseInfos;

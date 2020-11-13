@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.phone.info.PhoneInfo;
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 
-final class CrecardVisiMergePhone implements InfoMergerVisitorV3<CrecardInfo, PhoneInfo> {
+final class CrecardVisiMergePhone implements InfoMergerVisitor<CrecardInfo, PhoneInfo> {
 	
 	@Override public List<CrecardInfo> beforeMerge(List<CrecardInfo> baseInfos) {
 		return baseInfos;

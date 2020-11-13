@@ -3,11 +3,11 @@ package br.com.mind5.business.addressSnapshot.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.masterData.country.info.CountryInfo;
 
-final class AddresnapVisiMergeCountry implements InfoMergerVisitorV3<AddresnapInfo, CountryInfo> {
+final class AddresnapVisiMergeCountry implements InfoMergerVisitor<AddresnapInfo, CountryInfo> {
 	
 	@Override public List<AddresnapInfo> beforeMerge(List<AddresnapInfo> baseInfos) {
 		return baseInfos;

@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.companyList.info.ComplisInfo;
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 
-final class OwnelisVisiMergeComplis implements InfoMergerVisitorV3<OwnelisInfo, ComplisInfo> {
+final class OwnelisVisiMergeComplis implements InfoMergerVisitor<OwnelisInfo, ComplisInfo> {
 	
 	@Override public List<OwnelisInfo> beforeMerge(List<OwnelisInfo> baseInfos) {
 		return baseInfos;

@@ -3,10 +3,10 @@ package br.com.mind5.business.storeFavorite.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 
-final class StoriteVisiMergeToSelect implements InfoMergerVisitorV3<StoriteInfo, StoriteInfo> {
+final class StoriteVisiMergeToSelect implements InfoMergerVisitor<StoriteInfo, StoriteInfo> {
 	
 	@Override public List<StoriteInfo> beforeMerge(List<StoriteInfo> baseInfos) {
 		return baseInfos;

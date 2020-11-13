@@ -3,10 +3,10 @@ package br.com.mind5.security.otpProspectStore.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 
-final class OtporeVisiMergeToAuthenticate implements InfoMergerVisitorV3<OtporeInfo, OtporeInfo> {
+final class OtporeVisiMergeToAuthenticate implements InfoMergerVisitor<OtporeInfo, OtporeInfo> {
 	
 	@Override public List<OtporeInfo> beforeMerge(List<OtporeInfo> baseInfos) {
 		return baseInfos;

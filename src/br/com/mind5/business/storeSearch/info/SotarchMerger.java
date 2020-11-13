@@ -2,18 +2,18 @@ package br.com.mind5.business.storeSearch.info;
 
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerBuilderV3;
-import br.com.mind5.info.InfoMergerV3;
+import br.com.mind5.info.InfoMergerBuilder;
+import br.com.mind5.info.InfoMerger;
 import br.com.mind5.security.username.info.UsernameInfo;
 
 public final class SotarchMerger {	
 	public static List<SotarchInfo> mergeWithUsername(List<SotarchInfo> baseInfos, List<UsernameInfo> selectedInfos) {
-		InfoMergerBuilderV3<SotarchInfo, UsernameInfo> builder = new InfoMergerBuilderV3<>();
+		InfoMergerBuilder<SotarchInfo, UsernameInfo> builder = new InfoMergerBuilder<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new SotarchVisiMergeUsername());
-		InfoMergerV3<SotarchInfo, UsernameInfo> merger = builder.build();		
+		InfoMerger<SotarchInfo, UsernameInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}
@@ -21,12 +21,12 @@ public final class SotarchMerger {
 	
 	
 	public static List<SotarchInfo> mergeToSelect(List<SotarchInfo> baseInfos, List<SotarchInfo> selectedInfos) {
-		InfoMergerBuilderV3<SotarchInfo, SotarchInfo> builder = new InfoMergerBuilderV3<>();
+		InfoMergerBuilder<SotarchInfo, SotarchInfo> builder = new InfoMergerBuilder<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new SotarchVisiMergeToSelect());
-		InfoMergerV3<SotarchInfo, SotarchInfo> merger = builder.build();		
+		InfoMerger<SotarchInfo, SotarchInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}

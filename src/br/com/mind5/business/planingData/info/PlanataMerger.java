@@ -4,17 +4,17 @@ import java.util.List;
 
 import br.com.mind5.business.calendarMoon.info.MooncalInfo;
 import br.com.mind5.business.materialList.info.MatlisInfo;
-import br.com.mind5.info.InfoMergerBuilderV3;
-import br.com.mind5.info.InfoMergerV3;
+import br.com.mind5.info.InfoMergerBuilder;
+import br.com.mind5.info.InfoMerger;
 
 public final class PlanataMerger {		
 	public static List<PlanataInfo> mergeWithMooncal(List<PlanataInfo> baseInfos, List<MooncalInfo> selectedInfos) {
-		InfoMergerBuilderV3<PlanataInfo, MooncalInfo> builder = new InfoMergerBuilderV3<>();
+		InfoMergerBuilder<PlanataInfo, MooncalInfo> builder = new InfoMergerBuilder<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new PlanataVisiMergeMooncal());
-		InfoMergerV3<PlanataInfo, MooncalInfo> merger = builder.build();		
+		InfoMerger<PlanataInfo, MooncalInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}
@@ -22,12 +22,12 @@ public final class PlanataMerger {
 	
 	
 	public static List<PlanataInfo> mergeWithMatlis(List<PlanataInfo> baseInfos, List<MatlisInfo> selectedInfos) {
-		InfoMergerBuilderV3<PlanataInfo, MatlisInfo> builder = new InfoMergerBuilderV3<>();
+		InfoMergerBuilder<PlanataInfo, MatlisInfo> builder = new InfoMergerBuilder<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new PlanataVisiMergeMatlis());
-		InfoMergerV3<PlanataInfo, MatlisInfo> merger = builder.build();		
+		InfoMerger<PlanataInfo, MatlisInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}
@@ -35,12 +35,12 @@ public final class PlanataMerger {
 	
 	
 	public static List<PlanataInfo> mergeToSelect(List<PlanataInfo> baseInfos, List<PlanataInfo> selectedInfos) {
-		InfoMergerBuilderV3<PlanataInfo, PlanataInfo> builder = new InfoMergerBuilderV3<>();
+		InfoMergerBuilder<PlanataInfo, PlanataInfo> builder = new InfoMergerBuilder<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new PlanataVisiMergeToSelect());
-		InfoMergerV3<PlanataInfo, PlanataInfo> merger = builder.build();		
+		InfoMerger<PlanataInfo, PlanataInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}

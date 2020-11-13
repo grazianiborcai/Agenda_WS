@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.geo.geoHash.info.GeoshInfo;
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 
-final class AddressVisiMergeGeosh implements InfoMergerVisitorV3<AddressInfo, GeoshInfo> {
+final class AddressVisiMergeGeosh implements InfoMergerVisitor<AddressInfo, GeoshInfo> {
 	
 	@Override public List<AddressInfo> beforeMerge(List<AddressInfo> baseInfos) {
 		return baseInfos;

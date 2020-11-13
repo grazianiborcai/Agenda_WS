@@ -3,11 +3,11 @@ package br.com.mind5.business.storeWorkTime.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.masterData.weekday.info.WeekdayInfo;
 
-final class StowotmVisiMergeWeekday implements InfoMergerVisitorV3<StowotmInfo, WeekdayInfo> {
+final class StowotmVisiMergeWeekday implements InfoMergerVisitor<StowotmInfo, WeekdayInfo> {
 	
 	@Override public List<StowotmInfo> beforeMerge(List<StowotmInfo> baseInfos) {
 		return baseInfos;

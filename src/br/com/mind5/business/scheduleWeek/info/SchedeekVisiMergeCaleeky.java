@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.calendarWeekYear.info.CaleekyInfo;
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 
-final class SchedeekVisiMergeCaleeky implements InfoMergerVisitorV3<SchedeekInfo, CaleekyInfo> {
+final class SchedeekVisiMergeCaleeky implements InfoMergerVisitor<SchedeekInfo, CaleekyInfo> {
 	
 	@Override public List<SchedeekInfo> beforeMerge(List<SchedeekInfo> baseInfos) {
 		return baseInfos;

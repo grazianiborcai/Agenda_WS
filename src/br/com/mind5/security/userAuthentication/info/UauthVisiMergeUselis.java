@@ -3,11 +3,11 @@ package br.com.mind5.security.userAuthentication.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.security.userList.info.UselisInfo;
 
-final class UauthVisiMergeUselis implements InfoMergerVisitorV3<UauthInfo, UselisInfo> {
+final class UauthVisiMergeUselis implements InfoMergerVisitor<UauthInfo, UselisInfo> {
 	
 	@Override public List<UauthInfo> beforeMerge(List<UauthInfo> baseInfos) {
 		return baseInfos;

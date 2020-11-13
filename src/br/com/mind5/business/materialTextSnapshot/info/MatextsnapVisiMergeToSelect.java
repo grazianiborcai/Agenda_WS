@@ -3,10 +3,10 @@ package br.com.mind5.business.materialTextSnapshot.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 
-final class MatextsnapVisiMergeToSelect implements InfoMergerVisitorV3<MatextsnapInfo, MatextsnapInfo> {
+final class MatextsnapVisiMergeToSelect implements InfoMergerVisitor<MatextsnapInfo, MatextsnapInfo> {
 
 	@Override public List<MatextsnapInfo> beforeMerge(List<MatextsnapInfo> baseInfos) {
 		return baseInfos;

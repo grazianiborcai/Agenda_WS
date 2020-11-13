@@ -3,11 +3,11 @@ package br.com.mind5.payment.storePartner.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.payment.storePartnerSnapshot.info.StoparnapInfo;
 
-final class StoparVisiMergeStoparnap implements InfoMergerVisitorV3<StoparInfo, StoparnapInfo> {
+final class StoparVisiMergeStoparnap implements InfoMergerVisitor<StoparInfo, StoparnapInfo> {
 	
 	@Override public List<StoparInfo> beforeMerge(List<StoparInfo> baseInfos) {
 		return baseInfos;

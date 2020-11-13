@@ -3,10 +3,10 @@ package br.com.mind5.security.userList.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 
-final class UselisVisiMergeToSelect implements InfoMergerVisitorV3<UselisInfo, UselisInfo> {
+final class UselisVisiMergeToSelect implements InfoMergerVisitor<UselisInfo, UselisInfo> {
 	
 	@Override public List<UselisInfo> beforeMerge(List<UselisInfo> baseInfos) {
 		return baseInfos;

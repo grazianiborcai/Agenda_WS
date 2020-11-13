@@ -3,11 +3,11 @@ package br.com.mind5.security.username.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.masterData.authorizationGroupRole.info.AuthgroleInfo;
 
-final class UsernameVisiMergeAuthgrole implements InfoMergerVisitorV3<UsernameInfo, AuthgroleInfo> {
+final class UsernameVisiMergeAuthgrole implements InfoMergerVisitor<UsernameInfo, AuthgroleInfo> {
 	
 	@Override public List<UsernameInfo> beforeMerge(List<UsernameInfo> baseInfos) {
 		return baseInfos;

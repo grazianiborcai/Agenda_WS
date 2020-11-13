@@ -3,10 +3,10 @@ package br.com.mind5.business.employeeLeaveDateRange.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 
-final class EmplargVisiMergeToSelect implements InfoMergerVisitorV3<EmplargInfo, EmplargInfo> {
+final class EmplargVisiMergeToSelect implements InfoMergerVisitor<EmplargInfo, EmplargInfo> {
 		
 	@Override public List<EmplargInfo> beforeMerge(List<EmplargInfo> baseInfos) {
 		return baseInfos;

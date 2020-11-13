@@ -3,10 +3,10 @@ package br.com.mind5.business.cart.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 
-final class CartVisiMergeToEmptfy implements InfoMergerVisitorV3<CartInfo, CartInfo> {
+final class CartVisiMergeToEmptfy implements InfoMergerVisitor<CartInfo, CartInfo> {
 	
 	@Override public List<CartInfo> beforeMerge(List<CartInfo> baseInfos) {
 		return baseInfos;

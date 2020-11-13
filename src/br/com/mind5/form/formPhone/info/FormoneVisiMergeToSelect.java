@@ -3,10 +3,10 @@ package br.com.mind5.form.formPhone.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 
-final class FormoneVisiMergeToSelect implements InfoMergerVisitorV3<FormoneInfo, FormoneInfo> {
+final class FormoneVisiMergeToSelect implements InfoMergerVisitor<FormoneInfo, FormoneInfo> {
 	
 	@Override public List<FormoneInfo> beforeMerge(List<FormoneInfo> baseInfos) {
 		return baseInfos;

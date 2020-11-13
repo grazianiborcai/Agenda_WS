@@ -3,11 +3,11 @@ package br.com.mind5.paymentPartner.partnerMoip.accessMoip.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.payment.setupPartner.info.SetuparInfo;
 
-final class AccemoipVisiMergeSetupar implements InfoMergerVisitorV3<AccemoipInfo, SetuparInfo> {
+final class AccemoipVisiMergeSetupar implements InfoMergerVisitor<AccemoipInfo, SetuparInfo> {
 	
 	@Override public List<AccemoipInfo> beforeMerge(List<AccemoipInfo> baseInfos) {
 		return baseInfos;

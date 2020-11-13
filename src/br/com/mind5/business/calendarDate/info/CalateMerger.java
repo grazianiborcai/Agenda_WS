@@ -4,19 +4,19 @@ import java.util.List;
 
 import br.com.mind5.business.calendarDateSearch.info.CalatarchInfo;
 import br.com.mind5.business.calendarMoon.info.MooncalInfo;
-import br.com.mind5.info.InfoMergerBuilderV3;
-import br.com.mind5.info.InfoMergerV3;
+import br.com.mind5.info.InfoMergerBuilder;
+import br.com.mind5.info.InfoMerger;
 import br.com.mind5.masterData.month.info.MonthInfo;
 import br.com.mind5.masterData.weekday.info.WeekdayInfo;
 
 public final class CalateMerger {
 	public static List<CalateInfo> mergeWithCalatarch(List<CalateInfo> baseInfos, List<CalatarchInfo> selectedInfos) {
-		InfoMergerBuilderV3<CalateInfo, CalatarchInfo> builder = new InfoMergerBuilderV3<>();
+		InfoMergerBuilder<CalateInfo, CalatarchInfo> builder = new InfoMergerBuilder<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new CalateVisiMergeCalatarch());
-		InfoMergerV3<CalateInfo, CalatarchInfo> merger = builder.build();		
+		InfoMerger<CalateInfo, CalatarchInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}
@@ -24,12 +24,12 @@ public final class CalateMerger {
 	
 	
 	public static List<CalateInfo> mergeWithMonth(List<CalateInfo> baseInfos, List<MonthInfo> selectedInfos) {
-		InfoMergerBuilderV3<CalateInfo, MonthInfo> builder = new InfoMergerBuilderV3<>();
+		InfoMergerBuilder<CalateInfo, MonthInfo> builder = new InfoMergerBuilder<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new CalateVisiMergeMonth());
-		InfoMergerV3<CalateInfo, MonthInfo> merger = builder.build();		
+		InfoMerger<CalateInfo, MonthInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}
@@ -37,12 +37,12 @@ public final class CalateMerger {
 	
 	
 	public static List<CalateInfo> mergeWithMooncal(List<CalateInfo> baseInfos, List<MooncalInfo> selectedInfos) {
-		InfoMergerBuilderV3<CalateInfo, MooncalInfo> builder = new InfoMergerBuilderV3<>();
+		InfoMergerBuilder<CalateInfo, MooncalInfo> builder = new InfoMergerBuilder<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new CalateVisiMergeMooncal());
-		InfoMergerV3<CalateInfo, MooncalInfo> merger = builder.build();		
+		InfoMerger<CalateInfo, MooncalInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}
@@ -50,12 +50,12 @@ public final class CalateMerger {
 	
 	
 	public static List<CalateInfo> mergeWithWeekday(List<CalateInfo> baseInfos, List<WeekdayInfo> selectedInfos) {
-		InfoMergerBuilderV3<CalateInfo, WeekdayInfo> builder = new InfoMergerBuilderV3<>();
+		InfoMergerBuilder<CalateInfo, WeekdayInfo> builder = new InfoMergerBuilder<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new CalateVisiMergeWeekday());
-		InfoMergerV3<CalateInfo, WeekdayInfo> merger = builder.build();		
+		InfoMerger<CalateInfo, WeekdayInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}
@@ -63,12 +63,12 @@ public final class CalateMerger {
 	
 	
 	public static List<CalateInfo> mergeToSelect(List<CalateInfo> baseInfos, List<CalateInfo> selectedInfos) {
-		InfoMergerBuilderV3<CalateInfo, CalateInfo> builder = new InfoMergerBuilderV3<>();
+		InfoMergerBuilder<CalateInfo, CalateInfo> builder = new InfoMergerBuilder<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new CalateVisiMergeToSelect());
-		InfoMergerV3<CalateInfo, CalateInfo> merger = builder.build();		
+		InfoMerger<CalateInfo, CalateInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}

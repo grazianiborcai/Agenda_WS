@@ -2,17 +2,17 @@ package br.com.mind5.business.calendarDateSearch.info;
 
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerBuilderV3;
-import br.com.mind5.info.InfoMergerV3;
+import br.com.mind5.info.InfoMergerBuilder;
+import br.com.mind5.info.InfoMerger;
 
 public final class CalatarchMerger {
 	public static List<CalatarchInfo> mergeToSelect(List<CalatarchInfo> baseInfos, List<CalatarchInfo> selectedInfos) {
-		InfoMergerBuilderV3<CalatarchInfo, CalatarchInfo> builder = new InfoMergerBuilderV3<>();
+		InfoMergerBuilder<CalatarchInfo, CalatarchInfo> builder = new InfoMergerBuilder<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new CalatarchVisiMergeToSelect());
-		InfoMergerV3<CalatarchInfo, CalatarchInfo> merger = builder.build();		
+		InfoMerger<CalatarchInfo, CalatarchInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}

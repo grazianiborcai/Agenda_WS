@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.config.sysStoreSignup.info.SysotupInfo;
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 
-final class SysonfigVisiMergeSysotup implements InfoMergerVisitorV3<SysonfigInfo, SysotupInfo> {
+final class SysonfigVisiMergeSysotup implements InfoMergerVisitor<SysonfigInfo, SysotupInfo> {
 	
 	@Override public List<SysonfigInfo> beforeMerge(List<SysonfigInfo> baseInfos) {
 		return baseInfos;

@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mind5.business.materialStore.info.MatoreInfo;
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 
-final class MatogueVisiMergeMatore implements InfoMergerVisitorV3<MatogueInfo, MatoreInfo> {
+final class MatogueVisiMergeMatore implements InfoMergerVisitor<MatogueInfo, MatoreInfo> {
 	
 	@Override public List<MatogueInfo> beforeMerge(List<MatogueInfo> baseInfos) {
 		return baseInfos;

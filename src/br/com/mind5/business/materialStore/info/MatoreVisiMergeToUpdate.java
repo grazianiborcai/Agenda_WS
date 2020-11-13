@@ -3,10 +3,10 @@ package br.com.mind5.business.materialStore.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 
-final class MatoreVisiMergeToUpdate implements InfoMergerVisitorV3<MatoreInfo, MatoreInfo> {
+final class MatoreVisiMergeToUpdate implements InfoMergerVisitor<MatoreInfo, MatoreInfo> {
 	
 	@Override public List<MatoreInfo> beforeMerge(List<MatoreInfo> baseInfos) {
 		return baseInfos;

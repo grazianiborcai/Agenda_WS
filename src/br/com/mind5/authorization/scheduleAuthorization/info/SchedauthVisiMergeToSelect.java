@@ -3,10 +3,10 @@ package br.com.mind5.authorization.scheduleAuthorization.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 
-final class SchedauthVisiMergeToSelect implements InfoMergerVisitorV3<SchedauthInfo, SchedauthInfo> {
+final class SchedauthVisiMergeToSelect implements InfoMergerVisitor<SchedauthInfo, SchedauthInfo> {
 	
 	@Override public List<SchedauthInfo> beforeMerge(List<SchedauthInfo> baseInfos) {
 		return baseInfos;

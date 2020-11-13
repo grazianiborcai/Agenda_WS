@@ -6,8 +6,8 @@ import br.com.mind5.authorization.storePartitionAuthorization.info.SytotauhInfo;
 import br.com.mind5.business.materialSearch.info.MatarchInfo;
 import br.com.mind5.business.materialText.info.MatextInfo;
 import br.com.mind5.file.fileImageList.info.FimistInfo;
-import br.com.mind5.info.InfoMergerBuilderV3;
-import br.com.mind5.info.InfoMergerV3;
+import br.com.mind5.info.InfoMergerBuilder;
+import br.com.mind5.info.InfoMerger;
 import br.com.mind5.masterData.materialCategory.info.MategInfo;
 import br.com.mind5.masterData.materialGroup.info.MatoupInfo;
 import br.com.mind5.masterData.materialSubgroup.info.MatubupInfo;
@@ -16,12 +16,12 @@ import br.com.mind5.masterData.materialUnit.info.MatunitInfo;
 
 public final class MatlisMerger {
 	public static List<MatlisInfo> mergeWithSytotauh(List<MatlisInfo> baseInfos, List<SytotauhInfo> selectedInfos) {
-		InfoMergerBuilderV3<MatlisInfo, SytotauhInfo> builder = new InfoMergerBuilderV3<>();
+		InfoMergerBuilder<MatlisInfo, SytotauhInfo> builder = new InfoMergerBuilder<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new MatlisVisiMergeSytotauh());
-		InfoMergerV3<MatlisInfo, SytotauhInfo> merger = builder.build();		
+		InfoMerger<MatlisInfo, SytotauhInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}
@@ -29,12 +29,12 @@ public final class MatlisMerger {
 	
 	
 	public static List<MatlisInfo> mergeWithMatubup(List<MatlisInfo> baseInfos, List<MatubupInfo> selectedInfos) {
-		InfoMergerBuilderV3<MatlisInfo, MatubupInfo> builder = new InfoMergerBuilderV3<>();
+		InfoMergerBuilder<MatlisInfo, MatubupInfo> builder = new InfoMergerBuilder<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new MatlisVisiMergeMatubup());
-		InfoMergerV3<MatlisInfo, MatubupInfo> merger = builder.build();		
+		InfoMerger<MatlisInfo, MatubupInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}
@@ -42,12 +42,12 @@ public final class MatlisMerger {
 	
 	
 	public static List<MatlisInfo> mergeWithFimist(List<MatlisInfo> baseInfos, List<FimistInfo> selectedInfos) {
-		InfoMergerBuilderV3<MatlisInfo, FimistInfo> builder = new InfoMergerBuilderV3<>();
+		InfoMergerBuilder<MatlisInfo, FimistInfo> builder = new InfoMergerBuilder<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new MatlisVisiMergeFimist());
-		InfoMergerV3<MatlisInfo, FimistInfo> merger = builder.build();		
+		InfoMerger<MatlisInfo, FimistInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}
@@ -55,12 +55,12 @@ public final class MatlisMerger {
 	
 	
 	public static List<MatlisInfo> mergeWithMatarch(List<MatlisInfo> baseInfos, List<MatarchInfo> selectedInfos) {
-		InfoMergerBuilderV3<MatlisInfo, MatarchInfo> builder = new InfoMergerBuilderV3<>();
+		InfoMergerBuilder<MatlisInfo, MatarchInfo> builder = new InfoMergerBuilder<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new MatlisVisiMergeMatarch());
-		InfoMergerV3<MatlisInfo, MatarchInfo> merger = builder.build();		
+		InfoMerger<MatlisInfo, MatarchInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}
@@ -68,12 +68,12 @@ public final class MatlisMerger {
 	
 	
 	public static List<MatlisInfo> mergeWithMateg(List<MatlisInfo> baseInfos, List<MategInfo> selectedInfos) {
-		InfoMergerBuilderV3<MatlisInfo, MategInfo> builder = new InfoMergerBuilderV3<>();
+		InfoMergerBuilder<MatlisInfo, MategInfo> builder = new InfoMergerBuilder<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new MatlisVisiMergeMateg());
-		InfoMergerV3<MatlisInfo, MategInfo> merger = builder.build();		
+		InfoMerger<MatlisInfo, MategInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}	
@@ -81,12 +81,12 @@ public final class MatlisMerger {
 	
 	
 	public static List<MatlisInfo> mergeWithMatext(List<MatlisInfo> baseInfos, List<MatextInfo> selectedInfos) {
-		InfoMergerBuilderV3<MatlisInfo, MatextInfo> builder = new InfoMergerBuilderV3<>();
+		InfoMergerBuilder<MatlisInfo, MatextInfo> builder = new InfoMergerBuilder<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new MatlisVisiMergeMatext());
-		InfoMergerV3<MatlisInfo, MatextInfo> merger = builder.build();		
+		InfoMerger<MatlisInfo, MatextInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}
@@ -94,12 +94,12 @@ public final class MatlisMerger {
 	
 	
 	public static List<MatlisInfo> mergeWithMatype(List<MatlisInfo> baseInfos, List<MatypeInfo> selectedInfos) {
-		InfoMergerBuilderV3<MatlisInfo, MatypeInfo> builder = new InfoMergerBuilderV3<>();
+		InfoMergerBuilder<MatlisInfo, MatypeInfo> builder = new InfoMergerBuilder<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new MatlisVisiMergeMatype());
-		InfoMergerV3<MatlisInfo, MatypeInfo> merger = builder.build();		
+		InfoMerger<MatlisInfo, MatypeInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}
@@ -107,12 +107,12 @@ public final class MatlisMerger {
 	
 	
 	public static List<MatlisInfo> mergeWithMatoup(List<MatlisInfo> baseInfos, List<MatoupInfo> selectedInfos) {
-		InfoMergerBuilderV3<MatlisInfo, MatoupInfo> builder = new InfoMergerBuilderV3<>();
+		InfoMergerBuilder<MatlisInfo, MatoupInfo> builder = new InfoMergerBuilder<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new MatlisVisiMergeMatoup());
-		InfoMergerV3<MatlisInfo, MatoupInfo> merger = builder.build();		
+		InfoMerger<MatlisInfo, MatoupInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}
@@ -120,12 +120,12 @@ public final class MatlisMerger {
 	
 	
 	public static List<MatlisInfo> mergeWithMatunit(List<MatlisInfo> baseInfos, List<MatunitInfo> selectedInfos) {
-		InfoMergerBuilderV3<MatlisInfo, MatunitInfo> builder = new InfoMergerBuilderV3<>();
+		InfoMergerBuilder<MatlisInfo, MatunitInfo> builder = new InfoMergerBuilder<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new MatlisVisiMergeMatunit());
-		InfoMergerV3<MatlisInfo, MatunitInfo> merger = builder.build();		
+		InfoMerger<MatlisInfo, MatunitInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}
@@ -133,12 +133,12 @@ public final class MatlisMerger {
 	
 	
 	public static List<MatlisInfo> mergeToSelect(List<MatlisInfo> baseInfos, List<MatlisInfo> selectedInfos) {
-		InfoMergerBuilderV3<MatlisInfo, MatlisInfo> builder = new InfoMergerBuilderV3<>();
+		InfoMergerBuilder<MatlisInfo, MatlisInfo> builder = new InfoMergerBuilder<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new MatlisVisiMergeToSelect());
-		InfoMergerV3<MatlisInfo, MatlisInfo> merger = builder.build();		
+		InfoMerger<MatlisInfo, MatlisInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}

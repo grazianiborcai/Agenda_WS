@@ -3,10 +3,10 @@ package br.com.mind5.business.storeProspect.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 
-final class StoprosVisiMergeToUpdate implements InfoMergerVisitorV3<StoprosInfo, StoprosInfo> {
+final class StoprosVisiMergeToUpdate implements InfoMergerVisitor<StoprosInfo, StoprosInfo> {
 	
 	@Override public List<StoprosInfo> beforeMerge(List<StoprosInfo> baseInfos) {
 		return baseInfos;

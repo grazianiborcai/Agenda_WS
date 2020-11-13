@@ -3,11 +3,11 @@ package br.com.mind5.masterData.dayParting.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.masterData.dayPartingSearch.info.DayparchInfo;
 
-final class DaypartVisiMergeDayparch implements InfoMergerVisitorV3<DaypartInfo, DayparchInfo> {
+final class DaypartVisiMergeDayparch implements InfoMergerVisitor<DaypartInfo, DayparchInfo> {
 	
 	@Override public List<DaypartInfo> beforeMerge(List<DaypartInfo> baseInfos) {
 		return baseInfos;

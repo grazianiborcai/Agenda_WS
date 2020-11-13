@@ -3,11 +3,11 @@ package br.com.mind5.geo.geoCode.info;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.masterData.state.info.StateInfo;
 
-final class GeodeVisiMergeState implements InfoMergerVisitorV3<GeodeInfo, StateInfo> {
+final class GeodeVisiMergeState implements InfoMergerVisitor<GeodeInfo, StateInfo> {
 	
 	@Override public List<GeodeInfo> beforeMerge(List<GeodeInfo> baseInfos) {
 		return baseInfos;

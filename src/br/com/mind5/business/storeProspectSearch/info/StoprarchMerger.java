@@ -2,17 +2,17 @@ package br.com.mind5.business.storeProspectSearch.info;
 
 import java.util.List;
 
-import br.com.mind5.info.InfoMergerBuilderV3;
-import br.com.mind5.info.InfoMergerV3;
+import br.com.mind5.info.InfoMergerBuilder;
+import br.com.mind5.info.InfoMerger;
 
 public final class StoprarchMerger {		
 	public static List<StoprarchInfo> mergeToSelect(List<StoprarchInfo> baseInfos, List<StoprarchInfo> selectedInfos) {
-		InfoMergerBuilderV3<StoprarchInfo, StoprarchInfo> builder = new InfoMergerBuilderV3<>();
+		InfoMergerBuilder<StoprarchInfo, StoprarchInfo> builder = new InfoMergerBuilder<>();
 		
 		builder.addBaseInfos(baseInfos);
 		builder.addSelectedInfos(selectedInfos);
 		builder.addVisitor(new StoprarchVisiMergeToSelect());
-		InfoMergerV3<StoprarchInfo, StoprarchInfo> merger = builder.build();		
+		InfoMerger<StoprarchInfo, StoprarchInfo> merger = builder.build();		
 	
 		return merger.merge();
 	}

@@ -6,11 +6,11 @@ import java.util.List;
 
 import br.com.mind5.business.materialList.info.MatlisInfo;
 import br.com.mind5.common.SystemLog;
-import br.com.mind5.info.InfoMergerVisitorV3;
+import br.com.mind5.info.InfoMergerVisitor;
 import br.com.mind5.info.InfoUniquifier;
 import br.com.mind5.masterData.materialUnit.info.Matunit;
 
-final class PlanataVisiMergeMatlis implements InfoMergerVisitorV3<PlanataInfo, MatlisInfo> {
+final class PlanataVisiMergeMatlis implements InfoMergerVisitor<PlanataInfo, MatlisInfo> {
 	
 	@Override public List<PlanataInfo> beforeMerge(List<PlanataInfo> baseInfos) {
 		return baseInfos;
